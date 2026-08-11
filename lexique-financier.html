@@ -358,11 +358,11 @@ const TERMES = [
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
   mecanismeContenu:`✅ Actions de sociétés européennes\n✅ ETF actions européennes, et ETF monde via la réplication synthétique\n❌ Actions américaines ou asiatiques en direct\n❌ Obligations, SCPI, crypto\n✅ Plafond de versement : 150 000€ (PEA classique)`,
   sectionsOptionnelles:[
-    {titre:`🔀 PEA classique ou PEA-PME ?`, contenu:`Le PEA-PME est une version dédiée aux petites et moyennes entreprises, avec un plafond de 225 000€ cumulable avec le PEA classique.`}
+    {titre:`🔀 PEA classique ou PEA-PME ?`, contenu:`Le PEA-PME est une version dédiée aux petites et moyennes entreprises. Son plafond de 225 000€ est partagé avec le PEA classique : le total des versements cumulés sur les deux ne peut pas dépasser 225 000€, dont 150 000€ maximum sur le PEA classique.`}
   ],
   attention:`Un retrait avant 5 ans clôture le PEA (sauf exceptions comme la création d'entreprise) et fait perdre l'avantage fiscal acquis.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Avant 5 ans, les gains sont taxés à la flat tax de 30%. Après 5 ans, ils ne sont plus soumis qu'aux prélèvements sociaux de 17,2%, sans impôt sur le revenu.`,
+  fraisContenu:`Avant 5 ans, les gains sont taxés à la flat tax de 31,4%. Après 5 ans, ils ne sont plus soumis qu'aux prélèvements sociaux (18,6% depuis la hausse de la CSG au 1er janvier 2026), sans impôt sur le revenu.`,
   avantage:`Après 5 ans, tu peux retirer et continuer à investir dans un cadre quasi exonéré d'impôt sur le revenu — l'enveloppe la plus avantageuse pour investir en actions sur le long terme.`
 },
 
@@ -391,8 +391,8 @@ const TERMES = [
   ],
   attention:`Les frais sur versement et de gestion varient énormément d'un contrat à l'autre — un contrat en ligne coûte souvent bien moins cher qu'un contrat bancaire traditionnel.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Avant 8 ans, flat tax de 30% sur les gains retirés. Après 8 ans, abattement annuel de 4 600€ (9 200€ pour un couple) sur les gains, puis taxation réduite à 24,7% au-delà.`,
-  avantage:`Une fiscalité qui s'améliore avec le temps et un cadre très favorable pour transmettre un capital à tes proches hors succession classique.`
+  fraisContenu:`Avant 8 ans, flat tax de 30% sur les gains retirés. Après 8 ans, abattement annuel de 4 600€ (9 200€ pour un couple) sur les gains, puis taxation réduite à 24,7% au-delà. L'assurance-vie a été explicitement épargnée par la hausse de la CSG de 2026, contrairement au CTO, au PEA ou au PER — elle reste à 17,2% de prélèvements sociaux.`,
+  avantage:`Une fiscalité qui s'améliore avec le temps et un cadre très favorable pour transmettre un capital à tes proches hors succession classique — et depuis 2026, l'enveloppe la mieux préservée fiscalement face aux autres.`
 },
 
 {
@@ -407,7 +407,7 @@ const TERMES = [
   ],
   attention:`L'avantage fiscal à l'entrée se paie à la sortie : les sommes déduites sont réintégrées à l'impôt sur le revenu au moment du retrait.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Versements déductibles du revenu imposable pendant la phase d'épargne. À la sortie, la part correspondant aux versements déduits est imposée au barème, les plus-values à la flat tax de 30%.`,
+  fraisContenu:`Versements déductibles du revenu imposable pendant la phase d'épargne. À la sortie, la part correspondant aux versements déduits est imposée au barème, les plus-values à la flat tax de 31,4%.`,
   avantage:`Une économie d'impôt immédiate chaque année, particulièrement puissante si tu es dans une tranche marginale élevée.`
 },
 
@@ -445,7 +445,7 @@ const TERMES = [
   mecanismeContenu:`✅ Fonds communs de placement d'entreprise (FCPE), souvent diversifiés en actions et obligations\n✅ Abondement de l'employeur, parfois jusqu'à 300% de ton versement selon les accords\n❌ Argent bloqué 5 ans pour le PEE, jusqu'à la retraite pour le PERCO (sauf déblocage anticipé)`,
   attention:`Si ton entreprise propose un abondement, ne pas verser au moins jusqu'à son plafond, c'est laisser de l'argent gratuit sur la table.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Les sommes versées via l'intéressement, la participation et l'abondement sont exonérées d'impôt sur le revenu. Seuls les prélèvements sociaux de 17,2% s'appliquent sur les gains.`,
+  fraisContenu:`Les sommes versées via l'intéressement, la participation et l'abondement sont exonérées d'impôt sur le revenu. Seuls les prélèvements sociaux s'appliquent sur les gains (18,6% depuis la hausse de la CSG au 1er janvier 2026).`,
   avantage:`L'abondement employeur, qui peut représenter un rendement immédiat et garanti bien supérieur à n'importe quel placement.`
 },
 
@@ -520,11 +520,12 @@ const TERMES = [
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`La société de gestion achète et gère un parc d'immeubles (bureaux, commerces, logements) avec l'argent des porteurs de parts. Les loyers perçus, moins les frais de gestion, te sont reversés au prorata de tes parts, généralement chaque trimestre. Le rendement moyen du marché tourne autour de 4 à 5% par an.`,
   sectionsOptionnelles:[
-    {titre:`🔀 SCPI de rendement ou fiscale ?`, contenu:`Une SCPI de rendement vise le revenu locatif régulier. Une SCPI fiscale (Pinel, Malraux...) vise surtout une réduction d'impôt, avec des contraintes de durée plus fortes.`}
+    {titre:`🔀 SCPI de rendement ou fiscale ?`, contenu:`Une SCPI de rendement vise le revenu locatif régulier. Une SCPI fiscale (Pinel, Malraux...) vise surtout une réduction d'impôt, avec des contraintes de durée plus fortes.`},
+    {titre:`🔀 Avec ou sans frais d'entrée ?`, contenu:`Les SCPI traditionnelles facturent des frais de souscription (8 à 12% en moyenne, parfois plus). Une nouvelle génération de SCPI supprime ces frais d'entrée, mais compense avec des frais de gestion annuels plus élevés et des frais de sortie en cas de revente rapide — le coût total sur la durée n'est pas forcément plus faible, il faut comparer sur ton horizon de détention réel.`}
   ],
   attention:`Les parts de SCPI sont peu liquides : la revente peut prendre plusieurs semaines à plusieurs mois selon la demande.`,
   fraisTitre:`💰 Frais`,
-  fraisContenu:`Frais de souscription souvent entre 8% et 10% à l'achat, plus des frais de gestion annuels prélevés sur les loyers.`,
+  fraisContenu:`Les frais varient fortement selon le modèle de la SCPI : souscription entre 8% et 12% pour les SCPI classiques, ou pas de frais d'entrée mais une gestion plus chère pour les SCPI récentes — dans tous les cas, ils sont déjà intégrés au prix de la part.`,
   avantage:`Un accès à l'immobilier locatif dès quelques centaines d'euros, sans gestion locative à assurer toi-même.`
 },
 
@@ -645,7 +646,7 @@ const TERMES = [
   mecanismeContenu:`Chaque année (ou trimestre pour certaines entreprises américaines), l'entreprise décide de reverser une partie de ses bénéfices aux actionnaires, au prorata du nombre d'actions détenues. Par exemple, une action à 100€ qui verse un dividende de 3€ offre un rendement de 3%. Le jour du versement, le cours de l'action baisse mécaniquement du montant du dividende versé.`,
   attention:`Un dividende très élevé peut être un signal d'alerte plutôt qu'une bonne nouvelle — il indique parfois que le marché anticipe une baisse ou une suppression future du dividende.`,
   fraisTitre:`💰 Frais`,
-  fraisContenu:`Le dividende est en général versé net de prélèvement forfaitaire, ou soumis à la flat tax de 30% selon l'enveloppe utilisée.`,
+  fraisContenu:`Le dividende est soumis à la flat tax : 31,4% sur un CTO ou un PEA avant 5 ans, mais seulement 30% dans une assurance-vie, qui reste épargnée par la hausse de la CSG de 2026.`,
   avantage:`Un revenu régulier généré par tes investissements, sans avoir à vendre tes titres.`
 },
 
@@ -746,7 +747,7 @@ const TERMES = [
   id:"lmnp", categorie:"Immobilier", titre:"le LMNP", variante:"A", sousVariante:"produit",
   intro:`Le LMNP est un statut fiscal qui permet de louer un bien meublé tout en réduisant fortement l'impôt sur les loyers perçus.`,
   objectif:`Optimiser la fiscalité d'un investissement locatif meublé grâce à l'amortissement comptable du bien.`,
-  pourQui:`Tu loues (ou envisages de louer) un bien meublé et tu génères moins de 77 700€ de loyers meublés par an.`,
+  pourQui:`Tu loues (ou envisages de louer) un bien meublé classique et tu restes sous le seuil du régime micro-BIC (environ 77 700€ de loyers par an, seuil réactualisé périodiquement — attention, il est bien plus bas, environ 15 000€, pour les meublés de tourisme non classés type Airbnb).`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Sous le régime réel du LMNP, tu peux déduire de tes loyers imposables non seulement tes charges, mais aussi l'amortissement du bien et du mobilier — une dépréciation comptable qui ne correspond à aucune sortie d'argent réelle. Concrètement, cela permet souvent de ramener l'impôt sur les loyers perçus proche de zéro pendant de nombreuses années.`,
   sectionsOptionnelles:[
@@ -877,19 +878,19 @@ const TERMES = [
 {
   id:"flat-tax", categorie:"Fiscalité française", titre:"la Flat tax", variante:"B",
   intro:`La flat tax, ou prélèvement forfaitaire unique (PFU), est le taux d'imposition unique appliqué par défaut sur la plupart des revenus du capital en France.`,
-  definitionContenu:`Une plus-value de 1 000€ réalisée sur un CTO est taxée à 30%, soit 300€ d'impôt, quel que soit ton niveau de revenu par ailleurs.`,
+  definitionContenu:`Une plus-value de 1 000€ réalisée sur un CTO est taxée à 31,4%, soit 314€ d'impôt, quel que soit ton niveau de revenu par ailleurs.`,
   calculTitre:`🧮 Comment ça s'applique ?`,
-  calculContenu:`La flat tax de 30% se décompose en 12,8% d'impôt sur le revenu et 17,2% de prélèvements sociaux, prélevés automatiquement au moment de la vente ou du versement des dividendes/intérêts.`,
-  nuance:{titre:`🔀 Flat tax ou barème progressif ?`, contenu:`Tu peux renoncer à la flat tax et choisir d'être imposé au barème progressif de l'impôt sur le revenu à la place, si ta tranche marginale d'imposition est inférieure à 12,8% (ce choix s'applique alors à tous tes revenus du capital de l'année, pas seulement une partie).`},
-  pourquoiImportant:`Elle simplifie et souvent réduit la fiscalité par rapport à l'ancien système, mais elle s'applique par défaut : si tu es faiblement imposé, il peut être plus avantageux d'opter pour le barème progressif.`,
-  erreurFrequente:`On pense parfois que la flat tax s'applique automatiquement de la même façon dans toutes les enveloppes — en réalité, le PEA et l'assurance-vie ont leurs propres règles qui priment sur la flat tax standard une fois certains seuils de détention atteints.`,
-  aRetenir:`Vérifie chaque année si le barème progressif ne serait pas plus avantageux que la flat tax selon ton niveau de revenu — ce n'est pas automatique, il faut le demander.`
+  calculContenu:`Depuis le 1er janvier 2026, la flat tax standard est passée de 30% à 31,4% : elle se décompose en 12,8% d'impôt sur le revenu (inchangé) et 18,6% de prélèvements sociaux, contre 17,2% auparavant, suite à la hausse de la CSG sur les revenus du capital.`,
+  nuance:{titre:`🔀 Toutes les enveloppes ne sont pas concernées`, contenu:`La hausse à 31,4% touche le CTO, les dividendes, les plus-values mobilières, la crypto, le PEA (avant 5 ans) et le PER. L'assurance-vie, les PEL/CEL/PEP et les revenus immobiliers ont été explicitement épargnés par la hausse de la CSG et restent à 30% (17,2% de prélèvements sociaux).`},
+  pourquoiImportant:`Elle simplifie la fiscalité par rapport à l'ancien système, mais elle s'applique par défaut : si tu es faiblement imposé, il peut être plus avantageux d'opter pour le barème progressif de l'impôt sur le revenu à la place (si ta tranche marginale est inférieure à 12,8%, cette option s'applique alors à tous tes revenus du capital de l'année).`,
+  erreurFrequente:`On pense parfois que la flat tax s'applique automatiquement au même taux dans toutes les enveloppes — en réalité, depuis 2026, le taux diffère déjà entre un CTO (31,4%) et une assurance-vie (30%), sans même parler des règles spécifiques du PEA après 5 ans.`,
+  aRetenir:`Vérifie chaque année si le barème progressif ne serait pas plus avantageux que la flat tax selon ton niveau de revenu, et n'oublie pas que le taux exact dépend désormais aussi de l'enveloppe utilisée depuis la réforme de 2026.`
 },
 
 {
   id:"abattement-pea", categorie:"Fiscalité française", titre:"l'Abattement PEA après 5 ans", variante:"B",
   intro:`L'abattement du PEA n'est pas un pourcentage réduit sur l'impôt, mais une exonération totale d'impôt sur le revenu sur les gains, dès lors que le PEA a plus de 5 ans.`,
-  definitionContenu:`Sur un PEA ouvert depuis plus de 5 ans, un gain de 10 000€ n'est taxé qu'à 17,2% de prélèvements sociaux (1 720€), contre 30% de flat tax (3 000€) s'il avait moins de 5 ans — une économie de 1 280€ sur cet exemple.`,
+  definitionContenu:`Sur un PEA ouvert depuis plus de 5 ans, un gain de 10 000€ n'est taxé qu'à 18,6% de prélèvements sociaux (1 860€), contre 31,4% de flat tax (3 140€) s'il avait moins de 5 ans — une économie de 1 280€ sur cet exemple.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
   calculContenu:`La durée de 5 ans se compte à partir de la date d'ouverture du PEA, pas à partir de chaque versement individuel — un versement fait à la 4e année profite déjà de l'avantage dès que le PEA lui-même dépasse 5 ans.`,
   pourquoiImportant:`Cet avantage rend le PEA particulièrement puissant pour un horizon d'investissement long : plus tu le gardes ouvert après 5 ans, plus chaque euro de gain supplémentaire profite de cette fiscalité allégée.`,
@@ -899,13 +900,14 @@ const TERMES = [
 
 {
   id:"prelevements-sociaux", categorie:"Fiscalité française", titre:"les Prélèvements sociaux", variante:"B",
-  intro:`Les prélèvements sociaux sont une part fixe de 17,2% qui s'applique presque systématiquement sur les revenus du capital en France, en plus de l'impôt sur le revenu éventuel.`,
-  definitionContenu:`Un gain de 5 000€ sur une assurance-vie après 8 ans, même exonéré d'impôt sur le revenu grâce à l'abattement, reste taxé à 17,2% de prélèvements sociaux, soit 860€.`,
+  intro:`Les prélèvements sociaux s'appliquent presque systématiquement sur les revenus du capital en France, en plus de l'impôt sur le revenu éventuel — leur taux est de 18,6% depuis 2026 pour la plupart des placements financiers.`,
+  definitionContenu:`Un gain de 5 000€ sur un CTO ou un PEA de moins de 5 ans est taxé à 18,6% de prélèvements sociaux, soit 930€ — contre 17,2% (860€) si ce même gain provient d'une assurance-vie, qui a gardé l'ancien taux.`,
   calculTitre:`🧮 Comment ça s'applique ?`,
-  calculContenu:`Les 17,2% se décomposent en plusieurs contributions (CSG, CRDS, prélèvement de solidarité), prélevées automatiquement à la source par l'établissement financier au moment du versement des gains.`,
+  calculContenu:`Les prélèvements sociaux se décomposent en plusieurs contributions (CSG, CRDS, prélèvement de solidarité), prélevées automatiquement à la source par l'établissement financier au moment du versement des gains.`,
+  nuance:{titre:`🔀 18,6% ou 17,2% selon l'enveloppe`, contenu:`Depuis la hausse de la CSG au 1er janvier 2026, le taux général est passé de 17,2% à 18,6% pour la plupart des revenus financiers (CTO, PEA, PER, crypto). L'assurance-vie, les PEL/CEL/PEP et les revenus immobiliers (loyers, plus-values immobilières) ont été explicitement exclus de cette hausse et restent à 17,2%.`},
   pourquoiImportant:`Contrairement à l'impôt sur le revenu, les prélèvements sociaux s'appliquent presque toujours, même dans les enveloppes les plus avantageuses fiscalement comme le PEA après 5 ans — c'est rarement ce taux qu'on peut réduire.`,
   erreurFrequente:`On présente parfois une enveloppe comme "totalement exonérée d'impôt" en oubliant les prélèvements sociaux, qui restent dus dans la quasi-totalité des cas — le Livret A fait figure d'exception.`,
-  aRetenir:`Quand tu calcules ton gain net réel, n'oublie jamais les 17,2% de prélèvements sociaux — ils s'appliquent dans presque tous les cas, même quand l'impôt sur le revenu, lui, ne s'applique pas.`
+  aRetenir:`Quand tu calcules ton gain net réel, n'oublie jamais les prélèvements sociaux — et vérifie bien lequel des deux taux s'applique à ton enveloppe depuis la réforme de 2026.`
 },
 
 {
@@ -932,7 +934,7 @@ const TERMES = [
 },
 
 {
-  id:"halving", categorie:"Fiscalité française", titre:"le Halving", variante:"B",
+  id:"halving", categorie:"Crypto", titre:"le Halving", variante:"B",
   intro:`Le halving est un événement programmé du Bitcoin qui divise par deux la récompense versée aux mineurs, environ tous les 4 ans.`,
   definitionContenu:`En 2020, la récompense par bloc miné est passée de 12,5 à 6,25 bitcoins ; en 2024, elle est passée à 3,125 bitcoins. Le prochain halving est attendu vers 2028, avec une récompense de 1,5625 bitcoin.`,
   calculTitre:`🧮 Comment ça se déclenche ?`,
