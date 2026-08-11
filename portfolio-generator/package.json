@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-generator",
+  "version": "1.0.0",
+  "description": "Générateur de portefeuilles d'investissement illustratifs pour X (React, single-file autonome)",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/index.jsx --bundle --minify --format=iife --loader:.jsx=jsx --outfile=dist/bundle.js && node build-html.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "esbuild": "^0.28.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
