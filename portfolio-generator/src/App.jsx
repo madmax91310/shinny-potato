@@ -1,6 +1,12 @@
 import React, { useEffect, useMemo, useState, useRef, useCallback } from "react";
-import { generatePortfolio, renderTweetText, fmtPct } from "./engine.js";
+import { generatePortfolio, renderTweetText, fmtPct, TIER_ORDER } from "./engine.js";
 import { CATEGORIES, YEARS } from "./data.js";
+import { RISK_TIERS } from "./copy.js";
+
+const TIER_CHIPS = [
+  { key: "auto", label: "🎲 Auto" },
+  ...TIER_ORDER.map((key) => ({ key, label: RISK_TIERS[key].label })),
+];
 
 const CAT_COLOR = {
   obligataire: "#3987e5",
@@ -15,6 +21,32 @@ const CAT_COLOR = {
 
 const POSITIVE = "#1f9d70";
 const NEGATIVE = "#e2685f";
+
+function TierSelector({ selected, onSelect }) {
+  return (
+    <div className="panel">
+      <div className="panel-title">Niveau de risque</div>
+      <div className="tier-chips" role="group" aria-label="Choisir un niveau de risque cible">
+        {TIER_CHIPS.map((t) => (
+          <button
+            key={t.key}
+            type="button"
+            className={`tier-chip${selected === t.key ? " active" : ""}`}
+            aria-pressed={selected === t.key}
+            onClick={() => onSelect(t.key)}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+      <p className="tier-hint">
+        {selected === "auto"
+          ? "Le risque est déterminé par le tirage aléatoire des actifs."
+          : "Chaque génération est recalculée pour rester dans ce niveau de risque."}
+      </p>
+    </div>
+  );
+}
 
 function RiskGauge({ score, tierLabel }) {
   const pct = Math.min(100, Math.max(0, ((score - 1) / 4) * 100));
@@ -164,18 +196,31 @@ function randomEngagement() {
 }
 
 export default function App() {
-  const [history, setHistory] = useState(() => [generatePortfolio([])]);
+  const [selectedTier, setSelectedTier] = useState("auto");
+  const [history, setHistory] = useState(() => [generatePortfolio([], "auto")]);
   const [copyState, setCopyState] = useState("idle");
   const [engagement, setEngagement] = useState(randomEngagement);
   const textareaRef = useRef(null);
 
   const current = history[history.length - 1];
 
-  const handleGenerate = useCallback(() => {
-    setHistory((h) => [...h, generatePortfolio(h)]);
-    setEngagement(randomEngagement());
-    setCopyState("idle");
-  }, []);
+  const handleGenerate = useCallback(
+    (tierOverride) => {
+      const tier = tierOverride ?? selectedTier;
+      setHistory((h) => [...h, generatePortfolio(h, tier)]);
+      setEngagement(randomEngagement());
+      setCopyState("idle");
+    },
+    [selectedTier]
+  );
+
+  const handleSelectTier = useCallback(
+    (tierKey) => {
+      setSelectedTier(tierKey);
+      handleGenerate(tierKey);
+    },
+    [handleGenerate]
+  );
 
   const handleCopy = useCallback(async () => {
     const text = renderTweetText(current);
@@ -237,9 +282,11 @@ export default function App() {
         </section>
 
         <section className="control-col">
-          <button className="btn btn-primary btn-generate" onClick={handleGenerate}>
+          <button className="btn btn-primary btn-generate" onClick={() => handleGenerate()}>
             🔄 Générer un nouveau portefeuille
           </button>
+
+          <TierSelector selected={selectedTier} onSelect={handleSelectTier} />
 
           <div className="panel">
             <RiskGauge score={current.riskScore} tierLabel={current.tierLabel} />

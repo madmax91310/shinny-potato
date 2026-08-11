@@ -53,19 +53,122 @@ function generatePercentages(n) {
   return units.map((u) => u * 5);
 }
 
-function pickSelection() {
-  const catKeys = shuffle(Object.keys(CATEGORIES));
+function weightedPick(options, weights) {
+  const total = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < options.length; i++) {
+    r -= weights[i];
+    if (r <= 0) return options[i];
+  }
+  return options[options.length - 1];
+}
+
+function pickAssetForCategory(cat, targetMid) {
+  const options = ASSETS.filter((a) => a.cat === cat);
+  if (targetMid == null) return pick(options);
+  const weights = options.map((o) => 1 / (0.6 + Math.abs(o.risk - targetMid)));
+  return weightedPick(options, weights);
+}
+
+function categoryMinDistance(cat, targetMid) {
+  const risks = ASSETS.filter((a) => a.cat === cat).map((a) => a.risk);
+  return Math.min(...risks.map((r) => Math.abs(r - targetMid)));
+}
+
+function pickCategories(n, targetMid) {
+  const pool = Object.keys(CATEGORIES);
+  if (targetMid == null) return shuffle(pool).slice(0, n);
+  const remaining = pool.slice();
+  const chosen = [];
+  for (let i = 0; i < n && remaining.length; i++) {
+    const weights = remaining.map((cat) => 1 / (0.7 + categoryMinDistance(cat, targetMid)));
+    const total = weights.reduce((a, b) => a + b, 0);
+    let r = Math.random() * total;
+    let idx = weights.length - 1;
+    for (let w = 0; w < weights.length; w++) {
+      r -= weights[w];
+      if (r <= 0) {
+        idx = w;
+        break;
+      }
+    }
+    chosen.push(remaining[idx]);
+    remaining.splice(idx, 1);
+  }
+  return chosen;
+}
+
+function pickSelection(targetMid) {
   const n = randInt(3, 5);
-  const chosenCats = catKeys.slice(0, n);
+  const chosenCats = pickCategories(n, targetMid);
   const selection = chosenCats.map((cat) => {
-    const options = ASSETS.filter((a) => a.cat === cat);
-    const asset = pick(options);
+    const asset = pickAssetForCategory(cat, targetMid);
     const descIdx = randInt(0, asset.desc.length - 1);
     return { ...asset, descIdx };
   });
   const pcts = generatePercentages(n);
   selection.forEach((s, i) => (s.pct = pcts[i]));
   return shuffle(selection);
+}
+
+export const TIER_ORDER = ["prudent", "defensif", "equilibre", "dynamique", "offensif"];
+
+export const TIER_RANGES = {
+  prudent: [1, 1.7],
+  defensif: [1.71, 2.3],
+  equilibre: [2.31, 3.1],
+  dynamique: [3.11, 3.9],
+  offensif: [3.91, 5],
+};
+
+const TIER_MID = {
+  prudent: 1.35,
+  defensif: 2.0,
+  equilibre: 2.7,
+  dynamique: 3.5,
+  offensif: 4.45,
+};
+
+function nudgeTowardRange(selection, range) {
+  const maxCap = 85;
+  const minFloor = 5;
+  let guard = 0;
+  let score = weightedRisk(selection);
+  while ((score < range[0] || score > range[1]) && guard < 120) {
+    const needHigher = score < range[0];
+    const donorPool = selection.filter((s) => s.pct > minFloor);
+    if (!donorPool.length) break;
+    const donor = donorPool.reduce((best, s) =>
+      needHigher ? (s.risk < best.risk ? s : best) : s.risk > best.risk ? s : best
+    );
+    const receiverPool = selection.filter((s) => s.pct < maxCap && s.id !== donor.id);
+    if (!receiverPool.length) break;
+    const receiver = receiverPool.reduce((best, s) =>
+      needHigher ? (s.risk > best.risk ? s : best) : s.risk < best.risk ? s : best
+    );
+    const helps = needHigher ? receiver.risk > donor.risk : receiver.risk < donor.risk;
+    if (!helps) break;
+    donor.pct -= 5;
+    receiver.pct += 5;
+    score = weightedRisk(selection);
+    guard++;
+  }
+  return score;
+}
+
+function buildSelectionForTier(tierKey) {
+  const range = TIER_RANGES[tierKey];
+  const mid = TIER_MID[tierKey];
+  let best = null;
+  for (let attempt = 0; attempt < 30; attempt++) {
+    const sel = pickSelection(mid);
+    const score = nudgeTowardRange(sel, range);
+    if (score >= range[0] && score <= range[1]) return sel;
+    if (!best || Math.abs(score - mid) < Math.abs(best.score - mid)) {
+      best = { sel, score };
+    }
+  }
+  return best.sel;
 }
 
 function signature(selection) {
@@ -162,13 +265,14 @@ function maybeFact(selection, perf) {
   return useMsci ? msciFact(selection, perf) : assetFact(selection);
 }
 
-export function generatePortfolio(history) {
+export function generatePortfolio(history, targetTierKey) {
+  const useTarget = targetTierKey && targetTierKey !== "auto";
   let selection;
   let tries = 0;
   do {
-    selection = pickSelection();
+    selection = useTarget ? buildSelectionForTier(targetTierKey) : pickSelection();
     tries++;
-  } while (history.some((h) => h.sig === signature(selection)) && tries < 100);
+  } while (history.some((h) => h.sig === signature(selection)) && tries < 60);
 
   const score = weightedRisk(selection);
   const tierKey = riskTierKey(score);

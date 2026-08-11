@@ -28,7 +28,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_etat_eur", name: "ETF obligations d'État européennes", cat: "obligataire", risk: 2,
+    id: "oblig_etat_eur", name: "iShares Core € Govt Bond UCITS ETF", cat: "obligataire", risk: 2,
     r: [4.5, -2.5, -18.0, 7.0, 1.5, 3.0],
     desc: [
       "prête de l'argent aux États de la zone euro (France, Allemagne...) contre un intérêt régulier.",
@@ -38,7 +38,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_etat_us", name: "ETF obligations d'État US (Treasuries)", cat: "obligataire", risk: 2,
+    id: "oblig_etat_us", name: "iShares $ Treasury Bond 7-10yr UCITS ETF", cat: "obligataire", risk: 2,
     r: [8.0, -2.3, -12.0, 4.0, 0.5, 4.0],
     desc: [
       "de la dette de l'État américain, considérée comme l'un des actifs les plus sûrs au monde.",
@@ -48,7 +48,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_corp_ig", name: "ETF obligations entreprises (investment grade)", cat: "obligataire", risk: 2,
+    id: "oblig_corp_ig", name: "iShares Core € Corp Bond UCITS ETF", cat: "obligataire", risk: 2,
     r: [5.0, -1.0, -13.0, 8.0, 3.0, 5.0],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
@@ -58,7 +58,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_hy", name: "ETF obligations high yield", cat: "obligataire", risk: 3,
+    id: "oblig_hy", name: "iShares € High Yield Corp Bond UCITS ETF", cat: "obligataire", risk: 3,
     r: [4.0, 3.5, -11.0, 12.0, 8.0, 7.0],
     desc: [
       "des obligations d'entreprises plus fragiles, donc mieux rémunérées mais plus risquées.",
@@ -68,7 +68,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_em", name: "ETF obligations émergentes", cat: "obligataire", risk: 3,
+    id: "oblig_em", name: "iShares J.P. Morgan $ EM Bond UCITS ETF", cat: "obligataire", risk: 3,
     r: [3.0, -2.0, -15.0, 9.0, 4.0, 6.0],
     desc: [
       "de la dette d'États émergents (Brésil, Indonésie...), plus rémunératrice mais plus incertaine.",
@@ -80,7 +80,7 @@ export const ASSETS = [
 
   // ── Actions larges / mondiales ─────────────────────────
   {
-    id: "msci_world", name: "ETF MSCI World", cat: "actions_larges", risk: 3,
+    id: "msci_world", name: "Amundi MSCI World UCITS ETF", cat: "actions_larges", risk: 3,
     r: [14.0, 20.0, -19.0, 21.0, 17.0, 12.0],
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support : la référence de la diversification actions.",
@@ -90,7 +90,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "msci_acwi", name: "ETF MSCI ACWI (World + émergents)", cat: "actions_larges", risk: 3,
+    id: "msci_acwi", name: "SPDR MSCI ACWI UCITS ETF", cat: "actions_larges", risk: 3,
     r: [14.0, 17.0, -18.0, 20.0, 16.0, 11.0],
     desc: [
       "le MSCI World auquel on ajoute les marchés émergents : une exposition mondiale quasi complète.",
@@ -100,7 +100,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sp500", name: "ETF S&P 500", cat: "actions_larges", risk: 3,
+    id: "sp500", name: "Amundi PEA S&P 500 UCITS ETF", cat: "actions_larges", risk: 3,
     r: [16.0, 27.0, -19.0, 24.0, 23.0, 14.0],
     desc: [
       "les 500 plus grandes entreprises cotées aux États-Unis, tirées par la tech ces dernières années.",
@@ -111,7 +111,7 @@ export const ASSETS = [
     tags: ["us"],
   },
   {
-    id: "nasdaq100", name: "ETF Nasdaq 100", cat: "actions_larges", risk: 4,
+    id: "nasdaq100", name: "Amundi PEA Nasdaq-100 UCITS ETF", cat: "actions_larges", risk: 4,
     r: [44.0, 26.0, -33.0, 53.0, 25.0, 10.0],
     desc: [
       "les 100 plus grandes entreprises non financières du Nasdaq : très orienté technologie.",
@@ -122,7 +122,7 @@ export const ASSETS = [
     tags: ["us", "tech"],
   },
   {
-    id: "eurostoxx50", name: "ETF Euro Stoxx 50", cat: "actions_larges", risk: 3,
+    id: "eurostoxx50", name: "Amundi Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", risk: 3,
     r: [-5.0, 21.0, -12.0, 19.0, 8.0, 10.0],
     desc: [
       "les 50 plus grandes entreprises de la zone euro, dont LVMH, TotalEnergies ou SAP.",
@@ -133,7 +133,7 @@ export const ASSETS = [
     tags: ["europe"],
   },
   {
-    id: "cac40", name: "ETF CAC 40", cat: "actions_larges", risk: 3,
+    id: "cac40", name: "Amundi CAC 40 UCITS ETF", cat: "actions_larges", risk: 3,
     r: [-7.0, 28.0, -9.0, 16.0, -2.0, 6.0],
     desc: [
       "les 40 plus grosses capitalisations françaises, de LVMH à TotalEnergies en passant par L'Oréal.",
@@ -144,7 +144,7 @@ export const ASSETS = [
     tags: ["europe"],
   },
   {
-    id: "msci_em", name: "ETF MSCI Emerging Markets", cat: "actions_larges", risk: 4,
+    id: "msci_em", name: "iShares Core MSCI EM IMI UCITS ETF", cat: "actions_larges", risk: 4,
     r: [15.0, -4.0, -22.0, 7.0, 5.0, 14.0],
     desc: [
       "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
@@ -154,7 +154,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "msci_europe", name: "ETF MSCI Europe", cat: "actions_larges", risk: 3,
+    id: "msci_europe", name: "iShares Core MSCI Europe UCITS ETF", cat: "actions_larges", risk: 3,
     r: [-3.0, 23.0, -12.0, 14.0, 7.0, 9.0],
     desc: [
       "une exposition large aux grandes entreprises européennes, au-delà de la seule zone euro.",
@@ -165,7 +165,7 @@ export const ASSETS = [
     tags: ["europe"],
   },
   {
-    id: "ftse100", name: "ETF FTSE 100", cat: "actions_larges", risk: 3,
+    id: "ftse100", name: "iShares Core FTSE 100 UCITS ETF", cat: "actions_larges", risk: 3,
     r: [-14.0, 14.0, 0.9, 3.8, 5.7, 8.0],
     desc: [
       "les 100 plus grandes entreprises cotées à Londres, riches en pétrolières, minières et banques.",
@@ -175,7 +175,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "nikkei225", name: "ETF Nikkei 225", cat: "actions_larges", risk: 3,
+    id: "nikkei225", name: "iShares Nikkei 225 UCITS ETF", cat: "actions_larges", risk: 3,
     r: [16.0, 4.9, -9.4, 28.0, 19.0, 7.0],
     desc: [
       "les 225 plus grandes entreprises cotées à Tokyo, portées par le renouveau de la Bourse japonaise.",
@@ -185,7 +185,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "msci_asia_exjp", name: "ETF MSCI Asie hors Japon", cat: "actions_larges", risk: 4,
+    id: "msci_asia_exjp", name: "iShares MSCI AC Far East ex-Japan UCITS ETF", cat: "actions_larges", risk: 4,
     r: [22.0, -4.0, -20.0, 6.0, 8.0, 13.0],
     desc: [
       "Chine, Corée du Sud, Taïwan, Inde... l'Asie dynamique sans le Japon.",
@@ -197,7 +197,7 @@ export const ASSETS = [
 
   // ── Sectoriel ────────────────────────────────────────
   {
-    id: "sect_tech", name: "ETF sectoriel Technologie", cat: "sectoriel", risk: 4,
+    id: "sect_tech", name: "iShares S&P 500 Information Technology Sector UCITS ETF", cat: "sectoriel", risk: 4,
     r: [43.0, 30.0, -32.0, 50.0, 30.0, 12.0],
     desc: [
       "concentre le portefeuille sur les entreprises technologiques mondiales : fort potentiel, forte volatilité.",
@@ -208,7 +208,7 @@ export const ASSETS = [
     tags: ["tech"],
   },
   {
-    id: "sect_semi", name: "ETF Semi-conducteurs", cat: "sectoriel", risk: 5,
+    id: "sect_semi", name: "VanEck Semiconductor UCITS ETF", cat: "sectoriel", risk: 5,
     r: [50.0, 40.0, -35.0, 65.0, 35.0, 8.0],
     desc: [
       "les fabricants de puces qui font tourner smartphones, IA et voitures : ultra-cyclique.",
@@ -219,7 +219,7 @@ export const ASSETS = [
     tags: ["tech"],
   },
   {
-    id: "sect_sante", name: "ETF Santé / Biotech", cat: "sectoriel", risk: 3,
+    id: "sect_sante", name: "iShares S&P 500 Health Care Sector UCITS ETF", cat: "sectoriel", risk: 3,
     r: [13.0, 19.0, -3.0, 2.0, 5.0, 9.0],
     desc: [
       "laboratoires pharmaceutiques et biotech : un secteur réputé plus défensif, porté par le vieillissement démographique.",
@@ -229,7 +229,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_energie", name: "ETF sectoriel Énergie", cat: "sectoriel", risk: 4,
+    id: "sect_energie", name: "iShares S&P 500 Energy Sector UCITS ETF", cat: "sectoriel", risk: 4,
     r: [-34.0, 48.0, 59.0, -2.0, 5.0, -3.0],
     desc: [
       "pétrolières et gazières : un secteur ultra-cyclique, très lié au prix du baril.",
@@ -239,7 +239,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_finance", name: "ETF sectoriel Finance", cat: "sectoriel", risk: 3,
+    id: "sect_finance", name: "iShares S&P 500 Financials Sector UCITS ETF", cat: "sectoriel", risk: 3,
     r: [-5.0, 32.0, -12.0, 12.0, 28.0, 15.0],
     desc: [
       "banques et assurances : un secteur qui profite généralement de la hausse des taux d'intérêt.",
@@ -249,7 +249,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_industrie", name: "ETF sectoriel Industrie", cat: "sectoriel", risk: 3,
+    id: "sect_industrie", name: "iShares S&P 500 Industrials Sector UCITS ETF", cat: "sectoriel", risk: 3,
     r: [11.0, 21.0, -13.0, 18.0, 17.0, 10.0],
     desc: [
       "machines, transport, construction : le secteur qui fait tourner l'économie physique.",
@@ -259,7 +259,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_conso_discr", name: "ETF Consommation discrétionnaire", cat: "sectoriel", risk: 4,
+    id: "sect_conso_discr", name: "iShares S&P 500 Consumer Discretionary Sector UCITS ETF", cat: "sectoriel", risk: 4,
     r: [33.0, 24.0, -37.0, 42.0, 2.0, 9.0],
     desc: [
       "distribution, automobile, loisirs : les achats « non essentiels », très sensibles au pouvoir d'achat.",
@@ -269,7 +269,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_conso_base", name: "ETF Consommation de base", cat: "sectoriel", risk: 2,
+    id: "sect_conso_base", name: "iShares S&P 500 Consumer Staples Sector UCITS ETF", cat: "sectoriel", risk: 2,
     r: [7.0, 14.0, -2.0, 2.0, 5.0, 6.0],
     desc: [
       "alimentation, hygiène, produits du quotidien : un secteur réputé très défensif.",
@@ -279,7 +279,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_utilities", name: "ETF Utilities (services publics)", cat: "sectoriel", risk: 2,
+    id: "sect_utilities", name: "iShares S&P 500 Utilities Sector UCITS ETF", cat: "sectoriel", risk: 2,
     r: [0.5, 14.0, 1.0, -7.0, 23.0, 11.0],
     desc: [
       "eau, électricité, gaz : des besoins essentiels, réputés stables et souvent bien rémunérés en dividendes.",
@@ -289,17 +289,17 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_reit", name: "ETF Immobilier coté (REIT)", cat: "sectoriel", risk: 3,
+    id: "sect_reit", name: "iShares European Property Yield UCITS ETF", cat: "sectoriel", risk: 3,
     r: [-8.0, 40.0, -26.0, 12.0, 5.0, 8.0],
     desc: [
-      "des sociétés foncières cotées en Bourse : accès à l'immobilier sans acheter de mur directement.",
+      "des sociétés foncières européennes cotées en Bourse : accès à l'immobilier sans acheter de mur directement.",
       "très sensible aux taux d'intérêt : la hausse des taux 2022 lui a fait mal.",
       "plus liquide qu'un investissement immobilier classique, mais aussi plus volatil.",
       "distribue généralement une grande partie de ses revenus sous forme de dividendes.",
     ],
   },
   {
-    id: "sect_defense", name: "ETF Défense / Aérospatial", cat: "sectoriel", risk: 4,
+    id: "sect_defense", name: "VanEck Defense UCITS ETF", cat: "sectoriel", risk: 4,
     r: [-10.0, 5.0, 8.0, 30.0, 40.0, 25.0],
     desc: [
       "industrie militaire et aéronautique, portée par la hausse des budgets de défense en Europe.",
@@ -309,7 +309,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_ia", name: "ETF Intelligence artificielle", cat: "sectoriel", risk: 5,
+    id: "sect_ia", name: "WisdomTree Artificial Intelligence UCITS ETF", cat: "sectoriel", risk: 5,
     r: [40.0, 15.0, -30.0, 45.0, 33.0, 14.0],
     desc: [
       "entreprises positionnées sur l'IA : semi-conducteurs, cloud, logiciels d'intelligence artificielle.",
@@ -320,7 +320,7 @@ export const ASSETS = [
     tags: ["tech"],
   },
   {
-    id: "sect_cyber", name: "ETF Cybersécurité", cat: "sectoriel", risk: 4,
+    id: "sect_cyber", name: "L&G Cyber Security UCITS ETF", cat: "sectoriel", risk: 4,
     r: [80.0, 18.0, -32.0, 30.0, 25.0, 12.0],
     desc: [
       "protection des données et des systèmes : un besoin structurel, quelle que soit la conjoncture.",
@@ -331,7 +331,7 @@ export const ASSETS = [
     tags: ["tech"],
   },
   {
-    id: "sect_eau", name: "ETF thématique Eau", cat: "sectoriel", risk: 3,
+    id: "sect_eau", name: "Amundi MSCI Water UCITS ETF", cat: "sectoriel", risk: 3,
     r: [18.0, 14.0, -14.0, 8.0, 6.0, 9.0],
     desc: [
       "traitement, distribution et gestion de l'eau : une ressource rare appelée à se raréfier encore.",
@@ -341,7 +341,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_luxe", name: "ETF sectoriel Luxe", cat: "sectoriel", risk: 3,
+    id: "sect_luxe", name: "Amundi S&P Global Luxury UCITS ETF", cat: "sectoriel", risk: 3,
     r: [20.0, 38.0, -5.0, 12.0, -15.0, 5.0],
     desc: [
       "LVMH, Hermès, Kering... la mode et le luxe européens, très liés à la demande chinoise.",
@@ -354,17 +354,17 @@ export const ASSETS = [
 
   // ── ETF stratégiques ─────────────────────────────────
   {
-    id: "strat_6040", name: "ETF 60/40 (actions/obligations)", cat: "strategique", risk: 2,
+    id: "strat_6040", name: "Allocation 60/40 (Amundi MSCI World + iShares Core € Govt Bond)", cat: "strategique", risk: 2,
     r: [11.0, 10.0, -16.0, 14.0, 11.0, 9.0],
     desc: [
-      "un mix classique 60 % actions / 40 % obligations en une seule ligne, pour simplifier la gestion.",
+      "un mix classique 60 % actions / 40 % obligations à composer soi-même (il n'existe pas d'ETF « 60/40 » unique), pour simplifier la logique.",
       "l'allocation la plus enseignée en finance personnelle, entre croissance et stabilité.",
       "a pourtant souffert en 2022, année où actions et obligations ont chuté ensemble.",
       "pensé pour lisser les variations sans renoncer totalement à la performance des actions.",
     ],
   },
   {
-    id: "strat_world_hedge", name: "ETF World couvert du risque de change", cat: "strategique", risk: 3,
+    id: "strat_world_hedge", name: "iShares MSCI World EUR Hedged UCITS ETF", cat: "strategique", risk: 3,
     r: [6.0, 25.0, -13.0, 16.0, 20.0, 10.0],
     desc: [
       "le même MSCI World, mais protégé des variations euro/dollar : la performance vient purement des actions.",
@@ -374,7 +374,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "strat_smallcap", name: "ETF Small Caps mondiales", cat: "strategique", risk: 4,
+    id: "strat_smallcap", name: "iShares MSCI World Small Cap UCITS ETF", cat: "strategique", risk: 4,
     r: [12.0, 18.0, -18.0, 14.0, 9.0, 11.0],
     desc: [
       "des petites capitalisations boursières, avec un potentiel de croissance supérieur aux grandes entreprises.",
@@ -384,7 +384,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "strat_dividendes", name: "ETF Dividendes / Aristocrates", cat: "strategique", risk: 2,
+    id: "strat_dividendes", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF", cat: "strategique", risk: 2,
     r: [-2.0, 18.0, -3.0, 8.0, 12.0, 9.0],
     desc: [
       "des entreprises qui versent (et augmentent) leur dividende depuis des années : profil plutôt défensif.",
@@ -394,7 +394,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "strat_value", name: "ETF Value", cat: "strategique", risk: 3,
+    id: "strat_value", name: "iShares Edge MSCI World Value Factor UCITS ETF", cat: "strategique", risk: 3,
     r: [-1.0, 25.0, -5.0, 12.0, 14.0, 11.0],
     desc: [
       "des entreprises jugées « sous-évaluées » par rapport à leurs fondamentaux : banques, énergie, industrie.",
@@ -404,17 +404,17 @@ export const ASSETS = [
     ],
   },
   {
-    id: "strat_croissance", name: "ETF Croissance (Growth)", cat: "strategique", risk: 4,
+    id: "strat_croissance", name: "iShares Edge MSCI World Quality Factor UCITS ETF", cat: "strategique", risk: 4,
     r: [33.0, 20.0, -30.0, 32.0, 22.0, 9.0],
     desc: [
-      "des entreprises à forte croissance de leurs bénéfices, souvent dans la tech.",
+      "des entreprises rentables et à la croissance de bénéfices stable, souvent surreprésentées dans la tech.",
       "plus sensible à la hausse des taux d'intérêt que les valeurs « value ».",
       "un style qui a largement dominé la dernière décennie boursière.",
       "capable de fortes surperformances... et de corrections tout aussi marquées.",
     ],
   },
   {
-    id: "strat_momentum", name: "ETF Momentum", cat: "strategique", risk: 4,
+    id: "strat_momentum", name: "iShares Edge MSCI World Momentum Factor UCITS ETF", cat: "strategique", risk: 4,
     r: [15.0, 18.0, -14.0, 18.0, 25.0, 8.0],
     desc: [
       "sélectionne les actions qui montent déjà, en pariant que la tendance se poursuit.",
@@ -424,7 +424,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "strat_lowvol", name: "ETF Low Volatility", cat: "strategique", risk: 2,
+    id: "strat_lowvol", name: "iShares Edge MSCI World Minimum Volatility UCITS ETF", cat: "strategique", risk: 2,
     r: [5.0, 12.0, -5.0, 7.0, 10.0, 8.0],
     desc: [
       "sélectionne les actions historiquement les moins volatiles, pour un parcours boursier plus lisse.",
@@ -434,7 +434,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "strat_esg", name: "ETF ESG / durable", cat: "strategique", risk: 3,
+    id: "strat_esg", name: "Amundi MSCI World SRI UCITS ETF", cat: "strategique", risk: 3,
     r: [16.0, 19.0, -20.0, 19.0, 15.0, 10.0],
     desc: [
       "des grandes entreprises mondiales filtrées selon des critères environnementaux, sociaux et de gouvernance.",
@@ -446,7 +446,7 @@ export const ASSETS = [
 
   // ── Matières premières & métaux ─────────────────────
   {
-    id: "or", name: "Or (ETF physique)", cat: "matieres_premieres", risk: 2,
+    id: "or", name: "Invesco Physical Gold ETC", cat: "matieres_premieres", risk: 2,
     r: [21.0, -4.0, -1.0, 13.0, 27.0, 30.0],
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
@@ -457,7 +457,7 @@ export const ASSETS = [
     tags: ["antiinflation"],
   },
   {
-    id: "argent", name: "Argent métal (ETF physique)", cat: "matieres_premieres", risk: 3,
+    id: "argent", name: "iShares Physical Silver ETC", cat: "matieres_premieres", risk: 3,
     r: [47.0, -12.0, 3.0, -1.0, 21.0, 25.0],
     desc: [
       "souvent surnommé « l'or du pauvre », plus volatil que l'or car aussi utilisé dans l'industrie.",
@@ -468,7 +468,7 @@ export const ASSETS = [
     tags: ["antiinflation"],
   },
   {
-    id: "platine", name: "Platine (ETF physique)", cat: "matieres_premieres", risk: 3,
+    id: "platine", name: "WisdomTree Physical Platinum ETC", cat: "matieres_premieres", risk: 3,
     r: [10.0, -10.0, 11.0, -8.0, 9.0, 18.0],
     desc: [
       "un métal précieux utilisé notamment dans l'industrie automobile (pots catalytiques).",
@@ -479,7 +479,7 @@ export const ASSETS = [
     tags: ["antiinflation"],
   },
   {
-    id: "mp_large", name: "ETF Matières premières large (panier diversifié)", cat: "matieres_premieres", risk: 3,
+    id: "mp_large", name: "Invesco Bloomberg Commodity UCITS ETF", cat: "matieres_premieres", risk: 3,
     r: [-3.0, 27.0, 16.0, -7.0, 5.0, 12.0],
     desc: [
       "un panier diversifié : énergie, métaux, agriculture réunis en une seule ligne.",
@@ -490,7 +490,7 @@ export const ASSETS = [
     tags: ["antiinflation"],
   },
   {
-    id: "petrole", name: "ETF Pétrole / Énergie fossile", cat: "matieres_premieres", risk: 4,
+    id: "petrole", name: "WisdomTree Brent Crude Oil ETC", cat: "matieres_premieres", risk: 4,
     r: [-21.0, 55.0, 10.0, -11.0, 2.0, -6.0],
     desc: [
       "suit le cours du pétrole, extrêmement sensible aux tensions géopolitiques et à l'offre de l'OPEP+.",
@@ -500,7 +500,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "agriculture", name: "ETF Agriculture / matières premières agricoles", cat: "matieres_premieres", risk: 3,
+    id: "agriculture", name: "WisdomTree Agriculture ETC", cat: "matieres_premieres", risk: 3,
     r: [3.0, 22.0, 14.0, -8.0, -3.0, 6.0],
     desc: [
       "blé, maïs, soja... les prix des matières premières agricoles mondiales.",
@@ -510,10 +510,10 @@ export const ASSETS = [
     ],
   },
   {
-    id: "metaux_ind", name: "ETF Métaux industriels (cuivre...)", cat: "matieres_premieres", risk: 3,
+    id: "metaux_ind", name: "WisdomTree Copper ETC", cat: "matieres_premieres", risk: 3,
     r: [26.0, 27.0, -15.0, 2.0, 7.0, 20.0],
     desc: [
-      "cuivre, aluminium, nickel... les métaux indispensables à l'industrie et à la transition énergétique.",
+      "le cuivre, métal indispensable à l'industrie et à la transition énergétique.",
       "surnommé parfois « l'économiste du cuivre » : un baromètre avancé de l'activité industrielle mondiale.",
       "porté par les besoins en électrification (véhicules électriques, réseaux, data centers).",
       "un actif cyclique, très lié à la santé de l'industrie chinoise et mondiale.",
@@ -522,7 +522,7 @@ export const ASSETS = [
 
   // ── Crypto ───────────────────────────────────────────
   {
-    id: "bitcoin", name: "Bitcoin (ETF/tracker)", cat: "crypto", risk: 5,
+    id: "bitcoin", name: "CoinShares Physical Bitcoin ETP", cat: "crypto", risk: 5,
     r: [303.0, 60.0, -64.0, 156.0, 121.0, 25.0],
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
@@ -532,7 +532,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "ethereum", name: "Ethereum (ETF/tracker)", cat: "crypto", risk: 5,
+    id: "ethereum", name: "CoinShares Physical Ethereum ETP", cat: "crypto", risk: 5,
     r: [469.0, 399.0, -67.0, 91.0, 47.0, 15.0],
     desc: [
       "la deuxième plus grande cryptomonnaie, socle de nombreuses applications décentralisées.",
@@ -542,7 +542,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "crypto_panier", name: "ETF/panier crypto large cap", cat: "crypto", risk: 5,
+    id: "crypto_panier", name: "21Shares Crypto Basket 10 Core ETP", cat: "crypto", risk: 5,
     r: [250.0, 90.0, -65.0, 120.0, 80.0, 18.0],
     desc: [
       "un panier des plus grandes cryptomonnaies, pour diversifier un peu le risque propre à chaque actif.",
@@ -564,7 +564,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "foncieres_etf", name: "ETF Foncières cotées", cat: "immobilier", risk: 3,
+    id: "foncieres_etf", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF", cat: "immobilier", risk: 3,
     r: [-10.0, 35.0, -25.0, 10.0, 4.0, 7.0],
     desc: [
       "des sociétés immobilières cotées en Bourse : bureaux, entrepôts, commerces, logistique.",
