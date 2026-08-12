@@ -14,7 +14,6 @@ const CAT_COLOR = {
   actions_larges: "#199e70",
   sectoriel: "#c98500",
   immobilier: "#d55181",
-  actions_individuelles: "#008300",
   strategique: "#9085e9",
   crypto: "#e66767",
 };
