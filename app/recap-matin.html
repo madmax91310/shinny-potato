@@ -300,6 +300,54 @@
   .action-status.error { color: var(--down); }
   .action-status.ok { color: var(--up); }
 
+  /* ---------- Generate panel ---------- */
+  .generate-panel {
+    display: none;
+    margin: 0 20px 20px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .generate-panel.open { display: block; }
+
+  .generate-panel p { margin: 0 0 10px; }
+
+  .prompt-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .prompt-snippet {
+    flex: 1;
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 13px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 8px 10px;
+    color: var(--ink);
+  }
+
+  .prompt-copy {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border-radius: 7px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .prompt-copy:hover { border-color: var(--accent); }
+
   /* ---------- Sources ---------- */
   .sources {
     background: var(--surface);
@@ -342,30 +390,6 @@
     color: var(--muted);
   }
 
-  /* ---------- How-to ---------- */
-  .howto {
-    border: 1px dashed var(--line);
-    border-radius: 14px;
-    padding: 18px 20px;
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-
-  .howto strong { color: var(--ink); }
-
-  .howto-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--ink);
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-
   footer {
     text-align: center;
     font-size: 12px;
@@ -393,13 +417,21 @@
       <span class="char-count" id="charCount">0 caractères</span>
     </div>
     <div class="tweet-body">
-      <p class="tweet-line intro">Que s'est-il passé hier sur les marchés&nbsp;? 👇<br>C'est le Récap' Matin 👇</p>
+      <p class="tweet-line intro">Que s'est-il passé hier sur les marchés&nbsp;? 👇</p>
       <div class="bullets" id="bulletList"></div>
       <p class="tweet-line outro">Bonne journée à tous&nbsp;! ☕</p>
     </div>
     <div class="actions">
-      <button class="action primary" id="copyBtn" type="button">Copier le tweet</button>
+      <button class="action primary" id="generateBtn" type="button">🔄 Générer le récap</button>
+      <button class="action" id="copyBtn" type="button">Copier le tweet</button>
       <button class="action" id="downloadBtn" type="button">Télécharger .txt</button>
+    </div>
+    <div class="generate-panel" id="generatePanel">
+      <p>Cette page ne peut pas aller chercher les news elle-même. Colle cette demande dans la conversation avec Claude&nbsp;: il vérifie les news de la veille sur les sources autorisées, puis republie cette page avec le nouveau contenu.</p>
+      <div class="prompt-row">
+        <span class="prompt-snippet" id="promptSnippet">Génère le récap du jour</span>
+        <button class="prompt-copy" id="promptCopyBtn" type="button">Copier</button>
+      </div>
     </div>
     <p class="action-status" id="actionStatus" aria-live="polite"></p>
   </div>
@@ -407,14 +439,6 @@
   <div class="sources">
     <h3>Sources vérifiées</h3>
     <ol id="sourceList"></ol>
-  </div>
-
-  <div class="howto">
-    <div class="howto-title">🔄 Générer la prochaine édition</div>
-    Cette page affiche le dernier récap généré. Elle ne peut pas aller chercher les news elle-même —
-    pour la mettre à jour, demande simplement <strong>« génère le récap »</strong> dans la conversation
-    avec Claude : les news de la veille sont vérifiées sur les sources autorisées, puis cette même page
-    est republiée avec le nouveau contenu, à la même adresse.
   </div>
 
   <footer>Sources autorisées uniquement · Bloomberg, Reuters, FT, Les Echos, BFM Bourse, Boursorama, Zone Bourse, CoinDesk, CoinTelegraph, The Block, Decrypt, Le Monde, Axios, WSJ</footer>
@@ -473,7 +497,6 @@
   function buildTweetText() {
     const lines = [];
     lines.push("Que s'est-il passé hier sur les marchés ? 👇");
-    lines.push("C'est le Récap' Matin 👇");
     lines.push("");
     DATA.bullets.forEach((b) => {
       lines.push(`${b.emoji} ${b.text}`);
@@ -531,6 +554,21 @@
     statusEl.textContent = message;
     statusEl.className = "action-status" + (kind ? " " + kind : "");
   }
+
+  const generatePanel = document.getElementById("generatePanel");
+  document.getElementById("generateBtn").addEventListener("click", () => {
+    generatePanel.classList.toggle("open");
+  });
+
+  document.getElementById("promptCopyBtn").addEventListener("click", async () => {
+    const text = document.getElementById("promptSnippet").textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus("Demande copiée : colle-la dans la conversation avec Claude.", "ok");
+    } catch (err) {
+      setStatus("Impossible de copier : sélectionne le texte manuellement.", "error");
+    }
+  });
 
   document.getElementById("copyBtn").addEventListener("click", async () => {
     const text = buildTweetText();
