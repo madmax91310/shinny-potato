@@ -1,0 +1,562 @@
+<title>Récap Matin</title>
+<style>
+  :root {
+    --paper: #edefee;
+    --surface: #ffffff;
+    --surface-2: #f6f8f6;
+    --ink: #14181a;
+    --muted: #5b6469;
+    --line: #d9ddd9;
+    --accent: #14624f;
+    --accent-soft: #e2eee8;
+    --warm: #a8611e;
+    --up: #1d7a4c;
+    --down: #b23a2e;
+    --shadow: 0 1px 2px rgba(20, 24, 26, 0.04), 0 8px 24px rgba(20, 24, 26, 0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0e1210;
+      --surface: #161b19;
+      --surface-2: #1b211f;
+      --ink: #edefec;
+      --muted: #96a39b;
+      --line: #2a322e;
+      --accent: #52c19e;
+      --accent-soft: #16302a;
+      --warm: #e0954d;
+      --up: #55c084;
+      --down: #e1685a;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0e1210;
+    --surface: #161b19;
+    --surface-2: #1b211f;
+    --ink: #edefec;
+    --muted: #96a39b;
+    --line: #2a322e;
+    --accent: #52c19e;
+    --accent-soft: #16302a;
+    --warm: #e0954d;
+    --up: #55c084;
+    --down: #e1685a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px 20px 64px;
+  }
+
+  .page {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ---------- Header ---------- */
+  .masthead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .wordmark {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .wordmark em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .session-date {
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Status row ---------- */
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .status-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ---------- Stat grid ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+  }
+
+  .stat-value {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .stat-delta {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .stat-delta.up { color: var(--up); }
+  .stat-delta.down { color: var(--down); }
+
+  /* ---------- Tweet card ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-header h2 {
+    margin: 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .char-count {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tweet-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tweet-line {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .intro, .outro {
+    font-weight: 600;
+  }
+
+  .bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .bullet {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .bullet-emoji {
+    font-size: 18px;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+
+  .bullet-text {
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+
+  .bullet-tag {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 3px;
+    font-weight: 600;
+  }
+
+  /* ---------- Actions ---------- */
+  .actions {
+    display: flex;
+    gap: 10px;
+    padding: 4px 20px 20px;
+  }
+
+  button.action {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-radius: 9px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  }
+
+  button.action:hover { border-color: var(--accent); }
+  button.action:active { transform: scale(0.98); }
+  button.action:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  button.action.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--surface);
+  }
+
+  button.action.primary:hover { filter: brightness(1.08); }
+
+  .action-status {
+    padding: 0 20px 18px;
+    font-size: 13px;
+    color: var(--muted);
+    min-height: 16px;
+  }
+
+  .action-status.error { color: var(--down); }
+  .action-status.ok { color: var(--up); }
+
+  /* ---------- Sources ---------- */
+  .sources {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+
+  .sources h3 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .sources ol {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sources li {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .sources a {
+    color: var(--ink);
+    text-decoration-color: var(--line);
+    text-underline-offset: 2px;
+  }
+
+  .sources a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  .sources .outlet {
+    color: var(--muted);
+  }
+
+  /* ---------- How-to ---------- */
+  .howto {
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .howto strong { color: var(--ink); }
+
+  .howto-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 8px;
+  }
+</style>
+
+<div class="page">
+  <div class="masthead">
+    <p class="wordmark">Récap<em>'</em> Matin</p>
+    <p class="session-date" id="sessionDate">Séance du 11 août 2026</p>
+  </div>
+
+  <div class="status-row">
+    <span class="status-pill" id="statusPill">Prêt à publier</span>
+    <span id="generatedAt">Généré le 12 août 2026</span>
+  </div>
+
+  <div class="stats" id="statGrid"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Brouillon du tweet</h2>
+      <span class="char-count" id="charCount">0 caractères</span>
+    </div>
+    <div class="tweet-body">
+      <p class="tweet-line intro">Que s'est-il passé hier sur les marchés&nbsp;? 👇<br>C'est le Récap' Matin 👇</p>
+      <div class="bullets" id="bulletList"></div>
+      <p class="tweet-line outro">Bonne journée à tous&nbsp;! ☕</p>
+    </div>
+    <div class="actions">
+      <button class="action primary" id="copyBtn" type="button">Copier le tweet</button>
+      <button class="action" id="downloadBtn" type="button">Télécharger .txt</button>
+    </div>
+    <p class="action-status" id="actionStatus" aria-live="polite"></p>
+  </div>
+
+  <div class="sources">
+    <h3>Sources vérifiées</h3>
+    <ol id="sourceList"></ol>
+  </div>
+
+  <div class="howto">
+    <div class="howto-title">🔄 Générer la prochaine édition</div>
+    Cette page affiche le dernier récap généré. Elle ne peut pas aller chercher les news elle-même —
+    pour la mettre à jour, demande simplement <strong>« génère le récap »</strong> dans la conversation
+    avec Claude : les news de la veille sont vérifiées sur les sources autorisées, puis cette même page
+    est republiée avec le nouveau contenu, à la même adresse.
+  </div>
+
+  <footer>Sources autorisées uniquement · Bloomberg, Reuters, FT, Les Echos, BFM Bourse, Boursorama, Zone Bourse, CoinDesk, CoinTelegraph, The Block, Decrypt, Le Monde, Axios, WSJ</footer>
+</div>
+
+<script>
+  const DATA = {
+    sessionDate: "Séance du 11 août 2026",
+    generatedAt: "Généré le 12 août 2026",
+    stats: [
+      { label: "CAC 40", value: "8 714,94", delta: "-0,13%", dir: "down" },
+      { label: "S&P 500", value: "—", delta: "-0,3%", dir: "down" },
+      { label: "Nasdaq 100", value: "—", delta: "-0,3%", dir: "down" },
+      { label: "Bitcoin", value: "63 500 $", delta: "-1,6%", dir: "down" },
+      { label: "Or (once)", value: "≈4 400 $", delta: "plus haut 2 mois", dir: "up" },
+      { label: "Brent", value: "90 $", delta: "franchi en séance", dir: "up" }
+    ],
+    bullets: [
+      {
+        emoji: "🇫🇷",
+        tag: "Marchés actions",
+        text: "Le CAC 40 a clôturé en repli de 0,13% à 8 714,94 points, mais TotalEnergies a pris la tête de l'indice avec un gain de 1,39% à 76,59 €, porté par le rebond des cours du pétrole."
+      },
+      {
+        emoji: "🇺🇸",
+        tag: "Macro & géopolitique",
+        text: "Wall Street a reculé, le S&P 500 et le Nasdaq 100 cédant chacun 0,3%, les investisseurs restant prudents avant la publication des chiffres d'inflation américains et face au blocage persistant des négociations sur la réouverture du détroit d'Ormuz."
+      },
+      {
+        emoji: "🟠",
+        tag: "Crypto",
+        text: "Le Bitcoin reste en range entre 62 000 et 66 000 dollars depuis plusieurs semaines, ayant glissé de 1,6% sous les 63 500 dollars, la demande des ETF étant compensée par les ventes des mineurs et des détenteurs corporate."
+      },
+      {
+        emoji: "💛",
+        tag: "Matières premières",
+        text: "L'or évolue près de son plus haut en deux mois autour de 4 400 $ l'once tandis que le Brent a brièvement franchi la barre symbolique des 90 $ le baril, porté par l'impasse persistante sur la réouverture du détroit d'Ormuz."
+      },
+      {
+        emoji: "🤖",
+        tag: "Fait marquant",
+        text: "CoreWeave a bondi de 9%, son carnet de commandes lié à la demande en intelligence artificielle dépassant pour la première fois les 100 milliards de dollars."
+      }
+    ],
+    sources: [
+      { outlet: "Zone Bourse", title: "Le CAC 40 clôture en baisse de 0,13% à 8 714,94 points", url: "https://www.zonebourse.com/actualite-bourse/le-cac-40-rate-la-passe-de-9-ce7859dbda81f523" },
+      { outlet: "Boursorama", title: "La Bourse de Paris mise sur la prudence et termine en légère baisse", url: "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-mise-sur-la-prudence-et-termine-en-legere-baisse-be42bb60f0cb69aff3446c8e775baced" },
+      { outlet: "Bloomberg", title: "US Stocks End Down as Hormuz Deadlock Sends Oil Up Ahead of CPI", url: "https://www.bloomberg.com/news/articles/2026-08-11/us-stock-futures-rise-as-oil-erases-gains-on-iran-optimism" },
+      { outlet: "Bloomberg", title: "Oil Holds Gain as Pakistan Says US and Iran Close to Hormuz Deal", url: "https://www.bloomberg.com/news/articles/2026-08-11/latest-oil-market-news-and-analysis-for-aug-12" },
+      { outlet: "Bloomberg", title: "Gold Touches $4,400 as Traders Turn Focus to US Inflation Data", url: "https://www.bloomberg.com/news/articles/2026-08-10/gold-touches-4-400-as-traders-turn-focus-to-us-inflation-data" },
+      { outlet: "Axios", title: "Trump to Axios: “We are low-keying it” with Iran", url: "https://www.axios.com/2026/08/09/trump-iran-interview" },
+      { outlet: "CoinDesk", title: "Live updates: Bitcoin falls to $63,500; CoreWeave jumps 9% as AI demand pushes backlog over $100 billion", url: "https://www.coindesk.com/tech/2026/08/11/live-updates-bitcoin-slips-as-corporate-btc-enthusiasm-moves-to-ai" }
+    ]
+  };
+
+  function buildTweetText() {
+    const lines = [];
+    lines.push("Que s'est-il passé hier sur les marchés ? 👇");
+    lines.push("C'est le Récap' Matin 👇");
+    lines.push("");
+    DATA.bullets.forEach((b) => {
+      lines.push(`${b.emoji} ${b.text}`);
+      lines.push("");
+    });
+    lines.push("Bonne journée à tous ! ☕");
+    return lines.join("\n").trim();
+  }
+
+  function render() {
+    document.getElementById("sessionDate").textContent = DATA.sessionDate;
+    document.getElementById("generatedAt").textContent = DATA.generatedAt;
+
+    const statGrid = document.getElementById("statGrid");
+    statGrid.innerHTML = "";
+    DATA.stats.forEach((s) => {
+      const el = document.createElement("div");
+      el.className = "stat";
+      el.innerHTML = `
+        <span class="stat-label">${s.label}</span>
+        <span class="stat-value">${s.value}</span>
+        <span class="stat-delta ${s.dir}">${s.dir === "up" ? "▲" : "▼"} ${s.delta}</span>
+      `;
+      statGrid.appendChild(el);
+    });
+
+    const bulletList = document.getElementById("bulletList");
+    bulletList.innerHTML = "";
+    DATA.bullets.forEach((b) => {
+      const el = document.createElement("div");
+      el.className = "bullet";
+      el.innerHTML = `
+        <span class="bullet-emoji">${b.emoji}</span>
+        <span class="bullet-text"><span class="bullet-tag">${b.tag}</span><br>${b.text}</span>
+      `;
+      bulletList.appendChild(el);
+    });
+
+    const sourceList = document.getElementById("sourceList");
+    sourceList.innerHTML = "";
+    DATA.sources.forEach((s) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.title}</a> <span class="outlet">— ${s.outlet}</span>`;
+      sourceList.appendChild(li);
+    });
+
+    const tweetText = buildTweetText();
+    document.getElementById("charCount").textContent = `${tweetText.length} caractères`;
+  }
+
+  render();
+
+  const statusEl = document.getElementById("actionStatus");
+  function setStatus(message, kind) {
+    statusEl.textContent = message;
+    statusEl.className = "action-status" + (kind ? " " + kind : "");
+  }
+
+  document.getElementById("copyBtn").addEventListener("click", async () => {
+    const text = buildTweetText();
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus("Copié dans le presse-papiers.", "ok");
+    } catch (err) {
+      setStatus("Impossible de copier automatiquement : sélectionne le texte manuellement.", "error");
+    }
+  });
+
+  document.getElementById("downloadBtn").addEventListener("click", async () => {
+    if (!window.claude || !window.claude.downloads) {
+      setStatus("Le téléchargement n'est pas disponible dans cette vue.", "error");
+      return;
+    }
+    const text = buildTweetText();
+    const dateSlug = DATA.generatedAt.replace(/\D+/g, "-").replace(/^-+|-+$/g, "") || "recap";
+    try {
+      await window.claude.downloads.save({ filename: `recap-matin-${dateSlug}.txt`, data: text });
+      setStatus("Fichier téléchargé.", "ok");
+    } catch (err) {
+      const code = err && err.code;
+      if (code === "declined") setStatus("Téléchargement annulé.", "error");
+      else if (code === "rate_limited") setStatus("Un instant, réessaie dans quelques secondes.", "error");
+      else setStatus("Téléchargement indisponible pour le moment.", "error");
+    }
+  });
+</script>
