@@ -391,7 +391,7 @@ const TERMES = [
   ],
   attention:`Les frais sur versement et de gestion varient énormément d'un contrat à l'autre — un contrat en ligne coûte souvent bien moins cher qu'un contrat bancaire traditionnel.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Avant 8 ans, flat tax de 30% sur les gains retirés. Après 8 ans, abattement annuel de 4 600€ (9 200€ pour un couple) sur les gains, puis taxation réduite à 24,7% au-delà. L'assurance-vie a été explicitement épargnée par la hausse de la CSG de 2026, contrairement au CTO, au PEA ou au PER — elle reste à 17,2% de prélèvements sociaux.`,
+  fraisContenu:`Avant 8 ans, flat tax de 30% sur les gains retirés. Après 8 ans, abattement annuel de 4 600€ (9 200€ pour un couple) sur les gains, puis taxation à 7,5% (+17,2% de prélèvements sociaux, soit 24,7%) sur les 150 000€ de versements les plus anciens ; au-delà de ce seuil, le taux remonte à 12,8% (soit 30% au total). L'assurance-vie a été explicitement épargnée par la hausse de la CSG de 2026, contrairement au CTO, au PEA ou au PER — elle reste à 17,2% de prélèvements sociaux.`,
   avantage:`Une fiscalité qui s'améliore avec le temps et un cadre très favorable pour transmettre un capital à tes proches hors succession classique — et depuis 2026, l'enveloppe la mieux préservée fiscalement face aux autres.`
 },
 
@@ -418,7 +418,7 @@ const TERMES = [
   pourQui:`Tu constitues ton épargne de précaution (3 à 6 mois de dépenses) avant de penser à investir.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
   mecanismeContenu:`✅ Uniquement des dépôts et retraits en euros\n✅ Plafond de dépôt : 22 950€\n✅ Disponible à tout moment, sans délai ni pénalité\n❌ Aucun placement en actions, ETF ou fonds`,
-  attention:`Le taux est fixé par l'État et réévalué deux fois par an — il ne suit pas toujours l'inflation, donc ton épargne peut perdre du pouvoir d'achat certaines années.`,
+  attention:`Le taux (1,70% depuis le 1er août 2026) est fixé par l'État et réévalué deux fois par an, au 1er février et au 1er août — il ne suit pas toujours l'inflation, donc ton épargne peut perdre du pouvoir d'achat certaines années.`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`Les intérêts sont totalement exonérés d'impôt sur le revenu et de prélèvements sociaux.`,
   avantage:`Une disponibilité immédiate et une garantie totale du capital, idéal comme matelas de sécurité avant d'investir ailleurs.`
@@ -442,7 +442,7 @@ const TERMES = [
   objectif:`Épargner via ton entreprise en profitant d'un abondement (de l'argent gratuit versé par l'employeur) et d'une fiscalité avantageuse.`,
   pourQui:`Ton employeur propose un plan d'épargne entreprise, en particulier s'il abonde tes versements.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
-  mecanismeContenu:`✅ Fonds communs de placement d'entreprise (FCPE), souvent diversifiés en actions et obligations\n✅ Abondement de l'employeur, parfois jusqu'à 300% de ton versement selon les accords\n❌ Argent bloqué 5 ans pour le PEE, jusqu'à la retraite pour le PERCO (sauf déblocage anticipé)`,
+  mecanismeContenu:`✅ Fonds communs de placement d'entreprise (FCPE), souvent diversifiés en actions et obligations\n✅ Abondement de l'employeur, jusqu'à 300% de ton versement selon les accords, plafonné à 3 844,80€ par an sur un PEE en 2026\n❌ Argent bloqué 5 ans pour le PEE, jusqu'à la retraite pour le PERCO (sauf déblocage anticipé)`,
   attention:`Si ton entreprise propose un abondement, ne pas verser au moins jusqu'à son plafond, c'est laisser de l'argent gratuit sur la table.`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`Les sommes versées via l'intéressement, la participation et l'abondement sont exonérées d'impôt sur le revenu. Seuls les prélèvements sociaux s'appliquent sur les gains (18,6% depuis la hausse de la CSG au 1er janvier 2026).`,
@@ -489,7 +489,7 @@ const TERMES = [
   objectif:`Générer un revenu régulier et prévisible tout en prenant moins de risque qu'en actions.`,
   pourQui:`Tu cherches à stabiliser ton portefeuille ou tu approches d'un objectif financier pour lequel tu veux moins de volatilité.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Quand tu achètes une obligation, tu prêtes de l'argent à l'émetteur (État ou entreprise) pour une durée fixée à l'avance. En échange, il te verse un intérêt régulier (le coupon) et te rembourse la valeur nominale à l'échéance. Par exemple, une obligation d'État française à 10 ans à 3% te verse 30€ par an pour 1 000€ investis.`,
+  mecanismeContenu:`Quand tu achètes une obligation, tu prêtes de l'argent à l'émetteur (État ou entreprise) pour une durée fixée à l'avance. En échange, il te verse un intérêt régulier (le coupon) et te rembourse la valeur nominale à l'échéance. Par exemple, une obligation d'État française (OAT) à 10 ans autour de 4% — son niveau début août 2026 — te verse environ 40€ par an pour 1 000€ investis.`,
   sectionsOptionnelles:[
     {titre:`🔀 Obligation d'État ou d'entreprise ?`, contenu:`Une obligation d'État (comme les OAT françaises) est généralement plus sûre. Une obligation d'entreprise (corporate) offre un taux plus élevé, mais avec un risque de défaut plus important selon la solidité de l'émetteur.`}
   ],
@@ -518,12 +518,12 @@ const TERMES = [
   objectif:`Percevoir des revenus locatifs réguliers sans les contraintes de la gestion immobilière directe.`,
   pourQui:`Tu veux de l'immobilier dans ton patrimoine mais tu n'as pas envie de gérer un bien, des locataires ou des travaux.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`La société de gestion achète et gère un parc d'immeubles (bureaux, commerces, logements) avec l'argent des porteurs de parts. Les loyers perçus, moins les frais de gestion, te sont reversés au prorata de tes parts, généralement chaque trimestre. Le rendement moyen du marché tourne autour de 4 à 5% par an.`,
+  mecanismeContenu:`La société de gestion achète et gère un parc d'immeubles (bureaux, commerces, logements) avec l'argent des porteurs de parts. Les loyers perçus, moins les frais de gestion, te sont reversés au prorata de tes parts, généralement chaque trimestre. Selon l'ASPIM, le taux de distribution moyen du marché s'est établi à 4,91% en 2025 (contre 4,72% en 2024).`,
   sectionsOptionnelles:[
     {titre:`🔀 SCPI de rendement ou fiscale ?`, contenu:`Une SCPI de rendement vise le revenu locatif régulier. Une SCPI fiscale (Pinel, Malraux...) vise surtout une réduction d'impôt, avec des contraintes de durée plus fortes.`},
     {titre:`🔀 Avec ou sans frais d'entrée ?`, contenu:`Les SCPI traditionnelles facturent des frais de souscription (8 à 12% en moyenne, parfois plus). Une nouvelle génération de SCPI supprime ces frais d'entrée, mais compense avec des frais de gestion annuels plus élevés et des frais de sortie en cas de revente rapide — le coût total sur la durée n'est pas forcément plus faible, il faut comparer sur ton horizon de détention réel.`}
   ],
-  attention:`Les parts de SCPI sont peu liquides : la revente peut prendre plusieurs semaines à plusieurs mois selon la demande.`,
+  attention:`Les parts de SCPI sont peu liquides (revente en plusieurs semaines à plusieurs mois) et le capital n'est pas garanti : le prix de la part peut baisser, comme cela a été le cas pour de nombreuses SCPI en 2023-2025 dans un contexte de correction du marché immobilier de bureaux.`,
   fraisTitre:`💰 Frais`,
   fraisContenu:`Les frais varient fortement selon le modèle de la SCPI : souscription entre 8% et 12% pour les SCPI classiques, ou pas de frais d'entrée mais une gestion plus chère pour les SCPI récentes — dans tous les cas, ils sont déjà intégrés au prix de la part.`,
   avantage:`Un accès à l'immobilier locatif dès quelques centaines d'euros, sans gestion locative à assurer toi-même.`
@@ -535,7 +535,7 @@ const TERMES = [
   objectif:`Investir dans l'immobilier tout en gardant une meilleure liquidité qu'une SCPI classique.`,
   pourQui:`Tu veux de l'exposition immobilière, notamment dans une assurance-vie, avec la possibilité de revendre plus facilement qu'une SCPI.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Un OPCI doit détenir au moins 51% d'actifs immobiliers, le reste étant investi en actions, obligations ou liquidités. Cette poche liquide permet de répondre plus rapidement aux demandes de retrait, contrairement à une SCPI investie à quasi 100% en immeubles.`,
+  mecanismeContenu:`Un OPCI doit détenir au moins 60% d'actifs immobiliers et au minimum 5% de liquidités, le reste pouvant être investi en actions ou obligations. Cette poche liquide permet de répondre plus rapidement aux demandes de retrait, contrairement à une SCPI investie à quasi 100% en immeubles.`,
   attention:`La poche non-immobilière rend l'OPCI plus volatil qu'une SCPI, car il est exposé aux mouvements des marchés financiers.`,
   fraisTitre:`💰 Frais`,
   fraisContenu:`Frais de gestion annuels comparables à une SCPI, mais souvent sans les frais de souscription aussi élevés.`,
@@ -615,7 +615,7 @@ const TERMES = [
   objectif:`Choisir la méthode d'entrée sur le marché la plus adaptée à ta situation et à ta tolérance au risque immédiat.`,
   pourQui:`Tu disposes d'un capital important d'un coup (héritage, prime, vente d'un bien) et tu hésites entre l'investir en une fois ou petit à petit.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Statistiquement, sur les marchés actions qui montent sur le long terme, investir en lump sum (tout en une fois) bat en moyenne le DCA environ 2 fois sur 3, car l'argent est exposé au marché plus tôt. Le DCA, lui, réduit le risque de "mal tomber" juste avant une grosse baisse, au prix d'un temps où une partie de ton capital reste non investie.`,
+  mecanismeContenu:`Une étude Vanguard portant sur les marchés américain, britannique et australien entre 1926 et 2015 a montré que le lump sum (tout investir en une fois) bat en moyenne un DCA étalé sur 12 mois dans environ 68% des périodes étudiées, car l'argent est exposé au marché plus tôt sur des marchés actions historiquement haussiers. Le DCA, lui, réduit le risque de "mal tomber" juste avant une grosse baisse, au prix d'un temps où une partie de ton capital reste non investie.`,
   sectionsOptionnelles:[
     {titre:`🔀 Un compromis possible`, contenu:`Beaucoup d'investisseurs choisissent une voie intermédiaire : étaler l'investissement sur 3 à 12 mois, pour limiter le risque de timing sans rester trop longtemps hors marché.`}
   ],
@@ -656,7 +656,7 @@ const TERMES = [
   objectif:`Accélérer la croissance de ton portefeuille grâce aux intérêts composés.`,
   pourQui:`Tu n'as pas besoin des dividendes comme revenu immédiat et tu veux maximiser la croissance de ton capital sur le long terme.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Chaque dividende reçu sert à racheter de nouvelles parts de l'actif, qui généreront elles-mêmes des dividendes futurs. Sur longue période, cet effet boule de neige (intérêts composés) peut représenter une part très importante de la performance totale — historiquement, environ un tiers à la moitié du rendement total du S&P 500 sur le long terme vient des dividendes réinvestis.`,
+  mecanismeContenu:`Chaque dividende reçu sert à racheter de nouvelles parts de l'actif, qui généreront elles-mêmes des dividendes futurs. Sur longue période, cet effet boule de neige (intérêts composés) peut représenter une part très importante de la performance totale — les dividendes représentent historiquement entre 30% et 40% du rendement total à long terme du S&P 500.`,
   sectionsOptionnelles:[
     {titre:`🔀 ETF de capitalisation ou de distribution ?`, contenu:`Un ETF "de capitalisation" (Acc) réinvestit automatiquement les dividendes en interne, sans que tu aies rien à faire. Un ETF "de distribution" (Dist) te verse les dividendes, à toi de les réinvestir manuellement si tu le souhaites.`}
   ],
@@ -753,7 +753,7 @@ const TERMES = [
   sectionsOptionnelles:[
     {titre:`🔀 Régime micro-BIC ou réel ?`, contenu:`Le micro-BIC applique un abattement forfaitaire de 50% sur les loyers, simple mais souvent moins avantageux. Le régime réel, plus complexe (comptabilité obligatoire), permet de déduire l'amortissement et va généralement plus loin fiscalement.`}
   ],
-  attention:`Le statut de LMNP a été durci récemment : l'amortissement déduit doit désormais être réintégré dans le calcul de la plus-value lors de la revente, ce qui réduit son intérêt sur le très long terme.`,
+  attention:`Depuis la loi de finances 2025, pour toute vente à partir du 15 février 2025, l'amortissement immobilier déduit doit être réintégré dans le calcul de la plus-value (y compris les amortissements pratiqués avant 2025), ce qui réduit l'intérêt du LMNP sur le très long terme. L'amortissement du mobilier n'est pas concerné, et les résidences services (étudiantes, seniors, EHPAD) restent exonérées.`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`Loyers imposés dans la catégorie des BIC (bénéfices industriels et commerciaux), avec la possibilité de neutraliser l'impôt grâce à l'amortissement en régime réel.`,
   avantage:`Un des rares moyens légaux de percevoir des loyers quasiment sans impôt pendant plusieurs années, grâce à l'amortissement.`
