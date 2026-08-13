@@ -169,6 +169,7 @@
 
   .stat-delta.up { color: var(--up); }
   .stat-delta.down { color: var(--down); }
+  .stat-delta.flat { color: var(--muted); }
 
   /* ---------- Tweet card ---------- */
   .card {
@@ -446,51 +447,50 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 11 août 2026",
-    generatedAt: "Généré le 12 août 2026",
+    sessionDate: "Séance du 12 août 2026",
+    generatedAt: "Généré le 13 août 2026",
     stats: [
-      { label: "CAC 40", value: "8 714,94", delta: "-0,13%", dir: "down" },
-      { label: "S&P 500", value: "—", delta: "-0,3%", dir: "down" },
-      { label: "Nasdaq 100", value: "—", delta: "-0,3%", dir: "down" },
-      { label: "Bitcoin", value: "63 500 $", delta: "-1,6%", dir: "down" },
-      { label: "Or (once)", value: "≈4 400 $", delta: "plus haut 2 mois", dir: "up" },
-      { label: "Brent", value: "90 $", delta: "franchi en séance", dir: "up" }
+      { label: "CAC 40", value: "8 674,94", delta: "-0,46%", dir: "down" },
+      { label: "S&P 500", value: "—", delta: "proche d'un record", dir: "up" },
+      { label: "Nasdaq 100", value: "—", delta: "plus haut en 1 mois", dir: "up" },
+      { label: "Bitcoin", value: "63 600 $", delta: "quasi stable", dir: "flat" },
+      { label: "Or (once)", value: "≈4 400 $", delta: "+0,9%, 10 sem.", dir: "up" },
+      { label: "Brent", value: "89 $", delta: "+12%, 5 séances", dir: "up" }
     ],
     bullets: [
       {
         emoji: "🇫🇷",
         tag: "Marchés actions",
-        text: "Le CAC 40 a clôturé en repli de 0,13% à 8 714,94 points, mais TotalEnergies a pris la tête de l'indice avec un gain de 1,39% à 76,59 €, porté par le rebond des cours du pétrole."
+        text: "Le CAC 40 a clôturé en repli de 0,46% à 8 674,94 points, les valeurs du luxe et de la consommation cyclique pesant sur l'indice malgré des chiffres d'inflation américains rassurants."
       },
       {
         emoji: "🇺🇸",
         tag: "Macro & géopolitique",
-        text: "Wall Street a reculé, le S&P 500 et le Nasdaq 100 cédant chacun 0,3%, les investisseurs restant prudents avant la publication des chiffres d'inflation américains et face au blocage persistant des négociations sur la réouverture du détroit d'Ormuz."
+        text: "L'inflation américaine de juillet est ressortie conforme aux attentes à 3,4% sur un an, atténuant les craintes d'un relèvement des taux par la Réserve fédérale."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin reste en range entre 62 000 et 66 000 dollars depuis plusieurs semaines, ayant glissé de 1,6% sous les 63 500 dollars, la demande des ETF étant compensée par les ventes des mineurs et des détenteurs corporate."
+        text: "Le Bitcoin est resté quasiment stable autour de 63 600 dollars, restant sous les 64 000 dollars après une inflation jugée sans catalyseur clair par les analystes."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "L'or évolue près de son plus haut en deux mois autour de 4 400 $ l'once tandis que le Brent a brièvement franchi la barre symbolique des 90 $ le baril, porté par l'impasse persistante sur la réouverture du détroit d'Ormuz."
+        text: "L'or a grimpé jusqu'à 0,9%, touchant un plus haut de dix semaines proche des 4 400 dollars l'once avant de réduire ses gains, tandis que le Brent a dépassé les 89 dollars le baril, portant sa hausse à environ 12% sur cinq séances face aux doutes persistants sur une réouverture du détroit d'Ormuz."
       },
       {
-        emoji: "🤖",
+        emoji: "📈",
         tag: "Fait marquant",
-        text: "CoreWeave a bondi de 9%, son carnet de commandes lié à la demande en intelligence artificielle dépassant pour la première fois les 100 milliards de dollars."
+        text: "Le Nasdaq 100 a grimpé à son plus haut niveau en un mois, porté par un rallye des valeurs de semi-conducteurs, et le S&P 500 s'est rapproché d'un nouveau record, alors que le CAC 40 restait dans le rouge à Paris."
       }
     ],
     sources: [
-      { outlet: "Zone Bourse", title: "Le CAC 40 clôture en baisse de 0,13% à 8 714,94 points", url: "https://www.zonebourse.com/actualite-bourse/le-cac-40-rate-la-passe-de-9-ce7859dbda81f523" },
-      { outlet: "Boursorama", title: "La Bourse de Paris mise sur la prudence et termine en légère baisse", url: "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-mise-sur-la-prudence-et-termine-en-legere-baisse-be42bb60f0cb69aff3446c8e775baced" },
-      { outlet: "Bloomberg", title: "US Stocks End Down as Hormuz Deadlock Sends Oil Up Ahead of CPI", url: "https://www.bloomberg.com/news/articles/2026-08-11/us-stock-futures-rise-as-oil-erases-gains-on-iran-optimism" },
-      { outlet: "Bloomberg", title: "Oil Holds Gain as Pakistan Says US and Iran Close to Hormuz Deal", url: "https://www.bloomberg.com/news/articles/2026-08-11/latest-oil-market-news-and-analysis-for-aug-12" },
-      { outlet: "Bloomberg", title: "Gold Touches $4,400 as Traders Turn Focus to US Inflation Data", url: "https://www.bloomberg.com/news/articles/2026-08-10/gold-touches-4-400-as-traders-turn-focus-to-us-inflation-data" },
-      { outlet: "Axios", title: "Trump to Axios: “We are low-keying it” with Iran", url: "https://www.axios.com/2026/08/09/trump-iran-interview" },
-      { outlet: "CoinDesk", title: "Live updates: Bitcoin falls to $63,500; CoreWeave jumps 9% as AI demand pushes backlog over $100 billion", url: "https://www.coindesk.com/tech/2026/08/11/live-updates-bitcoin-slips-as-corporate-btc-enthusiasm-moves-to-ai" }
+      { outlet: "Boursorama", title: "L'Europe finalement dans le rouge après l'inflation américaine", url: "https://www.boursorama.com/bourse/actualites/l-europe-finalement-dans-le-rouge-apres-l-inflation-americaine-4edb4218c9efc461fa6e25bb672aab33" },
+      { outlet: "Decrypt", title: "Why Bitcoin Barely Moved Even as US Inflation Cools to 3.4%", url: "https://decrypt.co/375411/why-bitcoin-barely-moved-us-cpi-inflation-cools" },
+      { outlet: "The Block", title: "Bitcoin dips under $64,000 as in-line CPI buys the Fed time, not conviction: analysts", url: "https://www.theblock.co/amp/news/markets/2026-08-12-bitcoin-dips-under-64000-in-line-cpi-buys-fed-time-not-conviction-analysts-411594" },
+      { outlet: "Bloomberg", title: "Gold Steadies After Tame US Inflation Data Eases Rate-Hike Bets", url: "https://www.bloomberg.com/news/articles/2026-08-12/gold-steadies-after-tame-us-inflation-data-eases-rate-hike-bets" },
+      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for Aug. 12", url: "https://www.bloomberg.com/news/articles/2026-08-11/latest-oil-market-news-and-analysis-for-aug-12" },
+      { outlet: "Bloomberg", title: "US Stocks Climb as Tech Spurs Rally After Inflation Fears Ease", url: "https://www.bloomberg.com/news/articles/2026-08-12/us-stock-futures-rise-as-tech-rally-resumes-before-key-cpi-data" }
     ]
   };
 
@@ -518,7 +518,7 @@
       el.innerHTML = `
         <span class="stat-label">${s.label}</span>
         <span class="stat-value">${s.value}</span>
-        <span class="stat-delta ${s.dir}">${s.dir === "up" ? "▲" : "▼"} ${s.delta}</span>
+        <span class="stat-delta ${s.dir}">${s.dir === "up" ? "▲" : s.dir === "down" ? "▼" : "→"} ${s.delta}</span>
       `;
       statGrid.appendChild(el);
     });
