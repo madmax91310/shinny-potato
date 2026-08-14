@@ -1,16 +1,17 @@
-# Suivi de portefeuille d'investissement
+# Générateur de tweets ETF
 
-Application web (React + Vite) de suivi de portefeuille crypto / actions / ETF, 100% côté client (aucun backend, tout est stocké dans le `localStorage` du navigateur).
+Application web (React + Vite + Tailwind) pour générer des tweets d'éducation financière ETF, pour un compte français spécialisé. 100% côté client (aucun backend, tout est stocké dans le `localStorage` du navigateur).
 
 ## Fonctionnalités
 
-- Ajout, édition, suppression de lignes de portefeuille (nom, ticker, type, quantité, prix d'achat, date d'achat)
-- Cours crypto en direct via l'API publique **CoinGecko** (`/simple/price`), sans clé API, rafraîchis toutes les 60s
-- Cours actions/ETF via l'API **Twelve Data** (`/quote`), avec clé API personnelle saisie dans l'onglet Paramètres (stockée en localStorage), file d'attente respectant la limite de 8 requêtes/min du tier gratuit
-- Mode manuel de secours pour les actions/ETF si aucune clé n'est renseignée
-- Tableau triable par colonne avec indicateur de source du prix (live / manuel)
-- Camembert de répartition (par ligne ou par type) et courbe d'évolution de la valeur du portefeuille (7j / 30j / tout l'historique)
-- Vue d'ensemble : valeur totale, performance globale, performance du jour
+- Bibliothèque de thématiques ETF (Monde, USA, Europe, Tech Europe, Émergents, Luxe, IA/Robotique, Santé, Renouvelables, Dividendes, Japon, Défense, Quantique, Spatial, Ressources naturelles, ETC métaux)
+- Édition par thème : accroche, phrase de transition, liste dynamique d'ETF (nom, ISIN, frais, encours, différenciateur), phrase de clôture, CTA d'engagement et de partage, mention réglementaire (avec éligibilité PEA/CTO optionnelle)
+- Aperçu live du tweet formaté exactement selon le squelette imposé (emojis, ordre des champs, sauts de ligne)
+- Compteur de caractères avec indication du format nécessaire (tweet classique / note longue / thread)
+- Bouton de copie presse-papiers
+- Sauvegarde automatique en local (chaque thème édité est conservé entre les sessions)
+
+Le thème "Monde" est pré-rempli à titre d'exemple avec 3 ETF (MSCI World, FTSE All-World, MSCI ACWI). Les autres thèmes démarrent vides — aucune donnée financière (ISIN, frais, encours) n'est inventée par défaut.
 
 ## Démarrage
 
@@ -32,4 +33,3 @@ npm run preview
 
 - React + Vite
 - Tailwind CSS v4
-- Recharts (PieChart, LineChart)

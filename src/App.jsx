@@ -1,131 +1,49 @@
-import { useMemo, useState } from 'react'
-import { usePositions } from './hooks/usePositions'
-import { useSettings } from './hooks/useSettings'
-import { useLivePrices } from './hooks/useLivePrices'
-import { useSnapshots } from './hooks/useSnapshots'
-import { computePortfolioSummary, computeDailyChange } from './lib/portfolio'
-import SummaryHeader from './components/SummaryHeader'
-import AddPositionForm from './components/AddPositionForm'
-import PortfolioTable from './components/PortfolioTable'
-import AllocationChart from './components/AllocationChart'
-import EvolutionChart from './components/EvolutionChart'
-import SettingsPanel from './components/SettingsPanel'
-
-function ApiStatusBanner({ cryptoStatus, stockStatus, hasStockPositions, hasApiKey }) {
-  const messages = []
-  if (cryptoStatus.error) {
-    messages.push({ key: 'crypto', text: `CoinGecko : ${cryptoStatus.error}` })
-  }
-  if (hasStockPositions && hasApiKey && stockStatus.error) {
-    messages.push({ key: 'stock', text: `Twelve Data : ${stockStatus.error}` })
-  }
-
-  if (messages.length === 0) return null
-
-  return (
-    <div className="space-y-2">
-      {messages.map((m) => (
-        <div
-          key={m.key}
-          className="rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm text-amber-800"
-        >
-          {m.text}
-        </div>
-      ))}
-    </div>
-  )
-}
+import { useState } from 'react'
+import { useThemes } from './hooks/useThemes'
+import ThemeSidebar from './components/ThemeSidebar'
+import ThemeEditor from './components/ThemeEditor'
+import TweetPreview from './components/TweetPreview'
 
 function App() {
-  const [tab, setTab] = useState('dashboard')
-  const [editingPosition, setEditingPosition] = useState(null)
+  const { themes, updateTheme, addEtf, updateEtf, removeEtf, resetTheme } = useThemes()
+  const [selectedId, setSelectedId] = useState(themes[0]?.id)
 
-  const { positions, addPosition, updatePosition, deletePosition, setManualPrice } = usePositions()
-  const { settings, updateSettings } = useSettings()
-  const { livePrices, cryptoStatus, stockStatus } = useLivePrices(positions, settings.twelveDataApiKey)
-
-  const summary = useMemo(() => computePortfolioSummary(positions, livePrices), [positions, livePrices])
-  const { snapshots } = useSnapshots(summary.totalValue, positions.length > 0)
-  const dailyChange = useMemo(() => computeDailyChange(snapshots, summary.totalValue), [snapshots, summary.totalValue])
-
-  const hasStockPositions = positions.some((p) => p.type === 'stock' || p.type === 'etf')
-
-  const handleAdd = (data) => addPosition(data)
-  const handleEditSubmit = (data) => {
-    updatePosition(editingPosition.id, data)
-    setEditingPosition(null)
-  }
-  const handleDelete = (id) => {
-    if (editingPosition?.id === id) setEditingPosition(null)
-    deletePosition(id)
-  }
+  const selectedTheme = themes.find((t) => t.id === selectedId) ?? themes[0]
 
   return (
-    <div className="min-h-screen bg-slate-100">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <h1 className="text-lg font-semibold text-slate-900">Suivi de portefeuille</h1>
-          <nav className="flex gap-1 rounded-lg border border-slate-200 p-0.5 text-sm">
-            <button
-              type="button"
-              onClick={() => setTab('dashboard')}
-              className={`rounded-md px-3 py-1.5 font-medium ${
-                tab === 'dashboard' ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Tableau de bord
-            </button>
-            <button
-              type="button"
-              onClick={() => setTab('settings')}
-              className={`rounded-md px-3 py-1.5 font-medium ${
-                tab === 'settings' ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Paramètres
-            </button>
-          </nav>
+    <div className="min-h-screen bg-slate-950 text-slate-200">
+      <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-4">
+          <span className="rounded-md border border-teal-500/30 bg-teal-500/10 px-2 py-1 font-mono text-xs font-semibold text-teal-400">
+            ETF
+          </span>
+          <div>
+            <h1 className="text-base font-semibold text-slate-50">Générateur de tweets ETF</h1>
+            <p className="text-xs text-slate-500">Éducation financière · comparatifs ETF prêts à publier</p>
+          </div>
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
-        {tab === 'dashboard' ? (
+      <main className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-6 lg:flex-row">
+        <ThemeSidebar themes={themes} selectedId={selectedTheme?.id} onSelect={setSelectedId} />
+
+        {selectedTheme && (
           <>
-            <ApiStatusBanner
-              cryptoStatus={cryptoStatus}
-              stockStatus={stockStatus}
-              hasStockPositions={hasStockPositions}
-              hasApiKey={Boolean(settings.twelveDataApiKey)}
-            />
-
-            <SummaryHeader summary={summary} dailyChange={dailyChange} />
-
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              <EvolutionChart snapshots={snapshots} />
-              <AllocationChart positions={positions} livePrices={livePrices} />
+            <div className="flex-1 lg:max-w-2xl">
+              <ThemeEditor
+                theme={selectedTheme}
+                onUpdateTheme={(patch) => updateTheme(selectedTheme.id, patch)}
+                onAddEtf={() => addEtf(selectedTheme.id)}
+                onUpdateEtf={(etfId, patch) => updateEtf(selectedTheme.id, etfId, patch)}
+                onRemoveEtf={(etfId) => removeEtf(selectedTheme.id, etfId)}
+                onReset={() => resetTheme(selectedTheme.id)}
+              />
             </div>
 
-            {editingPosition ? (
-              <AddPositionForm
-                key={editingPosition.id}
-                initialValues={editingPosition}
-                onSubmit={handleEditSubmit}
-                onCancel={() => setEditingPosition(null)}
-              />
-            ) : (
-              <AddPositionForm key="add" onSubmit={handleAdd} />
-            )}
-
-            <PortfolioTable
-              positions={positions}
-              livePrices={livePrices}
-              onEdit={setEditingPosition}
-              onDelete={handleDelete}
-              onSetManualPrice={setManualPrice}
-            />
+            <div className="flex-1">
+              <TweetPreview theme={selectedTheme} />
+            </div>
           </>
-        ) : (
-          <SettingsPanel settings={settings} onUpdateSettings={updateSettings} stockStatus={stockStatus} />
         )}
       </main>
     </div>
