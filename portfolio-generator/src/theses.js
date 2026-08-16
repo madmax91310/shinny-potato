@@ -210,7 +210,7 @@ export const THESES = [
     ],
     ctas: [
       "Tu protèges ton patrimoine de l'inflation comment, toi ? 👇",
-      "Or, matières premières, immobilier... tu ferais confiance à quoi en premier ? 👇",
+      "Or, matières premières, obligations indexées... tu ferais confiance à quoi en premier ? 👇",
       "Ce genre de portefeuille, tu le vois comme une assurance ou une vraie stratégie de fond ? 👇",
     ],
     warnings: [
@@ -218,6 +218,10 @@ export const THESES = [
       "Aucune de ces lignes ne verse de dividende ni d'intérêt classique. La logique ici est la préservation de la valeur, pas le revenu.",
     ],
     contextFallback: "Ce portefeuille n'a connu aucune année réellement négative sur la période observée.",
+    // Pas de REIT/foncière ici : la hausse des taux qui accompagne l'inflation fait mécaniquement
+    // baisser leur valorisation (-20 à -25% en 2022, année d'inflation record). Seuls des actifs
+    // réels ou indexés (or, matières premières, obligations indexées inflation) et la poche de
+    // liquidité (fonds euros) restent cohérents avec la thèse.
     combos: [
       {
         assets: [
@@ -229,24 +233,24 @@ export const THESES = [
             ],
           },
           {
-            id: "argent", pct: 20,
-            pourquoi: [
-              "Le même raisonnement que l'or, en plus volatil : un métal qu'on ne peut pas créer à volonté.",
-              "Vient renforcer la protection de l'or, avec une composante industrielle en plus.",
-            ],
-          },
-          {
             id: "mp_large", pct: 25,
             pourquoi: [
               "Quand l'inflation grimpe, les prix des matières premières grimpent souvent avec elle — c'est mécanique.",
-              "Complète l'or et l'argent avec une exposition plus large : énergie, métaux, agriculture.",
+              "Complète l'or avec une exposition plus large : énergie, métaux, agriculture.",
             ],
           },
           {
-            id: "scpi", pct: 20,
+            id: "oblig_inflation", pct: 25,
             pourquoi: [
-              "Un actif réel, dont les loyers ont vocation à suivre l'inflation dans la durée — contrairement à un billet de banque.",
-              "La brique « immobilier physique » de la thèse : un actif tangible, pas une promesse de remboursement.",
+              "Le seul type d'obligation cohérent avec la thèse : le capital est indexé sur l'inflation, pas figé à taux fixe.",
+              "Complète l'or et les matières premières avec une brique obligataire qui ne trahit pas la logique du portefeuille.",
+            ],
+          },
+          {
+            id: "fonds_euros", pct: 15,
+            pourquoi: [
+              "Une petite poche de liquidité, pour ne pas être investi à 100% sur des actifs qui bougent fort.",
+              "15% de stabilité pure, en complément des trois lignes plus offensives de la thèse.",
             ],
           },
         ],
@@ -261,17 +265,24 @@ export const THESES = [
             ],
           },
           {
-            id: "mp_large", pct: 30,
+            id: "mp_large", pct: 25,
             pourquoi: [
               "Un panier large de matières premières, pour ne pas dépendre d'un seul métal.",
               "La deuxième jambe de la protection : des actifs physiques, pas du papier.",
             ],
           },
           {
-            id: "foncieres_etf", pct: 30,
+            id: "petrole", pct: 20,
             pourquoi: [
-              "De l'immobilier coté, plus liquide que la pierre-papier, mais qui garde la même logique d'actif réel.",
-              "Vient ajouter un troisième type de protection à la thèse, décorrélé de l'or et des matières premières.",
+              "L'énergie est historiquement l'un des secteurs qui profite le plus directement d'un choc inflationniste.",
+              "Ajoute une composante énergie pure à la protection déjà apportée par l'or et les matières premières larges.",
+            ],
+          },
+          {
+            id: "oblig_inflation", pct: 15,
+            pourquoi: [
+              "La touche obligataire de la thèse — mais indexée, jamais une obligation classique à taux fixe.",
+              "15% pour ne pas laisser le portefeuille à 100% sur des actifs physiques sans aucun revenu.",
             ],
           },
         ],
@@ -302,6 +313,9 @@ export const THESES = [
       "Ce portefeuille génère des revenus — pas une performance maximale. C'est un choix assumé, pas une contrainte.",
       "La plupart de ces revenus sont fiscalisés chaque année, même sans rien vendre. À anticiper selon ton enveloppe.",
     ],
+    // Toujours ajoutée après l'avertissement (cf. engine.js) : pour un profil qui vit de ses
+    // revenus, une baisse de capital reste significative même si les distributions continuent.
+    capitalNote: true,
     contextFallback: "Même dans sa pire année, les revenus distribués par ces lignes ont continué à tomber.",
     combos: [
       {

@@ -28,6 +28,11 @@ function fmtPct(val) {
 function fmtAbsPct(val) {
   return `${Math.abs(val).toFixed(1).replace(".", ",")}%`;
 }
+// Le MSCI World est la seule valeur sourcée précisément (factsheet officiel MSCI, EUR net) —
+// on garde ses 2 décimales dans la comparaison plutôt que d'arrondir comme les autres chiffres.
+function fmtAbsPctPrecise(val) {
+  return `${Math.abs(val).toFixed(2).replace(".", ",")}%`;
+}
 
 function computeYearlyPerf(selection) {
   const perf = {};
@@ -123,7 +128,10 @@ function msciComparisonLine(selection, perf) {
   if (diff < 5) return null;
   const worldVerb = worldVal >= 0 ? "gagnait" : "perdait";
   const portVerb = worst.value >= 0 ? "gagnait" : "perdait";
-  return `→ En ${worst.year}, quand le MSCI World ${worldVerb} ${fmtAbsPct(worldVal)}, ce portefeuille ${portVerb} ${fmtAbsPct(worst.value)}.`;
+  // Seul 2022 est sourcé au factsheet officiel (2 décimales) ; les autres années restent des
+  // approximations illustratives, affichées avec la même précision que le reste du tweet.
+  const worldFmt = worst.year === 2022 ? fmtAbsPctPrecise(worldVal) : fmtAbsPct(worldVal);
+  return `→ En ${worst.year}, quand le MSCI World ${worldVerb} ${worldFmt}, ce portefeuille ${portVerb} ${fmtAbsPct(worst.value)}.`;
 }
 
 function contextLine(thesis, selection, perf) {
@@ -152,6 +160,13 @@ export function generatePortfolio(history, targetTierKey) {
   const worst = worstYearOf(perf);
   const bound = TIER_WORST_BOUNDS[thesis.tierKey];
 
+  let warning = pick(thesis.warnings);
+  if (thesis.capitalNote) {
+    // Toujours présente (pas tirée au sort) : pour un profil "revenu", la baisse de capital
+    // reste un risque réel même quand les distributions continuent — jamais un simple détail.
+    warning += ` En cas de forte baisse (${worst.year} : ${fmtPct(worst.value)}), le capital distribue toujours des revenus — mais sa valeur recule temporairement. Prévoir une réserve de sécurité hors portefeuille.`;
+  }
+
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     sig: signature(selection),
@@ -163,7 +178,7 @@ export function generatePortfolio(history, targetTierKey) {
     accroche: pick(thesis.accroches),
     sousTitre: pick(thesis.sousTitres),
     cta: pick(thesis.ctas),
-    warning: pick(thesis.warnings),
+    warning,
     selection,
     perf,
     worst,

@@ -60,10 +60,22 @@ export const ASSETS = [
     ],
   },
 
+  {
+    id: "oblig_inflation", name: "iShares € Inflation Linked Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    r: [5.0, 3.0, -15.0, 4.0, 2.0, 3.0],
+    desc: [
+      "des obligations d'État dont le capital et le coupon sont indexés sur l'inflation de la zone euro.",
+      "protège le pouvoir d'achat du capital investi, contrairement à une obligation classique à taux fixe.",
+      "a tout de même chuté en 2022 : la hausse des taux réels a pesé plus lourd que la protection inflation.",
+    ],
+  },
+
   // ── 🟢 Actions développées ─────────────────────────────
   {
     id: "msci_world", name: "Amundi MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    r: [14.0, 20.0, -19.0, 21.0, 17.0, 12.0],
+    // 2022 : -12,78% en EUR (net) — performance officielle MSCI World EUR, à ne pas confondre
+    // avec le -19% du S&P 500 en USD sur la même année.
+    r: [14.0, 20.0, -12.78, 21.0, 17.0, 12.0],
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
       "le point de comparaison classique de tout portefeuille actions dans le monde.",
