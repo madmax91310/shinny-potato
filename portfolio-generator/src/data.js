@@ -238,6 +238,246 @@ export const ASSETS = [
       "a tendance à mieux résister lors des phases de baisse des marchés.",
     ],
   },
+  {
+    id: "high_dividend", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF", cat: "dividendes", emoji: "🟣",
+    r: [-2.0, 16.0, 4.0, 7.0, 11.0, 9.0],
+    desc: [
+      "sélectionne les entreprises mondiales au rendement de dividende le plus élevé.",
+      "plus large et plus « value » que les aristocrates du dividende, avec un couponnage souvent supérieur.",
+      "profite des secteurs traditionnellement généreux en dividendes : énergie, finance, télécoms.",
+    ],
+  },
+  {
+    id: "quality_dividend", name: "iShares MSCI World Quality Dividend UCITS ETF", cat: "dividendes", emoji: "🟣",
+    r: [3.0, 17.0, -8.0, 12.0, 14.0, 10.0],
+    desc: [
+      "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
+      "vise des entreprises capables de maintenir leur dividende même en période difficile.",
+      "un compromis entre le rendement pur et la solidité du bilan des entreprises sélectionnées.",
+    ],
+  },
+
+  // ── 🟢 Actions développées — styles complémentaires ─────
+  {
+    id: "strat_smallcap", name: "iShares MSCI World Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [12.0, 18.0, -18.0, 14.0, 9.0, 11.0],
+    desc: [
+      "des petites capitalisations boursières, avec un potentiel de croissance supérieur aux grandes entreprises.",
+      "historiquement plus performantes sur le très long terme, mais avec plus de volatilité.",
+      "un pari sur les futures grandes entreprises de demain, encore peu suivies par les analystes.",
+    ],
+  },
+  {
+    id: "sect_semi", name: "VanEck Semiconductor UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [50.0, 40.0, -35.0, 65.0, 35.0, 8.0],
+    desc: [
+      "les fabricants de puces qui font tourner smartphones, IA et voitures : ultra-cyclique.",
+      "l'un des secteurs les plus volatils de la Bourse, porté par la demande en intelligence artificielle.",
+      "de fortes hausses possibles, mais des corrections tout aussi violentes en cas de ralentissement.",
+    ],
+  },
+  {
+    id: "strat_momentum", name: "iShares Edge MSCI World Momentum Factor UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [15.0, 18.0, -14.0, 18.0, 25.0, 8.0],
+    desc: [
+      "sélectionne les actions qui montent déjà, en pariant que la tendance se poursuit.",
+      "une stratégie qui peut amplifier les tendances de marché, à la hausse comme à la baisse.",
+      "change régulièrement de composition selon les tendances de marché en cours.",
+    ],
+  },
+  {
+    id: "japan", name: "iShares Core MSCI Japan IMI UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [14.0, 6.0, -3.0, 26.0, 18.0, 8.0],
+    desc: [
+      "grandes, moyennes et petites capitalisations japonaises réunies en un seul support.",
+      "profite du retour en grâce de la Bourse de Tokyo depuis 2023, après des années d'indifférence.",
+      "une diversification géographique décorrélée des cycles américains et européens.",
+    ],
+  },
+
+  // ── 🔵 Obligations complémentaires ───────────────────────
+  {
+    id: "oblig_short", name: "iShares $ Treasury Bond 1-3yr UCITS ETF", cat: "obligataire", emoji: "🔵",
+    r: [3.3, -0.5, -3.8, 4.0, 4.5, 4.2],
+    desc: [
+      "de la dette d'État américaine à très courte échéance : la version la moins volatile des obligations.",
+      "sa faible durée le protège en grande partie des à-coups de taux d'intérêt.",
+      "un quasi-équivalent de trésorerie rémunérée, pour une poche de sécurité en dollars.",
+    ],
+  },
+  {
+    id: "oblig_global_agg", name: "Vanguard Global Aggregate Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    r: [5.5, -2.0, -12.5, 5.0, 2.0, 3.5],
+    desc: [
+      "un panier mondial d'obligations d'État et d'entreprises, toutes qualités et zones confondues.",
+      "diversifie la poche obligataire au-delà de la seule zone euro.",
+      "a lui aussi souffert en 2022 : la hausse des taux touche les obligations partout dans le monde.",
+    ],
+  },
+
+  // ── 🟤 Actions émergentes — géographies ciblées ──────────
+  {
+    id: "india", name: "iShares MSCI India UCITS ETF", cat: "emergents", emoji: "🟤",
+    r: [15.0, 26.0, 4.0, 20.0, 12.0, 10.0],
+    desc: [
+      "un pari ciblé sur la croissance démographique et économique indienne.",
+      "l'un des marchés émergents les plus réguliers de la période, porté par la consommation intérieure.",
+      "moins dépendant des exportations que la Chine, donc un profil de croissance différent.",
+    ],
+  },
+  {
+    id: "china", name: "Amundi MSCI China UCITS ETF", cat: "emergents", emoji: "🟤",
+    r: [30.0, -22.0, -21.0, -11.0, 15.0, 20.0],
+    desc: [
+      "un pari ciblé sur la deuxième économie mondiale, avec une volatilité politique bien réelle.",
+      "a traversé plusieurs années difficiles (régulation, immobilier) avant d'amorcer un rebond.",
+      "concentré sur un seul pays : un risque spécifique bien plus élevé qu'un ETF émergents diversifié.",
+    ],
+  },
+
+  // ── Jumeaux de marque ─────────────────────────────────────
+  // Même sous-jacent, même performance (métal physique, BTC spot, dette corporate € IG) : seul
+  // l'émetteur change. Permet de varier les noms affichés sans jamais inventer un chiffre de
+  // performance pour un produit qui, économiquement, est identique à quelques points de base
+  // de frais près.
+  {
+    id: "or_wisdomtree", name: "WisdomTree Physical Gold", cat: "matieres_premieres", emoji: "🟡",
+    r: [21.0, -4.0, -1.0, 13.0, 27.0, 30.0],
+    desc: [
+      "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
+      "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
+      "peu corrélé aux actions, ce qui en fait un outil de diversification apprécié.",
+    ],
+  },
+  {
+    id: "or_ishares", name: "iShares Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
+    r: [21.0, -4.0, -1.0, 13.0, 27.0, 30.0],
+    desc: [
+      "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
+      "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
+      "peu corrélé aux actions, ce qui en fait un outil de diversification apprécié.",
+    ],
+  },
+  {
+    id: "or_amundi", name: "Amundi Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
+    r: [21.0, -4.0, -1.0, 13.0, 27.0, 30.0],
+    desc: [
+      "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
+      "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
+      "peu corrélé aux actions, ce qui en fait un outil de diversification apprécié.",
+    ],
+  },
+  {
+    id: "bitcoin_wisdomtree", name: "WisdomTree Physical Bitcoin", cat: "crypto", emoji: "🟠",
+    r: [303.0, 60.0, -64.0, 156.0, 121.0, 25.0],
+    desc: [
+      "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
+      "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
+      "à ne considérer qu'en petite proportion tant l'amplitude des mouvements est importante.",
+    ],
+  },
+  {
+    id: "bitcoin_etcgroup", name: "ETC Group Physical Bitcoin", cat: "crypto", emoji: "🟠",
+    r: [303.0, 60.0, -64.0, 156.0, 121.0, 25.0],
+    desc: [
+      "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
+      "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
+      "à ne considérer qu'en petite proportion tant l'amplitude des mouvements est importante.",
+    ],
+  },
+  {
+    id: "bitcoin_21shares", name: "21Shares Bitcoin ETP", cat: "crypto", emoji: "🟠",
+    r: [303.0, 60.0, -64.0, 156.0, 121.0, 25.0],
+    desc: [
+      "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
+      "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
+      "à ne considérer qu'en petite proportion tant l'amplitude des mouvements est importante.",
+    ],
+  },
+  {
+    id: "oblig_corp_amundi", name: "Amundi € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    r: [5.0, -1.0, -13.0, 8.0, 3.0, 5.0],
+    desc: [
+      "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
+      "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
+      "regroupe des centaines d'émetteurs notés « investment grade » : risque de défaut jugé faible.",
+    ],
+  },
+  {
+    id: "oblig_corp_vanguard", name: "Vanguard € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    r: [5.0, -1.0, -13.0, 8.0, 3.0, 5.0],
+    desc: [
+      "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
+      "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
+      "regroupe des centaines d'émetteurs notés « investment grade » : risque de défaut jugé faible.",
+    ],
+  },
+  {
+    id: "oblig_corp_spdr", name: "SPDR € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    r: [5.0, -1.0, -13.0, 8.0, 3.0, 5.0],
+    desc: [
+      "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
+      "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
+      "regroupe des centaines d'émetteurs notés « investment grade » : risque de défaut jugé faible.",
+    ],
+  },
+
+  // ── Variantes "monde" — indices proches mais pas strictement identiques : composition et
+  // performance propres à chacun (l'ACWI et le FTSE All-World incluent les émergents).
+  {
+    id: "msci_world_ishares", name: "iShares Core MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [14.0, 20.0, -12.78, 21.0, 17.0, 12.0],
+    desc: [
+      "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
+      "le point de comparaison classique de tout portefeuille actions dans le monde.",
+      "souvent considéré comme le cœur de portefeuille « simple et efficace » sur le long terme.",
+    ],
+  },
+  {
+    id: "msci_acwi", name: "SPDR MSCI ACWI UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [14.0, 17.0, -18.0, 20.0, 16.0, 11.0],
+    desc: [
+      "le MSCI World auquel on ajoute les marchés émergents : une exposition mondiale quasi complète.",
+      "une seule ligne pour couvrir l'essentiel de la capitalisation boursière mondiale.",
+      "légèrement plus diversifié géographiquement que le World, au prix d'un peu plus de volatilité.",
+    ],
+  },
+  {
+    id: "ftse_allworld_vanguard", name: "Vanguard FTSE All-World UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [14.0, 17.0, -18.0, 20.0, 16.0, 11.0],
+    desc: [
+      "l'équivalent Vanguard du « monde entier en une ligne », émergents compris.",
+      "l'un des ETF actions les moins chers du marché, plébiscité pour l'investissement de long terme.",
+      "légèrement plus diversifié géographiquement que le World, au prix d'un peu plus de volatilité.",
+    ],
+  },
+  {
+    id: "msci_em_amundi", name: "Amundi MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    r: [15.0, -4.0, -22.0, 7.0, 5.0, 14.0],
+    desc: [
+      "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
+      "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",
+      "fortement sensible au dollar et aux tensions géopolitiques internationales.",
+    ],
+  },
+  {
+    id: "ftse_em_vanguard", name: "Vanguard FTSE Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    r: [15.0, -4.0, -22.0, 7.0, 5.0, 14.0],
+    desc: [
+      "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
+      "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",
+      "fortement sensible au dollar et aux tensions géopolitiques internationales.",
+    ],
+  },
+  {
+    id: "msci_em_spdr", name: "SPDR MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    r: [15.0, -4.0, -22.0, 7.0, 5.0, 14.0],
+    desc: [
+      "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
+      "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",
+      "fortement sensible au dollar et aux tensions géopolitiques internationales.",
+    ],
+  },
 ];
 
 export function getAsset(id) {
