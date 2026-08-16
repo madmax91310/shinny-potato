@@ -146,13 +146,25 @@ function pickThesis(targetTierKey) {
   return pick(pool);
 }
 
+// Le "pourquoi" est choisi avant le jitter (le pourcentage n'est pas encore figé) : les textes
+// qui citent leur propre allocation utilisent le témoin {pct}, remplacé ici une fois le
+// pourcentage final connu — jamais un chiffre codé en dur qui pourrait se décaler du jitter.
+function resolvePourquoi(selection) {
+  selection.forEach((s) => {
+    s.pourquoi = s.pourquoi.replace(/\{pct\}/g, s.pct);
+  });
+  return selection;
+}
+
 export function generatePortfolio(history, targetTierKey) {
   let thesis, combo, selection;
   let tries = 0;
   do {
     thesis = pickThesis(targetTierKey);
     combo = pick(thesis.combos);
-    selection = jitterSelection(buildSelection(thesis, combo), TIER_WORST_BOUNDS[thesis.tierKey]);
+    selection = resolvePourquoi(
+      jitterSelection(buildSelection(thesis, combo), TIER_WORST_BOUNDS[thesis.tierKey])
+    );
     tries++;
   } while (history.some((h) => h.sig === signature(selection)) && tries < 60);
 

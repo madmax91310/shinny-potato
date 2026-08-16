@@ -69,7 +69,7 @@ export const THESES = [
             id: "or", pct: 20,
             pourquoi: [
               "La seule ligne un peu « vivante » du portefeuille — une assurance contre les scénarios que les deux autres lignes ne couvrent pas.",
-              "20%, pas plus : assez pour protéger, pas assez pour faire trembler le reste du portefeuille.",
+              "{pct}%, pas plus : assez pour protéger, pas assez pour faire trembler le reste du portefeuille.",
             ],
           },
         ],
@@ -79,7 +79,7 @@ export const THESES = [
           {
             id: "fonds_euros", pct: 60,
             pourquoi: [
-              "60% du portefeuille sur le support le plus sûr du marché français : le choix assumé de ce profil.",
+              "{pct}% du portefeuille sur le support le plus sûr du marché français : le choix assumé de ce profil.",
               "La base absolue. Rien ne bouge vite ici, et c'est exactement le but.",
             ],
           },
@@ -94,7 +94,7 @@ export const THESES = [
             id: "or", pct: 20,
             pourquoi: [
               "La seule vraie protection contre un scénario que les obligations et le fonds euros ne couvrent pas : la perte de confiance dans la monnaie.",
-              "20% pour ne pas tout miser sur le système financier classique.",
+              "{pct}% pour ne pas tout miser sur le système financier classique.",
             ],
           },
         ],
@@ -133,7 +133,7 @@ export const THESES = [
             id: "fonds_euros", pct: 30,
             pourquoi: [
               "La base qui amortit tout le reste : même si les trois autres lignes chutent en même temps, celle-ci ne bouge pas.",
-              "30%, suffisant pour que le portefeuille ne parte jamais franchement dans le rouge.",
+              "{pct}%, suffisant pour que le portefeuille ne parte jamais franchement dans le rouge.",
             ],
           },
           {
@@ -172,7 +172,7 @@ export const THESES = [
             id: "foncieres_etf", pct: 15,
             pourquoi: [
               "Une petite dose d'immobilier coté pour aller chercher un peu plus de rendement — en quantité limitée, volontairement.",
-              "15% seulement : de quoi profiter du rendement immobilier sans subir sa pleine volatilité.",
+              "{pct}% seulement : de quoi profiter du rendement immobilier sans subir sa pleine volatilité.",
             ],
           },
           {
@@ -229,7 +229,7 @@ export const THESES = [
             id: "or", pct: 35,
             pourquoi: [
               "Le pilier de la thèse : aucune banque centrale ne peut en imprimer davantage.",
-              "35%, la ligne la plus lourde du portefeuille — c'est elle qui porte la logique anti-inflation.",
+              "{pct}%, la ligne la plus lourde du portefeuille — c'est elle qui porte la logique anti-inflation.",
             ],
           },
           {
@@ -250,39 +250,35 @@ export const THESES = [
             id: "fonds_euros", pct: 15,
             pourquoi: [
               "Une petite poche de liquidité, pour ne pas être investi à 100% sur des actifs qui bougent fort.",
-              "15% de stabilité pure, en complément des trois lignes plus offensives de la thèse.",
+              "{pct}% de stabilité pure, en complément des trois lignes plus offensives de la thèse.",
             ],
           },
         ],
       },
       {
+        // Pas de pétrole ici : trop extrême pour une thèse de protection (l'ETC est passé sous
+        // zéro en avril 2020) et redondant avec le panier large déjà présent. Invesco Bloomberg
+        // Commodity (mp_large) couvre déjà l'énergie, en plus diversifié.
         assets: [
           {
-            id: "or", pct: 40,
+            id: "or", pct: 45,
             pourquoi: [
-              "40% : le cœur de la thèse. Tout le reste du portefeuille vient en complément de cette ligne.",
+              "{pct}% : le cœur de la thèse. Tout le reste du portefeuille vient en complément de cette ligne.",
               "La ligne qui donne son sens à toute la thèse — tout le reste vient en soutien.",
             ],
           },
           {
-            id: "mp_large", pct: 25,
+            id: "mp_large", pct: 35,
             pourquoi: [
-              "Un panier large de matières premières, pour ne pas dépendre d'un seul métal.",
-              "La deuxième jambe de la protection : des actifs physiques, pas du papier.",
+              "Un panier large de matières premières — énergie, métaux, agriculture — pour ne pas dépendre d'un seul actif.",
+              "La deuxième jambe de la protection : des actifs physiques diversifiés, pas du papier.",
             ],
           },
           {
-            id: "petrole", pct: 20,
-            pourquoi: [
-              "L'énergie est historiquement l'un des secteurs qui profite le plus directement d'un choc inflationniste.",
-              "Ajoute une composante énergie pure à la protection déjà apportée par l'or et les matières premières larges.",
-            ],
-          },
-          {
-            id: "oblig_inflation", pct: 15,
+            id: "oblig_inflation", pct: 20,
             pourquoi: [
               "La touche obligataire de la thèse — mais indexée, jamais une obligation classique à taux fixe.",
-              "15% pour ne pas laisser le portefeuille à 100% sur des actifs physiques sans aucun revenu.",
+              "{pct}% pour ne pas laisser le portefeuille à 100% sur des actifs physiques sans aucun revenu.",
             ],
           },
         ],
@@ -331,7 +327,7 @@ export const THESES = [
             id: "foncieres_etf", pct: 35,
             pourquoi: [
               "La version cotée et liquide de l'immobilier de revenu : mêmes loyers, beaucoup plus de souplesse.",
-              "35% : la ligne la plus lourde, car c'est elle qui distribue le plus régulièrement.",
+              "{pct}% : la ligne la plus lourde, car c'est elle qui distribue le plus régulièrement.",
             ],
           },
           {
@@ -384,7 +380,7 @@ export const THESES = [
             id: "msci_world", pct: 40,
             pourquoi: [
               "Le moteur de croissance du portefeuille : plusieurs milliers d'entreprises mondiales en une ligne.",
-              "40% : la part qui doit faire le gros du travail sur le long terme.",
+              "{pct}% : la part qui doit faire le gros du travail sur le long terme.",
             ],
           },
           {
@@ -444,7 +440,7 @@ export const THESES = [
             id: "cac40", pct: 30,
             pourquoi: [
               "La France en direct : LVMH, TotalEnergies, L'Oréal... les fleurons hexagonaux.",
-              "30% pour ancrer le portefeuille dans l'économie française en particulier.",
+              "{pct}% pour ancrer le portefeuille dans l'économie française en particulier.",
             ],
           },
           {
@@ -488,7 +484,7 @@ export const THESES = [
       "Ce que ça donne une fois assemblé 👇",
     ],
     ctas: [
-      "Tu oserais mettre 10% en Bitcoin, ou tu trouves ça pas assez ? 👇",
+      "Tu oserais mettre du Bitcoin dans ton portefeuille, ou tu trouves ça too risqué ? 👇",
       "Ce niveau de risque, ça te tente ou ça t'inquiète ? 👇",
       "Tu serais capable de tenir ce portefeuille dans une année à -20% ? 👇",
     ],
@@ -504,7 +500,7 @@ export const THESES = [
             id: "msci_world", pct: 40,
             pourquoi: [
               "Le socle actions du portefeuille — la partie la plus « raisonnable » de ce profil pourtant offensif.",
-              "40% : même dans un portefeuille dynamique, le cœur reste diversifié mondialement.",
+              "{pct}% : même dans un portefeuille dynamique, le cœur reste diversifié mondialement.",
             ],
           },
           {
@@ -517,7 +513,7 @@ export const THESES = [
           {
             id: "bitcoin", pct: 10,
             pourquoi: [
-              "10%, pas plus : assez pour capter un potentiel de croissance rare, pas assez pour mettre le portefeuille en danger si ça tourne mal.",
+              "{pct}%, pas plus : assez pour capter un potentiel de croissance rare, pas assez pour mettre le portefeuille en danger si ça tourne mal.",
               "La ligne la plus explosive du portefeuille, volontairement limitée à une poche satellite.",
             ],
           },
@@ -536,7 +532,7 @@ export const THESES = [
             id: "sp500", pct: 35,
             pourquoi: [
               "Le cœur du portefeuille : l'indice le plus performant sur longue période.",
-              "35% sur l'indice américain le plus suivi au monde.",
+              "{pct}% sur l'indice américain le plus suivi au monde.",
             ],
           },
           {
@@ -549,7 +545,7 @@ export const THESES = [
           {
             id: "bitcoin", pct: 15,
             pourquoi: [
-              "15% : la dose maximale que ce profil s'autorise sur l'actif le plus volatil du portefeuille.",
+              "{pct}% : la dose maximale que ce profil s'autorise sur l'actif le plus volatil du portefeuille.",
               "La ligne la plus spéculative, dosée pour ne pas faire dérailler l'ensemble.",
             ],
           },
@@ -564,7 +560,7 @@ export const THESES = [
             id: "or", pct: 15,
             pourquoi: [
               "Le filet de sécurité minimal — juste assez pour amortir les pires scénarios.",
-              "15% pour ne pas laisser le portefeuille à 100% dépendant des marchés actions et crypto.",
+              "{pct}% pour ne pas laisser le portefeuille à 100% dépendant des marchés actions et crypto.",
             ],
           },
         ],
@@ -603,7 +599,7 @@ export const THESES = [
             id: "nasdaq100", pct: 35,
             pourquoi: [
               "La ligne la plus lourde du portefeuille, sur l'indice le plus volatil des marchés développés.",
-              "35% concentrés sur l'innovation et la tech — le pari central de ce profil.",
+              "{pct}% concentrés sur l'innovation et la tech — le pari central de ce profil.",
             ],
           },
           {
@@ -616,7 +612,7 @@ export const THESES = [
           {
             id: "bitcoin", pct: 25,
             pourquoi: [
-              "25% : proche du maximum que ce profil s'autorise sur l'actif le plus explosif du portefeuille.",
+              "{pct}% : proche du maximum que ce profil s'autorise sur l'actif le plus explosif du portefeuille.",
               "La ligne qui peut, à elle seule, faire basculer l'année dans un sens ou dans l'autre.",
             ],
           },
@@ -634,14 +630,14 @@ export const THESES = [
           {
             id: "bitcoin", pct: 30,
             pourquoi: [
-              "30% : le maximum assumé par ce profil sur l'actif le plus volatil de toute la bibliothèque.",
+              "{pct}% : le maximum assumé par ce profil sur l'actif le plus volatil de toute la bibliothèque.",
               "Un tiers du portefeuille sur un actif capable de perdre les deux tiers de sa valeur en un an.",
             ],
           },
           {
             id: "nasdaq100", pct: 40,
             pourquoi: [
-              "Le moteur principal : 40% concentrés sur la tech américaine la plus agressive.",
+              "Le moteur principal : {pct}% concentrés sur la tech américaine la plus agressive.",
               "La ligne la plus lourde du portefeuille, sur l'indice historiquement le plus volatil des indices larges.",
             ],
           },
