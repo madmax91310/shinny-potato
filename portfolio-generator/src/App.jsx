@@ -1,22 +1,11 @@
 import React, { useEffect, useMemo, useState, useRef, useCallback } from "react";
-import { generatePortfolio, renderTweetText, fmtPct, TIER_ORDER } from "./engine.js";
+import { generatePortfolio, renderTweetText, fmtPct, TIER_ORDER, TIER_LABELS } from "./engine.js";
 import { CATEGORIES, YEARS } from "./data.js";
-import { RISK_TIERS } from "./copy.js";
 
 const TIER_CHIPS = [
   { key: "auto", label: "🎲 Auto" },
-  ...TIER_ORDER.map((key) => ({ key, label: RISK_TIERS[key].label })),
+  ...TIER_ORDER.map((key) => ({ key, label: TIER_LABELS[key] })),
 ];
-
-const CAT_COLOR = {
-  obligataire: "#3987e5",
-  matieres_premieres: "#d95926",
-  actions_larges: "#199e70",
-  sectoriel: "#c98500",
-  immobilier: "#d55181",
-  strategique: "#9085e9",
-  crypto: "#e66767",
-};
 
 const POSITIVE = "#1f9d70";
 const NEGATIVE = "#e2685f";
@@ -47,18 +36,22 @@ function TierSelector({ selected, onSelect }) {
   );
 }
 
-function RiskGauge({ score, tierLabel }) {
-  const pct = Math.min(100, Math.max(0, ((score - 1) / 4) * 100));
+function WorstYearGauge({ tierKey, tierLabel, worst, bound }) {
+  const idx = TIER_ORDER.indexOf(tierKey);
+  const pct = (idx / (TIER_ORDER.length - 1)) * 100;
   return (
     <div className="riskgauge">
       <div className="riskgauge-row">
-        <span className="riskgauge-label">Risque estimé</span>
-        <span className="riskgauge-value">{score.toFixed(1)} / 5 · {tierLabel}</span>
+        <span className="riskgauge-label">Palier de risque</span>
+        <span className="riskgauge-value">{tierLabel}</span>
       </div>
       <div className="riskgauge-track">
-        <div className="riskgauge-fill" style={{ width: `${pct}%` }} />
         <div className="riskgauge-marker" style={{ left: `${pct}%` }} />
       </div>
+      <p className="riskgauge-detail">
+        Pire année simulée : <b className={worst.value >= 0 ? "pos" : "neg"}>{fmtPct(worst.value)}</b> en {worst.year}
+        <span className="riskgauge-bound"> · objectif {bound.text}</span>
+      </p>
     </div>
   );
 }
@@ -71,14 +64,14 @@ function AllocationList({ selection }) {
         .sort((a, b) => b.pct - a.pct)
         .map((s) => (
           <li key={s.id} className="alloc-row">
-            <span className="alloc-swatch" style={{ background: CAT_COLOR[s.cat] }} />
-            <span className="alloc-name">{s.name}</span>
+            <span className="alloc-swatch" style={{ background: CATEGORIES[s.cat].color }} />
+            <span className="alloc-name">{s.emoji} {s.name}</span>
             <span className="alloc-cat">{CATEGORIES[s.cat].label}</span>
             <span className="alloc-pct">{s.pct}%</span>
             <div className="alloc-bar-track">
               <div
                 className="alloc-bar-fill"
-                style={{ width: `${s.pct}%`, background: CAT_COLOR[s.cat] }}
+                style={{ width: `${s.pct}%`, background: CATEGORIES[s.cat].color }}
               />
             </div>
           </li>
@@ -288,11 +281,16 @@ export default function App() {
           <TierSelector selected={selectedTier} onSelect={handleSelectTier} />
 
           <div className="panel">
-            <RiskGauge score={current.riskScore} tierLabel={current.tierLabel} />
+            <WorstYearGauge
+              tierKey={current.tierKey}
+              tierLabel={current.profileName}
+              worst={current.worst}
+              bound={current.bound}
+            />
           </div>
 
           <div className="panel">
-            <div className="panel-title">Répartition — {current.selection.length} classes d'actifs</div>
+            <div className="panel-title">Répartition — {current.selection.length} lignes</div>
             <AllocationList selection={current.selection} />
           </div>
 
@@ -302,8 +300,9 @@ export default function App() {
 
           <div className="panel panel-muted">
             <p className="fine-print">
-              Rendements 2020-2025 : données historiques approximatives par classe d'actif, à titre pédagogique
-              et éditables manuellement. Anti-répétition active : les {history.length} combinaison{history.length > 1 ? "s" : ""} généré{history.length > 1 ? "es" : "e"} cette session sont mémorisées pour ne jamais revenir sur les mêmes actifs.
+              Rendements 2020-2025 : données historiques approximatives par actif, à titre pédagogique et
+              éditables manuellement. Chaque combinaison est validée pour respecter la borne de pire année
+              de son palier de risque avant d'être affichée.
             </p>
           </div>
         </section>
