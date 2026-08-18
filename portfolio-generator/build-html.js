@@ -214,6 +214,32 @@ button { font-family: inherit; }
   margin-bottom: 14px;
 }
 
+.tier-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.tier-chip {
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  color: var(--ink-dim);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.12s ease, background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+.tier-chip:hover { filter: brightness(1.15); }
+.tier-chip.active {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+.tier-chip:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+  filter: none;
+}
+.tier-chip:disabled:hover { filter: none; }
+.tier-hint { margin: 12px 0 0; font-size: 0.78rem; color: var(--ink-faint); line-height: 1.5; }
+
 .riskgauge-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; gap: 10px; }
 .riskgauge-label { font-size: 0.85rem; color: var(--ink-dim); }
 .riskgauge-value { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold-bright); font-variant-numeric: tabular-nums; }
@@ -236,6 +262,24 @@ button { font-family: inherit; }
   transform: translate(-50%, -50%);
   box-shadow: 0 0 0 1px var(--gold);
 }
+.riskgauge-detail {
+  margin: 12px 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+.riskgauge-detail b { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.riskgauge-detail b.pos { color: var(--positive); }
+.riskgauge-detail b.neg { color: var(--negative); }
+.riskgauge-bound { color: var(--ink-faint); }
+.riskgauge-profile {
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+}
+.riskgauge-profile b { color: var(--gold-bright); font-weight: 600; }
 
 .alloc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .alloc-row {

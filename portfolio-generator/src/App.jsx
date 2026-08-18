@@ -1,49 +1,104 @@
 import React, { useEffect, useMemo, useState, useRef, useCallback } from "react";
-import { generatePortfolio, renderTweetText, fmtPct, TIER_ORDER, TIER_LABELS } from "./engine.js";
+import {
+  generatePortfolio,
+  renderTweetText,
+  fmtPct,
+  RISK_ORDER,
+  RISK_LABELS,
+  PROFILES,
+  isCompatible,
+} from "./engine.js";
 import { CATEGORIES, YEARS } from "./data.js";
 
-const TIER_CHIPS = [
+const RISK_CHIPS = [
   { key: "auto", label: "🎲 Auto" },
-  ...TIER_ORDER.map((key) => ({ key, label: TIER_LABELS[key] })),
+  ...RISK_ORDER.map((key) => ({ key, label: RISK_LABELS[key] })),
+];
+const PROFILE_CHIPS = [
+  { key: "auto", label: "🎲 Auto" },
+  ...PROFILES.map((p) => ({ key: p.id, label: p.label })),
 ];
 
 const POSITIVE = "#1f9d70";
 const NEGATIVE = "#e2685f";
 
-function TierSelector({ selected, onSelect }) {
+// Deux rangées indépendantes : choisir un niveau de risque grise les profils incompatibles
+// (et inversement), via isCompatible — jamais de paire invalide accessible depuis l'UI, donc pas
+// besoin de logique de "rattrapage" côté génération.
+function RiskSelector({ selectedRisk, selectedProfile, onSelect }) {
   return (
     <div className="panel">
-      <div className="panel-title">Niveau de risque</div>
+      <div className="panel-title">1. Niveau de risque</div>
       <div className="tier-chips" role="group" aria-label="Choisir un niveau de risque cible">
-        {TIER_CHIPS.map((t) => (
-          <button
-            key={t.key}
-            type="button"
-            className={`tier-chip${selected === t.key ? " active" : ""}`}
-            aria-pressed={selected === t.key}
-            onClick={() => onSelect(t.key)}
-          >
-            {t.label}
-          </button>
-        ))}
+        {RISK_CHIPS.map((r) => {
+          const disabled =
+            r.key !== "auto" &&
+            selectedProfile !== "auto" &&
+            !isCompatible(selectedProfile, r.key);
+          return (
+            <button
+              key={r.key}
+              type="button"
+              className={`tier-chip${selectedRisk === r.key ? " active" : ""}`}
+              aria-pressed={selectedRisk === r.key}
+              disabled={disabled}
+              onClick={() => onSelect(r.key)}
+            >
+              {r.label}
+            </button>
+          );
+        })}
       </div>
       <p className="tier-hint">
-        {selected === "auto"
-          ? "Le risque est déterminé par le tirage aléatoire des actifs."
+        {selectedRisk === "auto"
+          ? "Le risque est déterminé par le tirage aléatoire du profil et du combo."
           : "Chaque génération est recalculée pour rester dans ce niveau de risque."}
       </p>
     </div>
   );
 }
 
-function WorstYearGauge({ tierKey, tierLabel, worst, bound }) {
-  const idx = TIER_ORDER.indexOf(tierKey);
-  const pct = (idx / (TIER_ORDER.length - 1)) * 100;
+function ProfileSelector({ selectedRisk, selectedProfile, onSelect }) {
+  return (
+    <div className="panel">
+      <div className="panel-title">2. Profil d'investisseur</div>
+      <div className="tier-chips" role="group" aria-label="Choisir un profil d'investisseur">
+        {PROFILE_CHIPS.map((p) => {
+          const disabled =
+            p.key !== "auto" &&
+            selectedRisk !== "auto" &&
+            !isCompatible(p.key, selectedRisk);
+          return (
+            <button
+              key={p.key}
+              type="button"
+              className={`tier-chip${selectedProfile === p.key ? " active" : ""}`}
+              aria-pressed={selectedProfile === p.key}
+              disabled={disabled}
+              onClick={() => onSelect(p.key)}
+            >
+              {p.label}
+            </button>
+          );
+        })}
+      </div>
+      <p className="tier-hint">
+        {selectedProfile === "auto"
+          ? "La thèse (accroche, actifs, avertissement) est tirée parmi tous les profils compatibles."
+          : "Chaque génération suit la thèse narrative de ce profil, quel que soit le palier de risque choisi."}
+      </p>
+    </div>
+  );
+}
+
+function RiskGauge({ riskId, riskLabel, profileName, worst, bound }) {
+  const idx = RISK_ORDER.indexOf(riskId);
+  const pct = (idx / (RISK_ORDER.length - 1)) * 100;
   return (
     <div className="riskgauge">
       <div className="riskgauge-row">
         <span className="riskgauge-label">Palier de risque</span>
-        <span className="riskgauge-value">{tierLabel}</span>
+        <span className="riskgauge-value">{riskLabel}</span>
       </div>
       <div className="riskgauge-track">
         <div className="riskgauge-marker" style={{ left: `${pct}%` }} />
@@ -51,6 +106,9 @@ function WorstYearGauge({ tierKey, tierLabel, worst, bound }) {
       <p className="riskgauge-detail">
         Pire année simulée : <b className={worst.value >= 0 ? "pos" : "neg"}>{fmtPct(worst.value)}</b> en {worst.year}
         <span className="riskgauge-bound"> · objectif {bound.text}</span>
+      </p>
+      <p className="riskgauge-profile">
+        Profil : <b>{profileName}</b>
       </p>
     </div>
   );
@@ -188,8 +246,9 @@ function randomEngagement() {
 }
 
 export default function App() {
-  const [selectedTier, setSelectedTier] = useState("auto");
-  const [history, setHistory] = useState(() => [generatePortfolio([], "auto")]);
+  const [selectedRisk, setSelectedRisk] = useState("auto");
+  const [selectedProfile, setSelectedProfile] = useState("auto");
+  const [history, setHistory] = useState(() => [generatePortfolio([], "auto", "auto")]);
   const [copyState, setCopyState] = useState("idle");
   const [engagement, setEngagement] = useState(randomEngagement);
   const textareaRef = useRef(null);
@@ -197,21 +256,30 @@ export default function App() {
   const current = history[history.length - 1];
 
   const handleGenerate = useCallback(
-    (tierOverride) => {
-      const tier = tierOverride ?? selectedTier;
-      setHistory((h) => [...h, generatePortfolio(h, tier)]);
+    (riskOverride, profileOverride) => {
+      const risk = riskOverride ?? selectedRisk;
+      const profile = profileOverride ?? selectedProfile;
+      setHistory((h) => [...h, generatePortfolio(h, risk, profile)]);
       setEngagement(randomEngagement());
       setCopyState("idle");
     },
-    [selectedTier]
+    [selectedRisk, selectedProfile]
   );
 
-  const handleSelectTier = useCallback(
-    (tierKey) => {
-      setSelectedTier(tierKey);
-      handleGenerate(tierKey);
+  const handleSelectRisk = useCallback(
+    (riskKey) => {
+      setSelectedRisk(riskKey);
+      handleGenerate(riskKey, selectedProfile);
     },
-    [handleGenerate]
+    [handleGenerate, selectedProfile]
+  );
+
+  const handleSelectProfile = useCallback(
+    (profileKey) => {
+      setSelectedProfile(profileKey);
+      handleGenerate(selectedRisk, profileKey);
+    },
+    [handleGenerate, selectedRisk]
   );
 
   const handleCopy = useCallback(async () => {
@@ -278,12 +346,14 @@ export default function App() {
             🔄 Générer un nouveau portefeuille
           </button>
 
-          <TierSelector selected={selectedTier} onSelect={handleSelectTier} />
+          <RiskSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectRisk} />
+          <ProfileSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectProfile} />
 
           <div className="panel">
-            <WorstYearGauge
-              tierKey={current.tierKey}
-              tierLabel={current.profileName}
+            <RiskGauge
+              riskId={current.riskId}
+              riskLabel={current.riskLabel}
+              profileName={current.profileName}
               worst={current.worst}
               bound={current.bound}
             />

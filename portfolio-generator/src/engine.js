@@ -1,5 +1,5 @@
 import { YEARS, getAsset } from "./data.js";
-import { THESES, TIER_ORDER, TIER_LABELS, TIER_WORST_BOUNDS, WORLD_OPTIONS } from "./theses.js";
+import { PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, isCompatible } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
 
 function rand(min, max) {
@@ -43,6 +43,44 @@ function fmtAbsPctPrecise(val) {
   return `${Math.abs(val).toFixed(2).replace(".", ",")}%`;
 }
 
+// ── Axe 1 (risque) × Axe 2 (profil) : une paire valide == un couple {profileId, riskId} tel que
+// isCompatible(profileId, riskId), et il n'existe qu'un seul combo pour cette paire (plus besoin
+// de tirer un combo parmi plusieurs comme dans l'ancien modèle mono-axe).
+function pairKey(profileId, riskId) {
+  return `${profileId}#${riskId}`;
+}
+function computePairUsage(history) {
+  const counts = {};
+  history.forEach((h) => {
+    const key = pairKey(h.profileId, h.riskId);
+    counts[key] = (counts[key] || 0) + 1;
+  });
+  return counts;
+}
+function candidatePairs(riskId, profileId) {
+  const pairs = [];
+  PROFILES.forEach((p) => {
+    if (profileId && profileId !== "auto" && profileId !== p.id) return;
+    Object.keys(p.riskCombos).forEach((r) => {
+      if (riskId && riskId !== "auto" && riskId !== r) return;
+      pairs.push({ profileId: p.id, riskId: r });
+    });
+  });
+  return pairs;
+}
+function pickPair(riskId, profileId, pairUsage) {
+  let pairs = candidatePairs(riskId, profileId);
+  if (pairs.length === 0) {
+    // Combinaison demandée incompatible (ne devrait pas arriver depuis l'UI, qui filtre déjà) :
+    // on retombe sur l'ensemble des paires valides plutôt que de planter.
+    pairs = candidatePairs("auto", "auto");
+  }
+  const keys = pairs.map((p) => pairKey(p.profileId, p.riskId));
+  const weights = keys.map((k) => 1 / ((pairUsage[k] || 0) + 1));
+  const chosenKey = weightedPick(keys, weights);
+  return pairs.find((p, i) => keys[i] === chosenKey);
+}
+
 // ── Fréquence d'usage dans la session ─────────────────────────────────────────
 // Calculée à partir de l'historique déjà généré (state React, session uniquement) : sert à la
 // fois à répartir les alternatives de marque (idOptions) et à privilégier les combos peu vus,
@@ -54,14 +92,6 @@ function computeAssetUsage(history) {
     h.selection.forEach((s) => {
       counts[s.id] = (counts[s.id] || 0) + 1;
     });
-  });
-  return counts;
-}
-function computeComboUsage(history) {
-  const counts = {};
-  history.forEach((h) => {
-    const key = `${h.thesisId}#${h.comboIndex}`;
-    counts[key] = (counts[key] || 0) + 1;
   });
   return counts;
 }
@@ -85,14 +115,7 @@ function resolveAssetId(slot, usageCounts, historyLength) {
   return pickLeastUsed(candidates, usageCounts);
 }
 
-function pickCombo(thesis, comboUsage) {
-  const keys = thesis.combos.map((_, i) => `${thesis.id}#${i}`);
-  const weights = keys.map((k) => 1 / ((comboUsage[k] || 0) + 1));
-  const chosenKey = weightedPick(keys, weights);
-  return thesis.combos.findIndex((_, i) => `${thesis.id}#${i}` === chosenKey);
-}
-
-function buildSelection(thesis, combo, usageCounts, historyLength) {
+function buildSelection(combo, usageCounts, historyLength) {
   return combo.assets.map((a) => {
     const id = resolveAssetId(a, usageCounts, historyLength);
     const asset = getAsset(id);
@@ -106,8 +129,11 @@ function buildSelection(thesis, combo, usageCounts, historyLength) {
 }
 
 // Léger jitter (±5 points entre deux lignes) pour varier les combos d'une génération à l'autre,
-// toujours revalidé contre la borne de pire année du palier — jamais de portefeuille hors-charte.
-function jitterSelection(selection, bound) {
+// toujours revalidé contre la borne de pire année du palier ET contre l'invariante propre au
+// profil (ex. Pro-Européen, minimum 70% Europe) — chaque swap individuel est vérifié et annulé
+// s'il casse l'une ou l'autre, pour que le résultat final respecte toujours les deux, sans
+// dépendre d'un tirage au sort favorable dans la boucle de relance.
+function jitterSelection(selection, bound, profileId) {
   const attempts = randInt(0, 2);
   for (let i = 0; i < attempts; i++) {
     if (selection.length < 2) break;
@@ -117,7 +143,7 @@ function jitterSelection(selection, bound) {
     selection[ib].pct += 5;
     const perf = computeYearlyPerf(selection);
     const worst = worstYearOf(perf);
-    if (!withinBound(worst.value, bound)) {
+    if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection)) {
       selection[ia].pct += 5;
       selection[ib].pct -= 5;
     }
@@ -131,6 +157,21 @@ function withinBound(value, bound) {
   return true;
 }
 
+// Le jitter (ci-dessus) ne revalide que la borne de pire année — il peut donc, par construction,
+// déplacer du poids d'un actif vers un autre sans savoir qu'il casse une règle propre à un profil
+// précis. Pro-Européen a une invariante supplémentaire (minimum 70% Europe) qui n'est pas capturée
+// par la borne de risque : on la revérifie après jitter et on retire le tirage sinon.
+const PRO_EUROPE_CORE_IDS = ["eurostoxx50", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short"];
+function violatesProfileInvariant(profileId, selection) {
+  if (profileId === "pro_europe") {
+    const europePct = selection
+      .filter((s) => PRO_EUROPE_CORE_IDS.includes(s.id))
+      .reduce((sum, s) => sum + s.pct, 0);
+    if (europePct < 70) return true;
+  }
+  return false;
+}
+
 function signature(selection) {
   return selection
     .map((s) => `${s.id}:${s.pct}`)
@@ -139,7 +180,8 @@ function signature(selection) {
 }
 
 // Règle #4 (variété d'allocation) : deux générations du même profil ne doivent pas partager le
-// même actif dominant (>35%) ni exactement le même trio de tête.
+// même actif dominant (>35%) ni exactement le même trio de tête. Clé sur le profil (axe 2), qui
+// porte la narration — le palier de risque (axe 1) peut changer d'une génération à l'autre.
 function topAssets(selection, n) {
   return selection
     .slice()
@@ -151,8 +193,8 @@ function dominantAsset(selection) {
   const top = selection.slice().sort((a, b) => b.pct - a.pct)[0];
   return top.pct > 35 ? top.id : null;
 }
-function tooSimilarToLast(selection, thesisId, history) {
-  const last = [...history].reverse().find((h) => h.thesisId === thesisId);
+function tooSimilarToLast(selection, profileId, history) {
+  const last = [...history].reverse().find((h) => h.profileId === profileId);
   if (!last) return false;
   const newDominant = dominantAsset(selection);
   if (newDominant && newDominant === dominantAsset(last.selection)) return true;
@@ -167,12 +209,12 @@ function tooSimilarToLast(selection, thesisId, history) {
 // Exclusion glissante (les N-1 derniers choix pour ce champ, sur un pool de N variantes) plutôt
 // qu'un simple "déjà vu un jour" : un Set d'historique complet se vide dès que tout le pool est
 // passé une fois, ce qui autoriserait une répétition immédiate juste après le premier cycle.
-function recentTexts(history, thesisId, field, keep) {
-  const seq = history.filter((h) => h.thesisId === thesisId).map((h) => h[field]);
+function recentTexts(history, profileId, field, keep) {
+  const seq = history.filter((h) => h.profileId === profileId).map((h) => h[field]);
   return new Set(seq.slice(-keep));
 }
-function pickNonRepeating(pool, history, thesisId, field) {
-  const recent = recentTexts(history, thesisId, field, pool.length - 1);
+function pickNonRepeating(pool, history, profileId, field) {
+  const recent = recentTexts(history, profileId, field, pool.length - 1);
   const fresh = pool.filter((t) => !recent.has(t));
   return pick(fresh.length > 0 ? fresh : pool);
 }
@@ -243,14 +285,8 @@ function msciComparisonLine(selection, perf) {
   return `→ En ${worst.year}, quand le MSCI World ${worldVerb} ${worldFmt}, ce portefeuille ${portVerb} ${fmtAbsPct(worst.value)}.`;
 }
 
-function contextLine(thesis, selection, perf) {
-  return boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || `→ ${thesis.contextFallback}`;
-}
-
-function pickThesisPool(targetTierKey) {
-  return !targetTierKey || targetTierKey === "auto"
-    ? THESES
-    : THESES.filter((t) => t.tierKey === targetTierKey);
+function contextLine(profile, selection, perf) {
+  return boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || `→ ${profile.contextFallback}`;
 }
 
 // Résout {pct}-like tokens qui ne sont pas liés à une ligne précise mais au portefeuille dans
@@ -273,75 +309,85 @@ function resolvePortfolioPlaceholders(text, { worst, best, selection }) {
 // Le suivi anti-répétition porte sur le *template* du CTA, pas sur le texte résolu : deux CTA
 // "Tu oserais mettre {bitcoin_pct}% en Bitcoin" tirés à des générations différentes doivent
 // compter comme "le même CTA déjà utilisé" même si le pourcentage affiché diffère.
-function pickCta(thesis, history, ctx) {
-  const resolvable = thesis.ctas
+function pickCta(profile, history, ctx) {
+  const resolvable = profile.ctas
     .map((template) => ({ template, resolved: resolvePortfolioPlaceholders(template, ctx) }))
     .filter((c) => c.resolved !== null);
-  const recent = recentTexts(history, thesis.id, "ctaTemplate", thesis.ctas.length - 1);
+  const recent = recentTexts(history, profile.id, "ctaTemplate", profile.ctas.length - 1);
   const fresh = resolvable.filter((c) => !recent.has(c.template));
   const pool = fresh.length > 0 ? fresh : resolvable;
   return pick(pool);
 }
 
-export function generatePortfolio(history, targetTierKey) {
+export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const assetUsage = computeAssetUsage(history);
-  const comboUsage = computeComboUsage(history);
+  const pairUsage = computePairUsage(history);
 
-  let thesis, comboIndex, combo, selection;
+  let profileId, riskId, profile, combo, selection;
   let tries = 0;
   do {
-    thesis = pick(pickThesisPool(targetTierKey));
-    comboIndex = pickCombo(thesis, comboUsage);
-    combo = thesis.combos[comboIndex];
+    ({ profileId, riskId } = pickPair(targetRiskKey, targetProfileKey, pairUsage));
+    profile = PROFILES.find((p) => p.id === profileId);
+    combo = profile.riskCombos[riskId];
     selection = resolvePourquoi(
-      jitterSelection(
-        buildSelection(thesis, combo, assetUsage, history.length),
-        TIER_WORST_BOUNDS[thesis.tierKey]
-      )
+      jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId)
     );
     tries++;
   } while (
-    (history.some((h) => h.sig === signature(selection)) || tooSimilarToLast(selection, thesis.id, history)) &&
+    (history.some((h) => h.sig === signature(selection)) ||
+      tooSimilarToLast(selection, profileId, history) ||
+      violatesProfileInvariant(profileId, selection)) &&
     tries < 60
   );
 
   const perf = computeYearlyPerf(selection);
   const worst = worstYearOf(perf);
   const best = bestYearOf(perf);
-  const bound = TIER_WORST_BOUNDS[thesis.tierKey];
+  const bound = RISK_BOUNDS[riskId];
 
-  let warning = pickNonRepeating(thesis.warnings, history, thesis.id, "warning");
-  if (thesis.capitalNote) {
+  let warning = pickNonRepeating(profile.warnings, history, profileId, "warning");
+  if (profile.capitalNote) {
     // Toujours présente (pas tirée au sort) : pour un profil "revenu", la baisse de capital
     // reste un risque réel même quand les distributions continuent — jamais un simple détail.
     warning += ` En cas de forte baisse (${worst.year} : ${fmtPct(worst.value)}), le capital distribue toujours des revenus — mais sa valeur recule temporairement. Prévoir une réserve de sécurité hors portefeuille.`;
   }
-  const cta = pickCta(thesis, history, { worst, best, selection });
+  if (profile.mandatoryWarning) {
+    // Toujours présente elle aussi (Pro-Européen) : le contre-pied assumé face aux US n'est
+    // jamais un détail optionnel qu'un tirage au sort pourrait faire disparaître.
+    warning += ` ⚠️ ${profile.mandatoryWarning}`;
+  }
+  const jepq = selection.find((s) => s.id === "jepq");
+  if (jepq && jepq.pct > 30) {
+    // Avertissement dynamique (pas stocké en dur dans theses.js) : ne se déclenche que si le
+    // covered call dépasse effectivement 30% de CE tirage précis, jitter inclus.
+    warning += " ⚠️ Le covered call (JEPQ) plafonne la hausse en marché bull. Ce portefeuille génère des revenus — pas une performance maximale.";
+  }
+  const cta = pickCta(profile, history, { worst, best, selection });
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     sig: signature(selection),
-    thesisId: thesis.id,
-    comboIndex,
-    profileName: thesis.label,
-    tierKey: thesis.tierKey,
-    tierLabel: TIER_LABELS[thesis.tierKey],
+    profileId,
+    riskId,
+    profileName: profile.label,
+    riskLabel: RISK_LABELS[riskId],
+    title: `${profile.label} ${RISK_LABELS[riskId]}`,
     bound,
-    accroche: pickNonRepeating(thesis.accroches, history, thesis.id, "accroche"),
-    sousTitre: pickNonRepeating(thesis.sousTitres, history, thesis.id, "sousTitre"),
+    accroche: pickNonRepeating(profile.accroches, history, profileId, "accroche"),
+    sousTitre: pickNonRepeating(profile.sousTitres, history, profileId, "sousTitre"),
     ctaTemplate: cta.template,
     cta: cta.resolved,
     warning,
     selection,
     perf,
     worst,
-    context: contextLine(thesis, selection, perf),
+    context: contextLine(profile, selection, perf),
   };
 }
 
 export function renderTweetText(p) {
   const blocks = [];
-  blocks.push(`📊 Exemple de répartition de patrimoine · ${p.profileName}`);
+  blocks.push(`📊 Exemple de répartition de patrimoine · ${p.title}`);
   blocks.push(p.accroche);
   blocks.push(p.sousTitre);
   blocks.push(SEPARATOR);
@@ -362,4 +408,4 @@ export function renderTweetText(p) {
   return blocks.join("\n\n");
 }
 
-export { fmtPct, TIER_ORDER, TIER_LABELS, TIER_WORST_BOUNDS };
+export { fmtPct, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, PROFILES, isCompatible };

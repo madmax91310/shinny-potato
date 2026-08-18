@@ -478,6 +478,60 @@ export const ASSETS = [
       "fortement sensible au dollar et aux tensions géopolitiques internationales.",
     ],
   },
+  // ── 🔵 Obligataire — durée courte ────────────────────────
+  {
+    id: "oblig_etat_eur_short", name: "iShares € Govt Bond 1-3yr UCITS ETF", cat: "obligataire", emoji: "🔵",
+    r: [1.5, -0.8, -4.5, 3.0, 3.2, 3.0],
+    desc: [
+      "de la dette d'État de la zone euro à très courte échéance : la version la moins sensible aux taux.",
+      "sa faible durée l'a protégé d'une bonne partie du choc de taux subi par les obligations longues en 2022.",
+      "un quasi-équivalent de trésorerie rémunérée, mais 100% européen.",
+    ],
+  },
+
+  // ── 🟢 Europe — styles complémentaires ───────────────────
+  {
+    id: "tech_europe", name: "iShares MSCI Europe Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [5.0, 15.0, -25.0, 20.0, 10.0, 12.0],
+    desc: [
+      "la technologie européenne : un secteur beaucoup plus restreint qu'aux États-Unis, mais bien réel.",
+      "ASML, SAP, Dassault Systèmes... les rares géants tech du continent réunis en une ligne.",
+      "plus volatil que l'indice européen large, pour une thèse qui reste 100% régionale.",
+    ],
+  },
+  {
+    id: "smallcap_europe", name: "iShares MSCI Europe Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [10.0, 20.0, -22.0, 16.0, 8.0, 9.0],
+    desc: [
+      "des petites capitalisations européennes, plus proches de l'économie réelle du continent.",
+      "un potentiel de croissance supérieur aux grandes valeurs, sans sortir de la logique 100% Europe.",
+      "moins suivi par les analystes internationaux, donc parfois sous-évalué.",
+    ],
+  },
+  {
+    id: "sect_energie", name: "iShares S&P 500 Energy Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [-34.0, 48.0, 59.0, -2.0, 5.0, -3.0],
+    desc: [
+      "pétrolières et gazières : un secteur ultra-cyclique, très lié au prix du baril.",
+      "a connu l'une des pires années boursières en 2020... puis l'une des meilleures en 2022.",
+      "un baromètre direct des tensions géopolitiques et de la demande énergétique mondiale.",
+    ],
+  },
+
+  // ── 🟣 Revenu — covered call ──────────────────────────────
+  // JEPQ (lancé en 2022) : les rendements 2020-2021 sont estimés à partir du profil de la
+  // stratégie (vente d'options d'achat sur le Nasdaq — hausse plafonnée, baisse amortie par la
+  // prime), pas des données réelles du fonds. Comme le reste de la bibliothèque, chiffres
+  // illustratifs à corriger si besoin.
+  {
+    id: "jepq", name: "JPMorgan Nasdaq Equity Premium Income UCITS ETF (JEPQ)", cat: "dividendes", emoji: "🟣",
+    r: [18.0, 14.0, -20.0, 26.0, 16.0, 11.0],
+    desc: [
+      "un ETF distribuant mensuel : vend des options d'achat sur le Nasdaq pour générer un revenu élevé.",
+      "environ 9-10% de rendement annualisé, au prix d'une hausse plafonnée en marché très haussier.",
+      "amortit une partie des baisses grâce aux primes encaissées, sans jamais les annuler complètement.",
+    ],
+  },
 ];
 
 export function getAsset(id) {
