@@ -4,11 +4,13 @@ import Home from './pages/Home'
 import ComingSoon from './pages/ComingSoon'
 import PortfolioTracker from './pages/portfolio-tracker/App'
 import EtfTweets from './pages/etf-tweets/App'
+import PortfolioGenerator from './pages/portfolio-generator/App'
 import { TOOLS } from './tools'
 
 const TOOL_ELEMENTS = {
   '/suivi-portefeuille': <PortfolioTracker />,
   '/tweets-etf': <EtfTweets />,
+  '/generateur-portefeuilles': <PortfolioGenerator />,
 }
 
 export default function App() {

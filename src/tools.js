@@ -23,7 +23,7 @@ export const TOOLS = [
     title: 'Générateur de portefeuilles',
     icon: '🧭',
     description: "Portefeuilles illustratifs par profil d'investisseur et niveau de risque.",
-    status: 'bientot',
+    status: 'disponible',
   },
   {
     to: '/tweets-etf',
