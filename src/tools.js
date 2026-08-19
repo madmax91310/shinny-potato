@@ -2,14 +2,6 @@
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 export const TOOLS = [
   {
-    to: '/suivi-portefeuille',
-    navLabel: 'Suivi portefeuille',
-    title: 'Suivi de portefeuille',
-    icon: '📊',
-    description: "Valorisation en direct d'un portefeuille crypto / actions / ETF, allocation et historique.",
-    status: 'disponible',
-  },
-  {
     to: '/recap-matin',
     navLabel: 'Récap Matin',
     title: "Récap' Matin marchés",
