@@ -10,6 +10,7 @@ import PortfolioTable from './components/PortfolioTable'
 import AllocationChart from './components/AllocationChart'
 import EvolutionChart from './components/EvolutionChart'
 import SettingsPanel from './components/SettingsPanel'
+import PageHeader from '../../design-system/PageHeader'
 
 function ApiStatusBanner({ cryptoStatus, stockStatus, hasStockPositions, hasApiKey }) {
   const messages = []
@@ -27,7 +28,7 @@ function ApiStatusBanner({ cryptoStatus, stockStatus, hasStockPositions, hasApiK
       {messages.map((m) => (
         <div
           key={m.key}
-          className="rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm text-amber-800"
+          className="rounded-lg border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-sm text-amber-300"
         >
           {m.text}
         </div>
@@ -36,7 +37,7 @@ function ApiStatusBanner({ cryptoStatus, stockStatus, hasStockPositions, hasApiK
   )
 }
 
-function App() {
+export default function App() {
   const [tab, setTab] = useState('dashboard')
   const [editingPosition, setEditingPosition] = useState(null)
 
@@ -61,75 +62,72 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <h1 className="text-lg font-semibold text-slate-900">Suivi de portefeuille</h1>
-          <nav className="flex gap-1 rounded-lg border border-slate-200 p-0.5 text-sm">
-            <button
-              type="button"
-              onClick={() => setTab('dashboard')}
-              className={`rounded-md px-3 py-1.5 font-medium ${
-                tab === 'dashboard' ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Tableau de bord
-            </button>
-            <button
-              type="button"
-              onClick={() => setTab('settings')}
-              className={`rounded-md px-3 py-1.5 font-medium ${
-                tab === 'settings' ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              Paramètres
-            </button>
-          </nav>
+    <div className="space-y-6">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <PageHeader
+          title="Suivi de portefeuille"
+          subtitle="Valorisation en direct d'un portefeuille crypto / actions / ETF."
+        />
+        <nav className="flex gap-1 rounded-lg border border-slate-800 p-0.5 text-sm">
+          <button
+            type="button"
+            onClick={() => setTab('dashboard')}
+            className={`rounded-md px-3 py-1.5 font-medium transition-colors ${
+              tab === 'dashboard' ? 'bg-teal-500/10 text-teal-300' : 'text-slate-400 hover:text-slate-100'
+            }`}
+          >
+            Tableau de bord
+          </button>
+          <button
+            type="button"
+            onClick={() => setTab('settings')}
+            className={`rounded-md px-3 py-1.5 font-medium transition-colors ${
+              tab === 'settings' ? 'bg-teal-500/10 text-teal-300' : 'text-slate-400 hover:text-slate-100'
+            }`}
+          >
+            Paramètres
+          </button>
+        </nav>
+      </div>
+
+      {tab === 'dashboard' ? (
+        <div className="space-y-6">
+          <ApiStatusBanner
+            cryptoStatus={cryptoStatus}
+            stockStatus={stockStatus}
+            hasStockPositions={hasStockPositions}
+            hasApiKey={Boolean(settings.twelveDataApiKey)}
+          />
+
+          <SummaryHeader summary={summary} dailyChange={dailyChange} />
+
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <EvolutionChart snapshots={snapshots} />
+            <AllocationChart positions={positions} livePrices={livePrices} />
+          </div>
+
+          {editingPosition ? (
+            <AddPositionForm
+              key={editingPosition.id}
+              initialValues={editingPosition}
+              onSubmit={handleEditSubmit}
+              onCancel={() => setEditingPosition(null)}
+            />
+          ) : (
+            <AddPositionForm key="add" onSubmit={handleAdd} />
+          )}
+
+          <PortfolioTable
+            positions={positions}
+            livePrices={livePrices}
+            onEdit={setEditingPosition}
+            onDelete={handleDelete}
+            onSetManualPrice={setManualPrice}
+          />
         </div>
-      </header>
-
-      <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
-        {tab === 'dashboard' ? (
-          <>
-            <ApiStatusBanner
-              cryptoStatus={cryptoStatus}
-              stockStatus={stockStatus}
-              hasStockPositions={hasStockPositions}
-              hasApiKey={Boolean(settings.twelveDataApiKey)}
-            />
-
-            <SummaryHeader summary={summary} dailyChange={dailyChange} />
-
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              <EvolutionChart snapshots={snapshots} />
-              <AllocationChart positions={positions} livePrices={livePrices} />
-            </div>
-
-            {editingPosition ? (
-              <AddPositionForm
-                key={editingPosition.id}
-                initialValues={editingPosition}
-                onSubmit={handleEditSubmit}
-                onCancel={() => setEditingPosition(null)}
-              />
-            ) : (
-              <AddPositionForm key="add" onSubmit={handleAdd} />
-            )}
-
-            <PortfolioTable
-              positions={positions}
-              livePrices={livePrices}
-              onEdit={setEditingPosition}
-              onDelete={handleDelete}
-              onSetManualPrice={setManualPrice}
-            />
-          </>
-        ) : (
-          <SettingsPanel settings={settings} onUpdateSettings={updateSettings} stockStatus={stockStatus} />
-        )}
-      </main>
+      ) : (
+        <SettingsPanel settings={settings} onUpdateSettings={updateSettings} stockStatus={stockStatus} />
+      )}
     </div>
   )
 }
-
-export default App

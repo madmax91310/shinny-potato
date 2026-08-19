@@ -1,12 +1,15 @@
 import { useMemo, useState } from 'react'
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
 import { formatCurrency } from '../lib/format'
+import Card from '../../../design-system/Card'
 
 const PERIODS = [
   { key: '7d', label: '7 jours', days: 7 },
   { key: '30d', label: '30 jours', days: 30 },
   { key: 'all', label: 'Tout', days: null },
 ]
+
+const TOOLTIP_STYLE = { background: '#0f172a', border: '1px solid #1e293b', borderRadius: 8, color: '#e2e8f0' }
 
 export default function EvolutionChart({ snapshots }) {
   const [period, setPeriod] = useState('30d')
@@ -25,17 +28,17 @@ export default function EvolutionChart({ snapshots }) {
   }, [snapshots, period])
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+    <Card className="p-5">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-slate-700">Évolution de la valeur du portefeuille</h2>
-        <div className="flex rounded-lg border border-slate-200 p-0.5 text-xs">
+        <h2 className="text-sm font-semibold text-slate-200">Évolution de la valeur du portefeuille</h2>
+        <div className="flex rounded-lg border border-slate-800 p-0.5 text-xs">
           {PERIODS.map((p) => (
             <button
               key={p.key}
               type="button"
               onClick={() => setPeriod(p.key)}
-              className={`rounded-md px-2.5 py-1 font-medium ${
-                period === p.key ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-slate-700'
+              className={`rounded-md px-2.5 py-1 font-medium transition-colors ${
+                period === p.key ? 'bg-teal-500/10 text-teal-300' : 'text-slate-400 hover:text-slate-100'
               }`}
             >
               {p.label}
@@ -45,28 +48,28 @@ export default function EvolutionChart({ snapshots }) {
       </div>
 
       {data.length < 2 ? (
-        <p className="py-16 text-center text-sm text-slate-400">
+        <p className="py-16 text-center text-sm text-slate-500">
           Pas encore assez d'historique. Revenez plus tard pour voir la courbe.
         </p>
       ) : (
         <div className="h-64 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
-              <CartesianGrid stroke="#e1e0d9" strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#898781' }} axisLine={{ stroke: '#c3c2b7' }} tickLine={false} />
+              <CartesianGrid stroke="#1e293b" strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={{ stroke: '#334155' }} tickLine={false} />
               <YAxis
-                tick={{ fontSize: 12, fill: '#898781' }}
+                tick={{ fontSize: 12, fill: '#64748b' }}
                 axisLine={false}
                 tickLine={false}
                 width={70}
                 tickFormatter={(v) => formatCurrency(v)}
               />
-              <Tooltip formatter={(value) => formatCurrency(value)} />
-              <Line type="monotone" dataKey="value" stroke="#2a78d6" strokeWidth={2} dot={false} activeDot={{ r: 4 }} />
+              <Tooltip formatter={(value) => formatCurrency(value)} contentStyle={TOOLTIP_STYLE} />
+              <Line type="monotone" dataKey="value" stroke="#2dd4bf" strokeWidth={2} dot={false} activeDot={{ r: 4 }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
       )}
-    </div>
+    </Card>
   )
 }

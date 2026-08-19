@@ -2,7 +2,12 @@ import { Routes, Route } from 'react-router-dom'
 import Layout from './design-system/Layout'
 import Home from './pages/Home'
 import ComingSoon from './pages/ComingSoon'
+import PortfolioTracker from './pages/portfolio-tracker/App'
 import { TOOLS } from './tools'
+
+const TOOL_ELEMENTS = {
+  '/suivi-portefeuille': <PortfolioTracker />,
+}
 
 export default function App() {
   return (
@@ -13,7 +18,7 @@ export default function App() {
           <Route
             key={tool.to}
             path={tool.to.slice(1)}
-            element={<ComingSoon title={tool.title} description={tool.description} />}
+            element={TOOL_ELEMENTS[tool.to] ?? <ComingSoon title={tool.title} description={tool.description} />}
           />
         ))}
         <Route path="*" element={<Home />} />

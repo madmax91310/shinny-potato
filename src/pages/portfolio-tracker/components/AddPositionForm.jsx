@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Card from '../../../design-system/Card'
+import Button from '../../../design-system/Button'
 
 const EMPTY_FORM = {
   name: '',
@@ -8,6 +10,9 @@ const EMPTY_FORM = {
   buyPrice: '',
   buyDate: new Date().toISOString().slice(0, 10),
 }
+
+const INPUT_CLASS =
+  'w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-teal-500 focus:outline-none'
 
 export default function AddPositionForm({ initialValues, onSubmit, onCancel }) {
   const [form, setForm] = useState(initialValues || EMPTY_FORM)
@@ -25,41 +30,34 @@ export default function AddPositionForm({ initialValues, onSubmit, onCancel }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="grid grid-cols-1 gap-3 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-2 lg:grid-cols-6"
-    >
+    <Card as="form" onSubmit={handleSubmit} className="grid grid-cols-1 gap-3 p-5 sm:grid-cols-2 lg:grid-cols-6">
       <div className="lg:col-span-1">
-        <label className="mb-1 block text-xs font-medium text-slate-600">Nom</label>
+        <label className="mb-1 block text-xs font-medium text-slate-400">Nom</label>
         <input
           type="text"
           value={form.name}
           onChange={handleChange('name')}
           placeholder="Bitcoin"
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+          className={INPUT_CLASS}
           required
         />
       </div>
 
       <div className="lg:col-span-1">
-        <label className="mb-1 block text-xs font-medium text-slate-600">Ticker</label>
+        <label className="mb-1 block text-xs font-medium text-slate-400">Ticker</label>
         <input
           type="text"
           value={form.ticker}
           onChange={handleChange('ticker')}
           placeholder="BTC"
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm uppercase focus:border-indigo-500 focus:outline-none"
+          className={`${INPUT_CLASS} uppercase`}
           required
         />
       </div>
 
       <div className="lg:col-span-1">
-        <label className="mb-1 block text-xs font-medium text-slate-600">Type</label>
-        <select
-          value={form.type}
-          onChange={handleChange('type')}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
-        >
+        <label className="mb-1 block text-xs font-medium text-slate-400">Type</label>
+        <select value={form.type} onChange={handleChange('type')} className={INPUT_CLASS}>
           <option value="crypto">Crypto</option>
           <option value="stock">Action</option>
           <option value="etf">ETF</option>
@@ -67,7 +65,7 @@ export default function AddPositionForm({ initialValues, onSubmit, onCancel }) {
       </div>
 
       <div className="lg:col-span-1">
-        <label className="mb-1 block text-xs font-medium text-slate-600">Quantité</label>
+        <label className="mb-1 block text-xs font-medium text-slate-400">Quantité</label>
         <input
           type="number"
           step="any"
@@ -75,13 +73,13 @@ export default function AddPositionForm({ initialValues, onSubmit, onCancel }) {
           value={form.quantity}
           onChange={handleChange('quantity')}
           placeholder="0.5"
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+          className={INPUT_CLASS}
           required
         />
       </div>
 
       <div className="lg:col-span-1">
-        <label className="mb-1 block text-xs font-medium text-slate-600">Prix d'achat</label>
+        <label className="mb-1 block text-xs font-medium text-slate-400">Prix d'achat</label>
         <input
           type="number"
           step="any"
@@ -89,39 +87,24 @@ export default function AddPositionForm({ initialValues, onSubmit, onCancel }) {
           value={form.buyPrice}
           onChange={handleChange('buyPrice')}
           placeholder="27000"
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
+          className={INPUT_CLASS}
           required
         />
       </div>
 
       <div className="lg:col-span-1">
-        <label className="mb-1 block text-xs font-medium text-slate-600">Date d'achat</label>
-        <input
-          type="date"
-          value={form.buyDate}
-          onChange={handleChange('buyDate')}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"
-          required
-        />
+        <label className="mb-1 block text-xs font-medium text-slate-400">Date d'achat</label>
+        <input type="date" value={form.buyDate} onChange={handleChange('buyDate')} className={INPUT_CLASS} required />
       </div>
 
       <div className="flex items-end gap-2 sm:col-span-2 lg:col-span-6">
-        <button
-          type="submit"
-          className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500"
-        >
-          {isEditing ? 'Enregistrer' : 'Ajouter la ligne'}
-        </button>
+        <Button type="submit">{isEditing ? 'Enregistrer' : 'Ajouter la ligne'}</Button>
         {isEditing && (
-          <button
-            type="button"
-            onClick={onCancel}
-            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
-          >
+          <Button type="button" variant="secondary" onClick={onCancel}>
             Annuler
-          </button>
+          </Button>
         )}
       </div>
-    </form>
+    </Card>
   )
 }

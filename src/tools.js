@@ -7,7 +7,7 @@ export const TOOLS = [
     title: 'Suivi de portefeuille',
     icon: '📊',
     description: "Valorisation en direct d'un portefeuille crypto / actions / ETF, allocation et historique.",
-    status: 'bientot',
+    status: 'disponible',
   },
   {
     to: '/recap-matin',

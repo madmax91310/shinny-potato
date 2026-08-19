@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import { computeAllocationByLine, computeAllocationByType } from '../lib/portfolio'
 import { formatCurrency } from '../lib/format'
+import Card from '../../../design-system/Card'
 
 // Palette catégorielle à ordre fixe (voir skill dataviz) — jamais recyclée par rang.
 const PALETTE = [
@@ -15,6 +16,8 @@ const PALETTE = [
   '#e34948', // red (réservé au dernier slot "Autres")
 ]
 const MAX_SLICES = 8
+
+const TOOLTIP_STYLE = { background: '#0f172a', border: '1px solid #1e293b', borderRadius: 8, color: '#e2e8f0' }
 
 function toChartData(entries) {
   const sorted = [...entries].sort((a, b) => b.value - a.value)
@@ -36,15 +39,15 @@ export default function AllocationChart({ positions, livePrices }) {
   const total = data.reduce((sum, e) => sum + e.value, 0)
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+    <Card className="p-5">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-slate-700">Répartition du portefeuille</h2>
-        <div className="flex rounded-lg border border-slate-200 p-0.5 text-xs">
+        <h2 className="text-sm font-semibold text-slate-200">Répartition du portefeuille</h2>
+        <div className="flex rounded-lg border border-slate-800 p-0.5 text-xs">
           <button
             type="button"
             onClick={() => setMode('line')}
-            className={`rounded-md px-2.5 py-1 font-medium ${
-              mode === 'line' ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-slate-700'
+            className={`rounded-md px-2.5 py-1 font-medium transition-colors ${
+              mode === 'line' ? 'bg-teal-500/10 text-teal-300' : 'text-slate-400 hover:text-slate-100'
             }`}
           >
             Par ligne
@@ -52,8 +55,8 @@ export default function AllocationChart({ positions, livePrices }) {
           <button
             type="button"
             onClick={() => setMode('type')}
-            className={`rounded-md px-2.5 py-1 font-medium ${
-              mode === 'type' ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-slate-700'
+            className={`rounded-md px-2.5 py-1 font-medium transition-colors ${
+              mode === 'type' ? 'bg-teal-500/10 text-teal-300' : 'text-slate-400 hover:text-slate-100'
             }`}
           >
             Par type
@@ -62,7 +65,7 @@ export default function AllocationChart({ positions, livePrices }) {
       </div>
 
       {data.length === 0 ? (
-        <p className="py-10 text-center text-sm text-slate-400">Pas encore de données</p>
+        <p className="py-10 text-center text-sm text-slate-500">Pas encore de données</p>
       ) : (
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <div className="h-56 w-56 shrink-0">
@@ -70,10 +73,10 @@ export default function AllocationChart({ positions, livePrices }) {
               <PieChart>
                 <Pie data={data} dataKey="value" nameKey="name" innerRadius={55} outerRadius={90} paddingAngle={2}>
                   {data.map((entry, index) => (
-                    <Cell key={entry.name} fill={PALETTE[index % PALETTE.length]} stroke="#fcfcfb" strokeWidth={2} />
+                    <Cell key={entry.name} fill={PALETTE[index % PALETTE.length]} stroke="#0f172a" strokeWidth={2} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => formatCurrency(value)} />
+                <Tooltip formatter={(value) => formatCurrency(value)} contentStyle={TOOLTIP_STYLE} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -81,16 +84,16 @@ export default function AllocationChart({ positions, livePrices }) {
           <ul className="w-full space-y-1.5 text-sm">
             {data.map((entry, index) => (
               <li key={entry.name} className="flex items-center justify-between gap-2">
-                <span className="flex items-center gap-2 truncate text-slate-600">
+                <span className="flex items-center gap-2 truncate text-slate-300">
                   <span
                     className="h-2.5 w-2.5 shrink-0 rounded-full"
                     style={{ backgroundColor: PALETTE[index % PALETTE.length] }}
                   />
                   <span className="truncate">{entry.name}</span>
                 </span>
-                <span className="whitespace-nowrap text-slate-500">
+                <span className="whitespace-nowrap text-slate-400">
                   {formatCurrency(entry.value)}{' '}
-                  <span className="text-slate-400">
+                  <span className="text-slate-500">
                     ({total > 0 ? ((entry.value / total) * 100).toFixed(1) : '0'}%)
                   </span>
                 </span>
@@ -99,6 +102,6 @@ export default function AllocationChart({ positions, livePrices }) {
           </ul>
         </div>
       )}
-    </div>
+    </Card>
   )
 }
