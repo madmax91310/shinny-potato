@@ -31,7 +31,7 @@ export const TOOLS = [
     title: 'Générateur de tweets ETF',
     icon: '🐦',
     description: "Tweets comparatifs d'ETF par thématique, prêts à publier.",
-    status: 'bientot',
+    status: 'disponible',
   },
   {
     to: '/lexique-financier',
