@@ -447,50 +447,51 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 17 août 2026",
-    generatedAt: "Généré le 18 août 2026",
+    sessionDate: "Séance du 18 août 2026",
+    generatedAt: "Généré le 19 août 2026",
     stats: [
-      { label: "CAC 40", value: "8 579,60", delta: "-0,66%", dir: "down" },
-      { label: "Brent", value: "<91 $", delta: "clôture lundi", dir: "up" },
-      { label: "WTI", value: "≈85 $", delta: "+2,6%, lundi", dir: "up" },
-      { label: "Or (once)", value: "≈4 420 $", delta: "+1,5%, 2 séances", dir: "up" },
-      { label: "Bitcoin", value: "63 500 $", delta: "quasi stable", dir: "flat" },
-      { label: "Strategy (MSTR)", value: "334 M$", delta: "vente d'actions", dir: "down" }
+      { label: "CAC 40", value: "8 509,36", delta: "-0,82%", dir: "down" },
+      { label: "Semi-conducteurs", value: "indice", delta: "-5,5%", dir: "down" },
+      { label: "Nasdaq 100", value: "—", delta: "-1,7%", dir: "down" },
+      { label: "Bitcoin", value: "64 700 $", delta: "stable", dir: "flat" },
+      { label: "Brent", value: ">91 $", delta: "+4,5%, 3 séances", dir: "up" },
+      { label: "Or (once)", value: "≈4 330 $", delta: "-2%, veille", dir: "down" }
     ],
     bullets: [
       {
         emoji: "🇫🇷",
         tag: "Marchés actions",
-        text: "Le CAC 40 a clôturé en repli de 0,66% à 8 579,60 points, une cinquième séance consécutive de baisse qui l'éloigne désormais de 146,43 points de son record de clôture du 10 août."
+        text: "Le CAC 40 a clôturé en baisse de 0,82% à 8 509,36 points, une sixième séance consécutive de repli inédite depuis janvier, tandis que STMicroelectronics a figuré parmi les rares valeurs à progresser."
       },
       {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Donald Trump a menacé de frapper militairement Oman s'il « faisait obstacle » à la réouverture du détroit d'Ormuz, une sortie qui a conduit des élus démocrates à annoncer une résolution au Congrès pour encadrer ses pouvoirs de guerre."
+        text: "Le délai de 60 jours fixé par Washington et Téhéran pour conclure un accord de paix a expiré lundi sans résultat, les deux camps semblant plus éloignés qu'au moment de leur protocole d'accord de juin, Donald Trump ayant de nouveau évoqué l'idée de faire du détroit d'Ormuz un territoire américain."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin est resté cantonné autour de 63 500 dollars, dans sa fourchette de 62 000 à 66 000 dollars en vigueur depuis plus d'un mois, alors que Goldman Sachs a jugé « très improbable » une hausse des taux de la Fed en septembre."
+        text: "Le Bitcoin s'est maintenu autour de 64 700 dollars, toujours à environ 48% de son record historique d'octobre 2025, alors que VanEck estime que la correction pourrait toucher à sa fin, huit de ses douze signaux de capitulation étant déjà activés."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent a clôturé lundi tout juste sous les 91 dollars le baril et le WTI a bondi de 2,6% vers 85 dollars, tandis que l'or se stabilisait près de 4 420 dollars l'once, en hausse de 1,5% sur deux séances grâce au recul des anticipations de hausse des taux de la Fed."
+        text: "Le Brent a dépassé les 91 dollars le baril, en hausse de 4,5% sur trois séances, et le WTI évoluait près de 85 dollars, portés par une quatrième journée de hausse consécutive sur fond d'impasse américano-iranienne, tandis que l'or campait autour de 4 330 dollars l'once après avoir cédé près de 2% la veille sous l'effet d'un dégagement obligataire."
       },
       {
-        emoji: "📊",
+        emoji: "🖥️",
         tag: "Fait marquant",
-        text: "Deux jours après la menace d'exclusion des indices MSCI, Strategy a vendu pour 334 millions de dollars d'actions MSTR sans acheter ni vendre de bitcoin, portant sa trésorerie en dollars à 4,8 milliards."
+        text: "Un indice représentatif des semi-conducteurs a chuté de 5,5% et le Nasdaq 100 a perdu 1,7%, la remontée des rendements obligataires ravivant les inquiétudes sur les valorisations technologiques, un mouvement qui s'est propagé en Asie avec des replis de plus de 7% pour Samsung et SK Hynix."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "La Bourse de Paris moins prudente que ses consoeurs européennes", url: "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-moins-prudente-que-ses-consoeurs-europeennes-02134922e25bc038ace13a7f82469fbe" },
-      { outlet: "Axios", title: "Congressional Democrats plan Oman war powers push after Trump threatens bombing", url: "https://www.axios.com/2026/08/17/trump-oman-democrats-congress-war-powers-iran" },
-      { outlet: "CoinDesk", title: "Good news for bitcoin: Goldman says September Fed rate hike is 'very unlikely.'", url: "https://www.coindesk.com/markets/2026/08/17/september-fed-interest-rate-increase-is-very-unlikely-goldman-sachs-says" },
-      { outlet: "Bloomberg", title: "Oil Gains as the US Signals No Rush to End Conflict With Iran", url: "https://www.bloomberg.com/news/articles/2026-08-17/latest-oil-market-news-and-analysis-for-aug-18" },
-      { outlet: "Bloomberg", title: "Gold Holds Two-Day Gain on Reduced Rate-Hike Expectations", url: "https://www.bloomberg.com/news/articles/2026-08-17/gold-holds-two-day-gain-on-reduced-rate-hike-expectations" },
-      { outlet: "The Block", title: "Strategy sells $334 million in MSTR shares, makes no bitcoin purchases or sales as USD reserve hits $4.8 billion", url: "https://www.theblock.co/news/business/2026-08-17-michael-saylor-strategy-btc-411942" }
+      { outlet: "Zone Bourse", title: "Le CAC 40 clôture en baisse de 0,8% à 8.509,36 points", url: "https://www.zonebourse.com/actualite-bourse/le-cac-40-cloture-en-baisse-de-0-8-a-8-509-36-points-ce7859dddb8cf623" },
+      { outlet: "Axios", title: "Trump torches allies as Iran exposes limits of hard power", url: "https://www.axios.com/2026/08/18/trump-south-korea-allies-iran-war" },
+      { outlet: "CoinDesk", title: "Live updates: Bitcoin holds $64,000 as surging yields and oil drain risk appetite", url: "https://www.coindesk.com/tech/2026/08/18/live-updates-bitcoin-holds-usd64-000-as-surging-yields-and-oil-drain-risk-appetite" },
+      { outlet: "The Block", title: "Bitcoin correction may be nearing an end with 8 of 12 capitulation signals flashing, VanEck says", url: "https://www.theblock.co/news/markets/2026-08-18-bitcoin-correction-may-nearing-end-8-capitulation-signals-flashing-vaneck-412130" },
+      { outlet: "Bloomberg", title: "Oil Advances for Fourth Day With US and Iran Locked in Stalemate", url: "https://www.bloomberg.com/news/articles/2026-08-18/latest-oil-market-news-and-analysis-for-aug-19" },
+      { outlet: "Bloomberg", title: "Gold Holds Losses as Bond Selloff, Hormuz Limbo Weigh on Outlook", url: "https://www.bloomberg.com/news/articles/2026-08-18/gold-holds-losses-as-bond-selloff-hormuz-limbo-weigh-on-outlook" },
+      { outlet: "Bloomberg", title: "Stock Market Today: Dow, S&P Live Updates for August 18", url: "https://www.bloomberg.com/news/articles/2026-08-17/stock-market-today-dow-s-p-live-updates" }
     ]
   };
 
