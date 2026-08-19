@@ -1,0 +1,1207 @@
+<title>Et si tu avais investi ? — Simulateur</title>
+<style>
+  :root{
+    --navy-950:#060a14;
+    --navy-900:#0a1120;
+    --navy-850:#0e1630;
+    --navy-800:#131c39;
+    --navy-700:#1c2749;
+    --navy-600:#2a3860;
+    --hairline: rgba(219,186,116,0.18);
+    --hairline-strong: rgba(219,186,116,0.32);
+    --gold-300:#f7d685;
+    --gold-400:#eec565;
+    --gold-600:#b9873c;
+    --ink-100:#f1f3fa;
+    --ink-300:#c7cde0;
+    --ink-500:#8791ac;
+    --ink-600:#606a89;
+    --pos:#3fd8a0;
+    --neg:#f0776f;
+    --font-display: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", "Liberation Mono", Menlo, Consolas, monospace;
+    --font-serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: radial-gradient(120% 140% at 12% -10%, #101c3a 0%, var(--navy-950) 45%) fixed, var(--navy-950);
+    color: var(--ink-100);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  ::selection{ background: var(--gold-400); color: var(--navy-950); }
+  button, select, input{ font-family: inherit; }
+  button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible{
+    outline: 2px solid var(--gold-300);
+    outline-offset: 2px;
+  }
+
+  .page{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(20px,3vw,40px) clamp(16px,3vw,32px) 32px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px,2.4vw,28px);
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--hairline);
+    flex-wrap: wrap;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-mark{
+    width:34px;height:34px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    background: linear-gradient(155deg, var(--navy-700), var(--navy-850));
+    border:1px solid var(--hairline-strong);
+    color: var(--gold-300);
+    font-family: var(--font-display);
+    font-weight:700;
+    font-size:15px;
+  }
+  .brand-text h1{
+    margin:0;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(17px,2vw,20px);
+    letter-spacing: .01em;
+    color: var(--ink-100);
+  }
+  .brand-text p{
+    margin:2px 0 0;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+  }
+  .masthead-tag{
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: .07em;
+    color: var(--gold-400);
+    border: 1px solid var(--hairline-strong);
+    padding: 5px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns: 320px minmax(0,1fr);
+    gap: clamp(16px,2vw,22px);
+    align-items: start;
+  }
+  @media (max-width: 880px){
+    .layout{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Controls panel ---------- */
+  .panel{
+    background: linear-gradient(175deg, var(--navy-850), var(--navy-900));
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 20px;
+    display:flex;
+    flex-direction:column;
+    gap: 18px;
+  }
+  .eyebrow{
+    font-family: var(--font-display);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gold-400);
+    margin: 0 0 10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: var(--hairline);
+  }
+  .field{ display:flex; flex-direction:column; gap:7px; }
+  .field label{
+    font-size: 12px;
+    color: var(--ink-300);
+    font-weight: 600;
+  }
+  .select-wrap{ position:relative; }
+  select.control, input.control{
+    width:100%;
+    appearance:none;
+    -webkit-appearance:none;
+    background: var(--navy-800);
+    border: 1px solid var(--navy-600);
+    color: var(--ink-100);
+    padding: 10px 12px;
+    border-radius: 9px;
+    font-size: 14px;
+    transition: border-color .15s ease;
+  }
+  select.control{ padding-right: 30px; cursor:pointer; }
+  select.control:hover, input.control:hover{ border-color: var(--gold-600); }
+  select.control:focus, input.control:focus{ border-color: var(--gold-400); outline:none; }
+  .select-wrap::after{
+    content:"";
+    position:absolute;
+    right:11px; top:50%;
+    width:8px;height:8px;
+    border-right:1.5px solid var(--ink-500);
+    border-bottom:1.5px solid var(--ink-500);
+    transform: translateY(-65%) rotate(45deg);
+    pointer-events:none;
+  }
+  .row2{ display:grid; grid-template-columns: 1fr 1fr; gap:8px; }
+  .amount-wrap{ position:relative; }
+  .amount-wrap input.control{ padding-right: 34px; font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+  .amount-suffix{
+    position:absolute; right:12px; top:50%; transform:translateY(-50%);
+    color: var(--ink-500); font-size:13px; pointer-events:none;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:2px; }
+  .chip{
+    font-size: 11.5px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--navy-600);
+    background: var(--navy-800);
+    color: var(--ink-300);
+    cursor: pointer;
+    font-family: var(--font-display);
+    transition: all .12s ease;
+  }
+  .chip:hover{ border-color: var(--gold-400); color: var(--gold-300); }
+  .chip.active{ background: var(--gold-400); border-color: var(--gold-400); color: var(--navy-950); font-weight:700; }
+
+  .segmented{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--navy-800);
+    border: 1px solid var(--navy-600);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 3px;
+  }
+  .segmented button{
+    border:none;
+    background:transparent;
+    color: var(--ink-400);
+    padding: 9px 6px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor:pointer;
+    transition: all .15s ease;
+    line-height:1.25;
+  }
+  .segmented button.active{
+    background: linear-gradient(175deg, var(--gold-300), var(--gold-600));
+    color: var(--navy-950);
+  }
+  .hint{ font-size:11.5px; color: var(--ink-600); line-height:1.5; margin:0; }
+  .asset-dot{
+    display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; flex:none;
+  }
+
+  /* ---------- Result card ---------- */
+  .card{
+    position: relative;
+    background: linear-gradient(165deg, #0d1730 0%, #0a1122 55%, #0a0f1e 100%);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 18px;
+    padding: clamp(18px,2.6vw,28px);
+    overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .card::before{
+    content:"";
+    position:absolute; inset:0;
+    background: radial-gradient(60% 50% at 85% 0%, rgba(238,197,101,0.10), transparent 60%);
+    pointer-events:none;
+  }
+  .card-head{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    position:relative; z-index:1;
+    flex-wrap: wrap;
+  }
+  .card-head-left{ display:flex; align-items:center; gap:9px; }
+  .asset-badge{
+    width:38px;height:38px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    background: var(--navy-800);
+    border:1px solid var(--hairline);
+    font-size:16px;
+  }
+  .card-head h2{
+    margin:0; font-size:14.5px; font-weight:700; color:var(--ink-100);
+    font-family: var(--font-serif);
+  }
+  .card-head .period{ margin:2px 0 0; font-size:11.5px; color: var(--ink-500); font-family: var(--font-display); }
+  .mode-pill{
+    font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 10px; border-radius:100px;
+    border:1px solid var(--hairline-strong);
+    color: var(--gold-300);
+    font-family: var(--font-display);
+    white-space:nowrap;
+  }
+
+  .hero{ position:relative; z-index:1; margin-top: clamp(14px,2.4vw,22px); }
+  .hero-label{
+    font-size:12.5px; color: var(--ink-400); margin:0 0 6px;
+  }
+  .hero-label b{ color: var(--ink-100); font-weight:700; }
+  .hero-number{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 7vw, 3.6rem);
+    line-height: 1.03;
+    letter-spacing: -0.01em;
+    color: var(--gold-300);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 40px rgba(238,197,101,0.25);
+    margin:0;
+    word-break: break-word;
+  }
+  .hero-sub{
+    display:flex; align-items:center; gap:10px; margin-top:10px; flex-wrap:wrap;
+  }
+  .delta-pill{
+    font-family: var(--font-display);
+    font-weight:700;
+    font-size: 13.5px;
+    padding: 5px 11px;
+    border-radius: 100px;
+    font-variant-numeric: tabular-nums;
+  }
+  .delta-pill.pos{ background: rgba(63,216,160,0.14); color: var(--pos); border:1px solid rgba(63,216,160,0.3); }
+  .delta-pill.neg{ background: rgba(240,119,111,0.14); color: var(--neg); border:1px solid rgba(240,119,111,0.3); }
+  .hero-sub .gain-abs{ font-size:12.5px; color: var(--ink-400); }
+
+  .chart-wrap{ position:relative; z-index:1; margin-top: clamp(14px,2.2vw,20px); }
+  .chart-legend{ display:flex; gap:16px; margin-bottom:6px; }
+  .legend-item{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--ink-500); }
+  .legend-swatch{ width:14px; height:2px; border-radius:2px; }
+  .chart-svg{ width:100%; height:auto; display:block; overflow: visible; }
+
+  .compare{
+    position:relative; z-index:1;
+    margin-top: clamp(14px,2.2vw,20px);
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:10px;
+  }
+  .compare-item{
+    background: rgba(255,255,255,0.02);
+    border:1px solid var(--hairline);
+    border-radius:12px;
+    padding:10px 12px;
+  }
+  .compare-item.highlight{ border-color: var(--hairline-strong); background: rgba(238,197,101,0.06); }
+  .compare-label{ font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color: var(--ink-500); margin:0 0 6px; }
+  .compare-value{ font-family: var(--font-display); font-size: clamp(14px,2vw,17px); font-weight:700; color:var(--ink-100); margin:0; font-variant-numeric: tabular-nums; }
+  .compare-delta{ font-size:11px; margin-top:3px; font-family: var(--font-display); }
+  .compare-delta.pos{ color: var(--pos); }
+  .compare-delta.neg{ color: var(--neg); }
+
+  .card-footer{
+    position:relative; z-index:1;
+    margin-top: clamp(16px,2.2vw,20px);
+    padding-top: 14px;
+    border-top: 1px solid var(--hairline);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap: wrap;
+  }
+  .disclaimer{ font-size:10.5px; color: var(--ink-600); line-height:1.5; max-width: 40ch; margin:0; }
+  .tweet-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background: linear-gradient(175deg, var(--gold-300), var(--gold-600));
+    color: var(--navy-950);
+    border:none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    white-space:nowrap;
+    transition: transform .12s ease, filter .12s ease;
+  }
+  .tweet-btn:hover{ filter: brightness(1.06); transform: translateY(-1px); }
+  .tweet-btn:active{ transform: translateY(0); }
+  .tweet-btn.copied{ background: linear-gradient(175deg, var(--pos), #1fae7a); color:#052015; }
+
+  footer.page-footer{
+    text-align:center;
+    font-size:11px;
+    color: var(--ink-600);
+    padding-top: 4px;
+  }
+  footer.page-footer a{ color: var(--ink-500); }
+
+  @media (prefers-reduced-motion: reduce){
+    .tweet-btn{ transition:none; }
+  }
+
+  @media (max-width: 520px){
+    .compare{ grid-template-columns: 1fr; }
+    .row2{ grid-template-columns: 1fr; }
+  }
+
+  .segmented button:disabled{ opacity:.4; cursor:not-allowed; }
+</style>
+<div class="page">
+  <div class="masthead">
+    <div class="brand">
+      <div class="brand-mark">€</div>
+      <div class="brand-text">
+        <h1>Et si tu avais investi ?</h1>
+        <p>Simulateur d'éducation financière</p>
+      </div>
+    </div>
+    <span class="masthead-tag">DONNÉES 2015 → AUJ.</span>
+  </div>
+  <div class="layout">
+    <div class="panel" id="controlsPanel"></div>
+    <div class="card" id="resultCard"></div>
+  </div>
+  <footer class="page-footer">Données de prix indicatives, à titre pédagogique uniquement — mises à jour manuellement.</footer>
+</div>
+<script>
+(function(){
+"use strict";
+
+/* =====================================================================
+   DONNEES DE PRIX — a completer / remplacer a la main.
+   Chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
+   Les prix entre deux points sont interpoles lineairement.
+   -> Pour ameliorer la precision, ajoutez simplement plus de points
+      (ex: un point par mois au lieu d'un point par trimestre).
+   Les valeurs ci-dessous sont des ORDRES DE GRANDEUR approximatifs
+   fournis a titre de placeholder : remplacez-les par vos propres
+   données avant publication.
+===================================================================== */
+
+function P(list){
+  var out = [];
+  for (var i = 0; i < list.length; i += 2) out.push({ date: list[i], price: list[i+1] });
+  return out;
+}
+
+var ASSETS = {
+  bitcoin: {
+    /* Source : export Yahoo Finance (BTC-USD), prix d'ouverture mensuel réel, aout 2026. */
+    label: "Bitcoin", tweetPhrase: "le Bitcoin", icon: "₿", currency: "USD",
+    points: P([
+      "2015-01",320.43, "2015-02",216.87, "2015-03",254.28, "2015-04",244.22,
+      "2015-05",235.94, "2015-06",230.23, "2015-07",263.35, "2015-08",284.69,
+      "2015-09",230.26, "2015-10",236.00, "2015-11",315.01, "2015-12",377.41,
+      "2016-01",430.72, "2016-02",369.35, "2016-03",437.92, "2016-04",416.76,
+      "2016-05",448.48, "2016-06",531.11, "2016-07",672.52, "2016-08",624.60,
+      "2016-09",575.55, "2016-10",609.93, "2016-11",701.34, "2016-12",746.05,
+      "2017-01",963.66, "2017-02",970.94, "2017-03",1180.04, "2017-04",1071.71,
+      "2017-05",1348.30, "2017-06",2288.33, "2017-07",2492.60, "2017-08",2871.30,
+      "2017-09",4701.76, "2017-10",4341.05, "2017-11",6440.97, "2017-12",10198.60,
+      "2018-01",14112.20, "2018-02",10237.30, "2018-03",10385.00, "2018-04",7003.06,
+      "2018-05",9251.47, "2018-06",7500.70, "2018-07",6411.68, "2018-08",7769.04,
+      "2018-09",7044.81, "2018-10",6619.85, "2018-11",6318.14, "2018-12",4024.46,
+      "2019-01",3746.71, "2019-02",3460.55, "2019-03",3853.76, "2019-04",4105.36,
+      "2019-05",5350.91, "2019-06",8573.84, "2019-07",10796.93, "2019-08",10077.44,
+      "2019-09",9630.59, "2019-10",8299.72, "2019-11",9193.99, "2019-12",7571.62,
+      "2020-01",7194.89, "2020-02",9346.36, "2020-03",8599.76, "2020-04",6437.32,
+      "2020-05",8672.78, "2020-06",9463.61, "2020-07",9145.99, "2020-08",11322.57,
+      "2020-09",11679.32, "2020-10",10795.25, "2020-11",13781.00, "2020-12",19633.77,
+      "2021-01",28994.01, "2021-02",33114.58, "2021-03",45159.50, "2021-04",58926.56,
+      "2021-05",57714.66, "2021-06",37293.79, "2021-07",35035.98, "2021-08",41460.84,
+      "2021-09",47099.77, "2021-10",43816.74, "2021-11",61320.45, "2021-12",56907.96,
+      "2022-01",46311.75, "2022-02",38481.77, "2022-03",43194.50, "2022-04",45554.16,
+      "2022-05",37713.27, "2022-06",31792.55, "2022-07",19820.47, "2022-08",23336.72,
+      "2022-09",20050.50, "2022-10",19431.11, "2022-11",20494.90, "2022-12",17168.00,
+      "2023-01",16547.91, "2023-02",23137.84, "2023-03",23150.93, "2023-04",28473.33,
+      "2023-05",29227.10, "2023-06",27218.41, "2023-07",30471.85, "2023-08",29230.87,
+      "2023-09",25934.02, "2023-10",26967.40, "2023-11",34657.27, "2023-12",37718.01,
+      "2024-01",42280.23, "2024-02",42569.76, "2024-03",61168.06, "2024-04",71333.48,
+      "2024-05",60609.50, "2024-06",67489.61, "2024-07",62673.61, "2024-08",64625.84,
+      "2024-09",58969.80, "2024-10",63335.61, "2024-11",70216.90, "2024-12",96461.34,
+      "2025-01",93425.10, "2025-02",102402.80, "2025-03",84373.87, "2025-04",82551.92,
+      "2025-05",94212.86, "2025-06",104637.30, "2025-07",107144.38, "2025-08",115738.95,
+      "2025-09",108228.75, "2025-10",114057.59, "2025-11",109558.63, "2025-12",90389.11,
+      "2026-01",87508.05, "2026-02",78626.13, "2026-03",67005.88, "2026-04",68232.89,
+      "2026-05",76305.05, "2026-06",73580.21, "2026-07",58562.45, "2026-08",64267
+    ])
+  },
+  ethereum: {
+    label: "Ethereum", tweetPhrase: "l'Ethereum", icon: "Ξ", currency: "USD",
+    points: P([
+      "2016-01",1, "2016-04",8, "2016-07",12, "2016-10",11,
+      "2017-01",8, "2017-04",50, "2017-07",200, "2017-10",300,
+      "2018-01",1000, "2018-04",420, "2018-07",460, "2018-10",200,
+      "2019-01",130, "2019-04",170, "2019-07",220, "2019-10",180,
+      "2020-01",130, "2020-04",170, "2020-07",230, "2020-10",380,
+      "2021-01",730, "2021-04",2100, "2021-07",2300, "2021-10",4300,
+      "2022-01",3400, "2022-04",3100, "2022-07",1100, "2022-10",1300,
+      "2023-01",1200, "2023-04",1900, "2023-07",1900, "2023-10",1600,
+      "2024-01",2300, "2024-04",3200, "2024-07",3200, "2024-10",2500,
+      "2025-01",3300, "2025-04",1600, "2025-07",4200, "2025-10",3600,
+      "2026-01",3111, "2026-04",2900, "2026-08",2400
+    ])
+  },
+  cac40: {
+    label: "CAC 40", tweetPhrase: "le CAC 40", icon: "🇫🇷", currency: "EUR",
+    points: P([
+      "2015-01",4300, "2015-04",5000, "2015-07",4850, "2015-10",4550,
+      "2016-01",4637, "2016-04",4550, "2016-07",4300, "2016-10",4450,
+      "2017-01",4862, "2017-04",5250, "2017-07",5100, "2017-10",5350,
+      "2018-01",5450, "2018-04",5300, "2018-07",5400, "2018-10",5000,
+      "2019-01",4730, "2019-04",5500, "2019-07",5500, "2019-10",5650,
+      "2020-01",6000, "2020-04",4400, "2020-07",4900, "2020-10",4600,
+      "2021-01",5550, "2021-04",6250, "2021-07",6650, "2021-10",6700,
+      "2022-01",7150, "2022-04",6550, "2022-07",6000, "2022-10",6100,
+      "2023-01",6474, "2023-04",7400, "2023-07",7300, "2023-10",6800,
+      "2024-01",7500, "2024-04",8100, "2024-07",7500, "2024-10",7400,
+      "2025-01",7400, "2025-04",7500, "2025-07",7700, "2025-10",7900,
+      "2026-01",7950, "2026-04",8050, "2026-08",8150
+    ])
+  },
+  stoxx600: {
+    label: "ETF STOXX Europe 600", tweetPhrase: "un ETF STOXX Europe 600", icon: "🇪🇺", currency: "EUR",
+    points: P([
+      "2015-01",365, "2015-04",400, "2015-07",370, "2015-10",350,
+      "2016-01",330, "2016-04",335, "2016-07",340, "2016-10",342,
+      "2017-01",360, "2017-04",380, "2017-07",380, "2017-10",390,
+      "2018-01",399, "2018-04",380, "2018-07",390, "2018-10",360,
+      "2019-01",344, "2019-04",385, "2019-07",390, "2019-10",400,
+      "2020-01",416, "2020-04",320, "2020-07",360, "2020-10",345,
+      "2021-01",400, "2021-04",435, "2021-07",460, "2021-10",465,
+      "2022-01",485, "2022-04",450, "2022-07",410, "2022-10",395,
+      "2023-01",450, "2023-04",465, "2023-07",460, "2023-10",445,
+      "2024-01",478, "2024-04",510, "2024-07",515, "2024-10",510,
+      "2025-01",525, "2025-04",525, "2025-07",545, "2025-10",567,
+      "2026-01",590, "2026-04",615, "2026-08",655
+    ])
+  },
+  sp500: {
+    label: "S&P 500", tweetPhrase: "le S&P 500", icon: "🇺🇸", currency: "USD",
+    points: P([
+      "2015-01",2000, "2015-04",2100, "2015-07",2100, "2015-10",2050,
+      "2016-01",1950, "2016-04",2075, "2016-07",2170, "2016-10",2130,
+      "2017-01",2280, "2017-04",2360, "2017-07",2470, "2017-10",2575,
+      "2018-01",2820, "2018-04",2650, "2018-07",2815, "2018-10",2700,
+      "2019-01",2510, "2019-04",2945, "2019-07",2980, "2019-10",3040,
+      "2020-01",3230, "2020-04",2470, "2020-07",3270, "2020-10",3270,
+      "2021-01",3750, "2021-04",4180, "2021-07",4400, "2021-10",4600,
+      "2022-01",4750, "2022-04",4130, "2022-07",4130, "2022-10",3600,
+      "2023-01",3824, "2023-04",4100, "2023-07",4590, "2023-10",4200,
+      "2024-01",4750, "2024-04",5035, "2024-07",5460, "2024-10",5700,
+      "2025-01",5900, "2025-04",5600, "2025-07",6200, "2025-10",6500,
+      "2026-01",6700, "2026-04",6950, "2026-08",7760
+    ])
+  },
+  msciWorld: {
+    label: "ETF MSCI World", tweetPhrase: "un ETF MSCI World", icon: "🌍", currency: "USD",
+    points: P([
+      "2015-01",1709, "2015-04",1750, "2015-07",1700, "2015-10",1620,
+      "2016-01",1560, "2016-04",1650, "2016-07",1680, "2016-10",1690,
+      "2017-01",1760, "2017-04",1840, "2017-07",1900, "2017-10",1970,
+      "2018-01",2050, "2018-04",1950, "2018-07",2010, "2018-10",1880,
+      "2019-01",1780, "2019-04",2050, "2019-07",2130, "2019-10",2180,
+      "2020-01",2360, "2020-04",1900, "2020-07",2200, "2020-10",2230,
+      "2021-01",2600, "2021-04",2850, "2021-07",3000, "2021-10",3100,
+      "2022-01",3230, "2022-04",2950, "2022-07",2750, "2022-10",2600,
+      "2023-01",2750, "2023-04",2870, "2023-07",3000, "2023-10",2830,
+      "2024-01",3080, "2024-04",3250, "2024-07",3400, "2024-10",3550,
+      "2025-01",3800, "2025-04",3550, "2025-07",4100, "2025-10",4250,
+      "2026-01",4500, "2026-04",4700, "2026-08",5000
+    ])
+  },
+  soxx: {
+    label: "ETF Semi-conducteurs (SOXX)", tweetPhrase: "un ETF semi-conducteurs (SOXX)", icon: "🖥️", currency: "USD",
+    points: P([
+      "2015-01",25, "2015-04",28, "2015-07",24, "2015-10",22,
+      "2016-01",20, "2016-04",24, "2016-07",30, "2016-10",33,
+      "2017-01",38, "2017-04",45, "2017-07",48, "2017-10",55,
+      "2018-01",62, "2018-04",55, "2018-07",62, "2018-10",48,
+      "2019-01",50, "2019-04",68, "2019-07",78, "2019-10",90,
+      "2020-01",105, "2020-04",78, "2020-07",115, "2020-10",165,
+      "2021-01",195, "2021-04",230, "2021-07",260, "2021-10",280,
+      "2022-01",284, "2022-04",240, "2022-07",200, "2022-10",175,
+      "2023-01",185, "2023-04",220, "2023-07",260, "2023-10",290,
+      "2024-01",308, "2024-04",320, "2024-07",300, "2024-10",320,
+      "2025-01",348, "2025-04",300, "2025-07",380, "2025-10",430,
+      "2026-01",490, "2026-04",600, "2026-08",534
+    ])
+  },
+  or: {
+    label: "Or (once)", tweetPhrase: "l'or", icon: "●", currency: "USD",
+    points: P([
+      "2015-01",1250, "2015-04",1200, "2015-07",1100, "2015-10",1150,
+      "2016-01",1100, "2016-04",1240, "2016-07",1340, "2016-10",1270,
+      "2017-01",1200, "2017-04",1270, "2017-07",1220, "2017-10",1280,
+      "2018-01",1330, "2018-04",1330, "2018-07",1220, "2018-10",1215,
+      "2019-01",1290, "2019-04",1290, "2019-07",1420, "2019-10",1500,
+      "2020-01",1560, "2020-04",1700, "2020-07",1975, "2020-10",1900,
+      "2021-01",1850, "2021-04",1770, "2021-07",1810, "2021-10",1780,
+      "2022-01",1820, "2022-04",1930, "2022-07",1770, "2022-10",1650,
+      "2023-01",1930, "2023-04",2000, "2023-07",1960, "2023-10",1990,
+      "2024-01",2050, "2024-04",2330, "2024-07",2400, "2024-10",2750,
+      "2025-01",2623, "2025-04",3500, "2025-07",3900, "2025-10",4200,
+      "2026-01",5600, "2026-04",4900, "2026-08",4400
+    ])
+  },
+  silver: {
+    label: "Argent (once)", tweetPhrase: "l'argent", icon: "🥈", currency: "USD",
+    points: P([
+      "2015-01",17, "2015-04",16, "2015-07",15, "2015-10",15.5,
+      "2016-01",14, "2016-04",15.5, "2016-07",19.5, "2016-10",17.5,
+      "2017-01",16.5, "2017-04",18, "2017-07",16.5, "2017-10",17,
+      "2018-01",17, "2018-04",16.5, "2018-07",15.8, "2018-10",14.2,
+      "2019-01",15.5, "2019-04",15, "2019-07",16.3, "2019-10",17.8,
+      "2020-01",18, "2020-04",15, "2020-07",19, "2020-10",24,
+      "2021-01",25, "2021-04",25.5, "2021-07",25.8, "2021-10",22.5,
+      "2022-01",23.3, "2022-04",24, "2022-07",19, "2022-10",19,
+      "2023-01",23.9, "2023-04",25, "2023-07",24, "2023-10",22.5,
+      "2024-01",23.2, "2024-04",27, "2024-07",29.5, "2024-10",31.5,
+      "2025-01",31, "2025-04",33, "2025-07",38, "2025-10",55,
+      "2026-01",100, "2026-04",85, "2026-08",64.78
+    ])
+  },
+  lvmh: {
+    label: "LVMH", tweetPhrase: "LVMH", icon: "◆", currency: "EUR",
+    points: P([
+      "2015-01",140, "2015-04",165, "2015-07",155, "2015-10",160,
+      "2016-01",145, "2016-04",150, "2016-07",145, "2016-10",165,
+      "2017-01",195, "2017-04",220, "2017-07",235, "2017-10",260,
+      "2018-01",270, "2018-04",260, "2018-07",280, "2018-10",235,
+      "2019-01",260, "2019-04",340, "2019-07",370, "2019-10",390,
+      "2020-01",420, "2020-04",340, "2020-07",400, "2020-10",430,
+      "2021-01",500, "2021-04",620, "2021-07",690, "2021-10",640,
+      "2022-01",700, "2022-04",660, "2022-07",640, "2022-10",630,
+      "2023-01",750, "2023-04",850, "2023-07",900, "2023-10",700,
+      "2024-01",790, "2024-04",800, "2024-07",700, "2024-10",620,
+      "2025-01",620, "2025-04",550, "2025-07",500, "2025-10",600,
+      "2026-01",645, "2026-04",560, "2026-08",615
+    ])
+  },
+  apple: {
+    label: "Apple", tweetPhrase: "Apple", icon: "🍎", currency: "USD",
+    points: P([
+      "2015-01",27, "2015-04",32, "2015-07",29, "2015-10",28,
+      "2016-01",24, "2016-04",27, "2016-07",26, "2016-10",28,
+      "2017-01",29, "2017-04",35, "2017-07",36, "2017-10",38,
+      "2018-01",43, "2018-04",41, "2018-07",47, "2018-10",55,
+      "2019-01",39, "2019-04",50, "2019-07",51, "2019-10",56,
+      "2020-01",75, "2020-04",65, "2020-07",96, "2020-10",115,
+      "2021-01",132, "2021-04",134, "2021-07",145, "2021-10",145,
+      "2022-01",172, "2022-04",165, "2022-07",145, "2022-10",143,
+      "2023-01",125, "2023-04",165, "2023-07",195, "2023-10",170,
+      "2024-01",185, "2024-04",170, "2024-07",220, "2024-10",225,
+      "2025-01",245, "2025-04",205, "2025-07",230, "2025-10",260,
+      "2026-01",280, "2026-04",295, "2026-08",313
+    ])
+  },
+  microsoft: {
+    label: "Microsoft", tweetPhrase: "Microsoft", icon: "🪟", currency: "USD",
+    points: P([
+      "2015-01",46, "2015-04",42, "2015-07",44, "2015-10",52,
+      "2016-01",52, "2016-04",55, "2016-07",56, "2016-10",60,
+      "2017-01",62, "2017-04",65, "2017-07",72, "2017-10",78,
+      "2018-01",95, "2018-04",93, "2018-07",104, "2018-10",106,
+      "2019-01",104, "2019-04",130, "2019-07",136, "2019-10",139,
+      "2020-01",149.39, "2020-04",165, "2020-07",203, "2020-10",210,
+      "2021-01",217, "2021-04",252, "2021-07",289, "2021-10",331,
+      "2022-01",310, "2022-04",280, "2022-07",268, "2022-10",230,
+      "2023-01",240, "2023-04",290, "2023-07",338, "2023-10",330,
+      "2024-01",390, "2024-04",420, "2024-07",425, "2024-10",415,
+      "2025-01",415, "2025-04",380, "2025-07",510, "2025-10",542,
+      "2026-01",520, "2026-04",510, "2026-08",500
+    ])
+  },
+  broadcom: {
+    label: "Broadcom", tweetPhrase: "Broadcom", icon: "📡", currency: "USD",
+    points: P([
+      "2015-01",17, "2015-04",19, "2015-07",15, "2015-10",14,
+      "2016-01",13, "2016-04",15, "2016-07",17, "2016-10",17,
+      "2017-01",20, "2017-04",22, "2017-07",25, "2017-10",26,
+      "2018-01",25, "2018-04",24, "2018-07",24, "2018-10",23,
+      "2019-01",24, "2019-04",29, "2019-07",27, "2019-10",30,
+      "2020-01",32, "2020-04",27, "2020-07",33, "2020-10",37,
+      "2021-01",45, "2021-04",49, "2021-07",49, "2021-10",53,
+      "2022-01",65, "2022-04",62, "2022-07",55, "2022-10",47,
+      "2023-01",58, "2023-04",65, "2023-07",90, "2023-10",85,
+      "2024-01",110, "2024-04",135, "2024-07",165, "2024-10",170,
+      "2025-01",235, "2025-04",180, "2025-07",290, "2025-10",360,
+      "2026-01",380, "2026-04",400, "2026-08",428
+    ])
+  },
+  tesla: {
+    label: "Tesla", tweetPhrase: "Tesla", icon: "⚡", currency: "USD",
+    points: P([
+      "2015-01",14, "2015-04",13, "2015-07",15, "2015-10",14,
+      "2016-01",12, "2016-04",14, "2016-07",14, "2016-10",12,
+      "2017-01",14, "2017-04",20, "2017-07",23, "2017-10",21,
+      "2018-01",21, "2018-04",20, "2018-07",22, "2018-10",22,
+      "2019-01",14, "2019-04",15, "2019-07",16, "2019-10",20,
+      "2020-01",28.68, "2020-04",32, "2020-07",90, "2020-10",141,
+      "2021-01",243.25, "2021-04",236, "2021-07",226, "2021-10",380,
+      "2022-01",330, "2022-04",341, "2022-07",240, "2022-10",225,
+      "2023-01",123.18, "2023-04",165, "2023-07",265, "2023-10",220,
+      "2024-01",250, "2024-04",145, "2024-07",230, "2024-10",250,
+      "2025-01",400, "2025-04",280, "2025-07",320,
+      "2026-01",360, "2026-04",340, "2026-08",350
+    ])
+  }
+};
+var ASSET_ORDER = ["bitcoin","ethereum","cac40","stoxx600","sp500","msciWorld","soxx","or","silver","lvmh","apple","microsoft","broadcom","tesla"];
+
+/* Taux Livret A (moyenne annuelle, %) et inflation France INSEE (moyenne annuelle, %).
+   A ajuster si besoin — sert uniquement de comparaison pedagogique.
+   Livret A : 1,00% jusqu'a aout 2015, 0,75% jusqu'a janv. 2020, 0,50% jusqu'a janv. 2022,
+   1,00% (fev.) puis 2,00% (aout) en 2022, 3,00% de fev. 2023 a janv. 2025, 2,40% (fev. 2025),
+   1,70% (aout 2025), 1,50% (fev. 2026), 1,70% (aout 2026) — moyennes annuelles ci-dessous. */
+var LIVRET_A = { 2015:0.9, 2016:0.75, 2017:0.75, 2018:0.75, 2019:0.75, 2020:0.52, 2021:0.5, 2022:1.4, 2023:2.9, 2024:3.0, 2025:2.16, 2026:1.6 };
+var INFLATION = { 2015:0.0, 2016:0.2, 2017:1.0, 2018:1.8, 2019:1.1, 2020:0.5, 2021:1.6, 2022:5.2, 2023:4.9, 2024:2.0, 2025:0.9, 2026:1.0 };
+
+var LATEST_YM = "2026-08"; // derniere donnee disponible dans les tableaux ci-dessus
+var MONTHS_FULL = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+var MONTHS_SHORT = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+
+/* =====================================================================
+   UTILITAIRES DATE / CALCUL
+===================================================================== */
+function ymIndex(ym){ var p = ym.split("-"); return parseInt(p[0],10)*12 + (parseInt(p[1],10)-1); }
+function indexToYm(idx){ var y = Math.floor(idx/12); var m = idx%12+1; return y+"-"+(m<10?"0"+m:m); }
+function monthsBetween(startYm, endYm){
+  var a = ymIndex(startYm), b = ymIndex(endYm);
+  var out = [];
+  for (var i=a;i<=b;i++) out.push(indexToYm(i));
+  return out;
+}
+function clampYm(ym, maxYm){ return ymIndex(ym) > ymIndex(maxYm) ? maxYm : ym; }
+
+function interpolatePrice(points, ym){
+  var idx = ymIndex(ym);
+  var first = points[0], last = points[points.length-1];
+  if (idx <= ymIndex(first.date)) return first.price;
+  if (idx >= ymIndex(last.date)) return last.price;
+  for (var i=0;i<points.length-1;i++){
+    var i0 = ymIndex(points[i].date), i1 = ymIndex(points[i+1].date);
+    if (idx >= i0 && idx <= i1){
+      if (i1 === i0) return points[i].price;
+      var t = (idx-i0)/(i1-i0);
+      return points[i].price + (points[i+1].price - points[i].price)*t;
+    }
+  }
+  return last.price;
+}
+
+function computeAssetSeries(points, startYm, endYm, amount, mode){
+  var months = monthsBetween(startYm, endYm);
+  var series = [], invested = [];
+  if (mode === "dca"){
+    var units = 0, totalInvested = 0;
+    for (var i=0;i<months.length;i++){
+      var price = interpolatePrice(points, months[i]);
+      units += amount / price;
+      totalInvested += amount;
+      series.push(units * price);
+      invested.push(totalInvested);
+    }
+  } else {
+    var p0 = interpolatePrice(points, startYm);
+    var u = amount / p0;
+    for (var j=0;j<months.length;j++){
+      series.push(u * interpolatePrice(points, months[j]));
+      invested.push(amount);
+    }
+  }
+  return { months: months, series: series, invested: invested,
+    finalValue: series[series.length-1], totalInvested: invested[invested.length-1] };
+}
+
+function computeBenchmarkSeries(rateTable, startYm, endYm, amount, mode){
+  var months = monthsBetween(startYm, endYm);
+  var series = [], invested = [];
+  var value = 0, totalInvested = 0;
+  for (var i=0;i<months.length;i++){
+    if (i>0){
+      var year = parseInt(months[i].split("-")[0],10);
+      var annual = rateTable[year] !== undefined ? rateTable[year] : 0;
+      var factor = Math.pow(1 + annual/100, 1/12);
+      value *= factor;
+    }
+    if (mode === "dca"){
+      value += amount; totalInvested += amount;
+    } else if (i === 0){
+      value = amount; totalInvested = amount;
+    }
+    series.push(value);
+    invested.push(totalInvested);
+  }
+  return { months: months, series: series, invested: invested,
+    finalValue: series[series.length-1], totalInvested: invested[invested.length-1] };
+}
+
+function computeCustomSeries(startYm, endYm, amount, customStart, customEnd){
+  var p0 = parseFloat(customStart);
+  var p1 = parseFloat(customEnd);
+  var ratio = (isFinite(p0) && p0 > 0 && isFinite(p1)) ? (p1 / p0) : 1;
+  var months = monthsBetween(startYm, endYm);
+  var series = months.map(function(_,i){
+    var t = months.length>1 ? i/(months.length-1) : 1;
+    return amount * (1 + (ratio - 1)*t);
+  });
+  var invested = months.map(function(){ return amount; });
+  return { months: months, series: series, invested: invested, finalValue: amount*ratio, totalInvested: amount };
+}
+
+function fmtEUR(n, currency){
+  currency = currency || "EUR";
+  try {
+    return n.toLocaleString("fr-FR", { style: "currency", currency: currency, maximumFractionDigits: 0 });
+  } catch(e){
+    return Math.round(n).toLocaleString("fr-FR") + " €";
+  }
+}
+function fmtPct(n){
+  var s = n.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  return (n >= 0 ? "+" : "") + s + " %";
+}
+function pct(final, invested){ return invested > 0 ? ((final - invested) / invested) * 100 : 0; }
+
+/* =====================================================================
+   PETITS HELPERS DOM (aucune assignation innerHTML nulle part)
+===================================================================== */
+function el(tag, props, children){
+  var node = document.createElement(tag);
+  props = props || {};
+  Object.keys(props).forEach(function(k){
+    var v = props[k];
+    if (v === undefined || v === null) return;
+    if (k === "className") node.className = v;
+    else if (k === "style") Object.keys(v).forEach(function(sk){ node.style[sk] = v[sk]; });
+    else if (k in node){ try { node[k] = v; } catch(e){ node.setAttribute(k, v); } }
+    else node.setAttribute(k, v);
+  });
+  (children || []).forEach(function(c){
+    if (c === null || c === undefined) return;
+    if (typeof c === "string" || typeof c === "number") node.appendChild(document.createTextNode(String(c)));
+    else node.appendChild(c);
+  });
+  return node;
+}
+var SVG_NS = "http://www.w3.org/2000/svg";
+function svgEl(tag, attrs, children){
+  var node = document.createElementNS(SVG_NS, tag);
+  attrs = attrs || {};
+  Object.keys(attrs).forEach(function(k){ node.setAttribute(k, attrs[k]); });
+  (children || []).forEach(function(c){ if (c) node.appendChild(c); });
+  return node;
+}
+
+/* =====================================================================
+   MINI GRAPHIQUE SVG
+===================================================================== */
+function sparklineNode(series, invested){
+  var w = 600, hgt = 190, pad = 8;
+  var all = series.concat(invested);
+  var min = Math.min.apply(null, all);
+  var max = Math.max.apply(null, all);
+  if (min > 0) min = 0;
+  var range = (max - min) || 1;
+  max = max + range*0.08;
+  range = (max-min) || 1;
+
+  function pointsFor(arr){
+    var n = arr.length;
+    var xStep = n > 1 ? (w - 2*pad) / (n-1) : 0;
+    return arr.map(function(v,i){
+      var x = pad + i*xStep;
+      var y = pad + (1 - (v - min)/range) * (hgt - 2*pad);
+      return [x,y];
+    });
+  }
+  function pathFrom(pts){
+    return pts.map(function(p,i){ return (i===0?"M":"L") + p[0].toFixed(2) + "," + p[1].toFixed(2); }).join(" ");
+  }
+
+  var assetPts = pointsFor(series);
+  var investedPts = pointsFor(invested);
+  var linePath = pathFrom(assetPts);
+  var areaPath = linePath + " L " + assetPts[assetPts.length-1][0].toFixed(2) + "," + (hgt-pad) +
+                 " L " + assetPts[0][0].toFixed(2) + "," + (hgt-pad) + " Z";
+  var investedPath = pathFrom(investedPts);
+  var last = assetPts[assetPts.length-1];
+  var gridLines = [0.25, 0.5, 0.75].map(function(f){ return pad + f*(hgt-2*pad); });
+
+  var defs = svgEl("defs");
+  var grad = svgEl("linearGradient", { id:"areaFill", x1:"0", y1:"0", x2:"0", y2:"1" });
+  grad.appendChild(svgEl("stop", { offset:"0%", "stop-color":"#eec565", "stop-opacity":"0.38" }));
+  grad.appendChild(svgEl("stop", { offset:"100%", "stop-color":"#eec565", "stop-opacity":"0" }));
+  defs.appendChild(grad);
+  var filter = svgEl("filter", { id:"glow", x:"-60%", y:"-60%", width:"220%", height:"220%" });
+  filter.appendChild(svgEl("feGaussianBlur", { stdDeviation:"5", result:"blur" }));
+  var merge = svgEl("feMerge");
+  merge.appendChild(svgEl("feMergeNode", { "in":"blur" }));
+  merge.appendChild(svgEl("feMergeNode", { "in":"SourceGraphic" }));
+  filter.appendChild(merge);
+  defs.appendChild(filter);
+
+  var svg = svgEl("svg", {
+    "class":"chart-svg", viewBox: "0 0 " + w + " " + hgt, preserveAspectRatio:"none",
+    role:"img", "aria-label":"Évolution de la valeur du placement"
+  });
+  svg.appendChild(defs);
+  gridLines.forEach(function(y){
+    svg.appendChild(svgEl("line", { x1:pad, x2:w-pad, y1:y, y2:y, stroke:"var(--hairline)", "stroke-width":"1", "stroke-dasharray":"3,4" }));
+  });
+  svg.appendChild(svgEl("path", { d: areaPath, fill:"url(#areaFill)", stroke:"none" }));
+  svg.appendChild(svgEl("path", { d: investedPath, fill:"none", stroke:"#5b6688", "stroke-width":"1.5", "stroke-dasharray":"4,4" }));
+  svg.appendChild(svgEl("path", { d: linePath, fill:"none", stroke:"#eec565", "stroke-width":"2.5", "stroke-linecap":"round", "stroke-linejoin":"round" }));
+  svg.appendChild(svgEl("circle", { cx:last[0], cy:last[1], r:"9", fill:"#eec565", opacity:"0.25", filter:"url(#glow)" }));
+  svg.appendChild(svgEl("circle", { cx:last[0], cy:last[1], r:"4", fill:"#f7d685", stroke:"#0a1122", "stroke-width":"1.5" }));
+  return svg;
+}
+
+/* =====================================================================
+   ETAT
+===================================================================== */
+var state = {
+  assetId: "bitcoin",
+  startYear: 2020,
+  startMonth: 1,
+  amountRaw: "1000",
+  mode: "lump",
+  customLabel: "",
+  customStart: "",
+  customEnd: "",
+  copied: false
+};
+
+var AMOUNT_PRESETS = [100, 500, 1000, 5000];
+var DATE_PRESETS = [
+  { label:"janv. 2015", y:2015, m:1 },
+  { label:"janv. 2018", y:2018, m:1 },
+  { label:"janv. 2020", y:2020, m:1 },
+  { label:"janv. 2023", y:2023, m:1 }
+];
+var YEARS = [];
+for (var y=2015; y<=2026; y++) YEARS.push(y);
+
+function derive(){
+  var amount = parseFloat(state.amountRaw) || 0;
+  var isCustom = state.assetId === "custom";
+  var effectiveMode = isCustom ? "lump" : state.mode;
+  var startYm = clampYm(state.startYear + "-" + (state.startMonth<10?"0"+state.startMonth:state.startMonth), LATEST_YM);
+  var endYm = LATEST_YM;
+
+  var result;
+  if (isCustom){
+    result = computeCustomSeries(startYm, endYm, amount, state.customStart, state.customEnd);
+  } else {
+    result = computeAssetSeries(ASSETS[state.assetId].points, startYm, endYm, amount, effectiveMode);
+  }
+  var livretA = computeBenchmarkSeries(LIVRET_A, startYm, endYm, amount, effectiveMode);
+  var inflation = computeBenchmarkSeries(INFLATION, startYm, endYm, amount, effectiveMode);
+
+  return {
+    amount: amount, isCustom: isCustom, effectiveMode: effectiveMode,
+    startYm: startYm, endYm: endYm, result: result, livretA: livretA, inflation: inflation
+  };
+}
+
+function buildTweetText(d){
+  var asset = d.isCustom ? null : ASSETS[state.assetId];
+  var tweetPhrase = d.isCustom ? (state.customLabel ? ("« " + state.customLabel + " »") : "cet actif") : asset.tweetPhrase;
+  var monthLabel = MONTHS_FULL[parseInt(d.startYm.split("-")[1],10)-1];
+  var yearLabel = d.startYm.split("-")[0];
+  var gainPct = pct(d.result.finalValue, d.result.totalInvested);
+  var finalFmt = fmtEUR(d.result.finalValue);
+  var pctFmt = fmtPct(gainPct);
+  if (d.effectiveMode === "dca"){
+    return "Si tu avais mis " + fmtEUR(d.amount) + "/mois dans " + tweetPhrase + " depuis " + monthLabel + " " + yearLabel +
+           " (versement programmé), tu aurais aujourd'hui " + finalFmt + " (" + pctFmt + ") pour " + fmtEUR(d.result.totalInvested) + " investis. 🧵";
+  }
+  return "Si tu avais investi " + fmtEUR(d.amount) + " dans " + tweetPhrase + " en " + monthLabel + " " + yearLabel +
+         ", tu aurais aujourd'hui " + finalFmt + " (" + pctFmt + "). 🧵";
+}
+
+/* =====================================================================
+   RENDU — carte resultat (construite via createElement, pas de HTML string)
+===================================================================== */
+function compareItem(label, value, deltaVal, highlight){
+  return el("div", { className: "compare-item" + (highlight ? " highlight" : "") }, [
+    el("p", { className:"compare-label" }, [label]),
+    el("p", { className:"compare-value" }, [fmtEUR(value)]),
+    el("p", { className:"compare-delta " + (deltaVal>=0?"pos":"neg") }, [fmtPct(deltaVal)])
+  ]);
+}
+
+function buildResultFragment(d){
+  var asset = d.isCustom ? null : ASSETS[state.assetId];
+  var assetLabel = d.isCustom ? (state.customLabel || "cet actif") : asset.label;
+  var gainAbs = d.result.finalValue - d.result.totalInvested;
+  var gainPct = pct(d.result.finalValue, d.result.totalInvested);
+  var livretPct = pct(d.livretA.finalValue, d.livretA.totalInvested);
+  var inflPct = pct(d.inflation.finalValue, d.inflation.totalInvested);
+  var monthShort = MONTHS_SHORT[parseInt(d.startYm.split("-")[1],10)-1];
+  var yearLabel = d.startYm.split("-")[0];
+
+  var frag = document.createDocumentFragment();
+
+  var badge = el("div", { className:"asset-badge" }, [ d.isCustom ? "✎" : asset.icon ]);
+  var headText = el("div", {}, [
+    el("h2", {}, [assetLabel]),
+    el("p", { className:"period" }, [monthShort + " " + yearLabel + "  →  aujourd'hui"])
+  ]);
+  var headLeft = el("div", { className:"card-head-left" }, [badge, headText]);
+  var modePill = el("span", { className:"mode-pill" }, [ d.effectiveMode === "dca" ? "DCA mensuel" : "Versement unique" ]);
+  frag.appendChild(el("div", { className:"card-head" }, [headLeft, modePill]));
+
+  var heroLabelP = el("p", { className:"hero-label" });
+  if (d.effectiveMode === "dca"){
+    heroLabelP.appendChild(document.createTextNode("Avec "));
+    heroLabelP.appendChild(el("b", {}, [fmtEUR(d.amount) + "/mois"]));
+    heroLabelP.appendChild(document.createTextNode(" placés, ton capital serait devenu :"));
+  } else {
+    heroLabelP.appendChild(document.createTextNode("Ton "));
+    heroLabelP.appendChild(el("b", {}, [fmtEUR(d.amount)]));
+    heroLabelP.appendChild(document.createTextNode(" serait devenu :"));
+  }
+  var heroNumber = el("p", { className:"hero-number" }, [fmtEUR(d.result.finalValue)]);
+  var deltaPill = el("span", { className:"delta-pill " + (gainPct>=0?"pos":"neg") }, [fmtPct(gainPct)]);
+  var gainAbsSpan = el("span", { className:"gain-abs" }, [
+    (gainAbs>=0?"+":"") + fmtEUR(gainAbs) + " de plus-value · " + fmtEUR(d.result.totalInvested) + " investis"
+  ]);
+  var heroSub = el("div", { className:"hero-sub" }, [deltaPill, gainAbsSpan]);
+  frag.appendChild(el("div", { className:"hero" }, [heroLabelP, heroNumber, heroSub]));
+
+  var legendAsset = el("span", { className:"legend-item" }, [
+    el("span", { className:"legend-swatch", style:{ background:"#eec565" } }), assetLabel
+  ]);
+  var legendInvested = el("span", { className:"legend-item" }, [
+    el("span", { className:"legend-swatch", style:{ background:"#5b6688", opacity:"0.8" } }), "Capital investi"
+  ]);
+  var legend = el("div", { className:"chart-legend" }, [legendAsset, legendInvested]);
+  frag.appendChild(el("div", { className:"chart-wrap" }, [legend, sparklineNode(d.result.series, d.result.invested)]));
+
+  frag.appendChild(el("div", { className:"compare" }, [
+    compareItem(assetLabel, d.result.finalValue, gainPct, true),
+    compareItem("Livret A", d.livretA.finalValue, livretPct, false),
+    compareItem("Inflation", d.inflation.finalValue, inflPct, false)
+  ]));
+
+  var disclaimer = el("p", { className:"disclaimer" }, [
+    "Éducation financière, pas un conseil en investissement. Données historiques approximatives, performances passées ≠ garanties futures."
+  ]);
+  var tweetBtn = el("button", { type:"button", id:"tweetBtn", className: "tweet-btn" + (state.copied ? " copied" : "") }, [
+    state.copied ? "✓ Copié" : "𝕏 Copier le texte du post"
+  ]);
+  frag.appendChild(el("div", { className:"card-footer" }, [disclaimer, tweetBtn]));
+
+  return frag;
+}
+
+function renderResult(){
+  var d = derive();
+  var resultCard = document.getElementById("resultCard");
+  resultCard.replaceChildren(buildResultFragment(d));
+  document.getElementById("tweetBtn").addEventListener("click", function(){
+    var text = buildTweetText(derive());
+    function done(){
+      state.copied = true;
+      renderResult();
+      setTimeout(function(){ state.copied = false; renderResult(); }, 2000);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text, done); });
+    } else {
+      fallbackCopy(text, done);
+    }
+  });
+}
+
+function fallbackCopy(text, done){
+  var ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e){}
+  document.body.removeChild(ta);
+  done();
+}
+
+function updateControlsUI(){
+  var isCustom = state.assetId === "custom";
+  var amount = parseFloat(state.amountRaw) || 0;
+  var effectiveMode = isCustom ? "lump" : state.mode;
+
+  document.getElementById("assetSelect").value = state.assetId;
+  document.getElementById("customFields").style.display = isCustom ? "flex" : "none";
+  document.getElementById("monthSelect").value = String(state.startMonth);
+  document.getElementById("yearSelect").value = String(state.startYear);
+
+  Array.prototype.forEach.call(document.querySelectorAll(".date-chip"), function(btn){
+    var y = parseInt(btn.getAttribute("data-y"),10), m = parseInt(btn.getAttribute("data-m"),10);
+    btn.classList.toggle("active", y === state.startYear && m === state.startMonth);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".amount-chip"), function(btn){
+    var v = parseFloat(btn.getAttribute("data-v"));
+    btn.classList.toggle("active", v === amount);
+  });
+
+  var lumpBtn = document.getElementById("modeLump"), dcaBtn = document.getElementById("modeDca");
+  lumpBtn.classList.toggle("active", effectiveMode === "lump");
+  dcaBtn.classList.toggle("active", effectiveMode === "dca");
+  lumpBtn.disabled = isCustom; dcaBtn.disabled = isCustom;
+
+  document.getElementById("modeHint").textContent = isCustom
+    ? "Le mode DCA nécessite un historique de prix : indisponible en saisie manuelle."
+    : (effectiveMode === "dca"
+        ? "Un versement de " + amount.toLocaleString("fr-FR") + " € chaque mois depuis la date de départ."
+        : "Un seul versement à la date de départ, laissé investi jusqu'à aujourd'hui.");
+}
+
+function renderAll(){
+  updateControlsUI();
+  renderResult();
+}
+
+/* =====================================================================
+   CONSTRUCTION DES CONTROLES (une seule fois, via createElement)
+===================================================================== */
+function buildControlsFragment(){
+  var frag = document.createDocumentFragment();
+
+  var assetOptions = ASSET_ORDER.map(function(id){
+    return el("option", { value:id }, [ ASSETS[id].icon + "  " + ASSETS[id].label ]);
+  });
+  assetOptions.push(el("option", { value:"custom" }, ["✎  Autre (saisie manuelle)"]));
+  var assetSelect = el("select", { className:"control", id:"assetSelect" }, assetOptions);
+  var selectWrap1 = el("div", { className:"select-wrap" }, [assetSelect]);
+
+  var customFields = el("div", {
+    id:"customFields",
+    style:{ display:"none", flexDirection:"column", gap:"8px", marginTop:"4px" }
+  }, [
+    el("input", { className:"control", type:"text", id:"customLabel", placeholder:"Nom de l'actif" }),
+    el("div", { className:"row2" }, [
+      el("input", { className:"control", type:"number", id:"customStart", placeholder:"Prix de départ" }),
+      el("input", { className:"control", type:"number", id:"customEnd", placeholder:"Prix actuel" })
+    ])
+  ]);
+  var assetField = el("div", { className:"field" }, [selectWrap1, customFields]);
+  frag.appendChild(el("div", {}, [ el("p", { className:"eyebrow" }, ["Actif"]), assetField ]));
+
+  var monthSelect = el("select", { className:"control", id:"monthSelect" },
+    MONTHS_FULL.map(function(mn,i){ return el("option", { value:String(i+1) }, [mn]); })
+  );
+  var yearSelect = el("select", { className:"control", id:"yearSelect" },
+    YEARS.map(function(yr){ return el("option", { value:String(yr) }, [String(yr)]); })
+  );
+  var dateRow = el("div", { className:"row2" }, [
+    el("div", { className:"select-wrap" }, [monthSelect]),
+    el("div", { className:"select-wrap" }, [yearSelect])
+  ]);
+  var dateChips = el("div", { className:"chips" }, DATE_PRESETS.map(function(dp){
+    return el("button", { type:"button", className:"chip date-chip", "data-y":String(dp.y), "data-m":String(dp.m) }, [dp.label]);
+  }));
+  frag.appendChild(el("div", {}, [ el("p", { className:"eyebrow" }, ["Date de départ"]), dateRow, dateChips ]));
+
+  var amountInput = el("input", { className:"control", type:"number", min:"1", id:"amountInput", value: state.amountRaw });
+  var amountWrap = el("div", { className:"amount-wrap" }, [ amountInput, el("span", { className:"amount-suffix" }, ["€"]) ]);
+  var amountChips = el("div", { className:"chips" }, AMOUNT_PRESETS.map(function(v){
+    return el("button", { type:"button", className:"chip amount-chip", "data-v":String(v) }, [ v.toLocaleString("fr-FR") + " €" ]);
+  }));
+  var amountField = el("div", { className:"field" }, [amountWrap, amountChips]);
+  frag.appendChild(el("div", {}, [ el("p", { className:"eyebrow" }, ["Montant"]), amountField ]));
+
+  var segmented = el("div", { className:"segmented" }, [
+    el("button", { type:"button", id:"modeLump" }, ["Versement unique"]),
+    el("button", { type:"button", id:"modeDca" }, ["Mensuel (DCA)"])
+  ]);
+  var modeHint = el("p", { className:"hint", id:"modeHint" });
+  frag.appendChild(el("div", {}, [ el("p", { className:"eyebrow" }, ["Mode"]), segmented, modeHint ]));
+
+  return frag;
+}
+
+function wireControls(){
+  document.getElementById("assetSelect").addEventListener("change", function(e){
+    state.assetId = e.target.value; renderAll();
+  });
+  document.getElementById("customLabel").addEventListener("input", function(e){
+    state.customLabel = e.target.value; renderResult();
+  });
+  document.getElementById("customStart").addEventListener("input", function(e){
+    state.customStart = e.target.value; renderResult();
+  });
+  document.getElementById("customEnd").addEventListener("input", function(e){
+    state.customEnd = e.target.value; renderResult();
+  });
+  document.getElementById("monthSelect").addEventListener("change", function(e){
+    state.startMonth = parseInt(e.target.value,10); renderAll();
+  });
+  document.getElementById("yearSelect").addEventListener("change", function(e){
+    state.startYear = parseInt(e.target.value,10); renderAll();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".date-chip"), function(btn){
+    btn.addEventListener("click", function(){
+      state.startYear = parseInt(btn.getAttribute("data-y"),10);
+      state.startMonth = parseInt(btn.getAttribute("data-m"),10);
+      renderAll();
+    });
+  });
+  document.getElementById("amountInput").addEventListener("input", function(e){
+    state.amountRaw = e.target.value; renderResult();
+    Array.prototype.forEach.call(document.querySelectorAll(".amount-chip"), function(btn){
+      btn.classList.toggle("active", parseFloat(btn.getAttribute("data-v")) === (parseFloat(state.amountRaw)||0));
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".amount-chip"), function(btn){
+    btn.addEventListener("click", function(){
+      state.amountRaw = btn.getAttribute("data-v");
+      document.getElementById("amountInput").value = state.amountRaw;
+      renderAll();
+    });
+  });
+  document.getElementById("modeLump").addEventListener("click", function(){
+    if (state.assetId === "custom") return;
+    state.mode = "lump"; renderAll();
+  });
+  document.getElementById("modeDca").addEventListener("click", function(){
+    if (state.assetId === "custom") return;
+    state.mode = "dca"; renderAll();
+  });
+}
+
+function boot(){
+  document.getElementById("controlsPanel").replaceChildren(buildControlsFragment());
+  wireControls();
+  renderAll();
+}
+
+if (document.readyState === "loading"){
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
+})();
+</script>
