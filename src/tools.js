@@ -10,14 +10,6 @@ export const TOOLS = [
     status: 'disponible',
   },
   {
-    to: '/recap-matin',
-    navLabel: 'Récap Matin',
-    title: "Récap' Matin marchés",
-    icon: '☕',
-    description: 'Mise en forme du récap matinal des marchés financiers pour publication.',
-    status: 'bientot',
-  },
-  {
     to: '/generateur-portefeuilles',
     navLabel: 'Générateur portefeuilles',
     title: 'Générateur de portefeuilles',
