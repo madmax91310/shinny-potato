@@ -34,6 +34,14 @@ export const TOOLS = [
     status: 'disponible',
   },
   {
+    to: '/fiches-etf',
+    navLabel: 'Fiches ETF',
+    title: "Présentation d'ETF",
+    icon: '📋',
+    description: 'Fiches détaillées par ETF, texte prêt à publier + image téléchargeable.',
+    status: 'disponible',
+  },
+  {
     to: '/lexique-financier',
     navLabel: 'Lexique financier',
     title: 'Fiches lexique financier',

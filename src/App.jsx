@@ -6,6 +6,7 @@ import EtfTweets from './pages/etf-tweets/App'
 import PortfolioGenerator from './pages/portfolio-generator/App'
 import BrokerComparator from './pages/broker-comparator/App'
 import InvestmentCalculator from './pages/investment-calculator/App'
+import EtfSheets from './pages/etf-sheets/App'
 import { TOOLS } from './tools'
 
 const TOOL_ELEMENTS = {
@@ -13,6 +14,7 @@ const TOOL_ELEMENTS = {
   '/generateur-portefeuilles': <PortfolioGenerator />,
   '/comparatif-courtiers': <BrokerComparator />,
   '/calculateur-investissement': <InvestmentCalculator />,
+  '/fiches-etf': <EtfSheets />,
 }
 
 export default function App() {
