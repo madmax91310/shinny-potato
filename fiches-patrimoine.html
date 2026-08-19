@@ -1,0 +1,1146 @@
+<title>Fiches Patrimoine</title>
+<style>
+  :root{
+    --navy-950:#080d1a;
+    --navy-900:#0e1526;
+    --navy-850:#121a30;
+    --navy-800:#17203a;
+    --navy-border:#263252;
+    --navy-border-soft:#1c2745;
+    --ink-100:#eef1f7;
+    --ink-300:#c3cbe0;
+    --ink-400:#8b96b3;
+    --ink-500:#69759a;
+    --gold-300:#e8cd8a;
+    --gold-400:#d8b45c;
+    --gold-600:#a97f2f;
+    --scpi-500:#5b8def;
+    --scpi-100:#1a2846;
+    --av-500:#b083f0;
+    --av-100:#241c42;
+    --alt-500:#3fbf8f;
+    --alt-100:#12291f;
+    --warn-500:#e0a53e;
+    --warn-100:#2e2211;
+    --shadow-card:0 20px 50px -20px rgba(0,0,0,0.6);
+    --font-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --font-body:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--navy-950);
+    color:var(--ink-100);
+    font-family:var(--font-body);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold-600);color:var(--navy-950);}
+
+  a{color:var(--gold-400);}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:40px 24px 80px;
+  }
+
+  /* ---------- Header ---------- */
+  .app-header{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    margin-bottom:36px;
+    padding-bottom:24px;
+    border-bottom:1px solid var(--navy-border-soft);
+  }
+  .app-eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-400);
+  }
+  .app-title{
+    font-family:var(--font-display);
+    font-size:clamp(28px,4vw,38px);
+    font-weight:600;
+    margin:0;
+    text-wrap:balance;
+    color:var(--ink-100);
+  }
+  .app-sub{
+    color:var(--ink-400);
+    font-size:14.5px;
+    max-width:65ch;
+    line-height:1.5;
+  }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:340px 1fr;
+    gap:28px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Control panel ---------- */
+  .panel{
+    background:var(--navy-900);
+    border:1px solid var(--navy-border);
+    border-radius:16px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    position:sticky;
+    top:24px;
+  }
+  @media (max-width:860px){ .panel{position:static;} }
+
+  .panel-section{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .panel-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-500);
+  }
+
+  .cat-tabs{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .cat-tab{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    text-align:left;
+    padding:11px 14px;
+    border-radius:10px;
+    border:1px solid var(--navy-border);
+    background:var(--navy-850);
+    color:var(--ink-300);
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, color .15s ease;
+  }
+  .cat-tab:hover{border-color:var(--navy-border-soft);color:var(--ink-100);}
+  .cat-tab .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .cat-tab[data-active="true"]{
+    color:var(--navy-950);
+    border-color:transparent;
+  }
+  .cat-tab[data-cat="scpi"][data-active="true"]{background:var(--scpi-500);}
+  .cat-tab[data-cat="av"][data-active="true"]{background:var(--av-500);}
+  .cat-tab[data-cat="alt"][data-active="true"]{background:var(--alt-500);}
+  .cat-tab[data-active="true"] .dot{background:var(--navy-950);}
+  .cat-tab[data-cat="scpi"] .dot{background:var(--scpi-500);}
+  .cat-tab[data-cat="av"] .dot{background:var(--av-500);}
+  .cat-tab[data-cat="alt"] .dot{background:var(--alt-500);}
+
+  select.product-select{
+    width:100%;
+    background:var(--navy-850);
+    color:var(--ink-100);
+    border:1px solid var(--navy-border);
+    border-radius:10px;
+    padding:11px 12px;
+    font-size:14px;
+    font-family:var(--font-body);
+    cursor:pointer;
+  }
+  select.product-select:focus-visible{outline:2px solid var(--gold-400);outline-offset:2px;}
+
+  .toggle-row{
+    display:flex;
+    background:var(--navy-850);
+    border:1px solid var(--navy-border);
+    border-radius:10px;
+    padding:3px;
+    gap:3px;
+  }
+  .toggle-opt{
+    flex:1;
+    text-align:center;
+    padding:8px 6px;
+    border-radius:7px;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-400);
+    cursor:pointer;
+    background:transparent;
+    border:none;
+    font-family:var(--font-body);
+  }
+  .toggle-opt[data-active="true"]{
+    background:var(--gold-400);
+    color:var(--navy-950);
+  }
+
+  button.btn{
+    font-family:var(--font-body);
+    font-size:14px;
+    font-weight:700;
+    border-radius:10px;
+    padding:12px 16px;
+    cursor:pointer;
+    border:1px solid transparent;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:transform .1s ease, filter .15s ease;
+  }
+  button.btn:active{transform:scale(0.98);}
+  button.btn:focus-visible{outline:2px solid var(--gold-400);outline-offset:2px;}
+
+  .btn-random{
+    background:linear-gradient(180deg,var(--gold-300),var(--gold-400));
+    color:var(--navy-950);
+  }
+  .btn-random:hover{filter:brightness(1.05);}
+
+  .btn-copy{
+    background:var(--navy-850);
+    border:1px solid var(--navy-border);
+    color:var(--ink-100);
+  }
+  .btn-copy:hover{border-color:var(--gold-600);}
+  .btn-copy[data-copied="true"]{
+    background:var(--alt-100);
+    border-color:var(--alt-500);
+    color:var(--alt-500);
+  }
+
+  .panel-note{
+    font-size:12px;
+    color:var(--ink-500);
+    line-height:1.5;
+    border-top:1px solid var(--navy-border-soft);
+    padding-top:14px;
+  }
+
+  /* ---------- Card ---------- */
+  .card-outer{
+    background:var(--navy-900);
+    border:1px solid var(--navy-border);
+    border-radius:20px;
+    box-shadow:var(--shadow-card);
+    overflow:hidden;
+  }
+
+  .demo-banner{
+    background:var(--warn-100);
+    color:var(--warn-500);
+    font-size:12.5px;
+    font-weight:600;
+    padding:10px 24px;
+    border-bottom:1px solid var(--navy-border-soft);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .card{
+    padding:32px 30px 34px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+
+  .badge-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .cat-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:6px 12px;
+    border-radius:100px;
+  }
+  .cat-badge[data-cat="scpi"]{background:var(--scpi-100);color:var(--scpi-500);border:1px solid rgba(91,141,239,0.35);}
+  .cat-badge[data-cat="av"]{background:var(--av-100);color:var(--av-500);border:1px solid rgba(176,131,240,0.35);}
+  .cat-badge[data-cat="alt"]{background:var(--alt-100);color:var(--alt-500);border:1px solid rgba(63,191,143,0.35);}
+
+  .card-title{
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:600;
+    margin:0;
+    color:var(--ink-100);
+  }
+
+  .identity-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:19px;
+    font-weight:700;
+    color:var(--ink-100);
+    font-family:var(--font-display);
+  }
+  .identity-line .new-pill{
+    font-family:var(--font-body);
+    font-size:11px;
+    font-weight:700;
+    color:var(--navy-950);
+    background:var(--gold-400);
+    padding:2px 8px;
+    border-radius:100px;
+  }
+
+  .data-block{
+    background:var(--navy-850);
+    border:1px solid var(--navy-border-soft);
+    border-radius:14px;
+    padding:6px 18px;
+  }
+  .data-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0;
+    border-bottom:1px solid var(--navy-border-soft);
+  }
+  .data-row:last-child{border-bottom:none;}
+  .data-label{
+    color:var(--ink-400);
+    font-size:13.5px;
+    display:flex;
+    align-items:baseline;
+    gap:7px;
+    flex:1;
+  }
+  .data-value{
+    font-family:var(--font-mono);
+    font-variant-numeric:tabular-nums;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink-100);
+    text-align:right;
+  }
+  .data-value[data-unverified="true"]{
+    color:var(--warn-500);
+    font-weight:700;
+    font-family:var(--font-body);
+    font-size:12px;
+    letter-spacing:0.02em;
+  }
+
+  .section{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .section-heading{
+    font-size:14.5px;
+    font-weight:700;
+    color:var(--ink-100);
+  }
+  .section-body{
+    font-size:14.5px;
+    line-height:1.65;
+    color:var(--ink-300);
+    white-space:pre-wrap;
+  }
+  .section-body.placeholder{
+    color:var(--warn-500);
+    font-style:italic;
+  }
+
+  .verdict-box{
+    border-left:3px solid var(--gold-400);
+    padding:4px 0 4px 16px;
+  }
+  .verdict-box .section-body{color:var(--ink-100);font-weight:600;}
+
+  .engage-line{
+    font-size:14.5px;
+    color:var(--ink-100);
+    font-weight:600;
+  }
+
+  .disclaimer{
+    font-size:12px;
+    color:var(--ink-500);
+    padding-top:14px;
+    border-top:1px solid var(--navy-border-soft);
+  }
+
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+</style>
+
+<div class="wrap">
+  <header class="app-header">
+    <div class="app-eyebrow">Générateur de fiches — éducation financière</div>
+    <h1 class="app-title">Fiches Patrimoine</h1>
+    <p class="app-sub">SCPI, assurance-vie et alternatifs tangibles — une fiche prête à copier pour X. 17 produits réels, sourcés par recherche puis à spot-checker avant publication (détail des sources dans le code).</p>
+  </header>
+
+  <div class="layout">
+    <!-- Control panel -->
+    <aside class="panel">
+      <div class="panel-section">
+        <div class="panel-label">Catégorie</div>
+        <div class="cat-tabs" id="catTabs"></div>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-label">Produit</div>
+        <select class="product-select" id="productSelect"></select>
+      </div>
+
+      <div class="panel-section">
+        <div class="panel-label">Portée de l'aléatoire</div>
+        <div class="toggle-row" id="scopeToggle">
+          <button type="button" class="toggle-opt" data-scope="all">Toutes catégories</button>
+          <button type="button" class="toggle-opt" data-scope="current">Catégorie actuelle</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <button type="button" class="btn btn-random" id="randomBtn">🔄 Aléatoire</button>
+        <button type="button" class="btn btn-copy" id="copyBtn" style="margin-top:8px;">📋 Copier le texte</button>
+      </div>
+
+      <p class="panel-note">Toutes les fiches sont basées sur des recherches réelles (sites officiels, DIC, bulletins trimestriels). Celles marquées <strong style="color:var(--warn-500)">⚠️ à vérifier</strong> contiennent au moins un champ dont la source n'a pas pu être confirmée avec certitude (WebFetch bloqué dans l'environnement de recherche) — à recontrôler avant publication. Le détail des sources est dans le code (champ <code>source</code> par produit), jamais dans le texte copié.</p>
+    </aside>
+
+    <!-- Card -->
+    <main>
+      <div class="card-outer" id="cardOuter">
+        <div class="demo-banner" id="demoBanner" hidden>⚠️ Au moins une donnée de cette fiche n'est pas confirmée à 100 % — vérifie la source avant de publier.</div>
+        <div class="card" id="cardBody"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var UNVERIFIED = "DONNÉES À VÉRIFIER";
+  var TEXT_PLACEHOLDER = "DONNÉES À VÉRIFIER — texte à rédiger une fois le produit confirmé.";
+
+  var CATEGORIES = {
+    scpi: {
+      label: "SCPI",
+      fullLabel: "SCPI",
+      dot: "🔵",
+      fields: [
+        { key: "gestion",   label: "🏢 Société de gestion" },
+        { key: "tdvm",      label: "📊 TDVM (taux de distribution)" },
+        { key: "frais",     label: "💸 Frais de souscription" },
+        { key: "capi",      label: "💰 Capitalisation" },
+        { key: "capital",   label: "🔄 Capital fixe ou variable" },
+        { key: "secteur",   label: "🏦 Secteur" },
+        { key: "zone",      label: "📍 Zone géographique" }
+      ]
+    },
+    av: {
+      label: "Assurance-vie",
+      fullLabel: "Assurance-vie",
+      dot: "🟣",
+      fields: [
+        { key: "assureur",  label: "🏦 Assureur / gestionnaire" },
+        { key: "frais",     label: "💸 Frais d'entrée + frais de gestion annuels" },
+        { key: "uc",        label: "📦 Nombre d'unités de compte disponibles" },
+        { key: "fonds_euro",label: "💰 Taux du fonds en euros" },
+        { key: "versement", label: "🔄 Versement libre ou programmé" },
+        { key: "canal",     label: "📍 En ligne ou traditionnel" }
+      ]
+    },
+    alt: {
+      label: "Alternatif",
+      fullLabel: "Investissement alternatif",
+      dot: "🟢",
+      fields: [
+        { key: "operateur", label: "🏦 Plateforme ou opérateur" },
+        { key: "ticket",    label: "💸 Ticket d'entrée minimum" },
+        { key: "rendement", label: "📊 Rendement visé/historique" },
+        { key: "duree",     label: "⏳ Durée de blocage / horizon recommandé" },
+        { key: "liquidite", label: "🔄 Liquidité" },
+        { key: "fiscalite", label: "📍 Fiscalité spécifique" }
+      ]
+    }
+  };
+
+  // ---------------------------------------------------------------
+  // Bibliothèque de produits.
+  // Chaque entrée = 1 fiche, basée sur une recherche réelle (sources
+  // officielles : sites des sociétés de gestion/assureurs/opérateurs,
+  // DIC, bulletins trimestriels). "verified: false" signale qu'au
+  // moins un champ n'a pas pu être confirmé avec certitude et doit
+  // être recontrôlé avant publication (voir "source" pour le détail).
+  // "source" et "derniereMaj" ne sont JAMAIS inclus dans le texte copié.
+  // ---------------------------------------------------------------
+  var PRODUCTS = [
+
+    // ---------------- SCPI ----------------
+    {
+      id: "scpi-immorente",
+      cat: "scpi",
+      nom: "Immorente",
+      nouveau: false,
+      verified: false,
+      donnees: {
+        gestion: "Sofidy (agrément AMF GP07000042)",
+        tdvm: "5,00 % en 2025 (5,04 % en 2024)",
+        frais: "≈10 % TTC (à confirmer sur le DIC en vigueur)",
+        capi: "4,39 Md€ au 31/12/2025 (~49 983 associés)",
+        capital: "Variable",
+        secteur: "Diversifié — commerces, bureaux, hôtellerie & loisirs, logistique, santé",
+        zone: "France (majoritaire) + Allemagne, Royaume-Uni, Irlande, Pays-Bas, Belgique"
+      },
+      cestQuoi: "Immorente, c'est un peu le vétéran du secteur : lancée par Sofidy il y a plus de 30 ans, c'est une des plus grosses SCPI de rendement du marché avec près de 50 000 associés. L'idée est simple — le fonds achète des commerces, des bureaux, des hôtels et des entrepôts un peu partout en France et en Europe, encaisse les loyers, et te reverse ta part chaque trimestre. Pas de gestion, pas de recherche de locataire, pas de coup de fil pour une fuite d'eau : tu détiens des parts, le reste c'est le boulot de la société de gestion.",
+      pourquoi: "5 % de TDVM en 2025, sur un fonds qui pèse 4,39 milliards d'euros — c'est justement cette taille qui rassure : la mutualisation sur des centaines d'immeubles lisse pas mal les accidents de parcours, un local vide ici ne fait pas trembler tout l'édifice. Et c'est diversifié à la fois par secteur et par pays, donc tu n'es pas exposé à un seul type de bien.",
+      attention: "Les frais de souscription tournent autour de 10 % — le prix d'entrée classique d'une SCPI, à amortir sur la durée (horizon de 8-10 ans minimum). Et comme toute SCPI, la revente n'est jamais garantie : en période tendue, il peut y avoir un délai avant de retrouver un acheteur.",
+      verdict: "Une valeur sûre du secteur, plus un choix de stabilité que de performance record.",
+      question: "Tu privilégies plutôt les mastodontes diversifiés ou les petites SCPI plus spécialisées ?",
+      source: "Sofidy — rapport annuel 2024, bulletin trimestriel T4 2025 (sofidy.com) — ⚠️ frais de souscription à reconfirmer sur le DIC officiel en vigueur",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch indisponible dans l'environnement de recherche)"
+    },
+    {
+      id: "scpi-epargne-pierre",
+      cat: "scpi",
+      nom: "Épargne Pierre",
+      nouveau: false,
+      verified: true,
+      donnees: {
+        gestion: "Atland Voisin (agrément AMF GP14000026)",
+        tdvm: "5,28 % en 2025 (10,98 €/part)",
+        frais: "12 % TTC",
+        capi: "2,81 Md€ au 31/12/2025",
+        capital: "Variable",
+        secteur: "Bureaux 47 %, commerces 29 %, hôtels/tourisme/loisirs 10 %, entrepôts 8 %, santé 6 %",
+        zone: "100 % France, métropoles régionales (IDF 27 %, reste réparti Nord-Ouest/Sud-Ouest/Nord-Est/Sud-Est/Nord)"
+      },
+      cestQuoi: "Épargne Pierre, c'est le pari du bureau français version régions : la SCPI d'Atland Voisin a construit son patrimoine loin des tours de La Défense, en misant sur des immeubles de bureaux et de commerces dans les grandes métropoles régionales plutôt qu'à Paris. Bon à savoir : au 1er juillet 2026, le prix de la part a été divisé par 10 (passage à 20,80 €) — un simple fractionnement pour la rendre plus accessible, pas une chute de valeur.",
+      pourquoi: "5,28 % de TD en 2025, sur un patrimoine dominé par le bureau (47 %) mais avec une vraie diversification sectorielle en support — commerces, hôtels, entrepôts, santé. Le positionnement 100 % régions est un pari assumé : moins de concurrence sur les prix d'achat qu'en Île-de-France, potentiellement plus de rendement locatif.",
+      attention: "12 % de frais de souscription, dans la fourchette haute du marché. Et le bureau reste le secteur le plus scruté du moment avec le télétravail qui rebat les cartes de la demande — même en région, ça mérite d'être suivi.",
+      verdict: "Un pari assumé sur les bureaux régionaux, à réserver à ceux qui croient encore au bureau physique.",
+      question: "Le bureau en région te semble-t-il plus résilient que le bureau parisien ?",
+      source: "Atland Voisin — bulletin trimestriel T4 2025 (atland-voisin.com)",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch indisponible dans l'environnement de recherche)"
+    },
+    {
+      id: "scpi-pierval-sante",
+      cat: "scpi",
+      nom: "Pierval Santé",
+      nouveau: false,
+      verified: false,
+      donnees: {
+        gestion: "Euryale Asset Management (agrément AMF GP14000027, groupe Elience)",
+        tdvm: "4,06 % en 2025",
+        frais: "≈10,5 % (estimation indirecte, à confirmer sur le DIC officiel)",
+        capi: "3,30 Md€ au 30/06/2026 (~60 975 associés)",
+        capital: "Variable",
+        secteur: "100 % santé — EHPAD, cliniques, cabinets médicaux, laboratoires, centres de recherche (labellisée ISR depuis 2023)",
+        zone: "Europe diversifiée — France ~30 %, Allemagne ~20 %, Royaume-Uni ~20 %, Pays-Bas ~14 %, Irlande ~14 %"
+      },
+      cestQuoi: "Pierval Santé mise sur un secteur qui ne connaît pas vraiment la crise : la santé. EHPAD, cliniques, labos, cabinets médicaux — le fonds achète les murs, les loue à des exploitants de santé, et vit des loyers. C'est une des SCPI 100 % santé les plus connues du marché, avec plus de 60 000 associés et un patrimoine réparti sur six pays européens.",
+      pourquoi: "Le secteur santé a un argument de poids : la demande de soins ne dépend ni des cycles économiques ni des modes. Avec un patrimoine étalé entre France, Allemagne, Royaume-Uni, Pays-Bas et Irlande, le fonds limite aussi son exposition à un seul système de santé national.",
+      attention: "4,06 % de TDVM en 2025, c'est plus modeste que la moyenne des SCPI de rendement classique — la contrepartie de la stabilité recherchée sur ce type d'actif. Les frais de souscription tournent autour de 10 %, à vérifier précisément sur le DIC avant de s'engager.",
+      verdict: "Un choix de prudence plus que de performance, pour qui veut du défensif.",
+      question: "Tu vois la santé comme un secteur refuge ou comme un pari sur le vieillissement démographique ?",
+      source: "Euryale Asset Management — bulletin trimestriel T2 2026 (euryale-am.fr) — ⚠️ frais de souscription calculés indirectement, à reconfirmer sur le DIC officiel",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch indisponible dans l'environnement de recherche)"
+    },
+    {
+      id: "scpi-activimmo",
+      cat: "scpi",
+      nom: "Activimmo",
+      nouveau: false,
+      verified: true,
+      donnees: {
+        gestion: "Alderan (agrément AMF GP-17000026)",
+        tdvm: "5,49 % en 2025 (33,47 €/part brut)",
+        frais: "10,60 %",
+        capi: "≈1,4 Md€ au 31/12/2025 (29 302 associés)",
+        capital: "Variable",
+        secteur: "Logistique 53 %, locaux d'activités 31 %",
+        zone: "France 77 %, Espagne 13 %, + 5 autres pays européens (179 immeubles)"
+      },
+      cestQuoi: "Activimmo joue à fond la carte de la logistique — entrepôts, plateformes de distribution, locaux d'activités. C'est le genre de bien qu'on ne voit jamais en photo sur Instagram, mais qui est devenu indispensable avec l'explosion du e-commerce : quelqu'un doit bien stocker les colis avant qu'ils arrivent chez toi.",
+      pourquoi: "5,49 % de TD en 2025, sur un secteur porté par une demande structurelle (logistique du dernier kilomètre, relocalisation industrielle). Le fonds est jeune (lancé en 2019) mais déjà présent dans 7 pays européens sur 179 immeubles, ce qui limite la dépendance à un marché unique.",
+      attention: "10,6 % de frais d'entrée, dans la moyenne haute. La logistique reste aussi un secteur cyclique, sensible aux volumes du commerce en ligne et aux coûts de l'énergie qui pèsent sur les entrepôts.",
+      verdict: "Un pari sectoriel assumé sur la logistique, cohérent si tu crois à la poursuite du e-commerce.",
+      question: "La logistique, secteur d'avenir ou déjà à son pic ?",
+      source: "Alderan — bulletin trimestriel T4 2025 (alderan.fr)",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch indisponible dans l'environnement de recherche)"
+    },
+    {
+      id: "scpi-iroko-zen",
+      cat: "scpi",
+      nom: "Iroko Zen",
+      nouveau: true,
+      verified: true,
+      donnees: {
+        gestion: "Iroko (agrément AMF GP-20000014)",
+        tdvm: "7,14 % en 2025",
+        frais: "0 % (commission de sortie de 5 % si retrait avant 3 ans)",
+        capi: "1,36 Md€ au 31/12/2025",
+        capital: "Variable",
+        secteur: "Commerces 37 %, bureaux 27 %, locaux d'activités 14 %, logistique 11 %, santé/hôtellerie 11 %",
+        zone: "Europe de l'Ouest — ~70 % hors France fin 2025"
+      },
+      cestQuoi: "Iroko Zen casse le modèle classique de la SCPI : zéro frais de souscription. Concrètement, tu ne perds pas 10-12 % dès le premier jour comme sur la plupart des fonds du marché — la société de gestion se rémunère autrement, via les frais de gestion annuels intégrés dans le TD affiché. En échange, si tu retires ton argent avant 3 ans, il y a une commission de sortie de 5 %.",
+      pourquoi: "7,14 % de TD en 2025, c'est l'un des meilleurs rendements affichés du marché SCPI actuellement. Le fonds est très diversifié géographiquement (70 % hors France fin 2025) et sectoriellement, et il a connu une croissance rapide depuis son lancement en 2020.",
+      attention: "Un rendement de cette ampleur mérite un minimum de recul : Iroko Zen est un fonds jeune, sans le long historique de résilience des mastodontes du secteur. Et l'absence de frais d'entrée ne veut pas dire absence de coût — la commission de sortie à 3 ans peut piéger ceux qui doivent récupérer leur argent plus tôt que prévu.",
+      verdict: "Le rendement le plus agressif de cette sélection, à réserver à ceux qui ont vraiment un horizon long.",
+      question: "Le zéro frais d'entrée, argument décisif pour toi ou juste un habillage marketing ?",
+      source: "Iroko — bulletins trimestriels T4 2025 / T1 2026 (iroko.eu)",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch indisponible dans l'environnement de recherche)"
+    },
+    {
+      id: "scpi-paref-prima",
+      cat: "scpi",
+      nom: "Paref Prima (ex-Novapierre Allemagne)",
+      nouveau: false,
+      verified: false,
+      donnees: {
+        gestion: "Paref Gestion",
+        tdvm: "5,00 % en 2025 (12,64 €/part brut)",
+        frais: "≈12 % TTC (source secondaire, à confirmer sur le DIC officiel)",
+        capi: "933,8 M€ au 31/12/2025 (14 838 associés)",
+        capital: "Variable",
+        secteur: "Commerces essentiels — alimentation 38 %, bricolage 22 %, habillement 12 %, drugstore 7 %",
+        zone: "Allemagne >92 %, Pays-Bas ~7 %"
+      },
+      cestQuoi: "Paref Prima, c'est le nouveau nom de Novapierre Allemagne depuis juin 2024 (fusion avec Novapierre Allemagne 2) — même gérant, même stratégie, juste une étiquette différente. Le principe : acheter des commerces de première nécessité en Allemagne — supermarchés, drogueries, magasins de bricolage — le genre de commerce qui continue de tourner même quand le climat économique se tend.",
+      pourquoi: "5 % de TD en 2025 sur un patrimoine ultra-concentré sur l'Allemagne (plus de 92 %) et sur des commerces de consommation courante, donc moins sensibles aux arbitrages de dépenses des ménages que du commerce plus discrétionnaire.",
+      attention: "Si tu avais entendu parler de Novapierre Allemagne, c'est le même fonds sous un nouveau nom — pas de raison de s'inquiéter, mais ça peut semer la confusion en recherchant les infos. La concentration quasi totale sur l'Allemagne t'expose surtout au marché immobilier commercial allemand, avec ses propres dynamiques.",
+      verdict: "Une diversification géographique intéressante pour qui veut sortir du 100 % France, à condition d'assumer la concentration pays.",
+      question: "Sortir de la France pour investir en SCPI, séduisant ou trop dépaysant ?",
+      source: "Paref Gestion — communiqué de fusion (10/06/2024) + bulletin trimestriel T4 2025 (paref-gestion.com) — ⚠️ frais de souscription à reconfirmer sur le DIC officiel",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch indisponible dans l'environnement de recherche)"
+    },
+    {
+      id: "scpi-immo-placement",
+      cat: "scpi",
+      nom: "Immo Placement",
+      nouveau: false,
+      verified: false,
+      donnees: {
+        gestion: "Atland Voisin",
+        tdvm: "6,23 % en 2025",
+        frais: "Marché primaire fermé — cession via marché secondaire, droit d'enregistrement de 5 %",
+        capi: "298 M€ au T1 2026 (353 030 parts, 6 459 associés)",
+        capital: "Fixe — fermée aux nouvelles souscriptions primaires",
+        secteur: "Bureaux ~50-64 %, commerces ~32-41 %, locaux d'activités ~4 %, santé ~5 %",
+        zone: "100 % France, positionnement régions"
+      },
+      cestQuoi: "Immo Placement, c'est l'exemple type de la SCPI à capital fixe : contrairement à Immorente ou Épargne Pierre qui émettent des parts en continu, ici le nombre de parts est figé. La dernière augmentation de capital (juillet 2022) est intégralement souscrite, donc le marché primaire est fermé — pour entrer, il faut passer par le marché secondaire, où les parts s'échangent entre investisseurs.",
+      pourquoi: "6,23 % de TD en 2025, un rendement plutôt généreux pour la catégorie. Le mécanisme à capital fixe a un avantage réel : la société de gestion n'a pas la pression de placer en continu l'argent des nouveaux souscripteurs, elle peut arbitrer son patrimoine à son rythme.",
+      attention: "Sur le marché secondaire, aucune garantie de trouver un acheteur au prix souhaité ni dans un délai donné — c'est le revers du capital fixe. Il faut aussi compter un droit d'enregistrement de 5 % à la cession, en plus d'une éventuelle commission de transaction dont le montant précis reste à vérifier.",
+      verdict: "Un bon cas d'école du capital fixe, à réserver à ceux qui comprennent le fonctionnement du marché secondaire des parts.",
+      question: "Capital fixe ou capital variable — lequel te semble le plus sécurisant pour sortir un jour ?",
+      source: "Atland Voisin — DIC officiel (2025-07-01) + bulletin trimestriel T1 2026 (atland-voisin.com) — ⚠️ commission de cession sur le marché secondaire non confirmée avec précision. Note : la société de gestion est Atland Voisin, pas Sofidy (correction faite après vérification)",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch indisponible dans l'environnement de recherche)"
+    },
+
+    // ---------------- Assurance-vie ----------------
+    {
+      id: "av-linxea-spirit-2",
+      cat: "av",
+      nom: "Linxea Spirit 2",
+      nouveau: false,
+      verified: true,
+      donnees: {
+        assureur: "Spirica (Crédit Agricole Assurances)",
+        frais: "Entrée 0 % ; gestion UC 0,50 %/an ; fonds euros jusqu'à 2 %/an max",
+        uc: "Plus de 1 100 supports (août 2026)",
+        fonds_euro: "Fonds Euro Nouvelle Génération : 3,08 % net (2025) ; Fonds Euro Objectif Climat : 3,26 % net (2025)",
+        versement: "Libre (min. 500 € à l'ouverture) ou programmé (min. 100 €/mois)",
+        canal: "En ligne, sans frais d'entrée"
+      },
+      cestQuoi: "Linxea Spirit 2, c'est un des contrats en ligne les plus connus du marché — pas d'agence, pas de conseiller qui te démarche, juste un contrat que tu pilotes toi-même depuis ton compte. Il est assuré par Spirica, la filiale assurance-vie du Crédit Agricole, avec plus de 1 100 supports d'investissement disponibles en plus des fonds euros.",
+      pourquoi: "Zéro frais d'entrée et zéro frais sur versement, ce qui n'est toujours pas la norme chez les assureurs traditionnels. Le choix de supports est immense, et les deux fonds euros affichent des taux 2025 autour de 3 % net — dans le haut du marché pour un fonds euros classique.",
+      attention: "0,50 % de frais de gestion annuels sur les unités de compte, ça reste un coût récurrent à surveiller sur la durée. Et comme pour tout contrat en unités de compte, le capital investi hors fonds euros n'est jamais garanti.",
+      verdict: "Une référence solide des contrats en ligne, difficile à prendre en défaut sur le rapport frais/offre.",
+      question: "Tu es plutôt 100 % fonds euros ou tu oses les unités de compte ?",
+      source: "Linxea — fiche de transparence des frais, MAJ 01/08/2025 (linxea.com) ; note : assureur = Spirica, pas Apicil (Apicil assure Linxea Zen, un autre contrat)",
+      derniereMaj: "13/08/2026 (recherche WebSearch restreinte aux domaines officiels, WebFetch indisponible)"
+    },
+    {
+      id: "av-linxea-avenir-2",
+      cat: "av",
+      nom: "Linxea Avenir 2",
+      nouveau: false,
+      verified: true,
+      donnees: {
+        assureur: "Suravenir (Crédit Mutuel Arkéa)",
+        frais: "Entrée 0 % ; gestion UC 0,60 %/an ; fonds euros 0,60 %/an (Suravenir Rendement 2)",
+        uc: "≈670 supports (août 2026)",
+        fonds_euro: "Suravenir Rendement 2 : 2,10 % net (2025) ; Suravenir Opportunités 2 : 3,00 % net (2025)",
+        versement: "Initial min. 100 € ; libre min. 100 € ; programmé min. 25 €/mois",
+        canal: "En ligne, sans frais d'entrée"
+      },
+      cestQuoi: "Linxea Avenir 2 est le petit frère de Spirit 2 chez le même courtier, mais assuré cette fois par Suravenir (filiale du Crédit Mutuel Arkéa). L'accessibilité est le point fort : 100 € suffisent pour ouvrir le contrat, et 25 € par mois pour un versement programmé.",
+      pourquoi: "Deux fonds euros au choix avec des profils différents : Suravenir Rendement 2, plus classique, a servi 2,10 % net en 2025 ; Suravenir Opportunités 2, qui exige une part d'UC dans l'allocation, a servi 3,00 %. Ça permet d'ajuster le curseur sécurité/performance selon ton profil.",
+      attention: "Le fonds euros Suravenir Opportunités 2 n'est accessible qu'en contrepartie d'un minimum d'unités de compte dans le contrat — donc pas de 100 % sécurisé si tu veux ce taux-là. Et comme toujours, les UC ne garantissent pas le capital.",
+      verdict: "Une bonne porte d'entrée pour qui veut démarrer petit, avec un vrai choix entre deux fonds euros.",
+      question: "Tu commences avec quel budget quand tu ouvres une assurance-vie ?",
+      source: "Suravenir / Linxea — fiche produit officielle L8312 ; suravenir.fr (taux 2025)",
+      derniereMaj: "13/08/2026 (recherche WebSearch restreinte aux domaines officiels, WebFetch indisponible) — léger écart entre deux pages officielles sur le nombre exact d'UC (\"~670\" vs \"plus de 600\")"
+    },
+    {
+      id: "av-meilleurtaux-liberte-vie",
+      cat: "av",
+      nom: "Meilleurtaux Liberté Vie",
+      nouveau: false,
+      verified: true,
+      donnees: {
+        assureur: "Spirica (Crédit Agricole Assurances)",
+        frais: "Entrée 0 % ; gestion UC 0,50 %/an ; fonds euros jusqu'à 2 %/an max",
+        uc: "Plus de 700 supports (août 2026)",
+        fonds_euro: "Fonds Euro Nouvelle Génération : 3,08 % net (2025)",
+        versement: "Initial min. 500 € ; programmé min. 50 €/mois",
+        canal: "En ligne, sans frais d'entrée"
+      },
+      cestQuoi: "Meilleurtaux Liberté Vie partage le même assureur que Linxea Spirit 2 (Spirica), mais côté distribution c'est Meilleurtaux Placement qui tient la boutique. Même logique de contrat 100 % en ligne, avec plus de 700 supports d'investissement disponibles.",
+      pourquoi: "Le même Fonds Euro Nouvelle Génération que chez Linxea, avec le même taux 2025 à 3,08 % net, et aucun frais d'entrée. Ça montre qu'un même fonds euros peut se retrouver chez plusieurs distributeurs — le choix du courtier compte autant que le choix de l'assureur.",
+      attention: "Les deux contrats (Linxea Spirit 2 et Meilleurtaux Liberté Vie) étant très proches sur le papier, la différence se joue surtout sur l'interface, le service client et les options de gestion pilotée — pas sur le fonds euros lui-même.",
+      verdict: "Un contrat quasi-jumeau de Linxea Spirit 2 : le choix se fait sur le courtier, pas sur le produit.",
+      question: "Tu choisis ton assurance-vie sur le taux du fonds euros ou sur l'expérience du courtier ?",
+      source: "Meilleurtaux Placement — fiche de transparence Spirica, MAJ 15/04/2025 (meilleurtaux.com, spirica.fr) ; note : assureur = Spirica, pas Generali (Generali est sur le contrat distinct \"Meilleurtaux Allocation Vie\")",
+      derniereMaj: "13/08/2026 (recherche WebSearch restreinte aux domaines officiels, WebFetch indisponible) — montant minimum par support pour versement programmé (25€ vs 50€ selon les pages) à reconfirmer"
+    },
+    {
+      id: "av-yomoni-vie",
+      cat: "av",
+      nom: "Yomoni Vie",
+      nouveau: false,
+      verified: false,
+      donnees: {
+        assureur: "Suravenir",
+        frais: "0 € à l'entrée ; gestion pilotée jusqu'à 1,6 %/an tout compris ; fonds euros jusqu'à 0,6 %/an",
+        uc: "ETF par profil en gestion pilotée (nombre de profils non confirmé avec certitude) ; gestion libre dès 50 000 € d'encours : ≈1 000 supports",
+        fonds_euro: "2024 : 2,50 % net ; objectif non garanti 2025-2026 : jusqu'à 4,5 % (bonification temporaire incluse) — taux 2025 réellement servi NON CONFIRMÉ",
+        versement: "Initial min. 1 000 € ; libre min. 50 € ; programmé min. 50 €/mois",
+        canal: "En ligne, 100 % (courtier en assurance en ligne)"
+      },
+      cestQuoi: "Yomoni Vie change de logique : au lieu de choisir toi-même parmi des centaines de supports, tu délègues la gestion à des algorithmes qui investissent sur des ETF selon ton profil de risque. C'est de la gestion pilotée par défaut, assurée par Suravenir, avec un ticket d'entrée plus élevé que les contrats 100 % libres (1 000 € pour ouvrir).",
+      pourquoi: "L'intérêt, c'est de ne rien avoir à arbitrer soi-même — pratique si tu n'as ni le temps ni l'envie de suivre les marchés. Les frais sont annoncés tout compris (jusqu'à 1,6 %/an), ce qui évite les mauvaises surprises de frais cachés qu'on trouve parfois ailleurs.",
+      attention: "Le taux du fonds euros communiqué pour 2025-2026 (jusqu'à 4,5 %) est un objectif non garanti incluant une bonification temporaire, pas un taux définitivement acquis — à ne pas confondre avec un rendement garanti. Et la gestion libre n'est ouverte qu'au-delà de 50 000 € d'encours, donc pas accessible aux petits portefeuilles.",
+      verdict: "Un bon choix pour déléguer sans réfléchir, moins pertinent si tu veux piloter toi-même.",
+      question: "Tu préfères déléguer la gestion ou garder la main sur tes arbitrages ?",
+      source: "Yomoni — yomoni.fr/tarifs, FAQ officielle — ⚠️ taux 2025 réellement servi sur le fonds euros et nombre exact de profils de gestion pilotée (9 vs 10) à reconfirmer via la notice annuelle de participation aux bénéfices",
+      derniereMaj: "13/08/2026 (recherche WebSearch restreinte aux domaines officiels, WebFetch indisponible)"
+    },
+
+    // ---------------- Investissements alternatifs ----------------
+    {
+      id: "alt-france-valley-foret",
+      cat: "alt",
+      nom: "GFI France Valley Patrimoine",
+      nouveau: false,
+      verified: false,
+      donnees: {
+        operateur: "France Valley (société de gestion agréée AMF n° GP-14000035)",
+        ticket: "≈221 €/part (150 € nominal + 71 € prime) — plancher exact de la campagne en cours à confirmer",
+        rendement: "Cible non garantie ≈2,5 %/an net de frais (moyenne 10 ans) — risque déclaré 3/7",
+        duree: "Long terme (~10 ans indiqués par plusieurs sources officielles)",
+        liquidite: "Peu liquide — cession via confrontation périodique d'ordres organisée par la société de gestion (art. L.214-93 CMF), sans garantie de délai ni de prix. Détention minimale 12 mois.",
+        fiscalite: "Exonération de 75 % des droits de succession/donation, en échange d'un engagement de gestion durable de 30 ans (pas un conseil fiscal)"
+      },
+      cestQuoi: "Le GFI France Valley Patrimoine, c'est de la forêt version encadrée : contrairement au Groupement Foncier Forestier classique (une structure ancienne, peu régulée), le GFI est un statut créé par l'AMF en 2019 sous l'impulsion de France Valley elle-même, avec appel public à l'épargne et documentation réglementaire standard. Concrètement, tu achètes des parts d'un groupement qui possède des parcelles de forêt en France, et la valeur vient de la croissance du bois et de son exploitation.",
+      pourquoi: "C'est un actif décorrélé des marchés financiers classiques — le prix du bois ne suit pas le CAC 40 — et l'avantage fiscal sur la transmission est significatif : 75 % d'exonération de droits de succession ou donation. L'objectif de rendement (~2,5 %/an) reste modeste mais s'ajoute à cet avantage patrimonial.",
+      attention: "C'est un placement à horizon très long, peu liquide, sans garantie de capital ni de rendement. Les frais de souscription peuvent atteindre 12 % TTC, et l'avantage fiscal sur la succession est conditionné à un engagement de gestion durable de 30 ans — un vrai engagement dans la durée, pas un placement qu'on liquide sur un coup de tête.",
+      verdict: "Un outil de transmission patrimoniale avant tout, pas un placement de rendement.",
+      question: "Tu vois plus la forêt comme un investissement ou comme un patrimoine à transmettre ?",
+      source: "France Valley — france-valley.com/gfi-france-valley-patrimoine + DIC officiel ; fiche AMF GECO GP-14000035 — ⚠️ ticket d'entrée exact et scénarios de performance PRIIPS à reconfirmer directement sur le DIC PDF",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch bloqué dans l'environnement — accès direct aux PDF non vérifié)"
+    },
+    {
+      id: "alt-france-valley-vin",
+      cat: "alt",
+      nom: "Foncière Champenoise France Valley III",
+      nouveau: false,
+      verified: false,
+      donnees: {
+        operateur: "France Valley (même société de gestion que le GFI forêt, AMF GP-14000035)",
+        ticket: "NON TROUVÉ avec certitude — sources divergentes",
+        rendement: "Non garanti — objectif visant a minima à couvrir les frais de gestion (~1 %/an) ; pas de chiffre cible officiel précis confirmé",
+        duree: "Long terme, cohérent avec le régime GFV classique (≥10 ans) — non confirmé spécifiquement pour ce fonds",
+        liquidite: "Peu liquide — marché typique des groupements fonciers, aucune garantie de revente",
+        fiscalite: "Réduction d'IR de 25 % du montant investi (sous conditions), avantage de transmission de l'ordre de 75 % pour le régime GFV classique — montants exacts à confirmer pour ce fonds (pas un conseil fiscal)"
+      },
+      cestQuoi: "La Foncière Champenoise, c'est le même principe que le GFI forestier mais appliqué à la vigne : tu deviens propriétaire, via des parts, de vignes en Champagne et en Bourgogne, gérées par France Valley. 100 % des surfaces sont certifiées HVE (Haute Valeur Environnementale).",
+      pourquoi: "Le foncier viticole en Champagne est structurellement rare et cher — impossible pour un particulier d'acheter directement une parcelle sans un ticket à six chiffres. Le groupement mutualise l'accès à cet actif, avec le même opérateur régulé que sur la partie forêt.",
+      attention: "Plusieurs chiffres précis sur ce fonds (ticket d'entrée exact, rendement cible) restent à confirmer directement sur le bulletin de souscription et le DIC — c'est la fiche la moins aboutie de cette sélection, les sources publiques trouvées se contredisent encore. Comme sur la forêt : rendement non garanti, capital non garanti, marché peu liquide.",
+      verdict: "Un accès rare au foncier viticole, mais une fiche encore en cours de vérification — à ne pas publier telle quelle.",
+      question: "Le vin, tu le vois comme un plaisir ou comme un actif patrimonial ?",
+      source: "France Valley — pages officielles Foncière Champenoise I/II/III (france-valley.com) — ⚠️ ticket d'entrée et rendement cible non réconciliés entre les sources trouvées, données à considérer comme incomplètes",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch bloqué dans l'environnement — fiche la moins fiable de la bibliothèque, à retravailler en priorité)"
+    },
+    {
+      id: "alt-terre-de-liens",
+      cat: "alt",
+      nom: "Foncière Terre de Liens",
+      nouveau: false,
+      verified: true,
+      donnees: {
+        operateur: "Foncière Terre de Liens (société en commandite par actions à capital variable, labellisée ESUS)",
+        ticket: "Dès 1 action, ≈106 € (17/06/2025, évolutive) + frais de dossier 4 €/action (plafonnés à 800 €)",
+        rendement: "Aucun dividende versé — seul gain possible : revalorisation de l'action dans le temps (non garantie, peut aussi baisser)",
+        duree: "Pas de blocage réglementaire strict ; avantage fiscal conditionné à 5 ans (cession à un tiers) ou 7 ans (remboursement par la société) de détention",
+        liquidite: "Rachat possible une fois par an — demande avant le 31 décembre, remboursement en janvier suivant, au prix de la valeur de l'action à la date de la demande",
+        fiscalite: "Réduction d'IR de 25 % du montant souscrit, plafonnée à 200 actions, sous condition de conservation de 5 ans minimum (pas un conseil fiscal)"
+      },
+      cestQuoi: "Il faut être honnête sur ce que c'est vraiment : Terre de Liens n'est pas un placement à rendement, c'est un outil de finance solidaire. Tu achètes des actions d'une foncière qui rachète des terres agricoles pour les louer, sur le long terme, à des agriculteurs — souvent en bio — qui n'auraient pas eu les moyens de les acquérir seuls. La foncière possède déjà plus de 400 fermes et environ 8 000 hectares.",
+      pourquoi: "Si l'idée de préserver des terres agricoles et de soutenir l'installation de nouveaux agriculteurs te parle, c'est un des rares véhicules accessibles dès 1 action (~106 €) pour y participer concrètement, avec en prime une réduction d'impôt sur le revenu de 25 % du montant souscrit.",
+      attention: "Aucun dividende n'est versé, jamais — le seul gain possible vient d'une éventuelle revalorisation de l'action, qui peut tout aussi bien baisser. La sortie n'est possible qu'une fois par an, avec une fenêtre stricte. Si tu cherches du rendement, ce n'est pas le bon produit ; si tu cherches à donner du sens à ton épargne, ça peut l'être.",
+      verdict: "Un placement de conviction avant tout, pas un placement de performance.",
+      question: "Tu serais prêt à sacrifier le rendement pour un impact concret sur le terrain ?",
+      source: "Terre de Liens — terredeliens.org, page épargne solidaire",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch bloqué dans l'environnement)"
+    },
+    {
+      id: "alt-mymarguerit",
+      cat: "alt",
+      nom: "MyMarguerit",
+      nouveau: true,
+      verified: false,
+      donnees: {
+        operateur: "MyMarguerit (enregistrement AMF intermédiaire en biens divers n° D-21-01, géré par Gestel)",
+        ticket: "NON TROUVÉ précisément (exemples cités : 21 450 € à 96 525 € selon le nombre de bêtes)",
+        rendement: "Cible non garantie ≈5 à 5,5 %/an sur 10 ans ; frais d'entrée et de sortie élevés : 8 % / 8 %",
+        duree: "Aucun rendement versé en cas de sortie avant 36 mois de détention",
+        liquidite: "Sortie en cascade sur trois marchés successifs (investisseurs, éleveurs, puis abattage), délai contractuel maximal de 6 mois non garanti. Cession obligatoirement pour la totalité du cheptel détenu.",
+        fiscalite: "Exonération de plus-value après 5 ans de détention (pas un conseil fiscal)"
+      },
+      cestQuoi: "MyMarguerit, c'est de l'investissement dans du bétail bien réel : tu finances l'achat de vaches pour des éleveurs, en échange d'une part sur le revenu locatif (l'éleveur te loue ses bêtes) et d'une possible plus-value à la revente. Le statut réglementaire — l'enregistrement AMF en « biens divers » — vérifie que le document d'information est complet, mais ce n'est pas une garantie de l'AMF sur la solidité financière du projet.",
+      pourquoi: "L'objectif affiché tourne autour de 5 à 5,5 % par an, entre revenu locatif et valorisation du cheptel — dans le haut de la fourchette des alternatifs. Et c'est un actif tangible au sens propre : des vaches, dans des fermes réelles, avec un modèle qui aide concrètement des éleveurs à financer leur cheptel.",
+      attention: "Les frais d'entrée ET de sortie sont élevés (8 % chacun), et aucun rendement n'est versé si tu sors avant 36 mois. La sortie se fait en cascade sur trois marchés différents avec un délai maximal de 6 mois non garanti — et impossible de céder une partie seulement de ton cheptel, c'est tout ou rien. Le statut « biens divers » est aussi un statut réglementaire plus léger qu'un agrément PSFP classique, l'AMF le précise elle-même.",
+      verdict: "Un actif tangible et concret, mais avec des frais et des contraintes de sortie qui pèsent lourd dans la balance.",
+      question: "L'investissement dans du vivant, ça te parle plus qu'un actif financier classique ?",
+      source: "MyMarguerit — mymarguerit.com, simulateur officiel ; instruction AMF sur l'intermédiation en biens divers — ⚠️ ticket d'entrée exact à reconfirmer sur le simulateur officiel",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch bloqué dans l'environnement)"
+    },
+    {
+      id: "alt-matis",
+      cat: "alt",
+      nom: "Matis",
+      nouveau: true,
+      verified: true,
+      donnees: {
+        operateur: "Matis (PSFP agréé AMF n° FP-2023-19)",
+        ticket: "20 000 € minimum (obligations convertibles dans un SPV dédié à une œuvre)",
+        rendement: "Historique réalisé (pas une cible garantie) : TRI moyen annualisé net de 22,3 % sur 14 transactions au 22/07/2025, détention moyenne 9 mois — performances passées, non représentatives de résultats futurs",
+        duree: "Détention cible ~24 mois, plafond contractuel de 60 mois (5 ans)",
+        liquidite: "Pas de marché secondaire continu — sortie liée à la revente effective de l'œuvre par le réseau de galeries partenaires de Matis",
+        fiscalite: "Non confirmé précisément (probablement régime des plus-values mobilières classique — pas un conseil fiscal)"
+      },
+      cestQuoi: "Matis fractionne l'accès à l'art de collection : au lieu d'acheter une œuvre entière, tu investis dans une obligation convertible qui finance l'achat d'une œuvre par un SPV dédié, aux côtés d'autres investisseurs. C'est un des rares acteurs du secteur à avoir un agrément PSFP délivré par l'AMF — un vrai statut réglementaire, pas juste une promesse marketing.",
+      pourquoi: "Sur les 14 transactions clôturées au 22/07/2025, le TRI moyen annualisé net de frais ressort à 22,3 %, pour une détention moyenne de seulement 9 mois. C'est un historique réalisé, pas une projection — mais sur un échantillon encore limité.",
+      attention: "Ticket d'entrée élevé (20 000 €), et surtout : la sortie dépend entièrement de la revente effective de l'œuvre par le réseau de galeries partenaires de Matis — pas de marché secondaire où revendre à la demande. Les 22,3 % de TRI historique sont réels mais reposent sur 14 opérations seulement : ce n'est pas une garantie de reproductibilité.",
+      verdict: "Un des accès les plus sérieux au marché de l'art fractionné en France, réservé à un ticket conséquent.",
+      question: "Un historique de performance sur 14 transactions, ça te suffit pour te convaincre ou tu attends plus de recul ?",
+      source: "Matis — matis.club, page agrément AMF FP-2023-19",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch bloqué dans l'environnement) — ArtSquare écarté de la sélection : plateforme apparemment fermée/en refonte, statut réglementaire non confirmé"
+    },
+    {
+      id: "alt-whiskyinvestdirect",
+      cat: "alt",
+      nom: "WhiskyInvestDirect",
+      nouveau: false,
+      verified: false,
+      donnees: {
+        operateur: "WhiskyInvestDirect (Royaume-Uni) — propriété physique de whisky, hors périmètre de régulation FCA/AMF",
+        ticket: "Dès 100 £ (« Quick Buy »), 700 £ en achat standard",
+        rendement: "NON TROUVÉ — aucun chiffre de rendement cible ou historique officiellement documenté",
+        duree: "NON TROUVÉ — pas d'horizon recommandé officiel identifié",
+        liquidite: "Marché de négociation en continu entre utilisateurs, interne à la plateforme (pas un marché réglementé externe)",
+        fiscalite: "NON TROUVÉ — aucune information fiscale française spécifique documentée (pas un conseil fiscal)"
+      },
+      cestQuoi: "WhiskyInvestDirect, c'est de la propriété directe de fûts de whisky écossais, pas un produit financier au sens réglementaire : la plateforme le dit elle-même, c'est un droit de propriété classique sur un bien physique, ce qui la place hors du champ de supervision de la FCA britannique — et donc aussi hors du champ de l'AMF côté français.",
+      pourquoi: "Le ticket d'entrée est bas (dès 100 £ en « Quick Buy »), et le mécanisme de revente entre utilisateurs directement sur la plateforme est plutôt original dans ce secteur — la plupart des opérateurs de fûts n'offrent pas ce niveau de liquidité interne.",
+      attention: "Aucune régulation financière ne s'applique à ce produit — ni au Royaume-Uni ni en France. Et aucune confirmation officielle trouvée que la plateforme accepte des clients résidents français : avant d'y penser sérieusement, il faut vérifier ce point directement auprès d'eux. Sans régulateur pour superviser, c'est à l'investisseur seul d'évaluer la solidité de la contrepartie.",
+      verdict: "Un cas d'école de la frontière entre actif tangible et zone grise réglementaire — prudence maximale.",
+      question: "Un actif tangible mais sans aucun régulateur derrière — ça te rassure ou ça t'inquiète plus qu'autre chose ?",
+      source: "WhiskyInvestDirect — whiskyinvestdirect.com/info/fr/ — ⚠️ acceptation des clients français NON CONFIRMÉE officiellement ; plateforme non régulée FCA ni AMF",
+      derniereMaj: "13/08/2026 (recherche WebSearch, WebFetch bloqué dans l'environnement) — fiche à traiter avec la plus grande prudence avant toute publication, voire à exclure de la bibliothèque"
+    }
+  ];
+
+  // ---------------------------------------------------------------
+  // State
+  // ---------------------------------------------------------------
+  var state = {
+    cat: "scpi",
+    productId: PRODUCTS.filter(function(p){ return p.cat === "scpi"; })[0].id,
+    randomScope: "all",
+    history: { all: [], scpi: [], av: [], alt: [] }
+  };
+
+  function productsInCat(cat){
+    return PRODUCTS.filter(function(p){ return p.cat === cat; });
+  }
+  function getProduct(id){
+    for (var i = 0; i < PRODUCTS.length; i++){ if (PRODUCTS[i].id === id) return PRODUCTS[i]; }
+    return null;
+  }
+
+  // ---------------------------------------------------------------
+  // Rendering
+  // ---------------------------------------------------------------
+  var catTabsEl = document.getElementById("catTabs");
+  var productSelectEl = document.getElementById("productSelect");
+  var scopeToggleEl = document.getElementById("scopeToggle");
+  var randomBtn = document.getElementById("randomBtn");
+  var copyBtn = document.getElementById("copyBtn");
+  var cardBody = document.getElementById("cardBody");
+  var demoBanner = document.getElementById("demoBanner");
+
+  function renderTabs(){
+    catTabsEl.innerHTML = "";
+    Object.keys(CATEGORIES).forEach(function(catKey){
+      var cfg = CATEGORIES[catKey];
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "cat-tab";
+      btn.setAttribute("data-cat", catKey);
+      btn.setAttribute("data-active", state.cat === catKey ? "true" : "false");
+      btn.innerHTML = '<span class="dot"></span><span>' + cfg.fullLabel + "</span>";
+      btn.addEventListener("click", function(){
+        state.cat = catKey;
+        var first = productsInCat(catKey)[0];
+        if (first) state.productId = first.id;
+        renderAll();
+      });
+      catTabsEl.appendChild(btn);
+    });
+  }
+
+  function renderProductSelect(){
+    productSelectEl.innerHTML = "";
+    productsInCat(state.cat).forEach(function(p){
+      var opt = document.createElement("option");
+      opt.value = p.id;
+      opt.textContent = p.nom + (p.verified ? "" : "  —  À vérifier");
+      productSelectEl.appendChild(opt);
+    });
+    productSelectEl.value = state.productId;
+  }
+  productSelectEl.addEventListener("change", function(){
+    state.productId = productSelectEl.value;
+    renderCard();
+  });
+
+  function renderScopeToggle(){
+    Array.prototype.forEach.call(scopeToggleEl.querySelectorAll(".toggle-opt"), function(el){
+      el.setAttribute("data-active", el.getAttribute("data-scope") === state.randomScope ? "true" : "false");
+    });
+  }
+  scopeToggleEl.addEventListener("click", function(e){
+    var btn = e.target.closest(".toggle-opt");
+    if (!btn) return;
+    state.randomScope = btn.getAttribute("data-scope");
+    renderScopeToggle();
+  });
+
+  function isUncertain(value){
+    if (value === UNVERIFIED) return true;
+    var v = String(value).toLowerCase();
+    return v.indexOf("non trouvé") !== -1 ||
+           v.indexOf("à confirmer") !== -1 ||
+           v.indexOf("non confirmé") !== -1;
+  }
+
+  function fieldRowHtml(field, value){
+    var unverified = isUncertain(value);
+    return (
+      '<div class="data-row">' +
+        '<span class="data-label">' + field.label + '</span>' +
+        '<span class="data-value" data-unverified="' + unverified + '">' + escapeHtml(value) + "</span>" +
+      "</div>"
+    );
+  }
+
+  function escapeHtml(str){
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function renderCard(){
+    var product = getProduct(state.productId);
+    if (!product) return;
+    var cfg = CATEGORIES[product.cat];
+
+    demoBanner.hidden = product.verified;
+
+    var dataRows = cfg.fields.map(function(f){
+      return fieldRowHtml(f, product.donnees[f.key]);
+    }).join("");
+
+    var isTextUnverified = product.cestQuoi === TEXT_PLACEHOLDER;
+
+    cardBody.innerHTML =
+      '<div class="badge-row">' +
+        '<span class="cat-badge" data-cat="' + product.cat + '">' + cfg.label + "</span>" +
+      "</div>" +
+
+      '<h2 class="card-title">📋 Présentation (' + cfg.fullLabel + ")</h2>" +
+
+      '<div class="identity-line">' +
+        "<span>" + cfg.dot + " " + escapeHtml(product.nom) + "</span>" +
+        (product.nouveau ? '<span class="new-pill">🆕 récent</span>' : "") +
+      "</div>" +
+
+      '<div class="data-block">' + dataRows + "</div>" +
+
+      '<div class="section"><div class="section-heading">🔍 C\'est quoi ?</div>' +
+        '<div class="section-body' + (isTextUnverified ? " placeholder" : "") + '">' + escapeHtml(product.cestQuoi) + "</div></div>" +
+
+      '<div class="section"><div class="section-heading">✅ Pourquoi c\'est intéressant ?</div>' +
+        '<div class="section-body' + (isTextUnverified ? " placeholder" : "") + '">' + escapeHtml(product.pourquoi) + "</div></div>" +
+
+      '<div class="section"><div class="section-heading">⚠️ Ce qu\'il faut savoir</div>' +
+        '<div class="section-body' + (isTextUnverified ? " placeholder" : "") + '">' + escapeHtml(product.attention) + "</div></div>" +
+
+      '<div class="section verdict-box"><div class="section-heading">🏆 Verdict</div>' +
+        '<div class="section-body' + (isTextUnverified ? " placeholder" : "") + '">' + escapeHtml(product.verdict) + "</div></div>" +
+
+      '<div class="engage-line">💬 ' + escapeHtml(product.question) + " 👇</div>" +
+
+      '<div class="disclaimer">⚠️ Pas un conseil en investissement</div>';
+  }
+
+  function renderAll(){
+    renderTabs();
+    renderProductSelect();
+    renderScopeToggle();
+    renderCard();
+  }
+
+  // ---------------------------------------------------------------
+  // Random with session anti-repeat
+  // ---------------------------------------------------------------
+  randomBtn.addEventListener("click", function(){
+    var scope = state.randomScope; // "all" | "current"
+    var pool = scope === "all" ? PRODUCTS.slice() : productsInCat(state.cat);
+    if (pool.length <= 1){
+      if (pool.length === 1) state.productId = pool[0].id;
+      renderAll();
+      return;
+    }
+
+    var histKey = scope === "all" ? "all" : state.cat;
+    var seen = state.history[histKey];
+
+    var candidates = pool.filter(function(p){
+      return p.id !== state.productId && seen.indexOf(p.id) === -1;
+    });
+    if (candidates.length === 0){
+      // exhausted this scope's rotation: reset, but still avoid immediate repeat
+      seen.length = 0;
+      candidates = pool.filter(function(p){ return p.id !== state.productId; });
+    }
+
+    var pick = candidates[Math.floor(Math.random() * candidates.length)];
+    seen.push(pick.id);
+
+    state.cat = pick.cat;
+    state.productId = pick.id;
+    renderAll();
+  });
+
+  // ---------------------------------------------------------------
+  // Copy as plain text
+  // ---------------------------------------------------------------
+  function buildPlainText(product){
+    var cfg = CATEGORIES[product.cat];
+    var lines = [];
+    lines.push("📋 Présentation (" + cfg.fullLabel + ")");
+    lines.push("");
+    lines.push(cfg.dot + " " + product.nom + (product.nouveau ? " 🆕" : ""));
+    lines.push("");
+    cfg.fields.forEach(function(f){
+      lines.push(f.label + " : " + product.donnees[f.key]);
+    });
+    lines.push("");
+    lines.push("🔍 C'est quoi ?");
+    lines.push(product.cestQuoi);
+    lines.push("");
+    lines.push("✅ Pourquoi c'est intéressant ?");
+    lines.push(product.pourquoi);
+    lines.push("");
+    lines.push("⚠️ Ce qu'il faut savoir");
+    lines.push(product.attention);
+    lines.push("");
+    lines.push("🏆 Verdict");
+    lines.push(product.verdict);
+    lines.push("");
+    lines.push("💬 " + product.question + " 👇");
+    lines.push("");
+    lines.push("⚠️ Pas un conseil en investissement");
+    return lines.join("\n");
+  }
+
+  copyBtn.addEventListener("click", function(){
+    var product = getProduct(state.productId);
+    if (!product) return;
+    var text = buildPlainText(product);
+
+    function markCopied(){
+      var original = "📋 Copier le texte";
+      copyBtn.textContent = "✅ Copié";
+      copyBtn.setAttribute("data-copied", "true");
+      setTimeout(function(){
+        copyBtn.textContent = original;
+        copyBtn.removeAttribute("data-copied");
+      }, 1800);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(markCopied).catch(function(){
+        fallbackCopy(text, markCopied);
+      });
+    } else {
+      fallbackCopy(text, markCopied);
+    }
+  });
+
+  function fallbackCopy(text, cb){
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    cb();
+  }
+
+  renderAll();
+})();
+</script>
