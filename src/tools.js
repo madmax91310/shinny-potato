@@ -1,0 +1,44 @@
+// Registre central des outils : source unique pour le dashboard, la nav et les routes.
+// status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
+export const TOOLS = [
+  {
+    to: '/suivi-portefeuille',
+    navLabel: 'Suivi portefeuille',
+    title: 'Suivi de portefeuille',
+    icon: '📊',
+    description: "Valorisation en direct d'un portefeuille crypto / actions / ETF, allocation et historique.",
+    status: 'bientot',
+  },
+  {
+    to: '/recap-matin',
+    navLabel: 'Récap Matin',
+    title: "Récap' Matin marchés",
+    icon: '☕',
+    description: 'Mise en forme du récap matinal des marchés financiers pour publication.',
+    status: 'bientot',
+  },
+  {
+    to: '/generateur-portefeuilles',
+    navLabel: 'Générateur portefeuilles',
+    title: 'Générateur de portefeuilles',
+    icon: '🧭',
+    description: "Portefeuilles illustratifs par profil d'investisseur et niveau de risque.",
+    status: 'bientot',
+  },
+  {
+    to: '/tweets-etf',
+    navLabel: 'Tweets ETF',
+    title: 'Générateur de tweets ETF',
+    icon: '🐦',
+    description: "Tweets comparatifs d'ETF par thématique, prêts à publier.",
+    status: 'bientot',
+  },
+  {
+    to: '/lexique-financier',
+    navLabel: 'Lexique financier',
+    title: 'Fiches lexique financier',
+    icon: '📚',
+    description: 'Fiches pédagogiques de définitions de termes financiers.',
+    status: 'bientot',
+  },
+]
