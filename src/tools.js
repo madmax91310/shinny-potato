@@ -2,6 +2,14 @@
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 export const TOOLS = [
   {
+    to: '/calculateur-investissement',
+    navLabel: 'Calculateur',
+    title: 'Et si tu avais investi ?',
+    icon: '💰',
+    description: "Simule la valeur d'un investissement passé, comparé au Livret A et à l'inflation.",
+    status: 'disponible',
+  },
+  {
     to: '/recap-matin',
     navLabel: 'Récap Matin',
     title: "Récap' Matin marchés",

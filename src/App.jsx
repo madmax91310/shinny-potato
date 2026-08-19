@@ -5,12 +5,14 @@ import ComingSoon from './pages/ComingSoon'
 import EtfTweets from './pages/etf-tweets/App'
 import PortfolioGenerator from './pages/portfolio-generator/App'
 import BrokerComparator from './pages/broker-comparator/App'
+import InvestmentCalculator from './pages/investment-calculator/App'
 import { TOOLS } from './tools'
 
 const TOOL_ELEMENTS = {
   '/tweets-etf': <EtfTweets />,
   '/generateur-portefeuilles': <PortfolioGenerator />,
   '/comparatif-courtiers': <BrokerComparator />,
+  '/calculateur-investissement': <InvestmentCalculator />,
 }
 
 export default function App() {
