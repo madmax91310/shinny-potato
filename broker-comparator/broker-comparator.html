@@ -351,6 +351,8 @@
       ifu:{ rank:1, resume:'Oui' },
       liquidites:{ rank:1, resume:'Oui' },
       pointFaible:'Pas de PEA-PME, transfert PEA entrant impossible',
+      ordresMin:{ resume:'—' },
+      transfertPea:{ resume:'Entrant ❌' },
       post:{
         frais:['1€/ordre, quel que soit le montant'],
         dca:['✅ 0€ sur PEA & CTO — +7 500 titres disponibles, hebdo/bimensuel/mensuel'],
@@ -371,15 +373,17 @@
       pea:{ pea:true, pme:true, jeune:true },
       ifu:{ rank:1, resume:'Oui' },
       liquidites:{ rank:1, resume:'Oui', detail:'Livret Bourso+' },
-      pointFaible:'DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€',
+      pointFaible:'DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€, Bourses EU 2 500€',
+      ordresMin:{ resume:'100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU' },
+      transfertPea:{ resume:'Entrant ✅ / Sortant 15€/ligne (max 150€)' },
       post:{
         frais:['1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)', '⚡ Exception Boursomarkets → 0€ sur ETF iShares, OPCVM partenaires, Turbos/Warrants SG & Goldman Sachs'],
-        dca:['⚠️ 0€ de transaction — frais de gestion selon DIC — 8 fonds maison, mensuel uniquement'],
+        dca:['⚠️ 0€ de transaction — frais de gestion selon DIC — 8 fonds maison, mensuel uniquement, dès 10€/mois'],
         garde:['0€'],
         pea:'PEA ✅ / PEA-PME ✅ / PEA Jeune ✅',
         ifu:['✅ Oui'],
         liquidites:['✅ Oui (Livret Bourso+)'],
-        faibles:['DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€'],
+        faibles:['DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€, Bourses EU 2 500€'],
         verdict:'Tu veux un écosystème bancaire complet avec PEA-PME'
       }
     },
@@ -393,6 +397,8 @@
       ifu:{ rank:2, resume:'PEA uniquement' },
       liquidites:{ rank:1, resume:'Oui', detail:'CTO' },
       pointFaible:'Interface complexe, tarif fixe par défaut 3€, pas d’IFU sur CTO',
+      ordresMin:{ resume:'—' },
+      transfertPea:{ resume:'Entrant ✅' },
       post:{
         frais:['0,05% min 1,25€ max 29€ (tarif dégressif)', '⚠️ Tarif fixe par défaut : min 3€'],
         dca:['❌ Sur PEA', '✅ CTO uniquement'],
@@ -413,7 +419,9 @@
       pea:{ pea:true, pme:true, jeune:false },
       ifu:{ rank:1, resume:'Oui' },
       liquidites:{ rank:1, resume:'Oui', detail:'Livret+' },
-      pointFaible:'Clôture PEA 85€, pas de DCA, frais élevés hors Euronext (min 20€ + 30€)',
+      pointFaible:'Clôture PEA 85€, pas de DCA, frais élevés hors Euronext',
+      ordresMin:{ resume:'—' },
+      transfertPea:{ resume:'Entrant ✅ / Sortant 15€/ligne (max 150€)' },
       post:{
         frais:['0€ le 1er ordre du mois si ≤500€, puis 0,35% au-delà'],
         dca:['❌ Pas de DCA automatique'],
@@ -421,13 +429,13 @@
         pea:'PEA ✅ / PEA-PME ✅ / PEA Jeune ❌',
         ifu:['✅ Oui'],
         liquidites:['✅ Oui (Livret+)'],
-        faibles:['Clôture PEA 85€, pas de DCA, frais élevés hors Euronext (min 20€ + 30€)'],
+        faibles:['Clôture PEA 85€, pas de DCA, frais élevés hors Euronext'],
         verdict:'Tu veux un PEA + PEA-PME chez un courtier 100% en ligne établi'
       }
     },
     {
       id:'xtb', nom:'XTB', code:'XTB', color:'#5C9EAD', emoji:'⚫',
-      frais:{ rank:1, resume:'0% jusqu’à 100K€/mois', detail:'Puis 0,20% au-delà' },
+      frais:{ rank:1, resume:'0% jusqu’à 100K€/mois', detail:'Puis 0,20% au-delà (min 10€)' },
       boursomarkets:{ rank:2, resume:'Non disponible' },
       dca:{ rank:3, resume:'Non disponible' },
       garde:{ rank:1, resume:'0€' },
@@ -435,8 +443,10 @@
       ifu:{ rank:1, resume:'Oui' },
       liquidites:{ rank:1, resume:'Oui' },
       pointFaible:'Pas de DCA, transfert PEA entrant impossible',
+      ordresMin:{ resume:'—' },
+      transfertPea:{ resume:'Entrant ❌' },
       post:{
-        frais:['0% de commission jusqu’à 100K€/mois de volume, puis 0,20% au-delà'],
+        frais:['0% de commission jusqu’à 100K€/mois de volume, puis 0,20% au-delà (min 10€)'],
         dca:['❌ Pas de DCA automatique'],
         garde:['0€'],
         pea:'PEA ✅ / PEA-PME ❌ / PEA Jeune ❌',
@@ -456,6 +466,8 @@
       ifu:{ rank:1, resume:'Oui' },
       liquidites:{ rank:1, resume:'Oui', detail:'Livret A, LDDS, LEP' },
       pointFaible:'Abonnement 96€/an si <12 ordres, transfert PEA sortant 15€/ligne (max 150€)',
+      ordresMin:{ resume:'—' },
+      transfertPea:{ resume:'Sortant 15€/ligne (max 150€)' },
       post:{
         frais:['Intégral → 0,48% ≤500€ / 0,18% de 500€ à 1000€ / 0,12% au-delà', '⚡ Abonnement 96€/an si <12 ordres/an'],
         dca:['❌ Pas de DCA automatique'],
@@ -477,6 +489,8 @@
       ifu:{ rank:1, resume:'Oui' },
       liquidites:{ rank:2, resume:'Non rémunérées' },
       pointFaible:'Pas de DCA, liquidités non rémunérées, tarification par paliers',
+      ordresMin:{ resume:'—' },
+      transfertPea:{ resume:'Sortant 15€/ligne (max 150€)' },
       post:{
         frais:['0,99€ ≤500€ / 1,90€ 500-1000€ / 2,90€ 1000-2000€', '⚡ 3,80€ 2000-4400€ / 0,09% au-delà de 4 400€'],
         dca:['❌ Pas de DCA automatique'],
@@ -498,6 +512,8 @@
       ifu:{ rank:1, resume:'Oui' },
       liquidites:{ rank:1, resume:'Oui' },
       pointFaible:'DCA pas sur PEA, tarif minimum 2€/ordre',
+      ordresMin:{ resume:'—' },
+      transfertPea:{ resume:'Entrant ✅ — remboursé jusqu’au 31/08/2026' },
       post:{
         frais:['À partir de 2€, plafonné à 0,5% sur PEA', '⚡ Promo → 0€ sur 70 actions UE (jusqu’au 31/12/2026)'],
         dca:['❌ Sur PEA', '✅ CTO — PEPS 0€, ETF & fonds, mensuel'],
@@ -620,6 +636,36 @@
     return ranks.length ? Math.min(...ranks) : null;
   }
 
+  function getRow(key){ return ROWS.find(r => r.key === key); }
+
+  function renderRankedRow(key, brokers, n){
+    const row = getRow(key);
+    const best = rankRow(row, brokers);
+    let html = '<div class="row"><div class="row-label">'+row.icon+' '+row.label+'</div>';
+    html += '<div class="cells" style="grid-template-columns:repeat('+n+',1fr)">';
+    brokers.forEach(b => {
+      const c = b[row.key];
+      const isBest = best !== null && c.rank === best;
+      html += '<div class="cell'+(isBest?' best':'')+'">';
+      html += '<div class="resume">'+c.resume+'</div>';
+      if(c.detail) html += '<div class="detail">'+c.detail+'</div>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+    return html;
+  }
+
+  function renderTextRow(icon, label, key, brokers, n){
+    let html = '<div class="row"><div class="row-label">'+icon+' '+label+'</div>';
+    html += '<div class="cells" style="grid-template-columns:repeat('+n+',1fr)">';
+    brokers.forEach(b => {
+      const c = b[key];
+      html += '<div class="cell"><div class="resume">'+(c ? c.resume : '—')+'</div></div>';
+    });
+    html += '</div></div>';
+    return html;
+  }
+
   function renderCard(){
     if(selected.length < 2){
       card.innerHTML = '<div class="empty-state">Sélectionne au moins 2 courtiers pour générer le comparatif.</div>';
@@ -642,21 +688,12 @@
     });
     html += '</div>';
 
-    // ranked rows
-    ROWS.forEach(row => {
-      const best = rankRow(row, brokers);
-      html += '<div class="row"><div class="row-label">'+row.icon+' '+row.label+'</div>';
-      html += '<div class="cells" style="grid-template-columns:repeat('+n+',1fr)">';
-      brokers.forEach(b => {
-        const c = b[row.key];
-        const isBest = best !== null && c.rank === best;
-        html += '<div class="cell'+(isBest?' best':'')+'">';
-        html += '<div class="resume">'+c.resume+'</div>';
-        if(c.detail) html += '<div class="detail">'+c.detail+'</div>';
-        html += '</div>';
-      });
-      html += '</div></div>';
-    });
+    // rangées classées + rangées informatives, dans l'ordre du tableau
+    html += renderRankedRow('frais', brokers, n);
+    html += renderRankedRow('boursomarkets', brokers, n);
+    html += renderTextRow('📏', 'Ordres min. PEA', 'ordresMin', brokers, n);
+    html += renderRankedRow('dca', brokers, n);
+    html += renderRankedRow('garde', brokers, n);
 
     // PEA / PEA-PME row (compound, informational)
     html += '<div class="row"><div class="row-label">🌱 PEA / PEA-PME / PEA Jeune</div>';
@@ -671,6 +708,10 @@
       html += '<div class="pea-pills">'+pill(p.pea,'PEA')+pill(p.pme,'PME')+pill(p.jeune,'Jeune')+'</div>';
     });
     html += '</div></div>';
+
+    html += renderRankedRow('ifu', brokers, n);
+    html += renderRankedRow('liquidites', brokers, n);
+    html += renderTextRow('🔄', 'Transfert PEA', 'transfertPea', brokers, n);
 
     // Point faible
     html += '<div class="row"><div class="row-label">⚠️ Point faible</div>';

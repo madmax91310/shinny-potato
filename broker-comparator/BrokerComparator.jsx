@@ -15,6 +15,8 @@ const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui" },
     pointFaible: "Pas de PEA-PME, transfert PEA entrant impossible",
+    ordresMin: { resume: "—" },
+    transfertPea: { resume: "Entrant ❌" },
     post: {
       frais: ["1€/ordre, quel que soit le montant"],
       dca: ["✅ 0€ sur PEA & CTO — +7 500 titres disponibles, hebdo/bimensuel/mensuel"],
@@ -35,15 +37,17 @@ const BROKERS = [
     pea: { pea: true, pme: true, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret Bourso+" },
-    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€",
+    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€, Bourses EU 2 500€",
+    ordresMin: { resume: "100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU" },
+    transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)", "⚡ Exception Boursomarkets → 0€ sur ETF iShares, OPCVM partenaires, Turbos/Warrants SG & Goldman Sachs"],
-      dca: ["⚠️ 0€ de transaction — frais de gestion selon DIC — 8 fonds maison, mensuel uniquement"],
+      dca: ["⚠️ 0€ de transaction — frais de gestion selon DIC — 8 fonds maison, mensuel uniquement, dès 10€/mois"],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret Bourso+)"],
-      faibles: ["DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€"],
+      faibles: ["DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€, Bourses EU 2 500€"],
       verdict: "Tu veux un écosystème bancaire complet avec PEA-PME",
     },
   },
@@ -57,6 +61,8 @@ const BROKERS = [
     ifu: { rank: 2, resume: "PEA uniquement" },
     liquidites: { rank: 1, resume: "Oui", detail: "CTO" },
     pointFaible: "Interface complexe, tarif fixe par défaut 3€, pas d’IFU sur CTO",
+    ordresMin: { resume: "—" },
+    transfertPea: { resume: "Entrant ✅" },
     post: {
       frais: ["0,05% min 1,25€ max 29€ (tarif dégressif)", "⚠️ Tarif fixe par défaut : min 3€"],
       dca: ["❌ Sur PEA", "✅ CTO uniquement"],
@@ -77,7 +83,9 @@ const BROKERS = [
     pea: { pea: true, pme: true, jeune: false },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret+" },
-    pointFaible: "Clôture PEA 85€, pas de DCA, frais élevés hors Euronext (min 20€ + 30€)",
+    pointFaible: "Clôture PEA 85€, pas de DCA, frais élevés hors Euronext",
+    ordresMin: { resume: "—" },
+    transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["0€ le 1er ordre du mois si ≤500€, puis 0,35% au-delà"],
       dca: ["❌ Pas de DCA automatique"],
@@ -85,13 +93,13 @@ const BROKERS = [
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret+)"],
-      faibles: ["Clôture PEA 85€, pas de DCA, frais élevés hors Euronext (min 20€ + 30€)"],
+      faibles: ["Clôture PEA 85€, pas de DCA, frais élevés hors Euronext"],
       verdict: "Tu veux un PEA + PEA-PME chez un courtier 100% en ligne établi",
     },
   },
   {
     id: "xtb", nom: "XTB", code: "XTB", color: "#5C9EAD", emoji: "⚫",
-    frais: { rank: 1, resume: "0% jusqu’à 100K€/mois", detail: "Puis 0,20% au-delà" },
+    frais: { rank: 1, resume: "0% jusqu’à 100K€/mois", detail: "Puis 0,20% au-delà (min 10€)" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 3, resume: "Non disponible" },
     garde: { rank: 1, resume: "0€" },
@@ -99,8 +107,10 @@ const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui" },
     pointFaible: "Pas de DCA, transfert PEA entrant impossible",
+    ordresMin: { resume: "—" },
+    transfertPea: { resume: "Entrant ❌" },
     post: {
-      frais: ["0% de commission jusqu’à 100K€/mois de volume, puis 0,20% au-delà"],
+      frais: ["0% de commission jusqu’à 100K€/mois de volume, puis 0,20% au-delà (min 10€)"],
       dca: ["❌ Pas de DCA automatique"],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ❌ / PEA Jeune ❌",
@@ -120,6 +130,8 @@ const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret A, LDDS, LEP" },
     pointFaible: "Abonnement 96€/an si <12 ordres, transfert PEA sortant 15€/ligne (max 150€)",
+    ordresMin: { resume: "—" },
+    transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["Intégral → 0,48% ≤500€ / 0,18% de 500€ à 1000€ / 0,12% au-delà", "⚡ Abonnement 96€/an si <12 ordres/an"],
       dca: ["❌ Pas de DCA automatique"],
@@ -141,6 +153,8 @@ const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 2, resume: "Non rémunérées" },
     pointFaible: "Pas de DCA, liquidités non rémunérées, tarification par paliers",
+    ordresMin: { resume: "—" },
+    transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["0,99€ ≤500€ / 1,90€ 500-1000€ / 2,90€ 1000-2000€", "⚡ 3,80€ 2000-4400€ / 0,09% au-delà de 4 400€"],
       dca: ["❌ Pas de DCA automatique"],
@@ -162,6 +176,8 @@ const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui" },
     pointFaible: "DCA pas sur PEA, tarif minimum 2€/ordre",
+    ordresMin: { resume: "—" },
+    transfertPea: { resume: "Entrant ✅ — remboursé jusqu’au 31/08/2026" },
     post: {
       frais: ["À partir de 2€, plafonné à 0,5% sur PEA", "⚡ Promo → 0€ sur 70 actions UE (jusqu’au 31/12/2026)"],
       dca: ["❌ Sur PEA", "✅ CTO — PEPS 0€, ETF & fonds, mensuel"],
@@ -259,6 +275,45 @@ function rankRow(row, brokers) {
   return ranks.length ? Math.min(...ranks) : null;
 }
 
+const getRow = (key) => ROWS.find((r) => r.key === key);
+
+function RankedRow({ rowKey, brokers, gridStyle }) {
+  const row = getRow(rowKey);
+  const best = rankRow(row, brokers);
+  return (
+    <div className="row">
+      <div className="row-label">{row.icon} {row.label}</div>
+      <div className="cells" style={gridStyle}>
+        {brokers.map((b) => {
+          const c = b[row.key];
+          const isBest = best !== null && c.rank === best;
+          return (
+            <div className={"cell" + (isBest ? " best" : "")} key={b.id}>
+              <div className="resume">{c.resume}</div>
+              {c.detail && <div className="detail">{c.detail}</div>}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function TextRow({ icon, label, dataKey, brokers, gridStyle }) {
+  return (
+    <div className="row">
+      <div className="row-label">{icon} {label}</div>
+      <div className="cells" style={gridStyle}>
+        {brokers.map((b) => (
+          <div className="cell" key={b.id}>
+            <div className="resume">{b[dataKey] ? b[dataKey].resume : "—"}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const fmtDate = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" }).format(new Date());
 
 function PeaPill({ val, label }) {
@@ -305,26 +360,11 @@ function ComparisonCard({ selected }) {
         ))}
       </div>
 
-      {ROWS.map((row) => {
-        const best = rankRow(row, brokers);
-        return (
-          <div className="row" key={row.key}>
-            <div className="row-label">{row.icon} {row.label}</div>
-            <div className="cells" style={gridStyle}>
-              {brokers.map((b) => {
-                const c = b[row.key];
-                const isBest = best !== null && c.rank === best;
-                return (
-                  <div className={"cell" + (isBest ? " best" : "")} key={b.id}>
-                    <div className="resume">{c.resume}</div>
-                    {c.detail && <div className="detail">{c.detail}</div>}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
+      <RankedRow rowKey="frais" brokers={brokers} gridStyle={gridStyle} />
+      <RankedRow rowKey="boursomarkets" brokers={brokers} gridStyle={gridStyle} />
+      <TextRow icon="📏" label="Ordres min. PEA" dataKey="ordresMin" brokers={brokers} gridStyle={gridStyle} />
+      <RankedRow rowKey="dca" brokers={brokers} gridStyle={gridStyle} />
+      <RankedRow rowKey="garde" brokers={brokers} gridStyle={gridStyle} />
 
       <div className="row">
         <div className="row-label">🌱 PEA / PEA-PME / PEA Jeune</div>
@@ -338,6 +378,10 @@ function ComparisonCard({ selected }) {
           ))}
         </div>
       </div>
+
+      <RankedRow rowKey="ifu" brokers={brokers} gridStyle={gridStyle} />
+      <RankedRow rowKey="liquidites" brokers={brokers} gridStyle={gridStyle} />
+      <TextRow icon="🔄" label="Transfert PEA" dataKey="transfertPea" brokers={brokers} gridStyle={gridStyle} />
 
       <div className="row">
         <div className="row-label">⚠️ Point faible</div>
