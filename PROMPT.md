@@ -68,6 +68,8 @@ Bonne journée à tous ! ☕
 - Phrases sans verbe
 - Listes sans contexte — chaque bullet doit expliquer pourquoi c'est important
 - Emojis excessifs hors format
+- Mener un bullet par une simple performance d'indice (ex. "le CAC 40 a perdu X%") — préférer une info généraliste et concrète (une entreprise, un événement, une décision) à un chiffre de clôture brut. Les prix d'actifs (or, pétrole, Bitcoin) restent normaux, ce sont les points d'indices actions qui sont à éviter en tête de bullet
+- Désigner vaguement une source de donnée ("un indice représentatif de...") — toujours nommer précisément de quoi on parle (le nom de l'indice, de l'entreprise, de l'organisme) pour que le lecteur comprenne sans effort
 
 ## Contraintes techniques
 
