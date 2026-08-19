@@ -33,4 +33,12 @@ export const TOOLS = [
     description: 'Fiches pédagogiques de définitions de termes financiers.',
     status: 'bientot',
   },
+  {
+    to: '/comparatif-courtiers',
+    navLabel: 'Comparatif courtiers',
+    title: 'Comparatif courtiers',
+    icon: '⚖️',
+    description: 'Duels de courtiers en bourse (frais, PEA, DCA) prêts à publier.',
+    status: 'disponible',
+  },
 ]
