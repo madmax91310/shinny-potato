@@ -47,7 +47,7 @@ export const TOOLS = [
     title: 'Fiches lexique financier',
     icon: '📚',
     description: 'Fiches pédagogiques de définitions de termes financiers.',
-    status: 'bientot',
+    status: 'disponible',
   },
   {
     to: '/comparatif-courtiers',
