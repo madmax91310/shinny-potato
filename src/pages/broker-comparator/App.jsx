@@ -16,6 +16,49 @@ function PeaPill({ val, label }) {
   )
 }
 
+const getRow = (key) => ROWS.find((r) => r.key === key)
+
+function RankedRow({ rowKey, brokers, gridStyle }) {
+  const row = getRow(rowKey)
+  const best = rankRow(row, brokers)
+  return (
+    <div className="bc-row">
+      <div className="bc-row-label">
+        {row.icon} {row.label}
+      </div>
+      <div className="bc-cells" style={gridStyle}>
+        {brokers.map((b) => {
+          const c = b[row.key]
+          const isBest = best !== null && c.rank === best
+          return (
+            <div className={`bc-cell${isBest ? ' best' : ''}`} key={b.id}>
+              <div className="bc-resume">{c.resume}</div>
+              {c.detail && <div className="bc-detail">{c.detail}</div>}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function TextRow({ icon, label, dataKey, brokers, gridStyle }) {
+  return (
+    <div className="bc-row">
+      <div className="bc-row-label">
+        {icon} {label}
+      </div>
+      <div className="bc-cells" style={gridStyle}>
+        {brokers.map((b) => (
+          <div className="bc-cell" key={b.id}>
+            <div className="bc-resume">{b[dataKey] ? b[dataKey].resume : '—'}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function ComparisonCard({ selected }) {
   if (selected.length < 2) {
     return (
@@ -58,28 +101,11 @@ function ComparisonCard({ selected }) {
         ))}
       </div>
 
-      {ROWS.map((row) => {
-        const best = rankRow(row, brokers)
-        return (
-          <div className="bc-row" key={row.key}>
-            <div className="bc-row-label">
-              {row.icon} {row.label}
-            </div>
-            <div className="bc-cells" style={gridStyle}>
-              {brokers.map((b) => {
-                const c = b[row.key]
-                const isBest = best !== null && c.rank === best
-                return (
-                  <div className={`bc-cell${isBest ? ' best' : ''}`} key={b.id}>
-                    <div className="bc-resume">{c.resume}</div>
-                    {c.detail && <div className="bc-detail">{c.detail}</div>}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        )
-      })}
+      <RankedRow rowKey="frais" brokers={brokers} gridStyle={gridStyle} />
+      <RankedRow rowKey="boursomarkets" brokers={brokers} gridStyle={gridStyle} />
+      <TextRow icon="📏" label="Ordres min. PEA" dataKey="ordresMin" brokers={brokers} gridStyle={gridStyle} />
+      <RankedRow rowKey="dca" brokers={brokers} gridStyle={gridStyle} />
+      <RankedRow rowKey="garde" brokers={brokers} gridStyle={gridStyle} />
 
       <div className="bc-row">
         <div className="bc-row-label">🌱 PEA / PEA-PME / PEA Jeune</div>
@@ -93,6 +119,10 @@ function ComparisonCard({ selected }) {
           ))}
         </div>
       </div>
+
+      <RankedRow rowKey="ifu" brokers={brokers} gridStyle={gridStyle} />
+      <RankedRow rowKey="liquidites" brokers={brokers} gridStyle={gridStyle} />
+      <TextRow icon="🔄" label="Transfert PEA" dataKey="transfertPea" brokers={brokers} gridStyle={gridStyle} />
 
       <div className="bc-row">
         <div className="bc-row-label">⚠️ Point faible</div>
