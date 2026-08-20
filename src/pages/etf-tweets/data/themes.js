@@ -45,7 +45,7 @@ export const DEFAULT_THEMES = [
     hookAction: 'investir sur les plus grandes entreprises mondiales',
     hookDilemme: 'quel ETF World choisir',
     transition:
-      'Il existe plusieurs ETF pour capter la croissance mondiale. Voici 3 références à connaître :',
+      'Il existe plusieurs ETF pour capter la croissance mondiale. Voici 4 références à connaître :',
     etfs: [
       createEtf({
         nom: 'iShares Core MSCI World UCITS ETF',
@@ -68,10 +68,16 @@ export const DEFAULT_THEMES = [
         encours: '15,7 Md€',
         differenciateur: 'le moins cher, développés + émergents, CTO',
       }),
+      createEtf({
+        nom: 'Amundi PEA Monde (MSCI World) UCITS ETF',
+        isin: 'FR001400U5Q4',
+        frais: '0,20',
+        encours: '~378 M€',
+        differenciateur: 'seul MSCI World éligible PEA, réplication synthétique',
+      }),
     ],
     cloture:
-      'Le choix ne se joue pas sur la performance passée, mais sur les frais, la composition et l’exposition qui collent à TA stratégie.',
-    eligibilite: 'CTO uniquement',
+      'Le choix ne se joue pas sur la performance passée, mais sur les frais, la composition et l’éligibilité PEA qui collent à TA stratégie.',
   }),
   createTheme({
     id: 'usa',
@@ -112,7 +118,7 @@ export const DEFAULT_THEMES = [
     nom: 'Europe',
     emoji: '🇪🇺',
     hookAction: 'diversifier ton portefeuille sur les valeurs européennes',
-    hookDilemme: 'quel indice Europe choisir (MSCI Europe ou Stoxx 600)',
+    hookDilemme: 'quel indice Europe choisir (MSCI Europe, Euro Stoxx 50 ou Stoxx 600)',
     transition:
       'Le marché européen reste sous-pondéré dans beaucoup de portefeuilles. Voici 3 trackers pour s’y exposer :',
     etfs: [
@@ -124,11 +130,11 @@ export const DEFAULT_THEMES = [
         differenciateur: 'le plus gros MSCI Europe, CTO uniquement',
       }),
       createEtf({
-        nom: 'Amundi Core STOXX Europe 600 UCITS ETF',
-        isin: 'LU0908500753',
-        frais: '0,07',
-        encours: '~20,8 Md€',
-        differenciateur: 'frais les plus bas du segment, CTO',
+        nom: 'iShares Core EURO STOXX 50 UCITS ETF',
+        isin: 'IE00B53L3W79',
+        frais: '0,10',
+        encours: '~7,97 Md€',
+        differenciateur: 'le plus liquide Euro Stoxx 50, 50 valeurs zone euro, PEA',
       }),
       createEtf({
         nom: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF',
@@ -139,7 +145,7 @@ export const DEFAULT_THEMES = [
       }),
     ],
     cloture:
-      'MSCI Europe ou Stoxx 600, le nombre de valeurs et l’éligibilité PEA changent tout selon ton enveloppe fiscale.',
+      'MSCI Europe, Euro Stoxx 50 ou Stoxx 600 : le nombre de valeurs et l’éligibilité PEA changent tout selon ton enveloppe fiscale.',
   }),
   createTheme({
     id: 'tech-europe',
