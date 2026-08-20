@@ -447,51 +447,50 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 18 août 2026",
-    generatedAt: "Généré le 19 août 2026",
+    sessionDate: "Séance du 19 août 2026",
+    generatedAt: "Généré le 20 août 2026",
     stats: [
-      { label: "EDF Gravelines", value: "reconnectée", delta: "2 réacteurs/3", dir: "up" },
-      { label: "SOX (semi-cond.)", value: "indice", delta: "-5,5%", dir: "down" },
-      { label: "Bitcoin", value: "64 700 $", delta: "stable", dir: "flat" },
-      { label: "Brent", value: ">91 $", delta: "+4,5%, 3 séances", dir: "up" },
-      { label: "Or (once)", value: "≈4 330 $", delta: "-2%, veille", dir: "down" },
-      { label: "Trump/Oman", value: "menace", delta: "territoire US ?", dir: "down" }
+      { label: "Moderna", value: "forte hausse", delta: "vaccin mélanome", dir: "up" },
+      { label: "Bitcoin", value: "≈69 000 $", delta: "pic à 70 000 $", dir: "up" },
+      { label: "Brent", value: "<92 $", delta: "+5%, 4 séances", dir: "up" },
+      { label: "Or (once)", value: "haut depuis juin", delta: "yields en baisse", dir: "up" },
+      { label: "UST 30 ans", value: "5,18%", delta: "-10 pdb", dir: "down" },
+      { label: "Dollar (DXY)", value: "plus bas", delta: "3 mois", dir: "down" }
     ],
     bullets: [
       {
-        emoji: "⚛️",
+        emoji: "💊",
         tag: "Marchés actions",
-        text: "Deux des trois réacteurs de la centrale nucléaire EDF de Gravelines, à l'arrêt depuis la semaine dernière après un afflux massif de méduses dans le circuit de refroidissement, ont été reconnectés au réseau électrique."
+        text: "Moderna a bondi en Bourse après l'annonce de résultats positifs pour Intismeran, son vaccin thérapeutique contre le mélanome développé avec Merck, qui a réduit le risque de récidive et de propagation lors d'un essai clinique portant sur plus de 1 100 patients ; le secteur biotechnologique a atteint un niveau record dans la foulée."
       },
       {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Le délai de 60 jours fixé par Washington et Téhéran pour conclure un accord de paix a expiré lundi sans résultat, les deux camps semblant plus éloignés qu'au moment de leur protocole d'accord de juin, Donald Trump ayant de nouveau évoqué l'idée de faire du détroit d'Ormuz un territoire américain."
+        text: "Axios a révélé qu'un couloir maritime discret fait transiter environ 10 millions de barils de pétrole par jour hors du détroit d'Ormuz depuis plusieurs semaines, via 15 à 20 pétroliers empruntant chaque nuit un itinéraire sécurisé au large d'Oman, alors que la guerre avec l'Iran approche les six mois sans accord de paix."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin s'est maintenu autour de 64 700 dollars, toujours à environ 48% de son record historique d'octobre 2025, alors que VanEck estime que la correction pourrait toucher à sa fin, huit de ses douze signaux de capitulation étant déjà activés."
+        text: "Le Bitcoin a brièvement atteint 70 000 dollars pour la première fois depuis juin avant d'être rejeté sur sa moyenne mobile à 200 jours, un rallye porté par l'annonce du Trésor américain de doubler ses rachats d'obligations et par la pression de Donald Trump sur le Congrès pour faire adopter une loi encadrant les marchés crypto."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent a dépassé les 91 dollars le baril, en hausse de 4,5% sur trois séances, et le WTI évoluait près de 85 dollars, portés par une quatrième journée de hausse consécutive sur fond d'impasse américano-iranienne, tandis que l'or campait autour de 4 330 dollars l'once après avoir cédé près de 2% la veille sous l'effet d'un dégagement obligataire."
+        text: "Le Brent est resté sous les 92 dollars le baril après un gain de plus de 5% sur quatre séances, tandis que l'or a grimpé à son plus haut niveau depuis début juin, porté par le repli des rendements obligataires consécutif à l'annonce du Trésor américain."
       },
       {
-        emoji: "🖥️",
+        emoji: "🏦",
         tag: "Fait marquant",
-        text: "L'indice Philadelphia Semiconductor (SOX), qui regroupe les principaux fabricants de puces comme Nvidia, AMD et Broadcom, a chuté de 5,5% à Wall Street, la remontée des rendements obligataires ravivant les inquiétudes sur les valorisations technologiques."
+        text: "Le Trésor américain a annoncé un doublement de ses rachats d'obligations à longue échéance, un geste interprété comme une volonté de faire baisser le coût de l'emprunt, qui a fait chuter le rendement des bons à 30 ans de 10 points de base à 5,18% et propulsé la majorité des valeurs du S&P 500."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-5c4e67bdc8eedc1d7bb016a161ac8076" },
-      { outlet: "Axios", title: "Trump torches allies as Iran exposes limits of hard power", url: "https://www.axios.com/2026/08/18/trump-south-korea-allies-iran-war" },
-      { outlet: "CoinDesk", title: "Live updates: Bitcoin holds $64,000 as surging yields and oil drain risk appetite", url: "https://www.coindesk.com/tech/2026/08/18/live-updates-bitcoin-holds-usd64-000-as-surging-yields-and-oil-drain-risk-appetite" },
-      { outlet: "The Block", title: "Bitcoin correction may be nearing an end with 8 of 12 capitulation signals flashing, VanEck says", url: "https://www.theblock.co/news/markets/2026-08-18-bitcoin-correction-may-nearing-end-8-capitulation-signals-flashing-vaneck-412130" },
-      { outlet: "Bloomberg", title: "Oil Advances for Fourth Day With US and Iran Locked in Stalemate", url: "https://www.bloomberg.com/news/articles/2026-08-18/latest-oil-market-news-and-analysis-for-aug-19" },
-      { outlet: "Bloomberg", title: "Gold Holds Losses as Bond Selloff, Hormuz Limbo Weigh on Outlook", url: "https://www.bloomberg.com/news/articles/2026-08-18/gold-holds-losses-as-bond-selloff-hormuz-limbo-weigh-on-outlook" },
-      { outlet: "Bloomberg", title: "Stock Market Today: Dow, S&P Live Updates for August 18", url: "https://www.bloomberg.com/news/articles/2026-08-17/stock-market-today-dow-s-p-live-updates" }
+      { outlet: "Boursorama", title: "Moderna en forte hausse après qu'un vaccin contre le mélanome, développé en partenariat avec Merck, a réduit le taux de récidive lors d'un essai clinique à grande échelle", url: "https://www.boursorama.com/bourse/actualites/moderna-en-forte-hausse-apres-qu-un-vaccin-contre-le-melanome-developpe-en-partenariat-avec-merck-a-reduit-le-taux-de-recidive-lors-d-un-essai-clinique-a-grande-echelle-d914d9c22a4682e6b71d0e2d49c0de6e" },
+      { outlet: "Axios", title: "U.S. conducting stealth operation to transport oil through Hormuz", url: "https://www.axios.com/2026/08/19/hormuz-iran-oil-gulf-trump" },
+      { outlet: "CoinDesk", title: "Bitcoin briefly hits $70,000 for the first time since June. Here is why", url: "https://www.coindesk.com/markets/2026/08/19/bitcoin-briefly-hits-usd70-000-for-the-first-time-since-june-here-is-why" },
+      { outlet: "The Block", title: "Bitcoin hits $69,000, ether jumps 10% as Treasury buybacks, SEC crypto proposal fuel market rally", url: "https://www.theblock.co/news/markets/2026-08-19-bitcoin-69000-ether-jumps-treasury-buybacks-sec-crypto-proposal-fuel-market-rally-412248" },
+      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for Aug. 19", url: "https://www.bloomberg.com/news/articles/2026-08-19/latest-oil-market-news-and-analysis-for-aug-19" },
+      { outlet: "Bloomberg", title: "Stock Market Today: Dow, S&P Live Updates for August 20", url: "https://www.bloomberg.com/news/articles/2026-08-19/stock-market-today-dow-s-p-live-updates" }
     ]
   };
 
