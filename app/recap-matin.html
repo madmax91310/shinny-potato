@@ -447,50 +447,49 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 19 août 2026",
-    generatedAt: "Généré le 20 août 2026",
+    sessionDate: "Séance du 20 août 2026",
+    generatedAt: "Généré le 21 août 2026",
     stats: [
-      { label: "Moderna", value: "forte hausse", delta: "vaccin mélanome", dir: "up" },
-      { label: "Bitcoin", value: "≈69 000 $", delta: "pic à 70 000 $", dir: "up" },
-      { label: "Brent", value: "<92 $", delta: "+5%, 4 séances", dir: "up" },
-      { label: "Or (once)", value: "haut depuis juin", delta: "yields en baisse", dir: "up" },
-      { label: "UST 30 ans", value: "5,18%", delta: "-10 pdb", dir: "down" },
-      { label: "Dollar (DXY)", value: "plus bas", delta: "3 mois", dir: "down" }
+      { label: "Walmart (WMT)", value: "forte baisse", delta: "pire depuis 2022", dir: "down" },
+      { label: "Bitcoin", value: "75 500 $", delta: "+~9%, 24h", dir: "up" },
+      { label: "Shorts BTC liquidés", value: "≈3 Md$", delta: "24h", dir: "up" },
+      { label: "Brent", value: ">93 $", delta: "+5%, semaine", dir: "up" },
+      { label: "WTI", value: "≈88 $", delta: "clôture", dir: "up" },
+      { label: "Rendements US", value: "en hausse", delta: "rallye essoufflé", dir: "up" }
     ],
     bullets: [
       {
-        emoji: "💊",
+        emoji: "🛒",
         tag: "Marchés actions",
-        text: "Moderna a bondi en Bourse après l'annonce de résultats positifs pour Intismeran, son vaccin thérapeutique contre le mélanome développé avec Merck, qui a réduit le risque de récidive et de propagation lors d'un essai clinique portant sur plus de 1 100 patients ; le secteur biotechnologique a atteint un niveau record dans la foulée."
+        text: "Walmart a chuté de la manière la plus marquée depuis 2022 après la publication de ventes décevantes, pesant sur le sentiment des investisseurs à Wall Street."
       },
       {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Axios a révélé qu'un couloir maritime discret fait transiter environ 10 millions de barils de pétrole par jour hors du détroit d'Ormuz depuis plusieurs semaines, via 15 à 20 pétroliers empruntant chaque nuit un itinéraire sécurisé au large d'Oman, alors que la guerre avec l'Iran approche les six mois sans accord de paix."
+        text: "Donald Trump a menacé d'« écraser » l'économie iranienne, assombrissant les perspectives d'un accord de paix après près de six mois de conflit."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin a brièvement atteint 70 000 dollars pour la première fois depuis juin avant d'être rejeté sur sa moyenne mobile à 200 jours, un rallye porté par l'annonce du Trésor américain de doubler ses rachats d'obligations et par la pression de Donald Trump sur le Congrès pour faire adopter une loi encadrant les marchés crypto."
+        text: "Le Bitcoin a franchi les 75 500 dollars, son plus haut niveau en plus de trois mois, avec un bond de près de 9% en 24 heures qui a liquidé environ 3 milliards de dollars de positions vendeuses, même si certains analystes jugent ce rallye prématuré."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent est resté sous les 92 dollars le baril après un gain de plus de 5% sur quatre séances, tandis que l'or a grimpé à son plus haut niveau depuis début juin, porté par le repli des rendements obligataires consécutif à l'annonce du Trésor américain."
+        text: "Le pétrole s'est achevé près de 88 dollars le baril tandis que le Brent se dirigeait vers une progression hebdomadaire de plus de 5%, porté par la menace américaine d'étouffer l'économie iranienne."
       },
       {
         emoji: "🏦",
         tag: "Fait marquant",
-        text: "Le Trésor américain a annoncé un doublement de ses rachats d'obligations à longue échéance, un geste interprété comme une volonté de faire baisser le coût de l'emprunt, qui a fait chuter le rendement des bons à 30 ans de 10 points de base à 5,18% et propulsé la majorité des valeurs du S&P 500."
+        text: "Le rallye obligataire déclenché mercredi par l'annonce du Trésor américain s'est essoufflé jeudi, les investisseurs jugeant qu'il ne s'agissait que d'un palliatif de court terme, ce qui a pesé sur les actions américaines tandis que les rendements repartaient à la hausse."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Moderna en forte hausse après qu'un vaccin contre le mélanome, développé en partenariat avec Merck, a réduit le taux de récidive lors d'un essai clinique à grande échelle", url: "https://www.boursorama.com/bourse/actualites/moderna-en-forte-hausse-apres-qu-un-vaccin-contre-le-melanome-developpe-en-partenariat-avec-merck-a-reduit-le-taux-de-recidive-lors-d-un-essai-clinique-a-grande-echelle-d914d9c22a4682e6b71d0e2d49c0de6e" },
-      { outlet: "Axios", title: "U.S. conducting stealth operation to transport oil through Hormuz", url: "https://www.axios.com/2026/08/19/hormuz-iran-oil-gulf-trump" },
-      { outlet: "CoinDesk", title: "Bitcoin briefly hits $70,000 for the first time since June. Here is why", url: "https://www.coindesk.com/markets/2026/08/19/bitcoin-briefly-hits-usd70-000-for-the-first-time-since-june-here-is-why" },
-      { outlet: "The Block", title: "Bitcoin hits $69,000, ether jumps 10% as Treasury buybacks, SEC crypto proposal fuel market rally", url: "https://www.theblock.co/news/markets/2026-08-19-bitcoin-69000-ether-jumps-treasury-buybacks-sec-crypto-proposal-fuel-market-rally-412248" },
-      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for Aug. 19", url: "https://www.bloomberg.com/news/articles/2026-08-19/latest-oil-market-news-and-analysis-for-aug-19" },
-      { outlet: "Bloomberg", title: "Stock Market Today: Dow, S&P Live Updates for August 20", url: "https://www.bloomberg.com/news/articles/2026-08-19/stock-market-today-dow-s-p-live-updates" }
+      { outlet: "Bloomberg", title: "Stock Market Today: Dow, S&P Live Updates for August 21", url: "https://www.bloomberg.com/news/articles/2026-08-20/stock-market-today-dow-s-p-live-updates" },
+      { outlet: "Bloomberg", title: "Wall Street Isn't Buying Bessent Fix: Evening Briefing Americas", url: "https://www.bloomberg.com/news/newsletters/2026-08-20/wall-street-isn-t-buying-bessent-fix-evening-briefing-americas" },
+      { outlet: "The Block", title: "Bitcoin breaks through $75,500 while analyst calls current rally 'premature'", url: "https://www.theblock.co/news/markets/2026-08-20-bitcoin-breaks-through-75500-412404" },
+      { outlet: "CoinDesk", title: "BTC price breaks out of six-week range to top $71,000. $3 billion in shorts wiped out", url: "https://www.coindesk.com/markets/2026/08/20/bitcoin-breaks-out-of-six-week-range-tops-usd71-000-as-usd3-billion-in-shorts-get-wiped-out" },
+      { outlet: "Bloomberg", title: "Oil Set for Weekly Surge as US Seeks to Throttle Iran's Economy", url: "https://www.bloomberg.com/news/articles/2026-08-20/latest-oil-market-news-and-analysis-for-aug-21" }
     ]
   };
 
