@@ -33,8 +33,9 @@ Recherche automatiquement sur les sources fiables listées ci-dessous les princi
 ## Format du tweet
 
 ```
+Bonjour à tous ☕
+
 Que s'est-il passé hier sur les marchés ? 👇
-C'est le Récap' Matin 👇
 
 [emoji drapeau ou thématique] [News 1 — marchés actions, sourcée]
 
@@ -46,7 +47,7 @@ C'est le Récap' Matin 👇
 
 [emoji] [News 5 — fait marquant du jour, sourcé]
 
-Bonne journée à tous ! ☕
+Bonne journée à tous ! 👋
 ```
 
 ## Règles d'écriture strictes
@@ -76,5 +77,5 @@ Bonne journée à tous ! ☕
 - Vérifie systématiquement chaque information sur les sources listées avant de l'inclure
 - Si une donnée de marché est indisponible, ne pas l'inventer
 - Maximum 6 bullets pour rester lisible sur mobile
-- Toujours terminer par "Bonne journée à tous ! ☕"
-- Toujours commencer par "Que s'est-il passé hier sur les marchés ? 👇"
+- Toujours commencer par "Bonjour à tous ☕" puis "Que s'est-il passé hier sur les marchés ? 👇"
+- Toujours terminer par "Bonne journée à tous ! 👋"

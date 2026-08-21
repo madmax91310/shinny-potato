@@ -418,9 +418,10 @@
       <span class="char-count" id="charCount">0 caractères</span>
     </div>
     <div class="tweet-body">
+      <p class="tweet-line intro">Bonjour à tous ☕</p>
       <p class="tweet-line intro">Que s'est-il passé hier sur les marchés&nbsp;? 👇</p>
       <div class="bullets" id="bulletList"></div>
-      <p class="tweet-line outro">Bonne journée à tous&nbsp;! ☕</p>
+      <p class="tweet-line outro">Bonne journée à tous&nbsp;! 👋</p>
     </div>
     <div class="actions">
       <button class="action primary" id="generateBtn" type="button">🔄 Générer le récap</button>
@@ -495,13 +496,15 @@
 
   function buildTweetText() {
     const lines = [];
+    lines.push("Bonjour à tous ☕");
+    lines.push("");
     lines.push("Que s'est-il passé hier sur les marchés ? 👇");
     lines.push("");
     DATA.bullets.forEach((b) => {
       lines.push(`${b.emoji} ${b.text}`);
       lines.push("");
     });
-    lines.push("Bonne journée à tous ! ☕");
+    lines.push("Bonne journée à tous ! 👋");
     return lines.join("\n").trim();
   }
 
