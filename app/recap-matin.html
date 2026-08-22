@@ -448,49 +448,51 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 20 août 2026",
-    generatedAt: "Généré le 21 août 2026",
+    sessionDate: "Séance du 21 août 2026",
+    generatedAt: "Généré le 22 août 2026",
     stats: [
-      { label: "Walmart (WMT)", value: "forte baisse", delta: "pire depuis 2022", dir: "down" },
-      { label: "Bitcoin", value: "75 500 $", delta: "+~9%, 24h", dir: "up" },
-      { label: "Shorts BTC liquidés", value: "≈3 Md$", delta: "24h", dir: "up" },
+      { label: "MPS / Banco BPM", value: "25,3 Md€", delta: "OPE lancée", dir: "up" },
+      { label: "Bitcoin", value: "79 500 $", delta: "+24%, semaine", dir: "up" },
+      { label: "Or (once)", value: "haut depuis mai", delta: "+5%, semaine", dir: "up" },
       { label: "Brent", value: ">93 $", delta: "+5%, semaine", dir: "up" },
-      { label: "WTI", value: "≈88 $", delta: "clôture", dir: "up" },
-      { label: "Rendements US", value: "en hausse", delta: "rallye essoufflé", dir: "up" }
+      { label: "PMI composite US", value: "56", delta: "haut depuis 2022", dir: "up" },
+      { label: "Nasdaq 100", value: "—", delta: "fin de la baisse", dir: "up" }
     ],
     bullets: [
       {
-        emoji: "🛒",
+        emoji: "🏦",
         tag: "Marchés actions",
-        text: "Walmart a chuté de la manière la plus marquée depuis 2022 après la publication de ventes décevantes, pesant sur le sentiment des investisseurs à Wall Street."
+        text: "La banque italienne Monte dei Paschi di Siena a lancé des offres publiques d'échange sur Banco BPM et Banca Generali, valorisées respectivement à 25,3 et 8,7 milliards d'euros, pour contrer l'OPA de 36 milliards d'euros lancée par Intesa Sanpaolo."
       },
       {
-        emoji: "🌍",
+        emoji: "🇺🇸",
         tag: "Macro & géopolitique",
-        text: "Donald Trump a menacé d'« écraser » l'économie iranienne, assombrissant les perspectives d'un accord de paix après près de six mois de conflit."
+        text: "L'indice PMI composite américain a grimpé à 56 en août, son plus haut niveau depuis avril 2022, signe d'une accélération de l'activité portée par une demande plus forte et une vague d'embauches."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin a franchi les 75 500 dollars, son plus haut niveau en plus de trois mois, avec un bond de près de 9% en 24 heures qui a liquidé environ 3 milliards de dollars de positions vendeuses, même si certains analystes jugent ce rallye prématuré."
+        text: "Le Bitcoin a grimpé jusqu'à 79 500 dollars vendredi, portant son gain hebdomadaire à près de 24% depuis lundi, sa meilleure semaine depuis mars 2023, avec encore un milliard de dollars de positions vendeuses liquidées."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le pétrole s'est achevé près de 88 dollars le baril tandis que le Brent se dirigeait vers une progression hebdomadaire de plus de 5%, porté par la menace américaine d'étouffer l'économie iranienne."
+        text: "L'or a bondi à son plus haut niveau depuis mi-mai, les rachats d'obligations du Trésor américain ravivant les craintes sur la soutenabilité de la dette plutôt que de rassurer les marchés, tandis que le Brent se dirigeait vers un gain hebdomadaire de plus de 5% au-dessus de 93 dollars sur fond de pression américaine pour isoler l'économie iranienne."
       },
       {
-        emoji: "🏦",
+        emoji: "📊",
         tag: "Fait marquant",
-        text: "Le rallye obligataire déclenché mercredi par l'annonce du Trésor américain s'est essoufflé jeudi, les investisseurs jugeant qu'il ne s'agissait que d'un palliatif de court terme, ce qui a pesé sur les actions américaines tandis que les rendements repartaient à la hausse."
+        text: "Le Nasdaq 100 a mis fin à cinq séances consécutives de baisse à l'approche des résultats trimestriels de Nvidia attendus mercredi, un rendez-vous considéré comme déterminant pour la suite du rallye technologique."
       }
     ],
     sources: [
-      { outlet: "Bloomberg", title: "Stock Market Today: Dow, S&P Live Updates for August 21", url: "https://www.bloomberg.com/news/articles/2026-08-20/stock-market-today-dow-s-p-live-updates" },
-      { outlet: "Bloomberg", title: "Wall Street Isn't Buying Bessent Fix: Evening Briefing Americas", url: "https://www.bloomberg.com/news/newsletters/2026-08-20/wall-street-isn-t-buying-bessent-fix-evening-briefing-americas" },
-      { outlet: "The Block", title: "Bitcoin breaks through $75,500 while analyst calls current rally 'premature'", url: "https://www.theblock.co/news/markets/2026-08-20-bitcoin-breaks-through-75500-412404" },
-      { outlet: "CoinDesk", title: "BTC price breaks out of six-week range to top $71,000. $3 billion in shorts wiped out", url: "https://www.coindesk.com/markets/2026/08/20/bitcoin-breaks-out-of-six-week-range-tops-usd71-000-as-usd3-billion-in-shorts-get-wiped-out" },
-      { outlet: "Bloomberg", title: "Oil Set for Weekly Surge as US Seeks to Throttle Iran's Economy", url: "https://www.bloomberg.com/news/articles/2026-08-20/latest-oil-market-news-and-analysis-for-aug-21" }
+      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-actualise-30d31b9cacdc4da7047d0f335f7de672" },
+      { outlet: "Bloomberg", title: "US Business Activity Grows at Fastest Pace Since 2022 on Strong Demand", url: "https://www.bloomberg.com/news/articles/2026-08-21/us-business-activity-expands-at-the-fastest-pace-since-2022" },
+      { outlet: "CoinDesk", title: "BTC price tops $77,000 as best week since 2023 pulls altcoins along", url: "https://www.coindesk.com/markets/2026/08/21/bitcoin-tops-usd77-000-as-best-week-since-2023-pulls-altcoins-along-for-the-ride" },
+      { outlet: "CoinDesk", title: "Bitcoin tops $75,000, ether, solana surge as another $1 billion of shorts wiped out", url: "https://www.coindesk.com/markets/2026/08/21/bitcoin-ether-and-solana-climb-as-another-usd1-billion-shorts-get-wiped-out" },
+      { outlet: "Bloomberg", title: "Gold Set for Third Weekly Gain on US Treasury Buyback Plans", url: "https://www.bloomberg.com/news/articles/2026-08-21/gold-set-for-third-weekly-gain-on-us-treasury-buyback-plans" },
+      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for Aug. 21", url: "https://www.bloomberg.com/news/articles/2026-08-20/latest-oil-market-news-and-analysis-for-aug-21" },
+      { outlet: "Bloomberg", title: "US Stock Futures Gain as Nasdaq 100 Looks to Snap Five-Day Slump", url: "https://www.bloomberg.com/news/articles/2026-08-21/us-stock-futures-gain-as-nasdaq-100-looks-to-snap-five-day-slump" }
     ]
   };
 
