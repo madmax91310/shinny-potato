@@ -12,7 +12,6 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui" },
     pointFaible: "Pas de PEA-PME, transfert PEA entrant impossible",
-    ordresMin: { resume: "—" },
     transfertPea: { resume: "Entrant ❌" },
     post: {
       frais: ["1€/ordre, quel que soit le montant"],
@@ -34,8 +33,7 @@ export const BROKERS = [
     pea: { pea: true, pme: true, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret Bourso+" },
-    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€, Bourses EU 2 500€",
-    ordresMin: { resume: "100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU" },
+    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC. ℹ️ Ordre minimum : 100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)", "⚡ Exception Boursomarkets → 0€ sur ETF iShares, OPCVM partenaires, Turbos/Warrants SG & Goldman Sachs"],
@@ -58,7 +56,6 @@ export const BROKERS = [
     ifu: { rank: 2, resume: "PEA uniquement" },
     liquidites: { rank: 1, resume: "Oui", detail: "CTO" },
     pointFaible: "Interface complexe, tarif fixe par défaut 3€, pas d’IFU sur CTO",
-    ordresMin: { resume: "—" },
     transfertPea: { resume: "Entrant ✅" },
     post: {
       frais: ["0,05% min 1,25€ max 29€ (tarif dégressif)", "⚠️ Tarif fixe par défaut : min 3€"],
@@ -81,7 +78,6 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret+" },
     pointFaible: "Clôture PEA 85€, pas de DCA, frais élevés hors Euronext",
-    ordresMin: { resume: "—" },
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["0€ le 1er ordre du mois si ≤500€, puis 0,35% au-delà"],
@@ -104,7 +100,6 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui" },
     pointFaible: "Pas de DCA, transfert PEA entrant impossible",
-    ordresMin: { resume: "—" },
     transfertPea: { resume: "Entrant ❌" },
     post: {
       frais: ["0% de commission jusqu’à 100K€/mois de volume, puis 0,20% au-delà (min 10€)"],
@@ -127,7 +122,6 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret A, LDDS, LEP" },
     pointFaible: "Abonnement 96€/an si <12 ordres, transfert PEA sortant 15€/ligne (max 150€)",
-    ordresMin: { resume: "—" },
     transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["Intégral → 0,48% ≤500€ / 0,18% de 500€ à 1000€ / 0,12% au-delà", "⚡ Abonnement 96€/an si <12 ordres/an"],
@@ -150,7 +144,6 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 2, resume: "Non rémunérées" },
     pointFaible: "Pas de DCA, liquidités non rémunérées, tarification par paliers",
-    ordresMin: { resume: "—" },
     transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["0,99€ ≤500€ / 1,90€ 500-1000€ / 2,90€ 1000-2000€", "⚡ 3,80€ 2000-4400€ / 0,09% au-delà de 4 400€"],
@@ -173,7 +166,6 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui" },
     pointFaible: "DCA pas sur PEA, tarif minimum 2€/ordre",
-    ordresMin: { resume: "—" },
     transfertPea: { resume: "Entrant ✅ — remboursé jusqu’au 31/08/2026" },
     post: {
       frais: ["À partir de 2€, plafonné à 0,5% sur PEA", "⚡ Promo → 0€ sur 70 actions UE (jusqu’au 31/12/2026)"],

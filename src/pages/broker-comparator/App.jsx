@@ -103,7 +103,6 @@ function ComparisonCard({ selected }) {
 
       <RankedRow rowKey="frais" brokers={brokers} gridStyle={gridStyle} />
       <RankedRow rowKey="boursomarkets" brokers={brokers} gridStyle={gridStyle} />
-      <TextRow icon="📏" label="Ordres min. PEA" dataKey="ordresMin" brokers={brokers} gridStyle={gridStyle} />
       <RankedRow rowKey="dca" brokers={brokers} gridStyle={gridStyle} />
       <RankedRow rowKey="garde" brokers={brokers} gridStyle={gridStyle} />
 
