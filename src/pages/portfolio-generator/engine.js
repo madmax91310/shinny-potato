@@ -161,7 +161,7 @@ function withinBound(value, bound) {
 // déplacer du poids d'un actif vers un autre sans savoir qu'il casse une règle propre à un profil
 // précis. Pro-Européen a une invariante supplémentaire (minimum 70% Europe) qui n'est pas capturée
 // par la borne de risque : on la revérifie après jitter et on retire le tirage sinon.
-const PRO_EUROPE_CORE_IDS = ["eurostoxx50", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short"];
+const PRO_EUROPE_CORE_IDS = ["eurostoxx50", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
 function violatesProfileInvariant(profileId, selection) {
   if (profileId === "pro_europe") {
     const europePct = selection

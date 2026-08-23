@@ -2,9 +2,11 @@
 // devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
-// Roster volontairement resserré (~20 supports) : chaque actif n'existe que parce qu'il a un rôle
-// clair dans au moins une thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait
-// une de plus" — voir CLAUDE.md du projet pour la philosophie de sélection.
+// Roster de 44 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
+// thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait une de plus" — voir
+// CLAUDE.md du projet pour la philosophie de sélection. 8 actifs sans rôle identifié (china, india,
+// japan, oblig_global_agg, oblig_short, petrole, strat_momentum, strat_smallcap) ont été retirés lors
+// d'un audit en août 2026 pour que ce roster reste vrai.
 
 export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -178,16 +180,6 @@ export const ASSETS = [
       "peu corrélé aux actions et obligations, un bon outil de diversification globale.",
     ],
   },
-  {
-    id: "petrole", name: "WisdomTree Brent Crude Oil ETC", cat: "matieres_premieres", emoji: "🛢️",
-    r: [-21.0, 55.0, 10.0, -11.0, 2.0, -6.0],
-    desc: [
-      "suit le cours du pétrole, extrêmement sensible aux tensions géopolitiques et à l'offre de l'OPEP+.",
-      "l'un des actifs les plus imprévisibles : passé sous zéro en 2020, en flèche en 2021-2022.",
-      "à manier avec précaution tant sa volatilité peut être extrême.",
-    ],
-  },
-
   // ── 🟠 Crypto ───────────────────────────────────────────
   {
     id: "bitcoin", name: "CoinShares Physical Bitcoin ETP", cat: "crypto", emoji: "🟠",
@@ -259,15 +251,6 @@ export const ASSETS = [
 
   // ── 🟢 Actions développées — styles complémentaires ─────
   {
-    id: "strat_smallcap", name: "iShares MSCI World Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    r: [12.0, 18.0, -18.0, 14.0, 9.0, 11.0],
-    desc: [
-      "des petites capitalisations boursières, avec un potentiel de croissance supérieur aux grandes entreprises.",
-      "historiquement plus performantes sur le très long terme, mais avec plus de volatilité.",
-      "un pari sur les futures grandes entreprises de demain, encore peu suivies par les analystes.",
-    ],
-  },
-  {
     id: "sect_semi", name: "VanEck Semiconductor UCITS ETF", cat: "actions_larges", emoji: "🟢",
     r: [50.0, 40.0, -35.0, 65.0, 35.0, 8.0],
     desc: [
@@ -276,65 +259,6 @@ export const ASSETS = [
       "de fortes hausses possibles, mais des corrections tout aussi violentes en cas de ralentissement.",
     ],
   },
-  {
-    id: "strat_momentum", name: "iShares Edge MSCI World Momentum Factor UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    r: [15.0, 18.0, -14.0, 18.0, 25.0, 8.0],
-    desc: [
-      "sélectionne les actions qui montent déjà, en pariant que la tendance se poursuit.",
-      "une stratégie qui peut amplifier les tendances de marché, à la hausse comme à la baisse.",
-      "change régulièrement de composition selon les tendances de marché en cours.",
-    ],
-  },
-  {
-    id: "japan", name: "iShares Core MSCI Japan IMI UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    r: [14.0, 6.0, -3.0, 26.0, 18.0, 8.0],
-    desc: [
-      "grandes, moyennes et petites capitalisations japonaises réunies en un seul support.",
-      "profite du retour en grâce de la Bourse de Tokyo depuis 2023, après des années d'indifférence.",
-      "une diversification géographique décorrélée des cycles américains et européens.",
-    ],
-  },
-
-  // ── 🔵 Obligations complémentaires ───────────────────────
-  {
-    id: "oblig_short", name: "iShares $ Treasury Bond 1-3yr UCITS ETF", cat: "obligataire", emoji: "🔵",
-    r: [3.3, -0.5, -3.8, 4.0, 4.5, 4.2],
-    desc: [
-      "de la dette d'État américaine à très courte échéance : la version la moins volatile des obligations.",
-      "sa faible durée le protège en grande partie des à-coups de taux d'intérêt.",
-      "un quasi-équivalent de trésorerie rémunérée, pour une poche de sécurité en dollars.",
-    ],
-  },
-  {
-    id: "oblig_global_agg", name: "Vanguard Global Aggregate Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    r: [5.5, -2.0, -12.5, 5.0, 2.0, 3.5],
-    desc: [
-      "un panier mondial d'obligations d'État et d'entreprises, toutes qualités et zones confondues.",
-      "diversifie la poche obligataire au-delà de la seule zone euro.",
-      "a lui aussi souffert en 2022 : la hausse des taux touche les obligations partout dans le monde.",
-    ],
-  },
-
-  // ── 🟤 Actions émergentes — géographies ciblées ──────────
-  {
-    id: "india", name: "iShares MSCI India UCITS ETF", cat: "emergents", emoji: "🟤",
-    r: [15.0, 26.0, 4.0, 20.0, 12.0, 10.0],
-    desc: [
-      "un pari ciblé sur la croissance démographique et économique indienne.",
-      "l'un des marchés émergents les plus réguliers de la période, porté par la consommation intérieure.",
-      "moins dépendant des exportations que la Chine, donc un profil de croissance différent.",
-    ],
-  },
-  {
-    id: "china", name: "Amundi MSCI China UCITS ETF", cat: "emergents", emoji: "🟤",
-    r: [30.0, -22.0, -21.0, -11.0, 15.0, 20.0],
-    desc: [
-      "un pari ciblé sur la deuxième économie mondiale, avec une volatilité politique bien réelle.",
-      "a traversé plusieurs années difficiles (régulation, immobilier) avant d'amorcer un rebond.",
-      "concentré sur un seul pays : un risque spécifique bien plus élevé qu'un ETF émergents diversifié.",
-    ],
-  },
-
   // ── Jumeaux de marque ─────────────────────────────────────
   // Même sous-jacent, même performance (métal physique, BTC spot, dette corporate € IG) : seul
   // l'émetteur change. Permet de varier les noms affichés sans jamais inventer un chiffre de

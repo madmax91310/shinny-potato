@@ -145,10 +145,17 @@ export const PROFILES = [
       equilibre: {
         assets: [
           {
-            idOptions: WORLD_OPTIONS, pct: 40,
+            idOptions: WORLD_OPTIONS, pct: 30,
             pourquoi: [
               "Le moteur de croissance du portefeuille : plusieurs milliers d'entreprises mondiales en une ligne.",
               "{pct}% : la part qui doit faire le gros du travail sur le long terme.",
+            ],
+          },
+          {
+            id: "sp500", pct: 15,
+            pourquoi: [
+              "Un pari plus concentré sur le marché américain, en complément de la ligne monde plus diversifiée géographiquement.",
+              "{pct}% pour renforcer l'exposition aux États-Unis sans dépendre uniquement du seul indice mondial.",
             ],
           },
           {
@@ -161,15 +168,15 @@ export const PROFILES = [
           {
             idOptions: GOLD_OPTIONS, pct: 15,
             pourquoi: [
-              "Un troisième type d'actif, décorrélé des deux premiers : ni une action, ni une dette.",
+              "Un quatrième type d'actif, décorrélé des trois autres : ni une action, ni une dette.",
               "La ligne qui protège quand ni les actions ni les obligations ne fonctionnent.",
             ],
           },
           {
-            id: "foncieres_etf", pct: 25,
+            id: "foncieres_etf", pct: 20,
             pourquoi: [
-              "Une quatrième source de performance, avec sa propre logique — celle de l'immobilier coté.",
-              "Complète la diversification sans dupliquer ce que font déjà les trois autres lignes.",
+              "Une cinquième source de performance, avec sa propre logique — celle de l'immobilier coté.",
+              "Complète la diversification sans dupliquer ce que font déjà les autres lignes.",
             ],
           },
         ],
@@ -543,31 +550,38 @@ export const PROFILES = [
       equilibre: {
         assets: [
           {
-            id: "eurostoxx50", pct: 25,
+            id: "eurostoxx50", pct: 20,
             pourquoi: [
               "Le socle actions de la zone euro, cohérent avec la thèse à tous les niveaux de risque.",
               "{pct}% pour ancrer le portefeuille dans l'économie de la zone euro.",
             ],
           },
           {
-            id: "tech_europe", pct: 20,
+            id: "msci_europe", pct: 15,
+            pourquoi: [
+              "Élargit la thèse au-delà de la seule zone euro : Royaume-Uni et Suisse inclus, toujours 100% Europe.",
+              "{pct}% pour diversifier géographiquement sans jamais sortir du continent.",
+            ],
+          },
+          {
+            id: "tech_europe", pct: 15,
             pourquoi: [
               "La technologie européenne : un pari plus concentré, mais qui reste 100% dans la thèse.",
               "ASML, SAP, Dassault Systèmes... les rares géants tech du continent.",
             ],
           },
           {
-            id: "smallcap_europe", pct: 25,
+            id: "smallcap_europe", pct: 20,
             pourquoi: [
               "Des petites capitalisations européennes, plus proches de l'économie réelle du continent.",
-              "Complète les deux premières lignes avec un profil de croissance différent, toujours européen.",
+              "Complète les lignes précédentes avec un profil de croissance différent, toujours européen.",
             ],
           },
           {
             id: "fonds_euros", pct: 30,
             pourquoi: [
               "Le stabilisateur de cette version équilibrée — jusqu'au plafond des 30% tolérés hors pari actions pur.",
-              "{pct}% pour amortir la volatilité des trois lignes actions, sans sortir de la thèse française.",
+              "{pct}% pour amortir la volatilité des lignes actions, sans sortir de la thèse française.",
             ],
           },
         ],
@@ -710,17 +724,24 @@ export const PROFILES = [
       equilibre: {
         assets: [
           {
-            idOptions: GOLD_OPTIONS, pct: 40,
+            idOptions: GOLD_OPTIONS, pct: 30,
             pourquoi: [
               "{pct}% : le cœur de la thèse. Tout le reste du portefeuille vient en complément de cette ligne.",
               "La ligne qui donne son sens à toute la thèse — tout le reste vient en soutien.",
             ],
           },
           {
-            id: "mp_large", pct: 30,
+            id: "argent", pct: 15,
+            pourquoi: [
+              "Un deuxième métal précieux, plus volatil que l'or car aussi lié à la demande industrielle — un complément, pas un remplaçant.",
+              "{pct}% pour diversifier la protection au-delà du seul or, sans en faire le pilier de la thèse.",
+            ],
+          },
+          {
+            id: "mp_large", pct: 25,
             pourquoi: [
               "Un panier large de matières premières — énergie, métaux, agriculture — pour ne pas dépendre d'un seul actif.",
-              "La deuxième jambe de la protection : des actifs physiques diversifiés, pas du papier.",
+              "La jambe la plus diversifiée de la protection : des actifs physiques variés, pas du papier.",
             ],
           },
           {
@@ -832,17 +853,24 @@ export const PROFILES = [
       defensif: {
         assets: [
           {
-            id: "fonds_euros", pct: 30,
+            id: "fonds_euros", pct: 25,
             pourquoi: [
-              "La base qui amortit tout le reste : même si les trois autres lignes chutent en même temps, celle-ci ne bouge pas.",
+              "La base qui amortit tout le reste : même si les autres lignes chutent en même temps, celle-ci ne bouge pas.",
               "{pct}%, suffisant pour que le portefeuille ne parte jamais franchement dans le rouge.",
             ],
           },
           {
-            idOptions: CORPBOND_OPTIONS, pct: 25,
+            idOptions: CORPBOND_OPTIONS, pct: 20,
             pourquoi: [
               "Un peu de rendement en plus du fonds euros, sans sortir du registre défensif.",
               "Le complément logique du fonds euros : plus de coupon, presque autant de sécurité.",
+            ],
+          },
+          {
+            id: "oblig_etat_eur", pct: 15,
+            pourquoi: [
+              "De la dette d'État de la zone euro, un stabilisateur plus classique que le fonds euros ou les obligations d'entreprise.",
+              "{pct}% pour diversifier la poche obligataire sans sortir du registre défensif.",
             ],
           },
           {
@@ -853,7 +881,7 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: GOLD_OPTIONS, pct: 20,
+            idOptions: GOLD_OPTIONS, pct: 15,
             pourquoi: [
               "Le filet de sécurité final, celui qui ne dépend ni des taux d'intérêt ni de la santé des entreprises.",
               "Complète la logique défensive avec une protection d'un tout autre type que les obligations.",
