@@ -1,3 +1,5 @@
+import json
+
 from etf_watch import db, main
 from etf_watch.scrapers.base import BaseScraper, ScraperResult
 from etf_watch.models import ETFProduct
@@ -78,3 +80,27 @@ def test_all_sources_failing_returns_nonzero_exit(tmp_path, monkeypatch):
 
     exit_code = main.run(["--db", db_path])
     assert exit_code == 1
+
+
+def test_json_format_emits_valid_structured_payload(tmp_path, monkeypatch, capsys):
+    db_path = str(tmp_path / "test.db")
+    monkeypatch.setitem(main.SCRAPER_CLASSES, "stub", StubScraper)
+    monkeypatch.setattr(main.config, "SOURCES", {"stub": {"enabled": True, "issuer": "Stub"}})
+
+    StubScraper._result = ScraperResult(products=[make_product("FR0014017NX3")], ok=True)
+    main.run(["--db", db_path, "--format", "json"])  # baseline run
+    capsys.readouterr()
+
+    StubScraper._result = ScraperResult(
+        products=[make_product("FR0014017NX3"), make_product("LU9876543210", "New ETF")],
+        ok=True,
+    )
+    main.run(["--db", db_path, "--format", "json"])
+    captured = capsys.readouterr()
+
+    payload = json.loads(captured.out)
+    assert payload["is_first_run"] is False
+    assert payload["catalogue_size"] == 2
+    assert payload["sources_ok"] == ["stub"]
+    assert len(payload["new_launches"]) == 1
+    assert payload["new_launches"][0]["isin"] == "LU9876543210"

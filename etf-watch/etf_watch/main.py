@@ -7,6 +7,7 @@ Usage:
     python -m etf_watch.main --source vanguard --source amundi
     python -m etf_watch.main --dry-run        # scrape + diff, don't write to DB
     python -m etf_watch.main --list-sources
+    python -m etf_watch.main --format json    # machine-readable, e.g. to feed a dashboard
 
 Exit codes: 0 = ran fine (regardless of whether new launches were found),
 1 = every enabled source failed to fetch anything (likely a real problem
@@ -67,6 +68,12 @@ def parse_args(argv=None):
     )
     parser.add_argument(
         "--db", dest="db_path", default=None, help="Override the SQLite DB path.",
+    )
+    parser.add_argument(
+        "--format", choices=["text", "json"], default="text",
+        help="Output format for the run summary printed to stdout. 'json' is "
+             "meant to be copy/pasted (or piped to a file) to feed the dashboard "
+             "renderer (see etf_watch/render_dashboard.py). Default: text.",
     )
     return parser.parse_args(argv)
 
@@ -138,6 +145,8 @@ def run(argv=None) -> int:
     else:
         products_to_announce = new_products
 
+    finished_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+
     if not args.dry_run:
         with db.connect(db_path) as conn:
             for product in new_products:
@@ -145,16 +154,32 @@ def run(argv=None) -> int:
             db.record_run(
                 conn,
                 started_at=started_at,
-                finished_at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                finished_at=finished_at,
                 sources_ok=sources_ok,
                 sources_failed=sources_failed,
                 products_seen=len(by_isin),
                 new_products=len(new_products),
                 errors=len(sources_failed),
             )
+            catalogue_size = conn.execute("SELECT COUNT(*) AS c FROM etfs").fetchone()["c"]
+    else:
+        catalogue_size = len(known_isins)
 
-    digest = build_digest(products_to_announce)
-    print(digest)
+    if args.format == "json":
+        import json
+
+        payload = {
+            "generated_at": finished_at,
+            "is_first_run": is_first_ever_run,
+            "sources_ok": sources_ok,
+            "sources_failed": sources_failed,
+            "products_seen_this_run": len(by_isin),
+            "catalogue_size": catalogue_size,
+            "new_launches": [p.to_row() for p in products_to_announce],
+        }
+        print(json.dumps(payload, indent=2, ensure_ascii=False))
+    else:
+        print(build_digest(products_to_announce))
 
     logger.info(
         "Run finished: %d product(s) seen, %d new, %d source(s) failed/empty (%s)",

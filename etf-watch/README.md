@@ -68,7 +68,30 @@ python -m etf_watch.main --dry-run
 
 Le résumé des nouveaux lancements est affiché sur stdout (format prêt à
 copier pour un tweet, un bloc par ETF) et tout est journalisé dans
-`data/etf_watch.log` (rotation automatique à 2 Mo, 5 fichiers conservés).
+`data/etf_watch.log`.
+
+### Tableau de bord (dashboard visuel)
+
+Un tableau de bord HTML (pensé pour être publié en Artifact Claude) peut être
+généré à partir d'un run réel, sans jamais coller vos identifiants ou faire
+tourner Claude en direct sur les sites des émetteurs :
+
+```bash
+# 1. Lancez un run normal en sortie JSON
+python -m etf_watch.main --format json > run.json
+
+# 2. Générez le dashboard HTML à partir de ce JSON
+python -m etf_watch.render_dashboard run.json > dashboard.html
+```
+
+Si vous demandez à Claude de tenir ce dashboard à jour : collez simplement le
+contenu de `run.json` (ou le fichier lui-même) dans la conversation après
+chaque exécution que vous lancez chez vous — Claude régénère la page à partir
+de ces données réelles et republie l'Artifact existant (même lien).
+`etf_watch/render_dashboard.py` peut aussi s'utiliser seul, sans Claude, pour
+ouvrir `dashboard.html` directement dans un navigateur.
+
+(Rotation automatique du log à 2 Mo, 5 fichiers conservés.)
 
 ### Premier run = initialisation de la base, pas une alerte
 
@@ -121,6 +144,7 @@ etf_watch/
   pdf_utils.py          extraction de texte/tableaux PDF (pdfplumber)
   text_extract.py       regex ISIN/TER/ticker/date/classe d'actif
   summarize.py           génération du texte "tweet-ready"
+  render_dashboard.py     génère le dashboard.html à partir d'un export --format json
   scrapers/
     base.py              classe de base (jamais de crash, ScraperResult)
     press_release.py      logique partagée pages d'actualités (Vanguard/Amundi/BNPP)
