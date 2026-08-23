@@ -261,7 +261,7 @@ export const DEFAULT_THEMES = [
         nom: 'iShares Automation & Robotics UCITS ETF',
         isin: 'IE00BYZK4552',
         frais: '0,40',
-        encours: '~4,2 Md€',
+        encours: '~4,5 Md€',
         differenciateur: 'automatisation et robotique large, pas l’IA pure',
       }),
     ],
