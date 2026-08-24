@@ -41,7 +41,11 @@ export const BITCOIN_OPTIONS = ["bitcoin", "bitcoin_wisdomtree", "bitcoin_etcgro
 export const CORPBOND_OPTIONS = ["oblig_corp_ig", "oblig_corp_amundi", "oblig_corp_vanguard", "oblig_corp_spdr"];
 export const WORLD_OPTIONS = ["msci_world", "msci_world_ishares", "msci_world_amundi_pea", "ftse_allworld_vanguard", "msci_acwi"];
 export const EM_OPTIONS = ["msci_em", "msci_em_amundi", "ftse_em_vanguard", "msci_em_spdr"];
-export const DIVIDEND_OPTIONS = ["strat_dividendes", "high_dividend", "quality_dividend"];
+// dividend_leaders (VanEck TDIV) ajouté lors de l'audit "enrichissement sectoriel" (août 2026) :
+// stratégie dividende mondiale distincte des trois autres (indice Morningstar propre), vérifiée
+// réelle avant ajout — cf. data.js pour le détail des sources et la résolution d'une contradiction
+// de signe trouvée sur l'année 2022.
+export const DIVIDEND_OPTIONS = ["strat_dividendes", "high_dividend", "quality_dividend", "dividend_leaders"];
 // Réservé au profil Rentier (cf. sa règle "uniquement des lignes distribuantes") : jumeaux Dist
 // vérifiés des trois fonds ci-dessus, plus foncieres_etf_dist utilisé directement par id ailleurs
 // dans les riskCombos de ce profil.
@@ -57,14 +61,29 @@ export const SP500_OPTIONS = ["sp500", "sp500_ishares"];
 export const NASDAQ100_OPTIONS = ["nasdaq100", "nasdaq100_ishares"];
 export const EUROSTOXX50_OPTIONS = ["eurostoxx50", "eurostoxx50_ishares"];
 export const COMMODITY_OPTIONS = ["mp_large", "mp_large_icom"];
+// Immobilier coté : foncieres_etf (FTSE EPRA Nareit Global Developed) et immo_gpr (GPR Global 100,
+// ajouté lors de l'audit "enrichissement sectoriel") suivent des indices différents mais proches
+// (même logique que EM_OPTIONS/DIVIDEND_OPTIONS ci-dessus) — jamais utilisé pour les tiers Rentier
+// (foncieres_etf_dist reste seul, cf. DIVIDEND_OPTIONS_DIST), immo_gpr n'ayant pas de part Dist
+// vérifiée.
+export const IMMOBILIER_OPTIONS = ["foncieres_etf", "immo_gpr"];
+// Obligations haut rendement € : jumeau strict (même indice Markit iBoxx EUR Liquid High Yield),
+// ajouté lors du même audit.
+export const HIGHYIELD_OPTIONS = ["oblig_hy", "oblig_hy_amundi"];
 // "Thématique" : le secteur pari change à chaque génération. Les secteurs les plus extrêmes
-// (semi-conducteurs) sont réservés aux niveaux de risque qui peuvent absorber leur volatilité.
-// À l'inverse, la santé (sect_sante) est structurellement défensive (pire année historique
-// proche de -3/-4%, loin du plancher -15% à -30% attendu en Dynamique/Offensif) : elle ne doit
-// jamais être piochée à ces deux niveaux, d'où THEME_OPTIONS_AGGRESSIVE qui l'exclut.
-export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie"];
-export const THEME_OPTIONS_FULL = ["sect_semi", "sect_sante", "sect_energie"];
-export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie"];
+// (semi-conducteurs, technologie, robotique, cybersécurité — tous ajoutés lors de l'audit
+// "enrichissement sectoriel", pire année historique entre -28% et -35%, comparable à sect_semi)
+// sont réservés aux niveaux de risque qui peuvent absorber leur volatilité. À l'inverse, la santé
+// (sect_sante), la consommation défensive (sect_conso_defensive) et les services aux collectivités
+// (sect_utilities) sont structurellement défensifs (pire année historique entre -1% et -7%) : ils
+// ne doivent jamais être piochés en Dynamique/Offensif, d'où THEME_OPTIONS_AGGRESSIVE qui les
+// exclut tous. L'énergie propre (sect_energie_propre) a un profil à part — +141,80% en 2020 suivi
+// de quatre années consécutives négatives (2021-2024) : seuls les paliers de risque sans plancher
+// serré (Dynamique/Offensif) encaissent cette amplitude, jamais mélangée aux secteurs plus mesurés
+// de THEME_OPTIONS_FULL.
+export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities"];
+export const THEME_OPTIONS_FULL = ["sect_semi", "sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite"];
+export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre"];
 
 // Plafond de fréquence par groupe : au-delà de ce ratio d'apparition dans l'historique de la
 // session, un membre du groupe est exclu des tirages tant qu'une autre option reste disponible
@@ -213,7 +232,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "foncieres_etf", pct: 20,
+            idOptions: IMMOBILIER_OPTIONS, pct: 20,
             pourquoi: [
               "Une cinquième source de performance, avec sa propre logique — celle de l'immobilier coté.",
               "Complète la diversification sans dupliquer ce que font déjà les autres lignes.",
@@ -338,7 +357,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "oblig_hy", pct: 20,
+            idOptions: HIGHYIELD_OPTIONS, pct: 20,
             pourquoi: [
               "Un coupon nettement supérieur aux obligations classiques — le prix à payer pour plus de revenu.",
               "La première vraie source de rendement du portefeuille, en version distribuante.",
@@ -384,7 +403,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "oblig_hy", pct: 25,
+            idOptions: HIGHYIELD_OPTIONS, pct: 25,
             pourquoi: [
               "Un coupon nettement supérieur aux obligations classiques — le prix à payer pour plus de revenu.",
               "La deuxième source de rendement obligataire du portefeuille.",
@@ -416,7 +435,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "oblig_hy", pct: 15,
+            idOptions: HIGHYIELD_OPTIONS, pct: 15,
             pourquoi: [
               "Un coupon nettement supérieur aux obligations classiques — le prix à payer pour plus de revenu.",
               "La touche de rendement obligataire qui vient compléter les trois sources de revenu déjà présentes.",
@@ -448,7 +467,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "oblig_hy", pct: 10,
+            idOptions: HIGHYIELD_OPTIONS, pct: 10,
             pourquoi: [
               "Une dernière touche de rendement obligataire, pour diversifier les sources de revenu.",
               "{pct}% pour ne pas dépendre uniquement d'actifs actions dans la recherche de revenu.",
@@ -955,7 +974,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "foncieres_etf", pct: 15,
+            idOptions: IMMOBILIER_OPTIONS, pct: 15,
             pourquoi: [
               "Une petite dose d'immobilier coté pour aller chercher un peu plus de rendement — en quantité limitée, volontairement.",
               "{pct}% seulement : de quoi profiter du rendement immobilier sans subir sa pleine volatilité.",

@@ -2,7 +2,7 @@
 // devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
-// Roster de 53 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
+// Roster de 62 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
 // thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait une de plus" — voir
 // CLAUDE.md du projet pour la philosophie de sélection. 8 actifs sans rôle identifié (china, india,
 // japan, oblig_global_agg, oblig_short, petrole, strat_momentum, strat_smallcap) ont été retirés lors
@@ -12,7 +12,14 @@
 // Euro Stoxx 50, matières premières) ont été ajoutés lors d'un audit "enrichissement bibliothèque" —
 // chacun vérifié réel et partageant le même sous-jacent (donc le même tableau `r`) que l'actif
 // d'origine du groupe (cf. SP500_OPTIONS, NASDAQ100_OPTIONS, EUROSTOXX50_OPTIONS, COMMODITY_OPTIONS
-// dans theses.js).
+// dans theses.js). 9 actifs supplémentaires (6 secteurs thématiques, dividendes, immobilier, obligataire
+// haut rendement) ont été ajoutés lors d'un audit "enrichissement sectoriel" en août 2026 — chacun
+// vérifié un par un (existence réelle, indice sous-jacent exact, historique 2020-2025) via recherche
+// web (cf. commentaires individuels ci-dessous pour le détail des sources et le niveau de confiance),
+// puis intégrés dans theses.js via THEME_OPTIONS_*, DIVIDEND_OPTIONS, IMMOBILIER_OPTIONS et
+// HIGHYIELD_OPTIONS. Plusieurs fonds suggérés dans le prompt d'origine de cet audit ont été
+// explicitement écartés faute de vérification suffisante (fonds trop récents pour avoir un
+// historique 2020-2025, ou données contradictoires non résolues) — voir le rapport de session.
 
 export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -715,6 +722,154 @@ export const ASSETS = [
       "un ETF distribuant mensuel : vend des options d'achat sur le Nasdaq pour générer un revenu élevé.",
       "environ 9-10% de rendement annualisé, au prix d'une hausse plafonnée en marché très haussier.",
       "amortit une partie des baisses grâce aux primes encaissées, sans jamais les annuler complètement.",
+    ],
+  },
+
+  // ── 🟢 Actions développées — secteurs thématiques (audit "enrichissement sectoriel", août 2026) ──
+  // Chaque actif ci-dessous a été vérifié individuellement (existence réelle du fonds, indice exact
+  // répliqué, historique 2020-2025) avant ajout. Non encore intégrés dans theses.js — cf. rapport de
+  // session pour le détail des fonds suggérés à l'origine et écartés (obsolètes, track record
+  // insuffisant, ou indice non vérifiable avec confiance).
+  {
+    id: "sect_tech", name: "iShares S&P 500 Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : fonds réel vérifié (ISIN IE00B3WJKG14, ticker IUIT), réplique l'indice S&P 500 Capped
+    // 35/20 Information Technology, part USD (donnée EUR précise non trouvée de façon fiable). Track
+    // record propre au fonds non exploitable via recherche web (résultats agrégés incohérents d'une
+    // requête à l'autre, valeurs et années visiblement désalignées). Utilisé à la place : la
+    // performance de la Technology Select Sector SPDR (XLK, S&P 500 secteur technologie, méthodologie
+    // très proche), moyennée sur 2-3 sources indépendantes et cohérentes entre elles pour 2020-2025.
+    r: [43.75, 34.65, -27.96, 56.93, 21.63, 24.60],
+    desc: [
+      "Apple, Microsoft, Nvidia... le cœur technologique du S&P 500 concentré en une seule ligne.",
+      "un secteur qui a tiré la performance du marché américain ces dernières années, au prix d'une volatilité plus élevée.",
+      "très sensible aux taux d'intérêt et au cycle de l'innovation : de fortes hausses, mais aussi de sévères corrections.",
+    ],
+  },
+  {
+    id: "sect_robotique", name: "iShares Automation & Robotics UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : fonds réel vérifié (ISIN IE00BYZK4552, ticker RBOT), réplique l'iSTOXX FactSet
+    // Automation & Robotics Index, part USD (donnée EUR précise non trouvée de façon fiable). 2022
+    // (-34,40%) confirmé par deux recherches indépendantes concordantes. 2020, 2021, 2023, 2024, 2025 :
+    // une seule source (agrégation de fiche fonds), cohérente chronologiquement mais non recoupée.
+    r: [39.85, 20.69, -34.40, 39.73, 5.51, 17.62],
+    desc: [
+      "des entreprises qui construisent les robots et les automatismes industriels de demain.",
+      "un pari sur l'automatisation croissante de l'industrie et de la logistique à l'échelle mondiale.",
+      "un secteur de niche encore jeune, avec des cycles marqués entre euphorie et dégonflement.",
+    ],
+  },
+  {
+    id: "sect_cybersecurite", name: "iShares Digital Security UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : fonds réel vérifié (ISIN IE00BG0J4C88, ticker LOCK, lancé le 7 septembre 2018),
+    // réplique le STOXX Global Digital Security Index, part USD (donnée EUR précise non trouvée de
+    // façon fiable). 2020 (26,79%) confirmé par deux recherches indépendantes concordantes. 2021,
+    // 2022, 2023, 2024, 2025 : une seule source (fiche fonds BlackRock), non recoupée indépendamment.
+    r: [26.79, 16.29, -28.56, 32.54, 16.46, 11.47],
+    desc: [
+      "des entreprises spécialisées dans la protection des données et des systèmes informatiques.",
+      "un secteur porté par une menace structurelle : la cybercriminalité ne recule jamais durablement.",
+      "reste corrélé à la tech au sens large, avec les mêmes accès de volatilité.",
+    ],
+  },
+  {
+    id: "sect_energie_propre", name: "iShares Global Clean Energy UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : fonds réel vérifié (ticker INRG, renommé depuis "iShares Global Clean Energy Transition
+    // UCITS ETF"), réplique le S&P Global Clean Energy Index. Track record INRG (EUR) non exploitable
+    // via recherche web ; utilisé à la place la performance du jumeau américain iShares Global Clean
+    // Energy ETF (ICLN, même indice S&P Global Clean Energy, part USD), confirmée de façon cohérente
+    // sur 2020-2024 par deux recherches indépendantes, et 2025 (+47,04%) confirmé via la fiche
+    // officielle iShares.
+    r: [141.80, -24.18, -5.41, -20.38, -25.72, 47.04],
+    desc: [
+      "panneaux solaires, éoliennes, hydrogène... les acteurs de la transition énergétique mondiale.",
+      "un secteur en forte croissance sur le papier, mais très dépendant des taux d'intérêt et des subventions publiques.",
+      "a connu l'une des plus fortes hausses boursières de 2020, suivie de plusieurs années de forte baisse.",
+    ],
+  },
+  {
+    id: "sect_conso_defensive", name: "iShares S&P 500 Consumer Staples Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : fonds réel vérifié (ISIN IE00B40B8R38), réplique l'indice S&P 500 Consumer Staples,
+    // part USD (donnée EUR précise non trouvée de façon fiable). Track record propre au fonds non
+    // exploitable via recherche web ; utilisé à la place la performance de la Consumer Staples Select
+    // Sector SPDR (XLP, même secteur S&P 500, méthodologie très proche), confirmée par deux à trois
+    // sources concordantes pour chaque année 2020-2025 (2022 et 2023 quasi identiques à ~-0,8% chacun,
+    // recoupé indépendamment, pas une erreur de désalignement).
+    r: [10.15, 17.20, -0.82, -0.82, 12.20, 1.52],
+    desc: [
+      "alimentation, hygiène, produits du quotidien : les entreprises dont on ne se passe jamais, même en récession.",
+      "un secteur réputé défensif, qui limite généralement la casse quand le reste du marché recule.",
+      "moins spectaculaire qu'un secteur de croissance, mais plus stable sur la durée.",
+    ],
+  },
+  {
+    id: "sect_utilities", name: "iShares S&P 500 Utilities Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : fonds réel vérifié (ISIN IE00B4KBBD01), réplique l'indice S&P 500 Utilities, part USD
+    // (donnée EUR précise non trouvée de façon fiable). Track record propre au fonds non exploitable
+    // via recherche web ; utilisé à la place la performance de l'Utilities Select Sector SPDR (XLU,
+    // même secteur S&P 500), confirmée par deux recherches indépendantes concordantes pour 2022
+    // (1,42%) et 2023 (-7,17%) ; 2020, 2021, 2024, 2025 non recoupés indépendamment.
+    r: [0.57, 17.69, 1.42, -7.17, 23.28, 16.00],
+    desc: [
+      "eau, électricité, gaz : des services essentiels, souvent en situation de quasi-monopole régional.",
+      "un secteur défensif au rendement régulier, mais sensible aux taux d'intérêt du fait de son fort endettement.",
+      "traverse généralement mieux les crises boursières que les secteurs cycliques.",
+    ],
+  },
+
+  // ── 🟣 Dividendes — audit "enrichissement sectoriel" ──────
+  {
+    id: "dividend_leaders", name: "VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF", cat: "dividendes", emoji: "🟣",
+    distributing: false,
+    // Source : fonds réel vérifié (ISIN NL0011683594, ticker TDIV, lancé le 23 mai 2016), réplique le
+    // Morningstar Developed Markets Large Cap Dividend Leaders (Screened Select) Index. 2020 (-10,15%)
+    // confirmé par deux recherches indépendantes concordantes. 2022 : une première recherche a renvoyé
+    // -16,17%, une seconde +16,17% (signe opposé) — retenu +16,17% après vérification (cohérent avec
+    // la sur-performance connue des valeurs « value »/dividende face à la croissance en 2022 ; l'autre
+    // recherche s'est en outre révélée confondre le fonds avec un homonyme américain sans rapport,
+    // First Trust NASDAQ Technology Dividend Index Fund, ticker également TDIV). 2021, 2023, 2024,
+    // 2025 non recoupés indépendamment.
+    r: [-10.15, 27.85, 16.17, 10.92, 15.97, 24.40],
+    desc: [
+      "une sélection mondiale des entreprises les plus solides côté dividende, filtrée par Morningstar.",
+      "vise la régularité du versement autant que son niveau, pour limiter les mauvaises surprises.",
+      "un profil « value » assumé, qui peut sous-performer en marché de croissance pure.",
+    ],
+  },
+
+  // ── ⚪ Immobilier — audit "enrichissement sectoriel" ──────
+  {
+    id: "immo_gpr", name: "VanEck Global Real Estate UCITS ETF", cat: "immobilier", emoji: "⚪",
+    distributing: false,
+    // Source : fonds réel vérifié (ISIN NL0009690239, ticker TRET, lancé le 14 avril 2011, devise de
+    // base EUR), réplique le GPR (Global Property Research) Global 100 Index — sciemment différent de
+    // l'indice FTSE EPRA Nareit Global Developed utilisé par foncieres_etf : composition et
+    // performance propres, à ne pas regrouper avec ce dernier (cf. avertissement sur IWDP/FTSE
+    // EPRA Nareit Developed Dividend+ dans les commentaires de theses.js). 2020 (-14,50%) et 2021
+    // (+40,50%) confirmés par recherches indépendantes concordantes. 2022, 2023, 2024 : source unique
+    // cohérente. 2025 (+1,08%) : donnée la plus fragile, possiblement une performance de cours plutôt
+    // que de rendement total.
+    r: [-14.50, 40.50, -21.20, 9.11, 8.21, 1.08],
+    desc: [
+      "des sociétés immobilières cotées à l'échelle mondiale, sélectionnées via l'indice GPR Global 100.",
+      "un indice différent de celui des autres foncières de la bibliothèque : composition et performance propres.",
+      "comme toute foncière cotée, sensible aux taux d'intérêt autant qu'à la santé du marché immobilier.",
+    ],
+  },
+
+  // ── 🔵 Obligataire — jumeau haut rendement (audit "enrichissement sectoriel") ──
+  {
+    id: "oblig_hy_amundi", name: "Amundi Core EUR High Yield Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    // Jumeau strict de "oblig_hy" — fonds réel vérifié (ISIN LU2970735911, part Acc, enregistrée le 15
+    // juillet 2025), réplique le même indice Markit iBoxx EUR Liquid High Yield Index que l'iShares €
+    // High Yield Corp Bond UCITS ETF (IHYG) déjà présent sous "oblig_hy" — donc même tableau `r`, en
+    // suivant la même logique que les jumeaux CORPBOND_OPTIONS. À ne pas confondre avec l'autre fonds
+    // Amundi "Euro High Yield Bond ESG UCITS ETF" (LU1215415214), qui réplique un indice ESG-screené
+    // différent (iBoxx MSCI ESG EUR High Yield Corporates) et n'est donc pas un jumeau valide.
+    r: [1.29, 3.02, -9.47, 11.31, 5.71, 5.32],
+    desc: [
+      "des obligations d'entreprises plus fragiles, donc mieux rémunérées : plus de coupon.",
+      "le compartiment obligataire le plus généreux en revenu, avec un vrai risque de crédit en face.",
+      "verse un coupon nettement supérieur aux obligations d'État, contre un peu plus de risque.",
     ],
   },
 ];
