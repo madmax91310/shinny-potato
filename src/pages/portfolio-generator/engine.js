@@ -285,8 +285,17 @@ function msciComparisonLine(selection, perf) {
   return `→ En ${worst.year}, quand le MSCI World ${worldVerb} ${worldFmt}, ce portefeuille ${portVerb} ${fmtAbsPct(worst.value)}.`;
 }
 
-function contextLine(profile, selection, perf) {
-  return boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || `→ ${profile.contextFallback}`;
+// Retourne {text, fallbackPick} plutôt qu'un simple texte : fallbackPick n'est renseigné que
+// lorsque la ligne de contexte "générique" (profile.contextFallback) est effectivement utilisée,
+// pour que l'anti-répétition (cf. generatePortfolio) ne porte que sur ces occurrences-là — pas
+// sur les lignes "boosted year" / comparaison MSCI, qui sont déjà uniques par construction.
+function contextLine(profile, selection, perf, history) {
+  const boosted = boostedYearLine(selection, perf);
+  if (boosted) return { text: boosted, fallbackPick: null };
+  const msci = msciComparisonLine(selection, perf);
+  if (msci) return { text: msci, fallbackPick: null };
+  const fallbackPick = pickNonRepeating(profile.contextFallback, history, profile.id, "contextFallbackPick");
+  return { text: `→ ${fallbackPick}`, fallbackPick };
 }
 
 // Résout {pct}-like tokens qui ne sont pas liés à une ligne précise mais au portefeuille dans
@@ -345,6 +354,8 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const best = bestYearOf(perf);
   const bound = RISK_BOUNDS[riskId];
 
+  // Un seul bloc ⚠️ par tweet (cf. renderTweetText, qui préfixe déjà `warning` avec ⚠️) : tout
+  // ajout ci-dessous rejoint la même phrase, jamais un second "⚠️" collé au premier.
   let warning = pickNonRepeating(profile.warnings, history, profileId, "warning");
   if (profile.capitalNote) {
     // Toujours présente (pas tirée au sort) : pour un profil "revenu", la baisse de capital
@@ -354,15 +365,16 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   if (profile.mandatoryWarning) {
     // Toujours présente elle aussi (Pro-Européen) : le contre-pied assumé face aux US n'est
     // jamais un détail optionnel qu'un tirage au sort pourrait faire disparaître.
-    warning += ` ⚠️ ${profile.mandatoryWarning}`;
+    warning += ` ${profile.mandatoryWarning}`;
   }
   const jepq = selection.find((s) => s.id === "jepq");
   if (jepq && jepq.pct > 30) {
     // Avertissement dynamique (pas stocké en dur dans theses.js) : ne se déclenche que si le
     // covered call dépasse effectivement 30% de CE tirage précis, jitter inclus.
-    warning += " ⚠️ Le covered call (JEPQ) plafonne la hausse en marché bull. Ce portefeuille génère des revenus — pas une performance maximale.";
+    warning += " Le covered call (JEPQ) plafonne la hausse en marché bull. Ce portefeuille génère des revenus — pas une performance maximale.";
   }
   const cta = pickCta(profile, history, { worst, best, selection });
+  const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -381,7 +393,8 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     selection,
     perf,
     worst,
-    context: contextLine(profile, selection, perf),
+    context: contextText,
+    contextFallbackPick: fallbackPick,
   };
 }
 

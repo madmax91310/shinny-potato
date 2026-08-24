@@ -42,10 +42,18 @@ export const CORPBOND_OPTIONS = ["oblig_corp_ig", "oblig_corp_amundi", "oblig_co
 export const WORLD_OPTIONS = ["msci_world", "msci_world_ishares", "ftse_allworld_vanguard", "msci_acwi"];
 export const EM_OPTIONS = ["msci_em", "msci_em_amundi", "ftse_em_vanguard", "msci_em_spdr"];
 export const DIVIDEND_OPTIONS = ["strat_dividendes", "high_dividend", "quality_dividend"];
+// Réservé au profil Rentier (cf. sa règle "uniquement des lignes distribuantes") : jumeaux Dist
+// vérifiés des trois fonds ci-dessus, plus foncieres_etf_dist utilisé directement par id ailleurs
+// dans les riskCombos de ce profil.
+export const DIVIDEND_OPTIONS_DIST = ["strat_dividendes_dist", "high_dividend_dist", "quality_dividend_dist"];
 // "Thématique" : le secteur pari change à chaque génération. Les secteurs les plus extrêmes
 // (semi-conducteurs) sont réservés aux niveaux de risque qui peuvent absorber leur volatilité.
+// À l'inverse, la santé (sect_sante) est structurellement défensive (pire année historique
+// proche de -3/-4%, loin du plancher -15% à -30% attendu en Dynamique/Offensif) : elle ne doit
+// jamais être piochée à ces deux niveaux, d'où THEME_OPTIONS_AGGRESSIVE qui l'exclut.
 export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie"];
 export const THEME_OPTIONS_FULL = ["sect_semi", "sect_sante", "sect_energie"];
+export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie"];
 
 export const PROFILES = [
   {
@@ -76,7 +84,12 @@ export const PROFILES = [
       "Ce portefeuille suit la logique de son niveau de risque, sans thèse supplémentaire. Adapte le niveau à ton horizon avant tout.",
       "La diversification limite les excès dans les deux sens : ni les pires baisses, ni les meilleures hausses.",
     ],
-    contextFallback: "Le stabilisateur a joué son rôle : sans lui, la baisse aurait été nettement plus marquée.",
+    contextFallback: [
+      "Le stabilisateur a joué son rôle : sans lui, la baisse aurait été nettement plus marquée.",
+      "L'or a absorbé une partie de la baisse — sans lui, le résultat aurait été plus sévère.",
+      "La poche obligataire a joué son rôle d'amortisseur cette année-là.",
+      "La diversification entre actifs décorrélés a limité les dégâts.",
+    ],
     riskCombos: {
       prudent: {
         assets: [
@@ -282,7 +295,11 @@ export const PROFILES = [
     // Toujours ajoutée après l'avertissement (cf. engine.js) : pour un profil qui vit de ses
     // revenus, une baisse de capital reste significative même si les distributions continuent.
     capitalNote: true,
-    contextFallback: "Même dans sa pire année, les revenus distribués par ces lignes ont continué à tomber.",
+    contextFallback: [
+      "Même dans sa pire année, les revenus distribués par ces lignes ont continué à tomber.",
+      "La baisse touche la valeur des parts, pas les distributions : les revenus, eux, ont continué à tomber.",
+      "Le capital a reculé cette année-là, mais les lignes du portefeuille ont continué à verser.",
+    ],
     riskCombos: {
       prudent: {
         assets: [
@@ -308,7 +325,7 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: DIVIDEND_OPTIONS, pct: 15,
+            idOptions: DIVIDEND_OPTIONS_DIST, pct: 15,
             pourquoi: [
               "Des entreprises qui versent (et augmentent) leur dividende depuis des années.",
               "Complète les trois autres lignes avec une quatrième source de revenu, en version Dist.",
@@ -326,14 +343,14 @@ export const PROFILES = [
             ],
           },
           {
-            id: "foncieres_etf", pct: 15,
+            id: "foncieres_etf_dist", pct: 15,
             pourquoi: [
               "Une dose d'immobilier coté pour aller chercher un peu plus de rendement — en quantité mesurée.",
               "{pct}% seulement : de quoi profiter du rendement immobilier sans subir sa pleine volatilité.",
             ],
           },
           {
-            idOptions: DIVIDEND_OPTIONS, pct: 25,
+            idOptions: DIVIDEND_OPTIONS_DIST, pct: 25,
             pourquoi: [
               "Des entreprises qui paient (et augmentent) leur dividende depuis des années.",
               "La brique « revenu régulier » du portefeuille, en version distribuante.",
@@ -358,14 +375,14 @@ export const PROFILES = [
             ],
           },
           {
-            id: "foncieres_etf", pct: 45,
+            id: "foncieres_etf_dist", pct: 45,
             pourquoi: [
               "La version cotée et liquide de l'immobilier de revenu : mêmes loyers, beaucoup plus de souplesse.",
               "{pct}% : la ligne la plus lourde, car c'est elle qui distribue le plus régulièrement.",
             ],
           },
           {
-            idOptions: DIVIDEND_OPTIONS, pct: 25,
+            idOptions: DIVIDEND_OPTIONS_DIST, pct: 25,
             pourquoi: [
               "Des entreprises qui existent pour verser (et augmenter) un dividende depuis des décennies.",
               "Complète les deux lignes immobilières avec une troisième source de revenu, décorrélée du secteur.",
@@ -390,14 +407,14 @@ export const PROFILES = [
             ],
           },
           {
-            id: "foncieres_etf", pct: 25,
+            id: "foncieres_etf_dist", pct: 25,
             pourquoi: [
               "Une deuxième source de revenu, décorrélée du covered call : les loyers de l'immobilier coté.",
               "Vient diversifier la source de distribution au-delà du seul JEPQ.",
             ],
           },
           {
-            idOptions: DIVIDEND_OPTIONS, pct: 20,
+            idOptions: DIVIDEND_OPTIONS_DIST, pct: 20,
             pourquoi: [
               "Une troisième source de revenu, sur des entreprises qui distribuent depuis des décennies.",
               "Complète le duo JEPQ / foncières avec une brique actions plus classique.",
@@ -422,14 +439,14 @@ export const PROFILES = [
             ],
           },
           {
-            id: "foncieres_etf", pct: 20,
+            id: "foncieres_etf_dist", pct: 20,
             pourquoi: [
               "Une deuxième source de revenu, pour ne pas dépendre uniquement du covered call.",
               "Vient diversifier la distribution au-delà de la seule stratégie d'options.",
             ],
           },
           {
-            idOptions: DIVIDEND_OPTIONS, pct: 15,
+            idOptions: DIVIDEND_OPTIONS_DIST, pct: 15,
             pourquoi: [
               "La touche finale de diversification, toujours dans la même logique de revenu.",
               "Complète le portefeuille sans jamais sortir de la thèse du revenu régulier.",
@@ -471,7 +488,11 @@ export const PROFILES = [
     // Toujours ajoutée après l'avertissement (cf. engine.js) : la sous-performance de l'Europe
     // face aux États-Unis sur 10 ans est un fait qu'il faut assumer, pas nuancer.
     mandatoryWarning: "L'Europe a sous-performé les États-Unis sur 10 ans. Ce portefeuille assume ce contre-pied.",
-    contextFallback: "La baisse touche la zone euro dans son ensemble — c'est le risque assumé d'un pari majoritairement régional.",
+    contextFallback: [
+      "La baisse touche la zone euro dans son ensemble — c'est le risque assumé d'un pari majoritairement régional.",
+      "Sans diversification géographique hors Europe, ce portefeuille encaisse pleinement les mauvaises années du continent.",
+      "Le pari régional joue dans les deux sens : cette baisse en est la contrepartie assumée.",
+    ],
     // Minimum 70% Europe partout ; les 30% restants ne tolèrent que l'or physique (actif neutre)
     // et le fonds euros (actif français) — jamais d'obligations globales, d'actions US ou
     // d'émergents hors Europe, incompatibles avec la thèse.
@@ -649,7 +670,11 @@ export const PROFILES = [
       "Ce portefeuille sous-performe en marché actions haussier. Il est fait pour protéger, pas pour faire croître rapidement le capital.",
       "Aucune de ces lignes ne verse de dividende ni d'intérêt classique. La logique ici est la préservation de la valeur, pas le revenu.",
     ],
-    contextFallback: "Ce portefeuille n'a connu aucune année réellement négative sur la période observée.",
+    contextFallback: [
+      "Ce portefeuille n'a connu aucune année réellement négative sur la période observée.",
+      "La logique de protection tient : même les pires années restent contenues.",
+      "Aucun des scénarios observés n'a mis à mal la thèse de préservation du capital.",
+    ],
     // Ni Bitcoin (corrélé aux actifs risqués en période de stress, -62% en 2022, l'année d'inflation
     // la plus forte de la période — l'inverse d'une protection), ni REIT/foncière (la hausse des
     // taux qui accompagne l'inflation fait mécaniquement baisser leur valorisation), ni pétrole
@@ -816,7 +841,11 @@ export const PROFILES = [
       "Ce profil limite fortement les baisses, mais plafonne aussi la performance en période haussière. Ce n'est pas un hasard.",
       "En échange de la tranquillité, ce portefeuille manquera une bonne partie des meilleures années boursières. C'est le compromis assumé.",
     ],
-    contextFallback: "La logique tient : aucune des lignes n'a chuté fortement la même année que les autres.",
+    contextFallback: [
+      "La logique tient : aucune des lignes n'a chuté fortement la même année que les autres.",
+      "La diversification a fait son travail : pas de mauvaise année généralisée sur l'ensemble des lignes.",
+      "Le compromis tient sa promesse : les baisses restent contenues, jamais simultanées sur toutes les lignes.",
+    ],
     riskCombos: {
       prudent: {
         assets: [
@@ -952,7 +981,11 @@ export const PROFILES = [
       "La poche crypto peut perdre plus de 60% en un an, comme en 2022. Le reste du portefeuille est calibré pour absorber le choc, pas pour l'éviter.",
       "Ce niveau d'exposition crypto n'a de sens qu'avec un horizon long et une tolérance réelle à la volatilité.",
     ],
-    contextFallback: "La poche crypto explique l'essentiel de cette variation — le reste du portefeuille limite la casse, sans jamais l'annuler.",
+    contextFallback: [
+      "La poche crypto explique l'essentiel de cette variation — le reste du portefeuille limite la casse, sans jamais l'annuler.",
+      "Sans la ligne crypto, cette année aurait été bien plus calme — c'est le prix de la conviction assumée.",
+      "Le reste du portefeuille a amorti une partie du choc crypto, sans jamais l'effacer complètement.",
+    ],
     // Pas de version Prudent : même une dose minimale de Bitcoin (cf. sa volatilité, -64% en
     // 2022) est incompatible avec un plancher de perte à -5%.
     riskCombos: {
@@ -1115,7 +1148,11 @@ export const PROFILES = [
       "Un pari sectoriel concentré peut fortement sous-performer (ou sur-performer) le marché dans son ensemble. C'est le prix de la conviction.",
       "Aucune diversification sectorielle ici par construction. Si le secteur traverse une crise, ce portefeuille la traverse aussi.",
     ],
-    contextFallback: "Cette variation reflète surtout la santé du secteur choisi, pas celle du marché dans son ensemble.",
+    contextFallback: [
+      "Cette variation reflète surtout la santé du secteur choisi, pas celle du marché dans son ensemble.",
+      "C'est le secteur pari qui pilote cette variation — le contrepoids diversifié n'a qu'un rôle d'amortisseur.",
+      "La concentration sectorielle se voit directement ici : le reste du portefeuille ne fait qu'amortir.",
+    ],
     // Pas de version Prudent : même le secteur le plus calme de la bibliothèque reste trop
     // concentré pour un plancher de perte à -5%.
     riskCombos: {
@@ -1186,7 +1223,7 @@ export const PROFILES = [
       dynamique: {
         assets: [
           {
-            idOptions: THEME_OPTIONS_FULL, pct: 55,
+            idOptions: THEME_OPTIONS_AGGRESSIVE, pct: 55,
             pourquoi: [
               "{pct}% sur un seul secteur : la conviction poussée nettement plus loin que dans les versions moins risquées.",
               "Plus de la moitié du portefeuille dépend désormais du même pari sectoriel.",
@@ -1211,7 +1248,7 @@ export const PROFILES = [
       offensif: {
         assets: [
           {
-            idOptions: THEME_OPTIONS_FULL, pct: 70,
+            idOptions: THEME_OPTIONS_AGGRESSIVE, pct: 70,
             pourquoi: [
               "{pct}% : la conviction sectorielle à son maximum, sans aucun filet de sécurité pour l'amortir.",
               "L'essentiel du portefeuille repose sur un seul secteur — la définition même de ce profil, poussée à l'extrême.",

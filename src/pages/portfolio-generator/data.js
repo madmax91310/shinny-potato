@@ -2,11 +2,13 @@
 // devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
-// Roster de 44 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
+// Roster de 48 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
 // thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait une de plus" — voir
 // CLAUDE.md du projet pour la philosophie de sélection. 8 actifs sans rôle identifié (china, india,
 // japan, oblig_global_agg, oblig_short, petrole, strat_momentum, strat_smallcap) ont été retirés lors
-// d'un audit en août 2026 pour que ce roster reste vrai.
+// d'un audit en août 2026 pour que ce roster reste vrai. 4 jumeaux distribuants (suffixe _dist,
+// flag distributing: true) ont été ajoutés ensuite, réservés au profil Rentier qui exige des parts
+// distribuantes (cf. warning dans theses.js).
 
 export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -207,11 +209,16 @@ export const ASSETS = [
   // ── 🛢️ Autres matières premières ───────────────────────
   {
     id: "argent", name: "iShares Physical Silver ETC", cat: "matieres_premieres", emoji: "🛢️",
-    // Source : cours de l'argent spot en USD/once. 2020 (+47%) confirmé. 2021 (-14%) et 2025
-    // (+144%, année exceptionnelle — cf. BullionVault « Silver Jumps 144% » sur 2025) vérifiés
-    // via recherche web. 2022, 2023, 2024 : NON VÉRIFIÉ malgré plusieurs recherches (données
+    // Source : cours de l'argent spot en USD/once. 2020 (+47%) confirmé. 2021 (-14%) vérifié via
+    // recherche web. 2022, 2023, 2024 : NON VÉRIFIÉ malgré plusieurs recherches (données
     // fragmentaires/contradictoires) — valeurs d'origine conservées pour ces trois années.
-    r: [47.0, -14.0, 3.0, -1.0, 21.0, 144.0],
+    // 2025 : le cours spot USD a bien grimpé de +144% (BullionVault « Silver Jumps 144% »,
+    // confirmé), mais ce fonds est une ligne EUR au même titre que le reste du fichier — corrigé
+    // en tenant compte de la baisse du dollar face à l'euro sur 2025 (EUR/USD +13,34% sur
+    // l'année, exchange-rates.org) : (1+1,44)/(1+0,1334)-1 ≈ +115,3%. Estimation calculée à
+    // partir de deux chiffres réels (rendement spot USD + variation de change), pas une clôture
+    // EUR directement lue — aucune source n'a donné le rendement EUR exact du fonds pour 2025.
+    r: [47.0, -14.0, 3.0, -1.0, 21.0, 115.3],
     desc: [
       "souvent surnommé « l'or du pauvre », plus volatil que l'or car aussi utilisé dans l'industrie.",
       "profite à la fois de la demande refuge et de la demande industrielle.",
@@ -280,6 +287,7 @@ export const ASSETS = [
   },
   {
     id: "foncieres_etf", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF", cat: "immobilier", emoji: "⚪",
+    distributing: false,
     // Source : FTSE EPRA Nareit Global Real Estate Index (2021, Nareit) et FTSE EPRA Nareit
     // Developed Index (2022-2025, fiche FTSE Russell — sous-indice proche du Global mais qui
     // exclut les émergents, écart généralement faible). 2020 : NON VÉRIFIÉ malgré plusieurs
@@ -291,10 +299,24 @@ export const ASSETS = [
       "distribue généralement une grande partie de ses revenus sous forme de dividendes.",
     ],
   },
+  {
+    // Jumeau distribuant de "foncieres_etf" (part Dist, vérifiée réelle, réservée au profil
+    // Rentier — cf. DIST_TWINS et Rentier dans theses.js) : même sous-jacent (FTSE EPRA Nareit
+    // Global Developed), seule la politique de distribution change.
+    id: "foncieres_etf_dist", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF Dist", cat: "immobilier", emoji: "⚪",
+    distributing: true,
+    r: [-10.0, 23.0, -24.4, 10.9, 2.0, 10.7],
+    desc: [
+      "des sociétés immobilières cotées en Bourse : bureaux, entrepôts, commerces, logistique.",
+      "beaucoup plus liquide que la pierre-papier classique, mais aussi plus volatil.",
+      "distribue généralement une grande partie de ses revenus sous forme de dividendes.",
+    ],
+  },
 
   // ── 🟣 Dividendes ────────────────────────────────────────
   {
     id: "strat_dividendes", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF", cat: "dividendes", emoji: "🟣",
+    distributing: false,
     // Source : performance annuelle réelle du fonds SPDR S&P Global Dividend Aristocrats UCITS
     // ETF, années 2020-2025 (méthodologie « Quality Income Index » depuis février 2020).
     r: [-9.11, 15.21, -6.53, 7.13, 7.41, 17.55],
@@ -305,9 +327,23 @@ export const ASSETS = [
     ],
   },
   {
+    // Jumeau distribuant de "strat_dividendes" — le fonds SPDR existe en version Dist (paiement
+    // trimestriel), vérifié réel, réservé au profil Rentier.
+    id: "strat_dividendes_dist", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    distributing: true,
+    r: [-9.11, 15.21, -6.53, 7.13, 7.41, 17.55],
+    desc: [
+      "des entreprises qui versent (et augmentent) leur dividende depuis des années : profil plutôt défensif.",
+      "recherché pour générer un revenu régulier en plus de la performance en capital.",
+      "a tendance à mieux résister lors des phases de baisse des marchés.",
+    ],
+  },
+  {
     id: "high_dividend", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF", cat: "dividendes", emoji: "🟣",
+    distributing: false,
     // Source : performance annuelle calendaire réelle du fonds (nette de frais), fiches
-    // Vanguard, années 2020-2025.
+    // Vanguard, années 2020-2025. NB : ce fonds existe bien en version Acc (ISIN IE00BK5BR626)
+    // ET Dist (IE00B8GKDB10) — contrairement à une hypothèse initiale qui le pensait Dist-only.
     r: [-0.26, 17.88, -5.74, 11.51, 9.39, 26.40],
     desc: [
       "sélectionne les entreprises mondiales au rendement de dividende le plus élevé.",
@@ -316,10 +352,36 @@ export const ASSETS = [
     ],
   },
   {
-    id: "quality_dividend", name: "iShares MSCI World Quality Dividend UCITS ETF", cat: "dividendes", emoji: "🟣",
+    // Jumeau distribuant de "high_dividend" (part Dist, ISIN IE00B8GKDB10, vérifiée réelle),
+    // réservé au profil Rentier.
+    id: "high_dividend_dist", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    distributing: true,
+    r: [-0.26, 17.88, -5.74, 11.51, 9.39, 26.40],
+    desc: [
+      "sélectionne les entreprises mondiales au rendement de dividende le plus élevé.",
+      "plus large et plus « value » que les aristocrates du dividende, avec un couponnage souvent supérieur.",
+      "profite des secteurs traditionnellement généreux en dividendes : énergie, finance, télécoms.",
+    ],
+  },
+  {
+    id: "quality_dividend", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF", cat: "dividendes", emoji: "🟣",
+    distributing: false,
     // Source : performance annuelle réelle du fonds iShares MSCI World Quality Dividend
-    // (Advanced) UCITS ETF, années 2020-2025. Changement de benchmark le 1er juin 2022 (nom du
-    // fonds identique, méthodologie affinée).
+    // Advanced UCITS ETF, années 2020-2025. Changement de benchmark le 1er juin 2022 (nom du
+    // fonds identique, méthodologie affinée). Nom corrigé pour inclure "Advanced", omis par
+    // erreur dans la version précédente (le fonds réel s'appelle bien ainsi).
+    r: [0.05, 15.95, -6.87, 17.14, 9.87, 9.76],
+    desc: [
+      "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
+      "vise des entreprises capables de maintenir leur dividende même en période difficile.",
+      "un compromis entre le rendement pur et la solidité du bilan des entreprises sélectionnées.",
+    ],
+  },
+  {
+    // Jumeau distribuant de "quality_dividend" (part Dist, ISIN IE00BYYHSQ67, vérifiée réelle),
+    // réservé au profil Rentier.
+    id: "quality_dividend_dist", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    distributing: true,
     r: [0.05, 15.95, -6.87, 17.14, 9.87, 9.76],
     desc: [
       "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
