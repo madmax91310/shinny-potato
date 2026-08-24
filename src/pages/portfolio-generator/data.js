@@ -338,11 +338,13 @@ export const ASSETS = [
   {
     id: "foncieres_etf", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF", cat: "immobilier", emoji: "⚪",
     distributing: false,
-    // Source : FTSE EPRA Nareit Global Real Estate Index (2021, Nareit) et FTSE EPRA Nareit
-    // Developed Index (2022-2025, fiche FTSE Russell — sous-indice proche du Global mais qui
-    // exclut les émergents, écart généralement faible). 2020 : NON VÉRIFIÉ malgré plusieurs
-    // recherches, valeur d'origine conservée.
-    r: [-10.0, 23.0, -24.4, 10.9, 2.0, 10.7],
+    // Source : FTSE EPRA Nareit Global Developed Index, total return EUR (dividendes réinvestis),
+    // années 2020-2024 vérifiées précisément. 2025 (+10,7%) recoupé indépendamment via un chiffre
+    // Nareit "FTSE EPRA Nareit Developed +10.7% en 2025" (devise non précisée sur cette source,
+    // mais cohérent avec la valeur déjà présente). Remplace une précédente série qui ne
+    // correspondait à aucune donnée réelle trouvable (l'ancien -24,4% de 2022 ne correspondait ni
+    // au total return EUR (-20,18%) ni même au price return USD (-21,62%) de l'indice).
+    r: [-16.55, 35.67, -20.18, 5.96, 7.68, 10.7],
     desc: [
       "des sociétés immobilières cotées en Bourse : bureaux, entrepôts, commerces, logistique.",
       "beaucoup plus liquide que la pierre-papier classique, mais aussi plus volatil.",
@@ -355,7 +357,7 @@ export const ASSETS = [
     // Global Developed), seule la politique de distribution change.
     id: "foncieres_etf_dist", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF Dist", cat: "immobilier", emoji: "⚪",
     distributing: true,
-    r: [-10.0, 23.0, -24.4, 10.9, 2.0, 10.7],
+    r: [-16.55, 35.67, -20.18, 5.96, 7.68, 10.7],
     desc: [
       "des sociétés immobilières cotées en Bourse : bureaux, entrepôts, commerces, logistique.",
       "beaucoup plus liquide que la pierre-papier classique, mais aussi plus volatil.",
