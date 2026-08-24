@@ -1,5 +1,5 @@
 import { YEARS, getAsset } from "./data.js";
-import { PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, isCompatible } from "./theses.js";
+import { PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, isCompatible, getFrequencyCap } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
 
 function rand(min, max) {
@@ -102,14 +102,16 @@ function pickLeastUsed(options, usageCounts) {
 }
 
 // Résout un slot {id} ou {idOptions} en un asset concret. Au-delà de 5 générations dans la
-// session, exclut d'abord toute option qui dépasserait déjà 40% de fréquence, puis choisit
-// parmi le reste en favorisant l'option la moins utilisée — jamais une simple équiprobabilité,
-// pour que les alternatives sous-utilisées comblent vite leur retard.
+// session, exclut d'abord toute option qui dépasserait déjà son plafond de fréquence (cf.
+// getFrequencyCap — 40% pour l'or, 25% pour les blocs actions US/obligations, 30% par défaut),
+// puis choisit parmi le reste en favorisant l'option la moins utilisée — jamais une simple
+// équiprobabilité, pour que les alternatives sous-utilisées comblent vite leur retard.
 function resolveAssetId(slot, usageCounts, historyLength) {
   if (!slot.idOptions) return slot.id;
   let candidates = slot.idOptions;
   if (historyLength >= 5) {
-    const underCap = candidates.filter((id) => (usageCounts[id] || 0) / historyLength <= 0.4);
+    const cap = getFrequencyCap(slot.idOptions);
+    const underCap = candidates.filter((id) => (usageCounts[id] || 0) / historyLength <= cap);
     if (underCap.length > 0) candidates = underCap;
   }
   return pickLeastUsed(candidates, usageCounts);

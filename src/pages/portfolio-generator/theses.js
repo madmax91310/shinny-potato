@@ -66,6 +66,22 @@ export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie"];
 export const THEME_OPTIONS_FULL = ["sect_semi", "sect_sante", "sect_energie"];
 export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie"];
 
+// Plafond de fréquence par groupe : au-delà de ce ratio d'apparition dans l'historique de la
+// session, un membre du groupe est exclu des tirages tant qu'une autre option reste disponible
+// (cf. resolveAssetId dans engine.js). Par défaut 30% pour tout groupe non listé ici ; l'or est
+// desserré à 40% (moins d'alternatives réellement distinctes) et les blocs actions US /
+// obligations resserrés à 25% (plus d'alternatives, on veut une rotation plus marquée).
+const FREQUENCY_CAPS = new Map([
+  [GOLD_OPTIONS, 0.4],
+  [SP500_OPTIONS, 0.25],
+  [NASDAQ100_OPTIONS, 0.25],
+  [CORPBOND_OPTIONS, 0.25],
+]);
+const DEFAULT_FREQUENCY_CAP = 0.3;
+export function getFrequencyCap(idOptions) {
+  return FREQUENCY_CAPS.get(idOptions) ?? DEFAULT_FREQUENCY_CAP;
+}
+
 export const PROFILES = [
   {
     id: "generaliste",
