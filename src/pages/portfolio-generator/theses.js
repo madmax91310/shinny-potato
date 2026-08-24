@@ -39,13 +39,24 @@ export const TIER_WORST_BOUNDS = RISK_BOUNDS;
 export const GOLD_OPTIONS = ["or", "or_wisdomtree", "or_ishares", "or_amundi"];
 export const BITCOIN_OPTIONS = ["bitcoin", "bitcoin_wisdomtree", "bitcoin_etcgroup", "bitcoin_21shares"];
 export const CORPBOND_OPTIONS = ["oblig_corp_ig", "oblig_corp_amundi", "oblig_corp_vanguard", "oblig_corp_spdr"];
-export const WORLD_OPTIONS = ["msci_world", "msci_world_ishares", "ftse_allworld_vanguard", "msci_acwi"];
+export const WORLD_OPTIONS = ["msci_world", "msci_world_ishares", "msci_world_amundi_pea", "ftse_allworld_vanguard", "msci_acwi"];
 export const EM_OPTIONS = ["msci_em", "msci_em_amundi", "ftse_em_vanguard", "msci_em_spdr"];
 export const DIVIDEND_OPTIONS = ["strat_dividendes", "high_dividend", "quality_dividend"];
 // Réservé au profil Rentier (cf. sa règle "uniquement des lignes distribuantes") : jumeaux Dist
 // vérifiés des trois fonds ci-dessus, plus foncieres_etf_dist utilisé directement par id ailleurs
 // dans les riskCombos de ce profil.
 export const DIVIDEND_OPTIONS_DIST = ["strat_dividendes_dist", "high_dividend_dist", "quality_dividend_dist"];
+// Groupes par actif sous-jacent ajoutés lors de l'audit "enrichissement bibliothèque" : chaque
+// membre partage le même tableau `r` que l'actif d'origine (même sous-jacent réel, vérifié un par
+// un). Plusieurs suggestions du prompt d'origine ont été écartées plutôt que groupées à l'aveugle :
+// les fonds "Lyxor" ont presque tous été rebaptisés Amundi depuis 2021-2023 (noms obsolètes), et
+// iShares Developed Markets Property Yield (IWDP) suit en réalité l'indice "FTSE EPRA/NAREIT
+// Developed Dividend+" (screené haut rendement), pas l'indice Global Developed de foncieres_etf —
+// performance différente, donc non groupé.
+export const SP500_OPTIONS = ["sp500", "sp500_ishares"];
+export const NASDAQ100_OPTIONS = ["nasdaq100", "nasdaq100_ishares"];
+export const EUROSTOXX50_OPTIONS = ["eurostoxx50", "eurostoxx50_ishares"];
+export const COMMODITY_OPTIONS = ["mp_large", "mp_large_icom"];
 // "Thématique" : le secteur pari change à chaque génération. Les secteurs les plus extrêmes
 // (semi-conducteurs) sont réservés aux niveaux de risque qui peuvent absorber leur volatilité.
 // À l'inverse, la santé (sect_sante) est structurellement défensive (pire année historique
@@ -165,7 +176,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "sp500", pct: 15,
+            idOptions: SP500_OPTIONS, pct: 15,
             pourquoi: [
               "Un pari plus concentré sur le marché américain, en complément de la ligne monde plus diversifiée géographiquement.",
               "{pct}% pour renforcer l'exposition aux États-Unis sans dépendre uniquement du seul indice mondial.",
@@ -204,7 +215,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "nasdaq100", pct: 25,
+            idOptions: NASDAQ100_OPTIONS, pct: 25,
             pourquoi: [
               "La partie qui vise vraiment la surperformance : concentrée sur l'innovation américaine.",
               "Le moteur de croissance le plus agressif du portefeuille.",
@@ -229,7 +240,7 @@ export const PROFILES = [
       offensif: {
         assets: [
           {
-            id: "nasdaq100", pct: 40,
+            idOptions: NASDAQ100_OPTIONS, pct: 40,
             pourquoi: [
               "Le moteur principal : {pct}% concentrés sur la tech américaine la plus agressive.",
               "La ligne la plus lourde du portefeuille, sur l'un des indices les plus volatils qui existent.",
@@ -507,7 +518,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "eurostoxx50", pct: 15,
+            idOptions: EUROSTOXX50_OPTIONS, pct: 15,
             pourquoi: [
               "La seule ligne actions de cette version prudente : les 50 plus grandes entreprises de la zone euro.",
               "Une petite dose de croissance européenne, sans compromettre la logique prudente.",
@@ -532,7 +543,7 @@ export const PROFILES = [
       defensif: {
         assets: [
           {
-            id: "eurostoxx50", pct: 30,
+            idOptions: EUROSTOXX50_OPTIONS, pct: 30,
             pourquoi: [
               "Le cœur actions de la zone euro : LVMH, TotalEnergies, SAP...",
               "{pct}% pour donner un vrai poids à la conviction européenne, même à ce niveau de risque.",
@@ -571,7 +582,7 @@ export const PROFILES = [
       equilibre: {
         assets: [
           {
-            id: "eurostoxx50", pct: 20,
+            idOptions: EUROSTOXX50_OPTIONS, pct: 20,
             pourquoi: [
               "Le socle actions de la zone euro, cohérent avec la thèse à tous les niveaux de risque.",
               "{pct}% pour ancrer le portefeuille dans l'économie de la zone euro.",
@@ -610,7 +621,7 @@ export const PROFILES = [
       dynamique: {
         assets: [
           {
-            id: "eurostoxx50", pct: 20,
+            idOptions: EUROSTOXX50_OPTIONS, pct: 20,
             pourquoi: [
               "Le socle actions de la zone euro, même dans cette version plus offensive de la thèse.",
               "{pct}% pour garder un ancrage large avant les paris plus concentrés du reste du portefeuille.",
@@ -706,7 +717,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "mp_large", pct: 15,
+            idOptions: COMMODITY_OPTIONS, pct: 15,
             pourquoi: [
               "Quand l'inflation grimpe, les prix des matières premières grimpent souvent avec elle — c'est mécanique.",
               "Complète l'or avec une exposition plus large : énergie, métaux, agriculture.",
@@ -724,7 +735,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "mp_large", pct: 25,
+            idOptions: COMMODITY_OPTIONS, pct: 25,
             pourquoi: [
               "Quand l'inflation grimpe, les prix des matières premières grimpent souvent avec elle — c'est mécanique.",
               "Complète l'or avec une exposition plus large : énergie, métaux, agriculture.",
@@ -763,7 +774,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "mp_large", pct: 25,
+            idOptions: COMMODITY_OPTIONS, pct: 25,
             pourquoi: [
               "Un panier large de matières premières — énergie, métaux, agriculture — pour ne pas dépendre d'un seul actif.",
               "La jambe la plus diversifiée de la protection : des actifs physiques variés, pas du papier.",
@@ -795,7 +806,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "mp_large", pct: 35,
+            idOptions: COMMODITY_OPTIONS, pct: 35,
             pourquoi: [
               "Un panier large de matières premières, pour renforcer la protection sans concentrer sur un seul actif.",
               "La deuxième jambe de la thèse, à son poids maximal dans cette version dynamique.",
@@ -1070,7 +1081,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "nasdaq100", pct: 20,
+            idOptions: NASDAQ100_OPTIONS, pct: 20,
             pourquoi: [
               "Un deuxième moteur de croissance, plus classique mais tout aussi volatil que la crypto.",
               "Vient renforcer la partie « forte conviction » du portefeuille.",
@@ -1102,7 +1113,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "nasdaq100", pct: 25,
+            idOptions: NASDAQ100_OPTIONS, pct: 25,
             pourquoi: [
               "La partie « actions » de ce portefeuille, elle aussi concentrée sur l'innovation la plus agressive.",
               "Aucune ligne de ce portefeuille n'a vocation à protéger les autres. C'est voulu.",
@@ -1255,7 +1266,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "nasdaq100", pct: 20,
+            idOptions: NASDAQ100_OPTIONS, pct: 20,
             pourquoi: [
               "Un deuxième pari technologique, pour renforcer la thèse sans la diluer.",
               "Vient compléter le pari sectoriel avec une deuxième source de croissance agressive.",

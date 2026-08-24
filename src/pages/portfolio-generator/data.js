@@ -2,13 +2,17 @@
 // devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
-// Roster de 48 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
+// Roster de 53 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
 // thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait une de plus" — voir
 // CLAUDE.md du projet pour la philosophie de sélection. 8 actifs sans rôle identifié (china, india,
 // japan, oblig_global_agg, oblig_short, petrole, strat_momentum, strat_smallcap) ont été retirés lors
 // d'un audit en août 2026 pour que ce roster reste vrai. 4 jumeaux distribuants (suffixe _dist,
 // flag distributing: true) ont été ajoutés ensuite, réservés au profil Rentier qui exige des parts
-// distribuantes (cf. warning dans theses.js).
+// distribuantes (cf. warning dans theses.js). 5 jumeaux supplémentaires (Monde, S&P 500, Nasdaq-100,
+// Euro Stoxx 50, matières premières) ont été ajoutés lors d'un audit "enrichissement bibliothèque" —
+// chacun vérifié réel et partageant le même sous-jacent (donc le même tableau `r`) que l'actif
+// d'origine du groupe (cf. SP500_OPTIONS, NASDAQ100_OPTIONS, EUROSTOXX50_OPTIONS, COMMODITY_OPTIONS
+// dans theses.js).
 
 export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -119,9 +123,33 @@ export const ASSETS = [
     ],
   },
   {
+    // Jumeau strict de "sp500" — même indice S&P 500, fonds vérifié réel (ISIN IE00B5BMR087,
+    // ticker CSPX, l'un des plus gros ETF actions d'Europe). Part USD (non-PEA), contrairement à
+    // sp500 qui est la version PEA d'Amundi — même sous-jacent, donc même performance.
+    id: "sp500_ishares", name: "iShares Core S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [8.54, 38.24, -12.95, 21.53, 31.71, 3.72],
+    desc: [
+      "les 500 plus grandes entreprises cotées aux États-Unis, tirées par la tech ces dernières années.",
+      "l'indice le plus suivi au monde, souvent utilisé comme référence absolue de performance.",
+      "un pari implicite sur la capacité des entreprises américaines à rester leaders mondiaux.",
+    ],
+  },
+  {
     id: "nasdaq100", name: "Amundi PEA Nasdaq-100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     // Source : performance annuelle réelle de l'iShares NASDAQ 100 UCITS ETF, part EUR,
     // années 2020-2025 (proxy du fonds Amundi PEA, même indice sous-jacent).
+    r: [48.38, 28.86, -34.10, 54.99, 27.18, 20.78],
+    desc: [
+      "les 100 plus grandes entreprises non financières du Nasdaq : très orienté technologie.",
+      "concentré sur des géants comme Apple, Microsoft ou Nvidia : un pari sur l'innovation US.",
+      "un des supports les plus volatils parmi les grands indices actions.",
+    ],
+  },
+  {
+    // Jumeau strict de "nasdaq100" — c'est d'ailleurs ce fonds (part EUR, ISIN IE00B53SZB19,
+    // ticker SXRV) qui a servi de source à la série "nasdaq100" ci-dessus (proxy du fonds Amundi
+    // PEA, même indice sous-jacent). Fonds vérifié réel.
+    id: "nasdaq100_ishares", name: "iShares Nasdaq 100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     r: [48.38, 28.86, -34.10, 54.99, 27.18, 20.78],
     desc: [
       "les 100 plus grandes entreprises non financières du Nasdaq : très orienté technologie.",
@@ -146,6 +174,17 @@ export const ASSETS = [
   {
     id: "eurostoxx50", name: "Amundi Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     // Source : indice EURO STOXX 50 (Total Return, dividendes réinvestis), années 2020-2025.
+    r: [-3.03, 23.19, -9.02, 22.46, 10.91, 22.01],
+    desc: [
+      "les 50 plus grandes entreprises de la zone euro, dont LVMH, TotalEnergies ou SAP.",
+      "souvent éligible au PEA, ce qui en fait un classique pour les investisseurs français.",
+      "un bon indicateur de la santé économique de la zone euro dans son ensemble.",
+    ],
+  },
+  {
+    // Jumeau strict de "eurostoxx50" — même indice, fonds vérifié réel (ISIN IE00B53L3W79, déjà
+    // utilisé et vérifié pour l'outil Tweets ETF : le plus liquide des ETF Euro Stoxx 50).
+    id: "eurostoxx50_ishares", name: "iShares Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     r: [-3.03, 23.19, -9.02, 22.46, 10.91, 22.01],
     desc: [
       "les 50 plus grandes entreprises de la zone euro, dont LVMH, TotalEnergies ou SAP.",
@@ -229,6 +268,17 @@ export const ASSETS = [
     id: "mp_large", name: "Invesco Bloomberg Commodity UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
     // Source : fiche officielle Invesco (performance annuelle calendaire du fonds), datée du
     // 31/12/2025, années 2020-2025.
+    r: [-3.13, 26.70, 14.90, -8.47, 5.02, 15.39],
+    desc: [
+      "un panier diversifié : énergie, métaux, agriculture réunis en une seule ligne.",
+      "réputé pour bien se comporter en période d'inflation élevée, comme en 2021-2022.",
+      "peu corrélé aux actions et obligations, un bon outil de diversification globale.",
+    ],
+  },
+  {
+    // Jumeau strict de "mp_large" — vérifié réel (ISIN IE00BDFL4P12, ticker ICOM) : réplique
+    // bien l'indice Bloomberg Commodity, confirmé via la fiche produit iShares.
+    id: "mp_large_icom", name: "iShares Diversified Commodity Swap UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
     r: [-3.13, 26.70, 14.90, -8.47, 5.02, 15.39],
     desc: [
       "un panier diversifié : énergie, métaux, agriculture réunis en une seule ligne.",
@@ -509,6 +559,19 @@ export const ASSETS = [
     id: "msci_world_ishares", name: "iShares Core MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
     // Jumeau strict de "msci_world" — même source (indice MSCI World EUR net, cf. commentaire
     // ci-dessus).
+    r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
+    desc: [
+      "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
+      "le point de comparaison classique de tout portefeuille actions dans le monde.",
+      "souvent considéré comme le cœur de portefeuille « simple et efficace » sur le long terme.",
+    ],
+  },
+  {
+    // Jumeau strict de "msci_world" — même source. Fonds réel vérifié (Amundi PEA Monde (MSCI
+    // World) UCITS ETF, ISIN FR001400U5Q4, lancé le 04/03/2025, ticker DCAM — pas "EWLD" comme
+    // suggéré initialement) : les 6 années de la série représentent la performance réelle de
+    // l'indice répliqué, le fonds lui-même n'existant que depuis 2025.
+    id: "msci_world_amundi_pea", name: "Amundi PEA Monde (MSCI World) UCITS ETF", cat: "actions_larges", emoji: "🟢",
     r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
