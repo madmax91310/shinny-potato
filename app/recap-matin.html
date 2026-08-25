@@ -448,51 +448,48 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 21 août 2026",
-    generatedAt: "Généré le 22 août 2026",
+    sessionDate: "Séance du 24 août 2026",
+    generatedAt: "Généré le 25 août 2026",
     stats: [
-      { label: "MPS / Banco BPM", value: "25,3 Md€", delta: "OPE lancée", dir: "up" },
-      { label: "Bitcoin", value: "79 500 $", delta: "+24%, semaine", dir: "up" },
-      { label: "Or (once)", value: "haut depuis mai", delta: "+5%, semaine", dir: "up" },
-      { label: "Brent", value: ">93 $", delta: "+5%, semaine", dir: "up" },
-      { label: "PMI composite US", value: "56", delta: "haut depuis 2022", dir: "up" },
-      { label: "Nasdaq 100", value: "—", delta: "fin de la baisse", dir: "up" }
+      { label: "Shell (actifs chimiques)", value: "8 Md$", delta: "cession envisagée", dir: "up" },
+      { label: "Bitcoin", value: "78 400 $", delta: "+~1%, 24h", dir: "up" },
+      { label: "Brent", value: "≈92 $", delta: "en recul", dir: "down" },
+      { label: "WTI", value: "≈85 $", delta: "en recul", dir: "down" },
+      { label: "Nvidia (NVDA)", value: "série baissière", delta: "pire depuis 2022", dir: "down" },
+      { label: "Nasdaq 100", value: "—", delta: "-1%", dir: "down" }
     ],
     bullets: [
       {
-        emoji: "🏦",
+        emoji: "🛢️",
         tag: "Marchés actions",
-        text: "La banque italienne Monte dei Paschi di Siena a lancé des offres publiques d'échange sur Banco BPM et Banca Generali, valorisées respectivement à 25,3 et 8,7 milliards d'euros, pour contrer l'OPA de 36 milliards d'euros lancée par Intesa Sanpaolo."
+        text: "Les actifs chimiques américains de Shell suscitent l'intérêt de repreneurs potentiels, dont ExxonMobil et LyondellBasell, pour une opération qui pourrait atteindre 8 milliards de dollars."
       },
       {
-        emoji: "🇺🇸",
+        emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "L'indice PMI composite américain a grimpé à 56 en août, son plus haut niveau depuis avril 2022, signe d'une accélération de l'activité portée par une demande plus forte et une vague d'embauches."
+        text: "Washington a durci ses sanctions économiques contre l'Iran et ses partenaires commerciaux pour tenter de forcer la réouverture du trafic pétrolier dans le détroit d'Ormuz, sans qu'aucune avancée concrète ne se dessine sur ce dossier."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin a grimpé jusqu'à 79 500 dollars vendredi, portant son gain hebdomadaire à près de 24% depuis lundi, sa meilleure semaine depuis mars 2023, avec encore un milliard de dollars de positions vendeuses liquidées."
+        text: "Le Bitcoin s'est maintenu autour de 78 400 dollars, en hausse de près de 1% sur 24 heures, prolongeant sa deuxième meilleure semaine depuis début 2021, portée par les entrées sur les ETF, un dollar plus faible et le retour du « debasement trade »."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "L'or a bondi à son plus haut niveau depuis mi-mai, les rachats d'obligations du Trésor américain ravivant les craintes sur la soutenabilité de la dette plutôt que de rassurer les marchés, tandis que le Brent se dirigeait vers un gain hebdomadaire de plus de 5% au-dessus de 93 dollars sur fond de pression américaine pour isoler l'économie iranienne."
+        text: "Le Brent a clôturé près de 92 dollars le baril et le WTI autour de 85 dollars, les prix cédant du terrain malgré les tensions persistantes autour du détroit d'Ormuz."
       },
       {
-        emoji: "📊",
+        emoji: "🖥️",
         tag: "Fait marquant",
-        text: "Le Nasdaq 100 a mis fin à cinq séances consécutives de baisse à l'approche des résultats trimestriels de Nvidia attendus mercredi, un rendez-vous considéré comme déterminant pour la suite du rallye technologique."
+        text: "Nvidia a enchaîné sa plus longue série de séances baissières depuis 2022, entraînant l'ensemble du secteur des semi-conducteurs dans son sillage à la veille de la publication de ses résultats trimestriels mercredi."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-actualise-30d31b9cacdc4da7047d0f335f7de672" },
-      { outlet: "Bloomberg", title: "US Business Activity Grows at Fastest Pace Since 2022 on Strong Demand", url: "https://www.bloomberg.com/news/articles/2026-08-21/us-business-activity-expands-at-the-fastest-pace-since-2022" },
-      { outlet: "CoinDesk", title: "BTC price tops $77,000 as best week since 2023 pulls altcoins along", url: "https://www.coindesk.com/markets/2026/08/21/bitcoin-tops-usd77-000-as-best-week-since-2023-pulls-altcoins-along-for-the-ride" },
-      { outlet: "CoinDesk", title: "Bitcoin tops $75,000, ether, solana surge as another $1 billion of shorts wiped out", url: "https://www.coindesk.com/markets/2026/08/21/bitcoin-ether-and-solana-climb-as-another-usd1-billion-shorts-get-wiped-out" },
-      { outlet: "Bloomberg", title: "Gold Set for Third Weekly Gain on US Treasury Buyback Plans", url: "https://www.bloomberg.com/news/articles/2026-08-21/gold-set-for-third-weekly-gain-on-us-treasury-buyback-plans" },
-      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for Aug. 21", url: "https://www.bloomberg.com/news/articles/2026-08-20/latest-oil-market-news-and-analysis-for-aug-21" },
-      { outlet: "Bloomberg", title: "US Stock Futures Gain as Nasdaq 100 Looks to Snap Five-Day Slump", url: "https://www.bloomberg.com/news/articles/2026-08-21/us-stock-futures-gain-as-nasdaq-100-looks-to-snap-five-day-slump" }
+      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-a3aa9dcb48ba9cb98ed3d072b3409e80" },
+      { outlet: "Bloomberg", title: "Oil Steadies as US Plan Offers Little Clarity on Hormuz Deadlock", url: "https://www.bloomberg.com/news/articles/2026-08-24/latest-oil-market-news-and-analysis-for-aug-25" },
+      { outlet: "CoinDesk", title: "Bitcoin and ether surge as ETF inflows, a weaker dollar and the debasement trade return", url: "https://www.coindesk.com/markets/2026/08/24/crypto-roars-back-as-bitcoin-posts-its-second-best-week-since-early-2021" },
+      { outlet: "Bloomberg", title: "Asian Equities Drop, Chipmakers Extend Decline: Markets Wrap", url: "https://www.bloomberg.com/news/articles/2026-08-24/stock-market-today-dow-s-p-live-updates" }
     ]
   };
 
