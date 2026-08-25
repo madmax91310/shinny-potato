@@ -406,7 +406,7 @@ export const TERMES = [
   id:"lmnp", categorie:"Immobilier", titre:"le LMNP", variante:"A", sousVariante:"produit",
   intro:`Le LMNP est un statut fiscal qui permet de louer un bien meublé tout en réduisant fortement l'impôt sur les loyers perçus.`,
   objectif:`Optimiser la fiscalité d'un investissement locatif meublé grâce à l'amortissement comptable du bien.`,
-  pourQui:`Tu loues (ou envisages de louer) un bien meublé classique et tu restes sous le seuil du régime micro-BIC (environ 77 700€ de loyers par an, seuil réactualisé périodiquement — attention, il est bien plus bas, environ 15 000€, pour les meublés de tourisme non classés type Airbnb).`,
+  pourQui:`Tu loues (ou envisages de louer) un bien meublé classique et tu restes sous le seuil du régime micro-BIC (83 600€ de loyers par an pour 2026, seuil réactualisé périodiquement — attention, il est bien plus bas, 15 000€, pour les meublés de tourisme non classés type Airbnb).`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Sous le régime réel du LMNP, tu peux déduire de tes loyers imposables non seulement tes charges, mais aussi l'amortissement du bien et du mobilier — une dépréciation comptable qui ne correspond à aucune sortie d'argent réelle. Concrètement, cela permet souvent de ramener l'impôt sur les loyers perçus proche de zéro pendant de nombreuses années.`,
   sectionsOptionnelles:[
