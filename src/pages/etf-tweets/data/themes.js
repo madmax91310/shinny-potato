@@ -34,7 +34,15 @@ export function createTheme(overrides = {}) {
   }
 }
 
-// Données ETF vérifiées par recherche web (ISIN / TER / encours), état mi-août 2026.
+// Données ETF vérifiées par recherche web (ISIN / TER / encours), état 25/08/2026.
+// Audit "meilleurs ETF" du même jour : remplacement de 3 fonds par une alternative UCITS
+// réelle moins chère à exposition quasi identique (Monde CTO, S&P 500 CTO, Japon CTO),
+// correction de plusieurs encours obsolètes, et ajout de l'éligibilité PEA/CTO explicite
+// sur chaque ligne qui ne l'avait pas encore (Tech Europe, Quantique). Priorité systématique :
+// 1) l'option PEA quand elle existe avec un TER raisonnable, 2) sinon le TER le plus bas parmi
+// les fonds CTO suffisamment liquides (encours > ~100 M€, sauf mention contraire explicite —
+// cf. Amundi STOXX Europe 600 Basic Materials, seule option PEA du thème Ressources naturelles
+// malgré un encours faible).
 // Les encours évoluent en continu : à revérifier sur justETF.com avant publication
 // si le tweet sort plusieurs semaines après la dernière mise à jour de ce fichier.
 export const DEFAULT_THEMES = [
@@ -48,17 +56,17 @@ export const DEFAULT_THEMES = [
       'Il existe plusieurs ETF pour capter la croissance mondiale. Voici 4 références à connaître :',
     etfs: [
       createEtf({
-        nom: 'iShares Core MSCI World UCITS ETF',
-        isin: 'IE00B4L5Y983',
-        frais: '0,20',
-        encours: '128,9 Md€',
-        differenciateur: 'le plus gros et liquide, CTO uniquement',
+        nom: 'UBS Core MSCI World UCITS ETF',
+        isin: 'IE00BD4TXV59',
+        frais: '0,06',
+        encours: '10,46 Md€',
+        differenciateur: 'le moins cher du marché, réplication physique complète, CTO',
       }),
       createEtf({
         nom: 'Vanguard FTSE All-World UCITS ETF',
         isin: 'IE00BK5BQT80',
         frais: '0,14',
-        encours: '48,4 Md€',
+        encours: '49,05 Md€',
         differenciateur: '+3600 valeurs, small caps incluses, CTO',
       }),
       createEtf({
@@ -66,13 +74,13 @@ export const DEFAULT_THEMES = [
         isin: 'IE00B44Z5B48',
         frais: '0,12',
         encours: '15,7 Md€',
-        differenciateur: 'le moins cher, développés + émergents, CTO',
+        differenciateur: 'le moins cher développés + émergents, CTO',
       }),
       createEtf({
         nom: 'Amundi PEA Monde (MSCI World) UCITS ETF',
         isin: 'FR001400U5Q4',
         frais: '0,20',
-        encours: '~378 M€',
+        encours: '~1,37 Md€',
         differenciateur: 'seul MSCI World éligible PEA, réplication synthétique',
       }),
     ],
@@ -89,11 +97,11 @@ export const DEFAULT_THEMES = [
       'Le marché américain domine les indices mondiaux. Voici 3 façons d’y accéder, dont deux logeables en PEA :',
     etfs: [
       createEtf({
-        nom: 'iShares Core S&P 500 UCITS ETF',
-        isin: 'IE00B5BMR087',
-        frais: '0,07',
-        encours: '159,5 Md$',
-        differenciateur: 'frais les plus bas, réplication physique, CTO',
+        nom: 'SPDR S&P 500 UCITS ETF Acc',
+        isin: 'IE000XZSV718',
+        frais: '0,03',
+        encours: '16,04 Md€',
+        differenciateur: 'frais les plus bas du marché, réplication physique, CTO',
       }),
       createEtf({
         nom: 'Amundi PEA S&P 500 UCITS ETF',
@@ -160,15 +168,15 @@ export const DEFAULT_THEMES = [
         nom: 'Amundi STOXX Europe 600 Technology UCITS ETF',
         isin: 'LU1834988518',
         frais: '0,30',
-        encours: '~218 M€',
-        differenciateur: 'le plus gros et le moins cher du segment',
+        encours: '~199 M€',
+        differenciateur: 'le plus gros et le moins cher du segment, éligible PEA',
       }),
       createEtf({
         nom: 'iShares STOXX Europe 600 Technology UCITS ETF (DE)',
         isin: 'DE000A0H08Q4',
         frais: '0,46',
         encours: '~228 M€',
-        differenciateur: 'le plus ancien du segment, lancé en 2001',
+        differenciateur: 'le plus ancien du segment (2001), CTO uniquement',
       }),
     ],
     cloture:
@@ -187,15 +195,15 @@ export const DEFAULT_THEMES = [
         nom: 'iShares Core MSCI EM IMI UCITS ETF',
         isin: 'IE00BKM4GZ66',
         frais: '0,18',
-        encours: '25,4 Md€',
+        encours: '~36,8 Md€',
         differenciateur: 'très large, small et mid caps incluses, CTO',
       }),
       createEtf({
-        nom: 'Amundi PEA Émergents (MSCI EM) UCITS ETF',
+        nom: 'Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF',
         isin: 'FR0013412020',
         frais: '0,30',
-        encours: '~0,8 Md€',
-        differenciateur: 'seul grand tracker émergents éligible PEA',
+        encours: '~0,86 Md€',
+        differenciateur: 'seul grand tracker émergents éligible PEA, indice filtré ESG',
       }),
       createEtf({
         nom: 'Xtrackers MSCI Emerging Markets UCITS ETF',
@@ -296,7 +304,7 @@ export const DEFAULT_THEMES = [
         nom: 'Amundi STOXX Europe 600 Healthcare UCITS ETF',
         isin: 'LU1834986900',
         frais: '0,30',
-        encours: '~990 M€',
+        encours: '~839 M€',
         differenciateur: 'seule option santé éligible PEA, Europe only',
       }),
     ],
@@ -316,8 +324,8 @@ export const DEFAULT_THEMES = [
         nom: 'iShares Global Clean Energy Transition UCITS ETF',
         isin: 'IE00B1XNHC34',
         frais: '0,65',
-        encours: '~389 M€',
-        differenciateur: 'pionnier historique, encours ÷15 depuis 2022',
+        encours: '~2,66 Md€',
+        differenciateur: 'pionnier historique du secteur, encours en forte baisse depuis le pic de 2021',
       }),
       createEtf({
         nom: 'Amundi MSCI New Energy ESG Screened UCITS ETF',
@@ -383,11 +391,11 @@ export const DEFAULT_THEMES = [
       'Le Japon reste sous-représenté dans la plupart des portefeuilles européens. Voici 3 trackers pour s’y exposer :',
     etfs: [
       createEtf({
-        nom: 'iShares Core MSCI Japan IMI UCITS ETF',
-        isin: 'IE00B4L5YX21',
-        frais: '0,12',
-        encours: '7,14 Md€',
-        differenciateur: 'le moins cher, couverture large incl. small caps',
+        nom: 'Amundi Prime Japan UCITS ETF',
+        isin: 'LU2089238385',
+        frais: '0,05',
+        encours: '~2,45 Md€',
+        differenciateur: 'le moins cher du marché, Large & Mid Cap (pas de small caps), CTO',
       }),
       createEtf({
         nom: 'Amundi PEA Japan (TOPIX) UCITS ETF',
@@ -462,18 +470,19 @@ export const DEFAULT_THEMES = [
         isin: 'IE000C6ITGC8',
         frais: '0,50',
         encours: '~66 M€',
-        differenciateur: 'le plus récent des 3, encours encore faible',
+        differenciateur: 'le plus récent des 3, encours faible : liquidité/spread à surveiller',
       }),
       createEtf({
         nom: 'WisdomTree Quantum Computing UCITS ETF',
         isin: 'IE000W8WMSL2',
         frais: '0,50',
-        encours: '',
+        encours: '~291 M€',
         differenciateur: 'indice co-développé avec Classiq, spécialiste quantique',
       }),
     ],
     cloture:
       'Thématique à très fort risque : peu de recul, forte volatilité attendue. À réserver à une part satellite de portefeuille.',
+    eligibilite: 'CTO uniquement (composition mondiale)',
   }),
   createTheme({
     id: 'spatial',
@@ -514,15 +523,15 @@ export const DEFAULT_THEMES = [
       createEtf({
         nom: 'Amundi STOXX Europe 600 Basic Materials UCITS ETF',
         isin: 'LU1834983634',
-        frais: '',
-        encours: '',
-        differenciateur: 'seule option ressources éligible PEA, Europe only',
+        frais: '0,30',
+        encours: '~20 M€',
+        differenciateur: 'seule option ressources éligible PEA, Europe only — encours faible, liquidité à surveiller',
       }),
       createEtf({
         nom: 'Xtrackers MSCI World Materials UCITS ETF',
         isin: 'IE00BM67HS53',
         frais: '0,25',
-        encours: '~304 M€',
+        encours: '~681 M€',
         differenciateur: 'frais parmi les plus bas du segment matériaux, CTO',
       }),
     ],
@@ -564,11 +573,11 @@ export const DEFAULT_THEMES = [
         isin: 'GB00B15KXQ89',
         frais: '0,49',
         encours: '1,79 Md€',
-        differenciateur: 'seule expo cuivre pure, réplication par swap (non physique)',
+        differenciateur: 'expo cuivre la plus liquide, réplication par swap (non physique)',
       }),
     ],
     cloture:
-      'Attention : contrairement à l’or et l’argent, il n’existe pas d’ETC cuivre physique — seulement une réplication synthétique par swap.',
+      'Attention : contrairement à l’or et l’argent, il n’existe quasi pas d’ETC cuivre physique liquide (le seul, Elementum, pèse ~2 M€) — en pratique, l’expo cuivre passe par une réplication synthétique par swap.',
     eligibilite: 'Non éligible PEA (ETC hors périmètre)',
   }),
 ]
