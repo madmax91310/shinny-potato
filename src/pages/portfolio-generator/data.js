@@ -91,10 +91,14 @@ export const ASSETS = [
 
   {
     id: "oblig_inflation", name: "iShares € Inflation Linked Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // NON VÉRIFIÉ : recherches infructueuses pour les 6 années — la seule donnée obtenue pour
-    // 2022 (fonds IBCI) a varié d'une requête à l'autre entre +1,20% et -9,73% selon la source,
-    // deux résultats incompatibles entre eux et avec le comportement connu des obligations
-    // indexées inflation € en 2022 (choc de taux réels). Valeurs d'origine conservées intégralement.
+    // NON VÉRIFIÉ : recherches infructueuses pour les 6 années. Nouvelle tentative de vérification
+    // (audit portefeuille-générateur, 25/08/2026) : la même contradiction sur 2022 (fonds IBCI) a
+    // été reproduite indépendamment — deux recherches distinctes citant chacune une fiche
+    // officielle BlackRock/iShares donnent +1,20% et -9,73%, incompatibles entre elles. Ce n'est
+    // donc pas un problème de recherche insuffisante mais une confusion récurrente (probable
+    // mélange avec un fonds au nom proche, ex. IGIL/IS3V "Global Inflation Linked"). Ne PAS
+    // trancher entre les deux sans consulter directement la fiche PDF officielle du bon ISIN.
+    // Valeurs d'origine conservées intégralement.
     r: [5.0, 3.0, -15.0, 4.0, 2.0, 3.0],
     desc: [
       "des obligations d'État dont le capital et le coupon sont indexés sur l'inflation de la zone euro.",
@@ -651,10 +655,14 @@ export const ASSETS = [
   // ── 🔵 Obligataire — durée courte ────────────────────────
   {
     id: "oblig_etat_eur_short", name: "iShares € Govt Bond 1-3yr UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // NON VÉRIFIÉ : aucune donnée annuelle fiable trouvée malgré plusieurs recherches (fiches
-    // BlackRock/iShares non exploitables via les résultats de recherche disponibles). Valeurs
-    // d'origine conservées intégralement.
-    r: [1.5, -0.8, -4.5, 3.0, 3.2, 3.0],
+    // Source : fonds réel (IBGS), fiche BlackRock/iShares, performance annuelle par calendrier
+    // 2020-2024. Corrige surtout 2020 : la version précédente indiquait +1,5% (non vérifié), la
+    // donnée réelle est légèrement négative (-0,14%), cohérent avec un fonds obligataire court
+    // terme sur une année de taux proches de zéro. 2025 : NON VÉRIFIÉ — les résultats trouvés pour
+    // "l'année écoulée" divergent fortement selon la place de cotation (-0,71% à +2,27%), signe
+    // d'un mélange entre parts/devises différentes plutôt qu'une vraie performance calendaire ;
+    // valeur d'origine (+3,0%) conservée par prudence.
+    r: [-0.14, -0.85, -4.28, 3.51, 3.09, 3.0],
     desc: [
       "de la dette d'État de la zone euro à très courte échéance : la version la moins sensible aux taux.",
       "sa faible durée l'a protégé d'une bonne partie du choc de taux subi par les obligations longues en 2022.",
@@ -667,7 +675,11 @@ export const ASSETS = [
     id: "tech_europe", name: "iShares MSCI Europe Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
     // NON VÉRIFIÉ : les recherches menées pour cet indice sectoriel n'ont renvoyé que des
     // données dupliquées par erreur avec l'indice MSCI Europe large (non spécifiques au secteur
-    // technologie). Valeurs d'origine conservées intégralement.
+    // technologie). Nouvelle tentative (25/08/2026) : toujours aucun chiffre calendaire exact
+    // trouvé, mais un fait corroborant a émergé (fonds réel ESIT, lancé le 18/11/2020, donc pas
+    // d'année 2020 pleine) — pire baisse intra-année 2022 de -38,33% et pire mois janvier 2022 à
+    // -13,2% (fiche BlackRock/iShares) : cohérent en ordre de grandeur avec le -25,0% calendaire
+    // déjà présent ci-dessous, sans le confirmer précisément. Valeurs d'origine conservées.
     r: [5.0, 15.0, -25.0, 20.0, 10.0, 12.0],
     desc: [
       "la technologie européenne : un secteur beaucoup plus restreint qu'aux États-Unis, mais bien réel.",
@@ -690,14 +702,13 @@ export const ASSETS = [
   },
   {
     id: "sect_energie", name: "iShares S&P 500 Energy Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    // NON VÉRIFIÉ précisément : les recherches ont renvoyé des chiffres incohérents (dont un
-    // signe manifestement erroné pour 2020, où le secteur énergie a en réalité fortement chuté
-    // suite au choc pétrolier Covid). Les valeurs d'origine restent conformes à l'ordre de
-    // grandeur largement documenté du secteur S&P 500 Énergie sur la période (krach 2020,
-    // rebond 2021-2022 lié au choc gazier/pétrolier, tassement depuis) mais n'ont pas pu être
-    // confirmées précisément via les outils de recherche disponibles — valeurs d'origine
-    // conservées intégralement.
-    r: [-34.0, 48.0, 59.0, -2.0, 5.0, -3.0],
+    // Source : fonds réel (IUES, part USD Acc), fiche officielle BlackRock/iShares (performance
+    // annuelle par calendrier) recoupée avec la performance de l'indice de référence sur chaque
+    // année — écart de quelques dixièmes de point, cohérent avec le TER. 2020 (-34,32%) et 2023
+    // (-1,97%)/2024 (5,06%) recoupés une seconde fois via une source indépendante. Corrige la
+    // version précédente, non vérifiée, qui indiquait à tort -3,0% pour 2025 (signe et magnitude
+    // faux) et sous-estimait 2021/2022.
+    r: [-34.32, 53.8, 64.8, -1.97, 5.06, 8.0],
     desc: [
       "pétrolières et gazières : un secteur ultra-cyclique, très lié au prix du baril.",
       "a connu l'une des pires années boursières en 2020... puis l'une des meilleures en 2022.",
@@ -846,8 +857,9 @@ export const ASSETS = [
     // performance propres, à ne pas regrouper avec ce dernier (cf. avertissement sur IWDP/FTSE
     // EPRA Nareit Developed Dividend+ dans les commentaires de theses.js). 2020 (-14,50%) et 2021
     // (+40,50%) confirmés par recherches indépendantes concordantes. 2022, 2023, 2024 : source unique
-    // cohérente. 2025 (+1,08%) : donnée la plus fragile, possiblement une performance de cours plutôt
-    // que de rendement total.
+    // cohérente. 2025 (+1,08%) : recorroboré indépendamment lors de l'audit du 25/08/2026
+    // (agrégateur Yahoo Finance/stockanalysis, données à fin janvier 2026) — même chiffre exact
+    // retrouvé par une méthode différente de la source d'origine, donc plus considéré comme fragile.
     r: [-14.50, 40.50, -21.20, 9.11, 8.21, 1.08],
     desc: [
       "des sociétés immobilières cotées à l'échelle mondiale, sélectionnées via l'indice GPR Global 100.",
