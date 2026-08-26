@@ -250,10 +250,20 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: NASDAQ100_OPTIONS, pct: 25,
+            idOptions: NASDAQ100_OPTIONS, pct: 21,
             pourquoi: [
               "La partie qui vise vraiment la surperformance : concentrée sur l'innovation américaine.",
               "Le moteur de croissance le plus agressif du portefeuille.",
+            ],
+          },
+          {
+            // Poids volontairement minime : au-delà, le pire scénario historique du combo (2022)
+            // dépasse le plancher de perte de -30% de ce palier — vérifié empiriquement (cf.
+            // script de stress-test). Pas un choix esthétique, une limite dure du moteur.
+            id: "lqq", pct: 4,
+            pourquoi: [
+              "Une toute petite dose de levier ({pct}%), gardée minime pour ne pas faire sortir ce portefeuille de son plafond de perte.",
+              "{pct}% seulement : de quoi introduire le levier sans peser sur le pire scénario historique du portefeuille.",
             ],
           },
           {
@@ -275,10 +285,19 @@ export const PROFILES = [
       offensif: {
         assets: [
           {
-            idOptions: NASDAQ100_OPTIONS, pct: 40,
+            idOptions: NASDAQ100_OPTIONS, pct: 25,
             pourquoi: [
               "Le moteur principal : {pct}% concentrés sur la tech américaine la plus agressive.",
               "La ligne la plus lourde du portefeuille, sur l'un des indices les plus volatils qui existent.",
+            ],
+          },
+          {
+            // Palier Offensif = pas de plancher de perte (RISK_BOUNDS.offensif.min = null) : poids
+            // significatif possible, contrairement à la version Dynamique ci-dessus.
+            id: "lqq", pct: 15,
+            pourquoi: [
+              "{pct}% en ETF à levier 2x quotidien : ce palier n'a pas de plancher de perte, donc pas de raison de se limiter à un tracker classique.",
+              "Le vrai pari agressif du portefeuille : {pct}% sur un support capable de gagner — ou de perdre — bien plus vite que le Nasdaq-100 lui-même.",
             ],
           },
           {
@@ -1116,10 +1135,20 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: NASDAQ100_OPTIONS, pct: 20,
+            idOptions: NASDAQ100_OPTIONS, pct: 16,
             pourquoi: [
               "Un deuxième moteur de croissance, plus classique mais tout aussi volatil que la crypto.",
               "Vient renforcer la partie « forte conviction » du portefeuille.",
+            ],
+          },
+          {
+            // Marge très serrée sur ce combo (Bitcoin 25% + Nasdaq déjà proches du plafond de
+            // perte à eux seuls) : poids minime vérifié empiriquement pour rester sous -30% même
+            // sur le pire exercice (2022) du combo complet — cf. script de stress-test.
+            id: "lqq", pct: 4,
+            pourquoi: [
+              "{pct}% de levier actions, dosé au minimum pour rester compatible avec le plafond de perte de ce niveau de risque.",
+              "Une touche de levier, mais à peine — le reste du portefeuille (crypto compris) laisse très peu de marge avant le plafond de perte.",
             ],
           },
           {
@@ -1148,10 +1177,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: NASDAQ100_OPTIONS, pct: 25,
+            idOptions: NASDAQ100_OPTIONS, pct: 15,
             pourquoi: [
               "La partie « actions » de ce portefeuille, elle aussi concentrée sur l'innovation la plus agressive.",
               "Aucune ligne de ce portefeuille n'a vocation à protéger les autres. C'est voulu.",
+            ],
+          },
+          {
+            id: "lqq", pct: 10,
+            pourquoi: [
+              "{pct}% de levier actions, en plus de la conviction crypto déjà maximale : ce palier assume l'absence totale de filet.",
+              "Une deuxième forme de levier à côté du Bitcoin et de l'Ethereum — {pct}% sur un ETF 2x quotidien, sans plancher de perte pour l'amortir.",
             ],
           },
           {
@@ -1301,10 +1337,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: NASDAQ100_OPTIONS, pct: 20,
+            idOptions: NASDAQ100_OPTIONS, pct: 10,
             pourquoi: [
               "Un deuxième pari technologique, pour renforcer la thèse sans la diluer.",
               "Vient compléter le pari sectoriel avec une deuxième source de croissance agressive.",
+            ],
+          },
+          {
+            id: "lqq", pct: 10,
+            pourquoi: [
+              "{pct}% en ETF à levier 2x quotidien, en plus du pari sectoriel : la version la plus agressive de la conviction tech.",
+              "Complète le pari sectoriel avec {pct}% de levier — ce palier n'a aucun plancher de perte pour freiner l'ambition.",
             ],
           },
           {

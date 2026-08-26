@@ -2,7 +2,7 @@
 // devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
-// Roster de 62 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
+// Roster de 63 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
 // thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait une de plus" — voir
 // CLAUDE.md du projet pour la philosophie de sélection. 8 actifs sans rôle identifié (china, india,
 // japan, oblig_global_agg, oblig_short, petrole, strat_momentum, strat_smallcap) ont été retirés lors
@@ -20,6 +20,11 @@
 // HIGHYIELD_OPTIONS. Plusieurs fonds suggérés dans le prompt d'origine de cet audit ont été
 // explicitement écartés faute de vérification suffisante (fonds trop récents pour avoir un
 // historique 2020-2025, ou données contradictoires non résolues) — voir le rapport de session.
+// 1 ETF à levier (lqq, Amundi Nasdaq-100 Daily 2x Leveraged) ajouté en août 2026 à la demande
+// explicite d'un audit de cohérence : rendements réels de la part cotée (jamais un ×2 synthétique
+// de "nasdaq100"), intégré à poids minime en Dynamique et à poids significatif en Offensif après
+// vérification empirique du plancher de perte de chaque palier (cf. theses.js et le script de
+// stress-test de la session pour le détail des bornes testées).
 
 export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -166,6 +171,22 @@ export const ASSETS = [
       "les 100 plus grandes entreprises non financières du Nasdaq : très orienté technologie.",
       "concentré sur des géants comme Apple, Microsoft ou Nvidia : un pari sur l'innovation US.",
       "un des supports les plus volatils parmi les grands indices actions.",
+    ],
+  },
+  {
+    // ETF à levier (réplication synthétique 2x quotidien du Nasdaq-100, pas annuel — l'effet de
+    // capitalisation quotidienne fait dériver la performance longue durée d'un simple ×2 du
+    // sous-jacent, à la hausse comme à la baisse). ISIN FR0010342592, ticker LQQ, TER 0,60%,
+    // domicilié France, éligible PEA (non éligible PEA-PME). Source des rendements annuels :
+    // cours réels de la part EUR cotée Euronext Paris (LQQ.PA), recoupés justETF / Yahoo Finance,
+    // années 2020-2025 — jamais calculés en doublant la série "nasdaq100" ci-dessus, ce qui
+    // donnerait des chiffres faux (ex. 2022 : -34,10% ×2 = -68,2% en théorie, réalité -59,20%).
+    id: "lqq", name: "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc", cat: "actions_larges", emoji: "⚡",
+    r: [74.17, 71.22, -59.20, 112.33, 57.02, 14.16],
+    desc: [
+      "vise 2 fois la performance quotidienne du Nasdaq-100, financée par swap.",
+      "un des supports les plus volatils de la bibliothèque : peut perdre plus de moitié de sa valeur en un an (-59% en 2022).",
+      "la capitalisation quotidienne du levier fait dériver la performance longue durée d'un simple x2 du Nasdaq-100 — jamais une martingale.",
     ],
   },
   {
