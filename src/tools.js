@@ -49,4 +49,12 @@ export const TOOLS = [
     description: 'Duels de courtiers en bourse (frais, PEA, DCA) prêts à publier.',
     status: 'disponible',
   },
+  {
+    to: '/tweet-midi',
+    navLabel: 'Tweet Midi',
+    title: 'Tweet Midi',
+    icon: '🕐',
+    description: "Vrai ou Faux et Dilemmes financiers pour le créneau midi, sans dépendre de l'actualité.",
+    status: 'disponible',
+  },
 ]
