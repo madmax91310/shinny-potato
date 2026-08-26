@@ -213,12 +213,12 @@ export const VRAI_FAUX = [
   // ---------- Mécanismes & stratégies ----------
   {
     id: "dca-garantit-rendement",
-    sourceTermeId: "dca",
+    sourceTermeId: "dca-vs-lumpsum",
     categorie: "Mécanismes & stratégies",
-    affirmation: "Le DCA (versement programmé) garantit un meilleur rendement qu'un investissement en une fois.",
+    affirmation: "Le DCA (versement programmé) bat en moyenne un investissement en une fois (lump sum), sur données historiques.",
     reponse: false,
     explication:
-      "Le DCA ne garantit pas un meilleur rendement — c'est même l'inverse en moyenne historique. C'est avant tout un outil de discipline et de gestion du risque émotionnel, pas une martingale de performance.",
+      "C'est l'inverse : une étude Vanguard sur les marchés américain, britannique et australien (1926-2015) montre que le lump sum bat un DCA étalé sur 12 mois dans environ 68% des périodes étudiées, car l'argent est exposé au marché plus tôt.",
   },
   {
     id: "levier-amplifie-perte",
@@ -325,10 +325,19 @@ export const VRAI_FAUX = [
     id: "rendement-brut-charges",
     sourceTermeId: "rendement-locatif",
     categorie: "Immobilier",
-    affirmation: "Le rendement locatif brut tient déjà compte des charges et de la fiscalité.",
+    affirmation: "Le rendement locatif brut tient déjà compte des charges.",
     reponse: false,
     explication:
       "Le rendement brut ignore toutes les charges : il sert surtout à comparer rapidement des biens entre eux. Le rendement net, plus réaliste, déduit charges, taxe foncière et vacance locative — souvent 1 à 2 points en dessous.",
+  },
+  {
+    id: "rendement-net-fiscalite",
+    sourceTermeId: "rendement-locatif",
+    categorie: "Immobilier",
+    affirmation: "Le rendement locatif net tient déjà compte de la fiscalité sur les loyers perçus.",
+    reponse: false,
+    explication:
+      "Le rendement net déduit charges, taxe foncière, frais de gestion et vacance locative — mais pas la fiscalité : les loyers perçus sont imposés à part, au barème de l'impôt sur le revenu (régime micro-foncier ou réel), plus 17,2% de prélèvements sociaux.",
   },
   {
     id: "levier-immo-arret-remboursement",
@@ -421,6 +430,15 @@ export const VRAI_FAUX = [
     reponse: true,
     explication:
       "C'est exactement le principe : automatiser un versement fixe, par exemple 200€ chaque mois, pour lisser ton prix d'achat moyen dans le temps sans avoir à deviner le bon moment.",
+  },
+  {
+    id: "dca-frais-courtier",
+    sourceTermeId: "dca",
+    categorie: "Mécanismes & stratégies",
+    affirmation: "Chaque versement programmé (DCA) peut générer des frais de courtage à l'unité, selon le courtier.",
+    reponse: true,
+    explication:
+      "C'est pour ça qu'il vaut mieux privilégier un courtier qui propose le DCA sans frais ou à frais réduits — sinon, les frais répétés à chaque versement peuvent rogner l'intérêt de la méthode.",
   },
   {
     id: "levier-x5-definition",
@@ -821,7 +839,7 @@ export const VRAI_FAUX = [
     id: "ter-paye-en-plus",
     sourceTermeId: "ter",
     categorie: "Indicateurs & notions",
-    affirmation: "Un ETF avec un TER de 0,20% te facture directement 2€ par an que tu dois payer toi-même en plus de ton investissement.",
+    affirmation: "Un ETF avec un TER de 0,20% te facture directement 2€ par an pour 1 000€ investis, que tu dois payer toi-même en plus.",
     reponse: false,
     explication:
       "Le TER est prélevé automatiquement et quotidiennement dans la valeur liquidative du fonds — tu n'as rien à payer toi-même, la performance affichée en tient déjà compte.",
@@ -851,7 +869,7 @@ export const VRAI_FAUX = [
     affirmation: "Un portefeuille peut afficher un gain sur l'année tout en ayant subi un drawdown important en cours de route.",
     reponse: true,
     explication:
-      "Si ton portefeuille passe de 10 000€ à 7 000€ avant de remonter à 11 000€, tu finis l'année en gain de 10% — mais tu as bien vécu un drawdown de -30% en chemin.",
+      "Si ton portefeuille passe de 10 000€ à 7 000€ avant de remonter au-dessus de son point de départ, tu finis l'année en gain — mais tu as bien vécu un drawdown de -30% en chemin.",
   },
   {
     id: "volatilite-mauvaise-nouvelle",

@@ -8,6 +8,9 @@ export const MONTANTS = ["500€", "2 000€", "5 000€", "20 000€", "50 000�
 
 // contextes: null => la situation ne varie que par montant (5 variantes, cf. MONTANTS).
 // contextes: [...] => la situation varie aussi par enveloppe (5 × nb contextes variantes).
+// montants (optionnel) : remplace MONTANTS pour cette seule situation, quand certains montants
+// n'ont pas de sens pour elle (ex. un apport de 500€ pour une résidence principale) — audit du
+// 25/08/2026, cf. commentaire de commit pour le détail des combinaisons écartées.
 export const SITUATIONS = [
   {
     id: "credit-vs-investir",
@@ -41,7 +44,16 @@ export const SITUATIONS = [
   {
     id: "liquidite-vs-blocage",
     contextes: ["ton PER", "un investissement immobilier locatif"],
-    contexte: (montant, contexte) => `Tu as ${montant} à placer sur ${contexte}.`,
+    // 500€/2 000€ dans l'immobilier locatif en direct n'a pas de sens (personne n'achète un bien
+    // avec ça) — reformulé en SCPI pour ces deux montants, seule façon réaliste d'investir dans
+    // l'immobilier locatif à ce niveau. "ton PER" n'est pas concerné, réaliste sur toute la plage.
+    contexte: (montant, contexte) => {
+      const petitMontant = montant === "500€" || montant === "2 000€";
+      if (contexte === "un investissement immobilier locatif" && petitMontant) {
+        return `Tu as ${montant} à placer sur un premier investissement en SCPI.`;
+      }
+      return `Tu as ${montant} à placer sur ${contexte}.`;
+    },
     optionA: "Accepter de bloquer les fonds sur la durée, pour l'avantage fiscal ou le rendement associé.",
     optionB: "Garder la liquidité totale, quitte à moins optimiser sur la durée.",
   },
@@ -104,6 +116,9 @@ export const SITUATIONS = [
   {
     id: "residence-principale-vs-locatif",
     contextes: null,
+    // 500€/2 000€ retirés : aucun apport réaliste pour un achat immobilier ne descend à ce
+    // niveau. 100 000€ ajouté pour rester crédible sur le haut de la plage.
+    montants: ["5 000€", "20 000€", "50 000€", "100 000€"],
     contexte: (montant) => `Tu as ${montant} d'apport disponible.`,
     optionA: "Acheter ta résidence principale, quitte à mettre en pause tes autres investissements un moment.",
     optionB: "Continuer à louer et investir cette somme en bourse ou en SCPI.",
@@ -125,6 +140,9 @@ export const SITUATIONS = [
   {
     id: "rembourser-pret-etudes-vs-investir",
     contextes: null,
+    // 20 000€/50 000€ retirés : avoir cette somme de côté tout en portant encore un prêt étudiant
+    // colle mal au profil de l'audience cible (jeune, début de constitution de patrimoine).
+    montants: ["500€", "2 000€", "5 000€"],
     contexte: (montant) => `Tu as ${montant} disponible, et un prêt étudiant à taux très bas en cours.`,
     optionA: "Rembourser le prêt étudiant par anticipation, pour solder la dette et dormir tranquille.",
     optionB: "Investir cette somme, si le rendement espéré dépasse largement le taux du prêt.",
@@ -138,8 +156,9 @@ function buildDilemmes() {
   const out = [];
   SITUATIONS.forEach((situation) => {
     const contextes = situation.contextes ?? [null];
+    const montants = situation.montants ?? MONTANTS;
     contextes.forEach((contexte, ci) => {
-      MONTANTS.forEach((montant, mi) => {
+      montants.forEach((montant, mi) => {
         out.push({
           id: `${situation.id}-${ci}-${mi}`,
           situationId: situation.id,
