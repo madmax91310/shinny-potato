@@ -84,6 +84,12 @@ export const HIGHYIELD_OPTIONS = ["oblig_hy", "oblig_hy_amundi"];
 export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities"];
 export const THEME_OPTIONS_FULL = ["sect_semi", "sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite"];
 export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre"];
+// ETF à levier (réplication synthétique 2x quotidien) : lqq (Nasdaq-100) et cl2 (MSCI USA, plus
+// large que le seul Nasdaq-100) — indices proches mais pas identiques (même logique que
+// WORLD_OPTIONS/EM_OPTIONS ci-dessus), chaque option revalidée sur les bornes de pire année du
+// combo qui l'utilise. Groupés pour que la génération alterne entre les deux plutôt que de
+// toujours piocher le même pari à levier — ajouté lors de l'audit "variété levier" (août 2026).
+export const LEVERAGE_OPTIONS = ["lqq", "cl2"];
 
 // Plafond de fréquence par groupe : au-delà de ce ratio d'apparition dans l'historique de la
 // session, un membre du groupe est exclu des tirages tant qu'une autre option reste disponible
@@ -95,6 +101,7 @@ const FREQUENCY_CAPS = new Map([
   [SP500_OPTIONS, 0.25],
   [NASDAQ100_OPTIONS, 0.25],
   [CORPBOND_OPTIONS, 0.25],
+  [LEVERAGE_OPTIONS, 0.25],
 ]);
 const DEFAULT_FREQUENCY_CAP = 0.3;
 export function getFrequencyCap(idOptions) {
@@ -260,7 +267,7 @@ export const PROFILES = [
             // Poids volontairement minime : au-delà, le pire scénario historique du combo (2022)
             // dépasse le plancher de perte de -30% de ce palier — vérifié empiriquement (cf.
             // script de stress-test). Pas un choix esthétique, une limite dure du moteur.
-            id: "lqq", pct: 4,
+            idOptions: LEVERAGE_OPTIONS, pct: 4,
             pourquoi: [
               "Une toute petite dose de levier ({pct}%), gardée minime pour ne pas faire sortir ce portefeuille de son plafond de perte.",
               "{pct}% seulement : de quoi introduire le levier sans peser sur le pire scénario historique du portefeuille.",
@@ -294,7 +301,7 @@ export const PROFILES = [
           {
             // Palier Offensif = pas de plancher de perte (RISK_BOUNDS.offensif.min = null) : poids
             // significatif possible, contrairement à la version Dynamique ci-dessus.
-            id: "lqq", pct: 15,
+            idOptions: LEVERAGE_OPTIONS, pct: 15,
             pourquoi: [
               "{pct}% en ETF à levier 2x quotidien : ce palier n'a pas de plancher de perte, donc pas de raison de se limiter à un tracker classique.",
               "Le vrai pari agressif du portefeuille : {pct}% sur un support capable de gagner — ou de perdre — bien plus vite que le Nasdaq-100 lui-même.",
@@ -1145,7 +1152,7 @@ export const PROFILES = [
             // Marge très serrée sur ce combo (Bitcoin 25% + Nasdaq déjà proches du plafond de
             // perte à eux seuls) : poids minime vérifié empiriquement pour rester sous -30% même
             // sur le pire exercice (2022) du combo complet — cf. script de stress-test.
-            id: "lqq", pct: 4,
+            idOptions: LEVERAGE_OPTIONS, pct: 4,
             pourquoi: [
               "{pct}% de levier actions, dosé au minimum pour rester compatible avec le plafond de perte de ce niveau de risque.",
               "Une touche de levier, mais à peine — le reste du portefeuille (crypto compris) laisse très peu de marge avant le plafond de perte.",
@@ -1184,7 +1191,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "lqq", pct: 10,
+            idOptions: LEVERAGE_OPTIONS, pct: 10,
             pourquoi: [
               "{pct}% de levier actions, en plus de la conviction crypto déjà maximale : ce palier assume l'absence totale de filet.",
               "Une deuxième forme de levier à côté du Bitcoin et de l'Ethereum — {pct}% sur un ETF 2x quotidien, sans plancher de perte pour l'amortir.",
@@ -1344,7 +1351,7 @@ export const PROFILES = [
             ],
           },
           {
-            id: "lqq", pct: 10,
+            idOptions: LEVERAGE_OPTIONS, pct: 10,
             pourquoi: [
               "{pct}% en ETF à levier 2x quotidien, en plus du pari sectoriel : la version la plus agressive de la conviction tech.",
               "Complète le pari sectoriel avec {pct}% de levier — ce palier n'a aucun plancher de perte pour freiner l'ambition.",

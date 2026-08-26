@@ -2,7 +2,7 @@
 // devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
-// Roster de 63 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
+// Roster de 64 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
 // thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait une de plus" — voir
 // CLAUDE.md du projet pour la philosophie de sélection. 8 actifs sans rôle identifié (china, india,
 // japan, oblig_global_agg, oblig_short, petrole, strat_momentum, strat_smallcap) ont été retirés lors
@@ -20,11 +20,13 @@
 // HIGHYIELD_OPTIONS. Plusieurs fonds suggérés dans le prompt d'origine de cet audit ont été
 // explicitement écartés faute de vérification suffisante (fonds trop récents pour avoir un
 // historique 2020-2025, ou données contradictoires non résolues) — voir le rapport de session.
-// 1 ETF à levier (lqq, Amundi Nasdaq-100 Daily 2x Leveraged) ajouté en août 2026 à la demande
-// explicite d'un audit de cohérence : rendements réels de la part cotée (jamais un ×2 synthétique
-// de "nasdaq100"), intégré à poids minime en Dynamique et à poids significatif en Offensif après
-// vérification empirique du plancher de perte de chaque palier (cf. theses.js et le script de
-// stress-test de la session pour le détail des bornes testées).
+// 2 ETF à levier (lqq, Amundi Nasdaq-100 Daily 2x Leveraged ; cl2, Amundi MSCI USA Daily 2x
+// Leveraged) ajoutés en août 2026 à la demande explicite d'un audit de cohérence : rendements
+// réels de la part cotée pour chacun (jamais un ×2 synthétique d'une série existante), groupés
+// via LEVERAGE_OPTIONS dans theses.js pour que la génération alterne entre les deux plutôt que de
+// toujours piocher le même pari, intégrés à poids minime en Dynamique et à poids significatif en
+// Offensif après vérification empirique du plancher de perte de chaque palier (cf. theses.js et
+// le script de stress-test de la session pour le détail des bornes testées).
 
 export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -187,6 +189,22 @@ export const ASSETS = [
       "vise 2 fois la performance quotidienne du Nasdaq-100, financée par swap.",
       "un des supports les plus volatils de la bibliothèque : peut perdre plus de moitié de sa valeur en un an (-59% en 2022).",
       "la capitalisation quotidienne du levier fait dériver la performance longue durée d'un simple x2 du Nasdaq-100 — jamais une martingale.",
+    ],
+  },
+  {
+    // Deuxième ETF à levier de la bibliothèque, aux côtés de "lqq" (cf. LEVERAGE_OPTIONS dans
+    // theses.js) : même mécanique (réplication synthétique 2x quotidien, pas annuel), mais sur un
+    // sous-jacent plus large que le seul Nasdaq-100 (large et mid caps US, moins concentré tech) —
+    // apporte de la variété sans dupliquer le même pari. ISIN FR0010755611, ticker CL2, TER 0,50%,
+    // domicilié France, éligible PEA (confirmé), lancé le 16/06/2009. Source des rendements
+    // annuels : cours réels de la part cotée Euronext Paris (CL2.PA), recoupés justETF / Yahoo
+    // Finance, années 2020-2025 — jamais calculés en doublant une série existante.
+    id: "cl2", name: "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc", cat: "actions_larges", emoji: "⚡",
+    r: [8.23, 81.38, -31.43, 41.19, 65.62, -0.19],
+    desc: [
+      "vise 2 fois la performance quotidienne du MSCI USA (large et mid caps américaines), financée par swap.",
+      "moins concentré sur la tech que le levier Nasdaq-100, mais tout aussi volatil (-31% en 2022).",
+      "la capitalisation quotidienne du levier fait dériver la performance longue durée d'un simple x2 du MSCI USA — jamais une martingale.",
     ],
   },
   {

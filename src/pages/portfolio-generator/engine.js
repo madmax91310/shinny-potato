@@ -375,11 +375,13 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     // covered call dépasse effectivement 30% de CE tirage précis, jitter inclus.
     warning += " Le covered call (JEPQ) plafonne la hausse en marché bull. Ce portefeuille génère des revenus — pas une performance maximale.";
   }
-  if (selection.some((s) => s.id === "lqq")) {
-    // Toujours présente dès que le LQQ figure dans le tirage (pas de seuil de %, contrairement au
-    // JEPQ ci-dessus) : la mécanique de capitalisation quotidienne du levier mérite d'être
-    // rappelée à chaque apparition, quel que soit son poids dans CE tirage précis.
-    warning += " Le LQQ est un ETF à levier 2x quotidien : sur plusieurs années, sa performance n'est jamais un simple x2 du Nasdaq-100 (capitalisation quotidienne du levier, dans un sens comme dans l'autre). Pas fait pour être oublié en portefeuille sans suivi.";
+  const leveraged = selection.find((s) => s.id === "lqq" || s.id === "cl2");
+  if (leveraged) {
+    // Toujours présente dès qu'un ETF à levier (LQQ ou CL2, cf. LEVERAGE_OPTIONS) figure dans le
+    // tirage (pas de seuil de %, contrairement au JEPQ ci-dessus) : la mécanique de capitalisation
+    // quotidienne du levier mérite d'être rappelée à chaque apparition, quel que soit son poids
+    // dans CE tirage précis.
+    warning += ` ${leveraged.name} est un ETF à levier 2x quotidien : sur plusieurs années, sa performance n'est jamais un simple x2 de son indice sous-jacent (capitalisation quotidienne du levier, dans un sens comme dans l'autre). Pas fait pour être oublié en portefeuille sans suivi.`;
   }
   const cta = pickCta(profile, history, { worst, best, selection });
   const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
