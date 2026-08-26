@@ -215,10 +215,10 @@ export const VRAI_FAUX = [
     id: "dca-garantit-rendement",
     sourceTermeId: "dca-vs-lumpsum",
     categorie: "Mécanismes & stratégies",
-    affirmation: "Le DCA (versement programmé) bat en moyenne un investissement en une fois (lump sum), sur données historiques.",
+    affirmation: "Faire du DCA (versement programmé) garantit un meilleur rendement qu'un versement unique (lump sum).",
     reponse: false,
     explication:
-      "C'est l'inverse : une étude Vanguard sur les marchés américain, britannique et australien (1926-2015) montre que le lump sum bat un DCA étalé sur 12 mois dans environ 68% des périodes étudiées, car l'argent est exposé au marché plus tôt.",
+      "Historiquement c'est même l'inverse : une étude Vanguard (marchés américain, britannique et australien, 1926-2015) montre que le lump sum bat le DCA dans environ 68% des périodes étudiées. Le vrai intérêt du DCA n'est pas la performance, mais la discipline : il réduit le risque de mal tomber juste avant une grosse baisse, et rend l'investissement plus soutenable psychologiquement.",
   },
   {
     id: "levier-amplifie-perte",
