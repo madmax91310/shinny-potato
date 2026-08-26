@@ -448,48 +448,51 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 24 août 2026",
-    generatedAt: "Généré le 25 août 2026",
+    sessionDate: "Séance du 25 août 2026",
+    generatedAt: "Généré le 26 août 2026",
     stats: [
-      { label: "Shell (actifs chimiques)", value: "8 Md$", delta: "cession envisagée", dir: "up" },
-      { label: "Bitcoin", value: "78 400 $", delta: "+~1%, 24h", dir: "up" },
-      { label: "Brent", value: "≈92 $", delta: "en recul", dir: "down" },
-      { label: "WTI", value: "≈85 $", delta: "en recul", dir: "down" },
-      { label: "Nvidia (NVDA)", value: "série baissière", delta: "pire depuis 2022", dir: "down" },
-      { label: "Nasdaq 100", value: "—", delta: "-1%", dir: "down" }
+      { label: "Saint-Gobain", value: "acquisition", delta: "Pérou + Brésil", dir: "up" },
+      { label: "Bitcoin", value: ">80 000 $", delta: "+25%, 7 jours", dir: "up" },
+      { label: "Or (once)", value: "≈4 650 $", delta: "recul, haut 3 mois", dir: "down" },
+      { label: "Brent", value: "≈92 $", delta: "stable", dir: "flat" },
+      { label: "WTI", value: "≈85 $", delta: "-2%, veille", dir: "down" },
+      { label: "Nvidia (NVDA)", value: "rebond", delta: "fin série baissière", dir: "up" }
     ],
     bullets: [
       {
-        emoji: "🛢️",
+        emoji: "🏗️",
         tag: "Marchés actions",
-        text: "Les actifs chimiques américains de Shell suscitent l'intérêt de repreneurs potentiels, dont ExxonMobil et LyondellBasell, pour une opération qui pourrait atteindre 8 milliards de dollars."
+        text: "Saint-Gobain a finalisé l'acquisition du péruvien QSI Productos para la Construcción et annoncé la construction d'une quatrième ligne de production de plaques de plâtre au Brésil."
       },
       {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Washington a durci ses sanctions économiques contre l'Iran et ses partenaires commerciaux pour tenter de forcer la réouverture du trafic pétrolier dans le détroit d'Ormuz, sans qu'aucune avancée concrète ne se dessine sur ce dossier."
+        text: "Donald Trump a annoncé que toutes les mines avaient été retirées ou détruites dans les eaux internationales du détroit d'Ormuz, tandis que le secrétaire d'État Marco Rubio a indiqué aux alliés de Washington que la stratégie américaine privilégiait désormais les sanctions économiques aux frappes militaires contre l'Iran."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin s'est maintenu autour de 78 400 dollars, en hausse de près de 1% sur 24 heures, prolongeant sa deuxième meilleure semaine depuis début 2021, portée par les entrées sur les ETF, un dollar plus faible et le retour du « debasement trade »."
+        text: "Le Bitcoin a franchi les 80 000 dollars pour la première fois depuis mai, portant son avance sur sept jours à environ 25%, même si un indicateur de momentum proche de 78 incite certains analystes à mettre en garde contre un marché en zone de surachat."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent a clôturé près de 92 dollars le baril et le WTI autour de 85 dollars, les prix cédant du terrain malgré les tensions persistantes autour du détroit d'Ormuz."
+        text: "Le Brent a clôturé autour de 92 dollars le baril et le WTI près de 85 dollars après une baisse de plus de 2% la veille, tandis que l'or a reflué vers 4 650 dollars l'once après avoir touché un plus haut de trois mois lors de la séance précédente."
       },
       {
         emoji: "🖥️",
         tag: "Fait marquant",
-        text: "Nvidia a enchaîné sa plus longue série de séances baissières depuis 2022, entraînant l'ensemble du secteur des semi-conducteurs dans son sillage à la veille de la publication de ses résultats trimestriels mercredi."
+        text: "Un rebond des valeurs des semi-conducteurs a mis fin à sept séances consécutives de baisse pour Nvidia, la plus grande capitalisation boursière mondiale, à la veille de la publication de ses résultats trimestriels."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-a3aa9dcb48ba9cb98ed3d072b3409e80" },
-      { outlet: "Bloomberg", title: "Oil Steadies as US Plan Offers Little Clarity on Hormuz Deadlock", url: "https://www.bloomberg.com/news/articles/2026-08-24/latest-oil-market-news-and-analysis-for-aug-25" },
-      { outlet: "CoinDesk", title: "Bitcoin and ether surge as ETF inflows, a weaker dollar and the debasement trade return", url: "https://www.coindesk.com/markets/2026/08/24/crypto-roars-back-as-bitcoin-posts-its-second-best-week-since-early-2021" },
-      { outlet: "Bloomberg", title: "Asian Equities Drop, Chipmakers Extend Decline: Markets Wrap", url: "https://www.bloomberg.com/news/articles/2026-08-24/stock-market-today-dow-s-p-live-updates" }
+      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-462dfd5cd3bbf391d1c36e4681131394" },
+      { outlet: "Axios", title: "Trump announces all mines have been removed from the Strait of Hormuz", url: "https://www.axios.com/2026/08/25/hormuz-mines-remove-oil-iran-trump" },
+      { outlet: "Axios", title: "Rubio tells allies U.S. shifting from strikes to sanctions on Iran", url: "https://www.axios.com/2026/08/25/rubio-iran-war-hormuz-oil" },
+      { outlet: "CoinDesk", title: "Bitcoin extends 7-day advance to roughly 25%", url: "https://www.coindesk.com/markets/2026/08/25/bitcoin-extends-7-day-advance-to-roughly-25" },
+      { outlet: "CoinDesk", title: "What next as bitcoin tops $80,000, solana jumps 8% as rally flashing warning signs", url: "https://www.coindesk.com/markets/2026/08/25/bitcoin-tops-usd80-000-solana-jumps-8-but-rally-now-runs-into-overbought-warning" },
+      { outlet: "Bloomberg", title: "Gold Holds Five-Day Gain as Oil Drop Eases Inflation Concerns", url: "https://www.bloomberg.com/news/articles/2026-08-25/gold-holds-five-day-gain-as-oil-drop-eases-inflation-concerns" },
+      { outlet: "Bloomberg", title: "Stock Market Today: Dow, S&P Live Updates for August 26", url: "https://www.bloomberg.com/news/articles/2026-08-25/asian-stocks-set-to-gain-as-oil-extends-declines-markets-wrap" }
     ]
   };
 
