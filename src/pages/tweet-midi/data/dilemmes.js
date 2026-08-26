@@ -4,10 +4,10 @@
 // Aucune bonne réponse n'est donnée : le but est de faire débattre en commentaire, jamais de
 // trancher (contrairement au format "Vrai ou Faux").
 
-export const MONTANTS = ["500€", "5 000€", "20 000€"];
+export const MONTANTS = ["500€", "2 000€", "5 000€", "20 000€", "50 000€"];
 
-// contextes: null => la situation ne varie que par montant (3 variantes).
-// contextes: [...] => la situation varie aussi par enveloppe (3 × nb contextes variantes).
+// contextes: null => la situation ne varie que par montant (5 variantes, cf. MONTANTS).
+// contextes: [...] => la situation varie aussi par enveloppe (5 × nb contextes variantes).
 export const SITUATIONS = [
   {
     id: "credit-vs-investir",
@@ -79,6 +79,55 @@ export const SITUATIONS = [
     contexte: (montant) => `Tu reçois ${montant} d'un coup (héritage, prime, vente).`,
     optionA: "Tout investir en une fois (lump sum), pour être exposé au marché tout de suite.",
     optionB: "L'étaler sur plusieurs mois (DCA), pour lisser le risque d'un mauvais timing d'entrée.",
+  },
+  {
+    id: "gestion-pilotee-vs-libre",
+    contextes: ["ton PER", "ton assurance-vie"],
+    contexte: (montant, contexte) => `Tu as ${montant} sur ${contexte}.`,
+    optionA: "Laisser la gestion pilotée faire le travail, avec une sécurisation progressive automatique.",
+    optionB: "Choisir la gestion libre pour piloter toi-même la répartition, plus de travail mais plus de contrôle.",
+  },
+  {
+    id: "scpi-frais-entree-vs-sans-frais",
+    contextes: null,
+    contexte: (montant) => `Tu as ${montant} à investir en SCPI.`,
+    optionA: "Une SCPI classique avec frais d'entrée (8 à 12%), mais des frais de gestion annuels plus modérés ensuite.",
+    optionB: "Une SCPI nouvelle génération sans frais d'entrée, mais des frais de gestion annuels plus élevés sur la durée.",
+  },
+  {
+    id: "value-vs-croissance",
+    contextes: null,
+    contexte: (montant) => `Tu as ${montant} à investir en actions.`,
+    optionA: "Miser sur des valeurs \"value\", décotées par rapport à leurs fondamentaux.",
+    optionB: "Miser sur des valeurs de croissance, plus chères mais avec un potentiel de développement plus fort.",
+  },
+  {
+    id: "residence-principale-vs-locatif",
+    contextes: null,
+    contexte: (montant) => `Tu as ${montant} d'apport disponible.`,
+    optionA: "Acheter ta résidence principale, quitte à mettre en pause tes autres investissements un moment.",
+    optionB: "Continuer à louer et investir cette somme en bourse ou en SCPI.",
+  },
+  {
+    id: "un-seul-courtier-vs-plusieurs",
+    contextes: null,
+    contexte: (montant) => `Tu as ${montant} à placer en bourse.`,
+    optionA: "Tout centraliser chez un seul courtier, pour la simplicité de suivi.",
+    optionB: "Répartir entre plusieurs courtiers, pour limiter le risque si l'un d'eux fait défaut.",
+  },
+  {
+    id: "dividendes-vs-capitalisation",
+    contextes: null,
+    contexte: (montant) => `Tu as ${montant} à investir sur des ETF ou actions à dividendes.`,
+    optionA: "Choisir des supports distribuants (Dist), pour toucher un revenu régulier.",
+    optionB: "Choisir des supports capitalisants (Acc), pour réinvestir automatiquement et laisser grossir le capital.",
+  },
+  {
+    id: "rembourser-pret-etudes-vs-investir",
+    contextes: null,
+    contexte: (montant) => `Tu as ${montant} disponible, et un prêt étudiant à taux très bas en cours.`,
+    optionA: "Rembourser le prêt étudiant par anticipation, pour solder la dette et dormir tranquille.",
+    optionB: "Investir cette somme, si le rendement espéré dépasse largement le taux du prêt.",
   },
 ];
 

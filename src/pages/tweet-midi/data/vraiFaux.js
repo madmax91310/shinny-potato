@@ -2,8 +2,12 @@
 // rédigé et vérifié dans le Lexique financier (src/pages/lexique-financier/data.js), jamais
 // d'un fait nouveau. sourceTermeId pointe vers le terme d'origine pour traçabilité ; si le
 // lexique est corrigé un jour, cherche ce champ pour retrouver les affirmations à revoir.
-// Seuls les termes en variante A (enveloppes, produits, mécanismes) sont couverts, comme
-// demandé — les indicateurs abstraits de la variante B ne s'y prêtent pas bien en "vrai/faux".
+// Couvre en priorité les termes en variante A (enveloppes, produits, mécanismes), plus les
+// termes de variante B qui sont en réalité des règles concrètes et testables plutôt que des
+// notions abstraites : Fiscalité française (taux, seuils, durées de détention — tout sauf
+// abstrait), halving (dates et chiffres factuels du protocole Bitcoin), et une sélection
+// d'Indicateurs & notions dont le contenu contient une affirmation vérifiable (TER, drawdown,
+// volatilité, capitalisation boursière, inflation, taux sans risque).
 
 export const VRAI_FAUX = [
   // ---------- Enveloppes fiscales ----------
@@ -525,5 +529,400 @@ export const VRAI_FAUX = [
     reponse: true,
     explication:
       "C'est la différence avec un ETF de distribution (Dist) : l'ETF de capitalisation rachète automatiquement des parts avec les dividendes perçus, en interne, sans frais de courtage ni action de ta part.",
+  },
+
+  // ---------- Troisième affirmation pour les termes qui n'en avaient que 2 ----------
+  {
+    id: "cto-frais-identiques",
+    sourceTermeId: "cto",
+    categorie: "Enveloppes fiscales",
+    affirmation: "Les frais de courtage et de tenue de compte d'un CTO sont identiques chez tous les courtiers.",
+    reponse: false,
+    explication:
+      "Ces frais varient énormément d'un courtier à l'autre — c'est justement l'un des points d'attention à vérifier avant d'ouvrir un CTO, pas un montant standardisé.",
+  },
+  {
+    id: "assurance-vie-fonds-euros-rapporte-moins",
+    sourceTermeId: "assurance-vie",
+    categorie: "Enveloppes fiscales",
+    affirmation: "Le fonds euros d'une assurance-vie garantit le capital mais rapporte généralement moins que les unités de compte.",
+    reponse: true,
+    explication:
+      "Le fonds euros garantit le capital mais rapporte peu (autour de 2 à 3% net ces dernières années), alors que les unités de compte offrent un potentiel de performance plus élevé, au prix d'un risque de perte en capital.",
+  },
+  {
+    id: "per-gestion-libre-defaut",
+    sourceTermeId: "per",
+    categorie: "Enveloppes fiscales",
+    affirmation: "Par défaut, un PER est géré en gestion libre, pas en gestion pilotée.",
+    reponse: false,
+    explication:
+      "C'est l'inverse : par défaut, le PER est en gestion pilotée, les investissements se sécurisant automatiquement à l'approche de la retraite. La gestion libre est une option à activer soi-même.",
+  },
+  {
+    id: "livret-a-actions",
+    sourceTermeId: "livret-a",
+    categorie: "Enveloppes fiscales",
+    affirmation: "On peut loger des ETF ou des actions sur un Livret A.",
+    reponse: false,
+    explication:
+      "Le Livret A n'accepte que des dépôts et retraits en euros — aucun placement en actions, ETF ou fonds n'y est possible, contrairement à une assurance-vie ou un PEA.",
+  },
+  {
+    id: "pee-abondement-plafond-perdu",
+    sourceTermeId: "pee-perco",
+    categorie: "Enveloppes fiscales",
+    affirmation: "Ne pas verser jusqu'au plafond d'abondement de ton entreprise, c'est renoncer à de l'argent gratuit.",
+    reponse: true,
+    explication:
+      "Si ton entreprise propose un abondement, chaque euro versé en dessous du plafond où elle continue d'abonder est de l'argent gratuit laissé sur la table — un rendement immédiat qu'aucun placement classique n'égale.",
+  },
+  {
+    id: "etf-frais-plus-eleves-fonds-actif",
+    sourceTermeId: "etf",
+    categorie: "Produits & marchés",
+    affirmation: "Les frais d'un ETF indiciel sont généralement plus élevés que ceux d'un fonds géré activement.",
+    reponse: false,
+    explication:
+      "C'est l'inverse : un ETF indiciel facture souvent entre 0,05% et 0,40% de frais annuels, contre 1,5% à 2,5% en moyenne pour un fonds géré activement.",
+  },
+  {
+    id: "action-croissance-dividendes",
+    sourceTermeId: "action",
+    categorie: "Produits & marchés",
+    affirmation: "Une action de croissance verse généralement plus de dividendes qu'une action de rendement.",
+    reponse: false,
+    explication:
+      "C'est l'inverse : une action de croissance réinvestit ses bénéfices pour se développer et verse peu ou pas de dividendes, alors qu'une action de rendement en reverse une part importante et régulière.",
+  },
+  {
+    id: "obligation-entreprise-taux-plus-eleve",
+    sourceTermeId: "obligation",
+    categorie: "Produits & marchés",
+    affirmation: "Une obligation d'entreprise offre généralement un taux plus élevé qu'une obligation d'État, en échange d'un risque de défaut plus important.",
+    reponse: true,
+    explication:
+      "Une obligation d'État (comme les OAT françaises) est généralement plus sûre. Une obligation d'entreprise (corporate) rémunère mieux, mais avec un risque de défaut plus important selon la solidité de l'émetteur.",
+  },
+  {
+    id: "scpi-fiscale-revenu-regulier",
+    sourceTermeId: "scpi",
+    categorie: "Produits & marchés",
+    affirmation: "Une SCPI fiscale (type Pinel, Malraux) vise avant tout un revenu locatif régulier, comme une SCPI de rendement.",
+    reponse: false,
+    explication:
+      "Une SCPI de rendement vise le revenu locatif régulier. Une SCPI fiscale vise surtout une réduction d'impôt, avec des contraintes de durée plus fortes — l'objectif principal n'est pas le même.",
+  },
+  {
+    id: "opci-liquidites-minimum",
+    sourceTermeId: "opci",
+    categorie: "Produits & marchés",
+    affirmation: "Un OPCI doit détenir un minimum de liquidités, en plus de son quota immobilier.",
+    reponse: true,
+    explication:
+      "Un OPCI doit détenir au moins 60% d'actifs immobiliers et au minimum 5% de liquidités, le reste pouvant être investi en actions ou obligations — cette poche liquide permet de répondre plus vite aux demandes de retrait.",
+  },
+  {
+    id: "levier-que-produits-derives",
+    sourceTermeId: "effet-levier",
+    categorie: "Mécanismes & stratégies",
+    affirmation: "L'effet de levier ne concerne que les produits dérivés comme les CFD, jamais le crédit immobilier classique.",
+    reponse: false,
+    explication:
+      "Le levier peut venir d'un emprunt (crédit lombard), d'un produit dérivé (CFD, turbo, warrant), mais aussi tout simplement du crédit immobilier — c'est même l'usage le plus répandu du levier chez les particuliers.",
+  },
+  {
+    id: "vente-decouvert-sans-frais",
+    sourceTermeId: "vente-a-decouvert",
+    categorie: "Mécanismes & stratégies",
+    affirmation: "La vente à découvert n'engendre aucun frais spécifique au-delà du courtage classique.",
+    reponse: false,
+    explication:
+      "Emprunter les titres à vendre génère des frais d'emprunt facturés par le courtier, généralement au jour le jour, en plus des frais de courtage classiques.",
+  },
+  {
+    id: "blockchain-gas-fees-fixes",
+    sourceTermeId: "blockchain",
+    categorie: "Crypto",
+    affirmation: "Les frais de transaction blockchain (\"gas fees\") sont fixes et ne dépendent jamais de la congestion du réseau.",
+    reponse: false,
+    explication:
+      "Les gas fees payés aux validateurs (par exemple sur Ethereum) varient au contraire selon la congestion du réseau — plus il y a de transactions en attente, plus les frais montent.",
+  },
+  {
+    id: "stablecoin-valeur-stable-dollar",
+    sourceTermeId: "stablecoin",
+    categorie: "Crypto",
+    affirmation: "Un stablecoin est conçu pour garder une valeur stable, généralement indexée sur le dollar américain.",
+    reponse: true,
+    explication:
+      "C'est sa définition même : profiter des avantages de la crypto (rapidité, disponibilité 24/7) sans en subir la volatilité, en restant arrimé à une valeur stable comme le dollar.",
+  },
+  {
+    id: "cold-wallet-gratuit",
+    sourceTermeId: "cold-hot-wallet",
+    categorie: "Crypto",
+    affirmation: "Un cold wallet matériel est généralement gratuit, contrairement à un hot wallet.",
+    reponse: false,
+    explication:
+      "C'est l'inverse : un cold wallet matériel coûte entre 50€ et 200€ à l'achat, alors qu'un hot wallet logiciel (application, extension navigateur) est généralement gratuit.",
+  },
+  {
+    id: "assurance-emprunteur-obligatoire",
+    sourceTermeId: "effet-levier-immo",
+    categorie: "Immobilier",
+    affirmation: "L'assurance emprunteur est obligatoire pour un crédit immobilier utilisant l'effet de levier.",
+    reponse: true,
+    explication:
+      "Au même titre que les intérêts d'emprunt et les frais de dossier bancaire, l'assurance emprunteur fait partie des coûts obligatoires d'un crédit immobilier, quel que soit le montant du levier utilisé.",
+  },
+  {
+    id: "lmnp-micro-bic-abattement",
+    sourceTermeId: "lmnp",
+    categorie: "Immobilier",
+    affirmation: "Le régime micro-BIC applique un abattement forfaitaire de 50% sur les loyers perçus en LMNP.",
+    reponse: true,
+    explication:
+      "C'est le principe du micro-BIC : un abattement forfaitaire de 50%, simple à appliquer mais souvent moins avantageux que le régime réel, qui permet de déduire l'amortissement du bien.",
+  },
+
+  // ---------- Fiscalité française (variante B, contenu concret et testable) ----------
+  {
+    id: "flat-tax-hausse-2026",
+    sourceTermeId: "flat-tax",
+    categorie: "Fiscalité française",
+    affirmation: "La flat tax standard est passée de 30% à 31,4% au 1er janvier 2026.",
+    reponse: true,
+    explication:
+      "La hausse se décompose en 12,8% d'impôt sur le revenu (inchangé) et 18,6% de prélèvements sociaux (contre 17,2% avant), suite à la hausse de la CSG sur les revenus du capital.",
+  },
+  {
+    id: "flat-tax-meme-taux-partout",
+    sourceTermeId: "flat-tax",
+    categorie: "Fiscalité française",
+    affirmation: "La flat tax s'applique exactement au même taux dans toutes les enveloppes d'investissement.",
+    reponse: false,
+    explication:
+      "Depuis 2026, le taux diffère déjà entre un CTO (31,4%) et une assurance-vie (30%), sans même parler des règles spécifiques du PEA après 5 ans — ce n'est plus un taux unique partout.",
+  },
+  {
+    id: "flat-tax-option-bareme",
+    sourceTermeId: "flat-tax",
+    categorie: "Fiscalité française",
+    affirmation: "Si tu es faiblement imposé, tu peux choisir le barème progressif de l'impôt sur le revenu à la place de la flat tax.",
+    reponse: true,
+    explication:
+      "Si ta tranche marginale d'imposition est inférieure à 12,8%, cette option peut être plus avantageuse — mais elle s'applique alors à tous tes revenus du capital de l'année, pas seulement à certains.",
+  },
+  {
+    id: "pea-exoneration-totale-5ans",
+    sourceTermeId: "abattement-pea",
+    categorie: "Fiscalité française",
+    affirmation: "Après 5 ans, un retrait sur un PEA n'est soumis à aucune taxe, ni impôt ni prélèvements sociaux.",
+    reponse: false,
+    explication:
+      "L'exonération après 5 ans ne concerne que l'impôt sur le revenu. Les prélèvements sociaux (18,6% depuis 2026) restent dus sur les gains, quelle que soit l'ancienneté du PEA.",
+  },
+  {
+    id: "pea-duree-par-versement",
+    sourceTermeId: "abattement-pea",
+    categorie: "Fiscalité française",
+    affirmation: "La durée de 5 ans du PEA se compte depuis chaque versement individuel, pas depuis la date d'ouverture.",
+    reponse: false,
+    explication:
+      "La durée se compte depuis la date d'ouverture du PEA, pas depuis chaque versement — un versement fait à la 4e année profite déjà de l'avantage dès que le PEA lui-même dépasse 5 ans.",
+  },
+  {
+    id: "prelevements-sociaux-taux-unique",
+    sourceTermeId: "prelevements-sociaux",
+    categorie: "Fiscalité française",
+    affirmation: "Les prélèvements sociaux sont de 18,6% sur absolument tous les placements financiers depuis 2026.",
+    reponse: false,
+    explication:
+      "La hausse à 18,6% ne concerne que le CTO, le PEA, le PER et la crypto. L'assurance-vie, les PEL/CEL/PEP et les revenus immobiliers restent à 17,2%, et le Livret A reste à 0%.",
+  },
+  {
+    id: "livret-a-exception-ps",
+    sourceTermeId: "prelevements-sociaux",
+    categorie: "Fiscalité française",
+    affirmation: "Le Livret A est l'une des rares exceptions totalement exonérées de prélèvements sociaux.",
+    reponse: true,
+    explication:
+      "Contrairement à la quasi-totalité des autres placements, où les prélèvements sociaux s'appliquent presque toujours (même sur un PEA après 5 ans), le Livret A y échappe entièrement.",
+  },
+  {
+    id: "plus-value-imposable-totalite",
+    sourceTermeId: "plus-value-imposable",
+    categorie: "Fiscalité française",
+    affirmation: "Quand tu revends un titre avec une plus-value, tu es imposé sur la totalité de la somme retirée, pas seulement sur le gain.",
+    reponse: false,
+    explication:
+      "Seule la plus-value (prix de vente moins prix d'achat) est taxée, jamais le capital initialement investi — beaucoup surestiment l'impôt en pensant qu'il porte sur le montant total de la vente.",
+  },
+  {
+    id: "plus-value-pmp",
+    sourceTermeId: "plus-value-imposable",
+    categorie: "Fiscalité française",
+    affirmation: "En cas de ventes multiples d'un même titre acheté à des prix différents, c'est le prix moyen pondéré d'acquisition qui sert de référence pour calculer la plus-value.",
+    reponse: true,
+    explication:
+      "C'est le prix moyen pondéré d'acquisition (PMP) qui sert de référence, pas le prix du dernier achat — un détail qui change le calcul si tu as renforcé une ligne à plusieurs prix différents.",
+  },
+  {
+    id: "residence-principale-exoneree",
+    sourceTermeId: "plus-value-immobiliere",
+    categorie: "Fiscalité française",
+    affirmation: "La résidence principale est exonérée de plus-value immobilière, quelle que soit la durée de détention.",
+    reponse: true,
+    explication:
+      "C'est l'une des rares exonérations totales et immédiates du système fiscal français, contrairement à un investissement locatif ou une résidence secondaire, qui suivent le régime des abattements progressifs.",
+  },
+  {
+    id: "plus-value-immo-meme-duree-abattement",
+    sourceTermeId: "plus-value-immobiliere",
+    categorie: "Fiscalité française",
+    affirmation: "L'exonération totale d'impôt sur le revenu et celle des prélèvements sociaux sur une plus-value immobilière interviennent à la même durée de détention.",
+    reponse: false,
+    explication:
+      "Les deux abattements ne suivent pas le même rythme : exonération totale d'impôt sur le revenu après 22 ans de détention, mais il faut attendre 30 ans pour l'exonération totale des prélèvements sociaux.",
+  },
+  {
+    id: "plus-value-immo-taux-base",
+    sourceTermeId: "plus-value-immobiliere",
+    categorie: "Fiscalité française",
+    affirmation: "Le taux de base d'une plus-value immobilière est de 36,2% (19% d'impôt sur le revenu + 17,2% de prélèvements sociaux).",
+    reponse: true,
+    explication:
+      "C'est le taux applicable avant tout abattement pour durée de détention — des abattements progressifs viennent ensuite le réduire chaque année au-delà de la 5e année de détention.",
+  },
+
+  // ---------- Crypto (variante B) ----------
+  {
+    id: "halving-frequence",
+    sourceTermeId: "halving",
+    categorie: "Crypto",
+    affirmation: "Le halving du Bitcoin divise par deux la récompense des mineurs environ tous les 4 ans.",
+    reponse: true,
+    explication:
+      "Le halving se déclenche automatiquement tous les 210 000 blocs minés, ce qui correspond à environ 4 ans — un mécanisme fixé dans le code du Bitcoin depuis sa création en 2009, qu'aucune autorité ne peut modifier.",
+  },
+  {
+    id: "halving-signal-achat-garanti",
+    sourceTermeId: "halving",
+    categorie: "Crypto",
+    affirmation: "Un halving garantit historiquement une hausse du prix du Bitcoin qui suit.",
+    reponse: false,
+    explication:
+      "Le halving a précédé des hausses de prix par le passé, mais c'est une corrélation observée historiquement, pas une loi financière garantie — les performances passées ne garantissent en rien une répétition du même schéma.",
+  },
+
+  // ---------- Indicateurs & notions (variante B, sélection de contenu concret) ----------
+  {
+    id: "ter-paye-en-plus",
+    sourceTermeId: "ter",
+    categorie: "Indicateurs & notions",
+    affirmation: "Un ETF avec un TER de 0,20% te facture directement 2€ par an que tu dois payer toi-même en plus de ton investissement.",
+    reponse: false,
+    explication:
+      "Le TER est prélevé automatiquement et quotidiennement dans la valeur liquidative du fonds — tu n'as rien à payer toi-même, la performance affichée en tient déjà compte.",
+  },
+  {
+    id: "ter-bas-garantit-bon-produit",
+    sourceTermeId: "ter",
+    categorie: "Indicateurs & notions",
+    affirmation: "Un TER bas garantit à lui seul qu'un ETF est un bon produit.",
+    reponse: false,
+    explication:
+      "Un TER bas ne suffit pas : il faut aussi vérifier que l'indice suivi et la méthode de réplication correspondent bien à ce que tu recherches.",
+  },
+  {
+    id: "drawdown-prix-achat",
+    sourceTermeId: "drawdown",
+    categorie: "Indicateurs & notions",
+    affirmation: "Le drawdown se calcule par rapport à ton prix d'achat initial, pas par rapport au plus haut atteint par l'actif.",
+    reponse: false,
+    explication:
+      "Le drawdown est un calcul de creux par rapport à un sommet précédent, pas par rapport à ton prix d'achat — c'est une notion différente de ta plus ou moins-value personnelle.",
+  },
+  {
+    id: "drawdown-gain-annuel",
+    sourceTermeId: "drawdown",
+    categorie: "Indicateurs & notions",
+    affirmation: "Un portefeuille peut afficher un gain sur l'année tout en ayant subi un drawdown important en cours de route.",
+    reponse: true,
+    explication:
+      "Si ton portefeuille passe de 10 000€ à 7 000€ avant de remonter à 11 000€, tu finis l'année en gain de 10% — mais tu as bien vécu un drawdown de -30% en chemin.",
+  },
+  {
+    id: "volatilite-mauvaise-nouvelle",
+    sourceTermeId: "volatilite",
+    categorie: "Indicateurs & notions",
+    affirmation: "Une forte volatilité signifie automatiquement qu'un actif est une mauvaise nouvelle pour l'investisseur.",
+    reponse: false,
+    explication:
+      "La volatilité mesure l'ampleur des mouvements de prix, pas leur direction. Un actif très volatile qui monte fortement reste volatile, même s'il enrichit ceux qui le détiennent.",
+  },
+  {
+    id: "volatilite-risque-perte",
+    sourceTermeId: "volatilite",
+    categorie: "Indicateurs & notions",
+    affirmation: "La volatilité et le risque de perte définitive sont exactement la même chose.",
+    reponse: false,
+    explication:
+      "On confond souvent les deux : un ETF monde très diversifié peut être volatile à court terme sans jamais avoir affiché de perte permanente sur le long terme.",
+  },
+  {
+    id: "capi-boursiere-calcul",
+    sourceTermeId: "capitalisation-boursiere",
+    categorie: "Indicateurs & notions",
+    affirmation: "La capitalisation boursière se calcule en multipliant le prix de l'action par le nombre total d'actions en circulation.",
+    reponse: true,
+    explication:
+      "Une entreprise dont l'action vaut 50€ avec 2 milliards d'actions en circulation a une capitalisation de 100 milliards d'euros — c'est le prix qu'il faudrait payer pour racheter 100% de l'entreprise à son cours actuel.",
+  },
+  {
+    id: "capi-boursiere-ca",
+    sourceTermeId: "capitalisation-boursiere",
+    categorie: "Indicateurs & notions",
+    affirmation: "Une capitalisation boursière élevée signifie forcément un chiffre d'affaires élevé.",
+    reponse: false,
+    explication:
+      "On confond parfois les deux : une entreprise peut avoir une capitalisation très élevée avec un chiffre d'affaires modeste, si le marché anticipe une forte croissance future.",
+  },
+  {
+    id: "inflation-rendement-nominal",
+    sourceTermeId: "inflation",
+    categorie: "Indicateurs & notions",
+    affirmation: "Un placement qui rapporte 3% par an t'enrichit toujours de 3% en pouvoir d'achat réel.",
+    reponse: false,
+    explication:
+      "C'est le rendement nominal, avant inflation. Avec une inflation à 2%, un livret à 3% ne t'enrichit réellement que de 1% en pouvoir d'achat — c'est le rendement réel qui compte vraiment.",
+  },
+  {
+    id: "taux-sans-risque-zero-risque",
+    sourceTermeId: "taux-sans-risque",
+    categorie: "Indicateurs & notions",
+    affirmation: "Le taux \"sans risque\" signifie qu'il n'y a absolument aucun risque de perte, dans tous les cas.",
+    reponse: false,
+    explication:
+      "\"Sans risque\" ne veut pas dire \"sans risque du tout\" — même une obligation d'État jugée sans risque peut perdre de la valeur avant échéance si les taux montent, ou faire défaut dans des cas extrêmes.",
+  },
+  {
+    id: "inflation-mesure-ipc",
+    sourceTermeId: "inflation",
+    categorie: "Indicateurs & notions",
+    affirmation: "L'inflation se mesure notamment via l'IPC (indice des prix à la consommation) en France.",
+    reponse: true,
+    explication:
+      "L'inflation se mesure via un indice des prix — l'IPC en France — qui suit l'évolution du prix d'un panier de biens et services représentatif, généralement exprimée en variation annuelle.",
+  },
+  {
+    id: "taux-sans-risque-reference-us",
+    sourceTermeId: "taux-sans-risque",
+    categorie: "Indicateurs & notions",
+    affirmation: "En zone euro, le taux sans risque de référence est le plus souvent celui des obligations d'État américaines.",
+    reponse: false,
+    explication:
+      "En zone euro, la référence est plutôt celle des obligations d'État allemandes (Bund) ou françaises (OAT) à court terme — pas les obligations américaines, qui servent de référence pour le dollar.",
   },
 ];
