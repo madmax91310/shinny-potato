@@ -448,51 +448,50 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 25 août 2026",
-    generatedAt: "Généré le 26 août 2026",
+    sessionDate: "Séance du 26 août 2026",
+    generatedAt: "Généré le 27 août 2026",
     stats: [
-      { label: "Saint-Gobain", value: "acquisition", delta: "Pérou + Brésil", dir: "up" },
-      { label: "Bitcoin", value: ">80 000 $", delta: "+25%, 7 jours", dir: "up" },
-      { label: "Or (once)", value: "≈4 650 $", delta: "recul, haut 3 mois", dir: "down" },
-      { label: "Brent", value: "≈92 $", delta: "stable", dir: "flat" },
-      { label: "WTI", value: "≈85 $", delta: "-2%, veille", dir: "down" },
-      { label: "Nvidia (NVDA)", value: "rebond", delta: "fin série baissière", dir: "up" }
+      { label: "Couche-Tard / Żabka", value: "7,44 €/action", delta: "OPA lancée", dir: "up" },
+      { label: "PCE (Fed)", value: "3,7%", delta: "sur un an", dir: "up" },
+      { label: "Bitcoin", value: "≈79 000 $", delta: "-1,2%, 24h", dir: "down" },
+      { label: "Brent", value: "86,22 $", delta: "-2 $, 3ᵉ séance", dir: "down" },
+      { label: "Or (once)", value: ">4 600 $", delta: "consolidation", dir: "flat" },
+      { label: "Nvidia (NVDA)", value: "prévisions +70%", delta: "titre en baisse", dir: "down" }
     ],
     bullets: [
       {
-        emoji: "🏗️",
+        emoji: "🏪",
         tag: "Marchés actions",
-        text: "Saint-Gobain a finalisé l'acquisition du péruvien QSI Productos para la Construcción et annoncé la construction d'une quatrième ligne de production de plaques de plâtre au Brésil."
+        text: "Le canadien Alimentation Couche-Tard a lancé une offre publique d'achat sur l'intégralité des actions de la chaîne polonaise de proximité Żabka, à 32 zlotys (7,44 euros) par action."
       },
       {
-        emoji: "🌍",
+        emoji: "🇺🇸",
         tag: "Macro & géopolitique",
-        text: "Donald Trump a annoncé que toutes les mines avaient été retirées ou détruites dans les eaux internationales du détroit d'Ormuz, tandis que le secrétaire d'État Marco Rubio a indiqué aux alliés de Washington que la stratégie américaine privilégiait désormais les sanctions économiques aux frappes militaires contre l'Iran."
+        text: "L'indice PCE, la mesure d'inflation privilégiée par la Réserve fédérale, a progressé de 3,7% sur un an en juillet, près du double de l'objectif de la banque centrale, tandis que les dépenses de consommation sont restées quasiment stables, un contexte qui laisse à la Fed une marge de manœuvre pour maintenir ses taux inchangés à court terme."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin a franchi les 80 000 dollars pour la première fois depuis mai, portant son avance sur sept jours à environ 25%, même si un indicateur de momentum proche de 78 incite certains analystes à mettre en garde contre un marché en zone de surachat."
+        text: "Le Bitcoin a marqué une pause autour de 79 000 dollars, en repli d'environ 1,2% sur 24 heures, les investisseurs prenant leurs bénéfices après un gain de 23% en sept jours, alors que CryptoQuant estime qu'il faudrait franchir les 83 000 dollars pour confirmer officiellement l'entrée en marché haussier."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent a clôturé autour de 92 dollars le baril et le WTI près de 85 dollars après une baisse de plus de 2% la veille, tandis que l'or a reflué vers 4 650 dollars l'once après avoir touché un plus haut de trois mois lors de la séance précédente."
+        text: "Le Brent a reculé pour une troisième séance consécutive, perdant plus de 2 dollars à 86,22 dollars le baril après l'annonce par l'Iran de la reprise des pourparlers avec Oman, tandis que l'or se consolidait au-dessus de 4 600 dollars l'once."
       },
       {
         emoji: "🖥️",
         tag: "Fait marquant",
-        text: "Un rebond des valeurs des semi-conducteurs a mis fin à sept séances consécutives de baisse pour Nvidia, la plus grande capitalisation boursière mondiale, à la veille de la publication de ses résultats trimestriels."
+        text: "Nvidia a dévoilé des prévisions de croissance de 70% pour 2028, très supérieures aux 45% attendus par les analystes, mais le titre a reculé après l'annonce, les investisseurs s'inquiétant du niveau des dépenses liées à l'intelligence artificielle."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-462dfd5cd3bbf391d1c36e4681131394" },
-      { outlet: "Axios", title: "Trump announces all mines have been removed from the Strait of Hormuz", url: "https://www.axios.com/2026/08/25/hormuz-mines-remove-oil-iran-trump" },
-      { outlet: "Axios", title: "Rubio tells allies U.S. shifting from strikes to sanctions on Iran", url: "https://www.axios.com/2026/08/25/rubio-iran-war-hormuz-oil" },
-      { outlet: "CoinDesk", title: "Bitcoin extends 7-day advance to roughly 25%", url: "https://www.coindesk.com/markets/2026/08/25/bitcoin-extends-7-day-advance-to-roughly-25" },
-      { outlet: "CoinDesk", title: "What next as bitcoin tops $80,000, solana jumps 8% as rally flashing warning signs", url: "https://www.coindesk.com/markets/2026/08/25/bitcoin-tops-usd80-000-solana-jumps-8-but-rally-now-runs-into-overbought-warning" },
-      { outlet: "Bloomberg", title: "Gold Holds Five-Day Gain as Oil Drop Eases Inflation Concerns", url: "https://www.bloomberg.com/news/articles/2026-08-25/gold-holds-five-day-gain-as-oil-drop-eases-inflation-concerns" },
-      { outlet: "Bloomberg", title: "Stock Market Today: Dow, S&P Live Updates for August 26", url: "https://www.bloomberg.com/news/articles/2026-08-25/asian-stocks-set-to-gain-as-oil-extends-declines-markets-wrap" }
+      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-659d2341d109d0a1f70e5c91784fae2d" },
+      { outlet: "Bloomberg", title: "Key US Inflation Gauge Posts Muted Advance, Spending Stalls", url: "https://www.bloomberg.com/news/articles/2026-08-26/key-us-inflation-gauge-posts-muted-advance-spending-stalls" },
+      { outlet: "CoinDesk", title: "BTC price rally stalls after adding 23% in 7 days as ETF demand holds steady", url: "https://www.coindesk.com/markets/2026/08/26/bitcoin-takes-a-breather-after-adding-23-in-7-days-as-etf-demand-holds-steady" },
+      { outlet: "The Block", title: "CryptoQuant says bitcoin has entered bull market but needs to cross $83,000 for 'official' confirmation", url: "https://www.theblock.co/news/markets/2026-08-26-cryptoquant-bitcoin-bull-market-83000-official-confirmation-412822" },
+      { outlet: "Bloomberg", title: "Gold Consolidates Above $4,600 as Investors Weigh Fed Rate Path", url: "https://www.bloomberg.com/news/articles/2026-08-26/gold-consolidates-above-4-600-as-investors-weigh-fed-rate-path" },
+      { outlet: "Bloomberg", title: "Nvidia Sales Forecast Tops Estimates but Shares Fall on AI Spending Concerns", url: "https://www.bloomberg.com/news/articles/2026-08-26/nvidia-estimate-topping-forecast-fails-to-wow-investors" }
     ]
   };
 
