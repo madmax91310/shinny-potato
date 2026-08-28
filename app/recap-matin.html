@@ -448,50 +448,50 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 26 août 2026",
-    generatedAt: "Généré le 27 août 2026",
+    sessionDate: "Séance du 27 août 2026",
+    generatedAt: "Généré le 28 août 2026",
     stats: [
-      { label: "Couche-Tard / Żabka", value: "7,44 €/action", delta: "OPA lancée", dir: "up" },
-      { label: "PCE (Fed)", value: "3,7%", delta: "sur un an", dir: "up" },
-      { label: "Bitcoin", value: "≈79 000 $", delta: "-1,2%, 24h", dir: "down" },
-      { label: "Brent", value: "86,22 $", delta: "-2 $, 3ᵉ séance", dir: "down" },
-      { label: "Or (once)", value: ">4 600 $", delta: "consolidation", dir: "flat" },
-      { label: "Nvidia (NVDA)", value: "prévisions +70%", delta: "titre en baisse", dir: "down" }
+      { label: "BNP / SG / CASA", value: "-3%+", delta: "craintes budget FR", dir: "down" },
+      { label: "Nvidia (NVDA)", value: "+442 Md$", delta: "+9%, meilleure séance", dir: "up" },
+      { label: "Salesforce (CRM)", value: "+23%", delta: "meilleure séance", dir: "up" },
+      { label: "Bitcoin", value: "79 500 $", delta: "pic à 80 475 $", dir: "up" },
+      { label: "Brent", value: "<88 $", delta: "-7%, semaine", dir: "down" },
+      { label: "Or (once)", value: "<4 600 $", delta: "-0,5%", dir: "down" }
     ],
     bullets: [
       {
-        emoji: "🏪",
+        emoji: "🏦",
         tag: "Marchés actions",
-        text: "Le canadien Alimentation Couche-Tard a lancé une offre publique d'achat sur l'intégralité des actions de la chaîne polonaise de proximité Żabka, à 32 zlotys (7,44 euros) par action."
+        text: "Les valeurs bancaires françaises ont plongé de plus de 3%, BNP Paribas, Société Générale et Crédit Agricole en tête, sur fond de craintes ravivées autour de la trajectoire budgétaire de la France."
       },
       {
         emoji: "🇺🇸",
         tag: "Macro & géopolitique",
-        text: "L'indice PCE, la mesure d'inflation privilégiée par la Réserve fédérale, a progressé de 3,7% sur un an en juillet, près du double de l'objectif de la banque centrale, tandis que les dépenses de consommation sont restées quasiment stables, un contexte qui laisse à la Fed une marge de manœuvre pour maintenir ses taux inchangés à court terme."
+        text: "Les marchés se préparaient au discours du président de la Réserve fédérale Kevin Warsh au symposium de Jackson Hole, un rendez-vous jugé déterminant pour la trajectoire des taux américains après plusieurs semaines de tensions sur le marché obligataire."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin a marqué une pause autour de 79 000 dollars, en repli d'environ 1,2% sur 24 heures, les investisseurs prenant leurs bénéfices après un gain de 23% en sept jours, alors que CryptoQuant estime qu'il faudrait franchir les 83 000 dollars pour confirmer officiellement l'entrée en marché haussier."
+        text: "Le Bitcoin a oscillé autour de 79 500 dollars, touchant un plus haut intrajournalier de 80 475 dollars, porté par une huitième journée consécutive d'entrées sur les ETF totalisant 2,8 milliards de dollars."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent a reculé pour une troisième séance consécutive, perdant plus de 2 dollars à 86,22 dollars le baril après l'annonce par l'Iran de la reprise des pourparlers avec Oman, tandis que l'or se consolidait au-dessus de 4 600 dollars l'once."
+        text: "Le Brent est passé sous les 88 dollars le baril, portant sa baisse hebdomadaire à plus de 7%, tandis que l'or a reculé de 0,5% sous les 4 600 dollars l'once."
       },
       {
         emoji: "🖥️",
         tag: "Fait marquant",
-        text: "Nvidia a dévoilé des prévisions de croissance de 70% pour 2028, très supérieures aux 45% attendus par les analystes, mais le titre a reculé après l'annonce, les investisseurs s'inquiétant du niveau des dépenses liées à l'intelligence artificielle."
+        text: "Nvidia a bondi de près de 9%, sa plus forte hausse depuis avril 2025, ajoutant 442 milliards de dollars à sa valorisation après avoir annoncé viser une croissance de 70% de son chiffre d'affaires l'an prochain, tandis que Salesforce s'est envolé de 23% sur fond de partenariat approfondi avec Anthropic."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-659d2341d109d0a1f70e5c91784fae2d" },
-      { outlet: "Bloomberg", title: "Key US Inflation Gauge Posts Muted Advance, Spending Stalls", url: "https://www.bloomberg.com/news/articles/2026-08-26/key-us-inflation-gauge-posts-muted-advance-spending-stalls" },
-      { outlet: "CoinDesk", title: "BTC price rally stalls after adding 23% in 7 days as ETF demand holds steady", url: "https://www.coindesk.com/markets/2026/08/26/bitcoin-takes-a-breather-after-adding-23-in-7-days-as-etf-demand-holds-steady" },
-      { outlet: "The Block", title: "CryptoQuant says bitcoin has entered bull market but needs to cross $83,000 for 'official' confirmation", url: "https://www.theblock.co/news/markets/2026-08-26-cryptoquant-bitcoin-bull-market-83000-official-confirmation-412822" },
-      { outlet: "Bloomberg", title: "Gold Consolidates Above $4,600 as Investors Weigh Fed Rate Path", url: "https://www.bloomberg.com/news/articles/2026-08-26/gold-consolidates-above-4-600-as-investors-weigh-fed-rate-path" },
-      { outlet: "Bloomberg", title: "Nvidia Sales Forecast Tops Estimates but Shares Fall on AI Spending Concerns", url: "https://www.bloomberg.com/news/articles/2026-08-26/nvidia-estimate-topping-forecast-fails-to-wow-investors" }
+      { outlet: "Zone Bourse", title: "Les banques françaises reculent dans un contexte de nervosité autour des finances publiques", url: "https://www.zonebourse.com/actualite-bourse/les-banques-francaises-reculent-dans-un-contexte-de-nervosite-autour-des-finances-publiques-ce7858deda80f422" },
+      { outlet: "Bloomberg", title: "Gold Holds Near $4,600 as Investors Await Fed Chair Warsh's Jackson Hole Speech", url: "https://www.bloomberg.com/news/articles/2026-08-27/gold-holds-near-4-600-as-investors-focus-on-fed-rate-hike-path" },
+      { outlet: "CoinDesk", title: "Live updates: Bitcoin reclaims $80,000 as software stocks lead market rally", url: "https://www.coindesk.com/business/2026/08/27/live-updates-bitcoin-etf-inflows-hit-eight-straight-days-as-august-tops-usd3-billion" },
+      { outlet: "Decrypt", title: "Bitcoin ETFs Draw $2.8B in Eight-Day Streak as BTC Tests $80K", url: "https://decrypt.co/376683/bitcoin-etfs-draw-2-8b-in-eight-day-streak-as-btc-tests-80k" },
+      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for Aug. 27", url: "https://www.bloomberg.com/news/articles/2026-08-26/latest-oil-market-news-and-analysis-for-aug-27" },
+      { outlet: "Bloomberg", title: "Nvidia Adds $442 Billion in Second Biggest Ever Stock Surge", url: "https://www.bloomberg.com/news/articles/2026-08-27/nvidia-adds-442-billion-in-second-biggest-ever-stock-surge" }
     ]
   };
 
