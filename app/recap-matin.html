@@ -448,50 +448,49 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 27 août 2026",
-    generatedAt: "Généré le 28 août 2026",
+    sessionDate: "Séance du 28 août 2026",
+    generatedAt: "Généré le 29 août 2026",
     stats: [
-      { label: "BNP / SG / CASA", value: "-3%+", delta: "craintes budget FR", dir: "down" },
-      { label: "Nvidia (NVDA)", value: "+442 Md$", delta: "+9%, meilleure séance", dir: "up" },
-      { label: "Salesforce (CRM)", value: "+23%", delta: "meilleure séance", dir: "up" },
-      { label: "Bitcoin", value: "79 500 $", delta: "pic à 80 475 $", dir: "up" },
-      { label: "Brent", value: "<88 $", delta: "-7%, semaine", dir: "down" },
-      { label: "Or (once)", value: "<4 600 $", delta: "-0,5%", dir: "down" }
+      { label: "EssilorLuxottica", value: "+3%", delta: "rachat d'actions", dir: "up" },
+      { label: "Détroit d'Ormuz", value: "« ouvert »", delta: "selon Trump", dir: "up" },
+      { label: "Bitcoin", value: "<78 000 $", delta: "-3,2%, 24h", dir: "down" },
+      { label: "Or (once)", value: "<4 600 $", delta: "+13%, mois", dir: "up" },
+      { label: "Minières aurifères (MSCI)", value: "+43%", delta: "meilleur mois", dir: "up" },
+      { label: "Taux US", value: "volatils", delta: "discours Warsh", dir: "up" }
     ],
     bullets: [
       {
-        emoji: "🏦",
+        emoji: "👓",
         tag: "Marchés actions",
-        text: "Les valeurs bancaires françaises ont plongé de plus de 3%, BNP Paribas, Société Générale et Crédit Agricole en tête, sur fond de craintes ravivées autour de la trajectoire budgétaire de la France."
+        text: "EssilorLuxottica a annoncé le lancement d'un programme de rachat portant sur 5 millions d'actions, une nouvelle saluée par un gain de 3% du titre."
       },
       {
-        emoji: "🇺🇸",
+        emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Les marchés se préparaient au discours du président de la Réserve fédérale Kevin Warsh au symposium de Jackson Hole, un rendez-vous jugé déterminant pour la trajectoire des taux américains après plusieurs semaines de tensions sur le marché obligataire."
+        text: "Donald Trump a déclaré que le détroit d'Ormuz était désormais « ouvert », estimant que les États-Unis avaient pris l'avantage sur l'Iran après avoir déminé plus de 200 objets suspects dans la voie de navigation, dont seulement 11 se sont révélés être de véritables mines."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin a oscillé autour de 79 500 dollars, touchant un plus haut intrajournalier de 80 475 dollars, porté par une huitième journée consécutive d'entrées sur les ETF totalisant 2,8 milliards de dollars."
+        text: "Le Bitcoin est retombé sous les 78 000 dollars, en repli de 3,2% sur 24 heures depuis un pic de 81 455 dollars atteint dans la nuit, les propos jugés prudents de Kevin Warsh sur l'inflation lors de son discours à Jackson Hole ayant douché l'appétit pour le risque."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent est passé sous les 88 dollars le baril, portant sa baisse hebdomadaire à plus de 7%, tandis que l'or a reculé de 0,5% sous les 4 600 dollars l'once."
+        text: "L'or a reculé sous les 4 600 dollars l'once à l'approche du discours de Kevin Warsh, mais affiche une hausse de plus de 13% depuis le début du mois, sa meilleure performance mensuelle depuis janvier, l'indice mondial des minières aurifères MSCI bondissant lui de 43% en août, en passe de signer son meilleur mois jamais enregistré."
       },
       {
-        emoji: "🖥️",
+        emoji: "🏛️",
         tag: "Fait marquant",
-        text: "Nvidia a bondi de près de 9%, sa plus forte hausse depuis avril 2025, ajoutant 442 milliards de dollars à sa valorisation après avoir annoncé viser une croissance de 70% de son chiffre d'affaires l'an prochain, tandis que Salesforce s'est envolé de 23% sur fond de partenariat approfondi avec Anthropic."
+        text: "Le nouveau président de la Fed Kevin Warsh a livré son premier discours à Jackson Hole en se montrant prudent sur l'inflation persistante, provoquant l'un des plus forts mouvements de la courbe des taux américains depuis sa prise de fonction en mai."
       }
     ],
     sources: [
-      { outlet: "Zone Bourse", title: "Les banques françaises reculent dans un contexte de nervosité autour des finances publiques", url: "https://www.zonebourse.com/actualite-bourse/les-banques-francaises-reculent-dans-un-contexte-de-nervosite-autour-des-finances-publiques-ce7858deda80f422" },
-      { outlet: "Bloomberg", title: "Gold Holds Near $4,600 as Investors Await Fed Chair Warsh's Jackson Hole Speech", url: "https://www.bloomberg.com/news/articles/2026-08-27/gold-holds-near-4-600-as-investors-focus-on-fed-rate-hike-path" },
-      { outlet: "CoinDesk", title: "Live updates: Bitcoin reclaims $80,000 as software stocks lead market rally", url: "https://www.coindesk.com/business/2026/08/27/live-updates-bitcoin-etf-inflows-hit-eight-straight-days-as-august-tops-usd3-billion" },
-      { outlet: "Decrypt", title: "Bitcoin ETFs Draw $2.8B in Eight-Day Streak as BTC Tests $80K", url: "https://decrypt.co/376683/bitcoin-etfs-draw-2-8b-in-eight-day-streak-as-btc-tests-80k" },
-      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for Aug. 27", url: "https://www.bloomberg.com/news/articles/2026-08-26/latest-oil-market-news-and-analysis-for-aug-27" },
-      { outlet: "Bloomberg", title: "Nvidia Adds $442 Billion in Second Biggest Ever Stock Surge", url: "https://www.bloomberg.com/news/articles/2026-08-27/nvidia-adds-442-billion-in-second-biggest-ever-stock-surge" }
+      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-08aa68661c00d537e091cfc02a12f24f" },
+      { outlet: "Axios", title: "\"That sucker is open\": U.S. gains the upper hand in the battle for Hormuz", url: "https://www.axios.com/2026/08/28/trump-iran-hormuz-war-oil" },
+      { outlet: "CoinDesk", title: "Live updates: Bitcoin options worth $6.4 billion just expired as prices hover near $80,000", url: "https://www.coindesk.com/business/2026/08/28/live-updates-bitcoin-options-worth-usd6-4-billion-just-expired-as-prices-hover-near-usd80-000" },
+      { outlet: "Bloomberg", title: "Gold Miners Are Having a Better Month Than Chips Did in Years", url: "https://www.bloomberg.com/news/articles/2026-08-28/gold-miners-are-having-a-better-month-than-chips-did-in-years" },
+      { outlet: "Bloomberg", title: "Key Takeaways From Fed Chairman Warsh's Jackson Hole Speech", url: "https://www.bloomberg.com/news/articles/2026-08-28/key-takeaways-from-fed-chairman-warsh-s-jackson-hole-speech" }
     ]
   };
 
