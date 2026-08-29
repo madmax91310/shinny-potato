@@ -1,6 +1,6 @@
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
-// Bitcoin : données réelles (export Yahoo Finance). Les 12 autres actifs ont été mis à jour avec des
+// Bitcoin : données réelles (export Yahoo Finance). Les 13 autres actifs ont été mis à jour avec des
 // clôtures réelles sourcées (voir commentaire au-dessus de chaque actif pour le détail des sources et
 // des points restant NON vérifiés / illustratifs — voir le récap donné à l'utilisateur pour la liste
 // des points encore à corriger avant publication).
@@ -245,6 +245,52 @@ export const ASSETS = {
       '2025-09', 830015, '2025-10', 860339, '2025-11', 861874, '2025-12', 971159,
       '2026-01', 861977, '2026-02', 876676, '2026-03', 842752, '2026-04', 907487,
       '2026-05', 953523, '2026-06', 967452, '2026-07', 964712,
+    ]),
+  },
+  nasdaq100: {
+    // Source : indice Nasdaq-100 (NDX), export CSV quotidien réel fourni par l'utilisateur le
+    // 29/08/2026 (Nasdaq.com, colonnes Date/Close/Open/High/Low), 29/08/2016 à 28/08/2026 —
+    // niveaux réels de l'indice, jamais rebasés (contrairement à sp500/msciWorld/stoxx600 : cet
+    // actif n'a donc pas besoin d'être exclu du format Anniversaire de Tweet Midi). Point mensuel
+    // retenu : clôture du dernier jour de bourse de chaque mois (même convention que
+    // apple/microsoft/broadcom/tesla/cac40), agrégé à partir des ~2 500 points quotidiens du CSV —
+    // aucune valeur mensuelle devinée, chaque point vient d'un jour de bourse réel du fichier.
+    // Recoupé avec la mémoire générale de l'indice (ex. clôture du 31/12/2020 = 12 888,28, chiffre
+    // largement documenté) : cohérent. Ajouté en réponse au blocage précédent de la roadmap
+    // ("Nasdaq-100 non sourcé, faute de données fiables") — débloqué par l'export fourni.
+    label: 'Nasdaq-100', tweetPhrase: 'le Nasdaq-100', icon: '💻', currency: 'USD',
+    points: P([
+      '2016-08', 4771.05, '2016-09', 4875.7, '2016-10', 4801.27, '2016-11', 4810.81,
+      '2016-12', 4863.62, '2017-01', 5116.77, '2017-02', 5330.31, '2017-03', 5436.23,
+      '2017-04', 5583.53, '2017-05', 5788.8, '2017-06', 5646.92, '2017-07', 5880.33,
+      '2017-08', 5988.6, '2017-09', 5979.3, '2017-10', 6248.56, '2017-11', 6365.56,
+      '2017-12', 6396.42, '2018-01', 6949.99, '2018-02', 6854.42, '2018-03', 6581.13,
+      '2018-04', 6605.57, '2018-05', 6967.73, '2018-06', 7040.8, '2018-07', 7231.98,
+      '2018-08', 7654.55, '2018-09', 7627.65, '2018-10', 6967.1, '2018-11', 6949.01,
+      '2018-12', 6329.96, '2019-01', 6906.84, '2019-02', 7097.53, '2019-03', 7378.77,
+      '2019-04', 7781.46, '2019-05', 7127.96, '2019-06', 7671.07, '2019-07', 7848.78,
+      '2019-08', 7691, '2019-09', 7749.45, '2019-10', 8083.83, '2019-11', 8403.68,
+      '2019-12', 8733.07, '2020-01', 8991.51, '2020-02', 8461.83, '2020-03', 7813.5,
+      '2020-04', 9000.51, '2020-05', 9555.52, '2020-06', 10156.85, '2020-07', 10905.88,
+      '2020-08', 12110.7, '2020-09', 11418.06, '2020-10', 11052.95, '2020-11', 12268.32,
+      '2020-12', 12888.28, '2021-01', 12925.38, '2021-02', 12909.44, '2021-03', 13091.44,
+      '2021-04', 13860.76, '2021-05', 13686.51, '2021-06', 14554.8, '2021-07', 14959.9,
+      '2021-08', 15582.51, '2021-09', 14689.62, '2021-10', 15850.47, '2021-11', 16135.92,
+      '2021-12', 16320.08, '2022-01', 14930.05, '2022-02', 14237.81, '2022-03', 14838.49,
+      '2022-04', 12854.8, '2022-05', 12642.1, '2022-06', 11503.72, '2022-07', 12947.97,
+      '2022-08', 12272.03, '2022-09', 10971.22, '2022-10', 11405.57, '2022-11', 12030.06,
+      '2022-12', 10939.76, '2023-01', 12101.93, '2023-02', 12042.12, '2023-03', 13181.35,
+      '2023-04', 13245.99, '2023-05', 14254.09, '2023-06', 15179.21, '2023-07', 15757,
+      '2023-08', 15501.07, '2023-09', 14715.24, '2023-10', 14409.78, '2023-11', 15947.87,
+      '2023-12', 16825.93, '2024-01', 17137.24, '2024-02', 18043.85, '2024-03', 18254.69,
+      '2024-04', 17440.69, '2024-05', 18536.65, '2024-06', 19682.87, '2024-07', 19362.43,
+      '2024-08', 19574.64, '2024-09', 20060.69, '2024-10', 19890.42, '2024-11', 20930.37,
+      '2024-12', 21012.17, '2025-01', 21478.05, '2025-02', 20884.41, '2025-03', 19278.45,
+      '2025-04', 19571.02, '2025-05', 21340.99, '2025-06', 22679.01, '2025-07', 23218.12,
+      '2025-08', 23415.42, '2025-09', 24679.99, '2025-10', 25858.13, '2025-11', 25434.89,
+      '2025-12', 25249.85, '2026-01', 25552.39, '2026-02', 24960.04, '2026-03', 23740.19,
+      '2026-04', 27452.12, '2026-05', 30333.18, '2026-06', 30276.35, '2026-07', 28274.19,
+      '2026-08', 29433.43,
     ]),
   },
   soxx: {
@@ -527,7 +573,7 @@ export const ASSETS = {
 }
 
 export const ASSET_ORDER = [
-  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'soxx',
+  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
 ]
 
