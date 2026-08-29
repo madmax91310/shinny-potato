@@ -411,6 +411,16 @@ function findAsset(assetId) {
   return MARKET_ASSETS.find((a) => a.id === assetId);
 }
 
+// Exportée pour App.jsx : les champs "niveau actuel" du mode Comparatif (Format A) doivent
+// afficher le NOM de l'actif auquel ils correspondent réellement (item.assetIdA / item.assetIdB),
+// jamais une étiquette générique "actif 1"/"actif 2" — cet ordre interne ne correspond pas
+// forcément à l'ordre dans lequel l'utilisateur a choisi les deux actifs dans les menus déroulants
+// (cf. bug trouvé le 29/08/2026 : un niveau saisi pour le bon actif se retrouvait affiché sous le
+// mauvais, silencieusement, faussant la performance calculée).
+export function getMarketAsset(assetId) {
+  return findAsset(assetId);
+}
+
 // Le "niveau actuel" (rawNiveauActuel) n'est jamais dérivé ni deviné : tant qu'il n'est pas
 // renseigné, la performance et le niveau actuel restent en placeholder plutôt que d'inventer une
 // valeur — cf. contrainte du brief ("jamais deviné ni estimé automatiquement").

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   FORMATS, FORMAT_LABELS, MODES, SUBJECT_ALEATOIRE, pickForSelection, pickNext, getSubjectsForFormat,
-  getSecondaryOptionsForFormat, buildTweetText,
+  getSecondaryOptionsForFormat, buildTweetText, getMarketAsset,
 } from "./lib.js";
 import { getLengthStatus } from "../etf-tweets/lib/tweetFormat.js";
 import PageHeader from "../../design-system/PageHeader";
@@ -111,6 +111,12 @@ export default function App() {
 
   const isAnniversaire = current.format === FORMATS.ANNIVERSAIRE;
   const isComparatifCurrent = current.mode === MODES.COMPARATIF;
+  // Les champs de saisie du niveau actuel (Comparatif) doivent nommer le VRAI actif auquel ils
+  // correspondent (current.assetIdA/assetIdB), jamais une étiquette générique "actif 1"/"actif 2"
+  // qui ne garantit pas de correspondre à l'ordre choisi par l'utilisateur dans les menus
+  // déroulants (cf. bug du 29/08/2026 : niveau saisi pour le bon actif affiché sous le mauvais).
+  const currentAssetA = isComparatifCurrent ? getMarketAsset(current.assetIdA) : null;
+  const currentAssetB = isComparatifCurrent ? getMarketAsset(current.assetIdB) : null;
   const niveauActuelValide = isValidLevel(niveauActuel);
   const niveauActuelBValide = isValidLevel(niveauActuelB);
   const copyDisabled =
@@ -377,7 +383,7 @@ export default function App() {
                 </p>
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold tracking-widest text-rose-300 uppercase" htmlFor="niveau-actuel-a">
-                    Niveau actuel — actif 1 (obligatoire)
+                    Niveau actuel — {currentAssetA?.icon} {currentAssetA?.label} (obligatoire)
                   </label>
                   <input
                     id="niveau-actuel-a"
@@ -392,7 +398,7 @@ export default function App() {
                 </div>
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold tracking-widest text-rose-300 uppercase" htmlFor="niveau-actuel-b">
-                    Niveau actuel — actif 2 (obligatoire)
+                    Niveau actuel — {currentAssetB?.icon} {currentAssetB?.label} (obligatoire)
                   </label>
                   <input
                     id="niveau-actuel-b"
