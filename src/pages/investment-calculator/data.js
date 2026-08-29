@@ -319,11 +319,20 @@ export const ASSETS = {
     // 2026 (StatMuse 31/01 ; Databoks/Fortune 30/04 ; Forbes Advisor 20/08). Toutes les valeurs
     // ci-dessous sont directement sourcées — noter la flambée réelle de janv. 2026 (record intrajournalier
     // à 121,58 $ le 29/01/2026) suivie d'une correction. Dernier point réel : 20/08/2026.
+    // CORRECTIF du 29/08/2026 (audit demandé par un utilisateur, niveaux vérifiés du bas de série
+    // jusqu'à 2025) : point 2025-12 faux (34,31 $) — l'argent a connu une flambée réelle et massive fin
+    // 2025 (rallye historique, meilleure année depuis 1979 : +147,5% sur l'année selon CNBC/Bullionvault),
+    // pas une hausse modeste. Vraie clôture du 31/12/2025 confirmée par plusieurs sources convergentes
+    // (bullion-rates.com, COMEX, CNBC) : 70,46 $. Corrige aussi l'incohérence avec le point 2026-01
+    // (85,17 $, déjà en place) : l'ancien saut 34,31 $ → 85,17 $ (+148% en un mois) devient un saut
+    // 70,46 $ → 85,17 $ (+21%), bien plus cohérent avec un marché qui continue sa flambée en janvier
+    // 2026 avant le pic à 121,58 $ le 29/01. Toutes les autres années (2015-2024) recoupées et
+    // confirmées correctes lors du même audit — aucune autre correction nécessaire pour cet actif.
     label: 'Argent (once)', tweetPhrase: "l'argent", icon: '🥈', currency: 'USD',
     points: P([
       '2015-12', 13.80, '2016-12', 15.99, '2017-12', 17.13, '2018-12', 15.52,
       '2019-12', 17.90, '2020-12', 26.40, '2021-12', 23.35, '2022-12', 23.96,
-      '2023-12', 23.79, '2024-12', 28.87, '2025-12', 34.31,
+      '2023-12', 23.79, '2024-12', 28.87, '2025-12', 70.46,
       '2026-01', 85.17, '2026-04', 73.74, '2026-08', 65.94,
     ]),
   },
