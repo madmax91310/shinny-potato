@@ -6,8 +6,8 @@ import { TERMES, CATEGORY_ORDER } from "../lexique-financier/data.js";
 import { MONTHS_FULL } from "../investment-calculator/data.js";
 import { fmtEUR, fmtPct, ymIndex } from "../investment-calculator/lib.js";
 import {
-  MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getAssetAvailableYears, getValidYearsBackOptions, getFirstRealPointOfYear,
-  getHistoricalPrice, ymForYearsBack, fmtYm, getSharedEndDate, getBenchmarkPerformance, hasComparableLevel,
+  MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions,
+  getHistoricalPrice, ymForYearsBack, fmtYm, getBenchmarkPerformance,
   getAnnualReturnStartYears, getAnnualReturns,
 } from "./data/marketHistory.js";
 import {
@@ -132,13 +132,17 @@ for (let i = 0; i < ANNIVERSAIRE_ELIGIBLE_ASSETS.length; i++) {
     });
   }
 }
+// Depuis la refonte du 29/08/2026 (détail annuel des deux actifs, cf. buildPerformanceDepuisComparatifText),
+// une année de départ n'est valide pour la paire que si elle l'est pour CHAQUE actif pris seul
+// (cf. getAnnualReturnStartYears) — même exigence que le mode Simple, jamais la condition plus
+// faible "au moins un point la même année" d'avant la refonte.
 const POOL_PERFORMANCE_DEPUIS_COMPARATIF = [];
 for (let i = 0; i < MARKET_ASSETS.length; i++) {
   for (let j = i + 1; j < MARKET_ASSETS.length; j++) {
     const a = MARKET_ASSETS[i];
     const b = MARKET_ASSETS[j];
-    const yearsA = new Set(getAssetAvailableYears(a.id));
-    getAssetAvailableYears(b.id).forEach((year) => {
+    const yearsA = new Set(getAnnualReturnStartYears(a.id));
+    getAnnualReturnStartYears(b.id).forEach((year) => {
       if (yearsA.has(year)) {
         POOL_PERFORMANCE_DEPUIS_COMPARATIF.push({
           id: `perf-depuis-cmp:${a.id}:${b.id}:${year}`,
@@ -452,6 +456,14 @@ function buildBenchmarkLine(startYm, endYm) {
 // (stoxx600/sp500/msciWorld) : contrairement à un niveau de prix brut, une variation en % ne
 // dépend pas de la base de l'indice — plus besoin de la restriction hasComparableLevel ici (elle
 // reste utilisée par le mode Comparatif, qui affiche lui des niveaux bruts).
+// Performance cumulée sur toute la période, en composant les rendements annuels réels (équivaut
+// mathématiquement au ratio clôture finale / clôture de départ, sans recalculer de prix) — ajoutée
+// le 29/08/2026 en plus du détail annuel, jamais à sa place : donne le chiffre choc final sans
+// obliger le lecteur à recomposer les lignes lui-même.
+function cumulatePct(returns) {
+  return (returns.reduce((acc, { pct: yearPct }) => acc * (1 + yearPct / 100), 1) - 1) * 100;
+}
+
 export function buildPerformanceDepuisText(item, includeBenchmark) {
   const asset = findAsset(item.assetId);
   const returns = getAnnualReturns(item.assetId, item.year);
@@ -462,6 +474,8 @@ export function buildPerformanceDepuisText(item, includeBenchmark) {
   returns.forEach(({ year, pct: yearPct }) => {
     lines.push(`${yearPct >= 0 ? "🟢" : "🔴"} ${year} : ${fmtPct(yearPct)}`);
   });
+  lines.push("");
+  lines.push(`Cumulé sur la période : ${fmtPct(cumulatePct(returns))}`);
   if (includeBenchmark) {
     lines.push("");
     lines.push(buildBenchmarkLine(returns[0].startDate, returns[returns.length - 1].endDate));
@@ -513,47 +527,47 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   return lines.join("\n");
 }
 
-// Mode Comparatif, Format B : fenêtre de fin PARTAGÉE entre les deux actifs (cf.
-// getSharedEndDate) pour que la comparaison porte sur exactement la même période des deux côtés —
-// jamais la propre dernière donnée de chacun, qui peut différer d'un mois selon l'actif.
+// Mode Comparatif, Format B : refondu le 29/08/2026 pour matcher le mode Simple — détail annuel
+// (pastilles 🟢/🔴) des DEUX actifs, un bloc après l'autre (jamais de vraies colonnes alignées :
+// un tweet n'a pas de police à chasse fixe garantie), plus une ligne de cumul par actif. Le
+// pourcentage annuel étant un simple ratio, il reste valide pour les 3 indices rebasés — plus
+// besoin de la restriction hasComparableLevel (qui ne concernait que l'affichage de niveaux de
+// prix bruts, abandonné avec cette refonte). L'actif au meilleur cumul est toujours affiché en
+// premier, comme dans le reste de l'app. Longueur non contrainte ici (choix explicite de
+// l'utilisateur du 29/08/2026) — peut dépasser 280 caractères, l'app le signale déjà via son badge
+// de longueur plutôt que de tronquer ou de condenser le contenu.
 export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
   const assetA = findAsset(item.assetIdA);
   const assetB = findAsset(item.assetIdB);
-  const startA = getFirstRealPointOfYear(item.assetIdA, item.year);
-  const startB = getFirstRealPointOfYear(item.assetIdB, item.year);
-  const sharedEnd = getSharedEndDate(item.assetIdA, item.assetIdB);
-  const endPriceA = getHistoricalPrice(item.assetIdA, sharedEnd);
-  const endPriceB = getHistoricalPrice(item.assetIdB, sharedEnd);
-  const gainA = ((endPriceA - startA.price) / startA.price) * 100;
-  const gainB = ((endPriceB - startB.price) / startB.price) * 100;
+  const returnsA = getAnnualReturns(item.assetIdA, item.year);
+  const returnsB = getAnnualReturns(item.assetIdB, item.year);
+  const cumA = cumulatePct(returnsA);
+  const cumB = cumulatePct(returnsB);
 
   const rows = [
-    { asset: assetA, gain: gainA, startPrice: startA.price, startDate: startA.date, endPrice: endPriceA },
-    { asset: assetB, gain: gainB, startPrice: startB.price, startDate: startB.date, endPrice: endPriceB },
+    { asset: assetA, returns: returnsA, cum: cumA },
+    { asset: assetB, returns: returnsB, cum: cumB },
   ];
-  const ordered = gainB > gainA ? [rows[1], rows[0]] : rows;
+  const ordered = cumB > cumA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
-  lines.push(`📈 ${assetA.label} vs ${assetB.label} depuis ${item.year}`);
+  lines.push(`📈 ${assetA.label} vs ${assetB.label} depuis ${item.year} 👇`);
   lines.push("");
-  // Même règle que le mode Simple : niveaux de prix bruts affichés uniquement pour les actifs à
-  // prix réellement comparable (cf. hasComparableLevel) — sinon pourcentage seul, sur une ligne.
-  ordered.forEach(({ asset, gain, startPrice, startDate, endPrice }, i) => {
-    if (hasComparableLevel(asset.id)) {
-      lines.push(`${asset.icon} ${asset.label}`);
-      lines.push(`Prix en ${fmtYm(startDate, { monthLabels: MONTHS_FULL })} : ${fmtEUR(startPrice, asset.currency)}`);
-      lines.push(`Prix actuel : ${fmtEUR(endPrice, asset.currency)} (${fmtPct(gain)})`);
-    } else {
-      lines.push(`${asset.icon} ${asset.label} : ${fmtPct(gain)}`);
-    }
+  ordered.forEach(({ asset, returns, cum }, i) => {
+    lines.push(`${asset.icon} ${asset.label}`);
+    returns.forEach(({ year, pct: yearPct }) => lines.push(`${yearPct >= 0 ? "🟢" : "🔴"} ${year} : ${fmtPct(yearPct)}`));
+    lines.push(`Cumulé : ${fmtPct(cum)}`);
     if (i === 0) lines.push("");
   });
   lines.push("");
-  lines.push(fmtEcart(gainA, gainB));
+  lines.push(fmtEcart(cumA, cumB));
   if (includeBenchmark) {
-    // Fenêtre du benchmark : le début le plus tardif des deux (le seul commun aux deux actifs) à
-    // la fin partagée — jamais un mois où l'un des deux actifs n'a pas encore de donnée réelle.
-    const sharedStart = ymIndex(startA.date) >= ymIndex(startB.date) ? startA.date : startB.date;
+    // Fenêtre du benchmark : le début le plus tardif des deux clôtures N-1 (le seul commun aux
+    // deux actifs) à la fin la plus précoce des deux dernières années — jamais un mois où l'un des
+    // deux actifs n'a pas encore de donnée réelle.
+    const sharedStart = ymIndex(returnsA[0].startDate) >= ymIndex(returnsB[0].startDate) ? returnsA[0].startDate : returnsB[0].startDate;
+    const lastA = returnsA[returnsA.length - 1], lastB = returnsB[returnsB.length - 1];
+    const sharedEnd = ymIndex(lastA.endDate) <= ymIndex(lastB.endDate) ? lastA.endDate : lastB.endDate;
     lines.push("");
     lines.push(buildBenchmarkLine(sharedStart, sharedEnd));
   }
