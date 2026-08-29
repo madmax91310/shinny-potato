@@ -91,6 +91,47 @@ export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie", "sect_tech
 // toujours piocher le même pari à levier — ajouté lors de l'audit "variété levier" (août 2026).
 export const LEVERAGE_OPTIONS = ["lqq", "cl2"];
 
+// Cohérence accroche/composition du profil Généraliste (cf. engine.js, audit "post-audit v5",
+// août 2026) : quand une ligne "conviction" dépasse CONCENTRATION_THRESHOLD, l'accroche bascule
+// du registre "diversifié" au registre "conviction assumée" et injecte ce libellé naturel à la
+// place du placeholder [libellé]. Cash (fonds euros), obligataire (cat "obligataire", vérifié à
+// l'usage sur `s.cat`) et indices monde diversifiés (WORLD_OPTIONS) sont volontairement exclus du
+// calcul de concentration : ni un fonds euros à 55%, ni un MSCI World à 45% ne sont un "pari" —
+// l'un est la neutralité par construction, l'autre est déjà la diversification la plus large
+// possible en actions.
+export const CONCENTRATION_THRESHOLD = 40;
+export const CONCENTRATION_NEUTRAL_IDS = new Set(["fonds_euros", ...WORLD_OPTIONS]);
+export const CONCENTRATION_LABELS = new Map([
+  ["nasdaq100", "la tech américaine"],
+  ["nasdaq100_ishares", "la tech américaine"],
+  ["lqq", "la tech américaine"],
+  ["sp500", "les grandes capitalisations américaines"],
+  ["sp500_ishares", "les grandes capitalisations américaines"],
+  ["cl2", "les grandes capitalisations américaines"],
+  ["msci_em", "les marchés émergents"],
+  ["msci_em_amundi", "les marchés émergents"],
+  ["ftse_em_vanguard", "les marchés émergents"],
+  ["msci_em_spdr", "les marchés émergents"],
+  ["eurostoxx50", "l'économie européenne"],
+  ["eurostoxx50_ishares", "l'économie européenne"],
+  ["cac40", "l'économie européenne"],
+  ["sect_semi", "les semiconducteurs"],
+  ["sect_energie_propre", "la transition énergétique"],
+  ["or", "l'or"],
+  ["or_wisdomtree", "l'or"],
+  ["or_ishares", "l'or"],
+  ["or_amundi", "l'or"],
+  ["bitcoin", "le Bitcoin"],
+  ["bitcoin_wisdomtree", "le Bitcoin"],
+  ["bitcoin_etcgroup", "le Bitcoin"],
+  ["bitcoin_21shares", "le Bitcoin"],
+  ["sect_sante", "la santé"],
+  // "défense" (table fournie) : aucun actif défense dans la bibliothèque actuelle — entrée
+  // absente ici faute d'id à mapper, s'ajoutera si un tel actif est créé un jour.
+  ["foncieres_etf", "l'immobilier coté"],
+  ["immo_gpr", "l'immobilier coté"],
+]);
+
 // Plafond de fréquence par groupe : au-delà de ce ratio d'apparition dans l'historique de la
 // session, un membre du groupe est exclu des tirages tant qu'une autre option reste disponible
 // (cf. resolveAssetId dans engine.js). Par défaut 30% pour tout groupe non listé ici ; l'or est
@@ -112,12 +153,21 @@ export const PROFILES = [
   {
     id: "generaliste",
     label: "Le Généraliste",
-    accroches: [
-      "Pas de conviction forte ici. Juste une diversification qui couvre un maximum de scénarios.",
-      "Le portefeuille du bon sens : rien d'extrême, tout est pesé.",
-      "Ni pari sectoriel, ni pari géographique : juste large, tout simplement.",
+    // Deux registres d'accroche plutôt qu'un pool unique (cf. CONCENTRATION_THRESHOLD dans
+    // theses.js et pickAccroche dans engine.js) : le profil promet la diversification dans son
+    // discours, donc une accroche "diversifiée" sur un tirage réellement concentré (>40% sur une
+    // ligne qui n'est ni cash, ni obligataire, ni un indice monde) mentirait sur la composition —
+    // audit "post-audit v5", août 2026.
+    accrochesDiversifie: [
       "Un peu de tout, pour ne dépendre d'aucun scénario unique.",
+      "Pas de conviction forte ici. Juste une diversification qui couvre un maximum de scénarios.",
       "La diversification comme seule vraie conviction.",
+    ],
+    // [libellé] est résolu par pickAccroche via CONCENTRATION_LABELS, jamais laissé tel quel.
+    accrochesConcentre: [
+      "La diversification comme base, [libellé] comme pari assumé.",
+      "80% de sagesse, 20% de conviction. Voici où elle va.",
+      "Pas vraiment de thèse — juste une conviction plus marquée côté [libellé].",
     ],
     sousTitres: [
       "Voici comment ça se traduit concrètement 👇",
@@ -993,28 +1043,35 @@ export const PROFILES = [
       equilibre: {
         assets: [
           {
-            id: "fonds_euros", pct: 45,
+            // Poids réduit de 45% à 15% lors du diagnostic "post-audit v5" (août 2026) : à 45%,
+            // le pire exercice du combo plafonnait à -4,10% (2022), sous le plancher de -6%
+            // attendu pour ce palier (cf. correction 2) — le fonds euros n'a historiquement aucune
+            // année négative sur 2020-2025, donc chaque point qui lui est retiré au profit des
+            // trois autres lignes fait mécaniquement grimper le pire exercice simulé. Vérifié
+            // empiriquement (script de stress-test) : à 15%, le combo tient -8,56% (2022), avec
+            // marge confortable des deux côtés de la fourchette 6-20%.
+            id: "fonds_euros", pct: 15,
             pourquoi: [
-              "La moitié du portefeuille reste sur la valeur la plus sûre — le reste peut respirer un peu.",
-              "Le socle qui permet aux trois autres lignes d'exister sans mettre en danger l'ensemble.",
+              "Une base de sécurité réduite, volontairement : à ce niveau de risque, la protection vient surtout de la diversification entre les trois autres lignes.",
+              "{pct}% seulement — juste de quoi ne jamais être à 100% exposé aux marchés, sans diluer le reste du compromis.",
             ],
           },
           {
-            idOptions: IMMOBILIER_OPTIONS, pct: 15,
+            idOptions: IMMOBILIER_OPTIONS, pct: 30,
             pourquoi: [
-              "Une petite dose d'immobilier coté pour aller chercher un peu plus de rendement — en quantité limitée, volontairement.",
-              "{pct}% seulement : de quoi profiter du rendement immobilier sans subir sa pleine volatilité.",
+              "Une vraie dose d'immobilier coté, pour aller chercher du rendement tout en restant dans un compromis mesuré.",
+              "{pct}% : la ligne qui porte l'essentiel de la volatilité de ce portefeuille, contenue par les trois autres.",
             ],
           },
           {
-            idOptions: DIVIDEND_OPTIONS, pct: 25,
+            idOptions: DIVIDEND_OPTIONS, pct: 35,
             pourquoi: [
               "Des entreprises qui paient (et augmentent) leur dividende depuis des années — le profil actions le plus proche de l'esprit défensif.",
-              "La brique « revenu régulier » du portefeuille, cohérente avec la logique de protection.",
+              "La brique la plus lourde du portefeuille, cohérente avec la logique de protection.",
             ],
           },
           {
-            idOptions: GOLD_OPTIONS, pct: 15,
+            idOptions: GOLD_OPTIONS, pct: 20,
             pourquoi: [
               "La protection qui ne dépend d'aucune des trois autres lignes — utile si les taux ou l'immobilier tournent mal en même temps.",
               "Vient couvrir un scénario qu'aucun des trois autres actifs ne couvre seul.",
