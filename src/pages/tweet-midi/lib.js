@@ -9,8 +9,12 @@ import {
   MARKET_ASSETS, getAssetAvailableYears, getValidYearsBackOptions, getFirstRealPointOfYear,
   getLastRealPoint, getHistoricalPrice, ymForYearsBack, fmtYm, getSharedEndDate, getBenchmarkPerformance,
 } from "./data/marketHistory.js";
-import { ANNIVERSAIRE_PUNCHLINES } from "./data/anniversairePunchlines.js";
-import { PERFORMANCE_DEPUIS_PUNCHLINES } from "./data/performanceDepuisPunchlines.js";
+import {
+  ANNIVERSAIRE_PUNCHLINES_NEUTRE, ANNIVERSAIRE_PUNCHLINES_GAIN, ANNIVERSAIRE_PUNCHLINES_PERTE,
+} from "./data/anniversairePunchlines.js";
+import {
+  PERFORMANCE_DEPUIS_PUNCHLINES_NEUTRE, PERFORMANCE_DEPUIS_PUNCHLINES_GAIN, PERFORMANCE_DEPUIS_PUNCHLINES_PERTE,
+} from "./data/performanceDepuisPunchlines.js";
 import { ANNIVERSAIRE_COMPARATIF_PUNCHLINES } from "./data/anniversaireComparatifPunchlines.js";
 import { PERFORMANCE_DEPUIS_COMPARATIF_PUNCHLINES } from "./data/performanceDepuisComparatifPunchlines.js";
 
@@ -308,6 +312,24 @@ function pickFromPool(pool, seedId) {
   return pool[hash % pool.length];
 }
 
+// "1 an" / "5 ans" déjà accordé — jamais {years} substitué seul dans un gabarit qui code "ans" en
+// dur à côté (donnait "il y a 1 ans" pour un an en arrière, cf. audit "pools de punchlines" du
+// 29/08/2026).
+function yearsPhrase(n) {
+  return `${n} an${n > 1 ? "s" : ""}`;
+}
+
+// Sélectionne le registre gain/perte/neutre selon le signe RÉEL de la performance affichée juste
+// au-dessus dans le tweet (jamais un pool unique tiré sans regarder le chiffre, cf. même audit) :
+// gainPct null (Format A avant saisie du niveau actuel) → neutre uniquement ; positif → gain +
+// neutre ; négatif ou nul → perte + neutre. `phrase`, si fourni, remplace {yearsPhrase} dans le
+// gabarit choisi (Format A uniquement — Performance depuis n'a pas ce placeholder).
+function pickSignedPunchline({ neutre, gain, perte }, gainPct, seedId, phrase) {
+  const pool = gainPct === null ? neutre : gainPct > 0 ? [...gain, ...neutre] : [...perte, ...neutre];
+  const template = pickFromPool(pool, seedId);
+  return phrase ? template.replace(/\{yearsPhrase\}/g, phrase) : template;
+}
+
 export function buildVraiFauxText(item) {
   const lines = [];
   lines.push("🤔 Vrai ou faux ?");
@@ -348,15 +370,19 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
   const hasCurrent = rawNiveauActuel !== "" && rawNiveauActuel !== null && rawNiveauActuel !== undefined && Number.isFinite(niveauActuel) && niveauActuel > 0;
   const gainPct = hasCurrent ? ((niveauActuel - historicalPrice) / historicalPrice) * 100 : null;
 
+  const phrase = yearsPhrase(item.yearsBack);
   const lines = [];
-  lines.push(`🎂 Il y a ${item.yearsBack} an${item.yearsBack > 1 ? "s" : ""} jour pour jour`);
+  lines.push(`🎂 Il y a ${phrase} jour pour jour`);
   lines.push("");
   lines.push(`${asset.icon} ${asset.label}`);
   lines.push(`Prix en ${dateLabel} : ${fmtEUR(historicalPrice, asset.currency)}`);
   lines.push(`Niveau actuel : ${hasCurrent ? fmtEUR(niveauActuel, asset.currency) : "[à saisir]"}`);
   lines.push(`Performance : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
   lines.push("");
-  lines.push(pickFromPool(ANNIVERSAIRE_PUNCHLINES, item.id).replace(/\{years\}/g, item.yearsBack));
+  lines.push(pickSignedPunchline(
+    { neutre: ANNIVERSAIRE_PUNCHLINES_NEUTRE, gain: ANNIVERSAIRE_PUNCHLINES_GAIN, perte: ANNIVERSAIRE_PUNCHLINES_PERTE },
+    gainPct, item.id, phrase,
+  ));
   return lines.join("\n");
 }
 
@@ -385,7 +411,10 @@ export function buildPerformanceDepuisText(item, includeBenchmark) {
     lines.push(buildBenchmarkLine(startPoint.date, endPoint.date));
   }
   lines.push("");
-  lines.push(pickFromPool(PERFORMANCE_DEPUIS_PUNCHLINES, item.id));
+  lines.push(pickSignedPunchline(
+    { neutre: PERFORMANCE_DEPUIS_PUNCHLINES_NEUTRE, gain: PERFORMANCE_DEPUIS_PUNCHLINES_GAIN, perte: PERFORMANCE_DEPUIS_PUNCHLINES_PERTE },
+    gainPct, item.id,
+  ));
   return lines.join("\n");
 }
 
@@ -416,7 +445,7 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   const ordered = bothKnown && pctB > pctA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
-  lines.push(`🎂 Il y a ${item.yearsBack} an${item.yearsBack > 1 ? "s" : ""}, ${assetA.tweetPhrase} et ${assetB.tweetPhrase} valaient...`);
+  lines.push(`🎂 Il y a ${yearsPhrase(item.yearsBack)}, ${assetA.tweetPhrase} et ${assetB.tweetPhrase} valaient...`);
   lines.push("");
   ordered.forEach(({ asset, hist, cur, hasCur, gain }, i) => {
     lines.push(`${asset.icon} ${asset.label}`);
@@ -427,7 +456,7 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   });
   lines.push("");
   if (bothKnown) lines.push(fmtEcart(pctA, pctB));
-  lines.push(pickFromPool(ANNIVERSAIRE_COMPARATIF_PUNCHLINES, item.id).replace(/\{years\}/g, item.yearsBack));
+  lines.push(pickFromPool(ANNIVERSAIRE_COMPARATIF_PUNCHLINES, item.id).replace(/\{yearsPhrase\}/g, yearsPhrase(item.yearsBack)));
   return lines.join("\n");
 }
 
