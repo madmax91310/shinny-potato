@@ -249,15 +249,24 @@ export const ASSETS = {
   },
   soxx: {
     // Source : clôtures annuelles réelles de l'ETF iShares Semiconductor (SOXX), ancrées sur deux
-    // clôtures vérifiées (31/12/2024 = 553,29 $ et 31/12/2025 = 347,98 $, StatMuse) et calculées pour
-    // 2015-2023 à partir des rendements annuels réels de SOXX (StatMuse/sources financières, cf.
-    // rapport) — donc dérivées de données réelles mais pas des clôtures exactes lues directement.
-    // Point 2026-08 vérifié (cours du 22/08/2026). Dernier point réel : 22/08/2026.
+    // clôtures vérifiées (31/12/2024 = 553,29 $, StatMuse) et calculées pour 2015-2023 à partir des
+    // rendements annuels réels de SOXX (StatMuse/sources financières, cf. rapport) — donc dérivées de
+    // données réelles mais pas des clôtures exactes lues directement. Point 2026-08 vérifié (cours du
+    // 22/08/2026). Dernier point réel : 22/08/2026.
+    // CORRECTIF du 29/08/2026 : point 2025-12 signalé "bizarre" par un utilisateur (347,98 $, soit
+    // -37,1% sur l'année) — vérifié faux. Le secteur des semi-conducteurs a connu une très forte année
+    // 2025 (rallye IA), pas un krach : CNBC titre "third straight winning year" pour les valeurs de
+    // semi-conducteurs, SOXX cité à +40,74%/+41% sur 2025 par deux recherches indépendantes convergentes
+    // (composantes cohérentes : AMD +77-79%, Nvidia +39%, Intel +83%, Micron +250%, SanDisk +597% sur
+    // l'année). L'ancien point 347,98 $ (source StatMuse d'une session précédente) était donc erroné —
+    // recalculé à +40,74% depuis le point de décembre 2024 existant (553,29 $, non modifié, sert
+    // d'ancrage). Point 2026-08 (520,05 $) laissé inchangé : implique une forte baisse sur les 8
+    // premiers mois de 2026 non vérifiée ici, à confirmer séparément si besoin.
     label: 'ETF Semi-conducteurs (SOXX)', tweetPhrase: 'un ETF semi-conducteurs (SOXX)', icon: '🖥️', currency: 'USD',
     points: P([
       '2015-12', 69.86, '2016-12', 96.65, '2017-12', 135.11, '2018-12', 126.36,
       '2019-12', 205.24, '2020-12', 313.44, '2021-12', 451.66, '2022-12', 293.19,
-      '2023-12', 489.98, '2024-12', 553.29, '2025-12', 347.98, '2026-08', 520.05,
+      '2023-12', 489.98, '2024-12', 553.29, '2025-12', 778.70, '2026-08', 520.05,
     ]),
   },
   or: {
