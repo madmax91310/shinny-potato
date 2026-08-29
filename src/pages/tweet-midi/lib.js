@@ -7,14 +7,13 @@ import { MONTHS_FULL } from "../investment-calculator/data.js";
 import { fmtEUR, fmtPct, ymIndex } from "../investment-calculator/lib.js";
 import {
   MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getAssetAvailableYears, getValidYearsBackOptions, getFirstRealPointOfYear,
-  getLastRealPoint, getHistoricalPrice, ymForYearsBack, fmtYm, getSharedEndDate, getBenchmarkPerformance, hasComparableLevel,
+  getHistoricalPrice, ymForYearsBack, fmtYm, getSharedEndDate, getBenchmarkPerformance, hasComparableLevel,
+  getAnnualReturnStartYears, getAnnualReturns,
 } from "./data/marketHistory.js";
 import {
   ANNIVERSAIRE_PUNCHLINES_NEUTRE, ANNIVERSAIRE_PUNCHLINES_GAIN, ANNIVERSAIRE_PUNCHLINES_PERTE,
 } from "./data/anniversairePunchlines.js";
-import {
-  PERFORMANCE_DEPUIS_PUNCHLINES_NEUTRE, PERFORMANCE_DEPUIS_PUNCHLINES_GAIN, PERFORMANCE_DEPUIS_PUNCHLINES_PERTE,
-} from "./data/performanceDepuisPunchlines.js";
+import { PERFORMANCE_DEPUIS_QUESTIONS } from "./data/performanceDepuisPunchlines.js";
 import { ANNIVERSAIRE_COMPARATIF_PUNCHLINES } from "./data/anniversaireComparatifPunchlines.js";
 import { PERFORMANCE_DEPUIS_COMPARATIF_PUNCHLINES } from "./data/performanceDepuisComparatifPunchlines.js";
 
@@ -95,10 +94,11 @@ const POOL_ANNIVERSAIRE = ANNIVERSAIRE_ELIGIBLE_ASSETS.flatMap((asset) =>
   }))
 );
 // Format B ("Performance depuis"), mode Simple : une entrée par (actif, année de départ) parmi
-// les années où cet actif a réellement un point vérifié en base (cf. getAssetAvailableYears) —
-// jamais une année antérieure au premier point réel de l'actif.
+// les années où le détail annuel est calculable pour cet actif (cf. getAnnualReturnStartYears) —
+// jamais une année sans clôture N-1 vérifiée pour servir de référence à sa propre ligne, ni
+// l'année en cours (encore partielle).
 const POOL_PERFORMANCE_DEPUIS = MARKET_ASSETS.flatMap((asset) =>
-  getAssetAvailableYears(asset.id).map((year) => ({
+  getAnnualReturnStartYears(asset.id).map((year) => ({
     id: `perf-depuis:${asset.id}:${year}`,
     format: FORMATS.PERFORMANCE_DEPUIS,
     mode: MODES.SIMPLE,
@@ -356,6 +356,19 @@ function yearsPhrase(n) {
   return `${n} an${n > 1 ? "s" : ""}`;
 }
 
+// "Performance de {phrase} depuis" — élision de "de" devant tweetPhrase, qui porte son propre
+// article ("le Bitcoin", "l'or", "un ETF...", ou aucun pour "LVMH"/"Apple"...). Une simple
+// concaténation "de " + tweetPhrase donnerait "de le Bitcoin" ou "de un ETF..." (faux) : "de le"
+// se contracte en "du", "de un" en "d'un", et "de" s'élide aussi devant une voyelle pour les noms
+// propres sans article (Apple).
+function dePhrase(tweetPhrase) {
+  if (tweetPhrase.startsWith("le ")) return "du " + tweetPhrase.slice(3);
+  if (tweetPhrase.startsWith("un ")) return "d'un " + tweetPhrase.slice(3);
+  if (tweetPhrase.startsWith("l'")) return "de " + tweetPhrase;
+  if (/^[AEIOUÀÉÈÊÎÔÛaeiouàéèêîôû]/.test(tweetPhrase)) return "d'" + tweetPhrase;
+  return "de " + tweetPhrase;
+}
+
 // Sélectionne le registre gain/perte/neutre selon le signe RÉEL de la performance affichée juste
 // au-dessus dans le tweet (jamais un pool unique tiré sans regarder le chiffre, cf. même audit) :
 // gainPct null (Format A avant saisie du niveau actuel) → neutre uniquement ; positif → gain +
@@ -433,36 +446,28 @@ function buildBenchmarkLine(startYm, endYm) {
   return `Sur la même période, le Livret A aurait fait ${fmtPct(livretPct)} et l'inflation cumulée est de ${fmtPct(inflationPct)}.`;
 }
 
+// Détail annuel (une ligne par année civile complète, pastille verte/rouge selon le signe) —
+// remplace l'ancien affichage à un seul pourcentage cumulé sur demande utilisateur du 29/08/2026.
+// Le pourcentage par année étant un simple ratio, il reste valide même pour les 3 indices rebasés
+// (stoxx600/sp500/msciWorld) : contrairement à un niveau de prix brut, une variation en % ne
+// dépend pas de la base de l'indice — plus besoin de la restriction hasComparableLevel ici (elle
+// reste utilisée par le mode Comparatif, qui affiche lui des niveaux bruts).
 export function buildPerformanceDepuisText(item, includeBenchmark) {
   const asset = findAsset(item.assetId);
-  const startPoint = getFirstRealPointOfYear(item.assetId, item.year);
-  const endPoint = getLastRealPoint(item.assetId);
-  const gainPct = ((endPoint.price - startPoint.price) / startPoint.price) * 100;
+  const returns = getAnnualReturns(item.assetId, item.year);
 
   const lines = [];
-  lines.push(`📈 Performance depuis ${item.year}`);
+  lines.push(`📈 Performance ${dePhrase(asset.tweetPhrase)} depuis ${item.year} 👇`);
   lines.push("");
-  // Niveaux de prix bruts affichés uniquement pour les actifs à prix réellement comparable (cf.
-  // hasComparableLevel dans marketHistory.js) — pour les 3 indices rebasés (stoxx600/sp500/
-  // msciWorld), le niveau brut ne correspond à rien de vérifiable ailleurs (même raison que
-  // l'exclusion du format Anniversaire), donc seul le pourcentage reste affiché pour eux.
-  if (hasComparableLevel(item.assetId)) {
-    lines.push(`${asset.icon} ${asset.label}`);
-    lines.push(`Prix en ${fmtYm(startPoint.date, { monthLabels: MONTHS_FULL })} : ${fmtEUR(startPoint.price, asset.currency)}`);
-    lines.push(`Prix actuel : ${fmtEUR(endPoint.price, asset.currency)}`);
-    lines.push(`Performance : ${fmtPct(gainPct)}`);
-  } else {
-    lines.push(`${asset.icon} ${asset.label} : ${fmtPct(gainPct)}`);
-  }
+  returns.forEach(({ year, pct: yearPct }) => {
+    lines.push(`${yearPct >= 0 ? "🟢" : "🔴"} ${year} : ${fmtPct(yearPct)}`);
+  });
   if (includeBenchmark) {
     lines.push("");
-    lines.push(buildBenchmarkLine(startPoint.date, endPoint.date));
+    lines.push(buildBenchmarkLine(returns[0].startDate, returns[returns.length - 1].endDate));
   }
   lines.push("");
-  lines.push(pickSignedPunchline(
-    { neutre: PERFORMANCE_DEPUIS_PUNCHLINES_NEUTRE, gain: PERFORMANCE_DEPUIS_PUNCHLINES_GAIN, perte: PERFORMANCE_DEPUIS_PUNCHLINES_PERTE },
-    gainPct, item.id,
-  ));
+  lines.push(pickFromPool(PERFORMANCE_DEPUIS_QUESTIONS, item.id));
   return lines.join("\n");
 }
 

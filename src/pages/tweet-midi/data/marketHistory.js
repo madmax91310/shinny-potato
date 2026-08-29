@@ -3,8 +3,10 @@
 // (src/pages/investment-calculator/data.js), via les mêmes fonctions d'interpolation que le
 // Calculateur utilise lui-même (src/pages/investment-calculator/lib.js). Si cette bibliothèque
 // est mise à jour (nouveaux points, nouvel actif), ces deux formats suivent automatiquement.
-import { ASSETS, ASSET_ORDER, LIVRET_A, INFLATION } from "../../investment-calculator/data.js";
+import { ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM } from "../../investment-calculator/data.js";
 import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../investment-calculator/lib.js";
+
+const LATEST_YEAR = Number(LATEST_YM.slice(0, 4));
 
 // Un seul actif a une plage réellement utilisable plus courte que ses points bruts : LVMH a des
 // points de 2015-01 à 2019-10 explicitement marqués "NON VÉRIFIÉS... valeurs illustratives
@@ -74,6 +76,46 @@ export function getFirstRealPointOfYear(assetId, year) {
 export function getLastRealPoint(assetId) {
   const points = assetPoints(assetId);
   return points[points.length - 1];
+}
+
+// Symétrique de getFirstRealPointOfYear : le point réel le plus proche de la FIN de l'année
+// donnée (jamais un 31 décembre supposé si l'actif n'a pas de point ce mois-là). Sert de valeur
+// de clôture d'année pour le détail annuel du format Performance depuis (cf. getAnnualReturns).
+export function getLastRealPointOfYear(assetId, year) {
+  const points = assetPoints(assetId);
+  const minDate = getAssetMinDate(assetId);
+  const minIdx = ymIndex(minDate);
+  const inYear = points.filter((p) => p.date.slice(0, 4) === String(year) && ymIndex(p.date) >= minIdx);
+  if (inYear.length === 0) return null;
+  return inYear.reduce((max, p) => (ymIndex(p.date) > ymIndex(max.date) ? p : max), inYear[0]);
+}
+
+// Années de départ valides pour le détail annuel du format Performance depuis (cf.
+// getAnnualReturns juste après) : la ligne de CHAQUE année affichée compare sa propre clôture à
+// celle de l'année précédente — donc l'année de départ elle-même a besoin d'une clôture vérifiée
+// pour l'année N-1, sinon sa ligne ne peut pas être calculée sans deviner un point (ex. LVMH :
+// le plancher vérifié est 2020-12, donc 2020 n'a pas de clôture N-1 vérifiée et n'est pas une
+// année de départ valide — 2021 l'est). Exclut aussi l'année en cours (celle de LATEST_YM) :
+// elle n'a qu'un point partiel, jamais une vraie clôture annuelle.
+export function getAnnualReturnStartYears(assetId) {
+  return getAssetAvailableYears(assetId).filter(
+    (year) => year < LATEST_YEAR && getLastRealPointOfYear(assetId, year - 1) !== null,
+  );
+}
+
+// Détail annuel réel depuis `startYear` (inclus) jusqu'à la dernière année civile complète —
+// jamais l'année en cours (cf. getAnnualReturnStartYears). Chaque ligne : clôture de fin d'année
+// N vs clôture de fin d'année N-1, jamais une variation calculée sur des points partiels ou
+// interpolés au-delà de ce que l'actif couvre réellement.
+export function getAnnualReturns(assetId, startYear) {
+  const out = [];
+  for (let year = startYear; year <= LATEST_YEAR - 1; year++) {
+    const prev = getLastRealPointOfYear(assetId, year - 1);
+    const cur = getLastRealPointOfYear(assetId, year);
+    if (!prev || !cur) continue;
+    out.push({ year, pct: ((cur.price - prev.price) / prev.price) * 100, startDate: prev.date, endDate: cur.date });
+  }
+  return out;
 }
 
 // Format A ("il y a X ans jour pour jour") : décalage réel du mois/jour courant, jamais un
