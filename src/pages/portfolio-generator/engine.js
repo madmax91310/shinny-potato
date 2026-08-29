@@ -226,16 +226,30 @@ function pickNonRepeating(pool, history, profileId, field) {
 
 // Généraliste uniquement (cf. accrochesDiversifie/accrochesConcentre dans theses.js) : la ligne
 // dominante hors cash/obligataire/indice-monde décide du registre d'accroche. null si aucune
-// ligne "conviction" ne dépasse CONCENTRATION_THRESHOLD (cas normal à la config actuelle : aucun
-// combo Généraliste ne franchit 40% hors neutres, même avec le jitter — vérifié par script).
+// conviction ne dépasse CONCENTRATION_THRESHOLD (cas normal à la config actuelle : aucun combo
+// Généraliste ne franchit 40% hors neutres, même avec le jitter — vérifié par script).
+//
+// Regroupé par sous-jacent réel (même libellé CONCENTRATION_LABELS), pas ligne par ligne — sinon
+// deux paris sur le même sous-jacent (ex. Nasdaq-100 pur 16% + LQQ, Nasdaq-100 x2, 9%) passent
+// sous le seuil séparément (16% et 9%, chacun < 40%) alors qu'ensemble ils forment une seule
+// conviction à 25% sur la tech américaine — bug identifié à l'audit "post-audit v2" (règle 2, août
+// 2026). Deux lignes sans libellé mappé (fallback sur leur propre nom) ne sont jamais groupées
+// entre elles, même si superficiellement proches — seul un libellé partagé vaut regroupement.
 function resolveConcentration(selection) {
   const candidates = selection.filter(
     (s) => s.cat !== "obligataire" && !CONCENTRATION_NEUTRAL_IDS.has(s.id)
   );
   if (candidates.length === 0) return null;
-  const dominant = candidates.reduce((max, s) => (s.pct > max.pct ? s : max), candidates[0]);
+  const groups = new Map();
+  candidates.forEach((s) => {
+    const label = CONCENTRATION_LABELS.get(s.id) ?? s.name;
+    const g = groups.get(label) ?? { label, pct: 0 };
+    g.pct += s.pct;
+    groups.set(label, g);
+  });
+  const dominant = [...groups.values()].reduce((max, g) => (g.pct > max.pct ? g : max));
   if (dominant.pct <= CONCENTRATION_THRESHOLD) return null;
-  return { label: CONCENTRATION_LABELS.get(dominant.id) ?? dominant.name };
+  return { label: dominant.label };
 }
 
 // L'anti-répétition doit comparer le gabarit brut, pas le texte affiché : sinon deux tirages

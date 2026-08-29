@@ -89,6 +89,15 @@ export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie", "sect_tech
 // WORLD_OPTIONS/EM_OPTIONS ci-dessus), chaque option revalidée sur les bornes de pire année du
 // combo qui l'utilise. Groupés pour que la génération alterne entre les deux plutôt que de
 // toujours piocher le même pari à levier — ajouté lors de l'audit "variété levier" (août 2026).
+//
+// Politique de placement (audit "post-audit v2", règle 1, août 2026) : Prudent/Défensif/Équilibré
+// interdits (jamais référencé dans ces paliers, pour aucun profil), Offensif libre (pas de
+// plancher de perte), Dynamique autorisé UNIQUEMENT à un poids fixe pré-validé exhaustivement par
+// script de stress-test (toutes les combinaisons possibles des autres idOptions du combo) pour ne
+// jamais dépasser le plancher de -30% — jamais un mécanisme de recomposition au moment du tirage
+// (pas de "si le drawdown dépasse X, retirer la ligne et redistribuer" dans engine.js). Toute
+// nouvelle utilisation de LEVERAGE_OPTIONS en Dynamique, sur ce profil ou un autre, doit repasser
+// par le même stress-test avant d'être ajoutée — jamais supposée sûre par défaut.
 export const LEVERAGE_OPTIONS = ["lqq", "cl2"];
 
 // Cohérence accroche/composition du profil Généraliste (cf. engine.js, audit "post-audit v5",
