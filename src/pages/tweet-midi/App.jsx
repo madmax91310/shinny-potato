@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { FORMATS, FORMAT_LABELS, SUBJECT_ALEATOIRE, pickForSelection, pickNext, getSubjectsForFormat, buildTweetText } from "./lib.js";
+import {
+  FORMATS, FORMAT_LABELS, SUBJECT_ALEATOIRE, pickForSelection, pickNext, getSubjectsForFormat,
+  getSecondaryOptionsForFormat, buildTweetText,
+} from "./lib.js";
 import { getLengthStatus } from "../etf-tweets/lib/tweetFormat.js";
 import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
@@ -10,6 +13,8 @@ const FORMAT_BADGE_STYLES = {
   [FORMATS.DILEMME]: "border-amber-500/30 bg-amber-500/10 text-amber-300",
   [FORMATS.FICHE_LEXIQUE]: "border-violet-500/30 bg-violet-500/10 text-violet-300",
   [FORMATS.COMPARATIF_ETF]: "border-sky-500/30 bg-sky-500/10 text-sky-300",
+  [FORMATS.ANNIVERSAIRE]: "border-rose-500/30 bg-rose-500/10 text-rose-300",
+  [FORMATS.PERFORMANCE_DEPUIS]: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
 };
 
 const LENGTH_STATUS_STYLES = {
@@ -18,30 +23,58 @@ const LENGTH_STATUS_STYLES = {
   danger: "border-red-500/30 bg-red-500/10 text-red-300",
 };
 
-const SELECTOR_OPTIONS = [FORMATS.VRAI_FAUX, FORMATS.DILEMME, FORMATS.FICHE_LEXIQUE, FORMATS.COMPARATIF_ETF, FORMATS.ALEATOIRE];
+const SELECTOR_OPTIONS = [
+  FORMATS.VRAI_FAUX, FORMATS.DILEMME, FORMATS.FICHE_LEXIQUE, FORMATS.COMPARATIF_ETF,
+  FORMATS.ANNIVERSAIRE, FORMATS.PERFORMANCE_DEPUIS, FORMATS.ALEATOIRE,
+];
+
+// Libellé de l'étape 3 (années en arrière / année de départ) — propre aux deux nouveaux formats.
+const SECONDARY_LABELS = {
+  [FORMATS.ANNIVERSAIRE]: "Étape 3 — Nombre d'années en arrière",
+  [FORMATS.PERFORMANCE_DEPUIS]: "Étape 3 — Année de départ",
+};
+function secondaryOptionLabel(format, value) {
+  return format === FORMATS.ANNIVERSAIRE ? `${value} an${value > 1 ? "s" : ""}` : String(value);
+}
 
 export default function App() {
   const [format, setFormat] = useState(FORMATS.ALEATOIRE);
   const [subject, setSubject] = useState(SUBJECT_ALEATOIRE);
+  const [secondary, setSecondary] = useState(SUBJECT_ALEATOIRE);
   const [current, setCurrent] = useState(() => pickNext(FORMATS.ALEATOIRE, []));
   const [history, setHistory] = useState(() => [current.id]);
   const [copied, setCopied] = useState(false);
+  // Format "Il y a X ans" uniquement : jamais mémorisé ni ajouté à l'historique/l'anti-répétition
+  // (cf. lib.js) — remis à zéro à chaque nouvelle génération, y compris quand elle vient du mode
+  // Aléatoire (tous formats) et retombe sur ce format sans que l'utilisateur l'ait choisi.
+  const [niveauActuel, setNiveauActuel] = useState("");
 
   function handleSelectFormat(nextFormat) {
     setFormat(nextFormat);
     // Le sujet précédent peut ne pas exister dans le nouveau format : on revient à "Aléatoire"
     // plutôt que de garder une sélection invalide sans que l'utilisateur s'en rende compte.
     setSubject(SUBJECT_ALEATOIRE);
+    setSecondary(SUBJECT_ALEATOIRE);
+  }
+
+  function handleSelectSubject(nextSubject) {
+    setSubject(nextSubject);
+    // Les années en arrière / l'année de départ valides dépendent de l'actif : un choix précédent
+    // peut ne plus être valide pour le nouvel actif, donc retour à "Aléatoire" par sécurité.
+    setSecondary(SUBJECT_ALEATOIRE);
   }
 
   function handleGenerate() {
-    const { item, addToHistory } = pickForSelection(format, subject, history);
+    const { item, addToHistory } = pickForSelection(format, subject, history, secondary);
     if (addToHistory) setHistory((h) => [...h, item.id]);
     setCurrent(item);
     setCopied(false);
+    setNiveauActuel("");
   }
 
-  const text = buildTweetText(current);
+  const isAnniversaire = current.format === FORMATS.ANNIVERSAIRE;
+  const niveauActuelValide = Number.isFinite(Number(niveauActuel)) && Number(niveauActuel) > 0 && niveauActuel !== "";
+  const text = buildTweetText(current, niveauActuel);
   const status = getLengthStatus(text.length);
   const isLongFormat = current.format === FORMATS.FICHE_LEXIQUE || current.format === FORMATS.COMPARATIF_ETF;
   // Les fiches lexique et comparatifs ETF dépassent 280 caractères par nature : le palier
@@ -57,6 +90,8 @@ export default function App() {
 
   const subjectGroups = getSubjectsForFormat(format);
   const showSubjectSelector = format !== FORMATS.ALEATOIRE;
+  const showSecondarySelector = format === FORMATS.ANNIVERSAIRE || format === FORMATS.PERFORMANCE_DEPUIS;
+  const secondaryOptions = showSecondarySelector ? getSecondaryOptionsForFormat(format, subject) : [];
 
   async function handleCopy() {
     try {
@@ -72,7 +107,7 @@ export default function App() {
     <div>
       <PageHeader
         title="🕐 Tweet Midi"
-        subtitle="Vrai ou Faux, Dilemmes, Fiches lexique et Comparatifs ETF, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."
+        subtitle="Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix et Performances historiques, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."
       />
 
       <div className="flex flex-col gap-6 lg:flex-row">
@@ -106,7 +141,7 @@ export default function App() {
                   id="subject-select"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-400"
                   value={subject}
-                  onChange={(e) => setSubject(e.target.value)}
+                  onChange={(e) => handleSelectSubject(e.target.value)}
                 >
                   <option value={SUBJECT_ALEATOIRE}>🔀 Aléatoire</option>
                   {subjectGroups.map((group) =>
@@ -126,6 +161,27 @@ export default function App() {
                       ))
                     ),
                   )}
+                </select>
+              </div>
+            )}
+
+            {showSecondarySelector && (
+              <div className="border-l-2 border-teal-500/30 pl-3">
+                <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase" htmlFor="secondary-select">
+                  {SECONDARY_LABELS[format]}
+                </label>
+                <select
+                  id="secondary-select"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-400"
+                  value={secondary}
+                  onChange={(e) => setSecondary(e.target.value)}
+                >
+                  <option value={SUBJECT_ALEATOIRE}>🔀 Aléatoire</option>
+                  {secondaryOptions.map((value) => (
+                    <option key={value} value={value}>
+                      {secondaryOptionLabel(format, value)}
+                    </option>
+                  ))}
                 </select>
               </div>
             )}
@@ -160,12 +216,36 @@ export default function App() {
               </span>
             </div>
 
+            {isAnniversaire && (
+              <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4">
+                <label className="mb-1.5 block text-xs font-semibold tracking-widest text-rose-300 uppercase" htmlFor="niveau-actuel">
+                  Niveau actuel de l'actif (obligatoire)
+                </label>
+                <input
+                  id="niveau-actuel"
+                  type="number"
+                  min="0"
+                  step="any"
+                  inputMode="decimal"
+                  placeholder="Ex. 64267"
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-400"
+                  value={niveauActuel}
+                  onChange={(e) => setNiveauActuel(e.target.value)}
+                  title="Vérifie ce chiffre sur une source fiable (Yahoo Finance, CoinMarketCap...) avant de le saisir — jamais deviné automatiquement."
+                />
+                <p className="mt-1.5 text-[11px] text-rose-300/80">
+                  ⓘ Vérifie ce chiffre sur une source fiable (Yahoo Finance, CoinMarketCap...) avant de le saisir — jamais deviné
+                  automatiquement, et jamais mémorisé d'une génération à l'autre.
+                </p>
+              </div>
+            )}
+
             <pre className="min-h-[14rem] overflow-x-auto rounded-xl border border-slate-800 bg-slate-950 p-4 font-mono text-[13px] leading-relaxed whitespace-pre-wrap text-slate-200">
               {text}
             </pre>
 
-            <Button type="button" onClick={handleCopy} className="self-start">
-              {copied ? "Copié ✓" : "Copier le texte"}
+            <Button type="button" onClick={handleCopy} disabled={isAnniversaire && !niveauActuelValide} className="self-start">
+              {copied ? "Copié ✓" : isAnniversaire && !niveauActuelValide ? "Renseigne le niveau actuel pour copier" : "Copier le texte"}
             </Button>
           </div>
         </div>

@@ -1,0 +1,115 @@
+// Formats "Anniversaire" et "Performance depuis" (Tweet Midi) — aucune donnée de prix dupliquée
+// ici : tout vient directement de la bibliothèque déjà vérifiée du Calculateur d'investissement
+// (src/pages/investment-calculator/data.js), via les mêmes fonctions d'interpolation que le
+// Calculateur utilise lui-même (src/pages/investment-calculator/lib.js). Si cette bibliothèque
+// est mise à jour (nouveaux points, nouvel actif), ces deux formats suivent automatiquement.
+import { ASSETS, ASSET_ORDER } from "../../investment-calculator/data.js";
+import { ymIndex, indexToYm, interpolatePrice } from "../../investment-calculator/lib.js";
+
+// Un seul actif a une plage réellement utilisable plus courte que ses points bruts : LVMH a des
+// points de 2015-01 à 2019-10 explicitement marqués "NON VÉRIFIÉS... valeurs illustratives
+// d'origine conservées" dans data.js (cf. commentaire sur l'actif lvmh). On ne les traite jamais
+// comme des données réelles ici, même si `interpolatePrice` les utiliserait sans distinction —
+// d'où ce plancher dédié, jamais déduit automatiquement de `points[0]`. Premier point réellement
+// vérifié : 2020-12.
+const VERIFIED_MIN_DATE_OVERRIDES = {
+  lvmh: "2020-12",
+};
+
+function assetPoints(assetId) {
+  return ASSETS[assetId].points;
+}
+
+// Premier point réellement vérifié (cf. VERIFIED_MIN_DATE_OVERRIDES ci-dessus).
+export function getAssetMinDate(assetId) {
+  return VERIFIED_MIN_DATE_OVERRIDES[assetId] ?? assetPoints(assetId)[0].date;
+}
+
+// Dernier point réellement présent en base pour CET actif précis — jamais supposé identique à
+// LATEST_YM du Calculateur : stoxx600, sp500 et msciWorld s'arrêtent réellement à 2026-07 (pas
+// 2026-08) dans leurs points bruts, vérifié à l'implémentation de ce module.
+export function getAssetMaxDate(assetId) {
+  const points = assetPoints(assetId);
+  return points[points.length - 1].date;
+}
+
+// Années civiles pour lesquelles cet actif a au moins un point réellement vérifié (donc jamais
+// une année antérieure au plancher lvmh ci-dessus, même si data.js contient des points bruts
+// avant cette date).
+export function getAssetAvailableYears(assetId) {
+  const minDate = getAssetMinDate(assetId);
+  const minIdx = ymIndex(minDate);
+  const years = new Set();
+  assetPoints(assetId).forEach((p) => {
+    if (ymIndex(p.date) >= minIdx) years.add(Number(p.date.slice(0, 4)));
+  });
+  return [...years].sort((a, b) => a - b);
+}
+
+// Prix interpolé à une date donnée, borné au plancher vérifié (jamais résolu avant lui, même si
+// interpolatePrice accepterait une date antérieure et renverrait par défaut le premier point brut
+// — potentiellement une des valeurs "NON VÉRIFIÉES" de LVMH).
+export function getHistoricalPrice(assetId, ym) {
+  const minDate = getAssetMinDate(assetId);
+  const clampedYm = ymIndex(ym) < ymIndex(minDate) ? minDate : ym;
+  return interpolatePrice(assetPoints(assetId), clampedYm);
+}
+
+// Le point réel le plus proche (à la date exacte ou avant) du premier jour de l'année donnée —
+// jamais une date de janvier supposée si l'actif n'a pas de point ce mois-là (cf. contrainte du
+// brief : jamais estimer une année sans donnée réelle). Pour une année dont le premier point réel
+// tombe en cours d'année (ex. Ethereum 2016 → premier point 2016-12), on utilise CE point précis,
+// jamais une valeur de janvier interpolée à partir de plus tard.
+export function getFirstRealPointOfYear(assetId, year) {
+  const points = assetPoints(assetId);
+  const minDate = getAssetMinDate(assetId);
+  const minIdx = ymIndex(minDate);
+  const inYear = points.filter((p) => p.date.slice(0, 4) === String(year) && ymIndex(p.date) >= minIdx);
+  if (inYear.length === 0) return null;
+  return inYear.reduce((min, p) => (ymIndex(p.date) < ymIndex(min.date) ? p : min), inYear[0]);
+}
+
+// Dernier point réel de l'actif (jamais LATEST_YM du Calculateur, qui est une borne globale — cf.
+// getAssetMaxDate ci-dessus).
+export function getLastRealPoint(assetId) {
+  const points = assetPoints(assetId);
+  return points[points.length - 1];
+}
+
+// Format A ("il y a X ans jour pour jour") : décalage réel du mois/jour courant, jamais un
+// nombre d'années fixe supposé disponible pour tous les actifs — filtré au plancher vérifié de
+// CET actif. `today` est un objet Date réel (jamais codé en dur : passé par l'appelant à partir
+// de `new Date()` au moment du clic, pour rester exact indéfiniment).
+export function getValidYearsBackOptions(assetId, today) {
+  const minDate = getAssetMinDate(assetId);
+  const minIdx = ymIndex(minDate);
+  const options = [];
+  for (let yearsBack = 1; yearsBack <= 10; yearsBack++) {
+    const past = new Date(today.getFullYear() - yearsBack, today.getMonth(), 1);
+    const ym = past.getFullYear() + "-" + String(past.getMonth() + 1).padStart(2, "0");
+    if (ymIndex(ym) >= minIdx) options.push(yearsBack);
+  }
+  return options;
+}
+
+export function ymForYearsBack(yearsBack, today) {
+  const past = new Date(today.getFullYear() - yearsBack, today.getMonth(), 1);
+  return past.getFullYear() + "-" + String(past.getMonth() + 1).padStart(2, "0");
+}
+
+export function fmtYm(ym, { monthLabels }) {
+  const [y, m] = ym.split("-");
+  return `${monthLabels[Number(m) - 1]} ${y}`;
+}
+
+// Liste des actifs exposée aux deux formats — reprend telle quelle celle du Calculateur (même
+// ordre, mêmes libellés/icônes), sans dupliquer les prix.
+export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
+  id,
+  label: ASSETS[id].label,
+  tweetPhrase: ASSETS[id].tweetPhrase,
+  icon: ASSETS[id].icon,
+  currency: ASSETS[id].currency,
+}));
+
+export { indexToYm };
