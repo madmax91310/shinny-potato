@@ -162,12 +162,16 @@ export const PROFILES = [
       "Un peu de tout, pour ne dépendre d'aucun scénario unique.",
       "Pas de conviction forte ici. Juste une diversification qui couvre un maximum de scénarios.",
       "La diversification comme seule vraie conviction.",
+      "Tout le monde dans le même panier — mais un grand panier.",
+      "Aucune conviction forte. Juste une couverture maximale des scénarios possibles.",
     ],
     // [libellé] est résolu par pickAccroche via CONCENTRATION_LABELS, jamais laissé tel quel.
     accrochesConcentre: [
       "La diversification comme base, [libellé] comme pari assumé.",
       "80% de sagesse, 20% de conviction. Voici où elle va.",
       "Pas vraiment de thèse — juste une conviction plus marquée côté [libellé].",
+      "La diversification comme filet de sécurité, [libellé] comme vrai moteur.",
+      "Pas de thèse unique — mais une ligne qui pèse plus que les autres.",
     ],
     sousTitres: [
       "Voici comment ça se traduit concrètement 👇",
@@ -552,6 +556,16 @@ export const PROFILES = [
         ],
       },
       offensif: {
+        // Exception de drawdown minimum (audit "post-audit v6", août 2026) : le covered call du
+        // JEPQ plafonne mécaniquement son propre drawdown (la prime d'option limite la baisse
+        // autant que la hausse) — un pire exercice "sage" pour ce combo n'est donc jamais un
+        // signe de mauvais calibrage, contrairement à un Bouclier Équilibré trop plat (cf.
+        // correction 2). Le niveau Offensif se justifie ici par la thèse "revenus maximaux au prix
+        // d'un plafond de hausse", pas par l'amplitude du risque en capital — cohérent avec
+        // RISK_BOUNDS.offensif (pas de plancher : la performance, ou ici le revenu, prime). Tout
+        // audit futur sur un plancher de drawdown minimum doit exempter ce combo précis.
+        drawdownFloorException:
+          "Le covered call de JEPQ plafonne mécaniquement le drawdown. Le niveau Offensif est justifié par la thèse revenus maximaux, pas par le risque en capital.",
         assets: [
           {
             id: "jepq", pct: 65,
