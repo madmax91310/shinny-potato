@@ -124,6 +124,20 @@ export function getBenchmarkPerformance(startYm, endYm) {
   };
 }
 
+// Trois actifs du Calculateur (stoxx600, sp500, msciWorld) sont stockés en indice total-return
+// REBASÉ à une valeur arbitraire ("base 10 000 au [date]", cf. commentaires sur ces actifs dans
+// investment-calculator/data.js) — un niveau interne qui sert uniquement au calcul de ratio du
+// Calculateur, jamais un niveau que l'actif "cote" réellement quelque part. Le format Anniversaire
+// demande à l'utilisateur de saisir le niveau ACTUEL réel (vérifié sur Yahoo Finance...) et de le
+// comparer au prix historique affiché : pour ces 3 actifs, le prix historique affiché (base 10 000
+// rebasée, ex. S&P 500 à ~211 000 en août 2021) n'a rien à voir avec ce qu'on trouve coté ailleurs
+// (le vrai S&P 500 valait ~4 500 points à cette date) — comparaison non-sens garantie. Signalé par
+// un utilisateur le 29/08/2026 (S&P 500, 5 ans en arrière → 211 265 affiché). Exclus du format
+// Anniversaire pour cette raison (cf. ANNIVERSAIRE_ELIGIBLE_ASSETS plus bas) ; restent disponibles
+// pour Performance depuis, qui ne compare jamais à une source externe — seul le ratio interne
+// compte, valide quelle que soit la base de l'indice.
+const ANNIVERSAIRE_EXCLUDED_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
+
 // Liste des actifs exposée aux deux formats — reprend telle quelle celle du Calculateur (même
 // ordre, mêmes libellés/icônes), sans dupliquer les prix.
 export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
@@ -133,5 +147,10 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   icon: ASSETS[id].icon,
   currency: ASSETS[id].currency,
 }));
+
+// Sous-ensemble de MARKET_ASSETS utilisable par le format Anniversaire (cf.
+// ANNIVERSAIRE_EXCLUDED_IDS ci-dessus) — Performance depuis continue d'utiliser MARKET_ASSETS en
+// entier, sans restriction.
+export const ANNIVERSAIRE_ELIGIBLE_ASSETS = MARKET_ASSETS.filter((a) => !ANNIVERSAIRE_EXCLUDED_IDS.has(a.id));
 
 export { indexToYm };

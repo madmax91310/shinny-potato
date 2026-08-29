@@ -6,7 +6,7 @@ import { TERMES, CATEGORY_ORDER } from "../lexique-financier/data.js";
 import { MONTHS_FULL } from "../investment-calculator/data.js";
 import { fmtEUR, fmtPct, ymIndex } from "../investment-calculator/lib.js";
 import {
-  MARKET_ASSETS, getAssetAvailableYears, getValidYearsBackOptions, getFirstRealPointOfYear,
+  MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getAssetAvailableYears, getValidYearsBackOptions, getFirstRealPointOfYear,
   getLastRealPoint, getHistoricalPrice, ymForYearsBack, fmtYm, getSharedEndDate, getBenchmarkPerformance,
 } from "./data/marketHistory.js";
 import {
@@ -85,7 +85,7 @@ const POOL_COMPARATIF_ETF = COMPARATIF_ETF_SUBJECTS.map((t) => ({
 // réellement valide pour CET actif à la date de chargement de la page (cf. TODAY ci-dessus et
 // getValidYearsBackOptions dans marketHistory.js — jamais 1..10 supposé pour tous, certains
 // actifs ont une plage réelle plus courte, ex. LVMH limité à 1-5 ans).
-const POOL_ANNIVERSAIRE = MARKET_ASSETS.flatMap((asset) =>
+const POOL_ANNIVERSAIRE = ANNIVERSAIRE_ELIGIBLE_ASSETS.flatMap((asset) =>
   getValidYearsBackOptions(asset.id, TODAY).map((yearsBack) => ({
     id: `anniversaire:${asset.id}:${yearsBack}`,
     format: FORMATS.ANNIVERSAIRE,
@@ -113,11 +113,10 @@ const POOL_PERFORMANCE_DEPUIS = MARKET_ASSETS.flatMap((asset) =>
 // (années en arrière / année de départ) réellement valide pour LES DEUX actifs à la fois, jamais
 // pour un seul (contrainte du brief).
 const POOL_ANNIVERSAIRE_COMPARATIF = [];
-const POOL_PERFORMANCE_DEPUIS_COMPARATIF = [];
-for (let i = 0; i < MARKET_ASSETS.length; i++) {
-  for (let j = i + 1; j < MARKET_ASSETS.length; j++) {
-    const a = MARKET_ASSETS[i];
-    const b = MARKET_ASSETS[j];
+for (let i = 0; i < ANNIVERSAIRE_ELIGIBLE_ASSETS.length; i++) {
+  for (let j = i + 1; j < ANNIVERSAIRE_ELIGIBLE_ASSETS.length; j++) {
+    const a = ANNIVERSAIRE_ELIGIBLE_ASSETS[i];
+    const b = ANNIVERSAIRE_ELIGIBLE_ASSETS[j];
     const yearsBackA = new Set(getValidYearsBackOptions(a.id, TODAY));
     getValidYearsBackOptions(b.id, TODAY).forEach((yearsBack) => {
       if (yearsBackA.has(yearsBack)) {
@@ -131,6 +130,13 @@ for (let i = 0; i < MARKET_ASSETS.length; i++) {
         });
       }
     });
+  }
+}
+const POOL_PERFORMANCE_DEPUIS_COMPARATIF = [];
+for (let i = 0; i < MARKET_ASSETS.length; i++) {
+  for (let j = i + 1; j < MARKET_ASSETS.length; j++) {
+    const a = MARKET_ASSETS[i];
+    const b = MARKET_ASSETS[j];
     const yearsA = new Set(getAssetAvailableYears(a.id));
     getAssetAvailableYears(b.id).forEach((year) => {
       if (yearsA.has(year)) {
@@ -178,7 +184,13 @@ export const VRAI_FAUX_SUBJECTS = CATEGORY_ORDER.map((categorie) => ({
 
 const DILEMME_SUBJECTS = [{ categorie: null, items: SITUATIONS.map((s) => ({ id: s.id, label: s.label })) }];
 const COMPARATIF_ETF_SUBJECTS_FLAT = [{ categorie: null, items: COMPARATIF_ETF_SUBJECTS }];
-const MARKET_ASSET_SUBJECTS_FLAT = [
+// Anniversaire n'utilise que les actifs à prix réellement comparable à une source externe (cf.
+// ANNIVERSAIRE_ELIGIBLE_ASSETS/ANNIVERSAIRE_EXCLUDED_IDS dans marketHistory.js) ; Performance
+// depuis garde la liste complète, jamais restreinte (aucune comparaison externe demandée).
+const ANNIVERSAIRE_SUBJECTS_FLAT = [
+  { categorie: null, items: ANNIVERSAIRE_ELIGIBLE_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}` })) },
+];
+const PERFORMANCE_DEPUIS_SUBJECTS_FLAT = [
   { categorie: null, items: MARKET_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}` })) },
 ];
 
@@ -187,8 +199,8 @@ export function getSubjectsForFormat(format) {
   if (format === FORMATS.DILEMME) return DILEMME_SUBJECTS;
   if (format === FORMATS.FICHE_LEXIQUE) return FICHE_LEXIQUE_SUBJECTS;
   if (format === FORMATS.COMPARATIF_ETF) return COMPARATIF_ETF_SUBJECTS_FLAT;
-  if (format === FORMATS.ANNIVERSAIRE) return MARKET_ASSET_SUBJECTS_FLAT;
-  if (format === FORMATS.PERFORMANCE_DEPUIS) return MARKET_ASSET_SUBJECTS_FLAT;
+  if (format === FORMATS.ANNIVERSAIRE) return ANNIVERSAIRE_SUBJECTS_FLAT;
+  if (format === FORMATS.PERFORMANCE_DEPUIS) return PERFORMANCE_DEPUIS_SUBJECTS_FLAT;
   return [];
 }
 
