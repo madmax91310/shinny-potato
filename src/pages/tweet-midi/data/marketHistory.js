@@ -3,8 +3,8 @@
 // (src/pages/investment-calculator/data.js), via les mêmes fonctions d'interpolation que le
 // Calculateur utilise lui-même (src/pages/investment-calculator/lib.js). Si cette bibliothèque
 // est mise à jour (nouveaux points, nouvel actif), ces deux formats suivent automatiquement.
-import { ASSETS, ASSET_ORDER } from "../../investment-calculator/data.js";
-import { ymIndex, indexToYm, interpolatePrice } from "../../investment-calculator/lib.js";
+import { ASSETS, ASSET_ORDER, LIVRET_A, INFLATION } from "../../investment-calculator/data.js";
+import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../investment-calculator/lib.js";
 
 // Un seul actif a une plage réellement utilisable plus courte que ses points bruts : LVMH a des
 // points de 2015-01 à 2019-10 explicitement marqués "NON VÉRIFIÉS... valeurs illustratives
@@ -100,6 +100,28 @@ export function ymForYearsBack(yearsBack, today) {
 export function fmtYm(ym, { monthLabels }) {
   const [y, m] = ym.split("-");
   return `${monthLabels[Number(m) - 1]} ${y}`;
+}
+
+// Mode Comparatif, Format B uniquement : la date de fin partagée par les deux actifs, pour que la
+// fenêtre de comparaison soit rigoureusement identique des deux côtés — jamais la propre dernière
+// date de chacun (qui peut différer d'un mois, cf. getAssetMaxDate). Toujours la PLUS ANCIENNE des
+// deux fins réelles, jamais une date au-delà de ce que l'un des deux actifs couvre réellement.
+export function getSharedEndDate(assetIdA, assetIdB) {
+  const a = getAssetMaxDate(assetIdA);
+  const b = getAssetMaxDate(assetIdB);
+  return ymIndex(a) <= ymIndex(b) ? a : b;
+}
+
+// Réutilise directement computeBenchmarkSeries + pct du Calculateur (aucune donnée ni formule
+// dupliquée) pour situer la performance Livret A / inflation cumulée sur la même fenêtre
+// [startYm, endYm] que l'actif affiché. Base 100 arbitraire : seul le pourcentage final compte.
+export function getBenchmarkPerformance(startYm, endYm) {
+  const livret = computeBenchmarkSeries(LIVRET_A, startYm, endYm, 100, "lump");
+  const inflation = computeBenchmarkSeries(INFLATION, startYm, endYm, 100, "lump");
+  return {
+    livretPct: pct(livret.finalValue, livret.totalInvested),
+    inflationPct: pct(inflation.finalValue, inflation.totalInvested),
+  };
 }
 
 // Liste des actifs exposée aux deux formats — reprend telle quelle celle du Calculateur (même
