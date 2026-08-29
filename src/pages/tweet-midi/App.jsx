@@ -85,6 +85,19 @@ export default function App() {
     setSecondary(SUBJECT_ALEATOIRE);
   }
 
+  // Une fois un sujet précis choisi (étape 2), "Générer" reste volontairement piocher sur CE
+  // sujet (cf. commentaire pickForSelection dans lib.js — un sujet choisi précisément est censé
+  // pouvoir être revu autant de fois qu'on veut). Signalé par un utilisateur le 29/08/2026 comme
+  // paraissant "bloqué" faute d'un moyen visible de revenir à Aléatoire sans rouvrir les menus un
+  // par un : ce bouton fait exactement ça, en un clic.
+  const hasPreciseSelection =
+    subject !== SUBJECT_ALEATOIRE || subjectB !== SUBJECT_ALEATOIRE || secondary !== SUBJECT_ALEATOIRE;
+  function handleResetSelection() {
+    setSubject(SUBJECT_ALEATOIRE);
+    setSubjectB(SUBJECT_ALEATOIRE);
+    setSecondary(SUBJECT_ALEATOIRE);
+  }
+
   function handleGenerate() {
     const { item, addToHistory } = pickForSelection({
       format, mode, subjectId: subject, subjectIdB: subjectB, secondaryId: secondary, history,
@@ -176,9 +189,20 @@ export default function App() {
         <div className="flex-1 lg:max-w-md">
           <Card className="flex flex-col gap-4 p-5">
             <div>
-              <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">
-                Étape 1 — Format
-              </label>
+              <div className="mb-2 flex items-center justify-between">
+                <label className="block text-xs font-semibold tracking-widest text-slate-500 uppercase">
+                  Étape 1 — Format
+                </label>
+                {showSubjectSelector && hasPreciseSelection && (
+                  <button
+                    type="button"
+                    onClick={handleResetSelection}
+                    className="text-xs text-teal-400 underline decoration-dotted underline-offset-2 hover:text-teal-300"
+                  >
+                    ↺ Réinitialiser (retour à Aléatoire)
+                  </button>
+                )}
+              </div>
               <div className="flex flex-wrap gap-2">
                 {SELECTOR_OPTIONS.map((opt) => (
                   <Button

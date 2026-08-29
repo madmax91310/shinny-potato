@@ -135,8 +135,18 @@ export function getBenchmarkPerformance(startYm, endYm) {
 // un utilisateur le 29/08/2026 (S&P 500, 5 ans en arrière → 211 265 affiché). Exclus du format
 // Anniversaire pour cette raison (cf. ANNIVERSAIRE_ELIGIBLE_ASSETS plus bas) ; restent disponibles
 // pour Performance depuis, qui ne compare jamais à une source externe — seul le ratio interne
-// compte, valide quelle que soit la base de l'indice.
-const ANNIVERSAIRE_EXCLUDED_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
+// compte, valide quelle que soit la base de l'indice. Même règle réutilisée par lib.js pour décider
+// si Performance depuis peut afficher les DEUX niveaux de prix bruts (début/fin) en plus du
+// pourcentage : pour ces 3 actifs, seul le pourcentage est affiché (cf. hasComparableLevel).
+const REBASED_INDEX_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
+const ANNIVERSAIRE_EXCLUDED_IDS = REBASED_INDEX_IDS;
+
+// Un niveau de prix brut n'a de sens à afficher (ex. "Prix en 2015 : 625 $US") que pour un actif
+// dont les points sont de vrais prix/indices externes — jamais pour les 3 indices rebasés
+// ci-dessus, où le nombre affiché ne correspondrait à rien de vérifiable ailleurs.
+export function hasComparableLevel(assetId) {
+  return !REBASED_INDEX_IDS.has(assetId);
+}
 
 // Liste des actifs exposée aux deux formats — reprend telle quelle celle du Calculateur (même
 // ordre, mêmes libellés/icônes), sans dupliquer les prix.

@@ -7,7 +7,7 @@ import { MONTHS_FULL } from "../investment-calculator/data.js";
 import { fmtEUR, fmtPct, ymIndex } from "../investment-calculator/lib.js";
 import {
   MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getAssetAvailableYears, getValidYearsBackOptions, getFirstRealPointOfYear,
-  getLastRealPoint, getHistoricalPrice, ymForYearsBack, fmtYm, getSharedEndDate, getBenchmarkPerformance,
+  getLastRealPoint, getHistoricalPrice, ymForYearsBack, fmtYm, getSharedEndDate, getBenchmarkPerformance, hasComparableLevel,
 } from "./data/marketHistory.js";
 import {
   ANNIVERSAIRE_PUNCHLINES_NEUTRE, ANNIVERSAIRE_PUNCHLINES_GAIN, ANNIVERSAIRE_PUNCHLINES_PERTE,
@@ -417,7 +417,18 @@ export function buildPerformanceDepuisText(item, includeBenchmark) {
   const lines = [];
   lines.push(`📈 Performance depuis ${item.year}`);
   lines.push("");
-  lines.push(`${asset.icon} ${asset.label} : ${fmtPct(gainPct)}`);
+  // Niveaux de prix bruts affichés uniquement pour les actifs à prix réellement comparable (cf.
+  // hasComparableLevel dans marketHistory.js) — pour les 3 indices rebasés (stoxx600/sp500/
+  // msciWorld), le niveau brut ne correspond à rien de vérifiable ailleurs (même raison que
+  // l'exclusion du format Anniversaire), donc seul le pourcentage reste affiché pour eux.
+  if (hasComparableLevel(item.assetId)) {
+    lines.push(`${asset.icon} ${asset.label}`);
+    lines.push(`Prix en ${fmtYm(startPoint.date, { monthLabels: MONTHS_FULL })} : ${fmtEUR(startPoint.price, asset.currency)}`);
+    lines.push(`Prix actuel : ${fmtEUR(endPoint.price, asset.currency)}`);
+    lines.push(`Performance : ${fmtPct(gainPct)}`);
+  } else {
+    lines.push(`${asset.icon} ${asset.label} : ${fmtPct(gainPct)}`);
+  }
   if (includeBenchmark) {
     lines.push("");
     lines.push(buildBenchmarkLine(startPoint.date, endPoint.date));
@@ -486,13 +497,27 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
   const gainA = ((endPriceA - startA.price) / startA.price) * 100;
   const gainB = ((endPriceB - startB.price) / startB.price) * 100;
 
-  const rows = [{ asset: assetA, gain: gainA }, { asset: assetB, gain: gainB }];
+  const rows = [
+    { asset: assetA, gain: gainA, startPrice: startA.price, startDate: startA.date, endPrice: endPriceA },
+    { asset: assetB, gain: gainB, startPrice: startB.price, startDate: startB.date, endPrice: endPriceB },
+  ];
   const ordered = gainB > gainA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
   lines.push(`📈 ${assetA.label} vs ${assetB.label} depuis ${item.year}`);
   lines.push("");
-  ordered.forEach(({ asset, gain }) => lines.push(`${asset.icon} ${asset.label} : ${fmtPct(gain)}`));
+  // Même règle que le mode Simple : niveaux de prix bruts affichés uniquement pour les actifs à
+  // prix réellement comparable (cf. hasComparableLevel) — sinon pourcentage seul, sur une ligne.
+  ordered.forEach(({ asset, gain, startPrice, startDate, endPrice }, i) => {
+    if (hasComparableLevel(asset.id)) {
+      lines.push(`${asset.icon} ${asset.label}`);
+      lines.push(`Prix en ${fmtYm(startDate, { monthLabels: MONTHS_FULL })} : ${fmtEUR(startPrice, asset.currency)}`);
+      lines.push(`Prix actuel : ${fmtEUR(endPrice, asset.currency)} (${fmtPct(gain)})`);
+    } else {
+      lines.push(`${asset.icon} ${asset.label} : ${fmtPct(gain)}`);
+    }
+    if (i === 0) lines.push("");
+  });
   lines.push("");
   lines.push(fmtEcart(gainA, gainB));
   if (includeBenchmark) {
