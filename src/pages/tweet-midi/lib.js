@@ -258,13 +258,38 @@ function matchesPair(item, idA, idB) {
 // portefeuilles) : un item ne peut réapparaître avant que le pool entier (au format demandé)
 // ait quasiment tourné une fois. `history` est un tableau plat d'ids déjà vus, partagé entre
 // tous les formats — c'est ce qui rend l'anti-répétition globale plutôt que cloisonnée.
-export function pickNext(format, history, mode = MODES.SIMPLE) {
-  const pool = poolForFormat(format, mode);
+function pickFromPoolWithHistory(pool, history) {
   const keep = Math.max(0, pool.length - 1);
   const recent = new Set(history.slice(-keep));
   const fresh = pool.filter((item) => !recent.has(item.id));
   const candidates = fresh.length > 0 ? fresh : pool;
   return candidates[Math.floor(Math.random() * candidates.length)];
+}
+
+// Les 8 "paniers" du mode Aléatoire (tous formats), un par (format, mode) distinct — jamais un
+// tirage à plat dans ALL_ITEMS, qui écraserait le résultat : les deux pools combinatoires
+// Comparatif (paires d'actifs × années) représentent à eux seuls 1506 entrées sur 2031 (74%),
+// contre 16 pour Comparatif ETF (0,8%) — mesuré lors de l'audit du 29/08/2026, confirmé par un
+// tirage réel de 25 générations "Aléatoire" n'ayant produit QUE des variantes de ces deux formats.
+// Avec un panier tiré en premier (poids égal, 1/8 chacun) puis un item dans son pool, la taille
+// du pool ne joue plus sur la probabilité qu'un format soit choisi.
+const ALEATOIRE_BUCKETS = [
+  POOL_VRAI_FAUX,
+  POOL_DILEMME,
+  POOL_FICHE_LEXIQUE,
+  POOL_COMPARATIF_ETF,
+  POOL_ANNIVERSAIRE,
+  POOL_ANNIVERSAIRE_COMPARATIF,
+  POOL_PERFORMANCE_DEPUIS,
+  POOL_PERFORMANCE_DEPUIS_COMPARATIF,
+];
+
+export function pickNext(format, history, mode = MODES.SIMPLE) {
+  if (format === FORMATS.ALEATOIRE) {
+    const bucket = ALEATOIRE_BUCKETS[Math.floor(Math.random() * ALEATOIRE_BUCKETS.length)];
+    return pickFromPoolWithHistory(bucket, history);
+  }
+  return pickFromPoolWithHistory(poolForFormat(format, mode), history);
 }
 
 // ── Sélection à deux, trois ou quatre étages ──────────────────────────────────────────────

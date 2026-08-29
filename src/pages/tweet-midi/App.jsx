@@ -148,7 +148,13 @@ export default function App() {
     }
   }
 
-  function renderSubjectSelect(id, value, onChange) {
+  // `excludeId`, mode Comparatif uniquement (cf. renderSubjectSelect ci-dessous) : l'actif déjà
+  // choisi dans l'AUTRE menu déroulant n'apparaît plus du tout comme option ici — impossible de
+  // sélectionner deux fois le même actif. Avant ce correctif, choisir le même actif des deux
+  // côtés ne provoquait ni erreur ni avertissement : le filtre de pickForSelection ne trouvait
+  // aucune paire correspondante et retombait silencieusement sur une paire aléatoire différente,
+  // sans que l'utilisateur s'en rende compte (cf. audit du 29/08/2026).
+  function renderSubjectSelect(id, value, onChange, excludeId) {
     return (
       <select
         id={id}
@@ -157,23 +163,24 @@ export default function App() {
         onChange={(e) => onChange(e.target.value)}
       >
         <option value={SUBJECT_ALEATOIRE}>🔀 Aléatoire</option>
-        {subjectGroups.map((group) =>
-          group.categorie ? (
+        {subjectGroups.map((group) => {
+          const items = excludeId ? group.items.filter((it) => it.id !== excludeId) : group.items;
+          return group.categorie ? (
             <optgroup key={group.categorie} label={group.categorie}>
-              {group.items.map((it) => (
+              {items.map((it) => (
                 <option key={it.id} value={it.id}>
                   {it.label}
                 </option>
               ))}
             </optgroup>
           ) : (
-            group.items.map((it) => (
+            items.map((it) => (
               <option key={it.id} value={it.id}>
                 {it.label}
               </option>
             ))
-          ),
-        )}
+          );
+        })}
       </select>
     );
   }
@@ -257,13 +264,19 @@ export default function App() {
                   <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase" htmlFor="subject-select-a">
                     Étape 2 — Actif 1
                   </label>
-                  {renderSubjectSelect("subject-select-a", subject, (v) => handleSelectSubject(setSubject, v))}
+                  {renderSubjectSelect(
+                    "subject-select-a", subject, (v) => handleSelectSubject(setSubject, v),
+                    subjectB !== SUBJECT_ALEATOIRE ? subjectB : undefined,
+                  )}
                 </div>
                 <div>
                   <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase" htmlFor="subject-select-b">
                     Actif 2
                   </label>
-                  {renderSubjectSelect("subject-select-b", subjectB, (v) => handleSelectSubject(setSubjectB, v))}
+                  {renderSubjectSelect(
+                    "subject-select-b", subjectB, (v) => handleSelectSubject(setSubjectB, v),
+                    subject !== SUBJECT_ALEATOIRE ? subject : undefined,
+                  )}
                 </div>
               </div>
             )}
