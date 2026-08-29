@@ -86,16 +86,18 @@ export const ASSETS = {
     // automatiquement le dernier prix connu (juillet 2026) jusqu'à LATEST_YM.
     // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
     // rendements annuels imprécis par rapport aux vrais rendements connus de l'indice — import CSV
-    // d'origine approximatif. Point de DÉCEMBRE de chaque année 2016-2024 recalculé à partir du
-    // rendement annuel réel vérifié (iShares STOXX Europe 600 UCITS ETF "EXSA", réplication physique,
-    // recoupé avec une recherche directe sur l'indice — écarts trouvés très faibles, <1,3%, l'import
-    // d'origine était déjà proche pour cet indice), composé à partir du point de décembre 2015 existant
-    // (non modifié, sert d'ancrage). Rendement 2025 NON corrigé : deux sources trouvées se contredisent
-    // (20,66% vs 35,31%, cette dernière visiblement confondue avec l'indice "MSCI Europe 600", différent
-    // du STOXX Europe 600) — à revérifier avant correction. Seuls les points de décembre ont été
-    // recalculés ; les mois intermédiaires de chaque année restent tels quels (non re-vérifiés
-    // individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une même année
-    // (limitation assumée, aucune valeur mensuelle inventée).
+    // d'origine approximatif. Point de DÉCEMBRE de chaque année 2016-2025 recalculé à partir du
+    // rendement annuel réel vérifié (2016-2024 : iShares STOXX Europe 600 UCITS ETF "EXSA", réplication
+    // physique, recoupé avec une recherche directe sur l'indice — écarts trouvés très faibles, <1,3%,
+    // l'import d'origine était déjà proche pour cet indice ; 2025 : +20,66%, confirmé par deux sources
+    // indépendantes convergentes — le bulletin mensuel STOXX de décembre 2025 et l'ETF Invesco STOXX
+    // Europe 600, après qu'une première recherche avait renvoyé un chiffre contradictoire de 35,31%
+    // visiblement confondu avec l'indice "MSCI Europe 600", différent du STOXX Europe 600), composé à
+    // partir du point de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les points de
+    // décembre ont été recalculés ; les mois intermédiaires de chaque année restent tels quels (non
+    // re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une
+    // même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) — limitation assumée,
+    // aucune valeur mensuelle inventée.
     label: 'ETF STOXX Europe 600', tweetPhrase: 'un ETF STOXX Europe 600', icon: '🇪🇺', currency: 'EUR',
     points: P([
       '2015-01', 93786, '2015-02', 100336, '2015-03', 102017, '2015-04', 102119,
@@ -130,7 +132,7 @@ export const ASSETS = {
       '2024-09', 172671, '2024-10', 167039, '2024-11', 168921, '2024-12', 169237,
       '2025-01', 178820, '2025-02', 184927, '2025-03', 177833, '2025-04', 176637,
       '2025-05', 185159, '2025-06', 182901, '2025-07', 184668, '2025-08', 186410,
-      '2025-09', 189244, '2025-10', 194093, '2025-11', 195939, '2025-12', 201422,
+      '2025-09', 189244, '2025-10', 194093, '2025-11', 195939, '2025-12', 204201,
       '2026-01', 207911, '2026-02', 215928, '2026-03', 199380, '2026-04', 210113,
       '2026-05', 216467, '2026-06', 222182, '2026-07', 224956,
     ]),
