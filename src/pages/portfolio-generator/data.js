@@ -80,27 +80,21 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_ig", name: "iShares Core € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Source : fiche fonds iShares/BlackRock (IEAC) — seule l'année 2022 vérifiée de façon
-    // fiable (-13,86%). 2020, 2021, 2023, 2024, 2025 : recherches infructueuses/incohérentes,
-    // valeurs d'origine conservées, non vérifiées. Même valeurs répliquées sur les jumeaux
-    // Amundi/Vanguard/SPDR (même sous-jacent, cf. CORPBOND_OPTIONS dans theses.js).
-    // Nouvelle tentative le 30/08/2026 : ÉCARTÉE, même défaut que oblig_etat_eur ci-dessus — la
-    // recherche a renvoyé +2,29% pour 2022, en contradiction totale avec l'ancrage 2022 déjà
-    // vérifié (-13,86%, choc de taux 2022 également bien documenté sur le crédit €). Source jugée
-    // non fiable, aucune valeur appliquée aux 5 années restantes ni à ses jumeaux. Toujours non
-    // vérifié.
-    // Tentative n°3 le 30/08/2026, méthode fiche officielle : fact sheets iShares/BlackRock (IEAC)
-    // localisées (ex. ishares.com/ch/.../ieac-...-fund-fact-sheet-en-ch.pdf) mais inaccessibles en
-    // lecture directe (domaine bloqué). Une recherche a fait remonter une séquence de 4 rendements
-    // annuels consécutifs (4,64% / 2,29% / -1,41% / 6,14%) présentée comme "2021-2024" dans une
-    // requête puis comme "2022-2025" dans une autre — la même suite de chiffres, deux étiquetages
-    // d'années incompatibles entre eux pour la même donnée : signe que l'alignement calendaire du
-    // résumé automatique n'est pas fiable, indépendamment de la question de savoir si les chiffres
-    // eux-mêmes sont réels. Aucune de ces 4 valeurs ne correspond à l'ancrage -13,86% de 2022 (donc
-    // 2022 n'est probablement pas dans cette séquence), et sans confirmation fiable de l'année
-    // exacte de chaque chiffre, rien n'a été appliqué — ni à cet actif ni à ses jumeaux. Toujours
-    // non vérifié pour 2020/2021/2023/2024/2025.
-    r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
+    // 2020/2021/2023/2024/2025 CORRIGÉS le 30/08/2026 : 2 tentatives WebSearch précédentes
+    // avaient échoué sur ce même fonds (domaine bloqué, ou une séquence de 4 rendements réels —
+    // 4,64% / 2,29% / -1,41% / 6,14% — mais étiquetée avec deux jeux d'années incompatibles selon
+    // la requête). Résolu via une capture d'écran du fact sheet officiel iShares fournie
+    // directement par l'utilisateur (iShares Core € Corp Bond UCITS ETF, EUR Distributing,
+    // iShares III plc — tableau "Calendar year performance", part Share Class, consultée le
+    // 30/08/2026), qui donne l'année 2022 à -13,86% — identique à l'ancrage déjà vérifié,
+    // confirmant le bon fonds. Cette même capture montre que les 4 valeurs trouvées précédemment
+    // (4,64% / 2,29% / -1,41% / 6,14%) étaient en fait les années 2016/2017/2018/2019 — jamais
+    // 2021-2025 comme le suggéraient les deux recherches — ce qui confirme rétroactivement le
+    // problème d'alignement calendaire déjà suspecté. Valeurs des autres années tirées du même
+    // tableau : 2020 +2,53%, 2021 -1,15%, 2023 +8,04%, 2024 +4,58%, 2025 +3,13%. Répliquées à
+    // l'identique sur les jumeaux Amundi/Vanguard/SPDR (même sous-jacent, cf. CORPBOND_OPTIONS
+    // dans theses.js).
+    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -603,9 +597,9 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_amundi", name: "Amundi € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, 2022 vérifié
-    // à -13,86%, autres années non vérifiées).
-    r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
+    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
+    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
+    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -614,9 +608,9 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_vanguard", name: "Vanguard € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, 2022 vérifié
-    // à -13,86%, autres années non vérifiées).
-    r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
+    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
+    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
+    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -625,9 +619,9 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_spdr", name: "SPDR € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, 2022 vérifié
-    // à -13,86%, autres années non vérifiées).
-    r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
+    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
+    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
+    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
