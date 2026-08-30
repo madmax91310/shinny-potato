@@ -115,16 +115,15 @@ export const ASSETS = [
 
   {
     id: "oblig_inflation", name: "iShares € Inflation Linked Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // 2022 (-9,73%) CORRIGÉ le 30/08/2026 : l'ancienne valeur -15,0% était non sourcée (donnée
-    // d'origine jamais vérifiée). Tranché directement sur la fiche officielle BlackRock (fund fact
-    // sheet PDF, ishares.com, CH/EN) de l'iShares € Inflation Linked Govt Bond UCITS ETF (IBCI),
-    // performance de la part de fonds — cohérent avec le rendement de l'indice de référence sur la
-    // même année (-9,66%), écart de quelques dixièmes normal (frais/tracking difference). Résout la
-    // contradiction signalée lors de l'audit du 25/08/2026 (une autre recherche avait renvoyé
-    // +1,20%, valeur écartée : probable confusion avec un fonds au nom proche type "Global
-    // Inflation Linked"). 2020, 2021, 2023, 2024, 2025 : NON VÉRIFIÉ, recherches infructueuses —
-    // valeurs d'origine conservées, à revoir si besoin.
-    r: [5.0, 3.0, -9.73, 4.0, 2.0, 3.0],
+    // 2022 (-9,73%) CORRIGÉ le 30/08/2026 (audit web) puis 2020/2021/2023/2024/2025 CORRIGÉS le
+    // même jour (capture d'écran) : la fiche officielle BlackRock/iShares (IBCI, EUR
+    // Accumulating, iShares plc — tableau "Calendar year performance", part Share Class, capture
+    // fournie par l'utilisateur) confirme 2022 à l'identique (-9,73%), validant définitivement le
+    // bon fonds après la contradiction signalée lors de l'audit du 25/08/2026 (une autre recherche
+    // avait renvoyé +1,20%, probable confusion avec un fonds au nom proche type "Global Inflation
+    // Linked" — écarté). Valeurs des autres années tirées du même tableau : 2020 +2,87%, 2021
+    // +6,08%, 2023 +5,87%, 2024 -0,04%, 2025 +0,83%.
+    r: [2.87, 6.08, -9.73, 5.87, -0.04, 0.83],
     desc: [
       "des obligations d'État dont le capital et le coupon sont indexés sur l'inflation de la zone euro.",
       "protège le pouvoir d'achat du capital investi, contrairement à une obligation classique à taux fixe.",
