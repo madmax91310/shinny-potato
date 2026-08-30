@@ -69,6 +69,13 @@ export const ASSETS = [
     // pleine crise des taux cette année-là — un rendement quasi nul est incompatible avec ce qui
     // est par ailleurs bien documenté). Source jugée non fiable dans son ensemble, aucune des
     // valeurs 2020/2021/2023/2024/2025 qu'elle proposait n'a été appliquée. Toujours non vérifié.
+    // Tentative n°3 le 30/08/2026, méthode fiche officielle : les fact sheets iShares/BlackRock
+    // (IEGA, ex. ishares.com/ch/.../iega-...-fund-fact-sheet-en-ch.pdf) ont bien été localisées,
+    // mais restent inaccessibles en lecture directe (domaine bloqué pour cette session). Une
+    // requête de confirmation ciblée sur "-18,52% 2022" n'a renvoyé aucun tableau réel, seulement
+    // un écho du chiffre déjà fourni dans la requête elle-même — pas une corroboration indépendante,
+    // donc ignorée. Aucun tableau calendaire fiable et vérifiable n'a pu être obtenu pour cet actif
+    // cette fois non plus. Valeurs 2020/2021/2023/2024/2025 inchangées, toujours non vérifiées.
     r: [4.5, -2.5, -18.52, 7.0, 1.5, 3.0],
     desc: [
       "prête de l'argent aux États de la zone euro (France, Allemagne...) contre un intérêt régulier.",
@@ -87,6 +94,17 @@ export const ASSETS = [
     // vérifié (-13,86%, choc de taux 2022 également bien documenté sur le crédit €). Source jugée
     // non fiable, aucune valeur appliquée aux 5 années restantes ni à ses jumeaux. Toujours non
     // vérifié.
+    // Tentative n°3 le 30/08/2026, méthode fiche officielle : fact sheets iShares/BlackRock (IEAC)
+    // localisées (ex. ishares.com/ch/.../ieac-...-fund-fact-sheet-en-ch.pdf) mais inaccessibles en
+    // lecture directe (domaine bloqué). Une recherche a fait remonter une séquence de 4 rendements
+    // annuels consécutifs (4,64% / 2,29% / -1,41% / 6,14%) présentée comme "2021-2024" dans une
+    // requête puis comme "2022-2025" dans une autre — la même suite de chiffres, deux étiquetages
+    // d'années incompatibles entre eux pour la même donnée : signe que l'alignement calendaire du
+    // résumé automatique n'est pas fiable, indépendamment de la question de savoir si les chiffres
+    // eux-mêmes sont réels. Aucune de ces 4 valeurs ne correspond à l'ancrage -13,86% de 2022 (donc
+    // 2022 n'est probablement pas dans cette séquence), et sans confirmation fiable de l'année
+    // exacte de chaque chiffre, rien n'a été appliqué — ni à cet actif ni à ses jumeaux. Toujours
+    // non vérifié pour 2020/2021/2023/2024/2025.
     r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
