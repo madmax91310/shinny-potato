@@ -739,22 +739,18 @@ export const ASSETS = [
   // ── 🟢 Europe — styles complémentaires ───────────────────
   {
     id: "tech_europe", name: "iShares MSCI Europe Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    // 2022 et 2023 CORRIGÉS le 30/08/2026 : nouvelle tentative de vérification (fonds réel ESIT,
-    // ISIN IE00BMW42413), deux sources indépendantes convergentes cette fois — la fiche indice MSCI
-    // Europe Information Technology (EUR) et la fiche fonds officielle BlackRock/iShares (part de
-    // fonds, cf. ishares.com) :
-    //   2022 : indice -28,67% / fonds -28,76% (écart <0,1pt, fonds légèrement sous l'indice, cohérent
-    //          avec le TER) — remplace l'ancien -25,0% non vérifié.
-    //   2023 : indice +34,36% / fonds +35,04% (écart <0,7pt) — remplace l'ancien +20,0% non vérifié,
-    //          qui sous-estimait largement la vraie année (l'une des meilleures du secteur tech).
-    // 2020, 2021, 2024, 2025 : tentative de vérification refaite le 30/08/2026, toujours NON
-    // VÉRIFIÉ — 2020 est de toute façon un exercice partiel (fonds lancé le 18/11/2020, pas une
-    // année calendaire complète comparable) ; 2021 et 2025 n'ont chacun qu'une seule source
-    // trouvée (36,57% et 9,64% respectivement), jamais recoupée ; 2024 a deux sources en
-    // désaccord significatif (fiche fonds 7,93% vs fiche indice 12,53%, écart >4,5pts, au-delà
-    // de ce qu'explique une différence fonds/indice) — dans les 4 cas, valeurs d'origine
-    // conservées par prudence plutôt que trancher sur une seule source ou une contradiction.
-    r: [5.0, 15.0, -28.76, 35.04, 10.0, 12.0],
+    // 2021/2022/2023/2024/2025 CORRIGÉS le 30/08/2026 : d'abord 2022 (-28,76%) et 2023 (+35,04%)
+    // via deux sources web convergentes (fiche indice MSCI + fiche fonds), puis 2021 (+36,57%),
+    // 2024 (+7,93%) et 2025 (+9,64%) confirmés via une capture d'écran du fact sheet officiel
+    // iShares fournie directement par l'utilisateur (iShares MSCI Europe Information Technology
+    // Sector UCITS ETF, EUR Accumulating, iShares VI plc — tableau "Calendar year performance",
+    // part Share Class, consultée le 30/08/2026), qui reprend à l'identique les valeurs 2022/2023
+    // déjà en place et tranche la contradiction précédente sur 2024 (7,93% confirmé côté fonds,
+    // contre 12,53% trouvé pour un indice proche mais visiblement pas exactement celui répliqué
+    // par ce fonds — écarté). 2020 reste NON VÉRIFIÉ : le tableau du fact sheet lui-même démarre
+    // en 2021 (fonds lancé le 18/11/2020, pas d'année calendaire 2020 complète à afficher) — valeur
+    // d'origine (5,0, illustrative) conservée, aucune donnée réelle à trouver pour cette année.
+    r: [5.0, 36.57, -28.76, 35.04, 7.93, 9.64],
     desc: [
       "la technologie européenne : un secteur beaucoup plus restreint qu'aux États-Unis, mais bien réel.",
       "ASML, SAP, Dassault Systèmes... les rares géants tech du continent réunis en une ligne.",
