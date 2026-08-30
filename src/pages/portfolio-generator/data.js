@@ -64,6 +64,11 @@ export const ASSETS = [
     // 2020, 2021, 2023, 2024, 2025 : les extractions obtenues via recherche web se sont révélées
     // incohérentes d'une requête à l'autre (mélange probable avec d'autres échéances/fonds) —
     // valeurs d'origine conservées, non vérifiées.
+    // Nouvelle tentative le 30/08/2026 : ÉCARTÉE. La recherche a renvoyé -0,01% pour 2022, en
+    // contradiction totale avec l'ancrage 2022 déjà vérifié (-18,52%, obligations d'État € en
+    // pleine crise des taux cette année-là — un rendement quasi nul est incompatible avec ce qui
+    // est par ailleurs bien documenté). Source jugée non fiable dans son ensemble, aucune des
+    // valeurs 2020/2021/2023/2024/2025 qu'elle proposait n'a été appliquée. Toujours non vérifié.
     r: [4.5, -2.5, -18.52, 7.0, 1.5, 3.0],
     desc: [
       "prête de l'argent aux États de la zone euro (France, Allemagne...) contre un intérêt régulier.",
@@ -77,6 +82,11 @@ export const ASSETS = [
     // fiable (-13,86%). 2020, 2021, 2023, 2024, 2025 : recherches infructueuses/incohérentes,
     // valeurs d'origine conservées, non vérifiées. Même valeurs répliquées sur les jumeaux
     // Amundi/Vanguard/SPDR (même sous-jacent, cf. CORPBOND_OPTIONS dans theses.js).
+    // Nouvelle tentative le 30/08/2026 : ÉCARTÉE, même défaut que oblig_etat_eur ci-dessus — la
+    // recherche a renvoyé +2,29% pour 2022, en contradiction totale avec l'ancrage 2022 déjà
+    // vérifié (-13,86%, choc de taux 2022 également bien documenté sur le crédit €). Source jugée
+    // non fiable, aucune valeur appliquée aux 5 années restantes ni à ses jumeaux. Toujours non
+    // vérifié.
     r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
@@ -300,8 +310,14 @@ export const ASSETS = [
   {
     id: "argent", name: "iShares Physical Silver ETC", cat: "matieres_premieres", emoji: "🛢️",
     // Source : cours de l'argent spot en USD/once. 2020 (+47%) confirmé. 2021 (-14%) vérifié via
-    // recherche web. 2022, 2023, 2024 : NON VÉRIFIÉ malgré plusieurs recherches (données
-    // fragmentaires/contradictoires) — valeurs d'origine conservées pour ces trois années.
+    // recherche web. 2022, 2023, 2024 CORRIGÉS (passés de "non vérifié" à vérifié) le 30/08/2026 :
+    // les valeurs d'origine se sont révélées correctes une fois recoupées sur de vraies clôtures
+    // annuelles spot (deux recherches indépendantes convergentes) — clôtures 31/12 ≈ 23,31 $
+    // (2021), 23,96 $ (2022), ~23,7-23,8 $ (2023, deux sources à 23,76 $ et 23,80 $, clôture
+    // effective le dernier jour ouvré 29/12), 28,90 $ (2024, confirmé deux fois à l'identique).
+    // Rendements implicites : +2,8% (2022), -1,1% (2023), +21,4% à +21,9% (2024) — tous à moins de
+    // 0,5pt des valeurs déjà en place, donc conservées telles quelles plutôt que réajustées pour
+    // une différence non significative au vu de l'imprécision des dates de clôture trouvées.
     // 2025 : le cours spot USD a bien grimpé de +144% (BullionVault « Silver Jumps 144% »,
     // confirmé), mais ce fonds est une ligne EUR au même titre que le reste du fichier — corrigé
     // en tenant compte de la baisse du dollar face à l'euro sur 2025 (EUR/USD +13,34% sur
@@ -702,6 +718,9 @@ export const ASSETS = [
     // "l'année écoulée" divergent fortement selon la place de cotation (-0,71% à +2,27%), signe
     // d'un mélange entre parts/devises différentes plutôt qu'une vraie performance calendaire ;
     // valeur d'origine (+3,0%) conservée par prudence.
+    // Nouvelle tentative le 30/08/2026 : toujours ÉCARTÉE — seul résultat trouvé un rendement
+    // glissant sur 12 mois à fin septembre 2025 (+0,99%), ni une clôture calendaire au 31/12/2025
+    // ni assez précis pour trancher. Valeur d'origine (+3,0%) conservée, toujours non vérifiée.
     r: [-0.14, -0.85, -4.28, 3.51, 3.09, 3.0],
     desc: [
       "de la dette d'État de la zone euro à très courte échéance : la version la moins sensible aux taux.",
@@ -713,14 +732,22 @@ export const ASSETS = [
   // ── 🟢 Europe — styles complémentaires ───────────────────
   {
     id: "tech_europe", name: "iShares MSCI Europe Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    // NON VÉRIFIÉ : les recherches menées pour cet indice sectoriel n'ont renvoyé que des
-    // données dupliquées par erreur avec l'indice MSCI Europe large (non spécifiques au secteur
-    // technologie). Nouvelle tentative (25/08/2026) : toujours aucun chiffre calendaire exact
-    // trouvé, mais un fait corroborant a émergé (fonds réel ESIT, lancé le 18/11/2020, donc pas
-    // d'année 2020 pleine) — pire baisse intra-année 2022 de -38,33% et pire mois janvier 2022 à
-    // -13,2% (fiche BlackRock/iShares) : cohérent en ordre de grandeur avec le -25,0% calendaire
-    // déjà présent ci-dessous, sans le confirmer précisément. Valeurs d'origine conservées.
-    r: [5.0, 15.0, -25.0, 20.0, 10.0, 12.0],
+    // 2022 et 2023 CORRIGÉS le 30/08/2026 : nouvelle tentative de vérification (fonds réel ESIT,
+    // ISIN IE00BMW42413), deux sources indépendantes convergentes cette fois — la fiche indice MSCI
+    // Europe Information Technology (EUR) et la fiche fonds officielle BlackRock/iShares (part de
+    // fonds, cf. ishares.com) :
+    //   2022 : indice -28,67% / fonds -28,76% (écart <0,1pt, fonds légèrement sous l'indice, cohérent
+    //          avec le TER) — remplace l'ancien -25,0% non vérifié.
+    //   2023 : indice +34,36% / fonds +35,04% (écart <0,7pt) — remplace l'ancien +20,0% non vérifié,
+    //          qui sous-estimait largement la vraie année (l'une des meilleures du secteur tech).
+    // 2020, 2021, 2024, 2025 : tentative de vérification refaite le 30/08/2026, toujours NON
+    // VÉRIFIÉ — 2020 est de toute façon un exercice partiel (fonds lancé le 18/11/2020, pas une
+    // année calendaire complète comparable) ; 2021 et 2025 n'ont chacun qu'une seule source
+    // trouvée (36,57% et 9,64% respectivement), jamais recoupée ; 2024 a deux sources en
+    // désaccord significatif (fiche fonds 7,93% vs fiche indice 12,53%, écart >4,5pts, au-delà
+    // de ce qu'explique une différence fonds/indice) — dans les 4 cas, valeurs d'origine
+    // conservées par prudence plutôt que trancher sur une seule source ou une contradiction.
+    r: [5.0, 15.0, -28.76, 35.04, 10.0, 12.0],
     desc: [
       "la technologie européenne : un secteur beaucoup plus restreint qu'aux États-Unis, mais bien réel.",
       "ASML, SAP, Dassault Systèmes... les rares géants tech du continent réunis en une ligne.",
