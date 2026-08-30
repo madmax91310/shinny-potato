@@ -115,6 +115,11 @@ export default function App() {
   const isCustom = state.assetId === 'custom'
   const effectiveMode = isCustom ? 'lump' : state.mode
   const amount = parseFloat(state.amountRaw) || 0
+  // Un champ vide (ou un texte non numérique, que le navigateur vide automatiquement) n'est pas
+  // une erreur : c'est l'état neutre avant saisie. Un montant réellement saisi à 0 ou en négatif,
+  // en revanche, ne doit jamais atteindre le calcul de performance — pct() ne peut pas distinguer
+  // "pas encore de montant" de "montant invalide saisi" si on la laisse recevoir cette valeur.
+  const amountInvalid = state.amountRaw !== '' && amount <= 0
   const d = useMemo(() => derive(state), [state])
 
   const set = (patch) => setState((s) => ({ ...s, ...patch }))
@@ -228,9 +233,11 @@ export default function App() {
                   min="1"
                   value={state.amountRaw}
                   onChange={(e) => set({ amountRaw: e.target.value })}
+                  aria-invalid={amountInvalid}
                 />
                 <span className="ic-amount-suffix">€</span>
               </div>
+              {amountInvalid && <p className="ic-field-error">Le montant doit être supérieur à 0.</p>}
               <div className="ic-chips">
                 {AMOUNT_PRESETS.map((v) => (
                   <button
@@ -266,7 +273,15 @@ export default function App() {
           </div>
         </div>
 
-        <ResultCard state={state} d={d} copied={copied} onCopy={handleCopy} />
+        {amountInvalid ? (
+          <div className="ic-card ic-card-invalid">
+            <p className="ic-invalid-message">
+              Indique un montant supérieur à 0 pour voir le résultat de la simulation.
+            </p>
+          </div>
+        ) : (
+          <ResultCard state={state} d={d} copied={copied} onCopy={handleCopy} />
+        )}
       </div>
     </div>
   )

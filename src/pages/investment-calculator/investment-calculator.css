@@ -51,6 +51,10 @@ select.ic-control { padding-right: 30px; cursor: pointer; }
 .ic-segmented button.active { background: var(--ic-accent); color: var(--ic-surface); }
 .ic-segmented button:disabled { opacity: .4; cursor: not-allowed; }
 .ic-hint { font-size: 11.5px; color: var(--ic-ink-faint); line-height: 1.5; margin: 0; }
+.ic-field-error { font-size: 11.5px; color: var(--ic-negative); margin: -4px 0 0; }
+
+.ic-card-invalid { display: flex; align-items: center; justify-content: center; min-height: 220px; text-align: center; }
+.ic-invalid-message { font-size: 13.5px; color: var(--ic-ink-dim); margin: 0; max-width: 32ch; }
 
 .ic-card { position: relative; background: linear-gradient(165deg, #0d1730 0%, #0a1122 55%, #0a0f1e 100%); border: 1px solid var(--ic-accent); border-radius: 18px; padding: clamp(18px, 2.6vw, 28px); overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .6); }
 .ic-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
