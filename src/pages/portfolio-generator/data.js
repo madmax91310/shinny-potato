@@ -59,24 +59,19 @@ export const ASSETS = [
   },
   {
     id: "oblig_etat_eur", name: "iShares Core € Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Source : fiche fonds iShares/BlackRock (IEGA) — seule l'année 2022 a pu être vérifiée de
-    // façon fiable (-18,52%, cohérent avec le choc de taux sur les obligations d'État €).
-    // 2020, 2021, 2023, 2024, 2025 : les extractions obtenues via recherche web se sont révélées
-    // incohérentes d'une requête à l'autre (mélange probable avec d'autres échéances/fonds) —
-    // valeurs d'origine conservées, non vérifiées.
-    // Nouvelle tentative le 30/08/2026 : ÉCARTÉE. La recherche a renvoyé -0,01% pour 2022, en
-    // contradiction totale avec l'ancrage 2022 déjà vérifié (-18,52%, obligations d'État € en
-    // pleine crise des taux cette année-là — un rendement quasi nul est incompatible avec ce qui
-    // est par ailleurs bien documenté). Source jugée non fiable dans son ensemble, aucune des
-    // valeurs 2020/2021/2023/2024/2025 qu'elle proposait n'a été appliquée. Toujours non vérifié.
-    // Tentative n°3 le 30/08/2026, méthode fiche officielle : les fact sheets iShares/BlackRock
-    // (IEGA, ex. ishares.com/ch/.../iega-...-fund-fact-sheet-en-ch.pdf) ont bien été localisées,
-    // mais restent inaccessibles en lecture directe (domaine bloqué pour cette session). Une
-    // requête de confirmation ciblée sur "-18,52% 2022" n'a renvoyé aucun tableau réel, seulement
-    // un écho du chiffre déjà fourni dans la requête elle-même — pas une corroboration indépendante,
-    // donc ignorée. Aucun tableau calendaire fiable et vérifiable n'a pu être obtenu pour cet actif
-    // cette fois non plus. Valeurs 2020/2021/2023/2024/2025 inchangées, toujours non vérifiées.
-    r: [4.5, -2.5, -18.52, 7.0, 1.5, 3.0],
+    // 2020/2021/2023/2024/2025 CORRIGÉS le 30/08/2026 : les 3 tentatives précédentes via
+    // WebSearch/WebFetch avaient toutes échoué (domaine ishares.com/blackrock.com bloqué pour
+    // cette session, résultats de recherche incohérents ou de simples échos de requête). Résolu
+    // via une capture d'écran du fact sheet officiel iShares fournie directement par l'utilisateur
+    // (iShares Core € Govt Bond UCITS ETF, EUR Distributing, iShares III plc — tableau "Calendar
+    // year performance", part Share Class, consultée le 30/08/2026), qui donne l'année 2022 à
+    // -18,52% — identique à l'ancrage déjà vérifié, confirmant qu'il s'agit bien du même fonds/de
+    // la même part. Valeurs des autres années tirées du même tableau : 2020 +4,84%, 2021 -3,53%,
+    // 2023 +7,06%, 2024 +1,75%, 2025 +0,61%. Ce même fact sheet éclaire au passage la tentative
+    // écartée précédente : -0,01% n'était pas 2022 mais très probablement l'année 2017 du même
+    // tableau (valeur identique sur la capture), confirmant que le mauvais alignement calendaire
+    // évoqué dans les tentatives WebSearch précédentes était réel.
+    r: [4.84, -3.53, -18.52, 7.06, 1.75, 0.61],
     desc: [
       "prête de l'argent aux États de la zone euro (France, Allemagne...) contre un intérêt régulier.",
       "sensible aux taux d'intérêt : quand la BCE relève ses taux, ce type d'ETF encaisse (2022 en est l'exemple).",
