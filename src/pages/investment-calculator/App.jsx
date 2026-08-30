@@ -120,6 +120,13 @@ export default function App() {
   // en revanche, ne doit jamais atteindre le calcul de performance — pct() ne peut pas distinguer
   // "pas encore de montant" de "montant invalide saisi" si on la laisse recevoir cette valeur.
   const amountInvalid = state.amountRaw !== '' && amount <= 0
+  // Même logique pour l'actif "Autre" (saisie manuelle) : computeCustomSeries() (lib.js) fait
+  // retomber son ratio à 1 dès que customStart <= 0, qu'il soit vide (pas encore saisi, état
+  // neutre légitime) ou réellement invalide (0/négatif saisi) — indiscernable une fois dans
+  // lib.js. On bloque donc ici, avant que la valeur invalide n'atteigne le calcul.
+  const customStartInvalid = isCustom && state.customStart !== '' && parseFloat(state.customStart) <= 0
+  const customEndInvalid = isCustom && state.customEnd !== '' && parseFloat(state.customEnd) <= 0
+  const resultBlocked = amountInvalid || customStartInvalid || customEndInvalid
   const d = useMemo(() => derive(state), [state])
 
   const set = (patch) => setState((s) => ({ ...s, ...patch }))
@@ -167,20 +174,28 @@ export default function App() {
                     onChange={(e) => set({ customLabel: e.target.value })}
                   />
                   <div className="ic-row2">
-                    <input
-                      className="ic-control"
-                      type="number"
-                      placeholder="Prix de départ"
-                      value={state.customStart}
-                      onChange={(e) => set({ customStart: e.target.value })}
-                    />
-                    <input
-                      className="ic-control"
-                      type="number"
-                      placeholder="Prix actuel"
-                      value={state.customEnd}
-                      onChange={(e) => set({ customEnd: e.target.value })}
-                    />
+                    <div>
+                      <input
+                        className="ic-control"
+                        type="number"
+                        placeholder="Prix de départ"
+                        value={state.customStart}
+                        onChange={(e) => set({ customStart: e.target.value })}
+                        aria-invalid={customStartInvalid}
+                      />
+                      {customStartInvalid && <p className="ic-field-error">Le prix de départ doit être supérieur à 0.</p>}
+                    </div>
+                    <div>
+                      <input
+                        className="ic-control"
+                        type="number"
+                        placeholder="Prix actuel"
+                        value={state.customEnd}
+                        onChange={(e) => set({ customEnd: e.target.value })}
+                        aria-invalid={customEndInvalid}
+                      />
+                      {customEndInvalid && <p className="ic-field-error">Le prix actuel doit être supérieur à 0.</p>}
+                    </div>
                   </div>
                 </div>
               )}
@@ -273,10 +288,12 @@ export default function App() {
           </div>
         </div>
 
-        {amountInvalid ? (
+        {resultBlocked ? (
           <div className="ic-card ic-card-invalid">
             <p className="ic-invalid-message">
-              Indique un montant supérieur à 0 pour voir le résultat de la simulation.
+              {amountInvalid
+                ? 'Indique un montant supérieur à 0 pour voir le résultat de la simulation.'
+                : 'Corrige le(s) champ(s) de prix en erreur pour voir le résultat de la simulation.'}
             </p>
           </div>
         ) : (
