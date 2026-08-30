@@ -474,10 +474,9 @@ export function renderTweetText(p) {
   blocks.push(
     `📈 Performances simulées :\n${yearsLine}\n\n→ Pire année : ${fmtPct(p.worst.value)} en ${p.worst.year}.\n${p.context}`
   );
-  blocks.push(`⚠️ ${p.warning}\n${GUARANTEE_LINE}`);
   blocks.push(SEPARATOR);
   blocks.push(p.cta);
-  blocks.push(DISCLAIMER);
+  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE}`);
   return blocks.join("\n\n");
 }
 
