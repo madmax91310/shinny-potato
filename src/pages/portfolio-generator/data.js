@@ -953,6 +953,64 @@ export const ASSETS = [
       "verse un coupon nettement supérieur aux obligations d'État, contre un peu plus de risque.",
     ],
   },
+
+  // ── Ajoutés le 30/08/2026, capture d'écran de fact sheet officiel fournie par l'utilisateur —
+  // PAS ENCORE ASSIGNÉS à un combo profil × risque dans theses.js (donc invisibles dans les
+  // générations tant que l'utilisateur n'a pas choisi leur allocation) : présents uniquement dans
+  // cette bibliothèque pour l'instant.
+  {
+    id: "oblig_etat_us", name: "Obligations d'État américain (nom de fonds à confirmer)", cat: "obligataire", emoji: "🔵",
+    // Source : capture d'écran d'un fact sheet officiel fournie par l'utilisateur le 30/08/2026 —
+    // performance part de fonds 2020-2025 : +7,9% / -2,5% / -12,6% / +4,1% / +0,7% / +6,2%, très
+    // proche de son indice de référence chaque année (écart 0,1 à 0,3pt : +8,0% / -2,4% / -12,3% /
+    // +3,9% / +0,7% / +6,2%), cohérent avec un simple TER. ATTENTION : la capture ne montrait pas
+    // l'en-tête du document (nom du fonds/ISIN/devise de part) — seul le tableau de performance est
+    // confirmé, pas l'identité exacte de l'émetteur. Nom provisoire en attendant confirmation de
+    // l'utilisateur (probablement un fonds obligataire d'État américain iShares ou équivalent,
+    // classe EUR ou USD non déterminée). Ne pas assigner à un combo tant que le nom réel n'est pas
+    // confirmé, pour rester cohérent avec la logique CORPBOND_OPTIONS/GOLD_OPTIONS (jumeaux vérifiés
+    // avec certitude, jamais par supposition).
+    r: [7.9, -2.5, -12.6, 4.1, 0.7, 6.2],
+    desc: [
+      "des bons du Trésor américain, la référence mondiale de la dette jugée sans risque de défaut.",
+      "très sensible aux taux de la Fed : leurs mouvements pèsent directement sur la valeur de ces obligations.",
+      "un actif refuge classique, mais qui reste exposé au risque de change EUR/USD pour un investisseur européen.",
+    ],
+  },
+  {
+    id: "actions_japon", name: "iShares Core MSCI Japan IMI UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : capture d'écran du fact sheet officiel BlackRock/iShares fournie par l'utilisateur le
+    // 30/08/2026 (iShares Core MSCI Japan IMI UCITS ETF, part U.S. Dollar (Capitalisation)) —
+    // performance part de fonds 2020-2025 : +13,03% / +0,92% / -15,88% / +18,86% / +7,47% /
+    // +25,36%, très proche de son indice de référence chaque année (écart <0,1pt : +13,10% / +0,98%
+    // / -15,78% / +18,96% / +7,57% / +25,45%), cohérent avec un simple TER. Fonds coté en USD, pas
+    // de version EUR vérifiée à ce stade — même limite de proxy de devise que or/sect_tech/
+    // sect_robotique/etc. déjà documentée ailleurs dans ce fichier (rendement réel en EUR pour un
+    // investisseur européen non couvert diffère selon l'évolution EUR/USD chaque année).
+    r: [13.03, 0.92, -15.88, 18.86, 7.47, 25.36],
+    desc: [
+      "les grandes et moyennes entreprises japonaises cotées à Tokyo, de l'automobile à l'électronique en passant par la finance.",
+      "une troisième zone géographique développée, décorrélée des cycles américains et européens.",
+      "longtemps boudé par les investisseurs occidentaux, le marché japonais a connu un net regain depuis 2023.",
+    ],
+  },
+  {
+    id: "actions_value", name: "iShares Edge MSCI World Value Factor UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : capture d'écran d'un fact sheet officiel fournie par l'utilisateur le 30/08/2026 —
+    // performance part de fonds 2020-2025 : -3,9% / +20,0% / -10,0% / +19,4% / +5,3% / +39,6%
+    // (rendement total), très proche de son indice de référence chaque année (écart <0,3pt : -4,0%
+    // / +20,0% / -9,9% / +19,3% / +5,1% / +39,4%), cohérent avec un simple TER. ATTENTION : la
+    // capture ne montrait pas l'en-tête du document — nom retenu à titre provisoire (probablement
+    // iShares Edge MSCI World Value Factor UCITS ETF d'après la thématique et le format du tableau),
+    // à confirmer par l'utilisateur avant toute utilisation publique de ce nom précis. Le tableau de
+    // performance lui-même est confirmé, pas l'identité exacte de l'émetteur.
+    r: [-3.9, 20.0, -10.0, 19.4, 5.3, 39.6],
+    desc: [
+      "un filtre factoriel qui privilégie les entreprises jugées sous-valorisées par rapport à leurs fondamentaux.",
+      "l'opposé du style croissance : moins de tech, plus de banques, d'énergie et d'industrie.",
+      "historiquement plus cyclique, avec des phases de sur- et sous-performance marquées face à l'indice large.",
+    ],
+  },
 ];
 
 export function getAsset(id) {
