@@ -294,25 +294,53 @@ export const ASSETS = {
     ]),
   },
   soxx: {
-    // Source : clôtures annuelles réelles de l'ETF iShares Semiconductor (SOXX), ancrées sur deux
-    // clôtures vérifiées (31/12/2024 = 553,29 $, StatMuse) et calculées pour 2015-2023 à partir des
-    // rendements annuels réels de SOXX (StatMuse/sources financières, cf. rapport) — donc dérivées de
-    // données réelles mais pas des clôtures exactes lues directement. Point 2026-08 vérifié (cours du
-    // 22/08/2026). Dernier point réel : 22/08/2026.
-    // CORRECTIF du 29/08/2026 : point 2025-12 signalé "bizarre" par un utilisateur (347,98 $, soit
-    // -37,1% sur l'année) — vérifié faux. Le secteur des semi-conducteurs a connu une très forte année
-    // 2025 (rallye IA), pas un krach : CNBC titre "third straight winning year" pour les valeurs de
-    // semi-conducteurs, SOXX cité à +40,74%/+41% sur 2025 par deux recherches indépendantes convergentes
-    // (composantes cohérentes : AMD +77-79%, Nvidia +39%, Intel +83%, Micron +250%, SanDisk +597% sur
-    // l'année). L'ancien point 347,98 $ (source StatMuse d'une session précédente) était donc erroné —
-    // recalculé à +40,74% depuis le point de décembre 2024 existant (553,29 $, non modifié, sert
-    // d'ancrage). Point 2026-08 (520,05 $) laissé inchangé : implique une forte baisse sur les 8
-    // premiers mois de 2026 non vérifiée ici, à confirmer séparément si besoin.
+    // SÉRIE ENTIÈREMENT REMPLACÉE le 30/08/2026 : l'ancienne série annuelle (2015-2026, 12 points)
+    // était "dérivée de rendements annuels" plutôt que des vraies clôtures — un utilisateur a
+    // signalé un DCA anormalement faible sur SOXX, ce qui a révélé que l'échelle entière de la série
+    // dérivait dans le temps par rapport aux vraies clôtures : écart de 2,36x en 2016 à 2,59x en
+    // 2025 (jamais un facteur constant, donc pas juste un split non pris en compte — une accumulation
+    // d'erreur de reconstruction). Seul le dernier point (2026-08) était proche du réel (520,05 vs
+    // 508,62, écart 2%). Remplacée intégralement par un historique mensuel réel (clôtures, colonne
+    // "Cours"), capture d'écran fournie par l'utilisateur le 30/08/2026, couvrant janvier 2016 à
+    // août 2026 (128 points). Deux valeurs partiellement masquées dans les captures, retenues au
+    // mieux : 2016-12 (40,91) et 2021-06 (151,41) — confiance légèrement inférieure au reste de la
+    // série, mais cohérentes avec les points encadrants. Pas de point avant 2016-01 : l'ancien point
+    // 2015-12 (69,86 $) était sur l'ancienne échelle erronée, abandonné plutôt que reconverti sans
+    // source réelle — l'actif est donc utilisable à partir de janvier 2016 uniquement.
     label: 'ETF Semi-conducteurs (SOXX)', tweetPhrase: 'un ETF semi-conducteurs (SOXX)', icon: '🖥️', currency: 'USD',
     points: P([
-      '2015-12', 69.86, '2016-12', 96.65, '2017-12', 135.11, '2018-12', 126.36,
-      '2019-12', 205.24, '2020-12', 313.44, '2021-12', 451.66, '2022-12', 293.19,
-      '2023-12', 489.98, '2024-12', 553.29, '2025-12', 778.70, '2026-08', 520.05,
+      '2016-01', 27.68, '2016-02', 28.16, '2016-03', 30.54, '2016-04', 29.13,
+      '2016-05', 31.66, '2016-06', 31.21, '2016-07', 34.67, '2016-08', 36.3,
+      '2016-09', 37.66, '2016-10', 37.12, '2016-11', 39.79, '2016-12', 40.91,
+      '2017-01', 42.62, '2017-02', 43.82, '2017-03', 45.63, '2017-04', 45.37,
+      '2017-05', 49.33, '2017-06', 46.73, '2017-07', 48.99, '2017-08', 50.42,
+      '2017-09', 52.86, '2017-10', 57.57, '2017-11', 57.52, '2017-12', 56.6,
+      '2018-01', 61.49, '2018-02', 61.63, '2018-03', 60.02, '2018-04', 56.24,
+      '2018-05', 62.48, '2018-06', 59.41, '2018-07', 61.83, '2018-08', 63.44,
+      '2018-09', 61.68, '2018-10', 54.32, '2018-11', 56.08, '2018-12', 52.3,
+      '2019-01', 57.56, '2019-02', 61.25, '2019-03', 63.18, '2019-04', 70.52,
+      '2019-05', 58.84, '2019-06', 66.14, '2019-07', 69.86, '2019-08', 68.24,
+      '2019-09', 70.47, '2019-10', 74.78, '2019-11', 77.82, '2019-12', 83.7,
+      '2020-01', 81.02, '2020-02', 77.26, '2020-03', 68.4, '2020-04', 78.35,
+      '2020-05', 83.95, '2020-06', 90.29, '2020-07', 96.8, '2020-08', 102.41,
+      '2020-09', 101.54, '2020-10', 101.83, '2020-11', 120.6, '2020-12', 126.39,
+      '2021-01', 130.47, '2021-02', 138.97, '2021-03', 141.33, '2021-04', 140.68,
+      '2021-05', 144.23, '2021-06', 151.41, '2021-07', 152.3, '2021-08', 156.06,
+      '2021-09', 148.62, '2021-10', 158.21, '2021-11', 176.41, '2021-12', 180.77,
+      '2022-01', 159.82, '2022-02', 158.05, '2022-03', 157.76, '2022-04', 133.59,
+      '2022-05', 142.05, '2022-06', 116.54, '2022-07', 135.78, '2022-08', 123.23,
+      '2022-09', 106.24, '2022-10', 108.83, '2022-11', 129.34, '2022-12', 115.99,
+      '2023-01', 134.56, '2023-02', 136.61, '2023-03', 148.22, '2023-04', 137.38,
+      '2023-05', 158.9, '2023-06', 169.09, '2023-07', 178.43, '2023-08', 170.22,
+      '2023-09', 157.88, '2023-10', 147.46, '2023-11', 171.22, '2023-12', 192.03,
+      '2024-01', 195.35, '2024-02', 217.36, '2024-03', 225.92, '2024-04', 213.99,
+      '2024-05', 234.01, '2024-06', 246.63, '2024-07', 235.38, '2024-08', 231.14,
+      '2024-09', 230.59, '2024-10', 218.26, '2024-11', 215.4, '2024-12', 215.49,
+      '2025-01', 218.13, '2025-02', 208.52, '2025-03', 188.17, '2025-04', 183.84,
+      '2025-05', 204.94, '2025-06', 238.7, '2025-07', 240.03, '2025-08', 245.32,
+      '2025-09', 271.12, '2025-10', 306.55, '2025-11', 296.74, '2025-12', 301.15,
+      '2026-01', 346.3, '2026-02', 352.29, '2026-03', 328.66, '2026-04', 461.44,
+      '2026-05', 569.08, '2026-06', 640.76, '2026-07', 504.89, '2026-08', 508.62,
     ]),
   },
   or: {
