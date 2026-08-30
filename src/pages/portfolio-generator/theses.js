@@ -535,6 +535,11 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        // Insertion oblig_etat_us du 30/08/2026 : ligne réduite pour compenser = HIGHYIELD_OPTIONS
+        // (15% -> 8%), seule autre poche obligataire du combo, donc le rôle le plus proche — scpi/
+        // foncieres_etf_dist/DIVIDEND_OPTIONS_DIST laissés intacts (rôles distincts : immobilier
+        // physique, immobilier coté, actions à dividende). oblig_etat_us est une part USD
+        // (Distribution), compatible avec la règle "uniquement des parts distribuantes" du profil.
         assets: [
           {
             id: "scpi", pct: 15,
@@ -558,7 +563,14 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: HIGHYIELD_OPTIONS, pct: 15,
+            id: "oblig_etat_us", pct: 7,
+            pourquoi: [
+              "Un coupon régulier hors zone euro, en part distribuante — cohérent avec la thèse de revenu de ce profil.",
+              "{pct}% pour diversifier la devise de la poche à revenu fixe, sans sortir de la logique Dist.",
+            ],
+          },
+          {
+            idOptions: HIGHYIELD_OPTIONS, pct: 8,
             pourquoi: [
               "Un coupon nettement supérieur aux obligations classiques — le prix à payer pour plus de revenu.",
               "La touche de rendement obligataire qui vient compléter les trois sources de revenu déjà présentes.",
@@ -1134,10 +1146,23 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: DIVIDEND_OPTIONS, pct: 35,
+            idOptions: DIVIDEND_OPTIONS, pct: 27,
             pourquoi: [
               "Des entreprises qui paient (et augmentent) leur dividende depuis des années — le profil actions le plus proche de l'esprit défensif.",
               "La brique la plus lourde du portefeuille, cohérente avec la logique de protection.",
+            ],
+          },
+          {
+            // Insertion testée le 30/08/2026 : aucune règle documentée n'exclut cet actif du
+            // profil Bouclier (contrairement à Anti-Inflation/Pro-Européen/Rentier, cf. audit des
+            // règles d'exclusion). Ligne réduite pour compenser = DIVIDEND_OPTIONS (35% -> 27%),
+            // même rôle "ligne actions" du combo. Un test à 5% avait aussi été validé sur le palier
+            // Prudent (marge 2,00pt), mais Équilibré a été retenu ici pour sa marge nettement plus
+            // confortable (~9pt attendu) plutôt que de forcer la ligne la plus tendue du profil.
+            id: "actions_value", pct: 8,
+            pourquoi: [
+              "Une deuxième approche actions, orientée style value plutôt que dividende pur.",
+              "{pct}% pour diversifier la brique actions au-delà du seul critère de dividende.",
             ],
           },
           {
@@ -1221,9 +1246,15 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        // Insertion oblig_etat_us + actions_value du 30/08/2026 : lignes réduites pour compenser =
+        // CORPBOND_OPTIONS (25% -> 19%, seule autre poche obligataire, rôle le plus proche
+        // d'oblig_etat_us) et WORLD_OPTIONS (35% -> 25%, rôle de contrepoids diversifié le plus
+        // proche d'actions_value) — BITCOIN_OPTIONS (conviction centrale) et GOLD_OPTIONS
+        // (protection) laissés intacts. Le palier Dynamique de ce profil n'a volontairement pas été
+        // touché (marge déjà très serrée, documentée plus bas — LEVERAGE_OPTIONS à 4% pré-calibré).
         assets: [
           {
-            idOptions: WORLD_OPTIONS, pct: 35,
+            idOptions: WORLD_OPTIONS, pct: 25,
             pourquoi: [
               "Le socle diversifié du portefeuille, avant d'ajouter la conviction crypto.",
               "{pct}% pour garder un vrai ancrage large malgré la poche Bitcoin.",
@@ -1237,10 +1268,24 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: CORPBOND_OPTIONS, pct: 25,
+            id: "actions_value", pct: 10,
+            pourquoi: [
+              "Une diversification par le style plutôt que par la géographie, décorrélée de la conviction crypto.",
+              "{pct}% pour équilibrer le socle diversifié avec une approche factorielle différente.",
+            ],
+          },
+          {
+            idOptions: CORPBOND_OPTIONS, pct: 19,
             pourquoi: [
               "Le stabilisateur obligataire, pour amortir une partie du choc si la crypto traverse une mauvaise année.",
               "Vient équilibrer la volatilité ajoutée par la ligne Bitcoin.",
+            ],
+          },
+          {
+            id: "oblig_etat_us", pct: 6,
+            pourquoi: [
+              "Une deuxième zone géographique pour le stabilisateur obligataire, hors zone euro.",
+              "{pct}% pour diversifier la devise de la poche obligataire, sans en faire une ligne dominante.",
             ],
           },
           {
@@ -1409,6 +1454,11 @@ export const PROFILES = [
         // WORLD_OPTIONS (26% -> 14%), même rôle de "contrepoids diversifié" qu'une ligne
         // géographique ciblée comme actions_japon — CORPBOND_OPTIONS (stabilisateur) et
         // GOLD_OPTIONS (protection) laissés intacts, rôles distincts non substituables.
+        // Insertion oblig_etat_us du 30/08/2026 (2e passe) : ligne réduite pour compenser =
+        // CORPBOND_OPTIONS (13% -> 7%), seule autre poche obligataire du combo. Marge de plancher
+        // déjà serrée sur ce combo (~1,7pt avant cette insertion, cf. historique git) : vérifié par
+        // stress-test avant de pousser, toujours >0 après ajout (oblig_etat_us a un pire exercice
+        // 2022 légèrement moins sévère que CORPBOND_OPTIONS, -12,6% contre -13,86%).
         assets: [
           {
             idOptions: THEME_OPTIONS_FULL, pct: 36,
@@ -1432,10 +1482,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: CORPBOND_OPTIONS, pct: 13,
+            idOptions: CORPBOND_OPTIONS, pct: 7,
             pourquoi: [
               "Le stabilisateur obligataire, pour amortir une mauvaise année du secteur choisi.",
               "Nécessaire pour compenser la concentration du pari sectoriel à ce niveau de risque.",
+            ],
+          },
+          {
+            id: "oblig_etat_us", pct: 6,
+            pourquoi: [
+              "Une deuxième zone géographique pour le stabilisateur obligataire, hors zone euro.",
+              "{pct}% pour diversifier la devise de la poche obligataire, sans en faire une ligne dominante.",
             ],
           },
           {
@@ -1448,6 +1505,10 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        // Insertion actions_value du 30/08/2026 : ligne réduite pour compenser = WORLD_OPTIONS
+        // (25% -> 15%), même rôle de "contrepoids diversifié" — THEME_OPTIONS_AGGRESSIVE (pari
+        // central) et GOLD_OPTIONS (protection) laissés intacts. Choisi sur ce palier plutôt que
+        // sur Équilibré (déjà chargé, marge serrée) pour garder une marge confortable.
         assets: [
           {
             idOptions: THEME_OPTIONS_AGGRESSIVE, pct: 55,
@@ -1457,10 +1518,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: WORLD_OPTIONS, pct: 25,
+            idOptions: WORLD_OPTIONS, pct: 15,
             pourquoi: [
               "Le contrepoids diversifié, réduit par rapport aux versions moins risquées pour laisser de la place au pari sectoriel.",
               "La seule vraie diversification qui reste dans ce portefeuille très concentré.",
+            ],
+          },
+          {
+            id: "actions_value", pct: 10,
+            pourquoi: [
+              "Une diversification par le style plutôt que par le secteur, décorrélée du pari central.",
+              "{pct}% pour ne pas dépendre uniquement du bloc World comme seule vraie diversification.",
             ],
           },
           {
