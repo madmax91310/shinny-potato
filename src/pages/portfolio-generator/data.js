@@ -98,15 +98,16 @@ export const ASSETS = [
 
   {
     id: "oblig_inflation", name: "iShares € Inflation Linked Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // NON VÉRIFIÉ : recherches infructueuses pour les 6 années. Nouvelle tentative de vérification
-    // (audit portefeuille-générateur, 25/08/2026) : la même contradiction sur 2022 (fonds IBCI) a
-    // été reproduite indépendamment — deux recherches distinctes citant chacune une fiche
-    // officielle BlackRock/iShares donnent +1,20% et -9,73%, incompatibles entre elles. Ce n'est
-    // donc pas un problème de recherche insuffisante mais une confusion récurrente (probable
-    // mélange avec un fonds au nom proche, ex. IGIL/IS3V "Global Inflation Linked"). Ne PAS
-    // trancher entre les deux sans consulter directement la fiche PDF officielle du bon ISIN.
-    // Valeurs d'origine conservées intégralement.
-    r: [5.0, 3.0, -15.0, 4.0, 2.0, 3.0],
+    // 2022 (-9,73%) CORRIGÉ le 30/08/2026 : l'ancienne valeur -15,0% était non sourcée (donnée
+    // d'origine jamais vérifiée). Tranché directement sur la fiche officielle BlackRock (fund fact
+    // sheet PDF, ishares.com, CH/EN) de l'iShares € Inflation Linked Govt Bond UCITS ETF (IBCI),
+    // performance de la part de fonds — cohérent avec le rendement de l'indice de référence sur la
+    // même année (-9,66%), écart de quelques dixièmes normal (frais/tracking difference). Résout la
+    // contradiction signalée lors de l'audit du 25/08/2026 (une autre recherche avait renvoyé
+    // +1,20%, valeur écartée : probable confusion avec un fonds au nom proche type "Global
+    // Inflation Linked"). 2020, 2021, 2023, 2024, 2025 : NON VÉRIFIÉ, recherches infructueuses —
+    // valeurs d'origine conservées, à revoir si besoin.
+    r: [5.0, 3.0, -9.73, 4.0, 2.0, 3.0],
     desc: [
       "des obligations d'État dont le capital et le coupon sont indexés sur l'inflation de la zone euro.",
       "protège le pouvoir d'achat du capital investi, contrairement à une obligation classique à taux fixe.",
