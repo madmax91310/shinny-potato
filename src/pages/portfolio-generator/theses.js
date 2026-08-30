@@ -272,6 +272,11 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        // Insertion actions_value du 30/08/2026 : ligne réduite pour compenser = SP500_OPTIONS
+        // (15% -> 5%), la ligne la plus proche en rôle (pari actions concentré, à contenu
+        // fortement growth/tech) — WORLD_OPTIONS/CORPBOND_OPTIONS/GOLD_OPTIONS/IMMOBILIER_OPTIONS
+        // laissés intacts, rôles distincts (diversification large, stabilisateur, protection,
+        // classe d'actif différente).
         assets: [
           {
             idOptions: WORLD_OPTIONS, pct: 30,
@@ -281,10 +286,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: SP500_OPTIONS, pct: 15,
+            idOptions: SP500_OPTIONS, pct: 5,
             pourquoi: [
               "Un pari plus concentré sur le marché américain, en complément de la ligne monde plus diversifiée géographiquement.",
               "{pct}% pour renforcer l'exposition aux États-Unis sans dépendre uniquement du seul indice mondial.",
+            ],
+          },
+          {
+            id: "actions_value", pct: 10,
+            pourquoi: [
+              "Le pendant « value » du pari S&P 500 : des entreprises jugées sous-valorisées plutôt que la croissance pure.",
+              "{pct}% pour équilibrer le style croissance déjà présent avec une approche plus factorielle.",
             ],
           },
           {
@@ -311,19 +323,41 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        // Insertion actions_japon + actions_value du 30/08/2026 : lignes réduites pour compenser =
+        // WORLD_OPTIONS (40% -> 32%, même rôle de diversification large qu'actions_japon) et
+        // NASDAQ100_OPTIONS (21% -> 9%, le pendant "growth" qu'actions_value vient équilibrer côté
+        // "value") — LEVERAGE_OPTIONS laissé strictement inchangé à 4% (plafond dur déjà validé par
+        // stress-test, cf. commentaire ci-dessous), EM_OPTIONS/GOLD_OPTIONS non touchés (rôles
+        // distincts : croissance émergente, protection). Reconfirmé après insertion : pire année
+        // 2022 du combo complet toujours au-dessus du plancher de -30% (script de stress-test,
+        // résultat documenté dans l'historique git de ce commit).
         assets: [
           {
-            idOptions: WORLD_OPTIONS, pct: 40,
+            idOptions: WORLD_OPTIONS, pct: 32,
             pourquoi: [
               "Le socle actions du portefeuille, même dans sa version la plus dynamique.",
               "{pct}% : le cœur reste diversifié mondialement avant d'ajouter des paris plus ciblés.",
             ],
           },
           {
-            idOptions: NASDAQ100_OPTIONS, pct: 21,
+            idOptions: NASDAQ100_OPTIONS, pct: 9,
             pourquoi: [
               "La partie qui vise vraiment la surperformance : concentrée sur l'innovation américaine.",
               "Le moteur de croissance le plus agressif du portefeuille.",
+            ],
+          },
+          {
+            id: "actions_japon", pct: 8,
+            pourquoi: [
+              "Une troisième zone géographique, décorrélée des cycles américains et émergents déjà présents.",
+              "{pct}% pour muscler la diversification mondiale au-delà du seul socle World.",
+            ],
+          },
+          {
+            id: "actions_value", pct: 12,
+            pourquoi: [
+              "Le pendant « value » du pari Nasdaq : des entreprises jugées sous-valorisées plutôt que la croissance pure.",
+              "{pct}% pour ne pas dépendre uniquement du style croissance dans la partie actions concentrées.",
             ],
           },
           {
@@ -993,6 +1027,12 @@ export const PROFILES = [
     ],
     riskCombos: {
       prudent: {
+        // Insertion oblig_etat_us du 30/08/2026 : ce combo n'avait pas de ligne "oblig_etat_eur"
+        // à remplacer (contrairement à la demande initiale, qui supposait sa présence — vérifié,
+        // absente ici) — traité comme un COMPLÉMENT plutôt qu'un remplacement. Ligne réduite pour
+        // compenser : CORPBOND_OPTIONS (25% -> 18%), seule autre poche obligataire du combo, donc
+        // le rôle le plus proche ; fonds_euros/sect_sante/GOLD_OPTIONS laissés intacts (rôles
+        // distincts : sécurité pure, seule ligne actions, protection non-obligataire).
         assets: [
           {
             id: "fonds_euros", pct: 55,
@@ -1002,10 +1042,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: CORPBOND_OPTIONS, pct: 25,
+            idOptions: CORPBOND_OPTIONS, pct: 18,
             pourquoi: [
               "Un peu plus de rendement que le fonds euros, sans sortir du registre défensif.",
               "Le complément logique du fonds euros : plus de coupon, presque autant de sécurité.",
+            ],
+          },
+          {
+            id: "oblig_etat_us", pct: 7,
+            pourquoi: [
+              "Une deuxième zone géographique pour la poche obligataire, hors zone euro.",
+              "{pct}% pour diversifier la devise de la poche obligataire, sans sortir du registre défensif.",
             ],
           },
           {
@@ -1358,6 +1405,10 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        // Insertion actions_japon du 30/08/2026 : ligne réduite pour compenser =
+        // WORLD_OPTIONS (26% -> 14%), même rôle de "contrepoids diversifié" qu'une ligne
+        // géographique ciblée comme actions_japon — CORPBOND_OPTIONS (stabilisateur) et
+        // GOLD_OPTIONS (protection) laissés intacts, rôles distincts non substituables.
         assets: [
           {
             idOptions: THEME_OPTIONS_FULL, pct: 36,
@@ -1367,10 +1418,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: WORLD_OPTIONS, pct: 26,
+            idOptions: WORLD_OPTIONS, pct: 14,
             pourquoi: [
               "Le contrepoids diversifié, pour ne pas dépendre entièrement du secteur choisi.",
               "Vient équilibrer la conviction sectorielle avec une base plus large.",
+            ],
+          },
+          {
+            id: "actions_japon", pct: 12,
+            pourquoi: [
+              "Une deuxième source de diversification géographique, décorrélée du pari sectoriel comme du bloc World.",
+              "{pct}% sur le marché japonais, pour ne pas dépendre uniquement des États-Unis dans la partie diversifiée du portefeuille.",
             ],
           },
           {
