@@ -419,7 +419,7 @@
     </div>
     <div class="tweet-body">
       <p class="tweet-line intro">Bonjour à tous ☕</p>
-      <p class="tweet-line intro">Que s'est-il passé hier sur les marchés&nbsp;? 👇</p>
+      <p class="tweet-line intro" id="introLine">Que s'est-il passé hier sur les marchés&nbsp;? 👇</p>
       <div class="bullets" id="bulletList"></div>
       <p class="tweet-line outro">Bonne journée à tous&nbsp;! 👋</p>
     </div>
@@ -448,49 +448,50 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 28 août 2026",
-    generatedAt: "Généré le 29 août 2026",
+    sessionDate: "Spécial week-end du 29-30 août 2026",
+    generatedAt: "Généré le 31 août 2026",
+    introLine: "Que s'est-il passé ce week-end sur les marchés ? 👇",
     stats: [
-      { label: "EssilorLuxottica", value: "+3%", delta: "rachat d'actions", dir: "up" },
-      { label: "Détroit d'Ormuz", value: "« ouvert »", delta: "selon Trump", dir: "up" },
-      { label: "Bitcoin", value: "<78 000 $", delta: "-3,2%, 24h", dir: "down" },
-      { label: "Or (once)", value: "<4 600 $", delta: "+13%, mois", dir: "up" },
-      { label: "Minières aurifères (MSCI)", value: "+43%", delta: "meilleur mois", dir: "up" },
-      { label: "Taux US", value: "volatils", delta: "discours Warsh", dir: "up" }
+      { label: "Frappe US en Iran", value: "dimanche", delta: "lance-roquettes visés", dir: "down" },
+      { label: "Brent", value: ">90 $", delta: "reprise des hostilités", dir: "up" },
+      { label: "JGB 10 ans (Japon)", value: "≈3%", delta: "haut depuis 30 ans", dir: "up" },
+      { label: "Bitcoin", value: "≈78 000 $", delta: "pic à 81 455 $ vendredi", dir: "flat" },
+      { label: "Or (once)", value: "≈4 650 $", delta: "+7%, semaine", dir: "up" },
+      { label: "IRGC", value: "riposte promise", delta: "tensions Ormuz", dir: "down" }
     ],
     bullets: [
       {
-        emoji: "👓",
-        tag: "Marchés actions",
-        text: "EssilorLuxottica a annoncé le lancement d'un programme de rachat portant sur 5 millions d'actions, une nouvelle saluée par un gain de 3% du titre."
-      },
-      {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Donald Trump a déclaré que le détroit d'Ormuz était désormais « ouvert », estimant que les États-Unis avaient pris l'avantage sur l'Iran après avoir déminé plus de 200 objets suspects dans la voie de navigation, dont seulement 11 se sont révélés être de véritables mines."
-      },
-      {
-        emoji: "🟠",
-        tag: "Crypto",
-        text: "Le Bitcoin est retombé sous les 78 000 dollars, en repli de 3,2% sur 24 heures depuis un pic de 81 455 dollars atteint dans la nuit, les propos jugés prudents de Kevin Warsh sur l'inflation lors de son discours à Jackson Hole ayant douché l'appétit pour le risque."
+        text: "L'armée américaine a frappé dimanche des lance-roquettes iraniens qui s'apprêtaient à larguer des mines dans le détroit d'Ormuz, une première frappe américaine visant l'Iran depuis fin juillet, à laquelle les Gardiens de la révolution ont promis de répondre."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "L'or a reculé sous les 4 600 dollars l'once à l'approche du discours de Kevin Warsh, mais affiche une hausse de plus de 13% depuis le début du mois, sa meilleure performance mensuelle depuis janvier, l'indice mondial des minières aurifères MSCI bondissant lui de 43% en août, en passe de signer son meilleur mois jamais enregistré."
+        text: "Le Brent est repassé au-dessus de 90 dollars le baril et le WTI est remonté vers 86 dollars en ce début de semaine, le marché pétrolier réagissant vivement à la reprise des hostilités autour du détroit d'Ormuz."
       },
       {
-        emoji: "🏛️",
+        emoji: "🇯🇵",
+        tag: "Taux",
+        text: "Le rendement des emprunts d'État japonais à 10 ans s'approchait ce week-end d'un plus haut en 30 ans proche de 3%, une hausse telle que des analystes jugent désormais justifié un relèvement de l'allocation obligataire domestique du fonds de pension public GPIF."
+      },
+      {
+        emoji: "🟠",
+        tag: "Crypto",
+        text: "Le Bitcoin a passé le week-end autour de 78 000 dollars, retombant après avoir brièvement touché 81 455 dollars vendredi soir, les investisseurs digérant toujours le ton prudent de Kevin Warsh sur l'inflation."
+      },
+      {
+        emoji: "💰",
         tag: "Fait marquant",
-        text: "Le nouveau président de la Fed Kevin Warsh a livré son premier discours à Jackson Hole en se montrant prudent sur l'inflation persistante, provoquant l'un des plus forts mouvements de la courbe des taux américains depuis sa prise de fonction en mai."
+        text: "L'or reste soutenu près de 4 650 dollars l'once, en hausse d'environ 7% sur la semaine, porté par l'intervention surprise du Trésor américain sur le marché obligataire et le retour du « debasement trade »."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-08aa68661c00d537e091cfc02a12f24f" },
-      { outlet: "Axios", title: "\"That sucker is open\": U.S. gains the upper hand in the battle for Hormuz", url: "https://www.axios.com/2026/08/28/trump-iran-hormuz-war-oil" },
-      { outlet: "CoinDesk", title: "Live updates: Bitcoin options worth $6.4 billion just expired as prices hover near $80,000", url: "https://www.coindesk.com/business/2026/08/28/live-updates-bitcoin-options-worth-usd6-4-billion-just-expired-as-prices-hover-near-usd80-000" },
-      { outlet: "Bloomberg", title: "Gold Miners Are Having a Better Month Than Chips Did in Years", url: "https://www.bloomberg.com/news/articles/2026-08-28/gold-miners-are-having-a-better-month-than-chips-did-in-years" },
-      { outlet: "Bloomberg", title: "Key Takeaways From Fed Chairman Warsh's Jackson Hole Speech", url: "https://www.bloomberg.com/news/articles/2026-08-28/key-takeaways-from-fed-chairman-warsh-s-jackson-hole-speech" }
+      { outlet: "Axios", title: "U.S. strikes Iran to prevent Hormuz mine threat", url: "https://www.axios.com/2026/08/30/us-iran-strike-hormuz-mines" },
+      { outlet: "Bloomberg", title: "Oil Jumps at Week's Open as US Military Hits Iranian Launchers", url: "https://www.bloomberg.com/news/articles/2026-08-30/latest-oil-market-news-and-analysis-for-aug-31" },
+      { outlet: "Bloomberg", title: "GPIF Would Be Justified in Buying More Japan Bonds, Say Analysts", url: "https://www.bloomberg.com/news/articles/2026-08-31/gpif-would-be-justified-in-buying-more-japan-bonds-say-analysts" },
+      { outlet: "CoinDesk", title: "Live updates: Bitcoin slides below $78,000 as markets digest Warsh's hawkish remarks", url: "https://www.coindesk.com/business/2026/08/28/live-updates-bitcoin-options-worth-usd6-4-billion-just-expired-as-prices-hover-near-usd80-000" },
+      { outlet: "Bloomberg", title: "Gold Miners Are Having a Better Month Than Chips Did in Years", url: "https://www.bloomberg.com/news/articles/2026-08-28/gold-miners-are-having-a-better-month-than-chips-did-in-years" }
     ]
   };
 
@@ -498,7 +499,7 @@
     const lines = [];
     lines.push("Bonjour à tous ☕");
     lines.push("");
-    lines.push("Que s'est-il passé hier sur les marchés ? 👇");
+    lines.push(DATA.introLine || "Que s'est-il passé hier sur les marchés ? 👇");
     lines.push("");
     DATA.bullets.forEach((b) => {
       lines.push(`${b.emoji} ${b.text}`);
@@ -511,6 +512,7 @@
   function render() {
     document.getElementById("sessionDate").textContent = DATA.sessionDate;
     document.getElementById("generatedAt").textContent = DATA.generatedAt;
+    document.getElementById("introLine").textContent = DATA.introLine || "Que s'est-il passé hier sur les marchés ? 👇";
 
     const statGrid = document.getElementById("statGrid");
     statGrid.innerHTML = "";
