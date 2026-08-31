@@ -9,6 +9,7 @@ import InvestmentCalculator from './pages/investment-calculator/App'
 import EtfSheets from './pages/etf-sheets/App'
 import LexiqueFinancier from './pages/lexique-financier/App'
 import TweetMidi from './pages/tweet-midi/App'
+import IndexComparator from './pages/index-comparator/App'
 import { TOOLS } from './tools'
 
 const TOOL_ELEMENTS = {
@@ -19,6 +20,7 @@ const TOOL_ELEMENTS = {
   '/fiches-etf': <EtfSheets />,
   '/lexique-financier': <LexiqueFinancier />,
   '/tweet-midi': <TweetMidi />,
+  '/comparateur-indices': <IndexComparator />,
 }
 
 export default function App() {

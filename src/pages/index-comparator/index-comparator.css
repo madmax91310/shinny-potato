@@ -1,0 +1,61 @@
+/* Styles propres au Comparateur d'indices — thème navy + or, demandé
+   explicitement pour cet outil (les autres outils de l'appli ont été
+   recolorés en teal/navy, cf. commentaire en tête de investment-calculator.css). */
+
+.xc-scope {
+  --xc-surface: #0f172a;
+  --xc-surface-raised: #16213b;
+  --xc-surface-hover: #1e293b;
+  --xc-border: #1e293b;
+  --xc-border-soft: #334155;
+  --xc-ink: #f1f5f9;
+  --xc-ink-dim: #94a3b8;
+  --xc-ink-faint: #64748b;
+  --xc-accent: #d4a94a;
+  --xc-accent-bright: #f0c869;
+  --xc-positive: #34d399;
+  --xc-negative: #fb7185;
+  --xc-font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  color: var(--xc-ink);
+}
+
+.xc-layout { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 880px) { .xc-layout { grid-template-columns: 1fr; } }
+
+.xc-control-col { display: flex; flex-direction: column; gap: 16px; }
+.xc-preview-col { min-width: 0; }
+
+.xc-panel { background: linear-gradient(175deg, var(--xc-surface-raised), var(--xc-surface)); border: 1px solid var(--xc-border); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+
+.xc-eyebrow { font-family: var(--xc-font-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--xc-accent); margin: 0; display: flex; align-items: center; gap: 8px; }
+.xc-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--xc-border-soft); }
+
+.xc-hint { font-size: 12px; color: var(--xc-ink-dim); margin: -4px 0 2px; line-height: 1.5; }
+
+.xc-select-wrap { position: relative; }
+.xc-select-wrap::after { content: ""; position: absolute; right: 11px; top: 50%; width: 8px; height: 8px; border-right: 1.5px solid var(--xc-ink-faint); border-bottom: 1.5px solid var(--xc-ink-faint); transform: translateY(-65%) rotate(45deg); pointer-events: none; }
+
+.xc-control { width: 100%; appearance: none; background: var(--xc-surface-hover); border: 1px solid var(--xc-border-soft); color: var(--xc-ink); padding: 10px 12px; border-radius: 9px; font-size: 14px; transition: border-color .15s ease; }
+select.xc-control { padding-right: 30px; cursor: pointer; }
+.xc-control:hover { border-color: var(--xc-accent); }
+.xc-control:focus { border-color: var(--xc-accent-bright); outline: none; }
+
+.xc-fund-block { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 1px solid var(--xc-border-soft); }
+.xc-fund-block:first-of-type { padding-top: 0; border-top: none; }
+.xc-fund-label { font-size: 12.5px; font-weight: 600; color: var(--xc-ink); margin: 0; }
+.xc-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.xc-ytd-toggle { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--xc-ink-dim); cursor: pointer; }
+.xc-ytd-toggle input { accent-color: var(--xc-accent); }
+
+.xc-clipboard-fallback { position: absolute; left: -9999px; width: 1px; height: 1px; display: none; }
+
+.xc-preview { background: linear-gradient(175deg, var(--xc-surface-raised), var(--xc-surface)); border: 1px solid var(--xc-border); border-radius: 16px; padding: 22px; }
+.xc-preview-text {
+  font-family: var(--xc-font-mono);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--xc-ink);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}

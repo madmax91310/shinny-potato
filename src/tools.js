@@ -57,4 +57,12 @@ export const TOOLS = [
     description: "Vrai ou Faux et Dilemmes financiers pour le créneau midi, sans dépendre de l'actualité.",
     status: 'disponible',
   },
+  {
+    to: '/comparateur-indices',
+    navLabel: 'Comparateur indices',
+    title: "Comparateur d'indices",
+    icon: '📐',
+    description: "Compare les indices concurrents d'une même famille : exposition, ETF PEA/CTO, diversification, performance.",
+    status: 'disponible',
+  },
 ]
