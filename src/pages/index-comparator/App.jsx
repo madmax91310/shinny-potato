@@ -87,9 +87,9 @@ function buildTweetText(family, perfValues) {
   family.perfFunds.forEach((f, i) => {
     const v = perfValues[f.key] || {}
     out.push(`${PERF_COLOR_EMOJI[i % PERF_COLOR_EMOJI.length]} ${f.label}`)
-    out.push(`2023 ${fmtPct(v.y2023) ?? '[à compléter]'}`)
-    out.push(`2024 ${fmtPct(v.y2024) ?? '[à compléter]'}`)
-    out.push(`2025 ${fmtPct(v.y2025) ?? '[à compléter]'}`)
+    out.push(`2023 ${fmtPct(f.y2023) ?? '[à vérifier]'}`)
+    out.push(`2024 ${fmtPct(f.y2024) ?? '[à vérifier]'}`)
+    out.push(`2025 ${fmtPct(f.y2025) ?? '[à vérifier]'}`)
     if (v.ytdEnabled) out.push(`YTD ${fmtPct(v.ytd) ?? '[à compléter]'}`)
     if (i < family.perfFunds.length - 1) out.push('')
   })
@@ -149,10 +149,13 @@ export const FAMILIES = [
       chain: ['STOXX 600 (600 lignes)', 'MSCI Europe (396)', 'EURO STOXX 50 (50)'],
       notes: ['⚠️ Le 50 concentre ton risque : ses 10 plus grosses lignes pèsent +41 % de l\'indice.', '→ Plus volatil, très dépendant du luxe et de la tech euro.'],
     },
+    // Performance 2023-2025 : rendements annuels réels des 3 fonds ci-dessus (source : justETF/
+    // extraetf, recherche web du 02/09/2026, recoupée sur plusieurs pages par fonds). YTD non inclus
+    // ici (saisi par l'utilisateur, cf. formulaire).
     perfFunds: [
-      { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)' },
-      { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)' },
-      { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)' },
+      { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)', y2023: 15.95, y2024: 8.60, y2025: 19.41 },
+      { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)', y2023: 15.84, y2024: 8.41, y2025: 20.47 },
+      { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)', y2023: 22.8, y2024: 11.5, y2025: 21.8 },
     ],
     verdictTitle: '✅ LE VERDICT POUR UN PEA',
     verdict: [
@@ -198,10 +201,20 @@ export const FAMILIES = [
       chain: ['MSCI World (1 283 lignes)', 'MSCI ACWI (2 461)', 'FTSE All-World (4 265)'],
       notes: ['⚠️ Peu importe lequel des trois : tous pèsent 60-70 % d\'actions américaines.', '→ Le vrai choix se joue sur les émergents (inclus ou non) et le nombre de lignes, pas sur le poids US.'],
     },
+    // Performance 2023-2025 (source : justETF/extraetf, recherche web du 02/09/2026).
+    // DCAM (Amundi PEA Monde) : fonds lancé le 04/03/2025 — aucune performance annuelle réelle
+    // n'existe pour 2023/2024 (le fonds n'existait pas), et 2025 n'a pas d'année pleine (lancement
+    // en mars) — les 3 années sont donc volontairement laissées à vérifier plutôt que de substituer
+    // une performance d'indice non demandée.
+    // VWCE : 2 recherches justETF ont d'abord renvoyé un jeu de chiffres (+17,78/+24,65/+8,36 %)
+    // incohérent avec le MSCI ACWI (indice quasi identique) — écart de +14 pts sur 2025, invraisemblable
+    // pour deux trackers mondiaux comparables. Résolu par une 3e recherche croisée (Yahoo/Morningstar),
+    // dont le résultat (+22,28/+17,65/+22,45 %) est cohérent à moins de 0,6 pt du MSCI ACWI ci-dessous —
+    // retenu comme le jeu fiable.
     perfFunds: [
-      { key: 'msci_world', label: 'Amundi PEA Monde (DCAM)' },
-      { key: 'acwi', label: 'SPDR MSCI ACWI' },
-      { key: 'ftse_aw', label: 'Vanguard FTSE All-World (VWCE)' },
+      { key: 'msci_world', label: 'Amundi PEA Monde (DCAM)', y2023: null, y2024: null, y2025: null },
+      { key: 'acwi', label: 'SPDR MSCI ACWI', y2023: 22.01, y2024: 17.36, y2025: 22.81 },
+      { key: 'ftse_aw', label: 'Vanguard FTSE All-World (VWCE)', y2023: 22.28, y2024: 17.65, y2025: 22.45 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -258,10 +271,15 @@ export const FAMILIES = [
       chain: ['Russell 1000 (1 000 lignes)', 'MSCI USA (527)', 'S&P 500 (500)', 'Nasdaq 100 (100)'],
       notes: ['⚠️ Le Nasdaq 100 exclut tout le secteur financier et concentre près de 50 % sur ses 10 plus grosses lignes.', '→ Le plus étroit des quatre, et le plus volatil.'],
     },
+    // Performance 2023-2025 (source : justETF/extraetf/Boursorama, recherche web du 02/09/2026).
+    // Nasdaq-100 : le chiffre 2025 (+6,01 %) est resté identique sur 4 recherches indépendantes
+    // spécifiques à ce fonds — retenu malgré un écart avec un chiffre "iShares Nasdaq 100 EUR"
+    // (~+18-21 %) utilisé ailleurs dans l'appli comme proxy : ce dernier concerne un fonds différent,
+    // pas celui affiché ici.
     perfFunds: [
-      { key: 'sp500', label: 'Amundi PEA S&P 500' },
-      { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100' },
-      { key: 'msci_usa', label: 'iShares MSCI USA' },
+      { key: 'sp500', label: 'Amundi PEA S&P 500', y2023: 21.68, y2024: 32.85, y2025: 3.45 },
+      { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', y2023: 49.32, y2024: 33.58, y2025: 6.01 },
+      { key: 'msci_usa', label: 'iShares MSCI USA', y2023: 22.33, y2024: 32.69, y2025: 3.82 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -309,10 +327,14 @@ export const FAMILIES = [
       chain: ['MSCI EM IMI (3 017 lignes)', 'FTSE EM (2 290, sans la Corée du Sud)', 'MSCI EM ex-China (625, sans la Chine)'],
       notes: ['⚠️ La Chine pèse encore ~25-30 % du MSCI EM malgré sa baisse ces dernières années.', '→ Le ex-China est un pari géopolitique assumé, pas juste une diversification de plus.'],
     },
+    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). FTSE EM : une première
+    // recherche a renvoyé un jeu de chiffres identique à la série 2021-2023 déjà présente ailleurs
+    // dans l'appli (portfolio-generator), signe d'un décalage d'années — écarté au profit d'un
+    // second jeu reproduit sur 2 recherches indépendantes.
     perfFunds: [
-      { key: 'msci_em', label: 'iShares Core MSCI EM IMI' },
-      { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets' },
-      { key: 'em_exchina', label: 'iShares MSCI EM ex-China' },
+      { key: 'msci_em', label: 'iShares Core MSCI EM IMI', y2023: 11.6, y2024: 7.2, y2025: 31.6 },
+      { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 4.12, y2024: 19.20, y2025: 11.13 },
+      { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.73, y2024: 3.64, y2025: 34.83 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -359,9 +381,12 @@ export const FAMILIES = [
       chain: ['MSCI World (1 283 lignes, univers de départ)', 'MSCI World Value (401)', 'MSCI World Quality (301)'],
       notes: ['⚠️ Contrairement à la famille Europe, ces indices factoriels ne s\'emboîtent pas : ce sont des sous-ensembles indépendants du MSCI World, pas des poupées russes.'],
     },
+    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Value Factor recoupé
+    // avec la série "actions_value" déjà vérifiée cette session dans portfolio-generator/data.js
+    // (même fonds, écart <0,1 pt sur les 3 années) — confirme la fiabilité de la recherche.
     perfFunds: [
-      { key: 'value', label: 'iShares Edge MSCI World Value Factor' },
-      { key: 'quality', label: 'iShares Edge MSCI World Quality Factor' },
+      { key: 'value', label: 'iShares Edge MSCI World Value Factor', y2023: 19.41, y2024: 5.25, y2025: 39.63 },
+      { key: 'quality', label: 'iShares Edge MSCI World Quality Factor', y2023: 21.34, y2024: 24.04, y2025: 2.01 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -412,10 +437,13 @@ export const FAMILIES = [
       chain: ['High Dividend (2 397 lignes)', 'Quality Dividend (~200)', 'Dividend Aristocrats mondial (100)'],
       notes: ['⚠️ Plus le filtre est exigeant (Quality, Aristocrats), plus le nombre de lignes chute.', '→ Concentration sectorielle plus forte (finance, énergie, conso de base) sur les deux derniers.'],
     },
+    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Aristocrats recoupé
+    // avec la série "strat_dividendes" déjà vérifiée cette session dans portfolio-generator/data.js
+    // (même fonds, écart <0,3 pt) — retenue ici la performance nette de frais.
     perfFunds: [
-      { key: 'high_div', label: 'Vanguard FTSE AW High Dividend' },
-      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend' },
-      { key: 'aristocrats', label: 'SPDR S&P Global Dividend Aristocrats' },
+      { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', y2023: 7.64, y2024: 16.36, y2025: 11.76 },
+      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 13.09, y2024: 16.74, y2025: 8.68 },
+      { key: 'aristocrats', label: 'SPDR S&P Global Dividend Aristocrats', y2023: 6.93, y2024: 7.74, y2025: 17.02 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -454,9 +482,12 @@ export const FAMILIES = [
       chain: ['MSCI World classique (1 283 lignes)', 'MSCI World Min Vol (285, sous-ensemble)'],
       notes: ['⚠️ Le Min Vol n\'est pas « diversifié au hasard » : il surpondère fortement certains secteurs défensifs (santé, conso de base, utilities).', '→ Moins de casse en baisse, mais aussi moins de participation aux fortes hausses (comme 2023-2024).'],
     },
+    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). DCAM : même limitation
+    // que dans la famille Monde large (fonds lancé le 04/03/2025, pas d'année pleine ni d'historique
+    // 2023-2024) — laissé à vérifier plutôt que de substituer une performance d'indice.
     perfFunds: [
-      { key: 'minvol', label: 'iShares Edge MSCI World Min Vol' },
-      { key: 'world', label: 'Amundi PEA Monde (DCAM)' },
+      { key: 'minvol', label: 'iShares Edge MSCI World Min Vol', y2023: 7.8, y2024: 10.8, y2025: 10.5 },
+      { key: 'world', label: 'Amundi PEA Monde (DCAM)', y2023: null, y2024: null, y2025: null },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -506,10 +537,11 @@ export const FAMILIES = [
       chain: ['MSCI China (576 lignes, offshore + ADR)', 'MSCI China A (410, domestique uniquement)', 'FTSE China 50 (50, ultra-concentré)'],
       notes: ['⚠️ MSCI China et MSCI China A ne se recoupent quasiment pas : deux marchés séparés, deux risques différents (régulation offshore vs contrôle des capitaux domestique).', '→ Le FTSE China 50 concentre l\'essentiel du risque sur une poignée de méga-caps (tech, finance).'],
     },
+    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026).
     perfFunds: [
-      { key: 'msci_china', label: 'iShares MSCI China' },
-      { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)' },
-      { key: 'msci_china_a', label: 'iShares MSCI China A' },
+      { key: 'msci_china', label: 'iShares MSCI China', y2023: -11.4, y2024: 19.2, y2025: 30.8 },
+      { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)', y2023: -16.58, y2024: 39.34, y2025: 13.33 },
+      { key: 'msci_china_a', label: 'iShares MSCI China A', y2023: -13.8, y2024: 11.3, y2025: 26.0 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -555,10 +587,15 @@ export const FAMILIES = [
       chain: ['TOPIX (1 641 lignes, mai 2026)', 'MSCI Japan IMI (957)', 'Nikkei 225 (225, prix-pondéré)'],
       notes: ['⚠️ Le Nikkei 225, pondéré par le prix de l\'action et non la capitalisation, peut sur-pondérer des valeurs chères mais économiquement mineures.', '→ TOPIX et MSCI Japan (pondérés par capitalisation) sont jugés plus représentatifs de l\'économie japonaise réelle.'],
     },
+    // Performance 2023-2025 (source : justETF/DWS, recherche web du 02/09/2026, devise EUR).
+    // MSCI Japan IMI : deux sources nommées (justETF vs fiche BlackRock) donnent des séries
+    // incompatibles (+14,73/+14,31/+11,78 % contre +18,9/+7,5/+25,4 %, écarts jusqu'à 14 pts) —
+    // contradiction non résolue après plusieurs recherches, laissé à vérifier plutôt que de trancher
+    // arbitrairement entre les deux.
     perfFunds: [
-      { key: 'nikkei', label: 'Xtrackers Nikkei 225' },
-      { key: 'topix', label: 'Amundi PEA Japon (TOPIX)' },
-      { key: 'msci_japan', label: 'iShares Core MSCI Japan IMI' },
+      { key: 'nikkei', label: 'Xtrackers Nikkei 225', y2023: 17.41, y2024: 15.94, y2025: 13.58 },
+      { key: 'topix', label: 'Amundi PEA Japon (TOPIX)', y2023: 15.27, y2024: 14.56, y2025: 10.22 },
+      { key: 'msci_japan', label: 'iShares Core MSCI Japan IMI', y2023: null, y2024: null, y2025: null },
     ],
     verdictTitle: '✅ LE VERDICT POUR UN PEA',
     verdict: [
@@ -628,24 +665,25 @@ export default function IndexComparator() {
           </div>
 
           <div className="xc-panel">
-            <p className="xc-eyebrow">Performance (à saisir avant publication)</p>
-            <p className="xc-hint">⚠️ Aucune performance n'est stockée en dur : vérifie chaque valeur sur justETF ou le site de l'émetteur avant de publier.</p>
+            <p className="xc-eyebrow">Performance</p>
+            <p className="xc-hint">2023/2024/2025 : rendements annuels réels, sourcés et stockés dans le code (cf. commentaires de sourcing). Seul le YTD est saisi ici — donnée continue, impossible à figer.</p>
             {family.perfFunds.map((f) => {
               const v = perfValues[f.key] || {}
               return (
                 <div key={f.key} className="xc-fund-block">
                   <p className="xc-fund-label">{f.label}</p>
-                  <div className="xc-row3">
-                    <input className="xc-control" type="text" inputMode="decimal" placeholder="2023 %" value={v.y2023 ?? ''} onChange={(e) => setFundValue(f.key, 'y2023', e.target.value)} />
-                    <input className="xc-control" type="text" inputMode="decimal" placeholder="2024 %" value={v.y2024 ?? ''} onChange={(e) => setFundValue(f.key, 'y2024', e.target.value)} />
-                    <input className="xc-control" type="text" inputMode="decimal" placeholder="2025 %" value={v.y2025 ?? ''} onChange={(e) => setFundValue(f.key, 'y2025', e.target.value)} />
-                  </div>
+                  <p className="xc-perf-readout">
+                    2023 {fmtPct(f.y2023) ?? '[à vérifier]'} · 2024 {fmtPct(f.y2024) ?? '[à vérifier]'} · 2025 {fmtPct(f.y2025) ?? '[à vérifier]'}
+                  </p>
                   <label className="xc-ytd-toggle">
                     <input type="checkbox" checked={!!v.ytdEnabled} onChange={(e) => setFundValue(f.key, 'ytdEnabled', e.target.checked)} />
                     Inclure le YTD
                   </label>
                   {v.ytdEnabled && (
-                    <input className="xc-control" type="text" inputMode="decimal" placeholder="YTD %" value={v.ytd ?? ''} onChange={(e) => setFundValue(f.key, 'ytd', e.target.value)} />
+                    <>
+                      <input className="xc-control" type="text" inputMode="decimal" placeholder="YTD %" value={v.ytd ?? ''} onChange={(e) => setFundValue(f.key, 'ytd', e.target.value)} />
+                      <p className="xc-hint xc-hint-tight">⚠️ Donnée continue : vérifie le YTD sur justETF ou le site de l'émetteur avant publication.</p>
+                    </>
                   )}
                 </div>
               )
