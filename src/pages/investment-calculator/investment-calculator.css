@@ -52,6 +52,7 @@ select.ic-control { padding-right: 30px; cursor: pointer; }
 .ic-segmented button:disabled { opacity: .4; cursor: not-allowed; }
 .ic-hint { font-size: 11.5px; color: var(--ic-ink-faint); line-height: 1.5; margin: 0; }
 .ic-field-error { font-size: 11.5px; color: var(--ic-negative); margin: -4px 0 0; }
+.ic-field-warning { font-size: 11.5px; color: #fbbf24; margin: 6px 0 0; line-height: 1.5; }
 .ic-current-level { font-size: 12px; color: var(--ic-ink-dim); background: var(--ic-surface-hover); border: 1px solid var(--ic-border-soft); border-radius: 8px; padding: 8px 10px; margin: 6px 0 0; }
 .ic-current-level strong { font-family: var(--ic-font-mono); color: var(--ic-accent-bright); font-size: 13px; }
 

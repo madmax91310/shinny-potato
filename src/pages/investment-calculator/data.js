@@ -638,6 +638,31 @@ export const ASSET_ORDER = [
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
 ]
 
+// DÉPLACÉ le 04/09/2026 depuis tweet-midi/data/marketHistory.js (où cette protection existait
+// seule jusqu'ici) : un seul actif a une plage réellement utilisable plus courte que ses points
+// bruts — LVMH a des points de 2015-01 à 2019-10 explicitement marqués "NON VÉRIFIÉS... valeurs
+// illustratives d'origine conservées" ci-dessus (cf. commentaire sur l'actif lvmh). Centralisé ici
+// (plutôt que dupliqué) pour que le Calculateur ET Tweet Midi appliquent la même règle à partir de
+// la même source — le Calculateur ne la respectait pas du tout avant cette date, laissant calculer
+// silencieusement sur les points illustratifs si l'utilisateur choisissait LVMH avant 2020-12.
+export const VERIFIED_MIN_DATE_OVERRIDES = {
+  lvmh: '2020-12',
+}
+
+// Premier point réellement vérifié pour cet actif (cf. VERIFIED_MIN_DATE_OVERRIDES ci-dessus).
+export function getAssetMinDate(assetId) {
+  return VERIFIED_MIN_DATE_OVERRIDES[assetId] ?? ASSETS[assetId].points[0].date
+}
+
+// Actifs dont l'historique n'a que des points annuels (décembre) sur la quasi-totalité de leur
+// plage utilisable, plutôt qu'un vrai historique mensuel — ethereum et cac40 sur toute leur plage,
+// lvmh sur sa plage vérifiée (post-2020-12, cf. ci-dessus). Un DCA mensuel sur l'un de ces actifs
+// interpole donc linéairement entre deux vraies clôtures pour la quasi-totalité des mois, plutôt
+// que d'utiliser une vraie clôture mensuelle comme pour les autres actifs. Recensé lors de l'audit
+// du 03/09/2026 (Tweet Midi, format Anniversaire — mêmes 3 actifs, même cause) ; réutilisé ici tel
+// quel plutôt que redéfini, pour le Calculateur (avertissement DCA, pas un blocage).
+export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh'])
+
 // Taux Livret A (moyenne annuelle, %) et inflation France INSEE (moyenne annuelle, %).
 // À ajuster si besoin — sert uniquement de comparaison pédagogique.
 export const LIVRET_A = { 2015: 0.9, 2016: 0.75, 2017: 0.75, 2018: 0.75, 2019: 0.75, 2020: 0.52, 2021: 0.5, 2022: 1.4, 2023: 2.9, 2024: 3.0, 2025: 2.16, 2026: 1.6 }
