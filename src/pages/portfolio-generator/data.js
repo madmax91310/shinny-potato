@@ -226,12 +226,16 @@ export const ASSETS = [
   },
   {
     id: "cac40", name: "Amundi CAC 40 UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    // Source pour 2023-2025 : indice CAC 40 GR (dividendes réinvestis), fiche officielle
-    // Euronext, +20,14% / +0,92% / +14,28%. 2020-2022 : NON VÉRIFIÉ en version GR malgré
-    // plusieurs recherches (seule la version « nue », hors dividendes, a pu être confirmée pour
-    // 2021 à ~+28,85%, proche de la valeur d'origine) — valeurs d'origine conservées pour ces
-    // trois années.
-    r: [-7.0, 28.0, -9.0, 20.14, 0.92, 14.28],
+    // 2020-2022 CORRIGÉS le 02/09/2026 : export CSV mensuel réel de l'indice CAC 40 Gross Total
+    // Return (dividendes réinvestis) fourni par l'utilisateur (Investing.com, clôtures 01/2015 à
+    // 09/2026). Ancrage vérifié : les clôtures de décembre 2023/2024/2025 tirées du CSV donnent des
+    // rendements annuels de +20,14 % / +0,92 % / +14,28 %, identiques au 0,01 pt près aux valeurs
+    // déjà en place (sourcées fiche Euronext) — confirme qu'il s'agit bien du même indice GR, donc
+    // fiable pour les années jusque-là non vérifiées. Rendements 2020-2022 recalculés à partir des
+    // clôtures de décembre réelles du même CSV (15 436,40 → 20 357,80 → 18 998,47) : -4,96 % / +31,88 %
+    // / -6,68 %, qui remplacent les valeurs d'origine (-7,0 / +28,0 / -9,0, non vérifiées en version
+    // GR — seule une version « nue » hors dividendes avait pu être approchée pour 2021).
+    r: [-4.96, 31.88, -6.68, 20.14, 0.92, 14.28],
     desc: [
       "les 40 plus grosses capitalisations françaises, de LVMH à TotalEnergies en passant par L'Oréal.",
       "éligible au PEA, avec une fiscalité avantageuse après 5 ans de détention en France.",

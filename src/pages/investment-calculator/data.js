@@ -388,26 +388,59 @@ export const ASSETS = {
     ]),
   },
   silver: {
-    // Source : cours réel de l'argent au comptant (XAG/USD), clôtures annuelles réelles 2015-2025
-    // (MacroTrends "Silver Prices - 100 Year Historical Chart"), puis clôtures réelles de presse pour
-    // 2026 (StatMuse 31/01 ; Databoks/Fortune 30/04 ; Forbes Advisor 20/08). Toutes les valeurs
-    // ci-dessous sont directement sourcées — noter la flambée réelle de janv. 2026 (record intrajournalier
-    // à 121,58 $ le 29/01/2026) suivie d'une correction. Dernier point réel : 20/08/2026.
-    // CORRECTIF du 29/08/2026 (audit demandé par un utilisateur, niveaux vérifiés du bas de série
-    // jusqu'à 2025) : point 2025-12 faux (34,31 $) — l'argent a connu une flambée réelle et massive fin
-    // 2025 (rallye historique, meilleure année depuis 1979 : +147,5% sur l'année selon CNBC/Bullionvault),
-    // pas une hausse modeste. Vraie clôture du 31/12/2025 confirmée par plusieurs sources convergentes
-    // (bullion-rates.com, COMEX, CNBC) : 70,46 $. Corrige aussi l'incohérence avec le point 2026-01
-    // (85,17 $, déjà en place) : l'ancien saut 34,31 $ → 85,17 $ (+148% en un mois) devient un saut
-    // 70,46 $ → 85,17 $ (+21%), bien plus cohérent avec un marché qui continue sa flambée en janvier
-    // 2026 avant le pic à 121,58 $ le 29/01. Toutes les autres années (2015-2024) recoupées et
-    // confirmées correctes lors du même audit — aucune autre correction nécessaire pour cet actif.
+    // REMPLACÉ le 02/09/2026 : série annuelle éparse (11 points + 3 en 2026) remplacée par une série
+    // mensuelle complète, clôtures réelles ("Dernier") de l'export CSV Investing.com "Futures Argent"
+    // (COMEX, contrat continu) fourni par l'utilisateur, janvier 2015 à août 2026. Motivation : cet
+    // actif faisait partie des 3 (avec ethereum et cac40) identifiés lors de l'audit du 01/09/2026 comme
+    // structurellement à risque du même type d'erreur que SOXX (points épars → interpolation linéaire
+    // trompeuse dans le format Anniversaire de Tweet Midi) — la série mensuelle complète résout ce
+    // problème pour cet actif.
+    // Ancrage vérifié avant remplacement : les 11 clôtures de décembre déjà en place (2015-2025,
+    // sourcées spot XAG/USD) correspondent aux nouvelles clôtures de décembre (source futures) à moins
+    // de 2,4% près chaque année — écart normal entre spot et futures continus, aucune dérive de type
+    // SOXX détectée, série d'origine confirmée globalement fiable.
+    // Seule exception : le point 2026-01 (85,17 $, source StatMuse, clôture spot du 31/01) diverge de
+    // ~7,5% de la nouvelle clôture mensuelle futures (78,83 $) — écart plus large que les autres mois,
+    // probablement lié à l'extrême volatilité de ce mois précis (pic intrajournalier réel à 121,58 $ le
+    // 29/01/2026, déjà documenté) plutôt qu'à une erreur. La nouvelle valeur est retenue pour la
+    // cohérence de méthode (une seule source, mensuelle, plutôt que mélanger spot et futures).
     label: 'Argent (once)', tweetPhrase: "l'argent", icon: '🥈', currency: 'USD',
     points: P([
-      '2015-12', 13.80, '2016-12', 15.99, '2017-12', 17.13, '2018-12', 15.52,
-      '2019-12', 17.90, '2020-12', 26.40, '2021-12', 23.35, '2022-12', 23.96,
-      '2023-12', 23.79, '2024-12', 28.87, '2025-12', 70.46,
-      '2026-01', 85.17, '2026-04', 73.74, '2026-08', 65.94,
+      '2015-01', 17.228, '2015-02', 16.558, '2015-03', 16.619, '2015-04', 16.153,
+      '2015-05', 16.721, '2015-06', 15.581, '2015-07', 14.765, '2015-08', 14.581,
+      '2015-09', 14.518, '2015-10', 15.584, '2015-11', 14.072, '2015-12', 13.803,
+      '2016-01', 14.255, '2016-02', 14.918, '2016-03', 15.483, '2016-04', 17.819,
+      '2016-05', 16.018, '2016-06', 18.623, '2016-07', 20.393, '2016-08', 18.675,
+      '2016-09', 19.214, '2016-10', 17.835, '2016-11', 16.454, '2016-12', 15.989,
+      '2017-01', 17.543, '2017-02', 18.469, '2017-03', 18.206, '2017-04', 17.408,
+      '2017-05', 17.481, '2017-06', 16.654, '2017-07', 16.884, '2017-08', 17.575,
+      '2017-09', 16.847, '2017-10', 16.726, '2017-11', 16.445, '2017-12', 16.923,
+      '2018-01', 17.284, '2018-02', 16.407, '2018-03', 16.297, '2018-04', 16.401,
+      '2018-05', 16.503, '2018-06', 16.041, '2018-07', 15.597, '2018-08', 14.551,
+      '2018-09', 14.290, '2018-10', 14.324, '2018-11', 14.356, '2018-12', 15.260,
+      '2019-01', 16.120, '2019-02', 15.634, '2019-03', 15.019, '2019-04', 14.984,
+      '2019-05', 14.530, '2019-06', 15.294, '2019-07', 16.444, '2019-08', 18.274,
+      '2019-09', 16.998, '2019-10', 18.124, '2019-11', 17.009, '2019-12', 18.001,
+      '2020-01', 18.032, '2020-02', 17.735, '2020-03', 14.180, '2020-04', 14.973,
+      '2020-05', 18.009, '2020-06', 18.637, '2020-07', 23.450, '2020-08', 28.530,
+      '2020-09', 23.494, '2020-10', 23.408, '2020-11', 22.583, '2020-12', 26.573,
+      '2021-01', 25.945, '2021-02', 27.685, '2021-03', 24.552, '2021-04', 26.085,
+      '2021-05', 27.955, '2021-06', 26.194, '2021-07', 25.799, '2021-08', 23.991,
+      '2021-09', 22.047, '2021-10', 24.139, '2021-11', 22.799, '2021-12', 23.060,
+      '2022-01', 22.419, '2022-02', 24.366, '2022-03', 25.158, '2022-04', 23.181,
+      '2022-05', 21.737, '2022-06', 20.352, '2022-07', 19.918, '2022-08', 17.849,
+      '2022-09', 18.712, '2022-10', 19.184, '2022-11', 21.727, '2022-12', 24.250,
+      '2023-01', 23.930, '2023-02', 21.071, '2023-03', 24.076, '2023-04', 25.209,
+      '2023-05', 23.696, '2023-06', 22.798, '2023-07', 25.092, '2023-08', 24.692,
+      '2023-09', 22.741, '2023-10', 23.075, '2023-11', 25.541, '2023-12', 24.372,
+      '2024-01', 23.282, '2024-02', 22.885, '2024-03', 24.879, '2024-04', 26.654,
+      '2024-05', 31.680, '2024-06', 29.256, '2024-07', 29.073, '2024-08', 29.827,
+      '2024-09', 31.458, '2024-10', 32.953, '2024-11', 30.455, '2024-12', 29.412,
+      '2025-01', 32.493, '2025-02', 32.110, '2025-03', 34.611, '2025-04', 32.828,
+      '2025-05', 33.423, '2025-06', 36.172, '2025-07', 36.712, '2025-08', 40.662,
+      '2025-09', 46.640, '2025-10', 48.569, '2025-11', 56.711, '2025-12', 70.896,
+      '2026-01', 78.832, '2026-02', 93.291, '2026-03', 75.198, '2026-04', 73.534,
+      '2026-05', 75.875, '2026-06', 59.922, '2026-07', 57.786, '2026-08', 66.990,
     ]),
   },
   lvmh: {
