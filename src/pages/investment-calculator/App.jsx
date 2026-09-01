@@ -128,6 +128,10 @@ export default function App() {
   const customEndInvalid = isCustom && state.customEnd !== '' && parseFloat(state.customEnd) <= 0
   const resultBlocked = amountInvalid || customStartInvalid || customEndInvalid
   const d = useMemo(() => derive(state), [state])
+  // Dernier point RÉELLEMENT en base pour l'actif choisi (jamais LATEST_YM en dur : pour
+  // stoxx600/sp500/msciWorld, le dernier point réel est antérieur d'un mois, cf.
+  // data.js — donner LATEST_YM ici afficherait une date à laquelle ce prix n'est pas vérifié).
+  const lastPoint = !isCustom ? ASSETS[state.assetId].points[ASSETS[state.assetId].points.length - 1] : null
 
   const set = (patch) => setState((s) => ({ ...s, ...patch }))
 
@@ -164,6 +168,13 @@ export default function App() {
                   <option value="custom">✎ Autre (saisie manuelle)</option>
                 </select>
               </div>
+              {!isCustom && lastPoint && (
+                <p className="ic-current-level">
+                  📍 Dernier niveau connu :{' '}
+                  <strong>{fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
+                  {' '}(au {MONTHS_FULL[parseInt(lastPoint.date.split('-')[1], 10) - 1]} {lastPoint.date.split('-')[0]})
+                </p>
+              )}
               {isCustom && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 4 }}>
                   <input
