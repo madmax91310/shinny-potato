@@ -145,7 +145,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: ['STOXX 600 (600 lignes)', 'MSCI Europe (~430)', 'EURO STOXX 50 (50)'],
+      // Comptages exacts vérifiés via recherche web (facsheets STOXX/MSCI) le 01/09/2026.
+      chain: ['STOXX 600 (600 lignes)', 'MSCI Europe (396)', 'EURO STOXX 50 (50)'],
       notes: ['⚠️ Le 50 concentre ton risque : ses 10 plus grosses lignes pèsent +41 % de l\'indice.', '→ Plus volatil, très dépendant du luxe et de la tech euro.'],
     },
     perfFunds: [
@@ -173,9 +174,9 @@ export const FAMILIES = [
     label: '🌍 Monde large',
     intro: 'Tu veux investir « sur le monde entier » mais tu hésites entre MSCI World, MSCI ACWI et FTSE All-World ? 🌍\nOn décrypte les trois 👇',
     indices: [
-      { name: 'MSCI World', desc: 'Les ~1 500 plus grandes entreprises de 23 pays développés.', tag: 'Le classique du monde développé 🏛️' },
-      { name: 'MSCI ACWI', desc: 'Le MSCI World + les marchés émergents (Chine, Inde, Brésil…), ~2 900 valeurs.', tag: 'Le monde presque entier 🌐' },
-      { name: 'FTSE All-World', desc: 'Développés + émergents comme l\'ACWI, mais avec en plus les mid caps : ~4 300 valeurs.', tag: 'Le plus large des trois 🔭' },
+      { name: 'MSCI World', desc: 'Les 1 283 plus grandes entreprises de 23 pays développés.', tag: 'Le classique du monde développé 🏛️' },
+      { name: 'MSCI ACWI', desc: 'Le MSCI World + les marchés émergents (Chine, Inde, Brésil…), 2 461 valeurs.', tag: 'Le monde presque entier 🌐' },
+      { name: 'FTSE All-World', desc: 'Développés + émergents comme l\'ACWI, mais avec en plus les mid caps : 4 265 valeurs.', tag: 'Le plus large des trois 🔭' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -193,7 +194,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: ['MSCI World (~1 500 lignes)', 'MSCI ACWI (~2 900)', 'FTSE All-World (~4 300)'],
+      // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, juin-juillet 2026) le 01/09/2026.
+      chain: ['MSCI World (1 283 lignes)', 'MSCI ACWI (2 461)', 'FTSE All-World (4 265)'],
       notes: ['⚠️ Peu importe lequel des trois : tous pèsent 60-70 % d\'actions américaines.', '→ Le vrai choix se joue sur les émergents (inclus ou non) et le nombre de lignes, pas sur le poids US.'],
     },
     perfFunds: [
@@ -223,14 +225,19 @@ export const FAMILIES = [
     indices: [
       { name: 'S&P 500', desc: 'Les 500 plus grandes entreprises cotées aux États-Unis.', tag: 'La référence mondiale 🏆' },
       { name: 'Nasdaq 100', desc: 'Les 100 plus grosses non-financières du Nasdaq : ultra tech.', tag: 'Le plus concentré tech 💻' },
-      { name: 'MSCI USA', desc: 'Grandes ET moyennes capitalisations US, ~600 valeurs.', tag: 'Un peu plus large que le S&P 500 📏' },
+      { name: 'MSCI USA', desc: 'Grandes ET moyennes capitalisations US, 527 valeurs.', tag: 'Un peu plus large que le S&P 500 📏' },
       { name: 'Russell 1000', desc: 'Les 1 000 plus grandes valeurs US, ~93 % de la capitalisation du marché américain.', tag: 'Le plus large des quatre 🌊' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
       {
-        indexName: 'S&P 500', choiceNote: 'un SEUL choix', pea: true,
-        funds: [{ name: 'Amundi PEA S&P 500 UCITS ETF (Acc)', isin: 'FR0011871128', ter: '0,12 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '1,15 Md€' }],
+        indexName: 'S&P 500', choiceNote: 'le plus gros ≠ le moins cher', pea: true,
+        // BNP Paribas Easy plus gros encours (3,3 Md€ vs 1,15 Md€) mais TER légèrement supérieur —
+        // vérifié via recherche web le 01/09/2026, corrige un choix initial qui ne montrait que l'option Amundi.
+        funds: [
+          { name: 'BNP Paribas Easy S&P 500 UCITS ETF (Acc)', isin: 'FR0011550185', ter: '0,14 %', aum: '3,3 Md€', note: '(le plus gros encours)' },
+          { name: 'Amundi PEA S&P 500 UCITS ETF (Acc)', isin: 'FR0011871128', ter: '0,12 %', aum: '1,15 Md€', note: '(le moins cher ⚡)' },
+        ],
       },
       {
         indexName: 'Nasdaq 100', choiceNote: 'un SEUL choix', pea: true,
@@ -247,7 +254,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: ['Russell 1000 (1 000 lignes)', 'MSCI USA (~600)', 'S&P 500 (500)', 'Nasdaq 100 (100)'],
+      // Comptages exacts vérifiés via recherche web (factsheets MSCI/S&P, juillet 2026) le 01/09/2026.
+      chain: ['Russell 1000 (1 000 lignes)', 'MSCI USA (527)', 'S&P 500 (500)', 'Nasdaq 100 (100)'],
       notes: ['⚠️ Le Nasdaq 100 exclut tout le secteur financier et concentre près de 50 % sur ses 10 plus grosses lignes.', '→ Le plus étroit des quatre, et le plus volatil.'],
     },
     perfFunds: [
@@ -274,21 +282,21 @@ export const FAMILIES = [
     label: '🌏 Émergents',
     intro: 'MSCI EM, FTSE EM, MSCI EM ex-China… tu veux investir sur les émergents mais lequel choisir ? 🌏\nOn décrypte les trois 👇',
     indices: [
-      { name: 'MSCI EM', desc: '~1 400 valeurs de ~24 pays émergents (Chine, Inde, Taïwan, Brésil…).', tag: 'La référence émergents 🏳️' },
-      { name: 'FTSE EM', desc: 'Composition proche mais différente : la Corée du Sud y est classée « développée », donc exclue.', bullets: ['✅ Plus de mid/small caps'], tag: 'Sans la Corée du Sud 🇰🇷' },
-      { name: 'MSCI EM ex-China', desc: 'Le MSCI EM… sans la Chine, pour qui veut diversifier son risque chinois.', tag: 'L\'anti-concentration Chine 🚫' },
+      { name: 'MSCI EM IMI', desc: '3 017 valeurs de ~24 pays émergents (Chine, Inde, Taïwan, Brésil…) — grandes, moyennes ET petites capitalisations.', tag: 'La référence émergents, en version large 🏳️' },
+      { name: 'FTSE EM', desc: '2 290 valeurs. Composition proche mais différente : la Corée du Sud y est classée « développée », donc exclue.', tag: 'Sans la Corée du Sud 🇰🇷' },
+      { name: 'MSCI EM ex-China', desc: '625 valeurs. Le MSCI EM… sans la Chine, pour qui veut diversifier son risque chinois.', tag: 'L\'anti-concentration Chine 🚫' },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES — AUCUNE OPTION PEA 💳',
     etfGroups: [
       {
-        indexName: 'MSCI EM', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
+        indexName: 'MSCI EM IMI', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
         funds: [{ name: 'iShares Core MSCI EM IMI UCITS ETF (Acc)', isin: 'IE00BKM4GZ66', ter: '0,18 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '36,8 Md€' }],
       },
       {
         indexName: 'FTSE EM', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
         funds: [
-          { name: 'Vanguard FTSE Emerging Markets UCITS ETF (Dist)', isin: 'IE00B3VVMM84', ter: '0,17 %', aum: '3,2 Md€' },
           { name: 'Vanguard FTSE Emerging Markets UCITS ETF (Acc)', isin: 'IE00BK5BR733', ter: '0,17 %', aum: '2,0 Md€' },
+          { name: 'Vanguard FTSE Emerging Markets UCITS ETF (Dist)', isin: 'IE00B3VVMM84', ter: '0,17 %', aum: '3,2 Md€', note: '(plus gros encours)' },
         ],
       },
       {
@@ -297,7 +305,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: ['MSCI EM (~1 400 lignes)', 'FTSE EM (~1 900, sans la Corée du Sud)', 'MSCI EM ex-China (~800, sans la Chine)'],
+      // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, 2026) le 01/09/2026.
+      chain: ['MSCI EM IMI (3 017 lignes)', 'FTSE EM (2 290, sans la Corée du Sud)', 'MSCI EM ex-China (625, sans la Chine)'],
       notes: ['⚠️ La Chine pèse encore ~25-30 % du MSCI EM malgré sa baisse ces dernières années.', '→ Le ex-China est un pari géopolitique assumé, pas juste une diversification de plus.'],
     },
     perfFunds: [
@@ -325,8 +334,8 @@ export const FAMILIES = [
     label: '🎨 Style (facteurs)',
     intro: 'MSCI World Growth, Value, Quality… les grands styles d\'investissement factoriel, expliqués simplement 🎨\nOn décrypte (presque) les trois 👇',
     indices: [
-      { name: 'MSCI World Value', desc: 'Entreprises jugées « décotées » par rapport à leurs fondamentaux (banques, énergie, industrie…).', tag: 'Le style contrarian 📉' },
-      { name: 'MSCI World Quality', desc: 'Entreprises à la rentabilité stable et à l\'endettement maîtrisé (ROE élevé, bénéfices réguliers).', tag: 'Le style « qualité avant tout » 💎' },
+      { name: 'MSCI World Value', desc: '401 valeurs jugées « décotées » par rapport à leurs fondamentaux (banques, énergie, industrie…).', bullets: ['ℹ️ Indice exact répliqué : MSCI World Enhanced Value'], tag: 'Le style contrarian 📉' },
+      { name: 'MSCI World Quality', desc: '301 valeurs à la rentabilité stable et à l\'endettement maîtrisé (ROE élevé, bénéfices réguliers).', bullets: ['ℹ️ Indice exact répliqué : MSCI World Sector Neutral Quality'], tag: 'Le style « qualité avant tout » 💎' },
       { name: 'MSCI World Growth', desc: 'Entreprises à forte croissance attendue des bénéfices (tech, santé innovante…).', tag: 'Non confirmé cette session ⚠️' },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES — AUCUNE OPTION PEA 💳',
@@ -346,7 +355,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: ['MSCI World (~1 500 lignes, univers de départ)', 'MSCI World Value (~380)', 'MSCI World Quality (~300)'],
+      // Comptages exacts vérifiés via recherche web (factsheets MSCI, juillet 2026) le 01/09/2026.
+      chain: ['MSCI World (1 283 lignes, univers de départ)', 'MSCI World Value (401)', 'MSCI World Quality (301)'],
       notes: ['⚠️ Contrairement à la famille Europe, ces indices factoriels ne s\'emboîtent pas : ce sont des sous-ensembles indépendants du MSCI World, pas des poupées russes.'],
     },
     perfFunds: [
@@ -372,19 +382,22 @@ export const FAMILIES = [
     label: '🟣 Dividendes',
     intro: 'High Dividend, Quality Dividend, Dividend Aristocrats… 3 façons différentes de viser le rendement 🟣\nOn décrypte les trois 👇',
     indices: [
-      { name: 'High Dividend', desc: 'Les entreprises mondiales au rendement de dividende le plus élevé, sans filtre de qualité.', tag: 'Le rendement brut, sans filtre 💰' },
-      { name: 'Quality Dividend', desc: 'Dividende + critères de solidité financière (rentabilité, faible endettement).', tag: 'Le compromis rendement/solidité 💎' },
-      { name: 'Dividend Aristocrats', desc: 'Des entreprises qui versent ET augmentent leur dividende depuis au moins 10 ans consécutifs.', tag: 'Le plus exigeant des trois 🏅' },
+      { name: 'High Dividend', desc: '2 397 entreprises mondiales au rendement de dividende le plus élevé, sans filtre de qualité.', tag: 'Le rendement brut, sans filtre 💰' },
+      { name: 'Quality Dividend', desc: '~200 valeurs (194-211 selon la date de rebalancement) : dividende + critères de solidité financière (rentabilité, faible endettement).', tag: 'Le compromis rendement/solidité 💎' },
+      { name: 'Dividend Aristocrats', desc: '100 entreprises qui versent ET augmentent leur dividende depuis au moins 10 ans consécutifs.', tag: 'Le plus exigeant des trois 🏅' },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES — AUCUNE OPTION PEA 💳',
     etfGroups: [
       {
+        // Parts Dist choisies ici (pas Acc) : c'est la famille Dividendes, l'investisseur veut
+        // typiquement percevoir le revenu — et les deux parts Dist ci-dessous sont aussi les plus
+        // gros encours de leur fonds (vérifié via recherche web le 01/09/2026).
         indexName: 'High Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF (Acc)', isin: 'IE00BK5BR626', ter: '0,29 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '2,94 Md€' }],
+        funds: [{ name: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF (Dist)', isin: 'IE00B8GKDB10', ter: '0,29 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '9,8 Md€' }],
       },
       {
         indexName: 'Quality Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares MSCI World Quality Dividend Advanced UCITS ETF (Acc)', isin: 'IE00BKPSFC54', ter: '0,38 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '519 M€' }],
+        funds: [{ name: 'iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)', isin: 'IE00BYYHSQ67', ter: '0,38 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '1,5 Md€' }],
       },
       {
         indexName: 'Dividend Aristocrats', choiceNote: 'le plus de choix', pea: false,
@@ -395,7 +408,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: ['High Dividend (~1 900 lignes)', 'Quality Dividend (~300)', 'Dividend Aristocrats mondial (~100)'],
+      // Comptages exacts vérifiés via recherche web (factsheets FTSE/MSCI/S&P, 2026) le 01/09/2026.
+      chain: ['High Dividend (2 397 lignes)', 'Quality Dividend (~200)', 'Dividend Aristocrats mondial (100)'],
       notes: ['⚠️ Plus le filtre est exigeant (Quality, Aristocrats), plus le nombre de lignes chute.', '→ Concentration sectorielle plus forte (finance, énergie, conso de base) sur les deux derniers.'],
     },
     perfFunds: [
@@ -421,8 +435,8 @@ export const FAMILIES = [
     label: '🛡️ Faible volatilité',
     intro: 'MSCI World Minimum Volatility vs MSCI World classique : est-ce que « moins de risque » veut vraiment dire « moins de performance » ? 🛡️\nOn décrypte les deux 👇',
     indices: [
-      { name: 'MSCI World Min Vol', desc: 'Sélectionne et pondère les valeurs du MSCI World pour minimiser la volatilité globale du panier.', tag: 'Le style « anti-turbulences » 🛡️' },
-      { name: 'MSCI World classique', desc: 'Les ~1 500 plus grandes entreprises de 23 pays développés, sans filtre de volatilité.', tag: 'Le point de comparaison 🏛️' },
+      { name: 'MSCI World Min Vol', desc: '285 valeurs sélectionnées et pondérées pour minimiser la volatilité globale du panier.', tag: 'Le style « anti-turbulences » 🛡️' },
+      { name: 'MSCI World classique', desc: 'Les 1 283 plus grandes entreprises de 23 pays développés, sans filtre de volatilité.', tag: 'Le point de comparaison 🏛️' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -436,7 +450,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: ['MSCI World classique (~1 500 lignes)', 'MSCI World Min Vol (~300, sous-ensemble)'],
+      // Comptages exacts vérifiés via recherche web (factsheets MSCI, juillet 2026) le 01/09/2026.
+      chain: ['MSCI World classique (1 283 lignes)', 'MSCI World Min Vol (285, sous-ensemble)'],
       notes: ['⚠️ Le Min Vol n\'est pas « diversifié au hasard » : il surpondère fortement certains secteurs défensifs (santé, conso de base, utilities).', '→ Moins de casse en baisse, mais aussi moins de participation aux fortes hausses (comme 2023-2024).'],
     },
     perfFunds: [
@@ -463,9 +478,9 @@ export const FAMILIES = [
     label: '🇨🇳 Chine',
     intro: 'MSCI China, FTSE China, MSCI China A… la Chine boursière n\'est pas un seul marché, mais trois univers différents 🇨🇳\nOn décrypte les trois 👇',
     indices: [
-      { name: 'MSCI China', desc: 'Actions chinoises cotées à Hong Kong, ADR aux USA et quelques A-shares : la Chine « offshore ».', tag: 'La référence la plus suivie 🏙️' },
+      { name: 'MSCI China', desc: '576 valeurs : actions chinoises cotées à Hong Kong, ADR aux USA et quelques A-shares — la Chine « offshore ».', tag: 'La référence la plus suivie 🏙️' },
       { name: 'FTSE China 50', desc: 'Seulement les 50 plus grosses valeurs chinoises cotées à Hong Kong.', tag: 'Ultra-concentré 🎯' },
-      { name: 'MSCI China A', desc: 'Uniquement les actions domestiques cotées à Shanghai/Shenzhen (marché intérieur, via Stock Connect).', tag: 'La Chine « intérieure » 🏯' },
+      { name: 'MSCI China A', desc: '410 valeurs : uniquement les actions domestiques cotées à Shanghai/Shenzhen (marché intérieur, via Stock Connect).', tag: 'La Chine « intérieure » 🏯' },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES (PEA / CTO) 💳',
     etfGroups: [
@@ -487,7 +502,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: ['MSCI China (~700 lignes, offshore + ADR)', 'MSCI China A (~480, domestique uniquement)', 'FTSE China 50 (50, ultra-concentré)'],
+      // Comptages exacts vérifiés via recherche web (factsheets MSCI, 2026) le 01/09/2026.
+      chain: ['MSCI China (576 lignes, offshore + ADR)', 'MSCI China A (410, domestique uniquement)', 'FTSE China 50 (50, ultra-concentré)'],
       notes: ['⚠️ MSCI China et MSCI China A ne se recoupent quasiment pas : deux marchés séparés, deux risques différents (régulation offshore vs contrôle des capitaux domestique).', '→ Le FTSE China 50 concentre l\'essentiel du risque sur une poignée de méga-caps (tech, finance).'],
     },
     perfFunds: [
@@ -515,8 +531,8 @@ export const FAMILIES = [
     intro: 'Nikkei 225, TOPIX, MSCI Japan… le plus connu (Nikkei) n\'est pas forcément le plus pertinent pour investir 🇯🇵\nOn décrypte les trois 👇',
     indices: [
       { name: 'Nikkei 225', desc: 'Les 225 plus grandes valeurs de la Bourse de Tokyo, indice pondéré par le PRIX de l\'action (pas la capitalisation).', tag: 'Le plus connu, pas le plus rigoureux 📰' },
-      { name: 'TOPIX', desc: 'Quasiment toutes les valeurs du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation.', tag: 'Le plus large et le plus représentatif 🗾' },
-      { name: 'MSCI Japan', desc: 'Les grandes et moyennes capitalisations japonaises selon la méthodologie MSCI (comparable aux autres indices MSCI Pays).', tag: 'Le standard international 🌐' },
+      { name: 'TOPIX', desc: '1 641 valeurs (mai 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation.', bullets: ['⚠️ Réforme en cours : pourrait passer sous 1 000 valeurs d\'ici oct. 2026'], tag: 'Le plus large et le plus représentatif 🗾' },
+      { name: 'MSCI Japan IMI', desc: '957 grandes, moyennes ET petites capitalisations japonaises (méthodologie MSCI, comparable aux autres indices MSCI Pays).', tag: 'Le standard international 🌐' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -529,12 +545,14 @@ export const FAMILIES = [
         funds: [{ name: 'Amundi PEA Japon (TOPIX) UCITS ETF', isin: 'FR0013411980', ter: '0,20 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '148 M€' }],
       },
       {
-        indexName: 'MSCI Japan', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
+        indexName: 'MSCI Japan IMI', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
         funds: [{ name: 'iShares Core MSCI Japan IMI UCITS ETF (Acc)', isin: 'IE00B4L5YX21', ter: '0,12 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '7,2 Md€' }],
       },
     ],
     diversification: {
-      chain: ['TOPIX (~2 000 lignes)', 'MSCI Japan IMI (~1 200)', 'Nikkei 225 (225, prix-pondéré)'],
+      // Comptages exacts vérifiés via recherche web (JPX, factsheet MSCI) le 01/09/2026 — TOPIX en
+      // cours de réforme (annoncée pour repasser sous 1 000 valeurs d'ici octobre 2026).
+      chain: ['TOPIX (1 641 lignes, mai 2026)', 'MSCI Japan IMI (957)', 'Nikkei 225 (225, prix-pondéré)'],
       notes: ['⚠️ Le Nikkei 225, pondéré par le prix de l\'action et non la capitalisation, peut sur-pondérer des valeurs chères mais économiquement mineures.', '→ TOPIX et MSCI Japan (pondérés par capitalisation) sont jugés plus représentatifs de l\'économie japonaise réelle.'],
     },
     perfFunds: [
