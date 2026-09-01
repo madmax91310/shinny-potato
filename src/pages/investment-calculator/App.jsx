@@ -18,6 +18,7 @@ const INITIAL_STATE = {
   customLabel: '',
   customStart: '',
   customEnd: '',
+  overridePriceRaw: '',
 }
 
 function CompareItem({ label, value, deltaVal, highlight }) {
@@ -136,7 +137,12 @@ export default function App() {
   const startYm = state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth)
   const startDateInvalid = assetMinDate !== null && ymIndex(startYm) < ymIndex(assetMinDate)
   const assetMinDateLabel = assetMinDate ? `${MONTHS_SHORT[parseInt(assetMinDate.split('-')[1], 10) - 1]} ${assetMinDate.split('-')[0]}` : null
-  const resultBlocked = amountInvalid || customStartInvalid || customEndInvalid || startDateInvalid
+  // Prix actualisé (saisie manuelle, optionnelle) : mêmes règles que montant/customStart/customEnd
+  // — vide = état neutre (on garde le dernier niveau connu), une valeur réellement saisie à 0 ou
+  // en négatif ne doit jamais atteindre le calcul.
+  const overridePriceInvalid = !isCustom && state.overridePriceRaw !== '' && !(parseFloat(state.overridePriceRaw) > 0)
+  const hasValidOverride = !isCustom && !overridePriceInvalid && state.overridePriceRaw !== ''
+  const resultBlocked = amountInvalid || customStartInvalid || customEndInvalid || startDateInvalid || overridePriceInvalid
   const d = useMemo(() => derive(state), [state])
   // Avertissement (pas un blocage) : cf. SPARSE_MONTHLY_DATA_IDS dans data.js — ethereum/cac40/lvmh
   // n'ont que des points annuels sur leur plage utilisable, donc un DCA mensuel sur l'un d'eux
@@ -178,7 +184,11 @@ export default function App() {
             <p className="ic-eyebrow">Actif</p>
             <div className="ic-field">
               <div className="ic-select-wrap">
-                <select className="ic-control" value={state.assetId} onChange={(e) => set({ assetId: e.target.value })}>
+                <select
+                  className="ic-control"
+                  value={state.assetId}
+                  onChange={(e) => set({ assetId: e.target.value, overridePriceRaw: '' })}
+                >
                   {ASSET_ORDER.map((id) => (
                     <option key={id} value={id}>
                       {ASSETS[id].icon} {ASSETS[id].label}
@@ -188,11 +198,31 @@ export default function App() {
                 </select>
               </div>
               {!isCustom && lastPoint && (
-                <p className="ic-current-level">
-                  📍 Dernier niveau connu :{' '}
-                  <strong>{fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
-                  {' '}(au {lastPointLabel})
-                </p>
+                <>
+                  <p className="ic-current-level">
+                    📍 Dernier niveau connu :{' '}
+                    <strong>{fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
+                    {' '}(au {lastPointLabel})
+                  </p>
+                  <div style={{ marginTop: 6 }}>
+                    <input
+                      className="ic-control"
+                      type="number"
+                      min="0"
+                      step="any"
+                      placeholder={`Prix à jour (optionnel) — sinon ${lastPoint.price}`}
+                      value={state.overridePriceRaw}
+                      onChange={(e) => set({ overridePriceRaw: e.target.value })}
+                      aria-invalid={overridePriceInvalid}
+                    />
+                    {overridePriceInvalid && <p className="ic-field-error">Le prix à jour doit être supérieur à 0.</p>}
+                    {!overridePriceInvalid && state.overridePriceRaw !== '' && (
+                      <p className="ic-hint">
+                        Calcul basé sur ce prix plutôt que sur le dernier niveau connu — vérifie-le toi-même avant de publier, jamais deviné automatiquement.
+                      </p>
+                    )}
+                  </div>
+                </>
               )}
               {isCustom && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 4 }}>
@@ -326,9 +356,13 @@ export default function App() {
             <p className="ic-hint">
               {isCustom
                 ? 'Le mode DCA nécessite un historique de prix : indisponible en saisie manuelle.'
-                : effectiveMode === 'dca'
-                  ? `Un versement de ${amount.toLocaleString('fr-FR')} € chaque mois depuis la date de départ jusqu'à ${lastPointLabel} (dernière donnée disponible — au-delà, redonne-moi les clôtures récentes pour actualiser).`
-                  : `Un seul versement à la date de départ, valorisé jusqu'à ${lastPointLabel} (dernière donnée disponible).`}
+                : hasValidOverride
+                  ? effectiveMode === 'dca'
+                    ? `Un versement de ${amount.toLocaleString('fr-FR')} € chaque mois depuis la date de départ, valorisé aujourd'hui au prix à jour que tu as saisi.`
+                    : `Un seul versement à la date de départ, valorisé aujourd'hui au prix à jour que tu as saisi.`
+                  : effectiveMode === 'dca'
+                    ? `Un versement de ${amount.toLocaleString('fr-FR')} € chaque mois depuis la date de départ jusqu'à ${lastPointLabel} (dernière donnée disponible — au-delà, redonne-moi les clôtures récentes pour actualiser, ou saisis un prix à jour ci-dessus).`
+                    : `Un seul versement à la date de départ, valorisé jusqu'à ${lastPointLabel} (dernière donnée disponible — ou saisis un prix à jour ci-dessus).`}
             </p>
             {sparseDcaWarning && (
               <p className="ic-field-warning">

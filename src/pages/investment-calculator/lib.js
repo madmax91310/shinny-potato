@@ -131,9 +131,23 @@ export function derive(state) {
   const startYm = clampYm(state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth), LATEST_YM)
   const endYm = LATEST_YM
 
-  const result = isCustom
+  let result = isCustom
     ? computeCustomSeries(startYm, endYm, amount, state.customStart, state.customEnd)
     : computeAssetSeries(ASSETS[state.assetId].points, startYm, endYm, amount, effectiveMode)
+
+  // Prix actualisé saisi à la main (plus récent que le dernier point réel de data.js) : jamais
+  // interpolé ni recalculé mois par mois (ça inventerait des points entre le dernier réel et ce
+  // prix) — seul le point final est remplacé. finalValue = unités totales × prix au dernier mois
+  // dans tous les cas (lump ou DCA, cf. computeAssetSeries), donc le mettre à l'échelle du ratio
+  // prix saisi / prix qu'il remplace reste exact sans reconstituer la série entière.
+  const overridePrice = !isCustom ? parseFloat(state.overridePriceRaw) : NaN
+  if (!isCustom && state.overridePriceRaw !== '' && Number.isFinite(overridePrice) && overridePrice > 0) {
+    const priceReplaced = interpolatePrice(ASSETS[state.assetId].points, endYm)
+    const scale = overridePrice / priceReplaced
+    const finalValue = result.finalValue * scale
+    result = { ...result, finalValue, series: [...result.series.slice(0, -1), finalValue] }
+  }
+
   const livretA = computeBenchmarkSeries(LIVRET_A, startYm, endYm, amount, effectiveMode)
   const inflation = computeBenchmarkSeries(INFLATION, startYm, endYm, amount, effectiveMode)
 
