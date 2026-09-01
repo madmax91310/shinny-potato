@@ -246,8 +246,8 @@ export const FAMILIES = [
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '💳 En PEA, tu veux le fonds avec le plus d\'encours ?', a: 'CW8 (Amundi MSCI World) — 6,5 Md€, TER 0,38 %.' },
-      { q: '💸 En PEA, tu veux le moins cher ?', a: 'WPEA ou DCAM, à égalité à 0,20 %.' },
+      { q: '💸 En PEA, tu veux le moins cher ?', a: 'WPEA ou DCAM, à égalité à 0,20 % — moins cher que CW8 (0,38 %), pour le même indice.' },
+      { q: '💳 En PEA, tu veux le fonds avec le plus d\'encours (pas forcément le meilleur choix) ?', a: 'CW8 (Amundi MSCI World) — 6,5 Md€, mais TER plus élevé (0,38 %) que WPEA/DCAM.' },
       { q: '🌐 Tu veux les émergents inclus, mais en PEA ?', a: 'GPEA (Amundi PEA Global ACWI) — tout nouveau, lancé en juillet 2026.' },
       { q: '💰 Le moins cher toutes catégories confondues, en CTO ?', a: 'Xtrackers FTSE All-World, à 0,07 %.' },
     ],
@@ -335,6 +335,15 @@ export const FAMILIES = [
   // un vrai fonds « émergents ». Ces 5 fonds ne suivent pas le même indice
   // ni la même zone : pas de comparaison « indice A vs B », mais 5 fiches
   // par zone géographique.
+  // PLEM re-vérifié le 03/09/2026 via une 2e source indépendante
+  // (boursedirect.fr + zonebourse.com, distincts de la recherche initiale) :
+  // ISIN FR0011440478 confirmé correspondre bien à ce fonds précis, TER
+  // 0,55 % confirmé exact, fonds confirmé actif (coté sur Euronext Paris,
+  // données à jour août 2026, pas de mention de liquidation/fusion).
+  // Encours mis à jour à 68 M€ (contre 61 M€ initialement) sur la base
+  // d'un point plus récent et précisément daté (68,43 M€ au 12/08/2026,
+  // zonebourse.com, en hausse depuis 37,27 M€ au 30/09/2025 — cohérent
+  // avec un petit fonds en collecte, pas un signal d'anomalie).
   {
     id: 'emergents-pea',
     label: '🌏 Émergents (PEA)',
@@ -366,7 +375,7 @@ export const FAMILIES = [
       },
       {
         indexName: 'EMEA émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: 'Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF', ticker: 'PLEM', isin: 'FR0011440478', ter: '0,55 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '61 M€', note: '(la plus confidentielle)' }],
+        funds: [{ name: 'Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF', ticker: 'PLEM', isin: 'FR0011440478', ter: '0,55 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '68 M€', note: '(la plus confidentielle)' }],
       },
     ],
     diversification: {
