@@ -131,7 +131,12 @@ export default function App() {
   // Dernier point RÉELLEMENT en base pour l'actif choisi (jamais LATEST_YM en dur : pour
   // stoxx600/sp500/msciWorld, le dernier point réel est antérieur d'un mois, cf.
   // data.js — donner LATEST_YM ici afficherait une date à laquelle ce prix n'est pas vérifié).
+  // Réutilisé à la fois pour la ligne "dernier niveau connu" (étape 1) et pour le rappel de fin de
+  // série en mode DCA (étape 4) — utilisateur demande explicitement à voir ce mois pour le DCA, afin
+  // de savoir quand redonner des clôtures fraîches plutôt que de laisser la simulation dater
+  // silencieusement au fil du temps.
   const lastPoint = !isCustom ? ASSETS[state.assetId].points[ASSETS[state.assetId].points.length - 1] : null
+  const lastPointLabel = lastPoint ? `${MONTHS_FULL[parseInt(lastPoint.date.split('-')[1], 10) - 1]} ${lastPoint.date.split('-')[0]}` : null
 
   const set = (patch) => setState((s) => ({ ...s, ...patch }))
 
@@ -172,7 +177,7 @@ export default function App() {
                 <p className="ic-current-level">
                   📍 Dernier niveau connu :{' '}
                   <strong>{fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
-                  {' '}(au {MONTHS_FULL[parseInt(lastPoint.date.split('-')[1], 10) - 1]} {lastPoint.date.split('-')[0]})
+                  {' '}(au {lastPointLabel})
                 </p>
               )}
               {isCustom && (
@@ -293,8 +298,8 @@ export default function App() {
               {isCustom
                 ? 'Le mode DCA nécessite un historique de prix : indisponible en saisie manuelle.'
                 : effectiveMode === 'dca'
-                  ? `Un versement de ${amount.toLocaleString('fr-FR')} € chaque mois depuis la date de départ.`
-                  : "Un seul versement à la date de départ, laissé investi jusqu'à aujourd'hui."}
+                  ? `Un versement de ${amount.toLocaleString('fr-FR')} € chaque mois depuis la date de départ jusqu'à ${lastPointLabel} (dernière donnée disponible — au-delà, redonne-moi les clôtures récentes pour actualiser).`
+                  : `Un seul versement à la date de départ, valorisé jusqu'à ${lastPointLabel} (dernière donnée disponible).`}
             </p>
           </div>
         </div>
