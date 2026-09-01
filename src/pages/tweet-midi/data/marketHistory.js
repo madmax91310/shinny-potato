@@ -181,7 +181,23 @@ export function getBenchmarkPerformance(startYm, endYm) {
 // si Performance depuis peut afficher les DEUX niveaux de prix bruts (début/fin) en plus du
 // pourcentage : pour ces 3 actifs, seul le pourcentage est affiché (cf. hasComparableLevel).
 const REBASED_INDEX_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
-const ANNIVERSAIRE_EXCLUDED_IDS = REBASED_INDEX_IDS;
+
+// Trois autres actifs n'ont, sur toute leur plage actuellement valide pour ce format, QUE des
+// points annuels (décembre) : ethereum, cac40, et lvmh (dont la plage vérifiée démarre à 2020-12,
+// cf. VERIFIED_MIN_DATE_OVERRIDES, elle-même exclusivement composée de points de décembre depuis).
+// getHistoricalPrice interpole alors linéairement entre deux clôtures de décembre parfois
+// distantes d'un an pour reconstituer un mois quelconque — un chiffre présenté comme "le prix en
+// [mois]" qui ne correspond en réalité à aucune clôture réelle vérifiable ailleurs. Même défaut
+// que SOXX et l'argent avant leur passage en série mensuelle réelle (30/08 et 02/09/2026) ; resté
+// ouvert par erreur pour ces 3-là lors de l'audit du 03/09/2026 — le "cac40" corrigé dans le
+// commit du 02/09 était en réalité celui de portfolio-generator/data.js (rendements annuels), un
+// fichier distinct sans rapport avec celui-ci. Mesuré à l'implémentation : 0 des options
+// actuellement proposées (9 pour ethereum, 10 pour cac40, 5 pour lvmh) ne tombe sur un vrai point.
+// Exclus du format Anniversaire pour cette raison ; restent disponibles pour Performance depuis,
+// qui ne compare que des clôtures de fin d'année réelles (jamais interpolées, cf. getAnnualReturns
+// / getLastRealPointOfYear) — non concerné par ce problème quelle que soit la résolution des points.
+const SPARSE_ANNIVERSAIRE_EXCLUDED_IDS = new Set(["ethereum", "cac40", "lvmh"]);
+const ANNIVERSAIRE_EXCLUDED_IDS = new Set([...REBASED_INDEX_IDS, ...SPARSE_ANNIVERSAIRE_EXCLUDED_IDS]);
 
 // Un niveau de prix brut n'a de sens à afficher (ex. "Prix en 2015 : 625 $US") que pour un actif
 // dont les points sont de vrais prix/indices externes — jamais pour les 3 indices rebasés

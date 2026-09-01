@@ -666,9 +666,15 @@ export const FAMILIES = [
       chain: ['MSCI China (576 lignes, offshore + ADR)', 'MSCI China A (410, domestique uniquement)', 'FTSE China 50 (50, ultra-concentré)'],
       notes: ['⚠️ MSCI China et MSCI China A ne se recoupent quasiment pas : deux marchés séparés, avec des règles complètement différentes (régulation classique d\'un côté, contrôle des capitaux chinois de l\'autre).', '→ Le FTSE China 50 concentre l\'essentiel du risque sur une poignée de méga-caps (tech, finance).'],
     },
-    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026).
+    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Amundi PEA Chine
+    // ajouté le 03/09/2026 (audit avait relevé que le verdict recommande ce fonds au lecteur PEA
+    // sans jamais montrer sa propre performance, seulement celle d'un fonds CTO sur un indice
+    // différent) — chiffres confirmés identiques sur 3 recherches indépendantes (Boursorama,
+    // Morningstar, recherche générale), aucune contradiction rencontrée contrairement à d'autres
+    // fonds de cette session.
     perfFunds: [
       { key: 'msci_china', label: 'iShares MSCI China', y2023: -11.4, y2024: 19.2, y2025: 30.8 },
+      { key: 'amundi_pea_chine', label: 'Amundi PEA Chine (Screened)', y2023: -15.98, y2024: 17.15, y2025: 14.64 },
       { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)', y2023: -16.58, y2024: 39.34, y2025: 13.33 },
       { key: 'msci_china_a', label: 'iShares MSCI China A', y2023: -13.8, y2024: 11.3, y2025: 26.0 },
     ],
@@ -692,7 +698,7 @@ export const FAMILIES = [
     intro: 'Nikkei 225, TOPIX, MSCI Japan… le plus connu (Nikkei) n\'est pas forcément le plus pertinent pour investir 🇯🇵\nOn décrypte les trois 👇',
     indices: [
       { name: 'Nikkei 225', desc: 'Les 225 plus grandes valeurs de la Bourse de Tokyo, indice pondéré par le PRIX de l\'action (pas la capitalisation).', tag: 'Le plus connu, pas le plus rigoureux 📰' },
-      { name: 'TOPIX', desc: '1 641 valeurs (mai 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation.', bullets: ['⚠️ Réforme en cours : pourrait passer sous 1 000 valeurs d\'ici oct. 2026'], tag: 'Le plus large et le plus représentatif 🗾' },
+      { name: 'TOPIX', desc: '1 641 valeurs (mai 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation.', bullets: ['⚠️ Réforme en cours : retrait graduel de 600+ valeurs à partir d\'oct. 2026, étalé sur 2 ans — passage sous 1 000 valeurs attendu vers 2028, pas dès octobre'], tag: 'Le plus large et le plus représentatif 🗾' },
       { name: 'MSCI Japan IMI', desc: '957 grandes, moyennes ET petites capitalisations japonaises (méthodologie MSCI, comparable aux autres indices MSCI Pays).', tag: 'Le standard international 🌐' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
@@ -716,7 +722,9 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (JPX, factsheet MSCI) le 01/09/2026 — TOPIX en
-      // cours de réforme (annoncée pour repasser sous 1 000 valeurs d'ici octobre 2026).
+      // cours de réforme. CORRIGÉ le 03/09/2026 : la note précédente laissait croire que le seuil de
+      // 1 000 valeurs serait franchi dès octobre 2026 ; en réalité cette date marque le DÉBUT d'un
+      // retrait étalé sur deux ans (600+ valeurs concernées), passage sous 1 000 attendu vers 2028.
       chain: ['TOPIX (1 641 lignes, mai 2026)', 'MSCI Japan IMI (957)', 'Nikkei 225 (225, prix-pondéré)'],
       notes: ['⚠️ Le Nikkei 225, pondéré par le prix de l\'action et non la capitalisation, peut sur-pondérer des valeurs chères mais économiquement mineures.', '→ TOPIX et MSCI Japan (pondérés par capitalisation) sont jugés plus représentatifs de l\'économie japonaise réelle.'],
     },
