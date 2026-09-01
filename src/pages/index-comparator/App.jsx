@@ -129,8 +129,14 @@ export const FAMILIES = [
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
       {
-        indexName: 'STOXX 600', choiceNote: 'un SEUL choix', pea: true,
-        funds: [{ name: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF', ticker: 'ETZ', isin: 'FR0011550193', ter: '0,19 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '1 054 M€' }],
+        // CORRIGÉ le 02/09/2026 : le fonds le moins cher (Amundi Core, 0,07 %) n'est PAS éligible
+        // PEA (réplication physique, contient UK/Suisse) — seul BNP ETZ (swap PEA) l'est. Les deux
+        // sont affichés pour ne pas laisser croire que 0,19 % est le prix plancher de cette exposition.
+        indexName: 'STOXX 600', choiceNote: '1 option PEA + 1 alternative bien moins chère en CTO', pea: true,
+        funds: [
+          { name: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF', ticker: 'ETZ', isin: 'FR0011550193', ter: '0,19 %', aum: '1 054 M€', note: '(seule option PEA)' },
+          { name: 'Amundi Core STOXX Europe 600 UCITS ETF', isin: 'LU0908500753', ter: '0,07 %', aum: '21 171 M€', note: '(CTO uniquement — le moins cher, et de loin le plus gros encours ⚡)' },
+        ],
       },
       {
         indexName: 'EURO STOXX 50', choiceNote: 'le plus de choix', pea: true, subNote: '(indice 100 % zone euro)',
@@ -157,21 +163,23 @@ export const FAMILIES = [
       { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)', y2023: 15.84, y2024: 8.41, y2025: 20.47 },
       { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)', y2023: 22.8, y2024: 11.5, y2025: 21.8 },
     ],
-    verdictTitle: '✅ LE VERDICT POUR UN PEA',
+    verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '🌍 Exposition la plus large (UK + Suisse) ?', a: 'ETZ (BNP STOXX 600)' },
-      { q: '💸 Le moins cher + zone euro pure ?', a: 'EURO STOXX 50' },
-      { q: '🇫🇷 Large mais sans UK/Suisse, capitalisant français ?', a: 'PCEU (Amundi MSCI Europe)' },
+      { q: '💳 Exposition la plus large, en PEA ?', a: 'ETZ (BNP STOXX 600)' },
+      { q: '💸 Le moins cher + zone euro pure, en PEA ?', a: 'EURO STOXX 50 (HSBC, 0,05 %)' },
+      { q: '🇫🇷 Large mais sans UK/Suisse, capitalisant français, en PEA ?', a: 'PCEU (Amundi MSCI Europe)' },
+      { q: '⚡ Le moins cher tout court, en CTO ?', a: 'Amundi Core STOXX 600 (0,07 %, 21 Md€ d\'encours)' },
     ],
     closing: '💬 Et toi, t\'as lequel dans ton PEA ?',
   },
 
   // ── Famille 2 : Monde large ─────────────────────────────────────────
-  // Sources : justETF (recherche web du 01/09/2026) pour tous les ISIN/TER/
-  // encours ci-dessous. Amundi PEA Monde déjà vérifié ailleurs dans l'appli
-  // (etf-sheets/data.js). Nombre de lignes par indice : ordre de grandeur
-  // (source MSCI/FTSE factsheets), non recompté précisément cette session —
-  // à vérifier avant publication si le chiffre exact importe.
+  // ENTIÈREMENT RÉVISÉ le 02/09/2026 suite au retour de l'utilisateur : la
+  // version précédente sous-représentait fortement l'offre PEA réelle sur
+  // cette famille (« un seul choix » MSCI World alors qu'il y en a 3 ;
+  // ACWI présenté comme non-PEA alors qu'un fonds PEA existe depuis
+  // juillet 2026). Sources : recherche web du 02/09/2026 (justETF,
+  // BlackRock, Amundi, presse spécialisée pour le lancement GPEA).
   {
     id: 'monde',
     label: '🌍 Monde large',
@@ -184,16 +192,29 @@ export const FAMILIES = [
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
       {
-        indexName: 'MSCI World', choiceNote: 'un seul choix réel', pea: true,
-        funds: [{ name: 'Amundi PEA Monde (MSCI World) UCITS ETF (Acc)', ticker: 'DCAM', isin: 'FR001400U5Q4', ter: '0,20 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '1,37 Md€' }],
+        indexName: 'MSCI World', choiceNote: '3 choix PEA réels', pea: true,
+        funds: [
+          { name: 'Amundi MSCI World Swap UCITS ETF (Acc)', ticker: 'CW8', isin: 'LU1681043599', ter: '0,38 %', aum: '6 495 M€', note: '(le plus gros encours, et de loin)' },
+          { name: 'iShares MSCI World Swap PEA UCITS ETF (Acc)', ticker: 'WPEA', isin: 'IE0002XZSHO1', ter: '0,20 %', aum: '2 071 M€', note: '(moins cher)' },
+          { name: 'Amundi PEA Monde (MSCI World) UCITS ETF (Acc)', ticker: 'DCAM', isin: 'FR001400U5Q4', ter: '0,20 %', aum: '1 370 M€' },
+        ],
       },
       {
-        indexName: 'MSCI ACWI', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'SPDR MSCI ACWI UCITS ETF (Acc)', isin: 'IE00B44Z5B48', ter: '0,12 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '15,9 Md€' }],
+        // CORRIGÉ le 02/09/2026 : un ETF PEA sur l'ACWI existe depuis le 15/07/2026 (Amundi PEA
+        // Global) — signalé à tort comme non-PEA dans la version précédente. SPDR (CTO) reste
+        // affiché pour comparaison, bien moins cher.
+        indexName: 'MSCI ACWI', choiceNote: 'PEA depuis juillet 2026 + alternative moins chère en CTO', pea: true,
+        funds: [
+          { name: 'Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc)', ticker: 'GPEA', isin: 'FR0014017NX3', ter: '0,30 %', note: '(seule option PEA, lancée le 15/07/2026)' },
+          { name: 'SPDR MSCI ACWI UCITS ETF (Acc)', isin: 'IE00B44Z5B48', ter: '0,12 %', aum: '15 900 M€', note: '(CTO, moins cher et plus gros encours)' },
+        ],
       },
       {
         indexName: 'FTSE All-World', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'Vanguard FTSE All-World UCITS ETF (Acc)', ticker: 'VWCE', isin: 'IE00BK5BQT80', ter: '0,14 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '50 Md€' }],
+        funds: [
+          { name: 'Xtrackers FTSE All-World UCITS ETF 1C', isin: 'IE000L6ZMMC4', ter: '0,07 %', aum: '110 M€', note: '(le moins cher, fonds récent — avril 2026)' },
+          { name: 'Vanguard FTSE All-World UCITS ETF (Acc)', ticker: 'VWCE', isin: 'IE00BK5BQT80', ter: '0,14 %', aum: '50 000 M€', note: '(le plus gros encours, le plus connu)' },
+        ],
       },
     ],
     diversification: {
@@ -201,26 +222,26 @@ export const FAMILIES = [
       chain: ['MSCI World (1 283 lignes)', 'MSCI ACWI (2 461)', 'FTSE All-World (4 265)'],
       notes: ['⚠️ Peu importe lequel des trois : tous pèsent 60-70 % d\'actions américaines.', '→ Le vrai choix se joue sur les émergents (inclus ou non) et le nombre de lignes, pas sur le poids US.'],
     },
-    // Performance 2023-2025 (source : justETF/extraetf, recherche web du 02/09/2026).
-    // DCAM (Amundi PEA Monde) : fonds lancé le 04/03/2025 — aucune performance annuelle réelle
-    // n'existe pour 2023/2024 (le fonds n'existait pas), et 2025 n'a pas d'année pleine (lancement
-    // en mars) — les 3 années sont donc volontairement laissées à vérifier plutôt que de substituer
-    // une performance d'indice non demandée.
+    // Performance 2023-2025 (source : justETF/extraetf, recherche web du 02/09/2026). CW8 retenu en
+    // représentant PEA de MSCI World (historique complet), plutôt que DCAM ou WPEA, trop récents pour
+    // avoir 3 années pleines. GPEA (ACWI, PEA) : lancé le 15/07/2026 — aucune performance annuelle
+    // réelle sur 2023-2025, laissé à vérifier plutôt que de substituer une performance d'indice.
     // VWCE : 2 recherches justETF ont d'abord renvoyé un jeu de chiffres (+17,78/+24,65/+8,36 %)
     // incohérent avec le MSCI ACWI (indice quasi identique) — écart de +14 pts sur 2025, invraisemblable
     // pour deux trackers mondiaux comparables. Résolu par une 3e recherche croisée (Yahoo/Morningstar),
     // dont le résultat (+22,28/+17,65/+22,45 %) est cohérent à moins de 0,6 pt du MSCI ACWI ci-dessous —
     // retenu comme le jeu fiable.
     perfFunds: [
-      { key: 'msci_world', label: 'Amundi PEA Monde (DCAM)', y2023: null, y2024: null, y2025: null },
-      { key: 'acwi', label: 'SPDR MSCI ACWI', y2023: 22.01, y2024: 17.36, y2025: 22.81 },
+      { key: 'msci_world', label: 'Amundi MSCI World (CW8, PEA)', y2023: 19.46, y2024: 26.33, y2025: 6.39 },
+      { key: 'acwi', label: 'Amundi PEA Global ACWI (GPEA)', y2023: null, y2024: null, y2025: null },
       { key: 'ftse_aw', label: 'Vanguard FTSE All-World (VWCE)', y2023: 22.28, y2024: 17.65, y2025: 22.45 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '💳 Tu veux rester en PEA ?', a: 'DCAM (Amundi PEA Monde) — seule option PEA de la famille, mais MSCI World uniquement, sans émergents.' },
-      { q: '🌐 Tu veux les émergents inclus, en CTO ?', a: 'SPDR MSCI ACWI ou Vanguard VWCE (FTSE All-World, le plus large des deux).' },
-      { q: '💸 Le moins cher en CTO ?', a: 'VWCE (Vanguard, TER 0,14 %).' },
+      { q: '💳 Tu veux rester en PEA, le plus gros fonds ?', a: 'CW8 (Amundi MSCI World) — 6,5 Md€ d\'encours, TER 0,38 %.' },
+      { q: '💸 Tu veux rester en PEA, moins cher ?', a: 'WPEA ou DCAM (0,20 % tous les deux).' },
+      { q: '🌐 Tu veux les émergents inclus, en PEA ?', a: 'GPEA (Amundi PEA Global ACWI) — nouveau, lancé juillet 2026.' },
+      { q: '💰 Le moins cher toutes catégories, en CTO ?', a: 'Xtrackers FTSE All-World (0,07 %).' },
     ],
     closing: '💬 Toi, t\'es plutôt Monde développé ou Monde entier ?',
   },
@@ -291,10 +312,11 @@ export const FAMILIES = [
   },
 
   // ── Famille 4 : Émergents ────────────────────────────────────────────
-  // Sources : justETF (recherche web du 01/09/2026). MSCI EM (iShares Core
-  // IMI) déjà vérifié ailleurs dans l'appli (etf-sheets/data.js). Aucune
-  // option PEA trouvée pour cette famille — affiché explicitement plutôt
-  // que de laisser la section 2 vide.
+  // CORRIGÉ le 02/09/2026 suite au retour de l'utilisateur : la version
+  // précédente affirmait à tort « aucune option PEA » — Amundi propose en
+  // réalité toute une gamme PEA sur les émergents (Amundi PEA Emergent,
+  // + des déclinaisons régionales Asie/Amérique latine), vérifiée via
+  // recherche web du 02/09/2026 (justETF, Amundi ETF).
   {
     id: 'emergents',
     label: '🌏 Émergents',
@@ -304,11 +326,15 @@ export const FAMILIES = [
       { name: 'FTSE EM', desc: '2 290 valeurs. Composition proche mais différente : la Corée du Sud y est classée « développée », donc exclue.', tag: 'Sans la Corée du Sud 🇰🇷' },
       { name: 'MSCI EM ex-China', desc: '625 valeurs. Le MSCI EM… sans la Chine, pour qui veut diversifier son risque chinois.', tag: 'L\'anti-concentration Chine 🚫' },
     ],
-    block2Title: '2️⃣ LES ETF DISPONIBLES — AUCUNE OPTION PEA 💳',
+    block2Title: '2️⃣ LES ETF DISPONIBLES (PEA / CTO) 💳',
     etfGroups: [
       {
-        indexName: 'MSCI EM IMI', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares Core MSCI EM IMI UCITS ETF (Acc)', isin: 'IE00BKM4GZ66', ter: '0,18 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '36,8 Md€' }],
+        indexName: 'MSCI EM IMI', choiceNote: '1 option PEA (filtrée ESG) + 1 alternative CTO plus large', pea: true,
+        subNote: '(Amundi PEA Emergent réplique un indice ESG resserré, pas le MSCI EM IMI complet — cf. bloc diversification. Existe aussi en version régionale PEA : Asie Émergente « PAASI » FR0013412012 et Amérique latine « PALAT » FR0013412004, toutes deux à 0,30 %, pour qui veut cibler une zone plutôt que l\'ensemble des émergents.)',
+        funds: [
+          { name: 'Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF', ticker: 'PAEEM', isin: 'FR0013412020', ter: '0,30 %', aum: '867 M€', note: '(seule option PEA)' },
+          { name: 'iShares Core MSCI EM IMI UCITS ETF (Acc)', isin: 'IE00BKM4GZ66', ter: '0,18 %', aum: '36 800 M€', note: '(CTO, indice complet, bien plus gros encours)' },
+        ],
       },
       {
         indexName: 'FTSE EM', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
@@ -324,21 +350,25 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, 2026) le 01/09/2026.
-      chain: ['MSCI EM IMI (3 017 lignes)', 'FTSE EM (2 290, sans la Corée du Sud)', 'MSCI EM ex-China (625, sans la Chine)'],
-      notes: ['⚠️ La Chine pèse encore ~25-30 % du MSCI EM malgré sa baisse ces dernières années.', '→ Le ex-China est un pari géopolitique assumé, pas juste une diversification de plus.'],
+      chain: ['MSCI EM IMI (3 017 lignes, CTO)', 'FTSE EM (2 290, sans la Corée du Sud)', 'MSCI EM ex-China (625, sans la Chine)'],
+      notes: ['⚠️ La Chine pèse encore ~25-30 % du MSCI EM malgré sa baisse ces dernières années.', '→ PAEEM (l\'option PEA) suit un indice ESG resserré et n\'a pas le même nombre de lignes que le MSCI EM IMI complet — nombre exact non confirmé cette session.'],
     },
     // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). FTSE EM : une première
     // recherche a renvoyé un jeu de chiffres identique à la série 2021-2023 déjà présente ailleurs
     // dans l'appli (portfolio-generator), signe d'un décalage d'années — écarté au profit d'un
-    // second jeu reproduit sur 2 recherches indépendantes.
+    // second jeu reproduit sur 2 recherches indépendantes. PAEEM 2025 : deux sources proches mais pas
+    // identiques (+22,47 % Yahoo vs +21,04 % justETF) — valeur justETF retenue par cohérence de
+    // méthode avec le reste du fichier.
     perfFunds: [
+      { key: 'paeem', label: 'Amundi PEA Emergent (PAEEM)', y2023: 3.66, y2024: 13.39, y2025: 21.04 },
       { key: 'msci_em', label: 'iShares Core MSCI EM IMI', y2023: 11.6, y2024: 7.2, y2025: 31.6 },
       { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 4.12, y2024: 19.20, y2025: 11.13 },
       { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.73, y2024: 3.64, y2025: 34.83 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '🏳️ La référence la plus large ?', a: 'iShares Core MSCI EM IMI.' },
+      { q: '💳 Tu veux rester en PEA ?', a: 'PAEEM (Amundi PEA Emergent) — seule option, indice ESG resserré.' },
+      { q: '🏳️ La référence la plus large et la moins chère, en CTO ?', a: 'iShares Core MSCI EM IMI.' },
       { q: '🇰🇷 Tu veux exclure la Corée du Sud (classée développée) ?', a: 'Vanguard FTSE Emerging Markets.' },
       { q: '🚫 Tu veux réduire ton risque chinois ?', a: 'iShares MSCI EM ex-China.' },
     ],
@@ -452,49 +482,6 @@ export const FAMILIES = [
       { q: '🏅 Le plus exigeant (10 ans de hausses consécutives) ?', a: 'SPDR S&P Global (ou US) Dividend Aristocrats.' },
     ],
     closing: '💬 Toi, tu vises le rendement pur ou la régularité ?',
-  },
-
-  // ── Famille 7 : Faible volatilité ────────────────────────────────────
-  // Sources : justETF (recherche web du 01/09/2026), Min Vol déjà vérifié
-  // ailleurs dans l'appli (etf-sheets/data.js). MSCI World classique :
-  // mêmes fonds que la famille « Monde large » ci-dessus.
-  {
-    id: 'lowvol',
-    label: '🛡️ Faible volatilité',
-    intro: 'MSCI World Minimum Volatility vs MSCI World classique : est-ce que « moins de risque » veut vraiment dire « moins de performance » ? 🛡️\nOn décrypte les deux 👇',
-    indices: [
-      { name: 'MSCI World Min Vol', desc: '285 valeurs sélectionnées et pondérées pour minimiser la volatilité globale du panier.', tag: 'Le style « anti-turbulences » 🛡️' },
-      { name: 'MSCI World classique', desc: 'Les 1 283 plus grandes entreprises de 23 pays développés, sans filtre de volatilité.', tag: 'Le point de comparaison 🏛️' },
-    ],
-    block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
-    etfGroups: [
-      {
-        indexName: 'MSCI World Min Vol', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares Edge MSCI World Minimum Volatility UCITS ETF (Acc)', isin: 'IE00B8FHGS14', ter: '0,30 %', repl: '🔄 Sampling', dist: 'capitalisant', aum: '2,3 Md€' }],
-      },
-      {
-        indexName: 'MSCI World classique', choiceNote: 'un seul choix réel', pea: true,
-        funds: [{ name: 'Amundi PEA Monde (MSCI World) UCITS ETF (Acc)', ticker: 'DCAM', isin: 'FR001400U5Q4', ter: '0,20 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '1,37 Md€' }],
-      },
-    ],
-    diversification: {
-      // Comptages exacts vérifiés via recherche web (factsheets MSCI, juillet 2026) le 01/09/2026.
-      chain: ['MSCI World classique (1 283 lignes)', 'MSCI World Min Vol (285, sous-ensemble)'],
-      notes: ['⚠️ Le Min Vol n\'est pas « diversifié au hasard » : il surpondère fortement certains secteurs défensifs (santé, conso de base, utilities).', '→ Moins de casse en baisse, mais aussi moins de participation aux fortes hausses (comme 2023-2024).'],
-    },
-    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). DCAM : même limitation
-    // que dans la famille Monde large (fonds lancé le 04/03/2025, pas d'année pleine ni d'historique
-    // 2023-2024) — laissé à vérifier plutôt que de substituer une performance d'indice.
-    perfFunds: [
-      { key: 'minvol', label: 'iShares Edge MSCI World Min Vol', y2023: 7.8, y2024: 10.8, y2025: 10.5 },
-      { key: 'world', label: 'Amundi PEA Monde (DCAM)', y2023: null, y2024: null, y2025: null },
-    ],
-    verdictTitle: '✅ LE VERDICT',
-    verdict: [
-      { q: '🛡️ Tu veux amortir les baisses, en CTO ?', a: 'iShares Edge MSCI World Minimum Volatility.' },
-      { q: '💳 Tu veux rester en PEA ?', a: 'DCAM (Amundi PEA Monde) — pas de version Min Vol éligible PEA.' },
-    ],
-    closing: '💬 Toi, tu acceptes plus de volatilité pour plus de performance long terme ?',
   },
 
   // ── Famille 8 : Chine ────────────────────────────────────────────────
