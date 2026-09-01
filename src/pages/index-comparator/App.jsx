@@ -274,8 +274,13 @@ export const FAMILIES = [
         ],
       },
       {
-        indexName: 'Nasdaq 100', choiceNote: 'un SEUL choix', pea: true,
-        funds: [{ name: 'Amundi PEA Nasdaq-100 UCITS ETF (Acc)', isin: 'FR0011871110', ter: '0,30 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '1,17 Md€' }],
+        // CORRIGÉ le 02/09/2026 : ajout de l'alternative CTO (BNP Paribas Easy II), moins chère et
+        // plus grosse que l'option PEA — cohérence avec le traitement des autres familles.
+        indexName: 'Nasdaq 100', choiceNote: '1 option PEA + 1 alternative moins chère en CTO', pea: true,
+        funds: [
+          { name: 'Amundi PEA Nasdaq-100 UCITS ETF (Acc)', isin: 'FR0011871110', ter: '0,30 %', aum: '1,17 Md€', note: '(seule option PEA)' },
+          { name: 'BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)', isin: 'IE000QDFFK00', ter: '0,14 %', aum: '2,73 Md€', note: '(CTO uniquement, moins cher et plus gros encours)' },
+        ],
       },
       {
         indexName: 'MSCI USA', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
@@ -503,7 +508,9 @@ export const FAMILIES = [
     block2Title: '2️⃣ LES ETF DISPONIBLES (PEA / CTO) 💳',
     etfGroups: [
       {
-        indexName: 'MSCI China', choiceNote: 'CTO conseillé, 1 option PEA imparfaite', pea: false,
+        // CORRIGÉ le 02/09/2026 : pea passé à true (une option PEA existe bel et bien ci-dessous,
+        // même imparfaite) — l'ancien pea:false faisait afficher le mauvais pictogramme d'en-tête.
+        indexName: 'MSCI China', choiceNote: 'CTO conseillé, 1 option PEA imparfaite', pea: true,
         subNote: '(l\'option PEA ci-dessous suit un indice filtré ESG, pas le MSCI China standard)',
         funds: [
           { name: 'iShares MSCI China UCITS ETF (Acc)', isin: 'IE00BJ5JPG56', ter: '0,28 %', aum: '2,19 Md€', note: '(CTO, réplique le MSCI China standard)' },
@@ -511,8 +518,13 @@ export const FAMILIES = [
         ],
       },
       {
+        // CORRIGÉ le 02/09/2026 : l'ISIN IE00B02KXK85 est en réalité la part DISTRIBUANTE (814 M€,
+        // part principale) — corrigé, faussement étiqueté "capitalisant" et sans encours auparavant.
+        // Une part capitalisante existe mais ne pèse que 31 M€ (peu liquide) — la part distribuante,
+        // bien plus grosse, reste le choix pertinent malgré l'écart avec la convention "capitalisant"
+        // du reste de l'outil.
         indexName: 'FTSE China 50', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares China Large Cap UCITS ETF', isin: 'IE00B02KXK85', ter: '0,74 %', repl: '🔄 Physique', dist: 'capitalisant' }],
+        funds: [{ name: 'iShares China Large Cap UCITS ETF (Dist)', isin: 'IE00B02KXK85', ter: '0,74 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '815 M€' }],
       },
       {
         indexName: 'MSCI China A', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
@@ -556,8 +568,12 @@ export const FAMILIES = [
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
       {
+        // CORRIGÉ le 02/09/2026 : l'ISIN LU0839027447 (part "1D") est distribuant, pas capitalisant
+        // comme la ligne l'implicitait sans le préciser — remplacé par la part capitalisante "1C"
+        // du même fonds (même indice, même TER), cohérent avec la convention du reste de l'outil.
+        // Encours plus petit (430 M€ contre 2 012 M€ pour la part Dist) mais réel et suffisant.
         indexName: 'Nikkei 225', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'Xtrackers Nikkei 225 UCITS ETF 1D', isin: 'LU0839027447', ter: '0,09 %', aum: '1,97 Md€' }],
+        funds: [{ name: 'Xtrackers Nikkei 225 UCITS ETF 1C (Acc)', isin: 'LU2196470426', ter: '0,09 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '430 M€' }],
       },
       {
         indexName: 'TOPIX', choiceNote: 'un seul choix, mais PEA ✅', pea: true,
