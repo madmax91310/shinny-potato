@@ -111,13 +111,17 @@ function buildTweetText(family, perfValues) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// FAMILLES — 9 au total. Famille 1 (Europe) reprend telle quelle l'exemple
-// de référence fourni. Familles 2-9 rédigées à partir de données réelles
+// FAMILLES — 10 au total. Famille 1 (Europe) reprend telle quelle l'exemple
+// de référence fourni. Familles 2-10 rédigées à partir de données réelles
 // vérifiées (cf. commentaire de sourcing sur chaque famille), en reprenant
 // pour plusieurs fonds les ISIN déjà vérifiés ailleurs dans l'application
 // (src/pages/etf-sheets/data.js, src/pages/portfolio-generator/data.js) —
 // jamais une nouvelle donnée non recoupée quand une donnée déjà vérifiée
 // cette session existe.
+//
+// Émergents et Dividendes ont été scindées le 02/09/2026 en versions PEA et
+// CTO séparées (demande explicite) plutôt qu'un seul tweet mélangeant des
+// options non-éligibles PEA.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const FAMILIES = [
@@ -320,30 +324,95 @@ export const FAMILIES = [
     closing: '💬 Toi, PEA ou CTO pour ta poche US ?',
   },
 
-  // ── Famille 4 : Émergents ────────────────────────────────────────────
-  // CORRIGÉ le 02/09/2026 suite au retour de l'utilisateur : la version
-  // précédente affirmait à tort « aucune option PEA » — Amundi propose en
-  // réalité toute une gamme PEA sur les émergents (Amundi PEA Emergent,
-  // + des déclinaisons régionales Asie/Amérique latine), vérifiée via
-  // recherche web du 02/09/2026 (justETF, Amundi ETF).
+  // ── Famille 4a : Émergents (PEA) ─────────────────────────────────────
+  // Scindée le 02/09/2026 depuis l'ancienne famille « Émergents » unique.
+  // Amundi propose en réalité 5 déclinaisons PEA distinctes sur les
+  // émergents (pas seulement PAEEM) : vérifié via recherche web du
+  // 02/09/2026 (justETF, boursedirect, factsheets Amundi ETF). Une 6e piste
+  // (« Amundi PEA Asie Pacifique », FR0011869312) a été écartée : elle
+  // réplique le MSCI AC Asia Pacific ex Japan, un indice mixte
+  // développés+émergents (Australie, Hong Kong, Singapour inclus), donc pas
+  // un vrai fonds « émergents ». Ces 5 fonds ne suivent pas le même indice
+  // ni la même zone : pas de comparaison « indice A vs B », mais 5 fiches
+  // par zone géographique.
   {
-    id: 'emergents',
-    label: '🌏 Émergents',
-    intro: 'MSCI EM, FTSE EM, MSCI EM ex-China… tu veux investir sur les émergents mais lequel choisir ? 🌏\nOn décrypte les trois 👇',
+    id: 'emergents-pea',
+    label: '🌏 Émergents (PEA)',
+    intro: 'Tu veux investir sur les émergents mais rester 100 % PEA ? Amundi propose bien plus qu\'un seul fonds généraliste 🌏\nOn décrypte les cinq déclinaisons 👇',
+    indices: [
+      { name: 'Émergents global (ESG resserré)', desc: 'Zone couverte par PAEEM : indice MSCI EM ex Egypt ESG Leaders Select 5% Issuer Custom Capped — 24 pays émergents, mais une sélection ESG plus resserrée que le MSCI EM classique (pas les mêmes lignes qu\'un fonds CTO).', tag: 'Le PEA généraliste 🌍' },
+      { name: 'Asie émergente', desc: 'Zone couverte par PAASI : indice MSCI EM Asia Screened Select ex Thermal Coal — 8 pays d\'Asie émergente (Chine, Inde, Taïwan, Corée du Sud…).', tag: 'Concentré sur l\'Asie 🌏' },
+      { name: 'Amérique latine', desc: 'Zone couverte par PALAT : indice MSCI Emerging Markets Latin America — Brésil et Mexique en tête.', tag: 'Le pari régional le plus étroit 🌎' },
+      { name: 'Inde seule', desc: 'Zone couverte par PINR : indice MSCI India — un seul pays, aucune diversification régionale.', tag: 'Le pari 100 % Inde 🇮🇳' },
+      { name: 'EMEA émergente', desc: 'Zone couverte par PLEM : indice MSCI Emerging EMEA ESG Transition — Europe de l\'Est, Moyen-Orient et Afrique émergents (Afrique du Sud, pays du Golfe…).', tag: 'La zone la plus confidentielle 🌍' },
+    ],
+    block2Title: '2️⃣ LES ETF PEA DISPONIBLES 💳',
+    etfGroups: [
+      {
+        indexName: 'Émergents global (ESG resserré)', choiceNote: 'seule option PEA généraliste sur les émergents', pea: true,
+        funds: [{ name: 'Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF', ticker: 'PAEEM', isin: 'FR0013412020', ter: '0,30 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '867 M€' }],
+      },
+      {
+        indexName: 'Asie émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
+        funds: [{ name: 'Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF', ticker: 'PAASI', isin: 'FR0013412012', ter: '0,30 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '735 M€' }],
+      },
+      {
+        indexName: 'Amérique latine', choiceNote: 'seule option PEA sur cette zone', pea: true,
+        funds: [{ name: 'Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF', ticker: 'PALAT', isin: 'FR0013412004', ter: '0,30 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '141 M€', note: '(encours encore modeste)' }],
+      },
+      {
+        indexName: 'Inde seule', choiceNote: 'seule option PEA sur ce pays', pea: true,
+        funds: [{ name: 'Amundi PEA Inde (MSCI India) UCITS ETF', ticker: 'PINR', isin: 'FR0011869320', ter: '0,85 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '155 M€', note: '(le plus cher du lot)' }],
+      },
+      {
+        indexName: 'EMEA émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
+        funds: [{ name: 'Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF', ticker: 'PLEM', isin: 'FR0011440478', ter: '0,55 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '61 M€', note: '(la plus confidentielle)' }],
+      },
+    ],
+    diversification: {
+      // Pas de relation d'emboîtement ici (contrairement à un MSCI World → MSCI ACWI) : 5 fonds sur
+      // 5 zones distinctes, pas des sous-ensembles les uns des autres.
+      chain: ['PAEEM (24 pays, généraliste ESG-resserré)', 'PAASI (8 pays, Asie émergente)', 'PALAT (Amérique latine)', 'PINR (Inde seule)', 'PLEM (zone EMEA émergente)'],
+      notes: ['⚠️ PAEEM est le seul fonds « généraliste » du lot : les quatre autres sont des paris régionaux ou pays, à combiner avec lui plutôt qu\'à sa place.', '→ Plus la zone est étroite (Inde, Amérique latine, EMEA), plus l\'encours est petit et le TER élevé — PINR grimpe à 0,85 %.'],
+    },
+    // Performance 2023-2025 (source : justETF/boursedirect, recherche web du 02/09/2026, recoupée sur
+    // plusieurs pages par fonds).
+    perfFunds: [
+      { key: 'paeem_pea', label: 'Amundi PEA Emergent (PAEEM)', y2023: 3.66, y2024: 13.39, y2025: 21.04 },
+      { key: 'paasi', label: 'Amundi PEA Asie Émergente (PAASI)', y2023: 1.21, y2024: 16.36, y2025: 21.78 },
+      { key: 'palat', label: 'Amundi PEA Amérique Latine (PALAT)', y2023: 24.63, y2024: -25.29, y2025: 35.75 },
+      { key: 'pinr', label: 'Amundi PEA Inde (PINR)', y2023: 15.09, y2024: 16.57, y2025: -11.15 },
+      { key: 'plem', label: 'Amundi PEA Emergent EMEA (PLEM)', y2023: 7.89, y2024: 12.77, y2025: 15.11 },
+    ],
+    verdictTitle: '✅ LE VERDICT',
+    verdict: [
+      { q: '💳 Tu veux un seul fonds PEA généraliste sur tous les émergents ?', a: 'PAEEM — indice ESG resserré, mais le seul qui couvre les 24 pays.' },
+      { q: '🌏 Tu veux cibler l\'Asie émergente spécifiquement ?', a: 'PAASI.' },
+      { q: '🌎 Tu veux viser l\'Amérique latine (Brésil, Mexique…) ?', a: 'PALAT — mais très volatil (-25 % en 2024, +36 % en 2025).' },
+      { q: '🇮🇳 Tu veux un pari 100 % Inde ?', a: 'PINR — TER 0,85 %, le plus cher du lot.' },
+      { q: '🌍 Tu veux la zone EMEA émergente (Afrique du Sud, Golfe, Europe de l\'Est) ?', a: 'PLEM — la déclinaison la plus confidentielle.' },
+    ],
+    closing: '💬 Toi, tu restes sur PAEEM tout seul ou tu combines avec une déclinaison régionale ?',
+  },
+
+  // ── Famille 4b : Émergents (CTO) ─────────────────────────────────────
+  // Reprend telle quelle la comparaison qui existait avant la scission du
+  // 02/09/2026 (MSCI EM IMI / FTSE EM / MSCI EM ex-China), sans aucune
+  // mention PEA puisque ce tweet est explicitement pour les lecteurs en CTO.
+  {
+    id: 'emergents-cto',
+    label: '🌏 Émergents (CTO)',
+    intro: 'MSCI EM IMI, FTSE EM, MSCI EM ex-China… tu investis sur les émergents en compte-titres, lequel choisir ? 🌏\nOn décrypte les trois 👇',
     indices: [
       { name: 'MSCI EM IMI', desc: '3 017 valeurs de ~24 pays émergents (Chine, Inde, Taïwan, Brésil…) — grandes, moyennes ET petites capitalisations.', tag: 'La référence émergents, en version large 🏳️' },
       { name: 'FTSE EM', desc: '2 290 valeurs. Une composition proche du MSCI EM, mais pas identique : la Corée du Sud y est classée comme un pays développé, donc elle est exclue.', tag: 'Sans la Corée du Sud 🇰🇷' },
       { name: 'MSCI EM ex-China', desc: '625 valeurs. Le MSCI EM, mais sans la Chine — pour qui veut réduire son risque chinois.', tag: 'L\'anti-concentration Chine 🚫' },
     ],
-    block2Title: '2️⃣ LES ETF DISPONIBLES (PEA / CTO) 💳',
+    block2Title: '2️⃣ LES ETF DISPONIBLES (CTO) 💳',
     etfGroups: [
       {
-        indexName: 'MSCI EM IMI', choiceNote: '1 option PEA (filtrée ESG) + 1 alternative CTO plus large', pea: true,
-        subNote: '(Attention, PAEEM ne suit pas exactement le même indice que la version CTO — c\'est une sélection ESG plus resserrée, pas le MSCI EM IMI au complet. Amundi propose aussi des versions PEA par zone si tu veux cibler une région plutôt que tous les émergents : Asie « PAASI » ou Amérique latine « PALAT », toutes les deux à 0,30 %.)',
-        funds: [
-          { name: 'Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF', ticker: 'PAEEM', isin: 'FR0013412020', ter: '0,30 %', aum: '867 M€', note: '(seule option PEA)' },
-          { name: 'iShares Core MSCI EM IMI UCITS ETF (Acc)', isin: 'IE00BKM4GZ66', ter: '0,18 %', aum: '36 800 M€', note: '(CTO, indice complet, bien plus gros encours)' },
-        ],
+        indexName: 'MSCI EM IMI', choiceNote: 'la référence la plus large', pea: false,
+        funds: [{ name: 'iShares Core MSCI EM IMI UCITS ETF (Acc)', isin: 'IE00BKM4GZ66', ter: '0,18 %', repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '36 800 M€' }],
       },
       {
         indexName: 'FTSE EM', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
@@ -359,25 +428,21 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, 2026) le 01/09/2026.
-      chain: ['MSCI EM IMI (3 017 lignes, CTO)', 'FTSE EM (2 290, sans la Corée du Sud)', 'MSCI EM ex-China (625, sans la Chine)'],
-      notes: ['⚠️ La Chine pèse encore 25 à 30 % du MSCI EM, malgré sa baisse ces dernières années.', '→ PAEEM (l\'option PEA) ne suit pas l\'indice complet — son nombre exact de lignes n\'a pas pu être confirmé.'],
+      chain: ['MSCI EM IMI (3 017 lignes)', 'FTSE EM (2 290, sans la Corée du Sud)', 'MSCI EM ex-China (625, sans la Chine)'],
+      notes: ['⚠️ La Chine pèse encore 25 à 30 % du MSCI EM, malgré sa baisse ces dernières années.'],
     },
     // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). FTSE EM : une première
     // recherche a renvoyé un jeu de chiffres identique à la série 2021-2023 déjà présente ailleurs
     // dans l'appli (portfolio-generator), signe d'un décalage d'années — écarté au profit d'un
-    // second jeu reproduit sur 2 recherches indépendantes. PAEEM 2025 : deux sources proches mais pas
-    // identiques (+22,47 % Yahoo vs +21,04 % justETF) — valeur justETF retenue par cohérence de
-    // méthode avec le reste du fichier.
+    // second jeu reproduit sur 2 recherches indépendantes.
     perfFunds: [
-      { key: 'paeem', label: 'Amundi PEA Emergent (PAEEM)', y2023: 3.66, y2024: 13.39, y2025: 21.04 },
       { key: 'msci_em', label: 'iShares Core MSCI EM IMI', y2023: 11.6, y2024: 7.2, y2025: 31.6 },
       { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 4.12, y2024: 19.20, y2025: 11.13 },
       { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.73, y2024: 3.64, y2025: 34.83 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '💳 Tu veux rester en PEA ?', a: 'PAEEM (Amundi PEA Emergent) — seule option, indice ESG resserré.' },
-      { q: '🏳️ La référence la plus large et la moins chère, en CTO ?', a: 'iShares Core MSCI EM IMI.' },
+      { q: '🏳️ La référence la plus large et la moins chère ?', a: 'iShares Core MSCI EM IMI.' },
       { q: '🇰🇷 Tu veux exclure la Corée du Sud (classée développée) ?', a: 'Vanguard FTSE Emerging Markets.' },
       { q: '🚫 Tu veux réduire ton risque chinois ?', a: 'iShares MSCI EM ex-China.' },
     ],
@@ -436,21 +501,24 @@ export const FAMILIES = [
     closing: '💬 Toi, plutôt Value, Quality… ou toujours MSCI World tout court ?',
   },
 
-  // ── Famille 6 : Dividendes ───────────────────────────────────────────
+  // ── Famille 6a : Dividendes (CTO) ────────────────────────────────────
   // Sources : justETF (recherche web du 01/09/2026). High Dividend et
   // Quality Dividend (part Dist) déjà référencés ailleurs dans l'appli
   // (portfolio-generator/data.js) ; part Acc et Aristocrats confirmées
-  // cette session.
+  // cette session. Contenu inchangé depuis la scission du 02/09/2026 (ces
+  // 3 indices n'ont toujours aucun équivalent PEA) — seul le titre du
+  // bloc 2 a été mis à jour pour ne plus dire « aucune option PEA », ce
+  // qui n'est plus vrai depuis l'ajout du tweet « Dividendes (PEA) ».
   {
-    id: 'dividendes',
-    label: '🟣 Dividendes',
-    intro: 'High Dividend, Quality Dividend, Dividend Aristocrats… 3 façons différentes de viser le rendement 🟣\nOn décrypte les trois 👇',
+    id: 'dividendes-cto',
+    label: '🟣 Dividendes (CTO)',
+    intro: 'High Dividend, Quality Dividend, Dividend Aristocrats… 3 façons différentes de viser le rendement, en compte-titres 🟣\nOn décrypte les trois 👇',
     indices: [
       { name: 'High Dividend', desc: '2 397 entreprises mondiales au rendement de dividende le plus élevé, sans filtre de qualité.', tag: 'Le rendement brut, sans filtre 💰' },
       { name: 'Quality Dividend', desc: '~200 valeurs (194-211 selon la date de rebalancement) : dividende + critères de solidité financière (rentabilité, faible endettement).', tag: 'Le compromis entre rendement et solidité 💎' },
       { name: 'Dividend Aristocrats', desc: '100 entreprises qui versent ET augmentent leur dividende depuis au moins 10 ans consécutifs.', tag: 'Le plus exigeant des trois 🏅' },
     ],
-    block2Title: '2️⃣ LES ETF DISPONIBLES — AUCUNE OPTION PEA 💳',
+    block2Title: '2️⃣ LES ETF DISPONIBLES (CTO) 💳',
     etfGroups: [
       {
         // Parts Dist choisies ici (pas Acc) : c'est la famille Dividendes, l'investisseur veut
@@ -491,6 +559,55 @@ export const FAMILIES = [
       { q: '🏅 Le plus exigeant (10 ans de hausses consécutives) ?', a: 'SPDR S&P Global (ou US) Dividend Aristocrats.' },
     ],
     closing: '💬 Toi, tu vises le rendement pur ou la régularité ?',
+  },
+
+  // ── Famille 6b : Dividendes (PEA) ────────────────────────────────────
+  // Ajoutée le 02/09/2026. Recherche dédiée : sur les 3 indices de la
+  // famille CTO (High Dividend mondial, Quality Dividend mondial,
+  // Dividend Aristocrats mondial/US), aucun n'a d'équivalent PEA — confirmé
+  // à nouveau cette session. Une seule vraie option PEA existe pour viser
+  // le dividende, et elle est structurellement limitée à la zone euro :
+  // EUDV (SPDR S&P Euro Dividend Aristocrats), éligibilité PEA confirmée
+  // par la documentation officielle State Street ET par un comparatif
+  // indépendant d'ETF PEA 2026 (recherche web du 02/09/2026). Point de
+  // vigilance retenu : l'équivalent Amundi sur le même indice zone euro
+  // (Amundi S&P Eurozone Dividend Aristocrat Screened, LU0959210278) est
+  // lui explicitement NON éligible PEA — la zone géographique seule ne
+  // suffit donc pas, seul EUDV a la bonne structure. Un seul fonds réel
+  // → pas de comparaison multi-fonds ici, mais un contenu complet et honnête
+  // (ISIN, TER, encours, réplication, performance sourcée).
+  {
+    id: 'dividendes-pea',
+    label: '🟣 Dividendes (PEA)',
+    intro: 'Tu veux du rendement mais rester en PEA ? Une seule vraie option existe, et elle est limitée à la zone euro 🟣\nOn te la présente 👇',
+    indices: [
+      { name: 'Dividend Aristocrats mondial (rappel, non-PEA)', desc: '100 entreprises mondiales, dividende en hausse depuis au moins 10 ans — l\'option déjà vue dans le tweet « Dividendes (CTO) ».', tag: 'Large mais non-PEA 🌍' },
+      { name: 'Euro Dividend Aristocrats (PEA)', desc: '40 entreprises de la zone euro uniquement, même critère de hausse du dividende sur 10 ans — le prix à payer pour rester en PEA : un univers bien plus restreint.', tag: 'Le seul dividende PEA 🇪🇺' },
+    ],
+    block2Title: '2️⃣ L\'ETF PEA DISPONIBLE 💳',
+    etfGroups: [
+      {
+        indexName: 'Euro Dividend Aristocrats', choiceNote: 'seule option PEA sur les dividendes, même en zone euro uniquement', pea: true,
+        funds: [{ name: 'SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist)', ticker: 'EUDV', isin: 'IE00B5M1WJ87', ter: '0,30 %', repl: '🔄 Physique (réplication complète, 40 valeurs)', dist: 'distribuant semestriel', aum: '1 810 M€' }],
+      },
+    ],
+    diversification: {
+      chain: ['Dividend Aristocrats mondial (100 lignes, CTO)', 'Euro Dividend Aristocrats (40 lignes, PEA)'],
+      notes: ['⚠️ En PEA, tu passes de 100 valeurs mondiales à seulement 40 valeurs zone euro — la contrepartie de l\'éligibilité PEA.', '→ Résultat : plus concentré sur la finance et l\'énergie européennes, secteurs traditionnellement gros payeurs de dividendes en zone euro.'],
+    },
+    // Performance 2023-2025 (source : recherche web du 02/09/2026, recoupée sur plusieurs pages —
+    // fonds EUDV et indice S&P Euro High Yield Dividend Aristocrats cohérents à moins de 0,5 pt sur
+    // 2023 et 2024 ; 2025 retenu sur la valeur datée « au 31/12/2025 » plutôt qu'un « 1 an glissant »
+    // trouvé par ailleurs, qui inclut une partie de 2026).
+    perfFunds: [
+      { key: 'eudv', label: 'SPDR S&P Euro Dividend Aristocrats (EUDV)', y2023: 18.39, y2024: 8.58, y2025: 20.06 },
+    ],
+    verdictTitle: '✅ LE VERDICT',
+    verdict: [
+      { q: '💳 Tu veux du dividende en restant 100 % PEA ?', a: 'EUDV (SPDR S&P Euro Dividend Aristocrats) — seule option, mais limitée à la zone euro.' },
+      { q: '🌍 Tu veux le choix le plus large, dividende mondial ?', a: 'Aucune option PEA à ce jour — direction le CTO (cf. le tweet « Dividendes (CTO) »).' },
+    ],
+    closing: '💬 Toi, le dividende passe par le PEA ou tu acceptes de sortir en CTO pour plus de choix ?',
   },
 
   // ── Famille 8 : Chine ────────────────────────────────────────────────
