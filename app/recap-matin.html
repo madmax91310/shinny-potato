@@ -448,50 +448,50 @@
 
 <script>
   const DATA = {
-    sessionDate: "Spécial week-end du 29-30 août 2026",
-    generatedAt: "Généré le 31 août 2026",
-    introLine: "Que s'est-il passé ce week-end sur les marchés ? 👇",
+    sessionDate: "Séance du 31 août 2026",
+    generatedAt: "Généré le 1er septembre 2026",
+    introLine: "Que s'est-il passé hier sur les marchés ? 👇",
     stats: [
-      { label: "Frappe US en Iran", value: "dimanche", delta: "lance-roquettes visés", dir: "down" },
-      { label: "Brent", value: ">90 $", delta: "reprise des hostilités", dir: "up" },
-      { label: "JGB 10 ans (Japon)", value: "≈3%", delta: "haut depuis 30 ans", dir: "up" },
-      { label: "Bitcoin", value: "≈78 000 $", delta: "pic à 81 455 $ vendredi", dir: "flat" },
-      { label: "Or (once)", value: "≈4 650 $", delta: "+7%, semaine", dir: "up" },
-      { label: "IRGC", value: "riposte promise", delta: "tensions Ormuz", dir: "down" }
+      { label: "Soitec", value: "+6,39%", delta: "nouveaux contrats", dir: "up" },
+      { label: "Frappe US en Iran", value: "Larak Island", delta: "2 morts (Tasnim)", dir: "down" },
+      { label: "Bitcoin", value: "77-79 000 $", delta: "+25%, août", dir: "flat" },
+      { label: "Brent", value: "≈90 $", delta: "clôture lundi", dir: "up" },
+      { label: "UST 10 ans", value: "haut depuis 2025", delta: "rendement", dir: "up" },
+      { label: "Strategy (BTC)", value: "845 050 BTC", delta: "+4 603 BTC", dir: "up" }
     ],
     bullets: [
       {
+        emoji: "🔬",
+        tag: "Marchés actions",
+        text: "Le spécialiste français des semi-conducteurs Soitec a bondi de 6,39% après l'annonce par son directeur général de l'imposition d'acomptes et de prix fixes sur ses contrats d'approvisionnement."
+      },
+      {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "L'armée américaine a frappé dimanche des lance-roquettes iraniens qui s'apprêtaient à larguer des mines dans le détroit d'Ormuz, une première frappe américaine visant l'Iran depuis fin juillet, à laquelle les Gardiens de la révolution ont promis de répondre."
-      },
-      {
-        emoji: "💛",
-        tag: "Matières premières",
-        text: "Le Brent est repassé au-dessus de 90 dollars le baril et le WTI est remonté vers 86 dollars en ce début de semaine, le marché pétrolier réagissant vivement à la reprise des hostilités autour du détroit d'Ormuz."
-      },
-      {
-        emoji: "🇯🇵",
-        tag: "Taux",
-        text: "Le rendement des emprunts d'État japonais à 10 ans s'approchait ce week-end d'un plus haut en 30 ans proche de 3%, une hausse telle que des analystes jugent désormais justifié un relèvement de l'allocation obligataire domestique du fonds de pension public GPIF."
+        text: "Des drones américains ont frappé deux lance-roquettes iraniens sur l'île de Larak après que les Gardiens de la révolution s'apprêtaient à tirer des roquettes chargées de mines marines vers le détroit d'Ormuz, une frappe qui a fait deux morts selon l'agence iranienne Tasnim et la première visant l'Iran depuis fin juillet."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin a passé le week-end autour de 78 000 dollars, retombant après avoir brièvement touché 81 455 dollars vendredi soir, les investisseurs digérant toujours le ton prudent de Kevin Warsh sur l'inflation."
+        text: "Le Bitcoin a à peine réagi à la frappe américaine en Iran et à la flambée du pétrole, oscillant entre 77 000 et 79 000 dollars, et se dirige vers un gain mensuel d'environ 25% en août, son meilleur mois depuis novembre 2024."
       },
       {
-        emoji: "💰",
+        emoji: "💛",
+        tag: "Matières premières",
+        text: "Le Brent a clôturé près de 90 dollars le baril lundi et le WTI est repassé au-dessus de 86 dollars, portant le rendement des bons du Trésor à 10 ans à son plus haut niveau depuis janvier 2025, tandis que l'or a gagné 0,94% à 4 487 dollars l'once."
+      },
+      {
+        emoji: "📊",
         tag: "Fait marquant",
-        text: "L'or reste soutenu près de 4 650 dollars l'once, en hausse d'environ 7% sur la semaine, porté par l'intervention surprise du Trésor américain sur le marché obligataire et le retour du « debasement trade »."
+        text: "Strategy a acheté 4 603 bitcoins supplémentaires pour 370 millions de dollars, sa première acquisition depuis juin, portant ses réserves totales à 845 050 BTC."
       }
     ],
     sources: [
-      { outlet: "Axios", title: "U.S. strikes Iran to prevent Hormuz mine threat", url: "https://www.axios.com/2026/08/30/us-iran-strike-hormuz-mines" },
-      { outlet: "Bloomberg", title: "Oil Jumps at Week's Open as US Military Hits Iranian Launchers", url: "https://www.bloomberg.com/news/articles/2026-08-30/latest-oil-market-news-and-analysis-for-aug-31" },
-      { outlet: "Bloomberg", title: "GPIF Would Be Justified in Buying More Japan Bonds, Say Analysts", url: "https://www.bloomberg.com/news/articles/2026-08-31/gpif-would-be-justified-in-buying-more-japan-bonds-say-analysts" },
-      { outlet: "CoinDesk", title: "Live updates: Bitcoin slides below $78,000 as markets digest Warsh's hawkish remarks", url: "https://www.coindesk.com/business/2026/08/28/live-updates-bitcoin-options-worth-usd6-4-billion-just-expired-as-prices-hover-near-usd80-000" },
-      { outlet: "Bloomberg", title: "Gold Miners Are Having a Better Month Than Chips Did in Years", url: "https://www.bloomberg.com/news/articles/2026-08-28/gold-miners-are-having-a-better-month-than-chips-did-in-years" }
+      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/l-europe-attendue-en-baisse-reprise-des-combats-entre-usa-et-iran-3dc2cd8fd256d550f5c1e10e5c9e7b60" },
+      { outlet: "Axios", title: "President Trump considering limited strikes against Iran to degrade capabilities in Hormuz", url: "https://www.axios.com/2026/08/31/trump-iran-war-hormuz-hegseth-centcom" },
+      { outlet: "CoinDesk", title: "Bitcoin barely blinks, XRP drops as U.S. strikes Iran and oil rallies", url: "https://www.coindesk.com/markets/2026/08/31/bitcoin-barely-blinks-as-u-s-hits-iran-sending-oil-higher-and-stocks-lower" },
+      { outlet: "Bloomberg", title: "S&P 500 Falls Amid Oil Spike as Middle East Conflict Intensifies", url: "https://www.bloomberg.com/news/articles/2026-08-31/s-p-500-falls-amid-oil-spike-as-middle-east-conflict-intensifies" },
+      { outlet: "The Block", title: "'We're back': Strategy buys another 4,603 bitcoin for $369.7 million as holdings hit 845,050 BTC", url: "https://www.theblock.co/news/business/2026-08-31-were-back-strategy-buys-another-4603-btc-369-7-million-holdings-hit-845050-btc-413087" }
     ]
   };
 
