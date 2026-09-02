@@ -57,26 +57,35 @@ export const ASSETS = {
     // WhiteBIT), puis prix quotidiens réels (Fortune "current price of Ethereum") pour 2026.
     // Point 2016-12 : fourchette de sources 7,27-8,07 $, retenu 7,98 $ (confiance moyenne).
     // Point 2019-12 : recoupement indirect (confiance moyenne). Tous les autres points ci-dessous sont
-    // directement sourcés. Dernier point réel : 21/08/2026.
+    // directement sourcés.
+    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
+    // remplacé 2371,03 $ (~21/08/2026) par 2453,23 $, la vraie clôture du 31/08/2026 — même source
+    // (Fortune, "Current price of Ethereum for Aug. 31, 2026") que le reste de la série 2026, donc
+    // aucun changement de méthode. Dernier point réel : 31/08/2026.
     label: 'Ethereum', tweetPhrase: "l'Ethereum", icon: 'Ξ', currency: 'USD',
     points: P([
       '2016-12', 7.98, '2017-12', 756.73, '2018-12', 130.86, '2019-12', 128.59,
       '2020-12', 737.45, '2021-12', 3676.90, '2022-12', 1195.00, '2023-12', 2281.95,
       '2024-12', 3333.30, '2025-12', 2967.13,
-      '2026-01', 3120, '2026-04', 2133.44, '2026-08', 2371.03,
+      '2026-01', 3120, '2026-04', 2133.44, '2026-08', 2453.23,
     ]),
   },
   cac40: {
     // Source : clôtures annuelles réelles de l'indice CAC 40 (MacroTrends, "CAC 40 Index (1990-2025)"),
     // recoupées avec la presse (CNBC "European markets on December 31") pour 2024-2025, puis niveaux
-    // réels de presse pour 2026 (janvier, avril : moyenne sur futures mi-mars/mi-avril ; août : record
-    // de la mi-août 2026). Dernier point réel : 14-21/08/2026.
+    // réels de presse pour 2026 (janvier, avril : moyenne sur futures mi-mars/mi-avril).
+    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
+    // remplacé 8650 (un pic intrajournalier de mi-août, pas une clôture) par 8 334,50, la vraie
+    // clôture du 31/08/2026 (Boursorama, "Août s'achève dans le rouge pour le CAC 40 et l'Europe" —
+    // baisse de 0,79 % ce jour-là) — cohérent avec la convention "clôtures réelles" du reste de la
+    // série, contrairement au point précédent qui était un record intrajournalier. Dernier point
+    // réel : 31/08/2026.
     label: 'CAC 40', tweetPhrase: 'le CAC 40', icon: '🇫🇷', currency: 'EUR',
     points: P([
       '2015-12', 4637.06, '2016-12', 4862.31, '2017-12', 5312.56, '2018-12', 4730.69,
       '2019-12', 5978.06, '2020-12', 5551.41, '2021-12', 7153.03, '2022-12', 6473.76,
       '2023-12', 7319.76, '2024-12', 7380.74, '2025-12', 8183,
-      '2026-01', 8259, '2026-04', 7959, '2026-08', 8650,
+      '2026-01', 8259, '2026-04', 7959, '2026-08', 8334.50,
     ]),
   },
   stoxx600: {
@@ -448,8 +457,12 @@ export const ASSETS = {
     // (MarketScreener pour 2020-2023 ; presse spécialisée pour 2024/2025/2026). Points 2015-01 à
     // 2019-10 : NON VÉRIFIÉS dans cette session (aucune clôture fiable retrouvée malgré plusieurs
     // recherches) — valeurs illustratives d'origine conservées, à vérifier manuellement avant
-    // publication. Point 2026-04 : absent (aucune clôture fiable trouvée), interpolé automatiquement
-    // par l'application entre les points réels de janvier et août 2026. Dernier point réel : ~21/08/2026.
+    // publication (cf. VERIFIED_MIN_DATE_OVERRIDES ci-dessous, qui exclut ces points des calculs).
+    // Point 2026-04 : absent (aucune clôture fiable trouvée), interpolé automatiquement par
+    // l'application entre les points réels de janvier et août 2026.
+    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
+    // remplacé 450 € (~21/08/2026) par 453,30 €, la vraie clôture du 31/08/2026 (-1,06 % ce jour-là).
+    // Dernier point réel : 31/08/2026.
     label: 'LVMH', tweetPhrase: 'LVMH', icon: '◆', currency: 'EUR',
     points: P([
       '2015-01', 140, '2015-04', 165, '2015-07', 155, '2015-10', 160,
@@ -458,7 +471,7 @@ export const ASSETS = {
       '2018-01', 270, '2018-04', 260, '2018-07', 280, '2018-10', 235,
       '2019-01', 260, '2019-04', 340, '2019-07', 370, '2019-10', 390,
       '2020-12', 510.90, '2021-12', 727.00, '2022-12', 679.90, '2023-12', 733.60,
-      '2024-12', 638.25, '2025-12', 643.65, '2026-01', 649.65, '2026-08', 450,
+      '2024-12', 638.25, '2025-12', 643.65, '2026-01', 649.65, '2026-08', 453.30,
     ]),
   },
   apple: {
