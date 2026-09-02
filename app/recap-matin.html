@@ -448,50 +448,51 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 31 août 2026",
-    generatedAt: "Généré le 1er septembre 2026",
+    sessionDate: "Séance du 1er septembre 2026",
+    generatedAt: "Généré le 2 septembre 2026",
     introLine: "Que s'est-il passé hier sur les marchés ? 👇",
     stats: [
-      { label: "Soitec", value: "+6,39%", delta: "nouveaux contrats", dir: "up" },
-      { label: "Frappe US en Iran", value: "Larak Island", delta: "2 morts (Tasnim)", dir: "down" },
-      { label: "Bitcoin", value: "77-79 000 $", delta: "+25%, août", dir: "flat" },
-      { label: "Brent", value: "≈90 $", delta: "clôture lundi", dir: "up" },
-      { label: "UST 10 ans", value: "haut depuis 2025", delta: "rendement", dir: "up" },
-      { label: "Strategy (BTC)", value: "845 050 BTC", delta: "+4 603 BTC", dir: "up" }
+      { label: "GoPro / Starman", value: "285 M$", delta: "cession majoritaire", dir: "down" },
+      { label: "Markiplier / GoPro", value: "8,5%", delta: "participation révélée", dir: "up" },
+      { label: "WTI", value: "≈91 $", delta: "+5,2%, mardi", dir: "up" },
+      { label: "Brent", value: "≈95 $", delta: "clôture", dir: "up" },
+      { label: "Or (once)", value: "4 330 $", delta: "-6%, 3 séances", dir: "down" },
+      { label: "Bitcoin", value: "77-78 000 $", delta: "meilleur août depuis 2017", dir: "flat" }
     ],
     bullets: [
       {
-        emoji: "🔬",
+        emoji: "📷",
         tag: "Marchés actions",
-        text: "Le spécialiste français des semi-conducteurs Soitec a bondi de 6,39% après l'annonce par son directeur général de l'imposition d'acomptes et de prix fixes sur ses contrats d'approvisionnement."
+        text: "GoPro, en difficulté, a cédé une participation majoritaire au fabricant de lunettes Starman pour 285 millions de dollars, avant que le titre ne rebondisse après que le YouTuber Markiplier a révélé détenir 8,5% du capital."
       },
       {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Des drones américains ont frappé deux lance-roquettes iraniens sur l'île de Larak après que les Gardiens de la révolution s'apprêtaient à tirer des roquettes chargées de mines marines vers le détroit d'Ormuz, une frappe qui a fait deux morts selon l'agence iranienne Tasnim et la première visant l'Iran depuis fin juillet."
+        text: "Les forces américaines ont frappé des cibles des Gardiens de la révolution dans sept localités du littoral sud de l'Iran, dont Bandar Abbas et Chabahar, dans le cadre d'une opération visant à empêcher Téhéran de reconstituer ses capacités radar et missiles."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin a à peine réagi à la frappe américaine en Iran et à la flambée du pétrole, oscillant entre 77 000 et 79 000 dollars, et se dirige vers un gain mensuel d'environ 25% en août, son meilleur mois depuis novembre 2024."
+        text: "Le Bitcoin est resté stable autour de 77 000-78 000 dollars malgré la flambée du pétrole et la remontée des anticipations de hausse des taux de la Fed, après avoir signé son meilleur mois d'août depuis 2017."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent a clôturé près de 90 dollars le baril lundi et le WTI est repassé au-dessus de 86 dollars, portant le rendement des bons du Trésor à 10 ans à son plus haut niveau depuis janvier 2025, tandis que l'or a gagné 0,94% à 4 487 dollars l'once."
+        text: "Le WTI a grimpé vers 91 dollars après un bond de 5,2% mardi, sa plus forte hausse en cinq semaines, et le Brent s'est établi près de 95 dollars, tandis que l'or a chuté de près de 6% en trois séances à 4 330 dollars l'once, pénalisé par la remontée des rendements obligataires."
       },
       {
-        emoji: "📊",
+        emoji: "⚔️",
         tag: "Fait marquant",
-        text: "Strategy a acheté 4 603 bitcoins supplémentaires pour 370 millions de dollars, sa première acquisition depuis juin, portant ses réserves totales à 845 050 BTC."
+        text: "En représailles, l'Iran a tiré des drones et des missiles balistiques contre des bases américaines au Bahreïn et au Koweït, la plupart interceptés, un responsable militaire iranien affilié aux Gardiens de la révolution avertissant que la réponse serait « plusieurs fois supérieure » aux frappes américaines."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/l-europe-attendue-en-baisse-reprise-des-combats-entre-usa-et-iran-3dc2cd8fd256d550f5c1e10e5c9e7b60" },
-      { outlet: "Axios", title: "President Trump considering limited strikes against Iran to degrade capabilities in Hormuz", url: "https://www.axios.com/2026/08/31/trump-iran-war-hormuz-hegseth-centcom" },
-      { outlet: "CoinDesk", title: "Bitcoin barely blinks, XRP drops as U.S. strikes Iran and oil rallies", url: "https://www.coindesk.com/markets/2026/08/31/bitcoin-barely-blinks-as-u-s-hits-iran-sending-oil-higher-and-stocks-lower" },
-      { outlet: "Bloomberg", title: "S&P 500 Falls Amid Oil Spike as Middle East Conflict Intensifies", url: "https://www.bloomberg.com/news/articles/2026-08-31/s-p-500-falls-amid-oil-spike-as-middle-east-conflict-intensifies" },
-      { outlet: "The Block", title: "'We're back': Strategy buys another 4,603 bitcoin for $369.7 million as holdings hit 845,050 BTC", url: "https://www.theblock.co/news/business/2026-08-31-were-back-strategy-buys-another-4603-btc-369-7-million-holdings-hit-845050-btc-413087" }
+      { outlet: "Boursorama", title: "GoPro, en difficulté, cède une participation majoritaire au fabricant d'optiques Starman pour 285 millions de dollars", url: "https://www.boursorama.com/bourse/actualites/gopro-en-difficulte-cede-une-participation-majoritaire-au-fabricant-d-optiques-starman-pour-285-millions-de-dollars-bd07e5708692c86cdf5246c3dbd4c34d" },
+      { outlet: "Boursorama", title: "Le titre GoPro rebondit après que le YouTuber Markiplier a révélé détenir une participation de 8,5%", url: "https://www.boursorama.com/bourse/actualites/le-titre-gopro-rebondit-apres-que-le-youtuber-markiplier-a-revele-detenir-une-participation-de-8-5-fbb5e35ca1e3378889230502ebe14a1d" },
+      { outlet: "Axios", title: "U.S. military conducting fresh strikes in the Strait of Hormuz", url: "https://www.axios.com/2026/09/01/hormuz-centcom-strikes-trump-iran" },
+      { outlet: "The Block", title: "Bitcoin defies oil price spike and rising Fed hike bets after best August since 2017", url: "https://www.theblock.co/news/markets/2026-09-01-bitcoin-defies-oil-price-spike-and-rising-fed-hike-bets-after-best-august-since-2017-413218" },
+      { outlet: "Bloomberg", title: "Oil Extends Gain as Fresh US-Iran Attacks Cloud Hormuz Reopening", url: "https://www.bloomberg.com/news/articles/2026-09-01/latest-oil-market-news-and-analysis-for-sept-2" },
+      { outlet: "Bloomberg", title: "Gold Holds Drop as Higher Oil, Bond Selloff Raise Rate-Hike Bets", url: "https://www.bloomberg.com/news/articles/2026-09-01/gold-holds-drop-as-higher-oil-bond-selloff-raise-rate-hike-bets" }
     ]
   };
 
