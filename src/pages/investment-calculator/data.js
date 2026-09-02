@@ -91,8 +91,7 @@ export const ASSETS = {
   stoxx600: {
     // Source : indice STOXX Europe 600 (rendement total, base 10 000 au 31/12/1986), export CSV mensuel
     // réel fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier
-    // point disponible dans l'export). Le point 2026-08 n'existe pas dans la source : l'appli prolonge
-    // automatiquement le dernier prix connu (juillet 2026) jusqu'à LATEST_YM.
+    // point disponible dans l'export).
     // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
     // rendements annuels imprécis par rapport aux vrais rendements connus de l'indice — import CSV
     // d'origine approximatif. Point de DÉCEMBRE de chaque année 2016-2025 recalculé à partir du
@@ -107,6 +106,14 @@ export const ASSETS = {
     // re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une
     // même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) — limitation assumée,
     // aucune valeur mensuelle inventée.
+    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée, retentée avec des requêtes plus précises
+    // après un premier échec) : même méthode que les corrections de décembre ci-dessus — pas de niveau
+    // "STOXX Europe 600 rebasé" public à chercher (c'est une reconstruction interne), donc calculé en
+    // appliquant le rendement total RÉEL du mois au point de juillet. Rendement retenu : +0,49 %, à
+    // partir du STOXX Europe 600 EUR Net Return Index (STOXXR), 1 654,78 au 31/07/2026 -> 1 662,91 au
+    // 31/08/2026, cohérent avec le retour sur 1 mois publié par l'ETF iShares STOXX Europe 600 (DE)
+    // UCITS (EXSA) sur la même période (+0,59 %) — 2 sources indépendantes convergentes. 224 956 x
+    // 1,0049 = 226 061.
     label: 'ETF STOXX Europe 600', tweetPhrase: 'un ETF STOXX Europe 600', icon: '🇪🇺', currency: 'EUR',
     points: P([
       '2015-01', 93786, '2015-02', 100336, '2015-03', 102017, '2015-04', 102119,
@@ -143,14 +150,13 @@ export const ASSETS = {
       '2025-05', 185159, '2025-06', 182901, '2025-07', 184668, '2025-08', 186410,
       '2025-09', 189244, '2025-10', 194093, '2025-11', 195939, '2025-12', 204201,
       '2026-01', 207911, '2026-02', 215928, '2026-03', 199380, '2026-04', 210113,
-      '2026-05', 216467, '2026-06', 222182, '2026-07', 224956,
+      '2026-05', 216467, '2026-06', 222182, '2026-07', 224956, '2026-08', 226061,
     ]),
   },
   sp500: {
     // Source : indice S&P 500 (rendement total, base 10 000 au 29/02/1992), export CSV mensuel réel
     // fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier point
-    // disponible dans l'export). Le point 2026-08 n'existe pas dans la source : l'appli prolonge
-    // automatiquement le dernier prix connu (juillet 2026) jusqu'à LATEST_YM.
+    // disponible dans l'export).
     // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
     // rendements annuels erronés par rapport aux vrais rendements connus de l'indice (ex. 2017 donnait
     // +7,1% au lieu de +21,8% réel) — import CSV d'origine imprécis. Point de DÉCEMBRE de chaque année
@@ -162,6 +168,12 @@ export const ASSETS = {
     // quels (non re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et
     // décembre d'une même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) —
     // limitation assumée, aucune valeur mensuelle inventée.
+    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée, retentée avec des requêtes plus précises
+    // après un premier échec) : même méthode que les corrections de décembre ci-dessus, appliquée au
+    // rendement du mois. Rendement retenu : +2,54 %, à partir de l'indice S&P 500 Total Return
+    // (^SP500TR), 16 763,42 au 31/07/2026 -> 17 189,63 au 31/08/2026 — cohérent avec la presse
+    // financière ("le S&P 500 a gagné plus de 2 % en août, record mensuel"), 2 sources indépendantes
+    // convergentes. 386 824 x 1,0254 = 396 659.
     label: 'S&P 500', tweetPhrase: 'le S&P 500', icon: '🇺🇸', currency: 'USD',
     points: P([
       '2015-01', 85714, '2015-02', 91164, '2015-03', 93734, '2015-04', 90785,
@@ -198,14 +210,13 @@ export const ASSETS = {
       '2025-05', 304992, '2025-06', 310082, '2025-07', 324631, '2025-08', 325189,
       '2025-09', 334675, '2025-10', 348055, '2025-11', 348546, '2025-12', 369178,
       '2026-01', 343338, '2026-02', 344019, '2026-03', 335616, '2026-04', 364367,
-      '2026-05', 385455, '2026-06', 390161, '2026-07', 386824,
+      '2026-05', 385455, '2026-06', 390161, '2026-07', 386824, '2026-08', 396659,
     ]),
   },
   msciWorld: {
     // Source : indice MSCI World (rendement total, base 10 000 au 31/12/1969), export CSV mensuel réel
     // fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier point
-    // disponible dans l'export). Le point 2026-08 n'existe pas dans la source : l'appli prolonge
-    // automatiquement le dernier prix connu (juillet 2026) jusqu'à LATEST_YM.
+    // disponible dans l'export).
     // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
     // rendements annuels erronés par rapport aux vrais rendements connus de l'indice (ex. 2020 donnait
     // +6,1% au lieu de +16,5% réel) — import CSV d'origine imprécis. Point de DÉCEMBRE de chaque année
@@ -217,6 +228,12 @@ export const ASSETS = {
     // individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une même année,
     // et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) — limitation assumée, aucune
     // valeur mensuelle inventée.
+    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée ; le niveau officiel MSCI World Net Return
+    // n'a pas pu être trouvé aux deux dates précises malgré plusieurs tentatives — retenu à la place
+    // le rendement sur 1 mois publié par 2 ETF UCITS distincts qui répliquent cet indice, datés fin
+    // août 2026 : Xtrackers MSCI World UCITS ETF 1C -0,28 % et Amundi Core MSCI World UCITS ETF Acc
+    // -0,31 % — 2 émetteurs différents, écart <0,05 pt, retenu -0,30 % (moyenne). 964 712 x 0,997 =
+    // 961 818.
     label: 'ETF MSCI World', tweetPhrase: 'un ETF MSCI World', icon: '🌍', currency: 'USD',
     points: P([
       '2015-01', 279232, '2015-02', 297301, '2015-03', 305731, '2015-04', 300179,
@@ -253,7 +270,7 @@ export const ASSETS = {
       '2025-05', 768049, '2025-06', 775147, '2025-07', 803919, '2025-08', 809889,
       '2025-09', 830015, '2025-10', 860339, '2025-11', 861874, '2025-12', 971159,
       '2026-01', 861977, '2026-02', 876676, '2026-03', 842752, '2026-04', 907487,
-      '2026-05', 953523, '2026-06', 967452, '2026-07', 964712,
+      '2026-05', 953523, '2026-06', 967452, '2026-07', 964712, '2026-08', 961818,
     ]),
   },
   nasdaq100: {

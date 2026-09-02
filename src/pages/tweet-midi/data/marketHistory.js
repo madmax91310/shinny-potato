@@ -21,8 +21,9 @@ function assetPoints(assetId) {
 }
 
 // Dernier point réellement présent en base pour CET actif précis — jamais supposé identique à
-// LATEST_YM du Calculateur : stoxx600, sp500 et msciWorld s'arrêtent réellement à 2026-07 (pas
-// 2026-08) dans leurs points bruts, vérifié à l'implémentation de ce module.
+// LATEST_YM du Calculateur : cette fonction reste nécessaire même après l'ajout du point 2026-08
+// de stoxx600/sp500/msciWorld le 05/09/2026 (avant ça, ces 3 s'arrêtaient à 2026-07), car un
+// nouvel écart de ce type peut réapparaître à tout mois futur non encore comblé.
 export function getAssetMaxDate(assetId) {
   const points = assetPoints(assetId);
   return points[points.length - 1].date;
