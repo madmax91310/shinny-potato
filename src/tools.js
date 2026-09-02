@@ -65,4 +65,12 @@ export const TOOLS = [
     description: "Compare les indices concurrents d'une même famille : exposition, ETF PEA/CTO, diversification, performance.",
     status: 'disponible',
   },
+  {
+    to: '/pouvoir-achat',
+    navLabel: 'Pouvoir d\'achat',
+    title: 'Simulateur de pouvoir d\'achat',
+    icon: '💶',
+    description: "Compare le coût de la vie dans le temps (loyer, alimentation, carburant, salaire) sans passer par un placement — séries INSEE 2010-2026.",
+    status: 'disponible',
+  },
 ]

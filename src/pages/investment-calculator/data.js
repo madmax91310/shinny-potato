@@ -696,7 +696,17 @@ export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh'])
 // Taux Livret A (moyenne annuelle, %) et inflation France INSEE (moyenne annuelle, %).
 // À ajuster si besoin — sert uniquement de comparaison pédagogique.
 export const LIVRET_A = { 2015: 0.9, 2016: 0.75, 2017: 0.75, 2018: 0.75, 2019: 0.75, 2020: 0.52, 2021: 0.5, 2022: 1.4, 2023: 2.9, 2024: 3.0, 2025: 2.16, 2026: 1.6 }
-export const INFLATION = { 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9, 2026: 1.0 }
+// 2010-2014 ajoutés le 05/09/2026, à la demande du Simulateur de pouvoir d'achat (purchasing-power)
+// qui a besoin d'un historique remontant à 2010 : réutilisé ici (plutôt que dupliqué dans le nouvel
+// outil) puisque c'est déjà la source d'inflation générale partagée par l'app. Source : communiqués
+// annuels INSEE "Indice des prix à la consommation" (moyenne annuelle, IPC ensemble des ménages,
+// hors tabac) — chaque valeur reprend le titre même du communiqué INSEE correspondant :
+// 2010 : « Entre 2009 et 2010, les prix ont augmenté de 1,5 % en moyenne » (insee.fr/fr/statistiques/1562347)
+// 2011 : « Entre 2010 et 2011, les prix ont augmenté de 2,1 % en moyenne » (insee.fr/fr/statistiques/1563697)
+// 2012 : « Entre 2011 et 2012, les prix ont augmenté de 2,0 % en moyenne » (insee.fr/fr/statistiques/1563699)
+// 2013 : « Entre 2012 et 2013, les prix ont augmenté de 0,9 % en moyenne » (insee.fr/fr/statistiques/1563562)
+// 2014 : « Hausse des prix à la consommation de 0,5 % en moyenne en 2014 » (insee.fr/fr/statistiques/1564994)
+export const INFLATION = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9, 2014: 0.5, 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9, 2026: 1.0 }
 
 export const LATEST_YM = '2026-08' // dernière donnée disponible dans les tableaux ci-dessus
 export const MONTHS_FULL = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
