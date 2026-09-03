@@ -448,51 +448,50 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 1er septembre 2026",
-    generatedAt: "Généré le 2 septembre 2026",
+    sessionDate: "Séance du 2 septembre 2026",
+    generatedAt: "Généré le 3 septembre 2026",
     introLine: "Que s'est-il passé hier sur les marchés ? 👇",
     stats: [
-      { label: "GoPro / Starman", value: "285 M$", delta: "cession majoritaire", dir: "down" },
-      { label: "Markiplier / GoPro", value: "8,5%", delta: "participation révélée", dir: "up" },
-      { label: "WTI", value: "≈91 $", delta: "+5,2%, mardi", dir: "up" },
-      { label: "Brent", value: "≈95 $", delta: "clôture", dir: "up" },
-      { label: "Or (once)", value: "4 330 $", delta: "-6%, 3 séances", dir: "down" },
-      { label: "Bitcoin", value: "77-78 000 $", delta: "meilleur août depuis 2017", dir: "flat" }
+      { label: "S&P 500", value: "—", delta: "fin de série baissière", dir: "up" },
+      { label: "Brent", value: ">95 $", delta: "haut depuis juillet", dir: "up" },
+      { label: "WTI", value: ">90 $", delta: "3ᵉ séance de hausse", dir: "up" },
+      { label: "Or (once)", value: "≈4 385 $", delta: "gain maintenu", dir: "up" },
+      { label: "Bitcoin", value: "<76 500 $", delta: "-3%, semaine", dir: "down" },
+      { label: "Strategy (MSTR)", value: "60k → 80k $", delta: "« bon choix » dit le CEO", dir: "up" }
     ],
     bullets: [
       {
-        emoji: "🌍",
-        tag: "Macro & géopolitique",
-        text: "Les forces américaines ont frappé des cibles des Gardiens de la révolution dans sept localités du littoral sud de l'Iran, dont Bandar Abbas et Chabahar, dans le cadre d'une opération visant à empêcher Téhéran de reconstituer ses capacités radar et missiles."
+        emoji: "💻",
+        tag: "Marchés actions",
+        text: "Les valeurs technologiques et des matériaux ont mené le rebond de Wall Street, permettant au S&P 500 de mettre fin à trois séances consécutives de repli."
       },
       {
-        emoji: "📷",
-        tag: "Marchés actions",
-        text: "GoPro, en difficulté, a cédé une participation majoritaire au fabricant de lunettes Starman pour 285 millions de dollars, avant que le titre ne rebondisse après que le YouTuber Markiplier a révélé détenir 8,5% du capital."
+        emoji: "🌍",
+        tag: "Macro & géopolitique",
+        text: "Donald Trump a écarté la perspective d'un conflit prolongé avec l'Iran au lendemain des frappes américaines, un commentaire qui a apaisé les craintes inflationnistes liées à la flambée des prix de l'énergie."
       },
       {
         emoji: "🟠",
         tag: "Crypto",
-        text: "Le Bitcoin est resté stable autour de 77 000-78 000 dollars malgré la flambée du pétrole et la remontée des anticipations de hausse des taux de la Fed, après avoir signé son meilleur mois d'août depuis 2017."
+        text: "Le Bitcoin est tombé sous les 76 500 dollars, en repli de 3% sur la semaine, résistant tout de même à la hausse du pétrole au-delà de 90 dollars et à la remontée des rendements obligataires."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le WTI a grimpé vers 91 dollars après un bond de 5,2% mardi, sa plus forte hausse en cinq semaines, et le Brent s'est établi près de 95 dollars, tandis que l'or a chuté de près de 6% en trois séances à 4 330 dollars l'once, pénalisé par la remontée des rendements obligataires."
+        text: "Le Brent a terminé au-dessus de 95 dollars pour la première fois depuis fin juillet et le WTI s'est maintenu au-dessus de 90 dollars, tandis que l'or a tenu son gain de la veille près de 4 385 dollars l'once."
       },
       {
-        emoji: "⚔️",
+        emoji: "📊",
         tag: "Fait marquant",
-        text: "En représailles, l'Iran a tiré des drones et des missiles balistiques contre des bases américaines au Bahreïn et au Koweït, la plupart interceptés, un responsable militaire iranien affilié aux Gardiens de la révolution avertissant que la réponse serait « plusieurs fois supérieure » aux frappes américaines."
+        text: "Le patron de Strategy a jugé que vendre du bitcoin à 60 000 dollars avant d'en racheter à 80 000 dollars avait été « le bon choix », une déclaration qui tranche avec la doctrine habituelle de la société de ne jamais vendre."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "GoPro, en difficulté, cède une participation majoritaire au fabricant d'optiques Starman pour 285 millions de dollars", url: "https://www.boursorama.com/bourse/actualites/gopro-en-difficulte-cede-une-participation-majoritaire-au-fabricant-d-optiques-starman-pour-285-millions-de-dollars-bd07e5708692c86cdf5246c3dbd4c34d" },
-      { outlet: "Boursorama", title: "Le titre GoPro rebondit après que le YouTuber Markiplier a révélé détenir une participation de 8,5%", url: "https://www.boursorama.com/bourse/actualites/le-titre-gopro-rebondit-apres-que-le-youtuber-markiplier-a-revele-detenir-une-participation-de-8-5-fbb5e35ca1e3378889230502ebe14a1d" },
-      { outlet: "Axios", title: "U.S. military conducting fresh strikes in the Strait of Hormuz", url: "https://www.axios.com/2026/09/01/hormuz-centcom-strikes-trump-iran" },
-      { outlet: "The Block", title: "Bitcoin defies oil price spike and rising Fed hike bets after best August since 2017", url: "https://www.theblock.co/news/markets/2026-09-01-bitcoin-defies-oil-price-spike-and-rising-fed-hike-bets-after-best-august-since-2017-413218" },
-      { outlet: "Bloomberg", title: "Oil Extends Gain as Fresh US-Iran Attacks Cloud Hormuz Reopening", url: "https://www.bloomberg.com/news/articles/2026-09-01/latest-oil-market-news-and-analysis-for-sept-2" },
-      { outlet: "Bloomberg", title: "Gold Holds Drop as Higher Oil, Bond Selloff Raise Rate-Hike Bets", url: "https://www.bloomberg.com/news/articles/2026-09-01/gold-holds-drop-as-higher-oil-bond-selloff-raise-rate-hike-bets" }
+      { outlet: "Boursorama", title: "Wall Street récupère une partie de ses pertes grâce à la vigueur des secteurs de la technologie et des matériaux", url: "https://www.boursorama.com/bourse/actualites/wall-street-recupere-une-partie-de-ses-pertes-grace-a-la-vigueur-des-secteurs-de-la-technologie-et-des-materiaux-06a18990d7234b5380b14f1f7b954f97" },
+      { outlet: "Bloomberg", title: "Oil Holds Three-Day Gain as Trump Says Iran Strikes to be Brief", url: "https://www.bloomberg.com/news/articles/2026-09-02/latest-oil-market-news-and-analysis-for-sept-3" },
+      { outlet: "CoinDesk", title: "Bitcoin withstands $90 oil and rising yields while gold slides. A firm dollar is the catch", url: "https://www.coindesk.com/markets/2026/09/02/bitcoin-withstands-usd90-oil-and-rising-yields-as-gold-slides-a-firm-dollar-is-the-catch" },
+      { outlet: "Bloomberg", title: "Gold Holds Gain as Trump's War Comments Ease Inflation Jitters", url: "https://www.bloomberg.com/news/articles/2026-09-02/gold-holds-gain-as-trump-s-war-comments-ease-inflation-jitters" },
+      { outlet: "The Block", title: "Strategy CEO says selling bitcoin at $60,000 before buying at $80,000 was the 'right trade'", url: "https://www.theblock.co/news/business/2026-09-02-strategy-ceo-says-selling-bitcoin-at-60000-before-buying-at-80000-was-the-right-trade-413323" }
     ]
   };
 
