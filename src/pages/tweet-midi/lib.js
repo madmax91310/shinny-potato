@@ -16,6 +16,14 @@ import {
 import { PERFORMANCE_DEPUIS_QUESTIONS } from "./data/performanceDepuisPunchlines.js";
 import { ANNIVERSAIRE_COMPARATIF_PUNCHLINES } from "./data/anniversaireComparatifPunchlines.js";
 import { PERFORMANCE_DEPUIS_COMPARATIF_PUNCHLINES } from "./data/performanceDepuisComparatifPunchlines.js";
+// Format "Pouvoir d'achat" : aucune donnée ni logique de calcul propre — réutilise entièrement le
+// simulateur "Pouvoir d'achat" (montants, années, séries INSEE, calcul, punchlines) ; cette couche
+// ne fait qu'exposer ces mêmes données/fonctions au système de pools/anti-répétition de Tweet Midi.
+import {
+  AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX,
+  POSTE_ORDER as PA_POSTE_ORDER,
+} from "../purchasing-power/data.js";
+import { buildTweetText as buildPouvoirAchatTweetText } from "../purchasing-power/lib.js";
 
 export const FORMATS = {
   VRAI_FAUX: "vrai-faux",
@@ -24,6 +32,7 @@ export const FORMATS = {
   COMPARATIF_ETF: "comparatif-etf",
   ANNIVERSAIRE: "anniversaire",
   PERFORMANCE_DEPUIS: "performance-depuis",
+  POUVOIR_ACHAT: "pouvoir-achat",
   ALEATOIRE: "aleatoire",
 };
 
@@ -43,6 +52,7 @@ export const FORMAT_LABELS = {
   [FORMATS.COMPARATIF_ETF]: "Comparatif ETF",
   [FORMATS.ANNIVERSAIRE]: "Il y a X ans",
   [FORMATS.PERFORMANCE_DEPUIS]: "Performance depuis",
+  [FORMATS.POUVOIR_ACHAT]: "Pouvoir d'achat",
   [FORMATS.ALEATOIRE]: "Aléatoire (tous formats)",
 };
 
@@ -157,10 +167,34 @@ for (let i = 0; i < MARKET_ASSETS.length; i++) {
   }
 }
 
+// Pool "Pouvoir d'achat" : combinatoire (montant × année × mode/poste), comme Anniversaire/
+// Performance depuis, mais volontairement modeste — ce format est pensé comme un complément à
+// faible fréquence de la rotation, pas un pilier (cf. brief). Réutilise les raccourcis montant et
+// la plage d'années déjà définis dans le simulateur d'origine (PA_AMOUNT_PRESETS, PA_YEAR_MIN/MAX,
+// PA_POSTE_ORDER) plutôt que d'en redéfinir une variante ici — 4 montants × 16 années × (1 "brut" +
+// 3 postes) = 256 combinaisons, contre 1500+ pour Anniversaire/Performance depuis Comparatif.
+const PA_YEARS = Array.from({ length: PA_YEAR_MAX - PA_YEAR_MIN + 1 }, (_, i) => PA_YEAR_MIN + i);
+const POOL_POUVOIR_ACHAT = [];
+for (const amount of PA_AMOUNT_PRESETS) {
+  for (const startYear of PA_YEARS) {
+    POOL_POUVOIR_ACHAT.push({
+      id: `pouvoir-achat:${amount}:${startYear}:brut`, format: FORMATS.POUVOIR_ACHAT,
+      amount, startYear, mode: "brut", posteId: null,
+    });
+    for (const posteId of PA_POSTE_ORDER) {
+      POOL_POUVOIR_ACHAT.push({
+        id: `pouvoir-achat:${amount}:${startYear}:par-poste:${posteId}`, format: FORMATS.POUVOIR_ACHAT,
+        amount, startYear, mode: "par-poste", posteId,
+      });
+    }
+  }
+}
+
 export const ALL_ITEMS = [
   ...POOL_VRAI_FAUX, ...POOL_DILEMME, ...POOL_FICHE_LEXIQUE, ...POOL_COMPARATIF_ETF,
   ...POOL_ANNIVERSAIRE, ...POOL_PERFORMANCE_DEPUIS,
   ...POOL_ANNIVERSAIRE_COMPARATIF, ...POOL_PERFORMANCE_DEPUIS_COMPARATIF,
+  ...POOL_POUVOIR_ACHAT,
 ];
 
 export function poolForFormat(format, mode = MODES.SIMPLE) {
@@ -170,6 +204,7 @@ export function poolForFormat(format, mode = MODES.SIMPLE) {
   if (format === FORMATS.COMPARATIF_ETF) return POOL_COMPARATIF_ETF;
   if (format === FORMATS.ANNIVERSAIRE) return mode === MODES.COMPARATIF ? POOL_ANNIVERSAIRE_COMPARATIF : POOL_ANNIVERSAIRE;
   if (format === FORMATS.PERFORMANCE_DEPUIS) return mode === MODES.COMPARATIF ? POOL_PERFORMANCE_DEPUIS_COMPARATIF : POOL_PERFORMANCE_DEPUIS;
+  if (format === FORMATS.POUVOIR_ACHAT) return POOL_POUVOIR_ACHAT;
   return ALL_ITEMS;
 }
 
@@ -270,13 +305,15 @@ function pickFromPoolWithHistory(pool, history) {
   return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
-// Les 8 "paniers" du mode Aléatoire (tous formats), un par (format, mode) distinct — jamais un
+// Les 9 "paniers" du mode Aléatoire (tous formats), un par (format, mode) distinct — jamais un
 // tirage à plat dans ALL_ITEMS, qui écraserait le résultat : les deux pools combinatoires
 // Comparatif (paires d'actifs × années) représentent à eux seuls 1506 entrées sur 2031 (74%),
 // contre 16 pour Comparatif ETF (0,8%) — mesuré lors de l'audit du 29/08/2026, confirmé par un
 // tirage réel de 25 générations "Aléatoire" n'ayant produit QUE des variantes de ces deux formats.
-// Avec un panier tiré en premier (poids égal, 1/8 chacun) puis un item dans son pool, la taille
-// du pool ne joue plus sur la probabilité qu'un format soit choisi.
+// Avec un panier tiré en premier (poids égal, 1/9 chacun depuis l'ajout de Pouvoir d'achat) puis un
+// item dans son pool, la taille du pool ne joue plus sur la probabilité qu'un format soit choisi —
+// Pouvoir d'achat (256 entrées) garde donc le même poids que Comparatif ETF (16 entrées) malgré
+// l'écart de taille, exactement ce que demande le brief ("poids égal aux autres formats").
 const ALEATOIRE_BUCKETS = [
   POOL_VRAI_FAUX,
   POOL_DILEMME,
@@ -286,6 +323,7 @@ const ALEATOIRE_BUCKETS = [
   POOL_ANNIVERSAIRE_COMPARATIF,
   POOL_PERFORMANCE_DEPUIS,
   POOL_PERFORMANCE_DEPUIS_COMPARATIF,
+  POOL_POUVOIR_ACHAT,
 ];
 
 export function pickNext(format, history, mode = MODES.SIMPLE) {
@@ -307,10 +345,29 @@ export function pickNext(format, history, mode = MODES.SIMPLE) {
 // items qui correspondent, jamais anti-répété, jamais ajouté au suivi de session (l'utilisateur
 // peut revoir cette sélection autant de fois qu'il veut sans polluer le pool "Aléatoire"). Aucun
 // critère précis → pickNext classique, anti-répété et suivi.
-export function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, secondaryId, history }) {
+// Pouvoir d'achat : les 4 paramètres (montant, année, mode, poste) sont TOUJOURS tous fixés côté
+// App.jsx (jamais de "Aléatoire" partiel comme les formats à sujet/secondaire, qui ont chacun une
+// option "🔀 Aléatoire" par défaut) — donc chaque génération manuelle est déjà une sélection
+// précise, jamais ajoutée à l'historique/l'anti-répétition, comme le reste de l'app pour une
+// combinaison précisément choisie (revisitable librement). Le tirage aléatoire DANS ce format passe
+// par un bouton dédié dans App.jsx (pickNext appelé directement), jamais par ici.
+function buildPouvoirAchatItem({ amount, startYear, paMode, posteId }) {
+  const poste = paMode === "par-poste" ? posteId : null;
+  return {
+    id: `pouvoir-achat:manual:${amount}:${startYear}:${paMode}:${poste ?? "none"}`,
+    format: FORMATS.POUVOIR_ACHAT,
+    amount, startYear, mode: paMode, posteId: poste,
+  };
+}
+
+export function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, secondaryId, history, pouvoirAchat }) {
   if (format === FORMATS.ALEATOIRE) {
     const item = pickNext(format, history);
     return { item, addToHistory: true };
+  }
+
+  if (format === FORMATS.POUVOIR_ACHAT) {
+    return { item: buildPouvoirAchatItem(pouvoirAchat), addToHistory: false };
   }
 
   const isComparatif = mode === MODES.COMPARATIF && (format === FORMATS.ANNIVERSAIRE || format === FORMATS.PERFORMANCE_DEPUIS);
@@ -586,6 +643,28 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
   return lines.join("\n");
 }
 
+// Le sélecteur de punchline/question du simulateur d'origine (cf. purchasingPower/lib.js, fonction
+// `pick`) accepte un `rng` personnalisé — on lui passe un générateur déterministe SEEDÉ SUR
+// item.id plutôt que Math.random(), pour que le même item retombe toujours sur la même punchline
+// (le composant recalcule `text` à chaque rendu, cf. buildTweetText appelé en dehors d'un
+// useMemo côté App.jsx ; avec Math.random() le texte changerait à chaque re-rendu sans action de
+// l'utilisateur). Même principe que pickFromPool (hash déterministe) utilisé par les autres formats,
+// mais implémenté en générateur complet (pas juste un hash) car purchasing-power/lib.js pioche DEUX
+// valeurs successives (punchline puis question) avec le même rng.
+function seededRng(seedStr) {
+  let h = 0;
+  for (let i = 0; i < seedStr.length; i++) h = (h * 31 + seedStr.charCodeAt(i)) >>> 0;
+  return function () {
+    h = (h * 1664525 + 1013904223) >>> 0;
+    return h / 4294967296;
+  };
+}
+
+export function buildPouvoirAchatText(item) {
+  const state = { amount: item.amount, startYear: item.startYear, mode: item.mode, posteId: item.posteId };
+  return buildPouvoirAchatTweetText(state, seededRng(item.id));
+}
+
 export function buildTweetText(item, extra = {}) {
   const { niveauActuel, niveauActuelB, includeBenchmark } = extra;
   if (item.format === FORMATS.VRAI_FAUX) return buildVraiFauxText(item);
@@ -600,5 +679,6 @@ export function buildTweetText(item, extra = {}) {
     return buildPerformanceDepuisComparatifText(item, !!includeBenchmark);
   }
   if (item.format === FORMATS.PERFORMANCE_DEPUIS) return buildPerformanceDepuisText(item, !!includeBenchmark);
+  if (item.format === FORMATS.POUVOIR_ACHAT) return buildPouvoirAchatText(item);
   return "";
 }

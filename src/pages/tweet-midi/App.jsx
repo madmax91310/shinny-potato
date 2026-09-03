@@ -4,6 +4,7 @@ import {
   getSecondaryOptionsForFormat, buildTweetText, getMarketAsset,
 } from "./lib.js";
 import { getLengthStatus } from "../etf-tweets/lib/tweetFormat.js";
+import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER } from "../purchasing-power/data.js";
 import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
 import Card from "../../design-system/Card";
@@ -15,7 +16,12 @@ const FORMAT_BADGE_STYLES = {
   [FORMATS.COMPARATIF_ETF]: "border-sky-500/30 bg-sky-500/10 text-sky-300",
   [FORMATS.ANNIVERSAIRE]: "border-rose-500/30 bg-rose-500/10 text-rose-300",
   [FORMATS.PERFORMANCE_DEPUIS]: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
+  [FORMATS.POUVOIR_ACHAT]: "border-indigo-500/30 bg-indigo-500/10 text-indigo-300",
 };
+
+// Années de départ sélectionnables pour "Pouvoir d'achat" — même plage que le simulateur d'origine
+// (PA_YEAR_MIN/PA_YEAR_MAX), pas de redéfinition d'une nouvelle plage ici.
+const PA_YEARS = Array.from({ length: PA_YEAR_MAX - PA_YEAR_MIN + 1 }, (_, i) => PA_YEAR_MIN + i);
 
 const LENGTH_STATUS_STYLES = {
   ok: "border-teal-500/30 bg-teal-500/10 text-teal-300",
@@ -25,7 +31,7 @@ const LENGTH_STATUS_STYLES = {
 
 const SELECTOR_OPTIONS = [
   FORMATS.VRAI_FAUX, FORMATS.DILEMME, FORMATS.FICHE_LEXIQUE, FORMATS.COMPARATIF_ETF,
-  FORMATS.ANNIVERSAIRE, FORMATS.PERFORMANCE_DEPUIS, FORMATS.ALEATOIRE,
+  FORMATS.ANNIVERSAIRE, FORMATS.PERFORMANCE_DEPUIS, FORMATS.POUVOIR_ACHAT, FORMATS.ALEATOIRE,
 ];
 
 // Libellé de l'étape "années en arrière" / "année de départ" — propre aux deux formats à données
@@ -58,8 +64,17 @@ export default function App() {
   // (tous formats)" sans que l'utilisateur l'ait choisi explicitement.
   const [niveauActuel, setNiveauActuel] = useState("");
   const [niveauActuelB, setNiveauActuelB] = useState("");
+  // Pouvoir d'achat : les 4 paramètres de sélection manuelle, propres à ce format (pas de sujet/
+  // secondaire ici, cf. lib.js) — persistent d'une génération à l'autre comme le reste des contrôles
+  // de l'app, y compris à travers un changement de format puis un retour à celui-ci.
+  const [paAmount, setPaAmount] = useState(1000);
+  const [paAmountRaw, setPaAmountRaw] = useState("1000");
+  const [paYear, setPaYear] = useState(2015);
+  const [paMode, setPaMode] = useState("brut");
+  const [paPoste, setPaPoste] = useState("loyer");
 
   const isMarketFormat = format === FORMATS.ANNIVERSAIRE || format === FORMATS.PERFORMANCE_DEPUIS;
+  const isPouvoirAchat = format === FORMATS.POUVOIR_ACHAT;
 
   function handleSelectFormat(nextFormat) {
     setFormat(nextFormat);
@@ -99,6 +114,18 @@ export default function App() {
   }
 
   function handleGenerate() {
+    // Pouvoir d'achat : les 4 champs sont toujours déjà fixés (jamais de sujet/secondaire "Aléatoire"
+    // en attente comme les autres formats) — génération directe à partir d'eux, jamais ajoutée à
+    // l'historique (cf. lib.js pickForSelection). Le tirage aléatoire de CE format passe par son
+    // propre bouton (handlePouvoirAchatRandom), jamais par "Générer".
+    if (isPouvoirAchat) {
+      const { item } = pickForSelection({
+        format, history, pouvoirAchat: { amount: paAmount, startYear: paYear, paMode, posteId: paPoste },
+      });
+      setCurrent(item);
+      setCopied(false);
+      return;
+    }
     const { item, addToHistory } = pickForSelection({
       format, mode, subjectId: subject, subjectIdB: subjectB, secondaryId: secondary, history,
     });
@@ -107,6 +134,29 @@ export default function App() {
     setCopied(false);
     setNiveauActuel("");
     setNiveauActuelB("");
+  }
+
+  // Tirage aléatoire propre à Pouvoir d'achat (bouton dédié dans ses contrôles, cf. JSX) : pioche
+  // dans POOL_POUVOIR_ACHAT via pickNext, donc dans le même `history` global que tous les autres
+  // formats — pas une anti-répétition séparée. Remplit les 4 champs avec la combinaison tirée, pour
+  // que l'utilisateur voie exactement ce qui a été choisi (comme dans le simulateur d'origine) et
+  // puisse la réutiliser/l'ajuster ensuite via "Générer" sans repiocher.
+  function handlePouvoirAchatRandom() {
+    const item = pickNext(FORMATS.POUVOIR_ACHAT, history);
+    setHistory((h) => [...h, item.id]);
+    setPaAmount(item.amount);
+    setPaAmountRaw(String(item.amount));
+    setPaYear(item.startYear);
+    setPaMode(item.mode);
+    if (item.mode === "par-poste" && item.posteId) setPaPoste(item.posteId);
+    setCurrent(item);
+    setCopied(false);
+  }
+
+  function handlePaAmountInput(raw) {
+    setPaAmountRaw(raw);
+    const n = parseFloat(raw.replace(",", "."));
+    if (Number.isFinite(n) && n > 0) setPaAmount(n);
   }
 
   const isAnniversaire = current.format === FORMATS.ANNIVERSAIRE;
@@ -138,7 +188,9 @@ export default function App() {
         : status;
 
   const subjectGroups = getSubjectsForFormat(format);
-  const showSubjectSelector = format !== FORMATS.ALEATOIRE;
+  // Pouvoir d'achat a ses propres contrôles dédiés (montant/année/mode/poste, cf. JSX), jamais le
+  // sélecteur générique sujet/secondaire — pas de "sujet" au sens des autres formats.
+  const showSubjectSelector = format !== FORMATS.ALEATOIRE && !isPouvoirAchat;
   const showSecondarySelector = isMarketFormat;
   const secondaryOptions = showSecondarySelector
     ? getSecondaryOptionsForFormat(format, mode, subject, mode === MODES.COMPARATIF ? subjectB : undefined)
@@ -195,7 +247,7 @@ export default function App() {
     <div>
       <PageHeader
         title="🕐 Tweet Midi"
-        subtitle="Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix et Performances historiques, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."
+        subtitle="Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."
       />
 
       <div className="flex flex-col gap-6 lg:flex-row">
@@ -252,6 +304,118 @@ export default function App() {
                     Comparatif (2 actifs)
                   </Button>
                 </div>
+              </div>
+            )}
+
+            {isPouvoirAchat && (
+              <div className="flex flex-col gap-3 border-l-2 border-indigo-500/30 pl-3">
+                <div>
+                  <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">
+                    Étape 2 — Montant
+                  </label>
+                  <div className="mb-2 flex flex-wrap gap-2">
+                    {PA_AMOUNT_PRESETS.map((v) => (
+                      <Button
+                        key={v}
+                        type="button"
+                        variant={paAmount === v ? "primary" : "secondary"}
+                        onClick={() => {
+                          setPaAmount(v);
+                          setPaAmountRaw(String(v));
+                        }}
+                      >
+                        {v} €
+                      </Button>
+                    ))}
+                  </div>
+                  <input
+                    type="number"
+                    min="1"
+                    step="any"
+                    inputMode="decimal"
+                    placeholder="Montant libre"
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400"
+                    value={paAmountRaw}
+                    onChange={(e) => handlePaAmountInput(e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">
+                    Étape 3 — Année de départ
+                  </label>
+                  <div className="mb-2 flex flex-wrap gap-2">
+                    {PA_YEAR_PRESETS.map((y) => (
+                      <Button
+                        key={y}
+                        type="button"
+                        variant={paYear === y ? "primary" : "secondary"}
+                        onClick={() => setPaYear(y)}
+                      >
+                        {y}
+                      </Button>
+                    ))}
+                  </div>
+                  <select
+                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400"
+                    value={paYear}
+                    onChange={(e) => setPaYear(parseInt(e.target.value, 10))}
+                  >
+                    {PA_YEARS.map((y) => (
+                      <option key={y} value={y}>
+                        {y}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="mt-1.5 text-[11px] text-slate-500">Comparé à aujourd'hui (2026, dernière donnée disponible).</p>
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">Mode</label>
+                  <div className="flex gap-2">
+                    <Button
+                      type="button"
+                      variant={paMode === "brut" ? "primary" : "secondary"}
+                      onClick={() => setPaMode("brut")}
+                      aria-pressed={paMode === "brut"}
+                    >
+                      Pouvoir d'achat brut
+                    </Button>
+                    <Button
+                      type="button"
+                      variant={paMode === "par-poste" ? "primary" : "secondary"}
+                      onClick={() => setPaMode("par-poste")}
+                      aria-pressed={paMode === "par-poste"}
+                    >
+                      Par poste
+                    </Button>
+                  </div>
+                </div>
+
+                {paMode === "par-poste" && (
+                  <div>
+                    <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">Poste</label>
+                    <div className="flex flex-wrap gap-2">
+                      {PA_POSTE_ORDER.map((id) => {
+                        const p = PA_POSTES[id];
+                        return (
+                          <Button
+                            key={id}
+                            type="button"
+                            variant={paPoste === id ? "primary" : "secondary"}
+                            onClick={() => setPaPoste(id)}
+                          >
+                            {p.icon} {p.label}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                <Button type="button" variant="secondary" onClick={handlePouvoirAchatRandom} className="w-full">
+                  🔀 Aléatoire (cette combinaison)
+                </Button>
               </div>
             )}
 
