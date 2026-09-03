@@ -18,27 +18,11 @@ export const TOOLS = [
     status: 'disponible',
   },
   {
-    to: '/tweets-etf',
-    navLabel: 'Tweets ETF',
-    title: 'Générateur de tweets ETF',
-    icon: '🐦',
-    description: "Tweets comparatifs d'ETF par thématique, prêts à publier.",
-    status: 'disponible',
-  },
-  {
     to: '/fiches-etf',
     navLabel: 'Fiches ETF',
     title: "Présentation d'ETF",
     icon: '📋',
     description: 'Fiches détaillées par ETF, texte prêt à publier + image téléchargeable.',
-    status: 'disponible',
-  },
-  {
-    to: '/lexique-financier',
-    navLabel: 'Lexique financier',
-    title: 'Fiches lexique financier',
-    icon: '📚',
-    description: 'Fiches pédagogiques de définitions de termes financiers.',
     status: 'disponible',
   },
   {
@@ -54,7 +38,7 @@ export const TOOLS = [
     navLabel: 'Tweet Midi',
     title: 'Tweet Midi',
     icon: '🕐',
-    description: "Vrai ou Faux et Dilemmes financiers pour le créneau midi, sans dépendre de l'actualité.",
+    description: "Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité.",
     status: 'disponible',
   },
   {
@@ -63,14 +47,6 @@ export const TOOLS = [
     title: "Comparateur d'indices",
     icon: '📐',
     description: "Compare les indices concurrents d'une même famille : exposition, ETF PEA/CTO, diversification, performance.",
-    status: 'disponible',
-  },
-  {
-    to: '/pouvoir-achat',
-    navLabel: 'Pouvoir d\'achat',
-    title: 'Simulateur de pouvoir d\'achat',
-    icon: '💶',
-    description: "Compare le coût de la vie dans le temps (loyer, alimentation, carburant, salaire) sans passer par un placement — séries INSEE 2010-2026.",
     status: 'disponible',
   },
   {
