@@ -67,7 +67,11 @@ export const BROKERS = [
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 2, resume: "CTO uniquement", detail: "Pas de DCA sur PEA" },
     garde: { rank: 1, resume: "0€" },
-    pea: { pea: true, pme: false, jeune: null },
+    // Correction du 03/09/2026 (table de vérification fournie par l'utilisateur, source
+    // interactivebrokers.com/en/pricing/commissions-stocks.php) : jeune passait de null ("?" affiché
+    // sur la carte) à false — incohérence corrigée, le texte du tweet (post.pea ci-dessous) disait
+    // déjà "PEA Jeune ❌" sans que le champ structuré ne le reflète.
+    pea: { pea: true, pme: false, jeune: false },
     ifu: { rank: 2, resume: "PEA uniquement" },
     liquidites: { rank: 1, resume: "Oui", detail: "CTO" },
     pointFaible: "Interface complexe, tarif fixe par défaut 3€, pas d’IFU sur CTO",
@@ -159,7 +163,10 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 2, resume: "Non rémunérées" },
     pointFaible: "Pas de DCA, liquidités non rémunérées, tarification par paliers",
-    transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
+    // Ajout du 03/09/2026 (table de vérification fournie par l'utilisateur) : le transfert PEA
+    // entrant, absent des données précédentes (seul "Sortant" était renseigné), est en réalité
+    // possible et remboursé chez Bourse Direct.
+    transfertPea: { resume: "Entrant ✅ remboursé / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["0,99€ ≤500€ / 1,90€ 500-1000€ / 2,90€ 1000-2000€", "⚡ 3,80€ 2000-4400€ / 0,09% au-delà de 4 400€"],
       dca: ["❌ Pas de DCA automatique"],
@@ -177,19 +184,25 @@ export const BROKERS = [
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 2, resume: "CTO uniquement (PEPS)", detail: "0€ ETF & fonds, mensuel — pas sur PEA" },
     garde: { rank: 1, resume: "0€" },
-    pea: { pea: true, pme: true, jeune: true },
+    // Corrections du 03/09/2026 (table de vérification fournie par l'utilisateur, source
+    // home.saxo/fr-fr) : jeune passe de true à false (Saxo ne propose pas de PEA Jeune — le texte du
+    // tweet ci-dessous en tenait compte nulle part avant cette correction) ; la date de remboursement
+    // du transfert PEA entrant passe du 31/08/2026 au 31/12/2026 (alignée sur la même échéance que la
+    // promo "0€ sur 70 actions UE" ci-dessous, vraisemblablement la même campagne), et devient un
+    // remboursement à 100 %.
+    pea: { pea: true, pme: true, jeune: false },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui" },
-    pointFaible: "DCA pas sur PEA, tarif minimum 2€/ordre",
-    transfertPea: { resume: "Entrant ✅ — remboursé jusqu’au 31/08/2026" },
+    pointFaible: "DCA pas sur PEA, pas de PEA Jeune",
+    transfertPea: { resume: "Entrant ✅ remboursé à 100% jusqu’au 31/12/2026" },
     post: {
       frais: ["À partir de 2€, plafonné à 0,5% sur PEA", "⚡ Promo → 0€ sur 70 actions UE (jusqu’au 31/12/2026)"],
       dca: ["❌ Sur PEA", "✅ CTO — PEPS 0€, ETF & fonds, mensuel"],
       garde: ["0€"],
-      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
+      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui"],
-      faibles: ["DCA pas sur PEA, tarif minimum 2€/ordre"],
+      faibles: ["DCA pas sur PEA, pas de PEA Jeune"],
       verdict: "Tu veux des frais dégressifs dès 2€ avec un DCA CTO en option",
     },
   },
