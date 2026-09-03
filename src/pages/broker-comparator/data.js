@@ -10,7 +10,14 @@ export const BROKERS = [
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: false, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
-    liquidites: { rank: 1, resume: "Oui" },
+    // MàJ du 03/09/2026 : Trade Republic a lancé son propre Livret A le 20/08/2026, distribué dans
+    // l'appli mais souscrit auprès d'AXA Banque (dépositaire officiel — TR n'est pas elle-même
+    // habilitée à commercialiser le Livret A). Taux réglementé identique partout (1,7 % depuis le
+    // 01/08/2026), plafond 22 950 €. Sources convergentes : toutsurmesfinances.com
+    // ("Trade Republic lance son Livret A en France, adossé à AXA Banque") et moneyvox.fr
+    // ("Trade Republic : le Livret A désormais disponible pour les clients de cette néobanque"),
+    // recoupées par zonebourse.com et sinvestir.fr.
+    liquidites: { rank: 1, resume: "Oui", detail: "Livret A (via AXA Banque)" },
     pointFaible: "Pas de PEA-PME, transfert PEA entrant impossible",
     transfertPea: { resume: "Entrant ❌" },
     post: {
@@ -19,7 +26,7 @@ export const BROKERS = [
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ❌ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
-      liquidites: ["✅ Oui"],
+      liquidites: ["✅ Oui (Livret A, distribué dans l'appli, souscrit auprès d'AXA Banque, depuis le 20/08/2026)"],
       faibles: ["Pas de PEA-PME, transfert PEA entrant impossible"],
       verdict: "Tu veux investir petit et souvent sans réfléchir aux frais",
     },
