@@ -11,6 +11,7 @@ import LexiqueFinancier from './pages/lexique-financier/App'
 import TweetMidi from './pages/tweet-midi/App'
 import IndexComparator from './pages/index-comparator/App'
 import PurchasingPower from './pages/purchasing-power/App'
+import FeeImpact from './pages/fee-impact/App'
 import { TOOLS } from './tools'
 
 const TOOL_ELEMENTS = {
@@ -23,6 +24,7 @@ const TOOL_ELEMENTS = {
   '/tweet-midi': <TweetMidi />,
   '/comparateur-indices': <IndexComparator />,
   '/pouvoir-achat': <PurchasingPower />,
+  '/impact-frais': <FeeImpact />,
 }
 
 export default function App() {

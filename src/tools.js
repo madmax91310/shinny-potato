@@ -73,4 +73,12 @@ export const TOOLS = [
     description: "Compare le coût de la vie dans le temps (loyer, alimentation, carburant, salaire) sans passer par un placement — séries INSEE 2010-2026.",
     status: 'disponible',
   },
+  {
+    to: '/impact-frais',
+    navLabel: 'Impact des frais',
+    title: "Calculateur d'impact des frais",
+    icon: '🧮',
+    description: "Compare le capital final entre deux niveaux de frais de gestion (TER), en euros, sur simulation d'intérêts composés — hypothèse pédagogique, pas une donnée de marché.",
+    status: 'disponible',
+  },
 ]
