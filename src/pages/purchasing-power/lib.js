@@ -1,4 +1,9 @@
-import { GENERAL_INFLATION, YEAR_MAX, POSTES, PUNCHLINES, ENGAGEMENT_QUESTIONS, SMIC } from './data.js'
+import { GENERAL_INFLATION, YEAR_MAX, POSTES, ENGAGEMENT_QUESTIONS, SMIC } from './data.js'
+
+// Ligne de punchline volontairement laissée en placeholder — jamais générée automatiquement (cf.
+// demande du 04/09/2026, même principe que le récap matin) : les punchlines automatiques sonnaient
+// artificielles/répétitives à l'usage. L'utilisateur la remplace lui-même avant publication.
+const PUNCHLINE_PLACEHOLDER = "[Ta punchline ici]"
 
 // Année d'arrivée fixe : "aujourd'hui" au sens de la fraîcheur de données de l'app (cf. LATEST_YM
 // dans investment-calculator/data.js, qui s'arrête à 2026-08) — jamais sélectionnable par
@@ -71,7 +76,7 @@ function pick(list, rng) {
 }
 
 export function buildTweetText(state, rng = Math.random) {
-  const punchline = pick(PUNCHLINES, rng)
+  const punchline = PUNCHLINE_PLACEHOLDER
   const question = pick(ENGAGEMENT_QUESTIONS, rng)
   const years = CURRENT_YEAR - state.startYear
   const yearsLabel = `${years} an${years > 1 ? 's' : ''}`

@@ -107,21 +107,6 @@ export const POSTES = {
 }
 export const POSTE_ORDER = ['loyer', 'alimentation', 'carburant']
 
-// Bibliothèque de punchlines — distincte de celles des autres outils (Tweet Midi, Calculateur...),
-// ton volontairement plus "coût de la vie au quotidien" que "performance de placement".
-export const PUNCHLINES = [
-  "L'argent qui dort perd de la valeur, même sans rien faire.",
-  'Pas besoin de crise pour perdre du pouvoir d\'achat : l\'inflation suffit, année après année.',
-  "Ce n'est pas ton compte en banque qui a changé, c'est ce qu'il permet d'acheter.",
-  'Le prix affiché bouge peu chaque mois. Cumulé sur des années, il change tout.',
-  "Ton salaire a peut-être augmenté. La vraie question, c'est : plus vite que les prix ?",
-  "Un euro d'aujourd'hui n'a jamais valu un euro d'hier.",
-  'La meilleure protection contre l\'inflation, ce n\'est pas d\'attendre — c\'est de comprendre où va ton argent.',
-  "Se sentir plus pauvre sans avoir rien dépensé de plus : c'est ça, l'inflation.",
-  'Le coût de la vie ne prévient pas avant de grimper.',
-  "Comparer un prix d'hier à un prix d'aujourd'hui, c'est déjà faire de l'économie.",
-]
-
 export const ENGAGEMENT_QUESTIONS = [
   'Tu t\'en doutais, ou le chiffre te surprend ?',
   'Et toi, tu as ressenti cette hausse au quotidien ?',

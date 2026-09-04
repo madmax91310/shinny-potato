@@ -1,5 +1,5 @@
 import { fmtEUR } from '../investment-calculator/lib.js'
-import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, PUNCHLINES, ENGAGEMENT_QUESTIONS } from './data.js'
+import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, PUNCHLINE_PLACEHOLDERS, ENGAGEMENT_QUESTIONS } from './data.js'
 
 export { fmtEUR }
 
@@ -54,7 +54,7 @@ function pick(list, rng) {
 export function buildTweetText(state, rng = Math.random) {
   const { amount, years, returnRate, fee1, fee2 } = state
   const d = computeComparison(state)
-  const punchline = pick(PUNCHLINES, rng)
+  const punchline = pick(PUNCHLINE_PLACEHOLDERS, rng)
   const question = pick(ENGAGEMENT_QUESTIONS, rng)
   const yearsLabel = `${years} an${years > 1 ? 's' : ''}`
   const ecartPctLabel = d.ecartPct.toLocaleString('fr-FR', { maximumFractionDigits: 0 })

@@ -23,22 +23,19 @@ export const FEE_LEVELS = [
 export const DEFAULT_FEE_LOW = 0.2
 export const DEFAULT_FEE_HIGH = 1.5
 
-// Bibliothèque de punchlines — distincte de celles des autres outils de l'app, centrée sur l'effet
-// cumulé des frais (pas la performance). Deux variantes (marquées ci-dessous) font le lien avec le
-// choix d'enveloppe (PEA/CTO) SANS jamais entrer dans un calcul de fiscalité — volontairement une
-// minorité du pool pour rester occasionnelles, pas systématiques (cf. brief).
-export const PUNCHLINES = [
-  "1 % de frais par an, ça ne semble rien. Cumulé sur 20-30 ans, ça se chiffre en dizaines de milliers d'euros.",
-  "Les frais, c'est le seul paramètre de ton investissement que tu contrôles à 100 %.",
-  "Un rendement, ça se discute. Des frais, ça se lit noir sur blanc avant de signer.",
-  "Personne ne t'envoie de relevé annuel des frais que tu as payés. C'est bien le problème.",
-  "Deux investisseurs, même effort d'épargne, même rendement brut — un écart de dizaines de milliers d'euros à l'arrivée, juste sur les frais.",
-  // Variante liée à l'enveloppe (PEA/CTO) — occasionnelle, jamais un calcul de fiscalité.
-  "Et ça, c'est avant même de parler de fiscalité PEA vs CTO — les frais, c'est la première chose à regarder, quelle que soit ton enveloppe.",
-  "Un point de frais en moins, c'est un point de rendement en plus, chaque année, sans rien faire de différent.",
-  "Le prospectus donne le TER en une ligne. Ce calcul montre ce que cette ligne vaut vraiment sur la durée.",
-  // Variante liée à l'enveloppe (PEA/CTO) — occasionnelle.
-  "Avant de choisir entre PEA et CTO, regarde déjà ce que les frais du fonds ou de l'ETF te coûtent — le reste vient après.",
+// Ligne de punchline volontairement laissée en placeholder — jamais générée automatiquement (cf.
+// demande du 04/09/2026, même principe que le récap matin) : les punchlines automatiques sonnaient
+// artificielles/répétitives à l'usage. L'utilisateur la remplace lui-même avant publication.
+// Une seule variante (sur 5, ~20 %) suggère entre parenthèses le lien possible avec le choix
+// d'enveloppe (PEA/CTO) — reprend la proportion occasionnelle de l'ancienne bibliothèque de
+// punchlines (2 sur 9 en faisaient mention) — jamais un texte généré automatiquement, juste une
+// piste de rédaction dans le placeholder lui-même.
+export const PUNCHLINE_PLACEHOLDERS = [
+  "[Ta punchline ici]",
+  "[Ta punchline ici]",
+  "[Ta punchline ici]",
+  "[Ta punchline ici]",
+  "[Ta punchline ici — ex : lien possible avec PEA/CTO]",
 ]
 
 export const ENGAGEMENT_QUESTIONS = [
