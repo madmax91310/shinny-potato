@@ -42,22 +42,25 @@ export const BROKERS = [
   {
     id: "bourso", nom: "BoursoBank", code: "BB", color: "#E4735E", emoji: "🟡",
     frais: { rank: 2, resume: "1,99€ puis 0,60%", detail: "Plafonné à 0,5% du montant" },
-    boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "ETF iShares, OPCVM partenaires, Turbos/Warrants SG & GS" },
+    // MàJ du 05/10/2026 (communication officielle BoursoBank en vigueur à cette date) : Boursomarkets
+    // est devenu un partenariat exclusif avec Amundi sur +275 ETF (dont 75 éligibles PEA), remplaçant
+    // l'ancienne offre iShares/OPCVM partenaires/Turbos-Warrants SG & Goldman Sachs.
+    boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "+275 ETF (dont 75 éligibles PEA) — partenaire exclusif Amundi" },
     dca: { rank: 2, resume: "0€ transaction, frais selon DIC", detail: "8 fonds maison, mensuel uniquement" },
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret Bourso+" },
-    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC. ℹ️ Ordre minimum : 100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
+    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC. ℹ️ Ordre minimum : 100€ actions / 100€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
-      frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)", "⚡ Exception Boursomarkets → 0€ sur ETF iShares, OPCVM partenaires, Turbos/Warrants SG & Goldman Sachs"],
+      frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)", "⚡ Exception Boursomarkets → 0€ sur +275 ETF (dont 75 éligibles PEA), partenaire exclusif Amundi"],
       dca: ["⚠️ 0€ de transaction — frais de gestion selon DIC — 8 fonds maison, mensuel uniquement, dès 10€/mois"],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret Bourso+)"],
-      faibles: ["DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€, Bourses EU 2 500€"],
+      faibles: ["DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 100€, Bourses EU 2 500€"],
       verdict: "Tu veux un écosystème bancaire complet avec PEA-PME",
     },
   },
