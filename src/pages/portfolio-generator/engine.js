@@ -1,5 +1,8 @@
 import { YEARS, getAsset } from "./data.js";
-import { PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, isCompatible, getFrequencyCap } from "./theses.js";
+import {
+  PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, isCompatible, getFrequencyCap,
+  CONCENTRATION_THRESHOLD, CONCENTRATION_NEUTRAL_IDS, CONCENTRATION_LABELS,
+} from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
 
 function rand(min, max) {
@@ -221,6 +224,51 @@ function pickNonRepeating(pool, history, profileId, field) {
   return pick(fresh.length > 0 ? fresh : pool);
 }
 
+// Généraliste uniquement (cf. accrochesDiversifie/accrochesConcentre dans theses.js) : la ligne
+// dominante hors cash/obligataire/indice-monde décide du registre d'accroche. null si aucune
+// conviction ne dépasse CONCENTRATION_THRESHOLD (cas normal à la config actuelle : aucun combo
+// Généraliste ne franchit 40% hors neutres, même avec le jitter — vérifié par script).
+//
+// Regroupé par sous-jacent réel (même libellé CONCENTRATION_LABELS), pas ligne par ligne — sinon
+// deux paris sur le même sous-jacent (ex. Nasdaq-100 pur 16% + LQQ, Nasdaq-100 x2, 9%) passent
+// sous le seuil séparément (16% et 9%, chacun < 40%) alors qu'ensemble ils forment une seule
+// conviction à 25% sur la tech américaine — bug identifié à l'audit "post-audit v2" (règle 2, août
+// 2026). Deux lignes sans libellé mappé (fallback sur leur propre nom) ne sont jamais groupées
+// entre elles, même si superficiellement proches — seul un libellé partagé vaut regroupement.
+function resolveConcentration(selection) {
+  const candidates = selection.filter(
+    (s) => s.cat !== "obligataire" && !CONCENTRATION_NEUTRAL_IDS.has(s.id)
+  );
+  if (candidates.length === 0) return null;
+  const groups = new Map();
+  candidates.forEach((s) => {
+    const label = CONCENTRATION_LABELS.get(s.id) ?? s.name;
+    const g = groups.get(label) ?? { label, pct: 0 };
+    g.pct += s.pct;
+    groups.set(label, g);
+  });
+  const dominant = [...groups.values()].reduce((max, g) => (g.pct > max.pct ? g : max));
+  if (dominant.pct <= CONCENTRATION_THRESHOLD) return null;
+  return { label: dominant.label };
+}
+
+// L'anti-répétition doit comparer le gabarit brut, pas le texte affiché : sinon deux tirages
+// "conviction" qui retombent sur le même gabarit avec un libellé différent (texte final donc
+// différent) échapperaient au filtre, ET un gabarit jamais réutilisé littéralement ne serait
+// jamais reconnu comme "déjà vu" une fois substitué. D'où le champ accrocheTemplate séparé,
+// stocké sur chaque portefeuille pour que les tirages suivants comparent gabarit contre gabarit.
+function pickAccroche(profile, selection, history) {
+  if (!profile.accrochesDiversifie || !profile.accrochesConcentre) {
+    const text = pickNonRepeating(profile.accroches, history, profile.id, "accrocheTemplate");
+    return { text, template: text };
+  }
+  const concentration = resolveConcentration(selection);
+  const pool = concentration ? profile.accrochesConcentre : profile.accrochesDiversifie;
+  const template = pickNonRepeating(pool, history, profile.id, "accrocheTemplate");
+  const text = concentration ? template.replace(/\[libellé\]/g, concentration.label) : template;
+  return { text, template };
+}
+
 // Le "pourquoi" est choisi avant le jitter (le pourcentage n'est pas encore figé) : les textes
 // qui citent leur propre allocation utilisent le témoin {pct}, remplacé ici une fois le
 // pourcentage final connu — jamais un chiffre codé en dur qui pourrait se décaler du jitter.
@@ -385,6 +433,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   }
   const cta = pickCta(profile, history, { worst, best, selection });
   const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
+  const accroche = pickAccroche(profile, selection, history);
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -395,7 +444,8 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     riskLabel: RISK_LABELS[riskId],
     title: `${profile.label} ${RISK_LABELS[riskId]}`,
     bound,
-    accroche: pickNonRepeating(profile.accroches, history, profileId, "accroche"),
+    accroche: accroche.text,
+    accrocheTemplate: accroche.template,
     sousTitre: pickNonRepeating(profile.sousTitres, history, profileId, "sousTitre"),
     ctaTemplate: cta.template,
     cta: cta.resolved,
@@ -424,10 +474,9 @@ export function renderTweetText(p) {
   blocks.push(
     `📈 Performances simulées :\n${yearsLine}\n\n→ Pire année : ${fmtPct(p.worst.value)} en ${p.worst.year}.\n${p.context}`
   );
-  blocks.push(`⚠️ ${p.warning}\n${GUARANTEE_LINE}`);
   blocks.push(SEPARATOR);
   blocks.push(p.cta);
-  blocks.push(DISCLAIMER);
+  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE}`);
   return blocks.join("\n\n");
 }
 

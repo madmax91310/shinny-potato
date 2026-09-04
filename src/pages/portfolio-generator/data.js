@@ -59,12 +59,19 @@ export const ASSETS = [
   },
   {
     id: "oblig_etat_eur", name: "iShares Core € Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Source : fiche fonds iShares/BlackRock (IEGA) — seule l'année 2022 a pu être vérifiée de
-    // façon fiable (-18,52%, cohérent avec le choc de taux sur les obligations d'État €).
-    // 2020, 2021, 2023, 2024, 2025 : les extractions obtenues via recherche web se sont révélées
-    // incohérentes d'une requête à l'autre (mélange probable avec d'autres échéances/fonds) —
-    // valeurs d'origine conservées, non vérifiées.
-    r: [4.5, -2.5, -18.52, 7.0, 1.5, 3.0],
+    // 2020/2021/2023/2024/2025 CORRIGÉS le 30/08/2026 : les 3 tentatives précédentes via
+    // WebSearch/WebFetch avaient toutes échoué (domaine ishares.com/blackrock.com bloqué pour
+    // cette session, résultats de recherche incohérents ou de simples échos de requête). Résolu
+    // via une capture d'écran du fact sheet officiel iShares fournie directement par l'utilisateur
+    // (iShares Core € Govt Bond UCITS ETF, EUR Distributing, iShares III plc — tableau "Calendar
+    // year performance", part Share Class, consultée le 30/08/2026), qui donne l'année 2022 à
+    // -18,52% — identique à l'ancrage déjà vérifié, confirmant qu'il s'agit bien du même fonds/de
+    // la même part. Valeurs des autres années tirées du même tableau : 2020 +4,84%, 2021 -3,53%,
+    // 2023 +7,06%, 2024 +1,75%, 2025 +0,61%. Ce même fact sheet éclaire au passage la tentative
+    // écartée précédente : -0,01% n'était pas 2022 mais très probablement l'année 2017 du même
+    // tableau (valeur identique sur la capture), confirmant que le mauvais alignement calendaire
+    // évoqué dans les tentatives WebSearch précédentes était réel.
+    r: [4.84, -3.53, -18.52, 7.06, 1.75, 0.61],
     desc: [
       "prête de l'argent aux États de la zone euro (France, Allemagne...) contre un intérêt régulier.",
       "sensible aux taux d'intérêt : quand la BCE relève ses taux, ce type d'ETF encaisse (2022 en est l'exemple).",
@@ -73,11 +80,21 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_ig", name: "iShares Core € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Source : fiche fonds iShares/BlackRock (IEAC) — seule l'année 2022 vérifiée de façon
-    // fiable (-13,86%). 2020, 2021, 2023, 2024, 2025 : recherches infructueuses/incohérentes,
-    // valeurs d'origine conservées, non vérifiées. Même valeurs répliquées sur les jumeaux
-    // Amundi/Vanguard/SPDR (même sous-jacent, cf. CORPBOND_OPTIONS dans theses.js).
-    r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
+    // 2020/2021/2023/2024/2025 CORRIGÉS le 30/08/2026 : 2 tentatives WebSearch précédentes
+    // avaient échoué sur ce même fonds (domaine bloqué, ou une séquence de 4 rendements réels —
+    // 4,64% / 2,29% / -1,41% / 6,14% — mais étiquetée avec deux jeux d'années incompatibles selon
+    // la requête). Résolu via une capture d'écran du fact sheet officiel iShares fournie
+    // directement par l'utilisateur (iShares Core € Corp Bond UCITS ETF, EUR Distributing,
+    // iShares III plc — tableau "Calendar year performance", part Share Class, consultée le
+    // 30/08/2026), qui donne l'année 2022 à -13,86% — identique à l'ancrage déjà vérifié,
+    // confirmant le bon fonds. Cette même capture montre que les 4 valeurs trouvées précédemment
+    // (4,64% / 2,29% / -1,41% / 6,14%) étaient en fait les années 2016/2017/2018/2019 — jamais
+    // 2021-2025 comme le suggéraient les deux recherches — ce qui confirme rétroactivement le
+    // problème d'alignement calendaire déjà suspecté. Valeurs des autres années tirées du même
+    // tableau : 2020 +2,53%, 2021 -1,15%, 2023 +8,04%, 2024 +4,58%, 2025 +3,13%. Répliquées à
+    // l'identique sur les jumeaux Amundi/Vanguard/SPDR (même sous-jacent, cf. CORPBOND_OPTIONS
+    // dans theses.js).
+    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -98,15 +115,15 @@ export const ASSETS = [
 
   {
     id: "oblig_inflation", name: "iShares € Inflation Linked Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // NON VÉRIFIÉ : recherches infructueuses pour les 6 années. Nouvelle tentative de vérification
-    // (audit portefeuille-générateur, 25/08/2026) : la même contradiction sur 2022 (fonds IBCI) a
-    // été reproduite indépendamment — deux recherches distinctes citant chacune une fiche
-    // officielle BlackRock/iShares donnent +1,20% et -9,73%, incompatibles entre elles. Ce n'est
-    // donc pas un problème de recherche insuffisante mais une confusion récurrente (probable
-    // mélange avec un fonds au nom proche, ex. IGIL/IS3V "Global Inflation Linked"). Ne PAS
-    // trancher entre les deux sans consulter directement la fiche PDF officielle du bon ISIN.
-    // Valeurs d'origine conservées intégralement.
-    r: [5.0, 3.0, -15.0, 4.0, 2.0, 3.0],
+    // 2022 (-9,73%) CORRIGÉ le 30/08/2026 (audit web) puis 2020/2021/2023/2024/2025 CORRIGÉS le
+    // même jour (capture d'écran) : la fiche officielle BlackRock/iShares (IBCI, EUR
+    // Accumulating, iShares plc — tableau "Calendar year performance", part Share Class, capture
+    // fournie par l'utilisateur) confirme 2022 à l'identique (-9,73%), validant définitivement le
+    // bon fonds après la contradiction signalée lors de l'audit du 25/08/2026 (une autre recherche
+    // avait renvoyé +1,20%, probable confusion avec un fonds au nom proche type "Global Inflation
+    // Linked" — écarté). Valeurs des autres années tirées du même tableau : 2020 +2,87%, 2021
+    // +6,08%, 2023 +5,87%, 2024 -0,04%, 2025 +0,83%.
+    r: [2.87, 6.08, -9.73, 5.87, -0.04, 0.83],
     desc: [
       "des obligations d'État dont le capital et le coupon sont indexés sur l'inflation de la zone euro.",
       "protège le pouvoir d'achat du capital investi, contrairement à une obligation classique à taux fixe.",
@@ -209,12 +226,16 @@ export const ASSETS = [
   },
   {
     id: "cac40", name: "Amundi CAC 40 UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    // Source pour 2023-2025 : indice CAC 40 GR (dividendes réinvestis), fiche officielle
-    // Euronext, +20,14% / +0,92% / +14,28%. 2020-2022 : NON VÉRIFIÉ en version GR malgré
-    // plusieurs recherches (seule la version « nue », hors dividendes, a pu être confirmée pour
-    // 2021 à ~+28,85%, proche de la valeur d'origine) — valeurs d'origine conservées pour ces
-    // trois années.
-    r: [-7.0, 28.0, -9.0, 20.14, 0.92, 14.28],
+    // 2020-2022 CORRIGÉS le 02/09/2026 : export CSV mensuel réel de l'indice CAC 40 Gross Total
+    // Return (dividendes réinvestis) fourni par l'utilisateur (Investing.com, clôtures 01/2015 à
+    // 09/2026). Ancrage vérifié : les clôtures de décembre 2023/2024/2025 tirées du CSV donnent des
+    // rendements annuels de +20,14 % / +0,92 % / +14,28 %, identiques au 0,01 pt près aux valeurs
+    // déjà en place (sourcées fiche Euronext) — confirme qu'il s'agit bien du même indice GR, donc
+    // fiable pour les années jusque-là non vérifiées. Rendements 2020-2022 recalculés à partir des
+    // clôtures de décembre réelles du même CSV (15 436,40 → 20 357,80 → 18 998,47) : -4,96 % / +31,88 %
+    // / -6,68 %, qui remplacent les valeurs d'origine (-7,0 / +28,0 / -9,0, non vérifiées en version
+    // GR — seule une version « nue » hors dividendes avait pu être approchée pour 2021).
+    r: [-4.96, 31.88, -6.68, 20.14, 0.92, 14.28],
     desc: [
       "les 40 plus grosses capitalisations françaises, de LVMH à TotalEnergies en passant par L'Oréal.",
       "éligible au PEA, avec une fiscalité avantageuse après 5 ans de détention en France.",
@@ -299,8 +320,14 @@ export const ASSETS = [
   {
     id: "argent", name: "iShares Physical Silver ETC", cat: "matieres_premieres", emoji: "🛢️",
     // Source : cours de l'argent spot en USD/once. 2020 (+47%) confirmé. 2021 (-14%) vérifié via
-    // recherche web. 2022, 2023, 2024 : NON VÉRIFIÉ malgré plusieurs recherches (données
-    // fragmentaires/contradictoires) — valeurs d'origine conservées pour ces trois années.
+    // recherche web. 2022, 2023, 2024 CORRIGÉS (passés de "non vérifié" à vérifié) le 30/08/2026 :
+    // les valeurs d'origine se sont révélées correctes une fois recoupées sur de vraies clôtures
+    // annuelles spot (deux recherches indépendantes convergentes) — clôtures 31/12 ≈ 23,31 $
+    // (2021), 23,96 $ (2022), ~23,7-23,8 $ (2023, deux sources à 23,76 $ et 23,80 $, clôture
+    // effective le dernier jour ouvré 29/12), 28,90 $ (2024, confirmé deux fois à l'identique).
+    // Rendements implicites : +2,8% (2022), -1,1% (2023), +21,4% à +21,9% (2024) — tous à moins de
+    // 0,5pt des valeurs déjà en place, donc conservées telles quelles plutôt que réajustées pour
+    // une différence non significative au vu de l'imprécision des dates de clôture trouvées.
     // 2025 : le cours spot USD a bien grimpé de +144% (BullionVault « Silver Jumps 144% »,
     // confirmé), mais ce fonds est une ligne EUR au même titre que le reste du fichier — corrigé
     // en tenant compte de la baisse du dollar face à l'euro sur 2025 (EUR/USD +13,34% sur
@@ -573,9 +600,9 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_amundi", name: "Amundi € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, 2022 vérifié
-    // à -13,86%, autres années non vérifiées).
-    r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
+    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
+    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
+    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -584,9 +611,9 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_vanguard", name: "Vanguard € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, 2022 vérifié
-    // à -13,86%, autres années non vérifiées).
-    r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
+    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
+    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
+    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -595,9 +622,9 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_spdr", name: "SPDR € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, 2022 vérifié
-    // à -13,86%, autres années non vérifiées).
-    r: [5.0, -1.0, -13.86, 8.0, 3.0, 5.0],
+    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
+    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
+    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -701,6 +728,9 @@ export const ASSETS = [
     // "l'année écoulée" divergent fortement selon la place de cotation (-0,71% à +2,27%), signe
     // d'un mélange entre parts/devises différentes plutôt qu'une vraie performance calendaire ;
     // valeur d'origine (+3,0%) conservée par prudence.
+    // Nouvelle tentative le 30/08/2026 : toujours ÉCARTÉE — seul résultat trouvé un rendement
+    // glissant sur 12 mois à fin septembre 2025 (+0,99%), ni une clôture calendaire au 31/12/2025
+    // ni assez précis pour trancher. Valeur d'origine (+3,0%) conservée, toujours non vérifiée.
     r: [-0.14, -0.85, -4.28, 3.51, 3.09, 3.0],
     desc: [
       "de la dette d'État de la zone euro à très courte échéance : la version la moins sensible aux taux.",
@@ -712,14 +742,18 @@ export const ASSETS = [
   // ── 🟢 Europe — styles complémentaires ───────────────────
   {
     id: "tech_europe", name: "iShares MSCI Europe Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    // NON VÉRIFIÉ : les recherches menées pour cet indice sectoriel n'ont renvoyé que des
-    // données dupliquées par erreur avec l'indice MSCI Europe large (non spécifiques au secteur
-    // technologie). Nouvelle tentative (25/08/2026) : toujours aucun chiffre calendaire exact
-    // trouvé, mais un fait corroborant a émergé (fonds réel ESIT, lancé le 18/11/2020, donc pas
-    // d'année 2020 pleine) — pire baisse intra-année 2022 de -38,33% et pire mois janvier 2022 à
-    // -13,2% (fiche BlackRock/iShares) : cohérent en ordre de grandeur avec le -25,0% calendaire
-    // déjà présent ci-dessous, sans le confirmer précisément. Valeurs d'origine conservées.
-    r: [5.0, 15.0, -25.0, 20.0, 10.0, 12.0],
+    // 2021/2022/2023/2024/2025 CORRIGÉS le 30/08/2026 : d'abord 2022 (-28,76%) et 2023 (+35,04%)
+    // via deux sources web convergentes (fiche indice MSCI + fiche fonds), puis 2021 (+36,57%),
+    // 2024 (+7,93%) et 2025 (+9,64%) confirmés via une capture d'écran du fact sheet officiel
+    // iShares fournie directement par l'utilisateur (iShares MSCI Europe Information Technology
+    // Sector UCITS ETF, EUR Accumulating, iShares VI plc — tableau "Calendar year performance",
+    // part Share Class, consultée le 30/08/2026), qui reprend à l'identique les valeurs 2022/2023
+    // déjà en place et tranche la contradiction précédente sur 2024 (7,93% confirmé côté fonds,
+    // contre 12,53% trouvé pour un indice proche mais visiblement pas exactement celui répliqué
+    // par ce fonds — écarté). 2020 reste NON VÉRIFIÉ : le tableau du fact sheet lui-même démarre
+    // en 2021 (fonds lancé le 18/11/2020, pas d'année calendaire 2020 complète à afficher) — valeur
+    // d'origine (5,0, illustrative) conservée, aucune donnée réelle à trouver pour cette année.
+    r: [5.0, 36.57, -28.76, 35.04, 7.93, 9.64],
     desc: [
       "la technologie européenne : un secteur beaucoup plus restreint qu'aux États-Unis, mais bien réel.",
       "ASML, SAP, Dassault Systèmes... les rares géants tech du continent réunis en une ligne.",
@@ -921,6 +955,60 @@ export const ASSETS = [
       "des obligations d'entreprises plus fragiles, donc mieux rémunérées : plus de coupon.",
       "le compartiment obligataire le plus généreux en revenu, avec un vrai risque de crédit en face.",
       "verse un coupon nettement supérieur aux obligations d'État, contre un peu plus de risque.",
+    ],
+  },
+
+  // ── Ajoutés le 30/08/2026, capture d'écran de fact sheet officiel fournie par l'utilisateur —
+  // PAS ENCORE ASSIGNÉS à un combo profil × risque dans theses.js (donc invisibles dans les
+  // générations tant que l'utilisateur n'a pas choisi leur allocation) : présents uniquement dans
+  // cette bibliothèque pour l'instant.
+  {
+    id: "oblig_etat_us", name: "iShares $ Treasury Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    // Nom CONFIRMÉ le 30/08/2026 : capture d'écran de l'en-tête du fact sheet officiel fournie par
+    // l'utilisateur (catégorie "OBLIGATIONS", badge "GOVT", part USD (Distribution)) — même fonds
+    // que celui dont le tableau de performance avait été fourni plus tôt le même jour. Performance
+    // part de fonds 2020-2025 : +7,9% / -2,5% / -12,6% / +4,1% / +0,7% / +6,2%, très proche de son
+    // indice de référence chaque année (écart 0,1 à 0,3pt : +8,0% / -2,4% / -12,3% / +3,9% / +0,7%
+    // / +6,2%), cohérent avec un simple TER.
+    r: [7.9, -2.5, -12.6, 4.1, 0.7, 6.2],
+    desc: [
+      "des bons du Trésor américain, la référence mondiale de la dette jugée sans risque de défaut.",
+      "très sensible aux taux de la Fed : leurs mouvements pèsent directement sur la valeur de ces obligations.",
+      "un actif refuge classique, mais qui reste exposé au risque de change EUR/USD pour un investisseur européen.",
+    ],
+  },
+  {
+    id: "actions_japon", name: "iShares Core MSCI Japan IMI UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Source : capture d'écran du fact sheet officiel BlackRock/iShares fournie par l'utilisateur le
+    // 30/08/2026 (iShares Core MSCI Japan IMI UCITS ETF, part U.S. Dollar (Capitalisation)) —
+    // performance part de fonds 2020-2025 : +13,03% / +0,92% / -15,88% / +18,86% / +7,47% /
+    // +25,36%, très proche de son indice de référence chaque année (écart <0,1pt : +13,10% / +0,98%
+    // / -15,78% / +18,96% / +7,57% / +25,45%), cohérent avec un simple TER. Fonds coté en USD, pas
+    // de version EUR vérifiée à ce stade — même limite de proxy de devise que or/sect_tech/
+    // sect_robotique/etc. déjà documentée ailleurs dans ce fichier (rendement réel en EUR pour un
+    // investisseur européen non couvert diffère selon l'évolution EUR/USD chaque année).
+    r: [13.03, 0.92, -15.88, 18.86, 7.47, 25.36],
+    desc: [
+      "les grandes et moyennes entreprises japonaises cotées à Tokyo, de l'automobile à l'électronique en passant par la finance.",
+      "une troisième zone géographique développée, décorrélée des cycles américains et européens.",
+      "longtemps boudé par les investisseurs occidentaux, le marché japonais a connu un net regain depuis 2023.",
+    ],
+  },
+  {
+    id: "actions_value", name: "iShares Edge MSCI World Value Factor UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // Nom CONFIRMÉ le 30/08/2026 : capture d'écran de l'en-tête du fact sheet officiel fournie par
+    // l'utilisateur (catégorie "ACTIONS", ticker IWVL, part USD (Capitalisation)) — même fonds que
+    // celui dont le tableau de performance avait été fourni plus tôt le même jour, hypothèse initiale
+    // confirmée exacte. Performance part de fonds 2020-2025 : -3,9% / +20,0% / -10,0% / +19,4% /
+    // +5,3% / +39,6% (rendement total), très proche de son indice de référence chaque année (écart
+    // <0,3pt : -4,0% / +20,0% / -9,9% / +19,3% / +5,1% / +39,4%), cohérent avec un simple TER. Fonds
+    // coté en USD, pas de version EUR vérifiée à ce stade — même limite de proxy de devise que
+    // or/actions_japon/sect_tech/etc. déjà documentée ailleurs dans ce fichier.
+    r: [-3.9, 20.0, -10.0, 19.4, 5.3, 39.6],
+    desc: [
+      "un filtre factoriel qui privilégie les entreprises jugées sous-valorisées par rapport à leurs fondamentaux.",
+      "l'opposé du style croissance : moins de tech, plus de banques, d'énergie et d'industrie.",
+      "historiquement plus cyclique, avec des phases de sur- et sous-performance marquées face à l'indice large.",
     ],
   },
 ];

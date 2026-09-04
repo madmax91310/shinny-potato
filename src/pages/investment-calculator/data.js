@@ -1,6 +1,6 @@
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
-// Bitcoin : données réelles (export Yahoo Finance). Les 12 autres actifs ont été mis à jour avec des
+// Bitcoin : données réelles (export Yahoo Finance). Les 13 autres actifs ont été mis à jour avec des
 // clôtures réelles sourcées (voir commentaire au-dessus de chaque actif pour le détail des sources et
 // des points restant NON vérifiés / illustratifs — voir le récap donné à l'utilisateur pour la liste
 // des points encore à corriger avant publication).
@@ -57,33 +57,63 @@ export const ASSETS = {
     // WhiteBIT), puis prix quotidiens réels (Fortune "current price of Ethereum") pour 2026.
     // Point 2016-12 : fourchette de sources 7,27-8,07 $, retenu 7,98 $ (confiance moyenne).
     // Point 2019-12 : recoupement indirect (confiance moyenne). Tous les autres points ci-dessous sont
-    // directement sourcés. Dernier point réel : 21/08/2026.
+    // directement sourcés.
+    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
+    // remplacé 2371,03 $ (~21/08/2026) par 2453,23 $, la vraie clôture du 31/08/2026 — même source
+    // (Fortune, "Current price of Ethereum for Aug. 31, 2026") que le reste de la série 2026, donc
+    // aucun changement de méthode. Dernier point réel : 31/08/2026.
     label: 'Ethereum', tweetPhrase: "l'Ethereum", icon: 'Ξ', currency: 'USD',
     points: P([
       '2016-12', 7.98, '2017-12', 756.73, '2018-12', 130.86, '2019-12', 128.59,
       '2020-12', 737.45, '2021-12', 3676.90, '2022-12', 1195.00, '2023-12', 2281.95,
       '2024-12', 3333.30, '2025-12', 2967.13,
-      '2026-01', 3120, '2026-04', 2133.44, '2026-08', 2371.03,
+      '2026-01', 3120, '2026-04', 2133.44, '2026-08', 2453.23,
     ]),
   },
   cac40: {
     // Source : clôtures annuelles réelles de l'indice CAC 40 (MacroTrends, "CAC 40 Index (1990-2025)"),
     // recoupées avec la presse (CNBC "European markets on December 31") pour 2024-2025, puis niveaux
-    // réels de presse pour 2026 (janvier, avril : moyenne sur futures mi-mars/mi-avril ; août : record
-    // de la mi-août 2026). Dernier point réel : 14-21/08/2026.
+    // réels de presse pour 2026 (janvier, avril : moyenne sur futures mi-mars/mi-avril).
+    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
+    // remplacé 8650 (un pic intrajournalier de mi-août, pas une clôture) par 8 334,50, la vraie
+    // clôture du 31/08/2026 (Boursorama, "Août s'achève dans le rouge pour le CAC 40 et l'Europe" —
+    // baisse de 0,79 % ce jour-là) — cohérent avec la convention "clôtures réelles" du reste de la
+    // série, contrairement au point précédent qui était un record intrajournalier. Dernier point
+    // réel : 31/08/2026.
     label: 'CAC 40', tweetPhrase: 'le CAC 40', icon: '🇫🇷', currency: 'EUR',
     points: P([
       '2015-12', 4637.06, '2016-12', 4862.31, '2017-12', 5312.56, '2018-12', 4730.69,
       '2019-12', 5978.06, '2020-12', 5551.41, '2021-12', 7153.03, '2022-12', 6473.76,
       '2023-12', 7319.76, '2024-12', 7380.74, '2025-12', 8183,
-      '2026-01', 8259, '2026-04', 7959, '2026-08', 8650,
+      '2026-01', 8259, '2026-04', 7959, '2026-08', 8334.50,
     ]),
   },
   stoxx600: {
     // Source : indice STOXX Europe 600 (rendement total, base 10 000 au 31/12/1986), export CSV mensuel
     // réel fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier
-    // point disponible dans l'export). Le point 2026-08 n'existe pas dans la source : l'appli prolonge
-    // automatiquement le dernier prix connu (juillet 2026) jusqu'à LATEST_YM.
+    // point disponible dans l'export).
+    // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
+    // rendements annuels imprécis par rapport aux vrais rendements connus de l'indice — import CSV
+    // d'origine approximatif. Point de DÉCEMBRE de chaque année 2016-2025 recalculé à partir du
+    // rendement annuel réel vérifié (2016-2024 : iShares STOXX Europe 600 UCITS ETF "EXSA", réplication
+    // physique, recoupé avec une recherche directe sur l'indice — écarts trouvés très faibles, <1,3%,
+    // l'import d'origine était déjà proche pour cet indice ; 2025 : +20,66%, confirmé par deux sources
+    // indépendantes convergentes — le bulletin mensuel STOXX de décembre 2025 et l'ETF Invesco STOXX
+    // Europe 600, après qu'une première recherche avait renvoyé un chiffre contradictoire de 35,31%
+    // visiblement confondu avec l'indice "MSCI Europe 600", différent du STOXX Europe 600), composé à
+    // partir du point de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les points de
+    // décembre ont été recalculés ; les mois intermédiaires de chaque année restent tels quels (non
+    // re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une
+    // même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) — limitation assumée,
+    // aucune valeur mensuelle inventée.
+    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée, retentée avec des requêtes plus précises
+    // après un premier échec) : même méthode que les corrections de décembre ci-dessus — pas de niveau
+    // "STOXX Europe 600 rebasé" public à chercher (c'est une reconstruction interne), donc calculé en
+    // appliquant le rendement total RÉEL du mois au point de juillet. Rendement retenu : +0,49 %, à
+    // partir du STOXX Europe 600 EUR Net Return Index (STOXXR), 1 654,78 au 31/07/2026 -> 1 662,91 au
+    // 31/08/2026, cohérent avec le retour sur 1 mois publié par l'ETF iShares STOXX Europe 600 (DE)
+    // UCITS (EXSA) sur la même période (+0,59 %) — 2 sources indépendantes convergentes. 224 956 x
+    // 1,0049 = 226 061.
     label: 'ETF STOXX Europe 600', tweetPhrase: 'un ETF STOXX Europe 600', icon: '🇪🇺', currency: 'EUR',
     points: P([
       '2015-01', 93786, '2015-02', 100336, '2015-03', 102017, '2015-04', 102119,
@@ -91,43 +121,59 @@ export const ASSETS = {
       '2015-09', 90813, '2015-10', 98153, '2015-11', 100915, '2015-12', 95840,
       '2016-01', 89736, '2016-02', 87756, '2016-03', 88985, '2016-04', 90542,
       '2016-05', 92803, '2016-06', 88317, '2016-07', 91610, '2016-08', 92288,
-      '2016-09', 92189, '2016-10', 91236, '2016-11', 92197, '2016-12', 97500,
+      '2016-09', 92189, '2016-10', 91236, '2016-11', 92197, '2016-12', 97316,
       '2017-01', 97198, '2017-02', 100164, '2017-03', 103490, '2017-04', 105536,
       '2017-05', 107070, '2017-06', 104367, '2017-07', 103999, '2017-08', 103177,
-      '2017-09', 107198, '2017-10', 109247, '2017-11', 107041, '2017-12', 107813,
+      '2017-09', 107198, '2017-10', 109247, '2017-11', 107041, '2017-12', 107709,
       '2018-01', 109603, '2018-02', 105427, '2018-03', 103331, '2018-04', 107970,
       '2018-05', 108114, '2018-06', 107437, '2018-07', 110808, '2018-08', 108437,
-      '2018-09', 108787, '2018-10', 102772, '2018-11', 101756, '2018-12', 96204,
+      '2018-09', 108787, '2018-10', 102772, '2018-11', 101756, '2018-12', 95894,
       '2019-01', 102289, '2019-02', 106535, '2019-03', 108729, '2019-04', 112818,
       '2019-05', 107249, '2019-06', 112039, '2019-07', 112390, '2019-08', 110873,
-      '2019-09', 114971, '2019-10', 116170, '2019-11', 119456, '2019-12', 122005,
+      '2019-09', 114971, '2019-10', 116170, '2019-11', 119456, '2019-12', 123137,
       '2020-01', 120570, '2020-02', 110514, '2020-03', 94474, '2020-04', 100616,
       '2020-05', 104042, '2020-06', 107221, '2020-07', 106199, '2020-08', 109443,
-      '2020-09', 107904, '2020-10', 102394, '2020-11', 116566, '2020-12', 119574,
+      '2020-09', 107904, '2020-10', 102394, '2020-11', 116566, '2020-12', 120933,
       '2021-01', 118679, '2021-02', 121572, '2021-03', 129381, '2021-04', 132244,
       '2021-05', 135666, '2021-06', 137696, '2021-07', 140529, '2021-08', 143586,
-      '2021-09', 138862, '2021-10', 145348, '2021-11', 141676, '2021-12', 149360,
+      '2021-09', 138862, '2021-10', 145348, '2021-11', 141676, '2021-12', 150646,
       '2022-01', 143642, '2022-02', 138979, '2022-03', 140366, '2022-04', 139354,
       '2022-05', 138076, '2022-06', 127002, '2022-07', 136830, '2022-08', 129918,
-      '2022-09', 121508, '2022-10', 129220, '2022-11', 138128, '2022-12', 133464,
+      '2022-09', 121508, '2022-10', 129220, '2022-11', 138128, '2022-12', 135069,
       '2023-01', 142454, '2023-02', 145125, '2023-03', 144666, '2023-04', 148204,
       '2023-05', 144467, '2023-06', 147951, '2023-07', 151123, '2023-08', 147285,
-      '2023-09', 144836, '2023-10', 139599, '2023-11', 148847, '2023-12', 154550,
+      '2023-09', 144836, '2023-10', 139599, '2023-11', 148847, '2023-12', 155964,
       '2024-01', 156809, '2024-02', 159921, '2024-03', 166376, '2024-04', 164768,
       '2024-05', 170224, '2024-06', 168250, '2024-07', 170616, '2024-08', 173256,
-      '2024-09', 172671, '2024-10', 167039, '2024-11', 168921, '2024-12', 168138,
+      '2024-09', 172671, '2024-10', 167039, '2024-11', 168921, '2024-12', 169237,
       '2025-01', 178820, '2025-02', 184927, '2025-03', 177833, '2025-04', 176637,
       '2025-05', 185159, '2025-06', 182901, '2025-07', 184668, '2025-08', 186410,
-      '2025-09', 189244, '2025-10', 194093, '2025-11', 195939, '2025-12', 201422,
+      '2025-09', 189244, '2025-10', 194093, '2025-11', 195939, '2025-12', 204201,
       '2026-01', 207911, '2026-02', 215928, '2026-03', 199380, '2026-04', 210113,
-      '2026-05', 216467, '2026-06', 222182, '2026-07', 224956,
+      '2026-05', 216467, '2026-06', 222182, '2026-07', 224956, '2026-08', 226061,
     ]),
   },
   sp500: {
     // Source : indice S&P 500 (rendement total, base 10 000 au 29/02/1992), export CSV mensuel réel
     // fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier point
-    // disponible dans l'export). Le point 2026-08 n'existe pas dans la source : l'appli prolonge
-    // automatiquement le dernier prix connu (juillet 2026) jusqu'à LATEST_YM.
+    // disponible dans l'export).
+    // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
+    // rendements annuels erronés par rapport aux vrais rendements connus de l'indice (ex. 2017 donnait
+    // +7,1% au lieu de +21,8% réel) — import CSV d'origine imprécis. Point de DÉCEMBRE de chaque année
+    // 2016-2025 recalculé à partir du rendement annuel total réel vérifié (sources multiples
+    // convergentes : Motley Fool, dqydj, FT Portfolios — 2016:+11,96%, 2017:+21,83%, 2018:-4,38%,
+    // 2019:+31,49%, 2020:+18,40%, 2021:+28,71%, 2022:-18,11%, 2023:+26,29%, 2024:+25,02%, 2025:+17,44%),
+    // composé à partir du point de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les
+    // points de décembre ont été recalculés ; les mois intermédiaires de chaque année restent tels
+    // quels (non re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et
+    // décembre d'une même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) —
+    // limitation assumée, aucune valeur mensuelle inventée.
+    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée, retentée avec des requêtes plus précises
+    // après un premier échec) : même méthode que les corrections de décembre ci-dessus, appliquée au
+    // rendement du mois. Rendement retenu : +2,54 %, à partir de l'indice S&P 500 Total Return
+    // (^SP500TR), 16 763,42 au 31/07/2026 -> 17 189,63 au 31/08/2026 — cohérent avec la presse
+    // financière ("le S&P 500 a gagné plus de 2 % en août, record mensuel"), 2 sources indépendantes
+    // convergentes. 386 824 x 1,0254 = 396 659.
     label: 'S&P 500', tweetPhrase: 'le S&P 500', icon: '🇺🇸', currency: 'USD',
     points: P([
       '2015-01', 85714, '2015-02', 91164, '2015-03', 93734, '2015-04', 90785,
@@ -135,43 +181,59 @@ export const ASSETS = {
       '2015-09', 84457, '2015-10', 93128, '2015-11', 97272, '2015-12', 93029,
       '2016-01', 88145, '2016-02', 88285, '2016-03', 90159, '2016-04', 90366,
       '2016-05', 94042, '2016-06', 94727, '2016-07', 98122, '2016-08', 98093,
-      '2016-09', 97856, '2016-10', 97958, '2016-11', 104557, '2016-12', 107574,
+      '2016-09', 97856, '2016-10', 97958, '2016-11', 104557, '2016-12', 104155,
       '2017-01', 107433, '2017-02', 113365, '2017-03', 112499, '2017-04', 111169,
       '2017-05', 109810, '2017-06', 108646, '2017-07', 107902, '2017-08', 107335,
-      '2017-09', 109725, '2017-10', 113907, '2017-11', 115310, '2017-12', 115192,
+      '2017-09', 109725, '2017-10', 113907, '2017-11', 115310, '2017-12', 126892,
       '2018-01', 117251, '2018-02', 115176, '2018-03', 111274, '2018-04', 113939,
       '2018-05', 120473, '2018-06', 121641, '2018-07', 125329, '2018-08', 130357,
-      '2018-09', 131948, '2018-10', 125732, '2018-11', 127831, '2018-12', 115365,
+      '2018-09', 131948, '2018-10', 125732, '2018-11', 127831, '2018-12', 121334,
       '2019-01', 124197, '2019-02', 128994, '2019-03', 133619, '2019-04', 139239,
       '2019-05', 131174, '2019-06', 137594, '2019-07', 142438, '2019-08', 141642,
-      '2019-09', 146240, '2019-10', 145858, '2019-11', 153520, '2019-12', 154606,
+      '2019-09', 146240, '2019-10', 145858, '2019-11', 153520, '2019-12', 159543,
       '2020-01', 157090, '2020-02', 145143, '2020-03', 127460, '2020-04', 144857,
       '2020-05', 148213, '2020-06', 150324, '2020-07', 150088, '2020-08', 159637,
-      '2020-09', 156614, '2020-10', 152580, '2020-11', 165297, '2020-12', 167582,
+      '2020-09', 156614, '2020-10', 152580, '2020-11', 165297, '2020-12', 188899,
       '2021-01', 167735, '2021-02', 172574, '2021-03', 186215, '2021-04', 190358,
       '2021-05', 189818, '2021-06', 199430, '2021-07', 204048, '2021-08', 211265,
-      '2021-09', 205875, '2021-10', 219050, '2021-11', 222931, '2021-12', 233683,
+      '2021-09', 205875, '2021-10', 219050, '2021-11', 222931, '2021-12', 243131,
       '2022-01', 224967, '2022-02', 217393, '2022-03', 227456, '2022-04', 218672,
       '2022-05', 215535, '2022-06', 203950, '2022-07', 226884, '2022-08', 221940,
-      '2022-09', 206709, '2022-10', 219703, '2022-11', 221652, '2022-12', 203202,
+      '2022-09', 206709, '2022-10', 219703, '2022-11', 221652, '2022-12', 199100,
       '2023-01', 212641, '2023-02', 211633, '2023-03', 214238, '2023-04', 215482,
       '2023-05', 222456, '2023-06', 233160, '2023-07', 237223, '2023-08', 236776,
-      '2023-09', 231318, '2023-10', 225921, '2023-11', 239517, '2023-12', 247701,
+      '2023-09', 231318, '2023-10', 225921, '2023-11', 239517, '2023-12', 251444,
       '2024-01', 256814, '2024-02', 270802, '2024-03', 279903, '2024-04', 270799,
       '2024-05', 280717, '2024-06', 294783, '2024-07', 294982, '2024-08', 295079,
-      '2024-09', 298447, '2024-10', 304274, '2024-11', 331895, '2024-12', 329379,
+      '2024-09', 298447, '2024-10', 304274, '2024-11', 331895, '2024-12', 314355,
       '2025-01', 338421, '2025-02', 333427, '2025-03', 302887, '2025-04', 286073,
       '2025-05', 304992, '2025-06', 310082, '2025-07', 324631, '2025-08', 325189,
-      '2025-09', 334675, '2025-10', 348055, '2025-11', 348546, '2025-12', 343298,
+      '2025-09', 334675, '2025-10', 348055, '2025-11', 348546, '2025-12', 369178,
       '2026-01', 343338, '2026-02', 344019, '2026-03', 335616, '2026-04', 364367,
-      '2026-05', 385455, '2026-06', 390161, '2026-07', 386824,
+      '2026-05', 385455, '2026-06', 390161, '2026-07', 386824, '2026-08', 396659,
     ]),
   },
   msciWorld: {
     // Source : indice MSCI World (rendement total, base 10 000 au 31/12/1969), export CSV mensuel réel
     // fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier point
-    // disponible dans l'export). Le point 2026-08 n'existe pas dans la source : l'appli prolonge
-    // automatiquement le dernier prix connu (juillet 2026) jusqu'à LATEST_YM.
+    // disponible dans l'export).
+    // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
+    // rendements annuels erronés par rapport aux vrais rendements connus de l'indice (ex. 2020 donnait
+    // +6,1% au lieu de +16,5% réel) — import CSV d'origine imprécis. Point de DÉCEMBRE de chaque année
+    // 2016-2025 recalculé à partir du rendement annuel total réel vérifié (sources convergentes : fiches
+    // MSCI, S&P Global — 2016:+8,15%, 2017:+23,07%, 2018:-8,20%, 2019:+28,40%, 2020:+16,50%,
+    // 2021:+22,35%, 2022:-17,73%, 2023:+24,42%, 2024:+19,19%, 2025:+21,60%), composé à partir du point
+    // de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les points de décembre ont été
+    // recalculés ; les mois intermédiaires de chaque année restent tels quels (non re-vérifiés
+    // individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une même année,
+    // et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) — limitation assumée, aucune
+    // valeur mensuelle inventée.
+    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée ; le niveau officiel MSCI World Net Return
+    // n'a pas pu être trouvé aux deux dates précises malgré plusieurs tentatives — retenu à la place
+    // le rendement sur 1 mois publié par 2 ETF UCITS distincts qui répliquent cet indice, datés fin
+    // août 2026 : Xtrackers MSCI World UCITS ETF 1C -0,28 % et Amundi Core MSCI World UCITS ETF Acc
+    // -0,31 % — 2 émetteurs différents, écart <0,05 pt, retenu -0,30 % (moyenne). 964 712 x 0,997 =
+    // 961 818.
     label: 'ETF MSCI World', tweetPhrase: 'un ETF MSCI World', icon: '🌍', currency: 'USD',
     points: P([
       '2015-01', 279232, '2015-02', 297301, '2015-03', 305731, '2015-04', 300179,
@@ -179,49 +241,132 @@ export const ASSETS = {
       '2015-09', 269644, '2015-10', 295925, '2015-11', 306644, '2015-12', 292731,
       '2016-01', 274387, '2016-02', 273145, '2016-03', 278948, '2016-04', 282914,
       '2016-05', 290854, '2016-06', 288942, '2016-07', 300852, '2016-08', 300588,
-      '2016-09', 301399, '2016-10', 301372, '2016-11', 314645, '2016-12', 325047,
+      '2016-09', 301399, '2016-10', 301372, '2016-11', 314645, '2016-12', 316589,
       '2017-01', 326268, '2017-02', 340320, '2017-03', 340921, '2017-04', 338403,
       '2017-05', 336601, '2017-06', 332240, '2017-07', 331054, '2017-08', 328772,
-      '2017-09', 336693, '2017-10', 348008, '2017-11', 349217, '2017-12', 349690,
+      '2017-09', 336693, '2017-10', 348008, '2017-11', 349217, '2017-12', 389626,
       '2018-01', 354440, '2018-02', 346516, '2018-03', 336020, '2018-04', 346690,
       '2018-05', 360195, '2018-06', 361289, '2018-07', 370097, '2018-08', 377410,
-      '2018-09', 381970, '2018-10', 361991, '2018-11', 364781, '2018-12', 334365,
+      '2018-09', 381970, '2018-10', 361991, '2018-11', 364781, '2018-12', 357676,
       '2019-01', 359189, '2019-02', 372323, '2019-03', 383290, '2019-04', 397483,
       '2019-05', 376798, '2019-06', 393545, '2019-07', 403617, '2019-08', 399481,
-      '2019-09', 413490, '2019-10', 413938, '2019-11', 432130, '2019-12', 435092,
+      '2019-09', 413490, '2019-10', 413938, '2019-11', 432130, '2019-12', 459256,
       '2020-01', 439565, '2020-02', 405160, '2020-03', 352214, '2020-04', 393565,
       '2020-05', 402945, '2020-06', 411313, '2020-07', 407346, '2020-08', 431214,
-      '2020-09', 424588, '2020-10', 411915, '2020-11', 453648, '2020-12', 461667,
+      '2020-09', 424588, '2020-10', 411915, '2020-11', 453648, '2020-12', 535034,
       '2021-01', 462163, '2021-02', 474592, '2021-03', 506945, '2021-04', 514862,
       '2021-05', 517185, '2021-06', 538895, '2021-07', 548225, '2021-08', 564576,
-      '2021-09', 553051, '2021-10', 581064, '2021-11', 582436, '2021-12', 609313,
+      '2021-09', 553051, '2021-10', 581064, '2021-11', 582436, '2021-12', 654614,
       '2022-01', 585868, '2022-02', 568858, '2022-03', 589629, '2022-04', 569423,
       '2022-05', 560652, '2022-06', 528159, '2022-07', 580658, '2022-08', 567399,
-      '2022-09', 527958, '2022-10', 556397, '2022-11', 568587, '2022-12', 529638,
+      '2022-09', 527958, '2022-10', 556397, '2022-11', 568587, '2022-12', 538551,
       '2023-01', 558370, '2023-02', 555930, '2023-03', 559617, '2023-04', 563930,
       '2023-05', 573874, '2023-06', 598331, '2023-07', 609623, '2023-08', 603548,
-      '2023-09', 592449, '2023-10', 573904, '2023-11', 609792, '2023-12', 632840,
+      '2023-09', 592449, '2023-10', 573904, '2023-11', 609792, '2023-12', 670065,
       '2024-01', 653022, '2024-02', 681400, '2024-03', 704273, '2024-04', 683997,
       '2024-05', 705715, '2024-06', 729963, '2024-07', 734389, '2024-08', 736190,
-      '2024-09', 742374, '2024-10', 748644, '2024-11', 806719, '2024-12', 798779,
+      '2024-09', 742374, '2024-10', 748644, '2024-11', 806719, '2024-12', 798650,
       '2025-01', 826649, '2025-02', 819280, '2025-03', 753563, '2025-04', 722959,
       '2025-05', 768049, '2025-06', 775147, '2025-07', 803919, '2025-08', 809889,
-      '2025-09', 830015, '2025-10', 860339, '2025-11', 861874, '2025-12', 855235,
+      '2025-09', 830015, '2025-10', 860339, '2025-11', 861874, '2025-12', 971159,
       '2026-01', 861977, '2026-02', 876676, '2026-03', 842752, '2026-04', 907487,
-      '2026-05', 953523, '2026-06', 967452, '2026-07', 964712,
+      '2026-05', 953523, '2026-06', 967452, '2026-07', 964712, '2026-08', 961818,
+    ]),
+  },
+  nasdaq100: {
+    // Source : indice Nasdaq-100 (NDX), export CSV quotidien réel fourni par l'utilisateur le
+    // 29/08/2026 (Nasdaq.com, colonnes Date/Close/Open/High/Low), 29/08/2016 à 28/08/2026 —
+    // niveaux réels de l'indice, jamais rebasés (contrairement à sp500/msciWorld/stoxx600 : cet
+    // actif n'a donc pas besoin d'être exclu du format Anniversaire de Tweet Midi). Point mensuel
+    // retenu : clôture du dernier jour de bourse de chaque mois (même convention que
+    // apple/microsoft/broadcom/tesla/cac40), agrégé à partir des ~2 500 points quotidiens du CSV —
+    // aucune valeur mensuelle devinée, chaque point vient d'un jour de bourse réel du fichier.
+    // Recoupé avec la mémoire générale de l'indice (ex. clôture du 31/12/2020 = 12 888,28, chiffre
+    // largement documenté) : cohérent. Ajouté en réponse au blocage précédent de la roadmap
+    // ("Nasdaq-100 non sourcé, faute de données fiables") — débloqué par l'export fourni.
+    label: 'Nasdaq-100', tweetPhrase: 'le Nasdaq-100', icon: '💻', currency: 'USD',
+    points: P([
+      '2016-08', 4771.05, '2016-09', 4875.7, '2016-10', 4801.27, '2016-11', 4810.81,
+      '2016-12', 4863.62, '2017-01', 5116.77, '2017-02', 5330.31, '2017-03', 5436.23,
+      '2017-04', 5583.53, '2017-05', 5788.8, '2017-06', 5646.92, '2017-07', 5880.33,
+      '2017-08', 5988.6, '2017-09', 5979.3, '2017-10', 6248.56, '2017-11', 6365.56,
+      '2017-12', 6396.42, '2018-01', 6949.99, '2018-02', 6854.42, '2018-03', 6581.13,
+      '2018-04', 6605.57, '2018-05', 6967.73, '2018-06', 7040.8, '2018-07', 7231.98,
+      '2018-08', 7654.55, '2018-09', 7627.65, '2018-10', 6967.1, '2018-11', 6949.01,
+      '2018-12', 6329.96, '2019-01', 6906.84, '2019-02', 7097.53, '2019-03', 7378.77,
+      '2019-04', 7781.46, '2019-05', 7127.96, '2019-06', 7671.07, '2019-07', 7848.78,
+      '2019-08', 7691, '2019-09', 7749.45, '2019-10', 8083.83, '2019-11', 8403.68,
+      '2019-12', 8733.07, '2020-01', 8991.51, '2020-02', 8461.83, '2020-03', 7813.5,
+      '2020-04', 9000.51, '2020-05', 9555.52, '2020-06', 10156.85, '2020-07', 10905.88,
+      '2020-08', 12110.7, '2020-09', 11418.06, '2020-10', 11052.95, '2020-11', 12268.32,
+      '2020-12', 12888.28, '2021-01', 12925.38, '2021-02', 12909.44, '2021-03', 13091.44,
+      '2021-04', 13860.76, '2021-05', 13686.51, '2021-06', 14554.8, '2021-07', 14959.9,
+      '2021-08', 15582.51, '2021-09', 14689.62, '2021-10', 15850.47, '2021-11', 16135.92,
+      '2021-12', 16320.08, '2022-01', 14930.05, '2022-02', 14237.81, '2022-03', 14838.49,
+      '2022-04', 12854.8, '2022-05', 12642.1, '2022-06', 11503.72, '2022-07', 12947.97,
+      '2022-08', 12272.03, '2022-09', 10971.22, '2022-10', 11405.57, '2022-11', 12030.06,
+      '2022-12', 10939.76, '2023-01', 12101.93, '2023-02', 12042.12, '2023-03', 13181.35,
+      '2023-04', 13245.99, '2023-05', 14254.09, '2023-06', 15179.21, '2023-07', 15757,
+      '2023-08', 15501.07, '2023-09', 14715.24, '2023-10', 14409.78, '2023-11', 15947.87,
+      '2023-12', 16825.93, '2024-01', 17137.24, '2024-02', 18043.85, '2024-03', 18254.69,
+      '2024-04', 17440.69, '2024-05', 18536.65, '2024-06', 19682.87, '2024-07', 19362.43,
+      '2024-08', 19574.64, '2024-09', 20060.69, '2024-10', 19890.42, '2024-11', 20930.37,
+      '2024-12', 21012.17, '2025-01', 21478.05, '2025-02', 20884.41, '2025-03', 19278.45,
+      '2025-04', 19571.02, '2025-05', 21340.99, '2025-06', 22679.01, '2025-07', 23218.12,
+      '2025-08', 23415.42, '2025-09', 24679.99, '2025-10', 25858.13, '2025-11', 25434.89,
+      '2025-12', 25249.85, '2026-01', 25552.39, '2026-02', 24960.04, '2026-03', 23740.19,
+      '2026-04', 27452.12, '2026-05', 30333.18, '2026-06', 30276.35, '2026-07', 28274.19,
+      '2026-08', 29433.43,
     ]),
   },
   soxx: {
-    // Source : clôtures annuelles réelles de l'ETF iShares Semiconductor (SOXX), ancrées sur deux
-    // clôtures vérifiées (31/12/2024 = 553,29 $ et 31/12/2025 = 347,98 $, StatMuse) et calculées pour
-    // 2015-2023 à partir des rendements annuels réels de SOXX (StatMuse/sources financières, cf.
-    // rapport) — donc dérivées de données réelles mais pas des clôtures exactes lues directement.
-    // Point 2026-08 vérifié (cours du 22/08/2026). Dernier point réel : 22/08/2026.
+    // SÉRIE ENTIÈREMENT REMPLACÉE le 30/08/2026 : l'ancienne série annuelle (2015-2026, 12 points)
+    // était "dérivée de rendements annuels" plutôt que des vraies clôtures — un utilisateur a
+    // signalé un DCA anormalement faible sur SOXX, ce qui a révélé que l'échelle entière de la série
+    // dérivait dans le temps par rapport aux vraies clôtures : écart de 2,36x en 2016 à 2,59x en
+    // 2025 (jamais un facteur constant, donc pas juste un split non pris en compte — une accumulation
+    // d'erreur de reconstruction). Seul le dernier point (2026-08) était proche du réel (520,05 vs
+    // 508,62, écart 2%). Remplacée intégralement par un historique mensuel réel (clôtures, colonne
+    // "Cours"), capture d'écran fournie par l'utilisateur le 30/08/2026, couvrant janvier 2016 à
+    // août 2026 (128 points). Deux valeurs partiellement masquées dans les captures, retenues au
+    // mieux : 2016-12 (40,91) et 2021-06 (151,41) — confiance légèrement inférieure au reste de la
+    // série, mais cohérentes avec les points encadrants. Pas de point avant 2016-01 : l'ancien point
+    // 2015-12 (69,86 $) était sur l'ancienne échelle erronée, abandonné plutôt que reconverti sans
+    // source réelle — l'actif est donc utilisable à partir de janvier 2016 uniquement.
     label: 'ETF Semi-conducteurs (SOXX)', tweetPhrase: 'un ETF semi-conducteurs (SOXX)', icon: '🖥️', currency: 'USD',
     points: P([
-      '2015-12', 69.86, '2016-12', 96.65, '2017-12', 135.11, '2018-12', 126.36,
-      '2019-12', 205.24, '2020-12', 313.44, '2021-12', 451.66, '2022-12', 293.19,
-      '2023-12', 489.98, '2024-12', 553.29, '2025-12', 347.98, '2026-08', 520.05,
+      '2016-01', 27.68, '2016-02', 28.16, '2016-03', 30.54, '2016-04', 29.13,
+      '2016-05', 31.66, '2016-06', 31.21, '2016-07', 34.67, '2016-08', 36.3,
+      '2016-09', 37.66, '2016-10', 37.12, '2016-11', 39.79, '2016-12', 40.91,
+      '2017-01', 42.62, '2017-02', 43.82, '2017-03', 45.63, '2017-04', 45.37,
+      '2017-05', 49.33, '2017-06', 46.73, '2017-07', 48.99, '2017-08', 50.42,
+      '2017-09', 52.86, '2017-10', 57.57, '2017-11', 57.52, '2017-12', 56.6,
+      '2018-01', 61.49, '2018-02', 61.63, '2018-03', 60.02, '2018-04', 56.24,
+      '2018-05', 62.48, '2018-06', 59.41, '2018-07', 61.83, '2018-08', 63.44,
+      '2018-09', 61.68, '2018-10', 54.32, '2018-11', 56.08, '2018-12', 52.3,
+      '2019-01', 57.56, '2019-02', 61.25, '2019-03', 63.18, '2019-04', 70.52,
+      '2019-05', 58.84, '2019-06', 66.14, '2019-07', 69.86, '2019-08', 68.24,
+      '2019-09', 70.47, '2019-10', 74.78, '2019-11', 77.82, '2019-12', 83.7,
+      '2020-01', 81.02, '2020-02', 77.26, '2020-03', 68.4, '2020-04', 78.35,
+      '2020-05', 83.95, '2020-06', 90.29, '2020-07', 96.8, '2020-08', 102.41,
+      '2020-09', 101.54, '2020-10', 101.83, '2020-11', 120.6, '2020-12', 126.39,
+      '2021-01', 130.47, '2021-02', 138.97, '2021-03', 141.33, '2021-04', 140.68,
+      '2021-05', 144.23, '2021-06', 151.41, '2021-07', 152.3, '2021-08', 156.06,
+      '2021-09', 148.62, '2021-10', 158.21, '2021-11', 176.41, '2021-12', 180.77,
+      '2022-01', 159.82, '2022-02', 158.05, '2022-03', 157.76, '2022-04', 133.59,
+      '2022-05', 142.05, '2022-06', 116.54, '2022-07', 135.78, '2022-08', 123.23,
+      '2022-09', 106.24, '2022-10', 108.83, '2022-11', 129.34, '2022-12', 115.99,
+      '2023-01', 134.56, '2023-02', 136.61, '2023-03', 148.22, '2023-04', 137.38,
+      '2023-05', 158.9, '2023-06', 169.09, '2023-07', 178.43, '2023-08', 170.22,
+      '2023-09', 157.88, '2023-10', 147.46, '2023-11', 171.22, '2023-12', 192.03,
+      '2024-01', 195.35, '2024-02', 217.36, '2024-03', 225.92, '2024-04', 213.99,
+      '2024-05', 234.01, '2024-06', 246.63, '2024-07', 235.38, '2024-08', 231.14,
+      '2024-09', 230.59, '2024-10', 218.26, '2024-11', 215.4, '2024-12', 215.49,
+      '2025-01', 218.13, '2025-02', 208.52, '2025-03', 188.17, '2025-04', 183.84,
+      '2025-05', 204.94, '2025-06', 238.7, '2025-07', 240.03, '2025-08', 245.32,
+      '2025-09', 271.12, '2025-10', 306.55, '2025-11', 296.74, '2025-12', 301.15,
+      '2026-01', 346.3, '2026-02', 352.29, '2026-03', 328.66, '2026-04', 461.44,
+      '2026-05', 569.08, '2026-06', 640.76, '2026-07', 504.89, '2026-08', 508.62,
     ]),
   },
   or: {
@@ -269,17 +414,59 @@ export const ASSETS = {
     ]),
   },
   silver: {
-    // Source : cours réel de l'argent au comptant (XAG/USD), clôtures annuelles réelles 2015-2025
-    // (MacroTrends "Silver Prices - 100 Year Historical Chart"), puis clôtures réelles de presse pour
-    // 2026 (StatMuse 31/01 ; Databoks/Fortune 30/04 ; Forbes Advisor 20/08). Toutes les valeurs
-    // ci-dessous sont directement sourcées — noter la flambée réelle de janv. 2026 (record intrajournalier
-    // à 121,58 $ le 29/01/2026) suivie d'une correction. Dernier point réel : 20/08/2026.
+    // REMPLACÉ le 02/09/2026 : série annuelle éparse (11 points + 3 en 2026) remplacée par une série
+    // mensuelle complète, clôtures réelles ("Dernier") de l'export CSV Investing.com "Futures Argent"
+    // (COMEX, contrat continu) fourni par l'utilisateur, janvier 2015 à août 2026. Motivation : cet
+    // actif faisait partie des 3 (avec ethereum et cac40) identifiés lors de l'audit du 01/09/2026 comme
+    // structurellement à risque du même type d'erreur que SOXX (points épars → interpolation linéaire
+    // trompeuse dans le format Anniversaire de Tweet Midi) — la série mensuelle complète résout ce
+    // problème pour cet actif.
+    // Ancrage vérifié avant remplacement : les 11 clôtures de décembre déjà en place (2015-2025,
+    // sourcées spot XAG/USD) correspondent aux nouvelles clôtures de décembre (source futures) à moins
+    // de 2,4% près chaque année — écart normal entre spot et futures continus, aucune dérive de type
+    // SOXX détectée, série d'origine confirmée globalement fiable.
+    // Seule exception : le point 2026-01 (85,17 $, source StatMuse, clôture spot du 31/01) diverge de
+    // ~7,5% de la nouvelle clôture mensuelle futures (78,83 $) — écart plus large que les autres mois,
+    // probablement lié à l'extrême volatilité de ce mois précis (pic intrajournalier réel à 121,58 $ le
+    // 29/01/2026, déjà documenté) plutôt qu'à une erreur. La nouvelle valeur est retenue pour la
+    // cohérence de méthode (une seule source, mensuelle, plutôt que mélanger spot et futures).
     label: 'Argent (once)', tweetPhrase: "l'argent", icon: '🥈', currency: 'USD',
     points: P([
-      '2015-12', 13.80, '2016-12', 15.99, '2017-12', 17.13, '2018-12', 15.52,
-      '2019-12', 17.90, '2020-12', 26.40, '2021-12', 23.35, '2022-12', 23.96,
-      '2023-12', 23.79, '2024-12', 28.87, '2025-12', 34.31,
-      '2026-01', 85.17, '2026-04', 73.74, '2026-08', 65.94,
+      '2015-01', 17.228, '2015-02', 16.558, '2015-03', 16.619, '2015-04', 16.153,
+      '2015-05', 16.721, '2015-06', 15.581, '2015-07', 14.765, '2015-08', 14.581,
+      '2015-09', 14.518, '2015-10', 15.584, '2015-11', 14.072, '2015-12', 13.803,
+      '2016-01', 14.255, '2016-02', 14.918, '2016-03', 15.483, '2016-04', 17.819,
+      '2016-05', 16.018, '2016-06', 18.623, '2016-07', 20.393, '2016-08', 18.675,
+      '2016-09', 19.214, '2016-10', 17.835, '2016-11', 16.454, '2016-12', 15.989,
+      '2017-01', 17.543, '2017-02', 18.469, '2017-03', 18.206, '2017-04', 17.408,
+      '2017-05', 17.481, '2017-06', 16.654, '2017-07', 16.884, '2017-08', 17.575,
+      '2017-09', 16.847, '2017-10', 16.726, '2017-11', 16.445, '2017-12', 16.923,
+      '2018-01', 17.284, '2018-02', 16.407, '2018-03', 16.297, '2018-04', 16.401,
+      '2018-05', 16.503, '2018-06', 16.041, '2018-07', 15.597, '2018-08', 14.551,
+      '2018-09', 14.290, '2018-10', 14.324, '2018-11', 14.356, '2018-12', 15.260,
+      '2019-01', 16.120, '2019-02', 15.634, '2019-03', 15.019, '2019-04', 14.984,
+      '2019-05', 14.530, '2019-06', 15.294, '2019-07', 16.444, '2019-08', 18.274,
+      '2019-09', 16.998, '2019-10', 18.124, '2019-11', 17.009, '2019-12', 18.001,
+      '2020-01', 18.032, '2020-02', 17.735, '2020-03', 14.180, '2020-04', 14.973,
+      '2020-05', 18.009, '2020-06', 18.637, '2020-07', 23.450, '2020-08', 28.530,
+      '2020-09', 23.494, '2020-10', 23.408, '2020-11', 22.583, '2020-12', 26.573,
+      '2021-01', 25.945, '2021-02', 27.685, '2021-03', 24.552, '2021-04', 26.085,
+      '2021-05', 27.955, '2021-06', 26.194, '2021-07', 25.799, '2021-08', 23.991,
+      '2021-09', 22.047, '2021-10', 24.139, '2021-11', 22.799, '2021-12', 23.060,
+      '2022-01', 22.419, '2022-02', 24.366, '2022-03', 25.158, '2022-04', 23.181,
+      '2022-05', 21.737, '2022-06', 20.352, '2022-07', 19.918, '2022-08', 17.849,
+      '2022-09', 18.712, '2022-10', 19.184, '2022-11', 21.727, '2022-12', 24.250,
+      '2023-01', 23.930, '2023-02', 21.071, '2023-03', 24.076, '2023-04', 25.209,
+      '2023-05', 23.696, '2023-06', 22.798, '2023-07', 25.092, '2023-08', 24.692,
+      '2023-09', 22.741, '2023-10', 23.075, '2023-11', 25.541, '2023-12', 24.372,
+      '2024-01', 23.282, '2024-02', 22.885, '2024-03', 24.879, '2024-04', 26.654,
+      '2024-05', 31.680, '2024-06', 29.256, '2024-07', 29.073, '2024-08', 29.827,
+      '2024-09', 31.458, '2024-10', 32.953, '2024-11', 30.455, '2024-12', 29.412,
+      '2025-01', 32.493, '2025-02', 32.110, '2025-03', 34.611, '2025-04', 32.828,
+      '2025-05', 33.423, '2025-06', 36.172, '2025-07', 36.712, '2025-08', 40.662,
+      '2025-09', 46.640, '2025-10', 48.569, '2025-11', 56.711, '2025-12', 70.896,
+      '2026-01', 78.832, '2026-02', 93.291, '2026-03', 75.198, '2026-04', 73.534,
+      '2026-05', 75.875, '2026-06', 59.922, '2026-07', 57.786, '2026-08', 66.990,
     ]),
   },
   lvmh: {
@@ -287,8 +474,12 @@ export const ASSETS = {
     // (MarketScreener pour 2020-2023 ; presse spécialisée pour 2024/2025/2026). Points 2015-01 à
     // 2019-10 : NON VÉRIFIÉS dans cette session (aucune clôture fiable retrouvée malgré plusieurs
     // recherches) — valeurs illustratives d'origine conservées, à vérifier manuellement avant
-    // publication. Point 2026-04 : absent (aucune clôture fiable trouvée), interpolé automatiquement
-    // par l'application entre les points réels de janvier et août 2026. Dernier point réel : ~21/08/2026.
+    // publication (cf. VERIFIED_MIN_DATE_OVERRIDES ci-dessous, qui exclut ces points des calculs).
+    // Point 2026-04 : absent (aucune clôture fiable trouvée), interpolé automatiquement par
+    // l'application entre les points réels de janvier et août 2026.
+    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
+    // remplacé 450 € (~21/08/2026) par 453,30 €, la vraie clôture du 31/08/2026 (-1,06 % ce jour-là).
+    // Dernier point réel : 31/08/2026.
     label: 'LVMH', tweetPhrase: 'LVMH', icon: '◆', currency: 'EUR',
     points: P([
       '2015-01', 140, '2015-04', 165, '2015-07', 155, '2015-10', 160,
@@ -297,7 +488,7 @@ export const ASSETS = {
       '2018-01', 270, '2018-04', 260, '2018-07', 280, '2018-10', 235,
       '2019-01', 260, '2019-04', 340, '2019-07', 370, '2019-10', 390,
       '2020-12', 510.90, '2021-12', 727.00, '2022-12', 679.90, '2023-12', 733.60,
-      '2024-12', 638.25, '2025-12', 643.65, '2026-01', 649.65, '2026-08', 450,
+      '2024-12', 638.25, '2025-12', 643.65, '2026-01', 649.65, '2026-08', 453.30,
     ]),
   },
   apple: {
@@ -473,14 +664,49 @@ export const ASSETS = {
 }
 
 export const ASSET_ORDER = [
-  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'soxx',
+  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
 ]
+
+// DÉPLACÉ le 04/09/2026 depuis tweet-midi/data/marketHistory.js (où cette protection existait
+// seule jusqu'ici) : un seul actif a une plage réellement utilisable plus courte que ses points
+// bruts — LVMH a des points de 2015-01 à 2019-10 explicitement marqués "NON VÉRIFIÉS... valeurs
+// illustratives d'origine conservées" ci-dessus (cf. commentaire sur l'actif lvmh). Centralisé ici
+// (plutôt que dupliqué) pour que le Calculateur ET Tweet Midi appliquent la même règle à partir de
+// la même source — le Calculateur ne la respectait pas du tout avant cette date, laissant calculer
+// silencieusement sur les points illustratifs si l'utilisateur choisissait LVMH avant 2020-12.
+export const VERIFIED_MIN_DATE_OVERRIDES = {
+  lvmh: '2020-12',
+}
+
+// Premier point réellement vérifié pour cet actif (cf. VERIFIED_MIN_DATE_OVERRIDES ci-dessus).
+export function getAssetMinDate(assetId) {
+  return VERIFIED_MIN_DATE_OVERRIDES[assetId] ?? ASSETS[assetId].points[0].date
+}
+
+// Actifs dont l'historique n'a que des points annuels (décembre) sur la quasi-totalité de leur
+// plage utilisable, plutôt qu'un vrai historique mensuel — ethereum et cac40 sur toute leur plage,
+// lvmh sur sa plage vérifiée (post-2020-12, cf. ci-dessus). Un DCA mensuel sur l'un de ces actifs
+// interpole donc linéairement entre deux vraies clôtures pour la quasi-totalité des mois, plutôt
+// que d'utiliser une vraie clôture mensuelle comme pour les autres actifs. Recensé lors de l'audit
+// du 03/09/2026 (Tweet Midi, format Anniversaire — mêmes 3 actifs, même cause) ; réutilisé ici tel
+// quel plutôt que redéfini, pour le Calculateur (avertissement DCA, pas un blocage).
+export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh'])
 
 // Taux Livret A (moyenne annuelle, %) et inflation France INSEE (moyenne annuelle, %).
 // À ajuster si besoin — sert uniquement de comparaison pédagogique.
 export const LIVRET_A = { 2015: 0.9, 2016: 0.75, 2017: 0.75, 2018: 0.75, 2019: 0.75, 2020: 0.52, 2021: 0.5, 2022: 1.4, 2023: 2.9, 2024: 3.0, 2025: 2.16, 2026: 1.6 }
-export const INFLATION = { 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9, 2026: 1.0 }
+// 2010-2014 ajoutés le 05/09/2026, à la demande du Simulateur de pouvoir d'achat (purchasing-power)
+// qui a besoin d'un historique remontant à 2010 : réutilisé ici (plutôt que dupliqué dans le nouvel
+// outil) puisque c'est déjà la source d'inflation générale partagée par l'app. Source : communiqués
+// annuels INSEE "Indice des prix à la consommation" (moyenne annuelle, IPC ensemble des ménages,
+// hors tabac) — chaque valeur reprend le titre même du communiqué INSEE correspondant :
+// 2010 : « Entre 2009 et 2010, les prix ont augmenté de 1,5 % en moyenne » (insee.fr/fr/statistiques/1562347)
+// 2011 : « Entre 2010 et 2011, les prix ont augmenté de 2,1 % en moyenne » (insee.fr/fr/statistiques/1563697)
+// 2012 : « Entre 2011 et 2012, les prix ont augmenté de 2,0 % en moyenne » (insee.fr/fr/statistiques/1563699)
+// 2013 : « Entre 2012 et 2013, les prix ont augmenté de 0,9 % en moyenne » (insee.fr/fr/statistiques/1563562)
+// 2014 : « Hausse des prix à la consommation de 0,5 % en moyenne en 2014 » (insee.fr/fr/statistiques/1564994)
+export const INFLATION = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9, 2014: 0.5, 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9, 2026: 1.0 }
 
 export const LATEST_YM = '2026-08' // dernière donnée disponible dans les tableaux ci-dessus
 export const MONTHS_FULL = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
