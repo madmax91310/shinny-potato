@@ -5,6 +5,7 @@ import {
 } from './data'
 import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex } from './lib'
 import Sparkline from './Sparkline'
+import VideoExport from './VideoExport'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './investment-calculator.css'
@@ -102,9 +103,24 @@ function ResultCard({ state, d, copied, onCopy }) {
         <p className="ic-disclaimer">
           Éducation financière, pas un conseil en investissement. Données historiques approximatives, performances passées ≠ garanties futures.
         </p>
-        <Button type="button" onClick={onCopy}>
-          {copied ? '✓ Copié' : '𝕏 Copier le texte du post'}
-        </Button>
+        <div className="ic-card-footer-actions">
+          <Button type="button" onClick={onCopy}>
+            {copied ? '✓ Copié' : '𝕏 Copier le texte du post'}
+          </Button>
+        </div>
+        <VideoExport
+          videoParams={{
+            series: d.result.series,
+            invested: d.result.invested,
+            assetLabel: `${d.isCustom ? '✎' : asset.icon} ${assetLabel}`,
+            periodLabel: `${monthShort} ${yearLabel} → aujourd'hui`,
+            modeLabel: d.effectiveMode === 'dca' ? 'DCA MENSUEL' : 'VERSEMENT UNIQUE',
+            totalInvested: d.result.totalInvested,
+            finalValue: d.result.finalValue,
+            gainPct,
+          }}
+          filename={`investissement-${d.isCustom ? 'actif' : state.assetId}-${d.effectiveMode}.webm`}
+        />
       </div>
     </div>
   )
