@@ -102,6 +102,9 @@ select.ic-control { padding-right: 30px; cursor: pointer; }
 }
 
 .ic-video-export { display: flex; flex-direction: column; gap: 10px; padding-top: 4px; border-top: 1px dashed var(--ic-border-soft); }
+.ic-video-mode-toggle { max-width: 260px; }
+.ic-video-comparative-fields { display: flex; flex-direction: column; gap: 4px; }
+.ic-video-comparative-fields .ic-row2 > div { display: flex; flex-direction: column; gap: 4px; }
 .ic-video-canvas { width: 100%; max-width: 280px; aspect-ratio: 1 / 1; border-radius: 14px; border: 1px solid var(--ic-border-soft); background: #0a1122; align-self: center; }
 .ic-video-progress { display: flex; flex-direction: column; gap: 6px; }
 .ic-video-progress-track { height: 6px; border-radius: 100px; background: var(--ic-surface-hover); overflow: hidden; }

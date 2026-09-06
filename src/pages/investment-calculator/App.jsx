@@ -119,7 +119,16 @@ function ResultCard({ state, d, copied, onCopy }) {
             finalValue: d.result.finalValue,
             gainPct,
           }}
-          filename={`investissement-${d.isCustom ? 'actif' : state.assetId}-${d.effectiveMode}.webm`}
+          filenameBase={`investissement-${d.isCustom ? 'actif' : state.assetId}-${d.effectiveMode}`}
+          comparativeInputs={{
+            amount: d.amount,
+            startYm: d.startYm,
+            endYm: d.endYm,
+            mode: d.effectiveMode,
+            periodLabel: `${monthShort} ${yearLabel} → aujourd'hui`,
+            modeLabel: d.effectiveMode === 'dca' ? 'DCA MENSUEL' : 'VERSEMENT UNIQUE',
+            defaultAssetId: !d.isCustom ? state.assetId : undefined,
+          }}
         />
       </div>
     </div>

@@ -7,7 +7,8 @@
 // déjà les points par des segments de droite) — jamais une valeur de série inventée : les nombres
 // affichés en overlay (investi cumulé, valeur actuelle) sont toujours lus directement dans series[]/
 // invested[] à un index entier, jamais interpolés.
-import { fmtEUR, fmtPct } from './lib'
+import { fmtEUR, fmtPct, computeAssetSeries, ymIndex } from './lib'
+import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, MONTHS_SHORT } from './data'
 
 const W = 1080
 const H = 1080
@@ -23,6 +24,8 @@ const COLORS = {
   border: 'rgba(45,212,191,0.35)',
   teal: '#2dd4bf',
   tealBright: '#5eead4',
+  gold: '#fbbf24',
+  goldBright: '#fde68a',
   ink: '#f1f5f9',
   inkDim: '#c7cde3',
   inkFaint: '#64748b',
@@ -34,6 +37,7 @@ const COLORS = {
 const FONTS = {
   kicker: "700 26px -apple-system, 'Segoe UI', Arial, sans-serif",
   title: "700 54px -apple-system, 'Segoe UI', Arial, sans-serif",
+  titleSmall: "700 34px -apple-system, 'Segoe UI', Arial, sans-serif",
   period: "28px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
   pill: "700 22px -apple-system, 'Segoe UI', Arial, sans-serif",
   legend: "22px -apple-system, 'Segoe UI', Arial, sans-serif",
@@ -42,6 +46,8 @@ const FONTS = {
   heroLabel: "700 26px -apple-system, 'Segoe UI', Arial, sans-serif",
   heroNumber: "700 72px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
   heroPct: "700 36px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
+  compHeroNumber: "700 46px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
+  compHeroPct: "700 24px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
   footer: "22px -apple-system, 'Segoe UI', Arial, sans-serif",
 }
 
@@ -70,6 +76,34 @@ function pickMimeType() {
     if (window.MediaRecorder.isTypeSupported && window.MediaRecorder.isTypeSupported(c)) return c
   }
   return 'video/webm'
+}
+
+// Garde-fous du mode Comparatif — réutilisent tels quels les mécanismes déjà en place dans data.js
+// (VERIFIED_MIN_DATE_OVERRIDES / getAssetMinDate, SPARSE_MONTHLY_DATA_IDS) plutôt que d'en recréer :
+// mêmes règles que celles qui protègent déjà LVMH/Ethereum/CAC40 ailleurs dans le Calculateur et
+// Tweet Midi. Contrairement à l'avertissement (non bloquant) du formulaire principal pour le DCA sur
+// actif "sparse", ici on BLOQUE la génération vidéo pour cet actif — juxtaposer deux courbes dont
+// l'une est presque entièrement interpolée serait trompeur dans un format comparatif.
+// Retourne un message d'erreur précis (nommant l'actif) ou null si l'actif est utilisable tel quel.
+export function getComparativeAssetIssue(assetId, startYm, mode) {
+  const asset = ASSETS[assetId]
+  const minDate = getAssetMinDate(assetId)
+  if (ymIndex(startYm) < ymIndex(minDate)) {
+    const [y, m] = minDate.split('-')
+    const label = `${MONTHS_SHORT[parseInt(m, 10) - 1]} ${y}`
+    return `${asset.label} : données disponibles à partir de ${label} seulement`
+  }
+  if (mode === 'dca' && SPARSE_MONTHLY_DATA_IDS.has(assetId)) {
+    return `DCA non disponible pour ${asset.label} — données mensuelles insuffisantes sur cette période`
+  }
+  return null
+}
+
+// Simule la série d'un actif pour le mode Comparatif — appelle directement computeAssetSeries
+// (lib.js), la même fonction que le formulaire principal utilise pour l'aperçu statique. Aucun
+// calcul distinct, aucune donnée nouvelle : à appeler seulement après getComparativeAssetIssue.
+export function computeComparativeSeries(assetId, startYm, endYm, amount, mode) {
+  return computeAssetSeries(ASSETS[assetId].points, startYm, endYm, amount, mode)
 }
 
 // Trace la courbe (valeur de l'actif + capital investi) jusqu'à l'index `upToIndex`, avec un segment
@@ -157,6 +191,82 @@ function drawChart(ctx, x0, y0, w, h, series, invested, upToIndex, partialFrac) 
   ctx.stroke()
 
   return tip
+}
+
+// Points d'une SEULE série, mise à l'échelle sur SA PROPRE plage de valeurs (min/max) plutôt que sur
+// une plage partagée — c'est le "double échelle" du mode Comparatif : chaque actif remplit la même
+// hauteur de graphique indépendamment de l'écart de valeur avec l'autre (ex. Bitcoin vs Fonds euros),
+// donc les deux courbes restent lisibles quelle que soit la différence d'échelle. Même technique de
+// segment partiel (position à l'écran, pas une donnée) que buildPts ci-dessus.
+function scaledPointsFor(x0, y0, w, h, values, upToIndex, partialFrac) {
+  const n = values.length
+  let min = Math.min(...values)
+  let max = Math.max(...values)
+  if (min > 0) min = 0
+  let range = max - min || 1
+  max += range * 0.1
+  range = max - min || 1
+  const xStep = n > 1 ? w / (n - 1) : 0
+  const xy = (i, v) => [x0 + i * xStep, y0 + (1 - (v - min) / range) * h]
+  const lastIdx = Math.min(upToIndex, n - 1)
+  const pts = []
+  for (let i = 0; i <= lastIdx; i++) pts.push(xy(i, values[i]))
+  if (lastIdx < n - 1 && partialFrac > 0) {
+    const a = xy(lastIdx, values[lastIdx])
+    const b = xy(lastIdx + 1, values[lastIdx + 1])
+    pts.push([a[0] + (b[0] - a[0]) * partialFrac, a[1] + (b[1] - a[1]) * partialFrac])
+  }
+  return pts
+}
+
+function strokeSeriesLine(ctx, pts, color) {
+  if (pts.length < 2) return pts[0]
+  ctx.strokeStyle = color
+  ctx.lineWidth = 5
+  ctx.lineJoin = 'round'
+  ctx.lineCap = 'round'
+  ctx.beginPath()
+  pts.forEach((p, i) => (i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1])))
+  ctx.stroke()
+
+  const tip = pts[pts.length - 1]
+  ctx.beginPath()
+  ctx.globalAlpha = 0.28
+  ctx.fillStyle = color
+  ctx.arc(tip[0], tip[1], 16, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.globalAlpha = 1
+  ctx.beginPath()
+  ctx.fillStyle = color
+  ctx.strokeStyle = '#0a1122'
+  ctx.lineWidth = 3
+  ctx.arc(tip[0], tip[1], 8, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.stroke()
+  return tip
+}
+
+// Grille commune + deux courbes indépendamment mises à l'échelle (cf. scaledPointsFor). Les deux
+// séries partagent forcément le même nombre de mois (même startYm/endYm passés à
+// computeComparativeSeries pour les deux actifs), donc l'axe X reste aligné sans aucune interpolation
+// entre les deux séries elles-mêmes.
+function drawDualChart(ctx, x0, y0, w, h, series1, series2, upToIndex, partialFrac, color1, color2) {
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)'
+  ctx.lineWidth = 1
+  ctx.setLineDash([4, 6])
+  ;[0.25, 0.5, 0.75].forEach((f) => {
+    const gy = y0 + f * h
+    ctx.beginPath()
+    ctx.moveTo(x0, gy)
+    ctx.lineTo(x0 + w, gy)
+    ctx.stroke()
+  })
+  ctx.setLineDash([])
+
+  const pts1 = scaledPointsFor(x0, y0, w, h, series1, upToIndex, partialFrac)
+  const pts2 = scaledPointsFor(x0, y0, w, h, series2, upToIndex, partialFrac)
+  strokeSeriesLine(ctx, pts1, color1)
+  strokeSeriesLine(ctx, pts2, color2)
 }
 
 function drawFrame(ctx, params, elapsedMs) {
@@ -267,16 +377,133 @@ function drawFrame(ctx, params, elapsedMs) {
   ctx.fillText('Éducation financière, pas un conseil en investissement.', PAD, H - 52)
 }
 
-// Anime et enregistre la même série déjà calculée par le Calculateur sur un canvas, capture via
-// MediaRecorder (canvas.captureStream), résout avec le Blob .webm obtenu. `onProgress` reçoit une
-// fraction 0-1 de la durée totale (20-30s réelles, indépendantes du nombre de points de la série).
-export function renderResultVideo(params, onProgress) {
+// Frame du mode Comparatif — même squelette que drawFrame (fond, kicker, période, pastille de mode,
+// disclaimer), mais deux courbes/deux libellés au lieu d'un. Toutes les valeurs affichées viennent de
+// series1[]/series2[] (computeComparativeSeries, donc computeAssetSeries de lib.js) à un index entier
+// — jamais interpolées pour l'overlay, seule la position à l'écran de la courbe l'est (cf. plus haut).
+function drawComparativeFrame(ctx, params, elapsedMs) {
+  const { series1, series2, asset1Label, asset2Label, periodLabel, modeLabel, finalValue1, finalValue2, gainPct1, gainPct2 } = params
+  const n = series1.length
+  const color1 = COLORS.tealBright
+  const color2 = COLORS.goldBright
+
+  ctx.clearRect(0, 0, W, H)
+  const bg = ctx.createLinearGradient(0, 0, 0, H)
+  bg.addColorStop(0, COLORS.bgTop)
+  bg.addColorStop(1, COLORS.bgBottom)
+  ctx.fillStyle = bg
+  ctx.fillRect(0, 0, W, H)
+  ctx.strokeStyle = COLORS.border
+  ctx.lineWidth = 3
+  ctx.strokeRect(1.5, 1.5, W - 3, H - 3)
+
+  ctx.textBaseline = 'top'
+
+  ctx.font = FONTS.kicker
+  ctx.fillStyle = COLORS.teal
+  ctx.fillText('SIMULATION COMPARATIVE', PAD, PAD)
+
+  const dot = (x, y, color) => {
+    ctx.beginPath()
+    ctx.fillStyle = color
+    ctx.arc(x, y, 9, 0, Math.PI * 2)
+    ctx.fill()
+  }
+  ctx.font = FONTS.titleSmall
+  dot(PAD + 9, PAD + 40 + 17, color1)
+  ctx.fillStyle = COLORS.ink
+  ctx.fillText(asset1Label, PAD + 30, PAD + 40)
+  dot(PAD + 9, PAD + 84 + 17, color2)
+  ctx.fillStyle = COLORS.ink
+  ctx.fillText(asset2Label, PAD + 30, PAD + 84)
+
+  ctx.font = FONTS.period
+  ctx.fillStyle = COLORS.inkFaint
+  ctx.fillText(periodLabel, PAD, PAD + 156)
+
+  ctx.font = FONTS.pill
+  const pillPadX = 16
+  const pillW = ctx.measureText(modeLabel).width + pillPadX * 2
+  const pillH = 40
+  const pillX = W - PAD - pillW
+  const pillY = PAD + 4
+  ctx.strokeStyle = 'rgba(148,163,184,.35)'
+  ctx.lineWidth = 2
+  roundRectPath(ctx, pillX, pillY, pillW, pillH, pillH / 2)
+  ctx.stroke()
+  ctx.textBaseline = 'middle'
+  ctx.fillStyle = COLORS.tealBright
+  ctx.fillText(modeLabel, pillX + pillPadX, pillY + pillH / 2 + 1)
+  ctx.textBaseline = 'top'
+
+  const drawPhase = elapsedMs < DRAW_MS
+  const drawT = Math.min(1, elapsedMs / DRAW_MS)
+  const posFloat = drawT * (n - 1)
+  const idx = Math.min(n - 1, Math.floor(posFloat))
+  const frac = drawPhase ? posFloat - idx : 0
+
+  const chartX = PAD
+  const chartY = 320
+  const chartW = W - PAD * 2
+  const chartH = 380
+  drawDualChart(ctx, chartX, chartY, chartW, chartH, series1, series2, idx, frac, color1, color2)
+
+  const statsY = chartY + chartH + 40
+
+  if (drawPhase) {
+    // Valeurs lues à l'index entier atteint dans series1[]/series2[] — jamais interpolées.
+    ctx.font = FONTS.statLabel
+    ctx.fillStyle = COLORS.inkFaint
+    ctx.fillText(asset1Label.toUpperCase(), chartX, statsY)
+    ctx.font = FONTS.statValue
+    ctx.fillStyle = color1
+    ctx.fillText(fmtEUR(series1[idx]), chartX, statsY + 32)
+
+    const rightX = chartX + chartW / 2 + 16
+    ctx.font = FONTS.statLabel
+    ctx.fillStyle = COLORS.inkFaint
+    ctx.fillText(asset2Label.toUpperCase(), rightX, statsY)
+    ctx.font = FONTS.statValue
+    ctx.fillStyle = color2
+    ctx.fillText(fmtEUR(series2[idx]), rightX, statsY + 32)
+  } else {
+    const holdT = Math.min(1, (elapsedMs - DRAW_MS) / 600)
+    ctx.save()
+    ctx.globalAlpha = holdT
+    ctx.font = FONTS.heroLabel
+    ctx.fillStyle = COLORS.inkFaint
+    ctx.fillText('VALEURS FINALES', chartX, statsY)
+
+    ctx.font = FONTS.compHeroNumber
+    ctx.fillStyle = color1
+    ctx.fillText(fmtEUR(finalValue1), chartX, statsY + 38)
+    ctx.font = FONTS.compHeroPct
+    ctx.fillStyle = gainPct1 >= 0 ? COLORS.positive : COLORS.negative
+    ctx.fillText(`${fmtPct(gainPct1)} · ${asset1Label}`, chartX, statsY + 92)
+
+    ctx.font = FONTS.compHeroNumber
+    ctx.fillStyle = color2
+    ctx.fillText(fmtEUR(finalValue2), chartX, statsY + 132)
+    ctx.font = FONTS.compHeroPct
+    ctx.fillStyle = gainPct2 >= 0 ? COLORS.positive : COLORS.negative
+    ctx.fillText(`${fmtPct(gainPct2)} · ${asset2Label}`, chartX, statsY + 186)
+    ctx.restore()
+  }
+
+  ctx.font = FONTS.footer
+  ctx.fillStyle = COLORS.inkFaint
+  ctx.fillText('Éducation financière, pas un conseil en investissement.', PAD, H - 52)
+}
+
+// Boucle d'enregistrement partagée par les deux modes : dessine `drawFn(ctx, elapsedMs)` sur le
+// canvas à chaque frame pendant TOTAL_MS de temps réel, capture via MediaRecorder
+// (canvas.captureStream), résout avec le Blob .webm obtenu. `onProgress` reçoit une fraction 0-1.
+function recordCanvas(canvas, drawFn, onProgress) {
   return new Promise((resolve, reject) => {
     if (!isVideoExportSupported()) {
       reject(new Error('unsupported'))
       return
     }
-    const { canvas } = params
     canvas.width = W
     canvas.height = H
     const ctx = canvas.getContext('2d')
@@ -313,7 +540,7 @@ export function renderResultVideo(params, onProgress) {
       if (stopped) return
       if (startTime === null) startTime = now
       const elapsed = now - startTime
-      drawFrame(ctx, params, Math.min(elapsed, TOTAL_MS))
+      drawFn(ctx, Math.min(elapsed, TOTAL_MS))
       if (onProgress) onProgress(Math.min(1, elapsed / TOTAL_MS))
       if (elapsed >= TOTAL_MS) {
         stopped = true
@@ -326,4 +553,16 @@ export function renderResultVideo(params, onProgress) {
     recorder.start()
     requestAnimationFrame(loop)
   })
+}
+
+// Anime et enregistre la même série déjà calculée par le Calculateur (mode Simple, un seul actif).
+export function renderResultVideo(params, onProgress) {
+  return recordCanvas(params.canvas, (ctx, elapsedMs) => drawFrame(ctx, params, elapsedMs), onProgress)
+}
+
+// Anime et enregistre les deux séries déjà calculées (mode Comparatif, deux actifs). `params` doit
+// contenir series1/series2 déjà produites par computeComparativeSeries pour des actifs ayant passé
+// getComparativeAssetIssue (aucune validation refaite ici).
+export function renderComparativeVideo(params, onProgress) {
+  return recordCanvas(params.canvas, (ctx, elapsedMs) => drawComparativeFrame(ctx, params, elapsedMs), onProgress)
 }
