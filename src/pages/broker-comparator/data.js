@@ -10,39 +10,57 @@ export const BROKERS = [
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: false, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
-    liquidites: { rank: 1, resume: "Oui" },
-    pointFaible: "Pas de PEA-PME, transfert PEA entrant impossible",
-    transfertPea: { resume: "Entrant ❌" },
+    // MàJ du 03/09/2026 : Trade Republic a lancé son propre Livret A le 20/08/2026, distribué dans
+    // l'appli mais souscrit auprès d'AXA Banque (dépositaire officiel — TR n'est pas elle-même
+    // habilitée à commercialiser le Livret A). Taux réglementé identique partout (1,7 % depuis le
+    // 01/08/2026), plafond 22 950 €. Sources convergentes : toutsurmesfinances.com
+    // ("Trade Republic lance son Livret A en France, adossé à AXA Banque") et moneyvox.fr
+    // ("Trade Republic : le Livret A désormais disponible pour les clients de cette néobanque"),
+    // recoupées par zonebourse.com et sinvestir.fr.
+    liquidites: { rank: 1, resume: "Oui", detail: "Livret A (via AXA Banque)" },
+    // Correction du 03/09/2026, signalée par l'utilisateur : le transfert PEA entrant est en réalité
+    // possible chez Trade Republic (0€ côté TR — la banque d'origine peut en revanche facturer des
+    // frais sortants, ~15€/ligne selon les établissements), pas "impossible" comme précédemment
+    // indiqué. Point réel de friction : délai anormalement long (1 à 4 mois, contre 15 jours légaux),
+    // titres immobilisés pendant le transfert. Sources convergentes (3 recherches croisées) :
+    // sinvestir.fr, avenuedesinvestisseurs.fr, dafna.fr — toutes confirment le transfert entrant
+    // possible avec ce même délai. Le détail exact (transfert total titres+espèces vs espèces
+    // seules) varie selon les sources consultées : non retenu ici, faute de convergence suffisante.
+    pointFaible: "Pas de PEA-PME, transfert PEA entrant possible mais lent (jusqu'à 4 mois)",
+    transfertPea: { resume: "Entrant ✅ (délai long, jusqu'à 4 mois)" },
     post: {
       frais: ["1€/ordre, quel que soit le montant"],
       dca: ["✅ 0€ sur PEA & CTO — +7 500 titres disponibles, hebdo/bimensuel/mensuel"],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ❌ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
-      liquidites: ["✅ Oui"],
-      faibles: ["Pas de PEA-PME, transfert PEA entrant impossible"],
+      liquidites: ["✅ Oui (Livret A, distribué dans l'appli, souscrit auprès d'AXA Banque, depuis le 20/08/2026)"],
+      faibles: ["Pas de PEA-PME, transfert PEA entrant possible mais lent (jusqu'à 4 mois, titres immobilisés pendant le transfert)"],
       verdict: "Tu veux investir petit et souvent sans réfléchir aux frais",
     },
   },
   {
     id: "bourso", nom: "BoursoBank", code: "BB", color: "#E4735E", emoji: "🟡",
     frais: { rank: 2, resume: "1,99€ puis 0,60%", detail: "Plafonné à 0,5% du montant" },
-    boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "ETF iShares, OPCVM partenaires, Turbos/Warrants SG & GS" },
+    // MàJ du 05/10/2026 (communication officielle BoursoBank en vigueur à cette date) : Boursomarkets
+    // est devenu un partenariat exclusif avec Amundi sur +275 ETF (dont 75 éligibles PEA), remplaçant
+    // l'ancienne offre iShares/OPCVM partenaires/Turbos-Warrants SG & Goldman Sachs.
+    boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "+275 ETF (dont 75 éligibles PEA) — partenaire exclusif Amundi" },
     dca: { rank: 2, resume: "0€ transaction, frais selon DIC", detail: "8 fonds maison, mensuel uniquement" },
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret Bourso+" },
-    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC. ℹ️ Ordre minimum : 100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
+    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC. ℹ️ Ordre minimum : 100€ actions / 100€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
-      frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)", "⚡ Exception Boursomarkets → 0€ sur ETF iShares, OPCVM partenaires, Turbos/Warrants SG & Goldman Sachs"],
+      frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)", "⚡ Exception Boursomarkets → 0€ sur +275 ETF (dont 75 éligibles PEA), partenaire exclusif Amundi"],
       dca: ["⚠️ 0€ de transaction — frais de gestion selon DIC — 8 fonds maison, mensuel uniquement, dès 10€/mois"],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret Bourso+)"],
-      faibles: ["DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 200€, Bourses EU 2 500€"],
+      faibles: ["DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 100€, Bourses EU 2 500€"],
       verdict: "Tu veux un écosystème bancaire complet avec PEA-PME",
     },
   },
@@ -52,7 +70,11 @@ export const BROKERS = [
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 2, resume: "CTO uniquement", detail: "Pas de DCA sur PEA" },
     garde: { rank: 1, resume: "0€" },
-    pea: { pea: true, pme: false, jeune: null },
+    // Correction du 03/09/2026 (table de vérification fournie par l'utilisateur, source
+    // interactivebrokers.com/en/pricing/commissions-stocks.php) : jeune passait de null ("?" affiché
+    // sur la carte) à false — incohérence corrigée, le texte du tweet (post.pea ci-dessous) disait
+    // déjà "PEA Jeune ❌" sans que le champ structuré ne le reflète.
+    pea: { pea: true, pme: false, jeune: false },
     ifu: { rank: 2, resume: "PEA uniquement" },
     liquidites: { rank: 1, resume: "Oui", detail: "CTO" },
     pointFaible: "Interface complexe, tarif fixe par défaut 3€, pas d’IFU sur CTO",
@@ -144,7 +166,10 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 2, resume: "Non rémunérées" },
     pointFaible: "Pas de DCA, liquidités non rémunérées, tarification par paliers",
-    transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
+    // Ajout du 03/09/2026 (table de vérification fournie par l'utilisateur) : le transfert PEA
+    // entrant, absent des données précédentes (seul "Sortant" était renseigné), est en réalité
+    // possible et remboursé chez Bourse Direct.
+    transfertPea: { resume: "Entrant ✅ remboursé / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["0,99€ ≤500€ / 1,90€ 500-1000€ / 2,90€ 1000-2000€", "⚡ 3,80€ 2000-4400€ / 0,09% au-delà de 4 400€"],
       dca: ["❌ Pas de DCA automatique"],
@@ -162,19 +187,25 @@ export const BROKERS = [
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 2, resume: "CTO uniquement (PEPS)", detail: "0€ ETF & fonds, mensuel — pas sur PEA" },
     garde: { rank: 1, resume: "0€" },
-    pea: { pea: true, pme: true, jeune: true },
+    // Corrections du 03/09/2026 (table de vérification fournie par l'utilisateur, source
+    // home.saxo/fr-fr) : jeune passe de true à false (Saxo ne propose pas de PEA Jeune — le texte du
+    // tweet ci-dessous en tenait compte nulle part avant cette correction) ; la date de remboursement
+    // du transfert PEA entrant passe du 31/08/2026 au 31/12/2026 (alignée sur la même échéance que la
+    // promo "0€ sur 70 actions UE" ci-dessous, vraisemblablement la même campagne), et devient un
+    // remboursement à 100 %.
+    pea: { pea: true, pme: true, jeune: false },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui" },
-    pointFaible: "DCA pas sur PEA, tarif minimum 2€/ordre",
-    transfertPea: { resume: "Entrant ✅ — remboursé jusqu’au 31/08/2026" },
+    pointFaible: "DCA pas sur PEA, pas de PEA Jeune",
+    transfertPea: { resume: "Entrant ✅ remboursé à 100% jusqu’au 31/12/2026" },
     post: {
       frais: ["À partir de 2€, plafonné à 0,5% sur PEA", "⚡ Promo → 0€ sur 70 actions UE (jusqu’au 31/12/2026)"],
       dca: ["❌ Sur PEA", "✅ CTO — PEPS 0€, ETF & fonds, mensuel"],
       garde: ["0€"],
-      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
+      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui"],
-      faibles: ["DCA pas sur PEA, tarif minimum 2€/ordre"],
+      faibles: ["DCA pas sur PEA, pas de PEA Jeune"],
       verdict: "Tu veux des frais dégressifs dès 2€ avec un DCA CTO en option",
     },
   },

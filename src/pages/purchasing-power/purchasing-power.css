@@ -1,0 +1,65 @@
+/* Styles propres au Simulateur de pouvoir d'achat — thème navy + or, repris tel quel du Comparateur
+   d'indices (cf. index-comparator.css) pour rester visuellement cohérent avec le reste de l'appli. */
+
+.pp-scope {
+  --pp-surface: #0f172a;
+  --pp-surface-raised: #16213b;
+  --pp-surface-hover: #1e293b;
+  --pp-border: #1e293b;
+  --pp-border-soft: #334155;
+  --pp-ink: #f1f5f9;
+  --pp-ink-dim: #94a3b8;
+  --pp-ink-faint: #64748b;
+  --pp-accent: #d4a94a;
+  --pp-accent-bright: #f0c869;
+  --pp-positive: #34d399;
+  --pp-negative: #fb7185;
+  --pp-warning: #fbbf24;
+  --pp-font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  color: var(--pp-ink);
+}
+
+.pp-layout { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 880px) { .pp-layout { grid-template-columns: 1fr; } }
+
+.pp-control-col { display: flex; flex-direction: column; gap: 16px; }
+.pp-preview-col { min-width: 0; }
+
+.pp-panel { background: linear-gradient(175deg, var(--pp-surface-raised), var(--pp-surface)); border: 1px solid var(--pp-border); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+
+.pp-eyebrow { font-family: var(--pp-font-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--pp-accent); margin: 0; display: flex; align-items: center; gap: 8px; }
+.pp-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--pp-border-soft); }
+
+.pp-hint { font-size: 12px; color: var(--pp-ink-dim); margin: -4px 0 2px; line-height: 1.5; }
+.pp-hint-warning { color: var(--pp-warning); }
+
+.pp-select-wrap { position: relative; }
+.pp-select-wrap::after { content: ""; position: absolute; right: 11px; top: 50%; width: 8px; height: 8px; border-right: 1.5px solid var(--pp-ink-faint); border-bottom: 1.5px solid var(--pp-ink-faint); transform: translateY(-65%) rotate(45deg); pointer-events: none; }
+
+.pp-control { width: 100%; appearance: none; background: var(--pp-surface-hover); border: 1px solid var(--pp-border-soft); color: var(--pp-ink); padding: 10px 12px; border-radius: 9px; font-size: 14px; transition: border-color .15s ease; font-family: inherit; }
+select.pp-control { padding-right: 30px; cursor: pointer; }
+.pp-control:hover { border-color: var(--pp-accent); }
+.pp-control:focus { border-color: var(--pp-accent-bright); outline: none; }
+
+.pp-chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.pp-chip { font-size: 12px; padding: 6px 12px; border-radius: 100px; border: 1px solid var(--pp-border-soft); background: var(--pp-surface-hover); color: var(--pp-ink-dim); cursor: pointer; font-family: var(--pp-font-mono); transition: all .12s ease; }
+.pp-chip:hover { border-color: var(--pp-accent); color: var(--pp-accent-bright); }
+.pp-chip.active { background: var(--pp-accent); border-color: var(--pp-accent); color: var(--pp-surface); font-weight: 700; }
+
+.pp-segmented { display: grid; grid-template-columns: 1fr 1fr; background: var(--pp-surface-hover); border: 1px solid var(--pp-border-soft); border-radius: 10px; padding: 3px; gap: 3px; }
+.pp-segmented button { border: none; background: transparent; color: var(--pp-ink-faint); padding: 9px 6px; border-radius: 7px; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all .15s ease; line-height: 1.25; }
+.pp-segmented button.active { background: var(--pp-accent); color: var(--pp-surface); }
+
+.pp-random-btn { width: 100%; border: 1px dashed var(--pp-accent); background: transparent; color: var(--pp-accent-bright); padding: 10px; border-radius: 9px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s ease; }
+.pp-random-btn:hover { background: rgba(212, 169, 74, .1); }
+
+.pp-preview { background: linear-gradient(175deg, var(--pp-surface-raised), var(--pp-surface)); border: 1px solid var(--pp-border); border-radius: 16px; padding: 22px; }
+.pp-preview-text { font-family: var(--pp-font-mono); font-size: 13.5px; line-height: 1.65; color: var(--pp-ink); white-space: pre-wrap; word-break: break-word; margin: 0; }
+
+.pp-badge { display: inline-flex; align-items: center; border-radius: 100px; padding: 2px 10px; font-size: 11px; font-weight: 500; border: 1px solid; }
+.pp-badge-ok { border-color: rgba(52, 211, 153, .3); background: rgba(52, 211, 153, .1); color: var(--pp-positive); }
+.pp-badge-warn { border-color: rgba(251, 191, 36, .3); background: rgba(251, 191, 36, .1); color: var(--pp-warning); }
+.pp-badge-danger { border-color: rgba(251, 113, 133, .3); background: rgba(251, 113, 133, .1); color: var(--pp-negative); }
+
+.pp-copy-btn { align-self: flex-start; background: var(--pp-accent); color: var(--pp-surface); border: none; padding: 10px 18px; border-radius: 9px; font-size: 13.5px; font-weight: 700; cursor: pointer; transition: all .15s ease; }
+.pp-copy-btn:hover { background: var(--pp-accent-bright); }
