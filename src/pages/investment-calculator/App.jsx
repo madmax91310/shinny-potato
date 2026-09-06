@@ -169,10 +169,12 @@ export default function App() {
   const hasValidOverride = !isCustom && !overridePriceInvalid && state.overridePriceRaw !== ''
   const resultBlocked = amountInvalid || customStartInvalid || customEndInvalid || startDateInvalid || overridePriceInvalid
   const d = useMemo(() => derive(state), [state])
-  // Avertissement (pas un blocage) : cf. SPARSE_MONTHLY_DATA_IDS dans data.js — ethereum/cac40/lvmh
+  // Bloqué (pas juste un avertissement) : cf. SPARSE_MONTHLY_DATA_IDS dans data.js — ethereum/cac40/lvmh
   // n'ont que des points annuels sur leur plage utilisable, donc un DCA mensuel sur l'un d'eux
-  // interpole la quasi-totalité des mois plutôt que d'utiliser une vraie clôture mensuelle.
-  const sparseDcaWarning = !isCustom && effectiveMode === 'dca' && SPARSE_MONTHLY_DATA_IDS.has(state.assetId)
+  // interpolerait la quasi-totalité des mois plutôt que d'utiliser une vraie clôture mensuelle. Seul
+  // le versement unique reste possible pour ces actifs (même règle que le mode Comparatif de la vidéo,
+  // cf. getComparativeAssetIssue dans videoExport.js — réutilisée ici, pas redéfinie).
+  const sparseDcaAsset = !isCustom && SPARSE_MONTHLY_DATA_IDS.has(state.assetId)
   // Dernier point RÉELLEMENT en base pour l'actif choisi (jamais LATEST_YM en dur : pour
   // stoxx600/sp500/msciWorld, le dernier point réel est antérieur d'un mois, cf.
   // data.js — donner LATEST_YM ici afficherait une date à laquelle ce prix n'est pas vérifié).
@@ -212,7 +214,14 @@ export default function App() {
                 <select
                   className="ic-control"
                   value={state.assetId}
-                  onChange={(e) => set({ assetId: e.target.value, overridePriceRaw: '' })}
+                  onChange={(e) => {
+                    const id = e.target.value
+                    set({
+                      assetId: id,
+                      overridePriceRaw: '',
+                      mode: id !== 'custom' && SPARSE_MONTHLY_DATA_IDS.has(id) ? 'lump' : state.mode,
+                    })
+                  }}
                 >
                   {ASSET_ORDER.map((id) => (
                     <option key={id} value={id}>
@@ -374,7 +383,7 @@ export default function App() {
               <button type="button" className={effectiveMode === 'lump' ? 'active' : ''} disabled={isCustom} onClick={() => set({ mode: 'lump' })}>
                 Versement unique
               </button>
-              <button type="button" className={effectiveMode === 'dca' ? 'active' : ''} disabled={isCustom} onClick={() => set({ mode: 'dca' })}>
+              <button type="button" className={effectiveMode === 'dca' ? 'active' : ''} disabled={isCustom || sparseDcaAsset} onClick={() => set({ mode: 'dca' })}>
                 Mensuel (DCA)
               </button>
             </div>
@@ -389,9 +398,9 @@ export default function App() {
                     ? `Un versement de ${amount.toLocaleString('fr-FR')} € chaque mois depuis la date de départ jusqu'à ${lastPointLabel} (dernière donnée disponible — au-delà, redonne-moi les clôtures récentes pour actualiser, ou saisis un prix à jour ci-dessus).`
                     : `Un seul versement à la date de départ, valorisé jusqu'à ${lastPointLabel} (dernière donnée disponible — ou saisis un prix à jour ci-dessus).`}
             </p>
-            {sparseDcaWarning && (
+            {sparseDcaAsset && (
               <p className="ic-field-warning">
-                ⚠️ Cet actif n'a des prix réels qu'en décembre — le DCA mensuel est calculé sur des valeurs interpolées entre deux clôtures, donc indicatif plutôt que précis mois par mois.
+                ⚠️ DCA non disponible pour {ASSETS[state.assetId].label} — données mensuelles insuffisantes sur cette période. Versement unique uniquement.
               </p>
             )}
           </div>
