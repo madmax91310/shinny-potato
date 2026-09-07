@@ -323,17 +323,27 @@ export const PROFILES = [
         ],
       },
       dynamique: {
-        // Insertion actions_japon + actions_value du 30/08/2026 : lignes réduites pour compenser =
-        // WORLD_OPTIONS (40% -> 32%, même rôle de diversification large qu'actions_japon) et
-        // NASDAQ100_OPTIONS (21% -> 9%, le pendant "growth" qu'actions_value vient équilibrer côté
-        // "value") — LEVERAGE_OPTIONS laissé strictement inchangé à 4% (plafond dur déjà validé par
+        // Insertion actions_value du 30/08/2026 : ligne réduite pour compenser = NASDAQ100_OPTIONS
+        // (21% -> 9%, le pendant "growth" qu'actions_value vient équilibrer côté "value") —
+        // LEVERAGE_OPTIONS laissé strictement inchangé à 4% (plafond dur déjà validé par
         // stress-test, cf. commentaire ci-dessous), EM_OPTIONS/GOLD_OPTIONS non touchés (rôles
-        // distincts : croissance émergente, protection). Reconfirmé après insertion : pire année
-        // 2022 du combo complet toujours au-dessus du plancher de -30% (script de stress-test,
-        // résultat documenté dans l'historique git de ce commit).
+        // distincts : croissance émergente, protection).
+        //
+        // actions_japon (satellite Japon, 8%) retiré le 07/09/2026 (retour utilisateur : présence
+        // jugée incohérente pour un profil "Généraliste" qui promet justement l'absence de
+        // conviction forte, cf. son accroche "Aucune conviction forte" — un pari géographique fixe
+        // à 100% de présence, jamais soumis à rotation contrairement à toutes les autres lignes du
+        // combo, contredisait cette promesse). Poids reversé vers WORLD_OPTIONS (32% -> 40%, son
+        // rôle d'origine avant l'insertion du 30/08/2026 — même "socle diversifié large" that Japan
+        // prétendait renforcer). Le satellite Japon reste utilisé tel quel dans le profil
+        // Thématique (cf. plus bas), dont la thèse assumée est justement la conviction concentrée —
+        // un pari géographique fixe y est cohérent avec le discours du profil, contrairement à ici.
+        // Pire année 2022 du combo revérifiée après retrait : légèrement MEILLEURE qu'avant
+        // (-15,56% max vs -15,03% dans le pire sous-cas testé, contre un plancher de -30% —
+        // confortablement dans les clous, jamais le facteur limitant de ce combo).
         assets: [
           {
-            idOptions: WORLD_OPTIONS, pct: 32,
+            idOptions: WORLD_OPTIONS, pct: 40,
             pourquoi: [
               "Le socle actions du portefeuille, même dans sa version la plus dynamique.",
               "{pct}% : le cœur reste diversifié mondialement avant d'ajouter des paris plus ciblés.",
@@ -344,13 +354,6 @@ export const PROFILES = [
             pourquoi: [
               "La partie qui vise vraiment la surperformance : concentrée sur l'innovation américaine.",
               "Le moteur de croissance le plus agressif du portefeuille.",
-            ],
-          },
-          {
-            id: "actions_japon", pct: 8,
-            pourquoi: [
-              "Une troisième zone géographique, décorrélée des cycles américains et émergents déjà présents.",
-              "{pct}% pour muscler la diversification mondiale au-delà du seul socle World.",
             ],
           },
           {

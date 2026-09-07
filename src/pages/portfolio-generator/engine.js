@@ -133,24 +133,34 @@ function buildSelection(combo, usageCounts, historyLength) {
   });
 }
 
-// Léger jitter (±5 points entre deux lignes) pour varier les combos d'une génération à l'autre,
+// Jitter (swap de points entre deux lignes) pour varier les combos d'une génération à l'autre,
 // toujours revalidé contre la borne de pire année du palier ET contre l'invariante propre au
 // profil (ex. Pro-Européen, minimum 70% Europe) — chaque swap individuel est vérifié et annulé
 // s'il casse l'une ou l'autre, pour que le résultat final respecte toujours les deux, sans
 // dépendre d'un tirage au sort favorable dans la boucle de relance.
+//
+// Au moins 1 swap garanti (attempts >= 1, contre 0-2 auparavant — un tirage à "0 attempts" ne
+// changeait jamais rien) et magnitude variable ({3,5,8} plutôt qu'un ±5 fixe) : corrige un bug
+// signalé où "Générer un nouveau portefeuille" pouvait renvoyer exactement le même résultat sur
+// une sélection profil+risque étroite (peu de idOptions, jitter fixe) — l'ancien espace de combos
+// atteignables s'épuisait en quelques générations dans une session, après quoi la boucle
+// anti-doublon de generatePortfolio (tries < 60) finissait par abandonner et renvoyer un doublon
+// exact. Élargir l'espace atteignable ici, plutôt que relâcher la détection de doublon, pour que
+// les combos restent tous valides (bornés/revérifiés) tout en étant beaucoup plus nombreux.
 function jitterSelection(selection, bound, profileId) {
-  const attempts = randInt(0, 2);
+  const attempts = randInt(1, 4);
   for (let i = 0; i < attempts; i++) {
     if (selection.length < 2) break;
     const [ia, ib] = shuffle(selection.map((_, idx) => idx)).slice(0, 2);
-    if (selection[ia].pct - 5 < 5) continue;
-    selection[ia].pct -= 5;
-    selection[ib].pct += 5;
+    const amount = pick([2, 3, 5, 8]);
+    if (selection[ia].pct - amount < 5) continue;
+    selection[ia].pct -= amount;
+    selection[ib].pct += amount;
     const perf = computeYearlyPerf(selection);
     const worst = worstYearOf(perf);
     if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection)) {
-      selection[ia].pct += 5;
-      selection[ib].pct -= 5;
+      selection[ia].pct += amount;
+      selection[ib].pct -= amount;
     }
   }
   return selection;
@@ -396,7 +406,11 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     (history.some((h) => h.sig === signature(selection)) ||
       tooSimilarToLast(selection, profileId, history) ||
       violatesProfileInvariant(profileId, selection)) &&
-    tries < 60
+    // Plafond relevé de 60 à 200 : avec le jitter élargi ci-dessus (attempts >= 1, magnitude
+    // variable), l'espace de combos atteignables par combo est nettement plus grand, donc plus de
+    // tentatives avant d'abandonner change concrètement le taux de réussite plutôt que de juste
+    // boucler pour rien.
+    tries < 200
   );
 
   const perf = computeYearlyPerf(selection);
