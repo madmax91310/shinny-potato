@@ -102,6 +102,8 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         canvas: canvasRef.current,
         series1: s1.series,
         series2: s2.series,
+        invested1: s1.invested,
+        invested2: s2.invested,
         asset1Label: `${ASSETS[asset1Id].icon} ${ASSETS[asset1Id].label}`,
         asset2Label: `${ASSETS[asset2Id].icon} ${ASSETS[asset2Id].label}`,
         periodLabel,
