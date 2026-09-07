@@ -448,50 +448,50 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 2 septembre 2026",
-    generatedAt: "Généré le 3 septembre 2026",
-    introLine: "Que s'est-il passé hier sur les marchés ? 👇",
+    sessionDate: "Spécial week-end du 5-6 septembre 2026",
+    generatedAt: "Généré le 7 septembre 2026",
+    introLine: "Que s'est-il passé ce week-end sur les marchés ? 👇",
     stats: [
-      { label: "S&P 500", value: "—", delta: "fin de série baissière", dir: "up" },
-      { label: "Brent", value: ">95 $", delta: "haut depuis juillet", dir: "up" },
-      { label: "WTI", value: ">90 $", delta: "3ᵉ séance de hausse", dir: "up" },
-      { label: "Or (once)", value: "≈4 385 $", delta: "gain maintenu", dir: "up" },
-      { label: "Bitcoin", value: "<76 500 $", delta: "-3%, semaine", dir: "down" },
-      { label: "Strategy (MSTR)", value: "60k → 80k $", delta: "« bon choix » dit le CEO", dir: "up" }
+      { label: "Tankers iraniens", value: "3 attaqués", delta: "2 hors service, 1 détruit", dir: "down" },
+      { label: "Emplois US (août)", value: "+162 000", delta: "chômage 4,1%", dir: "up" },
+      { label: "Brent", value: "≈97 $", delta: "+0,8%", dir: "up" },
+      { label: "Or (once)", value: "≈4 430 $", delta: "-1%, vendredi", dir: "down" },
+      { label: "Bitcoin", value: "≈79 900 $", delta: "pic à 81 200 $ mercredi", dir: "flat" },
+      { label: "ETF Bitcoin US", value: "+987 M$", delta: "3ᵉ semaine de collecte", dir: "up" }
     ],
     bullets: [
       {
-        emoji: "💻",
-        tag: "Marchés actions",
-        text: "Les valeurs technologiques et des matériaux ont mené le rebond de Wall Street, permettant au S&P 500 de mettre fin à trois séances consécutives de repli."
-      },
-      {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Donald Trump a écarté la perspective d'un conflit prolongé avec l'Iran au lendemain des frappes américaines, un commentaire qui a apaisé les craintes inflationnistes liées à la flambée des prix de l'énergie."
+        text: "Les forces américaines ont attaqué trois pétroliers iraniens samedi — deux définitivement mis hors service et un totalement détruit — en représailles à des tirs de missiles balistiques iraniens contre deux navires de guerre américains, alors que le conflit dépasse désormais les six mois."
       },
       {
-        emoji: "🟠",
-        tag: "Crypto",
-        text: "Le Bitcoin est tombé sous les 76 500 dollars, en repli de 3% sur la semaine, résistant tout de même à la hausse du pétrole au-delà de 90 dollars et à la remontée des rendements obligataires."
+        emoji: "🇺🇸",
+        tag: "Macro",
+        text: "L'économie américaine a créé 162 000 emplois en août, dépassant toutes les prévisions, tandis que le taux de chômage est resté stable à 4,1%, renforçant les anticipations d'une hausse des taux de la Fed ce mois-ci."
       },
       {
         emoji: "💛",
         tag: "Matières premières",
-        text: "Le Brent a terminé au-dessus de 95 dollars pour la première fois depuis fin juillet et le WTI s'est maintenu au-dessus de 90 dollars, tandis que l'or a tenu son gain de la veille près de 4 385 dollars l'once."
+        text: "Le Brent s'approchait de 97 dollars le baril et le WTI de 92 dollars ce lundi matin, tandis que l'or restait proche de 4 430 dollars l'once après avoir cédé 1% vendredi, pénalisé par la perspective d'une hausse des taux dès la semaine prochaine."
+      },
+      {
+        emoji: "🟠",
+        tag: "Crypto",
+        text: "Le Bitcoin a terminé le week-end autour de 79 900 dollars, en retrait de son pic de plus de 81 200 dollars atteint mercredi, tandis que les ETF Bitcoin américains ont enregistré 987 millions de dollars d'entrées nettes sur la semaine, une troisième semaine consécutive de collecte positive."
       },
       {
         emoji: "📊",
         tag: "Fait marquant",
-        text: "Le patron de Strategy a jugé que vendre du bitcoin à 60 000 dollars avant d'en racheter à 80 000 dollars avait été « le bon choix », une déclaration qui tranche avec la doctrine habituelle de la société de ne jamais vendre."
+        text: "Donald Trump a qualifié vendredi le conflit avec l'Iran de « broutille », deux jours après que le vice-président JD Vance eut assuré qu'il n'y avait « aucun combat actif » entre les deux pays — des propos démentis dès le lendemain par l'attaque des trois pétroliers iraniens."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Wall Street récupère une partie de ses pertes grâce à la vigueur des secteurs de la technologie et des matériaux", url: "https://www.boursorama.com/bourse/actualites/wall-street-recupere-une-partie-de-ses-pertes-grace-a-la-vigueur-des-secteurs-de-la-technologie-et-des-materiaux-06a18990d7234b5380b14f1f7b954f97" },
-      { outlet: "Bloomberg", title: "Oil Holds Three-Day Gain as Trump Says Iran Strikes to be Brief", url: "https://www.bloomberg.com/news/articles/2026-09-02/latest-oil-market-news-and-analysis-for-sept-3" },
-      { outlet: "CoinDesk", title: "Bitcoin withstands $90 oil and rising yields while gold slides. A firm dollar is the catch", url: "https://www.coindesk.com/markets/2026/09/02/bitcoin-withstands-usd90-oil-and-rising-yields-as-gold-slides-a-firm-dollar-is-the-catch" },
-      { outlet: "Bloomberg", title: "Gold Holds Gain as Trump's War Comments Ease Inflation Jitters", url: "https://www.bloomberg.com/news/articles/2026-09-02/gold-holds-gain-as-trump-s-war-comments-ease-inflation-jitters" },
-      { outlet: "The Block", title: "Strategy CEO says selling bitcoin at $60,000 before buying at $80,000 was the 'right trade'", url: "https://www.theblock.co/news/business/2026-09-02-strategy-ceo-says-selling-bitcoin-at-60000-before-buying-at-80000-was-the-right-trade-413323" }
+      { outlet: "Axios", title: "U.S. attacks 3 Iranian tankers in tit-for-tat response", url: "https://www.axios.com/2026/09/05/us-iran-war-oil-tankers-warships" },
+      { outlet: "Bloomberg", title: "US Adds 162,000 Jobs, Topping All Estimates in Broad Advance", url: "https://www.bloomberg.com/news/articles/2026-09-04/us-employers-add-162-000-jobs-topping-all-estimates" },
+      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for September 7", url: "https://www.bloomberg.com/news/articles/2026-09-06/latest-oil-market-news-and-analysis-for-september-7" },
+      { outlet: "Bloomberg", title: "Gold Holds Decline as Traders Weigh Prospects for Fed Rate Hike", url: "https://www.bloomberg.com/news/articles/2026-09-06/gold-holds-decline-as-traders-weigh-prospects-for-fed-rate-hike" },
+      { outlet: "The Block", title: "Spot bitcoin ETFs pull in $987 million last week as institutional demand recovers", url: "https://www.theblock.co/news/markets/2026-09-06-bitcoin-etfs-987-million-weekly-inflow-413639" }
     ]
   };
 
