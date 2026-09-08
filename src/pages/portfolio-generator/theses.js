@@ -100,6 +100,16 @@ export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie", "sect_tech
 // par le même stress-test avant d'être ajoutée — jamais supposée sûre par défaut.
 export const LEVERAGE_OPTIONS = ["lqq", "cl2"];
 
+// Satellite géographique "Asie" (profil Thématique, cf. son combo Équilibré) — ajouté le 08/09/2026
+// à la demande utilisateur, en réponse au constat que la seule ligne Asie disponible (actions_japon)
+// était fixe (jamais soumise à rotation), donc présente à 100% des tirages de ce combo précis. Les
+// 4 membres suivent des indices pays/région réels et distincts (pas des jumeaux stricts comme
+// GOLD_OPTIONS/BITCOIN_OPTIONS) : Japon (marché développé calme), Corée et Taïwan (paris pays
+// uniques, très volatils, portés par les semi-conducteurs), Asie-Pacifique hors Japon (le plus
+// diversifié des quatre, Chine/Taïwan/Corée/Inde/Asean réunis). Chaque option revalidée sur les
+// bornes de pire année du combo qui l'utilise, comme tous les autres groupes ci-dessus.
+export const ASIA_OPTIONS = ["actions_japon", "actions_coree", "actions_taiwan", "actions_asie_ex_japon"];
+
 // Cohérence accroche/composition du profil Généraliste (cf. engine.js, audit "post-audit v5",
 // août 2026) : quand une ligne "conviction" dépasse CONCENTRATION_THRESHOLD, l'accroche bascule
 // du registre "diversifié" au registre "conviction assumée" et injecte ce libellé naturel à la
@@ -1462,6 +1472,17 @@ export const PROFILES = [
         // déjà serrée sur ce combo (~1,7pt avant cette insertion, cf. historique git) : vérifié par
         // stress-test avant de pousser, toujours >0 après ajout (oblig_etat_us a un pire exercice
         // 2022 légèrement moins sévère que CORPBOND_OPTIONS, -12,6% contre -13,86%).
+        // Élargissement actions_japon -> ASIA_OPTIONS du 08/09/2026 (demande utilisateur, cf.
+        // theses.js pour la liste des 4 membres) : ligne réduite de 12% à 8% pour compenser, poids
+        // reversé vers WORLD_OPTIONS (14% -> 18%, même rôle) — nécessaire car Corée/Taïwan (nouveaux
+        // membres) ont un pire exercice 2022 bien plus sévère que le Japon seul (-29% contre -16%).
+        // Marge déjà très serrée sur ce combo (cf. ci-dessus) : vérifié par script de stress-test sur
+        // les 2 (secteur) x 2 (World) x 4 (Asie) = 16 combinaisons possibles avant de pousser — pire
+        // cas (semi-conducteurs + Corée + FTSE All-World) à -19,34% en 2022, encore sous le plancher
+        // de -20% mais avec une marge volontairement reconstituée (0,66pt) plutôt que de laisser le
+        // poids d'origine (12%) ramener cette marge à 0,07pt (pire cas testé à -19,93%) — techniquement
+        // toujours valide (le jitter revalide chaque swap et n'aurait jamais pu la faire dépasser),
+        // mais une marge aussi fine aurait rendu ce combo trop fragile à la moindre future révision.
         assets: [
           {
             idOptions: THEME_OPTIONS_FULL, pct: 36,
@@ -1471,17 +1492,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: WORLD_OPTIONS, pct: 14,
+            idOptions: WORLD_OPTIONS, pct: 18,
             pourquoi: [
               "Le contrepoids diversifié, pour ne pas dépendre entièrement du secteur choisi.",
               "Vient équilibrer la conviction sectorielle avec une base plus large.",
             ],
           },
           {
-            id: "actions_japon", pct: 12,
+            idOptions: ASIA_OPTIONS, pct: 8,
             pourquoi: [
               "Une deuxième source de diversification géographique, décorrélée du pari sectoriel comme du bloc World.",
-              "{pct}% sur le marché japonais, pour ne pas dépendre uniquement des États-Unis dans la partie diversifiée du portefeuille.",
+              "{pct}% pour ne pas dépendre uniquement des États-Unis dans la partie diversifiée du portefeuille.",
             ],
           },
           {

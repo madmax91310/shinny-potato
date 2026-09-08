@@ -995,6 +995,56 @@ export const ASSETS = [
     ],
   },
   {
+    // Ajouté le 08/09/2026 (demande utilisateur : satellite "Asie" pour le profil Thématique,
+    // cf. ASIA_OPTIONS dans theses.js). Source : indice MSCI Korea (USD, net de dividendes) — PAS
+    // le fonds réel (le fact sheet iShares/justETF n'a pas pu être consulté directement, ces sites
+    // étant bloqués par la politique réseau de cette session ; recherche web uniquement). Chaque
+    // année recoupée par au moins 2 requêtes indépendantes convergentes (sauf mention contraire),
+    // donc traitée avec la même rigueur que le reste du fichier, mais avec un cran de confiance en
+    // moins que les points sourcés depuis un export/capture fourni directement par l'utilisateur.
+    // 2025 (+99,85%) est un chiffre extrême mais recoupé indirectement et jugé plausible : le KOSPI
+    // (indice local, wons) a gagné +76% sur l'année selon la presse (Korea Herald, UPI, Trading
+    // Economics, "meilleure performance mondiale 2025" tirée par le rallye des semi-conducteurs/IA),
+    // l'écart avec les +99,85% en USD s'expliquant par l'appréciation du won face au dollar sur la
+    // même période (cohérent avec la dépréciation généralisée du dollar déjà documentée sur msci_world
+    // 2025 dans ce fichier).
+    id: "actions_coree", name: "iShares MSCI Korea UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [44.64, -7.92, -29.36, 23.16, -23.09, 99.85],
+    desc: [
+      "les grandes entreprises sud-coréennes cotées à Séoul — Samsung, SK Hynix, Hyundai — très exposées aux semi-conducteurs.",
+      "un marché développé au sens MSCI, mais parmi les plus volatils de la zone Asie.",
+      "porté depuis 2025 par la demande mondiale de mémoire et de puces liées à l'IA.",
+    ],
+  },
+  {
+    // Ajouté le 08/09/2026 — même contexte, mêmes limites de sourcing que actions_coree ci-dessus
+    // (recherche web uniquement, sites de fact sheets inaccessibles depuis cette session). Chaque
+    // année recoupée par au moins 2 requêtes indépendantes convergentes.
+    id: "actions_taiwan", name: "iShares MSCI Taiwan UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [42.02, 26.82, -29.13, 31.33, 35.07, 39.84],
+    desc: [
+      "le marché taïwanais, dominé par TSMC — le plus grand fondeur de semi-conducteurs au monde.",
+      "un pari concentré sur la chaîne de production des puces électroniques mondiales.",
+      "2025 a prolongé un rallye porté par la demande de puces liées à l'intelligence artificielle.",
+    ],
+  },
+  {
+    // Ajouté le 08/09/2026 — même contexte que actions_coree/actions_taiwan ci-dessus. Indice MSCI
+    // AC Far East ex Japan (USD, net) — le plus large des trois nouveaux venus (Chine, Taïwan, Corée,
+    // Inde, Asean réunis en une seule ligne), donc mécaniquement moins extrême que les paris pays
+    // uniques ci-dessus. Point 2020 recoupé une seule fois (deux recherches ont renvoyé des chiffres
+    // de fonds proches mais non strictement identiques — 17,92% et 23,36% — retenu le chiffre de
+    // l'indice officiel plutôt que ces variantes fonds/ETF, cohérent avec les 5 autres années validées
+    // sur la même source) : confiance légèrement inférieure aux 5 autres années de cette ligne.
+    id: "actions_asie_ex_japon", name: "iShares MSCI AC Far East ex-Japan UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    r: [25.02, -4.72, -19.67, 5.98, 11.96, 32.26],
+    desc: [
+      "Chine, Taïwan, Corée, Inde, Asean... l'Asie développée et émergente réunie en une seule ligne, hors Japon.",
+      "plus diversifié qu'un pari sur un seul pays asiatique, mais toujours concentré sur une seule région du monde.",
+      "expose surtout à la Chine et à Taïwan, les deux plus gros poids de l'indice.",
+    ],
+  },
+  {
     id: "actions_value", name: "iShares Edge MSCI World Value Factor UCITS ETF", cat: "actions_larges", emoji: "🟢",
     // Nom CONFIRMÉ le 30/08/2026 : capture d'écran de l'en-tête du fact sheet officiel fournie par
     // l'utilisateur (catégorie "ACTIONS", ticker IWVL, part USD (Capitalisation)) — même fonds que
