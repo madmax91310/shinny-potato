@@ -448,50 +448,48 @@
 
 <script>
   const DATA = {
-    sessionDate: "Spécial week-end du 5-6 septembre 2026",
-    generatedAt: "Généré le 7 septembre 2026",
-    introLine: "Que s'est-il passé ce week-end sur les marchés ? 👇",
+    sessionDate: "Séance du 7 septembre 2026",
+    generatedAt: "Généré le 8 septembre 2026",
+    introLine: "Que s'est-il passé hier sur les marchés ? 👇",
     stats: [
-      { label: "Tankers iraniens", value: "3 attaqués", delta: "2 hors service, 1 détruit", dir: "down" },
-      { label: "Emplois US (août)", value: "+162 000", delta: "chômage 4,1%", dir: "up" },
-      { label: "Brent", value: "≈97 $", delta: "+0,8%", dir: "up" },
-      { label: "Or (once)", value: "≈4 430 $", delta: "-1%, vendredi", dir: "down" },
-      { label: "Bitcoin", value: "≈79 900 $", delta: "pic à 81 200 $ mercredi", dir: "flat" },
-      { label: "ETF Bitcoin US", value: "+987 M$", delta: "3ᵉ semaine de collecte", dir: "up" }
+      { label: "CAC 40", value: "8 306,15", delta: "+0,33%", dir: "up" },
+      { label: "Daimler Truck", value: "1,1 Md€", delta: "rachat d'actions", dir: "up" },
+      { label: "Frappes Ormuz", value: "pétroliers iraniens", delta: "6 mois de conflit", dir: "down" },
+      { label: "Prob. hausse Fed", value: "≈58%", delta: "réunion 15-16 sept.", dir: "up" },
+      { label: "Vendanges France", value: "plus bas en 30 ans", delta: "canicules", dir: "down" },
+      { label: "Munich Re", value: "+6%", delta: "bénéfice net T2", dir: "up" }
     ],
     bullets: [
       {
+        emoji: "🚛",
+        tag: "Marchés actions",
+        text: "Daimler Truck a annoncé le lancement de la seconde tranche de son programme de rachat d'actions, pouvant atteindre 1,1 milliard d'euros, immédiatement après avoir bouclé la première mi-septembre."
+      },
+      {
         emoji: "🌍",
         tag: "Macro & géopolitique",
-        text: "Les forces américaines ont attaqué trois pétroliers iraniens samedi — deux définitivement mis hors service et un totalement détruit — en représailles à des tirs de missiles balistiques iraniens contre deux navires de guerre américains, alors que le conflit dépasse désormais les six mois."
+        text: "Les États-Unis ont de nouveau frappé des pétroliers iraniens lundi, alimentant les craintes d'un embrasement prolongé du détroit d'Ormuz alors que le conflit entre les deux pays a désormais dépassé les six mois."
       },
       {
-        emoji: "🇺🇸",
-        tag: "Macro",
-        text: "L'économie américaine a créé 162 000 emplois en août, dépassant toutes les prévisions, tandis que le taux de chômage est resté stable à 4,1%, renforçant les anticipations d'une hausse des taux de la Fed ce mois-ci."
+        emoji: "🏦",
+        tag: "Taux",
+        text: "Les chiffres de l'emploi américain publiés vendredi ont porté à environ 58% la probabilité anticipée par les marchés d'une hausse des taux de la Fed lors de sa réunion des 15 et 16 septembre."
       },
       {
-        emoji: "💛",
-        tag: "Matières premières",
-        text: "Le Brent s'approchait de 97 dollars le baril et le WTI de 92 dollars ce lundi matin, tandis que l'or restait proche de 4 430 dollars l'once après avoir cédé 1% vendredi, pénalisé par la perspective d'une hausse des taux dès la semaine prochaine."
-      },
-      {
-        emoji: "🟠",
-        tag: "Crypto",
-        text: "Le Bitcoin a terminé le week-end autour de 79 900 dollars, en retrait de son pic de plus de 81 200 dollars atteint mercredi, tandis que les ETF Bitcoin américains ont enregistré 987 millions de dollars d'entrées nettes sur la semaine, une troisième semaine consécutive de collecte positive."
+        emoji: "🍷",
+        tag: "Économie française",
+        text: "La production viticole française pour 2026 devrait tomber à son plus bas niveau en 30 ans, plombée par des vagues de chaleur à répétition."
       },
       {
         emoji: "📊",
         tag: "Fait marquant",
-        text: "Donald Trump a qualifié vendredi le conflit avec l'Iran de « broutille », deux jours après que le vice-président JD Vance eut assuré qu'il n'y avait « aucun combat actif » entre les deux pays — des propos démentis dès le lendemain par l'attaque des trois pétroliers iraniens."
+        text: "Le réassureur allemand Munich Re a publié un bénéfice net en hausse de 6% au deuxième trimestre, alors que les analystes anticipaient au contraire un repli."
       }
     ],
     sources: [
-      { outlet: "Axios", title: "U.S. attacks 3 Iranian tankers in tit-for-tat response", url: "https://www.axios.com/2026/09/05/us-iran-war-oil-tankers-warships" },
-      { outlet: "Bloomberg", title: "US Adds 162,000 Jobs, Topping All Estimates in Broad Advance", url: "https://www.bloomberg.com/news/articles/2026-09-04/us-employers-add-162-000-jobs-topping-all-estimates" },
-      { outlet: "Bloomberg", title: "Latest Oil Market News and Analysis for September 7", url: "https://www.bloomberg.com/news/articles/2026-09-06/latest-oil-market-news-and-analysis-for-september-7" },
-      { outlet: "Bloomberg", title: "Gold Holds Decline as Traders Weigh Prospects for Fed Rate Hike", url: "https://www.bloomberg.com/news/articles/2026-09-06/gold-holds-decline-as-traders-weigh-prospects-for-fed-rate-hike" },
-      { outlet: "The Block", title: "Spot bitcoin ETFs pull in $987 million last week as institutional demand recovers", url: "https://www.theblock.co/news/markets/2026-09-06-bitcoin-etfs-987-million-weekly-inflow-413639" }
+      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-actualise-a3ea158887eb61eb7436759af105bd21" },
+      { outlet: "CoinDesk", title: "Oil up, bitcoin down as U.S. strikes Iranian crude carriers", url: "https://www.coindesk.com/markets/2026/09/07/oil-up-bitcoin-down-as-u-s-strikes-iranian-crude-carriers" },
+      { outlet: "The Block", title: "Bitcoin holds near $80,000 despite renewed Fed rate hike fears as CPI test looms", url: "https://www.theblock.co/news/markets/2026-09-07-bitcoin-holds-near-80000-despite-renewed-fed-rate-hike-fears-as-cpi-test-looms-413692" }
     ]
   };
 
