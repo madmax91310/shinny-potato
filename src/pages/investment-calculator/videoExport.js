@@ -7,7 +7,7 @@
 // déjà les points par des segments de droite) — jamais une valeur de série inventée : les nombres
 // affichés en overlay (investi cumulé, valeur actuelle) sont toujours lus directement dans series[]/
 // invested[] à un index entier, jamais interpolés.
-import { fmtEUR, fmtPct, pct, computeAssetSeries, ymIndex } from './lib'
+import { fmtEUR, fmtPct, pct, computeAssetSeries, applyPriceOverride, ymIndex } from './lib'
 import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, MONTHS_SHORT } from './data'
 
 const W = 1080
@@ -102,8 +102,14 @@ export function getComparativeAssetIssue(assetId, startYm, mode) {
 // Simule la série d'un actif pour le mode Comparatif — appelle directement computeAssetSeries
 // (lib.js), la même fonction que le formulaire principal utilise pour l'aperçu statique. Aucun
 // calcul distinct, aucune donnée nouvelle : à appeler seulement après getComparativeAssetIssue.
-export function computeComparativeSeries(assetId, startYm, endYm, amount, mode) {
-  return computeAssetSeries(ASSETS[assetId].points, startYm, endYm, amount, mode)
+// overridePriceRaw (optionnel) : le "prix à jour" saisi à la main dans le formulaire Simple ne
+// concerne qu'un seul actif à la fois — le caller (VideoExport.jsx) ne le transmet donc que si
+// assetId correspond bien à l'actif pour lequel il a été saisi, sinon il reste vide et cette
+// fonction se comporte comme avant (aucun override).
+export function computeComparativeSeries(assetId, startYm, endYm, amount, mode, overridePriceRaw = '') {
+  const points = ASSETS[assetId].points
+  const result = computeAssetSeries(points, startYm, endYm, amount, mode)
+  return applyPriceOverride(result, points, overridePriceRaw, endYm)
 }
 
 // Trace la courbe (valeur de l'actif + capital investi) jusqu'à l'index `upToIndex`, avec un segment

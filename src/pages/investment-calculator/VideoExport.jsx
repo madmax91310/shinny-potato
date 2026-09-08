@@ -92,12 +92,12 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   }
 
   async function handleGenerateComparative() {
-    const { amount, startYm, endYm, mode, periodLabel, modeLabel } = comparativeInputs
+    const { amount, startYm, endYm, mode, periodLabel, modeLabel, overrideAssetId, overridePriceRaw } = comparativeInputs
     setStatus('recording')
     setProgress(0)
     try {
-      const s1 = computeComparativeSeries(asset1Id, startYm, endYm, amount, mode)
-      const s2 = computeComparativeSeries(asset2Id, startYm, endYm, amount, mode)
+      const s1 = computeComparativeSeries(asset1Id, startYm, endYm, amount, mode, asset1Id === overrideAssetId ? overridePriceRaw : '')
+      const s2 = computeComparativeSeries(asset2Id, startYm, endYm, amount, mode, asset2Id === overrideAssetId ? overridePriceRaw : '')
       const params = {
         canvas: canvasRef.current,
         series1: s1.series,

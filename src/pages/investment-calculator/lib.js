@@ -124,6 +124,26 @@ export function pct(final, invested) {
   return invested > 0 ? ((final - invested) / invested) * 100 : 0
 }
 
+// Prix actualisé saisi à la main (plus récent que le dernier point réel de data.js) : jamais
+// interpolé ni recalculé mois par mois (ça inventerait des points entre le dernier réel et ce
+// prix) — seul le point final est remplacé. finalValue = unités totales × prix au dernier mois
+// dans tous les cas (lump ou DCA, cf. computeAssetSeries), donc le mettre à l'échelle du ratio
+// prix saisi / prix qu'il remplace reste exact sans reconstituer la série entière.
+// Extrait de derive() pour être réutilisé tel quel par le mode Comparatif de la vidéo (cf.
+// videoExport.js) — sans ça, un prix à jour saisi pour l'aperçu Simple n'était jamais reporté dans
+// la vidéo Comparatif, qui recalculait le même actif à partir du seul dernier point de data.js et
+// affichait donc une valeur finale différente pour le même actif sur la même période.
+export function applyPriceOverride(result, points, overridePriceRaw, endYm) {
+  const overridePrice = parseFloat(overridePriceRaw)
+  if (overridePriceRaw === '' || overridePriceRaw === undefined || !Number.isFinite(overridePrice) || overridePrice <= 0) {
+    return result
+  }
+  const priceReplaced = interpolatePrice(points, endYm)
+  const scale = overridePrice / priceReplaced
+  const finalValue = result.finalValue * scale
+  return { ...result, finalValue, series: [...result.series.slice(0, -1), finalValue] }
+}
+
 export function derive(state) {
   const amount = parseFloat(state.amountRaw) || 0
   const isCustom = state.assetId === 'custom'
@@ -135,17 +155,8 @@ export function derive(state) {
     ? computeCustomSeries(startYm, endYm, amount, state.customStart, state.customEnd)
     : computeAssetSeries(ASSETS[state.assetId].points, startYm, endYm, amount, effectiveMode)
 
-  // Prix actualisé saisi à la main (plus récent que le dernier point réel de data.js) : jamais
-  // interpolé ni recalculé mois par mois (ça inventerait des points entre le dernier réel et ce
-  // prix) — seul le point final est remplacé. finalValue = unités totales × prix au dernier mois
-  // dans tous les cas (lump ou DCA, cf. computeAssetSeries), donc le mettre à l'échelle du ratio
-  // prix saisi / prix qu'il remplace reste exact sans reconstituer la série entière.
-  const overridePrice = !isCustom ? parseFloat(state.overridePriceRaw) : NaN
-  if (!isCustom && state.overridePriceRaw !== '' && Number.isFinite(overridePrice) && overridePrice > 0) {
-    const priceReplaced = interpolatePrice(ASSETS[state.assetId].points, endYm)
-    const scale = overridePrice / priceReplaced
-    const finalValue = result.finalValue * scale
-    result = { ...result, finalValue, series: [...result.series.slice(0, -1), finalValue] }
+  if (!isCustom) {
+    result = applyPriceOverride(result, ASSETS[state.assetId].points, state.overridePriceRaw, endYm)
   }
 
   const livretA = computeBenchmarkSeries(LIVRET_A, startYm, endYm, amount, effectiveMode)

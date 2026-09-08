@@ -128,6 +128,12 @@ function ResultCard({ state, d, copied, onCopy }) {
             periodLabel: `${monthShort} ${yearLabel} → aujourd'hui`,
             modeLabel: d.effectiveMode === 'dca' ? 'DCA MENSUEL' : 'VERSEMENT UNIQUE',
             defaultAssetId: !d.isCustom ? state.assetId : undefined,
+            // Reporte le "prix à jour" saisi dans le formulaire Simple, pour que la vidéo Comparatif
+            // affiche la même valeur finale que l'aperçu statique quand cet actif y est comparé —
+            // au lieu de retomber silencieusement sur le dernier point de data.js (cf. lib.js/
+            // applyPriceOverride et computeComparativeSeries dans videoExport.js).
+            overrideAssetId: !d.isCustom ? state.assetId : undefined,
+            overridePriceRaw: !d.isCustom ? state.overridePriceRaw : '',
           }}
         />
       </div>
