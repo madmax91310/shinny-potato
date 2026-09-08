@@ -853,6 +853,46 @@ export const PROFILES = [
           },
         ],
       },
+      // Ajouté le 08/09/2026 (audit "couverture des paliers") : contrairement au Bouclier, la thèse
+      // géographique de ce profil (Europe plutôt que États-Unis) reste cohérente même sans plancher
+      // de perte — rien dans son identité n'empêche une version "la performance prime". Composition
+      // extrapolée de Dynamique ci-dessus : les deux paris de croissance (tech_europe/smallcap_europe)
+      // poussés plus loin, EUROSTOXX50_OPTIONS (socle) et GOLD_OPTIONS (protection) réduits d'autant
+      // — même mouvement que chaque autre profil entre son propre palier Dynamique et Offensif
+      // (le socle/la protection cèdent du poids aux paris les plus concentrés). RISK_BOUNDS.offensif
+      // n'a pas de plancher (min: null) : pas de stress-test de borne nécessaire pour ce combo.
+      offensif: {
+        assets: [
+          {
+            idOptions: EUROSTOXX50_OPTIONS, pct: 15,
+            pourquoi: [
+              "Le seul ancrage qui reste dans cette version offensive — le reste du portefeuille est 100% pari.",
+              "{pct}% : juste de quoi garder un pied dans le socle de la zone euro.",
+            ],
+          },
+          {
+            id: "tech_europe", pct: 40,
+            pourquoi: [
+              "{pct}% : la ligne la plus lourde du portefeuille — la tech européenne poussée à son maximum.",
+              "Le pari le plus concentré de la thèse, sans aucun plancher de perte pour l'amortir.",
+            ],
+          },
+          {
+            id: "smallcap_europe", pct: 30,
+            pourquoi: [
+              "Une deuxième source de croissance régionale, à son poids maximal dans cette version offensive.",
+              "{pct}% : aussi lourd que dans peu d'autres combos de ce profil.",
+            ],
+          },
+          {
+            idOptions: GOLD_OPTIONS, pct: 15,
+            pourquoi: [
+              "Le seul filet de sécurité restant, réduit au minimum pour laisser place aux paris de croissance.",
+              "{pct}% : moins qu'ailleurs dans ce profil — ce palier n'a pas de plancher à protéger.",
+            ],
+          },
+        ],
+      },
     },
   },
 
@@ -1024,6 +1064,31 @@ export const PROFILES = [
           },
         ],
       },
+      // Ajouté le 08/09/2026 (audit "couverture des paliers") : la thèse de protection reste
+      // cohérente sans plancher de perte — protéger le pouvoir d'achat n'est pas incompatible avec
+      // "la performance prime" (contrairement au Bouclier, dont la thèse EST le plafonnement de la
+      // performance). oblig_inflation retiré : comme dans tous les autres profils, aucun combo
+      // Offensif de la bibliothèque ne garde de ligne obligataire pure — le stabilisateur cède toute
+      // sa place aux deux jambes de la thèse (or, matières premières), poussées à leur maximum.
+      // RISK_BOUNDS.offensif n'a pas de plancher (min: null) : pas de stress-test de borne nécessaire.
+      offensif: {
+        assets: [
+          {
+            idOptions: GOLD_OPTIONS, pct: 60,
+            pourquoi: [
+              "{pct}% : la thèse à son maximum absolu, sans plus aucun filet obligataire pour la tempérer.",
+              "La ligne qui porte à elle seule l'essentiel du portefeuille — la conviction poussée jusqu'au bout.",
+            ],
+          },
+          {
+            idOptions: COMMODITY_OPTIONS, pct: 40,
+            pourquoi: [
+              "La deuxième jambe de la thèse, à son poids maximal dans toute la bibliothèque de ce profil.",
+              "{pct}% : plus aucune obligation pour amortir, seulement les deux actifs réels de la thèse.",
+            ],
+          },
+        ],
+      },
     },
   },
 
@@ -1060,6 +1125,13 @@ export const PROFILES = [
       "La diversification a fait son travail : pas de mauvaise année généralisée sur l'ensemble des lignes.",
       "Le compromis tient sa promesse : les baisses restent contenues, jamais simultanées sur toutes les lignes.",
     ],
+    // Pas de version Dynamique ni Offensif (audit "couverture des paliers", 08/09/2026) : la thèse
+    // du profil est justement de plafonner la performance en échange de la tranquillité (cf.
+    // warnings ci-dessus, "ce n'est pas un hasard") — un "Bouclier offensif, sans plancher de
+    // perte" contredirait l'identité même du profil, contrairement à Pro-Européen ou Anti-Inflation
+    // (thèses géographique/protection, compatibles avec une version plus risquée sans se renier).
+    // Même logique que l'absence de version Prudent chez Crypto-Curieux/Thématique ci-dessous, à
+    // l'autre bout de l'échelle de risque.
     riskCombos: {
       prudent: {
         // Insertion oblig_etat_us du 30/08/2026 : ce combo n'avait pas de ligne "oblig_etat_eur"
