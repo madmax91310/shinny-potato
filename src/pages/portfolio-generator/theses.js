@@ -400,12 +400,22 @@ export const PROFILES = [
         ],
       },
       offensif: {
+        // Rééquilibrage EM_OPTIONS/WORLD_OPTIONS du 08/09/2026 (audit "cohérence des pondérations") :
+        // pour un profil dont la thèse est la diversification, le socle World/ACWI/All-World doit
+        // toujours peser au moins autant que n'importe quelle ligne actions plus concentrée du même
+        // combo (régionale/sectorielle/single-pays) — invariante détectée en défaut ici (World 20%
+        // < EM 30% ET < Nasdaq100 25%, les deux paris concentrés dépassaient le socle diversifié).
+        // EM_OPTIONS réduit (30% -> 20%, le violateur le plus large) et WORLD_OPTIONS relevé d'autant
+        // (20% -> 30%) : World redevient la ligne la plus lourde du combo, NASDAQ100_OPTIONS
+        // (25%) et EM_OPTIONS (20%) repassent tous deux sous le socle diversifié. LEVERAGE_OPTIONS/
+        // BITCOIN_OPTIONS non touchés (rôles distincts : levier synthétique, actif non-actions — pas
+        // des "lignes actions plus concentrées" au sens de cette invariante).
         assets: [
           {
             idOptions: NASDAQ100_OPTIONS, pct: 25,
             pourquoi: [
               "Le moteur principal : {pct}% concentrés sur la tech américaine la plus agressive.",
-              "La ligne la plus lourde du portefeuille, sur l'un des indices les plus volatils qui existent.",
+              "Un des paris les plus concentrés du portefeuille, sur l'un des indices les plus volatils qui existent.",
             ],
           },
           {
@@ -418,17 +428,17 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: EM_OPTIONS, pct: 30,
+            idOptions: EM_OPTIONS, pct: 20,
             pourquoi: [
               "Un deuxième moteur de croissance, sur des marchés encore plus volatils que les États-Unis.",
-              "Ajoute une deuxième zone géographique à fort potentiel, et à fort risque.",
+              "Ajoute une deuxième zone géographique à fort potentiel, et à fort risque — sans dépasser le socle diversifié.",
             ],
           },
           {
-            idOptions: WORLD_OPTIONS, pct: 20,
+            idOptions: WORLD_OPTIONS, pct: 30,
             pourquoi: [
-              "La seule ligne un peu plus posée du portefeuille — et encore, elle reste 100% actions.",
-              "Même la ligne « la plus sage » de ce portefeuille n'a aucun filet obligataire.",
+              "La ligne la plus lourde du portefeuille — même dans sa version la plus offensive, la diversification reste le socle.",
+              "{pct}% : la base reste 100% actions, mais jamais dépassée par un seul pari plus concentré.",
             ],
           },
           {

@@ -140,19 +140,29 @@ function buildSelection(combo, usageCounts, historyLength) {
 // dépendre d'un tirage au sort favorable dans la boucle de relance.
 //
 // Au moins 1 swap garanti (attempts >= 1, contre 0-2 auparavant — un tirage à "0 attempts" ne
-// changeait jamais rien) et magnitude variable ({3,5,8} plutôt qu'un ±5 fixe) : corrige un bug
-// signalé où "Générer un nouveau portefeuille" pouvait renvoyer exactement le même résultat sur
-// une sélection profil+risque étroite (peu de idOptions, jitter fixe) — l'ancien espace de combos
-// atteignables s'épuisait en quelques générations dans une session, après quoi la boucle
-// anti-doublon de generatePortfolio (tries < 60) finissait par abandonner et renvoyer un doublon
-// exact. Élargir l'espace atteignable ici, plutôt que relâcher la détection de doublon, pour que
-// les combos restent tous valides (bornés/revérifiés) tout en étant beaucoup plus nombreux.
+// changeait jamais rien) et magnitude variable (contre un ±5 fixe) : corrige un bug signalé où
+// "Générer un nouveau portefeuille" pouvait renvoyer exactement le même résultat sur une sélection
+// profil+risque étroite (peu de idOptions, jitter fixe) — l'ancien espace de combos atteignables
+// s'épuisait en quelques générations dans une session, après quoi la boucle anti-doublon de
+// generatePortfolio (tries < 60, puis 200) finissait par abandonner et renvoyer un doublon exact.
+// Élargir l'espace atteignable ici, plutôt que relâcher la détection de doublon, pour que les
+// combos restent tous valides (bornés/revérifiés) tout en étant beaucoup plus nombreux.
+//
+// Élargi une deuxième fois le 08/09/2026 (audit "variété insuffisante") : mesuré par script sur
+// les 29 combos (30 générations chacun, taux de doublon exact + quasi-doublon à ±3pt près) que les
+// combos à peu de lignes tournantes (Pro-Européen, Rentier/Offensif) restaient nettement plus
+// sujets aux doublons que la moyenne malgré le premier élargissement. Testé (1-4, {2,3,5,8}) contre
+// (2-6, {2,3,5,8,12,15}) sur les 4 pires combos : gain net partout sauf Pro-Européen/Prudent
+// (inchangé, 2/30 avant et après) — ce dernier est dominé par 2 lignes fixes (75% du combo) sous un
+// plancher de perte très serré (-5%), donc la plupart des swaps sont de toute façon annulés par la
+// revalidation de borne ci-dessous, quelle que soit la magnitude : limite structurelle, pas un
+// paramètre de jitter à pousser davantage (voir le rapport d'audit pour le détail des mesures).
 function jitterSelection(selection, bound, profileId) {
-  const attempts = randInt(1, 4);
+  const attempts = randInt(2, 6);
   for (let i = 0; i < attempts; i++) {
     if (selection.length < 2) break;
     const [ia, ib] = shuffle(selection.map((_, idx) => idx)).slice(0, 2);
-    const amount = pick([2, 3, 5, 8]);
+    const amount = pick([2, 3, 5, 8, 12, 15]);
     if (selection[ia].pct - amount < 5) continue;
     selection[ia].pct -= amount;
     selection[ib].pct += amount;
