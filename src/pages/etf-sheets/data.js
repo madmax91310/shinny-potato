@@ -133,6 +133,59 @@ export const ETFS = [
       verdict: "Le pari sur la croissance émergente — plus risqué et plus volatil que les marchés développés.",
       question: "Les émergents : sous-pondérés dans ton portefeuille ou tu évites carrément ?"
     },
+    // Ajouté le 08/09/2026 (audit "densité", catégorie volontairement restreinte aux World/ACWI/
+    // All-World à la demande de l'utilisateur). ISIN/TER/encours vérifiés via WebSearch (WebFetch
+    // bloqué dans ce sandbox), croisés en 2e requête indépendante — écarts ≤1% sur le TER et les
+    // positions, convergents. Encours : plusieurs chiffres selon la part/devise regardée (fonds
+    // total vs part USD Acc spécifique) — retenu celui de la part précise listée ici (ISIN ci-
+    // dessous), pas le total tous compartiments confondus, cohérent avec la convention du reste
+    // du fichier (chaque fiche cite l'encours DE SA part, pas du fonds entier).
+    {
+      id: "msci-acwi",
+      category: "Cœur de portefeuille",
+      name: "iShares MSCI ACWI UCITS ETF USD (Acc)",
+      tickers: ["SSAC"],
+      isNew: true,
+      isin: "IE00B6R52259",
+      ter: "0,20%",
+      positions: "~1 970 positions",
+      aum: "~35 Md$",
+      distribution: "Capitalisant",
+      pea: false,
+      cto: true,
+      location: "Irlande, réplication physique optimisée (échantillonnage)",
+      whatIs: "Réplique le MSCI ACWI (All Country World Index), qui combine environ 1 970 valeurs de pays développés ET de marchés émergents en une seule ligne — la version \"tout compris\" du MSCI World, émergents inclus. Top positions : Nvidia, Apple, Microsoft, Amazon, Alphabet — même dominance tech US que le World, avec un peu plus de diversification géographique.",
+      whyInteresting: "Le seul indice qui capture développés + émergents sans avoir à gérer deux lignes séparées. Expose à la croissance émergente (Chine, Taïwan, Inde) sans complexifier le portefeuille avec une ligne dédiée.",
+      whatToKnow: "Pas d'option PEA (plus de 25% hors zone euro et hors accord fiscal). Domination tech américaine quasi identique au MSCI World — l'ajout des émergents dilue peu la concentration US, qui reste autour de 65-70%. Frais (0,20%) légèrement plus élevés qu'un MSCI World seul.",
+      verdict: "Le \"one fund\" le plus complet en une seule ligne, au prix d'un TER légèrement supérieur et d'une inéligibilité PEA.",
+      question: "Monde + émergents en une ligne, ou tu préfères piloter la pondération toi-même ?"
+    },
+    // Sourcing : TER du VWCE recoupé en 3 requêtes successives, chiffres apparemment contradictoires
+    // (0,14% / 0,19% / 0,22%) résolus comme une chronologie de baisses de frais Vanguard (0,22%
+    // jusqu'en octobre 2025, 0,19% jusqu'au 28/07/2026, 0,14% depuis) et non comme une contradiction
+    // — confirmé par un article daté nommant explicitement la baisse du 28/07/2026. Même situation
+    // que l'écart PALAT/PLEM déjà rencontré ailleurs dans l'app : plusieurs valeurs valides à des
+    // dates différentes, pas une erreur.
+    {
+      id: "ftse-all-world",
+      category: "Cœur de portefeuille",
+      name: "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+      tickers: ["VWCE"],
+      isNew: true,
+      isin: "IE00BK5BQT80",
+      ter: "0,14%",
+      positions: "~3 760 positions",
+      aum: "~50,8 Md€",
+      distribution: "Capitalisant",
+      pea: false,
+      cto: true,
+      location: "Irlande, réplication physique intégrale",
+      whatIs: "Réplique le FTSE All-World, l'indice le plus large des trois \"World\" du marché : environ 3 760 valeurs de pays développés et émergents, petites capitalisations comprises — contrairement au MSCI World ou au MSCI ACWI qui s'arrêtent aux grandes et moyennes capitalisations. Top positions : Nvidia, Apple, Microsoft, Amazon, Alphabet.",
+      whyInteresting: "L'ETF \"un seul fonds pour tout\" le plus connu en Europe. Frais parmi les plus bas du marché pour ce niveau de diversification : 0,14% depuis la dernière baisse de Vanguard (28/07/2026, après 0,19% puis 0,22% les années précédentes).",
+      whatToKnow: "Pas de version PEA (Vanguard ne propose aucun wrapper PEA sur ses ETF). Small caps incluses mais leur poids reste marginal — la performance reste tirée par les mêmes méga-caps que le World. Encours variable selon la part/devise regardée (~50,8 Md€ pour la seule part Acc USD listée ici).",
+      verdict: "Le tracker le plus large et l'un des moins chers du marché, mais réservé au CTO.",
+      question: "VWCE, le ticker que tout le monde connaît — mérité ou juste la hype communautaire ?"
+    },
 
     // ---------- SECTORIELS CLASSIQUES ----------
     {
@@ -274,6 +327,74 @@ export const ETFS = [
       whatToKnow: "Très corrélé à la consommation chinoise — un ralentissement à Pékin se ressent immédiatement sur la ligne. Cyclique malgré l'image \"premium\". Valorisations élevées. Pas de PEA.",
       verdict: "Le pari sur le pricing power des marques, mais très dépendant du consommateur chinois.",
       question: "Le luxe, valeur refuge ou trop dépendant de la Chine aujourd'hui ?"
+    },
+    // Ajouté le 08/09/2026 (audit "densité", 3 secteurs GICS classiques manquants : financières,
+    // immobilier coté, technologie large). ISIN/TER vérifiés et croisés en 2e requête indépendante
+    // (écarts ≤0,1%, convergents). Encours (AUM) de l'iShares Property Yield (immobilier) a montré
+    // 4 valeurs différentes selon les requêtes (46M / 972M / 1 034M / 1 730M) — écart bien plus large
+    // qu'une simple différence de date : le premier chiffre (46M) et le dernier (1 730M) ont été
+    // écartés comme non fiables (units/devises probablement mal lus par la recherche), retenu le
+    // point médian des deux chiffres convergents (972M et 1 034M, écart 6% seulement) = ~1 003 M€,
+    // arrondi à ~1 Md€.
+    {
+      id: "financieres",
+      category: "Sectoriels classiques",
+      name: "iShares MSCI World Financials Sector Advanced UCITS ETF USD (Dist)",
+      tickers: ["WFNS"],
+      isNew: true,
+      isin: "IE00BJ5JP097",
+      ter: "0,18%",
+      positions: "228 positions",
+      aum: "~125 M€",
+      distribution: "Distribuant",
+      pea: false,
+      cto: true,
+      location: "Irlande, réplication physique",
+      whatIs: "Réplique le MSCI World Financials Advanced Select 20/35 Capped, environ 228 banques, assureurs et sociétés de paiement des marchés développés. Top positions : JPMorgan Chase, Visa, Berkshire Hathaway, Mastercard, Goldman Sachs — un mix de banques classiques et de réseaux de paiement.",
+      whyInteresting: "Secteur historiquement décoté par rapport au marché, avec des dividendes généreux. Sensible positivement à la hausse des taux d'intérêt (marge d'intermédiation des banques), à l'inverse de la plupart des autres secteurs.",
+      whatToKnow: "Encours modeste (~125 M€) pour un ETF sectoriel — liquidité à surveiller avant d'investir de gros montants. Cyclique : très sensible aux crises de crédit et aux retournements de cycle (2008 reste le contre-exemple historique). Version distribuante : fiscalité à surveiller en CTO. Pas de PEA.",
+      verdict: "Le pari contrariant sur un secteur décoté, mais avec un encours encore modeste.",
+      question: "Les banques et le secteur financier, le grand oublié de la hausse tech de ces dernières années ?"
+    },
+    {
+      id: "immobilier-reit",
+      category: "Sectoriels classiques",
+      name: "iShares Developed Markets Property Yield UCITS ETF USD (Dist)",
+      tickers: ["IWDP"],
+      isNew: true,
+      isin: "IE00B1FZS350",
+      ter: "0,59%",
+      positions: "339 positions",
+      aum: "~1 Md€",
+      distribution: "Distribuant (trimestriel)",
+      pea: false,
+      cto: true,
+      location: "Irlande, réplication physique",
+      whatIs: "Réplique un indice de foncières cotées (REIT) des marchés développés, environ 339 sociétés qui possèdent et gèrent de l'immobilier (bureaux, entrepôts, data centers, commerces). Top positions : Prologis (entrepôts logistiques), Equinix (data centers), Simon Property Group, Digital Realty Trust, Realty Income.",
+      whyInteresting: "Exposition à l'immobilier sans les contraintes d'un achat en direct (liquidité quotidienne, ticket d'entrée minime). Les foncières cotées ont l'obligation légale de reverser la quasi-totalité des loyers perçus en dividendes — rendement généralement élevé.",
+      whatToKnow: "Très sensible aux taux d'intérêt : le crédit immobilier renchérit, les valorisations des foncières baissent. Frais élevés pour un tracker (0,59%). Distribuant : fiscalité à surveiller hors PEA. Pas de PEA (aucune foncière française pure ne domine l'indice).",
+      verdict: "L'exposition immobilière liquide et diversifiée, mais sensible aux taux et chère en frais.",
+      question: "Les foncières cotées, la bonne alternative à la pierre-papier classique ?"
+    },
+    {
+      id: "technologie",
+      category: "Sectoriels classiques",
+      name: "iShares MSCI World Information Technology Sector Advanced UCITS ETF USD (Dist)",
+      tickers: ["WITS"],
+      isNew: true,
+      isin: "IE00BJ5JNY98",
+      ter: "0,18%",
+      positions: "161 positions",
+      aum: "~1,04 Md€",
+      distribution: "Distribuant (semestriel)",
+      pea: false,
+      cto: true,
+      location: "Irlande, réplication physique intégrale",
+      whatIs: "Réplique le MSCI World Information Technology Advanced Select 20/35 Capped, environ 161 entreprises du secteur technologique mondial — plus large qu'un pari pur semi-conducteurs ou IA. Top positions : Nvidia (17,3%), Apple (14,2%), Microsoft (10,3%), Broadcom (7,1%), ASML — logiciel, matériel et semi-conducteurs réunis.",
+      whyInteresting: "Le pari \"toute la tech\" plutôt qu'un sous-secteur isolé (semi-conducteurs, IA, cybersécurité, déjà présents ailleurs dans cette bibliothèque). Bon proxy pour qui veut sur-pondérer la tech sans choisir un thème précis.",
+      whatToKnow: "Très concentré malgré 161 lignes : les 3 premières positions pèsent plus de 40% du fonds. Quasi doublon avec le Nasdaq-100 et les paris sectoriels tech déjà présents (semi-conducteurs, IA) — risque de sur-concentration si combiné avec eux dans le même portefeuille. Pas de PEA.",
+      verdict: "Le pari tech \"large\" mais en réalité tout aussi concentré que les paris sectoriels ciblés du même thème.",
+      question: "La tech en bloc plutôt qu'un sous-secteur précis — plus sûr ou juste moins de conviction ?"
     },
 
     // ---------- THÉMATIQUES ÉMERGENTES / NICHE ----------
@@ -520,6 +641,53 @@ export const ETFS = [
       whatToKnow: "Plus volatil et moins liquide que les large caps. Sous-performe souvent en période de resserrement du crédit, les small caps étant plus sensibles aux taux d'intérêt. Pas de PEA.",
       verdict: "Le complément diversifiant pour ne pas être 100% large caps, plus volatil mais historiquement bien rémunéré.",
       question: "Les small caps, le pari de la décennie ou l'angle mort de ton portefeuille ?"
+    },
+    // Ajouté le 08/09/2026 (audit "densité", 2 facteurs manquants dans la catégorie Stratégiques :
+    // qualité, momentum). Attention lors de la recherche : la 1re requête sur le facteur Quality a
+    // renvoyé par erreur l'ISIN du fonds Momentum (IE00BP3QZ825) — repéré et corrigé avant publication
+    // en revérifiant chaque ISIN individuellement plutôt que de faire confiance à un premier résultat.
+    // Encours du Momentum : 1re requête a donné 2,44 Md CHF (incohérent avec 2 requêtes suivantes,
+    // convergentes à 5,3-6,0 Md€/$) — écarté comme donnée isolée non recoupée, retenu ~5,3 Md€
+    // (justETF, confirmé par un chiffre de holdings daté du même jour).
+    {
+      id: "quality",
+      category: "Stratégiques",
+      name: "iShares Edge MSCI World Quality Factor UCITS ETF (Acc)",
+      tickers: ["IWQU", "IWFQ"],
+      isNew: true,
+      isin: "IE00BP3QZ601",
+      ter: "0,30%",
+      positions: "290 positions",
+      aum: "~6,3 Md$",
+      distribution: "Capitalisant",
+      pea: false,
+      cto: true,
+      location: "Irlande, réplication physique optimisée",
+      whatIs: "Réplique le MSCI World Quality Factor, environ 290 entreprises sélectionnées pour leur rentabilité élevée, leur endettement maîtrisé et la stabilité de leurs résultats. Top positions : Nvidia, Apple, Microsoft, Visa, Meta — les mêmes géants que le World, mais filtrés sur des critères de qualité financière plutôt que sur la seule capitalisation.",
+      whyInteresting: "Historiquement, le facteur qualité a montré une meilleure résistance dans les phases de baisse tout en participant aux hausses — un profil rendement/risque souvent plus favorable qu'un tracker classique sur longue période.",
+      whatToKnow: "Ressemble beaucoup à un MSCI World dans sa composition (mêmes méga-caps en tête), donc l'effet diversifiant reste limité. Frais plus élevés qu'un tracker classique (0,30% contre 0,12-0,20%). Pas de PEA.",
+      verdict: "Le \"World amélioré\" sur le papier, mais dont la composition reste très proche de l'original.",
+      question: "Les facteurs de qualité, un vrai edge ou juste un MSCI World repeint ?"
+    },
+    {
+      id: "momentum",
+      category: "Stratégiques",
+      name: "iShares Edge MSCI World Momentum Factor UCITS ETF (Acc)",
+      tickers: ["IWMO"],
+      isNew: true,
+      isin: "IE00BP3QZ825",
+      ter: "0,30%",
+      positions: "434 positions",
+      aum: "~5,3 Md€",
+      distribution: "Capitalisant",
+      pea: false,
+      cto: true,
+      location: "Irlande, réplication physique optimisée",
+      whatIs: "Réplique le MSCI World Momentum Factor, environ 434 entreprises sélectionnées pour leur tendance de prix haussière récente — l'indice \"achète ce qui monte\" et rééquilibre régulièrement. Top positions récentes : Micron, Nvidia, Broadcom, Alphabet, ASML.",
+      whyInteresting: "Stratégie qui capte mécaniquement les tendances de marché en cours plutôt que de parier sur un secteur ou une thèse précise. Rééquilibrages fréquents (semestriels) pour rester aligné sur les valeurs qui performent le mieux à l'instant T.",
+      whatToKnow: "Rotation sectorielle fréquente : le fonds peut changer significativement de visage d'un semestre à l'autre selon ce qui \"monte\" à ce moment-là. Frais plus élevés qu'un tracker classique (0,30%). Peut accentuer les excès de marché (achète après la hausse, vend après la baisse). Pas de PEA.",
+      verdict: "Le pari sur la poursuite des tendances en cours, au prix d'une rotation fréquente et de frais plus élevés.",
+      question: "Le momentum, la stratégie qui surfe intelligemment sur les tendances ou celle qui achète toujours trop tard ?"
     },
 
     // ---------- OBLIGATAIRES ----------
