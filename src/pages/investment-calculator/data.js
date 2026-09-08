@@ -661,11 +661,106 @@ export const ASSETS = {
       '2026-05', 435.79, '2026-06', 420.6, '2026-07', 311.21, '2026-08', 362.86,
     ]),
   },
+  nvidia: {
+    // Ajouté le 08/09/2026 (audit "densité du Calculateur", 4 méga-caps demandées : Nvidia, Amazon,
+    // Google, Meta). Contrairement à apple/microsoft/broadcom/tesla (export CSV mensuel réel fourni
+    // par l'utilisateur), aucun CSV fourni ici — recherche web (WebSearch) seule, car WebFetch/curl
+    // vers les sites financiers est bloqué dans ce sandbox. Testé explicitement : les clôtures
+    // MENSUELLES se sont révélées instables d'une requête à l'autre sur cette source (ex. un résultat
+    // a donné "301,16 $" pour début 2025, contredit par 3 autres requêtes de la même session situant
+    // le titre entre 86 $ et 111 $ sur cette période — écart >150%, non exploitable). Les clôtures
+    // ANNUELLES (31 décembre), elles, convergent bien : chaque année listée ci-dessous vient d'une
+    // table MacroTrends (1re requête), puis 5 des 11 années (2018, 2020, 2023, 2024, 2025) ont été
+    // recroisées individuellement via une 2e requête indépendante (StatMuse) — écarts ≤0,5% à chaque
+    // fois, aucune contradiction. Prix split-adjusted (le split 10:1 de juin 2024 est déjà reflété
+    // sur toute la série, jamais un saut artificiel en 2024). Seul le point 2026-08 (le plus récent)
+    // reste à confiance plus faible : une seule source (Finbold, clôture du 31/08/2026 à 220,78 $),
+    // non recoupée par une 2e requête convergente (résultats obtenus trop indirects : fourchette de
+    // marché de prédiction seulement). Conséquence : actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA
+    // mensuel bloqué, versement unique uniquement), même traitement qu'ethereum/cac40 — pas de points
+    // mensuels inventés entre les 31 décembre.
+    label: 'Nvidia', tweetPhrase: 'Nvidia', icon: '🧠', currency: 'USD',
+    points: P([
+      '2015-12', 0.8040, '2016-12', 2.6287, '2017-12', 4.7839, '2018-12', 3.3097,
+      '2019-12', 5.8563, '2020-12', 13.0184, '2021-12', 29.3541, '2022-12', 14.5994,
+      '2023-12', 49.4944, '2024-12', 134.2530, '2025-12', 186.5000,
+      '2026-08', 220.78,
+    ]),
+  },
+  amazon: {
+    // Ajouté le 08/09/2026, même audit que nvidia (cf. son commentaire pour le contexte général :
+    // WebSearch seule, clôtures mensuelles testées et jugées non exploitables). Clôtures ANNUELLES
+    // (31 décembre) : table MacroTrends en 1re requête, puis recroisées individuellement en 2e requête
+    // indépendante (StatMuse) pour 2018, 2022 et 2025 — écarts ≤0,1% à chaque fois (2025 : 230,82 $
+    // obtenu deux fois à l'identique). Prix split-adjusted (le split 20:1 de juin 2022 est déjà
+    // reflété sur toute la série — la "baisse" apparente 2021→2022 dans les chiffres bruts est un
+    // artefact du split, pas une vraie perte, cf. le commentaire équivalent pour broadcom/tesla).
+    // Point 2026-08 (le plus récent) : une seule source (TradingKey, clôture du 31/08/2026 à 259,77 $,
+    // article daté nommant explicitement cette séance) — confiance correcte mais non recoupée par une
+    // 2e requête convergente. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement
+    // unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels inventés entre
+    // les 31 décembre.
+    label: 'Amazon', tweetPhrase: 'Amazon', icon: '📦', currency: 'USD',
+    points: P([
+      '2015-12', 33.7945, '2016-12', 37.4935, '2017-12', 58.4735, '2018-12', 75.0985,
+      '2019-12', 92.3920, '2020-12', 162.8460, '2021-12', 166.7170, '2022-12', 84.0000,
+      '2023-12', 151.9400, '2024-12', 219.3900, '2025-12', 230.82,
+      '2026-08', 259.77,
+    ]),
+  },
+  google: {
+    // Ajouté le 08/09/2026, même audit que nvidia/amazon (cf. leurs commentaires pour le contexte
+    // général). Titre : Alphabet Inc. Classe A (ticker GOOGL). Clôtures ANNUELLES (31 décembre) :
+    // table MacroTrends en 1re requête (2015-2024), 2025 obtenu séparément (312,78 $, recoupé à
+    // l'identique par une 2e requête indépendante StatMuse). 2018 recoupé indirectement : une requête
+    // a renvoyé le prix PRE-split (1 051,79 $ au 31/12/2018) — divisé par 20 (split 20:1 de juillet
+    // 2022) cela donne 52,59 $, cohérent à 1% près avec le 52,06 $ de la table split-adjusted. 2022
+    // recoupé directement (87,57 $ vs 87,91 $ en table, écart 0,4%). Prix split-adjusted sur toute la
+    // série (pas de saut artificiel en 2022). Point 2026-08 (le plus récent) : deux sources trouvées
+    // mais non convergentes (335,41 $ et 339,35 $ selon l'article) — retenu 337,00 $ (milieu de
+    // fourchette), confiance plus faible que le reste de la série, à corriger si une clôture officielle
+    // plus précise est trouvée. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement
+    // unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels inventés entre
+    // les 31 décembre.
+    label: 'Google (Alphabet)', tweetPhrase: 'Google', icon: '🔍', currency: 'USD',
+    points: P([
+      '2015-12', 38.76, '2016-12', 39.48, '2017-12', 52.48, '2018-12', 52.06,
+      '2019-12', 66.73, '2020-12', 87.31, '2021-12', 144.33, '2022-12', 87.91,
+      '2023-12', 139.18, '2024-12', 189.30, '2025-12', 312.78,
+      '2026-08', 337.00,
+    ]),
+  },
+  meta: {
+    // Ajouté le 08/09/2026, même audit que nvidia/amazon/google (cf. leurs commentaires pour le
+    // contexte général). Meta n'a jamais splitté ses actions : aucun ajustement de split nécessaire
+    // sur toute la série, seule source d'incertitude ici est la fiabilité de chaque requête WebSearch
+    // individuelle. Clôtures ANNUELLES (31 décembre), sourcées une par une (StatMuse, requêtes
+    // ciblées par année plutôt qu'un tableau multi-années — méthode jugée plus fiable après le constat
+    // d'instabilité sur nvidia) : chaque valeur recoupée avec la variation % en glissement annuel citée
+    // dans le même résultat (ex. 2017 : "+52,1% sur l'année" cohérent avec 175,79 $ vs 114,15 $ en
+    // 2016 ; 2019 : "+59,1%" cohérent avec 203,46 $ vs 130,07 $ en 2018 ; 2024 : "+67,3%" cohérent avec
+    // 583,17 $ vs 351,20 $ en 2023) — validation croisée systématique plutôt qu'une 2e requête séparée
+    // par année. 2025 (660,09 $) confirmé à l'identique par 2 requêtes indépendantes. Point 2026-08
+    // (le plus récent) : aucune clôture exacte trouvée pour le 31/08/2026 malgré plusieurs requêtes —
+    // seulement un encadrement large (560,43 $ le 24/08 ; 616,77 $ au 04/09) — retenu 590,00 $ (milieu
+    // approximatif), confiance nettement plus faible que le reste de la série, à corriger dès qu'une
+    // clôture officielle est trouvée. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué,
+    // versement unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels
+    // inventés entre les 31 décembre.
+    label: 'Meta', tweetPhrase: 'Meta', icon: '📘', currency: 'USD',
+    points: P([
+      '2015-12', 103.85, '2016-12', 114.15, '2017-12', 175.79, '2018-12', 130.07,
+      '2019-12', 203.46, '2020-12', 271.67, '2021-12', 333.42, '2022-12', 119.78,
+      '2023-12', 351.20, '2024-12', 583.17, '2025-12', 660.09,
+      '2026-08', 590.00,
+    ]),
+  },
 }
 
 export const ASSET_ORDER = [
   'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
+  'nvidia', 'amazon', 'google', 'meta',
 ]
 
 // DÉPLACÉ le 04/09/2026 depuis tweet-midi/data/marketHistory.js (où cette protection existait
@@ -691,7 +786,12 @@ export function getAssetMinDate(assetId) {
 // que d'utiliser une vraie clôture mensuelle comme pour les autres actifs. Recensé lors de l'audit
 // du 03/09/2026 (Tweet Midi, format Anniversaire — mêmes 3 actifs, même cause) ; réutilisé ici tel
 // quel plutôt que redéfini, pour le Calculateur (avertissement DCA, pas un blocage).
-export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh'])
+// nvidia/amazon/google/meta ajoutés le 08/09/2026 (audit "densité du Calculateur") : pour ces 4
+// actifs, aucun historique mensuel n'a pu être sourcé de façon fiable (WebSearch instable sur les
+// clôtures mensuelles, cf. le commentaire détaillé sur l'actif nvidia) — seules les clôtures
+// annuelles (31 décembre) sont vérifiées, donc même traitement qu'ethereum/cac40/lvmh plutôt que
+// d'interpoler silencieusement 11 mois sur 12 entre deux vraies clôtures.
+export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta'])
 
 // Taux Livret A (moyenne annuelle, %) et inflation France INSEE (moyenne annuelle, %).
 // À ajuster si besoin — sert uniquement de comparaison pédagogique.
