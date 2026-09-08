@@ -795,6 +795,13 @@ export const FAMILIES = [
     // incompatibles (+14,73/+14,31/+11,78 % contre +18,9/+7,5/+25,4 %, écarts jusqu'à 14 pts) —
     // contradiction non résolue après plusieurs recherches, laissé à vérifier plutôt que de trancher
     // arbitrairement entre les deux.
+    // Tentative de 3e source (08/09/2026) : Yahoo Finance, ticker SJPA (iShares Core MSCI Japan IMI
+    // UCITS ETF USD Acc, ISIN IE00B4L5YX21), indépendante de justETF et de la fiche BlackRock déjà
+    // citées. Résultat : la 3e source elle-même s'est révélée instable d'une requête à l'autre sur le
+    // même millésime nominal (2023 : 18,86 % puis 19,34 % ; 2024 : 7,47 % puis 6,62 %), donc impropre
+    // à trancher entre les deux premières. Recherche abandonnée faute de source fiable et reproductible ;
+    // le statu quo ci-dessous (données non publiées, écart non tranché) est confirmé comme la réponse
+    // correcte et ne doit pas être retenté sans nouvelle piste.
     perfFunds: [
       { key: 'nikkei', label: 'Xtrackers Nikkei 225', y2023: 17.41, y2024: 15.94, y2025: 13.58 },
       { key: 'topix', label: 'Amundi PEA Japon (TOPIX)', y2023: 15.27, y2024: 14.56, y2025: 10.22 },
