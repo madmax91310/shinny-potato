@@ -42,7 +42,9 @@ export const BROKERS = [
   {
     id: "bourso", nom: "BoursoBank", code: "BB", color: "#E4735E", emoji: "🟡",
     frais: { rank: 2, resume: "1,99€ puis 0,60%", detail: "Plafonné à 0,5% du montant" },
-    // MàJ du 05/10/2026 (communication officielle BoursoBank en vigueur à cette date) : Boursomarkets
+    // MàJ du 05/09/2026 (coquille corrigée le 09/09/2026 : la date indiquait par erreur 05/10/2026,
+    // une date alors future — confirmé 05/09/2026 par l'utilisateur) (communication officielle
+    // BoursoBank en vigueur à cette date) : Boursomarkets
     // est devenu un partenariat exclusif avec Amundi sur +275 ETF (dont 75 éligibles PEA), remplaçant
     // l'ancienne offre iShares/OPCVM partenaires/Turbos-Warrants SG & Goldman Sachs.
     boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "+275 ETF (dont 75 éligibles PEA) — partenaire exclusif Amundi" },
