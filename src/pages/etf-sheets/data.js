@@ -649,6 +649,13 @@ export const ETFS = [
     // Encours du Momentum : 1re requête a donné 2,44 Md CHF (incohérent avec 2 requêtes suivantes,
     // convergentes à 5,3-6,0 Md€/$) — écarté comme donnée isolée non recoupée, retenu ~5,3 Md€
     // (justETF, confirmé par un chiffre de holdings daté du même jour).
+    // TER corrigé le 10/09/2026 (audit "cohérence inter-outils") : 0,30% publié initialement le
+    // 08/09/2026 était erroné — comparaison avec le Comparateur d'indices (même ISIN, 0,25% déjà
+    // en place) a révélé la divergence, tranchée par 2 nouvelles requêtes indépendantes (justETF,
+    // Fidelity, Morningstar convergent toutes sur 0,25%) plutôt qu'en se fiant à la donnée déjà en
+    // place — l'écart initial venait probablement d'une confusion avec un TER "brut" avant remise.
+    // Encours aligné à ~5,4 Md€ à la même occasion (nouvelle requête : 5 434 M€/£4 540 M/5,79 Md$,
+    // convergents entre devises), plutôt que le ~6,3 Md$ initial issu de la même recherche fautive.
     {
       id: "quality",
       category: "Stratégiques",
@@ -656,16 +663,16 @@ export const ETFS = [
       tickers: ["IWQU", "IWFQ"],
       isNew: true,
       isin: "IE00BP3QZ601",
-      ter: "0,30%",
+      ter: "0,25%",
       positions: "290 positions",
-      aum: "~6,3 Md$",
+      aum: "~5,4 Md€",
       distribution: "Capitalisant",
       pea: false,
       cto: true,
       location: "Irlande, réplication physique optimisée",
       whatIs: "Réplique le MSCI World Quality Factor, environ 290 entreprises sélectionnées pour leur rentabilité élevée, leur endettement maîtrisé et la stabilité de leurs résultats. Top positions : Nvidia, Apple, Microsoft, Visa, Meta — les mêmes géants que le World, mais filtrés sur des critères de qualité financière plutôt que sur la seule capitalisation.",
       whyInteresting: "Historiquement, le facteur qualité a montré une meilleure résistance dans les phases de baisse tout en participant aux hausses — un profil rendement/risque souvent plus favorable qu'un tracker classique sur longue période.",
-      whatToKnow: "Ressemble beaucoup à un MSCI World dans sa composition (mêmes méga-caps en tête), donc l'effet diversifiant reste limité. Frais plus élevés qu'un tracker classique (0,30% contre 0,12-0,20%). Pas de PEA.",
+      whatToKnow: "Ressemble beaucoup à un MSCI World dans sa composition (mêmes méga-caps en tête), donc l'effet diversifiant reste limité. Frais plus élevés qu'un tracker classique (0,25% contre 0,12-0,20%). Pas de PEA.",
       verdict: "Le \"World amélioré\" sur le papier, mais dont la composition reste très proche de l'original.",
       question: "Les facteurs de qualité, un vrai edge ou juste un MSCI World repeint ?"
     },
