@@ -173,7 +173,7 @@ export const BROKERS = [
     // possible et remboursé chez Bourse Direct.
     transfertPea: { resume: "Entrant ✅ remboursé / Sortant 15€/ligne (max 150€)" },
     post: {
-      frais: ["0,99€ ≤500€ / 1,90€ 500-1000€ / 2,90€ 1000-2000€", "⚡ 3,80€ 2000-4400€ / 0,09% au-delà de 4 400€"],
+      frais: ["0,99€ ≤500€ / 1,90€ 500-1 000€ / 2,90€ 1 000-2 000€", "⚡ 3,80€ 2 000-4 400€ / 0,09% au-delà de 4 400€"],
       dca: ["❌ Pas de DCA automatique"],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
