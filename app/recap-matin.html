@@ -448,48 +448,49 @@
 
 <script>
   const DATA = {
-    sessionDate: "Séance du 9 septembre 2026",
-    generatedAt: "Généré le 10 septembre 2026",
+    sessionDate: "Séance du 10 septembre 2026",
+    generatedAt: "Généré le 11 septembre 2026",
     introLine: "Que s'est-il passé hier sur les marchés ? 👇",
     stats: [
-      { label: "Inditex (Zara)", value: "+9%", delta: "ventes août, TCC", dir: "up" },
-      { label: "Nvidia/Amazon/Alphabet", value: "en baisse", delta: "pèsent sur le Nasdaq", dir: "down" },
-      { label: "LVMH", value: "490 € obj.", delta: "dégradé par HSBC", dir: "down" },
-      { label: "Brent", value: ">100 $", delta: "1re fois depuis 24/07", dir: "up" },
-      { label: "Apple", value: "1 999 $", delta: "iPhone Duo pliable", dir: "up" },
-      { label: "CAC 40", value: "—", delta: "repli, pétrole en cause", dir: "down" }
+      { label: "Porsche", value: "5,5-7,5%", delta: "marge FCF auto relevée", dir: "up" },
+      { label: "PPI US (août)", value: "+0,4%", delta: "+5,4% sur un an", dir: "up" },
+      { label: "Brent", value: "≈108 $", delta: "haut depuis 4 mois", dir: "up" },
+      { label: "WTI", value: ">104 $", delta: "en hausse", dir: "up" },
+      { label: "Bitcoin", value: "« a touché le fond »", delta: "dixit Armstrong (Coinbase)", dir: "up" },
+      { label: "OroraTech / Eutelsat", value: "96 capteurs IR", delta: "accord satellites", dir: "up" }
     ],
     bullets: [
       {
-        emoji: "👗",
+        emoji: "🚗",
         tag: "Marchés actions",
-        text: "Inditex, maison mère de Zara, a enregistré des ventes en hausse de 9% à taux de change constants en août, pour un chiffre d'affaires de 11 milliards d'euros sur son deuxième trimestre fiscal (mai-juillet), malgré une canicule qui a bouleversé les habitudes d'achat en Europe."
+        text: "Porsche a finalisé la cession de ses participations dans Bugatti Rimac et Rimac Group, une opération qui lui permet de relever sa prévision de marge de flux de trésorerie net automobile pour 2026 d'une fourchette de 3-5% à 5,5-7,5%."
       },
       {
-        emoji: "🌍",
+        emoji: "🇺🇸",
         tag: "Macro & géopolitique",
-        text: "Wall Street a reculé mercredi, Nvidia, Amazon et Alphabet pesant sur les indices technologiques, tandis que le pétrole américain prolongeait son rallye pour une huitième séance consécutive à l'approche de données d'inflation cruciales."
-      },
-      {
-        emoji: "💎",
-        tag: "Marchés actions",
-        text: "HSBC a abaissé sa recommandation sur LVMH à « conserver » contre « acheter », ramenant son objectif de cours de 600 à 490 euros."
+        text: "L'indice des prix à la production américain a bondi de 0,4% en août, sa plus forte hausse depuis mai, et de 5,4% sur un an, renforçant les anticipations d'une hausse des taux de la Fed la semaine prochaine et propulsant les rendements du Trésor à leur plus haut niveau depuis plusieurs années."
       },
       {
         emoji: "🛢️",
         tag: "Matières premières",
-        text: "Le Brent a franchi la barre des 100 dollars le baril pour la première fois depuis le 24 juillet, sur fond de tensions croissantes au Moyen-Orient."
+        text: "Le Brent a grimpé près de 108 dollars le baril, son plus haut niveau depuis près de quatre mois, et le WTI a dépassé les 104 dollars, l'Iran ayant averti qu'il intensifierait ses attaques si les frappes américaines se poursuivaient."
       },
       {
-        emoji: "📱",
+        emoji: "🟠",
+        tag: "Crypto",
+        text: "Le patron de Coinbase Brian Armstrong a estimé que le Bitcoin avait déjà atteint son point bas pour le cycle actuel, anticipant une tendance haussière sur les deux prochaines années."
+      },
+      {
+        emoji: "🛰️",
         tag: "Fait marquant",
-        text: "Apple a dévoilé son premier iPhone pliable, l'iPhone Duo, facturé à partir de 1 999 dollars, aux côtés de l'iPhone 18 Pro et d'une refonte de son assistant Siri intégrant davantage d'intelligence artificielle."
+        text: "L'allemand OroraTech a signé un accord avec l'opérateur satellitaire français Eutelsat pour déployer jusqu'à 96 capteurs infrarouges sur de futurs satellites en orbite basse."
       }
     ],
     sources: [
-      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-63944b3310e219c06333daae8dc625bd" },
-      { outlet: "Bloomberg", title: "Asian Stocks to Fall as Oil Stokes Inflation Fears: Markets Wrap", url: "https://www.bloomberg.com/news/articles/2026-09-09/stock-market-today-dow-s-p-live-updates" },
-      { outlet: "Bloomberg", title: "Apple's iPhone Duo, New Watches, iPhone 18 Pro and AirPods 5: Everything to Know", url: "https://www.bloomberg.com/news/articles/2026-09-09/apple-s-iphone-duo-new-watches-iphone-18-pro-and-airpods-5-everything-to-know" }
+      { outlet: "Boursorama", title: "Les valeurs à suivre à Paris et en Europe", url: "https://www.boursorama.com/bourse/actualites/les-valeurs-a-suivre-a-paris-et-en-europe-ecb1af7c349b78b53f34a56ee001f36f" },
+      { outlet: "Bloomberg", title: "US Producer Prices Rise Most in Three Months on Energy Surge", url: "https://www.bloomberg.com/news/articles/2026-09-10/key-gauge-of-us-producer-prices-rises-less-than-forecast" },
+      { outlet: "Bloomberg", title: "Oil Extends Rally Above $100 as Middle East Hostilities Escalate", url: "https://www.bloomberg.com/news/articles/2026-09-10/latest-oil-market-news-and-analysis-for-sept-11" },
+      { outlet: "The Block", title: "Coinbase CEO Brian Armstrong says bitcoin has bottomed for current cycle, expects uptrend over next two years", url: "https://www.theblock.co/news/markets/2026-09-10-coinbase-ceo-brian-armstrong-says-bitcoin-has-bottomed-for-current-cycle-expects-uptrend-over-next-two-years-414104" }
     ]
   };
 
