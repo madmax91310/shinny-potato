@@ -2,7 +2,8 @@
 // devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
-// Roster de 64 supports : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
+// Roster de 70 supports (dont 2 non-ETF : fonds_euros, produit d'assurance-vie sans ISIN ; scpi,
+// générique non plus) : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
 // thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait une de plus" — voir
 // CLAUDE.md du projet pour la philosophie de sélection. 8 actifs sans rôle identifié (china, india,
 // japan, oblig_global_agg, oblig_short, petrole, strat_momentum, strat_smallcap) ont été retirés lors
@@ -27,6 +28,21 @@
 // toujours piocher le même pari, intégrés à poids minime en Dynamique et à poids significatif en
 // Offensif après vérification empirique du plancher de perte de chaque palier (cf. theses.js et
 // le script de stress-test de la session pour le détail des bornes testées).
+//
+// ISIN ajoutés le 13/09/2026 (audit "ISIN pour chaque ETF", demande utilisateur) : les 68 actifs
+// réellement ETF de ce fichier portent désormais un champ `isin` (fonds_euros et scpi exclus, pas
+// des ETF). Sourcing en 3 temps : (1) 18 ISIN déjà présents dans les commentaires individuels
+// ci-dessous (audits précédents) — repris tels quels ; (2) ~11 recoupés directement avec les ISIN
+// déjà vérifiés ailleurs dans l'app (Fiches ETF, Tweet ETF, Comparateur d'indices — même fonds,
+// jamais re-sourcés en double), avec vigilance particulière sur les parts Acc/Dist qui portent des
+// ISIN distincts même pour un nom d'affichage proche (une confusion de ce type, détectée et
+// corrigée avant publication : oblig_hy avait failli hériter par erreur de l'ISIN Acc d'un fonds
+// tiers alors que ce fonds précis — IHYG — est Dist) ; (3) ~35 recherchés via WebSearch (WebFetch
+// bloqué dans ce sandbox), ticker déjà connu par le commentaire existant quand disponible (cas le
+// plus fiable), sinon nom complet du fonds. Deux cas particuliers documentés directement sur leur
+// actif plutôt qu'ici : strat_dividendes (aucune part Acc distincte trouvée, partage l'ISIN de son
+// jumeau Dist) et oblig_etat_us (fonds réel par tranche de maturité seulement, ISIN d'une tranche
+// proche retenu par approximation, confiance moindre).
 
 export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -59,6 +75,7 @@ export const ASSETS = [
   },
   {
     id: "oblig_etat_eur", name: "iShares Core € Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "IE00B4WXJJ64",
     // 2020/2021/2023/2024/2025 CORRIGÉS le 30/08/2026 : les 3 tentatives précédentes via
     // WebSearch/WebFetch avaient toutes échoué (domaine ishares.com/blackrock.com bloqué pour
     // cette session, résultats de recherche incohérents ou de simples échos de requête). Résolu
@@ -80,6 +97,7 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_ig", name: "iShares Core € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "IE00B3F81R35",
     // 2020/2021/2023/2024/2025 CORRIGÉS le 30/08/2026 : 2 tentatives WebSearch précédentes
     // avaient échoué sur ce même fonds (domaine bloqué, ou une séquence de 4 rendements réels —
     // 4,64% / 2,29% / -1,41% / 6,14% — mais étiquetée avec deux jeux d'années incompatibles selon
@@ -103,6 +121,7 @@ export const ASSETS = [
   },
   {
     id: "oblig_hy", name: "iShares € High Yield Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "IE00B66F4759",
     // Source : performance annuelle du fonds iShares € High Yield Corp Bond UCITS ETF (IHYG),
     // Yahoo Finance, années 2020-2025.
     r: [1.29, 3.02, -9.47, 11.31, 5.71, 5.32],
@@ -115,6 +134,7 @@ export const ASSETS = [
 
   {
     id: "oblig_inflation", name: "iShares € Inflation Linked Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "IE00B0M62X26",
     // 2022 (-9,73%) CORRIGÉ le 30/08/2026 (audit web) puis 2020/2021/2023/2024/2025 CORRIGÉS le
     // même jour (capture d'écran) : la fiche officielle BlackRock/iShares (IBCI, EUR
     // Accumulating, iShares plc — tableau "Calendar year performance", part Share Class, capture
@@ -134,6 +154,7 @@ export const ASSETS = [
   // ── 🟢 Actions développées ─────────────────────────────
   {
     id: "msci_world", name: "Amundi MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "LU1681043599",
     // Source : indice MSCI World (EUR, net de dividendes), fiches MSCI + recoupement avec la
     // performance publiée du fonds Amundi MSCI World, années 2020-2025. 2022 : -12,78% en EUR
     // (net) — à ne pas confondre avec le -18% du même indice en USD sur la même année. 2025
@@ -148,6 +169,7 @@ export const ASSETS = [
   },
   {
     id: "sp500", name: "Amundi PEA S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "FR0011871128",
     // Source : performance annuelle réelle du fonds Amundi PEA S&P 500 (Screened) UCITS ETF,
     // en euros (non couvert), Yahoo Finance, années 2020-2025.
     r: [8.54, 38.24, -12.95, 21.53, 31.71, 3.72],
@@ -162,6 +184,7 @@ export const ASSETS = [
     // ticker CSPX, l'un des plus gros ETF actions d'Europe). Part USD (non-PEA), contrairement à
     // sp500 qui est la version PEA d'Amundi — même sous-jacent, donc même performance.
     id: "sp500_ishares", name: "iShares Core S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B5BMR087",
     r: [8.54, 38.24, -12.95, 21.53, 31.71, 3.72],
     desc: [
       "les 500 plus grandes entreprises cotées aux États-Unis, tirées par la tech ces dernières années.",
@@ -171,6 +194,7 @@ export const ASSETS = [
   },
   {
     id: "nasdaq100", name: "Amundi PEA Nasdaq-100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "FR0011871110",
     // Source : performance annuelle réelle de l'iShares NASDAQ 100 UCITS ETF, part EUR,
     // années 2020-2025 (proxy du fonds Amundi PEA, même indice sous-jacent).
     r: [48.38, 28.86, -34.10, 54.99, 27.18, 20.78],
@@ -185,6 +209,7 @@ export const ASSETS = [
     // ticker SXRV) qui a servi de source à la série "nasdaq100" ci-dessus (proxy du fonds Amundi
     // PEA, même indice sous-jacent). Fonds vérifié réel.
     id: "nasdaq100_ishares", name: "iShares Nasdaq 100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B53SZB19",
     r: [48.38, 28.86, -34.10, 54.99, 27.18, 20.78],
     desc: [
       "les 100 plus grandes entreprises non financières du Nasdaq : très orienté technologie.",
@@ -201,6 +226,7 @@ export const ASSETS = [
     // années 2020-2025 — jamais calculés en doublant la série "nasdaq100" ci-dessus, ce qui
     // donnerait des chiffres faux (ex. 2022 : -34,10% ×2 = -68,2% en théorie, réalité -59,20%).
     id: "lqq", name: "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc", cat: "actions_larges", emoji: "⚡",
+    isin: "FR0010342592",
     r: [74.17, 71.22, -59.20, 112.33, 57.02, 14.16],
     desc: [
       "vise 2 fois la performance quotidienne du Nasdaq-100, financée par swap.",
@@ -217,6 +243,7 @@ export const ASSETS = [
     // annuels : cours réels de la part cotée Euronext Paris (CL2.PA), recoupés justETF / Yahoo
     // Finance, années 2020-2025 — jamais calculés en doublant une série existante.
     id: "cl2", name: "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc", cat: "actions_larges", emoji: "⚡",
+    isin: "FR0010755611",
     r: [8.23, 81.38, -31.43, 41.19, 65.62, -0.19],
     desc: [
       "vise 2 fois la performance quotidienne du MSCI USA (large et mid caps américaines), financée par swap.",
@@ -226,6 +253,7 @@ export const ASSETS = [
   },
   {
     id: "cac40", name: "Amundi CAC 40 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "FR0013380607",
     // 2020-2022 CORRIGÉS le 02/09/2026 : export CSV mensuel réel de l'indice CAC 40 Gross Total
     // Return (dividendes réinvestis) fourni par l'utilisateur (Investing.com, clôtures 01/2015 à
     // 09/2026). Ancrage vérifié : les clôtures de décembre 2023/2024/2025 tirées du CSV donnent des
@@ -244,6 +272,7 @@ export const ASSETS = [
   },
   {
     id: "eurostoxx50", name: "Amundi Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "LU1681047236",
     // Source : indice EURO STOXX 50 (Total Return, dividendes réinvestis), années 2020-2025.
     r: [-3.03, 23.19, -9.02, 22.46, 10.91, 22.01],
     desc: [
@@ -256,6 +285,7 @@ export const ASSETS = [
     // Jumeau strict de "eurostoxx50" — même indice, fonds vérifié réel (ISIN IE00B53L3W79, déjà
     // utilisé et vérifié pour l'outil Tweets ETF : le plus liquide des ETF Euro Stoxx 50).
     id: "eurostoxx50_ishares", name: "iShares Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B53L3W79",
     r: [-3.03, 23.19, -9.02, 22.46, 10.91, 22.01],
     desc: [
       "les 50 plus grandes entreprises de la zone euro, dont LVMH, TotalEnergies ou SAP.",
@@ -265,6 +295,7 @@ export const ASSETS = [
   },
   {
     id: "msci_europe", name: "iShares Core MSCI Europe UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B4K48X80",
     // Source : indice MSCI Europe (EUR, net de dividendes), fiches MSCI, années 2020-2025.
     r: [-3.32, 25.13, -9.49, 15.83, 8.59, 19.39],
     desc: [
@@ -275,6 +306,7 @@ export const ASSETS = [
   },
   {
     id: "sect_sante", name: "iShares S&P 500 Health Care Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B43HR379",
     // Source : performance annuelle réelle du fonds iShares S&P 500 Health Care Sector UCITS
     // ETF, Yahoo Finance, années 2020-2025.
     r: [11.93, 27.58, -2.63, 1.72, 2.16, 14.67],
@@ -288,6 +320,7 @@ export const ASSETS = [
   // ── 🟤 Actions émergentes ──────────────────────────────
   {
     id: "msci_em", name: "iShares Core MSCI EM IMI UCITS ETF", cat: "emergents", emoji: "🟤",
+    isin: "IE00BKM4GZ66",
     // Source : indice MSCI Emerging Markets (EUR, net de dividendes), fiches MSCI, années
     // 2020-2025. Même valeurs répliquées sur les jumeaux Amundi/SPDR (cf. EM_OPTIONS dans
     // theses.js) ; ftse_em_vanguard est traité séparément (indice FTSE EM, composition
@@ -303,6 +336,7 @@ export const ASSETS = [
   // ── 🟡 Or ───────────────────────────────────────────────
   {
     id: "or", name: "Invesco Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
+    isin: "IE00B579F325",
     // Source : cours de l'or spot en USD/once (Visual Capitalist « Gold's Annual Returns
     // 2000-2025 » ; BullionVault pour la clôture 2025), années 2020-2025. Base devise : USD (le
     // rendement réel en EUR de l'ETC, non couvert, diffère selon l'évolution EUR/USD chaque
@@ -319,6 +353,7 @@ export const ASSETS = [
   // ── 🛢️ Autres matières premières ───────────────────────
   {
     id: "argent", name: "iShares Physical Silver ETC", cat: "matieres_premieres", emoji: "🛢️",
+    isin: "IE00B4NCWG09",
     // Source : cours de l'argent spot en USD/once. 2020 (+47%) confirmé. 2021 (-14%) vérifié via
     // recherche web. 2022, 2023, 2024 CORRIGÉS (passés de "non vérifié" à vérifié) le 30/08/2026 :
     // les valeurs d'origine se sont révélées correctes une fois recoupées sur de vraies clôtures
@@ -343,6 +378,7 @@ export const ASSETS = [
   },
   {
     id: "mp_large", name: "Invesco Bloomberg Commodity UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
+    isin: "IE00BD6FTQ80",
     // Source : fiche officielle Invesco (performance annuelle calendaire du fonds), datée du
     // 31/12/2025, années 2020-2025.
     r: [-3.13, 26.70, 14.90, -8.47, 5.02, 15.39],
@@ -356,6 +392,7 @@ export const ASSETS = [
     // Jumeau strict de "mp_large" — vérifié réel (ISIN IE00BDFL4P12, ticker ICOM) : réplique
     // bien l'indice Bloomberg Commodity, confirmé via la fiche produit iShares.
     id: "mp_large_icom", name: "iShares Diversified Commodity Swap UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
+    isin: "IE00BDFL4P12",
     r: [-3.13, 26.70, 14.90, -8.47, 5.02, 15.39],
     desc: [
       "un panier diversifié : énergie, métaux, agriculture réunis en une seule ligne.",
@@ -366,6 +403,7 @@ export const ASSETS = [
   // ── 🟠 Crypto ───────────────────────────────────────────
   {
     id: "bitcoin", name: "CoinShares Physical Bitcoin ETP", cat: "crypto", emoji: "🟠",
+    isin: "GB00BLD4ZL17",
     // Source : cours BTC/USD (clôtures 31 décembre), recoupé avec un tableau agrégé de
     // rendements annuels (World of Statistics). 2020-2024 déjà cohérents avec les cours réels
     // (écart < 1 pt) et conservés. 2025 recalculé à partir des clôtures réelles ($93 460 fin
@@ -382,6 +420,7 @@ export const ASSETS = [
   },
   {
     id: "ethereum", name: "CoinShares Physical Ethereum ETP", cat: "crypto", emoji: "🟠",
+    isin: "GB00BLD4ZM24",
     // Source : cours ETH/USD (clôtures 31 décembre, Kraken). 2020-2024 déjà cohérents avec les
     // cours réels (écart < 1,5 pt) et conservés. 2025 recalculé/vérifié : les sources
     // convergent vers une année négative (-11% à -13% selon la source ; -12% retenu ici) après
@@ -414,6 +453,7 @@ export const ASSETS = [
   },
   {
     id: "foncieres_etf", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF", cat: "immobilier", emoji: "⚪",
+    isin: "LU1437018838",
     distributing: false,
     // Source : FTSE EPRA Nareit Global Developed Index, total return EUR (dividendes réinvestis),
     // années 2020-2024 vérifiées précisément. 2025 (+10,7%) recoupé indépendamment via un chiffre
@@ -433,6 +473,7 @@ export const ASSETS = [
     // Rentier — cf. DIST_TWINS et Rentier dans theses.js) : même sous-jacent (FTSE EPRA Nareit
     // Global Developed), seule la politique de distribution change.
     id: "foncieres_etf_dist", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF Dist", cat: "immobilier", emoji: "⚪",
+    isin: "LU1737652823",
     distributing: true,
     r: [-16.55, 35.67, -20.18, 5.96, 7.68, 10.7],
     desc: [
@@ -445,6 +486,14 @@ export const ASSETS = [
   // ── 🟣 Dividendes ────────────────────────────────────────
   {
     id: "strat_dividendes", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF", cat: "dividendes", emoji: "🟣",
+    // ISIN ajouté le 13/09/2026 (audit "ISIN pour chaque ETF") : IE00B9CQXS71 est en réalité la
+    // SEULE part existante de ce fonds — recherche dédiée d'une part Acc distincte infructueuse
+    // (justETF/SSGA ne référencent qu'une part, distribuante trimestrielle). "strat_dividendes"
+    // (distributing: false) partage donc le même ISIN que son jumeau "strat_dividendes_dist"
+    // ci-dessous plutôt qu'une part Acc qui n'existe pas réellement pour ce fonds précis — seule
+    // exception à la règle "un jumeau = un ISIN propre" du reste de ce fichier, documentée ici
+    // plutôt que masquée.
+    isin: "IE00B9CQXS71",
     distributing: false,
     // Source : performance annuelle réelle du fonds SPDR S&P Global Dividend Aristocrats UCITS
     // ETF, années 2020-2025 (méthodologie « Quality Income Index » depuis février 2020).
@@ -459,6 +508,7 @@ export const ASSETS = [
     // Jumeau distribuant de "strat_dividendes" — le fonds SPDR existe en version Dist (paiement
     // trimestriel), vérifié réel, réservé au profil Rentier.
     id: "strat_dividendes_dist", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    isin: "IE00B9CQXS71",
     distributing: true,
     r: [-9.11, 15.21, -6.53, 7.13, 7.41, 17.55],
     desc: [
@@ -469,6 +519,7 @@ export const ASSETS = [
   },
   {
     id: "high_dividend", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF", cat: "dividendes", emoji: "🟣",
+    isin: "IE00BK5BR626",
     distributing: false,
     // Source : performance annuelle calendaire réelle du fonds (nette de frais), fiches
     // Vanguard, années 2020-2025. NB : ce fonds existe bien en version Acc (ISIN IE00BK5BR626)
@@ -484,6 +535,7 @@ export const ASSETS = [
     // Jumeau distribuant de "high_dividend" (part Dist, ISIN IE00B8GKDB10, vérifiée réelle),
     // réservé au profil Rentier.
     id: "high_dividend_dist", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    isin: "IE00B8GKDB10",
     distributing: true,
     r: [-0.26, 17.88, -5.74, 11.51, 9.39, 26.40],
     desc: [
@@ -494,6 +546,7 @@ export const ASSETS = [
   },
   {
     id: "quality_dividend", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF", cat: "dividendes", emoji: "🟣",
+    isin: "IE00BKPSFC54",
     distributing: false,
     // Source : performance annuelle réelle du fonds iShares MSCI World Quality Dividend
     // Advanced UCITS ETF, années 2020-2025. Changement de benchmark le 1er juin 2022 (nom du
@@ -510,6 +563,7 @@ export const ASSETS = [
     // Jumeau distribuant de "quality_dividend" (part Dist, ISIN IE00BYYHSQ67, vérifiée réelle),
     // réservé au profil Rentier.
     id: "quality_dividend_dist", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    isin: "IE00BYYHSQ67",
     distributing: true,
     r: [0.05, 15.95, -6.87, 17.14, 9.87, 9.76],
     desc: [
@@ -522,6 +576,7 @@ export const ASSETS = [
   // ── 🟢 Actions développées — styles complémentaires ─────
   {
     id: "sect_semi", name: "VanEck Semiconductor UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00BMC38736",
     // Source : performance annuelle réelle du fonds VanEck Semiconductor UCITS ETF, années
     // 2021-2025. Le fonds ayant été lancé en août 2020, l'année 2020 est approximée par le
     // rendement de l'iShares Semiconductor ETF (SOXX, indice proche mais pas identique),
@@ -540,6 +595,7 @@ export const ASSETS = [
   // de frais près.
   {
     id: "or_wisdomtree", name: "WisdomTree Physical Gold", cat: "matieres_premieres", emoji: "🟡",
+    isin: "JE00B1VS3770",
     // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
     r: [25.1, -3.6, -0.4, 13.2, 27.2, 65.0],
     desc: [
@@ -550,6 +606,7 @@ export const ASSETS = [
   },
   {
     id: "or_ishares", name: "iShares Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
+    isin: "IE00B4ND3602",
     // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
     r: [25.1, -3.6, -0.4, 13.2, 27.2, 65.0],
     desc: [
@@ -560,6 +617,7 @@ export const ASSETS = [
   },
   {
     id: "or_amundi", name: "Amundi Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
+    isin: "FR0013416716",
     // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
     r: [25.1, -3.6, -0.4, 13.2, 27.2, 65.0],
     desc: [
@@ -570,6 +628,7 @@ export const ASSETS = [
   },
   {
     id: "bitcoin_wisdomtree", name: "WisdomTree Physical Bitcoin", cat: "crypto", emoji: "🟠",
+    isin: "GB00BJYDH287",
     // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
     r: [303.0, 60.0, -64.0, 156.0, 121.0, -6.4],
     desc: [
@@ -580,6 +639,7 @@ export const ASSETS = [
   },
   {
     id: "bitcoin_etcgroup", name: "ETC Group Physical Bitcoin", cat: "crypto", emoji: "🟠",
+    isin: "DE000A27Z304",
     // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
     r: [303.0, 60.0, -64.0, 156.0, 121.0, -6.4],
     desc: [
@@ -590,6 +650,7 @@ export const ASSETS = [
   },
   {
     id: "bitcoin_21shares", name: "21Shares Bitcoin ETP", cat: "crypto", emoji: "🟠",
+    isin: "CH0454664001",
     // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
     r: [303.0, 60.0, -64.0, 156.0, 121.0, -6.4],
     desc: [
@@ -600,6 +661,7 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_amundi", name: "Amundi € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "LU1931975079",
     // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
     // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
     r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
@@ -611,6 +673,7 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_vanguard", name: "Vanguard € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "IE00BZ163G84",
     // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
     // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
     r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
@@ -622,6 +685,7 @@ export const ASSETS = [
   },
   {
     id: "oblig_corp_spdr", name: "SPDR € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "IE00B3T9LM79",
     // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
     // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
     r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
@@ -636,6 +700,7 @@ export const ASSETS = [
   // performance propres à chacun (l'ACWI et le FTSE All-World incluent les émergents).
   {
     id: "msci_world_ishares", name: "iShares Core MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B4L5Y983",
     // Jumeau strict de "msci_world" — même source (indice MSCI World EUR net, cf. commentaire
     // ci-dessus).
     r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
@@ -651,6 +716,7 @@ export const ASSETS = [
     // suggéré initialement) : les 6 années de la série représentent la performance réelle de
     // l'indice répliqué, le fonds lui-même n'existant que depuis 2025.
     id: "msci_world_amundi_pea", name: "Amundi PEA Monde (MSCI World) UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "FR001400U5Q4",
     r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
@@ -660,6 +726,7 @@ export const ASSETS = [
   },
   {
     id: "msci_acwi", name: "SPDR MSCI ACWI UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B44Z5B48",
     // Source : indice MSCI ACWI (EUR, net de dividendes), fiches MSCI, années 2020-2025.
     r: [6.42, 29.97, -14.72, 18.90, 24.65, 7.89],
     desc: [
@@ -670,6 +737,7 @@ export const ASSETS = [
   },
   {
     id: "ftse_allworld_vanguard", name: "Vanguard FTSE All-World UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00BK5BQT80",
     // Approximation par l'indice MSCI ACWI en EUR (cf. "msci_acwi" ci-dessus) : une donnée FTSE
     // All-World spécifiquement en EUR n'a pas pu être trouvée de façon fiable (seule une version
     // en USD a été trouvée : +16,0% / +18,3% / -18,1% / +22,0% / +17,2% / +22,6%, non comparable
@@ -684,6 +752,7 @@ export const ASSETS = [
   },
   {
     id: "msci_em_amundi", name: "Amundi MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    isin: "LU1681045370",
     // Jumeau strict de "msci_em" — même source (indice MSCI Emerging Markets EUR net, cf.
     // commentaire ci-dessus).
     r: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
@@ -695,6 +764,7 @@ export const ASSETS = [
   },
   {
     id: "ftse_em_vanguard", name: "Vanguard FTSE Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    isin: "IE00BK5BR733",
     // Source : performance annuelle réelle du fonds Vanguard FTSE Emerging Markets UCITS ETF
     // (part USD, nette de frais), années 2020-2025 — sciemment différente de "msci_em" : le
     // FTSE Emerging Markets a une composition distincte du MSCI EM (ex. la Corée du Sud, classée
@@ -709,6 +779,7 @@ export const ASSETS = [
   },
   {
     id: "msci_em_spdr", name: "SPDR MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    isin: "IE00B469F816",
     // Jumeau strict de "msci_em" — même source (indice MSCI Emerging Markets EUR net, cf.
     // commentaire sur "msci_em" plus haut).
     r: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
@@ -721,6 +792,7 @@ export const ASSETS = [
   // ── 🔵 Obligataire — durée courte ────────────────────────
   {
     id: "oblig_etat_eur_short", name: "iShares € Govt Bond 1-3yr UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "IE00B14X4Q57",
     // Source : fonds réel (IBGS), fiche BlackRock/iShares, performance annuelle par calendrier
     // 2020-2024. Corrige surtout 2020 : la version précédente indiquait +1,5% (non vérifié), la
     // donnée réelle est légèrement négative (-0,14%), cohérent avec un fonds obligataire court
@@ -742,6 +814,7 @@ export const ASSETS = [
   // ── 🟢 Europe — styles complémentaires ───────────────────
   {
     id: "tech_europe", name: "iShares MSCI Europe Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00BMW42413",
     // 2021/2022/2023/2024/2025 CORRIGÉS le 30/08/2026 : d'abord 2022 (-28,76%) et 2023 (+35,04%)
     // via deux sources web convergentes (fiche indice MSCI + fiche fonds), puis 2021 (+36,57%),
     // 2024 (+7,93%) et 2025 (+9,64%) confirmés via une capture d'écran du fact sheet officiel
@@ -762,6 +835,7 @@ export const ASSETS = [
   },
   {
     id: "smallcap_europe", name: "iShares MSCI Europe Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE0000N55FP4",
     // Source : performance annuelle réelle de l'iShares MSCI Europe Small-Cap ETF (part USD,
     // cotée aux États-Unis, IEUS — même indice sous-jacent que la version UCITS EUR, mais
     // devise différente ; une donnée EUR spécifique n'a pas pu être trouvée de façon fiable),
@@ -775,6 +849,7 @@ export const ASSETS = [
   },
   {
     id: "sect_energie", name: "iShares S&P 500 Energy Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B42NKQ00",
     // Source : fonds réel (IUES, part USD Acc), fiche officielle BlackRock/iShares (performance
     // annuelle par calendrier) recoupée avec la performance de l'indice de référence sur chaque
     // année — écart de quelques dixièmes de point, cohérent avec le TER. 2020 (-34,32%) et 2023
@@ -796,6 +871,7 @@ export const ASSETS = [
   // illustratifs à corriger si besoin.
   {
     id: "jepq", name: "JPMorgan Nasdaq Equity Premium Income UCITS ETF (JEPQ)", cat: "dividendes", emoji: "🟣",
+    isin: "IE000U9J8HX9",
     // Source pour 2022-2025 : performance annuelle réelle du fonds JEPQ (part US, JPMorgan),
     // années 2023 à 2025 en année pleine ; 2022 = rendement réel mais partiel (fonds lancé le
     // 4 mai 2022, -13% de l'inception à fin décembre 2022 — pas une année calendaire complète).
@@ -816,6 +892,7 @@ export const ASSETS = [
   // insuffisant, ou indice non vérifiable avec confiance).
   {
     id: "sect_tech", name: "iShares S&P 500 Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B3WJKG14",
     // Source : fonds réel vérifié (ISIN IE00B3WJKG14, ticker IUIT), réplique l'indice S&P 500 Capped
     // 35/20 Information Technology, part USD (donnée EUR précise non trouvée de façon fiable). Track
     // record propre au fonds non exploitable via recherche web (résultats agrégés incohérents d'une
@@ -831,6 +908,7 @@ export const ASSETS = [
   },
   {
     id: "sect_robotique", name: "iShares Automation & Robotics UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00BYZK4552",
     // Source : fonds réel vérifié (ISIN IE00BYZK4552, ticker RBOT), réplique l'iSTOXX FactSet
     // Automation & Robotics Index, part USD (donnée EUR précise non trouvée de façon fiable). 2022
     // (-34,40%) confirmé par deux recherches indépendantes concordantes. 2020, 2021, 2023, 2024, 2025 :
@@ -844,6 +922,7 @@ export const ASSETS = [
   },
   {
     id: "sect_cybersecurite", name: "iShares Digital Security UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00BG0J4C88",
     // Source : fonds réel vérifié (ISIN IE00BG0J4C88, ticker LOCK, lancé le 7 septembre 2018),
     // réplique le STOXX Global Digital Security Index, part USD (donnée EUR précise non trouvée de
     // façon fiable). 2020 (26,79%) confirmé par deux recherches indépendantes concordantes. 2021,
@@ -857,6 +936,7 @@ export const ASSETS = [
   },
   {
     id: "sect_energie_propre", name: "iShares Global Clean Energy UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B1XNHC34",
     // Source : fonds réel vérifié (ticker INRG, renommé depuis "iShares Global Clean Energy Transition
     // UCITS ETF"), réplique le S&P Global Clean Energy Index. Track record INRG (EUR) non exploitable
     // via recherche web ; utilisé à la place la performance du jumeau américain iShares Global Clean
@@ -872,6 +952,7 @@ export const ASSETS = [
   },
   {
     id: "sect_conso_defensive", name: "iShares S&P 500 Consumer Staples Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B40B8R38",
     // Source : fonds réel vérifié (ISIN IE00B40B8R38), réplique l'indice S&P 500 Consumer Staples,
     // part USD (donnée EUR précise non trouvée de façon fiable). Track record propre au fonds non
     // exploitable via recherche web ; utilisé à la place la performance de la Consumer Staples Select
@@ -887,6 +968,7 @@ export const ASSETS = [
   },
   {
     id: "sect_utilities", name: "iShares S&P 500 Utilities Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B4KBBD01",
     // Source : fonds réel vérifié (ISIN IE00B4KBBD01), réplique l'indice S&P 500 Utilities, part USD
     // (donnée EUR précise non trouvée de façon fiable). Track record propre au fonds non exploitable
     // via recherche web ; utilisé à la place la performance de l'Utilities Select Sector SPDR (XLU,
@@ -903,6 +985,7 @@ export const ASSETS = [
   // ── 🟣 Dividendes — audit "enrichissement sectoriel" ──────
   {
     id: "dividend_leaders", name: "VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF", cat: "dividendes", emoji: "🟣",
+    isin: "NL0011683594",
     distributing: false,
     // Source : fonds réel vérifié (ISIN NL0011683594, ticker TDIV, lancé le 23 mai 2016), réplique le
     // Morningstar Developed Markets Large Cap Dividend Leaders (Screened Select) Index. 2020 (-10,15%)
@@ -923,6 +1006,7 @@ export const ASSETS = [
   // ── ⚪ Immobilier — audit "enrichissement sectoriel" ──────
   {
     id: "immo_gpr", name: "VanEck Global Real Estate UCITS ETF", cat: "immobilier", emoji: "⚪",
+    isin: "NL0009690239",
     distributing: false,
     // Source : fonds réel vérifié (ISIN NL0009690239, ticker TRET, lancé le 14 avril 2011, devise de
     // base EUR), réplique le GPR (Global Property Research) Global 100 Index — sciemment différent de
@@ -944,6 +1028,7 @@ export const ASSETS = [
   // ── 🔵 Obligataire — jumeau haut rendement (audit "enrichissement sectoriel") ──
   {
     id: "oblig_hy_amundi", name: "Amundi Core EUR High Yield Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    isin: "LU2970735911",
     // Jumeau strict de "oblig_hy" — fonds réel vérifié (ISIN LU2970735911, part Acc, enregistrée le 15
     // juillet 2025), réplique le même indice Markit iBoxx EUR Liquid High Yield Index que l'iShares €
     // High Yield Corp Bond UCITS ETF (IHYG) déjà présent sous "oblig_hy" — donc même tableau `r`, en
@@ -964,6 +1049,17 @@ export const ASSETS = [
   // cette bibliothèque pour l'instant.
   {
     id: "oblig_etat_us", name: "iShares $ Treasury Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    // ISIN ajouté le 13/09/2026 (audit "ISIN pour chaque ETF") — confiance MOINDRE que le reste du
+    // fichier : "iShares $ Treasury Bond UCITS ETF" n'existe pas en tant que fonds unique "toutes
+    // échéances", seulement en plusieurs fonds par tranche de maturité (0-1, 1-3, 3-7, 7-10, 20+
+    // ans). Retenu IBTM (7-10 ans, le plus proche d'une exposition "cœur" généraliste), mais son
+    // rendement réel 2022 (-14,90%, vérifié via une 2e requête) diverge de -12,6% déjà en place ici
+    // (écart 2,3pt, plus large que la tolérance habituelle de ce fichier) — la tranche de maturité
+    // exacte du fact sheet d'origine (30/08/2026) n'est pas documentée dans le commentaire ci-
+    // dessous, donc cet ISIN reste une approximation raisonnable plutôt qu'une identification
+    // certaine. Cohérent avec la note déjà présente juste au-dessus : cet actif n'est de toute façon
+    // pas encore assigné à un combo profil × risque dans theses.js.
+    isin: "IE00B1FZS798",
     // Nom CONFIRMÉ le 30/08/2026 : capture d'écran de l'en-tête du fact sheet officiel fournie par
     // l'utilisateur (catégorie "OBLIGATIONS", badge "GOVT", part USD (Distribution)) — même fonds
     // que celui dont le tableau de performance avait été fourni plus tôt le même jour. Performance
@@ -979,6 +1075,7 @@ export const ASSETS = [
   },
   {
     id: "actions_japon", name: "iShares Core MSCI Japan IMI UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B4L5YX21",
     // Source : capture d'écran du fact sheet officiel BlackRock/iShares fournie par l'utilisateur le
     // 30/08/2026 (iShares Core MSCI Japan IMI UCITS ETF, part U.S. Dollar (Capitalisation)) —
     // performance part de fonds 2020-2025 : +13,03% / +0,92% / -15,88% / +18,86% / +7,47% /
@@ -1009,6 +1106,7 @@ export const ASSETS = [
     // même période (cohérent avec la dépréciation généralisée du dollar déjà documentée sur msci_world
     // 2025 dans ce fichier).
     id: "actions_coree", name: "iShares MSCI Korea UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B5W4TY14",
     r: [44.64, -7.92, -29.36, 23.16, -23.09, 99.85],
     desc: [
       "les grandes entreprises sud-coréennes cotées à Séoul — Samsung, SK Hynix, Hyundai — très exposées aux semi-conducteurs.",
@@ -1021,6 +1119,7 @@ export const ASSETS = [
     // (recherche web uniquement, sites de fact sheets inaccessibles depuis cette session). Chaque
     // année recoupée par au moins 2 requêtes indépendantes convergentes.
     id: "actions_taiwan", name: "iShares MSCI Taiwan UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B0M63623",
     r: [42.02, 26.82, -29.13, 31.33, 35.07, 39.84],
     desc: [
       "le marché taïwanais, dominé par TSMC — le plus grand fondeur de semi-conducteurs au monde.",
@@ -1037,6 +1136,7 @@ export const ASSETS = [
     // l'indice officiel plutôt que ces variantes fonds/ETF, cohérent avec les 5 autres années validées
     // sur la même source) : confiance légèrement inférieure aux 5 autres années de cette ligne.
     id: "actions_asie_ex_japon", name: "iShares MSCI AC Far East ex-Japan UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00BKPX3K41",
     r: [25.02, -4.72, -19.67, 5.98, 11.96, 32.26],
     desc: [
       "Chine, Taïwan, Corée, Inde, Asean... l'Asie développée et émergente réunie en une seule ligne, hors Japon.",
@@ -1046,6 +1146,7 @@ export const ASSETS = [
   },
   {
     id: "actions_value", name: "iShares Edge MSCI World Value Factor UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00BP3QZB59",
     // Nom CONFIRMÉ le 30/08/2026 : capture d'écran de l'en-tête du fact sheet officiel fournie par
     // l'utilisateur (catégorie "ACTIONS", ticker IWVL, part USD (Capitalisation)) — même fonds que
     // celui dont le tableau de performance avait été fourni plus tôt le même jour, hypothèse initiale
