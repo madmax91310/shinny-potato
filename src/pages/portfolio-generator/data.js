@@ -835,6 +835,10 @@ export const ASSETS = [
   },
   {
     id: "smallcap_europe", name: "iShares MSCI Europe Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    // ISIN vérifié le 13/09/2026 (audit "ISIN pour chaque ETF") : ce fonds UCITS EUR (ESCE) a été
+    // lancé le 25/03/2026 — comme msci_world_amundi_pea ailleurs dans ce fichier, il n'a donc
+    // aucun historique propre remontant à 2020 ; la série ci-dessous reste celle de l'indice/du
+    // jumeau IEUS décrite juste en dessous, pas une performance réellement constatée de CETTE part.
     isin: "IE0000N55FP4",
     // Source : performance annuelle réelle de l'iShares MSCI Europe Small-Cap ETF (part USD,
     // cotée aux États-Unis, IEUS — même indice sous-jacent que la version UCITS EUR, mais
@@ -871,6 +875,12 @@ export const ASSETS = [
   // illustratifs à corriger si besoin.
   {
     id: "jepq", name: "JPMorgan Nasdaq Equity Premium Income UCITS ETF (JEPQ)", cat: "dividendes", emoji: "🟣",
+    // ISIN vérifié le 13/09/2026 (audit "ISIN pour chaque ETF") : la part UCITS elle-même n'a été
+    // lancée que le 29/10/2024 — encore plus tard que le fonds US (mai 2022) déjà documenté comme
+    // source de la série ci-dessous. Même situation que smallcap_europe/msci_world_amundi_pea :
+    // l'ISIN identifie le bon fonds à afficher, mais aucune année de la série r: n'est une
+    // performance réellement constatée de CETTE part précise (gérée activement, donc un tracking
+    // différent du fonds US n'est pas à exclure si les deux avaient coexisté).
     isin: "IE000U9J8HX9",
     // Source pour 2022-2025 : performance annuelle réelle du fonds JEPQ (part US, JPMorgan),
     // années 2023 à 2025 en année pleine ; 2022 = rendement réel mais partiel (fonds lancé le
