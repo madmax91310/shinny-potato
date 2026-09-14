@@ -68,6 +68,29 @@ divergence de valeur sur un ISIN partagé est signalée. Sort en code 1 si une d
 Testé par corruption volontaire d'un TER (restaurée aussitôt) pour confirmer que le script détecte
 bien une vraie divergence, pas seulement l'absence de divergence.
 
+## `check-freshness.mjs`
+
+Rapport de fraîcheur des données — scanne les `data.js` des 7 outils (Calculateur, Générateur de
+portefeuilles, Fiches ETF, Comparatif courtiers, Lexique financier, Duel d'indices, Tweets ETF) et
+signale quelles entrées ont une date de sourcing documentée, laquelle, et depuis combien de temps :
+
+```bash
+npm run check-freshness           # rapport lisible en console
+node scripts/check-freshness.mjs --json   # même scan, sortie JSON pour un script tiers
+```
+
+Classe chaque entrée datée en 🟢 récent (< 60j) / 🟡 à surveiller (60-180j) / 🔴 à revérifier
+(> 180j), liste séparément les entrées **sans aucune date trouvée** ("non traçable" — un problème
+différent de la péremption, cf. commentaire en tête du script), et repère les échéances explicites
+du texte (`jusqu'au JJ/MM/AAAA`, ex. la promo Saxo) avec alerte si elles tombent à moins de 30 jours
+ou sont déjà passées.
+
+Scan uniquement — **aucune donnée modifiée, aucun appel réseau** (WebFetch reste bloqué dans ce
+sandbox de toute façon). Sert à prioriser où porter l'effort de revérification manuelle, pas à
+vérifier automatiquement quoi que ce soit. Méthode heuristique (repérage de dates DD/MM/AAAA dans
+le texte entourant chaque entrée, pas un parseur strict) — cf. commentaire en tête du script pour
+la limite connue sur les commentaires de section partagés par plusieurs entrées.
+
 ## `playwright-tools.mjs`
 
 Un test fonctionnel réel (Chromium) par outil, formalisant le "write→look once" fait à la main tout
