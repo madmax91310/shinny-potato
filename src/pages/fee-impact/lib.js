@@ -3,16 +3,26 @@ import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, PUNCHLINE
 
 export { fmtEUR }
 
-// Toutes les paires ORDONNÉES (bas, haut) de FEE_LEVELS avec un écart d'au moins 0,5 point — sert au
+// Toutes les paires ORDONNÉES (bas, haut) de FEE_LEVELS avec un écart d'au moins 0,2 point — sert au
 // tirage "Aléatoire", pour piocher une paire réaliste (ex. ETF pas cher vs fonds actif classique)
-// plutôt que deux niveaux trop proches (ex. 1 % vs 1,5 %) qui donneraient un tweet peu parlant.
-// Dérivé de FEE_LEVELS, jamais une liste de paires redéfinie à la main.
+// plutôt que deux niveaux trop proches qui donneraient un tweet peu parlant. Dérivé de FEE_LEVELS,
+// jamais une liste de paires redéfinie à la main.
+//
+// Seuil abaissé de 0,5 à 0,2 point le 14/09/2026 (retour utilisateur) : à 0,5, la paire 0,20 % vs
+// 0,50 % (écart de 0,3 point) était exclue alors que c'est l'une des comparaisons les plus
+// pédagogiques de la bibliothèque — un ETF indiciel pas cher contre un fonds indiciel/actif "light",
+// un cas croisé en pratique. 0,2 plutôt qu'une valeur plus basse encore : c'est le plus petit écart
+// qui reste possible entre deux valeurs de FEE_LEVELS distinctes de 0,20 % (0,10 vs 0,20 = 0,1 point,
+// toujours exclu) — en dessous de 0,2, l'écart de capital final resterait trop faible pour produire
+// un message marquant, l'objectif même de cet outil. Avec ce seuil, seules 0,10-0,20 % (0,1 point)
+// restent hors du pool ; 0,10-0,50 % (0,4) et 0,20-0,50 % (0,3) rejoignent les 12 paires déjà
+// présentes, soit 14 paires réalistes au total sur les 15 combinaisons possibles de FEE_LEVELS.
 export const REALISTIC_FEE_PAIRS = []
 for (let i = 0; i < FEE_LEVELS.length; i++) {
   for (let j = i + 1; j < FEE_LEVELS.length; j++) {
     const low = FEE_LEVELS[i].value
     const high = FEE_LEVELS[j].value
-    if (high - low >= 0.5) REALISTIC_FEE_PAIRS.push({ low, high })
+    if (high - low >= 0.2) REALISTIC_FEE_PAIRS.push({ low, high })
   }
 }
 
