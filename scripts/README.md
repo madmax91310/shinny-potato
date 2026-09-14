@@ -1,13 +1,10 @@
 # Scripts d'audit / stress-test
 
 Scripts réutilisables du repo, committés plutôt que recréés ad hoc en session (audit "outils" du
-14/09/2026). Chacun s'exécute directement avec `node scripts/<fichier>.mjs` (le repo est en
-`"type": "module"`, aucun bundler nécessaire tant que le script importe uniquement des fichiers
-`.js`/`.mjs` sans JSX — voir plus bas pour les scripts qui en ont besoin).
+14/09/2026, complété le même jour). Chacun s'exécute directement avec `node scripts/<fichier>.mjs`
+(le repo est en `"type": "module"`) ou via son alias `npm run`.
 
-## Committés
-
-### `stress-test-portfolios.mjs`
+## `stress-test-portfolios.mjs`
 
 Générateur de portefeuilles (`src/pages/portfolio-generator/`). Deux modes :
 
@@ -31,20 +28,65 @@ Si le mode combo échoue : ne pas committer le poids tel quel. Voir le commentai
 et celui du combo concerné dans `theses.js` pour la méthode (financer un poids en réduisant une
 ligne au rendement proche plutôt qu'une ligne défensive).
 
-## À committer (pas encore fait)
+## `verify-tweet-midi.mjs`
 
-Ces vérifications ont existé sous forme de scripts jetables au fil de la session (créés dans le
-scratchpad, jamais ajoutés au repo) mais n'ont pas encore été réécrites comme outils réutilisables :
+Tweet Midi (`src/pages/tweet-midi/`) — exécution réelle de `buildTweetText()` sur l'ensemble du
+pool `ALL_ITEMS` (~2700 entrées, 7 formats confondus), pas un échantillon :
 
-- **Tests Playwright par outil** — un "write→look once" en navigateur réel (Chromium via
-  `/opt/pw-browsers/chromium`) a été fait à la main après chaque changement de données/logique tout
-  au long de la session (ex. génération Crypto-Curieux Dynamique, tirage Aléatoire d'Impact des
-  frais), jamais formalisé en suite de tests committée par outil.
-- **Vérification des générations Tweet Midi** — pas de script dédié écrit cette session pour ce
-  format précis ; à construire sur le même modèle que `stress-test-portfolios.mjs` (générer un grand
-  nombre de tweets pour chaque format, vérifier l'absence de placeholder non résolu, la cohérence
-  des données citées avec leur source — Calculateur pour Anniversaire/Performance, Lexique pour
-  Vrai/Faux).
-- **Audit croisé ISIN/TER** (Fiches ETF ↔ Tweet Midi ↔ Comparateur d'indices) — le script qui a
-  trouvé l'erreur de TER du fonds Quality Factor (0,30% → 0,25%, corrigée le 13/09/2026) était un
-  bundle esbuild ad hoc, jamais committé.
+```bash
+npm run verify:tweet-midi
+```
+
+Vérifie qu'aucune génération ne lève d'exception, ne renvoie un texte vide/trop court, ou ne laisse
+fuiter un placeholder de gabarit non résolu (ex. `{yearsPhrase}` littéral dans le texte final — le
+bug exact corrigé le 29/08/2026, transformé ici en vérification permanente). Vérifie aussi que
+chaque `sourceTermeId` du format Vrai/Faux pointe vers un terme qui existe réellement dans le
+Lexique financier (traçabilité). Sort en code 1 si un problème est trouvé.
+
+Dépend d'un import extensionless en amont (`investment-calculator/lib.js` importe `from './data'`
+sans suffixe, incompris par le résolveur ESM natif de Node) — d'où l'alias qui bundle avec esbuild
+avant d'exécuter :
+
+```bash
+npx esbuild scripts/verify-tweet-midi.mjs --bundle --format=esm --platform=node | node --input-type=module
+```
+
+## `audit-etf-consistency.mjs`
+
+Audit croisé ISIN/TER entre les 3 bibliothèques ETF de l'app (Fiches ETF, Générateur de tweets ETF,
+Comparateur d'indices) :
+
+```bash
+npm run audit:etf-consistency
+```
+
+Regroupe toutes les lignes de fonds des 3 sources par ISIN et signale tout ISIN dont le TER diverge
+de plus de 0,01 point d'une source à l'autre — reproduit la méthode qui avait trouvé et corrigé
+l'erreur de TER du fonds Quality Factor (0,30% → 0,25%) le 13/09/2026. Un ISIN présent dans une
+seule source n'est jamais un problème (couverture différente par design) ; seule une vraie
+divergence de valeur sur un ISIN partagé est signalée. Sort en code 1 si une divergence est trouvée.
+Testé par corruption volontaire d'un TER (restaurée aussitôt) pour confirmer que le script détecte
+bien une vraie divergence, pas seulement l'absence de divergence.
+
+## `playwright-tools.mjs`
+
+Un test fonctionnel réel (Chromium) par outil, formalisant le "write→look once" fait à la main tout
+au long de la session en suite réutilisable :
+
+```bash
+npm run test:tools   # build + lance son propre `vite preview` (port 4310) + teste + coupe le serveur
+```
+
+Exerce une interaction réelle par outil (jamais juste "la page charge sans erreur") : sélection
+d'actif + badges de confiance au Calculateur, génération + somme à 100% au Générateur de
+portefeuilles, cycle des 36 fiches ETF, texte du duel par défaut au Comparatif courtiers (lu depuis
+la `value` du `<textarea>` — jamais capturé par `innerText()`, piège rencontré à l'écriture de ce
+script), cycle des 7 formats de Tweet Midi, cycle des 10 familles du Comparateur d'indices, tirage
+Aléatoire d'Impact des frais. Sort en code 1 si un outil échoue.
+
+Dépend de Chromium pré-installé à `/opt/pw-browsers/chromium` et de `playwright` installé
+globalement à `/opt/node22/lib/node_modules/playwright` — aucun des deux n'est une dépendance du
+projet, ce script ne tourne que dans cet environnement de session. Lance `vite preview` en groupe de
+processus détaché (`detached: true`) pour pouvoir le tuer entièrement à la fin
+(`process.kill(-pid)`) — un bug constaté à l'écriture de ce script : `server.kill()` seul ne tue que
+le wrapper `npx`, laissant le vrai process `vite preview` tourner en orphelin sur le port.

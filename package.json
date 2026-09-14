@@ -8,7 +8,10 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "stress-test:portfolios": "node scripts/stress-test-portfolios.mjs"
+    "stress-test:portfolios": "node scripts/stress-test-portfolios.mjs",
+    "verify:tweet-midi": "npx esbuild scripts/verify-tweet-midi.mjs --bundle --format=esm --platform=node | node --input-type=module",
+    "audit:etf-consistency": "node scripts/audit-etf-consistency.mjs",
+    "test:tools": "npm run build && node scripts/playwright-tools.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
