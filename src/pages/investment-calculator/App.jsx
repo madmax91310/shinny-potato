@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
-  getAssetMinDate, SPARSE_MONTHLY_DATA_IDS,
+  getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, REDUCED_CONFIDENCE_LAST_POINT,
 } from './data'
 import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex } from './lib'
 import Sparkline from './Sparkline'
@@ -168,6 +168,11 @@ export default function App() {
   const startYm = state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth)
   const startDateInvalid = assetMinDate !== null && ymIndex(startYm) < ymIndex(assetMinDate)
   const assetMinDateLabel = assetMinDate ? `${MONTHS_SHORT[parseInt(assetMinDate.split('-')[1], 10) - 1]} ${assetMinDate.split('-')[0]}` : null
+  // Badge de confiance visible en UI (pas seulement en commentaire de code), à la demande de
+  // l'utilisateur (audit "outils" du 14/09/2026) : vrai dès que le plancher vérifié (assetMinDate)
+  // est postérieur au tout premier point brut de l'actif — jamais un id codé en dur, pour que
+  // tout futur ajout à VERIFIED_MIN_DATE_OVERRIDES déclenche automatiquement le même badge.
+  const hasTruncatedHistory = !isCustom && assetMinDate !== null && assetMinDate !== ASSETS[state.assetId].points[0].date
   // Prix actualisé (saisie manuelle, optionnelle) : mêmes règles que montant/customStart/customEnd
   // — vide = état neutre (on garde le dernier niveau connu), une valeur réellement saisie à 0 ou
   // en négatif ne doit jamais atteindre le calcul.
@@ -237,6 +242,11 @@ export default function App() {
                   <option value="custom">✎ Autre (saisie manuelle)</option>
                 </select>
               </div>
+              {hasTruncatedHistory && (
+                <p className="ic-field-warning" title={`Les points antérieurs à ${assetMinDateLabel} restent affichés dans le graphique mais ne sont jamais utilisés pour un calcul.`}>
+                  ⚠️ Données {ASSETS[state.assetId].label} non vérifiées avant {assetMinDateLabel} (valeurs illustratives) — simulation bloquée avant cette date.
+                </p>
+              )}
               {!isCustom && lastPoint && (
                 <>
                   <p className="ic-current-level">
@@ -244,6 +254,9 @@ export default function App() {
                     <strong>{fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
                     {' '}(au {lastPointLabel})
                   </p>
+                  {REDUCED_CONFIDENCE_LAST_POINT[state.assetId] && (
+                    <p className="ic-field-warning">⚠️ {REDUCED_CONFIDENCE_LAST_POINT[state.assetId]}</p>
+                  )}
                   <div style={{ marginTop: 6 }}>
                     <input
                       className="ic-control"

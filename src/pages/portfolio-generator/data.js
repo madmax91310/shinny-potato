@@ -840,6 +840,9 @@ export const ASSETS = [
     // aucun historique propre remontant à 2020 ; la série ci-dessous reste celle de l'indice/du
     // jumeau IEUS décrite juste en dessous, pas une performance réellement constatée de CETTE part.
     isin: "IE0000N55FP4",
+    // confidenceNote : badge visible en UI (cf. AllocationList, App.jsx) plutôt que seulement en
+    // commentaire de code — demande utilisateur, audit "outils" du 14/09/2026.
+    confidenceNote: "Performance simulée sur l'historique du fonds jumeau IEUS — cette part UCITS EUR a été lancée en 2026, trop récente pour avoir son propre historique 2020-2025.",
     // Source : performance annuelle réelle de l'iShares MSCI Europe Small-Cap ETF (part USD,
     // cotée aux États-Unis, IEUS — même indice sous-jacent que la version UCITS EUR, mais
     // devise différente ; une donnée EUR spécifique n'a pas pu être trouvée de façon fiable),
@@ -882,6 +885,7 @@ export const ASSETS = [
     // performance réellement constatée de CETTE part précise (gérée activement, donc un tracking
     // différent du fonds US n'est pas à exclure si les deux avaient coexisté).
     isin: "IE000U9J8HX9",
+    confidenceNote: "Performance en partie estimée (2020-2021, fonds inexistant avant 2022) et en partie celle du fonds US — la part UCITS elle-même n'a été lancée que fin 2024.",
     // Source pour 2022-2025 : performance annuelle réelle du fonds JEPQ (part US, JPMorgan),
     // années 2023 à 2025 en année pleine ; 2022 = rendement réel mais partiel (fonds lancé le
     // 4 mai 2022, -13% de l'inception à fin décembre 2022 — pas une année calendaire complète).
@@ -1070,6 +1074,7 @@ export const ASSETS = [
     // certaine. Cohérent avec la note déjà présente juste au-dessus : cet actif n'est de toute façon
     // pas encore assigné à un combo profil × risque dans theses.js.
     isin: "IE00B1FZS798",
+    confidenceNote: "ISIN approximatif : identifie une tranche de maturité (7-10 ans) proche d'une exposition généraliste — aucun fonds \"toutes échéances\" n'existe pour cet indice.",
     // Nom CONFIRMÉ le 30/08/2026 : capture d'écran de l'en-tête du fact sheet officiel fournie par
     // l'utilisateur (catégorie "OBLIGATIONS", badge "GOVT", part USD (Distribution)) — même fonds
     // que celui dont le tableau de performance avait été fourni plus tôt le même jour. Performance

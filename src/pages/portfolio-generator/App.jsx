@@ -119,7 +119,14 @@ function AllocationList({ selection }) {
           <li key={s.id} className="pg-alloc-row">
             <span className="pg-alloc-swatch" style={{ background: CATEGORIES[s.cat].color }} />
             <span className="pg-alloc-name">
-              {s.emoji} {s.name}
+              <span className="pg-alloc-name-text">
+                {s.emoji} {s.name}
+              </span>
+              {s.confidenceNote && (
+                <span className="pg-confidence-badge" title={s.confidenceNote}>
+                  ⚠️
+                </span>
+              )}
             </span>
             <span className="pg-alloc-cat">{CATEGORIES[s.cat].label}</span>
             <span className="pg-alloc-pct">{s.pct}%</span>

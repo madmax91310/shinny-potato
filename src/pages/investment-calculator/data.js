@@ -793,6 +793,17 @@ export function getAssetMinDate(assetId) {
 // d'interpoler silencieusement 11 mois sur 12 entre deux vraies clôtures.
 export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta'])
 
+// Actifs dont le DERNIER point (donc le "dernier niveau connu" affiché à l'étape 1) a une confiance
+// réduite documentée dans le commentaire de l'actif — surfacé dans l'UI (badge ⚠️, cf. App.jsx)
+// plutôt que laissé uniquement dans le code, à la demande de l'utilisateur (audit "outils" du
+// 14/09/2026). N'affecte que google et meta pour l'instant : leur point 08/2026 a été retenu au
+// milieu d'une fourchette non convergente entre deux sources (cf. commentaires sur ces deux actifs
+// ci-dessus) — à retirer d'ici dès qu'une clôture officielle est trouvée pour ce point précis.
+export const REDUCED_CONFIDENCE_LAST_POINT = {
+  google: 'Dernier point (08/2026) : deux sources non convergentes (335,41 $ et 339,35 $) — valeur retenue au milieu de la fourchette.',
+  meta: 'Dernier point (08/2026) : aucune clôture exacte trouvée — valeur retenue au milieu d\'un large encadrement (560,43 $ – 616,77 $).',
+}
+
 // Taux Livret A (moyenne annuelle, %) et inflation France INSEE (moyenne annuelle, %).
 // À ajuster si besoin — sert uniquement de comparaison pédagogique.
 export const LIVRET_A = { 2015: 0.9, 2016: 0.75, 2017: 0.75, 2018: 0.75, 2019: 0.75, 2020: 0.52, 2021: 0.5, 2022: 1.4, 2023: 2.9, 2024: 3.0, 2025: 2.16, 2026: 1.6 }
