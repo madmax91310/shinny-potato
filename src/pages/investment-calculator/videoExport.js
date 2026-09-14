@@ -7,7 +7,7 @@
 // déjà les points par des segments de droite) — jamais une valeur de série inventée : les nombres
 // affichés en overlay (investi cumulé, valeur actuelle) sont toujours lus directement dans series[]/
 // invested[] à un index entier, jamais interpolés.
-import { fmtEUR, fmtPct, pct, computeAssetSeries, applyPriceOverride, ymIndex } from './lib'
+import { fmtEUR, fmtPct, computeAssetSeries, applyPriceOverride, ymIndex } from './lib'
 import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, MONTHS_SHORT } from './data'
 
 const W = 1080
@@ -199,14 +199,6 @@ function drawChart(ctx, x0, y0, w, h, series, invested, upToIndex, partialFrac) 
   return tip
 }
 
-// Performance (%) d'une série à chaque mois — pct() (lib.js, déjà utilisée pour le gain final partout
-// ailleurs dans l'app, pas redéfinie ici) appliquée à series[i]/invested[i] à CHAQUE index entier
-// plutôt qu'au seul point final : aucune donnée nouvelle, juste la même formule rejouée mois par mois
-// sur des valeurs déjà réelles.
-function perfSeries(series, invested) {
-  return series.map((v, i) => pct(v, invested[i]))
-}
-
 // Points d'une série, mise à l'échelle sur une plage min/max PARTAGÉE (passée en paramètre) plutôt que
 // calculée pour cette seule série — c'est ce qui permet à deux courbes de partager le même axe (cf.
 // drawDualChart). Même technique de segment partiel (position à l'écran, pas une donnée) que buildPts.
@@ -253,17 +245,26 @@ function strokeSeriesLine(ctx, pts, color) {
   return tip
 }
 
-// Grille commune + deux courbes de PERFORMANCE (%) partageant le même axe — corrige le double-échelle
-// indépendant d'origine (chaque actif sur sa propre plage de valeurs en €), qui pouvait faire paraître
-// deux courbes proches ou croisées alors que leurs performances réelles divergeaient déjà fortement
-// (ex. Bitcoin +129% vs Nasdaq-100 +94% dont l'écart de 35 points ne se voyait pas à l'écran). Avec un
-// axe unique en %, l'écart visuel entre les deux courbes à un instant T reflète fidèlement l'écart réel
-// de performance à ce moment précis. `perf1`/`perf2` (perfSeries ci-dessus) et le min/max partagé sont
-// calculés une seule fois par appelant (drawComparativeFrame) pour rester stables d'une frame à l'autre.
-// Les séries partagent forcément le même nombre de mois (même startYm/endYm passés à
-// computeComparativeSeries pour les deux actifs), donc l'axe X reste aligné sans aucune interpolation
-// entre les deux séries elles-mêmes.
-function drawDualChart(ctx, x0, y0, w, h, perf1, perf2, upToIndex, partialFrac, color1, color2, min, max) {
+// Grille commune + deux courbes de VALEUR (€) partageant le même axe — corrige le double-échelle
+// indépendant d'origine (chaque actif sur sa propre plage de valeurs en €, chacune auto-cadrée sur
+// SON propre min/max), qui pouvait faire paraître deux courbes proches ou croisées alors que leurs
+// écarts réels divergeaient déjà fortement. Avec un axe unique partagé, l'écart visuel entre les deux
+// courbes à un instant T reflète fidèlement l'écart réel de valeur à ce moment précis — et comme les
+// deux côtés investissent désormais toujours la MÊME somme totale (cf. handleGenerateComparative dans
+// VideoExport.jsx), comparer la valeur absolue plutôt que la performance (%) répond directement à la
+// question "quelle stratégie rapporte le plus d'argent pour la même somme investie" — demande
+// utilisateur du 14/09/2026, après un premier essai en % qui masquait totalement l'effet du montant
+// (une courbe de performance est par construction invariante à l'échelle du montant investi, donc
+// inchangée qu'on matche les totaux ou non — ce n'était pas le bon indicateur pour ce cas d'usage).
+// `invested1`/`invested2` sont tracés en pointillé (même code couleur que la courbe de valeur
+// correspondante) pour montrer COMMENT le capital s'est constitué : une ligne qui grimpe pour un DCA,
+// plate dès le premier mois pour un versement unique — visuellement, c'est ce qui explique l'écart
+// entre les deux courbes de valeur quand le mode diffère sur un même actif. `val1`/`val2` et le
+// min/max partagé sont calculés une seule fois par appelant (drawComparativeFrame) pour rester stables
+// d'une frame à l'autre. Les séries partagent forcément le même nombre de mois (même startYm/endYm
+// passés à computeComparativeSeries pour les deux actifs), donc l'axe X reste aligné sans aucune
+// interpolation entre les deux séries elles-mêmes.
+function drawDualChart(ctx, x0, y0, w, h, val1, val2, invested1, invested2, upToIndex, partialFrac, color1, color2, min, max) {
   ctx.strokeStyle = 'rgba(255,255,255,0.08)'
   ctx.lineWidth = 1
   ctx.setLineDash([4, 6])
@@ -276,20 +277,23 @@ function drawDualChart(ctx, x0, y0, w, h, perf1, perf2, upToIndex, partialFrac, 
   })
   ctx.setLineDash([])
 
-  // Ligne de repère à 0% (point de départ / seuil de rentabilité), utile uniquement quand elle tombe
-  // dans la plage affichée — sert de référence visuelle commune aux deux courbes.
-  if (min < 0 && max > 0) {
-    const zeroY = y0 + (1 - (0 - min) / (max - min || 1)) * h
-    ctx.strokeStyle = 'rgba(255,255,255,0.22)'
-    ctx.lineWidth = 1.5
+  const investedPts1 = scaledPointsForRange(x0, y0, w, h, invested1, upToIndex, partialFrac, min, max)
+  const investedPts2 = scaledPointsForRange(x0, y0, w, h, invested2, upToIndex, partialFrac, min, max)
+  ;[[investedPts1, color1], [investedPts2, color2]].forEach(([pts, color]) => {
+    if (pts.length < 2) return
+    ctx.strokeStyle = color
+    ctx.globalAlpha = 0.55
+    ctx.lineWidth = 3
+    ctx.setLineDash([8, 8])
     ctx.beginPath()
-    ctx.moveTo(x0, zeroY)
-    ctx.lineTo(x0 + w, zeroY)
+    pts.forEach((p, i) => (i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1])))
     ctx.stroke()
-  }
+    ctx.setLineDash([])
+    ctx.globalAlpha = 1
+  })
 
-  const pts1 = scaledPointsForRange(x0, y0, w, h, perf1, upToIndex, partialFrac, min, max)
-  const pts2 = scaledPointsForRange(x0, y0, w, h, perf2, upToIndex, partialFrac, min, max)
+  const pts1 = scaledPointsForRange(x0, y0, w, h, val1, upToIndex, partialFrac, min, max)
+  const pts2 = scaledPointsForRange(x0, y0, w, h, val2, upToIndex, partialFrac, min, max)
   strokeSeriesLine(ctx, pts1, color1)
   strokeSeriesLine(ctx, pts2, color2)
 }
@@ -412,19 +416,17 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
   const color1 = COLORS.tealBright
   const color2 = COLORS.goldBright
 
-  // Courbes tracées en performance (%) plutôt qu'en valeur brute (€) — cf. drawDualChart. Calculées une
-  // fois par frame sur l'intégralité des deux séries (pas seulement jusqu'à l'index atteint) pour que le
-  // min/max partagé, donc l'échelle affichée, reste stable tout au long de l'animation plutôt que de
-  // "respirer" au fur et à mesure que la courbe se dessine.
-  const perf1 = perfSeries(series1, invested1)
-  const perf2 = perfSeries(series2, invested2)
-  const allPerf = perf1.concat(perf2)
-  let perfMin = Math.min(...allPerf)
-  let perfMax = Math.max(...allPerf)
-  if (perfMin > 0) perfMin = 0
-  if (perfMax < 0) perfMax = 0
-  const perfRange = perfMax - perfMin || 1
-  perfMax += perfRange * 0.1
+  // Courbes tracées en valeur absolue (€) plutôt qu'en performance (%) — cf. drawDualChart pour le
+  // raisonnement complet. Min/max partagé calculé sur l'intégralité des 4 séries (valeur ET capital
+  // investi des deux côtés, pas seulement jusqu'à l'index atteint) pour que l'échelle affichée reste
+  // stable tout au long de l'animation plutôt que de "respirer" au fur et à mesure que la courbe se
+  // dessine — même technique que drawChart (mode Simple) sur une seule série.
+  const allVals = series1.concat(series2, invested1, invested2)
+  let valMin = Math.min(...allVals)
+  let valMax = Math.max(...allVals)
+  if (valMin > 0) valMin = 0
+  const valRange = valMax - valMin || 1
+  valMax += valRange * 0.1
 
   ctx.clearRect(0, 0, W, H)
   const bg = ctx.createLinearGradient(0, 0, 0, H)
@@ -472,6 +474,25 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
   ctx.fillStyle = COLORS.inkFaint
   ctx.fillText(periodLabel, PAD, PAD + 156)
 
+  // Légende trait plein / pointillé — indispensable une fois la courbe passée en valeur absolue
+  // (contrairement au %, où seules les deux courbes de performance étaient affichées) : sans elle,
+  // rien ne dit que le pointillé est le capital investi et pas une 3e série de valeur.
+  ctx.font = FONTS.legend
+  ctx.fillStyle = COLORS.inkDim
+  ctx.fillRect(PAD, PAD + 190, 22, 4)
+  ctx.fillText('Valeur du portefeuille', PAD + 32, PAD + 182)
+  const investedLegendX = PAD + 32 + ctx.measureText('Valeur du portefeuille').width + 40
+  ctx.save()
+  ctx.setLineDash([5, 5])
+  ctx.strokeStyle = COLORS.inkDim
+  ctx.lineWidth = 3
+  ctx.beginPath()
+  ctx.moveTo(investedLegendX - 32, PAD + 192)
+  ctx.lineTo(investedLegendX - 10, PAD + 192)
+  ctx.stroke()
+  ctx.restore()
+  ctx.fillText('Capital investi', investedLegendX, PAD + 182)
+
   const drawPhase = elapsedMs < DRAW_MS
   const drawT = Math.min(1, elapsedMs / DRAW_MS)
   const posFloat = drawT * (n - 1)
@@ -479,10 +500,10 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
   const frac = drawPhase ? posFloat - idx : 0
 
   const chartX = PAD
-  const chartY = 320
+  const chartY = 356
   const chartW = W - PAD * 2
-  const chartH = 380
-  drawDualChart(ctx, chartX, chartY, chartW, chartH, perf1, perf2, idx, frac, color1, color2, perfMin, perfMax)
+  const chartH = 344
+  drawDualChart(ctx, chartX, chartY, chartW, chartH, series1, series2, invested1, invested2, idx, frac, color1, color2, valMin, valMax)
 
   const statsY = chartY + chartH + 40
 
@@ -598,8 +619,9 @@ export function renderResultVideo(params, onProgress) {
 
 // Anime et enregistre les deux séries déjà calculées (mode Comparatif, deux actifs). `params` doit
 // contenir series1/series2 ET invested1/invested2 (les 4 déjà produites par computeComparativeSeries,
-// pour des actifs ayant passé getComparativeAssetIssue — aucune validation refaite ici). invested1/2
-// servent à tracer les courbes en performance (%) plutôt qu'en valeur brute, cf. perfSeries ci-dessus.
+// pour des actifs ayant passé getComparativeAssetIssue — aucune validation refaite ici). series1/2
+// tracent la valeur du portefeuille (trait plein), invested1/2 le capital investi (pointillé) — cf.
+// drawDualChart.
 export function renderComparativeVideo(params, onProgress) {
   return recordCanvas(params.canvas, (ctx, elapsedMs) => drawComparativeFrame(ctx, params, elapsedMs), onProgress)
 }
