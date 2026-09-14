@@ -1,6 +1,6 @@
 import { YEARS, getAsset } from "./data.js";
 import {
-  PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, isCompatible, getFrequencyCap,
+  PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS, isCompatible, getFrequencyCap,
   CONCENTRATION_THRESHOLD, CONCENTRATION_NEUTRAL_IDS, CONCENTRATION_LABELS,
 } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
@@ -157,7 +157,7 @@ function buildSelection(combo, usageCounts, historyLength) {
 // plancher de perte très serré (-5%), donc la plupart des swaps sont de toute façon annulés par la
 // revalidation de borne ci-dessous, quelle que soit la magnitude : limite structurelle, pas un
 // paramètre de jitter à pousser davantage (voir le rapport d'audit pour le détail des mesures).
-function jitterSelection(selection, bound, profileId) {
+function jitterSelection(selection, bound, profileId, riskId) {
   const attempts = randInt(2, 6);
   for (let i = 0; i < attempts; i++) {
     if (selection.length < 2) break;
@@ -168,7 +168,7 @@ function jitterSelection(selection, bound, profileId) {
     selection[ib].pct += amount;
     const perf = computeYearlyPerf(selection);
     const worst = worstYearOf(perf);
-    if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection)) {
+    if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection, riskId)) {
       selection[ia].pct += amount;
       selection[ib].pct -= amount;
     }
@@ -187,12 +187,38 @@ function withinBound(value, bound) {
 // précis. Pro-Européen a une invariante supplémentaire (minimum 70% Europe) qui n'est pas capturée
 // par la borne de risque : on la revérifie après jitter et on retire le tirage sinon.
 const PRO_EUROPE_CORE_IDS = ["eurostoxx50", "eurostoxx50_ishares", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
-function violatesProfileInvariant(profileId, selection) {
+
+// Crypto-Curieux : plancher/plafond Bitcoin par palier de risque (audit "Ajustement Crypto-Curieux
+// Dynamique", 14/09/2026) — en dessous du plancher, l'étiquette du profil n'est plus justifiée par
+// l'allocation réelle ; au-dessus du plafond, on rejoint le registre du palier Offensif. Défensif =
+// plafond seul (règle déjà en place avant cet audit, non modifiée). Pas d'entrée Offensif : déjà
+// dominé par Bitcoin (35%) + Ethereum (25%) à poids fixes élevés, aucun risque de dilution en
+// dessous d'un seuil qui aurait un sens.
+const CRYPTO_CURIEUX_BITCOIN_BOUNDS = {
+  defensif: { min: null, max: 10 },
+  equilibre: { min: 10, max: 20 },
+  dynamique: { min: 15, max: 30 },
+};
+function violatesProfileInvariant(profileId, selection, riskId) {
   if (profileId === "pro_europe") {
     const europePct = selection
       .filter((s) => PRO_EUROPE_CORE_IDS.includes(s.id))
       .reduce((sum, s) => sum + s.pct, 0);
     if (europePct < 70) return true;
+  }
+  if (profileId === "crypto_curieux") {
+    const bounds = CRYPTO_CURIEUX_BITCOIN_BOUNDS[riskId];
+    if (bounds) {
+      const btc = selection.find((s) => s.id.startsWith("bitcoin"));
+      const btcPct = btc ? btc.pct : 0;
+      if (bounds.min !== null && btcPct < bounds.min) return true;
+      if (bounds.max !== null && btcPct > bounds.max) return true;
+    }
+    // ETF à levier (lqq/cl2) : jamais laissé sous 10% par le jitter s'il est présent — poids trop
+    // faible pour avoir un impact narratif ou de performance réel (cf. LEVERAGE_OPTIONS dans
+    // theses.js pour le détail du stress-test qui a validé ce plancher pour ce combo précis).
+    const leveraged = selection.find((s) => LEVERAGE_OPTIONS.includes(s.id));
+    if (leveraged && leveraged.pct < 10) return true;
   }
   return false;
 }
@@ -371,6 +397,11 @@ function contextLine(profile, selection, perf, history) {
 // Résout {pct}-like tokens qui ne sont pas liés à une ligne précise mais au portefeuille dans
 // son ensemble (pire année, meilleure année, dose de Bitcoin) — utilisé pour les CTA.
 function resolvePortfolioPlaceholders(text, { worst, best, selection }) {
+  // Le CTA "Bitcoin, Ethereum, ou les deux" (Crypto-Curieux) ne mentionne aucun placeholder, donc
+  // sans ce garde-fou il resterait toujours "résolvable" même quand Ethereum n'a pas été tiré dans
+  // ce portefeuille (id fixe, présent uniquement au palier Offensif de ce profil, cf. theses.js) —
+  // corrigé le 14/09/2026 : le CTA doit toujours refléter la composition réellement affichée.
+  if (/\bEthereum\b/.test(text) && !selection.some((s) => s.id === "ethereum")) return null;
   if (!text.includes("{")) return text;
   let out = text
     .replace(/\{worst_pct\}/g, fmtPct(worst.value))
@@ -409,13 +440,13 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     profile = PROFILES.find((p) => p.id === profileId);
     combo = profile.riskCombos[riskId];
     selection = resolvePourquoi(
-      jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId)
+      jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId, riskId)
     );
     tries++;
   } while (
     (history.some((h) => h.sig === signature(selection)) ||
       tooSimilarToLast(selection, profileId, history) ||
-      violatesProfileInvariant(profileId, selection)) &&
+      violatesProfileInvariant(profileId, selection, riskId)) &&
     // Plafond relevé de 60 à 200 : avec le jitter élargi ci-dessus (attempts >= 1, magnitude
     // variable), l'espace de combos atteignables par combo est nettement plus grand, donc plus de
     // tentatives avant d'abandonner change concrètement le taux de réussite plutôt que de juste

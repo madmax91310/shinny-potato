@@ -98,6 +98,14 @@ export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie", "sect_tech
 // (pas de "si le drawdown dépasse X, retirer la ligne et redistribuer" dans engine.js). Toute
 // nouvelle utilisation de LEVERAGE_OPTIONS en Dynamique, sur ce profil ou un autre, doit repasser
 // par le même stress-test avant d'être ajoutée — jamais supposée sûre par défaut.
+//
+// Ajout du 14/09/2026 (Crypto-Curieux Dynamique, audit "Ajustement Crypto-Curieux Dynamique") : un
+// poids fixe pré-validé peut quand même retomber sous un seuil-plancher après jitter si une autre
+// ligne du même combo gagne du terrain à ses dépens — cf. CRYPTO_CURIEUX_BITCOIN_BOUNDS et la
+// vérification levier ≥10% dans violatesProfileInvariant (engine.js), qui annulent tout swap de
+// jitter ramenant le levier ou le Bitcoin sous leur plancher pour ce profil. Reste un filet de
+// jitter, pas le mécanisme "post-audit v2" ci-dessus : la politique de placement du poids de base
+// (choix du % initial, validé par stress-test avant tout ajout) est inchangée.
 export const LEVERAGE_OPTIONS = ["lqq", "cl2"];
 
 // Satellite géographique "Asie" (profil Thématique, cf. son combo Équilibré) — ajouté le 08/09/2026
@@ -1289,12 +1297,20 @@ export const PROFILES = [
       "Le détail, sans filtre 👇",
       "Ligne par ligne, la logique derrière ce dosage 👇",
     ],
+    // Révisé le 14/09/2026 (audit "Ajustement Crypto-Curieux Dynamique") : "Bitcoin, Ethereum, ou
+    // les deux" implique la présence des deux cryptos, alors qu'Ethereum n'apparaît jamais hors du
+    // palier Offensif (cf. riskCombos ci-dessous — id fixe "ethereum", jamais en Défensif/Équilibré/
+    // Dynamique). Gardé dans le pool mais désormais filtré par resolvePortfolioPlaceholders
+    // (engine.js) : jamais résolu si aucune ligne "ethereum" dans le tirage réel, pour que le pool
+    // Bitcoin-only (les 5 autres CTA) reste seul disponible sur ces trois paliers, conformément à
+    // la règle "le CTA reflète toujours la composition réelle".
     ctas: [
-      "Tu oserais mettre {bitcoin_pct}% de ton portefeuille en Bitcoin ? 👇",
-      "Ce niveau d'exposition crypto, ça te tente ou ça t'inquiète ? 👇",
-      "Bitcoin, Ethereum, ou les deux : ton choix ? 👇",
       "Tu serais capable de tenir cette poche crypto dans une année à -60% ? 👇",
+      "Ce niveau d'exposition crypto, ça te tente ou ça t'inquiète ? 👇",
       "La crypto dans un portefeuille « sérieux » : logique ou hérésie ? 👇",
+      "Tu aurais mis plus ou moins de Bitcoin ? 👇",
+      "Bitcoin à {bitcoin_pct}% : trop agressif ou pas assez ambitieux ? 👇",
+      "Bitcoin, Ethereum, ou les deux : ton choix ? 👇",
     ],
     warnings: [
       "La poche crypto peut perdre plus de 60% en un an, comme en 2022. Le reste du portefeuille est calibré pour absorber le choc, pas pour l'éviter.",
@@ -1345,8 +1361,8 @@ export const PROFILES = [
         // CORPBOND_OPTIONS (25% -> 19%, seule autre poche obligataire, rôle le plus proche
         // d'oblig_etat_us) et WORLD_OPTIONS (35% -> 25%, rôle de contrepoids diversifié le plus
         // proche d'actions_value) — BITCOIN_OPTIONS (conviction centrale) et GOLD_OPTIONS
-        // (protection) laissés intacts. Le palier Dynamique de ce profil n'a volontairement pas été
-        // touché (marge déjà très serrée, documentée plus bas — LEVERAGE_OPTIONS à 4% pré-calibré).
+        // (protection) laissés intacts. Le palier Dynamique de ce profil n'a pas été touché par cette
+        // insertion du 30/08/2026 (il a été révisé séparément le 14/09/2026, cf. plus bas).
         assets: [
           {
             idOptions: WORLD_OPTIONS, pct: 25,
@@ -1393,6 +1409,24 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        // Révisé le 14/09/2026 (audit "Ajustement Crypto-Curieux Dynamique") : Bitcoin 25% -> 19%
+        // et LEVERAGE_OPTIONS 4% -> 10%, World/Nasdaq/Gold inchangés. Deux problèmes corrigés par le
+        // même ajustement : (1) 9% de Bitcoin observé en tirage réel (jitter) ne justifiait plus
+        // l'étiquette du profil — un plancher Bitcoin [15%, 30%] est désormais imposé après chaque
+        // swap de jitter (cf. CRYPTO_CURIEUX_BITCOIN_BOUNDS dans engine.js), donc la base doit déjà
+        // être strictement à l'intérieur ; (2) 4% de levier n'avait aucun impact narratif — un
+        // plancher de 10% est imposé de la même façon (cf. la même fonction).
+        // Choix du financement des +6pt de levier : réduire Bitcoin plutôt que World/Nasdaq/Gold.
+        // Script de stress-test (toutes les combinaisons de idOptions, WORLD_OPTIONS x BITCOIN_OPTIONS
+        // x NASDAQ100_OPTIONS x LEVERAGE_OPTIONS x GOLD_OPTIONS, 320 combos) : réduire World, Nasdaq
+        // ou Gold pour financer le levier fait TOUJOURS dépasser le plancher de -30% (le pire cas
+        // 2022 atteint jusqu'à -32,58%), parce que lqq/cl2 sont presque aussi négatifs que Bitcoin
+        // cette année-là (lqq -59,2%, Bitcoin -64%, contre -14,72% pour le socle World et -0,4% pour
+        // l'or) — déplacer du poids d'une ligne défensive vers le levier aggrave donc le pire
+        // scénario bien plus qu'il ne le change en le déplaçant depuis Bitcoin, dont le rendement
+        // 2022 est du même ordre. Résultat vérifié : pire cas -28,77% (contre -29,06% pour l'ancien
+        // combo à 25%/4% — marge légèrement meilleure qu'avant, pas dégradée), confortablement sous
+        // le plancher de -30% de ce palier, sur les 320 combos testés.
         assets: [
           {
             idOptions: WORLD_OPTIONS, pct: 35,
@@ -1402,10 +1436,10 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: BITCOIN_OPTIONS, pct: 25,
+            idOptions: BITCOIN_OPTIONS, pct: 19,
             pourquoi: [
               "{pct}% : une conviction clairement affirmée, sur l'actif le plus volatil de la bibliothèque.",
-              "Le quart du portefeuille sur un actif capable de perdre les deux tiers de sa valeur en un an.",
+              "Un cinquième du portefeuille sur un actif capable de perdre les deux tiers de sa valeur en un an.",
             ],
           },
           {
@@ -1416,13 +1450,14 @@ export const PROFILES = [
             ],
           },
           {
-            // Marge très serrée sur ce combo (Bitcoin 25% + Nasdaq déjà proches du plafond de
-            // perte à eux seuls) : poids minime vérifié empiriquement pour rester sous -30% même
-            // sur le pire exercice (2022) du combo complet — cf. script de stress-test.
-            idOptions: LEVERAGE_OPTIONS, pct: 4,
+            // 4% -> 10% le 14/09/2026 : financé en réduisant Bitcoin (25% -> 19%) plutôt que
+            // World/Nasdaq/Gold — cf. commentaire en tête de ce combo pour le détail du stress-test.
+            // Pire scénario 2022 du combo complet vérifié sur les 320 combinaisons de idOptions :
+            // -28,77%, sous le plancher de -30% de ce palier.
+            idOptions: LEVERAGE_OPTIONS, pct: 10,
             pourquoi: [
-              "{pct}% de levier actions, dosé au minimum pour rester compatible avec le plafond de perte de ce niveau de risque.",
-              "Une touche de levier, mais à peine — le reste du portefeuille (crypto compris) laisse très peu de marge avant le plafond de perte.",
+              "{pct}% de levier actions, un poids qui pèse vraiment dans la performance du portefeuille tout en restant sous le plafond de perte de ce niveau de risque.",
+              "Une vraie dose de levier, plus symbolique cette fois — {pct}% qui comptent réellement sur la trajectoire du portefeuille.",
             ],
           },
           {
