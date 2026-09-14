@@ -82,6 +82,7 @@
   font-family: var(--font-display); font-weight: 700; font-size: 3.6cqw; color: var(--surface); box-shadow: 0 4px 14px -4px rgba(0, 0, 0, .5);
 }
 .bc-head-name { font-family: var(--font-display); font-weight: 600; font-size: 3.5cqw; color: var(--ink); line-height: 1.2; }
+.bc-last-verified { font-size: 2.4cqw; color: var(--ink-faint); }
 .bc-row { display: grid; gap: 2.4cqw; padding: 2.8cqw 0; border-bottom: 1px solid var(--border); }
 .bc-row:last-of-type { border-bottom: none; }
 .bc-row-label {

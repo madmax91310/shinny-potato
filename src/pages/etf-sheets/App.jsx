@@ -65,7 +65,10 @@ function EtfCard({ etf }) {
         </li>
         <li>
           <span className="es-fi">💰</span>
-          <span className="es-fv">Encours : {etf.aum}</span>
+          <span className="es-fv">
+            Encours : {etf.aum}
+            {etf.lastVerified && <span className="es-last-verified"> · vérifié le {etf.lastVerified}</span>}
+          </span>
         </li>
         <li>
           <span className="es-fi">🔄</span>

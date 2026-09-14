@@ -53,6 +53,7 @@
 .es-facts li { display: flex; align-items: baseline; gap: 10px; font-size: 14.5px; color: var(--es-text-dim); }
 .es-facts li .es-fi { flex: 0 0 20px; font-size: 14.5px; }
 .es-facts li .es-fv { color: var(--es-text); }
+.es-last-verified { font-size: 0.78em; color: var(--es-text-faint); }
 .es-facts li.mono .es-fv { font-family: var(--es-font-mono); font-variant-numeric: tabular-nums; }
 .es-yes { color: var(--es-positive); font-weight: 700; }
 .es-no { color: var(--es-negative); font-weight: 700; }

@@ -1,9 +1,15 @@
 // Base de données courtiers — modifie ici chaque semaine.
 // rank : 1 = meilleur, plus haut = moins bon (sert au surlignage).
 // Repris tel quel de la session d'origine, aucune donnée modifiée.
+//
+// lastVerified : date de la vérification la plus récente déjà documentée dans les commentaires de
+// CET objet (jamais une date ajoutée à la main séparément — cf. App.jsx pour l'affichage), ajouté
+// le 14/09/2026 à la demande de l'utilisateur (audit "outils"). Absent chez fortuneo/xtb/caidf :
+// aucun commentaire daté n'existe pour ces 3 courtiers depuis la session d'origine — pas une date
+// oubliée, une absence réelle de donnée à ne pas inventer.
 export const BROKERS = [
   {
-    id: "tr", nom: "Trade Republic", code: "TR", color: "#5FA8D3", emoji: "🔵",
+    id: "tr", nom: "Trade Republic", code: "TR", color: "#5FA8D3", emoji: "🔵", lastVerified: "03/09/2026",
     frais: { rank: 1, resume: "1€ / ordre", detail: "Frais fixe, quel que soit le montant" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 1, resume: "0€ (PEA & CTO)", detail: "+7 500 titres · hebdo / bimensuel / mensuel" },
@@ -40,7 +46,7 @@ export const BROKERS = [
     },
   },
   {
-    id: "bourso", nom: "BoursoBank", code: "BB", color: "#E4735E", emoji: "🟡",
+    id: "bourso", nom: "BoursoBank", code: "BB", color: "#E4735E", emoji: "🟡", lastVerified: "09/09/2026",
     frais: { rank: 2, resume: "1,99€ puis 0,60%", detail: "Plafonné à 0,5% du montant" },
     // MàJ du 05/09/2026 (coquille corrigée le 09/09/2026 : la date indiquait par erreur 05/10/2026,
     // une date alors future — confirmé 05/09/2026 par l'utilisateur) (communication officielle
@@ -67,7 +73,7 @@ export const BROKERS = [
     },
   },
   {
-    id: "ibkr", nom: "Interactive Brokers", code: "IBKR", color: "#7C93C9", emoji: "🟢",
+    id: "ibkr", nom: "Interactive Brokers", code: "IBKR", color: "#7C93C9", emoji: "🟢", lastVerified: "03/09/2026",
     frais: { rank: 1, resume: "0,05% (min 1,25€, max 29€)", detail: "Tarif dégressif · défaut fixe min 3€" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 2, resume: "CTO uniquement", detail: "Pas de DCA sur PEA" },
@@ -159,7 +165,7 @@ export const BROKERS = [
     },
   },
   {
-    id: "bd", nom: "Bourse Direct", code: "BD", color: "#C98B72", emoji: "🟤",
+    id: "bd", nom: "Bourse Direct", code: "BD", color: "#C98B72", emoji: "🟤", lastVerified: "03/09/2026",
     frais: { rank: 2, resume: "Palier dès 0,99€", detail: "Jusqu’à 0,09% au-delà de 4 400€" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 3, resume: "Non disponible" },
@@ -184,7 +190,7 @@ export const BROKERS = [
     },
   },
   {
-    id: "saxo", nom: "Saxo Bank", code: "SX", color: "#AAB4CC", emoji: "⚪",
+    id: "saxo", nom: "Saxo Bank", code: "SX", color: "#AAB4CC", emoji: "⚪", lastVerified: "03/09/2026",
     frais: { rank: 1, resume: "Dès 2€", detail: "0€ sur 70 actions UE jusqu’au 31/12/2026" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 2, resume: "CTO uniquement (PEPS)", detail: "0€ ETF & fonds, mensuel — pas sur PEA" },
