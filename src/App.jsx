@@ -12,12 +12,14 @@ import FeeImpact from './pages/fee-impact/App'
 import { TOOLS } from './tools'
 
 // Tweets ETF, Lexique financier et Pouvoir d'achat n'ont plus de route dédiée : leurs pages
-// (etf-tweets/App, lexique-financier/App, purchasing-power/App) faisaient doublon avec les formats
-// équivalents de Tweet Midi (Comparatif ETF, Fiche lexique, Pouvoir d'achat), qui produisent le même
-// texte via les mêmes données/fonctions (cf. tweet-midi/data/comparatifEtf.js, ficheLexique.js,
-// tweet-midi/lib.js) — retiré du dashboard/routing le 03/09/2026 à la demande de l'utilisateur,
-// désormais accessibles uniquement depuis Tweet Midi. Les fichiers data.js/lib.js de ces 3 dossiers
-// restent utilisés (importés par Tweet Midi) ; seuls leurs App.jsx (page autonome) sont orphelins.
+// faisaient doublon avec les formats équivalents de Tweet Midi (Comparatif ETF, Fiche lexique,
+// Pouvoir d'achat), qui produisent le même texte via les mêmes données/fonctions (cf.
+// tweet-midi/data/comparatifEtf.js, ficheLexique.js, tweet-midi/lib.js) — retiré du
+// dashboard/routing le 03/09/2026 à la demande de l'utilisateur, désormais accessibles uniquement
+// depuis Tweet Midi. Leurs App.jsx de page autonome (devenus du code mort une fois la route retirée)
+// ont été supprimés le 14/09/2026 après vérification qu'aucun import résiduel n'y pointait — seuls
+// data.js/lib.js de ces 3 dossiers subsistent (etf-tweets a aussi gardé lib/tweetFormat.js), encore
+// importés par Tweet Midi.
 const TOOL_ELEMENTS = {
   '/generateur-portefeuilles': <PortfolioGenerator />,
   '/comparatif-courtiers': <BrokerComparator />,
