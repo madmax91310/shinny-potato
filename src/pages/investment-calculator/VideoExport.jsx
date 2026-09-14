@@ -148,6 +148,14 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         series2: s2.series,
         invested1: s1.invested,
         invested2: s2.invested,
+        // months1/months2 + startYm/endYm : permettent au rendu de placer chaque point à sa vraie
+        // position chronologique plutôt qu'à une position d'index uniforme — indispensable dès que
+        // s1/s2 n'ont pas le même nombre de points (actif à grain annuel comparé à un actif à
+        // données mensuelles, cf. sparseAssetSeries dans lib.js et revealSide dans videoExport.js).
+        months1: s1.months,
+        months2: s2.months,
+        startYm,
+        endYm,
         asset1Label: `${ASSETS[asset1Id].icon} ${ASSETS[asset1Id].label}`,
         asset2Label: `${ASSETS[asset2Id].icon} ${ASSETS[asset2Id].label}`,
         periodLabel: comparativeInputs.periodLabel,

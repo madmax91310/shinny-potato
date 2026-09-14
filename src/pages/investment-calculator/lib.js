@@ -68,6 +68,28 @@ export function computeAssetSeries(points, startYm, endYm, amount, mode) {
   return { months, series, invested, finalValue: series[series.length - 1], totalInvested: invested[invested.length - 1] }
 }
 
+// Série réduite aux VRAIS points de données (+ point de départ/fin, interpolés comme le reste de
+// l'app) pour les actifs à grain annuel (SPARSE_MONTHLY_DATA_IDS) — dédiée à l'affichage vidéo.
+// computeAssetSeries ci-dessus produit un point par mois même pour ces actifs, mais interpolatePrice
+// étant une interpolation LINÉAIRE entre deux vrais points, tous les mois intermédiaires d'une même
+// année tombent exactement sur le segment de droite reliant les deux points réels qui l'entourent —
+// le tracé obtenu est donc rigoureusement identique à celui-ci, mais son ANIMATION ne l'était pas :
+// le curseur passait ~11 mois sur 12 dans un segment sans aucun vrai mouvement visible, avant un
+// unique décrochage à chaque point réel (retour utilisateur du 14/09/2026 : "ça rend hyper mal à la
+// vidéo"). En animant uniquement sur les vrais points (mode versement unique uniquement — le seul
+// disponible pour ces actifs, DCA étant bloqué), chaque segment réel reçoit un temps d'écran égal
+// plutôt que proportionnel à sa durée calendaire, sans jamais afficher une seule valeur inventée :
+// mêmes points, mêmes prix, juste moins de mois vides entre deux vrais points.
+export function sparseAssetSeries(points, startYm, endYm, amount) {
+  const p0 = interpolatePrice(points, startYm)
+  const u = amount / p0
+  const between = points.filter((p) => ymIndex(p.date) > ymIndex(startYm) && ymIndex(p.date) < ymIndex(endYm))
+  const months = [startYm, ...between.map((p) => p.date), endYm]
+  const series = months.map((ym) => u * interpolatePrice(points, ym))
+  const invested = months.map(() => amount)
+  return { months, series, invested, finalValue: series[series.length - 1], totalInvested: amount }
+}
+
 export function computeBenchmarkSeries(rateTable, startYm, endYm, amount, mode) {
   const months = monthsBetween(startYm, endYm)
   const series = []

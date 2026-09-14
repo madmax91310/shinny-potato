@@ -5,9 +5,11 @@
 // nouvelle. Le tracé de la courbe entre deux points connus (interpolation de POSITION à l'écran pour
 // l'animation) est la même technique de rendu qu'un graphique classique (cf. Sparkline.jsx, qui relie
 // déjà les points par des segments de droite) — jamais une valeur de série inventée : les nombres
-// affichés en overlay (investi cumulé, valeur actuelle) sont toujours lus directement dans series[]/
-// invested[] à un index entier, jamais interpolés.
-import { fmtEUR, fmtPct, computeAssetSeries, applyPriceOverride, ymIndex } from './lib'
+// affichés en overlay (investi cumulé, valeur actuelle) sont soit lus directement dans series[]/
+// invested[] à un index entier (mode Simple, drawFrame), soit interpolés en ligne droite entre deux
+// vrais points adjacents à l'instant t écoulé (mode Comparatif, drawComparativeFrame/revealSide) —
+// jamais une troisième source de donnée inventée entre les deux.
+import { fmtEUR, fmtPct, computeAssetSeries, sparseAssetSeries, applyPriceOverride, ymIndex } from './lib'
 import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, MONTHS_SHORT } from './data'
 
 const W = 1080
@@ -106,9 +108,15 @@ export function getComparativeAssetIssue(assetId, startYm, mode) {
 // concerne qu'un seul actif à la fois — le caller (VideoExport.jsx) ne le transmet donc que si
 // assetId correspond bien à l'actif pour lequel il a été saisi, sinon il reste vide et cette
 // fonction se comporte comme avant (aucun override).
+// Actif à grain annuel (SPARSE_MONTHLY_DATA_IDS) : sparseAssetSeries (lib.js) plutôt que la grille
+// mensuelle complète — cf. son commentaire pour le pourquoi (rendu vidéo "hyper mal" sur ces actifs,
+// retour utilisateur du 14/09/2026). Mode toujours 'lump' pour ces actifs (DCA bloqué en amont par
+// getComparativeAssetIssue), donc pas de branche DCA à gérer ici.
 export function computeComparativeSeries(assetId, startYm, endYm, amount, mode, overridePriceRaw = '') {
   const points = ASSETS[assetId].points
-  const result = computeAssetSeries(points, startYm, endYm, amount, mode)
+  const result = SPARSE_MONTHLY_DATA_IDS.has(assetId) && mode !== 'dca'
+    ? sparseAssetSeries(points, startYm, endYm, amount)
+    : computeAssetSeries(points, startYm, endYm, amount, mode)
   return applyPriceOverride(result, points, overridePriceRaw, endYm)
 }
 
@@ -199,23 +207,49 @@ function drawChart(ctx, x0, y0, w, h, series, invested, upToIndex, partialFrac) 
   return tip
 }
 
-// Points d'une série, mise à l'échelle sur une plage min/max PARTAGÉE (passée en paramètre) plutôt que
-// calculée pour cette seule série — c'est ce qui permet à deux courbes de partager le même axe (cf.
-// drawDualChart). Même technique de segment partiel (position à l'écran, pas une donnée) que buildPts.
-function scaledPointsForRange(x0, y0, w, h, values, upToIndex, partialFrac, min, max) {
-  const n = values.length
-  const range = max - min || 1
-  const xStep = n > 1 ? w / (n - 1) : 0
-  const xy = (i, v) => [x0 + i * xStep, y0 + (1 - (v - min) / range) * h]
-  const lastIdx = Math.min(upToIndex, n - 1)
-  const pts = []
-  for (let i = 0; i <= lastIdx; i++) pts.push(xy(i, values[i]))
-  if (lastIdx < n - 1 && partialFrac > 0) {
-    const a = xy(lastIdx, values[lastIdx])
-    const b = xy(lastIdx + 1, values[lastIdx + 1])
-    pts.push([a[0] + (b[0] - a[0]) * partialFrac, a[1] + (b[1] - a[1]) * partialFrac])
+// Révèle une série (valeur ET capital investi) jusqu'à l'instant t (0-1, fraction du temps
+// CALENDAIRE écoulé dans [globalStartYm, globalEndYm]) — chaque point est placé à sa vraie position
+// chronologique, jamais à une position d'index uniforme (contrairement à buildPts dans drawChart,
+// mode Simple à une seule série, où ça ne pose pas de problème). Indispensable dès qu'un duel
+// Comparatif mélange un actif à grain annuel (peu de points réels, cf. sparseAssetSeries dans
+// lib.js) et un actif à données mensuelles (beaucoup de points) : les deux séries n'ont alors PLUS
+// le même nombre de points, donc plus le même "nombre de mois" implicite qu'avant l'ajout de
+// sparseAssetSeries — sans ce calibrage par le temps réel plutôt que par l'index, la série la plus
+// courte se retrouverait comprimée sur une fraction de la largeur du graphique au lieu de couvrir
+// toute la période comme l'autre, et les deux courbes avanceraient hors-sync pendant l'animation.
+function revealSide(months, seriesArr, investedArr, t, globalStartYm, globalEndYm) {
+  const totalSpan = ymIndex(globalEndYm) - ymIndex(globalStartYm) || 1
+  const frac = (ym) => (ymIndex(ym) - ymIndex(globalStartYm)) / totalSpan
+  const seriesFracs = []
+  const investedFracs = []
+  let lastF = 0
+  let lastV = seriesArr[0]
+  let lastI = investedArr[0]
+  for (let idx = 0; idx < months.length; idx++) {
+    const f = frac(months[idx])
+    if (f <= t) {
+      seriesFracs.push([f, seriesArr[idx]])
+      investedFracs.push([f, investedArr[idx]])
+      lastF = f
+      lastV = seriesArr[idx]
+      lastI = investedArr[idx]
+    } else {
+      if (t > lastF) {
+        const segT = (t - lastF) / (f - lastF || 1)
+        lastV = lastV + (seriesArr[idx] - lastV) * segT
+        lastI = lastI + (investedArr[idx] - lastI) * segT
+        seriesFracs.push([t, lastV])
+        investedFracs.push([t, lastI])
+      }
+      break
+    }
   }
-  return pts
+  return { seriesFracs, investedFracs, currentValue: lastV, currentInvested: lastI }
+}
+
+function xyFromFracs(x0, y0, w, h, fracs, min, max) {
+  const range = max - min || 1
+  return fracs.map(([f, v]) => [x0 + f * w, y0 + (1 - (v - min) / range) * h])
 }
 
 function strokeSeriesLine(ctx, pts, color) {
@@ -259,12 +293,16 @@ function strokeSeriesLine(ctx, pts, color) {
 // `invested1`/`invested2` sont tracés en pointillé (même code couleur que la courbe de valeur
 // correspondante) pour montrer COMMENT le capital s'est constitué : une ligne qui grimpe pour un DCA,
 // plate dès le premier mois pour un versement unique — visuellement, c'est ce qui explique l'écart
-// entre les deux courbes de valeur quand le mode diffère sur un même actif. `val1`/`val2` et le
-// min/max partagé sont calculés une seule fois par appelant (drawComparativeFrame) pour rester stables
-// d'une frame à l'autre. Les séries partagent forcément le même nombre de mois (même startYm/endYm
-// passés à computeComparativeSeries pour les deux actifs), donc l'axe X reste aligné sans aucune
-// interpolation entre les deux séries elles-mêmes.
-function drawDualChart(ctx, x0, y0, w, h, val1, val2, invested1, invested2, upToIndex, partialFrac, color1, color2, min, max) {
+// entre les deux courbes de valeur quand le mode diffère sur un même actif. `min`/`max` (plage
+// commune) sont calculés une seule fois par appelant (drawComparativeFrame) pour rester stables
+// d'une frame à l'autre. `seriesFracsN`/`investedFracsN` sont déjà des paires [fraction de temps
+// écoulé 0-1, valeur] — cf. revealSide, qui place chaque point à sa vraie position CHRONOLOGIQUE
+// plutôt qu'à une position d'index uniforme : les deux séries d'un duel n'ont plus forcément le
+// même nombre de points depuis l'ajout de sparseAssetSeries (un actif à grain annuel comparé à un
+// actif à données mensuelles n'a pas le même nombre de vrais points sur la même période), donc
+// cette fonction ne fait plus aucune hypothèse sur leur longueur — juste dessiner les points déjà
+// positionnés qu'on lui donne.
+function drawDualChart(ctx, x0, y0, w, h, seriesFracs1, seriesFracs2, investedFracs1, investedFracs2, color1, color2, min, max) {
   ctx.strokeStyle = 'rgba(255,255,255,0.08)'
   ctx.lineWidth = 1
   ctx.setLineDash([4, 6])
@@ -277,8 +315,8 @@ function drawDualChart(ctx, x0, y0, w, h, val1, val2, invested1, invested2, upTo
   })
   ctx.setLineDash([])
 
-  const investedPts1 = scaledPointsForRange(x0, y0, w, h, invested1, upToIndex, partialFrac, min, max)
-  const investedPts2 = scaledPointsForRange(x0, y0, w, h, invested2, upToIndex, partialFrac, min, max)
+  const investedPts1 = xyFromFracs(x0, y0, w, h, investedFracs1, min, max)
+  const investedPts2 = xyFromFracs(x0, y0, w, h, investedFracs2, min, max)
   ;[[investedPts1, color1], [investedPts2, color2]].forEach(([pts, color]) => {
     if (pts.length < 2) return
     ctx.strokeStyle = color
@@ -292,8 +330,8 @@ function drawDualChart(ctx, x0, y0, w, h, val1, val2, invested1, invested2, upTo
     ctx.globalAlpha = 1
   })
 
-  const pts1 = scaledPointsForRange(x0, y0, w, h, val1, upToIndex, partialFrac, min, max)
-  const pts2 = scaledPointsForRange(x0, y0, w, h, val2, upToIndex, partialFrac, min, max)
+  const pts1 = xyFromFracs(x0, y0, w, h, seriesFracs1, min, max)
+  const pts2 = xyFromFracs(x0, y0, w, h, seriesFracs2, min, max)
   strokeSeriesLine(ctx, pts1, color1)
   strokeSeriesLine(ctx, pts2, color2)
 }
@@ -408,11 +446,13 @@ function drawFrame(ctx, params, elapsedMs) {
 
 // Frame du mode Comparatif — même squelette que drawFrame (fond, kicker, période, pastille de mode,
 // disclaimer), mais deux courbes/deux libellés au lieu d'un. Toutes les valeurs affichées viennent de
-// series1[]/series2[] (computeComparativeSeries, donc computeAssetSeries de lib.js) à un index entier
-// — jamais interpolées pour l'overlay, seule la position à l'écran de la courbe l'est (cf. plus haut).
+// series1[]/series2[] (computeComparativeSeries, donc computeAssetSeries/sparseAssetSeries de lib.js)
+// via revealSide, à l'instant t — soit un vrai point de la série, soit une interpolation en ligne
+// droite entre deux vrais points adjacents quand t tombe entre les deux (cf. revealSide) : jamais une
+// valeur inventée, juste la même technique d'interpolation de POSITION déjà utilisée pour l'animation
+// de la courbe, appliquée aussi aux nombres affichés en overlay.
 function drawComparativeFrame(ctx, params, elapsedMs) {
-  const { series1, series2, invested1, invested2, asset1Label, asset2Label, periodLabel, mode1Label, mode2Label, finalValue1, finalValue2, gainPct1, gainPct2 } = params
-  const n = series1.length
+  const { series1, series2, invested1, invested2, months1, months2, startYm, endYm, asset1Label, asset2Label, periodLabel, mode1Label, mode2Label, finalValue1, finalValue2, gainPct1, gainPct2 } = params
   const color1 = COLORS.tealBright
   const color2 = COLORS.goldBright
 
@@ -495,26 +535,27 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
 
   const drawPhase = elapsedMs < DRAW_MS
   const drawT = Math.min(1, elapsedMs / DRAW_MS)
-  const posFloat = drawT * (n - 1)
-  const idx = Math.min(n - 1, Math.floor(posFloat))
-  const frac = drawPhase ? posFloat - idx : 0
 
   const chartX = PAD
   const chartY = 356
   const chartW = W - PAD * 2
   const chartH = 344
-  drawDualChart(ctx, chartX, chartY, chartW, chartH, series1, series2, invested1, invested2, idx, frac, color1, color2, valMin, valMax)
+  const side1 = revealSide(months1, series1, invested1, drawT, startYm, endYm)
+  const side2 = revealSide(months2, series2, invested2, drawT, startYm, endYm)
+  drawDualChart(ctx, chartX, chartY, chartW, chartH, side1.seriesFracs, side2.seriesFracs, side1.investedFracs, side2.investedFracs, color1, color2, valMin, valMax)
 
   const statsY = chartY + chartH + 40
 
   if (drawPhase) {
-    // Valeurs lues à l'index entier atteint dans series1[]/series2[] — jamais interpolées.
+    // Valeurs lues à l'instant t (fraction de temps calendaire écoulée, cf. revealSide) — toujours
+    // une valeur RÉELLE de series1[]/series2[] à un point réel, ou une interpolation en ligne droite
+    // entre deux points réels adjacents si t tombe entre les deux, jamais une donnée inventée.
     ctx.font = FONTS.statLabel
     ctx.fillStyle = COLORS.inkFaint
     ctx.fillText(asset1Label.toUpperCase(), chartX, statsY)
     ctx.font = FONTS.statValue
     ctx.fillStyle = color1
-    ctx.fillText(fmtEUR(series1[idx]), chartX, statsY + 32)
+    ctx.fillText(fmtEUR(side1.currentValue), chartX, statsY + 32)
 
     const rightX = chartX + chartW / 2 + 16
     ctx.font = FONTS.statLabel
@@ -522,7 +563,7 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
     ctx.fillText(asset2Label.toUpperCase(), rightX, statsY)
     ctx.font = FONTS.statValue
     ctx.fillStyle = color2
-    ctx.fillText(fmtEUR(series2[idx]), rightX, statsY + 32)
+    ctx.fillText(fmtEUR(side2.currentValue), rightX, statsY + 32)
   } else {
     const holdT = Math.min(1, (elapsedMs - DRAW_MS) / 600)
     ctx.save()

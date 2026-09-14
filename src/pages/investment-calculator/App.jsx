@@ -3,7 +3,7 @@ import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
   getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, REDUCED_CONFIDENCE_LAST_POINT,
 } from './data'
-import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex } from './lib'
+import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride } from './lib'
 import Sparkline from './Sparkline'
 import VideoExport from './VideoExport'
 import PageHeader from '../../design-system/PageHeader'
@@ -41,6 +41,15 @@ function ResultCard({ state, d, copied, onCopy }) {
   const inflPct = pct(d.inflation.finalValue, d.inflation.totalInvested)
   const monthShort = MONTHS_SHORT[parseInt(d.startYm.split('-')[1], 10) - 1]
   const yearLabel = d.startYm.split('-')[0]
+
+  // Vidéo uniquement : série réduite aux vrais points pour un actif à grain annuel (DCA bloqué,
+  // donc toujours en mode lump ici) — la grille mensuelle complète de d.result (utilisée pour le
+  // Sparkline statique et les stats, INCHANGÉE) rendait mal animée sur ces actifs (retour
+  // utilisateur du 14/09/2026, cf. sparseAssetSeries dans lib.js pour le détail).
+  const videoResult =
+    !d.isCustom && SPARSE_MONTHLY_DATA_IDS.has(state.assetId) && d.effectiveMode !== 'dca'
+      ? applyPriceOverride(sparseAssetSeries(asset.points, d.startYm, d.endYm, d.amount), asset.points, state.overridePriceRaw, d.endYm)
+      : d.result
 
   return (
     <div className="ic-card">
@@ -110,13 +119,13 @@ function ResultCard({ state, d, copied, onCopy }) {
         </div>
         <VideoExport
           videoParams={{
-            series: d.result.series,
-            invested: d.result.invested,
+            series: videoResult.series,
+            invested: videoResult.invested,
             assetLabel: `${d.isCustom ? '✎' : asset.icon} ${assetLabel}`,
             periodLabel: `${monthShort} ${yearLabel} → aujourd'hui`,
             modeLabel: d.effectiveMode === 'dca' ? 'DCA MENSUEL' : 'VERSEMENT UNIQUE',
-            totalInvested: d.result.totalInvested,
-            finalValue: d.result.finalValue,
+            totalInvested: videoResult.totalInvested,
+            finalValue: videoResult.finalValue,
             gainPct,
           }}
           filenameBase={`investissement-${d.isCustom ? 'actif' : state.assetId}-${d.effectiveMode}`}
