@@ -7,7 +7,7 @@ import {
   getComparativeAssetIssue,
   computeComparativeSeries,
 } from './videoExport'
-import { pct } from './lib'
+import { pct, monthsBetween } from './lib'
 import Button from '../../design-system/Button'
 
 function triggerAnchorDownload(url, filename) {
@@ -123,11 +123,25 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
     setStatus('recording')
     setProgress(0)
     try {
+      // Même somme investie au total des deux côtés, pas le même chiffre appliqué tel quel aux deux
+      // modes (100€/mois pendant 5 ans, ce n'est PAS la même chose que 100€ en une fois — demande
+      // utilisateur du 14/09/2026, exemple donné : 100€/mois sur 5 ans doit correspondre à 6 000€ en
+      // versement unique, pas à 100€). `amount` vient du panneau Simple et son sens dépend du mode
+      // dans lequel il a été saisi (comparativeInputs.mode, cf. App.jsx : "Avec X€/mois" en DCA,
+      // "Ton X€" en versement unique) — on part de cette valeur telle que l'utilisateur l'a tapée et
+      // on dérive l'autre montant pour que le total investi sur la période soit identique des deux
+      // côtés. N'change rien quand les deux côtés partagent le même mode que le panneau Simple (cas
+      // par défaut, deux actifs différents) : aucune mise à l'échelle n'est appliquée dans ce cas.
+      const n = monthsBetween(startYm, endYm).length
+      const dcaAmount = comparativeInputs.mode === 'dca' ? amount : amount / n
+      const lumpAmount = comparativeInputs.mode === 'dca' ? amount * n : amount
+      const amountFor = (mode) => (mode === 'dca' ? dcaAmount : lumpAmount)
+
       // overridePriceRaw ne s'applique qu'à UN SEUL actif (celui du panneau Simple) — et seulement
       // au premier des deux côtés qui correspond, dans le cas où le même actif est comparé deux fois
       // (sinon le "prix à jour" serait appliqué deux fois à la même série, silencieusement doublé).
-      const s1 = computeComparativeSeries(asset1Id, startYm, endYm, amount, mode1, asset1Id === overrideAssetId ? overridePriceRaw : '')
-      const s2 = computeComparativeSeries(asset2Id, startYm, endYm, amount, mode2, asset2Id === overrideAssetId && asset2Id !== asset1Id ? overridePriceRaw : '')
+      const s1 = computeComparativeSeries(asset1Id, startYm, endYm, amountFor(mode1), mode1, asset1Id === overrideAssetId ? overridePriceRaw : '')
+      const s2 = computeComparativeSeries(asset2Id, startYm, endYm, amountFor(mode2), mode2, asset2Id === overrideAssetId && asset2Id !== asset1Id ? overridePriceRaw : '')
       const params = {
         canvas: canvasRef.current,
         series1: s1.series,
