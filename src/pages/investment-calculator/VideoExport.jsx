@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ASSET_ORDER, ASSETS } from './data'
+import { ASSET_ORDER, ASSETS, SPARSE_MONTHLY_DATA_IDS } from './data'
 import {
   isVideoExportSupported,
   renderResultVideo,
@@ -23,6 +23,10 @@ function triggerAnchorDownload(url, filename) {
 // Comparatif, qui compare deux séries historiques réelles.
 const COMPARATIVE_ASSET_IDS = ASSET_ORDER
 
+// Mêmes libellés que App.jsx (d.effectiveMode === 'dca' ? 'DCA MENSUEL' : 'VERSEMENT UNIQUE') —
+// affichés sur le canvas pour distinguer les deux côtés du duel quand ils portent sur le même actif.
+const MODE_LABELS = { lump: 'VERSEMENT UNIQUE', dca: 'DCA MENSUEL' }
+
 // Bouton "Générer la vidéo" du Calculateur — anime sur un <canvas> une (mode Simple) ou deux (mode
 // Comparatif) série(s) déjà calculée(s) par derive()/computeAssetSeries (aucun nouveau calcul, cf.
 // videoExport.js) et l'enregistre via MediaRecorder. 100% côté client, aucun service tiers.
@@ -38,6 +42,14 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   const defaultAsset2 = COMPARATIVE_ASSET_IDS.find((id) => id !== defaultAsset1) ?? COMPARATIVE_ASSET_IDS[1]
   const [asset1Id, setAsset1Id] = useState(defaultAsset1)
   const [asset2Id, setAsset2Id] = useState(defaultAsset2)
+  // Mode (versement unique / DCA) par actif — auparavant un seul mode partagé par les deux côtés du
+  // duel (cf. comparativeInputs.mode, hérité du panneau Simple). Ajouté pour permettre de comparer le
+  // MÊME actif sous ses deux modes (ex. Bitcoin en DCA vs Bitcoin en versement unique) — cf. demande
+  // utilisateur du 14/09/2026. Initialisés au mode du panneau Simple pour ne rien changer au
+  // comportement par défaut (deux actifs différents, même mode) tant que l'utilisateur ne les change
+  // pas explicitement.
+  const [mode1, setMode1] = useState(comparativeInputs?.mode ?? 'lump')
+  const [mode2, setMode2] = useState(comparativeInputs?.mode ?? 'lump')
 
   useEffect(
     () => () => {
@@ -71,13 +83,28 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
     resetVideo()
   }
 
+  function changeMode1(m) {
+    setMode1(m)
+    resetVideo()
+  }
+
+  function changeMode2(m) {
+    setMode2(m)
+    resetVideo()
+  }
+
   const issue1 = compMode === 'comparative' && comparativeInputs
-    ? getComparativeAssetIssue(asset1Id, comparativeInputs.startYm, comparativeInputs.mode)
+    ? getComparativeAssetIssue(asset1Id, comparativeInputs.startYm, mode1)
     : null
   const issue2 = compMode === 'comparative' && comparativeInputs
-    ? getComparativeAssetIssue(asset2Id, comparativeInputs.startYm, comparativeInputs.mode)
+    ? getComparativeAssetIssue(asset2Id, comparativeInputs.startYm, mode2)
     : null
-  const comparativeBlocked = Boolean(issue1 || issue2)
+  // Un même actif comparé à lui-même avec le même mode n'a rien à montrer (deux courbes identiques) —
+  // bloqué comme les autres "issues", jamais silencieusement autorisé. Comparer le même actif reste
+  // valide dès que les modes diffèrent (c'est justement le nouveau cas d'usage : DCA vs versement
+  // unique sur un même actif).
+  const sameDuel = asset1Id === asset2Id && mode1 === mode2
+  const comparativeBlocked = Boolean(issue1 || issue2 || sameDuel)
 
   async function handleGenerateSimple() {
     setStatus('recording')
@@ -92,12 +119,15 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   }
 
   async function handleGenerateComparative() {
-    const { amount, startYm, endYm, mode, periodLabel, modeLabel, overrideAssetId, overridePriceRaw } = comparativeInputs
+    const { amount, startYm, endYm, overrideAssetId, overridePriceRaw } = comparativeInputs
     setStatus('recording')
     setProgress(0)
     try {
-      const s1 = computeComparativeSeries(asset1Id, startYm, endYm, amount, mode, asset1Id === overrideAssetId ? overridePriceRaw : '')
-      const s2 = computeComparativeSeries(asset2Id, startYm, endYm, amount, mode, asset2Id === overrideAssetId ? overridePriceRaw : '')
+      // overridePriceRaw ne s'applique qu'à UN SEUL actif (celui du panneau Simple) — et seulement
+      // au premier des deux côtés qui correspond, dans le cas où le même actif est comparé deux fois
+      // (sinon le "prix à jour" serait appliqué deux fois à la même série, silencieusement doublé).
+      const s1 = computeComparativeSeries(asset1Id, startYm, endYm, amount, mode1, asset1Id === overrideAssetId ? overridePriceRaw : '')
+      const s2 = computeComparativeSeries(asset2Id, startYm, endYm, amount, mode2, asset2Id === overrideAssetId && asset2Id !== asset1Id ? overridePriceRaw : '')
       const params = {
         canvas: canvasRef.current,
         series1: s1.series,
@@ -106,8 +136,9 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         invested2: s2.invested,
         asset1Label: `${ASSETS[asset1Id].icon} ${ASSETS[asset1Id].label}`,
         asset2Label: `${ASSETS[asset2Id].icon} ${ASSETS[asset2Id].label}`,
-        periodLabel,
-        modeLabel,
+        periodLabel: comparativeInputs.periodLabel,
+        mode1Label: MODE_LABELS[mode1],
+        mode2Label: MODE_LABELS[mode2],
         finalValue1: s1.finalValue,
         finalValue2: s2.finalValue,
         gainPct1: pct(s1.finalValue, s1.totalInvested),
@@ -134,9 +165,13 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
     return <p className="ic-hint">🎬 Génération vidéo indisponible sur ce navigateur (MediaRecorder non supporté).</p>
   }
 
+  // Même actif des deux côtés (DCA vs versement unique) : "asset-vs-asset" ne distinguerait plus les
+  // deux exports, d'où le suffixe de mode dans ce cas précis.
   const filename =
     compMode === 'comparative'
-      ? `${filenameBase}-comparatif-${asset1Id}-vs-${asset2Id}.webm`
+      ? asset1Id === asset2Id
+        ? `${filenameBase}-comparatif-${asset1Id}-${mode1}-vs-${mode2}.webm`
+        : `${filenameBase}-comparatif-${asset1Id}-vs-${asset2Id}.webm`
       : `${filenameBase}.webm`
 
   return (
@@ -155,25 +190,56 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
           <div className="ic-row2">
             <div>
               <select className="ic-control" value={asset1Id} onChange={(e) => changeAsset1(e.target.value)}>
-                {COMPARATIVE_ASSET_IDS.filter((id) => id !== asset2Id).map((id) => (
+                {COMPARATIVE_ASSET_IDS.map((id) => (
                   <option key={id} value={id}>
                     {ASSETS[id].icon} {ASSETS[id].label}
                   </option>
                 ))}
               </select>
+              <div className="ic-segmented ic-video-mode-toggle">
+                <button type="button" className={mode1 === 'lump' ? 'active' : ''} onClick={() => changeMode1('lump')}>
+                  Versement unique
+                </button>
+                <button
+                  type="button"
+                  className={mode1 === 'dca' ? 'active' : ''}
+                  disabled={SPARSE_MONTHLY_DATA_IDS.has(asset1Id)}
+                  onClick={() => changeMode1('dca')}
+                >
+                  Mensuel (DCA)
+                </button>
+              </div>
               {issue1 && <p className="ic-field-error">{issue1}</p>}
             </div>
             <div>
               <select className="ic-control" value={asset2Id} onChange={(e) => changeAsset2(e.target.value)}>
-                {COMPARATIVE_ASSET_IDS.filter((id) => id !== asset1Id).map((id) => (
+                {COMPARATIVE_ASSET_IDS.map((id) => (
                   <option key={id} value={id}>
                     {ASSETS[id].icon} {ASSETS[id].label}
                   </option>
                 ))}
               </select>
+              <div className="ic-segmented ic-video-mode-toggle">
+                <button type="button" className={mode2 === 'lump' ? 'active' : ''} onClick={() => changeMode2('lump')}>
+                  Versement unique
+                </button>
+                <button
+                  type="button"
+                  className={mode2 === 'dca' ? 'active' : ''}
+                  disabled={SPARSE_MONTHLY_DATA_IDS.has(asset2Id)}
+                  onClick={() => changeMode2('dca')}
+                >
+                  Mensuel (DCA)
+                </button>
+              </div>
               {issue2 && <p className="ic-field-error">{issue2}</p>}
             </div>
           </div>
+          {sameDuel && (
+            <p className="ic-field-error">
+              Choisis deux actifs différents, ou le même actif avec deux modes différents (DCA vs versement unique) — deux courbes identiques n'ont rien à comparer.
+            </p>
+          )}
         </div>
       )}
 

@@ -407,7 +407,7 @@ function drawFrame(ctx, params, elapsedMs) {
 // series1[]/series2[] (computeComparativeSeries, donc computeAssetSeries de lib.js) à un index entier
 // — jamais interpolées pour l'overlay, seule la position à l'écran de la courbe l'est (cf. plus haut).
 function drawComparativeFrame(ctx, params, elapsedMs) {
-  const { series1, series2, invested1, invested2, asset1Label, asset2Label, periodLabel, modeLabel, finalValue1, finalValue2, gainPct1, gainPct2 } = params
+  const { series1, series2, invested1, invested2, asset1Label, asset2Label, periodLabel, mode1Label, mode2Label, finalValue1, finalValue2, gainPct1, gainPct2 } = params
   const n = series1.length
   const color1 = COLORS.tealBright
   const color2 = COLORS.goldBright
@@ -448,32 +448,29 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
     ctx.arc(x, y, 9, 0, Math.PI * 2)
     ctx.fill()
   }
+  // Mode affiché en suffixe de chaque libellé d'actif (plutôt qu'une seule pastille de mode partagée
+  // en haut à droite, comme avant l'ajout du duel "même actif, DCA vs versement unique") : les deux
+  // séries peuvent désormais avoir un mode différent, une pastille unique serait donc trompeuse dès
+  // que mode1Label ≠ mode2Label. Fonctionne identiquement quand les deux modes sont égaux (cas
+  // classique de duel entre deux actifs différents) — juste un peu plus verbeux dans ce cas.
   ctx.font = FONTS.titleSmall
   dot(PAD + 9, PAD + 40 + 17, color1)
   ctx.fillStyle = COLORS.ink
   ctx.fillText(asset1Label, PAD + 30, PAD + 40)
+  const asset1LabelW = ctx.measureText(asset1Label).width
   dot(PAD + 9, PAD + 84 + 17, color2)
   ctx.fillStyle = COLORS.ink
   ctx.fillText(asset2Label, PAD + 30, PAD + 84)
+  const asset2LabelW = ctx.measureText(asset2Label).width
+
+  ctx.font = FONTS.legend
+  ctx.fillStyle = COLORS.inkFaint
+  ctx.fillText(`· ${mode1Label}`, PAD + 30 + asset1LabelW + 14, PAD + 48)
+  ctx.fillText(`· ${mode2Label}`, PAD + 30 + asset2LabelW + 14, PAD + 92)
 
   ctx.font = FONTS.period
   ctx.fillStyle = COLORS.inkFaint
   ctx.fillText(periodLabel, PAD, PAD + 156)
-
-  ctx.font = FONTS.pill
-  const pillPadX = 16
-  const pillW = ctx.measureText(modeLabel).width + pillPadX * 2
-  const pillH = 40
-  const pillX = W - PAD - pillW
-  const pillY = PAD + 4
-  ctx.strokeStyle = 'rgba(148,163,184,.35)'
-  ctx.lineWidth = 2
-  roundRectPath(ctx, pillX, pillY, pillW, pillH, pillH / 2)
-  ctx.stroke()
-  ctx.textBaseline = 'middle'
-  ctx.fillStyle = COLORS.tealBright
-  ctx.fillText(modeLabel, pillX + pillPadX, pillY + pillH / 2 + 1)
-  ctx.textBaseline = 'top'
 
   const drawPhase = elapsedMs < DRAW_MS
   const drawT = Math.min(1, elapsedMs / DRAW_MS)
