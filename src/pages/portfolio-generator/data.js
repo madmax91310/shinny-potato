@@ -2,7 +2,7 @@
 // devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
-// Roster de 70 supports (dont 2 non-ETF : fonds_euros, produit d'assurance-vie sans ISIN ; scpi,
+// Roster de 72 supports (dont 2 non-ETF : fonds_euros, produit d'assurance-vie sans ISIN ; scpi,
 // générique non plus) : chaque actif n'existe que parce qu'il a un rôle clair dans au moins une
 // thèse de portefeuille (src/theses.js). Pas de ligne "parce qu'il en fallait une de plus" — voir
 // CLAUDE.md du projet pour la philosophie de sélection. 8 actifs sans rôle identifié (china, india,
@@ -43,6 +43,12 @@
 // actif plutôt qu'ici : strat_dividendes (aucune part Acc distincte trouvée, partage l'ISIN de son
 // jumeau Dist) et oblig_etat_us (fonds réel par tranche de maturité seulement, ISIN d'une tranche
 // proche retenu par approximation, confiance moindre).
+//
+// 2 supports ajoutés le 14/09/2026 (audit "double-outil", cherchés en parallèle pour ce fichier et
+// le Calculateur d'investissement) : sect_financieres (secteur financier US, absent jusqu'ici) et
+// smallcap_monde (small cap monde, complète smallcap_europe). Non assignés à un combo — cf.
+// commentaire individuel de chacun en fin de fichier pour le détail du sourcing et pourquoi le
+// Calculateur n'a finalement pas pu les recevoir.
 
 export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 
@@ -1175,6 +1181,52 @@ export const ASSETS = [
       "un filtre factoriel qui privilégie les entreprises jugées sous-valorisées par rapport à leurs fondamentaux.",
       "l'opposé du style croissance : moins de tech, plus de banques, d'énergie et d'industrie.",
       "historiquement plus cyclique, avec des phases de sur- et sous-performance marquées face à l'indice large.",
+    ],
+  },
+
+  // ── Ajoutés le 14/09/2026 (audit "double-outil", demande utilisateur) — PAS ENCORE ASSIGNÉS à un
+  // combo profil × risque dans theses.js (même logique que oblig_etat_us/actions_japon/actions_value
+  // ci-dessus) : présents uniquement dans cette bibliothèque pour l'instant, à assigner après
+  // stress-test si retenus. Recherchés en parallèle du Calculateur d'investissement (cf. CLAUDE.md,
+  // section duplication) — seule la performance annuelle a pu être sourcée de façon fiable pour les
+  // deux ; une série de prix réels exploitable pour le Calculateur n'a PAS pu être trouvée avec une
+  // confiance suffisante (WebSearch ne renvoie que les rendements % du fonds, jamais un niveau de
+  // part exploitable — reconstruire une série de prix à partir des % aurait reproduit l'erreur déjà
+  // corrigée sur "soxx" plus haut dans ce fichier), donc ces deux actifs restent Générateur de
+  // portefeuilles uniquement pour l'instant. Deux autres candidats testés en parallèle (cuivre :
+  // WisdomTree Copper, pétrole : WisdomTree WTI Crude Oil) ont été abandonnés faute de données
+  // exploitables (cuivre : deux sources en contradiction non résolue sur 2022/2023, écart de
+  // plusieurs points ; pétrole : aucune donnée annuelle synthétisable trouvée) — cf. rapport de
+  // session pour le détail.
+  {
+    id: "sect_financieres", name: "iShares S&P 500 Financials Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00B4JNQZ49",
+    // Source : fiche officielle BlackRock/iShares (performance annuelle par calendrier, part de
+    // fonds — IUFS), années 2020-2025. Recoupé avec l'indice de référence (S&P 500 Capped 35/20
+    // Financials Index) sur chaque année : écart <0,3pt, cohérent avec le TER — le fonds suit
+    // fidèlement son indice. Secteur totalement absent de la bibliothèque jusqu'ici (9 secteurs déjà
+    // couverts : santé, semi-conducteurs, tech, robotique, cybersécurité, énergie propre, conso
+    // défensive, utilities, énergie — jamais financières/banques).
+    r: [-2.20, 34.46, -10.93, 11.65, 30.12, 14.60],
+    desc: [
+      "banques, assurances, gestion d'actifs : le secteur financier américain réuni en une seule ligne.",
+      "un secteur cyclique, sensible aux taux d'intérêt et à la santé du crédit.",
+      "absent du reste de la bibliothèque jusqu'ici, malgré son poids dans l'économie réelle.",
+    ],
+  },
+  {
+    id: "smallcap_monde", name: "iShares MSCI World Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    isin: "IE00BF4RFH31",
+    // Source : performance annuelle réelle du fonds (WSML), années 2020-2025 — recoupée deux fois de
+    // façon indépendante pour 2020-2024 (chiffres strictement identiques aux deux requêtes : 16,50 /
+    // 15,23 / -18,62 / 17,06 / 7,40), 2025 (+19,94%) non recoupé indépendamment. Complète
+    // smallcap_europe (Europe uniquement) par une exposition small cap MONDIALE — pas un doublon,
+    // composition et pondération géographique différentes (majoritairement US ici).
+    r: [16.50, 15.23, -18.62, 17.06, 7.40, 19.94],
+    desc: [
+      "des petites capitalisations de l'ensemble des pays développés, pas seulement l'Europe.",
+      "complète le small cap européen déjà présent par une exposition mondiale, à majorité américaine.",
+      "un potentiel de croissance supérieur aux grandes valeurs, avec une volatilité plus marquée.",
     ],
   },
 ];

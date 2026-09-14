@@ -1,6 +1,6 @@
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
-// Bitcoin : données réelles (export Yahoo Finance). Les 19 autres actifs ont été mis à jour avec des
+// Bitcoin : données réelles (export Yahoo Finance). Les 22 autres actifs ont été mis à jour avec des
 // clôtures réelles sourcées (voir commentaire au-dessus de chaque actif pour le détail des sources et
 // des points restant NON vérifiés / illustratifs).
 function P(list) {
@@ -812,12 +812,81 @@ export const ASSETS = {
       '2026-08', 205.95,
     ]),
   },
+  visa: {
+    // Ajouté le 14/09/2026 (audit "double-outil" : nouveaux actifs cherchés en parallèle pour ce
+    // fichier et le Générateur de portefeuilles — cf. CLAUDE.md, section duplication ; Visa n'existe
+    // que dans ce fichier, pas dans le Générateur qui est 100% ETF/fonds, aucune action individuelle).
+    // Clôtures ANNUELLES (31 décembre) via une table complète en une seule requête (MacroTrends,
+    // format "Year Close / Annual % Change") — recoupée une 2e fois de façon indépendante sur 2022
+    // (204,21 $ vs 204,55/204,99 $ selon la source, écart <0,4%) et 2023 (257,94 $ vs 258,37 $, écart
+    // <0,2%) : les deux requêtes convergent, confiance équivalente aux megacaps US déjà en place.
+    // Split-clean : split 4:1 en mars 2015, déjà pris en compte dans la table source (confirmé par la
+    // note "2015 ending price adjusted for a 4 for 1 stock split") — aucun ajustement supplémentaire
+    // nécessaire. Point 2026-08 (370,74 $, réellement daté du 13/09/2026) étiqueté par cohérence avec
+    // LATEST_YM et le reste du roster (même convention que meta/nestle/sap). Actif ajouté à
+    // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
+    // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
+    label: 'Visa', tweetPhrase: 'Visa', icon: '💳', currency: 'USD',
+    points: P([
+      '2015-12', 72.69, '2016-12', 73.69, '2017-12', 108.45, '2018-12', 126.34,
+      '2019-12', 181.07, '2020-12', 212.08, '2021-12', 211.41, '2022-12', 204.21,
+      '2023-12', 257.94, '2024-12', 315.51, '2025-12', 355.85,
+      '2026-08', 370.74,
+    ]),
+  },
+  netflix: {
+    // Ajouté le 14/09/2026, même audit "double-outil" que visa ci-dessus (Netflix aussi absent du
+    // Générateur de portefeuilles, qui est 100% ETF/fonds). Clôtures ANNUELLES (31 décembre) via une
+    // table complète MacroTrends. PARTICULARITÉ IMPORTANTE : Netflix a réalisé un split 10:1 le
+    // 17/11/2025 (annoncé le 30/10/2025, cf. communiqué officiel) — la table de prix brute obtenue en
+    // 1re requête (114,38 $ → 1 184,86 $ sur 2015-2025) N'ÉTAIT PAS split-adjustée pour les années
+    // récentes, ce qui aurait produit un saut artificiel incohérent avec le prix actuel (~77 $ en
+    // septembre 2026). Détecté par une 2e requête indépendante donnant 93,76 $ pour la clôture du
+    // 31/12/2025 (soit ~12x moins que 1 184,86 $) — contradiction résolue en confirmant le split 10:1
+    // via une 3e requête dédiée : la valeur pré-split (2015-2024, plus le prix intrajournalier 2025
+    // avant le 17/11) a donc été divisée par 10 pour toute la série 2015-2024, la clôture 2025
+    // (93,76 $) étant elle déjà post-split. Les rendements annuels en % obtenus séparément (55,06% en
+    // 2017, 67,11% en 2020, -51,05% en 2022, 83,07% en 2024...) confirment la cohérence de la série
+    // ainsi corrigée d'une année sur l'autre, y compris le +5,19% de 2025 (89,13 $ en réel début
+    // d'année → 93,76 $ en fin d'année post-split). Point 2026-08 (77,40 $, réellement daté du
+    // 11/09/2026) étiqueté par cohérence avec LATEST_YM et le reste du roster. Actif ajouté à
+    // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
+    // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
+    label: 'Netflix', tweetPhrase: 'Netflix', icon: '🎬', currency: 'USD',
+    points: P([
+      '2015-12', 11.44, '2016-12', 12.38, '2017-12', 19.20, '2018-12', 26.77,
+      '2019-12', 32.36, '2020-12', 54.07, '2021-12', 60.24, '2022-12', 29.49,
+      '2023-12', 48.69, '2024-12', 89.13, '2025-12', 93.76,
+      '2026-08', 77.40,
+    ]),
+  },
+  cocacola: {
+    // Ajouté le 14/09/2026, même audit "double-outil" que visa/netflix ci-dessus (Coca-Cola aussi
+    // absent du Générateur de portefeuilles, 100% ETF/fonds). 3e action défensive/non-tech du roster
+    // avec Nestlé, consommation de base comme elle mais géographie différente (US natif, pas un ADR).
+    // Clôtures ANNUELLES (31 décembre) via une table complète MacroTrends en une seule requête — non
+    // recoupée point par point une 2e fois, mais la variation YTD 2026 citée par une source séparée
+    // ("+26% depuis le 1er janvier 2026") est cohérente avec 69,47 $ (clôture 2025) → 88,35 $ (point
+    // le plus récent), ce qui corrobore indirectement au moins les deux derniers points de la série.
+    // Split-clean : dernier split (2:1) en 2012, confirmé aucun split depuis — aucun ajustement
+    // nécessaire sur la fenêtre 2015-2025. Point 2026-08 (88,35 $, réellement daté du 13/09/2026)
+    // étiqueté par cohérence avec LATEST_YM et le reste du roster. Actif ajouté à
+    // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
+    // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
+    label: 'Coca-Cola', tweetPhrase: 'Coca-Cola', icon: '🥤', currency: 'USD',
+    points: P([
+      '2015-12', 31.84, '2016-12', 31.72, '2017-12', 36.29, '2018-12', 38.74,
+      '2019-12', 46.72, '2020-12', 47.88, '2021-12', 53.32, '2022-12', 58.98,
+      '2023-12', 56.36, '2024-12', 61.37, '2025-12', 69.47,
+      '2026-08', 88.35,
+    ]),
+  },
 }
 
 export const ASSET_ORDER = [
   'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
-  'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap',
+  'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
 ]
 
 // DÉPLACÉ le 04/09/2026 depuis tweet-midi/data/marketHistory.js (où cette protection existait
@@ -851,7 +920,7 @@ export function getAssetMinDate(assetId) {
 // nestle/sap ajoutés le 14/09/2026 (audit "élargissement du roster") : même cause que nvidia/amazon/
 // google/meta (aucun historique mensuel exploitable trouvé), avec en plus l'absence de cotation EUR/
 // CHF native sourçable dans ce sandbox — cf. leurs commentaires individuels pour le détail.
-export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap'])
+export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola'])
 
 // Actifs dont le DERNIER point (donc le "dernier niveau connu" affiché à l'étape 1) a une confiance
 // réduite documentée dans le commentaire de l'actif — surfacé dans l'UI (badge ⚠️, cf. App.jsx)
