@@ -1,9 +1,8 @@
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
-// Bitcoin : données réelles (export Yahoo Finance). Les 13 autres actifs ont été mis à jour avec des
+// Bitcoin : données réelles (export Yahoo Finance). Les 19 autres actifs ont été mis à jour avec des
 // clôtures réelles sourcées (voir commentaire au-dessus de chaque actif pour le détail des sources et
-// des points restant NON vérifiés / illustratifs — voir le récap donné à l'utilisateur pour la liste
-// des points encore à corriger avant publication).
+// des points restant NON vérifiés / illustratifs).
 function P(list) {
   const out = []
   for (let i = 0; i < list.length; i += 2) out.push({ date: list[i], price: list[i + 1] })
@@ -755,12 +754,70 @@ export const ASSETS = {
       '2026-08', 590.00,
     ]),
   },
+  nestle: {
+    // Ajouté le 14/09/2026 (retour utilisateur : roster 100% méga-caps tech US, aucune action
+    // européenne ni secteur défensif — audit "élargissement du roster"). Nestlé (Suisse, alimentaire/
+    // consommation de base) répond aux deux manques à la fois : premier actif du roster hors zone
+    // tech ET hors marché américain d'origine.
+    // Cotation retenue : ADR NSRGY (OTC, 1 ADR = 1 action nominative Nestlé SA), pas la cotation
+    // native NESN.SW (Six Swiss Exchange, en CHF) — la donnée CHF/EUR s'est révélée impossible à
+    // sourcer de façon fiable dans ce sandbox (WebFetch bloqué sur tous les sites financiers testés,
+    // WebSearch ne renvoyant jamais de tableau exploitable pour les cotations natives européennes,
+    // contrairement aux ADR USD largement indexées via MacroTrends) — même contrainte documentée sur
+    // plusieurs tentatives ce jour-là (L'Oréal, Air Liquide, ASML, TotalEnergies, écartés pour cette
+    // même raison, cf. rapport de session). Clôtures ANNUELLES (31 décembre) via une table MacroTrends
+    // synthétisée en une seule requête — PAS recoupées par une 2e requête indépendante (les tentatives
+    // de recoupement point par point n'ont renvoyé aucune donnée exploitable ce jour-là), confiance
+    // donc plus faible que les séries megacaps US (nvidia/amazon/google/meta), mais split-clean :
+    // aucun split Nestlé depuis 2008 (confirmé), donc aucun risque de saut artificiel sur cette
+    // fenêtre 2015-2025. Point 2026-08 (99,95 $, au 24/08/2026) trouvé séparément, cohérent avec la
+    // fourchette 52 semaines citée dans la même recherche (88,47-109,59 $). Actif ajouté à
+    // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
+    // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
+    label: 'Nestlé', tweetPhrase: 'Nestlé', icon: '🍫', currency: 'USD',
+    points: P([
+      '2015-12', 56.01, '2016-12', 55.67, '2017-12', 68.79, '2018-12', 66.91,
+      '2019-12', 91.80, '2020-12', 102.48, '2021-12', 125.35, '2022-12', 105.42,
+      '2023-12', 108.36, '2024-12', 79.15, '2025-12', 98.78,
+      '2026-08', 99.95,
+    ]),
+  },
+  sap: {
+    // Ajouté le 14/09/2026, même audit que nestle (cf. son commentaire pour le contexte général).
+    // SAP (Allemagne, logiciel d'entreprise) — 2e actif européen du roster, diversifie la géographie
+    // (Allemagne, jamais représentée jusqu'ici) même si le secteur reste tech, contrairement à nestle.
+    // Cotation retenue : ADR SAP (NYSE), pas la cotation native SAP.DE (Xetra Francfort, en EUR) —
+    // même contrainte de sandbox que nestle (EUR non sourçable de façon fiable ce jour-là). Clôtures
+    // ANNUELLES (31 décembre) 2015-2024 via une table MacroTrends synthétisée en une seule requête,
+    // non recoupée par une 2e requête indépendante (même limite que nestle, confiance donc plus
+    // faible que les megacaps US). Split-clean : aucun split SAP depuis 2000 (confirmé), aucun risque
+    // de saut artificiel sur la fenêtre.
+    // Point 2025 : AUCUNE clôture du 31/12/2025 trouvée malgré plusieurs tentatives — la seule valeur
+    // obtenue (296,93 $) est explicitement datée du 29/05/2025 par la source, pas une clôture de fin
+    // d'année. Conservée par défaut de mieux, mais avec une réserve plus forte que d'habitude : ce
+    // n'est PAS un point de fin d'année comme le reste de la série, à corriger en priorité si une
+    // clôture officielle du 31/12/2025 est trouvée. Point le plus récent (205,95 $, réellement daté
+    // du 10/09/2026, NYSE) étiqueté 2026-08 par cohérence avec LATEST_YM et le reste du roster (même
+    // convention que meta, dont le point "2026-08" citait déjà des sources au 24/08 et au 04/09) —
+    // l'écart avec le point 2025 (296,93 $ à une date antérieure, pas une vraie clôture de fin
+    // d'année) est cohérent avec la baisse documentée par ailleurs ("SAP a chuté de 13% sur les 30
+    // derniers jours" au moment de la recherche), pas un signe d'erreur de donnée. Actif ajouté à SPARSE_MONTHLY_DATA_IDS
+    // (DCA mensuel bloqué, versement unique uniquement), même traitement qu'ethereum/cac40 — pas de
+    // points mensuels inventés entre les 31 décembre.
+    label: 'SAP', tweetPhrase: 'SAP', icon: '💻', currency: 'USD',
+    points: P([
+      '2015-12', 68.69, '2016-12', 76.32, '2017-12', 100.55, '2018-12', 90.39,
+      '2019-12', 122.79, '2020-12', 121.27, '2021-12', 132.49, '2022-12', 100.25,
+      '2023-12', 152.68, '2024-12', 246.21, '2025-12', 296.93,
+      '2026-08', 205.95,
+    ]),
+  },
 }
 
 export const ASSET_ORDER = [
   'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
-  'nvidia', 'amazon', 'google', 'meta',
+  'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap',
 ]
 
 // DÉPLACÉ le 04/09/2026 depuis tweet-midi/data/marketHistory.js (où cette protection existait
@@ -791,7 +848,10 @@ export function getAssetMinDate(assetId) {
 // clôtures mensuelles, cf. le commentaire détaillé sur l'actif nvidia) — seules les clôtures
 // annuelles (31 décembre) sont vérifiées, donc même traitement qu'ethereum/cac40/lvmh plutôt que
 // d'interpoler silencieusement 11 mois sur 12 entre deux vraies clôtures.
-export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta'])
+// nestle/sap ajoutés le 14/09/2026 (audit "élargissement du roster") : même cause que nvidia/amazon/
+// google/meta (aucun historique mensuel exploitable trouvé), avec en plus l'absence de cotation EUR/
+// CHF native sourçable dans ce sandbox — cf. leurs commentaires individuels pour le détail.
+export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap'])
 
 // Actifs dont le DERNIER point (donc le "dernier niveau connu" affiché à l'étape 1) a une confiance
 // réduite documentée dans le commentaire de l'actif — surfacé dans l'UI (badge ⚠️, cf. App.jsx)
