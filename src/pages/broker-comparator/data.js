@@ -4,9 +4,9 @@
 //
 // lastVerified : date de la vérification la plus récente déjà documentée dans les commentaires de
 // CET objet (jamais une date ajoutée à la main séparément — cf. App.jsx pour l'affichage), ajouté
-// le 14/09/2026 à la demande de l'utilisateur (audit "outils"). Absent chez fortuneo/xtb/caidf :
-// aucun commentaire daté n'existe pour ces 3 courtiers depuis la session d'origine — pas une date
-// oubliée, une absence réelle de donnée à ne pas inventer.
+// le 14/09/2026 à la demande de l'utilisateur (audit "outils"). fortuneo/xtb/caidf, qui n'avaient
+// aucun commentaire daté depuis la session d'origine, ont été revérifiés le même jour (cf. leurs
+// commentaires individuels) — les 8 courtiers portent désormais une date.
 export const BROKERS = [
   {
     id: "tr", nom: "Trade Republic", code: "TR", color: "#5FA8D3", emoji: "🔵", lastVerified: "03/09/2026",
@@ -99,7 +99,19 @@ export const BROKERS = [
     },
   },
   {
-    id: "fortuneo", nom: "Fortuneo", code: "FO", color: "#8C7AE6", emoji: "🟣",
+    id: "fortuneo", nom: "Fortuneo", code: "FO", color: "#8C7AE6", emoji: "🟣", lastVerified: "14/09/2026",
+    // Revérifié le 14/09/2026 (audit "outils", complétion des entrées sans date documentée) : toutes
+    // les données ci-dessous confirmées exactes, aucune correction nécessaire. Fortuneo a refondu son
+    // courtage au 09/02/2026 en 3 formules (Starter/Progress/Trader Pro) — le "0€ 1er ordre ≤500€ puis
+    // 0,35%" ci-dessous décrit fidèlement Starter (la formule pertinente pour un investisseur PEA
+    // classique, même logique que les autres courtiers qui n'affichent que leur palier d'entrée).
+    // DCA confirmé absent (ordres manuels ou virements/ordres récurrents configurés à la main, jamais
+    // un vrai plan automatisé). Frais hors Euronext confirmés élevés, et une nouvelle règle depuis le
+    // 06/08/2026 les renforce : seuil minimum de 400€ par ordre d'achat sur les bourses européennes
+    // hors Euronext Paris/Bruxelles/Amsterdam et Equiduct, en PEA/PEA-PME. Clôture PEA à 85€ confirmée
+    // (Fortuneo est la seule des 13 enseignes testées par MoneyVox début 2026 à facturer la clôture).
+    // Sources convergentes : signal-alpha.fr, votre-parrainage-fortuneo.fr, guidedelabanque.fr,
+    // moneyvox.fr (Livret+ 1,60%), investisseurs-heureux.fr.
     frais: { rank: 2, resume: "0€ le 1er ordre/mois", detail: "Si ≤ 500€, puis 0,35% au-delà" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 3, resume: "Non disponible" },
@@ -121,7 +133,16 @@ export const BROKERS = [
     },
   },
   {
-    id: "xtb", nom: "XTB", code: "XTB", color: "#5C9EAD", emoji: "⚫",
+    id: "xtb", nom: "XTB", code: "XTB", color: "#5C9EAD", emoji: "⚫", lastVerified: "14/09/2026",
+    // Revérifié le 14/09/2026 (audit "outils", complétion des entrées sans date documentée) : toutes
+    // les données ci-dessous confirmées exactes. Le point DCA a nécessité 3 requêtes (une 1re source
+    // évoquait des "achats programmés sans frais" ; 2 sources indépendantes, dont une ciblée
+    // spécifiquement sur ce point, confirment qu'aucun plan d'investissement automatisé n'existe chez
+    // XTB — chaque ordre se passe à la main — la 1re source retenue comme imprécision d'un résumé IA
+    // plutôt qu'un fait réel). Transfert PEA entrant toujours impossible mi-2026, malgré une
+    // fonctionnalité "annoncée courant 2026" non encore livrée. Liquidités rémunérées confirmées, mais
+    // uniquement côté CTO (3,50%/3,40% les 90 premiers jours) — jamais sur la poche cash du PEA.
+    // Sources convergentes : xtb.com, pea.fr, moneyradar.org, cryptoast.fr, broker-forex.fr.
     frais: { rank: 1, resume: "0% jusqu’à 100K€/mois", detail: "Puis 0,20% au-delà (min 10€)" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 3, resume: "Non disponible" },
@@ -143,24 +164,39 @@ export const BROKERS = [
     },
   },
   {
-    id: "caidf", nom: "CA Île-de-France", code: "CA", color: "#B08968", emoji: "🟠",
-    frais: { rank: 3, resume: "Intégral 0,12-0,48%", detail: "Abonnement 96€/an si <12 ordres" },
+    id: "caidf", nom: "CA Île-de-France", code: "CA", color: "#B08968", emoji: "🟠", lastVerified: "14/09/2026",
+    // Revérifié le 14/09/2026 (audit "outils", complétion des entrées sans date documentée).
+    // CORRECTION : l'abonnement InvestStore Intégral est passé de 96€/an (si <12 ordres) à
+    // 101,40€/an (si <24 ordres) — confirmé par 6 requêtes convergentes, dont une avec un récit
+    // explicite de hausse tarifaire ("évolution depuis le précédent tarif de 96€, courant à la
+    // Caisse de Paris, vers le tarif actuel de 101,40€"). L'ancien couple 96€/12 ordres reste
+    // documenté par plusieurs sources comme un tarif antérieur ou propre à une autre Caisse
+    // régionale, jamais comme le tarif actuel de CA Île-de-France. Le taux de courtage par palier
+    // (0,12-0,48% ci-dessous) N'A PAS pu être revérifié avec confiance : plusieurs sources évoquent
+    // un barème plus bas ("0,09% avec un minimum de 0,99€"), mais les exemples chiffrés qu'elles
+    // donnent elles-mêmes sont mathématiquement incohérents entre eux (ex. "0,09%" puis un calcul
+    // qui revient en réalité à 0,18% sur un ordre de 1000€) — contradiction non résolue même après
+    // plusieurs requêtes, WebFetch étant bloqué dans ce sandbox pour consulter la grille tarifaire
+    // officielle en PDF. Valeur conservée par prudence plutôt que remplacée par un chiffre incertain
+    // (même principe que l'écart non tranché sur oblig_etat_eur_short/MSCI Japan IMI) — à revoir
+    // avec un accès direct à la grille tarifaire PDF de CA Île-de-France.
+    frais: { rank: 3, resume: "Intégral 0,12-0,48%", detail: "Abonnement 101,40€/an si <24 ordres" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 3, resume: "Non disponible" },
     garde: { rank: 2, resume: "0,20%/sem. + 2,50€/ligne", detail: "Exonérés avec InvestStore Intégral" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret A, LDDS, LEP" },
-    pointFaible: "Abonnement 96€/an si <12 ordres, transfert PEA sortant 15€/ligne (max 150€)",
+    pointFaible: "Abonnement 101,40€/an si <24 ordres, transfert PEA sortant 15€/ligne (max 150€)",
     transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
     post: {
-      frais: ["Intégral → 0,48% ≤500€ / 0,18% de 500€ à 1000€ / 0,12% au-delà", "⚡ Abonnement 96€/an si <12 ordres/an"],
+      frais: ["Intégral → 0,48% ≤500€ / 0,18% de 500€ à 1000€ / 0,12% au-delà", "⚡ Abonnement 101,40€/an si <24 ordres/an"],
       dca: ["❌ Pas de DCA automatique"],
       garde: ["⚠️ 0,20%/semestre + 2,50€/ligne/semestre", "Exonérés avec InvestStore Intégral"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret A, LDDS, LEP)"],
-      faibles: ["Abonnement 96€/an si <12 ordres, droits de garde si inactif, transfert PEA sortant 15€/ligne (max 150€)"],
+      faibles: ["Abonnement 101,40€/an si <24 ordres, droits de garde si inactif, transfert PEA sortant 15€/ligne (max 150€)"],
       verdict: "Tu veux un conseiller en agence et un compte bancaire classique",
     },
   },

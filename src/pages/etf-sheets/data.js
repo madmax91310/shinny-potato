@@ -20,9 +20,9 @@
 // (aucune date plus récente documentée pour elles depuis) ; 08/09/2026 pour les 6 fiches de l'audit
 // "densité" (msci-acwi, ftse-all-world, financieres, immobilier-reit, technologie, momentum) ;
 // 10/09/2026 pour quality (TER/encours corrigés après l'audit croisé avec le Comparateur d'indices,
-// une date plus récente que son propre ajout du 08/09/2026). Absent (pas de badge) sur 3 fiches
-// obligataires (corp-bond-ig, high-yield-acc, em-local-bond) : aucun commentaire daté ne documente
-// leur ajout — pas une date oubliée, une absence réelle de donnée à ne pas inventer.
+// une date plus récente que son propre ajout du 08/09/2026). Les 3 fiches obligataires qui n'avaient
+// aucun commentaire daté (corp-bond-ig, high-yield-acc, em-local-bond) ont été revérifiées le même
+// jour (14/09/2026, cf. leurs commentaires individuels) — les 36 fiches portent désormais une date.
 
 export const CATEGORY_ORDER = [
     "Cœur de portefeuille",
@@ -782,6 +782,10 @@ export const ETFS = [
       verdict: "Le compromis rendement/risque entre actions et obligations d'État, à réserver aux portefeuilles diversifiés.",
       question: "Le high yield, le bon compromis rendement/risque ou trop de risque de crédit caché ?"
     },
+    // Revérifié le 14/09/2026 (audit "outils", complétion des 3 fiches obligataires sans date de
+    // sourcing documentée) : ISIN, TER, encours et éligibilité PEA/CTO confirmés exacts via justETF/
+    // iShares (Fund NAV 13 229,54 M€ au 11/09/2026, cohérent avec les 13,36 Md€ déjà en place, écart
+    // de simple fluctuation de NAV). Aucune correction nécessaire.
     {
       id: "corp-bond-ig",
       category: "Obligataires",
@@ -789,6 +793,7 @@ export const ETFS = [
       tickers: ["IEAC"],
       isNew: true,
       isin: "IE00B3F81R35",
+      lastVerified: "14/09/2026",
       ter: "0,09%",
       positions: "~3 000 positions",
       aum: "~13,36 Md€",
@@ -802,6 +807,10 @@ export const ETFS = [
       verdict: "Le cœur obligataire investment grade au coût le plus bas, pour qui veut du crédit d'entreprise plutôt que de la dette d'État.",
       question: "Le crédit investment grade, le juste milieu entre sécurité et rendement ?"
     },
+    // Revérifié le 14/09/2026 (audit "outils", complétion des 3 fiches obligataires sans date de
+    // sourcing documentée) : ISIN, TER et éligibilité PEA/CTO confirmés exacts. Encours CORRIGÉ :
+    // ~1,37 Md€ -> ~1,59 Md€ (justETF, fonds à 1 592 M€), l'ancienne valeur sous-estimait la
+    // croissance réelle du fonds sur ce segment high yield capitalisant.
     {
       id: "high-yield-acc",
       category: "Obligataires",
@@ -809,9 +818,10 @@ export const ETFS = [
       tickers: ["HIGH"],
       isNew: true,
       isin: "IE00BF3N7094",
+      lastVerified: "14/09/2026",
       ter: "0,50%",
       positions: "~500 positions",
-      aum: "~1,37 Md€",
+      aum: "~1,59 Md€",
       distribution: "Capitalisant",
       pea: false,
       cto: true,
@@ -822,6 +832,14 @@ export const ETFS = [
       verdict: "La version capitalisante du high yield pour qui privilégie la capitalisation automatique au versement de coupons.",
       question: "Capitalisant ou distribuant : quelle version du high yield colle à ta stratégie ?"
     },
+    // Revérifié le 14/09/2026 (audit "outils", complétion des 3 fiches obligataires sans date de
+    // sourcing documentée) : ISIN, TER et éligibilité PEA/CTO confirmés exacts. Encours NON TRANCHÉ :
+    // justETF donne 274 M£ (~350-390 M$ selon conversion), cohérent avec les ~407 M$ déjà en place ;
+    // une autre requête a renvoyé 5,46 Md$ mais accolée dans le même résultat à un ISIN différent
+    // (IE00B5M4WH52, un fonds jumeau sans le qualificatif "USD (Acc)") — écarté comme probable
+    // confusion de part plutôt que retenu, WebFetch étant bloqué dans ce sandbox pour trancher via la
+    // fiche officielle. Valeur conservée (cohérente avec la source la mieux attribuée à cet ISIN
+    // précis), même principe que l'écart non tranché sur oblig_etat_eur_short/MSCI Japan IMI.
     {
       id: "em-local-bond",
       category: "Obligataires",
@@ -829,6 +847,7 @@ export const ETFS = [
       tickers: ["EMGA"],
       isNew: true,
       isin: "IE00BFZPF546",
+      lastVerified: "14/09/2026",
       ter: "0,50%",
       positions: "~200 positions",
       aum: "~407 M$",
