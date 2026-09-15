@@ -32,6 +32,62 @@ export const TIER_ORDER = RISK_ORDER;
 export const TIER_LABELS = RISK_LABELS;
 export const TIER_WORST_BOUNDS = RISK_BOUNDS;
 
+// Accroches d'ouverture du tweet (remplace la ligne fixe "📊 Exemple de répartition de patrimoine
+// · [profil]" — demande utilisateur du 15/09/2026) : familles choisies selon des critères objectifs
+// du combo généré (palier de risque, pire année, profil thématique), pas au hasard pur — pour
+// qu'une accroche "résistance aux chocs" ne tombe jamais sur un combo qui n'a rien de dramatique à
+// raconter. [profil] (et sa variante capitalisée [Profil], remplacées indifféremment par pickHook
+// dans engine.js) désigne le PALIER de risque (Prudent/Défensif/.../Offensif, cf. RISK_LABELS) —
+// c'est cet axe, pas le profil-thèse (Généraliste/Rentier/...), qui se prête à la formule "tu te
+// dis prudent/dynamique" ; le profil-thèse a son propre registre dédié, la famille E ci-dessous.
+//
+// Familles A et F : toujours éligibles (fallback par défaut et secondaire). B : paliers Prudent/
+// Défensif uniquement. C : paliers Dynamique/Offensif uniquement (l'entrée à {worst_pct} a besoin
+// de la pire année du combo, résolue comme les CTA via resolvePortfolioPlaceholders). D : combo
+// avec une pire année ≤ -10% uniquement, tous paliers/profils. E : uniquement les 4 profils
+// thématiques listés ci-dessous, une accroche unique par profil (pas un pool — le thème est déjà la
+// variable, pas besoin d'en tirer plusieurs).
+export const HOOKS_UNIVERSAL = {
+  A: [
+    "Tu te dis '[profil]'… mais tu sais vraiment à quoi ça ressemble concrètement ?",
+    "'[Profil]', ça veut dire quoi en vrai ? Voici la réponse en chiffres.",
+    "Un portefeuille '[profil]', ça donne quoi une fois qu'on entre dans le détail ?",
+    "On parle souvent de profils investisseurs. Rarement de ce qu'ils contiennent vraiment. Voici un '[profil]'.",
+    "Tu construis un portefeuille '[profil]' ? Voici une répartition concrète et testée.",
+    "'[Profil]' sur le papier, ça reste flou. En vrai, ça ressemble à ça.",
+  ],
+  B: [
+    "Investir sans (trop) stresser, ça existe. Voici un portefeuille '[profil]' pour ça.",
+    "Tu veux dormir tranquille avec ton épargne ? Regarde ce que donne un profil '[profil]'.",
+    "Pas besoin de prendre des risques fous pour investir. La preuve avec ce portefeuille '[profil]'.",
+    "Un portefeuille qui protège d'abord, qui fait croître ensuite. Voici à quoi ça ressemble.",
+  ],
+  C: [
+    "Tu te dis '[profil]' ? Voici ce que ça implique vraiment sur ton capital.",
+    "Un profil '[profil]', c'est facile à dire. Voici ce que ça coûte vraiment en volatilité.",
+    "Avant de te déclarer '[profil]', regarde ce que ce portefeuille a fait dans la pire année.",
+    "'[Profil]' — le mot fait rêver. Les chiffres, eux, font réfléchir.",
+    "Tu es prêt à perdre {worst_pct_abs} une mauvaise année pour viser ce rendement ? Voici un portefeuille '[profil]'.",
+  ],
+  D: [
+    "Comment un portefeuille '[profil]' encaisse une année noire ? La réponse en chiffres.",
+    "2022 a fait mal à beaucoup de portefeuilles. Voici comment celui-ci s'en est sorti.",
+    "La vraie question n'est pas le rendement moyen, c'est : et le jour où ça craque ?",
+    "Un portefeuille '[profil]', c'est facile quand tout monte. Voici ce que ça donne quand tout baisse.",
+  ],
+  F: [
+    "Et toi, tu mettrais quoi dans un portefeuille '[profil]' ?",
+    "Combien d'or, combien d'actions, combien de cash ? Voici un dosage '[profil]'.",
+    "C'est quoi la vraie différence entre 'prudent' et 'dynamique' en allocation ? La réponse ici.",
+  ],
+};
+export const HOOKS_THEMATIC = {
+  crypto_curieux: "Tu veux de la crypto sans tout miser dessus ? Voici un dosage concret.",
+  anti_inflation: "Protéger son épargne de l'inflation, ça passe par quoi concrètement ? Voici un exemple chiffré.",
+  pro_europe: "Tu crois en l'Europe plus qu'aux US ? Voici un portefeuille qui prend ce pari.",
+  thematique: "Miser sur une thématique précise sans tout risquer : voici comment on dose ça.",
+};
+
 // Familles d'actifs interchangeables (cf. moteur : jamais plus de 40% des tweets générés sur un
 // même émetteur). Or / Bitcoin / obligations corporate € IG sont des jumeaux stricts (même
 // sous-jacent) ; Monde / Émergents / Dividendes sont des indices proches mais pas identiques,

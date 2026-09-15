@@ -1,7 +1,7 @@
 import { YEARS, getAsset } from "./data.js";
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS, isCompatible, getFrequencyCap,
-  CONCENTRATION_THRESHOLD, CONCENTRATION_NEUTRAL_IDS, CONCENTRATION_LABELS,
+  CONCENTRATION_THRESHOLD, CONCENTRATION_NEUTRAL_IDS, CONCENTRATION_LABELS, HOOKS_UNIVERSAL, HOOKS_THEMATIC,
 } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
 
@@ -429,6 +429,55 @@ function pickCta(profile, history, ctx) {
   return pick(pool);
 }
 
+// ── Accroche d'ouverture du tweet (remplace la ligne fixe "📊 Exemple de répartition de
+// patrimoine · [profil]" — demande utilisateur du 15/09/2026). Familles éligibles déterminées par
+// des critères objectifs du combo réellement généré, jamais par défaut hasardeux : A et F toujours
+// éligibles (fallback), B/C réservées à leur palier de risque, D à une pire année ≤ -10%, E aux 4
+// profils thématiques (cf. HOOKS_UNIVERSAL/HOOKS_THEMATIC dans theses.js pour le contenu détaillé).
+// Un combo peut être éligible à plusieurs familles à la fois (ex. Crypto-Curieux Offensif avec pire
+// année -50% : C + D + E) — le tirage se fait alors sur le pool COMBINÉ de toutes les familles
+// éligibles, jamais sur la plus spécifique en priorité, comme demandé.
+function eligibleHookFamilies(profileId, riskId, worst) {
+  const families = ["A", "F"];
+  if (riskId === "prudent" || riskId === "defensif") families.push("B");
+  if (riskId === "dynamique" || riskId === "offensif") families.push("C");
+  if (worst.value <= -10) families.push("D");
+  if (HOOKS_THEMATIC[profileId]) families.push("E");
+  return families;
+}
+
+// Anti-répétition portée sur le combo EXACT (profil + palier, comme pairKey) plutôt que sur le seul
+// profil : les familles éligibles dépendent du palier (B/C/D ci-dessus), donc deux paliers différents
+// du même profil n'ont pas forcément le même pool à faire tourner — contrairement à accroche/
+// sousTitre/cta (recentTexts), qui ne dépendent que du profil et restent scopés ainsi.
+function recentHookTemplates(history, profileId, riskId, keep) {
+  const seq = history
+    .filter((h) => h.profileId === profileId && h.riskId === riskId)
+    .map((h) => h.hookTemplate);
+  return new Set(seq.slice(-keep));
+}
+
+function pickHook(profileId, riskId, worst, history) {
+  const families = eligibleHookFamilies(profileId, riskId, worst);
+  const pool = [];
+  families.forEach((fam) => {
+    if (fam === "E") pool.push(HOOKS_THEMATIC[profileId]);
+    else HOOKS_UNIVERSAL[fam].forEach((t) => pool.push(t));
+  });
+  const recent = recentHookTemplates(history, profileId, riskId, pool.length - 1);
+  const fresh = pool.filter((t) => !recent.has(t));
+  const template = pick(fresh.length > 0 ? fresh : pool);
+  // [profil]/[Profil] : le PALIER de risque (Prudent/Défensif/.../Offensif), pas le profil-thèse —
+  // cf. commentaire de HOOKS_UNIVERSAL dans theses.js pour le raisonnement. {worst_pct_abs} : la
+  // seule entrée qui en a besoin (famille C, "prêt à perdre X% une mauvaise année") — en valeur
+  // absolue, jamais le signe négatif de fmtPct (qui donnerait "prêt à perdre -30%", double négation
+  // confuse).
+  const text = template
+    .replace(/\[profil\]/gi, RISK_LABELS[riskId])
+    .replace(/\{worst_pct_abs\}/g, fmtAbsPct(worst.value));
+  return { text, template };
+}
+
 export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const assetUsage = computeAssetUsage(history);
   const pairUsage = computePairUsage(history);
@@ -489,6 +538,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const cta = pickCta(profile, history, { worst, best, selection });
   const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
   const accroche = pickAccroche(profile, selection, history);
+  const hook = pickHook(profileId, riskId, worst, history);
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -499,6 +549,8 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     riskLabel: RISK_LABELS[riskId],
     title: `${profile.label} ${RISK_LABELS[riskId]}`,
     bound,
+    hook: hook.text,
+    hookTemplate: hook.template,
     accroche: accroche.text,
     accrocheTemplate: accroche.template,
     sousTitre: pickNonRepeating(profile.sousTitres, history, profileId, "sousTitre"),
@@ -515,7 +567,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
 
 export function renderTweetText(p) {
   const blocks = [];
-  blocks.push(`📊 Exemple de répartition de patrimoine · ${p.title}`);
+  blocks.push(p.hook);
   blocks.push(p.accroche);
   blocks.push(p.sousTitre);
   blocks.push(SEPARATOR);
