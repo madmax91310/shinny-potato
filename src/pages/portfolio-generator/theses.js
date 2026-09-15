@@ -32,61 +32,17 @@ export const TIER_ORDER = RISK_ORDER;
 export const TIER_LABELS = RISK_LABELS;
 export const TIER_WORST_BOUNDS = RISK_BOUNDS;
 
-// Accroches d'ouverture du tweet (remplace la ligne fixe "📊 Exemple de répartition de patrimoine
-// · [profil]" — demande utilisateur du 15/09/2026) : familles choisies selon des critères objectifs
-// du combo généré (palier de risque, pire année, profil thématique), pas au hasard pur — pour
-// qu'une accroche "résistance aux chocs" ne tombe jamais sur un combo qui n'a rien de dramatique à
-// raconter. [profil] (et sa variante capitalisée [Profil], remplacées indifféremment par pickHook
-// dans engine.js) désigne le PALIER de risque (Prudent/Défensif/.../Offensif, cf. RISK_LABELS) —
-// c'est cet axe, pas le profil-thèse (Généraliste/Rentier/...), qui se prête à la formule "tu te
-// dis prudent/dynamique" ; le profil-thèse a son propre registre dédié, la famille E ci-dessous.
-//
-// Familles A et F : toujours éligibles (fallback par défaut et secondaire). B : paliers Prudent/
-// Défensif uniquement. C : paliers Dynamique/Offensif uniquement (l'entrée à {worst_pct} a besoin
-// de la pire année du combo, résolue comme les CTA via resolvePortfolioPlaceholders). D : combo
-// avec une pire année ≤ -10% uniquement, tous paliers/profils. E : uniquement les 4 profils
-// thématiques listés ci-dessous, une accroche unique par profil (pas un pool — le thème est déjà la
-// variable, pas besoin d'en tirer plusieurs).
-export const HOOKS_UNIVERSAL = {
-  A: [
-    "Tu te dis '[profil]'… mais tu sais vraiment à quoi ça ressemble concrètement ?",
-    "'[Profil]', ça veut dire quoi en vrai ? Voici la réponse en chiffres.",
-    "Un portefeuille '[profil]', ça donne quoi une fois qu'on entre dans le détail ?",
-    "On parle souvent de profils investisseurs. Rarement de ce qu'ils contiennent vraiment. Voici un '[profil]'.",
-    "Tu construis un portefeuille '[profil]' ? Voici une répartition concrète et testée.",
-    "'[Profil]' sur le papier, ça reste flou. En vrai, ça ressemble à ça.",
-  ],
-  B: [
-    "Investir sans (trop) stresser, ça existe. Voici un portefeuille '[profil]' pour ça.",
-    "Tu veux dormir tranquille avec ton épargne ? Regarde ce que donne un profil '[profil]'.",
-    "Pas besoin de prendre des risques fous pour investir. La preuve avec ce portefeuille '[profil]'.",
-    "Un portefeuille qui protège d'abord, qui fait croître ensuite. Voici à quoi ça ressemble.",
-  ],
-  C: [
-    "Tu te dis '[profil]' ? Voici ce que ça implique vraiment sur ton capital.",
-    "Un profil '[profil]', c'est facile à dire. Voici ce que ça coûte vraiment en volatilité.",
-    "Avant de te déclarer '[profil]', regarde ce que ce portefeuille a fait dans la pire année.",
-    "'[Profil]' — le mot fait rêver. Les chiffres, eux, font réfléchir.",
-    "Tu es prêt à perdre {worst_pct_abs} une mauvaise année pour viser ce rendement ? Voici un portefeuille '[profil]'.",
-  ],
-  D: [
-    "Comment un portefeuille '[profil]' encaisse une année noire ? La réponse en chiffres.",
-    "2022 a fait mal à beaucoup de portefeuilles. Voici comment celui-ci s'en est sorti.",
-    "La vraie question n'est pas le rendement moyen, c'est : et le jour où ça craque ?",
-    "Un portefeuille '[profil]', c'est facile quand tout monte. Voici ce que ça donne quand tout baisse.",
-  ],
-  F: [
-    "Et toi, tu mettrais quoi dans un portefeuille '[profil]' ?",
-    "Combien d'or, combien d'actions, combien de cash ? Voici un dosage '[profil]'.",
-    "C'est quoi la vraie différence entre 'prudent' et 'dynamique' en allocation ? La réponse ici.",
-  ],
-};
-export const HOOKS_THEMATIC = {
-  crypto_curieux: "Tu veux de la crypto sans tout miser dessus ? Voici un dosage concret.",
-  anti_inflation: "Protéger son épargne de l'inflation, ça passe par quoi concrètement ? Voici un exemple chiffré.",
-  pro_europe: "Tu crois en l'Europe plus qu'aux US ? Voici un portefeuille qui prend ce pari.",
-  thematique: "Miser sur une thématique précise sans tout risquer : voici comment on dose ça.",
-};
+// Accroche d'ouverture du tweet (hook + intro) : cf. la propriété `hooks` de chaque riskCombo
+// ci-dessous. Remplace successivement la ligne fixe "📊 Exemple de répartition de patrimoine ·
+// [profil]" (jusqu'au 14/09/2026), puis un système de 6 familles A-F génériques choisies par
+// critères de palier/pire année (15/09/2026, abandonné le même jour) — les deux jugées trop
+// formulaïques ("tu te dis '[profil]'…", "[profil] sur le papier…" répétés avec juste le palier qui
+// change). Remplacé par une bibliothèque écrite à la main, PAR COMBO (profil × palier), ancrée sur
+// le trait le plus marquant de CE combo précis (la ligne la plus inattendue pour son palier, un
+// pari géographique ou sectoriel assumé, une absence notable) plutôt que sur une formule générique
+// substituable à n'importe quel autre combo. Cf. `hooks` sur chaque riskCombo et pickHookPair dans
+// engine.js pour la sélection (anti-répétition, mais jamais hook et intro dépareillés — les deux
+// viennent toujours de la même paire, l'intro devant répondre explicitement à la question du hook).
 
 // Familles d'actifs interchangeables (cf. moteur : jamais plus de 40% des tweets générés sur un
 // même émetteur). Or / Bitcoin / obligations corporate € IG sont des jumeaux stricts (même
@@ -174,47 +130,6 @@ export const LEVERAGE_OPTIONS = ["lqq", "cl2"];
 // bornes de pire année du combo qui l'utilise, comme tous les autres groupes ci-dessus.
 export const ASIA_OPTIONS = ["actions_japon", "actions_coree", "actions_taiwan", "actions_asie_ex_japon"];
 
-// Cohérence accroche/composition du profil Généraliste (cf. engine.js, audit "post-audit v5",
-// août 2026) : quand une ligne "conviction" dépasse CONCENTRATION_THRESHOLD, l'accroche bascule
-// du registre "diversifié" au registre "conviction assumée" et injecte ce libellé naturel à la
-// place du placeholder [libellé]. Cash (fonds euros), obligataire (cat "obligataire", vérifié à
-// l'usage sur `s.cat`) et indices monde diversifiés (WORLD_OPTIONS) sont volontairement exclus du
-// calcul de concentration : ni un fonds euros à 55%, ni un MSCI World à 45% ne sont un "pari" —
-// l'un est la neutralité par construction, l'autre est déjà la diversification la plus large
-// possible en actions.
-export const CONCENTRATION_THRESHOLD = 40;
-export const CONCENTRATION_NEUTRAL_IDS = new Set(["fonds_euros", ...WORLD_OPTIONS]);
-export const CONCENTRATION_LABELS = new Map([
-  ["nasdaq100", "la tech américaine"],
-  ["nasdaq100_ishares", "la tech américaine"],
-  ["lqq", "la tech américaine"],
-  ["sp500", "les grandes capitalisations américaines"],
-  ["sp500_ishares", "les grandes capitalisations américaines"],
-  ["cl2", "les grandes capitalisations américaines"],
-  ["msci_em", "les marchés émergents"],
-  ["msci_em_amundi", "les marchés émergents"],
-  ["ftse_em_vanguard", "les marchés émergents"],
-  ["msci_em_spdr", "les marchés émergents"],
-  ["eurostoxx50", "l'économie européenne"],
-  ["eurostoxx50_ishares", "l'économie européenne"],
-  ["cac40", "l'économie européenne"],
-  ["sect_semi", "les semiconducteurs"],
-  ["sect_energie_propre", "la transition énergétique"],
-  ["or", "l'or"],
-  ["or_wisdomtree", "l'or"],
-  ["or_ishares", "l'or"],
-  ["or_amundi", "l'or"],
-  ["bitcoin", "le Bitcoin"],
-  ["bitcoin_wisdomtree", "le Bitcoin"],
-  ["bitcoin_etcgroup", "le Bitcoin"],
-  ["bitcoin_21shares", "le Bitcoin"],
-  ["sect_sante", "la santé"],
-  // "défense" (table fournie) : aucun actif défense dans la bibliothèque actuelle — entrée
-  // absente ici faute d'id à mapper, s'ajoutera si un tel actif est créé un jour.
-  ["foncieres_etf", "l'immobilier coté"],
-  ["immo_gpr", "l'immobilier coté"],
-]);
-
 // Plafond de fréquence par groupe : au-delà de ce ratio d'apparition dans l'historique de la
 // session, un membre du groupe est exclu des tirages tant qu'une autre option reste disponible
 // (cf. resolveAssetId dans engine.js). Par défaut 30% pour tout groupe non listé ici ; l'or est
@@ -236,26 +151,6 @@ export const PROFILES = [
   {
     id: "generaliste",
     label: "Le Généraliste",
-    // Deux registres d'accroche plutôt qu'un pool unique (cf. CONCENTRATION_THRESHOLD dans
-    // theses.js et pickAccroche dans engine.js) : le profil promet la diversification dans son
-    // discours, donc une accroche "diversifiée" sur un tirage réellement concentré (>40% sur une
-    // ligne qui n'est ni cash, ni obligataire, ni un indice monde) mentirait sur la composition —
-    // audit "post-audit v5", août 2026.
-    accrochesDiversifie: [
-      "Un peu de tout, pour ne dépendre d'aucun scénario unique.",
-      "Pas de conviction forte ici. Juste une diversification qui couvre un maximum de scénarios.",
-      "La diversification comme seule vraie conviction.",
-      "Tout le monde dans le même panier — mais un grand panier.",
-      "Aucune conviction forte. Juste une couverture maximale des scénarios possibles.",
-    ],
-    // [libellé] est résolu par pickAccroche via CONCENTRATION_LABELS, jamais laissé tel quel.
-    accrochesConcentre: [
-      "La diversification comme base, [libellé] comme pari assumé.",
-      "80% de sagesse, 20% de conviction. Voici où elle va.",
-      "Pas vraiment de thèse — juste une conviction plus marquée côté [libellé].",
-      "La diversification comme filet de sécurité, [libellé] comme vrai moteur.",
-      "Pas de thèse unique — mais une ligne qui pèse plus que les autres.",
-    ],
     sousTitres: [
       "Voici comment ça se traduit concrètement 👇",
       "Le détail, actif par actif 👇",
@@ -282,6 +177,16 @@ export const PROFILES = [
     ],
     riskCombos: {
       prudent: {
+        hooks: [
+          {
+            hook: "55% de fonds euros, 10% d'actions monde. Tu appellerais ça un vrai portefeuille prudent ?",
+            intro: "Le capital ne bouge presque pas, même dans une mauvaise année.",
+          },
+          {
+            hook: "10% d'actions, le reste en fonds euros et obligations. Ça te semble trop calme ?",
+            intro: "C'est fait pour : viser -3,7% dans la pire année, pas plus.",
+          },
+        ],
         assets: [
           {
             id: "fonds_euros", pct: 55,
@@ -314,6 +219,16 @@ export const PROFILES = [
         ],
       },
       defensif: {
+        hooks: [
+          {
+            hook: "35% de fonds euros mais 25% d'actions monde cette fois. Ça change quoi par rapport à un Prudent ?",
+            intro: "Le risque grimpe un peu — jusqu'à -6% dans la pire année au lieu de -4%.",
+          },
+          {
+            hook: "Toujours 15% d'or dans ce Défensif. C'est beaucoup ou pas tant que ça ?",
+            intro: "Assez pour amortir un vrai coup dur, pas assez pour piloter la performance.",
+          },
+        ],
         assets: [
           {
             id: "fonds_euros", pct: 35,
@@ -346,6 +261,16 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        hooks: [
+          {
+            hook: "20% d'immobilier coté dans ce portefeuille Équilibré. Tu t'attendais à autant ?",
+            intro: "Six lignes différentes, aucune qui dépasse 30% — la diversification pure.",
+          },
+          {
+            hook: "-12,3% la pire année pour un Équilibré. Ça te paraît beaucoup ou raisonnable ?",
+            intro: "Sur six lignes différentes, aucune ne pèse plus de 30% du portefeuille.",
+          },
+        ],
         // Insertion actions_value du 30/08/2026 : ligne réduite pour compenser = SP500_OPTIONS
         // (15% -> 5%), la ligne la plus proche en rôle (pari actions concentré, à contenu
         // fortement growth/tech) — WORLD_OPTIONS/CORPBOND_OPTIONS/GOLD_OPTIONS/IMMOBILIER_OPTIONS
@@ -397,6 +322,16 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        hooks: [
+          {
+            hook: "20% de marchés émergents dans ce Dynamique. Tu miserais là-dessus ?",
+            intro: "Le pari le plus risqué du lot, juste derrière l'indice monde à 40%.",
+          },
+          {
+            hook: "4% en ETF à levier, noyés dans un portefeuille à 40% d'indice monde. Ça vaut le coup pour si peu ?",
+            intro: "À ce poids-là, c'est un accélérateur discret, pas le moteur du portefeuille.",
+          },
+        ],
         // Insertion actions_value du 30/08/2026 : ligne réduite pour compenser = NASDAQ100_OPTIONS
         // (21% -> 9%, le pendant "growth" qu'actions_value vient équilibrer côté "value") —
         // LEVERAGE_OPTIONS laissé strictement inchangé à 4% (plafond dur déjà validé par
@@ -464,6 +399,16 @@ export const PROFILES = [
         ],
       },
       offensif: {
+        hooks: [
+          {
+            hook: "10% de Bitcoin et 15% d'ETF à levier dans le même portefeuille Généraliste. Ça te tente ?",
+            intro: "Sans surprise, la pire année tombe à -30,6% — le prix de cette ambition.",
+          },
+          {
+            hook: "-30,6% la pire année pour ce Généraliste Offensif. Tu encaisserais ça sans paniquer ?",
+            intro: "En échange, 25% de Nasdaq-100 et 20% d'émergents pour viser la croissance.",
+          },
+        ],
         // Rééquilibrage EM_OPTIONS/WORLD_OPTIONS du 08/09/2026 (audit "cohérence des pondérations") :
         // pour un profil dont la thèse est la diversification, le socle World/ACWI/All-World doit
         // toujours peser au moins autant que n'importe quelle ligne actions plus concentrée du même
@@ -520,13 +465,6 @@ export const PROFILES = [
   {
     id: "rentier",
     label: "Le Rentier",
-    accroches: [
-      "L'objectif n'est pas de faire grossir le capital vite. C'est qu'il verse un revenu, chaque année.",
-      "Chaque ligne de ce portefeuille a le même métier : distribuer.",
-      "Ici, la performance se mesure en revenus perçus, pas en plus-value latente.",
-      "Le capital travaille pour verser un chèque, pas pour battre un record.",
-      "Moins de plus-value latente, plus de virements réguliers.",
-    ],
     sousTitres: [
       "Voici la composition qui porte cette logique 👇",
       "Le détail, ligne par ligne 👇",
@@ -558,6 +496,16 @@ export const PROFILES = [
     ],
     riskCombos: {
       prudent: {
+        hooks: [
+          {
+            hook: "20% en obligations high yield pour un Rentier Prudent, ça surprend un peu, non ?",
+            intro: "C'est ce qui permet de sortir un vrai rendement sans sacrifier la sécurité du fonds euros.",
+          },
+          {
+            hook: "15% de SCPI, 15% de dividendes. Le duo pour générer du revenu sans trop bouger, ça te parle ?",
+            intro: "Le fonds euros reste quand même la moitié du portefeuille.",
+          },
+        ],
         assets: [
           {
             id: "fonds_euros", pct: 50,
@@ -590,6 +538,16 @@ export const PROFILES = [
         ],
       },
       defensif: {
+        hooks: [
+          {
+            hook: "25% en dividendes et 25% en high yield. Deux sources de revenu côte à côte, ça te semble équilibré ?",
+            intro: "Le fonds euros descend à 35% pour laisser plus de place au rendement.",
+          },
+          {
+            hook: "15% d'immobilier coté en plus des dividendes et du high yield. Trois sources de revenu, ça fait beaucoup ?",
+            intro: "C'est le prix pour viser plus de rendement qu'un profil Prudent.",
+          },
+        ],
         assets: [
           {
             id: "fonds_euros", pct: 35,
@@ -622,6 +580,16 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        hooks: [
+          {
+            hook: "45% en foncières cotées, plus 15% de SCPI. Ça fait 60% d'immobilier pour un Rentier. Volontaire ou excessif ?",
+            intro: "C'est l'idée : l'immobilier reste la source de rendement la plus lisible pour ce profil.",
+          },
+          {
+            hook: "Presque la moitié du portefeuille en foncières cotées. Tu trouves ça trop concentré ?",
+            intro: "Le reste vient diversifier avec dividendes, high yield et un peu de Treasury américain.",
+          },
+        ],
         // Insertion oblig_etat_us du 30/08/2026 : ligne réduite pour compenser = HIGHYIELD_OPTIONS
         // (15% -> 8%), seule autre poche obligataire du combo, donc le rôle le plus proche — scpi/
         // foncieres_etf_dist/DIVIDEND_OPTIONS_DIST laissés intacts (rôles distincts : immobilier
@@ -666,6 +634,16 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        hooks: [
+          {
+            hook: "45% du portefeuille en JEPQ, un fonds qui vend des options. Tu sais ce que ça implique ?",
+            intro: "Ça plafonne la hausse en marché haussier, mais ça verse un revenu mensuel élevé.",
+          },
+          {
+            hook: "Le covered call (JEPQ) devient la ligne dominante à 45%. Un pari sur le revenu plutôt que sur la performance — ça te va ?",
+            intro: "Le reste (foncières, dividendes, high yield) vient juste diversifier la source de ce revenu.",
+          },
+        ],
         assets: [
           {
             id: "jepq", pct: 45,
@@ -698,6 +676,16 @@ export const PROFILES = [
         ],
       },
       offensif: {
+        hooks: [
+          {
+            hook: "65% du portefeuille sur un seul fonds à vente d'options (JEPQ). Ça te paraît trop concentré pour un Rentier ?",
+            intro: "Pour ce profil, c'est assumé : maximiser le revenu mensuel plutôt que diversifier les sources.",
+          },
+          {
+            hook: "Un Rentier Offensif, c'est deux tiers du portefeuille sur une seule stratégie de revenu. Ça te choque ?",
+            intro: "Le pari, c'est que la prime d'options rapporte plus que ce qu'elle plafonne en hausse.",
+          },
+        ],
         // Exception de drawdown minimum (audit "post-audit v6", août 2026) : le covered call du
         // JEPQ plafonne mécaniquement son propre drawdown (la prime d'option limite la baisse
         // autant que la hausse) — un pire exercice "sage" pour ce combo n'est donc jamais un
@@ -738,13 +726,6 @@ export const PROFILES = [
   {
     id: "pro_europe",
     label: "Le Pro-Européen",
-    accroches: [
-      "Un portefeuille qui mise sur l'Europe plutôt que sur les États-Unis — jusqu'au bout de la logique.",
-      "Majoritairement européen ici. Le pari est assumé.",
-      "Pour ceux qui pensent que l'Europe est sous-valorisée, pas sous-performante.",
-      "L'Europe a le potentiel. Ce portefeuille prend le pari qu'elle finira par le montrer.",
-      "Ici, l'essentiel du portefeuille parle une langue européenne.",
-    ],
     sousTitres: [
       "Voici à quoi ressemble ce pari 👇",
       "Le détail, ligne par ligne 👇",
@@ -776,6 +757,16 @@ export const PROFILES = [
     // d'émergents hors Europe, incompatibles avec la thèse.
     riskCombos: {
       prudent: {
+        hooks: [
+          {
+            hook: "55% en obligations d'État court terme, seulement 15% d'actions. C'est encore un vrai pari sur l'Europe, ça ?",
+            intro: "Oui, mais version ultra-prudente : la sécurité avant la conviction.",
+          },
+          {
+            hook: "75% du portefeuille en fonds euros et obligations courtes. Tu appellerais ça 'Pro-Européen' quand même ?",
+            intro: "La conviction Europe est là, juste dosée au minimum pour ce palier de risque.",
+          },
+        ],
         assets: [
           {
             id: "oblig_etat_eur_short", pct: 55,
@@ -808,6 +799,16 @@ export const PROFILES = [
         ],
       },
       defensif: {
+        hooks: [
+          {
+            hook: "30% d'Euro Stoxx 50 et 20% de CAC 40. Un pari France + zone euro assumé, tu en penses quoi ?",
+            intro: "La moitié du portefeuille mise sur les grandes valeurs européennes, sans détour par les US.",
+          },
+          {
+            hook: "Toujours zéro action américaine ici. Un choix que tu ferais ?",
+            intro: "50% du portefeuille reste concentré sur la zone euro, le reste sécurise le capital.",
+          },
+        ],
         assets: [
           {
             idOptions: EUROSTOXX50_OPTIONS, pct: 30,
@@ -847,6 +848,16 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        hooks: [
+          {
+            hook: "20% de small caps européennes dans ce portefeuille Équilibré. Tu savais que ça existait comme pari ?",
+            intro: "Plus volatil que les grandes valeurs, mais toujours 100% Europe.",
+          },
+          {
+            hook: "Quatre lignes différentes, toutes européennes, zéro action US. C'est le genre de discipline que tu tiendrais ?",
+            intro: "Même la tech ici, c'est la version européenne du secteur — pas les géants américains.",
+          },
+        ],
         assets: [
           {
             idOptions: EUROSTOXX50_OPTIONS, pct: 20,
@@ -886,6 +897,16 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        hooks: [
+          {
+            hook: "30% d'or dans un portefeuille censé miser sur l'Europe. Ça te semble contradictoire ?",
+            intro: "Pas vraiment : l'or amortit la volatilité des 50% restants, concentrés sur la tech et les small caps européennes.",
+          },
+          {
+            hook: "30% de tech européenne, 30% d'or, zéro action américaine. Un mélange qui te tente ?",
+            intro: "C'est le pari Europe poussé à son maximum, avec l'or comme seul filet de sécurité.",
+          },
+        ],
         assets: [
           {
             idOptions: EUROSTOXX50_OPTIONS, pct: 20,
@@ -926,6 +947,16 @@ export const PROFILES = [
       // (le socle/la protection cèdent du poids aux paris les plus concentrés). RISK_BOUNDS.offensif
       // n'a pas de plancher (min: null) : pas de stress-test de borne nécessaire pour ce combo.
       offensif: {
+        hooks: [
+          {
+            hook: "70% du portefeuille entre tech européenne et small caps. Le pari Europe le plus poussé du lot, ça te tente ?",
+            intro: "Zéro action américaine, zéro grande capitalisation classique — juste la conviction à l'état pur.",
+          },
+          {
+            hook: "-21% la pire année, entièrement sur des paris européens. Tu encaisserais ça pour rester fidèle à cette conviction ?",
+            intro: "L'or à 15% est la seule ligne qui n'est pas un pari direct sur l'Europe.",
+          },
+        ],
         assets: [
           {
             idOptions: EUROSTOXX50_OPTIONS, pct: 15,
@@ -963,13 +994,6 @@ export const PROFILES = [
   {
     id: "anti_inflation",
     label: "L'Anti-Inflation",
-    accroches: [
-      "Ce portefeuille n'existe pas pour battre le marché. Il existe pour que ton argent garde sa valeur.",
-      "Ici, aucune ligne n'est émise par une banque centrale.",
-      "La thèse est simple : protéger le pouvoir d'achat du capital, pas le faire exploser.",
-      "Pas de banque centrale, pas de dévaluation possible : voilà la logique.",
-      "Protéger, pas parier : la thèse tient en une phrase.",
-    ],
     sousTitres: [
       "Voici comment cette logique se traduit en pourcentages 👇",
       "Le détail, actif par actif 👇",
@@ -1001,6 +1025,16 @@ export const PROFILES = [
     // la poche de liquidité (fonds euros) sont utilisés ici.
     riskCombos: {
       prudent: {
+        hooks: [
+          {
+            hook: "-0,2% la pire année pour ce portefeuille. Tu t'attendais à si peu de dégâts en 2022 ?",
+            intro: "Logique : l'or et les matières premières ont justement grimpé cette année-là.",
+          },
+          {
+            hook: "25% d'or, 15% de matières premières, même au palier Prudent. Ça te semble beaucoup pour débuter ?",
+            intro: "C'est le dosage minimum pour que la protection contre l'inflation soit réelle, pas symbolique.",
+          },
+        ],
         assets: [
           {
             id: "fonds_euros", pct: 30,
@@ -1033,6 +1067,16 @@ export const PROFILES = [
         ],
       },
       defensif: {
+        hooks: [
+          {
+            hook: "La pire année de ce portefeuille, c'est... +1,4%. Tu y crois ?",
+            intro: "Normal : l'or et les matières premières font justement leur travail quand tout le reste dévisse.",
+          },
+          {
+            hook: "35% d'or, 25% de matières premières. Plus de la moitié du portefeuille dans les deux, ça te paraît extrême ?",
+            intro: "Pour ce profil, c'est le cœur du réacteur, pas un simple filet de sécurité.",
+          },
+        ],
         assets: [
           {
             idOptions: GOLD_OPTIONS, pct: 35,
@@ -1065,6 +1109,16 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        hooks: [
+          {
+            hook: "15% d'argent en plus de l'or et des matières premières. Tu connaissais ce trio anti-inflation ?",
+            intro: "À eux trois, ils pèsent 70% du portefeuille — et 2022 n'a même pas été une mauvaise année pour lui.",
+          },
+          {
+            hook: "Encore une pire année positive : +2,3%. Ce portefeuille a-t-il seulement un point faible ?",
+            intro: "Oui : il ne suit pas la hausse des marchés actions quand tout va bien.",
+          },
+        ],
         assets: [
           {
             idOptions: GOLD_OPTIONS, pct: 30,
@@ -1104,6 +1158,16 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        hooks: [
+          {
+            hook: "Trois lignes seulement, 85% entre or et matières premières. Tu ferais confiance à un portefeuille aussi concentré ?",
+            intro: "C'est voulu : à ce palier, la conviction anti-inflation prime sur la diversification classique.",
+          },
+          {
+            hook: "50% d'or à lui seul. Ça te paraît être une vraie diversification ou un pari unique déguisé ?",
+            intro: "Un pari unique assumé — sur l'inflation, pas sur telle ou telle entreprise.",
+          },
+        ],
         assets: [
           {
             idOptions: GOLD_OPTIONS, pct: 50,
@@ -1136,6 +1200,16 @@ export const PROFILES = [
       // sa place aux deux jambes de la thèse (or, matières premières), poussées à leur maximum.
       // RISK_BOUNDS.offensif n'a pas de plancher (min: null) : pas de stress-test de borne nécessaire.
       offensif: {
+        hooks: [
+          {
+            hook: "Deux lignes. Aucune action, aucune obligation. Juste 60% d'or et 40% de matières premières. Tu retirerais tout le reste comme ça ?",
+            intro: "C'est la version la plus pure du pari anti-inflation — rien pour l'amortir, rien pour le diluer.",
+          },
+          {
+            hook: "Même la pire année de ce portefeuille est positive (+4,5%, en 2023 et pas en 2022). Il a un vrai point faible ?",
+            intro: "Oui : sans actions, il rate toute la croissance boursière classique quand l'inflation retombe.",
+          },
+        ],
         assets: [
           {
             idOptions: GOLD_OPTIONS, pct: 60,
@@ -1159,13 +1233,6 @@ export const PROFILES = [
   {
     id: "bouclier",
     label: "Le Bouclier",
-    accroches: [
-      "On accepte un peu de mouvement, jamais la panique.",
-      "Moins spectaculaire qu'un portefeuille 100% actions, beaucoup plus tranquille.",
-      "Résister aux crises avant tout — la performance vient après.",
-      "Le compromis pour dormir tranquille sans renoncer à tout.",
-      "Amorti, pas figé : ce portefeuille bouge, juste beaucoup moins que le marché.",
-    ],
     sousTitres: [
       "Voici ce que ça donne une fois assemblé 👇",
       "Le détail de la répartition 👇",
@@ -1198,6 +1265,16 @@ export const PROFILES = [
     // l'autre bout de l'échelle de risque.
     riskCombos: {
       prudent: {
+        hooks: [
+          {
+            hook: "10% de santé, 55% de fonds euros. Le secteur défensif par excellence, mais à petite dose — ça t'étonne ?",
+            intro: "À ce palier, la sécurité vient d'abord du fonds euros, la santé n'est qu'un complément.",
+          },
+          {
+            hook: "-2,6% la pire année, quasi aucun mouvement. Tu trouves ça rassurant ou trop timide ?",
+            intro: "C'est le prix de la stabilité : ce portefeuille ne vise pas à sur-performer, juste à ne pas décevoir.",
+          },
+        ],
         // Insertion oblig_etat_us du 30/08/2026 : ce combo n'avait pas de ligne "oblig_etat_eur"
         // à remplacer (contrairement à la demande initiale, qui supposait sa présence — vérifié,
         // absente ici) — traité comme un COMPLÉMENT plutôt qu'un remplacement. Ligne réduite pour
@@ -1243,6 +1320,16 @@ export const PROFILES = [
         ],
       },
       defensif: {
+        hooks: [
+          {
+            hook: "La santé passe à 25%, à égalité avec le fonds euros. Un secteur qui prend enfin du poids, ça te rassure ou pas ?",
+            intro: "C'est justement le secteur réputé le plus résistant en cas de récession.",
+          },
+          {
+            hook: "Cinq lignes différentes, aucune qui dépasse 25%. Ça te semble bien réparti ?",
+            intro: "C'est le principe du Bouclier : jamais tout miser sur une seule protection.",
+          },
+        ],
         assets: [
           {
             id: "fonds_euros", pct: 25,
@@ -1282,6 +1369,16 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        hooks: [
+          {
+            hook: "30% d'immobilier, 27% de dividendes. Le fonds euros passe en dernier à 15%. Tu t'attendais à ce changement ?",
+            intro: "À ce palier, la protection vient des revenus réguliers plutôt que du capital garanti.",
+          },
+          {
+            hook: "30% d'immobilier, 27% de dividendes — plus de la moitié du portefeuille à eux deux. Redondant ou complémentaire, à ton avis ?",
+            intro: "Complémentaire : l'un dépend du marché immobilier, l'autre des entreprises qui versent — rarement corrélés.",
+          },
+        ],
         assets: [
           {
             // Poids réduit de 45% à 15% lors du diagnostic "post-audit v5" (août 2026) : à 45%,
@@ -1339,13 +1436,6 @@ export const PROFILES = [
   {
     id: "crypto_curieux",
     label: "Le Crypto-Curieux",
-    accroches: [
-      "Une vraie place laissée aux actifs numériques, pour ceux qui y croient.",
-      "Un pied dans la finance traditionnelle, un pied dans la crypto.",
-      "La dose de Bitcoin varie, la logique reste la même : une conviction assumée, jamais all-in.",
-      "Pour ceux qui veulent goûter à la volatilité crypto, sans y aller à l'aveugle.",
-      "Le reste du portefeuille existe pour une seule raison : encaisser les à-coups de la crypto.",
-    ],
     sousTitres: [
       "Voici comment cette conviction se traduit en pourcentages 👇",
       "Le détail, actif par actif 👇",
@@ -1381,6 +1471,16 @@ export const PROFILES = [
     // 2022) est incompatible avec un plancher de perte à -5%.
     riskCombos: {
       defensif: {
+        hooks: [
+          {
+            hook: "10% de Bitcoin, 58% de fonds euros. Le dosage le plus prudent possible pour tester la crypto, ça te correspond ?",
+            intro: "Même si Bitcoin s'effondre, le reste du portefeuille encaisse l'essentiel du choc.",
+          },
+          {
+            hook: "Tu veux toucher au Bitcoin sans y laisser ta sécurité ? C'est exactement ce dosage à 10%.",
+            intro: "Le fonds euros à lui seul pèse plus de cinq fois la ligne Bitcoin.",
+          },
+        ],
         assets: [
           {
             id: "fonds_euros", pct: 58,
@@ -1413,6 +1513,16 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        hooks: [
+          {
+            hook: "15% de Bitcoin, 25% d'or. Deux valeurs refuges très différentes côte à côte, ça te paraît cohérent ?",
+            intro: "L'un est censé protéger contre l'inflation, l'autre reste hyper spéculatif — pas le même pari du tout.",
+          },
+          {
+            hook: "La ligne Bitcoin est passée à 15% par rapport au palier Défensif. Tu sens la différence de risque rien qu'à ce chiffre ?",
+            intro: "La pire année passe de -8% à -17% — c'est le prix de cette montée en puissance.",
+          },
+        ],
         // Insertion oblig_etat_us + actions_value du 30/08/2026 : lignes réduites pour compenser =
         // CORPBOND_OPTIONS (25% -> 19%, seule autre poche obligataire, rôle le plus proche
         // d'oblig_etat_us) et WORLD_OPTIONS (35% -> 25%, rôle de contrepoids diversifié le plus
@@ -1465,6 +1575,16 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        hooks: [
+          {
+            hook: "19% de Bitcoin et 10% d'ETF à levier dans le même portefeuille. Tu cumulerais ces deux paris-là ?",
+            intro: "Deux sources de volatilité différentes, empilées plutôt que choisies l'une contre l'autre.",
+          },
+          {
+            hook: "-28% la pire année pour un Crypto-Curieux Dynamique. Ça reste dans tes clous ou c'est déjà trop ?",
+            intro: "En échange, Bitcoin et le levier tech peuvent tirer la performance bien au-dessus d'un portefeuille classique.",
+          },
+        ],
         // Révisé le 14/09/2026 (audit "Ajustement Crypto-Curieux Dynamique") : Bitcoin 25% -> 19%
         // et LEVERAGE_OPTIONS 4% -> 10%, World/Nasdaq/Gold inchangés. Deux problèmes corrigés par le
         // même ajustement : (1) 9% de Bitcoin observé en tirage réel (jitter) ne justifiait plus
@@ -1526,6 +1646,16 @@ export const PROFILES = [
         ],
       },
       offensif: {
+        hooks: [
+          {
+            hook: "60% du portefeuille entre Bitcoin et Ethereum. Aucun or, aucun fonds euros pour amortir. Tu irais jusque-là ?",
+            intro: "-52,4% la pire année : c'est le prix à payer pour ce niveau de conviction crypto.",
+          },
+          {
+            hook: "Ni or, ni obligations, ni fonds euros — juste crypto, tech et émergents. Ça te semble être un vrai portefeuille ou un pari pur ?",
+            intro: "Assumé comme un pari pur : ce palier n'a de toute façon aucun plancher de perte.",
+          },
+        ],
         assets: [
           {
             idOptions: BITCOIN_OPTIONS, pct: 35,
@@ -1570,13 +1700,6 @@ export const PROFILES = [
   {
     id: "thematique",
     label: "Le Thématique",
-    accroches: [
-      "Pas de diversification ici : un seul pari, assumé jusqu'au bout.",
-      "Ce portefeuille mise sur un secteur, pas sur le marché dans son ensemble.",
-      "La conviction sectorielle prime sur la prudence de la diversification.",
-      "Un seul thème, une seule conviction : le reste du portefeuille n'existe que pour l'accompagner.",
-      "Concentré, volontairement — c'est le prix à payer pour un pari sectoriel clair.",
-    ],
     sousTitres: [
       "Voici comment ce pari se traduit en pourcentages 👇",
       "Le détail, actif par actif 👇",
@@ -1604,6 +1727,16 @@ export const PROFILES = [
     // concentré pour un plancher de perte à -5%.
     riskCombos: {
       defensif: {
+        hooks: [
+          {
+            hook: "35% sur un secteur unique, mais choisi parmi les plus calmes (santé, énergie, utilities...). Ça reste 'Thématique' à tes yeux ?",
+            intro: "Oui, juste avec un secteur qui ne fait pas de vagues plutôt qu'un pari extrême.",
+          },
+          {
+            hook: "-7,6% la pire année pour un portefeuille censé miser sur un secteur précis. Tu t'attendais à si peu de casse ?",
+            intro: "C'est parce qu'à ce palier, le secteur tiré au sort reste toujours un des plus défensifs du lot.",
+          },
+        ],
         assets: [
           {
             idOptions: THEME_OPTIONS_CALM, pct: 35,
@@ -1636,6 +1769,16 @@ export const PROFILES = [
         ],
       },
       equilibre: {
+        hooks: [
+          {
+            hook: "36% sur un secteur qui peut être aussi bien la santé que les semi-conducteurs. Tu prendrais ce pari sans savoir lequel à l'avance ?",
+            intro: "25% d'or vient justement compenser le fait que le secteur tiré peut être un des plus volatils du lot.",
+          },
+          {
+            hook: "8% du portefeuille en satellite Asie — Japon, Corée, Taïwan ou toute la zone. Tu savais que ce profil pouvait aller jusque-là ?",
+            intro: "Une petite ligne, mais qui ajoute une vraie diversification géographique au pari sectoriel principal.",
+          },
+        ],
         // Insertion actions_japon du 30/08/2026 : ligne réduite pour compenser =
         // WORLD_OPTIONS (26% -> 14%), même rôle de "contrepoids diversifié" qu'une ligne
         // géographique ciblée comme actions_japon — CORPBOND_OPTIONS (stabilisateur) et
@@ -1702,6 +1845,16 @@ export const PROFILES = [
         ],
       },
       dynamique: {
+        hooks: [
+          {
+            hook: "55% du portefeuille sur un seul secteur, potentiellement les semi-conducteurs ou l'énergie propre. Ça te paraît raisonnable ?",
+            intro: "20% d'or vient contrebalancer un pari sectoriel qui peut swinguer très fort dans les deux sens.",
+          },
+          {
+            hook: "-22% la pire année, pour un portefeuille où plus de la moitié dépend d'un seul secteur. Tu resterais investi ?",
+            intro: "C'est le compromis de ce palier : conviction sectorielle forte, mais jamais sans filet (l'or, le monde).",
+          },
+        ],
         // Insertion actions_value du 30/08/2026 : ligne réduite pour compenser = WORLD_OPTIONS
         // (25% -> 15%), même rôle de "contrepoids diversifié" — THEME_OPTIONS_AGGRESSIVE (pari
         // central) et GOLD_OPTIONS (protection) laissés intacts. Choisi sur ce palier plutôt que
@@ -1738,6 +1891,16 @@ export const PROFILES = [
         ],
       },
       offensif: {
+        hooks: [
+          {
+            hook: "70% sur un seul secteur, plus 10% de levier en renfort. Un pari de cette taille, tu le ferais ?",
+            intro: "Le reste du portefeuille n'existe que pour accompagner cette conviction, jamais pour la freiner.",
+          },
+          {
+            hook: "-35% la pire année. C'est le prix d'un pari sectoriel poussé à l'extrême, sans aucun filet de sécurité. Ça te tente encore ?",
+            intro: "Sans plancher de perte à ce palier, la conviction sectorielle est laissée totalement libre.",
+          },
+        ],
         assets: [
           {
             idOptions: THEME_OPTIONS_AGGRESSIVE, pct: 70,
