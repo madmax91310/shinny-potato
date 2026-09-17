@@ -23,7 +23,7 @@ export const BROKERS = [
     // ("Trade Republic lance son Livret A en France, adossé à AXA Banque") et moneyvox.fr
     // ("Trade Republic : le Livret A désormais disponible pour les clients de cette néobanque"),
     // recoupées par zonebourse.com et sinvestir.fr.
-    liquidites: { rank: 1, resume: "Oui", detail: "Livret A (via AXA Banque)" },
+    liquidites: { rank: 1, resume: "Oui", detail: "Liquidités rémunérées + Livret A (via AXA Banque)" },
     // Correction du 03/09/2026, signalée par l'utilisateur : le transfert PEA entrant est en réalité
     // possible chez Trade Republic (0€ côté TR — la banque d'origine peut en revanche facturer des
     // frais sortants, ~15€/ligne selon les établissements), pas "impossible" comme précédemment
