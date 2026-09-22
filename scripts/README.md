@@ -105,7 +105,8 @@ d'actif + badges de confiance au Calculateur, génération + somme à 100% au G�
 portefeuilles, cycle des 36 fiches ETF, texte du duel par défaut au Comparatif courtiers (lu depuis
 la `value` du `<textarea>` — jamais capturé par `innerText()`, piège rencontré à l'écriture de ce
 script), cycle des 7 formats de Tweet Midi, cycle des 10 familles du Comparateur d'indices, tirage
-Aléatoire d'Impact des frais. Sort en code 1 si un outil échoue.
+Aléatoire d'Impact des frais, cycle des faits de Faits marquants des marchés (ajouté le 22/09/2026 à
+la création de l'outil). Sort en code 1 si un outil échoue.
 
 Dépend de Chromium pré-installé à `/opt/pw-browsers/chromium` et de `playwright` installé
 globalement à `/opt/node22/lib/node_modules/playwright` — aucun des deux n'est une dépendance du

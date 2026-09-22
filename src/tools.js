@@ -57,4 +57,12 @@ export const TOOLS = [
     description: "Compare le capital final entre deux niveaux de frais de gestion (TER), en euros, sur simulation d'intérêts composés — hypothèse pédagogique, pas une donnée de marché.",
     status: 'disponible',
   },
+  {
+    to: '/faits-marquants-marches',
+    navLabel: 'Faits marquants',
+    title: 'Faits marquants des marchés',
+    icon: '📚',
+    description: "Statistiques historiques sourcées (S&P 500, Nasdaq, Dow Jones, CAC 40) sur les chocs, corrections et séquences des marchés, prêtes à publier en format \"le saviez-vous\".",
+    status: 'disponible',
+  },
 ]

@@ -9,6 +9,7 @@ import EtfSheets from './pages/etf-sheets/App'
 import TweetMidi from './pages/tweet-midi/App'
 import IndexComparator from './pages/index-comparator/App'
 import FeeImpact from './pages/fee-impact/App'
+import MarketFacts from './pages/market-facts/App'
 import { TOOLS } from './tools'
 
 // Tweets ETF, Lexique financier et Pouvoir d'achat n'ont plus de route dédiée : leurs pages
@@ -28,6 +29,7 @@ const TOOL_ELEMENTS = {
   '/tweet-midi': <TweetMidi />,
   '/comparateur-indices': <IndexComparator />,
   '/impact-frais': <FeeImpact />,
+  '/faits-marquants-marches': <MarketFacts />,
 }
 
 export default function App() {

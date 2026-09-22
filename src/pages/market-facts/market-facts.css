@@ -1,0 +1,49 @@
+/* Styles propres aux Faits marquants des marchés.
+   Repris du vocabulaire visuel des Fiches ETF (thème teal/navy commun à l'app). */
+
+.mf-scope {
+  --mf-surface: #0f172a;
+  --mf-border: #1e293b;
+  --mf-border-soft: #334155;
+  --mf-text: #f1f5f9;
+  --mf-text-dim: #c7cde3;
+  --mf-text-faint: #64748b;
+  --mf-accent: #2dd4bf;
+  --mf-accent-bright: #5eead4;
+  --mf-font-display: ui-serif, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  color: var(--mf-text);
+}
+
+.mf-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+@media (max-width: 420px) { .mf-controls { flex-direction: column; } }
+.mf-controls button { width: auto; }
+@media (max-width: 420px) { .mf-controls button { justify-content: center; width: 100%; } }
+
+.mf-select-shell { position: relative; flex: 1 1 320px; }
+.mf-select {
+  appearance: none; width: 100%; background: var(--mf-surface); border: 1px solid var(--mf-border);
+  color: var(--mf-text); font-size: 14px; padding: 12px 38px 12px 14px; border-radius: 10px; cursor: pointer;
+  transition: border-color .15s ease;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1L6 6L11 1' stroke='%232dd4bf' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+.mf-select:hover { border-color: var(--mf-accent); }
+.mf-select optgroup { font-weight: 700; color: var(--mf-accent-bright); background: var(--mf-surface); }
+
+.mf-card {
+  background: var(--mf-surface); border: 1px solid var(--mf-border); border-radius: 16px;
+  padding: clamp(20px, 4.5vw, 34px); box-shadow: 0 24px 60px -30px rgba(0, 0, 0, .65);
+}
+.mf-card-kicker { font-size: 13px; font-weight: 700; color: var(--mf-text-dim); margin: 0 0 16px; }
+.mf-fact-text {
+  font-family: var(--mf-font-display); font-size: clamp(17px, 2.6vw, 20px); font-weight: 500;
+  line-height: 1.5; color: var(--mf-text); text-wrap: balance; margin: 0 0 22px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--mf-border-soft);
+}
+
+.mf-meta { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.mf-meta li { display: flex; align-items: baseline; gap: 10px; font-size: 14px; color: var(--mf-text-dim); line-height: 1.5; }
+.mf-meta-icon { flex: 0 0 20px; font-size: 14px; }
+.mf-meta li.mf-note { color: var(--mf-text-faint); font-size: 13px; }
+
+.mf-disclaimer { margin: 0; font-size: 12px; color: var(--mf-text-faint); line-height: 1.5; }
