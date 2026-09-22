@@ -134,6 +134,20 @@ async function testFeeImpact(page) {
   record("Impact des frais", ok, "comparaison générée après tirage Aléatoire");
 }
 
+async function testMarketFacts(page) {
+  await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: "networkidle" });
+  const select = page.locator("select").first();
+  const count = await select.locator("option").count();
+  let badCount = 0;
+  for (let i = 0; i < count; i++) {
+    await select.selectOption({ index: i });
+    await page.waitForTimeout(40);
+    const text = await page.locator("body").innerText();
+    if (/undefined|NaN/.test(text) || !/Source :/.test(text)) badCount++;
+  }
+  record("Faits marquants des marchés", badCount === 0, `${count} faits cyclés, ${badCount} sans source/avec un champ manquant`);
+}
+
 let server;
 try {
   console.log(`Démarrage de vite preview sur le port ${PORT}...`);
@@ -155,6 +169,7 @@ try {
   await testTweetMidi(page);
   await testIndexComparator(page);
   await testFeeImpact(page);
+  await testMarketFacts(page);
 
   await browser.close();
 } finally {
