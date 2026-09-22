@@ -131,7 +131,9 @@ export function computeCustomSeries(startYm, endYm, amount, customStart, customE
 
 export function fmtEUR(n, currency = 'EUR') {
   try {
-    return n.toLocaleString('fr-FR', { style: 'currency', currency, maximumFractionDigits: 0 })
+    // currencyDisplay: 'narrowSymbol' — sans ça, l'Intl fr-FR affiche "$US" pour le dollar (retour
+    // utilisateur du 22/09/2026 : juste "$" attendu, comme "€" pour l'euro, déjà narrow par défaut).
+    return n.toLocaleString('fr-FR', { style: 'currency', currency, currencyDisplay: 'narrowSymbol', maximumFractionDigits: 0 })
   } catch {
     return Math.round(n).toLocaleString('fr-FR') + ' €'
   }
@@ -221,7 +223,7 @@ export function buildTweetText(state, d) {
     ? `Et si tu avais mis ${amountFmt}/mois sur ${assetLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
     : `Et si tu avais investi ${amountFmt} sur ${assetLabel} en ${yearLabel} ? 🫢`
 
-  const lines = [hookLine, '', 'Tu aurais :', `${finalFmt} 💸`]
+  const lines = [hookLine, '', 'Tu aurais :', `${finalFmt} 💸`, '', `Soit une performance de ${fmtPct(gainPct)}`]
 
   // Comparaison Livret A : uniquement pour les actifs en euros, jamais un montant en dollars
   // comparé à un Livret A en euros sans taux de change — même règle que ResultCard côté UI
@@ -233,7 +235,7 @@ export function buildTweetText(state, d) {
   const livretBeats = hasLivretCompare && d.livretA.finalValue >= d.result.finalValue
 
   lines.push('', `La morale de l'histoire ? ${moraleLine(assetLabel, gainPct, hasLivretCompare, livretBeats)}`)
-  lines.push('', "Qu'en penses-tu ? 👇")
+  lines.push('', `💬 Tu es investi sur ${assetLabel} ?`)
 
   return lines.join('\n')
 }
