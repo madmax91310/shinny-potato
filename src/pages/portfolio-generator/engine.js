@@ -1,6 +1,7 @@
 import { YEARS, getAsset } from "./data.js";
 import {
-  PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS, isCompatible, getFrequencyCap,
+  PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS, BITCOIN_OPTIONS,
+  isCompatible, getFrequencyCap,
 } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
 
@@ -403,6 +404,231 @@ function pickCta(profile, history, ctx) {
   return pick(pool);
 }
 
+// Bloc ⚠️ : factorisé (utilisé par generatePortfolio ET buildManualPortfolio, cf. plus bas) pour ne
+// jamais dupliquer cette logique — un seul bloc par tweet, toujours dans le même ordre (pool tiré
+// au sort, puis les ajouts fixes/dynamiques propres au profil ou à la composition).
+function buildWarning(profile, profileId, selection, worst, history) {
+  let warning = pickNonRepeating(profile.warnings, history, profileId, "warning");
+  if (profile.capitalNote) {
+    // Toujours présente (pas tirée au sort) : pour un profil "revenu", la baisse de capital
+    // reste un risque réel même quand les distributions continuent — jamais un simple détail.
+    warning += ` En cas de forte baisse (${worst.year} : ${fmtPct(worst.value)}), le capital distribue toujours des revenus — mais sa valeur recule temporairement. Prévoir une réserve de sécurité hors portefeuille.`;
+  }
+  if (profile.mandatoryWarning) {
+    // Toujours présente elle aussi (Pro-Européen) : le contre-pied assumé face aux US n'est
+    // jamais un détail optionnel qu'un tirage au sort pourrait faire disparaître.
+    warning += ` ${profile.mandatoryWarning}`;
+  }
+  const jepq = selection.find((s) => s.id === "jepq");
+  if (jepq && jepq.pct > 30) {
+    // Avertissement dynamique (pas stocké en dur dans theses.js) : ne se déclenche que si le
+    // covered call dépasse effectivement 30% de CE tirage/CETTE composition précise.
+    warning += " Le covered call (JEPQ) plafonne la hausse en marché bull. Ce portefeuille génère des revenus — pas une performance maximale.";
+  }
+  const leveraged = selection.find((s) => s.id === "lqq" || s.id === "cl2");
+  if (leveraged) {
+    // Toujours présente dès qu'un ETF à levier (LQQ ou CL2, cf. LEVERAGE_OPTIONS) figure dans le
+    // tirage/la composition (pas de seuil de %, contrairement au JEPQ ci-dessus) : la mécanique de
+    // capitalisation quotidienne du levier mérite d'être rappelée à chaque apparition.
+    warning += ` ${leveraged.name} est un ETF à levier 2x quotidien : sur plusieurs années, sa performance n'est jamais un simple x2 de son indice sous-jacent (capitalisation quotidienne du levier, dans un sens comme dans l'autre). Pas fait pour être oublié en portefeuille sans suivi.`;
+  }
+  return warning;
+}
+
+// ── Composition manuelle (demande utilisateur du 22/09/2026) ───────────────────────────────────
+// Contrairement au mode auto, dont chaque combo (profil × palier) est prédéfini et porte sa propre
+// bibliothèque de hooks écrits à la main (ancrés sur les VRAIS chiffres de CE combo précis, cf.
+// `hooks` plus haut), une composition manuelle est arbitraire : aucun texte pré-écrit ne peut lui
+// correspondre sans risquer d'afficher un chiffre faux. Le reste du pipeline (calcul de
+// performance, détection de pire année, avertissement, sous-titre, CTA, contexte, rendu du tweet)
+// est en revanche identique et directement réutilisé — buildManualPortfolio ne fait que remplacer
+// l'étape de tirage aléatoire des lignes/pourcentages par la saisie utilisateur.
+
+const MANUAL_POURQUOI_TEMPLATES = [
+  "{pct}% du portefeuille, un choix personnel pour cette composition.",
+  "Une ligne ajoutée volontairement, à hauteur de {pct}%.",
+  "{pct}% : le poids choisi pour cette ligne dans cette composition libre.",
+];
+
+// Palier de risque le plus proche, pour affichage informatif uniquement (jamais bloquant en mode
+// manuel) : celui dont le plancher (RISK_BOUNDS[r].min) est numériquement le plus proche de la
+// pire année réellement calculée sur CETTE composition. Offensif (pas de plancher, min: null) n'a
+// rien à comparer et n'est retenu qu'en dernier recours, si aucun autre palier n'a de plancher
+// défini (ne devrait jamais arriver avec le RISK_BOUNDS actuel).
+function closestRiskTier(worstValue) {
+  let best = null;
+  let bestDiff = Infinity;
+  RISK_ORDER.forEach((r) => {
+    const bound = RISK_BOUNDS[r];
+    if (bound.min === null) return;
+    const diff = Math.abs(worstValue - bound.min);
+    if (diff < bestDiff) {
+      bestDiff = diff;
+      best = r;
+    }
+  });
+  return best ?? "offensif";
+}
+
+// Détecte le fait le plus marquant de CETTE composition précise, par ordre de priorité identique
+// à celui utilisé pour écrire la bibliothèque de hooks du mode auto : (1) une ligne crypto ou à
+// levier à poids significatif — le pari le plus inattendu/fort ; (2) une ligne dominante (>=45%)
+// à défaut ; (3) une pire année notable (<= -10%) ; (4) un fonds euros dominant (trait prudent
+// caractéristique) ; (5) repli générique sur la composition dans son ensemble.
+function detectManualHighlight(selection, worst) {
+  const sorted = selection.slice().sort((a, b) => b.pct - a.pct);
+  const top = sorted[0];
+  const cryptoOrLeverage = sorted.find(
+    (s) => BITCOIN_OPTIONS.includes(s.id) || s.id === "ethereum" || LEVERAGE_OPTIONS.includes(s.id)
+  );
+  if (cryptoOrLeverage && cryptoOrLeverage.pct >= 15) {
+    return { type: "risky", asset: cryptoOrLeverage };
+  }
+  if (top.pct >= 45) {
+    return { type: "concentration", asset: top };
+  }
+  if (worst.value <= -10) {
+    return { type: "worstYear" };
+  }
+  const fondsEuros = selection.find((s) => s.id === "fonds_euros");
+  if (fondsEuros && fondsEuros.pct >= 40) {
+    return { type: "cautious", asset: fondsEuros };
+  }
+  return { type: "generic", asset: top };
+}
+
+function buildManualHookPool(selection, worst) {
+  const highlight = detectManualHighlight(selection, worst);
+  const lineCount = selection.length;
+  if (highlight.type === "risky") {
+    const a = highlight.asset;
+    return [
+      {
+        hook: `${a.pct}% en ${a.name} dans une composition que tu as choisie toi-même. Tu assumes ce niveau de risque ?`,
+        intro: "C'est le pari le plus marquant de cette sélection — le reste vient équilibrer autour.",
+      },
+      {
+        hook: `Tu es allé jusqu'à ${a.pct}% sur ${a.name}. Volontaire, ou tu n'avais pas réalisé le poids que ça prenait ?`,
+        intro: "À ce niveau, cette seule ligne pèse plus que beaucoup de portefeuilles entiers.",
+      },
+    ];
+  }
+  if (highlight.type === "concentration") {
+    const a = highlight.asset;
+    return [
+      {
+        hook: `${a.pct}% du portefeuille sur une seule ligne, ${a.name}. Concentré ou juste convaincu ?`,
+        intro: "Le reste de la sélection ne pèse pas grand-chose à côté.",
+      },
+      {
+        hook: `Une ligne à elle seule à ${a.pct}%. C'est le pari central de ta composition, ${a.name} ?`,
+        intro: "Tout le reste vient en accompagnement de ce choix.",
+      },
+    ];
+  }
+  if (highlight.type === "worstYear") {
+    return [
+      {
+        hook: `${fmtPct(worst.value)} en ${worst.year} sur cette composition. Tu encaisserais ça sans bouger ?`,
+        intro: "C'est le prix des choix faits ligne par ligne dans cette sélection libre.",
+      },
+      {
+        hook: `Ta composition serait tombée à ${fmtPct(worst.value)} en ${worst.year}. Ça change ton avis sur un des choix faits ?`,
+        intro: "Rien d'imposé ici — juste la conséquence des lignes que tu as choisies.",
+      },
+    ];
+  }
+  if (highlight.type === "cautious") {
+    const a = highlight.asset;
+    return [
+      {
+        hook: `${a.pct}% en fonds euros dans une composition que tu as bâtie toi-même. Par prudence, ou par manque d'idées pour le reste ?`,
+        intro: "Ça amortit tout le reste de la sélection, quel que soit le contenu des autres lignes.",
+      },
+      {
+        hook: "Près de la moitié du portefeuille en fonds euros, et c'est toi qui l'as choisi. Volontaire ?",
+        intro: "Le reste de la composition a donc beaucoup moins de marge pour faire la performance.",
+      },
+    ];
+  }
+  const top = highlight.asset;
+  return [
+    {
+      hook: `${lineCount} lignes, ${top.pct}% sur la plus grosse (${top.name}). Une composition équilibrée, à ton avis ?`,
+      intro: "Aucune ligne ne domine vraiment — la répartition reste raisonnable.",
+    },
+    {
+      hook: `Tu as construit cette composition toi-même, ${lineCount} lignes en tout. Tu la trouves cohérente avec tes objectifs ?`,
+      intro: "Pas de pari extrême ici — plutôt une sélection posée.",
+    },
+  ];
+}
+
+// Anti-répétition scopée sur riskId === "manuel" (cf. buildManualPortfolio) : ne se mélange jamais
+// avec l'historique du mode auto pour ce même profil, exactement comme pickHookPair scope sur
+// (profileId + riskId) pour les combos prédéfinis.
+function pickManualHookPair(profile, selection, worst, history) {
+  const pool = buildManualHookPool(selection, worst);
+  const recentHooks = new Set(
+    history
+      .filter((h) => h.profileId === profile.id && h.riskId === "manuel")
+      .map((h) => h.hookTemplate)
+      .slice(-(pool.length - 1))
+  );
+  const fresh = pool.filter((p) => !recentHooks.has(p.hook));
+  return pick(fresh.length > 0 ? fresh : pool);
+}
+
+export function buildManualPortfolio(rawSelection, profileId, history) {
+  const profile = PROFILES.find((p) => p.id === profileId);
+  const selection = rawSelection.map((r) => {
+    const asset = getAsset(r.id);
+    return {
+      ...asset,
+      pct: r.pct,
+      desc: pick(asset.desc),
+      pourquoi: pick(MANUAL_POURQUOI_TEMPLATES).replace(/\{pct\}/g, r.pct),
+    };
+  });
+
+  const perf = computeYearlyPerf(selection);
+  const worst = worstYearOf(perf);
+  const best = bestYearOf(perf);
+  const closestRiskId = closestRiskTier(worst.value);
+
+  const warning = buildWarning(profile, profileId, selection, worst, history);
+  const cta = pickCta(profile, history, { worst, best, selection });
+  const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
+  const hookPair = pickManualHookPair(profile, selection, worst, history);
+
+  return {
+    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    sig: signature(selection),
+    mode: "manual",
+    profileId,
+    riskId: "manuel",
+    profileName: profile.label,
+    riskLabel: "Composition manuelle",
+    title: `${profile.label} · Composition manuelle`,
+    closestRiskId,
+    closestRiskLabel: RISK_LABELS[closestRiskId],
+    closestBound: RISK_BOUNDS[closestRiskId],
+    hook: hookPair.hook,
+    hookTemplate: hookPair.hook,
+    intro: hookPair.intro,
+    sousTitre: pickNonRepeating(profile.sousTitres, history, profileId, "sousTitre"),
+    ctaTemplate: cta.template,
+    cta: cta.resolved,
+    warning,
+    selection,
+    perf,
+    worst,
+    best,
+    context: contextText,
+    contextFallbackPick: fallbackPick,
+  };
+}
+
 export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const assetUsage = computeAssetUsage(history);
   const pairUsage = computePairUsage(history);
@@ -434,32 +660,9 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const bound = RISK_BOUNDS[riskId];
 
   // Un seul bloc ⚠️ par tweet (cf. renderTweetText, qui préfixe déjà `warning` avec ⚠️) : tout
-  // ajout ci-dessous rejoint la même phrase, jamais un second "⚠️" collé au premier.
-  let warning = pickNonRepeating(profile.warnings, history, profileId, "warning");
-  if (profile.capitalNote) {
-    // Toujours présente (pas tirée au sort) : pour un profil "revenu", la baisse de capital
-    // reste un risque réel même quand les distributions continuent — jamais un simple détail.
-    warning += ` En cas de forte baisse (${worst.year} : ${fmtPct(worst.value)}), le capital distribue toujours des revenus — mais sa valeur recule temporairement. Prévoir une réserve de sécurité hors portefeuille.`;
-  }
-  if (profile.mandatoryWarning) {
-    // Toujours présente elle aussi (Pro-Européen) : le contre-pied assumé face aux US n'est
-    // jamais un détail optionnel qu'un tirage au sort pourrait faire disparaître.
-    warning += ` ${profile.mandatoryWarning}`;
-  }
-  const jepq = selection.find((s) => s.id === "jepq");
-  if (jepq && jepq.pct > 30) {
-    // Avertissement dynamique (pas stocké en dur dans theses.js) : ne se déclenche que si le
-    // covered call dépasse effectivement 30% de CE tirage précis, jitter inclus.
-    warning += " Le covered call (JEPQ) plafonne la hausse en marché bull. Ce portefeuille génère des revenus — pas une performance maximale.";
-  }
-  const leveraged = selection.find((s) => s.id === "lqq" || s.id === "cl2");
-  if (leveraged) {
-    // Toujours présente dès qu'un ETF à levier (LQQ ou CL2, cf. LEVERAGE_OPTIONS) figure dans le
-    // tirage (pas de seuil de %, contrairement au JEPQ ci-dessus) : la mécanique de capitalisation
-    // quotidienne du levier mérite d'être rappelée à chaque apparition, quel que soit son poids
-    // dans CE tirage précis.
-    warning += ` ${leveraged.name} est un ETF à levier 2x quotidien : sur plusieurs années, sa performance n'est jamais un simple x2 de son indice sous-jacent (capitalisation quotidienne du levier, dans un sens comme dans l'autre). Pas fait pour être oublié en portefeuille sans suivi.`;
-  }
+  // ajout ci-dessous rejoint la même phrase, jamais un second "⚠️" collé au premier. Factorisé
+  // dans buildWarning (cf. plus haut), partagé avec buildManualPortfolio.
+  const warning = buildWarning(profile, profileId, selection, worst, history);
   const cta = pickCta(profile, history, { worst, best, selection });
   const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
   const hookPair = pickHookPair(profile, riskId, history);
@@ -467,6 +670,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     sig: signature(selection),
+    mode: "auto",
     profileId,
     riskId,
     profileName: profile.label,

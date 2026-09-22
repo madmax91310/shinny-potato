@@ -1,6 +1,7 @@
 import { useMemo, useState, useRef, useCallback } from 'react'
 import {
   generatePortfolio,
+  buildManualPortfolio,
   renderTweetText,
   fmtPct,
   RISK_ORDER,
@@ -8,10 +9,16 @@ import {
   PROFILES,
   isCompatible,
 } from './engine.js'
-import { CATEGORIES, YEARS } from './data.js'
+import { CATEGORIES, YEARS, ASSETS, getAsset } from './data.js'
+import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './portfolio-generator.css'
+
+// Mode Composition manuelle (demande utilisateur du 22/09/2026) : seuils des garde-fous non
+// bloquants, cf. ManualComposer plus bas.
+const MANUAL_CONCENTRATION_WARN = 50
+const MANUAL_LINE_COUNT_WARN = 8
 
 const RISK_CHIPS = [
   { key: 'auto', label: '🎲 Auto' },
@@ -105,6 +112,158 @@ function RiskGauge({ riskId, riskLabel, profileName, worst, bound }) {
       <p className="pg-riskgauge-profile">
         Profil : <b>{profileName}</b>
       </p>
+    </div>
+  )
+}
+
+// Pas de gabarit RISK_ORDER pour une composition manuelle (aucun palier imposé) : affiche la pire
+// année réellement calculée, plus le palier le plus proche pour comparaison informative uniquement
+// (cf. closestRiskId/closestBound sur le portefeuille manuel, engine.js).
+function ManualRiskInfo({ worst, closestRiskLabel, closestBound }) {
+  return (
+    <div className="pg-riskgauge">
+      <div className="pg-riskgauge-row">
+        <span className="pg-riskgauge-label">Pire année simulée</span>
+        <span className={`pg-riskgauge-value ${worst.value >= 0 ? 'pos' : 'neg'}`}>
+          {fmtPct(worst.value)} en {worst.year}
+        </span>
+      </div>
+      <p className="pg-riskgauge-detail">
+        Composition libre — aucun plancher de perte imposé.
+        {closestBound && (
+          <span className="pg-riskgauge-bound">
+            {' '}
+            · palier le plus proche pour comparaison : {closestRiskLabel} ({closestBound.text})
+          </span>
+        )}
+      </p>
+    </div>
+  )
+}
+
+function ManualComposer({
+  profile,
+  onProfileChange,
+  selection,
+  onAdd,
+  onRemove,
+  onPctChange,
+  search,
+  onSearchChange,
+  onGenerate,
+}) {
+  const selectedIds = useMemo(() => new Set(selection.map((s) => s.id)), [selection])
+  const query = search.trim().toLowerCase()
+  const available = useMemo(
+    () =>
+      ASSETS.filter(
+        (a) =>
+          !selectedIds.has(a.id) &&
+          (!query || a.name.toLowerCase().includes(query) || CATEGORIES[a.cat].label.toLowerCase().includes(query))
+      ),
+    [selectedIds, query]
+  )
+  const total = selection.reduce((sum, s) => sum + s.pct, 0)
+  const maxPct = selection.reduce((max, s) => Math.max(max, s.pct), 0)
+  const lineCount = selection.length
+  const canGenerate = total === 100 && lineCount > 0
+
+  return (
+    <div className="pg-panel">
+      <div className="pg-panel-title">Composition manuelle</div>
+
+      <label className="pg-manual-label" htmlFor="pg-manual-profile">
+        Profil-thèse (calibre le ton du texte, pas les actifs disponibles)
+      </label>
+      <select
+        id="pg-manual-profile"
+        className="pg-manual-select"
+        value={profile}
+        onChange={(e) => onProfileChange(e.target.value)}
+      >
+        {PROFILES.map((p) => (
+          <option key={p.id} value={p.id}>
+            {p.label}
+          </option>
+        ))}
+      </select>
+
+      <label className="pg-manual-label" htmlFor="pg-manual-search">
+        Ajouter un actif ({ASSETS.length} disponibles)
+      </label>
+      <input
+        id="pg-manual-search"
+        type="text"
+        className="pg-manual-search"
+        placeholder="Rechercher un actif (nom, catégorie)..."
+        value={search}
+        onChange={(e) => onSearchChange(e.target.value)}
+      />
+      <div className="pg-manual-asset-list">
+        {available.slice(0, 40).map((a) => (
+          <button key={a.id} type="button" className="pg-manual-asset-option" onClick={() => onAdd(a.id)}>
+            <span>
+              {a.emoji} {a.name}
+            </span>
+            <span className="pg-manual-asset-cat">{CATEGORIES[a.cat].label}</span>
+          </button>
+        ))}
+        {available.length === 0 && <p className="pg-manual-empty">Aucun actif ne correspond, ou tous sont déjà ajoutés.</p>}
+      </div>
+
+      {selection.length > 0 && (
+        <ul className="pg-manual-selection-list">
+          {selection.map((s) => {
+            const asset = getAsset(s.id)
+            return (
+              <li key={s.id} className="pg-manual-selection-row">
+                <span className="pg-manual-selection-name">
+                  {asset.emoji} {asset.name}
+                </span>
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="1"
+                  className="pg-manual-pct-input"
+                  value={s.pct}
+                  onChange={(e) => onPctChange(s.id, Math.max(0, Math.min(100, Number(e.target.value) || 0)))}
+                  aria-label={`Pourcentage pour ${asset.name}`}
+                />
+                <span className="pg-manual-pct-sign">%</span>
+                <button
+                  type="button"
+                  className="pg-manual-remove"
+                  onClick={() => onRemove(s.id)}
+                  aria-label={`Retirer ${asset.name}`}
+                >
+                  ✕
+                </button>
+              </li>
+            )
+          })}
+        </ul>
+      )}
+
+      <div className={`pg-manual-total ${total === 100 ? 'ok' : 'bad'}`}>
+        Total : <b>{total}%</b>
+        {total !== 100 && (
+          <span className="pg-manual-total-hint">
+            {total < 100 ? ` — il manque ${100 - total}%` : ` — ${total - 100}% en trop`}
+          </span>
+        )}
+      </div>
+
+      {maxPct > MANUAL_CONCENTRATION_WARN && (
+        <p className="pg-manual-warning">⚠️ Une ligne dépasse {MANUAL_CONCENTRATION_WARN}% du portefeuille — concentration très élevée.</p>
+      )}
+      {lineCount > MANUAL_LINE_COUNT_WARN && (
+        <p className="pg-manual-warning">⚠️ {lineCount} lignes : le tweet risque d'être très long.</p>
+      )}
+
+      <Button type="button" className="w-full text-base" disabled={!canGenerate} onClick={onGenerate}>
+        Générer le tweet
+      </Button>
     </div>
   )
 }
@@ -233,12 +392,20 @@ function randomEngagement() {
 }
 
 export default function App() {
+  const [mode, setMode] = useState('auto')
   const [selectedRisk, setSelectedRisk] = useState('auto')
   const [selectedProfile, setSelectedProfile] = useState('auto')
   const [history, setHistory] = useState(() => [generatePortfolio([], 'auto', 'auto')])
   const [copyState, setCopyState] = useState('idle')
   const [engagement, setEngagement] = useState(randomEngagement)
   const textareaRef = useRef(null)
+
+  // Composition manuelle : état séparé du tirage auto, jamais mélangé (cf. engine.js,
+  // buildManualPortfolio/pickManualHookPair scopés sur riskId === "manuel").
+  const [manualProfile, setManualProfile] = useState(PROFILES[0].id)
+  const [manualSelection, setManualSelection] = useState([])
+  const [manualSearch, setManualSearch] = useState('')
+  const [manualEditing, setManualEditing] = useState(true)
 
   const current = history[history.length - 1]
 
@@ -268,6 +435,27 @@ export default function App() {
     },
     [handleGenerate, selectedRisk],
   )
+
+  const handleModeChange = useCallback((next) => {
+    setMode(next)
+    if (next === 'manual') setManualEditing(true)
+  }, [])
+
+  const handleManualAdd = useCallback((id) => {
+    setManualSelection((sel) => (sel.some((s) => s.id === id) ? sel : [...sel, { id, pct: 0 }]))
+  }, [])
+  const handleManualRemove = useCallback((id) => {
+    setManualSelection((sel) => sel.filter((s) => s.id !== id))
+  }, [])
+  const handleManualPctChange = useCallback((id, pct) => {
+    setManualSelection((sel) => sel.map((s) => (s.id === id ? { ...s, pct } : s)))
+  }, [])
+  const handleManualGenerate = useCallback(() => {
+    setHistory((h) => [...h, buildManualPortfolio(manualSelection, manualProfile, h)])
+    setEngagement(randomEngagement())
+    setCopyState('idle')
+    setManualEditing(false)
+  }, [manualSelection, manualProfile])
 
   const handleCopy = useCallback(async () => {
     const text = renderTweetText(current)
@@ -318,21 +506,80 @@ export default function App() {
         </section>
 
         <section className="pg-control-col">
-          <Button type="button" className="w-full text-base" onClick={() => handleGenerate()}>
-            🔄 Générer un nouveau portefeuille
-          </Button>
+          <div className="pg-mode-toggle" role="group" aria-label="Mode de génération">
+            <button
+              type="button"
+              className={`pg-mode-btn${mode === 'auto' ? ' active' : ''}`}
+              aria-pressed={mode === 'auto'}
+              onClick={() => handleModeChange('auto')}
+            >
+              🎲 Auto
+            </button>
+            <button
+              type="button"
+              className={`pg-mode-btn${mode === 'manual' ? ' active' : ''}`}
+              aria-pressed={mode === 'manual'}
+              onClick={() => handleModeChange('manual')}
+            >
+              ✍️ Composition manuelle
+            </button>
+          </div>
 
-          <RiskSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectRisk} />
-          <ProfileSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectProfile} />
+          {mode === 'auto' ? (
+            <>
+              <Button type="button" className="w-full text-base" onClick={() => handleGenerate()}>
+                🔄 Générer un nouveau portefeuille
+              </Button>
+
+              <RiskSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectRisk} />
+              <ProfileSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectProfile} />
+            </>
+          ) : manualEditing ? (
+            <ManualComposer
+              profile={manualProfile}
+              onProfileChange={setManualProfile}
+              selection={manualSelection}
+              onAdd={handleManualAdd}
+              onRemove={handleManualRemove}
+              onPctChange={handleManualPctChange}
+              search={manualSearch}
+              onSearchChange={setManualSearch}
+              onGenerate={handleManualGenerate}
+            />
+          ) : (
+            <div className="pg-panel pg-manual-result-panel">
+              <div className="pg-panel-title">Composition manuelle</div>
+              <p className="pg-fine-print">
+                {manualSelection.length} ligne{manualSelection.length > 1 ? 's' : ''} · profil {PROFILES.find((p) => p.id === manualProfile)?.label}
+              </p>
+              {current.mode === 'manual' && (
+                <p className={`pg-manual-length pg-manual-length-${getLengthStatus(renderTweetText(current).length).level}`}>
+                  {getLengthStatus(renderTweetText(current).length).label}
+                </p>
+              )}
+              <div className="pg-manual-result-actions">
+                <Button type="button" variant="secondary" className="w-full" onClick={() => setManualEditing(true)}>
+                  ✏️ Modifier la composition
+                </Button>
+                <Button type="button" className="w-full" onClick={handleManualGenerate}>
+                  🔄 Nouveau texte, même composition
+                </Button>
+              </div>
+            </div>
+          )}
 
           <div className="pg-panel">
-            <RiskGauge
-              riskId={current.riskId}
-              riskLabel={current.riskLabel}
-              profileName={current.profileName}
-              worst={current.worst}
-              bound={current.bound}
-            />
+            {current.mode === 'manual' ? (
+              <ManualRiskInfo worst={current.worst} closestRiskLabel={current.closestRiskLabel} closestBound={current.closestBound} />
+            ) : (
+              <RiskGauge
+                riskId={current.riskId}
+                riskLabel={current.riskLabel}
+                profileName={current.profileName}
+                worst={current.worst}
+                bound={current.bound}
+              />
+            )}
           </div>
 
           <div className="pg-panel">
