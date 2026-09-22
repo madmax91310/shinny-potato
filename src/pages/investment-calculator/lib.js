@@ -193,9 +193,20 @@ export function derive(state) {
   return { amount, isCustom, effectiveMode, startYm, endYm, result, livretA, inflation }
 }
 
+// Ligne de "morale" : jamais un ton figé "j'aurais dû investir" qui sonnerait faux si l'actif a en
+// réalité perdu de l'argent sur la période choisie, ou si un simple Livret A a fait aussi bien sans
+// aucun risque — le texte s'ajuste au résultat réel plutôt que de supposer que l'actif a toujours
+// gagné (demande utilisateur du 22/09/2026, nouveau format de tweet plus direct/meme que l'ancien
+// "Si tu avais investi...").
+function moraleLine(assetLabel, gainPct, hasLivretCompare, livretBeats) {
+  if (gainPct < 0) return 'Parfois, il vaut mieux ne pas regarder son relevé 😅'
+  if (hasLivretCompare && livretBeats) return 'Le Livret A a fait aussi bien, sans prendre de risque 😌'
+  return `J'aurais dû investir sur ${assetLabel} 😭`
+}
+
 export function buildTweetText(state, d) {
   const asset = d.isCustom ? null : ASSETS[state.assetId]
-  const tweetPhrase = d.isCustom ? (state.customLabel ? `« ${state.customLabel} »` : 'cet actif') : asset.tweetPhrase
+  const assetLabel = d.isCustom ? (state.customLabel || 'cet actif') : asset.label
   // Actif coté en dollars (Amazon, S&P 500, Or...) : le montant simulé et le résultat restent dans
   // cette devise plutôt que mélangés avec un € qui donnerait un faux air de conversion (demande
   // utilisateur du 22/09/2026) — cf. le même choix dans App.jsx (ResultCard) et videoExport.js.
@@ -204,12 +215,25 @@ export function buildTweetText(state, d) {
   const yearLabel = d.startYm.split('-')[0]
   const gainPct = pct(d.result.finalValue, d.result.totalInvested)
   const finalFmt = fmtEUR(d.result.finalValue, currency)
-  const pctFmt = fmtPct(gainPct)
-  if (d.effectiveMode === 'dca') {
-    return (
-      `Si tu avais mis ${fmtEUR(d.amount, currency)}/mois dans ${tweetPhrase} depuis ${monthLabel} ${yearLabel} ` +
-      `(versement programmé), tu aurais aujourd'hui ${finalFmt} (${pctFmt}) pour ${fmtEUR(d.result.totalInvested, currency)} investis. 🧵`
-    )
+  const amountFmt = fmtEUR(d.amount, currency)
+
+  const hookLine = d.effectiveMode === 'dca'
+    ? `Et si tu avais mis ${amountFmt}/mois sur ${assetLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
+    : `Et si tu avais investi ${amountFmt} sur ${assetLabel} en ${yearLabel} ? 🫢`
+
+  const lines = [hookLine, '', 'Tu aurais :', `${finalFmt} 💸`]
+
+  // Comparaison Livret A : uniquement pour les actifs en euros, jamais un montant en dollars
+  // comparé à un Livret A en euros sans taux de change — même règle que ResultCard côté UI
+  // (demande utilisateur du 22/09/2026, le mélange de devises corrigé plus tôt dans la session).
+  const hasLivretCompare = currency === 'EUR'
+  if (hasLivretCompare) {
+    lines.push('', 'Et en mettant sur ton Livret A ?', `${fmtEUR(d.livretA.finalValue, 'EUR')} 🤡`)
   }
-  return `Si tu avais investi ${fmtEUR(d.amount, currency)} dans ${tweetPhrase} en ${monthLabel} ${yearLabel}, tu aurais aujourd'hui ${finalFmt} (${pctFmt}). 🧵`
+  const livretBeats = hasLivretCompare && d.livretA.finalValue >= d.result.finalValue
+
+  lines.push('', `La morale de l'histoire ? ${moraleLine(assetLabel, gainPct, hasLivretCompare, livretBeats)}`)
+  lines.push('', "Qu'en penses-tu ? 👇")
+
+  return lines.join('\n')
 }
