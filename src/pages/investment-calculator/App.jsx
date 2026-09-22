@@ -3,7 +3,7 @@ import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
   getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, REDUCED_CONFIDENCE_LAST_POINT,
 } from './data'
-import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride } from './lib'
+import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride, currencySymbol } from './lib'
 import Sparkline from './Sparkline'
 import VideoExport from './VideoExport'
 import PageHeader from '../../design-system/PageHeader'
@@ -22,11 +22,11 @@ const INITIAL_STATE = {
   overridePriceRaw: '',
 }
 
-function CompareItem({ label, value, deltaVal, highlight }) {
+function CompareItem({ label, value, deltaVal, currency, highlight }) {
   return (
     <div className={`ic-compare-item${highlight ? ' highlight' : ''}`}>
       <p className="ic-compare-label">{label}</p>
-      <p className="ic-compare-value">{fmtEUR(value)}</p>
+      <p className="ic-compare-value">{fmtEUR(value, currency)}</p>
       <p className={`ic-compare-delta ${deltaVal >= 0 ? 'pos' : 'neg'}`}>{fmtPct(deltaVal)}</p>
     </div>
   )
@@ -35,6 +35,11 @@ function CompareItem({ label, value, deltaVal, highlight }) {
 function ResultCard({ state, d, copied, onCopy }) {
   const asset = d.isCustom ? null : ASSETS[state.assetId]
   const assetLabel = d.isCustom ? state.customLabel || 'cet actif' : asset.label
+  // Actif coté en dollars (Amazon, S&P 500, Or...) : montant/résultat/comparaisons restent dans
+  // cette devise plutôt que mélangés avec un € qui donnerait un faux air de conversion (demande
+  // utilisateur du 22/09/2026, plutôt qu'une conversion EUR/USD historique — cf. commentaire sur
+  // ic-compare-note plus bas pour Livret A/Inflation, qui restent des produits en euros).
+  const currency = d.isCustom ? 'EUR' : asset.currency
   const gainAbs = d.result.finalValue - d.result.totalInvested
   const gainPct = pct(d.result.finalValue, d.result.totalInvested)
   const livretPct = pct(d.livretA.finalValue, d.livretA.totalInvested)
@@ -70,20 +75,20 @@ function ResultCard({ state, d, copied, onCopy }) {
         <p className="ic-hero-label">
           {d.effectiveMode === 'dca' ? (
             <>
-              Avec <b>{fmtEUR(d.amount)}/mois</b> placés, ton capital serait devenu :
+              Avec <b>{fmtEUR(d.amount, currency)}/mois</b> placés, ton capital serait devenu :
             </>
           ) : (
             <>
-              Ton <b>{fmtEUR(d.amount)}</b> serait devenu :
+              Tes <b>{fmtEUR(d.amount, currency)}</b> seraient devenus :
             </>
           )}
         </p>
-        <p className="ic-hero-number">{fmtEUR(d.result.finalValue)}</p>
+        <p className="ic-hero-number">{fmtEUR(d.result.finalValue, currency)}</p>
         <div className="ic-hero-sub">
           <span className={`ic-delta-pill ${gainPct >= 0 ? 'pos' : 'neg'}`}>{fmtPct(gainPct)}</span>
           <span className="ic-gain-abs">
             {gainAbs >= 0 ? '+' : ''}
-            {fmtEUR(gainAbs)} de plus-value · {fmtEUR(d.result.totalInvested)} investis
+            {fmtEUR(gainAbs, currency)} de plus-value · {fmtEUR(d.result.totalInvested, currency)} investis
           </span>
         </div>
       </div>
@@ -103,9 +108,22 @@ function ResultCard({ state, d, copied, onCopy }) {
       </div>
 
       <div className="ic-compare">
-        <CompareItem label={assetLabel} value={d.result.finalValue} deltaVal={gainPct} highlight />
-        <CompareItem label="Livret A" value={d.livretA.finalValue} deltaVal={livretPct} />
-        <CompareItem label="Inflation" value={d.inflation.finalValue} deltaVal={inflPct} />
+        <CompareItem label={assetLabel} value={d.result.finalValue} deltaVal={gainPct} currency={currency} highlight />
+        {currency === 'EUR' ? (
+          <>
+            <CompareItem label="Livret A" value={d.livretA.finalValue} deltaVal={livretPct} currency="EUR" />
+            <CompareItem label="Inflation" value={d.inflation.finalValue} deltaVal={inflPct} currency="EUR" />
+          </>
+        ) : (
+          // Livret A et inflation sont des repères français en euros : les afficher à côté d'un
+          // montant en dollars donnerait l'illusion d'une comparaison directe alors qu'aucun taux de
+          // change n'est appliqué (demande utilisateur du 22/09/2026 — même principe que le montant
+          // simulé, jamais mélanger deux devises sans le dire).
+          <p className="ic-compare-note">
+            Comparaison Livret A / inflation non affichée : {assetLabel} est coté en dollars, pas
+            directement comparable à un produit d'épargne en euros sans taux de change.
+          </p>
+        )}
       </div>
 
       <div className="ic-card-footer">
@@ -127,6 +145,7 @@ function ResultCard({ state, d, copied, onCopy }) {
             totalInvested: videoResult.totalInvested,
             finalValue: videoResult.finalValue,
             gainPct,
+            currency,
           }}
           filenameBase={`investissement-${d.isCustom ? 'actif' : state.assetId}-${d.effectiveMode}`}
           comparativeInputs={{
@@ -156,6 +175,10 @@ export default function App() {
 
   const isCustom = state.assetId === 'custom'
   const effectiveMode = isCustom ? 'lump' : state.mode
+  // Actif coté en dollars (Amazon, S&P 500, Or...) : formulaire de saisie dans cette devise plutôt
+  // que mélangé avec un € qui donnerait un faux air de conversion (demande utilisateur du
+  // 22/09/2026) — cf. le même choix dans ResultCard et videoExport.js.
+  const currency = isCustom ? 'EUR' : ASSETS[state.assetId].currency
   const amount = parseFloat(state.amountRaw) || 0
   // Un champ vide (ou un texte non numérique, que le navigateur vide automatiquement) n'est pas
   // une erreur : c'est l'état neutre avant saisie. Un montant réellement saisi à 0 ou en négatif,
@@ -387,7 +410,7 @@ export default function App() {
                   onChange={(e) => set({ amountRaw: e.target.value })}
                   aria-invalid={amountInvalid}
                 />
-                <span className="ic-amount-suffix">€</span>
+                <span className="ic-amount-suffix">{currencySymbol(currency)}</span>
               </div>
               {amountInvalid && <p className="ic-field-error">Le montant doit être supérieur à 0.</p>}
               <div className="ic-chips">
@@ -398,7 +421,7 @@ export default function App() {
                     className={`ic-chip${v === amount ? ' active' : ''}`}
                     onClick={() => set({ amountRaw: String(v) })}
                   >
-                    {v.toLocaleString('fr-FR')} €
+                    {fmtEUR(v, currency)}
                   </button>
                 ))}
               </div>
@@ -420,10 +443,10 @@ export default function App() {
                 ? 'Le mode DCA nécessite un historique de prix : indisponible en saisie manuelle.'
                 : hasValidOverride
                   ? effectiveMode === 'dca'
-                    ? `Un versement de ${amount.toLocaleString('fr-FR')} € chaque mois depuis la date de départ, valorisé aujourd'hui au prix à jour que tu as saisi.`
+                    ? `Un versement de ${fmtEUR(amount, currency)} chaque mois depuis la date de départ, valorisé aujourd'hui au prix à jour que tu as saisi.`
                     : `Un seul versement à la date de départ, valorisé aujourd'hui au prix à jour que tu as saisi.`
                   : effectiveMode === 'dca'
-                    ? `Un versement de ${amount.toLocaleString('fr-FR')} € chaque mois depuis la date de départ jusqu'à ${lastPointLabel} (dernière donnée disponible — au-delà, redonne-moi les clôtures récentes pour actualiser, ou saisis un prix à jour ci-dessus).`
+                    ? `Un versement de ${fmtEUR(amount, currency)} chaque mois depuis la date de départ jusqu'à ${lastPointLabel} (dernière donnée disponible — au-delà, redonne-moi les clôtures récentes pour actualiser, ou saisis un prix à jour ci-dessus).`
                     : `Un seul versement à la date de départ, valorisé jusqu'à ${lastPointLabel} (dernière donnée disponible — ou saisis un prix à jour ci-dessus).`}
             </p>
             {sparseDcaAsset && (

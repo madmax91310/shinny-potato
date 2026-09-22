@@ -165,6 +165,8 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         finalValue2: s2.finalValue,
         gainPct1: pct(s1.finalValue, s1.totalInvested),
         gainPct2: pct(s2.finalValue, s2.totalInvested),
+        currency1: ASSETS[asset1Id].currency,
+        currency2: ASSETS[asset2Id].currency,
       }
       const blob = await renderComparativeVideo(params, setProgress)
       setVideoUrl(URL.createObjectURL(blob))

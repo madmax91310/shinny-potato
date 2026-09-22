@@ -137,6 +137,12 @@ export function fmtEUR(n, currency = 'EUR') {
   }
 }
 
+// Symbole nu (pas de formatage de montant) — utilisé pour le suffixe du champ de saisie, où
+// afficher "1000 $US" via fmtEUR serait redondant avec le chiffre déjà tapé par l'utilisateur.
+export function currencySymbol(currency) {
+  return currency === 'USD' ? '$' : '€'
+}
+
 export function fmtPct(n) {
   const s = n.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
   return (n >= 0 ? '+' : '') + s + ' %'
@@ -190,16 +196,20 @@ export function derive(state) {
 export function buildTweetText(state, d) {
   const asset = d.isCustom ? null : ASSETS[state.assetId]
   const tweetPhrase = d.isCustom ? (state.customLabel ? `« ${state.customLabel} »` : 'cet actif') : asset.tweetPhrase
+  // Actif coté en dollars (Amazon, S&P 500, Or...) : le montant simulé et le résultat restent dans
+  // cette devise plutôt que mélangés avec un € qui donnerait un faux air de conversion (demande
+  // utilisateur du 22/09/2026) — cf. le même choix dans App.jsx (ResultCard) et videoExport.js.
+  const currency = asset ? asset.currency : 'EUR'
   const monthLabel = MONTHS_FULL[parseInt(d.startYm.split('-')[1], 10) - 1]
   const yearLabel = d.startYm.split('-')[0]
   const gainPct = pct(d.result.finalValue, d.result.totalInvested)
-  const finalFmt = fmtEUR(d.result.finalValue)
+  const finalFmt = fmtEUR(d.result.finalValue, currency)
   const pctFmt = fmtPct(gainPct)
   if (d.effectiveMode === 'dca') {
     return (
-      `Si tu avais mis ${fmtEUR(d.amount)}/mois dans ${tweetPhrase} depuis ${monthLabel} ${yearLabel} ` +
-      `(versement programmé), tu aurais aujourd'hui ${finalFmt} (${pctFmt}) pour ${fmtEUR(d.result.totalInvested)} investis. 🧵`
+      `Si tu avais mis ${fmtEUR(d.amount, currency)}/mois dans ${tweetPhrase} depuis ${monthLabel} ${yearLabel} ` +
+      `(versement programmé), tu aurais aujourd'hui ${finalFmt} (${pctFmt}) pour ${fmtEUR(d.result.totalInvested, currency)} investis. 🧵`
     )
   }
-  return `Si tu avais investi ${fmtEUR(d.amount)} dans ${tweetPhrase} en ${monthLabel} ${yearLabel}, tu aurais aujourd'hui ${finalFmt} (${pctFmt}). 🧵`
+  return `Si tu avais investi ${fmtEUR(d.amount, currency)} dans ${tweetPhrase} en ${monthLabel} ${yearLabel}, tu aurais aujourd'hui ${finalFmt} (${pctFmt}). 🧵`
 }

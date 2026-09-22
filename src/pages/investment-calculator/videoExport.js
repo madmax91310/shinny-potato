@@ -337,7 +337,7 @@ function drawDualChart(ctx, x0, y0, w, h, seriesFracs1, seriesFracs2, investedFr
 }
 
 function drawFrame(ctx, params, elapsedMs) {
-  const { series, invested, assetLabel, periodLabel, modeLabel, totalInvested, finalValue, gainPct } = params
+  const { series, invested, assetLabel, periodLabel, modeLabel, totalInvested, finalValue, gainPct, currency = 'EUR' } = params
   const n = series.length
 
   ctx.clearRect(0, 0, W, H)
@@ -414,7 +414,7 @@ function drawFrame(ctx, params, elapsedMs) {
     ctx.fillText('INVESTI CUMULÉ', chartX, statsY)
     ctx.font = FONTS.statValue
     ctx.fillStyle = COLORS.ink
-    ctx.fillText(fmtEUR(curInvested), chartX, statsY + 32)
+    ctx.fillText(fmtEUR(curInvested, currency), chartX, statsY + 32)
 
     const rightX = chartX + chartW / 2 + 16
     ctx.font = FONTS.statLabel
@@ -422,7 +422,7 @@ function drawFrame(ctx, params, elapsedMs) {
     ctx.fillText('VALEUR ACTUELLE', rightX, statsY)
     ctx.font = FONTS.statValue
     ctx.fillStyle = COLORS.tealBright
-    ctx.fillText(fmtEUR(curValue), rightX, statsY + 32)
+    ctx.fillText(fmtEUR(curValue, currency), rightX, statsY + 32)
   } else {
     const holdT = Math.min(1, (elapsedMs - DRAW_MS) / 600)
     ctx.save()
@@ -432,10 +432,10 @@ function drawFrame(ctx, params, elapsedMs) {
     ctx.fillText('VALEUR FINALE', chartX, statsY)
     ctx.font = FONTS.heroNumber
     ctx.fillStyle = COLORS.tealBright
-    ctx.fillText(fmtEUR(finalValue), chartX, statsY + 34)
+    ctx.fillText(fmtEUR(finalValue, currency), chartX, statsY + 34)
     ctx.font = FONTS.heroPct
     ctx.fillStyle = gainPct >= 0 ? COLORS.positive : COLORS.negative
-    ctx.fillText(`${fmtPct(gainPct)}  ·  ${fmtEUR(totalInvested)} investis`, chartX, statsY + 128)
+    ctx.fillText(`${fmtPct(gainPct)}  ·  ${fmtEUR(totalInvested, currency)} investis`, chartX, statsY + 128)
     ctx.restore()
   }
 
@@ -452,15 +452,26 @@ function drawFrame(ctx, params, elapsedMs) {
 // valeur inventée, juste la même technique d'interpolation de POSITION déjà utilisée pour l'animation
 // de la courbe, appliquée aussi aux nombres affichés en overlay.
 function drawComparativeFrame(ctx, params, elapsedMs) {
-  const { series1, series2, invested1, invested2, months1, months2, startYm, endYm, asset1Label, asset2Label, periodLabel, mode1Label, mode2Label, finalValue1, finalValue2, gainPct1, gainPct2 } = params
+  const {
+    series1, series2, invested1, invested2, months1, months2, startYm, endYm, asset1Label, asset2Label,
+    periodLabel, mode1Label, mode2Label, finalValue1, finalValue2, gainPct1, gainPct2,
+    currency1 = 'EUR', currency2 = 'EUR',
+  } = params
   const color1 = COLORS.tealBright
   const color2 = COLORS.goldBright
 
-  // Courbes tracées en valeur absolue (€) plutôt qu'en performance (%) — cf. drawDualChart pour le
+  // Courbes tracées en valeur absolue plutôt qu'en performance (%) — cf. drawDualChart pour le
   // raisonnement complet. Min/max partagé calculé sur l'intégralité des 4 séries (valeur ET capital
   // investi des deux côtés, pas seulement jusqu'à l'index atteint) pour que l'échelle affichée reste
   // stable tout au long de l'animation plutôt que de "respirer" au fur et à mesure que la courbe se
   // dessine — même technique que drawChart (mode Simple) sur une seule série.
+  //
+  // Limite connue (demande utilisateur du 22/09/2026, réglée pour les libellés/chiffres ci-dessous
+  // via currency1/currency2, PAS pour ce graphique) : quand les deux actifs comparés n'ont pas la
+  // même devise (ex. Bitcoin en $ vs LVMH en €), les deux courbes partagent quand même cette même
+  // échelle visuelle — une simplification déjà présente avant cette correction, qui compare des
+  // TRAJECTOIRES de croissance plutôt que des montants strictement superposables. Les callouts
+  // texte (valeur actuelle, valeur finale) restent corrects et affichent chacun leur vraie devise.
   const allVals = series1.concat(series2, invested1, invested2)
   let valMin = Math.min(...allVals)
   let valMax = Math.max(...allVals)
@@ -555,7 +566,7 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
     ctx.fillText(asset1Label.toUpperCase(), chartX, statsY)
     ctx.font = FONTS.statValue
     ctx.fillStyle = color1
-    ctx.fillText(fmtEUR(side1.currentValue), chartX, statsY + 32)
+    ctx.fillText(fmtEUR(side1.currentValue, currency1), chartX, statsY + 32)
 
     const rightX = chartX + chartW / 2 + 16
     ctx.font = FONTS.statLabel
@@ -563,7 +574,7 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
     ctx.fillText(asset2Label.toUpperCase(), rightX, statsY)
     ctx.font = FONTS.statValue
     ctx.fillStyle = color2
-    ctx.fillText(fmtEUR(side2.currentValue), rightX, statsY + 32)
+    ctx.fillText(fmtEUR(side2.currentValue, currency2), rightX, statsY + 32)
   } else {
     const holdT = Math.min(1, (elapsedMs - DRAW_MS) / 600)
     ctx.save()
@@ -574,14 +585,14 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
 
     ctx.font = FONTS.compHeroNumber
     ctx.fillStyle = color1
-    ctx.fillText(fmtEUR(finalValue1), chartX, statsY + 38)
+    ctx.fillText(fmtEUR(finalValue1, currency1), chartX, statsY + 38)
     ctx.font = FONTS.compHeroPct
     ctx.fillStyle = gainPct1 >= 0 ? COLORS.positive : COLORS.negative
     ctx.fillText(`${fmtPct(gainPct1)} · ${asset1Label}`, chartX, statsY + 92)
 
     ctx.font = FONTS.compHeroNumber
     ctx.fillStyle = color2
-    ctx.fillText(fmtEUR(finalValue2), chartX, statsY + 132)
+    ctx.fillText(fmtEUR(finalValue2, currency2), chartX, statsY + 132)
     ctx.font = FONTS.compHeroPct
     ctx.fillStyle = gainPct2 >= 0 ? COLORS.positive : COLORS.negative
     ctx.fillText(`${fmtPct(gainPct2)} · ${asset2Label}`, chartX, statsY + 186)
