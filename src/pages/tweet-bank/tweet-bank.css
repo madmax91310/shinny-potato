@@ -1,0 +1,112 @@
+/* Styles propres à la Banque de tweets.
+   Thème sombre teal/navy commun à l'app (le prototype d'origine était en thème clair crème/olive,
+   recoloré ici pour matcher le reste du produit plutôt que copié tel quel). */
+
+.tb-scope {
+  --tb-surface: #0f172a;
+  --tb-surface-raised: #16213b;
+  --tb-border: #1e293b;
+  --tb-border-soft: #334155;
+  --tb-ink: #f1f5f9;
+  --tb-ink-dim: #c7cde3;
+  --tb-ink-faint: #64748b;
+  --tb-accent: #2dd4bf;
+  --tb-accent-bright: #5eead4;
+  --tb-accent-dim: rgba(45, 212, 191, 0.14);
+  --tb-gold: #d9a441;
+  --tb-gold-dim: rgba(217, 164, 65, 0.14);
+  --tb-format: #e5789c;
+  --tb-format-dim: rgba(229, 120, 156, 0.14);
+  color: var(--tb-ink);
+}
+
+.tb-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--tb-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: var(--tb-surface);
+}
+.tb-summary-cell { padding: 12px 14px; border-right: 1px solid var(--tb-border); }
+.tb-summary-cell:last-child { border-right: none; }
+.tb-summary-num { font-size: 20px; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.tb-summary-lbl { font-size: 11.5px; color: var(--tb-ink-faint); margin-top: 2px; }
+@media (max-width: 480px) { .tb-summary-cell { padding: 10px 10px; } }
+
+.tb-controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.tb-search {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--tb-border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--tb-surface);
+  color: var(--tb-ink);
+}
+.tb-search:focus { outline: 2px solid var(--tb-accent); outline-offset: -1px; }
+
+.tb-chiprow { display: flex; flex-wrap: wrap; gap: 6px; }
+.tb-chip {
+  border: 1px solid var(--tb-border);
+  background: var(--tb-surface);
+  color: var(--tb-ink-dim);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tb-chip:hover { border-color: var(--tb-accent); }
+.tb-chip.active { background: var(--tb-accent-dim); border-color: var(--tb-accent); color: var(--tb-accent-bright); }
+.tb-chip.gold.active { background: var(--tb-gold-dim); border-color: var(--tb-gold); color: var(--tb-gold); }
+
+.tb-toggle { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--tb-ink-dim); }
+
+.tb-count-line { font-size: 12.5px; color: var(--tb-ink-faint); margin: 0 0 10px; }
+
+.tb-list { display: flex; flex-direction: column; }
+
+.tb-tweet { border-top: 1px solid var(--tb-border); padding: 16px 2px 18px; }
+.tb-tweet:last-child { border-bottom: 1px solid var(--tb-border); }
+.tb-tweet.cooldown { opacity: 0.6; }
+
+.tb-tweet-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.tb-tag-month { font-size: 11px; color: var(--tb-ink-faint); }
+.tb-tag-cat { font-size: 11px; padding: 2px 9px; border-radius: 999px; background: var(--tb-accent-dim); color: var(--tb-accent-bright); font-weight: 500; }
+.tb-tag-cat.gold { background: var(--tb-gold-dim); color: var(--tb-gold); }
+.tb-tag-format { font-size: 11px; padding: 2px 9px; border-radius: 999px; background: var(--tb-format-dim); color: var(--tb-format); font-weight: 500; }
+.tb-pub-badge { font-size: 11px; padding: 2px 9px; border-radius: 999px; background: var(--tb-surface-raised); color: var(--tb-ink-faint); }
+.tb-pub-badge.cooldown { background: var(--tb-gold-dim); color: var(--tb-gold); }
+.tb-pub-badge.available { background: var(--tb-accent-dim); color: var(--tb-accent-bright); }
+
+.tb-tweet-text {
+  display: block;
+  width: 100%;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  margin: 0 0 12px;
+  border: none;
+  background: transparent;
+  color: var(--tb-ink);
+  resize: none;
+  overflow: hidden;
+  padding: 0;
+}
+.tb-tweet-text:focus { outline: 1px dashed var(--tb-accent); outline-offset: 4px; }
+
+.tb-tweet-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tb-date-input {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--tb-border);
+  background: var(--tb-surface);
+  color: var(--tb-ink);
+}
+
+.tb-empty { text-align: center; padding: 40px 10px; color: var(--tb-ink-faint); font-size: 14px; }

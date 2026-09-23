@@ -148,6 +148,17 @@ async function testMarketFacts(page) {
   record("Faits marquants des marchés", badCount === 0, `${count} faits cyclés, ${badCount} sans source/avec un champ manquant`);
 }
 
+async function testTweetBank(page) {
+  await page.goto(`${BASE}/banque-tweets`, { waitUntil: "networkidle" });
+  const totalBefore = await page.locator(".tb-summary-num").first().innerText();
+  await page.locator(".tb-tweet-actions button", { hasText: "Marquer publié aujourd" }).first().click();
+  await page.waitForTimeout(150);
+  const cooldownCount = (await page.locator(".tb-summary-num").allInnerTexts())[1];
+  const badge = await page.locator(".tb-pub-badge.cooldown").first().count();
+  const ok = totalBefore === "42" && cooldownCount === "1" && badge === 1;
+  record("Banque de tweets", ok, `total: ${totalBefore}, en repos après marquage: ${cooldownCount}, badge cooldown affiché: ${badge === 1}`);
+}
+
 let server;
 try {
   console.log(`Démarrage de vite preview sur le port ${PORT}...`);
@@ -170,6 +181,7 @@ try {
   await testIndexComparator(page);
   await testFeeImpact(page);
   await testMarketFacts(page);
+  await testTweetBank(page);
 
   await browser.close();
 } finally {

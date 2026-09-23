@@ -65,4 +65,12 @@ export const TOOLS = [
     description: "Statistiques historiques sourcées (S&P 500, Nasdaq, Dow Jones, CAC 40) sur les chocs, corrections et séquences des marchés, prêtes à publier en format \"le saviez-vous\".",
     status: 'disponible',
   },
+  {
+    to: '/banque-tweets',
+    navLabel: 'Banque de tweets',
+    title: 'Banque de tweets à recycler',
+    icon: '🗄️',
+    description: "Recycle tes meilleurs tweets déjà écrits : filtre par mois/catégorie/format, recherche libre, et repos de 45 jours après chaque publication pour épuiser le stock avant de répéter.",
+    status: 'disponible',
+  },
 ]

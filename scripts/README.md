@@ -106,7 +106,8 @@ portefeuilles, cycle des 36 fiches ETF, texte du duel par défaut au Comparatif 
 la `value` du `<textarea>` — jamais capturé par `innerText()`, piège rencontré à l'écriture de ce
 script), cycle des 7 formats de Tweet Midi, cycle des 10 familles du Comparateur d'indices, tirage
 Aléatoire d'Impact des frais, cycle des faits de Faits marquants des marchés (ajouté le 22/09/2026 à
-la création de l'outil). Sort en code 1 si un outil échoue.
+la création de l'outil), marquage "publié aujourd'hui" + badge de repos de la Banque de tweets
+(ajouté le 23/09/2026 à la création de l'outil). Sort en code 1 si un outil échoue.
 
 Dépend de Chromium pré-installé à `/opt/pw-browsers/chromium` et de `playwright` installé
 globalement à `/opt/node22/lib/node_modules/playwright` — aucun des deux n'est une dépendance du
