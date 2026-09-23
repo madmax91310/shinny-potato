@@ -94,10 +94,10 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   }
 
   const issue1 = compMode === 'comparative' && comparativeInputs
-    ? getComparativeAssetIssue(asset1Id, comparativeInputs.startYm, mode1)
+    ? getComparativeAssetIssue(asset1Id, comparativeInputs.startYm, mode1, comparativeInputs.endYm)
     : null
   const issue2 = compMode === 'comparative' && comparativeInputs
-    ? getComparativeAssetIssue(asset2Id, comparativeInputs.startYm, mode2)
+    ? getComparativeAssetIssue(asset2Id, comparativeInputs.startYm, mode2, comparativeInputs.endYm)
     : null
   // Un même actif comparé à lui-même avec le même mode n'a rien à montrer (deux courbes identiques) —
   // bloqué comme les autres "issues", jamais silencieusement autorisé. Comparer le même actif reste
