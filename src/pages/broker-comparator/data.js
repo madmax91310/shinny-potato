@@ -41,7 +41,7 @@ export const BROKERS = [
       pea: "PEA ✅ / PEA-PME ❌ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret A, distribué dans l'appli, souscrit auprès d'AXA Banque, depuis le 20/08/2026)"],
-      faibles: ["Pas de PEA-PME, transfert PEA entrant possible mais lent (jusqu'à 4 mois, titres immobilisés pendant le transfert)"],
+      faibles: ["Pas de PEA-PME"],
       verdict: "Tu veux investir petit et souvent sans réfléchir aux frais",
     },
   },
@@ -250,7 +250,7 @@ export const BROKERS = [
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui"],
       faibles: ["DCA pas sur PEA, pas de PEA Jeune"],
-      verdict: "Tu veux des frais dégressifs dès 2€ avec un DCA CTO en option",
+      verdict: "Tu veux une plateforme premium avec frais à partir de 2€ et un DCA CTO en option",
     },
   },
 ];
