@@ -1,5 +1,5 @@
 import { fmtEUR } from '../investment-calculator/lib.js'
-import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, PUNCHLINE_PLACEHOLDERS, ENGAGEMENT_QUESTIONS } from './data.js'
+import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, PUNCHLINE_DRAFT } from './data.js'
 
 export { fmtEUR }
 
@@ -57,17 +57,15 @@ export function computeComparison(state) {
   return { capital1, capital2, ecart, ecartPct, totalInvested }
 }
 
-function pick(list, rng) {
-  return list[Math.floor(rng() * list.length)]
-}
-
-export function buildTweetText(state, rng = Math.random) {
-  const { amount, years, returnRate, fee1, fee2 } = state
+export function buildTweetText(state) {
+  const { amount, years, returnRate, fee1, fee2, punchline } = state
   const d = computeComparison(state)
-  const punchline = pick(PUNCHLINE_PLACEHOLDERS, rng)
-  const question = pick(ENGAGEMENT_QUESTIONS, rng)
   const yearsLabel = `${years} an${years > 1 ? 's' : ''}`
   const ecartPctLabel = d.ecartPct.toLocaleString('fr-FR', { maximumFractionDigits: 0 })
+  const personalLine = punchline?.trim() || PUNCHLINE_DRAFT
+  const question = fee1 === fee2
+    ? `Tes deux scénarios ont les mêmes frais : quels taux voudrais-tu vraiment comparer ?`
+    : `Sur ${yearsLabel}, tu avais déjà comparé ${feeLabel(fee1)} et ${feeLabel(fee2)} de frais sur tes placements ?`
 
   return [
     `${fmtEUR(amount)}/mois pendant ${yearsLabel} à ${returnRate} % de rendement brut (hypothèse de simulation, pas une performance de marché réelle) :`,
@@ -75,9 +73,9 @@ export function buildTweetText(state, rng = Math.random) {
     `Avec ${feeLabel(fee1)} de frais → ${fmtEUR(d.capital1)}`,
     `Avec ${feeLabel(fee2)} de frais → ${fmtEUR(d.capital2)}`,
     ``,
-    `Écart : ${fmtEUR(d.ecart)} (${ecartPctLabel} % du capital final) — juste à cause des frais.`,
+    `Écart : ${fmtEUR(d.ecart)} (${ecartPctLabel} % du capital final) lié aux frais dans cette simulation.`,
     ``,
-    punchline,
+    personalLine,
     ``,
     question,
   ].join('\n')
