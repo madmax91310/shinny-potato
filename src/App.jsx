@@ -10,6 +10,7 @@ import TweetMidi from './pages/tweet-midi/App'
 import IndexComparator from './pages/index-comparator/App'
 import FeeImpact from './pages/fee-impact/App'
 import MarketFacts from './pages/market-facts/App'
+import ConcreteCases from './pages/concrete-cases/App'
 import TweetBank from './pages/tweet-bank/App'
 import { TOOLS } from './tools'
 
@@ -31,6 +32,7 @@ const TOOL_ELEMENTS = {
   '/comparateur-indices': <IndexComparator />,
   '/impact-frais': <FeeImpact />,
   '/faits-marquants-marches': <MarketFacts />,
+  '/cas-concrets': <ConcreteCases />,
   '/banque-tweets': <TweetBank />,
 }
 
