@@ -639,26 +639,9 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
   return lines.join("\n");
 }
 
-// Le sélecteur de punchline/question du simulateur d'origine (cf. purchasingPower/lib.js, fonction
-// `pick`) accepte un `rng` personnalisé — on lui passe un générateur déterministe SEEDÉ SUR
-// item.id plutôt que Math.random(), pour que le même item retombe toujours sur la même punchline
-// (le composant recalcule `text` à chaque rendu, cf. buildTweetText appelé en dehors d'un
-// useMemo côté App.jsx ; avec Math.random() le texte changerait à chaque re-rendu sans action de
-// l'utilisateur). Même principe que pickFromPool (hash déterministe) utilisé par les autres formats,
-// mais implémenté en générateur complet (pas juste un hash) car purchasing-power/lib.js pioche DEUX
-// valeurs successives (punchline puis question) avec le même rng.
-function seededRng(seedStr) {
-  let h = 0;
-  for (let i = 0; i < seedStr.length; i++) h = (h * 31 + seedStr.charCodeAt(i)) >>> 0;
-  return function () {
-    h = (h * 1664525 + 1013904223) >>> 0;
-    return h / 4294967296;
-  };
-}
-
 export function buildPouvoirAchatText(item) {
   const state = { amount: item.amount, startYear: item.startYear, mode: item.mode, posteId: item.posteId };
-  return buildPouvoirAchatTweetText(state, seededRng(item.id));
+  return buildPouvoirAchatTweetText(state);
 }
 
 export function buildTweetText(item, extra = {}) {

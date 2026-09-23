@@ -444,11 +444,21 @@ function buildWarning(profile, profileId, selection, worst, history) {
 // est en revanche identique et directement réutilisé — buildManualPortfolio ne fait que remplacer
 // l'étape de tirage aléatoire des lignes/pourcentages par la saisie utilisateur.
 
-const MANUAL_POURQUOI_TEMPLATES = [
-  "{pct}% du portefeuille, un choix personnel pour cette composition.",
-  "Une ligne ajoutée volontairement, à hauteur de {pct}%.",
-  "{pct}% : le poids choisi pour cette ligne dans cette composition libre.",
-];
+// Dans le mode libre, rattacher chaque poids au type d'actif choisi. Une formule identique sur
+// cinq lignes d'un même portefeuille répétait l'allocation sans expliquer ce qu'elle exposait.
+function manualPourquoi(asset, pct) {
+  if (asset.id === "fonds_euros") return `${pct}% en fonds euros : la part du capital que tu as placée sur un support garanti.`;
+  const byCategory = {
+    obligataire: `À ${pct}%, cette ligne ajoute une exposition aux obligations : surveille les taux et la qualité de l'émetteur.`,
+    actions_larges: `À ${pct}%, ces actions portent une partie de la performance et des baisses possibles du portefeuille.`,
+    matieres_premieres: `À ${pct}%, cette ligne dépend des cours des matières premières plutôt que des bénéfices d'entreprises.`,
+    dividendes: `À ${pct}%, tu donnes ce poids à des entreprises sélectionnées autour des dividendes.`,
+    immobilier: `À ${pct}%, cette ligne ajoute de l'immobilier et ses risques propres à cette composition.`,
+    emergents: `À ${pct}%, cette ligne te rend sensible aux marchés et aux devises émergents.`,
+    crypto: `À ${pct}%, cette ligne crypto peut peser fortement sur le résultat lors d'une baisse.`,
+  };
+  return byCategory[asset.cat] ?? `${pct}% sur ${asset.name} : vérifie la place de cette ligne dans l'ensemble.`;
+}
 
 // Palier de risque le plus proche, pour affichage informatif uniquement (jamais bloquant en mode
 // manuel) : celui dont le plancher (RISK_BOUNDS[r].min) est numériquement le plus proche de la
@@ -505,11 +515,11 @@ function buildManualHookPool(selection, worst) {
     return [
       {
         hook: `${a.pct}% en ${a.name} dans une composition que tu as choisie toi-même. Tu assumes ce niveau de risque ?`,
-        intro: "C'est le pari le plus marquant de cette sélection — le reste vient équilibrer autour.",
+        intro: "Cette seule ligne peut peser lourd sur le résultat, même si les autres positions évoluent autrement.",
       },
       {
         hook: `Tu es allé jusqu'à ${a.pct}% sur ${a.name}. Volontaire, ou tu n'avais pas réalisé le poids que ça prenait ?`,
-        intro: "À ce niveau, cette seule ligne pèse plus que beaucoup de portefeuilles entiers.",
+        intro: "Regarde ce que cette position représente dans le total avant de juger le risque de la composition.",
       },
     ];
   }
@@ -518,7 +528,7 @@ function buildManualHookPool(selection, worst) {
     return [
       {
         hook: `${a.pct}% du portefeuille sur une seule ligne, ${a.name}. Concentré ou juste convaincu ?`,
-        intro: "Le reste de la sélection ne pèse pas grand-chose à côté.",
+        intro: "Les autres lignes existent, mais aucune n'a individuellement le même poids.",
       },
       {
         hook: `Une ligne à elle seule à ${a.pct}%. C'est le pari central de ta composition, ${a.name} ?`,
@@ -530,7 +540,7 @@ function buildManualHookPool(selection, worst) {
     return [
       {
         hook: `${fmtPct(worst.value)} en ${worst.year} sur cette composition. Tu encaisserais ça sans bouger ?`,
-        intro: "C'est le prix des choix faits ligne par ligne dans cette sélection libre.",
+        intro: "Cette année-là montre comment les lignes choisies ont bougé ensemble.",
       },
       {
         hook: `Ta composition serait tombée à ${fmtPct(worst.value)} en ${worst.year}. Ça change ton avis sur un des choix faits ?`,
@@ -543,7 +553,7 @@ function buildManualHookPool(selection, worst) {
     return [
       {
         hook: `${a.pct}% en fonds euros dans une composition que tu as bâtie toi-même. Par prudence, ou par manque d'idées pour le reste ?`,
-        intro: "Ça amortit tout le reste de la sélection, quel que soit le contenu des autres lignes.",
+        intro: "La part garantie limite l'effet des autres lignes sur le total, sans effacer leur risque.",
       },
       {
         hook: "Près de la moitié du portefeuille en fonds euros, et c'est toi qui l'as choisi. Volontaire ?",
@@ -555,11 +565,11 @@ function buildManualHookPool(selection, worst) {
   return [
     {
       hook: `${lineCount} lignes, ${top.pct}% sur la plus grosse (${top.name}). Une composition équilibrée, à ton avis ?`,
-      intro: "Aucune ligne ne domine vraiment — la répartition reste raisonnable.",
+      intro: "Le poids de la plus grosse ligne te donne un premier repère ; regarde aussi les expositions qui se recoupent.",
     },
     {
       hook: `Tu as construit cette composition toi-même, ${lineCount} lignes en tout. Tu la trouves cohérente avec tes objectifs ?`,
-      intro: "Pas de pari extrême ici — plutôt une sélection posée.",
+      intro: "Le nombre de lignes ne dit pas à lui seul si leurs risques se recoupent.",
     },
   ];
 }
@@ -587,7 +597,7 @@ export function buildManualPortfolio(rawSelection, profileId, history) {
       ...asset,
       pct: r.pct,
       desc: pick(asset.desc),
-      pourquoi: pick(MANUAL_POURQUOI_TEMPLATES).replace(/\{pct\}/g, r.pct),
+      pourquoi: manualPourquoi(asset, r.pct),
     };
   });
 

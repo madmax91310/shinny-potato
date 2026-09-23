@@ -1,4 +1,4 @@
-import { GENERAL_INFLATION, YEAR_MAX, POSTES, ENGAGEMENT_QUESTIONS, SMIC } from './data.js'
+import { GENERAL_INFLATION, YEAR_MAX, POSTES, SMIC } from './data.js'
 
 // Ligne de punchline volontairement laissée en placeholder — jamais générée automatiquement (cf.
 // demande du 04/09/2026, même principe que le récap matin) : les punchlines automatiques sonnaient
@@ -71,13 +71,8 @@ export function computeSmicEvolution(startYear) {
   return (factor - 1) * 100
 }
 
-function pick(list, rng) {
-  return list[Math.floor(rng() * list.length)]
-}
-
-export function buildTweetText(state, rng = Math.random) {
+export function buildTweetText(state) {
   const punchline = PUNCHLINE_PLACEHOLDER
-  const question = pick(ENGAGEMENT_QUESTIONS, rng)
   const years = CURRENT_YEAR - state.startYear
   const yearsLabel = `${years} an${years > 1 ? 's' : ''}`
 
@@ -88,8 +83,11 @@ export function buildTweetText(state, rng = Math.random) {
     const gapAbs = Math.abs(gapPts).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
     const gapLabel = `${gapAbs} point${Math.abs(gapPts) >= 2 ? 's' : ''}`
     const suivi = gapPts >= 0
-      ? `le SMIC a progressé un peu plus vite que les prix sur la période (écart de +${gapLabel})`
-      : `le SMIC n'a pas suivi : il a progressé moins vite que les prix sur la période (écart de -${gapLabel})`
+      ? `le SMIC brut a progressé plus vite que l'indice général des prix (écart de +${gapLabel})`
+      : `le SMIC brut a progressé moins vite que l'indice général des prix (écart de -${gapLabel})`
+    const question = gapPts >= 0
+      ? `Ton propre revenu a-t-il suivi la hausse des prix depuis ${state.startYear} ?`
+      : `Ton budget a-t-il ressenti cet écart entre le SMIC brut et les prix depuis ${state.startYear} ?`
     return [
       `En ${state.startYear}, ${fmtEUR(state.amount)} avaient le même pouvoir d'achat que ${fmtEUR(d.newAmount)} aujourd'hui.`,
       ``,
@@ -108,15 +106,29 @@ export function buildTweetText(state, rng = Math.random) {
   const vsInflation = d.posteCumPct >= d.generalCumPct
     ? `plus vite que l'inflation générale (${fmtPct(d.generalCumPct)})`
     : `moins vite que l'inflation générale (${fmtPct(d.generalCumPct)})`
+  const posteIntro = state.posteId === 'carburant'
+    ? `En ${state.startYear}, ${fmtEUR(state.amount)} de budget carburant correspondent à ${fmtEUR(d.newAmount)} selon l'indice Énergie aujourd'hui (proxy, pas prix à la pompe).`
+    : `En ${state.startYear}, ${fmtEUR(state.amount)} de budget ${poste.tweetVerb} valaient ${fmtEUR(d.newAmount)} d'aujourd'hui.`
+  const posteTransition = state.posteId === 'loyer'
+    ? `L'IRL, qui sert de référence à la révision des loyers, a augmenté ${vsInflation} sur cette période.`
+    : state.posteId === 'carburant'
+      ? `L'indice Énergie, plus large que les seuls carburants, a augmenté ${vsInflation} sur cette période.`
+      : `Les prix de l'alimentation ont augmenté ${vsInflation} sur cette période.`
+  const question = state.posteId === 'loyer'
+    ? `Ton loyer a-t-il évolué comme l'IRL depuis ${state.startYear} ?`
+    : state.posteId === 'carburant'
+      ? `Tes dépenses à la pompe ont-elles suivi l'indice Énergie depuis ${state.startYear} ?`
+      : `Quel achat courant pèse le plus dans ton budget courses depuis ${state.startYear} ?`
   const partialNote = poste.isPartialLatestYear
     ? ` (2026 : donnée sur 12 mois glissants, l'année n'étant pas terminée)`
     : ''
+  const posteMeasure = state.posteId === 'loyer' ? "l'indice de référence des loyers (IRL)" : state.posteId === 'carburant' ? "l'indice Énergie" : poste.tweetNoun
   return [
-    `En ${state.startYear}, ${fmtEUR(state.amount)} de budget ${poste.tweetVerb} valaient ${fmtEUR(d.newAmount)} d'aujourd'hui.`,
+    posteIntro,
     ``,
-    `Soit ${fmtPct(d.posteCumPct)} sur ${poste.tweetNoun} en ${yearsLabel}${partialNote}.`,
+    `Soit ${fmtPct(d.posteCumPct)} sur ${posteMeasure} en ${yearsLabel}${partialNote}.`,
     ``,
-    `${poste.label} a augmenté ${vsInflation} sur la même période.`,
+    posteTransition,
     ``,
     punchline,
     ``,
