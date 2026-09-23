@@ -268,7 +268,11 @@ export const ASSETS = [
     // clôtures de décembre réelles du même CSV (15 436,40 → 20 357,80 → 18 998,47) : -4,96 % / +31,88 %
     // / -6,68 %, qui remplacent les valeurs d'origine (-7,0 / +28,0 / -9,0, non vérifiées en version
     // GR — seule une version « nue » hors dividendes avait pu être approchée pour 2021).
+    // Euronext confirme directement +20,14/+0,92/+14,28 % pour 2023-2025 ; Amundi confirme
+    // que FR0013380607 suit l'indice CAC 40 Gross Total Return. Les chiffres restent ceux de
+    // l'indice avant frais du fonds, pas la performance exacte de la part Amundi.
     r: [-4.96, 31.88, -6.68, 20.14, 0.92, 14.28],
+    confidenceNote: "Simulation fondée sur le CAC 40 Gross Total Return, dividendes bruts réinvestis, avant les frais de l'ETF Amundi. Ce ne sont pas les performances exactes du fonds.",
     desc: [
       "les 40 plus grosses capitalisations françaises, de LVMH à TotalEnergies en passant par L'Oréal.",
       "éligible au PEA, avec une fiscalité avantageuse après 5 ans de détention en France.",
@@ -359,22 +363,15 @@ export const ASSETS = [
   {
     id: "argent", name: "iShares Physical Silver ETC", cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00B4NCWG09",
-    // Source : cours de l'argent spot en USD/once. 2020 (+47%) confirmé. 2021 (-14%) vérifié via
-    // recherche web. 2022, 2023, 2024 CORRIGÉS (passés de "non vérifié" à vérifié) le 30/08/2026 :
-    // les valeurs d'origine se sont révélées correctes une fois recoupées sur de vraies clôtures
-    // annuelles spot (deux recherches indépendantes convergentes) — clôtures 31/12 ≈ 23,31 $
-    // (2021), 23,96 $ (2022), ~23,7-23,8 $ (2023, deux sources à 23,76 $ et 23,80 $, clôture
-    // effective le dernier jour ouvré 29/12), 28,90 $ (2024, confirmé deux fois à l'identique).
-    // Rendements implicites : +2,8% (2022), -1,1% (2023), +21,4% à +21,9% (2024) — tous à moins de
-    // 0,5pt des valeurs déjà en place, donc conservées telles quelles plutôt que réajustées pour
-    // une différence non significative au vu de l'imprécision des dates de clôture trouvées.
-    // 2025 : le cours spot USD a bien grimpé de +144% (BullionVault « Silver Jumps 144% »,
-    // confirmé), mais ce fonds est une ligne EUR au même titre que le reste du fichier — corrigé
-    // en tenant compte de la baisse du dollar face à l'euro sur 2025 (EUR/USD +13,34% sur
-    // l'année, exchange-rates.org) : (1+1,44)/(1+0,1334)-1 ≈ +115,3%. Estimation calculée à
-    // partir de deux chiffres réels (rendement spot USD + variation de change), pas une clôture
-    // EUR directement lue — aucune source n'a donné le rendement EUR exact du fonds pour 2025.
-    r: [47.0, -14.0, 3.0, -1.0, 21.0, 115.3],
+    // Estimation EUR du rendement annuel de CET ETC (et non du cours spot ni des futures) :
+    // BlackRock publie en USD 2020-2025 : +46,2/-13,0/+3,5/-0,8/+21,3/+148,6 %.
+    // Conversion sans couverture : (1 + rendement USD) × (EUR/USD fin année précédente)
+    // / (EUR/USD fin année courante) - 1. Taux de référence BCE des derniers jours ouvrés :
+    // 2019 1,1234 ; 2020 1,2271 ; 2021 1,1326 ; 2022 1,0666 ; 2023 1,1050 ;
+    // 2024 1,0389 ; 2025 1,1750. Les rendements BlackRock sont arrondis au dixième et les
+    // taux BCE relevés en journée : résultat indicatif, pas performance publiée en EUR du fonds.
+    r: [33.84, -5.74, 9.90, -4.25, 29.02, 119.80],
+    confidenceNote: "Rendements annuels de l'ETC publiés en dollars par BlackRock, convertis approximativement en euros avec les taux de fin d'année de la BCE. Ce ne sont pas des rendements officiels en euros.",
     desc: [
       "souvent surnommé « l'or du pauvre », plus volatil que l'or car aussi utilisé dans l'industrie.",
       "profite à la fois de la demande refuge et de la demande industrielle.",
