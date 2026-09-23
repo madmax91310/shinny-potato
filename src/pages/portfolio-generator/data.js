@@ -326,11 +326,11 @@ export const ASSETS = [
   {
     id: "msci_em", name: "iShares Core MSCI EM IMI UCITS ETF", cat: "emergents", emoji: "🟤",
     isin: "IE00BKM4GZ66",
-    // Source : indice MSCI Emerging Markets (EUR, net de dividendes), fiches MSCI, années
-    // 2020-2025. Même valeurs répliquées sur les jumeaux Amundi/SPDR (cf. EM_OPTIONS dans
-    // theses.js) ; ftse_em_vanguard est traité séparément (indice FTSE EM, composition
-    // différente — cf. plus bas).
-    r: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
+    // Proxy : indice MSCI Emerging Markets IMI, rendement net en EUR 2020-2025 (MSCI,
+    // factsheet du 31/08/2026). Inclut les petites capitalisations contrairement au MSCI EM
+    // standard des fonds Amundi/SPDR ci-dessous ; ce ne sont pas des rendements du fonds iShares.
+    r: [8.62, 7.29, -14.58, 7.89, 14.24, 15.83],
+    confidenceNote: "Performances simulées à partir de l'indice MSCI EM IMI net en euros, avant les frais propres à l'ETF ; elles ne sont pas les rendements de cette part iShares en dollars.",
     desc: [
       "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
       "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",
@@ -766,9 +766,10 @@ export const ASSETS = [
   {
     id: "msci_em_amundi", name: "Amundi MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
     isin: "LU1681045370",
-    // Jumeau strict de "msci_em" — même source (indice MSCI Emerging Markets EUR net, cf.
-    // commentaire ci-dessus).
+    // Proxy : indice MSCI Emerging Markets classique, rendement net en EUR 2020-2025.
+    // Ce fonds ne suit pas l'indice IMI de l'ETF iShares ci-dessus.
     r: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
+    confidenceNote: "Performances simulées à partir de l'indice MSCI Emerging Markets net en euros, avant les frais propres à l'ETF ; elles ne sont pas les rendements de cette part Amundi.",
     desc: [
       "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
       "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",
@@ -793,9 +794,10 @@ export const ASSETS = [
   {
     id: "msci_em_spdr", name: "SPDR MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
     isin: "IE00B469F816",
-    // Jumeau strict de "msci_em" — même source (indice MSCI Emerging Markets EUR net, cf.
-    // commentaire sur "msci_em" plus haut).
+    // Proxy : indice MSCI Emerging Markets classique, rendement net en EUR 2020-2025.
+    // Ce fonds ne suit pas l'indice IMI de l'ETF iShares ci-dessus.
     r: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
+    confidenceNote: "Performances simulées à partir de l'indice MSCI Emerging Markets net en euros, avant les frais propres à l'ETF ; elles ne sont pas les rendements de cette part SPDR.",
     desc: [
       "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
       "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",
