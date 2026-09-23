@@ -93,6 +93,7 @@ select.ic-control { padding-right: 30px; cursor: pointer; }
 .ic-compare-delta.pos { color: var(--ic-positive); }
 .ic-compare-delta.neg { color: var(--ic-negative); }
 .ic-compare-note { grid-column: 1 / -1; font-size: 12px; line-height: 1.5; color: var(--ic-ink-faint); margin: 4px 2px 0; }
+.ic-method-note { font-size: 12px; line-height: 1.6; color: var(--ic-ink-faint); margin: 16px 0 0; }
 
 .ic-card-footer { margin-top: clamp(16px, 2.2vw, 20px); padding-top: 14px; border-top: 1px solid var(--ic-border-soft); display: flex; flex-direction: column; gap: 14px; }
 .ic-card-footer-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
