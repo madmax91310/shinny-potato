@@ -11,6 +11,7 @@
     "stress-test:portfolios": "node scripts/stress-test-portfolios.mjs",
     "verify:tweet-midi": "npx esbuild scripts/verify-tweet-midi.mjs --bundle --format=esm --platform=node | node --input-type=module",
     "audit:etf-consistency": "node scripts/audit-etf-consistency.mjs",
+    "audit:performance-consistency": "node scripts/audit-performance-consistency.mjs",
     "test:tools": "npm run build && node scripts/playwright-tools.mjs",
     "check-freshness": "node scripts/check-freshness.mjs"
   },

@@ -68,6 +68,34 @@ divergence de valeur sur un ISIN partagé est signalée. Sort en code 1 si une d
 Testé par corruption volontaire d'un TER (restaurée aussitôt) pour confirmer que le script détecte
 bien une vraie divergence, pas seulement l'absence de divergence.
 
+## `audit-performance-consistency.mjs`
+
+Même principe qu'`audit-etf-consistency.mjs`, mais pour la **performance annuelle** (2023/2024/2025)
+plutôt que le TER — entre `portfolio-generator/data.js` (tableau `r`) et `index-comparator/data.js`
+(`perfFunds`), pour tout ISIN partagé où le rattachement fonds ↔ ligne de performance n'est pas
+ambigu (un seul fonds dans le groupe ETF concerné) :
+
+```bash
+npm run audit:performance-consistency
+```
+
+Écrit le 23/09/2026 suite à un signalement utilisateur ayant révélé que le tweet "Dividendes (CTO)"
+du Comparateur d'indices portait deux séries de performance fausses depuis leur création, en
+désaccord silencieux avec les séries déjà vérifiées pour les mêmes fonds dans
+`portfolio-generator/data.js` — un type d'erreur qu'`audit-etf-consistency.mjs` ne pouvait pas
+détecter (il ne couvre que le TER). Le même audit a ensuite trouvé 2 autres divergences réelles
+(MSCI EM IMI, Nasdaq-100) le même jour.
+
+Une divergence détectée n'est pas automatiquement une erreur : elle peut légitimement venir d'une
+devise différente entre les deux séries (ex. fonds coté en $ dans une famille, indice EUR net de
+dividendes dans l'autre — cas réel du MSCI EM IMI). Le script ne fait donc échouer la vérification
+que si l'écart n'est PAS déclaré au lecteur via `family.perfMethodNote` (nouveau champ optionnel,
+rendu dans le tweet lui-même par `App.jsx`) : un écart disclosed reste seulement informationnel,
+un écart non déclaré fait échouer avec le code 1 — jamais une divergence masquée en silence.
+
+Limite assumée : ignore les groupes ETF à plusieurs fonds (rattachement ISIN ↔ ligne de performance
+ambigu par construction) — nécessitent une lecture manuelle, comme documenté en tête du script.
+
 ## `check-freshness.mjs`
 
 Rapport de fraîcheur des données — scanne les `data.js` des 7 outils (Calculateur, Générateur de
