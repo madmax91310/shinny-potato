@@ -106,12 +106,3 @@ export const POSTES = {
   },
 }
 export const POSTE_ORDER = ['loyer', 'alimentation', 'carburant']
-
-export const ENGAGEMENT_QUESTIONS = [
-  'Tu t\'en doutais, ou le chiffre te surprend ?',
-  'Et toi, tu as ressenti cette hausse au quotidien ?',
-  'Ton salaire a-t-il suivi, ou pas du tout ?',
-  'Quel poste de dépense t\'a le plus marqué ces dernières années ?',
-  'Ça te donne envie de vérifier tes propres chiffres ?',
-  '📉 ou 📈 pour ton pouvoir d\'achat sur cette période ?',
-]
