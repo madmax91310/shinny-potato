@@ -36,10 +36,14 @@
 }
 .mf-card-kicker { font-size: 13px; font-weight: 700; color: var(--mf-text-dim); margin: 0 0 16px; }
 .mf-fact-text {
-  font-family: var(--mf-font-display); font-size: clamp(17px, 2.6vw, 20px); font-weight: 500;
-  line-height: 1.5; color: var(--mf-text); text-wrap: balance; margin: 0 0 22px; padding-bottom: 20px;
+  white-space: pre-line; font-size: clamp(16px, 2.3vw, 19px); font-weight: 500;
+  line-height: 1.55; color: var(--mf-text); margin: 0 0 18px; padding-bottom: 20px;
   border-bottom: 1px solid var(--mf-border-soft);
 }
+
+.mf-details { font-size: 13px; color: var(--mf-text-dim); line-height: 1.55; }
+.mf-details summary { cursor: pointer; color: var(--mf-accent-bright); }
+.mf-details p { margin: 12px 0 0; }
 
 .mf-meta { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
 .mf-meta li { display: flex; align-items: baseline; gap: 10px; font-size: 14px; color: var(--mf-text-dim); line-height: 1.5; }

@@ -2,15 +2,14 @@
 
 export function buildTweetText(fact) {
   const lines = [
-    "📚 Le saviez-vous ?",
+    fact.hook,
     "",
-    fact.fact,
+    fact.context,
     "",
-    `📊 ${fact.indices.join(" · ")}`,
-    `🔎 Source : ${fact.source}`,
+    ...(fact.twist ? [fact.twist, ""] : []),
+    `📌 ${fact.source}`,
+    "",
+    fact.question,
   ];
-  if (fact.note) lines.push(`ℹ️ ${fact.note}`);
-  lines.push("");
-  lines.push("⚠️ Contenu historique à titre pédagogique, pas un conseil en investissement.");
   return lines.join("\n");
 }
