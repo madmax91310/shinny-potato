@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
 import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, DEFAULT_FEE_LOW, DEFAULT_FEE_HIGH } from './data.js'
@@ -15,10 +15,13 @@ export default function App() {
   const [returnRate, setReturnRate] = useState(7)
   const [fee1, setFee1] = useState(DEFAULT_FEE_LOW)
   const [fee2, setFee2] = useState(DEFAULT_FEE_HIGH)
+  const [punchline, setPunchline] = useState('')
   const [history, setHistory] = useState([])
   const [copied, setCopied] = useState(false)
 
-  const state = useMemo(() => ({ amount, years, returnRate, fee1, fee2 }), [amount, years, returnRate, fee1, fee2])
+  // Une phrase rédigée pour un écart précis ne suit pas un changement de scénario.
+  useEffect(() => setPunchline(''), [amount, years, returnRate, fee1, fee2])
+  const state = useMemo(() => ({ amount, years, returnRate, fee1, fee2, punchline }), [amount, years, returnRate, fee1, fee2, punchline])
   const text = useMemo(() => buildTweetText(state), [state])
   const status = getLengthStatus(text.length)
 
@@ -147,13 +150,20 @@ export default function App() {
 
         <section className="fi-preview-col">
           <div className="fi-preview" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <label className="fi-eyebrow" htmlFor="fi-punchline" style={{ margin: 0 }}>Ta phrase personnelle · brouillon à compléter</label>
+            <input
+              id="fi-punchline" className="fi-control" type="text" value={punchline}
+              onChange={(e) => setPunchline(e.target.value)}
+              placeholder="Ce que cet écart t'inspire..."
+            />
+            <p className="fi-hint">Si tu laisses ce champ vide, le texte copié indique clairement qu'il reste à compléter.</p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <p className="fi-eyebrow" style={{ margin: 0 }}>Aperçu du tweet</p>
               <span className={`fi-badge ${BADGE_CLASS[status.level]}`}>{status.label}</span>
             </div>
             <pre className="fi-preview-text">{text}</pre>
             <button type="button" className="fi-copy-btn" onClick={handleCopy}>
-              {copied ? 'Copié ✓' : 'Copier le texte'}
+              {copied ? 'Copié ✓' : punchline.trim() ? 'Copier le texte' : 'Copier le brouillon'}
             </button>
           </div>
         </section>
