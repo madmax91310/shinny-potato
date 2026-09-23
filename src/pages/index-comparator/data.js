@@ -220,13 +220,19 @@ export const FAMILIES = [
       notes: ['⚠️ Le Nasdaq 100 exclut tout le secteur financier et concentre près de 50 % sur ses 10 plus grosses lignes.', '→ Le plus étroit des quatre, et le plus volatil.'],
     },
     // Performance 2023-2025 (source : justETF/extraetf/Boursorama, recherche web du 02/09/2026).
-    // Nasdaq-100 : le chiffre 2025 (+6,01 %) est resté identique sur 4 recherches indépendantes
-    // spécifiques à ce fonds — retenu malgré un écart avec un chiffre "iShares Nasdaq 100 EUR"
-    // (~+18-21 %) utilisé ailleurs dans l'appli comme proxy : ce dernier concerne un fonds différent,
-    // pas celui affiché ici.
+    // nasdaq100 CORRIGÉ le 23/09/2026 (49,32/33,58/6,01 → 54,99/27,18/20,78) : détecté par
+    // scripts/audit-performance-consistency.mjs (écart de 6 à 14,8 pt avec portfolio-generator/
+    // data.js pour le MÊME ISIN, FR0011871110). L'ancien commentaire affirmait que le chiffre
+    // "iShares Nasdaq 100 EUR (~+18-21 %)" utilisé ailleurs dans l'appli concernait "un fonds
+    // différent" — c'était FAUX : portfolio-generator utilise ce même ISIN (FR0011871110, Amundi
+    // PEA Nasdaq-100) comme proxy avec un historique iShares Nasdaq 100 EUR. Confirmé par 2
+    // requêtes web indépendantes le 23/09/2026 (indice Nasdaq-100 total return 2023-2025 : environ
+    // +55/+26/+21 % ; fonds iShares NASDAQ 100 UCITS ETF, part USD Acc, quasi identique à +54,99/
+    // +27,18/+20,78 %) — cohérent avec la fourchette "18-21 %" que l'ancien commentaire avait
+    // pourtant écartée à tort. L'ancien 2025 à +6,01 % n'a pu être retracé à aucune source fiable.
     perfFunds: [
       { key: 'sp500', label: 'Amundi PEA S&P 500', y2023: 21.68, y2024: 32.85, y2025: 3.45 },
-      { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', y2023: 49.32, y2024: 33.58, y2025: 6.01 },
+      { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', y2023: 54.99, y2024: 27.18, y2025: 20.78 },
       { key: 'msci_usa', label: 'iShares MSCI USA', y2023: 22.33, y2024: 32.69, y2025: 3.82 },
     ],
     verdictTitle: '✅ LE VERDICT',
@@ -367,15 +373,31 @@ export const FAMILIES = [
       chain: ['MSCI EM IMI (3 017 lignes)', 'FTSE EM (2 290, sans la Corée du Sud)', 'MSCI EM ex-China (625, sans la Chine)'],
       notes: ['⚠️ La Chine pèse encore 25 à 30 % du MSCI EM, malgré sa baisse ces dernières années.'],
     },
-    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). FTSE EM : une première
-    // recherche a renvoyé un jeu de chiffres identique à la série 2021-2023 déjà présente ailleurs
-    // dans l'appli (portfolio-generator), signe d'un décalage d'années — écarté au profit d'un
-    // second jeu reproduit sur 2 recherches indépendantes.
+    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026).
+    // AUDIT du 23/09/2026 : scripts/audit-performance-consistency.mjs a signalé un écart de 5 à 14
+    // pt entre msci_em ici et "msci_em" dans portfolio-generator/data.js (6,11/14,68/17,76). Ce
+    // N'EST PAS une erreur de saisie mais une devise différente non déclarée au lecteur : les 3
+    // parts ci-dessous sont toutes des parts (USD) Acc (confirmé par requête web dédiée le
+    // 23/09/2026 pour IE00BKM4GZ66 et IE00BK5BR733 — fiches officielles iShares/Vanguard), tandis
+    // que portfolio-generator documente explicitement une performance d'INDICE en EUR net de
+    // dividendes (proxy, pas le fonds coté). Corrigé en ajoutant perfMethodNote ci-dessous plutôt
+    // qu'en modifiant des chiffres qui sont chacun corrects dans leur propre devise.
+    // ftse_em CORRIGÉ le 23/09/2026 (4,12/19,20/11,13 → 7,86/12,06/25,67) : l'ancien commentaire de
+    // ce fichier affirmait qu'un premier résultat de recherche "identique à la série 2021-2023 de
+    // portfolio-generator" était un décalage d'années suspect, et l'avait donc écarté au profit
+    // d'un autre jeu de chiffres — ce diagnostic était FAUX. Le fonds coté (IE00BK5BR733, part USD
+    // Acc) a bien 7,86 % / 12,06 % / 25,67 % net de frais sur 2023/2024/2025 : confirmé par 2
+    // requêtes web indépendantes le 23/09/2026, dont une directement sur les fiches officielles
+    // Vanguard — valeur identique à portfolio-generator/data.js pour ce même ISIN par coïncidence
+    // de méthode (portfolio-generator y documente pourtant une approche EUR indice, mais pour ce
+    // fonds précis converge avec le chiffre USD réel du fonds). L'ancien jeu de chiffres (4,12 %
+    // etc.) n'a pas pu être retracé à une source fiable lors de cette revérification.
     perfFunds: [
       { key: 'msci_em', label: 'iShares Core MSCI EM IMI', y2023: 11.6, y2024: 7.2, y2025: 31.6 },
-      { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 4.12, y2024: 19.20, y2025: 11.13 },
+      { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 7.86, y2024: 12.06, y2025: 25.67 },
       { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.73, y2024: 3.64, y2025: 34.83 },
     ],
+    perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise de cotation des 3 fonds (parts USD Acc), hors effet de change €/$.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '🏳️ La référence la plus large et la moins chère ?', a: 'iShares Core MSCI EM IMI.' },
@@ -456,6 +478,13 @@ export const FAMILIES = [
   // à l'intérieur de la fourchette déjà documentée (194-211 selon rebalancement), confirmé, pas de
   // changement. Dividend Aristocrats : nombre fixé par méthodologie (top 100 par construction),
   // reconfirmé, non un comptage à revérifier.
+  //
+  // AUDIT du 23/09/2026 (signalement utilisateur sur ce tweet précis) : Global Dividend Aristocrats
+  // (S&P Global Dividend Aristocrats, 100 titres) exige au moins 10 ans consécutifs de dividende en
+  // hausse OU stable ; le fonds US alternatif (S&P High Yield Dividend Aristocrats, IE00B6YX5D40)
+  // exige lui 20 ans consécutifs de HAUSSE — un critère différent et plus strict, jamais distingué
+  // dans le texte jusqu'ici (confirmé par 2 requêtes indépendantes le 23/09/2026 : méthodologie
+  // S&P DJI + fiches justETF/SSGA). Corrigé ci-dessous (indices[].bullets + etfGroups[].note).
   {
     id: 'dividendes-cto',
     label: '🟣 Dividendes (CTO)',
@@ -463,7 +492,10 @@ export const FAMILIES = [
     indices: [
       { name: 'High Dividend', desc: '2 397 entreprises mondiales au rendement de dividende le plus élevé, sans filtre de qualité.', tag: 'Le rendement brut, sans filtre 💰' },
       { name: 'Quality Dividend', desc: '~200 valeurs (194-211 selon la date de rebalancement) : dividende + critères de solidité financière (rentabilité, faible endettement).', tag: 'Le compromis entre rendement et solidité 💎' },
-      { name: 'Dividend Aristocrats', desc: '100 entreprises qui versent ET augmentent leur dividende depuis au moins 10 ans consécutifs.', tag: 'Le plus exigeant des trois 🏅' },
+      {
+        name: 'Dividend Aristocrats', desc: '100 entreprises qui versent un dividende stable ou en hausse depuis au moins 10 ans consécutifs (version mondiale).', tag: 'Le plus exigeant des trois 🏅',
+        bullets: ['ℹ️ Le critère "10 ans" vaut pour la version mondiale ci-dessous ; l\'alternative US (bloc 2) exige elle 20 ans consécutifs de hausse — un filtre différent, plus strict.'],
+      },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES (CTO) 💳',
     etfGroups: [
@@ -472,17 +504,17 @@ export const FAMILIES = [
         // typiquement percevoir le revenu — et les deux parts Dist ci-dessous sont aussi les plus
         // gros encours de leur fonds (vérifié via recherche web le 01/09/2026).
         indexName: 'High Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF (Dist)', isin: 'IE00B8GKDB10', ter: '0,29 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '9,8 Md€' }],
+        funds: [{ name: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF (Dist)', isin: 'IE00B8GKDB10', ter: '0,29 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '9,8 Md€ (01/09/2026)' }],
       },
       {
         indexName: 'Quality Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)', isin: 'IE00BYYHSQ67', ter: '0,38 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '1,5 Md€' }],
+        funds: [{ name: 'iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)', isin: 'IE00BYYHSQ67', ter: '0,38 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '1,5 Md€ (01/09/2026)' }],
       },
       {
         indexName: 'Dividend Aristocrats', choiceNote: 'le plus de choix', pea: false,
         funds: [
-          { name: 'SPDR S&P Global Dividend Aristocrats UCITS ETF', isin: 'IE00B9CQXS71', ter: '0,45 %', aum: '1,6 Md€', note: '(mondial)' },
-          { name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', isin: 'IE00B6YX5D40', ter: '0,35 %', aum: '3,4 Md€', note: '(US uniquement, le moins cher ⚡)' },
+          { name: 'SPDR S&P Global Dividend Aristocrats UCITS ETF', isin: 'IE00B9CQXS71', ter: '0,45 %', aum: '1,6 Md€ (01/09/2026)', note: '(mondial — dividende stable/en hausse depuis 10 ans)' },
+          { name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', isin: 'IE00B6YX5D40', ter: '0,35 %', aum: '3,4 Md€ (01/09/2026)', note: '(US uniquement, le moins cher ⚡ — mais critère plus strict : 20 ans consécutifs de hausse du dividende, contre 10 ans pour le fonds mondial ci-dessus)' },
         ],
       },
     ],
@@ -491,19 +523,46 @@ export const FAMILIES = [
       chain: ['High Dividend (2 397 lignes)', 'Quality Dividend (~200)', 'Dividend Aristocrats mondial (100)'],
       notes: ['⚠️ Plus le filtre est exigeant (Quality, Aristocrats), plus le nombre de lignes chute.', '→ Concentration sectorielle plus forte (finance, énergie, conso de base) sur les deux derniers.'],
     },
-    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Aristocrats recoupé
-    // avec la série "strat_dividendes" déjà vérifiée cette session dans portfolio-generator/data.js
-    // (même fonds, écart <0,3 pt) — retenue ici la performance nette de frais.
+    // Performance 2023-2025 — RECORRIGÉE le 23/09/2026 suite à un signalement utilisateur sur ce
+    // tweet précis (2 des 3 séries ci-dessous étaient fausses depuis leur création, sans lien avec
+    // les vraies performances des fonds).
+    // - high_div (IE00B8GKDB10) : 11,51 % / 9,39 % / 26,40 % confirmé par 2 requêtes web
+    //   indépendantes le 23/09/2026 (documentation officielle Vanguard + recoupement justETF/
+    //   fiches fonds) — identique à la série déjà vérifiée pour ce même fonds dans
+    //   portfolio-generator/data.js ("high_dividend"/"high_dividend_dist"), donc cohérence
+    //   rétablie entre les deux outils sur cet ISIN.
+    // - quality_div (IE00BYYHSQ67) : 17,14 % / 9,87 % / 23,97 % confirmé par 2 requêtes web
+    //   indépendantes le 23/09/2026 (fiche officielle iShares datée 30/06/2026 pour l'année pleine
+    //   2025 + recoupement justETF/finanzen.net pour 2023-2024). ⚠️ Cette série NE correspond PAS
+    //   à celle de portfolio-generator/data.js pour le même ISIN ("quality_dividend"/
+    //   "quality_dividend_dist", y2025 = 9,76 %) : 2023 et 2024 concordent exactement, seul 2025
+    //   diverge fortement (23,97 vs 9,76) — tout indique une erreur de saisie côté
+    //   portfolio-generator plutôt qu'un écart de méthode, mais non corrigée ici (hors périmètre
+    //   de cette vérification, ciblée sur le Comparateur d'indices) : À VÉRIFIER ET CORRIGER dans
+    //   portfolio-generator/data.js séparément.
+    // - aristocrats (IE00B9CQXS71) : valeur CONSERVÉE telle quelle à la demande explicite de
+    //   l'utilisateur (6,93 % / 7,74 % / 17,02 %, nette de frais). ⚠️ Le commentaire précédent
+    //   affirmait un écart "<0,3 pt" avec la série "strat_dividendes" de portfolio-generator
+    //   (7,13 / 7,41 / 17,55) — vérification arithmétique le 23/09/2026 : écarts réels de 0,20 /
+    //   0,33 / 0,53 pt, donc l'affirmation était inexacte. Une recherche web complémentaire le
+    //   23/09/2026 (recoupement ZPRG/SSGA) a par ailleurs renvoyé un chiffre 2025 de 17,55 % pour
+    //   ce même fonds — qui correspondrait alors à portfolio-generator plutôt qu'à la valeur
+    //   conservée ici. Contradiction NON résolue entre sources : valeur laissée inchangée par
+    //   consigne explicite, mais à traiter comme À VÉRIFIER, pas comme confirmée.
     perfFunds: [
-      { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', y2023: 7.64, y2024: 16.36, y2025: 11.76 },
-      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 13.09, y2024: 16.74, y2025: 8.68 },
+      { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', y2023: 11.51, y2024: 9.39, y2025: 26.40 },
+      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 17.14, y2024: 9.87, y2025: 23.97 },
       { key: 'aristocrats', label: 'SPDR S&P Global Dividend Aristocrats', y2023: 6.93, y2024: 7.74, y2025: 17.02 },
     ],
+    // Disclosure affichée dans le tweet lui-même (bloc 4, cf. buildTweetText) — devise, méthode et
+    // nature "totale vs distribution" jamais explicités dans le texte avant le 23/09/2026, seulement
+    // dans les commentaires de code (donc invisibles au lecteur).
+    perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise de cotation des 3 fonds, hors effet de change €/$. Ne pas confondre avec le rendement de distribution (dividend yield), qui est un chiffre différent.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💰 Le rendement le plus élevé, sans filtre ?', a: 'Vanguard FTSE All-World High Dividend Yield.' },
       { q: '💎 Le compromis entre rendement et solidité financière ?', a: 'iShares MSCI World Quality Dividend Advanced.' },
-      { q: '🏅 Le plus exigeant (10 ans de hausses consécutives) ?', a: 'SPDR S&P Global (ou US) Dividend Aristocrats.' },
+      { q: '🏅 Le plus exigeant (20 ans de hausses consécutives) ?', a: 'SPDR S&P US Dividend Aristocrats (10 ans pour la version mondiale).' },
     ],
     closing: '💬 Toi, tu vises le rendement pur ou la régularité ?',
   },

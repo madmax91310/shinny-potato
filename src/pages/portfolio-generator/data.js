@@ -558,7 +558,14 @@ export const ASSETS = [
     // Advanced UCITS ETF, années 2020-2025. Changement de benchmark le 1er juin 2022 (nom du
     // fonds identique, méthodologie affinée). Nom corrigé pour inclure "Advanced", omis par
     // erreur dans la version précédente (le fonds réel s'appelle bien ainsi).
-    r: [0.05, 15.95, -6.87, 17.14, 9.87, 9.76],
+    // 2025 CORRIGÉ le 23/09/2026 (9,76 → 23,97) : détecté par le nouveau script
+    // scripts/audit-performance-consistency.mjs, qui a signalé un écart de 14,2 pt avec la série
+    // désormais corrigée dans index-comparator/data.js pour ce même ISIN (famille
+    // "dividendes-cto"). Confirmé par 2 requêtes web indépendantes le 23/09/2026 (fiche officielle
+    // iShares datée 30/06/2026, "calendar year 2025 total return 23,97 % vs benchmark 23,92 %" +
+    // recoupement justETF/finanzen.net pour 2023-2024, qui eux concordaient déjà). 2020-2024
+    // inchangés (déjà corrects, non remis en cause).
+    r: [0.05, 15.95, -6.87, 17.14, 9.87, 23.97],
     desc: [
       "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
       "vise des entreprises capables de maintenir leur dividende même en période difficile.",
@@ -567,11 +574,12 @@ export const ASSETS = [
   },
   {
     // Jumeau distribuant de "quality_dividend" (part Dist, ISIN IE00BYYHSQ67, vérifiée réelle),
-    // réservé au profil Rentier.
+    // réservé au profil Rentier. 2025 corrigé le 23/09/2026 en même temps que la part Acc
+    // ci-dessus (même indice sous-jacent, même série) — cf. son commentaire pour la source.
     id: "quality_dividend_dist", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
     isin: "IE00BYYHSQ67",
     distributing: true,
-    r: [0.05, 15.95, -6.87, 17.14, 9.87, 9.76],
+    r: [0.05, 15.95, -6.87, 17.14, 9.87, 23.97],
     desc: [
       "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
       "vise des entreprises capables de maintenir leur dividende même en période difficile.",
