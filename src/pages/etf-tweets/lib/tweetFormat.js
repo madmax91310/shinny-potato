@@ -9,7 +9,7 @@ export function buildTweetText(theme) {
   const action = theme.hookAction?.trim() || '…'
   const dilemme = theme.hookDilemme?.trim() || '…'
 
-  lines.push(`${theme.emoji} **Tu veux ${action}, mais tu sais pas ${dilemme} ?**`)
+  lines.push(theme.accroche || `${theme.emoji} Tu veux ${action}, mais tu ne sais pas ${dilemme} ?`)
   lines.push('')
 
   if (theme.transition?.trim()) {

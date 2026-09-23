@@ -45,7 +45,7 @@ export function createTheme(overrides = {}) {
 // malgré un encours faible).
 // Les encours évoluent en continu : à revérifier sur justETF.com avant publication
 // si le tweet sort plusieurs semaines après la dernière mise à jour de ce fichier.
-export const DEFAULT_THEMES = [
+const BASE_THEMES = [
   createTheme({
     id: 'monde',
     nom: 'Monde',
@@ -456,7 +456,7 @@ export const DEFAULT_THEMES = [
     hookAction: 'investir sur l’informatique quantique avant qu’elle ne soit mainstream',
     hookDilemme: 'quel ETF quantique choisir parmi ceux tout juste lancés',
     transition:
-      'Le thème est si récent qu’aucun de ces ETF n’a encore un an d’historique. Voici les 3 qui existent :',
+      'Les ETF de ce thème ont peu de recul par rapport aux grands indices. Voici trois approches à comparer :',
     etfs: [
       createEtf({
         nom: 'VanEck Quantum Computing UCITS ETF',
@@ -581,3 +581,93 @@ export const DEFAULT_THEMES = [
     eligibilite: 'Non éligible PEA (ETC hors périmètre)',
   }),
 ]
+
+// Une ouverture et une question propres au choix réel de chaque famille. Les ETF et leurs
+// données restent ceux de BASE_THEMES ; Tweet Midi réutilise directement cette sortie.
+const EDITORIAL = {
+  monde: {
+    accroche: '🌍 MSCI World, ACWI, All-World : « investir dans le monde » ne veut pas dire acheter la même chose.',
+    cloture: 'Regarde d’abord si tu veux les émergents, puis ton enveloppe et les frais. Deux ETF « Monde » peuvent se recouvrir largement.',
+    ctaEngagement: 'Ton ETF mondial inclut les émergents ou tu les ajoutes séparément ?',
+  },
+  usa: {
+    accroche: '🇺🇸 S&P 500 ou Nasdaq-100 : même pays, mais pas le même pari.',
+    cloture: 'Le S&P 500 couvre davantage de secteurs. Le Nasdaq-100 donne plus de poids aux grandes valeurs de croissance : vérifie aussi ce que ton World contient déjà.',
+    ctaEngagement: 'Si tu as déjà un World, pourquoi ajouterais-tu un ETF américain ?',
+  },
+  europe: {
+    accroche: '🇪🇺 Europe ne veut pas forcément dire zone euro : le choix de l’indice change les pays que tu achètes.',
+    cloture: 'Entre un indice européen large et 50 valeurs de la zone euro, la diversification n’est pas la même. Regarde le périmètre avant les frais.',
+    ctaEngagement: 'Pour renforcer l’Europe, tu préfères toute la région ou uniquement la zone euro ?',
+  },
+  'tech-europe': {
+    accroche: '💻 Tu veux de la tech européenne en Bourse ? L’offre en ETF est bien plus étroite qu’aux États-Unis.',
+    cloture: 'La tech européenne est un thème ciblé. Compare la composition des fonds avant de l’ajouter à un indice Europe que tu détiens déjà.',
+    ctaEngagement: 'Tu chercherais la tech européenne dans un ETF dédié ou dans un indice Europe plus large ?',
+  },
+  emergents: {
+    accroche: '🌏 « Pays émergents » couvre des marchés très différents. Quel poids veux-tu donner à chacun ?',
+    cloture: 'Regarde la part des grandes places asiatiques, la taille des entreprises suivies et l’éligibilité PEA avant de comparer uniquement les frais.',
+    ctaEngagement: 'Tu préfères un ETF émergents séparé pour fixer son poids toi-même ?',
+  },
+  luxe: {
+    accroche: '👜 Acheter le luxe en ETF, c’est souvent retrouver les mêmes grandes marques avec des poids différents.',
+    cloture: 'Ces fonds restent concentrés sur quelques groupes. Vérifie s’ils sont déjà présents dans ton portefeuille Europe.',
+    ctaEngagement: 'Tu achèterais un ETF luxe en plus d’un indice Europe ?',
+  },
+  'ia-robotique': {
+    accroche: '🤖 Un ETF « IA » peut détenir des puces, des logiciels ou des industriels de la robotique.',
+    cloture: 'Le nom du thème ne suffit pas : compare les premières lignes et la méthode de sélection pour voir ce que tu achètes vraiment.',
+    ctaEngagement: 'Tu veux investir dans les puces, les logiciels ou toute la chaîne IA ?',
+  },
+  sante: {
+    accroche: '🧬 Santé mondiale ou européenne : deux ETF du même secteur peuvent avoir des poids très différents.',
+    cloture: 'Le choix de la région change les entreprises détenues, la devise d’exposition et la possibilité de passer par le PEA.',
+    ctaEngagement: 'Pour la santé, tu chercherais une exposition mondiale ou une ligne éligible PEA ?',
+  },
+  renouvelables: {
+    accroche: '🌱 Les énergies renouvelables ont une belle histoire à raconter. Leur parcours en Bourse a été bien moins régulier.',
+    cloture: 'Ces ETF ciblent des entreprises sensibles aux taux, aux coûts et aux politiques publiques. Le thème ne protège pas d’une forte baisse.',
+    ctaEngagement: 'Tu serais prêt à garder cette ligne si le secteur continuait de décevoir ?',
+  },
+  dividendes: {
+    accroche: '💸 Tous les ETF à dividendes ne cherchent pas la même chose : rendement actuel, qualité ou historique de hausse.',
+    cloture: 'Un gros dividende n’est pas automatiquement une meilleure performance. Compare la sélection des entreprises et le rendement total.',
+    ctaEngagement: 'Tu privilégies le revenu versé maintenant ou la progression du dividende ?',
+  },
+  japon: {
+    accroche: '🇯🇵 Investir au Japon : même indice ou pas, la couverture du yen peut changer ton résultat en euros.',
+    cloture: 'Demande-toi si tu veux garder le risque de change et si le PEA est nécessaire pour cette exposition.',
+    ctaEngagement: 'Tu garderais l’exposition au yen ou choisirais une part couverte ?',
+  },
+  defense: {
+    accroche: '🛡️ Défense européenne ou mondiale : ces ETF ne misent pas sur les mêmes budgets ni les mêmes entreprises.',
+    cloture: 'Compare la zone couverte, le poids des premières positions et l’ancienneté du fonds. Tes convictions personnelles comptent aussi.',
+    ctaEngagement: 'Si tu investissais dans la défense, tu choisirais l’Europe ou une exposition mondiale ?',
+  },
+  quantique: {
+    accroche: '⚛️ Quantique : plusieurs ETF portent le même thème, mais leurs entreprises ne font pas toutes du quantique leur métier principal.',
+    cloture: 'Regarde la part des spécialistes et celle des grands groupes. Le secteur est jeune, concentré et peut varier fortement.',
+    ctaEngagement: 'Tu chercherais les spécialistes du quantique ou un fonds qui inclut aussi de grands groupes ?',
+  },
+  spatial: {
+    accroche: '🚀 Investir dans le spatial sans choisir une seule entreprise : que contient vraiment l’ETF accessible en Europe ?',
+    cloture: 'Satellites, équipements, lanceurs : lis les premières positions avant de supposer que toutes profitent des mêmes contrats.',
+    ctaEngagement: 'Dans le spatial, quelle activité voudrais-tu réellement détenir ?',
+  },
+  'ressources-naturelles': {
+    accroche: '⛏️ Un ETF de minières ne suit pas directement le prix des matières premières.',
+    cloture: 'Tu détiens des entreprises, avec leurs coûts et leurs risques propres. Vérifie aussi les régions couvertes par chaque indice.',
+    ctaEngagement: 'Tu veux les sociétés minières ou une exposition directe aux matières premières ?',
+  },
+  'etc-metaux': {
+    accroche: '🥇 Or, argent, cuivre : ces produits n’ont ni le même métal ni forcément la même méthode de réplication.',
+    cloture: 'Ce sont des ETC, pas des ETF actions. Pour le cuivre présenté ici, la réplication passe par un swap : lis la structure du produit avant de comparer les frais.',
+    ctaEngagement: 'Tu chercherais plutôt l’or physique ou une exposition au cuivre ?',
+  },
+}
+
+export const DEFAULT_THEMES = BASE_THEMES.map((theme) => ({
+  ...theme,
+  ...EDITORIAL[theme.id],
+}))
