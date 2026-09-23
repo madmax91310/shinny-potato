@@ -66,6 +66,14 @@ export const TOOLS = [
     status: 'disponible',
   },
   {
+    to: '/cas-concrets',
+    navLabel: 'Cas concrets',
+    title: 'Cas concrets pour investir',
+    icon: '🧩',
+    description: 'Trois situations pour comprendre ce que change réellement un choix de placement, avec sources et texte prêt à copier.',
+    status: 'disponible',
+  },
+  {
     to: '/banque-tweets',
     navLabel: 'Banque de tweets',
     title: 'Banque de tweets à recycler',
