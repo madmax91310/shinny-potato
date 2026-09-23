@@ -1,6 +1,6 @@
 // Logique de calcul — reprise telle quelle de la session d'origine (vanilla JS),
 // juste modernisée en syntaxe ES / modules, aucune formule modifiée.
-import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION } from './data'
+import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION, INCONSISTENT_MONTHLY_DATA_IDS } from './data'
 
 export function ymIndex(ym) {
   const [y, m] = ym.split('-')
@@ -90,6 +90,13 @@ export function sparseAssetSeries(points, startYm, endYm, amount) {
   return { months, series, invested, finalValue: series[series.length - 1], totalInvested: amount }
 }
 
+// Pour les trois indices rebasés, seules les clôtures de décembre ont été recalées
+// sur des rendements annuels comparables. La dernière clôture est conservée pour la
+// valorisation, sans tracer les mois intermédiaires non vérifiés comme des faits.
+export function indexAnchorPoints(assetId, endYm) {
+  return ASSETS[assetId].points.filter((point) => point.date.endsWith('-12') || point.date === endYm)
+}
+
 export function computeBenchmarkSeries(rateTable, startYm, endYm, amount, mode) {
   const months = monthsBetween(startYm, endYm)
   const series = []
@@ -177,7 +184,7 @@ export function applyPriceOverride(result, points, overridePriceRaw, endYm) {
 export function derive(state) {
   const amount = parseFloat(state.amountRaw) || 0
   const isCustom = state.assetId === 'custom'
-  const effectiveMode = isCustom ? 'lump' : state.mode
+  const effectiveMode = isCustom || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId) ? 'lump' : state.mode
   const startYm = clampYm(state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth), LATEST_YM)
   // Sans prix saisi, on s'arrête au dernier mois réellement renseigné pour cet actif.
   // Sinon le DCA achète des mois supplémentaires au dernier prix, sans donnée de marché.
@@ -189,7 +196,9 @@ export function derive(state) {
 
   let result = isCustom
     ? computeCustomSeries(safeStartYm, endYm, amount, state.customStart, state.customEnd)
-    : computeAssetSeries(ASSETS[state.assetId].points, safeStartYm, endYm, amount, effectiveMode)
+    : INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
+      ? sparseAssetSeries(indexAnchorPoints(state.assetId, endYm), safeStartYm, endYm, amount)
+      : computeAssetSeries(ASSETS[state.assetId].points, safeStartYm, endYm, amount, effectiveMode)
 
   if (!isCustom) {
     result = applyPriceOverride(result, ASSETS[state.assetId].points, state.overridePriceRaw, endYm)
@@ -247,6 +256,9 @@ export function buildTweetText(state, d) {
     `Somme investie : ${fmtEUR(d.result.totalInvested, currency)}`,
     `${gainAbs < 0 ? 'Perte' : 'Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)} (${fmtPct(gainPct)} de la somme investie)`,
   ]
+  if (INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
+    lines.push('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
+  }
 
   // Comparaison Livret A : uniquement pour les actifs en euros, jamais un montant en dollars
   // comparé à un Livret A en euros sans taux de change — même règle que ResultCard côté UI
