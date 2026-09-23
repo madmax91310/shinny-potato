@@ -30,7 +30,7 @@ export const FAMILIES = [
   {
     id: 'europe',
     label: '🇪🇺 Europe',
-    intro: 'Tu veux une exposition européenne sur ton PEA mais tu hésites entre MSCI Europe, Stoxx 50 et Stoxx 600 ? 🇪🇺\nOn décrypte les trois 👇',
+    intro: 'STOXX 600, EURO STOXX 50, MSCI Europe : trois façons de dire « j’investis en Europe », mais pas trois fois le même panier 🇪🇺\nOn regarde ce qui change 👇',
     indices: [
       { name: 'STOXX 600', desc: 'Les 600 plus grandes entreprises européennes, 17 pays.', bullets: ['✅ UK + Suisse + Scandinavie inclus'], tag: 'Le plus large 🌍' },
       { name: 'EURO STOXX 50', desc: 'Les 50 plus grosses boîtes de la zone euro uniquement.', tag: 'Ultra-concentré (ASML, SAP, LVMH…) 🎯' },
@@ -80,7 +80,7 @@ export const FAMILIES = [
       { q: '🇫🇷 Large mais sans UK/Suisse, capitalisant français, en PEA ?', a: 'PCEU (Amundi MSCI Europe)' },
       { q: '⚡ Le moins cher tout court, en CTO ?', a: 'Amundi Core STOXX 600 (0,07 %, 21 Md€ d\'encours)' },
     ],
-    closing: '💬 Et toi, t\'as lequel dans ton PEA ?',
+    closing: '💬 Dans ton PEA, tu veux couvrir toute l’Europe ou te limiter à la zone euro ?',
   },
 
   // ── Famille 2 : Monde large ─────────────────────────────────────────
@@ -105,7 +105,7 @@ export const FAMILIES = [
   {
     id: 'monde',
     label: '🌍 Monde large',
-    intro: 'Tu veux investir « sur le monde entier » mais tu hésites entre MSCI World, MSCI ACWI et FTSE All-World ? 🌍\nOn décrypte les trois 👇',
+    intro: '« ETF monde » : derrière ces deux mots, certains fonds incluent les émergents et d’autres non 🌍\nMSCI World, ACWI et FTSE All-World : on compare 👇',
     indices: [
       { name: 'MSCI World', desc: 'Les 1 283 plus grandes entreprises de 23 pays développés.', tag: 'Le classique du monde développé 🏛️' },
       { name: 'MSCI ACWI', desc: 'Le MSCI World + les marchés émergents (Chine, Inde, Brésil…), 2 461 valeurs.', tag: 'Le monde presque entier 🌐' },
@@ -165,7 +165,7 @@ export const FAMILIES = [
       { q: '🌐 Tu veux les émergents inclus, mais en PEA ?', a: 'GPEA (Amundi PEA Global ACWI) — tout nouveau, lancé en juillet 2026.' },
       { q: '💰 Le moins cher toutes catégories confondues, en CTO ?', a: 'Xtrackers FTSE All-World, à 0,07 %.' },
     ],
-    closing: '💬 Toi, t\'es plutôt Monde développé ou Monde entier ?',
+    closing: '💬 Tu veux les émergents dans ton ETF principal ou dans une ligne à part ?',
   },
 
   // ── Famille 3 : USA large ────────────────────────────────────────────
@@ -177,7 +177,7 @@ export const FAMILIES = [
   {
     id: 'usa',
     label: '🇺🇸 USA large',
-    intro: 'S&P 500, Nasdaq 100, MSCI USA, Russell 1000… tous des indices américains, mais pas du tout la même chose 🇺🇸\nOn décrypte les quatre 👇',
+    intro: 'Un ETF USA peut détenir 100, 500 ou près de 1 000 valeurs. Et ça change ce que tu détiens vraiment 🇺🇸\nOn compare les quatre indices 👇',
     indices: [
       { name: 'S&P 500', desc: 'Les 500 plus grandes entreprises cotées aux États-Unis.', tag: 'La référence mondiale 🏆' },
       { name: 'Nasdaq 100', desc: 'Les 100 plus grosses non-financières du Nasdaq : ultra tech.', tag: 'Le plus concentré tech 💻' },
@@ -217,7 +217,7 @@ export const FAMILIES = [
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/S&P, juillet 2026) le 01/09/2026.
       chain: ['Russell 1000 (1 000 lignes)', 'MSCI USA (527)', 'S&P 500 (500)', 'Nasdaq 100 (100)'],
-      notes: ['⚠️ Le Nasdaq 100 exclut tout le secteur financier et concentre près de 50 % sur ses 10 plus grosses lignes.', '→ Le plus étroit des quatre, et le plus volatil.'],
+      notes: ['⚠️ Le Nasdaq 100 exclut tout le secteur financier et concentre près de 50 % sur ses 10 plus grosses lignes.', '→ Si ton portefeuille contient déjà un S&P 500, vérifie combien de ses grandes valeurs tu rachètes avec le Nasdaq-100.'],
     },
     // Performance 2023-2025 (source : justETF/extraetf/Boursorama, recherche web du 02/09/2026).
     // nasdaq100 CORRIGÉ le 23/09/2026 (49,32/33,58/6,01 → 54,99/27,18/20,78) : détecté par
@@ -241,7 +241,7 @@ export const FAMILIES = [
       { q: '📏 Le compromis entre grandes et moyennes capitalisations, en CTO ?', a: 'iShares MSCI USA.' },
       { q: '🌊 L\'exposition la plus large possible ?', a: 'Une version Growth ou Value du Russell 1000, en CTO — pas de version PEA active pour l\'instant.' },
     ],
-    closing: '💬 Toi, PEA ou CTO pour ta poche US ?',
+    closing: '💬 Pour les États-Unis, tu élargis au maximum ou tu assumes un biais Nasdaq ?',
   },
 
   // ── Famille 4a : Émergents (PEA) ─────────────────────────────────────
@@ -280,7 +280,7 @@ export const FAMILIES = [
   {
     id: 'emergents-pea',
     label: '🌏 Émergents (PEA)',
-    intro: 'Tu veux investir sur les émergents mais rester 100 % PEA ? Amundi propose bien plus qu\'un seul fonds généraliste 🌏\nOn décrypte les cinq déclinaisons 👇',
+    intro: 'Un ETF émergents en PEA, oui. Mais entre tous les pays et une seule région, le risque n’est pas le même 🌏\nVoici les cinq déclinaisons 👇',
     indices: [
       { name: 'Émergents global (ESG resserré)', desc: 'Zone couverte par PAEEM : indice MSCI EM ex Egypt ESG Leaders Select 5% Issuer Custom Capped — 24 pays émergents, mais une sélection ESG plus resserrée que le MSCI EM classique (pas les mêmes lignes qu\'un fonds CTO).', tag: 'Le PEA généraliste 🌍' },
       { name: 'Asie émergente', desc: 'Zone couverte par PAASI : indice MSCI EM Asia Screened Select ex Thermal Coal — 8 pays d\'Asie émergente (Chine, Inde, Taïwan, Corée du Sud…).', tag: 'Concentré sur l\'Asie 🌏' },
@@ -334,7 +334,7 @@ export const FAMILIES = [
       { q: '🇮🇳 Tu veux un pari 100 % Inde ?', a: 'PINR — TER 0,85 %, le plus cher du lot.' },
       { q: '🌍 Tu veux la zone EMEA émergente (Afrique du Sud, Golfe, Europe de l\'Est) ?', a: 'PLEM — la déclinaison la plus confidentielle.' },
     ],
-    closing: '💬 Toi, tu restes sur PAEEM tout seul ou tu combines avec une déclinaison régionale ?',
+    closing: '💬 Sur les émergents en PEA, tu gardes une ligne large ou tu ajoutes une région précise ?',
   },
 
   // ── Famille 4b : Émergents (CTO) ─────────────────────────────────────
@@ -344,7 +344,7 @@ export const FAMILIES = [
   {
     id: 'emergents-cto',
     label: '🌏 Émergents (CTO)',
-    intro: 'MSCI EM IMI, FTSE EM, MSCI EM ex-China… tu investis sur les émergents en compte-titres, lequel choisir ? 🌏\nOn décrypte les trois 👇',
+    intro: 'Corée du Sud incluse ou non ? Chine incluse ou non ? Deux ETF émergents peuvent raconter deux histoires différentes 🌏\nOn compare les trois 👇',
     indices: [
       { name: 'MSCI EM IMI', desc: '3 017 valeurs de ~24 pays émergents (Chine, Inde, Taïwan, Brésil…) — grandes, moyennes ET petites capitalisations.', tag: 'La référence émergents, en version large 🏳️' },
       { name: 'FTSE EM', desc: '2 290 valeurs. Une composition proche du MSCI EM, mais pas identique : la Corée du Sud y est classée comme un pays développé, donc elle est exclue.', tag: 'Sans la Corée du Sud 🇰🇷' },
@@ -404,7 +404,7 @@ export const FAMILIES = [
       { q: '🇰🇷 Tu veux exclure la Corée du Sud (classée développée) ?', a: 'Vanguard FTSE Emerging Markets.' },
       { q: '🚫 Tu veux réduire ton risque chinois ?', a: 'iShares MSCI EM ex-China.' },
     ],
-    closing: '💬 Toi, tu limites ton exposition à la Chine ou pas ?',
+    closing: '💬 Sur les émergents, quelle place veux-tu laisser à la Chine dans ton portefeuille ?',
   },
 
   // ── Famille 5 : Style ────────────────────────────────────────────────
@@ -421,7 +421,7 @@ export const FAMILIES = [
   {
     id: 'style',
     label: '🎨 Style (facteurs)',
-    intro: 'MSCI World Growth, Value, Quality… les grands styles d\'investissement factoriel, expliqués simplement 🎨\nOn décrypte (presque) les trois 👇',
+    intro: 'Value, Quality, Growth : ces mots changent la sélection des entreprises dans un indice mondial 🎨\nOn regarde les trois approches 👇',
     indices: [
       { name: 'MSCI World Value', desc: '401 valeurs jugées « décotées » par rapport à leurs fondamentaux (banques, énergie, industrie…).', bullets: ['ℹ️ Le vrai nom de l\'indice répliqué : MSCI World Enhanced Value'], tag: 'Le pari à contre-courant 📉' },
       { name: 'MSCI World Quality', desc: '301 valeurs à la rentabilité stable et à l\'endettement maîtrisé (ROE élevé, bénéfices réguliers).', bullets: ['ℹ️ Le vrai nom de l\'indice répliqué : MSCI World Sector Neutral Quality'], tag: 'Le style « qualité avant tout » 💎' },
@@ -461,7 +461,7 @@ export const FAMILIES = [
       { q: '💎 Tu préfères la stabilité des bénéfices ?', a: 'iShares Edge MSCI World Quality Factor.' },
       { q: '🌱 Tu cherches la croissance pure ?', a: 'Pas de vrai ETF dédié à ce jour, malgré nos recherches — on ne va pas t\'en inventer un.' },
     ],
-    closing: '💬 Toi, plutôt Value, Quality… ou toujours MSCI World tout court ?',
+    closing: '💬 Tu préfères sélectionner les valeurs selon un facteur ou garder le MSCI World sans filtre ?',
   },
 
   // ── Famille 6a : Dividendes (CTO) ────────────────────────────────────
@@ -488,7 +488,7 @@ export const FAMILIES = [
   {
     id: 'dividendes-cto',
     label: '🟣 Dividendes (CTO)',
-    intro: 'High Dividend, Quality Dividend, Dividend Aristocrats… 3 façons différentes de viser le rendement, en compte-titres 🟣\nOn décrypte les trois 👇',
+    intro: 'Trois ETF à dividendes, trois méthodes de sélection : haut rendement, qualité financière ou historique de distribution 🟣\nOn compare les trois 👇',
     indices: [
       { name: 'High Dividend', desc: '2 397 entreprises mondiales au rendement de dividende le plus élevé, sans filtre de qualité.', tag: 'Le rendement brut, sans filtre 💰' },
       { name: 'Quality Dividend', desc: '~200 valeurs (194-211 selon la date de rebalancement) : dividende + critères de solidité financière (rentabilité, faible endettement).', tag: 'Le compromis entre rendement et solidité 💎' },
@@ -564,7 +564,7 @@ export const FAMILIES = [
       { q: '💎 Le compromis entre rendement et solidité financière ?', a: 'iShares MSCI World Quality Dividend Advanced.' },
       { q: '🏅 Le plus exigeant (20 ans de hausses consécutives) ?', a: 'SPDR S&P US Dividend Aristocrats (10 ans pour la version mondiale).' },
     ],
-    closing: '💬 Toi, tu vises le rendement pur ou la régularité ?',
+    closing: '💬 Pour des dividendes, tu privilégies le montant versé ou les critères de sélection des entreprises ?',
   },
 
   // ── Famille 6b : Dividendes (PEA) ────────────────────────────────────
@@ -585,7 +585,7 @@ export const FAMILIES = [
   {
     id: 'dividendes-pea',
     label: '🟣 Dividendes (PEA)',
-    intro: 'Tu veux du rendement mais rester en PEA ? Une seule vraie option existe, et elle est limitée à la zone euro 🟣\nOn te la présente 👇',
+    intro: 'Tu veux un ETF à dividendes dans ton PEA ? La sélection se resserre vite sur la zone euro 🟣\nOn regarde ce que couvre cette option 👇',
     indices: [
       { name: 'Dividend Aristocrats mondial (rappel, non-PEA)', desc: '100 entreprises mondiales, dividende en hausse depuis au moins 10 ans — l\'option déjà vue dans le tweet « Dividendes (CTO) ».', tag: 'Large mais non-PEA 🌍' },
       { name: 'Euro Dividend Aristocrats (PEA)', desc: '40 entreprises de la zone euro uniquement, même critère de hausse du dividende sur 10 ans — le prix à payer pour rester en PEA : un univers bien plus restreint.', tag: 'Le seul dividende PEA 🇪🇺' },
@@ -613,7 +613,7 @@ export const FAMILIES = [
       { q: '💳 Tu veux du dividende en restant 100 % PEA ?', a: 'EUDV (SPDR S&P Euro Dividend Aristocrats) — seule option, mais limitée à la zone euro.' },
       { q: '🌍 Tu veux le choix le plus large, dividende mondial ?', a: 'Aucune option PEA à ce jour — direction le CTO (cf. le tweet « Dividendes (CTO) »).' },
     ],
-    closing: '💬 Toi, le dividende passe par le PEA ou tu acceptes de sortir en CTO pour plus de choix ?',
+    closing: '💬 La zone euro te suffit pour cette poche dividendes ou tu veux aussi des entreprises hors PEA ?',
   },
 
   // ── Famille 8 : Chine ────────────────────────────────────────────────
@@ -634,7 +634,7 @@ export const FAMILIES = [
   {
     id: 'chine',
     label: '🇨🇳 Chine',
-    intro: 'MSCI China, FTSE China, MSCI China A… la Chine boursière n\'est pas un seul marché, mais trois univers différents 🇨🇳\nOn décrypte les trois 👇',
+    intro: '« Investir en Chine » ne désigne pas forcément les mêmes entreprises selon l’indice choisi 🇨🇳\nMSCI China, China A et FTSE China 50 : on compare 👇',
     indices: [
       { name: 'MSCI China', desc: '576 valeurs cotées à Hong Kong ou à New York (ADR), plutôt qu\'en Chine continentale — c\'est ce qu\'on appelle la Chine « offshore ».', tag: 'La référence la plus suivie 🏙️' },
       { name: 'FTSE China 50', desc: 'Seulement les 50 plus grosses valeurs chinoises cotées à Hong Kong.', tag: 'Ultra-concentré 🎯' },
@@ -689,7 +689,7 @@ export const FAMILIES = [
       { q: '💳 Tu veux rester en PEA malgré tout ?', a: 'Amundi PEA Chine — mais version filtrée ESG, pas le MSCI China standard.' },
       { q: '🏯 Tu veux viser le marché intérieur chinois précisément ?', a: 'iShares MSCI China A.' },
     ],
-    closing: '💬 Toi, tu distingues Chine offshore et Chine domestique dans ton allocation ?',
+    closing: '💬 Tu veux surtout les entreprises chinoises cotées hors du continent ou le marché intérieur ?',
   },
 
   // ── Famille 9 : Japon ────────────────────────────────────────────────
@@ -714,7 +714,7 @@ export const FAMILIES = [
   {
     id: 'japon',
     label: '🇯🇵 Japon',
-    intro: 'Nikkei 225, TOPIX, MSCI Japan… le plus connu (Nikkei) n\'est pas forcément le plus pertinent pour investir 🇯🇵\nOn décrypte les trois 👇',
+    intro: 'Le Nikkei 225, le TOPIX et le MSCI Japan ne donnent pas le même poids aux entreprises japonaises 🇯🇵\nVoici ce que ça change 👇',
     indices: [
       { name: 'Nikkei 225', desc: 'Les 225 plus grandes valeurs de la Bourse de Tokyo, indice pondéré par le PRIX de l\'action (pas la capitalisation).', tag: 'Le plus connu, pas le plus rigoureux 📰' },
       { name: 'TOPIX', desc: '1 637 valeurs (juillet 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation.', bullets: ['⚠️ Réforme en cours : retrait graduel de 600+ valeurs à partir d\'oct. 2026, étalé sur 2 ans — passage sous 1 000 valeurs attendu vers 2028, pas dès octobre'], tag: 'Le plus large et le plus représentatif 🗾' },
@@ -774,6 +774,6 @@ export const FAMILIES = [
       { q: '📰 Tu veux spécifiquement le Nikkei 225, en CTO ?', a: 'Xtrackers Nikkei 225.' },
       { q: '🌐 Tu veux le standard international, en CTO ?', a: 'iShares Core MSCI Japan IMI.' },
     ],
-    closing: '💬 Toi, tu savais que le Nikkei n\'est PAS pondéré par la capitalisation ?',
+    closing: '💬 Pour le Japon, la méthode de pondération du Nikkei te gêne ou tu la choisis justement ?',
   },
 ]
