@@ -456,6 +456,13 @@ export const FAMILIES = [
   // à l'intérieur de la fourchette déjà documentée (194-211 selon rebalancement), confirmé, pas de
   // changement. Dividend Aristocrats : nombre fixé par méthodologie (top 100 par construction),
   // reconfirmé, non un comptage à revérifier.
+  //
+  // AUDIT du 23/09/2026 (signalement utilisateur sur ce tweet précis) : Global Dividend Aristocrats
+  // (S&P Global Dividend Aristocrats, 100 titres) exige au moins 10 ans consécutifs de dividende en
+  // hausse OU stable ; le fonds US alternatif (S&P High Yield Dividend Aristocrats, IE00B6YX5D40)
+  // exige lui 20 ans consécutifs de HAUSSE — un critère différent et plus strict, jamais distingué
+  // dans le texte jusqu'ici (confirmé par 2 requêtes indépendantes le 23/09/2026 : méthodologie
+  // S&P DJI + fiches justETF/SSGA). Corrigé ci-dessous (indices[].bullets + etfGroups[].note).
   {
     id: 'dividendes-cto',
     label: '🟣 Dividendes (CTO)',
@@ -463,7 +470,10 @@ export const FAMILIES = [
     indices: [
       { name: 'High Dividend', desc: '2 397 entreprises mondiales au rendement de dividende le plus élevé, sans filtre de qualité.', tag: 'Le rendement brut, sans filtre 💰' },
       { name: 'Quality Dividend', desc: '~200 valeurs (194-211 selon la date de rebalancement) : dividende + critères de solidité financière (rentabilité, faible endettement).', tag: 'Le compromis entre rendement et solidité 💎' },
-      { name: 'Dividend Aristocrats', desc: '100 entreprises qui versent ET augmentent leur dividende depuis au moins 10 ans consécutifs.', tag: 'Le plus exigeant des trois 🏅' },
+      {
+        name: 'Dividend Aristocrats', desc: '100 entreprises qui versent un dividende stable ou en hausse depuis au moins 10 ans consécutifs (version mondiale).', tag: 'Le plus exigeant des trois 🏅',
+        bullets: ['ℹ️ Le critère "10 ans" vaut pour la version mondiale ci-dessous ; l\'alternative US (bloc 2) exige elle 20 ans consécutifs de hausse — un filtre différent, plus strict.'],
+      },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES (CTO) 💳',
     etfGroups: [
@@ -472,17 +482,17 @@ export const FAMILIES = [
         // typiquement percevoir le revenu — et les deux parts Dist ci-dessous sont aussi les plus
         // gros encours de leur fonds (vérifié via recherche web le 01/09/2026).
         indexName: 'High Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF (Dist)', isin: 'IE00B8GKDB10', ter: '0,29 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '9,8 Md€' }],
+        funds: [{ name: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF (Dist)', isin: 'IE00B8GKDB10', ter: '0,29 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '9,8 Md€ (01/09/2026)' }],
       },
       {
         indexName: 'Quality Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)', isin: 'IE00BYYHSQ67', ter: '0,38 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '1,5 Md€' }],
+        funds: [{ name: 'iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)', isin: 'IE00BYYHSQ67', ter: '0,38 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '1,5 Md€ (01/09/2026)' }],
       },
       {
         indexName: 'Dividend Aristocrats', choiceNote: 'le plus de choix', pea: false,
         funds: [
-          { name: 'SPDR S&P Global Dividend Aristocrats UCITS ETF', isin: 'IE00B9CQXS71', ter: '0,45 %', aum: '1,6 Md€', note: '(mondial)' },
-          { name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', isin: 'IE00B6YX5D40', ter: '0,35 %', aum: '3,4 Md€', note: '(US uniquement, le moins cher ⚡)' },
+          { name: 'SPDR S&P Global Dividend Aristocrats UCITS ETF', isin: 'IE00B9CQXS71', ter: '0,45 %', aum: '1,6 Md€ (01/09/2026)', note: '(mondial — dividende stable/en hausse depuis 10 ans)' },
+          { name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', isin: 'IE00B6YX5D40', ter: '0,35 %', aum: '3,4 Md€ (01/09/2026)', note: '(US uniquement, le moins cher ⚡ — mais critère plus strict : 20 ans consécutifs de hausse du dividende, contre 10 ans pour le fonds mondial ci-dessus)' },
         ],
       },
     ],
@@ -491,19 +501,46 @@ export const FAMILIES = [
       chain: ['High Dividend (2 397 lignes)', 'Quality Dividend (~200)', 'Dividend Aristocrats mondial (100)'],
       notes: ['⚠️ Plus le filtre est exigeant (Quality, Aristocrats), plus le nombre de lignes chute.', '→ Concentration sectorielle plus forte (finance, énergie, conso de base) sur les deux derniers.'],
     },
-    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Aristocrats recoupé
-    // avec la série "strat_dividendes" déjà vérifiée cette session dans portfolio-generator/data.js
-    // (même fonds, écart <0,3 pt) — retenue ici la performance nette de frais.
+    // Performance 2023-2025 — RECORRIGÉE le 23/09/2026 suite à un signalement utilisateur sur ce
+    // tweet précis (2 des 3 séries ci-dessous étaient fausses depuis leur création, sans lien avec
+    // les vraies performances des fonds).
+    // - high_div (IE00B8GKDB10) : 11,51 % / 9,39 % / 26,40 % confirmé par 2 requêtes web
+    //   indépendantes le 23/09/2026 (documentation officielle Vanguard + recoupement justETF/
+    //   fiches fonds) — identique à la série déjà vérifiée pour ce même fonds dans
+    //   portfolio-generator/data.js ("high_dividend"/"high_dividend_dist"), donc cohérence
+    //   rétablie entre les deux outils sur cet ISIN.
+    // - quality_div (IE00BYYHSQ67) : 17,14 % / 9,87 % / 23,97 % confirmé par 2 requêtes web
+    //   indépendantes le 23/09/2026 (fiche officielle iShares datée 30/06/2026 pour l'année pleine
+    //   2025 + recoupement justETF/finanzen.net pour 2023-2024). ⚠️ Cette série NE correspond PAS
+    //   à celle de portfolio-generator/data.js pour le même ISIN ("quality_dividend"/
+    //   "quality_dividend_dist", y2025 = 9,76 %) : 2023 et 2024 concordent exactement, seul 2025
+    //   diverge fortement (23,97 vs 9,76) — tout indique une erreur de saisie côté
+    //   portfolio-generator plutôt qu'un écart de méthode, mais non corrigée ici (hors périmètre
+    //   de cette vérification, ciblée sur le Comparateur d'indices) : À VÉRIFIER ET CORRIGER dans
+    //   portfolio-generator/data.js séparément.
+    // - aristocrats (IE00B9CQXS71) : valeur CONSERVÉE telle quelle à la demande explicite de
+    //   l'utilisateur (6,93 % / 7,74 % / 17,02 %, nette de frais). ⚠️ Le commentaire précédent
+    //   affirmait un écart "<0,3 pt" avec la série "strat_dividendes" de portfolio-generator
+    //   (7,13 / 7,41 / 17,55) — vérification arithmétique le 23/09/2026 : écarts réels de 0,20 /
+    //   0,33 / 0,53 pt, donc l'affirmation était inexacte. Une recherche web complémentaire le
+    //   23/09/2026 (recoupement ZPRG/SSGA) a par ailleurs renvoyé un chiffre 2025 de 17,55 % pour
+    //   ce même fonds — qui correspondrait alors à portfolio-generator plutôt qu'à la valeur
+    //   conservée ici. Contradiction NON résolue entre sources : valeur laissée inchangée par
+    //   consigne explicite, mais à traiter comme À VÉRIFIER, pas comme confirmée.
     perfFunds: [
-      { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', y2023: 7.64, y2024: 16.36, y2025: 11.76 },
-      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 13.09, y2024: 16.74, y2025: 8.68 },
+      { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', y2023: 11.51, y2024: 9.39, y2025: 26.40 },
+      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 17.14, y2024: 9.87, y2025: 23.97 },
       { key: 'aristocrats', label: 'SPDR S&P Global Dividend Aristocrats', y2023: 6.93, y2024: 7.74, y2025: 17.02 },
     ],
+    // Disclosure affichée dans le tweet lui-même (bloc 4, cf. buildTweetText) — devise, méthode et
+    // nature "totale vs distribution" jamais explicités dans le texte avant le 23/09/2026, seulement
+    // dans les commentaires de code (donc invisibles au lecteur).
+    perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise de cotation des 3 fonds, hors effet de change €/$. Ne pas confondre avec le rendement de distribution (dividend yield), qui est un chiffre différent.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💰 Le rendement le plus élevé, sans filtre ?', a: 'Vanguard FTSE All-World High Dividend Yield.' },
       { q: '💎 Le compromis entre rendement et solidité financière ?', a: 'iShares MSCI World Quality Dividend Advanced.' },
-      { q: '🏅 Le plus exigeant (10 ans de hausses consécutives) ?', a: 'SPDR S&P Global (ou US) Dividend Aristocrats.' },
+      { q: '🏅 Le plus exigeant (20 ans de hausses consécutives) ?', a: 'SPDR S&P US Dividend Aristocrats (10 ans pour la version mondiale).' },
     ],
     closing: '💬 Toi, tu vises le rendement pur ou la régularité ?',
   },

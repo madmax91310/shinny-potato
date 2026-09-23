@@ -92,6 +92,10 @@ function buildTweetText(family, perfValues) {
     if (v.ytdEnabled) out.push(`YTD ${fmtPct(v.ytd) ?? '[à compléter]'}`)
     if (i < family.perfFunds.length - 1) out.push('')
   })
+  if (family.perfMethodNote) {
+    out.push('')
+    out.push(family.perfMethodNote)
+  }
   out.push('')
   out.push(family.verdictTitle)
   out.push('')
