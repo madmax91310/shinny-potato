@@ -374,14 +374,10 @@ export const FAMILIES = [
       notes: ['⚠️ La Chine pèse encore 25 à 30 % du MSCI EM, malgré sa baisse ces dernières années.'],
     },
     // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026).
-    // AUDIT du 23/09/2026 : scripts/audit-performance-consistency.mjs a signalé un écart de 5 à 14
-    // pt entre msci_em ici et "msci_em" dans portfolio-generator/data.js (6,11/14,68/17,76). Ce
-    // N'EST PAS une erreur de saisie mais une devise différente non déclarée au lecteur : les 3
-    // parts ci-dessous sont toutes des parts (USD) Acc (confirmé par requête web dédiée le
-    // 23/09/2026 pour IE00BKM4GZ66 et IE00BK5BR733 — fiches officielles iShares/Vanguard), tandis
-    // que portfolio-generator documente explicitement une performance d'INDICE en EUR net de
-    // dividendes (proxy, pas le fonds coté). Corrigé en ajoutant perfMethodNote ci-dessous plutôt
-    // qu'en modifiant des chiffres qui sont chacun corrects dans leur propre devise.
+    // AUDIT du 23/09/2026 : l'écart avec le Générateur vient de la devise et de la méthode :
+    // ce tableau présente les rendements des parts en USD, le Générateur un indice en EUR avant
+    // les frais du fonds. Son ancien proxy iShares était de plus le MSCI EM classique, alors que
+    // IE00BKM4GZ66 suit le MSCI EM IMI ; proxy corrigé dans le Générateur.
     // ftse_em CORRIGÉ le 23/09/2026 (4,12/19,20/11,13 → 7,86/12,06/25,67) : l'ancien commentaire de
     // ce fichier affirmait qu'un premier résultat de recherche "identique à la série 2021-2023 de
     // portfolio-generator" était un décalage d'années suspect, et l'avait donc écarté au profit
@@ -397,7 +393,7 @@ export const FAMILIES = [
       { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 7.86, y2024: 12.06, y2025: 25.67 },
       { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.73, y2024: 3.64, y2025: 34.83 },
     ],
-    perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise de cotation des 3 fonds (parts USD Acc), hors effet de change €/$.',
+    perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise des parts USD Acc, hors effet de change €/$. Le Générateur de portefeuilles utilise des indices en euros avant frais des ETF : ses chiffres ne sont pas directement comparables.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '🏳️ La référence la plus large et la moins chère ?', a: 'iShares Core MSCI EM IMI.' },
