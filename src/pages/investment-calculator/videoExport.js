@@ -9,8 +9,8 @@
 // invested[] à un index entier (mode Simple, drawFrame), soit interpolés en ligne droite entre deux
 // vrais points adjacents à l'instant t écoulé (mode Comparatif, drawComparativeFrame/revealSide) —
 // jamais une troisième source de donnée inventée entre les deux.
-import { fmtEUR, fmtPct, computeAssetSeries, sparseAssetSeries, applyPriceOverride, ymIndex } from './lib'
-import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, MONTHS_SHORT } from './data'
+import { fmtEUR, fmtPct, computeAssetSeries, sparseAssetSeries, indexAnchorPoints, applyPriceOverride, ymIndex } from './lib'
+import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_SHORT } from './data'
 
 const W = 1080
 const H = 1080
@@ -87,13 +87,20 @@ function pickMimeType() {
 // actif "sparse", ici on BLOQUE la génération vidéo pour cet actif — juxtaposer deux courbes dont
 // l'une est presque entièrement interpolée serait trompeur dans un format comparatif.
 // Retourne un message d'erreur précis (nommant l'actif) ou null si l'actif est utilisable tel quel.
-export function getComparativeAssetIssue(assetId, startYm, mode) {
+export function getComparativeAssetIssue(assetId, startYm, mode, endYm) {
   const asset = ASSETS[assetId]
   const minDate = getAssetMinDate(assetId)
   if (ymIndex(startYm) < ymIndex(minDate)) {
     const [y, m] = minDate.split('-')
     const label = `${MONTHS_SHORT[parseInt(m, 10) - 1]} ${y}`
     return `${asset.label} : données disponibles à partir de ${label} seulement`
+  }
+  if (endYm && ymIndex(endYm) > ymIndex(asset.points.at(-1).date)) {
+    return `${asset.label} : la dernière donnée s'arrête en ${asset.points.at(-1).date}`
+  }
+  if (INCONSISTENT_MONTHLY_DATA_IDS.has(assetId)) {
+    if (!startYm.endsWith('-12')) return `${asset.label} : sélectionne un départ en décembre`
+    if (mode === 'dca') return `DCA non disponible pour ${asset.label} — série mensuelle à revérifier`
   }
   if (mode === 'dca' && SPARSE_MONTHLY_DATA_IDS.has(assetId)) {
     return `DCA non disponible pour ${asset.label} — données mensuelles insuffisantes sur cette période`
@@ -114,8 +121,10 @@ export function getComparativeAssetIssue(assetId, startYm, mode) {
 // getComparativeAssetIssue), donc pas de branche DCA à gérer ici.
 export function computeComparativeSeries(assetId, startYm, endYm, amount, mode, overridePriceRaw = '') {
   const points = ASSETS[assetId].points
-  const result = SPARSE_MONTHLY_DATA_IDS.has(assetId) && mode !== 'dca'
-    ? sparseAssetSeries(points, startYm, endYm, amount)
+  const result = INCONSISTENT_MONTHLY_DATA_IDS.has(assetId)
+    ? sparseAssetSeries(indexAnchorPoints(assetId, endYm), startYm, endYm, amount)
+    : SPARSE_MONTHLY_DATA_IDS.has(assetId) && mode !== 'dca'
+      ? sparseAssetSeries(points, startYm, endYm, amount)
     : computeAssetSeries(points, startYm, endYm, amount, mode)
   return applyPriceOverride(result, points, overridePriceRaw, endYm)
 }
