@@ -139,6 +139,15 @@ async function testMarketFacts(page) {
   const select = page.locator("select").first();
   const count = await select.locator("option").count();
   let badCount = 0;
+  // La source est repliée dans un <details> ("Voir le fait complet et ses précisions") depuis la
+  // réécriture du 23/09/2026 — innerText() ne voit pas le contenu d'un <details> fermé (masqué au
+  // rendu), donc il faut l'ouvrir avant de vérifier, sous peine de faux échec sur les 21 faits.
+  // Ouvert UNE SEULE fois ici : FactCard n'a pas de `key`, React réutilise le même nœud <details>
+  // à chaque changement de fait (seul son contenu change), donc son état `open` survit au cycle —
+  // le rouvrir à chaque itération le referme un coup sur deux (bug constaté à l'écriture de ce
+  // correctif : 21 faits cyclés donnaient ~10 "échecs" en alternance, pas 0 ni 21).
+  await page.locator(".mf-details summary").click();
+  await page.waitForTimeout(20);
   for (let i = 0; i < count; i++) {
     await select.selectOption({ index: i });
     await page.waitForTimeout(40);
