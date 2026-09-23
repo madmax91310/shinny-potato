@@ -113,7 +113,7 @@ export const ASSETS = {
     // 31/08/2026, cohérent avec le retour sur 1 mois publié par l'ETF iShares STOXX Europe 600 (DE)
     // UCITS (EXSA) sur la même période (+0,59 %) — 2 sources indépendantes convergentes. 224 956 x
     // 1,0049 = 226 061.
-    label: 'ETF STOXX Europe 600', tweetPhrase: 'un ETF STOXX Europe 600', icon: '🇪🇺', currency: 'EUR',
+    label: 'Indice STOXX Europe 600', tweetPhrase: "l'indice STOXX Europe 600", icon: '🇪🇺', currency: 'EUR',
     points: P([
       '2015-01', 93786, '2015-02', 100336, '2015-03', 102017, '2015-04', 102119,
       '2015-05', 103824, '2015-06', 99165, '2015-07', 103146, '2015-08', 94657,
@@ -161,8 +161,10 @@ export const ASSETS = {
     // +7,1% au lieu de +21,8% réel) — import CSV d'origine imprécis. Point de DÉCEMBRE de chaque année
     // 2016-2025 recalculé à partir du rendement annuel total réel vérifié (sources multiples
     // convergentes : Motley Fool, dqydj, FT Portfolios — 2016:+11,96%, 2017:+21,83%, 2018:-4,38%,
-    // 2019:+31,49%, 2020:+18,40%, 2021:+28,71%, 2022:-18,11%, 2023:+26,29%, 2024:+25,02%, 2025:+17,44%),
-    // composé à partir du point de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les
+    // 2019:+31,49%, 2020:+18,40%, 2021:+28,71%, 2022:-18,11%, 2023:+26,29%, 2024:+25,02%, 2025:+17,88%),
+    // 2025 corrigé le 23/09/2026 d'après S&P DJI (+17,88 %, ancienne valeur +17,44 %) :
+    // https://www.spglobal.com/spdji/en/commentary/article/us-equities-market-attributes/
+    // Composé à partir du point de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les
     // points de décembre ont été recalculés ; les mois intermédiaires de chaque année restent tels
     // quels (non re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et
     // décembre d'une même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) —
@@ -207,7 +209,7 @@ export const ASSETS = {
       '2024-09', 298447, '2024-10', 304274, '2024-11', 331895, '2024-12', 314355,
       '2025-01', 338421, '2025-02', 333427, '2025-03', 302887, '2025-04', 286073,
       '2025-05', 304992, '2025-06', 310082, '2025-07', 324631, '2025-08', 325189,
-      '2025-09', 334675, '2025-10', 348055, '2025-11', 348546, '2025-12', 369178,
+      '2025-09', 334675, '2025-10', 348055, '2025-11', 348546, '2025-12', 370562,
       '2026-01', 343338, '2026-02', 344019, '2026-03', 335616, '2026-04', 364367,
       '2026-05', 385455, '2026-06', 390161, '2026-07', 386824, '2026-08', 396659,
     ]),
@@ -227,13 +229,14 @@ export const ASSETS = {
     // individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une même année,
     // et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) — limitation assumée, aucune
     // valeur mensuelle inventée.
-    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée ; le niveau officiel MSCI World Net Return
-    // n'a pas pu être trouvé aux deux dates précises malgré plusieurs tentatives — retenu à la place
-    // le rendement sur 1 mois publié par 2 ETF UCITS distincts qui répliquent cet indice, datés fin
-    // août 2026 : Xtrackers MSCI World UCITS ETF 1C -0,28 % et Amundi Core MSCI World UCITS ETF Acc
-    // -0,31 % — 2 émetteurs différents, écart <0,05 pt, retenu -0,30 % (moyenne). 964 712 x 0,997 =
-    // 961 818.
-    label: 'ETF MSCI World', tweetPhrase: 'un ETF MSCI World', icon: '🌍', currency: 'USD',
+    // Correction du 23/09/2026 : la fiche MSCI World Index (USD), rendements bruts dividendes
+    // réinvestis au 31/08/2026, donne +13,40 % YTD et +2,60 % sur un mois. Les anciens points
+    // juillet/août ne respectaient même pas le cumul YTD officiel ; le -0,30 % venait de deux
+    // ETF non comparables à cet indice USD brut. Avec décembre 2025 à 971 159, août vaut
+    // 971 159 × 1,134 = 1 101 294 ; juillet vaut 1 101 294 / 1,026 = 1 073 386.
+    // Les autres points de 2026 restent à revérifier avant de permettre un DCA mensuel.
+    // Source primaire : https://www.msci.com/documents/10199/255599/msci-world-index.pdf
+    label: 'Indice MSCI World', tweetPhrase: "l'indice MSCI World", icon: '🌍', currency: 'USD',
     points: P([
       '2015-01', 279232, '2015-02', 297301, '2015-03', 305731, '2015-04', 300179,
       '2015-05', 307940, '2015-06', 294892, '2015-07', 306262, '2015-08', 279671,
@@ -269,7 +272,7 @@ export const ASSETS = {
       '2025-05', 768049, '2025-06', 775147, '2025-07', 803919, '2025-08', 809889,
       '2025-09', 830015, '2025-10', 860339, '2025-11', 861874, '2025-12', 971159,
       '2026-01', 861977, '2026-02', 876676, '2026-03', 842752, '2026-04', 907487,
-      '2026-05', 953523, '2026-06', 967452, '2026-07', 964712, '2026-08', 961818,
+      '2026-05', 953523, '2026-06', 967452, '2026-07', 1073386, '2026-08', 1101294,
     ]),
   },
   nasdaq100: {
@@ -429,7 +432,9 @@ export const ASSETS = {
     // probablement lié à l'extrême volatilité de ce mois précis (pic intrajournalier réel à 121,58 $ le
     // 29/01/2026, déjà documenté) plutôt qu'à une erreur. La nouvelle valeur est retenue pour la
     // cohérence de méthode (une seule source, mensuelle, plutôt que mélanger spot et futures).
-    label: 'Argent (once)', tweetPhrase: "l'argent", icon: '🥈', currency: 'USD',
+    // Série de prix d'un contrat à terme continu : hors frais de roulement et sans détention
+    // réelle du métal. Le nom s'affiche aussi dans les tweets du module Tweet Midi.
+    label: 'Argent (futures COMEX, once)', tweetPhrase: "le contrat à terme sur l'argent", icon: '🥈', currency: 'USD',
     points: P([
       '2015-01', 17.228, '2015-02', 16.558, '2015-03', 16.619, '2015-04', 16.153,
       '2015-05', 16.721, '2015-06', 15.581, '2015-07', 14.765, '2015-08', 14.581,
@@ -717,8 +722,8 @@ export const ASSETS = {
     // recoupé directement (87,57 $ vs 87,91 $ en table, écart 0,4%). Prix split-adjusted sur toute la
     // série (pas de saut artificiel en 2022). Point 2026-08 (le plus récent) : deux sources trouvées
     // mais non convergentes (335,41 $ et 339,35 $ selon l'article) — retenu 337,00 $ (milieu de
-    // fourchette), confiance plus faible que le reste de la série, à corriger si une clôture officielle
-    // plus précise est trouvée. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement
+    // fourchette). Point supprimé le 23/09/2026 : une moyenne de fourchette ne prouve pas une
+    // clôture au 31 août. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement
     // unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels inventés entre
     // les 31 décembre.
     label: 'Google (Alphabet)', tweetPhrase: 'Google', icon: '🔍', currency: 'USD',
@@ -726,7 +731,6 @@ export const ASSETS = {
       '2015-12', 38.76, '2016-12', 39.48, '2017-12', 52.48, '2018-12', 52.06,
       '2019-12', 66.73, '2020-12', 87.31, '2021-12', 144.33, '2022-12', 87.91,
       '2023-12', 139.18, '2024-12', 189.30, '2025-12', 312.78,
-      '2026-08', 337.00,
     ]),
   },
   meta: {
@@ -742,8 +746,8 @@ export const ASSETS = {
     // par année. 2025 (660,09 $) confirmé à l'identique par 2 requêtes indépendantes. Point 2026-08
     // (le plus récent) : aucune clôture exacte trouvée pour le 31/08/2026 malgré plusieurs requêtes —
     // seulement un encadrement large (560,43 $ le 24/08 ; 616,77 $ au 04/09) — retenu 590,00 $ (milieu
-    // approximatif), confiance nettement plus faible que le reste de la série, à corriger dès qu'une
-    // clôture officielle est trouvée. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué,
+    // approximatif). Point supprimé le 23/09/2026 : la valeur n'est pas une clôture vérifiée.
+    // Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué,
     // versement unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels
     // inventés entre les 31 décembre.
     label: 'Meta', tweetPhrase: 'Meta', icon: '📘', currency: 'USD',
@@ -751,7 +755,6 @@ export const ASSETS = {
       '2015-12', 103.85, '2016-12', 114.15, '2017-12', 175.79, '2018-12', 130.07,
       '2019-12', 203.46, '2020-12', 271.67, '2021-12', 333.42, '2022-12', 119.78,
       '2023-12', 351.20, '2024-12', 583.17, '2025-12', 660.09,
-      '2026-08', 590.00,
     ]),
   },
   nestle: {
@@ -792,24 +795,17 @@ export const ASSETS = {
     // non recoupée par une 2e requête indépendante (même limite que nestle, confiance donc plus
     // faible que les megacaps US). Split-clean : aucun split SAP depuis 2000 (confirmé), aucun risque
     // de saut artificiel sur la fenêtre.
-    // Point 2025 : AUCUNE clôture du 31/12/2025 trouvée malgré plusieurs tentatives — la seule valeur
-    // obtenue (296,93 $) est explicitement datée du 29/05/2025 par la source, pas une clôture de fin
-    // d'année. Conservée par défaut de mieux, mais avec une réserve plus forte que d'habitude : ce
-    // n'est PAS un point de fin d'année comme le reste de la série, à corriger en priorité si une
-    // clôture officielle du 31/12/2025 est trouvée. Point le plus récent (205,95 $, réellement daté
-    // du 10/09/2026, NYSE) étiqueté 2026-08 par cohérence avec LATEST_YM et le reste du roster (même
-    // convention que meta, dont le point "2026-08" citait déjà des sources au 24/08 et au 04/09) —
-    // l'écart avec le point 2025 (296,93 $ à une date antérieure, pas une vraie clôture de fin
-    // d'année) est cohérent avec la baisse documentée par ailleurs ("SAP a chuté de 13% sur les 30
-    // derniers jours" au moment de la recherche), pas un signe d'erreur de donnée. Actif ajouté à SPARSE_MONTHLY_DATA_IDS
+    // Les points 2025-12 (296,93 $, daté en réalité du 29/05/2025) et 2026-08 (205,95 $,
+    // daté du 10/09/2026) ont été supprimés le 23/09/2026. On ne peut pas calculer une
+    // performance annuelle avec des clôtures rangées sous de mauvaises dates.
+    // Actif ajouté à SPARSE_MONTHLY_DATA_IDS
     // (DCA mensuel bloqué, versement unique uniquement), même traitement qu'ethereum/cac40 — pas de
     // points mensuels inventés entre les 31 décembre.
     label: 'SAP', tweetPhrase: 'SAP', icon: '💻', currency: 'USD',
     points: P([
       '2015-12', 68.69, '2016-12', 76.32, '2017-12', 100.55, '2018-12', 90.39,
       '2019-12', 122.79, '2020-12', 121.27, '2021-12', 132.49, '2022-12', 100.25,
-      '2023-12', 152.68, '2024-12', 246.21, '2025-12', 296.93,
-      '2026-08', 205.95,
+      '2023-12', 152.68, '2024-12', 246.21,
     ]),
   },
   visa: {
@@ -823,7 +819,8 @@ export const ASSETS = {
     // Split-clean : split 4:1 en mars 2015, déjà pris en compte dans la table source (confirmé par la
     // note "2015 ending price adjusted for a 4 for 1 stock split") — aucun ajustement supplémentaire
     // nécessaire. Point 2026-08 (370,74 $, réellement daté du 13/09/2026) étiqueté par cohérence avec
-    // LATEST_YM et le reste du roster (même convention que meta/nestle/sap). Actif ajouté à
+    // LATEST_YM et le reste du roster. Point supprimé le 23/09/2026 : prix de septembre
+    // rangé à tort comme clôture d'août. Actif ajouté à
     // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
     // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
     label: 'Visa', tweetPhrase: 'Visa', icon: '💳', currency: 'USD',
@@ -831,7 +828,6 @@ export const ASSETS = {
       '2015-12', 72.69, '2016-12', 73.69, '2017-12', 108.45, '2018-12', 126.34,
       '2019-12', 181.07, '2020-12', 212.08, '2021-12', 211.41, '2022-12', 204.21,
       '2023-12', 257.94, '2024-12', 315.51, '2025-12', 355.85,
-      '2026-08', 370.74,
     ]),
   },
   netflix: {
@@ -849,7 +845,8 @@ export const ASSETS = {
     // 2017, 67,11% en 2020, -51,05% en 2022, 83,07% en 2024...) confirment la cohérence de la série
     // ainsi corrigée d'une année sur l'autre, y compris le +5,19% de 2025 (89,13 $ en réel début
     // d'année → 93,76 $ en fin d'année post-split). Point 2026-08 (77,40 $, réellement daté du
-    // 11/09/2026) étiqueté par cohérence avec LATEST_YM et le reste du roster. Actif ajouté à
+    // 11/09/2026) étiqueté par cohérence avec LATEST_YM et le reste du roster. Point supprimé
+    // le 23/09/2026 : prix de septembre rangé à tort comme clôture d'août. Actif ajouté à
     // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
     // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
     label: 'Netflix', tweetPhrase: 'Netflix', icon: '🎬', currency: 'USD',
@@ -857,7 +854,6 @@ export const ASSETS = {
       '2015-12', 11.44, '2016-12', 12.38, '2017-12', 19.20, '2018-12', 26.77,
       '2019-12', 32.36, '2020-12', 54.07, '2021-12', 60.24, '2022-12', 29.49,
       '2023-12', 48.69, '2024-12', 89.13, '2025-12', 93.76,
-      '2026-08', 77.40,
     ]),
   },
   cocacola: {
@@ -870,7 +866,8 @@ export const ASSETS = {
     // le plus récent), ce qui corrobore indirectement au moins les deux derniers points de la série.
     // Split-clean : dernier split (2:1) en 2012, confirmé aucun split depuis — aucun ajustement
     // nécessaire sur la fenêtre 2015-2025. Point 2026-08 (88,35 $, réellement daté du 13/09/2026)
-    // étiqueté par cohérence avec LATEST_YM et le reste du roster. Actif ajouté à
+    // étiqueté par cohérence avec LATEST_YM et le reste du roster. Point supprimé le
+    // 23/09/2026 : prix de septembre rangé à tort comme clôture d'août. Actif ajouté à
     // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
     // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
     label: 'Coca-Cola', tweetPhrase: 'Coca-Cola', icon: '🥤', currency: 'USD',
@@ -878,7 +875,6 @@ export const ASSETS = {
       '2015-12', 31.84, '2016-12', 31.72, '2017-12', 36.29, '2018-12', 38.74,
       '2019-12', 46.72, '2020-12', 47.88, '2021-12', 53.32, '2022-12', 58.98,
       '2023-12', 56.36, '2024-12', 61.37, '2025-12', 69.47,
-      '2026-08', 88.35,
     ]),
   },
 }
@@ -922,16 +918,19 @@ export function getAssetMinDate(assetId) {
 // CHF native sourçable dans ce sandbox — cf. leurs commentaires individuels pour le détail.
 export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola'])
 
+// Les points de décembre de ces indices ont été recalés sur les rendements annuels officiels,
+// mais les autres mois de l'ancien export ne l'ont pas été (sauts artificiels Nov/Déc/Jan).
+// Un DCA mensuel ou un départ à un mois intermédiaire mélangerait deux séries incohérentes.
+// Jusqu'à remplacement par des séries mensuelles officielles complètes, seul un versement
+// unique à une clôture de décembre est proposé pour ces trois indices.
+export const INCONSISTENT_MONTHLY_DATA_IDS = new Set(['stoxx600', 'sp500', 'msciWorld'])
+
 // Actifs dont le DERNIER point (donc le "dernier niveau connu" affiché à l'étape 1) a une confiance
 // réduite documentée dans le commentaire de l'actif — surfacé dans l'UI (badge ⚠️, cf. App.jsx)
 // plutôt que laissé uniquement dans le code, à la demande de l'utilisateur (audit "outils" du
-// 14/09/2026). N'affecte que google et meta pour l'instant : leur point 08/2026 a été retenu au
-// milieu d'une fourchette non convergente entre deux sources (cf. commentaires sur ces deux actifs
-// ci-dessus) — à retirer d'ici dès qu'une clôture officielle est trouvée pour ce point précis.
-export const REDUCED_CONFIDENCE_LAST_POINT = {
-  google: 'Dernier point (08/2026) : deux sources non convergentes (335,41 $ et 339,35 $) — valeur retenue au milieu de la fourchette.',
-  meta: 'Dernier point (08/2026) : aucune clôture exacte trouvée — valeur retenue au milieu d\'un large encadrement (560,43 $ – 616,77 $).',
-}
+// 14/09/2026). Les points non vérifiés de Google et Meta ont été retirés le 23/09/2026 ;
+// aucun dernier point ne requiert actuellement ce badge. Réservé aux futurs cas documentés.
+export const REDUCED_CONFIDENCE_LAST_POINT = {}
 
 // Taux Livret A (moyenne annuelle, %) et inflation France INSEE (moyenne annuelle, %).
 // À ajuster si besoin — sert uniquement de comparaison pédagogique.
