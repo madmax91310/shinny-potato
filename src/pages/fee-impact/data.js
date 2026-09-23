@@ -23,25 +23,6 @@ export const FEE_LEVELS = [
 export const DEFAULT_FEE_LOW = 0.2
 export const DEFAULT_FEE_HIGH = 1.5
 
-// Ligne de punchline volontairement laissée en placeholder — jamais générée automatiquement (cf.
-// demande du 04/09/2026, même principe que le récap matin) : les punchlines automatiques sonnaient
-// artificielles/répétitives à l'usage. L'utilisateur la remplace lui-même avant publication.
-// Une seule variante (sur 5, ~20 %) suggère entre parenthèses le lien possible avec le choix
-// d'enveloppe (PEA/CTO) — reprend la proportion occasionnelle de l'ancienne bibliothèque de
-// punchlines (2 sur 9 en faisaient mention) — jamais un texte généré automatiquement, juste une
-// piste de rédaction dans le placeholder lui-même.
-export const PUNCHLINE_PLACEHOLDERS = [
-  "[Ta punchline ici]",
-  "[Ta punchline ici]",
-  "[Ta punchline ici]",
-  "[Ta punchline ici]",
-  "[Ta punchline ici — ex : lien possible avec PEA/CTO]",
-]
-
-export const ENGAGEMENT_QUESTIONS = [
-  'Tu connais le TER exact de ce que tu détiens ?',
-  "Ça vaut le coup d'aller vérifier, non ?",
-  'Frais bas ou frais hauts, tu te situes où ?',
-  'Ce chiffre te surprend ?',
-  'Tu regardes les frais avant ou après avoir choisi un placement ?',
-]
+// La phrase personnelle est saisie dans l'interface. En l'absence de saisie, le tweet copié
+// garde une mention explicite de brouillon pour éviter qu'une punchline factice soit publiée.
+export const PUNCHLINE_DRAFT = '[Brouillon à compléter : ta phrase sur cet écart de frais]'

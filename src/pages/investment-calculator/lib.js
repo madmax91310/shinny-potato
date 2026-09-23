@@ -200,10 +200,19 @@ export function derive(state) {
 // aucun risque — le texte s'ajuste au résultat réel plutôt que de supposer que l'actif a toujours
 // gagné (demande utilisateur du 22/09/2026, nouveau format de tweet plus direct/meme que l'ancien
 // "Si tu avais investi...").
-function moraleLine(assetLabel, gainPct, hasLivretCompare, livretBeats) {
-  if (gainPct < 0) return 'Parfois, il vaut mieux ne pas regarder son relevé 😅'
-  if (hasLivretCompare && livretBeats) return 'Le Livret A a fait aussi bien, sans prendre de risque 😌'
-  return `J'aurais dû investir sur ${assetLabel} 😭`
+function moraleLine(assetLabel, gainPct, hasLivretCompare, livretValue, assetValue) {
+  if (hasLivretCompare && livretValue > assetValue) {
+    return gainPct < 0
+      ? `Sur cette période, ${assetLabel} a baissé. Le Livret A termine devant, avec une trajectoire bien différente.`
+      : gainPct === 0
+        ? `${assetLabel} revient à la somme investie. Le Livret A termine devant sur cette période.`
+      : `Même avec une hausse de ${assetLabel}, le Livret A termine devant sur cette période.`
+  }
+  if (hasLivretCompare && livretValue === assetValue) return `${assetLabel} et le Livret A arrivent au même montant sur cette période.`
+  if (gainPct < 0) return `${assetLabel} termine sous la somme investie. La date de départ change tout dans cet exemple.`
+  if (gainPct === 0) return `${assetLabel} revient à la somme investie, sans gain sur cette période.`
+  if (hasLivretCompare) return `${assetLabel} termine devant le Livret A sur cette période. Le résultat dépend aussi de ta date d'entrée.`
+  return `${assetLabel} progresse sur cette période, dans sa devise de cotation.`
 }
 
 export function buildTweetText(state, d) {
@@ -232,9 +241,7 @@ export function buildTweetText(state, d) {
   if (hasLivretCompare) {
     lines.push('', 'Et en mettant sur ton Livret A ?', `${fmtEUR(d.livretA.finalValue, 'EUR')} 🤡`)
   }
-  const livretBeats = hasLivretCompare && d.livretA.finalValue >= d.result.finalValue
-
-  lines.push('', `La morale de l'histoire ? ${moraleLine(assetLabel, gainPct, hasLivretCompare, livretBeats)}`)
+  lines.push('', `La morale de l'histoire ? ${moraleLine(assetLabel, gainPct, hasLivretCompare, d.livretA.finalValue, d.result.finalValue)}`)
   lines.push('', `💬 Tu es investi sur ${assetLabel} ?`)
 
   return lines.join('\n')
