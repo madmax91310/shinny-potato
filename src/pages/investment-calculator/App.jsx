@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
-  getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, REDUCED_CONFIDENCE_LAST_POINT, LATEST_YM,
+  getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS,
+  REDUCED_CONFIDENCE_LAST_POINT, LATEST_YM,
 } from './data'
 import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride, currencySymbol } from './lib'
 import Sparkline from './Sparkline'
@@ -34,6 +35,7 @@ function CompareItem({ label, value, deltaVal, currency, highlight }) {
 
 function ResultCard({ state, d, copied, onCopy }) {
   const asset = d.isCustom ? null : ASSETS[state.assetId]
+  const monthlyIndex = INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
   const assetLabel = d.isCustom ? state.customLabel || 'cet actif' : asset.label
   // Actif coté en dollars (Amazon, S&P 500, Or...) : montant/résultat/comparaisons restent dans
   // cette devise plutôt que mélangés avec un € qui donnerait un faux air de conversion (demande
@@ -129,6 +131,7 @@ function ResultCard({ state, d, copied, onCopy }) {
 
       <p className="ic-method-note">
         Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Livret A et inflation sont estimés avec des taux annuels moyens.
+        {monthlyIndex ? ' Pour cet indice, la simulation part d’une clôture de décembre et relie uniquement les points annuels vérifiés ; elle ne représente pas la performance nette d’un ETF précis.' : ''}
       </p>
 
       <div className="ic-card-footer">
@@ -179,7 +182,8 @@ export default function App() {
   const [copied, setCopied] = useState('idle')
 
   const isCustom = state.assetId === 'custom'
-  const effectiveMode = isCustom ? 'lump' : state.mode
+  const monthlyIndex = !isCustom && INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
+  const effectiveMode = isCustom || monthlyIndex ? 'lump' : state.mode
   // Actif coté en dollars (Amazon, S&P 500, Or...) : formulaire de saisie dans cette devise plutôt
   // que mélangé avec un € qui donnerait un faux air de conversion (demande utilisateur du
   // 22/09/2026) — cf. le même choix dans ResultCard et videoExport.js.
@@ -205,7 +209,8 @@ export default function App() {
   const startYm = state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth)
   const lastAvailableYm = isCustom ? null : ASSETS[state.assetId].points.at(-1).date
   const startDateAfterLast = !isCustom && ymIndex(startYm) > ymIndex(lastAvailableYm)
-  const startDateInvalid = (assetMinDate !== null && ymIndex(startYm) < ymIndex(assetMinDate)) || startDateAfterLast
+  const indexStartInvalid = monthlyIndex && state.startMonth !== 12
+  const startDateInvalid = (assetMinDate !== null && ymIndex(startYm) < ymIndex(assetMinDate)) || startDateAfterLast || indexStartInvalid
   const assetMinDateLabel = assetMinDate ? `${MONTHS_SHORT[parseInt(assetMinDate.split('-')[1], 10) - 1]} ${assetMinDate.split('-')[0]}` : null
   // Badge de confiance visible en UI (pas seulement en commentaire de code), à la demande de
   // l'utilisateur (audit "outils" du 14/09/2026) : vrai dès que le plancher vérifié (assetMinDate)
@@ -224,7 +229,7 @@ export default function App() {
   // interpolerait la quasi-totalité des mois plutôt que d'utiliser une vraie clôture mensuelle. Seul
   // le versement unique reste possible pour ces actifs (même règle que le mode Comparatif de la vidéo,
   // cf. getComparativeAssetIssue dans videoExport.js — réutilisée ici, pas redéfinie).
-  const sparseDcaAsset = !isCustom && SPARSE_MONTHLY_DATA_IDS.has(state.assetId)
+  const sparseDcaAsset = !isCustom && (SPARSE_MONTHLY_DATA_IDS.has(state.assetId) || monthlyIndex)
   // Dernier point RÉELLEMENT en base pour l'actif choisi (jamais LATEST_YM en dur : pour
   // stoxx600/sp500/msciWorld, le dernier point réel est antérieur d'un mois, cf.
   // data.js — donner LATEST_YM ici afficherait une date à laquelle ce prix n'est pas vérifié).
@@ -269,7 +274,8 @@ export default function App() {
                     set({
                       assetId: id,
                       overridePriceRaw: '',
-                      mode: id !== 'custom' && SPARSE_MONTHLY_DATA_IDS.has(id) ? 'lump' : state.mode,
+                      startMonth: INCONSISTENT_MONTHLY_DATA_IDS.has(id) ? 12 : state.startMonth,
+                      mode: id !== 'custom' && (SPARSE_MONTHLY_DATA_IDS.has(id) || INCONSISTENT_MONTHLY_DATA_IDS.has(id)) ? 'lump' : state.mode,
                     })
                   }}
                 >
@@ -402,7 +408,9 @@ export default function App() {
               <p className="ic-field-error">
                 {startDateAfterLast
                   ? `Aucune donnée ${ASSETS[state.assetId].label} à cette date — choisis un mois au plus tard en ${lastPointLabel}.`
-                  : `Données ${ASSETS[state.assetId].label} non vérifiées avant cette date — choisis une date à partir de ${assetMinDateLabel}.`}
+                  : indexStartInvalid
+                    ? `Pour ${ASSETS[state.assetId].label}, choisis décembre : les autres mois de l'historique ne sont pas comparables aux clôtures annuelles recalées.`
+                    : `Données ${ASSETS[state.assetId].label} non vérifiées avant cette date — choisis une date à partir de ${assetMinDateLabel}.`}
               </p>
             )}
           </div>
@@ -460,7 +468,7 @@ export default function App() {
             </p>
             {sparseDcaAsset && (
               <p className="ic-field-warning">
-                ⚠️ DCA non disponible pour {ASSETS[state.assetId].label} — données mensuelles insuffisantes sur cette période. Versement unique uniquement.
+                ⚠️ DCA non disponible pour {ASSETS[state.assetId].label} — {monthlyIndex ? 'série mensuelle incohérente avec les rendements annuels vérifiés' : 'données mensuelles insuffisantes sur cette période'}. Versement unique uniquement.
               </p>
             )}
           </div>
@@ -474,7 +482,9 @@ export default function App() {
                   : startDateInvalid
                   ? startDateAfterLast
                     ? `Aucune donnée ${ASSETS[state.assetId].label} après ${lastPointLabel} — choisis une date de départ plus ancienne.`
-                    : `Données ${ASSETS[state.assetId].label} non vérifiées avant ${assetMinDateLabel} — choisis une date de départ plus récente.`
+                    : indexStartInvalid
+                      ? `Choisis une clôture de décembre pour ${ASSETS[state.assetId].label} : les autres mois restent à vérifier.`
+                      : `Données ${ASSETS[state.assetId].label} non vérifiées avant ${assetMinDateLabel} — choisis une date de départ plus récente.`
                   : 'Corrige le(s) champ(s) de prix en erreur pour voir le résultat de la simulation.'}
             </p>
           </div>
