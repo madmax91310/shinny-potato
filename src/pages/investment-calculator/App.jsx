@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
-  getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, REDUCED_CONFIDENCE_LAST_POINT,
+  getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, REDUCED_CONFIDENCE_LAST_POINT, LATEST_YM,
 } from './data'
 import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride, currencySymbol } from './lib'
 import Sparkline from './Sparkline'
@@ -46,6 +46,7 @@ function ResultCard({ state, d, copied, onCopy }) {
   const inflPct = pct(d.inflation.finalValue, d.inflation.totalInvested)
   const monthShort = MONTHS_SHORT[parseInt(d.startYm.split('-')[1], 10) - 1]
   const yearLabel = d.startYm.split('-')[0]
+  const endLabel = `${MONTHS_SHORT[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
 
   // Vidéo uniquement : série réduite aux vrais points pour un actif à grain annuel (DCA bloqué,
   // donc toujours en mode lump ici) — la grille mensuelle complète de d.result (utilisée pour le
@@ -64,7 +65,7 @@ function ResultCard({ state, d, copied, onCopy }) {
           <div>
             <h2>{assetLabel}</h2>
             <p className="ic-period">
-              {monthShort} {yearLabel} → aujourd'hui
+              {monthShort} {yearLabel} → {endLabel}{state.overridePriceRaw !== '' && !d.isCustom ? ' (prix saisi)' : ''}
             </p>
           </div>
         </div>
@@ -85,10 +86,10 @@ function ResultCard({ state, d, copied, onCopy }) {
         </p>
         <p className="ic-hero-number">{fmtEUR(d.result.finalValue, currency)}</p>
         <div className="ic-hero-sub">
-          <span className={`ic-delta-pill ${gainPct >= 0 ? 'pos' : 'neg'}`}>{fmtPct(gainPct)}</span>
+          <span className={`ic-delta-pill ${gainPct >= 0 ? 'pos' : 'neg'}`}>{fmtPct(gainPct)} sur les versements</span>
           <span className="ic-gain-abs">
-            {gainAbs >= 0 ? '+' : ''}
-            {fmtEUR(gainAbs, currency)} de plus-value · {fmtEUR(d.result.totalInvested, currency)} investis
+            {gainAbs < 0 ? 'Perte : ' : 'Gain : '}
+            {fmtEUR(Math.abs(gainAbs), currency)} · {fmtEUR(d.result.totalInvested, currency)} investis
           </span>
         </div>
       </div>
@@ -112,7 +113,7 @@ function ResultCard({ state, d, copied, onCopy }) {
         {currency === 'EUR' ? (
           <>
             <CompareItem label="Livret A" value={d.livretA.finalValue} deltaVal={livretPct} currency="EUR" />
-            <CompareItem label="Inflation" value={d.inflation.finalValue} deltaVal={inflPct} currency="EUR" />
+            <CompareItem label="Panier de dépenses (inflation indicative)" value={d.inflation.finalValue} deltaVal={inflPct} currency="EUR" />
           </>
         ) : (
           // Livret A et inflation sont des repères français en euros : les afficher à côté d'un
@@ -126,13 +127,17 @@ function ResultCard({ state, d, copied, onCopy }) {
         )}
       </div>
 
+      <p className="ic-method-note">
+        Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Livret A et inflation sont estimés avec des taux annuels moyens.
+      </p>
+
       <div className="ic-card-footer">
         <p className="ic-disclaimer">
-          Éducation financière, pas un conseil en investissement. Données historiques approximatives, performances passées ≠ garanties futures.
+          Éducation financière, pas un conseil en investissement. Données historiques parfois approximatives, frais et fiscalité non pris en compte. Les performances passées ne préjugent pas des performances futures.
         </p>
         <div className="ic-card-footer-actions">
           <Button type="button" onClick={onCopy}>
-            {copied ? '✓ Copié' : '𝕏 Copier le texte du post'}
+            {copied === 'done' ? '✓ Copié' : copied === 'error' ? 'Copie impossible' : '𝕏 Copier le texte du post'}
           </Button>
         </div>
         <VideoExport
@@ -140,7 +145,7 @@ function ResultCard({ state, d, copied, onCopy }) {
             series: videoResult.series,
             invested: videoResult.invested,
             assetLabel: `${d.isCustom ? '✎' : asset.icon} ${assetLabel}`,
-            periodLabel: `${monthShort} ${yearLabel} → aujourd'hui`,
+            periodLabel: `${monthShort} ${yearLabel} → ${endLabel}`,
             modeLabel: d.effectiveMode === 'dca' ? 'DCA MENSUEL' : 'VERSEMENT UNIQUE',
             totalInvested: videoResult.totalInvested,
             finalValue: videoResult.finalValue,
@@ -153,7 +158,7 @@ function ResultCard({ state, d, copied, onCopy }) {
             startYm: d.startYm,
             endYm: d.endYm,
             mode: d.effectiveMode,
-            periodLabel: `${monthShort} ${yearLabel} → aujourd'hui`,
+            periodLabel: `${monthShort} ${yearLabel} → ${endLabel}`,
             modeLabel: d.effectiveMode === 'dca' ? 'DCA MENSUEL' : 'VERSEMENT UNIQUE',
             defaultAssetId: !d.isCustom ? state.assetId : undefined,
             // Reporte le "prix à jour" saisi dans le formulaire Simple, pour que la vidéo Comparatif
@@ -171,7 +176,7 @@ function ResultCard({ state, d, copied, onCopy }) {
 
 export default function App() {
   const [state, setState] = useState(INITIAL_STATE)
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState('idle')
 
   const isCustom = state.assetId === 'custom'
   const effectiveMode = isCustom ? 'lump' : state.mode
@@ -198,7 +203,9 @@ export default function App() {
   // une date de départ antérieure au plancher calculait silencieusement sur ces points illustratifs.
   const assetMinDate = !isCustom ? getAssetMinDate(state.assetId) : null
   const startYm = state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth)
-  const startDateInvalid = assetMinDate !== null && ymIndex(startYm) < ymIndex(assetMinDate)
+  const lastAvailableYm = isCustom ? null : ASSETS[state.assetId].points.at(-1).date
+  const startDateAfterLast = !isCustom && ymIndex(startYm) > ymIndex(lastAvailableYm)
+  const startDateInvalid = (assetMinDate !== null && ymIndex(startYm) < ymIndex(assetMinDate)) || startDateAfterLast
   const assetMinDateLabel = assetMinDate ? `${MONTHS_SHORT[parseInt(assetMinDate.split('-')[1], 10) - 1]} ${assetMinDate.split('-')[0]}` : null
   // Badge de confiance visible en UI (pas seulement en commentaire de code), à la demande de
   // l'utilisateur (audit "outils" du 14/09/2026) : vrai dès que le plancher vérifié (assetMinDate)
@@ -234,18 +241,18 @@ export default function App() {
     const text = buildTweetText(state, d)
     try {
       await navigator.clipboard.writeText(text)
+      setCopied('done')
     } catch {
-      // clipboard indisponible : on affiche quand même la confirmation, l'utilisateur peut copier le texte à la main
+      setCopied('error')
     }
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    setTimeout(() => setCopied('idle'), 2000)
   }
 
   return (
     <div className="ic-scope">
       <PageHeader
         title="Et si tu avais investi ?"
-        subtitle="Simulateur d'éducation financière — données 2015 → aujourd'hui."
+        subtitle={`Simulateur d'éducation financière — données arrêtées au plus tard en ${MONTHS_FULL[Number(LATEST_YM.split('-')[1]) - 1]} ${LATEST_YM.split('-')[0]}.`}
       />
 
       <div className="ic-layout">
@@ -303,7 +310,7 @@ export default function App() {
                     {overridePriceInvalid && <p className="ic-field-error">Le prix à jour doit être supérieur à 0.</p>}
                     {!overridePriceInvalid && state.overridePriceRaw !== '' && (
                       <p className="ic-hint">
-                        Calcul basé sur ce prix plutôt que sur le dernier niveau connu — vérifie-le toi-même avant de publier, jamais deviné automatiquement.
+                        Le prix saisi revalorise les parts acquises ; les versements restent arrêtés au dernier mois documenté ({lastPointLabel}). Vérifie ce prix avant publication.
                       </p>
                     )}
                   </div>
@@ -393,7 +400,9 @@ export default function App() {
             </div>
             {startDateInvalid && (
               <p className="ic-field-error">
-                Données {ASSETS[state.assetId].label} non vérifiées avant cette date — choisis une date à partir de {assetMinDateLabel}.
+                {startDateAfterLast
+                  ? `Aucune donnée ${ASSETS[state.assetId].label} à cette date — choisis un mois au plus tard en ${lastPointLabel}.`
+                  : `Données ${ASSETS[state.assetId].label} non vérifiées avant cette date — choisis une date à partir de ${assetMinDateLabel}.`}
               </p>
             )}
           </div>
@@ -443,8 +452,8 @@ export default function App() {
                 ? 'Le mode DCA nécessite un historique de prix : indisponible en saisie manuelle.'
                 : hasValidOverride
                   ? effectiveMode === 'dca'
-                    ? `Un versement de ${fmtEUR(amount, currency)} chaque mois depuis la date de départ, valorisé aujourd'hui au prix à jour que tu as saisi.`
-                    : `Un seul versement à la date de départ, valorisé aujourd'hui au prix à jour que tu as saisi.`
+                    ? `Un versement de ${fmtEUR(amount, currency)} chaque mois jusqu'à ${lastPointLabel}, puis une valorisation au prix que tu as saisi.`
+                    : `Un seul versement à la date de départ, valorisé au prix que tu as saisi (historique arrêté en ${lastPointLabel}).`
                   : effectiveMode === 'dca'
                     ? `Un versement de ${fmtEUR(amount, currency)} chaque mois depuis la date de départ jusqu'à ${lastPointLabel} (dernière donnée disponible — au-delà, redonne-moi les clôtures récentes pour actualiser, ou saisis un prix à jour ci-dessus).`
                     : `Un seul versement à la date de départ, valorisé jusqu'à ${lastPointLabel} (dernière donnée disponible — ou saisis un prix à jour ci-dessus).`}
@@ -462,8 +471,10 @@ export default function App() {
             <p className="ic-invalid-message">
               {amountInvalid
                 ? 'Indique un montant supérieur à 0 pour voir le résultat de la simulation.'
-                : startDateInvalid
-                  ? `Données ${ASSETS[state.assetId].label} non vérifiées avant ${assetMinDateLabel} — choisis une date de départ plus récente.`
+                  : startDateInvalid
+                  ? startDateAfterLast
+                    ? `Aucune donnée ${ASSETS[state.assetId].label} après ${lastPointLabel} — choisis une date de départ plus ancienne.`
+                    : `Données ${ASSETS[state.assetId].label} non vérifiées avant ${assetMinDateLabel} — choisis une date de départ plus récente.`
                   : 'Corrige le(s) champ(s) de prix en erreur pour voir le résultat de la simulation.'}
             </p>
           </div>
