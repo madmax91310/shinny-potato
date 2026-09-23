@@ -300,7 +300,7 @@ function AllocationList({ selection }) {
 
 function PerfChart({ perf }) {
   const values = YEARS.map((y) => perf[y])
-  const maxAbs = Math.max(1, ...values.map((v) => Math.abs(v)))
+  const maxAbs = Math.max(1, ...values.filter(Number.isFinite).map((v) => Math.abs(v)))
   const half = 62
   return (
     <div className="pg-chart-wrap">
@@ -315,6 +315,7 @@ function PerfChart({ perf }) {
         <div className="pg-chart-baseline" style={{ top: half }} />
         {YEARS.map((y, i) => {
           const v = values[i]
+          if (!Number.isFinite(v)) return <div className="pg-bar-col" key={y} title={`${y} : non disponible`}><span className="pg-bar-year">{y} · n.d.</span></div>
           const h = Math.max(2, (Math.abs(v) / maxAbs) * half)
           const positive = v >= 0
           return (

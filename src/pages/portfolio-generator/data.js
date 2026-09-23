@@ -41,8 +41,7 @@
 // bloqué dans ce sandbox), ticker déjà connu par le commentaire existant quand disponible (cas le
 // plus fiable), sinon nom complet du fonds. Deux cas particuliers documentés directement sur leur
 // actif plutôt qu'ici : strat_dividendes (aucune part Acc distincte trouvée, partage l'ISIN de son
-// jumeau Dist) et oblig_etat_us (fonds réel par tranche de maturité seulement, ISIN d'une tranche
-// proche retenu par approximation, confiance moindre).
+// jumeau Dist). oblig_etat_us a depuis été identifié précisément (BlackRock GOVT).
 //
 // 2 supports ajoutés le 14/09/2026 (audit "double-outil", cherchés en parallèle pour ce fichier et
 // le Calculateur d'investissement) : sect_financieres (secteur financier US, absent jusqu'ici) et
@@ -838,9 +837,8 @@ export const ASSETS = [
     // déjà en place et tranche la contradiction précédente sur 2024 (7,93% confirmé côté fonds,
     // contre 12,53% trouvé pour un indice proche mais visiblement pas exactement celui répliqué
     // par ce fonds — écarté). 2020 reste NON VÉRIFIÉ : le tableau du fact sheet lui-même démarre
-    // en 2021 (fonds lancé le 18/11/2020, pas d'année calendaire 2020 complète à afficher) — valeur
-    // d'origine (5,0, illustrative) conservée, aucune donnée réelle à trouver pour cette année.
-    r: [5.0, 36.57, -28.76, 35.04, 7.93, 9.64],
+    // en 2021 (fonds lancé le 18/11/2020). Ne pas inventer de rendement annuel 2020.
+    r: [null, 36.57, -28.76, 35.04, 7.93, 9.64],
     desc: [
       "la technologie européenne : un secteur beaucoup plus restreint qu'aux États-Unis, mais bien réel.",
       "ASML, SAP, Dassault Systèmes... les rares géants tech du continent réunis en une ligne.",
@@ -1077,18 +1075,9 @@ export const ASSETS = [
   // cette bibliothèque pour l'instant.
   {
     id: "oblig_etat_us", name: "iShares $ Treasury Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
-    // ISIN ajouté le 13/09/2026 (audit "ISIN pour chaque ETF") — confiance MOINDRE que le reste du
-    // fichier : "iShares $ Treasury Bond UCITS ETF" n'existe pas en tant que fonds unique "toutes
-    // échéances", seulement en plusieurs fonds par tranche de maturité (0-1, 1-3, 3-7, 7-10, 20+
-    // ans). Retenu IBTM (7-10 ans, le plus proche d'une exposition "cœur" généraliste), mais son
-    // rendement réel 2022 (-14,90%, vérifié via une 2e requête) diverge de -12,6% déjà en place ici
-    // (écart 2,3pt, plus large que la tolérance habituelle de ce fichier) — la tranche de maturité
-    // exacte du fact sheet d'origine (30/08/2026) n'est pas documentée dans le commentaire ci-
-    // dessous, donc cet ISIN reste une approximation raisonnable plutôt qu'une identification
-    // certaine. Cohérent avec la note déjà présente juste au-dessus : cet actif n'est de toute façon
-    // pas encore assigné à un combo profil × risque dans theses.js.
-    isin: "IE00B1FZS798",
-    confidenceNote: "ISIN approximatif : identifie une tranche de maturité (7-10 ans) proche d'une exposition généraliste — aucun fonds \"toutes échéances\" n'existe pour cet indice.",
+    // BlackRock GOVT, part USD distribuante, indice ICE U.S. Treasury Core Bond Index.
+    // Son tableau officiel 2020-2025 correspond exactement aux six valeurs ci-dessous.
+    isin: "IE00BK95B138",
     // Nom CONFIRMÉ le 30/08/2026 : capture d'écran de l'en-tête du fact sheet officiel fournie par
     // l'utilisateur (catégorie "OBLIGATIONS", badge "GOVT", part USD (Distribution)) — même fonds
     // que celui dont le tableau de performance avait été fourni plus tôt le même jour. Performance
