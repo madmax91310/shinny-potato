@@ -1,4 +1,5 @@
 import { VRAI_FAUX } from "./data/vraiFaux.js";
+import { VRAI_FAUX_QUESTIONS } from "./data/vraiFauxQuestions.js";
 import { DILEMMES, SITUATIONS } from "./data/dilemmes.js";
 import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from "./data/ficheLexique.js";
 import { COMPARATIF_ETF_SUBJECTS, getComparatifEtfText } from "./data/comparatifEtf.js";
@@ -10,12 +11,6 @@ import {
   getHistoricalPrice, ymForYearsBack, fmtYm, getBenchmarkPerformance,
   getAnnualReturnStartYears, getAnnualReturns,
 } from "./data/marketHistory.js";
-import {
-  ANNIVERSAIRE_PUNCHLINES_NEUTRE, ANNIVERSAIRE_PUNCHLINES_GAIN, ANNIVERSAIRE_PUNCHLINES_PERTE,
-} from "./data/anniversairePunchlines.js";
-import { PERFORMANCE_DEPUIS_QUESTIONS } from "./data/performanceDepuisPunchlines.js";
-import { ANNIVERSAIRE_COMPARATIF_PUNCHLINES } from "./data/anniversaireComparatifPunchlines.js";
-import { PERFORMANCE_DEPUIS_COMPARATIF_PUNCHLINES } from "./data/performanceDepuisComparatifPunchlines.js";
 // Format "Pouvoir d'achat" : aucune donnée ni logique de calcul propre — réutilise entièrement le
 // simulateur "Pouvoir d'achat" (montants, années, séries INSEE, calcul, punchlines) ; cette couche
 // ne fait qu'exposer ces mêmes données/fonctions au système de pools/anti-répétition de Tweet Midi.
@@ -65,16 +60,6 @@ const TODAY = new Date();
 // Sentinelle pour "pas de sujet précis choisi à l'étape 2" — ne collisionne avec aucun id réel
 // (termes du lexique, situations de dilemme, thématiques ETF).
 export const SUBJECT_ALEATOIRE = "aleatoire";
-
-// Questions d'engagement génériques, piochées pour clore un tweet "Vrai ou Faux" (optionnel,
-// cf. brief). Pas de pool par item — un seul pool partagé suffit pour ce format court.
-const QUESTIONS_ENGAGEMENT = [
-  "Tu le savais ?",
-  "Tu l'aurais deviné ?",
-  "Ça te surprend ?",
-  "Tu connaissais cette règle ?",
-  "Vrai ou faux, t'étais sûr de toi ?",
-];
 
 // ── Pools par format ──────────────────────────────────────────────────────────────────────
 // Chaque entrée porte son format d'origine pour permettre le filtrage par format ET
@@ -400,16 +385,6 @@ export function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subje
   return { item, addToHistory: false };
 }
 
-// Déterministe à partir de l'id de l'item (pas d'état supplémentaire à gérer) : le même item
-// retombe toujours sur la même entrée du pool, mais deux items différents varient. Réutilisé pour
-// les questions d'engagement (Vrai/Faux) et les deux pools de punchlines (Anniversaire /
-// Performance depuis).
-function pickFromPool(pool, seedId) {
-  let hash = 0;
-  for (let i = 0; i < seedId.length; i++) hash = (hash * 31 + seedId.charCodeAt(i)) >>> 0;
-  return pool[hash % pool.length];
-}
-
 // "1 an" / "5 ans" déjà accordé — jamais {years} substitué seul dans un gabarit qui code "ans" en
 // dur à côté (donnait "il y a 1 ans" pour un an en arrière, cf. audit "pools de punchlines" du
 // 29/08/2026).
@@ -430,15 +405,39 @@ function dePhrase(tweetPhrase) {
   return "de " + tweetPhrase;
 }
 
-// Sélectionne le registre gain/perte/neutre selon le signe RÉEL de la performance affichée juste
-// au-dessus dans le tweet (jamais un pool unique tiré sans regarder le chiffre, cf. même audit) :
-// gainPct null (Format A avant saisie du niveau actuel) → neutre uniquement ; positif → gain +
-// neutre ; négatif ou nul → perte + neutre. `phrase`, si fourni, remplace {yearsPhrase} dans le
-// gabarit choisi (Format A uniquement — Performance depuis n'a pas ce placeholder).
-function pickSignedPunchline({ neutre, gain, perte }, gainPct, seedId, phrase) {
-  const pool = gainPct === null ? neutre : gainPct > 0 ? [...gain, ...neutre] : [...perte, ...neutre];
-  const template = pickFromPool(pool, seedId);
-  return phrase ? template.replace(/\{yearsPhrase\}/g, phrase) : template;
+// Chaque fin s'appuie sur la période et les chiffres déjà présents dans le tweet.
+function anniversaryConclusion(asset, yearsBack, gainPct) {
+  const horizon = yearsPhrase(yearsBack);
+  if (gainPct === null) return `À quel niveau est ${asset.label} aujourd'hui ? Renseigne-le pour comparer avec il y a ${horizon}.`;
+  if (gainPct === 0) return `Sur ${horizon}, ${asset.label} est revenu au même niveau. Tu t'attendais à ce résultat ?`;
+  if (gainPct < 0) return `Même après ${horizon}, ${asset.label} reste sous son niveau de départ. Tu aurais conservé ta position ?`;
+  if (gainPct >= 100) return `Sur ${horizon}, la valeur de ${asset.label} a plus que doublé. Tu aurais tenu toute la période ?`;
+  return `Sur ${horizon}, ${asset.label} a progressé. Quelle baisse intermédiaire aurais-tu accepté de traverser ?`;
+}
+
+function performanceConclusion(asset, returns, cumulative) {
+  const best = returns.reduce((a, b) => b.pct > a.pct ? b : a);
+  const worst = returns.reduce((a, b) => b.pct < a.pct ? b : a);
+  if (returns.length === 1) return `💬 ${asset.label} a fait ${fmtPct(best.pct)} sur cette année. Tu l'aurais détenu jusqu'à la clôture ?`;
+  if (worst.pct < 0 && best.pct > 0) return `💬 Pour ${asset.label}, ${best.year} a été la meilleure année de la liste et ${worst.year} la moins bonne. Laquelle t'aurait le plus marqué ?`;
+  if (cumulative < 0) return `💬 Le cumul de ${asset.label} reste négatif sur la période. Quelle année t'aurait fait revoir ta position ?`;
+  return `💬 ${best.year} ressort comme la meilleure année de ${asset.label} sur la période. Tu l'aurais anticipée ?`;
+}
+
+function comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, yearsBack) {
+  if (pctA === null || pctB === null) return `Renseigne les deux niveaux actuels pour comparer ${assetA.label} et ${assetB.label} sur ${yearsPhrase(yearsBack)}.`;
+  if (pctA === pctB) return `Sur ${yearsPhrase(yearsBack)}, ${assetA.label} et ${assetB.label} finissent à égalité. Tu aurais préféré détenir lequel ?`;
+  const leading = pctA > pctB ? assetA : assetB;
+  const trailing = pctA > pctB ? assetB : assetA;
+  return `Sur ${yearsPhrase(yearsBack)}, ${leading.label} fait mieux que ${trailing.label}. Tu aurais tenu les deux jusqu'ici ?`;
+}
+
+function comparativePerformanceConclusion(assetA, assetB, returnsA, returnsB, cumA, cumB) {
+  if (cumA === cumB) return `${assetA.label} et ${assetB.label} finissent à égalité sur la période. Leurs années intermédiaires se ressemblent-elles ?`;
+  const leading = cumA > cumB ? assetA : assetB;
+  const sharedYears = returnsA.flatMap((a) => returnsB.filter((b) => b.year === a.year).map((b) => ({ year: a.year, gap: Math.abs(a.pct - b.pct) })));
+  const standout = sharedYears.reduce((a, b) => b.gap > a.gap ? b : a);
+  return `${leading.label} finit devant sur la période. En ${standout.year}, les rendements annuels des deux actifs ont différé de ${standout.gap.toLocaleString('fr-FR', { maximumFractionDigits: 1 })} points : tu l'avais remarqué ?`;
 }
 
 export function buildVraiFauxText(item) {
@@ -449,7 +448,7 @@ export function buildVraiFauxText(item) {
   lines.push("");
   lines.push(`${item.reponse ? "✅ Vrai" : "❌ Faux"}. ${item.explication}`);
   lines.push("");
-  lines.push(pickFromPool(QUESTIONS_ENGAGEMENT, item.id));
+  lines.push(VRAI_FAUX_QUESTIONS[item.id]);
   return lines.join("\n");
 }
 
@@ -460,7 +459,7 @@ export function buildDilemmeText(item) {
   lines.push(`A) ${item.optionA}`);
   lines.push(`B) ${item.optionB}`);
   lines.push("");
-  lines.push("Toi tu ferais quoi ? 👇");
+  lines.push(item.question);
   return lines.join("\n");
 }
 
@@ -500,10 +499,7 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
   lines.push(`Niveau actuel : ${hasCurrent ? fmtEUR(niveauActuel, asset.currency) : "[à saisir]"}`);
   lines.push(`Performance : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
   lines.push("");
-  lines.push(pickSignedPunchline(
-    { neutre: ANNIVERSAIRE_PUNCHLINES_NEUTRE, gain: ANNIVERSAIRE_PUNCHLINES_GAIN, perte: ANNIVERSAIRE_PUNCHLINES_PERTE },
-    gainPct, item.id, phrase,
-  ));
+  lines.push(anniversaryConclusion(asset, item.yearsBack, gainPct));
   return lines.join("\n");
 }
 
@@ -548,7 +544,7 @@ export function buildPerformanceDepuisText(item, includeBenchmark) {
     lines.push(buildBenchmarkLine(returns[0].startDate, returns[returns.length - 1].endDate));
   }
   lines.push("");
-  lines.push(pickFromPool(PERFORMANCE_DEPUIS_QUESTIONS, item.id));
+  lines.push(performanceConclusion(asset, returns, cumulatePct(returns)));
   return lines.join("\n");
 }
 
@@ -590,7 +586,7 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   });
   lines.push("");
   if (bothKnown) lines.push(fmtEcart(pctA, pctB));
-  lines.push(pickFromPool(ANNIVERSAIRE_COMPARATIF_PUNCHLINES, item.id).replace(/\{yearsPhrase\}/g, yearsPhrase(item.yearsBack)));
+  lines.push(comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, item.yearsBack));
   return lines.join("\n");
 }
 
@@ -639,7 +635,7 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
     lines.push(buildBenchmarkLine(sharedStart, sharedEnd));
   }
   lines.push("");
-  lines.push(pickFromPool(PERFORMANCE_DEPUIS_COMPARATIF_PUNCHLINES, item.id));
+  lines.push(comparativePerformanceConclusion(assetA, assetB, returnsA, returnsB, cumA, cumB));
   return lines.join("\n");
 }
 

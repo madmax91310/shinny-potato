@@ -15,6 +15,7 @@ export const SITUATIONS = [
   {
     id: "credit-vs-investir",
     label: "Rembourser un crédit vs investir",
+    question: "Toi, tu regardes d’abord le taux du crédit ou la tranquillité de le rembourser ? 👇",
     contextes: null,
     contexte: (montant) =>
       `Tu reçois ${montant} de façon inattendue (prime, héritage, vente). Tu as un crédit en cours (conso ou immo).`,
@@ -24,6 +25,7 @@ export const SITUATIONS = [
   {
     id: "securite-vs-rendement",
     label: "Sécurité vs rendement",
+    question: "Toi, quelle part de cette somme garderais-tu sur le fonds en euros ? 👇",
     contextes: ["ton assurance-vie", "ton PER"],
     contexte: (montant, contexte) => `Tu as ${montant} à placer sur ${contexte}.`,
     optionA: "Tout sécuriser sur le fonds euros : capital garanti, rendement modeste.",
@@ -32,6 +34,7 @@ export const SITUATIONS = [
   {
     id: "court-vs-long-terme",
     label: "Court terme vs long terme",
+    question: "Toi, tu accepterais de bloquer combien si tu pouvais avoir besoin de cet argent avant ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} que tu ne comptes pas toucher avant plusieurs années — mais peut-être avant, si besoin.`,
     optionA: "Bloquer sur du long terme pour optimiser la fiscalité (PER, PEA après 5 ans).",
@@ -40,6 +43,7 @@ export const SITUATIONS = [
   {
     id: "simplicite-vs-optimisation",
     label: "Simplicité vs optimisation fiscale",
+    question: "Toi, combien d’enveloppes es-tu prêt à suivre pour cette somme ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir.`,
     optionA: "Un seul ETF monde tout-en-un, sans se prendre la tête.",
@@ -48,6 +52,7 @@ export const SITUATIONS = [
   {
     id: "liquidite-vs-blocage",
     label: "Liquidité vs blocage",
+    question: "Toi, combien de temps pourrais-tu te passer de cet argent ? 👇",
     contextes: ["ton PER", "un investissement immobilier locatif"],
     // 500€/2 000€ dans l'immobilier locatif en direct n'a pas de sens (personne n'achète un bien
     // avec ça) — reformulé en SCPI pour ces deux montants, seule façon réaliste d'investir dans
@@ -65,6 +70,7 @@ export const SITUATIONS = [
   {
     id: "diversification-vs-conviction",
     label: "Diversification vs conviction forte",
+    question: "Toi, quelle part maximale laisserais-tu à une seule conviction ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir.`,
     optionA: "Tout répartir sur un ETF monde ultra-diversifié.",
@@ -73,6 +79,7 @@ export const SITUATIONS = [
   {
     id: "pea-vs-cto",
     label: "PEA vs CTO",
+    question: "Toi, ce placement doit-il absolument rester dans ton PEA ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir sur des actions européennes ou mondiales.`,
     optionA: "Les loger dans ton PEA pour la fiscalité, quitte à te limiter à des ETF synthétiques pour viser le monde entier.",
@@ -81,6 +88,7 @@ export const SITUATIONS = [
   {
     id: "immobilier-vs-bourse",
     label: "Immobilier vs bourse",
+    question: "Toi, tu privilégies la souplesse d’un ETF ou l’exposition à l’immobilier ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir.`,
     optionA: "Direction l'immobilier locatif (SCPI ou en direct).",
@@ -89,6 +97,7 @@ export const SITUATIONS = [
   {
     id: "crypto-vs-traditionnel",
     label: "Crypto vs actifs traditionnels",
+    question: "Toi, quelle part de cette somme serais-tu prêt à voir fortement varier ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir.`,
     optionA: "Une partie en crypto (Bitcoin, Ethereum) pour viser plus de performance, au prix d'une forte volatilité.",
@@ -97,6 +106,7 @@ export const SITUATIONS = [
   {
     id: "dca-vs-lumpsum",
     label: "DCA vs lump sum",
+    question: "Toi, tu pourrais investir toute cette somme aujourd’hui et tenir si le marché baissait demain ? 👇",
     contextes: null,
     contexte: (montant) => `Tu reçois ${montant} d'un coup (héritage, prime, vente).`,
     optionA: "Tout investir en une fois (lump sum), pour être exposé au marché tout de suite.",
@@ -105,6 +115,7 @@ export const SITUATIONS = [
   {
     id: "gestion-pilotee-vs-libre",
     label: "Gestion pilotée vs libre",
+    question: "Toi, tu préfères régler la répartition toi-même ou déléguer ce suivi ? 👇",
     contextes: ["ton PER", "ton assurance-vie"],
     contexte: (montant, contexte) => `Tu as ${montant} sur ${contexte}.`,
     optionA: "Laisser la gestion pilotée faire le travail, avec une sécurisation progressive automatique.",
@@ -113,6 +124,7 @@ export const SITUATIONS = [
   {
     id: "scpi-frais-entree-vs-sans-frais",
     label: "SCPI avec vs sans frais d'entrée",
+    question: "Toi, sur combien d’années comparerais-tu le coût total de ces deux SCPI ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir en SCPI.`,
     optionA: "Une SCPI classique avec frais d'entrée (8 à 12%), mais des frais de gestion annuels plus modérés ensuite.",
@@ -121,6 +133,7 @@ export const SITUATIONS = [
   {
     id: "value-vs-croissance",
     label: "Value vs croissance",
+    question: "Toi, tu paierais plus cher pour la croissance ou tu chercherais d’abord une décote ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir en actions.`,
     optionA: "Miser sur des valeurs \"value\", décotées par rapport à leurs fondamentaux.",
@@ -129,6 +142,7 @@ export const SITUATIONS = [
   {
     id: "residence-principale-vs-locatif",
     label: "Résidence principale vs locatif",
+    question: "Toi, tu veux d’abord sécuriser ton logement ou continuer à investir cet apport ? 👇",
     contextes: null,
     // 500€/2 000€ retirés : aucun apport réaliste pour un achat immobilier ne descend à ce
     // niveau. 100 000€ ajouté pour rester crédible sur le haut de la plage.
@@ -140,6 +154,7 @@ export const SITUATIONS = [
   {
     id: "un-seul-courtier-vs-plusieurs",
     label: "Un seul courtier vs plusieurs",
+    question: "Toi, à partir de quel montant ouvrirais-tu un deuxième compte ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à placer en bourse.`,
     optionA: "Tout centraliser chez un seul courtier, pour la simplicité de suivi.",
@@ -148,6 +163,7 @@ export const SITUATIONS = [
   {
     id: "dividendes-vs-capitalisation",
     label: "Dividendes vs capitalisation",
+    question: "Toi, tu as besoin de recevoir les dividendes ou tu veux les réinvestir ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir sur des ETF ou actions à dividendes.`,
     optionA: "Choisir des supports distribuants (Dist), pour toucher un revenu régulier.",
@@ -156,6 +172,7 @@ export const SITUATIONS = [
   {
     id: "rembourser-pret-etudes-vs-investir",
     label: "Rembourser un prêt étudiant vs investir",
+    question: "Toi, tu garderais ce prêt à bas taux ou tu préférerais le solder ? 👇",
     contextes: null,
     // 20 000€/50 000€ retirés : avoir cette somme de côté tout en portant encore un prêt étudiant
     // colle mal au profil de l'audience cible (jeune, début de constitution de patrimoine).
@@ -182,6 +199,7 @@ function buildDilemmes() {
           contexteTexte: situation.contexte(montant, contexte),
           optionA: situation.optionA,
           optionB: situation.optionB,
+          question: situation.question,
         });
       });
     });
