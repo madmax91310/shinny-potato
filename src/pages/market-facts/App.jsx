@@ -33,24 +33,13 @@ function FactCard({ fact }) {
       <p className="mf-card-kicker">
         {family?.emoji} {fact.category}
       </p>
-      <p className="mf-fact-text">{fact.fact}</p>
-      <ul className="mf-meta">
-        <li>
-          <span className="mf-meta-icon">📊</span>
-          <span>{fact.indices.join(' · ')}</span>
-        </li>
-        <li>
-          <span className="mf-meta-icon">🔎</span>
-          <span>Source : {fact.source}</span>
-        </li>
-        {fact.note && (
-          <li className="mf-note">
-            <span className="mf-meta-icon">ℹ️</span>
-            <span>{fact.note}</span>
-          </li>
-        )}
-      </ul>
-      <p className="mf-disclaimer">⚠️ Contenu historique à titre pédagogique, pas un conseil en investissement.</p>
+      <p className="mf-fact-text">{buildTweetText(fact)}</p>
+      <details className="mf-details">
+        <summary>Voir le fait complet et ses précisions</summary>
+        <p>{fact.fact}</p>
+        {fact.note && <p>{fact.note}</p>}
+        <p>Indices : {fact.indices.join(' · ')} · Source : {fact.source}</p>
+      </details>
     </article>
   )
 }
