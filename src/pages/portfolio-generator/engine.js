@@ -303,22 +303,26 @@ function resolvePourquoi(selection) {
 function computeYearlyPerf(selection) {
   const perf = {};
   YEARS.forEach((y, idx) => {
-    perf[y] = selection.reduce((sum, s) => sum + (s.r[idx] * s.pct) / 100, 0);
+    perf[y] = selection.some((s) => !Number.isFinite(s.r[idx]))
+      ? null
+      : selection.reduce((sum, s) => sum + (s.r[idx] * s.pct) / 100, 0);
   });
   return perf;
 }
 
 function worstYearOf(perf) {
-  let worst = YEARS[0];
-  YEARS.forEach((y) => {
+  const availableYears = YEARS.filter((y) => Number.isFinite(perf[y]));
+  let worst = availableYears[0];
+  availableYears.forEach((y) => {
     if (perf[y] < perf[worst]) worst = y;
   });
   return { year: worst, value: perf[worst] };
 }
 
 function bestYearOf(perf) {
-  let best = YEARS[0];
-  YEARS.forEach((y) => {
+  const availableYears = YEARS.filter((y) => Number.isFinite(perf[y]));
+  let best = availableYears[0];
+  availableYears.forEach((y) => {
     if (perf[y] > perf[best]) best = y;
   });
   return { year: best, value: perf[best] };
@@ -714,7 +718,7 @@ export function renderTweetText(p) {
       .join("\n\n")
   );
   blocks.push(SEPARATOR);
-  const yearsLine = YEARS.map((y) => `${y} ${fmtPct(p.perf[y])}`).join(" · ");
+  const yearsLine = YEARS.map((y) => `${y} ${Number.isFinite(p.perf[y]) ? fmtPct(p.perf[y]) : 'non disponible'}`).join(" · ");
   blocks.push(
     `📈 Performances simulées :\n${yearsLine}\n\n→ Pire année : ${fmtPct(p.worst.value)} en ${p.worst.year}.\n${p.context}`
   );
