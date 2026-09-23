@@ -1,4 +1,4 @@
-// Trois posts éditoriaux relus individuellement. Cette bibliothèque n'invente ni performance ni
+// Posts éditoriaux relus individuellement. Cette bibliothèque n'invente ni performance ni
 // ETF précis : chaque cas illustre une décision, et les liens renvoient aux sources primaires.
 export const CASES = [
   {
@@ -61,6 +61,62 @@ Le montant que tu peux voir baisser n’est pas forcément le montant que tu peu
     sources: [
       { label: 'Définir son horizon de placement · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/fixer-son-horizon-de-placement' },
       { label: 'Risque des placements en actions · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/rendement-et-risque-des-placements-en-actions-0' },
+    ],
+  },
+  {
+    id: 'epargne-precaution',
+    title: 'Investir sans réserve',
+    category: 'Épargne de précaution',
+    text: `🚗 Ta voiture tombe en panne. Tu n’as pas de réserve disponible, mais tu as des ETF.
+
+Tu vends quelques parts pour payer la réparation. Sauf que la Bourse a baissé ce mois-ci 👇
+
+Le souci n’est pas d’avoir investi. C’est d’avoir confié à la Bourse de l’argent qui pouvait te servir à tout moment.
+
+📌 Une épargne de précaution sert à faire face aux imprévus sans devoir vendre tes placements au mauvais moment. Son montant dépend de tes dépenses et de ta situation, pas d’un chiffre magique valable pour tout le monde.
+
+💬 Si une grosse dépense arrivait demain, tu pourrais la payer sans toucher à tes investissements ?`,
+    sources: [
+      { label: 'Définir son objectif d’épargne · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/definir-son-objectif' },
+      { label: 'Les règles d’or de l’investisseur · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/conseils-pratiques/les-regles-dor-de-linvestisseur' },
+    ],
+  },
+  {
+    id: 'world-emergents',
+    title: 'World + émergents',
+    category: 'Diversification géographique',
+    text: `🌍 « J’ai un ETF MSCI World, donc j’investis partout dans le monde. »
+
+Pas tout à fait 👇
+
+Cet indice rassemble des actions de pays développés. Les marchés émergents, comme l’Inde ou le Brésil, n’en font pas partie.
+
+📌 Ajouter un ETF émergents peut élargir ton exposition géographique. Mais ça ajoute aussi d’autres risques. La vraie question, c’est la place que tu veux leur donner dans ton portefeuille, pas le nombre de lignes que tu peux accumuler.
+
+💬 Tu savais que « World » ne comprend pas les marchés émergents ?`,
+    sources: [
+      { label: 'MSCI World Index · MSCI', url: 'https://www.msci.com/indexes/index/990100/msci-world-index' },
+      { label: 'MSCI Emerging Markets Index · MSCI', url: 'https://www.msci.com/indexes/index/891800/msci-em-emerging-markets-index-2' },
+    ],
+  },
+  {
+    id: 'etf-frais',
+    title: 'ETF à petits frais',
+    category: 'Coût réel',
+    text: `💸 Tu hésites entre deux ETF et tu compares uniquement leurs frais annuels ?
+
+Il manque peut-être une partie de l’addition 👇
+
+Les frais de gestion pèsent chaque année sur la valeur de l’ETF. Mais quand tu achètes ou vends, il peut aussi y avoir des frais de courtage et un écart entre le prix d’achat et le prix de vente.
+
+📌 Avant de choisir, regarde ce que tu détiens vraiment, puis le coût total dans TON cas : montant des ordres, fréquence d’achat, frais du courtier et conditions de négociation.
+
+Un ETF moins cher sur la fiche n’est pas automatiquement le moins coûteux pour toi.
+
+💬 Tu vérifies seulement les frais annuels, ou aussi le prix de tes ordres ?`,
+    sources: [
+      { label: 'Ce qu’il faut savoir sur les ETF · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf' },
+      { label: 'Comprendre les frais des placements · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/les-frais-des-placements-financiers/comprendre-les-frais-des-placements-financiers' },
     ],
   },
 ]
