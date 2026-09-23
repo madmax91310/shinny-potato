@@ -70,7 +70,7 @@ export const TOOLS = [
     navLabel: 'Cas concrets',
     title: 'Cas concrets pour investir',
     icon: '🧩',
-    description: 'Trois situations pour comprendre ce que change réellement un choix de placement, avec sources et texte prêt à copier.',
+    description: 'Des situations pour comprendre ce que change réellement un choix de placement, avec sources et texte prêt à copier.',
     status: 'disponible',
   },
   {
