@@ -1056,7 +1056,7 @@ export const ASSETS = [
     r: [7.9, -2.5, -12.6, 4.1, 0.7, 6.2],
     confidenceNote: 'Rendements de la part iShares publiés en dollars ; le résultat en euros peut différer selon le change EUR/USD.',
     desc: [
-      "des bons du Trésor américain, la référence mondiale de la dette jugée sans risque de défaut.",
+      "des obligations d'État américaines : risque de défaut jugé faible, mais cours sensible aux taux et au dollar.",
       "très sensible aux taux de la Fed : leurs mouvements pèsent directement sur la valeur de ces obligations.",
       "un actif refuge classique, mais qui reste exposé au risque de change EUR/USD pour un investisseur européen.",
     ],
@@ -1076,7 +1076,7 @@ export const ASSETS = [
     confidenceNote: 'Rendements de la part iShares publiés en dollars ; le résultat en euros peut différer selon le change EUR/USD.',
     desc: [
       "les grandes et moyennes entreprises japonaises cotées à Tokyo, de l'automobile à l'électronique en passant par la finance.",
-      "une troisième zone géographique développée, décorrélée des cycles américains et européens.",
+      "une exposition supplémentaire au Japon, dont les actions peuvent aussi évoluer dans le même sens que les marchés américains et européens.",
       "longtemps boudé par les investisseurs occidentaux, le marché japonais a connu un net regain depuis 2023.",
     ],
   },

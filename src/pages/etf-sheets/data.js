@@ -191,14 +191,16 @@ export const ETFS = [
       isNew: true,
       isin: "IE00BK5BQT80",
       ter: "0,14%",
-      positions: "~3 760 positions",
+      positions: "3 784 positions (31/08/2026)",
       aum: "~50,8 Md€",
+      // Comptages fonds / indice recoupés chez Vanguard le 24/09/2026 (données au 31/08) ;
+      // encours, frais et autres champs de la fiche restent datés du 08/09/2026.
       lastVerified: "08/09/2026",
       distribution: "Capitalisant",
       pea: false,
       cto: true,
       location: "Irlande, réplication physique intégrale",
-      whatIs: "Réplique le FTSE All-World, l'indice le plus large des trois \"World\" du marché : environ 3 760 valeurs de pays développés et émergents, petites capitalisations comprises — contrairement au MSCI World ou au MSCI ACWI qui s'arrêtent aux grandes et moyennes capitalisations. Top positions : Nvidia, Apple, Microsoft, Amazon, Alphabet.",
+      whatIs: "Suit le FTSE All-World, un indice de grandes et moyennes entreprises de pays développés et émergents. Au 31/08/2026, le fonds détient 3 784 titres et son indice en compte 4 263. Le MSCI ACWI couvre lui aussi les grandes et moyennes capitalisations de pays développés et émergents ; les deux indices ne sélectionnent pas exactement les mêmes valeurs.",
       whyInteresting: "Tu peux couvrir les grandes entreprises des pays développés et émergents avec une seule ligne. Les frais annuels affichés pour cette part sont de 0,14 %.",
       whatToKnow: "Il n’est pas éligible au PEA. Les grandes capitalisations pèsent le plus lourd dans l’indice : posséder beaucoup de titres ne signifie pas que chacun influence autant la performance.",
       verdict: "Une seule ligne pour mêler pays développés et émergents en CTO. Vérifie ce que tu possèdes déjà avant d’en ajouter une deuxième très proche.",

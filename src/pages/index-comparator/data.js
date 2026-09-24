@@ -44,7 +44,7 @@ export const FAMILIES = [
         // sont affichés pour ne pas laisser croire que 0,19 % est le prix plancher de cette exposition.
         indexName: 'STOXX 600', choiceNote: '1 option PEA + 1 alternative bien moins chère en CTO', pea: true,
         funds: [
-          { name: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF', ticker: 'ETZ', isin: 'FR0011550193', ter: '0,19 %', aum: '1 054 M€', note: '(seule option PEA)' },
+          { name: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF', ticker: 'ETZ', isin: 'FR0011550193', ter: '0,19 %', aum: '1 205 M€ au 30/01/2026', note: '(seule option PEA)' },
           { name: 'Amundi Core STOXX Europe 600 UCITS ETF', isin: 'LU0908500753', ter: '0,07 %', aum: '21 171 M€', note: '(CTO uniquement — le moins cher, et de loin le plus gros encours ⚡)' },
         ],
       },
@@ -57,20 +57,24 @@ export const FAMILIES = [
       },
       {
         indexName: 'MSCI Europe', choiceNote: 'un seul vrai choix', pea: true,
-        funds: [{ name: 'Amundi PEA MSCI Europe UCITS ETF (Acc)', ticker: 'PCEU', isin: 'FR0013412038', ter: '0,15 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '327 M€' }],
+        funds: [{ name: 'Amundi PEA MSCI Europe UCITS ETF (Acc)', ticker: 'PCEU', isin: 'FR0013412038', ter: '0,15 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '383 M€ au 31/08/2026' }],
       },
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (facsheets STOXX/MSCI) le 01/09/2026.
       chain: ['STOXX 600 (600 lignes)', 'MSCI Europe (396)', 'EURO STOXX 50 (50)'],
-      notes: ['⚠️ Le 50 concentre ton risque : ses 10 plus grosses lignes pèsent +41 % de l\'indice.', '→ Plus volatil, très dépendant du luxe et de la tech euro.'],
+      notes: ['⚠️ Le 50 concentre ton risque : ses 10 plus grosses lignes pèsent +41 % de l\'indice.', '→ Une forte dépendance à quelques grandes sociétés de la zone euro.'],
     },
-    // Performance 2023-2025 : rendements annuels réels des 3 fonds ci-dessus (source : justETF/
-    // extraetf, recherche web du 02/09/2026, recoupée sur plusieurs pages par fonds). YTD non inclus
-    // ici (saisi par l'utilisateur, cf. formulaire).
+    // Performance 2023-2025 des fonds ci-dessus. PCEU recoupé avec la fiche Amundi
+    // du 31/08/2026 ; ETZ recoupé avec la fiche BNP du 30/01/2026 ; iShares ci-dessous.
+    // YTD non inclus ici (saisi par l'utilisateur, cf. formulaire).
     perfFunds: [
-      { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)', y2023: 15.95, y2024: 8.60, y2025: 19.41 },
-      { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)', y2023: 15.84, y2024: 8.41, y2025: 20.47 },
+      // Part et encours : fiche Amundi du 31/08/2026 (tableau « Portfolio », EUR).
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412038/ENG/FRA/INSTITUTIONNEL/ETF
+      { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)', y2023: 15.95, y2024: 8.60, y2025: 19.42 },
+      // Part BNP FR0011550193 : fiche « EUR C », performances calendaires du fonds,
+      // https://docfinder.bnpparibas-am.com/api/files/85e997cf-94fd-48ba-9406-225f0a281549/1024
+      { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)', y2023: 14.37, y2024: 8.41, y2025: 20.48 },
       // Part iShares IE00B53L3W79, ligne « Share Class » de la fiche BlackRock du 31/08/2026 :
       // https://www.ishares.com/gls-download/literature/fact-sheet/cssx5e-ishares-core-euro-stoxx-50-ucits-etf-fund-fact-sheet-en-gb.pdf
       { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)', y2023: 22.78, y2024: 11.54, y2025: 21.78 },
@@ -79,7 +83,7 @@ export const FAMILIES = [
     verdict: [
       { q: '💳 Exposition la plus large, en PEA ?', a: 'ETZ (BNP STOXX 600)' },
       { q: '💸 Le moins cher + zone euro pure, en PEA ?', a: 'EURO STOXX 50 (HSBC, 0,05 %)' },
-      { q: '🇫🇷 Large mais sans UK/Suisse, capitalisant français, en PEA ?', a: 'PCEU (Amundi MSCI Europe)' },
+      { q: '🇫🇷 Europe large, avec UK/Suisse, fonds français en PEA ?', a: 'PCEU (Amundi MSCI Europe)' },
       { q: '⚡ Le moins cher tout court, en CTO ?', a: 'Amundi Core STOXX 600 (0,07 %, 21 Md€ d\'encours)' },
     ],
     closing: '💬 Dans ton PEA, tu veux couvrir toute l’Europe ou te limiter à la zone euro ?',
@@ -111,7 +115,7 @@ export const FAMILIES = [
     indices: [
       { name: 'MSCI World', desc: 'Les 1 283 plus grandes entreprises de 23 pays développés.', tag: 'Le classique du monde développé 🏛️' },
       { name: 'MSCI ACWI', desc: 'Le MSCI World + les marchés émergents (Chine, Inde, Brésil…), 2 461 valeurs.', tag: 'Le monde presque entier 🌐' },
-      { name: 'FTSE All-World', desc: 'Développés + émergents comme l\'ACWI, mais avec en plus les mid caps : 4 265 valeurs.', tag: 'Le plus large des trois 🔭' },
+      { name: 'FTSE All-World', desc: 'Grandes et moyennes entreprises des pays développés et émergents, comme l’ACWI : 4 263 valeurs au 31/08/2026.', tag: 'Le plus large des trois 🔭' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -143,7 +147,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, juin-juillet 2026) le 01/09/2026.
-      chain: ['MSCI World (1 283 lignes)', 'MSCI ACWI (2 461)', 'FTSE All-World (4 265)'],
+      chain: ['MSCI World (1 283 lignes)', 'MSCI ACWI (2 461)', 'FTSE All-World (4 263 au 31/08/2026)'],
       notes: ['⚠️ Peu importe lequel des trois tu prends : ils pèsent tous 60 à 70 % d\'actions américaines.', '→ Le vrai choix, c\'est les émergents (dedans ou pas) — pas le poids des USA, qui est de toute façon similaire partout.'],
     },
     // Performance 2023-2025 (source : justETF/extraetf, recherche web du 02/09/2026). CW8 retenu en
