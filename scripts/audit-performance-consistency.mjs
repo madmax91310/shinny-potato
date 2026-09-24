@@ -21,10 +21,9 @@ const FUND_ISINS = {
 }
 
 // Comparer une part USD du Comparateur à un proxy d'indice EUR dans le Générateur ne mesure
-// pas le même rendement. Ces exceptions exigent une explication visible dans les deux outils.
+// pas le même rendement. Cette exception exige une explication visible dans les deux outils.
 const DIFFERENT_BASIS = {
   'IE00BKM4GZ66': 'part iShares USD nette de frais / proxy MSCI EM IMI EUR avant frais',
-  'IE00BK5BQT80': 'part Vanguard USD nette de frais / proxy MSCI ACWI EUR avant frais',
 }
 
 const assetsByIsin = new Map()

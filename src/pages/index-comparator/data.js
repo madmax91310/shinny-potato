@@ -150,15 +150,12 @@ export const FAMILIES = [
     // représentant PEA de MSCI World (historique complet), plutôt que DCAM ou WPEA, trop récents pour
     // avoir 3 années pleines. GPEA (ACWI, PEA) : lancé le 15/07/2026 — aucune performance annuelle
     // réelle sur 2023-2025, laissé à vérifier plutôt que de substituer une performance d'indice.
-    // VWCE : 2 recherches justETF ont d'abord renvoyé un jeu de chiffres (+17,78/+24,65/+8,36 %)
-    // incohérent avec le MSCI ACWI (indice quasi identique) — écart de +14 pts sur 2025, invraisemblable
-    // pour deux trackers mondiaux comparables. Résolu par une 3e recherche croisée (Yahoo/Morningstar),
-    // dont le résultat (+22,28/+17,65/+22,45 %) est cohérent à moins de 0,6 pt du MSCI ACWI ci-dessous —
-    // retenu comme le jeu fiable.
+    // VWCE : performances calendaires de la part Acc USD, ligne « Fund » du KIID Vanguard
+    // (arrondies au dixième) : https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf
     perfFunds: [
       { key: 'msci_world', label: 'Amundi MSCI World (CW8, PEA)', y2023: 19.46, y2024: 26.33, y2025: 6.39 },
       { key: 'acwi', label: 'Amundi PEA Global ACWI (GPEA)', y2023: null, y2024: null, y2025: null, perfNote: 'Fonds trop récent pour avoir un historique (lancé le 15/07/2026).' },
-      { key: 'ftse_aw', label: 'Vanguard FTSE All-World (VWCE)', y2023: 22.28, y2024: 17.65, y2025: 22.45 },
+      { key: 'ftse_aw', label: 'Vanguard FTSE All-World (VWCE)', y2023: 22.0, y2024: 17.2, y2025: 22.6 },
     ],
     perfMethodNote: 'ℹ️ CW8 : rendement du fonds en euros, net de frais. VWCE : rendement du fonds en dollars, net de frais. Dividendes réinvestis dans les deux cas ; la devise change la comparaison.',
     verdictTitle: '✅ LE VERDICT',
