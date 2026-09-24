@@ -4,9 +4,9 @@
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 
 const groups = {
-  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr`,
-  'Indice ou cours du sous-jacent': `or_wisdomtree bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum msci_world_amundi_pea smallcap_europe`,
-  'Autre fonds ou historique mixte': `argent sect_semi jepq oblig_hy_amundi actions_asie_ex_japon quality_dividend`,
+  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
+  'Indice ou cours du sous-jacent': `bitcoin bitcoin_21shares ethereum msci_world_amundi_pea smallcap_europe`,
+  'Autre fonds ou historique mixte': `argent sect_semi jepq oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
 const tagged = new Map()
@@ -34,6 +34,7 @@ const usdReturns = new Set(`nasdaq100_ishares actions_coree actions_taiwan actio
   strat_dividendes_dist`.trim().split(/\s+/))
 const partialOrSyntheticYears = new Map(Object.entries({
   bitcoin: '2020 : ETP non lancé', ethereum: '2020 : ETP non lancé',
+  bitcoin_etcgroup: '2020 : part lancée en juin, année calendaire absente',
   sect_semi: '2020 : part lancée en décembre', msci_world_amundi_pea: '2020-2025 : fonds lancé en 2025 sans année calendaire complète',
   smallcap_europe: '2020-2025 : part lancée en 2026', jepq: '2020-2024 : part UCITS sans année complète',
   oblig_hy_amundi: '2020-2024 : part non lancée', actions_asie_ex_japon: '2020 : part lancée en avril',
@@ -42,6 +43,8 @@ const partialOrSyntheticYears = new Map(Object.entries({
 }))
 const issuerSources = {
   msci_europe: 'https://www.ishares.com/gls-download/literature/fact-sheet/smea-ishares-core-msci-europe-ucits-etf-eur-acc-fund-fact-sheet-en-gb.pdf',
+  or_wisdomtree: 'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770',
+  bitcoin_wisdomtree: 'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287',
   msci_em: 'https://www.ishares.com/de/privatanleger/de/literature/fact-sheet/eimi-ishares-core-msci-em-imi-ucits-etf-fund-fact-sheet-de-de.pdf',
   or: 'https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf',
   or_ishares: 'https://www.ishares.com/uk/individual/en/products/258441/ishares-physical-gold-etc-fund',
@@ -99,6 +102,7 @@ const issuerSources = {
   foncieres_etf_dist: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231',
 }
 const partialIssuerSources = {
+  bitcoin_etcgroup: 'https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/ (NAV 2021-2025 ; 2020 partielle exclue)',
   sect_semi: 'https://www.vaneck.com/fr/fr/smh-supporting-doc.pdf',
   jepq: 'https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/ch/en/regulatory/annual-report/jpm-icav-etf-annual-report-ch-en.pdf',
   actions_asie_ex_japon: 'https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.ishares.com/uk/professionals/en/products/251848/ishares-msci-ac-far-east-ex-japan-ucits-etf',
@@ -115,11 +119,8 @@ const genericSources = {
 const indexSources = {
   msci_world_amundi_pea: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
   smallcap_europe: 'https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0',
-  or_wisdomtree: 'https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf + https://www.wisdomtree.eu/en-ch/products/ucits-etfs-unleveraged-etps/commodities/wisdomtree-physical-gold',
   // Clôtures annuelles du fournisseur ; ces chiffres ne sont pas les NAV des ETP.
   bitcoin: 'https://www.slickcharts.com/currency/BTC/returns + https://coinshares.com/etp/physical-bitcoin/',
-  bitcoin_wisdomtree: 'https://www.slickcharts.com/currency/BTC/returns + https://www.wisdomtree.eu/en-gb/products/ucits-etfs-unleveraged-etps/cryptocurrency/wisdomtree-physical-bitcoin',
-  bitcoin_etcgroup: 'https://www.slickcharts.com/currency/BTC/returns + https://bitwiseinvestments.eu/fr/products/bitwise-physical-bitcoin-etp/',
   bitcoin_21shares: 'https://www.slickcharts.com/currency/BTC/returns + https://www.21shares.com/fr-eu/product/abtc',
   ethereum: 'https://www.slickcharts.com/currency/ETH/returns + https://coinshares.com/etp/physical-ethereum/',
 }
@@ -128,10 +129,7 @@ const indexSources = {
 const primarySeries = new Map(Object.entries({
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   smallcap_europe: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
-  or_wisdomtree: [24.17, -3.75, -0.43, 13.80, 26.59, 65.00],
   bitcoin: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
-  bitcoin_wisdomtree: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
-  bitcoin_etcgroup: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   bitcoin_21shares: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   ethereum: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
 }))
@@ -146,12 +144,36 @@ const verifiedSeries = new Map(Object.entries({
   or: [23.95, -3.90, -0.54, 13.66, 26.44, 64.80],
   or_ishares: [23.9, -3.9, -0.5, 13.7, 26.4, 64.8],
   or_amundi: [23.98, -3.89, -0.54, 13.66, 26.44, 64.80],
+  or_wisdomtree: [23.69, -4.13, -0.81, 13.35, 26.10, 64.36],
+  bitcoin_wisdomtree: [295.13, 65.77, -65.94, 156.24, 122.57, -7.91],
+  bitcoin_etcgroup: [null, 55.46, -64.67, 150.42, 120.73, -9.68],
   fonds_euros: [1.28, 1.28, 1.91, 2.60, 2.63, 2.63],
   scpi: [5.30, 5.85, 2.1, -5.78, -1.1, 3.1],
+}))
+// Historique mixte : figer les années déjà recoupées et les absences intentionnelles.
+// Les sources et la raison du mélange figurent dans partialIssuerSources/proxySources.
+const mixedSeries = new Map(Object.entries({
+  argent: [33.84, -5.74, 9.90, -4.25, 29.02, 119.80],
+  sect_semi: [null, 43.56, -34.77, 73.15, 23.16, 50.11],
+  jepq: [null, null, null, null, null, 15.40],
+  oblig_hy_amundi: [0.92, 2.97, -9.72, 11.33, 6.67, 4.80],
+  actions_asie_ex_japon: [25.10, -8.92, -21.95, 2.30, 11.67, 39.91],
+  quality_dividend: [0.12, 15.79, -7.28, 17.16, 9.76, 23.97],
+  bitcoin_etcgroup: [null, 55.46, -64.67, 150.42, 120.73, -9.68],
+}))
+const requiredDisclosures = new Map(Object.entries({
+  argent: /convertis.*euros|conversion.*euros/i,
+  sect_semi: /2020.*aucune performance/i,
+  jepq: /2020|2024.*aucun historique/i,
+  oblig_hy_amundi: /part iShares.*fonds Amundi/i,
+  actions_asie_ex_japon: /2020.*part distribuante/i,
+  quality_dividend: /2020.*part distribuante/i,
+  bitcoin_etcgroup: /2020.*aucune année calendaire/i,
 }))
 const expectedMissingYears = new Map([
   ['sect_semi', [2020]],
   ['jepq', [2020, 2021, 2022, 2023, 2024]],
+  ['bitcoin_etcgroup', [2020]],
 ])
 for (const asset of ASSETS) {
   const basis = tagged.get(asset.id)
@@ -168,6 +190,12 @@ for (const asset of ASSETS) {
   }
   if (verifiedSeries.has(asset.id) && JSON.stringify(asset.r) !== JSON.stringify(verifiedSeries.get(asset.id))) {
     console.error(`Série émetteur ou hypothèse vérifiée divergente : ${asset.id}`); errors++
+  }
+  if (mixedSeries.has(asset.id) && JSON.stringify(asset.r) !== JSON.stringify(mixedSeries.get(asset.id))) {
+    console.error(`Historique mixte modifié sans révision de ses sources : ${asset.id}`); errors++
+  }
+  if (requiredDisclosures.has(asset.id) && !requiredDisclosures.get(asset.id).test(asset.confidenceNote ?? '')) {
+    console.error(`Limite spécifique de l'historique mixte non visible : ${asset.id}`); errors++
   }
   if (expectedMissingYears.has(asset.id)) {
     for (const year of expectedMissingYears.get(asset.id)) {
@@ -196,6 +224,9 @@ for (const id of Object.keys(indexSources)) {
 }
 for (const id of groups['Indice ou cours du sous-jacent'].split(' ')) {
   if (!indexSources[id]) { console.error(`Source indicielle absente : ${id}`); errors++ }
+}
+for (const id of groups['Autre fonds ou historique mixte'].split(' ')) {
+  if (!mixedSeries.has(id)) { console.error(`Historique mixte non verrouillé : ${id}`); errors++ }
 }
 for (const id of groups['Hypothèse non liée à un titre précis'].split(' ')) {
   if (!genericSources[id]) { console.error(`Source de moyenne absente : ${id}`); errors++ }

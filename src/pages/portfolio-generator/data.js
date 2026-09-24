@@ -1,5 +1,6 @@
-// Bibliothèque d'actifs — rendements annuels approximatifs 2020-2025 (fonds réels représentatifs,
-// devise locale, dividendes non systématiquement réinvestis). Données illustratives, éditables à la main.
+// Bibliothèque d'actifs — rendements calendaires 2020-2025 : supports exacts quand
+// l'émetteur publie la série, et proxies ou historiques mixtes explicitement signalés sinon.
+// Les séries USD et EUR ne sont pas converties dans une devise commune.
 // r = [2020, 2021, 2022, 2023, 2024, 2025]
 //
 // Roster de 72 supports (dont 2 non-ETF : fonds_euros, produit d'assurance-vie sans ISIN ; scpi,
@@ -67,6 +68,7 @@ export const CATEGORIES = {
 
 export const ASSETS = [
   // ── 🔵 Obligataire / fonds euros ──────────────────────
+  // Sources ACPR vérifiées le 24/09/2026 ; revoir lors de la publication du millésime 2026.
   {
     id: "fonds_euros", name: "Fonds euros (assurance-vie)", cat: "obligataire", emoji: "🔵",
     // ACPR, revalorisation moyenne des supports euros des contrats individuels,
@@ -76,7 +78,7 @@ export const ASSETS = [
     confidenceNote: "Moyennes ACPR des fonds euros de contrats individuels, nettes des frais prélevés sur l'encours mais avant prélèvements sociaux ; ton contrat peut servir un taux différent.",
     desc: [
       "le socle sécuritaire des assurances-vie : capital garanti, rendement modeste mais stable.",
-      "le matelas de sécurité du portefeuille : pas de sensation forte, mais on ne perd (presque) jamais.",
+      "une poche plus stable que les actions ; son taux servi varie selon le contrat et l'année.",
       "le support préféré des épargnants prudents : liquidité et garantie du capital avant tout.",
     ],
   },
@@ -351,8 +353,8 @@ export const ASSETS = [
     confidenceNote: "Rendements officiels de cet ETC Invesco en dollars, nets des frais fixes ; une cotation en euros donne un résultat différent selon le change.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
-      "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
-      "peu corrélé aux actions, ce qui en fait un outil de diversification apprécié.",
+      "ne verse aucun revenu ; son cours peut monter quand les actions baissent, sans que ce soit automatique.",
+      "une exposition différente des actions, dont le prix reste lui aussi volatil.",
     ],
   },
 
@@ -440,6 +442,7 @@ export const ASSETS = [
   },
 
   // ── ⚪ Immobilier ────────────────────────────────────────
+  // Sources ASPIM vérifiées le 24/09/2026 ; revoir lors de la publication du millésime 2026.
   {
     id: "scpi", name: "SCPI (rendement générique)", cat: "immobilier", emoji: "⚪",
     // ASPIM/IEIF : 2021-2025 = rendement global immobilier (RGI), taux de distribution
@@ -598,18 +601,18 @@ export const ASSETS = [
   // ── Jumeaux de marque ─────────────────────────────────────
   // Variantes du même thème. Les obligations corporate ont désormais chacune leur propre
   // historique de part ; les matières premières et cryptos conservent des proxies signalés.
+  // Source émetteur vérifiée le 24/09/2026.
   {
     id: "or_wisdomtree", name: "WisdomTree Physical Gold", cat: "matieres_premieres", emoji: "🟡",
     isin: "JE00B1VS3770",
-    // Proxy : indice LBMA Gold Price USD, ligne Benchmark du prospectus Invesco ;
-    // la fiche WisdomTree trouvée ne publie pas six années calendaires du même ETC.
-    // https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf
-    r: [24.17, -3.75, -0.43, 13.80, 26.59, 65.00],
-    confidenceNote: "Simulation sur le cours LBMA de l'or en dollars, avant les frais de l'ETC WisdomTree ; ce ne sont pas ses rendements et le change en euros n'est pas inclus.",
+    // Performance calendaire nette de frais en USD de l'ETC JE00B1VS3770.
+    // https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770
+    r: [23.69, -4.13, -0.81, 13.35, 26.10, 64.36],
+    confidenceNote: "Rendements de cet ETC WisdomTree en dollars, nets de frais ; le résultat en euros dépend du change.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
-      "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
-      "peu corrélé aux actions, ce qui en fait un outil de diversification apprécié.",
+      "ne verse aucun revenu ; son cours peut aussi baisser quand les actions baissent.",
+      "une exposition différente des actions, dont le prix reste lui aussi volatil.",
     ],
   },
   {
@@ -621,8 +624,8 @@ export const ASSETS = [
     confidenceNote: "Rendements NAV de cet ETC iShares publiés en dollars ; le change peut modifier le résultat en euros.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
-      "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
-      "peu corrélé aux actions, ce qui en fait un outil de diversification apprécié.",
+      "ne verse aucun revenu ; son cours peut aussi baisser quand les actions baissent.",
+      "une exposition différente des actions, dont le prix reste lui aussi volatil.",
     ],
   },
   {
@@ -634,28 +637,33 @@ export const ASSETS = [
     confidenceNote: "Rendements de cet ETC Amundi publiés en dollars, nets de frais ; le change peut modifier le résultat en euros.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
-      "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
-      "peu corrélé aux actions, ce qui en fait un outil de diversification apprécié.",
+      "ne verse aucun revenu ; son cours peut aussi baisser quand les actions baissent.",
+      "une exposition différente des actions, dont le prix reste lui aussi volatil.",
     ],
   },
+  // Source émetteur vérifiée le 24/09/2026.
   {
     id: "bitcoin_wisdomtree", name: "WisdomTree Physical Bitcoin", cat: "crypto", emoji: "🟠",
     isin: "GB00BJYDH287",
-    // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
-    r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
-    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP WisdomTree ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
+    // NAV calendaire nette des frais du produit GB00BJYDH287, en USD.
+    // https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287
+    r: [295.13, 65.77, -65.94, 156.24, 122.57, -7.91],
+    confidenceNote: "Rendements de cet ETP WisdomTree en dollars, nets de frais ; le résultat en euros dépend du change.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
       "à ne considérer qu'en petite proportion tant l'amplitude des mouvements est importante.",
     ],
   },
+  // Source émetteur vérifiée le 24/09/2026.
   {
     id: "bitcoin_etcgroup", name: "Bitwise Physical Bitcoin ETP", cat: "crypto", emoji: "🟠",
     isin: "DE000A27Z304",
-    // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
-    r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
-    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP Bitwise ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
+    // NAV USD publiée par Bitwise ; 2020 commence au lancement du 08/06/2020
+    // et ne représente pas une année calendaire complète.
+    // https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/
+    r: [null, 55.46, -64.67, 150.42, 120.73, -9.68],
+    confidenceNote: "NAV de cet ETP Bitwise en dollars, nette de frais, de 2021 à 2025. Lancé en juin 2020 : aucune année calendaire complète en 2020 ; le change en euros reste exclu.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",

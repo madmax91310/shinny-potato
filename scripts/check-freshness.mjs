@@ -100,7 +100,7 @@ const DEADLINE_CONTEXT_RE = /jusqu['’](?:au|en)?\s*(?:au\s*)?$/i;
 function parseFrDate(dd, mm, yyyy) {
   const d = new Date(Number(yyyy), Number(mm) - 1, Number(dd));
   d.setHours(0, 0, 0, 0);
-  return d;
+  return d.getDate() === Number(dd) && d.getMonth() === Number(mm) - 1 && d.getFullYear() === Number(yyyy) ? d : null;
 }
 
 function daysBetween(a, b) {
@@ -116,9 +116,12 @@ function scanDatesInText(text) {
   while ((m = DATE_RE.exec(text))) {
     const [full, dd, mm, yyyy] = m;
     const before = text.slice(Math.max(0, m.index - 12), m.index);
-    const isDeadline = DEADLINE_CONTEXT_RE.test(before);
+    const lineBefore = text.slice(text.lastIndexOf('\n', m.index - 1) + 1, m.index);
+    // Les chronologies dans les commentaires (anciens frais « jusqu'au ») ne sont
+    // pas des promotions encore actives : ne signaler que les échéances du contenu.
+    const isDeadline = !/^\s*\/\//.test(lineBefore) && DEADLINE_CONTEXT_RE.test(before);
     const date = parseFrDate(dd, mm, yyyy);
-    if (Number.isNaN(date.getTime())) continue;
+    if (!date) continue;
     if (isDeadline) {
       const daysUntil = daysBetween(date, TODAY);
       deadlines.push({ date: full, daysUntil, context: text.slice(Math.max(0, m.index - 40), m.index + 10).replace(/\s+/g, " ").trim() });
@@ -284,6 +287,18 @@ const report = buildReport();
 
 if (args.includes("--json")) {
   console.log(JSON.stringify(report, (k, v) => (v instanceof Date ? v.toISOString() : v), 2));
+} else if (args.includes("--priorities")) {
+  console.log(`Revue éditoriale et données — ${TODAY.toLocaleDateString('fr-FR')}`);
+  for (const tool of report) {
+    const expired = tool.deadlines.filter(d => d.daysUntil < 0);
+    const outdated = tool.buckets.revoir;
+    if (!expired.length && !outdated.length && !tool.nonTracable.length) continue;
+    console.log(`${tool.label} : ${expired.length} échéance(s) échue(s), ${outdated.length} entrée(s) à revérifier, ${tool.nonTracable.length} sans date de vérification.`);
+    expired.forEach(d => console.log(`  Échéance : ${d.entry ?? 'fichier'} (${d.date})`));
+    outdated.slice(0, 10).forEach(e => console.log(`  Ancienne source : ${e.name} (${e.date.toLocaleDateString('fr-FR')})`));
+    if (tool.nonTracable.length) console.log(`  À documenter en premier : ${tool.nonTracable.slice(0, 10).join(', ')}${tool.nonTracable.length > 10 ? '…' : ''}`);
+  }
+  console.log('Une date de commentaire ne prouve pas la justesse d’une donnée : vérifier les documents de l’émetteur avant de mettre à jour.');
 } else {
   printConsoleReport(report);
 }
