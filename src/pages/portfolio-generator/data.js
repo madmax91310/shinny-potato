@@ -160,12 +160,10 @@ export const ASSETS = [
   {
     id: "msci_world", name: "Amundi MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "LU1681043599",
-    // Source : indice MSCI World (EUR, net de dividendes), fiches MSCI + recoupement avec la
-    // performance publiée du fonds Amundi MSCI World, années 2020-2025. 2022 : -12,78% en EUR
-    // (net) — à ne pas confondre avec le -18% du même indice en USD sur la même année. 2025
-    // (5,35%) reflète la forte dépréciation du dollar face à l'euro sur l'année (l'indice a
-    // nettement mieux performé en USD).
-    r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
+    // Source : fiche officielle Amundi du fonds LU1681043599 au 31/08/2026, tableau
+    // "Calendar year performance / Portfolio" en EUR, net des frais du fonds. La ligne
+    // "Benchmark" est distincte (2025 : 6,77 % contre 6,39 % pour le fonds).
+    r: [6.26, 30.94, -12.87, 19.46, 26.33, 6.39],
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
       "le point de comparaison classique de tout portefeuille actions dans le monde.",
@@ -175,9 +173,11 @@ export const ASSETS = [
   {
     id: "sp500", name: "Amundi PEA S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR0011871128",
-    // Source : performance annuelle réelle du fonds Amundi PEA S&P 500 (Screened) UCITS ETF,
-    // en euros (non couvert), Yahoo Finance, années 2020-2025.
-    r: [8.54, 38.24, -12.95, 21.53, 31.71, 3.72],
+    // 2023-2025 : rendements calendaires du fonds Amundi PEA S&P 500 en EUR, retenus aussi
+    // dans le Comparateur d'indices. 2020-2022 : ancienne série du fonds à revoir si une fiche
+    // annuelle Amundi complète devient disponible ; ne pas les présenter comme certifiés.
+    r: [8.54, 38.24, -12.95, 21.68, 32.85, 3.45],
+    confidenceNote: "Performances 2023-2025 du fonds en euros ; historique 2020-2022 issu d'une autre source, à confirmer auprès d'Amundi.",
     desc: [
       "les 500 plus grandes entreprises cotées aux États-Unis, tirées par la tech ces dernières années.",
       "l'indice le plus suivi au monde, souvent utilisé comme référence absolue de performance.",
@@ -491,15 +491,14 @@ export const ASSETS = [
     // ISIN ajouté le 13/09/2026 (audit "ISIN pour chaque ETF") : IE00B9CQXS71 est en réalité la
     // SEULE part existante de ce fonds — recherche dédiée d'une part Acc distincte infructueuse
     // (justETF/SSGA ne référencent qu'une part, distribuante trimestrielle). "strat_dividendes"
-    // (distributing: false) partage donc le même ISIN que son jumeau "strat_dividendes_dist"
-    // ci-dessous plutôt qu'une part Acc qui n'existe pas réellement pour ce fonds précis — seule
-    // exception à la règle "un jumeau = un ISIN propre" du reste de ce fichier, documentée ici
-    // plutôt que masquée.
+    // est lui aussi distribuant : les deux ids sont des alias du MÊME fonds pour les profils
+    // de portefeuille, pas deux parts Acc et Dist distinctes.
     isin: "IE00B9CQXS71",
-    distributing: false,
-    // Source : performance annuelle réelle du fonds SPDR S&P Global Dividend Aristocrats UCITS
-    // ETF, années 2020-2025 (méthodologie « Quality Income Index » depuis février 2020).
-    r: [-9.11, 15.21, -6.53, 7.13, 7.41, 17.55],
+    distributing: true,
+    // Source : State Street, tableau "Fund Net" au 31/08/2026 (rendements calendaires USD
+    // dividendes réinvestis, nets de frais). La série antérieure mélangeait plusieurs lignes
+    // du tableau et divergeait de 0,20 à 0,53 point du rendement net du fonds.
+    r: [-9.17, 15.32, -6.97, 6.93, 7.74, 17.02],
     desc: [
       "des entreprises qui versent (et augmentent) leur dividende depuis des années : profil plutôt défensif.",
       "recherché pour générer un revenu régulier en plus de la performance en capital.",
@@ -507,12 +506,11 @@ export const ASSETS = [
     ],
   },
   {
-    // Jumeau distribuant de "strat_dividendes" — le fonds SPDR existe en version Dist (paiement
-    // trimestriel), vérifié réel, réservé au profil Rentier.
+    // Alias du même fonds SPDR distribuant, réservé au profil Rentier.
     id: "strat_dividendes_dist", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
     isin: "IE00B9CQXS71",
     distributing: true,
-    r: [-9.11, 15.21, -6.53, 7.13, 7.41, 17.55],
+    r: [-9.17, 15.32, -6.97, 6.93, 7.74, 17.02],
     desc: [
       "des entreprises qui versent (et augmentent) leur dividende depuis des années : profil plutôt défensif.",
       "recherché pour générer un revenu régulier en plus de la performance en capital.",
@@ -711,9 +709,9 @@ export const ASSETS = [
   {
     id: "msci_world_ishares", name: "iShares Core MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4L5Y983",
-    // Jumeau strict de "msci_world" — même source (indice MSCI World EUR net, cf. commentaire
-    // ci-dessus).
+    // Proxy : indice MSCI World EUR net, pas les rendements officiels de cette part iShares.
     r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
+    confidenceNote: "Simulation sur l'indice MSCI World net en euros, avant les frais propres à cette part iShares ; ce ne sont pas ses rendements publiés.",
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
       "le point de comparaison classique de tout portefeuille actions dans le monde.",
@@ -728,6 +726,7 @@ export const ASSETS = [
     id: "msci_world_amundi_pea", name: "Amundi PEA Monde (MSCI World) UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR001400U5Q4",
     r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
+    confidenceNote: "Simulation sur l'indice MSCI World net en euros : cette part Amundi n'existait pas avant 2025 et l'historique n'est pas celui du fonds.",
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
       "le point de comparaison classique de tout portefeuille actions dans le monde.",
@@ -739,6 +738,7 @@ export const ASSETS = [
     isin: "IE00B44Z5B48",
     // Source : indice MSCI ACWI (EUR, net de dividendes), fiches MSCI, années 2020-2025.
     r: [6.42, 29.97, -14.72, 18.90, 24.65, 7.89],
+    confidenceNote: "Simulation sur l'indice MSCI ACWI net en euros, avant frais propres à cette part SPDR ; ce ne sont pas les rendements publiés du fonds.",
     desc: [
       "le MSCI World auquel on ajoute les marchés émergents : une exposition mondiale quasi complète.",
       "une seule ligne pour couvrir l'essentiel de la capitalisation boursière mondiale.",
@@ -754,6 +754,7 @@ export const ASSETS = [
     // aux autres lignes du fichier qui sont en EUR). Les deux indices (ACWI et FTSE All-World)
     // sont très proches en composition et en performance.
     r: [6.42, 29.97, -14.72, 18.90, 24.65, 7.89],
+    confidenceNote: "Simulation sur l'indice MSCI ACWI net en euros, pas sur le fonds Vanguard ni son indice FTSE All-World : les résultats peuvent diverger, surtout selon la devise.",
     desc: [
       "l'équivalent Vanguard du « monde entier en une ligne », émergents compris.",
       "l'un des ETF actions les moins chers du marché, plébiscité pour l'investissement de long terme.",
