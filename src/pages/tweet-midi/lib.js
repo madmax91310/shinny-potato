@@ -508,9 +508,10 @@ function fmtEcart(pctA, pctB) {
   return `Écart : ${ecart.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} points de pourcentage.`;
 }
 
-function buildBenchmarkLine(startYm, endYm) {
+function buildBenchmarkLine(startYm, endYm, currencies = []) {
   const { livretPct, inflationPct } = getBenchmarkPerformance(startYm, endYm);
-  return `Sur la même période, le Livret A aurait fait ${fmtPct(livretPct)} et l'inflation cumulée est de ${fmtPct(inflationPct)}.`;
+  const currencyNote = currencies.includes('USD') ? ' Livret A et inflation en euros ; rendements en dollars non convertis en euros.' : '';
+  return `Sur la même période, le Livret A aurait fait ${fmtPct(livretPct)} et l'inflation cumulée est de ${fmtPct(inflationPct)}.${currencyNote}`;
 }
 
 // Détail annuel (une ligne par année civile complète, pastille verte/rouge selon le signe) —
@@ -539,12 +540,15 @@ export function buildPerformanceDepuisText(item, includeBenchmark) {
   });
   lines.push("");
   lines.push(`Cumulé sur la période : ${fmtPct(cumulatePct(returns))}`);
+  if (asset.currency === 'USD' && !includeBenchmark) {
+    lines.push('Cours en dollars, sans conversion en euros.');
+  }
   if (item.assetId === 'silver') {
     lines.push('Source : prix de futures COMEX continus en $, hors frais et renouvellement des contrats. Pas le rendement d’un placement réel en argent.');
   }
   if (includeBenchmark) {
     lines.push("");
-    lines.push(buildBenchmarkLine(returns[0].startDate, returns[returns.length - 1].endDate));
+    lines.push(buildBenchmarkLine(returns[0].startDate, returns[returns.length - 1].endDate, [asset.currency]));
   }
   lines.push("");
   lines.push(performanceConclusion(asset, returns, cumulatePct(returns)));
@@ -605,8 +609,13 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
 export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
   const assetA = findAsset(item.assetIdA);
   const assetB = findAsset(item.assetIdB);
-  const returnsA = getAnnualReturns(item.assetIdA, item.year);
-  const returnsB = getAnnualReturns(item.assetIdB, item.year);
+  const availableA = getAnnualReturns(item.assetIdA, item.year);
+  const availableB = getAnnualReturns(item.assetIdB, item.year);
+  // Un actif peut s'arrêter plus tôt (SAP : décembre 2024). Les deux cumuls et le benchmark
+  // doivent alors porter sur les mêmes années, jamais comparer 2024 à 2025.
+  const sharedLastYear = Math.min(availableA.at(-1).year, availableB.at(-1).year);
+  const returnsA = availableA.filter((r) => r.year <= sharedLastYear);
+  const returnsB = availableB.filter((r) => r.year <= sharedLastYear);
   const cumA = cumulatePct(returnsA);
   const cumB = cumulatePct(returnsB);
 
@@ -627,6 +636,14 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
   });
   lines.push("");
   lines.push(fmtEcart(cumA, cumB));
+  if (assetA.currency !== assetB.currency) {
+    lines.push(`Devises différentes (${assetA.currency}/${assetB.currency}) : rendements comparés sans conversion.`);
+  } else if (assetA.currency === 'USD' && !includeBenchmark) {
+    lines.push('Cours des deux actifs en dollars, sans conversion en euros.');
+  }
+  if (item.assetIdA === 'silver' || item.assetIdB === 'silver') {
+    lines.push('Argent : prix de futures COMEX continus en $, hors frais et renouvellement des contrats. Pas le rendement d’un placement réel en argent.');
+  }
   if (includeBenchmark) {
     // Fenêtre du benchmark : le début le plus tardif des deux clôtures N-1 (le seul commun aux
     // deux actifs) à la fin la plus précoce des deux dernières années — jamais un mois où l'un des
@@ -635,7 +652,7 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
     const lastA = returnsA[returnsA.length - 1], lastB = returnsB[returnsB.length - 1];
     const sharedEnd = ymIndex(lastA.endDate) <= ymIndex(lastB.endDate) ? lastA.endDate : lastB.endDate;
     lines.push("");
-    lines.push(buildBenchmarkLine(sharedStart, sharedEnd));
+    lines.push(buildBenchmarkLine(sharedStart, sharedEnd, [assetA.currency, assetB.currency]));
   }
   lines.push("");
   lines.push(comparativePerformanceConclusion(assetA, assetB, returnsA, returnsB, cumA, cumB));
