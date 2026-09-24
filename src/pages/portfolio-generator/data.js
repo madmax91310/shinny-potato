@@ -173,11 +173,10 @@ export const ASSETS = [
   {
     id: "sp500", name: "Amundi PEA S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR0011871128",
-    // 2023-2025 : rendements calendaires du fonds Amundi PEA S&P 500 en EUR, retenus aussi
-    // dans le Comparateur d'indices. 2020-2022 : ancienne série du fonds à revoir si une fiche
-    // annuelle Amundi complète devient disponible ; ne pas les présenter comme certifiés.
-    r: [8.54, 38.24, -12.95, 21.68, 32.85, 3.45],
-    confidenceNote: "Performances 2023-2025 du fonds en euros ; historique 2020-2022 issu d'une autre source, à confirmer auprès d'Amundi.",
+    // Rendements calendaires du fonds en EUR, ligne « Portefeuille » de la fiche Amundi
+    // (30/06/2026), pour chacune des années 2020-2025 :
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630
+    r: [8.55, 38.23, -13.00, 21.68, 32.85, 3.45],
     desc: [
       "les 500 plus grandes entreprises cotées aux États-Unis, tirées par la tech ces dernières années.",
       "l'indice le plus suivi au monde, souvent utilisé comme référence absolue de performance.",
@@ -282,8 +281,9 @@ export const ASSETS = [
   {
     id: "eurostoxx50", name: "Amundi Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "LU1681047236",
-    // Source : indice EURO STOXX 50 (Total Return, dividendes réinvestis), années 2020-2025.
-    r: [-3.03, 23.19, -9.02, 22.46, 10.91, 22.01],
+    // Rendements calendaires du fonds en EUR, ligne « Portefeuille » de la fiche Amundi
+    // (31/08/2026) : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/FRA/FRA/INSTITUTIONNEL/ETF
+    r: [-2.93, 23.93, -9.04, 22.74, 11.54, 21.80],
     desc: [
       "les 50 plus grandes entreprises de la zone euro, dont LVMH, TotalEnergies ou SAP.",
       "souvent éligible au PEA, ce qui en fait un classique pour les investisseurs français.",
@@ -291,11 +291,12 @@ export const ASSETS = [
     ],
   },
   {
-    // Jumeau strict de "eurostoxx50" — même indice, fonds vérifié réel (ISIN IE00B53L3W79, déjà
-    // utilisé et vérifié pour l'outil Tweets ETF : le plus liquide des ETF Euro Stoxx 50).
+    // Part iShares distincte : rendements calendaires propres au fonds en EUR, ligne
+    // « Share Class » de la fiche BlackRock (31/08/2026), et non ceux du fonds Amundi :
+    // https://www.ishares.com/gls-download/literature/fact-sheet/cssx5e-ishares-core-euro-stoxx-50-ucits-etf-fund-fact-sheet-en-gb.pdf
     id: "eurostoxx50_ishares", name: "iShares Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B53L3W79",
-    r: [-3.03, 23.19, -9.02, 22.46, 10.91, 22.01],
+    r: [-2.89, 23.98, -9.04, 22.78, 11.54, 21.78],
     desc: [
       "les 50 plus grandes entreprises de la zone euro, dont LVMH, TotalEnergies ou SAP.",
       "souvent éligible au PEA, ce qui en fait un classique pour les investisseurs français.",
