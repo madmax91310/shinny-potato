@@ -759,11 +759,11 @@ export const ASSETS = [
   {
     id: "ftse_allworld_vanguard", name: "Vanguard FTSE All-World UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BK5BQT80",
-    // Approximation par l'indice MSCI ACWI Net EUR (cf. "msci_acwi" ci-dessus),
-    // faute de série FTSE All-World Net EUR complète recoupée. L'ETF Vanguard publie
-    // sa vraie performance en USD, non interchangeable avec cette simulation EUR.
-    r: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
-    confidenceNote: "Simulation sur l'indice MSCI ACWI net en euros, pas sur le fonds Vanguard ni son indice FTSE All-World : les résultats peuvent diverger, surtout selon la devise.",
+    // Performance calendaire réelle de la part IE00BK5BQT80, en USD (ligne Fund,
+    // arrondie au dixième dans le KIID Vanguard), 2020-2025 :
+    // https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf
+    r: [16.0, 18.3, -18.1, 22.0, 17.2, 22.6],
+    confidenceNote: "Rendements officiels de la part Vanguard en dollars, dividendes réinvestis ; une cotation en euros peut donner un résultat différent. Chiffres arrondis au dixième par Vanguard.",
     desc: [
       "l'équivalent Vanguard du « monde entier en une ligne », émergents compris.",
       "l'un des ETF actions les moins chers du marché, plébiscité pour l'investissement de long terme.",
@@ -1110,14 +1110,15 @@ export const ASSETS = [
   },
   {
     // Part iShares lancée en avril 2020 : 2021-2025 sont les performances calendaires
-    // « Total Return » publiées en USD par BlackRock ; 2020 est l'indice MSCI
-    // AC Far East ex Japan Net USD (fonds Acc lancé en avril). L'indice EXCLUT l'Inde.
+    // « Total Return » publiées en USD par BlackRock ; 2020 reprend la part Dist
+    // déjà existante du même fonds (fonds Acc lancé en avril). L'indice EXCLUT l'Inde.
     // https://www.ishares.com/uk/individual/en/products/313316/ishares-msci-ac-far-east-ex-japan-ucits-etf
     id: "actions_asie_ex_japon", name: "iShares MSCI AC Far East ex-Japan UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BKPX3K41",
     // https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf
-    r: [26.04, -8.92, -21.95, 2.30, 11.67, 39.91],
-    confidenceNote: '2020 : indice MSCI AC Far East ex Japan Net en dollars, avant frais ; part lancée en avril 2020. 2021-2025 : rendements de la part en dollars.',
+    // https://www.ishares.com/uk/professionals/en/products/251848/ishares-msci-ac-far-east-ex-japan-ucits-etf
+    r: [25.1, -8.92, -21.95, 2.30, 11.67, 39.91],
+    confidenceNote: '2020 : rendement de la part distribuante du même fonds, en dollars et dividendes réinvestis (part Acc lancée en avril). 2021-2025 : rendements de la part Acc en dollars.',
     desc: [
       "Chine, Taïwan, Corée, Asean... l'Asie développée et émergente réunie en une seule ligne, hors Japon et Inde.",
       "plus diversifié qu'un pari sur un seul pays asiatique, mais toujours concentré sur une seule région du monde.",
