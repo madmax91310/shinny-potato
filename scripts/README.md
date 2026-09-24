@@ -166,14 +166,14 @@ variation du **prix de part**, alors que +3,1 % est le *RGI* calculé avec la va
 réalisation : leur différence et la rupture de méthode en 2020 sont affichées dans la note.
 Le RGI n'est pas le résultat net d'un investisseur qui vend ses parts.
 
-Dernier contrôle des six historiques mixtes : `argent` reste une conversion indicative des
-rendements BlackRock USD en EUR avec les taux annuels BCE (et non une performance NAV EUR publiée) ;
-`sect_semi` conserve 2020 absent car la part n'a démarré qu'en décembre ; `jepq` conserve
-2020-2024 absents, et 2025 +15,40 % provient de la ligne **USD (dist)** du rapport JPMorgan.
-`oblig_hy_amundi` utilise encore en 2020-2025 la part iShares IHYG, fonds différent, y compris
-en 2025 où la part Amundi n'a pas d'année complète. `quality_dividend` combine l'année 2020
-de la part Dist et 2021-2025 de la part Acc : l'indice de référence a changé en juin 2022.
-Les séries 2020 non disponibles restent absentes ; aucun rendement d'indice n'a été ajouté.
+Contrôle des historiques mixtes : `argent` reste une conversion indicative des rendements
+BlackRock USD en EUR avec les taux BCE. VanEck Semiconductor a été retiré du générateur
+à cause de son année 2020 non vérifiée. `jepq` prend l'indice Nasdaq-100 total return
+pour 2020-2022 (sans stratégie d'options), la part américaine pour 2023-2024, puis
+la part UCITS pour 2025. `tech_europe` prend son indice MSCI exact pour 2020 et la part
+iShares pour 2021-2025. `bitcoin_etcgroup` prend le cours spot BTC en 2020, puis sa NAV.
+Les substitutions sont détaillées dans `DATA-REVIEW-2026-09-24.md` et dans l'interface,
+jamais dans le tweet généré.
 
 Le premier recoupement crypto utilisait les clôtures annuelles Slickcharts BTC/USD et ETH/USD.
 Cette convention peut différer d'une clôture fixée à minuit UTC. Depuis la nouvelle revue,
@@ -208,6 +208,15 @@ vérifier automatiquement quoi que ce soit. Méthode heuristique (repérage de d
 le texte entourant chaque entrée, pas un parseur strict) — cf. commentaire en tête du script pour
 la limite connue sur les commentaires de section partagés par plusieurs entrées.
 
+## `audit-publishable-content.mjs`
+
+`npm run audit:publishable-content` vérifie que les 21 faits, 16 thèmes ETF, 36 fiches ETF et
+6 cas concrets possèdent leurs champs éditoriaux essentiels et leurs sources lorsqu'ils en
+affichent, puis protège trois corrections ciblées : absence de small caps dans FTSE All-World,
+absence de performance 2020 pour les deux ETP CoinShares, suppression de moyennes non sourcées
+sur les bear markets. Le script ne prétend pas vérifier l'exactitude des autres chiffres ;
+ceux-ci restent soumis aux documents des émetteurs et aux audits dédiés.
+
 ## `playwright-tools.mjs`
 
 Un test fonctionnel réel (Chromium) par outil, formalisant le "write→look once" fait à la main tout
@@ -215,6 +224,7 @@ au long de la session en suite réutilisable :
 
 ```bash
 npm run test:tools   # build + lance son propre `vite preview` (port 4310) + teste + coupe le serveur
+npx playwright install chromium  # à lancer une fois en local si Chromium n'est pas installé
 ```
 
 Exerce une interaction réelle par outil (jamais juste "la page charge sans erreur") : sélection
@@ -226,9 +236,9 @@ Aléatoire d'Impact des frais, cycle des faits de Faits marquants des marchés (
 la création de l'outil), marquage "publié aujourd'hui" + badge de repos de la Banque de tweets
 (ajouté le 23/09/2026 à la création de l'outil). Sort en code 1 si un outil échoue.
 
-Dépend de Chromium pré-installé à `/opt/pw-browsers/chromium` et de `playwright` installé
-globalement à `/opt/node22/lib/node_modules/playwright` — aucun des deux n'est une dépendance du
-projet, ce script ne tourne que dans cet environnement de session. Lance `vite preview` en groupe de
+Playwright est une dépendance de développement du projet ; le workflow GitHub Actions installe
+Chromium, lance les audits et ce test avant de publier Pages. Une PR lance les mêmes vérifications
+sans étape de déploiement. Lance `vite preview` en groupe de
 processus détaché (`detached: true`) pour pouvoir le tuer entièrement à la fin
 (`process.kill(-pid)`) — un bug constaté à l'écriture de ce script : `server.kill()` seul ne tue que
 le wrapper `npx`, laissant le vrai process `vite preview` tourner en orphelin sur le port.

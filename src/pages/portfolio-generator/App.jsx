@@ -592,6 +592,17 @@ export default function App() {
             <PerfChart perf={current.perf} />
           </div>
 
+          {current.selection.some((asset) => asset.confidenceNote) && (
+            <details className="pg-panel pg-panel-muted">
+              <summary>Sources et limites des performances simulées</summary>
+              <ul>
+                {current.selection.filter((asset) => asset.confidenceNote).map((asset) => (
+                  <li key={asset.id}><strong>{asset.name}</strong> : {asset.confidenceNote}</li>
+                ))}
+              </ul>
+            </details>
+          )}
+
           <div className="pg-panel pg-panel-muted">
             <p className="pg-fine-print">
               Rendements 2020-2025 : données historiques approximatives par actif, à titre pédagogique et

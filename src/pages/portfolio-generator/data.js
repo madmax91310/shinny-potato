@@ -415,10 +415,11 @@ export const ASSETS = [
     // clôtures annuelles successives, même convention pour toutes les années.
     // https://www.slickcharts.com/currency/BTC/returns
     // Le fournisseur ne précise pas l'heure de clôture dans ce tableau ; la valeur
-    // peut différer d'un cours figé à minuit UTC. 2020 précède l'ETP CoinShares.
+    // peut différer d'un cours figé à minuit UTC. 2020 précède l'ETP CoinShares :
+    // 2020 est un proxy spot antérieur au lancement de l'ETP, signalé dans l'interface.
     // Même proxy pour les ETP WisdomTree, Bitwise et 21Shares.
     r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
-    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP ; l'ETP CoinShares n'existait pas en 2020 et l'effet de change en euros n'est pas pris en compte.",
+    confidenceNote: "Simulation sur le cours spot BTC/USD (Slickcharts), avant frais et change ; 2020 précède le lancement de l'ETP CoinShares et n'est pas sa performance.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -431,9 +432,10 @@ export const ASSETS = [
     // Rendements ETH/USD publiés par Slickcharts, 2020-2025 : variation entre les
     // clôtures annuelles successives, selon la même convention que le proxy BTC.
     // https://www.slickcharts.com/currency/ETH/returns
-    // Cours spot uniquement : ne capte pas le staking de l'ETP CoinShares.
+    // Cours spot uniquement : ne capte pas le staking de l'ETP CoinShares. 2020
+    // précède son lancement en février 2021 et ne constitue pas son rendement.
     r: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
-    confidenceNote: "Simulation sur les clôtures annuelles ETH/USD (Slickcharts), sans les récompenses de staking ni les frais de l'ETP CoinShares ; ETP absent en 2020, change en euros exclu.",
+    confidenceNote: "Simulation sur le cours spot ETH/USD (Slickcharts), sans staking, frais ni change ; 2020 précède le lancement de l'ETP CoinShares et n'est pas sa performance.",
     desc: [
       "la deuxième plus grande cryptomonnaie, socle de nombreuses applications décentralisées.",
       "encore plus volatil que le bitcoin sur certaines périodes, avec des cycles très marqués.",
@@ -586,23 +588,6 @@ export const ASSETS = [
 
   // ── 🟢 Actions développées — styles complémentaires ─────
   {
-    id: "sect_semi", name: "VanEck Semiconductor UCITS ETF", cat: "actions_larges", emoji: "🟢",
-    isin: "IE00BMC38736",
-    // Part créée le 1er décembre 2020. Rendements NAV USD propres à la part 2021-2025 :
-    // https://www.vaneck.com/fr/fr/smh-supporting-doc.pdf
-    r: [null, 43.56, -34.77, 73.15, 23.16, 50.11],
-    confidenceNote: 'Part créée en décembre 2020 : aucune performance calendaire 2020. Rendements 2021-2025 en dollars.',
-    desc: [
-      "les fabricants de puces qui font tourner smartphones, IA et voitures : ultra-cyclique.",
-      "l'un des secteurs les plus volatils de la Bourse, porté par la demande en intelligence artificielle.",
-      "de fortes hausses possibles, mais des corrections tout aussi violentes en cas de ralentissement.",
-    ],
-  },
-  // ── Jumeaux de marque ─────────────────────────────────────
-  // Variantes du même thème. Les obligations corporate ont désormais chacune leur propre
-  // historique de part ; les matières premières et cryptos conservent des proxies signalés.
-  // Source émetteur vérifiée le 24/09/2026.
-  {
     id: "or_wisdomtree", name: "WisdomTree Physical Gold", cat: "matieres_premieres", emoji: "🟡",
     isin: "JE00B1VS3770",
     // Performance calendaire nette de frais en USD de l'ETC JE00B1VS3770.
@@ -662,8 +647,8 @@ export const ASSETS = [
     // NAV USD publiée par Bitwise ; 2020 commence au lancement du 08/06/2020
     // et ne représente pas une année calendaire complète.
     // https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/
-    r: [null, 55.46, -64.67, 150.42, 120.73, -9.68],
-    confidenceNote: "NAV de cet ETP Bitwise en dollars, nette de frais, de 2021 à 2025. Lancé en juin 2020 : aucune année calendaire complète en 2020 ; le change en euros reste exclu.",
+    r: [303.16, 55.46, -64.67, 150.42, 120.73, -9.68],
+    confidenceNote: "2020 : cours spot BTC/USD, pas la performance de l'ETP lancé en juin ; 2021-2025 : NAV Bitwise USD nette de frais. Change EUR exclu.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -846,8 +831,10 @@ export const ASSETS = [
     // déjà en place et tranche la contradiction précédente sur 2024 (7,93% confirmé côté fonds,
     // contre 12,53% trouvé pour un indice proche mais visiblement pas exactement celui répliqué
     // par ce fonds — écarté). 2020 reste NON VÉRIFIÉ : le tableau du fact sheet lui-même démarre
-    // en 2021 (fonds lancé le 18/11/2020). Ne pas inventer de rendement annuel 2020.
-    r: [null, 36.57, -28.76, 35.04, 7.93, 9.64],
+    // en 2021 (fonds lancé le 18/11/2020). Pour 2020, indice MSCI Europe IT 20/35
+    // Capped net EUR +11,61 % : https://www.msci.com/documents/10199/255599/msci-europe-it-2035-capped-index-eur-net.pdf
+    r: [11.61, 36.57, -28.76, 35.04, 7.93, 9.64],
+    confidenceNote: "2020 : indice MSCI Europe Information Technology 20/35 Capped net EUR avant l'année complète du fonds ; 2021-2025 : part iShares EUR, nette de frais.",
     desc: [
       "la technologie européenne : un secteur beaucoup plus restreint qu'aux États-Unis, mais bien réel.",
       "ASML, SAP, Dassault Systèmes... les rares géants tech du continent réunis en une ligne.",
@@ -889,14 +876,15 @@ export const ASSETS = [
   },
 
   // ── 🟣 Revenu — covered call ──────────────────────────────
-  // JEPQ UCITS a démarré fin 2024 : aucune performance calendaire de cette part avant 2025.
+  // JEPQ UCITS a démarré fin 2024 : recours à l'indice Nasdaq-100 Total Return
+  // avant l'historique complet du fonds US homologue (2023-2024).
   {
     id: "jepq", name: "JPM Nasdaq Equity Premium Income Active UCITS ETF (JEPQ)", cat: "dividendes", emoji: "🟣",
     // Part UCITS lancée le 29/10/2024 ; rapport annuel JPMorgan 2025, ligne USD (dist) :
     // https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/ch/en/regulatory/annual-report/jpm-icav-etf-annual-report-ch-en.pdf
     isin: "IE000U9J8HX9",
-    confidenceNote: 'Part UCITS lancée fin 2024 : seul 2025 dispose d’un rendement annuel complet publié en dollars. Aucun historique antérieur de cette part.',
-    r: [null, null, null, null, null, 15.40],
+    confidenceNote: '2020-2022 : indice Nasdaq-100 total return USD, sans stratégie d’options ; 2023-2024 : fonds américain JEPQ (NAV USD) ; 2025 : part UCITS USD. Les années simulées avant 2025 ne sont pas les performances de la part UCITS.',
+    r: [48.88, 27.51, -32.38, 36.28, 24.82, 15.40],
     desc: [
       "un ETF distribuant mensuel : vend des options d'achat sur le Nasdaq pour générer un revenu élevé.",
       "verse un revenu mensuel variable, au prix d'une hausse plafonnée en marché très haussier.",

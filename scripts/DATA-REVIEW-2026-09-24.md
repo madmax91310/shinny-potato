@@ -2,13 +2,18 @@
 
 Cette revue distingue les contrôles automatisés des comparaisons avec des documents primaires. Une série techniquement cohérente ne prouve pas l'exactitude de chaque rendement.
 
-## Historiques incomplets et substitutions
+## Séries complètes du générateur et provenance des substitutions
 
-L'audit `npm run audit:portfolio-provenance` recense 72 supports : 58 historiques émetteur, 5 historiques de sous-jacent, 7 historiques mixtes et 2 hypothèses sans titre précis. Les cinq substitutions restent identifiées dans les tweets et l'interface : CoinShares Bitcoin, CoinShares Ethereum, 21Shares Bitcoin, Amundi PEA Monde, iShares Europe Small Cap. Les sept séries mixtes concernent argent, semi-conducteurs, JEPQ, obligations haut rendement Amundi, actions Asie hors Japon, Quality Dividend et Bitwise Bitcoin.
+Les 71 supports sélectionnables possèdent désormais six rendements finis (2020-2025). La part VanEck Semiconductor a été retirée du tirage automatique et manuel : son indice exact MVSMCTR n'a pas fourni de rendement calendaire 2020 vérifiable. Elle pourra revenir après vérification d'une source primaire. Le test de 9 300 tirages contrôle chaque année, tous les profils et les tweets.
 
-Priorités avant de remplacer un proxy : obtenir les performances *calendaires* de la part exacte (ISIN), dans la même devise et avec le même traitement des frais et distributions ; retirer les années antérieures à sa création ; noter explicitement toute année indisponible. La fiche 21Shares ABTC du 30 août 2026 donne des rendements mensuels 2022–2025, tandis que son document « Performances passées » donne des valeurs annuelles 2023/2024 différentes de la composition de ces mois arrondis (respectivement +152,83 % / +113,33 % contre environ +151,83 % / +114,14 %). **Ne pas substituer ces rendements sans lever cet écart entre documents du même émetteur.**
+- CoinShares Bitcoin et Ethereum : 2020 reprend le cours spot BTC/USD (+303,16 %) et ETH/USD (+469,25 %) selon Slickcharts ; l'ensemble de leurs séries est un proxy spot et ne représente pas les rendements nets des ETP. Sources : https://www.slickcharts.com/currency/BTC/returns et https://www.slickcharts.com/currency/ETH/returns .
+- Bitwise Physical Bitcoin : 2020 reprend le cours spot BTC/USD (+303,16 %), puis 2021-2025 proviennent de la NAV USD du produit ; le fonds a commencé en juin 2020. Source : https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/ .
+- iShares Europe Information Technology : 2020 +11,61 % provient de l'indice exact MSCI Europe Information Technology 20/35 Capped net EUR ; 2021-2025 proviennent du fonds EUR. Source : https://www.msci.com/documents/10199/255599/msci-europe-it-2035-capped-index-eur-net.pdf .
+- JEPQ UCITS : 2020-2022 proviennent de l'indice Nasdaq-100 Total Return USD (+48,88 %, +27,51 %, −32,38 %), **qui ne reproduit pas les ventes d'options** ; 2023-2024 proviennent du fonds américain JEPQ (+36,28 %, +24,82 %), 2025 de la part UCITS USD (+15,40 %). Ces années ne constituent pas un historique propre de la part UCITS. Sources : https://indexes.nasdaq.com/docs/FS_XNDX.pdf , https://am.jpmorgan.com/content/dam/jpm-am-aem/americas/us/en/literature/fact-sheet/etfs/FS-JEPQ.PDF et https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/ch/en/regulatory/annual-report/jpm-icav-etf-annual-report-ch-en.pdf .
 
-Sources : https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf ; https://cdn.21shares.com/uploads/current-documents/past-performance/ABTC/CH0454664001_21SharesAG(FR).pdf .
+Les substitutions et les écarts de devise restent consultables dans la page, dans « Sources et limites des performances simulées ». La section « Méthode » et les longs avertissements par actif ont été retirés du tweet ; les avertissements de risque et sa structure ont été conservés.
+
+La fiche 21Shares ABTC du 30 août 2026 donne des rendements mensuels 2022-2025, tandis que son document « Performances passées » donne des valeurs annuelles 2023/2024 différentes de la composition de ces mois arrondis. Le cours spot existant reste signalé comme proxy : https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf et https://cdn.21shares.com/uploads/current-documents/past-performance/ABTC/CH0454664001_21SharesAG(FR).pdf .
 
 ## Dates et chiffres entre outils
 

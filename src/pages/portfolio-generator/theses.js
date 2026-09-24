@@ -94,8 +94,10 @@ export const HIGHYIELD_OPTIONS = ["oblig_hy", "oblig_hy_amundi"];
 // serré (Dynamique/Offensif) encaissent cette amplitude, jamais mélangée aux secteurs plus mesurés
 // de THEME_OPTIONS_FULL.
 export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities"];
-export const THEME_OPTIONS_FULL = ["sect_semi", "sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite"];
-export const THEME_OPTIONS_AGGRESSIVE = ["sect_semi", "sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre"];
+// VanEck Semiconductor reste suspendu : ni sa part ni son indice exact n'ont un
+// rendement 2020 vérifié. On ne l'offre pas tant que la série 2020-2025 est trouée.
+export const THEME_OPTIONS_FULL = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite"];
+export const THEME_OPTIONS_AGGRESSIVE = ["sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre"];
 // ETF à levier (réplication synthétique 2x quotidien) : lqq (Nasdaq-100) et cl2 (MSCI USA, plus
 // large que le seul Nasdaq-100) — indices proches mais pas identiques (même logique que
 // WORLD_OPTIONS/EM_OPTIONS ci-dessus), chaque option revalidée sur les bornes de pire année du
