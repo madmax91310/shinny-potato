@@ -158,6 +158,7 @@ export const FAMILIES = [
       { key: 'acwi', label: 'Amundi PEA Global ACWI (GPEA)', y2023: null, y2024: null, y2025: null, perfNote: 'Fonds trop récent pour avoir un historique (lancé le 15/07/2026).' },
       { key: 'ftse_aw', label: 'Vanguard FTSE All-World (VWCE)', y2023: 22.28, y2024: 17.65, y2025: 22.45 },
     ],
+    perfMethodNote: 'ℹ️ CW8 : rendement du fonds en euros, net de frais. VWCE : rendement du fonds en dollars, net de frais. Dividendes réinvestis dans les deux cas ; la devise change la comparaison.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💸 En PEA, tu veux le moins cher ?', a: 'WPEA ou DCAM, à égalité à 0,20 % — moins cher que CW8 (0,38 %), pour le même indice.' },
@@ -527,24 +528,12 @@ export const FAMILIES = [
     //   fiches fonds) — identique à la série déjà vérifiée pour ce même fonds dans
     //   portfolio-generator/data.js ("high_dividend"/"high_dividend_dist"), donc cohérence
     //   rétablie entre les deux outils sur cet ISIN.
-    // - quality_div (IE00BYYHSQ67) : 17,14 % / 9,87 % / 23,97 % confirmé par 2 requêtes web
-    //   indépendantes le 23/09/2026 (fiche officielle iShares datée 30/06/2026 pour l'année pleine
-    //   2025 + recoupement justETF/finanzen.net pour 2023-2024). ⚠️ Cette série NE correspond PAS
-    //   à celle de portfolio-generator/data.js pour le même ISIN ("quality_dividend"/
-    //   "quality_dividend_dist", y2025 = 9,76 %) : 2023 et 2024 concordent exactement, seul 2025
-    //   diverge fortement (23,97 vs 9,76) — tout indique une erreur de saisie côté
-    //   portfolio-generator plutôt qu'un écart de méthode, mais non corrigée ici (hors périmètre
-    //   de cette vérification, ciblée sur le Comparateur d'indices) : À VÉRIFIER ET CORRIGER dans
-    //   portfolio-generator/data.js séparément.
-    // - aristocrats (IE00B9CQXS71) : valeur CONSERVÉE telle quelle à la demande explicite de
-    //   l'utilisateur (6,93 % / 7,74 % / 17,02 %, nette de frais). ⚠️ Le commentaire précédent
-    //   affirmait un écart "<0,3 pt" avec la série "strat_dividendes" de portfolio-generator
-    //   (7,13 / 7,41 / 17,55) — vérification arithmétique le 23/09/2026 : écarts réels de 0,20 /
-    //   0,33 / 0,53 pt, donc l'affirmation était inexacte. Une recherche web complémentaire le
-    //   23/09/2026 (recoupement ZPRG/SSGA) a par ailleurs renvoyé un chiffre 2025 de 17,55 % pour
-    //   ce même fonds — qui correspondrait alors à portfolio-generator plutôt qu'à la valeur
-    //   conservée ici. Contradiction NON résolue entre sources : valeur laissée inchangée par
-    //   consigne explicite, mais à traiter comme À VÉRIFIER, pas comme confirmée.
+    // - quality_div (IE00BYYHSQ67) : 17,14 % / 9,87 % / 23,97 %, désormais identique à la
+    //   série de portfolio-generator/data.js pour ce même ISIN.
+    // - aristocrats (IE00B9CQXS71) : 6,93 % / 7,74 % / 17,02 % pour 2023-2025, vérifiés le
+    //   24/09/2026 directement sur la ligne "Fund Net" du tableau officiel State Street au
+    //   31/08/2026. La ligne "Fund Gross"/l'ancienne série du Générateur était différente ;
+    //   le Générateur utilise maintenant lui aussi la série nette de frais.
     perfFunds: [
       { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', y2023: 11.51, y2024: 9.39, y2025: 26.40 },
       { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 17.14, y2024: 9.87, y2025: 23.97 },
