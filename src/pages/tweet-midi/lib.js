@@ -432,14 +432,6 @@ function comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, yearsBack)
   return `Sur ${yearsPhrase(yearsBack)}, ${leading.label} fait mieux que ${trailing.label}. Tu aurais tenu les deux jusqu'ici ?`;
 }
 
-function comparativePerformanceConclusion(assetA, assetB, returnsA, returnsB, cumA, cumB) {
-  if (cumA === cumB) return `${assetA.label} et ${assetB.label} finissent à égalité sur la période. Leurs années intermédiaires se ressemblent-elles ?`;
-  const leading = cumA > cumB ? assetA : assetB;
-  const sharedYears = returnsA.flatMap((a) => returnsB.filter((b) => b.year === a.year).map((b) => ({ year: a.year, gap: Math.abs(a.pct - b.pct) })));
-  const standout = sharedYears.reduce((a, b) => b.gap > a.gap ? b : a);
-  return `${leading.label} finit devant sur la période. En ${standout.year}, les rendements annuels des deux actifs ont différé de ${standout.gap.toLocaleString('fr-FR', { maximumFractionDigits: 1 })} points : tu l'avais remarqué ?`;
-}
-
 export function buildVraiFauxText(item) {
   const lines = [];
   lines.push("🤔 Vrai ou faux ?");
@@ -626,16 +618,8 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
   const ordered = cumB > cumA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
-  lines.push(`📈 ${assetA.label} vs ${assetB.label} depuis ${item.year} 👇`);
+  lines.push(`📈 Performance ${dePhrase(assetA.tweetPhrase)} vs ${assetB.label} depuis ${item.year} 👇`);
   lines.push("");
-  ordered.forEach(({ asset, returns, cum }, i) => {
-    lines.push(`${asset.icon} ${asset.label}`);
-    returns.forEach(({ year, pct: yearPct }) => lines.push(`${yearPct >= 0 ? "🟢" : "🔴"} ${year} : ${fmtPct(yearPct)}`));
-    lines.push(`Cumulé : ${fmtPct(cum)}`);
-    if (i === 0) lines.push("");
-  });
-  lines.push("");
-  lines.push(fmtEcart(cumA, cumB));
   if (assetA.currency !== assetB.currency) {
     lines.push(`Devises différentes (${assetA.currency}/${assetB.currency}) : rendements comparés sans conversion.`);
   } else if (assetA.currency === 'USD' && !includeBenchmark) {
@@ -645,17 +629,21 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
     lines.push('Argent : prix de futures COMEX continus en $, hors frais et renouvellement des contrats. Pas le rendement d’un placement réel en argent.');
   }
   if (includeBenchmark) {
-    // Fenêtre du benchmark : le début le plus tardif des deux clôtures N-1 (le seul commun aux
-    // deux actifs) à la fin la plus précoce des deux dernières années — jamais un mois où l'un des
-    // deux actifs n'a pas encore de donnée réelle.
+    // La fenêtre du benchmark est commune aux deux actifs.
     const sharedStart = ymIndex(returnsA[0].startDate) >= ymIndex(returnsB[0].startDate) ? returnsA[0].startDate : returnsB[0].startDate;
     const lastA = returnsA[returnsA.length - 1], lastB = returnsB[returnsB.length - 1];
     const sharedEnd = ymIndex(lastA.endDate) <= ymIndex(lastB.endDate) ? lastA.endDate : lastB.endDate;
-    lines.push("");
     lines.push(buildBenchmarkLine(sharedStart, sharedEnd, [assetA.currency, assetB.currency]));
   }
+  if (lines.at(-1) !== "") lines.push("");
+  ordered.forEach(({ asset, returns, cum }, i) => {
+    lines.push(`${asset.icon} ${asset.label}`);
+    returns.forEach(({ year, pct: yearPct }) => lines.push(`${yearPct >= 0 ? "🟢" : "🔴"} ${year} : ${fmtPct(yearPct)}`));
+    lines.push(`Cumulé : ${fmtPct(cum)}`);
+    if (i === 0) lines.push("");
+  });
   lines.push("");
-  lines.push(comparativePerformanceConclusion(assetA, assetB, returnsA, returnsB, cumA, cumB));
+  lines.push('💬 Tu as un des deux dans ton portefeuille ?');
   return lines.join("\n");
 }
 
