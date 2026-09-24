@@ -28,17 +28,17 @@ export const SITUATIONS = [
     question: "Toi, quelle part de cette somme garderais-tu sur le fonds en euros ? 👇",
     contextes: ["ton assurance-vie", "ton PER"],
     contexte: (montant, contexte) => `Tu as ${montant} à placer sur ${contexte}.`,
-    optionA: "Tout sécuriser sur le fonds euros : capital garanti, rendement modeste.",
-    optionB: "Tout miser sur des unités de compte (ETF, actions) pour viser plus de rendement, sans garantie.",
+    optionA: "Placer la majorité sur le fonds en euros pour privilégier la sécurité, selon les garanties du contrat.",
+    optionB: "Garder une part en unités de compte pour chercher plus de croissance, en acceptant les baisses possibles.",
   },
   {
     id: "court-vs-long-terme",
     label: "Court terme vs long terme",
-    question: "Toi, tu accepterais de bloquer combien si tu pouvais avoir besoin de cet argent avant ? 👇",
+    question: "Toi, quelle part garderais-tu disponible en cas d'imprévu ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} que tu ne comptes pas toucher avant plusieurs années — mais peut-être avant, si besoin.`,
-    optionA: "Bloquer sur du long terme pour optimiser la fiscalité (PER, PEA après 5 ans).",
-    optionB: "Garder disponible sur du court terme (Livret, CTO), quitte à moins optimiser fiscalement.",
+    optionA: "Investir pour le long terme dans un PEA, en acceptant le risque de marché et la fiscalité d'un retrait avant 5 ans.",
+    optionB: "Garder cette somme sur un livret réglementé, disponible sans subir une baisse des marchés.",
   },
   {
     id: "simplicite-vs-optimisation",
@@ -46,8 +46,8 @@ export const SITUATIONS = [
     question: "Toi, combien d’enveloppes es-tu prêt à suivre pour cette somme ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir.`,
-    optionA: "Un seul ETF monde tout-en-un, sans se prendre la tête.",
-    optionB: "Répartir entre plusieurs enveloppes (PEA, assurance-vie, PER) pour optimiser la fiscalité, au prix de plus de gestion.",
+    optionA: "Garder une seule enveloppe, par exemple un PEA avec un ETF monde, pour simplifier le suivi.",
+    optionB: "Répartir entre PEA et assurance-vie selon tes objectifs, quitte à suivre plusieurs contrats et leurs frais.",
   },
   {
     id: "liquidite-vs-blocage",
@@ -64,8 +64,8 @@ export const SITUATIONS = [
       }
       return `Tu as ${montant} à placer sur ${contexte}.`;
     },
-    optionA: "Accepter de bloquer les fonds sur la durée, pour l'avantage fiscal ou le rendement associé.",
-    optionB: "Garder la liquidité totale, quitte à moins optimiser sur la durée.",
+    optionA: "Investir dans ce projet de long terme, en acceptant ses règles de retrait et son risque de perte.",
+    optionB: "Conserver cette somme sur un support disponible si tu peux en avoir besoin bientôt.",
   },
   {
     id: "diversification-vs-conviction",
@@ -82,8 +82,8 @@ export const SITUATIONS = [
     question: "Toi, ce placement doit-il absolument rester dans ton PEA ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir sur des actions européennes ou mondiales.`,
-    optionA: "Les loger dans ton PEA pour la fiscalité, quitte à te limiter à des ETF synthétiques pour viser le monde entier.",
-    optionB: "Tout mettre en CTO pour la liberté totale de choix, quitte à payer plus d'impôts sur les gains.",
+    optionA: "Utiliser le PEA : actions européennes éligibles ou ETF monde adapté au PEA, souvent à réplication synthétique.",
+    optionB: "Passer par un CTO pour accéder à un choix plus large de titres, avec une fiscalité différente sur les gains.",
   },
   {
     id: "immobilier-vs-bourse",
@@ -91,7 +91,7 @@ export const SITUATIONS = [
     question: "Toi, tu privilégies la souplesse d’un ETF ou l’exposition à l’immobilier ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir.`,
-    optionA: "Direction l'immobilier locatif (SCPI ou en direct).",
+    optionA: "Choisir une SCPI pour s'exposer à l'immobilier, en acceptant ses frais et ses délais de revente.",
     optionB: "Direction la bourse (ETF, actions).",
   },
   {
@@ -100,7 +100,7 @@ export const SITUATIONS = [
     question: "Toi, quelle part de cette somme serais-tu prêt à voir fortement varier ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir.`,
-    optionA: "Une partie en crypto (Bitcoin, Ethereum) pour viser plus de performance, au prix d'une forte volatilité.",
+    optionA: "Mettre une petite partie en crypto, en acceptant que cette poche puisse fortement baisser.",
     optionB: "Rester 100% sur des actifs traditionnels (actions, ETF, obligations).",
   },
   {
@@ -118,7 +118,7 @@ export const SITUATIONS = [
     question: "Toi, tu préfères régler la répartition toi-même ou déléguer ce suivi ? 👇",
     contextes: ["ton PER", "ton assurance-vie"],
     contexte: (montant, contexte) => `Tu as ${montant} sur ${contexte}.`,
-    optionA: "Laisser la gestion pilotée faire le travail, avec une sécurisation progressive automatique.",
+    optionA: "Déléguer les choix à une gestion pilotée, selon les frais et la stratégie prévus au contrat.",
     optionB: "Choisir la gestion libre pour piloter toi-même la répartition, plus de travail mais plus de contrôle.",
   },
   {
@@ -127,8 +127,8 @@ export const SITUATIONS = [
     question: "Toi, sur combien d’années comparerais-tu le coût total de ces deux SCPI ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à investir en SCPI.`,
-    optionA: "Une SCPI classique avec frais d'entrée (8 à 12%), mais des frais de gestion annuels plus modérés ensuite.",
-    optionB: "Une SCPI nouvelle génération sans frais d'entrée, mais des frais de gestion annuels plus élevés sur la durée.",
+    optionA: "Une SCPI avec frais de souscription : regarder aussi les frais de gestion et les conditions de revente.",
+    optionB: "Une SCPI sans frais de souscription : vérifier les autres frais et les éventuelles pénalités de sortie anticipée.",
   },
   {
     id: "value-vs-croissance",
@@ -146,7 +146,7 @@ export const SITUATIONS = [
     contextes: null,
     // 500€/2 000€ retirés : aucun apport réaliste pour un achat immobilier ne descend à ce
     // niveau. 100 000€ ajouté pour rester crédible sur le haut de la plage.
-    montants: ["5 000€", "20 000€", "50 000€", "100 000€"],
+    montants: ["20 000€", "50 000€", "100 000€"],
     contexte: (montant) => `Tu as ${montant} d'apport disponible.`,
     optionA: "Acheter ta résidence principale, quitte à mettre en pause tes autres investissements un moment.",
     optionB: "Continuer à louer et investir cette somme en bourse ou en SCPI.",
@@ -154,20 +154,21 @@ export const SITUATIONS = [
   {
     id: "un-seul-courtier-vs-plusieurs",
     label: "Un seul courtier vs plusieurs",
+    montants: ["20 000€", "50 000€"],
     question: "Toi, à partir de quel montant ouvrirais-tu un deuxième compte ? 👇",
     contextes: null,
     contexte: (montant) => `Tu as ${montant} à placer en bourse.`,
     optionA: "Tout centraliser chez un seul courtier, pour la simplicité de suivi.",
-    optionB: "Répartir entre plusieurs courtiers, pour limiter le risque si l'un d'eux fait défaut.",
+    optionB: "Répartir entre plusieurs courtiers pour ne pas dépendre d'un seul accès à tes comptes en cas d'incident.",
   },
   {
     id: "dividendes-vs-capitalisation",
     label: "Dividendes vs capitalisation",
     question: "Toi, tu as besoin de recevoir les dividendes ou tu veux les réinvestir ? 👇",
     contextes: null,
-    contexte: (montant) => `Tu as ${montant} à investir sur des ETF ou actions à dividendes.`,
-    optionA: "Choisir des supports distribuants (Dist), pour toucher un revenu régulier.",
-    optionB: "Choisir des supports capitalisants (Acc), pour réinvestir automatiquement et laisser grossir le capital.",
+    contexte: (montant) => `Tu as ${montant} à investir dans un ETF disponible en version distribuante ou capitalisante.`,
+    optionA: "Choisir la part distribuante (Dist), pour recevoir les dividendes lorsqu'ils sont versés.",
+    optionB: "Choisir la part capitalisante (Acc), pour laisser les revenus dans le fonds sans passer d'ordre de réinvestissement.",
   },
   {
     id: "rembourser-pret-etudes-vs-investir",
