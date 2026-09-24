@@ -72,8 +72,8 @@ bien une vraie divergence, pas seulement l'absence de divergence.
 
 Même principe qu'`audit-etf-consistency.mjs`, mais pour la **performance annuelle** (2023/2024/2025)
 plutôt que le TER — entre `portfolio-generator/data.js` (tableau `r`) et `index-comparator/data.js`
-(`perfFunds`), pour tout ISIN partagé où le rattachement fonds ↔ ligne de performance n'est pas
-ambigu (un seul fonds dans le groupe ETF concerné) :
+(`perfFunds`). Un mapping explicite relie chaque ligne de performance à l'ISIN du fonds
+réellement cité, y compris lorsque la famille présente plusieurs ETF :
 
 ```bash
 npm run audit:performance-consistency
@@ -86,15 +86,13 @@ désaccord silencieux avec les séries déjà vérifiées pour les mêmes fonds 
 détecter (il ne couvre que le TER). Le même audit a ensuite trouvé 2 autres divergences réelles
 (MSCI EM IMI, Nasdaq-100) le même jour.
 
-Une divergence détectée n'est pas automatiquement une erreur : elle peut légitimement venir d'une
-devise différente entre les deux séries (ex. fonds coté en $ dans une famille, indice EUR net de
-dividendes dans l'autre — cas réel du MSCI EM IMI). Le script ne fait donc échouer la vérification
-que si l'écart n'est PAS déclaré au lecteur via `family.perfMethodNote` (nouveau champ optionnel,
-rendu dans le tweet lui-même par `App.jsx`) : un écart disclosed reste seulement informationnel,
-un écart non déclaré fait échouer avec le code 1 — jamais une divergence masquée en silence.
-
-Limite assumée : ignore les groupes ETF à plusieurs fonds (rattachement ISIN ↔ ligne de performance
-ambigu par construction) — nécessitent une lecture manuelle, comme documenté en tête du script.
+Un écart supérieur à 1 point fait échouer l'audit, même si la famille porte une note générale.
+Deux exceptions par ISIN sont documentées dans le script : iShares MSCI EM IMI (fonds USD versus
+proxy de son indice en EUR) et Vanguard FTSE All-World (fonds USD versus proxy MSCI ACWI en EUR).
+Elles nécessitent aussi une explication visible côté Comparateur **et** côté Générateur. Les
+écarts de 0,25 à 1 point sont affichés pour relecture ; ils ne sont pas automatiquement corrigés.
+Les parts présentes dans un seul outil ne peuvent pas être comparées par ce script. Un nouveau
+`perfFunds` sans correspondance explicite avec un fonds affiché provoque un échec.
 
 ## `check-freshness.mjs`
 
