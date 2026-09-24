@@ -24,16 +24,9 @@ export const BROKERS = [
     // ("Trade Republic : le Livret A désormais disponible pour les clients de cette néobanque"),
     // recoupées par zonebourse.com et sinvestir.fr.
     liquidites: { rank: 1, resume: "Oui", detail: "Liquidités rémunérées + Livret A (via AXA Banque)" },
-    // Correction du 03/09/2026, signalée par l'utilisateur : le transfert PEA entrant est en réalité
-    // possible chez Trade Republic (0€ côté TR — la banque d'origine peut en revanche facturer des
-    // frais sortants, ~15€/ligne selon les établissements), pas "impossible" comme précédemment
-    // indiqué. Point réel de friction : délai anormalement long (1 à 4 mois, contre 15 jours légaux),
-    // titres immobilisés pendant le transfert. Sources convergentes (3 recherches croisées) :
-    // sinvestir.fr, avenuedesinvestisseurs.fr, dafna.fr — toutes confirment le transfert entrant
-    // possible avec ce même délai. Le détail exact (transfert total titres+espèces vs espèces
-    // seules) varie selon les sources consultées : non retenu ici, faute de convergence suffisante.
-    pointFaible: "Pas de PEA-PME, transfert PEA entrant possible mais lent (jusqu'à 4 mois)",
-    transfertPea: { resume: "Entrant ✅ (délai long, jusqu'à 4 mois)" },
+    // Correction du 03/09/2026 : le transfert PEA entrant est possible chez Trade Republic.
+    pointFaible: "Pas de PEA-PME",
+    transfertPea: { resume: "Entrant ✅" },
     post: {
       frais: ["1€/ordre, quel que soit le montant"],
       dca: ["✅ 0€ sur PEA & CTO — +7 500 titres disponibles, hebdo/bimensuel/mensuel"],
