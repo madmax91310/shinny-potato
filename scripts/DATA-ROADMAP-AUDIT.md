@@ -53,4 +53,13 @@ Références de travail repérées ou consultées le 24/09/2026 ; cela ne consti
 Portefeuilles : 71 supports, dont 51 sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.
 Calculateur : 24 actifs, dont 6 sans date individuelle ; les points de prix doivent être recoupés avec un export exact avant validation.
 
+| Série mensuelle | Devise | Période | Points | Contrôle externe |
+| --- | --- | --- | ---: | --- |
+| bitcoin | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
+| or | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
+| apple | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
+| microsoft | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
+| broadcom | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
+| tesla | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
+
 Les dates absentes restent absentes. Les sources trouvées ne sont pas une validation des valeurs de séries.
