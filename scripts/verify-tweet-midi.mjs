@@ -26,8 +26,9 @@
 // logique de poids égal documentée dans lib.js) — se concentre sur la génération de texte, le
 // risque le plus direct d'un futur renommage/déplacement de données en amont.
 
-import { ALL_ITEMS, FORMATS, FORMAT_LABELS, buildTweetText } from "../src/pages/tweet-midi/lib.js";
+import { ALL_ITEMS, FORMATS, FORMAT_LABELS, MODES, buildTweetText } from "../src/pages/tweet-midi/lib.js";
 import { TERMES } from "../src/pages/lexique-financier/data.js";
+import { getAnnualReturns, MARKET_ASSETS } from "../src/pages/tweet-midi/data/marketHistory.js";
 
 const termeIds = new Set(TERMES.map((t) => t.id));
 
@@ -71,6 +72,23 @@ for (const item of ALL_ITEMS) {
   }
   if (item.format === FORMATS.VRAI_FAUX && item.sourceTermeId && !termeIds.has(item.sourceTermeId)) {
     problems.push(`sourceTermeId "${item.sourceTermeId}" introuvable dans le Lexique financier`);
+  }
+  if (!error && item.format === FORMATS.PERFORMANCE_DEPUIS && item.mode === MODES.COMPARATIF) {
+    const a = getAnnualReturns(item.assetIdA, item.year);
+    const b = getAnnualReturns(item.assetIdB, item.year);
+    const end = Math.min(a.at(-1).year, b.at(-1).year);
+    const annualLines = [...text.matchAll(/^[🟢🔴] (\d{4}) :/gmu)].map((m) => Number(m[1]));
+    const expected = [...a, ...b].filter((r) => r.year <= end).map((r) => r.year);
+    if (annualLines.length !== expected.length || expected.some((y) => annualLines.filter((v) => v === y).length !== 2)) {
+      problems.push(`comparaison d'années non communes (dernière année commune : ${end})`);
+    }
+    if ((item.assetIdA === 'silver' || item.assetIdB === 'silver') && !text.includes('futures COMEX')) {
+      problems.push('nature des données argent absente du comparatif');
+    }
+    const currencies = [item.assetIdA, item.assetIdB].map((id) => MARKET_ASSETS.find((asset) => asset.id === id)?.currency);
+    if (currencies.includes('USD') && !text.includes('non convertis en euros') && !text.includes('sans conversion')) {
+      problems.push('rendements en dollars affichés sans mention de devise');
+    }
   }
 
   record(item.format, problems.length === 0);
