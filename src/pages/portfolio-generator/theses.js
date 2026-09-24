@@ -1060,7 +1060,7 @@ export const PROFILES = [
           {
             idOptions: COMMODITY_OPTIONS, pct: 15,
             pourquoi: [
-              "Quand l'inflation grimpe, les prix des matières premières grimpent souvent avec elle — c'est mécanique.",
+              "Les matières premières peuvent réagir à une poussée d'inflation, mais leurs cours dépendent aussi de la demande et du cycle économique.",
               "Complète l'or avec une exposition plus large : énergie, métaux, agriculture.",
             ],
           },
@@ -1459,7 +1459,7 @@ export const PROFILES = [
       "Bitcoin, Ethereum, ou les deux : ton choix ? 👇",
     ],
     warnings: [
-      "La poche crypto peut perdre plus de 60% en un an, comme en 2022. Le reste du portefeuille est calibré pour absorber le choc, pas pour l'éviter.",
+      "La poche crypto peut perdre plus de 60% en un an, comme en 2022. Les autres lignes ont limité la baisse dans cette simulation, sans garantie pour la prochaine crise.",
       "Ce niveau d'exposition crypto n'a de sens qu'avec un horizon long et une tolérance réelle à la volatilité.",
     ],
     contextFallback: [
@@ -1506,7 +1506,7 @@ export const PROFILES = [
           {
             idOptions: GOLD_OPTIONS, pct: 10,
             pourquoi: [
-              "Une deuxième ligne de protection, décorrélée à la fois des actions et de la crypto.",
+              "Une exposition à l'or en complément des actions et du Bitcoin ; son cours peut aussi baisser.",
               "Vient renforcer le filet de sécurité déjà assuré par le fonds euros.",
             ],
           },
@@ -1568,7 +1568,7 @@ export const PROFILES = [
           {
             idOptions: GOLD_OPTIONS, pct: 25,
             pourquoi: [
-              "Une deuxième ligne de protection, décorrélée de la crypto comme des obligations.",
+              "Une poche d'or aux côtés de la crypto et des obligations, sans protection automatique contre une baisse.",
               "Complète le filet de sécurité du portefeuille.",
             ],
           },
@@ -1577,11 +1577,11 @@ export const PROFILES = [
       dynamique: {
         hooks: [
           {
-            hook: "19% de Bitcoin et 10% d'ETF à levier dans le même portefeuille. Tu cumulerais ces deux paris-là ?",
+            hook: "18% de Bitcoin et 10% d'ETF à levier dans le même portefeuille. Tu cumulerais ces deux paris-là ?",
             intro: "Deux sources de volatilité différentes, empilées plutôt que choisies l'une contre l'autre.",
           },
           {
-            hook: "-28% la pire année pour un Crypto-Curieux Dynamique. Ça reste dans tes clous ou c'est déjà trop ?",
+            hook: "Bitcoin et levier dans le même portefeuille : jusqu'où irais-tu sur ces deux risques ?",
             intro: "En échange, Bitcoin et le levier tech peuvent tirer la performance bien au-dessus d'un portefeuille classique.",
           },
         ],
@@ -1599,10 +1599,9 @@ export const PROFILES = [
         // 2022 atteint jusqu'à -32,58%), parce que lqq/cl2 sont presque aussi négatifs que Bitcoin
         // cette année-là (lqq -59,2%, Bitcoin -64%, contre -14,72% pour le socle World et -0,4% pour
         // l'or) — déplacer du poids d'une ligne défensive vers le levier aggrave donc le pire
-        // scénario bien plus qu'il ne le change en le déplaçant depuis Bitcoin, dont le rendement
-        // 2022 est du même ordre. Résultat vérifié : pire cas -28,77% (contre -29,06% pour l'ancien
-        // combo à 25%/4% — marge légèrement meilleure qu'avant, pas dégradée), confortablement sous
-        // le plancher de -30% de ce palier, sur les 320 combos testés.
+        // scénario bien plus qu'il ne le change en le déplaçant depuis Bitcoin. Depuis la correction
+        // des NAV WisdomTree/Bitwise (24/09/2026), 1 point de Bitcoin a été transféré à l'or :
+        // 18% Bitcoin et 21% or ; recontrôler les 320 combinaisons avec le stress-test.
         assets: [
           {
             idOptions: WORLD_OPTIONS, pct: 35,
@@ -1612,10 +1611,10 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: BITCOIN_OPTIONS, pct: 19,
+            idOptions: BITCOIN_OPTIONS, pct: 18,
             pourquoi: [
               "{pct}% : une conviction clairement affirmée, sur l'actif le plus volatil de la bibliothèque.",
-              "Un cinquième du portefeuille sur un actif capable de perdre les deux tiers de sa valeur en un an.",
+              "Une part importante du portefeuille sur un actif capable de perdre les deux tiers de sa valeur en un an.",
             ],
           },
           {
@@ -1628,8 +1627,7 @@ export const PROFILES = [
           {
             // 4% -> 10% le 14/09/2026 : financé en réduisant Bitcoin (25% -> 19%) plutôt que
             // World/Nasdaq/Gold — cf. commentaire en tête de ce combo pour le détail du stress-test.
-            // Pire scénario 2022 du combo complet vérifié sur les 320 combinaisons de idOptions :
-            // -28,77%, sous le plancher de -30% de ce palier.
+            // La marge avec la borne a été revérifiée après la mise à jour des NAV des ETP.
             idOptions: LEVERAGE_OPTIONS, pct: 10,
             pourquoi: [
               "{pct}% de levier actions, un poids qui pèse vraiment dans la performance du portefeuille tout en restant sous le plafond de perte de ce niveau de risque.",
@@ -1637,9 +1635,9 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: GOLD_OPTIONS, pct: 20,
+            idOptions: GOLD_OPTIONS, pct: 21,
             pourquoi: [
-              "Le seul vrai filet de sécurité, face à trois lignes qui poussent toutes vers le risque.",
+              "Une exposition différente face aux lignes crypto et actions ; l'or peut aussi reculer.",
               "Sans cette ligne, l'essentiel du portefeuille dépendrait du même scénario haussier.",
             ],
           },
@@ -1771,8 +1769,8 @@ export const PROFILES = [
       equilibre: {
         hooks: [
           {
-            hook: "36% sur un secteur qui peut être aussi bien la santé que les semi-conducteurs. Tu prendrais ce pari sans savoir lequel à l'avance ?",
-            intro: "25% d'or vient justement compenser le fait que le secteur tiré peut être un des plus volatils du lot.",
+            hook: "35% sur un secteur qui peut être aussi bien la santé que les semi-conducteurs. Tu prendrais ce pari sans savoir lequel à l'avance ?",
+            intro: "26% d'or diversifie le portefeuille, sans garantir qu'il compense une baisse du secteur tiré.",
           },
           {
             hook: "8% du portefeuille en satellite Asie — Japon, Corée, Taïwan ou toute la zone. Tu savais que ce profil pouvait aller jusque-là ?",
@@ -1799,9 +1797,11 @@ export const PROFILES = [
         // poids d'origine (12%) ramener cette marge à 0,07pt (pire cas testé à -19,93%) — techniquement
         // toujours valide (le jitter revalide chaque swap et n'aurait jamais pu la faire dépasser),
         // mais une marge aussi fine aurait rendu ce combo trop fragile à la moindre future révision.
+        // Après correction des rendements WisdomTree, 1 point du secteur passe à l'or
+        // pour préserver le plancher du palier ; base vérifiée sur les 2560 options.
         assets: [
           {
-            idOptions: THEME_OPTIONS_FULL, pct: 36,
+            idOptions: THEME_OPTIONS_FULL, pct: 35,
             pourquoi: [
               "Le pari sectoriel central : {pct}% sur un seul secteur, la définition même d'une conviction assumée.",
               "La ligne la plus lourde du portefeuille — tout le reste existe pour l'accompagner.",
@@ -1836,7 +1836,7 @@ export const PROFILES = [
             ],
           },
           {
-            idOptions: GOLD_OPTIONS, pct: 25,
+            idOptions: GOLD_OPTIONS, pct: 26,
             pourquoi: [
               "Une dernière ligne de protection, décorrélée du secteur comme des marchés actions larges.",
               "Complète le filet de sécurité de ce portefeuille par ailleurs très concentré.",
