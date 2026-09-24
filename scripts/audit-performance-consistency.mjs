@@ -1,86 +1,90 @@
 #!/usr/bin/env node
-// Audit croisé de performance annuelle (2023/2024/2025) entre les data.js qui décrivent le MÊME
-// fonds (même ISIN) dans deux outils différents : portfolio-generator (tableau r = [2020..2025])
-// et index-comparator (perfFunds y2023/y2024/y2025, un par indice/famille).
-//
-// Écrit le 23/09/2026 suite à un signalement utilisateur ayant révélé que le tweet "Dividendes
-// (CTO)" du Comparateur d'indices portait deux séries de performance fausses depuis leur création,
-// en désaccord silencieux avec les séries déjà vérifiées pour les MÊMES fonds dans
-// portfolio-generator/data.js (cf. CLAUDE.md, section "Pas de duplication de données entre
-// outils" — l'audit ISIN/TER existant, audit-etf-consistency.mjs, ne couvrait que le TER, jamais
-// la performance). Complète ce script existant plutôt que de le dupliquer.
-//
-// Limite assumée : ne peut relier automatiquement un ISIN d'index-comparator à une entrée
-// perfFunds que lorsque le groupe ETF de la famille ne contient qu'UN SEUL fonds pour cet indice
-// (mapping non ambigu). Un groupe à plusieurs fonds (ex. Dividend Aristocrats mondial + US) est
-// laissé de côté par ce script automatique — nécessite une lecture manuelle (cf. commentaire dans
-// dividendes-cto pour l'exemple déjà traité à la main).
-//
-// Usage : npm run audit:performance-consistency
-// Sort en code 1 si une divergence > 1,0 pt est trouvée sur un ISIN partagé.
-
+// Compare les performances 2023-2025 des mêmes parts (ISIN) entre Comparateur d'indices et
+// Générateur de portefeuilles. Une note générale de méthode ne suffit pas à valider un écart.
 import { FAMILIES } from '../src/pages/index-comparator/data.js'
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 
-const THRESHOLD = 1.0 // points de pourcentage — au-delà, considéré comme une vraie divergence de donnée plutôt qu'un simple arrondi/écart de source
-
-// portfolio-generator : isin -> { name, y2023, y2024, y2025 } (r = [2020,2021,2022,2023,2024,2025], convention documentée en tête de fichier)
-const pgByIsin = new Map()
-for (const a of ASSETS) {
-  if (!a.isin || !Array.isArray(a.r) || a.r.length !== 6) continue
-  pgByIsin.set(a.isin, { name: a.name, y2023: a.r[3], y2024: a.r[4], y2025: a.r[5] })
+const MAX_UNEXPLAINED_GAP = 1 // point de pourcentage
+// Les perfFunds n'ont pas de champ ISIN : rattachement explicite à la part citée dans le tweet.
+// Chaque clé est validée ci-dessous contre les fonds réellement affichés.
+const FUND_ISINS = {
+  europe: { msci_europe: 'FR0013412038', stoxx600: 'FR0011550193', eurostoxx50: 'IE00B53L3W79' },
+  monde: { msci_world: 'LU1681043599', acwi: 'FR0014017NX3', ftse_aw: 'IE00BK5BQT80' },
+  usa: { sp500: 'FR0011871128', nasdaq100: 'FR0011871110', msci_usa: 'IE00B52SFT06' },
+  'emergents-pea': { paeem_pea: 'FR0013412020', paasi: 'FR0013412012', palat: 'FR0013412004', pinr: 'FR0011869320', plem: 'FR0011440478' },
+  'emergents-cto': { msci_em: 'IE00BKM4GZ66', ftse_em: 'IE00BK5BR733', em_exchina: 'IE00BMG6Z448' },
+  style: { value: 'IE00BP3QZB59', quality: 'IE00BP3QZ601' },
+  'dividendes-cto': { high_div: 'IE00B8GKDB10', quality_div: 'IE00BYYHSQ67', aristocrats: 'IE00B9CQXS71' },
+  'dividendes-pea': { eudv: 'IE00B5M1WJ87' },
+  chine: { msci_china: 'IE00BJ5JPG56', amundi_pea_chine: 'FR0011871078', ftse_china50: 'IE00B02KXK85', msci_china_a: 'IE00BQT3WG13' },
+  japon: { nikkei: 'LU2196470426', topix: 'FR0013411980', msci_japan: 'IE00B4L5YX21' },
 }
 
-let hardFailures = 0
-let disclosed = 0
-let compared = 0
-let skippedAmbiguous = 0
+// Comparer une part USD du Comparateur à un proxy d'indice EUR dans le Générateur ne mesure
+// pas le même rendement. Ces exceptions exigent une explication visible dans les deux outils.
+const DIFFERENT_BASIS = {
+  'IE00BKM4GZ66': 'part iShares USD nette de frais / proxy MSCI EM IMI EUR avant frais',
+  'IE00BK5BQT80': 'part Vanguard USD nette de frais / proxy MSCI ACWI EUR avant frais',
+}
 
-for (const fam of FAMILIES) {
-  if (!fam.perfFunds || !fam.etfGroups) continue
-  for (const group of fam.etfGroups) {
-    if (!group.funds || group.funds.length !== 1) {
-      if (group.funds?.some((f) => f.isin && pgByIsin.has(f.isin))) skippedAmbiguous++
+const assetsByIsin = new Map()
+for (const asset of ASSETS) {
+  if (!asset.isin || !Array.isArray(asset.r) || asset.r.length !== 6) continue
+  const siblings = assetsByIsin.get(asset.isin) ?? []
+  siblings.push(asset)
+  assetsByIsin.set(asset.isin, siblings)
+}
+
+let compared = 0
+let documented = 0
+let smallGaps = 0
+let failures = 0
+let notShared = 0
+
+for (const family of FAMILIES) {
+  const mappings = FUND_ISINS[family.id]
+  if (!mappings) { console.error('Famille sans mapping : ' + family.id); failures++; continue }
+  const visibleIsins = new Set(family.etfGroups.flatMap(group => group.funds.map(fund => fund.isin)))
+  for (const perf of family.perfFunds ?? []) {
+    const isin = mappings[perf.key]
+    if (!isin || !visibleIsins.has(isin)) {
+      console.error('Performance non rattachée à une part affichée : ' + family.id + '/' + perf.key + ' (' + (isin ?? 'sans ISIN') + ')')
+      failures++
       continue
     }
-    const fund = group.funds[0]
-    if (!fund.isin || !pgByIsin.has(fund.isin)) continue
-    // Rattache ce fonds à SA ligne perfFunds via une correspondance de libellé (le nom du gérant
-    // et/ou le nom de l'indice doivent se retrouver dans le label perfFunds — seule clé commune
-    // disponible, les deux structures n'étant pas indexées par ISIN par construction).
-    const perf = fam.perfFunds.find((p) => {
-      const label = p.label.toLowerCase()
-      const idx = group.indexName.toLowerCase()
-      return label.includes(idx.split(' ')[0]) || fund.name.toLowerCase().includes(label.split(' ')[0])
-    })
-    if (!perf || perf.y2023 == null) continue
-    compared++
-    const pg = pgByIsin.get(fund.isin)
-    const diffs = ['y2023', 'y2024', 'y2025']
-      .map((k) => ({ k, xc: perf[k], pg: pg[k], gap: Math.abs(perf[k] - pg[k]) }))
-      .filter((d) => d.gap > THRESHOLD)
-    if (diffs.length) {
-      // Une divergence n'est pas forcément une erreur : elle peut venir d'une devise différente
-      // entre les deux séries (fonds coté en $ ici vs indice EUR net de dividendes côté
-      // portfolio-generator, par ex.) — auquel cas elle DOIT être déclarée au lecteur via
-      // family.perfMethodNote (cf. dividendes-cto, emergents-cto). Si cette déclaration existe,
-      // l'écart est informationnel ; sinon, c'est une donnée non expliquée au lecteur = échec dur.
-      const isDisclosed = !!fam.perfMethodNote
-      if (isDisclosed) disclosed++
-      else hardFailures++
-      console.log(`[${isDisclosed ? 'ÉCART DÉCLARÉ' : 'ÉCART NON DÉCLARÉ'}] ${fund.isin} — ${fund.name}`)
-      console.log(`  index-comparator (${fam.id} / ${perf.label}) vs portfolio-generator (${pg.name})`)
-      for (const d of diffs) console.log(`  ${d.k} : ${d.xc} % (index-comparator) vs ${d.pg} % (portfolio-generator) — écart ${d.gap.toFixed(2)} pt`)
-      if (!isDisclosed) console.log(`  → ajouter family.perfMethodNote à "${fam.id}" (devise/méthode) si l'écart est légitime, sinon corriger la donnée fausse.`)
+    if (![perf.y2023, perf.y2024, perf.y2025].every(Number.isFinite)) continue
+    const siblings = assetsByIsin.get(isin)
+    if (!siblings) { notShared++; continue }
+    for (const asset of siblings) {
+      compared++
+      const gaps = [2023, 2024, 2025].map((year, i) => ({ year, gap: Math.abs(perf['y' + year] - asset.r[i + 3]) }))
+      const large = gaps.filter(x => x.gap > MAX_UNEXPLAINED_GAP)
+      if (!large.length) {
+        if (gaps.some(x => x.gap > 0.25)) {
+          smallGaps++
+          console.log('[ÉCART < 1 pt] ' + isin + ' (' + family.id + '/' + asset.id + ') : ' + gaps.map(x => x.year + ' ' + x.gap.toFixed(2) + ' pt').join(', '))
+        }
+        continue
+      }
+      const basis = DIFFERENT_BASIS[isin]
+      const visibleUSD = /en \$|en dollars/i.test(family.perfMethodNote ?? '')
+      const visibleEURProxy = /indice.*euros|euros.*indice/i.test(asset.confidenceNote ?? '')
+      if (basis && visibleUSD && visibleEURProxy) {
+        documented++
+        console.log('[PROXY DOCUMENTÉ] ' + isin + ' (' + family.id + '/' + asset.id + ') : ' + basis)
+      } else {
+        failures++
+        console.error('[ÉCART NON EXPLIQUÉ] ' + isin + ' (' + family.id + '/' + asset.id + ') : ' + gaps.map(x => x.year + ' ' + x.gap.toFixed(2) + ' pt').join(', '))
+      }
     }
+  }
+  const activeKeys = new Set((family.perfFunds ?? []).map(x => x.key))
+  for (const key of Object.keys(mappings)) if (!activeKeys.has(key)) {
+    console.error('Mapping obsolète : ' + family.id + '/' + key)
+    failures++
   }
 }
 
-console.log(`\n${compared} fonds comparés (correspondance non ambiguë), ${skippedAmbiguous} ignorés (groupe multi-fonds, à vérifier manuellement).`)
-console.log(`${disclosed} écart(s) > ${THRESHOLD} pt mais déclaré(s) au lecteur (perfMethodNote présent) — informationnel, pas un échec.`)
-console.log(`${hardFailures} écart(s) > ${THRESHOLD} pt NON déclaré(s) — à traiter avant de publier un tweet basé sur ces chiffres.`)
-if (hardFailures) {
-  process.exitCode = 1
-} else {
-  console.log('OK.')
-}
+console.log('\n' + compared + ' comparaisons ISIN (y compris les groupes multi-ETF), ' + notShared + ' parts sans correspondance dans le Générateur.')
+console.log(smallGaps + ' écart(s) inférieur(s) à 1 point à surveiller ; ' + documented + ' proxy(s) explicités dans les deux outils ; ' + failures + ' échec(s).')
+if (failures) process.exitCode = 1
