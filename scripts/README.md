@@ -111,9 +111,21 @@ recoupés. Les 28 parts auparavant classées « série attribuée à une part »
 des émetteurs le 24/09/2026 ; plusieurs séries ont été corrigées, y compris les parts à levier,
 les ETF sectoriels et les foncières. Pour CSPX, la série en euros non documentée a été remplacée
 par la série officielle en dollars, explicitement signalée dans le tweet. La part Quality Acc
-n'a pas de rendement calendaire 2020 publié : valeur `null`. Les sources Vanguard en arrondi
+n'a pas de rendement calendaire 2020 publié : la part Dist du même fonds fournit cette année,
+signalée comme historique mixte. Les sources Vanguard en arrondi
 à 0,1 point ne certifient que cette précision. Ce script vérifie les sources enregistrées et
 les notes visibles, sans télécharger ni recalculer automatiquement les rendements.
+
+Le second passage du 24/09/2026 porte sur les 13 historiques mixtes : sept séries remplacées par
+la performance calendaire de leur propre part (ICOM, trois obligations d'entreprises, énergie
+propre, consommation défensive et utilities). Trois autres parts sont vérifiées uniquement pour
+leurs années complètes disponibles : semi-conducteurs (2021-2025), Asie hors Japon (2021-2025)
+et JEPQ UCITS (2025). L'année 2020 de l'Asie provient de l'indice MSCI Net USD ; celle des
+semi-conducteurs et les années 2020-2024 de JEPQ restent `null`, protégées par une assertion.
+Les autres proxies sont l'argent converti en EUR à partir de la performance USD et des taux BCE,
+les small caps Europe simulées sur l'indice MSCI Europe Small Cap Net EUR (avant frais) et les
+obligations haut rendement Amundi simulées via la part iShares. Le
+script conserve les références émetteur et ne classe pas ces proxies comme fonds vérifiés.
 
 ## `check-freshness.mjs`
 

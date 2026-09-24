@@ -366,11 +366,13 @@ export const ASSETS = [
     isin: "IE00B4NCWG09",
     // Estimation EUR du rendement annuel de CET ETC (et non du cours spot ni des futures) :
     // BlackRock publie en USD 2020-2025 : +46,2/-13,0/+3,5/-0,8/+21,3/+148,6 %.
+    // https://www.ishares.com/uk/individual/en/products/258443/
     // Conversion sans couverture : (1 + rendement USD) × (EUR/USD fin année précédente)
     // / (EUR/USD fin année courante) - 1. Taux de référence BCE des derniers jours ouvrés :
     // 2019 1,1234 ; 2020 1,2271 ; 2021 1,1326 ; 2022 1,0666 ; 2023 1,1050 ;
     // 2024 1,0389 ; 2025 1,1750. Les rendements BlackRock sont arrondis au dixième et les
     // taux BCE relevés en journée : résultat indicatif, pas performance publiée en EUR du fonds.
+    // https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf
     r: [33.84, -5.74, 9.90, -4.25, 29.02, 119.80],
     confidenceNote: "Rendements annuels de l'ETC publiés en dollars par BlackRock, convertis approximativement en euros avec les taux de fin d'année de la BCE. Ce ne sont pas des rendements officiels en euros.",
     desc: [
@@ -397,8 +399,10 @@ export const ASSETS = [
     // bien l'indice Bloomberg Commodity, confirmé via la fiche produit iShares.
     id: "mp_large_icom", name: "iShares Diversified Commodity Swap UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00BDFL4P12",
-    r: [-3.13, 26.70, 14.90, -8.47, 5.02, 15.39],
-    confidenceNote: "Simulation sur l'ETF Invesco en dollars, pas sur cette part iShares ; frais, suivi et change peuvent modifier le résultat en euros.",
+    // NAV annuelle de la part ICOM en USD, revenus réinvestis :
+    // https://www.ishares.com/gls-download/literature/fact-sheet/icom-ishares-diversified-commodity-swap-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [-3.11, 26.76, 15.08, -8.36, 5.22, 15.65],
+    confidenceNote: 'Rendements de la part iShares en dollars ; leur équivalent en euros dépend du change.',
     desc: [
       "un panier diversifié : énergie, métaux, agriculture réunis en une seule ligne.",
       "réputé pour bien se comporter en période d'inflation élevée, comme en 2021-2022.",
@@ -561,10 +565,11 @@ export const ASSETS = [
     isin: "IE00BKPSFC54",
     distributing: false,
     // Rendements NAV USD de la part Acc : benchmark modifié le 1er juin 2022.
-    // Part lancée en mai 2020 : aucun rendement calendaire 2020 publié.
+    // Part Acc lancée en mai 2020 : 2020 reprend le rendement de la part Dist
+    // du même fonds, publié par BlackRock ; objectif/indice modifié en juin 2022.
     // https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf
-    r: [null, 15.79, -7.28, 17.16, 9.76, 23.97],
-    confidenceNote: 'Performances NAV en dollars ; 2020 est exclue car la part a démarré en mai 2020.',
+    r: [0.12, 15.79, -7.28, 17.16, 9.76, 23.97],
+    confidenceNote: 'Rendements NAV en dollars ; 2020 provient de la part distribuante du même fonds (part Acc lancée en mai 2020). Indice modifié en juin 2022.',
     desc: [
       "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
       "vise des entreprises capables de maintenir leur dividende même en période difficile.",
@@ -590,12 +595,10 @@ export const ASSETS = [
   {
     id: "sect_semi", name: "VanEck Semiconductor UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BMC38736",
-    // Source : performance annuelle réelle du fonds VanEck Semiconductor UCITS ETF, années
-    // 2021-2025. Le fonds ayant été lancé en août 2020, l'année 2020 est approximée par le
-    // rendement de l'iShares Semiconductor ETF (SOXX, indice proche mais pas identique),
-    // +52,72% sur l'année pleine.
-    r: [52.72, 43.56, -34.77, 73.15, 23.16, 50.11],
-    confidenceNote: "2020 est la performance d'un autre ETF semi-conducteurs sur l'année entière : la part VanEck a été lancée en août 2020 ; 2021-2025 sont attribués au fonds VanEck.",
+    // Part créée le 1er décembre 2020. Rendements NAV USD propres à la part 2021-2025 :
+    // https://www.vaneck.com/fr/fr/smh-supporting-doc.pdf
+    r: [null, 43.56, -34.77, 73.15, 23.16, 50.11],
+    confidenceNote: 'Part créée en décembre 2020 : aucune performance calendaire 2020. Rendements 2021-2025 en dollars.',
     desc: [
       "les fabricants de puces qui font tourner smartphones, IA et voitures : ultra-cyclique.",
       "l'un des secteurs les plus volatils de la Bourse, porté par la demande en intelligence artificielle.",
@@ -603,10 +606,8 @@ export const ASSETS = [
     ],
   },
   // ── Jumeaux de marque ─────────────────────────────────────
-  // Même sous-jacent, même performance (métal physique, BTC spot, dette corporate € IG) : seul
-  // l'émetteur change. Permet de varier les noms affichés sans jamais inventer un chiffre de
-  // performance pour un produit qui, économiquement, est identique à quelques points de base
-  // de frais près.
+  // Variantes du même thème. Les obligations corporate ont désormais chacune leur propre
+  // historique de part ; les matières premières et cryptos conservent des proxies signalés.
   {
     id: "or_wisdomtree", name: "WisdomTree Physical Gold", cat: "matieres_premieres", emoji: "🟡",
     isin: "JE00B1VS3770",
@@ -680,12 +681,11 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_corp_amundi", name: "Amundi € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_corp_amundi", name: "Amundi Core EUR Corporate Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
     isin: "LU1931975079",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
-    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
-    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
-    confidenceNote: "Rendements repris d'une part iShares en obligations d'entreprises en euros, pas de ce fonds Amundi ; les résultats peuvent diverger.",
+    // Rendements calendaires EUR « Portefeuille » de cette part Amundi :
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1931975079/FRA/FRA/INSTITUTIONNEL/ETF/20260331
+    r: [2.42, -1.21, -14.15, 7.82, 4.64, 2.99],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -695,10 +695,9 @@ export const ASSETS = [
   {
     id: "oblig_corp_vanguard", name: "Vanguard € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
     isin: "IE00BZ163G84",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
-    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
-    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
-    confidenceNote: "Rendements repris d'une part iShares en obligations d'entreprises en euros, pas de ce fonds Vanguard ; les résultats peuvent diverger.",
+    // Rendements propres de la part Vanguard (fonds, non indice), publiés au dixième en EUR :
+    // https://fund-docs.vanguard.com/ie00bz163g84-en.pdf
+    r: [2.6, -1.1, -13.7, 8.0, 4.6, 3.0],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -708,10 +707,9 @@ export const ASSETS = [
   {
     id: "oblig_corp_spdr", name: "SPDR € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
     isin: "IE00B3T9LM79",
-    // Jumeau strict de "oblig_corp_ig" — même source (cf. commentaire ci-dessus, fact sheet
-    // officiel iShares vérifié le 30/08/2026, toutes années 2020-2025 sourcées).
-    r: [2.53, -1.15, -13.86, 8.04, 4.58, 3.13],
-    confidenceNote: "Rendements repris d'une part iShares en obligations d'entreprises en euros, pas de ce fonds SPDR ; les résultats peuvent diverger.",
+    // NAV « Fonds Net » de la part SPDR en EUR, 2020-2025 :
+    // https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-bloomberg-euro-corporate-bond-ucits-etf-dist-sybc-gy
+    r: [2.58, -1.19, -14.11, 8.04, 4.60, 3.06],
     desc: [
       "prête de l'argent à de grandes entreprises solides, moyennant un intérêt un peu supérieur à l'État.",
       "un compromis entre la sécurité des obligations d'État et un rendement légèrement meilleur.",
@@ -857,18 +855,13 @@ export const ASSETS = [
   {
     id: "smallcap_europe", name: "iShares MSCI Europe Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
     // ISIN vérifié le 13/09/2026 (audit "ISIN pour chaque ETF") : ce fonds UCITS EUR (ESCE) a été
-    // lancé le 25/03/2026 — comme msci_world_amundi_pea ailleurs dans ce fichier, il n'a donc
-    // aucun historique propre remontant à 2020 ; la série ci-dessous reste celle de l'indice/du
-    // jumeau IEUS décrite juste en dessous, pas une performance réellement constatée de CETTE part.
+    // lancé le 25/03/2026 : série 2020-2025 de l'indice MSCI Europe Small Cap Net EUR.
     isin: "IE0000N55FP4",
     // confidenceNote : badge visible en UI (cf. AllocationList, App.jsx) plutôt que seulement en
     // commentaire de code — demande utilisateur, audit "outils" du 14/09/2026.
-    confidenceNote: "Performance simulée sur l'historique du fonds jumeau IEUS — cette part UCITS EUR a été lancée en 2026, trop récente pour avoir son propre historique 2020-2025.",
-    // Source : performance annuelle réelle de l'iShares MSCI Europe Small-Cap ETF (part USD,
-    // cotée aux États-Unis, IEUS — même indice sous-jacent que la version UCITS EUR, mais
-    // devise différente ; une donnée EUR spécifique n'a pas pu être trouvée de façon fiable),
-    // années 2020-2025.
-    r: [13.84, 14.75, -26.94, 16.63, -1.06, 31.49],
+    confidenceNote: "Simulation sur l'indice MSCI Europe Small Cap, dividendes nets réinvestis, en euros et avant frais : ETF lancé en 2026, sans historique propre 2020-2025.",
+    // https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0
+    r: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
     desc: [
       "des petites capitalisations européennes, plus proches de l'économie réelle du continent.",
       "un potentiel de croissance supérieur aux grandes valeurs, sans sortir de la logique 100% Europe.",
@@ -894,29 +887,17 @@ export const ASSETS = [
   },
 
   // ── 🟣 Revenu — covered call ──────────────────────────────
-  // JEPQ (lancé en 2022) : les rendements 2020-2021 sont estimés à partir du profil de la
-  // stratégie (vente d'options d'achat sur le Nasdaq — hausse plafonnée, baisse amortie par la
-  // prime), pas des données réelles du fonds. Comme le reste de la bibliothèque, chiffres
-  // illustratifs à corriger si besoin.
+  // JEPQ UCITS a démarré fin 2024 : aucune performance calendaire de cette part avant 2025.
   {
-    id: "jepq", name: "JPMorgan Nasdaq Equity Premium Income UCITS ETF (JEPQ)", cat: "dividendes", emoji: "🟣",
-    // ISIN vérifié le 13/09/2026 (audit "ISIN pour chaque ETF") : la part UCITS elle-même n'a été
-    // lancée que le 29/10/2024 — encore plus tard que le fonds US (mai 2022) déjà documenté comme
-    // source de la série ci-dessous. Même situation que smallcap_europe/msci_world_amundi_pea :
-    // l'ISIN identifie le bon fonds à afficher, mais aucune année de la série r: n'est une
-    // performance réellement constatée de CETTE part précise (gérée activement, donc un tracking
-    // différent du fonds US n'est pas à exclure si les deux avaient coexisté).
+    id: "jepq", name: "JPM Nasdaq Equity Premium Income Active UCITS ETF (JEPQ)", cat: "dividendes", emoji: "🟣",
+    // Part UCITS lancée le 29/10/2024 ; rapport annuel JPMorgan 2025, ligne USD (dist) :
+    // https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/ch/en/regulatory/annual-report/jpm-icav-etf-annual-report-ch-en.pdf
     isin: "IE000U9J8HX9",
-    confidenceNote: "Performance en partie estimée (2020-2021, fonds inexistant avant 2022) et en partie celle du fonds US — la part UCITS elle-même n'a été lancée que fin 2024.",
-    // Source pour 2022-2025 : performance annuelle réelle du fonds JEPQ (part US, JPMorgan),
-    // années 2023 à 2025 en année pleine ; 2022 = rendement réel mais partiel (fonds lancé le
-    // 4 mai 2022, -13% de l'inception à fin décembre 2022 — pas une année calendaire complète).
-    // 2020 et 2021 : estimations conservées inchangées (fonds inexistant, cf. commentaire de
-    // section ci-dessus).
-    r: [18.0, 14.0, -13.0, 36.25, 24.86, 15.18],
+    confidenceNote: 'Part UCITS lancée fin 2024 : seul 2025 dispose d’un rendement annuel complet publié en dollars. Aucun historique antérieur de cette part.',
+    r: [null, null, null, null, null, 15.40],
     desc: [
       "un ETF distribuant mensuel : vend des options d'achat sur le Nasdaq pour générer un revenu élevé.",
-      "environ 9-10% de rendement annualisé, au prix d'une hausse plafonnée en marché très haussier.",
+      "verse un revenu mensuel variable, au prix d'une hausse plafonnée en marché très haussier.",
       "amortit une partie des baisses grâce aux primes encaissées, sans jamais les annuler complètement.",
     ],
   },
@@ -968,16 +949,12 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_energie_propre", name: "iShares Global Clean Energy UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_energie_propre", name: "iShares Global Clean Energy Transition UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B1XNHC34",
-    // Source : fonds réel vérifié (ticker INRG, renommé depuis "iShares Global Clean Energy Transition
-    // UCITS ETF"), réplique le S&P Global Clean Energy Index. Track record INRG (EUR) non exploitable
-    // via recherche web ; utilisé à la place la performance du jumeau américain iShares Global Clean
-    // Energy ETF (ICLN, même indice S&P Global Clean Energy, part USD), confirmée de façon cohérente
-    // sur 2020-2024 par deux recherches indépendantes, et 2025 (+47,04%) confirmé via la fiche
-    // officielle iShares.
-    r: [141.80, -24.18, -5.41, -20.38, -25.72, 47.04],
-    confidenceNote: 'Simulation avec un ETF américain sur les énergies propres en dollars, pas la performance de cette part iShares UCITS ; effet de change en euros non neutralisé.',
+    // NAV USD propre à la part INRG, revenus réinvestis, 2020-2025 :
+    // https://www.ishares.com/ch/privatkunden/de/literature/fact-sheet/inrg-ishares-global-clean-energy-transition-ucits-etf-fund-fact-sheet-de-ch.pdf
+    r: [140.24, -24.07, -5.61, -20.53, -26.07, 46.00],
+    confidenceNote: 'Rendements de cette part iShares en dollars ; le change peut modifier le résultat en euros.',
     desc: [
       "panneaux solaires, éoliennes, hydrogène... les acteurs de la transition énergétique mondiale.",
       "un secteur en forte croissance sur le papier, mais très dépendant des taux d'intérêt et des subventions publiques.",
@@ -987,14 +964,10 @@ export const ASSETS = [
   {
     id: "sect_conso_defensive", name: "iShares S&P 500 Consumer Staples Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B40B8R38",
-    // Source : fonds réel vérifié (ISIN IE00B40B8R38), réplique l'indice S&P 500 Consumer Staples,
-    // part USD (donnée EUR précise non trouvée de façon fiable). Track record propre au fonds non
-    // exploitable via recherche web ; utilisé à la place la performance de la Consumer Staples Select
-    // Sector SPDR (XLP, même secteur S&P 500, méthodologie très proche), confirmée par deux à trois
-    // sources concordantes pour chaque année 2020-2025 (2022 et 2023 quasi identiques à ~-0,8% chacun,
-    // recoupé indépendamment, pas une erreur de désalignement).
-    r: [10.15, 17.20, -0.82, -0.82, 12.20, 1.52],
-    confidenceNote: "Simulation avec l'ETF américain XLP en dollars, pas la performance de cette part iShares UCITS ; effet de change en euros non neutralisé.",
+    // NAV USD de la part IUCS, 2020-2025 :
+    // https://www.ishares.com/gls-download/literature/fact-sheet/iucs-ishares-s-p-500-consumer-staples-sector-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [10.15, 18.02, -1.11, -0.05, 14.28, 3.38],
+    confidenceNote: 'Rendements de cette part iShares en dollars ; le change peut modifier le résultat en euros.',
     desc: [
       "alimentation, hygiène, produits du quotidien : les entreprises dont on ne se passe jamais, même en récession.",
       "un secteur réputé défensif, qui limite généralement la casse quand le reste du marché recule.",
@@ -1004,13 +977,10 @@ export const ASSETS = [
   {
     id: "sect_utilities", name: "iShares S&P 500 Utilities Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4KBBD01",
-    // Source : fonds réel vérifié (ISIN IE00B4KBBD01), réplique l'indice S&P 500 Utilities, part USD
-    // (donnée EUR précise non trouvée de façon fiable). Track record propre au fonds non exploitable
-    // via recherche web ; utilisé à la place la performance de l'Utilities Select Sector SPDR (XLU,
-    // même secteur S&P 500), confirmée par deux recherches indépendantes concordantes pour 2022
-    // (1,42%) et 2023 (-7,17%) ; 2020, 2021, 2024, 2025 non recoupés indépendamment.
-    r: [0.57, 17.69, 1.42, -7.17, 23.28, 16.00],
-    confidenceNote: "Simulation avec l'ETF américain XLU en dollars, pas la performance de cette part iShares UCITS ; effet de change en euros non neutralisé.",
+    // NAV USD de la part IUUS, 2020-2025 :
+    // https://www.ishares.com/gls-download/literature/fact-sheet/iuus-ishares-s-p-500-utilities-sector-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [-0.14, 16.94, 1.03, -7.68, 22.70, 15.36],
+    confidenceNote: 'Rendements de cette part iShares en dollars ; le change peut modifier le résultat en euros.',
     desc: [
       "eau, électricité, gaz : des services essentiels, souvent en situation de quasi-monopole régional.",
       "un secteur défensif au rendement régulier, mais sensible aux taux d'intérêt du fait de son fort endettement.",
@@ -1144,13 +1114,14 @@ export const ASSETS = [
   },
   {
     // Part iShares lancée en avril 2020 : 2021-2025 sont les performances calendaires
-    // « Total Return » publiées en USD par BlackRock ; 2020 reste une année pleine d'indice
-    // utilisée comme proxy (le fonds n'a pas vécu une année complète). L'indice EXCLUT l'Inde.
+    // « Total Return » publiées en USD par BlackRock ; 2020 est l'indice MSCI
+    // AC Far East ex Japan Net USD (fonds Acc lancé en avril). L'indice EXCLUT l'Inde.
     // https://www.ishares.com/uk/individual/en/products/313316/ishares-msci-ac-far-east-ex-japan-ucits-etf
     id: "actions_asie_ex_japon", name: "iShares MSCI AC Far East ex-Japan UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BKPX3K41",
-    r: [25.02, -8.9, -21.9, 2.3, 11.7, 39.9],
-    confidenceNote: "2020 utilise l'indice sur l'année complète, car la part iShares n'a été créée qu'en avril 2020 ; 2021-2025 sont les rendements du fonds en dollars, avec effet de change EUR/USD non neutralisé.",
+    // https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [26.04, -8.92, -21.95, 2.30, 11.67, 39.91],
+    confidenceNote: '2020 : indice MSCI AC Far East ex Japan Net en dollars, avant frais ; part lancée en avril 2020. 2021-2025 : rendements de la part en dollars.',
     desc: [
       "Chine, Taïwan, Corée, Asean... l'Asie développée et émergente réunie en une seule ligne, hors Japon et Inde.",
       "plus diversifié qu'un pari sur un seul pays asiatique, mais toujours concentré sur une seule région du monde.",
