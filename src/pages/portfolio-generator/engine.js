@@ -729,20 +729,14 @@ export function renderTweetText(p) {
       .join("\n\n")
   );
   blocks.push(SEPARATOR);
-  const yearsLine = YEARS.map((y) => `${y} ${Number.isFinite(p.perf[y]) ? fmtPct(p.perf[y]) : 'non disponible'}`).join(" · ");
+  const yearsLine = YEARS.map((y) => `${y} ${fmtPct(p.perf[y])}`).join(" · ");
   blocks.push(
     `📈 Performances simulées :\n${yearsLine}\n\n→ Pire année : ${fmtPct(p.worst.value)} en ${p.worst.year}.\n${p.context}`
   );
-  const missingYears = YEARS.filter((y) => !Number.isFinite(p.perf[y]));
-  if (missingYears.length) {
-    blocks.push(`ℹ️ Historique incomplet : pas de résultat pour ${missingYears.join(', ')}. La pire année ne porte que sur les années affichées.`);
-  }
   if (p.warning) blocks.push(`⚠️ ${p.warning}`);
-  const limitations = p.selection.filter((s) => s.confidenceNote).map((s) => `${s.name} : ${s.confidenceNote}`);
-  if (limitations.length) blocks.push(`ℹ️ Méthode : ${limitations.join(' ')}`);
   blocks.push(SEPARATOR);
   blocks.push(p.cta);
-  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE} Chaque année est la somme des rendements annuels des lignes, pondérés par les poids affichés ; aucun capital cumulé ni versement simulé. Certaines lignes mêlent USD et EUR sans conversion ; frais ou revenus peuvent différer selon les sources. Hors fiscalité.`);
+  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE}`);
   return blocks.join("\n\n");
 }
 

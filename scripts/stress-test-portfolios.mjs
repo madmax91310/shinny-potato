@@ -60,11 +60,8 @@ function checkInvariants(p) {
   const problems = [];
   const tweet = renderTweetText(p);
   if (/\b(?:undefined|NaN)\b/.test(tweet)) problems.push("tweet contenant une valeur indéfinie");
-  for (const line of p.selection.filter((s) => s.confidenceNote)) {
-    if (!tweet.includes(`${line.name} : ${line.confidenceNote}`)) {
-      problems.push(`limite de méthode absente pour ${line.name}`);
-    }
-  }
+  if (/Méthode\s*:|Historique incomplet|non disponible|n\.d\./i.test(tweet)) problems.push("note de méthode ou année vide dans le tweet");
+  for (const y of YEARS) if (!Number.isFinite(p.perf[y])) problems.push(`performance absente en ${y}`);
   if (!tweet.includes(`⚠️ ${p.warning}`)) problems.push("avertissement absent du tweet");
   const weights = p.selection.map((s) => s.pct);
   const expected = new Set([...weights, Math.abs(p.worst.value)]);

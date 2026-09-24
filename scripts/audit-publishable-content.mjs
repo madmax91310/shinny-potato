@@ -40,15 +40,17 @@ for (const theme of DEFAULT_THEMES) {
   for (const etf of theme.etfs ?? []) requireFields(`Fonds ${theme.id}/${etf.isin}`, etf, ['nom', 'isin', 'frais', 'differenciateur'])
 }
 
-// Deux erreurs déjà rencontrées : FTSE All-World couvre large/mid, et 2020 précède
-// la création des ETP CoinShares (les cours spot ne peuvent représenter ces ETP en 2020).
+// Un cours de sous-jacent antérieur au produit ne doit jamais être présenté comme
+// une performance du produit ; sa provenance demeure visible dans l'interface.
 const allWorld = DEFAULT_THEMES.flatMap(theme => theme.etfs).find(etf => etf.isin === 'IE00BK5BQT80')
 if (!allWorld || /small.?cap|petites capitalisations/i.test(allWorld.differenciateur)) {
   failures.push('FTSE All-World : composition petites capitalisations erronée ou ISIN absent')
 }
-for (const id of ['bitcoin', 'ethereum']) {
+for (const [id, expected] of [['bitcoin', 303.16], ['ethereum', 469.25]]) {
   const asset = ASSETS.find(item => item.id === id)
-  if (!asset || asset.r[0] !== null) failures.push(`${id} CoinShares : 2020 doit rester indisponible`)
+  if (!asset || asset.r[0] !== expected || !/2020.*précède.*ETP/i.test(asset.confidenceNote ?? '')) {
+    failures.push(`${id} CoinShares : cours spot 2020 ou provenance non signalée`)
+  }
 }
 const bearMarkets = FACTS.find(fact => fact.id === 'corrections-27-bear-markets')
 if (!bearMarkets || /56 mois|5,1 ans/.test([bearMarkets.fact, bearMarkets.context].join(' '))) {

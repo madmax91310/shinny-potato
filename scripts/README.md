@@ -166,14 +166,14 @@ variation du **prix de part**, alors que +3,1 % est le *RGI* calculé avec la va
 réalisation : leur différence et la rupture de méthode en 2020 sont affichées dans la note.
 Le RGI n'est pas le résultat net d'un investisseur qui vend ses parts.
 
-Dernier contrôle des six historiques mixtes : `argent` reste une conversion indicative des
-rendements BlackRock USD en EUR avec les taux annuels BCE (et non une performance NAV EUR publiée) ;
-`sect_semi` conserve 2020 absent car la part n'a démarré qu'en décembre ; `jepq` conserve
-2020-2024 absents, et 2025 +15,40 % provient de la ligne **USD (dist)** du rapport JPMorgan.
-`oblig_hy_amundi` utilise encore en 2020-2025 la part iShares IHYG, fonds différent, y compris
-en 2025 où la part Amundi n'a pas d'année complète. `quality_dividend` combine l'année 2020
-de la part Dist et 2021-2025 de la part Acc : l'indice de référence a changé en juin 2022.
-Les séries 2020 non disponibles restent absentes ; aucun rendement d'indice n'a été ajouté.
+Contrôle des historiques mixtes : `argent` reste une conversion indicative des rendements
+BlackRock USD en EUR avec les taux BCE. VanEck Semiconductor a été retiré du générateur
+à cause de son année 2020 non vérifiée. `jepq` prend l'indice Nasdaq-100 total return
+pour 2020-2022 (sans stratégie d'options), la part américaine pour 2023-2024, puis
+la part UCITS pour 2025. `tech_europe` prend son indice MSCI exact pour 2020 et la part
+iShares pour 2021-2025. `bitcoin_etcgroup` prend le cours spot BTC en 2020, puis sa NAV.
+Les substitutions sont détaillées dans `DATA-REVIEW-2026-09-24.md` et dans l'interface,
+jamais dans le tweet généré.
 
 Le premier recoupement crypto utilisait les clôtures annuelles Slickcharts BTC/USD et ETH/USD.
 Cette convention peut différer d'une clôture fixée à minuit UTC. Depuis la nouvelle revue,
