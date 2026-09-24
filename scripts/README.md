@@ -86,11 +86,11 @@ désaccord silencieux avec les séries déjà vérifiées pour les mêmes fonds 
 détecter (il ne couvre que le TER). Le même audit a ensuite trouvé 2 autres divergences réelles
 (MSCI EM IMI, Nasdaq-100) le même jour.
 
-Un écart supérieur à 1 point fait échouer l'audit, même si la famille porte une note générale.
-Les deux outils utilisent maintenant les parts USD réelles iShares EM IMI et Vanguard
-FTSE All-World : pour ces deux ISIN, tout écart, même inférieur à 1 point, fait échouer l'audit.
+Un écart supérieur à 0,1 point fait échouer l'audit, même si la famille porte une note générale.
+Les deux outils utilisent les mêmes séries émetteur iShares EM IMI, Vanguard FTSE All-World
+et iShares Quality Dividend Dist : pour ces trois ISIN, tout écart fait échouer l'audit.
 Les séries Vanguard restent arrondies au dixième par l'émetteur. Les
-écarts de 0,25 à 1 point sont affichés pour relecture ; ils ne sont pas automatiquement corrigés.
+écarts de 0,01 à 0,1 point sont affichés pour relecture ; ils ne sont pas automatiquement corrigés.
 Les parts présentes dans un seul outil ne peuvent pas être comparées par ce script. Un nouveau
 `perfFunds` sans correspondance explicite avec un fonds affiché provoque un échec.
 
@@ -145,15 +145,16 @@ calendaires du **support exact** : iShares MSCI Europe (EUR), iShares EM IMI (US
 MSCI World (USD), SPDR ACWI (USD), SPDR EM (USD), puis les ETC or Invesco, iShares et
 Amundi (USD). La série or utilisée auparavant (+67,4 % en 2025) correspondait à une
 autre convention de cours de l'or : les trois ETC affichent désormais leur performance
-propre, nette des frais ; WisdomTree reste sur le cours LBMA publié en USD par Invesco
-(+65,0 % en 2025), avec une note explicite que ce n'est **pas** la performance de l'ETC.
+propre, nette des frais ; à cette étape, WisdomTree était encore simulé sur le cours LBMA
+publié en USD par Invesco (+65,0 % en 2025), avec une note explicite sur ce proxy.
 
-Les **huit proxies résiduels** sont : WisdomTree or (indice LBMA avant frais), les quatre ETP
-Bitcoin et l'ETP Ether (cours USD du sous-jacent, pas les ETP ; CoinShares BTC/ETH lancés
-après 2020), Amundi PEA Monde (part lancée en 2025 : indice MSCI World EUR sur 2020-2025),
-et iShares petites capitalisations Europe (part lancée en 2026 : indice MSCI Europe Small Cap
-EUR sur 2020-2025). Les premiers produits crypto ont des périodes ou des méthodes de
-valorisation différentes ; aucun rendement spot n'est étiqueté comme performance d'ETP.
+Une nouvelle vérification le 24/09/2026 a retrouvé les performances propres de WisdomTree or,
+WisdomTree Bitcoin et Bitwise Bitcoin. Bitwise n'a pas d'année calendaire complète en 2020 :
+elle reste absente. Les **cinq proxies résiduels** sont CoinShares Bitcoin, 21Shares Bitcoin,
+CoinShares Ether, Amundi PEA Monde et iShares petites capitalisations Europe. Les ETP encore
+en proxy affichent le cours spot USD sans l'attribuer à leur ETP. Après les changements NAV,
+les allocations Crypto-Curieux Dynamique (18 % Bitcoin, 21 % or) et Thématique Équilibré
+(35 % secteur, 26 % or) sont de nouveau dans leurs bornes historiques.
 
 Les deux hypothèses génériques sont revues séparément. `fonds_euros` prend la revalorisation
 moyenne ACPR 2020-2025 des contrats individuels : **1,28 / 1,28 / 1,91 / 2,60 / 2,63 /
@@ -174,14 +175,12 @@ en 2025 où la part Amundi n'a pas d'année complète. `quality_dividend` combin
 de la part Dist et 2021-2025 de la part Acc : l'indice de référence a changé en juin 2022.
 Les séries 2020 non disponibles restent absentes ; aucun rendement d'indice n'a été ajouté.
 
-Les quatre proxies BTC et le proxy ETH ont ensuite été recoupés avec les tableaux annuels
-Slickcharts BTC/USD et ETH/USD, dont la méthode déclarée est la variation entre clôtures de
-deux années successives. Tous les supports d'une même crypto utilisent désormais exactement
-les mêmes valeurs, avec deux décimales. Cette convention peut différer d'une clôture fixée à
-minuit UTC ; la série n'est toujours **pas une performance d'ETP**, ne comprend ni ses frais,
-ni le change, ni les récompenses de staking de l'ETP CoinShares Ethereum. Les pages émetteur
-confirment les ISIN, tandis que Slickcharts fournit uniquement le proxy spot. La part
-DE000A27Z304 porte le nom officiel Bitwise Physical Bitcoin ETP.
+Le premier recoupement crypto utilisait les clôtures annuelles Slickcharts BTC/USD et ETH/USD.
+Cette convention peut différer d'une clôture fixée à minuit UTC. Depuis la nouvelle revue,
+seuls les historiques CoinShares Bitcoin, CoinShares Ethereum et 21Shares Bitcoin gardent ce
+proxy spot : ce n'est **pas** une performance d'ETP et il ne comprend ni frais, ni change,
+ni récompenses de staking pour Ethereum. WisdomTree Bitcoin et Bitwise Bitcoin utilisent
+désormais leurs NAV propres ; DE000A27Z304 porte le nom officiel Bitwise Physical Bitcoin ETP.
 
 ## `check-freshness.mjs`
 
@@ -192,16 +191,19 @@ signale quelles entrées ont une date de sourcing documentée, laquelle, et depu
 ```bash
 npm run check-freshness           # rapport lisible en console
 node scripts/check-freshness.mjs --json   # même scan, sortie JSON pour un script tiers
+node scripts/check-freshness.mjs --priorities # échéances et premières entrées à documenter
 ```
 
 Classe chaque entrée datée en 🟢 récent (< 60j) / 🟡 à surveiller (60-180j) / 🔴 à revérifier
 (> 180j), liste séparément les entrées **sans aucune date trouvée** ("non traçable" — un problème
 différent de la péremption, cf. commentaire en tête du script), et repère les échéances explicites
 du texte (`jusqu'au JJ/MM/AAAA`, ex. la promo Saxo) avec alerte si elles tombent à moins de 30 jours
-ou sont déjà passées.
+ou sont déjà passées. Les dates historiques de changement de frais dans les commentaires
+ne sont plus prises pour des échéances du contenu.
 
-Scan uniquement — **aucune donnée modifiée, aucun appel réseau** (WebFetch reste bloqué dans ce
-sandbox de toute façon). Sert à prioriser où porter l'effort de revérification manuelle, pas à
+Scan uniquement — **aucune donnée modifiée, aucun appel réseau**. Un workflow GitHub Actions
+hebdomadaire publie un résumé dans ses propres journaux ; le déploiement exige les audits de
+provenance, de performance, de frais, de Tweet Midi et les stress tests. Sert à prioriser la revue, pas à
 vérifier automatiquement quoi que ce soit. Méthode heuristique (repérage de dates DD/MM/AAAA dans
 le texte entourant chaque entrée, pas un parseur strict) — cf. commentaire en tête du script pour
 la limite connue sur les commentaires de section partagés par plusieurs entrées.
