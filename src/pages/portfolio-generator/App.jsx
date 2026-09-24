@@ -595,7 +595,9 @@ export default function App() {
           <div className="pg-panel pg-panel-muted">
             <p className="pg-fine-print">
               Rendements 2020-2025 : données historiques approximatives par actif, à titre pédagogique et
-              éditables manuellement. Chaque combinaison est validée pour respecter la borne de pire année
+              éditables manuellement. Chaque année additionne les rendements des lignes selon des poids
+              affichés, sans simuler les versements ni un capital cumulé ; des devises différentes peuvent
+              coexister sans conversion. Chaque combinaison est validée pour respecter la borne de pire année
               de son palier de risque avant d'être affichée.
             </p>
           </div>
