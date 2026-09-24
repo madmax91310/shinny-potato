@@ -130,7 +130,7 @@ function ResultCard({ state, d, copied, onCopy }) {
       </div>
 
       <p className="ic-method-note">
-        Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Livret A et inflation sont estimés avec des taux annuels moyens.
+        Le versement unique achète au prix de départ ; en DCA, chaque versement mensuel achète au prix du mois. Les prix manquants entre points connus sont interpolés. Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Livret A et inflation sont estimés avec des taux annuels moyens.
         {monthlyIndex ? ' Pour cet indice, la simulation part d’une clôture de décembre et relie uniquement les points annuels vérifiés ; elle ne représente pas la performance nette d’un ETF précis.' : ''}
       </p>
 

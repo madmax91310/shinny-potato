@@ -39,6 +39,7 @@ let documented = 0
 let smallGaps = 0
 let failures = 0
 let notShared = 0
+const unmatchedFunds = []
 
 for (const family of FAMILIES) {
   const mappings = FUND_ISINS[family.id]
@@ -53,7 +54,11 @@ for (const family of FAMILIES) {
     }
     if (![perf.y2023, perf.y2024, perf.y2025].every(Number.isFinite)) continue
     const siblings = assetsByIsin.get(isin)
-    if (!siblings) { notShared++; continue }
+    if (!siblings) {
+      notShared++
+      unmatchedFunds.push({ family: family.id, isin, key: perf.key, years: [perf.y2023, perf.y2024, perf.y2025] })
+      continue
+    }
     for (const asset of siblings) {
       compared++
       const gaps = [2023, 2024, 2025].map((year, i) => ({ year, gap: Math.abs(perf['y' + year] - asset.r[i + 3]) }))
@@ -85,5 +90,9 @@ for (const family of FAMILIES) {
 }
 
 console.log('\n' + compared + ' comparaisons ISIN (y compris les groupes multi-ETF), ' + notShared + ' parts sans correspondance dans le Générateur.')
+if (unmatchedFunds.length) {
+  console.log('Parts du comparateur sans série indépendante dans le Générateur (contrôle externe à prévoir) :')
+  for (const fund of unmatchedFunds) console.log(`  ${fund.family}/${fund.key} · ${fund.isin} · 2023–2025 ${fund.years.join(' / ')}`)
+}
 console.log(smallGaps + ' écart(s) inférieur(s) à 0,1 point à surveiller ; ' + documented + ' proxy(s) explicités dans les deux outils ; ' + failures + ' échec(s).')
 if (failures) process.exitCode = 1

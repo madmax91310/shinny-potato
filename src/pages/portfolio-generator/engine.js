@@ -742,7 +742,7 @@ export function renderTweetText(p) {
   if (limitations.length) blocks.push(`ℹ️ Méthode : ${limitations.join(' ')}`);
   blocks.push(SEPARATOR);
   blocks.push(p.cta);
-  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE} Pondération constante, sources et devises parfois différentes, hors fiscalité.`);
+  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE} Chaque année est la somme des rendements annuels des lignes, pondérés par les poids affichés ; aucun capital cumulé ni versement simulé. Certaines lignes mêlent USD et EUR sans conversion ; frais ou revenus peuvent différer selon les sources. Hors fiscalité.`);
   return blocks.join("\n\n");
 }
 

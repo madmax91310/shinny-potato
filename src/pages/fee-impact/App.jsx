@@ -116,7 +116,7 @@ export default function App() {
                 </button>
               ))}
             </div>
-            <p className="fi-hint">Hypothèse de simulation choisie librement — jamais une performance de marché réelle.</p>
+            <p className="fi-hint">Hypothèse constante, pas une performance observée. Chaque versement est placé en début de mois ; le taux brut annuel moins les frais annuels est divisé par 12. Fiscalité et inflation exclues.</p>
           </div>
 
           <div className="fi-panel">
