@@ -429,7 +429,8 @@ export const ASSETS = {
     // probablement lié à l'extrême volatilité de ce mois précis (pic intrajournalier réel à 121,58 $ le
     // 29/01/2026, déjà documenté) plutôt qu'à une erreur. La nouvelle valeur est retenue pour la
     // cohérence de méthode (une seule source, mensuelle, plutôt que mélanger spot et futures).
-    label: 'Argent (once)', tweetPhrase: "l'argent", icon: '🥈', currency: 'USD',
+    // Série de prix d'un contrat à terme continu : hors frais de roulement et sans détention réelle du métal.
+    label: 'Argent (futures COMEX, once)', tweetPhrase: "le contrat à terme sur l'argent", icon: '🥈', currency: 'USD',
     points: P([
       '2015-01', 17.228, '2015-02', 16.558, '2015-03', 16.619, '2015-04', 16.153,
       '2015-05', 16.721, '2015-06', 15.581, '2015-07', 14.765, '2015-08', 14.581,

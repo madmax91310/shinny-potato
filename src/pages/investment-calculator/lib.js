@@ -234,6 +234,10 @@ export function buildTweetText(state, d) {
 
   const lines = [hookLine, '', 'Tu aurais :', `${finalFmt} 💸`, '', `Soit une performance de ${fmtPct(gainPct)}`]
 
+  if (state.assetId === 'silver') {
+    lines.push('', 'Prix de futures COMEX continus en dollars, sans frais ni renouvellement des contrats : ce calcul ne représente pas le rendement d’un placement réel en argent.')
+  }
+
   // Comparaison Livret A : uniquement pour les actifs en euros, jamais un montant en dollars
   // comparé à un Livret A en euros sans taux de change — même règle que ResultCard côté UI
   // (demande utilisateur du 22/09/2026, le mélange de devises corrigé plus tôt dans la session).

@@ -539,6 +539,9 @@ export function buildPerformanceDepuisText(item, includeBenchmark) {
   });
   lines.push("");
   lines.push(`Cumulé sur la période : ${fmtPct(cumulatePct(returns))}`);
+  if (item.assetId === 'silver') {
+    lines.push('Source : prix de futures COMEX continus en $, hors frais et renouvellement des contrats. Pas le rendement d’un placement réel en argent.');
+  }
   if (includeBenchmark) {
     lines.push("");
     lines.push(buildBenchmarkLine(returns[0].startDate, returns[returns.length - 1].endDate));
