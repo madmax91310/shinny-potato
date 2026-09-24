@@ -30,7 +30,9 @@ for (const [id, a] of Object.entries(CALCULATOR)) {
   if (!a.points.every((p, i, arr) => /^\d{4}-\d{2}$/.test(p.date) && Number.isFinite(p.price) && p.price > 0 && (i === 0 || p.date > arr[i - 1].date))) { console.error(`Points mensuels invalides : ${id}`); errors++ }
 }
 // Ces six séries sont mensuelles et proviennent d'exports cités dans data.js.
-// La continuité est vérifiable ici ; l'exactitude des 840 prix exige les exports.
+// La continuité est vérifiable ici ; les 840 prix ont été récupérés et validés mois par
+// mois par l'utilisateur. Les exports ne sont pas dans le dépôt : ce script ne refait
+// donc pas cette vérification et n'attribue pas de date de contrôle externe.
 for (const id of monthlyIds) {
   const a = CALCULATOR[id]
   if (!a || a.currency !== 'USD') { console.error(`Série mensuelle ou devise changée : ${id}`); errors++; continue }
@@ -51,10 +53,10 @@ const lines = [
   ...TERMES.map(t => `| ${t.id} | ${sources[t.id] || '—'} | ${fiscal.has(t.id) ? 'Fiscalité relue le 24/09/2026 ; exemples et exceptions à contrôler individuellement' : 'Source identifiée le 24/09/2026 ; détails à contrôler'} |`),
   '',
   `Portefeuilles : ${PORTFOLIO.length} supports, dont ${gaps.filter(x => x.tool === 'portefeuilles').length} sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.`,
-  `Calculateur : ${Object.keys(CALCULATOR).length} actifs, dont ${gaps.filter(x => x.tool === 'calculateur').length} sans date individuelle ; les points de prix doivent être recoupés avec un export exact avant validation.`,
+  `Calculateur : ${Object.keys(CALCULATOR).length} actifs, dont ${gaps.filter(x => x.tool === 'calculateur').length} sans date individuelle ; les six séries mensuelles ont été validées par l'utilisateur à partir de ses propres exports.`,
   '',
   '| Série mensuelle | Devise | Période | Points | Contrôle externe |', '| --- | --- | --- | ---: | --- |',
-  ...monthlyIds.map(id => { const a = CALCULATOR[id]; return `| ${id} | ${a.currency} | ${a.points[0].date} → ${a.points.at(-1).date} | ${a.points.length} | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |` }),
+  ...monthlyIds.map(id => { const a = CALCULATOR[id]; return `| ${id} | ${a.currency} | ${a.points[0].date} → ${a.points.at(-1).date} | ${a.points.length} | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |` }),
   '',
   'Les dates absentes restent absentes. Les sources trouvées ne sont pas une validation des valeurs de séries.',
 ]
