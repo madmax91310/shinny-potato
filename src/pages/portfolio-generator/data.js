@@ -11,9 +11,10 @@
 // flag distributing: true) ont été ajoutés ensuite, réservés au profil Rentier qui exige des parts
 // distribuantes (cf. warning dans theses.js). 5 jumeaux supplémentaires (Monde, S&P 500, Nasdaq-100,
 // Euro Stoxx 50, matières premières) ont été ajoutés lors d'un audit "enrichissement bibliothèque" —
-// chacun vérifié réel et partageant le même sous-jacent (donc le même tableau `r`) que l'actif
+// chacun vérifié réel et partageant une exposition proche de l'actif
 // d'origine du groupe (cf. SP500_OPTIONS, NASDAQ100_OPTIONS, EUROSTOXX50_OPTIONS, COMMODITY_OPTIONS
-// dans theses.js). 9 actifs supplémentaires (6 secteurs thématiques, dividendes, immobilier, obligataire
+// dans theses.js). Les rendements propres à chaque part ne se déduisent pas du sous-jacent commun.
+// 9 actifs supplémentaires (6 secteurs thématiques, dividendes, immobilier, obligataire
 // haut rendement) ont été ajoutés lors d'un audit "enrichissement sectoriel" en août 2026 — chacun
 // vérifié un par un (existence réelle, indice sous-jacent exact, historique 2020-2025) via recherche
 // web (cf. commentaires individuels ci-dessous pour le détail des sources et le niveau de confiance),
@@ -186,7 +187,7 @@ export const ASSETS = [
   {
     // Jumeau strict de "sp500" — même indice S&P 500, fonds vérifié réel (ISIN IE00B5BMR087,
     // ticker CSPX, l'un des plus gros ETF actions d'Europe). Part USD (non-PEA), contrairement à
-    // sp500 qui est la version PEA d'Amundi — même sous-jacent, donc même performance.
+    // sp500 qui est la version PEA d'Amundi : leurs performances propres diffèrent.
     id: "sp500_ishares", name: "iShares Core S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B5BMR087",
     r: [8.54, 38.24, -12.95, 21.53, 31.71, 3.72],
@@ -199,9 +200,9 @@ export const ASSETS = [
   {
     id: "nasdaq100", name: "Amundi PEA Nasdaq-100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR0011871110",
-    // Source : performance annuelle réelle de l'iShares NASDAQ 100 UCITS ETF, part EUR,
-    // années 2020-2025 (proxy du fonds Amundi PEA, même indice sous-jacent).
-    r: [48.38, 28.86, -34.10, 54.99, 27.18, 20.78],
+    // Rendements calendaires de la part Amundi en EUR, ligne « Portefeuille » :
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF
+    r: [36.07, 36.59, -28.35, 49.32, 33.58, 6.01],
     desc: [
       "les 100 plus grandes entreprises non financières du Nasdaq : très orienté technologie.",
       "concentré sur des géants comme Apple, Microsoft ou Nvidia : un pari sur l'innovation US.",
@@ -209,12 +210,14 @@ export const ASSETS = [
     ],
   },
   {
-    // Jumeau strict de "nasdaq100" — c'est d'ailleurs ce fonds (part EUR, ISIN IE00B53SZB19,
-    // ticker SXRV) qui a servi de source à la série "nasdaq100" ci-dessus (proxy du fonds Amundi
-    // PEA, même indice sous-jacent). Fonds vérifié réel.
+    // Part iShares USD distincte : rendements calendaires de cette part en dollars publiés
+    // par BlackRock, pas ceux de la part Amundi en euros. Une cotation en EUR ne change pas
+    // la devise dans laquelle BlackRock calcule sa série de performance :
+    // https://www.blackrock.com/fr/particuliers/products/253741/ishares-nasdaq-100-ucits-etf
     id: "nasdaq100_ishares", name: "iShares Nasdaq 100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B53SZB19",
-    r: [48.38, 28.86, -34.10, 54.99, 27.18, 20.78],
+    r: [48.2, 27.0, -32.7, 54.4, 25.3, 20.5],
+    confidenceNote: "Rendements officiels de la part iShares en dollars ; dans une simulation de portefeuille en euros, l'effet de change n'est pas neutralisé.",
     desc: [
       "les 100 plus grandes entreprises non financières du Nasdaq : très orienté technologie.",
       "concentré sur des géants comme Apple, Microsoft ou Nvidia : un pari sur l'innovation US.",
@@ -258,20 +261,10 @@ export const ASSETS = [
   {
     id: "cac40", name: "Amundi CAC 40 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR0013380607",
-    // 2020-2022 CORRIGÉS le 02/09/2026 : export CSV mensuel réel de l'indice CAC 40 Gross Total
-    // Return (dividendes réinvestis) fourni par l'utilisateur (Investing.com, clôtures 01/2015 à
-    // 09/2026). Ancrage vérifié : les clôtures de décembre 2023/2024/2025 tirées du CSV donnent des
-    // rendements annuels de +20,14 % / +0,92 % / +14,28 %, identiques au 0,01 pt près aux valeurs
-    // déjà en place (sourcées fiche Euronext) — confirme qu'il s'agit bien du même indice GR, donc
-    // fiable pour les années jusque-là non vérifiées. Rendements 2020-2022 recalculés à partir des
-    // clôtures de décembre réelles du même CSV (15 436,40 → 20 357,80 → 18 998,47) : -4,96 % / +31,88 %
-    // / -6,68 %, qui remplacent les valeurs d'origine (-7,0 / +28,0 / -9,0, non vérifiées en version
-    // GR — seule une version « nue » hors dividendes avait pu être approchée pour 2021).
-    // Euronext confirme directement +20,14/+0,92/+14,28 % pour 2023-2025 ; Amundi confirme
-    // que FR0013380607 suit l'indice CAC 40 Gross Total Return. Les chiffres restent ceux de
-    // l'indice avant frais du fonds, pas la performance exacte de la part Amundi.
-    r: [-4.96, 31.88, -6.68, 20.14, 0.92, 14.28],
-    confidenceNote: "Simulation fondée sur le CAC 40 Gross Total Return, dividendes bruts réinvestis, avant les frais de l'ETF Amundi. Ce ne sont pas les performances exactes du fonds.",
+    // Rendements calendaires de la part Amundi en EUR, ligne « Portefeuille » (2020-2025),
+    // distincts du CAC 40 Gross Total Return suivi par le fonds :
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/RETAIL/ETF
+    r: [-5.11, 31.58, -6.88, 19.90, 0.68, 13.97],
     desc: [
       "les 40 plus grosses capitalisations françaises, de LVMH à TotalEnergies en passant par L'Oréal.",
       "éligible au PEA, avec une fiscalité avantageuse après 5 ans de détention en France.",
@@ -765,10 +758,9 @@ export const ASSETS = [
   {
     id: "msci_em_amundi", name: "Amundi MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
     isin: "LU1681045370",
-    // Proxy : indice MSCI Emerging Markets classique, rendement net en EUR 2020-2025.
-    // Ce fonds ne suit pas l'indice IMI de l'ETF iShares ci-dessus.
-    r: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
-    confidenceNote: "Performances simulées à partir de l'indice MSCI Emerging Markets net en euros, avant les frais propres à l'ETF ; elles ne sont pas les rendements de cette part Amundi.",
+    // Rendements calendaires de la part Amundi en EUR, ligne « Portefeuille » (2020-2025) :
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF
+    r: [7.98, 4.54, -14.94, 5.97, 14.62, 17.81],
     desc: [
       "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
       "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",
