@@ -4,6 +4,7 @@ import {
   isCompatible, getFrequencyCap,
 } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
+import { dynamicHookPair } from "./dynamicHooks.js";
 
 function rand(min, max) {
   return Math.random() * (max - min) + min;
@@ -278,7 +279,7 @@ function pickNonRepeating(pool, history, profileId, field) {
 // intro viennent TOUJOURS de la même paire (l'intro doit répondre explicitement à la question du
 // hook) — jamais mélangés entre deux paires différentes. Anti-répétition sur le combo EXACT (profil
 // + palier, comme pairKey), sur le hook (qui identifie la paire de façon unique dans son pool).
-function pickHookPair(profile, riskId, history) {
+function pickHookPair(profile, riskId, history, selection, worst) {
   const pool = profile.riskCombos[riskId].hooks;
   const recentHooks = new Set(
     history
@@ -287,7 +288,9 @@ function pickHookPair(profile, riskId, history) {
       .slice(-(pool.length - 1))
   );
   const fresh = pool.filter((p) => !recentHooks.has(p.hook));
-  return pick(fresh.length > 0 ? fresh : pool);
+  const selected = pick(fresh.length > 0 ? fresh : pool);
+  const index = pool.indexOf(selected);
+  return { ...dynamicHookPair(profile.id, riskId, index, selection, worst, fmtPct), hookTemplate: selected.hook };
 }
 
 // Le "pourquoi" est choisi avant le jitter (le pourcentage n'est pas encore figé) : les textes
@@ -296,6 +299,14 @@ function pickHookPair(profile, riskId, history) {
 function resolvePourquoi(selection) {
   selection.forEach((s) => {
     s.pourquoi = s.pourquoi.replace(/\{pct\}/g, s.pct);
+    // Certaines anciennes variantes gardaient le poids initial après le tirage des nouveaux poids.
+    const percentages = [...s.pourquoi.matchAll(/(\d+(?:[,.]\d+)?)\s*%/g)];
+    if (percentages.length === 1 && Number(percentages[0][1].replace(',', '.')) !== s.pct) {
+      s.pourquoi = s.pourquoi.replace(percentages[0][0], `${s.pct}%`);
+    }
+    if (s.pourquoi.includes('La moitié du portefeuille') && s.pct !== 50) {
+      s.pourquoi = s.pourquoi.replace('La moitié du portefeuille', `${s.pct}% du portefeuille`);
+    }
   });
   return selection;
 }
@@ -416,7 +427,7 @@ function buildWarning(profile, profileId, selection, worst, history) {
   if (profile.capitalNote) {
     // Toujours présente (pas tirée au sort) : pour un profil "revenu", la baisse de capital
     // reste un risque réel même quand les distributions continuent — jamais un simple détail.
-    warning += ` En cas de forte baisse (${worst.year} : ${fmtPct(worst.value)}), le capital distribue toujours des revenus — mais sa valeur recule temporairement. Prévoir une réserve de sécurité hors portefeuille.`;
+    warning += " Une distribution peut accompagner une baisse du capital et n'est jamais garantie. Prévoir une réserve de sécurité hors portefeuille.";
   }
   if (profile.mandatoryWarning) {
     // Toujours présente elle aussi (Pro-Européen) : le contre-pied assumé face aux US n'est
@@ -679,7 +690,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const warning = buildWarning(profile, profileId, selection, worst, history);
   const cta = pickCta(profile, history, { worst, best, selection });
   const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
-  const hookPair = pickHookPair(profile, riskId, history);
+  const hookPair = pickHookPair(profile, riskId, history, selection, worst);
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -692,7 +703,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     title: `${profile.label} ${RISK_LABELS[riskId]}`,
     bound,
     hook: hookPair.hook,
-    hookTemplate: hookPair.hook,
+    hookTemplate: hookPair.hookTemplate,
     intro: hookPair.intro,
     sousTitre: pickNonRepeating(profile.sousTitres, history, profileId, "sousTitre"),
     ctaTemplate: cta.template,
@@ -722,9 +733,12 @@ export function renderTweetText(p) {
   blocks.push(
     `📈 Performances simulées :\n${yearsLine}\n\n→ Pire année : ${fmtPct(p.worst.value)} en ${p.worst.year}.\n${p.context}`
   );
+  if (p.warning) blocks.push(`⚠️ ${p.warning}`);
+  const limitations = p.selection.filter((s) => s.confidenceNote).map((s) => `${s.name} : ${s.confidenceNote}`);
+  if (limitations.length) blocks.push(`ℹ️ Méthode : ${limitations.join(' ')}`);
   blocks.push(SEPARATOR);
   blocks.push(p.cta);
-  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE}`);
+  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE} Pondération constante, sources et devises parfois différentes, hors fiscalité.`);
   return blocks.join("\n\n");
 }
 
