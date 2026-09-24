@@ -87,10 +87,9 @@ détecter (il ne couvre que le TER). Le même audit a ensuite trouvé 2 autres d
 (MSCI EM IMI, Nasdaq-100) le même jour.
 
 Un écart supérieur à 1 point fait échouer l'audit, même si la famille porte une note générale.
-Une exception par ISIN est documentée dans le script : iShares MSCI EM IMI (fonds USD versus
-proxy de son indice en EUR). Elle nécessite aussi une explication visible côté Comparateur
-**et** côté Générateur. Vanguard FTSE All-World utilise désormais la même part USD dans les
-deux outils, avec la précision au dixième publiée par Vanguard. Les
+Les deux outils utilisent maintenant les parts USD réelles iShares EM IMI et Vanguard
+FTSE All-World : pour ces deux ISIN, tout écart, même inférieur à 1 point, fait échouer l'audit.
+Les séries Vanguard restent arrondies au dixième par l'émetteur. Les
 écarts de 0,25 à 1 point sont affichés pour relecture ; ils ne sont pas automatiquement corrigés.
 Les parts présentes dans un seul outil ne peuvent pas être comparées par ce script. Un nouveau
 `perfFunds` sans correspondance explicite avec un fonds affiché provoque un échec.
@@ -140,6 +139,31 @@ utilisent une même série LBMA Gold Price PM USD publiée par le World Gold Cou
 2020–2025 **+24,6 / −4,3 / +0,4 / +14,6 / +25,5 / +67,4 %**. Les small caps Europe
 restent sur l'indice MSCI Net EUR. Le script protège désormais ces 12 séries et garde une
 source nommée pour chacun des 16 supports encore fondés sur un indice ou cours.
+
+Le contrôle suivant des 16 séries a permis de remplacer huit proxies par les six années
+calendaires du **support exact** : iShares MSCI Europe (EUR), iShares EM IMI (USD), iShares
+MSCI World (USD), SPDR ACWI (USD), SPDR EM (USD), puis les ETC or Invesco, iShares et
+Amundi (USD). La série or utilisée auparavant (+67,4 % en 2025) correspondait à une
+autre convention de cours de l'or : les trois ETC affichent désormais leur performance
+propre, nette des frais ; WisdomTree reste sur le cours LBMA publié en USD par Invesco
+(+65,0 % en 2025), avec une note explicite que ce n'est **pas** la performance de l'ETC.
+
+Les **huit proxies résiduels** sont : WisdomTree or (indice LBMA avant frais), les quatre ETP
+Bitcoin et l'ETP Ether (cours USD du sous-jacent, pas les ETP ; CoinShares BTC/ETH lancés
+après 2020), Amundi PEA Monde (part lancée en 2025 : indice MSCI World EUR sur 2020-2025),
+et iShares petites capitalisations Europe (part lancée en 2026 : indice MSCI Europe Small Cap
+EUR sur 2020-2025). Les premiers produits crypto ont des périodes ou des méthodes de
+valorisation différentes ; aucun rendement spot n'est étiqueté comme performance d'ETP.
+
+Les deux hypothèses génériques sont revues séparément. `fonds_euros` prend la revalorisation
+moyenne ACPR 2020-2025 des contrats individuels : **1,28 / 1,28 / 1,91 / 2,60 / 2,63 /
+2,63 %**, nette des prélèvements sur encours et avant prélèvements sociaux. `scpi` garde
+la mesure historique 2020 (+5,30 %, ancien taux de distribution + variation de prix) mais
+utilise le rendement global immobilier ASPIM en 2021-2025 : **5,85 / 2,1 / −5,78 / −1,1 /
++3,1 %**. En 2025, +1,5 % est la *performance globale annuelle* calculée avec la
+variation du **prix de part**, alors que +3,1 % est le *RGI* calculé avec la valeur de
+réalisation : leur différence et la rupture de méthode en 2020 sont affichées dans la note.
+Le RGI n'est pas le résultat net d'un investisseur qui vend ses parts.
 
 Dernier contrôle des six historiques mixtes : `argent` reste une conversion indicative des
 rendements BlackRock USD en EUR avec les taux annuels BCE (et non une performance NAV EUR publiée) ;
