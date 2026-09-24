@@ -111,15 +111,15 @@ const indexSources = {
   or_wisdomtree: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
   or_ishares: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
   or_amundi: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
-  // Les pages émetteur confirment les supports, pas la série spot annuelle : à recouper.
-  bitcoin: 'https://coinshares.com/etp/physical-bitcoin/',
-  bitcoin_wisdomtree: 'https://www.wisdomtree.eu/en-gb/products/ucits-etfs-unleveraged-etps/cryptocurrency/wisdomtree-physical-bitcoin',
-  bitcoin_etcgroup: 'https://bitwiseinvestments.eu/fr/products/bitwise-physical-bitcoin-etp/',
-  bitcoin_21shares: 'https://www.21shares.com/fr-eu/product/abtc',
-  ethereum: 'https://coinshares.com/etp/physical-ethereum/',
+  // Clôtures annuelles du fournisseur ; ces chiffres ne sont pas les NAV des ETP.
+  bitcoin: 'https://www.slickcharts.com/currency/BTC/returns + https://coinshares.com/etp/physical-bitcoin/',
+  bitcoin_wisdomtree: 'https://www.slickcharts.com/currency/BTC/returns + https://www.wisdomtree.eu/en-gb/products/ucits-etfs-unleveraged-etps/cryptocurrency/wisdomtree-physical-bitcoin',
+  bitcoin_etcgroup: 'https://www.slickcharts.com/currency/BTC/returns + https://bitwiseinvestments.eu/fr/products/bitwise-physical-bitcoin-etp/',
+  bitcoin_21shares: 'https://www.slickcharts.com/currency/BTC/returns + https://www.21shares.com/fr-eu/product/abtc',
+  ethereum: 'https://www.slickcharts.com/currency/ETH/returns + https://coinshares.com/etp/physical-ethereum/',
 }
-// Garde les corrections chiffrées issues des tableaux annuels officiels. Les cryptos restent
-// hors de cette liste tant qu'une convention unique de cours de clôture n'est pas établie.
+// Garde les corrections chiffrées issues des tableaux annuels du fournisseur indiqué.
+// Les cours crypto proviennent de Slickcharts, les rendements d'ETF de leur émetteur.
 const primarySeries = new Map(Object.entries({
   msci_europe: [-3.32, 25.13, -9.49, 15.83, 8.59, 19.39],
   msci_em: [8.62, 7.29, -14.58, 7.89, 14.24, 15.83],
@@ -133,6 +133,11 @@ const primarySeries = new Map(Object.entries({
   or_wisdomtree: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
   or_ishares: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
   or_amundi: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
+  bitcoin: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+  bitcoin_wisdomtree: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+  bitcoin_etcgroup: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+  bitcoin_21shares: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+  ethereum: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
 }))
 const expectedMissingYears = new Map([
   ['sect_semi', [2020]],

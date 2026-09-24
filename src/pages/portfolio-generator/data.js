@@ -416,15 +416,14 @@ export const ASSETS = [
   {
     id: "bitcoin", name: "CoinShares Physical Bitcoin ETP", cat: "crypto", emoji: "🟠",
     isin: "GB00BLD4ZL17",
-    // Source : cours BTC/USD (clôtures 31 décembre), recoupé avec un tableau agrégé de
-    // rendements annuels (World of Statistics). 2020-2024 déjà cohérents avec les cours réels
-    // (écart < 1 pt) et conservés. 2025 recalculé à partir des clôtures réelles ($93 460 fin
-    // 2024 → $87 502 fin 2025, soit -6,4%) : la valeur d'origine (+25%) était erronée. L'ETP
-    // CoinShares n'existait pas avant janvier 2021 — c'est le sous-jacent (BTC spot) qui est
-    // utilisé ici, en USD (pas de donnée EUR fiable trouvée). Même valeurs répliquées sur les
-    // jumeaux WisdomTree/ETC Group/21Shares (cf. BITCOIN_OPTIONS dans theses.js).
-    r: [303.0, 60.0, -64.0, 156.0, 121.0, -6.4],
-    confidenceNote: "Simulation sur le cours du bitcoin en dollars, avant les frais de l'ETP ; l'ETP CoinShares n'existait pas en 2020 et l'effet de change en euros n'est pas pris en compte.",
+    // Rendements BTC/USD publiés par Slickcharts, 2020-2025 : variation entre les
+    // clôtures annuelles successives, même convention pour toutes les années.
+    // https://www.slickcharts.com/currency/BTC/returns
+    // Le fournisseur ne précise pas l'heure de clôture dans ce tableau ; la valeur
+    // peut différer d'un cours figé à minuit UTC. 2020 précède l'ETP CoinShares.
+    // Même proxy pour les ETP WisdomTree, Bitwise et 21Shares.
+    r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP ; l'ETP CoinShares n'existait pas en 2020 et l'effet de change en euros n'est pas pris en compte.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -434,14 +433,12 @@ export const ASSETS = [
   {
     id: "ethereum", name: "CoinShares Ethereum Staking ETP", cat: "crypto", emoji: "🟠",
     isin: "GB00BLD4ZM24",
-    // Source : cours ETH/USD (clôtures 31 décembre, Kraken). 2020-2024 déjà cohérents avec les
-    // cours réels (écart < 1,5 pt) et conservés. 2025 recalculé/vérifié : les sources
-    // convergent vers une année négative (-11% à -13% selon la source ; -12% retenu ici) après
-    // un fort repli en fin d'année — la valeur d'origine (+15%) était erronée. Sous-jacent ETH
-    // spot en USD utilisé, l'ETP CoinShares n'existant pas avant mars 2021 (pas de donnée EUR
-    // fiable trouvée).
-    r: [469.0, 399.0, -67.0, 91.0, 47.0, -12.0],
-    confidenceNote: "Simulation sur le cours de l'ether en dollars, sans les récompenses de staking ni les frais de l'ETP CoinShares ; ETP absent en 2020, change en euros exclu.",
+    // Rendements ETH/USD publiés par Slickcharts, 2020-2025 : variation entre les
+    // clôtures annuelles successives, selon la même convention que le proxy BTC.
+    // https://www.slickcharts.com/currency/ETH/returns
+    // Cours spot uniquement : ne capte pas le staking de l'ETP CoinShares.
+    r: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
+    confidenceNote: "Simulation sur les clôtures annuelles ETH/USD (Slickcharts), sans les récompenses de staking ni les frais de l'ETP CoinShares ; ETP absent en 2020, change en euros exclu.",
     desc: [
       "la deuxième plus grande cryptomonnaie, socle de nombreuses applications décentralisées.",
       "encore plus volatil que le bitcoin sur certaines périodes, avec des cycles très marqués.",
@@ -649,8 +646,8 @@ export const ASSETS = [
     id: "bitcoin_wisdomtree", name: "WisdomTree Physical Bitcoin", cat: "crypto", emoji: "🟠",
     isin: "GB00BJYDH287",
     // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
-    r: [303.0, 60.0, -64.0, 156.0, 121.0, -6.4],
-    confidenceNote: "Simulation sur le cours du bitcoin en dollars, avant les frais de l'ETP WisdomTree ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
+    r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP WisdomTree ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -661,8 +658,8 @@ export const ASSETS = [
     id: "bitcoin_etcgroup", name: "Bitwise Physical Bitcoin ETP", cat: "crypto", emoji: "🟠",
     isin: "DE000A27Z304",
     // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
-    r: [303.0, 60.0, -64.0, 156.0, 121.0, -6.4],
-    confidenceNote: "Simulation sur le cours du bitcoin en dollars, avant les frais de l'ETP Bitwise ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
+    r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP Bitwise ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -673,8 +670,8 @@ export const ASSETS = [
     id: "bitcoin_21shares", name: "21Shares Bitcoin ETP", cat: "crypto", emoji: "🟠",
     isin: "CH0454664001",
     // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
-    r: [303.0, 60.0, -64.0, 156.0, 121.0, -6.4],
-    confidenceNote: "Simulation sur le cours du bitcoin en dollars, avant les frais de l'ETP 21Shares ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
+    r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP 21Shares ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
