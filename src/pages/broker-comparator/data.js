@@ -158,28 +158,27 @@ export const BROKERS = [
     },
   },
   {
-    id: "caidf", nom: "CA Île-de-France", code: "CA", color: "#B08968", emoji: "🟠", lastVerified: "14/09/2026",
-    // Revue du 24/09/2026 : 101,40€/24 ordres se retrouve dans la brochure 2025 de CA Île-de-France,
-    // alors que des documents 2026 évoquent 96€/12 ordres. Le barème 0,12-0,48% provenait d'une
-    // autre caisse régionale ; aucun chiffre local 2026 n'est publié sans la grille exacte.
-    // https://ca-paris.credit-agricole.fr/tarif/conditions_tarifaires_particuliers_caidf_04_2025.pdf
-    frais: { rank: 99, resume: "Barème à revérifier", detail: "Invest Store Intégral : consulte la grille CA Île-de-France 2026" },
+    id: "caidf", nom: "CA Île-de-France", code: "CA", color: "#B08968", emoji: "🟠", lastVerified: "24/09/2026",
+    // Brochure officielle régionale, tarifs particuliers au 01/04/2026, pages 28-30.
+    // https://ca-paris.credit-agricole.fr/tarif/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf
+    // Copie consultable : https://labanque.org/documents/brochure-tarifaire-credit-agricole-2026-09-08-i18uhjnebp/telecharger
+    frais: { rank: 3, resume: "Intégral 0,12-0,48%", detail: "96€/an si moins de 12 ordres ; gratuit de 18 à 30 ans" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 3, resume: "Non disponible" },
-    garde: { rank: 2, resume: "0,20%/sem. + 2,50€/ligne", detail: "Exonérés avec InvestStore Intégral" },
+    garde: { rank: 2, resume: "0,20%/sem. + 2,50€/ligne", detail: "Exonérés avec Invest Store Intégral" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret A, LDDS, LEP" },
-    pointFaible: "Tarifs Invest Store Intégral à revérifier sur la grille régionale 2026 ; transfert PEA sortant 15€/ligne (max 150€)",
+    pointFaible: "Invest Store Intégral : 96€/an si moins de 12 ordres exécutés, sauf 18-30 ans ; transfert PEA sortant 15€/ligne (max 150€)",
     transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
     post: {
-      frais: ["⚠️ Invest Store Intégral : barème et seuil de gratuité de l'abonnement à revérifier dans la grille tarifaire CA Île-de-France 2026"],
+      frais: ["Invest Store Intégral, PEA en ligne : 0,48% ≤500€ / 0,18% de 500€ à 1 000€ / 0,12% au-delà", "96€/an si moins de 12 ordres exécutés sur l'année civile ; gratuit de 18 à 30 ans. Hors frais de marché et TTF"],
       dca: ["❌ Pas de DCA automatique"],
-      garde: ["⚠️ 0,20%/semestre + 2,50€/ligne/semestre", "Exonérés avec InvestStore Intégral"],
+      garde: ["⚠️ 0,20%/semestre + 2,50€/ligne/semestre", "Exonérés avec Invest Store Intégral"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret A, LDDS, LEP)"],
-      faibles: ["Abonnement et courtage à revérifier, droits de garde hors conditions d'exonération, transfert PEA sortant 15€/ligne (max 150€)"],
+      faibles: ["96€/an si moins de 12 ordres (sauf 18-30 ans), droits de garde hors conditions d'exonération, transfert PEA sortant 15€/ligne (max 150€)"],
       verdict: "Tu veux un conseiller en agence et un compte bancaire classique",
     },
   },
