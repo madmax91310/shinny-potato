@@ -1,6 +1,6 @@
 // Logique de calcul — reprise telle quelle de la session d'origine (vanilla JS),
 // juste modernisée en syntaxe ES / modules, aucune formule modifiée.
-import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION, INCONSISTENT_MONTHLY_DATA_IDS } from './data'
+import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION } from './data'
 
 export function ymIndex(ym) {
   const [y, m] = ym.split('-')
@@ -90,13 +90,6 @@ export function sparseAssetSeries(points, startYm, endYm, amount) {
   return { months, series, invested, finalValue: series[series.length - 1], totalInvested: amount }
 }
 
-// Pour les trois indices rebasés, seules les clôtures de décembre ont été recalées
-// sur des rendements annuels comparables. La dernière clôture est conservée pour la
-// valorisation, sans tracer les mois intermédiaires non vérifiés comme des faits.
-export function indexAnchorPoints(assetId, endYm) {
-  return ASSETS[assetId].points.filter((point) => point.date.endsWith('-12') || point.date === endYm)
-}
-
 export function computeBenchmarkSeries(rateTable, startYm, endYm, amount, mode) {
   const months = monthsBetween(startYm, endYm)
   const series = []
@@ -184,30 +177,22 @@ export function applyPriceOverride(result, points, overridePriceRaw, endYm) {
 export function derive(state) {
   const amount = parseFloat(state.amountRaw) || 0
   const isCustom = state.assetId === 'custom'
-  const effectiveMode = isCustom || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId) ? 'lump' : state.mode
+  const effectiveMode = isCustom ? 'lump' : state.mode
   const startYm = clampYm(state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth), LATEST_YM)
-  // Sans prix saisi, on s'arrête au dernier mois réellement renseigné pour cet actif.
-  // Sinon le DCA achète des mois supplémentaires au dernier prix, sans donnée de marché.
-  const lastAssetYm = isCustom ? LATEST_YM : ASSETS[state.assetId].points.at(-1).date
-  // Le prix facultatif revalorise les parts au terme de cette série, sans inventer
-  // de nouveaux versements mensuels entre la dernière clôture et la saisie.
-  const endYm = clampYm(lastAssetYm, LATEST_YM)
-  const safeStartYm = ymIndex(startYm) > ymIndex(endYm) ? endYm : startYm
+  const endYm = LATEST_YM
 
   let result = isCustom
-    ? computeCustomSeries(safeStartYm, endYm, amount, state.customStart, state.customEnd)
-    : INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
-      ? sparseAssetSeries(indexAnchorPoints(state.assetId, endYm), safeStartYm, endYm, amount)
-      : computeAssetSeries(ASSETS[state.assetId].points, safeStartYm, endYm, amount, effectiveMode)
+    ? computeCustomSeries(startYm, endYm, amount, state.customStart, state.customEnd)
+    : computeAssetSeries(ASSETS[state.assetId].points, startYm, endYm, amount, effectiveMode)
 
   if (!isCustom) {
     result = applyPriceOverride(result, ASSETS[state.assetId].points, state.overridePriceRaw, endYm)
   }
 
-  const livretA = computeBenchmarkSeries(LIVRET_A, safeStartYm, endYm, amount, effectiveMode)
-  const inflation = computeBenchmarkSeries(INFLATION, safeStartYm, endYm, amount, effectiveMode)
+  const livretA = computeBenchmarkSeries(LIVRET_A, startYm, endYm, amount, effectiveMode)
+  const inflation = computeBenchmarkSeries(INFLATION, startYm, endYm, amount, effectiveMode)
 
-  return { amount, isCustom, effectiveMode, startYm: safeStartYm, endYm, result, livretA, inflation }
+  return { amount, isCustom, effectiveMode, startYm, endYm, result, livretA, inflation }
 }
 
 // Ligne de "morale" : jamais un ton figé "j'aurais dû investir" qui sonnerait faux si l'actif a en
@@ -224,9 +209,9 @@ function moraleLine(assetLabel, gainPct, hasLivretCompare, livretValue, assetVal
       : `Même avec une hausse de ${assetLabel}, le Livret A termine devant sur cette période.`
   }
   if (hasLivretCompare && livretValue === assetValue) return `${assetLabel} et le Livret A arrivent au même montant sur cette période.`
-  if (gainPct < 0) return `${assetLabel} termine sous la somme investie sur cette période. C'est aussi une issue possible.`
+  if (gainPct < 0) return `${assetLabel} termine sous la somme investie. La date de départ change tout dans cet exemple.`
   if (gainPct === 0) return `${assetLabel} revient à la somme investie, sans gain sur cette période.`
-  if (hasLivretCompare) return `${assetLabel} termine devant le Livret A sur cette période. Sur une autre période, le résultat peut changer.`
+  if (hasLivretCompare) return `${assetLabel} termine devant le Livret A sur cette période. Le résultat dépend aussi de ta date d'entrée.`
   return `${assetLabel} progresse sur cette période, dans sa devise de cotation.`
 }
 
@@ -243,24 +228,14 @@ export function buildTweetText(state, d) {
   const finalFmt = fmtEUR(d.result.finalValue, currency)
   const amountFmt = fmtEUR(d.amount, currency)
 
-  const endLabel = `${MONTHS_FULL[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
-  const gainAbs = d.result.finalValue - d.result.totalInvested
   const hookLine = d.effectiveMode === 'dca'
-    ? `Et si tu avais investi ${amountFmt} par mois sur ${assetLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
-    : `Et si tu avais investi ${amountFmt} sur ${assetLabel} en ${monthLabel} ${yearLabel} ? 🫢`
+    ? `Et si tu avais mis ${amountFmt}/mois sur ${assetLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
+    : `Et si tu avais investi ${amountFmt} sur ${assetLabel} en ${yearLabel} ? 🫢`
 
-  const lines = [
-    hookLine,
-    '',
-    `${d.isCustom ? 'Avec les deux prix saisis' : state.overridePriceRaw !== '' ? `Au prix saisi, avec des versements jusqu'en ${endLabel}` : `Au dernier point disponible (${endLabel})`} : ${finalFmt} 💸`,
-    `Somme investie : ${fmtEUR(d.result.totalInvested, currency)}`,
-    `${gainAbs < 0 ? 'Perte' : 'Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)} (${fmtPct(gainPct)} de la somme investie)`,
-  ]
-  if (INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
-    lines.push('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
-  }
+  const lines = [hookLine, '', 'Tu aurais :', `${finalFmt} 💸`, '', `Soit une performance de ${fmtPct(gainPct)}`]
+
   if (state.assetId === 'silver') {
-    lines.push('Série de prix de futures COMEX continus en dollars : frais et renouvellement des contrats non simulés. Ce résultat ne représente pas le rendement d’un placement réel en argent.')
+    lines.push('', 'Prix de futures COMEX continus en dollars, sans frais ni renouvellement des contrats : ce calcul ne représente pas le rendement d’un placement réel en argent.')
   }
 
   // Comparaison Livret A : uniquement pour les actifs en euros, jamais un montant en dollars
@@ -268,10 +243,10 @@ export function buildTweetText(state, d) {
   // (demande utilisateur du 22/09/2026, le mélange de devises corrigé plus tôt dans la session).
   const hasLivretCompare = currency === 'EUR'
   if (hasLivretCompare) {
-    lines.push('', `Avec les mêmes versements sur un Livret A : ${fmtEUR(d.livretA.finalValue, 'EUR')} (simulation indicative)`)
+    lines.push('', 'Et en mettant sur ton Livret A ?', `${fmtEUR(d.livretA.finalValue, 'EUR')} 🤡`)
   }
-  lines.push('', `📌 ${moraleLine(assetLabel, gainPct, hasLivretCompare, d.livretA.finalValue, d.result.finalValue)}`)
-  lines.push('', `💬 Tu aurais gardé ce placement jusqu'en ${endLabel} ?`)
+  lines.push('', `La morale de l'histoire ? ${moraleLine(assetLabel, gainPct, hasLivretCompare, d.livretA.finalValue, d.result.finalValue)}`)
+  lines.push('', `💬 Tu es investi sur ${assetLabel} ?`)
 
   return lines.join('\n')
 }
