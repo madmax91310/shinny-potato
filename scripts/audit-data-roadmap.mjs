@@ -19,6 +19,7 @@ for (const id of [...Object.keys(sources), ...fiscal]) if (!ids.has(id)) { conso
 const lexiconGaps = new Set(inventory.filter(x => x.tool === 'lexique').map(x => x.name))
 for (const t of TERMES) if (!lexiconGaps.has(t.id)) { console.error(`Inventaire lexique à régénérer : ${t.id}`); errors++ }
 const gaps = inventory.filter(x => x.tool === 'portefeuilles' || x.tool === 'calculateur')
+const monthlyIds = ['bitcoin', 'or', 'apple', 'microsoft', 'broadcom', 'tesla']
 const absentPortfolioUrls = gaps.filter(x => x.tool === 'portefeuilles' && !x.sourceUrls.length)
 if (absentPortfolioUrls.length) { console.error(`Supports sans URL : ${absentPortfolioUrls.map(x => x.name).join(', ')}`); errors += absentPortfolioUrls.length }
 for (const a of PORTFOLIO) {
@@ -27,6 +28,18 @@ for (const a of PORTFOLIO) {
 for (const [id, a] of Object.entries(CALCULATOR)) {
   if (!['EUR', 'USD'].includes(a.currency)) { console.error(`Devise inconnue : ${id}`); errors++ }
   if (!a.points.every((p, i, arr) => /^\d{4}-\d{2}$/.test(p.date) && Number.isFinite(p.price) && p.price > 0 && (i === 0 || p.date > arr[i - 1].date))) { console.error(`Points mensuels invalides : ${id}`); errors++ }
+}
+// Ces six séries sont mensuelles et proviennent d'exports cités dans data.js.
+// La continuité est vérifiable ici ; l'exactitude des 840 prix exige les exports.
+for (const id of monthlyIds) {
+  const a = CALCULATOR[id]
+  if (!a || a.currency !== 'USD') { console.error(`Série mensuelle ou devise changée : ${id}`); errors++; continue }
+  let month = new Date(Date.UTC(2015, 0, 1))
+  for (const p of a.points) {
+    if (p.date !== month.toISOString().slice(0, 7)) { console.error(`Mois absent ou doublon : ${id}, attendu ${month.toISOString().slice(0, 7)}, obtenu ${p.date}`); errors++; break }
+    month.setUTCMonth(month.getUTCMonth() + 1)
+  }
+  if (a.points.at(-1)?.date < '2026-08') { console.error(`Série historique tronquée : ${id}`); errors++ }
 }
 const lines = [
   '# Audit des données — génération depuis le code',
@@ -39,6 +52,9 @@ const lines = [
   '',
   `Portefeuilles : ${PORTFOLIO.length} supports, dont ${gaps.filter(x => x.tool === 'portefeuilles').length} sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.`,
   `Calculateur : ${Object.keys(CALCULATOR).length} actifs, dont ${gaps.filter(x => x.tool === 'calculateur').length} sans date individuelle ; les points de prix doivent être recoupés avec un export exact avant validation.`,
+  '',
+  '| Série mensuelle | Devise | Période | Points | Contrôle externe |', '| --- | --- | --- | ---: | --- |',
+  ...monthlyIds.map(id => { const a = CALCULATOR[id]; return `| ${id} | ${a.currency} | ${a.points[0].date} → ${a.points.at(-1).date} | ${a.points.length} | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |` }),
   '',
   'Les dates absentes restent absentes. Les sources trouvées ne sont pas une validation des valeurs de séries.',
 ]
