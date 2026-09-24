@@ -27,7 +27,7 @@ export const VRAI_FAUX = [
     affirmation: "L'argent placé sur un PEA est totalement bloqué pendant 5 ans.",
     reponse: false,
     explication:
-      "Tu peux retirer ton argent avant 5 ans, mais ça clôture le PEA (sauf exceptions comme la création d'entreprise) et tu perds l'avantage fiscal acquis. Ce n'est pas un blocage, c'est une pénalité si tu sors trop tôt.",
+      "Tu peux retirer avant 5 ans. En principe, cela clôture le PEA et les gains retirés sont imposés ; des exceptions existent, notamment en cas de création d'entreprise. Après 5 ans, un retrait partiel ne clôture plus le plan.",
   },
   {
     id: "pea-apres-5-ans",
@@ -45,7 +45,7 @@ export const VRAI_FAUX = [
     affirmation: "Le CTO a un plafond de versement, comme le PEA.",
     reponse: false,
     explication:
-      "Le CTO n'a aucun plafond de montant ni de marché accessible : c'est justement ce qui le distingue du PEA. En contrepartie, la flat tax de 31,4% s'applique dès le premier euro de gain.",
+      "Le CTO n'a pas de plafond de versement. Une hausse du cours n'est pas imposée tant que tu ne vends pas ; l'impôt intervient notamment lors d'une vente avec plus-value ou du versement d'un dividende.",
   },
   {
     id: "assurance-vie-csg-2026",
@@ -63,7 +63,7 @@ export const VRAI_FAUX = [
     affirmation: "L'assurance-vie a un plafond de versement.",
     reponse: false,
     explication:
-      "Il n'y a pas de plafond de versement sur une assurance-vie, contrairement au PEA (150 000€) ou au Livret A (22 950€). Seuls les seuils d'abattement fiscal après 8 ans dépendent du montant versé.",
+      "Tu peux verser sans plafond légal sur une assurance-vie. La fiscalité des gains retirés dépend notamment de l'ancienneté du contrat et du montant des primes versées ; après 8 ans, un abattement annuel peut s'appliquer aux gains.",
   },
   {
     id: "per-deblocage",
@@ -363,10 +363,10 @@ export const VRAI_FAUX = [
     id: "cto-tout-marche",
     sourceTermeId: "cto",
     categorie: "Enveloppes fiscales",
-    affirmation: "Le CTO permet d'investir sur n'importe quel marché mondial, y compris la crypto ou les produits dérivés.",
-    reponse: true,
+    affirmation: "Un CTO permet d'acheter directement des bitcoins, comme sur une plateforme crypto.",
+    reponse: false,
     explication:
-      "Le CTO donne accès aux actions US, à l'Asie, au monde entier, mais aussi aux ETF sectoriels, obligations, trackers crypto et produits dérivés — sans aucun plafond de montant.",
+      "Un CTO donne accès à de nombreux titres selon le courtier, parfois à des produits cotés liés aux cryptos. Détenir un produit qui suit le bitcoin n'est pas la même chose que posséder directement des bitcoins.",
   },
   {
     id: "ldds-que-des-especes",
@@ -390,10 +390,10 @@ export const VRAI_FAUX = [
     id: "action-droit-vote",
     sourceTermeId: "action",
     categorie: "Produits & marchés",
-    affirmation: "Détenir une action te donne le droit de voter en assemblée générale de l'entreprise.",
+    affirmation: "Une action ordinaire donne généralement le droit de voter en assemblée générale.",
     reponse: true,
     explication:
-      "En tant qu'actionnaire, tu peux voter en assemblée générale et recevoir une part des bénéfices sous forme de dividendes — c'est ce qui distingue une action d'un simple placement financier passif.",
+      "Une action ordinaire donne généralement un droit de vote en assemblée générale. Le dividende, lui, n'est jamais automatique : l'entreprise peut décider de ne rien distribuer.",
   },
   {
     id: "obligation-definition",
@@ -402,7 +402,7 @@ export const VRAI_FAUX = [
     affirmation: "Une obligation, c'est un prêt que tu accordes à une entreprise ou à un État.",
     reponse: true,
     explication:
-      "C'est exactement ça : en échange de ce prêt, l'émetteur te verse un intérêt régulier (le coupon) et te rembourse la valeur nominale à l'échéance fixée à l'avance.",
+      "Tu prêtes de l'argent à un émetteur. Selon l'obligation, les intérêts peuvent être versés régulièrement ou à l'échéance. Le remboursement prévu dépend aussi de sa capacité à payer.",
   },
   {
     id: "opci-plus-volatil-scpi",
@@ -411,7 +411,7 @@ export const VRAI_FAUX = [
     affirmation: "Un OPCI est toujours moins volatil qu'une SCPI classique.",
     reponse: false,
     explication:
-      "C'est l'inverse : la poche non-immobilière obligatoire (actions, obligations, liquidités) rend l'OPCI plus exposé aux mouvements des marchés financiers, donc plus volatil qu'une SCPI investie à quasi 100% en immeubles.",
+      "Un OPCI détient aussi des actifs financiers : leur valeur peut réagir vite aux marchés. Cela peut accentuer ses variations, mais aucun des deux placements ne garantit le capital et leur volatilité ne se classe pas une fois pour toutes.",
   },
   {
     id: "tracker-abus-langage",
@@ -543,10 +543,10 @@ export const VRAI_FAUX = [
     id: "etf-capitalisation-reinvestit",
     sourceTermeId: "reinvestissement-dividendes",
     categorie: "Mécanismes & stratégies",
-    affirmation: "Un ETF de capitalisation (Acc) réinvestit automatiquement les dividendes reçus, sans frais supplémentaires.",
+    affirmation: "Un ETF de capitalisation (Acc) conserve les dividendes reçus dans le fonds au lieu de te les verser.",
     reponse: true,
     explication:
-      "C'est la différence avec un ETF de distribution (Dist) : l'ETF de capitalisation rachète automatiquement des parts avec les dividendes perçus, en interne, sans frais de courtage ni action de ta part.",
+      "Les dividendes restent dans les actifs du fonds et contribuent à sa valeur. Tu n'as pas d'ordre de réinvestissement à passer ni de frais de courtage liés à cet ordre ; les frais habituels de l'ETF restent applicables.",
   },
 
   // ---------- Troisième affirmation pour les termes qui n'en avaient que 2 ----------
@@ -689,10 +689,10 @@ export const VRAI_FAUX = [
     id: "assurance-emprunteur-obligatoire",
     sourceTermeId: "effet-levier-immo",
     categorie: "Immobilier",
-    affirmation: "L'assurance emprunteur est obligatoire pour un crédit immobilier utilisant l'effet de levier.",
-    reponse: true,
+    affirmation: "La loi oblige à souscrire une assurance emprunteur pour obtenir un crédit immobilier.",
+    reponse: false,
     explication:
-      "Au même titre que les intérêts d'emprunt et les frais de dossier bancaire, l'assurance emprunteur fait partie des coûts obligatoires d'un crédit immobilier, quel que soit le montant du levier utilisé.",
+      "La loi ne l'impose pas. En pratique, la banque peut exiger une assurance avant d'accorder le prêt, mais tu peux choisir un autre assureur si les garanties demandées sont respectées.",
   },
   {
     id: "lmnp-micro-bic-abattement",
