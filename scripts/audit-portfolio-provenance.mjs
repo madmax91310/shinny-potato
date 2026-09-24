@@ -4,8 +4,8 @@
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 
 const groups = {
-  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist`,
-  'Indice ou cours du sous-jacent': `msci_europe msci_em or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum msci_world_ishares msci_world_amundi_pea msci_acwi ftse_allworld_vanguard msci_em_spdr smallcap_europe`,
+  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard`,
+  'Indice ou cours du sous-jacent': `msci_europe msci_em or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum msci_world_ishares msci_world_amundi_pea msci_acwi msci_em_spdr smallcap_europe`,
   'Autre fonds ou historique mixte': `argent sect_semi jepq oblig_hy_amundi actions_asie_ex_japon quality_dividend`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
@@ -29,7 +29,7 @@ const usdReturns = new Set(`nasdaq100_ishares actions_coree actions_taiwan actio
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
   actions_japon actions_value sect_financieres sect_sante smallcap_monde mp_large mp_large_icom
-  sect_semi jepq sp500_ishares
+  sect_semi jepq sp500_ishares ftse_allworld_vanguard
   high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes
   strat_dividendes_dist`.trim().split(/\s+/))
 const partialOrSyntheticYears = new Map(Object.entries({
@@ -40,6 +40,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
   quality_dividend: '2020 : rendement de la part Dist du même fonds',
 }))
 const issuerSources = {
+  ftse_allworld_vanguard: 'https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf',
   msci_world: 'Fiche Amundi CW8 au 31/08/2026',
   sp500: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630',
   nasdaq100: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF',
@@ -91,7 +92,7 @@ const issuerSources = {
 const partialIssuerSources = {
   sect_semi: 'https://www.vaneck.com/fr/fr/smh-supporting-doc.pdf',
   jepq: 'https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/ch/en/regulatory/annual-report/jpm-icav-etf-annual-report-ch-en.pdf',
-  actions_asie_ex_japon: 'https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.msci.com/documents/10199/0ee7e00a-0b55-43fa-9c67-c20008a01db5',
+  actions_asie_ex_japon: 'https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.ishares.com/uk/professionals/en/products/251848/ishares-msci-ac-far-east-ex-japan-ucits-etf',
   quality_dividend: 'https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.ishares.com/gls-download/literature/fact-sheet/wqdv-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf',
 }
 const proxySources = {
@@ -105,7 +106,6 @@ const indexSources = {
   msci_world_ishares: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
   msci_world_amundi_pea: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
   msci_acwi: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
-  ftse_allworld_vanguard: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e + https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf',
   smallcap_europe: 'https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0',
   or: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
   or_wisdomtree: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
@@ -127,7 +127,6 @@ const primarySeries = new Map(Object.entries({
   msci_world_ishares: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   msci_acwi: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
-  ftse_allworld_vanguard: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
   smallcap_europe: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
   or: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
   or_wisdomtree: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
