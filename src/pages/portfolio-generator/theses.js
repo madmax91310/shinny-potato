@@ -476,7 +476,7 @@ export const PROFILES = [
     ],
     ctas: [
       "Tu vises plutôt le revenu régulier ou la plus-value à la revente ? 👇",
-      "SCPI, foncières, dividendes, JEPQ... ta source de revenu préférée ? 👇",
+      "SCPI, foncières, dividendes, QYLD... ta source de revenu préférée ? 👇",
       "Vivre (en partie) de son portefeuille, tu y penses déjà ou c'est trop tôt pour toi ? 👇",
       "Tu vises quel revenu mensuel pour en vivre un jour ? 👇",
       "Immobilier physique, foncières cotées ou dividendes : ta source de revenu préférée ? 👇",
@@ -638,19 +638,19 @@ export const PROFILES = [
       dynamique: {
         hooks: [
           {
-            hook: "45% du portefeuille en JEPQ, un fonds qui vend des options. Tu sais ce que ça implique ?",
+            hook: "45% du portefeuille en QYLD, un fonds qui vend des options. Tu sais ce que ça implique ?",
             intro: "Ça plafonne la hausse en marché haussier, mais ça verse un revenu mensuel élevé.",
           },
           {
-            hook: "Le covered call (JEPQ) devient la ligne dominante à 45%. Un pari sur le revenu plutôt que sur la performance — ça te va ?",
+            hook: "Le covered call (QYLD) devient la ligne dominante à 45%. Un pari sur le revenu plutôt que sur la performance — ça te va ?",
             intro: "Le reste (foncières, dividendes, high yield) vient juste diversifier la source de ce revenu.",
           },
         ],
         assets: [
           {
-            id: "jepq", pct: 45,
+            id: "qyld_ucits", pct: 45,
             pourquoi: [
-              "Un revenu mensuel élevé (~9-10% par an), en échange d'une hausse plafonnée en marché très haussier.",
+              "Un revenu mensuel variable, en échange d'une hausse plafonnée en marché très haussier.",
               "{pct}% : la ligne la plus lourde de cette version dynamique du Rentier.",
             ],
           },
@@ -658,14 +658,14 @@ export const PROFILES = [
             id: "foncieres_etf_dist", pct: 25,
             pourquoi: [
               "Une deuxième source de revenu, décorrélée du covered call : les loyers de l'immobilier coté.",
-              "Vient diversifier la source de distribution au-delà du seul JEPQ.",
+              "Vient diversifier la source de distribution au-delà du seul QYLD.",
             ],
           },
           {
             idOptions: DIVIDEND_OPTIONS_DIST, pct: 20,
             pourquoi: [
               "Une troisième source de revenu, sur des entreprises qui distribuent depuis des décennies.",
-              "Complète le duo JEPQ / foncières avec une brique actions plus classique.",
+              "Complète le duo QYLD / foncières avec une brique actions plus classique.",
             ],
           },
           {
@@ -680,7 +680,7 @@ export const PROFILES = [
       offensif: {
         hooks: [
           {
-            hook: "65% du portefeuille sur un seul fonds à vente d'options (JEPQ). Ça te paraît trop concentré pour un Rentier ?",
+            hook: "65% du portefeuille sur un seul fonds à vente d'options (QYLD). Ça te paraît trop concentré pour un Rentier ?",
             intro: "Pour ce profil, c'est assumé : maximiser le revenu mensuel plutôt que diversifier les sources.",
           },
           {
@@ -688,19 +688,15 @@ export const PROFILES = [
             intro: "Le pari, c'est que la prime d'options rapporte plus que ce qu'elle plafonne en hausse.",
           },
         ],
-        // Exception de drawdown minimum (audit "post-audit v6", août 2026) : le covered call du
-        // JEPQ plafonne mécaniquement son propre drawdown (la prime d'option limite la baisse
-        // autant que la hausse) — un pire exercice "sage" pour ce combo n'est donc jamais un
-        // signe de mauvais calibrage, contrairement à un Bouclier Équilibré trop plat (cf.
-        // correction 2). Le niveau Offensif se justifie ici par la thèse "revenus maximaux au prix
-        // d'un plafond de hausse", pas par l'amplitude du risque en capital — cohérent avec
-        // RISK_BOUNDS.offensif (pas de plancher : la performance, ou ici le revenu, prime). Tout
-        // audit futur sur un plancher de drawdown minimum doit exempter ce combo précis.
+        // Exception de plancher de baisse pour ce profil orienté revenu :
+        // La vente d’options peut amortir une partie de la baisse, sans garantir le capital.
+        // Le profil Offensif reflète ici une concentration de 65 % sur une seule stratégie
+        // de revenu ; la baisse annuelle observée ne suffit pas à mesurer ce risque.
         drawdownFloorException:
-          "Le covered call de JEPQ plafonne mécaniquement le drawdown. Le niveau Offensif est justifié par la thèse revenus maximaux, pas par le risque en capital.",
+          "La vente d’options peut amortir certaines baisses, sans garantir le capital. Le palier Offensif concentre 65 % sur un seul ETF.",
         assets: [
           {
-            id: "jepq", pct: 65,
+            id: "qyld_ucits", pct: 65,
             pourquoi: [
               "{pct}% : la thèse assumée jusqu'au bout — un revenu élevé, quitte à plafonner fortement la hausse.",
               "La ligne dominante de cette version offensive du Rentier : tout le portefeuille tourne autour d'elle.",

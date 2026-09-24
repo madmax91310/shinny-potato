@@ -41,12 +41,12 @@ export function dynamicHookPair(profileId, riskId, index, selection, worst, fmtP
         [`${p(1)}% en foncières cotées. Tu trouves ça trop concentré ?`, "SCPI, dividendes et obligations complètent cette position sans effacer sa taille."],
       ],
       dynamique: () => [
-        [`${p(0)}% en JEPQ, un fonds qui vend des options. Tu sais ce que ça implique ?`, "Les options limitent une partie de la hausse ; le revenu versé peut varier."],
+        [`${p(0)}% en QYLD, un fonds qui vend des options. Tu sais ce que ça implique ?`, "Les options limitent une partie de la hausse ; le revenu versé peut varier."],
         [`Le covered call pèse ${p(0)}% ici. Tu privilégierais le revenu potentiel à la hausse du capital ?`, "Foncières, dividendes et high yield apportent d'autres risques et d'autres sources de revenu potentiel."],
       ],
       offensif: () => [
-        [`${p(0)}% sur JEPQ, un seul fonds à vente d'options. Trop concentré pour un Rentier ?`, "La recherche de revenu s'accompagne d'une forte dépendance à cette stratégie."],
-        [`JEPQ pèse ${p(0)}% du Rentier Offensif. C'est une place que tu assumerais ?`, "Les primes d'options peuvent générer du revenu, sans garantir le capital ni les distributions."],
+        [`${p(0)}% sur QYLD, un seul fonds à vente d'options. Trop concentré pour un Rentier ?`, "La recherche de revenu s'accompagne d'une forte dépendance à cette stratégie."],
+        [`QYLD pèse ${p(0)}% du Rentier Offensif. C'est une place que tu assumerais ?`, "Les primes d'options peuvent générer du revenu, sans garantir le capital ni les distributions."],
       ],
     },
     pro_europe: {

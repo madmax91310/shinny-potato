@@ -434,16 +434,16 @@ function buildWarning(profile, profileId, selection, worst, history) {
     // jamais un détail optionnel qu'un tirage au sort pourrait faire disparaître.
     warning += ` ${profile.mandatoryWarning}`;
   }
-  const jepq = selection.find((s) => s.id === "jepq");
-  if (jepq && jepq.pct > 30) {
+  const coveredCall = selection.find((s) => s.id === "qyld_ucits");
+  if (coveredCall && coveredCall.pct > 30) {
     // Avertissement dynamique (pas stocké en dur dans theses.js) : ne se déclenche que si le
     // covered call dépasse effectivement 30% de CE tirage/CETTE composition précise.
-    warning += " Le covered call (JEPQ) plafonne la hausse en marché bull. Ce portefeuille génère des revenus — pas une performance maximale.";
+    warning += " Le covered call (QYLD) limite les gains quand le Nasdaq-100 monte fortement. Ses distributions ne sont pas garanties.";
   }
   const leveraged = selection.find((s) => s.id === "lqq" || s.id === "cl2");
   if (leveraged) {
     // Toujours présente dès qu'un ETF à levier (LQQ ou CL2, cf. LEVERAGE_OPTIONS) figure dans le
-    // tirage/la composition (pas de seuil de %, contrairement au JEPQ ci-dessus) : la mécanique de
+    // tirage/la composition (pas de seuil de %, contrairement au QYLD ci-dessus) : la mécanique de
     // capitalisation quotidienne du levier mérite d'être rappelée à chaque apparition.
     warning += ` ${leveraged.name} est un ETF à levier 2x quotidien : sur plusieurs années, sa performance n'est jamais un simple x2 de son indice sous-jacent (capitalisation quotidienne du levier, dans un sens comme dans l'autre). Pas fait pour être oublié en portefeuille sans suivi.`;
   }
