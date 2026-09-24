@@ -41,27 +41,28 @@ export const BROKERS = [
   {
     id: "bourso", nom: "BoursoBank", code: "BB", color: "#E4735E", emoji: "🟡", lastVerified: "09/09/2026",
     frais: { rank: 2, resume: "1,99€ puis 0,60%", detail: "Plafonné à 0,5% du montant" },
-    // MàJ du 05/09/2026 (coquille corrigée le 09/09/2026 : la date indiquait par erreur 05/10/2026,
-    // une date alors future — confirmé 05/09/2026 par l'utilisateur) (communication officielle
-    // BoursoBank en vigueur à cette date) : Boursomarkets
-    // est devenu un partenariat exclusif avec Amundi sur +275 ETF (dont 75 éligibles PEA), remplaçant
-    // l'ancienne offre iShares/OPCVM partenaires/Turbos-Warrants SG & Goldman Sachs.
-    boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "+275 ETF (dont 75 éligibles PEA) — partenaire exclusif Amundi" },
-    dca: { rank: 2, resume: "0€ transaction, frais selon DIC", detail: "8 fonds maison, mensuel uniquement" },
+    // Revue ciblée du 24/09/2026 : la page officielle Boursomarkets présente les ETF iShares
+    // (et Amundi parmi les OPCVM), sans confirmer le nombre de 275 ETF ni l'exclusivité Amundi.
+    // https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit
+    boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "ETF iShares éligibles à l’offre, selon le compte" },
+    // Le Plan d'Épargne comporte 8 fonds et 0€ de frais de transaction, mais 0,59% de frais
+    // annuels de gestion et autres frais administratifs/d'exploitation selon la page officielle.
+    // https://www.boursobank.com/bourse/plan-epargne
+    dca: { rank: 2, resume: "0€ transaction, 0,59%/an", detail: "8 fonds maison, mensuel uniquement" },
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret Bourso+" },
-    pointFaible: "DCA limité 8 fonds maison, frais de gestion selon DIC. ℹ️ Ordre minimum : 100€ actions / 100€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
+    pointFaible: "DCA limité à 8 fonds maison (0,59%/an de frais de gestion et autres frais). ℹ️ Ordre minimum : 100€ actions / 100€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
-      frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)", "⚡ Exception Boursomarkets → 0€ sur +275 ETF (dont 75 éligibles PEA), partenaire exclusif Amundi"],
-      dca: ["⚠️ 0€ de transaction — frais de gestion selon DIC — 8 fonds maison, mensuel uniquement, dès 10€/mois"],
+      frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)"],
+      dca: ["⚠️ 0€ de transaction — 0,59%/an de frais de gestion et autres frais — 8 fonds maison, mensuel uniquement, dès 10€/mois"],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret Bourso+)"],
-      faibles: ["DCA limité 8 fonds maison, frais de gestion selon DIC, ordre min ETF 100€, Bourses EU 2 500€"],
+      faibles: ["DCA limité à 8 fonds maison (0,59%/an), ordre min ETF 100€, Bourses EU 2 500€"],
       verdict: "Tu veux un écosystème bancaire complet avec PEA-PME",
     },
   },
@@ -158,38 +159,27 @@ export const BROKERS = [
   },
   {
     id: "caidf", nom: "CA Île-de-France", code: "CA", color: "#B08968", emoji: "🟠", lastVerified: "14/09/2026",
-    // Revérifié le 14/09/2026 (audit "outils", complétion des entrées sans date documentée).
-    // CORRECTION : l'abonnement InvestStore Intégral est passé de 96€/an (si <12 ordres) à
-    // 101,40€/an (si <24 ordres) — confirmé par 6 requêtes convergentes, dont une avec un récit
-    // explicite de hausse tarifaire ("évolution depuis le précédent tarif de 96€, courant à la
-    // Caisse de Paris, vers le tarif actuel de 101,40€"). L'ancien couple 96€/12 ordres reste
-    // documenté par plusieurs sources comme un tarif antérieur ou propre à une autre Caisse
-    // régionale, jamais comme le tarif actuel de CA Île-de-France. Le taux de courtage par palier
-    // (0,12-0,48% ci-dessous) N'A PAS pu être revérifié avec confiance : plusieurs sources évoquent
-    // un barème plus bas ("0,09% avec un minimum de 0,99€"), mais les exemples chiffrés qu'elles
-    // donnent elles-mêmes sont mathématiquement incohérents entre eux (ex. "0,09%" puis un calcul
-    // qui revient en réalité à 0,18% sur un ordre de 1000€) — contradiction non résolue même après
-    // plusieurs requêtes, WebFetch étant bloqué dans ce sandbox pour consulter la grille tarifaire
-    // officielle en PDF. Valeur conservée par prudence plutôt que remplacée par un chiffre incertain
-    // (même principe que l'écart non tranché sur oblig_etat_eur_short/MSCI Japan IMI) — à revoir
-    // avec un accès direct à la grille tarifaire PDF de CA Île-de-France.
-    frais: { rank: 3, resume: "Intégral 0,12-0,48%", detail: "Abonnement 101,40€/an si <24 ordres" },
+    // Revue du 24/09/2026 : 101,40€/24 ordres se retrouve dans la brochure 2025 de CA Île-de-France,
+    // alors que des documents 2026 évoquent 96€/12 ordres. Le barème 0,12-0,48% provenait d'une
+    // autre caisse régionale ; aucun chiffre local 2026 n'est publié sans la grille exacte.
+    // https://ca-paris.credit-agricole.fr/tarif/conditions_tarifaires_particuliers_caidf_04_2025.pdf
+    frais: { rank: 99, resume: "Barème à revérifier", detail: "Invest Store Intégral : consulte la grille CA Île-de-France 2026" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 3, resume: "Non disponible" },
     garde: { rank: 2, resume: "0,20%/sem. + 2,50€/ligne", detail: "Exonérés avec InvestStore Intégral" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { rank: 1, resume: "Oui" },
     liquidites: { rank: 1, resume: "Oui", detail: "Livret A, LDDS, LEP" },
-    pointFaible: "Abonnement 101,40€/an si <24 ordres, transfert PEA sortant 15€/ligne (max 150€)",
+    pointFaible: "Tarifs Invest Store Intégral à revérifier sur la grille régionale 2026 ; transfert PEA sortant 15€/ligne (max 150€)",
     transfertPea: { resume: "Sortant 15€/ligne (max 150€)" },
     post: {
-      frais: ["Intégral → 0,48% ≤500€ / 0,18% de 500€ à 1000€ / 0,12% au-delà", "⚡ Abonnement 101,40€/an si <24 ordres/an"],
+      frais: ["⚠️ Invest Store Intégral : barème et seuil de gratuité de l'abonnement à revérifier dans la grille tarifaire CA Île-de-France 2026"],
       dca: ["❌ Pas de DCA automatique"],
       garde: ["⚠️ 0,20%/semestre + 2,50€/ligne/semestre", "Exonérés avec InvestStore Intégral"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["✅ Oui"],
       liquidites: ["✅ Oui (Livret A, LDDS, LEP)"],
-      faibles: ["Abonnement 101,40€/an si <24 ordres, droits de garde si inactif, transfert PEA sortant 15€/ligne (max 150€)"],
+      faibles: ["Abonnement et courtage à revérifier, droits de garde hors conditions d'exonération, transfert PEA sortant 15€/ligne (max 150€)"],
       verdict: "Tu veux un conseiller en agence et un compte bancaire classique",
     },
   },
@@ -220,7 +210,7 @@ export const BROKERS = [
   },
   {
     id: "saxo", nom: "Saxo Bank", code: "SX", color: "#AAB4CC", emoji: "⚪", lastVerified: "03/09/2026",
-    frais: { rank: 1, resume: "Dès 2€", detail: "0€ sur 70 actions UE jusqu’au 31/12/2026" },
+    frais: { rank: 1, resume: "Dès 2€", detail: "Offre 0€ sur 70 actions UE jusqu’au 31/12/2026, sous conditions" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { rank: 2, resume: "CTO uniquement (PEPS)", detail: "0€ ETF & fonds, mensuel — pas sur PEA" },
     garde: { rank: 1, resume: "0€" },
@@ -236,7 +226,7 @@ export const BROKERS = [
     pointFaible: "DCA pas sur PEA, pas de PEA Jeune",
     transfertPea: { resume: "Entrant ✅ remboursé à 100% jusqu’au 31/12/2026" },
     post: {
-      frais: ["À partir de 2€, plafonné à 0,5% sur PEA", "⚡ Promo → 0€ sur 70 actions UE (jusqu’au 31/12/2026)"],
+      frais: ["À partir de 2€, plafonné à 0,5% sur PEA", "⚡ Offre 0€ sur 70 actions UE jusqu’au 31/12/2026, réservée aux PEA nouvellement ouverts ou transférés éligibles"],
       dca: ["❌ Sur PEA", "✅ CTO — PEPS 0€, ETF & fonds, mensuel"],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
@@ -308,6 +298,17 @@ export function buildTweet(selected) {
   const names = (b) => b.emoji + " " + b.nom;
   const lines = (items) => items.join("\n");
   const detail = (item) => [item.resume, item.detail].filter(Boolean).join(" · ");
+  // Le texte éditorial porte les conditions détaillées. Ne rajouter depuis la carte
+  // que les chiffres absents du post, afin de conserver l'information sans la répéter.
+  const withExtra = (postLines, item) => {
+    const text = postLines.join(" ");
+    const extra = item.detail || "";
+    const numbers = extra.match(/\d+(?:[,.]\d+)?/g) || [];
+    const missing = numbers.length
+      ? numbers.some((number) => !text.includes(number))
+      : Boolean(extra) && !text.toLocaleLowerCase('fr').includes(extra.toLocaleLowerCase('fr'));
+    return lines(missing ? [...postLines, extra] : postLines);
+  };
   const pea = (b) => [
     "PEA " + (b.pea.pea ? "✅" : "❌"),
     "PEA-PME " + (b.pea.pme === null ? "?" : b.pea.pme ? "✅" : "❌"),
@@ -321,34 +322,34 @@ export function buildTweet(selected) {
     "Tu investis chaque mois, tu passes quelques ordres ponctuels ou tu veux aussi un PEA-PME ? Voici les différences à regarder avant de choisir.",
 
     pair("💰 Quand tu passes un ordre", (b) =>
-      lines([...b.post.frais, "Frais affichés : " + detail(b.frais)])
+      withExtra(b.post.frais.filter((line) => !/Boursomarkets/i.test(line)), b.frais)
     ),
     pair("🛒 Et les offres sur certains titres ?", (b) => detail(b.boursomarkets)),
     pair("📅 Si tu investis automatiquement", (b) =>
-      lines([...b.post.dca, "En pratique : " + detail(b.dca)])
+      withExtra(b.post.dca, b.dca)
     ),
 
     pair("🌱 Les enveloppes disponibles", (b) => pea(b)),
     pair("🛡️ Les frais de garde", (b) =>
-      lines([...b.post.garde, "Barème affiché : " + detail(b.garde)])
+      withExtra(b.post.garde, b.garde)
     ),
     pair("📄 Pour la déclaration fiscale", (b) =>
-      lines([...b.post.ifu, "IFU : " + detail(b.ifu)])
+      lines(b.post.ifu)
     ),
     pair("💵 Et les liquidités ?", (b) =>
-      lines([...b.post.liquidites, "Précision : " + detail(b.liquidites)])
+      withExtra(b.post.liquidites, b.liquidites)
     ),
     pair("🔄 Si tu transfères ton PEA", (b) => b.transfertPea?.resume || "Non renseigné"),
 
     pair("⚠️ Ce qui peut coincer", (b) =>
-      lines([...b.post.faibles, b.pointFaible].filter((line, index, all) => all.indexOf(line) === index))
+      withExtra(b.post.faibles, { detail: b.pointFaible })
     ),
     "🎯 Selon ta façon d’investir\n" +
       [b1, b2].map((b) => "Si " + b.post.verdict.charAt(0).toLowerCase() +
         b.post.verdict.slice(1) + ", regarde " + b.nom + ".").join("\n"),
 
     "Et toi, lequel te correspond le mieux ? 👇",
-    "Données vérifiées : " + b1.nom + " le " + b1.lastVerified + ", " +
+    "Dates de contrôle enregistrées (vérifications partielles) : " + b1.nom + " le " + b1.lastVerified + ", " +
       b2.nom + " le " + b2.lastVerified +
       ". Vérifie les tarifs et les offres avant publication. Ce post ne constitue pas un conseil en investissement.",
   ];

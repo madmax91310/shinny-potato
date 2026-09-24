@@ -231,8 +231,12 @@ export const FAMILIES = [
     perfFunds: [
       { key: 'sp500', label: 'Amundi PEA S&P 500', y2023: 21.68, y2024: 32.85, y2025: 3.45 },
       { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', y2023: 49.32, y2024: 33.58, y2025: 6.01 },
-      { key: 'msci_usa', label: 'iShares MSCI USA', y2023: 22.33, y2024: 32.69, y2025: 3.82 },
+      // BlackRock, NAV USD de la part IE00B52SFT06 : les anciens 22,33/32,69/3,82
+      // correspondaient à une autre devise et n'étaient pas comparables sans note.
+      // https://www.blackrock.com/fr/particuliers/products/253740/ishares-msci-usa-b-ucits-etf
+      { key: 'msci_usa', label: 'iShares MSCI USA', y2023: 26.7, y2024: 24.8, y2025: 17.4 },
     ],
+    perfMethodNote: 'ℹ️ Les deux ETF Amundi sont présentés en euros ; iShares MSCI USA est présenté en dollars (NAV de la part USD). Les performances ne sont pas directement comparables sans tenir compte du change.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💳 Tu veux rester en PEA ?', a: 'Amundi PEA S&P 500 (large et simple) ou Amundi PEA Nasdaq-100 (concentré tech).' },
@@ -280,7 +284,7 @@ export const FAMILIES = [
     label: '🌏 Émergents (PEA)',
     intro: 'Un ETF émergents en PEA, oui. Mais entre tous les pays et une seule région, le risque n’est pas le même 🌏\nVoici les cinq déclinaisons 👇',
     indices: [
-      { name: 'Émergents global (ESG resserré)', desc: 'Zone couverte par PAEEM : indice MSCI EM ex Egypt ESG Leaders Select 5% Issuer Custom Capped — 24 pays émergents, mais une sélection ESG plus resserrée que le MSCI EM classique (pas les mêmes lignes qu\'un fonds CTO).', tag: 'Le PEA généraliste 🌍' },
+      { name: 'Émergents global (indice ESG)', desc: 'PAEEM suit désormais le MSCI EM ex-Egypt ESG Broad CTB Select : univers de 23 pays émergents, Égypte exclue, avec des filtres ESG et climatiques (pas les mêmes lignes qu’un fonds CTO classique).', tag: 'Le PEA généraliste 🌍' },
       { name: 'Asie émergente', desc: 'Zone couverte par PAASI : indice MSCI EM Asia Screened Select ex Thermal Coal — 8 pays d\'Asie émergente (Chine, Inde, Taïwan, Corée du Sud…).', tag: 'Concentré sur l\'Asie 🌏' },
       { name: 'Amérique latine', desc: 'Zone couverte par PALAT : indice MSCI Emerging Markets Latin America — Brésil et Mexique en tête.', tag: 'Le pari régional le plus étroit 🌎' },
       { name: 'Inde seule', desc: 'Zone couverte par PINR : indice MSCI India — un seul pays, aucune diversification régionale.', tag: 'Le pari 100 % Inde 🇮🇳' },
@@ -312,7 +316,7 @@ export const FAMILIES = [
     diversification: {
       // Pas de relation d'emboîtement ici (contrairement à un MSCI World → MSCI ACWI) : 5 fonds sur
       // 5 zones distinctes, pas des sous-ensembles les uns des autres.
-      chain: ['PAEEM (24 pays, généraliste ESG-resserré)', 'PAASI (8 pays, Asie émergente)', 'PALAT (Amérique latine)', 'PINR (Inde seule)', 'PLEM (zone EMEA émergente)'],
+      chain: ['PAEEM (23 pays, Égypte exclue, généraliste ESG)', 'PAASI (8 pays, Asie émergente)', 'PALAT (Amérique latine)', 'PINR (Inde seule)', 'PLEM (zone EMEA émergente)'],
       notes: ['⚠️ PAEEM est le seul fonds « généraliste » du lot : les quatre autres sont des paris régionaux ou pays, à combiner avec lui plutôt qu\'à sa place.', '→ Plus la zone est étroite (Inde, Amérique latine, EMEA), plus l\'encours est petit et le TER élevé — PINR grimpe à 0,85 %.'],
     },
     // Performance 2023-2025 (source : justETF/boursedirect, recherche web du 02/09/2026, recoupée sur
@@ -326,7 +330,7 @@ export const FAMILIES = [
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '💳 Tu veux un seul fonds PEA généraliste sur tous les émergents ?', a: 'PAEEM — indice ESG resserré, mais le seul qui couvre les 24 pays.' },
+      { q: '💳 Tu veux un fonds PEA généraliste sur les émergents ?', a: 'PAEEM — indice ESG sur 23 pays émergents, Égypte exclue.' },
       { q: '🌏 Tu veux cibler l\'Asie émergente spécifiquement ?', a: 'PAASI.' },
       { q: '🌎 Tu veux viser l\'Amérique latine (Brésil, Mexique…) ?', a: 'PALAT — mais très volatil (-25 % en 2024, +36 % en 2025).' },
       { q: '🇮🇳 Tu veux un pari 100 % Inde ?', a: 'PINR — TER 0,85 %, le plus cher du lot.' },
@@ -658,9 +662,13 @@ export const FAMILIES = [
     perfFunds: [
       { key: 'msci_china', label: 'iShares MSCI China', y2023: -11.4, y2024: 19.2, y2025: 30.8 },
       { key: 'amundi_pea_chine', label: 'Amundi PEA Chine (Screened)', y2023: -15.98, y2024: 17.15, y2025: 14.64 },
-      { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)', y2023: -16.58, y2024: 39.34, y2025: 13.33 },
+      // BlackRock, NAV USD de la part IE00B02KXK85, dividendes réinvestis ;
+      // les anciens chiffres étaient exprimés en EUR sans distinction visible.
+      // https://www.ishares.com/uk/individual/en/literature/fact-sheet/fxc-ishares-china-large-cap-ucits-etf-fund-fact-sheet-en-gb.pdf
+      { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)', y2023: -13.57, y2024: 31.03, y2025: 28.16 },
       { key: 'msci_china_a', label: 'iShares MSCI China A', y2023: -13.8, y2024: 11.3, y2025: 26.0 },
     ],
+    perfMethodNote: 'ℹ️ Les parts iShares MSCI China, FTSE China 50 et MSCI China A sont en dollars ; Amundi PEA Chine est en euros. Comparer directement les rendements mélange les effets de change.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '🏙️ La référence la plus suivie, en CTO ?', a: 'iShares MSCI China.' },
