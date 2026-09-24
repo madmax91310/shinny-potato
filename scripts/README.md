@@ -138,12 +138,14 @@ utilisent une même série LBMA Gold Price PM USD publiée par le World Gold Cou
 restent sur l'indice MSCI Net EUR. Le script protège désormais ces 12 séries et garde une
 source nommée pour chacun des 17 supports encore fondés sur un indice ou cours.
 
-**Limite ouverte :** les quatre proxies BTC et le proxy ETH gardent leurs estimations
-arrondies de cours spot en USD. Les pages des émetteurs confirment l'ETP et son sous-jacent,
-mais ne publient pas ces six rendements annuels dans une convention unique de clôture.
-Ils ne figurent donc pas parmi les séries annuelles certifiées par une source primaire.
-Le proxy ETH exclut en outre les récompenses de staking de l'ETP CoinShares. La part
-DE000A27Z304 porte désormais le nom officiel Bitwise Physical Bitcoin ETP.
+Les quatre proxies BTC et le proxy ETH ont ensuite été recoupés avec les tableaux annuels
+Slickcharts BTC/USD et ETH/USD, dont la méthode déclarée est la variation entre clôtures de
+deux années successives. Tous les supports d'une même crypto utilisent désormais exactement
+les mêmes valeurs, avec deux décimales. Cette convention peut différer d'une clôture fixée à
+minuit UTC ; la série n'est toujours **pas une performance d'ETP**, ne comprend ni ses frais,
+ni le change, ni les récompenses de staking de l'ETP CoinShares Ethereum. Les pages émetteur
+confirment les ISIN, tandis que Slickcharts fournit uniquement le proxy spot. La part
+DE000A27Z304 porte le nom officiel Bitwise Physical Bitcoin ETP.
 
 ## `check-freshness.mjs`
 
