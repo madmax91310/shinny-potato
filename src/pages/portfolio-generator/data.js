@@ -565,10 +565,11 @@ export const ASSETS = [
     isin: "IE00BKPSFC54",
     distributing: false,
     // Rendements NAV USD de la part Acc : benchmark modifié le 1er juin 2022.
-    // Part lancée en mai 2020 : aucun rendement calendaire 2020 publié.
+    // Part Acc lancée en mai 2020 : 2020 reprend le rendement de la part Dist
+    // du même fonds, publié par BlackRock ; objectif/indice modifié en juin 2022.
     // https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf
-    r: [null, 15.79, -7.28, 17.16, 9.76, 23.97],
-    confidenceNote: 'Performances NAV en dollars ; 2020 est exclue car la part a démarré en mai 2020.',
+    r: [0.12, 15.79, -7.28, 17.16, 9.76, 23.97],
+    confidenceNote: 'Rendements NAV en dollars ; 2020 provient de la part distribuante du même fonds (part Acc lancée en mai 2020). Indice modifié en juin 2022.',
     desc: [
       "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
       "vise des entreprises capables de maintenir leur dividende même en période difficile.",
@@ -854,19 +855,13 @@ export const ASSETS = [
   {
     id: "smallcap_europe", name: "iShares MSCI Europe Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
     // ISIN vérifié le 13/09/2026 (audit "ISIN pour chaque ETF") : ce fonds UCITS EUR (ESCE) a été
-    // lancé le 25/03/2026 — comme msci_world_amundi_pea ailleurs dans ce fichier, il n'a donc
-    // aucun historique propre remontant à 2020 ; la série ci-dessous reste celle de l'indice/du
-    // jumeau IEUS décrite juste en dessous, pas une performance réellement constatée de CETTE part.
+    // lancé le 25/03/2026 : série 2020-2025 de l'indice MSCI Europe Small Cap Net EUR.
     isin: "IE0000N55FP4",
     // confidenceNote : badge visible en UI (cf. AllocationList, App.jsx) plutôt que seulement en
     // commentaire de code — demande utilisateur, audit "outils" du 14/09/2026.
-    confidenceNote: "Simulation sur l'ETF américain IEUS en dollars : cette part UCITS EUR a été lancée en 2026 et n'a aucun historique 2020-2025 propre. Le change et les frais diffèrent.",
-    // Source : performance annuelle réelle de l'iShares MSCI Europe Small-Cap ETF (part USD,
-    // cotée aux États-Unis, IEUS — même indice sous-jacent que la version UCITS EUR, mais
-    // devise différente ; une donnée EUR spécifique n'a pas pu être trouvée de façon fiable),
-    // années 2020-2025.
-    // https://www.ishares.com/us/literature/fact-sheet/ieus-ishares-msci-europe-small-cap-etf-fund-fact-sheet-en-us.pdf
-    r: [13.84, 14.75, -26.94, 16.63, -1.06, 31.49],
+    confidenceNote: "Simulation sur l'indice MSCI Europe Small Cap, dividendes nets réinvestis, en euros et avant frais : ETF lancé en 2026, sans historique propre 2020-2025.",
+    // https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0
+    r: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
     desc: [
       "des petites capitalisations européennes, plus proches de l'économie réelle du continent.",
       "un potentiel de croissance supérieur aux grandes valeurs, sans sortir de la logique 100% Europe.",
@@ -1119,14 +1114,14 @@ export const ASSETS = [
   },
   {
     // Part iShares lancée en avril 2020 : 2021-2025 sont les performances calendaires
-    // « Total Return » publiées en USD par BlackRock ; 2020 reste une année pleine d'indice
-    // utilisée comme proxy (le fonds n'a pas vécu une année complète). L'indice EXCLUT l'Inde.
+    // « Total Return » publiées en USD par BlackRock ; 2020 est l'indice MSCI
+    // AC Far East ex Japan Net USD (fonds Acc lancé en avril). L'indice EXCLUT l'Inde.
     // https://www.ishares.com/uk/individual/en/products/313316/ishares-msci-ac-far-east-ex-japan-ucits-etf
     id: "actions_asie_ex_japon", name: "iShares MSCI AC Far East ex-Japan UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BKPX3K41",
     // https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf
-    r: [null, -8.92, -21.95, 2.30, 11.67, 39.91],
-    confidenceNote: 'Part lancée en avril 2020 : aucune performance calendaire 2020. Rendements 2021-2025 du fonds en dollars.',
+    r: [26.04, -8.92, -21.95, 2.30, 11.67, 39.91],
+    confidenceNote: '2020 : indice MSCI AC Far East ex Japan Net en dollars, avant frais ; part lancée en avril 2020. 2021-2025 : rendements de la part en dollars.',
     desc: [
       "Chine, Taïwan, Corée, Asean... l'Asie développée et émergente réunie en une seule ligne, hors Japon et Inde.",
       "plus diversifié qu'un pari sur un seul pays asiatique, mais toujours concentré sur une seule région du monde.",
