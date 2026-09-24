@@ -513,7 +513,7 @@ export const PROFILES = [
             id: "fonds_euros", pct: 50,
             pourquoi: [
               "La moitié du portefeuille sur le support le plus sûr, avant même de parler de revenu.",
-              "{pct}% pour que la recherche de revenu ne mette jamais le capital en danger.",
+              "{pct}% dans le fonds euros pour amortir les pertes possibles des autres lignes du portefeuille.",
             ],
           },
           {
@@ -657,7 +657,7 @@ export const PROFILES = [
           {
             id: "foncieres_etf_dist", pct: 25,
             pourquoi: [
-              "Une deuxième source de revenu, décorrélée du covered call : les loyers de l'immobilier coté.",
+              "Une deuxième source de distributions via l'immobilier coté, dont le cours peut aussi baisser en même temps que les actions.",
               "Vient diversifier la source de distribution au-delà du seul QYLD.",
             ],
           },
@@ -1283,7 +1283,7 @@ export const PROFILES = [
           {
             id: "fonds_euros", pct: 55,
             pourquoi: [
-              "Le socle défensif par excellence, pour ne jamais mettre le capital en danger.",
+              "Le fonds euros sécurise cette partie de l'allocation, sans garantir la valeur des autres lignes.",
               "{pct}% pour garder une vraie marge sous un plancher de perte très serré.",
             ],
           },
@@ -1815,7 +1815,7 @@ export const PROFILES = [
           {
             idOptions: ASIA_OPTIONS, pct: 8,
             pourquoi: [
-              "Une deuxième source de diversification géographique, décorrélée du pari sectoriel comme du bloc World.",
+              "Une exposition supplémentaire à l'Asie ; ces marchés peuvent aussi baisser en même temps que le bloc World.",
               "{pct}% pour ne pas dépendre uniquement des États-Unis dans la partie diversifiée du portefeuille.",
             ],
           },
@@ -1875,7 +1875,7 @@ export const PROFILES = [
           {
             id: "actions_value", pct: 10,
             pourquoi: [
-              "Une diversification par le style plutôt que par le secteur, décorrélée du pari central.",
+              "Un biais value distinct du pari sectoriel central, qui reste exposé aux baisses des actions.",
               "{pct}% pour ne pas dépendre uniquement du bloc World comme seule vraie diversification.",
             ],
           },

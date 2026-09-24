@@ -7,6 +7,9 @@ import { DEFAULT_THEMES } from '../src/pages/etf-tweets/data/themes.js'
 import { ETFS } from '../src/pages/etf-sheets/data.js'
 import { CASES } from '../src/pages/concrete-cases/data.js'
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
+import { FAMILIES } from '../src/pages/index-comparator/data.js'
+import { PROFILES } from '../src/pages/portfolio-generator/theses.js'
+import { TWEETS } from '../src/pages/tweet-bank/data.js'
 
 const failures = []
 function requireFields(label, entry, fields) {
@@ -45,6 +48,33 @@ for (const theme of DEFAULT_THEMES) {
 const allWorld = DEFAULT_THEMES.flatMap(theme => theme.etfs).find(etf => etf.isin === 'IE00BK5BQT80')
 if (!allWorld || /small.?cap|petites capitalisations/i.test(allWorld.differenciateur)) {
   failures.push('FTSE All-World : composition petites capitalisations erronée ou ISIN absent')
+}
+const allWorldSheet = ETFS.find(etf => etf.isin === 'IE00BK5BQT80')
+const allWorldIndex = FAMILIES.find(family => family.id === 'monde')?.indices.find(index => index.name === 'FTSE All-World')
+if (!allWorldSheet || /petites capitalisations comprises/i.test(allWorldSheet.whatIs)) {
+  failures.push('Fiche FTSE All-World : petites capitalisations attribuées à tort à l’indice')
+}
+if (!allWorldIndex || /en plus les mid caps/i.test(allWorldIndex.desc)) {
+  failures.push('Comparateur FTSE All-World : les mid caps figurent aussi dans le MSCI ACWI')
+}
+const europeFamily = FAMILIES.find(family => family.id === 'europe')
+if (europeFamily?.verdict?.some(item => /sans UK\/Suisse/i.test(item.q))) {
+  failures.push('Comparateur MSCI Europe : le Royaume-Uni et la Suisse font partie de l’indice')
+}
+const etz = europeFamily?.perfFunds?.find(item => item.key === 'stoxx600')
+if (!etz || etz.y2023 !== 14.37 || etz.y2024 !== 8.41 || etz.y2025 !== 20.48) {
+  failures.push('Comparateur ETZ : série 2023-2025 différente de la fiche BNP FR0011550193')
+}
+const europeArchive = TWEETS.find(tweet => tweet.id === 21)
+if (!europeArchive || /sans UK\/Suisse|YTD \+9,21 %|2023 \+15,84 %/.test(europeArchive.text)) {
+  failures.push('Banque tweet 21 : exposition MSCI Europe ou rendements historiques obsolètes')
+}
+for (const profile of PROFILES) for (const combo of Object.values(profile.riskCombos)) {
+  for (const asset of combo.assets) for (const rationale of asset.pourquoi ?? []) {
+    if (/ne (?:mette|mettre) jamais le capital en danger/i.test(rationale)) {
+      failures.push(`Générateur ${profile.id} : sécurité du portefeuille entier promise par une seule ligne`)
+    }
+  }
 }
 for (const [id, expected] of [['bitcoin', 303.16], ['ethereum', 469.25]]) {
   const asset = ASSETS.find(item => item.id === id)
