@@ -129,9 +129,9 @@ export const ASSETS = [
   {
     id: "oblig_hy", name: "iShares € High Yield Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
     isin: "IE00B66F4759",
-    // Source : performance annuelle du fonds iShares € High Yield Corp Bond UCITS ETF (IHYG),
-    // Yahoo Finance, années 2020-2025.
-    r: [1.29, 3.02, -9.47, 11.31, 5.71, 5.32],
+    // Rendements NAV annuels EUR, revenus réinvestis, part IE00B66F4759 :
+    // https://www.ishares.com/uk/individual/en/products/251843/
+    r: [0.92, 2.97, -9.72, 11.33, 6.67, 4.80],
     desc: [
       "des obligations d'entreprises plus fragiles, donc mieux rémunérées : plus de coupon.",
       "le compartiment obligataire le plus généreux en revenu, avec un vrai risque de crédit en face.",
@@ -191,8 +191,10 @@ export const ASSETS = [
     // sp500 qui est la version PEA d'Amundi : leurs performances propres diffèrent.
     id: "sp500_ishares", name: "iShares Core S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B5BMR087",
-    r: [8.54, 38.24, -12.95, 21.53, 31.71, 3.72],
-    confidenceNote: 'Série attribuée à cette part iShares sans tableau officiel en euros recoupé ; sa devise et ses valeurs restent à confirmer avant comparaison avec la part Amundi PEA.',
+    // NAV calendaire de la part iShares en USD, dividendes réinvestis :
+    // https://www.ishares.com/gls-download/literature/fact-sheet/cspx-ishares-core-s-p-500-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [18.02, 28.36, -18.35, 25.92, 24.69, 17.58],
+    confidenceNote: 'Rendements officiels de la part iShares en dollars ; ils ne sont pas directement comparables aux rendements en euros de la part Amundi PEA.',
     desc: [
       "les 500 plus grandes entreprises cotées aux États-Unis, tirées par la tech ces dernières années.",
       "l'indice le plus suivi au monde, souvent utilisé comme référence absolue de performance.",
@@ -231,15 +233,15 @@ export const ASSETS = [
     // capitalisation quotidienne fait dériver la performance longue durée d'un simple ×2 du
     // sous-jacent, à la hausse comme à la baisse). ISIN FR0010342592, ticker LQQ, TER 0,60%,
     // domicilié France, éligible PEA (non éligible PEA-PME). Source des rendements annuels :
-    // cours réels de la part EUR cotée Euronext Paris (LQQ.PA), recoupés justETF / Yahoo Finance,
-    // années 2020-2025 — jamais calculés en doublant la série "nasdaq100" ci-dessus, ce qui
-    // donnerait des chiffres faux (ex. 2022 : -34,10% ×2 = -68,2% en théorie, réalité -59,20%).
+    // NAV du fonds EUR, ligne « Portefeuille », années calendaires 2020-2025 :
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/RETAIL/ETF/20260331
+    // Le levier se réinitialise chaque jour ; la performance annuelle n'est pas 2x celle de l'indice.
     id: "lqq", name: "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc", cat: "actions_larges", emoji: "⚡",
     isin: "FR0010342592",
-    r: [74.17, 71.22, -59.20, 112.33, 57.02, 14.16],
+    r: [74.02, 67.05, -57.69, 110.24, 52.51, 14.97],
     desc: [
       "vise 2 fois la performance quotidienne du Nasdaq-100, financée par swap.",
-      "un des supports les plus volatils de la bibliothèque : peut perdre plus de moitié de sa valeur en un an (-59% en 2022).",
+      "un des supports les plus volatils de la bibliothèque : a perdu plus de la moitié de sa valeur en 2022 (-57,69 %).",
       "la capitalisation quotidienne du levier fait dériver la performance longue durée d'un simple x2 du Nasdaq-100 — jamais une martingale.",
     ],
   },
@@ -249,8 +251,8 @@ export const ASSETS = [
     // sous-jacent plus large que le seul Nasdaq-100 (large et mid caps US, moins concentré tech) —
     // apporte de la variété sans dupliquer le même pari. ISIN FR0010755611, ticker CL2, TER 0,50%,
     // domicilié France, éligible PEA (confirmé), lancé le 16/06/2009. Source des rendements
-    // annuels : cours réels de la part cotée Euronext Paris (CL2.PA), recoupés justETF / Yahoo
-    // Finance, années 2020-2025 — jamais calculés en doublant une série existante.
+    // annuels : NAV « Portefeuille » en EUR, fiche officielle Amundi 2025 :
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20251231
     id: "cl2", name: "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc", cat: "actions_larges", emoji: "⚡",
     isin: "FR0010755611",
     r: [8.23, 81.38, -31.43, 41.19, 65.62, -0.19],
@@ -313,9 +315,10 @@ export const ASSETS = [
   {
     id: "sect_sante", name: "iShares S&P 500 Health Care Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B43HR379",
-    // Source : performance annuelle réelle du fonds iShares S&P 500 Health Care Sector UCITS
-    // ETF, Yahoo Finance, années 2020-2025.
-    r: [11.93, 27.58, -2.63, 1.72, 2.16, 14.67],
+    // Rendements NAV calendaires USD, revenus réinvestis :
+    // https://www.ishares.com/uk/individual/en/products/280507/
+    r: [12.96, 25.65, -2.33, 1.71, 2.18, 14.12],
+    confidenceNote: 'Rendements du fonds publiés en dollars ; les résultats en euros dépendent du change EUR/USD.',
     desc: [
       "laboratoires pharmaceutiques et biotech : un secteur réputé plus défensif.",
       "moins corrélé aux cycles économiques classiques, mais sensible aux décisions réglementaires.",
@@ -379,9 +382,10 @@ export const ASSETS = [
   {
     id: "mp_large", name: "Invesco Bloomberg Commodity UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00BD6FTQ80",
-    // Source : fiche officielle Invesco (performance annuelle calendaire du fonds), datée du
-    // 31/12/2025, années 2020-2025.
+    // Source : fiche officielle Invesco, NAV en USD, revenus réinvestis (2020-2025) :
+    // https://www.invesco.com/content/dam/invesco/uk/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en-uk.pdf
     r: [-3.13, 26.70, 14.90, -8.47, 5.02, 15.39],
+    confidenceNote: 'Rendements NAV Invesco publiés en dollars ; leur équivalent en euros varie avec le change.',
     desc: [
       "un panier diversifié : énergie, métaux, agriculture réunis en une seule ligne.",
       "réputé pour bien se comporter en période d'inflation élevée, comme en 2021-2022.",
@@ -394,7 +398,7 @@ export const ASSETS = [
     id: "mp_large_icom", name: "iShares Diversified Commodity Swap UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00BDFL4P12",
     r: [-3.13, 26.70, 14.90, -8.47, 5.02, 15.39],
-    confidenceNote: "Rendements repris d'un ETF Invesco sur les matières premières, pas de cette part iShares ; les frais et écarts de suivi peuvent modifier le résultat.",
+    confidenceNote: "Simulation sur l'ETF Invesco en dollars, pas sur cette part iShares ; frais, suivi et change peuvent modifier le résultat en euros.",
     desc: [
       "un panier diversifié : énergie, métaux, agriculture réunis en une seule ligne.",
       "réputé pour bien se comporter en période d'inflation élevée, comme en 2021-2022.",
@@ -503,6 +507,7 @@ export const ASSETS = [
     // dividendes réinvestis, nets de frais). La série antérieure mélangeait plusieurs lignes
     // du tableau et divergeait de 0,20 à 0,53 point du rendement net du fonds.
     r: [-9.17, 15.32, -6.97, 6.93, 7.74, 17.02],
+    confidenceNote: 'Rendements nets du fonds publiés en dollars, dividendes réinvestis ; leur valeur en euros peut différer.',
     desc: [
       "des entreprises qui versent (et augmentent) leur dividende depuis des années : profil plutôt défensif.",
       "recherché pour générer un revenu régulier en plus de la performance en capital.",
@@ -515,6 +520,7 @@ export const ASSETS = [
     isin: "IE00B9CQXS71",
     distributing: true,
     r: [-9.17, 15.32, -6.97, 6.93, 7.74, 17.02],
+    confidenceNote: 'Rendements nets du fonds publiés en dollars, dividendes réinvestis ; leur valeur en euros peut différer.',
     desc: [
       "des entreprises qui versent (et augmentent) leur dividende depuis des années : profil plutôt défensif.",
       "recherché pour générer un revenu régulier en plus de la performance en capital.",
@@ -529,6 +535,7 @@ export const ASSETS = [
     // Vanguard, années 2020-2025. NB : ce fonds existe bien en version Acc (ISIN IE00BK5BR626)
     // ET Dist (IE00B8GKDB10) — contrairement à une hypothèse initiale qui le pensait Dist-only.
     r: [-0.26, 17.88, -5.74, 11.51, 9.39, 26.40],
+    confidenceNote: 'Rendements Vanguard en dollars, revenus réinvestis ; le change peut modifier la performance en euros.',
     desc: [
       "sélectionne les entreprises mondiales au rendement de dividende le plus élevé.",
       "plus large et plus « value » que les aristocrates du dividende, avec un couponnage souvent supérieur.",
@@ -542,6 +549,7 @@ export const ASSETS = [
     isin: "IE00B8GKDB10",
     distributing: true,
     r: [-0.26, 17.88, -5.74, 11.51, 9.39, 26.40],
+    confidenceNote: 'Rendements Vanguard en dollars, revenus réinvestis ; le change peut modifier la performance en euros.',
     desc: [
       "sélectionne les entreprises mondiales au rendement de dividende le plus élevé.",
       "plus large et plus « value » que les aristocrates du dividende, avec un couponnage souvent supérieur.",
@@ -552,18 +560,11 @@ export const ASSETS = [
     id: "quality_dividend", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF", cat: "dividendes", emoji: "🟣",
     isin: "IE00BKPSFC54",
     distributing: false,
-    // Source : performance annuelle réelle du fonds iShares MSCI World Quality Dividend
-    // Advanced UCITS ETF, années 2020-2025. Changement de benchmark le 1er juin 2022 (nom du
-    // fonds identique, méthodologie affinée). Nom corrigé pour inclure "Advanced", omis par
-    // erreur dans la version précédente (le fonds réel s'appelle bien ainsi).
-    // 2025 CORRIGÉ le 23/09/2026 (9,76 → 23,97) : détecté par le nouveau script
-    // scripts/audit-performance-consistency.mjs, qui a signalé un écart de 14,2 pt avec la série
-    // désormais corrigée dans index-comparator/data.js pour ce même ISIN (famille
-    // "dividendes-cto"). Confirmé par 2 requêtes web indépendantes le 23/09/2026 (fiche officielle
-    // iShares datée 30/06/2026, "calendar year 2025 total return 23,97 % vs benchmark 23,92 %" +
-    // recoupement justETF/finanzen.net pour 2023-2024, qui eux concordaient déjà). 2020-2024
-    // inchangés (déjà corrects, non remis en cause).
-    r: [0.05, 15.95, -6.87, 17.14, 9.87, 23.97],
+    // Rendements NAV USD de la part Acc : benchmark modifié le 1er juin 2022.
+    // Part lancée en mai 2020 : aucun rendement calendaire 2020 publié.
+    // https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [null, 15.79, -7.28, 17.16, 9.76, 23.97],
+    confidenceNote: 'Performances NAV en dollars ; 2020 est exclue car la part a démarré en mai 2020.',
     desc: [
       "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
       "vise des entreprises capables de maintenir leur dividende même en période difficile.",
@@ -571,13 +572,13 @@ export const ASSETS = [
     ],
   },
   {
-    // Jumeau distribuant de "quality_dividend" (part Dist, ISIN IE00BYYHSQ67, vérifiée réelle),
-    // réservé au profil Rentier. 2025 corrigé le 23/09/2026 en même temps que la part Acc
-    // ci-dessus (même indice sous-jacent, même série) — cf. son commentaire pour la source.
+    // Part Dist du même fonds, réservée au profil Rentier ; historique propre à cette part.
     id: "quality_dividend_dist", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
     isin: "IE00BYYHSQ67",
     distributing: true,
-    r: [0.05, 15.95, -6.87, 17.14, 9.87, 23.97],
+    // https://www.ishares.com/gls-download/literature/fact-sheet/wqdv-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [0.12, 15.78, -7.28, 17.16, 9.76, 23.97],
+    confidenceNote: 'Performances NAV publiées en dollars, dividendes réinvestis ; une cotation en euros peut donner un autre résultat.',
     desc: [
       "combine dividende régulier et critères de qualité financière (rentabilité, faible endettement).",
       "vise des entreprises capables de maintenir leur dividende même en période difficile.",
@@ -928,13 +929,9 @@ export const ASSETS = [
   {
     id: "sect_tech", name: "iShares S&P 500 Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B3WJKG14",
-    // Source : fonds réel vérifié (ISIN IE00B3WJKG14, ticker IUIT), réplique l'indice S&P 500 Capped
-    // 35/20 Information Technology, part USD (donnée EUR précise non trouvée de façon fiable). Track
-    // record propre au fonds non exploitable via recherche web (résultats agrégés incohérents d'une
-    // requête à l'autre, valeurs et années visiblement désalignées). Utilisé à la place : la
-    // performance de la Technology Select Sector SPDR (XLK, S&P 500 secteur technologie, méthodologie
-    // très proche), moyennée sur 2-3 sources indépendantes et cohérentes entre elles pour 2020-2025.
-    r: [43.75, 34.65, -27.96, 56.93, 21.63, 24.60],
+    // Rendements NAV USD de la part IUIT, ligne Share Class, 2020-2025.
+    // https://www.ishares.com/gls-download/literature/fact-sheet/iuit-ishares-s-p-500-information-technology-sector-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [42.66, 33.46, -28.43, 57.57, 37.17, 23.76],
     confidenceNote: 'Rendements de la part iShares publiés en dollars ; le résultat en euros peut différer selon le change EUR/USD.',
     desc: [
       "Apple, Microsoft, Nvidia... le cœur technologique du S&P 500 concentré en une seule ligne.",
@@ -945,11 +942,9 @@ export const ASSETS = [
   {
     id: "sect_robotique", name: "iShares Automation & Robotics UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BYZK4552",
-    // Source : fonds réel vérifié (ISIN IE00BYZK4552, ticker RBOT), réplique l'iSTOXX FactSet
-    // Automation & Robotics Index, part USD (donnée EUR précise non trouvée de façon fiable). 2022
-    // (-34,40%) confirmé par deux recherches indépendantes concordantes. 2020, 2021, 2023, 2024, 2025 :
-    // une seule source (agrégation de fiche fonds), cohérente chronologiquement mais non recoupée.
-    r: [39.85, 20.69, -34.40, 39.73, 5.51, 17.62],
+    // Rendements NAV USD de la part RBOT, ligne Share Class, 2020-2025.
+    // https://www.ishares.com/gls-download/literature/fact-sheet/rbot-ishares-automation-robotics-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [38.76, 21.01, -34.17, 38.49, 5.45, 17.39],
     confidenceNote: 'Rendements de la part iShares publiés en dollars ; le résultat en euros peut différer selon le change EUR/USD.',
     desc: [
       "des entreprises qui construisent les robots et les automatismes industriels de demain.",
@@ -1027,16 +1022,11 @@ export const ASSETS = [
   {
     id: "dividend_leaders", name: "VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF", cat: "dividendes", emoji: "🟣",
     isin: "NL0011683594",
-    distributing: false,
-    // Source : fonds réel vérifié (ISIN NL0011683594, ticker TDIV, lancé le 23 mai 2016), réplique le
-    // Morningstar Developed Markets Large Cap Dividend Leaders (Screened Select) Index. 2020 (-10,15%)
-    // confirmé par deux recherches indépendantes concordantes. 2022 : une première recherche a renvoyé
-    // -16,17%, une seconde +16,17% (signe opposé) — retenu +16,17% après vérification (cohérent avec
-    // la sur-performance connue des valeurs « value »/dividende face à la croissance en 2022 ; l'autre
-    // recherche s'est en outre révélée confondre le fonds avec un homonyme américain sans rapport,
-    // First Trust NASDAQ Technology Dividend Index Fund, ticker également TDIV). 2021, 2023, 2024,
-    // 2025 non recoupés indépendamment.
-    r: [-10.15, 27.85, 16.17, 10.92, 15.97, 24.40],
+    distributing: true,
+    // Rendements NAV EUR TDIV, dividendes réinvestis, publiés par VanEck (2020-2025).
+    // https://www.vaneck.com/uk/en/blog/etf-insights/vaneck-dividend-leaders-ucits-etf-turns-10--a-decade-of-dividends/
+    r: [-10.33, 26.94, 15.77, 11.76, 16.00, 23.78],
+    confidenceNote: 'Rendements NAV en euros, dividendes réinvestis ; le montant perçu dépend des distributions.',
     desc: [
       "une sélection mondiale des entreprises les plus solides côté dividende, filtrée par Morningstar.",
       "vise la régularité du versement autant que son niveau, pour limiter les mauvaises surprises.",
@@ -1048,17 +1038,15 @@ export const ASSETS = [
   {
     id: "immo_gpr", name: "VanEck Global Real Estate UCITS ETF", cat: "immobilier", emoji: "⚪",
     isin: "NL0009690239",
-    distributing: false,
+    distributing: true,
     // Source : fonds réel vérifié (ISIN NL0009690239, ticker TRET, lancé le 14 avril 2011, devise de
     // base EUR), réplique le GPR (Global Property Research) Global 100 Index — sciemment différent de
     // l'indice FTSE EPRA Nareit Global Developed utilisé par foncieres_etf : composition et
     // performance propres, à ne pas regrouper avec ce dernier (cf. avertissement sur IWDP/FTSE
-    // EPRA Nareit Developed Dividend+ dans les commentaires de theses.js). 2020 (-14,50%) et 2021
-    // (+40,50%) confirmés par recherches indépendantes concordantes. 2022, 2023, 2024 : source unique
-    // cohérente. 2025 (+1,08%) : recorroboré indépendamment lors de l'audit du 25/08/2026
-    // (agrégateur Yahoo Finance/stockanalysis, données à fin janvier 2026) — même chiffre exact
-    // retrouvé par une méthode différente de la source d'origine, donc plus considéré comme fragile.
-    r: [-14.50, 40.50, -21.20, 9.11, 8.21, 1.08],
+    // EPRA Nareit Developed Dividend+ dans les commentaires de theses.js).
+    // Performance NAV EUR, dividendes réinvestis :
+    // https://www.vaneck.com/ch/fr/blog/etf-insights/ans-dimmobilier-cote-linteret-des-reit-dans-le-cadre-dune-allocation-immobiliere-diversifiee/
+    r: [-14.72, 39.21, -21.13, 9.05, 9.44, -0.19],
     desc: [
       "des sociétés immobilières cotées à l'échelle mondiale, sélectionnées via l'indice GPR Global 100.",
       "un indice différent de celui des autres foncières de la bibliothèque : composition et performance propres.",
@@ -1076,7 +1064,7 @@ export const ASSETS = [
     // suivant la même logique que les jumeaux CORPBOND_OPTIONS. À ne pas confondre avec l'autre fonds
     // Amundi "Euro High Yield Bond ESG UCITS ETF" (LU1215415214), qui réplique un indice ESG-screené
     // différent (iBoxx MSCI ESG EUR High Yield Corporates) et n'est donc pas un jumeau valide.
-    r: [1.29, 3.02, -9.47, 11.31, 5.71, 5.32],
+    r: [0.92, 2.97, -9.72, 11.33, 6.67, 4.80],
     confidenceNote: "Rendements repris d'une part iShares en obligations à haut rendement ; ce fonds Amundi a été lancé en 2025 et n'a pas de série propre sur 2020-2025.",
     desc: [
       "des obligations d'entreprises plus fragiles, donc mieux rémunérées : plus de coupon.",
@@ -1223,12 +1211,13 @@ export const ASSETS = [
   {
     id: "smallcap_monde", name: "iShares MSCI World Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BF4RFH31",
-    // Source : performance annuelle réelle du fonds (WSML), années 2020-2025 — recoupée deux fois de
-    // façon indépendante pour 2020-2024 (chiffres strictement identiques aux deux requêtes : 16,50 /
-    // 15,23 / -18,62 / 17,06 / 7,40), 2025 (+19,94%) non recoupé indépendamment. Complète
+    // Rendements NAV de la part WSML (2020-2025). Complète
     // smallcap_europe (Europe uniquement) par une exposition small cap MONDIALE — pas un doublon,
     // composition et pondération géographique différentes (majoritairement US ici).
-    r: [16.50, 15.23, -18.62, 17.06, 7.40, 19.94],
+    // NAV annuelle USD, part IE00BF4RFH31, iShares :
+    // https://www.ishares.com/uk/individual/en/products/296576/
+    r: [15.83, 15.81, -18.64, 16.02, 7.93, 19.84],
+    confidenceNote: 'Rendements NAV de la part iShares en dollars ; le résultat en euros peut différer avec le taux de change.',
     desc: [
       "des petites capitalisations de l'ensemble des pays développés, pas seulement l'Europe.",
       "complète le small cap européen déjà présent par une exposition mondiale, à majorité américaine.",
