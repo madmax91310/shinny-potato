@@ -19,7 +19,7 @@ export const TERMES = [
   sectionsOptionnelles:[
     {titre:`🔀 PEA classique ou PEA-PME ?`, contenu:`Le PEA-PME est une version dédiée aux petites et moyennes entreprises. Son plafond de 225 000€ est partagé avec le PEA classique : le total des versements cumulés sur les deux ne peut pas dépasser 225 000€, dont 150 000€ maximum sur le PEA classique.`}
   ],
-  attention:`Un retrait avant 5 ans clôture le PEA (sauf exceptions comme la création d'entreprise) et fait perdre l'avantage fiscal acquis.`,
+  attention:`Un retrait avant 5 ans clôture en principe le PEA (sauf exceptions, notamment la création ou la reprise d'entreprise) ; les gains retirés sont alors imposés. Après 5 ans, un retrait partiel ne clôture plus le plan.`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`Avant 5 ans, les gains sont taxés à la flat tax de 31,4%. Après 5 ans, ils ne sont plus soumis qu'aux prélèvements sociaux (18,6% depuis la hausse de la CSG au 1er janvier 2026), sans impôt sur le revenu.`,
   avantage:`Le compteur des cinq ans part de l’ouverture du plan. Un petit premier versement peut donc lancer l’ancienneté sans t’obliger à investir tout de suite une grosse somme.`
@@ -28,12 +28,12 @@ export const TERMES = [
 {
   id:"cto", categorie:"Enveloppes fiscales", titre:"le CTO", variante:"A", sousVariante:"enveloppe",
   intro:`Actions américaines, ETF sectoriels, obligations : le CTO te laisse accéder à des placements très variés, avec leur fiscalité propre.`,
-  objectif:`Investir sur n'importe quel marché mondial, sans plafond.`,
+  objectif:`Accéder à un large choix de titres selon ton courtier, sans plafond de versement.`,
   pourQui:`Tu veux acheter des actions étrangères en direct, des obligations ou des ETF absents de ton PEA, et tu acceptes la fiscalité du compte-titres.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
-  mecanismeContenu:`✅ Actions US, Asie, monde entier\n✅ ETF sectoriels, obligations, trackers crypto, produits dérivés\n✅ Aucun plafond`,
+  mecanismeContenu:`✅ Actions étrangères, ETF et obligations selon le courtier\n✅ Certains produits cotés liés aux cryptos, sans détenir directement les cryptos\n✅ Aucun plafond de versement`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Flat tax 31,4% dès le premier euro de gain, à chaque vente`,
+  fraisContenu:`En règle générale, le PFU de 31,4% s'applique aux plus-values réalisées lors d'une vente et aux dividendes encaissés (option globale possible pour le barème). Une hausse de cours sans vente ne déclenche pas d'impôt sur la plus-value.`,
   attention:`Attention aux frais de courtage et de tenue de compte, ils varient énormément selon le courtier`,
   avantage:`Tu y accèdes à davantage de marchés. Avant d’acheter un ETF déjà présent dans ton PEA, compare aussi la fiscalité de l’enveloppe.`
 },
@@ -46,11 +46,11 @@ export const TERMES = [
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
   mecanismeContenu:`✅ Fonds euros (capital garanti, rendement modéré)\n✅ Unités de compte : ETF, actions, SCPI, fonds diversifiés\n✅ Pas de plafond de versement\n❌ Actions en direct limitées selon les contrats`,
   sectionsOptionnelles:[
-    {titre:`🔀 Fonds euros ou unités de compte ?`, contenu:`Le fonds euros garantit ton capital mais rapporte peu (autour de 2 à 3% net ces dernières années). Les unités de compte ne garantissent rien mais offrent un potentiel de performance plus élevé, au prix d'un risque de perte en capital.`}
+    {titre:`🔀 Fonds euros ou unités de compte ?`, contenu:`Le fonds en euros comporte une garantie définie par le contrat, parfois calculée hors frais de gestion. Son taux change d'une année à l'autre. Les unités de compte présentent un risque de perte en capital, en contrepartie d'une espérance de rendement potentiellement plus élevée.`}
   ],
   attention:`Les frais sur versement et de gestion varient énormément d'un contrat à l'autre — un contrat en ligne coûte souvent bien moins cher qu'un contrat bancaire traditionnel.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Avant 8 ans, flat tax de 30% sur les gains retirés. Après 8 ans, abattement annuel de 4 600€ (9 200€ pour un couple) sur les gains, puis taxation à 7,5% (+17,2% de prélèvements sociaux, soit 24,7%) sur les 150 000€ de versements les plus anciens ; au-delà de ce seuil, le taux remonte à 12,8% (soit 30% au total). L'assurance-vie a été explicitement épargnée par la hausse de la CSG de 2026, contrairement au CTO, au PEA ou au PER — elle reste à 17,2% de prélèvements sociaux.`,
+  fraisContenu:`Seule la part de gains comprise dans un rachat est imposable. Pour les primes versées depuis le 27 septembre 2017, le taux forfaitaire d'impôt sur le revenu est de 12,8% avant 8 ans, auquel s'ajoutent en principe 17,2% de prélèvements sociaux. Après 8 ans, un abattement annuel de 4 600€ (9 200€ pour un couple) s'applique aux gains de l'ensemble des contrats ; le taux d'impôt est de 7,5% ou 12,8% selon le montant des primes versées sur l'ensemble des contrats. Les primes plus anciennes suivent d'autres règles.`,
   avantage:`Regarde le contrat, pas seulement le nom de l’enveloppe : choix de supports, frais et conditions de rachat changent beaucoup le résultat.`
 },
 
@@ -58,7 +58,7 @@ export const TERMES = [
   id:"per", categorie:"Enveloppes fiscales", titre:"le PER", variante:"A", sousVariante:"enveloppe",
   intro:`Verser sur un PER peut réduire ton impôt aujourd’hui. En échange, ton épargne est en principe destinée à rester investie jusqu’à la retraite.`,
   objectif:`Préparer sa retraite en réduisant son revenu imposable pendant la vie active.`,
-  pourQui:`Tu es fortement imposé (tranche à 30% ou plus) et tu peux te permettre de bloquer une partie de ton épargne jusqu'à la retraite.`,
+  pourQui:`Tu peux immobiliser une partie de ton épargne jusqu'à la retraite et comparer l'économie d'impôt à l'entrée à la fiscalité attendue à la sortie.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
   mecanismeContenu:`✅ ETF, actions, fonds euros, SCPI selon le contrat\n✅ Versements déductibles du revenu imposable, dans une limite annuelle (environ 10% des revenus professionnels)\n❌ Argent bloqué jusqu'à la retraite, sauf déblocage anticipé (achat résidence principale, accidents de la vie)`,
   sectionsOptionnelles:[
@@ -102,7 +102,7 @@ export const TERMES = [
   pourQui:`Ton employeur propose un plan d'épargne entreprise, en particulier s'il abonde tes versements.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
   mecanismeContenu:`✅ Fonds communs de placement d'entreprise (FCPE), souvent diversifiés en actions et obligations\n✅ Abondement de l'employeur, jusqu'à 300% de ton versement selon les accords, plafonné à 3 844,80€ par an sur un PEE en 2026\n❌ Argent bloqué 5 ans pour le PEE, jusqu'à la retraite pour le PERCO (sauf déblocage anticipé)`,
-  attention:`Si ton entreprise propose un abondement, ne pas verser au moins jusqu'à son plafond, c'est laisser de l'argent gratuit sur la table.`,
+  attention:`Avant de chercher à profiter de l'abondement, vérifie ses conditions, les supports proposés, leurs frais et la durée pendant laquelle tu peux te passer de cet argent.`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`Les sommes versées via l'intéressement, la participation et l'abondement sont exonérées d'impôt sur le revenu. Seuls les prélèvements sociaux s'appliquent sur les gains (18,6% depuis la hausse de la CSG au 1er janvier 2026).`,
   avantage:`Commence par lire les règles de ton entreprise : le montant de l’abondement et les conditions de déblocage déterminent l’intérêt du plan.`
@@ -116,7 +116,7 @@ export const TERMES = [
   objectif:`Investir de façon diversifiée et peu coûteuse, sans avoir à choisir toi-même les actions.`,
   pourQui:`Tu veux investir en bourse sans passer des heures à analyser des entreprises une par une.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Un ETF suit la performance d'un indice, par exemple les 500 plus grandes entreprises américaines pour le S&P 500. Il se négocie en bourse comme une action classique, en temps réel.\n\nIl existe aussi des ETF actifs (gérés pour tenter de battre un indice), mais la grande majorité des ETF sont indiciels et passifs.`,
+  mecanismeContenu:`Un ETF indiciel cherche à suivre un indice, par exemple le S&P 500 qui rassemble environ 500 grandes entreprises américaines sélectionnées selon ses règles. Il se négocie en bourse comme une action.\n\nIl existe aussi des ETF actifs, dont le gérant prend des décisions d'investissement sans simplement reproduire un indice.`,
   sectionsOptionnelles:[
     {titre:`🔀 Physique ou synthétique ?`, contenu:`Un ETF physique détient réellement les actions qui composent son panier.\n\nUn ETF synthétique, lui, ne les détient pas forcément : il passe un contrat d'échange (un "swap") avec une banque, qui s'engage à lui reverser la performance de l'indice visé.\n\nC'est ce qui permet par exemple de loger un ETF S&P 500 dans un PEA, normalement réservé aux actions européennes : l'ETF détient un panier d'actions européennes en garantie, et récupère la performance américaine via le swap.`}
   ],
@@ -132,7 +132,7 @@ export const TERMES = [
   objectif:`Investir directement dans une entreprise précise, pour profiter de sa croissance et éventuellement de ses dividendes.`,
   pourQui:`Tu as étudié une entreprise en particulier et tu veux miser sur sa performance individuelle, en acceptant un risque plus concentré qu'un ETF.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Quand tu achètes une action, tu deviens propriétaire d'une fraction du capital de l'entreprise. Sa valeur évolue selon l'offre et la demande sur le marché, influencée par les résultats de l'entreprise, ses perspectives et le contexte économique.\n\nEn tant qu'actionnaire, tu peux aussi voter en assemblée générale et recevoir une part des bénéfices sous forme de dividendes.`,
+  mecanismeContenu:`Quand tu achètes une action, tu détiens une fraction du capital de l'entreprise. Sa valeur évolue selon l'offre et la demande sur le marché, influencée par ses résultats et ses perspectives.\n\nUne action ordinaire donne généralement un droit de vote. Un dividende peut être versé, mais il n'est jamais garanti.`,
   sectionsOptionnelles:[
     {titre:`🔀 Action de croissance ou de rendement ?`, contenu:`Une action de croissance réinvestit ses bénéfices pour se développer et verse peu ou pas de dividendes (ex : entreprises tech). Une action de rendement reverse une part importante de ses bénéfices en dividendes réguliers (ex : entreprises matures comme les utilities ou l'énergie).`}
   ],
@@ -145,10 +145,10 @@ export const TERMES = [
 {
   id:"obligation", categorie:"Produits & marchés", titre:"une obligation", variante:"A", sousVariante:"produit",
   intro:`Avec une obligation, tu prêtes de l’argent à un État ou à une entreprise. Le montant promis ne supprime pas le risque de ne pas être remboursé.`,
-  objectif:`Générer un revenu régulier et prévisible tout en prenant moins de risque qu'en actions.`,
+  objectif:`Prêter de l'argent à un émetteur selon des conditions de rémunération et une échéance définies, en acceptant le risque de défaut.`,
   pourQui:`Tu veux connaître à l'avance les intérêts et l'échéance d'un prêt à un émetteur, tout en acceptant le risque de défaut et les variations de prix avant l'échéance.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Quand tu achètes une obligation, tu prêtes de l'argent à l'émetteur (État ou entreprise) pour une durée fixée à l'avance. En échange, il te verse un intérêt régulier (le coupon) et te rembourse la valeur nominale à l'échéance. Par exemple, une obligation d'État française (OAT) à 10 ans autour de 4% — son niveau début août 2026 — te verse environ 40€ par an pour 1 000€ investis.`,
+  mecanismeContenu:`Quand tu achètes une obligation, tu prêtes de l'argent à un État ou à une entreprise. Selon le titre, les intérêts sont versés périodiquement ou à l'échéance ; certaines obligations ne versent pas de coupon. Le remboursement prévu à l'échéance dépend de la capacité de l'émetteur à payer. Si tu revends avant, le prix peut être supérieur ou inférieur à celui que tu as payé.`,
   sectionsOptionnelles:[
     {titre:`🔀 Obligation d'État ou d'entreprise ?`, contenu:`Une obligation d'État (comme les OAT françaises) est généralement plus sûre. Une obligation d'entreprise (corporate) offre un taux plus élevé, mais avec un risque de défaut plus important selon la solidité de l'émetteur.`}
   ],
@@ -165,7 +165,7 @@ export const TERMES = [
   pourQui:`Tu préfères confier tes choix d'investissement à un gérant plutôt que les faire toi-même, et tu es prêt à payer des frais de gestion plus élevés pour ça.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Le gérant du fonds collecte l'argent de tous les investisseurs et l'investit selon une stratégie définie (actions, obligations, secteur précis...). La valeur de ta part suit la valeur liquidative du fonds, calculée en général une fois par jour, contrairement à un ETF qui se négocie en continu.`,
-  attention:`La grande majorité des fonds gérés activement font moins bien qu'un simple ETF indiciel sur le long terme, une fois les frais déduits.`,
+  attention:`Une gestion active ne garantit pas de battre son indice après frais. Pour juger un fonds, compare ses résultats à un indice pertinent, sur une même période et dans la même devise.`,
   fraisTitre:`💰 Frais`,
   fraisContenu:`Frais de gestion annuels souvent entre 1,5% et 2,5%, parfois des frais d'entrée ou de sortie en plus.`,
   avantage:`Compare la stratégie et les frais avec un ETF exposé au même marché. La gestion déléguée a un coût, à examiner sur la durée.`
@@ -180,24 +180,24 @@ export const TERMES = [
   mecanismeContenu:`La société de gestion achète et gère un parc d'immeubles (bureaux, commerces, logements) avec l'argent des porteurs de parts. Les loyers perçus, moins les frais de gestion, te sont reversés au prorata de tes parts, généralement chaque trimestre. Selon l'ASPIM, le taux de distribution moyen du marché s'est établi à 4,91% en 2025 (contre 4,72% en 2024).`,
   sectionsOptionnelles:[
     {titre:`🔀 SCPI de rendement ou fiscale ?`, contenu:`Une SCPI de rendement vise le revenu locatif régulier. Une SCPI fiscale (Pinel, Malraux...) vise surtout une réduction d'impôt, avec des contraintes de durée plus fortes.`},
-    {titre:`🔀 Avec ou sans frais d'entrée ?`, contenu:`Les SCPI traditionnelles facturent des frais de souscription (8 à 12% en moyenne, parfois plus). Une nouvelle génération de SCPI supprime ces frais d'entrée, mais compense avec des frais de gestion annuels plus élevés et des frais de sortie en cas de revente rapide — le coût total sur la durée n'est pas forcément plus faible, il faut comparer sur ton horizon de détention réel.`}
+    {titre:`🔀 Avec ou sans frais de souscription ?`, contenu:`Certaines SCPI prélèvent des frais de souscription, d'autres non. Compare aussi les frais de gestion, les éventuels frais de sortie et le prix de revente des parts : une seule ligne de frais ne suffit pas à connaître le coût total.`}
   ],
-  attention:`Les parts de SCPI sont peu liquides (revente en plusieurs semaines à plusieurs mois) et le capital n'est pas garanti : le prix de la part peut baisser, comme cela a été le cas pour de nombreuses SCPI en 2023-2025 dans un contexte de correction du marché immobilier de bureaux.`,
+  attention:`La vente de parts de SCPI peut prendre plusieurs mois, voire davantage si les demandes de retrait s'accumulent. Le capital n'est pas garanti et le prix de la part peut baisser.`,
   fraisTitre:`💰 Frais`,
-  fraisContenu:`Les frais varient fortement selon le modèle de la SCPI : souscription entre 8% et 12% pour les SCPI classiques, ou pas de frais d'entrée mais une gestion plus chère pour les SCPI récentes — dans tous les cas, ils sont déjà intégrés au prix de la part.`,
+  fraisContenu:`Les frais de souscription, de gestion et parfois de cession varient selon la SCPI. Lis sa documentation et compare le prix de souscription à la valeur de retrait, ainsi que les prélèvements sur les loyers.`,
   avantage:`Tu délègues la gestion, mais la revente des parts peut prendre du temps. Vérifie les frais et la liquidité avant d’y consacrer une épargne dont tu pourrais avoir besoin.`
 },
 
 {
   id:"opci", categorie:"Produits & marchés", titre:"l'OPCI", variante:"A", sousVariante:"produit",
   intro:`Un OPCI associe de l’immobilier à des actifs financiers et des liquidités. Sa composition peut donc être très différente de celle d’une SCPI.`,
-  objectif:`Investir dans l'immobilier tout en gardant une meilleure liquidité qu'une SCPI classique.`,
+  objectif:`Investir dans un fonds immobilier qui détient aussi des actifs financiers et une poche de liquidités.`,
   pourQui:`Tu veux de l'exposition immobilière, notamment dans une assurance-vie, avec la possibilité de revendre plus facilement qu'une SCPI.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Un OPCI doit détenir au moins 60% d'actifs immobiliers et au minimum 5% de liquidités, le reste pouvant être investi en actions ou obligations. Cette poche liquide permet de répondre plus rapidement aux demandes de retrait, contrairement à une SCPI investie à quasi 100% en immeubles.`,
-  attention:`La poche non-immobilière rend l'OPCI plus volatil qu'une SCPI, car il est exposé aux mouvements des marchés financiers.`,
+  attention:`La poche d'actifs financiers peut accentuer les variations de la valeur de l'OPCI. Sa liquidité reste soumise aux conditions de rachat du fonds ; ni le capital ni un délai de sortie immédiat ne sont garantis.`,
   fraisTitre:`💰 Frais`,
-  fraisContenu:`Frais de gestion annuels comparables à une SCPI, mais souvent sans les frais de souscription aussi élevés.`,
+  fraisContenu:`Frais de gestion, de souscription ou de rachat éventuels : vérifie les montants dans le document d'informations du fonds et, si tu investis via une assurance-vie, les frais du contrat.`,
   avantage:`La part d’actifs financiers peut rendre sa valeur plus mobile que celle d’une SCPI. Lis sa composition avant de le choisir pour sa seule étiquette immobilière.`
 },
 
@@ -248,7 +248,7 @@ export const TERMES = [
   objectif:`Réduire l'impact qu'un seul actif défaillant peut avoir sur l'ensemble de ton portefeuille.`,
   pourQui:`Tout investisseur, quel que soit son niveau — c'est l'un des seuls principes qui fait à peu près consensus en finance.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Plutôt que d'investir 100% dans une seule action, tu répartis ton capital entre plusieurs actifs qui ne réagissent pas tous de la même façon aux mêmes événements : différentes entreprises, secteurs, zones géographiques, voire classes d'actifs (actions, obligations, immobilier). Un ETF monde, par exemple, diversifie automatiquement sur des milliers d'entreprises en un seul produit.`,
+  mecanismeContenu:`Plutôt que d'investir 100% dans une seule action, tu répartis ton capital entre plusieurs actifs qui ne réagissent pas tous de la même façon aux mêmes événements : différentes entreprises, secteurs, zones géographiques, voire classes d'actifs (actions, obligations, immobilier). Un ETF monde peut donner accès à plus d'un millier d'entreprises en un seul produit, selon l'indice suivi.`,
   attention:`Trop diversifier peut aussi diluer ta performance et complexifier inutilement ton suivi — un ETF monde suffit déjà à diversifier l'essentiel du risque spécifique à une entreprise.`,
   fraisTitre:`💰 Frais`,
   fraisContenu:`Pas de frais propres à la diversification en elle-même, si ce n'est les frais cumulés des produits utilisés pour l'obtenir (ETF, fonds...).`,
@@ -302,25 +302,25 @@ export const TERMES = [
   objectif:`Recevoir un revenu régulier en plus de la performance du cours de l'action.`,
   pourQui:`Tu cherches un revenu complémentaire régulier ou tu construis un portefeuille orienté "rendement" plutôt que pure croissance du cours.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Chaque année (ou trimestre pour certaines entreprises américaines), l'entreprise décide de reverser une partie de ses bénéfices aux actionnaires, au prorata du nombre d'actions détenues. Par exemple, une action à 100€ qui verse un dividende de 3€ offre un rendement de 3%. Le jour du versement, le cours de l'action baisse mécaniquement du montant du dividende versé.`,
+  mecanismeContenu:`Si l'entreprise décide de distribuer un dividende, son montant dépend du nombre d'actions détenues. Par exemple, 3€ de dividende pour une action à 100€ correspondent à un rendement affiché de 3%. À la date du détachement, le cours est ajusté du montant du dividende, avant les autres variations du marché.`,
   attention:`Un dividende très élevé peut être un signal d'alerte plutôt qu'une bonne nouvelle — il indique parfois que le marché anticipe une baisse ou une suppression future du dividende.`,
-  fraisTitre:`💰 Frais`,
-  fraisContenu:`Le dividende est soumis à la flat tax : 31,4% sur un CTO ou un PEA avant 5 ans, mais seulement 30% dans une assurance-vie, qui reste épargnée par la hausse de la CSG de 2026.`,
+  fraisTitre:`💰 Fiscalité`,
+  fraisContenu:`Sur un CTO, les dividendes perçus relèvent en principe du PFU de 31,4% en 2026, sauf option globale pour le barème. Dans un PEA, les dividendes éligibles restent dans le plan et ne sont pas taxés à chaque versement ; les règles fiscales s'appliquent aux retraits. Dans une assurance-vie, ce sont les gains inclus dans un rachat qui sont imposables.`,
   avantage:`Le versement d’un dividende fait sortir de l’argent de l’entreprise : regarde le rendement total, cours compris, avant de juger ton gain.`
 },
 
 {
   id:"reinvestissement-dividendes", categorie:"Mécanismes & stratégies", titre:"le réinvestissement des dividendes", variante:"A", sousVariante:"produit",
   intro:`Que faire des dividendes reçus ? Les replacer peut accroître le nombre de parts détenues, si tu n’as pas besoin de ce revenu maintenant.`,
-  objectif:`Accélérer la croissance de ton portefeuille grâce aux intérêts composés.`,
+  objectif:`Laisser les revenus investis pour qu'ils participent à la performance future du portefeuille.`,
   pourQui:`Tu n'as pas besoin des dividendes comme revenu immédiat et tu veux maximiser la croissance de ton capital sur le long terme.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Chaque dividende reçu sert à racheter de nouvelles parts de l'actif, qui généreront elles-mêmes des dividendes futurs. Sur longue période, cet effet boule de neige (intérêts composés) peut représenter une part très importante de la performance totale — les dividendes représentent historiquement entre 30% et 40% du rendement total à long terme du S&P 500.`,
+  mecanismeContenu:`Quand tu reçois des dividendes en espèces, tu peux acheter de nouvelles parts avec cette somme. Ces parts peuvent à leur tour produire des revenus. Sur un ETF capitalisant, les dividendes perçus par le fonds restent dans ses actifs : ta valeur de part reflète alors aussi ces revenus.`,
   sectionsOptionnelles:[
     {titre:`🔀 ETF de capitalisation ou de distribution ?`, contenu:`Un ETF "de capitalisation" (Acc) réinvestit automatiquement les dividendes en interne, sans que tu aies rien à faire. Un ETF "de distribution" (Dist) te verse les dividendes, à toi de les réinvestir manuellement si tu le souhaites.`}
   ],
   fraisTitre:`💰 Frais`,
-  fraisContenu:`Un ETF de capitalisation réinvestit sans frais de courtage supplémentaires ; un réinvestissement manuel de dividendes distribués génère des frais à chaque achat.`,
+  fraisContenu:`Un ETF capitalisant ne nécessite pas d'ordre de réinvestissement de ta part. Si tu rachètes manuellement des parts après une distribution, des frais de courtage peuvent s'appliquer selon le courtier ; les frais habituels de l'ETF restent dus.`,
   avantage:`Sur un ETF capitalisant, les revenus restent investis dans le fonds. Sur une part distribuante, tu décides quand les replacer et supportes la fiscalité applicable.`
 },
 
@@ -348,7 +348,7 @@ export const TERMES = [
   objectif:`Détenir un jeton qui cherche à suivre une monnaie de référence, pour des transferts ou des opérations au sein de l'écosystème crypto.`,
   pourQui:`Tu veux transférer de la valeur rapidement ou rester en dehors du marché crypto temporairement, sans repasser par une monnaie traditionnelle.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Un stablecoin comme l'USDC ou l'USDT est censé être adossé à des réserves équivalentes (dollars, obligations d'État court terme) détenues par l'émetteur, qui garantit pouvoir échanger 1 stablecoin contre 1 dollar. Il se transfère comme n'importe quelle cryptomonnaie, sur une blockchain, mais sans en subir les variations de prix.`,
+  mecanismeContenu:`Un stablecoin adossé au dollar cherche à maintenir une valeur proche de 1 dollar grâce aux réserves et aux possibilités de rachat prévues par son émetteur. La parité peut toutefois se rompre, et sa valeur en euros varie avec le taux de change euro-dollar. Vérifie les droits de rachat propres au jeton et à la plateforme utilisée.`,
   sectionsOptionnelles:[
     {titre:`🔀 Adossé à des réserves ou algorithmique ?`, contenu:`Les stablecoins adossés à des réserves (USDC, USDT) détiennent des actifs réels en garantie. Les stablecoins algorithmiques tentent de maintenir leur parité par du code plutôt que des réserves — un modèle qui s'est déjà effondré plusieurs fois (ex : TerraUSD en 2022).`}
   ],
@@ -379,13 +379,13 @@ export const TERMES = [
   objectif:`Évaluer si un investissement immobilier locatif est intéressant financièrement avant de l'acheter.`,
   pourQui:`Tu envisages d'acheter un bien pour le mettre en location et tu veux comparer sa rentabilité à d'autres placements.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Le rendement brut se calcule ainsi : (loyers annuels ÷ prix d'achat) × 100. Par exemple, un bien acheté 200 000€ qui génère 10 000€ de loyers par an affiche un rendement brut de 5%. Le rendement net, plus réaliste, déduit charges, taxe foncière, frais de gestion et vacance locative — il tourne souvent 1 à 2 points en dessous du rendement brut.`,
+  mecanismeContenu:`Le rendement brut se calcule ainsi : (loyers annuels ÷ coût d'acquisition retenu) × 100. Par exemple, hors frais d'acquisition, un bien acheté 200 000€ qui génère 10 000€ de loyers par an affiche 5% brut. Le rendement net tient aussi compte des charges, de la taxe foncière, des frais de gestion et de la vacance locative.`,
   sectionsOptionnelles:[
     {titre:`🔀 Rendement brut ou net ?`, contenu:`Le rendement brut ignore toutes les charges, il sert surtout à comparer rapidement des biens entre eux. Le rendement net (voire net-net après impôt) reflète ce qu'il te reste réellement en poche.`}
   ],
   attention:`Un rendement affiché élevé cache parfois un bien dans une zone à faible demande locative ou à fort risque de vacance — le rendement ne dit rien du risque associé.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Les loyers perçus sont imposés au barème de l'impôt sur le revenu (régime micro-foncier ou réel), plus les prélèvements sociaux de 17,2%.`,
+  fraisContenu:`La fiscalité dépend du type de location et de ton régime : les revenus d'une location nue relèvent en principe des revenus fonciers, ceux d'une location meublée des BIC. Le rendement net avant impôt ne reflète donc pas toujours ce qui te reste après fiscalité.`,
   avantage:`Fais ensuite le calcul avec charges, travaux, vacance et impôts. Le rendement brut sert à trier les biens, pas à estimer ce qui restera sur ton compte.`
 },
 
@@ -398,7 +398,7 @@ export const TERMES = [
   mecanismeContenu:`Tu empruntes une partie ou la totalité du prix d'achat, et ce sont les loyers perçus qui remboursent tout ou partie du crédit. Par exemple, avec 20 000€ d'apport, tu peux emprunter 180 000€ et acheter un bien à 200 000€ : ton effet de levier est de 10. Si le bien prend de la valeur ou génère un rendement, le gain se calcule sur les 200 000€, alors que tu n'en as sorti que 20 000€ de ta poche.`,
   attention:`Le levier amplifie aussi les pertes : si le bien perd de la valeur ou reste vacant, tu continues de rembourser le crédit intégralement, indépendamment de la performance réelle du bien.`,
   fraisTitre:`💰 Frais`,
-  fraisContenu:`Intérêts d'emprunt (variables selon les taux du marché), frais de dossier bancaire, et assurance emprunteur obligatoire.`,
+  fraisContenu:`Intérêts d'emprunt et éventuels frais de dossier ou de garantie. L'assurance emprunteur n'est pas imposée par la loi, mais la banque peut l'exiger pour accorder le crédit.`,
   avantage:`Le crédit peut amplifier le résultat, dans les deux sens. Prévois aussi les mensualités si le logement reste vide ou demande des travaux.`
 },
 
@@ -406,11 +406,11 @@ export const TERMES = [
   id:"lmnp", categorie:"Immobilier", titre:"le LMNP", variante:"A", sousVariante:"produit",
   intro:`Louer un logement meublé peut relever du statut LMNP. Pour comprendre son intérêt, il faut regarder comment les loyers sont imposés.`,
   objectif:`Optimiser la fiscalité d'un investissement locatif meublé grâce à l'amortissement comptable du bien.`,
-  pourQui:`Tu loues (ou envisages de louer) un bien meublé classique et tu restes sous le seuil du régime micro-BIC (83 600€ de loyers par an pour 2026, seuil réactualisé périodiquement — attention, il est bien plus bas, 15 000€, pour les meublés de tourisme non classés type Airbnb).`,
+  pourQui:`Tu loues un logement meublé sans remplir les conditions du statut de loueur professionnel. Le choix entre micro-BIC et régime réel dépend notamment des recettes et du type de location ; les meublés de tourisme non classés ont des règles distinctes.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Sous le régime réel du LMNP, tu peux déduire de tes loyers imposables non seulement tes charges, mais aussi l'amortissement du bien et du mobilier — une dépréciation comptable qui ne correspond à aucune sortie d'argent réelle. Concrètement, cela permet souvent de ramener l'impôt sur les loyers perçus proche de zéro pendant de nombreuses années.`,
   sectionsOptionnelles:[
-    {titre:`🔀 Régime micro-BIC ou réel ?`, contenu:`Le micro-BIC applique un abattement forfaitaire de 50% sur les loyers, simple mais souvent moins avantageux. Le régime réel, plus complexe (comptabilité obligatoire), permet de déduire l'amortissement et va généralement plus loin fiscalement.`}
+    {titre:`🔀 Régime micro-BIC ou réel ?`, contenu:`Pour une location meublée classique, le micro-BIC applique en principe un abattement forfaitaire de 50% ; le régime réel permet de déduire les charges et certains amortissements, sous conditions. Les meublés de tourisme non classés suivent un autre seuil et un autre taux d'abattement.`}
   ],
   attention:`Depuis la loi de finances 2025, pour toute vente à partir du 15 février 2025, l'amortissement immobilier déduit doit être réintégré dans le calcul de la plus-value (y compris les amortissements pratiqués avant 2025), ce qui réduit l'intérêt du LMNP sur le très long terme. L'amortissement du mobilier n'est pas concerné, et les résidences services (étudiantes, seniors, EHPAD) restent exonérées.`,
   fraisTitre:`💰 Fiscalité`,
@@ -439,7 +439,7 @@ export const TERMES = [
   calculContenu:`La volatilité se mesure statistiquement par l'écart-type des rendements sur une période donnée, souvent annualisé. Concrètement, une volatilité annualisée de 15% signifie que, dans des conditions "normales", le rendement annuel de l'actif s'écarte en moyenne de 15 points autour de sa moyenne, dans un sens ou dans l'autre.`,
   nuance:{titre:`🔀 Volatilité et risque, pas synonymes`, contenu:`Une forte volatilité n'est pas automatiquement une mauvaise nouvelle : elle mesure l'ampleur des mouvements, pas leur direction. Un actif très volatile qui monte fortement reste volatile, même s'il enrichit ceux qui le détiennent.`},
   pourquoiImportant:`La volatilité t'aide à calibrer la taille d'une position par rapport à ta tolérance au risque, et à anticiper l'ampleur des variations que tu devras encaisser psychologiquement.`,
-  erreurFrequente:`On confond souvent volatilité et risque de perte définitive — un ETF monde très diversifié peut être volatile à court terme sans jamais avoir affiché de perte permanente sur le long terme.`,
+  erreurFrequente:`On confond souvent volatilité et risque de perte définitive. Même un ETF monde diversifié peut subir une forte baisse, et aucune durée de détention ne garantit de récupérer sa mise.`,
   aRetenir:`Une mesure fondée sur les mouvements passés ne dit pas jusqu’où un prix peut chuter demain. Utilise-la pour situer les variations, pas comme une limite de perte.`
 },
 
@@ -468,7 +468,7 @@ export const TERMES = [
 {
   id:"capitalisation-boursiere", categorie:"Indicateurs & notions", titre:"la Capitalisation boursière", variante:"B",
   intro:`Comment mesurer la valeur d’une entreprise en Bourse ? Multiplie le prix d’une action par le nombre d’actions : tu obtiens sa capitalisation.`,
-  definitionContenu:`Une entreprise dont l'action vaut 50€ et qui a émis 2 milliards d'actions a une capitalisation boursière de 100 milliards d'euros — c'est le prix qu'il faudrait payer pour racheter 100% de l'entreprise à son cours actuel.`,
+  definitionContenu:`Une entreprise dont l'action vaut 50€ avec 2 milliards d'actions en circulation a une capitalisation boursière de 100 milliards d'euros. Ce calcul donne une valeur au cours affiché, pas le prix certain d'un rachat de toute l'entreprise.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
   calculContenu:`Capitalisation boursière = Prix de l'action × Nombre total d'actions en circulation. Elle évolue en temps réel, à chaque variation du cours de l'action.`,
   nuance:{titre:`🔀 Small, mid et large cap`, contenu:`Les entreprises sont classées par taille : small cap (petites capitalisations, souvent plus volatiles et moins liquides), mid cap (moyennes), et large cap (grandes, plus stables et plus suivies par les analystes).`},
@@ -482,7 +482,7 @@ export const TERMES = [
   intro:`Le CAC 40 ou le S&P 500 affichent un chiffre, mais tu n’achètes pas directement ce chiffre. Un indice sert à suivre un ensemble de titres.`,
   definitionContenu:`Le CAC 40 regroupe les 40 plus grandes entreprises cotées à Paris ; le S&P 500 regroupe environ 500 grandes entreprises américaines. Quand on dit "la bourse a monté de 1%", on parle en réalité de la variation d'un de ces indices.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
-  calculContenu:`La plupart des grands indices sont pondérés par capitalisation boursière : plus une entreprise est grande, plus elle pèse dans l'indice. Une variation de 5% chez la plus grosse entreprise de l'indice aura donc bien plus d'impact sur sa valeur qu'une variation de 5% chez la plus petite.`,
+  calculContenu:`Beaucoup de grands indices pondèrent leurs titres selon leur capitalisation boursière ajustée du flottant : plus une entreprise pèse dans l'indice, plus la variation de son cours agit sur celui-ci. D'autres indices utilisent des pondérations différentes.`,
   pourquoiImportant:`Un indice te sert de référence pour juger si ta propre performance est bonne ou non — battre "le marché" signifie concrètement faire mieux que l'indice sur la même période.`,
   erreurFrequente:`On croit parfois qu'un indice est composé à parts égales de toutes ses entreprises — en réalité, dans un indice pondéré par capitalisation, quelques géants peuvent représenter une part disproportionnée de la performance totale.`,
   aRetenir:`Vérifie s’il inclut les dividendes et dans quelle devise il est calculé. Sans cela, la comparaison avec ton portefeuille peut être faussée.`
@@ -505,7 +505,7 @@ export const TERMES = [
   definitionContenu:`Avec une inflation de 2% par an, un panier de courses à 100€ aujourd'hui coûtera environ 102€ dans un an, pour le même contenu.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
   calculContenu:`L'inflation se mesure via un indice des prix (comme l'IPC en France), qui suit l'évolution du prix d'un panier de biens et services représentatif sur une période donnée, généralement exprimée en variation annuelle en pourcentage.`,
-  nuance:{titre:`🔀 Rendement nominal ou réel ?`, contenu:`Le rendement nominal est celui affiché brut par ton placement. Le rendement réel, lui, retire l'inflation : un livret qui rapporte 3% avec une inflation à 2% ne t'enrichit réellement que de 1% en pouvoir d'achat.`},
+  nuance:{titre:`🔀 Rendement nominal ou réel ?`, contenu:`Le rendement nominal est celui exprimé en euros courants. Avec un rendement de 3% et une inflation de 2%, le gain réel est proche de 1% ; le calcul exact est (1,03 ÷ 1,02) − 1, soit environ 0,98%, avant éventuels impôts et frais.`},
   pourquoiImportant:`Laisser ton argent dormir sans qu'il rapporte au moins autant que l'inflation revient à perdre du pouvoir d'achat chaque année, même si le montant sur ton compte ne baisse pas.`,
   aRetenir:`Regarde ce que ton épargne peut encore acheter après la hausse des prix. Un solde bancaire qui augmente peut tout de même perdre du pouvoir d’achat.`
 },
@@ -513,7 +513,7 @@ export const TERMES = [
 {
   id:"taux-interet", categorie:"Indicateurs & notions", titre:"le Taux d'intérêt", variante:"B",
   intro:`Quand les taux changent, emprunter coûte plus ou moins cher et les placements existants peuvent changer de prix.`,
-  definitionContenu:`Un taux d'intérêt de 4% sur un prêt de 10 000€ signifie que tu rembourseras 400€ d'intérêts sur une année, en plus du capital emprunté.`,
+  definitionContenu:`À 4% par an, 10 000€ empruntés représentent 400€ d'intérêts sur une année si la somme reste entièrement due pendant douze mois. Sur un crédit amortissable, les intérêts diminuent à mesure que le capital est remboursé.`,
   calculTitre:`🧮 Comment ça se détermine ?`,
   calculContenu:`Les taux directeurs sont fixés par les banques centrales (BCE en zone euro, Fed aux États-Unis) et influencent en cascade tous les autres taux : crédits immobiliers, rendement des obligations, taux des livrets réglementés.`,
   nuance:{titre:`🔀 Taux fixe ou variable ?`, contenu:`Un taux fixe reste identique sur toute la durée du prêt ou du placement. Un taux variable évolue en fonction des taux de marché, ce qui peut jouer en ta faveur ou en ta défaveur selon l'évolution future.`},
@@ -540,7 +540,7 @@ export const TERMES = [
   definitionContenu:`Une plus-value de 1 000€ réalisée sur un CTO est taxée à 31,4%, soit 314€ d'impôt, quel que soit ton niveau de revenu par ailleurs.`,
   calculTitre:`🧮 Comment ça s'applique ?`,
   calculContenu:`Depuis le 1er janvier 2026, la flat tax standard est passée de 30% à 31,4% : elle se décompose en 12,8% d'impôt sur le revenu (inchangé) et 18,6% de prélèvements sociaux, contre 17,2% auparavant, suite à la hausse de la CSG sur les revenus du capital.`,
-  nuance:{titre:`🔀 Toutes les enveloppes ne sont pas concernées`, contenu:`La hausse à 31,4% touche le CTO, les dividendes, les plus-values mobilières, la crypto, le PEA (avant 5 ans) et le PER. L'assurance-vie, les PEL/CEL/PEP et les revenus immobiliers ont été explicitement épargnés par la hausse de la CSG et restent à 30% (17,2% de prélèvements sociaux).`},
+  nuance:{titre:`🔀 Toutes les enveloppes ne sont pas concernées`, contenu:`Le PFU de 31,4% concerne notamment les dividendes et plus-values sur CTO. Les produits de l'assurance-vie soumis au taux de prélèvements sociaux de 17,2% suivent des règles spécifiques selon l'ancienneté du contrat et les primes versées. Les revenus immobiliers ne relèvent pas du PFU : ne leur applique pas un taux forfaitaire de 30%.`},
   pourquoiImportant:`Elle simplifie la fiscalité par rapport à l'ancien système, mais elle s'applique par défaut : si tu es faiblement imposé, il peut être plus avantageux d'opter pour le barème progressif de l'impôt sur le revenu à la place (si ta tranche marginale est inférieure à 12,8%, cette option s'applique alors à tous tes revenus du capital de l'année).`,
   erreurFrequente:`On pense parfois que la flat tax s'applique automatiquement au même taux dans toutes les enveloppes — en réalité, depuis 2026, le taux diffère déjà entre un CTO (31,4%) et une assurance-vie (30%), sans même parler des règles spécifiques du PEA après 5 ans.`,
   aRetenir:`Compare le PFU et l’option pour le barème sur l’ensemble des revenus concernés. L’option ne se décide pas placement par placement.`
@@ -549,7 +549,7 @@ export const TERMES = [
 {
   id:"abattement-pea", categorie:"Fiscalité française", titre:"l'Abattement PEA après 5 ans", variante:"B",
   intro:`Après cinq ans de PEA, les gains peuvent être exonérés d’impôt sur le revenu. Les prélèvements sociaux, eux, restent à prendre en compte.`,
-  definitionContenu:`Sur un PEA ouvert depuis plus de 5 ans, un gain de 10 000€ n'est taxé qu'à 18,6% de prélèvements sociaux (1 860€), contre 31,4% de flat tax (3 140€) s'il avait moins de 5 ans — une économie de 1 280€ sur cet exemple.`,
+  definitionContenu:`Après 5 ans, les gains retirés d'un PEA sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux. Pour un gain de 10 000€ entièrement soumis au taux de 18,6%, ceux-ci représenteraient 1 860€ ; le taux effectif peut dépendre de la date à laquelle les gains ont été acquis.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
   calculContenu:`La durée de 5 ans se compte à partir de la date d'ouverture du PEA, pas à partir de chaque versement individuel — un versement fait à la 4e année profite déjà de l'avantage dès que le PEA lui-même dépasse 5 ans.`,
   pourquoiImportant:`Cet avantage rend le PEA particulièrement puissant pour un horizon d'investissement long : plus tu le gardes ouvert après 5 ans, plus chaque euro de gain supplémentaire profite de cette fiscalité allégée.`,
@@ -562,7 +562,7 @@ export const TERMES = [
   intro:`Un placement peut échapper à l’impôt sur le revenu tout en restant soumis aux prélèvements sociaux. Les deux calculs sont distincts.`,
   definitionContenu:`Un gain de 5 000€ sur un CTO ou un PEA de moins de 5 ans est taxé à 18,6% de prélèvements sociaux, soit 930€ — contre 17,2% (860€) si ce même gain provient d'une assurance-vie, qui a gardé l'ancien taux.`,
   calculTitre:`🧮 Comment ça s'applique ?`,
-  calculContenu:`Les prélèvements sociaux se décomposent en plusieurs contributions (CSG, CRDS, prélèvement de solidarité), prélevées automatiquement à la source par l'établissement financier au moment du versement des gains.`,
+  calculContenu:`Les prélèvements sociaux regroupent notamment la CSG, la CRDS et le prélèvement de solidarité. Leur mode de perception dépend du revenu et de l'enveloppe : certains sont prélevés par l'établissement financier, d'autres calculés lors de la déclaration.`,
   nuance:{titre:`🔀 18,6% ou 17,2% selon l'enveloppe`, contenu:`Depuis la hausse de la CSG au 1er janvier 2026, le taux général est passé de 17,2% à 18,6% pour la plupart des revenus financiers (CTO, PEA, PER, crypto). L'assurance-vie, les PEL/CEL/PEP et les revenus immobiliers (loyers, plus-values immobilières) ont été explicitement exclus de cette hausse et restent à 17,2%.`},
   pourquoiImportant:`Contrairement à l'impôt sur le revenu, les prélèvements sociaux s'appliquent presque toujours, même dans les enveloppes les plus avantageuses fiscalement comme le PEA après 5 ans — c'est rarement ce taux qu'on peut réduire.`,
   erreurFrequente:`On présente parfois une enveloppe comme "totalement exonérée d'impôt" en oubliant les prélèvements sociaux, qui restent dus dans la quasi-totalité des cas — le Livret A fait figure d'exception.`,
@@ -585,7 +585,7 @@ export const TERMES = [
   intro:`À la vente d’un bien immobilier, le gain éventuel suit des règles fiscales différentes selon le bien et sa durée de détention.`,
   definitionContenu:`Un bien acheté 200 000€ et revendu 280 000€ dix ans plus tard dégage une plus-value brute de 80 000€, avant application des abattements liés à la durée de détention.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
-  calculContenu:`Le taux de base est de 19% d'impôt sur le revenu + 17,2% de prélèvements sociaux, soit 36,2% sur la plus-value brute. Mais des abattements progressifs s'appliquent chaque année de détention au-delà de la 5e année : exonération totale d'impôt sur le revenu après 22 ans, et des prélèvements sociaux après 30 ans.`,
+  calculContenu:`Hors exonération, le taux de base est de 19% d'impôt sur le revenu et 17,2% de prélèvements sociaux. Des abattements distincts s'appliquent à la plus-value imposable selon la durée de détention : exonération d'impôt sur le revenu après 22 ans et de prélèvements sociaux après 30 ans. Une surtaxe peut aussi concerner certaines plus-values élevées.`,
   nuance:{titre:`🔀 Résidence principale`, contenu:`La résidence principale bénéficie d'une exonération totale de plus-value immobilière, quelle que soit la durée de détention, contrairement à un investissement locatif ou une résidence secondaire.`},
   pourquoiImportant:`La durée de détention change radicalement la fiscalité d'une revente immobilière — revendre un an trop tôt ou trop tard peut représenter plusieurs milliers d'euros de différence.`,
   erreurFrequente:`On oublie souvent que les abattements pour durée de détention ne suivent pas le même rythme pour l'impôt sur le revenu (exonéré après 22 ans) que pour les prélèvements sociaux (exonérés après 30 ans) — les deux se calculent séparément.`,
@@ -597,8 +597,8 @@ export const TERMES = [
   intro:`Environ tous les quatre ans, la récompense de création des nouveaux bitcoins est divisée par deux. Ce mécanisme s’appelle le halving.`,
   definitionContenu:`En 2020, la récompense par bloc miné est passée de 12,5 à 6,25 bitcoins ; en 2024, elle est passée à 3,125 bitcoins. Le prochain halving est attendu vers 2028, avec une récompense de 1,5625 bitcoin.`,
   calculTitre:`🧮 Comment ça se déclenche ?`,
-  calculContenu:`Le halving se déclenche automatiquement tous les 210 000 blocs minés, ce qui correspond à environ 4 ans, selon un protocole fixé dès la création du Bitcoin en 2009 et inscrit dans son code — aucune autorité ne peut le modifier ou le retarder.`,
-  nuance:{titre:`🔀 Pourquoi ce mécanisme existe`, contenu:`Le halving garantit que le nombre total de bitcoins créés reste plafonné à 21 millions, ce qui rend le Bitcoin structurellement désinflationniste par construction, contrairement à une monnaie classique.`},
+  calculContenu:`Le halving se déclenche tous les 210 000 blocs, soit environ tous les quatre ans au rythme moyen prévu par le protocole Bitcoin. Changer cette règle nécessiterait qu'une part suffisante du réseau adopte une autre version du logiciel.`,
+  nuance:{titre:`🔀 Pourquoi ce mécanisme existe`, contenu:`Le halving réduit progressivement la création de nouveaux bitcoins. Selon les règles actuelles du protocole, l'offre totale tend vers 21 millions d'unités ; cela ne garantit aucune hausse de leur prix.`},
   pourquoiImportant:`En réduisant le rythme de création de nouveaux bitcoins, le halving diminue la pression vendeuse mécanique des mineurs sur le marché — un facteur souvent cité pour expliquer les cycles de prix historiques du Bitcoin, sans que la causalité soit prouvée avec certitude.`,
   erreurFrequente:`Beaucoup traitent le halving comme un signal d'achat garanti parce qu'il a précédé des hausses de prix par le passé — les performances passées après un halving ne garantissent en rien une répétition du même schéma.`,
   aRetenir:`La quantité de bitcoins nouvellement créés change selon une règle connue à l’avance. La réaction de leur prix, elle, reste imprévisible.`
