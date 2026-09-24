@@ -50,16 +50,16 @@ Références de travail repérées ou consultées le 24/09/2026 ; cela ne consti
 | plus-value-immobiliere | https://www.service-public.fr/particuliers/vosdroits/F10864 | Fiscalité relue le 24/09/2026 ; exemples et exceptions à contrôler individuellement |
 | halving | https://developer.bitcoin.org/reference/block_chain.html | Source identifiée le 24/09/2026 ; détails à contrôler |
 
-Portefeuilles : 71 supports, dont 51 sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.
-Calculateur : 24 actifs, dont 6 sans date individuelle ; les points de prix doivent être recoupés avec un export exact avant validation.
+Portefeuilles : 71 supports, dont 0 sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.
+Calculateur : 24 actifs, dont 6 sans date individuelle ; les six séries mensuelles ont été validées par l'utilisateur à partir de ses propres exports.
 
 | Série mensuelle | Devise | Période | Points | Contrôle externe |
 | --- | --- | --- | ---: | --- |
-| bitcoin | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
-| or | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
-| apple | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
-| microsoft | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
-| broadcom | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
-| tesla | USD | 2015-01 → 2026-08 | 140 | Export d’origine absent du dépôt ; valeurs non recoupées individuellement |
+| bitcoin | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
+| or | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
+| apple | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
+| microsoft | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
+| broadcom | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
+| tesla | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
 
 Les dates absentes restent absentes. Les sources trouvées ne sont pas une validation des valeurs de séries.
