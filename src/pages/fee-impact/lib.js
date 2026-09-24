@@ -33,7 +33,7 @@ export function feeLabel(value) {
 // Simulation d'intérêts composés mensuels, versement en début de mois (convention "annuité due" :
 // le versement du mois grossit avant le suivant, ce qui inclut le rendement du dernier mois versé —
 // hypothèse de calcul standard, pas une donnée réelle) : rendement net = rendement brut - frais
-// annuels, appliqué au taux mensuel équivalent chaque mois.
+// annuels, puis division arithmétique par 12 (taux nominal mensuel, pas racine douzième).
 export function simulateCapital(monthlyAmount, years, grossReturnPct, feePct) {
   const months = Math.round(years * 12)
   const netAnnual = grossReturnPct - feePct
@@ -73,7 +73,8 @@ export function buildTweetText(state) {
     `Avec ${feeLabel(fee1)} de frais → ${fmtEUR(d.capital1)}`,
     `Avec ${feeLabel(fee2)} de frais → ${fmtEUR(d.capital2)}`,
     ``,
-    `Écart : ${fmtEUR(d.ecart)} (${ecartPctLabel} % du capital final) lié aux frais dans cette simulation.`,
+    `Écart : ${fmtEUR(d.ecart)} (${ecartPctLabel} % du capital final le plus élevé) lié aux frais dans cette simulation.`,
+    `Hypothèses : mêmes versements en début de mois, rendement brut constant ; frais déduits du taux annuel avant division par 12. Hors fiscalité et inflation.`,
     ``,
     personalLine,
     ``,
