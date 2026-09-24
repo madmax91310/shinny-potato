@@ -4,8 +4,8 @@
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 
 const groups = {
-  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities`,
-  'Indice ou cours du sous-jacent': `msci_europe msci_em or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum foncieres_etf foncieres_etf_dist msci_world_ishares msci_world_amundi_pea msci_acwi ftse_allworld_vanguard msci_em_spdr smallcap_europe`,
+  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist`,
+  'Indice ou cours du sous-jacent': `msci_europe msci_em or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum msci_world_ishares msci_world_amundi_pea msci_acwi ftse_allworld_vanguard msci_em_spdr smallcap_europe`,
   'Autre fonds ou historique mixte': `argent sect_semi jepq oblig_hy_amundi actions_asie_ex_japon quality_dividend`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
@@ -29,7 +29,7 @@ const usdReturns = new Set(`nasdaq100_ishares actions_coree actions_taiwan actio
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
   actions_japon actions_value sect_financieres sect_sante smallcap_monde mp_large mp_large_icom
-  sect_semi jepq smallcap_europe sp500_ishares
+  sect_semi jepq sp500_ishares
   high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes
   strat_dividendes_dist`.trim().split(/\s+/))
 const partialOrSyntheticYears = new Map(Object.entries({
@@ -85,6 +85,8 @@ const issuerSources = {
   sect_energie_propre: 'https://www.ishares.com/ch/privatkunden/de/literature/fact-sheet/inrg-ishares-global-clean-energy-transition-ucits-etf-fund-fact-sheet-de-ch.pdf',
   sect_conso_defensive: 'https://www.ishares.com/gls-download/literature/fact-sheet/iucs-ishares-s-p-500-consumer-staples-sector-ucits-etf-fund-fact-sheet-en-gb.pdf',
   sect_utilities: 'https://www.ishares.com/gls-download/literature/fact-sheet/iuus-ishares-s-p-500-utilities-sector-ucits-etf-fund-fact-sheet-en-gb.pdf',
+  foncieres_etf: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231',
+  foncieres_etf_dist: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231',
 }
 const partialIssuerSources = {
   sect_semi: 'https://www.vaneck.com/fr/fr/smh-supporting-doc.pdf',
@@ -97,8 +99,41 @@ const proxySources = {
   oblig_hy_amundi: 'https://www.ishares.com/gls-download/literature/fact-sheet/ihyg-ishares-high-yield-corp-bond-ucits-etf-fund-fact-sheet-en-gb.pdf',
 }
 const indexSources = {
+  msci_europe: 'https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf',
+  msci_em: 'https://www.msci.com/documents/10199/255599/msci-emerging-markets-imi-eur-net.pdf',
+  msci_em_spdr: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
+  msci_world_ishares: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
+  msci_world_amundi_pea: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
+  msci_acwi: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
+  ftse_allworld_vanguard: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e + https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf',
   smallcap_europe: 'https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0',
+  or: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
+  or_wisdomtree: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
+  or_ishares: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
+  or_amundi: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
+  // Les pages émetteur confirment les supports, pas la série spot annuelle : à recouper.
+  bitcoin: 'https://coinshares.com/etp/physical-bitcoin/',
+  bitcoin_wisdomtree: 'https://www.wisdomtree.eu/en-gb/products/ucits-etfs-unleveraged-etps/cryptocurrency/wisdomtree-physical-bitcoin',
+  bitcoin_etcgroup: 'https://bitwiseinvestments.eu/fr/products/bitwise-physical-bitcoin-etp/',
+  bitcoin_21shares: 'https://www.21shares.com/fr-eu/product/abtc',
+  ethereum: 'https://coinshares.com/etp/physical-ethereum/',
 }
+// Garde les corrections chiffrées issues des tableaux annuels officiels. Les cryptos restent
+// hors de cette liste tant qu'une convention unique de cours de clôture n'est pas établie.
+const primarySeries = new Map(Object.entries({
+  msci_europe: [-3.32, 25.13, -9.49, 15.83, 8.59, 19.39],
+  msci_em: [8.62, 7.29, -14.58, 7.89, 14.24, 15.83],
+  msci_em_spdr: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
+  msci_world_ishares: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
+  msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
+  msci_acwi: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
+  ftse_allworld_vanguard: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
+  smallcap_europe: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
+  or: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
+  or_wisdomtree: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
+  or_ishares: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
+  or_amundi: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
+}))
 const expectedMissingYears = new Map([
   ['sect_semi', [2020]],
   ['jepq', [2020, 2021, 2022, 2023, 2024]],
@@ -113,6 +148,9 @@ for (const asset of ASSETS) {
   if (!Array.isArray(asset.r) || asset.r.length !== 6) { console.error(`Série incomplète : ${asset.id}`); errors++ }
   if (usdReturns.has(asset.id) && !asset.confidenceNote) { console.error(`Devise USD non signalée : ${asset.id}`); errors++ }
   if (partialOrSyntheticYears.has(asset.id) && !asset.confidenceNote) { console.error(`Années simulées sans réserve : ${asset.id}`); errors++ }
+  if (primarySeries.has(asset.id) && JSON.stringify(asset.r) !== JSON.stringify(primarySeries.get(asset.id))) {
+    console.error(`Série indicielle en contradiction avec la source recoupée : ${asset.id}`); errors++
+  }
   if (expectedMissingYears.has(asset.id)) {
     for (const year of expectedMissingYears.get(asset.id)) {
       if (asset.r[year - 2020] !== null) { console.error(`Performance inventée pour ${asset.id} en ${year}`); errors++ }
@@ -137,6 +175,9 @@ for (const id of Object.keys(proxySources)) {
 }
 for (const id of Object.keys(indexSources)) {
   if (tagged.get(id) !== 'Indice ou cours du sous-jacent') { console.error(`Indice mal classé : ${id}`); errors++ }
+}
+for (const id of groups['Indice ou cours du sous-jacent'].split(' ')) {
+  if (!indexSources[id]) { console.error(`Source indicielle absente : ${id}`); errors++ }
 }
 for (const [basis, list] of Object.entries(groups)) console.log(`${basis} : ${list.split(' ').filter(Boolean).length}`)
 console.log(`${ASSETS.length} supports inventoriés ; ${errors} erreur(s) de traçabilité structurelle.`)
