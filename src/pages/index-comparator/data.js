@@ -517,15 +517,15 @@ export const FAMILIES = [
     //   fiches fonds) — identique à la série déjà vérifiée pour ce même fonds dans
     //   portfolio-generator/data.js ("high_dividend"/"high_dividend_dist"), donc cohérence
     //   rétablie entre les deux outils sur cet ISIN.
-    // - quality_div (IE00BYYHSQ67) : 17,14 % / 9,87 % / 23,97 %, désormais identique à la
-    //   série de portfolio-generator/data.js pour ce même ISIN.
+    // - quality_div (IE00BYYHSQ67) : 17,16 % / 9,76 % / 23,97 %, mêmes
+    //   rendements NAV officiels que la part distribuante du Générateur.
     // - aristocrats (IE00B9CQXS71) : 6,93 % / 7,74 % / 17,02 % pour 2023-2025, vérifiés le
     //   24/09/2026 directement sur la ligne "Fund Net" du tableau officiel State Street au
     //   31/08/2026. La ligne "Fund Gross"/l'ancienne série du Générateur était différente ;
     //   le Générateur utilise maintenant lui aussi la série nette de frais.
     perfFunds: [
       { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', y2023: 11.51, y2024: 9.39, y2025: 26.40 },
-      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 17.14, y2024: 9.87, y2025: 23.97 },
+      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 17.16, y2024: 9.76, y2025: 23.97 },
       { key: 'aristocrats', label: 'SPDR S&P Global Dividend Aristocrats', y2023: 6.93, y2024: 7.74, y2025: 17.02 },
     ],
     // Disclosure affichée dans le tweet lui-même (bloc 4, cf. buildTweetText) — devise, méthode et
