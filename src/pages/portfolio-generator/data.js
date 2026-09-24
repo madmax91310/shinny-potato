@@ -346,12 +346,15 @@ export const ASSETS = [
   {
     id: "or", name: "Invesco Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
     isin: "IE00B579F325",
-    // Source : cours de l'or spot en USD/once (Visual Capitalist « Gold's Annual Returns
-    // 2000-2025 » ; BullionVault pour la clôture 2025), années 2020-2025. Base devise : USD (le
-    // rendement réel en EUR de l'ETC, non couvert, diffère selon l'évolution EUR/USD chaque
-    // année — donnée EUR précise non trouvée de façon fiable via recherche web). Même valeurs
-    // répliquées sur les jumeaux WisdomTree/iShares/Amundi (cf. GOLD_OPTIONS dans theses.js).
-    r: [25.1, -3.6, -0.4, 13.2, 27.2, 65.0],
+    // Cours LBMA Gold Price PM en USD/once : performances annuelles World Gold Council,
+    // 2020-2025. Source primaire par année :
+    // https://www.gold.org/goldhub/research/outlook-2021
+    // https://www.gold.org/goldhub/research/gold-outlook-2022
+    // https://www.gold.org/goldhub/research/gold-market-commentary-december-2022
+    // https://www.gold.org/goldhub/research/gold-market-commentary-december-2023
+    // https://www.gold.org/goldhub/research/gold-market-commentary-december-2024
+    // https://www.gold.org/goldhub/research/gold-market-commentary-december-2025
+    r: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
     confidenceNote: "Simulation sur le cours de l'or en dollars, avant les frais de l'ETC ; l'effet de change pour un investisseur en euros n'est pas pris en compte.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
@@ -429,7 +432,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "ethereum", name: "CoinShares Physical Ethereum ETP", cat: "crypto", emoji: "🟠",
+    id: "ethereum", name: "CoinShares Ethereum Staking ETP", cat: "crypto", emoji: "🟠",
     isin: "GB00BLD4ZM24",
     // Source : cours ETH/USD (clôtures 31 décembre, Kraken). 2020-2024 déjà cohérents avec les
     // cours réels (écart < 1,5 pt) et conservés. 2025 recalculé/vérifié : les sources
@@ -438,7 +441,7 @@ export const ASSETS = [
     // spot en USD utilisé, l'ETP CoinShares n'existant pas avant mars 2021 (pas de donnée EUR
     // fiable trouvée).
     r: [469.0, 399.0, -67.0, 91.0, 47.0, -12.0],
-    confidenceNote: "Simulation sur le cours de l'ether en dollars, avant les frais de l'ETP CoinShares ; cet ETP n'existait pas en 2020 et l'effet de change en euros n'est pas pris en compte.",
+    confidenceNote: "Simulation sur le cours de l'ether en dollars, sans les récompenses de staking ni les frais de l'ETP CoinShares ; ETP absent en 2020, change en euros exclu.",
     desc: [
       "la deuxième plus grande cryptomonnaie, socle de nombreuses applications décentralisées.",
       "encore plus volatil que le bitcoin sur certaines périodes, avec des cycles très marqués.",
@@ -467,14 +470,11 @@ export const ASSETS = [
     id: "foncieres_etf", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF", cat: "immobilier", emoji: "⚪",
     isin: "LU1437018838",
     distributing: false,
-    // Source : FTSE EPRA Nareit Global Developed Index, total return EUR (dividendes réinvestis),
-    // années 2020-2024 vérifiées précisément. 2025 (+10,7%) recoupé indépendamment via un chiffre
-    // Nareit "FTSE EPRA Nareit Developed +10.7% en 2025" (devise non précisée sur cette source,
-    // mais cohérent avec la valeur déjà présente). Remplace une précédente série qui ne
-    // correspondait à aucune donnée réelle trouvable (l'ancien -24,4% de 2022 ne correspondait ni
-    // au total return EUR (-20,18%) ni même au price return USD (-21,62%) de l'indice).
-    r: [-16.55, 35.67, -20.18, 5.96, 7.68, 10.7],
-    confidenceNote: "Simulation sur l'indice immobilier FTSE EPRA Nareit en euros, avant les frais de la part Amundi ; 2025 reste à confirmer dans cette devise.",
+    // Performances calendaires « Portefeuille » de la fiche Amundi au 31/12/2025,
+    // part (C) LU1437018838, en euros, revenu réinvesti :
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231
+    r: [-16.53, 35.57, -20.34, 6.02, 7.62, -3.43],
+    confidenceNote: 'Rendements du fonds Amundi en euros, dividendes réinvestis ; le prix de marché peut différer de la valeur liquidative.',
     desc: [
       "des sociétés immobilières cotées en Bourse : bureaux, entrepôts, commerces, logistique.",
       "beaucoup plus liquide que la pierre-papier classique, mais aussi plus volatil.",
@@ -488,8 +488,9 @@ export const ASSETS = [
     id: "foncieres_etf_dist", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF Dist", cat: "immobilier", emoji: "⚪",
     isin: "LU1737652823",
     distributing: true,
-    r: [-16.55, 35.67, -20.18, 5.96, 7.68, 10.7],
-    confidenceNote: "Simulation sur l'indice immobilier FTSE EPRA Nareit en euros, avant les frais de la part distribuante ; 2025 reste à confirmer dans cette devise.",
+    // Fiche Amundi commune aux parts C et D : tableau « Portefeuille » revenu réinvesti.
+    r: [-16.53, 35.57, -20.34, 6.02, 7.62, -3.43],
+    confidenceNote: 'Rendements du fonds Amundi en euros, dividendes réinvestis ; la part distribuante verse ses revenus séparément.',
     desc: [
       "des sociétés immobilières cotées en Bourse : bureaux, entrepôts, commerces, logistique.",
       "beaucoup plus liquide que la pierre-papier classique, mais aussi plus volatil.",
@@ -612,7 +613,7 @@ export const ASSETS = [
     id: "or_wisdomtree", name: "WisdomTree Physical Gold", cat: "matieres_premieres", emoji: "🟡",
     isin: "JE00B1VS3770",
     // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
-    r: [25.1, -3.6, -0.4, 13.2, 27.2, 65.0],
+    r: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
     confidenceNote: "Simulation sur le cours de l'or en dollars, avant les frais de cet ETC WisdomTree ; l'effet de change en euros n'est pas pris en compte.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
@@ -624,7 +625,7 @@ export const ASSETS = [
     id: "or_ishares", name: "iShares Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
     isin: "IE00B4ND3602",
     // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
-    r: [25.1, -3.6, -0.4, 13.2, 27.2, 65.0],
+    r: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
     confidenceNote: "Simulation sur le cours de l'or en dollars, avant les frais de cet ETC iShares ; l'effet de change en euros n'est pas pris en compte.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
@@ -636,7 +637,7 @@ export const ASSETS = [
     id: "or_amundi", name: "Amundi Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
     isin: "FR0013416716",
     // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
-    r: [25.1, -3.6, -0.4, 13.2, 27.2, 65.0],
+    r: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
     confidenceNote: "Simulation sur le cours de l'or en dollars, avant les frais de cet ETC Amundi ; l'effet de change en euros n'est pas pris en compte.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
@@ -657,11 +658,11 @@ export const ASSETS = [
     ],
   },
   {
-    id: "bitcoin_etcgroup", name: "ETC Group Physical Bitcoin", cat: "crypto", emoji: "🟠",
+    id: "bitcoin_etcgroup", name: "Bitwise Physical Bitcoin ETP", cat: "crypto", emoji: "🟠",
     isin: "DE000A27Z304",
     // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
     r: [303.0, 60.0, -64.0, 156.0, 121.0, -6.4],
-    confidenceNote: "Simulation sur le cours du bitcoin en dollars, avant les frais de l'ETP ETC Group ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
+    confidenceNote: "Simulation sur le cours du bitcoin en dollars, avant les frais de l'ETP Bitwise ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -723,7 +724,7 @@ export const ASSETS = [
     id: "msci_world_ishares", name: "iShares Core MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4L5Y983",
     // Proxy : indice MSCI World EUR net, pas les rendements officiels de cette part iShares.
-    r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
+    r: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
     confidenceNote: "Simulation sur l'indice MSCI World net en euros, avant les frais propres à cette part iShares ; ce ne sont pas ses rendements publiés.",
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
@@ -738,7 +739,7 @@ export const ASSETS = [
     // l'indice répliqué, le fonds lui-même n'existant que depuis 2025.
     id: "msci_world_amundi_pea", name: "Amundi PEA Monde (MSCI World) UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR001400U5Q4",
-    r: [6.33, 31.07, -12.78, 19.60, 26.60, 5.35],
+    r: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
     confidenceNote: "Simulation sur l'indice MSCI World net en euros : cette part Amundi n'existait pas avant 2025 et l'historique n'est pas celui du fonds.",
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
@@ -750,7 +751,7 @@ export const ASSETS = [
     id: "msci_acwi", name: "SPDR MSCI ACWI UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B44Z5B48",
     // Source : indice MSCI ACWI (EUR, net de dividendes), fiches MSCI, années 2020-2025.
-    r: [6.42, 29.97, -14.72, 18.90, 24.65, 7.89],
+    r: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
     confidenceNote: "Simulation sur l'indice MSCI ACWI net en euros, avant frais propres à cette part SPDR ; ce ne sont pas les rendements publiés du fonds.",
     desc: [
       "le MSCI World auquel on ajoute les marchés émergents : une exposition mondiale quasi complète.",
@@ -761,12 +762,10 @@ export const ASSETS = [
   {
     id: "ftse_allworld_vanguard", name: "Vanguard FTSE All-World UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BK5BQT80",
-    // Approximation par l'indice MSCI ACWI en EUR (cf. "msci_acwi" ci-dessus) : une donnée FTSE
-    // All-World spécifiquement en EUR n'a pas pu être trouvée de façon fiable (seule une version
-    // en USD a été trouvée : +16,0% / +18,3% / -18,1% / +22,0% / +17,2% / +22,6%, non comparable
-    // aux autres lignes du fichier qui sont en EUR). Les deux indices (ACWI et FTSE All-World)
-    // sont très proches en composition et en performance.
-    r: [6.42, 29.97, -14.72, 18.90, 24.65, 7.89],
+    // Approximation par l'indice MSCI ACWI Net EUR (cf. "msci_acwi" ci-dessus),
+    // faute de série FTSE All-World Net EUR complète recoupée. L'ETF Vanguard publie
+    // sa vraie performance en USD, non interchangeable avec cette simulation EUR.
+    r: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
     confidenceNote: "Simulation sur l'indice MSCI ACWI net en euros, pas sur le fonds Vanguard ni son indice FTSE All-World : les résultats peuvent diverger, surtout selon la devise.",
     desc: [
       "l'équivalent Vanguard du « monde entier en une ligne », émergents compris.",
