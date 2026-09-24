@@ -66,7 +66,7 @@ export const TERMES = [
   ],
   attention:`L'avantage fiscal à l'entrée se paie à la sortie : les sommes déduites sont réintégrées à l'impôt sur le revenu au moment du retrait.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Versements déductibles du revenu imposable pendant la phase d'épargne. À la sortie, la part correspondant aux versements déduits est imposée au barème, les plus-values à la flat tax de 31,4%.`,
+  fraisContenu:`Les versements volontaires peuvent être déduits du revenu imposable dans la limite du plafond disponible ; tu peux aussi renoncer à cette déduction. En cas de sortie en capital, la part des versements déduits est imposée au barème, sans prélèvements sociaux, et les gains suivent le prélèvement forfaitaire applicable. Les règles diffèrent pour une sortie en rente ou des versements non déduits.`,
   avantage:`La déduction aujourd’hui s’accompagne d’une fiscalité à la sortie. Compare ta situation fiscale à l’entrée et celle que tu anticipes à la retraite.`
 },
 

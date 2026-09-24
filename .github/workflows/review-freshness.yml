@@ -22,3 +22,9 @@ jobs:
           echo '```text' >> "$GITHUB_STEP_SUMMARY"
           node scripts/check-freshness.mjs --priorities >> "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - name: Vérifier les sources et les séries du code
+        run: |
+          npm run audit:source-inventory
+          npm run audit:portfolio-provenance
+          npm run audit:data-roadmap
+          node scripts/audit-data-roadmap.mjs --markdown >> "$GITHUB_STEP_SUMMARY"
