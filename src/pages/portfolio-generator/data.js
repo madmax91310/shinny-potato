@@ -177,6 +177,8 @@ export const ASSETS = [
   {
     id: "sp500", name: "Amundi PEA S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR0011871128",
+    // Contrôle individuel le 24/09/2026 : ISIN, devise EUR et six rendements 2020-2025
+    // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée (fonds, pas indice).
     // Rendements calendaires du fonds en EUR, ligne « Portefeuille » de la fiche Amundi
     // (30/06/2026), pour chacune des années 2020-2025 :
     // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630
@@ -193,6 +195,8 @@ export const ASSETS = [
     // sp500 qui est la version PEA d'Amundi : leurs performances propres diffèrent.
     id: "sp500_ishares", name: "iShares Core S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B5BMR087",
+    // Contrôle individuel le 24/09/2026 : ISIN, devise USD et six années 2020-2025
+    // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
     // NAV calendaire de la part iShares en USD, dividendes réinvestis :
     // https://www.ishares.com/gls-download/literature/fact-sheet/cspx-ishares-core-s-p-500-ucits-etf-fund-fact-sheet-en-gb.pdf
     r: [18.02, 28.36, -18.35, 25.92, 24.69, 17.58],
@@ -206,6 +210,8 @@ export const ASSETS = [
   {
     id: "nasdaq100", name: "Amundi PEA Nasdaq-100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR0011871110",
+    // Contrôle individuel le 24/09/2026 : ISIN, devise EUR et six années 2020-2025
+    // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
     // Rendements calendaires de la part Amundi en EUR, ligne « Portefeuille » :
     // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF
     r: [36.07, 36.59, -28.35, 49.32, 33.58, 6.01],
@@ -305,6 +311,8 @@ export const ASSETS = [
   {
     id: "msci_europe", name: "iShares Core MSCI Europe UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4K48X80",
+    // Contrôle individuel le 24/09/2026 : ISIN, devise EUR et six années 2020-2025
+    // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
     // Fiche BlackRock SMEA, ligne Share Class EUR (Acc), 2020-2025.
     // https://www.ishares.com/gls-download/literature/fact-sheet/smea-ishares-core-msci-europe-ucits-etf-eur-acc-fund-fact-sheet-en-gb.pdf
     r: [-3.17, 25.46, -9.25, 16.14, 8.84, 19.72],
@@ -397,6 +405,8 @@ export const ASSETS = [
     // bien l'indice Bloomberg Commodity, confirmé via la fiche produit iShares.
     id: "mp_large_icom", name: "iShares Diversified Commodity Swap UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00BDFL4P12",
+    // Contrôle individuel le 24/09/2026 : ISIN, devise USD et six années 2020-2025
+    // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
     // NAV annuelle de la part ICOM en USD, revenus réinvestis :
     // https://www.ishares.com/gls-download/literature/fact-sheet/icom-ishares-diversified-commodity-swap-ucits-etf-fund-fact-sheet-en-gb.pdf
     r: [-3.11, 26.76, 15.08, -8.36, 5.22, 15.65],
@@ -715,6 +725,8 @@ export const ASSETS = [
   {
     id: "msci_world_ishares", name: "iShares Core MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4L5Y983",
+    // Contrôle individuel le 24/09/2026 : ISIN, devise USD et six années 2020-2025
+    // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
     // BlackRock SWDA, ligne Share Class USD (Acc), 2020-2025.
     // https://www.ishares.com/gls-download/literature/fact-sheet/swda-ishares-core-msci-world-ucits-etf-fund-fact-sheet-en-gb.pdf
     r: [15.95, 21.90, -18.03, 23.86, 18.70, 21.16],
