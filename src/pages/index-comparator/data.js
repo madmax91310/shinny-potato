@@ -222,20 +222,14 @@ export const FAMILIES = [
       chain: ['Russell 1000 (1 000 lignes)', 'MSCI USA (527)', 'S&P 500 (500)', 'Nasdaq 100 (100)'],
       notes: ['⚠️ Le Nasdaq 100 exclut tout le secteur financier et concentre près de 50 % sur ses 10 plus grosses lignes.', '→ Si ton portefeuille contient déjà un S&P 500, vérifie combien de ses grandes valeurs tu rachètes avec le Nasdaq-100.'],
     },
-    // Performance 2023-2025 (source : justETF/extraetf/Boursorama, recherche web du 02/09/2026).
-    // nasdaq100 CORRIGÉ le 23/09/2026 (49,32/33,58/6,01 → 54,99/27,18/20,78) : détecté par
-    // scripts/audit-performance-consistency.mjs (écart de 6 à 14,8 pt avec portfolio-generator/
-    // data.js pour le MÊME ISIN, FR0011871110). L'ancien commentaire affirmait que le chiffre
-    // "iShares Nasdaq 100 EUR (~+18-21 %)" utilisé ailleurs dans l'appli concernait "un fonds
-    // différent" — c'était FAUX : portfolio-generator utilise ce même ISIN (FR0011871110, Amundi
-    // PEA Nasdaq-100) comme proxy avec un historique iShares Nasdaq 100 EUR. Confirmé par 2
-    // requêtes web indépendantes le 23/09/2026 (indice Nasdaq-100 total return 2023-2025 : environ
-    // +55/+26/+21 % ; fonds iShares NASDAQ 100 UCITS ETF, part USD Acc, quasi identique à +54,99/
-    // +27,18/+20,78 %) — cohérent avec la fourchette "18-21 %" que l'ancien commentaire avait
-    // pourtant écartée à tort. L'ancien 2025 à +6,01 % n'a pu être retracé à aucune source fiable.
+    // Nasdaq PEA : performances calendaires officielles de la part Amundi FR0011871110 en EUR,
+    // ligne « Portefeuille » (2023-2025). L'ancienne série reprenait le Nasdaq en USD et
+    // passait à tort pour les rendements de cette part en euros ; l'audit ISIN seul ne pouvait
+    // pas repérer cette erreur puisque les deux outils partageaient le même proxy.
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF
     perfFunds: [
       { key: 'sp500', label: 'Amundi PEA S&P 500', y2023: 21.68, y2024: 32.85, y2025: 3.45 },
-      { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', y2023: 54.99, y2024: 27.18, y2025: 20.78 },
+      { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', y2023: 49.32, y2024: 33.58, y2025: 6.01 },
       { key: 'msci_usa', label: 'iShares MSCI USA', y2023: 22.33, y2024: 32.69, y2025: 3.82 },
     ],
     verdictTitle: '✅ LE VERDICT',
