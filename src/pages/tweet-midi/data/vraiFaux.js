@@ -190,7 +190,7 @@ export const VRAI_FAUX = [
     affirmation: "On peut revendre des parts de SCPI instantanément, comme une action.",
     reponse: false,
     explication:
-      "Les parts de SCPI sont peu liquides : compte en général plusieurs semaines à plusieurs mois pour une revente, contrairement à une action ou un ETF qui se négocie en quelques secondes.",
+      "Une part de SCPI ne se revend pas comme une action : il faut trouver de la liquidité selon les règles de la SCPI. Le retrait peut prendre plusieurs mois, et parfois davantage si les demandes s'accumulent.",
   },
   {
     id: "opci-immobilier-minimum",
@@ -199,7 +199,7 @@ export const VRAI_FAUX = [
     affirmation: "Un OPCI doit détenir au moins 60% d'actifs immobiliers.",
     reponse: true,
     explication:
-      "C'est la règle : au moins 60% d'immobilier et un minimum de 5% de liquidités, le reste pouvant être investi en actions ou obligations — cette poche non-immobilière le rend plus volatil qu'une SCPI classique.",
+      "Un OPCI doit détenir au moins 60% d'actifs immobiliers et une poche de liquidités. Il peut aussi investir en actifs financiers, dont la valeur peut varier plus vite que celle des immeubles ; cela ne garantit ni sa liquidité ni une volatilité toujours supérieure à celle d'une SCPI.",
   },
   {
     id: "tracker-different-etf",
@@ -698,10 +698,10 @@ export const VRAI_FAUX = [
     id: "lmnp-micro-bic-abattement",
     sourceTermeId: "lmnp",
     categorie: "Immobilier",
-    affirmation: "Le régime micro-BIC applique un abattement forfaitaire de 50% sur les loyers perçus en LMNP.",
+    affirmation: "En location meublée classique, le régime micro-BIC prévoit en principe un abattement forfaitaire de 50% sur les loyers.",
     reponse: true,
     explication:
-      "C'est le principe du micro-BIC : un abattement forfaitaire de 50%, simple à appliquer mais souvent moins avantageux que le régime réel, qui permet de déduire l'amortissement du bien.",
+      "En location meublée classique, l'abattement de 50% remplace la déduction des frais réels. Le régime réel permet, sous conditions, de déduire charges et amortissements. Les meublés de tourisme non classés suivent des règles différentes.",
   },
 
   // ---------- Fiscalité française (variante B, contenu concret et testable) ----------
@@ -887,7 +887,7 @@ export const VRAI_FAUX = [
     affirmation: "La volatilité et le risque de perte définitive sont exactement la même chose.",
     reponse: false,
     explication:
-      "On confond souvent les deux : un ETF monde très diversifié peut être volatile à court terme sans jamais avoir affiché de perte permanente sur le long terme.",
+      "La volatilité mesure l'ampleur des variations, pas la perte définitive. Même un ETF monde diversifié peut fortement baisser et aucune durée de détention ne garantit la récupération de ta mise.",
   },
   {
     id: "capi-boursiere-calcul",
@@ -896,7 +896,7 @@ export const VRAI_FAUX = [
     affirmation: "La capitalisation boursière se calcule en multipliant le prix de l'action par le nombre total d'actions en circulation.",
     reponse: true,
     explication:
-      "Une entreprise dont l'action vaut 50€ avec 2 milliards d'actions en circulation a une capitalisation de 100 milliards d'euros — c'est le prix qu'il faudrait payer pour racheter 100% de l'entreprise à son cours actuel.",
+      "Une action à 50€ multipliée par 2 milliards d'actions en circulation donne une capitalisation de 100 milliards d'euros. Cela valorise les actions au cours affiché, sans garantir qu'un acheteur puisse acquérir toute l'entreprise à ce prix.",
   },
   {
     id: "capi-boursiere-ca",
@@ -914,7 +914,7 @@ export const VRAI_FAUX = [
     affirmation: "Un placement qui rapporte 3% par an t'enrichit toujours de 3% en pouvoir d'achat réel.",
     reponse: false,
     explication:
-      "C'est le rendement nominal, avant inflation. Avec une inflation à 2%, un livret à 3% ne t'enrichit réellement que de 1% en pouvoir d'achat — c'est le rendement réel qui compte vraiment.",
+      "C'est le rendement nominal. Avec 3% de rendement et 2% d'inflation, ton gain réel est proche de 1% : le calcul exact donne environ 0,98%, avant d'éventuels frais ou impôts.",
   },
   {
     id: "taux-sans-risque-zero-risque",
