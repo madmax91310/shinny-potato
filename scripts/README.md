@@ -208,6 +208,15 @@ vérifier automatiquement quoi que ce soit. Méthode heuristique (repérage de d
 le texte entourant chaque entrée, pas un parseur strict) — cf. commentaire en tête du script pour
 la limite connue sur les commentaires de section partagés par plusieurs entrées.
 
+## `audit-publishable-content.mjs`
+
+`npm run audit:publishable-content` vérifie que les 21 faits, 16 thèmes ETF, 36 fiches ETF et
+6 cas concrets possèdent leurs champs éditoriaux essentiels et leurs sources lorsqu'ils en
+affichent, puis protège trois corrections ciblées : absence de small caps dans FTSE All-World,
+absence de performance 2020 pour les deux ETP CoinShares, suppression de moyennes non sourcées
+sur les bear markets. Le script ne prétend pas vérifier l'exactitude des autres chiffres ;
+ceux-ci restent soumis aux documents des émetteurs et aux audits dédiés.
+
 ## `playwright-tools.mjs`
 
 Un test fonctionnel réel (Chromium) par outil, formalisant le "write→look once" fait à la main tout
@@ -215,6 +224,7 @@ au long de la session en suite réutilisable :
 
 ```bash
 npm run test:tools   # build + lance son propre `vite preview` (port 4310) + teste + coupe le serveur
+npx playwright install chromium  # à lancer une fois en local si Chromium n'est pas installé
 ```
 
 Exerce une interaction réelle par outil (jamais juste "la page charge sans erreur") : sélection
@@ -226,9 +236,9 @@ Aléatoire d'Impact des frais, cycle des faits de Faits marquants des marchés (
 la création de l'outil), marquage "publié aujourd'hui" + badge de repos de la Banque de tweets
 (ajouté le 23/09/2026 à la création de l'outil). Sort en code 1 si un outil échoue.
 
-Dépend de Chromium pré-installé à `/opt/pw-browsers/chromium` et de `playwright` installé
-globalement à `/opt/node22/lib/node_modules/playwright` — aucun des deux n'est une dépendance du
-projet, ce script ne tourne que dans cet environnement de session. Lance `vite preview` en groupe de
+Playwright est une dépendance de développement du projet ; le workflow GitHub Actions installe
+Chromium, lance les audits et ce test avant de publier Pages. Une PR lance les mêmes vérifications
+sans étape de déploiement. Lance `vite preview` en groupe de
 processus détaché (`detached: true`) pour pouvoir le tuer entièrement à la fin
 (`process.kill(-pid)`) — un bug constaté à l'écriture de ce script : `server.kill()` seul ne tue que
 le wrapper `npx`, laissant le vrai process `vite preview` tourner en orphelin sur le port.

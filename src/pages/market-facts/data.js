@@ -28,8 +28,11 @@ const RAW_FACTS = [
     family: "chocs",
     category: "Fréquence des corrections",
     indices: ["S&P 500"],
-    fact: "Depuis 1928, le S&P 500 a connu 27 bear markets (baisses de 20% ou plus) : environ un tous les 1,5 an entre 1928 et 1945, puis un tous les 5,1 ans depuis 1945 — soit un bear market tous les 56 mois en moyenne depuis 1932.",
-    source: "S&P Dow Jones Indices",
+    // Hartford Funds / Ned Davis Research dénombre 27 épisodes depuis 1928. Les moyennes
+    // « 56 mois depuis 1932 » et « 5,1 ans depuis 1945 » étaient ajoutées à la même fiche
+    // sans dénominateur vérifiable : retirées le 24/09/2026, pas recalculées à l'aveugle.
+    fact: "Selon le décompte de Hartford Funds, le S&P 500 a connu 27 bear markets (baisses de 20 % ou plus) depuis 1928.",
+    source: "Hartford Funds, « 10 Things You Should Know About Bear Markets »",
     note: null,
   },
   {
@@ -219,7 +222,7 @@ const RAW_FACTS = [
 const EDITORIAL = {
   "corrections-27-bear-markets": {
     hook: "📉 27 bear markets depuis 1928 : le S&P 500 en a vu passer des tempêtes.",
-    context: "Une baisse d'au moins 20 % n'a rien d'un scénario inédit. Depuis 1932, l'intervalle moyen entre deux épisodes est d'environ 56 mois.",
+    context: "Une baisse d'au moins 20 % n'a rien d'un scénario inédit. Le nombre d'épisodes ne dit pas à quel rythme arrivera le prochain.",
     twist: "Une moyenne décrit le passé : elle ne donne pas la date de la prochaine baisse.",
     question: "Tu as déjà investi pendant un bear market, ou tu n'en as encore jamais traversé ?",
   },

@@ -129,9 +129,9 @@ const indexSources = {
 const primarySeries = new Map(Object.entries({
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   smallcap_europe: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
-  bitcoin: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
+  bitcoin: [null, 59.67, -64.27, 155.42, 121.05, -6.34],
   bitcoin_21shares: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
-  ethereum: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
+  ethereum: [null, 399.13, -67.50, 90.64, 46.07, -10.97],
 }))
 // Contrôle fermé des séries remplacées dans ce passage : rendements de la part exacte
 // publiés par l'émetteur, plus deux moyennes de marché dont la définition est documentée.
@@ -171,6 +171,8 @@ const requiredDisclosures = new Map(Object.entries({
   bitcoin_etcgroup: /2020.*aucune année calendaire/i,
 }))
 const expectedMissingYears = new Map([
+  ['bitcoin', [2020]],
+  ['ethereum', [2020]],
   ['sect_semi', [2020]],
   ['jepq', [2020, 2021, 2022, 2023, 2024]],
   ['bitcoin_etcgroup', [2020]],

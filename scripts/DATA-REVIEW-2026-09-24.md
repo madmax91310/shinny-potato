@@ -10,6 +10,14 @@ Priorités avant de remplacer un proxy : obtenir les performances *calendaires* 
 
 Sources : https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf ; https://cdn.21shares.com/uploads/current-documents/past-performance/ABTC/CH0454664001_21SharesAG(FR).pdf .
 
+### Mise à jour ciblée du 24 septembre
+
+- CoinShares Bitcoin (GB00BLD4ZL17) : lancement le 19/01/2021 ; CoinShares Ethereum (GB00BLD4ZM24) : lancement le 23/02/2021. Les lignes du générateur ne montrent plus de rendement 2020 pour ces ETP. Les années suivantes conservent clairement leur base en cours spot USD : ce ne sont pas des performances nettes des ETP et les frais, le staking ETH et le change EUR n'y sont pas intégrés. Sources : https://coinshares.com/etp/physical-bitcoin/ et https://coinshares.com/etp/physical-ethereum/ .
+- La fiche officielle Vanguard pour IE00BK5BQT80 précise que FTSE All-World réunit grandes et moyennes capitalisations. La mention « small caps incluses » a été retirée du thème ETF Monde. Source : https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf .
+- Le fait « 27 bear markets depuis 1928 » a été attribué à Hartford Funds et débarrassé des moyennes temporelles contradictoires qui l'accompagnaient. Source : https://www.hartfordfunds.com/practice-management/client-conversations/managing-volatility/bear-markets.html .
+
+Le cas 21Shares reste en attente de clarification sur les rendements annuels des documents de l'émetteur ; aucune série concurrente n'a été substituée au cours spot existant. Les autres proxies et historiques mixtes déjà revus lors des passes précédentes restent assortis de leurs avertissements propres.
+
 ## Dates et chiffres entre outils
 
 `npm run check-freshness -- --priorities` relève 50 supports du générateur et 6 actifs du calculateur sans date individuelle documentée. Cette absence n'est pas une preuve d'erreur. Les six du calculateur sont Bitcoin, or, Apple, Microsoft, Broadcom et Tesla ; leur date sera renseignée après confrontation de leurs points de prix à la source exacte, pas par simple lecture d'un commentaire voisin.

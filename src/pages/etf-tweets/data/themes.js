@@ -67,7 +67,9 @@ const BASE_THEMES = [
         isin: 'IE00BK5BQT80',
         frais: '0,14',
         encours: '49,05 Md€',
-        differenciateur: '+3600 valeurs, small caps incluses, CTO',
+        // L'indice FTSE All-World couvre les grandes et moyennes capitalisations,
+        // pas les small caps (document du fonds Vanguard, ISIN IE00BK5BQT80).
+        differenciateur: 'grandes et moyennes capitalisations, pays développés + émergents, CTO',
       }),
       createEtf({
         nom: 'SPDR MSCI ACWI UCITS ETF',
@@ -128,7 +130,7 @@ const BASE_THEMES = [
     hookAction: 'diversifier ton portefeuille sur les valeurs européennes',
     hookDilemme: 'quel indice Europe choisir (MSCI Europe, Euro Stoxx 50 ou Stoxx 600)',
     transition:
-      'Le marché européen reste sous-pondéré dans beaucoup de portefeuilles. Voici 3 trackers pour s’y exposer :',
+      'Un ETF World te laisse déjà une place pour l’Europe. Si tu veux lui donner davantage de poids, ces trois indices ne couvrent pas la même chose :',
     etfs: [
       createEtf({
         nom: 'iShares Core MSCI Europe UCITS ETF',
@@ -153,7 +155,7 @@ const BASE_THEMES = [
       }),
     ],
     cloture:
-      'MSCI Europe, Euro Stoxx 50 ou Stoxx 600 : le nombre de valeurs et l’éligibilité PEA changent tout selon ton enveloppe fiscale.',
+      'Le 50 se limite aux grandes sociétés de la zone euro. Le MSCI Europe et le STOXX 600 couvrent aussi d’autres marchés européens. Vérifie ton enveloppe avant de trancher.',
   }),
   createTheme({
     id: 'tech-europe',
@@ -169,7 +171,7 @@ const BASE_THEMES = [
         isin: 'LU1834988518',
         frais: '0,30',
         encours: '~199 M€',
-        differenciateur: 'le plus gros et le moins cher du segment, éligible PEA',
+        differenciateur: '0,30 % de frais annuels, éligible PEA',
       }),
       createEtf({
         nom: 'iShares STOXX Europe 600 Technology UCITS ETF (DE)',
@@ -180,7 +182,7 @@ const BASE_THEMES = [
       }),
     ],
     cloture:
-      'La tech européenne pèse peu face aux US en Bourse — ces ETF restent des supports de niche, pas un pilier de portefeuille.',
+      'Tu ajoutes un seul secteur : si tu possèdes déjà un ETF Europe, regarde d’abord combien de ces entreprises tu détiens déjà.',
   }),
   createTheme({
     id: 'emergents',
@@ -189,7 +191,7 @@ const BASE_THEMES = [
     hookAction: 'capter la croissance des pays émergents',
     hookDilemme: 'quel ETF Emerging Markets choisir',
     transition:
-      'Chine, Inde, Brésil, Taïwan... les émergents pèsent de plus en plus dans l’économie mondiale. Voici 3 trackers pour y accéder :',
+      'Chine, Inde, Brésil, Taïwan : selon l’indice choisi, les pays et la taille des entreprises couvertes changent. Trois façons de s’y exposer :',
     etfs: [
       createEtf({
         nom: 'iShares Core MSCI EM IMI UCITS ETF',
@@ -214,7 +216,7 @@ const BASE_THEMES = [
       }),
     ],
     cloture:
-      'La composition (poids Chine/Inde) et l’éligibilité PEA sont les deux critères qui doivent guider ton choix.',
+      'Une ligne « émergents » ne répartit pas ton argent à parts égales entre les pays. Regarde surtout le poids des plus gros marchés et ce que change le filtre ESG de la version PEA.',
   }),
   createTheme({
     id: 'luxe',

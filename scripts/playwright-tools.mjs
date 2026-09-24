@@ -11,14 +11,14 @@
 // exerce une interaction réelle par outil (pas seulement "la page charge sans erreur"), puis
 // arrête le serveur — y compris si un test échoue (cf. finally).
 //
-// Dépend de Chromium pré-installé à /opt/pw-browsers/chromium et du paquet playwright installé
-// globalement à /opt/node22/lib/node_modules/playwright (ni l'un ni l'autre n'est une dépendance
-// du projet — cf. scripts/README.md) : ne tourne que dans cet environnement de session, pas sur
-// une machine quelconque sans ces deux chemins.
+// Playwright est une dépendance du projet. Installer Chromium avec
+// `npx playwright install chromium` avant le premier lancement local ; la CI installe
+// également ses dépendances système. Un chemin explicite reste possible via
+// PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH si le navigateur est fourni par l'hôte.
 //
 // Sort avec le code 1 si un test échoue (utilisable comme porte de CI).
 
-import { chromium } from "/opt/node22/lib/node_modules/playwright/index.mjs";
+import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 
 const PORT = 4310;
@@ -179,7 +179,9 @@ try {
   await waitForServer(`${BASE}/`);
   console.log("Serveur prêt.\n");
 
-  const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+  const browser = await chromium.launch(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH
+    ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH }
+    : {});
   const page = await browser.newPage();
 
   await testCalculateur(page);

@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -27,16 +28,22 @@ jobs:
       - run: npm run audit:portfolio-provenance
       - run: npm run audit:performance-consistency
       - run: npm run audit:etf-consistency
+      - run: npm run audit:publishable-content
       - run: npm run verify:tweet-midi
       - run: npm run stress-test:portfolios
       - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-tools.mjs
       - uses: actions/configure-pages@v5
+        if: github.event_name == 'push'
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push'
         with:
           path: dist
 
   deploy:
     needs: build
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

@@ -415,10 +415,11 @@ export const ASSETS = [
     // clôtures annuelles successives, même convention pour toutes les années.
     // https://www.slickcharts.com/currency/BTC/returns
     // Le fournisseur ne précise pas l'heure de clôture dans ce tableau ; la valeur
-    // peut différer d'un cours figé à minuit UTC. 2020 précède l'ETP CoinShares.
+    // peut différer d'un cours figé à minuit UTC. 2020 précède l'ETP CoinShares :
+    // année masquée plutôt que de présenter le cours spot comme une performance de ce fonds.
     // Même proxy pour les ETP WisdomTree, Bitwise et 21Shares.
-    r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
-    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP ; l'ETP CoinShares n'existait pas en 2020 et l'effet de change en euros n'est pas pris en compte.",
+    r: [null, 59.67, -64.27, 155.42, 121.05, -6.34],
+    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP ; aucune performance de l'ETP en 2020 (lancé en 2021), ni conversion en euros.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",
@@ -431,9 +432,10 @@ export const ASSETS = [
     // Rendements ETH/USD publiés par Slickcharts, 2020-2025 : variation entre les
     // clôtures annuelles successives, selon la même convention que le proxy BTC.
     // https://www.slickcharts.com/currency/ETH/returns
-    // Cours spot uniquement : ne capte pas le staking de l'ETP CoinShares.
-    r: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
-    confidenceNote: "Simulation sur les clôtures annuelles ETH/USD (Slickcharts), sans les récompenses de staking ni les frais de l'ETP CoinShares ; ETP absent en 2020, change en euros exclu.",
+    // Cours spot uniquement : ne capte pas le staking de l'ETP CoinShares. 2020
+    // précède son lancement en février 2021 et ne constitue pas son rendement.
+    r: [null, 399.13, -67.50, 90.64, 46.07, -10.97],
+    confidenceNote: "Simulation sur les clôtures annuelles ETH/USD (Slickcharts), sans les récompenses de staking ni les frais de l'ETP CoinShares ; aucune performance de l'ETP en 2020, ni conversion en euros.",
     desc: [
       "la deuxième plus grande cryptomonnaie, socle de nombreuses applications décentralisées.",
       "encore plus volatil que le bitcoin sur certaines périodes, avec des cycles très marqués.",
