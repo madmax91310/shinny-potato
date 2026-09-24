@@ -94,7 +94,7 @@ async function testBrokerComparator(page) {
   // Le texte généré vit dans la value d'un <textarea> (bc-tweet-textarea) — jamais capturé par
   // innerText(), qui n'expose pas le contenu des champs de formulaire.
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
-  const ok = /FRAIS DE COURTAGE|VERDICT FINAL/.test(tweet);
+  const ok = tweet.includes("Quand tu passes un ordre") && tweet.includes("Si tu transfères ton PEA") && tweet.includes("Selon ta façon d’investir") && tweet.includes("Entrant ✅");
   record("Comparatif courtiers", ok, "texte du duel par défaut généré");
 }
 
