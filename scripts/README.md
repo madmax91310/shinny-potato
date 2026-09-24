@@ -97,8 +97,8 @@ Les parts présentes dans un seul outil ne peuvent pas être comparées par ce s
 ## `audit-portfolio-provenance.mjs`
 
 Inventaire fermé des 72 supports du Générateur, par provenance du tableau annuel : part de fonds
-recoupée chez l'émetteur, part annoncée dans les commentaires mais non revérifiée dans cet audit,
-indice ou cours utilisé comme proxy, autre fonds/historique mixte, ou hypothèse générique.
+recoupée chez l'émetteur, indice ou cours utilisé comme proxy, autre fonds/historique mixte,
+ou hypothèse générique.
 
 ```bash
 npm run audit:portfolio-provenance
@@ -107,9 +107,13 @@ npm run audit:portfolio-provenance
 Échoue lorsqu'un support n'est pas inventorié, qu'une série simulée n'a plus d'avertissement
 visible dans le tweet, ou qu'un support déclaré en USD perd son indication de devise. Recense
 aussi les fonds lancés en cours d'historique et conserve une référence vers les fiches des fonds
-recoupés. Cet audit vérifie la traçabilité ; il ne télécharge pas les fiches et ne certifie pas
-automatiquement les 28 fonds classés « série attribuée à une part » : ils demandent encore une
-lecture du document émetteur, ISIN par ISIN.
+recoupés. Les 28 parts auparavant classées « série attribuée à une part » ont été revues auprès
+des émetteurs le 24/09/2026 ; plusieurs séries ont été corrigées, y compris les parts à levier,
+les ETF sectoriels et les foncières. Pour CSPX, la série en euros non documentée a été remplacée
+par la série officielle en dollars, explicitement signalée dans le tweet. La part Quality Acc
+n'a pas de rendement calendaire 2020 publié : valeur `null`. Les sources Vanguard en arrondi
+à 0,1 point ne certifient que cette précision. Ce script vérifie les sources enregistrées et
+les notes visibles, sans télécharger ni recalculer automatiquement les rendements.
 
 ## `check-freshness.mjs`
 
