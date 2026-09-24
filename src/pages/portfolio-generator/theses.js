@@ -481,7 +481,7 @@ export const PROFILES = [
     ],
     warnings: [
       "Ce portefeuille génère des revenus — pas une performance maximale. C'est un choix assumé, pas une contrainte.",
-      "La plupart de ces revenus sont fiscalisés chaque année, même sans rien vendre. À anticiper selon ton enveloppe.",
+      "La fiscalité des revenus dépend de l'enveloppe et des supports choisis. Vérifie-la avant de compter sur un montant net.",
     ],
     // Uniquement des lignes en part distribuante (Dist) : la thèse est de percevoir un revenu,
     // pas de capitaliser silencieusement — cohérent avec l'immobilier, les dividendes, le haut
@@ -490,9 +490,9 @@ export const PROFILES = [
     // revenus, une baisse de capital reste significative même si les distributions continuent.
     capitalNote: true,
     contextFallback: [
-      "Même dans sa pire année, les revenus distribués par ces lignes ont continué à tomber.",
-      "La baisse touche la valeur des parts, pas les distributions : les revenus, eux, ont continué à tomber.",
-      "Le capital a reculé cette année-là, mais les lignes du portefeuille ont continué à verser.",
+      "La simulation suit la valeur du portefeuille ; elle ne mesure pas les sommes effectivement distribuées.",
+      "Les distributions peuvent varier ou s'arrêter, même si les supports ont été choisis pour leur revenu potentiel.",
+      "La valeur des parts et les distributions sont deux choses à suivre séparément pour vivre de ce portefeuille.",
     ],
     riskCombos: {
       prudent: {
@@ -531,7 +531,7 @@ export const PROFILES = [
           {
             idOptions: DIVIDEND_OPTIONS_DIST, pct: 15,
             pourquoi: [
-              "Des entreprises qui versent (et augmentent) leur dividende depuis des années.",
+              "Des entreprises sélectionnées pour leurs dividendes ; leurs hausses futures ne sont pas acquises.",
               "Complète les trois autres lignes avec une quatrième source de revenu, en version Dist.",
             ],
           },
@@ -566,7 +566,7 @@ export const PROFILES = [
           {
             idOptions: DIVIDEND_OPTIONS_DIST, pct: 25,
             pourquoi: [
-              "Des entreprises qui paient (et augmentent) leur dividende depuis des années.",
+              "Des entreprises sélectionnées pour leurs dividendes, qui peuvent varier d'une année à l'autre.",
               "La brique « revenu régulier » du portefeuille, en version distribuante.",
             ],
           },
@@ -742,7 +742,7 @@ export const PROFILES = [
     ],
     warnings: [
       "Ce portefeuille limite fortement la croissance américaine des dernières années. C'est un pari, pas une certitude.",
-      "Seuls l'or et le fonds euros complètent la poche européenne : aucune autre zone géographique n'est représentée.",
+      "La poche actions est centrée sur l'Europe ; l'or ou le fonds euros peuvent compléter la composition selon le palier.",
     ],
     // Toujours ajoutée après l'avertissement (cf. engine.js) : la sous-performance de l'Europe
     // face aux États-Unis sur 10 ans est un fait qu'il faut assumer, pas nuancer.
@@ -1009,8 +1009,8 @@ export const PROFILES = [
       "Tu gardes quelle part de ton patrimoine en actifs réels ? 👇",
     ],
     warnings: [
-      "Ce portefeuille sous-performe en marché actions haussier. Il est fait pour protéger, pas pour faire croître rapidement le capital.",
-      "Aucune de ces lignes ne verse de dividende ni d'intérêt classique. La logique ici est la préservation de la valeur, pas le revenu.",
+      "Ce portefeuille peut rester à l'écart d'une forte hausse des actions. L'or et les matières premières peuvent aussi baisser.",
+      "Les matières premières ne versent pas de revenu ; les obligations et le fonds euros du tirage peuvent en produire.",
     ],
     contextFallback: [
       "Ce portefeuille n'a connu aucune année réellement négative sur la période observée.",
@@ -1404,7 +1404,7 @@ export const PROFILES = [
           {
             idOptions: DIVIDEND_OPTIONS, pct: 27,
             pourquoi: [
-              "Des entreprises qui paient (et augmentent) leur dividende depuis des années — le profil actions le plus proche de l'esprit défensif.",
+              "Des actions choisies autour du dividende, avec le risque de baisse du cours et du versement.",
               "La brique la plus lourde du portefeuille, cohérente avec la logique de protection.",
             ],
           },
