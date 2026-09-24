@@ -137,6 +137,8 @@ const primarySeries = new Map(Object.entries({
 const verifiedSeries = new Map(Object.entries({
   msci_europe: [-3.17, 25.46, -9.25, 16.14, 8.84, 19.72],
   msci_em: [18.35, -0.24, -19.79, 11.58, 7.21, 31.58],
+  sect_energie: [-34.32, 53.81, 64.81, -1.97, 5.06, 7.99],
+  actions_taiwan: [35.70, 27.47, -29.52, 28.65, 23.92, 31.74],
   msci_world_ishares: [15.95, 21.90, -18.03, 23.86, 18.70, 21.16],
   msci_acwi: [15.70, 18.59, -18.30, 22.01, 17.36, 22.81],
   msci_em_spdr: [18.00, -2.50, -20.39, 9.80, 7.62, 33.80],
