@@ -127,6 +127,24 @@ les small caps Europe simulées sur l'indice MSCI Europe Small Cap Net EUR (avan
 obligations haut rendement Amundi simulées via la part iShares. Le
 script conserve les références émetteur et ne classe pas ces proxies comme fonds vérifiés.
 
+Le troisième passage du 24/09/2026 recoupe les séries sur indice ou cours. Deux parts
+immobilières Amundi passent aux performances « Portefeuille » en EUR publiées par l'émetteur :
+**2025 −3,43 %** au lieu de +10,70 %. Les séries MSCI Europe, EM IMI et EM standard sont
+recoupées avec MSCI ; MSCI World corrige **2025 +6,77 %** (le +5,35 % était le rendement du
+prix sans dividendes) ; MSCI ACWI est corrigé sur les six ans et son proxy Vanguard reste
+explicitement identifié comme **MSCI ACWI EUR, pas FTSE All-World**. Les quatre supports or
+utilisent une même série LBMA Gold Price PM USD publiée par le World Gold Council :
+2020–2025 **+24,6 / −4,3 / +0,4 / +14,6 / +25,5 / +67,4 %**. Les small caps Europe
+restent sur l'indice MSCI Net EUR. Le script protège désormais ces 12 séries et garde une
+source nommée pour chacun des 17 supports encore fondés sur un indice ou cours.
+
+**Limite ouverte :** les quatre proxies BTC et le proxy ETH gardent leurs estimations
+arrondies de cours spot en USD. Les pages des émetteurs confirment l'ETP et son sous-jacent,
+mais ne publient pas ces six rendements annuels dans une convention unique de clôture.
+Ils ne figurent donc pas parmi les séries annuelles certifiées par une source primaire.
+Le proxy ETH exclut en outre les récompenses de staking de l'ETP CoinShares. La part
+DE000A27Z304 porte désormais le nom officiel Bitwise Physical Bitcoin ETP.
+
 ## `check-freshness.mjs`
 
 Rapport de fraîcheur des données — scanne les `data.js` des 7 outils (Calculateur, Générateur de
