@@ -115,6 +115,16 @@ n'a pas de rendement calendaire 2020 publié : valeur `null`. Les sources Vangua
 à 0,1 point ne certifient que cette précision. Ce script vérifie les sources enregistrées et
 les notes visibles, sans télécharger ni recalculer automatiquement les rendements.
 
+Le second passage du 24/09/2026 porte sur les 13 historiques mixtes : sept séries remplacées par
+la performance calendaire de leur propre part (ICOM, trois obligations d'entreprises, énergie
+propre, consommation défensive et utilities). Trois autres parts sont vérifiées uniquement pour
+leurs années complètes disponibles : semi-conducteurs (2021-2025), Asie hors Japon (2021-2025)
+et JEPQ UCITS (2025). Leurs années antérieures sans historique propre sont `null`, protégées par
+une assertion dans le script. Les trois autres restent explicitement des proxies : argent
+converti en EUR à partir de la performance USD et des taux BCE, small caps Europe simulées via
+l'ETF américain IEUS, et obligations haut rendement Amundi simulées via la part iShares. Le
+script conserve les références émetteur et ne classe pas ces proxies comme fonds vérifiés.
+
 ## `check-freshness.mjs`
 
 Rapport de fraîcheur des données — scanne les `data.js` des 7 outils (Calculateur, Générateur de
