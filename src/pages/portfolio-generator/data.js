@@ -844,13 +844,14 @@ export const ASSETS = [
   {
     id: "smallcap_europe", name: "iShares MSCI Europe Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
     // ISIN vérifié le 13/09/2026 (audit "ISIN pour chaque ETF") : ce fonds UCITS EUR (ESCE) a été
-    // lancé le 25/03/2026 : série 2020-2025 de l'indice MSCI Europe Small Cap Net EUR.
+    // lancé le 25/03/2026 : série 2020-2025 du SPDR MSCI Europe Small Cap
+    // UCITS ETF (fonds net EUR) créé en 2005 et suivant le même indice MSCI.
     isin: "IE0000N55FP4",
     // confidenceNote : badge visible en UI (cf. AllocationList, App.jsx) plutôt que seulement en
     // commentaire de code — demande utilisateur, audit "outils" du 14/09/2026.
-    confidenceNote: "Simulation sur l'indice MSCI Europe Small Cap, dividendes nets réinvestis, en euros et avant frais : ETF lancé en 2026, sans historique propre 2020-2025.",
-    // https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0
-    r: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
+    confidenceNote: "2020-2025 : rendements nets EUR du SPDR MSCI Europe Small Cap UCITS ETF, plus ancien et suivant le même indice. La part iShares affichée a été lancée en 2026 : ce n'est pas son historique propre.",
+    // https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-ucits-etf-smc-fp
+    r: [4.37, 23.72, -22.11, 12.86, 5.70, 16.62],
     desc: [
       "des petites capitalisations européennes, plus proches de l'économie réelle du continent.",
       "un potentiel de croissance supérieur aux grandes valeurs, sans sortir de la logique 100% Europe.",
@@ -1018,14 +1019,16 @@ export const ASSETS = [
   {
     id: "oblig_hy_amundi", name: "Amundi Core EUR High Yield Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
     isin: "LU2970735911",
-    // Jumeau strict de "oblig_hy" — fonds réel vérifié (ISIN LU2970735911, part Acc, enregistrée le 15
-    // juillet 2025), réplique le même indice Markit iBoxx EUR Liquid High Yield Index que l'iShares €
-    // High Yield Corp Bond UCITS ETF (IHYG) déjà présent sous "oblig_hy" — donc même tableau `r`, en
-    // suivant la même logique que les jumeaux CORPBOND_OPTIONS. À ne pas confondre avec l'autre fonds
+    // Amundi Acc lancée le 15 juillet 2025, indice Markit iBoxx EUR Liquid High Yield.
+    // Série 2020-2025 de la part Acc EUR du Xtrackers LU1109943388 (lancée en 2017),
+    // nette de frais et suivant le même indice selon les émetteurs.
+    // https://etf.dws.com/en/AssetDownload/Index/1ebf0fe4-b1c2-4d0f-a165-da75e3bcca7e/DWS-PASTPERF-LU1109943388-LU-en-2026-02-16.pdf
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/RETAIL/ETF
+    // À ne pas confondre avec l'autre fonds
     // Amundi "Euro High Yield Bond ESG UCITS ETF" (LU1215415214), qui réplique un indice ESG-screené
     // différent (iBoxx MSCI ESG EUR High Yield Corporates) et n'est donc pas un jumeau valide.
-    r: [0.92, 2.97, -9.72, 11.33, 6.67, 4.80],
-    confidenceNote: "Rendements repris d'une part iShares en obligations à haut rendement ; ce fonds Amundi a été lancé en 2025 et n'a pas de série propre sur 2020-2025.",
+    r: [1.50, 3.10, -9.60, 11.60, 6.80, 4.70],
+    confidenceNote: "2020-2025 : rendements nets EUR de l'ETF Xtrackers LU1109943388 suivant le même indice Markit iBoxx EUR Liquid High Yield. La part Amundi affichée a été lancée en juillet 2025 et n'a pas d'année civile complète sur cette période.",
     desc: [
       "des obligations d'entreprises plus fragiles, donc mieux rémunérées : plus de coupon.",
       "le compartiment obligataire le plus généreux en revenu, avec un vrai risque de crédit en face.",

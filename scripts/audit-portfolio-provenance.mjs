@@ -109,7 +109,7 @@ const partialIssuerSources = {
 }
 const proxySources = {
   argent: 'https://www.ishares.com/uk/individual/en/products/258443/ + https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf',
-  oblig_hy_amundi: 'https://www.ishares.com/gls-download/literature/fact-sheet/ihyg-ishares-high-yield-corp-bond-ucits-etf-fund-fact-sheet-en-gb.pdf',
+  oblig_hy_amundi: 'https://etf.dws.com/en/AssetDownload/Index/1ebf0fe4-b1c2-4d0f-a165-da75e3bcca7e/DWS-PASTPERF-LU1109943388-LU-en-2026-02-16.pdf + https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/RETAIL/ETF',
 }
 const genericSources = {
   fonds_euros: 'ACPR : études n°126 (2020), n°140 (2021), n°149 (2022), n°163 (2023), n°175 (2024) et n°180 (2025) ; https://acpr.banque-france.fr/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses',
@@ -117,7 +117,7 @@ const genericSources = {
 }
 const indexSources = {
   msci_world_amundi_pea: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
-  smallcap_europe: 'https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0',
+  smallcap_europe: 'https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-ucits-etf-smc-fp',
   // Clôtures annuelles du fournisseur ; ces chiffres ne sont pas les NAV des ETP.
   bitcoin: 'https://www.slickcharts.com/currency/BTC/returns + https://coinshares.com/etp/physical-bitcoin/',
   bitcoin_21shares: 'https://www.slickcharts.com/currency/BTC/returns + https://www.21shares.com/fr-eu/product/abtc',
@@ -127,7 +127,7 @@ const indexSources = {
 // Les cours crypto proviennent de Slickcharts, les rendements d'ETF de leur émetteur.
 const primarySeries = new Map(Object.entries({
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
-  smallcap_europe: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
+  smallcap_europe: [4.37, 23.72, -22.11, 12.86, 5.70, 16.62],
   bitcoin: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   bitcoin_21shares: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   ethereum: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
@@ -155,7 +155,7 @@ const verifiedSeries = new Map(Object.entries({
 const mixedSeries = new Map(Object.entries({
   argent: [33.84, -5.74, 9.90, -4.25, 29.02, 119.80],
   jepq: [48.88, 27.51, -32.38, 36.28, 24.82, 15.40],
-  oblig_hy_amundi: [0.92, 2.97, -9.72, 11.33, 6.67, 4.80],
+  oblig_hy_amundi: [1.50, 3.10, -9.60, 11.60, 6.80, 4.70],
   actions_asie_ex_japon: [25.10, -8.92, -21.95, 2.30, 11.67, 39.91],
   quality_dividend: [0.12, 15.79, -7.28, 17.16, 9.76, 23.97],
   bitcoin_etcgroup: [303.16, 55.46, -64.67, 150.42, 120.73, -9.68],
@@ -164,7 +164,8 @@ const requiredDisclosures = new Map(Object.entries({
   argent: /convertis.*euros|conversion.*euros/i,
   jepq: /2020-2022.*Nasdaq-100.*2023-2024.*américain.*2025.*UCITS/i,
   tech_europe: /2020.*indice MSCI.*2021-2025.*iShares/i,
-  oblig_hy_amundi: /part iShares.*fonds Amundi/i,
+  oblig_hy_amundi: /2020-2025.*Xtrackers.*même indice.*Amundi/i,
+  smallcap_europe: /2020-2025.*SPDR.*même indice.*iShares/i,
   actions_asie_ex_japon: /2020.*part distribuante/i,
   quality_dividend: /2020.*part distribuante/i,
   bitcoin_etcgroup: /2020.*spot.*2021-2025.*NAV/i,
