@@ -120,9 +120,12 @@ Le second passage du 24/09/2026 porte sur les 13 historiques mixtes : sept séri
 la performance calendaire de leur propre part (ICOM, trois obligations d'entreprises, énergie
 propre, consommation défensive et utilities). Trois autres parts sont vérifiées uniquement pour
 leurs années complètes disponibles : semi-conducteurs (2021-2025), Asie hors Japon (2021-2025)
-et JEPQ UCITS (2025). L'année 2020 de l'Asie provient de la part distribuante du même fonds,
-en USD avec dividendes réinvestis, et remplace le proxy indice +26,04 % par +25,1 % ; celle des
-semi-conducteurs et les années 2020-2024 de JEPQ restent `null`, protégées par une assertion.
+et JEPQ UCITS (2025), désormais remplacé par Global X QYLD UCITS (IE00BM8R0J59).
+L'année 2020 de l'Asie provient de la part distribuante du même fonds, en USD avec dividendes
+réinvestis ; celle des semi-conducteurs reste indisponible et le support reste retiré.
+QYLD dispose d'une série 2020-2025 complète issue de l'ETF américain Global X, dont la stratégie
+covered call existait déjà avant janvier 2020. Cette série est un proxy pour le fonds UCITS,
+lancé en novembre 2022 et lié à une variante de l'indice (BXNTU plutôt que BXNT).
 Les autres proxies sont l'argent converti en EUR à partir de la performance USD et des taux BCE,
 les small caps Europe simulées sur l'indice MSCI Europe Small Cap Net EUR (avant frais) et les
 obligations haut rendement Amundi simulées via la part iShares. Le
@@ -168,9 +171,8 @@ Le RGI n'est pas le résultat net d'un investisseur qui vend ses parts.
 
 Contrôle des historiques mixtes : `argent` reste une conversion indicative des rendements
 BlackRock USD en EUR avec les taux BCE. VanEck Semiconductor a été retiré du générateur
-à cause de son année 2020 non vérifiée. `jepq` prend l'indice Nasdaq-100 total return
-pour 2020-2022 (sans stratégie d'options), la part américaine pour 2023-2024, puis
-la part UCITS pour 2025. `tech_europe` prend son indice MSCI exact pour 2020 et la part
+à cause de son année 2020 non vérifiée. `qyld_ucits` reprend uniquement les rendements de l'ETF américain QYLD sur 2020-2025,
+déjà exposé aux ventes d'options, et signale l'écart avec le fonds UCITS. `tech_europe` prend son indice MSCI exact pour 2020 et la part
 iShares pour 2021-2025. `bitcoin_etcgroup` prend le cours spot BTC en 2020, puis sa NAV.
 Les substitutions sont détaillées dans `DATA-REVIEW-2026-09-24.md` et dans l'interface,
 jamais dans le tweet généré.

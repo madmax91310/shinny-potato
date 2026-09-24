@@ -6,7 +6,7 @@ import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 const groups = {
   'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
   'Indice ou cours du sous-jacent': `bitcoin bitcoin_21shares ethereum msci_world_amundi_pea smallcap_europe`,
-  'Autre fonds ou historique mixte': `argent jepq oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
+  'Autre fonds ou historique mixte': `argent qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
 const tagged = new Map()
@@ -29,14 +29,14 @@ const usdReturns = new Set(`nasdaq100_ishares actions_coree actions_taiwan actio
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
   actions_japon actions_value sect_financieres sect_sante smallcap_monde mp_large mp_large_icom
-  jepq sp500_ishares ftse_allworld_vanguard msci_em msci_world_ishares msci_acwi msci_em_spdr or or_ishares or_amundi
+  qyld_ucits sp500_ishares ftse_allworld_vanguard msci_em msci_world_ishares msci_acwi msci_em_spdr or or_ishares or_amundi
   high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes
   strat_dividendes_dist`.trim().split(/\s+/))
 const partialOrSyntheticYears = new Map(Object.entries({
   bitcoin: '2020 : ETP non lancé', ethereum: '2020 : ETP non lancé',
   bitcoin_etcgroup: '2020 : cours spot, part lancée en juin',
   msci_world_amundi_pea: '2020-2025 : fonds lancé en 2025 sans année calendaire complète',
-  smallcap_europe: '2020-2025 : part lancée en 2026', jepq: '2020-2024 : part UCITS sans année complète',
+  smallcap_europe: '2020-2025 : part lancée en 2026', qyld_ucits: '2020-2025 : historique du fonds américain, pas de la part UCITS',
   oblig_hy_amundi: '2020-2024 : part non lancée', actions_asie_ex_japon: '2020 : part lancée en avril',
   quality_dividend: '2020 : rendement de la part Dist du même fonds',
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
@@ -103,7 +103,7 @@ const issuerSources = {
 }
 const partialIssuerSources = {
   bitcoin_etcgroup: 'https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/ (NAV 2021-2025) + https://www.slickcharts.com/currency/BTC/returns (2020)',
-  jepq: 'https://indexes.nasdaq.com/docs/FS_XNDX.pdf (2020-2022) + https://am.jpmorgan.com/content/dam/jpm-am-aem/americas/us/en/literature/fact-sheet/etfs/FS-JEPQ.PDF (2023-2024) + https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/ch/en/regulatory/annual-report/jpm-icav-etf-annual-report-ch-en.pdf (2025)',
+  qyld_ucits: 'https://assets-cms.globalxetfs.com/Statutory-Prospectus_Covered-Calls.pdf (ETF américain QYLD, NAV 2020-2025) + https://globalxetfs.eu/funds/qyld (part UCITS BXNTU, ISIN et date de lancement)',
   actions_asie_ex_japon: 'https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.ishares.com/uk/professionals/en/products/251848/ishares-msci-ac-far-east-ex-japan-ucits-etf',
   quality_dividend: 'https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.ishares.com/gls-download/literature/fact-sheet/wqdv-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf',
 }
@@ -154,7 +154,7 @@ const verifiedSeries = new Map(Object.entries({
 // Les sources et la raison du mélange figurent dans partialIssuerSources/proxySources.
 const mixedSeries = new Map(Object.entries({
   argent: [33.84, -5.74, 9.90, -4.25, 29.02, 119.80],
-  jepq: [48.88, 27.51, -32.38, 36.28, 24.82, 15.40],
+  qyld_ucits: [8.76, 10.34, -19.00, 22.82, 19.13, 9.31],
   oblig_hy_amundi: [1.50, 3.10, -9.60, 11.60, 6.80, 4.70],
   actions_asie_ex_japon: [25.10, -8.92, -21.95, 2.30, 11.67, 39.91],
   quality_dividend: [0.12, 15.79, -7.28, 17.16, 9.76, 23.97],
@@ -162,7 +162,7 @@ const mixedSeries = new Map(Object.entries({
 }))
 const requiredDisclosures = new Map(Object.entries({
   argent: /convertis.*euros|conversion.*euros/i,
-  jepq: /2020-2022.*Nasdaq-100.*2023-2024.*américain.*2025.*UCITS/i,
+  qyld_ucits: /2020-2025.*NAV USD.*américain.*novembre 2022.*BXNTU.*pas ceux de sa part UCITS/i,
   tech_europe: /2020.*indice MSCI.*2021-2025.*iShares/i,
   oblig_hy_amundi: /2020-2025.*Xtrackers.*même indice.*Amundi/i,
   smallcap_europe: /2020-2025.*SPDR.*même indice.*iShares/i,

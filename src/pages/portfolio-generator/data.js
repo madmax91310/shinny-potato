@@ -877,17 +877,19 @@ export const ASSETS = [
   },
 
   // ── 🟣 Revenu — covered call ──────────────────────────────
-  // JEPQ UCITS a démarré fin 2024 : recours à l'indice Nasdaq-100 Total Return
-  // avant l'historique complet du fonds US homologue (2023-2024).
+  // QYLD UCITS existe depuis novembre 2022 ; la simulation reprend l'historique
+  // homogène de l'ETF américain Global X QYLD, couvert dès avant janvier 2020.
+  // Les deux ETF suivent des variantes distinctes de l'indice buy-write (BXNT/BXNTU).
   {
-    id: "jepq", name: "JPM Nasdaq Equity Premium Income Active UCITS ETF (JEPQ)", cat: "dividendes", emoji: "🟣",
-    // Part UCITS lancée le 29/10/2024 ; rapport annuel JPMorgan 2025, ligne USD (dist) :
-    // https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/ch/en/regulatory/annual-report/jpm-icav-etf-annual-report-ch-en.pdf
-    isin: "IE000U9J8HX9",
-    confidenceNote: '2020-2022 : indice Nasdaq-100 total return USD, sans stratégie d’options ; 2023-2024 : fonds américain JEPQ (NAV USD) ; 2025 : part UCITS USD. Les années simulées avant 2025 ne sont pas les performances de la part UCITS.',
-    r: [48.88, 27.51, -32.38, 36.28, 24.82, 15.40],
+    id: "qyld_ucits", name: "Global X Nasdaq 100 Covered Call UCITS ETF (QYLD)", cat: "dividendes", emoji: "🟣",
+    // Rendements calendaires NAV, distributions réinvesties, de l'ETF américain QYLD :
+    // https://assets-cms.globalxetfs.com/Statutory-Prospectus_Covered-Calls.pdf (p. 16).
+    // Fonds UCITS / ISIN / variante BXNTU : https://globalxetfs.eu/funds/qyld
+    isin: "IE00BM8R0J59",
+    confidenceNote: '2020-2025 : historique NAV USD, dividendes réinvestis, de l’ETF américain Global X QYLD lancé en 2013, utilisé comme approximation. L’ETF UCITS a été lancé en novembre 2022 : il suit la variante BXNTU et ces rendements ne sont pas ceux de sa part UCITS. Risque de change pour un investisseur en euros.',
+    r: [8.76, 10.34, -19.00, 22.82, 19.13, 9.31],
     desc: [
-      "un ETF distribuant mensuel : vend des options d'achat sur le Nasdaq pour générer un revenu élevé.",
+      "un ETF distribuant mensuel : vend des options d'achat sur le Nasdaq-100 pour générer un revenu variable.",
       "verse un revenu mensuel variable, au prix d'une hausse plafonnée en marché très haussier.",
       "amortit une partie des baisses grâce aux primes encaissées, sans jamais les annuler complètement.",
     ],
