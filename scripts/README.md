@@ -87,9 +87,10 @@ détecter (il ne couvre que le TER). Le même audit a ensuite trouvé 2 autres d
 (MSCI EM IMI, Nasdaq-100) le même jour.
 
 Un écart supérieur à 1 point fait échouer l'audit, même si la famille porte une note générale.
-Deux exceptions par ISIN sont documentées dans le script : iShares MSCI EM IMI (fonds USD versus
-proxy de son indice en EUR) et Vanguard FTSE All-World (fonds USD versus proxy MSCI ACWI en EUR).
-Elles nécessitent aussi une explication visible côté Comparateur **et** côté Générateur. Les
+Une exception par ISIN est documentée dans le script : iShares MSCI EM IMI (fonds USD versus
+proxy de son indice en EUR). Elle nécessite aussi une explication visible côté Comparateur
+**et** côté Générateur. Vanguard FTSE All-World utilise désormais la même part USD dans les
+deux outils, avec la précision au dixième publiée par Vanguard. Les
 écarts de 0,25 à 1 point sont affichés pour relecture ; ils ne sont pas automatiquement corrigés.
 Les parts présentes dans un seul outil ne peuvent pas être comparées par ce script. Un nouveau
 `perfFunds` sans correspondance explicite avec un fonds affiché provoque un échec.
@@ -120,7 +121,8 @@ Le second passage du 24/09/2026 porte sur les 13 historiques mixtes : sept séri
 la performance calendaire de leur propre part (ICOM, trois obligations d'entreprises, énergie
 propre, consommation défensive et utilities). Trois autres parts sont vérifiées uniquement pour
 leurs années complètes disponibles : semi-conducteurs (2021-2025), Asie hors Japon (2021-2025)
-et JEPQ UCITS (2025). L'année 2020 de l'Asie provient de l'indice MSCI Net USD ; celle des
+et JEPQ UCITS (2025). L'année 2020 de l'Asie provient de la part distribuante du même fonds,
+en USD avec dividendes réinvestis, et remplace le proxy indice +26,04 % par +25,1 % ; celle des
 semi-conducteurs et les années 2020-2024 de JEPQ restent `null`, protégées par une assertion.
 Les autres proxies sont l'argent converti en EUR à partir de la performance USD et des taux BCE,
 les small caps Europe simulées sur l'indice MSCI Europe Small Cap Net EUR (avant frais) et les
@@ -131,12 +133,22 @@ Le troisième passage du 24/09/2026 recoupe les séries sur indice ou cours. Deu
 immobilières Amundi passent aux performances « Portefeuille » en EUR publiées par l'émetteur :
 **2025 −3,43 %** au lieu de +10,70 %. Les séries MSCI Europe, EM IMI et EM standard sont
 recoupées avec MSCI ; MSCI World corrige **2025 +6,77 %** (le +5,35 % était le rendement du
-prix sans dividendes) ; MSCI ACWI est corrigé sur les six ans et son proxy Vanguard reste
-explicitement identifié comme **MSCI ACWI EUR, pas FTSE All-World**. Les quatre supports or
+prix sans dividendes) ; MSCI ACWI est corrigé sur les six ans. Le proxy Vanguard a ensuite
+été remplacé par les six rendements de la part Vanguard Acc en USD, publiés au dixième dans
+son KIID ; le Comparateur d'indices utilise maintenant la même série 2023-2025. Les quatre supports or
 utilisent une même série LBMA Gold Price PM USD publiée par le World Gold Council :
 2020–2025 **+24,6 / −4,3 / +0,4 / +14,6 / +25,5 / +67,4 %**. Les small caps Europe
 restent sur l'indice MSCI Net EUR. Le script protège désormais ces 12 séries et garde une
-source nommée pour chacun des 17 supports encore fondés sur un indice ou cours.
+source nommée pour chacun des 16 supports encore fondés sur un indice ou cours.
+
+Dernier contrôle des six historiques mixtes : `argent` reste une conversion indicative des
+rendements BlackRock USD en EUR avec les taux annuels BCE (et non une performance NAV EUR publiée) ;
+`sect_semi` conserve 2020 absent car la part n'a démarré qu'en décembre ; `jepq` conserve
+2020-2024 absents, et 2025 +15,40 % provient de la ligne **USD (dist)** du rapport JPMorgan.
+`oblig_hy_amundi` utilise encore en 2020-2025 la part iShares IHYG, fonds différent, y compris
+en 2025 où la part Amundi n'a pas d'année complète. `quality_dividend` combine l'année 2020
+de la part Dist et 2021-2025 de la part Acc : l'indice de référence a changé en juin 2022.
+Les séries 2020 non disponibles restent absentes ; aucun rendement d'indice n'a été ajouté.
 
 Les quatre proxies BTC et le proxy ETH ont ensuite été recoupés avec les tableaux annuels
 Slickcharts BTC/USD et ETH/USD, dont la méthode déclarée est la variation entre clôtures de
