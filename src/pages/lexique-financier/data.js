@@ -274,7 +274,7 @@ export const TERMES = [
   objectif:`Choisir la méthode d'entrée sur le marché la plus adaptée à ta situation et à ta tolérance au risque immédiat.`,
   pourQui:`Tu disposes d'un capital important d'un coup (héritage, prime, vente d'un bien) et tu hésites entre l'investir en une fois ou petit à petit.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Une étude Vanguard portant sur les marchés américain, britannique et australien entre 1926 et 2015 a montré que le lump sum (tout investir en une fois) bat en moyenne un DCA étalé sur 12 mois dans environ 68% des périodes étudiées, car l'argent est exposé au marché plus tôt sur des marchés actions historiquement haussiers. Le DCA, lui, réduit le risque de "mal tomber" juste avant une grosse baisse, au prix d'un temps où une partie de ton capital reste non investie.`,
+  mecanismeContenu:`Dans ses analyses historiques, Vanguard constate qu'investir en une fois a devancé l'investissement étalé dans environ deux tiers des périodes étudiées. Le résultat dépend des marchés, des dates et de la durée d'étalement : ce n'est pas une probabilité de gain pour ton prochain investissement. Le DCA réduit le risque d'investir toute la somme juste avant une forte baisse, au prix d'un temps où une partie de ton capital reste non investie.`,
   sectionsOptionnelles:[
     {titre:`🔀 Un compromis possible`, contenu:`Beaucoup d'investisseurs choisissent une voie intermédiaire : étaler l'investissement sur 3 à 12 mois, pour limiter le risque de timing sans rester trop longtemps hors marché.`}
   ],
@@ -436,7 +436,7 @@ export const TERMES = [
   intro:`Une action qui monte de 5 % puis baisse de 6 % bouge beaucoup. La volatilité mesure l’ampleur de ces variations, dans les deux sens.`,
   definitionContenu:`Une action dont le cours varie de +/-1% par jour en moyenne est peu volatile. Une cryptomonnaie qui varie de +/-5% par jour est très volatile — même si les deux peuvent avoir la même performance sur un an.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
-  calculContenu:`La volatilité se mesure statistiquement par l'écart-type des rendements sur une période donnée, souvent annualisé. Concrètement, une volatilité annualisée de 15% signifie que, dans des conditions "normales", le rendement annuel de l'actif s'écarte en moyenne de 15 points autour de sa moyenne, dans un sens ou dans l'autre.`,
+  calculContenu:`La volatilité se mesure statistiquement par l'écart-type des rendements sur une période donnée, souvent annualisé. Une volatilité annualisée de 15% indique l'ampleur historique des variations autour du rendement moyen ; elle ne fixe ni une fourchette garantie pour l'année suivante ni la perte maximale possible.`,
   nuance:{titre:`🔀 Volatilité et risque, pas synonymes`, contenu:`Une forte volatilité n'est pas automatiquement une mauvaise nouvelle : elle mesure l'ampleur des mouvements, pas leur direction. Un actif très volatile qui monte fortement reste volatile, même s'il enrichit ceux qui le détiennent.`},
   pourquoiImportant:`La volatilité t'aide à calibrer la taille d'une position par rapport à ta tolérance au risque, et à anticiper l'ampleur des variations que tu devras encaisser psychologiquement.`,
   erreurFrequente:`On confond souvent volatilité et risque de perte définitive. Même un ETF monde diversifié peut subir une forte baisse, et aucune durée de détention ne garantit de récupérer sa mise.`,
@@ -446,7 +446,7 @@ export const TERMES = [
 {
   id:"ratio-sharpe", categorie:"Indicateurs & notions", titre:"le Ratio de Sharpe", variante:"B",
   intro:`Deux placements gagnent autant, mais l’un connaît des variations bien plus fortes. Le ratio de Sharpe aide à lire cette différence.`,
-  definitionContenu:`Deux placements peuvent afficher le même rendement de 8% par an, mais l'un avec deux fois moins de volatilité que l'autre. Le ratio de Sharpe permet de dire lequel a été "mieux géré" une fois le risque pris en compte.`,
+  definitionContenu:`Deux placements peuvent afficher le même rendement de 8% par an, mais l'un avec deux fois moins de volatilité que l'autre. Le ratio de Sharpe compare leur rendement excédentaire rapporté à la volatilité, sur une période et avec un taux sans risque comparables.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
   calculContenu:`Ratio de Sharpe = (Rendement de l'actif − Taux sans risque) ÷ Volatilité de l'actif. Par exemple, un portefeuille qui rapporte 8% par an, avec un taux sans risque à 3% et une volatilité de 10%, a un ratio de Sharpe de (8−3)/10 = 0,5. Plus le ratio est élevé, meilleur est le couple rendement/risque.`,
   pourquoiImportant:`Il évite de se laisser impressionner par un rendement brut élevé sans se demander quel niveau de risque a été pris pour l'obtenir — deux stratégies au même rendement ne se valent pas si l'une est deux fois plus risquée.`,
@@ -480,7 +480,7 @@ export const TERMES = [
 {
   id:"indice-boursier", categorie:"Indicateurs & notions", titre:"un indice boursier", variante:"B",
   intro:`Le CAC 40 ou le S&P 500 affichent un chiffre, mais tu n’achètes pas directement ce chiffre. Un indice sert à suivre un ensemble de titres.`,
-  definitionContenu:`Le CAC 40 regroupe les 40 plus grandes entreprises cotées à Paris ; le S&P 500 regroupe environ 500 grandes entreprises américaines. Quand on dit "la bourse a monté de 1%", on parle en réalité de la variation d'un de ces indices.`,
+  definitionContenu:`Le CAC 40 suit 40 grandes valeurs sélectionnées sur Euronext Paris selon des critères de capitalisation et de liquidité ; le S&P 500 suit environ 500 grandes entreprises américaines. Quand on dit "la bourse a monté de 1%", on parle souvent de la variation d'un indice particulier.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
   calculContenu:`Beaucoup de grands indices pondèrent leurs titres selon leur capitalisation boursière ajustée du flottant : plus une entreprise pèse dans l'indice, plus la variation de son cours agit sur celui-ci. D'autres indices utilisent des pondérations différentes.`,
   pourquoiImportant:`Un indice te sert de référence pour juger si ta propre performance est bonne ou non — battre "le marché" signifie concrètement faire mieux que l'indice sur la même période.`,

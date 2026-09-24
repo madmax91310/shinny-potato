@@ -29,6 +29,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { LEXICON_SOURCES } from './lexicon-sources.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -198,7 +199,10 @@ function scanTool(tool) {
     // que tous les chiffres de l'entrée sont exacts, ni qu'ils ont été revus récemment.
     // Les phrases du contenu utilisateur ne comptent pas comme source documentaire.
     const commentLines = blockText.split("\n").filter((line) => /^\s*\/\//.test(line));
-    const sourceUrls = [...new Set(commentLines.flatMap((line) => line.match(/https?:\/\/[^\s)]+/g) || []))];
+    const sourceUrls = [...new Set([
+      ...commentLines.flatMap((line) => line.match(/https?:\/\/[^\s)]+/g) || []),
+      ...(tool.key === 'lexique' && LEXICON_SOURCES[anchor.name] ? [LEXICON_SOURCES[anchor.name]] : []),
+    ])];
     const sourceNamed = commentLines.some((line) => /\b(?:source|sourcing)\b/i.test(line));
     entries.push({ name: anchor.name, mostRecent, deadlines, sourceUrls, sourceNamed });
     deadlines.forEach((d) => allDeadlines.push({ ...d, entry: anchor.name }));
