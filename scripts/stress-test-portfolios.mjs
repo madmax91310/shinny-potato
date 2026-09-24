@@ -34,7 +34,7 @@
 // réduire une ligne défensive pour financer une ligne agressive aggrave presque toujours le pire
 // cas plus qu'il ne le déplace), soit revoir le poids à la baisse.
 
-import { generatePortfolio } from "../src/pages/portfolio-generator/engine.js";
+import { generatePortfolio, renderTweetText } from "../src/pages/portfolio-generator/engine.js";
 import {
   PROFILES, RISK_BOUNDS, RISK_ORDER,
 } from "../src/pages/portfolio-generator/theses.js";
@@ -58,6 +58,28 @@ const LEVERAGE_IDS = ["lqq", "cl2"];
 
 function checkInvariants(p) {
   const problems = [];
+  const tweet = renderTweetText(p);
+  if (/\b(?:undefined|NaN)\b/.test(tweet)) problems.push("tweet contenant une valeur indéfinie");
+  for (const line of p.selection.filter((s) => s.confidenceNote)) {
+    if (!tweet.includes(`${line.name} : ${line.confidenceNote}`)) {
+      problems.push(`limite de méthode absente pour ${line.name}`);
+    }
+  }
+  if (!tweet.includes(`⚠️ ${p.warning}`)) problems.push("avertissement absent du tweet");
+  const weights = p.selection.map((s) => s.pct);
+  const expected = new Set([...weights, Math.abs(p.worst.value)]);
+  for (let i = 0; i < weights.length; i++) {
+    for (let j = i + 1; j < weights.length; j++) {
+      expected.add(weights[i] + weights[j]);
+      for (let k = j + 1; k < weights.length; k++) expected.add(weights[i] + weights[j] + weights[k]);
+    }
+  }
+  for (const number of `${p.hook} ${p.intro}`.matchAll(/([+-]?\d+(?:[,.]\d+)?)\s*%/g)) {
+    const value = Math.abs(Number(number[1].replace(',', '.')));
+    if (![...expected].some((v) => Math.abs(v - value) < 0.11)) {
+      problems.push(`chiffre d'accroche ${number[0]} absent de la composition et du résultat`);
+    }
+  }
   if (p.bound.min !== null && p.worst.value < p.bound.min - 1e-9) {
     problems.push(`borne de perte dépassée : ${p.worst.value.toFixed(2)}% en ${p.worst.year} < plancher ${p.bound.min}%`);
   }
