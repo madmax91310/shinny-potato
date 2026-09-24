@@ -447,8 +447,11 @@ export const FAMILIES = [
     // (même fonds, écart <0,1 pt sur les 3 années) — confirme la fiabilité de la recherche.
     perfFunds: [
       { key: 'value', label: 'iShares Edge MSCI World Value Factor', y2023: 19.41, y2024: 5.25, y2025: 39.63 },
-      { key: 'quality', label: 'iShares Edge MSCI World Quality Factor', y2023: 21.34, y2024: 24.04, y2025: 2.01 },
+      // BlackRock, NAV USD de la part IE00BP3QZ601, 2023-2025.
+      // https://www.blackrock.com/ch/individual/en/products/270054/ishares-msci-world-quality-factor-ucits-etf
+      { key: 'quality', label: 'iShares Edge MSCI World Quality Factor', y2023: 25.7, y2024: 16.6, y2025: 15.4 },
     ],
+    perfMethodNote: 'ℹ️ Value est présenté en euros ; Quality reprend la performance de la part en dollars (NAV USD). Le change empêche de comparer directement ces rendements.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '📉 Tu crois à un retour de balancier vers les décotées ?', a: 'iShares Edge MSCI World Value Factor.' },
@@ -737,15 +740,18 @@ export const FAMILIES = [
       chain: ['TOPIX (1 637 lignes, juillet 2026)', 'MSCI Japan IMI (957)', 'Nikkei 225 (225, prix-pondéré)'],
       notes: ['⚠️ Le Nikkei 225, pondéré par le prix de l\'action et non la capitalisation, peut sur-pondérer des valeurs chères mais économiquement mineures.', '→ TOPIX et MSCI Japan (pondérés par capitalisation) sont jugés plus représentatifs de l\'économie japonaise réelle.'],
     },
-    // Performance 2023-2025 (source : justETF/DWS, recherche web du 02/09/2026, devise EUR).
+    // Performance 2023-2025 : Nikkei 225, part 1C en JPY selon DWS (document du 16/02/2026) ;
+    // TOPIX en EUR. Les devises sont distinctes, sans conversion implicite.
+    // https://etf.dws.com/en-gb/AssetDownload/Index/f819db5b-2ca4-474f-9d86-914d8bea9a58/DWS-UKKIID-LU2196470426-GB-en-2026-02-16.pdf
     // MSCI Japan IMI : BlackRock publie 2023 +18,86 %, 2024 +7,47 %, 2025 +25,36 % pour
     // IE00B4L5YX21 en USD. Les deux autres ETF du tableau sont présentés en EUR : ne pas
     // juxtaposer les valeurs USD sans conversion et validation d'une série EUR comparable.
     perfFunds: [
-      { key: 'nikkei', label: 'Xtrackers Nikkei 225', y2023: 17.41, y2024: 15.94, y2025: 13.58 },
+      { key: 'nikkei', label: 'Xtrackers Nikkei 225', y2023: 30.5, y2024: 20.9, y2025: 28.3 },
       { key: 'topix', label: 'Amundi PEA Japon (TOPIX)', y2023: 15.27, y2024: 14.56, y2025: 10.22 },
-      { key: 'msci_japan', label: 'iShares Core MSCI Japan IMI', y2023: null, y2024: null, y2025: null, perfNote: 'BlackRock publie cet historique en USD ; série comparable en EUR non vérifiée pour ce tableau.' },
+      { key: 'msci_japan', label: 'iShares Core MSCI Japan IMI', y2023: null, y2024: null, y2025: null, perfNote: 'Historique absent du tableau : devise différente des séries présentées.' },
     ],
+    perfMethodNote: 'ℹ️ Xtrackers Nikkei 225 est présenté en yens (part JPY) et Amundi TOPIX en euros. Ces rendements ne se comparent pas directement sans tenir compte du change.',
     verdictTitle: '✅ LE VERDICT POUR UN PEA',
     verdict: [
       { q: '💳 Tu veux rester en PEA ?', a: 'Amundi PEA Japon — seule option, mais indice TOPIX (pas Nikkei).' },

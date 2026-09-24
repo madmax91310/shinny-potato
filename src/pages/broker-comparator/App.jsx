@@ -97,7 +97,6 @@ function ComparisonCard({ selected }) {
             <div className="bc-head-name">
               {b.emoji} {b.nom}
             </div>
-            {b.lastVerified && <div className="bc-last-verified">Vérifié le {b.lastVerified}</div>}
           </div>
         ))}
       </div>

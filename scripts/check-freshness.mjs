@@ -194,7 +194,13 @@ function scanTool(tool) {
 
     const blockText = lines.slice(start, nextLine).join("\n");
     const { mostRecent, deadlines } = scanDatesInText(blockText);
-    entries.push({ name: anchor.name, mostRecent, deadlines });
+    // Indice de traçabilité seulement : une URL dans un commentaire ne prouve ni
+    // que tous les chiffres de l'entrée sont exacts, ni qu'ils ont été revus récemment.
+    // Les phrases du contenu utilisateur ne comptent pas comme source documentaire.
+    const commentLines = blockText.split("\n").filter((line) => /^\s*\/\//.test(line));
+    const sourceUrls = [...new Set(commentLines.flatMap((line) => line.match(/https?:\/\/[^\s)]+/g) || []))];
+    const sourceNamed = commentLines.some((line) => /\b(?:source|sourcing)\b/i.test(line));
+    entries.push({ name: anchor.name, mostRecent, deadlines, sourceUrls, sourceNamed });
     deadlines.forEach((d) => allDeadlines.push({ ...d, entry: anchor.name }));
   }
 
@@ -223,6 +229,14 @@ function buildReport() {
       total: entries.length,
       buckets,
       nonTracable: withoutDate.map((e) => e.name),
+      undatedInventory: withoutDate.map((e) => ({
+        name: e.name,
+        reviewedAt: null,
+        status: e.sourceUrls.length ? "source_url_documented_without_date"
+          : e.sourceNamed ? "source_named_without_url_or_date" : "source_and_date_missing",
+        sourceNamed: e.sourceNamed,
+        sourceUrls: e.sourceUrls,
+      })),
       deadlines: fileDeadlines,
     });
   }
@@ -248,7 +262,7 @@ function printConsoleReport(report) {
     totalNonTracable += t.nonTracable.length;
 
     console.log(`━━ ${t.label} (${t.file}) — ${t.total} entrée(s) ━━`);
-    console.log(`  🟢 récent : ${t.buckets.recent.length}   🟡 à surveiller : ${t.buckets.surveiller.length}   🔴 à revérifier : ${t.buckets.revoir.length}   ⬜ non traçable : ${t.nonTracable.length}`);
+    console.log(`  🟢 récent : ${t.buckets.recent.length}   🟡 à surveiller : ${t.buckets.surveiller.length}   🔴 à revérifier : ${t.buckets.revoir.length}   ⬜ sans date : ${t.nonTracable.length}`);
 
     if (t.buckets.revoir.length) {
       console.log("  🔴 À revérifier en priorité :");
@@ -259,7 +273,7 @@ function printConsoleReport(report) {
       t.buckets.surveiller.forEach((e) => console.log(`     - ${e.name} — ${e.date.toLocaleDateString("fr-FR")} (${e.days}j)`));
     }
     if (t.nonTracable.length) {
-      console.log(`  ⬜ Non traçable (aucune date de sourcing trouvée) : ${t.nonTracable.join(", ")}`);
+      console.log(`  ⬜ Sans date de contrôle propre à l'entrée : ${t.nonTracable.join(", ")}`);
     }
 
     t.deadlines.forEach((d) => {
@@ -273,7 +287,7 @@ function printConsoleReport(report) {
   }
 
   console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log(`TOTAL : ${totalEntries} entrées — 🟢 ${totalRecent}  🟡 ${totalSurveiller}  🔴 ${totalRevoir}  ⬜ ${totalNonTracable} non traçables`);
+  console.log(`TOTAL : ${totalEntries} entrées — 🟢 ${totalRecent}  🟡 ${totalSurveiller}  🔴 ${totalRevoir}  ⬜ ${totalNonTracable} sans date individuelle`);
   if (allDeadlinesSoon.length) {
     console.log(`\n⚠️  ${allDeadlinesSoon.length} échéance(s) à moins de ${SEUIL_ECHEANCE_PROCHE} jours :`);
     allDeadlinesSoon.forEach((d) => console.log(`   - [${d.tool}] ${d.entry ?? "fichier"} : ${d.date} (dans ${d.daysUntil}j)`));
@@ -285,7 +299,12 @@ function printConsoleReport(report) {
 const args = process.argv.slice(2);
 const report = buildReport();
 
-if (args.includes("--json")) {
+if (args.includes("--missing-json")) {
+  // Inventaire complet des entrées sans date, uniquement pour la revue interne.
+  console.log(JSON.stringify(report.flatMap((tool) =>
+    tool.undatedInventory.map((entry) => ({ tool: tool.key, file: tool.file, ...entry }))
+  ), null, 2));
+} else if (args.includes("--json")) {
   console.log(JSON.stringify(report, (k, v) => (v instanceof Date ? v.toISOString() : v), 2));
 } else if (args.includes("--priorities")) {
   console.log(`Revue éditoriale et données — ${TODAY.toLocaleDateString('fr-FR')}`);
@@ -296,7 +315,13 @@ if (args.includes("--json")) {
     console.log(`${tool.label} : ${expired.length} échéance(s) échue(s), ${outdated.length} entrée(s) à revérifier, ${tool.nonTracable.length} sans date de vérification.`);
     expired.forEach(d => console.log(`  Échéance : ${d.entry ?? 'fichier'} (${d.date})`));
     outdated.slice(0, 10).forEach(e => console.log(`  Ancienne source : ${e.name} (${e.date.toLocaleDateString('fr-FR')})`));
-    if (tool.nonTracable.length) console.log(`  À documenter en premier : ${tool.nonTracable.slice(0, 10).join(', ')}${tool.nonTracable.length > 10 ? '…' : ''}`);
+    if (tool.nonTracable.length) {
+      const missingSource = tool.undatedInventory.filter(e => e.status === 'source_and_date_missing');
+      const namedSource = tool.undatedInventory.filter(e => e.status === 'source_named_without_url_or_date');
+      const linkedSource = tool.undatedInventory.filter(e => e.status === 'source_url_documented_without_date');
+      console.log(`  Inventaire interne : ${missingSource.length} sans source ni date, ${namedSource.length} avec source nommée sans URL ni date, ${linkedSource.length} avec URL sans date.`);
+      if (missingSource.length) console.log(`  À documenter en premier : ${missingSource.slice(0, 10).map(e => e.name).join(', ')}${missingSource.length > 10 ? '…' : ''}`);
+    }
   }
   console.log('Une date de commentaire ne prouve pas la justesse d’une donnée : vérifier les documents de l’émetteur avant de mettre à jour.');
 } else {

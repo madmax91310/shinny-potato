@@ -80,15 +80,12 @@ function buildTweetText(family, perfValues) {
   out.push('4️⃣ PERFORMANCE 📈')
   out.push('')
   family.perfFunds.forEach((f, i) => {
+    if (f.perfNote) return
     const v = perfValues[f.key] || {}
     out.push(`${PERF_COLOR_EMOJI[i % PERF_COLOR_EMOJI.length]} ${f.label}`)
-    if (f.perfNote) {
-      out.push(f.perfNote)
-    } else {
-      out.push(`2023 ${fmtPct(f.y2023) ?? '[à vérifier]'}`)
-      out.push(`2024 ${fmtPct(f.y2024) ?? '[à vérifier]'}`)
-      out.push(`2025 ${fmtPct(f.y2025) ?? '[à vérifier]'}`)
-    }
+    out.push(`2023 ${fmtPct(f.y2023) ?? '[à compléter]'}`)
+    out.push(`2024 ${fmtPct(f.y2024) ?? '[à compléter]'}`)
+    out.push(`2025 ${fmtPct(f.y2025) ?? '[à compléter]'}`)
     if (v.ytdEnabled) out.push(`YTD ${fmtPct(v.ytd) ?? '[à compléter]'}`)
     if (i < family.perfFunds.length - 1) out.push('')
   })

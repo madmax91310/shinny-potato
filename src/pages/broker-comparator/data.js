@@ -348,9 +348,7 @@ export function buildTweet(selected) {
         b.post.verdict.slice(1) + ", regarde " + b.nom + ".").join("\n"),
 
     "Et toi, lequel te correspond le mieux ? 👇",
-    "Dates de contrôle enregistrées (vérifications partielles) : " + b1.nom + " le " + b1.lastVerified + ", " +
-      b2.nom + " le " + b2.lastVerified +
-      ". Vérifie les tarifs et les offres avant publication. Ce post ne constitue pas un conseil en investissement.",
+    "Ce post ne constitue pas un conseil en investissement.",
   ];
 
   return blocks.join("\n\n");

@@ -29,6 +29,7 @@ jobs:
       - run: npm run audit:performance-consistency
       - run: npm run audit:etf-consistency
       - run: npm run audit:publishable-content
+      - run: npm run audit:source-inventory
       - run: npm run verify:tweet-midi
       - run: npm run stress-test:portfolios
       - run: npm run build

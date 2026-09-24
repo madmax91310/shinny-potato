@@ -34,9 +34,11 @@ npm run audit:etf-consistency
 npm run audit:performance-consistency
 npm run audit:portfolio-provenance
 npm run audit:publishable-content
+npm run audit:source-inventory
 npm run verify:tweet-midi
 npm run stress-test:portfolios
 npm run check-freshness -- --priorities
+node scripts/check-freshness.mjs --missing-json > scripts/source-inventory.json
 npm run test:tools
 ```
 

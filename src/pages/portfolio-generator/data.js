@@ -483,6 +483,7 @@ export const ASSETS = [
     isin: "LU1737652823",
     distributing: true,
     // Fiche Amundi commune aux parts C et D : tableau « Portefeuille » revenu réinvesti.
+    // Référence part D : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1737652823/ENG/FRA/INSTITUTIONNEL/ETF/20251231
     r: [-16.53, 35.57, -20.34, 6.02, 7.62, -3.43],
     confidenceNote: 'Rendements du fonds Amundi en euros, dividendes réinvestis ; la part distribuante verse ses revenus séparément.',
     desc: [
@@ -502,6 +503,7 @@ export const ASSETS = [
     // de portefeuille, pas deux parts Acc et Dist distinctes.
     isin: "IE00B9CQXS71",
     distributing: true,
+    // Référence part Dist : https://www.ssga.com/library-content/products/fund-docs/etfs/emea/kid-supplement/PRIIPS%20Performance%20file_IE00B9CQXS71.pdf
     // Source : State Street, tableau "Fund Net" au 31/08/2026 (rendements calendaires USD
     // dividendes réinvestis, nets de frais). La série antérieure mélangeait plusieurs lignes
     // du tableau et divergeait de 0,20 à 0,53 point du rendement net du fonds.
@@ -518,6 +520,7 @@ export const ASSETS = [
     id: "strat_dividendes_dist", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
     isin: "IE00B9CQXS71",
     distributing: true,
+    // Même part et même série que strat_dividendes : https://www.ssga.com/library-content/products/fund-docs/etfs/emea/kid-supplement/PRIIPS%20Performance%20file_IE00B9CQXS71.pdf
     r: [-9.17, 15.32, -6.97, 6.93, 7.74, 17.02],
     confidenceNote: 'Rendements nets du fonds publiés en dollars, dividendes réinvestis ; leur valeur en euros peut différer.',
     desc: [
@@ -530,6 +533,7 @@ export const ASSETS = [
     id: "high_dividend", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF", cat: "dividendes", emoji: "🟣",
     isin: "IE00BK5BR626",
     distributing: false,
+    // Référence part Acc : https://www.vanguard.co.uk/professional/product/etf/equity/9677/ftse-all-world-high-dividend-yield-ucits%20-etf-usd-accumulating
     // Source : performance annuelle calendaire réelle du fonds (nette de frais), fiches
     // Vanguard, années 2020-2025. NB : ce fonds existe bien en version Acc (ISIN IE00BK5BR626)
     // ET Dist (IE00B8GKDB10) — contrairement à une hypothèse initiale qui le pensait Dist-only.
@@ -547,6 +551,7 @@ export const ASSETS = [
     id: "high_dividend_dist", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
     isin: "IE00B8GKDB10",
     distributing: true,
+    // Référence part Dist : https://www.vanguard.co.uk/professional/product/etf/equity/9506/ftse-all-world-high-dividend-yield-ucits-etf-usd-distributing
     r: [-0.26, 17.88, -5.74, 11.51, 9.39, 26.40],
     confidenceNote: 'Rendements Vanguard en dollars, revenus réinvestis ; le change peut modifier la performance en euros.',
     desc: [
@@ -659,6 +664,7 @@ export const ASSETS = [
     id: "bitcoin_21shares", name: "21Shares Bitcoin ETP", cat: "crypto", emoji: "🟠",
     isin: "CH0454664001",
     // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
+    // Référence produit (pas source de la série proxy BTC/USD) : https://www.21shares.com/fr-eu/product/abtc
     r: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
     confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP 21Shares ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
     desc: [
@@ -726,6 +732,8 @@ export const ASSETS = [
     // l'indice répliqué, le fonds lui-même n'existant que depuis 2025.
     id: "msci_world_amundi_pea", name: "Amundi PEA Monde (MSCI World) UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "FR001400U5Q4",
+    // Référence produit (la série proxy reste MSCI World EUR net) : https://www.amundietf.fr/pdfDocuments/kid-priips/FR001400U5Q4/FRA/FRA/20260428
+    // Référence indice : https://www.msci.com/resources/factsheets/index_fact_sheet/msci-world-index-eur-net.pdf
     r: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
     confidenceNote: "Simulation sur l'indice MSCI World net en euros : cette part Amundi n'existait pas avant 2025 et l'historique n'est pas celui du fonds.",
     desc: [
@@ -776,6 +784,7 @@ export const ASSETS = [
   {
     id: "ftse_em_vanguard", name: "Vanguard FTSE Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
     isin: "IE00BK5BR733",
+    // Référence part Acc : https://www.vanguard.co.uk/professional/product/etf/equity/9678/ftse-emerging-markets-ucits
     // Source : performance annuelle réelle du fonds Vanguard FTSE Emerging Markets UCITS ETF
     // (part USD, nette de frais), années 2020-2025 — sciemment différente de "msci_em" : le
     // FTSE Emerging Markets a une composition distincte du MSCI EM (ex. la Corée du Sud, classée
@@ -861,6 +870,7 @@ export const ASSETS = [
   {
     id: "sect_energie", name: "iShares S&P 500 Energy Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B42NKQ00",
+    // Référence part IUES : https://www.blackrock.com/fr/particuliers/products/280503/ishares-sp-500-energy-sector-ucits-etf
     // Source : fonds réel (IUES, part USD Acc), fiche officielle BlackRock/iShares (performance
     // annuelle par calendrier) recoupée avec la performance de l'indice de référence sur chaque
     // année — écart de quelques dixièmes de point, cohérent avec le TER. 2020 (-34,32%) et 2023
@@ -929,6 +939,7 @@ export const ASSETS = [
   {
     id: "sect_cybersecurite", name: "iShares Digital Security UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00BG0J4C88",
+    // Référence part LOCK : https://www.blackrock.com/fr/intermediaries/products/297843/ishares-digital-security-ucits-etf-fund
     // Source : fonds réel vérifié (ISIN IE00BG0J4C88, ticker LOCK, lancé le 7 septembre 2018),
     // réplique le STOXX Global Digital Security Index, part USD (donnée EUR précise non trouvée de
     // façon fiable). 2020 (26,79%) confirmé par deux recherches indépendantes concordantes. 2021,

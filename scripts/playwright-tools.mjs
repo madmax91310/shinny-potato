@@ -94,7 +94,7 @@ async function testBrokerComparator(page) {
   // Le texte généré vit dans la value d'un <textarea> (bc-tweet-textarea) — jamais capturé par
   // innerText(), qui n'expose pas le contenu des champs de formulaire.
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
-  const ok = tweet.includes("Quand tu passes un ordre") && tweet.includes("Si tu transfères ton PEA") && tweet.includes("Selon ta façon d’investir") && tweet.includes("Entrant ✅");
+  const ok = tweet.includes("Quand tu passes un ordre") && tweet.includes("Si tu transfères ton PEA") && tweet.includes("Selon ta façon d’investir") && tweet.includes("Entrant ✅") && !/à revérifier|vérifié le|non vérifi[ée]|à vérifier/i.test(tweet);
   record("Comparatif courtiers", ok, "texte du duel par défaut généré");
 }
 
@@ -119,8 +119,8 @@ async function testIndexComparator(page) {
   for (let i = 0; i < count; i++) {
     await select.selectOption({ index: i });
     await page.waitForTimeout(100);
-    const text = await page.locator("body").innerText();
-    if (/L'EXPOSITION/.test(text) && /DIVERSIFICATION/.test(text) && /PERFORMANCE/.test(text) && /LE VERDICT/.test(text)) ok++;
+    const text = await page.locator(".xc-preview-text").innerText();
+    if (/L'EXPOSITION/.test(text) && /DIVERSIFICATION/.test(text) && /PERFORMANCE/.test(text) && /LE VERDICT/.test(text) && !/à revérifier|vérifié le|non vérifi[ée]|à vérifier/i.test(text)) ok++;
   }
   record("Comparateur d'indices", ok === count, `${ok}/${count} familles avec les 4 blocs clés`);
 }
