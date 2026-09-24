@@ -4,7 +4,7 @@
 import { FAMILIES } from '../src/pages/index-comparator/data.js'
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 
-const MAX_UNEXPLAINED_GAP = 1 // point de pourcentage
+const MAX_UNEXPLAINED_GAP = 0.1 // point de pourcentage : seuls les arrondis d'affichage restent tolérés
 // Les perfFunds n'ont pas de champ ISIN : rattachement explicite à la part citée dans le tweet.
 // Chaque clé est validée ci-dessous contre les fonds réellement affichés.
 const FUND_ISINS = {
@@ -24,7 +24,7 @@ const FUND_ISINS = {
 const DIFFERENT_BASIS = {}
 // Parts dont les deux outils utilisent la même série émetteur : écart toléré nul,
 // même si une divergence inférieure à 1 point passerait le seuil général.
-const EXACT_ISSUERS = new Set(['IE00BK5BQT80', 'IE00BKM4GZ66'])
+const EXACT_ISSUERS = new Set(['IE00BK5BQT80', 'IE00BKM4GZ66', 'IE00BYYHSQ67'])
 
 const assetsByIsin = new Map()
 for (const asset of ASSETS) {
@@ -59,9 +59,9 @@ for (const family of FAMILIES) {
       const gaps = [2023, 2024, 2025].map((year, i) => ({ year, gap: Math.abs(perf['y' + year] - asset.r[i + 3]) }))
       const large = gaps.filter(x => x.gap > (EXACT_ISSUERS.has(isin) ? 0.001 : MAX_UNEXPLAINED_GAP))
       if (!large.length) {
-        if (gaps.some(x => x.gap > 0.25)) {
+        if (gaps.some(x => x.gap > 0.01)) {
           smallGaps++
-          console.log('[ÉCART < 1 pt] ' + isin + ' (' + family.id + '/' + asset.id + ') : ' + gaps.map(x => x.year + ' ' + x.gap.toFixed(2) + ' pt').join(', '))
+          console.log('[ARRONDI < 0,1 pt] ' + isin + ' (' + family.id + '/' + asset.id + ') : ' + gaps.map(x => x.year + ' ' + x.gap.toFixed(2) + ' pt').join(', '))
         }
         continue
       }
@@ -85,5 +85,5 @@ for (const family of FAMILIES) {
 }
 
 console.log('\n' + compared + ' comparaisons ISIN (y compris les groupes multi-ETF), ' + notShared + ' parts sans correspondance dans le Générateur.')
-console.log(smallGaps + ' écart(s) inférieur(s) à 1 point à surveiller ; ' + documented + ' proxy(s) explicités dans les deux outils ; ' + failures + ' échec(s).')
+console.log(smallGaps + ' écart(s) inférieur(s) à 0,1 point à surveiller ; ' + documented + ' proxy(s) explicités dans les deux outils ; ' + failures + ' échec(s).')
 if (failures) process.exitCode = 1
