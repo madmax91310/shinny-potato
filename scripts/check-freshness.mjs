@@ -204,7 +204,9 @@ function scanTool(tool) {
       ...(tool.key === 'lexique' && LEXICON_SOURCES[anchor.name] ? [LEXICON_SOURCES[anchor.name]] : []),
     ])];
     const sourceNamed = commentLines.some((line) => /\b(?:source|sourcing)\b/i.test(line));
-    entries.push({ name: anchor.name, mostRecent, deadlines, sourceUrls, sourceNamed });
+    // Un contrôle daté de proxy documente une simulation, pas le rendement de la part affichée.
+    const proxyReview = tool.key === 'portefeuilles' && /Contrôle individuel du proxy le \d{2}\/\d{2}\/\d{4}/.test(blockText);
+    entries.push({ name: anchor.name, mostRecent, deadlines, sourceUrls, sourceNamed, proxyReview });
     deadlines.forEach((d) => allDeadlines.push({ ...d, entry: anchor.name }));
   }
 
@@ -231,6 +233,7 @@ function buildReport() {
       label: tool.label,
       file: tool.file,
       total: entries.length,
+      proxyReviews: entries.filter((e) => e.proxyReview && e.mostRecent).map((e) => e.name),
       buckets,
       nonTracable: withoutDate.map((e) => e.name),
       undatedInventory: withoutDate.map((e) => ({
@@ -267,6 +270,7 @@ function printConsoleReport(report) {
 
     console.log(`━━ ${t.label} (${t.file}) — ${t.total} entrée(s) ━━`);
     console.log(`  🟢 récent : ${t.buckets.recent.length}   🟡 à surveiller : ${t.buckets.surveiller.length}   🔴 à revérifier : ${t.buckets.revoir.length}   ⬜ sans date : ${t.nonTracable.length}`);
+    if (t.proxyReviews.length) console.log(`  Proxies contrôlés (pas les performances du produit) : ${t.proxyReviews.join(', ')}`);
 
     if (t.buckets.revoir.length) {
       console.log("  🔴 À revérifier en priorité :");
