@@ -94,6 +94,23 @@ Elles nécessitent aussi une explication visible côté Comparateur **et** côt�
 Les parts présentes dans un seul outil ne peuvent pas être comparées par ce script. Un nouveau
 `perfFunds` sans correspondance explicite avec un fonds affiché provoque un échec.
 
+## `audit-portfolio-provenance.mjs`
+
+Inventaire fermé des 72 supports du Générateur, par provenance du tableau annuel : part de fonds
+recoupée chez l'émetteur, part annoncée dans les commentaires mais non revérifiée dans cet audit,
+indice ou cours utilisé comme proxy, autre fonds/historique mixte, ou hypothèse générique.
+
+```bash
+npm run audit:portfolio-provenance
+```
+
+Échoue lorsqu'un support n'est pas inventorié, qu'une série simulée n'a plus d'avertissement
+visible dans le tweet, ou qu'un support déclaré en USD perd son indication de devise. Recense
+aussi les fonds lancés en cours d'historique et conserve une référence vers les fiches des fonds
+recoupés. Cet audit vérifie la traçabilité ; il ne télécharge pas les fiches et ne certifie pas
+automatiquement les 28 fonds classés « série attribuée à une part » : ils demandent encore une
+lecture du document émetteur, ISIN par ISIN.
+
 ## `check-freshness.mjs`
 
 Rapport de fraîcheur des données — scanne les `data.js` des 7 outils (Calculateur, Générateur de
