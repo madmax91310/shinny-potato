@@ -79,6 +79,10 @@ for (const item of ALL_ITEMS) {
     const end = Math.min(a.at(-1).year, b.at(-1).year);
     const annualLines = [...text.matchAll(/^[🟢🔴] (\d{4}) :/gmu)].map((m) => Number(m[1]));
     const expected = [...a, ...b].filter((r) => r.year <= end).map((r) => r.year);
+    if (!/^📈 Performance /u.test(text) || (text.match(/^Cumulé : /gmu) ?? []).length !== 2 ||
+        !/Cumulé : [^\n]+\n\n💬 Tu as un des deux dans ton portefeuille \?$/u.test(text)) {
+      problems.push('structure du comparatif de performances non respectée');
+    }
     if (annualLines.length !== expected.length || expected.some((y) => annualLines.filter((v) => v === y).length !== 2)) {
       problems.push(`comparaison d'années non communes (dernière année commune : ${end})`);
     }
