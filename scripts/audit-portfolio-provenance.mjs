@@ -4,9 +4,9 @@
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 
 const groups = {
-  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities`,
-  'Indice ou cours du sous-jacent': `msci_europe msci_em or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum foncieres_etf foncieres_etf_dist msci_world_ishares msci_world_amundi_pea msci_acwi ftse_allworld_vanguard msci_em_spdr`,
-  'Autre fonds ou historique mixte': `argent sect_semi smallcap_europe jepq oblig_hy_amundi actions_asie_ex_japon`,
+  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities`,
+  'Indice ou cours du sous-jacent': `msci_europe msci_em or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum foncieres_etf foncieres_etf_dist msci_world_ishares msci_world_amundi_pea msci_acwi ftse_allworld_vanguard msci_em_spdr smallcap_europe`,
+  'Autre fonds ou historique mixte': `argent sect_semi jepq oblig_hy_amundi actions_asie_ex_japon quality_dividend`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
 const tagged = new Map()
@@ -37,7 +37,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
   sect_semi: '2020 : part lancée en décembre', msci_world_amundi_pea: '2020-2025 : fonds lancé en 2025 sans année calendaire complète',
   smallcap_europe: '2020-2025 : part lancée en 2026', jepq: '2020-2024 : part UCITS sans année complète',
   oblig_hy_amundi: '2020-2024 : part non lancée', actions_asie_ex_japon: '2020 : part lancée en avril',
-  quality_dividend: '2020 : part lancée en mai, aucun rendement calendaire publié',
+  quality_dividend: '2020 : rendement de la part Dist du même fonds',
 }))
 const issuerSources = {
   msci_world: 'Fiche Amundi CW8 au 31/08/2026',
@@ -64,7 +64,6 @@ const issuerSources = {
   strat_dividendes_dist: 'https://www.ssga.com/lu/fr/intermediary/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy',
   high_dividend: 'https://fund-docs.vanguard.com/ie00bk5br626-en.pdf',
   high_dividend_dist: 'https://fund-docs.vanguard.com/ie00b8gkdb10-en.pdf',
-  quality_dividend: 'https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf',
   quality_dividend_dist: 'https://www.ishares.com/gls-download/literature/fact-sheet/wqdv-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf',
   tech_europe: 'https://www.ishares.com/uk/individual/en/products/315818/',
   sect_energie: 'https://www.ishares.com/uk/individual/en/products/280503/',
@@ -90,16 +89,19 @@ const issuerSources = {
 const partialIssuerSources = {
   sect_semi: 'https://www.vaneck.com/fr/fr/smh-supporting-doc.pdf',
   jepq: 'https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/ch/en/regulatory/annual-report/jpm-icav-etf-annual-report-ch-en.pdf',
-  actions_asie_ex_japon: 'https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf',
+  actions_asie_ex_japon: 'https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.msci.com/documents/10199/0ee7e00a-0b55-43fa-9c67-c20008a01db5',
+  quality_dividend: 'https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.ishares.com/gls-download/literature/fact-sheet/wqdv-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf',
 }
 const proxySources = {
   argent: 'https://www.ishares.com/uk/individual/en/products/258443/ + https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf',
-  smallcap_europe: 'https://www.ishares.com/us/literature/fact-sheet/ieus-ishares-msci-europe-small-cap-etf-fund-fact-sheet-en-us.pdf',
   oblig_hy_amundi: 'https://www.ishares.com/gls-download/literature/fact-sheet/ihyg-ishares-high-yield-corp-bond-ucits-etf-fund-fact-sheet-en-gb.pdf',
 }
+const indexSources = {
+  smallcap_europe: 'https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0',
+}
 const expectedMissingYears = new Map([
-  ['sect_semi', [2020]], ['actions_asie_ex_japon', [2020]],
-  ['jepq', [2020, 2021, 2022, 2023, 2024]], ['quality_dividend', [2020]],
+  ['sect_semi', [2020]],
+  ['jepq', [2020, 2021, 2022, 2023, 2024]],
 ])
 for (const asset of ASSETS) {
   const basis = tagged.get(asset.id)
@@ -118,7 +120,7 @@ for (const asset of ASSETS) {
   }
 }
 for (const id of tagged.keys()) if (!byId.has(id)) { console.error(`Entrée obsolète : ${id}`); errors++ }
-for (const id of [...usdReturns, ...partialOrSyntheticYears.keys(), ...Object.keys(issuerSources), ...Object.keys(partialIssuerSources), ...Object.keys(proxySources)]) {
+for (const id of [...usdReturns, ...partialOrSyntheticYears.keys(), ...Object.keys(issuerSources), ...Object.keys(partialIssuerSources), ...Object.keys(proxySources), ...Object.keys(indexSources)]) {
   if (!byId.has(id)) { console.error(`Référence obsolète : ${id}`); errors++ }
 }
 for (const id of groups['Fonds confirmé chez l’émetteur'].split(' ')) {
@@ -132,6 +134,9 @@ for (const id of Object.keys(partialIssuerSources)) {
 }
 for (const id of Object.keys(proxySources)) {
   if (tagged.get(id) !== 'Autre fonds ou historique mixte') { console.error(`Proxy mal classé : ${id}`); errors++ }
+}
+for (const id of Object.keys(indexSources)) {
+  if (tagged.get(id) !== 'Indice ou cours du sous-jacent') { console.error(`Indice mal classé : ${id}`); errors++ }
 }
 for (const [basis, list] of Object.entries(groups)) console.log(`${basis} : ${list.split(' ').filter(Boolean).length}`)
 console.log(`${ASSETS.length} supports inventoriés ; ${errors} erreur(s) de traçabilité structurelle.`)
