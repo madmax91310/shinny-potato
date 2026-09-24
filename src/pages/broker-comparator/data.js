@@ -312,29 +312,52 @@ export function buildTweet(selected) {
       : "Ce format de post est pensé pour un duel (2 courtiers).\nDésélectionne-en un pour générer le texte.";
   }
   const [b1, b2] = selected.map(byId);
-
-  const section = (icon, title, b1Lines, b2Lines) => {
-    const rows = [icon + " " + title, ""];
-    rows.push(b1.emoji + " " + b1.nom + " → " + b1Lines[0]);
-    b1Lines.slice(1).forEach((l) => rows.push(l));
-    rows.push(b2.emoji + " " + b2.nom + " → " + b2Lines[0]);
-    b2Lines.slice(1).forEach((l) => rows.push(l));
-    return rows.join("\n");
-  };
+  const names = (b) => b.emoji + " " + b.nom;
+  const lines = (items) => items.join("\n");
+  const detail = (item) => [item.resume, item.detail].filter(Boolean).join(" · ");
+  const pea = (b) => [
+    "PEA " + (b.pea.pea ? "✅" : "❌"),
+    "PEA-PME " + (b.pea.pme === null ? "?" : b.pea.pme ? "✅" : "❌"),
+    "PEA Jeune " + (b.pea.jeune === null ? "?" : b.pea.jeune ? "✅" : "❌"),
+  ].join(" / ");
+  const pair = (label, describe) =>
+    label + "\n" + [b1, b2].map((b) => names(b) + " : " + describe(b)).join("\n");
 
   const blocks = [
-    b1.emoji + " " + b1.nom + " 🆚 " + b2.emoji + " " + b2.nom,
-    "Lequel choisir pour ton PEA en 2026 ?\nOn décortique les deux 👇",
-    section("💰", "FRAIS DE COURTAGE PEA", b1.post.frais, b2.post.frais),
-    section("📈", "DCA AUTOMATIQUE", b1.post.dca, b2.post.dca),
-    section("🛡️", "FRAIS DE GARDE", b1.post.garde, b2.post.garde),
-    "🌱 PEA / PEA-PME\n\n" + b1.emoji + " " + b1.nom + " → " + b1.post.pea + "\n" + b2.emoji + " " + b2.nom + " → " + b2.post.pea,
-    section("📄", "IFU", b1.post.ifu, b2.post.ifu),
-    section("💵", "LIQUIDITÉS RÉMUNÉRÉES", b1.post.liquidites, b2.post.liquidites),
-    section("⚠️", "POINTS FAIBLES", b1.post.faibles, b2.post.faibles),
-    "🎯 VERDICT FINAL\n\n" + b1.post.verdict + " → " + b1.nom + " " + b1.emoji + "\n" + b2.post.verdict + " → " + b2.nom + " " + b2.emoji,
-    "Et toi, t’es chez lequel ?\n" + b1.emoji + " " + b1.nom + "\n" + b2.emoji + " " + b2.nom + "\n🔴 Ni l’un ni l’autre\n\nDis-moi en commentaire 👇",
-    "⚠️ Pas un conseil en investissement.",
+    names(b1) + " ou " + names(b2) + " pour ton PEA ? 👇",
+    "Tu investis chaque mois, tu passes quelques ordres ponctuels ou tu veux aussi un PEA-PME ? Voici les différences à regarder avant de choisir.",
+
+    pair("💰 Quand tu passes un ordre", (b) =>
+      lines([...b.post.frais, "Frais affichés : " + detail(b.frais)])
+    ),
+    pair("🛒 Et les offres sur certains titres ?", (b) => detail(b.boursomarkets)),
+    pair("📅 Si tu investis automatiquement", (b) =>
+      lines([...b.post.dca, "En pratique : " + detail(b.dca)])
+    ),
+
+    pair("🌱 Les enveloppes disponibles", (b) => pea(b)),
+    pair("🛡️ Les frais de garde", (b) =>
+      lines([...b.post.garde, "Barème affiché : " + detail(b.garde)])
+    ),
+    pair("📄 Pour la déclaration fiscale", (b) =>
+      lines([...b.post.ifu, "IFU : " + detail(b.ifu)])
+    ),
+    pair("💵 Et les liquidités ?", (b) =>
+      lines([...b.post.liquidites, "Précision : " + detail(b.liquidites)])
+    ),
+    pair("🔄 Si tu transfères ton PEA", (b) => b.transfertPea?.resume || "Non renseigné"),
+
+    pair("⚠️ Ce qui peut coincer", (b) =>
+      lines([...b.post.faibles, b.pointFaible].filter((line, index, all) => all.indexOf(line) === index))
+    ),
+    "🎯 Selon ta façon d’investir\n" +
+      [b1, b2].map((b) => "Si " + b.post.verdict.charAt(0).toLowerCase() +
+        b.post.verdict.slice(1) + ", regarde " + b.nom + ".").join("\n"),
+
+    "Et toi, lequel te correspond le mieux ? 👇",
+    "Données vérifiées : " + b1.nom + " le " + b1.lastVerified + ", " +
+      b2.nom + " le " + b2.lastVerified +
+      ". Vérifie les tarifs et les offres avant publication. Ce post ne constitue pas un conseil en investissement.",
   ];
 
   return blocks.join("\n\n");
