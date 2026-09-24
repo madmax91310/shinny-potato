@@ -367,27 +367,23 @@ export const FAMILIES = [
       chain: ['MSCI EM IMI (3 017 lignes)', 'FTSE EM (2 290, sans la Corée du Sud)', 'MSCI EM ex-China (625, sans la Chine)'],
       notes: ['⚠️ La Chine pèse encore 25 à 30 % du MSCI EM, malgré sa baisse ces dernières années.'],
     },
-    // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026).
-    // AUDIT du 23/09/2026 : l'écart avec le Générateur vient de la devise et de la méthode :
-    // ce tableau présente les rendements des parts en USD, le Générateur un indice en EUR avant
-    // les frais du fonds. Son ancien proxy iShares était de plus le MSCI EM classique, alors que
-    // IE00BKM4GZ66 suit le MSCI EM IMI ; proxy corrigé dans le Générateur.
+    // iShares EM IMI : performances calendaires de la part USD IE00BKM4GZ66,
+    // ligne « Share Class » du factsheet BlackRock EIMI ; même série dans le Générateur.
     // ftse_em CORRIGÉ le 23/09/2026 (4,12/19,20/11,13 → 7,86/12,06/25,67) : l'ancien commentaire de
     // ce fichier affirmait qu'un premier résultat de recherche "identique à la série 2021-2023 de
     // portfolio-generator" était un décalage d'années suspect, et l'avait donc écarté au profit
     // d'un autre jeu de chiffres — ce diagnostic était FAUX. Le fonds coté (IE00BK5BR733, part USD
     // Acc) a bien 7,86 % / 12,06 % / 25,67 % net de frais sur 2023/2024/2025 : confirmé par 2
     // requêtes web indépendantes le 23/09/2026, dont une directement sur les fiches officielles
-    // Vanguard — valeur identique à portfolio-generator/data.js pour ce même ISIN par coïncidence
-    // de méthode (portfolio-generator y documente pourtant une approche EUR indice, mais pour ce
-    // fonds précis converge avec le chiffre USD réel du fonds). L'ancien jeu de chiffres (4,12 %
+    // Vanguard — valeur identique à portfolio-generator/data.js pour ce même ISIN.
+    // L'ancien jeu de chiffres (4,12 %
     // etc.) n'a pas pu être retracé à une source fiable lors de cette revérification.
     perfFunds: [
-      { key: 'msci_em', label: 'iShares Core MSCI EM IMI', y2023: 11.6, y2024: 7.2, y2025: 31.6 },
+      { key: 'msci_em', label: 'iShares Core MSCI EM IMI', y2023: 11.58, y2024: 7.21, y2025: 31.58 },
       { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 7.86, y2024: 12.06, y2025: 25.67 },
       { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.73, y2024: 3.64, y2025: 34.83 },
     ],
-    perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise des parts USD Acc, hors effet de change €/$. Le Générateur de portefeuilles utilise des indices en euros avant frais des ETF : ses chiffres ne sont pas directement comparables.',
+    perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise des parts USD Acc, hors effet de change €/$. Le Générateur utilise aussi la part iShares en dollars ; certains autres supports y reposent encore sur un indice.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '🏳️ La référence la plus large et la moins chère ?', a: 'iShares Core MSCI EM IMI.' },

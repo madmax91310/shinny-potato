@@ -69,11 +69,11 @@ export const ASSETS = [
   // ── 🔵 Obligataire / fonds euros ──────────────────────
   {
     id: "fonds_euros", name: "Fonds euros (assurance-vie)", cat: "obligataire", emoji: "🔵",
-    // Source : rendement moyen net des fonds euros en assurance-vie (marché français, hors
-    // frais de gestion du contrat), FranceTransactions.com / Nalo / La Finance pour Tous,
-    // années 2020-2025. 2020 = résultat définitif (1,14%), pas la prévision initiale (~1,0-1,1%).
-    r: [1.14, 1.30, 1.90, 2.60, 2.60, 2.65],
-    confidenceNote: "Simulation fondée sur des moyennes de fonds en euros du marché, pas sur un contrat précis ; les rendements réels varient selon l'assureur et les frais.",
+    // ACPR, revalorisation moyenne des supports euros des contrats individuels,
+    // nette des prélèvements sur encours et AVANT prélèvements sociaux, 2020-2025.
+    // Rapports ACPR n° 126, 140, 149, 163, 175 et 180 (voir sources de l'audit).
+    r: [1.28, 1.28, 1.91, 2.60, 2.63, 2.63],
+    confidenceNote: "Moyennes ACPR des fonds euros de contrats individuels, nettes des frais prélevés sur l'encours mais avant prélèvements sociaux ; ton contrat peut servir un taux différent.",
     desc: [
       "le socle sécuritaire des assurances-vie : capital garanti, rendement modeste mais stable.",
       "le matelas de sécurité du portefeuille : pas de sensation forte, mais on ne perd (presque) jamais.",
@@ -303,9 +303,9 @@ export const ASSETS = [
   {
     id: "msci_europe", name: "iShares Core MSCI Europe UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4K48X80",
-    // Source : indice MSCI Europe (EUR, net de dividendes), fiches MSCI, années 2020-2025.
-    r: [-3.32, 25.13, -9.49, 15.83, 8.59, 19.39],
-    confidenceNote: 'Indice MSCI Europe net en euros utilisé comme simulation, avant les frais du fonds iShares ; ce ne sont pas les rendements de cette part.',
+    // Fiche BlackRock SMEA, ligne Share Class EUR (Acc), 2020-2025.
+    // https://www.ishares.com/gls-download/literature/fact-sheet/smea-ishares-core-msci-europe-ucits-etf-eur-acc-fund-fact-sheet-en-gb.pdf
+    r: [-3.17, 25.46, -9.25, 16.14, 8.84, 19.72],
     desc: [
       "une exposition large aux grandes entreprises européennes, au-delà de la seule zone euro.",
       "inclut le Royaume-Uni et la Suisse en plus de la zone euro : diversification géographique intéressante.",
@@ -330,11 +330,10 @@ export const ASSETS = [
   {
     id: "msci_em", name: "iShares Core MSCI EM IMI UCITS ETF", cat: "emergents", emoji: "🟤",
     isin: "IE00BKM4GZ66",
-    // Proxy : indice MSCI Emerging Markets IMI, rendement net en EUR 2020-2025 (MSCI,
-    // factsheet du 31/08/2026). Inclut les petites capitalisations contrairement au MSCI EM
-    // standard des fonds Amundi/SPDR ci-dessous ; ce ne sont pas des rendements du fonds iShares.
-    r: [8.62, 7.29, -14.58, 7.89, 14.24, 15.83],
-    confidenceNote: "Performances simulées à partir de l'indice MSCI EM IMI net en euros, avant les frais propres à l'ETF ; elles ne sont pas les rendements de cette part iShares en dollars.",
+    // Fiche BlackRock EIMI, ligne Share Class USD (Acc), 2020-2025.
+    // https://www.ishares.com/de/privatanleger/de/literature/fact-sheet/eimi-ishares-core-msci-em-imi-ucits-etf-fund-fact-sheet-de-de.pdf
+    r: [18.35, -0.24, -19.79, 11.58, 7.21, 31.58],
+    confidenceNote: "Rendements officiels de la part iShares en dollars, nets de frais ; le résultat d'un investisseur en euros peut différer selon le change.",
     desc: [
       "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
       "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",
@@ -346,16 +345,10 @@ export const ASSETS = [
   {
     id: "or", name: "Invesco Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
     isin: "IE00B579F325",
-    // Cours LBMA Gold Price PM en USD/once : performances annuelles World Gold Council,
-    // 2020-2025. Source primaire par année :
-    // https://www.gold.org/goldhub/research/outlook-2021
-    // https://www.gold.org/goldhub/research/gold-outlook-2022
-    // https://www.gold.org/goldhub/research/gold-market-commentary-december-2022
-    // https://www.gold.org/goldhub/research/gold-market-commentary-december-2023
-    // https://www.gold.org/goldhub/research/gold-market-commentary-december-2024
-    // https://www.gold.org/goldhub/research/gold-market-commentary-december-2025
-    r: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
-    confidenceNote: "Simulation sur le cours de l'or en dollars, avant les frais de l'ETC ; l'effet de change pour un investisseur en euros n'est pas pris en compte.",
+    // Invesco, performance calendaire du Certificate Value (CV) nette des frais fixes, USD.
+    // https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf
+    r: [23.95, -3.90, -0.54, 13.66, 26.44, 64.80],
+    confidenceNote: "Rendements officiels de cet ETC Invesco en dollars, nets des frais fixes ; une cotation en euros donne un résultat différent selon le change.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
       "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
@@ -449,14 +442,13 @@ export const ASSETS = [
   // ── ⚪ Immobilier ────────────────────────────────────────
   {
     id: "scpi", name: "SCPI (rendement générique)", cat: "immobilier", emoji: "⚪",
-    // Source : rendement global ASPIM (taux de distribution + variation de la valeur de
-    // réalisation des parts, pas seulement la distribution), années 2020-2025 : 2020 = 5,30%
-    // (distribution 4,18% + revalorisation +1,12%) ; 2021 = 5,85% (RGI, 4,49% + 1,36%) ; 2022 ≈
-    // 2,0% (4,53% de distribution, -2,44% de valeur) ; 2023 = -5,78% (confirmé, chute de -10,3%
-    // des valeurs de réalisation) ; 2024 = -1,1% (confirmé) ; 2025 = +1,46% (confirmé, ASPIM
-    // T4 2025).
-    r: [5.30, 5.85, 2.0, -5.78, -1.1, 1.46],
-    confidenceNote: "Rendement moyen global du marché des SCPI, pas la performance d'une SCPI que tu pourrais acheter ; les frais et la valorisation de chaque part varient.",
+    // ASPIM/IEIF : 2021-2025 = rendement global immobilier (RGI), taux de distribution
+    // + variation de la valeur de réalisation ; 2020 = ancienne performance globale
+    // (TDVM 4,18 % + variation moyenne du prix de part 1,12 %), méthode non identique.
+    // 2022 : 2,1 % ASPIM, 2023 : -5,78 %, 2024 : -1,1 %, 2025 : +3,1 % RGI.
+    // La PGA 2025 (+1,5 %) dépend du prix de part et n'est PAS le RGI.
+    r: [5.30, 5.85, 2.1, -5.78, -1.1, 3.1],
+    confidenceNote: "Moyenne du marché SCPI : rendement global immobilier ASPIM (loyers + variation de la valeur du patrimoine) de 2021 à 2025. L'année 2020 suit l'ancienne méthode ; ces chiffres ne sont ni le revenu distribué ni le résultat d'une vente de parts, et les frais d'achat varient.",
     desc: [
       "de l'immobilier locatif mutualisé (bureaux, commerces...), avec un rendement historiquement régulier.",
       "a traversé une période difficile en 2023-2024 avec la baisse de valorisation du parc immobilier.",
@@ -609,9 +601,11 @@ export const ASSETS = [
   {
     id: "or_wisdomtree", name: "WisdomTree Physical Gold", cat: "matieres_premieres", emoji: "🟡",
     isin: "JE00B1VS3770",
-    // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
-    r: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
-    confidenceNote: "Simulation sur le cours de l'or en dollars, avant les frais de cet ETC WisdomTree ; l'effet de change en euros n'est pas pris en compte.",
+    // Proxy : indice LBMA Gold Price USD, ligne Benchmark du prospectus Invesco ;
+    // la fiche WisdomTree trouvée ne publie pas six années calendaires du même ETC.
+    // https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf
+    r: [24.17, -3.75, -0.43, 13.80, 26.59, 65.00],
+    confidenceNote: "Simulation sur le cours LBMA de l'or en dollars, avant les frais de l'ETC WisdomTree ; ce ne sont pas ses rendements et le change en euros n'est pas inclus.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
       "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
@@ -621,9 +615,10 @@ export const ASSETS = [
   {
     id: "or_ishares", name: "iShares Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
     isin: "IE00B4ND3602",
-    // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
-    r: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
-    confidenceNote: "Simulation sur le cours de l'or en dollars, avant les frais de cet ETC iShares ; l'effet de change en euros n'est pas pris en compte.",
+    // BlackRock SGLN, ligne Total Return USD de l'ISIN IE00B4ND3602.
+    // https://www.ishares.com/uk/individual/en/products/258441/ishares-physical-gold-etc-fund
+    r: [23.9, -3.9, -0.5, 13.7, 26.4, 64.8],
+    confidenceNote: "Rendements NAV de cet ETC iShares publiés en dollars ; le change peut modifier le résultat en euros.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
       "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
@@ -633,9 +628,10 @@ export const ASSETS = [
   {
     id: "or_amundi", name: "Amundi Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
     isin: "FR0013416716",
-    // Jumeau strict de "or" — même source (cours de l'or spot USD, cf. commentaire ci-dessus).
-    r: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
-    confidenceNote: "Simulation sur le cours de l'or en dollars, avant les frais de cet ETC Amundi ; l'effet de change en euros n'est pas pris en compte.",
+    // Amundi FR0013416716, ligne ETC des années calendaires 2020-2025 en USD.
+    // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013416716/ENG/FRA/INSTITUTIONNEL/AMUNDI
+    r: [23.98, -3.89, -0.54, 13.66, 26.44, 64.80],
+    confidenceNote: "Rendements de cet ETC Amundi publiés en dollars, nets de frais ; le change peut modifier le résultat en euros.",
     desc: [
       "la valeur refuge par excellence, recherchée en période d'inflation ou d'incertitude géopolitique.",
       "ne verse aucun revenu, mais joue historiquement un rôle d'assurance dans un portefeuille.",
@@ -720,9 +716,10 @@ export const ASSETS = [
   {
     id: "msci_world_ishares", name: "iShares Core MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4L5Y983",
-    // Proxy : indice MSCI World EUR net, pas les rendements officiels de cette part iShares.
-    r: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
-    confidenceNote: "Simulation sur l'indice MSCI World net en euros, avant les frais propres à cette part iShares ; ce ne sont pas ses rendements publiés.",
+    // BlackRock SWDA, ligne Share Class USD (Acc), 2020-2025.
+    // https://www.ishares.com/gls-download/literature/fact-sheet/swda-ishares-core-msci-world-ucits-etf-fund-fact-sheet-en-gb.pdf
+    r: [15.95, 21.90, -18.03, 23.86, 18.70, 21.16],
+    confidenceNote: "Rendements de la part iShares en dollars, nets de frais ; le résultat en euros peut différer selon le change.",
     desc: [
       "environ 1500 grandes entreprises de 23 pays développés en un seul support.",
       "le point de comparaison classique de tout portefeuille actions dans le monde.",
@@ -747,9 +744,10 @@ export const ASSETS = [
   {
     id: "msci_acwi", name: "SPDR MSCI ACWI UCITS ETF", cat: "actions_larges", emoji: "🟢",
     isin: "IE00B44Z5B48",
-    // Source : indice MSCI ACWI (EUR, net de dividendes), fiches MSCI, années 2020-2025.
-    r: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
-    confidenceNote: "Simulation sur l'indice MSCI ACWI net en euros, avant frais propres à cette part SPDR ; ce ne sont pas les rendements publiés du fonds.",
+    // State Street SPYY, ligne Fund Net, part Acc en USD, 2020-2025.
+    // https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy
+    r: [15.70, 18.59, -18.30, 22.01, 17.36, 22.81],
+    confidenceNote: "Rendements officiels de la part SPDR en dollars, nets de frais ; le change peut modifier la performance en euros.",
     desc: [
       "le MSCI World auquel on ajoute les marchés émergents : une exposition mondiale quasi complète.",
       "une seule ligne pour couvrir l'essentiel de la capitalisation boursière mondiale.",
@@ -801,10 +799,10 @@ export const ASSETS = [
   {
     id: "msci_em_spdr", name: "SPDR MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
     isin: "IE00B469F816",
-    // Proxy : indice MSCI Emerging Markets classique, rendement net en EUR 2020-2025.
-    // Ce fonds ne suit pas l'indice IMI de l'ETF iShares ci-dessus.
-    r: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
-    confidenceNote: "Performances simulées à partir de l'indice MSCI Emerging Markets net en euros, avant les frais propres à l'ETF ; elles ne sont pas les rendements de cette part SPDR.",
+    // State Street SPYM, ligne Fonds Net USD, 2020-2025 ; indice MSCI EM standard.
+    // https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-msci-emerging-markets-ucits-etf-spym-gy
+    r: [18.00, -2.50, -20.39, 9.80, 7.62, 33.80],
+    confidenceNote: "Rendements officiels de la part SPDR en dollars, nets de frais ; le change peut modifier la performance en euros.",
     desc: [
       "Chine, Inde, Brésil, Taïwan... les grandes économies émergentes réunies dans un seul support.",
       "un potentiel de croissance supérieur aux pays développés, avec plus de volatilité et de risque politique.",

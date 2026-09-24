@@ -4,8 +4,8 @@
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 
 const groups = {
-  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard`,
-  'Indice ou cours du sous-jacent': `msci_europe msci_em or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum msci_world_ishares msci_world_amundi_pea msci_acwi msci_em_spdr smallcap_europe`,
+  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr`,
+  'Indice ou cours du sous-jacent': `or_wisdomtree bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares ethereum msci_world_amundi_pea smallcap_europe`,
   'Autre fonds ou historique mixte': `argent sect_semi jepq oblig_hy_amundi actions_asie_ex_japon quality_dividend`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
@@ -29,7 +29,7 @@ const usdReturns = new Set(`nasdaq100_ishares actions_coree actions_taiwan actio
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
   actions_japon actions_value sect_financieres sect_sante smallcap_monde mp_large mp_large_icom
-  sect_semi jepq sp500_ishares ftse_allworld_vanguard
+  sect_semi jepq sp500_ishares ftse_allworld_vanguard msci_em msci_world_ishares msci_acwi msci_em_spdr or or_ishares or_amundi
   high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes
   strat_dividendes_dist`.trim().split(/\s+/))
 const partialOrSyntheticYears = new Map(Object.entries({
@@ -38,8 +38,17 @@ const partialOrSyntheticYears = new Map(Object.entries({
   smallcap_europe: '2020-2025 : part lancée en 2026', jepq: '2020-2024 : part UCITS sans année complète',
   oblig_hy_amundi: '2020-2024 : part non lancée', actions_asie_ex_japon: '2020 : part lancée en avril',
   quality_dividend: '2020 : rendement de la part Dist du même fonds',
+  scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+  msci_europe: 'https://www.ishares.com/gls-download/literature/fact-sheet/smea-ishares-core-msci-europe-ucits-etf-eur-acc-fund-fact-sheet-en-gb.pdf',
+  msci_em: 'https://www.ishares.com/de/privatanleger/de/literature/fact-sheet/eimi-ishares-core-msci-em-imi-ucits-etf-fund-fact-sheet-de-de.pdf',
+  or: 'https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf',
+  or_ishares: 'https://www.ishares.com/uk/individual/en/products/258441/ishares-physical-gold-etc-fund',
+  or_amundi: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013416716/ENG/FRA/INSTITUTIONNEL/AMUNDI',
+  msci_world_ishares: 'https://www.ishares.com/gls-download/literature/fact-sheet/swda-ishares-core-msci-world-ucits-etf-fund-fact-sheet-en-gb.pdf',
+  msci_acwi: 'https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy',
+  msci_em_spdr: 'https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-msci-emerging-markets-ucits-etf-spym-gy',
   ftse_allworld_vanguard: 'https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf',
   msci_world: 'Fiche Amundi CW8 au 31/08/2026',
   sp500: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630',
@@ -99,18 +108,14 @@ const proxySources = {
   argent: 'https://www.ishares.com/uk/individual/en/products/258443/ + https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf',
   oblig_hy_amundi: 'https://www.ishares.com/gls-download/literature/fact-sheet/ihyg-ishares-high-yield-corp-bond-ucits-etf-fund-fact-sheet-en-gb.pdf',
 }
+const genericSources = {
+  fonds_euros: 'ACPR : études n°126 (2020), n°140 (2021), n°149 (2022), n°163 (2023), n°175 (2024) et n°180 (2025) ; https://acpr.banque-france.fr/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses',
+  scpi: 'ASPIM : https://www.aspim.fr/storage/documents/le-bilan-de-l-annee-2020-pour-les-scpi-et-les-opci-60263f3b06256.pdf (2020, ancienne méthode), https://www.aspim.fr/storage/documents/aspim-infos-la-lettre-d-information-des-fonds-immobiliers-non-cotes-n017-64b7a9122bb3f.pdf (2021-2022), https://www.aspim.fr/actualites/les-fonds-immobiliers-grand-public-au-1er-trimestre-2025-les-indicateurs-de-performance-2024-des-scpi/ (2023-2024), https://www.aspim.fr/actualites/collecte-et-performance-des-fonds-immobiliers-grand-public-au-premier-trimestre-2026-et-principaux-indicateurs-des-scpi-en-2025/ (2025)',
+}
 const indexSources = {
-  msci_europe: 'https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf',
-  msci_em: 'https://www.msci.com/documents/10199/255599/msci-emerging-markets-imi-eur-net.pdf',
-  msci_em_spdr: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
-  msci_world_ishares: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
   msci_world_amundi_pea: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
-  msci_acwi: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
   smallcap_europe: 'https://www.msci.com/documents/10199/a2bd7d9f-6c01-4056-bbf6-f1d9074366e0',
-  or: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
-  or_wisdomtree: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
-  or_ishares: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
-  or_amundi: 'https://www.gold.org/goldhub/research/gold-market-commentary-december-2025',
+  or_wisdomtree: 'https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf + https://www.wisdomtree.eu/en-ch/products/ucits-etfs-unleveraged-etps/commodities/wisdomtree-physical-gold',
   // Clôtures annuelles du fournisseur ; ces chiffres ne sont pas les NAV des ETP.
   bitcoin: 'https://www.slickcharts.com/currency/BTC/returns + https://coinshares.com/etp/physical-bitcoin/',
   bitcoin_wisdomtree: 'https://www.slickcharts.com/currency/BTC/returns + https://www.wisdomtree.eu/en-gb/products/ucits-etfs-unleveraged-etps/cryptocurrency/wisdomtree-physical-bitcoin',
@@ -121,22 +126,28 @@ const indexSources = {
 // Garde les corrections chiffrées issues des tableaux annuels du fournisseur indiqué.
 // Les cours crypto proviennent de Slickcharts, les rendements d'ETF de leur émetteur.
 const primarySeries = new Map(Object.entries({
-  msci_europe: [-3.32, 25.13, -9.49, 15.83, 8.59, 19.39],
-  msci_em: [8.62, 7.29, -14.58, 7.89, 14.24, 15.83],
-  msci_em_spdr: [8.54, 4.86, -14.85, 6.11, 14.68, 17.76],
-  msci_world_ishares: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
-  msci_acwi: [6.65, 27.54, -13.01, 18.06, 25.33, 7.86],
   smallcap_europe: [4.58, 23.82, -22.50, 12.74, 5.65, 16.35],
-  or: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
-  or_wisdomtree: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
-  or_ishares: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
-  or_amundi: [24.6, -4.3, 0.4, 14.6, 25.5, 67.4],
+  or_wisdomtree: [24.17, -3.75, -0.43, 13.80, 26.59, 65.00],
   bitcoin: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   bitcoin_wisdomtree: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   bitcoin_etcgroup: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   bitcoin_21shares: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   ethereum: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
+}))
+// Contrôle fermé des séries remplacées dans ce passage : rendements de la part exacte
+// publiés par l'émetteur, plus deux moyennes de marché dont la définition est documentée.
+const verifiedSeries = new Map(Object.entries({
+  msci_europe: [-3.17, 25.46, -9.25, 16.14, 8.84, 19.72],
+  msci_em: [18.35, -0.24, -19.79, 11.58, 7.21, 31.58],
+  msci_world_ishares: [15.95, 21.90, -18.03, 23.86, 18.70, 21.16],
+  msci_acwi: [15.70, 18.59, -18.30, 22.01, 17.36, 22.81],
+  msci_em_spdr: [18.00, -2.50, -20.39, 9.80, 7.62, 33.80],
+  or: [23.95, -3.90, -0.54, 13.66, 26.44, 64.80],
+  or_ishares: [23.9, -3.9, -0.5, 13.7, 26.4, 64.8],
+  or_amundi: [23.98, -3.89, -0.54, 13.66, 26.44, 64.80],
+  fonds_euros: [1.28, 1.28, 1.91, 2.60, 2.63, 2.63],
+  scpi: [5.30, 5.85, 2.1, -5.78, -1.1, 3.1],
 }))
 const expectedMissingYears = new Map([
   ['sect_semi', [2020]],
@@ -154,6 +165,9 @@ for (const asset of ASSETS) {
   if (partialOrSyntheticYears.has(asset.id) && !asset.confidenceNote) { console.error(`Années simulées sans réserve : ${asset.id}`); errors++ }
   if (primarySeries.has(asset.id) && JSON.stringify(asset.r) !== JSON.stringify(primarySeries.get(asset.id))) {
     console.error(`Série indicielle en contradiction avec la source recoupée : ${asset.id}`); errors++
+  }
+  if (verifiedSeries.has(asset.id) && JSON.stringify(asset.r) !== JSON.stringify(verifiedSeries.get(asset.id))) {
+    console.error(`Série émetteur ou hypothèse vérifiée divergente : ${asset.id}`); errors++
   }
   if (expectedMissingYears.has(asset.id)) {
     for (const year of expectedMissingYears.get(asset.id)) {
@@ -182,6 +196,9 @@ for (const id of Object.keys(indexSources)) {
 }
 for (const id of groups['Indice ou cours du sous-jacent'].split(' ')) {
   if (!indexSources[id]) { console.error(`Source indicielle absente : ${id}`); errors++ }
+}
+for (const id of groups['Hypothèse non liée à un titre précis'].split(' ')) {
+  if (!genericSources[id]) { console.error(`Source de moyenne absente : ${id}`); errors++ }
 }
 for (const [basis, list] of Object.entries(groups)) console.log(`${basis} : ${list.split(' ').filter(Boolean).length}`)
 console.log(`${ASSETS.length} supports inventoriés ; ${errors} erreur(s) de traçabilité structurelle.`)

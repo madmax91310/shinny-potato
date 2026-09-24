@@ -20,11 +20,11 @@ const FUND_ISINS = {
   japon: { nikkei: 'LU2196470426', topix: 'FR0013411980', msci_japan: 'IE00B4L5YX21' },
 }
 
-// Comparer une part USD du Comparateur à un proxy d'indice EUR dans le Générateur ne mesure
-// pas le même rendement. Cette exception exige une explication visible dans les deux outils.
-const DIFFERENT_BASIS = {
-  'IE00BKM4GZ66': 'part iShares USD nette de frais / proxy MSCI EM IMI EUR avant frais',
-}
+// Comparer des séries différentes d'un même ISIN exige une explication dans les deux outils.
+const DIFFERENT_BASIS = {}
+// Parts dont les deux outils utilisent la même série émetteur : écart toléré nul,
+// même si une divergence inférieure à 1 point passerait le seuil général.
+const EXACT_ISSUERS = new Set(['IE00BK5BQT80', 'IE00BKM4GZ66'])
 
 const assetsByIsin = new Map()
 for (const asset of ASSETS) {
@@ -57,7 +57,7 @@ for (const family of FAMILIES) {
     for (const asset of siblings) {
       compared++
       const gaps = [2023, 2024, 2025].map((year, i) => ({ year, gap: Math.abs(perf['y' + year] - asset.r[i + 3]) }))
-      const large = gaps.filter(x => x.gap > MAX_UNEXPLAINED_GAP)
+      const large = gaps.filter(x => x.gap > (EXACT_ISSUERS.has(isin) ? 0.001 : MAX_UNEXPLAINED_GAP))
       if (!large.length) {
         if (gaps.some(x => x.gap > 0.25)) {
           smallGaps++
