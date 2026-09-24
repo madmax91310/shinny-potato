@@ -71,7 +71,9 @@ export const FAMILIES = [
     perfFunds: [
       { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)', y2023: 15.95, y2024: 8.60, y2025: 19.41 },
       { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)', y2023: 15.84, y2024: 8.41, y2025: 20.47 },
-      { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)', y2023: 22.8, y2024: 11.5, y2025: 21.8 },
+      // Part iShares IE00B53L3W79, ligne « Share Class » de la fiche BlackRock du 31/08/2026 :
+      // https://www.ishares.com/gls-download/literature/fact-sheet/cssx5e-ishares-core-euro-stoxx-50-ucits-etf-fund-fact-sheet-en-gb.pdf
+      { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)', y2023: 22.78, y2024: 11.54, y2025: 21.78 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
