@@ -160,6 +160,9 @@ function worstYearFor(lines) {
   let worst = Infinity;
   let worstYear = null;
   YEARS.forEach((y, idx) => {
+    // Même règle que computeYearlyPerf : une année manquante pour une ligne
+    // rend le résultat du portefeuille indisponible, et non égal à zéro.
+    if (lines.some((l) => !Number.isFinite(getAsset(l.id).r[idx]))) return;
     let perf = 0;
     lines.forEach((l) => { perf += (getAsset(l.id).r[idx] * l.pct) / 100; });
     if (perf < worst) { worst = perf; worstYear = y; }
