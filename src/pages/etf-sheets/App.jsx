@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CATEGORY_ORDER, CATEGORY_EMOJI, ETFS } from './data'
+import { formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
 import { buildText } from './lib'
 import { renderETFImage } from './canvasImage'
 import PageHeader from '../../design-system/PageHeader'
@@ -39,6 +40,7 @@ function triggerAnchorDownload(dataUrl, filename) {
 function EtfCard({ etf }) {
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const tickerStr = etf.tickers.join(' / ')
+  const annual = getAnnualPerformance(etf)
 
   return (
     <article className="es-card">
@@ -85,6 +87,10 @@ function EtfCard({ etf }) {
           <span className="es-fi">📍</span>
           <span className="es-fv">{etf.location}</span>
         </li>
+        {annual && <li>
+          <span className="es-fi">📈</span>
+          <span className="es-fv">Performances 2023–2025 ({annual.currency}) : {formatAnnualPerformance(annual)}</span>
+        </li>}
       </ul>
 
       <section className="es-block">
