@@ -17,6 +17,9 @@ for (const etf of ETFS) {
     console.error(`Série annuelle invalide : ${etf.isin}`); errors++
   }
   const asset = known.get(etf.isin)
+  if (series.values.every(Number.isFinite) && !asset) {
+    console.error(`Part à historique complet absente de la composition manuelle : ${etf.isin}`); errors++
+  }
   if (asset && series.values.every(Number.isFinite) && JSON.stringify(asset.r) !== JSON.stringify(series.values)) {
     console.error(`Divergence Fiches / Générateur : ${etf.isin}`); errors++
   }
@@ -35,7 +38,10 @@ function visit(value) {
 }
 visit(PROFILES)
 for (const asset of ASSETS) {
-  if (cards.has(asset.isin) && VERIFIED_RETURNS[asset.isin] && !selectable.has(asset.id)) {
+  if (asset.manualOnly && selectable.has(asset.id)) {
+    console.error(`Part manuelle ajoutée à un profil automatique : ${asset.id}`); errors++
+  }
+  if (cards.has(asset.isin) && VERIFIED_RETURNS[asset.isin] && !selectable.has(asset.id) && !asset.manualOnly) {
     console.error(`Part de fiche sans choix de portefeuille : ${asset.id}`); errors++
   }
 }

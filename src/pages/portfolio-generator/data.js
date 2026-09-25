@@ -1420,6 +1420,23 @@ export const ASSETS = [
     confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
     desc: ['actions mondiales sélectionnées selon leur dynamique de cours', 'une variante mondiale avec une sélection de titres spécifique.', 'son comportement peut différer nettement d’un indice World classique.'],
   },
+  {
+    id: 'oblig_hy_ishares_acc', name: 'iShares € High Yield Corp Bond UCITS ETF (Acc)', cat: 'obligataire', emoji: '🔵', isin: 'IE00BF3N7094',
+    // Part capitalisante : disponible en composition manuelle, sans remplacer les parts
+    // distribuantes du profil Rentier. Rendements de la part exacte dans verifiedReturns.js.
+    manualOnly: true,
+    r: VERIFIED_RETURNS.IE00BF3N7094.values,
+    desc: ['obligations d’entreprises européennes à haut rendement.', 'les coupons sont réinvestis dans la part.', 'un risque de crédit supérieur aux obligations de meilleure qualité.'],
+  },
+  {
+    id: 'oblig_em_local_ishares_acc', name: 'iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc)', cat: 'obligataire', emoji: '🔵', isin: 'IE00BFZPF546',
+    // Dette souveraine émergente en monnaies locales : disponible en composition manuelle,
+    // pas assimilée aux emprunts d’État EUR ou US des profils automatiques.
+    manualOnly: true,
+    r: VERIFIED_RETURNS.IE00BFZPF546.values,
+    confidenceNote: 'Rendements NAV de la part en dollars ; les devises émergentes et le change EUR/USD influencent le résultat en euros.',
+    desc: ['obligations souveraines émergentes en devises locales.', 'exposition au crédit des États et à leurs monnaies.', 'la valeur peut varier fortement avec les taux et les changes.'],
+  },
 ];
 
 export function getAsset(id) {
