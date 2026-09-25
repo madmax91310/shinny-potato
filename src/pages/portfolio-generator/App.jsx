@@ -163,6 +163,19 @@ function ManualComposer({
       ),
     [selectedIds, query]
   )
+  // Regroupé par grande catégorie (même code couleur que AllocationList/CategorySummary plus bas)
+  // — demande utilisateur du 25/09/2026 : 71 actifs en liste plate, sans distinction visuelle,
+  // rendaient la sélection manuelle illisible ("tout est mélangé").
+  const groupedAvailable = useMemo(() => {
+    const byCat = new Map()
+    for (const a of available) {
+      if (!byCat.has(a.cat)) byCat.set(a.cat, [])
+      byCat.get(a.cat).push(a)
+    }
+    return Object.keys(CATEGORIES)
+      .filter((cat) => byCat.has(cat))
+      .map((cat) => ({ cat, items: byCat.get(cat) }))
+  }, [available])
   const total = selection.reduce((sum, s) => sum + s.pct, 0)
   const maxPct = selection.reduce((max, s) => Math.max(max, s.pct), 0)
   const lineCount = selection.length
@@ -200,13 +213,18 @@ function ManualComposer({
         onChange={(e) => onSearchChange(e.target.value)}
       />
       <div className="pg-manual-asset-list">
-        {available.map((a) => (
-          <button key={a.id} type="button" className="pg-manual-asset-option" onClick={() => onAdd(a.id)}>
-            <span>
-              {a.emoji} {a.name}
-            </span>
-            <span className="pg-manual-asset-cat">{CATEGORIES[a.cat].label}</span>
-          </button>
+        {groupedAvailable.map(({ cat, items }) => (
+          <div key={cat} className="pg-manual-asset-group">
+            <p className="pg-manual-asset-group-title">
+              <span className="pg-manual-asset-group-swatch" style={{ background: CATEGORIES[cat].color }} aria-hidden="true" />
+              {CATEGORIES[cat].label}
+            </p>
+            {items.map((a) => (
+              <button key={a.id} type="button" className="pg-manual-asset-option" onClick={() => onAdd(a.id)}>
+                {a.emoji} {a.name}
+              </button>
+            ))}
+          </div>
         ))}
         {available.length === 0 && <p className="pg-manual-empty">Aucun actif ne correspond, ou tous sont déjà ajoutés.</p>}
       </div>

@@ -302,31 +302,49 @@
 
 .pg-manual-asset-list {
   margin-top: 8px;
-  max-height: 220px;
+  max-height: 340px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
   border: 1px solid var(--border-soft);
   border-radius: 10px;
-  padding: 6px;
+  padding: 8px;
 }
-.pg-manual-asset-option {
+.pg-manual-asset-group + .pg-manual-asset-group { margin-top: 2px; }
+.pg-manual-asset-group-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 7px;
+  margin: 0 0 4px;
+  padding: 2px 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-dim);
+  position: sticky;
+  top: -8px;
+  background: var(--surface);
+  z-index: 1;
+}
+.pg-manual-asset-group-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.pg-manual-asset-option {
+  display: block;
+  width: 100%;
   background: transparent;
   border: none;
   border-radius: 8px;
   color: var(--ink);
-  font-size: 0.83rem;
+  font-size: 0.92rem;
   text-align: left;
-  padding: 7px 9px;
+  padding: 8px 10px;
   cursor: pointer;
 }
 .pg-manual-asset-option:hover { background: var(--surface-hover); }
-.pg-manual-asset-cat { font-size: 0.72rem; color: var(--ink-faint); flex-shrink: 0; }
 .pg-manual-empty { margin: 6px; font-size: 0.8rem; color: var(--ink-faint); }
 
 .pg-manual-selection-list {
