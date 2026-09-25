@@ -98,6 +98,13 @@
   border-radius: 16px;
   padding: 18px 20px;
 }
+.pg-category-summary { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-soft); color: var(--ink-dim); font-size: .83rem; }
+.pg-category-summary p { margin: 0 0 8px; font-weight: 600; color: var(--ink); }
+.pg-category-summary ul { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 0; margin: 0 0 8px; list-style: none; }
+.pg-category-summary li { display: inline-flex; align-items: center; gap: 5px; }
+.pg-category-summary li span { width: 8px; height: 8px; border-radius: 50%; }
+.pg-category-summary strong { color: var(--ink); }
+.pg-category-summary small { display: block; line-height: 1.45; }
 .pg-panel-muted { background: transparent; border-style: dashed; }
 .pg-panel-title {
   font-family: var(--font-display);
