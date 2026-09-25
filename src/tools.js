@@ -23,6 +23,14 @@ export const TOOLS = [
     status: 'disponible',
   },
   {
+    to: '/duels-portefeuilles',
+    navLabel: 'Duels portefeuilles',
+    title: 'Duel de portefeuilles',
+    icon: '⚔️',
+    description: 'Deux allocations proches, un choix qui change : performances 2020–2025, texte et image prêts à publier.',
+    status: 'disponible',
+  },
+  {
     to: '/fiches-etf',
     navLabel: 'Fiches ETF',
     title: "Présentation d'ETF",

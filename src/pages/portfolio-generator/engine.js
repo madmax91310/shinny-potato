@@ -1,4 +1,5 @@
 import { YEARS, getAsset } from "./data.js";
+import { computeYearlyPerf } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS, BITCOIN_OPTIONS,
   isCompatible, getFrequencyCap,
@@ -309,16 +310,6 @@ function resolvePourquoi(selection) {
     }
   });
   return selection;
-}
-
-function computeYearlyPerf(selection) {
-  const perf = {};
-  YEARS.forEach((y, idx) => {
-    perf[y] = selection.some((s) => !Number.isFinite(s.r[idx]))
-      ? null
-      : selection.reduce((sum, s) => sum + (s.r[idx] * s.pct) / 100, 0);
-  });
-  return perf;
 }
 
 function worstYearOf(perf) {

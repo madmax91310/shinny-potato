@@ -26,6 +26,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run audit:portfolio-provenance
+      - run: npm run audit:portfolio-duels
       - run: npm run audit:performance-consistency
       - run: npm run audit:etf-consistency
       - run: npm run audit:publishable-content
