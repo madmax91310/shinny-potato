@@ -85,7 +85,7 @@ async function testPortfolioDuels(page) {
   for (let index = 0; index < 4; index++) {
     await select.selectOption(String(index));
     const text = await page.locator('#pd-tweet').inputValue();
-    valid &&= /2020 · A/.test(text) && /2025 · A/.test(text) && /10 000 \$/.test(text) && !/NaN|undefined/.test(text);
+    valid &&= /2020 : [+-]/.test(text) && /2025 : [+-]/.test(text) && /10 000 \$/.test(text) && !/NaN|undefined/.test(text);
     valid &&= (await page.locator('.pd-table tbody tr').count()) === 6;
   }
   const [download] = await Promise.all([
