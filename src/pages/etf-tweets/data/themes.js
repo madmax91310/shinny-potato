@@ -269,7 +269,10 @@ const BASE_THEMES = [
         nom: 'L&G Artificial Intelligence UCITS ETF',
         isin: 'IE00BK5BCD43',
         frais: formatEtfTer('IE00BK5BCD43'),
-        encours: '~1,6 Md€',
+        // Fiche L&G au 31/08/2026 : 2 090,9 M$ ; au taux BCE du même jour
+        // (1 € = 1,1596 $), environ 1 803,1 M€. Même instantané que Fiches ETF.
+        // https://dokumenty.analizy.pl/pobierz/etf/E_LG001_A_USD/KA/2026-08-31
+        encours: '~1,8 Md€ au 31/08/2026',
         differenciateur: 'pur-play IA via l’indice historique ROBO Global',
       }),
       createEtf({
