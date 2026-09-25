@@ -1,10 +1,12 @@
 import { CATEGORY_EMOJI } from './data'
+import { formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
 
 // Texte du post X — repris tel quel de la session d'origine.
 export function buildText(etf) {
   const tickerStr = etf.tickers.join('/')
   const newTag = etf.isNew ? ' 🆕' : ''
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
+  const annual = getAnnualPerformance(etf)
   return (
     '📋 Présentation d\'ETF\n' +
     dot + ' ' + etf.name + ' (' + tickerStr + ')' + newTag + '\n' +
@@ -15,6 +17,7 @@ export function buildText(etf) {
     '🔄 ' + etf.distribution + '\n' +
     '🏦 PEA : ' + (etf.pea ? '✅' : '❌') + ' | CTO : ' + (etf.cto ? '✅' : '❌') + '\n' +
     '📍 ' + etf.location + '\n' +
+    (annual ? '📈 Performances 2023–2025 (' + annual.currency + ') : ' + formatAnnualPerformance(annual) + '\n' : '') +
     '\n' +
     '🔍 C\'est quoi ?\n' +
     etf.whatIs + '\n' +
@@ -35,6 +38,7 @@ export function buildText(etf) {
 
 // Lignes de faits en texte brut, utilisées pour dessiner l'image (canvas).
 export function buildFactRows(etf) {
+  const annual = getAnnualPerformance(etf)
   return [
     { icon: '🆔', text: 'ISIN : ' + etf.isin, mono: true },
     { icon: '💸', text: 'Frais : ' + etf.ter },
@@ -43,5 +47,6 @@ export function buildFactRows(etf) {
     { icon: '🔄', text: etf.distribution },
     { icon: '🏦', text: 'PEA : ' + (etf.pea ? '✅' : '❌') + '   |   CTO : ' + (etf.cto ? '✅' : '❌') },
     { icon: '📍', text: etf.location },
+    ...(annual ? [{ icon: '📈', text: '2023–2025 (' + annual.currency + ') : ' + formatAnnualPerformance(annual) }] : []),
   ]
 }
