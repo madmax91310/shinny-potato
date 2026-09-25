@@ -463,14 +463,21 @@ export const ETFS = [
       isNew: false,
       isin: "IE00BK5BCD43",
       ter: formatEtfTer("IE00BK5BCD43", "sheet"),
-      positions: "~80 positions",
-      aum: "~1,8 Md€",
-      lastVerified: "25/08/2026",
+      // Fiche L&G du 31/08/2026, ISIN IE00BK5BCD43 : encours 2 090,9 M$.
+      // Conversion indicative avec la parité BCE/Banque de France au même jour
+      // (1 € = 1,1596 $) : 2 090,9 / 1,1596 = 1 803,1 M€.
+      // https://dokumenty.analizy.pl/pobierz/etf/E_LG001_A_USD/KA/2026-08-31
+      // https://www.banque-france.fr/fr/statistiques/taux-et-cours/taux-de-change-parites-quotidiennes-2026-08-31
+      // La fiche donne 53 sociétés dans l'indice et les principales positions de
+      // l'indice ; le portefeuille de l'ETF peut légèrement différer.
+      positions: "53 sociétés dans l’indice (31/08/2026)",
+      aum: "~1,8 Md€ au 31/08/2026",
+      lastVerified: "25/09/2026",
       distribution: "Capitalisant",
       pea: false,
       cto: true,
       location: "Irlande, réplication physique intégrale",
-      whatIs: "Réplique le ROBO Global Artificial Intelligence Index, des entreprises actives sur toute la chaîne de valeur de l'IA : infrastructure, logiciels, applications. Top positions : Nvidia, Microsoft, Palantir, ServiceNow, Nice — un mix d'infrastructure et de logiciel applicatif.",
+      whatIs: "Réplique le ROBO Global Artificial Intelligence Index, des entreprises actives sur toute la chaîne de valeur de l'IA : infrastructure, logiciels, applications. Parmi les principales sociétés de l’indice au 31/08/2026 : Tempus AI, Palo Alto Networks, Everpure, Elastic et Cloudflare. Le portefeuille du fonds peut différer de l’indice.",
       whyInteresting: "Cet ETF cherche des entreprises liées à l’intelligence artificielle dans plusieurs métiers, au-delà des seuls fabricants de puces.",
       whatToKnow: "Le thème ne dit pas combien ces entreprises gagneront grâce à l’IA. Regarde les titres détenus et leur poids : tu peux déjà posséder plusieurs de ces sociétés dans un ETF technologique ou mondial.",
       verdict: "Cet ETF rassemble plusieurs métiers liés à l’IA. Vérifie sa composition avant de supposer qu’il suit uniquement les fabricants de modèles ou de puces.",
