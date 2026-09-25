@@ -3,6 +3,7 @@
 // Générateur de portefeuilles. Une note générale de méthode ne suffit pas à valider un écart.
 import { FAMILIES } from '../src/pages/index-comparator/data.js'
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
+import { readFileSync } from 'node:fs'
 
 const MAX_UNEXPLAINED_GAP = 0.1 // point de pourcentage : seuls les arrondis d'affichage restent tolérés
 // Les perfFunds n'ont pas de champ ISIN : rattachement explicite à la part citée dans le tweet.
@@ -40,6 +41,7 @@ let smallGaps = 0
 let failures = 0
 let notShared = 0
 const unmatchedFunds = []
+const comparatorSource = readFileSync(new URL('../src/pages/index-comparator/data.js', import.meta.url), 'utf8')
 
 for (const family of FAMILIES) {
   const mappings = FUND_ISINS[family.id]
@@ -57,6 +59,14 @@ for (const family of FAMILIES) {
     if (!siblings) {
       notShared++
       unmatchedFunds.push({ family: family.id, isin, key: perf.key, years: [perf.y2023, perf.y2024, perf.y2025] })
+      // Une part sans série indépendante peut néanmoins être contrôlée par sa fiche
+      // émetteur. Le marqueur individuel évite qu'une mise à jour efface sa provenance.
+      const row = comparatorSource.indexOf(`{ key: '${perf.key}', label: '${perf.label}'`)
+      const preceding = row < 0 ? '' : comparatorSource.slice(Math.max(0, row - 600), row).split(/\n\s*\{ key: /).at(-1)
+      if (!/(Vérifié|Corrigé) le 25\/09\/2026/.test(preceding) || !/https:\/\//.test(preceding) || !/confiance/i.test(preceding)) {
+        console.error('Source émetteur/date/confiance manquantes : ' + family.id + '/' + perf.key)
+        failures++
+      }
       continue
     }
     for (const asset of siblings) {
@@ -91,7 +101,7 @@ for (const family of FAMILIES) {
 
 console.log('\n' + compared + ' comparaisons ISIN (y compris les groupes multi-ETF), ' + notShared + ' parts sans correspondance dans le Générateur.')
 if (unmatchedFunds.length) {
-  console.log('Parts du comparateur sans série indépendante dans le Générateur (contrôle externe à prévoir) :')
+  console.log('Parts du comparateur sans série indépendante dans le Générateur (source émetteur datée en commentaire) :')
   for (const fund of unmatchedFunds) console.log(`  ${fund.family}/${fund.key} · ${fund.isin} · 2023–2025 ${fund.years.join(' / ')}`)
 }
 console.log(smallGaps + ' écart(s) inférieur(s) à 0,1 point à surveiller ; ' + documented + ' proxy(s) explicités dans les deux outils ; ' + failures + ' échec(s).')
