@@ -10,7 +10,9 @@ export default function Home() {
           Les outils du compte d'éducation financière, réunis au même endroit.
         </p>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* 2 par ligne à toutes les tailles d'écran (demande explicite du 25/09/2026) — validé en
+          largeur mobile réelle sur la disposition horizontale de ToolCard avant ce choix. */}
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {TOOLS.map((tool) => (
           <ToolCard key={tool.to} {...tool} />
         ))}

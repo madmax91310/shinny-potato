@@ -1,11 +1,15 @@
 // Registre central des outils : source unique pour le dashboard, la nav et les routes.
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
+// accent : couleur de la tuile d'icône sur le dashboard (ToolCard) — une teinte distincte par
+// outil pour la repérabilité visuelle, cf. maquette validée le 25/09/2026 (option "tuile icône
+// colorée, disposition horizontale"), seule des 3 options à rester lisible en largeur mobile réelle.
 export const TOOLS = [
   {
     to: '/calculateur-investissement',
     navLabel: 'Calculateur',
     title: 'Et si tu avais investi ?',
     icon: '💰',
+    accent: '#2dd4bf',
     description: "Simule la valeur d'un investissement passé, comparé au Livret A et à l'inflation.",
     status: 'disponible',
   },
@@ -14,6 +18,7 @@ export const TOOLS = [
     navLabel: 'Générateur portefeuilles',
     title: 'Générateur de portefeuilles',
     icon: '🧭',
+    accent: '#818cf8',
     description: "Portefeuilles illustratifs par profil d'investisseur et niveau de risque.",
     status: 'disponible',
   },
@@ -22,6 +27,7 @@ export const TOOLS = [
     navLabel: 'Fiches ETF',
     title: "Présentation d'ETF",
     icon: '📋',
+    accent: '#fb923c',
     description: 'Fiches détaillées par ETF, texte prêt à publier + image téléchargeable.',
     status: 'disponible',
   },
@@ -30,6 +36,7 @@ export const TOOLS = [
     navLabel: 'Comparatif courtiers',
     title: 'Comparatif courtiers',
     icon: '⚖️',
+    accent: '#f472b6',
     description: 'Duels de courtiers en bourse (frais, PEA, DCA) prêts à publier.',
     status: 'disponible',
   },
@@ -38,6 +45,7 @@ export const TOOLS = [
     navLabel: 'Tweet Midi',
     title: 'Tweet Midi',
     icon: '🕐',
+    accent: '#a78bfa',
     description: "Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité.",
     status: 'disponible',
   },
@@ -46,6 +54,7 @@ export const TOOLS = [
     navLabel: 'Comparateur indices',
     title: "Comparateur d'indices",
     icon: '📐',
+    accent: '#38bdf8',
     description: "Compare les indices concurrents d'une même famille : exposition, ETF PEA/CTO, diversification, performance.",
     status: 'disponible',
   },
@@ -54,6 +63,7 @@ export const TOOLS = [
     navLabel: 'Impact des frais',
     title: "Calculateur d'impact des frais",
     icon: '🧮',
+    accent: '#fbbf24',
     description: "Compare le capital final entre deux niveaux de frais de gestion (TER), en euros, sur simulation d'intérêts composés — hypothèse pédagogique, pas une donnée de marché.",
     status: 'disponible',
   },
@@ -62,6 +72,7 @@ export const TOOLS = [
     navLabel: 'Faits marquants',
     title: 'Faits marquants des marchés',
     icon: '📚',
+    accent: '#34d399',
     description: "Statistiques historiques sourcées (S&P 500, Nasdaq, Dow Jones, CAC 40) sur les chocs, corrections et séquences des marchés, prêtes à publier en format \"le saviez-vous\".",
     status: 'disponible',
   },
@@ -70,6 +81,7 @@ export const TOOLS = [
     navLabel: 'Cas concrets',
     title: 'Cas concrets pour investir',
     icon: '🧩',
+    accent: '#fb7185',
     description: 'Des situations pour comprendre ce que change réellement un choix de placement, avec sources et texte prêt à copier.',
     status: 'disponible',
   },
@@ -78,6 +90,7 @@ export const TOOLS = [
     navLabel: 'Banque de tweets',
     title: 'Banque de tweets à recycler',
     icon: '🗄️',
+    accent: '#22d3ee',
     description: "Recycle tes meilleurs tweets déjà écrits : filtre par mois/catégorie/format, recherche libre, et repos de 45 jours après chaque publication pour épuiser le stock avant de répéter.",
     status: 'disponible',
   },
