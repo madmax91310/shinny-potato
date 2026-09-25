@@ -93,7 +93,20 @@ async function testPortfolioDuels(page) {
     page.getByRole('button', { name: /Télécharger l’image PNG/i }).click(),
   ]);
   valid &&= download.suggestedFilename().endsWith('.png');
-  record('Duel de portefeuilles', valid, '4 duels, six années et image PNG');
+  await page.getByRole('button', { name: 'Générer un duel' }).click();
+  valid &&= (await page.locator('.pd-card').count()) === 2;
+  valid &&= /202[0-5] :/.test(await page.locator('#pd-tweet').inputValue());
+  await page.getByRole('button', { name: '🎲 Générer un autre duel' }).click();
+  valid &&= (await page.locator('.pd-card').count()) === 2;
+  await page.getByRole('button', { name: 'Composer A et B' }).click();
+  valid &&= (await page.locator('.pd-editor-side').count()) === 2;
+  valid &&= /10 000 €/.test(await page.locator('#pd-tweet').inputValue());
+  await page.getByRole('spinbutton', { name: 'Poids de l’actif 1 du portefeuille A' }).fill('65');
+  valid &&= await page.getByRole('alert').isVisible();
+  valid &&= (await page.locator('.pd-card').count()) === 0;
+  await page.getByRole('spinbutton', { name: 'Poids de l’actif 1 du portefeuille A' }).fill('70');
+  valid &&= (await page.locator('.pd-card').count()) === 2;
+  record('Duel de portefeuilles', valid, '4 duels, génération, composition, total 100 % et image PNG');
 }
 
 async function testEtfSheets(page) {

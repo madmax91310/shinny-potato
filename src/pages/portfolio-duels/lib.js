@@ -2,6 +2,7 @@ import { ETFS } from '../etf-sheets/data.js'
 import { getAnnualPerformance } from '../etf-sheets/annualPerformance.js'
 import { YEARS, getAsset } from '../portfolio-generator/data.js'
 import { computeYearlyPerf } from '../portfolio-generator/performance.js'
+import { ITEM_BY_ID, CATALOG, FX_SOURCE, euroReturn } from './catalog.js'
 
 const cardByIsin = new Map(ETFS.map((etf) => [etf.isin, etf]))
 const INITIAL = 10_000
@@ -57,12 +58,60 @@ export function formatCapital(value, currency) {
   return `${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(value))} ${currency === 'USD' ? '$' : '€'}`
 }
 
+export function buildCustomDuel(definition) {
+  const selection = [...definition.left, ...definition.right]
+  for (const [side, lines] of [['A', definition.left], ['B', definition.right]]) {
+    if (lines.length < 2 || lines.length > 5) throw new Error(`Le portefeuille ${side} doit avoir 2 à 5 actifs.`)
+    if (new Set(lines.map((line) => line.id)).size !== lines.length) throw new Error(`Actif en double dans le portefeuille ${side}.`)
+    if (lines.some((line) => !ITEM_BY_ID.has(line.id) || !Number.isInteger(line.pct) || line.pct < 1 || line.pct > 95)) {
+      throw new Error(`Choix ou pondération invalide dans le portefeuille ${side}.`)
+    }
+    if (lines.reduce((total, line) => total + line.pct, 0) !== 100) throw new Error(`Le portefeuille ${side} doit totaliser 100 %.`)
+  }
+  const years = YEARS.filter((year) => selection.every((line) => Number.isFinite(euroReturn(ITEM_BY_ID.get(line.id), year))))
+  if (years.length < 3 || years.some((year, i) => i && year !== years[i - 1] + 1) || years.at(-1) !== 2025) {
+    throw new Error('Il faut au moins trois années consécutives communes se terminant en 2025.')
+  }
+  const makePortfolio = (lines, name) => {
+    const assets = lines.map((line) => ({ ...ITEM_BY_ID.get(line.id), pct: line.pct }))
+    const annual = Object.fromEntries(years.map((year) => [year, assets.reduce((total, asset) => total + asset.pct * euroReturn(asset, year) / 100, 0)]))
+    let final = INITIAL
+    for (const year of years) final *= 1 + annual[year] / 100
+    const worstYear = years.reduce((worst, year) => annual[year] < annual[worst] ? year : worst)
+    return { name, assets, annual, final, worstYear, worst: annual[worstYear] }
+  }
+  const unique = [...new Set(selection.map((line) => line.id))].map((id) => ITEM_BY_ID.get(id))
+  return {
+    id: definition.id ?? 'composition-personnalisee', title: definition.title ?? 'Deux choix, deux portefeuilles',
+    hook: definition.hook ?? 'Deux portefeuilles, le même montant au départ. Tu aurais choisi lequel ?',
+    question: definition.question ?? 'Tu aurais choisi A ou B ? 👇', currency: 'EUR', years,
+    a: makePortfolio(definition.left, definition.labels?.[0] ?? 'Portefeuille A'),
+    b: makePortfolio(definition.right, definition.labels?.[1] ?? 'Portefeuille B'),
+    sources: [...unique.map((asset) => ({ name: asset.name, url: asset.source, note: asset.note })),
+      { name: 'Taux EUR/USD de fin d’année (BCE)', url: FX_SOURCE, note: 'Conversion annuelle des rendements en USD vers EUR.' }],
+  }
+}
+
+export { CATALOG }
+
 export function buildTweet(duel) {
   const { a, b, commonAsset, currency } = duel
+  const years = duel.years ?? YEARS
   const symbol = currency === 'USD' ? '$' : '€'
-  const rows = YEARS.map((year) =>
+  const rows = years.map((year) =>
     `${year} : ${formatPercent(a.annual[year])} / ${formatPercent(b.annual[year])}`,
   ).join('\n')
+  if (!commonAsset) {
+    const allocation = (portfolio) => portfolio.assets.map((asset) => `${asset.pct} % ${asset.name}`).join('\n')
+    return `⚔️ ${duel.hook}\n\n` +
+      `Même départ : 10 000 ${symbol}, de ${years[0]} à ${years.at(-1)}.\n\n` +
+      `🅰️ ${a.name}\n${allocation(a)}\n\n` +
+      `🅱️ ${b.name}\n${allocation(b)}\n\n` +
+      `À l’arrivée : A ${formatCapital(a.final, currency)} · B ${formatCapital(b.final, currency)}.\n\n` +
+      `📊 Chaque année (A / B) :\n${rows}\n\n` +
+      `📉 Pire année : A ${formatPercent(a.worst)} en ${a.worstYear}, B ${formatPercent(b.worst)} en ${b.worstYear}.\n\n` +
+      `${duel.question}\n\n⚠️ Pas un conseil en investissement.`
+  }
   return `⚔️ ${duel.hook}\n\n` +
     `Même point de départ : 10 000 ${symbol} investis de 2020 à 2025.\n` +
     `70 % dans ${commonAsset.name} pour les deux. Le choix porte sur les 30 % restants :\n\n` +

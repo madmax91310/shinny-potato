@@ -33,37 +33,36 @@ export function renderDuelImage(duel) {
   ctx.fillText(fitText(ctx, duel.title, 960), 60, 145)
   ctx.fillStyle = '#94a3b8'
   ctx.font = '24px Arial, sans-serif'
-  ctx.fillText('Même socle à 70 %. Un choix différent pour les 30 % restants.', 60, 193)
+  ctx.fillText(`${duel.years?.[0] ?? 2020}–${duel.years?.at(-1) ?? 2025} · deux allocations comparées`, 60, 193)
 
   for (const [i, portfolio] of [duel.a, duel.b].entries()) {
     const x = i ? 550 : 60
     const color = i ? '#e8ba69' : '#5eead4'
-    box(ctx, x, 230, 470, 235, '#1a2b41')
+    box(ctx, x, 220, 470, 345, '#1a2b41')
     ctx.fillStyle = color
     ctx.font = 'bold 29px Arial, sans-serif'
-    ctx.fillText(`${i ? 'B' : 'A'} · ${fitText(ctx, portfolio.name, 380)}`, x + 25, 277)
+    ctx.fillText(`${i ? 'B' : 'A'} · ${fitText(ctx, portfolio.name, 380)}`, x + 25, 267)
     ctx.fillStyle = '#dbeafe'
-    ctx.font = '22px Arial, sans-serif'
-    ctx.fillText(fitText(ctx, `70 % ${duel.commonAsset.name}`, 416), x + 25, 320)
-    ctx.fillText(fitText(ctx, `30 % ${portfolio.assets[1].name}`, 416), x + 25, 355)
+    ctx.font = '19px Arial, sans-serif'
+    portfolio.assets.forEach((asset, index) => ctx.fillText(fitText(ctx, `${asset.pct} % ${asset.name}`, 416), x + 25, 307 + index * 39))
     ctx.fillStyle = color
     ctx.font = 'bold 39px Arial, sans-serif'
-    ctx.fillText(formatCapital(portfolio.final, duel.currency), x + 25, 428)
+    ctx.fillText(formatCapital(portfolio.final, duel.currency), x + 25, 531)
   }
 
   ctx.fillStyle = '#94a3b8'
   ctx.font = '23px Arial, sans-serif'
-  ctx.fillText(`Valeur finale de 10 000 ${duel.currency === 'USD' ? '$' : '€'} investis début 2020`, 60, 507)
-  box(ctx, 60, 543, 960, 570, '#14253a')
+  ctx.fillText(`Valeur finale de 10 000 ${duel.currency === 'USD' ? '$' : '€'} investis début ${duel.years?.[0] ?? 2020}`, 60, 607)
+  box(ctx, 60, 636, 960, 480, '#14253a')
   ctx.fillStyle = '#f1f5f9'
   ctx.font = 'bold 27px Arial, sans-serif'
-  ctx.fillText('ANNÉE', 88, 590)
+  ctx.fillText('ANNÉE', 88, 681)
   ctx.fillStyle = '#5eead4'
-  ctx.fillText('A · ' + fitText(ctx, duel.a.name, 300), 345, 590)
+  ctx.fillText('A · ' + fitText(ctx, duel.a.name, 300), 345, 681)
   ctx.fillStyle = '#e8ba69'
-  ctx.fillText('B · ' + fitText(ctx, duel.b.name, 300), 720, 590)
-  YEARS.forEach((year, i) => {
-    const y = 657 + i * 75
+  ctx.fillText('B · ' + fitText(ctx, duel.b.name, 300), 720, 681)
+  ;(duel.years ?? YEARS).forEach((year, i) => {
+    const y = 738 + i * 67
     ctx.strokeStyle = '#294059'
     ctx.beginPath()
     ctx.moveTo(88, y - 34)
@@ -84,6 +83,6 @@ export function renderDuelImage(duel) {
   ctx.fillText(`B ${formatPercent(duel.b.worst)} (${duel.b.worstYear})`, 615, 1197)
   ctx.fillStyle = '#94a3b8'
   ctx.font = '21px Arial, sans-serif'
-  ctx.fillText('Performances historiques des parts en ' + duel.currency + ' · 2020–2025', 60, 1295)
+  ctx.fillText(`Simulation historique en ${duel.currency} · ${duel.years?.[0] ?? 2020}–${duel.years?.at(-1) ?? 2025}`, 60, 1295)
   return canvas.toDataURL('image/png')
 }

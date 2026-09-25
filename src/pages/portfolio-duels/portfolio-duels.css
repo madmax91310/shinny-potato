@@ -1,5 +1,21 @@
 .pd-scope { max-width: 1100px; margin: 0 auto; color: #e2e8f0; }
 .pd-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 24px; }
+.pd-modes { display: flex; flex-wrap: wrap; gap: 9px; margin: 10px 0 22px; }
+.pd-modes button, .pd-add, .pd-editor-line button { border: 1px solid #475569; border-radius: 9px; background: #17273a; color: #e2e8f0; padding: 10px 14px; cursor: pointer; }
+.pd-modes .pd-mode-active { border-color: #5eead4; background: #164343; color: #fff; }
+.pd-controls p { color: #cbd5e1; margin-right: 10px; }
+.pd-editors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 14px; }
+.pd-editor-side { padding: 18px; border-radius: 15px; border: 1px solid #334155; background: #14233a; min-width: 0; }
+.pd-editor-side h3 { font-size: 18px; font-weight: 700; margin-bottom: 13px; display: flex; justify-content: space-between; gap: 8px; }
+.pd-total-ok { color: #5eead4; }.pd-total-bad, .pd-error { color: #fca5a5; }
+.pd-editor-line { display: flex; align-items: end; gap: 7px; margin-bottom: 12px; }
+.pd-editor-line label { min-width: 0; flex: 1; font-size: 12px; color: #cbd5e1; }
+.pd-editor-line label span { display: block; margin-bottom: 5px; }
+.pd-editor-line .pd-weight { flex: 0 0 75px; }
+.pd-editor-line select, .pd-editor-line input { width: 100%; min-width: 0; height: 42px; border: 1px solid #475569; border-radius: 8px; background: #0b1526; color: #f8fafc; padding: 7px; }
+.pd-editor-line button:disabled, .pd-add:disabled { opacity: .45; cursor: default; }
+.pd-hint { color: #94a3b8; font-size: 13px; margin: 0 0 20px; }
+.pd-error { margin: 0 0 20px; }
 .pd-controls label { font-weight: 600; }
 .pd-controls select { background: #111e30; color: #f1f5f9; border: 1px solid #475569; border-radius: 9px; padding: 10px 13px; min-width: 230px; }
 .pd-result { border: 1px solid #334155; border-radius: 18px; background: linear-gradient(135deg, #14233a, #0c1729); padding: clamp(20px, 4vw, 34px); }
@@ -31,4 +47,4 @@
 .pd-sources p { margin: 12px 0; }
 .pd-sources ul { margin-left: 20px; list-style: disc; }
 .pd-sources a { color: #5eead4; text-decoration: underline; }
-@media (max-width: 640px) { .pd-cards { grid-template-columns: 1fr; } .pd-table { min-width: 520px; } }
+@media (max-width: 720px) { .pd-editors, .pd-cards { grid-template-columns: 1fr; } .pd-table { min-width: 520px; } }

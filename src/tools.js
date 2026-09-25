@@ -27,7 +27,7 @@ export const TOOLS = [
     navLabel: 'Duels portefeuilles',
     title: 'Duel de portefeuilles',
     icon: '⚔️',
-    description: 'Deux allocations proches, un choix qui change : performances 2020–2025, texte et image prêts à publier.',
+    description: 'Compare deux portefeuilles : duels préparés, compositions manuelles ou idées générées, avec texte et image prêts à publier.',
     status: 'disponible',
   },
   {
