@@ -166,7 +166,7 @@ export default function IndexComparator() {
 
           <div className="xc-panel">
             <p className="xc-eyebrow">Performance</p>
-            <p className="xc-hint">2023/2024/2025 : rendements annuels stockés dans le code. Vérifie leur source et leur devise avant publication. Seul le YTD est saisi ici.</p>
+            <p className="xc-hint">Les chiffres 2023–2025 ci-dessous sont ceux des ETF et parts nommés, pas les rendements bruts des indices décrits dans le premier bloc. Vérifie la part et sa devise avant publication. Seul le YTD est saisi ici.</p>
             {family.perfFunds.map((f) => {
               const v = perfValues[f.key] || {}
               return (

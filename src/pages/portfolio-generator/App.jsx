@@ -298,6 +298,24 @@ function AllocationList({ selection }) {
   )
 }
 
+function CategorySummary({ selection }) {
+  const totals = selection.reduce((acc, asset) => {
+    acc[asset.cat] = (acc[asset.cat] || 0) + asset.pct
+    return acc
+  }, {})
+  return (
+    <div className="pg-category-summary" aria-label="Répartition par grandes catégories">
+      <p>Vue par grandes catégories</p>
+      <ul>
+        {Object.entries(totals).sort((a, b) => b[1] - a[1]).map(([cat, pct]) => (
+          <li key={cat}><span style={{ background: CATEGORIES[cat].color }} aria-hidden="true" />{CATEGORIES[cat].label} : <strong>{Number(pct.toFixed(1))} %</strong></li>
+        ))}
+      </ul>
+      <small>Selon la catégorie de chaque ligne. Les ETF peuvent détenir les mêmes titres ; cette vue ne mesure pas les doublons ni les pays détenus.</small>
+    </div>
+  )
+}
+
 function PerfChart({ perf }) {
   const values = YEARS.map((y) => perf[y])
   const maxAbs = Math.max(1, ...values.filter(Number.isFinite).map((v) => Math.abs(v)))
@@ -586,6 +604,7 @@ export default function App() {
           <div className="pg-panel">
             <div className="pg-panel-title">Répartition — {current.selection.length} lignes</div>
             <AllocationList selection={current.selection} />
+            <CategorySummary selection={current.selection} />
           </div>
 
           <div className="pg-panel">
