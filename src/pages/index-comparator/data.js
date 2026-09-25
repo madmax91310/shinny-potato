@@ -1,3 +1,4 @@
+import { formatEtfTer } from '../../data/etf-ter.js';
 // Données du Comparateur d'indices — extrait de App.jsx le 14/09/2026 (audit "outils", point 3)
 // pour aligner cet outil sur la convention data.js/lib.js/App.jsx du reste de l'application (cf.
 // CLAUDE.md) : App.jsx était le seul composant à mélanger données et logique/rendu dans un seul
@@ -44,20 +45,20 @@ export const FAMILIES = [
         // sont affichés pour ne pas laisser croire que 0,19 % est le prix plancher de cette exposition.
         indexName: 'STOXX 600', choiceNote: '1 option PEA + 1 alternative bien moins chère en CTO', pea: true,
         funds: [
-          { name: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF', ticker: 'ETZ', isin: 'FR0011550193', ter: '0,19 %', aum: '1 205 M€ au 30/01/2026', note: '(seule option PEA)' },
-          { name: 'Amundi Core STOXX Europe 600 UCITS ETF', isin: 'LU0908500753', ter: '0,07 %', aum: '21 171 M€', note: '(CTO uniquement — le moins cher, et de loin le plus gros encours ⚡)' },
+          { name: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF', ticker: 'ETZ', isin: 'FR0011550193', ter: formatEtfTer('FR0011550193', 'index'), aum: '1 205 M€ au 30/01/2026', note: '(seule option PEA)' },
+          { name: 'Amundi Core STOXX Europe 600 UCITS ETF', isin: 'LU0908500753', ter: formatEtfTer('LU0908500753', 'index'), aum: '21 171 M€', note: '(CTO uniquement — le moins cher, et de loin le plus gros encours ⚡)' },
         ],
       },
       {
         indexName: 'EURO STOXX 50', choiceNote: 'le plus de choix', pea: true, subNote: '(indice 100 % zone euro)',
         funds: [
-          { name: 'iShares Core EURO STOXX 50 (Acc)', isin: 'IE00B53L3W79', ter: '0,10 %', aum: '7 667 M€' },
-          { name: 'HSBC EURO STOXX 50', isin: 'IE00B4K6B022', ter: '0,05 %', note: '(le moins cher ⚡)' },
+          { name: 'iShares Core EURO STOXX 50 (Acc)', isin: 'IE00B53L3W79', ter: formatEtfTer('IE00B53L3W79', 'index'), aum: '7 667 M€' },
+          { name: 'HSBC EURO STOXX 50', isin: 'IE00B4K6B022', ter: formatEtfTer('IE00B4K6B022', 'index'), note: '(le moins cher ⚡)' },
         ],
       },
       {
         indexName: 'MSCI Europe', choiceNote: 'un seul vrai choix', pea: true,
-        funds: [{ name: 'Amundi PEA MSCI Europe UCITS ETF (Acc)', ticker: 'PCEU', isin: 'FR0013412038', ter: '0,15 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '383 M€ au 31/08/2026' }],
+        funds: [{ name: 'Amundi PEA MSCI Europe UCITS ETF (Acc)', ticker: 'PCEU', isin: 'FR0013412038', ter: formatEtfTer('FR0013412038', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '383 M€ au 31/08/2026' }],
       },
     ],
     diversification: {
@@ -84,9 +85,9 @@ export const FAMILIES = [
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💳 Exposition la plus large, en PEA ?', a: 'ETZ (BNP STOXX 600)' },
-      { q: '💸 Le moins cher + zone euro pure, en PEA ?', a: 'EURO STOXX 50 (HSBC, 0,05 %)' },
+      { q: '💸 Le moins cher + zone euro pure, en PEA ?', a: `EURO STOXX 50 (HSBC, ${formatEtfTer('IE00B4K6B022', 'index')})` },
       { q: '🇫🇷 Europe large, avec UK/Suisse, fonds français en PEA ?', a: 'PCEU (Amundi MSCI Europe)' },
-      { q: '⚡ Le moins cher tout court, en CTO ?', a: 'Amundi Core STOXX 600 (0,07 %, 21 Md€ d\'encours)' },
+      { q: '⚡ Le moins cher tout court, en CTO ?', a: `Amundi Core STOXX 600 (${formatEtfTer('LU0908500753', 'index')}, 21 Md€ d'encours)` },
     ],
     closing: '💬 Dans ton PEA, tu veux couvrir toute l’Europe ou te limiter à la zone euro ?',
   },
@@ -124,9 +125,9 @@ export const FAMILIES = [
       {
         indexName: 'MSCI World', choiceNote: '3 vraies options en PEA', pea: true,
         funds: [
-          { name: 'Amundi MSCI World Swap UCITS ETF (Acc)', ticker: 'CW8', isin: 'LU1681043599', ter: '0,38 %', aum: '6 495 M€', note: '(le plus gros encours, et de loin)' },
-          { name: 'iShares MSCI World Swap PEA UCITS ETF (Acc)', ticker: 'WPEA', isin: 'IE0002XZSHO1', ter: '0,20 %', aum: '2 071 M€', note: '(moins cher)' },
-          { name: 'Amundi PEA Monde (MSCI World) UCITS ETF (Acc)', ticker: 'DCAM', isin: 'FR001400U5Q4', ter: '0,20 %', aum: '1 370 M€' },
+          { name: 'Amundi MSCI World Swap UCITS ETF (Acc)', ticker: 'CW8', isin: 'LU1681043599', ter: formatEtfTer('LU1681043599', 'index'), aum: '6 495 M€', note: '(le plus gros encours, et de loin)' },
+          { name: 'iShares MSCI World Swap PEA UCITS ETF (Acc)', ticker: 'WPEA', isin: 'IE0002XZSHO1', ter: formatEtfTer('IE0002XZSHO1', 'index'), aum: '2 071 M€', note: '(moins cher)' },
+          { name: 'Amundi PEA Monde (MSCI World) UCITS ETF (Acc)', ticker: 'DCAM', isin: 'FR001400U5Q4', ter: formatEtfTer('FR001400U5Q4', 'index'), aum: '1 370 M€' },
         ],
       },
       {
@@ -135,15 +136,15 @@ export const FAMILIES = [
         // affiché pour comparaison, bien moins cher.
         indexName: 'MSCI ACWI', choiceNote: 'enfin en PEA depuis juillet 2026', pea: true,
         funds: [
-          { name: 'Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc)', ticker: 'GPEA', isin: 'FR0014017NX3', ter: '0,30 %', aum: '46 M€', note: '(seule option PEA, lancée le 15/07/2026 — encours en forte croissance)' },
-          { name: 'SPDR MSCI ACWI UCITS ETF (Acc)', isin: 'IE00B44Z5B48', ter: '0,12 %', aum: '15 900 M€', note: '(CTO, moins cher et plus gros encours)' },
+          { name: 'Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc)', ticker: 'GPEA', isin: 'FR0014017NX3', ter: formatEtfTer('FR0014017NX3', 'index'), aum: '46 M€', note: '(seule option PEA, lancée le 15/07/2026 — encours en forte croissance)' },
+          { name: 'SPDR MSCI ACWI UCITS ETF (Acc)', isin: 'IE00B44Z5B48', ter: formatEtfTer('IE00B44Z5B48', 'index'), aum: '15 900 M€', note: '(CTO, moins cher et plus gros encours)' },
         ],
       },
       {
         indexName: 'FTSE All-World', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
         funds: [
-          { name: 'Xtrackers FTSE All-World UCITS ETF 1C', isin: 'IE000L6ZMMC4', ter: '0,07 %', aum: '110 M€', note: '(le moins cher, fonds récent — avril 2026)' },
-          { name: 'Vanguard FTSE All-World UCITS ETF (Acc)', ticker: 'VWCE', isin: 'IE00BK5BQT80', ter: '0,14 %', aum: '50 000 M€', note: '(le plus gros encours, le plus connu)' },
+          { name: 'Xtrackers FTSE All-World UCITS ETF 1C', isin: 'IE000L6ZMMC4', ter: formatEtfTer('IE000L6ZMMC4', 'index'), aum: '110 M€', note: '(le moins cher, fonds récent — avril 2026)' },
+          { name: 'Vanguard FTSE All-World UCITS ETF (Acc)', ticker: 'VWCE', isin: 'IE00BK5BQT80', ter: formatEtfTer('IE00BK5BQT80', 'index'), aum: '50 000 M€', note: '(le plus gros encours, le plus connu)' },
         ],
       },
     ],
@@ -166,10 +167,10 @@ export const FAMILIES = [
     perfMethodNote: 'ℹ️ CW8 : rendement du fonds en euros, net de frais. VWCE : rendement du fonds en dollars, net de frais. Dividendes réinvestis dans les deux cas ; la devise change la comparaison.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '💸 En PEA, tu veux le moins cher ?', a: 'WPEA ou DCAM, à égalité à 0,20 % — moins cher que CW8 (0,38 %), pour le même indice.' },
-      { q: '💳 En PEA, tu veux le fonds avec le plus d\'encours (pas forcément le meilleur choix) ?', a: 'CW8 (Amundi MSCI World) — 6,5 Md€, mais TER plus élevé (0,38 %) que WPEA/DCAM.' },
+      { q: '💸 En PEA, tu veux le moins cher ?', a: `WPEA ou DCAM, à égalité à ${formatEtfTer('FR001400U5Q4', 'index')} — moins cher que CW8 (${formatEtfTer('LU1681043599', 'index')}), pour le même indice.` },
+      { q: '💳 En PEA, tu veux le fonds avec le plus d\'encours (pas forcément le meilleur choix) ?', a: `CW8 (Amundi MSCI World) — 6,5 Md€, mais TER plus élevé (${formatEtfTer('LU1681043599', 'index')}) que WPEA/DCAM.` },
       { q: '🌐 Tu veux les émergents inclus, mais en PEA ?', a: 'GPEA (Amundi PEA Global ACWI) — tout nouveau, lancé en juillet 2026.' },
-      { q: '💰 Le moins cher toutes catégories confondues, en CTO ?', a: 'Xtrackers FTSE All-World, à 0,07 %.' },
+      { q: '💰 Le moins cher toutes catégories confondues, en CTO ?', a: `Xtrackers FTSE All-World, à ${formatEtfTer('IE000L6ZMMC4', 'index')}.` },
     ],
     closing: '💬 Tu veux les émergents dans ton ETF principal ou dans une ligne à part ?',
   },
@@ -197,8 +198,8 @@ export const FAMILIES = [
         // BNP Paribas Easy plus gros encours (3,3 Md€ vs 1,15 Md€) mais TER légèrement supérieur —
         // vérifié via recherche web le 01/09/2026, corrige un choix initial qui ne montrait que l'option Amundi.
         funds: [
-          { name: 'BNP Paribas Easy S&P 500 UCITS ETF (Acc)', isin: 'FR0011550185', ter: '0,14 %', aum: '3,3 Md€', note: '(le plus gros encours)' },
-          { name: 'Amundi PEA S&P 500 UCITS ETF (Acc)', isin: 'FR0011871128', ter: '0,12 %', aum: '1,15 Md€', note: '(le moins cher ⚡)' },
+          { name: 'BNP Paribas Easy S&P 500 UCITS ETF (Acc)', isin: 'FR0011550185', ter: formatEtfTer('FR0011550185', 'index'), aum: '3,3 Md€', note: '(le plus gros encours)' },
+          { name: 'Amundi PEA S&P 500 UCITS ETF (Acc)', isin: 'FR0011871128', ter: formatEtfTer('FR0011871128', 'index'), aum: '1,15 Md€', note: '(le moins cher ⚡)' },
         ],
       },
       {
@@ -206,13 +207,13 @@ export const FAMILIES = [
         // plus grosse que l'option PEA — cohérence avec le traitement des autres familles.
         indexName: 'Nasdaq 100', choiceNote: '1 option PEA + 1 alternative moins chère en CTO', pea: true,
         funds: [
-          { name: 'Amundi PEA Nasdaq-100 UCITS ETF (Acc)', isin: 'FR0011871110', ter: '0,30 %', aum: '1,17 Md€', note: '(seule option PEA)' },
-          { name: 'BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)', isin: 'IE000QDFFK00', ter: '0,14 %', aum: '2,73 Md€', note: '(CTO uniquement, moins cher et plus gros encours)' },
+          { name: 'Amundi PEA Nasdaq-100 UCITS ETF (Acc)', isin: 'FR0011871110', ter: formatEtfTer('FR0011871110', 'index'), aum: '1,17 Md€', note: '(seule option PEA)' },
+          { name: 'BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)', isin: 'IE000QDFFK00', ter: formatEtfTer('IE000QDFFK00', 'index'), aum: '2,73 Md€', note: '(CTO uniquement, moins cher et plus gros encours)' },
         ],
       },
       {
         indexName: 'MSCI USA', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares MSCI USA UCITS ETF (Acc)', isin: 'IE00B52SFT06', ter: '0,07 %', repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '2,9 Md€' }],
+        funds: [{ name: 'iShares MSCI USA UCITS ETF (Acc)', isin: 'IE00B52SFT06', ter: formatEtfTer('IE00B52SFT06', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '2,9 Md€' }],
       },
       {
         indexName: 'Russell 1000', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
@@ -299,30 +300,30 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'Émergents global (ESG resserré)', choiceNote: 'seule option PEA généraliste sur les émergents', pea: true,
-        funds: [{ name: 'Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF', ticker: 'PAEEM', isin: 'FR0013412020', ter: '0,30 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '867 M€' }],
+        funds: [{ name: 'Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF', ticker: 'PAEEM', isin: 'FR0013412020', ter: formatEtfTer('FR0013412020', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '867 M€' }],
       },
       {
         indexName: 'Asie émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: 'Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF', ticker: 'PAASI', isin: 'FR0013412012', ter: '0,30 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '735 M€' }],
+        funds: [{ name: 'Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF', ticker: 'PAASI', isin: 'FR0013412012', ter: formatEtfTer('FR0013412012', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '735 M€' }],
       },
       {
         indexName: 'Amérique latine', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: 'Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF', ticker: 'PALAT', isin: 'FR0013412004', ter: '0,30 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '141 M€', note: '(encours encore modeste)' }],
+        funds: [{ name: 'Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF', ticker: 'PALAT', isin: 'FR0013412004', ter: formatEtfTer('FR0013412004', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '141 M€', note: '(encours encore modeste)' }],
       },
       {
         indexName: 'Inde seule', choiceNote: 'seule option PEA sur ce pays', pea: true,
-        funds: [{ name: 'Amundi PEA Inde (MSCI India) UCITS ETF', ticker: 'PINR', isin: 'FR0011869320', ter: '0,85 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '157 M€', note: '(le plus cher du lot)' }],
+        funds: [{ name: 'Amundi PEA Inde (MSCI India) UCITS ETF', ticker: 'PINR', isin: 'FR0011869320', ter: formatEtfTer('FR0011869320', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '157 M€', note: '(le plus cher du lot)' }],
       },
       {
         indexName: 'EMEA émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: 'Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF', ticker: 'PLEM', isin: 'FR0011440478', ter: '0,55 %', repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '68 M€', note: '(la plus confidentielle)' }],
+        funds: [{ name: 'Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF', ticker: 'PLEM', isin: 'FR0011440478', ter: formatEtfTer('FR0011440478', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '68 M€', note: '(la plus confidentielle)' }],
       },
     ],
     diversification: {
       // Pas de relation d'emboîtement ici (contrairement à un MSCI World → MSCI ACWI) : 5 fonds sur
       // 5 zones distinctes, pas des sous-ensembles les uns des autres.
       chain: ['PAEEM (23 pays, Égypte exclue, généraliste ESG)', 'PAASI (8 pays, Asie émergente)', 'PALAT (Amérique latine)', 'PINR (Inde seule)', 'PLEM (zone EMEA émergente)'],
-      notes: ['⚠️ PAEEM est le seul fonds « généraliste » du lot : les quatre autres sont des paris régionaux ou pays, à combiner avec lui plutôt qu\'à sa place.', '→ Plus la zone est étroite (Inde, Amérique latine, EMEA), plus l\'encours est petit et le TER élevé — PINR grimpe à 0,85 %.'],
+      notes: ['⚠️ PAEEM est le seul fonds « généraliste » du lot : les quatre autres sont des paris régionaux ou pays, à combiner avec lui plutôt qu\'à sa place.', `→ Plus la zone est étroite (Inde, Amérique latine, EMEA), plus l'encours est petit et le TER élevé — PINR grimpe à ${formatEtfTer('FR0011869320', 'index')}.`],
     },
     // Performance 2023-2025 (source : justETF/boursedirect, recherche web du 02/09/2026, recoupée sur
     // plusieurs pages par fonds).
@@ -348,7 +349,7 @@ export const FAMILIES = [
       { q: '💳 Tu veux un fonds PEA généraliste sur les émergents ?', a: 'PAEEM — indice ESG sur 23 pays émergents, Égypte exclue.' },
       { q: '🌏 Tu veux cibler l\'Asie émergente spécifiquement ?', a: 'PAASI.' },
       { q: '🌎 Tu veux viser l\'Amérique latine (Brésil, Mexique…) ?', a: 'PALAT — mais très volatil (-25 % en 2024, +36 % en 2025).' },
-      { q: '🇮🇳 Tu veux un pari 100 % Inde ?', a: 'PINR — TER 0,85 %, le plus cher du lot.' },
+      { q: '🇮🇳 Tu veux un pari 100 % Inde ?', a: `PINR — TER ${formatEtfTer('FR0011869320', 'index')}, le plus cher du lot.` },
       { q: '🌍 Tu veux la zone EMEA émergente (Afrique du Sud, Golfe, Europe de l\'Est) ?', a: 'PLEM — la déclinaison la plus confidentielle.' },
     ],
     closing: '💬 Sur les émergents en PEA, tu gardes une ligne large ou tu ajoutes une région précise ?',
@@ -371,18 +372,18 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'MSCI EM IMI', choiceNote: 'la référence la plus large', pea: false,
-        funds: [{ name: 'iShares Core MSCI EM IMI UCITS ETF (Acc)', isin: 'IE00BKM4GZ66', ter: '0,18 %', repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '36 800 M€' }],
+        funds: [{ name: 'iShares Core MSCI EM IMI UCITS ETF (Acc)', isin: 'IE00BKM4GZ66', ter: formatEtfTer('IE00BKM4GZ66', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '36 800 M€' }],
       },
       {
         indexName: 'FTSE EM', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
         funds: [
-          { name: 'Vanguard FTSE Emerging Markets UCITS ETF (Acc)', isin: 'IE00BK5BR733', ter: '0,17 %', aum: '2,0 Md€' },
-          { name: 'Vanguard FTSE Emerging Markets UCITS ETF (Dist)', isin: 'IE00B3VVMM84', ter: '0,17 %', aum: '3,2 Md€', note: '(plus gros encours)' },
+          { name: 'Vanguard FTSE Emerging Markets UCITS ETF (Acc)', isin: 'IE00BK5BR733', ter: formatEtfTer('IE00BK5BR733', 'index'), aum: '2,0 Md€' },
+          { name: 'Vanguard FTSE Emerging Markets UCITS ETF (Dist)', isin: 'IE00B3VVMM84', ter: formatEtfTer('IE00B3VVMM84', 'index'), aum: '3,2 Md€', note: '(plus gros encours)' },
         ],
       },
       {
         indexName: 'MSCI EM ex-China', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares MSCI EM ex-China UCITS ETF (Acc)', isin: 'IE00BMG6Z448', ter: '0,18 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '6,3 Md€' }],
+        funds: [{ name: 'iShares MSCI EM ex-China UCITS ETF (Acc)', isin: 'IE00BMG6Z448', ter: formatEtfTer('IE00BMG6Z448', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '6,3 Md€' }],
       },
     ],
     diversification: {
@@ -443,11 +444,11 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'MSCI World Value', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares Edge MSCI World Value Factor UCITS ETF (Acc)', isin: 'IE00BP3QZB59', ter: '0,25 %', repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '6,1 Md€' }],
+        funds: [{ name: 'iShares Edge MSCI World Value Factor UCITS ETF (Acc)', isin: 'IE00BP3QZB59', ter: formatEtfTer('IE00BP3QZB59', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '6,1 Md€' }],
       },
       {
         indexName: 'MSCI World Quality', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares Edge MSCI World Quality Factor UCITS ETF (Acc)', isin: 'IE00BP3QZ601', ter: '0,25 %', repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '5,3 Md€' }],
+        funds: [{ name: 'iShares Edge MSCI World Quality Factor UCITS ETF (Acc)', isin: 'IE00BP3QZ601', ter: formatEtfTer('IE00BP3QZ601', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '5,3 Md€' }],
       },
       {
         indexName: 'MSCI World Growth', choiceNote: 'aucun fonds trouvé', pea: false,
@@ -521,17 +522,17 @@ export const FAMILIES = [
         // typiquement percevoir le revenu — et les deux parts Dist ci-dessous sont aussi les plus
         // gros encours de leur fonds (vérifié via recherche web le 01/09/2026).
         indexName: 'High Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF (Dist)', isin: 'IE00B8GKDB10', ter: '0,29 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '9,8 Md€ (01/09/2026)' }],
+        funds: [{ name: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF (Dist)', isin: 'IE00B8GKDB10', ter: formatEtfTer('IE00B8GKDB10', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '9,8 Md€ (01/09/2026)' }],
       },
       {
         indexName: 'Quality Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)', isin: 'IE00BYYHSQ67', ter: '0,38 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '1,5 Md€ (01/09/2026)' }],
+        funds: [{ name: 'iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)', isin: 'IE00BYYHSQ67', ter: formatEtfTer('IE00BYYHSQ67', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '1,5 Md€ (01/09/2026)' }],
       },
       {
         indexName: 'Dividend Aristocrats', choiceNote: 'le plus de choix', pea: false,
         funds: [
-          { name: 'SPDR S&P Global Dividend Aristocrats UCITS ETF', isin: 'IE00B9CQXS71', ter: '0,45 %', aum: '1,6 Md€ (01/09/2026)', note: '(mondial — dividende stable/en hausse depuis 10 ans)' },
-          { name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', isin: 'IE00B6YX5D40', ter: '0,35 %', aum: '3,4 Md€ (01/09/2026)', note: '(US uniquement, le moins cher ⚡ — mais critère plus strict : 20 ans consécutifs de hausse du dividende, contre 10 ans pour le fonds mondial ci-dessus)' },
+          { name: 'SPDR S&P Global Dividend Aristocrats UCITS ETF', isin: 'IE00B9CQXS71', ter: formatEtfTer('IE00B9CQXS71', 'index'), aum: '1,6 Md€ (01/09/2026)', note: '(mondial — dividende stable/en hausse depuis 10 ans)' },
+          { name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', isin: 'IE00B6YX5D40', ter: formatEtfTer('IE00B6YX5D40', 'index'), aum: '3,4 Md€ (01/09/2026)', note: '(US uniquement, le moins cher ⚡ — mais critère plus strict : 20 ans consécutifs de hausse du dividende, contre 10 ans pour le fonds mondial ci-dessus)' },
         ],
       },
     ],
@@ -599,7 +600,7 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'Euro Dividend Aristocrats', choiceNote: 'seule option PEA sur les dividendes, même en zone euro uniquement', pea: true,
-        funds: [{ name: 'SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist)', ticker: 'EUDV', isin: 'IE00B5M1WJ87', ter: '0,30 %', repl: '🔄 Physique (réplication complète, 40 valeurs)', dist: 'distribuant semestriel', aum: '1 810 M€' }],
+        funds: [{ name: 'SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist)', ticker: 'EUDV', isin: 'IE00B5M1WJ87', ter: formatEtfTer('IE00B5M1WJ87', 'index'), repl: '🔄 Physique (réplication complète, 40 valeurs)', dist: 'distribuant semestriel', aum: '1 810 M€' }],
       },
     ],
     diversification: {
@@ -655,8 +656,8 @@ export const FAMILIES = [
         indexName: 'MSCI China', choiceNote: 'CTO conseillé, 1 option PEA imparfaite', pea: true,
         subNote: '(l\'option PEA ne suit pas exactement le MSCI China classique — c\'est une version filtrée ESG)',
         funds: [
-          { name: 'iShares MSCI China UCITS ETF (Acc)', isin: 'IE00BJ5JPG56', ter: '0,28 %', aum: '2,19 Md€', note: '(CTO, réplique le MSCI China standard)' },
-          { name: 'Amundi PEA Chine (MSCI China) Screened UCITS ETF', isin: 'FR0011871078', ter: '0,65 %', aum: '84 M€', note: '(seule option PEA — indice filtré ESG, plus cher)' },
+          { name: 'iShares MSCI China UCITS ETF (Acc)', isin: 'IE00BJ5JPG56', ter: formatEtfTer('IE00BJ5JPG56', 'index'), aum: '2,19 Md€', note: '(CTO, réplique le MSCI China standard)' },
+          { name: 'Amundi PEA Chine (MSCI China) Screened UCITS ETF', isin: 'FR0011871078', ter: formatEtfTer('FR0011871078', 'index'), aum: '84 M€', note: '(seule option PEA — indice filtré ESG, plus cher)' },
         ],
       },
       {
@@ -666,11 +667,11 @@ export const FAMILIES = [
         // bien plus grosse, reste le choix pertinent malgré l'écart avec la convention "capitalisant"
         // du reste de l'outil.
         indexName: 'FTSE China 50', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares China Large Cap UCITS ETF (Dist)', isin: 'IE00B02KXK85', ter: '0,74 %', repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '815 M€' }],
+        funds: [{ name: 'iShares China Large Cap UCITS ETF (Dist)', isin: 'IE00B02KXK85', ter: formatEtfTer('IE00B02KXK85', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '815 M€' }],
       },
       {
         indexName: 'MSCI China A', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares MSCI China A UCITS ETF (Acc)', isin: 'IE00BQT3WG13', ter: '0,40 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '2,4 Md€' }],
+        funds: [{ name: 'iShares MSCI China A UCITS ETF (Acc)', isin: 'IE00BQT3WG13', ter: formatEtfTer('IE00BQT3WG13', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '2,4 Md€' }],
       },
     ],
     diversification: {
@@ -748,15 +749,17 @@ export const FAMILIES = [
         // du même fonds (même indice, même TER), cohérent avec la convention du reste de l'outil.
         // Encours plus petit (430 M€ contre 2 012 M€ pour la part Dist) mais réel et suffisant.
         indexName: 'Nikkei 225', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'Xtrackers Nikkei 225 UCITS ETF 1C (Acc)', isin: 'LU2196470426', ter: '0,09 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '430 M€' }],
+        funds: [{ name: 'Xtrackers Nikkei 225 UCITS ETF 1C (Acc)', isin: 'LU2196470426', ter: formatEtfTer('LU2196470426', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '430 M€' }],
       },
       {
         indexName: 'TOPIX', choiceNote: 'un seul choix, mais PEA ✅', pea: true,
-        funds: [{ name: 'Amundi PEA Japon (TOPIX) UCITS ETF', isin: 'FR0013411980', ter: '0,20 %', repl: '🔄 Synthétique', dist: 'capitalisant', aum: '124 M€' }],
+        // Actif géré 187,05 M€ au 31/08/2026, fiche Amundi ; vérifié le 25/09/2026.
+        // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF
+        funds: [{ name: 'Amundi PEA Japon (TOPIX) UCITS ETF', isin: 'FR0013411980', ter: formatEtfTer('FR0013411980', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '187 M€ au 31/08/2026' }],
       },
       {
         indexName: 'MSCI Japan IMI', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: 'iShares Core MSCI Japan IMI UCITS ETF (Acc)', isin: 'IE00B4L5YX21', ter: '0,12 %', repl: '🔄 Physique', dist: 'capitalisant', aum: '7,2 Md€' }],
+        funds: [{ name: 'iShares Core MSCI Japan IMI UCITS ETF (Acc)', isin: 'IE00B4L5YX21', ter: formatEtfTer('IE00B4L5YX21', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '7,2 Md€' }],
       },
     ],
     diversification: {
