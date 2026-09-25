@@ -13,6 +13,7 @@
     "audit:etf-consistency": "node scripts/audit-etf-consistency.mjs",
     "audit:etf-snapshots": "node scripts/audit-etf-snapshots.mjs",
     "audit:performance-consistency": "node scripts/audit-performance-consistency.mjs",
+    "audit:etf-annual-performance": "node scripts/audit-etf-annual-performance.mjs",
     "audit:portfolio-provenance": "node scripts/audit-portfolio-provenance.mjs",
     "audit:publishable-content": "node scripts/audit-publishable-content.mjs",
     "audit:source-inventory": "node scripts/audit-source-inventory.mjs",

@@ -1,3 +1,4 @@
+import { VERIFIED_RETURNS } from '../etf-sheets/verifiedReturns.js';
 // Bibliothèque d'actifs — rendements calendaires 2020-2025 : supports exacts quand
 // l'émetteur publie la série, et proxies ou historiques mixtes explicitement signalés sinon.
 // Les séries USD et EUR ne sont pas converties dans une devise commune.
@@ -1321,6 +1322,103 @@ export const ASSETS = [
       "complète le small cap européen déjà présent par une exposition mondiale, à majorité américaine.",
       "un potentiel de croissance supérieur aux grandes valeurs, avec une volatilité plus marquée.",
     ],
+  },
+  // Rendements des parts des Fiches ETF, réutilisés par référence.
+  {
+    id: 'msci_acwi_ishares', name: 'iShares MSCI ACWI UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00B6R52259',
+    r: VERIFIED_RETURNS.IE00B6R52259.values,
+    confidenceNote: 'Rendements NAV de la part iShares en dollars ; le résultat en euros dépend du change.',
+    desc: ['un seul ETF pour les pays développés et émergents.', 'une exposition mondiale large en complément du MSCI World.', 'un cœur de portefeuille simple, qui reste exposé aux baisses des actions.'],
+  },
+  {
+    id: 'immo_ishares_yield', name: 'iShares Developed Markets Property Yield UCITS ETF', cat: 'immobilier', emoji: '⚪', isin: 'IE00B1FZS350',
+    r: VERIFIED_RETURNS.IE00B1FZS350.values,
+    confidenceNote: 'Rendements NAV de la part iShares en dollars ; le résultat en euros dépend du change.',
+    desc: ['des foncières cotées dans les pays développés.', 'une sélection orientée dividendes immobiliers.', 'reste un placement en actions, sensible aux taux.'],
+  },
+  {
+    id: 'sect_biotech_ishares', name: 'iShares Nasdaq US Biotechnology UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYXG2H39',
+    // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00BYXG2H39.values,
+    confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
+    desc: ['biotechnologie américaine ; une poche santé cyclique', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
+  },
+  {
+    id: 'sect_energy_spdr', name: 'SPDR MSCI World Energy UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYTRR863',
+    // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00BYTRR863.values,
+    confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
+    desc: ['énergie mondiale, sensible aux prix des matières premières', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
+  },
+  {
+    id: 'sect_tech_world_ishares', name: 'iShares MSCI World Information Technology Sector Advanced UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BJ5JNY98',
+    // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00BJ5JNY98.values,
+    confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
+    desc: ['technologie mondiale, exposée aux grands groupes de croissance', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
+  },
+  {
+    id: 'sect_ai_lg', name: 'L&G Artificial Intelligence UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BK5BCD43',
+    // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00BK5BCD43.values,
+    confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
+    desc: ['entreprises exposées à l’intelligence artificielle', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
+  },
+  {
+    id: 'sect_batteries_lg', name: 'L&G Battery Value-Chain UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BF0M2Z96',
+    // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00BF0M2Z96.values,
+    confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
+    desc: ['chaîne de valeur des batteries et du stockage électrique', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
+  },
+  {
+    id: 'sect_water_amundi', name: 'Amundi MSCI Water UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'FR0010527275',
+    // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
+    r: VERIFIED_RETURNS.FR0010527275.values,
+    confidenceNote: 'Rendements de la part publiés en euros.',
+    desc: ['entreprises actives dans le traitement et la distribution d’eau', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
+  },
+  {
+    id: 'sect_luxury_amundi', name: 'Amundi Global Luxury UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'LU1681048630',
+    // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
+    r: VERIFIED_RETURNS.LU1681048630.values,
+    confidenceNote: 'Rendements de la part publiés en euros.',
+    desc: ['industrie mondiale du luxe, dépendante de la consommation', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
+  },
+  {
+    id: 'dividend_aristocrats_us_spdr', name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', cat: 'dividendes', emoji: '🟠', isin: 'IE00B6YX5D40',
+    // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00B6YX5D40.values,
+    confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
+    desc: ['actions américaines sélectionnées pour leur historique de dividendes', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
+  },
+  {
+    id: 'sect_cyber_lg', name: 'L&G Cyber Security UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYPLS672',
+    // Historique 2020–2025 de la part USD Acc L&G ; source dans verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00BYPLS672.values,
+    confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
+    desc: ['entreprises spécialisées dans la cybersécurité.', 'une exposition thématique au développement de la sécurité informatique.', 'reste exposé aux variations du secteur technologique.'],
+  },
+  {
+    id: 'world_minvol_ishares', name: 'iShares Edge MSCI World Minimum Volatility UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00B8FHGS14',
+    // Historique de la part exacte (USD) et source émetteur dans verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00B8FHGS14.values,
+    confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
+    desc: ['actions mondiales sélectionnées pour leur volatilité historiquement plus faible', 'une variante mondiale avec une sélection de titres spécifique.', 'son comportement peut différer nettement d’un indice World classique.'],
+  },
+  {
+    id: 'world_quality_ishares', name: 'iShares Edge MSCI World Quality Factor UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BP3QZ601',
+    // Historique de la part exacte (USD) et source émetteur dans verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00BP3QZ601.values,
+    confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
+    desc: ['actions mondiales sélectionnées sur des critères de qualité', 'une variante mondiale avec une sélection de titres spécifique.', 'son comportement peut différer nettement d’un indice World classique.'],
+  },
+  {
+    id: 'world_momentum_ishares', name: 'iShares Edge MSCI World Momentum Factor UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BP3QZ825',
+    // Historique de la part exacte (USD) et source émetteur dans verifiedReturns.js.
+    r: VERIFIED_RETURNS.IE00BP3QZ825.values,
+    confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
+    desc: ['actions mondiales sélectionnées selon leur dynamique de cours', 'une variante mondiale avec une sélection de titres spécifique.', 'son comportement peut différer nettement d’un indice World classique.'],
   },
 ];
 

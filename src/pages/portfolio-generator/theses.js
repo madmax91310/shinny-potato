@@ -51,13 +51,13 @@ export const TIER_WORST_BOUNDS = RISK_BOUNDS;
 export const GOLD_OPTIONS = ["or", "or_wisdomtree", "or_ishares", "or_amundi"];
 export const BITCOIN_OPTIONS = ["bitcoin", "bitcoin_wisdomtree", "bitcoin_etcgroup", "bitcoin_21shares"];
 export const CORPBOND_OPTIONS = ["oblig_corp_ig", "oblig_corp_amundi", "oblig_corp_vanguard", "oblig_corp_spdr"];
-export const WORLD_OPTIONS = ["msci_world", "msci_world_ishares", "msci_world_amundi_pea", "ftse_allworld_vanguard", "msci_acwi"];
+export const WORLD_OPTIONS = ["msci_world", "msci_world_ishares", "msci_world_amundi_pea", "ftse_allworld_vanguard", "msci_acwi", "msci_acwi_ishares", "world_minvol_ishares", "world_quality_ishares", "world_momentum_ishares"];
 export const EM_OPTIONS = ["msci_em", "msci_em_amundi", "ftse_em_vanguard", "msci_em_spdr"];
 // dividend_leaders (VanEck TDIV) ajouté lors de l'audit "enrichissement sectoriel" (août 2026) :
 // stratégie dividende mondiale distincte des trois autres (indice Morningstar propre), vérifiée
 // réelle avant ajout — cf. data.js pour le détail des sources et la résolution d'une contradiction
 // de signe trouvée sur l'année 2022.
-export const DIVIDEND_OPTIONS = ["strat_dividendes", "high_dividend", "quality_dividend", "dividend_leaders"];
+export const DIVIDEND_OPTIONS = ["strat_dividendes", "high_dividend", "quality_dividend", "dividend_leaders", "dividend_aristocrats_us_spdr"];
 // Réservé au profil Rentier (cf. sa règle "uniquement des lignes distribuantes") : jumeaux Dist
 // vérifiés des trois fonds ci-dessus, plus foncieres_etf_dist utilisé directement par id ailleurs
 // dans les riskCombos de ce profil.
@@ -78,7 +78,7 @@ export const COMMODITY_OPTIONS = ["mp_large", "mp_large_icom"];
 // (même logique que EM_OPTIONS/DIVIDEND_OPTIONS ci-dessus) — jamais utilisé pour les tiers Rentier
 // (foncieres_etf_dist reste seul, cf. DIVIDEND_OPTIONS_DIST), immo_gpr n'ayant pas de part Dist
 // vérifiée.
-export const IMMOBILIER_OPTIONS = ["foncieres_etf", "immo_gpr"];
+export const IMMOBILIER_OPTIONS = ["foncieres_etf", "immo_gpr", "immo_ishares_yield"];
 // Obligations haut rendement € : jumeau strict (même indice Markit iBoxx EUR Liquid High Yield),
 // ajouté lors du même audit.
 export const HIGHYIELD_OPTIONS = ["oblig_hy", "oblig_hy_amundi"];
@@ -96,8 +96,8 @@ export const HIGHYIELD_OPTIONS = ["oblig_hy", "oblig_hy_amundi"];
 export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities"];
 // VanEck Semiconductor reste suspendu : ni sa part ni son indice exact n'ont un
 // rendement 2020 vérifié. On ne l'offre pas tant que la série 2020-2025 est trouée.
-export const THEME_OPTIONS_FULL = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite"];
-export const THEME_OPTIONS_AGGRESSIVE = ["sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre"];
+export const THEME_OPTIONS_FULL = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_biotech_ishares", "sect_energy_spdr", "sect_tech_world_ishares", "sect_water_amundi", "sect_luxury_amundi", "sect_batteries_lg", "sect_cyber_lg"];
+export const THEME_OPTIONS_AGGRESSIVE = ["sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre", "sect_energy_spdr", "sect_tech_world_ishares", "sect_ai_lg", "sect_batteries_lg", "sect_cyber_lg"];
 // ETF à levier (réplication synthétique 2x quotidien) : lqq (Nasdaq-100) et cl2 (MSCI USA, plus
 // large que le seul Nasdaq-100) — indices proches mais pas identiques (même logique que
 // WORLD_OPTIONS/EM_OPTIONS ci-dessus), chaque option revalidée sur les bornes de pire année du
