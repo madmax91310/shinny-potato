@@ -19,6 +19,8 @@ const FUND_ISINS = {
   'dividendes-pea': { eudv: 'IE00B5M1WJ87' },
   chine: { msci_china: 'IE00BJ5JPG56', amundi_pea_chine: 'FR0011871078', ftse_china50: 'IE00B02KXK85', msci_china_a: 'IE00BQT3WG13' },
   japon: { nikkei: 'LU2196470426', topix: 'FR0013411980', msci_japan: 'IE00B4L5YX21' },
+  'or-argent': { or: 'IE00B4ND3602', argent: 'IE00B4NCWG09' },
+  crypto: { bitcoin: 'GB00BLD4ZL17', ethereum: 'GB00BLD4ZM24' },
 }
 
 // Comparer des séries différentes d'un même ISIN exige une explication dans les deux outils.

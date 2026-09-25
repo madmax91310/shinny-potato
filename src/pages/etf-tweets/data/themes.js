@@ -559,25 +559,28 @@ const BASE_THEMES = [
     transition:
       'Ce ne sont pas des ETF actions mais des ETC (Exchange Traded Commodities), non éligibles au PEA. Voici les principaux :',
     etfs: [
+      // Encours actualisés le 25/09/2026 (recherche web, justETF/fiches émetteur) à l'occasion de
+      // l'ajout de l'or et du bitcoin dans les Fiches ETF et le Comparateur d'indices — signalé par
+      // scripts/audit-etf-snapshots.mjs (Amundi : écart de 15 % avec l'ancien chiffre, > seuil).
       createEtf({
         nom: 'iShares Physical Gold ETC',
         isin: 'IE00B4ND3602',
         frais: formatEtfTer('IE00B4ND3602'),
-        encours: '33 Md€',
+        encours: '34,3 Md€',
         differenciateur: 'le plus gros et liquide ETC or européen',
       }),
       createEtf({
         nom: 'Amundi Physical Gold ETC',
         isin: 'FR0013416716',
         frais: formatEtfTer('FR0013416716'),
-        encours: '10,1 Md€',
+        encours: '11,6 Md€',
         differenciateur: 'seul grand ETC or de droit français',
       }),
       createEtf({
         nom: 'iShares Physical Silver ETC',
         isin: 'IE00B4NCWG09',
         frais: formatEtfTer('IE00B4NCWG09'),
-        encours: '2,71 Md€',
+        encours: '2,9 Md€',
         differenciateur: 'ETC argent physique le moins cher des leaders',
       }),
       createEtf({

@@ -798,4 +798,115 @@ export const FAMILIES = [
     ],
     closing: '💬 Pour le Japon, la méthode de pondération du Nikkei te gêne ou tu la choisis justement ?',
   },
+
+  // ── Famille 11 : Or & Argent ──────────────────────────────────────────
+  // Ajoutée le 25/09/2026. Pas de "concurrence entre indices" au sens propre — l'or et l'argent
+  // physiques n'ont qu'une seule source de fonds réels (le métal), donc l'angle retenu compare
+  // deux métaux précieux plutôt que plusieurs méthodologies d'un même sous-jacent. TER et encours
+  // vérifiés via recherche web le 25/09/2026 (justETF/fiches émetteur). ISIN et rendements repris
+  // du Générateur de portefeuilles (ids "or"/"or_wisdomtree"/"or_ishares"/"or_amundi"/"argent"),
+  // aucune nouvelle donnée de performance saisie ici (cf. CLAUDE.md, pas de duplication).
+  // Or : perfFunds reprend la série "or_ishares" (NAV BlackRock USD, source directe iShares) pour
+  // rester cohérent avec le fonds affiché en premier dans le bloc 2 ci-dessous — les 3 autres
+  // émetteurs ont chacun leur propre série, très proche (à 0,3 pt près), dans le Générateur.
+  // Argent : valeur reprise telle quelle du Générateur (id "argent") — NAV BlackRock USD convertie
+  // en € via les taux BCE (méthode documentée dans son commentaire), pas un cours spot direct.
+  // Résultat : l'or reste en $ (NAV du fonds, devise native) et l'argent en € (converti) — deux
+  // devises différentes dans la même famille, même situation déjà acceptée dans la famille
+  // "Japon" (Nikkei en ¥, TOPIX en €), disclosure explicite plutôt que masquée (cf.
+  // perfMethodNote ci-dessous).
+  {
+    id: 'or-argent',
+    label: '🥇 Or & Argent',
+    intro: 'Un ETC or ou un ETC argent pour protéger ton portefeuille ? Deux métaux précieux, deux profils différents 🥇\nOn décrypte les deux 👇',
+    indices: [
+      { name: 'Or physique', desc: 'Exposition directe au cours de l\'or, via un ETC adossé à du métal physique détenu en coffre — pas une action minière, pas de réplication synthétique.', tag: 'La valeur refuge historique 🛡️' },
+      { name: 'Argent physique', desc: 'Même principe que l\'or (ETC adossé au métal physique), mais un marché plus petit et plus volatil, à la fois valeur refuge et matière première industrielle (électronique, panneaux solaires).', tag: 'Plus volatil, à double usage ⚡' },
+    ],
+    block2Title: '2️⃣ LES ETC DISPONIBLES (CTO) 💳',
+    etfGroups: [
+      {
+        indexName: 'Or physique', choiceNote: 'Non éligible PEA — CTO uniquement, 4 émetteurs', pea: false,
+        funds: [
+          { name: 'iShares Physical Gold ETC', isin: 'IE00B4ND3602', ter: formatEtfTer('IE00B4ND3602', 'index'), aum: '34,3 Md€ (25/09/2026)', note: '(le plus gros encours)' },
+          { name: 'Invesco Physical Gold ETC', isin: 'IE00B579F325', ter: formatEtfTer('IE00B579F325', 'index'), aum: '26,6 Md€ (25/09/2026)' },
+          { name: 'Amundi Physical Gold ETC', isin: 'FR0013416716', ter: formatEtfTer('FR0013416716', 'index'), aum: '11,6 Md€ (25/09/2026)' },
+          { name: 'WisdomTree Physical Gold', isin: 'JE00B1VS3770', ter: formatEtfTer('JE00B1VS3770', 'index'), aum: '6,3 Md€ (25/09/2026)', note: '(le plus cher des quatre)' },
+        ],
+      },
+      {
+        indexName: 'Argent physique', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
+        funds: [{ name: 'iShares Physical Silver ETC', isin: 'IE00B4NCWG09', ter: formatEtfTer('IE00B4NCWG09', 'index'), aum: '2,9 Md€ (25/09/2026)' }],
+      },
+    ],
+    diversification: {
+      chain: ['Or physique (exposition à 1 seul actif : le métal)', 'Argent physique (exposition à 1 seul actif : le métal)'],
+      notes: ['⚠️ Contrairement aux ETF actions plus haut, un ETC or/argent ne diversifie rien : un seul actif, pas un panier de titres.', '→ L\'argent, plus utilisé par l\'industrie que l\'or, réagit aussi aux cycles économiques — pas seulement à la demande "valeur refuge".'],
+    },
+    perfFunds: [
+      { key: 'or', label: 'Or physique', y2023: 13.7, y2024: 26.4, y2025: 64.8 },
+      { key: 'argent', label: 'Argent physique', y2023: -4.25, y2024: 29.02, y2025: 119.80 },
+    ],
+    perfMethodNote: 'ℹ️ Pas de dividende ni de coupon : un ETC or/argent ne verse aucun revenu, sa performance suit le NAV du fonds. Or : NAV nette de frais en $, devise native du fonds. Argent : NAV $ convertie en € par le Générateur de portefeuilles (cf. son commentaire pour le détail du calcul) — les deux lignes ne sont donc pas dans la même devise.',
+    verdictTitle: '✅ LE VERDICT',
+    verdict: [
+      { q: '🛡️ Tu veux la valeur refuge la plus reconnue ?', a: 'Or physique.' },
+      { q: '⚡ Tu acceptes plus de volatilité pour un potentiel de hausse plus marqué ?', a: 'Argent physique.' },
+      { q: '💰 Le moins cher entre les 4 ETC or ?', a: 'iShares, Invesco et Amundi, à égalité.' },
+    ],
+    closing: '💬 Toi, l\'or, l\'argent, ou aucun métal précieux dans ton portefeuille ?',
+  },
+
+  // ── Famille 12 : Crypto ────────────────────────────────────────────────
+  // Ajoutée le 25/09/2026. Même logique que la famille Or & Argent : Bitcoin et Ethereum sont
+  // deux actifs différents plutôt que deux méthodologies d'un même indice. ISIN et rendements
+  // repris du Générateur de portefeuilles (ids "bitcoin"/"bitcoin_wisdomtree"/"bitcoin_etcgroup"/
+  // "bitcoin_21shares"/"ethereum"), aucune nouvelle donnée de performance saisie ici (perfFunds
+  // reprend la série NAV CoinShares USD, fonds affiché en premier dans le bloc 2 ci-dessous).
+  // TER/encours vérifiés via recherche web le 25/09/2026 (justETF/fiches émetteur).
+  // Fonds ex-"ETC Group Physical Bitcoin" (DE000A27Z304) : Bitwise a racheté ETC Group et
+  // rebaptisé toute sa gamme européenne "Bitwise Physical Bitcoin ETP" en janvier 2025 (même
+  // ISIN/ticker BTCE, confirmé par 2 requêtes web indépendantes le 25/09/2026) — le Générateur de
+  // portefeuilles porte déjà ce nom à jour pour ce même ISIN (id "bitcoin_etcgroup"), cohérent.
+  {
+    id: 'crypto',
+    label: '₿ Crypto',
+    intro: 'Bitcoin ou Ethereum en ETP, sur ton compte-titres ? Deux cryptomonnaies, deux profils différents ₿\nOn décrypte les deux 👇',
+    indices: [
+      { name: 'Bitcoin', desc: 'La première cryptomonnaie, souvent présentée comme un « or numérique » — une réserve de valeur pour ses partisans, avant tout un moyen d\'échange à l\'origine.', tag: 'La plus connue, la plus liquide ₿' },
+      { name: 'Ethereum', desc: 'La deuxième cryptomonnaie par capitalisation, socle de nombreuses applications décentralisées (finance, contrats intelligents) — un profil et un usage différents du Bitcoin.', tag: 'Plus applicatif, plus volatil ⚡' },
+    ],
+    block2Title: '2️⃣ LES ETP DISPONIBLES (CTO) 💳',
+    etfGroups: [
+      {
+        indexName: 'Bitcoin', choiceNote: 'Non éligible PEA — CTO uniquement, 4 émetteurs', pea: false,
+        funds: [
+          { name: 'CoinShares Physical Bitcoin ETP', isin: 'GB00BLD4ZL17', ter: formatEtfTer('GB00BLD4ZL17', 'index'), aum: '1,4 Md€ (25/09/2026)' },
+          { name: 'WisdomTree Physical Bitcoin', isin: 'GB00BJYDH287', ter: formatEtfTer('GB00BJYDH287', 'index'), aum: '1,4 Md€ (25/09/2026)' },
+          { name: '21Shares Bitcoin ETP', isin: 'CH0454664001', ter: formatEtfTer('CH0454664001', 'index'), aum: '0,6 Md€ (25/09/2026)', note: '(le plus ancien de la sélection, lancé en 2019)' },
+          { name: 'Bitwise Physical Bitcoin ETP', isin: 'DE000A27Z304', ter: formatEtfTer('DE000A27Z304', 'index'), aum: '0,7 Md€ (25/09/2026)', note: '(ex-ETC Group, renommé en 2025 — TER le plus élevé des quatre)' },
+        ],
+      },
+      {
+        indexName: 'Ethereum', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
+        funds: [{ name: 'CoinShares Ethereum Staking ETP', isin: 'GB00BLD4ZM24', ter: formatEtfTer('GB00BLD4ZM24', 'index'), aum: '343 M€ (25/09/2026)', note: '(0% de frais de gestion + un rendement de staking crédité à part, ~1,25%/an)' }],
+      },
+    ],
+    diversification: {
+      chain: ['Bitcoin (exposition à 1 seul actif)', 'Ethereum (exposition à 1 seul actif)'],
+      notes: ['⚠️ Comme pour l\'or et l\'argent, un ETP crypto ne diversifie rien : un seul actif, une seule source de risque.', '→ Bitcoin et Ethereum ont souvent évolué dans le même sens, mais pas systématiquement — Ethereum a connu des années nettement plus ou moins bonnes que le Bitcoin.'],
+    },
+    perfFunds: [
+      { key: 'bitcoin', label: 'Bitcoin', y2023: 155.42, y2024: 121.05, y2025: -6.34 },
+      { key: 'ethereum', label: 'Ethereum', y2023: 90.64, y2024: 46.07, y2025: -10.97 },
+    ],
+    perfMethodNote: 'ℹ️ Cours spot BTC/USD et ETH/USD (Slickcharts), pas le rendement propre de chaque ETP — qui peut différer selon les frais, le tracking, et le rendement de staking crédité à part pour l\'Ethereum. Hors effet de change €/$. Bitcoin et Ethereum sont deux actifs différents, pas deux façons d\'accéder au même actif.',
+    verdictTitle: '✅ LE VERDICT',
+    verdict: [
+      { q: '₿ Tu veux la crypto la plus connue et la plus liquide ?', a: 'Bitcoin.' },
+      { q: '⚡ Tu veux l\'exposition la plus volatile des deux ?', a: 'Ethereum.' },
+      { q: '💰 Le moins cher des ETP proposés ?', a: 'CoinShares ou WisdomTree, à égalité (et 0% de frais de gestion pour l\'Ethereum, staking à part).' },
+    ],
+    closing: '💬 Toi, Bitcoin, Ethereum, les deux, ou aucune crypto dans ton portefeuille ?',
+  },
 ]
