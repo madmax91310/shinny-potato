@@ -60,13 +60,18 @@ Comparateur d'indices) :
 npm run audit:etf-consistency
 ```
 
-Regroupe toutes les lignes de fonds des 3 sources par ISIN et signale tout ISIN dont le TER diverge
-de plus de 0,01 point d'une source à l'autre — reproduit la méthode qui avait trouvé et corrigé
-l'erreur de TER du fonds Quality Factor (0,30% → 0,25%) le 13/09/2026. Un ISIN présent dans une
-seule source n'est jamais un problème (couverture différente par design) ; seule une vraie
-divergence de valeur sur un ISIN partagé est signalée. Sort en code 1 si une divergence est trouvée.
-Testé par corruption volontaire d'un TER (restaurée aussitôt) pour confirmer que le script détecte
-bien une vraie divergence, pas seulement l'absence de divergence.
+Les 96 ISIN utilisés dans ces bibliothèques tirent désormais leurs frais de
+`src/data/etf-ter.js` : corriger le taux à cet endroit met à jour les champs chiffrés des
+trois outils. L'audit exige une entrée pour chaque ISIN utilisé, refuse les entrées orphelines
+et vérifie les 122 affichages. Les mentions éditoriales de frais dans ces bibliothèques
+reprennent aussi le registre lorsque le taux apparaît dans le texte. Les superlatifs
+(« le moins cher ») restent à réexaminer après une modification de frais.
+
+Les encours ne sont pas centralisés : date de mesure, devise et périmètre peuvent différer.
+`npm run audit:etf-snapshots` compare les montants normalisables d'un même ISIN dans une
+même devise et signale les écarts d'au moins 10 %, sans substituer une valeur à une autre.
+Le contrôle hebdomadaire affiche ces alertes. Recouper ensuite la fiche émetteur à la même
+date avant de corriger les valeurs enregistrées.
 
 ## `audit-performance-consistency.mjs`
 
