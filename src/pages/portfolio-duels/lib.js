@@ -59,15 +59,17 @@ export function formatCapital(value, currency) {
 
 export function buildTweet(duel) {
   const { a, b, commonAsset, currency } = duel
-  const common = commonAsset.name
+  const symbol = currency === 'USD' ? '$' : '€'
   const rows = YEARS.map((year) =>
-    `${year} · A ${formatPercent(a.annual[year])} | B ${formatPercent(b.annual[year])}`,
+    `${year} : ${formatPercent(a.annual[year])} / ${formatPercent(b.annual[year])}`,
   ).join('\n')
   return `⚔️ ${duel.hook}\n\n` +
-    `🅰️ 70 % ${common} + 30 % ${a.assets[1].name}\n` +
-    `🅱️ 70 % ${common} + 30 % ${b.assets[1].name}\n\n` +
-    `📅 2020–2025\n${rows}\n\n` +
-    `💰 10 000 ${currency === 'USD' ? '$' : '€'} au départ → A ${formatCapital(a.final, currency)} | B ${formatCapital(b.final, currency)}\n` +
-    `📉 Pire année : A ${formatPercent(a.worst)} (${a.worstYear}) | B ${formatPercent(b.worst)} (${b.worstYear})\n\n` +
-    `💬 ${duel.question}\n⚠️ Pas un conseil en investissement`
+    `Même point de départ : 10 000 ${symbol} investis de 2020 à 2025.\n` +
+    `70 % dans ${commonAsset.name} pour les deux. Le choix porte sur les 30 % restants :\n\n` +
+    `🅰️ ${a.name} : ${a.assets[1].name}\n` +
+    `🅱️ ${b.name} : ${b.assets[1].name}\n\n` +
+    `À l'arrivée : ${formatCapital(a.final, currency)} pour A, ${formatCapital(b.final, currency)} pour B.\n\n` +
+    `📊 Chaque année (A / B) :\n${rows}\n\n` +
+    `📉 Pire année : A ${formatPercent(a.worst)} en ${a.worstYear}, B ${formatPercent(b.worst)} en ${b.worstYear}.\n\n` +
+    `${duel.question}\n\n⚠️ Pas un conseil en investissement.`
 }
