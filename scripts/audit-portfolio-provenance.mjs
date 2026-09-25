@@ -2,9 +2,10 @@
 // Inventaire des bases de performances du Générateur. Un accord entre outils ne vérifie pas
 // une source primaire : seuls les fonds recoupés avec l'émetteur sont marqués « confirmé ».
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
+import { VERIFIED_RETURNS } from '../src/pages/etf-sheets/verifiedReturns.js'
 
 const groups = {
-  'Fonds confirmé chez l’émetteur': `msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
+  'Fonds confirmé chez l’émetteur': `world_minvol_ishares world_quality_ishares world_momentum_ishares msci_acwi_ishares immo_ishares_yield sect_cyber_lg sect_biotech_ishares sect_energy_spdr sect_tech_world_ishares sect_ai_lg sect_batteries_lg sect_water_amundi sect_luxury_amundi dividend_aristocrats_us_spdr msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
   'Indice ou cours du sous-jacent': `bitcoin bitcoin_21shares ethereum msci_world_amundi_pea smallcap_europe`,
   'Autre fonds ou historique mixte': `argent qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
@@ -29,7 +30,7 @@ const usdReturns = new Set(`nasdaq100_ishares actions_coree actions_taiwan actio
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
   actions_japon actions_value sect_financieres sect_sante smallcap_monde mp_large mp_large_icom
-  qyld_ucits sp500_ishares ftse_allworld_vanguard msci_em msci_world_ishares msci_acwi msci_em_spdr or or_ishares or_amundi
+  world_minvol_ishares world_quality_ishares world_momentum_ishares sect_cyber_lg sect_biotech_ishares sect_energy_spdr sect_tech_world_ishares sect_ai_lg sect_batteries_lg dividend_aristocrats_us_spdr qyld_ucits sp500_ishares ftse_allworld_vanguard msci_em msci_world_ishares msci_acwi msci_acwi_ishares immo_ishares_yield msci_em_spdr or or_ishares or_amundi
   high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes
   strat_dividendes_dist`.trim().split(/\s+/))
 const partialOrSyntheticYears = new Map(Object.entries({
@@ -42,6 +43,22 @@ const partialOrSyntheticYears = new Map(Object.entries({
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+  world_minvol_ishares: VERIFIED_RETURNS.IE00B8FHGS14.source,
+  world_quality_ishares: VERIFIED_RETURNS.IE00BP3QZ601.source,
+  world_momentum_ishares: VERIFIED_RETURNS.IE00BP3QZ825.source,
+
+  sect_cyber_lg: VERIFIED_RETURNS.IE00BYPLS672.source,
+  sect_biotech_ishares: VERIFIED_RETURNS.IE00BYXG2H39.source,
+  sect_energy_spdr: VERIFIED_RETURNS.IE00BYTRR863.source,
+  sect_tech_world_ishares: VERIFIED_RETURNS.IE00BJ5JNY98.source,
+  sect_ai_lg: VERIFIED_RETURNS.IE00BK5BCD43.source,
+  sect_batteries_lg: VERIFIED_RETURNS.IE00BF0M2Z96.source,
+  sect_water_amundi: VERIFIED_RETURNS.FR0010527275.source,
+  sect_luxury_amundi: VERIFIED_RETURNS.LU1681048630.source,
+  dividend_aristocrats_us_spdr: VERIFIED_RETURNS.IE00B6YX5D40.source,
+
+  msci_acwi_ishares: 'https://www.ishares.com/uk/individual/en/literature/fact-sheet/ssac-ishares-msci-acwi-ucits-etf-fund-fact-sheet-en-gb.pdf',
+  immo_ishares_yield: 'https://www.ishares.com/uk/individual/en/products/251801/ishares-developed-markets-property-yield-ucits-etf',
   msci_europe: 'https://www.ishares.com/gls-download/literature/fact-sheet/smea-ishares-core-msci-europe-ucits-etf-eur-acc-fund-fact-sheet-en-gb.pdf',
   or_wisdomtree: 'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770',
   bitcoin_wisdomtree: 'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287',

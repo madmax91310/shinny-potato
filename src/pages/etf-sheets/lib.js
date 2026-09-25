@@ -1,5 +1,5 @@
 import { CATEGORY_EMOJI } from './data'
-import { formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
+import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
 
 // Texte du post X — repris tel quel de la session d'origine.
 export function buildText(etf) {
@@ -17,7 +17,7 @@ export function buildText(etf) {
     '🔄 ' + etf.distribution + '\n' +
     '🏦 PEA : ' + (etf.pea ? '✅' : '❌') + ' | CTO : ' + (etf.cto ? '✅' : '❌') + '\n' +
     '📍 ' + etf.location + '\n' +
-    (annual ? '📈 Performances 2023–2025 (' + annual.currency + ') : ' + formatAnnualPerformance(annual) + '\n' : '') +
+    (annual ? '📈 Performances ' + annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) + '\n' : '') +
     '\n' +
     '🔍 C\'est quoi ?\n' +
     etf.whatIs + '\n' +
@@ -47,6 +47,6 @@ export function buildFactRows(etf) {
     { icon: '🔄', text: etf.distribution },
     { icon: '🏦', text: 'PEA : ' + (etf.pea ? '✅' : '❌') + '   |   CTO : ' + (etf.cto ? '✅' : '❌') },
     { icon: '📍', text: etf.location },
-    ...(annual ? [{ icon: '📈', text: '2023–2025 (' + annual.currency + ') : ' + formatAnnualPerformance(annual) }] : []),
+    ...(annual ? [{ icon: '📈', text: annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) }] : []),
   ]
 }
