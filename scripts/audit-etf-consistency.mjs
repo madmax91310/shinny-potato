@@ -20,6 +20,7 @@
 import { ETFS } from "../src/pages/etf-sheets/data.js";
 import { DEFAULT_THEMES } from "../src/pages/etf-tweets/data/themes.js";
 import { FAMILIES } from "../src/pages/index-comparator/data.js";
+import { ETF_TER_BY_ISIN } from "../src/data/etf-ter.js";
 
 // Normalise "0,20%", "0,20 %", "0,06" (etf-tweets, pas de signe %) vers un nombre — la seule
 // différence entre les 3 sources est le formatage d'affichage, jamais la précision de la donnée
@@ -56,6 +57,22 @@ entries.forEach((e) => {
   if (!byIsin.has(e.isin)) byIsin.set(e.isin, []);
   byIsin.get(e.isin).push(e);
 });
+
+// Toute ligne publiée doit pointer vers le registre et toute entrée du registre
+// doit être utilisée : un nouvel ETF ne peut pas passer avec des frais implicites.
+const usedIsins = new Set(entries.map(e => e.isin));
+for (const entry of entries) {
+  if (entry.terNum === null || ETF_TER_BY_ISIN[entry.isin] !== entry.terNum.toFixed(2).replace('.', ',')) {
+    console.error(`Frais absents ou différents du registre : ${entry.source} ${entry.isin} (${entry.terRaw})`);
+    process.exitCode = 1;
+  }
+}
+for (const isin of Object.keys(ETF_TER_BY_ISIN)) {
+  if (!usedIsins.has(isin)) {
+    console.error(`ISIN inutilisé dans le registre des frais : ${isin}`);
+    process.exitCode = 1;
+  }
+}
 
 console.log(`${entries.length} lignes de fonds collectées (Fiches ETF: ${ETFS.length}, Tweets ETF: ${entries.filter((e) => e.source === "Tweets ETF").length}, Comparateur d'indices: ${entries.filter((e) => e.source === "Comparateur d'indices").length}).`);
 console.log(`${byIsin.size} ISIN distincts, dont ${[...byIsin.values()].filter((v) => v.length > 1).length} présents dans plusieurs sources.\n`);
