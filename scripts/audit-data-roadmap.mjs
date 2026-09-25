@@ -17,7 +17,15 @@ for (const t of TERMES) {
 }
 for (const id of [...Object.keys(sources), ...fiscal]) if (!ids.has(id)) { console.error(`Référence lexique orpheline : ${id}`); errors++ }
 const lexiconGaps = new Set(inventory.filter(x => x.tool === 'lexique').map(x => x.name))
-for (const t of TERMES) if (!lexiconGaps.has(t.id)) { console.error(`Inventaire lexique à régénérer : ${t.id}`); errors++ }
+for (const name of lexiconGaps) if (!ids.has(name)) { console.error(`Inventaire lexique orphelin : ${name}`); errors++ }
+const verifiedToday = new Set(TERMES.map(t => t.id))
+const lexiconText = readFileSync(new URL('../src/pages/lexique-financier/data.js', import.meta.url), 'utf8')
+for (const id of verifiedToday) {
+  const entry = new RegExp(`\\{\\s*((?://[^\\n]*\\n\\s*)*)id:"${id}"`).exec(lexiconText)
+  if (!entry || !/Vérifié le 25\/09\/2026/.test(entry[1]) || !/https:\/\//.test(entry[1]) || !/confiance/i.test(entry[1])) {
+    console.error(`Contrôle individuel source/date/confiance manquant : ${id}`); errors++
+  }
+}
 const gaps = inventory.filter(x => x.tool === 'portefeuilles' || x.tool === 'calculateur')
 const monthlyIds = ['bitcoin', 'or', 'apple', 'microsoft', 'broadcom', 'tesla']
 const absentPortfolioUrls = gaps.filter(x => x.tool === 'portefeuilles' && !x.sourceUrls.length)
@@ -47,10 +55,10 @@ const lines = [
   '# Audit des données — génération depuis le code',
   '',
   `Lexique : ${TERMES.length} fiches ; ${Object.keys(sources).length} avec une référence primaire ciblée ; ${TERMES.length - Object.keys(sources).length} sans référence ciblée.`,
-  'Références de travail repérées ou consultées le 24/09/2026 ; cela ne constitue pas un contrôle exhaustif de chaque phrase ou valeur.',
+  `Contrôle individuel du 25/09/2026 : ${verifiedToday.size}/${TERMES.length} fiches relues. Les commentaires de data.js précisent la source et le degré de confiance ; les exemples indicatifs ne valent pas vérification d’un prix de marché actuel.`,
   '',
   '| Fiche | Référence de travail | État |', '| --- | --- | --- |',
-  ...TERMES.map(t => `| ${t.id} | ${sources[t.id] || '—'} | ${fiscal.has(t.id) ? 'Fiscalité relue le 24/09/2026 ; exemples et exceptions à contrôler individuellement' : 'Source identifiée le 24/09/2026 ; détails à contrôler'} |`),
+  ...TERMES.map(t => `| ${t.id} | ${sources[t.id] || '—'} | ${verifiedToday.has(t.id) ? 'Points cités contrôlés le 25/09/2026 ; voir sources et réserves dans data.js' : fiscal.has(t.id) ? 'Fiscalité relue le 24/09/2026 ; exemples et exceptions à contrôler individuellement' : 'Source identifiée le 24/09/2026 ; détails à contrôler'} |`),
   '',
   `Portefeuilles : ${PORTFOLIO.length} supports, dont ${gaps.filter(x => x.tool === 'portefeuilles').length} sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.`,
   `Calculateur : ${Object.keys(CALCULATOR).length} actifs, dont ${gaps.filter(x => x.tool === 'calculateur').length} sans date individuelle ; les six séries mensuelles ont été validées par l'utilisateur à partir de ses propres exports.`,

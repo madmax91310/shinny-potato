@@ -65,14 +65,16 @@ export const FAMILIES = [
       chain: ['STOXX 600 (600 lignes)', 'MSCI Europe (396)', 'EURO STOXX 50 (50)'],
       notes: ['⚠️ Le 50 concentre ton risque : ses 10 plus grosses lignes pèsent +41 % de l\'indice.', '→ Une forte dépendance à quelques grandes sociétés de la zone euro.'],
     },
-    // Performance 2023-2025 des fonds ci-dessus. PCEU recoupé avec la fiche Amundi
-    // du 31/08/2026 ; ETZ recoupé avec la fiche BNP du 30/01/2026 ; iShares ci-dessous.
+    // Performance 2023-2025 des fonds ci-dessus. PCEU revu sur les fiches Amundi
+    // 2026 (2025 rectifié à 19,41 le 25/09/2026) ; ETZ recoupé avec la fiche BNP ; iShares ci-dessous.
     // YTD non inclus ici (saisi par l'utilisateur, cf. formulaire).
     perfFunds: [
-      // Part et encours : fiche Amundi du 31/08/2026 (tableau « Portfolio », EUR).
-      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412038/ENG/FRA/INSTITUTIONNEL/ETF
-      { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)', y2023: 15.95, y2024: 8.60, y2025: 19.42 },
-      // Part BNP FR0011550193 : fiche « EUR C », performances calendaires du fonds,
+      // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille Amundi du 30/04/2026 ; confiance élevée.
+      // 2025 : 19,42 → 19,41 selon la série corrigée des fiches officielles 2026.
+      // https://www.amundietf.fr/pdfDocuments/download/c4f606a3-f783-4553-b7f6-143137c8d964/MonthlyFactsheet_4386409_CL78022_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf
+      { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)', y2023: 15.95, y2024: 8.60, y2025: 19.41 },
+      // Vérifié le 25/09/2026 : part BNP FR0011550193, « EUR C », performances calendaires
+      // du fonds ; confiance élevée. 2023/2024/2025 : 14,37/8,41/20,48.
       // https://docfinder.bnpparibas-am.com/api/files/85e997cf-94fd-48ba-9406-225f0a281549/1024
       { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)', y2023: 14.37, y2024: 8.41, y2025: 20.48 },
       // Part iShares IE00B53L3W79, ligne « Share Class » de la fiche BlackRock du 31/08/2026 :
@@ -231,6 +233,9 @@ export const FAMILIES = [
     perfFunds: [
       { key: 'sp500', label: 'Amundi PEA S&P 500', y2023: 21.68, y2024: 32.85, y2025: 3.45 },
       { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', y2023: 49.32, y2024: 33.58, y2025: 6.01 },
+      // Vérifié le 25/09/2026 : ligne « Rendement total (%) USD », 2023–2025,
+      // https://www.blackrock.com/fr/intermediaries/products/253740/ishares-msci-usa-b-ucits-etf
+      // Confiance élevée (émetteur, part et devise explicites).
       // BlackRock, NAV USD de la part IE00B52SFT06 : les anciens 22,33/32,69/3,82
       // correspondaient à une autre devise et n'étaient pas comparables sans note.
       // https://www.blackrock.com/fr/particuliers/products/253740/ishares-msci-usa-b-ucits-etf
@@ -322,10 +327,20 @@ export const FAMILIES = [
     // Performance 2023-2025 (source : justETF/boursedirect, recherche web du 02/09/2026, recoupée sur
     // plusieurs pages par fonds).
     perfFunds: [
+      // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 ; confiance élevée.
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260131
       { key: 'paeem_pea', label: 'Amundi PEA Emergent (PAEEM)', y2023: 3.66, y2024: 13.39, y2025: 21.04 },
+      // Vérifié le 25/09/2026 : ligne « Portefeuille » EUR, rapport Amundi 31/08/2026 ; confiance élevée.
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412012/FRA/FRA/INSTITUTIONNEL/ETF
       { key: 'paasi', label: 'Amundi PEA Asie Émergente (PAASI)', y2023: 1.21, y2024: 16.36, y2025: 21.78 },
+      // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 ; confiance élevée.
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF/20251231
       { key: 'palat', label: 'Amundi PEA Amérique Latine (PALAT)', y2023: 24.63, y2024: -25.29, y2025: 35.75 },
+      // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 ; confiance élevée.
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011869320/FRA/FRA/RETAIL/ETF/20251231
       { key: 'pinr', label: 'Amundi PEA Inde (PINR)', y2023: 15.09, y2024: 16.57, y2025: -11.15 },
+      // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 ; confiance élevée.
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/RETAIL/ETF/20251231
       { key: 'plem', label: 'Amundi PEA Emergent EMEA (PLEM)', y2023: 7.89, y2024: 12.77, y2025: 15.11 },
     ],
     verdictTitle: '✅ LE VERDICT',
@@ -389,7 +404,10 @@ export const FAMILIES = [
     perfFunds: [
       { key: 'msci_em', label: 'iShares Core MSCI EM IMI', y2023: 11.58, y2024: 7.21, y2025: 31.58 },
       { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 7.86, y2024: 12.06, y2025: 25.67 },
-      { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.73, y2024: 3.64, y2025: 34.83 },
+      // Vérifié le 25/09/2026 : ligne « Rendement total (%) USD » BlackRock,
+      // précision publiée au dixième ; anciens centièmes écartés faute de confirmation.
+      // Confiance élevée. https://www.blackrock.com/fr/particuliers/products/315592/
+      { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.7, y2024: 3.6, y2025: 34.8 },
     ],
     perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise des parts USD Acc, hors effet de change €/$. Le Générateur utilise aussi la part iShares en dollars ; certains autres supports y reposent encore sur un indice.',
     verdictTitle: '✅ LE VERDICT',
@@ -449,6 +467,8 @@ export const FAMILIES = [
       { key: 'value', label: 'iShares Edge MSCI World Value Factor', y2023: 19.41, y2024: 5.25, y2025: 39.63 },
       // BlackRock, NAV USD de la part IE00BP3QZ601, 2023-2025.
       // https://www.blackrock.com/ch/individual/en/products/270054/ishares-msci-world-quality-factor-ucits-etf
+      // Vérifié le 25/09/2026 : part USD, rendement total calendaire BlackRock ; confiance élevée.
+      // https://www.blackrock.com/fr/particuliers/products/270054/ishares-msci-world-quality-factor-ucits-etf
       { key: 'quality', label: 'iShares Edge MSCI World Quality Factor', y2023: 25.7, y2024: 16.6, y2025: 15.4 },
     ],
     perfMethodNote: 'ℹ️ Value est présenté en euros ; Quality reprend la performance de la part en dollars (NAV USD). Le change empêche de comparer directement ces rendements.',
@@ -591,7 +611,9 @@ export const FAMILIES = [
     // 2023 et 2024 ; 2025 retenu sur la valeur datée « au 31/12/2025 » plutôt qu'un « 1 an glissant »
     // trouvé par ailleurs, qui inclut une partie de 2026).
     perfFunds: [
-      { key: 'eudv', label: 'SPDR S&P Euro Dividend Aristocrats (EUDV)', y2023: 18.39, y2024: 8.58, y2025: 20.06 },
+      // Corrigé le 25/09/2026 : 2024 8,58 → 8,55, ligne « Fund Net » EUR de State Street ; confiance élevée.
+      // https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy
+      { key: 'eudv', label: 'SPDR S&P Euro Dividend Aristocrats (EUDV)', y2023: 18.39, y2024: 8.55, y2025: 20.06 },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -663,12 +685,21 @@ export const FAMILIES = [
     // Morningstar, recherche générale), aucune contradiction rencontrée contrairement à d'autres
     // fonds de cette session.
     perfFunds: [
+      // Vérifié le 25/09/2026 : part USD, rendement total calendaire BlackRock ; confiance élevée.
+      // https://www.blackrock.com/fr/intermediaries/products/308751/ishares-msci-china-ucits-etf
       { key: 'msci_china', label: 'iShares MSCI China', y2023: -11.4, y2024: 19.2, y2025: 30.8 },
+      // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille Amundi ; confiance élevée.
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871078/FRA/FRA/INSTITUTIONNEL/ETF/20260228
       { key: 'amundi_pea_chine', label: 'Amundi PEA Chine (Screened)', y2023: -15.98, y2024: 17.15, y2025: 14.64 },
       // BlackRock, NAV USD de la part IE00B02KXK85, dividendes réinvestis ;
       // les anciens chiffres étaient exprimés en EUR sans distinction visible.
       // https://www.ishares.com/uk/individual/en/literature/fact-sheet/fxc-ishares-china-large-cap-ucits-etf-fund-fact-sheet-en-gb.pdf
-      { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)', y2023: -13.57, y2024: 31.03, y2025: 28.16 },
+      // Vérifié le 25/09/2026 : BlackRock part USD, affichage au dixième (-13,6/31,0/28,2).
+      // Anciens centièmes écartés faute de confirmation ; confiance élevée au dixième.
+      // https://www.blackrock.com/fr/particuliers/products/251798/ishares-china-large-cap-ucits-etf
+      { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)', y2023: -13.6, y2024: 31.0, y2025: 28.2 },
+      // Vérifié le 25/09/2026 : part USD, rendement total calendaire BlackRock ; confiance élevée.
+      // https://www.blackrock.com/fr/particuliers/products/273192/ishares-msci-china-a-ucits-etf
       { key: 'msci_china_a', label: 'iShares MSCI China A', y2023: -13.8, y2024: 11.3, y2025: 26.0 },
     ],
     perfMethodNote: 'ℹ️ Les parts iShares MSCI China, FTSE China 50 et MSCI China A sont en dollars ; Amundi PEA Chine est en euros. Comparer directement les rendements mélange les effets de change.',
@@ -747,7 +778,11 @@ export const FAMILIES = [
     // IE00B4L5YX21 en USD. Les deux autres ETF du tableau sont présentés en EUR : ne pas
     // juxtaposer les valeurs USD sans conversion et validation d'une série EUR comparable.
     perfFunds: [
-      { key: 'nikkei', label: 'Xtrackers Nikkei 225', y2023: 30.5, y2024: 20.9, y2025: 28.3 },
+      // Corrigé le 25/09/2026 : 2025 28,3 → 28,2, performance part 1C JPY DWS ; confiance élevée.
+      // https://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR
+      { key: 'nikkei', label: 'Xtrackers Nikkei 225', y2023: 30.5, y2024: 20.9, y2025: 28.2 },
+      // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 Amundi ; confiance élevée.
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20251231
       { key: 'topix', label: 'Amundi PEA Japon (TOPIX)', y2023: 15.27, y2024: 14.56, y2025: 10.22 },
       { key: 'msci_japan', label: 'iShares Core MSCI Japan IMI', y2023: null, y2024: null, y2025: null, perfNote: 'Historique absent du tableau : devise différente des séries présentées.' },
     ],

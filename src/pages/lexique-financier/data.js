@@ -10,6 +10,9 @@ export const TERMES = [
 /* ============ ENVELOPPES FISCALES (variante A · enveloppe) ============ */
 
 {
+  // Vérifié le 25/09/2026 : premier versement, délai de cinq ans et taux historiques ; confiance élevée.
+  // https://www.service-public.fr/particuliers/vosdroits/F2385
+  // https://www.impots.gouv.fr/particulier/lassurance-vie-et-le-pea-0
   id:"pea", categorie:"Enveloppes fiscales", titre:"le PEA", variante:"A", sousVariante:"enveloppe",
   intro:`Tu peux acheter un ETF mondial dans un PEA et garder un avantage fiscal après cinq ans. Encore faut-il choisir un fonds éligible et comprendre les règles de retrait.`,
   objectif:`Investir en bourse sur des actions européennes tout en profitant d'une fiscalité allégée après 5 ans.`,
@@ -21,11 +24,13 @@ export const TERMES = [
   ],
   attention:`Un retrait avant 5 ans clôture en principe le PEA (sauf exceptions, notamment la création ou la reprise d'entreprise) ; les gains retirés sont alors imposés. Après 5 ans, un retrait partiel ne clôture plus le plan.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Avant 5 ans, les gains sont taxés à la flat tax de 31,4%. Après 5 ans, ils ne sont plus soumis qu'aux prélèvements sociaux (18,6% depuis la hausse de la CSG au 1er janvier 2026), sans impôt sur le revenu.`,
-  avantage:`Le compteur des cinq ans part de l’ouverture du plan. Un petit premier versement peut donc lancer l’ancienneté sans t’obliger à investir tout de suite une grosse somme.`
+  fraisContenu:`Avant 5 ans, les gains retirés relèvent en principe du PFU de 31,4% (option globale possible pour le barème). Après 5 ans, ils sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux : 18,6% pour les gains acquis depuis 2026, avec des taux historiques possibles sur une partie des gains des anciens plans.`,
+  avantage:`Le compteur des cinq ans part du premier versement, qui fixe la date d’ouverture fiscale du plan. Un petit premier versement peut lancer l’ancienneté.`
 },
 
 {
+  // Vérifié le 25/09/2026 : PFU et imposition du gain réalisé ; confiance élevée.
+  // https://www.impots.gouv.fr/particulier/questions/jai-realise-une-plus-value-mobiliere-comment-est-elle-imposee
   id:"cto", categorie:"Enveloppes fiscales", titre:"le CTO", variante:"A", sousVariante:"enveloppe",
   intro:`Actions américaines, ETF sectoriels, obligations : le CTO te laisse accéder à des placements très variés, avec leur fiscalité propre.`,
   objectif:`Accéder à un large choix de titres selon ton courtier, sans plafond de versement.`,
@@ -39,6 +44,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Fiscalité des rachats, abattement annuel et taux sociaux des contrats ordinaires ; confiance élevée.
+  // https://www.impots.gouv.fr/particulier/lassurance-vie-et-le-pea-0
   id:"assurance-vie", categorie:"Enveloppes fiscales", titre:"l'assurance-vie", variante:"A", sousVariante:"enveloppe",
   intro:`Fonds en euros ou unités de compte ? Dans une assurance-vie, ces deux supports ne portent pas les mêmes risques et ne rapportent pas de la même façon.`,
   objectif:`Épargner et investir sur le long terme, en vue de la retraite ou pour transmettre un capital, avec une fiscalité qui s'améliore après 8 ans.`,
@@ -55,6 +62,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Déduction et sortie en capital selon les versements ; confiance élevée.
+  // https://www.service-public.fr/particuliers/vosdroits/F34982
   id:"per", categorie:"Enveloppes fiscales", titre:"le PER", variante:"A", sousVariante:"enveloppe",
   intro:`Verser sur un PER peut réduire ton impôt aujourd’hui. En échange, ton épargne est en principe destinée à rester investie jusqu’à la retraite.`,
   objectif:`Préparer sa retraite en réduisant son revenu imposable pendant la vie active.`,
@@ -71,6 +80,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : taux réglementé au 01/08/2026 ; confiance élevée.
+  // https://www.banque-france.fr/fr/a-votre-service/particuliers/connaitre-pratiques-bancaires-assurance/epargne/livret-a
   id:"livret-a", categorie:"Enveloppes fiscales", titre:"le Livret A", variante:"A", sousVariante:"enveloppe",
   intro:`Le Livret A répond à une question simple : où garder l’argent dont tu pourrais avoir besoin rapidement ?`,
   objectif:`Mettre de côté une épargne de sécurité immédiatement disponible, sans aucun risque de perte.`,
@@ -84,6 +95,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Plafond, disponibilité, exonération et taux lié au Livret A ; confiance élevée.
+  // https://www.service-public.fr/particuliers/vosdroits/F2368
   id:"ldds", categorie:"Enveloppes fiscales", titre:"le LDDS", variante:"A", sousVariante:"enveloppe",
   intro:`Ton Livret A est plein ? Le LDDS offre une autre place pour ton épargne disponible, avec son propre plafond.`,
   objectif:`Compléter son épargne de précaution une fois le Livret A rempli, avec les mêmes garanties.`,
@@ -96,21 +109,25 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Plafonds, blocage, taux historiques et anciens Perco ; confiance élevée.
+  // https://www.service-public.fr/particuliers/vosdroits/F2142
   id:"pee-perco", categorie:"Enveloppes fiscales", titre:"le PEE / PERCO", variante:"A", sousVariante:"enveloppe",
   intro:`Ton employeur ajoute parfois de l’argent à tes versements sur un plan d’épargne salariale. Les règles du plan déterminent ce que tu peux en faire.`,
   objectif:`Épargner via ton entreprise en profitant d'un abondement (de l'argent gratuit versé par l'employeur) et d'une fiscalité avantageuse.`,
   pourQui:`Ton employeur propose un plan d'épargne entreprise, en particulier s'il abonde tes versements.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
   mecanismeContenu:`✅ Fonds communs de placement d'entreprise (FCPE), souvent diversifiés en actions et obligations\n✅ Abondement de l'employeur, jusqu'à 300% de ton versement selon les accords, plafonné à 3 844,80€ par an sur un PEE en 2026\n❌ Argent bloqué 5 ans pour le PEE, jusqu'à la retraite pour le PERCO (sauf déblocage anticipé)`,
-  attention:`Avant de chercher à profiter de l'abondement, vérifie ses conditions, les supports proposés, leurs frais et la durée pendant laquelle tu peux te passer de cet argent.`,
+  attention:`Un nouveau Perco ne peut plus être mis en place depuis octobre 2020, mais les plans existants peuvent continuer à recevoir des versements. Avant de profiter de l'abondement, vérifie ses conditions, les supports proposés et la durée de blocage.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Les sommes versées via l'intéressement, la participation et l'abondement sont exonérées d'impôt sur le revenu. Seuls les prélèvements sociaux s'appliquent sur les gains (18,6% depuis la hausse de la CSG au 1er janvier 2026).`,
+  fraisContenu:`L'intéressement et la participation placés dans le plan, ainsi que l'abondement dans les limites légales, bénéficient en principe d'une exonération d'impôt sur le revenu. Les versements volontaires du salarié ne sont pas déductibles. À la sortie, les gains sont exonérés d'impôt sur le revenu, mais soumis aux prélèvements sociaux au taux applicable ; certains gains issus de versements antérieurs à 2018 gardent des taux historiques.`,
   avantage:`Commence par lire les règles de ton entreprise : le montant de l’abondement et les conditions de déblocage déterminent l’intérêt du plan.`
 },
 
 /* ============ PRODUITS & MARCHÉS (variante A · produit) ============ */
 
 {
+  // Vérifié le 25/09/2026 : Réplication, risque de swap et frais observés en 2025 ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf
   id:"etf", categorie:"Produits & marchés", titre:"les ETF", variante:"A", sousVariante:"produit",
   intro:`Avec un ETF, un seul achat peut te donner accès à de nombreuses entreprises. Reste à regarder l’indice qu’il suit réellement.`,
   objectif:`Investir de façon diversifiée et peu coûteuse, sans avoir à choisir toi-même les actions.`,
@@ -120,13 +137,15 @@ export const TERMES = [
   sectionsOptionnelles:[
     {titre:`🔀 Physique ou synthétique ?`, contenu:`Un ETF physique détient réellement les actions qui composent son panier.\n\nUn ETF synthétique, lui, ne les détient pas forcément : il passe un contrat d'échange (un "swap") avec une banque, qui s'engage à lui reverser la performance de l'indice visé.\n\nC'est ce qui permet par exemple de loger un ETF S&P 500 dans un PEA, normalement réservé aux actions européennes : l'ETF détient un panier d'actions européennes en garantie, et récupère la performance américaine via le swap.`}
   ],
-  attention:`Ça introduit un risque de contrepartie (que la banque fasse défaut), très encadré par la réglementation (collatéral, plafond de 10% par contrepartie) mais pas totalement nul.`,
+  attention:`La réplication synthétique introduit un risque de contrepartie lié au swap. La réglementation limite cette exposition, mais elle ne la supprime pas. Le risque principal d'un ETF actions reste la baisse du marché suivi.`,
   fraisTitre:`💰 Frais`,
-  fraisContenu:`Les ETF indiciels facturent un TER (frais de gestion annuel) souvent entre 0,05% et 0,40%, contre 1,5% à 2,5% en moyenne pour un fonds géré activement.`,
+  fraisContenu:`Les frais annuels d'un ETF indiciel sont généralement inférieurs à ceux d'un fonds actif comparable. L'AMF relève une moyenne de 0,33% pour les ETF d'indices actions en 2025 ; regarde aussi les frais de courtage et l'écart entre cours acheteur et vendeur.`,
   avantage:`Choisis d’abord l’indice et regarde ce que le fonds détient. Un TER bas ne compense pas une exposition qui ne correspond pas à ton objectif.`
 },
 
 {
+  // Vérifié le 25/09/2026 : Droits de vote, dividende et risque de perte ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/actions-obligations/actions/investir-en-actions-cotees-en-bourse
   id:"action", categorie:"Produits & marchés", titre:"une action", variante:"A", sousVariante:"produit",
   intro:`Acheter une action, c’est détenir une fraction d’une entreprise. Le résultat dépend alors de cette entreprise et du prix auquel tu l’achètes.`,
   objectif:`Investir directement dans une entreprise précise, pour profiter de sa croissance et éventuellement de ses dividendes.`,
@@ -143,6 +162,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Coupons, risque de défaut et sensibilité aux taux ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/actions-obligations/obligations/comprendre-les-obligations-avant-dinvestir
   id:"obligation", categorie:"Produits & marchés", titre:"une obligation", variante:"A", sousVariante:"produit",
   intro:`Avec une obligation, tu prêtes de l’argent à un État ou à une entreprise. Le montant promis ne supprime pas le risque de ne pas être remboursé.`,
   objectif:`Prêter de l'argent à un émetteur selon des conditions de rémunération et une échéance définies, en acceptant le risque de défaut.`,
@@ -159,19 +180,23 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Gestion collective active ou indicielle, valeur liquidative et frais ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/ce-quil-faut-savoir-sur-les-placements-collectifs-fonds-et-sicav
   id:"fcp", categorie:"Produits & marchés", titre:"un fonds commun de placement", variante:"A", sousVariante:"produit",
   intro:`Dans un fonds commun de placement, tu confies tes choix de titres à une équipe de gestion. Il faut ensuite regarder ce qu’elle achète et combien elle coûte.`,
-  objectif:`Déléguer la gestion de ton épargne à un professionnel qui sélectionne les actifs pour toi.`,
-  pourQui:`Tu préfères confier tes choix d'investissement à un gérant plutôt que les faire toi-même, et tu es prêt à payer des frais de gestion plus élevés pour ça.`,
+  objectif:`Investir collectivement selon une stratégie définie, active ou indicielle selon le fonds choisi.`,
+  pourQui:`Tu veux déléguer les choix d'investissement ou accéder à une stratégie collective, après avoir comparé la politique de gestion et les frais.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Le gérant du fonds collecte l'argent de tous les investisseurs et l'investit selon une stratégie définie (actions, obligations, secteur précis...). La valeur de ta part suit la valeur liquidative du fonds, calculée en général une fois par jour, contrairement à un ETF qui se négocie en continu.`,
+  mecanismeContenu:`La société de gestion regroupe l'argent des investisseurs et l'investit selon une stratégie définie (actions, obligations, secteur précis...). Un FCP peut être géré activement ou suivre un indice. La valeur de ta part suit la valeur liquidative du fonds, calculée à la fréquence prévue par sa documentation ; un ETF se négocie en bourse pendant les heures de cotation.`,
   attention:`Une gestion active ne garantit pas de battre son indice après frais. Pour juger un fonds, compare ses résultats à un indice pertinent, sur une même période et dans la même devise.`,
   fraisTitre:`💰 Frais`,
-  fraisContenu:`Frais de gestion annuels souvent entre 1,5% et 2,5%, parfois des frais d'entrée ou de sortie en plus.`,
+  fraisContenu:`Les frais de gestion varient selon la stratégie et le fonds ; une gestion active coûte souvent davantage qu'une gestion indicielle. Des frais d'entrée ou de sortie peuvent s'ajouter : compare les chiffres du document d'informations clés.`,
   avantage:`Compare la stratégie et les frais avec un ETF exposé au même marché. La gestion déléguée a un coût, à examiner sur la durée.`
 },
 
 {
+  // Vérifié le 25/09/2026 : taux moyen 2025/2024 auprès de l'ASPIM ; confiance élevée.
+  // https://www.aspim.fr/scpi-en-chiffres/
   id:"scpi", categorie:"Produits & marchés", titre:"la SCPI", variante:"A", sousVariante:"produit",
   intro:`Des loyers immobiliers sans gérer toi-même un appartement ? C’est ce que propose une SCPI, moyennant des frais et un risque de perte.`,
   objectif:`Percevoir des revenus locatifs réguliers sans les contraintes de la gestion immobilière directe.`,
@@ -189,6 +214,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Planchers de 60 % immobilier et 5 % liquidités, risques ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/opci-siic-les-autres-produits-de-la-pierre-papier
   id:"opci", categorie:"Produits & marchés", titre:"l'OPCI", variante:"A", sousVariante:"produit",
   intro:`Un OPCI associe de l’immobilier à des actifs financiers et des liquidités. Sa composition peut donc être très différente de celle d’une SCPI.`,
   objectif:`Investir dans un fonds immobilier qui détient aussi des actifs financiers et une poche de liquidités.`,
@@ -202,12 +229,14 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Sens du terme tracker, réplication et distinction ETF actif ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf
   id:"trackers", categorie:"Produits & marchés", titre:"les trackers", variante:"A", sousVariante:"produit",
   intro:`« Tracker » revient souvent dans les discussions sur les ETF. Derrière ce mot, on parle généralement d’un fonds coté qui suit un indice.`,
   objectif:`Suivre la performance d'un marché ou d'un secteur en un seul produit, sans sélectionner toi-même les titres.`,
   pourQui:`Tu veux investir simplement sur un indice (CAC 40, S&P 500, secteur tech...) sans multiplier les lignes dans ton portefeuille.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`"Tracker" est le terme historiquement utilisé en France, "ETF" (Exchange Traded Fund) est le terme international — ce sont les mêmes produits. Un tracker réplique un indice soit physiquement (en détenant les titres), soit synthétiquement (via un contrat d'échange avec une contrepartie), et se négocie en bourse en temps réel comme une action.`,
+  mecanismeContenu:`"Tracker" désigne couramment un ETF indiciel. Celui-ci suit un indice par réplication physique (avec des titres détenus par le fonds) ou synthétique (avec un contrat d'échange) et se négocie en bourse pendant les heures de cotation. Il existe aussi des ETF gérés activement, qui ne se limitent pas à suivre un indice.`,
   attention:`Le mot "tracker" est parfois utilisé abusivement pour désigner d'autres produits dérivés plus risqués — vérifie toujours qu'il s'agit bien d'un ETF réglementé (UCITS en Europe).`,
   fraisTitre:`💰 Frais`,
   fraisContenu:`Comme pour un ETF, un TER (frais de gestion annuel) généralement entre 0,05% et 0,40%.`,
@@ -217,6 +246,8 @@ export const TERMES = [
 /* ============ MÉCANISMES & STRATÉGIES (variante A · produit) ============ */
 
 {
+  // Vérifié le 25/09/2026 : Versements échelonnés et coût du capital non investi ; confiance élevée.
+  // https://corporate.vanguard.com/content/dam/corp/research/pdf/cost_averaging_invest_now_or_temporarily_hold_your_cash.pdf
   id:"dca", categorie:"Mécanismes & stratégies", titre:"le DCA (versement programmé)", variante:"A", sousVariante:"produit",
   intro:`Investir chaque mois la même somme évite de choisir une date parfaite à chaque achat. Cette habitude porte un nom : le DCA.`,
   objectif:`Lisser ton prix d'achat moyen dans le temps et limiter l'impact du timing de marché.`,
@@ -230,6 +261,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Multiplication des gains et pertes, protections selon le produit ; confiance élevée.
+  // https://www.amf-france.org/fr/effet-de-levier
   id:"effet-levier", categorie:"Mécanismes & stratégies", titre:"l'effet de levier", variante:"A", sousVariante:"produit",
   intro:`Tu investis plus que ta mise de départ grâce à un emprunt ou un produit financier. Les gains possibles grandissent, les pertes aussi.`,
   objectif:`Augmenter la taille de ta position au-delà de ton capital réellement disponible.`,
@@ -243,6 +276,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Réduction du risque spécifique par répartition des placements ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/conseils-pratiques/diversifier-ses-placements
   id:"diversification", categorie:"Mécanismes & stratégies", titre:"la diversification", variante:"A", sousVariante:"produit",
   intro:`Détenir dix lignes ne suffit pas si elles possèdent toutes les mêmes entreprises. La diversification se juge sur ce que tu détiens vraiment.`,
   objectif:`Réduire l'impact qu'un seul actif défaillant peut avoir sur l'ensemble de ton portefeuille.`,
@@ -256,12 +291,14 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Retour à la cible par versements ou arbitrages et impact fiscal ; confiance élevée.
+  // https://investor.vanguard.com/investor-resources-education/portfolio-management/rebalancing-your-portfolio
   id:"reequilibrage", categorie:"Mécanismes & stratégies", titre:"le rééquilibrage de portefeuille", variante:"A", sousVariante:"produit",
   intro:`Ton portefeuille était à 80 % en actions, puis les marchés ont bougé. Rééquilibrer, c’est décider s’il faut revenir à ta répartition de départ.`,
   objectif:`Maintenir le niveau de risque que tu avais choisi au départ, malgré les mouvements de marché qui déforment tes proportions.`,
   pourQui:`Tu as défini une répartition cible (par exemple 80% actions / 20% obligations) et tu veux t'y tenir dans la durée.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Si les actions montent fortement, leur poids dans ton portefeuille augmente au-delà de ta cible initiale, ce qui augmente ton risque sans que tu l'aies décidé. Rééquilibrer consiste à vendre une partie de ce qui a le plus monté pour racheter ce qui est sous-pondéré, afin de revenir à ta répartition cible — par exemple une fois par an.`,
+  mecanismeContenu:`Si les actions montent fortement, leur poids dans ton portefeuille augmente au-delà de ta cible initiale, ce qui augmente ton risque sans que tu l'aies décidé. Rééquilibrer consiste à revenir à ta répartition cible, par exemple avec tes nouveaux versements orientés vers les lignes sous-pondérées ou, si nécessaire, en vendant une partie des lignes devenues trop lourdes.`,
   attention:`Rééquilibrer trop souvent multiplie les frais et, hors enveloppe défiscalisée, peut déclencher de la fiscalité à chaque arbitrage.`,
   fraisTitre:`💰 Frais`,
   fraisContenu:`Frais de courtage à chaque arbitrage, et fiscalité potentielle sur les plus-values réalisées si tu es hors PEA ou assurance-vie.`,
@@ -269,6 +306,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Étude historique Vanguard, deux tiers des périodes et limites ; confiance élevée.
+  // https://corporate.vanguard.com/content/dam/corp/research/pdf/cost_averaging_invest_now_or_temporarily_hold_your_cash.pdf
   id:"dca-vs-lumpsum", categorie:"Mécanismes & stratégies", titre:"DCA vs lump sum", variante:"A", sousVariante:"produit",
   intro:`Tu reçois une somme importante : tout investir maintenant ou l’étaler sur plusieurs mois ? C’est la question derrière DCA et lump sum.`,
   objectif:`Choisir la méthode d'entrée sur le marché la plus adaptée à ta situation et à ta tolérance au risque immédiat.`,
@@ -276,7 +315,7 @@ export const TERMES = [
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Dans ses analyses historiques, Vanguard constate qu'investir en une fois a devancé l'investissement étalé dans environ deux tiers des périodes étudiées. Le résultat dépend des marchés, des dates et de la durée d'étalement : ce n'est pas une probabilité de gain pour ton prochain investissement. Le DCA réduit le risque d'investir toute la somme juste avant une forte baisse, au prix d'un temps où une partie de ton capital reste non investie.`,
   sectionsOptionnelles:[
-    {titre:`🔀 Un compromis possible`, contenu:`Beaucoup d'investisseurs choisissent une voie intermédiaire : étaler l'investissement sur 3 à 12 mois, pour limiter le risque de timing sans rester trop longtemps hors marché.`}
+    {titre:`🔀 Un compromis possible`, contenu:`Si investir toute la somme d'un coup te met mal à l'aise, tu peux définir à l'avance une durée courte d'étalement. Cela limite le risque d'une entrée juste avant une baisse, mais laisse temporairement une partie du capital non investie.`}
   ],
   fraisTitre:`💰 Frais`,
   fraisContenu:`Le lump sum limite les frais de courtage à une seule opération, quand un DCA étalé sur plusieurs mois en cumule davantage selon le courtier.`,
@@ -284,6 +323,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Vente et rachat de titres empruntés, asymétrie des pertes ; confiance élevée.
+  // https://www.amf-france.org/fr/vente-decouvert
   id:"vente-a-decouvert", categorie:"Mécanismes & stratégies", titre:"la vente à découvert", variante:"A", sousVariante:"produit",
   intro:`Parier sur une baisse en vendant d’abord, puis en rachetant plus tard : c’est le principe de la vente à découvert.`,
   objectif:`Générer un profit quand un actif baisse, à l'inverse d'un investissement classique.`,
@@ -297,6 +338,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Détachement du cours et fiscalité des dividendes selon enveloppe ; confiance élevée.
+  // https://www.amf-france.org/fr/le-mediateur-de-lamf/journal-de-bord-du-mediateur/dossiers-du-mois/quelle-date-sapprecie-la-qualite-dactionnaire-permettant-de-beneficier-du-droit-au-dividende-qui-y
   id:"dividende", categorie:"Mécanismes & stratégies", titre:"le dividende", variante:"A", sousVariante:"produit",
   intro:`Une entreprise peut verser une partie de son argent à ses actionnaires. Ce dividende arrive sur ton compte, mais il ne crée pas un gain à lui seul.`,
   objectif:`Recevoir un revenu régulier en plus de la performance du cours de l'action.`,
@@ -310,6 +353,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Différence capitalisation/distribution ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf
   id:"reinvestissement-dividendes", categorie:"Mécanismes & stratégies", titre:"le réinvestissement des dividendes", variante:"A", sousVariante:"produit",
   intro:`Que faire des dividendes reçus ? Les replacer peut accroître le nombre de parts détenues, si tu n’as pas besoin de ce revenu maintenant.`,
   objectif:`Laisser les revenus investis pour qu'ils participent à la performance future du portefeuille.`,
@@ -327,6 +372,8 @@ export const TERMES = [
 /* ============ CRYPTO (variante A · produit) ============ */
 
 {
+  // Vérifié le 25/09/2026 : Chaînage des blocs et preuve de travail Bitcoin ; généralisation aux autres réseaux nuancée, confiance moyenne.
+  // https://developer.bitcoin.org/devguide/block_chain.html
   id:"blockchain", categorie:"Crypto", titre:"la blockchain", variante:"A", sousVariante:"produit",
   intro:`Une blockchain garde une trace partagée de certaines opérations. Cela ne dit encore rien de la valeur des cryptomonnaies qui l’utilisent.`,
   objectif:`Permettre des échanges de valeur sans passer par un intermédiaire central comme une banque.`,
@@ -343,6 +390,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Parité visée et risque des réserves et du rachat ; confiance élevée sur la définition, moyenne sur les exemples.
+  // https://www.amf-france.org/fr/crypto-actif-ou-crypto-monnaie
   id:"stablecoin", categorie:"Crypto", titre:"le stablecoin", variante:"A", sousVariante:"produit",
   intro:`Un stablecoin vise souvent à suivre le dollar. « Stable » décrit son objectif, pas une garantie contre toute perte.`,
   objectif:`Détenir un jeton qui cherche à suivre une monnaie de référence, pour des transferts ou des opérations au sein de l'écosystème crypto.`,
@@ -350,7 +399,7 @@ export const TERMES = [
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Un stablecoin adossé au dollar cherche à maintenir une valeur proche de 1 dollar grâce aux réserves et aux possibilités de rachat prévues par son émetteur. La parité peut toutefois se rompre, et sa valeur en euros varie avec le taux de change euro-dollar. Vérifie les droits de rachat propres au jeton et à la plateforme utilisée.`,
   sectionsOptionnelles:[
-    {titre:`🔀 Adossé à des réserves ou algorithmique ?`, contenu:`Les stablecoins adossés à des réserves (USDC, USDT) détiennent des actifs réels en garantie. Les stablecoins algorithmiques tentent de maintenir leur parité par du code plutôt que des réserves — un modèle qui s'est déjà effondré plusieurs fois (ex : TerraUSD en 2022).`}
+    {titre:`🔀 Adossé à des réserves ou algorithmique ?`, contenu:`Les émetteurs de stablecoins adossés à des réserves, comme USDC ou USDT, déclarent détenir des actifs destinés à couvrir les jetons émis : vérifie leur composition et les modalités de rachat. Un mécanisme algorithmique cherche à maintenir la parité par des incitations ou des ajustements d'offre, avec un risque de rupture illustré par TerraUSD en 2022.`}
   ],
   attention:`La stabilité dépend entièrement de la confiance dans l'émetteur et de la réalité de ses réserves — un stablecoin n'est pas sans risque, contrairement à ce que son nom suggère.`,
   fraisTitre:`💰 Frais`,
@@ -359,13 +408,15 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Clés connectées/hors ligne et risques de garde ; prix matériels indicatif, confiance moyenne.
+  // https://www.amf-france.org/fr/espace-epargnants/proteger-son-epargne/crypto-actifs-bitcoin-etc/investir-en-crypto-actifs-les-precautions-pratiques
   id:"cold-hot-wallet", categorie:"Crypto", titre:"le cold wallet / hot wallet", variante:"A", sousVariante:"produit",
   intro:`Un wallet ne contient pas tes cryptos comme un porte-monnaie contient des pièces : il te donne accès aux clés qui permettent de les utiliser.`,
   objectif:`Sécuriser (cold) ou faciliter l'accès rapide (hot) à tes cryptomonnaies selon ton usage.`,
   pourQui:`Tu détiens des cryptomonnaies et tu dois choisir entre praticité au quotidien et sécurité maximale sur le long terme.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
-  mecanismeContenu:`Un hot wallet (application mobile, extension navigateur) reste connecté à internet, ce qui le rend pratique pour des transactions fréquentes mais plus exposé au piratage. Un cold wallet (clé USB dédiée, papier) stocke tes clés privées hors ligne, inaccessible à distance, ce qui le rend beaucoup plus sûr pour un stockage long terme mais moins pratique pour des opérations rapides.`,
-  attention:`"Not your keys, not your coins" : tant que tes cryptos restent sur une plateforme d'échange, tu ne détiens pas réellement tes clés privées, et donc pas réellement tes cryptos.`,
+  mecanismeContenu:`Un hot wallet (application mobile, extension navigateur) utilise des clés privées sur un système connecté, pratique pour des transactions fréquentes mais plus exposé aux attaques en ligne. Un cold wallet garde les clés hors ligne, par exemple sur un portefeuille matériel ; il réduit certains risques à distance mais reste exposé à la perte, au vol et aux erreurs de manipulation.`,
+  attention:`Si la plateforme conserve les clés pour toi, ton accès aux cryptos dépend aussi de sa sécurité et de sa capacité à te les restituer. Conserve soigneusement ta phrase de récupération si tu gères toi-même tes clés.`,
   fraisTitre:`💰 Frais`,
   fraisContenu:`Un cold wallet matériel coûte entre 50€ et 200€ à l'achat ; un hot wallet logiciel est généralement gratuit.`,
   avantage:`Si tu perds tes clés de récupération, tu peux perdre l’accès à tes actifs. La sécurité dépend aussi de la manière dont tu conserves cette phrase, hors de portée d’autrui.`
@@ -374,6 +425,8 @@ export const TERMES = [
 /* ============ IMMOBILIER (variante A · produit) ============ */
 
 {
+  // Vérifié le 25/09/2026 : Calcul brut, charges et fiscalité selon type de location ; confiance élevée.
+  // https://www.anil.org/outil-mise-en-location-simulation-investissement-immobilier-rendement/
   id:"rendement-locatif", categorie:"Immobilier", titre:"le rendement locatif", variante:"A", sousVariante:"produit",
   intro:`Un appartement encaisse des loyers, mais combien reste-t-il après toutes les dépenses ? Le rendement locatif commence par rapporter les loyers au prix du bien.`,
   objectif:`Évaluer si un investissement immobilier locatif est intéressant financièrement avant de l'acheter.`,
@@ -390,6 +443,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Dette, apport et flux locatifs ; exemple pédagogique hors frais, confiance moyenne.
+  // https://www.anil.org/votre-besoin/gerer-un-bien/bailleur/investissement-locatif/
   id:"effet-levier-immo", categorie:"Immobilier", titre:"l'effet de levier immobilier", variante:"A", sousVariante:"produit",
   intro:`Le crédit te permet d’acheter un bien sans en avancer tout le prix. Il ajoute aussi des mensualités à payer, même si les loyers manquent.`,
   objectif:`Démultiplier ta capacité d'investissement en utilisant l'argent de la banque plutôt que uniquement le tien.`,
@@ -403,6 +458,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : règles de plus-value et exceptions aux amortissements ; confiance élevée.
+  // https://www.service-public.fr/particuliers/vosdroits/F10864
   id:"lmnp", categorie:"Immobilier", titre:"le LMNP", variante:"A", sousVariante:"produit",
   intro:`Louer un logement meublé peut relever du statut LMNP. Pour comprendre son intérêt, il faut regarder comment les loyers sont imposés.`,
   objectif:`Optimiser la fiscalité d'un investissement locatif meublé grâce à l'amortissement comptable du bien.`,
@@ -412,7 +469,7 @@ export const TERMES = [
   sectionsOptionnelles:[
     {titre:`🔀 Régime micro-BIC ou réel ?`, contenu:`Pour une location meublée classique, le micro-BIC applique en principe un abattement forfaitaire de 50% ; le régime réel permet de déduire les charges et certains amortissements, sous conditions. Les meublés de tourisme non classés suivent un autre seuil et un autre taux d'abattement.`}
   ],
-  attention:`Depuis la loi de finances 2025, pour toute vente à partir du 15 février 2025, l'amortissement immobilier déduit doit être réintégré dans le calcul de la plus-value (y compris les amortissements pratiqués avant 2025), ce qui réduit l'intérêt du LMNP sur le très long terme. L'amortissement du mobilier n'est pas concerné, et les résidences services (étudiantes, seniors, EHPAD) restent exonérées.`,
+  attention:`Pour les ventes depuis le 15 février 2025, les amortissements immobiliers fiscalement déduits diminuent en principe le prix d'acquisition retenu pour calculer la plus-value. Certaines résidences de services sont exclues de cette réintégration : vérifie le type de résidence et les amortissements concernés avant de chiffrer une vente.`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`Loyers imposés dans la catégorie des BIC (bénéfices industriels et commerciaux), avec la possibilité de neutraliser l'impôt grâce à l'amortissement en régime réel.`,
   avantage:`Le choix entre micro-BIC et régime réel dépend des charges et de ta situation. Fais le calcul complet, y compris à la revente, avant de choisir.`
@@ -421,6 +478,8 @@ export const TERMES = [
 /* ============ INDICATEURS & NOTIONS (variante B) ============ */
 
 {
+  // Vérifié le 25/09/2026 : Baisse du sommet au creux et calcul illustratif ; confiance élevée.
+  // https://www.msci.com/documents/10199/54361618-43c2-878f-eeaa-0b237a13ce6d
   id:"drawdown", categorie:"Indicateurs & notions", titre:"le Drawdown", variante:"B",
   intro:`Ton placement monte puis perd une partie de sa valeur : jusqu’où est-il descendu avant de retrouver son sommet ? C’est ce que mesure le drawdown.`,
   definitionContenu:`Si ton portefeuille passe de 10 000€ à 7 000€ avant de remonter, ton drawdown a été de -30%, même si tu as fini l'année en gain.`,
@@ -432,6 +491,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Dispersion des rendements et absence de garantie de perte maximale ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/volatilite-des-placements-ce-quil-faut-savoir-0
   id:"volatilite", categorie:"Indicateurs & notions", titre:"la Volatilité", variante:"B",
   intro:`Une action qui monte de 5 % puis baisse de 6 % bouge beaucoup. La volatilité mesure l’ampleur de ces variations, dans les deux sens.`,
   definitionContenu:`Une action dont le cours varie de +/-1% par jour en moyenne est peu volatile. Une cryptomonnaie qui varie de +/-5% par jour est très volatile — même si les deux peuvent avoir la même performance sur un an.`,
@@ -444,17 +505,21 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Excédent de rendement sur taux sans risque rapporté à la volatilité ; confiance élevée.
+  // https://www.amf-france.org/sites/institutionnel/files/contenu_simple/rapport_annuel/rapport_annuel_amf/Rapport%20annuel%20AMF%202008%20-%20Chapitre%208%20-%20L%27AMF%20et%20les%20professionnels.pdf
   id:"ratio-sharpe", categorie:"Indicateurs & notions", titre:"le Ratio de Sharpe", variante:"B",
   intro:`Deux placements gagnent autant, mais l’un connaît des variations bien plus fortes. Le ratio de Sharpe aide à lire cette différence.`,
   definitionContenu:`Deux placements peuvent afficher le même rendement de 8% par an, mais l'un avec deux fois moins de volatilité que l'autre. Le ratio de Sharpe compare leur rendement excédentaire rapporté à la volatilité, sur une période et avec un taux sans risque comparables.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
   calculContenu:`Ratio de Sharpe = (Rendement de l'actif − Taux sans risque) ÷ Volatilité de l'actif. Par exemple, un portefeuille qui rapporte 8% par an, avec un taux sans risque à 3% et une volatilité de 10%, a un ratio de Sharpe de (8−3)/10 = 0,5. Plus le ratio est élevé, meilleur est le couple rendement/risque.`,
   pourquoiImportant:`Il évite de se laisser impressionner par un rendement brut élevé sans se demander quel niveau de risque a été pris pour l'obtenir — deux stratégies au même rendement ne se valent pas si l'une est deux fois plus risquée.`,
-  erreurFrequente:`Un ratio de Sharpe se compare sur la même période et la même classe d'actifs — comparer le Sharpe d'un fonds obligataire à celui d'un ETF actions n'a pas vraiment de sens.`,
+  erreurFrequente:`Comparer deux ratios calculés sur des périodes, des devises ou des taux sans risque différents peut tromper. Même calculé de façon comparable, ce ratio ne décrit pas à lui seul les pertes extrêmes ni le risque de liquidité.`,
   aRetenir:`Il aide à comparer des stratégies sur une même période et avec une méthode cohérente. Un ratio passé ne promet pas la même efficacité demain.`
 },
 
 {
+  // Vérifié le 25/09/2026 : Frais courants intégrés au fonds, exemple arithmétique ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/les-frais-des-placements-financiers/comprendre-les-frais-des-placements-financiers
   id:"ter", categorie:"Indicateurs & notions", titre:"le TER (frais de gestion)", variante:"B",
   intro:`Sur un ETF, les frais annuels sont déjà intégrés dans la valeur de la part. Le TER indique leur niveau affiché.`,
   definitionContenu:`Un ETF avec un TER de 0,20% prélève 2€ par an pour 1 000€ investis, directement sur la valeur du fonds, sans que tu aies à payer quoi que ce soit toi-même.`,
@@ -466,6 +531,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Cours multiplié par actions en circulation ; confiance élevée.
+  // https://www.amf-france.org/fr/capitalisation-boursiere
   id:"capitalisation-boursiere", categorie:"Indicateurs & notions", titre:"la Capitalisation boursière", variante:"B",
   intro:`Comment mesurer la valeur d’une entreprise en Bourse ? Multiplie le prix d’une action par le nombre d’actions : tu obtiens sa capitalisation.`,
   definitionContenu:`Une entreprise dont l'action vaut 50€ avec 2 milliards d'actions en circulation a une capitalisation boursière de 100 milliards d'euros. Ce calcul donne une valeur au cours affiché, pas le prix certain d'un rachat de toute l'entreprise.`,
@@ -478,6 +545,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Composition et pondération des indices actions ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/comprendre-les-marches-financiers/les-marches-dactions-et-les-principaux-indices-en-france
   id:"indice-boursier", categorie:"Indicateurs & notions", titre:"un indice boursier", variante:"B",
   intro:`Le CAC 40 ou le S&P 500 affichent un chiffre, mais tu n’achètes pas directement ce chiffre. Un indice sert à suivre un ensemble de titres.`,
   definitionContenu:`Le CAC 40 suit 40 grandes valeurs sélectionnées sur Euronext Paris selon des critères de capitalisation et de liquidité ; le S&P 500 suit environ 500 grandes entreprises américaines. Quand on dit "la bourse a monté de 1%", on parle souvent de la variation d'un indice particulier.`,
@@ -489,6 +558,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Revenus distribués et variation de valeur, exemple arithmétique ; confiance élevée.
+  // https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/rendement-et-risque-des-placements-en-actions-0
   id:"rendement-vs-performance", categorie:"Indicateurs & notions", titre:"Rendement vs performance", variante:"B",
   intro:`Un placement te verse 5 % de revenu mais son cours baisse de 10 %. Le rendement affiché ne raconte qu’une partie du résultat.`,
   definitionContenu:`Une action à 100€ qui verse 3€ de dividende a un rendement de 3%. Si en plus son cours passe à 108€ dans l'année, sa performance totale est de 3% (dividende) + 8% (plus-value) = 11%.`,
@@ -500,6 +571,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Définition IPC et rendement réel, exemple arithmétique ; confiance élevée.
+  // https://www.insee.fr/fr/metadonnees/definition/c1557
   id:"inflation", categorie:"Indicateurs & notions", titre:"l'Inflation", variante:"B",
   intro:`Tes 100 € sont toujours sur ton compte, mais ils achètent moins qu’avant : c’est l’effet de l’inflation.`,
   definitionContenu:`Avec une inflation de 2% par an, un panier de courses à 100€ aujourd'hui coûtera environ 102€ dans un an, pour le même contenu.`,
@@ -511,6 +584,8 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Prix du crédit, taux nominaux et variables ; confiance élevée.
+  // https://data.ecb.europa.eu/methodology/what-are-interest-rates
   id:"taux-interet", categorie:"Indicateurs & notions", titre:"le Taux d'intérêt", variante:"B",
   intro:`Quand les taux changent, emprunter coûte plus ou moins cher et les placements existants peuvent changer de prix.`,
   definitionContenu:`À 4% par an, 10 000€ empruntés représentent 400€ d'intérêts sur une année si la somme reste entièrement due pendant douze mois. Sur un crédit amortissable, les intérêts diminuent à mesure que le capital est remboursé.`,
@@ -522,9 +597,11 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Référence €STR de la BCE à court terme et limite des obligations ; confiance élevée.
+  // https://www.ecb.europa.eu/stats/euro-short-term-rates/interest_rate_benchmarks/WG_euro_risk-free_rates/html/index.en.html
   id:"taux-sans-risque", categorie:"Indicateurs & notions", titre:"le Taux sans risque", variante:"B",
   intro:`Avant de prendre un risque, quel rendement pourrais-tu viser avec une référence considérée comme très sûre ? C’est le rôle du taux sans risque.`,
-  definitionContenu:`En zone euro, le taux sans risque de référence est souvent celui des obligations d'État allemandes (Bund) ou françaises (OAT) à court terme.`,
+  definitionContenu:`En euros à très court terme, l'€STR est un taux de référence couramment utilisé comme approximation du taux sans risque. Pour une durée plus longue, on choisit un repère de maturité comparable, en gardant à l'esprit qu'une obligation d'État comporte elle aussi des risques.`,
   calculTitre:`🧮 Comment ça se détermine ?`,
   calculContenu:`Ce n'est pas un calcul mais une référence de marché : le taux offert par un emprunteur considéré comme quasiment incapable de faire défaut, sur une durée donnée. Il sert de base de comparaison à tous les autres placements.`,
   pourquoiImportant:`Tout investissement plus risqué (actions, immobilier, obligations d'entreprise) doit en théorie offrir un rendement supérieur au taux sans risque, sinon le risque supplémentaire pris n'est pas rémunéré.`,
@@ -535,6 +612,8 @@ export const TERMES = [
 /* ============ FISCALITÉ FRANÇAISE (variante B) ============ */
 
 {
+  // Vérifié le 25/09/2026 : taux général du PFU sur cessions mobilières ; confiance élevée.
+  // https://www.impots.gouv.fr/particulier/questions/jai-realise-une-plus-value-mobiliere-comment-est-elle-imposee
   id:"flat-tax", categorie:"Fiscalité française", titre:"la Flat tax", variante:"B",
   intro:`Quand tu touches des revenus du capital, le PFU est souvent le mode d’imposition appliqué par défaut. Le barème reste une option à examiner.`,
   definitionContenu:`Une plus-value de 1 000€ réalisée sur un CTO est taxée à 31,4%, soit 314€ d'impôt, quel que soit ton niveau de revenu par ailleurs.`,
@@ -547,40 +626,49 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : date du premier versement et exonération après cinq ans ; confiance élevée.
+  // https://www.service-public.fr/particuliers/vosdroits/F2385
   id:"abattement-pea", categorie:"Fiscalité française", titre:"l'Abattement PEA après 5 ans", variante:"B",
   intro:`Après cinq ans de PEA, les gains peuvent être exonérés d’impôt sur le revenu. Les prélèvements sociaux, eux, restent à prendre en compte.`,
   definitionContenu:`Après 5 ans, les gains retirés d'un PEA sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux. Pour un gain de 10 000€ entièrement soumis au taux de 18,6%, ceux-ci représenteraient 1 860€ ; le taux effectif peut dépendre de la date à laquelle les gains ont été acquis.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
-  calculContenu:`La durée de 5 ans se compte à partir de la date d'ouverture du PEA, pas à partir de chaque versement individuel — un versement fait à la 4e année profite déjà de l'avantage dès que le PEA lui-même dépasse 5 ans.`,
+  calculContenu:`La durée de 5 ans se compte à partir du premier versement sur le PEA, qui fixe sa date d'ouverture fiscale, pas à partir de chaque versement individuel — un versement fait à la 4e année profite déjà de l'avantage dès que le PEA lui-même dépasse 5 ans.`,
   pourquoiImportant:`Cet avantage rend le PEA particulièrement puissant pour un horizon d'investissement long : plus tu le gardes ouvert après 5 ans, plus chaque euro de gain supplémentaire profite de cette fiscalité allégée.`,
   erreurFrequente:`Beaucoup pensent qu'un retrait avant 5 ans fait perdre tous les avantages du PEA de façon définitive — en réalité, cela clôture simplement le PEA (avec quelques exceptions), ce qui n'empêche pas d'en ouvrir un autre plus tard, mais sans conserver l'ancienneté acquise.`,
   aRetenir:`Après cinq ans, l’exonération d’impôt sur le revenu ne supprime pas les prélèvements sociaux sur les gains. Garde les deux notions distinctes.`
 },
 
 {
+  // Vérifié le 25/09/2026 : taux général, assurance-vie, taux historiques PEA et plus-value immobilière ; confiance élevée.
+  // https://www.impots.gouv.fr/particulier/lassurance-vie-et-le-pea-0
+  // https://www.service-public.fr/particuliers/vosdroits/F10864
   id:"prelevements-sociaux", categorie:"Fiscalité française", titre:"les Prélèvements sociaux", variante:"B",
   intro:`Un placement peut échapper à l’impôt sur le revenu tout en restant soumis aux prélèvements sociaux. Les deux calculs sont distincts.`,
-  definitionContenu:`Un gain de 5 000€ sur un CTO ou un PEA de moins de 5 ans est taxé à 18,6% de prélèvements sociaux, soit 930€ — contre 17,2% (860€) si ce même gain provient d'une assurance-vie, qui a gardé l'ancien taux.`,
+  definitionContenu:`Un gain de 5 000€ sur un CTO soumis au taux général de 18,6% supporte 930€ de prélèvements sociaux — contre 860€ au taux de 17,2% applicable aux produits des contrats d'assurance-vie ordinaires. Certains anciens PEA conservent des taux historiques sur une partie des gains.`,
   calculTitre:`🧮 Comment ça s'applique ?`,
   calculContenu:`Les prélèvements sociaux regroupent notamment la CSG, la CRDS et le prélèvement de solidarité. Leur mode de perception dépend du revenu et de l'enveloppe : certains sont prélevés par l'établissement financier, d'autres calculés lors de la déclaration.`,
-  nuance:{titre:`🔀 18,6% ou 17,2% selon l'enveloppe`, contenu:`Depuis la hausse de la CSG au 1er janvier 2026, le taux général est passé de 17,2% à 18,6% pour la plupart des revenus financiers (CTO, PEA, PER, crypto). L'assurance-vie, les PEL/CEL/PEP et les revenus immobiliers (loyers, plus-values immobilières) ont été explicitement exclus de cette hausse et restent à 17,2%.`},
+  nuance:{titre:`🔀 18,6% ou 17,2% selon le revenu`, contenu:`Depuis la hausse de la CSG au 1er janvier 2026, le taux général est passé de 17,2% à 18,6% pour plusieurs revenus financiers, notamment les gains de CTO. Les contrats d'assurance-vie ordinaires et les plus-values immobilières conservent le taux de 17,2%. La fiscalité des loyers dépend de leur catégorie (location nue ou meublée) ; certains anciens PEA conservent des taux historiques. Vérifie le produit et la date du gain.`},
   pourquoiImportant:`Contrairement à l'impôt sur le revenu, les prélèvements sociaux s'appliquent presque toujours, même dans les enveloppes les plus avantageuses fiscalement comme le PEA après 5 ans — c'est rarement ce taux qu'on peut réduire.`,
   erreurFrequente:`On présente parfois une enveloppe comme "totalement exonérée d'impôt" en oubliant les prélèvements sociaux, qui restent dus dans la quasi-totalité des cas — le Livret A fait figure d'exception.`,
   aRetenir:`Avant de calculer ton gain net, identifie l’enveloppe et la date concernées : le taux applicable peut différer selon le placement.`
 },
 
 {
+  // Vérifié le 25/09/2026 : Prix de cession, prix moyen pondéré et frais d’acquisition ; confiance élevée.
+  // https://bofip.impots.gouv.fr/bofip/3648-PGP.html/identifiant=BOI-RPPM-PVBMI-20-10-20-10-20191220
   id:"plus-value-imposable", categorie:"Fiscalité française", titre:"la Plus-value imposable", variante:"B",
   intro:`Tu vends un titre 120 € après l’avoir acheté 100 € : la somme imposable part du gain de 20 €, pas des 120 € reçus.`,
   definitionContenu:`Si tu as acheté une action 1 000€ et que tu la revends 1 300€, ta plus-value imposable est de 300€ — c'est uniquement ce gain qui est taxé, pas le montant total de la vente.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
-  calculContenu:`Plus-value imposable = Prix de vente − Prix d'achat (frais d'acquisition inclus). En cas de ventes multiples d'un même titre acheté à des prix différents, c'est le prix moyen pondéré d'acquisition (PMP) qui sert de référence, pas le prix du dernier achat.`,
+  calculContenu:`Plus-value imposable = prix de cession (diminué des frais de vente admissibles) − prix d'acquisition (augmenté des frais d'achat admissibles). Pour des titres identiques achetés à des prix différents, le prix moyen pondéré d'acquisition (PMP) sert de référence, pas le prix du dernier achat.`,
   pourquoiImportant:`Comprendre ce qui est réellement imposé évite de mal anticiper le montant net que tu récupères après une vente — beaucoup surestiment l'impôt en pensant qu'il porte sur le capital total retiré.`,
   erreurFrequente:`Beaucoup pensent être imposés sur la totalité de la somme retirée lors d'une vente, alors que seule la part correspondant au gain (la plus-value) est taxée, le capital initialement investi ne l'étant jamais une seconde fois.`,
   aRetenir:`Si tu revends plusieurs titres achetés à des prix différents, vérifie le prix de revient retenu. L’impôt ne se calcule pas sur tout le montant récupéré.`
 },
 
 {
+  // Vérifié le 25/09/2026 : taux et abattements de durée, résidence principale ; confiance élevée.
+  // https://www.service-public.fr/particuliers/vosdroits/F10864
   id:"plus-value-immobiliere", categorie:"Fiscalité française", titre:"la Plus-value immobilière", variante:"B",
   intro:`À la vente d’un bien immobilier, le gain éventuel suit des règles fiscales différentes selon le bien et sa durée de détention.`,
   definitionContenu:`Un bien acheté 200 000€ et revendu 280 000€ dix ans plus tard dégage une plus-value brute de 80 000€, avant application des abattements liés à la durée de détention.`,
@@ -593,13 +681,15 @@ export const TERMES = [
 },
 
 {
+  // Vérifié le 25/09/2026 : Règle des 210 000 blocs et réduction des émissions, prix non prévisible ; confiance élevée.
+  // https://bitcoin.org/fr/vocabulaire
   id:"halving", categorie:"Crypto", titre:"le Halving", variante:"B",
   intro:`Environ tous les quatre ans, la récompense de création des nouveaux bitcoins est divisée par deux. Ce mécanisme s’appelle le halving.`,
   definitionContenu:`En 2020, la récompense par bloc miné est passée de 12,5 à 6,25 bitcoins ; en 2024, elle est passée à 3,125 bitcoins. Le prochain halving est attendu vers 2028, avec une récompense de 1,5625 bitcoin.`,
   calculTitre:`🧮 Comment ça se déclenche ?`,
   calculContenu:`Le halving se déclenche tous les 210 000 blocs, soit environ tous les quatre ans au rythme moyen prévu par le protocole Bitcoin. Changer cette règle nécessiterait qu'une part suffisante du réseau adopte une autre version du logiciel.`,
   nuance:{titre:`🔀 Pourquoi ce mécanisme existe`, contenu:`Le halving réduit progressivement la création de nouveaux bitcoins. Selon les règles actuelles du protocole, l'offre totale tend vers 21 millions d'unités ; cela ne garantit aucune hausse de leur prix.`},
-  pourquoiImportant:`En réduisant le rythme de création de nouveaux bitcoins, le halving diminue la pression vendeuse mécanique des mineurs sur le marché — un facteur souvent cité pour expliquer les cycles de prix historiques du Bitcoin, sans que la causalité soit prouvée avec certitude.`,
+  pourquoiImportant:`Le halving rend prévisible la baisse du rythme de création de nouveaux bitcoins. Ce changement de l'offre nouvellement émise ne permet pas, à lui seul, de prévoir la demande ni le prix du bitcoin.`,
   erreurFrequente:`Beaucoup traitent le halving comme un signal d'achat garanti parce qu'il a précédé des hausses de prix par le passé — les performances passées après un halving ne garantissent en rien une répétition du même schéma.`,
   aRetenir:`La quantité de bitcoins nouvellement créés change selon une règle connue à l’avance. La réaction de leur prix, elle, reste imprévisible.`
 }

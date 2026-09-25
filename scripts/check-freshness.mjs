@@ -181,17 +181,23 @@ function scanTool(tool) {
     anchors.push({ line: i, name });
   }
 
-  const entries = [];
-  const allDeadlines = [];
-  for (let idx = 0; idx < anchors.length; idx++) {
-    const anchor = anchors[idx];
-    const nextLine = idx + 1 < anchors.length ? anchors[idx + 1].line : lines.length;
-
+  // Découper au début du commentaire de l'entrée suivante : sinon sa date et son URL
+  // sont attribuées à tort à la fiche précédente.
+  const starts = anchors.map((anchor) => {
     // Remonte au-dessus de l'ancre : accolade ouvrante seule sur sa ligne, puis commentaires
     // contigus au-dessus — pour couvrir "commentaire après l'accolade" ET "commentaire avant id:".
     let start = anchor.line;
     if (start > 0 && lines[start - 1].trim() === "{") start -= 1;
     while (start > 0 && /^\s*\/\//.test(lines[start - 1])) start -= 1;
+    return start;
+  });
+
+  const entries = [];
+  const allDeadlines = [];
+  for (let idx = 0; idx < anchors.length; idx++) {
+    const anchor = anchors[idx];
+    const start = starts[idx];
+    const nextLine = idx + 1 < anchors.length ? starts[idx + 1] : lines.length;
 
     const blockText = lines.slice(start, nextLine).join("\n");
     const { mostRecent, deadlines } = scanDatesInText(blockText);
