@@ -49,6 +49,8 @@ function ResultCard({ state, d, copied, onCopy }) {
   const monthShort = MONTHS_SHORT[parseInt(d.startYm.split('-')[1], 10) - 1]
   const yearLabel = d.startYm.split('-')[0]
   const endLabel = `${MONTHS_SHORT[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
+  const observedMonths = asset ? asset.points.filter((point) => ymIndex(point.date) >= ymIndex(d.startYm) && ymIndex(point.date) <= ymIndex(d.endYm)).length : 0
+  const simulatedMonths = asset ? ymIndex(d.endYm) - ymIndex(d.startYm) + 1 : 0
 
   // Vidéo uniquement : série réduite aux vrais points pour un actif à grain annuel (DCA bloqué,
   // donc toujours en mode lump ici) — la grille mensuelle complète de d.result (utilisée pour le
@@ -130,7 +132,8 @@ function ResultCard({ state, d, copied, onCopy }) {
       </div>
 
       <p className="ic-method-note">
-        Le versement unique achète au prix de départ ; en DCA, chaque versement mensuel achète au prix du mois. Les prix manquants entre points connus sont interpolés. Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Livret A et inflation sont estimés avec des taux annuels moyens.
+        {asset && <>Série en {currency} : {observedMonths} points présents dans le code sur {simulatedMonths} mois de simulation. {observedMonths < simulatedMonths ? 'Les mois sans point sont interpolés entre les points connus. ' : ''}{state.overridePriceRaw !== '' ? 'Le dernier prix a été saisi manuellement. ' : ''}</>}
+        Le versement unique achète au prix de départ ; en DCA, chaque versement mensuel achète au prix du mois. Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Livret A et inflation sont estimés avec des taux annuels moyens.
         {monthlyIndex ? ' Pour cet indice, la simulation part d’une clôture de décembre et relie uniquement les points annuels vérifiés ; elle ne représente pas la performance nette d’un ETF précis.' : ''}
       </p>
 
