@@ -982,6 +982,10 @@ export const ASSETS = [
     isin: "IE00BM8R0J59",
     // Contrôle individuel du proxy le 24/09/2026 : fonds américain QYLD, 2020-2025 ; la part UCITS date de novembre 2022. Confiance : proxy documenté, pas rendement du produit affiché.
     // Sources : https://assets-cms.globalxetfs.com/Statutory-Prospectus_Covered-Calls.pdf et https://globalxetfs.eu/funds/qyld
+    // Revue du 25/09/2026 : le tableau de performance de la page Global X est affiché par
+    // défaut pour la part USD capitalisante, distincte de l'ISIN distribuant ci-dessous.
+    // En l'absence de rendements calendaires vérifiés pour cette part distribuante,
+    // conserver le proxy américain sur les six années, sans attribuer ses chiffres au fonds UCITS.
     confidenceNote: '2020-2025 : historique NAV USD, dividendes réinvestis, de l’ETF américain Global X QYLD lancé en 2013, utilisé comme approximation. L’ETF UCITS a été lancé en novembre 2022 : il suit la variante BXNTU et ces rendements ne sont pas ceux de sa part UCITS. Risque de change pour un investisseur en euros.',
     r: [8.76, 10.34, -19.00, 22.82, 19.13, 9.31],
     desc: [
