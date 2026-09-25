@@ -50,7 +50,7 @@ Contrôle individuel du 25/09/2026 : 44/44 fiches relues. Les commentaires de da
 | plus-value-immobiliere | https://www.service-public.fr/particuliers/vosdroits/F10864 | Points cités contrôlés le 25/09/2026 ; voir sources et réserves dans data.js |
 | halving | https://bitcoin.org/fr/vocabulaire | Points cités contrôlés le 25/09/2026 ; voir sources et réserves dans data.js |
 
-Portefeuilles : 71 supports, dont 3 sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.
+Portefeuilles : 71 supports, dont 0 sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.
 Calculateur : 24 actifs, dont 6 sans date individuelle ; les six séries mensuelles ont été validées par l'utilisateur à partir de ses propres exports.
 
 | Série mensuelle | Devise | Période | Points | Contrôle externe |

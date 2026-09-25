@@ -466,6 +466,11 @@ export const ASSETS = [
     // https://www.slickcharts.com/currency/ETH/returns
     // Cours spot uniquement : ne capte pas le staking de l'ETP CoinShares. 2020
     // précède son lancement en février 2021 et ne constitue pas son rendement.
+    // Vérifié le 25/09/2026 : les six rendements 2020-2025 et la convention de
+    // clôture annuelle correspondent au tableau Slickcharts ; l'émetteur CoinShares
+    // (https://coinshares.com/uk/etp/physical-ethereum/) confirme l'ISIN, le staking
+    // et le lancement le 23/02/2021. Confiance élevée pour le proxy spot USD,
+    // pas d'attribution de ces rendements à l'ETP lui-même.
     r: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
     confidenceNote: "Simulation sur le cours spot ETH/USD (Slickcharts), sans staking, frais ni change ; 2020 précède le lancement de l'ETP CoinShares et n'est pas sa performance.",
     desc: [
@@ -673,6 +678,9 @@ export const ASSETS = [
     isin: "FR0013416716",
     // Amundi FR0013416716, ligne ETC des années calendaires 2020-2025 en USD.
     // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013416716/ENG/FRA/INSTITUTIONNEL/AMUNDI
+    // Vérifié le 25/09/2026 : tableau "Calendar year performance / ETC" de la
+    // fiche Amundi au 31/08/2026, ISIN FR0013416716, devise USD : 2020-2025
+    // 23,98 / -3,89 / -0,54 / 13,66 / 26,44 / 64,80 %. Confiance élevée.
     r: [23.98, -3.89, -0.54, 13.66, 26.44, 64.80],
     confidenceNote: "Rendements de cet ETC Amundi publiés en dollars, nets de frais ; le change peut modifier le résultat en euros.",
     desc: [
@@ -1131,6 +1139,12 @@ export const ASSETS = [
     // nette de frais et suivant le même indice selon les émetteurs.
     // https://etf.dws.com/en/AssetDownload/Index/1ebf0fe4-b1c2-4d0f-a165-da75e3bcca7e/DWS-PASTPERF-LU1109943388-LU-en-2026-02-16.pdf
     // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/RETAIL/ETF
+    // Vérifié le 25/09/2026 : le PDF DWS "Past performance" de la part
+    // LU1109943388 donne 2020-2025 : 1,5 / 3,1 / -9,6 / 11,6 / 6,8 / 4,7 %.
+    // La fiche Amundi au 31/08/2026 confirme l'ISIN LU2970735911, le même
+    // indice Markit iBoxx EUR Liquid High Yield et l'absence d'années civiles
+    // complètes pour cette part créée en juillet 2025. Confiance élevée pour
+    // l'historique Xtrackers ; il reste un proxy, pas le rendement de la part Amundi.
     // À ne pas confondre avec l'autre fonds
     // Amundi "Euro High Yield Bond ESG UCITS ETF" (LU1215415214), qui réplique un indice ESG-screené
     // différent (iBoxx MSCI ESG EUR High Yield Corporates) et n'est donc pas un jumeau valide.
