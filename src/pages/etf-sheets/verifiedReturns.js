@@ -17,6 +17,8 @@ export const VERIFIED_RETURNS = {
   IE00BF0M2Z96: { currency: 'USD', values: [79.5, 15.9, -14.0, 8.1, -1.1, 72.2], source: 'https://docs.oppl.io/etf/IE00BF0M2Z96_19-02-2026.pdf' },
   IE00BYPLS672: { currency: 'USD', values: [42.0, 7.3, -31.7, 39.8, 17.7, 7.8], source: 'https://docs.oppl.io/etf/IE00BYPLS672_19-02-2026.pdf' },
   IE000I8KRLL9: { currency: 'USD', values: [null, null, -34.84, 64.13, 13.79, 53.46], source: 'https://www.ishares.com/uk/individual/en/literature/fact-sheet/semi-ishares-msci-global-semiconductors-ucits-etf-fund-fact-sheet-en-gb.pdf' },
+  IE000YYE6WK5: { currency: 'USD', values: [null, null, null, null, 43.5, 68.8], source: 'https://www.vaneck.com/fr/fr/dfns-supporting-doc.pdf' },
+  IE000RDRMSD1: { currency: 'USD', values: [null, null, null, 197.37, 17.67, 27.43], source: 'https://www.ishares.com/gls-download/literature/fact-sheet/blkc-ishares-blockchain-technology-ucits-etf-fund-fact-sheet-en-gb.pdf' },
   FR0010527275: { currency: 'EUR', values: [8.13, 33.41, -16.98, 19.15, 12.50, 0.37], source: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010527275/FRA/FRA/RETAIL/ETF/20251231' },
   LU1681048630: { currency: 'EUR', values: [24.74, 31.70, -18.82, 11.56, 5.07, 1.46], source: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/ENG/FRA/INSTITUTIONNEL/ETF/20251231' },
 }
