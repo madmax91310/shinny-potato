@@ -101,7 +101,7 @@ Les parts présentes dans un seul outil ne peuvent pas être comparées par ce s
 
 ## `audit-portfolio-provenance.mjs`
 
-Inventaire fermé des 72 supports du Générateur, par provenance du tableau annuel : part de fonds
+Inventaire fermé des 71 supports du Générateur, par provenance du tableau annuel : part de fonds
 recoupée chez l'émetteur, indice ou cours utilisé comme proxy, autre fonds/historique mixte,
 ou hypothèse générique.
 
@@ -110,7 +110,7 @@ npm run audit:portfolio-provenance
 ```
 
 Échoue lorsqu'un support n'est pas inventorié, qu'une série simulée n'a plus d'avertissement
-visible dans le tweet, ou qu'un support déclaré en USD perd son indication de devise. Recense
+visible dans l'interface, ou qu'un support déclaré en USD perd son indication de devise. Recense
 aussi les fonds lancés en cours d'historique et conserve une référence vers les fiches des fonds
 recoupés. Les 28 parts auparavant classées « série attribuée à une part » ont été revues auprès
 des émetteurs le 24/09/2026 ; plusieurs séries ont été corrigées, y compris les parts à levier,
@@ -132,8 +132,8 @@ QYLD dispose d'une série 2020-2025 complète issue de l'ETF américain Global X
 covered call existait déjà avant janvier 2020. Cette série est un proxy pour le fonds UCITS,
 lancé en novembre 2022 et lié à une variante de l'indice (BXNTU plutôt que BXNT).
 Les autres proxies sont l'argent converti en EUR à partir de la performance USD et des taux BCE,
-les small caps Europe simulées sur l'indice MSCI Europe Small Cap Net EUR (avant frais) et les
-obligations haut rendement Amundi simulées via la part iShares. Le
+les small caps Europe simulées via l'ETF SPDR suivant le même indice et les
+obligations haut rendement Amundi simulées via la part Xtrackers suivant le même indice. Le
 script conserve les références émetteur et ne classe pas ces proxies comme fonds vérifiés.
 
 Le troisième passage du 24/09/2026 recoupe les séries sur indice ou cours. Deux parts
@@ -158,8 +158,10 @@ publié en USD par Invesco (+65,0 % en 2025), avec une note explicite sur ce pro
 
 Une nouvelle vérification le 24/09/2026 a retrouvé les performances propres de WisdomTree or,
 WisdomTree Bitcoin et Bitwise Bitcoin. Bitwise n'a pas d'année calendaire complète en 2020 :
-elle reste absente. Les **cinq proxies résiduels** sont CoinShares Bitcoin, 21Shares Bitcoin,
-CoinShares Ether, Amundi PEA Monde et iShares petites capitalisations Europe. Les ETP encore
+elle reste absente. Les **cinq proxies de cours ou d'indice** sont CoinShares Bitcoin,
+21Shares Bitcoin, CoinShares Ether, Amundi PEA Monde et iShares petites capitalisations Europe.
+Ce décompte exclut QYLD UCITS, l'argent converti, Amundi High Yield et les années empruntées
+dans les historiques mixtes. Les ETP encore
 en proxy affichent le cours spot USD sans l'attribuer à leur ETP. Après les changements NAV,
 les allocations Crypto-Curieux Dynamique (18 % Bitcoin, 21 % or) et Thématique Équilibré
 (35 % secteur, 26 % or) sont de nouveau dans leurs bornes historiques.
@@ -188,6 +190,14 @@ seuls les historiques CoinShares Bitcoin, CoinShares Ethereum et 21Shares Bitcoi
 proxy spot : ce n'est **pas** une performance d'ETP et il ne comprend ni frais, ni change,
 ni récompenses de staking pour Ethereum. WisdomTree Bitcoin et Bitwise Bitcoin utilisent
 désormais leurs NAV propres ; DE000A27Z304 porte le nom officiel Bitwise Physical Bitcoin ETP.
+
+Revue QYLD du 25/09/2026 : la fiche officielle Global X confirme l'ISIN de la part
+**USD distribuante** IE00BM8R0J59 et son lancement en novembre 2022. Le tableau de
+performance affiché par défaut concerne toutefois la part **USD capitalisante** et ne
+fournit pas les rendements calendaires 2023-2025 de la part distribuante. Ses chiffres
+ne peuvent donc pas remplacer la série du générateur. Le proxy américain 2020-2025
+reste explicitement identifié dans l'interface ; aucun détail méthodologique n'est ajouté
+au tweet. Source : https://globalxetfs.eu/funds/qyld
 
 ## `check-freshness.mjs`
 
