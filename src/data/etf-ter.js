@@ -3,6 +3,15 @@
 // pas une nouvelle vérification chez l'émetteur. Mettre à jour ici puis contrôler
 // les mentions de frais dans les textes éditoriaux lors d'une modification.
 export const ETF_TER_BY_ISIN = Object.freeze({
+  // Or et crypto ajoutés le 25/09/2026 (nouvelle famille Comparateur d'indices + 2 fiches ETF) :
+  // TER confirmés via justETF/fiches émetteur (recherche web du 25/09/2026).
+  'CH0454664001': '1,49',
+  'DE000A27Z304': '2,00',
+  'GB00BJYDH287': '0,15',
+  'GB00BLD4ZL17': '0,15',
+  'GB00BLD4ZM24': '0,00',
+  'IE00B579F325': '0,12',
+  'JE00B1VS3770': '0,39',
   'DE000A0H08Q4': '0,46',
   'FR0010524777': '0,60',
   'FR0010527275': '0,60',

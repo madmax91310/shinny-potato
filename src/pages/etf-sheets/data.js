@@ -34,6 +34,7 @@ export const CATEGORY_ORDER = [
     "Thématiques émergentes",
     "Spatial",
     "Stratégiques",
+    "Matières premières & Crypto",
     "Obligataires"
   ];
 
@@ -43,6 +44,7 @@ export const CATEGORY_EMOJI = {
     "Thématiques émergentes": "🟠",
     "Spatial": "🚀",
     "Stratégiques": "🟣",
+    "Matières premières & Crypto": "🟡",
     "Obligataires": "⚪"
   };
 
@@ -752,6 +754,63 @@ export const ETFS = [
       whatToKnow: "Les tendances se retournent. La composition peut changer aux rééquilibrages et le fonds peut acheter après une hausse, puis vendre après une baisse.",
       verdict: "Il renforce les titres dont la tendance récente est favorable. Cette règle peut se retourner lorsque les leaders changent rapidement.",
       question: "Tu pourrais conserver un ETF momentum après un retournement brutal des valeurs en tête ?"
+    },
+
+    // ---------- MATIÈRES PREMIÈRES & CRYPTO ----------
+    // Ajouté le 25/09/2026. Or et Bitcoin choisis comme représentants (même logique qu'ailleurs
+    // dans ce fichier : une fiche par exposition, pas par émetteur) — cohérents avec les choix
+    // déjà faits dans le Générateur de portefeuilles (ids "or" et "bitcoin") pour ne pas
+    // recréer un choix déjà tranché. TER et encours vérifiés via recherche web le 25/09/2026
+    // (justETF, fiches émetteur), ISIN et rendements repris tels quels du Générateur (aucune
+    // nouvelle donnée de performance saisie ici — cf. CLAUDE.md, pas de duplication de données).
+    {
+      id: "or",
+      category: "Matières premières & Crypto",
+      name: "iShares Physical Gold ETC",
+      tickers: ["SGLN", "IGLN"],
+      isNew: false,
+      isin: "IE00B4ND3602",
+      ter: formatEtfTer("IE00B4ND3602", "sheet"),
+      // Encours et TER : recherche web du 25/09/2026 (justETF/fiches iShares). C'est le plus gros
+      // des 4 ETC or déjà identifiés dans le Comparateur d'indices (iShares/Invesco/Amundi à
+      // 0,12%, WisdomTree à 0,39%) — choisi pour cette raison, pas au hasard.
+      positions: "1 seul actif : le métal physique détenu en coffre — pas un panier de titres",
+      aum: "~34,3 Md€",
+      lastVerified: "25/09/2026",
+      distribution: "Capitalisant (pas de revenu versé — l'or n'en génère aucun)",
+      pea: false,
+      cto: true,
+      location: "Irlande, adossé à de l'or physique alloué (pas de réplication synthétique)",
+      whatIs: "Chaque part de cet ETC correspond à une quantité d'or physique détenue en coffre pour le compte des porteurs. Ce n'est pas une action minière ni un fonds synthétique : le cours suit directement le cours spot de l'or, moins les frais.",
+      whyInteresting: "Historiquement, l'or a joué un rôle de valeur refuge en période d'inflation ou d'incertitude, et reste peu corrélé aux actions. C'est un moyen simple d'y être exposé sans acheter et stocker du métal toi-même.",
+      whatToKnow: "L'or ne verse aucun dividende ni coupon : sa seule source de gain est la variation de son cours. Ce cours peut aussi baisser, parfois plusieurs années de suite. Non éligible PEA, et le rendement en euros dépend aussi du taux de change €/$.",
+      verdict: "Une exposition directe et simple au métal physique, sans diversification interne — un seul actif, pas un panier de titres.",
+      question: "L'or, une assurance que tu gardes en petite dose ou une ligne que tu évites complètement ?"
+    },
+    {
+      id: "bitcoin",
+      category: "Matières premières & Crypto",
+      name: "CoinShares Physical Bitcoin ETP",
+      tickers: ["BITC"],
+      isNew: false,
+      isin: "GB00BLD4ZL17",
+      ter: formatEtfTer("GB00BLD4ZL17", "sheet"),
+      // Encours et TER : recherche web du 25/09/2026 (justETF/CoinShares). Choisi comme
+      // représentant car c'est le même émetteur/ISIN que le Générateur de portefeuilles utilise
+      // comme ligne principale ("bitcoin"), pas le moins cher dans l'absolu (WisdomTree égale son
+      // TER à 0,15%) mais celui déjà retenu ailleurs dans l'appli.
+      positions: "1 seul actif : le bitcoin détenu en garde institutionnelle — pas un panier de titres",
+      aum: "~1,4 Md€",
+      lastVerified: "25/09/2026",
+      distribution: "Capitalisant (pas de revenu versé)",
+      pea: false,
+      cto: true,
+      location: "Jersey, adossé à du bitcoin physiquement détenu (pas un produit dérivé/synthétique)",
+      whatIs: "Chaque part de cet ETP correspond à une quantité de bitcoin détenue par un dépositaire agréé pour le compte des porteurs. Ce n'est pas un contrat à terme ni un fonds qui réplique le bitcoin de façon synthétique.",
+      whyInteresting: "Ça permet de détenir une exposition au bitcoin sur un compte-titres classique, sans gérer soi-même un portefeuille crypto (clés privées, plateforme d'échange).",
+      whatToKnow: "Le bitcoin est extrêmement volatil : des variations de plusieurs dizaines de pourcents dans l'année, dans un sens comme dans l'autre, ne sont pas rares. Non éligible PEA. Aucun revenu versé, et la valeur peut tomber à une fraction de son point haut.",
+      verdict: "Une façon simple d'être exposé au bitcoin depuis un compte-titres, mais sans aucune diversification : un seul actif, à l'amplitude de variation parmi les plus fortes de cette bibliothèque.",
+      question: "Le bitcoin dans ton portefeuille : une conviction assumée ou une ligne que tu préfères éviter ?"
     },
 
     // ---------- OBLIGATAIRES ----------
