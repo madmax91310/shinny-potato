@@ -111,6 +111,30 @@ async function testTweetMidi(page) {
   record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
 }
 
+async function testConcreteCases(page) {
+  await page.goto(`${BASE}/cas-concrets`, { waitUntil: "networkidle" });
+  const choices = page.locator(".cc-choice");
+  const count = await choices.count();
+  await choices.nth(1).click();
+  const title = await choices.nth(1).locator("strong").innerText();
+  const selected = await choices.nth(1).getAttribute("aria-current");
+  const preview = await page.locator(".cc-preview").innerText();
+  const switched = selected === "true" && preview.includes(title);
+
+  // Force les deux mécanismes de copie à échouer pour vérifier le dernier recours visible.
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: () => Promise.reject(new Error("denied")) } });
+    document.execCommand = () => false;
+  });
+  await page.getByRole("button", { name: /Copier le texte/i }).click();
+  const manual = page.getByRole("textbox", { name: /Texte du cas concret à copier manuellement/i });
+  const visible = await manual.isVisible();
+  const sameText = (await manual.inputValue()) === (await page.locator(".cc-text").innerText());
+  const selection = await manual.evaluate((el) => el.selectionStart === 0 && el.selectionEnd === el.value.length);
+  record("Cas concrets", count > 1 && switched && visible && sameText && selection,
+    `${count} cas, sélection: ${switched}, repli de copie: ${visible && sameText && selection}`);
+}
+
 async function testIndexComparator(page) {
   await page.goto(`${BASE}/comparateur-indices`, { waitUntil: "networkidle" });
   const select = page.locator("select").first();
@@ -189,6 +213,7 @@ try {
   await testEtfSheets(page);
   await testBrokerComparator(page);
   await testTweetMidi(page);
+  await testConcreteCases(page);
   await testIndexComparator(page);
   await testFeeImpact(page);
   await testMarketFacts(page);
