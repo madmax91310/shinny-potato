@@ -200,7 +200,7 @@ function ManualComposer({
         onChange={(e) => onSearchChange(e.target.value)}
       />
       <div className="pg-manual-asset-list">
-        {available.slice(0, 40).map((a) => (
+        {available.map((a) => (
           <button key={a.id} type="button" className="pg-manual-asset-option" onClick={() => onAdd(a.id)}>
             <span>
               {a.emoji} {a.name}
