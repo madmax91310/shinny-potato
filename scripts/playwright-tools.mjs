@@ -78,6 +78,24 @@ async function testPortfolioGenerator(page) {
   record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, contenu rendu: ${hasContent}`);
 }
 
+async function testPortfolioDuels(page) {
+  await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
+  const select = page.locator('#pd-select');
+  let valid = (await select.locator('option').count()) === 4;
+  for (let index = 0; index < 4; index++) {
+    await select.selectOption(String(index));
+    const text = await page.locator('#pd-tweet').inputValue();
+    valid &&= /2020 · A/.test(text) && /2025 · A/.test(text) && /10 000 \$/.test(text) && !/NaN|undefined/.test(text);
+    valid &&= (await page.locator('.pd-table tbody tr').count()) === 6;
+  }
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    page.getByRole('button', { name: /Télécharger l’image PNG/i }).click(),
+  ]);
+  valid &&= download.suggestedFilename().endsWith('.png');
+  record('Duel de portefeuilles', valid, '4 duels, six années et image PNG');
+}
+
 async function testEtfSheets(page) {
   await page.goto(`${BASE}/fiches-etf`, { waitUntil: "networkidle" });
   const select = page.locator("select").first();
@@ -215,6 +233,7 @@ try {
 
   await testCalculateur(page);
   await testPortfolioGenerator(page);
+  await testPortfolioDuels(page);
   await testEtfSheets(page);
   await testBrokerComparator(page);
   await testTweetMidi(page);
