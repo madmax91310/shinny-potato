@@ -51,6 +51,7 @@ async function testCalculateur(page) {
   await page.waitForTimeout(150);
   const hero = await page.locator(".ic-hero-number").innerText();
   const heroOk = /\d/.test(hero);
+  const priceContextOk = /Série en USD : \d+ points présents dans le code sur \d+ mois/.test(await page.locator('.ic-method-note').innerText());
 
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
@@ -58,8 +59,8 @@ async function testCalculateur(page) {
   const badgeOk = /non vérifiées avant/.test(text);
   const dcaBlockOk = /DCA non disponible pour LVMH/.test(text);
 
-  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk,
-    `résultat Bitcoin rendu: ${heroOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}`);
+  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk,
+    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}`);
 }
 
 async function testPortfolioGenerator(page) {
@@ -69,9 +70,12 @@ async function testPortfolioGenerator(page) {
   const pcts = await page.locator(".pg-alloc-pct").allInnerTexts();
   const sum = pcts.reduce((s, t) => s + parseFloat(t), 0);
   const sumOk = Math.abs(sum - 100) < 0.5;
+  const categoryPcts = await page.locator('.pg-category-summary strong').allInnerTexts();
+  const categorySum = categoryPcts.reduce((s, t) => s + parseFloat(t), 0);
+  const categoriesOk = categoryPcts.length > 0 && Math.abs(categorySum - 100) < 0.5;
   const cta = await page.locator("body").innerText();
   const hasContent = cta.length > 500;
-  record("Générateur de portefeuilles", sumOk && hasContent, `somme des lignes: ${sum.toFixed(1)}%, contenu rendu: ${hasContent}`);
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, contenu rendu: ${hasContent}`);
 }
 
 async function testEtfSheets(page) {
@@ -146,7 +150,8 @@ async function testIndexComparator(page) {
     const text = await page.locator(".xc-preview-text").innerText();
     if (/L'EXPOSITION/.test(text) && /DIVERSIFICATION/.test(text) && /PERFORMANCE/.test(text) && /LE VERDICT/.test(text) && !/à revérifier|vérifié le|non vérifi[ée]|à vérifier/i.test(text)) ok++;
   }
-  record("Comparateur d'indices", ok === count, `${ok}/${count} familles avec les 4 blocs clés`);
+  const distinctionOk = /ceux des ETF et parts nommés, pas les rendements bruts des indices/.test(await page.locator('.xc-control-col').innerText());
+  record("Comparateur d'indices", ok === count && distinctionOk, `${ok}/${count} familles avec les 4 blocs clés, distinction indice/ETF: ${distinctionOk}`);
 }
 
 async function testFeeImpact(page) {
