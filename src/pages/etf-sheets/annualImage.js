@@ -52,17 +52,31 @@ export function renderAnnualETFImage(etf) {
   ctx.font = 'bold 54px Georgia, serif'
   ctx.fillStyle = INK
   titleLines(ctx, etf.name).forEach((text, index) => ctx.fillText(text, 60, 180 + index * 60))
-  ctx.fillStyle = MUTED
-  ctx.font = '23px Arial, sans-serif'
-  ctx.fillText(`${etf.tickers.join(' / ')}   ·   ISIN ${etf.isin}`, 60, 346)
-  line(ctx, 60, 381, 1020)
+  const identifiers = [
+    { label: 'TICKER', value: etf.tickers.join(' / '), x: 60, width: 240 },
+    { label: 'ISIN', value: etf.isin, x: 320, width: 390 },
+    { label: 'FRAIS ANNUELS', value: etf.ter, x: 735, width: 285 },
+  ]
+  ctx.fillStyle = '#ece9e0'
+  ctx.fillRect(60, 279, 960, 111)
+  identifiers.forEach(({ label, value, x, width }, index) => {
+    if (index) { ctx.fillStyle = '#c8c7c0'; ctx.fillRect(x - 15, 298, 1, 72) }
+    ctx.fillStyle = MUTED
+    ctx.font = 'bold 18px Arial, sans-serif'
+    ctx.fillText(label, x + 16, 312)
+    ctx.fillStyle = index === 2 ? GREEN : INK
+    let size = 32
+    do { ctx.font = `bold ${size}px Arial, sans-serif`; size -= 1 } while (ctx.measureText(String(value)).width > width - 32 && size > 22)
+    ctx.fillText(String(value), x + 16, 362)
+  })
+  line(ctx, 60, 405, 1020)
 
   ctx.fillStyle = INK
   ctx.font = 'bold 39px Georgia, serif'
-  ctx.fillText('Performances annuelles', 60, 440)
+  ctx.fillText('Performances annuelles', 60, 464)
   ctx.fillStyle = MUTED
   ctx.font = '22px Arial, sans-serif'
-  ctx.fillText(`Part en ${series.currency} · ${points[0].year}–${points.at(-1).year}`, 60, 478)
+  ctx.fillText(`Part en ${series.currency} · ${points[0].year}–${points.at(-1).year}`, 60, 502)
 
   const positives = points.filter(({ value }) => value > 0)
   const negatives = points.filter(({ value }) => value < 0)
