@@ -1,7 +1,7 @@
 import { SHEETS } from '../src/pages/factsheet-tweets/data.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 
-if (SHEETS.length !== 7) throw new Error('Sept sujets attendus')
+if (SHEETS.length !== 11) throw new Error('Onze sujets attendus')
 for (const sheet of SHEETS) {
   const text = buildFactsheetTweet(sheet)
   const countries = sheet.countries.reduce((sum, [, weight]) => sum + weight, 0)
