@@ -107,7 +107,7 @@ export const TOOLS = [
     navLabel: 'Décryptage indices',
     title: 'Dans les coulisses des indices',
     icon: '🔎',
-    description: 'Sept indices et ETF décortiqués à partir de leurs fiches officielles, avec un texte modifiable avant publication.',
+    description: 'Onze indices et ETF décortiqués à partir de leurs fiches officielles, avec un texte modifiable avant publication.',
     status: 'disponible',
   },
 ]
