@@ -120,7 +120,17 @@ async function testEtfSheets(page) {
     const text = await page.locator("body").innerText();
     if (/undefined|NaN/.test(text)) badCount++;
   }
-  record("Fiches ETF", badCount === 0, `${count} fiches cyclées, ${badCount} avec un champ "undefined"/"NaN"`);
+  await select.selectOption('sp500');
+  await page.getByRole('button', { name: '📊 Image des performances' }).click();
+  const preview = page.getByRole('dialog', { name: 'Aperçu : Performances annuelles de l’ETF' });
+  const imageOk = (await preview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    preview.getByRole('button', { name: '⬇️ Télécharger' }).click(),
+  ]);
+  await preview.getByRole('button', { name: "Fermer l'aperçu" }).click();
+  record("Fiches ETF", badCount === 0 && imageOk && download.suggestedFilename() === 'sp500-performances-annuelles.png',
+    `${count} fiches cyclées, ${badCount} avec un champ "undefined"/"NaN", aperçu et téléchargement PNG`);
 }
 
 async function testBrokerComparator(page) {
