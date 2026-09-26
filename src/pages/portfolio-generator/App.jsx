@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef, useCallback } from 'react'
+import { useMemo, useState, useRef, useCallback, useEffect } from 'react'
 import {
   generatePortfolio,
   buildManualPortfolio,
@@ -11,6 +11,7 @@ import {
 } from './engine.js'
 import { CATEGORIES, YEARS, ASSETS, getAsset } from './data.js'
 import { renderPortfolioImage } from './canvasImage.js'
+import premiumBackdropUrl from './premiumBackdrop.js'
 import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -446,7 +447,13 @@ export default function App() {
   const [manualEditing, setManualEditing] = useState(true)
 
   const current = history[history.length - 1]
-  const imageDataUrl = useMemo(() => renderPortfolioImage(current).toDataURL('image/png'), [current])
+  const [imageBackground, setImageBackground] = useState(null)
+  useEffect(() => {
+    const background = new Image()
+    background.onload = () => setImageBackground(background)
+    background.src = premiumBackdropUrl
+  }, [])
+  const imageDataUrl = useMemo(() => renderPortfolioImage(current, imageBackground).toDataURL('image/png'), [current, imageBackground])
 
   const handleGenerate = useCallback(
     (riskOverride, profileOverride) => {
