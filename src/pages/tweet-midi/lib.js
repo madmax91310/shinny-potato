@@ -55,7 +55,7 @@ export const FORMAT_LABELS = {
 // jamais codée en dur) : sert à déterminer quels décalages "il y a X ans" restent dans la plage
 // réellement couverte par chaque actif. Le prix "actuel" du Format A, lui, n'est jamais dérivé de
 // cette date — il est saisi manuellement à chaque génération (cf. buildAnniversaireText).
-const TODAY = new Date();
+export const TODAY = new Date();
 
 // Sentinelle pour "pas de sujet précis choisi à l'étape 2" — ne collisionne avec aucun id réel
 // (termes du lexique, situations de dilemme, thématiques ETF).
