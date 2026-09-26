@@ -15,7 +15,7 @@ const exUsa = 'https://www.msci.com/documents/10199/255599/msci-world-ex-usa-ind
 export const SHEETS = [
   {
     id: 'acwi', title: 'MSCI ACWI', index: 'MSCI ACWI', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: acwi }],
-    intro: 'Le MSCI World porte bien son nom ? Il laisse pourtant de côté les marchés émergents. Le MSCI ACWI les intègre.',
+    intro: 'Tu connais le MSCI World. Le MSCI ACWI va plus loin en ajoutant les marchés émergents 🌍',
     constituents: 2458, markets: '23 pays développés et 24 marchés émergents', marketCap: '104 043 milliards $ de capitalisation ajustée du flottant',
     countries: [['🇺🇸 États-Unis', 63.59], ['🇯🇵 Japon', 5.09], ['🇹🇼 Taïwan', 3.25], ['🇬🇧 Royaume-Uni', 3.11], ['🇨🇦 Canada', 3.05], ['🌍 Autres', 21.91]],
     sectors: [['💻 Technologie', 31.20], ['🏦 Finance', 16.95], ['🏭 Industrie', 10.59], ['🛍️ Consommation discrétionnaire', 8.72], ['🏥 Santé', 8.49], ['📡 Communication', 7.69], ['🛒 Consommation de base', 4.65], ['⚡ Énergie', 4.01], ['🪨 Matériaux', 3.80], ['💡 Services publics', 2.33], ['🏠 Immobilier', 1.56]],
@@ -26,7 +26,7 @@ export const SHEETS = [
   },
   {
     id: 'ftse-all-world', title: 'FTSE All-World', index: 'FTSE All-World', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, FTSE Russell', url: allWorld }],
-    intro: 'FTSE All-World : un autre grand indice mondial. Derrière le nom, quelle place restent aux marchés hors États-Unis ?',
+    intro: 'Un autre indice permet de suivre les marchés développés et émergents : le FTSE All-World 🌍',
     constituents: 4264, markets: 'marchés développés et émergents', marketCap: '107 192 milliards $ de capitalisation flottante nette',
     countries: [['🇺🇸 États-Unis', 61.71], ['🇯🇵 Japon', 5.98], ['🇹🇼 Taïwan', 3.30], ['🇬🇧 Royaume-Uni', 3.20], ['🇨🇦 Canada', 3.00], ['🌍 Autres', 22.81]],
     sectors: [['💻 Technologie', 34.09], ['🏦 Finance', 15.49], ['🏭 Industrie', 12.31], ['🛍️ Consommation discrétionnaire', 11.04], ['🏥 Santé', 7.98], ['⚡ Énergie', 4.15], ['🛒 Consommation de base', 3.89], ['🪨 Matériaux de base', 3.44], ['📡 Télécommunications', 3.33], ['💡 Services publics', 2.55], ['🏠 Immobilier', 1.74]],
@@ -37,7 +37,7 @@ export const SHEETS = [
   },
   {
     id: 'world-small-cap', title: 'MSCI World Small Cap', index: 'MSCI World Small Cap', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: smallCap }],
-    intro: 'Le MSCI World regroupe de grandes et moyennes entreprises. Où sont passées les petites ? Dans un indice à part.',
+    intro: 'Le MSCI World laisse de côté les petites capitalisations. Le MSCI World Small Cap leur est consacré 🔎',
     constituents: 3866, markets: '23 pays développés, petites capitalisations', marketCap: '10 840 milliards $ de capitalisation ajustée du flottant',
     countries: [['🇺🇸 États-Unis', 61.76], ['🇯🇵 Japon', 12.58], ['🇬🇧 Royaume-Uni', 4.57], ['🇨🇦 Canada', 4.29], ['🇦🇺 Australie', 3.51], ['🌍 Autres', 13.29]],
     sectors: [['🏭 Industrie', 19.31], ['🏦 Finance', 14.68], ['💻 Technologie', 14.33], ['🏥 Santé', 11.11], ['🛍️ Consommation discrétionnaire', 10.11], ['🪨 Matériaux', 8.31], ['🏠 Immobilier', 7.51], ['⚡ Énergie', 5.08], ['🛒 Consommation de base', 4.00], ['📡 Communication', 3.04], ['💡 Services publics', 2.52]],
@@ -48,7 +48,7 @@ export const SHEETS = [
   },
   {
     id: 'world-ex-usa', title: 'MSCI World ex USA', index: 'MSCI World ex USA', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: exUsa }],
-    intro: 'À quoi ressemble le MSCI World si on enlève les États-Unis ? Le classement des pays et des secteurs change aussitôt.',
+    intro: 'Et si tu retirais les États-Unis du MSCI World ? C’est le principe du MSCI World ex USA 🌍',
     constituents: 755, markets: '22 pays développés, hors États-Unis', marketCap: '25 547 milliards $ de capitalisation ajustée du flottant',
     countries: [['🇯🇵 Japon', 20.73], ['🇬🇧 Royaume-Uni', 12.67], ['🇨🇦 Canada', 12.41], ['🇫🇷 France', 8.46], ['🇨🇭 Suisse', 8.09], ['🌍 Autres', 37.64]],
     sectors: [['🏦 Finance', 28.01], ['🏭 Industrie', 17.79], ['💻 Technologie', 10.10], ['🏥 Santé', 8.89], ['🛍️ Consommation discrétionnaire', 7.67], ['🪨 Matériaux', 7.52], ['🛒 Consommation de base', 6.13], ['⚡ Énergie', 5.41], ['📡 Communication', 3.57], ['💡 Services publics', 3.55], ['🏠 Immobilier', 1.37]],
@@ -59,7 +59,7 @@ export const SHEETS = [
   },
   {
     id: 'world', title: 'MSCI World', index: 'MSCI World', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: world }],
-    intro: 'Tout le monde connaît le MSCI World. Mais combien savent ce que contient vraiment cet indice ?',
+    intro: 'Tout le monde connaît le MSCI World. Mais connais-tu vraiment ce qu’il y a dedans ? 🌍',
     constituents: 1280, markets: '23 pays développés', marketCap: '91 705 milliards $ de capitalisation ajustée du flottant',
     countries: [['🇺🇸 États-Unis', 72.14], ['🇯🇵 Japon', 5.78], ['🇬🇧 Royaume-Uni', 3.53], ['🇨🇦 Canada', 3.46], ['🇫🇷 France', 2.36], ['🌍 Autres', 12.74]],
     sectors: [['💻 Technologie', 29.81], ['🏦 Finance', 16.58], ['🏭 Industrie', 11.13], ['🏥 Santé', 9.27], ['🛍️ Consommation discrétionnaire', 8.82], ['📡 Communication', 7.9], ['🛒 Consommation de base', 4.91], ['⚡ Énergie', 4.09], ['🪨 Matériaux', 3.47], ['💡 Services publics', 2.39], ['🏠 Immobilier', 1.64]],
@@ -70,7 +70,7 @@ export const SHEETS = [
   },
   {
     id: 'stoxx600', title: 'STOXX Europe 600', index: 'STOXX Europe 600', snapshot: '31 août 2026', source: [{ label: 'Factsheet STOXX, version EUR Price Return', url: 'https://stoxx.com/index/sxxp/?factsheet=true' }],
-    intro: '600 entreprises européennes dans un seul indice. Mais quel pays pèse vraiment le plus ?',
+    intro: 'Le STOXX Europe 600 rassemble 600 entreprises européennes. Mais comment le poids se partage-t-il entre les pays ? 🇪🇺',
     constituents: 600, markets: '17 pays européens développés', marketCap: '13 481 milliards € de capitalisation flottante',
     countries: [['🇬🇧 Royaume-Uni', 22.9], ['🇫🇷 France', 15.0], ['🇨🇭 Suisse', 13.7], ['🇩🇪 Allemagne', 13.4], ['🇳🇱 Pays-Bas', 7.9], ['🇪🇸 Espagne', 6.0], ['🇮🇹 Italie', 5.7], ['🌍 Autres', 15.4]],
     sectors: [['🏦 Banques', 15.7], ['🏭 Biens et services industriels', 15.4], ['🏥 Santé', 12.3], ['💻 Technologie', 8.9], ['⚡ Énergie', 6.5], ['🛡️ Assurance', 6.0], ['🛒 Alimentation et boissons', 4.9], ['💡 Services publics', 4.4], ['🛍️ Produits et services de consommation', 4.2], ['💰 Services financiers', 4.2]],
@@ -81,7 +81,7 @@ export const SHEETS = [
   },
   {
     id: 'eurostoxx50', title: 'EURO STOXX 50', index: 'EURO STOXX 50', snapshot: '31 août 2026', source: [{ label: 'Factsheet STOXX, version EUR Price Return', url: 'https://stoxx.com/index/sx5e/?factsheet=true' }],
-    intro: 'Le nom EURO STOXX 50 paraît familier. Sa concentration l’est beaucoup moins.',
+    intro: 'L’EURO STOXX 50 tient en 50 entreprises de la zone euro. Voici ce que cela donne dans la composition 🇪🇺',
     constituents: 50, markets: 'grandes entreprises de la zone euro', marketCap: '4 461 milliards € de capitalisation flottante',
     countries: [['🇫🇷 France', 31.7], ['🇩🇪 Allemagne', 30.2], ['🇳🇱 Pays-Bas', 13.5], ['🇪🇸 Espagne', 11.6], ['🇮🇹 Italie', 8.9], ['🇧🇪 Belgique', 2.8], ['🇫🇮 Finlande', 1.3]],
     sectors: [['🏦 Banques', 19.7], ['🏭 Biens et services industriels', 17.4], ['💻 Technologie', 15.8], ['⚡ Énergie', 7.5], ['🛡️ Assurance', 7.0], ['🛍️ Produits et services de consommation', 6.4], ['🏥 Santé', 5.4], ['💡 Services publics', 4.5], ['🧪 Chimie', 3.5], ['🚘 Automobiles', 2.6]],
@@ -92,7 +92,7 @@ export const SHEETS = [
   },
   {
     id: 'mscieurope', title: 'MSCI Europe', index: 'MSCI Europe', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: europe }],
-    intro: 'MSCI Europe : on imagine un panier équilibré de tous les pays européens. Regardons les poids réels.',
+    intro: 'Il existe un indice européen que peu de gens connaissent : le MSCI Europe 🇪🇺',
     constituents: 396, markets: '15 pays développés en Europe', marketCap: '12 453 milliards € de capitalisation ajustée du flottant',
     countries: [['🇬🇧 Royaume-Uni', 22.38], ['🇫🇷 France', 14.93], ['🇨🇭 Suisse', 14.29], ['🇩🇪 Allemagne', 13.99], ['🇳🇱 Pays-Bas', 8.79], ['🌍 Autres', 25.61]],
     sectors: [['🏦 Finance', 25.76], ['🏭 Industrie', 18.87], ['🏥 Santé', 12.70], ['💻 Technologie', 9.0], ['🛒 Consommation de base', 8.29], ['🛍️ Consommation discrétionnaire', 6.31], ['🪨 Matériaux', 5.55], ['⚡ Énergie', 4.96], ['💡 Services publics', 4.71], ['📡 Communication', 3.27], ['🏠 Immobilier', 0.60]],
@@ -104,7 +104,7 @@ export const SHEETS = [
   {
     id: 'em-esg', title: 'Émergents ESG (Amundi PEA)', index: 'MSCI EM ex-Egypt ESG Broad CTB Select', snapshot: '31 août 2026 (indice) · 30 juin 2026 (ETF)',
     source: [{ label: 'Composition de l’indice, MSCI', url: em }, { label: 'Performances de l’ETF, Amundi', url: emFund }, { label: 'Changement d’indice en 2023, Amundi', url: 'https://www.amundietf.fr/pdfDocuments/download/863110a3-3a8e-43e7-ac7c-eb509bd2b05f/NoticeToShareholders_FR0013412020_FRA_FRA_20230825.pdf' }], isin: 'FR0013412020',
-    intro: 'Émergents ESG : le nom évoque des dizaines de pays. Trois marchés concentrent pourtant l’essentiel de l’indice.',
+    intro: 'Cet ETF émergent éligible au PEA suit un indice ESG. Mais trois marchés y concentrent l’essentiel 🌏',
     constituents: 1048, markets: '23 marchés émergents, Égypte exclue',
     countries: [['🇹🇼 Taïwan', 27.75], ['🇰🇷 Corée du Sud', 20.83], ['🇨🇳 Chine', 20.71], ['🇮🇳 Inde', 11.15], ['🇧🇷 Brésil', 3.76], ['🌍 Autres', 15.80]],
     sectors: [['💻 Technologie', 41.72], ['🏦 Finance', 20.30], ['🛍️ Consommation discrétionnaire', 8.17], ['🏭 Industrie', 6.36], ['📡 Communication', 6.04], ['🪨 Matériaux', 5.77], ['🛒 Consommation de base', 3.22], ['⚡ Énergie', 3.08], ['🏥 Santé', 2.59], ['💡 Services publics', 1.45], ['🏠 Immobilier', 1.31]],
@@ -116,7 +116,7 @@ export const SHEETS = [
   {
     id: 'sp500-pea', title: 'S&P 500 (Amundi PEA)', index: 'S&P 500', snapshot: '30 juin 2026',
     source: [{ label: 'Composition et performances de l’ETF, Amundi', url: spFund }, { label: 'Méthodologie de l’indice, S&P DJI', url: 'https://www.spglobal.com/spdji/en/indices/equity/sp-500/' }], isin: 'FR0011871128',
-    intro: '500 entreprises américaines : c’est la promesse du S&P 500. Mais une poignée occupe déjà beaucoup de place.',
+    intro: 'Cet ETF S&P 500 est éligible au PEA. Voici la composition de l’indice qu’il suit 🇺🇸',
     constituents: 504, markets: 'États-Unis, selon la classification de la fiche Amundi',
     countries: [['🇺🇸 États-Unis', 100]],
     sectors: [['💻 Technologie', 37.37], ['🏦 Finance', 11.87], ['📡 Communication', 9.76], ['🛍️ Consommation discrétionnaire', 9.38], ['🏥 Santé', 9.07], ['🏭 Industrie', 8.88], ['🛒 Consommation de base', 4.68], ['⚡ Énergie', 3.02], ['💡 Services publics', 2.25], ['🏠 Immobilier', 1.88], ['🪨 Matériaux', 1.84]],
@@ -128,7 +128,7 @@ export const SHEETS = [
   {
     id: 'nasdaq-pea', title: 'Nasdaq 100 (Amundi PEA)', index: 'NASDAQ-100 Notional Net Total Return', snapshot: '31 août 2026',
     source: [{ label: 'Composition et performances de l’ETF, Amundi', url: nasFund }], isin: 'FR0011871110',
-    intro: 'Nasdaq 100 : « 100 » ne veut pas dire 100 poids identiques. Regardez les premières lignes.',
+    intro: 'Un ETF Nasdaq 100 éligible au PEA, mais quelle place prennent réellement ses premières entreprises ? 💻',
     constituents: 102, markets: 'grandes sociétés non financières cotées au Nasdaq',
     countries: [['🇺🇸 États-Unis', 94.78], ['🇮🇪 Irlande', 1.82], ['🇳🇱 Pays-Bas', 1.32], ['🇨🇦 Canada', 1.00], ['🇬🇧 Royaume-Uni', 0.66], ['🌍 Autres', 0.42]],
     sectors: [['💻 Technologie', 58.27], ['📡 Communication', 13.89], ['🛍️ Consommation discrétionnaire', 11.13], ['🛒 Consommation de base', 6.22], ['🏥 Santé', 4.01], ['🏭 Industrie', 3.62], ['💡 Services publics', 1.14], ['🪨 Matériaux', 1.00], ['⚡ Énergie', 0.52], ['🏦 Finance', 0.21]],
