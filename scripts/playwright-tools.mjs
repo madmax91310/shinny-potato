@@ -53,14 +53,35 @@ async function testCalculateur(page) {
   const heroOk = /\d/.test(hero);
   const priceContextOk = /Série en USD : \d+ points présents dans le code sur \d+ mois/.test(await page.locator('.ic-method-note').innerText());
 
+  const imageButton = page.getByRole('button', { name: '📊 Télécharger une image' });
+  await imageButton.click();
+  const monthlyPreview = page.getByRole('dialog', { name: 'Aperçu de l’image du placement' });
+  const monthlyImage = (await monthlyPreview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
+  const [monthlyDownload] = await Promise.all([
+    page.waitForEvent('download'),
+    monthlyPreview.getByRole('link', { name: '⬇️ Télécharger le PNG' }).click(),
+  ]);
+  await monthlyPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
+
+  await page.locator("select.ic-control").first().selectOption('ethereum');
+  await imageButton.click();
+  const annualPreview = page.getByRole('dialog', { name: 'Aperçu de l’image du placement' });
+  const annualImage = (await annualPreview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
+  const [annualDownload] = await Promise.all([
+    page.waitForEvent('download'),
+    annualPreview.getByRole('link', { name: '⬇️ Télécharger le PNG' }).click(),
+  ]);
+  await annualPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
+
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
   const badgeOk = /non vérifiées avant/.test(text);
   const dcaBlockOk = /DCA non disponible pour LVMH/.test(text);
 
-  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk,
-    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}`);
+  const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-ethereum-lump.png';
+  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk,
+    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}`);
 }
 
 async function testPortfolioGenerator(page) {
