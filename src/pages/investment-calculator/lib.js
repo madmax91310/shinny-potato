@@ -242,19 +242,25 @@ export function buildTweetText(state, d) {
   const gainPct = pct(d.result.finalValue, d.result.totalInvested)
   const finalFmt = fmtEUR(d.result.finalValue, currency)
   const amountFmt = fmtEUR(d.amount, currency)
+  const investmentLabel = d.isCustom ? assetLabel : asset.tweetPhrase
 
   const endLabel = `${MONTHS_FULL[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
   const gainAbs = d.result.finalValue - d.result.totalInvested
+  const endingQuestion = state.assetId === 'bitcoin'
+    ? 'Tu as du Bitcoin en portefeuille ?'
+    : `Tu as déjà investi dans ${d.isCustom ? assetLabel : asset.tweetPhrase} ?`
   const hookLine = d.effectiveMode === 'dca'
-    ? `Et si tu avais investi ${amountFmt} par mois sur ${assetLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
-    : `Et si tu avais investi ${amountFmt} sur ${assetLabel} en ${monthLabel} ${yearLabel} ? 🫢`
+    ? `Et si tu avais investi ${amountFmt} par mois dans ${investmentLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
+    : `Et si tu avais investi ${amountFmt} dans ${investmentLabel} en ${monthLabel} ${yearLabel} ? 🫢`
 
   const lines = [
     hookLine,
     '',
-    `${d.isCustom ? 'Avec les deux prix saisis' : state.overridePriceRaw !== '' ? `Au prix saisi, avec des versements jusqu'en ${endLabel}` : `Au dernier point disponible (${endLabel})`} : ${finalFmt} 💸`,
-    `Somme investie : ${fmtEUR(d.result.totalInvested, currency)}`,
-    `${gainAbs < 0 ? 'Perte' : 'Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)} (${fmtPct(gainPct)} de la somme investie)`,
+    `${d.isCustom ? 'Avec les deux prix saisis' : state.overridePriceRaw !== '' ? `Au prix saisi, avec des versements jusqu’en ${endLabel}` : `En ${endLabel}`} : ton placement vaudrait ${finalFmt} 💸`,
+    '',
+    `💰 Somme investie : ${fmtEUR(d.result.totalInvested, currency)}`,
+    `${gainAbs < 0 ? '📉 Perte' : '📈 Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)}`,
+    `${gainPct < 0 ? '🔻' : '🚀'} Performance : ${fmtPct(gainPct)}`,
   ]
   if (INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
     lines.push('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
@@ -272,7 +278,7 @@ export function buildTweetText(state, d) {
     lines.push('', `Avec les mêmes versements sur un Livret A : ${fmtEUR(d.livretA.finalValue, 'EUR')} (simulation indicative)`)
   }
   lines.push('', `📌 ${moraleLine(assetLabel, gainPct, hasLivretCompare, d.livretA.finalValue, d.result.finalValue)}`)
-  lines.push('', `💬 Tu aurais gardé ce placement jusqu'en ${endLabel} ?`)
+  lines.push('', `💬 ${endingQuestion}`)
 
   return lines.join('\n')
 }
