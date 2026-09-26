@@ -122,9 +122,9 @@ export function renderFactsheetImage(sheet) {
   stats.forEach(([stat, label], i) => {
     const x = i % 2 ? 736 : 424
     const y = i < 2 ? 325 : 413
-    const [statText, size] = fit(ctx, stat, i % 2 ? 292 : 282, 27, 17, 700)
+    const [statText, size] = fit(ctx, stat, i % 2 ? 292 : 282, 36, 23, 700)
     write(ctx, statText, x, y, size, WHITE, 700)
-    write(ctx, label, x, y + 40, 12, BRONZE, 700)
+    write(ctx, label, x, y + 43, 16, BRONZE, 700)
   })
 
   section(ctx, 514, '01', 'PAYS')
@@ -132,18 +132,18 @@ export function renderFactsheetImage(sheet) {
     const x = 52 + (i % 3) * 333
     const y = 561 + Math.floor(i / 3) * 38
     const label = countryName(name)
-    const [short, size] = fit(ctx, label, 175, 16, 13)
+    const [short, size] = fit(ctx, label, 175, 21, 16)
     write(ctx, short, x, y, size)
-    write(ctx, value(weight), x + 289, y, 16, BRONZE, 700, 'right')
+    write(ctx, value(weight), x + 289, y, 21, BRONZE, 700, 'right')
   })
 
   section(ctx, 664, '02', 'SECTEURS')
   sheet.sectors.forEach(([name, weight], i) => {
     const x = 52 + Math.floor(i / 6) * 507
     const y = 710 + (i % 6) * 37
-    const [short, size] = fit(ctx, name, 340, 17, 13)
+    const [short, size] = fit(ctx, name, 340, 22, 17)
     write(ctx, short, x, y, size)
-    write(ctx, value(weight), x + 465, y, 17, BRONZE, 700, 'right')
+    write(ctx, value(weight), x + 465, y, 22, BRONZE, 700, 'right')
   })
 
   section(ctx, 953, '03', 'DIX PREMIÈRES ENTREPRISES')
@@ -151,16 +151,16 @@ export function renderFactsheetImage(sheet) {
     const x = 52 + Math.floor(i / 5) * 507
     const y = 1001 + (i % 5) * 37
     write(ctx, String(i + 1).padStart(2, '0'), x, y + 1, 14, BRONZE)
-    const [short, size] = fit(ctx, name, 330, 18, 13)
+    const [short, size] = fit(ctx, name, 330, 22, 17)
     write(ctx, short, x + 35, y, size)
-    write(ctx, value(weight), x + 465, y, 17, SOFT, 700, 'right')
+    write(ctx, value(weight), x + 465, y, 21, SOFT, 700, 'right')
   })
 
   section(ctx, 1222, '04', 'PERFORMANCES ANNUELLES')
   sheet.returns.slice().reverse().forEach(([year, performance], i) => {
     const x = 52 + i * 201
-    write(ctx, year, x, 1275, 16, SOFT)
-    write(ctx, value(performance, true), x, 1308, 20, performance < 0 ? RED : WHITE, 700)
+    write(ctx, year, x, 1275, 20, SOFT)
+    write(ctx, value(performance, true), x, 1308, 25, performance < 0 ? RED : WHITE, 700)
   })
   rule(ctx, 1352, BRONZE)
   const [method, methodSize] = fit(ctx, sheet.performance.detail, 976, 14, 11)
