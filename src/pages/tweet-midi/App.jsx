@@ -6,6 +6,7 @@ import {
 import { getLengthStatus } from "../etf-tweets/lib/tweetFormat.js";
 import { getComparatifEtfTheme } from "./data/comparatifEtf.js";
 import { downloadComparatifEtfImage } from "./comparatifEtfImage.js";
+import { downloadPerformanceImage } from "./performanceImage.js";
 import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER } from "../purchasing-power/data.js";
 import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
@@ -210,11 +211,15 @@ export default function App() {
   }
 
   async function handleImageDownload() {
-    const theme = getComparatifEtfTheme(current.themeId);
-    if (!theme) return;
     setImageState('loading');
     try {
-      await downloadComparatifEtfImage(theme);
+      if (current.format === FORMATS.PERFORMANCE_DEPUIS) {
+        await downloadPerformanceImage(current);
+      } else {
+        const theme = getComparatifEtfTheme(current.themeId);
+        if (!theme) throw new Error('Thématique absente');
+        await downloadComparatifEtfImage(theme);
+      }
       setImageState('idle');
     } catch {
       setImageState('error');
@@ -600,7 +605,7 @@ export default function App() {
             <Button type="button" onClick={handleCopy} disabled={copyDisabled} className="self-start">
               {copied ? "Copié ✓" : copyDisabled ? "Renseigne le(s) niveau(x) actuel(s) pour copier" : "Copier le texte"}
             </Button>
-            {current.format === FORMATS.COMPARATIF_ETF && (
+            {(current.format === FORMATS.COMPARATIF_ETF || current.format === FORMATS.PERFORMANCE_DEPUIS) && (
               <Button type="button" variant="secondary" onClick={handleImageDownload} disabled={imageState === 'loading'} className="self-start">
                 {imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le PNG' : 'Télécharger l’image PNG'}
               </Button>
