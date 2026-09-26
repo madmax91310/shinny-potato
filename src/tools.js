@@ -102,4 +102,12 @@ export const TOOLS = [
     description: "Recycle tes meilleurs tweets déjà écrits : filtre par mois/catégorie/format, recherche libre, et repos de 45 jours après chaque publication pour épuiser le stock avant de répéter.",
     status: 'disponible',
   },
+  {
+    to: '/tweets-factsheets',
+    navLabel: 'Décryptage indices',
+    title: 'Dans les coulisses des indices',
+    icon: '🔎',
+    description: 'Sept indices et ETF décortiqués à partir de leurs fiches officielles, avec un texte modifiable avant publication.',
+    status: 'disponible',
+  },
 ]

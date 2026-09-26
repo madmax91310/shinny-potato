@@ -13,6 +13,7 @@ import FeeImpact from './pages/fee-impact/App'
 import MarketFacts from './pages/market-facts/App'
 import ConcreteCases from './pages/concrete-cases/App'
 import TweetBank from './pages/tweet-bank/App'
+import FactsheetTweets from './pages/factsheet-tweets/App'
 import { TOOLS } from './tools'
 
 // Tweets ETF, Lexique financier et Pouvoir d'achat n'ont plus de route dédiée : leurs pages
@@ -36,6 +37,7 @@ const TOOL_ELEMENTS = {
   '/faits-marquants-marches': <MarketFacts />,
   '/cas-concrets': <ConcreteCases />,
   '/banque-tweets': <TweetBank />,
+  '/tweets-factsheets': <FactsheetTweets />,
 }
 
 export default function App() {

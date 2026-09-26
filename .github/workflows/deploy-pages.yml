@@ -32,6 +32,7 @@ jobs:
       - run: npm run audit:publishable-content
       - run: npm run audit:source-inventory
       - run: npm run verify:tweet-midi
+      - run: npm run verify:factsheet-tweets
       - run: npm run stress-test:portfolios
       - run: npm run build
       - run: npx playwright install --with-deps chromium
