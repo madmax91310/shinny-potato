@@ -3,6 +3,7 @@ import { CATEGORY_ORDER, CATEGORY_EMOJI, ETFS } from './data'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
 import { buildText } from './lib'
 import { renderETFImage } from './canvasImage'
+import { renderAnnualETFImage } from './annualImage'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './etf-sheets.css'
@@ -118,7 +119,7 @@ function EtfCard({ etf }) {
   )
 }
 
-function Lightbox({ dataUrl, filename, onClose }) {
+function Lightbox({ dataUrl, filename, title, onClose }) {
   const [shareLabel, setShareLabel] = useState('📤 Partager / Enregistrer')
   const [downloadLabel, setDownloadLabel] = useState('⬇️ Télécharger')
 
@@ -144,9 +145,9 @@ function Lightbox({ dataUrl, filename, onClose }) {
           file = null
         }
         if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({ files: [file], title: 'Fiche ETF' })
+          await navigator.share({ files: [file], title })
         } else {
-          await navigator.share({ title: 'Fiche ETF' })
+          await navigator.share({ title })
         }
         setShareLabel('✅ Partagé')
       } catch (err) {
@@ -170,12 +171,12 @@ function Lightbox({ dataUrl, filename, onClose }) {
   return (
     <div className="es-lightbox">
       <div className="es-lightbox-backdrop" onClick={onClose} />
-      <div className="es-lightbox-panel" role="dialog" aria-modal="true" aria-label="Aperçu de l'image de la fiche">
+      <div className="es-lightbox-panel" role="dialog" aria-modal="true" aria-label={`Aperçu : ${title}`}>
         <button type="button" className="es-lightbox-close" aria-label="Fermer l'aperçu" onClick={onClose}>
           ✕
         </button>
         <div className="es-lightbox-imgwrap">
-          <img src={dataUrl} alt="Fiche ETF prête à être enregistrée" />
+          <img src={dataUrl} alt={`${title} prêt à être enregistré`} />
         </div>
         <p className="es-lightbox-hint">
           📱 Sur mobile : appuie longuement sur l'image puis choisis « Enregistrer l'image » pour l'ajouter à tes
@@ -201,6 +202,7 @@ export default function App() {
   const seenThisSession = useRef([currentId])
 
   const currentEtf = byId[currentId]
+  const currentAnnual = getAnnualPerformance(currentEtf)
 
   const optgroups = useMemo(
     () => CATEGORY_ORDER.map((cat) => ({ cat, etfs: ETFS.filter((e) => e.category === cat) })),
@@ -245,7 +247,12 @@ export default function App() {
 
   function generateImage() {
     const canvas = renderETFImage(currentEtf)
-    setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-fiche-etf.png' })
+    setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-fiche-etf.png', title: 'Fiche ETF' })
+  }
+
+  function generateAnnualImage() {
+    const canvas = renderAnnualETFImage(currentEtf)
+    setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-performances-annuelles.png', title: 'Performances annuelles de l’ETF' })
   }
 
   return (
@@ -276,8 +283,11 @@ export default function App() {
           {copied ? '✅ Copié !' : '📋 Copier le texte'}
         </Button>
         <Button type="button" variant="secondary" onClick={generateImage}>
-          🖼️ Générer l'image
+          🖼️ Image de la fiche
         </Button>
+        {currentAnnual?.values.filter(Number.isFinite).length >= 2 && <Button type="button" variant="secondary" onClick={generateAnnualImage}>
+          📊 Image des performances
+        </Button>}
       </div>
 
       <EtfCard etf={currentEtf} />
@@ -286,7 +296,7 @@ export default function App() {
         Contenu pré-rédigé, données stockées en dur — aucune donnée de marché en temps réel.
       </p>
 
-      {lightbox && <Lightbox dataUrl={lightbox.dataUrl} filename={lightbox.filename} onClose={() => setLightbox(null)} />}
+      {lightbox && <Lightbox {...lightbox} onClose={() => setLightbox(null)} />}
     </div>
   )
 }
