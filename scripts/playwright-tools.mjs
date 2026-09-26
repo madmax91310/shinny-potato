@@ -273,7 +273,7 @@ async function testFactsheetTweets(page) {
   const select = page.locator('#factsheet-subject');
   const draft = page.locator('#factsheet-draft');
   const count = await select.locator('option').count();
-  let ok = count === 7;
+  let ok = count === 11;
   for (let index = 0; index < count; index++) {
     await select.selectOption({ index });
     const tweet = await draft.inputValue();
