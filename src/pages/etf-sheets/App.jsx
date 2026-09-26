@@ -196,13 +196,14 @@ function Lightbox({ dataUrl, filename, title, onClose }) {
 }
 
 export default function App() {
-  const [currentId, setCurrentId] = useState('quantique')
+  const [currentId, setCurrentId] = useState('sp500')
   const [copied, setCopied] = useState(false)
   const [lightbox, setLightbox] = useState(null)
   const seenThisSession = useRef([currentId])
 
   const currentEtf = byId[currentId]
   const currentAnnual = getAnnualPerformance(currentEtf)
+  const hasAnnualImage = currentAnnual?.values.filter(Number.isFinite).length >= 2
 
   const optgroups = useMemo(
     () => CATEGORY_ORDER.map((cat) => ({ cat, etfs: ETFS.filter((e) => e.category === cat) })),
@@ -245,7 +246,7 @@ export default function App() {
     }
   }
 
-  function generateImage() {
+  function generateSummaryImage() {
     const canvas = renderETFImage(currentEtf)
     setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-fiche-etf.png', title: 'Fiche ETF' })
   }
@@ -282,12 +283,13 @@ export default function App() {
         <Button type="button" onClick={copyCurrent}>
           {copied ? '✅ Copié !' : '📋 Copier le texte'}
         </Button>
-        <Button type="button" variant="secondary" onClick={generateImage}>
-          🖼️ Image de la fiche
-        </Button>
-        {currentAnnual?.values.filter(Number.isFinite).length >= 2 && <Button type="button" variant="secondary" onClick={generateAnnualImage}>
-          📊 Image des performances
+        {hasAnnualImage && <Button type="button" onClick={generateAnnualImage}>
+          📊 Télécharger le graphique annuel
         </Button>}
+        <Button type="button" variant="secondary" onClick={generateSummaryImage}>
+          🖼️ Image récapitulative
+        </Button>
+        {!hasAnnualImage && <span className="es-image-hint">Graphique annuel indisponible pour cet ETF.</span>}
       </div>
 
       <EtfCard etf={currentEtf} />

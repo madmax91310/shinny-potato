@@ -133,6 +133,7 @@ async function testPortfolioDuels(page) {
 async function testEtfSheets(page) {
   await page.goto(`${BASE}/fiches-etf`, { waitUntil: "networkidle" });
   const select = page.locator("select").first();
+  const defaultEtf = await select.inputValue();
   const count = await select.locator("option").count();
   let badCount = 0;
   for (let i = 0; i < count; i++) {
@@ -142,7 +143,7 @@ async function testEtfSheets(page) {
     if (/undefined|NaN/.test(text)) badCount++;
   }
   await select.selectOption('sp500');
-  await page.getByRole('button', { name: '📊 Image des performances' }).click();
+  await page.getByRole('button', { name: '📊 Télécharger le graphique annuel' }).click();
   const preview = page.getByRole('dialog', { name: 'Aperçu : Performances annuelles de l’ETF' });
   const imageOk = (await preview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
   const [download] = await Promise.all([
@@ -150,8 +151,8 @@ async function testEtfSheets(page) {
     preview.getByRole('button', { name: '⬇️ Télécharger' }).click(),
   ]);
   await preview.getByRole('button', { name: "Fermer l'aperçu" }).click();
-  record("Fiches ETF", badCount === 0 && imageOk && download.suggestedFilename() === 'sp500-performances-annuelles.png',
-    `${count} fiches cyclées, ${badCount} avec un champ "undefined"/"NaN", aperçu et téléchargement PNG`);
+  record("Fiches ETF", badCount === 0 && defaultEtf === 'sp500' && imageOk && download.suggestedFilename() === 'sp500-performances-annuelles.png',
+    `${count} fiches cyclées, défaut ${defaultEtf}, ${badCount} avec un champ "undefined"/"NaN", aperçu et téléchargement PNG`);
 }
 
 async function testBrokerComparator(page) {
