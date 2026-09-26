@@ -85,7 +85,7 @@ function drawMonthly(ctx, d, currency) {
   ctx.font = 'bold 31px Georgia, serif'
   ctx.fillStyle = INK
   ctx.fillText('La valeur, mois après mois', 60, 621)
-  ctx.font = '19px Arial, sans-serif'
+  ctx.font = '23px Arial, sans-serif'
   ctx.fillStyle = GREEN
   ctx.fillRect(60, 644, 22, 4)
   ctx.fillStyle = MUTED
@@ -104,7 +104,7 @@ function drawMonthly(ctx, d, currency) {
   const maximum = niceStep * 4
   const x = (i) => left + (series.length === 1 ? 0 : i / (series.length - 1) * (right - left))
   const y = (v) => bottom - v / maximum * (bottom - top)
-  ctx.font = '18px Arial, sans-serif'
+  ctx.font = '21px Arial, sans-serif'
   ctx.textAlign = 'right'
   ctx.fillStyle = MUTED
   for (let n = 0; n <= 4; n++) {
@@ -145,7 +145,7 @@ function drawMonthly(ctx, d, currency) {
   ctx.arc(x(series.length - 1), y(series.at(-1)), 9, 0, 2 * Math.PI)
   ctx.fill()
   ctx.fillStyle = MUTED
-  ctx.font = 'bold 19px Arial, sans-serif'
+  ctx.font = 'bold 23px Arial, sans-serif'
   ctx.fillText(prettyMonth(d.startYm), left, 1136)
   ctx.textAlign = 'right'
   ctx.fillText(prettyMonth(d.endYm), right, 1136)
@@ -156,7 +156,7 @@ function drawAnnual(ctx, rows, d, currency) {
   ctx.font = 'bold 31px Georgia, serif'
   ctx.fillStyle = INK
   ctx.fillText(d.isCustom ? 'Performance sur la période' : 'Performances par année', 60, 621)
-  ctx.font = '19px Arial, sans-serif'
+  ctx.font = '23px Arial, sans-serif'
   ctx.fillStyle = MUTED
   ctx.fillText('Variation de la valeur du placement · axe en %', 60, 654)
   const positives = rows.filter(({ value }) => value > 0).map(({ value }) => value)
@@ -169,7 +169,7 @@ function drawAnnual(ctx, rows, d, currency) {
   const cell = 850 / rows.length
   ctx.textAlign = 'right'
   ctx.fillStyle = MUTED
-  ctx.font = '18px Arial, sans-serif'
+  ctx.font = '21px Arial, sans-serif'
   const ticks = [
     { value: maxPos, y: zero - up },
     { value: maxPos / 2, y: zero - up / 2 },
@@ -191,10 +191,10 @@ function drawAnnual(ctx, rows, d, currency) {
     const height = Math.max(2, value >= 0 ? value / maxPos * up : -value / maxNeg * down)
     ctx.fillStyle = value < 0 ? RED : GREEN
     ctx.fillRect(x - Math.min(112, cell * .62) / 2, value >= 0 ? zero - height : zero, Math.min(112, cell * .62), height)
-    ctx.font = `bold ${rows.length > 9 ? 17 : 22}px Arial, sans-serif`
+    ctx.font = `bold ${rows.length > 9 ? 20 : 26}px Arial, sans-serif`
     ctx.fillText(compactPct(value), x, value >= 0 ? zero - height - 17 : zero + height + 29)
     ctx.fillStyle = MUTED
-    ctx.font = `${rows.length > 9 ? 18 : 23}px Georgia, serif`
+    ctx.font = `${rows.length > 9 ? 20 : 26}px Georgia, serif`
     ctx.fillText(`${label}${partial && !d.isCustom ? '*' : ''}`, x, 1141)
   })
   ctx.textAlign = 'left'
@@ -237,12 +237,12 @@ export function renderInvestmentImage(state, d) {
   ctx.fillText(investmentLine, 540, 317)
   ctx.font = 'bold 23px Arial, sans-serif'
   ctx.fillStyle = BRONZE
-  ctx.fillText(d.effectiveMode === 'dca' ? `DCA MENSUEL · JUSQU’À ${prettyMonth(d.endYm).toUpperCase()}` : 'VERSEMENT UNIQUE', 540, 349)
+  ctx.fillText(d.effectiveMode === 'dca' ? `VERSEMENT MENSUEL · JUSQU’À ${prettyMonth(d.endYm).toUpperCase()}` : 'VERSEMENT UNIQUE', 540, 349)
   ctx.textAlign = 'left'
   ctx.fillStyle = '#fff'
   ctx.fillRect(60, 381, 960, 180)
   ctx.fillStyle = MUTED
-  ctx.font = 'bold 19px Arial, sans-serif'
+  ctx.font = 'bold 23px Arial, sans-serif'
   ctx.fillText(`VALEUR EN ${prettyMonth(d.endYm).toUpperCase()}`, 94, 423)
   ctx.fillStyle = INK
   fittedText(ctx, fmtEUR(d.result.finalValue, currency), 690, 'Georgia, serif', 56, 82)
@@ -252,11 +252,14 @@ export function renderInvestmentImage(state, d) {
   ctx.textAlign = 'right'
   ctx.fillText(fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 987, 424)
   ctx.textAlign = 'left'
+  ctx.fillStyle = MUTED
+  ctx.font = 'bold 21px Arial, sans-serif'
+  ctx.fillText(`CAPITAL INVESTI : ${fmtEUR(d.result.totalInvested, currency)}`, 94, 553)
   if (annual) drawAnnual(ctx, annualInvestmentReturns(state, d), d, currency)
   else drawMonthly(ctx, d, currency)
   rule(ctx, 1247)
   ctx.fillStyle = MUTED
-  ctx.font = '18px Arial, sans-serif'
+  ctx.font = '21px Arial, sans-serif'
   ctx.fillText(state.overridePriceRaw && !d.isCustom ? 'Valeur finale calculée avec le prix saisi · Historique, pas une prévision' : 'Évolution historique · Les performances passées ne préjugent pas des performances futures', 60, 1287)
   return canvas
 }
