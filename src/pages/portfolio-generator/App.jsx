@@ -10,6 +10,7 @@ import {
   isCompatible,
 } from './engine.js'
 import { CATEGORIES, YEARS, ASSETS, getAsset } from './data.js'
+import { renderPortfolioImage } from './canvasImage.js'
 import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -445,6 +446,7 @@ export default function App() {
   const [manualEditing, setManualEditing] = useState(true)
 
   const current = history[history.length - 1]
+  const imageDataUrl = useMemo(() => renderPortfolioImage(current).toDataURL('image/png'), [current])
 
   const handleGenerate = useCallback(
     (riskOverride, profileOverride) => {
@@ -538,6 +540,10 @@ export default function App() {
             <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
               {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
             </Button>
+          </div>
+          <div className="pg-image-preview">
+            <img src={imageDataUrl} alt={`Image de la répartition du portefeuille ${current.title}`} />
+            <a className="pg-image-download" href={imageDataUrl} download="repartition-portefeuille.png">⬇️ Télécharger l’image PNG</a>
           </div>
           <textarea ref={textareaRef} className="pg-clipboard-fallback" readOnly />
         </section>
