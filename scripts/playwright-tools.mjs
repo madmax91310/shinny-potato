@@ -86,6 +86,8 @@ async function testCalculateur(page) {
 
 async function testPortfolioGenerator(page) {
   await page.goto(`${BASE}/generateur-portefeuilles`, { waitUntil: "networkidle" });
+  const image = page.locator('.pg-image-preview img');
+  const firstImage = await image.getAttribute('src');
   await page.getByRole("button", { name: /Générer un nouveau portefeuille/i }).click();
   await page.waitForTimeout(200);
   const pcts = await page.locator(".pg-alloc-pct").allInnerTexts();
@@ -96,7 +98,13 @@ async function testPortfolioGenerator(page) {
   const categoriesOk = categoryPcts.length > 0 && Math.abs(categorySum - 100) < 0.5;
   const cta = await page.locator("body").innerText();
   const hasContent = cta.length > 500;
-  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, contenu rendu: ${hasContent}`);
+  const newImage = await image.getAttribute('src');
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    page.getByRole('link', { name: '⬇️ Télécharger l’image PNG' }).click(),
+  ]);
+  const imageOk = firstImage?.startsWith('data:image/png;base64,') && newImage?.startsWith('data:image/png;base64,') && firstImage !== newImage && download.suggestedFilename() === 'repartition-portefeuille.png';
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}`);
 }
 
 async function testPortfolioDuels(page) {
