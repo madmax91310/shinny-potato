@@ -7,8 +7,56 @@ const em = 'https://www.msci.com/documents/10199/255599/msci-em-ex-egypt-esg-lea
 const emFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260630'
 const spFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630'
 const nasFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF/20260831'
+const acwi = 'https://www.msci.com/documents/10199/255599/msci-acwi.pdf'
+const allWorld = 'https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open'
+const smallCap = 'https://www.msci.com/documents/10199/255599/msci-world-small-cap-index.pdf'
+const exUsa = 'https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf'
 
 export const SHEETS = [
+  {
+    id: 'acwi', title: 'MSCI ACWI', index: 'MSCI ACWI', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: acwi }],
+    intro: 'Le MSCI World porte bien son nom ? Il laisse pourtant de côté les marchés émergents. Le MSCI ACWI les intègre.',
+    constituents: 2458, markets: '23 pays développés et 24 marchés émergents', marketCap: '104 043 milliards $ de capitalisation ajustée du flottant',
+    countries: [['🇺🇸 États-Unis', 63.59], ['🇯🇵 Japon', 5.09], ['🇹🇼 Taïwan', 3.25], ['🇬🇧 Royaume-Uni', 3.11], ['🇨🇦 Canada', 3.05], ['🌍 Autres', 21.91]],
+    sectors: [['💻 Technologie', 31.20], ['🏦 Finance', 16.95], ['🏭 Industrie', 10.59], ['🛍️ Consommation discrétionnaire', 8.72], ['🏥 Santé', 8.49], ['📡 Communication', 7.69], ['🛒 Consommation de base', 4.65], ['⚡ Énergie', 4.01], ['🪨 Matériaux', 3.80], ['💡 Services publics', 2.33], ['🏠 Immobilier', 1.56]],
+    holdings: [['Nvidia', 4.90], ['Apple', 4.47], ['Microsoft', 3.44], ['Amazon', 2.42], ['Alphabet A', 1.90], ['TSMC', 1.80], ['Broadcom', 1.60], ['Alphabet C', 1.49], ['Meta', 1.21], ['Micron', 1.04]], topWeight: 24.26,
+    returns: [[2025, 22.87], [2024, 18.02], [2023, 22.81], [2022, -17.96], [2021, 19.04]], performance: { kind: 'indice', detail: 'MSCI ACWI, rendement brut en dollars, dividendes réinvestis', date: '31 août 2026', tenYear: 13.12 },
+    insight: 'Les émergents entrent dans le panier, mais les États-Unis représentent encore près de 64 % de l’indice.',
+    takeaway: 'Le MSCI ACWI couvre davantage de marchés que le MSCI World. « Tous pays » ne signifie pas « tous les titres » : les petites capitalisations restent à part.',
+  },
+  {
+    id: 'ftse-all-world', title: 'FTSE All-World', index: 'FTSE All-World', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, FTSE Russell', url: allWorld }],
+    intro: 'FTSE All-World : un autre grand indice mondial. Derrière le nom, quelle place restent aux marchés hors États-Unis ?',
+    constituents: 4264, markets: 'marchés développés et émergents', marketCap: '107 192 milliards $ de capitalisation flottante nette',
+    countries: [['🇺🇸 États-Unis', 61.71], ['🇯🇵 Japon', 5.98], ['🇹🇼 Taïwan', 3.30], ['🇬🇧 Royaume-Uni', 3.20], ['🇨🇦 Canada', 3.00], ['🌍 Autres', 22.81]],
+    sectors: [['💻 Technologie', 34.09], ['🏦 Finance', 15.49], ['🏭 Industrie', 12.31], ['🛍️ Consommation discrétionnaire', 11.04], ['🏥 Santé', 7.98], ['⚡ Énergie', 4.15], ['🛒 Consommation de base', 3.89], ['🪨 Matériaux de base', 3.44], ['📡 Télécommunications', 3.33], ['💡 Services publics', 2.55], ['🏠 Immobilier', 1.74]],
+    holdings: [['Nvidia', 4.79], ['Apple', 4.26], ['Microsoft', 3.51], ['Amazon', 2.35], ['Alphabet A', 1.84], ['TSMC', 1.72], ['Broadcom', 1.60], ['Alphabet C', 1.48], ['Meta', 1.17], ['Micron', 1.01]], topWeight: 23.73,
+    returns: [[2025, 23.1], [2024, 17.7], [2023, 22.6], [2022, -17.7], [2021, 18.9]], performance: { kind: 'indice', detail: 'FTSE All-World, rendement total en dollars, dividendes réinvestis ; secteurs selon la classification ICB de FTSE', date: '31 août 2026', annualizedFiveYear: 11.4 },
+    insight: 'Plus de 4 200 valeurs, mais les États-Unis pèsent toujours près de 62 %. Le nombre de titres ne dit pas tout de leur poids.',
+    takeaway: 'Il inclut les marchés émergents et les grandes et moyennes capitalisations. Ses secteurs ICB ne sont pas directement comparables aux secteurs GICS des fiches MSCI.',
+  },
+  {
+    id: 'world-small-cap', title: 'MSCI World Small Cap', index: 'MSCI World Small Cap', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: smallCap }],
+    intro: 'Le MSCI World regroupe de grandes et moyennes entreprises. Où sont passées les petites ? Dans un indice à part.',
+    constituents: 3866, markets: '23 pays développés, petites capitalisations', marketCap: '10 840 milliards $ de capitalisation ajustée du flottant',
+    countries: [['🇺🇸 États-Unis', 61.76], ['🇯🇵 Japon', 12.58], ['🇬🇧 Royaume-Uni', 4.57], ['🇨🇦 Canada', 4.29], ['🇦🇺 Australie', 3.51], ['🌍 Autres', 13.29]],
+    sectors: [['🏭 Industrie', 19.31], ['🏦 Finance', 14.68], ['💻 Technologie', 14.33], ['🏥 Santé', 11.11], ['🛍️ Consommation discrétionnaire', 10.11], ['🪨 Matériaux', 8.31], ['🏠 Immobilier', 7.51], ['⚡ Énergie', 5.08], ['🛒 Consommation de base', 4.00], ['📡 Communication', 3.04], ['💡 Services publics', 2.52]],
+    holdings: [['Sandisk', 2.08], ['Moderna', 0.43], ['ATI', 0.26], ['nVent Electric', 0.22], ['Tenet Healthcare', 0.21], ['US Foods', 0.21], ['Carpenter Technology', 0.21], ['Royal Gold', 0.20], ['Roku A', 0.19], ['Woodward', 0.19]], topWeight: 4.21,
+    returns: [[2025, 20.44], [2024, 8.65], [2023, 16.34], [2022, -18.37], [2021, 16.18]], performance: { kind: 'indice', detail: 'MSCI World Small Cap, rendement brut en dollars, dividendes réinvestis', date: '31 août 2026', tenYear: 10.80 },
+    insight: 'Les dix premières valeurs ne pèsent que 4,21 % : le profil est bien différent de celui du MSCI World classique.',
+    takeaway: '« Small Cap » décrit un segment de taille, pas une liste d’entreprises nécessairement petites en valeur absolue. L’indice exclut les émergents.',
+  },
+  {
+    id: 'world-ex-usa', title: 'MSCI World ex USA', index: 'MSCI World ex USA', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: exUsa }],
+    intro: 'À quoi ressemble le MSCI World si on enlève les États-Unis ? Le classement des pays et des secteurs change aussitôt.',
+    constituents: 755, markets: '22 pays développés, hors États-Unis', marketCap: '25 547 milliards $ de capitalisation ajustée du flottant',
+    countries: [['🇯🇵 Japon', 20.73], ['🇬🇧 Royaume-Uni', 12.67], ['🇨🇦 Canada', 12.41], ['🇫🇷 France', 8.46], ['🇨🇭 Suisse', 8.09], ['🌍 Autres', 37.64]],
+    sectors: [['🏦 Finance', 28.01], ['🏭 Industrie', 17.79], ['💻 Technologie', 10.10], ['🏥 Santé', 8.89], ['🛍️ Consommation discrétionnaire', 7.67], ['🪨 Matériaux', 7.52], ['🛒 Consommation de base', 6.13], ['⚡ Énergie', 5.41], ['📡 Communication', 3.57], ['💡 Services publics', 3.55], ['🏠 Immobilier', 1.37]],
+    holdings: [['ASML', 2.56], ['HSBC', 1.39], ['Roche', 1.20], ['Royal Bank of Canada', 1.12], ['Novartis', 1.09], ['Shell', 1.00], ['Nestlé', 0.98], ['Siemens', 0.96], ['Mitsubishi UFJ', 0.96], ['AstraZeneca', 0.96]], topWeight: 12.24,
+    returns: [[2025, 32.55], [2024, 5.26], [2023, 18.60], [2022, -13.82], [2021, 13.17]], performance: { kind: 'indice', detail: 'MSCI World ex USA, rendement brut en dollars, dividendes réinvestis', date: '31 août 2026', tenYear: 10.33 },
+    insight: 'Le Japon passe en tête avec plus de 20 %. La finance devient le premier secteur, devant l’industrie et la technologie.',
+    takeaway: 'Retirer les États-Unis modifie toute la répartition. Ce n’est pas pour autant un indice « tout sauf États-Unis » : seuls les marchés développés restent inclus.',
+  },
   {
     id: 'world', title: 'MSCI World', index: 'MSCI World', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: world }],
     intro: 'Tout le monde connaît le MSCI World. Mais combien savent ce que contient vraiment cet indice ?',
