@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "stress-test:portfolios": "node scripts/stress-test-portfolios.mjs",
     "verify:tweet-midi": "npx esbuild scripts/verify-tweet-midi.mjs --bundle --format=esm --platform=node | node --input-type=module",
+    "verify:factsheet-tweets": "node scripts/verify-factsheet-tweets.mjs",
     "audit:etf-consistency": "node scripts/audit-etf-consistency.mjs",
     "audit:etf-snapshots": "node scripts/audit-etf-snapshots.mjs",
     "audit:performance-consistency": "node scripts/audit-performance-consistency.mjs",

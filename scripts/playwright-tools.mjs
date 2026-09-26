@@ -268,6 +268,24 @@ async function testTweetBank(page) {
   record("Banque de tweets", ok, `total: ${totalBefore}, en repos après marquage: ${cooldownCount}, badge cooldown affiché: ${badge === 1}`);
 }
 
+async function testFactsheetTweets(page) {
+  await page.goto(`${BASE}/tweets-factsheets`, { waitUntil: 'networkidle' });
+  const select = page.locator('#factsheet-subject');
+  const draft = page.locator('#factsheet-draft');
+  const count = await select.locator('option').count();
+  let ok = count === 7;
+  for (let index = 0; index < count; index++) {
+    await select.selectOption({ index });
+    const tweet = await draft.inputValue();
+    ok &&= tweet.includes('2025') && /Les (principaux )?secteurs/.test(tweet);
+    ok &&= !/undefined|NaN/.test(tweet) && (await page.locator('.fs-sources a').count()) >= 1;
+  }
+  await draft.fill('Texte corrigé avant publication');
+  await page.getByRole('button', { name: /Rétablir le modèle/ }).click();
+  ok &&= (await draft.inputValue()).includes('2025');
+  record('Dans les coulisses des indices', ok, `${count} fiches, modification et réinitialisation vérifiées`);
+}
+
 let server;
 try {
   console.log(`Démarrage de vite preview sur le port ${PORT}...`);
@@ -295,6 +313,7 @@ try {
   await testFeeImpact(page);
   await testMarketFacts(page);
   await testTweetBank(page);
+  await testFactsheetTweets(page);
 
   await browser.close();
 } finally {

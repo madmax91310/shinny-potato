@@ -1,0 +1,14 @@
+.fs-scope { max-width: 970px; margin: auto; }
+.fs-panel { border: 1px solid #243246; border-radius: 18px; background: #101a2d; padding: clamp(18px, 4vw, 30px); margin-bottom: 18px; }
+.fs-label { display: block; font-weight: 700; color: #e7f6f3; margin-bottom: 12px; }
+.fs-panel select, .fs-panel textarea { width: 100%; background: #091224; color: #f1f5f9; border: 1px solid #3b5264; border-radius: 10px; padding: 12px; }
+.fs-panel select:focus, .fs-panel textarea:focus { outline: 2px solid #37cdbb; outline-offset: 2px; }
+.fs-meta { display: flex; flex-wrap: wrap; gap: 9px 20px; margin: 18px 0; color: #c4d3e1; font-size: 14px; }
+.fs-sources { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font-size: 13px; }
+.fs-sources strong { color: #e7f6f3; margin-right: 5px; }
+.fs-sources a { color: #5eead4; text-decoration: underline; text-underline-offset: 3px; }
+.fs-warning { margin: 19px 0 0; color: #aebdd0; line-height: 1.6; font-size: 13px; }
+.fs-editor-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #9fb3c9; font-size: 13px; }
+.fs-editor textarea { display: block; min-height: 620px; resize: vertical; font: 15px/1.55 system-ui, sans-serif; }
+.fs-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+@media (max-width: 600px) { .fs-editor textarea { min-height: 700px; } .fs-actions button { flex: 1 1 100%; } }

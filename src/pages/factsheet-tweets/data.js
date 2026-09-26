@@ -1,0 +1,92 @@
+// Relevé de fiches officielles, figé au 31 août 2026 (au 30 juin pour deux fonds).
+// Composition = indice sous-jacent, jamais les titres détenus par le fonds synthétique.
+// Les rendements du fonds sont les lignes « Portefeuille » des tableaux Amundi.
+const world = 'https://www.msci.com/documents/10199/255599/msci-world-index.pdf'
+const europe = 'https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf'
+const em = 'https://www.msci.com/documents/10199/255599/msci-em-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf'
+const emFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260630'
+const spFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630'
+const nasFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF/20260831'
+
+export const SHEETS = [
+  {
+    id: 'world', title: 'MSCI World', index: 'MSCI World', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: world }],
+    intro: 'Tout le monde connaît le MSCI World. Mais combien savent ce que contient vraiment cet indice ?',
+    constituents: 1280, markets: '23 pays développés', marketCap: '91 705 milliards $ de capitalisation ajustée du flottant',
+    countries: [['🇺🇸 États-Unis', 72.14], ['🇯🇵 Japon', 5.78], ['🇬🇧 Royaume-Uni', 3.53], ['🇨🇦 Canada', 3.46], ['🇫🇷 France', 2.36], ['🌍 Autres', 12.74]],
+    sectors: [['💻 Technologie', 29.81], ['🏦 Finance', 16.58], ['🏭 Industrie', 11.13], ['🏥 Santé', 9.27], ['🛍️ Consommation discrétionnaire', 8.82], ['📡 Communication', 7.9], ['🛒 Consommation de base', 4.91], ['⚡ Énergie', 4.09], ['🪨 Matériaux', 3.47], ['💡 Services publics', 2.39], ['🏠 Immobilier', 1.64]],
+    holdings: [['Nvidia', 5.56], ['Apple', 5.07], ['Microsoft', 3.90], ['Amazon', 2.74], ['Alphabet A', 2.15], ['Broadcom', 1.82], ['Alphabet C', 1.69], ['Meta', 1.37], ['Micron', 1.18], ['Tesla', 1.13]], topWeight: 26.61,
+    returns: [[2025, 21.60], [2024, 19.19], [2023, 24.42], [2022, -17.73], [2021, 22.35]], performance: { kind: 'indice', detail: 'MSCI World, rendement brut en dollars, dividendes réinvestis', date: '31 août 2026', tenYear: 13.56 },
+    insight: 'Le nom dit « World ». Les États-Unis pèsent pourtant plus de 72 % : ce n’est pas une répartition égale entre les pays.',
+    takeaway: 'Une seule ligne peut donner accès à 1 280 entreprises, mais les dix premières représentent déjà plus d’un quart de l’indice.',
+  },
+  {
+    id: 'stoxx600', title: 'STOXX Europe 600', index: 'STOXX Europe 600', snapshot: '31 août 2026', source: [{ label: 'Factsheet STOXX, version EUR Price Return', url: 'https://stoxx.com/index/sxxp/?factsheet=true' }],
+    intro: '600 entreprises européennes dans un seul indice. Mais quel pays pèse vraiment le plus ?',
+    constituents: 600, markets: '17 pays européens développés', marketCap: '13 481 milliards € de capitalisation flottante',
+    countries: [['🇬🇧 Royaume-Uni', 22.9], ['🇫🇷 France', 15.0], ['🇨🇭 Suisse', 13.7], ['🇩🇪 Allemagne', 13.4], ['🇳🇱 Pays-Bas', 7.9], ['🇪🇸 Espagne', 6.0], ['🇮🇹 Italie', 5.7], ['🌍 Autres', 15.4]],
+    sectors: [['🏦 Banques', 15.7], ['🏭 Biens et services industriels', 15.4], ['🏥 Santé', 12.3], ['💻 Technologie', 8.9], ['⚡ Énergie', 6.5], ['🛡️ Assurance', 6.0], ['🛒 Alimentation et boissons', 4.9], ['💡 Services publics', 4.4], ['🛍️ Produits et services de consommation', 4.2], ['💰 Services financiers', 4.2]],
+    holdings: [['ASML', 4.180], ['HSBC', 2.274], ['Roche', 1.959], ['Novartis', 1.855], ['Shell', 1.634], ['AstraZeneca', 1.607], ['Nestlé', 1.605], ['Siemens', 1.555], ['SAP', 1.432], ['Banco Santander', 1.380]],
+    returns: [[2025, 16.94], [2024, 6.05], [2023, 12.94], [2022, -13.04], [2021, 22.44]], performance: { kind: 'indice', detail: 'STOXX Europe 600, en EUR, hors dividendes (Price Return)', date: '31 août 2026', trailingOneYear: 18.4, annualizedFiveYear: 6.8 },
+    insight: 'Le Royaume-Uni arrive devant la France et l’Allemagne. « Europe » ne signifie pas uniquement zone euro.',
+    takeaway: 'Les banques et l’industrie pèsent chacun environ 15 % : la technologie n’est pas le moteur dominant ici.',
+  },
+  {
+    id: 'eurostoxx50', title: 'EURO STOXX 50', index: 'EURO STOXX 50', snapshot: '31 août 2026', source: [{ label: 'Factsheet STOXX, version EUR Price Return', url: 'https://stoxx.com/index/sx5e/?factsheet=true' }],
+    intro: 'Le nom EURO STOXX 50 paraît familier. Sa concentration l’est beaucoup moins.',
+    constituents: 50, markets: 'grandes entreprises de la zone euro', marketCap: '4 461 milliards € de capitalisation flottante',
+    countries: [['🇫🇷 France', 31.7], ['🇩🇪 Allemagne', 30.2], ['🇳🇱 Pays-Bas', 13.5], ['🇪🇸 Espagne', 11.6], ['🇮🇹 Italie', 8.9], ['🇧🇪 Belgique', 2.8], ['🇫🇮 Finlande', 1.3]],
+    sectors: [['🏦 Banques', 19.7], ['🏭 Biens et services industriels', 17.4], ['💻 Technologie', 15.8], ['⚡ Énergie', 7.5], ['🛡️ Assurance', 7.0], ['🛍️ Produits et services de consommation', 6.4], ['🏥 Santé', 5.4], ['💡 Services publics', 4.5], ['🧪 Chimie', 3.5], ['🚘 Automobiles', 2.6]],
+    holdings: [['ASML', 8.689], ['Siemens', 4.699], ['SAP', 4.329], ['Banco Santander', 4.170], ['TotalEnergies', 3.854], ['Allianz', 3.844], ['Schneider Electric', 3.811], ['BBVA', 3.161], ['UniCredit', 2.844], ['Iberdrola', 2.830]],
+    returns: [[2025, 18.60], [2024, 8.38], [2023, 19.51], [2022, -11.87], [2021, 21.17]], performance: { kind: 'indice', detail: 'EURO STOXX 50, en EUR, hors dividendes (Price Return)', date: '31 août 2026', trailingOneYear: 20.0, annualizedFiveYear: 9.0 },
+    insight: 'France et Allemagne réunies : près de 62 % de l’indice. C’est une exposition à la zone euro, pas à toute l’Europe.',
+    takeaway: 'ASML pèse presque 9 % à elle seule. Avec 50 valeurs, le poids de chaque grande entreprise se voit vite.',
+  },
+  {
+    id: 'mscieurope', title: 'MSCI Europe', index: 'MSCI Europe', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: europe }],
+    intro: 'MSCI Europe : on imagine un panier équilibré de tous les pays européens. Regardons les poids réels.',
+    constituents: 396, markets: '15 pays développés en Europe', marketCap: '12 453 milliards € de capitalisation ajustée du flottant',
+    countries: [['🇬🇧 Royaume-Uni', 22.38], ['🇫🇷 France', 14.93], ['🇨🇭 Suisse', 14.29], ['🇩🇪 Allemagne', 13.99], ['🇳🇱 Pays-Bas', 8.79], ['🌍 Autres', 25.61]],
+    sectors: [['🏦 Finance', 25.76], ['🏭 Industrie', 18.87], ['🏥 Santé', 12.70], ['💻 Technologie', 9.0], ['🛒 Consommation de base', 8.29], ['🛍️ Consommation discrétionnaire', 6.31], ['🪨 Matériaux', 5.55], ['⚡ Énergie', 4.96], ['💡 Services publics', 4.71], ['📡 Communication', 3.27], ['🏠 Immobilier', 0.60]],
+    holdings: [['ASML', 4.53], ['HSBC', 2.46], ['Roche', 2.12], ['Novartis', 1.93], ['Shell', 1.76], ['Nestlé', 1.74], ['Siemens', 1.70], ['AstraZeneca', 1.70], ['SAP', 1.60], ['Banco Santander', 1.45]], topWeight: 20.99,
+    returns: [[2025, 19.39], [2024, 8.59], [2023, 15.83], [2022, -9.49], [2021, 25.13]], performance: { kind: 'indice', detail: 'MSCI Europe, rendement net en euros, dividendes réinvestis', date: '31 août 2026', tenYear: 9.31 },
+    insight: 'Royaume-Uni et Suisse figurent parmi les premiers poids : ici, « Europe » dépasse la seule zone euro.',
+    takeaway: 'La finance pèse plus d’un quart. Ce n’est pas le même équilibre sectoriel que dans le MSCI World.',
+  },
+  {
+    id: 'em-esg', title: 'Émergents ESG (Amundi PEA)', index: 'MSCI EM ex-Egypt ESG Broad CTB Select', snapshot: '31 août 2026 (indice) · 30 juin 2026 (ETF)',
+    source: [{ label: 'Composition de l’indice, MSCI', url: em }, { label: 'Performances de l’ETF, Amundi', url: emFund }, { label: 'Changement d’indice en 2023, Amundi', url: 'https://www.amundietf.fr/pdfDocuments/download/863110a3-3a8e-43e7-ac7c-eb509bd2b05f/NoticeToShareholders_FR0013412020_FRA_FRA_20230825.pdf' }], isin: 'FR0013412020',
+    intro: 'Émergents ESG : le nom évoque des dizaines de pays. Trois marchés concentrent pourtant l’essentiel de l’indice.',
+    constituents: 1048, markets: '23 marchés émergents, Égypte exclue',
+    countries: [['🇹🇼 Taïwan', 27.75], ['🇰🇷 Corée du Sud', 20.83], ['🇨🇳 Chine', 20.71], ['🇮🇳 Inde', 11.15], ['🇧🇷 Brésil', 3.76], ['🌍 Autres', 15.80]],
+    sectors: [['💻 Technologie', 41.72], ['🏦 Finance', 20.30], ['🛍️ Consommation discrétionnaire', 8.17], ['🏭 Industrie', 6.36], ['📡 Communication', 6.04], ['🪨 Matériaux', 5.77], ['🛒 Consommation de base', 3.22], ['⚡ Énergie', 3.08], ['🏥 Santé', 2.59], ['💡 Services publics', 1.45], ['🏠 Immobilier', 1.31]],
+    holdings: [['TSMC', 15.22], ['Samsung Electronics', 7.16], ['SK Hynix', 5.55], ['Tencent', 2.79], ['Alibaba', 1.94], ['MediaTek', 1.42], ['Samsung Electronics Pref.', 1.03], ['China Construction Bank', 1.01], ['Delta Electronics', 1.00], ['Reliance Industries', 0.84]], topWeight: 37.96,
+    returns: [[2025, 21.04], [2024, 13.39], [2023, 3.66], [2022, -15.01], [2021, 4.45]], performance: { kind: 'ETF', detail: 'Amundi PEA Emergent ESG Transition, performances nettes de la part en EUR', date: '30 juin 2026', historyNote: 'L’indice de référence a changé le 27 septembre 2023 : les années antérieures reflètent l’historique réel du fonds, pas celui de l’indice actuel.' },
+    insight: 'Taïwan, Corée du Sud et Chine pèsent près de 70 %. Le poids de TSMC dépasse à lui seul 15 %.',
+    takeaway: 'L’étiquette ESG modifie la sélection, mais elle n’efface pas la concentration géographique et technologique.',
+  },
+  {
+    id: 'sp500-pea', title: 'S&P 500 (Amundi PEA)', index: 'S&P 500', snapshot: '30 juin 2026',
+    source: [{ label: 'Composition et performances de l’ETF, Amundi', url: spFund }, { label: 'Méthodologie de l’indice, S&P DJI', url: 'https://www.spglobal.com/spdji/en/indices/equity/sp-500/' }], isin: 'FR0011871128',
+    intro: '500 entreprises américaines : c’est la promesse du S&P 500. Mais une poignée occupe déjà beaucoup de place.',
+    constituents: 504, markets: 'États-Unis, selon la classification de la fiche Amundi',
+    countries: [['🇺🇸 États-Unis', 100]],
+    sectors: [['💻 Technologie', 37.37], ['🏦 Finance', 11.87], ['📡 Communication', 9.76], ['🛍️ Consommation discrétionnaire', 9.38], ['🏥 Santé', 9.07], ['🏭 Industrie', 8.88], ['🛒 Consommation de base', 4.68], ['⚡ Énergie', 3.02], ['💡 Services publics', 2.25], ['🏠 Immobilier', 1.88], ['🪨 Matériaux', 1.84]],
+    holdings: [['Nvidia', 7.38], ['Apple', 6.47], ['Microsoft', 4.28], ['Amazon', 3.68], ['Alphabet A', 3.24], ['Broadcom', 2.76], ['Alphabet C', 2.60], ['Micron', 2.02], ['Meta', 1.93], ['Tesla', 1.81]], topWeight: 36.17,
+    returns: [[2025, 3.45], [2024, 32.85], [2023, 21.68], [2022, -13.00], [2021, 38.23]], performance: { kind: 'ETF', detail: 'Amundi PEA S&P 500 UCITS ETF Acc, rendements nets de la part en EUR', date: '30 juin 2026' },
+    insight: 'Les dix premières lignes pèsent plus de 36 %. Les 504 titres ne représentent pas 504 parts égales.',
+    takeaway: 'La technologie pèse plus du tiers de l’indice : le S&P 500 a aussi un fort biais sectoriel.',
+  },
+  {
+    id: 'nasdaq-pea', title: 'Nasdaq 100 (Amundi PEA)', index: 'NASDAQ-100 Notional Net Total Return', snapshot: '31 août 2026',
+    source: [{ label: 'Composition et performances de l’ETF, Amundi', url: nasFund }], isin: 'FR0011871110',
+    intro: 'Nasdaq 100 : « 100 » ne veut pas dire 100 poids identiques. Regardez les premières lignes.',
+    constituents: 102, markets: 'grandes sociétés non financières cotées au Nasdaq',
+    countries: [['🇺🇸 États-Unis', 94.78], ['🇮🇪 Irlande', 1.82], ['🇳🇱 Pays-Bas', 1.32], ['🇨🇦 Canada', 1.00], ['🇬🇧 Royaume-Uni', 0.66], ['🌍 Autres', 0.42]],
+    sectors: [['💻 Technologie', 58.27], ['📡 Communication', 13.89], ['🛍️ Consommation discrétionnaire', 11.13], ['🛒 Consommation de base', 6.22], ['🏥 Santé', 4.01], ['🏭 Industrie', 3.62], ['💡 Services publics', 1.14], ['🪨 Matériaux', 1.00], ['⚡ Énergie', 0.52], ['🏦 Finance', 0.21]],
+    holdings: [['Nvidia', 8.41], ['Apple', 7.50], ['Microsoft', 6.09], ['Micron', 4.64], ['Amazon', 4.58], ['AMD', 3.35], ['Alphabet A', 3.22], ['Alphabet C', 2.99], ['Broadcom', 2.79], ['Tesla', 2.78]], topWeight: 46.35,
+    returns: [[2025, 6.01], [2024, 33.58], [2023, 49.32], [2022, -28.35], [2021, 36.59]], performance: { kind: 'ETF', detail: 'Amundi PEA Nasdaq-100 UCITS ETF Acc, rendements nets de la part en EUR', date: '31 août 2026' },
+    insight: 'Près de 58 % en technologie et plus de 46 % dans les dix premières lignes : le pari est assumé.',
+    takeaway: 'Ce n’est pas un indice qui couvre toutes les entreprises américaines : la finance en est pratiquement absente.',
+  },
+]
