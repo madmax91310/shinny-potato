@@ -3,6 +3,7 @@ import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './index-comparator.css'
 import { FAMILIES } from './data.js'
+import { downloadIndexImage } from './imageExport.js'
 
 // Comparateur d'indices — génère un tweet comparatif (structure fixe en 5 blocs numérotés +
 // verdict + question finale) pour une famille d'indices concurrents. Données (FAMILIES) dans
@@ -111,6 +112,7 @@ export default function IndexComparator() {
   const [familyId, setFamilyId] = useState(FAMILIES[0].id)
   const [perfValues, setPerfValues] = useState({})
   const [copyState, setCopyState] = useState('idle')
+  const [imageState, setImageState] = useState('idle')
   const textareaRef = useRef(null)
 
   const family = useMemo(() => FAMILIES.find((f) => f.id === familyId) ?? FAMILIES[0], [familyId])
@@ -143,6 +145,16 @@ export default function IndexComparator() {
     }
     window.setTimeout(() => setCopyState('idle'), 2200)
   }, [text])
+
+  const handleDownload = useCallback(async () => {
+    setImageState('loading')
+    try {
+      await downloadIndexImage(family, perfValues)
+      setImageState('idle')
+    } catch {
+      setImageState('error')
+    }
+  }, [family, perfValues])
 
   return (
     <div className="xc-scope">
@@ -193,6 +205,9 @@ export default function IndexComparator() {
 
           <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
             {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
+          </Button>
+          <Button type="button" className="w-full" disabled={imageState === 'loading'} onClick={handleDownload}>
+            {imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le téléchargement PNG' : 'Télécharger l’image PNG'}
           </Button>
           <textarea ref={textareaRef} className="xc-clipboard-fallback" readOnly />
         </section>
