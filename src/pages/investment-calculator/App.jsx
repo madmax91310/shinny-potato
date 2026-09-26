@@ -193,7 +193,7 @@ function ResultCard({ state, d, copied, onCopy }) {
       </div>
       {image && (
         <div className="ic-image-overlay" role="dialog" aria-modal="true" aria-label="Aperçu de l’image du placement">
-          <button className="ic-image-backdrop" type="button" aria-label="Fermer l’aperçu" onClick={() => setImage(null)} />
+          <button className="ic-image-backdrop" type="button" aria-label="Fermer en touchant le fond" onClick={() => setImage(null)} />
           <div className="ic-image-panel">
             <button className="ic-image-close" type="button" aria-label="Fermer l’aperçu" onClick={() => setImage(null)}>✕</button>
             <img src={image.dataUrl} alt="Graphique du placement prêt à télécharger" />
