@@ -283,6 +283,20 @@ async function testFactsheetTweets(page) {
   await draft.fill('Texte corrigé avant publication');
   await page.getByRole('button', { name: /Rétablir le modèle/ }).click();
   ok &&= (await draft.inputValue()).includes('2025');
+  await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
+  const preview = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
+  ok &&= await preview.isVisible();
+  const dimensions = await preview.locator('img').evaluate(async (img) => {
+    await img.decode();
+    return [img.naturalWidth, img.naturalHeight];
+  });
+  ok &&= dimensions[0] === 2160 && dimensions[1] === 5000;
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    preview.getByRole('link', { name: /Télécharger le PNG/ }).click(),
+  ]);
+  ok &&= download.suggestedFilename().endsWith('.png');
+  await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
   record('Dans les coulisses des indices', ok, `${count} fiches, modification et réinitialisation vérifiées`);
 }
 
