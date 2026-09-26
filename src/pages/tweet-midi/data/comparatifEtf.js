@@ -16,6 +16,10 @@ export function getComparatifEtfText(themeId) {
   return theme ? buildEtfComparatifText(theme) : "";
 }
 
+export function getComparatifEtfTheme(themeId) {
+  return byId.get(themeId) ?? null;
+}
+
 export function isComparatifEtfSubject(themeId) {
   return byId.has(themeId);
 }
