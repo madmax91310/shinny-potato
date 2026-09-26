@@ -290,13 +290,23 @@ async function testFactsheetTweets(page) {
     await img.decode();
     return [img.naturalWidth, img.naturalHeight];
   });
-  ok &&= dimensions[0] === 2160 && dimensions[1] === 5000;
+  ok &&= dimensions[0] === 2160 && dimensions[1] === 2880;
   const [download] = await Promise.all([
     page.waitForEvent('download'),
     preview.getByRole('link', { name: /Télécharger le PNG/ }).click(),
   ]);
   ok &&= download.suggestedFilename().endsWith('.png');
   await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
+  for (const id of ['acwi', 'em-esg', 'stoxx600']) {
+    await select.selectOption(id);
+    await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
+    const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
+    ok &&= await current.locator('img').evaluate(async (img) => {
+      await img.decode();
+      return img.naturalWidth === 2160 && img.naturalHeight === 2880;
+    });
+    await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
+  }
   record('Dans les coulisses des indices', ok, `${count} fiches, modification et réinitialisation vérifiées`);
 }
 
