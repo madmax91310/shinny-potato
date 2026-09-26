@@ -108,101 +108,31 @@ function backdrop(ctx, height) {
   ctx.fillRect(0, 180, 1080, 860)
 }
 
-function pie(ctx, selection, centerY, withLegend) {
-  const cx = 540, radius = withLegend ? 260 : 277
-  let start = -Math.PI / 2
-  const slices = selection.map((asset) => {
-    const end = start + asset.pct / 100 * Math.PI * 2
-    const slice = { asset, start, end, mid: (start + end) / 2, color: asset.chartColor }
-    start = end
-    return slice
+function allocationBars(ctx, selection) {
+  ctx.fillStyle = GOLD
+  ctx.font = 'bold 25px Arial, sans-serif'
+  ctx.fillText('ALLOCATION DU PORTEFEUILLE', 68, 305)
+  selection.forEach((asset, index) => {
+    const y = 354 + index * 91
+    ctx.fillStyle = WHITE
+    const size = fit(ctx, asset.name, 790, 31, 22, 'Arial, sans-serif')
+    ctx.font = `bold ${size}px Arial, sans-serif`
+    ctx.fillText(asset.name, 68, y)
+    ctx.fillStyle = GOLD
+    ctx.font = 'bold 35px Arial, sans-serif'
+    ctx.textAlign = 'right'
+    ctx.fillText(`${asset.pct} %`, 1012, y)
+    ctx.textAlign = 'left'
+    ctx.fillStyle = '#263849'
+    ctx.fillRect(68, y + 15, 944, 22)
+    ctx.fillStyle = asset.chartColor
+    ctx.fillRect(68, y + 15, 944 * asset.pct / 100, 22)
   })
-  for (const slice of slices) {
-    ctx.beginPath()
-    ctx.moveTo(cx, centerY)
-    ctx.arc(cx, centerY, radius, slice.start, slice.end)
-    ctx.closePath()
-    ctx.fillStyle = slice.color
-    ctx.fill()
-    ctx.strokeStyle = BACK
-    ctx.lineWidth = 5
-    ctx.stroke()
-  }
-  ctx.beginPath()
-  ctx.arc(cx, centerY, radius + 3, 0, Math.PI * 2)
-  ctx.strokeStyle = 'rgba(246, 196, 105, .8)'
-  ctx.lineWidth = 2
-  ctx.stroke()
-  if (withLegend) {
-    const rowHeight = 78
-    const rows = Math.ceil(selection.length / 2)
-    const top = centerY + radius + 55
-    selection.forEach((asset, index) => {
-      const column = Math.floor(index / rows)
-      const row = index % rows
-      const x = 68 + column * 505
-      const y = top + row * rowHeight
-      ctx.fillStyle = asset.chartColor
-      ctx.fillRect(x, y - 16, 15, 15)
-      ctx.fillStyle = WHITE
-      ctx.font = 'bold 17px Arial, sans-serif'
-      textLines(ctx, asset.name, 342).forEach((line, lineIndex) => ctx.fillText(line, x + 27, y - 2 + lineIndex * 21))
-      ctx.fillStyle = GOLD
-      ctx.font = 'bold 23px Georgia, serif'
-      ctx.textAlign = 'right'
-      ctx.fillText(`${asset.pct} %`, x + 467, y + 13)
-      ctx.textAlign = 'left'
-    })
-    return top + rows * rowHeight + 12
-  }
-  // Outside callouts for compact portfolios, like the five segments in the reference.
-  for (const side of [-1, 1]) {
-    const items = slices.filter((slice) => Math.cos(slice.mid) * side >= 0)
-      .sort((a, b) => Math.sin(a.mid) - Math.sin(b.mid))
-    const minY = centerY - radius + 15
-    const maxY = centerY + radius - 8
-    const gap = Math.min(117, (maxY - minY) / Math.max(1, items.length - 1))
-    let previous = minY - gap
-    for (let index = 0; index < items.length; index++) {
-      const slice = items[index]
-      const desired = centerY + Math.sin(slice.mid) * radius * .93
-      const rest = items.length - index - 1
-      const y = Math.min(Math.max(desired, previous + gap), maxY - rest * gap)
-      previous = y
-      const originX = cx + Math.cos(slice.mid) * radius * .95
-      const originY = centerY + Math.sin(slice.mid) * radius * .95
-      const edgeX = side < 0 ? 270 : 810
-      const labelX = side < 0 ? 246 : 834
-      ctx.strokeStyle = slice.color
-      ctx.lineWidth = 2.5
-      ctx.beginPath()
-      ctx.moveTo(originX, originY)
-      ctx.lineTo(edgeX, y)
-      ctx.lineTo(labelX + (side < 0 ? -8 : 8), y)
-      ctx.stroke()
-      ctx.fillStyle = slice.color
-      ctx.beginPath()
-      ctx.arc(originX, originY, 7, 0, Math.PI * 2)
-      ctx.fill()
-      ctx.textAlign = side < 0 ? 'right' : 'left'
-      ctx.fillStyle = WHITE
-      fit(ctx, slice.asset.name, 214, 23, 15)
-      ctx.fillText(slice.asset.name, labelX, y - 8)
-      ctx.fillStyle = slice.color
-      ctx.font = 'bold 34px Georgia, serif'
-      ctx.fillText(`${slice.asset.pct} %`, labelX, y + 29)
-    }
-  }
-  ctx.textAlign = 'left'
-  return centerY + radius + 50
 }
 
 export function renderPortfolioImage(portfolio) {
   const selection = chartSelection(portfolio.selection.filter((asset) => asset.pct > 0).slice().sort((a, b) => b.pct - a.pct))
-  const withLegend = selection.length > 5 || selection.some((asset) => asset.name.length > 18)
-  const rows = Math.ceil(selection.length / 2)
-  const pieY = withLegend ? 550 : 585
-  const panelY = withLegend ? 920 + rows * 78 : 1040
+  const panelY = 385 + selection.length * 91
   const height = panelY + 565
   const canvas = document.createElement('canvas')
   canvas.width = 2160
@@ -222,7 +152,7 @@ export function renderPortfolioImage(portfolio) {
   ctx.fillText(heading, 540, 234)
   ctx.textAlign = 'left'
 
-  pie(ctx, selection, pieY, withLegend)
+  allocationBars(ctx, selection)
 
   ctx.fillStyle = 'rgba(7, 16, 25, .84)'
   roundedRect(ctx, 45, panelY, 990, 360, 28)
