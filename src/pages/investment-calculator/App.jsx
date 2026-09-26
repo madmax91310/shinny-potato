@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
   getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS,
@@ -7,6 +7,7 @@ import {
 import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride, currencySymbol } from './lib'
 import Sparkline from './Sparkline'
 import VideoExport from './VideoExport'
+import { renderInvestmentImage } from './imageExport'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './investment-calculator.css'
@@ -34,6 +35,19 @@ function CompareItem({ label, value, deltaVal, currency, highlight }) {
 }
 
 function ResultCard({ state, d, copied, onCopy }) {
+  const [image, setImage] = useState(null)
+  useEffect(() => {
+    if (!image) return undefined
+    const close = (event) => { if (event.key === 'Escape') setImage(null) }
+    document.addEventListener('keydown', close)
+    return () => document.removeEventListener('keydown', close)
+  }, [image])
+
+  function showImage() {
+    const dataUrl = renderInvestmentImage(state, d).toDataURL('image/png')
+    setImage({ dataUrl, filename: `investissement-${state.assetId}-${d.effectiveMode}.png` })
+  }
+
   const asset = d.isCustom ? null : ASSETS[state.assetId]
   const monthlyIndex = INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
   const assetLabel = d.isCustom ? state.customLabel || 'cet actif' : asset.label
@@ -145,6 +159,7 @@ function ResultCard({ state, d, copied, onCopy }) {
           <Button type="button" onClick={onCopy}>
             {copied === 'done' ? '✓ Copié' : copied === 'error' ? 'Copie impossible' : '𝕏 Copier le texte du post'}
           </Button>
+          <Button type="button" variant="secondary" onClick={showImage}>📊 Télécharger une image</Button>
         </div>
         <VideoExport
           videoParams={{
@@ -176,6 +191,16 @@ function ResultCard({ state, d, copied, onCopy }) {
           }}
         />
       </div>
+      {image && (
+        <div className="ic-image-overlay" role="dialog" aria-modal="true" aria-label="Aperçu de l’image du placement">
+          <button className="ic-image-backdrop" type="button" aria-label="Fermer l’aperçu" onClick={() => setImage(null)} />
+          <div className="ic-image-panel">
+            <button className="ic-image-close" type="button" aria-label="Fermer l’aperçu" onClick={() => setImage(null)}>✕</button>
+            <img src={image.dataUrl} alt="Graphique du placement prêt à télécharger" />
+            <a className="ic-image-download" href={image.dataUrl} download={image.filename}>⬇️ Télécharger le PNG</a>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
