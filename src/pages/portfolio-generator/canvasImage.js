@@ -75,7 +75,14 @@ function textLines(ctx, text, width, maxLines = 3) {
   return lines
 }
 
-function backdrop(ctx, height) {
+function backdrop(ctx, height, background) {
+  if (background?.complete && background.naturalWidth) {
+    const sourceWidth = Math.min(background.naturalWidth, background.naturalHeight * 1080 / height)
+    ctx.drawImage(background, (background.naturalWidth - sourceWidth) / 2, 0, sourceWidth, background.naturalHeight, 0, 0, 1080, height)
+    ctx.fillStyle = 'rgba(3, 9, 16, .24)'
+    ctx.fillRect(0, 0, 1080, height)
+    return
+  }
   const gradient = ctx.createLinearGradient(0, 0, 1080, height)
   gradient.addColorStop(0, '#14202a')
   gradient.addColorStop(.45, BACK)
@@ -118,12 +125,31 @@ function pie(ctx, selection, centerY, withLegend) {
     return slice
   })
   for (const slice of slices) {
+    ctx.save()
+    ctx.translate(0, 13)
+    ctx.beginPath()
+    ctx.moveTo(cx, centerY)
+    ctx.arc(cx, centerY, radius, slice.start, slice.end)
+    ctx.closePath()
+    ctx.fillStyle = '#04090e'
+    ctx.fill()
+    ctx.restore()
     ctx.beginPath()
     ctx.moveTo(cx, centerY)
     ctx.arc(cx, centerY, radius, slice.start, slice.end)
     ctx.closePath()
     ctx.fillStyle = slice.color
     ctx.fill()
+    ctx.save()
+    ctx.clip()
+    const metal = ctx.createLinearGradient(cx - radius, centerY - radius, cx + radius, centerY + radius)
+    metal.addColorStop(0, 'rgba(255,255,255,.45)')
+    metal.addColorStop(.43, 'rgba(255,255,255,.08)')
+    metal.addColorStop(.77, 'rgba(0,0,0,.06)')
+    metal.addColorStop(1, 'rgba(0,0,0,.36)')
+    ctx.fillStyle = metal
+    ctx.fillRect(cx - radius, centerY - radius, radius * 2, radius * 2)
+    ctx.restore()
     ctx.strokeStyle = BACK
     ctx.lineWidth = 5
     ctx.stroke()
@@ -197,7 +223,7 @@ function pie(ctx, selection, centerY, withLegend) {
   return centerY + radius + 50
 }
 
-export function renderPortfolioImage(portfolio) {
+export function renderPortfolioImage(portfolio, background) {
   const selection = chartSelection(portfolio.selection.filter((asset) => asset.pct > 0).slice().sort((a, b) => b.pct - a.pct))
   const withLegend = selection.length > 5 || selection.some((asset) => asset.name.length > 18)
   const rows = Math.ceil(selection.length / 2)
@@ -209,7 +235,7 @@ export function renderPortfolioImage(portfolio) {
   canvas.height = height * 2
   const ctx = canvas.getContext('2d')
   ctx.scale(2, 2)
-  backdrop(ctx, height)
+  backdrop(ctx, height, background)
   ctx.textAlign = 'center'
   ctx.fillStyle = WHITE
   fit(ctx, 'EXEMPLE DE RÉPARTITION', 960, 55, 37)
