@@ -23,6 +23,9 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   'FR0011871110': '0,30',
   'FR0011871128': '0,12',
   'FR0013411980': '0,20',
+  // Part TOPIX couverte EUR, fiche Amundi du 30/04/2026.
+  // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
+  'FR0013411998': '0,48',
   'FR0013412004': '0,30',
   'FR0013412012': '0,30',
   'FR0013412020': '0,30',
@@ -36,6 +39,9 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   'IE0002Y8CX98': '0,40',
   'IE0007Y8Y157': '0,55',
   'IE000C6ITGC8': '0,50',
+  // iShares S&P 500 Swap PEA SPEA : BlackRock, TER au 25/09/2026.
+  // https://www.blackrock.com/fr/intermediaries/products/342916/
+  'IE000DQLYVB9': '0,10',
   'IE000I8KRLL9': '0,35',
   'IE000L6ZMMC4': '0,07',
   'IE000M7V94E1': '0,55',
@@ -102,6 +108,9 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   'LU1681047236': '0,09',
   'LU1681048630': '0,25',
   'LU1834983634': '0,30',
+  // Amundi STOXX Europe 600 Basic Resources, fiche au 30/06/2026 : 0,30 %.
+  // https://www.amundietf.com/pdfDocuments/monthly-factsheet/LU1834983550/ENG/LUX/RETAIL/ETF/20260630
+  'LU1834983550': '0,30',
   'LU1834986900': '0,30',
   'LU1834988518': '0,30',
   'LU1875395870': '0,19',
