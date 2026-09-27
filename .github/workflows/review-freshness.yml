@@ -9,6 +9,46 @@ permissions:
   contents: read
 
 jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Calculer l'échéance de 180 jours
+        id: due
+        run: echo "date=$(node scripts/data-review-reminder.mjs)" >> "$GITHUB_OUTPUT"
+      - name: Ouvrir le rappel de revue sans bloquer les publications
+        if: steps.due.outputs.date != ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DUE_DATE: ${{ steps.due.outputs.date }}
+        run: |
+          title="Revue des données · échéance $DUE_DATE"
+          export TITLE="$title"
+          if gh issue list --state all --limit 100 --json title | node -e 'let s=""; process.stdin.on("data", c => s += c); process.stdin.on("end", () => process.exit(JSON.parse(s).some(x => x.title === process.env.TITLE) ? 0 : 1))' ; then
+            echo "Rappel déjà créé pour $DUE_DATE"
+          else
+            {
+              echo "Revoir les données publiées par lots, sans bloquer le build ni supposer qu'une valeur ancienne est erronée."
+              echo
+              echo "1. Performances annuelles et taux de change utilisés par les portefeuilles et les duels."
+              echo "2. ETF : frais, éligibilité PEA, encours et dates de vérification."
+              echo "3. Indices et comparateurs : compositions, fiches sources et dates de photographie."
+              echo
+              echo "Vérifier les valeurs auprès des sources avant de modifier les dates. Les entrées sans date individuelle doivent être identifiées comme telles."
+              echo
+              echo '```text'
+              node scripts/check-freshness.mjs --priorities
+              echo '```'
+            } > "$RUNNER_TEMP/data-review.md"
+            gh issue create --title "$title" --body-file "$RUNNER_TEMP/data-review.md" --assignee "$GITHUB_REPOSITORY_OWNER"
+          fi
   report:
     runs-on: ubuntu-latest
     steps:
