@@ -101,23 +101,25 @@ export function buildTweet(duel) {
   const rows = years.map((year) =>
     `${year} : ${formatPercent(a.annual[year])} / ${formatPercent(b.annual[year])}`,
   ).join('\n')
+  const introduction = `⚔️ DUEL DE PORTEFEUILLES\n\n${duel.hook}\n\n`
+  const result = `À l’arrivée :\n🅰️ ${formatCapital(a.final, currency)}\n🅱️ ${formatCapital(b.final, currency)}\n\n`
   if (!commonAsset) {
     const allocation = (portfolio) => portfolio.assets.map((asset) => `${asset.pct} % ${asset.name}`).join('\n')
-    return `⚔️ ${duel.hook}\n\n` +
+    return introduction +
       `Même départ : 10 000 ${symbol}, de ${years[0]} à ${years.at(-1)}.\n\n` +
       `🅰️ ${a.name}\n${allocation(a)}\n\n` +
       `🅱️ ${b.name}\n${allocation(b)}\n\n` +
-      `À l’arrivée : A ${formatCapital(a.final, currency)} · B ${formatCapital(b.final, currency)}.\n\n` +
+      result +
       `📊 Chaque année (A / B) :\n${rows}\n\n` +
       `📉 Pire année : A ${formatPercent(a.worst)} en ${a.worstYear}, B ${formatPercent(b.worst)} en ${b.worstYear}.\n\n` +
       `${duel.question}\n\n⚠️ Pas un conseil en investissement.`
   }
-  return `⚔️ ${duel.hook}\n\n` +
-    `Même point de départ : 10 000 ${symbol} investis de 2020 à 2025.\n` +
+  return introduction +
+    `Même point de départ : 10 000 ${symbol} investis de ${years[0]} à ${years.at(-1)}.\n` +
     `70 % dans ${commonAsset.name} pour les deux. Le choix porte sur les 30 % restants :\n\n` +
     `🅰️ ${a.name} : ${a.assets[1].name}\n` +
     `🅱️ ${b.name} : ${b.assets[1].name}\n\n` +
-    `À l'arrivée : ${formatCapital(a.final, currency)} pour A, ${formatCapital(b.final, currency)} pour B.\n\n` +
+    result +
     `📊 Chaque année (A / B) :\n${rows}\n\n` +
     `📉 Pire année : A ${formatPercent(a.worst)} en ${a.worstYear}, B ${formatPercent(b.worst)} en ${b.worstYear}.\n\n` +
     `${duel.question}\n\n⚠️ Pas un conseil en investissement.`
