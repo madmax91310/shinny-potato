@@ -119,4 +119,100 @@ Un ETF moins cher sur la fiche n’est pas automatiquement le moins coûteux pou
       { label: 'Comprendre les frais des placements · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/les-frais-des-placements-financiers/comprendre-les-frais-des-placements-financiers' },
     ],
   },
+  // Chiffres ci-dessous : exemples arithmétiques fictifs, pas performances
+  // constatées ni cours d'ETF. Mécanismes relus sur les sources primaires liées.
+  {
+    id: 'ordre-limite-etf',
+    title: 'Un ETF à 99 € ou 101 € ?',
+    category: 'Passer un ordre',
+    text: `📱 Ton ETF affiche deux prix : achat à 101 €, vente à 99 €. Pourquoi cet écart ?
+
+Imagine que tu achètes 10 parts à 101 € : tu paies 1 010 €. Si tu les revends aussitôt à 99 €, tu récupères 990 €, soit 20 € de moins, même si les prix affichés n'ont pas bougé. Exemple fictif, hors frais de courtage.
+
+Cet écart entre prix d'achat et prix de vente s'appelle la fourchette. Il peut varier selon la liquidité et le moment où tu passes l'ordre.
+
+📌 Un ordre d'achat à cours limité à 100 € fixe ton prix maximal. En contrepartie, il peut rester sans exécution si aucun vendeur n'accepte ce prix.
+
+Avant de valider, regarde les deux prix et le montant total de ton ordre, pas seulement le dernier cours affiché.
+
+💬 Tu vérifies la fourchette avant d'acheter un ETF ?`,
+    sources: [
+      { label: 'Choisir et passer un ordre de bourse · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-marches-financiers/les-ordres-de-bourse/choisir-et-passer-un-ordre-de-bourse-ce-quil-faut-savoir' },
+      { label: 'Ce qu’il faut savoir sur les ETF · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf' },
+    ],
+  },
+  {
+    id: 'etf-change-euro',
+    title: 'ETF acheté en euros, risque dollar ?',
+    category: 'Risque de change',
+    text: `🌍 Tu achètes en euros un ETF exposé à des actions américaines. Tu penses être protégé du dollar ?
+
+Regarde cet exemple fictif : 1 000 € investis dans des actifs en dollars. Ils gagnent 10 % en dollars, mais, sur la même période, le dollar perd 10 % de sa valeur face à l'euro.
+
+Le calcul en euros : 1 000 × 1,10 × 0,90 = 990 €. Soit −1 % avant frais, malgré la hausse des actifs en dollars.
+
+📌 Le prix de négociation affiché en euros ne change pas, à lui seul, les devises auxquelles les actifs sont exposés. Pour réduire cet effet, il faut regarder si la part prévoit une couverture de change, qui a aussi ses limites et ses coûts.
+
+💬 Tu regardes la devise des actifs ou seulement celle affichée par ton courtier ?`,
+    sources: [
+      { label: 'Devise de cotation et actifs détenus · iShares', url: 'https://www.ishares.com/uk/individual/education/getting-started-with-etfs/investor-education/etf-checklist' },
+      { label: 'Risques et couverture de change des ETF · iShares', url: 'https://www.ishares.com/uk/individual/en/products/251891/ishares-msci-world-eur-hedged-ucits-etf' },
+    ],
+  },
+  {
+    id: 'reequilibrer-portefeuille',
+    title: 'Une allocation qui a changé',
+    category: 'Répartition du portefeuille',
+    text: `⚖️ Ton portefeuille part avec 7 000 € en actions et 3 000 € en obligations : 70 % / 30 %.
+
+Plus tard, imaginons 9 000 € d'actions et toujours 3 000 € d'obligations. Le total vaut 12 000 €, mais la répartition est passée à 75 % / 25 %.
+
+Si ton objectif reste 70 % / 30 %, cela représente désormais 8 400 € d'actions et 3 600 € d'obligations. L'écart est de 600 € pour chaque poche.
+
+📌 Rééquilibrer, c'est ramener les poids vers l'objectif que tu as choisi. Cela peut passer par les nouveaux versements ou par des ventes et achats, avec d'éventuels frais et conséquences fiscales.
+
+Ce n'est pas une promesse de mieux performer : c'est une façon de garder le niveau de risque que tu avais décidé.
+
+💬 Tu regardes encore la répartition réelle de ton portefeuille ?`,
+    sources: [
+      { label: 'Allocation et rééquilibrage · Investor.gov (SEC)', url: 'https://www.investor.gov/introduction-investing/getting-started/asset-allocation' },
+      { label: 'Méthodes et coûts du rééquilibrage · Investor.gov (SEC)', url: 'https://www.investor.gov/additional-resources/general-resources/publications-research/info-sheets/beginners-guide-asset' },
+    ],
+  },
+  {
+    id: 'investir-somme-en-plusieurs-fois',
+    title: '12 000 € d’un coup ou étalés ?',
+    category: 'Rythme d’investissement',
+    text: `💶 Tu disposes de 12 000 € pour investir sur le long terme. Tout placer aujourd'hui ou investir 1 000 € par mois pendant un an ?
+
+Avec la première option, les 12 000 € suivent immédiatement les marchés. Avec la seconde, seuls 1 000 € sont investis au départ ; le reste attend les prochains versements.
+
+📌 Étaler les achats peut aider à moins subir une baisse juste après le premier ordre et à investir sans chercher « le bon jour ». Mais si le marché monte pendant cette attente, l'argent non encore investi ne profite pas de cette hausse.
+
+Ce choix dépend aussi des frais de courtage par ordre et de la tranquillité d'esprit que t'apporte un calendrier décidé à l'avance. Aucun des deux rythmes ne garantit un meilleur résultat.
+
+💬 Avec une somme déjà disponible, tu investirais tout de suite ou par étapes ?`,
+    sources: [
+      { label: 'Mieux s’informer et investissement programmé · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/actualites-mises-en-garde/mieux-sinformer-pour-mieux-investir' },
+      { label: 'Investir progressivement dans les fonds · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/bien-demarrer-avec-les-fonds-et-sicav' },
+    ],
+  },
+  {
+    id: 'etf-obligataire-taux',
+    title: 'Un ETF obligataire peut baisser ?',
+    category: 'Obligations et taux',
+    text: `🏦 Tu mets 10 000 € dans un ETF obligataire. Tu t'attends à ce que sa valeur ne bouge presque pas ?
+
+Exemple fictif : sa part perd 5 % et ta position vaut 9 500 €, hors éventuelles distributions et frais. Ce n'est pas le rendement observé d'un ETF précis.
+
+Pourquoi cela peut arriver ? Quand les taux du marché montent, les obligations à taux fixe déjà détenues deviennent moins attractives. Leur prix peut baisser, et la valeur de l'ETF avec elles.
+
+📌 Un ETF obligataire détient un portefeuille d'obligations qui évolue. Il n'offre pas, à lui seul, une date de remboursement garantie de tes parts à leur prix d'achat. Il faut aussi regarder la durée des obligations, la qualité des émetteurs et la devise.
+
+💬 Tu savais qu'un ETF obligataire pouvait afficher une perte malgré ses obligations ?`,
+    sources: [
+      { label: 'Pourquoi les obligations baissent quand les taux montent · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/actions-obligations/obligations/pourquoi-le-prix-des-obligations-baisse-lorsque-les-taux-montent' },
+      { label: 'Comprendre les obligations et leurs fonds · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/actions-obligations/obligations/comprendre-les-obligations-avant-dinvestir' },
+    ],
+  },
 ]
