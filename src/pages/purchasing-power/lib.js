@@ -1,10 +1,5 @@
 import { GENERAL_INFLATION, YEAR_MAX, POSTES, SMIC } from './data.js'
 
-// Ligne de punchline volontairement laissée en placeholder — jamais générée automatiquement (cf.
-// demande du 04/09/2026, même principe que le récap matin) : les punchlines automatiques sonnaient
-// artificielles/répétitives à l'usage. L'utilisateur la remplace lui-même avant publication.
-const PUNCHLINE_PLACEHOLDER = "[Ta punchline ici]"
-
 // Année d'arrivée fixe : "aujourd'hui" au sens de la fraîcheur de données de l'app (cf. LATEST_YM
 // dans investment-calculator/data.js, qui s'arrête à 2026-08) — jamais sélectionnable par
 // l'utilisateur, seule l'année de départ l'est (2010 à YEAR_MAX).
@@ -72,68 +67,53 @@ export function computeSmicEvolution(startYear) {
 }
 
 export function buildTweetText(state) {
-  const punchline = PUNCHLINE_PLACEHOLDER
-  const years = CURRENT_YEAR - state.startYear
-  const yearsLabel = `${years} an${years > 1 ? 's' : ''}`
-
   if (state.mode === 'brut') {
     const d = computeBrut(state.amount, state.startYear)
-    const smicPct = computeSmicEvolution(state.startYear)
-    const gapPts = smicPct - d.inflationCumPct
-    const gapAbs = Math.abs(gapPts).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
-    const gapLabel = `${gapAbs} point${Math.abs(gapPts) >= 2 ? 's' : ''}`
-    const suivi = gapPts >= 0
-      ? `le SMIC brut a progressé plus vite que l'indice général des prix (écart de +${gapLabel})`
-      : `le SMIC brut a progressé moins vite que l'indice général des prix (écart de -${gapLabel})`
-    const question = gapPts >= 0
-      ? `Ton propre revenu a-t-il suivi la hausse des prix depuis ${state.startYear} ?`
-      : `Ton budget a-t-il ressenti cet écart entre le SMIC brut et les prix depuis ${state.startYear} ?`
+    const difference = Math.abs(d.newAmount - state.amount)
     return [
-      `En ${state.startYear}, ${fmtEUR(state.amount)} avaient le même pouvoir d'achat que ${fmtEUR(d.newAmount)} aujourd'hui.`,
+      `${fmtEUR(state.amount)} en ${state.startYear}.`,
       ``,
-      `Soit ${fmtPct(d.inflationCumPct)} de prix cumulés en ${yearsLabel} (inflation INSEE).`,
+      `Pour retrouver le même pouvoir d'achat en ${CURRENT_YEAR}, il faudrait environ ${fmtEUR(d.newAmount)}.`,
       ``,
-      `À titre de comparaison, ${suivi}.`,
+      `${fmtEUR(difference)} ${d.newAmount >= state.amount ? "d'écart" : 'de moins'} sur cette somme. Les prix ont ${d.inflationCumPct >= 0 ? 'augmenté' : 'baissé'} de ${Math.abs(d.inflationCumPct).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} % sur la période, selon l'indice général des prix (INSEE).`,
       ``,
-      punchline,
+      `2026 : estimation provisoire, l'année n'est pas terminée.`,
       ``,
-      question,
+      `Ton revenu a-t-il évolué dans les mêmes proportions ?`,
     ].join('\n')
   }
 
   const poste = POSTES[state.posteId]
   const d = computePoste(state.amount, state.startYear, state.posteId)
-  const vsInflation = d.posteCumPct >= d.generalCumPct
-    ? `plus vite que l'inflation générale (${fmtPct(d.generalCumPct)})`
-    : `moins vite que l'inflation générale (${fmtPct(d.generalCumPct)})`
-  const posteIntro = state.posteId === 'carburant'
-    ? `En ${state.startYear}, ${fmtEUR(state.amount)} de budget carburant correspondent à ${fmtEUR(d.newAmount)} selon l'indice Énergie aujourd'hui (proxy, pas prix à la pompe).`
-    : `En ${state.startYear}, ${fmtEUR(state.amount)} de budget ${poste.tweetVerb} valaient ${fmtEUR(d.newAmount)} d'aujourd'hui.`
-  const posteTransition = state.posteId === 'loyer'
-    ? `L'IRL, qui sert de référence à la révision des loyers, a augmenté ${vsInflation} sur cette période.`
+  const difference = Math.abs(d.newAmount - state.amount)
+  const change = Math.abs(d.posteCumPct).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  const generalChange = Math.abs(d.generalCumPct).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  const intro = state.posteId === 'loyer'
+    ? `${fmtEUR(state.amount)} de loyer en ${state.startYear} correspondraient à environ ${fmtEUR(d.newAmount)} en ${CURRENT_YEAR} si cette somme avait suivi l'IRL.`
     : state.posteId === 'carburant'
-      ? `L'indice Énergie, plus large que les seuls carburants, a augmenté ${vsInflation} sur cette période.`
-      : `Les prix de l'alimentation ont augmenté ${vsInflation} sur cette période.`
+      ? `${fmtEUR(state.amount)} consacrés au carburant en ${state.startYear} correspondent à environ ${fmtEUR(d.newAmount)} en ${CURRENT_YEAR} selon l'indice Énergie, plus large que les seuls carburants.`
+      : `${fmtEUR(state.amount)} consacrés à l'alimentation en ${state.startYear} correspondent à environ ${fmtEUR(d.newAmount)} en ${CURRENT_YEAR}, selon l'indice des prix alimentaires.`
+  const indicator = state.posteId === 'loyer' ? "L'IRL" : state.posteId === 'carburant' ? "L'indice Énergie" : "L'alimentation"
   const question = state.posteId === 'loyer'
-    ? `Ton loyer a-t-il évolué comme l'IRL depuis ${state.startYear} ?`
+    ? `Ton loyer a-t-il suivi cette évolution ?`
     : state.posteId === 'carburant'
-      ? `Tes dépenses à la pompe ont-elles suivi l'indice Énergie depuis ${state.startYear} ?`
-      : `Quel achat courant pèse le plus dans ton budget courses depuis ${state.startYear} ?`
-  const partialNote = poste.isPartialLatestYear
-    ? ` (2026 : donnée sur 12 mois glissants, l'année n'étant pas terminée)`
-    : ''
-  const posteMeasure = state.posteId === 'loyer' ? "l'indice de référence des loyers (IRL)" : state.posteId === 'carburant' ? "l'indice Énergie" : poste.tweetNoun
+      ? `Tu constates la même chose à la pompe ?`
+      : `Tu le ressens sur quels produits ?`
+  const caveat = state.posteId === 'loyer'
+    ? `L'IRL sert de référence aux révisions de loyer : il ne décrit pas l'évolution de chaque loyer.`
+    : state.posteId === 'carburant'
+      ? `L'indice Énergie inclut aussi le gaz et l'électricité : ce n'est pas l'évolution exacte du prix à la pompe.`
+      : ''
+  const provisional = poste.isPartialLatestYear
+    ? `2026 : variation sur 12 mois glissants, l'année n'est pas terminée.`
+    : `2026 : année en cours, comparaison indicative.`
   return [
-    posteIntro,
-    ``,
-    `Soit ${fmtPct(d.posteCumPct)} sur ${posteMeasure} en ${yearsLabel}${partialNote}.`,
-    ``,
-    posteTransition,
-    ``,
-    punchline,
-    ``,
+    intro,
+    `${fmtEUR(difference)} ${d.newAmount >= state.amount ? 'de plus' : 'de moins'} sur cette somme.`,
+    `${indicator} a ${d.posteCumPct >= 0 ? 'augmenté' : 'baissé'} de ${change} % sur la période, contre ${generalChange} % pour les prix en général.`,
+    [caveat, provisional].filter(Boolean).join(' '),
     question,
-  ].join('\n')
+  ].join('\n\n')
 }
 
 // Tirage "Aléatoire" avec anti-répétition dans la session : évite de retirer la même combinaison
