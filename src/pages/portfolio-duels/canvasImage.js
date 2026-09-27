@@ -1,86 +1,50 @@
 import { YEARS } from '../portfolio-generator/data.js'
 import { formatCapital, formatPercent } from './lib.js'
 
-const INK = '#172437'
-const MUTED = '#586270'
-const RULE = '#c8c7c0'
-const ACCENT = '#a68560'
+const INK = '#182524'
+const PAPER = '#F2EBDD'
+const A = '#176D63'
+const B = '#C35437'
+const MUTED = '#50615E'
 
-function line(ctx, x1, y, x2, color = RULE, width = 1) {
-  ctx.strokeStyle = color
-  ctx.lineWidth = width
-  ctx.beginPath()
-  ctx.moveTo(x1, y)
-  ctx.lineTo(x2, y)
-  ctx.stroke()
+function text(ctx, value, x, y, size, color = INK, weight = 700, align = 'left') {
+  ctx.fillStyle = color
+  ctx.textAlign = align
+  ctx.textBaseline = 'top'
+  ctx.font = `${weight} ${size}px Arial, sans-serif`
+  ctx.fillText(value, x, y)
 }
 
-function fit(ctx, value, width) {
-  let result = value
-  while (ctx.measureText(result).width > width && result.length > 3) result = `${result.slice(0, -2).trimEnd()}…`
-  return result
+function fit(ctx, value, x, y, size, width, color = INK, min = 20) {
+  while (size > min) {
+    ctx.font = `700 ${size}px Arial, sans-serif`
+    if (ctx.measureText(value).width <= width) break
+    size -= 2
+  }
+  text(ctx, value, x, y, size, color)
 }
 
 function shortName(name) {
-  // La désignation complète reste visible dans le tweet et dans l'interface.
   if (name === 'iShares MSCI World Information Technology Sector Advanced UCITS ETF') return 'MSCI World Technologie'
   if (name === 'iShares Physical Silver ETC (estimation EUR)') return 'iShares Silver (est. EUR)'
   return name.replace(/^iShares (?:Core )?/i, '').replace(/^SPDR /i, '').replace(/^Amundi /i, '').replace(/^Vanguard /i, '').replace(/\s+UCITS ETF(?:\s*\([^)]*\))?$/i, '').replace(/\s+ETP$/i, '')
 }
 
-function titleLines(ctx, title) {
-  if (ctx.measureText(title).width <= 960) return [title]
-  const words = title.split(' ')
-  const lines = ['']
-  for (const word of words) {
-    const last = lines.length - 1
-    const candidate = lines[last] ? `${lines[last]} ${word}` : word
-    if (ctx.measureText(candidate).width > 960 && lines[last] && lines.length < 2) lines.push(word)
-    else lines[last] = candidate
-  }
-  return lines.map((value) => fit(ctx, value, 960))
-}
-
-function drawPortfolio(ctx, portfolio, label, x, currency) {
-  ctx.fillStyle = ACCENT
-  ctx.font = '30px Georgia, serif'
-  ctx.fillText(label, x, 328)
-  ctx.fillStyle = INK
-  ctx.font = 'bold 29px Georgia, serif'
-  ctx.fillText(fit(ctx, portfolio.name.toUpperCase(), 374), x + 45, 328)
-  line(ctx, x, 353, x + 452)
-
-  portfolio.assets.forEach((asset, index) => {
-    const y = 399 + index * 51
-    ctx.fillStyle = INK
-    ctx.font = 'bold 26px Arial, sans-serif'
-    ctx.fillText(`${asset.pct} %`, x, y)
-    ctx.fillStyle = MUTED
-    ctx.font = 'bold 27px Arial, sans-serif'
-    ctx.fillText(fit(ctx, shortName(asset.name), 340), x + 100, y)
+function portfolio(ctx, item, letter, y, currency, accent) {
+  ctx.fillStyle = accent
+  ctx.fillRect(60, y, 960, 5)
+  ctx.fillRect(60, y + 19, 72, 72)
+  text(ctx, letter, 96, y + 27, 50, '#FFFFFF', 800, 'center')
+  fit(ctx, item.name.toUpperCase(), 152, y + 26, 40, 850, INK, 29)
+  text(ctx, 'VALEUR FINALE', 60, y + 102, 22, MUTED)
+  fit(ctx, formatCapital(item.final, currency), 60, y + 129, 75, 940, accent, 49)
+  ctx.fillStyle = '#D0D2C7'
+  ctx.fillRect(60, y + 218, 960, 2)
+  item.assets.forEach((asset, i) => {
+    const yy = y + 232 + i * 32
+    text(ctx, `${asset.pct} %`, 61, yy, 27, accent)
+    fit(ctx, shortName(asset.name), 185, yy, 27, 833, INK, 21)
   })
-  if (portfolio.assets.length === 2) {
-    const barY = 535
-    ctx.fillStyle = '#ddd9d0'
-    ctx.fillRect(x, barY, 452, 32)
-    ctx.fillStyle = ACCENT
-    ctx.fillRect(x, barY, 452 * portfolio.assets[0].pct / 100, 32)
-    ctx.fillStyle = INK
-    ctx.font = 'bold 22px Arial, sans-serif'
-    ctx.fillText(`${portfolio.assets[0].pct} % communs`, x, barY + 70)
-    ctx.textAlign = 'right'
-    ctx.fillText(`${portfolio.assets[1].pct} % choix ${label}`, x + 452, barY + 70)
-    ctx.textAlign = 'left'
-  }
-
-  line(ctx, x, 665, x + 452)
-  ctx.fillStyle = MUTED
-  ctx.font = '19px Arial, sans-serif'
-  ctx.fillText('VALEUR FINALE', x, 713)
-  ctx.fillStyle = INK
-  let size = 81
-  do { ctx.font = `${size}px Georgia, serif`; size -= 2 } while (ctx.measureText(formatCapital(portfolio.final, currency)).width > 452 && size > 57)
-  ctx.fillText(formatCapital(portfolio.final, currency), x, 802)
 }
 
 export function renderDuelImage(duel) {
@@ -89,61 +53,32 @@ export function renderDuelImage(duel) {
   canvas.height = 2700
   const ctx = canvas.getContext('2d')
   ctx.scale(2, 2)
-  ctx.fillStyle = '#f8f7f3'
+  ctx.fillStyle = PAPER
   ctx.fillRect(0, 0, 1080, 1350)
-
-  line(ctx, 60, 62, 1020, ACCENT, 2)
-  ctx.fillStyle = ACCENT
-  ctx.font = 'bold 16px Arial, sans-serif'
-  ctx.fillText('DUEL DE PORTEFEUILLES', 60, 106)
   ctx.fillStyle = INK
-  ctx.font = 'bold 58px Georgia, serif'
-  titleLines(ctx, duel.title).forEach((part, index) => ctx.fillText(part, 60, 178 + index * 62))
+  ctx.fillRect(0, 0, 1080, 19)
+  text(ctx, 'ÉPARGNANT LIBRE  /  DUEL DE PORTEFEUILLES', 60, 53, 26, INK)
+  fit(ctx, duel.title.toUpperCase(), 60, 105, 58, 960, INK, 38)
   const years = duel.years ?? YEARS
   const symbol = duel.currency === 'USD' ? '$' : '€'
-  ctx.fillStyle = MUTED
-  ctx.font = '23px Arial, sans-serif'
-  ctx.fillText(`Deux allocations · 10 000 ${symbol} au départ · ${years[0]}–${years.at(-1)}`, 60, 263)
+  text(ctx, `10 000 ${symbol} investis · ${years[0]}–${years.at(-1)}`, 61, 182, 32, MUTED)
 
-  drawPortfolio(ctx, duel.a, 'A', 60, duel.currency)
-  drawPortfolio(ctx, duel.b, 'B', 568, duel.currency)
-  ctx.strokeStyle = RULE
-  ctx.lineWidth = 1
-  ctx.beginPath()
-  ctx.moveTo(540, 310)
-  ctx.lineTo(540, 815)
-  ctx.stroke()
+  portfolio(ctx, duel.a, 'A', 220, duel.currency, A)
+  portfolio(ctx, duel.b, 'B', 615, duel.currency, B)
 
-  line(ctx, 60, 845, 1020)
-  ctx.fillStyle = INK
-  ctx.font = 'bold 19px Arial, sans-serif'
-  ctx.fillText('PERFORMANCES ANNUELLES · A / B', 60, 878)
-  years.forEach((year, index) => {
-    const col = index % 2
-    const row = Math.floor(index / 2)
-    const x = 60 + col * 508
-    const y = 934 + row * 91
-    ctx.fillStyle = MUTED
-    ctx.font = 'bold 25px Arial, sans-serif'
-    ctx.fillText(String(year), x, y)
-    ctx.font = 'bold 27px Arial, sans-serif'
-    ctx.fillStyle = '#226963'
-    ctx.fillText(`A ${formatPercent(duel.a.annual[year])}`, x + 102, y)
-    ctx.fillStyle = '#a85140'
-    ctx.fillText(`B ${formatPercent(duel.b.annual[year])}`, x + 275, y)
-    line(ctx, x, y + 16, x + 452)
+  ctx.fillStyle = '#D0D2C7'
+  ctx.fillRect(60, 1043, 960, 2)
+  text(ctx, 'RENDEMENT PAR ANNÉE', 60, 1051, 26, INK)
+  years.forEach((year, i) => {
+    const x = 60 + (i % 2) * 495
+    const y = 1092 + Math.floor(i / 2) * 64
+    text(ctx, String(year), x, y, 29, MUTED)
+    text(ctx, `A ${formatPercent(duel.a.annual[year])}`, x + 112, y, 29, A)
+    text(ctx, `B ${formatPercent(duel.b.annual[year])}`, x + 295, y, 29, B)
   })
-
-  ctx.fillStyle = MUTED
-  ctx.font = '19px Arial, sans-serif'
-  ctx.fillText('PIRE ANNÉE', 60, 1222)
-  ctx.fillStyle = INK
-  ctx.font = '23px Arial, sans-serif'
-  ctx.fillText(`A  ${formatPercent(duel.a.worst)} (${duel.a.worstYear})`, 60, 1260)
-  ctx.fillText(`B  ${formatPercent(duel.b.worst)} (${duel.b.worstYear})`, 568, 1260)
-  line(ctx, 60, 1280, 1020, ACCENT)
-  ctx.fillStyle = MUTED
-  ctx.font = '18px Arial, sans-serif'
-  ctx.fillText(`Performances historiques en ${duel.currency} · Résultats indicatifs`, 60, 1320)
+  text(ctx, 'PIRE ANNÉE', 61, 1285, 22, MUTED)
+  text(ctx, `A ${formatPercent(duel.a.worst)} (${duel.a.worstYear})`, 258, 1281, 26, A)
+  text(ctx, `B ${formatPercent(duel.b.worst)} (${duel.b.worstYear})`, 650, 1281, 26, B)
+  text(ctx, `Performances historiques en ${duel.currency} · Résultats indicatifs`, 61, 1322, 17, MUTED, 400)
   return canvas.toDataURL('image/png')
 }
