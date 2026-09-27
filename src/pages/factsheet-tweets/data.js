@@ -13,6 +13,55 @@ const smallCap = 'https://www.msci.com/documents/10199/255599/msci-world-small-c
 const exUsa = 'https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf'
 
 export const SHEETS = [
+  // Ajouts du 27/09/2026. Composition et performances ont des sources et des
+  // dates propres : l'indice n'est jamais assimilé à l'ETF synthétique.
+  {
+    id: 'em-standard', title: 'MSCI Emerging Markets', index: 'MSCI Emerging Markets', snapshot: '31 août 2026',
+    source: [{ label: 'Indice, composition et rendements nets USD · MSCI, 31/08/2026', url: 'https://www.msci.com/documents/10199/c0db0a48-01f2-4ba9-ad01-226fd5678111' }],
+    intro: 'Le MSCI Emerging Markets ne se résume plus à la Chine. Regarde où se concentre son poids 🌏',
+    constituents: 1178, markets: '24 pays émergents, grandes et moyennes capitalisations',
+    marketCap: '12 338 milliards $ de capitalisation ajustée du flottant',
+    countries: [['🇹🇼 Taïwan', 27.44], ['🇰🇷 Corée du Sud', 20.84], ['🇨🇳 Chine', 20.62], ['🇮🇳 Inde', 11.25], ['🇧🇷 Brésil', 3.94], ['🌍 Autres', 15.90]],
+    sectors: [['💻 Technologie', 41.56], ['🏦 Finance', 19.71], ['🛍️ Consommation cyclique', 8.02], ['🏭 Industrie', 6.54], ['🪨 Matériaux', 6.30], ['📡 Communication', 6.13], ['⚡ Énergie', 3.44], ['🛒 Consommation de base', 2.73], ['🏥 Santé', 2.72], ['💡 Services publics', 1.86], ['🏠 Immobilier', 0.99]],
+    holdings: [['TSMC', 15.14], ['Samsung Electronics', 7.20], ['SK Hynix', 5.48], ['Tencent', 2.88], ['Alibaba', 1.98], ['MediaTek', 1.45], ['Delta Electronics', 0.92], ['Samsung Electronics Pref', 0.89], ['China Construction Bank H', 0.83], ['Hon Hai Precision', 0.78]],
+    returns: [[2025, 33.57], [2024, 7.50], [2023, 9.83], [2022, -20.09], [2021, -2.54]],
+    performance: { kind: 'indice', detail: 'MSCI Emerging Markets, rendements nets en dollars, dividendes réinvestis', date: '31 août 2026', tenYear: 9.29 },
+    insight: 'Taïwan et la Corée du Sud pèsent ensemble près de la moitié de l’indice. Trois entreprises technologiques représentent déjà plus d’un quart du panier.',
+    takeaway: 'L’indice couvre de nombreux pays, mais son poids dépend fortement des semi-conducteurs. Un ETF émergents filtré ESG peut avoir une composition différente.',
+  },
+  {
+    id: 'topix', title: 'TOPIX', index: 'TOPIX', snapshot: '30 avril 2026',
+    source: [
+      { label: 'Composition de l’indice · fiche Amundi, 30/04/2026', url: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430' },
+      { label: 'Méthode de pondération · JPX', url: 'https://www.jpx.co.jp/english/markets/indices/topix/' },
+      { label: 'Rendements de la part PEA non couverte · Amundi', url: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260430' },
+    ],
+    intro: 'Pour investir au Japon, le TOPIX va bien au-delà des 225 valeurs du Nikkei 🇯🇵',
+    constituents: 1650, markets: 'actions japonaises pondérées par la capitalisation flottante',
+    countries: [['🇯🇵 Japon', 100]],
+    sectors: [['🏭 Industrie', 27.64], ['🏦 Finance', 16.65], ['🛍️ Consommation cyclique', 14.45], ['💻 Technologie', 14.37], ['📡 Communication', 6.33], ['🪨 Matériaux', 5.80], ['🏥 Santé', 5.51], ['🛒 Consommation de base', 4.80], ['🏠 Immobilier', 2.04], ['💡 Services publics', 1.35], ['⚡ Énergie', 1.06]],
+    holdings: [['Mitsubishi UFJ Financial', 3.34], ['Toyota', 3.07], ['Hitachi', 2.37], ['Sumitomo Mitsui Financial', 2.26], ['Sony Group', 2.05], ['Mitsubishi Corp', 2.01], ['SoftBank Group', 1.91], ['Tokyo Electron', 1.79], ['Mizuho Financial', 1.79], ['Mitsui & Co', 1.69]],
+    isin: 'FR0013411980', returns: [[2025, 10.22], [2024, 14.56], [2023, 15.27]],
+    performance: { kind: 'ETF', detail: 'part Amundi PEA Japon TOPIX non couverte, rendement du portefeuille en euros, net de frais', date: '30 avril 2026', historyNote: 'Les rendements ci-dessus sont ceux de l’ETF en euros, pas de l’indice TOPIX en yens. La composition de l’indice est datée d’avril 2026.' },
+    insight: 'Toyota et les banques ont un poids important. Le TOPIX est pondéré par capitalisation flottante, contrairement au Nikkei 225 pondéré par le prix des actions.',
+    takeaway: 'La part TOPIX PEA non couverte reste exposée au change yen/euro. Une autre part PEA couverte existe, avec des frais différents.',
+  },
+  {
+    id: 'nikkei225', title: 'Nikkei 225', index: 'Nikkei 225', snapshot: '31 août 2026',
+    source: [
+      { label: 'Composition et secteurs · Nikkei, 31/08/2026', url: 'https://indexes.nikkei.co.jp/en/nkave/archives/summary?dt=08312026&idx=nk225' },
+      { label: 'Rendements de la part 1C JPY · DWS', url: 'https://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR' },
+    ],
+    intro: 'Le Nikkei 225 ne donne pas le plus de poids aux entreprises les plus grosses. Voici sa vraie logique 🇯🇵',
+    constituents: 225, markets: 'actions de la Bourse de Tokyo, pondérées par le prix ajusté des actions',
+    countries: [['🇯🇵 Japon', 100]], marketCap: '1 060 380 milliards ¥ de capitalisation totale des composants (ce n’est pas la pondération de l’indice)',
+    sectors: [['💻 Technologie', 55.36], ['🛍️ Biens de consommation', 20.70], ['🪨 Matériaux', 12.59], ['🏭 Biens d’équipement et autres', 7.02], ['🏦 Finance', 3.01], ['🚆 Transport et services publics', 1.32]],
+    holdings: [['Advantest', 12.26], ['Fast Retailing', 8.79], ['Tokyo Electron', 8.56], ['SoftBank Group', 6.31], ['Recruit Holdings', 2.76], ['TDK', 2.33], ['Ibiden', 2.07], ['KDDI', 1.80], ['Kioxia', 1.77], ['Fujikura', 1.67]],
+    isin: 'LU2196470426', returns: [[2025, 28.2], [2024, 20.9], [2023, 30.5], [2022, -7.7], [2021, 6.3]],
+    performance: { kind: 'ETF', detail: 'part Xtrackers Nikkei 225 1C en yens, rendement du fonds net de frais, dividendes réinvestis', date: '31 décembre 2025', historyNote: 'Les poids sont ceux de l’indice au 31 août 2026 ; les rendements sont ceux de la part 1C en yens, pas une performance convertie en euros.' },
+    insight: 'Advantest, Fast Retailing et Tokyo Electron dépassent ensemble 29 % de l’indice. La technologie pesait plus de 55 % au 31 août 2026.',
+    takeaway: 'Malgré ses 225 actions, le Nikkei est très sensible à quelques titres dont le prix ajusté est élevé. La comparaison avec un ETF TOPIX en euros exige de tenir compte du change.',
+  },
   {
     id: 'acwi', title: 'MSCI ACWI', index: 'MSCI ACWI', snapshot: '31 août 2026', source: [{ label: 'Composition et performances, MSCI', url: acwi }],
     intro: 'Tu connais le MSCI World. Le MSCI ACWI va plus loin en ajoutant les marchés émergents 🌍',

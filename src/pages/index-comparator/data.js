@@ -7,15 +7,15 @@ import { formatEtfTer } from '../../data/etf-ter.js';
 //
 // Comparateur d'indices — génère un tweet comparatif (structure fixe en 5 blocs numérotés +
 // verdict + question finale) pour une famille d'indices concurrents. Seules les données
-// STRUCTURELLES (composition, ETF disponibles, ISIN, TER, encours, éligibilité PEA) sont
-// pré-rédigées et sourcées ci-dessous — jamais la performance, saisie à la main à chaque
-// génération (cf. formulaire dans App.jsx), comme le reste de la bibliothèque de l'appli.
+// STRUCTURELLES (composition, ETF disponibles, ISIN, TER, encours, éligibilité PEA) et les
+// performances annuelles disponibles sont pré-rédigées et sourcées ci-dessous. Les valeurs
+// peuvent être ajustées dans le formulaire de génération (cf. App.jsx).
 // Sources et niveau de confiance documentés dans le commentaire de chaque famille. Éligibilité
 // PEA vérifiée fonds par fonds — jamais supposée.
 
 // ─────────────────────────────────────────────────────────────────────────
-// FAMILLES — 10 au total. Famille 1 (Europe) reprend telle quelle l'exemple
-// de référence fourni. Familles 2-10 rédigées à partir de données réelles
+// FAMILLES — 13 au total. Famille 1 (Europe) reprend l'exemple
+// de référence fourni. Familles suivantes rédigées à partir de données réelles
 // vérifiées (cf. commentaire de sourcing sur chaque famille), en reprenant
 // pour plusieurs fonds les ISIN déjà vérifiés ailleurs dans l'application
 // (src/pages/etf-sheets/data.js, src/pages/portfolio-generator/data.js) —
@@ -935,5 +935,52 @@ export const FAMILIES = [
       { q: '💰 Le moins cher des ETP proposés ?', a: 'CoinShares ou WisdomTree, à égalité (et 0% de frais de gestion pour l\'Ethereum, staking à part).' },
     ],
     closing: '💬 Toi, Bitcoin, Ethereum, les deux, ou aucune crypto dans ton portefeuille ?',
+  },
+
+  // 27/09/2026 — famille distincte de « Monde large » : celle-ci compare
+  // trois périmètres développés (USA inclus, USA exclus, petites valeurs).
+  // Composition MSCI au 31/08/2026 ; ETF BlackRock et DWS (31/08/2026).
+  // https://www.msci.com/indexes/index/991000/msci-world-ex-usa-index
+  // https://www.msci.com/documents/10199/255599/msci-world-small-cap-index.pdf
+  // https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf
+  {
+    id: 'monde-segments',
+    label: '🔎 Monde : quels segments ?',
+    intro: 'World, World sans États-Unis, petites capitalisations : trois façons très différentes d’investir dans les pays développés 🌍\nOn regarde ce qui change 👇',
+    indices: [
+      { name: 'MSCI World', desc: 'Grandes et moyennes capitalisations de 23 pays développés ; les États-Unis en représentent la plus grande part.', tag: 'Le cœur développé 🌍' },
+      { name: 'MSCI World ex USA', desc: 'Grandes et moyennes capitalisations des pays développés hors États-Unis : 755 sociétés au 31/08/2026.', tag: 'Réduire le poids américain 🇺🇸' },
+      { name: 'MSCI World Small Cap', desc: 'Petites capitalisations des pays développés : 3 866 sociétés au 31/08/2026.', tag: 'Ajouter les petites entreprises 🔎' },
+    ],
+    block2Title: '2️⃣ EXEMPLES D’ETF DISPONIBLES (CTO) 💳',
+    etfGroups: [
+      { indexName: 'MSCI World', choiceNote: 'part physique en CTO, autres options PEA dans « Monde large »', pea: false,
+        funds: [{ name: 'iShares Core MSCI World UCITS ETF (Acc)', ticker: 'SWDA', isin: 'IE00B4L5Y983', ter: formatEtfTer('IE00B4L5Y983', 'index'), repl: '🔄 Physique', dist: 'capitalisant' }] },
+      { indexName: 'MSCI World ex USA', choiceNote: 'fonds récent, CTO uniquement', pea: false,
+        funds: [{ name: 'Xtrackers MSCI World ex USA UCITS ETF 1C', ticker: 'EXUS', isin: 'IE0006WW1TQ4', ter: formatEtfTer('IE0006WW1TQ4', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '8,19 Md$ au 31/08/2026' }] },
+      { indexName: 'MSCI World Small Cap', choiceNote: 'CTO uniquement', pea: false,
+        funds: [{ name: 'iShares MSCI World Small Cap UCITS ETF', ticker: 'WSML', isin: 'IE00BF4RFH31', ter: formatEtfTer('IE00BF4RFH31', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '~7,7 Md€ (fiche du 25/08/2026)' }] },
+    ],
+    diversification: {
+      chain: ['World (1 280, août 2026)', 'World ex USA (755, août 2026)', 'World Small Cap (3 866, août 2026)'],
+      notes: ['⚠️ Le World ex USA conserve les grandes et moyennes capitalisations : il retire un pays, pas une tranche de taille.', '→ World Small Cap ajoute une tranche de taille absente du World classique ; il contient encore beaucoup d’entreprises américaines.'],
+    },
+    // SWDA et WSML : séries USD du Générateur, mêmes ISIN ; confiance élevée.
+    // https://www.ishares.com/uk/individual/en/products/251882/ishares-core-msci-world-ucits-etf
+    // https://www.ishares.com/uk/professionals/en/products/296576/ishares-msci-world-small-cap-ucits-etf
+    // EXUS lancé le 06/03/2024 : pas de rendement propre sur les trois années.
+    perfFunds: [
+      { key: 'world', label: 'iShares Core MSCI World (SWDA)', y2023: 23.86, y2024: 18.7, y2025: 21.16 },
+      { key: 'ex_usa', label: 'Xtrackers MSCI World ex USA (EXUS)', y2023: null, y2024: null, y2025: null, perfNote: 'Part lancée en mars 2024 : pas de série annuelle complète 2023–2025.' },
+      { key: 'small_cap', label: 'iShares MSCI World Small Cap (WSML)', y2023: 16.02, y2024: 7.93, y2025: 19.84 },
+    ],
+    perfMethodNote: 'ℹ️ SWDA et WSML : rendements des parts en dollars, dividendes réinvestis et frais déduits. La part EXUS, plus récente, n’a pas trois années civiles complètes. Performances passées non prédictives.',
+    verdictTitle: '✅ LE VERDICT',
+    verdict: [
+      { q: '🌍 Une base développée ?', a: 'MSCI World inclut grandes et moyennes sociétés, notamment américaines.' },
+      { q: '🇺🇸 Réduire les États-Unis ?', a: 'World ex USA retire les sociétés américaines, sans ajouter les émergents.' },
+      { q: '🔎 Ajouter les petites entreprises ?', a: 'World Small Cap complète la tranche de taille laissée de côté par le World.' },
+    ],
+    closing: '💬 Pour compléter un World, tu préférerais moins d’USA ou davantage de petites capitalisations ?',
   },
 ]

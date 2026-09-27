@@ -5,8 +5,8 @@ import { EUR_USD } from '../src/pages/portfolio-duels/catalog.js'
 import { generateDuel } from '../src/pages/portfolio-duels/generate.js'
 import { YEARS } from '../src/pages/portfolio-generator/data.js'
 
-if (DUELS.length !== 4 || new Set(DUELS.map((duel) => duel.id)).size !== DUELS.length) {
-  throw new Error('Les quatre duels pilotes doivent être distincts')
+if (DUELS.length !== 9 || new Set(DUELS.map((duel) => duel.id)).size !== DUELS.length) {
+  throw new Error('Les neuf duels préparés doivent être distincts')
 }
 for (const definition of DUELS) {
   const duel = buildDuel(definition)
@@ -20,7 +20,7 @@ for (const definition of DUELS) {
     !Number.isFinite(portfolio.final) || !Number.isFinite(portfolio.worst))) {
     throw new Error(`Résultat incomplet : ${duel.id}`)
   }
-  if (/NaN|undefined|Méthode\s*:|rebalanc|proxy/i.test(tweet)) {
+  if (/\bNaN\b|\bundefined\b|Méthode\s*:|rebalanc|proxy/i.test(tweet)) {
     throw new Error(`Texte non publiable : ${duel.id}`)
   }
   console.log(`${duel.id}: A ${duel.a.final.toFixed(0)} ${duel.currency}, B ${duel.b.final.toFixed(0)} ${duel.currency}`)
@@ -37,7 +37,7 @@ for (const [change, reason] of [
     if (error.message.startsWith('Garde-fou absent')) throw error
   }
 }
-console.log('4 duels et garde-fous vérifiés.')
+console.log(`${DUELS.length} duels et garde-fous vérifiés.`)
 
 const a = [{ id: 'msci_acwi_ishares', pct: 70 }, { id: 'action_visa', pct: 10 }, { id: 'action_microsoft', pct: 10 }, { id: 'action_cocacola', pct: 10 }]
 const b = [{ id: 'sp500_ishares', pct: 60 }, { id: 'sect_tech_world_ishares', pct: 20 }, { id: 'or', pct: 10 }, { id: 'spot_bitcoin', pct: 10 }]

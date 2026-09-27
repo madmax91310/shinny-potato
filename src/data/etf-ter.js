@@ -59,6 +59,9 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   'IE00B44Z5B48': '0,12',
   'IE00B4K48X80': '0,12',
   'IE00B4K6B022': '0,05',
+  // iShares Core MSCI World SWDA, fiche BlackRock consultée le 27/09/2026.
+  // https://www.ishares.com/uk/individual/en/products/251882/ishares-core-msci-world-ucits-etf
+  'IE00B4L5Y983': '0,20',
   'IE00B4L5YX21': '0,12',
   'IE00B4NCWG09': '0,20',
   'IE00B4ND3602': '0,12',
@@ -77,6 +80,9 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   'IE00BF0M2Z96': '0,49',
   'IE00BF3N7094': '0,50',
   'IE00BF4RFH31': '0,35',
+  // Xtrackers MSCI World ex USA 1C, DWS au 24/09/2026.
+  // https://etf.dws.com/en-gb/knowledge/focus-topics/stocks-shares-isa-in-the-uk/
+  'IE0006WW1TQ4': '0,15',
   'IE00BFZPF546': '0,50',
   'IE00BGV5VN51': '0,35',
   'IE00BJ5JNY98': '0,18',

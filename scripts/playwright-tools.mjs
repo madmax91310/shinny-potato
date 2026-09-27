@@ -20,6 +20,8 @@
 
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
+import { DUELS } from "../src/pages/portfolio-duels/data.js";
+import { SHEETS } from "../src/pages/factsheet-tweets/data.js";
 
 const PORT = 4310;
 const BASE = `http://localhost:${PORT}/shinny-potato`;
@@ -110,11 +112,11 @@ async function testPortfolioGenerator(page) {
 async function testPortfolioDuels(page) {
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
   const select = page.locator('#pd-select');
-  let valid = (await select.locator('option').count()) === 4;
-  for (let index = 0; index < 4; index++) {
+  let valid = (await select.locator('option').count()) === DUELS.length;
+  for (let index = 0; index < DUELS.length; index++) {
     await select.selectOption(String(index));
     const text = await page.locator('#pd-tweet').inputValue();
-    valid &&= /2020 : [+-]/.test(text) && /2025 : [+-]/.test(text) && /10 000 \$/.test(text) && !/NaN|undefined/.test(text);
+    valid &&= /2020 : [+-]/.test(text) && /2025 : [+-]/.test(text) && /10 000 \$/.test(text) && !/\bNaN\b|\bundefined\b/.test(text);
     valid &&= (await page.locator('.pd-table tbody tr').count()) === 6;
   }
   const [download] = await Promise.all([
@@ -135,7 +137,7 @@ async function testPortfolioDuels(page) {
   valid &&= (await page.locator('.pd-card').count()) === 0;
   await page.getByRole('spinbutton', { name: 'Poids de l’actif 1 du portefeuille A' }).fill('70');
   valid &&= (await page.locator('.pd-card').count()) === 2;
-  record('Duel de portefeuilles', valid, '4 duels, génération, composition, total 100 % et image PNG');
+  record('Duel de portefeuilles', valid, `${DUELS.length} duels, génération, composition, total 100 % et image PNG`);
 }
 
 async function testEtfSheets(page) {
@@ -273,7 +275,7 @@ async function testFactsheetTweets(page) {
   const select = page.locator('#factsheet-subject');
   const draft = page.locator('#factsheet-draft');
   const count = await select.locator('option').count();
-  let ok = count === 11;
+  let ok = count === SHEETS.length;
   for (let index = 0; index < count; index++) {
     await select.selectOption({ index });
     const tweet = await draft.inputValue();
@@ -297,7 +299,7 @@ async function testFactsheetTweets(page) {
   ]);
   ok &&= download.suggestedFilename().endsWith('.png');
   await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
-  for (const id of ['acwi', 'em-esg', 'stoxx600']) {
+  for (const id of ['em-standard', 'topix', 'nikkei225', 'acwi', 'em-esg', 'stoxx600']) {
     await select.selectOption(id);
     await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
