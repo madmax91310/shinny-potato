@@ -1,101 +1,176 @@
-// Carte ETF : ticker, ISIN et frais lisibles immédiatement dans le fil mobile.
-// Toutes les valeurs proviennent de la fiche et sont réutilisées sans les dupliquer.
-const W = 1080
-const H = 1350
-const C = { paper: '#F6F3EA', ink: '#122E42', blue: '#193DB6', accent: '#D55C42', soft: '#C7D3EE', muted: '#697C87', white: '#FFFFFF', line: '#B8C6CA' }
+// Génération de l'image de la fiche (canvas 2D) — reprise telle quelle de la
+// session d'origine, juste recolorée en teal/navy pour matcher le design system.
+import { CATEGORY_EMOJI } from './data'
+import { buildFactRows } from './lib'
 
-function text(ctx, value, x, y, size, color = C.ink, family = 'Arial, sans-serif', align = 'left', weight = 700) {
-  ctx.fillStyle = color
-  ctx.textAlign = align
-  ctx.textBaseline = 'top'
-  ctx.font = `${weight} ${size}px ${family}`
-  ctx.fillText(String(value), x, y)
+function wrapText(ctx, text, maxWidth) {
+  const words = String(text).split(/\s+/)
+  const lines = []
+  let current = ''
+  words.forEach((word) => {
+    const test = current ? current + ' ' + word : word
+    if (ctx.measureText(test).width > maxWidth && current) {
+      lines.push(current)
+      current = word
+    } else {
+      current = test
+    }
+  })
+  if (current) lines.push(current)
+  return lines.length ? lines : ['']
 }
 
-function fit(ctx, value, maxWidth, startSize, family = 'Arial, sans-serif', minSize = 22) {
-  let size = startSize
-  do {
-    ctx.font = `700 ${size}px ${family}`
-    if (ctx.measureText(String(value)).width <= maxWidth) break
-    size -= 2
-  } while (size > minSize)
-  return size
-}
-
-function wrapped(ctx, value, maxWidth, maxLines, size) {
-  ctx.font = `700 ${size}px Georgia, serif`
-  const lines = ['']
-  for (const word of value.split(/\s+/)) {
-    const index = lines.length - 1
-    const next = lines[index] ? `${lines[index]} ${word}` : word
-    if (ctx.measureText(next).width > maxWidth && lines[index] && lines.length < maxLines) lines.push(word)
-    else lines[index] = next
-  }
-  return lines
-}
-
-function card(ctx, x, y, w, h, color, radius = 10) {
-  ctx.fillStyle = color
+function roundRectPath(ctx, x, y, w, h, r) {
   ctx.beginPath()
-  ctx.roundRect(x, y, w, h, radius)
-  ctx.fill()
+  ctx.moveTo(x + r, y)
+  ctx.arcTo(x + w, y, x + w, y + h, r)
+  ctx.arcTo(x + w, y + h, x, y + h, r)
+  ctx.arcTo(x, y + h, x, y, r)
+  ctx.arcTo(x, y, x + w, y, r)
+  ctx.closePath()
+}
+
+const IMG_FONTS = {
+  kicker: "700 22px -apple-system, 'Segoe UI', Arial, sans-serif",
+  name: "600 50px Georgia, 'Times New Roman', serif",
+  ticker: "26px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
+  badge: "700 22px -apple-system, 'Segoe UI', Arial, sans-serif",
+  fact: "32px -apple-system, 'Segoe UI', Arial, sans-serif",
+  factMono: "30px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
+  footer: "24px -apple-system, 'Segoe UI', Arial, sans-serif",
 }
 
 export function renderETFImage(etf) {
-  const canvas = document.createElement('canvas')
-  canvas.width = W * 2
-  canvas.height = H * 2
-  const ctx = canvas.getContext('2d')
-  ctx.scale(2, 2)
-  ctx.fillStyle = C.paper
-  ctx.fillRect(0, 0, W, H)
-  ctx.fillStyle = C.blue
-  ctx.fillRect(0, 0, W, 16)
-  text(ctx, '@Epargnantlibre', 60, 43, 30)
-  text(ctx, 'FICHE ETF', 1020, 46, 27, C.blue, 'monospace', 'right')
-  ctx.fillStyle = C.ink
-  ctx.fillRect(60, 105, 960, 3)
+  const SCALE = 2
+  const W = 1080
+  const PAD = 64
+  const iconColW = 56
+  const contentWidth = W - PAD * 2
 
-  const fullName = etf.name.replace(/\s+UCITS\s+ETF(?:\s+Acc)?$/i, '')
-  let nameSize = 66
-  let nameLines = wrapped(ctx, fullName, 960, 3, nameSize)
-  while (nameSize > 48 && nameLines.some((line) => ctx.measureText(line).width > 960)) {
-    nameSize -= 2
-    nameLines = wrapped(ctx, fullName, 960, 3, nameSize)
-  }
-  nameLines.forEach((line, i) => text(ctx, line, 60, 143 + i * 76, nameSize, C.ink, 'Georgia, serif'))
-  text(ctx, etf.category.toUpperCase(), 60, 391, fit(ctx, etf.category.toUpperCase(), 950, 30), C.muted)
+  const dot = CATEGORY_EMOJI[etf.category] || '⚫'
+  const tickerStr = '(' + etf.tickers.join(' / ') + ')'
+  const factRows = buildFactRows(etf)
 
-  card(ctx, 56, 455, 968, 258, C.blue, 14)
-  for (let x = 846; x < 1012; x += 16) {
-    ctx.strokeStyle = '#385BCC'
-    ctx.lineWidth = 1
-    ctx.beginPath(); ctx.moveTo(x, 465); ctx.lineTo(x - 107, 703); ctx.stroke()
-  }
-  text(ctx, etf.tickers.length > 1 ? 'TICKERS' : 'TICKER', 81, 480, 34, C.soft, 'monospace')
-  const tickers = etf.tickers.join(' / ')
-  text(ctx, tickers, 78, 537, fit(ctx, tickers, 914, 139, 'Arial, sans-serif', 56), C.white)
+  const mcanvas = document.createElement('canvas')
+  const mctx = mcanvas.getContext('2d')
 
-  card(ctx, 59, 754, 962, 151, C.ink, 9)
-  text(ctx, 'CODE ISIN', 84, 771, 30, '#B6C6D2', 'monospace')
-  text(ctx, etf.isin, 83, 816, fit(ctx, etf.isin, 911, 55, 'monospace', 40), C.white, 'monospace')
+  mctx.font = IMG_FONTS.name
+  const nameLines = wrapText(mctx, dot + '  ' + etf.name, contentWidth)
 
-  text(ctx, 'FRAIS ANNUELS', 60, 939, 35)
-  text(ctx, etf.ter, 58, 976, fit(ctx, etf.ter, 970, 135), C.accent)
-  ctx.fillStyle = C.line
-  ctx.fillRect(60, 1149, 960, 2)
-
-  // Certaines fiches (or, bitcoin) ont une longue précision après « : » ou « — ».
-  // Le bandeau affiche le nombre d'actifs ; la précision demeure dans la fiche complète.
-  const positions = etf.positions.split(/\s*(?:—|:|\()\s*/)[0].toUpperCase()
-  const tags = [etf.pea ? 'PEA' : 'CTO', etf.distribution.toUpperCase(), positions]
-  const slots = [{ x: 60, width: 135 }, { x: 225, width: 390 }, { x: 650, width: 370 }]
-  tags.forEach((tag, index) => {
-    const { x, width } = slots[index]
-    const size = fit(ctx, tag, width, 28, 'Arial, sans-serif', 20)
-    text(ctx, tag, x, 1171, size, index === 0 ? C.blue : C.ink)
+  const factLineWraps = factRows.map((f) => {
+    mctx.font = f.mono ? IMG_FONTS.factMono : IMG_FONTS.fact
+    return wrapText(mctx, f.text, contentWidth - iconColW)
   })
-  text(ctx, etf.location, 60, 1242, fit(ctx, etf.location, 960, 26), C.muted, 'Arial, sans-serif', 'left', 400)
-  text(ctx, 'Informations à vérifier avant publication · Pas un conseil en investissement', 60, 1300, 19, C.muted, 'Arial, sans-serif', 'left', 400)
+
+  const kickerH = 30, gapAfterKicker = 22
+  const nameLineH = 60, tickerLineH = 48
+  const badgeH = etf.isNew ? 58 : 0
+  const gapBeforeDivider = 30, dividerGap = 38
+  const factLineH = 44, factRowGap = 24
+  const gapBeforeFooterDivider = 6, footerDividerGap = 32, footerH = 30
+
+  let y = PAD
+  y += kickerH + gapAfterKicker
+  y += nameLines.length * nameLineH
+  y += tickerLineH
+  if (etf.isNew) y += badgeH
+  y += gapBeforeDivider + dividerGap
+  factLineWraps.forEach((lines) => {
+    y += Math.max(1, lines.length) * factLineH + factRowGap
+  })
+  y += gapBeforeFooterDivider + footerDividerGap
+  y += footerH
+  y += PAD
+
+  const H = Math.ceil(y)
+
+  const canvas = document.createElement('canvas')
+  canvas.width = W * SCALE
+  canvas.height = H * SCALE
+  const ctx = canvas.getContext('2d')
+  ctx.scale(SCALE, SCALE)
+  ctx.textBaseline = 'top'
+
+  const bg = ctx.createLinearGradient(0, 0, W, H)
+  bg.addColorStop(0, '#0f1e3d')
+  bg.addColorStop(1, '#0a1122')
+  ctx.fillStyle = bg
+  roundRectPath(ctx, 0, 0, W, H, 28)
+  ctx.fill()
+
+  ctx.strokeStyle = 'rgba(45,212,191,0.35)'
+  ctx.lineWidth = 2
+  roundRectPath(ctx, 1, 1, W - 2, H - 2, 28)
+  ctx.stroke()
+
+  const cx = PAD
+  let cy = PAD
+
+  ctx.font = IMG_FONTS.kicker
+  ctx.fillStyle = '#2dd4bf'
+  ctx.fillText('📋 PRÉSENTATION D\'ETF', cx, cy)
+  cy += kickerH + gapAfterKicker
+
+  ctx.font = IMG_FONTS.name
+  ctx.fillStyle = '#f1f5f9'
+  nameLines.forEach((line) => {
+    ctx.fillText(line, cx, cy)
+    cy += nameLineH
+  })
+
+  ctx.font = IMG_FONTS.ticker
+  ctx.fillStyle = '#5eead4'
+  ctx.fillText(tickerStr, cx, cy)
+  cy += tickerLineH
+
+  if (etf.isNew) {
+    const badgeText = '🆕 Nouveau'
+    ctx.font = IMG_FONTS.badge
+    const bw = ctx.measureText(badgeText).width + 34
+    const bh = 42
+    ctx.fillStyle = '#5eead4'
+    roundRectPath(ctx, cx, cy, bw, bh, bh / 2)
+    ctx.fill()
+    ctx.fillStyle = '#052e2b'
+    ctx.textBaseline = 'middle'
+    ctx.fillText(badgeText, cx + 17, cy + bh / 2 + 1)
+    ctx.textBaseline = 'top'
+    cy += badgeH
+  }
+
+  cy += gapBeforeDivider
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)'
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  ctx.moveTo(cx, cy)
+  ctx.lineTo(W - PAD, cy)
+  ctx.stroke()
+  cy += dividerGap
+
+  factRows.forEach((f, i) => {
+    const lines = factLineWraps[i]
+    ctx.font = IMG_FONTS.fact
+    ctx.fillStyle = '#f1f5f9'
+    ctx.fillText(f.icon, cx, cy)
+    ctx.font = f.mono ? IMG_FONTS.factMono : IMG_FONTS.fact
+    ctx.fillStyle = f.mono ? '#5eead4' : '#c7cde3'
+    lines.forEach((line, li) => {
+      ctx.fillText(line, cx + iconColW, cy + li * factLineH)
+    })
+    cy += Math.max(1, lines.length) * factLineH + factRowGap
+  })
+
+  cy += gapBeforeFooterDivider
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)'
+  ctx.beginPath()
+  ctx.moveTo(cx, cy)
+  ctx.lineTo(W - PAD, cy)
+  ctx.stroke()
+  cy += footerDividerGap
+
+  ctx.font = IMG_FONTS.footer
+  ctx.fillStyle = '#64748b'
+  ctx.fillText('⚠️ Pas un conseil en investissement', cx, cy)
+
   return canvas
 }
