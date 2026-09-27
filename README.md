@@ -47,3 +47,5 @@ Le test navigateur nécessite Chromium (`npx playwright install chromium`). La C
 ## Déploiement
 
 Le workflow `.github/workflows/deploy-pages.yml` publie la branche `master` sur GitHub Pages après réussite des contrôles. Une pull request exécute les vérifications sans publication.
+
+La revue hebdomadaire des données reste informative. Tous les 180 jours à partir du 27 septembre 2026, `.github/workflows/review-freshness.yml` ouvre une issue de rappel avec les priorités de vérification. Une issue par période est créée, même si le workflow tourne chaque lundi ; une erreur de rappel ne bloque jamais le déploiement. Les dates signalées ne prouvent pas qu'un chiffre est devenu faux.
