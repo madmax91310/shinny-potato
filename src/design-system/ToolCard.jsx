@@ -13,7 +13,7 @@ const STATUS_LABELS = {
 // maquettes en largeur mobile réelle. Sous-titre (description) retiré et largeur plafonnée le
 // 25/09/2026 (demande utilisateur juste après déploiement) : sans description, une carte étirée
 // sur toute la moitié de la grille paraissait trop large pour son contenu (icône + titre seuls).
-export default function ToolCard({ to, icon, title, accent = '#2dd4bf', status = 'disponible' }) {
+export default function ToolCard({ to, icon, title, accent = '#2dd4bf', status = 'disponible', publicationDay }) {
   return (
     <Link to={to} className="group block h-full w-full max-w-[220px] justify-self-start">
       <Card className="flex h-full items-center gap-3 p-3 transition-colors group-hover:border-teal-600/60">
@@ -26,6 +26,9 @@ export default function ToolCard({ to, icon, title, accent = '#2dd4bf', status =
         </span>
         <div className="min-w-0 flex-1">
           <h2 className="text-sm font-semibold leading-snug text-slate-100">{title}</h2>
+          {publicationDay && (
+            <span className="mt-1 block text-[11px] leading-tight text-teal-300/90">{publicationDay}</span>
+          )}
           {status !== 'disponible' && (
             <span className="mt-1 inline-block rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 text-[11px] font-medium text-amber-300">
               {STATUS_LABELS[status]}
