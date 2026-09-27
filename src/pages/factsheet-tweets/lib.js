@@ -3,6 +3,9 @@ const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digit
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
 
 const questions = {
+  'em-standard': 'Tu imaginais Taïwan et la Corée aussi présents dans les émergents ?',
+  topix: 'Pour le Japon, tu choisirais le TOPIX ou le Nikkei 225 ?',
+  nikkei225: 'Tu connaissais le poids des trois premières valeurs du Nikkei 225 ?',
   acwi: 'Tu connaissais la place des États-Unis dans le MSCI ACWI ?',
   'ftse-all-world': 'Tu pensais que les États-Unis pesaient autant dans le FTSE All-World ?',
   'world-small-cap': 'Tu connaissais cet indice de petites capitalisations ?',

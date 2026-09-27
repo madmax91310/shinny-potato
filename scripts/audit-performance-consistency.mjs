@@ -21,6 +21,7 @@ const FUND_ISINS = {
   japon: { nikkei: 'LU2196470426', topix: 'FR0013411980', msci_japan: 'IE00B4L5YX21' },
   'or-argent': { or: 'IE00B4ND3602', argent: 'IE00B4NCWG09' },
   crypto: { bitcoin: 'GB00BLD4ZL17', ethereum: 'GB00BLD4ZM24' },
+  'monde-segments': { world: 'IE00B4L5Y983', ex_usa: 'IE0006WW1TQ4', small_cap: 'IE00BF4RFH31' },
 }
 
 // Comparer des séries différentes d'un même ISIN exige une explication dans les deux outils.

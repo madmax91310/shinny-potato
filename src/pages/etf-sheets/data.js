@@ -50,6 +50,54 @@ export const CATEGORY_EMOJI = {
 
 export const ETFS = [
     // ---------- CŒUR DE PORTEFEUILLE ----------
+    // Ajouts du 27/09/2026 : parts déjà présentes dans le Comparatif ETF et
+    // le Comparateur d'indices. Montants et dates issus des fiches émetteurs.
+    {
+      id: "sp500-spea", category: "Cœur de portefeuille",
+      name: "iShares S&P 500 Swap PEA UCITS ETF", tickers: ["SPEA"], isNew: true,
+      isin: "IE000DQLYVB9", ter: formatEtfTer("IE000DQLYVB9", "sheet"),
+      positions: "Indice S&P 500 : environ 500 entreprises", aum: "54,66 M€ au 25/09/2026",
+      lastVerified: "27/09/2026", distribution: "Capitalisant", pea: true, cto: true,
+      location: "Irlande, réplication synthétique (swap)",
+      // BlackRock : caractéristiques du fonds, TER, lancement le 29/05/2025,
+      // fonds commercialisé PEA ; notice : intention de conserver l'éligibilité.
+      // https://www.blackrock.com/fr/intermediaries/products/342916/
+      whatIs: "Un ETF S&P 500 en euros qui utilise un swap pour suivre les grandes sociétés américaines. Lancé en mai 2025, il n'a pas d'historique annuel complet sur 2023 et 2024.",
+      whyInteresting: `Il propose l'exposition S&P 500 dans un PEA avec ${formatEtfTer("IE000DQLYVB9", "index")} de frais annuels annoncés, moins que l'Amundi PSP5 sélectionné dans le comparateur.`,
+      whatToKnow: "Son encours est plus petit et son historique plus court que ceux des ETF S&P 500 anciens. La réplication par swap comporte un risque de contrepartie ; vérifie aussi la liquidité et l'éligibilité auprès de ton courtier avant d'acheter.",
+      verdict: "Une option PEA peu chargée en frais, encore récente ; le coût affiché ne suffit pas à lui seul pour choisir.",
+      question: "Pour suivre le S&P 500 en PEA, tu privilégies les frais ou l'ancienneté du fonds ?"
+    },
+    {
+      id: "topix-pea-hedged", category: "Cœur de portefeuille",
+      name: "Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc", tickers: ["PTPXH"], isNew: true,
+      isin: "FR0013411998", ter: formatEtfTer("FR0013411998", "sheet"),
+      positions: "Indice TOPIX : 1 637 valeurs au 31/07/2026", aum: "150,05 M€ au 30/04/2026",
+      lastVerified: "27/09/2026", distribution: "Capitalisant", pea: true, cto: true,
+      location: "France, réplication synthétique, couverture du yen en euros",
+      // Amundi, fiche du 30/04/2026 : 0,48 %, PEA, 150,05 M€, part couverte.
+      // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
+      whatIs: "Suit le TOPIX, large indice japonais pondéré par capitalisation, avec une couverture du risque de change entre le yen et l'euro.",
+      whyInteresting: "Permet de suivre le marché japonais en PEA sans subir directement toutes les variations du yen face à l'euro.",
+      whatToKnow: "La couverture a un coût et peut réduire la performance lorsque le yen monte. Ne confonds pas cette part avec la part TOPIX PEA non couverte FR0013411980 : leurs rendements en euros peuvent diverger.",
+      verdict: "Une exposition large au Japon en PEA pour qui veut limiter l'effet du change, sans éliminer le risque actions.",
+      question: "Pour investir au Japon, tu garderais l'exposition au yen ou tu la couvrirais ?"
+    },
+    {
+      id: "basic-resources-pea", category: "Sectoriels classiques",
+      name: "Amundi STOXX Europe 600 Basic Resources UCITS ETF", tickers: [], isNew: true,
+      isin: "LU1834983550", ter: formatEtfTer("LU1834983550", "sheet"),
+      positions: "Secteur ressources de base du STOXX Europe 600", aum: "752,60 M€ au 30/06/2026",
+      lastVerified: "27/09/2026", distribution: "Capitalisant", pea: true, cto: true,
+      location: "Luxembourg, réplication synthétique (swap)",
+      // Amundi, fiche du 30/06/2026 : PEA, 0,30 %, 752,60 M€.
+      // https://www.amundietf.com/pdfDocuments/monthly-factsheet/LU1834983550/ENG/LUX/RETAIL/ETF/20260630
+      whatIs: "Suit les entreprises européennes des ressources de base présentes dans le STOXX Europe 600 ; ce sont des actions d'entreprises, pas des métaux détenus physiquement.",
+      whyInteresting: "Ajoute un secteur cyclique européen à un portefeuille, avec une part annoncée éligible au PEA.",
+      whatToKnow: "Le secteur est sensible aux prix des matières premières et au cycle industriel. Cette exposition concentrée peut déjà être présente dans un ETF Europe large.",
+      verdict: "Un ETF sectoriel PEA pour cibler les producteurs de ressources, à distinguer d'un ETC sur un métal.",
+      question: "Tu préfères les entreprises minières ou une exposition directe aux métaux ?"
+    },
     {
       id: "msci-world",
       category: "Cœur de portefeuille",
