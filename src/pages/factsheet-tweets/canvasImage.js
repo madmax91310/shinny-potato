@@ -1,178 +1,119 @@
-// Affiche 3:4 pour un post X. Toutes les valeurs affichées viennent de la fiche sélectionnée.
+// Affiche 3:4 pour X. Tous les chiffres proviennent de la fiche sélectionnée.
 const W = 1080
 const H = 1440
-const INK = '#0d1012'
-const WHITE = '#f4f1eb'
-const SOFT = '#b7b6b2'
-const BRONZE = '#c6a474'
-const LINE = '#464644'
-const RED = '#d59687'
+const C = {
+  paper: '#F2EFE8', ink: '#152A35', hero: '#315963', accent: '#327982',
+  white: '#F4F1EB', muted: '#53666C', rule: '#C7C9BD', negative: '#AD6258',
+}
 
-function write(ctx, value, x, y, size = 18, color = WHITE, weight = 400, align = 'left', family = 'Arial, sans-serif') {
+function write(ctx, value, x, y, size, color = C.ink, weight = 400, align = 'left') {
   ctx.fillStyle = color
-  ctx.font = `${weight} ${size}px ${family}`
-  ctx.textAlign = align
+  ctx.font = `${weight} ${size}px Arial, sans-serif`
   ctx.textBaseline = 'top'
+  ctx.textAlign = align
   ctx.fillText(String(value), x, y)
   ctx.textAlign = 'left'
 }
 
-function fit(ctx, value, width, size = 18, min = 12, weight = 400) {
-  let current = size
-  while (current > min) {
-    ctx.font = `${weight} ${current}px Arial, sans-serif`
-    if (ctx.measureText(value).width <= width) break
-    current--
+function fitted(ctx, value, x, y, width, size, color = C.ink, weight = 700, align = 'left', min = 13) {
+  let font = size
+  while (font > min) {
+    ctx.font = `${weight} ${font}px Arial, sans-serif`
+    if (ctx.measureText(String(value)).width <= width) break
+    font--
   }
-  let result = value
-  while (ctx.measureText(result).width > width && result.length > 2) result = `${result.slice(0, -2).trimEnd()}…`
-  return [result, current]
+  let label = String(value)
+  while (ctx.measureText(label).width > width && label.length > 2) label = `${label.slice(0, -2).trimEnd()}…`
+  write(ctx, label, x, y, font, color, weight, align)
 }
 
-function rule(ctx, y, color = LINE) {
-  ctx.fillStyle = color
-  ctx.fillRect(52, y, 976, 1)
+function percent(n, signed = false) {
+  return `${signed && n > 0 ? '+' : n < 0 ? '−' : ''}${Math.abs(n).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %`
 }
 
-function section(ctx, y, number, title) {
-  write(ctx, number, 52, y + 1, 14, BRONZE, 700)
-  write(ctx, title, 93, y - 3, 20, WHITE, 700)
-  rule(ctx, y + 30)
-}
-
-function value(value, sign = false) {
-  return `${sign && value > 0 ? '+' : value < 0 ? '−' : ''}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %`
-}
-
-function countryName(name) {
+function label(name) {
   return name.replace(/[\p{Extended_Pictographic}\p{Regional_Indicator}\uFE0F\u200D]/gu, '').trim()
 }
 
-function heroTitle(sheet) {
-  if (sheet.id === 'acwi') return ['47 MARCHÉS', '23 développés + 24 émergents']
-  const title = sheet.markets.replace(/^grandes entreprises de /i, '').replace(/^grandes sociétés /i, '')
-  return [title.toLocaleUpperCase('fr-FR'), 'COMPOSITION DE L’INDICE']
+function section(ctx, y, number, title) {
+  write(ctx, number, 54, y + 1, 21, C.accent, 700)
+  write(ctx, title, 100, y - 3, 30, C.ink, 700)
+  ctx.fillStyle = C.ink
+  ctx.fillRect(54, y + 39, 972, 2)
 }
 
-function sourceLabel(sheet) {
-  return [...new Set(sheet.source.map((entry) => new URL(entry.url).hostname.replace(/^www\./, '').replace(/^research\./, '')))].join(' · ')
+function bars(ctx, entries, { y, step, rows, max = 30, size = 24, color = C.accent }) {
+  entries.forEach(([name, weight], i) => {
+    const x = 54 + Math.floor(i / rows) * 504
+    const top = y + i % rows * step
+    fitted(ctx, label(name), x, top, 355, size, C.ink, 400, 'left', 17)
+    write(ctx, percent(weight), x + 450, top, size + 1, color, 700, 'right')
+    ctx.fillStyle = '#DDDCD3'; ctx.fillRect(x, top + 34, 450, 4)
+    ctx.fillStyle = color; ctx.fillRect(x, top + 34, Math.min(450, 450 * weight / max), 4)
+  })
 }
 
 export function renderFactsheetImage(sheet) {
   const canvas = document.createElement('canvas')
-  canvas.width = W * 2
-  canvas.height = H * 2
+  canvas.width = W * 2; canvas.height = H * 2
   const ctx = canvas.getContext('2d')
   ctx.scale(2, 2)
+  ctx.fillStyle = C.paper; ctx.fillRect(0, 0, W, H)
 
-  const bg = ctx.createLinearGradient(0, 0, 0, H)
-  bg.addColorStop(0, '#191b1c')
-  bg.addColorStop(0.4, INK)
-  bg.addColorStop(1, '#0b0d0e')
-  ctx.fillStyle = bg
-  ctx.fillRect(0, 0, W, H)
-  const glow = ctx.createRadialGradient(280, 170, 20, 280, 170, 650)
-  glow.addColorStop(0, 'rgba(105,100,90,.13)')
-  glow.addColorStop(1, 'rgba(0,0,0,0)')
-  ctx.fillStyle = glow
-  ctx.fillRect(0, 0, W, 650)
+  ctx.fillStyle = C.ink; ctx.fillRect(0, 0, W, 208)
+  write(ctx, 'ÉPARGNANT LIBRE', 540, 22, 25, C.white, 700, 'center')
+  fitted(ctx, sheet.title.toLocaleUpperCase('fr-FR'), 540, 52, 1000, 72, C.white, 700, 'center', 36)
+  fitted(ctx, `${sheet.markets} · ${sheet.marketCap ?? `${sheet.constituents.toLocaleString('fr-FR')} entreprises`}`, 540, 145, 1010, 23, C.white, 400, 'center', 17)
+  fitted(ctx, `COMPOSITION AU ${sheet.snapshot.toLocaleUpperCase('fr-FR')}`, 540, 180, 1000, 17, '#B7CBD0', 700, 'center', 13)
 
-  rule(ctx, 35, BRONZE)
-  write(ctx, 'ÉPARGNANT LIBRE', 52, 53, 14, BRONZE, 700)
-  write(ctx, `FICHE INDICE  /  ${sheet.snapshot.replaceAll(' ', ' ')}`, 1028, 54, 12, SOFT, 400, 'right')
-  const [title, titleSize] = fit(ctx, sheet.title.toLocaleUpperCase('fr-FR'), 920, 57, 40)
-  write(ctx, title, 540, 91, titleSize, WHITE, 400, 'center', 'Georgia, serif')
-  rule(ctx, 173, BRONZE)
+  ctx.fillStyle = C.hero; ctx.fillRect(0, 208, W, 150)
+  // Un léger bord en pointe relie les deux bandeaux sans changer leur hauteur.
+  ctx.fillStyle = C.ink
+  ctx.beginPath(); ctx.moveTo(0, 208); ctx.lineTo(0, 216); ctx.lineTo(540, 204); ctx.lineTo(W, 216); ctx.lineTo(W, 208); ctx.closePath(); ctx.fill()
+  ctx.strokeStyle = '#95B2B4'; ctx.lineWidth = 1.5
+  ctx.beginPath(); ctx.moveTo(0, 216); ctx.lineTo(540, 204); ctx.lineTo(W, 216); ctx.stroke()
 
-  const countries = [...sheet.countries].sort((a, b) => b[1] - a[1])
-  const main = countries.find(([name]) => countryName(name).toLowerCase() !== 'autres') ?? countries[0]
-  const otherCountries = sheet.countries.filter((entry) => entry !== main)
-  ctx.lineWidth = 26
-  ctx.strokeStyle = '#3a3b3b'
-  ctx.beginPath()
-  ctx.arc(215, 343, 127, 0, Math.PI * 2)
-  ctx.stroke()
-  ctx.strokeStyle = BRONZE
-  ctx.beginPath()
-  ctx.arc(215, 343, 127, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * main[1] / 100)
-  ctx.stroke()
-  write(ctx, value(main[1]).replace(' %', ''), 215, 294, 44, WHITE, 700, 'center')
-  write(ctx, '%', 215, 352, 22, BRONZE, 700, 'center')
-  const [countryLabel, countrySize] = fit(ctx, countryName(main[0]).toLocaleUpperCase('fr-FR'), 210, 15, 12, 700)
-  write(ctx, countryLabel, 215, 391, countrySize, SOFT, 700, 'center')
-
-  const [heading, subheading] = heroTitle(sheet)
-  const [headingText, headingSize] = fit(ctx, heading, 602, 29, 20, 700)
-  write(ctx, headingText, 424, 216, headingSize, WHITE, 700)
-  write(ctx, subheading, 424, 259, 17, SOFT)
-  ctx.fillStyle = LINE
-  ctx.fillRect(424, 303, 604, 1)
+  const main = sheet.countries.find(([name]) => label(name).toLowerCase() !== 'autres') ?? sheet.countries[0]
   const topTen = sheet.topWeight ?? sheet.holdings.slice(0, 10).reduce((sum, [, weight]) => sum + weight, 0)
-  const horizon = sheet.performance.tenYear != null
-    ? [value(sheet.performance.tenYear), 'SUR 10 ANS / AN']
+  const perf = sheet.performance.tenYear != null
+    ? [sheet.performance.tenYear, 'SUR 10 ANS · PAR AN']
     : sheet.performance.annualizedFiveYear != null
-      ? [value(sheet.performance.annualizedFiveYear), 'SUR 5 ANS / AN']
-      : [value(sheet.returns[0][1], true), 'EN 2025']
-  const stats = [
-    [sheet.constituents.toLocaleString('fr-FR'), 'ENTREPRISES'],
-    [sheet.marketCap?.split(' de ')[0] ?? sheet.markets, sheet.marketCap ? 'CAPITALISATION' : 'MARCHÉS'],
-    [value(topTen), 'TOP 10'],
-    horizon,
-  ]
-  stats.forEach(([stat, label], i) => {
-    const x = i % 2 ? 736 : 424
-    const y = i < 2 ? 325 : 413
-    const [statText, size] = fit(ctx, stat, i % 2 ? 292 : 282, 36, 23, 700)
-    write(ctx, statText, x, y, size, WHITE, 700)
-    write(ctx, label, x, y + 43, 16, BRONZE, 700)
-  })
+      ? [sheet.performance.annualizedFiveYear, 'SUR 5 ANS · PAR AN']
+      : [sheet.returns[0][1], `EN ${sheet.returns[0][0]}`]
+  write(ctx, '1ER PAYS', 54, 224, 18, C.white, 700)
+  fitted(ctx, percent(main[1]), 54, 242, 480, 80, C.white, 700, 'left', 57)
+  fitted(ctx, label(main[0]).toLocaleUpperCase('fr-FR'), 57, 325, 480, 26, C.white, 700)
+  ctx.fillStyle = '#93B2B4'; ctx.fillRect(550, 221, 2, 125)
+  write(ctx, sheet.constituents.toLocaleString('fr-FR'), 595, 214, 54, C.white, 700)
+  write(ctx, 'ENTREPRISES', 595, 272, 19, C.white, 700)
+  fitted(ctx, `${perf[0] > 0 ? '+' : ''}${percent(perf[0])}${sheet.performance.tenYear != null || sheet.performance.annualizedFiveYear != null ? ' / AN' : ''}`, 595, 294, 452, 37, C.white)
+  fitted(ctx, perf[1], 595, 337, 456, 16, C.white)
 
-  section(ctx, 514, '01', 'PAYS')
-  otherCountries.forEach(([name, weight], i) => {
-    const x = 52 + (i % 3) * 333
-    const y = 561 + Math.floor(i / 3) * 38
-    const label = countryName(name)
-    const [short, size] = fit(ctx, label, 175, 21, 16)
-    write(ctx, short, x, y, size)
-    write(ctx, value(weight), x + 289, y, 21, BRONZE, 700, 'right')
-  })
+  section(ctx, 401, '01', 'RÉPARTITION PAR PAYS')
+  // Le nombre de pays listés peut varier (6 pour MSCI Europe, 8 pour STOXX 600).
+  bars(ctx, sheet.countries, { y: 459, step: 49, rows: Math.ceil(sheet.countries.length / 2), size: 25, max: Math.max(30, ...sheet.countries.map(([, weight]) => weight)) })
 
-  section(ctx, 664, '02', 'SECTEURS')
-  sheet.sectors.forEach(([name, weight], i) => {
-    const x = 52 + Math.floor(i / 6) * 507
-    const y = 710 + (i % 6) * 37
-    const [short, size] = fit(ctx, name, 340, 22, 17)
-    write(ctx, short, x, y, size)
-    write(ctx, value(weight), x + 465, y, 22, BRONZE, 700, 'right')
-  })
+  section(ctx, 655, '02', 'SECTEURS')
+  bars(ctx, sheet.sectors, { y: 710, step: 49, rows: Math.ceil(sheet.sectors.length / 2), size: 23, color: C.hero, max: Math.max(30, ...sheet.sectors.map(([, weight]) => weight)) })
 
-  section(ctx, 953, '03', 'DIX PREMIÈRES ENTREPRISES')
+  section(ctx, 1010, '03', 'DIX PREMIÈRES ENTREPRISES')
+  write(ctx, `TOP 10 : ${percent(topTen)}`, 1026, 1020, 21, C.accent, 700, 'right')
   sheet.holdings.slice(0, 10).forEach(([name, weight], i) => {
-    const x = 52 + Math.floor(i / 5) * 507
-    const y = 1001 + (i % 5) * 37
-    write(ctx, String(i + 1).padStart(2, '0'), x, y + 1, 14, BRONZE)
-    const [short, size] = fit(ctx, name, 330, 22, 17)
-    write(ctx, short, x + 35, y, size)
-    write(ctx, value(weight), x + 465, y, 21, SOFT, 700, 'right')
+    const x = 54 + Math.floor(i / 5) * 504
+    const y = 1066 + i % 5 * 34
+    write(ctx, String(i + 1).padStart(2, '0'), x, y, 18, C.accent, 700)
+    fitted(ctx, name, x + 42, y, 315, 24, C.ink, 400, 'left', 17)
+    write(ctx, percent(weight), x + 450, y, 24, C.ink, 700, 'right')
   })
 
-  section(ctx, 1222, '04', 'PERFORMANCES ANNUELLES')
-  sheet.returns.slice().reverse().forEach(([year, performance], i) => {
-    const x = 52 + i * 201
-    write(ctx, year, x, 1275, 20, SOFT)
-    write(ctx, value(performance, true), x, 1308, 25, performance < 0 ? RED : WHITE, 700)
+  section(ctx, 1256, '04', 'PERFORMANCES')
+  sheet.returns.slice().reverse().forEach(([year, result], i) => {
+    const x = 54 + i * 205
+    write(ctx, year, x, 1335, 20, C.muted)
+    fitted(ctx, percent(result, true), x, 1360, 190, 26, result < 0 ? C.negative : C.ink, 700, 'left', 18)
   })
-  rule(ctx, 1352, BRONZE)
-  const [method, methodSize] = fit(ctx, sheet.performance.detail, 976, 14, 11)
-  write(ctx, method, 52, 1363, methodSize, SOFT)
-  if (sheet.performance.historyNote) {
-    const [note, noteSize] = fit(ctx, sheet.performance.historyNote, 976, 12, 10)
-    write(ctx, note, 52, 1384, noteSize, RED)
-  }
-  const source = `SOURCE : ${sourceLabel(sheet).toLocaleUpperCase('fr-FR')}  ·  ${sheet.snapshot.toLocaleUpperCase('fr-FR')}`
-  const [sourceText, sourceSize] = fit(ctx, source, 976, 13, 10, 700)
-  write(ctx, sourceText, 52, 1403, sourceSize, BRONZE, 700)
-  write(ctx, 'Données historiques. Pas un conseil financier.', 52, 1424, 11, SOFT)
-  write(ctx, `${sheet.index}  /  ${sheet.performance.date}`, 1028, 1424, 11, SOFT, 400, 'right')
+  ctx.fillStyle = C.ink; ctx.fillRect(54, 1405, 972, 2)
+  fitted(ctx, `${sheet.performance.detail} · ${sheet.performance.date}`, 54, sheet.performance.historyNote ? 1409 : 1413, 972, sheet.performance.historyNote ? 12 : 16, C.muted, 400, 'left', 11)
+  if (sheet.performance.historyNote) fitted(ctx, sheet.performance.historyNote, 54, 1423, 972, 11, C.muted, 400, 'left', 10)
   return canvas
 }
