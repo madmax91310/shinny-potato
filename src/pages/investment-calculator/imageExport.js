@@ -63,26 +63,21 @@ function compactPct(value) {
   return `${value > 0 ? '+' : value < 0 ? '−' : ''}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
 }
 
-// Les barres utilisent seulement les clôtures réellement présentes dans la base, plus
-// la date de départ et le prix de fin de simulation. La première et la dernière
-// année peuvent ainsi couvrir moins de douze mois : elles sont signalées comme telles.
+// Les barres comparent les clôtures de décembre présentes dans la base : chaque
+// année affichée couvre une année civile complète. La valorisation du placement
+// au-dessus reste calculée sur les dates choisies par l'utilisateur.
 export function annualInvestmentReturns(state, d) {
-  if (d.isCustom) return [{ label: 'Période', value: pct(d.result.finalValue, d.amount), partial: true }]
+  if (d.isCustom) return [{ label: 'Période', value: pct(d.result.finalValue, d.amount) }]
   const points = ASSETS[state.assetId].points
-  const end = d.endYm
-  const anchors = points.filter(({ date }) => date.endsWith('-12') && ymIndex(date) > ymIndex(d.startYm) && ymIndex(date) < ymIndex(end))
-  const values = new Map(d.result.months.map((month, index) => [month, d.result.series[index]]))
-  const dates = [d.startYm, ...anchors.map(({ date }) => date), end]
-  return dates.slice(1).map((date, i) => {
-    const previous = dates[i]
-    const firstValue = values.get(previous)
-    const lastValue = values.get(date)
-    return {
-      label: date.slice(0, 4),
-      value: (lastValue / firstValue - 1) * 100,
-      partial: !previous.endsWith('-12') || !date.endsWith('-12'),
-    }
-  }).filter(({ value }) => Number.isFinite(value))
+  const december = new Map(points.filter(({ date }) => date.endsWith('-12')).map(({ date, price }) => [Number(date.slice(0, 4)), price]))
+  const years = []
+  for (let year = Number(d.startYm.slice(0, 4)); year <= Number(d.endYm.slice(0, 4)); year++) {
+    if (ymIndex(`${year}-12`) > ymIndex(d.endYm)) continue
+    const previous = december.get(year - 1)
+    const current = december.get(year)
+    if (previous > 0 && Number.isFinite(current)) years.push({ label: String(year), value: (current / previous - 1) * 100 })
+  }
+  return years.length ? years : [{ label: 'Période', value: pct(d.result.finalValue, d.amount) }]
 }
 
 function drawMonthly(ctx, d, currency) {
@@ -157,12 +152,13 @@ function drawMonthly(ctx, d, currency) {
 }
 
 function drawAnnual(ctx, rows, d, currency) {
+  const calendar = !d.isCustom && rows[0]?.label !== 'Période'
   ctx.font = 'bold 31px Georgia, serif'
   ctx.fillStyle = INK
-  ctx.fillText(d.isCustom ? 'Performance sur la période' : 'Performances par année', 60, 621)
+  ctx.fillText(calendar ? 'Performances de l’actif par année' : 'Performance sur la période', 60, 621)
   ctx.font = '23px Arial, sans-serif'
   ctx.fillStyle = MUTED
-  ctx.fillText('Variation de la valeur du placement · axe en %', 60, 654)
+  ctx.fillText(calendar ? 'Clôture de décembre à clôture de décembre · axe en %' : 'Variation de la valeur du placement · axe en %', 60, 654)
   const positives = rows.filter(({ value }) => value > 0).map(({ value }) => value)
   const negatives = rows.filter(({ value }) => value < 0).map(({ value }) => -value)
   const zero = positives.length && negatives.length ? 974 : positives.length ? 1070 : 741
@@ -190,7 +186,7 @@ function drawAnnual(ctx, rows, d, currency) {
     ctx.stroke()
   }
   ctx.textAlign = 'center'
-  rows.forEach(({ label, value, partial }, i) => {
+  rows.forEach(({ label, value }, i) => {
     const x = 155 + cell * (i + .5)
     const height = Math.max(2, value >= 0 ? value / maxPos * up : -value / maxNeg * down)
     ctx.fillStyle = value < 0 ? RED : GREEN
@@ -199,7 +195,7 @@ function drawAnnual(ctx, rows, d, currency) {
     ctx.fillText(compactPct(value), x, value >= 0 ? zero - height - 17 : zero + height + 29)
     ctx.fillStyle = MUTED
     ctx.font = `${rows.length > 9 ? 20 : 26}px Georgia, serif`
-    ctx.fillText(`${label}${partial && !d.isCustom ? '*' : ''}`, x, 1141)
+    ctx.fillText(label, x, 1141)
   })
   ctx.textAlign = 'left'
   ctx.strokeStyle = BRONZE
@@ -209,7 +205,7 @@ function drawAnnual(ctx, rows, d, currency) {
   ctx.stroke()
   ctx.fillStyle = MUTED
   ctx.font = '20px Arial, sans-serif'
-  ctx.fillText(rows.some(({ partial }) => partial) && !d.isCustom ? '* Année partielle depuis le départ ou jusqu’au dernier point.' : 'Rendement sur la période sélectionnée.', 60, 1190)
+  ctx.fillText(calendar ? `Années civiles closes · Valorisation du placement en ${prettyMonth(d.endYm)}.` : 'Rendement sur la période sélectionnée.', 60, 1190)
   ctx.fillText(`Montants en ${currency} · ${d.startYm} → ${d.endYm}`, 60, 1219)
 }
 
