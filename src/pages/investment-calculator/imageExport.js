@@ -28,24 +28,28 @@ function fittedText(ctx, text, maxWidth, font, minSize, startSize) {
 
 function centeredTitle(ctx, label) {
   ctx.textAlign = 'center'
+  ctx.fillStyle = BRONZE
+  ctx.font = 'bold 26px Arial, sans-serif'
+  ctx.fillText('ÉPARGNANT LIBRE  /  ET SI TU AVAIS INVESTI ?', 540, 125)
   ctx.fillStyle = INK
-  fittedText(ctx, 'ET SI TU AVAIS INVESTI', 950, 'Georgia, serif', 42, 56)
-  ctx.fillText('ET SI TU AVAIS INVESTI', 540, 144)
-  const title = `DANS ${label.toUpperCase()} ?`
-  const size = fittedText(ctx, title, 950, 'Georgia, serif', 36, 60)
-  if (ctx.measureText(title).width <= 950) {
-    ctx.fillText(title, 540, 221)
+  const name = label.toUpperCase()
+  const size = fittedText(ctx, name, 950, 'Georgia, serif', 40, 92)
+  if (ctx.measureText(name).width <= 950) {
+    ctx.fillText(name, 540, 252)
   } else {
-    const words = title.split(' ')
+    const words = name.split(' ')
     const lines = ['']
+    ctx.font = 'bold 48px Georgia, serif'
     for (const word of words) {
       const last = lines.length - 1
-      const next = `${lines[last]} ${word}`.trim()
-      if (ctx.measureText(next).width > 930 && lines[last]) lines.push(word)
-      else lines[last] = next
+      const proposed = `${lines[last]} ${word}`.trim()
+      if (ctx.measureText(proposed).width > 950 && lines[last] && lines.length < 2) lines.push(word)
+      else lines[last] = proposed
     }
-    ctx.font = `bold ${Math.min(size, 43)}px Georgia, serif`
-    lines.forEach((line, index) => ctx.fillText(line, 540, 206 + index * 51))
+    lines.forEach((line, index) => {
+      fittedText(ctx, line, 950, 'Georgia, serif', 24, Math.min(48, size + 8))
+      ctx.fillText(line, 540, 200 + index * 59)
+    })
   }
   ctx.textAlign = 'left'
 }
@@ -231,30 +235,34 @@ export function renderInvestmentImage(state, d) {
   ctx.textAlign = 'center'
   ctx.fillStyle = INK
   const investmentLine = d.effectiveMode === 'dca'
-    ? `${fmtEUR(d.amount, currency)} PLACÉS CHAQUE MOIS DEPUIS ${start.toUpperCase()}`
+    ? `${fmtEUR(d.amount, currency)} / MOIS DEPUIS ${start.toUpperCase()}`
     : `${fmtEUR(d.amount, currency)} PLACÉS EN ${start.toUpperCase()}`
-  fittedText(ctx, investmentLine, 950, 'Arial, sans-serif', 23, 32)
-  ctx.fillText(investmentLine, 540, 317)
-  ctx.font = 'bold 23px Arial, sans-serif'
+  fittedText(ctx, investmentLine, 950, 'Arial, sans-serif', 28, 48)
+  ctx.fillText(investmentLine, 540, 332)
+  ctx.font = 'bold 21px Arial, sans-serif'
   ctx.fillStyle = BRONZE
-  ctx.fillText(d.effectiveMode === 'dca' ? `VERSEMENT MENSUEL · JUSQU’À ${prettyMonth(d.endYm).toUpperCase()}` : 'VERSEMENT UNIQUE', 540, 349)
+  ctx.fillText(d.effectiveMode === 'dca' ? `VERSEMENTS MENSUELS JUSQU’À ${prettyMonth(d.endYm).toUpperCase()}` : 'VERSEMENT UNIQUE', 540, 363)
   ctx.textAlign = 'left'
   ctx.fillStyle = '#fff'
-  ctx.fillRect(60, 381, 960, 180)
+  ctx.fillRect(60, 390, 960, 186)
   ctx.fillStyle = MUTED
-  ctx.font = 'bold 23px Arial, sans-serif'
-  ctx.fillText(`VALEUR EN ${prettyMonth(d.endYm).toUpperCase()}`, 94, 423)
+  ctx.font = 'bold 24px Arial, sans-serif'
+  ctx.fillText(`VALEUR EN ${prettyMonth(d.endYm).toUpperCase()}`, 94, 427)
   ctx.fillStyle = INK
-  fittedText(ctx, fmtEUR(d.result.finalValue, currency), 690, 'Georgia, serif', 56, 82)
-  ctx.fillText(fmtEUR(d.result.finalValue, currency), 92, 518)
-  ctx.fillStyle = pct(d.result.finalValue, d.result.totalInvested) < 0 ? RED : GREEN
-  fittedText(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 240, 'Georgia, serif', 26, 40)
+  fittedText(ctx, fmtEUR(d.result.finalValue, currency), 660, 'Georgia, serif', 48, 100)
+  ctx.fillText(fmtEUR(d.result.finalValue, currency), 92, 529)
+  const gain = d.result.finalValue - d.result.totalInvested
+  ctx.fillStyle = gain < 0 ? RED : GREEN
+  fittedText(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 240, 'Arial, sans-serif', 28, 48)
   ctx.textAlign = 'right'
-  ctx.fillText(fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 987, 424)
+  ctx.fillText(fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 987, 475)
   ctx.textAlign = 'left'
   ctx.fillStyle = MUTED
-  ctx.font = 'bold 21px Arial, sans-serif'
-  ctx.fillText(`CAPITAL INVESTI : ${fmtEUR(d.result.totalInvested, currency)}`, 94, 553)
+  ctx.font = 'bold 20px Arial, sans-serif'
+  ctx.fillText(`INVESTI : ${fmtEUR(d.result.totalInvested, currency)}`, 94, 566)
+  ctx.textAlign = 'right'
+  ctx.fillText(`${gain < 0 ? 'PERTE' : 'GAIN'} : ${fmtEUR(Math.abs(gain), currency)}`, 985, 566)
+  ctx.textAlign = 'left'
   if (annual) drawAnnual(ctx, annualInvestmentReturns(state, d), d, currency)
   else drawMonthly(ctx, d, currency)
   rule(ctx, 1247)
