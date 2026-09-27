@@ -1,13 +1,7 @@
 import { CATEGORIES, YEARS } from './data.js'
 
-const GOLD = '#ecc36d'
-const WHITE = '#f8f5ec'
-const MUTED = '#abb8c4'
-const BACK = '#09121c'
-
-function percent(value) {
-  return `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
-}
+const C = { bg: '#101a23', gold: '#f1c77a', white: '#f8f7f1', muted: '#b4c2c4', line: '#40545c', track: '#30414a' }
+const percent = (value) => `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
 
 export function annualizedReturn(perf) {
   if (!YEARS.every((year) => Number.isFinite(perf[year]))) return null
@@ -16,22 +10,22 @@ export function annualizedReturn(perf) {
 }
 
 function colorOf(asset) {
-  if (asset.id.includes('bitcoin')) return '#e9872f'
-  if (asset.id.includes('silver') || asset.id.includes('argent')) return '#b6c2cd'
-  if (asset.id.includes('or_') || asset.id === 'or') return '#e7bb58'
+  if (asset.id.includes('bitcoin')) return '#e59556'
+  if (asset.id.includes('silver') || asset.id.includes('argent')) return '#97a6b1'
+  if (asset.id.includes('or_') || asset.id === 'or') return '#dcb966'
   if (asset.id === 'lqq' || asset.id === 'cl2') return '#f4d44f'
-  return CATEGORIES[asset.cat]?.color || '#58baaf'
+  return CATEGORIES[asset.cat]?.color || '#8cc0bb'
 }
 
 function chartSelection(selection) {
   const variants = {
-    obligataire: ['#3987e5', '#75a8e8', '#4473b8'],
-    actions_larges: ['#199e70', '#48bd91', '#26755d'],
-    matieres_premieres: ['#d95926', '#efb454', '#b56832'],
-    dividendes: ['#c98500', '#e3b44e', '#b28a32'],
-    immobilier: ['#d55181', '#e181a2', '#a84474'],
-    emergents: ['#5ead51', '#90c770', '#397e50'],
-    crypto: ['#e66767', '#f09358', '#bd536a'],
+    obligataire: ['#8cc0bb', '#77a7be', '#97a6b1'],
+    actions_larges: ['#568bb8', '#6daaa2', '#7fafd3'],
+    matieres_premieres: ['#e59556', '#dcb966', '#c98762'],
+    dividendes: ['#dcb966', '#e6a768', '#b99970'],
+    immobilier: ['#c684a0', '#d899ae', '#ab7298'],
+    emergents: ['#8cbd83', '#a9c674', '#74a683'],
+    crypto: ['#e59556', '#df796c', '#dcae70'],
   }
   const seen = {}
   return selection.map((asset) => {
@@ -42,165 +36,110 @@ function chartSelection(selection) {
   })
 }
 
-function roundedRect(ctx, x, y, w, h, r) {
-  ctx.beginPath()
-  ctx.roundRect(x, y, w, h, r)
+function text(ctx, value, x, y, size, color = C.white, align = 'left') {
+  ctx.fillStyle = color
+  ctx.textAlign = align
+  ctx.font = `bold ${size}px Arial, sans-serif`
+  ctx.fillText(value, x, y)
 }
 
-function fit(ctx, text, width, size, min = 17, family = 'Georgia, serif') {
-  let current = size
-  while (current > min) {
-    ctx.font = `bold ${current}px ${family}`
-    if (ctx.measureText(text).width <= width) return current
-    current -= 1
-  }
-  ctx.font = `bold ${min}px ${family}`
-  return min
-}
-
-function textLines(ctx, text, width, maxLines = 3) {
-  const lines = ['']
-  for (const word of text.split(' ')) {
-    const index = lines.length - 1
-    const next = `${lines[index]} ${word}`.trim()
-    if (lines[index] && ctx.measureText(next).width > width) lines.push(word)
-    else lines[index] = next
-  }
-  if (lines.length > maxLines) {
-    const keep = lines.slice(0, maxLines - 1)
-    let last = lines.slice(maxLines - 1).join(' ')
-    while (last.length && ctx.measureText(`${last}…`).width > width) last = last.slice(0, -1)
-    return [...keep, `${last.trimEnd()}…`]
-  }
-  return lines
-}
-
-function backdrop(ctx, height) {
-  const gradient = ctx.createLinearGradient(0, 0, 1080, height)
-  gradient.addColorStop(0, '#14202a')
-  gradient.addColorStop(.45, BACK)
-  gradient.addColorStop(1, '#0d1824')
-  ctx.fillStyle = gradient
-  ctx.fillRect(0, 0, 1080, height)
-  // Discreet gold circuit traces echo the reference without copying its fixed labels or assets.
-  ctx.strokeStyle = 'rgba(223, 164, 67, .20)'
-  ctx.lineWidth = 2
-  for (let index = 0; index < 9; index++) {
-    const offset = index * 19
-    for (const side of [0, 1]) {
-      const x = side ? 1080 : 0
-      const sign = side ? -1 : 1
-      ctx.beginPath()
-      ctx.moveTo(x, 130 + offset)
-      ctx.lineTo(x + sign * (68 + index * 8), 130 + offset)
-      ctx.lineTo(x + sign * (100 + index * 8), 96 + offset)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.arc(x + sign * (100 + index * 8), 96 + offset, 3, 0, Math.PI * 2)
-      ctx.fillStyle = 'rgba(235, 180, 82, .35)'
-      ctx.fill()
-    }
-  }
-  const glow = ctx.createRadialGradient(535, 585, 35, 535, 585, 530)
-  glow.addColorStop(0, 'rgba(166, 123, 47, .21)')
-  glow.addColorStop(1, 'rgba(166, 123, 47, 0)')
-  ctx.fillStyle = glow
-  ctx.fillRect(0, 180, 1080, 860)
-}
-
-function allocationBars(ctx, selection) {
-  ctx.fillStyle = GOLD
-  ctx.font = 'bold 25px Arial, sans-serif'
-  ctx.fillText('ALLOCATION DU PORTEFEUILLE', 68, 305)
-  selection.forEach((asset, index) => {
-    const y = 354 + index * 91
-    ctx.fillStyle = WHITE
-    const size = fit(ctx, asset.name, 790, 31, 22, 'Arial, sans-serif')
+function fit(ctx, value, width, maxSize, minSize = 23) {
+  let size = maxSize
+  while (size > minSize) {
     ctx.font = `bold ${size}px Arial, sans-serif`
-    ctx.fillText(asset.name, 68, y)
-    ctx.fillStyle = GOLD
-    ctx.font = 'bold 35px Arial, sans-serif'
-    ctx.textAlign = 'right'
-    ctx.fillText(`${asset.pct} %`, 1012, y)
-    ctx.textAlign = 'left'
-    ctx.fillStyle = '#263849'
-    ctx.fillRect(68, y + 15, 944, 22)
-    ctx.fillStyle = asset.chartColor
-    ctx.fillRect(68, y + 15, 944 * asset.pct / 100, 22)
+    if (ctx.measureText(value).width <= width) break
+    size -= 1
+  }
+  return size
+}
+
+function names(ctx, value, width) {
+  ctx.font = 'bold 31px Arial, sans-serif'
+  const words = value.split(' ')
+  const lines = ['']
+  for (const word of words) {
+    const last = lines.length - 1
+    const next = `${lines[last]} ${word}`.trim()
+    if (lines[last] && ctx.measureText(next).width > width && lines.length < 2) lines.push(word)
+    else lines[last] = next
+  }
+  return lines.map((line) => {
+    ctx.font = 'bold 23px Arial, sans-serif'
+    if (ctx.measureText(line).width <= width) return line
+    let shortened = line
+    while (shortened.length && ctx.measureText(`${shortened}…`).width > width) shortened = shortened.slice(0, -1)
+    return `${shortened.trimEnd()}…`
   })
+}
+
+function rect(ctx, x, y, width, height, color, radius = 0) {
+  ctx.fillStyle = color
+  ctx.beginPath()
+  ctx.roundRect(x, y, Math.max(1, width), height, radius)
+  ctx.fill()
 }
 
 export function renderPortfolioImage(portfolio) {
   const selection = chartSelection(portfolio.selection.filter((asset) => asset.pct > 0).slice().sort((a, b) => b.pct - a.pct))
-  const panelY = 385 + selection.length * 91
-  const height = panelY + 565
+  const rowHeight = 137
+  const performanceY = 514 + selection.length * rowHeight
+  const height = performanceY + 340
   const canvas = document.createElement('canvas')
-  canvas.width = 2160
+  canvas.width = 2400
   canvas.height = height * 2
   const ctx = canvas.getContext('2d')
   ctx.scale(2, 2)
-  backdrop(ctx, height)
-  ctx.textAlign = 'center'
-  ctx.fillStyle = WHITE
-  fit(ctx, 'EXEMPLE DE RÉPARTITION', 960, 55, 37)
-  ctx.fillText('EXEMPLE DE RÉPARTITION', 540, 105)
-  ctx.fillText('DE PATRIMOINE', 540, 168)
-  const annualized = annualizedReturn(portfolio.perf)
-  ctx.fillStyle = GOLD
-  const heading = annualized === null ? 'Historique annuel incomplet' : `${percent(annualized)} annualisé de 2020 à 2025`
-  fit(ctx, heading, 940, 47, 32)
-  ctx.fillText(heading, 540, 234)
-  ctx.textAlign = 'left'
+  ctx.fillStyle = C.bg
+  ctx.fillRect(0, 0, 1200, height)
+  rect(ctx, 0, 0, 1200, 12, C.gold)
 
-  allocationBars(ctx, selection)
+  text(ctx, 'ÉPARGNANT LIBRE', 600, 89, 25, C.gold, 'center')
+  text(ctx, 'RÉPARTITION DU', 600, 177, 60, C.white, 'center')
+  text(ctx, 'PORTEFEUILLE', 600, 252, 60, C.white, 'center')
+  text(ctx, `${selection.length} SUPPORT${selection.length > 1 ? 'S' : ''}  ·  100 % RÉPARTIS`, 600, 334, 24, C.muted, 'center')
 
-  ctx.fillStyle = 'rgba(7, 16, 25, .84)'
-  roundedRect(ctx, 45, panelY, 990, 360, 28)
-  ctx.fill()
-  ctx.strokeStyle = GOLD
-  ctx.lineWidth = 2
-  ctx.stroke()
+  // The full strip uses each allocation's share of the whole, even when one line is dominant.
+  const total = selection.reduce((sum, asset) => sum + asset.pct, 0)
+  let offset = 70
+  for (const [index, asset] of selection.entries()) {
+    const width = index === selection.length - 1 ? 1130 - offset : 1060 * asset.pct / total
+    rect(ctx, offset, 355, Math.max(1, width - 3), 50, asset.chartColor)
+    offset += width
+  }
+
+  text(ctx, 'ALLOCATION', 70, 462, 24, C.gold)
+  const maxWeight = Math.max(1, ...selection.map((asset) => asset.pct))
+  selection.forEach((asset, index) => {
+    const y = 520 + index * rowHeight
+    rect(ctx, 70, y - 23, 13, 82, asset.chartColor, 4)
+    const lines = names(ctx, asset.name, 650)
+    if (lines.length === 1) {
+      text(ctx, lines[0], 106, y + 8, fit(ctx, lines[0], 650, 37))
+    } else {
+      lines.forEach((line, row) => text(ctx, line, 106, y - 13 + row * 35, fit(ctx, line, 650, 30)))
+    }
+    text(ctx, `${asset.pct} %`, 1130, y + 24, 69, C.white, 'right')
+    rect(ctx, 108, y + 66, 706, 14, C.track, 6)
+    rect(ctx, 108, y + 66, 706 * asset.pct / maxWeight, 14, asset.chartColor, 6)
+  })
+
+  rect(ctx, 70, performanceY, 1060, 2, C.line)
+  text(ctx, 'PERFORMANCES ANNUELLES', 70, performanceY + 43, 24, C.gold)
   YEARS.forEach((year, index) => {
     const col = index % 3
     const row = Math.floor(index / 3)
-    const x = 210 + col * 330
-    const y = panelY + 84 + row * 164
-    ctx.textAlign = 'center'
-    ctx.fillStyle = WHITE
-    ctx.font = 'bold 38px Georgia, serif'
-    ctx.fillText(String(year), x, y)
+    const x = 74 + col * 370
+    const y = performanceY + 97 + row * 91
+    text(ctx, String(year), x, y, 23, C.muted)
     const value = portfolio.perf[year]
-    ctx.fillStyle = Number.isFinite(value) && value < 0 ? '#e8a49a' : GOLD
-    ctx.font = 'bold 45px Georgia, serif'
-    ctx.fillText(Number.isFinite(value) ? percent(value) : 'n.d.', x, y + 61)
+    text(ctx, Number.isFinite(value) ? percent(value) : 'n.d.', x, y + 38, 37, value < 0 ? '#ee9a89' : C.white)
   })
-  ctx.strokeStyle = 'rgba(236, 195, 109, .35)'
-  ctx.lineWidth = 1
-  ctx.beginPath()
-  ctx.moveTo(87, panelY + 180)
-  ctx.lineTo(993, panelY + 180)
-  ctx.stroke()
-  for (const col of [375, 705]) {
-    ctx.beginPath()
-    ctx.moveTo(col, panelY + 42)
-    ctx.lineTo(col, panelY + 316)
-    ctx.stroke()
-  }
-
   const worst = portfolio.worst
-  ctx.fillStyle = 'rgba(7, 16, 25, .86)'
-  roundedRect(ctx, 87, panelY + 393, 906, 116, 25)
-  ctx.fill()
-  ctx.strokeStyle = GOLD
-  ctx.lineWidth = 2
-  ctx.stroke()
-  ctx.textAlign = 'center'
-  ctx.fillStyle = WHITE
-  const worstText = Number.isFinite(worst.value) ? `Pire année : ${percent(worst.value)} en ${worst.year}` : 'Pire année : non disponible'
-  fit(ctx, worstText, 840, 43, 30)
-  ctx.fillText(worstText, 540, panelY + 468)
-  ctx.fillStyle = MUTED
-  ctx.font = '17px Arial, sans-serif'
-  ctx.fillText('Performances historiques simulées · Allocations repondérées chaque année · Devises non converties', 540, height - 23)
+  const worstLabel = Number.isFinite(worst.value) ? `Pire année : ${percent(worst.value)} en ${worst.year}` : 'Pire année : non disponible'
+  text(ctx, worstLabel, 70, performanceY + 265, fit(ctx, worstLabel, 1040, 23, 18), C.muted)
+  ctx.fillStyle = C.muted
+  ctx.textAlign = 'left'
+  ctx.font = '18px Arial, sans-serif'
+  ctx.fillText('Performances historiques simulées · allocations repondérées chaque année · devises non converties', 70, height - 16)
   return canvas
 }
