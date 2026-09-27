@@ -117,7 +117,10 @@ export async function renderIndexImage(family, perfValues = {}) {
         ? europeNames[fund.isin]
         : fund.ticker ? `${fund.ticker} · ${fund.name.split(' ')[0]}` : fund.name.replace(/ UCITS ETF.*$/i, '')
       y = wrapped(ctx, shortName, x, y, COL - 60, 51, PALETTE.ink, 700, 1.15)
-      const placement = /CTO uniquement/i.test(fund.note || '') || group.pea === false ? 'CTO' : 'PEA'
+      // Un groupe peut mêler une part PEA et une alternative CTO. Reconnaître
+      // aussi les notes « (CTO, …) » : l'ancienne condition « CTO uniquement »
+      // étiquetait à tort SPDR ACWI et iShares MSCI China comme éligibles PEA.
+      const placement = /\bCTO\b/i.test(fund.note || '') || group.pea === false ? 'CTO' : 'PEA'
       label(ctx, `${fund.isin} · ${placement}`, x, y + 12, 43, PALETTE.muted)
       label(ctx, fund.ter, x, y + 77, 88, color, 700)
       if (fund.aum) label(ctx, fund.aum.replace(/ au .*/, ''), x, y + 184, 43, PALETTE.muted)

@@ -42,8 +42,8 @@ export function createTheme(overrides = {}) {
 // sur chaque ligne qui ne l'avait pas encore (Tech Europe, Quantique). Priorité systématique :
 // 1) l'option PEA quand elle existe avec un TER raisonnable, 2) sinon le TER le plus bas parmi
 // les fonds CTO suffisamment liquides (encours > ~100 M€, sauf mention contraire explicite —
-// cf. Amundi STOXX Europe 600 Basic Materials, seule option PEA du thème Ressources naturelles
-// malgré un encours faible).
+// cf. options PEA de la famille Ressources naturelles, dont Basic Materials
+// conserve un faible encours).
 // Les encours évoluent en continu : à revérifier sur justETF.com avant publication
 // si le tweet sort plusieurs semaines après la dernière mise à jour de ce fichier.
 // Exceptions datées en commentaire inline : Amundi Global Luxury et Amundi TOPIX,
@@ -86,7 +86,11 @@ const BASE_THEMES = [
         isin: 'FR001400U5Q4',
         frais: formatEtfTer('FR001400U5Q4'),
         encours: '~1,37 Md€',
-        differenciateur: 'seul MSCI World éligible PEA, réplication synthétique',
+        // Vérifié le 27/09/2026 : CW8 (LU1681043599) et WPEA (IE0002XZSHO1)
+        // sont également éligibles PEA. Sources émetteurs :
+        // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/ENG/FRA/INSTITUTIONNEL/ETF/20260228
+        // https://www.ishares.com/ch/professionals/en/products/335178/ishares-msci-world-swap-pea-ucits-etf
+        differenciateur: 'MSCI World éligible PEA, réplication synthétique',
       }),
     ],
     cloture:
@@ -99,7 +103,7 @@ const BASE_THEMES = [
     hookAction: 'miser sur le marché le plus performant des 15 dernières années',
     hookDilemme: 'quel ETF S&P 500 ou Nasdaq choisir',
     transition:
-      'Le marché américain domine les indices mondiaux. Voici 3 façons d’y accéder, dont deux logeables en PEA :',
+      'Le marché américain domine les indices mondiaux. Voici 4 ETF à comparer, dont trois logeables en PEA :',
     etfs: [
       createEtf({
         nom: 'SPDR S&P 500 UCITS ETF Acc',
@@ -116,11 +120,25 @@ const BASE_THEMES = [
         differenciateur: 'le classique S&P 500 éligible PEA depuis 2014',
       }),
       createEtf({
+        // BlackRock, page produit au 25/09/2026 : TER 0,10 %, encours 54,66 M€.
+        // Fonds lancé le 29/05/2025, sans 2023/2024 calendaires. Sa notice
+        // précise qu'il entend conserver son éligibilité au PEA.
+        // https://www.blackrock.com/fr/intermediaries/products/342916/
+        nom: 'iShares S&P 500 Swap PEA UCITS ETF',
+        isin: 'IE000DQLYVB9',
+        frais: formatEtfTer('IE000DQLYVB9'),
+        encours: '54,66 M€ au 25/09/2026',
+        differenciateur: 'S&P 500 éligible PEA, moins cher en TER que l’Amundi, mais fonds plus récent',
+      }),
+      createEtf({
         nom: 'Amundi PEA Nasdaq-100 UCITS ETF',
         isin: 'FR0011871110',
         frais: formatEtfTer('FR0011871110'),
         encours: '~1,13 Md€',
-        differenciateur: 'tech US concentrée, seul Nasdaq en PEA',
+        // La part S FR001400ZGR7 de la même gamme est aussi affichée dans
+        // la gamme PEA Amundi (27/09/2026) : éviter toute exclusivité de part.
+        // https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-pea-nasdaq100-ucits-etf-s-acc/fr001400zgr7
+        differenciateur: 'Nasdaq-100 éligible PEA, exposition concentrée',
       }),
     ],
     cloture:
@@ -377,7 +395,9 @@ const BASE_THEMES = [
         isin: 'IE00B9CQXS71',
         frais: formatEtfTer('IE00B9CQXS71'),
         encours: '~1,5 Md€',
-        differenciateur: 'hausses de dividende sur 10 ans consécutifs mini',
+        // L'indice accepte les dividendes stables OU en hausse pendant 10 ans.
+        // https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy
+        differenciateur: 'dividende stable ou en hausse pendant au moins 10 ans',
       }),
       createEtf({
         nom: 'WisdomTree Global Quality Dividend Growth UCITS ETF',
@@ -398,7 +418,7 @@ const BASE_THEMES = [
     hookAction: 'diversifier ton portefeuille sur le marché japonais',
     hookDilemme: 'quel ETF Japon choisir (et si la couverture de change compte)',
     transition:
-      'Le Japon reste sous-représenté dans la plupart des portefeuilles européens. Voici 3 trackers pour s’y exposer :',
+      'Le Japon reste sous-représenté dans la plupart des portefeuilles européens. Voici 4 trackers pour s’y exposer :',
     etfs: [
       createEtf({
         nom: 'Amundi Prime Japan UCITS ETF',
@@ -414,14 +434,25 @@ const BASE_THEMES = [
         // Actif géré 187,05 M€ au 31/08/2026 ; fiche Amundi vérifiée le 25/09/2026.
         // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF
         encours: '~187 M€',
-        differenciateur: 'seul accès PEA au marché japonais',
+        differenciateur: 'TOPIX en PEA, sans couverture du yen',
+      }),
+      createEtf({
+        nom: 'Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc',
+        isin: 'FR0013411998',
+        frais: formatEtfTer('FR0013411998'),
+        // Fiche Amundi du 30/04/2026 : PEA, frais 0,48 %, actif géré 150,05 M€.
+        // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
+        encours: '~150 M€ au 30/04/2026',
+        differenciateur: 'TOPIX en PEA, couvert contre le yen',
       }),
       createEtf({
         nom: 'Xtrackers Nikkei 225 UCITS ETF',
         isin: 'LU1875395870',
         frais: formatEtfTer('LU1875395870'),
         encours: '~282 M€',
-        differenciateur: 'suit le Nikkei 225, couverture yen/euro incluse',
+        // DWS : la part LU1875395870 est « 2D EUR Hedged », distributive.
+        // https://etf.dws.com/download/asset/07d814c6-0032-4fc4-bc41-171c6dae90e4
+        differenciateur: 'suit le Nikkei 225, couvert en euros, distribuant, CTO',
       }),
     ],
     cloture:
@@ -502,18 +533,23 @@ const BASE_THEMES = [
     emoji: '🚀',
     hookAction: 'investir sur la conquête spatiale et le New Space',
     hookDilemme: 's’il existe un vrai ETF accessible pour ça',
-    transition: 'L’offre est très restreinte pour un investisseur européen. Voici le seul ETF UCITS solide sur le sujet :',
+    // Nouveaux ETF spatiaux UCITS lancés en 2026, notamment iShares STRR et
+    // WisdomTree WSPC : VanEck n'est plus l'unique option. Le fonds VanEck
+    // reste la référence retenue ici, sans promettre un comparatif exhaustif.
+    // https://www.ishares.com/uk/individual/en/products/351117/ishares-space-technologies-ucits-etf
+    // https://www.wisdomtree.eu/en-gb/etfs/thematic/wspc---wisdomtree-space-economy-ucits-etf---usd-acc
+    transition: 'De nouveaux ETF spatiaux UCITS sont arrivés en 2026. Voici une référence du secteur :',
     etfs: [
       createEtf({
         nom: 'VanEck Space Innovators UCITS ETF',
         isin: 'IE000YU9K6K2',
         frais: formatEtfTer('IE000YU9K6K2'),
         encours: '~2,0 Md$',
-        differenciateur: 'seul ETF spatial UCITS actif et liquide en Europe',
+        differenciateur: 'fonds spatial UCITS établi, CTO ; d’autres options plus récentes existent',
       }),
     ],
     cloture:
-      'Un seul acteur liquide sur ce thème en Europe — c’est un pari de conviction, pas un choix parmi plusieurs concurrents.',
+      'Le thème reste concentré et volatil. Compare les entreprises détenues et la taille des nouveaux fonds avant de choisir.',
     eligibilite: 'CTO uniquement',
   }),
   createTheme({
@@ -523,7 +559,7 @@ const BASE_THEMES = [
     hookAction: 't’exposer aux matières premières via les entreprises minières',
     hookDilemme: 'quel ETF ressources naturelles choisir',
     transition:
-      'Mines, matériaux de base : plusieurs façons d’y accéder selon ta zone géographique cible. Voici 3 trackers :',
+      'Mines, ressources et matériaux de base : ces ETF ne couvrent pas les mêmes entreprises. Voici 4 trackers :',
     etfs: [
       createEtf({
         nom: 'VanEck S&P Global Mining UCITS ETF',
@@ -533,11 +569,21 @@ const BASE_THEMES = [
         differenciateur: 'exposition minière mondiale la plus large, CTO',
       }),
       createEtf({
+        // Fiche Amundi du 30/06/2026 : PEA oui, TER 0,30 %, actif géré
+        // 752,60 M€, indice STOXX Europe 600 Basic Resources, swap.
+        // https://www.amundietf.com/pdfDocuments/monthly-factsheet/LU1834983550/ENG/LUX/RETAIL/ETF/20260630
+        nom: 'Amundi STOXX Europe 600 Basic Resources UCITS ETF',
+        isin: 'LU1834983550',
+        frais: formatEtfTer('LU1834983550'),
+        encours: '752,60 M€ au 30/06/2026',
+        differenciateur: 'ressources de base européennes, éligible PEA, réplication synthétique',
+      }),
+      createEtf({
         nom: 'Amundi STOXX Europe 600 Basic Materials UCITS ETF',
         isin: 'LU1834983634',
         frais: formatEtfTer('LU1834983634'),
         encours: '~20 M€',
-        differenciateur: 'seule option ressources éligible PEA, Europe only — encours faible, liquidité à surveiller',
+        differenciateur: 'matériaux européens, éligible PEA — encours faible, liquidité à surveiller',
       }),
       createEtf({
         nom: 'Xtrackers MSCI World Materials UCITS ETF',

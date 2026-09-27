@@ -33,9 +33,12 @@ export const FAMILIES = [
     label: '🇪🇺 Europe',
     intro: 'STOXX 600, EURO STOXX 50, MSCI Europe : trois façons de dire « j’investis en Europe », mais pas trois fois le même panier 🇪🇺\nOn regarde ce qui change 👇',
     indices: [
-      { name: 'STOXX 600', desc: 'Les 600 plus grandes entreprises européennes, 17 pays.', bullets: ['✅ UK + Suisse + Scandinavie inclus'], tag: 'Le plus large 🌍' },
+      // STOXX inclut explicitement grandes, moyennes et petites capitalisations.
+      // https://stoxx.com/index/sxxp/ (consulté le 27/09/2026)
+      { name: 'STOXX 600', desc: '600 entreprises de grandes, moyennes et petites capitalisations européennes, dans 17 pays.', bullets: ['✅ UK + Suisse + Scandinavie inclus'], tag: 'Le plus large 🌍' },
       { name: 'EURO STOXX 50', desc: 'Les 50 plus grosses boîtes de la zone euro uniquement.', tag: 'Ultra-concentré (ASML, SAP, LVMH…) 🎯' },
-      { name: 'MSCI Europe', desc: 'Les grandes valeurs de 15 pays développés européens.', tag: 'Très proche du STOXX 600 👯' },
+      // https://www.msci.com/indexes/index/990500/msci-europe-index
+      { name: 'MSCI Europe', desc: 'Grandes et moyennes capitalisations de 15 pays développés européens.', tag: 'Très proche du STOXX 600 👯' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -186,7 +189,10 @@ export const FAMILIES = [
     label: '🇺🇸 USA large',
     intro: 'Un ETF USA peut détenir 100, 500 ou près de 1 000 valeurs. Et ça change ce que tu détiens vraiment 🇺🇸\nOn compare les quatre indices 👇',
     indices: [
-      { name: 'S&P 500', desc: 'Les 500 plus grandes entreprises cotées aux États-Unis.', tag: 'La référence mondiale 🏆' },
+      // Le comité applique notamment des critères de flottant et de liquidité ;
+      // il ne prend pas mécaniquement les 500 plus grandes capitalisations.
+      // https://www.spglobal.com/spdji/en/research-insights/index-literacy/the-sp-500-and-the-dow/
+      { name: 'S&P 500', desc: 'Environ 500 grandes entreprises américaines sélectionnées selon plusieurs critères, dont le flottant et la liquidité.', tag: 'La référence mondiale 🏆' },
       { name: 'Nasdaq 100', desc: 'Les 100 plus grosses non-financières du Nasdaq : ultra tech.', tag: 'Le plus concentré tech 💻' },
       { name: 'MSCI USA', desc: 'Grandes ET moyennes capitalisations US, 527 valeurs.', tag: 'Un peu plus large que le S&P 500 📏' },
       { name: 'Russell 1000', desc: 'Les 1 000 plus grandes valeurs US, ~93 % de la capitalisation du marché américain.', tag: 'Le plus large des quatre 🌊' },
@@ -195,11 +201,15 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'S&P 500', choiceNote: 'le plus gros ≠ le moins cher', pea: true,
-        // BNP Paribas Easy plus gros encours (3,3 Md€ vs 1,15 Md€) mais TER légèrement supérieur —
-        // vérifié via recherche web le 01/09/2026, corrige un choix initial qui ne montrait que l'option Amundi.
+        // SPEA omis de la sélection initiale : BlackRock confirme un fonds
+        // coté à Paris, visant l'éligibilité PEA, TER 0,10 %, encours 54,66 M€
+        // au 25/09/2026. La série 2023–2025 reste celle d'Amundi : SPEA a
+        // été lancé en mai 2025 et n'a pas trois années civiles complètes.
+        // https://www.blackrock.com/fr/intermediaries/products/342916/
         funds: [
           { name: 'BNP Paribas Easy S&P 500 UCITS ETF (Acc)', isin: 'FR0011550185', ter: formatEtfTer('FR0011550185', 'index'), aum: '3,3 Md€', note: '(le plus gros encours)' },
-          { name: 'Amundi PEA S&P 500 UCITS ETF (Acc)', isin: 'FR0011871128', ter: formatEtfTer('FR0011871128', 'index'), aum: '1,15 Md€', note: '(le moins cher ⚡)' },
+          { name: 'Amundi PEA S&P 500 UCITS ETF (Acc)', isin: 'FR0011871128', ter: formatEtfTer('FR0011871128', 'index'), aum: '1,15 Md€', note: '(historique plus long que SPEA)' },
+          { name: 'iShares S&P 500 Swap PEA UCITS ETF (Acc)', ticker: 'SPEA', isin: 'IE000DQLYVB9', ter: formatEtfTer('IE000DQLYVB9', 'index'), aum: '54,66 M€ au 25/09/2026', note: '(le moins cher des trois ⚡ ; fonds récent)' },
         ],
       },
       {
@@ -245,7 +255,8 @@ export const FAMILIES = [
     perfMethodNote: 'ℹ️ Les deux ETF Amundi sont présentés en euros ; iShares MSCI USA est présenté en dollars (NAV de la part USD). Les performances ne sont pas directement comparables sans tenir compte du change.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '💳 Tu veux rester en PEA ?', a: 'Amundi PEA S&P 500 (large et simple) ou Amundi PEA Nasdaq-100 (concentré tech).' },
+      { q: '💳 Un S&P 500 en PEA à frais affichés réduits ?', a: 'iShares SPEA (0,10 %, fonds récent), ou Amundi PEA S&P 500 (0,12 %, historique plus long). Le TER ne résume pas le coût ni la qualité de suivi.' },
+      { q: '💻 Tu veux te concentrer sur le Nasdaq-100 en PEA ?', a: 'Amundi PEA Nasdaq-100, plus concentré sur les grandes valeurs technologiques.' },
       { q: '📏 Le compromis entre grandes et moyennes capitalisations, en CTO ?', a: 'iShares MSCI USA.' },
       { q: '🌊 L\'exposition la plus large possible ?', a: 'Une version Growth ou Value du Russell 1000, en CTO — pas de version PEA active pour l\'instant.' },
     ],
@@ -532,7 +543,7 @@ export const FAMILIES = [
         indexName: 'Dividend Aristocrats', choiceNote: 'le plus de choix', pea: false,
         funds: [
           { name: 'SPDR S&P Global Dividend Aristocrats UCITS ETF', isin: 'IE00B9CQXS71', ter: formatEtfTer('IE00B9CQXS71', 'index'), aum: '1,6 Md€ (01/09/2026)', note: '(mondial — dividende stable/en hausse depuis 10 ans)' },
-          { name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', isin: 'IE00B6YX5D40', ter: formatEtfTer('IE00B6YX5D40', 'index'), aum: '3,4 Md€ (01/09/2026)', note: '(US uniquement, le moins cher ⚡ — mais critère plus strict : 20 ans consécutifs de hausse du dividende, contre 10 ans pour le fonds mondial ci-dessus)' },
+          { name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', isin: 'IE00B6YX5D40', ter: formatEtfTer('IE00B6YX5D40', 'index'), aum: '3,4 Md€ (01/09/2026)', note: '(US uniquement, le moins cher ⚡ — critère plus strict : 20 ans consécutifs de hausse du dividende, contre 10 ans de dividende stable ou en hausse pour le fonds mondial ci-dessus)' },
         ],
       },
     ],
@@ -568,7 +579,7 @@ export const FAMILIES = [
     verdict: [
       { q: '💰 Le rendement le plus élevé, sans filtre ?', a: 'Vanguard FTSE All-World High Dividend Yield.' },
       { q: '💎 Le compromis entre rendement et solidité financière ?', a: 'iShares MSCI World Quality Dividend Advanced.' },
-      { q: '🏅 Le plus exigeant (20 ans de hausses consécutives) ?', a: 'SPDR S&P US Dividend Aristocrats (10 ans pour la version mondiale).' },
+      { q: '🏅 Le plus exigeant (20 ans de hausses consécutives) ?', a: 'SPDR S&P US Dividend Aristocrats (la version mondiale accepte un dividende stable ou en hausse pendant 10 ans).' },
     ],
     closing: '💬 Pour des dividendes, tu privilégies le montant versé ou les critères de sélection des entreprises ?',
   },
@@ -577,35 +588,41 @@ export const FAMILIES = [
   // Ajoutée le 02/09/2026. Recherche dédiée : sur les 3 indices de la
   // famille CTO (High Dividend mondial, Quality Dividend mondial,
   // Dividend Aristocrats mondial/US), aucun n'a d'équivalent PEA — confirmé
-  // à nouveau cette session. Une seule vraie option PEA existe pour viser
-  // le dividende, et elle est structurellement limitée à la zone euro :
-  // EUDV (SPDR S&P Euro Dividend Aristocrats), éligibilité PEA confirmée
+  // à nouveau cette session. EUDV est une option PEA pour l'indice Euro
+  // Dividend Aristocrats, mais ce n'est PAS le seul ETF à dividendes en PEA :
+  // Amundi MSCI EMU High Dividend (FR0010717090) est aussi éligible PEA
+  // selon Amundi (consulté le 27/09/2026). Les indices sont différents.
+  // https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-msci-emu-high-dividend-ucits-etf-acc/fr0010717090
+  // Éligibilité d'EUDV confirmée
   // par la documentation officielle State Street ET par un comparatif
   // indépendant d'ETF PEA 2026 (recherche web du 02/09/2026). Point de
   // vigilance retenu : l'équivalent Amundi sur le même indice zone euro
   // (Amundi S&P Eurozone Dividend Aristocrat Screened, LU0959210278) est
   // lui explicitement NON éligible PEA — la zone géographique seule ne
-  // suffit donc pas, seul EUDV a la bonne structure. Un seul fonds réel
-  // → pas de comparaison multi-fonds ici, mais un contenu complet et honnête
+  // suffit donc pas, EUDV a la bonne structure pour cet indice.
+  // → pas de comparaison multi-fonds sur le même indice ici
   // (ISIN, TER, encours, réplication, performance sourcée).
   {
     id: 'dividendes-pea',
     label: '🟣 Dividendes (PEA)',
-    intro: 'Tu veux un ETF à dividendes dans ton PEA ? La sélection se resserre vite sur la zone euro 🟣\nOn regarde ce que couvre cette option 👇',
+    intro: 'Tu veux un ETF à dividendes dans ton PEA ? Voici une option centrée sur la zone euro 🟣\nOn regarde ce qu’elle couvre 👇',
     indices: [
-      { name: 'Dividend Aristocrats mondial (rappel, non-PEA)', desc: '100 entreprises mondiales, dividende en hausse depuis au moins 10 ans — l\'option déjà vue dans le tweet « Dividendes (CTO) ».', tag: 'Large mais non-PEA 🌍' },
-      { name: 'Euro Dividend Aristocrats (PEA)', desc: '40 entreprises de la zone euro uniquement, même critère de hausse du dividende sur 10 ans — le prix à payer pour rester en PEA : un univers bien plus restreint.', tag: 'Le seul dividende PEA 🇪🇺' },
+      // Les deux indices acceptent un dividende stable OU en hausse pendant dix ans.
+      // https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy
+      // https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy
+      { name: 'Dividend Aristocrats mondial (rappel, non-PEA)', desc: '100 entreprises mondiales, dividende stable ou en hausse depuis au moins 10 ans — l\'option déjà vue dans le tweet « Dividendes (CTO) ».', tag: 'Large mais non-PEA 🌍' },
+      { name: 'Euro Dividend Aristocrats (PEA)', desc: '40 entreprises de la zone euro uniquement, même critère de dividende stable ou en hausse sur 10 ans — un univers bien plus restreint.', tag: 'Option dividendes en PEA 🇪🇺' },
     ],
     block2Title: '2️⃣ L\'ETF PEA DISPONIBLE 💳',
     etfGroups: [
       {
-        indexName: 'Euro Dividend Aristocrats', choiceNote: 'seule option PEA sur les dividendes, même en zone euro uniquement', pea: true,
+        indexName: 'Euro Dividend Aristocrats', choiceNote: 'une option PEA pour cet indice', pea: true,
         funds: [{ name: 'SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist)', ticker: 'EUDV', isin: 'IE00B5M1WJ87', ter: formatEtfTer('IE00B5M1WJ87', 'index'), repl: '🔄 Physique (réplication complète, 40 valeurs)', dist: 'distribuant semestriel', aum: '1 810 M€' }],
       },
     ],
     diversification: {
       chain: ['Dividend Aristocrats mondial (100 lignes, CTO)', 'Euro Dividend Aristocrats (40 lignes, PEA)'],
-      notes: ['⚠️ En PEA, tu passes de 100 valeurs mondiales à seulement 40 valeurs zone euro — la contrepartie de l\'éligibilité PEA.', '→ Résultat : plus concentré sur la finance et l\'énergie européennes, secteurs traditionnellement gros payeurs de dividendes en zone euro.'],
+      notes: ['⚠️ Dans cette comparaison, EUDV passe de 100 valeurs mondiales à 40 valeurs zone euro. D’autres ETF à dividendes éligibles PEA existent, mais suivent un autre indice.', '→ Résultat : plus concentré sur la finance et l\'énergie européennes, secteurs traditionnellement gros payeurs de dividendes en zone euro.'],
     },
     // Performance 2023-2025 (source : recherche web du 02/09/2026, recoupée sur plusieurs pages —
     // fonds EUDV et indice S&P Euro High Yield Dividend Aristocrats cohérents à moins de 0,5 pt sur
@@ -618,8 +635,8 @@ export const FAMILIES = [
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
-      { q: '💳 Tu veux du dividende en restant 100 % PEA ?', a: 'EUDV (SPDR S&P Euro Dividend Aristocrats) — seule option, mais limitée à la zone euro.' },
-      { q: '🌍 Tu veux le choix le plus large, dividende mondial ?', a: 'Aucune option PEA à ce jour — direction le CTO (cf. le tweet « Dividendes (CTO) »).' },
+      { q: '💳 Tu veux cet indice Dividend Aristocrats dans ton PEA ?', a: 'EUDV (SPDR S&P Euro Dividend Aristocrats), limité à la zone euro. Pour une autre stratégie de dividendes en PEA, il existe aussi des ETF comme Amundi MSCI EMU High Dividend.' },
+      { q: '🌍 Tu veux un des ETF mondiaux présentés ici ?', a: 'Les fonds mondiaux cités dans cette comparaison sont destinés au CTO (cf. « Dividendes (CTO) »).' },
     ],
     closing: '💬 La zone euro te suffit pour cette poche dividendes ou tu veux aussi des entreprises hors PEA ?',
   },
@@ -644,7 +661,9 @@ export const FAMILIES = [
     label: '🇨🇳 Chine',
     intro: '« Investir en Chine » ne désigne pas forcément les mêmes entreprises selon l’indice choisi 🇨🇳\nMSCI China, China A et FTSE China 50 : on compare 👇',
     indices: [
-      { name: 'MSCI China', desc: '576 valeurs cotées à Hong Kong ou à New York (ADR), plutôt qu\'en Chine continentale — c\'est ce qu\'on appelle la Chine « offshore ».', tag: 'La référence la plus suivie 🏙️' },
+      // MSCI China inclut aussi des actions A continentales (à 20 % de leur flottant ajusté).
+      // https://www.msci.com/indexes/index/302400/msci-china-index (31/08/2026)
+      { name: 'MSCI China', desc: '576 valeurs au 31/08/2026 : actions chinoises cotées sur le continent, à Hong Kong ou à l’étranger (ADR).', tag: 'La référence la plus suivie 🏙️' },
       { name: 'FTSE China 50', desc: 'Seulement les 50 plus grosses valeurs chinoises cotées à Hong Kong.', tag: 'Ultra-concentré 🎯' },
       { name: 'MSCI China A', desc: '410 valeurs : uniquement les actions domestiques cotées à Shanghai/Shenzhen (marché intérieur, via Stock Connect).', tag: 'La Chine « intérieure » 🏯' },
     ],
@@ -676,8 +695,8 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI, 2026) le 01/09/2026.
-      chain: ['MSCI China (576 lignes, offshore + ADR)', 'MSCI China A (410, domestique uniquement)', 'FTSE China 50 (50, ultra-concentré)'],
-      notes: ['⚠️ MSCI China et MSCI China A ne se recoupent quasiment pas : deux marchés séparés, avec des règles complètement différentes (régulation classique d\'un côté, contrôle des capitaux chinois de l\'autre).', '→ Le FTSE China 50 concentre l\'essentiel du risque sur une poignée de méga-caps (tech, finance).'],
+      chain: ['MSCI China (576 lignes, y compris des actions A)', 'MSCI China A (410, actions continentales)', 'FTSE China 50 (50, Hong Kong)'],
+      notes: ['⚠️ MSCI China inclut déjà des actions A du marché continental. MSCI China A s\'y concentre : les deux indices peuvent donc se recouper.', '→ Le FTSE China 50 concentre l\'essentiel du risque sur une poignée de méga-caps (tech, finance).'],
     },
     // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Amundi PEA Chine
     // ajouté le 03/09/2026 (audit avait relevé que le verdict recommande ce fonds au lecteur PEA
@@ -710,7 +729,7 @@ export const FAMILIES = [
       { q: '💳 Tu veux rester en PEA malgré tout ?', a: 'Amundi PEA Chine — mais version filtrée ESG, pas le MSCI China standard.' },
       { q: '🏯 Tu veux viser le marché intérieur chinois précisément ?', a: 'iShares MSCI China A.' },
     ],
-    closing: '💬 Tu veux surtout les entreprises chinoises cotées hors du continent ou le marché intérieur ?',
+    closing: '💬 Tu préfères une exposition chinoise large ou cibler les actions du marché continental ?',
   },
 
   // ── Famille 9 : Japon ────────────────────────────────────────────────
@@ -737,7 +756,10 @@ export const FAMILIES = [
     label: '🇯🇵 Japon',
     intro: 'Le Nikkei 225, le TOPIX et le MSCI Japan ne donnent pas le même poids aux entreprises japonaises 🇯🇵\nVoici ce que ça change 👇',
     indices: [
-      { name: 'Nikkei 225', desc: 'Les 225 plus grandes valeurs de la Bourse de Tokyo, indice pondéré par le PRIX de l\'action (pas la capitalisation).', tag: 'Le plus connu, pas le plus rigoureux 📰' },
+      // Nikkei choisit des valeurs liquides de la section Prime en équilibrant
+      // les secteurs, pas les 225 plus grandes par capitalisation.
+      // https://indexes.nikkei.co.jp/en/nkave/index/profile
+      { name: 'Nikkei 225', desc: '225 valeurs liquides sélectionnées à la Bourse de Tokyo ; indice pondéré par le PRIX de l\'action (pas la capitalisation).', tag: 'Le plus connu, pas le plus rigoureux 📰' },
       { name: 'TOPIX', desc: '1 637 valeurs (juillet 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation.', bullets: ['⚠️ Réforme en cours : retrait graduel de 600+ valeurs à partir d\'oct. 2026, étalé sur 2 ans — passage sous 1 000 valeurs attendu vers 2028, pas dès octobre'], tag: 'Le plus large et le plus représentatif 🗾' },
       { name: 'MSCI Japan IMI', desc: '957 grandes, moyennes ET petites capitalisations japonaises (méthodologie MSCI, comparable aux autres indices MSCI Pays).', tag: 'Le standard international 🌐' },
     ],
@@ -752,10 +774,15 @@ export const FAMILIES = [
         funds: [{ name: 'Xtrackers Nikkei 225 UCITS ETF 1C (Acc)', isin: 'LU2196470426', ter: formatEtfTer('LU2196470426', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '430 M€' }],
       },
       {
-        indexName: 'TOPIX', choiceNote: 'un seul choix, mais PEA ✅', pea: true,
+        indexName: 'TOPIX', choiceNote: 'deux parts en PEA : couvert ou non ✅', pea: true,
         // Actif géré 187,05 M€ au 31/08/2026, fiche Amundi ; vérifié le 25/09/2026.
         // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF
-        funds: [{ name: 'Amundi PEA Japon (TOPIX) UCITS ETF', isin: 'FR0013411980', ter: formatEtfTer('FR0013411980', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '187 M€ au 31/08/2026' }],
+        funds: [
+          { name: 'Amundi PEA Japon (TOPIX) UCITS ETF', isin: 'FR0013411980', ter: formatEtfTer('FR0013411980', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '187 M€ au 31/08/2026', note: '(non couvert en EUR)' },
+          // Fiche Amundi du 30/04/2026 : PEA, 0,48 %, actif géré 150,05 M€.
+          // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
+          { name: 'Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc', isin: 'FR0013411998', ter: formatEtfTer('FR0013411998', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '150 M€ au 30/04/2026', note: '(couvert contre le yen)' },
+        ],
       },
       {
         indexName: 'MSCI Japan IMI', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
@@ -792,7 +819,7 @@ export const FAMILIES = [
     perfMethodNote: 'ℹ️ Xtrackers Nikkei 225 est présenté en yens (part JPY) et Amundi TOPIX en euros. Ces rendements ne se comparent pas directement sans tenir compte du change.',
     verdictTitle: '✅ LE VERDICT POUR UN PEA',
     verdict: [
-      { q: '💳 Tu veux rester en PEA ?', a: 'Amundi PEA Japon — seule option, mais indice TOPIX (pas Nikkei).' },
+      { q: '💳 Tu veux rester en PEA ?', a: 'Amundi PEA Japon suit le TOPIX : deux parts, avec ou sans couverture du yen (pas Nikkei).' },
       { q: '📰 Tu veux spécifiquement le Nikkei 225, en CTO ?', a: 'Xtrackers Nikkei 225.' },
       { q: '🌐 Tu veux le standard international, en CTO ?', a: 'iShares Core MSCI Japan IMI.' },
     ],
