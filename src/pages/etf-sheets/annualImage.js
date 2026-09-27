@@ -53,36 +53,35 @@ export function renderAnnualETFImage(etf) {
   ctx.fillStyle = INK
   titleLines(ctx, etf.name).forEach((text, index) => ctx.fillText(text, 60, 180 + index * 60))
   const identifiers = [
-    { label: 'TICKER', value: etf.tickers.join(' / '), x: 60, width: 240 },
-    { label: 'ISIN', value: etf.isin, x: 320, width: 390 },
-    { label: 'FRAIS ANNUELS', value: etf.ter, x: 735, width: 285 },
+    { label: 'TICKER', value: etf.tickers.join(' / '), x: 60, width: 202 },
+    { label: 'ISIN', value: etf.isin, x: 273, width: 465 },
+    { label: 'FRAIS ANNUELS', value: etf.ter, x: 749, width: 271 },
   ]
-  ctx.fillStyle = '#ece9e0'
-  ctx.fillRect(60, 279, 960, 111)
   identifiers.forEach(({ label, value, x, width }, index) => {
-    if (index) { ctx.fillStyle = '#c8c7c0'; ctx.fillRect(x - 15, 298, 1, 72) }
-    ctx.fillStyle = MUTED
-    ctx.font = 'bold 18px Arial, sans-serif'
-    ctx.fillText(label, x + 16, 312)
+    ctx.fillStyle = index === 2 ? '#dcece5' : '#ece9e0'
+    ctx.fillRect(x, 279, width, 155)
+    ctx.fillStyle = index === 2 ? GREEN : MUTED
+    ctx.font = 'bold 21px Arial, sans-serif'
+    ctx.fillText(label, x + 20, 316)
     ctx.fillStyle = index === 2 ? GREEN : INK
-    let size = 32
-    do { ctx.font = `bold ${size}px Arial, sans-serif`; size -= 1 } while (ctx.measureText(String(value)).width > width - 32 && size > 22)
-    ctx.fillText(String(value), x + 16, 362)
+    let size = index === 1 ? 47 : 58
+    do { ctx.font = `bold ${size}px Arial, sans-serif`; size -= 1 } while (ctx.measureText(String(value)).width > width - 40 && size > 30)
+    ctx.fillText(String(value), x + 20, 397)
   })
-  line(ctx, 60, 405, 1020)
+  line(ctx, 60, 450, 1020)
 
   ctx.fillStyle = INK
   ctx.font = 'bold 39px Georgia, serif'
-  ctx.fillText('Performances annuelles', 60, 464)
+  ctx.fillText('Performances annuelles', 60, 507)
   ctx.fillStyle = MUTED
   ctx.font = '22px Arial, sans-serif'
-  ctx.fillText(`Part en ${series.currency} · ${points[0].year}–${points.at(-1).year}`, 60, 502)
+  ctx.fillText(`Part en ${series.currency} · ${points[0].year}–${points.at(-1).year}`, 60, 543)
 
   const positives = points.filter(({ value }) => value > 0)
   const negatives = points.filter(({ value }) => value < 0)
   const zeroY = positives.length && negatives.length ? 856 : positives.length ? 961 : 555
-  const positiveRoom = positives.length && negatives.length ? 285 : 405
-  const negativeRoom = positives.length && negatives.length ? 130 : 410
+  const positiveRoom = positives.length && negatives.length ? 240 : 355
+  const negativeRoom = positives.length && negatives.length ? 110 : 410
   const positiveMax = Math.max(1, ...positives.map(({ value }) => value))
   const negativeMax = Math.max(1, ...negatives.map(({ value }) => Math.abs(value)))
   const cellWidth = 940 / points.length
