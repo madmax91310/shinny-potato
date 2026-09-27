@@ -22,6 +22,7 @@ import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { SHEETS } from "../src/pages/factsheet-tweets/data.js";
+import { CASES } from "../src/pages/concrete-cases/data.js";
 
 const PORT = 4310;
 const BASE = `http://localhost:${PORT}/shinny-potato`;
@@ -192,6 +193,13 @@ async function testConcreteCases(page) {
   await page.goto(`${BASE}/cas-concrets`, { waitUntil: "networkidle" });
   const choices = page.locator(".cc-choice");
   const count = await choices.count();
+  let allRendered = count === CASES.length;
+  for (let i = 0; i < count; i++) {
+    await choices.nth(i).click();
+    const body = await page.locator('.cc-text').innerText();
+    allRendered &&= body.replace(/\s+/g, ' ').trim() === CASES[i].text.replace(/\s+/g, ' ').trim()
+      && (await page.locator('.cc-sources a').count()) === CASES[i].sources.length;
+  }
   await choices.nth(1).click();
   const title = await choices.nth(1).locator("strong").innerText();
   const selected = await choices.nth(1).getAttribute("aria-current");
@@ -208,8 +216,8 @@ async function testConcreteCases(page) {
   const visible = await manual.isVisible();
   const sameText = (await manual.inputValue()) === (await page.locator(".cc-text").innerText());
   const selection = await manual.evaluate((el) => el.selectionStart === 0 && el.selectionEnd === el.value.length);
-  record("Cas concrets", count > 1 && switched && visible && sameText && selection,
-    `${count} cas, sélection: ${switched}, repli de copie: ${visible && sameText && selection}`);
+  record("Cas concrets", allRendered && switched && visible && sameText && selection,
+    `${count} cas et sources: ${allRendered}, sélection: ${switched}, repli de copie: ${visible && sameText && selection}`);
 }
 
 async function testIndexComparator(page) {

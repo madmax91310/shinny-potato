@@ -227,8 +227,8 @@ la limite connue sur les commentaires de section partagés par plusieurs entrée
 
 ## `audit-publishable-content.mjs`
 
-`npm run audit:publishable-content` vérifie que les 21 faits, 16 thèmes ETF, 36 fiches ETF et
-6 cas concrets possèdent leurs champs éditoriaux essentiels et leurs sources lorsqu'ils en
+`npm run audit:publishable-content` vérifie que les faits, thèmes ETF, fiches ETF et
+cas concrets possèdent leurs champs éditoriaux essentiels et leurs sources lorsqu'ils en
 affichent, puis protège trois corrections ciblées : absence de small caps dans FTSE All-World,
 absence de performance 2020 pour les deux ETP CoinShares, suppression de moyennes non sourcées
 sur les bear markets. Le script ne prétend pas vérifier l'exactitude des autres chiffres ;
