@@ -20,7 +20,7 @@ export function buildTweetText(theme) {
   theme.etfs.forEach((etf, index) => {
     lines.push(`📊 ${etf.nom || '…'}`)
     lines.push(`🔑 ISIN : ${etf.isin || '…'}`)
-    lines.push(`💰 Frais : ${etf.frais ? `${etf.frais}%` : '…'}`)
+    lines.push(`💰 ${etf.isCopperEtc ? 'Frais de gestion' : 'Frais'} : ${etf.frais ? `${etf.frais}%` : '…'}`)
     if (etf.encours) lines.push(`🏦 Encours : ${etf.encours}`)
     lines.push(`→ ${etf.differenciateur || '…'}`)
     if (index < theme.etfs.length - 1) lines.push('')
