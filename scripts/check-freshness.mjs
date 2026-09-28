@@ -164,7 +164,13 @@ function scanTool(tool) {
     }
     const headerText = lines.slice(0, anchors.length ? anchors[0].line : lines.length).join("\n");
     const { mostRecent, deadlines } = scanDatesInText(headerText);
-    const entries = anchors.map((a) => ({ name: a.name, mostRecent, deadlines: [] }));
+    const entries = anchors.map((a) => ({
+      name: a.name,
+      mostRecent,
+      deadlines: [],
+      sourceUrls: [],
+      sourceNamed: false,
+    }));
     return { entries, fileDeadlines: deadlines };
   }
 
