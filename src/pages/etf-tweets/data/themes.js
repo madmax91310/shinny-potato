@@ -605,40 +605,38 @@ const BASE_THEMES = [
     transition:
       'Ce ne sont pas des ETF actions mais des ETC (Exchange Traded Commodities), non éligibles au PEA. Voici les principaux :',
     etfs: [
-      // Encours actualisés le 25/09/2026 (recherche web, justETF/fiches émetteur) à l'occasion de
-      // l'ajout de l'or et du bitcoin dans les Fiches ETF et le Comparateur d'indices — signalé par
-      // scripts/audit-etf-snapshots.mjs (Amundi : écart de 15 % avec l'ancien chiffre, > seuil).
+      // Fiches émetteurs vérifiées le 28/09/2026. Les encours évoluent et les montants précédents
+      // mélangeaient dates et devises : les omettre pour ce thème tant qu'une même date de
+      // référence et une conversion documentée ne sont pas disponibles.
+      // WisdomTree indique séparément 0,49 % de frais de gestion et 0,45 % de taux de swap annuel.
       createEtf({
         nom: 'iShares Physical Gold ETC',
         isin: 'IE00B4ND3602',
         frais: formatEtfTer('IE00B4ND3602'),
-        encours: '34,3 Md€',
-        differenciateur: 'le plus gros et liquide ETC or européen',
+        differenciateur: 'adossé à de l’or physique',
       }),
       createEtf({
         nom: 'Amundi Physical Gold ETC',
         isin: 'FR0013416716',
         frais: formatEtfTer('FR0013416716'),
-        encours: '11,6 Md€',
-        differenciateur: 'seul grand ETC or de droit français',
+        differenciateur: 'adossé à de l’or physique ; émetteur de droit irlandais',
       }),
       createEtf({
         nom: 'iShares Physical Silver ETC',
         isin: 'IE00B4NCWG09',
         frais: formatEtfTer('IE00B4NCWG09'),
-        encours: '2,9 Md€',
-        differenciateur: 'ETC argent physique le moins cher des leaders',
+        differenciateur: 'adossé à de l’argent physique',
       }),
       createEtf({
         nom: 'WisdomTree Copper',
         isin: 'GB00B15KXQ89',
+        isCopperEtc: true,
         frais: formatEtfTer('GB00B15KXQ89'),
-        encours: '1,79 Md€',
-        differenciateur: 'expo cuivre la plus liquide, réplication par swap (non physique)',
+        differenciateur: 'contrats à terme sur le cuivre via swap ; taux de swap annuel : 0,45 %',
       }),
     ],
     cloture:
-      'Attention : contrairement à l’or et l’argent, il n’existe quasi pas d’ETC cuivre physique liquide (le seul, Elementum, pèse ~2 M€) — en pratique, l’expo cuivre passe par une réplication synthétique par swap.',
+      'Les trois premiers ETC sont adossés à du métal physique. Le produit cuivre présenté suit des contrats à terme via un swap : regarde la structure et les coûts avant de comparer.',
     eligibilite: 'Non éligible PEA (ETC hors périmètre)',
   }),
 ]
