@@ -35,14 +35,22 @@ export function feeLabel(value) {
 // hypothèse de calcul standard, pas une donnée réelle) : rendement net = rendement brut - frais
 // annuels, puis division arithmétique par 12 (taux nominal mensuel, pas racine douzième).
 export function simulateCapital(monthlyAmount, years, grossReturnPct, feePct) {
+  return simulateCapitalSeries(monthlyAmount, years, grossReturnPct, feePct).at(-1).capital
+}
+
+// Un point par année, plus le dernier mois si la durée n'est pas entière.
+// Les mêmes versements et le même taux mensuel servent au tweet et à l'image.
+export function simulateCapitalSeries(monthlyAmount, years, grossReturnPct, feePct) {
   const months = Math.round(years * 12)
   const netAnnual = grossReturnPct - feePct
   const monthlyRate = netAnnual / 100 / 12
   let capital = 0
+  const points = [{ year: 0, capital: 0 }]
   for (let i = 0; i < months; i++) {
     capital = (capital + monthlyAmount) * (1 + monthlyRate)
+    if ((i + 1) % 12 === 0 || i + 1 === months) points.push({ year: (i + 1) / 12, capital })
   }
-  return capital
+  return points
 }
 
 export function computeComparison(state) {
