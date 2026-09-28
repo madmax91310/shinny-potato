@@ -1,4 +1,5 @@
-// Génération du texte du tweet "le saviez-vous" — fonction pure, testable sans React.
+// Une ouverture, un fait, ce qu'il raconte, puis une question liée au sujet.
+// La source reste dans le texte copié, à la fin pour ne pas couper le récit.
 
 export function buildTweetText(fact) {
   const lines = [
@@ -7,9 +8,9 @@ export function buildTweetText(fact) {
     fact.context,
     "",
     ...(fact.twist ? [fact.twist, ""] : []),
-    `📌 ${fact.source}`,
-    "",
     fact.question,
+    "",
+    `Source : ${fact.source}`,
   ];
   return lines.join("\n");
 }
