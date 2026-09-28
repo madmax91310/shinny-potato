@@ -11,7 +11,7 @@ export function createEtf(overrides = {}) {
     nom: '',
     isin: '',
     frais: '',
-    encours: '',
+
     differenciateur: '',
     ...overrides,
   }
@@ -35,19 +35,10 @@ export function createTheme(overrides = {}) {
   }
 }
 
-// Données ETF vérifiées par recherche web (ISIN / TER / encours), état 25/08/2026.
-// Audit "meilleurs ETF" du même jour : remplacement de 3 fonds par une alternative UCITS
-// réelle moins chère à exposition quasi identique (Monde CTO, S&P 500 CTO, Japon CTO),
-// correction de plusieurs encours obsolètes, et ajout de l'éligibilité PEA/CTO explicite
-// sur chaque ligne qui ne l'avait pas encore (Tech Europe, Quantique). Priorité systématique :
-// 1) l'option PEA quand elle existe avec un TER raisonnable, 2) sinon le TER le plus bas parmi
-// les fonds CTO suffisamment liquides (encours > ~100 M€, sauf mention contraire explicite —
-// cf. options PEA de la famille Ressources naturelles, dont Basic Materials
-// conserve un faible encours).
-// Les encours évoluent en continu : à revérifier sur justETF.com avant publication
-// si le tweet sort plusieurs semaines après la dernière mise à jour de ce fichier.
-// Exceptions datées en commentaire inline : Amundi Global Luxury et Amundi TOPIX,
-// encours des fiches émetteur au 31/08/2026, recoupés le 25/09/2026.
+// Les encours varient chaque jour. Ils restent absents des textes et images de
+// Tweet Midi jusqu'à ce qu'un instantané daté et sourcé soit fourni pour chaque
+// produit d'un comparatif. Les frais et l'éligibilité peuvent aussi changer :
+// contrôler les fiches émetteurs avant publication.
 const BASE_THEMES = [
   createTheme({
     id: 'monde',
@@ -62,14 +53,14 @@ const BASE_THEMES = [
         nom: 'UBS Core MSCI World UCITS ETF',
         isin: 'IE00BD4TXV59',
         frais: formatEtfTer('IE00BD4TXV59'),
-        encours: '10,46 Md€',
-        differenciateur: 'le moins cher du marché, réplication physique complète, CTO',
+
+        differenciateur: 'MSCI World, réplication physique complète, CTO',
       }),
       createEtf({
         nom: 'Vanguard FTSE All-World UCITS ETF',
         isin: 'IE00BK5BQT80',
         frais: formatEtfTer('IE00BK5BQT80'),
-        encours: '49,05 Md€',
+
         // L'indice FTSE All-World couvre les grandes et moyennes capitalisations,
         // pas les small caps (document du fonds Vanguard, ISIN IE00BK5BQT80).
         differenciateur: 'grandes et moyennes capitalisations, pays développés + émergents, CTO',
@@ -78,14 +69,14 @@ const BASE_THEMES = [
         nom: 'SPDR MSCI ACWI UCITS ETF',
         isin: 'IE00B44Z5B48',
         frais: formatEtfTer('IE00B44Z5B48'),
-        encours: '15,7 Md€',
-        differenciateur: 'le moins cher développés + émergents, CTO',
+
+        differenciateur: 'MSCI ACWI, pays développés et émergents, CTO',
       }),
       createEtf({
         nom: 'Amundi PEA Monde (MSCI World) UCITS ETF',
         isin: 'FR001400U5Q4',
         frais: formatEtfTer('FR001400U5Q4'),
-        encours: '~1,37 Md€',
+
         // Vérifié le 27/09/2026 : CW8 (LU1681043599) et WPEA (IE0002XZSHO1)
         // sont également éligibles PEA. Sources émetteurs :
         // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/ENG/FRA/INSTITUTIONNEL/ETF/20260228
@@ -109,32 +100,32 @@ const BASE_THEMES = [
         nom: 'SPDR S&P 500 UCITS ETF Acc',
         isin: 'IE000XZSV718',
         frais: formatEtfTer('IE000XZSV718'),
-        encours: '16,04 Md€',
-        differenciateur: 'frais les plus bas du marché, réplication physique, CTO',
+
+        differenciateur: 'S&P 500, réplication physique, CTO',
       }),
       createEtf({
         nom: 'Amundi PEA S&P 500 UCITS ETF',
         isin: 'FR0011871128',
         frais: formatEtfTer('FR0011871128'),
-        encours: '~1,2 Md€',
+
         differenciateur: 'le classique S&P 500 éligible PEA depuis 2014',
       }),
       createEtf({
-        // BlackRock, page produit au 25/09/2026 : TER 0,10 %, encours 54,66 M€.
+        // BlackRock, page produit au 25/09/2026 : TER 0,10 %.
         // Fonds lancé le 29/05/2025, sans 2023/2024 calendaires. Sa notice
         // précise qu'il entend conserver son éligibilité au PEA.
         // https://www.blackrock.com/fr/intermediaries/products/342916/
         nom: 'iShares S&P 500 Swap PEA UCITS ETF',
         isin: 'IE000DQLYVB9',
         frais: formatEtfTer('IE000DQLYVB9'),
-        encours: '54,66 M€ au 25/09/2026',
+
         differenciateur: 'S&P 500 éligible PEA, moins cher en TER que l’Amundi, mais fonds plus récent',
       }),
       createEtf({
         nom: 'Amundi PEA Nasdaq-100 UCITS ETF',
         isin: 'FR0011871110',
         frais: formatEtfTer('FR0011871110'),
-        encours: '~1,13 Md€',
+
         // La part S FR001400ZGR7 de la même gamme est aussi affichée dans
         // la gamme PEA Amundi (27/09/2026) : éviter toute exclusivité de part.
         // https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-pea-nasdaq100-ucits-etf-s-acc/fr001400zgr7
@@ -157,22 +148,22 @@ const BASE_THEMES = [
         nom: 'iShares Core MSCI Europe UCITS ETF',
         isin: 'IE00B4K48X80',
         frais: formatEtfTer('IE00B4K48X80'),
-        encours: '16,2 Md€',
-        differenciateur: 'le plus gros MSCI Europe, CTO uniquement',
+
+        differenciateur: 'MSCI Europe, grandes et moyennes capitalisations, CTO',
       }),
       createEtf({
         nom: 'iShares Core EURO STOXX 50 UCITS ETF',
         isin: 'IE00B53L3W79',
         frais: formatEtfTer('IE00B53L3W79'),
-        encours: '~7,97 Md€',
-        differenciateur: 'le plus liquide Euro Stoxx 50, 50 valeurs zone euro, PEA',
+
+        differenciateur: '50 grandes valeurs de la zone euro, éligible PEA',
       }),
       createEtf({
         nom: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF',
         isin: 'FR0011550193',
         frais: formatEtfTer('FR0011550193'),
-        encours: '~1,1 Md€',
-        differenciateur: 'seul grand Stoxx 600 éligible PEA',
+
+        differenciateur: 'STOXX Europe 600, éligible PEA',
       }),
     ],
     cloture:
@@ -185,21 +176,21 @@ const BASE_THEMES = [
     hookAction: 'investir sur la tech européenne plutôt que sur les GAFAM',
     hookDilemme: 'si un vrai ETF tech Europe existe',
     transition:
-      'Contrairement aux US, l’offre est très étroite : peu d’émetteurs, des encours modestes. Voici les 2 options qui existent réellement :',
+      'Le secteur tech européen est plus étroit que son équivalent américain. Voici deux fonds qui suivent le même indice :',
     etfs: [
       createEtf({
         nom: 'Amundi STOXX Europe 600 Technology UCITS ETF',
         isin: 'LU1834988518',
         frais: formatEtfTer('LU1834988518'),
-        encours: '~199 M€',
-        differenciateur: `${formatEtfTer('LU1834988518', 'index')} de frais annuels, éligible PEA`,
+
+        differenciateur: 'STOXX Europe 600 Technology, éligible PEA',
       }),
       createEtf({
         nom: 'iShares STOXX Europe 600 Technology UCITS ETF (DE)',
         isin: 'DE000A0H08Q4',
         frais: formatEtfTer('DE000A0H08Q4'),
-        encours: '~228 M€',
-        differenciateur: 'le plus ancien du segment (2001), CTO uniquement',
+
+        differenciateur: 'STOXX Europe 600 Technology, CTO',
       }),
     ],
     cloture:
@@ -218,21 +209,21 @@ const BASE_THEMES = [
         nom: 'iShares Core MSCI EM IMI UCITS ETF',
         isin: 'IE00BKM4GZ66',
         frais: formatEtfTer('IE00BKM4GZ66'),
-        encours: '~36,8 Md€',
+
         differenciateur: 'très large, small et mid caps incluses, CTO',
       }),
       createEtf({
         nom: 'Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF',
         isin: 'FR0013412020',
         frais: formatEtfTer('FR0013412020'),
-        encours: '~0,86 Md€',
-        differenciateur: 'seul grand tracker émergents éligible PEA, indice filtré ESG',
+
+        differenciateur: 'éligible PEA, indice MSCI Emerging Markets filtré ESG',
       }),
       createEtf({
         nom: 'Xtrackers MSCI Emerging Markets UCITS ETF',
         isin: 'IE00BTJRMP35',
         frais: formatEtfTer('IE00BTJRMP35'),
-        encours: '11,9 Md€',
+
         differenciateur: 'alternative physique par échantillonnage, CTO',
       }),
     ],
@@ -245,23 +236,20 @@ const BASE_THEMES = [
     emoji: '💎',
     hookAction: 'investir sur les marques de luxe mondiales',
     hookDilemme: 'quel ETF Luxe choisir',
-    transition: 'LVMH, Hermès, L’Oréal... le secteur du luxe a ses trackers dédiés. Voici les 2 options disponibles :',
+    transition: 'Les indices « luxe » ne retiennent pas forcément les mêmes entreprises. Voici deux fonds à comparer :',
     etfs: [
       createEtf({
-        nom: 'Amundi S&P Global Luxury UCITS ETF',
+        nom: 'Amundi Global Luxury UCITS ETF',
         isin: 'LU1681048630',
         frais: formatEtfTer('LU1681048630'),
-        // Actif géré 478,37 M€ au 31/08/2026 ; fiche Amundi vérifiée le 25/09/2026.
-        // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/FRA/FRA/RETAIL/ETF
-        encours: '~478 M€',
-        differenciateur: 'référence du secteur depuis 2018, CTO',
+        differenciateur: 'suit l’indice S&P Global Luxury, CTO',
       }),
       createEtf({
         nom: 'Amundi PEA Luxe Monde UCITS ETF',
         isin: 'FR001400S9V0',
         frais: formatEtfTer('FR001400S9V0'),
-        encours: '~10 M€',
-        differenciateur: 'seul ETF luxe éligible PEA, encours encore faible',
+
+        differenciateur: 'exposition au luxe mondial, éligible PEA',
       }),
     ],
     cloture:
@@ -280,25 +268,21 @@ const BASE_THEMES = [
         nom: 'Xtrackers Artificial Intelligence and Big Data UCITS ETF',
         isin: 'IE00BGV5VN51',
         frais: formatEtfTer('IE00BGV5VN51'),
-        encours: '7,8 Md€',
-        differenciateur: 'le plus gros encours, frais les plus bas du trio',
+
+        differenciateur: 'IA et Big Data, frais les plus bas de ce trio, CTO',
       }),
       createEtf({
         nom: 'L&G Artificial Intelligence UCITS ETF',
         isin: 'IE00BK5BCD43',
         frais: formatEtfTer('IE00BK5BCD43'),
-        // Fiche L&G au 31/08/2026 : 2 090,9 M$ ; au taux BCE du même jour
-        // (1 € = 1,1596 $), environ 1 803,1 M€. Même instantané que Fiches ETF.
-        // https://dokumenty.analizy.pl/pobierz/etf/E_LG001_A_USD/KA/2026-08-31
-        encours: '~1,8 Md€ au 31/08/2026',
-        differenciateur: 'pur-play IA via l’indice historique ROBO Global',
+        differenciateur: 'indice ROBO Global Artificial Intelligence, CTO',
       }),
       createEtf({
         nom: 'iShares Automation & Robotics UCITS ETF',
         isin: 'IE00BYZK4552',
         frais: formatEtfTer('IE00BYZK4552'),
-        encours: '~4,5 Md€',
-        differenciateur: 'automatisation et robotique large, pas l’IA pure',
+
+        differenciateur: 'automatisation et robotique large, CTO',
       }),
     ],
     cloture:
@@ -315,29 +299,29 @@ const BASE_THEMES = [
       'Vieillissement démographique, innovation pharma... la santé est un thème de long terme. Voici 3 trackers pour s’y exposer :',
     etfs: [
       createEtf({
-        nom: 'iShares MSCI World Health Care Sector UCITS ETF',
+        nom: 'iShares MSCI World Health Care Sector Advanced UCITS ETF',
         isin: 'IE00BJ5JNZ06',
         frais: formatEtfTer('IE00BJ5JNZ06'),
-        encours: '~559 M€',
-        differenciateur: 'le moins cher du secteur santé mondial, CTO',
+
+        differenciateur: 'santé mondiale, indice Advanced avec exclusions, CTO',
       }),
       createEtf({
         nom: 'Xtrackers MSCI World Health Care UCITS ETF',
         isin: 'IE00BM67HK77',
         frais: formatEtfTer('IE00BM67HK77'),
-        encours: '~3,44 Md€',
-        differenciateur: 'le plus gros de la catégorie, capitalisant',
+
+        differenciateur: 'santé mondiale, capitalisant, CTO',
       }),
       createEtf({
         nom: 'Amundi STOXX Europe 600 Healthcare UCITS ETF',
         isin: 'LU1834986900',
         frais: formatEtfTer('LU1834986900'),
-        encours: '~839 M€',
-        differenciateur: 'seule option santé éligible PEA, Europe only',
+
+        differenciateur: 'santé européenne, éligible PEA',
       }),
     ],
     cloture:
-      'Exposition mondiale ou européenne, le choix change beaucoup ta diversification — et seule l’option européenne est logeable en PEA.',
+      'Exposition mondiale ou européenne, avec ou sans exclusions dans l’indice : regarde les entreprises détenues et l’éligibilité PEA.',
   }),
   createTheme({
     id: 'renouvelables',
@@ -352,22 +336,22 @@ const BASE_THEMES = [
         nom: 'iShares Global Clean Energy Transition UCITS ETF',
         isin: 'IE00B1XNHC34',
         frais: formatEtfTer('IE00B1XNHC34'),
-        encours: '~2,66 Md€',
-        differenciateur: 'pionnier historique du secteur, encours en forte baisse depuis le pic de 2021',
+
+        differenciateur: 'indice mondial de l’énergie propre, CTO',
       }),
       createEtf({
-        nom: 'Amundi MSCI New Energy ESG Screened UCITS ETF',
+        nom: 'Amundi MSCI New Energy UCITS ETF Dist',
         isin: 'FR0010524777',
         frais: formatEtfTer('FR0010524777'),
-        encours: '~750 M€',
-        differenciateur: 'filtre ESG explicite sur l’indice New Energy',
+
+        differenciateur: 'indice MSCI New Energy filtré, distribuant, CTO',
       }),
       createEtf({
         nom: 'L&G Clean Energy UCITS ETF',
         isin: 'IE00BK5BCH80',
         frais: formatEtfTer('IE00BK5BCH80'),
-        encours: '~661 M€',
-        differenciateur: 'lancé en 2020, moins cher, sans le passif de 2022',
+
+        differenciateur: 'indice Solactive Clean Energy, frais les plus bas de ce trio, CTO',
       }),
     ],
     cloture:
@@ -378,7 +362,7 @@ const BASE_THEMES = [
     id: 'dividendes',
     nom: 'Dividendes',
     emoji: '💵',
-    hookAction: 'construire un revenu passif régulier en Bourse',
+    hookAction: 'investir dans des entreprises qui versent des dividendes',
     hookDilemme: 'quel ETF à dividendes choisir',
     transition:
       'Rendement pur, croissance du dividende ou historique de hausses : ces 3 ETF n’ont pas la même méthodologie. Voici lesquels :',
@@ -387,24 +371,24 @@ const BASE_THEMES = [
         nom: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF',
         isin: 'IE00B8GKDB10',
         frais: formatEtfTer('IE00B8GKDB10'),
-        encours: '9,65 Md€',
-        differenciateur: 'le plus gros et le moins cher, rendement pur',
+
+        differenciateur: 'rendement élevé, frais les plus bas de ce trio, CTO',
       }),
       createEtf({
         nom: 'SPDR S&P Global Dividend Aristocrats UCITS ETF',
         isin: 'IE00B9CQXS71',
         frais: formatEtfTer('IE00B9CQXS71'),
-        encours: '~1,5 Md€',
+
         // L'indice accepte les dividendes stables OU en hausse pendant 10 ans.
         // https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy
-        differenciateur: 'dividende stable ou en hausse pendant au moins 10 ans',
+        differenciateur: 'dividende stable ou en hausse sur 10 ans, CTO',
       }),
       createEtf({
         nom: 'WisdomTree Global Quality Dividend Growth UCITS ETF',
         isin: 'IE00BZ56SW52',
         frais: formatEtfTer('IE00BZ56SW52'),
-        encours: '~658 M€',
-        differenciateur: 'pondère qualité et croissance, pas que le yield',
+
+        differenciateur: 'qualité du dividende, part capitalisante, CTO',
       }),
     ],
     cloture:
@@ -418,38 +402,35 @@ const BASE_THEMES = [
     hookAction: 'diversifier ton portefeuille sur le marché japonais',
     hookDilemme: 'quel ETF Japon choisir (et si la couverture de change compte)',
     transition:
-      'Le Japon reste sous-représenté dans la plupart des portefeuilles européens. Voici 4 trackers pour s’y exposer :',
+      'TOPIX, Nikkei 225 ou indice large : le résultat dépend aussi de la couverture du yen. Voici quatre fonds :',
     etfs: [
       createEtf({
         nom: 'Amundi Prime Japan UCITS ETF',
         isin: 'LU2089238385',
         frais: formatEtfTer('LU2089238385'),
-        encours: '~2,45 Md€',
-        differenciateur: 'le moins cher du marché, Large & Mid Cap (pas de small caps), CTO',
+
+        differenciateur: 'grandes et moyennes capitalisations, frais les plus bas de ce quatuor, CTO',
       }),
       createEtf({
         nom: 'Amundi PEA Japan (TOPIX) UCITS ETF',
         isin: 'FR0013411980',
         frais: formatEtfTer('FR0013411980'),
-        // Actif géré 187,05 M€ au 31/08/2026 ; fiche Amundi vérifiée le 25/09/2026.
-        // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF
-        encours: '~187 M€',
         differenciateur: 'TOPIX en PEA, sans couverture du yen',
       }),
       createEtf({
         nom: 'Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc',
         isin: 'FR0013411998',
         frais: formatEtfTer('FR0013411998'),
-        // Fiche Amundi du 30/04/2026 : PEA, frais 0,48 %, actif géré 150,05 M€.
+        // Fiche Amundi du 30/04/2026 : PEA, frais 0,48 %.
         // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
-        encours: '~150 M€ au 30/04/2026',
+
         differenciateur: 'TOPIX en PEA, couvert contre le yen',
       }),
       createEtf({
         nom: 'Xtrackers Nikkei 225 UCITS ETF',
         isin: 'LU1875395870',
         frais: formatEtfTer('LU1875395870'),
-        encours: '~282 M€',
+
         // DWS : la part LU1875395870 est « 2D EUR Hedged », distributive.
         // https://etf.dws.com/download/asset/07d814c6-0032-4fc4-bc41-171c6dae90e4
         differenciateur: 'suit le Nikkei 225, couvert en euros, distribuant, CTO',
@@ -465,28 +446,28 @@ const BASE_THEMES = [
     hookAction: 'investir sur la hausse des budgets de défense en Europe',
     hookDilemme: 'quel ETF Défense choisir',
     transition:
-      'Le secteur a explosé depuis 2024 avec la hausse des budgets militaires européens. Voici 3 trackers pour y accéder :',
+      'La hausse des budgets militaires attire de nouveaux fonds. Voici trois approches à comparer :',
     etfs: [
       createEtf({
         nom: 'VanEck Defense UCITS ETF',
         isin: 'IE000YYE6WK5',
         frais: formatEtfTer('IE000YYE6WK5'),
-        encours: '7,2 Md$',
-        differenciateur: 'le plus gros, exposition mondiale incl. USA',
+
+        differenciateur: 'exposition mondiale incluant les États-Unis, CTO',
       }),
       createEtf({
         nom: 'WisdomTree Europe Defence UCITS ETF',
         isin: 'IE0002Y8CX98',
         frais: formatEtfTer('IE0002Y8CX98'),
-        encours: '~4,5 Md€',
-        differenciateur: 'pur défense européenne, non éligible PEA (UK inclus)',
+
+        differenciateur: 'défense européenne, non éligible PEA, CTO',
       }),
       createEtf({
         nom: 'Amundi STOXX Europe Defense UCITS ETF',
         isin: 'LU3038520774',
         frais: formatEtfTer('LU3038520774'),
-        encours: '~530 M€',
-        differenciateur: 'seul éligible PEA, frais les plus bas du trio',
+
+        differenciateur: 'défense européenne, éligible PEA, frais les plus bas du trio',
       }),
     ],
     cloture:
@@ -505,34 +486,34 @@ const BASE_THEMES = [
         nom: 'VanEck Quantum Computing UCITS ETF',
         isin: 'IE0007Y8Y157',
         frais: formatEtfTer('IE0007Y8Y157'),
-        encours: '~895 M$',
-        differenciateur: 'le plus gros et le plus ancien des 3, lancé en 2025',
+
+        differenciateur: 'lancé en 2025, CTO',
       }),
       createEtf({
         nom: 'iShares Quantum Computing UCITS ETF',
         isin: 'IE000C6ITGC8',
         frais: formatEtfTer('IE000C6ITGC8'),
-        encours: '~66 M€',
-        differenciateur: 'le plus récent des 3, encours faible : liquidité/spread à surveiller',
+
+        differenciateur: 'compare le volume échangé et la fourchette achat/vente, CTO',
       }),
       createEtf({
         nom: 'WisdomTree Quantum Computing UCITS ETF',
         isin: 'IE000W8WMSL2',
         frais: formatEtfTer('IE000W8WMSL2'),
-        encours: '~291 M€',
-        differenciateur: 'indice co-développé avec Classiq, spécialiste quantique',
+
+        differenciateur: 'indice co-développé avec Classiq, CTO',
       }),
     ],
     cloture:
-      'Thématique à très fort risque : peu de recul, forte volatilité attendue. À réserver à une part satellite de portefeuille.',
-    eligibilite: 'CTO uniquement (composition mondiale)',
+      'Le thème est récent et concentré. Vérifie les entreprises réellement exposées au quantique et le risque que tu acceptes.',
+    eligibilite: 'CTO pour les trois fonds présentés',
   }),
   createTheme({
     id: 'spatial',
     nom: 'Spatial',
     emoji: '🚀',
     hookAction: 'investir sur la conquête spatiale et le New Space',
-    hookDilemme: 's’il existe un vrai ETF accessible pour ça',
+    hookDilemme: 'ce que détiennent les ETF spatiaux',
     // Nouveaux ETF spatiaux UCITS lancés en 2026, notamment iShares STRR et
     // WisdomTree WSPC : VanEck n'est plus l'unique option. Le fonds VanEck
     // reste la référence retenue ici, sans promettre un comparatif exhaustif.
@@ -544,8 +525,8 @@ const BASE_THEMES = [
         nom: 'VanEck Space Innovators UCITS ETF',
         isin: 'IE000YU9K6K2',
         frais: formatEtfTer('IE000YU9K6K2'),
-        encours: '~2,0 Md$',
-        differenciateur: 'fonds spatial UCITS établi, CTO ; d’autres options plus récentes existent',
+
+        differenciateur: 'ETF spatial UCITS, CTO ; d’autres fonds sont arrivés en 2026',
       }),
     ],
     cloture:
@@ -565,32 +546,32 @@ const BASE_THEMES = [
         nom: 'VanEck S&P Global Mining UCITS ETF',
         isin: 'IE00BDFBTQ78',
         frais: formatEtfTer('IE00BDFBTQ78'),
-        encours: '2,2 Md$',
-        differenciateur: 'exposition minière mondiale la plus large, CTO',
+
+        differenciateur: 'entreprises minières mondiales, CTO',
       }),
       createEtf({
-        // Fiche Amundi du 30/06/2026 : PEA oui, TER 0,30 %, actif géré
-        // 752,60 M€, indice STOXX Europe 600 Basic Resources, swap.
+        // Fiche Amundi du 30/06/2026 : PEA oui, TER 0,30 %, indice
+        // STOXX Europe 600 Basic Resources, swap.
         // https://www.amundietf.com/pdfDocuments/monthly-factsheet/LU1834983550/ENG/LUX/RETAIL/ETF/20260630
         nom: 'Amundi STOXX Europe 600 Basic Resources UCITS ETF',
         isin: 'LU1834983550',
         frais: formatEtfTer('LU1834983550'),
-        encours: '752,60 M€ au 30/06/2026',
+
         differenciateur: 'ressources de base européennes, éligible PEA, réplication synthétique',
       }),
       createEtf({
         nom: 'Amundi STOXX Europe 600 Basic Materials UCITS ETF',
         isin: 'LU1834983634',
         frais: formatEtfTer('LU1834983634'),
-        encours: '~20 M€',
-        differenciateur: 'matériaux européens, éligible PEA — encours faible, liquidité à surveiller',
+
+        differenciateur: 'matériaux européens, éligible PEA ; vérifie la fourchette achat/vente',
       }),
       createEtf({
         nom: 'Xtrackers MSCI World Materials UCITS ETF',
         isin: 'IE00BM67HS53',
         frais: formatEtfTer('IE00BM67HS53'),
-        encours: '~681 M€',
-        differenciateur: 'frais parmi les plus bas du segment matériaux, CTO',
+
+        differenciateur: 'matériaux mondiaux, frais les plus bas de ce quatuor, CTO',
       }),
     ],
     cloture:
@@ -691,8 +672,8 @@ const EDITORIAL = {
   },
   dividendes: {
     accroche: '💸 Tous les ETF à dividendes ne cherchent pas la même chose : rendement actuel, qualité ou historique de hausse.',
-    cloture: 'Un gros dividende n’est pas automatiquement une meilleure performance. Compare la sélection des entreprises et le rendement total.',
-    ctaEngagement: 'Tu privilégies le revenu versé maintenant ou la progression du dividende ?',
+    cloture: 'Un gros dividende ne garantit pas une meilleure performance. Vérifie aussi si la part verse les revenus ou les réinvestit.',
+    ctaEngagement: 'Tu veux recevoir les dividendes ou les voir réinvestis automatiquement ?',
   },
   japon: {
     accroche: '🇯🇵 Investir au Japon : même indice ou pas, la couverture du yen peut changer ton résultat en euros.',
@@ -710,7 +691,7 @@ const EDITORIAL = {
     ctaEngagement: 'Tu chercherais les spécialistes du quantique ou un fonds qui inclut aussi de grands groupes ?',
   },
   spatial: {
-    accroche: '🚀 Investir dans le spatial sans choisir une seule entreprise : que contient vraiment l’ETF accessible en Europe ?',
+    accroche: '🚀 Un ETF spatial peut mêler satellites, lanceurs et équipementiers. Que détient-il vraiment ?',
     cloture: 'Satellites, équipements, lanceurs : lis les premières positions avant de supposer que toutes profitent des mêmes contrats.',
     ctaEngagement: 'Dans le spatial, quelle activité voudrais-tu réellement détenir ?',
   },
