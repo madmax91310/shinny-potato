@@ -20,6 +20,7 @@
 
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
+import { stat } from "node:fs/promises";
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { SHEETS } from "../src/pages/factsheet-tweets/data.js";
 import { CASES } from "../src/pages/concrete-cases/data.js";
@@ -240,8 +241,17 @@ async function testFeeImpact(page) {
   await page.getByRole("button", { name: /Aléatoire/i }).click();
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
-  const ok = /Avec [\d,]+\s*%\s+de frais/.test(text);
-  record("Impact des frais", ok, "comparaison générée après tirage Aléatoire");
+  const canvas = page.locator(".fi-image");
+  const drawing = await canvas.evaluate((node) => ({ width: node.width, height: node.height, png: node.toDataURL("image/png").startsWith("data:image/png;base64,") }));
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    page.getByRole("button", { name: "Télécharger l’image PNG" }).click(),
+  ]);
+  const file = await stat(await download.path());
+  const ok = /Avec [\d,]+\s*%\s+de frais/.test(text)
+    && drawing.width === 1600 && drawing.height === 1200 && drawing.png
+    && download.suggestedFilename() === "epargnant-libre-impact-des-frais.png" && file.size > 10000;
+  record("Impact des frais", ok, "comparaison générée et image PNG téléchargeable");
 }
 
 async function testMarketFacts(page) {
