@@ -11,7 +11,7 @@ export function createEtf(overrides = {}) {
     nom: '',
     isin: '',
     frais: '',
-
+    encours: '',
     differenciateur: '',
     ...overrides,
   }
