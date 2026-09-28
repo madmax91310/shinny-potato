@@ -21,7 +21,7 @@ export function buildTweetText(theme) {
     lines.push(`📊 ${etf.nom || '…'}`)
     lines.push(`🔑 ISIN : ${etf.isin || '…'}`)
     lines.push(`💰 Frais : ${etf.frais ? `${etf.frais}%` : '…'}`)
-    lines.push(`🏦 Encours : ${etf.encours || '…'}`)
+    if (etf.encours) lines.push(`🏦 Encours : ${etf.encours}`)
     lines.push(`→ ${etf.differenciateur || '…'}`)
     if (index < theme.etfs.length - 1) lines.push('')
   })

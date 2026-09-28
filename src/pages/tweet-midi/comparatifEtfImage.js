@@ -65,14 +65,14 @@ function card(ctx, fund, i, total) {
   const fullName = fund.nom.replace(/ UCITS ETF.*$/i, '').replace(/ ETF$/i, '');
   const title = fitted(ctx, fullName, 644, 3, 56, 40, true);
   title.rows.forEach((row, j) => txt(ctx, row, x + 38, y + 151 + j * (title.size + 6), title.size, INK, true));
-  txt(ctx, 'TER', x + 38, y + 357, 37, '#596b67', true);
+  txt(ctx, fund.isCopperEtc ? 'FRAIS DE GESTION' : 'TER', x + 38, y + 357, 37, '#596b67', true);
   const fee = `${fund.frais.replace(/\s*%$/, '')} %`;
   txt(ctx, fee, x + 38, y + 406, 98, '#154d46', true);
   ctx.fillStyle = '#cbd5ca'; ctx.fillRect(x + 38, y + 536, 644, 3);
   txt(ctx, fund.isin, x + 38, y + 560, 39, INK, true);
-  txt(ctx, `${fund.encours} d’encours`, x + 38, y + 616, 36, MUTED);
+  if (fund.encours) txt(ctx, `${fund.encours} d’encours`, x + 38, y + 616, 36, MUTED);
   const detail = fitted(ctx, fund.differenciateur, 644, 3, 30, 25);
-  detail.rows.forEach((row, j) => txt(ctx, row, x + 38, y + 662 + j * (detail.size + 5), detail.size, MUTED));
+  detail.rows.forEach((row, j) => txt(ctx, row, x + 38, y + (fund.encours ? 662 : 616) + j * (detail.size + 5), detail.size, MUTED));
 }
 
 export async function renderComparatifEtfImage(theme) {
@@ -87,12 +87,12 @@ export async function renderComparatifEtfImage(theme) {
   ctx.fillStyle = '#122c35'; ctx.fillRect(0, 0, W, H);
   ctx.strokeStyle = '#345b5a'; ctx.lineWidth = 48;
   ctx.beginPath(); ctx.arc(1820, -130, 350, 0.5, 2.8); ctx.stroke();
-  txt(ctx, 'ÉPARGNANT LIBRE  /  COMPARATIF ETF', W / 2, 72, 35, '#c6e6d6', true, 'center');
+  txt(ctx, `ÉPARGNANT LIBRE  /  COMPARATIF ${theme.id === 'etc-metaux' ? 'ETC' : 'ETF'}`, W / 2, 72, 35, '#c6e6d6', true, 'center');
   const kind = theme.id === 'etc-metaux' ? 'PRODUITS' : 'ETF';
   const title = `${theme.id === 'monde' ? 'LE MONDE' : theme.nom.toLocaleUpperCase('fr-FR')} EN ${theme.etfs.length} ${kind}`;
   const heading = fitted(ctx, title, W - 130, 2, 100, 51, true);
   heading.rows.forEach((row, i) => txt(ctx, row, W / 2, heading.rows.length === 1 ? 155 : 116 + i * 88, Math.min(heading.size, heading.rows.length === 1 ? 100 : 74), '#fff4da', true, 'center'));
-  txt(ctx, 'Exposition · frais · enveloppe · ISIN', W / 2, 319, 43, '#afc7bf', false, 'center');
+  txt(ctx, theme.id === 'etc-metaux' ? 'Exposition · frais · ISIN · hors PEA' : 'Exposition · frais · enveloppe · ISIN', W / 2, 319, 43, '#afc7bf', false, 'center');
   theme.etfs.forEach((fund, i) => card(ctx, fund, i, theme.etfs.length));
   txt(ctx, '@Epargnantlibre', W / 2, H - 69, 45, '#fff4da', true, 'center');
   return canvas;
