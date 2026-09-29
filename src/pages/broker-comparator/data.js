@@ -16,10 +16,10 @@
 export const BROKERS = [
   {
     id: "tr", nom: "Trade Republic", code: "TR", color: "#5FA8D3", emoji: "🔵", lastVerified: "03/09/2026",
-    frais: { rank: 1, resume: "1€ / ordre", detail: "Frais fixe, quel que soit le montant" },
+    frais: { resume: "À vérifier", detail: "Tarif actuel PEA PDF manquant" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
-    dca: { rank: 1, resume: "0€ (PEA & CTO)", detail: "+7 500 titres · hebdo / bimensuel / mensuel" },
-    garde: { rank: 1, resume: "0€" },
+    dca: { resume: "Plans programmés", detail: "Tarif, choix et fréquence à vérifier" },
+    garde: { resume: "À vérifier" },
     pea: { pea: true, pme: null, jeune: true },
     ifu: { rank: 1, resume: "Oui après migration FR" },
     // Contrat TR 09/2026, annexe 3 IV et annexe 12 B.V : intérêts possibles après activation
@@ -29,9 +29,9 @@ export const BROKERS = [
     pointFaible: "PEA-PME : à vérifier par PDF officiel",
     transfertPea: { resume: "Entrant ✅" },
     post: {
-      frais: ["1€/ordre, quel que soit le montant"],
-      dca: ["✅ 0€ sur PEA & CTO — +7 500 titres disponibles, hebdo/bimensuel/mensuel"],
-      garde: ["0€"],
+      frais: ["Tarif PEA actuel à vérifier dans un PDF officiel."],
+      dca: ["Plans programmés documentés ; tarif, nombre de titres et fréquences actuelles à vérifier."],
+      garde: ["À vérifier dans un PDF tarifaire actuel."],
       pea: "PEA ✅ / PEA-PME ? / PEA Jeune ✅",
       ifu: ["✅ IFU après migration vers l'offre française ; compte non migré : à vérifier."],
       liquidites: ["Compte général : intérêts possibles après activation, taux à vérifier. Espèces PEA : non."],
@@ -45,13 +45,13 @@ export const BROKERS = [
     // Revue ciblée du 24/09/2026 : la page officielle Boursomarkets présente les ETF iShares
     // (et Amundi parmi les OPCVM), sans confirmer le nombre de 275 ETF ni l'exclusivité Amundi.
     // https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit
-    boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "ETF iShares éligibles à l’offre, selon le compte" },
+    boursomarkets: { rank: 1, resume: "0€ à l’achat", detail: "Produits éligibles à contrôler avant l’ordre" },
     // Brochure 2026 p. 20 : commission de négociation gratuite, frais de gestion selon chaque DIC.
     // Nombre de fonds, périodicité exclusive et taux de 0,59% non validés par PDF officiel.
     dca: { rank: 2, resume: "0€ de négociation", detail: "Frais des fonds : voir DIC" },
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: true, jeune: true },
-    ifu: { rank: 1, resume: "Oui" },
+    ifu: { resume: "À vérifier" },
     liquidites: { resume: "À vérifier", detail: "Espèces du courtier · livret exclu" },
     pointFaible: "DCA : frais des fonds à vérifier. ℹ️ Ordre minimum : 100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
@@ -60,7 +60,7 @@ export const BROKERS = [
       dca: ["⚠️ Plan d'Épargne : 0€ de commission de négociation, dès 10€/fonds/mois. Frais des fonds à vérifier dans chaque DIC."],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
-      ifu: ["✅ Oui"],
+      ifu: ["À vérifier dans un PDF officiel."],
       liquidites: ["À vérifier pour les espèces non investies du compte de courtage."],
       faibles: ["Frais des fonds du plan à vérifier dans leurs DIC, ordre min ETF 200€, Bourses EU 2 500€"],
       verdict: "Tu veux un écosystème bancaire complet avec PEA-PME",
@@ -98,7 +98,7 @@ export const BROKERS = [
     dca: { resume: "À vérifier" },
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: true, jeune: null },
-    ifu: { rank: 1, resume: "Oui" },
+    ifu: { resume: "À vérifier" },
     liquidites: { resume: "À vérifier", detail: "Espèces du courtier · livret exclu" },
     pointFaible: "Clôture PEA 85€, frais élevés hors Euronext ; DCA à vérifier",
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
@@ -107,7 +107,7 @@ export const BROKERS = [
       dca: ["À vérifier : absence de DCA automatique non établie par PDF."],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ?",
-      ifu: ["✅ Oui"],
+      ifu: ["À vérifier dans un PDF officiel."],
       liquidites: ["À vérifier pour les espèces non investies du compte de courtage."],
       faibles: ["Clôture PEA 85€, frais élevés hors Euronext ; DCA à vérifier"],
       verdict: "Tu veux un PEA + PEA-PME chez un courtier 100% en ligne établi",
@@ -170,7 +170,7 @@ export const BROKERS = [
     dca: { rank: 1, resume: "Oui, PEA & CTO", detail: "ETF éligibles : 0€ de courtage ; actions : tarif habituel" },
     garde: { rank: 1, resume: "0€", detail: "Bourses étrangères : 0,036%/an" },
     pea: { pea: true, pme: true, jeune: true },
-    ifu: { rank: 1, resume: "Oui" },
+    ifu: { resume: "À vérifier" },
     liquidites: { resume: "À vérifier", detail: "Absence de rémunération non démontrée" },
     pointFaible: "Tarification par paliers ; cash non vérifié ; garde sur bourses étrangères",
     // Ajout du 03/09/2026 (table de vérification fournie par l'utilisateur) : le transfert PEA
@@ -182,7 +182,7 @@ export const BROKERS = [
       dca: ["✅ Plans automatisés PEA & CTO, mensuels ou trimestriels ; ETF éligibles sans courtage, actions au tarif habituel"],
       garde: ["0€ hors bourses étrangères ; 0,036%/an sur bourses étrangères"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
-      ifu: ["✅ Oui"],
+      ifu: ["À vérifier dans un PDF officiel."],
       liquidites: ["À vérifier : absence de rémunération des espèces non établie par PDF officiel."],
       faibles: ["Tarification par paliers ; cash à vérifier ; garde sur bourses étrangères"],
       verdict: "Tu fais des ordres ponctuels et veux un tarif par palier transparent",
