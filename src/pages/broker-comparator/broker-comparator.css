@@ -123,6 +123,13 @@
 .bc-copy-msg.show { opacity: 1; }
 .bc-char-count { margin-left: auto; font-size: .78rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
 
+.bc-evidence-broker { border-top: 1px solid var(--border-soft); padding: 12px 0; }
+.bc-evidence-broker summary { cursor: pointer; color: var(--ink); font-weight: 600; }
+.bc-evidence-broker ul { margin: 12px 0 0; padding-left: 22px; color: var(--ink-dim); font-size: .84rem; line-height: 1.55; }
+.bc-evidence-broker li { margin: 0 0 10px; }
+.bc-evidence-broker li strong { color: var(--ink); }
+.bc-evidence-broker a { color: var(--accent-bright); text-decoration: underline; overflow-wrap: anywhere; }
+
 @media (max-width: 480px) {
   .bc-footer .bc-disclaimer { max-width: 100%; }
   .bc-footer { flex-direction: column; align-items: flex-start; gap: 4px; }
