@@ -34,6 +34,15 @@ résiduel n'y pointait).
 
 ## Pas de duplication de données entre outils
 
+Les produits identifiés par ISIN sont référencés dans `src/data/instruments.js` :
+nom commun, variantes de libellé par outil et éligibilité PEA lorsqu'elle est documentée
+dans les Fiches ETF. Les frais sont dans `src/data/etf-ter.js`. Ajouter un produit à ces
+répertoires avant de l'utiliser dans Fiches ETF, Comparatif ETF, Comparateur d'indices ou
+Générateur de portefeuilles ; `npm run audit:instrument-catalog` vérifie les références.
+Une absence de statut PEA signifie « non documenté », jamais « non éligible ».
+Les performances et encours gardent leur propre part, devise, méthode, date et source dans
+les données de l'outil : un rendement d'indice ne remplace pas celui d'un fonds.
+
 Quand un outil a besoin d'une donnée qu'un autre outil possède déjà et a déjà vérifiée, il
 l'importe directement plutôt que de la recopier. Exemples : 3 des 7 formats de Tweet Midi
 (Fiche lexique, Comparatif ETF, Pouvoir d'achat) sont des façades qui appellent directement les

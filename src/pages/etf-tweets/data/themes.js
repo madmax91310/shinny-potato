@@ -1,3 +1,4 @@
+import { getInstrumentName } from '../../../data/instruments.js';
 import { formatEtfTer } from '../../../data/etf-ter.js';
 let uid = 0
 function nextId(prefix) {
@@ -57,14 +58,14 @@ const BASE_THEMES = [
       'Il existe plusieurs ETF pour capter la croissance mondiale. Voici 4 références à connaître :',
     etfs: [
       createEtf({
-        nom: 'UBS Core MSCI World UCITS ETF',
+        nom: getInstrumentName("IE00BD4TXV59", "tweet"),
         isin: 'IE00BD4TXV59',
         frais: formatEtfTer('IE00BD4TXV59'),
 
         differenciateur: 'MSCI World, réplication physique complète, CTO',
       }),
       createEtf({
-        nom: 'Vanguard FTSE All-World UCITS ETF',
+        nom: getInstrumentName("IE00BK5BQT80", "tweet"),
         isin: 'IE00BK5BQT80',
         frais: formatEtfTer('IE00BK5BQT80'),
 
@@ -73,14 +74,14 @@ const BASE_THEMES = [
         differenciateur: 'grandes et moyennes capitalisations, pays développés + émergents, CTO',
       }),
       createEtf({
-        nom: 'SPDR MSCI ACWI UCITS ETF',
+        nom: getInstrumentName("IE00B44Z5B48", "tweet"),
         isin: 'IE00B44Z5B48',
         frais: formatEtfTer('IE00B44Z5B48'),
 
         differenciateur: 'MSCI ACWI, pays développés et émergents, CTO',
       }),
       createEtf({
-        nom: 'Amundi PEA Monde (MSCI World) UCITS ETF',
+        nom: getInstrumentName("FR001400U5Q4", "tweet"),
         isin: 'FR001400U5Q4',
         frais: formatEtfTer('FR001400U5Q4'),
 
@@ -110,14 +111,14 @@ const BASE_THEMES = [
       'Le marché américain domine les indices mondiaux. Voici 4 ETF à comparer, dont trois logeables en PEA :',
     etfs: [
       createEtf({
-        nom: 'SPDR S&P 500 UCITS ETF Acc',
+        nom: getInstrumentName("IE000XZSV718", "tweet"),
         isin: 'IE000XZSV718',
         frais: formatEtfTer('IE000XZSV718'),
 
         differenciateur: 'S&P 500, réplication physique, CTO',
       }),
       createEtf({
-        nom: 'Amundi PEA S&P 500 UCITS ETF',
+        nom: getInstrumentName("FR0011871128", "tweet"),
         isin: 'FR0011871128',
         frais: formatEtfTer('FR0011871128'),
 
@@ -128,14 +129,14 @@ const BASE_THEMES = [
         // Fonds lancé le 29/05/2025, sans 2023/2024 calendaires. Sa notice
         // précise qu'il entend conserver son éligibilité au PEA.
         // https://www.blackrock.com/fr/intermediaries/products/342916/
-        nom: 'iShares S&P 500 Swap PEA UCITS ETF',
+        nom: getInstrumentName("IE000DQLYVB9", "tweet"),
         isin: 'IE000DQLYVB9',
         frais: formatEtfTer('IE000DQLYVB9'),
 
         differenciateur: 'S&P 500 éligible PEA, moins cher en TER que l’Amundi, mais fonds plus récent',
       }),
       createEtf({
-        nom: 'Amundi PEA Nasdaq-100 UCITS ETF',
+        nom: getInstrumentName("FR0011871110", "tweet"),
         isin: 'FR0011871110',
         frais: formatEtfTer('FR0011871110'),
 
@@ -163,21 +164,21 @@ const BASE_THEMES = [
       'Un ETF World te laisse déjà une place pour l’Europe. Si tu veux lui donner davantage de poids, ces trois indices ne couvrent pas la même chose :',
     etfs: [
       createEtf({
-        nom: 'iShares Core MSCI Europe UCITS ETF',
+        nom: getInstrumentName("IE00B4K48X80", "tweet"),
         isin: 'IE00B4K48X80',
         frais: formatEtfTer('IE00B4K48X80'),
 
         differenciateur: 'MSCI Europe, grandes et moyennes capitalisations, CTO',
       }),
       createEtf({
-        nom: 'iShares Core EURO STOXX 50 UCITS ETF',
+        nom: getInstrumentName("IE00B53L3W79", "tweet"),
         isin: 'IE00B53L3W79',
         frais: formatEtfTer('IE00B53L3W79'),
 
         differenciateur: '50 grandes valeurs de la zone euro, éligible PEA',
       }),
       createEtf({
-        nom: 'BNP Paribas Easy STOXX Europe 600 UCITS ETF',
+        nom: getInstrumentName("FR0011550193", "tweet"),
         isin: 'FR0011550193',
         frais: formatEtfTer('FR0011550193'),
 
@@ -201,14 +202,14 @@ const BASE_THEMES = [
       'Le secteur tech européen est plus étroit que son équivalent américain. Voici deux fonds qui suivent le même indice :',
     etfs: [
       createEtf({
-        nom: 'Amundi STOXX Europe 600 Technology UCITS ETF',
+        nom: getInstrumentName("LU1834988518", "tweet"),
         isin: 'LU1834988518',
         frais: formatEtfTer('LU1834988518'),
 
         differenciateur: 'STOXX Europe 600 Technology, éligible PEA',
       }),
       createEtf({
-        nom: 'iShares STOXX Europe 600 Technology UCITS ETF (DE)',
+        nom: getInstrumentName("DE000A0H08Q4", "tweet"),
         isin: 'DE000A0H08Q4',
         frais: formatEtfTer('DE000A0H08Q4'),
 
@@ -233,21 +234,21 @@ const BASE_THEMES = [
       'Chine, Inde, Brésil, Taïwan : selon l’indice choisi, les pays et la taille des entreprises couvertes changent. Trois façons de s’y exposer :',
     etfs: [
       createEtf({
-        nom: 'iShares Core MSCI EM IMI UCITS ETF',
+        nom: getInstrumentName("IE00BKM4GZ66", "tweet"),
         isin: 'IE00BKM4GZ66',
         frais: formatEtfTer('IE00BKM4GZ66'),
 
         differenciateur: 'très large, small et mid caps incluses, CTO',
       }),
       createEtf({
-        nom: 'Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF',
+        nom: getInstrumentName("FR0013412020", "tweet"),
         isin: 'FR0013412020',
         frais: formatEtfTer('FR0013412020'),
 
         differenciateur: 'éligible PEA, indice MSCI Emerging Markets filtré ESG',
       }),
       createEtf({
-        nom: 'Xtrackers MSCI Emerging Markets UCITS ETF',
+        nom: getInstrumentName("IE00BTJRMP35", "tweet"),
         isin: 'IE00BTJRMP35',
         frais: formatEtfTer('IE00BTJRMP35'),
 
@@ -270,13 +271,13 @@ const BASE_THEMES = [
     transition: 'Les indices « luxe » ne retiennent pas forcément les mêmes entreprises. Voici deux fonds à comparer :',
     etfs: [
       createEtf({
-        nom: 'Amundi Global Luxury UCITS ETF',
+        nom: getInstrumentName("LU1681048630", "tweet"),
         isin: 'LU1681048630',
         frais: formatEtfTer('LU1681048630'),
         differenciateur: 'suit l’indice S&P Global Luxury, CTO',
       }),
       createEtf({
-        nom: 'Amundi PEA Luxe Monde UCITS ETF',
+        nom: getInstrumentName("FR001400S9V0", "tweet"),
         isin: 'FR001400S9V0',
         frais: formatEtfTer('FR001400S9V0'),
 
@@ -301,20 +302,20 @@ const BASE_THEMES = [
       'L’IA est le thème le plus commenté en Bourse depuis 2023. Voici 3 ETF qui y donnent accès, avec des approches différentes :',
     etfs: [
       createEtf({
-        nom: 'Xtrackers Artificial Intelligence and Big Data UCITS ETF',
+        nom: getInstrumentName("IE00BGV5VN51", "tweet"),
         isin: 'IE00BGV5VN51',
         frais: formatEtfTer('IE00BGV5VN51'),
 
         differenciateur: 'IA et Big Data, frais les plus bas de ce trio, CTO',
       }),
       createEtf({
-        nom: 'L&G Artificial Intelligence UCITS ETF',
+        nom: getInstrumentName("IE00BK5BCD43", "tweet"),
         isin: 'IE00BK5BCD43',
         frais: formatEtfTer('IE00BK5BCD43'),
         differenciateur: 'indice ROBO Global Artificial Intelligence, CTO',
       }),
       createEtf({
-        nom: 'iShares Automation & Robotics UCITS ETF',
+        nom: getInstrumentName("IE00BYZK4552", "tweet"),
         isin: 'IE00BYZK4552',
         frais: formatEtfTer('IE00BYZK4552'),
 
@@ -340,21 +341,21 @@ const BASE_THEMES = [
       'Vieillissement démographique, innovation pharma... la santé est un thème de long terme. Voici 3 trackers pour s’y exposer :',
     etfs: [
       createEtf({
-        nom: 'iShares MSCI World Health Care Sector Advanced UCITS ETF',
+        nom: getInstrumentName("IE00BJ5JNZ06", "tweet"),
         isin: 'IE00BJ5JNZ06',
         frais: formatEtfTer('IE00BJ5JNZ06'),
 
         differenciateur: 'santé mondiale, indice Advanced avec exclusions, CTO',
       }),
       createEtf({
-        nom: 'Xtrackers MSCI World Health Care UCITS ETF',
+        nom: getInstrumentName("IE00BM67HK77", "tweet"),
         isin: 'IE00BM67HK77',
         frais: formatEtfTer('IE00BM67HK77'),
 
         differenciateur: 'santé mondiale, capitalisant, CTO',
       }),
       createEtf({
-        nom: 'Amundi STOXX Europe 600 Healthcare UCITS ETF',
+        nom: getInstrumentName("LU1834986900", "tweet"),
         isin: 'LU1834986900',
         frais: formatEtfTer('LU1834986900'),
 
@@ -379,21 +380,21 @@ const BASE_THEMES = [
       'Le secteur a connu un vrai trou d’air depuis son pic de 2021. Voici 3 trackers pour s’y exposer aujourd’hui :',
     etfs: [
       createEtf({
-        nom: 'iShares Global Clean Energy Transition UCITS ETF',
+        nom: getInstrumentName("IE00B1XNHC34", "tweet"),
         isin: 'IE00B1XNHC34',
         frais: formatEtfTer('IE00B1XNHC34'),
 
         differenciateur: 'indice mondial de l’énergie propre, CTO',
       }),
       createEtf({
-        nom: 'Amundi MSCI New Energy UCITS ETF Dist',
+        nom: getInstrumentName("FR0010524777", "tweet"),
         isin: 'FR0010524777',
         frais: formatEtfTer('FR0010524777'),
 
         differenciateur: 'indice MSCI New Energy filtré, distribuant, CTO',
       }),
       createEtf({
-        nom: 'L&G Clean Energy UCITS ETF',
+        nom: getInstrumentName("IE00BK5BCH80", "tweet"),
         isin: 'IE00BK5BCH80',
         frais: formatEtfTer('IE00BK5BCH80'),
 
@@ -419,14 +420,14 @@ const BASE_THEMES = [
       'Rendement pur, croissance du dividende ou historique de hausses : ces 3 ETF n’ont pas la même méthodologie. Voici lesquels :',
     etfs: [
       createEtf({
-        nom: 'Vanguard FTSE All-World High Dividend Yield UCITS ETF',
+        nom: getInstrumentName("IE00B8GKDB10", "tweet"),
         isin: 'IE00B8GKDB10',
         frais: formatEtfTer('IE00B8GKDB10'),
 
         differenciateur: 'rendement élevé, frais les plus bas de ce trio, CTO',
       }),
       createEtf({
-        nom: 'SPDR S&P Global Dividend Aristocrats UCITS ETF',
+        nom: getInstrumentName("IE00B9CQXS71", "tweet"),
         isin: 'IE00B9CQXS71',
         frais: formatEtfTer('IE00B9CQXS71'),
 
@@ -435,7 +436,7 @@ const BASE_THEMES = [
         differenciateur: 'dividende stable ou en hausse sur 10 ans, CTO',
       }),
       createEtf({
-        nom: 'WisdomTree Global Quality Dividend Growth UCITS ETF',
+        nom: getInstrumentName("IE00BZ56SW52", "tweet"),
         isin: 'IE00BZ56SW52',
         frais: formatEtfTer('IE00BZ56SW52'),
 
@@ -462,20 +463,20 @@ const BASE_THEMES = [
       'TOPIX, Nikkei 225 ou indice large : le résultat dépend aussi de la couverture du yen. Voici quatre fonds :',
     etfs: [
       createEtf({
-        nom: 'Amundi Prime Japan UCITS ETF',
+        nom: getInstrumentName("LU2089238385", "tweet"),
         isin: 'LU2089238385',
         frais: formatEtfTer('LU2089238385'),
 
         differenciateur: 'grandes et moyennes capitalisations, frais les plus bas de ce quatuor, CTO',
       }),
       createEtf({
-        nom: 'Amundi PEA Japan (TOPIX) UCITS ETF',
+        nom: getInstrumentName("FR0013411980", "tweet"),
         isin: 'FR0013411980',
         frais: formatEtfTer('FR0013411980'),
         differenciateur: 'TOPIX en PEA, sans couverture du yen',
       }),
       createEtf({
-        nom: 'Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc',
+        nom: getInstrumentName("FR0013411998", "tweet"),
         isin: 'FR0013411998',
         frais: formatEtfTer('FR0013411998'),
         // Fiche Amundi du 30/04/2026 : PEA, frais 0,48 %.
@@ -484,7 +485,7 @@ const BASE_THEMES = [
         differenciateur: 'TOPIX en PEA, couvert contre le yen',
       }),
       createEtf({
-        nom: 'Xtrackers Nikkei 225 UCITS ETF',
+        nom: getInstrumentName("LU1875395870", "tweet"),
         isin: 'LU1875395870',
         frais: formatEtfTer('LU1875395870'),
 
@@ -512,21 +513,21 @@ const BASE_THEMES = [
       'La hausse des budgets militaires attire de nouveaux fonds. Voici trois approches à comparer :',
     etfs: [
       createEtf({
-        nom: 'VanEck Defense UCITS ETF',
+        nom: getInstrumentName("IE000YYE6WK5", "tweet"),
         isin: 'IE000YYE6WK5',
         frais: formatEtfTer('IE000YYE6WK5'),
 
         differenciateur: 'exposition mondiale incluant les États-Unis, CTO',
       }),
       createEtf({
-        nom: 'WisdomTree Europe Defence UCITS ETF',
+        nom: getInstrumentName("IE0002Y8CX98", "tweet"),
         isin: 'IE0002Y8CX98',
         frais: formatEtfTer('IE0002Y8CX98'),
 
         differenciateur: 'défense européenne, non éligible PEA, CTO',
       }),
       createEtf({
-        nom: 'Amundi STOXX Europe Defense UCITS ETF',
+        nom: getInstrumentName("LU3038520774", "tweet"),
         isin: 'LU3038520774',
         frais: formatEtfTer('LU3038520774'),
 
@@ -551,21 +552,21 @@ const BASE_THEMES = [
       'Les ETF de ce thème ont peu de recul par rapport aux grands indices. Voici trois approches à comparer :',
     etfs: [
       createEtf({
-        nom: 'VanEck Quantum Computing UCITS ETF',
+        nom: getInstrumentName("IE0007Y8Y157", "tweet"),
         isin: 'IE0007Y8Y157',
         frais: formatEtfTer('IE0007Y8Y157'),
 
         differenciateur: 'lancé en 2025, CTO',
       }),
       createEtf({
-        nom: 'iShares Quantum Computing UCITS ETF',
+        nom: getInstrumentName("IE000C6ITGC8", "tweet"),
         isin: 'IE000C6ITGC8',
         frais: formatEtfTer('IE000C6ITGC8'),
 
         differenciateur: 'compare le volume échangé et la fourchette achat/vente, CTO',
       }),
       createEtf({
-        nom: 'WisdomTree Quantum Computing UCITS ETF',
+        nom: getInstrumentName("IE000W8WMSL2", "tweet"),
         isin: 'IE000W8WMSL2',
         frais: formatEtfTer('IE000W8WMSL2'),
 
@@ -593,7 +594,7 @@ const BASE_THEMES = [
     transition: 'De nouveaux ETF spatiaux UCITS sont arrivés en 2026. Voici une référence du secteur :',
     etfs: [
       createEtf({
-        nom: 'VanEck Space Innovators UCITS ETF',
+        nom: getInstrumentName("IE000YU9K6K2", "tweet"),
         isin: 'IE000YU9K6K2',
         frais: formatEtfTer('IE000YU9K6K2'),
 
@@ -620,7 +621,7 @@ const BASE_THEMES = [
       'Mines, ressources et matériaux de base : ces ETF ne couvrent pas les mêmes entreprises. Voici 4 trackers :',
     etfs: [
       createEtf({
-        nom: 'VanEck S&P Global Mining UCITS ETF',
+        nom: getInstrumentName("IE00BDFBTQ78", "tweet"),
         isin: 'IE00BDFBTQ78',
         frais: formatEtfTer('IE00BDFBTQ78'),
 
@@ -630,21 +631,21 @@ const BASE_THEMES = [
         // Fiche Amundi du 30/06/2026 : PEA oui, TER 0,30 %, indice
         // STOXX Europe 600 Basic Resources, swap.
         // https://www.amundietf.com/pdfDocuments/monthly-factsheet/LU1834983550/ENG/LUX/RETAIL/ETF/20260630
-        nom: 'Amundi STOXX Europe 600 Basic Resources UCITS ETF',
+        nom: getInstrumentName("LU1834983550", "tweet"),
         isin: 'LU1834983550',
         frais: formatEtfTer('LU1834983550'),
 
         differenciateur: 'ressources de base européennes, éligible PEA, réplication synthétique',
       }),
       createEtf({
-        nom: 'Amundi STOXX Europe 600 Basic Materials UCITS ETF',
+        nom: getInstrumentName("LU1834983634", "tweet"),
         isin: 'LU1834983634',
         frais: formatEtfTer('LU1834983634'),
 
         differenciateur: 'matériaux européens, éligible PEA ; vérifie la fourchette achat/vente',
       }),
       createEtf({
-        nom: 'Xtrackers MSCI World Materials UCITS ETF',
+        nom: getInstrumentName("IE00BM67HS53", "tweet"),
         isin: 'IE00BM67HS53',
         frais: formatEtfTer('IE00BM67HS53'),
 
@@ -674,25 +675,25 @@ const BASE_THEMES = [
       // référence et une conversion documentée ne sont pas disponibles.
       // WisdomTree indique séparément 0,49 % de frais de gestion et 0,45 % de taux de swap annuel.
       createEtf({
-        nom: 'iShares Physical Gold ETC',
+        nom: getInstrumentName("IE00B4ND3602", "tweet"),
         isin: 'IE00B4ND3602',
         frais: formatEtfTer('IE00B4ND3602'),
         differenciateur: 'adossé à de l’or physique',
       }),
       createEtf({
-        nom: 'Amundi Physical Gold ETC',
+        nom: getInstrumentName("FR0013416716", "tweet"),
         isin: 'FR0013416716',
         frais: formatEtfTer('FR0013416716'),
         differenciateur: 'adossé à de l’or physique ; émetteur de droit irlandais',
       }),
       createEtf({
-        nom: 'iShares Physical Silver ETC',
+        nom: getInstrumentName("IE00B4NCWG09", "tweet"),
         isin: 'IE00B4NCWG09',
         frais: formatEtfTer('IE00B4NCWG09'),
         differenciateur: 'adossé à de l’argent physique',
       }),
       createEtf({
-        nom: 'WisdomTree Copper',
+        nom: getInstrumentName("GB00B15KXQ89", "tweet"),
         isin: 'GB00B15KXQ89',
         isCopperEtc: true,
         frais: formatEtfTer('GB00B15KXQ89'),
