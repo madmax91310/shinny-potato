@@ -51,18 +51,22 @@ Contrôle individuel du 25/09/2026 : 44/44 fiches relues. Les commentaires de da
 | halving | https://bitcoin.org/fr/vocabulaire | Points cités contrôlés le 25/09/2026 ; voir sources et réserves dans data.js |
 
 Portefeuilles : 87 supports, dont 0 sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.
-Calculateur : 24 actifs, dont 1 sans date individuelle ; cinq séries mensuelles ont été recoupées avec Yahoo le 29/09/2026, l'or spot reste non vérifié point par point.
+Calculateur : 24 actifs, dont 0 sans date individuelle ; cinq séries mensuelles ont été recoupées avec Yahoo et l'or avec la Banque mondiale le 29/09/2026.
 
 | Série mensuelle | Devise | Période | Points | Contrôle externe |
 | --- | --- | --- | ---: | --- |
 | bitcoin | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
-| or | USD | 2015-01 → 2026-08 | 140 | Source spot homogène introuvable ; série non vérifiée point par point |
+| or | USD | 2015-01 → 2026-08 | 140 | Moyennes mensuelles du spot Banque mondiale, capture datée et audit des 140 points dans scripts/source-snapshots/ |
 | apple | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
 | microsoft | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
 | broadcom | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
 | tesla | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
 
-La date de l’or reste absente. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.
+La série or utilise les moyennes mensuelles des cours spot quotidiens de la Banque mondiale, et non les clôtures de fin de mois auparavant affichées sans export vérifiable. Ce changement de convention modifie les simulations. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.
+
+PEA : 30 parts revues individuellement ; 1 non tranchée(s). Sur les 41 fiches ETF, 34 affichent « à vérifier » faute de source individuelle établissant le statut. Les booléens historiques du catalogue ne sont pas une preuve.
+Fiches au statut PEA non établi : IE00BKM4GZ66, IE00B6R52259, IE00BK5BQT80, IE000I8KRLL9, IE00BYXG2H39, IE00BYTRR863, IE000YYE6WK5, IE00BYPLS672, FR0010527275, LU1681048630, IE00BJ5JP097, IE00B1FZS350, IE00BJ5JNY98, IE0007Y8Y157, IE00BK5BCD43, IE00BYZK4552, IE000RDRMSD1, IE000M7V94E1, IE00BF0M2Z96, IE000YU9K6K2, IE00B6YX5D40, IE00BM8R0J59, IE00B8FHGS14, IE00BP3QZB59, IE00BF4RFH31, IE00BP3QZ601, IE00BP3QZ825, IE00B4ND3602, GB00BLD4ZL17, IE00B4WXJJ64, IE00B66F4759, IE00B3F81R35, IE00BF3N7094, IE00BFZPF546.
+Le comparateur d’indices contient aussi des groupes et notes éditoriales PEA hérités : revoir chaque affirmation au niveau de la part avant de revendiquer une couverture exhaustive.
 
 Encours ETF : 81 ISIN et 94 affichages centralisés. 13 ISIN apparaissent dans les deux outils. 81 ont une source individuelle contrôlée ; 0 reprennent les libellés historiques sans nouveau recoupement.
 SPEA : actif net exact de 54 413 013 EUR au 28/09/2026 chez BlackRock. Pour les 80 autres ISIN, taille en EUR relevée sur le profil ISIN justETF le 29/09/2026 et conservée dans scripts/source-snapshots/etf-aum-2026-09-29.json. justETF ne donne pas de date de valeur exploitable : la date de consultation n’est pas une date de VL. Le périmètre est celui du profil de la part : BlackRock distingue pour IE00B3F81R35 8,437 Md€ pour la part et 13,148 Md€ pour le fonds entier au 25/09/2026.

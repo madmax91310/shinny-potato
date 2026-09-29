@@ -34,6 +34,12 @@ for (const [isin, review] of Object.entries(PEA_REVIEWS_BY_ISIN)) {
     errors++;
   }
 }
+for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
+  if (!Object.hasOwn(PEA_REVIEWS_BY_ISIN, isin) && getInstrumentPeaStatus(isin) !== null) {
+    console.error(`PEA : statut publié sans revue ciblée pour ${isin}`);
+    errors++;
+  }
+}
 for (const [isin, facts] of Object.entries(INSTRUMENT_FACTS_BY_ISIN)) {
   if (!INSTRUMENTS_BY_ISIN[isin]) {
     console.error(`Caractéristiques : ISIN absent du catalogue : ${isin}`);
@@ -92,6 +98,10 @@ for (const [context, file, items] of collections) {
     }
     if (context === 'sheet' && item.pea !== getInstrumentPea(item.isin)) {
       console.error(`${file} : statut PEA différent du catalogue pour ${item.isin}`);
+      errors++;
+    }
+    if (context === 'sheet' && item.pea === null && /(?:n['’]est pas éligible|non éligible)\s*(?:au\s*)?PEA/i.test(item.whatToKnow ?? '')) {
+      console.error(`${file} : refus PEA affirmé sans preuve pour ${item.isin}`);
       errors++;
     }
     if (item.aum && (context === 'sheet' || context === 'index') && item.aum !== getInstrumentAum(item.isin, context)) {

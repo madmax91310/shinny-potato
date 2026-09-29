@@ -160,19 +160,16 @@ export function getInstrumentName(isin, context, variant) {
   return (variant && instrument.variants?.[variant]) || instrument.labels?.[context] || instrument.name;
 }
 
-// Seules les fiches qui ont documenté le statut PEA sont renseignées.
-// Une absence est inconnue, jamais assimilée à « non éligible ».
+// Seule une revue ciblée sur la part exacte permet de publier un statut PEA.
+// Les booléens historiques du catalogue ne sont pas une preuve individuelle.
 export function getInstrumentPeaStatus(isin) {
+  getInstrument(isin);
   const review = PEA_REVIEWS_BY_ISIN[isin];
-  if (review) return review.eligible;
-  const { pea } = getInstrument(isin);
-  return typeof pea === 'boolean' ? pea : null;
+  return review?.eligible ?? null;
 }
 
 export function getInstrumentPea(isin) {
-  const pea = getInstrumentPeaStatus(isin);
-  if (pea === null) throw new Error(`Éligibilité PEA non documentée pour ${isin}`);
-  return pea;
+  return getInstrumentPeaStatus(isin);
 }
 
 export function affirmInstrumentPea(isin, expected, wording) {

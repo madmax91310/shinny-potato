@@ -81,7 +81,7 @@ function EtfCard({ etf }) {
         <li>
           <span className="es-fi">🏦</span>
           <span>
-            PEA : <span className={etf.pea ? 'es-yes' : 'es-no'}>{etf.pea ? '✅' : '❌'}</span>
+            PEA : <span className={etf.pea === true ? 'es-yes' : etf.pea === false ? 'es-no' : ''}>{etf.pea === null ? 'à vérifier' : etf.pea ? '✅' : '❌'}</span>
             &nbsp;|&nbsp; CTO : <span className={etf.cto ? 'es-yes' : 'es-no'}>{etf.cto ? '✅' : '❌'}</span>
           </span>
         </li>
