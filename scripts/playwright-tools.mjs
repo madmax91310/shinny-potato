@@ -186,7 +186,7 @@ async function testBrokerComparator(page) {
     && !/à vérifier|à confirmer|non établi/i.test(fortuneoSaxo)
     && fortuneoSaxo.includes('PEA Jeune ❌')
     && (await page.locator('.bc-evidence-broker').count()) === 2
-    && (await page.locator('.bc-evidence').innerText()).includes('Réponse globale non confirmée');
+    && (await page.locator('.bc-evidence').innerText()).includes('traitement des autres espèces non établi');
   record("Comparatif courtiers", ok && sourceOk, "duels sans données non établies et limites conservées au registre");
 }
 
