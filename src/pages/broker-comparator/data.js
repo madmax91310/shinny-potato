@@ -12,7 +12,7 @@ import { BROKER_EVIDENCE } from './evidence.js';
 // BD https://www.boursedirect.fr/pdf/tarifs_bd.pdf
 // BD https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?filename=2026_BD_CP_Plan-Investissement.pdf
 // Saxo https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/conditions-generales-applicables-a-partir-du-9-avril-2026.pdf
-// CA IDF : le PDF 04/2026 cité ci-dessous renvoie 404 au 29/09/2026.
+// CA IDF : brochure régionale accessible via /Reglementaire/Tarifs/2026/.
 // rank : 1 = meilleur, plus haut = moins bon (sert au surlignage).
 // lastVerified : date historique de revue de la fiche, pas la date de confirmation de chaque champ.
 export const BROKERS = [
@@ -133,24 +133,24 @@ export const BROKERS = [
   },
   {
     id: "caidf", nom: "CA Île-de-France", code: "CA", color: "#B08968", emoji: "🟠", lastVerified: "29/09/2026",
-    // Brochure officielle régionale, tarifs particuliers au 01/04/2026, pages 28-30.
-    // https://ca-paris.credit-agricole.fr/tarif/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf
-    frais: { resume: "À vérifier", detail: "PDF tarifaire 04/2026 indisponible" },
+    // Brochure régionale au 01/04/2026, pages 27-31.
+    // https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf
+    frais: { resume: "Initial 0,50 %", detail: "Intégral PEA : 0,48 % ≤500 €, 0,18 % ≤1 000 €, puis 0,12 % · abonnement sous conditions" },
     boursomarkets: { resume: "Sans objet" },
-    dca: { resume: "Oui, à préciser", detail: "PEA/PEA-PME · SICAV/FCP dès 45 €/mois · tarifs régionaux à vérifier" },
-    garde: { resume: "À vérifier", detail: "PDF tarifaire 04/2026 indisponible" },
+    dca: { resume: "Oui", detail: "PEA/PEA-PME · SICAV/FCP dès 45 €/mois · mise en place gratuite" },
+    garde: { resume: "Exonérés avec Intégral", detail: "Sinon droits fixes et 0,20 %/semestre · voir barème régional" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { resume: "Oui, service national" },
     cash: { resume: "À vérifier", detail: "Réponse globale et conditions régionales non confirmées", post: "À vérifier : réponse globale et conditions régionales non confirmées." },
-    pointFaible: "Brochure tarifaire 2026 indisponible : conditions à confirmer",
-    transfertPea: { resume: "Sortant : à vérifier" },
+    pointFaible: "Droits de garde hors Intégral ; PEA Jeune et cash à confirmer",
+    transfertPea: { resume: "Sortant 15 €/ligne (max 150 €)" },
     post: {
-      frais: ["Barème Invest Store Intégral à vérifier dans le PDF tarifaire 2026 accessible."],
-      dca: ["Plan d’Épargne Boursière national : investissements automatiques dès 45 €/mois sur 1 à 3 SICAV/FCP éligibles au PEA/PEA-PME ; conditions et tarifs en Île-de-France à vérifier."],
-      garde: ["À vérifier dans le PDF tarifaire 2026 accessible."],
+      frais: ["Île-de-France Euronext en ligne : Initial 0,50 % ; Intégral PEA/PEA-PME 0,48 % ≤500 €, 0,18 % entre 500 et 1 000 €, 0,12 % au-delà. Intégral 96 €/an sous 12 ordres, gratuit de 18 à 30 ans."],
+      dca: ["Plan d’Épargne Boursière : dès 45 €/mois sur 1 à 3 SICAV/FCP éligibles au PEA/PEA-PME ; mise en place gratuite en Île-de-France ; frais des fonds selon DIC."],
+      garde: ["Exonérés avec Invest Store Intégral ; sinon droits fixes et commission de 0,20 % par semestre, selon le barème régional."],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["IFU consultable dans Invest Store selon la page nationale ; conditions régionales à vérifier."],
-      faibles: ["Brochure tarifaire 2026 indisponible : conditions à confirmer"],
+      faibles: ["Droits de garde hors Intégral ; PEA Jeune et cash à confirmer"],
       verdict: "Tu veux un conseiller en agence et un compte bancaire classique",
     },
   },
@@ -164,7 +164,7 @@ export const BROKERS = [
     ifu: { resume: "Oui pour CTO" },
     cash: { resume: "À vérifier", detail: "Réponse globale non confirmée", post: "À vérifier : réponse globale non confirmée." },
     pointFaible: "Tarification par paliers ; cash non vérifié ; garde sur bourses étrangères",
-    transfertPea: { resume: "Entrant : remboursement ≤200€ sous conditions / Sortant 15€/ligne (max 150€)" },
+    transfertPea: { resume: "Entrant : remboursement ≤150 € sur PEA / Sortant 15 €/ligne (max 150 €)" },
     post: {
       frais: ["PEA ≤198€ : 0,5% ; puis 0,99€ jusqu’à 500€ / 1,90€ jusqu’à 1 000€ / 2,90€ jusqu’à 2 000€", "3,80€ jusqu’à 4 400€ / 0,09% au-delà"],
       dca: ["✅ Plans automatisés PEA & CTO, mensuels ou trimestriels ; ETF éligibles sans courtage, actions au tarif habituel"],
