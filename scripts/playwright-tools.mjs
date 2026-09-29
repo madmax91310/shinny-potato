@@ -174,16 +174,15 @@ async function testBrokerComparator(page) {
   // innerText(), qui n'expose pas le contenu des champs de formulaire.
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
   const ok = tweet.includes("Quand tu passes un ordre") && tweet.includes("Si tu transfères ton PEA") && tweet.includes("Selon ta façon d’investir")
-    && tweet.includes("Entrant ✅") && tweet.includes("CTO :") && tweet.includes("PEA : Non")
+    && tweet.includes("Entrant ✅") && tweet.includes("Liquidités rémunérées") && !tweet.includes("CTO :")
     && /à vérifier/i.test(tweet) && !/Livret|liquidités non rémunérées|vérifié le/i.test(tweet)
     && (await page.locator('.bc-evidence-broker').count()) === 2
-    && (await page.locator('.bc-row-label').filter({ hasText: 'Espèces CTO' }).count()) === 1
-    && (await page.locator('.bc-row-label').filter({ hasText: 'Espèces PEA' }).count()) === 1;
+    && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 1;
   await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
-  await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('PEA : PEA exclu de cette offre'));
+  await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('À vérifier au global : espèces PEA non rémunérées'));
   const fortuneoSaxo = await page.locator('.bc-tweet-textarea').inputValue();
-  const sourceOk = fortuneoSaxo.includes('PEA : Non : les espèces PEA et PEA-PME')
-    && fortuneoSaxo.includes('PEA : PEA exclu de cette offre d’intérêts ; rémunération éventuelle hors offre non établie.')
+  const sourceOk = fortuneoSaxo.includes('À vérifier au global : espèces PEA non rémunérées')
+    && fortuneoSaxo.includes('Oui sur les espèces éligibles selon solde et niveau de compte')
     && (await page.locator('.bc-evidence-broker').count()) === 2;
   record("Comparatif courtiers", ok && sourceOk, "texte généré et périmètre des preuves Fortuneo/Saxo respecté");
 }

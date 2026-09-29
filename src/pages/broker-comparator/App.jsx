@@ -61,15 +61,15 @@ function TextRow({ icon, label, dataKey, brokers, gridStyle }) {
   )
 }
 
-function CashRow({ kind, label, brokers, gridStyle }) {
+function CashRow({ brokers, gridStyle }) {
   return (
     <div className="bc-row">
-      <div className="bc-row-label">💵 {label}</div>
+      <div className="bc-row-label">💵 Liquidités rémunérées</div>
       <div className="bc-cells" style={gridStyle}>
         {brokers.map((b) => (
           <div className="bc-cell" key={b.id}>
-            <div className="bc-resume">{b.cash[kind].resume}</div>
-            <div className="bc-detail">{b.cash[kind].detail}</div>
+            <div className="bc-resume">{b.cash.resume}</div>
+            <div className="bc-detail">{b.cash.detail}</div>
           </div>
         ))}
       </div>
@@ -81,7 +81,7 @@ function EvidencePanel({ selected }) {
   return (
     <section className="bc-panel bc-evidence" aria-labelledby="bc-evidence-title">
       <h2 id="bc-evidence-title">Registre des sources officielles</h2>
-      <p className="bc-hint">État au 29/09/2026. PDF contractuels et pages des courtiers sont identifiés séparément. « Partiel » signale un périmètre encore incertain ; « non établi » ne permet pas de conclure. Les taux variables sont à contrôler sur le site du courtier avant publication.</p>
+      <p className="bc-hint">État au 29/09/2026. PDF et pages officielles sont identifiés séparément. « Oui » signifie qu’une offre rémunère le cash non investi sous conditions ; « à vérifier » ne permet pas de répondre oui ou non. Les taux variables doivent être contrôlés avant publication.</p>
       {selected.map((id) => {
         const broker = byId(id)
         return (
@@ -172,8 +172,7 @@ function ComparisonCard({ selected }) {
       </div>
 
       <RankedRow rowKey="ifu" brokers={brokers} gridStyle={gridStyle} />
-      <CashRow kind="cto" label="Espèces CTO" brokers={brokers} gridStyle={gridStyle} />
-      <CashRow kind="pea" label="Espèces PEA" brokers={brokers} gridStyle={gridStyle} />
+      <CashRow brokers={brokers} gridStyle={gridStyle} />
       <TextRow icon="🔄" label="Transfert PEA" dataKey="transfertPea" brokers={brokers} gridStyle={gridStyle} />
 
       <div className="bc-row">

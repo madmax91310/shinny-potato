@@ -6,7 +6,7 @@ const officialHosts = new Set([
   'assets.traderepublic.com', 'www.boursobank.com', 'www.fortuneo.fr',
   'www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com', 'ca-paris.credit-agricole.fr',
   'www.boursedirect.fr', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo',
-  'www.interactivebrokers.ie', 'www.credit-agricole.fr', 'traderepublic.com',
+  'www.interactivebrokers.ie', 'www.credit-agricole.fr', 'traderepublic.com', 'support.traderepublic.com',
 ])
 for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   const url = new URL(document.url)
@@ -20,13 +20,10 @@ for (const broker of BROKERS) {
   assert(evidence, `${broker.id}: registre absent`)
   assert.deepEqual(Object.keys(evidence).sort(), EVIDENCE_FIELDS.map(([field]) => field).sort())
   assert(!('liquidites' in broker) && !('liquidites' in broker.post), `${broker.id}: ancienne ligne cash`)
-  for (const kind of ['cto', 'pea']) {
-    const cash = broker.cash[kind]
-    const proof = evidence[kind === 'cto' ? 'cashCto' : 'cashPea']
-    assert(cash.resume && cash.detail && cash.post, `${broker.id}: espèces ${kind} incomplètes`)
-    assert(cash.rate === null && cash.cap === null, `${broker.id}: taux/plafond sans PDF chiffré`)
-    if (proof.status === 'non établi') assert(/vérifier/i.test(cash.resume), `${broker.id}: cash ${kind} présenté comme prouvé`)
-  }
+  assert(broker.cash.resume && broker.cash.detail && broker.cash.post, `${broker.id}: liquidités incomplètes`)
+  const cashProof = evidence.cash
+  if (cashProof.status === 'non établi') assert.equal(broker.cash.resume, 'À vérifier', `${broker.id}: cash présenté comme prouvé`)
+  else assert.equal(broker.cash.resume, 'Oui', `${broker.id}: offre de rémunération non annoncée`)
   for (const [field, item] of Object.entries(evidence)) {
     assert(item.summary && ['confirmé', 'partiel', 'non établi'].includes(item.status), `${broker.id}.${field}: état invalide`)
     if (item.status !== 'non établi') assert(item.refs?.length, `${broker.id}.${field}: référence absente`)
@@ -36,6 +33,16 @@ for (const broker of BROKERS) {
       assert(!source.availability, `${broker.id}.${field}: source indisponible`)
     }
     for (const id of item.checked ?? []) assert(OFFICIAL_SOURCES[id], `${broker.id}.${field}: document inconnu`)
+  }
+  for (const field of ['frais', 'dca', 'garde', 'ifu']) {
+    if (evidence[field].status === 'non établi')
+      assert(/vérifier/i.test(broker[field].resume), `${broker.id}.${field}: donnée non établie présentée comme confirmée`)
+  }
+  if (evidence.boursomarkets.status === 'non établi')
+    assert.equal(broker.boursomarkets.resume, 'Sans objet', `${broker.id}: offre BoursoMarkets attribuée sans preuve`)
+  for (const [field, key] of [['pea', 'pea'], ['pme', 'pme'], ['jeune', 'jeune']]) {
+    if (evidence[field].status === 'non établi')
+      assert.equal(broker.pea[key], null, `${broker.id}.${field}: réponse oui/non sans preuve`)
   }
 }
 console.log(`Registre officiel : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(OFFICIAL_SOURCES).length} sources référencées.`)
