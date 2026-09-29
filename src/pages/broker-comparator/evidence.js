@@ -1,7 +1,17 @@
-// Registre éditorial : seules les pièces PDF publiées par le courtier constituent des preuves.
-// La pagination ci-dessous est celle affichée dans le PDF (première page = 1).
+// Registre éditorial : PDF officiels et pages publiées par les courtiers.
+// Dans les PDF, la première page porte le numéro 1.
 // « Non établi » ne signifie jamais « non proposé ».
-export const PDF_DOCUMENTS = {
+export const OFFICIAL_SOURCES = {
+  trInterest: { title: 'Trade Republic · Intérêts sur espèces', edition: 'page en ligne', checked: '29/09/2026', url: 'https://traderepublic.com/fr-fr/interets', kind: 'page' },
+  xtbInterest: { title: 'XTB · Intérêts sur fonds non investis', edition: 'taux variables', checked: '29/09/2026', url: 'https://www.xtb.com/fr/interets', kind: 'page' },
+  saxoInterest: { title: 'Saxo · Intérêts sur les espèces', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/campaigns/interest-rates-cal', kind: 'page' },
+  ibkrPea: { title: 'Interactive Brokers · PEA France', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php', kind: 'page' },
+  ibkrFees: { title: 'Interactive Brokers · Commissions Europe', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php', kind: 'page' },
+  ibkrInterest: { title: 'Interactive Brokers · Intérêts sur espèces', edition: 'taux variables', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/index.php?f=47097', kind: 'page' },
+  fortuneoContract: { title: 'Fortuneo · Conditions générales', edition: '01/09/2025', checked: '29/09/2026', url: 'https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf' },
+  bdPea: { title: 'Bourse Direct · Fonctionnement du PEA', edition: 'page en ligne', checked: '29/09/2026', url: 'https://epargne.boursedirect.fr/epargne/placements-epargne/compte-titres-dont-pea-et-pea-pme/le-pea-plan-d-epargne-en-actions', kind: 'page' },
+  boursoMarkets: { title: 'BoursoBank · BoursoMarkets', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit', kind: 'page' },
+  caInvest: { title: 'Crédit Agricole · Invest Store', edition: 'page nationale ; tarifs régionaux distincts', checked: '29/09/2026', url: 'https://www.credit-agricole.fr/particulier/epargne/bourse/service-de-bourse-en-ligne-invest-store.html', kind: 'page' },
   trContract: {
     title: 'Trade Republic · Contrat client France', edition: '09/2026', checked: '29/09/2026',
     url: 'https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf',
@@ -49,7 +59,7 @@ export const PDF_DOCUMENTS = {
   },
 }
 
-const proved = (summary, document, page) => ({ status: 'confirmé', summary, refs: [{ document, page }] })
+const proved = (summary, document, page) => ({ status: 'confirmé', summary, refs: [{ document, ...(page ? { page } : {}) }] })
 const unknown = (summary, checked = []) => ({ status: 'non établi', summary, checked })
 
 // Une entrée par champ affiché et par enveloppe pour le cash. Les restrictions font partie
@@ -64,12 +74,12 @@ export const BROKER_EVIDENCE = {
     pme: unknown('Offre PEA-PME non établie.', ['trContract']),
     jeune: proved('PEA ouvert sous conditions aux jeunes rattachés au foyer fiscal.', 'trContract', 190),
     ifu: proved('IFU lié à la migration vers l’offre française.', 'trContract', 3),
-    cashCto: { status: 'partiel', summary: 'Intérêts possibles sur le compte général après activation ; périmètre CTO, taux et plafond non explicités dans ce PDF.', refs: [{ document: 'trContract', page: 57 }] },
+    cashCto: { status: 'partiel', summary: 'Offre 3 % jusqu’à 50 000 € pour les nouveaux clients après activation ; traitement exact des espèces CTO à confirmer.', refs: [{ document: 'trContract', page: 57 }, { document: 'trInterest' }] },
     cashPea: proved('Aucun intérêt transféré sur le solde espèces du PEA.', 'trContract', 190),
     transfert: proved('Transfert entrant du PEA prévu par le contrat.', 'trContract', 189),
   },
   bourso: {
-    boursomarkets: unknown('Offre promotionnelle et titres éligibles non établis par PDF officiel.', ['boursoTariff']),
+    boursomarkets: proved('ETF iShares éligibles : 0 € à l’achat ; vente non annoncée gratuite. Éligibilité à contrôler par titre.', 'boursoMarkets'),
     frais: proved('Découverte : 1,99 € jusqu’à 500 €, puis 0,60 % ; plafond PEA à 0,5 %.', 'boursoTariff', 20),
     dca: proved('Plan d’épargne : négociation gratuite, minimum 10 € par fonds et frais de gestion selon DIC.', 'boursoTariff', 20),
     garde: proved('Droits de garde gratuits dans le barème indiqué.', 'boursoTariff', 23),
@@ -83,16 +93,16 @@ export const BROKER_EVIDENCE = {
   },
   ibkr: {
     boursomarkets: unknown('Offre BoursoMarkets non applicable ; comparaison PDF non établie.'),
-    frais: unknown('PDF officiel du barème PEA France non retrouvé.'),
+    frais: { status: 'partiel', summary: 'PEA : courtage à partir de 0,05 % ; minimum par ordre selon le marché et le routage.', refs: [{ document: 'ibkrPea' }, { document: 'ibkrFees' }] },
     dca: unknown('Périmètre PEA et CTO non établi par PDF officiel.'),
-    garde: unknown('Tarif de garde PEA non établi par PDF officiel.'),
-    pea: unknown('Offre PEA non documentée par PDF officiel accessible.'),
-    pme: unknown('Offre PEA-PME non documentée par PDF officiel accessible.'),
-    jeune: unknown('Offre PEA Jeune non documentée par PDF officiel accessible.'),
-    ifu: unknown('Périmètre de l’IFU non établi par PDF officiel.'),
-    cashCto: unknown('Conditions et taux du cash CTO non établis par PDF officiel.'),
-    cashPea: unknown('Conditions du cash PEA non établies par PDF officiel.'),
-    transfert: unknown('Transfert PEA entrant non établi par PDF officiel.'),
+    garde: proved('Aucun droit de garde ni frais de tenue de compte PEA annoncés.', 'ibkrPea'),
+    pea: proved('PEA Classique commercialisé.', 'ibkrPea'),
+    pme: unknown('PEA-PME non annoncé sur la page PEA consultée.', ['ibkrPea']),
+    jeune: unknown('PEA Jeune non annoncé sur la page PEA consultée.', ['ibkrPea']),
+    ifu: proved('IFU disponible pour le PEA.', 'ibkrPea'),
+    cashCto: { status: 'partiel', summary: 'Intérêts sur espèces éligibles : 0 % jusqu’à 10 000 € en EUR, taux variable au-delà et lié à la valeur du compte ; application au CTO précis à confirmer.', refs: [{ document: 'ibkrInterest' }] },
+    cashPea: unknown('La page d’intérêts générale ne confirme pas le traitement du PEA.', ['ibkrInterest', 'ibkrPea']),
+    transfert: proved('Transfert du PEA possible, sans frais de transfert annoncés.', 'ibkrPea'),
   },
   fortuneo: {
     boursomarkets: unknown('Offre BoursoMarkets non applicable ; comparaison PDF non établie.'),
@@ -101,10 +111,10 @@ export const BROKER_EVIDENCE = {
     garde: proved('Droits de garde gratuits.', 'fortuneoTariff', 10),
     pea: proved('Tarifs PEA prévus.', 'fortuneoTariff', 10),
     pme: proved('Tarifs PEA-PME prévus.', 'fortuneoTariff', 10),
-    jeune: unknown('Absence de PEA Jeune non démontrée par la brochure.', ['fortuneoTariff']),
+    jeune: proved('PEA Jeune non commercialisé selon les conditions générales.', 'fortuneoContract', 35),
     ifu: unknown('IFU non établi par la brochure consultée.', ['fortuneoTariff']),
     cashCto: unknown('Rémunération du solde espèces CTO non établie.', ['fortuneoTariff']),
-    cashPea: unknown('Rémunération du solde espèces PEA non établie.', ['fortuneoTariff']),
+    cashPea: proved('Compte espèces PEA et PEA-PME non rémunéré.', 'fortuneoContract', 35),
     transfert: proved('Transfert PEA sortant 15 € par ligne, plafond 150 € ; clôture distincte à 85 €.', 'fortuneoTariff', 13),
   },
   xtb: {
@@ -116,17 +126,17 @@ export const BROKER_EVIDENCE = {
     pme: unknown('PEA-PME non établi par les PDF consultés.', ['xtbTariff']),
     jeune: unknown('PEA Jeune non établi par les PDF consultés.', ['xtbTariff']),
     ifu: unknown('IFU non établi par les PDF consultés.', ['xtbTariff']),
-    cashCto: { status: 'partiel', summary: 'Intérêts sur fonds non investis documentés ; attribution expresse au CTO et taux actuel non établis.', refs: [{ document: 'xtbOverview', page: 2 }, { document: 'xtbContract', page: 7 }] },
+    cashCto: { status: 'partiel', summary: 'Intérêts sur fonds non investis du compte de trading, sans minimum ni maximum ; taux préférentiel 90 jours jusqu’à 100 000 €, puis standard. Taux variable chaque semaine ; rattachement au CTO à confirmer.', refs: [{ document: 'xtbOverview', page: 2 }, { document: 'xtbInterest' }] },
     cashPea: unknown('Le PDF ne permet pas d’affirmer que les espèces PEA perçoivent des intérêts.', ['xtbTariff', 'xtbContract']),
     transfert: unknown('Transfert entrant PEA non établi ; tarif du transfert sortant documenté p. 6.', ['xtbTariff']),
   },
   caidf: {
     boursomarkets: unknown('Offre BoursoMarkets non applicable ; comparaison PDF non établie.'),
-    frais: unknown('Brochure officielle 01/04/2026 indisponible (404).', ['caTariff']),
+    frais: unknown('Page nationale Invest Store consultée ; barème Île-de-France 2026 indisponible (404).', ['caTariff', 'caInvest']),
     dca: unknown('Fonction DCA non établie par PDF accessible.', ['caTariff']),
-    garde: unknown('Brochure officielle 01/04/2026 indisponible (404).', ['caTariff']),
-    pea: unknown('Offre PEA non vérifiée dans un PDF accessible.', ['caTariff']),
-    pme: unknown('Offre PEA-PME non vérifiée dans un PDF accessible.', ['caTariff']),
+    garde: unknown('Offre Intégral nationale annonce une exonération, sans confirmer le tarif Île-de-France.', ['caTariff', 'caInvest']),
+    pea: proved('PEA proposé par Invest Store ; tarifs régionaux à vérifier.', 'caInvest'),
+    pme: proved('PEA-PME mentionné par Invest Store ; tarifs régionaux à vérifier.', 'caInvest'),
     jeune: unknown('Offre PEA Jeune non vérifiée dans un PDF accessible.', ['caTariff']),
     ifu: unknown('IFU non vérifié dans un PDF accessible.', ['caTariff']),
     cashCto: unknown('Rémunération des espèces CTO non vérifiée.', ['caTariff']),
@@ -143,7 +153,7 @@ export const BROKER_EVIDENCE = {
     jeune: proved('PEA Jeunes prévu dans le barème.', 'bdTariff', 2),
     ifu: unknown('IFU non établi par la brochure consultée.', ['bdTariff']),
     cashCto: unknown('Absence de rémunération des espèces CTO non démontrée.', ['bdTariff']),
-    cashPea: unknown('Absence de rémunération des espèces PEA non démontrée.', ['bdTariff']),
+    cashPea: proved('Compte espèces PEA non rémunéré selon la page officielle.', 'bdPea'),
     transfert: proved('Transfert PEA sortant 15 € par ligne, plafond 150 € ; remboursement entrant à vérifier.', 'bdTariff', 4),
   },
   saxo: {
@@ -155,8 +165,8 @@ export const BROKER_EVIDENCE = {
     pme: proved('PEA-PME couvert par le barème.', 'saxoTariff', 16),
     jeune: unknown('Absence de PEA Jeune non établie par PDF.', ['saxoTariff']),
     ifu: proved('IFU en ligne gratuit dans la brochure.', 'saxoTariff', 3),
-    cashCto: { status: 'partiel', summary: 'Solde net disponible positif : intérêts possibles selon barème ; périmètre CTO et taux non explicités.', refs: [{ document: 'saxoContract', page: 24 }] },
-    cashPea: unknown('Application de ce barème aux espèces PEA non établie.', ['saxoContract']),
+    cashCto: { status: 'partiel', summary: 'Intérêts possibles en EUR/USD sur solde disponible ; niveau de compte et montant conditionnent le taux, non confirmé par le simulateur dynamique.', refs: [{ document: 'saxoContract', page: 24 }, { document: 'saxoInterest' }] },
+    cashPea: proved('Comptes PEA explicitement exclus de l’offre d’intérêts.', 'saxoInterest'),
     transfert: proved('Transfert PEA/PEA-PME sortant à 15 € par ligne, plafond 150 €.', 'saxoTariff', 16),
   },
 }

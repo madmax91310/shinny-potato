@@ -1,7 +1,7 @@
 // Base de données courtiers — les mentions « À vérifier » ne sont pas des réponses négatives.
 // Les lignes espèces concernent uniquement le cash non investi du CTO et du PEA,
 // jamais un livret ou un fonds monétaire. Chaque champ renvoie au registre PDF. Révision documentaire : 29/09/2026.
-// PDF officiels utilisés pour cette révision :
+// Sources PDF initiales de cette révision ; compléments officiels dans evidence.js :
 // TR https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf (annexes 3 et 12)
 // XTB https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf
 // XTB https://xas-new-cdn.xtb.com/file/0104/53/271ced41-db62-499b-9e83-f3b4557f9bf1/fr-meet-xtb-one-pager-2026-docx.pdf
@@ -25,7 +25,7 @@ export const BROKERS = [
     // Contrat TR 09/2026, annexe 3 IV et annexe 12 B.V : intérêts possibles après activation
     // sur le compte général ; aucun intérêt reporté sur les espèces du PEA.
     cash: {
-      cto: { resume: "Intérêts sous conditions", detail: "Activation requise · taux/plafond non établis", post: "Intérêts possibles après activation ; taux, plafond et autres conditions non établis.", rate: null, cap: null },
+      cto: { resume: "Offre espèces sous conditions", detail: "3 % nouveau client jusqu’à 50 000 € · lien CTO à confirmer", post: "Offre 3 % jusqu’à 50 000 € pour nouveau client après activation ; périmètre exact des espèces CTO à confirmer.", rate: null, cap: null },
       pea: { resume: "Pas d’intérêts", detail: "Contrat PEA : intérêts non transférés", post: "Non : le contrat exclut les intérêts sur les espèces PEA.", rate: null, cap: null },
     },
     // Correction du 03/09/2026 : le transfert PEA entrant est possible chez Trade Republic.
@@ -44,7 +44,7 @@ export const BROKERS = [
   {
     id: "bourso", nom: "BoursoBank", code: "BB", color: "#E4735E", emoji: "🟡", lastVerified: "09/09/2026",
     frais: { rank: 2, resume: "1,99€ puis 0,60%", detail: "Plafonné à 0,5% du montant" },
-    boursomarkets: { resume: "À vérifier", detail: "Offre et titres éligibles sans preuve PDF" },
+    boursomarkets: { resume: "0 € à l’achat", detail: "ETF iShares éligibles · vérifier l’ISIN · vente payante possible" },
     // Brochure 2026 p. 20 : commission de négociation gratuite, frais de gestion selon chaque DIC.
     // Nombre de fonds, périodicité exclusive et taux de 0,59% non validés par PDF officiel.
     dca: { rank: 2, resume: "0€ de négociation", detail: "Frais des fonds : voir DIC" },
@@ -69,42 +69,41 @@ export const BROKERS = [
   },
   {
     id: "ibkr", nom: "Interactive Brokers", code: "IBKR", color: "#7C93C9", emoji: "🟢", lastVerified: "03/09/2026",
-    frais: { resume: "À vérifier", detail: "Barème PEA PDF français manquant" },
+    frais: { resume: "Dès 0,05 %", detail: "PEA · minimum selon marché et routage" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { resume: "À vérifier" },
-    garde: { resume: "À vérifier" },
-    // Aucun barème PDF officiel applicable à l'offre française retrouvé pour ces champs.
-    pea: { pea: null, pme: null, jeune: null },
-    ifu: { resume: "À vérifier" },
+    garde: { resume: "0 €", detail: "Droits de garde PEA" },
+    pea: { pea: true, pme: null, jeune: null },
+    ifu: { resume: "Oui pour le PEA" },
     cash: {
-      cto: { resume: "À vérifier", detail: "PDF officiel applicable manquant", post: "À vérifier : rémunération, taux, plafond et conditions CTO non établis par PDF.", rate: null, cap: null },
-      pea: { resume: "À vérifier", detail: "PDF officiel applicable manquant", post: "À vérifier : rémunération des espèces PEA non établie par PDF.", rate: null, cap: null },
+      cto: { resume: "Intérêts sous conditions", detail: "0 % sur les premiers 10 000 € · taux variable ensuite · CTO à confirmer", post: "Intérêts sur espèces éligibles : 0 % jusqu’à 10 000 € en EUR, puis taux variable selon la valeur du compte ; périmètre CTO exact à confirmer.", rate: null, cap: null },
+      pea: { resume: "À vérifier", detail: "PEA non traité par le barème d’intérêts consulté", post: "À vérifier : traitement des espèces PEA non établi par la page de taux.", rate: null, cap: null },
     },
-    pointFaible: "Tarifs PEA, IFU et fonctionnalités à documenter par PDF officiel",
-    transfertPea: { resume: "Entrant : à vérifier" },
+    pointFaible: "PEA-PME, PEA Jeune et intérêts PEA à confirmer",
+    transfertPea: { resume: "Entrant ✅ · 0 € annoncés" },
     post: {
-      frais: ["Barème PEA à vérifier dans un PDF officiel français."],
+      frais: ["PEA : commission dès 0,05 % ; minimum variable selon le marché et le routage."],
       dca: ["À vérifier pour PEA et CTO."],
-      garde: ["À vérifier."],
-      pea: "PEA ? / PEA-PME ? / PEA Jeune ?",
-      ifu: ["À vérifier."],
-      faibles: ["Tarifs PEA, IFU et fonctionnalités à documenter par PDF officiel"],
-      verdict: "tu disposes du barème PEA contractuel et peux comparer les coûts de ton ordre",
+      garde: ["PEA : pas de droits de garde annoncés."],
+      pea: "PEA ✅ / PEA-PME ? / PEA Jeune ?",
+      ifu: ["IFU disponible pour le PEA."],
+      faibles: ["PEA-PME, PEA Jeune et intérêts PEA à confirmer"],
+      verdict: "tu veux un PEA avec IFU et une tarification par marché",
     },
   },
   {
     id: "fortuneo", nom: "Fortuneo", code: "FO", color: "#8C7AE6", emoji: "🟣", lastVerified: "14/09/2026",
     // Brochure officielle 09/02/2026 p. 10 : formule Starter, Euronext / Equiduct.
-    // Le PDF n'établit pas l'absence de DCA ni celle du PEA Jeune.
+    // Le contrat Fortuneo établit que le PEA Jeune n’est pas commercialisé.
     frais: { rank: 2, resume: "0€ le 1er ordre/mois", detail: "Starter · Euronext/Equiduct · ≤500€, puis 0,35%" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { resume: "À vérifier" },
     garde: { rank: 1, resume: "0€" },
-    pea: { pea: true, pme: true, jeune: null },
+    pea: { pea: true, pme: true, jeune: false },
     ifu: { resume: "À vérifier" },
     cash: {
       cto: { resume: "À vérifier", detail: "Taux, plafond et conditions non établis", post: "À vérifier : rémunération, taux, plafond et conditions non établis.", rate: null, cap: null },
-      pea: { resume: "À vérifier", detail: "Taux, plafond et conditions non établis", post: "À vérifier : rémunération des espèces PEA non établie.", rate: null, cap: null },
+      pea: { resume: "Pas d’intérêts", detail: "Conditions générales Fortuneo · PEA et PEA-PME", post: "Non : les espèces PEA et PEA-PME ne sont pas rémunérées.", rate: null, cap: null },
     },
     pointFaible: "Clôture PEA 85€, frais élevés hors Euronext ; DCA à vérifier",
     transfertPea: { resume: "Entrant : à vérifier / Sortant 15€/ligne (max 150€)" },
@@ -112,7 +111,7 @@ export const BROKERS = [
       frais: ["Starter sur Euronext/Equiduct : 0€ le 1er ordre du mois si ≤500€, puis 0,35% ; anciens tarifs possibles"],
       dca: ["À vérifier : absence de DCA automatique non établie par PDF."],
       garde: ["0€"],
-      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ?",
+      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
       ifu: ["À vérifier dans un PDF officiel."],
       faibles: ["Clôture PEA 85€, frais élevés hors Euronext ; DCA à vérifier"],
       verdict: "Tu veux un PEA + PEA-PME chez un courtier 100% en ligne établi",
@@ -130,7 +129,7 @@ export const BROKERS = [
     pea: { pea: true, pme: null, jeune: null },
     ifu: { resume: "À vérifier" },
     cash: {
-      cto: { resume: "Intérêts documentés", detail: "Fonds non investis · taux variable non figé", post: "Intérêts sur fonds non investis documentés ; taux actuel, plafond et périmètre CTO à confirmer.", rate: null, cap: null },
+      cto: { resume: "Intérêts sous conditions", detail: "90 j. préférentiels jusqu’à 100 000 € · taux hebdomadaire", post: "Fonds non investis : taux préférentiel pendant 90 jours jusqu’à 100 000 €, puis standard ; taux variable et périmètre CTO à confirmer.", rate: null, cap: null },
       pea: { resume: "À vérifier", detail: "Éligibilité PEA non établie", post: "À vérifier : éligibilité des espèces PEA aux intérêts non établie.", rate: null, cap: null },
     },
     pointFaible: "DCA et transfert PEA entrant à vérifier",
@@ -153,7 +152,7 @@ export const BROKERS = [
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { resume: "À vérifier" },
     garde: { resume: "À vérifier", detail: "PDF tarifaire 04/2026 indisponible" },
-    pea: { pea: null, pme: null, jeune: null },
+    pea: { pea: true, pme: true, jeune: null },
     ifu: { resume: "À vérifier" },
     cash: {
       cto: { resume: "À vérifier", detail: "PDF officiel indisponible", post: "À vérifier : rémunération, taux, plafond et conditions non établis.", rate: null, cap: null },
@@ -165,7 +164,7 @@ export const BROKERS = [
       frais: ["Barème Invest Store Intégral à vérifier dans le PDF tarifaire 2026 accessible."],
       dca: ["À vérifier."],
       garde: ["À vérifier dans le PDF tarifaire 2026 accessible."],
-      pea: "PEA ? / PEA-PME ? / PEA Jeune ?",
+      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ?",
       ifu: ["À vérifier."],
       faibles: ["Brochure tarifaire 2026 indisponible : conditions à confirmer"],
       verdict: "Tu veux un conseiller en agence et un compte bancaire classique",
@@ -181,7 +180,7 @@ export const BROKERS = [
     ifu: { resume: "À vérifier" },
     cash: {
       cto: { resume: "À vérifier", detail: "Absence de rémunération non prouvée", post: "À vérifier : rémunération, taux, plafond et conditions non établis.", rate: null, cap: null },
-      pea: { resume: "À vérifier", detail: "Absence de rémunération non prouvée", post: "À vérifier : rémunération des espèces PEA non établie.", rate: null, cap: null },
+      pea: { resume: "Pas d’intérêts", detail: "Compte espèces PEA non rémunéré", post: "Non : le compte espèces PEA n’est pas rémunéré.", rate: null, cap: null },
     },
     pointFaible: "Tarification par paliers ; cash non vérifié ; garde sur bourses étrangères",
     transfertPea: { resume: "Entrant : à vérifier / Sortant 15€/ligne (max 150€)" },
@@ -205,8 +204,8 @@ export const BROKERS = [
     pea: { pea: true, pme: true, jeune: null },
     ifu: { rank: 1, resume: "Oui" },
     cash: {
-      cto: { resume: "Intérêts possibles", detail: "Solde positif · barème/taux non établis", post: "Intérêts possibles sur solde net disponible positif ; taux, plafond et conditions CTO à confirmer.", rate: null, cap: null },
-      pea: { resume: "À vérifier", detail: "Application au PEA non établie", post: "À vérifier : application des intérêts aux espèces PEA non établie.", rate: null, cap: null },
+      cto: { resume: "Intérêts sous conditions", detail: "EUR/USD · solde et niveau de compte · taux à vérifier", post: "Intérêts possibles en EUR/USD selon le solde et le niveau de compte ; taux actuel à vérifier.", rate: null, cap: null },
+      pea: { resume: "Pas d’intérêts", detail: "PEA exclu de l’offre", post: "Non : les comptes PEA sont exclus de l’offre d’intérêts.", rate: null, cap: null },
     },
     pointFaible: "DCA PEA et PEA Jeune : à vérifier",
     transfertPea: { resume: "Remboursement entrant : à vérifier" },
