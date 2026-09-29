@@ -168,7 +168,7 @@ export const BROKER_EVIDENCE = {
     jeune: unknown('Absence de PEA Jeune non établie par PDF.', ['saxoTariff']),
     ifu: proved('IFU en ligne gratuit dans la brochure.', 'saxoTariff', 3),
     cashCto: { status: 'partiel', summary: 'Intérêts possibles en EUR/USD sur solde disponible ; niveau de compte et montant conditionnent le taux, non confirmé par le simulateur dynamique.', refs: [{ document: 'saxoContract', page: 24 }, { document: 'saxoInterest' }] },
-    cashPea: proved('Comptes PEA explicitement exclus de l’offre d’intérêts.', 'saxoInterest'),
+    cashPea: { status: 'partiel', summary: 'Comptes PEA exclus de cette offre d’intérêts ; rémunération éventuelle hors de cette offre non établie.', refs: [{ document: 'saxoInterest' }] },
     transfert: proved('Transfert PEA/PEA-PME sortant à 15 € par ligne, plafond 150 €.', 'saxoTariff', 16),
   },
 }

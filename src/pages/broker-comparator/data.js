@@ -205,7 +205,7 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     cash: {
       cto: { resume: "Intérêts sous conditions", detail: "EUR/USD · solde et niveau de compte · taux à vérifier", post: "Intérêts possibles en EUR/USD selon le solde et le niveau de compte ; taux actuel à vérifier.", rate: null, cap: null },
-      pea: { resume: "Pas d’intérêts", detail: "PEA exclu de l’offre", post: "Non : les comptes PEA sont exclus de l’offre d’intérêts.", rate: null, cap: null },
+      pea: { resume: "Offre exclue", detail: "PEA exclu de cette offre · hors offre à vérifier", post: "PEA exclu de cette offre d’intérêts ; rémunération éventuelle hors offre non établie.", rate: null, cap: null },
     },
     pointFaible: "DCA PEA et PEA Jeune : à vérifier",
     transfertPea: { resume: "Remboursement entrant : à vérifier" },
