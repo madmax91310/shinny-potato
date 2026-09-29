@@ -1,6 +1,8 @@
 import { CATEGORY_EMOJI } from './data'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
 
+const peaLabel = (status) => status === null ? 'à vérifier' : status ? '✅' : '❌'
+
 // Texte du post X — repris tel quel de la session d'origine.
 export function buildText(etf) {
   const tickerStr = etf.tickers.join('/')
@@ -15,7 +17,7 @@ export function buildText(etf) {
     '📦 ' + etf.positions + '\n' +
     '💰 Encours : ' + etf.aum + '\n' +
     '🔄 ' + etf.distribution + '\n' +
-    '🏦 PEA : ' + (etf.pea ? '✅' : '❌') + ' | CTO : ' + (etf.cto ? '✅' : '❌') + '\n' +
+    '🏦 PEA : ' + peaLabel(etf.pea) + ' | CTO : ' + (etf.cto ? '✅' : '❌') + '\n' +
     '📍 ' + etf.location + '\n' +
     (annual ? '📈 Performances ' + annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) + '\n' : '') +
     '\n' +
@@ -45,7 +47,7 @@ export function buildFactRows(etf) {
     { icon: '📦', text: etf.positions },
     { icon: '💰', text: 'Encours : ' + etf.aum },
     { icon: '🔄', text: etf.distribution },
-    { icon: '🏦', text: 'PEA : ' + (etf.pea ? '✅' : '❌') + '   |   CTO : ' + (etf.cto ? '✅' : '❌') },
+    { icon: '🏦', text: 'PEA : ' + peaLabel(etf.pea) + '   |   CTO : ' + (etf.cto ? '✅' : '❌') },
     { icon: '📍', text: etf.location },
     ...(annual ? [{ icon: '📈', text: annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) }] : []),
   ]

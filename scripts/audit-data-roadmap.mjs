@@ -6,6 +6,8 @@ import { TERMES } from '../src/pages/lexique-financier/data.js'
 import { ASSETS as PORTFOLIO } from '../src/pages/portfolio-generator/data.js'
 import { ASSETS as CALCULATOR } from '../src/pages/investment-calculator/data.js'
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js'
+import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js'
+import { ETFS } from '../src/pages/etf-sheets/data.js'
 
 import { LEXICON_SOURCES as sources } from './lexicon-sources.mjs'
 const fiscal = new Set(`pea cto assurance-vie per livret-a ldds pee-perco flat-tax abattement-pea prelevements-sociaux plus-value-imposable plus-value-immobiliere`.split(' '))
@@ -40,9 +42,8 @@ for (const [id, a] of Object.entries(CALCULATOR)) {
   if (!['EUR', 'USD'].includes(a.currency)) { console.error(`Devise inconnue : ${id}`); errors++ }
   if (!a.points.every((p, i, arr) => /^\d{4}-\d{2}$/.test(p.date) && Number.isFinite(p.price) && p.price > 0 && (i === 0 || p.date > arr[i - 1].date))) { console.error(`Points mensuels invalides : ${id}`); errors++ }
 }
-// La continuité des six séries est contrôlée ici. Pour cinq d'entre elles,
-// audit:calculator-series compare aussi les prix à une capture Yahoo datée.
-// L'or spot reste sans recoupement homogène des 140 points.
+// La continuité des six séries est contrôlée ici. audit:calculator-series
+// compare les prix aux captures Yahoo et Banque mondiale datées.
 for (const id of monthlyIds) {
   const a = CALCULATOR[id]
   if (!a || a.currency !== 'USD') { console.error(`Série mensuelle ou devise changée : ${id}`); errors++; continue }
@@ -63,12 +64,16 @@ const lines = [
   ...TERMES.map(t => `| ${t.id} | ${sources[t.id] || '—'} | ${verifiedToday.has(t.id) ? 'Points cités contrôlés le 25/09/2026 ; voir sources et réserves dans data.js' : fiscal.has(t.id) ? 'Fiscalité relue le 24/09/2026 ; exemples et exceptions à contrôler individuellement' : 'Source identifiée le 24/09/2026 ; détails à contrôler'} |`),
   '',
   `Portefeuilles : ${PORTFOLIO.length} supports, dont ${gaps.filter(x => x.tool === 'portefeuilles').length} sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.`,
-  `Calculateur : ${Object.keys(CALCULATOR).length} actifs, dont ${gaps.filter(x => x.tool === 'calculateur').length} sans date individuelle ; cinq séries mensuelles ont été recoupées avec Yahoo le 29/09/2026, l'or spot reste non vérifié point par point.`,
+  `Calculateur : ${Object.keys(CALCULATOR).length} actifs, dont ${gaps.filter(x => x.tool === 'calculateur').length} sans date individuelle ; cinq séries mensuelles ont été recoupées avec Yahoo et l'or avec la Banque mondiale le 29/09/2026.`,
   '',
   '| Série mensuelle | Devise | Période | Points | Contrôle externe |', '| --- | --- | --- | ---: | --- |',
-  ...monthlyIds.map(id => { const a = CALCULATOR[id]; return `| ${id} | ${a.currency} | ${a.points[0].date} → ${a.points.at(-1).date} | ${a.points.length} | ${id === 'or' ? 'Source spot homogène introuvable ; série non vérifiée point par point' : 'Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/'} |` }),
+  ...monthlyIds.map(id => { const a = CALCULATOR[id]; return `| ${id} | ${a.currency} | ${a.points[0].date} → ${a.points.at(-1).date} | ${a.points.length} | ${id === 'or' ? 'Moyennes mensuelles du spot Banque mondiale, capture datée et audit des 140 points dans scripts/source-snapshots/' : 'Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/'} |` }),
   '',
-  'La date de l’or reste absente. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.',
+  'La série or utilise les moyennes mensuelles des cours spot quotidiens de la Banque mondiale, et non les clôtures de fin de mois auparavant affichées sans export vérifiable. Ce changement de convention modifie les simulations. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.',
+  '',
+  `PEA : ${Object.keys(PEA_REVIEWS_BY_ISIN).length} parts revues individuellement ; ${Object.values(PEA_REVIEWS_BY_ISIN).filter(x => x.eligible === null).length} non tranchée(s). Sur les ${ETFS.length} fiches ETF, ${ETFS.filter(x => x.pea === null).length} affichent « à vérifier » faute de source individuelle établissant le statut. Les booléens historiques du catalogue ne sont pas une preuve.`,
+  `Fiches au statut PEA non établi : ${ETFS.filter(x => x.pea === null).map(x => x.isin).join(', ')}.`,
+  'Le comparateur d’indices contient aussi des groupes et notes éditoriales PEA hérités : revoir chaque affirmation au niveau de la part avant de revendiquer une couverture exhaustive.',
   '',
   `Encours ETF : ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length} ISIN et ${Object.values(INSTRUMENT_AUM_BY_ISIN).reduce((n, value) => n + Number(Boolean(value.sheet)) + Number(Boolean(value.index)), 0)} affichages centralisés. ${sharedAum.length} ISIN apparaissent dans les deux outils. ${sourcedAum.length} ont une source individuelle contrôlée ; ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length - sourcedAum.length} reprennent les libellés historiques sans nouveau recoupement.`,
   'SPEA : actif net exact de 54 413 013 EUR au 28/09/2026 chez BlackRock. Pour les 80 autres ISIN, taille en EUR relevée sur le profil ISIN justETF le 29/09/2026 et conservée dans scripts/source-snapshots/etf-aum-2026-09-29.json. justETF ne donne pas de date de valeur exploitable : la date de consultation n’est pas une date de VL. Le périmètre est celui du profil de la part : BlackRock distingue pour IE00B3F81R35 8,437 Md€ pour la part et 13,148 Md€ pour le fonds entier au 25/09/2026.',

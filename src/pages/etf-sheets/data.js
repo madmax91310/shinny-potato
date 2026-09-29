@@ -232,7 +232,7 @@ export const ETFS = [
       location: getInstrumentLocation("IE00B6R52259"),
       whatIs: "Réplique le MSCI ACWI (All Country World Index), qui combine environ 1 970 valeurs de pays développés ET de marchés émergents en une seule ligne — la version \"tout compris\" du MSCI World, émergents inclus. Top positions : Nvidia, Apple, Microsoft, Amazon, Alphabet — même dominance tech US que le World, avec un peu plus de diversification géographique.",
       whyInteresting: "Un seul ETF réunit pays développés et émergents. Pratique si tu veux cette couverture sans suivre deux lignes séparées.",
-      whatToKnow: "Les États-Unis conservent une place majeure : ajouter les émergents ne fait pas disparaître la concentration des grands indices mondiaux. Cet ETF n’est pas éligible au PEA.",
+      whatToKnow: "Les États-Unis conservent une place majeure : ajouter les émergents ne fait pas disparaître la concentration des grands indices mondiaux. Éligibilité PEA de cette part à vérifier avant tout ordre.",
       verdict: "Un ETF mondial qui inclut aussi les pays émergents. Pratique si tu veux une seule ligne en CTO et ne souhaites pas fixer leur poids toi-même.",
       question: "Tu laisserais l’indice déterminer la place des émergents ou tu choisirais leur poids séparément ?"
     },
@@ -261,7 +261,7 @@ export const ETFS = [
       location: getInstrumentLocation("IE00BK5BQT80"),
       whatIs: "Suit le FTSE All-World, un indice de grandes et moyennes entreprises de pays développés et émergents. Au 31/08/2026, le fonds détient 3 784 titres et son indice en compte 4 263. Le MSCI ACWI couvre lui aussi les grandes et moyennes capitalisations de pays développés et émergents ; les deux indices ne sélectionnent pas exactement les mêmes valeurs.",
       whyInteresting: `Tu peux couvrir les grandes entreprises des pays développés et émergents avec une seule ligne. Les frais annuels affichés pour cette part sont de ${formatEtfTer("IE00BK5BQT80", "index")}.`,
-      whatToKnow: "Il n’est pas éligible au PEA. Les grandes capitalisations pèsent le plus lourd dans l’indice : posséder beaucoup de titres ne signifie pas que chacun influence autant la performance.",
+      whatToKnow: "Éligibilité PEA de cette part à vérifier avant tout ordre. Les grandes capitalisations pèsent le plus lourd dans l’indice : posséder beaucoup de titres ne signifie pas que chacun influence autant la performance.",
       verdict: "Une seule ligne pour mêler pays développés et émergents en CTO. Vérifie ce que tu possèdes déjà avant d’en ajouter une deuxième très proche.",
       question: "Si tu détenais déjà un MSCI World, remplacerais-tu cette ligne par un All-World ou ajouterais-tu les émergents à part ?"
     },
@@ -506,7 +506,7 @@ export const ETFS = [
       location: getInstrumentLocation("IE0007Y8Y157"),
       whatIs: "Un panier d’environ 30 entreprises liées à l’informatique quantique. Certaines en font leur activité centrale ; pour d’autres, le quantique n’est qu’une partie de leurs projets. Acheter cet ETF ne revient donc pas à acheter uniquement des spécialistes du secteur.",
       whyInteresting: "Tu peux suivre ce thème sans devoir choisir toi-même entre une jeune entreprise très risquée et un groupe déjà établi. C’est surtout une façon de prendre une position ciblée sur une technologie dont l’usage commercial reste à construire.",
-      whatToKnow: `Avec environ 30 lignes, le fonds reste concentré et ses variations peuvent être fortes. Les frais sont de ${formatEtfTer("IE0007Y8Y157", "index")} par an et il n’est pas éligible au PEA. Les hausses passées ne disent pas si ces entreprises transformeront la technologie en bénéfices.`,
+      whatToKnow: `Avec environ 30 lignes, le fonds reste concentré et ses variations peuvent être fortes. Les frais sont de ${formatEtfTer("IE0007Y8Y157", "index")} par an ; éligibilité PEA de cette part à vérifier. Les hausses passées ne disent pas si ces entreprises transformeront la technologie en bénéfices.`,
       verdict: "Une petite position thématique éventuelle, pour qui accepte une forte volatilité et un résultat très incertain.",
       question: "Si tu voulais investir dans le quantique, tu choisirais cet ETF ou quelques entreprises précises ?"
     },
@@ -839,7 +839,7 @@ export const ETFS = [
       location: getInstrumentLocation("IE00B4ND3602"),
       whatIs: "Chaque part de cet ETC correspond à une quantité d'or physique détenue en coffre pour le compte des porteurs. Ce n'est pas une action minière ni un fonds synthétique : le cours suit directement le cours spot de l'or, moins les frais.",
       whyInteresting: "Historiquement, l'or a joué un rôle de valeur refuge en période d'inflation ou d'incertitude, et reste peu corrélé aux actions. C'est un moyen simple d'y être exposé sans acheter et stocker du métal toi-même.",
-      whatToKnow: "L'or ne verse aucun dividende ni coupon : sa seule source de gain est la variation de son cours. Ce cours peut aussi baisser, parfois plusieurs années de suite. Non éligible PEA, et le rendement en euros dépend aussi du taux de change €/$.",
+      whatToKnow: "L'or ne verse aucun dividende ni coupon : sa seule source de gain est la variation de son cours. Ce cours peut aussi baisser, parfois plusieurs années de suite. Éligibilité PEA de ce produit à vérifier ; le rendement en euros dépend aussi du taux de change €/$.",
       verdict: "Une exposition directe et simple au métal physique, sans diversification interne — un seul actif, pas un panier de titres.",
       question: "L'or, une assurance que tu gardes en petite dose ou une ligne que tu évites complètement ?"
     },
@@ -864,7 +864,7 @@ export const ETFS = [
       location: getInstrumentLocation("GB00BLD4ZL17"),
       whatIs: "Chaque part de cet ETP correspond à une quantité de bitcoin détenue par un dépositaire agréé pour le compte des porteurs. Ce n'est pas un contrat à terme ni un fonds qui réplique le bitcoin de façon synthétique.",
       whyInteresting: "Ça permet de détenir une exposition au bitcoin sur un compte-titres classique, sans gérer soi-même un portefeuille crypto (clés privées, plateforme d'échange).",
-      whatToKnow: "Le bitcoin est extrêmement volatil : des variations de plusieurs dizaines de pourcents dans l'année, dans un sens comme dans l'autre, ne sont pas rares. Non éligible PEA. Aucun revenu versé, et la valeur peut tomber à une fraction de son point haut.",
+      whatToKnow: "Le bitcoin est extrêmement volatil : des variations de plusieurs dizaines de pourcents dans l'année, dans un sens comme dans l'autre, ne sont pas rares. Éligibilité PEA de ce produit à vérifier. Aucun revenu versé, et la valeur peut tomber à une fraction de son point haut.",
       verdict: "Une façon simple d'être exposé au bitcoin depuis un compte-titres, mais sans aucune diversification : un seul actif, à l'amplitude de variation parmi les plus fortes de cette bibliothèque.",
       question: "Le bitcoin dans ton portefeuille : une conviction assumée ou une ligne que tu préfères éviter ?"
     },
@@ -889,7 +889,7 @@ export const ETFS = [
       location: getInstrumentLocation("IE00B4WXJJ64"),
       whatIs: "Cet ETF détient des obligations émises par plusieurs États de la zone euro, avec des échéances différentes. Sa duration effective était d’environ 6,7 ans en septembre 2026 : c’est le chiffre à regarder pour comprendre sa réaction aux taux.",
       whyInteresting: `Il ajoute des obligations à un portefeuille composé surtout d’actions, pour ${formatEtfTer("IE00B4WXJJ64", "index")} de frais annuels. Cela peut aider à répartir les risques, même si les obligations ne protègent pas lors de toutes les baisses boursières.`,
-      whatToKnow: "Avec une duration d’environ 6,7 ans, une hausse parallèle des taux d’un point pourrait entraîner une baisse approximative de 6,7 % du prix, toutes choses égales par ailleurs. Il porte aussi le risque des États présents dans l’indice et n’est pas éligible au PEA.",
+      whatToKnow: "Avec une duration d’environ 6,7 ans, une hausse parallèle des taux d’un point pourrait entraîner une baisse approximative de 6,7 % du prix, toutes choses égales par ailleurs. Il porte aussi le risque des États présents dans l’indice. Éligibilité PEA de cette part à vérifier.",
       verdict: "Utile si tu veux des obligations d’État en portefeuille, mais à choisir en comprenant d’abord sa sensibilité aux taux.",
       question: "Pour ta poche prudente, tu préfères ces obligations ou un fonds à duration plus courte ?"
     },
