@@ -173,18 +173,22 @@ async function testBrokerComparator(page) {
   // Le texte généré vit dans la value d'un <textarea> (bc-tweet-textarea) — jamais capturé par
   // innerText(), qui n'expose pas le contenu des champs de formulaire.
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
-  const ok = tweet.includes("Quand tu passes un ordre") && tweet.includes("Si tu transfères ton PEA") && tweet.includes("Selon ta façon d’investir")
-    && tweet.includes("Entrant ✅") && tweet.includes("Liquidités rémunérées") && !tweet.includes("CTO :")
-    && /à vérifier/i.test(tweet) && !/Livret|liquidités non rémunérées|vérifié le/i.test(tweet)
+  const ok = tweet.includes("Si tu transfères ton PEA") && tweet.includes("BoursoMarkets")
+    && !tweet.includes("Quand tu passes un ordre") && !tweet.includes("Liquidités rémunérées")
+    && !/à vérifier|à confirmer|non établi/i.test(tweet) && !/Livret|liquidités non rémunérées|vérifié le/i.test(tweet)
     && (await page.locator('.bc-evidence-broker').count()) === 2
-    && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 1;
+    && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 0;
   await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
-  await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('À vérifier au global : espèces PEA non rémunérées'));
+  await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('Saxo Bank'));
   const fortuneoSaxo = await page.locator('.bc-tweet-textarea').inputValue();
-  const sourceOk = fortuneoSaxo.includes('À vérifier au global : espèces PEA non rémunérées')
-    && fortuneoSaxo.includes('Oui sur les espèces éligibles selon solde et niveau de compte')
-    && (await page.locator('.bc-evidence-broker').count()) === 2;
-  record("Comparatif courtiers", ok && sourceOk, "texte généré et périmètre des preuves Fortuneo/Saxo respecté");
+  await page.locator('.bc-evidence-broker').first().locator('summary').click();
+  const sourceOk = !fortuneoSaxo.includes('Liquidités rémunérées')
+    && !fortuneoSaxo.includes('Si tu investis automatiquement')
+    && !/à vérifier|à confirmer|non établi/i.test(fortuneoSaxo)
+    && fortuneoSaxo.includes('PEA Jeune ❌')
+    && (await page.locator('.bc-evidence-broker').count()) === 2
+    && (await page.locator('.bc-evidence').innerText()).includes('traitement des autres espèces non établi');
+  record("Comparatif courtiers", ok && sourceOk, "duels sans données non établies et limites conservées au registre");
 }
 
 async function testTweetMidi(page) {
