@@ -4,7 +4,9 @@
 export const OFFICIAL_SOURCES = {
   trInterest: { title: 'Trade Republic · Intérêts sur espèces', edition: 'page en ligne', checked: '29/09/2026', url: 'https://traderepublic.com/fr-fr/interets', kind: 'page' },
   xtbInterest: { title: 'XTB · Intérêts sur fonds non investis', edition: 'taux variables', checked: '29/09/2026', url: 'https://www.xtb.com/fr/interets', kind: 'page' },
+  xtbPea: { title: 'XTB · PEA, fonctionnement et FAQ', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.xtb.com/fr/pea', kind: 'page' },
   saxoInterest: { title: 'Saxo · Intérêts sur les espèces', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/campaigns/interest-rates-cal', kind: 'page' },
+  saxoAutoinvest: { title: 'Saxo · Plan Épargne Programmé', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/products/autoinvest', kind: 'page' },
   ibkrPea: { title: 'Interactive Brokers · PEA France', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php', kind: 'page' },
   ibkrFees: { title: 'Interactive Brokers · Commissions Europe', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php', kind: 'page' },
   ibkrInterest: { title: 'Interactive Brokers · Intérêts sur espèces', edition: 'taux variables', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/index.php?f=47097', kind: 'page' },
@@ -120,15 +122,15 @@ export const BROKER_EVIDENCE = {
   xtb: {
     boursomarkets: unknown('Offre BoursoMarkets non applicable ; comparaison PDF non établie.'),
     frais: proved('0 % avant 100 000 € de volume mensuel ; 0,20 % ensuite ; minimum 10 € non appliqué au PEA.', 'xtbTariff', 4),
-    dca: unknown('Disponibilité du DCA sur PEA non établie par les PDF consultés.', ['xtbOverview']),
+    dca: unknown('Disponibilité du DCA sur PEA non établie par les documents consultés.', ['xtbOverview', 'xtbPea']),
     garde: proved('0,02 % annuel sur la part du portefeuille au-delà de 250 000 €.', 'xtbTariff', 6),
     pea: proved('Tarif applicable au PEA mentionné.', 'xtbTariff', 4),
     pme: unknown('PEA-PME non établi par les PDF consultés.', ['xtbTariff']),
-    jeune: unknown('PEA Jeune non établi par les PDF consultés.', ['xtbTariff']),
+    jeune: proved('PEA non ouvert aux personnes majeures fiscalement rattachées à leurs parents chez XTB.', 'xtbPea'),
     ifu: unknown('IFU non établi par les PDF consultés.', ['xtbTariff']),
     cashCto: { status: 'partiel', summary: 'Intérêts sur fonds non investis du compte de trading, sans minimum ni maximum ; taux préférentiel 90 jours jusqu’à 100 000 €, puis standard. Taux variable chaque semaine ; rattachement au CTO à confirmer.', refs: [{ document: 'xtbOverview', page: 2 }, { document: 'xtbInterest' }] },
-    cashPea: unknown('Le PDF ne permet pas d’affirmer que les espèces PEA perçoivent des intérêts.', ['xtbTariff', 'xtbContract']),
-    transfert: unknown('Transfert entrant PEA non établi ; tarif du transfert sortant documenté p. 6.', ['xtbTariff']),
+    cashPea: proved('Le compte espèces du PEA ne génère pas d’intérêts.', 'xtbPea'),
+    transfert: proved('Transfert entrant PEA actuellement indisponible ; tarif du transfert sortant documenté séparément.', 'xtbPea'),
   },
   caidf: {
     boursomarkets: unknown('Offre BoursoMarkets non applicable ; comparaison PDF non établie.'),
@@ -159,7 +161,7 @@ export const BROKER_EVIDENCE = {
   saxo: {
     boursomarkets: unknown('Offre BoursoMarkets non applicable ; comparaison PDF non établie.'),
     frais: proved('Classic Euronext : 0,08 % avec minimum de 2 €.', 'saxoTariff', 5),
-    dca: unknown('Accès PEA et frais du programme PEPS non établis par PDF.', ['saxoTariff']),
+    dca: proved('Plan Épargne Programmé sans commission d’achat ni frais mensuels ; actuellement indisponible dans le PEA.', 'saxoAutoinvest'),
     garde: proved('0 € sur titres cotés ; exception pour non cotés en PEA.', 'saxoTariff', 3),
     pea: proved('PEA couvert par le barème.', 'saxoTariff', 16),
     pme: proved('PEA-PME couvert par le barème.', 'saxoTariff', 16),

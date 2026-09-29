@@ -120,27 +120,27 @@ export const BROKERS = [
   {
     id: "xtb", nom: "XTB", code: "XTB", color: "#5C9EAD", emoji: "⚫", lastVerified: "14/09/2026",
     // PDF XTB 2026 : le minimum de 10€ ne s'applique pas au PEA ; conservation >250K€ facturée.
-    // Ni l'absence de DCA/PEA Jeune/PEA-PME/transfert entrant, ni l'éligibilité du cash PEA
-    // aux intérêts ne sont établies par les PDF consultés.
+    // Page PEA officielle : espèces sans intérêts, pas de transfert entrant ni de PEA pour
+    // les personnes fiscalement rattachées. Le DCA PEA et le PEA-PME restent à vérifier.
     frais: { rank: 1, resume: "0% jusqu’à 100K€/mois", detail: "Puis 0,20% · min 10€ hors PEA" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
     dca: { resume: "À vérifier" },
     garde: { rank: 1, resume: "0€", detail: "0,02%/an sur l’excédent >250K€" },
-    pea: { pea: true, pme: null, jeune: null },
+    pea: { pea: true, pme: null, jeune: false },
     ifu: { resume: "À vérifier" },
     cash: {
       cto: { resume: "Intérêts sous conditions", detail: "90 j. préférentiels jusqu’à 100 000 € · taux hebdomadaire", post: "Fonds non investis : taux préférentiel pendant 90 jours jusqu’à 100 000 €, puis standard ; taux variable et périmètre CTO à confirmer.", rate: null, cap: null },
-      pea: { resume: "À vérifier", detail: "Éligibilité PEA non établie", post: "À vérifier : éligibilité des espèces PEA aux intérêts non établie.", rate: null, cap: null },
+      pea: { resume: "Pas d’intérêts", detail: "Compte espèces PEA non rémunéré", post: "Non : le compte espèces du PEA ne génère pas d’intérêts.", rate: null, cap: null },
     },
-    pointFaible: "DCA et transfert PEA entrant à vérifier",
-    transfertPea: { resume: "Entrant : à vérifier" },
+    pointFaible: "DCA PEA à vérifier ; transfert entrant indisponible",
+    transfertPea: { resume: "Entrant : indisponible" },
     post: {
       frais: ["0% de commission jusqu’à 100K€/mois de volume, puis 0,20% au-delà (minimum 10€ non appliqué sur PEA)"],
       dca: ["À vérifier : disponibilité d'un DCA automatique sur PEA."],
       garde: ["0€ jusqu’à 250K€ de portefeuille ; 0,02%/an sur l’excédent"],
-      pea: "PEA ✅ / PEA-PME ? / PEA Jeune ?",
+      pea: "PEA ✅ / PEA-PME ? / PEA Jeune ❌",
       ifu: ["À vérifier par PDF officiel."],
-      faibles: ["DCA et transfert PEA entrant à vérifier"],
+      faibles: ["DCA PEA à vérifier ; transfert entrant indisponible"],
       verdict: "Tu passes moins de 100K€/mois et veux 0% de commission",
     },
   },
@@ -198,7 +198,7 @@ export const BROKERS = [
     id: "saxo", nom: "Saxo Bank", code: "SX", color: "#AAB4CC", emoji: "⚪", lastVerified: "03/09/2026",
     frais: { rank: 1, resume: "Dès 2€", detail: "Classic Euronext : 0,08% (min 2€)" },
     boursomarkets: { rank: 2, resume: "Non disponible" },
-    dca: { resume: "À vérifier", detail: "Conditions PEPS non établies par PDF" },
+    dca: { resume: "Oui hors PEA", detail: "Plan programmé sans courtage à l’achat · PEA exclu" },
     garde: { rank: 1, resume: "0€" },
     // L'absence de PEA Jeune et les deux promotions ne sont pas établies par les PDF consultés.
     pea: { pea: true, pme: true, jeune: null },
@@ -211,7 +211,7 @@ export const BROKERS = [
     transfertPea: { resume: "Remboursement entrant : à vérifier" },
     post: {
       frais: ["Classic Euronext : 0,08%, minimum 2€ ; plafonnement PEA à 0,5%"],
-      dca: ["Conditions PEPS, tarifs et accès sur PEA à vérifier par PDF."],
+      dca: ["Plan Épargne Programmé : sans commission d’achat ni frais mensuels ; actuellement indisponible sur PEA."],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ?",
       ifu: ["✅ Oui"],
