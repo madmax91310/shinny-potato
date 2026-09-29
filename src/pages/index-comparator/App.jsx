@@ -44,7 +44,7 @@ function renderFundGroup(group) {
     } else {
       lines.push(`💰 TER ${f.ter}`)
       if (f.repl || f.dist) lines.push([f.repl, f.dist].filter(Boolean).join(' · '))
-      if (f.aum) lines.push(`📦 ${f.aum} d'encours`)
+      if (f.aum) lines.push(`📦 Encours : ${f.aum}`)
       if (f.note) lines.push(f.note)
     }
   })

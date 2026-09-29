@@ -2,6 +2,12 @@
 // des Fiches ETF. null signifie que la recherche n'a pas permis de trancher.
 // Ne jamais déduire l'éligibilité du domicile, de l'indice ou du nom commercial.
 export const PEA_REVIEWS_BY_ISIN = Object.freeze({
+  IE000DQLYVB9: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-s-p-500-swap-pea-ucits-IE000DQLYVB9-SPEA-EUR-XPAR/seance', corroboratingUrl: 'https://www.blackrock.com/fr/intermediaries/products/342916/', note: 'Bourse Direct affiche « éligible au PEA » ; BlackRock indique viser le maintien de ce statut' },
+  FR0013411998: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/kid-priips/FR0013411998/FRA/FRA/20251205', note: 'DIC Amundi : panier investi au moins à 75 % en titres éligibles PEA' },
+  LU1834983550: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/kid-priips/LU1834983550/FRA/FRA/20251205', note: 'DIC Amundi : compartiment explicitement éligible PEA' },
+  FR001400U5Q4: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF/20260331', note: 'Fiche Amundi : enveloppe fiscale éligible au PEA' },
+  FR0011871128: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/INSTITUTIONNEL/ETF', note: 'Fiche Amundi : enveloppe fiscale éligible au PEA' },
+  FR0011871110: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260531', note: 'Fiche Amundi : enveloppe fiscale éligible au PEA' },
   FR0013412004: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-pea-amerique-latine-ms-FR0013412004-PALAT-EUR-XPAR/seance', note: 'Courtier : éligible PEA ; fiche Amundi historique confirme également' },
   FR0011869320: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-pea-inde-msci-india-u-FR0011869320-PINR-EUR-XPAR/seance', note: 'Courtier : éligible PEA ; rapport Amundi historique documente le quota' },
   FR0011440478: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-pea-emergent-emea-msci-FR0011440478-PLEM-EUR-XPAR/seance', note: 'Éligibilité affichée par Bourse Direct' },

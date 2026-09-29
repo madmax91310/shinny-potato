@@ -79,7 +79,8 @@ export const ETFS = [
       positions: "Indice TOPIX : 1 637 valeurs au 31/07/2026", aum: getInstrumentAum("FR0013411998", "sheet"),
       lastVerified: "27/09/2026", distribution: getInstrumentDistribution("FR0013411998"), pea: getInstrumentPea("FR0013411998"), cto: true,
       location: getInstrumentLocation("FR0013411998"),
-      // Amundi, fiche du 30/04/2026 : 0,48 %, PEA, 150,05 M€, part couverte.
+      // Amundi, fiche historique du 30/04/2026 : 0,48 %, PEA, 150,05 M€, part couverte.
+      // Encours affiché : relevé justETF plus récent dans instrument-aum.js.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
       whatIs: "Suit le TOPIX, large indice japonais pondéré par capitalisation, avec une couverture du risque de change entre le yen et l'euro.",
       whyInteresting: "Permet de suivre le marché japonais en PEA sans subir directement toutes les variations du yen face à l'euro.",

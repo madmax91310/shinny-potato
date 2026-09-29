@@ -17,6 +17,7 @@ const collections = [
   ['index', 'src/pages/index-comparator/data.js', FAMILIES.flatMap(family => (family.etfGroups ?? []).flatMap(group => (group.funds ?? []).map(item => ({ ...item, displayName: item.name }))))],
   ['portfolio', 'src/pages/portfolio-generator/data.js', ASSETS.filter(item => item.isin).map(item => ({ ...item, displayName: item.name }))],
 ];
+const aumSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-aum-2026-09-29.json', import.meta.url), 'utf8'));
 
 const seen = new Set();
 let errors = 0;
@@ -114,6 +115,10 @@ for (const [context, file, items] of collections) {
       console.error(`${file} : mention PEA contradictoire pour ${item.isin}`);
       errors++;
     }
+    if (context === 'tweet' && /PEA à confirmer|éligibilité PEA à confirmer/i.test(item.differenciateur ?? '') && getInstrumentPeaStatus(item.isin) !== null) {
+      console.error(`${file} : mention PEA incertaine malgré un statut revu pour ${item.isin}`);
+      errors++;
+    }
     if (context !== 'portfolio' && !ETF_TER_BY_ISIN[item.isin]) {
       console.error(`${file} : frais absents pour ${item.isin}`);
       errors++;
@@ -125,10 +130,36 @@ for (const [isin, entry] of Object.entries(INSTRUMENT_AUM_BY_ISIN)) {
     console.error(`Encours : entrée invalide ${isin}`);
     errors++;
   }
-  if (entry.source && (!entry.source.url || !/^\d{4}-\d{2}-\d{2}$/.test(entry.source.asOf) || !/^\d{4}-\d{2}-\d{2}$/.test(entry.source.checkedAt))) {
+  if (entry.source && (!entry.source.url || !/^\d{4}-\d{2}-\d{2}$/.test(entry.source.checkedAt) ||
+      entry.source.asOf !== null && !/^\d{4}-\d{2}-\d{2}$/.test(entry.source.asOf) ||
+      !Number.isFinite(entry.source.amount ?? entry.source.amountMillions))) {
     console.error(`Encours : source ou date invalide pour ${isin}`);
     errors++;
   }
+  if (entry.source && entry.sheet && entry.index && entry.sheet !== entry.index) {
+    console.error(`Encours : deux valeurs divergentes malgré une source unique pour ${isin}`);
+    errors++;
+  }
+  if (entry.source?.amountMillions) {
+    const amount = `${String(entry.source.amountMillions).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} M€`;
+    const date = entry.source.checkedAt.split('-').reverse().join('/');
+    if ([entry.sheet, entry.index].filter(Boolean).some(label => label !== `${amount} (relevé le ${date})`)) {
+      console.error(`Encours : libellé non synchronisé avec le relevé pour ${isin}`);
+      errors++;
+    }
+  }
+}
+for (const [isin, millions] of Object.entries(aumSnapshot.values)) {
+  const source = INSTRUMENT_AUM_BY_ISIN[isin]?.source;
+  if (!source || source.amountMillions !== millions || source.checkedAt !== aumSnapshot.checkedAt ||
+      source.currency !== 'EUR' || source.asOf !== null || !source.url.includes(`isin=${isin}`)) {
+    console.error(`Encours : relevé justETF non synchronisé pour ${isin}`);
+    errors++;
+  }
+}
+if (Object.values(INSTRUMENT_AUM_BY_ISIN).filter(x => x.source?.amountMillions).length !== Object.keys(aumSnapshot.values).length) {
+  console.error('Encours : nombre de relevés justETF différent du registre.');
+  errors++;
 }
 for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
   for (const fund of group.funds ?? []) {
@@ -157,6 +188,6 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
 console.log(`${total} usages, ${seen.size} ISIN, ${errors} erreur(s) dans le catalogue commun.`);
 console.log(`${Object.keys(INSTRUMENT_FACTS_BY_ISIN).length} fiches avec caractéristiques sourcées et datées ; ${unresolved.length} divergence(s) de méthode.`);
 console.log(`${Object.keys(PEA_REVIEWS_BY_ISIN).length} statuts PEA revus individuellement, dont ${Object.values(PEA_REVIEWS_BY_ISIN).filter(x => x.eligible === null).length} non tranchés.`);
-console.log(`${aumUsages} encours servis par le registre commun pour ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length} ISIN ; migration des libellés historiques, seule la source explicite est recoupée.`);
+console.log(`${aumUsages} encours servis par le registre commun pour ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length} ISIN ; ${Object.values(INSTRUMENT_AUM_BY_ISIN).filter(x => x.source).length} sources individuelles enregistrées.`);
 if (unresolved.length) { console.error(`Réplication contradictoire : ${unresolved.join(', ')}`); errors += unresolved.length; }
 if (errors) process.exitCode = 1;

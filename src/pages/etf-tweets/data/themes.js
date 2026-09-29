@@ -175,9 +175,10 @@ const BASE_THEMES = [
         isin: 'IE00B53L3W79',
         frais: formatEtfTer('IE00B53L3W79'),
 
-        // La fiche BlackRock ne confirme pas le PEA pour cette part précise ;
-        // des sources secondaires sont contradictoires (contrôle du 29/09/2026).
-        differenciateur: '50 grandes valeurs de la zone euro ; éligibilité PEA à confirmer',
+        // Contrôle individuel du 29/09/2026 : Bourse Direct affiche cette part
+        // comme éligible et justETF France la classe aussi parmi les ETF PEA.
+        // La fiche émetteur ne l'explicite pas ; voir instrument-pea.js.
+        differenciateur: affirmInstrumentPea('IE00B53L3W79', true, '50 grandes valeurs de la zone euro, éligible PEA selon Bourse Direct et justETF'),
       }),
       createEtf({
         nom: getInstrumentName("FR0011550193", "tweet"),
