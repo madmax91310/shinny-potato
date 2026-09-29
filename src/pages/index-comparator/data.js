@@ -50,7 +50,7 @@ export const FAMILIES = [
         // sont affichés pour ne pas laisser croire que 0,19 % est le prix plancher de cette exposition.
         indexName: 'STOXX 600', choiceNote: '1 option PEA + 1 alternative bien moins chère en CTO', pea: true,
         funds: [
-          { name: getInstrumentName("FR0011550193", "index"), ticker: 'ETZ', isin: 'FR0011550193', ter: formatEtfTer('FR0011550193', 'index'), aum: '1 205 M€ au 30/01/2026', note: '(seule option PEA)' },
+          { name: getInstrumentName("FR0011550193", "index"), ticker: getInstrumentTickers('FR0011550193')[0], isin: 'FR0011550193', ter: formatEtfTer('FR0011550193', 'index'), aum: '1 205 M€ au 30/01/2026', note: '(seule option PEA)' },
           { name: getInstrumentName("LU0908500753", "index"), isin: 'LU0908500753', ter: formatEtfTer('LU0908500753', 'index'), aum: '21 171 M€', note: '(CTO uniquement — le moins cher, et de loin le plus gros encours ⚡)' },
         ],
       },
@@ -58,16 +58,16 @@ export const FAMILIES = [
         // Contrôle PEA du 29/09/2026 : C50 confirmé par Amundi. L'éligibilité
         // des parts iShares et HSBC ci-dessous n'est pas établie par leurs
         // fiches émetteurs retrouvées ; des fiches secondaires se contredisent.
-        indexName: 'EURO STOXX 50', choiceNote: 'C50 confirmé en PEA ; autres parts non confirmées', pea: true, subNote: '(indice 100 % zone euro)',
+        indexName: 'EURO STOXX 50', choiceNote: 'C50 et iShares confirmés en PEA ; HSBC non confirmé', pea: true, subNote: '(indice 100 % zone euro)',
         funds: [
           { name: getInstrumentName("LU1681047236", "index"), ticker: getInstrumentTickers('LU1681047236')[0], isin: 'LU1681047236', pea: getInstrumentPeaStatus('LU1681047236'), ter: formatEtfTer('LU1681047236', 'index'), note: '(PEA confirmé par Amundi)' },
-          { name: getInstrumentName("IE00B53L3W79", "index"), isin: 'IE00B53L3W79', pea: getInstrumentPeaStatus('IE00B53L3W79'), ter: formatEtfTer('IE00B53L3W79', 'index'), aum: '7 667 M€', note: '(PEA non confirmé)' },
+          { name: getInstrumentName("IE00B53L3W79", "index"), isin: 'IE00B53L3W79', pea: getInstrumentPeaStatus('IE00B53L3W79'), ter: formatEtfTer('IE00B53L3W79', 'index'), aum: '7 667 M€', note: '(PEA confirmé par Bourse Direct et justETF)' },
           { name: getInstrumentName("IE00B4K6B022", "index"), isin: 'IE00B4K6B022', pea: getInstrumentPeaStatus('IE00B4K6B022'), ter: formatEtfTer('IE00B4K6B022', 'index'), note: '(PEA non confirmé ; TER le plus bas)' },
         ],
       },
       {
         indexName: 'MSCI Europe', choiceNote: 'un seul vrai choix', pea: true,
-        funds: [{ name: getInstrumentName("FR0013412038", "index"), ticker: 'PCEU', isin: 'FR0013412038', ter: formatEtfTer('FR0013412038', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '383 M€ au 31/08/2026' }],
+        funds: [{ name: getInstrumentName("FR0013412038", "index"), ticker: getInstrumentTickers('FR0013412038')[0], isin: 'FR0013412038', ter: formatEtfTer('FR0013412038', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '383 M€ au 31/08/2026' }],
       },
     ],
     diversification: {
@@ -134,8 +134,8 @@ export const FAMILIES = [
       {
         indexName: 'MSCI World', choiceNote: '3 vraies options en PEA', pea: true,
         funds: [
-          { name: getInstrumentName("LU1681043599", "index"), ticker: 'CW8', isin: 'LU1681043599', ter: formatEtfTer('LU1681043599', 'index'), aum: '6 495 M€', note: '(le plus gros encours, et de loin)' },
-          { name: getInstrumentName("IE0002XZSHO1", "index"), ticker: 'WPEA', isin: 'IE0002XZSHO1', ter: formatEtfTer('IE0002XZSHO1', 'index'), aum: '2 071 M€', note: '(moins cher)' },
+          { name: getInstrumentName("LU1681043599", "index"), ticker: getInstrumentTickers('LU1681043599')[0], isin: 'LU1681043599', ter: formatEtfTer('LU1681043599', 'index'), aum: '6 495 M€', note: '(le plus gros encours, et de loin)' },
+          { name: getInstrumentName("IE0002XZSHO1", "index"), ticker: getInstrumentTickers('IE0002XZSHO1')[0], isin: 'IE0002XZSHO1', ter: formatEtfTer('IE0002XZSHO1', 'index'), aum: '2 071 M€', note: '(moins cher)' },
           { name: getInstrumentName("FR001400U5Q4", "index"), ticker: getInstrumentTickers('FR001400U5Q4')[0], isin: 'FR001400U5Q4', ter: formatEtfTer('FR001400U5Q4', 'index'), aum: '1 370 M€' },
         ],
       },
@@ -145,7 +145,7 @@ export const FAMILIES = [
         // affiché pour comparaison, bien moins cher.
         indexName: 'MSCI ACWI', choiceNote: 'enfin en PEA depuis juillet 2026', pea: true,
         funds: [
-          { name: getInstrumentName("FR0014017NX3", "index"), ticker: 'GPEA', isin: 'FR0014017NX3', ter: formatEtfTer('FR0014017NX3', 'index'), aum: '46 M€', note: '(seule option PEA, lancée le 15/07/2026 — encours en forte croissance)' },
+          { name: getInstrumentName("FR0014017NX3", "index"), ticker: getInstrumentTickers('FR0014017NX3')[0], isin: 'FR0014017NX3', ter: formatEtfTer('FR0014017NX3', 'index'), aum: '46 M€', note: '(seule option PEA, lancée le 15/07/2026 — encours en forte croissance)' },
           { name: getInstrumentName("IE00B44Z5B48", "index"), isin: 'IE00B44Z5B48', ter: formatEtfTer('IE00B44Z5B48', 'index'), aum: '15 900 M€', note: '(CTO, moins cher et plus gros encours)' },
         ],
       },
@@ -317,23 +317,23 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'Émergents global (ESG resserré)', choiceNote: 'seule option PEA généraliste sur les émergents', pea: true,
-        funds: [{ name: getInstrumentName("FR0013412020", "index"), ticker: 'PAEEM', isin: 'FR0013412020', ter: formatEtfTer('FR0013412020', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '867 M€' }],
+        funds: [{ name: getInstrumentName("FR0013412020", "index"), ticker: getInstrumentTickers('FR0013412020')[0], isin: 'FR0013412020', ter: formatEtfTer('FR0013412020', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '867 M€' }],
       },
       {
         indexName: 'Asie émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: getInstrumentName("FR0013412012", "index"), ticker: 'PAASI', isin: 'FR0013412012', ter: formatEtfTer('FR0013412012', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '735 M€' }],
+        funds: [{ name: getInstrumentName("FR0013412012", "index"), ticker: getInstrumentTickers('FR0013412012')[0], isin: 'FR0013412012', ter: formatEtfTer('FR0013412012', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '735 M€' }],
       },
       {
         indexName: 'Amérique latine', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: getInstrumentName("FR0013412004", "index"), ticker: 'PALAT', isin: 'FR0013412004', ter: formatEtfTer('FR0013412004', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '141 M€', note: '(encours encore modeste)' }],
+        funds: [{ name: getInstrumentName("FR0013412004", "index"), ticker: getInstrumentTickers('FR0013412004')[0], isin: 'FR0013412004', ter: formatEtfTer('FR0013412004', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '141 M€', note: '(encours encore modeste)' }],
       },
       {
         indexName: 'Inde seule', choiceNote: 'seule option PEA sur ce pays', pea: true,
-        funds: [{ name: getInstrumentName("FR0011869320", "index"), ticker: 'PINR', isin: 'FR0011869320', ter: formatEtfTer('FR0011869320', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '157 M€', note: '(le plus cher du lot)' }],
+        funds: [{ name: getInstrumentName("FR0011869320", "index"), ticker: getInstrumentTickers('FR0011869320')[0], isin: 'FR0011869320', ter: formatEtfTer('FR0011869320', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '157 M€', note: '(le plus cher du lot)' }],
       },
       {
         indexName: 'EMEA émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: getInstrumentName("FR0011440478", "index"), ticker: 'PLEM', isin: 'FR0011440478', ter: formatEtfTer('FR0011440478', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '68 M€', note: '(la plus confidentielle)' }],
+        funds: [{ name: getInstrumentName("FR0011440478", "index"), ticker: getInstrumentTickers('FR0011440478')[0], isin: 'FR0011440478', ter: formatEtfTer('FR0011440478', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '68 M€', note: '(la plus confidentielle)' }],
       },
     ],
     diversification: {
@@ -623,7 +623,7 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'Euro Dividend Aristocrats', choiceNote: 'une option PEA pour cet indice', pea: true,
-        funds: [{ name: getInstrumentName("IE00B5M1WJ87", "index"), ticker: 'EUDV', isin: 'IE00B5M1WJ87', ter: formatEtfTer('IE00B5M1WJ87', 'index'), repl: '🔄 Physique (réplication complète, 40 valeurs)', dist: 'distribuant semestriel', aum: '1 810 M€' }],
+        funds: [{ name: getInstrumentName("IE00B5M1WJ87", "index"), ticker: getInstrumentTickers('IE00B5M1WJ87')[0], isin: 'IE00B5M1WJ87', ter: formatEtfTer('IE00B5M1WJ87', 'index'), repl: '🔄 Physique (réplication complète, 40 valeurs)', dist: 'distribuant semestriel', aum: '1 810 M€' }],
       },
     ],
     diversification: {
@@ -961,9 +961,9 @@ export const FAMILIES = [
     block2Title: '2️⃣ EXEMPLES D’ETF DISPONIBLES (CTO) 💳',
     etfGroups: [
       { indexName: 'MSCI World', choiceNote: 'part physique en CTO, autres options PEA dans « Monde large »', pea: false,
-        funds: [{ name: getInstrumentName("IE00B4L5Y983", "index"), ticker: 'SWDA', isin: 'IE00B4L5Y983', ter: formatEtfTer('IE00B4L5Y983', 'index'), repl: '🔄 Physique', dist: 'capitalisant' }] },
+        funds: [{ name: getInstrumentName("IE00B4L5Y983", "index"), ticker: getInstrumentTickers('IE00B4L5Y983')[0], isin: 'IE00B4L5Y983', ter: formatEtfTer('IE00B4L5Y983', 'index'), repl: '🔄 Physique', dist: 'capitalisant' }] },
       { indexName: 'MSCI World ex USA', choiceNote: 'fonds récent, CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE0006WW1TQ4", "index"), ticker: 'EXUS', isin: 'IE0006WW1TQ4', ter: formatEtfTer('IE0006WW1TQ4', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '8,19 Md$ au 31/08/2026' }] },
+        funds: [{ name: getInstrumentName("IE0006WW1TQ4", "index"), ticker: getInstrumentTickers('IE0006WW1TQ4')[0], isin: 'IE0006WW1TQ4', ter: formatEtfTer('IE0006WW1TQ4', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '8,19 Md$ au 31/08/2026' }] },
       { indexName: 'MSCI World Small Cap', choiceNote: 'CTO uniquement', pea: false,
         funds: [{ name: getInstrumentName("IE00BF4RFH31", "index"), ticker: getInstrumentTickers('IE00BF4RFH31')[0], isin: 'IE00BF4RFH31', ter: formatEtfTer('IE00BF4RFH31', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '~7,7 Md€ (fiche du 25/08/2026)' }] },
     ],

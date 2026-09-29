@@ -31,6 +31,7 @@ jobs:
       - run: npm run audit:performance-consistency
       - run: npm run audit:etf-consistency
       - run: npm run audit:instrument-catalog
+      - run: npm run audit:calculator-series
       - run: npm run audit:publishable-content
       - run: npm run audit:source-inventory
       - run: npm run verify:tweet-midi

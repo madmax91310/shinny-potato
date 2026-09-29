@@ -37,10 +37,9 @@ for (const [id, a] of Object.entries(CALCULATOR)) {
   if (!['EUR', 'USD'].includes(a.currency)) { console.error(`Devise inconnue : ${id}`); errors++ }
   if (!a.points.every((p, i, arr) => /^\d{4}-\d{2}$/.test(p.date) && Number.isFinite(p.price) && p.price > 0 && (i === 0 || p.date > arr[i - 1].date))) { console.error(`Points mensuels invalides : ${id}`); errors++ }
 }
-// Ces six séries sont mensuelles et proviennent d'exports cités dans data.js.
-// La continuité est vérifiable ici ; les 840 prix ont été récupérés et validés mois par
-// mois par l'utilisateur. Les exports ne sont pas dans le dépôt : ce script ne refait
-// donc pas cette vérification et n'attribue pas de date de contrôle externe.
+// La continuité des six séries est contrôlée ici. Pour cinq d'entre elles,
+// audit:calculator-series compare aussi les prix à une capture Yahoo datée.
+// L'or spot reste sans recoupement homogène des 140 points.
 for (const id of monthlyIds) {
   const a = CALCULATOR[id]
   if (!a || a.currency !== 'USD') { console.error(`Série mensuelle ou devise changée : ${id}`); errors++; continue }
@@ -61,12 +60,12 @@ const lines = [
   ...TERMES.map(t => `| ${t.id} | ${sources[t.id] || '—'} | ${verifiedToday.has(t.id) ? 'Points cités contrôlés le 25/09/2026 ; voir sources et réserves dans data.js' : fiscal.has(t.id) ? 'Fiscalité relue le 24/09/2026 ; exemples et exceptions à contrôler individuellement' : 'Source identifiée le 24/09/2026 ; détails à contrôler'} |`),
   '',
   `Portefeuilles : ${PORTFOLIO.length} supports, dont ${gaps.filter(x => x.tool === 'portefeuilles').length} sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.`,
-  `Calculateur : ${Object.keys(CALCULATOR).length} actifs, dont ${gaps.filter(x => x.tool === 'calculateur').length} sans date individuelle ; les six séries mensuelles ont été validées par l'utilisateur à partir de ses propres exports.`,
+  `Calculateur : ${Object.keys(CALCULATOR).length} actifs, dont ${gaps.filter(x => x.tool === 'calculateur').length} sans date individuelle ; cinq séries mensuelles ont été recoupées avec Yahoo le 29/09/2026, l'or spot reste non vérifié point par point.`,
   '',
   '| Série mensuelle | Devise | Période | Points | Contrôle externe |', '| --- | --- | --- | ---: | --- |',
-  ...monthlyIds.map(id => { const a = CALCULATOR[id]; return `| ${id} | ${a.currency} | ${a.points[0].date} → ${a.points.at(-1).date} | ${a.points.length} | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |` }),
+  ...monthlyIds.map(id => { const a = CALCULATOR[id]; return `| ${id} | ${a.currency} | ${a.points[0].date} → ${a.points.at(-1).date} | ${a.points.length} | ${id === 'or' ? 'Source spot homogène introuvable ; série non vérifiée point par point' : 'Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/'} |` }),
   '',
-  'Les dates absentes restent absentes. Les sources trouvées ne sont pas une validation des valeurs de séries.',
+  'La date de l’or reste absente. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.',
 ]
 if (process.argv.includes('--markdown')) console.log(lines.join('\n'))
 else console.log(`${TERMES.length} fiches (${Object.keys(sources).length} références, ${TERMES.length - Object.keys(sources).length} à sourcer), ${PORTFOLIO.length} supports, ${Object.keys(CALCULATOR).length} actifs ; ${errors} erreur(s) structurelle(s).`)
