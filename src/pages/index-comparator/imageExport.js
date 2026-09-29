@@ -111,6 +111,7 @@ export async function renderIndexImage(family, perfValues = {}) {
       const europeNames = {
         FR0011550193: 'ETZ · BNP Easy', LU0908500753: 'Amundi Core',
         IE00B53L3W79: 'iShares Core (Acc)', IE00B4K6B022: 'HSBC EURO STOXX 50',
+        LU1681047236: 'C50 · Amundi Core',
         FR0013412038: 'PCEU · Amundi PEA',
       }
       const shortName = family.id === 'europe' && europeNames[fund.isin]
@@ -120,7 +121,9 @@ export async function renderIndexImage(family, perfValues = {}) {
       // Un groupe peut mêler une part PEA et une alternative CTO. Reconnaître
       // aussi les notes « (CTO, …) » : l'ancienne condition « CTO uniquement »
       // étiquetait à tort SPDR ACWI et iShares MSCI China comme éligibles PEA.
-      const placement = /\bCTO\b/i.test(fund.note || '') || group.pea === false ? 'CTO' : 'PEA'
+      const placement = Object.hasOwn(fund, 'pea')
+        ? fund.pea === null ? 'PEA ?' : fund.pea ? 'PEA' : 'CTO'
+        : /\bCTO\b/i.test(fund.note || '') || group.pea === false ? 'CTO' : 'PEA'
       label(ctx, `${fund.isin} · ${placement}`, x, y + 12, 43, PALETTE.muted)
       label(ctx, fund.ter, x, y + 77, 88, color, 700)
       if (fund.aum) label(ctx, fund.aum.replace(/ au .*/, ''), x, y + 184, 43, PALETTE.muted)

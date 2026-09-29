@@ -1,4 +1,4 @@
-import { getInstrumentName } from '../../data/instruments.js';
+import { getInstrumentName, getInstrumentPeaStatus } from '../../data/instruments.js';
 import { getInstrumentTickers } from '../../data/instrument-facts.js';
 import { formatEtfTer } from '../../data/etf-ter.js';
 // Données du Comparateur d'indices — extrait de App.jsx le 14/09/2026 (audit "outils", point 3)
@@ -55,10 +55,14 @@ export const FAMILIES = [
         ],
       },
       {
-        indexName: 'EURO STOXX 50', choiceNote: 'le plus de choix', pea: true, subNote: '(indice 100 % zone euro)',
+        // Contrôle PEA du 29/09/2026 : C50 confirmé par Amundi. L'éligibilité
+        // des parts iShares et HSBC ci-dessous n'est pas établie par leurs
+        // fiches émetteurs retrouvées ; des fiches secondaires se contredisent.
+        indexName: 'EURO STOXX 50', choiceNote: 'C50 confirmé en PEA ; autres parts non confirmées', pea: true, subNote: '(indice 100 % zone euro)',
         funds: [
-          { name: getInstrumentName("IE00B53L3W79", "index"), isin: 'IE00B53L3W79', ter: formatEtfTer('IE00B53L3W79', 'index'), aum: '7 667 M€' },
-          { name: getInstrumentName("IE00B4K6B022", "index"), isin: 'IE00B4K6B022', ter: formatEtfTer('IE00B4K6B022', 'index'), note: '(le moins cher ⚡)' },
+          { name: getInstrumentName("LU1681047236", "index"), ticker: getInstrumentTickers('LU1681047236')[0], isin: 'LU1681047236', pea: getInstrumentPeaStatus('LU1681047236'), ter: formatEtfTer('LU1681047236', 'index'), note: '(PEA confirmé par Amundi)' },
+          { name: getInstrumentName("IE00B53L3W79", "index"), isin: 'IE00B53L3W79', pea: getInstrumentPeaStatus('IE00B53L3W79'), ter: formatEtfTer('IE00B53L3W79', 'index'), aum: '7 667 M€', note: '(PEA non confirmé)' },
+          { name: getInstrumentName("IE00B4K6B022", "index"), isin: 'IE00B4K6B022', pea: getInstrumentPeaStatus('IE00B4K6B022'), ter: formatEtfTer('IE00B4K6B022', 'index'), note: '(PEA non confirmé ; TER le plus bas)' },
         ],
       },
       {
@@ -90,7 +94,7 @@ export const FAMILIES = [
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💳 Exposition la plus large, en PEA ?', a: 'ETZ (BNP STOXX 600)' },
-      { q: '💸 Le moins cher + zone euro pure, en PEA ?', a: `EURO STOXX 50 (HSBC, ${formatEtfTer('IE00B4K6B022', 'index')})` },
+      { q: '💸 Zone euro pure, avec PEA confirmé ?', a: `Amundi Core EURO STOXX 50 (C50, ${formatEtfTer('LU1681047236', 'index')})` },
       { q: '🇫🇷 Europe large, avec UK/Suisse, fonds français en PEA ?', a: 'PCEU (Amundi MSCI Europe)' },
       { q: '⚡ Le moins cher tout court, en CTO ?', a: `Amundi Core STOXX 600 (${formatEtfTer('LU0908500753', 'index')}, 21 Md€ d'encours)` },
     ],

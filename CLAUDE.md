@@ -47,6 +47,12 @@ de la fiche, tandis que `characteristicsSource.checkedAt` date le contrôle de c
 champs ; aucun des deux ne date implicitement l'encours. Les tickers et les libellés
 éditoriaux repris de la fiche n'ont pas été certifiés par le contrôle de la source.
 `getInstrumentPeaStatus` retourne `null` quand le statut est inconnu.
+Les contrôles PEA individuels faits après la revue des fiches sont consignés dans
+`src/data/instrument-pea.js` (ISIN, source, date, valeur `true`/`false`/`null`).
+Ils priment sur le statut historique des fiches. Les comparatifs peuvent utiliser
+`affirmInstrumentPea` pour empêcher la publication d'un libellé éditorial PEA
+contradictoire ou non documenté. Les groupes d'indices peuvent contenir à la fois
+une part PEA et d'autres parts dont le statut est inconnu.
 Les performances et encours gardent leur propre part, devise, méthode, date et source dans
 les données de l'outil : un rendement d'indice ne remplace pas celui d'un fonds.
 

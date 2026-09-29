@@ -3,6 +3,7 @@
 import { readFileSync } from 'node:fs';
 import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPea, getInstrumentPeaStatus } from '../src/data/instruments.js';
 import { INSTRUMENT_FACTS_BY_ISIN, getInstrumentFacts } from '../src/data/instrument-facts.js';
+import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js';
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
 import { ETFS } from '../src/pages/etf-sheets/data.js';
 import { DEFAULT_THEMES } from '../src/pages/etf-tweets/data/themes.js';
@@ -20,6 +21,16 @@ const seen = new Set();
 let errors = 0;
 let total = 0;
 const unresolved = [];
+for (const [isin, review] of Object.entries(PEA_REVIEWS_BY_ISIN)) {
+  if (!INSTRUMENTS_BY_ISIN[isin] || !review.sourceUrl || !/^\d{4}-\d{2}-\d{2}$/.test(review.checkedAt)) {
+    console.error(`PEA : identité, source ou date manquante pour ${isin}`);
+    errors++;
+  }
+  if (review.eligible === null && !review.note) {
+    console.error(`PEA : absence de motif pour le statut inconnu ${isin}`);
+    errors++;
+  }
+}
 for (const [isin, facts] of Object.entries(INSTRUMENT_FACTS_BY_ISIN)) {
   if (!INSTRUMENTS_BY_ISIN[isin]) {
     console.error(`Caractéristiques : ISIN absent du catalogue : ${isin}`);
@@ -97,6 +108,10 @@ for (const [context, file, items] of collections) {
 for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
   for (const fund of group.funds ?? []) {
     const status = getInstrumentPeaStatus(fund.isin);
+    if (Object.hasOwn(fund, 'pea') && fund.pea !== status) {
+      console.error(`Comparateur : statut PEA de la part différent du registre pour ${fund.isin}.`);
+      errors++;
+    }
     if (status !== null && typeof group.pea === 'boolean' && group.pea !== status) {
       console.error(`Comparateur : groupe PEA contradictoire pour ${fund.isin} (${family.id}).`);
       errors++;
@@ -116,5 +131,6 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
 }
 console.log(`${total} usages, ${seen.size} ISIN, ${errors} erreur(s) dans le catalogue commun.`);
 console.log(`${Object.keys(INSTRUMENT_FACTS_BY_ISIN).length} fiches avec caractéristiques sourcées et datées ; ${unresolved.length} divergence(s) de méthode.`);
+console.log(`${Object.keys(PEA_REVIEWS_BY_ISIN).length} statuts PEA revus individuellement, dont ${Object.values(PEA_REVIEWS_BY_ISIN).filter(x => x.eligible === null).length} non tranchés.`);
 if (unresolved.length) { console.error(`Réplication contradictoire : ${unresolved.join(', ')}`); errors += unresolved.length; }
 if (errors) process.exitCode = 1;
