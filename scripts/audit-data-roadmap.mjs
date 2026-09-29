@@ -30,6 +30,7 @@ for (const id of verifiedToday) {
 const gaps = inventory.filter(x => x.tool === 'portefeuilles' || x.tool === 'calculateur')
 const monthlyIds = ['bitcoin', 'or', 'apple', 'microsoft', 'broadcom', 'tesla']
 const sharedAum = Object.entries(INSTRUMENT_AUM_BY_ISIN).filter(([, value]) => value.sheet && value.index)
+const sourcedAum = Object.entries(INSTRUMENT_AUM_BY_ISIN).filter(([, value]) => value.source)
 const absentPortfolioUrls = gaps.filter(x => x.tool === 'portefeuilles' && !x.sourceUrls.length)
 if (absentPortfolioUrls.length) { console.error(`Supports sans URL : ${absentPortfolioUrls.map(x => x.name).join(', ')}`); errors += absentPortfolioUrls.length }
 for (const a of PORTFOLIO) {
@@ -69,8 +70,8 @@ const lines = [
   '',
   'La date de l’or reste absente. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.',
   '',
-  `Encours ETF : ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length} ISIN et ${Object.values(INSTRUMENT_AUM_BY_ISIN).reduce((n, value) => n + Number(Boolean(value.sheet)) + Number(Boolean(value.index)), 0)} affichages centralisés. ${sharedAum.length} ISIN apparaissent dans les deux outils. La centralisation reprend les libellés historiques ; elle ne valide pas les encours sans référence individuelle.`,
-  'Seul SPEA a été recoupé sur la page de l’émetteur le 29/09/2026 (54 413 013 EUR au 28/09/2026). Les écarts ci-dessous sont gardés jusqu’à vérification d’une date et d’une devise communes.',
+  `Encours ETF : ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length} ISIN et ${Object.values(INSTRUMENT_AUM_BY_ISIN).reduce((n, value) => n + Number(Boolean(value.sheet)) + Number(Boolean(value.index)), 0)} affichages centralisés. ${sharedAum.length} ISIN apparaissent dans les deux outils. ${sourcedAum.length} ont une source individuelle contrôlée ; ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length - sourcedAum.length} reprennent les libellés historiques sans nouveau recoupement.`,
+  'SPEA : actif net exact de 54 413 013 EUR au 28/09/2026 chez BlackRock. Pour les 80 autres ISIN, taille en EUR relevée sur le profil ISIN justETF le 29/09/2026 et conservée dans scripts/source-snapshots/etf-aum-2026-09-29.json. justETF ne donne pas de date de valeur exploitable : la date de consultation n’est pas une date de VL. Le périmètre est celui du profil de la part : BlackRock distingue pour IE00B3F81R35 8,437 Md€ pour la part et 13,148 Md€ pour le fonds entier au 25/09/2026.',
   '',
   '| ISIN | Fiche ETF | Comparateur d’indices |', '| --- | --- | --- |',
   ...sharedAum.map(([isin, value]) => `| ${isin} | ${value.sheet} | ${value.index} |`),

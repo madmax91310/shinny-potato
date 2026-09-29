@@ -1,4 +1,4 @@
-import { getInstrumentAum } from '../../data/instrument-aum.js';
+import { getInstrumentAum, getInstrumentAumBillions } from '../../data/instrument-aum.js';
 import { getInstrumentName, getInstrumentPeaStatus } from '../../data/instruments.js';
 import { getInstrumentTickers } from '../../data/instrument-facts.js';
 import { formatEtfTer } from '../../data/etf-ter.js';
@@ -97,7 +97,7 @@ export const FAMILIES = [
       { q: '💳 Exposition la plus large, en PEA ?', a: 'ETZ (BNP STOXX 600)' },
       { q: '💸 Zone euro pure, avec PEA confirmé ?', a: `Amundi Core EURO STOXX 50 (C50, ${formatEtfTer('LU1681047236', 'index')})` },
       { q: '🇫🇷 Europe large, avec UK/Suisse, fonds français en PEA ?', a: 'PCEU (Amundi MSCI Europe)' },
-      { q: '⚡ Le moins cher tout court, en CTO ?', a: `Amundi Core STOXX 600 (${formatEtfTer('LU0908500753', 'index')}, 21 Md€ d'encours)` },
+      { q: '⚡ Le moins cher tout court, en CTO ?', a: `Amundi Core STOXX 600 (${formatEtfTer('LU0908500753', 'index')}, ${getInstrumentAumBillions('LU0908500753')} d'encours)` },
     ],
     closing: '💬 Dans ton PEA, tu veux couvrir toute l’Europe ou te limiter à la zone euro ?',
   },
@@ -178,7 +178,7 @@ export const FAMILIES = [
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💸 En PEA, tu veux le moins cher ?', a: `WPEA ou DCAM, à égalité à ${formatEtfTer('FR001400U5Q4', 'index')} — moins cher que CW8 (${formatEtfTer('LU1681043599', 'index')}), pour le même indice.` },
-      { q: '💳 En PEA, tu veux le fonds avec le plus d\'encours (pas forcément le meilleur choix) ?', a: `CW8 (Amundi MSCI World) — 6,5 Md€, mais TER plus élevé (${formatEtfTer('LU1681043599', 'index')}) que WPEA/DCAM.` },
+      { q: '💳 En PEA, tu veux le fonds avec le plus d\'encours (pas forcément le meilleur choix) ?', a: `CW8 (Amundi MSCI World) — ${getInstrumentAumBillions('LU1681043599')}, mais TER plus élevé (${formatEtfTer('LU1681043599', 'index')}) que WPEA/DCAM.` },
       { q: '🌐 Tu veux les émergents inclus, mais en PEA ?', a: 'GPEA (Amundi PEA Global ACWI) — tout nouveau, lancé en juillet 2026.' },
       { q: '💰 Le moins cher toutes catégories confondues, en CTO ?', a: `Xtrackers FTSE All-World, à ${formatEtfTer('IE000L6ZMMC4', 'index')}.` },
     ],
@@ -786,7 +786,8 @@ export const FAMILIES = [
         // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF
         funds: [
           { name: getInstrumentName("FR0013411980", "index"), isin: 'FR0013411980', ter: formatEtfTer('FR0013411980', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: getInstrumentAum("FR0013411980", "index"), note: '(non couvert en EUR)' },
-          // Fiche Amundi du 30/04/2026 : PEA, 0,48 %, actif géré 150,05 M€.
+          // Fiche historique Amundi du 30/04/2026 : PEA, 0,48 %, actif géré 150,05 M€.
+          // Encours affiché : relevé justETF plus récent dans instrument-aum.js.
           // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
           { name: getInstrumentName("FR0013411998", "index"), isin: 'FR0013411998', ter: formatEtfTer('FR0013411998', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: getInstrumentAum("FR0013411998", "index"), note: '(couvert contre le yen)' },
         ],

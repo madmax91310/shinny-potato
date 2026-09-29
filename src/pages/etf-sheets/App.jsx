@@ -4,6 +4,7 @@ import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance }
 import { buildText } from './lib'
 import { renderETFImage } from './canvasImage'
 import { renderAnnualETFImage } from './annualImage'
+import { INSTRUMENT_AUM_BY_ISIN } from '../../data/instrument-aum'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './etf-sheets.css'
@@ -70,7 +71,7 @@ function EtfCard({ etf }) {
           <span className="es-fi">💰</span>
           <span className="es-fv">
             Encours : {etf.aum}
-            {etf.lastVerified && <span className="es-last-verified"> · vérifié le {etf.lastVerified}</span>}
+            {etf.lastVerified && !INSTRUMENT_AUM_BY_ISIN[etf.isin]?.source && <span className="es-last-verified"> · vérifié le {etf.lastVerified}</span>}
           </span>
         </li>
         <li>

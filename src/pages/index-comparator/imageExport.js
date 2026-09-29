@@ -124,7 +124,7 @@ export async function renderIndexImage(family, perfValues = {}) {
       const placement = status === null ? 'PEA ?' : status ? 'PEA' : 'CTO'
       label(ctx, `${fund.isin} · ${placement}`, x, y + 12, 43, PALETTE.muted)
       label(ctx, fund.ter, x, y + 77, 88, color, 700)
-      if (fund.aum) label(ctx, fund.aum.replace(/ au .*/, ''), x, y + 184, 43, PALETTE.muted)
+      if (fund.aum) label(ctx, fund.aum.replace(/(?: au | \().*/, ''), x, y + 184, 43, PALETTE.muted)
       y = Math.max(y + 240, y + 324 - 59)
     }
     if (group?.narrativeNote) wrapped(ctx, 'Pas d’ETF directement disponible pour cet indice.', x, 985, COL - 65, 45, PALETTE.muted)
