@@ -2,7 +2,7 @@
 // Vérifie que les quatre bibliothèques de produits utilisent la même référence ISIN.
 import { readFileSync } from 'node:fs';
 import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPea, getInstrumentPeaStatus } from '../src/data/instruments.js';
-import { INSTRUMENT_FACTS_BY_ISIN, getInstrumentFacts } from '../src/data/instrument-facts.js';
+import { INSTRUMENT_FACTS_BY_ISIN, getInstrumentFacts, getInstrumentTickers } from '../src/data/instrument-facts.js';
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js';
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
 import { ETFS } from '../src/pages/etf-sheets/data.js';
@@ -117,8 +117,7 @@ for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
       console.error(`Comparateur : groupe marqué CTO malgré une part PEA ${fund.isin} (${family.id}).`);
       errors++;
     }
-    if (fund.ticker && INSTRUMENT_FACTS_BY_ISIN[fund.isin]?.tickers.length &&
-        !getInstrumentFacts(fund.isin).tickers.includes(fund.ticker)) {
+    if (fund.ticker && !getInstrumentTickers(fund.isin).includes(fund.ticker)) {
       console.error(`Comparateur : ticker contradictoire pour ${fund.isin} (${fund.ticker}).`);
       errors++;
     }

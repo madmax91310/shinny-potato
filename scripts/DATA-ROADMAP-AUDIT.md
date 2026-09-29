@@ -50,16 +50,16 @@ Contrôle individuel du 25/09/2026 : 44/44 fiches relues. Les commentaires de da
 | plus-value-immobiliere | https://www.service-public.fr/particuliers/vosdroits/F10864 | Points cités contrôlés le 25/09/2026 ; voir sources et réserves dans data.js |
 | halving | https://bitcoin.org/fr/vocabulaire | Points cités contrôlés le 25/09/2026 ; voir sources et réserves dans data.js |
 
-Portefeuilles : 71 supports, dont 0 sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.
-Calculateur : 24 actifs, dont 6 sans date individuelle ; les six séries mensuelles ont été validées par l'utilisateur à partir de ses propres exports.
+Portefeuilles : 87 supports, dont 0 sans date individuelle ; voir audit:portfolio-provenance pour les émetteurs, devises et années proxy.
+Calculateur : 24 actifs, dont 1 sans date individuelle ; cinq séries mensuelles ont été recoupées avec Yahoo le 29/09/2026, l'or spot reste non vérifié point par point.
 
 | Série mensuelle | Devise | Période | Points | Contrôle externe |
 | --- | --- | --- | ---: | --- |
-| bitcoin | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
-| or | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
-| apple | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
-| microsoft | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
-| broadcom | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
-| tesla | USD | 2015-01 → 2026-08 | 140 | Validé mois par mois par l'utilisateur ; export absent du dépôt, pas de nouveau contrôle externe |
+| bitcoin | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
+| or | USD | 2015-01 → 2026-08 | 140 | Source spot homogène introuvable ; série non vérifiée point par point |
+| apple | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
+| microsoft | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
+| broadcom | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
+| tesla | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
 
-Les dates absentes restent absentes. Les sources trouvées ne sont pas une validation des valeurs de séries.
+La date de l’or reste absente. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.

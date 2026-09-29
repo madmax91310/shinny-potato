@@ -1,3 +1,4 @@
+import { getInstrument } from './instruments.js';
 // Caractéristiques par ISIN des 41 parts des Fiches ETF.
 // benchmark, incomePolicy, replicationMethod et domicile ont été contrôlés le 29/09/2026
 // dans characteristicsSource (émetteur pour IE00BFZPF546 et IE00BM8R0J59,
@@ -717,7 +718,7 @@ export function getInstrumentFacts(isin) {
 }
 
 export function getInstrumentTickers(isin) {
-  return getInstrumentFacts(isin).tickers;
+  return INSTRUMENT_FACTS_BY_ISIN[isin]?.tickers ?? getInstrument(isin).tickers ?? [];
 }
 
 export function getInstrumentDistribution(isin) {

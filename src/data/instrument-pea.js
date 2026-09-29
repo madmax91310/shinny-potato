@@ -2,6 +2,10 @@
 // des Fiches ETF. null signifie que la recherche n'a pas permis de trancher.
 // Ne jamais déduire l'éligibilité du domicile, de l'indice ou du nom commercial.
 export const PEA_REVIEWS_BY_ISIN = Object.freeze({
+  FR0013412004: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-pea-amerique-latine-ms-FR0013412004-PALAT-EUR-XPAR/seance', note: 'Courtier : éligible PEA ; fiche Amundi historique confirme également' },
+  FR0011869320: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-pea-inde-msci-india-u-FR0011869320-PINR-EUR-XPAR/seance', note: 'Courtier : éligible PEA ; rapport Amundi historique documente le quota' },
+  FR0011440478: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-pea-emergent-emea-msci-FR0011440478-PLEM-EUR-XPAR/seance', note: 'Éligibilité affichée par Bourse Direct' },
+  FR0011871078: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-pea-chine-msci-china-FR0011871078-PASI-EUR-XPAR/seance', note: 'Éligibilité affichée par Bourse Direct' },
   FR0013412038: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/download/c4f606a3-f783-4553-b7f6-143137c8d964/MonthlyFactsheet_4386409_CL78022_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf' },
   LU1681043599: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/download/0c01e75c-5cc9-4713-9308-cef750de2338/MonthlyFactsheet_4383940_CL54770_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf' },
   IE0002XZSHO1: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf' },
@@ -20,9 +24,9 @@ export const PEA_REVIEWS_BY_ISIN = Object.freeze({
   LU1681047236: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/ENG/FRA/INSTITUTIONNEL/ETF/20250930' },
   IE0002Y8CX98: { eligible: false, checkedAt: '2026-09-29', sourceUrl: 'https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc' },
   LU3038520774: { eligible: false, checkedAt: '2026-09-29', sourceUrl: 'https://www.ca-sicavetfcp.fr/productsheet/view/idpart/382/idvm/LU3038520774/lg/fr/popup/1' },
-  // La page BlackRock consultée n'établit pas l'éligibilité de cette part.
-  // Des fiches secondaires se contredisent : conserver un statut inconnu.
-  IE00B53L3W79: { eligible: null, checkedAt: '2026-09-29', sourceUrl: 'https://www.blackrock.com/fr/particuliers/products/253712/', note: 'PEA non établi ; fiches secondaires contradictoires' },
+  // BlackRock ne détaille pas le PEA sur cette page ; Bourse Direct le confirme
+  // explicitement pour cette part, et justETF France la classe « PEA ETF ».
+  IE00B53L3W79: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-core-euro-stoxx-50-uci-IE00B53L3W79-CSX5-EUR-XAMS/graphiques', corroboratingUrl: 'https://www.justetf.com/fr/etf-profile.html?isin=IE00B53L3W79', note: 'Éligible selon Bourse Direct et justETF ; page émetteur non explicite' },
   // HSBC ne mentionne pas le PEA dans la fiche émetteur retrouvée ; des
   // fiches secondaires divergent également. Ne pas utiliser comme option PEA.
   IE00B4K6B022: { eligible: null, checkedAt: '2026-09-29', sourceUrl: 'https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet', note: 'PEA non établi ; fiches secondaires contradictoires' },
