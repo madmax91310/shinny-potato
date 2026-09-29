@@ -5,6 +5,7 @@ import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPea, getInstrument
 import { INSTRUMENT_FACTS_BY_ISIN, getInstrumentFacts, getInstrumentTickers } from '../src/data/instrument-facts.js';
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js';
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
+import { INSTRUMENT_AUM_BY_ISIN, getInstrumentAum } from '../src/data/instrument-aum.js';
 import { ETFS } from '../src/pages/etf-sheets/data.js';
 import { DEFAULT_THEMES } from '../src/pages/etf-tweets/data/themes.js';
 import { FAMILIES } from '../src/pages/index-comparator/data.js';
@@ -21,6 +22,7 @@ const seen = new Set();
 let errors = 0;
 let total = 0;
 const unresolved = [];
+let aumUsages = 0;
 for (const [isin, review] of Object.entries(PEA_REVIEWS_BY_ISIN)) {
   if (!INSTRUMENTS_BY_ISIN[isin] || !review.sourceUrl || !/^\d{4}-\d{2}-\d{2}$/.test(review.checkedAt)) {
     console.error(`PEA : identité, source ou date manquante pour ${isin}`);
@@ -65,6 +67,15 @@ for (const [context, file, items] of collections) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }
+  if (context === 'sheet' || context === 'index') {
+    const aumReferences = source.match(/aum:\s*getInstrumentAum\(/g) ?? [];
+    const aumItems = items.filter(item => item.aum);
+    if (aumReferences.length !== aumItems.length) {
+      console.error(`${file} : ${aumReferences.length} références d'encours pour ${aumItems.length} valeurs.`);
+      errors++;
+    }
+    aumUsages += aumItems.length;
+  }
   for (const item of items) {
     total++;
     seen.add(item.isin);
@@ -80,6 +91,10 @@ for (const [context, file, items] of collections) {
     }
     if (context === 'sheet' && item.pea !== getInstrumentPea(item.isin)) {
       console.error(`${file} : statut PEA différent du catalogue pour ${item.isin}`);
+      errors++;
+    }
+    if (item.aum && (context === 'sheet' || context === 'index') && item.aum !== getInstrumentAum(item.isin, context)) {
+      console.error(`${file} : encours différent du registre pour ${item.isin}`);
       errors++;
     }
     if (context === 'sheet') {
@@ -103,6 +118,16 @@ for (const [context, file, items] of collections) {
       console.error(`${file} : frais absents pour ${item.isin}`);
       errors++;
     }
+  }
+}
+for (const [isin, entry] of Object.entries(INSTRUMENT_AUM_BY_ISIN)) {
+  if (!INSTRUMENTS_BY_ISIN[isin] || !entry.sheet && !entry.index) {
+    console.error(`Encours : entrée invalide ${isin}`);
+    errors++;
+  }
+  if (entry.source && (!entry.source.url || !/^\d{4}-\d{2}-\d{2}$/.test(entry.source.asOf) || !/^\d{4}-\d{2}-\d{2}$/.test(entry.source.checkedAt))) {
+    console.error(`Encours : source ou date invalide pour ${isin}`);
+    errors++;
   }
 }
 for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
@@ -132,5 +157,6 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
 console.log(`${total} usages, ${seen.size} ISIN, ${errors} erreur(s) dans le catalogue commun.`);
 console.log(`${Object.keys(INSTRUMENT_FACTS_BY_ISIN).length} fiches avec caractéristiques sourcées et datées ; ${unresolved.length} divergence(s) de méthode.`);
 console.log(`${Object.keys(PEA_REVIEWS_BY_ISIN).length} statuts PEA revus individuellement, dont ${Object.values(PEA_REVIEWS_BY_ISIN).filter(x => x.eligible === null).length} non tranchés.`);
+console.log(`${aumUsages} encours servis par le registre commun pour ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length} ISIN ; migration des libellés historiques, seule la source explicite est recoupée.`);
 if (unresolved.length) { console.error(`Réplication contradictoire : ${unresolved.join(', ')}`); errors += unresolved.length; }
 if (errors) process.exitCode = 1;

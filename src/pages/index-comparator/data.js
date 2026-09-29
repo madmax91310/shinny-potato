@@ -1,3 +1,4 @@
+import { getInstrumentAum } from '../../data/instrument-aum.js';
 import { getInstrumentName, getInstrumentPeaStatus } from '../../data/instruments.js';
 import { getInstrumentTickers } from '../../data/instrument-facts.js';
 import { formatEtfTer } from '../../data/etf-ter.js';
@@ -50,8 +51,8 @@ export const FAMILIES = [
         // sont affichés pour ne pas laisser croire que 0,19 % est le prix plancher de cette exposition.
         indexName: 'STOXX 600', choiceNote: '1 option PEA + 1 alternative bien moins chère en CTO', pea: true,
         funds: [
-          { name: getInstrumentName("FR0011550193", "index"), ticker: getInstrumentTickers('FR0011550193')[0], isin: 'FR0011550193', ter: formatEtfTer('FR0011550193', 'index'), aum: '1 205 M€ au 30/01/2026', note: '(seule option PEA)' },
-          { name: getInstrumentName("LU0908500753", "index"), isin: 'LU0908500753', ter: formatEtfTer('LU0908500753', 'index'), aum: '21 171 M€', note: '(CTO uniquement — le moins cher, et de loin le plus gros encours ⚡)' },
+          { name: getInstrumentName("FR0011550193", "index"), ticker: getInstrumentTickers('FR0011550193')[0], isin: 'FR0011550193', ter: formatEtfTer('FR0011550193', 'index'), aum: getInstrumentAum("FR0011550193", "index"), note: '(seule option PEA)' },
+          { name: getInstrumentName("LU0908500753", "index"), isin: 'LU0908500753', ter: formatEtfTer('LU0908500753', 'index'), aum: getInstrumentAum("LU0908500753", "index"), note: '(CTO uniquement — le moins cher, et de loin le plus gros encours ⚡)' },
         ],
       },
       {
@@ -61,13 +62,13 @@ export const FAMILIES = [
         indexName: 'EURO STOXX 50', choiceNote: 'C50 et iShares confirmés en PEA ; HSBC non confirmé', pea: true, subNote: '(indice 100 % zone euro)',
         funds: [
           { name: getInstrumentName("LU1681047236", "index"), ticker: getInstrumentTickers('LU1681047236')[0], isin: 'LU1681047236', pea: getInstrumentPeaStatus('LU1681047236'), ter: formatEtfTer('LU1681047236', 'index'), note: '(PEA confirmé par Amundi)' },
-          { name: getInstrumentName("IE00B53L3W79", "index"), isin: 'IE00B53L3W79', pea: getInstrumentPeaStatus('IE00B53L3W79'), ter: formatEtfTer('IE00B53L3W79', 'index'), aum: '7 667 M€', note: '(PEA confirmé par Bourse Direct et justETF)' },
+          { name: getInstrumentName("IE00B53L3W79", "index"), isin: 'IE00B53L3W79', pea: getInstrumentPeaStatus('IE00B53L3W79'), ter: formatEtfTer('IE00B53L3W79', 'index'), aum: getInstrumentAum("IE00B53L3W79", "index"), note: '(PEA confirmé par Bourse Direct et justETF)' },
           { name: getInstrumentName("IE00B4K6B022", "index"), isin: 'IE00B4K6B022', pea: getInstrumentPeaStatus('IE00B4K6B022'), ter: formatEtfTer('IE00B4K6B022', 'index'), note: '(PEA non confirmé ; TER le plus bas)' },
         ],
       },
       {
         indexName: 'MSCI Europe', choiceNote: 'un seul vrai choix', pea: true,
-        funds: [{ name: getInstrumentName("FR0013412038", "index"), ticker: getInstrumentTickers('FR0013412038')[0], isin: 'FR0013412038', ter: formatEtfTer('FR0013412038', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '383 M€ au 31/08/2026' }],
+        funds: [{ name: getInstrumentName("FR0013412038", "index"), ticker: getInstrumentTickers('FR0013412038')[0], isin: 'FR0013412038', ter: formatEtfTer('FR0013412038', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: getInstrumentAum("FR0013412038", "index") }],
       },
     ],
     diversification: {
@@ -134,9 +135,9 @@ export const FAMILIES = [
       {
         indexName: 'MSCI World', choiceNote: '3 vraies options en PEA', pea: true,
         funds: [
-          { name: getInstrumentName("LU1681043599", "index"), ticker: getInstrumentTickers('LU1681043599')[0], isin: 'LU1681043599', ter: formatEtfTer('LU1681043599', 'index'), aum: '6 495 M€', note: '(le plus gros encours, et de loin)' },
-          { name: getInstrumentName("IE0002XZSHO1", "index"), ticker: getInstrumentTickers('IE0002XZSHO1')[0], isin: 'IE0002XZSHO1', ter: formatEtfTer('IE0002XZSHO1', 'index'), aum: '2 071 M€', note: '(moins cher)' },
-          { name: getInstrumentName("FR001400U5Q4", "index"), ticker: getInstrumentTickers('FR001400U5Q4')[0], isin: 'FR001400U5Q4', ter: formatEtfTer('FR001400U5Q4', 'index'), aum: '1 370 M€' },
+          { name: getInstrumentName("LU1681043599", "index"), ticker: getInstrumentTickers('LU1681043599')[0], isin: 'LU1681043599', ter: formatEtfTer('LU1681043599', 'index'), aum: getInstrumentAum("LU1681043599", "index"), note: '(le plus gros encours, et de loin)' },
+          { name: getInstrumentName("IE0002XZSHO1", "index"), ticker: getInstrumentTickers('IE0002XZSHO1')[0], isin: 'IE0002XZSHO1', ter: formatEtfTer('IE0002XZSHO1', 'index'), aum: getInstrumentAum("IE0002XZSHO1", "index"), note: '(moins cher)' },
+          { name: getInstrumentName("FR001400U5Q4", "index"), ticker: getInstrumentTickers('FR001400U5Q4')[0], isin: 'FR001400U5Q4', ter: formatEtfTer('FR001400U5Q4', 'index'), aum: getInstrumentAum("FR001400U5Q4", "index") },
         ],
       },
       {
@@ -145,15 +146,15 @@ export const FAMILIES = [
         // affiché pour comparaison, bien moins cher.
         indexName: 'MSCI ACWI', choiceNote: 'enfin en PEA depuis juillet 2026', pea: true,
         funds: [
-          { name: getInstrumentName("FR0014017NX3", "index"), ticker: getInstrumentTickers('FR0014017NX3')[0], isin: 'FR0014017NX3', ter: formatEtfTer('FR0014017NX3', 'index'), aum: '46 M€', note: '(seule option PEA, lancée le 15/07/2026 — encours en forte croissance)' },
-          { name: getInstrumentName("IE00B44Z5B48", "index"), isin: 'IE00B44Z5B48', ter: formatEtfTer('IE00B44Z5B48', 'index'), aum: '15 900 M€', note: '(CTO, moins cher et plus gros encours)' },
+          { name: getInstrumentName("FR0014017NX3", "index"), ticker: getInstrumentTickers('FR0014017NX3')[0], isin: 'FR0014017NX3', ter: formatEtfTer('FR0014017NX3', 'index'), aum: getInstrumentAum("FR0014017NX3", "index"), note: '(seule option PEA, lancée le 15/07/2026 — encours en forte croissance)' },
+          { name: getInstrumentName("IE00B44Z5B48", "index"), isin: 'IE00B44Z5B48', ter: formatEtfTer('IE00B44Z5B48', 'index'), aum: getInstrumentAum("IE00B44Z5B48", "index"), note: '(CTO, moins cher et plus gros encours)' },
         ],
       },
       {
         indexName: 'FTSE All-World', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
         funds: [
-          { name: getInstrumentName("IE000L6ZMMC4", "index"), isin: 'IE000L6ZMMC4', ter: formatEtfTer('IE000L6ZMMC4', 'index'), aum: '110 M€', note: '(le moins cher, fonds récent — avril 2026)' },
-          { name: getInstrumentName("IE00BK5BQT80", "index"), ticker: getInstrumentTickers('IE00BK5BQT80')[0], isin: 'IE00BK5BQT80', ter: formatEtfTer('IE00BK5BQT80', 'index'), aum: '50 000 M€', note: '(le plus gros encours, le plus connu)' },
+          { name: getInstrumentName("IE000L6ZMMC4", "index"), isin: 'IE000L6ZMMC4', ter: formatEtfTer('IE000L6ZMMC4', 'index'), aum: getInstrumentAum("IE000L6ZMMC4", "index"), note: '(le moins cher, fonds récent — avril 2026)' },
+          { name: getInstrumentName("IE00BK5BQT80", "index"), ticker: getInstrumentTickers('IE00BK5BQT80')[0], isin: 'IE00BK5BQT80', ter: formatEtfTer('IE00BK5BQT80', 'index'), aum: getInstrumentAum("IE00BK5BQT80", "index"), note: '(le plus gros encours, le plus connu)' },
         ],
       },
     ],
@@ -208,14 +209,14 @@ export const FAMILIES = [
       {
         indexName: 'S&P 500', choiceNote: 'le plus gros ≠ le moins cher', pea: true,
         // SPEA omis de la sélection initiale : BlackRock confirme un fonds
-        // coté à Paris, visant l'éligibilité PEA, TER 0,10 %, encours 54,66 M€
-        // au 25/09/2026. La série 2023–2025 reste celle d'Amundi : SPEA a
+        // coté à Paris, visant l'éligibilité PEA, TER 0,10 %, encours 54,41 M€
+        // au 28/09/2026 (54 413 013 EUR relevés le 29/09). La série 2023–2025 reste celle d'Amundi : SPEA a
         // été lancé en mai 2025 et n'a pas trois années civiles complètes.
         // https://www.blackrock.com/fr/intermediaries/products/342916/
         funds: [
-          { name: getInstrumentName("FR0011550185", "index"), isin: 'FR0011550185', ter: formatEtfTer('FR0011550185', 'index'), aum: '3,3 Md€', note: '(le plus gros encours)' },
-          { name: getInstrumentName("FR0011871128", "index"), isin: 'FR0011871128', ter: formatEtfTer('FR0011871128', 'index'), aum: '1,15 Md€', note: '(historique plus long que SPEA)' },
-          { name: getInstrumentName("IE000DQLYVB9", "index"), ticker: getInstrumentTickers('IE000DQLYVB9')[0], isin: 'IE000DQLYVB9', ter: formatEtfTer('IE000DQLYVB9', 'index'), aum: '54,66 M€ au 25/09/2026', note: '(le moins cher des trois ⚡ ; fonds récent)' },
+          { name: getInstrumentName("FR0011550185", "index"), isin: 'FR0011550185', ter: formatEtfTer('FR0011550185', 'index'), aum: getInstrumentAum("FR0011550185", "index"), note: '(le plus gros encours)' },
+          { name: getInstrumentName("FR0011871128", "index"), isin: 'FR0011871128', ter: formatEtfTer('FR0011871128', 'index'), aum: getInstrumentAum("FR0011871128", "index"), note: '(historique plus long que SPEA)' },
+          { name: getInstrumentName("IE000DQLYVB9", "index"), ticker: getInstrumentTickers('IE000DQLYVB9')[0], isin: 'IE000DQLYVB9', ter: formatEtfTer('IE000DQLYVB9', 'index'), aum: getInstrumentAum("IE000DQLYVB9", "index"), note: '(le moins cher des trois ⚡ ; fonds récent)' },
         ],
       },
       {
@@ -223,13 +224,13 @@ export const FAMILIES = [
         // plus grosse que l'option PEA — cohérence avec le traitement des autres familles.
         indexName: 'Nasdaq 100', choiceNote: '1 option PEA + 1 alternative moins chère en CTO', pea: true,
         funds: [
-          { name: getInstrumentName("FR0011871110", "index"), isin: 'FR0011871110', ter: formatEtfTer('FR0011871110', 'index'), aum: '1,17 Md€', note: '(seule option PEA)' },
-          { name: getInstrumentName("IE000QDFFK00", "index"), isin: 'IE000QDFFK00', ter: formatEtfTer('IE000QDFFK00', 'index'), aum: '2,73 Md€', note: '(CTO uniquement, moins cher et plus gros encours)' },
+          { name: getInstrumentName("FR0011871110", "index"), isin: 'FR0011871110', ter: formatEtfTer('FR0011871110', 'index'), aum: getInstrumentAum("FR0011871110", "index"), note: '(seule option PEA)' },
+          { name: getInstrumentName("IE000QDFFK00", "index"), isin: 'IE000QDFFK00', ter: formatEtfTer('IE000QDFFK00', 'index'), aum: getInstrumentAum("IE000QDFFK00", "index"), note: '(CTO uniquement, moins cher et plus gros encours)' },
         ],
       },
       {
         indexName: 'MSCI USA', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00B52SFT06", "index"), isin: 'IE00B52SFT06', ter: formatEtfTer('IE00B52SFT06', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '2,9 Md€' }],
+        funds: [{ name: getInstrumentName("IE00B52SFT06", "index"), isin: 'IE00B52SFT06', ter: formatEtfTer('IE00B52SFT06', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: getInstrumentAum("IE00B52SFT06", "index") }],
       },
       {
         indexName: 'Russell 1000', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
@@ -317,23 +318,23 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'Émergents global (ESG resserré)', choiceNote: 'seule option PEA généraliste sur les émergents', pea: true,
-        funds: [{ name: getInstrumentName("FR0013412020", "index"), ticker: getInstrumentTickers('FR0013412020')[0], isin: 'FR0013412020', ter: formatEtfTer('FR0013412020', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '867 M€' }],
+        funds: [{ name: getInstrumentName("FR0013412020", "index"), ticker: getInstrumentTickers('FR0013412020')[0], isin: 'FR0013412020', ter: formatEtfTer('FR0013412020', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: getInstrumentAum("FR0013412020", "index") }],
       },
       {
         indexName: 'Asie émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: getInstrumentName("FR0013412012", "index"), ticker: getInstrumentTickers('FR0013412012')[0], isin: 'FR0013412012', ter: formatEtfTer('FR0013412012', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '735 M€' }],
+        funds: [{ name: getInstrumentName("FR0013412012", "index"), ticker: getInstrumentTickers('FR0013412012')[0], isin: 'FR0013412012', ter: formatEtfTer('FR0013412012', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: getInstrumentAum("FR0013412012", "index") }],
       },
       {
         indexName: 'Amérique latine', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: getInstrumentName("FR0013412004", "index"), ticker: getInstrumentTickers('FR0013412004')[0], isin: 'FR0013412004', ter: formatEtfTer('FR0013412004', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '141 M€', note: '(encours encore modeste)' }],
+        funds: [{ name: getInstrumentName("FR0013412004", "index"), ticker: getInstrumentTickers('FR0013412004')[0], isin: 'FR0013412004', ter: formatEtfTer('FR0013412004', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: getInstrumentAum("FR0013412004", "index"), note: '(encours encore modeste)' }],
       },
       {
         indexName: 'Inde seule', choiceNote: 'seule option PEA sur ce pays', pea: true,
-        funds: [{ name: getInstrumentName("FR0011869320", "index"), ticker: getInstrumentTickers('FR0011869320')[0], isin: 'FR0011869320', ter: formatEtfTer('FR0011869320', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '157 M€', note: '(le plus cher du lot)' }],
+        funds: [{ name: getInstrumentName("FR0011869320", "index"), ticker: getInstrumentTickers('FR0011869320')[0], isin: 'FR0011869320', ter: formatEtfTer('FR0011869320', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: getInstrumentAum("FR0011869320", "index"), note: '(le plus cher du lot)' }],
       },
       {
         indexName: 'EMEA émergente', choiceNote: 'seule option PEA sur cette zone', pea: true,
-        funds: [{ name: getInstrumentName("FR0011440478", "index"), ticker: getInstrumentTickers('FR0011440478')[0], isin: 'FR0011440478', ter: formatEtfTer('FR0011440478', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: '68 M€', note: '(la plus confidentielle)' }],
+        funds: [{ name: getInstrumentName("FR0011440478", "index"), ticker: getInstrumentTickers('FR0011440478')[0], isin: 'FR0011440478', ter: formatEtfTer('FR0011440478', 'index'), repl: '🔄 Synthétique (swap)', dist: 'capitalisant', aum: getInstrumentAum("FR0011440478", "index"), note: '(la plus confidentielle)' }],
       },
     ],
     diversification: {
@@ -389,18 +390,18 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'MSCI EM IMI', choiceNote: 'la référence la plus large', pea: false,
-        funds: [{ name: getInstrumentName("IE00BKM4GZ66", "index"), isin: 'IE00BKM4GZ66', ter: formatEtfTer('IE00BKM4GZ66', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '36 800 M€' }],
+        funds: [{ name: getInstrumentName("IE00BKM4GZ66", "index"), isin: 'IE00BKM4GZ66', ter: formatEtfTer('IE00BKM4GZ66', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: getInstrumentAum("IE00BKM4GZ66", "index") }],
       },
       {
         indexName: 'FTSE EM', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
         funds: [
-          { name: getInstrumentName("IE00BK5BR733", "index"), isin: 'IE00BK5BR733', ter: formatEtfTer('IE00BK5BR733', 'index'), aum: '2,0 Md€' },
-          { name: getInstrumentName("IE00B3VVMM84", "index"), isin: 'IE00B3VVMM84', ter: formatEtfTer('IE00B3VVMM84', 'index'), aum: '3,2 Md€', note: '(plus gros encours)' },
+          { name: getInstrumentName("IE00BK5BR733", "index"), isin: 'IE00BK5BR733', ter: formatEtfTer('IE00BK5BR733', 'index'), aum: getInstrumentAum("IE00BK5BR733", "index") },
+          { name: getInstrumentName("IE00B3VVMM84", "index"), isin: 'IE00B3VVMM84', ter: formatEtfTer('IE00B3VVMM84', 'index'), aum: getInstrumentAum("IE00B3VVMM84", "index"), note: '(plus gros encours)' },
         ],
       },
       {
         indexName: 'MSCI EM ex-China', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00BMG6Z448", "index"), isin: 'IE00BMG6Z448', ter: formatEtfTer('IE00BMG6Z448', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '6,3 Md€' }],
+        funds: [{ name: getInstrumentName("IE00BMG6Z448", "index"), isin: 'IE00BMG6Z448', ter: formatEtfTer('IE00BMG6Z448', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("IE00BMG6Z448", "index") }],
       },
     ],
     diversification: {
@@ -461,11 +462,11 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'MSCI World Value', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00BP3QZB59", "index"), isin: 'IE00BP3QZB59', ter: formatEtfTer('IE00BP3QZB59', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '6,1 Md€' }],
+        funds: [{ name: getInstrumentName("IE00BP3QZB59", "index"), isin: 'IE00BP3QZB59', ter: formatEtfTer('IE00BP3QZB59', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: getInstrumentAum("IE00BP3QZB59", "index") }],
       },
       {
         indexName: 'MSCI World Quality', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00BP3QZ601", "index"), isin: 'IE00BP3QZ601', ter: formatEtfTer('IE00BP3QZ601', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: '5,3 Md€' }],
+        funds: [{ name: getInstrumentName("IE00BP3QZ601", "index"), isin: 'IE00BP3QZ601', ter: formatEtfTer('IE00BP3QZ601', 'index'), repl: '🔄 Physique optimisée', dist: 'capitalisant', aum: getInstrumentAum("IE00BP3QZ601", "index") }],
       },
       {
         indexName: 'MSCI World Growth', choiceNote: 'aucun fonds trouvé', pea: false,
@@ -539,17 +540,17 @@ export const FAMILIES = [
         // typiquement percevoir le revenu — et les deux parts Dist ci-dessous sont aussi les plus
         // gros encours de leur fonds (vérifié via recherche web le 01/09/2026).
         indexName: 'High Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00B8GKDB10", "index"), isin: 'IE00B8GKDB10', ter: formatEtfTer('IE00B8GKDB10', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '9,8 Md€ (01/09/2026)' }],
+        funds: [{ name: getInstrumentName("IE00B8GKDB10", "index"), isin: 'IE00B8GKDB10', ter: formatEtfTer('IE00B8GKDB10', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: getInstrumentAum("IE00B8GKDB10", "index") }],
       },
       {
         indexName: 'Quality Dividend', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00BYYHSQ67", "index"), isin: 'IE00BYYHSQ67', ter: formatEtfTer('IE00BYYHSQ67', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '1,5 Md€ (01/09/2026)' }],
+        funds: [{ name: getInstrumentName("IE00BYYHSQ67", "index"), isin: 'IE00BYYHSQ67', ter: formatEtfTer('IE00BYYHSQ67', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: getInstrumentAum("IE00BYYHSQ67", "index") }],
       },
       {
         indexName: 'Dividend Aristocrats', choiceNote: 'le plus de choix', pea: false,
         funds: [
-          { name: getInstrumentName("IE00B9CQXS71", "index"), isin: 'IE00B9CQXS71', ter: formatEtfTer('IE00B9CQXS71', 'index'), aum: '1,6 Md€ (01/09/2026)', note: '(mondial — dividende stable/en hausse depuis 10 ans)' },
-          { name: getInstrumentName("IE00B6YX5D40", "index"), isin: 'IE00B6YX5D40', ter: formatEtfTer('IE00B6YX5D40', 'index'), aum: '3,4 Md€ (01/09/2026)', note: '(US uniquement, le moins cher ⚡ — critère plus strict : 20 ans consécutifs de hausse du dividende, contre 10 ans de dividende stable ou en hausse pour le fonds mondial ci-dessus)' },
+          { name: getInstrumentName("IE00B9CQXS71", "index"), isin: 'IE00B9CQXS71', ter: formatEtfTer('IE00B9CQXS71', 'index'), aum: getInstrumentAum("IE00B9CQXS71", "index"), note: '(mondial — dividende stable/en hausse depuis 10 ans)' },
+          { name: getInstrumentName("IE00B6YX5D40", "index"), isin: 'IE00B6YX5D40', ter: formatEtfTer('IE00B6YX5D40', 'index'), aum: getInstrumentAum("IE00B6YX5D40", "index"), note: '(US uniquement, le moins cher ⚡ — critère plus strict : 20 ans consécutifs de hausse du dividende, contre 10 ans de dividende stable ou en hausse pour le fonds mondial ci-dessus)' },
         ],
       },
     ],
@@ -623,7 +624,7 @@ export const FAMILIES = [
     etfGroups: [
       {
         indexName: 'Euro Dividend Aristocrats', choiceNote: 'une option PEA pour cet indice', pea: true,
-        funds: [{ name: getInstrumentName("IE00B5M1WJ87", "index"), ticker: getInstrumentTickers('IE00B5M1WJ87')[0], isin: 'IE00B5M1WJ87', ter: formatEtfTer('IE00B5M1WJ87', 'index'), repl: '🔄 Physique (réplication complète, 40 valeurs)', dist: 'distribuant semestriel', aum: '1 810 M€' }],
+        funds: [{ name: getInstrumentName("IE00B5M1WJ87", "index"), ticker: getInstrumentTickers('IE00B5M1WJ87')[0], isin: 'IE00B5M1WJ87', ter: formatEtfTer('IE00B5M1WJ87', 'index'), repl: '🔄 Physique (réplication complète, 40 valeurs)', dist: 'distribuant semestriel', aum: getInstrumentAum("IE00B5M1WJ87", "index") }],
       },
     ],
     diversification: {
@@ -681,8 +682,8 @@ export const FAMILIES = [
         indexName: 'MSCI China', choiceNote: 'CTO conseillé, 1 option PEA imparfaite', pea: true,
         subNote: '(l\'option PEA ne suit pas exactement le MSCI China classique — c\'est une version filtrée ESG)',
         funds: [
-          { name: getInstrumentName("IE00BJ5JPG56", "index"), isin: 'IE00BJ5JPG56', ter: formatEtfTer('IE00BJ5JPG56', 'index'), aum: '2,19 Md€', note: '(CTO, réplique le MSCI China standard)' },
-          { name: getInstrumentName("FR0011871078", "index"), isin: 'FR0011871078', ter: formatEtfTer('FR0011871078', 'index'), aum: '84 M€', note: '(seule option PEA — indice filtré ESG, plus cher)' },
+          { name: getInstrumentName("IE00BJ5JPG56", "index"), isin: 'IE00BJ5JPG56', ter: formatEtfTer('IE00BJ5JPG56', 'index'), aum: getInstrumentAum("IE00BJ5JPG56", "index"), note: '(CTO, réplique le MSCI China standard)' },
+          { name: getInstrumentName("FR0011871078", "index"), isin: 'FR0011871078', ter: formatEtfTer('FR0011871078', 'index'), aum: getInstrumentAum("FR0011871078", "index"), note: '(seule option PEA — indice filtré ESG, plus cher)' },
         ],
       },
       {
@@ -692,11 +693,11 @@ export const FAMILIES = [
         // bien plus grosse, reste le choix pertinent malgré l'écart avec la convention "capitalisant"
         // du reste de l'outil.
         indexName: 'FTSE China 50', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00B02KXK85", "index"), isin: 'IE00B02KXK85', ter: formatEtfTer('IE00B02KXK85', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: '815 M€' }],
+        funds: [{ name: getInstrumentName("IE00B02KXK85", "index"), isin: 'IE00B02KXK85', ter: formatEtfTer('IE00B02KXK85', 'index'), repl: '🔄 Physique', dist: 'distribuant trimestriel', aum: getInstrumentAum("IE00B02KXK85", "index") }],
       },
       {
         indexName: 'MSCI China A', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00BQT3WG13", "index"), isin: 'IE00BQT3WG13', ter: formatEtfTer('IE00BQT3WG13', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '2,4 Md€' }],
+        funds: [{ name: getInstrumentName("IE00BQT3WG13", "index"), isin: 'IE00BQT3WG13', ter: formatEtfTer('IE00BQT3WG13', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("IE00BQT3WG13", "index") }],
       },
     ],
     diversification: {
@@ -777,22 +778,22 @@ export const FAMILIES = [
         // du même fonds (même indice, même TER), cohérent avec la convention du reste de l'outil.
         // Encours plus petit (430 M€ contre 2 012 M€ pour la part Dist) mais réel et suffisant.
         indexName: 'Nikkei 225', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("LU2196470426", "index"), isin: 'LU2196470426', ter: formatEtfTer('LU2196470426', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '430 M€' }],
+        funds: [{ name: getInstrumentName("LU2196470426", "index"), isin: 'LU2196470426', ter: formatEtfTer('LU2196470426', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("LU2196470426", "index") }],
       },
       {
         indexName: 'TOPIX', choiceNote: 'deux parts en PEA : couvert ou non ✅', pea: true,
         // Actif géré 187,05 M€ au 31/08/2026, fiche Amundi ; vérifié le 25/09/2026.
         // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF
         funds: [
-          { name: getInstrumentName("FR0013411980", "index"), isin: 'FR0013411980', ter: formatEtfTer('FR0013411980', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '187 M€ au 31/08/2026', note: '(non couvert en EUR)' },
+          { name: getInstrumentName("FR0013411980", "index"), isin: 'FR0013411980', ter: formatEtfTer('FR0013411980', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: getInstrumentAum("FR0013411980", "index"), note: '(non couvert en EUR)' },
           // Fiche Amundi du 30/04/2026 : PEA, 0,48 %, actif géré 150,05 M€.
           // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
-          { name: getInstrumentName("FR0013411998", "index"), isin: 'FR0013411998', ter: formatEtfTer('FR0013411998', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: '150 M€ au 30/04/2026', note: '(couvert contre le yen)' },
+          { name: getInstrumentName("FR0013411998", "index"), isin: 'FR0013411998', ter: formatEtfTer('FR0013411998', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant', aum: getInstrumentAum("FR0013411998", "index"), note: '(couvert contre le yen)' },
         ],
       },
       {
         indexName: 'MSCI Japan IMI', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00B4L5YX21", "index"), isin: 'IE00B4L5YX21', ter: formatEtfTer('IE00B4L5YX21', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '7,2 Md€' }],
+        funds: [{ name: getInstrumentName("IE00B4L5YX21", "index"), isin: 'IE00B4L5YX21', ter: formatEtfTer('IE00B4L5YX21', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("IE00B4L5YX21", "index") }],
       },
     ],
     diversification: {
@@ -861,15 +862,15 @@ export const FAMILIES = [
       {
         indexName: 'Or physique', choiceNote: 'Non éligible PEA — CTO uniquement, 4 émetteurs', pea: false,
         funds: [
-          { name: getInstrumentName("IE00B4ND3602", "index"), isin: 'IE00B4ND3602', ter: formatEtfTer('IE00B4ND3602', 'index'), aum: '34,3 Md€ (25/09/2026)', note: '(le plus gros encours)' },
-          { name: getInstrumentName("IE00B579F325", "index"), isin: 'IE00B579F325', ter: formatEtfTer('IE00B579F325', 'index'), aum: '26,6 Md€ (25/09/2026)' },
-          { name: getInstrumentName("FR0013416716", "index"), isin: 'FR0013416716', ter: formatEtfTer('FR0013416716', 'index'), aum: '11,6 Md€ (25/09/2026)' },
-          { name: getInstrumentName("JE00B1VS3770", "index"), isin: 'JE00B1VS3770', ter: formatEtfTer('JE00B1VS3770', 'index'), aum: '6,3 Md€ (25/09/2026)', note: '(le plus cher des quatre)' },
+          { name: getInstrumentName("IE00B4ND3602", "index"), isin: 'IE00B4ND3602', ter: formatEtfTer('IE00B4ND3602', 'index'), aum: getInstrumentAum("IE00B4ND3602", "index"), note: '(le plus gros encours)' },
+          { name: getInstrumentName("IE00B579F325", "index"), isin: 'IE00B579F325', ter: formatEtfTer('IE00B579F325', 'index'), aum: getInstrumentAum("IE00B579F325", "index") },
+          { name: getInstrumentName("FR0013416716", "index"), isin: 'FR0013416716', ter: formatEtfTer('FR0013416716', 'index'), aum: getInstrumentAum("FR0013416716", "index") },
+          { name: getInstrumentName("JE00B1VS3770", "index"), isin: 'JE00B1VS3770', ter: formatEtfTer('JE00B1VS3770', 'index'), aum: getInstrumentAum("JE00B1VS3770", "index"), note: '(le plus cher des quatre)' },
         ],
       },
       {
         indexName: 'Argent physique', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00B4NCWG09", "index"), isin: 'IE00B4NCWG09', ter: formatEtfTer('IE00B4NCWG09', 'index'), aum: '2,9 Md€ (25/09/2026)' }],
+        funds: [{ name: getInstrumentName("IE00B4NCWG09", "index"), isin: 'IE00B4NCWG09', ter: formatEtfTer('IE00B4NCWG09', 'index'), aum: getInstrumentAum("IE00B4NCWG09", "index") }],
       },
     ],
     diversification: {
@@ -914,15 +915,15 @@ export const FAMILIES = [
       {
         indexName: 'Bitcoin', choiceNote: 'Non éligible PEA — CTO uniquement, 4 émetteurs', pea: false,
         funds: [
-          { name: getInstrumentName("GB00BLD4ZL17", "index"), isin: 'GB00BLD4ZL17', ter: formatEtfTer('GB00BLD4ZL17', 'index'), aum: '1,4 Md€ (25/09/2026)' },
-          { name: getInstrumentName("GB00BJYDH287", "index"), isin: 'GB00BJYDH287', ter: formatEtfTer('GB00BJYDH287', 'index'), aum: '1,4 Md€ (25/09/2026)' },
-          { name: getInstrumentName("CH0454664001", "index"), isin: 'CH0454664001', ter: formatEtfTer('CH0454664001', 'index'), aum: '0,6 Md€ (25/09/2026)', note: '(le plus ancien de la sélection, lancé en 2019)' },
-          { name: getInstrumentName("DE000A27Z304", "index"), isin: 'DE000A27Z304', ter: formatEtfTer('DE000A27Z304', 'index'), aum: '0,7 Md€ (25/09/2026)', note: '(ex-ETC Group, renommé en 2025 — TER le plus élevé des quatre)' },
+          { name: getInstrumentName("GB00BLD4ZL17", "index"), isin: 'GB00BLD4ZL17', ter: formatEtfTer('GB00BLD4ZL17', 'index'), aum: getInstrumentAum("GB00BLD4ZL17", "index") },
+          { name: getInstrumentName("GB00BJYDH287", "index"), isin: 'GB00BJYDH287', ter: formatEtfTer('GB00BJYDH287', 'index'), aum: getInstrumentAum("GB00BJYDH287", "index") },
+          { name: getInstrumentName("CH0454664001", "index"), isin: 'CH0454664001', ter: formatEtfTer('CH0454664001', 'index'), aum: getInstrumentAum("CH0454664001", "index"), note: '(le plus ancien de la sélection, lancé en 2019)' },
+          { name: getInstrumentName("DE000A27Z304", "index"), isin: 'DE000A27Z304', ter: formatEtfTer('DE000A27Z304', 'index'), aum: getInstrumentAum("DE000A27Z304", "index"), note: '(ex-ETC Group, renommé en 2025 — TER le plus élevé des quatre)' },
         ],
       },
       {
         indexName: 'Ethereum', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("GB00BLD4ZM24", "index"), isin: 'GB00BLD4ZM24', ter: formatEtfTer('GB00BLD4ZM24', 'index'), aum: '343 M€ (25/09/2026)', note: '(0% de frais de gestion + un rendement de staking crédité à part, ~1,25%/an)' }],
+        funds: [{ name: getInstrumentName("GB00BLD4ZM24", "index"), isin: 'GB00BLD4ZM24', ter: formatEtfTer('GB00BLD4ZM24', 'index'), aum: getInstrumentAum("GB00BLD4ZM24", "index"), note: '(0% de frais de gestion + un rendement de staking crédité à part, ~1,25%/an)' }],
       },
     ],
     diversification: {
@@ -963,9 +964,9 @@ export const FAMILIES = [
       { indexName: 'MSCI World', choiceNote: 'part physique en CTO, autres options PEA dans « Monde large »', pea: false,
         funds: [{ name: getInstrumentName("IE00B4L5Y983", "index"), ticker: getInstrumentTickers('IE00B4L5Y983')[0], isin: 'IE00B4L5Y983', ter: formatEtfTer('IE00B4L5Y983', 'index'), repl: '🔄 Physique', dist: 'capitalisant' }] },
       { indexName: 'MSCI World ex USA', choiceNote: 'fonds récent, CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE0006WW1TQ4", "index"), ticker: getInstrumentTickers('IE0006WW1TQ4')[0], isin: 'IE0006WW1TQ4', ter: formatEtfTer('IE0006WW1TQ4', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '8,19 Md$ au 31/08/2026' }] },
+        funds: [{ name: getInstrumentName("IE0006WW1TQ4", "index"), ticker: getInstrumentTickers('IE0006WW1TQ4')[0], isin: 'IE0006WW1TQ4', ter: formatEtfTer('IE0006WW1TQ4', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("IE0006WW1TQ4", "index") }] },
       { indexName: 'MSCI World Small Cap', choiceNote: 'CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00BF4RFH31", "index"), ticker: getInstrumentTickers('IE00BF4RFH31')[0], isin: 'IE00BF4RFH31', ter: formatEtfTer('IE00BF4RFH31', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '~7,7 Md€ (fiche du 25/08/2026)' }] },
+        funds: [{ name: getInstrumentName("IE00BF4RFH31", "index"), ticker: getInstrumentTickers('IE00BF4RFH31')[0], isin: 'IE00BF4RFH31', ter: formatEtfTer('IE00BF4RFH31', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("IE00BF4RFH31", "index") }] },
     ],
     diversification: {
       chain: ['World (1 280, août 2026)', 'World ex USA (755, août 2026)', 'World Small Cap (3 866, août 2026)'],
