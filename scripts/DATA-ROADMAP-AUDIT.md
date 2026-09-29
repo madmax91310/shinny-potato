@@ -63,3 +63,22 @@ Calculateur : 24 actifs, dont 1 sans date individuelle ; cinq séries mensuelles
 | tesla | USD | 2015-01 → 2026-08 | 140 | Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/ |
 
 La date de l’or reste absente. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.
+
+Encours ETF : 81 ISIN et 94 affichages centralisés. 13 ISIN apparaissent dans les deux outils. La centralisation reprend les libellés historiques ; elle ne valide pas les encours sans référence individuelle.
+Seul SPEA a été recoupé sur la page de l’émetteur le 29/09/2026 (54 413 013 EUR au 28/09/2026). Les écarts ci-dessous sont gardés jusqu’à vérification d’une date et d’une devise communes.
+
+| ISIN | Fiche ETF | Comparateur d’indices |
+| --- | --- | --- |
+| FR0011871110 | ~1,17 Md€ | 1,17 Md€ |
+| FR0011871128 | ~1,15 Md€ | 1,15 Md€ |
+| FR0013411998 | 150,05 M€ au 30/04/2026 | 150 M€ au 30/04/2026 |
+| FR001400U5Q4 | ~1,37 Md€ | 1 370 M€ |
+| GB00BLD4ZL17 | ~1,4 Md€ | 1,4 Md€ (25/09/2026) |
+| IE000DQLYVB9 | 54,41 M€ au 28/09/2026 | 54,41 M€ au 28/09/2026 |
+| IE00B4ND3602 | ~34,3 Md€ | 34,3 Md€ (25/09/2026) |
+| IE00B6YX5D40 | ~3,4 Md€ | 3,4 Md€ (01/09/2026) |
+| IE00BF4RFH31 | ~7,7 Md€ | ~7,7 Md€ (fiche du 25/08/2026) |
+| IE00BK5BQT80 | ~50,8 Md€ | 50 000 M€ |
+| IE00BKM4GZ66 | ~36,8 Md€ | 36 800 M€ |
+| IE00BP3QZ601 | ~5,4 Md€ | 5,3 Md€ |
+| IE00BP3QZB59 | ~6,1 Md€ | 6,1 Md€ |

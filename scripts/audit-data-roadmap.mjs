@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs'
 import { TERMES } from '../src/pages/lexique-financier/data.js'
 import { ASSETS as PORTFOLIO } from '../src/pages/portfolio-generator/data.js'
 import { ASSETS as CALCULATOR } from '../src/pages/investment-calculator/data.js'
+import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js'
 
 import { LEXICON_SOURCES as sources } from './lexicon-sources.mjs'
 const fiscal = new Set(`pea cto assurance-vie per livret-a ldds pee-perco flat-tax abattement-pea prelevements-sociaux plus-value-imposable plus-value-immobiliere`.split(' '))
@@ -28,6 +29,7 @@ for (const id of verifiedToday) {
 }
 const gaps = inventory.filter(x => x.tool === 'portefeuilles' || x.tool === 'calculateur')
 const monthlyIds = ['bitcoin', 'or', 'apple', 'microsoft', 'broadcom', 'tesla']
+const sharedAum = Object.entries(INSTRUMENT_AUM_BY_ISIN).filter(([, value]) => value.sheet && value.index)
 const absentPortfolioUrls = gaps.filter(x => x.tool === 'portefeuilles' && !x.sourceUrls.length)
 if (absentPortfolioUrls.length) { console.error(`Supports sans URL : ${absentPortfolioUrls.map(x => x.name).join(', ')}`); errors += absentPortfolioUrls.length }
 for (const a of PORTFOLIO) {
@@ -66,6 +68,12 @@ const lines = [
   ...monthlyIds.map(id => { const a = CALCULATOR[id]; return `| ${id} | ${a.currency} | ${a.points[0].date} → ${a.points.at(-1).date} | ${a.points.length} | ${id === 'or' ? 'Source spot homogène introuvable ; série non vérifiée point par point' : 'Capture Yahoo datée et audit des 140 points dans scripts/source-snapshots/'} |` }),
   '',
   'La date de l’or reste absente. Les valeurs historiques ajustées des actions peuvent être révisées par le fournisseur.',
+  '',
+  `Encours ETF : ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length} ISIN et ${Object.values(INSTRUMENT_AUM_BY_ISIN).reduce((n, value) => n + Number(Boolean(value.sheet)) + Number(Boolean(value.index)), 0)} affichages centralisés. ${sharedAum.length} ISIN apparaissent dans les deux outils. La centralisation reprend les libellés historiques ; elle ne valide pas les encours sans référence individuelle.`,
+  'Seul SPEA a été recoupé sur la page de l’émetteur le 29/09/2026 (54 413 013 EUR au 28/09/2026). Les écarts ci-dessous sont gardés jusqu’à vérification d’une date et d’une devise communes.',
+  '',
+  '| ISIN | Fiche ETF | Comparateur d’indices |', '| --- | --- | --- |',
+  ...sharedAum.map(([isin, value]) => `| ${isin} | ${value.sheet} | ${value.index} |`),
 ]
 if (process.argv.includes('--markdown')) console.log(lines.join('\n'))
 else console.log(`${TERMES.length} fiches (${Object.keys(sources).length} références, ${TERMES.length - Object.keys(sources).length} à sourcer), ${PORTFOLIO.length} supports, ${Object.keys(CALCULATOR).length} actifs ; ${errors} erreur(s) structurelle(s).`)
