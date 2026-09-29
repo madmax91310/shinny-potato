@@ -1,3 +1,4 @@
+import { getInstrumentName } from '../../data/instruments.js';
 import { VERIFIED_RETURNS } from '../etf-sheets/verifiedReturns.js';
 // Bibliothèque d'actifs — rendements calendaires 2020-2025 : supports exacts quand
 // l'émetteur publie la série, et proxies ou historiques mixtes explicitement signalés sinon.
@@ -84,7 +85,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_etat_eur", name: "iShares Core € Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_etat_eur", name: getInstrumentName("IE00B4WXJJ64", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "IE00B4WXJJ64",
     // 2020/2021/2023/2024/2025 CORRIGÉS le 30/08/2026 : les 3 tentatives précédentes via
     // WebSearch/WebFetch avaient toutes échoué (domaine ishares.com/blackrock.com bloqué pour
@@ -106,7 +107,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_corp_ig", name: "iShares Core € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_corp_ig", name: getInstrumentName("IE00B3F81R35", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "IE00B3F81R35",
     // 2020/2021/2023/2024/2025 CORRIGÉS le 30/08/2026 : 2 tentatives WebSearch précédentes
     // avaient échoué sur ce même fonds (domaine bloqué, ou une séquence de 4 rendements réels —
@@ -130,7 +131,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_hy", name: "iShares € High Yield Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_hy", name: getInstrumentName("IE00B66F4759", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "IE00B66F4759",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/uk/individual/en/products/251843/
@@ -145,7 +146,7 @@ export const ASSETS = [
   },
 
   {
-    id: "oblig_inflation", name: "iShares € Inflation Linked Govt Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_inflation", name: getInstrumentName("IE00B0M62X26", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "IE00B0M62X26",
     // 2022 (-9,73%) CORRIGÉ le 30/08/2026 (audit web) puis 2020/2021/2023/2024/2025 CORRIGÉS le
     // même jour (capture d'écran) : la fiche officielle BlackRock/iShares (IBCI, EUR
@@ -165,7 +166,7 @@ export const ASSETS = [
 
   // ── 🟢 Actions développées ─────────────────────────────
   {
-    id: "msci_world", name: "Amundi MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "msci_world", name: getInstrumentName("LU1681043599", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "LU1681043599",
     // Source : fiche officielle Amundi du fonds LU1681043599 au 31/08/2026, tableau
     // "Calendar year performance / Portfolio" en EUR, net des frais du fonds. La ligne
@@ -178,7 +179,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sp500", name: "Amundi PEA S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sp500", name: getInstrumentName("FR0011871128", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "FR0011871128",
     // Contrôle individuel le 24/09/2026 : ISIN, devise EUR et six rendements 2020-2025
     // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée (fonds, pas indice).
@@ -196,7 +197,7 @@ export const ASSETS = [
     // Jumeau strict de "sp500" — même indice S&P 500, fonds vérifié réel (ISIN IE00B5BMR087,
     // ticker CSPX, l'un des plus gros ETF actions d'Europe). Part USD (non-PEA), contrairement à
     // sp500 qui est la version PEA d'Amundi : leurs performances propres diffèrent.
-    id: "sp500_ishares", name: "iShares Core S&P 500 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sp500_ishares", name: getInstrumentName("IE00B5BMR087", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B5BMR087",
     // Contrôle individuel le 24/09/2026 : ISIN, devise USD et six années 2020-2025
     // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
@@ -211,7 +212,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "nasdaq100", name: "Amundi PEA Nasdaq-100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "nasdaq100", name: getInstrumentName("FR0011871110", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "FR0011871110",
     // Contrôle individuel le 24/09/2026 : ISIN, devise EUR et six années 2020-2025
     // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
@@ -229,7 +230,7 @@ export const ASSETS = [
     // par BlackRock, pas ceux de la part Amundi en euros. Une cotation en EUR ne change pas
     // la devise dans laquelle BlackRock calcule sa série de performance :
     // https://www.blackrock.com/fr/particuliers/products/253741/ishares-nasdaq-100-ucits-etf
-    id: "nasdaq100_ishares", name: "iShares Nasdaq 100 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "nasdaq100_ishares", name: getInstrumentName("IE00B53SZB19", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B53SZB19",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.blackrock.com/fr/intermediaries/products/253741/ishares-nasdaq-100-ucits-etf
@@ -249,7 +250,7 @@ export const ASSETS = [
     // NAV du fonds EUR, ligne « Portefeuille », années calendaires 2020-2025 :
     // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/RETAIL/ETF/20260331
     // Le levier se réinitialise chaque jour ; la performance annuelle n'est pas 2x celle de l'indice.
-    id: "lqq", name: "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc", cat: "actions_larges", emoji: "⚡",
+    id: "lqq", name: getInstrumentName("FR0010342592", "portfolio"), cat: "actions_larges", emoji: "⚡",
     isin: "FR0010342592",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/RETAIL/ETF/20260831
@@ -268,7 +269,7 @@ export const ASSETS = [
     // domicilié France, éligible PEA (confirmé), lancé le 16/06/2009. Source des rendements
     // annuels : NAV « Portefeuille » en EUR, fiche officielle Amundi 2025 :
     // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20251231
-    id: "cl2", name: "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc", cat: "actions_larges", emoji: "⚡",
+    id: "cl2", name: getInstrumentName("FR0010755611", "portfolio"), cat: "actions_larges", emoji: "⚡",
     isin: "FR0010755611",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20260831
@@ -280,7 +281,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "cac40", name: "Amundi CAC 40 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "cac40", name: getInstrumentName("FR0013380607", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "FR0013380607",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/RETAIL/ETF
@@ -295,7 +296,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "eurostoxx50", name: "Amundi Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "eurostoxx50", name: getInstrumentName("LU1681047236", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "LU1681047236",
     // Rendements calendaires du fonds en EUR, ligne « Portefeuille » de la fiche Amundi
     // (31/08/2026) : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/FRA/FRA/INSTITUTIONNEL/ETF
@@ -310,7 +311,7 @@ export const ASSETS = [
     // Part iShares distincte : rendements calendaires propres au fonds en EUR, ligne
     // « Share Class » de la fiche BlackRock (31/08/2026), et non ceux du fonds Amundi :
     // https://www.ishares.com/gls-download/literature/fact-sheet/cssx5e-ishares-core-euro-stoxx-50-ucits-etf-fund-fact-sheet-en-gb.pdf
-    id: "eurostoxx50_ishares", name: "iShares Core EURO STOXX 50 UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "eurostoxx50_ishares", name: getInstrumentName("IE00B53L3W79", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B53L3W79",
     r: [-2.89, 23.98, -9.04, 22.78, 11.54, 21.78],
     desc: [
@@ -320,7 +321,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "msci_europe", name: "iShares Core MSCI Europe UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "msci_europe", name: getInstrumentName("IE00B4K48X80", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4K48X80",
     // Contrôle individuel le 24/09/2026 : ISIN, devise EUR et six années 2020-2025
     // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
@@ -334,7 +335,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_sante", name: "iShares S&P 500 Health Care Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_sante", name: getInstrumentName("IE00B43HR379", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B43HR379",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/uk/individual/en/products/280507/
@@ -351,7 +352,7 @@ export const ASSETS = [
 
   // ── 🟤 Actions émergentes ──────────────────────────────
   {
-    id: "msci_em", name: "iShares Core MSCI EM IMI UCITS ETF", cat: "emergents", emoji: "🟤",
+    id: "msci_em", name: getInstrumentName("IE00BKM4GZ66", "portfolio"), cat: "emergents", emoji: "🟤",
     isin: "IE00BKM4GZ66",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/de/privatanleger/de/literature/fact-sheet/eimi-ishares-core-msci-em-imi-ucits-etf-fund-fact-sheet-de-de.pdf
@@ -368,7 +369,7 @@ export const ASSETS = [
 
   // ── 🟡 Or ───────────────────────────────────────────────
   {
-    id: "or", name: "Invesco Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
+    id: "or", name: getInstrumentName("IE00B579F325", "portfolio"), cat: "matieres_premieres", emoji: "🟡",
     isin: "IE00B579F325",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf
@@ -385,7 +386,7 @@ export const ASSETS = [
 
   // ── 🛢️ Autres matières premières ───────────────────────
   {
-    id: "argent", name: "iShares Physical Silver ETC", cat: "matieres_premieres", emoji: "🛢️",
+    id: "argent", name: getInstrumentName("IE00B4NCWG09", "portfolio"), cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00B4NCWG09",
     // Contrôle individuel du proxy le 24/09/2026 : rendements USD iShares et conversion EUR indicative, 2020-2025 ; calcul non publié par l’émetteur. Confiance : proxy documenté, pas rendement du produit affiché.
     // Sources : https://www.ishares.com/uk/individual/en/products/258443/ et https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf
@@ -407,7 +408,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "mp_large", name: "Invesco Bloomberg Commodity UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
+    id: "mp_large", name: getInstrumentName("IE00BD6FTQ80", "portfolio"), cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00BD6FTQ80",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.invesco.com/content/dam/invesco/uk/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en-uk.pdf
@@ -424,7 +425,7 @@ export const ASSETS = [
   {
     // Jumeau strict de "mp_large" — vérifié réel (ISIN IE00BDFL4P12, ticker ICOM) : réplique
     // bien l'indice Bloomberg Commodity, confirmé via la fiche produit iShares.
-    id: "mp_large_icom", name: "iShares Diversified Commodity Swap UCITS ETF", cat: "matieres_premieres", emoji: "🛢️",
+    id: "mp_large_icom", name: getInstrumentName("IE00BDFL4P12", "portfolio"), cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00BDFL4P12",
     // Contrôle individuel le 24/09/2026 : ISIN, devise USD et six années 2020-2025
     // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
@@ -440,7 +441,7 @@ export const ASSETS = [
   },
   // ── 🟠 Crypto ───────────────────────────────────────────
   {
-    id: "bitcoin", name: "CoinShares Physical Bitcoin ETP", cat: "crypto", emoji: "🟠",
+    id: "bitcoin", name: getInstrumentName("GB00BLD4ZL17", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "GB00BLD4ZL17",
     // Contrôle individuel du proxy le 24/09/2026 : cours spot BTC/USD, 2020-2025 ; ce ne sont pas les rendements de l’ETP CoinShares. Confiance : proxy documenté, pas rendement du produit affiché.
     // Sources : https://www.slickcharts.com/currency/BTC/returns et https://investor.coinshares.com/pressreleases/coinshares-lists-physically-backed-crypto-etps-on-euronext-paris-amsterdam
@@ -460,7 +461,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "ethereum", name: "CoinShares Ethereum Staking ETP", cat: "crypto", emoji: "🟠",
+    id: "ethereum", name: getInstrumentName("GB00BLD4ZM24", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "GB00BLD4ZM24",
     // Rendements ETH/USD publiés par Slickcharts, 2020-2025 : variation entre les
     // clôtures annuelles successives, selon la même convention que le proxy BTC.
@@ -499,7 +500,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "foncieres_etf", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF", cat: "immobilier", emoji: "⚪",
+    id: "foncieres_etf", name: getInstrumentName("LU1437018838", "portfolio"), cat: "immobilier", emoji: "⚪",
     isin: "LU1437018838",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025 ; part C de la fiche commune C/D. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231
@@ -519,7 +520,7 @@ export const ASSETS = [
     // Jumeau distribuant de "foncieres_etf" (part Dist, vérifiée réelle, réservée au profil
     // Rentier — cf. DIST_TWINS et Rentier dans theses.js) : même sous-jacent (FTSE EPRA Nareit
     // Global Developed), seule la politique de distribution change.
-    id: "foncieres_etf_dist", name: "Amundi FTSE EPRA NAREIT Global UCITS ETF Dist", cat: "immobilier", emoji: "⚪",
+    id: "foncieres_etf_dist", name: getInstrumentName("LU1737652823", "portfolio"), cat: "immobilier", emoji: "⚪",
     isin: "LU1737652823",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025 ; part D de la fiche commune C/D. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231
@@ -537,7 +538,7 @@ export const ASSETS = [
 
   // ── 🟣 Dividendes ────────────────────────────────────────
   {
-    id: "strat_dividendes", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF", cat: "dividendes", emoji: "🟣",
+    id: "strat_dividendes", name: getInstrumentName("IE00B9CQXS71", "portfolio"), cat: "dividendes", emoji: "🟣",
     // ISIN ajouté le 13/09/2026 (audit "ISIN pour chaque ETF") : IE00B9CQXS71 est en réalité la
     // SEULE part existante de ce fonds — recherche dédiée d'une part Acc distincte infructueuse
     // (justETF/SSGA ne référencent qu'une part, distribuante trimestrielle). "strat_dividendes"
@@ -559,7 +560,7 @@ export const ASSETS = [
   },
   {
     // Alias du même fonds SPDR distribuant, réservé au profil Rentier.
-    id: "strat_dividendes_dist", name: "SPDR S&P Global Dividend Aristocrats UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    id: "strat_dividendes_dist", name: getInstrumentName("IE00B9CQXS71", "portfolio", "strat_dividendes_dist"), cat: "dividendes", emoji: "🟣",
     isin: "IE00B9CQXS71",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ssga.com/lu/fr/intermediary/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy
@@ -574,7 +575,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "high_dividend", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF", cat: "dividendes", emoji: "🟣",
+    id: "high_dividend", name: getInstrumentName("IE00BK5BR626", "portfolio"), cat: "dividendes", emoji: "🟣",
     isin: "IE00BK5BR626",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025 ; fiche arrondie à 0,1 point. Confiance : élevée à cette précision ; les décimales supplémentaires restent indicatives.
     // Source primaire : https://www.vanguard.co.uk/professional/product/etf/equity/9677/ftse-all-world-high-dividend-yield-ucits%20-etf-usd-accumulating
@@ -594,7 +595,7 @@ export const ASSETS = [
   {
     // Jumeau distribuant de "high_dividend" (part Dist, ISIN IE00B8GKDB10, vérifiée réelle),
     // réservé au profil Rentier.
-    id: "high_dividend_dist", name: "Vanguard FTSE All-World High Dividend Yield UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    id: "high_dividend_dist", name: getInstrumentName("IE00B8GKDB10", "portfolio"), cat: "dividendes", emoji: "🟣",
     isin: "IE00B8GKDB10",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025 ; fiche arrondie à 0,1 point. Confiance : élevée à cette précision ; les décimales supplémentaires restent indicatives.
     // Source primaire : https://www.vanguard.co.uk/professional/product/etf/equity/9506/ftse-all-world-high-dividend-yield-ucits-etf-usd-distributing
@@ -609,7 +610,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "quality_dividend", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF", cat: "dividendes", emoji: "🟣",
+    id: "quality_dividend", name: getInstrumentName("IE00BKPSFC54", "portfolio"), cat: "dividendes", emoji: "🟣",
     isin: "IE00BKPSFC54",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2021-2025 seulement ; 2020 emprunté à la part Dist. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -628,7 +629,7 @@ export const ASSETS = [
   },
   {
     // Part Dist du même fonds, réservée au profil Rentier ; historique propre à cette part.
-    id: "quality_dividend_dist", name: "iShares MSCI World Quality Dividend Advanced UCITS ETF Dist", cat: "dividendes", emoji: "🟣",
+    id: "quality_dividend_dist", name: getInstrumentName("IE00BYYHSQ67", "portfolio"), cat: "dividendes", emoji: "🟣",
     isin: "IE00BYYHSQ67",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/wqdv-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -645,7 +646,7 @@ export const ASSETS = [
 
   // ── 🟢 Actions développées — styles complémentaires ─────
   {
-    id: "or_wisdomtree", name: "WisdomTree Physical Gold", cat: "matieres_premieres", emoji: "🟡",
+    id: "or_wisdomtree", name: getInstrumentName("JE00B1VS3770", "portfolio"), cat: "matieres_premieres", emoji: "🟡",
     isin: "JE00B1VS3770",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770
@@ -660,7 +661,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "or_ishares", name: "iShares Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
+    id: "or_ishares", name: getInstrumentName("IE00B4ND3602", "portfolio"), cat: "matieres_premieres", emoji: "🟡",
     isin: "IE00B4ND3602",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025 ; fiche arrondie à 0,1 point. Confiance : élevée à cette précision ; les décimales supplémentaires restent indicatives.
     // Source primaire : https://www.ishares.com/uk/individual/en/products/258441/ishares-physical-gold-etc-fund
@@ -675,7 +676,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "or_amundi", name: "Amundi Physical Gold ETC", cat: "matieres_premieres", emoji: "🟡",
+    id: "or_amundi", name: getInstrumentName("FR0013416716", "portfolio"), cat: "matieres_premieres", emoji: "🟡",
     isin: "FR0013416716",
     // Amundi FR0013416716, ligne ETC des années calendaires 2020-2025 en USD.
     // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013416716/ENG/FRA/INSTITUTIONNEL/AMUNDI
@@ -692,7 +693,7 @@ export const ASSETS = [
   },
   // Source émetteur vérifiée le 24/09/2026.
   {
-    id: "bitcoin_wisdomtree", name: "WisdomTree Physical Bitcoin", cat: "crypto", emoji: "🟠",
+    id: "bitcoin_wisdomtree", name: getInstrumentName("GB00BJYDH287", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "GB00BJYDH287",
     // NAV calendaire nette des frais du produit GB00BJYDH287, en USD.
     // https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287
@@ -706,7 +707,7 @@ export const ASSETS = [
   },
   // Source émetteur vérifiée le 24/09/2026.
   {
-    id: "bitcoin_etcgroup", name: "Bitwise Physical Bitcoin ETP", cat: "crypto", emoji: "🟠",
+    id: "bitcoin_etcgroup", name: getInstrumentName("DE000A27Z304", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "DE000A27Z304",
     // NAV USD publiée par Bitwise ; 2020 commence au lancement du 08/06/2020
     // et ne représente pas une année calendaire complète.
@@ -720,7 +721,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "bitcoin_21shares", name: "21Shares Bitcoin ETP", cat: "crypto", emoji: "🟠",
+    id: "bitcoin_21shares", name: getInstrumentName("CH0454664001", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "CH0454664001",
     // Contrôle individuel du proxy le 24/09/2026 : cours spot BTC/USD, 2020-2025 ; les performances officielles de la part diffèrent. Confiance : proxy documenté, pas rendement du produit affiché.
     // Sources : https://www.slickcharts.com/currency/BTC/returns et https://cdn.21shares.com/uploads/current-documents/past-performance/ABTC/CH0454664001_21SharesAG%28FR%29.pdf
@@ -735,7 +736,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_corp_amundi", name: "Amundi Core EUR Corporate Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_corp_amundi", name: getInstrumentName("LU1931975079", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "LU1931975079",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025 ; part D. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1931975079/FRA/FRA/INSTITUTIONNEL/ETF/20260731
@@ -749,7 +750,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_corp_vanguard", name: "Vanguard € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_corp_vanguard", name: getInstrumentName("IE00BZ163G84", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "IE00BZ163G84",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025 ; fiche arrondie à 0,1 point. Confiance : élevée à cette précision ; les décimales supplémentaires restent indicatives.
     // Source primaire : https://fund-docs.vanguard.com/ie00bz163g84-en.pdf
@@ -763,7 +764,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "oblig_corp_spdr", name: "SPDR € Corp Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_corp_spdr", name: getInstrumentName("IE00B3T9LM79", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "IE00B3T9LM79",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-bloomberg-euro-corporate-bond-ucits-etf-dist-sybc-gy
@@ -780,7 +781,7 @@ export const ASSETS = [
   // ── Variantes "monde" — indices proches mais pas strictement identiques : composition et
   // performance propres à chacun (l'ACWI et le FTSE All-World incluent les émergents).
   {
-    id: "msci_world_ishares", name: "iShares Core MSCI World UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "msci_world_ishares", name: getInstrumentName("IE00B4L5Y983", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4L5Y983",
     // Contrôle individuel le 24/09/2026 : ISIN, devise USD et six années 2020-2025
     // recoupés avec la fiche émetteur ci-dessous. Confiance : élevée.
@@ -799,7 +800,7 @@ export const ASSETS = [
     // World) UCITS ETF, ISIN FR001400U5Q4, lancé le 04/03/2025, ticker DCAM — pas "EWLD" comme
     // suggéré initialement) : les 6 années de la série représentent la performance réelle de
     // l'indice répliqué, le fonds lui-même n'existant que depuis 2025.
-    id: "msci_world_amundi_pea", name: "Amundi PEA Monde (MSCI World) UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "msci_world_amundi_pea", name: getInstrumentName("FR001400U5Q4", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "FR001400U5Q4",
     // Contrôle individuel du proxy le 24/09/2026 : indice MSCI World net EUR, 2020-2025 ; la part Amundi a été lancée en 2025. Confiance : proxy documenté, pas rendement du produit affiché.
     // Sources : https://www.msci.com/resources/factsheets/index_fact_sheet/msci-world-index-eur-net.pdf et https://www.amundietf.fr/pdfDocuments/kid-priips/FR001400U5Q4/FRA/FRA/20260428
@@ -814,7 +815,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "msci_acwi", name: "SPDR MSCI ACWI UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "msci_acwi", name: getInstrumentName("IE00B44Z5B48", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B44Z5B48",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy
@@ -829,7 +830,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "ftse_allworld_vanguard", name: "Vanguard FTSE All-World UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "ftse_allworld_vanguard", name: getInstrumentName("IE00BK5BQT80", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00BK5BQT80",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025 ; fiche arrondie à 0,1 point. Confiance : élevée à cette précision ; les décimales supplémentaires restent indicatives.
     // Source primaire : https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf
@@ -845,7 +846,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "msci_em_amundi", name: "Amundi MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    id: "msci_em_amundi", name: getInstrumentName("LU1681045370", "portfolio"), cat: "emergents", emoji: "🟤",
     isin: "LU1681045370",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF
@@ -859,7 +860,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "ftse_em_vanguard", name: "Vanguard FTSE Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    id: "ftse_em_vanguard", name: getInstrumentName("IE00BK5BR733", "portfolio"), cat: "emergents", emoji: "🟤",
     isin: "IE00BK5BR733",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025 ; fiche arrondie à 0,1 point. Confiance : élevée à cette précision ; les décimales supplémentaires restent indicatives.
     // Source primaire : https://www.vanguard.co.uk/professional/product/etf/equity/9678/ftse-emerging-markets-ucits
@@ -878,7 +879,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "msci_em_spdr", name: "SPDR MSCI Emerging Markets UCITS ETF", cat: "emergents", emoji: "🟤",
+    id: "msci_em_spdr", name: getInstrumentName("IE00B469F816", "portfolio"), cat: "emergents", emoji: "🟤",
     isin: "IE00B469F816",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-msci-emerging-markets-ucits-etf-spym-gy
@@ -894,7 +895,7 @@ export const ASSETS = [
   },
   // ── 🔵 Obligataire — durée courte ────────────────────────
   {
-    id: "oblig_etat_eur_short", name: "iShares € Govt Bond 1-3yr UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_etat_eur_short", name: getInstrumentName("IE00B14X4Q57", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "IE00B14X4Q57",
     // Contrôle individuel le 24/09/2026 : part et devise EUR, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/uk/individual/en/literature/fact-sheet/ibgs-ishares-govt-bond-1-3yr-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -912,7 +913,7 @@ export const ASSETS = [
 
   // ── 🟢 Europe — styles complémentaires ───────────────────
   {
-    id: "tech_europe", name: "iShares MSCI Europe Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "tech_europe", name: getInstrumentName("IE00BMW42413", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00BMW42413",
     // 2021/2022/2023/2024/2025 CORRIGÉS le 30/08/2026 : d'abord 2022 (-28,76%) et 2023 (+35,04%)
     // via deux sources web convergentes (fiche indice MSCI + fiche fonds), puis 2021 (+36,57%),
@@ -934,7 +935,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "smallcap_europe", name: "iShares MSCI Europe Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "smallcap_europe", name: getInstrumentName("IE0000N55FP4", "portfolio"), cat: "actions_larges", emoji: "🟢",
     // ISIN vérifié le 13/09/2026 (audit "ISIN pour chaque ETF") : ce fonds UCITS EUR (ESCE) a été
     // lancé le 25/03/2026 : série 2020-2025 du SPDR MSCI Europe Small Cap
     // UCITS ETF (fonds net EUR) créé en 2005 et suivant le même indice MSCI.
@@ -951,7 +952,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_energie", name: "iShares S&P 500 Energy Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_energie", name: getInstrumentName("IE00B42NKQ00", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B42NKQ00",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -976,7 +977,7 @@ export const ASSETS = [
   // homogène de l'ETF américain Global X QYLD, couvert dès avant janvier 2020.
   // Les deux ETF suivent des variantes distinctes de l'indice buy-write (BXNT/BXNTU).
   {
-    id: "qyld_ucits", name: "Global X Nasdaq 100 Covered Call UCITS ETF (QYLD)", cat: "dividendes", emoji: "🟣",
+    id: "qyld_ucits", name: getInstrumentName("IE00BM8R0J59", "portfolio"), cat: "dividendes", emoji: "🟣",
     // Rendements calendaires NAV, distributions réinvesties, de l'ETF américain QYLD :
     // https://assets-cms.globalxetfs.com/Statutory-Prospectus_Covered-Calls.pdf (p. 16).
     // Fonds UCITS / ISIN / variante BXNTU : https://globalxetfs.eu/funds/qyld
@@ -1002,7 +1003,7 @@ export const ASSETS = [
   // session pour le détail des fonds suggérés à l'origine et écartés (obsolètes, track record
   // insuffisant, ou indice non vérifiable avec confiance).
   {
-    id: "sect_tech", name: "iShares S&P 500 Information Technology Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_tech", name: getInstrumentName("IE00B3WJKG14", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B3WJKG14",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/iuit-ishares-s-p-500-information-technology-sector-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -1017,7 +1018,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_robotique", name: "iShares Automation & Robotics UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_robotique", name: getInstrumentName("IE00BYZK4552", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00BYZK4552",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/rbot-ishares-automation-robotics-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -1032,7 +1033,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_cybersecurite", name: "iShares Digital Security UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_cybersecurite", name: getInstrumentName("IE00BG0J4C88", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00BG0J4C88",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/lock-ishares-digital-security-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -1050,7 +1051,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_energie_propre", name: "iShares Global Clean Energy Transition UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_energie_propre", name: getInstrumentName("IE00B1XNHC34", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B1XNHC34",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/ch/privatkunden/de/literature/fact-sheet/inrg-ishares-global-clean-energy-transition-ucits-etf-fund-fact-sheet-de-ch.pdf
@@ -1065,7 +1066,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_conso_defensive", name: "iShares S&P 500 Consumer Staples Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_conso_defensive", name: getInstrumentName("IE00B40B8R38", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B40B8R38",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/iucs-ishares-s-p-500-consumer-staples-sector-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -1080,7 +1081,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "sect_utilities", name: "iShares S&P 500 Utilities Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_utilities", name: getInstrumentName("IE00B4KBBD01", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4KBBD01",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/iuus-ishares-s-p-500-utilities-sector-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -1097,7 +1098,7 @@ export const ASSETS = [
 
   // ── 🟣 Dividendes — audit "enrichissement sectoriel" ──────
   {
-    id: "dividend_leaders", name: "VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF", cat: "dividendes", emoji: "🟣",
+    id: "dividend_leaders", name: getInstrumentName("NL0011683594", "portfolio"), cat: "dividendes", emoji: "🟣",
     isin: "NL0011683594",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.vaneck.com/uk/en/blog/etf-insights/vaneck-dividend-leaders-ucits-etf-turns-10--a-decade-of-dividends/
@@ -1115,7 +1116,7 @@ export const ASSETS = [
 
   // ── ⚪ Immobilier — audit "enrichissement sectoriel" ──────
   {
-    id: "immo_gpr", name: "VanEck Global Real Estate UCITS ETF", cat: "immobilier", emoji: "⚪",
+    id: "immo_gpr", name: getInstrumentName("NL0009690239", "portfolio"), cat: "immobilier", emoji: "⚪",
     isin: "NL0009690239",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.vaneck.com/pl/pl/news-and-insights/blog/opinie-dot-etf/15-lat-w-brany-notowanych-nieruchomoci-argumenty-przemawiajce-za-inwestycjami-w-fundusze-typu-reit-w-ramach-zdywersyfikowanego-portfela-nieruchomoci/
@@ -1137,7 +1138,7 @@ export const ASSETS = [
 
   // ── 🔵 Obligataire — jumeau haut rendement (audit "enrichissement sectoriel") ──
   {
-    id: "oblig_hy_amundi", name: "Amundi Core EUR High Yield Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_hy_amundi", name: getInstrumentName("LU2970735911", "portfolio"), cat: "obligataire", emoji: "🔵",
     isin: "LU2970735911",
     // Amundi Acc lancée le 15 juillet 2025, indice Markit iBoxx EUR Liquid High Yield.
     // Série 2020-2025 de la part Acc EUR du Xtrackers LU1109943388 (lancée en 2017),
@@ -1167,7 +1168,7 @@ export const ASSETS = [
   // générations tant que l'utilisateur n'a pas choisi leur allocation) : présents uniquement dans
   // cette bibliothèque pour l'instant.
   {
-    id: "oblig_etat_us", name: "iShares $ Treasury Bond UCITS ETF", cat: "obligataire", emoji: "🔵",
+    id: "oblig_etat_us", name: getInstrumentName("IE00BK95B138", "portfolio"), cat: "obligataire", emoji: "🔵",
     // BlackRock GOVT, part USD distribuante, indice ICE U.S. Treasury Core Bond Index.
     // Son tableau officiel 2020-2025 correspond exactement aux six valeurs ci-dessous.
     isin: "IE00BK95B138",
@@ -1186,7 +1187,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "actions_japon", name: "iShares Core MSCI Japan IMI UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "actions_japon", name: getInstrumentName("IE00B4L5YX21", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4L5YX21",
     // Source : capture d'écran du fact sheet officiel BlackRock/iShares fournie par l'utilisateur le
     // 30/08/2026 (iShares Core MSCI Japan IMI UCITS ETF, part U.S. Dollar (Capitalisation)) —
@@ -1208,7 +1209,7 @@ export const ASSETS = [
     // Rendements calendaires officiels de la part iShares en USD (2020-2025), ligne « Total
     // Return » ; le fonds suit le MSCI Korea 20/35. Le MSCI classe la Corée comme marché émergent.
     // https://www.ishares.com/uk/individual/en/products/253733
-    id: "actions_coree", name: "iShares MSCI Korea UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "actions_coree", name: getInstrumentName("IE00B5W4TY14", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B5W4TY14",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025 ; fiche arrondie à 0,1 point. Confiance : élevée à cette précision ; les décimales supplémentaires restent indicatives.
     // Source primaire : https://www.ishares.com/uk/professional/en/products/253733/ishares-msci-korea-ucits-etf-acc-fund
@@ -1223,7 +1224,7 @@ export const ASSETS = [
   {
     // Rendements calendaires de la part iShares en USD (2020-2025), ligne « Total Return » :
     // https://www.ishares.com/ch/professionals/en/products/251878/ishares-msci-taiwan-ucits-etf
-    id: "actions_taiwan", name: "iShares MSCI Taiwan UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "actions_taiwan", name: getInstrumentName("IE00B0M63623", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B0M63623",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/itwn-ishares-msci-taiwan-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -1240,7 +1241,7 @@ export const ASSETS = [
     // « Total Return » publiées en USD par BlackRock ; 2020 reprend la part Dist
     // déjà existante du même fonds (fonds Acc lancé en avril). L'indice EXCLUT l'Inde.
     // https://www.ishares.com/uk/individual/en/products/313316/ishares-msci-ac-far-east-ex-japan-ucits-etf
-    id: "actions_asie_ex_japon", name: "iShares MSCI AC Far East ex-Japan UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "actions_asie_ex_japon", name: getInstrumentName("IE00BKPX3K41", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00BKPX3K41",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2021-2025 seulement ; 2020 emprunté à la part Dist. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf
@@ -1255,7 +1256,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "actions_value", name: "iShares Edge MSCI World Value Factor UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "actions_value", name: getInstrumentName("IE00BP3QZB59", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00BP3QZB59",
     // Nom CONFIRMÉ le 30/08/2026 : capture d'écran de l'en-tête du fact sheet officiel fournie par
     // l'utilisateur (catégorie "ACTIONS", ticker IWVL, part USD (Capitalisation)) — même fonds que
@@ -1289,7 +1290,7 @@ export const ASSETS = [
   // plusieurs points ; pétrole : aucune donnée annuelle synthétisable trouvée) — cf. rapport de
   // session pour le détail.
   {
-    id: "sect_financieres", name: "iShares S&P 500 Financials Sector UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "sect_financieres", name: getInstrumentName("IE00B4JNQZ49", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00B4JNQZ49",
     // Source : fiche officielle BlackRock/iShares (performance annuelle par calendrier, part de
     // fonds — IUFS), années 2020-2025. Recoupé avec l'indice de référence (S&P 500 Capped 35/20
@@ -1306,7 +1307,7 @@ export const ASSETS = [
     ],
   },
   {
-    id: "smallcap_monde", name: "iShares MSCI World Small Cap UCITS ETF", cat: "actions_larges", emoji: "🟢",
+    id: "smallcap_monde", name: getInstrumentName("IE00BF4RFH31", "portfolio"), cat: "actions_larges", emoji: "🟢",
     isin: "IE00BF4RFH31",
     // Contrôle individuel le 24/09/2026 : part et devise USD, performances 2020-2025. Confiance : élevée pour la période indiquée.
     // Source primaire : https://www.ishares.com/uk/individual/en/products/296576/
@@ -1325,103 +1326,103 @@ export const ASSETS = [
   },
   // Rendements des parts des Fiches ETF, réutilisés par référence.
   {
-    id: 'msci_acwi_ishares', name: 'iShares MSCI ACWI UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00B6R52259',
+    id: 'msci_acwi_ishares', name: getInstrumentName("IE00B6R52259", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00B6R52259',
     r: VERIFIED_RETURNS.IE00B6R52259.values,
     confidenceNote: 'Rendements NAV de la part iShares en dollars ; le résultat en euros dépend du change.',
     desc: ['un seul ETF pour les pays développés et émergents.', 'une exposition mondiale large en complément du MSCI World.', 'un cœur de portefeuille simple, qui reste exposé aux baisses des actions.'],
   },
   {
-    id: 'immo_ishares_yield', name: 'iShares Developed Markets Property Yield UCITS ETF', cat: 'immobilier', emoji: '⚪', isin: 'IE00B1FZS350',
+    id: 'immo_ishares_yield', name: getInstrumentName("IE00B1FZS350", "portfolio"), cat: 'immobilier', emoji: '⚪', isin: 'IE00B1FZS350',
     r: VERIFIED_RETURNS.IE00B1FZS350.values,
     confidenceNote: 'Rendements NAV de la part iShares en dollars ; le résultat en euros dépend du change.',
     desc: ['des foncières cotées dans les pays développés.', 'une sélection orientée dividendes immobiliers.', 'reste un placement en actions, sensible aux taux.'],
   },
   {
-    id: 'sect_biotech_ishares', name: 'iShares Nasdaq US Biotechnology UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYXG2H39',
+    id: 'sect_biotech_ishares', name: getInstrumentName("IE00BYXG2H39", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYXG2H39',
     // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00BYXG2H39.values,
     confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
     desc: ['biotechnologie américaine ; une poche santé cyclique', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
   },
   {
-    id: 'sect_energy_spdr', name: 'SPDR MSCI World Energy UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYTRR863',
+    id: 'sect_energy_spdr', name: getInstrumentName("IE00BYTRR863", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYTRR863',
     // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00BYTRR863.values,
     confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
     desc: ['énergie mondiale, sensible aux prix des matières premières', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
   },
   {
-    id: 'sect_tech_world_ishares', name: 'iShares MSCI World Information Technology Sector Advanced UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BJ5JNY98',
+    id: 'sect_tech_world_ishares', name: getInstrumentName("IE00BJ5JNY98", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00BJ5JNY98',
     // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00BJ5JNY98.values,
     confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
     desc: ['technologie mondiale, exposée aux grands groupes de croissance', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
   },
   {
-    id: 'sect_ai_lg', name: 'L&G Artificial Intelligence UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BK5BCD43',
+    id: 'sect_ai_lg', name: getInstrumentName("IE00BK5BCD43", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00BK5BCD43',
     // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00BK5BCD43.values,
     confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
     desc: ['entreprises exposées à l’intelligence artificielle', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
   },
   {
-    id: 'sect_batteries_lg', name: 'L&G Battery Value-Chain UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BF0M2Z96',
+    id: 'sect_batteries_lg', name: getInstrumentName("IE00BF0M2Z96", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00BF0M2Z96',
     // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00BF0M2Z96.values,
     confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
     desc: ['chaîne de valeur des batteries et du stockage électrique', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
   },
   {
-    id: 'sect_water_amundi', name: 'Amundi MSCI Water UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'FR0010527275',
+    id: 'sect_water_amundi', name: getInstrumentName("FR0010527275", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'FR0010527275',
     // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
     r: VERIFIED_RETURNS.FR0010527275.values,
     confidenceNote: 'Rendements de la part publiés en euros.',
     desc: ['entreprises actives dans le traitement et la distribution d’eau', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
   },
   {
-    id: 'sect_luxury_amundi', name: 'Amundi Global Luxury UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'LU1681048630',
+    id: 'sect_luxury_amundi', name: getInstrumentName("LU1681048630", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'LU1681048630',
     // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
     r: VERIFIED_RETURNS.LU1681048630.values,
     confidenceNote: 'Rendements de la part publiés en euros.',
     desc: ['industrie mondiale du luxe, dépendante de la consommation', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
   },
   {
-    id: 'dividend_aristocrats_us_spdr', name: 'SPDR S&P US Dividend Aristocrats UCITS ETF', cat: 'dividendes', emoji: '🟠', isin: 'IE00B6YX5D40',
+    id: 'dividend_aristocrats_us_spdr', name: getInstrumentName("IE00B6YX5D40", "portfolio"), cat: 'dividendes', emoji: '🟠', isin: 'IE00B6YX5D40',
     // Source émetteur et contrôle 2020–2025 dans etf-sheets/verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00B6YX5D40.values,
     confidenceNote: 'Rendements de la part en dollars ; une cotation en euros peut donner un autre résultat.',
     desc: ['actions américaines sélectionnées pour leur historique de dividendes', 'une exposition spécialisée à doser dans le portefeuille.', 'son cours peut connaître de fortes variations.'],
   },
   {
-    id: 'sect_cyber_lg', name: 'L&G Cyber Security UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYPLS672',
+    id: 'sect_cyber_lg', name: getInstrumentName("IE00BYPLS672", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00BYPLS672',
     // Historique 2020–2025 de la part USD Acc L&G ; source dans verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00BYPLS672.values,
     confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
     desc: ['entreprises spécialisées dans la cybersécurité.', 'une exposition thématique au développement de la sécurité informatique.', 'reste exposé aux variations du secteur technologique.'],
   },
   {
-    id: 'world_minvol_ishares', name: 'iShares Edge MSCI World Minimum Volatility UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00B8FHGS14',
+    id: 'world_minvol_ishares', name: getInstrumentName("IE00B8FHGS14", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00B8FHGS14',
     // Historique de la part exacte (USD) et source émetteur dans verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00B8FHGS14.values,
     confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
     desc: ['actions mondiales sélectionnées pour leur volatilité historiquement plus faible', 'une variante mondiale avec une sélection de titres spécifique.', 'son comportement peut différer nettement d’un indice World classique.'],
   },
   {
-    id: 'world_quality_ishares', name: 'iShares Edge MSCI World Quality Factor UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BP3QZ601',
+    id: 'world_quality_ishares', name: getInstrumentName("IE00BP3QZ601", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00BP3QZ601',
     // Historique de la part exacte (USD) et source émetteur dans verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00BP3QZ601.values,
     confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
     desc: ['actions mondiales sélectionnées sur des critères de qualité', 'une variante mondiale avec une sélection de titres spécifique.', 'son comportement peut différer nettement d’un indice World classique.'],
   },
   {
-    id: 'world_momentum_ishares', name: 'iShares Edge MSCI World Momentum Factor UCITS ETF', cat: 'actions_larges', emoji: '🟢', isin: 'IE00BP3QZ825',
+    id: 'world_momentum_ishares', name: getInstrumentName("IE00BP3QZ825", "portfolio"), cat: 'actions_larges', emoji: '🟢', isin: 'IE00BP3QZ825',
     // Historique de la part exacte (USD) et source émetteur dans verifiedReturns.js.
     r: VERIFIED_RETURNS.IE00BP3QZ825.values,
     confidenceNote: 'Rendements de la part en dollars ; le résultat en euros dépend du change.',
     desc: ['actions mondiales sélectionnées selon leur dynamique de cours', 'une variante mondiale avec une sélection de titres spécifique.', 'son comportement peut différer nettement d’un indice World classique.'],
   },
   {
-    id: 'oblig_hy_ishares_acc', name: 'iShares € High Yield Corp Bond UCITS ETF (Acc)', cat: 'obligataire', emoji: '🔵', isin: 'IE00BF3N7094',
+    id: 'oblig_hy_ishares_acc', name: getInstrumentName("IE00BF3N7094", "portfolio"), cat: 'obligataire', emoji: '🔵', isin: 'IE00BF3N7094',
     // Part capitalisante : disponible en composition manuelle, sans remplacer les parts
     // distribuantes du profil Rentier. Rendements de la part exacte dans verifiedReturns.js.
     manualOnly: true,
@@ -1429,7 +1430,7 @@ export const ASSETS = [
     desc: ['obligations d’entreprises européennes à haut rendement.', 'les coupons sont réinvestis dans la part.', 'un risque de crédit supérieur aux obligations de meilleure qualité.'],
   },
   {
-    id: 'oblig_em_local_ishares_acc', name: 'iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc)', cat: 'obligataire', emoji: '🔵', isin: 'IE00BFZPF546',
+    id: 'oblig_em_local_ishares_acc', name: getInstrumentName("IE00BFZPF546", "portfolio"), cat: 'obligataire', emoji: '🔵', isin: 'IE00BFZPF546',
     // Dette souveraine émergente en monnaies locales : disponible en composition manuelle,
     // pas assimilée aux emprunts d’État EUR ou US des profils automatiques.
     manualOnly: true,

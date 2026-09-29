@@ -21,7 +21,8 @@
     "audit:source-inventory": "node scripts/audit-source-inventory.mjs",
     "audit:data-roadmap": "node scripts/audit-data-roadmap.mjs",
     "test:tools": "npm run build && node scripts/playwright-tools.mjs",
-    "check-freshness": "node scripts/check-freshness.mjs"
+    "check-freshness": "node scripts/check-freshness.mjs",
+    "audit:instrument-catalog": "node scripts/audit-instrument-catalog.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
