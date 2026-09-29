@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, Fragment } from 'react'
 import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet } from './data'
+import { BROKER_EVIDENCE, EVIDENCE_FIELDS, PDF_DOCUMENTS } from './evidence'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './broker-comparator.css'
@@ -21,7 +22,7 @@ const getRow = (key) => ROWS.find((r) => r.key === key)
 function RankedRow({ rowKey, brokers, gridStyle }) {
   const row = getRow(rowKey)
   // Tarifs et garde dépendent du montant, du marché et de l'enveloppe : aucun vainqueur universel.
-  const best = ['frais', 'garde', 'liquidites'].includes(rowKey) ? null : rankRow(row, brokers)
+  const best = ['frais', 'garde'].includes(rowKey) ? null : rankRow(row, brokers)
   return (
     <div className="bc-row">
       <div className="bc-row-label">
@@ -57,6 +58,57 @@ function TextRow({ icon, label, dataKey, brokers, gridStyle }) {
         ))}
       </div>
     </div>
+  )
+}
+
+function CashRow({ kind, label, brokers, gridStyle }) {
+  return (
+    <div className="bc-row">
+      <div className="bc-row-label">💵 {label}</div>
+      <div className="bc-cells" style={gridStyle}>
+        {brokers.map((b) => (
+          <div className="bc-cell" key={b.id}>
+            <div className="bc-resume">{b.cash[kind].resume}</div>
+            <div className="bc-detail">{b.cash[kind].detail}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function EvidencePanel({ selected }) {
+  return (
+    <section className="bc-panel bc-evidence" aria-labelledby="bc-evidence-title">
+      <h2 id="bc-evidence-title">Registre des preuves PDF</h2>
+      <p className="bc-hint">État au 29/09/2026. « Partiel » signifie que le PDF documente une offre sans prouver tout son périmètre ; « non établi » ne permet pas de conclure. Pages numérotées depuis la première page du PDF. Taux et plafonds des espèces restent inconnus si le PDF ne les précise pas.</p>
+      {selected.map((id) => {
+        const broker = byId(id)
+        return (
+          <details className="bc-evidence-broker" key={id}>
+            <summary>{broker.nom} · {EVIDENCE_FIELDS.filter(([field]) => BROKER_EVIDENCE[id][field].status === 'confirmé').length}/{EVIDENCE_FIELDS.length} champs documentés</summary>
+            <ul>
+              {EVIDENCE_FIELDS.map(([field, label]) => {
+                const entry = BROKER_EVIDENCE[id][field]
+                return (
+                  <li key={field}>
+                    <strong>{label} · {entry.status}</strong> — {entry.summary}
+                    {entry.refs?.map(({ document, page }) => {
+                      const pdf = PDF_DOCUMENTS[document]
+                      return <span key={`${document}-${page}`}> <a href={`${pdf.url}#page=${page}`} target="_blank" rel="noreferrer">{pdf.title}, p. {page} (édition {pdf.edition})</a></span>
+                    })}
+                    {entry.checked?.map((document) => {
+                      const pdf = PDF_DOCUMENTS[document]
+                      return <span key={document}> · {pdf.availability ? `${pdf.title} : ${pdf.availability}` : `PDF consulté : ${pdf.title}`}</span>
+                    })}
+                  </li>
+                )
+              })}
+            </ul>
+          </details>
+        )
+      })}
+    </section>
   )
 }
 
@@ -120,7 +172,8 @@ function ComparisonCard({ selected }) {
       </div>
 
       <RankedRow rowKey="ifu" brokers={brokers} gridStyle={gridStyle} />
-      <RankedRow rowKey="liquidites" brokers={brokers} gridStyle={gridStyle} />
+      <CashRow kind="cto" label="Espèces CTO" brokers={brokers} gridStyle={gridStyle} />
+      <CashRow kind="pea" label="Espèces PEA" brokers={brokers} gridStyle={gridStyle} />
       <TextRow icon="🔄" label="Transfert PEA" dataKey="transfertPea" brokers={brokers} gridStyle={gridStyle} />
 
       <div className="bc-row">
@@ -255,6 +308,8 @@ export default function App() {
       <div className="bc-stage">
         <ComparisonCard selected={selected} />
       </div>
+
+      <EvidencePanel selected={selected} />
 
       <div className="bc-panel">
         <h2>Post X (format duel)</h2>

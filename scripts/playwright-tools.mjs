@@ -174,8 +174,11 @@ async function testBrokerComparator(page) {
   // innerText(), qui n'expose pas le contenu des champs de formulaire.
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
   const ok = tweet.includes("Quand tu passes un ordre") && tweet.includes("Si tu transfères ton PEA") && tweet.includes("Selon ta façon d’investir")
-    && tweet.includes("Entrant ✅") && tweet.includes("Espèces PEA : non")
-    && /à vérifier/i.test(tweet) && !/Livret|liquidités non rémunérées|vérifié le/i.test(tweet);
+    && tweet.includes("Entrant ✅") && tweet.includes("CTO :") && tweet.includes("PEA : Non")
+    && /à vérifier/i.test(tweet) && !/Livret|liquidités non rémunérées|vérifié le/i.test(tweet)
+    && (await page.locator('.bc-evidence-broker').count()) === 2
+    && (await page.locator('.bc-row-label').filter({ hasText: 'Espèces CTO' }).count()) === 1
+    && (await page.locator('.bc-row-label').filter({ hasText: 'Espèces PEA' }).count()) === 1;
   record("Comparatif courtiers", ok, "texte du duel généré, incertitude explicitée et livrets exclus");
 }
 
