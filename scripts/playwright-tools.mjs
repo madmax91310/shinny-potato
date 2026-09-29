@@ -179,7 +179,12 @@ async function testBrokerComparator(page) {
     && (await page.locator('.bc-evidence-broker').count()) === 2
     && (await page.locator('.bc-row-label').filter({ hasText: 'Espèces CTO' }).count()) === 1
     && (await page.locator('.bc-row-label').filter({ hasText: 'Espèces PEA' }).count()) === 1;
-  record("Comparatif courtiers", ok, "texte du duel généré, incertitude explicitée et livrets exclus");
+  await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
+  const fortuneoSaxo = await page.locator('.bc-tweet-textarea').inputValue();
+  const sourceOk = fortuneoSaxo.includes('PEA : Non : les espèces PEA et PEA-PME')
+    && fortuneoSaxo.includes('PEA : Non : les comptes PEA sont exclus')
+    && (await page.locator('.bc-evidence-broker').count()) === 2;
+  record("Comparatif courtiers", ok && sourceOk, "texte généré et exclusions des espèces PEA Fortuneo/Saxo sourcées");
 }
 
 async function testTweetMidi(page) {

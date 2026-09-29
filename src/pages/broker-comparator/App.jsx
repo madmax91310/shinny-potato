@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Fragment } from 'react'
 import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet } from './data'
-import { BROKER_EVIDENCE, EVIDENCE_FIELDS, PDF_DOCUMENTS } from './evidence'
+import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES } from './evidence'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './broker-comparator.css'
@@ -80,8 +80,8 @@ function CashRow({ kind, label, brokers, gridStyle }) {
 function EvidencePanel({ selected }) {
   return (
     <section className="bc-panel bc-evidence" aria-labelledby="bc-evidence-title">
-      <h2 id="bc-evidence-title">Registre des preuves PDF</h2>
-      <p className="bc-hint">État au 29/09/2026. « Partiel » signifie que le PDF documente une offre sans prouver tout son périmètre ; « non établi » ne permet pas de conclure. Pages numérotées depuis la première page du PDF. Taux et plafonds des espèces restent inconnus si le PDF ne les précise pas.</p>
+      <h2 id="bc-evidence-title">Registre des sources officielles</h2>
+      <p className="bc-hint">État au 29/09/2026. PDF contractuels et pages des courtiers sont identifiés séparément. « Partiel » signale un périmètre encore incertain ; « non établi » ne permet pas de conclure. Les taux variables sont à contrôler sur le site du courtier avant publication.</p>
       {selected.map((id) => {
         const broker = byId(id)
         return (
@@ -94,12 +94,12 @@ function EvidencePanel({ selected }) {
                   <li key={field}>
                     <strong>{label} · {entry.status}</strong> — {entry.summary}
                     {entry.refs?.map(({ document, page }) => {
-                      const pdf = PDF_DOCUMENTS[document]
-                      return <span key={`${document}-${page}`}> <a href={`${pdf.url}#page=${page}`} target="_blank" rel="noreferrer">{pdf.title}, p. {page} (édition {pdf.edition})</a></span>
+                      const source = OFFICIAL_SOURCES[document]
+                      return <span key={`${document}-${page ?? 'web'}`}> <a href={page ? `${source.url}#page=${page}` : source.url} target="_blank" rel="noreferrer">{source.title}{page ? `, p. ${page}` : ''} ({source.kind === 'page' ? 'page officielle' : `PDF ${source.edition}`})</a></span>
                     })}
                     {entry.checked?.map((document) => {
-                      const pdf = PDF_DOCUMENTS[document]
-                      return <span key={document}> · {pdf.availability ? `${pdf.title} : ${pdf.availability}` : `PDF consulté : ${pdf.title}`}</span>
+                      const source = OFFICIAL_SOURCES[document]
+                      return <span key={document}> · {source.availability ? `${source.title} : ${source.availability}` : `Source consultée : ${source.title}`}</span>
                     })}
                   </li>
                 )
@@ -190,7 +190,7 @@ function ComparisonCard({ selected }) {
       <div className="bc-synth">
         <div className="bc-label">En bref</div>
         <div className="bc-line">
-          💰 Compare le coût pour ton ordre, ton enveloppe et le marché concerné. « À vérifier » indique une information sans preuve PDF suffisante.
+          💰 Compare le coût pour ton ordre, ton enveloppe et le marché concerné. « À vérifier » indique une information sans source officielle suffisante.
         </div>
       </div>
 

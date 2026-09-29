@@ -1,16 +1,17 @@
 import assert from 'node:assert/strict'
 import { BROKERS } from '../src/pages/broker-comparator/data.js'
-import { BROKER_EVIDENCE, EVIDENCE_FIELDS, PDF_DOCUMENTS } from '../src/pages/broker-comparator/evidence.js'
+import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 
 const officialHosts = new Set([
   'assets.traderepublic.com', 'www.boursobank.com', 'www.fortuneo.fr',
   'www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com', 'ca-paris.credit-agricole.fr',
-  'www.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo',
+  'www.boursedirect.fr', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo',
+  'www.interactivebrokers.ie', 'www.credit-agricole.fr', 'traderepublic.com',
 ])
-for (const [id, document] of Object.entries(PDF_DOCUMENTS)) {
+for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   const url = new URL(document.url)
   assert(officialHosts.has(url.hostname), `${id}: hébergeur non officiel`)
-  assert(/\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
+  assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
 }
 assert.equal(Object.keys(BROKER_EVIDENCE).length, BROKERS.length)
@@ -30,10 +31,11 @@ for (const broker of BROKERS) {
     assert(item.summary && ['confirmé', 'partiel', 'non établi'].includes(item.status), `${broker.id}.${field}: état invalide`)
     if (item.status !== 'non établi') assert(item.refs?.length, `${broker.id}.${field}: référence absente`)
     for (const ref of item.refs ?? []) {
-      assert(PDF_DOCUMENTS[ref.document] && Number.isInteger(ref.page) && ref.page > 0, `${broker.id}.${field}: page PDF invalide`)
-      assert(!PDF_DOCUMENTS[ref.document].availability, `${broker.id}.${field}: PDF indisponible`)
+      const source = OFFICIAL_SOURCES[ref.document]
+      assert(source && (source.kind === 'page' ? ref.page === undefined : Number.isInteger(ref.page) && ref.page > 0), `${broker.id}.${field}: référence invalide`)
+      assert(!source.availability, `${broker.id}.${field}: source indisponible`)
     }
-    for (const id of item.checked ?? []) assert(PDF_DOCUMENTS[id], `${broker.id}.${field}: document inconnu`)
+    for (const id of item.checked ?? []) assert(OFFICIAL_SOURCES[id], `${broker.id}.${field}: document inconnu`)
   }
 }
-console.log(`Registre PDF : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(PDF_DOCUMENTS).length} documents référencés.`)
+console.log(`Registre officiel : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(OFFICIAL_SOURCES).length} sources référencées.`)
