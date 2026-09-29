@@ -11,6 +11,8 @@ function P(list) {
 
 export const ASSETS = {
   bitcoin: {
+    // Source consultée : https://finance.yahoo.com/quote/BTC-USD/history/
+    // Page source retrouvée le 2026-09-29 ; série mensuelle NON VÉRIFIÉE point par point ; export CSV original absent du dépôt.
     // Source : export Yahoo Finance (BTC-USD), prix d'ouverture mensuel réel, août 2026.
     label: 'Bitcoin', tweetPhrase: 'le Bitcoin', icon: '₿', currency: 'USD',
     points: P([
@@ -372,6 +374,8 @@ export const ASSETS = {
     ]),
   },
   or: {
+    // Source consultée : https://www.macrotrends.net/1333/historical-gold-prices-100-year-chart
+    // Page source retrouvée le 2026-09-29 ; série mensuelle NON VÉRIFIÉE point par point ; export CSV original absent du dépôt.
     // Source : cours de l'or au comptant (XAU/USD), clôture mensuelle réelle, MacroTrends "Gold
     // Prices - 100 Year Historical Chart", janvier 2015 à août 2026 (série complète, remplace la
     // précédente série issue d'un indice total return d'ETF qui divergeait sensiblement du cours
@@ -495,6 +499,8 @@ export const ASSETS = {
     ]),
   },
   apple: {
+    // Source consultée : https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history
+    // Page source retrouvée le 2026-09-29 ; série mensuelle NON VÉRIFIÉE point par point ; export CSV original absent du dépôt.
     // Source : MacroTrends (AAPL), export CSV mensuel réel fourni par l'utilisateur, prix de clôture
     // ajustés des splits. Série complète et fiable de janvier 2015 à août 2026.
     label: 'Apple', tweetPhrase: 'Apple', icon: '🍎', currency: 'USD',
@@ -537,6 +543,8 @@ export const ASSETS = {
     ]),
   },
   microsoft: {
+    // Source consultée : https://www.macrotrends.net/stocks/charts/MSFT/microsoft/stock-price-history
+    // Page source retrouvée le 2026-09-29 ; série mensuelle NON VÉRIFIÉE point par point ; export CSV original absent du dépôt.
     // Source : MacroTrends (MSFT), export CSV mensuel réel fourni par l'utilisateur, prix de clôture.
     // Série complète et fiable de janvier 2015 à août 2026.
     label: 'Microsoft', tweetPhrase: 'Microsoft', icon: '🪟', currency: 'USD',
@@ -579,6 +587,8 @@ export const ASSETS = {
     ]),
   },
   broadcom: {
+    // Source consultée : https://www.macrotrends.net/stocks/charts/AVGO/broadcom/stock-price-history
+    // Page source retrouvée le 2026-09-29 ; série mensuelle NON VÉRIFIÉE point par point ; export CSV original absent du dépôt.
     // Source : MacroTrends (AVGO), export CSV mensuel réel fourni par l'utilisateur, prix de clôture
     // AJUSTÉ du split 10:1 de juillet 2024. Série complète et fiable de janvier 2015 à août 2026 —
     // comble tous les trous précédents (2015, 2017, 2018, 2020, 2023, 2026-01/04).
@@ -622,6 +632,8 @@ export const ASSETS = {
     ]),
   },
   tesla: {
+    // Source consultée : https://www.macrotrends.net/stocks/charts/TSLA/tesla/stock-price-history
+    // Page source retrouvée le 2026-09-29 ; série mensuelle NON VÉRIFIÉE point par point ; export CSV original absent du dépôt.
     // Source : MacroTrends (TSLA), export CSV mensuel réel fourni par l'utilisateur, prix de clôture
     // AJUSTÉ des splits 5:1 (août 2020) et 3:1 (août 2022). Série complète et fiable de janvier 2015
     // à août 2026.

@@ -40,6 +40,13 @@ export function createTheme(overrides = {}) {
 // produit d'un comparatif. Les frais et l'éligibilité peuvent aussi changer :
 // contrôler les fiches émetteurs avant publication.
 const BASE_THEMES = [
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00BD4TXV59 : https://www.justetf.com/en/etf-profile.html?isin=IE00BD4TXV59
+  // IE00BK5BQT80 : https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80
+  // IE00B44Z5B48 : https://www.justetf.com/en/etf-profile.html?isin=IE00B44Z5B48
+  // FR001400U5Q4 : https://www.justetf.com/en/etf-profile.html?isin=FR001400U5Q4
+  // PEA (FR001400U5Q4) : https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-pea-monde-msci-world-ucits-etf/fr001400u5q4
   createTheme({
     id: 'monde',
     nom: 'Monde',
@@ -87,6 +94,12 @@ const BASE_THEMES = [
     cloture:
       'Le choix ne se joue pas sur la performance passée, mais sur les frais, la composition et l’éligibilité PEA qui collent à TA stratégie.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE000XZSV718 : https://www.justetf.com/en/etf-profile.html?isin=IE000XZSV718
+  // FR0011871128 : https://www.justetf.com/en/etf-profile.html?isin=FR0011871128
+  // IE000DQLYVB9 : https://www.justetf.com/en/etf-profile.html?isin=IE000DQLYVB9
+  // FR0011871110 : https://www.justetf.com/en/etf-profile.html?isin=FR0011871110
   createTheme({
     id: 'usa',
     nom: 'USA',
@@ -135,6 +148,11 @@ const BASE_THEMES = [
     cloture:
       'Le vrai choix : S&P 500 large et diversifié, ou Nasdaq concentré et plus volatil sur la tech. À arbitrer selon ton profil de risque.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00B4K48X80 : https://www.justetf.com/en/etf-profile.html?isin=IE00B4K48X80
+  // IE00B53L3W79 : https://www.justetf.com/en/etf-profile.html?isin=IE00B53L3W79
+  // FR0011550193 : https://www.justetf.com/en/etf-profile.html?isin=FR0011550193
   createTheme({
     id: 'europe',
     nom: 'Europe',
@@ -169,6 +187,10 @@ const BASE_THEMES = [
     cloture:
       'Le 50 se limite aux grandes sociétés de la zone euro. Le MSCI Europe et le STOXX 600 couvrent aussi d’autres marchés européens. Vérifie ton enveloppe avant de trancher.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // LU1834988518 : https://www.justetf.com/en/etf-profile.html?isin=LU1834988518
+  // DE000A0H08Q4 : https://www.justetf.com/en/etf-profile.html?isin=DE000A0H08Q4
   createTheme({
     id: 'tech-europe',
     nom: 'Tech Europe',
@@ -196,6 +218,11 @@ const BASE_THEMES = [
     cloture:
       'Tu ajoutes un seul secteur : si tu possèdes déjà un ETF Europe, regarde d’abord combien de ces entreprises tu détiens déjà.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00BKM4GZ66 : https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66
+  // FR0013412020 : https://www.justetf.com/en/etf-profile.html?isin=FR0013412020
+  // IE00BTJRMP35 : https://www.justetf.com/en/etf-profile.html?isin=IE00BTJRMP35
   createTheme({
     id: 'emergents',
     nom: 'Émergents',
@@ -230,6 +257,10 @@ const BASE_THEMES = [
     cloture:
       'Une ligne « émergents » ne répartit pas ton argent à parts égales entre les pays. Regarde surtout le poids des plus gros marchés et ce que change le filtre ESG de la version PEA.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // LU1681048630 : https://www.justetf.com/en/etf-profile.html?isin=LU1681048630
+  // FR001400S9V0 : https://www.justetf.com/en/etf-profile.html?isin=FR001400S9V0
   createTheme({
     id: 'luxe',
     nom: 'Luxe',
@@ -255,6 +286,11 @@ const BASE_THEMES = [
     cloture:
       'Le secteur luxe est cyclique et concentré sur quelques méga-caps — un ETF thématique à forte conviction, pas un socle de portefeuille.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00BGV5VN51 : https://www.justetf.com/en/etf-profile.html?isin=IE00BGV5VN51
+  // IE00BK5BCD43 : https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BCD43
+  // IE00BYZK4552 : https://www.justetf.com/en/etf-profile.html?isin=IE00BYZK4552
   createTheme({
     id: 'ia-robotique',
     nom: 'IA / Robotique',
@@ -289,6 +325,11 @@ const BASE_THEMES = [
       'IA pure, Big Data ou robotique/automatisation : chaque indice définit le secteur différemment, lis la méthodologie avant de choisir.',
     eligibilite: 'CTO uniquement',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00BJ5JNZ06 : https://www.justetf.com/en/etf-profile.html?isin=IE00BJ5JNZ06
+  // IE00BM67HK77 : https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77
+  // LU1834986900 : https://www.justetf.com/en/etf-profile.html?isin=LU1834986900
   createTheme({
     id: 'sante',
     nom: 'Santé',
@@ -323,6 +364,11 @@ const BASE_THEMES = [
     cloture:
       'Exposition mondiale ou européenne, avec ou sans exclusions dans l’indice : regarde les entreprises détenues et l’éligibilité PEA.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00B1XNHC34 : https://www.justetf.com/en/etf-profile.html?isin=IE00B1XNHC34
+  // FR0010524777 : https://www.justetf.com/en/etf-profile.html?isin=FR0010524777
+  // IE00BK5BCH80 : https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BCH80
   createTheme({
     id: 'renouvelables',
     nom: 'Renouvelables',
@@ -358,6 +404,11 @@ const BASE_THEMES = [
       'Le crash de 2022 rappelle que les thématiques ESG concentrées peuvent être très volatiles — à doser en conséquence dans un portefeuille.',
     eligibilite: 'CTO uniquement',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00B8GKDB10 : https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10
+  // IE00B9CQXS71 : https://www.justetf.com/en/etf-profile.html?isin=IE00B9CQXS71
+  // IE00BZ56SW52 : https://www.justetf.com/en/etf-profile.html?isin=IE00BZ56SW52
   createTheme({
     id: 'dividendes',
     nom: 'Dividendes',
@@ -395,6 +446,12 @@ const BASE_THEMES = [
       'Un rendement élevé n’est pas toujours signe de qualité — regarde la méthodologie de sélection avant le seul chiffre du yield.',
     eligibilite: 'CTO uniquement',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // LU2089238385 : https://www.justetf.com/en/etf-profile.html?isin=LU2089238385
+  // FR0013411980 : https://www.justetf.com/en/etf-profile.html?isin=FR0013411980
+  // FR0013411998 : https://www.justetf.com/en/etf-profile.html?isin=FR0013411998
+  // LU1875395870 : https://www.justetf.com/en/etf-profile.html?isin=LU1875395870
   createTheme({
     id: 'japon',
     nom: 'Japon',
@@ -439,6 +496,12 @@ const BASE_THEMES = [
     cloture:
       'Couvert ou non contre le yen, en PEA ou non : ces critères comptent autant que le choix de l’indice sous-jacent.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE000YYE6WK5 : https://www.justetf.com/en/etf-profile.html?isin=IE000YYE6WK5
+  // IE0002Y8CX98 : https://www.justetf.com/en/etf-profile.html?isin=IE0002Y8CX98
+  // LU3038520774 : https://www.justetf.com/en/etf-profile.html?isin=LU3038520774
+  // PEA (LU3038520774) : https://www.ca-sicavetfcp.fr/productsheet/view/idpart/382/idvm/LU3038520774/lg/fr/popup/1 (Non).
   createTheme({
     id: 'defense',
     nom: 'Défense',
@@ -467,12 +530,17 @@ const BASE_THEMES = [
         isin: 'LU3038520774',
         frais: formatEtfTer('LU3038520774'),
 
-        differenciateur: 'défense européenne, éligible PEA, frais les plus bas du trio',
+        differenciateur: 'défense européenne, non éligible PEA, frais les plus bas du trio',
       }),
     ],
     cloture:
       'Exposition mondiale ou 100% européenne, éligible PEA ou non : ces ETF récents n’ont pas tous le même profil de risque.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE0007Y8Y157 : https://www.justetf.com/en/etf-profile.html?isin=IE0007Y8Y157
+  // IE000C6ITGC8 : https://www.justetf.com/en/etf-profile.html?isin=IE000C6ITGC8
+  // IE000W8WMSL2 : https://www.justetf.com/en/etf-profile.html?isin=IE000W8WMSL2
   createTheme({
     id: 'quantique',
     nom: 'Quantique',
@@ -508,6 +576,9 @@ const BASE_THEMES = [
       'Le thème est récent et concentré. Vérifie les entreprises réellement exposées au quantique et le risque que tu acceptes.',
     eligibilite: 'CTO pour les trois fonds présentés',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE000YU9K6K2 : https://www.justetf.com/en/etf-profile.html?isin=IE000YU9K6K2
   createTheme({
     id: 'spatial',
     nom: 'Spatial',
@@ -533,6 +604,12 @@ const BASE_THEMES = [
       'Le thème reste concentré et volatil. Compare les entreprises détenues et la taille des nouveaux fonds avant de choisir.',
     eligibilite: 'CTO uniquement',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00BDFBTQ78 : https://www.justetf.com/en/etf-profile.html?isin=IE00BDFBTQ78
+  // LU1834983550 : https://www.justetf.com/en/etf-profile.html?isin=LU1834983550
+  // LU1834983634 : https://www.justetf.com/en/etf-profile.html?isin=LU1834983634
+  // IE00BM67HS53 : https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53
   createTheme({
     id: 'ressources-naturelles',
     nom: 'Ressources naturelles',
@@ -577,6 +654,12 @@ const BASE_THEMES = [
     cloture:
       'Exposition mondiale, européenne (et PEA), ou ciblée matériaux : le choix dépend surtout de ton allocation géographique déjà en place.',
   }),
+  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
+  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
+  // IE00B4ND3602 : https://www.justetf.com/en/etf-profile.html?isin=IE00B4ND3602
+  // FR0013416716 : https://www.justetf.com/en/etf-profile.html?isin=FR0013416716
+  // IE00B4NCWG09 : https://www.justetf.com/en/etf-profile.html?isin=IE00B4NCWG09
+  // GB00B15KXQ89 : https://www.justetf.com/en/etf-profile.html?isin=GB00B15KXQ89
   createTheme({
     id: 'etc-metaux',
     nom: 'ETC (Or, Argent, Cuivre)',

@@ -4,197 +4,71 @@
     "file": "src/pages/investment-calculator/data.js",
     "name": "bitcoin",
     "reviewedAt": null,
-    "status": "source_named_without_url_or_date",
+    "status": "source_page_checked_series_unverified",
     "sourceNamed": true,
-    "sourceUrls": []
+    "sourceUrls": [
+      "https://finance.yahoo.com/quote/BTC-USD/history/"
+    ],
+    "sourceCheckedAt": "2026-09-29"
   },
   {
     "tool": "calculateur",
     "file": "src/pages/investment-calculator/data.js",
     "name": "or",
     "reviewedAt": null,
-    "status": "source_named_without_url_or_date",
+    "status": "source_page_checked_series_unverified",
     "sourceNamed": true,
-    "sourceUrls": []
+    "sourceUrls": [
+      "https://www.macrotrends.net/1333/historical-gold-prices-100-year-chart"
+    ],
+    "sourceCheckedAt": "2026-09-29"
   },
   {
     "tool": "calculateur",
     "file": "src/pages/investment-calculator/data.js",
     "name": "apple",
     "reviewedAt": null,
-    "status": "source_named_without_url_or_date",
+    "status": "source_page_checked_series_unverified",
     "sourceNamed": true,
-    "sourceUrls": []
+    "sourceUrls": [
+      "https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history"
+    ],
+    "sourceCheckedAt": "2026-09-29"
   },
   {
     "tool": "calculateur",
     "file": "src/pages/investment-calculator/data.js",
     "name": "microsoft",
     "reviewedAt": null,
-    "status": "source_named_without_url_or_date",
+    "status": "source_page_checked_series_unverified",
     "sourceNamed": true,
-    "sourceUrls": []
+    "sourceUrls": [
+      "https://www.macrotrends.net/stocks/charts/MSFT/microsoft/stock-price-history"
+    ],
+    "sourceCheckedAt": "2026-09-29"
   },
   {
     "tool": "calculateur",
     "file": "src/pages/investment-calculator/data.js",
     "name": "broadcom",
     "reviewedAt": null,
-    "status": "source_named_without_url_or_date",
+    "status": "source_page_checked_series_unverified",
     "sourceNamed": true,
-    "sourceUrls": []
+    "sourceUrls": [
+      "https://www.macrotrends.net/stocks/charts/AVGO/broadcom/stock-price-history"
+    ],
+    "sourceCheckedAt": "2026-09-29"
   },
   {
     "tool": "calculateur",
     "file": "src/pages/investment-calculator/data.js",
     "name": "tesla",
     "reviewedAt": null,
-    "status": "source_named_without_url_or_date",
+    "status": "source_page_checked_series_unverified",
     "sourceNamed": true,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "monde",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "usa",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "europe",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "tech-europe",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "emergents",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "luxe",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "ia-robotique",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "sante",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "renouvelables",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "dividendes",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "japon",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "defense",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "quantique",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "spatial",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "ressources-naturelles",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
-  },
-  {
-    "tool": "tweets-etf",
-    "file": "src/pages/etf-tweets/data/themes.js",
-    "name": "etc-metaux",
-    "reviewedAt": null,
-    "status": "source_and_date_missing",
-    "sourceNamed": false,
-    "sourceUrls": []
+    "sourceUrls": [
+      "https://www.macrotrends.net/stocks/charts/TSLA/tesla/stock-price-history"
+    ],
+    "sourceCheckedAt": "2026-09-29"
   }
 ]

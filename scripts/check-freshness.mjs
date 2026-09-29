@@ -88,9 +88,6 @@ const TOOLS = [
     file: "src/pages/etf-tweets/data/themes.js",
     entryRegex: /createTheme\(\{\s*$/,
     lookAheadId: /id:\s*'([a-z-]+)'/,
-    // Une seule date de fraîcheur documentée pour tout le fichier (commentaire d'en-tête avant
-    // DEFAULT_THEMES) plutôt qu'une par thème — cf. constant FALLBACK_TO_HEADER_DATE ci-dessous.
-    sharedHeaderDate: true,
   },
 ];
 
@@ -149,35 +146,16 @@ function scanTool(tool) {
   const lines = text.split("\n");
 
   const anchors = [];
-  if (tool.sharedHeaderDate) {
-    // Tweets ETF : une seule date pour tout le fichier (commentaire d'en-tête), une entrée par thème.
-    for (let i = 0; i < lines.length; i++) {
-      if (tool.entryRegex.test(lines[i])) {
-        // Le nom du thème est sur une des lignes suivantes (id: 'xxx').
-        let name = null;
-        for (let j = i; j < Math.min(i + 4, lines.length); j++) {
-          const idm = lines[j].match(tool.lookAheadId);
-          if (idm) { name = idm[1]; break; }
-        }
-        if (name) anchors.push({ line: i, name });
-      }
-    }
-    const headerText = lines.slice(0, anchors.length ? anchors[0].line : lines.length).join("\n");
-    const { mostRecent, deadlines } = scanDatesInText(headerText);
-    const entries = anchors.map((a) => ({
-      name: a.name,
-      mostRecent,
-      deadlines: [],
-      sourceUrls: [],
-      sourceNamed: false,
-    }));
-    return { entries, fileDeadlines: deadlines };
-  }
-
   for (let i = 0; i < lines.length; i++) {
     const m = lines[i].match(tool.entryRegex);
     if (!m) continue;
     let name = m[2] || m[1];
+    if (tool.lookAheadId) {
+      for (let j = i; j < Math.min(i + 4, lines.length); j++) {
+        const idm = lines[j].match(tool.lookAheadId);
+        if (idm) { name = idm[1]; break; }
+      }
+    }
     if (tool.lookAheadLabel) {
       for (let j = i; j < Math.min(i + 3, lines.length); j++) {
         const lm = lines[j].match(tool.lookAheadLabel);
@@ -203,7 +181,11 @@ function scanTool(tool) {
   for (let idx = 0; idx < anchors.length; idx++) {
     const anchor = anchors[idx];
     const start = starts[idx];
-    const nextLine = idx + 1 < anchors.length ? starts[idx + 1] : lines.length;
+    let nextLine = idx + 1 < anchors.length ? starts[idx + 1] : lines.length;
+    if (tool.key === 'tweets-etf' && idx === anchors.length - 1) {
+      const editorialStart = lines.findIndex((line, i) => i > start && line.startsWith('// Une ouverture'));
+      if (editorialStart !== -1) nextLine = editorialStart;
+    }
 
     const blockText = lines.slice(start, nextLine).join("\n");
     const { mostRecent, deadlines } = scanDatesInText(blockText);
@@ -216,9 +198,12 @@ function scanTool(tool) {
       ...(tool.key === 'lexique' && LEXICON_SOURCES[anchor.name] ? [LEXICON_SOURCES[anchor.name]] : []),
     ])];
     const sourceNamed = commentLines.some((line) => /\b(?:source|sourcing)\b/i.test(line));
+    // Une page de cotations retrouvée ne valide pas à elle seule les centaines de points
+    // d'un ancien export. Conserver la date de consultation sans dater la série elle-même.
+    const sourceCheckedAt = commentLines.join('\n').match(/Page source retrouvée le (\d{4}-\d{2}-\d{2})/)?.[1] ?? null;
     // Un contrôle daté de proxy documente une simulation, pas le rendement de la part affichée.
     const proxyReview = tool.key === 'portefeuilles' && /Contrôle individuel du proxy le \d{2}\/\d{2}\/\d{4}/.test(blockText);
-    entries.push({ name: anchor.name, mostRecent, deadlines, sourceUrls, sourceNamed, proxyReview });
+    entries.push({ name: anchor.name, mostRecent, deadlines, sourceUrls, sourceNamed, sourceCheckedAt, proxyReview });
     deadlines.forEach((d) => allDeadlines.push({ ...d, entry: anchor.name }));
   }
 
@@ -251,10 +236,12 @@ function buildReport() {
       undatedInventory: withoutDate.map((e) => ({
         name: e.name,
         reviewedAt: null,
-        status: e.sourceUrls.length ? "source_url_documented_without_date"
+        status: e.sourceCheckedAt ? "source_page_checked_series_unverified"
+          : e.sourceUrls.length ? "source_url_documented_without_date"
           : e.sourceNamed ? "source_named_without_url_or_date" : "source_and_date_missing",
         sourceNamed: e.sourceNamed,
         sourceUrls: e.sourceUrls,
+        ...(e.sourceCheckedAt ? { sourceCheckedAt: e.sourceCheckedAt } : {}),
       })),
       deadlines: fileDeadlines,
     });
@@ -339,7 +326,8 @@ if (args.includes("--missing-json")) {
       const missingSource = tool.undatedInventory.filter(e => e.status === 'source_and_date_missing');
       const namedSource = tool.undatedInventory.filter(e => e.status === 'source_named_without_url_or_date');
       const linkedSource = tool.undatedInventory.filter(e => e.status === 'source_url_documented_without_date');
-      console.log(`  Inventaire interne : ${missingSource.length} sans source ni date, ${namedSource.length} avec source nommée sans URL ni date, ${linkedSource.length} avec URL sans date.`);
+      const incompleteSeries = tool.undatedInventory.filter(e => e.status === 'source_page_checked_series_unverified');
+      console.log(`  Inventaire interne : ${missingSource.length} sans source ni date, ${namedSource.length} avec source nommée sans URL ni date, ${linkedSource.length} avec URL sans date, ${incompleteSeries.length} séries non revérifiées (page source consultée).`);
       if (missingSource.length) console.log(`  À documenter en premier : ${missingSource.slice(0, 10).map(e => e.name).join(', ')}${missingSource.length > 10 ? '…' : ''}`);
     }
   }
