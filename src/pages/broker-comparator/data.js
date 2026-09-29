@@ -52,7 +52,7 @@ export const BROKERS = [
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { resume: "À vérifier" },
-    liquidites: { resume: "À vérifier", detail: "Espèces du courtier · livret exclu" },
+    liquidites: { resume: "À vérifier", detail: "Espèces du compte de courtage" },
     pointFaible: "DCA : frais des fonds à vérifier. ℹ️ Ordre minimum : 100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
@@ -99,7 +99,7 @@ export const BROKERS = [
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: true, jeune: null },
     ifu: { resume: "À vérifier" },
-    liquidites: { resume: "À vérifier", detail: "Espèces du courtier · livret exclu" },
+    liquidites: { resume: "À vérifier", detail: "Espèces du compte de courtage" },
     pointFaible: "Clôture PEA 85€, frais élevés hors Euronext ; DCA à vérifier",
     transfertPea: { resume: "Entrant ✅ / Sortant 15€/ligne (max 150€)" },
     post: {
@@ -149,7 +149,7 @@ export const BROKERS = [
     garde: { resume: "À vérifier", detail: "PDF tarifaire 04/2026 indisponible" },
     pea: { pea: null, pme: null, jeune: null },
     ifu: { resume: "À vérifier" },
-    liquidites: { resume: "À vérifier", detail: "Espèces du courtier · livrets exclus" },
+    liquidites: { resume: "À vérifier", detail: "Espèces du compte de courtage" },
     pointFaible: "Brochure tarifaire 2026 indisponible : conditions à confirmer",
     transfertPea: { resume: "Sortant : à vérifier" },
     post: {
@@ -273,17 +273,8 @@ export function buildTweet(selected) {
   const names = (b) => b.emoji + " " + b.nom;
   const lines = (items) => items.join("\n");
   const detail = (item) => [item.resume, item.detail].filter(Boolean).join(" · ");
-  // Le texte éditorial porte les conditions détaillées. Ne rajouter depuis la carte
-  // que les chiffres absents du post, afin de conserver l'information sans la répéter.
-  const withExtra = (postLines, item) => {
-    const text = postLines.join(" ");
-    const extra = item.detail || "";
-    const numbers = extra.match(/\d+(?:[,.]\d+)?/g) || [];
-    const missing = numbers.length
-      ? numbers.some((number) => !text.includes(number))
-      : Boolean(extra) && !text.toLocaleLowerCase('fr').includes(extra.toLocaleLowerCase('fr'));
-    return lines(missing ? [...postLines, extra] : postLines);
-  };
+  // Les lignes du post portent déjà les nuances rédigées et vérifiées ; ne pas ajouter
+  // automatiquement le détail abrégé de la carte, qui dupliquerait ou déformerait ces nuances.
   const pea = (b) => [
     "PEA " + (b.pea.pea === null ? "?" : b.pea.pea ? "✅" : "❌"),
     "PEA-PME " + (b.pea.pme === null ? "?" : b.pea.pme ? "✅" : "❌"),
@@ -296,29 +287,19 @@ export function buildTweet(selected) {
     names(b1) + " ou " + names(b2) + " pour ton PEA ? 👇",
     "Tu investis chaque mois, tu passes quelques ordres ponctuels ou tu veux aussi un PEA-PME ? Voici les différences à regarder avant de choisir.",
 
-    pair("💰 Quand tu passes un ordre", (b) =>
-      withExtra(b.post.frais.filter((line) => !/Boursomarkets/i.test(line)), b.frais)
-    ),
+    pair("💰 Quand tu passes un ordre", (b) => lines(b.post.frais.filter((line) => !/Boursomarkets/i.test(line)))),
     pair("🛒 Et les offres sur certains titres ?", (b) => detail(b.boursomarkets)),
-    pair("📅 Si tu investis automatiquement", (b) =>
-      withExtra(b.post.dca, b.dca)
-    ),
+    pair("📅 Si tu investis automatiquement", (b) => lines(b.post.dca)),
 
     pair("🌱 Les enveloppes disponibles", (b) => pea(b)),
-    pair("🛡️ Les frais de garde", (b) =>
-      withExtra(b.post.garde, b.garde)
-    ),
+    pair("🛡️ Les frais de garde", (b) => lines(b.post.garde)),
     pair("📄 Pour la déclaration fiscale", (b) =>
       lines(b.post.ifu)
     ),
-    pair("💵 Cash non investi (compte général / PEA)", (b) =>
-      withExtra(b.post.liquidites, b.liquidites)
-    ),
+    pair("💵 Cash non investi (compte général / PEA)", (b) => lines(b.post.liquidites)),
     pair("🔄 Si tu transfères ton PEA", (b) => b.transfertPea?.resume || "Non renseigné"),
 
-    pair("⚠️ Ce qui peut coincer", (b) =>
-      withExtra(b.post.faibles, { detail: b.pointFaible })
-    ),
+    pair("⚠️ Ce qui peut coincer", (b) => lines(b.post.faibles)),
     "🎯 Selon ta façon d’investir\n" +
       [b1, b2].map((b) => "Si " + b.post.verdict.charAt(0).toLowerCase() +
         b.post.verdict.slice(1) + ", regarde " + b.nom + ".").join("\n"),
