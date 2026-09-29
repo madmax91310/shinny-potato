@@ -159,8 +159,13 @@ export function getInstrumentName(isin, context, variant) {
 
 // Seules les fiches qui ont documenté le statut PEA sont renseignées.
 // Une absence est inconnue, jamais assimilée à « non éligible ».
-export function getInstrumentPea(isin) {
+export function getInstrumentPeaStatus(isin) {
   const { pea } = getInstrument(isin);
-  if (typeof pea !== 'boolean') throw new Error(`Éligibilité PEA non documentée pour ${isin}`);
+  return typeof pea === 'boolean' ? pea : null;
+}
+
+export function getInstrumentPea(isin) {
+  const pea = getInstrumentPeaStatus(isin);
+  if (pea === null) throw new Error(`Éligibilité PEA non documentée pour ${isin}`);
   return pea;
 }
