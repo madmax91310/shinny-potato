@@ -187,6 +187,7 @@ async function testBrokerComparator(page) {
     && fortuneoSaxo.includes('PEA Jeune ❌')
     && (await page.locator('.bc-evidence-broker').count()) === 2
     && (await page.locator('.bc-evidence').innerText()).includes('traitement des autres espèces non établi');
+  if (!ok || !sourceOk) console.log('Diagnostic courtiers', JSON.stringify({ ok, sourceOk, tweet, fortuneoSaxo, cashRows: await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count(), evidence: (await page.locator('.bc-evidence').innerText()).slice(0, 1600) }));
   record("Comparatif courtiers", ok && sourceOk, "duels sans données non établies et limites conservées au registre");
 }
 
