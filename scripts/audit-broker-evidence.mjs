@@ -5,7 +5,7 @@ import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES } from '../src/pages
 const officialHosts = new Set([
   'assets.traderepublic.com', 'www.boursobank.com', 'www.fortuneo.fr',
   'www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com', 'ca-paris.credit-agricole.fr',
-  'www.boursedirect.fr', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo',
+  'www.boursedirect.fr', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo', 'www.help.saxo',
   'www.interactivebrokers.ie', 'www.credit-agricole.fr', 'traderepublic.com', 'support.traderepublic.com',
 ])
 for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
