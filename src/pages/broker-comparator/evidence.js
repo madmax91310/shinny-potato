@@ -23,6 +23,8 @@ export const OFFICIAL_SOURCES = {
   boursoMarkets: { title: 'BoursoBank · BoursoMarkets', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit', kind: 'page' },
   caInvest: { title: 'Crédit Agricole · Invest Store', edition: 'page nationale ; tarifs régionaux distincts', checked: '29/09/2026', url: 'https://www.credit-agricole.fr/particulier/epargne/bourse/service-de-bourse-en-ligne-invest-store.html', kind: 'page' },
   caPea: { title: 'Crédit Agricole · PEA et PEA Jeune', edition: 'page nationale ; conditions régionales à confirmer', checked: '29/09/2026', url: 'https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-en-actions.html', kind: 'page' },
+  caPeb: { title: 'Crédit Agricole · Plan d’Épargne Boursière', edition: 'page nationale ; conditions régionales à confirmer', checked: '29/09/2026', url: 'https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-boursiere.html', kind: 'page' },
+  saxoPeaHelp: { title: 'Saxo Banque · Centre d’aide PEA', edition: '29/06/2026', checked: '29/09/2026', url: 'https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA', kind: 'page' },
   xtbComparison: { title: 'XTB · Comparatif PEA 2026 et perspectives de son offre', edition: '2026', checked: '29/09/2026', url: 'https://www.xtb.com/fr/formation/meilleurs-PEA-2025-notre-comparatif', kind: 'page' },
   bdSupport: { title: 'Bourse Direct · FAQ transfert de compte', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.boursedirect.fr/fr/support', kind: 'page' },
   trContract: {
@@ -105,7 +107,7 @@ export const BROKER_EVIDENCE = {
   },
   ibkr: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
-    frais: { status: 'partiel', summary: 'PEA : courtage à partir de 0,05 % ; minimum par ordre selon le marché et le routage.', refs: [{ document: 'ibkrPea' }, { document: 'ibkrFees' }] },
+    frais: { status: 'confirmé', summary: 'PEA : à partir de 0,05 %. Pour les actions France, tarif dégressif 0,05 % et minimum 1,25 € ; tarif fixe SmartRouting 0,05 % et minimum 3 € ; routage direct 0,10 % et minimum 4 €. Frais de Bourse possibles au tarif dégressif ; autre marché ou fonds : autre barème.', refs: [{ document: 'ibkrPea' }, { document: 'ibkrFees' }] },
     dca: { status: 'partiel', summary: 'Plan programmé officiel pour des actions éligibles ; disponibilité dans le PEA non établie.', refs: [{ document: 'ibkrDca' }] },
     garde: proved('Aucun droit de garde ni frais de tenue de compte PEA annoncés.', 'ibkrPea'),
     pea: proved('PEA Classique commercialisé.', 'ibkrPea'),
@@ -142,7 +144,7 @@ export const BROKER_EVIDENCE = {
   caidf: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: unknown('Page nationale Invest Store consultée ; barème Île-de-France 2026 indisponible (404).', ['caTariff', 'caInvest']),
-    dca: { status: 'partiel', summary: 'Plan d’Épargne Boursière et versements réguliers décrits sur la page nationale PEA-PME ; tarifs régionaux à confirmer.', refs: [{ document: 'caPeaPme' }] },
+    dca: { status: 'partiel', summary: 'Plan d’Épargne Boursière national : versements automatiques dès 45 €/mois sur 1 à 3 SICAV/FCP éligibles, compatible PEA et PEA-PME ; conditions et tarifs Île-de-France à confirmer.', refs: [{ document: 'caPeb' }] },
     garde: unknown('Offre Intégral nationale annonce une exonération, sans confirmer le tarif Île-de-France.', ['caTariff', 'caInvest']),
     pea: proved('PEA proposé par Invest Store ; tarifs régionaux à vérifier.', 'caInvest'),
     pme: proved('PEA-PME mentionné par Invest Store ; tarifs régionaux à vérifier.', 'caInvest'),
@@ -170,7 +172,7 @@ export const BROKER_EVIDENCE = {
     garde: proved('0 € sur titres cotés ; exception pour non cotés en PEA.', 'saxoTariff', 3),
     pea: proved('PEA couvert par le barème.', 'saxoTariff', 16),
     pme: proved('PEA-PME couvert par le barème.', 'saxoTariff', 16),
-    jeune: unknown('Absence de PEA Jeune non établie par PDF.', ['saxoTariff']),
+    jeune: proved('Saxo Banque indique explicitement ne pas proposer de PEA Jeune.', 'saxoPeaHelp'),
     ifu: proved('IFU en ligne gratuit dans la brochure.', 'saxoTariff', 3),
     cash: { status: 'confirmé', summary: 'Oui pour espèces éligibles en EUR/USD selon solde et niveau de compte ; taux variable. PEA exclu de cette offre.', refs: [{ document: 'saxoContract', page: 24 }, { document: 'saxoInterest' }] },
     transfert: proved('Transfert PEA/PEA-PME sortant à 15 € par ligne, plafond 150 €.', 'saxoTariff', 16),

@@ -63,7 +63,7 @@ export const BROKERS = [
   },
   {
     id: "ibkr", nom: "Interactive Brokers", code: "IBKR", color: "#7C93C9", emoji: "🟢", lastVerified: "29/09/2026",
-    frais: { resume: "Dès 0,05 %", detail: "PEA · minimum selon marché et routage" },
+    frais: { resume: "Dès 0,05 %", detail: "Actions France : min 1,25 € dégressif · 3 € fixe SmartRouting" },
     boursomarkets: { resume: "Sans objet" },
     dca: { resume: "Oui, PEA ?", detail: "Plans programmés sur actions · accès PEA à vérifier" },
     garde: { resume: "0 €", detail: "Droits de garde PEA" },
@@ -73,7 +73,7 @@ export const BROKERS = [
     pointFaible: "PEA-PME, PEA Jeune et intérêts PEA à confirmer",
     transfertPea: { resume: "Entrant ✅ · 0 € annoncés" },
     post: {
-      frais: ["PEA : commission dès 0,05 % ; minimum variable selon le marché et le routage."],
+      frais: ["PEA, actions France : dégressif 0,05 %, min 1,25 € (plus frais de Bourse possibles) ; fixe SmartRouting 0,05 %, min 3 € ; routage direct 0,10 %, min 4 €. Autres places et fonds : barèmes distincts."],
       dca: ["Plans programmés disponibles sur certaines actions ; accès PEA à vérifier."],
       garde: ["PEA : pas de droits de garde annoncés."],
       pea: "PEA ✅ / PEA-PME ? / PEA Jeune ?",
@@ -135,7 +135,7 @@ export const BROKERS = [
     // https://ca-paris.credit-agricole.fr/tarif/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf
     frais: { resume: "À vérifier", detail: "PDF tarifaire 04/2026 indisponible" },
     boursomarkets: { resume: "Sans objet" },
-    dca: { resume: "Oui, à préciser", detail: "Plan d’Épargne Boursière · tarifs régionaux à vérifier" },
+    dca: { resume: "Oui, à préciser", detail: "PEA/PEA-PME · SICAV/FCP dès 45 €/mois · tarifs régionaux à vérifier" },
     garde: { resume: "À vérifier", detail: "PDF tarifaire 04/2026 indisponible" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { resume: "Oui, service national" },
@@ -144,7 +144,7 @@ export const BROKERS = [
     transfertPea: { resume: "Sortant : à vérifier" },
     post: {
       frais: ["Barème Invest Store Intégral à vérifier dans le PDF tarifaire 2026 accessible."],
-      dca: ["Plan d’Épargne Boursière décrit par le Crédit Agricole ; tarifs régionaux à vérifier."],
+      dca: ["Plan d’Épargne Boursière national : investissements automatiques dès 45 €/mois sur 1 à 3 SICAV/FCP éligibles au PEA/PEA-PME ; conditions et tarifs en Île-de-France à vérifier."],
       garde: ["À vérifier dans le PDF tarifaire 2026 accessible."],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["IFU consultable dans Invest Store selon la page nationale ; conditions régionales à vérifier."],
@@ -179,19 +179,19 @@ export const BROKERS = [
     boursomarkets: { resume: "Sans objet" },
     dca: { resume: "Oui hors PEA", detail: "Plan programmé sans courtage à l’achat · PEA exclu" },
     garde: { rank: 1, resume: "0€" },
-    // L'absence de PEA Jeune et les deux promotions ne sont pas établies par les PDF consultés.
-    pea: { pea: true, pme: true, jeune: null },
+    // Le centre d'aide Saxo France confirme l'absence de PEA Jeune.
+    pea: { pea: true, pme: true, jeune: false },
     ifu: { rank: 1, resume: "Oui" },
     cash: { resume: "Oui", detail: "Espèces éligibles selon solde · PEA exclu de l’offre", post: "Oui sur les espèces éligibles selon solde et niveau de compte ; PEA exclu de cette offre." },
-    pointFaible: "DCA PEA et PEA Jeune : à vérifier",
+    pointFaible: "Plan programmé indisponible sur PEA ; PEA Jeune non proposé",
     transfertPea: { resume: "Remboursement entrant : à vérifier" },
     post: {
       frais: ["Classic Euronext : 0,08%, minimum 2€ ; plafonnement PEA à 0,5%"],
       dca: ["Plan Épargne Programmé : sans commission d’achat ni frais mensuels ; actuellement indisponible sur PEA."],
       garde: ["0€"],
-      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ?",
+      pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
       ifu: ["✅ Oui"],
-      faibles: ["DCA PEA et PEA Jeune : à vérifier"],
+      faibles: ["Plan programmé indisponible sur PEA ; PEA Jeune non proposé"],
       verdict: "Tu veux une plateforme avec courtage Euronext dès 2€",
     },
   },
