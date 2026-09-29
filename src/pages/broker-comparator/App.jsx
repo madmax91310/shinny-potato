@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, Fragment } from 'react'
-import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet } from './data'
+import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet, documentedForAll } from './data'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES } from './evidence'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -8,8 +8,8 @@ import './broker-comparator.css'
 const fmtDate = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date())
 
 function PeaPill({ val, label }) {
-  const cls = val === null ? 'nc' : val ? 'yes' : 'no'
-  const mark = val === null ? '?' : val ? '✓' : '✕'
+  const cls = val ? 'yes' : 'no'
+  const mark = val ? '✓' : '✕'
   return (
     <span className={`bc-pea-pill ${cls}`}>
       {mark} {label}
@@ -53,7 +53,7 @@ function TextRow({ icon, label, dataKey, brokers, gridStyle }) {
       <div className="bc-cells" style={gridStyle}>
         {brokers.map((b) => (
           <div className="bc-cell" key={b.id}>
-            <div className="bc-resume">{b[dataKey] ? b[dataKey].resume : '—'}</div>
+            <div className="bc-resume">{dataKey === 'transfertPea' ? BROKER_EVIDENCE[b.id].transfert.summary : b[dataKey]?.resume}</div>
           </div>
         ))}
       </div>
@@ -123,6 +123,8 @@ function ComparisonCard({ selected }) {
   const brokers = selected.map(byId)
   const n = brokers.length
   const gridStyle = { gridTemplateColumns: `repeat(${n}, 1fr)` }
+  const shown = (field) => documentedForAll(selected, field)
+  const envelopes = [['pea', 'PEA'], ['pme', 'PME'], ['jeune', 'Jeune']].filter(([field]) => shown(field))
 
   return (
     <div className="bc-card">
@@ -153,43 +155,30 @@ function ComparisonCard({ selected }) {
         ))}
       </div>
 
-      <RankedRow rowKey="frais" brokers={brokers} gridStyle={gridStyle} />
-      <RankedRow rowKey="boursomarkets" brokers={brokers} gridStyle={gridStyle} />
-      <RankedRow rowKey="dca" brokers={brokers} gridStyle={gridStyle} />
-      <RankedRow rowKey="garde" brokers={brokers} gridStyle={gridStyle} />
+      {shown('frais') && <RankedRow rowKey="frais" brokers={brokers} gridStyle={gridStyle} />}
+      {selected.includes('bourso') && <RankedRow rowKey="boursomarkets" brokers={brokers} gridStyle={gridStyle} />}
+      {shown('dca') && <RankedRow rowKey="dca" brokers={brokers} gridStyle={gridStyle} />}
+      {shown('garde') && <RankedRow rowKey="garde" brokers={brokers} gridStyle={gridStyle} />}
 
-      <div className="bc-row">
+      {envelopes.length > 0 && <div className="bc-row">
         <div className="bc-row-label">🌱 PEA / PEA-PME / PEA Jeune</div>
         <div className="bc-cells" style={gridStyle}>
           {brokers.map((b) => (
             <div className="bc-pea-pills" key={b.id}>
-              <PeaPill val={b.pea.pea} label="PEA" />
-              <PeaPill val={b.pea.pme} label="PME" />
-              <PeaPill val={b.pea.jeune} label="Jeune" />
+              {envelopes.map(([field, label]) => <PeaPill key={field} val={b.pea[field]} label={label} />)}
             </div>
           ))}
         </div>
-      </div>
+      </div>}
 
-      <RankedRow rowKey="ifu" brokers={brokers} gridStyle={gridStyle} />
-      <CashRow brokers={brokers} gridStyle={gridStyle} />
-      <TextRow icon="🔄" label="Transfert PEA" dataKey="transfertPea" brokers={brokers} gridStyle={gridStyle} />
-
-      <div className="bc-row">
-        <div className="bc-row-label">⚠️ Point faible</div>
-        <div className="bc-cells" style={gridStyle}>
-          {brokers.map((b) => (
-            <div className="bc-weak-cell" key={b.id}>
-              {b.pointFaible}
-            </div>
-          ))}
-        </div>
-      </div>
+      {shown('ifu') && <RankedRow rowKey="ifu" brokers={brokers} gridStyle={gridStyle} />}
+      {shown('cash') && <CashRow brokers={brokers} gridStyle={gridStyle} />}
+      {shown('transfert') && <TextRow icon="🔄" label="Transfert PEA" dataKey="transfertPea" brokers={brokers} gridStyle={gridStyle} />}
 
       <div className="bc-synth">
         <div className="bc-label">En bref</div>
         <div className="bc-line">
-          💰 Compare le coût pour ton ordre, ton enveloppe et le marché concerné. « À vérifier » indique une information sans source officielle suffisante.
+          💰 Seuls les critères documentés pour tous les courtiers sélectionnés figurent sur cette carte. Sources et limites dans le registre ci-dessous.
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { BROKERS } from '../src/pages/broker-comparator/data.js'
+import { BROKERS, buildTweet, documentedForAll } from '../src/pages/broker-comparator/data.js'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 
 const officialHosts = new Set([
@@ -43,6 +43,16 @@ for (const broker of BROKERS) {
   for (const [field, key] of [['pea', 'pea'], ['pme', 'pme'], ['jeune', 'jeune']]) {
     if (evidence[field].status === 'non établi')
       assert.equal(broker.pea[key], null, `${broker.id}.${field}: réponse oui/non sans preuve`)
+  }
+}
+for (let i = 0; i < BROKERS.length; i++) {
+  for (let j = i + 1; j < BROKERS.length; j++) {
+    const ids = [BROKERS[i].id, BROKERS[j].id]
+    const post = buildTweet(ids)
+    assert(!/à vérifier|à confirmer|non établi|non renseigné|PEA-PME \?|PEA Jeune \?/i.test(post), `${ids}: lacune dans le post`)
+    for (const [field, label] of [['frais', '💰 Quand tu passes un ordre'], ['dca', '📅 Si tu investis automatiquement'], ['garde', '🛡️ Les frais de garde'], ['cash', '💵 Liquidités rémunérées'], ['transfert', '🔄 Si tu transfères ton PEA']]) {
+      assert.equal(post.includes(label), documentedForAll(ids, field), `${ids}: critère ${field} publié sans preuve complète`)
+    }
   }
 }
 console.log(`Registre officiel : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(OFFICIAL_SOURCES).length} sources référencées.`)

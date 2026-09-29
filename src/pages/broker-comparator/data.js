@@ -1,3 +1,5 @@
+import { BROKER_EVIDENCE } from './evidence.js';
+
 // Base de données courtiers — les mentions « À vérifier » ne sont pas des réponses négatives.
 // « Liquidités rémunérées » : oui si une offre officielle rémunère des espèces non investies
 // au moins dans un compte ; aucun livret ni fonds monétaire. Les limites figurent au registre.
@@ -24,7 +26,7 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui après migration FR" },
     // Contrat TR 09/2026, annexe 3 IV et annexe 12 B.V : intérêts possibles après activation
     // sur le compte général ; aucun intérêt reporté sur les espèces du PEA.
-    cash: { resume: "Oui", detail: "Espèces éligibles sous conditions · PEA exclu", post: "Oui sur les espèces éligibles du compte général ; offre nouveaux clients sous conditions. Espèces du PEA exclues." },
+    cash: { resume: "Oui", detail: "Espèces éligibles sous conditions", post: "Oui sur les espèces éligibles sous conditions ; offre nouveaux clients soumise à activation." },
     // Correction du 03/09/2026 : le transfert PEA entrant est possible chez Trade Republic.
     pointFaible: "PEA-PME : offre à confirmer par source officielle",
     transfertPea: { resume: "Entrant ✅" },
@@ -53,7 +55,7 @@ export const BROKERS = [
     transfertPea: { resume: "Entrant : à vérifier / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)"],
-      dca: ["⚠️ Plan d'Épargne : 0€ de commission de négociation, dès 10€/fonds/mois. Frais des fonds à vérifier dans chaque DIC."],
+      dca: ["Plan d'Épargne : 0 € de commission de négociation, dès 10 €/fonds/mois. Frais propres à chaque fonds indiqués dans son DIC."],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["IFU disponible pour les opérations et revenus imposables à déclarer."],
@@ -69,7 +71,7 @@ export const BROKERS = [
     garde: { resume: "0 €", detail: "Droits de garde PEA" },
     pea: { pea: true, pme: null, jeune: null },
     ifu: { resume: "Oui pour le PEA" },
-    cash: { resume: "Oui", detail: "Sous conditions · 0 % sur les premiers 10 000 € EUR", post: "Oui sur les espèces éligibles au-delà de 10 000 € EUR, selon la valeur du compte ; traitement du PEA à vérifier." },
+    cash: { resume: "Oui", detail: "Sous conditions · 0 % sur les premiers 10 000 € EUR", post: "Oui sur les soldes éligibles au-delà de 10 000 € EUR, selon la valeur du compte." },
     pointFaible: "PEA-PME, PEA Jeune et intérêts PEA à confirmer",
     transfertPea: { resume: "Entrant ✅ · 0 € annoncés" },
     post: {
@@ -92,7 +94,7 @@ export const BROKERS = [
     garde: { rank: 1, resume: "0€" },
     pea: { pea: true, pme: true, jeune: false },
     ifu: { resume: "Oui" },
-    cash: { resume: "À vérifier", detail: "PEA non rémunéré · autres espèces non établies", post: "À vérifier au global : espèces PEA non rémunérées ; autres espèces non établies." },
+    cash: { resume: "À vérifier", detail: "Réponse globale non confirmée", post: "À vérifier : réponse globale non confirmée." },
     pointFaible: "Clôture PEA 85€, frais élevés hors Euronext ; DCA à vérifier",
     transfertPea: { resume: "Entrant : à vérifier / Sortant 15€/ligne (max 150€)" },
     post: {
@@ -116,7 +118,7 @@ export const BROKERS = [
     garde: { rank: 1, resume: "0€", detail: "0,02%/an sur l’excédent >250K€" },
     pea: { pea: true, pme: false, jeune: false },
     ifu: { resume: "Oui" },
-    cash: { resume: "Oui", detail: "Compte de trading · taux variable · PEA exclu", post: "Oui sur les fonds libres du compte de trading, taux variable ; cash du PEA non rémunéré." },
+    cash: { resume: "Oui", detail: "Espèces éligibles · taux variable", post: "Oui sur les fonds libres éligibles, taux variable selon les conditions XTB." },
     pointFaible: "DCA PEA et PEA-PME annoncés à venir ; transfert entrant indisponible",
     transfertPea: { resume: "Entrant : indisponible" },
     post: {
@@ -139,7 +141,7 @@ export const BROKERS = [
     garde: { resume: "À vérifier", detail: "PDF tarifaire 04/2026 indisponible" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { resume: "Oui, service national" },
-    cash: { resume: "À vérifier", detail: "PEA-PME sans intérêt · autres espèces non établies", post: "À vérifier au global : PEA-PME non rémunéré ; autres espèces et conditions régionales non établies." },
+    cash: { resume: "À vérifier", detail: "Réponse globale et conditions régionales non confirmées", post: "À vérifier : réponse globale et conditions régionales non confirmées." },
     pointFaible: "Brochure tarifaire 2026 indisponible : conditions à confirmer",
     transfertPea: { resume: "Sortant : à vérifier" },
     post: {
@@ -160,7 +162,7 @@ export const BROKERS = [
     garde: { rank: 1, resume: "0€", detail: "Bourses étrangères : 0,036%/an" },
     pea: { pea: true, pme: true, jeune: true },
     ifu: { resume: "Oui pour CTO" },
-    cash: { resume: "À vérifier", detail: "PEA sans intérêt · autres espèces non établies", post: "À vérifier au global : espèces PEA non rémunérées ; autres espèces non établies." },
+    cash: { resume: "À vérifier", detail: "Réponse globale non confirmée", post: "À vérifier : réponse globale non confirmée." },
     pointFaible: "Tarification par paliers ; cash non vérifié ; garde sur bourses étrangères",
     transfertPea: { resume: "Entrant : remboursement ≤200€ sous conditions / Sortant 15€/ligne (max 150€)" },
     post: {
@@ -182,7 +184,7 @@ export const BROKERS = [
     // Le centre d'aide Saxo France confirme l'absence de PEA Jeune.
     pea: { pea: true, pme: true, jeune: false },
     ifu: { rank: 1, resume: "Oui" },
-    cash: { resume: "Oui", detail: "Espèces éligibles selon solde · PEA exclu de l’offre", post: "Oui sur les espèces éligibles selon solde et niveau de compte ; PEA exclu de cette offre." },
+    cash: { resume: "Oui", detail: "Espèces éligibles selon solde et niveau de compte", post: "Oui sur les espèces éligibles selon solde et niveau de compte." },
     pointFaible: "Plan programmé indisponible sur PEA ; PEA Jeune non proposé",
     transfertPea: { resume: "Remboursement entrant : à vérifier" },
     post: {
@@ -241,6 +243,8 @@ export const MAX_SELECT = 3;
 
 export const byId = (id) => BROKERS.find((b) => b.id === id);
 
+export const documentedForAll = (ids, field) => ids.every((id) => BROKER_EVIDENCE[id]?.[field]?.status === 'confirmé');
+
 export function rankRow(row, brokers) {
   const ranks = brokers.map((b) => b[row.key].rank).filter((r) => r !== undefined);
   return ranks.length ? Math.min(...ranks) : null;
@@ -256,40 +260,30 @@ export function buildTweet(selected) {
   const names = (b) => b.emoji + " " + b.nom;
   const lines = (items) => items.join("\n");
   const detail = (item) => [item.resume, item.detail].filter(Boolean).join(" · ");
-  // Les lignes du post portent déjà les nuances rédigées et vérifiées ; ne pas ajouter
-  // automatiquement le détail abrégé de la carte, qui dupliquerait ou déformerait ces nuances.
-  const pea = (b) => [
-    "PEA " + (b.pea.pea === null ? "?" : b.pea.pea ? "✅" : "❌"),
-    "PEA-PME " + (b.pea.pme === null ? "?" : b.pea.pme ? "✅" : "❌"),
-    "PEA Jeune " + (b.pea.jeune === null ? "?" : b.pea.jeune ? "✅" : "❌"),
-  ].join(" / ");
+  const both = (field) => documentedForAll(selected, field);
+  const envelopeFields = [['pea', 'PEA'], ['pme', 'PEA-PME'], ['jeune', 'PEA Jeune']]
+    .filter(([field]) => both(field));
+  const pea = (b) => envelopeFields.map(([field, label]) => `${label} ${b.pea[field] ? '✅' : '❌'}`).join(' / ');
   const pair = (label, describe) =>
     label + "\n" + [b1, b2].map((b) => names(b) + " : " + describe(b)).join("\n");
 
   const blocks = [
     names(b1) + " ou " + names(b2) + " pour ton PEA ? 👇",
-    "Tu investis chaque mois, tu passes quelques ordres ponctuels ou tu veux aussi un PEA-PME ? Voici les différences à regarder avant de choisir.",
+    "Voici les caractéristiques confirmées par les documents officiels des courtiers.",
 
-    pair("💰 Quand tu passes un ordre", (b) => lines(b.post.frais.filter((line) => !/Boursomarkets/i.test(line)))),
-    pair("🛒 Et les offres sur certains titres ?", (b) => detail(b.boursomarkets)),
-    pair("📅 Si tu investis automatiquement", (b) => lines(b.post.dca)),
+    both('frais') && pair("💰 Quand tu passes un ordre", (b) => lines(b.post.frais.filter((line) => !/Boursomarkets/i.test(line)))),
+    selected.includes('bourso') && pair("🛒 BoursoMarkets", (b) => detail(b.boursomarkets)),
+    both('dca') && pair("📅 Si tu investis automatiquement", (b) => lines(b.post.dca)),
 
-    pair("🌱 Les enveloppes disponibles", (b) => pea(b)),
-    pair("🛡️ Les frais de garde", (b) => lines(b.post.garde)),
-    pair("📄 Pour la déclaration fiscale", (b) =>
-      lines(b.post.ifu)
-    ),
-    pair("💵 Liquidités rémunérées", (b) => b.cash.post),
-    pair("🔄 Si tu transfères ton PEA", (b) => b.transfertPea?.resume || "Non renseigné"),
-
-    pair("⚠️ Ce qui peut coincer", (b) => lines(b.post.faibles)),
-    "🎯 Selon ta façon d’investir\n" +
-      [b1, b2].map((b) => "Si " + b.post.verdict.charAt(0).toLowerCase() +
-        b.post.verdict.slice(1) + ", regarde " + b.nom + ".").join("\n"),
+    envelopeFields.length > 0 && pair("🌱 Les enveloppes disponibles", (b) => pea(b)),
+    both('garde') && pair("🛡️ Les frais de garde", (b) => b.id === 'tr' ? '0 € de garde annoncé pour le compte titres.' : lines(b.post.garde)),
+    both('ifu') && pair("📄 Pour la déclaration fiscale", (b) => b.id === 'tr' ? 'IFU après migration vers l’offre française.' : lines(b.post.ifu)),
+    both('cash') && pair("💵 Liquidités rémunérées", (b) => b.cash.post),
+    both('transfert') && pair("🔄 Si tu transfères ton PEA", (b) => BROKER_EVIDENCE[b.id].transfert.summary),
 
     "Et toi, lequel te correspond le mieux ? 👇",
     "Ce post ne constitue pas un conseil en investissement.",
-  ];
+  ].filter(Boolean);
 
   return blocks.join("\n\n");
 }
