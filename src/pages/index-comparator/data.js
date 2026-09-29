@@ -1,4 +1,5 @@
 import { getInstrumentName } from '../../data/instruments.js';
+import { getInstrumentTickers } from '../../data/instrument-facts.js';
 import { formatEtfTer } from '../../data/etf-ter.js';
 // Données du Comparateur d'indices — extrait de App.jsx le 14/09/2026 (audit "outils", point 3)
 // pour aligner cet outil sur la convention data.js/lib.js/App.jsx du reste de l'application (cf.
@@ -131,7 +132,7 @@ export const FAMILIES = [
         funds: [
           { name: getInstrumentName("LU1681043599", "index"), ticker: 'CW8', isin: 'LU1681043599', ter: formatEtfTer('LU1681043599', 'index'), aum: '6 495 M€', note: '(le plus gros encours, et de loin)' },
           { name: getInstrumentName("IE0002XZSHO1", "index"), ticker: 'WPEA', isin: 'IE0002XZSHO1', ter: formatEtfTer('IE0002XZSHO1', 'index'), aum: '2 071 M€', note: '(moins cher)' },
-          { name: getInstrumentName("FR001400U5Q4", "index"), ticker: 'DCAM', isin: 'FR001400U5Q4', ter: formatEtfTer('FR001400U5Q4', 'index'), aum: '1 370 M€' },
+          { name: getInstrumentName("FR001400U5Q4", "index"), ticker: getInstrumentTickers('FR001400U5Q4')[0], isin: 'FR001400U5Q4', ter: formatEtfTer('FR001400U5Q4', 'index'), aum: '1 370 M€' },
         ],
       },
       {
@@ -148,7 +149,7 @@ export const FAMILIES = [
         indexName: 'FTSE All-World', choiceNote: 'Non éligible PEA — CTO uniquement', pea: false,
         funds: [
           { name: getInstrumentName("IE000L6ZMMC4", "index"), isin: 'IE000L6ZMMC4', ter: formatEtfTer('IE000L6ZMMC4', 'index'), aum: '110 M€', note: '(le moins cher, fonds récent — avril 2026)' },
-          { name: getInstrumentName("IE00BK5BQT80", "index"), ticker: 'VWCE', isin: 'IE00BK5BQT80', ter: formatEtfTer('IE00BK5BQT80', 'index'), aum: '50 000 M€', note: '(le plus gros encours, le plus connu)' },
+          { name: getInstrumentName("IE00BK5BQT80", "index"), ticker: getInstrumentTickers('IE00BK5BQT80')[0], isin: 'IE00BK5BQT80', ter: formatEtfTer('IE00BK5BQT80', 'index'), aum: '50 000 M€', note: '(le plus gros encours, le plus connu)' },
         ],
       },
     ],
@@ -210,7 +211,7 @@ export const FAMILIES = [
         funds: [
           { name: getInstrumentName("FR0011550185", "index"), isin: 'FR0011550185', ter: formatEtfTer('FR0011550185', 'index'), aum: '3,3 Md€', note: '(le plus gros encours)' },
           { name: getInstrumentName("FR0011871128", "index"), isin: 'FR0011871128', ter: formatEtfTer('FR0011871128', 'index'), aum: '1,15 Md€', note: '(historique plus long que SPEA)' },
-          { name: getInstrumentName("IE000DQLYVB9", "index"), ticker: 'SPEA', isin: 'IE000DQLYVB9', ter: formatEtfTer('IE000DQLYVB9', 'index'), aum: '54,66 M€ au 25/09/2026', note: '(le moins cher des trois ⚡ ; fonds récent)' },
+          { name: getInstrumentName("IE000DQLYVB9", "index"), ticker: getInstrumentTickers('IE000DQLYVB9')[0], isin: 'IE000DQLYVB9', ter: formatEtfTer('IE000DQLYVB9', 'index'), aum: '54,66 M€ au 25/09/2026', note: '(le moins cher des trois ⚡ ; fonds récent)' },
         ],
       },
       {
@@ -960,7 +961,7 @@ export const FAMILIES = [
       { indexName: 'MSCI World ex USA', choiceNote: 'fonds récent, CTO uniquement', pea: false,
         funds: [{ name: getInstrumentName("IE0006WW1TQ4", "index"), ticker: 'EXUS', isin: 'IE0006WW1TQ4', ter: formatEtfTer('IE0006WW1TQ4', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '8,19 Md$ au 31/08/2026' }] },
       { indexName: 'MSCI World Small Cap', choiceNote: 'CTO uniquement', pea: false,
-        funds: [{ name: getInstrumentName("IE00BF4RFH31", "index"), ticker: 'WSML', isin: 'IE00BF4RFH31', ter: formatEtfTer('IE00BF4RFH31', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '~7,7 Md€ (fiche du 25/08/2026)' }] },
+        funds: [{ name: getInstrumentName("IE00BF4RFH31", "index"), ticker: getInstrumentTickers('IE00BF4RFH31')[0], isin: 'IE00BF4RFH31', ter: formatEtfTer('IE00BF4RFH31', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: '~7,7 Md€ (fiche du 25/08/2026)' }] },
     ],
     diversification: {
       chain: ['World (1 280, août 2026)', 'World ex USA (755, août 2026)', 'World Small Cap (3 866, août 2026)'],

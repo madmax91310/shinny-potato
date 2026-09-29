@@ -40,6 +40,13 @@ dans les Fiches ETF. Les frais sont dans `src/data/etf-ter.js`. Ajouter un produ
 répertoires avant de l'utiliser dans Fiches ETF, Comparatif ETF, Comparateur d'indices ou
 Générateur de portefeuilles ; `npm run audit:instrument-catalog` vérifie les références.
 Une absence de statut PEA signifie « non documenté », jamais « non éligible ».
+Les caractéristiques statiques des 41 parts des Fiches ETF sont dans
+`src/data/instrument-facts.js` : indice exact, politique de distribution, méthode de
+réplication, domicile et source datée par ISIN. Le champ `reviewedAt` hérité date la revue
+de la fiche, tandis que `characteristicsSource.checkedAt` date le contrôle de ces quatre
+champs ; aucun des deux ne date implicitement l'encours. Les tickers et les libellés
+éditoriaux repris de la fiche n'ont pas été certifiés par le contrôle de la source.
+`getInstrumentPeaStatus` retourne `null` quand le statut est inconnu.
 Les performances et encours gardent leur propre part, devise, méthode, date et source dans
 les données de l'outil : un rendement d'indice ne remplace pas celui d'un fonds.
 
