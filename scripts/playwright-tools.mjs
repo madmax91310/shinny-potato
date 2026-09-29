@@ -180,6 +180,7 @@ async function testBrokerComparator(page) {
     && (await page.locator('.bc-row-label').filter({ hasText: 'Espèces CTO' }).count()) === 1
     && (await page.locator('.bc-row-label').filter({ hasText: 'Espèces PEA' }).count()) === 1;
   await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
+  await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('PEA : Non : les comptes PEA sont exclus'));
   const fortuneoSaxo = await page.locator('.bc-tweet-textarea').inputValue();
   const sourceOk = fortuneoSaxo.includes('PEA : Non : les espèces PEA et PEA-PME')
     && fortuneoSaxo.includes('PEA : Non : les comptes PEA sont exclus')
