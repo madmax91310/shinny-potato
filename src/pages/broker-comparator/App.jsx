@@ -20,7 +20,8 @@ const getRow = (key) => ROWS.find((r) => r.key === key)
 
 function RankedRow({ rowKey, brokers, gridStyle }) {
   const row = getRow(rowKey)
-  const best = rankRow(row, brokers)
+  // Tarifs et garde dépendent du montant, du marché et de l'enveloppe : aucun vainqueur universel.
+  const best = ['frais', 'garde', 'liquidites'].includes(rowKey) ? null : rankRow(row, brokers)
   return (
     <div className="bc-row">
       <div className="bc-row-label">
@@ -69,7 +70,6 @@ function ComparisonCard({ selected }) {
   }
   const brokers = selected.map(byId)
   const n = brokers.length
-  const cheapest = [...brokers].sort((x, y) => x.frais.rank - y.frais.rank)[0]
   const gridStyle = { gridTemplateColumns: `repeat(${n}, 1fr)` }
 
   return (
@@ -86,7 +86,7 @@ function ComparisonCard({ selected }) {
           </Fragment>
         ))}
       </h1>
-      <p className="bc-subtitle">PEA, frais &amp; investissement programmé — vue synthétique</p>
+      <p className="bc-subtitle">PEA, frais &amp; investissement programmé — espèces non investies uniquement, hors livrets et fonds</p>
 
       <div className="bc-head-row" style={gridStyle}>
         {brokers.map((b) => (
@@ -137,13 +137,13 @@ function ComparisonCard({ selected }) {
       <div className="bc-synth">
         <div className="bc-label">En bref</div>
         <div className="bc-line">
-          💰 Frais les plus bas : <strong>{cheapest.nom}</strong> — {cheapest.frais.resume}
+          💰 Compare le coût pour ton ordre, ton enveloppe et le marché concerné. « À vérifier » indique une information sans preuve PDF suffisante.
         </div>
       </div>
 
       <div className="bc-footer">
         <span className="bc-disclaimer">
-          Données indicatives arrêtées au {fmtDate}. Vérifie les tarifs avant publication — ceci ne constitue pas un
+          Carte générée le {fmtDate}. Les dates de revue des fiches ne valident pas chaque donnée. Vérifie les tarifs avant publication — ceci ne constitue pas un
           conseil en investissement.
         </span>
         <span className="bc-datestamp">📊 Éducation financière</span>
