@@ -2,6 +2,14 @@
 // des Fiches ETF. null signifie que la recherche n'a pas permis de trancher.
 // Ne jamais déduire l'éligibilité du domicile, de l'indice ou du nom commercial.
 export const PEA_REVIEWS_BY_ISIN = Object.freeze({
+  FR0013412038: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/download/c4f606a3-f783-4553-b7f6-143137c8d964/MonthlyFactsheet_4386409_CL78022_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf' },
+  LU1681043599: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/download/0c01e75c-5cc9-4713-9308-cef750de2338/MonthlyFactsheet_4383940_CL54770_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf' },
+  IE0002XZSHO1: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf' },
+  FR0014017NX3: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/prospectus/FR0014017NX3/FRA/FRA/20260706' },
+  IE00B44Z5B48: { eligible: false, checkedAt: '2026-09-29', sourceUrl: 'https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy' },
+  FR0011550185: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://docfinder.bnpparibas-am.com/api/files/e57f2fc0-376f-4eab-94c5-0e7b7500e8ab/512' },
+  FR0013412012: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-pea-asie-emergente-msci-emerging-asia-screened-ucits-etf-acc/fr0013412012' },
+  IE00B5M1WJ87: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.ssga.com/es/en_gb/intermediary/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy' },
   FR0011550193: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://docfinder.bnpparibas-am.com/api/files/3aad97bc-4fe9-4f3f-a1c5-6f5934e401ee/512' },
   LU1834988518: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834988518/FRA/FRA/INSTITUTIONNEL/ETF/20250930' },
   FR0013412020: { eligible: true, checkedAt: '2026-09-29', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260131' },

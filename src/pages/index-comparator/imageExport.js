@@ -1,5 +1,6 @@
 // Affiche éditoriale, une image PNG pour la famille d'indices sélectionnée.
 // Les valeurs proviennent exclusivement de data.js et des YTD saisis dans le formulaire.
+import { getInstrumentPeaStatus } from '../../data/instruments.js'
 const PALETTE = {
   paper: '#f5f2e8', ink: '#0f2930', muted: '#586c6c', line: '#bcc9c2',
   emerald: '#05766a', ochre: '#be754e', blue: '#467888', gold: '#d2ae70', brand: '#0c554e',
@@ -118,12 +119,9 @@ export async function renderIndexImage(family, perfValues = {}) {
         ? europeNames[fund.isin]
         : fund.ticker ? `${fund.ticker} · ${fund.name.split(' ')[0]}` : fund.name.replace(/ UCITS ETF.*$/i, '')
       y = wrapped(ctx, shortName, x, y, COL - 60, 51, PALETTE.ink, 700, 1.15)
-      // Un groupe peut mêler une part PEA et une alternative CTO. Reconnaître
-      // aussi les notes « (CTO, …) » : l'ancienne condition « CTO uniquement »
-      // étiquetait à tort SPDR ACWI et iShares MSCI China comme éligibles PEA.
-      const placement = Object.hasOwn(fund, 'pea')
-        ? fund.pea === null ? 'PEA ?' : fund.pea ? 'PEA' : 'CTO'
-        : /\bCTO\b/i.test(fund.note || '') || group.pea === false ? 'CTO' : 'PEA'
+      // La disponibilité PEA du groupe ne prouve rien pour une part précise.
+      const status = getInstrumentPeaStatus(fund.isin)
+      const placement = status === null ? 'PEA ?' : status ? 'PEA' : 'CTO'
       label(ctx, `${fund.isin} · ${placement}`, x, y + 12, 43, PALETTE.muted)
       label(ctx, fund.ter, x, y + 77, 88, color, 700)
       if (fund.aum) label(ctx, fund.aum.replace(/ au .*/, ''), x, y + 184, 43, PALETTE.muted)

@@ -112,8 +112,9 @@ for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
       console.error(`Comparateur : statut PEA de la part différent du registre pour ${fund.isin}.`);
       errors++;
     }
-    if (status !== null && typeof group.pea === 'boolean' && group.pea !== status) {
-      console.error(`Comparateur : groupe PEA contradictoire pour ${fund.isin} (${family.id}).`);
+    // pea:true sur un groupe signifie « au moins une part PEA », pas toutes.
+    if (status === true && group.pea === false) {
+      console.error(`Comparateur : groupe marqué CTO malgré une part PEA ${fund.isin} (${family.id}).`);
       errors++;
     }
     if (fund.ticker && INSTRUMENT_FACTS_BY_ISIN[fund.isin]?.tickers.length &&
