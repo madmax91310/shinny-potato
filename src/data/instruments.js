@@ -1,6 +1,7 @@
 // Répertoire commun des produits identifiés par ISIN. Noms repris des outils existants :
 // cette migration ne constitue pas une nouvelle vérification auprès des émetteurs.
 // Les variantes ne changent que le libellé éditorial affiché par un outil.
+import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
   "CH0454664001": Object.freeze({name: "21Shares Bitcoin ETP"}),
   "DE000A0H08Q4": Object.freeze({name: "iShares STOXX Europe 600 Technology UCITS ETF (DE)"}),
@@ -160,6 +161,8 @@ export function getInstrumentName(isin, context, variant) {
 // Seules les fiches qui ont documenté le statut PEA sont renseignées.
 // Une absence est inconnue, jamais assimilée à « non éligible ».
 export function getInstrumentPeaStatus(isin) {
+  const review = PEA_REVIEWS_BY_ISIN[isin];
+  if (review) return review.eligible;
   const { pea } = getInstrument(isin);
   return typeof pea === 'boolean' ? pea : null;
 }
@@ -168,4 +171,10 @@ export function getInstrumentPea(isin) {
   const pea = getInstrumentPeaStatus(isin);
   if (pea === null) throw new Error(`Éligibilité PEA non documentée pour ${isin}`);
   return pea;
+}
+
+export function affirmInstrumentPea(isin, expected, wording) {
+  const actual = getInstrumentPeaStatus(isin);
+  if (actual !== expected) throw new Error(`Mention PEA non documentée ou contradictoire pour ${isin}`);
+  return wording;
 }

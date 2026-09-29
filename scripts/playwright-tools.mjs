@@ -234,8 +234,17 @@ async function testIndexComparator(page) {
     const text = await page.locator(".xc-preview-text").innerText();
     if (/L'EXPOSITION/.test(text) && /DIVERSIFICATION/.test(text) && /PERFORMANCE/.test(text) && /LE VERDICT/.test(text) && !/à revérifier|vérifié le|non vérifi[ée]|à vérifier/i.test(text)) ok++;
   }
+  // La famille Europe comporte désormais trois parts sur EURO STOXX 50 ;
+  // exercer aussi l'export PNG, dont la hauteur dépend du nombre de lignes.
+  await select.selectOption({ index: 0 });
+  const [europeImage] = await Promise.all([
+    page.waitForEvent('download'),
+    page.getByRole('button', { name: 'Télécharger l’image PNG' }).click(),
+  ]);
+  const imageFile = await stat(await europeImage.path());
+  const imageOk = imageFile.size > 10000;
   const distinctionOk = /ceux des ETF et parts nommés, pas les rendements bruts des indices/.test(await page.locator('.xc-control-col').innerText());
-  record("Comparateur d'indices", ok === count && distinctionOk, `${ok}/${count} familles avec les 4 blocs clés, distinction indice/ETF: ${distinctionOk}`);
+  record("Comparateur d'indices", ok === count && distinctionOk && imageOk, `${ok}/${count} familles avec les 4 blocs clés, distinction indice/ETF: ${distinctionOk}, image Europe: ${imageOk}`);
 }
 
 async function testFeeImpact(page) {

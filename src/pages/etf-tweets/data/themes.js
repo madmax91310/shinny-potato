@@ -1,4 +1,4 @@
-import { getInstrumentName } from '../../../data/instruments.js';
+import { getInstrumentName, affirmInstrumentPea } from '../../../data/instruments.js';
 import { formatEtfTer } from '../../../data/etf-ter.js';
 let uid = 0
 function nextId(prefix) {
@@ -89,7 +89,7 @@ const BASE_THEMES = [
         // sont également éligibles PEA. Sources émetteurs :
         // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/ENG/FRA/INSTITUTIONNEL/ETF/20260228
         // https://www.ishares.com/ch/professionals/en/products/335178/ishares-msci-world-swap-pea-ucits-etf
-        differenciateur: 'MSCI World éligible PEA, réplication synthétique',
+        differenciateur: affirmInstrumentPea('FR001400U5Q4', true, 'MSCI World éligible PEA, réplication synthétique'),
       }),
     ],
     cloture:
@@ -122,7 +122,7 @@ const BASE_THEMES = [
         isin: 'FR0011871128',
         frais: formatEtfTer('FR0011871128'),
 
-        differenciateur: 'le classique S&P 500 éligible PEA depuis 2014',
+        differenciateur: affirmInstrumentPea('FR0011871128', true, 'le classique S&P 500 éligible PEA depuis 2014'),
       }),
       createEtf({
         // BlackRock, page produit au 25/09/2026 : TER 0,10 %.
@@ -133,7 +133,7 @@ const BASE_THEMES = [
         isin: 'IE000DQLYVB9',
         frais: formatEtfTer('IE000DQLYVB9'),
 
-        differenciateur: 'S&P 500 éligible PEA, moins cher en TER que l’Amundi, mais fonds plus récent',
+        differenciateur: affirmInstrumentPea('IE000DQLYVB9', true, 'S&P 500 éligible PEA, moins cher en TER que l’Amundi, mais fonds plus récent'),
       }),
       createEtf({
         nom: getInstrumentName("FR0011871110", "tweet"),
@@ -143,7 +143,7 @@ const BASE_THEMES = [
         // La part S FR001400ZGR7 de la même gamme est aussi affichée dans
         // la gamme PEA Amundi (27/09/2026) : éviter toute exclusivité de part.
         // https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-pea-nasdaq100-ucits-etf-s-acc/fr001400zgr7
-        differenciateur: 'Nasdaq-100 éligible PEA, exposition concentrée',
+        differenciateur: affirmInstrumentPea('FR0011871110', true, 'Nasdaq-100 éligible PEA, exposition concentrée'),
       }),
     ],
     cloture:
@@ -175,14 +175,16 @@ const BASE_THEMES = [
         isin: 'IE00B53L3W79',
         frais: formatEtfTer('IE00B53L3W79'),
 
-        differenciateur: '50 grandes valeurs de la zone euro, éligible PEA',
+        // La fiche BlackRock ne confirme pas le PEA pour cette part précise ;
+        // des sources secondaires sont contradictoires (contrôle du 29/09/2026).
+        differenciateur: '50 grandes valeurs de la zone euro ; éligibilité PEA à confirmer',
       }),
       createEtf({
         nom: getInstrumentName("FR0011550193", "tweet"),
         isin: 'FR0011550193',
         frais: formatEtfTer('FR0011550193'),
 
-        differenciateur: 'STOXX Europe 600, éligible PEA',
+        differenciateur: affirmInstrumentPea('FR0011550193', true, 'STOXX Europe 600, éligible PEA'),
       }),
     ],
     cloture:
@@ -206,7 +208,7 @@ const BASE_THEMES = [
         isin: 'LU1834988518',
         frais: formatEtfTer('LU1834988518'),
 
-        differenciateur: 'STOXX Europe 600 Technology, éligible PEA',
+        differenciateur: affirmInstrumentPea('LU1834988518', true, 'STOXX Europe 600 Technology, éligible PEA'),
       }),
       createEtf({
         nom: getInstrumentName("DE000A0H08Q4", "tweet"),
@@ -245,7 +247,7 @@ const BASE_THEMES = [
         isin: 'FR0013412020',
         frais: formatEtfTer('FR0013412020'),
 
-        differenciateur: 'éligible PEA, indice MSCI Emerging Markets filtré ESG',
+        differenciateur: affirmInstrumentPea('FR0013412020', true, 'éligible PEA, indice MSCI Emerging Markets filtré ESG'),
       }),
       createEtf({
         nom: getInstrumentName("IE00BTJRMP35", "tweet"),
@@ -281,7 +283,7 @@ const BASE_THEMES = [
         isin: 'FR001400S9V0',
         frais: formatEtfTer('FR001400S9V0'),
 
-        differenciateur: 'exposition au luxe mondial, éligible PEA',
+        differenciateur: affirmInstrumentPea('FR001400S9V0', true, 'exposition au luxe mondial, éligible PEA'),
       }),
     ],
     cloture:
@@ -359,7 +361,7 @@ const BASE_THEMES = [
         isin: 'LU1834986900',
         frais: formatEtfTer('LU1834986900'),
 
-        differenciateur: 'santé européenne, éligible PEA',
+        differenciateur: affirmInstrumentPea('LU1834986900', true, 'santé européenne, éligible PEA'),
       }),
     ],
     cloture:
@@ -473,7 +475,7 @@ const BASE_THEMES = [
         nom: getInstrumentName("FR0013411980", "tweet"),
         isin: 'FR0013411980',
         frais: formatEtfTer('FR0013411980'),
-        differenciateur: 'TOPIX en PEA, sans couverture du yen',
+        differenciateur: affirmInstrumentPea('FR0013411980', true, 'TOPIX en PEA, sans couverture du yen'),
       }),
       createEtf({
         nom: getInstrumentName("FR0013411998", "tweet"),
@@ -482,7 +484,7 @@ const BASE_THEMES = [
         // Fiche Amundi du 30/04/2026 : PEA, frais 0,48 %.
         // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
 
-        differenciateur: 'TOPIX en PEA, couvert contre le yen',
+        differenciateur: affirmInstrumentPea('FR0013411998', true, 'TOPIX en PEA, couvert contre le yen'),
       }),
       createEtf({
         nom: getInstrumentName("LU1875395870", "tweet"),
@@ -524,14 +526,14 @@ const BASE_THEMES = [
         isin: 'IE0002Y8CX98',
         frais: formatEtfTer('IE0002Y8CX98'),
 
-        differenciateur: 'défense européenne, non éligible PEA, CTO',
+        differenciateur: affirmInstrumentPea('IE0002Y8CX98', false, 'défense européenne, non éligible PEA, CTO'),
       }),
       createEtf({
         nom: getInstrumentName("LU3038520774", "tweet"),
         isin: 'LU3038520774',
         frais: formatEtfTer('LU3038520774'),
 
-        differenciateur: 'défense européenne, non éligible PEA, frais les plus bas du trio',
+        differenciateur: affirmInstrumentPea('LU3038520774', false, 'défense européenne, non éligible PEA, frais les plus bas du trio'),
       }),
     ],
     cloture:
@@ -635,14 +637,14 @@ const BASE_THEMES = [
         isin: 'LU1834983550',
         frais: formatEtfTer('LU1834983550'),
 
-        differenciateur: 'ressources de base européennes, éligible PEA, réplication synthétique',
+        differenciateur: affirmInstrumentPea('LU1834983550', true, 'ressources de base européennes, éligible PEA, réplication synthétique'),
       }),
       createEtf({
         nom: getInstrumentName("LU1834983634", "tweet"),
         isin: 'LU1834983634',
         frais: formatEtfTer('LU1834983634'),
 
-        differenciateur: 'matériaux européens, éligible PEA ; vérifie la fourchette achat/vente',
+        differenciateur: affirmInstrumentPea('LU1834983634', true, 'matériaux européens, éligible PEA ; vérifie la fourchette achat/vente'),
       }),
       createEtf({
         nom: getInstrumentName("IE00BM67HS53", "tweet"),
