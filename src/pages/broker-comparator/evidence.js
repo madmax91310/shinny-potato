@@ -27,6 +27,7 @@ export const OFFICIAL_SOURCES = {
   saxoPeaHelp: { title: 'Saxo Banque · Centre d’aide PEA', edition: '29/06/2026', checked: '29/09/2026', url: 'https://www.help.saxo/hc/fr-fr/articles/4582385514781-Le-Plan-%C3%89pargne-en-Actions-PEA', kind: 'page' },
   xtbComparison: { title: 'XTB · Comparatif PEA 2026 et perspectives de son offre', edition: '2026', checked: '29/09/2026', url: 'https://www.xtb.com/fr/formation/meilleurs-PEA-2025-notre-comparatif', kind: 'page' },
   bdSupport: { title: 'Bourse Direct · FAQ transfert de compte', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.boursedirect.fr/fr/support', kind: 'page' },
+  bdTariffPage: { title: 'Bourse Direct · Tarifs PEA et transfert entrant', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.boursedirect.fr/fr/bourse/tarifs', kind: 'page' },
   trContract: {
     title: 'Trade Republic · Contrat client France', edition: '09/2026', checked: '29/09/2026',
     url: 'https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf',
@@ -54,8 +55,7 @@ export const OFFICIAL_SOURCES = {
   xtbIfu: { title: 'XTB · Informations générales et IFU', edition: '29/04/2026', checked: '29/09/2026', url: 'https://xtb.com/fr/Informations_Generales_Concernant_XTB.pdf' },
   caTariff: {
     title: 'Crédit Agricole Île-de-France · Tarifs particuliers', edition: '01/04/2026', checked: '29/09/2026',
-    url: 'https://ca-paris.credit-agricole.fr/tarif/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf',
-    availability: 'Lien officiel indisponible (404) lors du contrôle',
+    url: 'https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf',
   },
   bdTariff: {
     title: 'Bourse Direct · Conditions tarifaires', edition: '06/01/2026', checked: '29/09/2026',
@@ -143,15 +143,15 @@ export const BROKER_EVIDENCE = {
   },
   caidf: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
-    frais: unknown('Page nationale Invest Store consultée ; barème Île-de-France 2026 indisponible (404).', ['caTariff', 'caInvest']),
-    dca: { status: 'partiel', summary: 'Plan d’Épargne Boursière national : versements automatiques dès 45 €/mois sur 1 à 3 SICAV/FCP éligibles, compatible PEA et PEA-PME ; conditions et tarifs Île-de-France à confirmer.', refs: [{ document: 'caPeb' }] },
-    garde: unknown('Offre Intégral nationale annonce une exonération, sans confirmer le tarif Île-de-France.', ['caTariff', 'caInvest']),
-    pea: proved('PEA proposé par Invest Store ; tarifs régionaux à vérifier.', 'caInvest'),
-    pme: proved('PEA-PME mentionné par Invest Store ; tarifs régionaux à vérifier.', 'caInvest'),
+    frais: proved('Île-de-France, ordre en ligne Euronext : Invest Store Initial 0,50 % ; Intégral PEA/PEA-PME 0,48 % jusqu’à 500 €, 0,18 % de 500 à 1 000 €, 0,12 % au-delà. Intégral coûte 96 €/an sous 12 ordres, gratuit dès 12 ordres ou de 18 à 30 ans. Frais de marché et TTF en sus.', 'caTariff', 28),
+    dca: { status: 'confirmé', summary: 'Plan d’Épargne Boursière : investissements automatiques dès 45 €/mois sur 1 à 3 SICAV/FCP éligibles PEA/PEA-PME selon la page nationale ; mise en place gratuite dans le tarif Île-de-France. Frais propres aux fonds selon leur DIC.', refs: [{ document: 'caPeb' }, { document: 'caTariff', page: 27 }] },
+    garde: proved('Île-de-France : exonération avec Invest Store Intégral, gestion conseillée ou mandat ; autrement 2,50 €/semestre/compte, 12,50 €/semestre sur certaines lignes, 0,20 %/semestre de valorisation, maximum 250 €/semestre. Voir détails et exemptions au barème.', 'caTariff', 29),
+    pea: proved('PEA proposé par Invest Store ; barème régional Île-de-France publié.', 'caTariff', 28),
+    pme: proved('PEA-PME proposé ; barème régional Île-de-France publié.', 'caTariff', 28),
     jeune: { status: 'partiel', summary: 'Le Crédit Agricole annonce commercialiser le PEA Jeune ; conditions de la caisse Île-de-France à confirmer.', refs: [{ document: 'caPea' }] },
     ifu: { status: 'partiel', summary: 'Invest Store Initial et Intégral permettent de consulter l’IFU ; conditions de la caisse à vérifier.', refs: [{ document: 'caInvest' }] },
     cash: unknown('PEA-PME non rémunéré selon page nationale ; autres soldes et conditions régionales non établis.', ['caPeaPme', 'caTariff']),
-    transfert: unknown('Frais de transfert non vérifiés dans un PDF accessible.', ['caTariff']),
+    transfert: proved('Transfert sortant de compte-titres ou PEA hors Crédit Agricole : 15 €/ligne, maximum 150 €/compte ; frais du correspondant possibles pour titres étrangers.', 'caTariff', 31),
   },
   bd: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
@@ -163,7 +163,7 @@ export const BROKER_EVIDENCE = {
     jeune: proved('PEA Jeunes prévu dans le barème.', 'bdTariff', 2),
     ifu: proved('IFU mis à disposition pour la déclaration du compte titres.', 'bdIfu'),
     cash: unknown('Compte espèces PEA non rémunéré ; compte titres ordinaire non établi, donc réponse globale indéterminée.', ['bdPea', 'bdTariff']),
-    transfert: { status: 'confirmé', summary: 'Transfert PEA sortant : 15 € par ligne, plafond 150 €. Bourse Direct annonce prendre en charge les frais de transfert entrant à hauteur de 200 € par compte, sur justificatif envoyé sous trois mois.', refs: [{ document: 'bdTariff', page: 4 }, { document: 'bdSupport' }] },
+    transfert: { status: 'confirmé', summary: 'Transfert PEA sortant : 15 € par ligne, plafond 150 €. Pour un transfert entrant, la page tarifaire actuelle prévoit un remboursement jusqu’à 150 € pour PEA/PEA-PME/PEA Jeune (200 € pour CTO), sur justificatif ; la FAQ générique non ventilée annonce 200 € par compte.', refs: [{ document: 'bdTariff', page: 4 }, { document: 'bdTariffPage' }, { document: 'bdSupport' }] },
   },
   saxo: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
