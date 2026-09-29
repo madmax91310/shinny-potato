@@ -5,6 +5,8 @@ export const OFFICIAL_SOURCES = {
   trInterest: { title: 'Trade Republic · Intérêts sur espèces', edition: 'page en ligne', checked: '29/09/2026', url: 'https://traderepublic.com/fr-fr/interets', kind: 'page' },
   trFees: { title: 'Trade Republic · Frais d’ordre et de garde', edition: 'page en ligne', checked: '29/09/2026', url: 'https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account', kind: 'page' },
   trOrders: { title: 'Trade Republic · Exécution des ordres', edition: 'page en ligne', checked: '29/09/2026', url: 'https://support.traderepublic.com/fr-fr/784-Is-there-commission-for-order-execution', kind: 'page' },
+  trPricing: { title: 'Trade Republic · Barème public France', edition: 'page en ligne', checked: '29/09/2026', url: 'https://traderepublic.com/fr-fr/about?openModal=pricing-scheme', kind: 'page' },
+  trCustody: { title: 'Trade Republic · Frais de garde', edition: 'page d’aide France', checked: '29/09/2026', url: 'https://support.traderepublic.com/fr-fr/2847-Y-a_t_il-des-frais-de-garde-', kind: 'page' },
   trPea: { title: 'Trade Republic · PEA', edition: 'page en ligne', checked: '29/09/2026', url: 'https://traderepublic.com/fr-fr/pea', kind: 'page' },
   xtbInterest: { title: 'XTB · Intérêts sur fonds non investis', edition: 'taux variables', checked: '29/09/2026', url: 'https://www.xtb.com/fr/interets', kind: 'page' },
   xtbPea: { title: 'XTB · PEA, fonctionnement et FAQ', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.xtb.com/fr/pea', kind: 'page' },
@@ -83,9 +85,9 @@ const unknown = (summary, checked = []) => ({ status: 'non établi', summary, ch
 export const BROKER_EVIDENCE = {
   tr: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
-    frais: { status: 'partiel', summary: '1 € de frais de règlement externe par ordre ponctuel hors plan ; application tarifaire précise au PEA à confirmer dans l’application.', refs: [{ document: 'trOrders' }, { document: 'trPea' }] },
+    frais: { status: 'confirmé', summary: 'Les conditions PEA renvoient au barème d’ordres. Ordre ponctuel : 1 € de frais fixes de règlement ; 2 € si Direct Price est choisi. Plans programmés sans frais d’exécution ; spread, frais du produit et tiers éventuels en sus. Le tarif exact est présenté avant validation dans l’application.', refs: [{ document: 'trContract', page: 190 }, { document: 'trPricing' }, { document: 'trOrders' }] },
     dca: { status: 'confirmé', summary: 'Plans programmés prévus par contrat ; PEA sans frais sur les plans selon sa page de présentation ; titres éligibles dans l’application.', refs: [{ document: 'trContract', page: 91 }, { document: 'trPea' }] },
-    garde: { status: 'partiel', summary: 'Absence de frais de garde annoncée pour le compte titres ; barème PEA spécifique à confirmer.', refs: [{ document: 'trFees' }] },
+    garde: { status: 'confirmé', summary: 'Trade Republic indique qu’aucun frais n’est facturé pour l’administration et la conservation des titres. Son contrat décrit le compte de titres PEA détenu chez Trade Republic ; aucune exception PEA n’est annoncée dans l’aide consultée.', refs: [{ document: 'trCustody' }, { document: 'trContract', page: 189 }] },
     pea: proved('PEA prévu par les conditions France.', 'trContract', 189),
     pme: unknown('Offre PEA-PME non établie.', ['trContract']),
     jeune: proved('PEA ouvert sous conditions aux jeunes rattachés au foyer fiscal.', 'trContract', 190),

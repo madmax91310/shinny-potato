@@ -174,7 +174,8 @@ async function testBrokerComparator(page) {
   // innerText(), qui n'expose pas le contenu des champs de formulaire.
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
   const ok = tweet.includes("Si tu transfères ton PEA") && tweet.includes("BoursoMarkets")
-    && !tweet.includes("Quand tu passes un ordre") && !tweet.includes("Liquidités rémunérées")
+    && tweet.includes("Quand tu passes un ordre") && tweet.includes("Direct Price")
+    && !tweet.includes("Liquidités rémunérées")
     && !/à vérifier|à confirmer|non établi/i.test(tweet) && !/Livret|liquidités non rémunérées|vérifié le/i.test(tweet)
     && (await page.locator('.bc-evidence-broker').count()) === 2
     && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 0;
