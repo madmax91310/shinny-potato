@@ -190,7 +190,7 @@ export const BROKERS = [
     post: {
       frais: ["Classic Euronext : 0,08%, minimum 2€ ; plafonnement PEA à 0,5%. Jusqu’au 31/12/2026, 0€ de courtage à l’achat et à la vente sur 70 actions sélectionnées pour certains PEA nouvellement ouverts ou transférés ; autres frais possibles."],
       dca: ["Plan Épargne Programmé : sans commission d’achat ni frais mensuels ; actuellement indisponible sur PEA."],
-      garde: ["0€"],
+      garde: ["0€ sur les titres cotés ; conditions distinctes pour les titres non cotés du PEA."],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
       ifu: ["✅ Oui"],
       faibles: ["Plan programmé indisponible sur PEA ; PEA Jeune non proposé"],
@@ -256,34 +256,59 @@ export function buildTweet(selected) {
       ? ""
       : "Ce format de post est pensé pour un duel (2 courtiers).\nDésélectionne-en un pour générer le texte.";
   }
-  const [b1, b2] = selected.map(byId);
-  const names = (b) => b.emoji + " " + b.nom;
-  const lines = (items) => items.join("\n");
-  const detail = (item) => [item.resume, item.detail].filter(Boolean).join(" · ");
-  const both = (field) => documentedForAll(selected, field);
-  const envelopeFields = [['pea', 'PEA'], ['pme', 'PEA-PME'], ['jeune', 'PEA Jeune']]
-    .filter(([field]) => both(field));
-  const pea = (b) => envelopeFields.map(([field, label]) => `${label} ${b.pea[field] ? '✅' : '❌'}`).join(' / ');
-  const pair = (label, describe) =>
-    label + "\n" + [b1, b2].map((b) => names(b) + " : " + describe(b)).join("\n");
+  const brokers = selected.map(byId);
+  const names = (b) => `${b.emoji} ${b.nom}`;
+  const pair = (label, describe) => `${label}\n\n${brokers.map((b) => `${b.nom} : ${describe(b)}`).join('\n\n')}`;
+  const status = (b, field) => BROKER_EVIDENCE[b.id][field].status;
+  const qualified = (b, field, value) => status(b, field) === 'confirmé' ? value : `${value} (preuve ${status(b, field)}e ; détails dans le registre)`;
+  const envelopes = (field, label) => `${label} : ${brokers.map((b) => `${b.nom} ${b.pea[field] ? '✅' : '❌'}${status(b, field) === 'corroboré' ? '*' : ''}`).join(' · ')}`;
 
-  const blocks = [
-    names(b1) + " ou " + names(b2) + " pour ton PEA ? 👇",
-    "Voici les caractéristiques confirmées par les documents officiels des courtiers.",
+  const offers = {
+    bourso: 'BoursoMarkets : certains ETF iShares éligibles sans courtage à l’achat ; vérifier l’ISIN et le tarif à la vente.',
+    fortuneo: 'Formule Starter : premier ordre mensuel jusqu’à 500 € sans courtage sur les places concernées.',
+    bd: 'Plans programmés sur une sélection d’ETF sans frais de courtage.',
+    saxo: 'Jusqu’au 31 décembre 2026 : 70 actions européennes sélectionnées sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Plus de 150 ETF Amundi sélectionnés sans courtage à l’achat, dont certains éligibles au PEA ; vente au tarif applicable. Les positions achetées via l’offre ETF ne sont pas transférables pendant six mois.',
+  };
+  const fx = {
+    xtb: '0,50 % si une conversion s’applique.',
+    saxo: '0,25 % si une conversion s’applique.',
+  };
+  const transfer = {
+    xtb: 'Transfert entrant du PEA encore indisponible. Sortie : 15 € par ligne, maximum 150 €.',
+    saxo: 'Transfert entrant possible. Pour un transfert total avant le 31 décembre 2026, frais remboursés jusqu’à 150 € sous conditions. Sortie : 15 € par ligne, maximum 150 €.',
+  };
+  const weakness = {
+    saxo: 'Hors offres gratuites, le minimum de 2 € pèse sur les petits ordres, malgré le plafond légal.',
+    xtb: 'Tu ne peux pas encore y transférer ton PEA existant.',
+  };
+  const fees = {
+    xtb: '0 % de commission jusqu’à 100 000 € de transactions mensuelles cumulées, puis 0,20 % ; minimum de 10 € hors PEA.',
+    saxo: '0,08 % sur Euronext en formule Classic, minimum 2 €, sous le plafond PEA de 0,50 % pour un ordre en ligne.',
+  };
+  const dca = {
+    xtb: 'Pas encore ❌ Les achats programmés sur PEA sont annoncés pour plus tard.',
+    saxo: 'Pas sur PEA ❌ Son plan programmé existe pour d’autres comptes.',
+  };
+  const activeOffers = brokers.filter((b) => offers[b.id]);
+  const offerBlock = activeOffers.length
+    ? `🎁 Les offres${activeOffers.length === 1 ? ` ${activeOffers[0].nom}` : ''}\n\n${activeOffers.map((b) => `${activeOffers.length === 1 ? '→' : `${b.nom} :`} ${offers[b.id]}`).join('\n\n')}`
+    : '🎁 Les offres\n\nAucune offre spécifique vérifiée dans le registre pour cette paire ; les tarifs habituels figurent ci-dessus.';
 
-    both('frais') && pair("💰 Quand tu passes un ordre", (b) => lines(b.post.frais.filter((line) => !/Boursomarkets/i.test(line)))),
-    selected.includes('bourso') && pair("🛒 BoursoMarkets", (b) => detail(b.boursomarkets)),
-    both('dca') && pair("📅 Si tu investis automatiquement", (b) => lines(b.post.dca)),
-
-    envelopeFields.length > 0 && pair("🌱 Les enveloppes disponibles", (b) => pea(b)),
-    both('garde') && pair("🛡️ Les frais de garde", (b) => b.id === 'tr' ? '0 € de garde annoncé pour le compte titres.' : lines(b.post.garde)),
-    both('ifu') && pair("📄 Pour la déclaration fiscale", (b) => b.id === 'tr' ? 'IFU après migration vers l’offre française.' : lines(b.post.ifu)),
-    both('cash') && pair("💵 Liquidités rémunérées", (b) => b.cash.post),
-    both('transfert') && pair("🔄 Si tu transfères ton PEA", (b) => BROKER_EVIDENCE[b.id].transfert.summary),
-
-    "Et toi, lequel te correspond le mieux ? 👇",
-    "Ce post ne constitue pas un conseil en investissement.",
-  ].filter(Boolean);
-
-  return blocks.join("\n\n");
+  return [
+    `${names(brokers[0])} ou ${names(brokers[1])} pour ton PEA ?`,
+    'Frais, offres, transferts : on compare les deux courtiers 👇',
+    pair('💰 Frais de courtage PEA', (b) => fees[b.id] ?? b.post.frais.join(' ')),
+    pair('💱 Si une conversion est nécessaire', (b) => fx[b.id] ?? 'Tarif de conversion non vérifié dans ce registre ; consulter le barème avant un ordre en devises.'),
+    offerBlock,
+    pair('📅 Achats automatiques sur PEA', (b) => qualified(b, 'dca', dca[b.id] ?? b.post.dca.join(' '))),
+    pair('🗂️ Frais de garde', (b) => b.post.garde.join(' ')),
+    `🌱 Enveloppes proposées\n\n${['pea', 'pme', 'jeune'].map((field, i) => envelopes(field, ['PEA', 'PEA-PME', 'PEA Jeune'][i])).join('\n')}`,
+    pair('🧾 IFU fourni', (b) => b.id === 'tr' ? 'Oui après migration vers l’offre française ; situation du compte non migré à vérifier.' : b.id === 'bd' ? 'Oui pour le compte titres ; portée PEA non établie par la source utilisée.' : 'Oui ✅'),
+    pair('💵 Liquidités rémunérées', (b) => qualified(b, 'cash', b.cash.post)),
+    'Le oui signifie qu’au moins un compte de courtage rémunère les espèces éligibles, selon ses conditions. Les livrets et fonds monétaires sont exclus.',
+    pair('🔄 Transfert du PEA', (b) => transfer[b.id] ?? BROKER_EVIDENCE[b.id].transfert.summary),
+    pair('⚠️ Le point faible à retenir', (b) => weakness[b.id] ?? b.post.faibles.join(' ')),
+    '💬 Tu es chez quel courtier, et qu’est-ce qui a fait la différence dans ton choix ?',
+    selected.includes('xtb') && '🤝 Par souci de transparence : je suis affilié à XTB, mais ce comparatif est réalisé de ma propre initiative, sans rémunération pour cette publication ni lien affilié.',
+  ].filter(Boolean).join('\n\n');
 }
