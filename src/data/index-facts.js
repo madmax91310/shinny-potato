@@ -1,3 +1,4 @@
+import { ARCHIVE_SOURCE_REVIEW } from './archive-source-review.js';
 import { REVIEWED_INDEX_SNAPSHOTS, REVIEWED_EXISTING_INDEX_KEYS } from './index-source-review.js';
 import { normalizeEvidence } from './evidence.js';
 // Faits d’indices, distincts des caractéristiques et rendements des ETF.
@@ -708,6 +709,13 @@ for (const [id, key] of Object.entries(REVIEWED_EXISTING_INDEX_KEYS)) {
 }
 for (const [id, snapshots] of Object.entries(REVIEWED_INDEX_SNAPSHOTS)) {
   INDEX_FACTS[id] = { ...INDEX_FACTS[id], ...snapshots };
+}
+
+// Revue explicite des archives après ajout des observations récentes, avant gel du registre.
+for (const review of ARCHIVE_SOURCE_REVIEW.filter(r => r.key)) {
+  const facts = INDEX_FACTS[review.id][review.key];
+  facts.source = { ...facts.source, ...review };
+  facts.provenance += ` Revue du reliquat : ${review.sourceStatus}. Raison dans sourceReason.`;
 }
 
 function deepFreeze(value) {

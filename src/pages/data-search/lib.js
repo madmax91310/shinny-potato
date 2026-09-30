@@ -21,7 +21,7 @@ export function describeDataField(field) {
 }
 
 export function describeEvidenceDate(metadata) {
-  if (metadata.asOf) return metadata.asOf
+  if (metadata.asOf) return metadata.sourceStatus === 'archive-unverifiable' ? `${metadata.asOf} (date héritée non recertifiée)` : metadata.asOf
   return {
     'not-applicable': 'Sans objet pour cette caractéristique',
     'not-published': 'Date de valeur non publiée par la source',
