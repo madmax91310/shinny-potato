@@ -11,13 +11,13 @@ import { getInstrumentReturnValues } from '../src/data/instrument-returns.js';
 import { COMPARATOR_ISIN_BY_FAMILY_KEY, getInstrumentComparatorReturns } from '../src/data/instrument-comparator-returns.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
-import { FAMILIES } from '../src/pages/index-comparator/data.js';
+import { FAMILIES } from '../src/data/index-comparisons.js';
 import { ASSETS } from '../src/data/portfolio-assets.js';
 
 const collections = [
   ['sheet', 'src/data/etf-cards.js', ETFS.map(item => ({ ...item, displayName: item.name }))],
   ['tweet', 'src/data/etf-themes.js', DEFAULT_THEMES.flatMap(theme => theme.etfs.map(item => ({ ...item, displayName: item.nom })))],
-  ['index', 'src/pages/index-comparator/data.js', FAMILIES.flatMap(family => (family.etfGroups ?? []).flatMap(group => (group.funds ?? []).map(item => ({ ...item, displayName: item.name }))))],
+  ['index', 'src/data/index-comparisons.js', FAMILIES.flatMap(family => (family.etfGroups ?? []).flatMap(group => (group.funds ?? []).map(item => ({ ...item, displayName: item.name }))))],
   ['portfolio', 'src/data/portfolio-assets.js', ASSETS.filter(item => item.isin).map(item => ({ ...item, displayName: item.name }))],
 ];
 const aumSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-aum-2026-09-29.json', import.meta.url), 'utf8'));
@@ -216,7 +216,7 @@ if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length !=
   console.error('Générateur : une série ISIN reste codée dans l’outil.');
   errors++;
 }
-const comparatorSeriesSource = readFileSync(new URL('../src/pages/index-comparator/data.js', import.meta.url), 'utf8');
+const comparatorSeriesSource = readFileSync(new URL('../src/data/index-comparisons.js', import.meta.url), 'utf8');
 if ((comparatorSeriesSource.match(/\.\.\.getInstrumentComparatorReturns\(/g) ?? []).length !==
     FAMILIES.flatMap(family => family.perfFunds ?? []).filter(row => Number.isFinite(row.y2023)).length) {
   console.error('Comparateur : une série ETF reste codée dans l’outil.');

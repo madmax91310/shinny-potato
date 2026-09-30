@@ -6,7 +6,7 @@ import { getInstrumentTickers } from '../src/data/instrument-facts.js';
 import { INSTRUMENT_LISTINGS_BY_ISIN, getPreferredInstrumentListing } from '../src/data/instrument-listings.js';
 import { validateListingEvidence } from './lib/listing-evidence.mjs';
 import { ETFS } from '../src/data/etf-cards.js';
-import { FAMILIES } from '../src/pages/index-comparator/data.js';
+import { FAMILIES } from '../src/data/index-comparisons.js';
 
 export function validatePublishedListingSelection(items) {
   return items.flatMap(item => {

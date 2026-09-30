@@ -10,6 +10,10 @@ les pages gardent leur logique d’affichage. Les chiffres partagés sont servis
 | Frais | `etf-ter.js` | Fiches ETF, Comparatif ETF, Comparateur d’indices |
 | Encours | `instrument-aum.js` | Fiches ETF, Comparateur d’indices |
 | Cotations, ticker, place et devise | `instrument-listings.js` | Fiches ETF, Comparatifs ETF, Comparateur d’indices |
+| Recherche et export communs | `catalog.js` | Bibliothèque de données et commande `data:search` |
+| Métadonnées normalisées | `evidence.js`, `comparator-return-evidence.js`, `supporting-evidence.js` | Recherche, export JSON, audits |
+| Séries historiques d’indices | `index-returns.js` | Coulisses des indices, Bibliothèque de données |
+| Familles et variantes éditoriales | `index-comparisons.js`, `index-factsheets.js` | Comparateur, Coulisses, Bibliothèque de données |
 | Composition des indices par photographie | `index-facts.js` | Coulisses des indices, Comparateur d’indices |
 | Caractéristiques | `instrument-facts.js` | Fiches ETF, Comparateur d’indices |
 | Éligibilité PEA documentée | `instrument-pea.js` | Fiches ETF, Comparatif ETF, Comparateur d’indices |
@@ -41,17 +45,44 @@ dans `src/data/`, puis lancer `npm run audit:instrument-catalog`,
 `npm run audit:performance-consistency` et les vérifications des outils concernés.
 
 
-## Centralisation : suite utile
+## Centralisation : les trois étapes réalisées
 
-1. Étendre le registre aux faits des indices encore propres au comparateur
-   (MSCI USA, Russell 1000, familles émergentes, facteurs, dividendes et Chine),
-   avec identifiants stables et photographies explicites. Les commentaires existants
-   ne suffisent pas toujours à établir une date exacte ; ne pas en inventer.
-2. Ajouter une recherche commune par ISIN, nom, ticker ou identifiant d’indice,
-   indiquant le registre, les photographies, les sources et les outils consommateurs.
-   Les registres restent séparés par nature ; une recherche commune ne les fusionne pas.
-3. Harmoniser progressivement les métadonnées de source, date de photographie,
-   date de contrôle, devise et périmètre. Étendre les audits aux nouveaux consommateurs.
+* Les 34 références d’indices sont dans `index-facts.js`, par identifiant stable et
+  photographie. Les nombres exacts, objectifs nominaux de méthodologie et fourchettes
+  restent distincts. Les descriptions des 13 familles sont générées depuis ce registre.
+* La Bibliothèque de données (`/bibliotheque-donnees`) recherche 142 instruments,
+  34 indices, 24 séries et 44 définitions par ISIN, ticker, nom et identifiant.
+  Elle indique les registres, sources, dates, devises, périmètres et outils consommateurs.
+  Chaque fiche propose un lien direct et un export JSON autonome, avec `schemaVersion: 1`.
+* `normalizeEvidence` donne le même contrat de lecture et d’export aux différents
+  registres : `sourceUrls`, `asOf`, `checkedAt`, `currency`, `scope`, `method`, `note`.
+  Une source ou date non établie reste inconnue. Les métadonnées du comparateur, du
+  lexique et des séries reprennent les notes existantes, sans nouvelle certification.
+
+Les fichiers de chaque outil restent des façades de compatibilité ; les registres
+communs n’importent pas les pages. Les valeurs des rendements et textes existants
+ont été conservées, et leurs conventions distinctes n’ont pas été fusionnées.
+
+### Rechercher ou partager depuis la ligne de commande
+
+```sh
+npm run data:search -- DCAM
+npm run data:search -- msci-usa --type=index
+node scripts/search-data.mjs FR001400U5Q4 --json
+```
+
+### Mettre à jour une donnée
+
+1. Retrouver la fiche par la recherche et suivre son chemin de registre.
+2. Modifier la valeur à cet emplacement, avec sa provenance. Pour une nouvelle date
+   d’indice, ajouter une photographie ; conserver les anciennes. Ne pas transformer
+   une date de consultation en date de valeur et ne pas confondre titre et société.
+3. Actualiser ses métadonnées si une source, devise ou convention a réellement changé.
+   Les cartes du catalogue sont dérivées des registres, sans copie de leurs chiffres.
+4. Lancer `npm run audit:index-facts`, `npm run audit:data-catalog`, les audits du
+   domaine modifié, `npm run build` et `npm run test:tools`. Les deux audits communs
+   tournent aussi en CI. Ne pas modifier seulement le texte d’un outil pour corriger
+   une donnée partagée.
 
 Les courtiers (`src/pages/broker-comparator/data.js` et `evidence.js`), les faits de
 marché et les cas concrets restent propres à leur outil. Leur déplacement vers

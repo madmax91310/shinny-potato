@@ -1,3 +1,4 @@
+import { normalizeEvidence } from './evidence.js';
 // Faits d’indices, distincts des caractéristiques et rendements des ETF.
 // Clé = indice + photographie : une nouvelle date ajoute une entrée, elle ne remplace pas l’histoire.
 // Sources migrées du dépôt au 30/09/2026 : cette date ne constitue pas une recertification externe.
@@ -45,7 +46,10 @@ export const INDEX_FACTS = {
         "label": "JPX, source déjà citée par le comparateur ; comptage de juillet hérité",
         "url": "https://www.jpx.co.jp/english/markets/indices/topix/"
       },
-      "provenance": "Comparateur : revue du 04/09/2026, attribution à la presse japonaise sans URL archivée ; valeur historique conservée, non recertifiée."
+      "provenance": "Comparateur : revue du 04/09/2026, attribution à la presse japonaise sans URL archivée ; valeur historique conservée, non recertifiée.",
+      "descriptionTemplates": {
+        "japon": "{{constituents}} valeurs (juillet 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation."
+      }
     }
   },
   "nikkei225": {
@@ -63,7 +67,10 @@ export const INDEX_FACTS = {
       "marketCap": "1 060 380 milliards ¥ de capitalisation totale des composants (ce n’est pas la pondération de l’indice)",
       "countries": [["🇯🇵 Japon", 100]],
       "sectors": [["💻 Technologie", 55.36], ["🛍️ Biens de consommation", 20.7], ["🪨 Matériaux", 12.59], ["🏭 Biens d’équipement et autres", 7.02], ["🏦 Finance", 3.01], ["🚆 Transport et services publics", 1.32]],
-      "holdings": [["Advantest", 12.26], ["Fast Retailing", 8.79], ["Tokyo Electron", 8.56], ["SoftBank Group", 6.31], ["Recruit Holdings", 2.76], ["TDK", 2.33], ["Ibiden", 2.07], ["KDDI", 1.8], ["Kioxia", 1.77], ["Fujikura", 1.67]]
+      "holdings": [["Advantest", 12.26], ["Fast Retailing", 8.79], ["Tokyo Electron", 8.56], ["SoftBank Group", 6.31], ["Recruit Holdings", 2.76], ["TDK", 2.33], ["Ibiden", 2.07], ["KDDI", 1.8], ["Kioxia", 1.77], ["Fujikura", 1.67]],
+      "descriptionTemplates": {
+        "japon": "{{constituents}} valeurs liquides sélectionnées à la Bourse de Tokyo ; indice pondéré par le PRIX de l'action (pas la capitalisation)."
+      }
     }
   },
   "acwi": {
@@ -82,7 +89,10 @@ export const INDEX_FACTS = {
       "countries": [["🇺🇸 États-Unis", 63.59], ["🇯🇵 Japon", 5.09], ["🇹🇼 Taïwan", 3.25], ["🇬🇧 Royaume-Uni", 3.11], ["🇨🇦 Canada", 3.05], ["🌍 Autres", 21.91]],
       "sectors": [["💻 Technologie", 31.2], ["🏦 Finance", 16.95], ["🏭 Industrie", 10.59], ["🛍️ Consommation discrétionnaire", 8.72], ["🏥 Santé", 8.49], ["📡 Communication", 7.69], ["🛒 Consommation de base", 4.65], ["⚡ Énergie", 4.01], ["🪨 Matériaux", 3.8], ["💡 Services publics", 2.33], ["🏠 Immobilier", 1.56]],
       "holdings": [["Nvidia", 4.9], ["Apple", 4.47], ["Microsoft", 3.44], ["Amazon", 2.42], ["Alphabet A", 1.9], ["TSMC", 1.8], ["Broadcom", 1.6], ["Alphabet C", 1.49], ["Meta", 1.21], ["Micron", 1.04]],
-      "topWeight": 24.26
+      "topWeight": 24.26,
+      "descriptionTemplates": {
+        "monde": "Le MSCI World + les marchés émergents (Chine, Inde, Brésil…), {{constituents}} valeurs au 31/08/2026."
+      }
     },
     "legacy-undated": {
       "index": "MSCI ACWI",
@@ -112,7 +122,10 @@ export const INDEX_FACTS = {
       "countries": [["🇺🇸 États-Unis", 61.71], ["🇯🇵 Japon", 5.98], ["🇹🇼 Taïwan", 3.3], ["🇬🇧 Royaume-Uni", 3.2], ["🇨🇦 Canada", 3], ["🌍 Autres", 22.81]],
       "sectors": [["💻 Technologie", 34.09], ["🏦 Finance", 15.49], ["🏭 Industrie", 12.31], ["🛍️ Consommation discrétionnaire", 11.04], ["🏥 Santé", 7.98], ["⚡ Énergie", 4.15], ["🛒 Consommation de base", 3.89], ["🪨 Matériaux de base", 3.44], ["📡 Télécommunications", 3.33], ["💡 Services publics", 2.55], ["🏠 Immobilier", 1.74]],
       "holdings": [["Nvidia", 4.79], ["Apple", 4.26], ["Microsoft", 3.51], ["Amazon", 2.35], ["Alphabet A", 1.84], ["TSMC", 1.72], ["Broadcom", 1.6], ["Alphabet C", 1.48], ["Meta", 1.17], ["Micron", 1.01]],
-      "topWeight": 23.73
+      "topWeight": 23.73,
+      "descriptionTemplates": {
+        "monde": "Grandes et moyennes entreprises des pays développés et émergents, comme l’ACWI : {{constituents}} valeurs au 31/08/2026."
+      }
     }
   },
   "world-small-cap": {
@@ -131,7 +144,10 @@ export const INDEX_FACTS = {
       "countries": [["🇺🇸 États-Unis", 61.76], ["🇯🇵 Japon", 12.58], ["🇬🇧 Royaume-Uni", 4.57], ["🇨🇦 Canada", 4.29], ["🇦🇺 Australie", 3.51], ["🌍 Autres", 13.29]],
       "sectors": [["🏭 Industrie", 19.31], ["🏦 Finance", 14.68], ["💻 Technologie", 14.33], ["🏥 Santé", 11.11], ["🛍️ Consommation discrétionnaire", 10.11], ["🪨 Matériaux", 8.31], ["🏠 Immobilier", 7.51], ["⚡ Énergie", 5.08], ["🛒 Consommation de base", 4], ["📡 Communication", 3.04], ["💡 Services publics", 2.52]],
       "holdings": [["Sandisk", 2.08], ["Moderna", 0.43], ["ATI", 0.26], ["nVent Electric", 0.22], ["Tenet Healthcare", 0.21], ["US Foods", 0.21], ["Carpenter Technology", 0.21], ["Royal Gold", 0.2], ["Roku A", 0.19], ["Woodward", 0.19]],
-      "topWeight": 4.21
+      "topWeight": 4.21,
+      "descriptionTemplates": {
+        "monde-segments": "Petites capitalisations des pays développés : {{constituents}} sociétés au 31/08/2026."
+      }
     }
   },
   "world-ex-usa": {
@@ -150,7 +166,10 @@ export const INDEX_FACTS = {
       "countries": [["🇯🇵 Japon", 20.73], ["🇬🇧 Royaume-Uni", 12.67], ["🇨🇦 Canada", 12.41], ["🇫🇷 France", 8.46], ["🇨🇭 Suisse", 8.09], ["🌍 Autres", 37.64]],
       "sectors": [["🏦 Finance", 28.01], ["🏭 Industrie", 17.79], ["💻 Technologie", 10.1], ["🏥 Santé", 8.89], ["🛍️ Consommation discrétionnaire", 7.67], ["🪨 Matériaux", 7.52], ["🛒 Consommation de base", 6.13], ["⚡ Énergie", 5.41], ["📡 Communication", 3.57], ["💡 Services publics", 3.55], ["🏠 Immobilier", 1.37]],
       "holdings": [["ASML", 2.56], ["HSBC", 1.39], ["Roche", 1.2], ["Royal Bank of Canada", 1.12], ["Novartis", 1.09], ["Shell", 1], ["Nestlé", 0.98], ["Siemens", 0.96], ["Mitsubishi UFJ", 0.96], ["AstraZeneca", 0.96]],
-      "topWeight": 12.24
+      "topWeight": 12.24,
+      "descriptionTemplates": {
+        "monde-segments": "Grandes et moyennes capitalisations des pays développés hors États-Unis : {{constituents}} sociétés au 31/08/2026."
+      }
     }
   },
   "world": {
@@ -169,7 +188,11 @@ export const INDEX_FACTS = {
       "countries": [["🇺🇸 États-Unis", 72.14], ["🇯🇵 Japon", 5.78], ["🇬🇧 Royaume-Uni", 3.53], ["🇨🇦 Canada", 3.46], ["🇫🇷 France", 2.36], ["🌍 Autres", 12.74]],
       "sectors": [["💻 Technologie", 29.81], ["🏦 Finance", 16.58], ["🏭 Industrie", 11.13], ["🏥 Santé", 9.27], ["🛍️ Consommation discrétionnaire", 8.82], ["📡 Communication", 7.9], ["🛒 Consommation de base", 4.91], ["⚡ Énergie", 4.09], ["🪨 Matériaux", 3.47], ["💡 Services publics", 2.39], ["🏠 Immobilier", 1.64]],
       "holdings": [["Nvidia", 5.56], ["Apple", 5.07], ["Microsoft", 3.9], ["Amazon", 2.74], ["Alphabet A", 2.15], ["Broadcom", 1.82], ["Alphabet C", 1.69], ["Meta", 1.37], ["Micron", 1.18], ["Tesla", 1.13]],
-      "topWeight": 26.61
+      "topWeight": 26.61,
+      "descriptionTemplates": {
+        "monde": "Les {{constituents}} grandes et moyennes entreprises de 23 pays développés au 31/08/2026.",
+        "monde-segments": "Grandes et moyennes capitalisations de 23 pays développés ; les États-Unis en représentent la plus grande part."
+      }
     },
     "legacy-undated": {
       "index": "MSCI World",
@@ -198,7 +221,10 @@ export const INDEX_FACTS = {
       "marketCap": "13 481 milliards € de capitalisation flottante",
       "countries": [["🇬🇧 Royaume-Uni", 22.9], ["🇫🇷 France", 15], ["🇨🇭 Suisse", 13.7], ["🇩🇪 Allemagne", 13.4], ["🇳🇱 Pays-Bas", 7.9], ["🇪🇸 Espagne", 6], ["🇮🇹 Italie", 5.7], ["🌍 Autres", 15.4]],
       "sectors": [["🏦 Banques", 15.7], ["🏭 Biens et services industriels", 15.4], ["🏥 Santé", 12.3], ["💻 Technologie", 8.9], ["⚡ Énergie", 6.5], ["🛡️ Assurance", 6], ["🛒 Alimentation et boissons", 4.9], ["💡 Services publics", 4.4], ["🛍️ Produits et services de consommation", 4.2], ["💰 Services financiers", 4.2]],
-      "holdings": [["ASML", 4.18], ["HSBC", 2.274], ["Roche", 1.959], ["Novartis", 1.855], ["Shell", 1.634], ["AstraZeneca", 1.607], ["Nestlé", 1.605], ["Siemens", 1.555], ["SAP", 1.432], ["Banco Santander", 1.38]]
+      "holdings": [["ASML", 4.18], ["HSBC", 2.274], ["Roche", 1.959], ["Novartis", 1.855], ["Shell", 1.634], ["AstraZeneca", 1.607], ["Nestlé", 1.605], ["Siemens", 1.555], ["SAP", 1.432], ["Banco Santander", 1.38]],
+      "descriptionTemplates": {
+        "europe": "{{constituents}} entreprises de grandes, moyennes et petites capitalisations européennes, dans 17 pays."
+      }
     }
   },
   "eurostoxx50": {
@@ -216,7 +242,10 @@ export const INDEX_FACTS = {
       "marketCap": "4 461 milliards € de capitalisation flottante",
       "countries": [["🇫🇷 France", 31.7], ["🇩🇪 Allemagne", 30.2], ["🇳🇱 Pays-Bas", 13.5], ["🇪🇸 Espagne", 11.6], ["🇮🇹 Italie", 8.9], ["🇧🇪 Belgique", 2.8], ["🇫🇮 Finlande", 1.3]],
       "sectors": [["🏦 Banques", 19.7], ["🏭 Biens et services industriels", 17.4], ["💻 Technologie", 15.8], ["⚡ Énergie", 7.5], ["🛡️ Assurance", 7], ["🛍️ Produits et services de consommation", 6.4], ["🏥 Santé", 5.4], ["💡 Services publics", 4.5], ["🧪 Chimie", 3.5], ["🚘 Automobiles", 2.6]],
-      "holdings": [["ASML", 8.689], ["Siemens", 4.699], ["SAP", 4.329], ["Banco Santander", 4.17], ["TotalEnergies", 3.854], ["Allianz", 3.844], ["Schneider Electric", 3.811], ["BBVA", 3.161], ["UniCredit", 2.844], ["Iberdrola", 2.83]]
+      "holdings": [["ASML", 8.689], ["Siemens", 4.699], ["SAP", 4.329], ["Banco Santander", 4.17], ["TotalEnergies", 3.854], ["Allianz", 3.844], ["Schneider Electric", 3.811], ["BBVA", 3.161], ["UniCredit", 2.844], ["Iberdrola", 2.83]],
+      "descriptionTemplates": {
+        "europe": "Les {{constituents}} plus grosses boîtes de la zone euro uniquement."
+      }
     }
   },
   "mscieurope": {
@@ -235,7 +264,10 @@ export const INDEX_FACTS = {
       "countries": [["🇬🇧 Royaume-Uni", 22.38], ["🇫🇷 France", 14.93], ["🇨🇭 Suisse", 14.29], ["🇩🇪 Allemagne", 13.99], ["🇳🇱 Pays-Bas", 8.79], ["🌍 Autres", 25.61]],
       "sectors": [["🏦 Finance", 25.76], ["🏭 Industrie", 18.87], ["🏥 Santé", 12.7], ["💻 Technologie", 9], ["🛒 Consommation de base", 8.29], ["🛍️ Consommation discrétionnaire", 6.31], ["🪨 Matériaux", 5.55], ["⚡ Énergie", 4.96], ["💡 Services publics", 4.71], ["📡 Communication", 3.27], ["🏠 Immobilier", 0.6]],
       "holdings": [["ASML", 4.53], ["HSBC", 2.46], ["Roche", 2.12], ["Novartis", 1.93], ["Shell", 1.76], ["Nestlé", 1.74], ["Siemens", 1.7], ["AstraZeneca", 1.7], ["SAP", 1.6], ["Banco Santander", 1.45]],
-      "topWeight": 20.99
+      "topWeight": 20.99,
+      "descriptionTemplates": {
+        "europe": "Grandes et moyennes capitalisations de 15 pays développés européens."
+      }
     }
   },
   "em-esg": {
@@ -253,7 +285,11 @@ export const INDEX_FACTS = {
       "countries": [["🇹🇼 Taïwan", 27.75], ["🇰🇷 Corée du Sud", 20.83], ["🇨🇳 Chine", 20.71], ["🇮🇳 Inde", 11.15], ["🇧🇷 Brésil", 3.76], ["🌍 Autres", 15.8]],
       "sectors": [["💻 Technologie", 41.72], ["🏦 Finance", 20.3], ["🛍️ Consommation discrétionnaire", 8.17], ["🏭 Industrie", 6.36], ["📡 Communication", 6.04], ["🪨 Matériaux", 5.77], ["🛒 Consommation de base", 3.22], ["⚡ Énergie", 3.08], ["🏥 Santé", 2.59], ["💡 Services publics", 1.45], ["🏠 Immobilier", 1.31]],
       "holdings": [["TSMC", 15.22], ["Samsung Electronics", 7.16], ["SK Hynix", 5.55], ["Tencent", 2.79], ["Alibaba", 1.94], ["MediaTek", 1.42], ["Samsung Electronics Pref.", 1.03], ["China Construction Bank", 1.01], ["Delta Electronics", 1], ["Reliance Industries", 0.84]],
-      "topWeight": 37.96
+      "topWeight": 37.96,
+      "marketCount": 23,
+      "descriptionTemplates": {
+        "emergents-pea": "PAEEM suit désormais le MSCI EM ex-Egypt ESG Broad CTB Select : univers de {{marketCount}} pays émergents, Égypte exclue, avec des filtres ESG et climatiques (pas les mêmes lignes qu’un fonds CTO classique)."
+      }
     }
   },
   "sp500-pea": {
@@ -271,7 +307,11 @@ export const INDEX_FACTS = {
       "countries": [["🇺🇸 États-Unis", 100]],
       "sectors": [["💻 Technologie", 37.37], ["🏦 Finance", 11.87], ["📡 Communication", 9.76], ["🛍️ Consommation discrétionnaire", 9.38], ["🏥 Santé", 9.07], ["🏭 Industrie", 8.88], ["🛒 Consommation de base", 4.68], ["⚡ Énergie", 3.02], ["💡 Services publics", 2.25], ["🏠 Immobilier", 1.88], ["🪨 Matériaux", 1.84]],
       "holdings": [["Nvidia", 7.38], ["Apple", 6.47], ["Microsoft", 4.28], ["Amazon", 3.68], ["Alphabet A", 3.24], ["Broadcom", 2.76], ["Alphabet C", 2.6], ["Micron", 2.02], ["Meta", 1.93], ["Tesla", 1.81]],
-      "topWeight": 36.17
+      "topWeight": 36.17,
+      "descriptionTemplates": {
+        "usa": "Environ 500 grandes entreprises américaines sélectionnées selon plusieurs critères, dont le flottant et la liquidité."
+      },
+      "targetConstituents": 500
     }
   },
   "nasdaq-pea": {
@@ -289,7 +329,373 @@ export const INDEX_FACTS = {
       "countries": [["🇺🇸 États-Unis", 94.78], ["🇮🇪 Irlande", 1.82], ["🇳🇱 Pays-Bas", 1.32], ["🇨🇦 Canada", 1], ["🇬🇧 Royaume-Uni", 0.66], ["🌍 Autres", 0.42]],
       "sectors": [["💻 Technologie", 58.27], ["📡 Communication", 13.89], ["🛍️ Consommation discrétionnaire", 11.13], ["🛒 Consommation de base", 6.22], ["🏥 Santé", 4.01], ["🏭 Industrie", 3.62], ["💡 Services publics", 1.14], ["🪨 Matériaux", 1], ["⚡ Énergie", 0.52], ["🏦 Finance", 0.21]],
       "holdings": [["Nvidia", 8.41], ["Apple", 7.5], ["Microsoft", 6.09], ["Micron", 4.64], ["Amazon", 4.58], ["AMD", 3.35], ["Alphabet A", 3.22], ["Alphabet C", 2.99], ["Broadcom", 2.79], ["Tesla", 2.78]],
-      "topWeight": 46.35
+      "topWeight": 46.35,
+      "targetConstituents": 100,
+      "descriptionTemplates": {
+        "usa": "Les {{targetConstituents}} plus grosses non-financières du Nasdaq : ultra tech."
+      }
+    }
+  },
+  "msci-usa": {
+    "legacy-undated": {
+      "index": "MSCI USA",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille usa",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 527,
+      "descriptionTemplates": {
+        "usa": "Grandes ET moyennes capitalisations US, {{constituents}} valeurs."
+      }
+    }
+  },
+  "russell-1000": {
+    "methodology": {
+      "index": "Russell 1000",
+      "asOf": null,
+      "snapshot": "Méthodologie, sans photographie datée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille usa",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "targetConstituents": 1000,
+      "descriptionTemplates": {
+        "usa": "Les {{targetConstituents}} plus grandes valeurs US, ~93 % de la capitalisation du marché américain."
+      }
+    }
+  },
+  "msci-em-asia-screened": {
+    "legacy-undated": {
+      "index": "MSCI EM Asia Screened Select ex Thermal Coal",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille emergents-pea",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "marketCount": 8,
+      "descriptionTemplates": {
+        "emergents-pea": "Zone couverte par PAASI : indice MSCI EM Asia Screened Select ex Thermal Coal — {{marketCount}} pays d'Asie émergente (Chine, Inde, Taïwan, Corée du Sud…)."
+      }
+    }
+  },
+  "msci-em-latin-america": {
+    "legacy-undated": {
+      "index": "MSCI Emerging Markets Latin America",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille emergents-pea",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "descriptionTemplates": {
+        "emergents-pea": "Zone couverte par PALAT : indice MSCI Emerging Markets Latin America — Brésil et Mexique en tête."
+      }
+    }
+  },
+  "msci-india": {
+    "legacy-undated": {
+      "index": "Inde seule",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille emergents-pea",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "marketCount": 1,
+      "descriptionTemplates": {
+        "emergents-pea": "Zone couverte par PINR : indice MSCI India — un seul pays, aucune diversification régionale."
+      }
+    }
+  },
+  "msci-em-emea-esg": {
+    "legacy-undated": {
+      "index": "MSCI Emerging EMEA ESG Transition",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille emergents-pea",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "descriptionTemplates": {
+        "emergents-pea": "Zone couverte par PLEM : indice MSCI Emerging EMEA ESG Transition — Europe de l'Est, Moyen-Orient et Afrique émergents (Afrique du Sud, pays du Golfe…)."
+      }
+    }
+  },
+  "msci-em-imi": {
+    "legacy-undated": {
+      "index": "MSCI EM IMI",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille emergents-cto",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 3017,
+      "descriptionTemplates": {
+        "emergents-cto": "{{constituents}} valeurs de ~24 pays émergents (Chine, Inde, Taïwan, Brésil…) — grandes, moyennes ET petites capitalisations."
+      }
+    }
+  },
+  "ftse-em": {
+    "legacy-undated": {
+      "index": "FTSE EM",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille emergents-cto",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 2290,
+      "descriptionTemplates": {
+        "emergents-cto": "{{constituents}} valeurs. Une composition proche du MSCI EM, mais pas identique : la Corée du Sud y est classée comme un pays développé, donc elle est exclue."
+      }
+    }
+  },
+  "msci-em-ex-china": {
+    "legacy-undated": {
+      "index": "MSCI EM ex-China",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille emergents-cto",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 625,
+      "descriptionTemplates": {
+        "emergents-cto": "{{constituents}} valeurs. Le MSCI EM, mais sans la Chine — pour qui veut réduire son risque chinois."
+      }
+    }
+  },
+  "msci-world-enhanced-value": {
+    "legacy-undated": {
+      "index": "MSCI World Enhanced Value",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille style",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 401,
+      "descriptionTemplates": {
+        "style": "{{constituents}} valeurs jugées « décotées » par rapport à leurs fondamentaux (banques, énergie, industrie…)."
+      }
+    },
+    "2026-07-31": {
+      "index": "MSCI World Enhanced Value",
+      "asOf": "2026-07-31",
+      "snapshot": "2026-07-31",
+      "constituents": 400,
+      "source": {
+        "label": "Photographie historique citée par la revue du 04/09/2026 du comparateur",
+        "url": null
+      },
+      "provenance": "Valeur historique conservée séparément ; description active inchangée."
+    }
+  },
+  "msci-world-sector-neutral-quality": {
+    "2026-06-30": {
+      "index": "MSCI World Sector Neutral Quality",
+      "asOf": "2026-06-30",
+      "snapshot": "2026-06-30",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille style",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 301,
+      "descriptionTemplates": {
+        "style": "{{constituents}} valeurs à la rentabilité stable et à l'endettement maîtrisé (ROE élevé, bénéfices réguliers)."
+      }
+    }
+  },
+  "msci-world-growth": {
+    "legacy-undated": {
+      "index": "MSCI World Growth",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille style",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "descriptionTemplates": {
+        "style": "Entreprises à forte croissance attendue des bénéfices (tech, santé innovante…)."
+      }
+    }
+  },
+  "ftse-all-world-high-dividend-yield": {
+    "2026-02-27": {
+      "index": "FTSE All-World High Dividend Yield",
+      "asOf": "2026-02-27",
+      "snapshot": "2026-02-27",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille dividendes-cto",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 2397,
+      "descriptionTemplates": {
+        "dividendes-cto": "{{constituents}} entreprises mondiales au rendement de dividende le plus élevé, sans filtre de qualité."
+      }
+    }
+  },
+  "msci-world-high-dividend-yield-advanced-select": {
+    "legacy-undated": {
+      "index": "MSCI World High Dividend Yield Advanced Select",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille dividendes-cto",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue. Le commentaire cite 194 holdings du fonds au 24/08/2026 : ce n’est pas une photographie certifiée du nombre de titres de l’indice.",
+      "constituents": null,
+      "descriptionTemplates": {
+        "dividendes-cto": "~{{approximateConstituents}} valeurs ({{rangeMin}}-{{rangeMax}} selon la date de rebalancement) : dividende + critères de solidité financière (rentabilité, faible endettement)."
+      },
+      "approximateConstituents": 200,
+      "constituentRange": [194, 211]
+    }
+  },
+  "sp-global-dividend-aristocrats": {
+    "methodology": {
+      "index": "S&P Global Dividend Aristocrats",
+      "asOf": null,
+      "snapshot": "Méthodologie, sans photographie datée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille dividendes-cto",
+        "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy"
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "targetConstituents": 100,
+      "descriptionTemplates": {
+        "dividendes-cto": "{{targetConstituents}} entreprises qui versent un dividende stable ou en hausse depuis au moins 10 ans consécutifs (version mondiale).",
+        "dividendes-pea": "{{targetConstituents}} entreprises mondiales, dividende stable ou en hausse depuis au moins 10 ans — l'option déjà vue dans le tweet « Dividendes (CTO) »."
+      }
+    }
+  },
+  "sp-euro-dividend-aristocrats": {
+    "methodology": {
+      "index": "S&P Euro Dividend Aristocrats",
+      "asOf": null,
+      "snapshot": "Méthodologie, sans photographie datée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille dividendes-pea",
+        "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy"
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "targetConstituents": 40,
+      "descriptionTemplates": {
+        "dividendes-pea": "{{targetConstituents}} entreprises de la zone euro uniquement, même critère de dividende stable ou en hausse sur 10 ans — un univers bien plus restreint."
+      }
+    }
+  },
+  "msci-china": {
+    "2026-08-31": {
+      "index": "MSCI China",
+      "asOf": "2026-08-31",
+      "snapshot": "2026-08-31",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille chine",
+        "url": "https://www.msci.com/indexes/index/302400/msci-china-index"
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 576,
+      "descriptionTemplates": {
+        "chine": "{{constituents}} valeurs au 31/08/2026 : actions chinoises cotées sur le continent, à Hong Kong ou à l’étranger (ADR)."
+      }
+    },
+    "2026-07-31": {
+      "index": "MSCI China",
+      "asOf": "2026-07-31",
+      "snapshot": "2026-07-31",
+      "constituents": 576,
+      "source": {
+        "label": "Photographie historique citée par la revue du 04/09/2026 du comparateur",
+        "url": "https://www.msci.com/indexes/index/302400/msci-china-index"
+      },
+      "provenance": "Valeur historique conservée séparément ; description active inchangée."
+    }
+  },
+  "ftse-china-50": {
+    "methodology": {
+      "index": "FTSE China 50",
+      "asOf": null,
+      "snapshot": "Méthodologie, sans photographie datée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille chine",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": null,
+      "targetConstituents": 50,
+      "descriptionTemplates": {
+        "chine": "Seulement les {{targetConstituents}} plus grosses valeurs chinoises cotées à Hong Kong."
+      }
+    }
+  },
+  "msci-china-a": {
+    "2026-07-31": {
+      "index": "MSCI China A",
+      "asOf": "2026-07-31",
+      "snapshot": "2026-07-31",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille chine",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 410,
+      "descriptionTemplates": {
+        "chine": "{{constituents}} valeurs : uniquement les actions domestiques cotées à Shanghai/Shenzhen (marché intérieur, via Stock Connect)."
+      }
+    }
+  },
+  "msci-japan-imi": {
+    "legacy-undated": {
+      "index": "MSCI Japan IMI",
+      "asOf": null,
+      "snapshot": "Date de photographie non documentée",
+      "source": {
+        "label": "Référence historique du comparateur ; voir commentaires de la famille japon",
+        "url": null
+      },
+      "provenance": "Migration du comparateur au 30/09/2026, sans nouvelle vérification externe. Une URL absente reste inconnue.",
+      "constituents": 957,
+      "descriptionTemplates": {
+        "japon": "{{constituents}} grandes, moyennes ET petites capitalisations japonaises (méthodologie MSCI, comparable aux autres indices MSCI Pays)."
+      }
+    },
+    "2026-05-31": {
+      "index": "MSCI Japan IMI",
+      "asOf": "2026-05-31",
+      "snapshot": "2026-05-31",
+      "constituents": 960,
+      "source": {
+        "label": "Photographie historique citée par la revue du 04/09/2026 du comparateur",
+        "url": null
+      },
+      "provenance": "Valeur historique conservée séparément ; description active inchangée."
     }
   }
 };
@@ -300,6 +706,12 @@ function deepFreeze(value) {
     Object.freeze(value);
   }
   return value;
+}
+for (const history of Object.values(INDEX_FACTS)) {
+  for (const facts of Object.values(history)) {
+    facts.metadata = normalizeEvidence({ ...facts.source, asOf: facts.asOf,
+      scope: facts.index, method: facts.targetConstituents != null && facts.constituents == null ? 'Périmètre nominal de méthodologie' : 'Composition d’indice', note: facts.provenance });
+  }
 }
 deepFreeze(INDEX_FACTS);
 
@@ -317,4 +729,18 @@ export function getIndexComposition(id, asOf) {
 }
 export function formatIndexConstituents(id, asOf) {
   return getIndexFacts(id, asOf).constituents.toLocaleString('fr-FR').replaceAll('\u202f', ' ');
+}
+
+
+export function formatIndexFact(id, asOf, field = 'constituents') {
+  const facts = getIndexFacts(id, asOf);
+  const value = field === 'rangeMin' ? facts.constituentRange?.[0]
+    : field === 'rangeMax' ? facts.constituentRange?.[1] : facts[field];
+  if (value == null) throw new Error(`Fait d’indice absent : ${id}/${asOf}/${field}`);
+  return typeof value === 'number' ? value.toLocaleString('fr-FR').replaceAll('\u202f', ' ') : value;
+}
+export function getIndexDescription(id, asOf, variant) {
+  const template = getIndexFacts(id, asOf).descriptionTemplates?.[variant];
+  if (!template) throw new Error(`Description d’indice absente : ${id}/${asOf}/${variant}`);
+  return template.replace(/\{\{(\w+)\}\}/g, (_, field) => formatIndexFact(id, asOf, field));
 }

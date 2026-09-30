@@ -2,7 +2,7 @@
 // Repère les encours à rapprocher entre outils. Ce rapport ne remplace pas une
 // fiche émetteur : des dates et devises différentes expliquent souvent l'écart.
 import { ETFS } from '../src/data/etf-cards.js'
-import { FAMILIES } from '../src/pages/index-comparator/data.js'
+import { FAMILIES } from '../src/data/index-comparisons.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 
 const entries = [

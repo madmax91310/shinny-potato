@@ -8,7 +8,7 @@ import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 import { ETFS } from '../src/data/etf-cards.js'
 import { CASES } from '../src/pages/concrete-cases/data.js'
 import { ASSETS } from '../src/data/portfolio-assets.js'
-import { FAMILIES } from '../src/pages/index-comparator/data.js'
+import { FAMILIES } from '../src/data/index-comparisons.js'
 import { PROFILES } from '../src/pages/portfolio-generator/theses.js'
 import { TWEETS } from '../src/pages/tweet-bank/data.js'
 

@@ -36,6 +36,7 @@ jobs:
       - run: npm run audit:publishable-content
       - run: npm run audit:source-inventory
       - run: npm run verify:tweet-midi
+      - run: npm run audit:data-catalog
       - run: npm run audit:index-facts
       - run: npm run verify:factsheet-tweets
       - run: npm run stress-test:portfolios

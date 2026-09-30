@@ -1,4 +1,4 @@
-import { SHEETS } from '../src/pages/factsheet-tweets/data.js'
+import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 
 if (SHEETS.length !== 14) throw new Error('Quatorze sujets attendus')

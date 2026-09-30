@@ -78,7 +78,7 @@ const TOOLS = [
   {
     key: "duel-indices",
     label: "Duel d'indices",
-    file: "src/pages/index-comparator/data.js",
+    file: "src/data/index-comparisons.js",
     entryRegex: /^\s*id:\s*'([a-z-]+)',\s*$/,
     lookAheadLabel: /label:\s*'([^']+)'/, // le label suit sur la ligne d'après pour ce fichier
   },

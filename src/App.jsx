@@ -14,6 +14,7 @@ import MarketFacts from './pages/market-facts/App'
 import ConcreteCases from './pages/concrete-cases/App'
 import TweetBank from './pages/tweet-bank/App'
 import FactsheetTweets from './pages/factsheet-tweets/App'
+import DataSearch from './pages/data-search/App'
 import { TOOLS } from './tools'
 
 // Tweets ETF, Lexique financier et Pouvoir d'achat n'ont plus de route dédiée : leurs pages
@@ -26,6 +27,7 @@ import { TOOLS } from './tools'
 // lib.js subsiste pour les fonctions de formatage ; les données vivent dans src/data/.
 // Les anciens data.js ne sont que des réexports de compatibilité.
 const TOOL_ELEMENTS = {
+  '/bibliotheque-donnees': <DataSearch />,
   '/generateur-portefeuilles': <PortfolioGenerator />,
   '/duels-portefeuilles': <PortfolioDuels />,
   '/comparatif-courtiers': <BrokerComparator />,

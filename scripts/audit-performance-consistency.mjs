@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Compare les performances 2023-2025 des mêmes parts (ISIN) entre Comparateur d'indices et
 // Générateur de portefeuilles. Une note générale de méthode ne suffit pas à valider un écart.
-import { FAMILIES } from '../src/pages/index-comparator/data.js'
+import { FAMILIES } from '../src/data/index-comparisons.js'
 import { ASSETS } from '../src/data/portfolio-assets.js'
 import { readFileSync } from 'node:fs'
 
@@ -30,7 +30,7 @@ let smallGaps = 0
 let failures = 0
 let notShared = 0
 const unmatchedFunds = []
-const comparatorSource = readFileSync(new URL('../src/pages/index-comparator/data.js', import.meta.url), 'utf8')
+const comparatorSource = readFileSync(new URL('../src/data/index-comparisons.js', import.meta.url), 'utf8')
 
 for (const family of FAMILIES) {
   const mappings = FUND_ISINS[family.id]
