@@ -3,6 +3,7 @@ import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet, documented
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from './evidence'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
+import BrokerVersusCard from './BrokerVersusCard'
 import './broker-comparator.css'
 
 const fmtDate = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date())
@@ -297,6 +298,8 @@ export default function App() {
       <div className="bc-stage">
         <ComparisonCard selected={selected} />
       </div>
+
+      <BrokerVersusCard selected={selected} />
 
       <EvidencePanel selected={selected} />
 
