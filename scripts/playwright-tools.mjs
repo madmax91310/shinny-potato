@@ -375,17 +375,19 @@ async function testDataSearch(page) {
   const instrumentText = await page.locator('.ds-detail').innerText();
   checks.instrument = instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes('2026-09-30');
   const aum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours', exact: true }) });
-  checks.dates = (await aum.locator('dd').first().innerText()) === 'Non documenté';
+  checks.dates = (await aum.locator('dd').first().innerText()) === 'Date de valeur non publiée par la source';
+  const officialAum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours daté publié par l’émetteur', exact: true }) });
+  checks.officialAum = (await officialAum.locator('dd').first().innerText()) === '2026-08-31'
+    && (await officialAum.innerText()).includes('1 407,36 millions EUR');
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exporter la fiche JSON' }).click()]);
   const exported = JSON.parse(await (await import('node:fs/promises')).readFile(await download.path(), 'utf8'));
   checks.export = exported.id === 'FR001400U5Q4' && exported.schemaVersion === 1;
   await page.goto(`${BASE}/bibliotheque-donnees?q=msci-world-enhanced-value&type=index&id=msci-world-enhanced-value`, { waitUntil: 'networkidle' });
   const fields = page.locator('.ds-field');
-  checks.historyCount = await fields.count() === 2;
-  await fields.nth(0).locator('summary').click();
-  await fields.nth(1).locator('summary').click();
+  checks.historyCount = await fields.count() === 3;
+  for (let i = 0; i < await fields.count(); i++) await fields.nth(i).locator('summary').click();
   const history = await page.locator('.ds-detail').innerText();
-  checks.history = history.includes('401') && history.includes('400') && history.includes('2026-07-31');
+  checks.history = history.includes('401') && history.includes('400') && history.includes('2026-07-31') && history.includes('2026-08-31');
   await page.getByRole('searchbox').fill('zzzintrouvablezzz');
   await page.locator('.ds-detail').filter({ hasText: 'Aucune donnée' }).waitFor();
   checks.empty = (await page.getByRole('status').innerText()).includes('0 résultat');

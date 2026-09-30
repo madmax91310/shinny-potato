@@ -1,5 +1,4 @@
-// Métadonnées migrées des commentaires individuels du comparateur, sans nouveau contrôle.
-// Aucune date de publication déduite de la date de consultation.
+// Sources individuelles des rendements du comparateur ; la fin de période est distincte de la publication.
 export const COMPARATOR_RETURN_EVIDENCE = {
   "FR0013412038": {
     "sourceUrls": [
@@ -167,13 +166,15 @@ export const COMPARATOR_RETURN_EVIDENCE = {
     "note": "Vérifié le 25/09/2026 : ligne « Rendement total (%) USD » BlackRock,\nprécision publiée au dixième ; anciens centièmes écartés faute de confirmation.\nConfiance élevée. https://www.blackrock.com/fr/particuliers/products/315592/"
   },
   "IE00BP3QZB59": {
-    "sourceUrls": [],
-    "checkedAt": null,
+    "sourceUrls": [
+      "https://www.blackrock.com/lu/professionals/en/products/270048/ishares-edge-msci-world-value-factor-ucits-etf"
+    ],
+    "checkedAt": "2026-09-30",
     "asOf": null,
-    "currency": null,
+    "currency": "USD",
     "scope": "Part IE00BP3QZB59 ; rendements calendaires 2023–2025",
-    "method": "Rendements du comparateur ; convention décrite dans la note existante",
-    "note": "Aucune note individuelle immédiatement attachée à cet usage ; voir les commentaires de la famille."
+    "method": "Rendements calendaires NAV USD, dividendes réinvestis, nets de frais",
+    "note": "BlackRock confirme 2023 : 19,41 %, 2024 : 5,25 %, 2025 : 39,63 %. L’ancienne mention EUR du comparateur était erronée ; aucune conversion n’a été faite."
   },
   "IE00BP3QZ601": {
     "sourceUrls": [

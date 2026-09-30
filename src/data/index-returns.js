@@ -1,3 +1,4 @@
+import { INDEX_FACTS } from './index-facts.js';
 import { normalizeEvidence } from './evidence.js';
 // Séries d’indices distinctes des rendements des parts ETF ; valeurs migrées sans correction.
 export const INDEX_RETURNS = {
@@ -329,7 +330,7 @@ export const INDEX_RETURNS = {
   }
 };
 for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [asOf, series] of Object.entries(history)) {
-  series.metadata = normalizeEvidence({ url: series.source.url, asOf, scope: `Indice ${id}`,
+  series.metadata = normalizeEvidence({ url: series.source.url, asOf, checkedAt: INDEX_FACTS[id][asOf].source.url === series.source.url ? INDEX_FACTS[id][asOf].metadata.checkedAt : null, periodStart: '2021-01-01', periodEnd: '2025-12-31', scope: `Indice ${id}`,
     currency: /dollars|USD/.test(series.performance.detail) ? 'USD' : /euros|EUR/.test(series.performance.detail) ? 'EUR' : null,
     method: series.performance.detail, note: 'Série historique d’indice ; ne remplace jamais le rendement d’une part.' });
 }

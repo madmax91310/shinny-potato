@@ -4,6 +4,7 @@ export function describeDataField(field) {
   if (field.label.startsWith('Frais')) return `${value} % par an`
   if (field.label === 'Éligibilité PEA') return value === true ? 'Éligible PEA' : value === false ? 'Non éligible PEA' : 'Éligibilité non établie'
   if (field.label === 'Encours') return value.sheet ?? value.index ?? ''
+  if (field.label === 'Encours daté publié par l’émetteur') return `${number(value.amountMillions)} millions ${value.currency}`
   if (value?.ticker) return `${value.ticker} · ${value.exchange} · ${value.currency}`
   if (field.label.startsWith('Photographie')) return [
     value.constituents != null && `${number(value.constituents)} titres`,
@@ -17,4 +18,14 @@ export function describeDataField(field) {
   }
   if (value?.points) return `${value.points.length} points · ${value.points[0]?.date} à ${value.points.at(-1)?.date}`
   return ''
+}
+
+export function describeEvidenceDate(metadata) {
+  if (metadata.asOf) return metadata.asOf
+  return {
+    'not-applicable': 'Sans objet pour cette caractéristique',
+    'not-published': 'Date de valeur non publiée par la source',
+    'legacy-undated': 'Archive ancienne sans date de photographie conservée',
+    'month-only': 'Période mensuelle connue ; jour exact non documenté',
+  }[metadata.dateStatus] ?? 'Date non documentée'
 }

@@ -1,8 +1,8 @@
 // Rendements calendaires 2023–2025 repris du Comparateur d’indices lorsque
 // le Générateur ne possède pas déjà la série de la même part (ISIN).
 // IE00BP3QZB59 conserve ici les trois chiffres publiés dans le comparateur :
-// sa note éditoriale les présente en EUR tandis que le Générateur emploie
-// une série USD ; cette migration ne change pas leurs valeurs ni leur méthode.
+// la publication BlackRock confirme leur devise USD, désormais corrigée dans
+// la note éditoriale et la provenance ; aucune conversion de devise implicite.
 // Les commentaires de provenance restent auprès des familles du comparateur.
 import { getInstrumentReturnValues } from './instrument-returns.js';
 

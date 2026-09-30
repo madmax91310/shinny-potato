@@ -1,3 +1,4 @@
+import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.js';
 // Frais annuels publiés dans l'application, indexés par ISIN. Valeurs héritées des
 // trois bibliothèques ETF et de leurs vérifications ; cette centralisation n'est
 // pas une nouvelle vérification chez l'émetteur. Mettre à jour ici puis contrôler
@@ -66,7 +67,8 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   'IE00B4NCWG09': '0,20',
   'IE00B4ND3602': '0,12',
   'IE00B4WXJJ64': '0,07',
-  'IE00B52SFT06': '0,07',
+  // BlackRock /253740 et justETF, contrôlés le 30/09/2026 : TER 0,03 %, confiance élevée.
+  'IE00B52SFT06': '0,03',
   'IE00B53L3W79': '0,10',
   'IE00B5M1WJ87': '0,30',
   'IE00B66F4759': '0,50',
@@ -99,7 +101,8 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   'IE00BM8R0J59': '0,45',
   'IE00BMG6Z448': '0,18',
   'IE00BP3QZ601': '0,25',
-  'IE00BP3QZ825': '0,30',
+  // BlackRock /270051 et justETF, contrôlés le 30/09/2026 : TER 0,25 %, confiance élevée.
+  'IE00BP3QZ825': '0,25',
   'IE00BP3QZB59': '0,25',
   'IE00BQT3WG13': '0,40',
   'IE00BTJRMP35': '0,18',
@@ -132,3 +135,19 @@ export function formatEtfTer(isin, format = 'tweet') {
   if (format === 'index') return `${ter} %`;
   return ter;
 }
+
+// Les frais sont ceux observés au contrôle ; leur date d’entrée en vigueur n’est pas publiée.
+const primaryTerSources = {
+  IE00B52SFT06: 'https://www.blackrock.com/fr/intermediaries/products/253740/ishares-msci-usa-b-ucits-etf',
+  IE00BP3QZ825: 'https://www.ishares.com/uk/individual/en/products/270051/?siteEntryPassthrough=true&switchLocale=y',
+  LU1681048630: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/FRA/FRA/INSTITUTIONNEL/ETF',
+};
+export const ETF_TER_EVIDENCE = Object.freeze(Object.fromEntries(Object.keys(ETF_TER_BY_ISIN).map(isin => [isin, {
+  ...INSTRUMENT_REFERENCE_EVIDENCE[isin],
+  sourceUrls: [primaryTerSources[isin], ...INSTRUMENT_REFERENCE_EVIDENCE[isin].sourceUrls].filter(Boolean),
+  dateStatus: 'not-published',
+  method: primaryTerSources[isin] ? 'Frais publiés par l’émetteur, recoupés avec justETF' : 'TER publié sur le profil de la part, consulté par ISIN',
+  note: isin === 'LU1681048630'
+    ? 'Fiche officielle Amundi au 31/08/2026 : frais de gestion et autres frais administratifs ou d’exploitation 0,25 %. justETF affiche 0,35 % : divergence conservée explicitement, priorité à l’émetteur.'
+    : 'Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.',
+}])));

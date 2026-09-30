@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import { searchData, exportDataRecord } from '../../data/catalog.js'
-import { describeDataField } from './lib.js'
+import { describeDataField, describeEvidenceDate } from './lib.js'
 import './data-search.css'
 
 const TYPES = { all: 'Toutes les données', instrument: 'Instruments', index: 'Indices', series: 'Séries historiques', lexicon: 'Lexique' }
@@ -51,7 +51,7 @@ export default function DataSearch() {
         <h3>Données et provenance</h3>
         {selected.fields.map((field, i) => <section className="ds-field" key={`${field.label}-${i}`}>
           <h4>{field.label}</h4>{describeDataField(field) && <p className="ds-value">{describeDataField(field)}</p>}<code>{field.registry}</code>
-          <dl><dt>Photographie</dt><dd>{unknown(field.metadata.asOf)}</dd><dt>Contrôle de la source</dt><dd>{unknown(field.metadata.checkedAt)}</dd><dt>Devise</dt><dd>{unknown(field.metadata.currency)}</dd><dt>Périmètre</dt><dd>{field.metadata.scope}</dd>{field.metadata.method && <><dt>Méthode</dt><dd>{field.metadata.method}</dd></>}</dl>
+          <dl><dt>Date de référence</dt><dd>{describeEvidenceDate(field.metadata)}</dd>{field.metadata.periodStart && <><dt>Période couverte</dt><dd>{field.metadata.periodStart} à {field.metadata.periodEnd}</dd></>}<dt>Contrôle de la source</dt><dd>{unknown(field.metadata.checkedAt)}</dd><dt>Devise</dt><dd>{unknown(field.metadata.currency)}</dd><dt>Périmètre</dt><dd>{field.metadata.scope}</dd>{field.metadata.method && <><dt>Méthode</dt><dd>{field.metadata.method}</dd></>}</dl>
           {field.metadata.sourceUrls.length ? <ul>{field.metadata.sourceUrls.map((url) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{url}</a></li>)}</ul> : <p className="ds-note">Source individuelle non renseignée dans le registre.</p>}
           {field.metadata.note && <p className="ds-note">{field.metadata.note}</p>}
           <details><summary>Voir les valeurs enregistrées</summary><pre>{JSON.stringify(field.value, null, 2)}</pre></details>
