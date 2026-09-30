@@ -34,7 +34,7 @@ export default function DataReview() {
     </div>
     <div className="dr-controls">
       <label>Rechercher une donnée ou un outil<input type="search" value={query} onChange={event => update('q', event.target.value)} placeholder="IBKR, encours, Fortuneo…" /></label>
-      <label>Afficher<select value={view} onChange={event => update('view', event.target.value)}>{Object.entries(VIEWS).map(([key, label]) => <option value={key} key={key}>{label}</option>)}</select></label>
+      <label>Afficher<select aria-label="Afficher" value={view} onChange={event => update('view', event.target.value)}>{Object.entries(VIEWS).map(([key, label]) => <option value={key} key={key}>{label}</option>)}</select></label>
     </div>
     <p role="status" className="dr-note">{items.length} élément{items.length > 1 ? 's' : ''} affiché{items.length > 1 ? 's' : ''}</p>
     <div className="dr-list">{items.map(item => <article className="dr-item" key={item.id}>
