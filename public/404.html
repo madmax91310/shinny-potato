@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Ouverture de l’outil</title><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body><p>Ouverture de l’outil…</p><script>
+// GitHub Pages ne sert pas les routes React directement. Charger la racine puis restaurer la route.
+const prefix = '/' + location.pathname.split('/').filter(Boolean)[0] + '/';
+const entry = new URL(prefix, location.origin);
+entry.searchParams.set('__route', location.pathname + location.search + location.hash);
+location.replace(entry.href);
+</script><noscript><a href="/shinny-potato/">Ouvrir les outils</a></noscript></body></html>
