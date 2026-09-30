@@ -10,8 +10,11 @@ const officialHosts = new Set([
 ])
 for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   const url = new URL(document.url)
-  assert(officialHosts.has(url.hostname), `${id}: hébergeur non officiel`)
-  assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
+  // L'avenant IBIE est rédigé par IBIE et diffusé en PDF par son partenaire de courtage ProRealTime.
+  const partnerAddendum = id === 'ibkrPeaAddendum' && document.kind === 'partner-pdf'
+    && document.url === 'https://trading.prorealtime.com/fr/ib_agreement_pdf?r=ib_ie_pea_disclosures'
+  assert(officialHosts.has(url.hostname) || partnerAddendum, `${id}: hébergeur non officiel`)
+  assert(document.kind === 'page' || partnerAddendum || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
 }
 assert.equal(Object.keys(BROKER_EVIDENCE).length, BROKERS.length)
