@@ -5,6 +5,10 @@
 // colorée, disposition horizontale"), seule des 3 options à rester lisible en largeur mobile réelle.
 export const TOOLS = [
   {
+    to: '/bibliotheque-donnees', navLabel: 'Données', title: 'Bibliothèque de données',
+    icon: '🔎', accent: '#2dd4bf', description: 'Recherche par ISIN, ticker, nom ou indice. Sources, historiques, outils consommateurs et export JSON.', status: 'disponible',
+  },
+  {
     to: '/calculateur-investissement',
     navLabel: 'Calculateur',
     title: 'Et si tu avais investi ?',

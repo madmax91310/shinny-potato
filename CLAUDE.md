@@ -67,6 +67,16 @@ réutilise la série d'inflation générale de investment-calculator plutôt que
 Une correction en amont se propage alors automatiquement — mais ça crée aussi un angle mort :
 penser à revérifier les outils qui dépendent d'un fichier qu'on modifie.
 
+La recherche commune et l’export JSON sont dans `src/data/catalog.js` et accessibles
+via `/bibliotheque-donnees` ou `npm run data:search -- <requête>`. Le catalogue dérive
+les valeurs de leurs registres ; il ne doit pas les recopier. `normalizeEvidence`
+(`src/data/evidence.js`) distingue toujours asOf (photographie), checkedAt (contrôle),
+sourceUrls, currency, scope, method et note ; les inconnues restent null ou une liste vide.
+`audit:data-catalog` contrôle la couverture, les métadonnées et les consommateurs.
+Les familles et fiches d’indices sont dans `index-comparisons.js` et `index-factsheets.js` ;
+leurs anciens data.js sont des façades. Les séries d’indices restent dans `index-returns.js`,
+distinctes des séries de fonds par ISIN. Les registres communs n’importent pas les pages.
+
 Les compositions d’indices sont dans `src/data/index-facts.js`, par identifiant et date
 explicite de photographie (source, comptage de titres, pays, secteurs, principales lignes).
 Les Fiches d’indices et le Comparateur d’indices consomment ce registre. Une nouvelle date

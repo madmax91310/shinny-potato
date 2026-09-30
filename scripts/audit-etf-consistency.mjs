@@ -19,7 +19,7 @@
 
 import { ETFS } from "../src/data/etf-cards.js";
 import { DEFAULT_THEMES } from "../src/data/etf-themes.js";
-import { FAMILIES } from "../src/pages/index-comparator/data.js";
+import { FAMILIES } from "../src/data/index-comparisons.js";
 import { ETF_TER_BY_ISIN } from "../src/data/etf-ter.js";
 
 // Normalise "0,20%", "0,20 %", "0,06" (etf-tweets, pas de signe %) vers un nombre — la seule

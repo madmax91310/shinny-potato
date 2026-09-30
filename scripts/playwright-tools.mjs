@@ -24,7 +24,7 @@ import { spawn } from "node:child_process";
 import { stat } from "node:fs/promises";
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
-import { SHEETS } from "../src/pages/factsheet-tweets/data.js";
+import { SHEETS } from "../src/data/index-factsheets.js";
 import { CASES } from "../src/pages/concrete-cases/data.js";
 
 const PORT = 4310;
@@ -365,6 +365,39 @@ async function testFactsheetTweets(page) {
   record('Dans les coulisses des indices', ok, `${count} fiches, modification et réinitialisation vérifiées`);
 }
 
+async function testDataSearch(page) {
+  await page.goto(`${BASE}/bibliotheque-donnees`, { waitUntil: 'networkidle' });
+  const checks = {};
+  const search = page.getByRole('searchbox');
+  await search.fill('DCAM');
+  // Le changement de paramètres est une navigation React ; attendre la fiche correspondante.
+  await page.locator('.ds-detail').filter({ hasText: 'FR001400U5Q4' }).waitFor();
+  const instrumentText = await page.locator('.ds-detail').innerText();
+  checks.instrument = instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes('2026-09-30');
+  const aum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours', exact: true }) });
+  checks.dates = (await aum.locator('dd').first().innerText()) === 'Non documenté';
+  const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exporter la fiche JSON' }).click()]);
+  const exported = JSON.parse(await (await import('node:fs/promises')).readFile(await download.path(), 'utf8'));
+  checks.export = exported.id === 'FR001400U5Q4' && exported.schemaVersion === 1;
+  await page.goto(`${BASE}/bibliotheque-donnees?q=msci-world-enhanced-value&type=index&id=msci-world-enhanced-value`, { waitUntil: 'networkidle' });
+  const fields = page.locator('.ds-field');
+  checks.historyCount = await fields.count() === 2;
+  await fields.nth(0).locator('summary').click();
+  await fields.nth(1).locator('summary').click();
+  const history = await page.locator('.ds-detail').innerText();
+  checks.history = history.includes('401') && history.includes('400') && history.includes('2026-07-31');
+  await page.getByRole('searchbox').fill('zzzintrouvablezzz');
+  await page.locator('.ds-detail').filter({ hasText: 'Aucune donnée' }).waitFor();
+  checks.empty = (await page.getByRole('status').innerText()).includes('0 résultat');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('searchbox').fill('MSCI USA');
+  await page.locator('.ds-detail').filter({ hasText: 'MSCI USA' }).waitFor();
+  if (process.env.DATA_SEARCH_SCREENSHOT) await page.screenshot({ path: process.env.DATA_SEARCH_SCREENSHOT, fullPage: true });
+  checks.mobile = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  record('Bibliothèque de données', Object.values(checks).every(Boolean), JSON.stringify(checks));
+}
+
 let server;
 try {
   console.log(`Démarrage de vite preview sur le port ${PORT}...`);
@@ -393,6 +426,7 @@ try {
   await testMarketFacts(page);
   await testTweetBank(page);
   await testFactsheetTweets(page);
+  await testDataSearch(page);
 
   await browser.close();
 } finally {
