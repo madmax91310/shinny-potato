@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Vérifie que les outils consomment les registres communs par ISIN.
 import { readFileSync } from 'node:fs';
+import { auditInstrumentListings } from './audit-instrument-listings.mjs';
 import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPea, getInstrumentPeaStatus } from '../src/data/instruments.js';
 import { INSTRUMENT_FACTS_BY_ISIN, getInstrumentFacts, getInstrumentTickers } from '../src/data/instrument-facts.js';
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js';
@@ -22,7 +23,9 @@ const collections = [
 const aumSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-aum-2026-09-29.json', import.meta.url), 'utf8'));
 
 const seen = new Set();
-let errors = 0;
+const listingErrors = auditInstrumentListings();
+for (const error of listingErrors) console.error(error);
+let errors = listingErrors.length;
 let total = 0;
 const unresolved = [];
 let aumUsages = 0;

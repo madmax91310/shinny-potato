@@ -1,10 +1,12 @@
 import { getInstrument } from './instruments.js';
+export { getInstrumentListings } from './instrument-listings.js';
 // Caractéristiques par ISIN des 41 parts des Fiches ETF.
 // benchmark, incomePolicy, replicationMethod et domicile ont été contrôlés le 29/09/2026
 // dans characteristicsSource (émetteur pour IE00BFZPF546 et IE00BM8R0J59,
 // justETF pour les autres).
-// Les tickers, le libellé de distribution et le lieu reprennent la revue historique
-// des fiches, datée par reviewedAt. Ils ne sont pas certifiés par ce contrôle.
+// Les tickers ont été contrôlés le 30/09/2026 : instrument-listings.js fournit
+// les places, devises et preuves. location décrit le domicile et la réplication,
+// pas la place de cotation. distribution/reviewedAt gardent leur revue historique.
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
@@ -230,7 +232,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "IE000YYE6WK5": {
     "tickers": [
       "DFNS",
-      "DFND"
+      "DFEN"
     ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
@@ -521,7 +523,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "IE00BP3QZB59": {
     "tickers": [
       "IWVL",
-      "WVAL"
+      "IWFV"
     ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
@@ -642,8 +644,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   },
   "IE00B66F4759": {
     "tickers": [
-      "IHYA",
-      "EHYA"
+      "IHYG"
     ],
     "distribution": "Distribuant",
     "location": "Irlande, réplication physique par échantillonnage",

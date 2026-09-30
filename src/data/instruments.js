@@ -1,8 +1,8 @@
 // Répertoire commun des produits identifiés par ISIN. Noms repris des outils existants :
 // cette migration ne constitue pas une nouvelle vérification auprès des émetteurs.
 // Les variantes ne changent que le libellé éditorial affiché par un outil.
-// Les tickers ajoutés hors Fiches ETF proviennent du comparateur existant :
-// leur migration dans ce catalogue ne vaut pas revue indépendante des cotations.
+// Les tickers hors Fiches ETF sont recoupés dans instrument-listings.js :
+// preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
   "CH0454664001": Object.freeze({name: "21Shares Bitcoin ETP"}),
