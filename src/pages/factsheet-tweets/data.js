@@ -1,3 +1,4 @@
+import { getInstrumentFactsheetReturns } from '../../data/instrument-comparator-returns.js'
 // Relevé de fiches officielles, figé au 31 août 2026 (au 30 juin pour deux fonds).
 // Composition = indice sous-jacent, jamais les titres détenus par le fonds synthétique.
 // Les rendements du fonds sont les lignes « Portefeuille » des tableaux Amundi.
@@ -41,7 +42,7 @@ export const SHEETS = [
     countries: [['🇯🇵 Japon', 100]],
     sectors: [['🏭 Industrie', 27.64], ['🏦 Finance', 16.65], ['🛍️ Consommation cyclique', 14.45], ['💻 Technologie', 14.37], ['📡 Communication', 6.33], ['🪨 Matériaux', 5.80], ['🏥 Santé', 5.51], ['🛒 Consommation de base', 4.80], ['🏠 Immobilier', 2.04], ['💡 Services publics', 1.35], ['⚡ Énergie', 1.06]],
     holdings: [['Mitsubishi UFJ Financial', 3.34], ['Toyota', 3.07], ['Hitachi', 2.37], ['Sumitomo Mitsui Financial', 2.26], ['Sony Group', 2.05], ['Mitsubishi Corp', 2.01], ['SoftBank Group', 1.91], ['Tokyo Electron', 1.79], ['Mizuho Financial', 1.79], ['Mitsui & Co', 1.69]],
-    isin: 'FR0013411980', returns: [[2025, 10.22], [2024, 14.56], [2023, 15.27]],
+    isin: 'FR0013411980', returns: getInstrumentFactsheetReturns('FR0013411980'),
     performance: { kind: 'ETF', detail: 'part Amundi PEA Japon TOPIX non couverte, rendement du portefeuille en euros, net de frais', date: '30 avril 2026', historyNote: 'Les rendements ci-dessus sont ceux de l’ETF en euros, pas de l’indice TOPIX en yens. La composition de l’indice est datée d’avril 2026.' },
     insight: 'Toyota et les banques ont un poids important. Le TOPIX est pondéré par capitalisation flottante, contrairement au Nikkei 225 pondéré par le prix des actions.',
     takeaway: 'La part TOPIX PEA non couverte reste exposée au change yen/euro. Une autre part PEA couverte existe, avec des frais différents.',
@@ -57,7 +58,7 @@ export const SHEETS = [
     countries: [['🇯🇵 Japon', 100]], marketCap: '1 060 380 milliards ¥ de capitalisation totale des composants (ce n’est pas la pondération de l’indice)',
     sectors: [['💻 Technologie', 55.36], ['🛍️ Biens de consommation', 20.70], ['🪨 Matériaux', 12.59], ['🏭 Biens d’équipement et autres', 7.02], ['🏦 Finance', 3.01], ['🚆 Transport et services publics', 1.32]],
     holdings: [['Advantest', 12.26], ['Fast Retailing', 8.79], ['Tokyo Electron', 8.56], ['SoftBank Group', 6.31], ['Recruit Holdings', 2.76], ['TDK', 2.33], ['Ibiden', 2.07], ['KDDI', 1.80], ['Kioxia', 1.77], ['Fujikura', 1.67]],
-    isin: 'LU2196470426', returns: [[2025, 28.2], [2024, 20.9], [2023, 30.5], [2022, -7.7], [2021, 6.3]],
+    isin: 'LU2196470426', returns: getInstrumentFactsheetReturns('LU2196470426'),
     performance: { kind: 'ETF', detail: 'part Xtrackers Nikkei 225 1C en yens, rendement du fonds net de frais, dividendes réinvestis', date: '31 décembre 2025', historyNote: 'Les poids sont ceux de l’indice au 31 août 2026 ; les rendements sont ceux de la part 1C en yens, pas une performance convertie en euros.' },
     insight: 'Advantest, Fast Retailing et Tokyo Electron dépassent ensemble 29 % de l’indice. La technologie pesait plus de 55 % au 31 août 2026.',
     takeaway: 'Malgré ses 225 actions, le Nikkei est très sensible à quelques titres dont le prix ajusté est élevé. La comparaison avec un ETF TOPIX en euros exige de tenir compte du change.',
@@ -158,7 +159,7 @@ export const SHEETS = [
     countries: [['🇹🇼 Taïwan', 27.75], ['🇰🇷 Corée du Sud', 20.83], ['🇨🇳 Chine', 20.71], ['🇮🇳 Inde', 11.15], ['🇧🇷 Brésil', 3.76], ['🌍 Autres', 15.80]],
     sectors: [['💻 Technologie', 41.72], ['🏦 Finance', 20.30], ['🛍️ Consommation discrétionnaire', 8.17], ['🏭 Industrie', 6.36], ['📡 Communication', 6.04], ['🪨 Matériaux', 5.77], ['🛒 Consommation de base', 3.22], ['⚡ Énergie', 3.08], ['🏥 Santé', 2.59], ['💡 Services publics', 1.45], ['🏠 Immobilier', 1.31]],
     holdings: [['TSMC', 15.22], ['Samsung Electronics', 7.16], ['SK Hynix', 5.55], ['Tencent', 2.79], ['Alibaba', 1.94], ['MediaTek', 1.42], ['Samsung Electronics Pref.', 1.03], ['China Construction Bank', 1.01], ['Delta Electronics', 1.00], ['Reliance Industries', 0.84]], topWeight: 37.96,
-    returns: [[2025, 21.04], [2024, 13.39], [2023, 3.66], [2022, -15.01], [2021, 4.45]], performance: { kind: 'ETF', detail: 'Amundi PEA Emergent ESG Transition, performances nettes de la part en EUR', date: '30 juin 2026', historyNote: 'L’indice de référence a changé le 27 septembre 2023 : les années antérieures reflètent l’historique réel du fonds, pas celui de l’indice actuel.' },
+    returns: getInstrumentFactsheetReturns('FR0013412020'), performance: { kind: 'ETF', detail: 'Amundi PEA Emergent ESG Transition, performances nettes de la part en EUR', date: '30 juin 2026', historyNote: 'L’indice de référence a changé le 27 septembre 2023 : les années antérieures reflètent l’historique réel du fonds, pas celui de l’indice actuel.' },
     insight: 'Taïwan, Corée du Sud et Chine pèsent près de 70 %. Le poids de TSMC dépasse à lui seul 15 %.',
     takeaway: 'L’étiquette ESG modifie la sélection, mais elle n’efface pas la concentration géographique et technologique.',
   },
@@ -170,7 +171,7 @@ export const SHEETS = [
     countries: [['🇺🇸 États-Unis', 100]],
     sectors: [['💻 Technologie', 37.37], ['🏦 Finance', 11.87], ['📡 Communication', 9.76], ['🛍️ Consommation discrétionnaire', 9.38], ['🏥 Santé', 9.07], ['🏭 Industrie', 8.88], ['🛒 Consommation de base', 4.68], ['⚡ Énergie', 3.02], ['💡 Services publics', 2.25], ['🏠 Immobilier', 1.88], ['🪨 Matériaux', 1.84]],
     holdings: [['Nvidia', 7.38], ['Apple', 6.47], ['Microsoft', 4.28], ['Amazon', 3.68], ['Alphabet A', 3.24], ['Broadcom', 2.76], ['Alphabet C', 2.60], ['Micron', 2.02], ['Meta', 1.93], ['Tesla', 1.81]], topWeight: 36.17,
-    returns: [[2025, 3.45], [2024, 32.85], [2023, 21.68], [2022, -13.00], [2021, 38.23]], performance: { kind: 'ETF', detail: 'Amundi PEA S&P 500 UCITS ETF Acc, rendements nets de la part en EUR', date: '30 juin 2026' },
+    returns: getInstrumentFactsheetReturns('FR0011871128'), performance: { kind: 'ETF', detail: 'Amundi PEA S&P 500 UCITS ETF Acc, rendements nets de la part en EUR', date: '30 juin 2026' },
     insight: 'Les dix premières lignes pèsent plus de 36 %. Les 504 titres ne représentent pas 504 parts égales.',
     takeaway: 'La technologie pèse plus du tiers de l’indice : le S&P 500 a aussi un fort biais sectoriel.',
   },
@@ -182,7 +183,7 @@ export const SHEETS = [
     countries: [['🇺🇸 États-Unis', 94.78], ['🇮🇪 Irlande', 1.82], ['🇳🇱 Pays-Bas', 1.32], ['🇨🇦 Canada', 1.00], ['🇬🇧 Royaume-Uni', 0.66], ['🌍 Autres', 0.42]],
     sectors: [['💻 Technologie', 58.27], ['📡 Communication', 13.89], ['🛍️ Consommation discrétionnaire', 11.13], ['🛒 Consommation de base', 6.22], ['🏥 Santé', 4.01], ['🏭 Industrie', 3.62], ['💡 Services publics', 1.14], ['🪨 Matériaux', 1.00], ['⚡ Énergie', 0.52], ['🏦 Finance', 0.21]],
     holdings: [['Nvidia', 8.41], ['Apple', 7.50], ['Microsoft', 6.09], ['Micron', 4.64], ['Amazon', 4.58], ['AMD', 3.35], ['Alphabet A', 3.22], ['Alphabet C', 2.99], ['Broadcom', 2.79], ['Tesla', 2.78]], topWeight: 46.35,
-    returns: [[2025, 6.01], [2024, 33.58], [2023, 49.32], [2022, -28.35], [2021, 36.59]], performance: { kind: 'ETF', detail: 'Amundi PEA Nasdaq-100 UCITS ETF Acc, rendements nets de la part en EUR', date: '31 août 2026' },
+    returns: getInstrumentFactsheetReturns('FR0011871110'), performance: { kind: 'ETF', detail: 'Amundi PEA Nasdaq-100 UCITS ETF Acc, rendements nets de la part en EUR', date: '31 août 2026' },
     insight: 'Près de 58 % en technologie et plus de 46 % dans les dix premières lignes : le pari est assumé.',
     takeaway: 'Ce n’est pas un indice qui couvre toutes les entreprises américaines : la finance en est pratiquement absente.',
   },

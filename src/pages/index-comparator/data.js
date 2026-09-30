@@ -1,3 +1,4 @@
+import { getInstrumentComparatorReturns } from '../../data/instrument-comparator-returns.js';
 import { getInstrumentAum, getInstrumentAumBillions } from '../../data/instrument-aum.js';
 import { getInstrumentName, getInstrumentPeaStatus } from '../../data/instruments.js';
 import { getInstrumentTickers } from '../../data/instrument-facts.js';
@@ -83,14 +84,14 @@ export const FAMILIES = [
       // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille Amundi du 30/04/2026 ; confiance élevée.
       // 2025 : 19,42 → 19,41 selon la série corrigée des fiches officielles 2026.
       // https://www.amundietf.fr/pdfDocuments/download/c4f606a3-f783-4553-b7f6-143137c8d964/MonthlyFactsheet_4386409_CL78022_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf
-      { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)', y2023: 15.95, y2024: 8.60, y2025: 19.41 },
+      { key: 'msci_europe', label: 'Amundi PEA MSCI Europe (PCEU)', ...getInstrumentComparatorReturns('FR0013412038') },
       // Vérifié le 25/09/2026 : part BNP FR0011550193, « EUR C », performances calendaires
       // du fonds ; confiance élevée. 2023/2024/2025 : 14,37/8,41/20,48.
       // https://docfinder.bnpparibas-am.com/api/files/85e997cf-94fd-48ba-9406-225f0a281549/1024
-      { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)', y2023: 14.37, y2024: 8.41, y2025: 20.48 },
+      { key: 'stoxx600', label: 'BNP STOXX 600 (ETZ)', ...getInstrumentComparatorReturns('FR0011550193') },
       // Part iShares IE00B53L3W79, ligne « Share Class » de la fiche BlackRock du 31/08/2026 :
       // https://www.ishares.com/gls-download/literature/fact-sheet/cssx5e-ishares-core-euro-stoxx-50-ucits-etf-fund-fact-sheet-en-gb.pdf
-      { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)', y2023: 22.78, y2024: 11.54, y2025: 21.78 },
+      { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)', ...getInstrumentComparatorReturns('IE00B53L3W79') },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -170,9 +171,9 @@ export const FAMILIES = [
     // VWCE : performances calendaires de la part Acc USD, ligne « Fund » du KIID Vanguard
     // (arrondies au dixième) : https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf
     perfFunds: [
-      { key: 'msci_world', label: 'Amundi MSCI World (CW8, PEA)', y2023: 19.46, y2024: 26.33, y2025: 6.39 },
+      { key: 'msci_world', label: 'Amundi MSCI World (CW8, PEA)', ...getInstrumentComparatorReturns('LU1681043599') },
       { key: 'acwi', label: 'Amundi PEA Global ACWI (GPEA)', y2023: null, y2024: null, y2025: null, perfNote: 'Fonds trop récent pour avoir un historique (lancé le 15/07/2026).' },
-      { key: 'ftse_aw', label: 'Vanguard FTSE All-World (VWCE)', y2023: 22.0, y2024: 17.2, y2025: 22.6 },
+      { key: 'ftse_aw', label: 'Vanguard FTSE All-World (VWCE)', ...getInstrumentComparatorReturns('IE00BK5BQT80') },
     ],
     perfMethodNote: 'ℹ️ CW8 : rendement du fonds en euros, net de frais. VWCE : rendement du fonds en dollars, net de frais. Dividendes réinvestis dans les deux cas ; la devise change la comparaison.',
     verdictTitle: '✅ LE VERDICT',
@@ -249,15 +250,15 @@ export const FAMILIES = [
     // pas repérer cette erreur puisque les deux outils partageaient le même proxy.
     // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF
     perfFunds: [
-      { key: 'sp500', label: 'Amundi PEA S&P 500', y2023: 21.68, y2024: 32.85, y2025: 3.45 },
-      { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', y2023: 49.32, y2024: 33.58, y2025: 6.01 },
+      { key: 'sp500', label: 'Amundi PEA S&P 500', ...getInstrumentComparatorReturns('FR0011871128') },
+      { key: 'nasdaq100', label: 'Amundi PEA Nasdaq-100', ...getInstrumentComparatorReturns('FR0011871110') },
       // Vérifié le 25/09/2026 : ligne « Rendement total (%) USD », 2023–2025,
       // https://www.blackrock.com/fr/intermediaries/products/253740/ishares-msci-usa-b-ucits-etf
       // Confiance élevée (émetteur, part et devise explicites).
       // BlackRock, NAV USD de la part IE00B52SFT06 : les anciens 22,33/32,69/3,82
       // correspondaient à une autre devise et n'étaient pas comparables sans note.
       // https://www.blackrock.com/fr/particuliers/products/253740/ishares-msci-usa-b-ucits-etf
-      { key: 'msci_usa', label: 'iShares MSCI USA', y2023: 26.7, y2024: 24.8, y2025: 17.4 },
+      { key: 'msci_usa', label: 'iShares MSCI USA', ...getInstrumentComparatorReturns('IE00B52SFT06') },
     ],
     perfMethodNote: 'ℹ️ Les deux ETF Amundi sont présentés en euros ; iShares MSCI USA est présenté en dollars (NAV de la part USD). Les performances ne sont pas directement comparables sans tenir compte du change.',
     verdictTitle: '✅ LE VERDICT',
@@ -348,19 +349,19 @@ export const FAMILIES = [
     perfFunds: [
       // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 ; confiance élevée.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260131
-      { key: 'paeem_pea', label: 'Amundi PEA Emergent (PAEEM)', y2023: 3.66, y2024: 13.39, y2025: 21.04 },
+      { key: 'paeem_pea', label: 'Amundi PEA Emergent (PAEEM)', ...getInstrumentComparatorReturns('FR0013412020') },
       // Vérifié le 25/09/2026 : ligne « Portefeuille » EUR, rapport Amundi 31/08/2026 ; confiance élevée.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412012/FRA/FRA/INSTITUTIONNEL/ETF
-      { key: 'paasi', label: 'Amundi PEA Asie Émergente (PAASI)', y2023: 1.21, y2024: 16.36, y2025: 21.78 },
+      { key: 'paasi', label: 'Amundi PEA Asie Émergente (PAASI)', ...getInstrumentComparatorReturns('FR0013412012') },
       // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 ; confiance élevée.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF/20251231
-      { key: 'palat', label: 'Amundi PEA Amérique Latine (PALAT)', y2023: 24.63, y2024: -25.29, y2025: 35.75 },
+      { key: 'palat', label: 'Amundi PEA Amérique Latine (PALAT)', ...getInstrumentComparatorReturns('FR0013412004') },
       // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 ; confiance élevée.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011869320/FRA/FRA/RETAIL/ETF/20251231
-      { key: 'pinr', label: 'Amundi PEA Inde (PINR)', y2023: 15.09, y2024: 16.57, y2025: -11.15 },
+      { key: 'pinr', label: 'Amundi PEA Inde (PINR)', ...getInstrumentComparatorReturns('FR0011869320') },
       // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 ; confiance élevée.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/RETAIL/ETF/20251231
-      { key: 'plem', label: 'Amundi PEA Emergent EMEA (PLEM)', y2023: 7.89, y2024: 12.77, y2025: 15.11 },
+      { key: 'plem', label: 'Amundi PEA Emergent EMEA (PLEM)', ...getInstrumentComparatorReturns('FR0011440478') },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -421,12 +422,12 @@ export const FAMILIES = [
     // L'ancien jeu de chiffres (4,12 %
     // etc.) n'a pas pu être retracé à une source fiable lors de cette revérification.
     perfFunds: [
-      { key: 'msci_em', label: 'iShares Core MSCI EM IMI', y2023: 11.58, y2024: 7.21, y2025: 31.58 },
-      { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', y2023: 7.86, y2024: 12.06, y2025: 25.67 },
+      { key: 'msci_em', label: 'iShares Core MSCI EM IMI', ...getInstrumentComparatorReturns('IE00BKM4GZ66') },
+      { key: 'ftse_em', label: 'Vanguard FTSE Emerging Markets', ...getInstrumentComparatorReturns('IE00BK5BR733') },
       // Vérifié le 25/09/2026 : ligne « Rendement total (%) USD » BlackRock,
       // précision publiée au dixième ; anciens centièmes écartés faute de confirmation.
       // Confiance élevée. https://www.blackrock.com/fr/particuliers/products/315592/
-      { key: 'em_exchina', label: 'iShares MSCI EM ex-China', y2023: 19.7, y2024: 3.6, y2025: 34.8 },
+      { key: 'em_exchina', label: 'iShares MSCI EM ex-China', ...getInstrumentComparatorReturns('IE00BMG6Z448') },
     ],
     perfMethodNote: 'ℹ️ Performance totale nette de frais (dividendes réinvestis), en $ — devise des parts USD Acc, hors effet de change €/$. Le Générateur utilise aussi la part iShares en dollars ; certains autres supports y reposent encore sur un indice.',
     verdictTitle: '✅ LE VERDICT',
@@ -483,12 +484,12 @@ export const FAMILIES = [
     // avec la série "actions_value" déjà vérifiée cette session dans portfolio-generator/data.js
     // (même fonds, écart <0,1 pt sur les 3 années) — confirme la fiabilité de la recherche.
     perfFunds: [
-      { key: 'value', label: 'iShares Edge MSCI World Value Factor', y2023: 19.41, y2024: 5.25, y2025: 39.63 },
+      { key: 'value', label: 'iShares Edge MSCI World Value Factor', ...getInstrumentComparatorReturns('IE00BP3QZB59') },
       // BlackRock, NAV USD de la part IE00BP3QZ601, 2023-2025.
       // https://www.blackrock.com/ch/individual/en/products/270054/ishares-msci-world-quality-factor-ucits-etf
       // Vérifié le 25/09/2026 : part USD, rendement total calendaire BlackRock ; confiance élevée.
       // https://www.blackrock.com/fr/particuliers/products/270054/ishares-msci-world-quality-factor-ucits-etf
-      { key: 'quality', label: 'iShares Edge MSCI World Quality Factor', y2023: 25.7, y2024: 16.6, y2025: 15.4 },
+      { key: 'quality', label: 'iShares Edge MSCI World Quality Factor', ...getInstrumentComparatorReturns('IE00BP3QZ601') },
     ],
     perfMethodNote: 'ℹ️ Value est présenté en euros ; Quality reprend la performance de la part en dollars (NAV USD). Le change empêche de comparer directement ces rendements.',
     verdictTitle: '✅ LE VERDICT',
@@ -574,9 +575,9 @@ export const FAMILIES = [
     //   31/08/2026. La ligne "Fund Gross"/l'ancienne série du Générateur était différente ;
     //   le Générateur utilise maintenant lui aussi la série nette de frais.
     perfFunds: [
-      { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', y2023: 11.51, y2024: 9.39, y2025: 26.40 },
-      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', y2023: 17.16, y2024: 9.76, y2025: 23.97 },
-      { key: 'aristocrats', label: 'SPDR S&P Global Dividend Aristocrats', y2023: 6.93, y2024: 7.74, y2025: 17.02 },
+      { key: 'high_div', label: 'Vanguard FTSE AW High Dividend', ...getInstrumentComparatorReturns('IE00B8GKDB10') },
+      { key: 'quality_div', label: 'iShares MSCI World Quality Dividend', ...getInstrumentComparatorReturns('IE00BYYHSQ67') },
+      { key: 'aristocrats', label: 'SPDR S&P Global Dividend Aristocrats', ...getInstrumentComparatorReturns('IE00B9CQXS71') },
     ],
     // Disclosure affichée dans le tweet lui-même (bloc 4, cf. buildTweetText) — devise, méthode et
     // nature "totale vs distribution" jamais explicités dans le texte avant le 23/09/2026, seulement
@@ -638,7 +639,7 @@ export const FAMILIES = [
     perfFunds: [
       // Corrigé le 25/09/2026 : 2024 8,58 → 8,55, ligne « Fund Net » EUR de State Street ; confiance élevée.
       // https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy
-      { key: 'eudv', label: 'SPDR S&P Euro Dividend Aristocrats (EUDV)', y2023: 18.39, y2024: 8.55, y2025: 20.06 },
+      { key: 'eudv', label: 'SPDR S&P Euro Dividend Aristocrats (EUDV)', ...getInstrumentComparatorReturns('IE00B5M1WJ87') },
     ],
     verdictTitle: '✅ LE VERDICT',
     verdict: [
@@ -714,20 +715,20 @@ export const FAMILIES = [
     perfFunds: [
       // Vérifié le 25/09/2026 : part USD, rendement total calendaire BlackRock ; confiance élevée.
       // https://www.blackrock.com/fr/intermediaries/products/308751/ishares-msci-china-ucits-etf
-      { key: 'msci_china', label: 'iShares MSCI China', y2023: -11.4, y2024: 19.2, y2025: 30.8 },
+      { key: 'msci_china', label: 'iShares MSCI China', ...getInstrumentComparatorReturns('IE00BJ5JPG56') },
       // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille Amundi ; confiance élevée.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871078/FRA/FRA/INSTITUTIONNEL/ETF/20260228
-      { key: 'amundi_pea_chine', label: 'Amundi PEA Chine (Screened)', y2023: -15.98, y2024: 17.15, y2025: 14.64 },
+      { key: 'amundi_pea_chine', label: 'Amundi PEA Chine (Screened)', ...getInstrumentComparatorReturns('FR0011871078') },
       // BlackRock, NAV USD de la part IE00B02KXK85, dividendes réinvestis ;
       // les anciens chiffres étaient exprimés en EUR sans distinction visible.
       // https://www.ishares.com/uk/individual/en/literature/fact-sheet/fxc-ishares-china-large-cap-ucits-etf-fund-fact-sheet-en-gb.pdf
       // Vérifié le 25/09/2026 : BlackRock part USD, affichage au dixième (-13,6/31,0/28,2).
       // Anciens centièmes écartés faute de confirmation ; confiance élevée au dixième.
       // https://www.blackrock.com/fr/particuliers/products/251798/ishares-china-large-cap-ucits-etf
-      { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)', y2023: -13.6, y2024: 31.0, y2025: 28.2 },
+      { key: 'ftse_china50', label: 'iShares China Large Cap (FTSE China 50)', ...getInstrumentComparatorReturns('IE00B02KXK85') },
       // Vérifié le 25/09/2026 : part USD, rendement total calendaire BlackRock ; confiance élevée.
       // https://www.blackrock.com/fr/particuliers/products/273192/ishares-msci-china-a-ucits-etf
-      { key: 'msci_china_a', label: 'iShares MSCI China A', y2023: -13.8, y2024: 11.3, y2025: 26.0 },
+      { key: 'msci_china_a', label: 'iShares MSCI China A', ...getInstrumentComparatorReturns('IE00BQT3WG13') },
     ],
     perfMethodNote: 'ℹ️ Les parts iShares MSCI China, FTSE China 50 et MSCI China A sont en dollars ; Amundi PEA Chine est en euros. Comparer directement les rendements mélange les effets de change.',
     verdictTitle: '✅ LE VERDICT',
@@ -818,10 +819,10 @@ export const FAMILIES = [
     perfFunds: [
       // Corrigé le 25/09/2026 : 2025 28,3 → 28,2, performance part 1C JPY DWS ; confiance élevée.
       // https://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR
-      { key: 'nikkei', label: 'Xtrackers Nikkei 225', y2023: 30.5, y2024: 20.9, y2025: 28.2 },
+      { key: 'nikkei', label: 'Xtrackers Nikkei 225', ...getInstrumentComparatorReturns('LU2196470426') },
       // Vérifié le 25/09/2026 : part EUR, ligne Portefeuille 2023–2025 Amundi ; confiance élevée.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20251231
-      { key: 'topix', label: 'Amundi PEA Japon (TOPIX)', y2023: 15.27, y2024: 14.56, y2025: 10.22 },
+      { key: 'topix', label: 'Amundi PEA Japon (TOPIX)', ...getInstrumentComparatorReturns('FR0013411980') },
       { key: 'msci_japan', label: 'iShares Core MSCI Japan IMI', y2023: null, y2024: null, y2025: null, perfNote: 'Historique absent du tableau : devise différente des séries présentées.' },
     ],
     perfMethodNote: 'ℹ️ Xtrackers Nikkei 225 est présenté en yens (part JPY) et Amundi TOPIX en euros. Ces rendements ne se comparent pas directement sans tenir compte du change.',
@@ -879,8 +880,8 @@ export const FAMILIES = [
       notes: ['⚠️ Contrairement aux ETF actions plus haut, un ETC or/argent ne diversifie rien : un seul actif, pas un panier de titres.', '→ L\'argent, plus utilisé par l\'industrie que l\'or, réagit aussi aux cycles économiques — pas seulement à la demande "valeur refuge".'],
     },
     perfFunds: [
-      { key: 'or', label: 'Or physique', y2023: 13.7, y2024: 26.4, y2025: 64.8 },
-      { key: 'argent', label: 'Argent physique', y2023: -4.25, y2024: 29.02, y2025: 119.80 },
+      { key: 'or', label: 'Or physique', ...getInstrumentComparatorReturns('IE00B4ND3602') },
+      { key: 'argent', label: 'Argent physique', ...getInstrumentComparatorReturns('IE00B4NCWG09') },
     ],
     perfMethodNote: 'ℹ️ Pas de dividende ni de coupon : un ETC or/argent ne verse aucun revenu, sa performance suit le NAV du fonds. Or : NAV nette de frais en $, devise native du fonds. Argent : NAV $ convertie en € par le Générateur de portefeuilles (cf. son commentaire pour le détail du calcul) — les deux lignes ne sont donc pas dans la même devise.',
     verdictTitle: '✅ LE VERDICT',
@@ -932,8 +933,8 @@ export const FAMILIES = [
       notes: ['⚠️ Comme pour l\'or et l\'argent, un ETP crypto ne diversifie rien : un seul actif, une seule source de risque.', '→ Bitcoin et Ethereum ont souvent évolué dans le même sens, mais pas systématiquement — Ethereum a connu des années nettement plus ou moins bonnes que le Bitcoin.'],
     },
     perfFunds: [
-      { key: 'bitcoin', label: 'Bitcoin', y2023: 155.42, y2024: 121.05, y2025: -6.34 },
-      { key: 'ethereum', label: 'Ethereum', y2023: 90.64, y2024: 46.07, y2025: -10.97 },
+      { key: 'bitcoin', label: 'Bitcoin', ...getInstrumentComparatorReturns('GB00BLD4ZL17') },
+      { key: 'ethereum', label: 'Ethereum', ...getInstrumentComparatorReturns('GB00BLD4ZM24') },
     ],
     perfMethodNote: 'ℹ️ Cours spot BTC/USD et ETH/USD (Slickcharts), pas le rendement propre de chaque ETP — qui peut différer selon les frais, le tracking, et le rendement de staking crédité à part pour l\'Ethereum. Hors effet de change €/$. Bitcoin et Ethereum sont deux actifs différents, pas deux façons d\'accéder au même actif.',
     verdictTitle: '✅ LE VERDICT',
@@ -978,9 +979,9 @@ export const FAMILIES = [
     // https://www.ishares.com/uk/professionals/en/products/296576/ishares-msci-world-small-cap-ucits-etf
     // EXUS lancé le 06/03/2024 : pas de rendement propre sur les trois années.
     perfFunds: [
-      { key: 'world', label: 'iShares Core MSCI World (SWDA)', y2023: 23.86, y2024: 18.7, y2025: 21.16 },
+      { key: 'world', label: 'iShares Core MSCI World (SWDA)', ...getInstrumentComparatorReturns('IE00B4L5Y983') },
       { key: 'ex_usa', label: 'Xtrackers MSCI World ex USA (EXUS)', y2023: null, y2024: null, y2025: null, perfNote: 'Part lancée en mars 2024 : pas de série annuelle complète 2023–2025.' },
-      { key: 'small_cap', label: 'iShares MSCI World Small Cap (WSML)', y2023: 16.02, y2024: 7.93, y2025: 19.84 },
+      { key: 'small_cap', label: 'iShares MSCI World Small Cap (WSML)', ...getInstrumentComparatorReturns('IE00BF4RFH31') },
     ],
     perfMethodNote: 'ℹ️ SWDA et WSML : rendements des parts en dollars, dividendes réinvestis et frais déduits. La part EXUS, plus récente, n’a pas trois années civiles complètes. Performances passées non prédictives.',
     verdictTitle: '✅ LE VERDICT',
