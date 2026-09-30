@@ -1,4 +1,4 @@
-import { CATEGORY_EMOJI } from './data'
+import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
 
 const peaLabel = (status) => status === null ? 'à vérifier' : status ? '✅' : '❌'

@@ -1,7 +1,7 @@
 // Format "Fiche lexique" — ne duplique aucune donnée : lit directement TERMES et
 // CATEGORY_ORDER depuis l'outil Lexique financier existant, et réutilise sa fonction
 // generateCopyText telle quelle (même texte que ce que produirait cet outil).
-import { TERMES, CATEGORY_ORDER } from "../../lexique-financier/data.js";
+import { TERMES, CATEGORY_ORDER } from "../../../data/financial-lexicon.js";
 import { generateCopyText } from "../../lexique-financier/lib.js";
 
 // Un "sujet" par terme du lexique, groupé par catégorie dans l'ordre déjà défini par l'outil

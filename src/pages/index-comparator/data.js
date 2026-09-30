@@ -22,7 +22,7 @@ import { formatEtfTer } from '../../data/etf-ter.js';
 // de référence fourni. Familles suivantes rédigées à partir de données réelles
 // vérifiées (cf. commentaire de sourcing sur chaque famille), en reprenant
 // pour plusieurs fonds les ISIN déjà vérifiés ailleurs dans l'application
-// (src/pages/etf-sheets/data.js, src/data/portfolio-assets.js) —
+// (src/data/etf-cards.js, src/data/portfolio-assets.js) —
 // jamais une nouvelle donnée non recoupée quand une donnée déjà vérifiée
 // cette session existe.
 //
@@ -188,7 +188,7 @@ export const FAMILIES = [
 
   // ── Famille 3 : USA large ────────────────────────────────────────────
   // Sources : justETF (recherche web du 01/09/2026). Amundi PEA S&P 500 /
-  // Nasdaq-100 déjà vérifiés ailleurs dans l'appli (etf-sheets/data.js).
+  // Nasdaq-100 déjà vérifiés ailleurs dans l'appli (src/data/etf-cards.js).
   // Point notable : le seul ETF PEA jamais lancé sur le Russell 1000 « pur »
   // (Russell 1000 THEAM Easy, FR0010616292) a été liquidé — plus aucune
   // option PEA active sur cet indice à ce jour (vérifié via recherche web).
@@ -441,7 +441,7 @@ export const FAMILIES = [
 
   // ── Famille 5 : Style ────────────────────────────────────────────────
   // Sources : justETF (recherche web du 01/09/2026). Value Factor déjà
-  // vérifié ailleurs dans l'appli (etf-sheets/data.js, portfolio-generator).
+  // vérifié ailleurs dans l'appli (src/data/etf-cards.js, portfolio-generator).
   // AUCUN ETF UCITS répliquant l'indice « MSCI World Growth » (au sens
   // strict) n'a été trouvé lors de cette recherche — affiché honnêtement
   // comme non confirmé plutôt que remplacé par un fonds Momentum différent.

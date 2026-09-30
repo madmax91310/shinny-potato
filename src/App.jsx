@@ -23,8 +23,8 @@ import { TOOLS } from './tools'
 // dashboard/routing le 03/09/2026 à la demande de l'utilisateur, désormais accessibles uniquement
 // depuis Tweet Midi. Leurs App.jsx de page autonome (devenus du code mort une fois la route retirée)
 // ont été supprimés le 14/09/2026 après vérification qu'aucun import résiduel n'y pointait — seuls
-// data.js/lib.js de ces 3 dossiers subsistent (etf-tweets a aussi gardé lib/tweetFormat.js), encore
-// importés par Tweet Midi.
+// lib.js subsiste pour les fonctions de formatage ; les données vivent dans src/data/.
+// Les anciens data.js ne sont que des réexports de compatibilité.
 const TOOL_ELEMENTS = {
   '/generateur-portefeuilles': <PortfolioGenerator />,
   '/duels-portefeuilles': <PortfolioDuels />,

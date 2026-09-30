@@ -60,7 +60,7 @@ const TOOLS = [
   {
     key: "fiches-etf",
     label: "Fiches ETF",
-    file: "src/pages/etf-sheets/data.js",
+    file: "src/data/etf-cards.js",
     entryRegex: /^\s*id:\s*"([a-z0-9-]+)"/,
   },
   {
@@ -72,7 +72,7 @@ const TOOLS = [
   {
     key: "lexique",
     label: "Lexique financier",
-    file: "src/pages/lexique-financier/data.js",
+    file: "src/data/financial-lexicon.js",
     entryRegex: /^\{?\s*id:\s*"([a-z0-9-]+)"/,
   },
   {
@@ -85,7 +85,7 @@ const TOOLS = [
   {
     key: "tweets-etf",
     label: "Tweets ETF",
-    file: "src/pages/etf-tweets/data/themes.js",
+    file: "src/data/etf-themes.js",
     entryRegex: /createTheme\(\{\s*$/,
     lookAheadId: /id:\s*'([a-z-]+)'/,
   },

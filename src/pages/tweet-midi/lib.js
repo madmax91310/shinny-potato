@@ -3,7 +3,7 @@ import { VRAI_FAUX_QUESTIONS } from "./data/vraiFauxQuestions.js";
 import { DILEMMES, SITUATIONS } from "./data/dilemmes.js";
 import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from "./data/ficheLexique.js";
 import { COMPARATIF_ETF_SUBJECTS, getComparatifEtfText } from "./data/comparatifEtf.js";
-import { TERMES, CATEGORY_ORDER } from "../lexique-financier/data.js";
+import { TERMES, CATEGORY_ORDER } from "../../data/financial-lexicon.js";
 import { MONTHS_FULL } from '../../data/market-history.js';
 import { fmtEUR, fmtPct, ymIndex } from "../investment-calculator/lib.js";
 import {
@@ -17,7 +17,7 @@ import {
 import {
   AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX,
   POSTE_ORDER as PA_POSTE_ORDER,
-} from "../purchasing-power/data.js";
+} from "../../data/purchasing-power.js";
 import { buildTweetText as buildPouvoirAchatTweetText } from "../purchasing-power/lib.js";
 
 export const FORMATS = {

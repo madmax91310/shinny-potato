@@ -17,8 +17,8 @@
 //
 // Sort avec le code 1 si une divergence est trouvée (utilisable comme porte de CI).
 
-import { ETFS } from "../src/pages/etf-sheets/data.js";
-import { DEFAULT_THEMES } from "../src/pages/etf-tweets/data/themes.js";
+import { ETFS } from "../src/data/etf-cards.js";
+import { DEFAULT_THEMES } from "../src/data/etf-themes.js";
 import { FAMILIES } from "../src/pages/index-comparator/data.js";
 import { ETF_TER_BY_ISIN } from "../src/data/etf-ter.js";
 

@@ -1,4 +1,4 @@
-import { GENERAL_INFLATION, YEAR_MAX, POSTES, SMIC } from './data.js'
+import { GENERAL_INFLATION, YEAR_MAX, POSTES, SMIC } from '../../data/purchasing-power.js'
 
 // Année d'arrivée fixe : "aujourd'hui" au sens de la fraîcheur de données de l'app (cf. LATEST_YM
 // dans src/data/market-history.js, qui s'arrête à 2026-08) — jamais sélectionnable par
