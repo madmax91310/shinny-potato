@@ -20,6 +20,9 @@ export const OFFICIAL_SOURCES = {
   fortuneoIfu: { title: 'Fortuneo · Télécharger son IFU', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.fortuneo.fr/faq/comment-telecharger-mon-imprime-fiscal-unique-ifu', kind: 'page' },
   bdIfu: { title: 'Bourse Direct · Fiscalité du CTO', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.boursedirect.fr/fr/bourse/compte-titres', kind: 'page' },
   caPeaPme: { title: 'Crédit Agricole · PEA-PME', edition: 'page nationale', checked: '29/09/2026', url: 'https://www.credit-agricole.fr/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html', kind: 'page' },
+  caIdfPea: { title: 'Crédit Agricole Île-de-France · PEA Jeune', edition: 'page régionale', checked: '30/09/2026', url: 'https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html', kind: 'page' },
+  caIdfPeaPme: { title: 'Crédit Agricole Île-de-France · Compte espèces PEA-PME', edition: 'page régionale', checked: '30/09/2026', url: 'https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html', kind: 'page' },
+  caCtoCash: { title: 'Crédit Agricole · Fonctionnement du compte espèces CTO', edition: 'page en ligne', checked: '30/09/2026', url: 'https://www.credit-agricole.fr/particulier/conseils/magazine/tout-un-mag/les-differentes-enveloppes-fiscales.html', kind: 'page' },
   fortuneoContract: { title: 'Fortuneo · Conditions générales', edition: '01/09/2025', checked: '29/09/2026', url: 'https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf' },
   bdPea: { title: 'Bourse Direct · Fonctionnement du PEA', edition: 'page en ligne', checked: '29/09/2026', url: 'https://epargne.boursedirect.fr/epargne/placements-epargne/compte-titres-dont-pea-et-pea-pme/le-pea-plan-d-epargne-en-actions', kind: 'page' },
   boursoMarkets: { title: 'BoursoBank · BoursoMarkets', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.boursobank.com/bourse/boursomarkets-courtage-bourse-gratuit', kind: 'page' },
@@ -79,6 +82,7 @@ export const OFFICIAL_SOURCES = {
 
 // Analyses éditoriales externes : distinctes des documents des courtiers.
 export const SECONDARY_SOURCES = {
+  moneyvoxCaIdf: { title: 'MoneyVox · Tarifs CA Île-de-France et rémunération du compte courant', edition: 'tarifs 2026', checked: '30/09/2026', url: 'https://www.moneyvox.fr/tarif-bancaire/credit-agricole-ile-de-france/', kind: 'secondary-page' },
   moneyvoxPea2026: { title: 'MoneyVox · PEA des banques en ligne', edition: '2026', checked: '30/09/2026', url: 'https://www.moneyvox.fr/banque-en-ligne/actualites/103315/investir-en-bourse-en-2026-quelle-banque-en-ligne-offre-le-meilleur-pea', kind: 'secondary-page' },
   cafePeaPme: { title: 'Café de la Bourse · Comparatif PEA-PME', edition: '2026', checked: '30/09/2026', url: 'https://www.cafedelabourse.com/dossiers/article/osez-les-petites-valeurs-avec-le-pea-pme', kind: 'secondary-page' },
   brokerBoursoCash: { title: 'BrokerChooser · Cash BoursoBank', edition: '09/2026', checked: '30/09/2026', url: 'https://brokerchooser.com/fr/invest-long-term/learn/eur-cash-yield-at-boursobank', kind: 'secondary-page' },
@@ -94,7 +98,6 @@ export const SECONDARY_SOURCES = {
   financeHerosForumDca: { title: 'Finance Héros · Réponse éditoriale sur les plans PEA', edition: '19/08/2026', checked: '30/09/2026', url: 'https://forum.finance-heros.fr/t/investissement-programme-sur-pea/1515', kind: 'secondary-page' },
   financeHerosPea: { title: 'Finance Héros · Comparatif PEA', edition: '22/07/2026', checked: '30/09/2026', url: 'https://finance-heros.fr/ouvrir-meilleur-pea-comparatif/', kind: 'secondary-page' },
   prorealtimeIbkr: { title: 'Avenant IBIE diffusé par ProRealTime', edition: '03/12/2024', checked: '30/09/2026', url: 'https://trading.prorealtime.com/fr/ib_agreement_pdf?r=ib_ie_pea_disclosures', kind: 'secondary-pdf' },
-  peaFrIbkr: { title: 'PEA.fr · Analyse IBKR', edition: '2026', checked: '30/09/2026', url: 'https://pea.fr/courtiers/pea-interactive-brokers-avis-2026/', kind: 'secondary-page' },
 }
 
 const proved = (summary, document, page) => ({ status: 'confirmé', summary, refs: [{ document, ...(page ? { page } : {}) }] })
@@ -134,7 +137,7 @@ export const BROKER_EVIDENCE = {
     garde: proved('Aucun droit de garde ni frais de tenue de compte PEA annoncés.', 'ibkrPea'),
     pea: proved('PEA Classique commercialisé.', 'ibkrPea'),
     pme: { status: 'corroboré', summary: 'PEA-PME non proposé selon Café de la Bourse ; la page IBKR ne présente que le PEA Classique.', refs: [{ document: 'cafePeaPme' }, { document: 'ibkrPea' }] },
-    jeune: { status: 'partiel', summary: 'Avenant IBIE daté de 2024 diffusé par ProRealTime : plafond de 20 000 € pour l’enfant majeur rattaché. PEA.fr indique pourtant « pas de PEA Jeune » en 2026. La page IBKR n’explicite pas cette offre : contradiction non résolue.', refs: [{ document: 'prorealtimeIbkr', page: 70 }, { document: 'peaFrIbkr' }, { document: 'ibkrPea' }] },
+    jeune: { status: 'corroboré', summary: 'Oui au sens du PEA de l’enfant majeur rattaché : l’avenant IBIE du 03/12/2024, diffusé par ProRealTime, prévoit expressément le plafond de 20 000 €. La page commerciale IBKR consultée en 2026 ne présente pas de produit distinct « PEA Jeune » ; parcours d’ouverture actuel non testé.', refs: [{ document: 'prorealtimeIbkr', page: 70 }, { document: 'ibkrPea' }] },
     ifu: proved('IFU disponible pour le PEA.', 'ibkrPea'),
     cash: { status: 'confirmé', summary: 'Oui pour soldes éligibles : 0 % sur les premiers 10 000 € EUR, taux variable au-delà et selon valeur du compte ; PEA non documenté.', refs: [{ document: 'ibkrInterest' }] },
     transfert: proved('Transfert du PEA possible, sans frais de transfert annoncés.', 'ibkrPea'),
@@ -170,9 +173,9 @@ export const BROKER_EVIDENCE = {
     garde: proved('Île-de-France : exonération avec Invest Store Intégral, gestion conseillée ou mandat ; autrement 2,50 €/semestre/compte, 12,50 €/semestre sur certaines lignes, 0,20 %/semestre de valorisation, maximum 250 €/semestre. Voir détails et exemptions au barème.', 'caTariff', 29),
     pea: proved('PEA proposé par Invest Store ; barème régional Île-de-France publié.', 'caTariff', 28),
     pme: proved('PEA-PME proposé ; barème régional Île-de-France publié.', 'caTariff', 28),
-    jeune: { status: 'partiel', summary: 'Le Crédit Agricole annonce commercialiser le PEA Jeune ; conditions de la caisse Île-de-France à confirmer.', refs: [{ document: 'caPea' }] },
+    jeune: proved('La page de la caisse Île-de-France annonce le PEA Jeune pour un majeur rattaché, avec un plafond de 20 000 €.', 'caIdfPea'),
     ifu: { status: 'confirmé', summary: 'La brochure Île-de-France 2026 tarifie explicitement la réédition de l’IFU ; Invest Store indique que l’IFU est consultable. La production du document dépend des opérations à déclarer.', refs: [{ document: 'caTariff', page: 8 }, { document: 'caInvest' }] },
-    cash: unknown('PEA-PME non rémunéré selon page nationale ; autres soldes et conditions régionales non établis.', ['caPeaPme', 'caTariff']),
+    cash: { status: 'corroboré', summary: 'Non selon les sources consultées : la page régionale exclut les intérêts sur le cash PEA-PME ; MoneyVox (tarifs CA Île-de-France 2026) indique que la rémunération du compte courant n’est pas proposée. Le CTO s’appuie sur un compte espèces bancaire classique selon le Crédit Agricole. Aucun taux du cash non investi relevé ; les livrets et dépôts à terme sont des placements distincts.', refs: [{ document: 'caIdfPeaPme' }, { document: 'moneyvoxCaIdf' }, { document: 'caCtoCash' }] },
     transfert: proved('Transfert sortant de compte-titres ou PEA hors Crédit Agricole : 15 €/ligne, maximum 150 €/compte ; frais du correspondant possibles pour titres étrangers.', 'caTariff', 31),
   },
   bd: {
