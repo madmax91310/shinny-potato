@@ -1,7 +1,8 @@
+import { REVIEWED_INDEX_SNAPSHOTS, REVIEWED_EXISTING_INDEX_KEYS } from './index-source-review.js';
 import { normalizeEvidence } from './evidence.js';
 // Faits d’indices, distincts des caractéristiques et rendements des ETF.
 // Clé = indice + photographie : une nouvelle date ajoute une entrée, elle ne remplace pas l’histoire.
-// Sources migrées du dépôt au 30/09/2026 : cette date ne constitue pas une recertification externe.
+// Les archives migrées gardent leur provenance ; les revues externes sont identifiées séparément.
 export const INDEX_FACTS = {
   "em-standard": {
     "2026-08-31": {
@@ -700,6 +701,15 @@ export const INDEX_FACTS = {
   }
 };
 
+for (const [id, key] of Object.entries(REVIEWED_EXISTING_INDEX_KEYS)) {
+  const facts = INDEX_FACTS[id][key];
+  facts.source.checkedAt = '2026-09-30';
+  facts.provenance += ' Publication officielle retrouvée le 30/09/2026, avec la date de photographie citée (ou la méthodologie nominale) ; cette consultation ne date pas les anciennes archives.';
+}
+for (const [id, snapshots] of Object.entries(REVIEWED_INDEX_SNAPSHOTS)) {
+  INDEX_FACTS[id] = { ...INDEX_FACTS[id], ...snapshots };
+}
+
 function deepFreeze(value) {
   if (value && typeof value === 'object') {
     Object.values(value).forEach(deepFreeze);
@@ -709,7 +719,7 @@ function deepFreeze(value) {
 }
 for (const history of Object.values(INDEX_FACTS)) {
   for (const facts of Object.values(history)) {
-    facts.metadata = normalizeEvidence({ ...facts.source, asOf: facts.asOf,
+    facts.metadata = normalizeEvidence({ ...facts.source, asOf: facts.asOf, dateStatus: facts.asOf ? 'dated' : facts.targetConstituents != null ? 'not-applicable' : 'legacy-undated',
       scope: facts.index, method: facts.targetConstituents != null && facts.constituents == null ? 'Périmètre nominal de méthodologie' : 'Composition d’indice', note: facts.provenance });
   }
 }

@@ -5,7 +5,7 @@ export const VERIFIED_RETURNS = {
   IE00BYXG2H39: { currency: 'USD', values: [25.91, -0.40, -10.53, 4.22, -0.96, 32.87], source: 'https://www.ishares.com/ch/institutional/en/literature/fact-sheet/btec-ishares-nasdaq-us-biotechnology-ucits-etf-fund-fact-sheet-fr-ch.pdf' },
   IE00BYTRR863: { currency: 'USD', values: [-31.10, 40.49, 46.31, 2.79, 2.88, 13.56], source: 'https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-world-energy-ucits-etf-wrde-gy' },
   IE00BJ5JNY98: { currency: 'USD', values: [43.6, 29.7, -32.5, 59.7, 26.0, 22.9], source: 'https://www.ishares.com/uk/individual/en/products/308858/ishares-msci-world-information-technology-sector-advanced-ucits-etf' },
-  IE00BJ5JP097: { currency: 'USD', values: [null, null, -9.6, 17.4, 25.3, 29.5], source: 'https://www.ishares.com/uk/individual/en/products/308857/ishares-msci-world-financials-sector-advanced-ucits-etf' },
+  IE00BJ5JP097: { currency: 'USD', values: [null, null, -9.6, 17.4, 25.3, 29.5], source: 'https://www.ishares.com/uk/individual/en/products/308836/ishares-msci-world-financials-sector-advanced-ucits-etf' },
   IE00B1FZS350: { currency: 'USD', values: [-9.5, 25.2, -24.3, 8.9, 1.0, 8.2], source: 'https://www.ishares.com/uk/individual/en/products/251801/ishares-developed-markets-property-yield-ucits-etf' },
   IE00B8FHGS14: { currency: 'USD', values: [2.6, 14.2, -9.9, 7.8, 10.8, 10.5], source: 'https://www.ishares.com/uk/individual/en/products/251382/ishares-msci-world-minimum-volatility-ucits-etf' },
   IE00BP3QZ601: { currency: 'USD', values: [14.9, 23.2, -19.2, 25.7, 16.6, 15.4], source: 'https://www.ishares.com/uk/individual/en/products/270054/ishares-msci-world-quality-factor-ucits-etf' },
