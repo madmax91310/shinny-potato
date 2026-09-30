@@ -1,16 +1,11 @@
 import { ETFS } from '../etf-sheets/data.js'
-import { getAnnualPerformance } from '../etf-sheets/annualPerformance.js'
+import { getInstrumentDuelSeries } from '../../data/instrument-returns.js'
 import { YEARS, getAsset } from '../portfolio-generator/data.js'
 import { computeYearlyPerf } from '../portfolio-generator/performance.js'
 import { ITEM_BY_ID, CATALOG, FX_SOURCE, euroReturn } from './catalog.js'
 
 const cardByIsin = new Map(ETFS.map((etf) => [etf.isin, etf]))
 const INITIAL = 10_000
-const EXISTING_SOURCES = {
-  msci_em: 'https://www.ishares.com/de/privatanleger/de/literature/fact-sheet/eimi-ishares-core-msci-em-imi-ucits-etf-fund-fact-sheet-de-de.pdf',
-  msci_world_ishares: 'https://www.ishares.com/gls-download/literature/fact-sheet/swda-ishares-core-msci-world-ucits-etf-fund-fact-sheet-en-gb.pdf',
-  ftse_allworld_vanguard: 'https://fund-docs.vanguard.com/ie00bk5bqt80-en.pdf',
-}
 
 function portfolio(common, satellite, name) {
   const assets = [{ ...common, pct: 70 }, { ...satellite, pct: 30 }]
@@ -28,7 +23,7 @@ export function buildDuel(definition) {
   if (assets.some((asset) => !asset?.isin)) throw new Error(`Actif absent : ${definition.id}`)
   const series = assets.map((asset) => {
     const card = cardByIsin.get(asset.isin)
-    return card ? getAnnualPerformance(card) : null
+    return card ? getInstrumentDuelSeries(card.isin) : null
   })
   if (series.some((s) => !s || s.values.length !== YEARS.length || !s.values.every(Number.isFinite))) {
     throw new Error(`Part sans six années vérifiées : ${definition.id}`)
@@ -46,7 +41,7 @@ export function buildDuel(definition) {
     commonAsset: common,
     a: portfolio(common, left, definition.labels[0]),
     b: portfolio(common, right, definition.labels[1]),
-    sources: assets.map((asset, i) => ({ name: asset.name, isin: asset.isin, url: series[i].source ?? EXISTING_SOURCES[asset.id] })),
+    sources: assets.map((asset, i) => ({ name: asset.name, isin: asset.isin, url: series[i].source })),
   }
 }
 

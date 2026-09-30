@@ -5,7 +5,7 @@ import { ETFS } from '../src/pages/etf-sheets/data.js'
 import { ASSETS } from '../src/pages/portfolio-generator/data.js'
 import { getAnnualPerformance } from '../src/pages/etf-sheets/annualPerformance.js'
 import { PROFILES } from '../src/pages/portfolio-generator/theses.js'
-import { VERIFIED_RETURNS } from '../src/pages/etf-sheets/verifiedReturns.js'
+import { VERIFIED_RETURNS } from '../src/data/verified-returns.js'
 
 let errors = 0
 const known = new Map(ASSETS.filter((asset) => asset.isin).map((asset) => [asset.isin, asset]))

@@ -8,21 +8,7 @@ import { readFileSync } from 'node:fs'
 const MAX_UNEXPLAINED_GAP = 0.1 // point de pourcentage : seuls les arrondis d'affichage restent tolérés
 // Les perfFunds n'ont pas de champ ISIN : rattachement explicite à la part citée dans le tweet.
 // Chaque clé est validée ci-dessous contre les fonds réellement affichés.
-const FUND_ISINS = {
-  europe: { msci_europe: 'FR0013412038', stoxx600: 'FR0011550193', eurostoxx50: 'IE00B53L3W79' },
-  monde: { msci_world: 'LU1681043599', acwi: 'FR0014017NX3', ftse_aw: 'IE00BK5BQT80' },
-  usa: { sp500: 'FR0011871128', nasdaq100: 'FR0011871110', msci_usa: 'IE00B52SFT06' },
-  'emergents-pea': { paeem_pea: 'FR0013412020', paasi: 'FR0013412012', palat: 'FR0013412004', pinr: 'FR0011869320', plem: 'FR0011440478' },
-  'emergents-cto': { msci_em: 'IE00BKM4GZ66', ftse_em: 'IE00BK5BR733', em_exchina: 'IE00BMG6Z448' },
-  style: { value: 'IE00BP3QZB59', quality: 'IE00BP3QZ601' },
-  'dividendes-cto': { high_div: 'IE00B8GKDB10', quality_div: 'IE00BYYHSQ67', aristocrats: 'IE00B9CQXS71' },
-  'dividendes-pea': { eudv: 'IE00B5M1WJ87' },
-  chine: { msci_china: 'IE00BJ5JPG56', amundi_pea_chine: 'FR0011871078', ftse_china50: 'IE00B02KXK85', msci_china_a: 'IE00BQT3WG13' },
-  japon: { nikkei: 'LU2196470426', topix: 'FR0013411980', msci_japan: 'IE00B4L5YX21' },
-  'or-argent': { or: 'IE00B4ND3602', argent: 'IE00B4NCWG09' },
-  crypto: { bitcoin: 'GB00BLD4ZL17', ethereum: 'GB00BLD4ZM24' },
-  'monde-segments': { world: 'IE00B4L5Y983', ex_usa: 'IE0006WW1TQ4', small_cap: 'IE00BF4RFH31' },
-}
+import { COMPARATOR_ISIN_BY_FAMILY_KEY as FUND_ISINS } from '../src/data/instrument-comparator-returns.js'
 
 // Comparer des séries différentes d'un même ISIN exige une explication dans les deux outils.
 const DIFFERENT_BASIS = {}

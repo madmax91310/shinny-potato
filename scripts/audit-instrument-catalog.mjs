@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-// Vérifie que les quatre bibliothèques de produits utilisent la même référence ISIN.
+// Vérifie que les outils consomment les registres communs par ISIN.
 import { readFileSync } from 'node:fs';
 import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPea, getInstrumentPeaStatus } from '../src/data/instruments.js';
 import { INSTRUMENT_FACTS_BY_ISIN, getInstrumentFacts, getInstrumentTickers } from '../src/data/instrument-facts.js';
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js';
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
 import { INSTRUMENT_AUM_BY_ISIN, getInstrumentAum } from '../src/data/instrument-aum.js';
+import { getInstrumentReturnValues } from '../src/data/instrument-returns.js';
+import { COMPARATOR_ISIN_BY_FAMILY_KEY, getInstrumentComparatorReturns } from '../src/data/instrument-comparator-returns.js';
 import { ETFS } from '../src/pages/etf-sheets/data.js';
 import { DEFAULT_THEMES } from '../src/pages/etf-tweets/data/themes.js';
 import { FAMILIES } from '../src/pages/index-comparator/data.js';
@@ -24,6 +26,7 @@ let errors = 0;
 let total = 0;
 const unresolved = [];
 let aumUsages = 0;
+let returnUsages = 0;
 for (const [isin, review] of Object.entries(PEA_REVIEWS_BY_ISIN)) {
   if (!INSTRUMENTS_BY_ISIN[isin] || !review.sourceUrl || !/^\d{4}-\d{2}-\d{2}$/.test(review.checkedAt)) {
     console.error(`PEA : identité, source ou date manquante pour ${isin}`);
@@ -189,6 +192,33 @@ for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
     }
   }
 }
+for (const asset of ASSETS.filter(item => item.isin)) {
+  if (asset.r !== getInstrumentReturnValues(asset.isin)) {
+    console.error(`Générateur : série locale ou divergente pour ${asset.isin}`);
+    errors++;
+  }
+  returnUsages++;
+}
+for (const family of FAMILIES) for (const row of family.perfFunds ?? []) {
+  if (!Number.isFinite(row.y2023)) continue;
+  const isin = COMPARATOR_ISIN_BY_FAMILY_KEY[family.id]?.[row.key];
+  const values = isin && getInstrumentComparatorReturns(isin);
+  if (!values || Object.entries(values).some(([year, value]) => row[year] !== value)) {
+    console.error(`Comparateur : série hors registre pour ${family.id}/${row.key}`);
+    errors++;
+  }
+}
+const portfolioSource = readFileSync(new URL('../src/pages/portfolio-generator/data.js', import.meta.url), 'utf8');
+if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length !== returnUsages) {
+  console.error('Générateur : une série ISIN reste codée dans l’outil.');
+  errors++;
+}
+const comparatorSeriesSource = readFileSync(new URL('../src/pages/index-comparator/data.js', import.meta.url), 'utf8');
+if ((comparatorSeriesSource.match(/\.\.\.getInstrumentComparatorReturns\(/g) ?? []).length !==
+    FAMILIES.flatMap(family => family.perfFunds ?? []).filter(row => Number.isFinite(row.y2023)).length) {
+  console.error('Comparateur : une série ETF reste codée dans l’outil.');
+  errors++;
+}
 for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
   if (!seen.has(isin)) {
     console.error(`Catalogue : ISIN inutilisé ${isin}`);
@@ -199,5 +229,6 @@ console.log(`${total} usages, ${seen.size} ISIN, ${errors} erreur(s) dans le cat
 console.log(`${Object.keys(INSTRUMENT_FACTS_BY_ISIN).length} fiches avec caractéristiques sourcées et datées ; ${unresolved.length} divergence(s) de méthode.`);
 console.log(`${Object.keys(PEA_REVIEWS_BY_ISIN).length} statuts PEA revus individuellement, dont ${Object.values(PEA_REVIEWS_BY_ISIN).filter(x => x.eligible === null).length} non tranchés.`);
 console.log(`${aumUsages} encours servis par le registre commun pour ${Object.keys(INSTRUMENT_AUM_BY_ISIN).length} ISIN ; ${Object.values(INSTRUMENT_AUM_BY_ISIN).filter(x => x.source).length} sources individuelles enregistrées.`);
+console.log(`${returnUsages} usages de rendements du Générateur servis par ISIN ; séries du Comparateur raccordées au même registre.`);
 if (unresolved.length) { console.error(`Réplication contradictoire : ${unresolved.join(', ')}`); errors += unresolved.length; }
 if (errors) process.exitCode = 1;

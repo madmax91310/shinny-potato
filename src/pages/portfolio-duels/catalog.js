@@ -1,5 +1,5 @@
 import { ETFS } from '../etf-sheets/data.js'
-import { getAnnualPerformance } from '../etf-sheets/annualPerformance.js'
+import { DUEL_SERIES_BY_ISIN, getInstrumentDuelSeries } from '../../data/instrument-returns.js'
 import { ASSETS, YEARS } from '../portfolio-generator/data.js'
 import { ASSETS as CALCULATOR_ASSETS } from '../investment-calculator/data.js'
 
@@ -12,15 +12,6 @@ const etfs = new Map(ETFS.map((etf) => [etf.isin, etf]))
 const CORES = new Set(['sp500', 'sp500_ishares', 'msci_world_ishares', 'msci_acwi_ishares', 'ftse_allworld_vanguard', 'msci_world', 'msci_acwi'])
 const STOCKS = ['apple', 'microsoft', 'nvidia', 'amazon', 'google', 'meta', 'visa', 'cocacola', 'netflix', 'broadcom', 'tesla', 'lvmh', 'nestle', 'sap']
 const ALTERNATIVES = new Set(['or', 'or_ishares', 'or_amundi', 'or_wisdomtree', 'argent', 'mp_large', 'mp_large_icom', 'foncieres_etf'])
-// Fonds déjà sourcés dans le générateur mais absents du catalogue des fiches ETF.
-const EXISTING_FUND_SERIES = {
-  msci_world_ishares: { currency: 'USD', source: 'https://www.ishares.com/gls-download/literature/fact-sheet/swda-ishares-core-msci-world-ucits-etf-fund-fact-sheet-en-gb.pdf' },
-  sp500_ishares: { currency: 'USD', source: 'https://www.ishares.com/uk/individual/en/products/253743/ishares-core-sp-500-ucits-etf' },
-  msci_acwi: { currency: 'USD', source: 'https://www.ssga.com/uk/en_gb/intermediary/etfs/spdr-msci-acwi-ucits-etf-spyy-gy' },
-  or: { currency: 'USD', source: 'https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf' },
-  foncieres_etf: { currency: 'EUR', source: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231' },
-}
-
 function stockSeries(key) {
   const stock = CALCULATOR_ASSETS[key]
   const points = new Map(stock.points.map(({ date, price }) => [date, price]))
@@ -34,9 +25,7 @@ function stockSeries(key) {
 
 const fundItems = ASSETS.flatMap((asset) => {
   const card = etfs.get(asset.isin)
-  const series = (card && getAnnualPerformance(card)) ?? (EXISTING_FUND_SERIES[asset.id] && {
-    ...EXISTING_FUND_SERIES[asset.id], values: asset.r,
-  })
+  const series = (card || DUEL_SERIES_BY_ISIN[asset.isin]?.currency) && getInstrumentDuelSeries(asset.isin)
   if (!series || !['EUR', 'USD'].includes(series.currency) || !series.values.some(Number.isFinite)) return []
   // Le montant calculé doit désigner la part exacte, jamais un indice ou un autre fonds.
   if (asset.r.some((value, i) => Number.isFinite(series.values[i]) && value !== series.values[i])) return []
