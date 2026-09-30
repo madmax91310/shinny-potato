@@ -7,6 +7,7 @@ import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js'
 import { INDEX_FACTS } from '../src/data/index-facts.js';
 import { INDEX_RETURNS } from '../src/data/index-returns.js';
 import { describeDataField } from '../src/pages/data-search/lib.js';
+import { getRestoredRoute } from '../src/restore-route.js';
 import { TOOLS } from '../src/tools.js';
 const ids = new Set();
 for (const file of readdirSync(new URL('../src/data/', import.meta.url)).filter((name) => name.endsWith('.js'))) {
@@ -51,3 +52,8 @@ for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [date, ser
   assert.equal(series.metadata.asOf, date);
 }
 console.log(`${DATA_CATALOG.length} fiches recherchables ; couverture des instruments/indices/cotations, provenance, consommateurs et export JSON OK.`);
+
+const route = '/shinny-potato/bibliotheque-donnees?q=DCAM&type=instrument&id=FR001400U5Q4';
+assert.equal(getRestoredRoute(`https://example.com/shinny-potato/?__route=${encodeURIComponent(route)}`, '/shinny-potato/'), route);
+assert.equal(getRestoredRoute('https://example.com/shinny-potato/?__route=https%3A%2F%2Fevil.example%2F', '/shinny-potato/'), null);
+assert.equal(getRestoredRoute('https://example.com/shinny-potato/?__route=%2Fautre%2F', '/shinny-potato/'), null);
