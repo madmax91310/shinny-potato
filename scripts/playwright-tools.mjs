@@ -399,6 +399,7 @@ async function testDataSearch(page) {
   const soxxText = await page.locator('.ds-detail').innerText();
   checks.archiveSeries = soxxText.includes('Archive non vérifiable') && soxxText.includes('Deux points étaient partiellement masqués')
     && soxxText.includes('2016-01 à 2026-08');
+  await page.getByLabel('Type de donnée').selectOption('all');
   await page.getByRole('searchbox').fill('zzzintrouvablezzz');
   await page.locator('.ds-detail').filter({ hasText: 'Aucune donnée' }).waitFor();
   checks.empty = (await page.getByRole('status').innerText()).includes('0 résultat');
