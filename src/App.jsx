@@ -16,6 +16,7 @@ import TweetBank from './pages/tweet-bank/App'
 import FactsheetTweets from './pages/factsheet-tweets/App'
 import DataSearch from './pages/data-search/App'
 import HouseholdApp from './pages/france-100-menages/App'
+import DataReview from './pages/data-review/App'
 import { TOOLS } from './tools'
 
 // Tweets ETF, Lexique financier et Pouvoir d'achat n'ont plus de route dédiée : leurs pages
@@ -29,6 +30,7 @@ import { TOOLS } from './tools'
 // Les anciens data.js ne sont que des réexports de compatibilité.
 const TOOL_ELEMENTS = {
   '/france-100-menages': <HouseholdApp />,
+  '/donnees-a-revoir': <DataReview />,
   '/bibliotheque-donnees': <DataSearch />,
   '/generateur-portefeuilles': <PortfolioGenerator />,
   '/duels-portefeuilles': <PortfolioDuels />,

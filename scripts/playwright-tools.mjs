@@ -505,6 +505,20 @@ try {
   await testFactsheetTweets(page);
   await testDataSearch(page);
   await testHouseholds(page);
+  await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
+  let reviewOk = (await page.locator('.dr-item').count()) === 3;
+  await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil' }).fill('Interactive Brokers');
+  reviewOk &&= (await page.locator('.dr-item').count()) === 3;
+  await page.reload({ waitUntil: 'networkidle' });
+  reviewOk &&= (await page.locator('.dr-item').count()) === 3;
+  await page.getByRole('searchbox').fill('');
+  await page.getByLabel('Afficher', { exact: true }).selectOption('deadlines');
+  reviewOk &&= (await page.locator('.dr-item').count()) === 3;
+  reviewOk &&= (await page.getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;
+  await page.setViewportSize({ width: 390, height: 844 });
+  reviewOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  record('Données à revoir', reviewOk, 'réserves IBKR, filtres conservés, échéances sourcées et écran mobile');
 
   await browser.close();
 } finally {

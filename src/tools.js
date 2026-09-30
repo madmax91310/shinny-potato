@@ -9,6 +9,10 @@ export const TOOLS = [
     icon: '🇫🇷', accent: '#e7c97c', description: 'Neuf sujets Insee sur le patrimoine, les placements et les transmissions. Visuels en 100 ménages, tweets et export PNG.', status: 'disponible',
   },
   {
+    to: '/donnees-a-revoir', navLabel: 'À revoir', title: 'Données à revoir',
+    icon: '🗓️', accent: '#fbbf24', description: 'Réserves ouvertes, échéances des offres et contrôles de sources à prévoir.', status: 'disponible',
+  },
+  {
     to: '/bibliotheque-donnees', navLabel: 'Données', title: 'Bibliothèque de données',
     icon: '🔎', accent: '#2dd4bf', description: 'Recherche par ISIN, ticker, nom ou indice. Sources, historiques, outils consommateurs et export JSON.', status: 'disponible',
   },
