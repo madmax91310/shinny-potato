@@ -12,6 +12,7 @@ export const OFFICIAL_SOURCES = {
   xtbPea: { title: 'XTB · PEA, fonctionnement et FAQ', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.xtb.com/fr/pea', kind: 'page' },
   saxoInterest: { title: 'Saxo · Intérêts sur les espèces', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/campaigns/interest-rates-cal', kind: 'page' },
   saxoAutoinvest: { title: 'Saxo · Plan Épargne Programmé', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/products/autoinvest', kind: 'page' },
+  saxoPeaPromo: { title: 'Saxo · Conditions de l’offre PEA 70 actions sans courtage', edition: '23/02–31/12/2026', checked: '30/09/2026', url: 'https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions', kind: 'page' },
   ibkrPea: { title: 'Interactive Brokers · PEA France', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php', kind: 'page' },
   ibkrFees: { title: 'Interactive Brokers · Commissions Europe', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php', kind: 'page' },
   ibkrInterest: { title: 'Interactive Brokers · Intérêts sur espèces', edition: 'taux variables', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/index.php?f=47097', kind: 'page' },
@@ -192,7 +193,7 @@ export const BROKER_EVIDENCE = {
   },
   saxo: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
-    frais: proved('Classic Euronext : 0,08 % avec minimum de 2 €.', 'saxoTariff', 5),
+    frais: { status: 'confirmé', summary: 'Classic Euronext : 0,08 % avec minimum de 2 € (plafond réglementaire PEA). Jusqu’au 31/12/2026, achats et ventes sans courtage sur 70 actions européennes sélectionnées pour les PEA nouvellement ouverts ou transférés remplissant les conditions Saxo ; autres frais possibles, notamment change.', refs: [{ document: 'saxoTariff', page: 5 }, { document: 'saxoPeaPromo' }] },
     dca: proved('Plan Épargne Programmé sans commission d’achat ni frais mensuels ; actuellement indisponible dans le PEA.', 'saxoAutoinvest'),
     garde: proved('0 € sur titres cotés ; exception pour non cotés en PEA.', 'saxoTariff', 3),
     pea: proved('PEA couvert par le barème.', 'saxoTariff', 16),

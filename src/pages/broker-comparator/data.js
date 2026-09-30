@@ -177,7 +177,7 @@ export const BROKERS = [
   },
   {
     id: "saxo", nom: "Saxo Bank", code: "SX", color: "#AAB4CC", emoji: "⚪", lastVerified: "29/09/2026",
-    frais: { rank: 1, resume: "Dès 2€", detail: "Classic Euronext : 0,08% (min 2€)" },
+    frais: { rank: 1, resume: "Dès 2€", detail: "Classic Euronext : 0,08% (min 2€) · offre 0€ sur 70 actions sous conditions" },
     boursomarkets: { resume: "Sans objet" },
     dca: { resume: "Oui hors PEA", detail: "Plan programmé sans courtage à l’achat · PEA exclu" },
     garde: { rank: 1, resume: "0€" },
@@ -188,7 +188,7 @@ export const BROKERS = [
     pointFaible: "Plan programmé indisponible sur PEA ; PEA Jeune non proposé",
     transfertPea: { resume: "Remboursement entrant : à vérifier" },
     post: {
-      frais: ["Classic Euronext : 0,08%, minimum 2€ ; plafonnement PEA à 0,5%"],
+      frais: ["Classic Euronext : 0,08%, minimum 2€ ; plafonnement PEA à 0,5%. Jusqu’au 31/12/2026, 0€ de courtage à l’achat et à la vente sur 70 actions sélectionnées pour certains PEA nouvellement ouverts ou transférés ; autres frais possibles."],
       dca: ["Plan Épargne Programmé : sans commission d’achat ni frais mensuels ; actuellement indisponible sur PEA."],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ❌",
