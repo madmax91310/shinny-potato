@@ -13,6 +13,9 @@ export const OFFICIAL_SOURCES = {
   saxoInterest: { title: 'Saxo · Intérêts sur les espèces', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/campaigns/interest-rates-cal', kind: 'page' },
   saxoAutoinvest: { title: 'Saxo · Plan Épargne Programmé', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/products/autoinvest', kind: 'page' },
   saxoPeaPromo: { title: 'Saxo · Conditions de l’offre PEA 70 actions sans courtage', edition: '23/02–31/12/2026', checked: '30/09/2026', url: 'https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions', kind: 'page' },
+  saxoAmundiPromo: { title: 'Saxo · Offre ETF Amundi', edition: 'jusqu’au 31/12/2026', checked: '30/09/2026', url: 'https://www.home.saxo/fr-fr/campaigns/amundi-etf', kind: 'page' },
+  saxoPeaTransferOffer: { title: 'Saxo · Offre transfert PEA', edition: 'jusqu’au 31/12/2026', checked: '30/09/2026', url: 'https://www.home.saxo/fr-fr/accounts/pea', kind: 'page' },
+  saxoFx: { title: 'Saxo · Frais de conversion', edition: 'page France', checked: '30/09/2026', url: 'https://www.home.saxo/fr-fr/rates-and-conditions/commissions-charges-and-margin-schedule/', kind: 'page' },
   ibkrPea: { title: 'Interactive Brokers · PEA France', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php', kind: 'page' },
   ibkrFees: { title: 'Interactive Brokers · Commissions Europe', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php', kind: 'page' },
   ibkrInterest: { title: 'Interactive Brokers · Intérêts sur espèces', edition: 'taux variables', checked: '29/09/2026', url: 'https://www.interactivebrokers.ie/fr/index.php?f=47097', kind: 'page' },
@@ -194,7 +197,7 @@ export const BROKER_EVIDENCE = {
   },
   saxo: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
-    frais: { status: 'confirmé', summary: 'Classic Euronext : 0,08 % avec minimum de 2 € (plafond réglementaire PEA). Jusqu’au 31/12/2026, achats et ventes sans courtage sur 70 actions européennes sélectionnées pour les PEA nouvellement ouverts ou transférés remplissant les conditions Saxo ; autres frais possibles, notamment change.', refs: [{ document: 'saxoTariff', page: 5 }, { document: 'saxoPeaPromo' }] },
+    frais: { status: 'confirmé', summary: 'Classic Euronext : 0,08 % avec minimum de 2 € (plafond réglementaire PEA). Jusqu’au 31/12/2026, achats et ventes sans courtage sur 70 actions européennes sélectionnées pour les PEA nouvellement ouverts ou transférés remplissant les conditions Saxo. Une sélection de plus de 150 ETF Amundi est sans courtage à l’achat jusqu’au 31/12/2026, sous conditions, avec blocage des positions achetées dans ce cadre pour transfert durant six mois. Conversion possible à 0,25 %.', refs: [{ document: 'saxoTariff', page: 5 }, { document: 'saxoPeaPromo' }, { document: 'saxoAmundiPromo' }, { document: 'saxoFx' }] },
     dca: proved('Plan Épargne Programmé sans commission d’achat ni frais mensuels ; actuellement indisponible dans le PEA.', 'saxoAutoinvest'),
     garde: proved('0 € sur titres cotés ; exception pour non cotés en PEA.', 'saxoTariff', 3),
     pea: proved('PEA couvert par le barème.', 'saxoTariff', 16),
@@ -202,7 +205,7 @@ export const BROKER_EVIDENCE = {
     jeune: proved('Saxo Banque indique explicitement ne pas proposer de PEA Jeune.', 'saxoPeaHelp'),
     ifu: proved('IFU en ligne gratuit dans la brochure.', 'saxoTariff', 3),
     cash: { status: 'confirmé', summary: 'Oui pour espèces éligibles en EUR/USD selon solde et niveau de compte ; taux variable. PEA exclu de cette offre.', refs: [{ document: 'saxoContract', page: 24 }, { document: 'saxoInterest' }] },
-    transfert: proved('Transfert PEA/PEA-PME sortant à 15 € par ligne, plafond 150 €.', 'saxoTariff', 16),
+    transfert: { status: 'confirmé', summary: 'Transfert PEA/PEA-PME sortant à 15 € par ligne, plafond 150 €. Transfert total de PEA entrant avant le 31/12/2026 : remboursement de 100 % des frais dans la limite de 150 €, sous conditions.', refs: [{ document: 'saxoTariff', page: 16 }, { document: 'saxoPeaTransferOffer' }] },
   },
 }
 

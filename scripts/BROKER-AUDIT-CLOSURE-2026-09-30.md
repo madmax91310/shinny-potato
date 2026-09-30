@@ -6,7 +6,7 @@ Les **80 cellules** du comparatif (8 courtiers × 10 champs) sont renseignées, 
 
 Les « liquidités rémunérées » sont un **oui/non unique par courtier** : au moins une offre de rémunération des espèces non investies du compte de courtage, sous ses conditions. Le tableau ne distingue pas PEA et CTO dans ce oui/non. Il exclut les livrets, dépôts à terme, fonds monétaires et autres placements distincts. Les nuances sur le compte éligible restent dans les preuves, sans promettre le même rendement sur tous les comptes.
 
-L’outil de rédaction des posts n’utilise un champ que si tous les courtiers concernés sont `confirmé` ; les neuf conclusions `corroboré` restent consultables dans le comparatif, avec leurs réserves, mais ne doivent pas devenir des affirmations sans nuance dans des posts. Une nouvelle brochure, une réponse écrite du courtier ou un test du parcours client peut résoudre ces neuf points.
+Le générateur de duels présente désormais les mêmes critères pour chaque paire. Les neuf conclusions `corroboré` sont affichées avec leur réserve « preuve corroborée » et le détail reste dans le registre ; les éléments absents du registre, tels que certains frais de conversion, sont signalés sans taux inventé. Les tarifs et promotions sont datés et doivent être relus avant publication. Une nouvelle brochure, une réponse écrite du courtier ou un test du parcours client peut résoudre les neuf points.
 
 ## Neuf conclusions encore sans preuve officielle explicite de portée complète
 

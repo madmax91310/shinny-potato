@@ -61,10 +61,17 @@ for (let i = 0; i < BROKERS.length; i++) {
   for (let j = i + 1; j < BROKERS.length; j++) {
     const ids = [BROKERS[i].id, BROKERS[j].id]
     const post = buildTweet(ids)
-    assert(!/à vérifier|à confirmer|non établi|non renseigné|PEA-PME \?|PEA Jeune \?/i.test(post), `${ids}: lacune dans le post`)
-    for (const [field, label] of [['frais', '💰 Quand tu passes un ordre'], ['dca', '📅 Si tu investis automatiquement'], ['garde', '🛡️ Les frais de garde'], ['cash', '💵 Liquidités rémunérées'], ['transfert', '🔄 Si tu transfères ton PEA']]) {
-      assert.equal(post.includes(label), documentedForAll(ids, field), `${ids}: critère ${field} publié sans preuve complète`)
+    assert(!/undefined|NaN|PEA-PME \?|PEA Jeune \?/i.test(post), `${ids}: lacune dans le post`)
+    for (const label of ['💰 Frais de courtage PEA', '💱 Si une conversion est nécessaire', '🎁 Les offres', '📅 Achats automatiques sur PEA', '🗂️ Frais de garde', '🌱 Enveloppes proposées', '🧾 IFU fourni', '💵 Liquidités rémunérées', '🔄 Transfert du PEA', '⚠️ Le point faible à retenir']) {
+      assert(post.includes(label), `${ids}: critère ${label} absent du duel`)
     }
+    for (const broker of [BROKERS[i], BROKERS[j]]) {
+      if (BROKER_EVIDENCE[broker.id].cash.status === 'corroboré')
+        assert(post.includes(`${broker.nom} : ${broker.cash.post} (preuve corroborée ; détails dans le registre)`), `${ids}: cash externe présenté sans réserve`)
+      if (BROKER_EVIDENCE[broker.id].dca.status === 'corroboré')
+        assert(post.includes('📅 Achats automatiques sur PEA') && post.includes('preuve corroborée ; détails dans le registre'), `${ids}: DCA externe présenté sans réserve`)
+    }
+    assert.equal(post.includes('je suis affilié à XTB'), ids.includes('xtb'), `${ids}: transparence affiliation`)
   }
 }
 console.log(`Registre : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(OFFICIAL_SOURCES).length} sources officielles et ${Object.keys(SECONDARY_SOURCES).length} externes.`)
