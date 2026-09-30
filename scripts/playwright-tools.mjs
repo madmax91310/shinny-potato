@@ -445,6 +445,36 @@ async function testDataSearch(page) {
   record('Bibliothèque de données', Object.values(checks).every(Boolean), JSON.stringify(checks));
 }
 
+async function testHouseholds(page) {
+  await page.goto(`${BASE}/france-100-menages`, { waitUntil: 'networkidle' });
+  let ok = true;
+  for (const id of ['wealth-share', 'wealth-top10', 'wealth-median', 'pea', 'livret-assurance', 'homeowners', 'debt', 'inheritance', 'donation']) {
+    await page.getByLabel('Sujet', { exact: true }).selectOption(id);
+    await page.waitForURL(`**sujet=${id}`);
+    ok &&= await page.locator('.hh-preview').evaluate(async img => { await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+    const text = await page.getByLabel('Texte modifiable').inputValue();
+    ok &&= text.includes('https://www.insee.fr/') && text.includes('début 2024');
+  }
+  const editor = page.getByLabel('Texte modifiable');
+  await editor.fill('Mon texte personnalisé');
+  await page.getByRole('button', { name: 'Réinitialiser le texte' }).click();
+  ok &&= (await editor.inputValue()).includes('donation déclarée');
+  await page.getByLabel('Inclure le lien de la source').uncheck();
+  ok &&= !(await editor.inputValue()).includes('https://');
+  const [png] = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Télécharger le PNG' }).click()]);
+  ok &&= (await stat(await png.path())).size > 10000;
+  const [json] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exporter le JSON' }).click()]);
+  const data = JSON.parse(await (await import('node:fs/promises')).readFile(await json.path(), 'utf8'));
+  ok &&= data.id === 'donation' && data.value === 20 && data.source.url.startsWith('https://www.insee.fr/');
+  await page.reload({ waitUntil: 'networkidle' });
+  ok &&= await page.getByLabel('Sujet', { exact: true }).inputValue() === 'donation';
+  await page.setViewportSize({ width: 390, height: 844 });
+  ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  if (process.env.HOUSEHOLD_SCREENSHOT) await page.screenshot({ path: process.env.HOUSEHOLD_SCREENSHOT, fullPage: true });
+  await page.setViewportSize({ width: 1280, height: 720 });
+  record('La France en 100 ménages', ok, '9 images, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
+}
+
 let server;
 try {
   console.log(`Démarrage de vite preview sur le port ${PORT}...`);
@@ -474,6 +504,7 @@ try {
   await testTweetBank(page);
   await testFactsheetTweets(page);
   await testDataSearch(page);
+  await testHouseholds(page);
 
   await browser.close();
 } finally {

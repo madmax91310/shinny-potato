@@ -30,7 +30,8 @@
     "data:search": "node scripts/search-data.mjs",
     "audit:data-catalog": "node scripts/audit-data-catalog.mjs",
     "report:data-provenance": "node scripts/report-data-provenance.mjs",
-    "audit:data-provenance": "node scripts/audit-data-provenance.mjs"
+    "audit:data-provenance": "node scripts/audit-data-provenance.mjs",
+    "audit:household-statistics": "node scripts/audit-household-statistics.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

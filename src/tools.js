@@ -5,6 +5,10 @@
 // colorée, disposition horizontale"), seule des 3 options à rester lisible en largeur mobile réelle.
 export const TOOLS = [
   {
+    to: '/france-100-menages', navLabel: '100 ménages', title: 'La France en 100 ménages',
+    icon: '🇫🇷', accent: '#e7c97c', description: 'Neuf sujets Insee sur le patrimoine, les placements et les transmissions. Visuels en 100 ménages, tweets et export PNG.', status: 'disponible',
+  },
+  {
     to: '/bibliotheque-donnees', navLabel: 'Données', title: 'Bibliothèque de données',
     icon: '🔎', accent: '#2dd4bf', description: 'Recherche par ISIN, ticker, nom ou indice. Sources, historiques, outils consommateurs et export JSON.', status: 'disponible',
   },

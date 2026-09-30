@@ -21,6 +21,7 @@ import { TERMES } from './financial-lexicon.js';
 import { ASSETS as HISTORY } from './market-history.js';
 import { FAMILIES } from './index-comparisons.js';
 import { SHEETS } from './index-factsheets.js';
+import { HOUSEHOLD_STATISTICS } from './household-statistics.js';
 import { normalizeEvidence } from './evidence.js';
 
 // Consommateurs dérivés des catalogues réellement utilisés, jamais une copie de leurs valeurs.
@@ -75,6 +76,9 @@ function index(id, history) {
     fields: [...Object.entries(history).sort(([a], [b]) => /^\d{4}/.test(a) !== /^\d{4}/.test(b) ? (/^\d{4}/.test(a) ? -1 : 1) : b.localeCompare(a)).map(([key, facts]) => field(`Photographie · ${facts.snapshot}`, 'index-facts', facts, { ...facts.metadata, note: `${facts.provenance} Clé : ${key}` })), ...Object.entries(INDEX_RETURNS[id] ?? {}).map(([date, series]) => field(`Rendements d’indice · ${date}`, 'index-returns', series, series.metadata))] };
 }
 export const DATA_CATALOG = Object.freeze([
+  ...HOUSEHOLD_STATISTICS.map((value) => ({ id: `household:${value.id}`, type: 'household', name: value.title,
+    aliases: [value.id, value.category, value.headline, 'Insee', 'ménages'], consumers: [{ tool: 'La France en 100 ménages', path: `/france-100-menages` }],
+    fields: [field('Statistique de ménages', 'household-statistics', value, value.metadata)] })),
   ...Object.entries(INSTRUMENTS_BY_ISIN).map(([isin, identity]) => instrument(isin, identity)),
   ...Object.entries(INDEX_FACTS).map(([id, history]) => index(id, history)),
   ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
