@@ -4,7 +4,7 @@ import Button from '../../design-system/Button'
 import { DUELS } from './data.js'
 import { buildCustomDuel, buildDuel, buildTweet, CATALOG, formatCapital, formatPercent } from './lib.js'
 import { renderDuelImage } from './canvasImage.js'
-import { YEARS } from '../portfolio-generator/data.js'
+import { YEARS } from '../../data/portfolio-assets.js'
 import { generateDuel } from './generate.js'
 import './portfolio-duels.css'
 

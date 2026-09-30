@@ -2,7 +2,7 @@
 // Rejoue le recoupement des 140 points des six séries depuis les captures datées.
 // Une capture ne garantit pas qu'un fournisseur ne corrigera jamais l'historique.
 import { readFileSync } from 'node:fs';
-import { ASSETS } from '../src/pages/investment-calculator/data.js';
+import { ASSETS } from '../src/data/market-history.js';
 
 const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-yahoo-2026-09-29.json', import.meta.url)));
 const gold = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-worldbank-gold-2026-09-29.json', import.meta.url)));

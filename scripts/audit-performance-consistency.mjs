@@ -2,7 +2,7 @@
 // Compare les performances 2023-2025 des mêmes parts (ISIN) entre Comparateur d'indices et
 // Générateur de portefeuilles. Une note générale de méthode ne suffit pas à valider un écart.
 import { FAMILIES } from '../src/pages/index-comparator/data.js'
-import { ASSETS } from '../src/pages/portfolio-generator/data.js'
+import { ASSETS } from '../src/data/portfolio-assets.js'
 import { readFileSync } from 'node:fs'
 
 const MAX_UNEXPLAINED_GAP = 0.1 // point de pourcentage : seuls les arrondis d'affichage restent tolérés

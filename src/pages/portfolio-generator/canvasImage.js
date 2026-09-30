@@ -1,4 +1,4 @@
-import { YEARS } from './data.js'
+import { YEARS } from '../../data/portfolio-assets.js'
 
 const PALETTE = ['#d0aa64', '#84b3b0', '#6989a8', '#e1ca8d', '#b47868', '#8cbd83', '#c684a0', '#77a7be', '#d99372', '#aab181']
 const WHITE = '#f8f3e7'

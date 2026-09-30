@@ -9,7 +9,7 @@ import {
   PROFILES,
   isCompatible,
 } from './engine.js'
-import { CATEGORIES, YEARS, ASSETS, getAsset } from './data.js'
+import { CATEGORIES, YEARS, ASSETS, getAsset } from '../../data/portfolio-assets.js'
 import { renderPortfolioImage } from './canvasImage.js'
 import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
 import PageHeader from '../../design-system/PageHeader'

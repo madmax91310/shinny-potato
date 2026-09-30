@@ -3,7 +3,7 @@ import { DUELS } from '../src/pages/portfolio-duels/data.js'
 import { buildCustomDuel, buildDuel, buildTweet, CATALOG } from '../src/pages/portfolio-duels/lib.js'
 import { EUR_USD } from '../src/pages/portfolio-duels/catalog.js'
 import { generateDuel } from '../src/pages/portfolio-duels/generate.js'
-import { YEARS } from '../src/pages/portfolio-generator/data.js'
+import { YEARS } from '../src/data/portfolio-assets.js'
 
 if (DUELS.length !== 9 || new Set(DUELS.map((duel) => duel.id)).size !== DUELS.length) {
   throw new Error('Les neuf duels préparés doivent être distincts')

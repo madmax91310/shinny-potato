@@ -1,4 +1,4 @@
-import { YEARS, getAsset } from "./data.js";
+import { YEARS, getAsset } from '../../data/portfolio-assets.js';
 import { computeYearlyPerf } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS, BITCOIN_OPTIONS,

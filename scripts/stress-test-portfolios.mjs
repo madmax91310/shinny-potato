@@ -38,7 +38,7 @@ import { generatePortfolio, renderTweetText } from "../src/pages/portfolio-gener
 import {
   PROFILES, RISK_BOUNDS, RISK_ORDER,
 } from "../src/pages/portfolio-generator/theses.js";
-import { getAsset, YEARS } from "../src/pages/portfolio-generator/data.js";
+import { getAsset, YEARS } from "../src/data/portfolio-assets.js";
 
 const args = Object.fromEntries(
   process.argv.slice(2).map((a) => {

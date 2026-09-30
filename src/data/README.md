@@ -13,6 +13,8 @@ propres à chaque outil ; ils ne contiennent plus de copie des chiffres communs 
 | Éligibilité PEA documentée | `instrument-pea.js` | Fiches ETF, Comparatif ETF, Comparateur d’indices |
 | Rendements 2020–2025 | `instrument-returns.js`, `verified-returns.js` | Générateur, Fiches ETF, Duels de portefeuilles, fiches de composition |
 | Historique 2023–2025 propre au comparateur | `instrument-comparator-returns.js` | Comparateur d’indices, fiches de composition |
+| Prix historiques, inflation et Livret A | `market-history.js` | Calculateur, Tweet Midi, pouvoir d’achat, Duels |
+| Catalogue des 87 supports et catégories | `portfolio-assets.js` | Générateur de portefeuilles, Duels |
 
 Les 85 lignes de produits du Générateur qui portent un ISIN utilisent
 `getInstrumentReturnValues(isin)`. Une série du Comparateur utilise la même série
@@ -21,8 +23,10 @@ Les 85 lignes de produits du Générateur qui portent un ISIN utilisent
 conserve ses chiffres historiques distincts car sa note les présente en EUR et
 le Générateur indique une série USD : cette migration ne tranche pas la méthode.
 
-Les compositions d’indice, cours spot, taux d’épargne et textes éditoriaux
-désignent des objets différents d’une part ETF et ne sont pas fusionnés par ISIN.
+Les cours spot et taux d’épargne résident maintenant aussi dans `src/data/`, mais
+restent distincts des rendements d’une part ETF : l'ISIN ne s'applique pas aux
+indices, à l'inflation ou au Livret A. Les `data.js` du Calculateur et du
+Générateur ne contiennent qu'un réexport de compatibilité, sans chiffres locaux.
 Pour ajouter une part ou modifier un rendement, mettre d’abord à jour sa série
 dans `src/data/`, puis lancer `npm run audit:instrument-catalog`,
 `npm run audit:performance-consistency` et les vérifications des outils concernés.

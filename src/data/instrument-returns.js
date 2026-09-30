@@ -1,5 +1,5 @@
 // Rendements 2020–2025 par part (ISIN), repris sans modification du générateur.
-// Les commentaires de provenance historiques restent dans portfolio-generator/data.js.
+// Les commentaires de provenance historiques restent dans src/data/portfolio-assets.js.
 // Ce déplacement ne constitue pas une nouvelle vérification des cours.
 import { VERIFIED_RETURNS } from './verified-returns.js';
 

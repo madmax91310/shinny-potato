@@ -1,7 +1,7 @@
 import { ETFS } from '../etf-sheets/data.js'
 import { DUEL_SERIES_BY_ISIN, getInstrumentDuelSeries } from '../../data/instrument-returns.js'
-import { ASSETS, YEARS } from '../portfolio-generator/data.js'
-import { ASSETS as CALCULATOR_ASSETS } from '../investment-calculator/data.js'
+import { ASSETS, YEARS } from '../../data/portfolio-assets.js'
+import { ASSETS as CALCULATOR_ASSETS } from '../../data/market-history.js'
 
 // Taux BCE EUR/USD des derniers jours ouvrés de chaque année, déjà documentés pour
 // la conversion de l'ETC argent dans le Générateur de portefeuilles.

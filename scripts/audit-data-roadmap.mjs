@@ -3,8 +3,8 @@
 // jamais la vérification de chaque chiffre historique. Aucun statut ne va dans les tweets.
 import { readFileSync } from 'node:fs'
 import { TERMES } from '../src/pages/lexique-financier/data.js'
-import { ASSETS as PORTFOLIO } from '../src/pages/portfolio-generator/data.js'
-import { ASSETS as CALCULATOR } from '../src/pages/investment-calculator/data.js'
+import { ASSETS as PORTFOLIO } from '../src/data/portfolio-assets.js'
+import { ASSETS as CALCULATOR } from '../src/data/market-history.js'
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js'
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js'
 import { ETFS } from '../src/pages/etf-sheets/data.js'

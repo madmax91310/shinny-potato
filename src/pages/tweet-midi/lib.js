@@ -4,7 +4,7 @@ import { DILEMMES, SITUATIONS } from "./data/dilemmes.js";
 import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from "./data/ficheLexique.js";
 import { COMPARATIF_ETF_SUBJECTS, getComparatifEtfText } from "./data/comparatifEtf.js";
 import { TERMES, CATEGORY_ORDER } from "../lexique-financier/data.js";
-import { MONTHS_FULL } from "../investment-calculator/data.js";
+import { MONTHS_FULL } from '../../data/market-history.js';
 import { fmtEUR, fmtPct, ymIndex } from "../investment-calculator/lib.js";
 import {
   MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions,

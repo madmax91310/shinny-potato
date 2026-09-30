@@ -1,4 +1,4 @@
-import { YEARS } from './data.js'
+import { YEARS } from '../../data/portfolio-assets.js'
 
 // Chaque ligne est repondérée au début de l'année ; même calcul pour le Générateur et les duels.
 export function computeYearlyPerf(selection) {

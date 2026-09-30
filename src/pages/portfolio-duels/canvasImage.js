@@ -1,4 +1,4 @@
-import { YEARS } from '../portfolio-generator/data.js'
+import { YEARS } from '../../data/portfolio-assets.js'
 import { DUELS } from './data.js'
 import { formatCapital, formatPercent } from './lib.js'
 
