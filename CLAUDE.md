@@ -44,8 +44,11 @@ Les caractéristiques statiques des 41 parts des Fiches ETF sont dans
 `src/data/instrument-facts.js` : indice exact, politique de distribution, méthode de
 réplication, domicile et source datée par ISIN. Le champ `reviewedAt` hérité date la revue
 de la fiche, tandis que `characteristicsSource.checkedAt` date le contrôle de ces quatre
-champs ; aucun des deux ne date implicitement l'encours. Les tickers et les libellés
-éditoriaux repris de la fiche n'ont pas été certifiés par le contrôle de la source.
+champs ; aucun des deux ne date implicitement l'encours. Les cotations sourcées sont dans `src/data/instrument-listings.js` : ticker, MIC, place,
+devise de négociation, source et date de contrôle. Les outils utilisent une référence
+`listing` sélectionnée par `getPreferredInstrumentListing`, avec préférence EUR et Paris.
+Les tickers ne doivent pas être recopiés dans les outils ou dans les caractéristiques.
+Les libellés éditoriaux ne sont pas certifiés par le contrôle des caractéristiques.
 `getInstrumentPeaStatus` retourne `null` quand le statut est inconnu.
 Les contrôles PEA individuels faits après la revue des fiches sont consignés dans
 `src/data/instrument-pea.js` (ISIN, source, date, valeur `true`/`false`/`null`).

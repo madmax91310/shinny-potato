@@ -48,7 +48,7 @@ export function renderETFImage(etf) {
   const contentWidth = W - PAD * 2
 
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
-  const tickerStr = '(' + etf.tickers.join(' / ') + ')'
+  const tickerStr = etf.listing ? '(' + etf.listing.ticker + ')' : ''
   const factRows = buildFactRows(etf)
 
   const mcanvas = document.createElement('canvas')

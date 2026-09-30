@@ -110,20 +110,21 @@ export async function renderIndexImage(family, perfValues = {}) {
     let y = 974
     for (const fund of group?.funds || []) {
       const europeNames = {
-        FR0011550193: 'ETZ · BNP Easy', LU0908500753: 'Amundi Core',
+        FR0011550193: 'BNP Easy', LU0908500753: 'Amundi Core',
         IE00B53L3W79: 'iShares Core (Acc)', IE00B4K6B022: 'HSBC EURO STOXX 50',
-        LU1681047236: 'C50 · Amundi Core',
-        FR0013412038: 'PCEU · Amundi PEA',
+        LU1681047236: 'Amundi Core',
+        FR0013412038: 'Amundi PEA',
       }
       const shortName = family.id === 'europe' && europeNames[fund.isin]
         ? europeNames[fund.isin]
-        : fund.ticker ? `${fund.ticker} · ${fund.name.split(' ')[0]}` : fund.name.replace(/ UCITS ETF.*$/i, '')
+        : fund.listing ? `${fund.listing.ticker} · ${fund.name.split(' ')[0]}` : fund.name.replace(/ UCITS ETF.*$/i, '')
       y = wrapped(ctx, shortName, x, y, COL - 60, 51, PALETTE.ink, 700, 1.15)
       // La disponibilité PEA du groupe ne prouve rien pour une part précise.
       const status = getInstrumentPeaStatus(fund.isin)
       const placement = status === null ? 'PEA ?' : status ? 'PEA' : 'CTO'
       label(ctx, `${fund.isin} · ${placement}`, x, y + 12, 43, PALETTE.muted)
-      label(ctx, fund.ter, x, y + 77, 88, color, 700)
+      if (fund.listing) label(ctx, `${fund.listing.ticker} · ${fund.listing.exchange} · ${fund.listing.currency}`, x, y + 61, 30, PALETTE.muted)
+      label(ctx, fund.ter, x, y + 106, 70, color, 700)
       if (fund.aum) label(ctx, fund.aum.replace(/(?: au | \().*/, ''), x, y + 184, 43, PALETTE.muted)
       y = Math.max(y + 240, y + 324 - 59)
     }

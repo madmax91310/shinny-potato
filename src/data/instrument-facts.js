@@ -1,17 +1,16 @@
-import { getInstrument } from './instruments.js';
+import { getInstrumentListings } from './instrument-listings.js';
+export { getInstrumentListings } from './instrument-listings.js';
 // Caractéristiques par ISIN des 41 parts des Fiches ETF.
 // benchmark, incomePolicy, replicationMethod et domicile ont été contrôlés le 29/09/2026
 // dans characteristicsSource (émetteur pour IE00BFZPF546 et IE00BM8R0J59,
 // justETF pour les autres).
-// Les tickers, le libellé de distribution et le lieu reprennent la revue historique
-// des fiches, datée par reviewedAt. Ils ne sont pas certifiés par ce contrôle.
+// Les tickers ont été contrôlés le 30/09/2026 : instrument-listings.js fournit
+// les places, devises et preuves. location décrit le domicile et la réplication,
+// pas la place de cotation. distribution/reviewedAt gardent leur revue historique.
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "IE000DQLYVB9": {
-    "tickers": [
-      "SPEA"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication synthétique (swap)",
     "benchmark": "S&P 500®",
@@ -26,9 +25,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "FR0013411998": {
-    "tickers": [
-      "PTPXH"
-    ],
     "distribution": "Capitalisant",
     "location": "France, réplication synthétique, couverture du yen en euros",
     "benchmark": "TOPIX® (EUR Hedged)",
@@ -43,7 +39,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "LU1834983550": {
-    "tickers": [],
     "distribution": "Capitalisant",
     "location": "Luxembourg, réplication synthétique (swap)",
     "benchmark": "STOXX® Europe 600 Basic Resources",
@@ -58,9 +53,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "FR001400U5Q4": {
-    "tickers": [
-      "DCAM"
-    ],
     "distribution": "Capitalisant",
     "location": "France, réplication synthétique (swap)",
     "benchmark": "MSCI World",
@@ -75,9 +67,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "FR0011871128": {
-    "tickers": [
-      "PSP5"
-    ],
     "distribution": "Capitalisant",
     "location": "France, réplication synthétique (swap)",
     "benchmark": "S&P 500®",
@@ -92,9 +81,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "FR0011871110": {
-    "tickers": [
-      "PUST"
-    ],
     "distribution": "Capitalisant",
     "location": "France, réplication synthétique (swap)",
     "benchmark": "Nasdaq 100®",
@@ -109,9 +95,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "LU1681047236": {
-    "tickers": [
-      "C50"
-    ],
     "distribution": "Capitalisant",
     "location": "Luxembourg, réplication physique intégrale",
     "benchmark": "EURO STOXX® 50",
@@ -126,9 +109,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BKM4GZ66": {
-    "tickers": [
-      "EMIM"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "MSCI Emerging Markets Investable Market (IMI)",
@@ -143,9 +123,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00B6R52259": {
-    "tickers": [
-      "SSAC"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée (échantillonnage)",
     "benchmark": "MSCI All Country World (ACWI)",
@@ -160,9 +137,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BK5BQT80": {
-    "tickers": [
-      "VWCE"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée (échantillonnage)",
     "benchmark": "FTSE All-World",
@@ -177,9 +151,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE000I8KRLL9": {
-    "tickers": [
-      "SEMI"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "MSCI ACWI IMI Semiconductors & Semiconductor Equipment ESG Screened Select Capped",
@@ -194,9 +165,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BYXG2H39": {
-    "tickers": [
-      "BTEC"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée (échantillonnage)",
     "benchmark": "Nasdaq Biotechnology",
@@ -211,9 +179,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BYTRR863": {
-    "tickers": [
-      "WNRG"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "MSCI World Energy",
@@ -228,10 +193,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE000YYE6WK5": {
-    "tickers": [
-      "DFNS",
-      "DFND"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "MarketVector Global Defense Industry",
@@ -246,9 +207,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BYPLS672": {
-    "tickers": [
-      "ISPY"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "ISE Cyber Security UCITS",
@@ -263,9 +221,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "FR0010527275": {
-    "tickers": [
-      "WAT"
-    ],
     "distribution": "Distribuant",
     "location": "France, réplication physique intégrale",
     "benchmark": "MSCI ACWI IMI Water Filtered",
@@ -280,9 +235,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "LU1681048630": {
-    "tickers": [
-      "GLUX"
-    ],
     "distribution": "Capitalisant",
     "location": "Luxembourg, réplication physique intégrale",
     "benchmark": "S&P Global Luxury",
@@ -297,9 +249,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BJ5JP097": {
-    "tickers": [
-      "WFNS"
-    ],
     "distribution": "Distribuant",
     "location": "Irlande, réplication physique",
     "benchmark": "MSCI World Financials Advanced Select 20 35 Capped",
@@ -314,9 +263,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00B1FZS350": {
-    "tickers": [
-      "IWDP"
-    ],
     "distribution": "Distribuant (trimestriel)",
     "location": "Irlande, réplication physique",
     "benchmark": "FTSE EPRA/NAREIT Developed Dividend+",
@@ -331,9 +277,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BJ5JNY98": {
-    "tickers": [
-      "WITS"
-    ],
     "distribution": "Distribuant (semestriel)",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "MSCI World Information Technology Advanced Select 20 35 Capped",
@@ -348,10 +291,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE0007Y8Y157": {
-    "tickers": [
-      "QUTM",
-      "QNTM"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "MarketVector Global Quantum Leaders",
@@ -366,9 +305,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BK5BCD43": {
-    "tickers": [
-      "AIAI"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "ROBO Global Artificial Intelligence",
@@ -383,9 +319,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BYZK4552": {
-    "tickers": [
-      "RBOT"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée (échantillonnage)",
     "benchmark": "iSTOXX® FactSet Automation & Robotics",
@@ -400,9 +333,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE000RDRMSD1": {
-    "tickers": [
-      "BLKC"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "NYSE FactSet Global Blockchain Technologies Capped",
@@ -417,9 +347,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE000M7V94E1": {
-    "tickers": [
-      "NUKL"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "MarketVector Global Uranium and Nuclear Energy Infrastructure",
@@ -434,9 +361,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BF0M2Z96": {
-    "tickers": [
-      "BATT"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "Solactive Battery Value-Chain",
@@ -451,9 +375,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE000YU9K6K2": {
-    "tickers": [
-      "JEDI"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique",
     "benchmark": "MarketVector Global Space Industry Screened",
@@ -468,9 +389,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00B6YX5D40": {
-    "tickers": [
-      "USDV"
-    ],
     "distribution": "Distribuant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "S&P High Yield Dividend Aristocrats",
@@ -485,9 +403,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BM8R0J59": {
-    "tickers": [
-      "QYLE"
-    ],
     "distribution": "Distribuant (mensuel)",
     "location": "Irlande, réplication synthétique (swap) avec stratégie de vente d’options",
     "benchmark": "Cboe Nasdaq-100 BuyWrite v2 UCITS",
@@ -502,9 +417,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00B8FHGS14": {
-    "tickers": [
-      "MVOL"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée",
     "benchmark": "MSCI World Minimum Volatility",
@@ -519,10 +431,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BP3QZB59": {
-    "tickers": [
-      "IWVL",
-      "WVAL"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
     "benchmark": "MSCI World Enhanced Value",
@@ -537,9 +445,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BF4RFH31": {
-    "tickers": [
-      "WSML"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée",
     "benchmark": "MSCI World Small Cap",
@@ -554,10 +459,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BP3QZ601": {
-    "tickers": [
-      "IWQU",
-      "IWFQ"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée",
     "benchmark": "MSCI World Sector Neutral Quality",
@@ -572,9 +473,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BP3QZ825": {
-    "tickers": [
-      "IWMO"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée",
     "benchmark": "MSCI World Momentum",
@@ -589,10 +487,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00B4ND3602": {
-    "tickers": [
-      "SGLN",
-      "IGLN"
-    ],
     "distribution": "Capitalisant (pas de revenu versé — l'or n'en génère aucun)",
     "location": "Irlande, adossé à de l'or physique alloué (pas de réplication synthétique)",
     "benchmark": "Gold",
@@ -607,9 +501,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "GB00BLD4ZL17": {
-    "tickers": [
-      "BITC"
-    ],
     "distribution": "Capitalisant (pas de revenu versé)",
     "location": "Jersey, adossé à du bitcoin physiquement détenu (pas un produit dérivé/synthétique)",
     "benchmark": "Bitcoin",
@@ -624,9 +515,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00B4WXJJ64": {
-    "tickers": [
-      "SEGA"
-    ],
     "distribution": "Distribuant",
     "location": "Irlande, réplication physique par échantillonnage",
     "benchmark": "Bloomberg Euro Treasury Bond",
@@ -641,10 +529,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00B66F4759": {
-    "tickers": [
-      "IHYA",
-      "EHYA"
-    ],
     "distribution": "Distribuant",
     "location": "Irlande, réplication physique par échantillonnage",
     "benchmark": "iBoxx® EUR Liquid High Yield",
@@ -659,9 +543,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00B3F81R35": {
-    "tickers": [
-      "IEAC"
-    ],
     "distribution": "Distribuant",
     "location": "Irlande, réplication physique par échantillonnage",
     "benchmark": "Bloomberg Euro Corporate Bond",
@@ -676,9 +557,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BF3N7094": {
-    "tickers": [
-      "HIGH"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique",
     "benchmark": "iBoxx® EUR Liquid High Yield",
@@ -693,9 +571,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     }
   },
   "IE00BFZPF546": {
-    "tickers": [
-      "EMGA"
-    ],
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique",
     "benchmark": "JP Morgan GBI-EM Global Diversified 10% Cap 1% Floor",
@@ -718,7 +593,7 @@ export function getInstrumentFacts(isin) {
 }
 
 export function getInstrumentTickers(isin) {
-  return INSTRUMENT_FACTS_BY_ISIN[isin]?.tickers ?? getInstrument(isin).tickers ?? [];
+  return [...new Set(getInstrumentListings(isin).map(listing => listing.ticker))];
 }
 
 export function getInstrumentDistribution(isin) {

@@ -2,6 +2,7 @@
 // Vérifie les champs éditoriaux partagés avant publication. Ce contrôle détecte des oublis
 // et empêche le retour de deux erreurs factuelles corrigées ; il ne remplace jamais la
 // confrontation des chiffres aux documents de l'émetteur.
+import { auditInstrumentListings } from './audit-instrument-listings.mjs'
 import { FACTS } from '../src/pages/market-facts/data.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 import { ETFS } from '../src/data/etf-cards.js'
@@ -11,7 +12,7 @@ import { FAMILIES } from '../src/pages/index-comparator/data.js'
 import { PROFILES } from '../src/pages/portfolio-generator/theses.js'
 import { TWEETS } from '../src/pages/tweet-bank/data.js'
 
-const failures = []
+const failures = auditInstrumentListings()
 function requireFields(label, entry, fields) {
   for (const field of fields) {
     if (typeof entry[field] !== 'string' || !entry[field].trim()) failures.push(`${label} : ${field} vide`)

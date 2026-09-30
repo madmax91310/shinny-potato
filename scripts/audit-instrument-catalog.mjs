@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Vérifie que les outils consomment les registres communs par ISIN.
 import { readFileSync } from 'node:fs';
+import { auditInstrumentListings } from './audit-instrument-listings.mjs';
 import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPea, getInstrumentPeaStatus } from '../src/data/instruments.js';
 import { INSTRUMENT_FACTS_BY_ISIN, getInstrumentFacts, getInstrumentTickers } from '../src/data/instrument-facts.js';
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js';
@@ -22,7 +23,9 @@ const collections = [
 const aumSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-aum-2026-09-29.json', import.meta.url), 'utf8'));
 
 const seen = new Set();
-let errors = 0;
+const listingErrors = auditInstrumentListings();
+for (const error of listingErrors) console.error(error);
+let errors = listingErrors.length;
 let total = 0;
 const unresolved = [];
 let aumUsages = 0;
@@ -113,7 +116,7 @@ for (const [context, file, items] of collections) {
     }
     if (context === 'sheet') {
       const facts = getInstrumentFacts(item.isin);
-      for (const key of ['tickers', 'distribution', 'location']) {
+      for (const key of ['distribution', 'location']) {
         if (JSON.stringify(item[key]) !== JSON.stringify(facts[key])) {
           console.error(`${file} : ${key} différent de la bibliothèque pour ${item.isin}`);
           errors++;
@@ -186,8 +189,8 @@ for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
       console.error(`Comparateur : groupe marqué CTO malgré une part PEA ${fund.isin} (${family.id}).`);
       errors++;
     }
-    if (fund.ticker && !getInstrumentTickers(fund.isin).includes(fund.ticker)) {
-      console.error(`Comparateur : ticker contradictoire pour ${fund.isin} (${fund.ticker}).`);
+    if (fund.listing && !getInstrumentTickers(fund.isin).includes(fund.listing.ticker)) {
+      console.error(`Comparateur : ticker contradictoire pour ${fund.isin} (${fund.listing.ticker}).`);
       errors++;
     }
   }

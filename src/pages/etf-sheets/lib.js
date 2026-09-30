@@ -5,13 +5,14 @@ const peaLabel = (status) => status === null ? 'à vérifier' : status ? '✅' :
 
 // Texte du post X — repris tel quel de la session d'origine.
 export function buildText(etf) {
-  const tickerStr = etf.tickers.join('/')
+  const tickerStr = etf.listing?.ticker ?? ''
   const newTag = etf.isNew ? ' 🆕' : ''
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
   return (
     '📋 Présentation d\'ETF\n' +
-    dot + ' ' + etf.name + ' (' + tickerStr + ')' + newTag + '\n' +
+    dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + newTag + '\n' +
+    (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +
     '🆔 ISIN : ' + etf.isin + '\n' +
     '💸 Frais : ' + etf.ter + '\n' +
     '📦 ' + etf.positions + '\n' +
@@ -42,6 +43,7 @@ export function buildText(etf) {
 export function buildFactRows(etf) {
   const annual = getAnnualPerformance(etf)
   return [
+    ...(etf.listing ? [{ icon: '📍', text: 'Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency }] : []),
     { icon: '🆔', text: 'ISIN : ' + etf.isin, mono: true },
     { icon: '💸', text: 'Frais : ' + etf.ter },
     { icon: '📦', text: etf.positions },

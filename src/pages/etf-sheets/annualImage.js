@@ -53,7 +53,7 @@ export function renderAnnualETFImage(etf) {
   ctx.fillStyle = INK
   titleLines(ctx, etf.name).forEach((text, index) => ctx.fillText(text, 60, 180 + index * 60))
   const identifiers = [
-    { label: 'TICKER', value: etf.tickers.join(' / '), x: 60, width: 202 },
+    { label: 'TICKER', value: etf.listing?.ticker ?? 'Non publié', x: 60, width: 202 },
     { label: 'ISIN', value: etf.isin, x: 273, width: 465 },
     { label: 'FRAIS ANNUELS', value: etf.ter, x: 749, width: 271 },
   ]
@@ -68,7 +68,10 @@ export function renderAnnualETFImage(etf) {
     do { ctx.font = `bold ${size}px Arial, sans-serif`; size -= 1 } while (ctx.measureText(String(value)).width > width - 40 && size > 30)
     ctx.fillText(String(value), x + 20, 397)
   })
-  line(ctx, 60, 450, 1020)
+  ctx.fillStyle = MUTED
+  ctx.font = '19px Arial, sans-serif'
+  if (etf.listing) ctx.fillText(`Cotation : ${etf.listing.exchange} · ${etf.listing.currency}`, 60, 464)
+  line(ctx, 60, 478, 1020)
 
   ctx.fillStyle = INK
   ctx.font = 'bold 39px Georgia, serif'
