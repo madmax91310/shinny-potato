@@ -2,6 +2,10 @@
 export const HOUSEHOLD_SOURCES = Object.freeze({
   wealth: { title: 'Les montants de patrimoine détenus par les ménages en 2024', url: 'https://www.insee.fr/fr/statistiques/8672665', publishedAt: '2025-12-09' },
   holdings: { title: 'La détention de patrimoine des ménages en 2024', url: 'https://www.insee.fr/fr/statistiques/8569009', publishedAt: '2025-05-14', correctedAt: '2025-12-10' },
+  living: { title: 'La privation matérielle et sociale en 2025', url: 'https://www.insee.fr/fr/statistiques/8967255', publishedAt: '2026-04-15' },
+  salaries: { title: 'Les salaires dans le secteur privé en 2024', url: 'https://www.insee.fr/fr/statistiques/8657156', publishedAt: '2025-10-23' },
+  ageWealth: { title: 'Patrimoine selon l’âge en 2024', url: 'https://www.insee.fr/fr/statistiques/8894780', publishedAt: '2026-04-07' },
+  ageHoldings: { title: 'Détention de patrimoine selon l’âge et la catégorie sociale', url: 'https://www.insee.fr/fr/statistiques/2412784', publishedAt: '2026-04-07' },
   transmissions: { title: 'Transmissions intergénérationnelles en 2024', url: 'https://www.insee.fr/fr/statistiques/8960217', publishedAt: '2026-04-07' },
 })
 export const HOUSEHOLD_SCOPE = 'France hors Mayotte, ménages vivant dans un logement ordinaire.'
@@ -54,18 +58,82 @@ export const HOUSEHOLD_STATISTICS = Object.freeze([
     question: 'Devrait-on davantage les évoquer quand on présente son parcours patrimonial ?',
     intro: '🎁 Un patrimoine peut aussi se construire avec de l’argent transmis du vivant des proches.',
     body: 'En France, {value} % des ménages ont déjà reçu une donation déclarée.\n\nSur 100 ménages, cela représente {rounded}.\n\n👀 On parle souvent du salaire et de l’effort d’épargne. Les transmissions familiales font aussi partie de l’histoire.' },
-].map((record) => Object.freeze({ ...record, referencePeriod: 'Début 2024', metadata: Object.freeze({
+  { id: 'unexpected-expense', title: 'Une dépense imprévue de 1 000 €', category: 'Niveau de vie', kind: 'rate', source: 'living', table: 'Figure 3 : faire face à une dépense inattendue de 1 000 euros', value: 28.1, unit: '%', referencePeriod: 'Début 2025', population: 'personnes', provisional: true,
+    scope: 'France métropolitaine, personnes vivant dans un logement ordinaire.',
+    headline: '1 000 € imprévus : un vrai obstacle', metricLabel: 'ne peuvent pas faire face à cette dépense',
+    visualNote: 'Personnes en logement ordinaire. Difficulté financière déclarée. Données provisoires.',
+    note: 'Impossibilité déclarée pour des raisons financières. Données provisoires. Personnes, et non ménages.',
+    question: 'Quel montant te permettrait de te sentir à l’abri d’un imprévu ?',
+    intro: '🧯 Une facture de 1 000 € qui tombe sans prévenir. Pour beaucoup, le budget ne suit pas.',
+    body: 'Début 2025, {value} % des personnes en France métropolitaine déclarent ne pas pouvoir faire face à cette dépense pour des raisons financières.\n\nSur 100 personnes, cela représente environ {rounded}.\n\nAvant de parler d’investissement, il y a aussi cette réalité : avoir de quoi absorber un imprévu.' },
+  { id: 'holidays', title: 'Partir une semaine en vacances', category: 'Niveau de vie', kind: 'rate', source: 'living', table: 'Figure 3 : se payer une semaine de vacances dans l’année', value: 22.2, unit: '%', referencePeriod: 'Début 2025', population: 'personnes', provisional: true,
+    scope: 'France métropolitaine, personnes vivant dans un logement ordinaire.',
+    headline: 'Une semaine de vacances reste inaccessible', metricLabel: 'ne peuvent pas se payer une semaine de vacances',
+    visualNote: 'Personnes en logement ordinaire. Difficulté financière déclarée. Données provisoires.',
+    note: 'Impossibilité déclarée pour des raisons financières. Données provisoires. Personnes, et non ménages.',
+    question: 'Quand tu penses au confort financier, est-ce que les vacances en font partie ?',
+    intro: '🧳 Une semaine de vacances par an. Ça paraît ordinaire, jusqu’à ce qu’on regarde les chiffres.',
+    body: 'Début 2025, {value} % des personnes en France métropolitaine déclarent ne pas pouvoir se l’offrir pour des raisons financières.\n\nEnviron {rounded} sur 100.\n\nLe niveau de vie se lit aussi dans ce qu’on peut s’autoriser au quotidien.' },
+  { id: 'salary-top10', title: 'Le salaire des 10 % les mieux payés', category: 'Salaires', kind: 'threshold', source: 'salaries', table: 'Figure 3 : distribution des salaires nets mensuels en EQTP, D9', value: 4334, unit: 'EUR', populationPercent: 10, referencePeriod: '2024', population: 'salariés',
+    scope: 'France, secteur privé, apprentis, stagiaires et contrats aidés inclus ; agriculture et salariés des particuliers employeurs exclus. Salaires en équivalent temps plein.',
+    headline: 'Le seuil des 10 % les mieux payés', metricLabel: 'nets par mois, en équivalent temps plein', distributionLabel: '10 sur 100 au-dessus de ce salaire',
+    visualNote: 'Secteur privé. Net de cotisations, avant impôt sur le revenu. EQTP.',
+    note: 'Seuil du neuvième décile. Net de cotisations sociales, avant impôt sur le revenu. Salaire en équivalent temps plein, pas la somme effectivement versée à un temps partiel.',
+    question: 'Tu avais ce seuil en tête ?',
+    intro: '💼 À partir de quel salaire entre-t-on dans les 10 % les mieux payés du privé ?',
+    body: 'En 2024, le seuil est de {value} € nets par mois, en équivalent temps plein.\n\nOn parle du net après cotisations sociales, mais avant impôt sur le revenu.\n\nCe repère compare les salaires sur une même base de temps de travail.' },
+  { id: 'salary-median', title: 'Le salaire qui sépare le privé en deux', category: 'Salaires', kind: 'threshold', source: 'salaries', table: 'Figure 3 : distribution des salaires nets mensuels en EQTP, médiane', value: 2190, unit: 'EUR', populationPercent: 50, referencePeriod: '2024', population: 'salariés',
+    scope: 'France, secteur privé, apprentis, stagiaires et contrats aidés inclus ; agriculture et salariés des particuliers employeurs exclus. Salaires en équivalent temps plein.',
+    headline: 'Le salaire qui sépare le privé en deux', metricLabel: 'nets par mois : le salaire médian en EQTP', distributionLabel: '50 sur 100 sous le salaire médian',
+    visualNote: 'Secteur privé. Net de cotisations, avant impôt sur le revenu. EQTP.',
+    note: 'Médiane des salaires nets mensuels en équivalent temps plein. Avant impôt sur le revenu. Ne pas confondre avec la moyenne, ni avec les montants versés aux temps partiels.',
+    question: 'On entend souvent parler du salaire moyen. Et si on parlait davantage de la médiane ?',
+    intro: '👀 {value} € nets par mois. Voilà le salaire qui coupe le secteur privé en deux.',
+    body: 'En 2024, la moitié des salaires est en dessous, l’autre au-dessus.\n\nLe calcul est fait en équivalent temps plein, après cotisations sociales et avant impôt sur le revenu.\n\nC’est un repère utile pour situer un salaire sans laisser les plus hauts tirer la moyenne vers le haut.' },
+  { id: 'young-wealth', title: 'Le patrimoine avant 30 ans', category: 'Patrimoine', kind: 'threshold', source: 'ageWealth', table: 'Montants de patrimoine brut selon l’âge : moins de 30 ans, médiane', value: 26100, unit: 'EUR', populationPercent: 50,
+    headline: 'Avant 30 ans, un autre repère', metricLabel: 'de patrimoine brut médian avant 30 ans', distributionLabel: '50 ménages sur 100 sous ce montant',
+    visualNote: 'Âge de la personne de référence : moins de 30 ans. Dettes non déduites.',
+    scope: 'France hors Mayotte, ménages en logement ordinaire dont la personne de référence a moins de 30 ans. Personne de référence : principal apporteur de revenus.',
+    note: 'Patrimoine brut, avant déduction des emprunts. Âge du principal apporteur de revenus du ménage, pas de tous ses membres.',
+    question: 'Quand tu compares ton patrimoine, compares-tu aussi les âges ?',
+    intro: '🌱 Se comparer au patrimoine de tous les Français quand on débute ? Le repère peut être trompeur.',
+    body: 'Pour les ménages dont la personne de référence a moins de 30 ans, le patrimoine brut médian est de {value} €.\n\nLa moitié possède moins, l’autre davantage.\n\n🏠 Les biens et les placements sont comptés, sans déduire les dettes. L’âge retenu est celui du principal apporteur de revenus du ménage.' },
+  { id: 'thirties-wealth', title: 'Les 10 % les mieux dotés à 30–39 ans', category: 'Patrimoine', kind: 'threshold', source: 'ageWealth', table: 'Montants de patrimoine brut selon l’âge : 30 à 39 ans, D9', value: 620100, unit: 'EUR', populationPercent: 10,
+    headline: 'À 30–39 ans, le seuil des 10 %', metricLabel: 'de patrimoine brut pour dépasser ce seuil', distributionLabel: 'Les 10 ménages les mieux dotés de cette tranche d’âge',
+    visualNote: 'Âge de la personne de référence : 30–39 ans. Dettes non déduites.',
+    scope: 'France hors Mayotte, ménages en logement ordinaire dont la personne de référence a de 30 à 39 ans. Personne de référence : principal apporteur de revenus.',
+    note: 'Seuil du neuvième décile de patrimoine brut. Dettes non déduites. Âge du principal apporteur de revenus du ménage.',
+    question: 'Sans l’âge et les dettes, une comparaison de patrimoines te semble-t-elle vraiment utile ?',
+    intro: '🏠 À 30–39 ans, combien possèdent les 10 % de ménages les mieux dotés ?',
+    body: 'Le seuil atteint {value} € de patrimoine brut.\n\nImmobilier, placements et autres biens sont inclus. Les emprunts ne sont pas déduits.\n\nOn classe ici les ménages selon l’âge de leur principal apporteur de revenus : de 30 à 39 ans. Ce chiffre ne décrit donc pas le patrimoine de chaque trentenaire.' },
+  { id: 'young-homeowners', title: 'Propriétaires avant 30 ans', category: 'Immobilier', kind: 'rate', source: 'ageHoldings', table: 'Détention selon l’âge : moins de 30 ans, résidence principale', value: 17.2, unit: '%',
+    headline: 'Avant 30 ans, propriétaires minoritaires', metricLabel: 'propriétaires de leur résidence principale',
+    visualNote: 'Âge de la personne de référence : moins de 30 ans. Usufruitiers inclus.',
+    scope: 'France hors Mayotte, ménages en logement ordinaire dont la personne de référence a moins de 30 ans. Personne de référence : principal apporteur de revenus.',
+    note: 'Usufruitiers inclus. Âge du principal apporteur de revenus du ménage, pas de tous ses membres.',
+    question: 'Ça change ton regard sur l’idée qu’il faudrait déjà avoir acheté avant 30 ans ?',
+    intro: '🔑 Acheter avant 30 ans semble parfois être la norme. Les chiffres racontent autre chose.',
+    body: 'Parmi les ménages dont la personne de référence a moins de 30 ans, {value} % sont propriétaires de leur résidence principale, usufruitiers inclus.\n\nEnviron {rounded} sur 100.\n\nL’âge est celui du principal apporteur de revenus du ménage. L’achat reste minoritaire dans cette tranche d’âge.' },
+  { id: 'securities-workers', title: 'Titres financiers : cadres et ouvriers', category: 'Placements', kind: 'comparison', source: 'ageHoldings', table: 'Détention selon la catégorie sociale : valeurs mobilières, cadres et ouvriers', value: 31.7, secondValue: 8, unit: '%',
+    headline: 'Les titres financiers ne sont pas partout', metricLabel: 'Ménages de cadres', secondLabel: 'Ménages d’ouvriers', comparisonNote: 'Deux populations distinctes : 100 ménages de cadres et 100 ménages d’ouvriers.',
+    visualNote: 'Détention de valeurs mobilières. Profession de la personne de référence.',
+    scope: 'France hors Mayotte, ménages en logement ordinaire. Catégorie sociale du principal apporteur de revenus : cadres et professions intellectuelles supérieures, ou ouvriers.',
+    note: 'Taux de détention de valeurs mobilières, pas les montants investis ni toute l’exposition aux actions. Catégorie sociale du principal apporteur de revenus du ménage.',
+    question: 'Nos conversations sur l’investissement reflètent-elles vraiment toutes les situations ?',
+    intro: '📊 Investir en titres financiers : les milieux sociaux ne partent pas du même point.',
+    body: 'Début 2024, {value} % des ménages de cadres détiennent des valeurs mobilières, contre 8 % des ménages d’ouvriers.\n\nSur deux groupes de 100 ménages, cela fait environ {rounded} contre {secondRounded}.\n\nLa profession retenue est celle du principal apporteur de revenus. On compare ici la détention de titres, pas les sommes investies.' },
+].map((record) => Object.freeze({ ...record, population: record.population ?? 'ménages', referencePeriod: record.referencePeriod ?? 'Début 2024', metadata: Object.freeze({
   sourceUrls: [HOUSEHOLD_SOURCES[record.source].url], checkedAt: '2026-09-30', asOf: null, dateStatus: 'not-published',
-  scope: HOUSEHOLD_SCOPE, currency: record.unit === 'EUR' ? 'EUR' : null,
-  method: `Enquête Histoire de vie et Patrimoine 2023-2024. Repère : ${record.table}.`,
-  note: `Référence publiée : début 2024, sans jour exact. ${record.note}`,
+  scope: record.scope ?? HOUSEHOLD_SCOPE, currency: record.unit === 'EUR' ? 'EUR' : null,
+  method: `${record.source === 'living' ? 'Enquête Statistiques sur les ressources et conditions de vie.' : record.source === 'salaries' ? 'Base Tous salariés, salaires en équivalent temps plein.' : 'Enquête Histoire de vie et Patrimoine 2023-2024.'} Repère : ${record.table}.`,
+  note: `Référence publiée : ${record.referencePeriod ?? 'Début 2024'}, sans jour exact. ${record.note}`,
 }) })))
 export const formatHouseholdNumber = (value) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(value)
 export function buildHouseholdTweet(record, { includeUrl = true } = {}) {
   const replacements = { value: formatHouseholdNumber(record.value), complement: formatHouseholdNumber(100 - record.value), rounded: Math.round(record.value), secondRounded: Math.round(record.secondValue ?? 0) }
   const fill = (text) => text.replace(/\{(\w+)\}/g, (_, key) => replacements[key])
   const source = HOUSEHOLD_SOURCES[record.source]
-  return `${fill(record.intro)}\n\n${fill(record.body)}\n\n${record.question}\n\n📚 Insee, données début 2024.${includeUrl ? `\n${source.url}` : ''}`
+  return `${fill(record.intro)}\n\n${fill(record.body)}\n\n${record.question}\n\n📚 Insee, données ${(record.referencePeriod).toLowerCase()}${record.provisional ? ' (provisoires)' : ''}.${includeUrl ? `\n${source.url}` : ''}`
 }
 export function getHouseholdVisual(record) {
   if (record.kind === 'comparison') return [
@@ -73,6 +141,6 @@ export function getHouseholdVisual(record) {
     { label: record.secondLabel, count: Math.round(record.secondValue), exact: `${formatHouseholdNumber(record.secondValue)} %` },
   ]
   if (record.kind === 'share') return [{ label: '50 ménages les moins dotés', count: record.populationPercent, exact: `${formatHouseholdNumber(record.value)} % du patrimoine brut` }]
-  if (record.kind === 'threshold') return [{ label: record.populationPercent === 10 ? 'Les 10 ménages les mieux dotés en patrimoine net' : 'La moitié sous le patrimoine net médian', count: record.populationPercent, exact: `${formatHouseholdNumber(record.value)} €` }]
+  if (record.kind === 'threshold') return [{ label: record.distributionLabel ?? (record.populationPercent === 10 ? 'Les 10 ménages les mieux dotés en patrimoine net' : 'La moitié sous le patrimoine net médian'), count: record.populationPercent, exact: `${formatHouseholdNumber(record.value)} €` }]
   return [{ label: record.metricLabel, count: Math.round(record.value), exact: `${formatHouseholdNumber(record.value)} %` }]
 }
