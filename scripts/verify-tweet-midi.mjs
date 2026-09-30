@@ -28,7 +28,7 @@
 
 import { ALL_ITEMS, FORMATS, FORMAT_LABELS, MODES, buildTweetText } from "../src/pages/tweet-midi/lib.js";
 import { TERMES } from "../src/data/financial-lexicon.js";
-import { getAnnualReturns, MARKET_ASSETS } from "../src/pages/tweet-midi/data/marketHistory.js";
+import { getAnnualReturns } from "../src/pages/tweet-midi/data/marketHistory.js";
 
 const termeIds = new Set(TERMES.map((t) => t.id));
 
@@ -79,19 +79,20 @@ for (const item of ALL_ITEMS) {
     const end = Math.min(a.at(-1).year, b.at(-1).year);
     const annualLines = [...text.matchAll(/^[🟢🔴] (\d{4}) :/gmu)].map((m) => Number(m[1]));
     const expected = [...a, ...b].filter((r) => r.year <= end).map((r) => r.year);
-    if (!/^📈 Performance /u.test(text) || (text.match(/^Cumulé : /gmu) ?? []).length !== 2 ||
-        !/Cumulé : [^\n]+\n\n💬 Tu as un des deux dans ton portefeuille \?$/u.test(text)) {
+    if ((text.match(/^📈 Performance .* depuis \d{4} 👇$/gmu) ?? []).length !== 2 ||
+        (text.match(/^Cumulé sur la période : /gmu) ?? []).length !== 2) {
       problems.push('structure du comparatif de performances non respectée');
     }
     if (annualLines.length !== expected.length || expected.some((y) => annualLines.filter((v) => v === y).length !== 2)) {
       problems.push(`comparaison d'années non communes (dernière année commune : ${end})`);
     }
-    if ((item.assetIdA === 'silver' || item.assetIdB === 'silver') && !text.includes('futures COMEX')) {
-      problems.push('nature des données argent absente du comparatif');
-    }
-    const currencies = [item.assetIdA, item.assetIdB].map((id) => MARKET_ASSETS.find((asset) => asset.id === id)?.currency);
-    if (currencies.includes('USD') && !text.includes('non convertis en euros') && !text.includes('sans conversion')) {
-      problems.push('rendements en dollars affichés sans mention de devise');
+  }
+
+  if (!error && item.format === FORMATS.PERFORMANCE_DEPUIS) {
+    const blocks = text.split(/\n\n(?=📈)/u);
+    const blockPattern = /^📈 Performance [^\n]+ depuis \d{4} 👇\n\n(?:[🟢🔴] \d{4} : [+-]?[\d\s.,]+ %\n)+\nCumulé sur la période : [+-]?[\d\s.,]+ %$/u;
+    if (!blocks.every((block) => blockPattern.test(block))) {
+      problems.push('format minimal de performance non respecté');
     }
   }
 

@@ -241,6 +241,24 @@ async function testTweetMidi(page) {
     const text = await page.locator("body").innerText();
     if (text.length < 500) failed.push(label);
   }
+  await page.getByRole("button", { name: "Performance depuis", exact: true }).click();
+  await page.locator('#subject-select').selectOption('sp500');
+  await page.locator('#secondary-select').selectOption('2016');
+  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
+  const performance = await page.locator('pre').innerText();
+  const minimal = /^📈 Performance du S&P 500 depuis 2016 👇\n\n/u.test(performance)
+    && performance.split('\n').at(-1).startsWith('Cumulé sur la période : ')
+    && !/💬|Livret A|Cours en dollars/u.test(performance)
+    && (await page.getByRole('checkbox').count()) === 0;
+  if (!minimal) failed.push('Performance depuis : format minimal');
+  await page.getByRole("button", { name: "Comparatif (2 actifs)", exact: true }).click();
+  await page.locator('#subject-select-a').selectOption('sp500');
+  await page.locator('#subject-select-b').selectOption('bitcoin');
+  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
+  const comparison = await page.locator('pre').innerText();
+  if ((comparison.match(/^📈 Performance /gmu) ?? []).length !== 2
+      || (comparison.match(/^Cumulé sur la période : /gmu) ?? []).length !== 2
+      || comparison.includes('💬')) failed.push('Performance depuis : comparatif');
   record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
 }
 

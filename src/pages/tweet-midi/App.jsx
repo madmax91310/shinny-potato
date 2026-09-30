@@ -59,7 +59,6 @@ export default function App() {
   const [subject, setSubject] = useState(SUBJECT_ALEATOIRE);
   const [subjectB, setSubjectB] = useState(SUBJECT_ALEATOIRE);
   const [secondary, setSecondary] = useState(SUBJECT_ALEATOIRE);
-  const [includeBenchmark, setIncludeBenchmark] = useState(false);
   const [current, setCurrent] = useState(() => pickNext(FORMATS.ALEATOIRE, []));
   const [history, setHistory] = useState(() => [current.id]);
   const [copied, setCopied] = useState(false);
@@ -179,7 +178,7 @@ export default function App() {
     (isAnniversaire && !isComparatifCurrent && !niveauActuelValide) ||
     (isAnniversaire && isComparatifCurrent && !(niveauActuelValide && niveauActuelBValide));
 
-  const text = buildTweetText(current, { niveauActuel, niveauActuelB, includeBenchmark });
+  const text = buildTweetText(current, { niveauActuel, niveauActuelB });
   const status = getLengthStatus(text.length);
   const isLongFormat = current.format === FORMATS.FICHE_LEXIQUE || current.format === FORMATS.COMPARATIF_ETF;
   // Les fiches lexique et comparatifs ETF dépassent 280 caractères par nature : le palier
@@ -496,18 +495,6 @@ export default function App() {
                   ))}
                 </select>
               </div>
-            )}
-
-            {format === FORMATS.PERFORMANCE_DEPUIS && (
-              <label className="flex items-center gap-2 text-xs text-slate-400">
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-emerald-500"
-                  checked={includeBenchmark}
-                  onChange={(e) => setIncludeBenchmark(e.target.checked)}
-                />
-                Ajouter la comparaison Livret A / inflation sur la même période
-              </label>
             )}
 
             <Button type="button" variant="primary" onClick={handleGenerate} className="w-full">

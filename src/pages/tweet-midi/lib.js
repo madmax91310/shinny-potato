@@ -5,10 +5,10 @@ import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from "./data/ficheLexique
 import { COMPARATIF_ETF_SUBJECTS, getComparatifEtfText } from "./data/comparatifEtf.js";
 import { TERMES, CATEGORY_ORDER } from "../../data/financial-lexicon.js";
 import { MONTHS_FULL } from '../../data/market-history.js';
-import { fmtEUR, fmtPct, ymIndex } from "../investment-calculator/lib.js";
+import { fmtEUR, fmtPct } from "../investment-calculator/lib.js";
 import {
   MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions,
-  getHistoricalPrice, ymForYearsBack, fmtYm, getBenchmarkPerformance,
+  getHistoricalPrice, ymForYearsBack, fmtYm,
   getAnnualReturnStartYears, getAnnualReturns,
 } from "./data/marketHistory.js";
 // Format "Pouvoir d'achat" : aucune donnée ni logique de calcul propre — réutilise entièrement le
@@ -415,15 +415,6 @@ function anniversaryConclusion(asset, yearsBack, gainPct) {
   return `Sur ${horizon}, ${asset.label} a progressé. Quelle baisse intermédiaire aurais-tu accepté de traverser ?`;
 }
 
-function performanceConclusion(asset, returns, cumulative) {
-  const best = returns.reduce((a, b) => b.pct > a.pct ? b : a);
-  const worst = returns.reduce((a, b) => b.pct < a.pct ? b : a);
-  if (returns.length === 1) return `💬 ${asset.label} a fait ${fmtPct(best.pct)} sur cette année. Tu l'aurais détenu jusqu'à la clôture ?`;
-  if (worst.pct < 0 && best.pct > 0) return `💬 Pour ${asset.label}, ${best.year} a été la meilleure année de la liste et ${worst.year} la moins bonne. Laquelle t'aurait le plus marqué ?`;
-  if (cumulative < 0) return `💬 Le cumul de ${asset.label} reste négatif sur la période. Quelle année t'aurait fait revoir ta position ?`;
-  return `💬 ${best.year} ressort comme la meilleure année de ${asset.label} sur la période. Tu l'aurais anticipée ?`;
-}
-
 function comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, yearsBack) {
   if (pctA === null || pctB === null) return `Renseigne les deux niveaux actuels pour comparer ${assetA.label} et ${assetB.label} sur ${yearsPhrase(yearsBack)}.`;
   if (pctA === pctB) return `Sur ${yearsPhrase(yearsBack)}, ${assetA.label} et ${assetB.label} finissent à égalité. Tu aurais préféré détenir lequel ?`;
@@ -500,18 +491,12 @@ function fmtEcart(pctA, pctB) {
   return `Écart : ${ecart.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} points de pourcentage.`;
 }
 
-function buildBenchmarkLine(startYm, endYm, currencies = []) {
-  const { livretPct, inflationPct } = getBenchmarkPerformance(startYm, endYm);
-  const currencyNote = currencies.includes('USD') ? ' Livret A et inflation en euros ; rendements en dollars non convertis en euros.' : '';
-  return `Sur la même période, le Livret A aurait fait ${fmtPct(livretPct)} et l'inflation cumulée est de ${fmtPct(inflationPct)}.${currencyNote}`;
-}
-
 // Détail annuel (une ligne par année civile complète, pastille verte/rouge selon le signe) —
 // remplace l'ancien affichage à un seul pourcentage cumulé sur demande utilisateur du 29/08/2026.
 // Le pourcentage par année étant un simple ratio, il reste valide même pour les 3 indices rebasés
 // (stoxx600/sp500/msciWorld) : contrairement à un niveau de prix brut, une variation en % ne
 // dépend pas de la base de l'indice — plus besoin de la restriction hasComparableLevel ici (elle
-// reste utilisée par le mode Comparatif, qui affiche lui des niveaux bruts).
+// reste utilisée par le format Anniversaire, qui affiche des niveaux bruts).
 // Performance cumulée sur toute la période, en composant les rendements annuels réels (équivaut
 // mathématiquement au ratio clôture finale / clôture de départ, sans recalculer de prix) — ajoutée
 // le 29/08/2026 en plus du détail annuel, jamais à sa place : donne le chiffre choc final sans
@@ -520,31 +505,19 @@ function cumulatePct(returns) {
   return (returns.reduce((acc, { pct: yearPct }) => acc * (1 + yearPct / 100), 1) - 1) * 100;
 }
 
-export function buildPerformanceDepuisText(item, includeBenchmark) {
-  const asset = findAsset(item.assetId);
-  const returns = getAnnualReturns(item.assetId, item.year);
+// Même bloc pour tous les actifs, sans conclusion ni comparaison annexe.
+function buildPerformanceBlock(asset, year, returns) {
+  return [
+    `📈 Performance ${dePhrase(asset.tweetPhrase)} depuis ${year} 👇`,
+    "",
+    ...returns.map(({ year: annualYear, pct }) => `${pct >= 0 ? "🟢" : "🔴"} ${annualYear} : ${fmtPct(pct)}`),
+    "",
+    `Cumulé sur la période : ${fmtPct(cumulatePct(returns))}`,
+  ].join("\n");
+}
 
-  const lines = [];
-  lines.push(`📈 Performance ${dePhrase(asset.tweetPhrase)} depuis ${item.year} 👇`);
-  lines.push("");
-  returns.forEach(({ year, pct: yearPct }) => {
-    lines.push(`${yearPct >= 0 ? "🟢" : "🔴"} ${year} : ${fmtPct(yearPct)}`);
-  });
-  lines.push("");
-  lines.push(`Cumulé sur la période : ${fmtPct(cumulatePct(returns))}`);
-  if (asset.currency === 'USD' && !includeBenchmark) {
-    lines.push('Cours en dollars, sans conversion en euros.');
-  }
-  if (item.assetId === 'silver') {
-    lines.push('Source : prix de futures COMEX continus en $, hors frais et renouvellement des contrats. Pas le rendement d’un placement réel en argent.');
-  }
-  if (includeBenchmark) {
-    lines.push("");
-    lines.push(buildBenchmarkLine(returns[0].startDate, returns[returns.length - 1].endDate, [asset.currency]));
-  }
-  lines.push("");
-  lines.push(performanceConclusion(asset, returns, cumulatePct(returns)));
-  return lines.join("\n");
+export function buildPerformanceDepuisText(item) {
+  return buildPerformanceBlock(findAsset(item.assetId), item.year, getAnnualReturns(item.assetId, item.year));
 }
 
 // Mode Comparatif, Format A : deux champs de saisie manuelle distincts (un par actif), avec la
@@ -589,21 +562,14 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   return lines.join("\n");
 }
 
-// Mode Comparatif, Format B : refondu le 29/08/2026 pour matcher le mode Simple — détail annuel
-// (pastilles 🟢/🔴) des DEUX actifs, un bloc après l'autre (jamais de vraies colonnes alignées :
-// un tweet n'a pas de police à chasse fixe garantie), plus une ligne de cumul par actif. Le
-// pourcentage annuel étant un simple ratio, il reste valide pour les 3 indices rebasés — plus
-// besoin de la restriction hasComparableLevel (qui ne concernait que l'affichage de niveaux de
-// prix bruts, abandonné avec cette refonte). L'actif au meilleur cumul est toujours affiché en
-// premier, comme dans le reste de l'app. Longueur non contrainte ici (choix explicite de
-// l'utilisateur du 29/08/2026) — peut dépasser 280 caractères, l'app le signale déjà via son badge
-// de longueur plutôt que de tronquer ou de condenser le contenu.
-export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
+// Comparatif : même bloc par actif, années communes et meilleur cumul en premier.
+// Le texte peut dépasser 280 caractères ; le badge de longueur de l’app le signale.
+export function buildPerformanceDepuisComparatifText(item) {
   const assetA = findAsset(item.assetIdA);
   const assetB = findAsset(item.assetIdB);
   const availableA = getAnnualReturns(item.assetIdA, item.year);
   const availableB = getAnnualReturns(item.assetIdB, item.year);
-  // Un actif peut s'arrêter plus tôt (SAP : décembre 2024). Les deux cumuls et le benchmark
+  // Un actif peut s'arrêter plus tôt (SAP : décembre 2024). Les deux cumuls
   // doivent alors porter sur les mêmes années, jamais comparer 2024 à 2025.
   const sharedLastYear = Math.min(availableA.at(-1).year, availableB.at(-1).year);
   const returnsA = availableA.filter((r) => r.year <= sharedLastYear);
@@ -617,34 +583,7 @@ export function buildPerformanceDepuisComparatifText(item, includeBenchmark) {
   ];
   const ordered = cumB > cumA ? [rows[1], rows[0]] : rows;
 
-  const lines = [];
-  lines.push(`📈 Performance ${dePhrase(assetA.tweetPhrase)} vs ${assetB.label} depuis ${item.year} 👇`);
-  lines.push("");
-  if (assetA.currency !== assetB.currency) {
-    lines.push(`Devises différentes (${assetA.currency}/${assetB.currency}) : rendements comparés sans conversion.`);
-  } else if (assetA.currency === 'USD' && !includeBenchmark) {
-    lines.push('Cours des deux actifs en dollars, sans conversion en euros.');
-  }
-  if (item.assetIdA === 'silver' || item.assetIdB === 'silver') {
-    lines.push('Argent : prix de futures COMEX continus en $, hors frais et renouvellement des contrats. Pas le rendement d’un placement réel en argent.');
-  }
-  if (includeBenchmark) {
-    // La fenêtre du benchmark est commune aux deux actifs.
-    const sharedStart = ymIndex(returnsA[0].startDate) >= ymIndex(returnsB[0].startDate) ? returnsA[0].startDate : returnsB[0].startDate;
-    const lastA = returnsA[returnsA.length - 1], lastB = returnsB[returnsB.length - 1];
-    const sharedEnd = ymIndex(lastA.endDate) <= ymIndex(lastB.endDate) ? lastA.endDate : lastB.endDate;
-    lines.push(buildBenchmarkLine(sharedStart, sharedEnd, [assetA.currency, assetB.currency]));
-  }
-  if (lines.at(-1) !== "") lines.push("");
-  ordered.forEach(({ asset, returns, cum }, i) => {
-    lines.push(`${asset.icon} ${asset.label}`);
-    returns.forEach(({ year, pct: yearPct }) => lines.push(`${yearPct >= 0 ? "🟢" : "🔴"} ${year} : ${fmtPct(yearPct)}`));
-    lines.push(`Cumulé : ${fmtPct(cum)}`);
-    if (i === 0) lines.push("");
-  });
-  lines.push("");
-  lines.push('💬 Tu as un des deux dans ton portefeuille ?');
-  return lines.join("\n");
+  return ordered.map(({ asset, returns }) => buildPerformanceBlock(asset, item.year, returns)).join("\n\n");
 }
 
 export function buildPouvoirAchatText(item) {
@@ -653,7 +592,7 @@ export function buildPouvoirAchatText(item) {
 }
 
 export function buildTweetText(item, extra = {}) {
-  const { niveauActuel, niveauActuelB, includeBenchmark } = extra;
+  const { niveauActuel, niveauActuelB } = extra;
   if (item.format === FORMATS.VRAI_FAUX) return buildVraiFauxText(item);
   if (item.format === FORMATS.DILEMME) return buildDilemmeText(item);
   if (item.format === FORMATS.FICHE_LEXIQUE) return getFicheLexiqueText(item.termeId);
@@ -663,9 +602,9 @@ export function buildTweetText(item, extra = {}) {
   }
   if (item.format === FORMATS.ANNIVERSAIRE) return buildAnniversaireText(item, niveauActuel ?? "");
   if (item.format === FORMATS.PERFORMANCE_DEPUIS && item.mode === MODES.COMPARATIF) {
-    return buildPerformanceDepuisComparatifText(item, !!includeBenchmark);
+    return buildPerformanceDepuisComparatifText(item);
   }
-  if (item.format === FORMATS.PERFORMANCE_DEPUIS) return buildPerformanceDepuisText(item, !!includeBenchmark);
+  if (item.format === FORMATS.PERFORMANCE_DEPUIS) return buildPerformanceDepuisText(item);
   if (item.format === FORMATS.POUVOIR_ACHAT) return buildPouvoirAchatText(item);
   return "";
 }
