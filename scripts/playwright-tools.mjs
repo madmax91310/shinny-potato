@@ -81,7 +81,10 @@ async function testCalculateur(page) {
 
   await page.locator("select.ic-control").first().selectOption("ethereum");
   const ethereumText = await page.locator("body").innerText();
-  const ethereumMonthlyOk = ethereumText.includes('105 points') && !ethereumText.includes('DCA non disponible pour Ethereum');
+  const ethereumDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
+  const ethereumMonthlyOk = ethereumText.includes('105 points') && await ethereumDca.isEnabled();
+  await ethereumDca.click();
+  const ethereumDcaOk = (await page.locator('.ic-mode-pill').innerText()) === 'DCA mensuel';
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
@@ -89,8 +92,8 @@ async function testCalculateur(page) {
   const dcaBlockOk = /DCA non disponible pour LVMH/.test(text);
 
   const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-cac40-lump.png';
-  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk,
-    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}`);
+  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
+    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel/DCA: ${ethereumMonthlyOk && ethereumDcaOk}`);
 }
 
 async function testPortfolioGenerator(page) {
