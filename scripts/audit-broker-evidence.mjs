@@ -13,10 +13,10 @@ for (const [id, logo] of Object.entries(BROKER_LOGOS)) {
 }
 
 const officialHosts = new Set([
-  'assets.traderepublic.com', 'www.boursobank.com', 'www.fortuneo.fr',
+  'assets.traderepublic.com', 'www.boursorama.com', 'www.boursobank.com', 'www.fortuneo.fr',
   'www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com', 'ca-paris.credit-agricole.fr',
   'www.boursedirect.fr', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo', 'www.help.saxo',
-  'www.interactivebrokers.ie', 'www.credit-agricole.fr', 'www.ca-sicavetfcp.fr', 'traderepublic.com', 'support.traderepublic.com',
+  'www.interactivebrokers.ie', 'www.ibkrguides.com', 'www.credit-agricole.fr', 'www.ca-sicavetfcp.fr', 'traderepublic.com', 'support.traderepublic.com',
 ])
 for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   const url = new URL(document.url)
@@ -24,11 +24,34 @@ for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
 }
-const secondaryHosts = new Set(['www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'www.epargnant30.fr', 'moneyradar.org', 'finance-heros.fr', 'forum.finance-heros.fr', 'trading.prorealtime.com', 'www.prorealtime.com', 'pea.fr', 'sinvestir.fr', 'placements-boursiers.fr', 'www.detective-banque.fr'])
+const secondaryHosts = new Set(['www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'www.epargnant30.fr', 'moneyradar.org', 'finance-heros.fr', 'forum.finance-heros.fr', 'trading.prorealtime.com', 'www.prorealtime.com', 'pea.fr', 'sinvestir.fr', 'placements-boursiers.fr', 'www.detective-banque.fr', 'www.placeaurendement.com', 'investimieux.com'])
 for (const [id, document] of Object.entries(SECONDARY_SOURCES)) {
   assert(secondaryHosts.has(new URL(document.url).hostname), `${id}: source externe non autorisée`)
   assert(['secondary-page', 'secondary-pdf'].includes(document.kind), `${id}: type externe absent`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
+}
+// Réserves de la PR #155 : une recherche terminée ou un document muet ne les clôt pas.
+// Toute résolution doit identifier une preuve officielle explicite de portée complète.
+const reservations = [
+  ['tr', 'pme'], ['bourso', 'cash'], ['ibkr', 'dca'], ['ibkr', 'pme'], ['ibkr', 'jeune'],
+  ['fortuneo', 'dca'], ['fortuneo', 'cash'], ['caidf', 'cash'], ['bd', 'cash'],
+]
+for (const [broker, field] of reservations) {
+  const item = BROKER_EVIDENCE[broker][field]
+  const review = item.review
+  assert(review?.checked && review.gap && review.documents?.length, `${broker}.${field}: revue de la réserve absente`)
+  for (const document of review.documents) assert(OFFICIAL_SOURCES[document], `${broker}.${field}: document relu inconnu`)
+  assert(['unresolved', 'resolved'].includes(review.outcome), `${broker}.${field}: conclusion de revue invalide`)
+  if (review.outcome === 'unresolved') {
+    assert.equal(item.status, 'corroboré', `${broker}.${field}: réserve ouverte promue en confirmation`)
+  } else {
+    assert.equal(item.status, 'confirmé', `${broker}.${field}: résolution sans confirmation`)
+    assert(review.explicitStatement && review.scope && review.decisiveRefs?.length, `${broker}.${field}: preuve explicite de portée complète requise`)
+    for (const ref of review.decisiveRefs) {
+      assert(OFFICIAL_SOURCES[ref.document], `${broker}.${field}: résolution sans preuve officielle`)
+      assert(item.refs.some(itemRef => itemRef.document === ref.document && itemRef.page === ref.page), `${broker}.${field}: preuve décisive absente des références`)
+    }
+  }
 }
 assert.equal(Object.keys(BROKER_EVIDENCE).length, BROKERS.length)
 for (const broker of BROKERS) {
@@ -85,3 +108,10 @@ for (let i = 0; i < BROKERS.length; i++) {
   }
 }
 console.log(`Registre : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(OFFICIAL_SOURCES).length} sources officielles et ${Object.keys(SECONDARY_SOURCES).length} externes.`)
+
+const counts = Object.values(BROKER_EVIDENCE).flatMap(fields => Object.values(fields)).reduce((result, item) => {
+  const key = item.status === 'non établi' && /sans objet/i.test(item.summary) ? 'sans objet' : item.status
+  result[key] = (result[key] ?? 0) + 1
+  return result
+}, {})
+console.log(`État des 80 cellules : ${JSON.stringify(counts)} ; réserves encore ouvertes : ${reservations.filter(([b, f]) => BROKER_EVIDENCE[b][f].review.outcome === 'unresolved').length}.`)
