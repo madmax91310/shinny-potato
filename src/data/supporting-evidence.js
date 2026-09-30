@@ -1,3 +1,4 @@
+import { ARCHIVE_SOURCE_REVIEW } from './archive-source-review.js';
 // Sources, périodes et limites individuelles ; aucune date déduite de la consultation.
 export const SUPPORTING_EVIDENCE = {
   "lexicon:pea": {
@@ -640,3 +641,9 @@ export const SUPPORTING_EVIDENCE = {
     "method": "Série éparse de points annuels et observations complémentaires ; aucune interpolation certifiée"
   }
 };
+
+for (const review of ARCHIVE_SOURCE_REVIEW.filter(r => !r.key)) {
+  const evidence = SUPPORTING_EVIDENCE[review.id];
+  Object.assign(evidence, review);
+  evidence.note = 'Attributions historiques conservées dans market-history.js ; elles ne sont pas une certification. Raison de la revue dans sourceReason.';
+}

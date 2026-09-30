@@ -388,6 +388,18 @@ async function testDataSearch(page) {
   for (let i = 0; i < await fields.count(); i++) await fields.nth(i).locator('summary').click();
   const history = await page.locator('.ds-detail').innerText();
   checks.history = history.includes('401') && history.includes('400') && history.includes('2026-07-31') && history.includes('2026-08-31');
+  checks.archive = history.includes('Archive non vérifiable') && history.includes('2026-07-31 (date héritée non recertifiée)')
+    && history.includes('Aucune publication historique recertifiée');
+  const [archiveDownload] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exporter la fiche JSON' }).click()]);
+  const archiveRecord = JSON.parse(await (await import('node:fs/promises')).readFile(await archiveDownload.path(), 'utf8'));
+  checks.archiveExport = archiveRecord.fields.filter(f => f.metadata.sourceStatus === 'archive-unverifiable').length === 2
+    && archiveRecord.fields.every(f => f.metadata.sourceStatus !== 'archive-unverifiable'
+      || (f.metadata.sourceReason && f.metadata.checkedAt === null && f.metadata.reviewedAt === '2026-09-30'));
+  await page.goto(`${BASE}/bibliotheque-donnees?type=series&id=history:soxx`, { waitUntil: 'networkidle' });
+  const soxxText = await page.locator('.ds-detail').innerText();
+  checks.archiveSeries = soxxText.includes('Archive non vérifiable') && soxxText.includes('Deux points étaient partiellement masqués')
+    && soxxText.includes('2016-01 à 2026-08');
+  await page.getByLabel('Type de donnée').selectOption('all');
   await page.getByRole('searchbox').fill('zzzintrouvablezzz');
   await page.locator('.ds-detail').filter({ hasText: 'Aucune donnée' }).waitFor();
   checks.empty = (await page.getByRole('status').innerText()).includes('0 résultat');
