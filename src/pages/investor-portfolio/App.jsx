@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
-import { ATTRIBUTION, buildTweet, dateFR, INVESTORS, loadPortfolio, percentage } from './data.js'
+import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
 import { renderPortfolioImage } from './image.js'
 import './style.css'
 
@@ -67,7 +67,7 @@ export default function InvestorPortfolio() {
           <div className="ip-preview" aria-label="Répartition des cinq principales positions">
             {portfolio.holdings.slice(0, 5).map((row, i) => <div className="ip-row" key={`${row.ticker}-${i}`}>
               <span className="ip-dot" style={{ background: ['#dcba75', '#54d5b0', '#6da9e7', '#d9928b', '#a89bd9'][i] }} />
-              <span>{row.issuerName} <small>{row.ticker}</small></span><strong>{percentage(row.weight)}</strong>
+              <span>{holdingName(row)} <small>{row.ticker}</small></span><strong>{percentage(row.weight)}</strong>
             </div>)}
           </div>
           <div className="ip-editor">
