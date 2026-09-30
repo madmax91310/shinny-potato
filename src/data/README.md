@@ -94,3 +94,11 @@ Les compositions communes migrées le 30/09/2026 conservent les valeurs déjà s
 au dépôt. Le TOPIX d’avril et de juillet reste distinct ; les anciennes valeurs World
 et ACWI sans date exacte sont archivées sous `legacy-undated`.
 Contrôle : `npm run audit:index-facts`, vérification des fiches, build et Playwright.
+
+## Statistiques de ménages
+
+`household-statistics.js` centralise les neuf épisodes de **La France en 100 ménages** : valeurs, unités, population, passage source Insee, dates de publication et consultation, définitions et modèles de tweets. Les textes et les images utilisent les mêmes valeurs ; neuf fiches sont ajoutées au catalogue recherchable.
+
+La référence « début 2024 » est conservée sans inventer de date précise (`asOf: null`). Les grilles de détention sont arrondies à l’entier et accompagnées du taux exact. La concentration du patrimoine sépare les 50 ménages et leur part de patrimoine (7 %). Les deux grilles Livret A / assurance-vie ne sont pas des groupes exclusifs.
+
+`npm run audit:household-statistics` contrôle le registre ; le parcours Playwright vérifie les neuf images, les textes, les exports et la mise en page mobile. Pour ajouter un sujet, fournir d’abord une donnée publiée, son unité, son périmètre et sa source ; aucune distribution ne doit être déduite d’une simple moyenne.

@@ -1,6 +1,7 @@
 const number = (value) => value.toLocaleString('fr-FR')
 export function describeDataField(field) {
   const value = field.value
+  if (field.label === 'Statistique de ménages') return `${number(value.value)} ${value.unit === 'EUR' ? '€' : '%'}${value.secondValue != null ? ` / ${number(value.secondValue)} %` : ''} · ${value.referencePeriod} · ${value.metricLabel}`
   if (field.label.startsWith('Frais')) return `${value} % par an`
   if (field.label === 'Éligibilité PEA') return value === true ? 'Éligible PEA' : value === false ? 'Non éligible PEA' : 'Éligibilité non établie'
   if (field.label === 'Encours') return value.sheet ?? value.index ?? ''

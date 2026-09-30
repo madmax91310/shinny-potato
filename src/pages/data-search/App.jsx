@@ -5,7 +5,7 @@ import { searchData, exportDataRecord } from '../../data/catalog.js'
 import { describeDataField, describeEvidenceDate } from './lib.js'
 import './data-search.css'
 
-const TYPES = { all: 'Toutes les données', instrument: 'Instruments', index: 'Indices', series: 'Séries historiques', lexicon: 'Lexique' }
+const TYPES = { all: 'Toutes les données', instrument: 'Instruments', index: 'Indices', series: 'Séries historiques', lexicon: 'Lexique', household: 'Ménages / patrimoine' }
 const unknown = (value) => value ?? 'Non documenté'
 
 export default function DataSearch() {
