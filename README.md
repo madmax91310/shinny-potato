@@ -44,6 +44,8 @@ npm run test:tools
 
 Le test navigateur nécessite Chromium (`npx playwright install chromium`). La CI exécute les audits, le build et les contrôles navigateur avant le déploiement. Les audits de cohérence ne remplacent pas la vérification des chiffres auprès des émetteurs ou des grilles tarifaires. Voir `scripts/README.md` pour leur portée et `scripts/DATA-REVIEW-2026-09-24.md` pour les limites documentées des séries.
 
+L’audit du comparatif de courtiers est clos pour les sources publiques au 30 septembre 2026 : voir [`scripts/BROKER-AUDIT-CLOSURE-2026-09-30.md`](scripts/BROKER-AUDIT-CLOSURE-2026-09-30.md) pour les neuf conclusions encore corroborées sans confirmation officielle explicite et les conditions de réouverture.
+
 ## Déploiement
 
 Le workflow `.github/workflows/deploy-pages.yml` publie la branche `master` sur GitHub Pages après réussite des contrôles. Une pull request exécute les vérifications sans publication.
