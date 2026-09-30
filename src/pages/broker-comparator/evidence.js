@@ -94,6 +94,8 @@ export const SECONDARY_SOURCES = {
   radarIbkrDca: { title: 'MoneyRadar · Test du PEA IBKR', edition: '14/09/2026', checked: '30/09/2026', url: 'https://moneyradar.org/bourse/interactive-brokers/pea/', kind: 'secondary-page' },
   financeHerosForumDca: { title: 'Finance Héros · Réponse éditoriale sur les plans PEA', edition: '19/08/2026', checked: '30/09/2026', url: 'https://forum.finance-heros.fr/t/investissement-programme-sur-pea/1515', kind: 'secondary-page' },
   financeHerosPea: { title: 'Finance Héros · Comparatif PEA', edition: '22/07/2026', checked: '30/09/2026', url: 'https://finance-heros.fr/ouvrir-meilleur-pea-comparatif/', kind: 'secondary-page' },
+  peaFrIbkr: { title: 'PEA.fr · Comparatif PEA, fiche IBKR', edition: '30/07/2026', checked: '30/09/2026', url: 'https://pea.fr/comparatifs/meilleur-pea-comparatif-banques-courtiers/', kind: 'secondary-page' },
+  sinvestirIbkr: { title: 'S’investir · Avis Interactive Brokers', edition: '2026', checked: '30/09/2026', url: 'https://sinvestir.fr/interactive-brokers-avis/', kind: 'secondary-page' },
   prorealtimeIbkr: { title: 'Avenant IBIE diffusé par ProRealTime', edition: '03/12/2024', checked: '30/09/2026', url: 'https://trading.prorealtime.com/fr/ib_agreement_pdf?r=ib_ie_pea_disclosures', kind: 'secondary-pdf' },
   prorealtimeDca2026: { title: 'ProRealTime · Barème des investissements récurrents IBKR', edition: '17/09/2026', checked: '30/09/2026', url: 'https://www.prorealtime.com/en/pdf/interactive-brokers-fees.pdf', kind: 'secondary-pdf' },
 }
@@ -135,7 +137,7 @@ export const BROKER_EVIDENCE = {
     garde: proved('Aucun droit de garde ni frais de tenue de compte PEA annoncés.', 'ibkrPea'),
     pea: proved('PEA Classique commercialisé.', 'ibkrPea'),
     pme: { status: 'corroboré', summary: 'PEA-PME non proposé selon Café de la Bourse ; la page IBKR ne présente que le PEA Classique. L’avenant rédigé par IBIE envisage un PEA-PME détenu chez un autre courtier, sans formuler une exclusion commerciale explicite chez IBKR.', refs: [{ document: 'cafePeaPme' }, { document: 'ibkrPea' }, { document: 'prorealtimeIbkr', page: 70 }] },
-    jeune: { status: 'corroboré', summary: 'Oui au sens du PEA de l’enfant majeur rattaché : l’avenant IBIE du 03/12/2024, diffusé par ProRealTime, prévoit expressément le plafond de 20 000 €. La page commerciale IBKR consultée en 2026 ne présente pas de produit distinct « PEA Jeune » ; parcours d’ouverture actuel non testé.', refs: [{ document: 'prorealtimeIbkr', page: 70 }, { document: 'ibkrPea' }] },
+    jeune: { status: 'corroboré', summary: 'PEA Jeune non disponible selon PEA.fr (30/07/2026) et S’investir (2026). L’avenant IBIE du 03/12/2024 prévoit pourtant le plafond légal de 20 000 € pour un enfant majeur rattaché : cette clause ne démontre pas que le parcours d’ouverture actuel lui est ouvert. Sources contradictoires ; confirmation écrite IBKR nécessaire.', refs: [{ document: 'peaFrIbkr' }, { document: 'sinvestirIbkr' }, { document: 'prorealtimeIbkr', page: 70 }, { document: 'ibkrPea' }] },
     ifu: proved('IFU disponible pour le PEA.', 'ibkrPea'),
     cash: { status: 'confirmé', summary: 'Oui pour soldes éligibles : 0 % sur les premiers 10 000 € EUR, taux variable au-delà et selon valeur du compte ; PEA non documenté.', refs: [{ document: 'ibkrInterest' }] },
     transfert: proved('Transfert du PEA possible, sans frais de transfert annoncés.', 'ibkrPea'),
