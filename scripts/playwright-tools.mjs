@@ -82,7 +82,9 @@ async function testCalculateur(page) {
   await page.locator("select.ic-control").first().selectOption("ethereum");
   const ethereumText = await page.locator("body").innerText();
   const ethereumDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
-  const ethereumMonthlyOk = ethereumText.includes('105 points') && await ethereumDca.isEnabled();
+  const ethereumCoverage = (await page.locator('.ic-method-note').innerText()).match(/Série en USD : (\d+) points présents dans le code sur (\d+) mois/);
+  const ethereumMonthlyOk = ethereumCoverage && Number(ethereumCoverage[1]) > 12 && ethereumCoverage[1] === ethereumCoverage[2]
+    && !ethereumText.includes('DCA non disponible pour Ethereum') && await ethereumDca.isEnabled();
   await ethereumDca.click();
   const ethereumDcaOk = (await page.locator('.ic-mode-pill').innerText()) === 'DCA mensuel';
   await page.locator("select.ic-control").first().selectOption("lvmh");
