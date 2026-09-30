@@ -12,7 +12,7 @@ import { ARCHIVE_SOURCE_REVIEW } from '../src/data/archive-source-review.js';
 import { INDEX_FACTS } from '../src/data/index-facts.js';
 
 const unresolved = DATA_CATALOG.flatMap(r => r.fields.filter(f => !f.metadata.sourceUrls.length).map(f => ({ id: r.id, field: f })));
-assert.equal(unresolved.length, 18, 'Reliquat sans URL modifié : une nouvelle preuve doit être revue explicitement');
+assert.equal(unresolved.length, 16, 'Reliquat sans URL modifié : une nouvelle preuve doit être revue explicitement');
 assert.equal(ARCHIVE_SOURCE_REVIEW.length, 19);
 for (const { id, field } of unresolved) {
   const review = ARCHIVE_SOURCE_REVIEW.find(r => r.id === id && (r.key ? field.value === INDEX_FACTS[id][r.key] : true));

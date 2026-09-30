@@ -61,14 +61,14 @@ export const ARCHIVE_SOURCE_REVIEW = [
     "id": "msci-world-enhanced-value",
     "key": "2026-07-31",
     "sourceStatus": "archive-unverifiable",
-    "sourceReason": "Les notes Git mentionnent 401 sans date et 400 en juillet. La publication MSCI consultable donne 400 au 31/08/2026 ; elle ne prouve ni l’archive de juillet ni la photographie de 401 titres.",
+    "sourceReason": "Les notes Git mentionnent 401 sans date et 400 en juillet. La publication MSCI consultable donne 400 au 31/08/2026 ; elle ne prouve ni l’archive de juillet ni la photographie de 401 titres. Le PDF DWS IE00BL25JM42 daté du 31/08/2026 affiche 401, en conflit avec MSCI (400 à cette date) ; cette divergence ne permet pas de certifier l’ancienne entrée.",
     "reviewedAt": "2026-09-30"
   },
   {
     "id": "msci-world-enhanced-value",
     "key": "legacy-undated",
     "sourceStatus": "archive-unverifiable",
-    "sourceReason": "Les notes Git mentionnent 401 sans date et 400 en juillet. La publication MSCI consultable donne 400 au 31/08/2026 ; elle ne prouve ni l’archive de juillet ni la photographie de 401 titres.",
+    "sourceReason": "Les notes Git mentionnent 401 sans date et 400 en juillet. La publication MSCI consultable donne 400 au 31/08/2026 ; elle ne prouve ni l’archive de juillet ni la photographie de 401 titres. Le PDF DWS IE00BL25JM42 daté du 31/08/2026 affiche 401, en conflit avec MSCI (400 à cette date) ; cette divergence ne permet pas de certifier l’ancienne entrée.",
     "reviewedAt": "2026-09-30"
   },
   {
@@ -125,15 +125,35 @@ export const ARCHIVE_SOURCE_REVIEW = [
   {
     "id": "history:ethereum",
     "key": null,
-    "sourceStatus": "archive-unverifiable",
-    "sourceReason": "Git (307ec46) nomme Fortune pour 2 453,23 USD en août 2026 mais ne conserve pas l’article ni sa convention horaire. L’URL candidate est inaccessible et la recherche du montant exact n’a pas retrouvé l’article. Les autres clôtures annuelles ont plusieurs attributions sans preuve point par point.",
-    "reviewedAt": "2026-09-30"
+    "sourceStatus": "documented",
+    "sourceReason": "Série active remplacée et vérifiée point par point contre les exports Yahoo mensuel et quotidien figés. Les anciennes valeurs restent dans une archive explicitement non vérifiable.",
+    "reviewedAt": "2026-09-30",
+    "checkedAt": "2026-09-30",
+    "sourceUrls": [
+      "https://query1.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1451606400&period2=1788307200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1451606400&period2=1788307200&interval=1d&events=splits"
+    ],
+    "method": "close mensuel, arrondi au centime ; dernières séances quotidiennes concordantes ; SOXX ajusté des splits, hors dividendes",
+    "periodStart": "2017-12",
+    "periodEnd": "2026-08",
+    "note": "233 clôtures mensuelles vérifiées : 105 ETH-USD et 128 SOXX. Source secondaire Yahoo ; recoupement des deux granularités du même fournisseur, sans prétendre à deux fournisseurs indépendants. La capture fige les résultats contrôlés ; les dates de fin de séance sont conservées séparément du mois. Anciennes valeurs exclues des outils et conservées dans calculator-unverifiable-before-2026-09-30.json."
   },
   {
     "id": "history:soxx",
     "key": null,
-    "sourceStatus": "archive-unverifiable",
-    "sourceReason": "Git (8abc34f) indique une transcription de captures utilisateur, absentes du dépôt, sans fournisseur identifié. Deux points étaient partiellement masqués (2016-12 et 2021-06). Des résultats tiers concordent sur ces deux montants mais ne certifient ni les 128 points ni la convention d’ajustement des splits/dividendes.",
-    "reviewedAt": "2026-09-30"
+    "sourceStatus": "documented",
+    "sourceReason": "Série active remplacée et vérifiée point par point contre les exports Yahoo mensuel et quotidien figés. Les anciennes valeurs restent dans une archive explicitement non vérifiable.",
+    "reviewedAt": "2026-09-30",
+    "checkedAt": "2026-09-30",
+    "sourceUrls": [
+      "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?period1=1451606400&period2=1788307200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/SOXX?period1=1451606400&period2=1788307200&interval=1d&events=splits",
+      "https://stockanalysis.com/etf/soxx/history/",
+      "https://www.investing.com/etfs/ishares-phlx-sox-semiconductor-historical-data"
+    ],
+    "method": "close mensuel, arrondi au centime ; dernières séances quotidiennes concordantes ; SOXX ajusté des splits, hors dividendes",
+    "periodStart": "2016-01",
+    "periodEnd": "2026-08",
+    "note": "233 clôtures mensuelles vérifiées : 105 ETH-USD et 128 SOXX. Source secondaire Yahoo ; recoupement des deux granularités du même fournisseur, sans prétendre à deux fournisseurs indépendants. La capture fige les résultats contrôlés ; les dates de fin de séance sont conservées séparément du mois. Anciennes valeurs exclues des outils et conservées dans calculator-unverifiable-before-2026-09-30.json. La dernière clôture et l’ancien prix du 28/08 sont aussi recoupés dans Stock Analysis et Investing.com : 511,04 au 31/08, 508,62 au 28/08."
   }
 ];

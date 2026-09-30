@@ -645,5 +645,5 @@ export const SUPPORTING_EVIDENCE = {
 for (const review of ARCHIVE_SOURCE_REVIEW.filter(r => !r.key)) {
   const evidence = SUPPORTING_EVIDENCE[review.id];
   Object.assign(evidence, review);
-  evidence.note = 'Attributions historiques conservées dans market-history.js ; elles ne sont pas une certification. Raison de la revue dans sourceReason.';
+  if (review.sourceStatus === 'archive-unverifiable') evidence.note = 'Attributions historiques conservées dans market-history.js ; elles ne sont pas une certification. Raison de la revue dans sourceReason.';
 }

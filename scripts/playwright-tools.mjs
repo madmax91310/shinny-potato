@@ -69,7 +69,7 @@ async function testCalculateur(page) {
   ]);
   await monthlyPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
-  await page.locator("select.ic-control").first().selectOption('ethereum');
+  await page.locator("select.ic-control").first().selectOption('cac40');
   await imageButton.click();
   const annualPreview = page.getByRole('dialog', { name: 'Aperçu de l’image du placement' });
   const annualImage = (await annualPreview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
@@ -79,15 +79,25 @@ async function testCalculateur(page) {
   ]);
   await annualPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
+  await page.locator("select.ic-control").first().selectOption("ethereum");
+  await page.locator('.ic-method-note').filter({ hasText: 'Série en USD' }).waitFor();
+  const ethereumText = await page.locator("body").innerText();
+  const ethereumDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
+  const ethereumCoverage = (await page.locator('.ic-method-note').innerText()).match(/Série en USD : (\d+) points présents dans le code sur (\d+) mois/);
+  const ethereumMonthlyOk = ethereumCoverage && Number(ethereumCoverage[1]) > 12 && ethereumCoverage[1] === ethereumCoverage[2]
+    && !ethereumText.includes('DCA non disponible pour Ethereum') && await ethereumDca.isEnabled();
+  await ethereumDca.click();
+  await page.locator('.ic-mode-pill').filter({ hasText: 'DCA mensuel' }).waitFor();
+  const ethereumDcaOk = (await page.locator('.ic-mode-pill').textContent()).trim() === 'DCA mensuel';
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
   const badgeOk = /non vérifiées avant/.test(text);
   const dcaBlockOk = /DCA non disponible pour LVMH/.test(text);
 
-  const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-ethereum-lump.png';
-  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk,
-    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}`);
+  const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-cac40-lump.png';
+  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
+    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel: ${ethereumMonthlyOk}, DCA: ${ethereumDcaOk}, couverture: ${JSON.stringify(ethereumCoverage)}`);
 }
 
 async function testPortfolioGenerator(page) {
@@ -397,7 +407,7 @@ async function testDataSearch(page) {
       || (f.metadata.sourceReason && f.metadata.checkedAt === null && f.metadata.reviewedAt === '2026-09-30'));
   await page.goto(`${BASE}/bibliotheque-donnees?type=series&id=history:soxx`, { waitUntil: 'networkidle' });
   const soxxText = await page.locator('.ds-detail').innerText();
-  checks.archiveSeries = soxxText.includes('Archive non vérifiable') && soxxText.includes('Deux points étaient partiellement masqués')
+  checks.certifiedSeries = !soxxText.includes('Archive non vérifiable') && soxxText.includes('2026-09-30') && soxxText.includes('close mensuel')
     && soxxText.includes('2016-01 à 2026-08');
   await page.getByLabel('Type de donnée').selectOption('all');
   await page.getByRole('searchbox').fill('zzzintrouvablezzz');

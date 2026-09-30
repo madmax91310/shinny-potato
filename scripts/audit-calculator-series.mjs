@@ -2,7 +2,7 @@
 // Rejoue le recoupement des 140 points des six séries depuis les captures datées.
 // Une capture ne garantit pas qu'un fournisseur ne corrigera jamais l'historique.
 import { readFileSync } from 'node:fs';
-import { ASSETS } from '../src/data/market-history.js';
+import { ASSETS, SPARSE_MONTHLY_DATA_IDS } from '../src/data/market-history.js';
 
 const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-yahoo-2026-09-29.json', import.meta.url)));
 const gold = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-worldbank-gold-2026-09-29.json', import.meta.url)));
@@ -42,3 +42,32 @@ for (const [name, record] of Object.entries(snapshot)) {
 }
 console.log(`${Object.keys(snapshot).length} séries Yahoo et 1 série Banque mondiale × 140 points comparés aux captures ; ${errors} écart(s).`);
 if (errors) process.exitCode = 1;
+
+// Nouvelles séries certifiées : comparaison stricte des 233 points, sans tolérance héritée.
+const certified = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-certified-2026-09-30.json', import.meta.url)));
+for (const [id, expectedCount] of [['ethereum', 105], ['soxx', 128]]) {
+  const record = certified[id];
+  const raw = record.monthlyResponse.chart.result[0];
+  const source = raw.timestamp.map((t, i) => [new Date(t * 1000).toISOString().slice(0, 7), raw.indicators.quote[0].close[i]])
+    .filter(([date]) => date >= record.points[0][0] && date <= '2026-08');
+  if (record.checkedAt !== '2026-09-30' || raw.meta.symbol !== record.symbol || raw.meta.currency !== 'USD'
+      || raw.meta.dataGranularity !== '1mo' || !record.url.includes('interval=1mo') || !record.dailyUrl.includes('interval=1d')
+      || source.length !== expectedCount || ASSETS[id].points.length !== expectedCount || record.lastDailyCloses.length !== expectedCount) {
+    throw new Error(`${id}: capture ou couverture incomplète`);
+  }
+  for (let i = 0; i < expectedCount; i++) {
+    const [date, close] = source[i];
+    const daily = record.lastDailyCloses[i];
+    const actual = ASSETS[id].points[i];
+    if (actual.date !== date || actual.price !== Math.round(close * 100) / 100
+        || record.points[i][0] !== date || record.points[i][1] !== actual.price
+        || daily.date.slice(0, 7) !== date || Math.abs(daily.close - close) > 0.0001
+        || new Date(daily.timestamp * 1000).toISOString().slice(0, 10) !== daily.date) {
+      throw new Error(`${id} ${date}: clôtures mensuelle/quotidienne ou série différentes`);
+    }
+  }
+}
+if (ASSETS.soxx.points.at(-1).price !== 511.04 || ASSETS.ethereum.points.at(-1).price !== 2466.82) throw new Error('Dernière clôture incorrecte');
+console.log('Ethereum : 105 mois complets ; SOXX : 128 mois ; 233 clôtures conformes aux exports Yahoo mensuel et quotidien.');
+
+if (SPARSE_MONTHLY_DATA_IDS.has('ethereum')) throw new Error('Ethereum mensuel encore classé comme série éparse');
