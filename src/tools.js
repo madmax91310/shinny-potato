@@ -5,6 +5,11 @@
 // colorée, disposition horizontale"), seule des 3 options à rester lisible en largeur mobile réelle.
 export const TOOLS = [
   {
+    to: '/portefeuilles-investisseurs', navLabel: 'Investisseurs', title: "Portefeuille d’investisseur",
+    publicationDay: 'Dimanche soir', icon: '👤', accent: '#d5ad65',
+    description: 'Positions 13F de fonds connus : tweet, répartition et export PNG actualisés depuis Tracefour.', status: 'disponible',
+  },
+  {
     to: '/france-100-menages', navLabel: '100 ménages', title: 'La France en 100 ménages',
     icon: '🇫🇷', accent: '#e7c97c', description: 'Neuf sujets Insee sur le patrimoine, les placements et les transmissions. Visuels en 100 ménages, tweets et export PNG.', status: 'disponible',
   },

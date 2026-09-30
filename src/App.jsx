@@ -17,6 +17,7 @@ import FactsheetTweets from './pages/factsheet-tweets/App'
 import DataSearch from './pages/data-search/App'
 import HouseholdApp from './pages/france-100-menages/App'
 import DataReview from './pages/data-review/App'
+import InvestorPortfolio from './pages/investor-portfolio/App'
 import { TOOLS } from './tools'
 
 // Tweets ETF, Lexique financier et Pouvoir d'achat n'ont plus de route dédiée : leurs pages
@@ -44,6 +45,7 @@ const TOOL_ELEMENTS = {
   '/cas-concrets': <ConcreteCases />,
   '/banque-tweets': <TweetBank />,
   '/tweets-factsheets': <FactsheetTweets />,
+  '/portefeuilles-investisseurs': <InvestorPortfolio />,
 }
 
 export default function App() {
