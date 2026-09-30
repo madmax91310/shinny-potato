@@ -1,5 +1,5 @@
 import { CURRENT_YEAR, computeBrut, computePoste, fmtEUR, fmtPct } from '../purchasing-power/lib.js'
-import { POSTES } from '../purchasing-power/data.js'
+import { POSTES } from '../../data/purchasing-power.js'
 
 const W = 1200
 const H = 1500

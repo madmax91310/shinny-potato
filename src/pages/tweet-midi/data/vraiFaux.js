@@ -1,5 +1,5 @@
 // Bibliothèque "Vrai ou Faux" — chaque affirmation est dérivée directement du contenu déjà
-// rédigé et vérifié dans le Lexique financier (src/pages/lexique-financier/data.js), jamais
+// rédigé et vérifié dans le Lexique financier (src/data/financial-lexicon.js), jamais
 // d'un fait nouveau. sourceTermeId pointe vers le terme d'origine pour traçabilité ; si le
 // lexique est corrigé un jour, cherche ce champ pour retrouver les affirmations à revoir.
 // Couvre en priorité les termes en variante A (enveloppes, produits, mécanismes), plus les

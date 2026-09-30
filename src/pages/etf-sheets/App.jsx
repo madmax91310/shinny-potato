@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { CATEGORY_ORDER, CATEGORY_EMOJI, ETFS } from './data'
+import { CATEGORY_ORDER, CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
 import { buildText } from './lib'
 import { renderETFImage } from './canvasImage'

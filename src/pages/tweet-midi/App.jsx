@@ -9,7 +9,7 @@ import { downloadComparatifEtfImage } from "./comparatifEtfImage.js";
 import { downloadPerformanceImage } from "./performanceImage.js";
 import { downloadAnniversaryImage } from "./anniversaryImage.js";
 import { downloadPurchasingPowerImage } from "./purchasingPowerImage.js";
-import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER } from "../purchasing-power/data.js";
+import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER } from "../../data/purchasing-power.js";
 import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
 import Card from "../../design-system/Card";

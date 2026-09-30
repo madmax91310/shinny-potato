@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Vérifie que les performances publiées dans les Fiches ETF correspondent à la part exacte
 // du Générateur, sans proposer une part à historique incomplet dans ses choix.
-import { ETFS } from '../src/pages/etf-sheets/data.js'
+import { ETFS } from '../src/data/etf-cards.js'
 import { ASSETS } from '../src/data/portfolio-assets.js'
 import { getAnnualPerformance } from '../src/pages/etf-sheets/annualPerformance.js'
 import { PROFILES } from '../src/pages/portfolio-generator/theses.js'

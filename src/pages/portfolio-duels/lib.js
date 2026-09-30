@@ -1,4 +1,4 @@
-import { ETFS } from '../etf-sheets/data.js'
+import { ETFS } from '../../data/etf-cards.js'
 import { getInstrumentDuelSeries } from '../../data/instrument-returns.js'
 import { YEARS, getAsset } from '../../data/portfolio-assets.js'
 import { computeYearlyPerf } from '../portfolio-generator/performance.js'

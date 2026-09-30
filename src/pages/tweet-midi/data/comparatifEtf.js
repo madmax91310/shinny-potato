@@ -1,7 +1,7 @@
 // Format "Comparatif ETF" — ne duplique aucune donnée : lit directement DEFAULT_THEMES depuis
 // le Générateur de tweets ETF existant, et réutilise sa fonction buildTweetText telle quelle
 // (même texte que ce que produirait cet outil pour la thématique choisie).
-import { DEFAULT_THEMES } from "../../etf-tweets/data/themes.js";
+import { DEFAULT_THEMES } from "../../../data/etf-themes.js";
 import { buildTweetText as buildEtfComparatifText } from "../../etf-tweets/lib/tweetFormat.js";
 
 // Un "sujet" par thématique ETF — sert à peupler le sélecteur d'étape 2 pour ce format. Pas de

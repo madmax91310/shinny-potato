@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Repère les encours à rapprocher entre outils. Ce rapport ne remplace pas une
 // fiche émetteur : des dates et devises différentes expliquent souvent l'écart.
-import { ETFS } from '../src/pages/etf-sheets/data.js'
+import { ETFS } from '../src/data/etf-cards.js'
 import { FAMILIES } from '../src/pages/index-comparator/data.js'
-import { DEFAULT_THEMES } from '../src/pages/etf-tweets/data/themes.js'
+import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 
 const entries = [
   ...ETFS.map(x => ({ isin: x.isin, tool: 'Fiches ETF', raw: x.aum, date: x.lastVerified })),

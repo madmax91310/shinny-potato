@@ -2,12 +2,12 @@
 // Revue interne du lexique, des séries et de leur provenance. Une référence n'atteste
 // jamais la vérification de chaque chiffre historique. Aucun statut ne va dans les tweets.
 import { readFileSync } from 'node:fs'
-import { TERMES } from '../src/pages/lexique-financier/data.js'
+import { TERMES } from '../src/data/financial-lexicon.js'
 import { ASSETS as PORTFOLIO } from '../src/data/portfolio-assets.js'
 import { ASSETS as CALCULATOR } from '../src/data/market-history.js'
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js'
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js'
-import { ETFS } from '../src/pages/etf-sheets/data.js'
+import { ETFS } from '../src/data/etf-cards.js'
 
 import { LEXICON_SOURCES as sources } from './lexicon-sources.mjs'
 const fiscal = new Set(`pea cto assurance-vie per livret-a ldds pee-perco flat-tax abattement-pea prelevements-sociaux plus-value-imposable plus-value-immobiliere`.split(' '))
@@ -22,7 +22,7 @@ for (const id of [...Object.keys(sources), ...fiscal]) if (!ids.has(id)) { conso
 const lexiconGaps = new Set(inventory.filter(x => x.tool === 'lexique').map(x => x.name))
 for (const name of lexiconGaps) if (!ids.has(name)) { console.error(`Inventaire lexique orphelin : ${name}`); errors++ }
 const verifiedToday = new Set(TERMES.map(t => t.id))
-const lexiconText = readFileSync(new URL('../src/pages/lexique-financier/data.js', import.meta.url), 'utf8')
+const lexiconText = readFileSync(new URL('../src/data/financial-lexicon.js', import.meta.url), 'utf8')
 for (const id of verifiedToday) {
   const entry = new RegExp(`\\{\\s*((?://[^\\n]*\\n\\s*)*)id:"${id}"`).exec(lexiconText)
   if (!entry || !/Vérifié le 25\/09\/2026/.test(entry[1]) || !/https:\/\//.test(entry[1]) || !/confiance/i.test(entry[1])) {

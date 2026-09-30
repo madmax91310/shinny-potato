@@ -1,6 +1,6 @@
 // Génération de l'image de la fiche (canvas 2D) — reprise telle quelle de la
 // session d'origine, juste recolorée en teal/navy pour matcher le design system.
-import { CATEGORY_EMOJI } from './data'
+import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
 import { buildFactRows } from './lib'
 
 function wrapText(ctx, text, maxWidth) {

@@ -27,7 +27,7 @@
 // risque le plus direct d'un futur renommage/déplacement de données en amont.
 
 import { ALL_ITEMS, FORMATS, FORMAT_LABELS, MODES, buildTweetText } from "../src/pages/tweet-midi/lib.js";
-import { TERMES } from "../src/pages/lexique-financier/data.js";
+import { TERMES } from "../src/data/financial-lexicon.js";
 import { getAnnualReturns, MARKET_ASSETS } from "../src/pages/tweet-midi/data/marketHistory.js";
 
 const termeIds = new Set(TERMES.map((t) => t.id));
