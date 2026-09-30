@@ -7,6 +7,12 @@ export const INVESTORS = [
 
 export const ATTRIBUTION = 'Données : Tracefour · tracefour.com · CC BY 4.0'
 export const COLORS = ['#dcba75', '#54d5b0', '#6da9e7', '#d9928b', '#a89bd9', '#84b6ae']
+const SHORT_NAMES = { AMZN: 'Amazon', MU: 'Micron', TSM: 'TSMC', GOOG: 'Alphabet', GOOGL: 'Alphabet', UBER: 'Uber' }
+export function holdingName(row) {
+  return SHORT_NAMES[row.ticker] || (row.issuerName === row.issuerName.toUpperCase()
+    ? row.issuerName.toLocaleLowerCase('fr-FR').replace(/\b\p{L}/gu, (letter) => letter.toLocaleUpperCase('fr-FR'))
+    : row.issuerName)
+}
 
 export function normalizePortfolio(payload) {
   const identity = payload?.data?.identity
@@ -35,11 +41,14 @@ export function buildTweet(portfolio, intro = '') {
   const top = holdings.slice(0, 5)
   const sum = top.reduce((value, row) => value + row.weight, 0)
   const icon = ['🥇', '🥈', '🥉', '📍', '📍']
+  const presentation = intro.trim() || (identity.slug === 'tepper'
+    ? 'David Tepper a fondé Appaloosa en 1993. Il s’est fait connaître en investissant dans des entreprises en difficulté.'
+    : `${identity.displayName} gère les investissements déclarés par ${identity.entityName || identity.displayName}.`)
   return [
     `Où ${identity.displayName} place-t-il ses plus gros paris ? 👇`,
-    intro.trim(),
+    presentation,
     `Voici les principales positions déclarées par ${identity.entityName || identity.displayName} au ${dateFR(snapshot.periodEnd)} :`,
-    ...top.map((row, i) => `${icon[i]} ${row.issuerName} ${row.ticker ? `$${row.ticker}` : ''} → ${percentage(row.weight)}`),
+    top.map((row, i) => `${icon[i]} ${holdingName(row)} ${row.ticker ? `$${row.ticker}` : ''} → ${percentage(row.weight)}`).join('\n'),
     `Ces cinq lignes représentent ${percentage(sum)} des positions affichées.`,
     'Quel poids te surprend le plus ?',
   ].filter(Boolean).join('\n\n')
