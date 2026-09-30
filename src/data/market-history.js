@@ -55,21 +55,39 @@ export const ASSETS = {
     ]),
   },
   ethereum: {
-    // Source : clôtures annuelles réelles ETH-USD (CoinMarketCap / recoupement presse : CoinDesk déc. 2016,
-    // WhiteBIT), puis prix quotidiens réels (Fortune "current price of Ethereum") pour 2026.
-    // Point 2016-12 : fourchette de sources 7,27-8,07 $, retenu 7,98 $ (confiance moyenne).
-    // Point 2019-12 : recoupement indirect (confiance moyenne). Tous les autres points ci-dessous sont
-    // directement sourcés.
-    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
-    // remplacé 2371,03 $ (~21/08/2026) par 2453,23 $, la vraie clôture du 31/08/2026 — même source
-    // (Fortune, "Current price of Ethereum for Aug. 31, 2026") que le reste de la série 2026, donc
-    // aucun changement de méthode. Dernier point réel : 31/08/2026.
+    // Yahoo Finance, ETH-USD : clôtures mensuelles (champ close), contrôlées le 30/09/2026.
+    // Export mensuel et dernières clôtures quotidiennes concordants point par point.
+    // Capture et dates de séance : scripts/source-snapshots/calculator-certified-2026-09-30.json.
+    // Premier mois complet disponible : décembre 2017 ; novembre 2017 incomplet exclu.
     label: 'Ethereum', tweetPhrase: "l'Ethereum", icon: 'Ξ', currency: 'USD',
     points: P([
-      '2016-12', 7.98, '2017-12', 756.73, '2018-12', 130.86, '2019-12', 128.59,
-      '2020-12', 737.45, '2021-12', 3676.90, '2022-12', 1195.00, '2023-12', 2281.95,
-      '2024-12', 3333.30, '2025-12', 2967.13,
-      '2026-01', 3120, '2026-04', 2133.44, '2026-08', 2453.23,
+      '2017-12', 756.73, '2018-01', 1118.31, '2018-02', 855.20, '2018-03', 396.46,
+      '2018-04', 669.92, '2018-05', 577.65, '2018-06', 455.18, '2018-07', 433.87,
+      '2018-08', 283.00, '2018-09', 232.85, '2018-10', 197.38, '2018-11', 113.17,
+      '2018-12', 133.37, '2019-01', 107.06, '2019-02', 136.75, '2019-03', 141.51,
+      '2019-04', 162.17, '2019-05', 268.11, '2019-06', 290.70, '2019-07', 218.65,
+      '2019-08', 172.47, '2019-09', 179.87, '2019-10', 183.97, '2019-11', 152.54,
+      '2019-12', 129.61, '2020-01', 180.16, '2020-02', 219.85, '2020-03', 133.59,
+      '2020-04', 207.60, '2020-05', 230.98, '2020-06', 226.32, '2020-07', 345.55,
+      '2020-08', 435.08, '2020-09', 359.94, '2020-10', 386.59, '2020-11', 614.84,
+      '2020-12', 737.80, '2021-01', 1314.99, '2021-02', 1416.05, '2021-03', 1918.36,
+      '2021-04', 2773.21, '2021-05', 2714.95, '2021-06', 2274.55, '2021-07', 2536.21,
+      '2021-08', 3433.73, '2021-09', 3001.68, '2021-10', 4288.07, '2021-11', 4631.48,
+      '2021-12', 3682.63, '2022-01', 2688.28, '2022-02', 2919.20, '2022-03', 3281.64,
+      '2022-04', 2730.19, '2022-05', 1942.33, '2022-06', 1067.30, '2022-07', 1681.52,
+      '2022-08', 1553.68, '2022-09', 1327.98, '2022-10', 1572.71, '2022-11', 1295.69,
+      '2022-12', 1196.77, '2023-01', 1586.54, '2023-02', 1605.90, '2023-03', 1822.02,
+      '2023-04', 1876.92, '2023-05', 1874.13, '2023-06', 1933.19, '2023-07', 1856.16,
+      '2023-08', 1645.64, '2023-09', 1671.16, '2023-10', 1816.46, '2023-11', 2052.56,
+      '2023-12', 2281.47, '2024-01', 2282.54, '2024-02', 3341.92, '2024-03', 3647.86,
+      '2024-04', 3012.29, '2024-05', 3760.03, '2024-06', 3432.89, '2024-07', 3231.30,
+      '2024-08', 2513.39, '2024-09', 2603.06, '2024-10', 2515.80, '2024-11', 3705.71,
+      '2024-12', 3332.53, '2025-01', 3298.27, '2025-02', 2237.91, '2025-03', 1823.48,
+      '2025-04', 1793.78, '2025-05', 2529.09, '2025-06', 2486.46, '2025-07', 3696.71,
+      '2025-08', 4390.02, '2025-09', 4145.96, '2025-10', 3847.08, '2025-11', 2992.11,
+      '2025-12', 2967.04, '2026-01', 2445.09, '2026-02', 1965.05, '2026-03', 2104.71,
+      '2026-04', 2256.25, '2026-05', 2004.34, '2026-06', 1569.58, '2026-07', 1860.35,
+      '2026-08', 2466.82,
     ]),
   },
   cac40: {
@@ -325,53 +343,45 @@ export const ASSETS = {
     ]),
   },
   soxx: {
-    // SÉRIE ENTIÈREMENT REMPLACÉE le 30/08/2026 : l'ancienne série annuelle (2015-2026, 12 points)
-    // était "dérivée de rendements annuels" plutôt que des vraies clôtures — un utilisateur a
-    // signalé un DCA anormalement faible sur SOXX, ce qui a révélé que l'échelle entière de la série
-    // dérivait dans le temps par rapport aux vraies clôtures : écart de 2,36x en 2016 à 2,59x en
-    // 2025 (jamais un facteur constant, donc pas juste un split non pris en compte — une accumulation
-    // d'erreur de reconstruction). Seul le dernier point (2026-08) était proche du réel (520,05 vs
-    // 508,62, écart 2%). Remplacée intégralement par un historique mensuel réel (clôtures, colonne
-    // "Cours"), capture d'écran fournie par l'utilisateur le 30/08/2026, couvrant janvier 2016 à
-    // août 2026 (128 points). Deux valeurs partiellement masquées dans les captures, retenues au
-    // mieux : 2016-12 (40,91) et 2021-06 (151,41) — confiance légèrement inférieure au reste de la
-    // série, mais cohérentes avec les points encadrants. Pas de point avant 2016-01 : l'ancien point
-    // 2015-12 (69,86 $) était sur l'ancienne échelle erronée, abandonné plutôt que reconverti sans
-    // source réelle — l'actif est donc utilisable à partir de janvier 2016 uniquement.
+    // Yahoo Finance, SOXX : clôtures mensuelles (champ close), contrôlées le 30/09/2026.
+    // Export mensuel et dernières clôtures quotidiennes concordants point par point.
+    // Capture et dates de séance : scripts/source-snapshots/calculator-certified-2026-09-30.json.
+    // Cours ajustés des splits, sans réinvestissement des dividendes (pas adjclose).
+    // Août corrigé : 508,62 était la séance du 28/08, 511,04 clôture du 31/08.
     label: 'ETF Semi-conducteurs (SOXX)', tweetPhrase: 'un ETF semi-conducteurs (SOXX)', icon: '🖥️', currency: 'USD',
     points: P([
       '2016-01', 27.68, '2016-02', 28.16, '2016-03', 30.54, '2016-04', 29.13,
-      '2016-05', 31.66, '2016-06', 31.21, '2016-07', 34.67, '2016-08', 36.3,
+      '2016-05', 31.66, '2016-06', 31.21, '2016-07', 34.67, '2016-08', 36.30,
       '2016-09', 37.66, '2016-10', 37.12, '2016-11', 39.79, '2016-12', 40.91,
       '2017-01', 42.62, '2017-02', 43.82, '2017-03', 45.63, '2017-04', 45.37,
       '2017-05', 49.33, '2017-06', 46.73, '2017-07', 48.99, '2017-08', 50.42,
-      '2017-09', 52.86, '2017-10', 57.57, '2017-11', 57.52, '2017-12', 56.6,
+      '2017-09', 52.86, '2017-10', 57.57, '2017-11', 57.52, '2017-12', 56.60,
       '2018-01', 61.49, '2018-02', 61.63, '2018-03', 60.02, '2018-04', 56.24,
       '2018-05', 62.48, '2018-06', 59.41, '2018-07', 61.83, '2018-08', 63.44,
-      '2018-09', 61.68, '2018-10', 54.32, '2018-11', 56.08, '2018-12', 52.3,
+      '2018-09', 61.68, '2018-10', 54.32, '2018-11', 56.08, '2018-12', 52.30,
       '2019-01', 57.56, '2019-02', 61.25, '2019-03', 63.18, '2019-04', 70.52,
       '2019-05', 58.84, '2019-06', 66.14, '2019-07', 69.86, '2019-08', 68.24,
-      '2019-09', 70.47, '2019-10', 74.78, '2019-11', 77.82, '2019-12', 83.7,
-      '2020-01', 81.02, '2020-02', 77.26, '2020-03', 68.4, '2020-04', 78.35,
-      '2020-05', 83.95, '2020-06', 90.29, '2020-07', 96.8, '2020-08', 102.41,
-      '2020-09', 101.54, '2020-10', 101.83, '2020-11', 120.6, '2020-12', 126.39,
+      '2019-09', 70.47, '2019-10', 74.78, '2019-11', 77.82, '2019-12', 83.70,
+      '2020-01', 81.02, '2020-02', 77.26, '2020-03', 68.40, '2020-04', 78.35,
+      '2020-05', 83.95, '2020-06', 90.29, '2020-07', 96.80, '2020-08', 102.41,
+      '2020-09', 101.54, '2020-10', 101.83, '2020-11', 120.60, '2020-12', 126.39,
       '2021-01', 130.47, '2021-02', 138.97, '2021-03', 141.33, '2021-04', 140.68,
-      '2021-05', 144.23, '2021-06', 151.41, '2021-07', 152.3, '2021-08', 156.06,
+      '2021-05', 144.23, '2021-06', 151.41, '2021-07', 152.30, '2021-08', 156.06,
       '2021-09', 148.62, '2021-10', 158.21, '2021-11', 176.41, '2021-12', 180.77,
       '2022-01', 159.82, '2022-02', 158.05, '2022-03', 157.76, '2022-04', 133.59,
       '2022-05', 142.05, '2022-06', 116.54, '2022-07', 135.78, '2022-08', 123.23,
       '2022-09', 106.24, '2022-10', 108.83, '2022-11', 129.34, '2022-12', 115.99,
       '2023-01', 134.56, '2023-02', 136.61, '2023-03', 148.22, '2023-04', 137.38,
-      '2023-05', 158.9, '2023-06', 169.09, '2023-07', 178.43, '2023-08', 170.22,
+      '2023-05', 158.90, '2023-06', 169.09, '2023-07', 178.43, '2023-08', 170.22,
       '2023-09', 157.88, '2023-10', 147.46, '2023-11', 171.22, '2023-12', 192.03,
       '2024-01', 195.35, '2024-02', 217.36, '2024-03', 225.92, '2024-04', 213.99,
       '2024-05', 234.01, '2024-06', 246.63, '2024-07', 235.38, '2024-08', 231.14,
-      '2024-09', 230.59, '2024-10', 218.26, '2024-11', 215.4, '2024-12', 215.49,
+      '2024-09', 230.59, '2024-10', 218.26, '2024-11', 215.40, '2024-12', 215.49,
       '2025-01', 218.13, '2025-02', 208.52, '2025-03', 188.17, '2025-04', 183.84,
-      '2025-05', 204.94, '2025-06', 238.7, '2025-07', 240.03, '2025-08', 245.32,
+      '2025-05', 204.94, '2025-06', 238.70, '2025-07', 240.03, '2025-08', 245.32,
       '2025-09', 271.12, '2025-10', 306.55, '2025-11', 296.74, '2025-12', 301.15,
-      '2026-01', 346.3, '2026-02', 352.29, '2026-03', 328.66, '2026-04', 461.44,
-      '2026-05', 569.08, '2026-06', 640.76, '2026-07', 504.89, '2026-08', 508.62,
+      '2026-01', 346.30, '2026-02', 352.29, '2026-03', 328.66, '2026-04', 461.44,
+      '2026-05', 569.08, '2026-06', 640.76, '2026-07', 504.89, '2026-08', 511.04,
     ]),
   },
   or: {
@@ -920,7 +930,7 @@ export function getAssetMinDate(assetId) {
 }
 
 // Actifs dont l'historique n'a que des points annuels (décembre) sur la quasi-totalité de leur
-// plage utilisable, plutôt qu'un vrai historique mensuel — ethereum et cac40 sur toute leur plage,
+// plage utilisable, plutôt qu'un vrai historique mensuel — cac40 sur toute sa plage,
 // lvmh sur sa plage vérifiée (post-2020-12, cf. ci-dessus). Un DCA mensuel sur l'un de ces actifs
 // interpole donc linéairement entre deux vraies clôtures pour la quasi-totalité des mois, plutôt
 // que d'utiliser une vraie clôture mensuelle comme pour les autres actifs. Recensé lors de l'audit
@@ -934,7 +944,7 @@ export function getAssetMinDate(assetId) {
 // nestle/sap ajoutés le 14/09/2026 (audit "élargissement du roster") : même cause que nvidia/amazon/
 // google/meta (aucun historique mensuel exploitable trouvé), avec en plus l'absence de cotation EUR/
 // CHF native sourçable dans ce sandbox — cf. leurs commentaires individuels pour le détail.
-export const SPARSE_MONTHLY_DATA_IDS = new Set(['ethereum', 'cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola'])
+export const SPARSE_MONTHLY_DATA_IDS = new Set(['cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola'])
 
 // Les points de décembre de ces indices ont été recalés sur les rendements annuels officiels,
 // mais les autres mois de l'ancien export ne l'ont pas été (sauts artificiels Nov/Déc/Jan).

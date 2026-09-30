@@ -54,7 +54,7 @@ export function getHistoricalPrice(assetId, ym) {
 // Le point réel le plus proche (à la date exacte ou avant) du premier jour de l'année donnée —
 // jamais une date de janvier supposée si l'actif n'a pas de point ce mois-là (cf. contrainte du
 // brief : jamais estimer une année sans donnée réelle). Pour une année dont le premier point réel
-// tombe en cours d'année (ex. Ethereum 2016 → premier point 2016-12), on utilise CE point précis,
+// tombe en cours d'année (ex. Ethereum 2017 → premier mois complet 2017-12), on utilise CE point précis,
 // jamais une valeur de janvier interpolée à partir de plus tard.
 export function getFirstRealPointOfYear(assetId, year) {
   const points = assetPoints(assetId);
