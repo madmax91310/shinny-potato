@@ -67,7 +67,7 @@ export const BROKERS = [
     id: "ibkr", nom: "Interactive Brokers", code: "IBKR", color: "#7C93C9", emoji: "🟢", lastVerified: "29/09/2026",
     frais: { resume: "Dès 0,05 %", detail: "Actions France : min 1,25 € dégressif · 3 € fixe SmartRouting" },
     boursomarkets: { resume: "Sans objet" },
-    dca: { resume: "Oui*", detail: "PEA : achats récurrents selon analyses d’août et septembre 2026" },
+    dca: { resume: "Contesté*", detail: "PEA : analyses de 2026 contradictoires sur les achats automatiques" },
     garde: { resume: "0 €", detail: "Droits de garde PEA" },
     pea: { pea: true, pme: false, jeune: false },
     ifu: { resume: "Oui pour le PEA" },
@@ -76,7 +76,7 @@ export const BROKERS = [
     transfertPea: { resume: "Entrant ✅ · 0 € annoncés" },
     post: {
       frais: ["PEA, actions France : dégressif 0,05 %, min 1,25 € (plus frais de Bourse possibles) ; fixe SmartRouting 0,05 %, min 3 € ; routage direct 0,10 %, min 4 €. Autres places et fonds : barèmes distincts."],
-      dca: ["Plans récurrents sur PEA selon analyses externes datées d’août et septembre 2026, sans confirmation directe d’IBKR pour cette enveloppe."],
+      dca: ["Disponibilité des achats récurrents sur PEA contestée entre analyses de 2026 ; confirmation directe d’IBKR absente."],
       garde: ["PEA : pas de droits de garde annoncés."],
       pea: "PEA ✅ / PEA-PME ❌* / PEA Jeune ❌* selon analyses 2026 (contrat IBIE 2024 contradictoire)",
       ifu: ["IFU disponible pour le PEA."],
