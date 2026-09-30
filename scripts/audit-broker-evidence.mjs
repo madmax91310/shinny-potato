@@ -1,6 +1,16 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { BROKERS, buildTweet, documentedForAll } from '../src/pages/broker-comparator/data.js'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
+import { BROKER_LOGOS } from '../src/pages/broker-comparator/versus-image.js'
+
+assert.deepEqual(Object.keys(BROKER_LOGOS).sort(), BROKERS.map((b) => b.id).sort(), 'un logo officiel par courtier')
+for (const [id, logo] of Object.entries(BROKER_LOGOS)) {
+  const source = new URL(logo.source)
+  assert.equal(source.protocol, 'https:', `${id}: source de logo non sécurisée`)
+  const svg = readFileSync(new URL(`../public/broker-logos/${logo.file}`, import.meta.url), 'utf8')
+  assert(svg.includes('<svg') && !/<script\b|<!DOCTYPE|(?:href|src)=["']https?:/i.test(svg), `${id}: SVG non autonome`)
+}
 
 const officialHosts = new Set([
   'assets.traderepublic.com', 'www.boursobank.com', 'www.fortuneo.fr',

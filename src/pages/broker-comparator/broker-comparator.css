@@ -130,6 +130,9 @@
 .bc-evidence-broker li strong { color: var(--ink); }
 .bc-evidence-broker a { color: var(--accent-bright); text-decoration: underline; overflow-wrap: anywhere; }
 
+.bc-versus-canvas { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 12px; background: #090d1f; }
+.bc-versus-actions { display: flex; justify-content: flex-end; margin-top: 14px; }
+
 @media (max-width: 480px) {
   .bc-footer .bc-disclaimer { max-width: 100%; }
   .bc-footer { flex-direction: column; align-items: flex-start; gap: 4px; }
