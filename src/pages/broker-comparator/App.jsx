@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Fragment } from 'react'
 import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet, documentedForAll } from './data'
-import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES } from './evidence'
+import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from './evidence'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './broker-comparator.css'
@@ -8,8 +8,8 @@ import './broker-comparator.css'
 const fmtDate = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date())
 
 function PeaPill({ val, label }) {
-  const cls = val ? 'yes' : 'no'
-  const mark = val ? '✓' : '✕'
+  const cls = val === null ? 'nc' : val ? 'yes' : 'no'
+  const mark = val === null ? '?' : val ? '✓' : '✕'
   return (
     <span className={`bc-pea-pill ${cls}`}>
       {mark} {label}
@@ -80,13 +80,13 @@ function CashRow({ brokers, gridStyle }) {
 function EvidencePanel({ selected }) {
   return (
     <section className="bc-panel bc-evidence" aria-labelledby="bc-evidence-title">
-      <h2 id="bc-evidence-title">Registre des sources officielles</h2>
-      <p className="bc-hint">État au 29/09/2026. PDF et pages officielles sont identifiés séparément. « Oui » signifie qu’une offre rémunère le cash non investi sous conditions ; « à vérifier » ne permet pas de répondre oui ou non. Les taux variables doivent être contrôlés avant publication.</p>
+      <h2 id="bc-evidence-title">Registre des preuves</h2>
+      <p className="bc-hint">État au 30/09/2026. Les sources officielles et les analyses externes sont identifiées séparément. L’astérisque (*) signifie « selon une analyse externe », sans confirmation directe du courtier. Le cash concerne uniquement les espèces non investies, hors livrets et fonds. Les taux variables doivent être contrôlés avant publication.</p>
       {selected.map((id) => {
         const broker = byId(id)
         return (
           <details className="bc-evidence-broker" key={id}>
-            <summary>{broker.nom} · {EVIDENCE_FIELDS.filter(([field]) => BROKER_EVIDENCE[id][field].status === 'confirmé').length}/{EVIDENCE_FIELDS.length} champs documentés</summary>
+            <summary>{broker.nom} · {EVIDENCE_FIELDS.filter(([field]) => BROKER_EVIDENCE[id][field].status === 'confirmé').length}/{EVIDENCE_FIELDS.length} champs confirmés directement</summary>
             <ul>
               {EVIDENCE_FIELDS.map(([field, label]) => {
                 const entry = BROKER_EVIDENCE[id][field]
@@ -94,8 +94,9 @@ function EvidencePanel({ selected }) {
                   <li key={field}>
                     <strong>{label} · {entry.status}</strong> — {entry.summary}
                     {entry.refs?.map(({ document, page }) => {
-                      const source = OFFICIAL_SOURCES[document]
-                      return <span key={`${document}-${page ?? 'web'}`}> <a href={page ? `${source.url}#page=${page}` : source.url} target="_blank" rel="noreferrer">{source.title}{page ? `, p. ${page}` : ''} ({source.kind === 'page' ? 'page officielle' : `PDF ${source.edition}`})</a></span>
+                      const source = OFFICIAL_SOURCES[document] ?? SECONDARY_SOURCES[document]
+                      const type = source.kind?.startsWith('secondary') ? `source externe ${source.edition}` : source.kind === 'page' ? 'page officielle' : `PDF officiel ${source.edition}`
+                      return <span key={`${document}-${page ?? 'web'}`}> <a href={page ? `${source.url}#page=${page}` : source.url} target="_blank" rel="noreferrer">{source.title}{page ? `, p. ${page}` : ''} ({type})</a></span>
                     })}
                     {entry.checked?.map((document) => {
                       const source = OFFICIAL_SOURCES[document]
@@ -165,7 +166,7 @@ function ComparisonCard({ selected }) {
         <div className="bc-cells" style={gridStyle}>
           {brokers.map((b) => (
             <div className="bc-pea-pills" key={b.id}>
-              {envelopes.map(([field, label]) => <PeaPill key={field} val={b.pea[field]} label={label} />)}
+              {envelopes.map(([field, label]) => <PeaPill key={field} val={b.pea[field]} label={`${label}${BROKER_EVIDENCE[b.id][field].status === 'corroboré' ? '*' : ''}`} />)}
             </div>
           ))}
         </div>
