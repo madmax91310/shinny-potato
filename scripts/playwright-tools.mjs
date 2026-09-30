@@ -88,7 +88,7 @@ async function testCalculateur(page) {
     && !ethereumText.includes('DCA non disponible pour Ethereum') && await ethereumDca.isEnabled();
   await ethereumDca.click();
   await page.locator('.ic-mode-pill').filter({ hasText: 'DCA mensuel' }).waitFor();
-  const ethereumDcaOk = (await page.locator('.ic-mode-pill').innerText()) === 'DCA mensuel';
+  const ethereumDcaOk = (await page.locator('.ic-mode-pill').textContent()).trim() === 'DCA mensuel';
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
