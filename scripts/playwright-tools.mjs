@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { ETFS } from '../src/data/etf-cards.js';
 // Tests Playwright par outil — navigateur réel (Chromium), un "write→look once" formalisé en
 // script réutilisable plutôt que refait à la main à chaque changement. Committé le 14/09/2026
 // (audit "outils", documenté comme "à committer" dans scripts/README.md).
@@ -153,6 +154,9 @@ async function testEtfSheets(page) {
     await page.waitForTimeout(40);
     const text = await page.locator("body").innerText();
     if (/undefined|NaN/.test(text)) badCount++;
+    const selectedId = await select.inputValue();
+    const card = ETFS.find(item => item.id === selectedId);
+    if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
   }
   await select.selectOption('sp500');
   await page.getByRole('button', { name: '📊 Télécharger le graphique annuel' }).click();

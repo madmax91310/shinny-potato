@@ -41,7 +41,7 @@ function triggerAnchorDownload(dataUrl, filename) {
 
 function EtfCard({ etf }) {
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
-  const tickerStr = etf.tickers.join(' / ')
+  const tickerStr = etf.listing?.ticker ?? ''
   const annual = getAnnualPerformance(etf)
 
   return (
@@ -50,11 +50,12 @@ function EtfCard({ etf }) {
       <h2 className="es-identity">
         <span className="es-dot">{dot}</span>
         <span className="es-name">{etf.name}</span>
-        <span className="es-tickers">({tickerStr})</span>
+        {tickerStr && <span className="es-tickers">({tickerStr})</span>}
         {etf.isNew && <span className="es-badge-new">🆕 Nouveau</span>}
       </h2>
 
       <ul className="es-facts">
+        {etf.listing && <li><span className="es-fi">📍</span><span className="es-fv">Cotation : {etf.listing.exchange} · {etf.listing.currency}</span></li>}
         <li className="mono">
           <span className="es-fi">🆔</span>
           <span className="es-fv">ISIN : {etf.isin}</span>
@@ -271,7 +272,7 @@ export default function App() {
               <optgroup key={cat} label={`${CATEGORY_EMOJI[cat] || ''} ${cat}`}>
                 {etfs.map((e) => (
                   <option key={e.id} value={e.id}>
-                    {e.name} ({e.tickers.join('/')})
+                    {e.name} ({e.listing?.ticker ?? e.isin})
                   </option>
                 ))}
               </optgroup>

@@ -42,8 +42,8 @@ export const OFFICIAL_SOURCES = {
     url: 'https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf',
   },
   fortuneoTariff: {
-    title: 'Fortuneo · Conditions tarifaires', edition: '09/02/2026', checked: '29/09/2026',
-    url: 'https://www.fortuneo.fr/files/fortuneo-tarifs-09022026.pdf',
+    title: 'Fortuneo · Conditions tarifaires en vigueur', edition: '06/08/2026', checked: '30/09/2026',
+    url: 'https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf',
   },
   xtbTariff: {
     title: 'XTB · Table des frais et commissions', edition: '05/2026', checked: '29/09/2026',
@@ -85,11 +85,8 @@ export const SECONDARY_SOURCES = {
   moneyvoxCaIdf: { title: 'MoneyVox · Tarifs CA Île-de-France et rémunération du compte courant', edition: 'tarifs 2026', checked: '30/09/2026', url: 'https://www.moneyvox.fr/tarif-bancaire/credit-agricole-ile-de-france/', kind: 'secondary-page' },
   moneyvoxPea2026: { title: 'MoneyVox · PEA des banques en ligne', edition: '2026', checked: '30/09/2026', url: 'https://www.moneyvox.fr/banque-en-ligne/actualites/103315/investir-en-bourse-en-2026-quelle-banque-en-ligne-offre-le-meilleur-pea', kind: 'secondary-page' },
   cafePeaPme: { title: 'Café de la Bourse · Comparatif PEA-PME', edition: '2026', checked: '30/09/2026', url: 'https://www.cafedelabourse.com/dossiers/article/osez-les-petites-valeurs-avec-le-pea-pme', kind: 'secondary-page' },
-  brokerBoursoCash: { title: 'BrokerChooser · Cash BoursoBank', edition: '09/2026', checked: '30/09/2026', url: 'https://brokerchooser.com/fr/invest-long-term/learn/eur-cash-yield-at-boursobank', kind: 'secondary-page' },
-  brokerFortuneoCash: { title: 'BrokerChooser · Cash Fortuneo', edition: '09/2026', checked: '30/09/2026', url: 'https://brokerchooser.com/fr/invest-long-term/learn/eur-cash-yield-at-fortuneo-banque', kind: 'secondary-page' },
   brokerBdCash: { title: 'BrokerChooser · Cash Bourse Direct', edition: '09/2026', checked: '30/09/2026', url: 'https://brokerchooser.com/fr/broker-reviews/bourse-direct-review/bourse-direct-fees', kind: 'secondary-page' },
   sinvestirBoursoCash: { title: 'S’investir · CTO BoursoBank', edition: '2026', checked: '30/09/2026', url: 'https://sinvestir.fr/cto-boursobank-avis/', kind: 'secondary-page' },
-  placementsFortuneoCash: { title: 'Placements Boursiers · Fortuneo', edition: '03/2026', checked: '30/09/2026', url: 'https://placements-boursiers.fr/avis-fortuneo-bourse-2026/', kind: 'secondary-page' },
   detectiveBdCash: { title: 'Détective Banque · Comparatif courtier', edition: '09/2026', checked: '30/09/2026', url: 'https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/', kind: 'secondary-page' },
   mondeDca: { title: 'Le Monde · Investissements programmés en PEA', edition: '26/09/2025', checked: '30/09/2026', url: 'https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html', kind: 'secondary-page' },
   starFortuneoDca: { title: 'Starfinance · PEA Fortuneo', edition: '08/2026', checked: '30/09/2026', url: 'https://starfinance.fr/pea-fortuneo-avis-avec-analyse-et-test/', kind: 'secondary-page' },
@@ -128,7 +125,7 @@ export const BROKER_EVIDENCE = {
     pme: proved('Tarifs PEA-PME prévus.', 'boursoTariff', 20),
     jeune: proved('Tarifs PEA 18-25 ans prévus.', 'boursoTariff', 20),
     ifu: proved('IFU disponible dans les documents fiscaux si revenus ou opérations à déclarer.', 'boursoIfu'),
-    cash: { status: 'corroboré', summary: 'Non : BrokerChooser et S’investir indiquent que les espèces non investies du CTO ne sont pas rémunérées ; les livrets distincts sont exclus.', refs: [{ document: 'brokerBoursoCash' }, { document: 'sinvestirBoursoCash' }] },
+    cash: { status: 'corroboré', summary: 'Non selon S’investir et Détective Banque pour les espèces non investies du CTO ; les livrets distincts sont exclus. La brochure officielle ne formule pas une exclusion générale.', refs: [{ document: 'sinvestirBoursoCash' }, { document: 'detectiveBdCash' }, { document: 'boursoTariff', page: 20 }] },
     transfert: proved('Transfert PEA sortant : 15 € par ligne, plafond 150 €.', 'boursoTariff', 25),
   },
   ibkr: {
@@ -145,14 +142,14 @@ export const BROKER_EVIDENCE = {
   },
   fortuneo: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
-    frais: proved('Starter : premier ordre mensuel ≤ 500 € gratuit sur Euronext/Equiduct, puis 0,35 %.', 'fortuneoTariff', 10),
+    frais: proved('Starter : premier ordre mensuel ≤ 500 € gratuit sur Euronext/Equiduct, puis 0,35 %. Achat PEA/PEA-PME sur certaines autres places européennes : minimum 400 € hors courtage.', 'fortuneoTariff', 10),
     dca: { status: 'corroboré', summary: 'Non pour les achats PEA automatisés : Le Monde (09/2025), Starfinance (08/2026) et Épargnant 3.0 (2026) décrivent des ordres manuels. Le tableau MoneyRadar emploie « ordres programmés » sans documenter l’automatisation : ce terme ne suffit pas à établir un plan récurrent.', refs: [{ document: 'mondeDca' }, { document: 'starFortuneoDca' }, { document: 'epargnant30FortuneoDca' }, { document: 'radarIbkrDca' }] },
     garde: proved('Droits de garde gratuits.', 'fortuneoTariff', 10),
     pea: proved('Tarifs PEA prévus.', 'fortuneoTariff', 10),
     pme: proved('Tarifs PEA-PME prévus.', 'fortuneoTariff', 10),
     jeune: proved('PEA Jeune non commercialisé selon les conditions générales.', 'fortuneoContract', 35),
     ifu: proved('IFU disponible dans l’espace client, notamment pour le compte titres.', 'fortuneoIfu'),
-    cash: { status: 'corroboré', summary: 'Non : les conditions générales Fortuneo du 01/09/2025 excluent explicitement les intérêts sur le compte espèces PEA/PEA-PME. BrokerChooser et Placements Boursiers étendent ce constat au cash non investi du CTO ; aucune clause générale équivalente pour le CTO n’a été identifiée. Les livrets distincts ne comptent pas.', refs: [{ document: 'fortuneoContract', page: 35 }, { document: 'brokerFortuneoCash' }, { document: 'placementsFortuneoCash' }] },
+    cash: { status: 'corroboré', summary: 'Non : les conditions générales Fortuneo du 01/09/2025 excluent explicitement les intérêts sur le compte espèces PEA/PEA-PME. Détective Banque étend ce constat au cash non investi du CTO en citant la brochure du 06/08/2026 ; aucune clause générale équivalente pour le CTO n’a été identifiée. Les livrets distincts ne comptent pas.', refs: [{ document: 'fortuneoContract', page: 35 }, { document: 'detectiveBdCash' }, { document: 'fortuneoTariff', page: 10 }] },
     transfert: proved('Transfert PEA sortant 15 € par ligne, plafond 150 € ; clôture distincte à 85 €.', 'fortuneoTariff', 13),
   },
   xtb: {

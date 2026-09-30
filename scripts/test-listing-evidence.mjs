@@ -22,3 +22,17 @@ for (const mutate of [
   assert.ok(validateListingEvidence(changed).length, 'Une preuve invalide doit bloquer la publication');
 }
 console.log('Preuve valide acceptée ; 10 régressions de preuve refusées.');
+
+// Un ticker correct sur une autre place/devise ne doit pas contourner le choix commun.
+const { validatePublishedListingSelection } = await import('./audit-instrument-listings.mjs');
+const { getPreferredInstrumentListing } = await import('../src/data/instrument-listings.js');
+const isin = 'IE000DQLYVB9';
+const selected = getPreferredInstrumentListing(isin);
+assert.equal(validatePublishedListingSelection([{ isin, listing: selected }]).length, 0);
+for (const mutation of [
+  { isin, listing: { ...selected, currency: 'USD' } },
+  { isin, listing: { ...selected, mic: 'XLON', exchange: 'London Stock Exchange' } },
+  { isin, listing: null },
+  { isin, listing: selected, ticker: selected.ticker },
+]) assert.equal(validatePublishedListingSelection([mutation]).length, 1);
+console.log('Choix publié : 4 mutations place/devise/absence/copie refusées.');

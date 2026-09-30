@@ -2,6 +2,7 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './index-comparator.css'
+import { formatInstrumentListing } from '../../data/instrument-listings.js'
 import { FAMILIES } from './data.js'
 import { downloadIndexImage } from './imageExport.js'
 
@@ -35,7 +36,7 @@ function renderFundGroup(group) {
   const multi = group.funds.length > 1
   group.funds.forEach((f) => {
     lines.push(f.name)
-    const idLine = f.ticker ? `📍 Ticker : ${f.ticker} · ISIN : ${f.isin}` : `📍 ISIN : ${f.isin}`
+    const idLine = f.listing ? `📍 ${formatInstrumentListing(f.listing)} · ISIN : ${f.isin}` : `📍 ISIN : ${f.isin}`
     lines.push(idLine)
     if (multi) {
       const feeParts = [`💰 TER ${f.ter}`]

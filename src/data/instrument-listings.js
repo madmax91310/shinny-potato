@@ -1388,10 +1388,34 @@ export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
   ]
 });
 
+// Les outils partagent ces objets : empêcher une modification locale du catalogue.
+for (const listings of Object.values(INSTRUMENT_LISTINGS_BY_ISIN)) {
+  listings.forEach(Object.freeze);
+  Object.freeze(listings);
+}
+
 export function getInstrumentListings(isin) {
   return INSTRUMENT_LISTINGS_BY_ISIN[isin] ?? [];
 }
 
 export function formatInstrumentListings(isin) {
   return getInstrumentListings(isin).map(({ ticker, exchange, currency }) => `${ticker} · ${exchange} · ${currency}`).join(" / ");
+}
+
+// Choix éditorial commun : EUR d'abord, puis Paris / Amsterdam / Milan / Xetra.
+// Ce choix n'affirme ni la liquidité ni la disponibilité chez un courtier.
+export function getPreferredInstrumentListing(isin) {
+  const rank = ({ currency, mic }) => (currency === 'EUR' ? 0 : currency === 'USD' ? 100 : 200)
+    + ({ XPAR: 0, XAMS: 1, ETFP: 2, XETR: 3, XLON: 4, XSWX: 5 }[mic] ?? 9);
+  return [...getInstrumentListings(isin)].sort((a, b) => rank(a) - rank(b))[0] ?? null;
+}
+
+export function requireInstrumentListing(isin) {
+  const listing = getPreferredInstrumentListing(isin);
+  if (!listing) throw new Error(`Cotation documentée absente pour ${isin}`);
+  return listing;
+}
+
+export function formatInstrumentListing(listing) {
+  return listing ? `${listing.ticker} · ${listing.exchange} · ${listing.currency}` : '';
 }

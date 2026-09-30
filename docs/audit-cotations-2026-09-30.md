@@ -83,3 +83,11 @@ Le tableau présente une cotation documentée par ticker. Les autres lignes et d
 ## Validation
 
 Audits cotations, catalogue, contenu publiable, cohérence ETF, snapshots ETF, performances annuelles ETF, cohérence des performances et inventaire des sources : réussis. Vérifications Tweet Midi et Fiches indices : réussies. Build : réussi. Le lint conserve deux avertissements préexistants hors de cet audit. Les résultats Playwright sont consignés dans la PR.
+
+## Utilisation commune des cotations
+
+Les Fiches ETF et les tickers publiés du Comparateur d’indices utilisent désormais un objet `listing` du registre, sélectionné par `getPreferredInstrumentListing`. La sélection privilégie EUR, puis Paris, Amsterdam, Milan et Xetra ; hors EUR, USD précède les autres devises. Ce choix éditorial ne compare pas les spreads ni la disponibilité chez un courtier.
+
+Le ticker, la place et la devise s’affichent ensemble dans les textes et les exports PNG. Les anciennes listes de tickers ont été retirées des caractéristiques et du catalogue des noms ; `getInstrumentTickers` reste un accès de compatibilité dérivé des cotations sourcées. Les objets du registre sont figés pour éviter une modification locale par un outil.
+
+Le contrôle exige la référence commune sélectionnée et refuse les champs ticker recopiés dans les outils. Quatre mutations supplémentaires couvrent une devise modifiée, une autre place, une sélection supprimée et un ticker recopié. Playwright vérifie la place et la devise en parcourant les 41 fiches. LU1834983550 ne publiait aucun ticker : cette fiche reste identifiée par son ISIN sans inventer de cotation.
