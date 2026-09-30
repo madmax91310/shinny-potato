@@ -6,6 +6,7 @@ import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js';
 import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js';
 import { INDEX_FACTS } from '../src/data/index-facts.js';
 import { INDEX_RETURNS } from '../src/data/index-returns.js';
+import { describeDataField } from '../src/pages/data-search/lib.js';
 import { TOOLS } from '../src/tools.js';
 const ids = new Set();
 for (const file of readdirSync(new URL('../src/data/', import.meta.url)).filter((name) => name.endsWith('.js'))) {
@@ -16,6 +17,7 @@ for (const record of DATA_CATALOG) {
   assert(record.name && record.fields.length, `${record.id}: fiche incomplète`);
   for (const consumer of record.consumers) assert(TOOLS.some((t) => t.to === consumer.path), `${record.id}: consommateur orphelin`);
   for (const field of record.fields) {
+    assert.equal(typeof describeDataField(field), 'string', `${record.id}: résumé impossible à afficher`);
     assert(existsSync(new URL(`../${field.registry}`, import.meta.url)), `${record.id}: registre absent`);
     assert.deepEqual(Object.keys(field.metadata), EVIDENCE_FIELDS, `${record.id}: contrat de provenance divergent`);
     assert(field.metadata.scope, `${record.id}: périmètre absent`);
@@ -38,6 +40,8 @@ assert(searchData('world', 'index').every((r) => r.type === 'index'));
 const aum = searchData('FR001400U5Q4')[0].fields.find((f) => f.label === 'Encours');
 assert.equal(aum.metadata.asOf, null, 'Une consultation a été transformée en photographie');
 assert.equal(aum.metadata.checkedAt, '2026-09-29');
+assert(describeDataField({ label: 'Rendements 2020–2025', value: [1, 2, 3, 4, 5, 6] }).includes('2020 : +1'));
+assert(describeDataField({ label: 'Rendements d’indice', value: { values: [[2025, 4]] } }).includes('2025 : +4'));
 assert.equal(normalizeEvidence({ checkedAt: '2026-09-30' }).asOf, null);
 assert.throws(() => normalizeEvidence({ asOf: '30/09/2026' }), /invalide/);
 assert.throws(() => normalizeEvidence({ url: 'invented-source' }), /invalide/);

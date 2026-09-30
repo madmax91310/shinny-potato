@@ -2,30 +2,12 @@ import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import { searchData, exportDataRecord } from '../../data/catalog.js'
+import { describeDataField } from './lib.js'
 import './data-search.css'
 
 const TYPES = { all: 'Toutes les données', instrument: 'Instruments', index: 'Indices', series: 'Séries historiques', lexicon: 'Lexique' }
 const unknown = (value) => value ?? 'Non documenté'
-const number = (value) => value.toLocaleString('fr-FR')
-function summary(field) {
-  const value = field.value
-  if (field.label.startsWith('Frais')) return `${value} % par an`
-  if (field.label === 'Éligibilité PEA') return value === true ? 'Éligible PEA' : value === false ? 'Non éligible PEA' : 'Éligibilité non établie'
-  if (field.label === 'Encours') return value.sheet ?? value.index ?? ''
-  if (value?.ticker) return `${value.ticker} · ${value.exchange} · ${value.currency}`
-  if (field.label.startsWith('Photographie')) return [
-    value.constituents != null && `${number(value.constituents)} titres`,
-    value.targetConstituents != null && `Objectif de méthode : ${number(value.targetConstituents)} sociétés`,
-    value.approximateConstituents != null && `Environ ${number(value.approximateConstituents)} titres (${value.constituentRange.join(' à ')})`,
-    value.marketCount != null && `${value.marketCount} pays`, value.markets,
-  ].filter(Boolean).join(' · ')
-  if (field.label.startsWith('Rendements')) {
-    const values = value.values ?? value
-    return values.map((item, i) => { const [year, amount] = Array.isArray(item) ? item : [field.label.includes('2020') ? 2020 + i : 2023 + i, item]; return `${year} : ${amount > 0 ? '+' : ''}${number(amount)} %` }).join(' · ')
-  }
-  if (value?.points) return `${value.points.length} points · ${value.points[0]?.date} à ${value.points.at(-1)?.date}`
-  return ''
-}
+
 export default function DataSearch() {
   const [params, setParams] = useSearchParams()
   const query = params.get('q') ?? ''
@@ -68,7 +50,7 @@ export default function DataSearch() {
         {selected.consumers.length ? <ul>{selected.consumers.map((c) => <li key={c.path}><Link to={c.path}>{c.tool}</Link></li>)}</ul> : <p>Référence disponible dans le catalogue, sans usage recensé dans ces outils.</p>}
         <h3>Données et provenance</h3>
         {selected.fields.map((field, i) => <section className="ds-field" key={`${field.label}-${i}`}>
-          <h4>{field.label}</h4>{summary(field) && <p className="ds-value">{summary(field)}</p>}<code>{field.registry}</code>
+          <h4>{field.label}</h4>{describeDataField(field) && <p className="ds-value">{describeDataField(field)}</p>}<code>{field.registry}</code>
           <dl><dt>Photographie</dt><dd>{unknown(field.metadata.asOf)}</dd><dt>Contrôle de la source</dt><dd>{unknown(field.metadata.checkedAt)}</dd><dt>Devise</dt><dd>{unknown(field.metadata.currency)}</dd><dt>Périmètre</dt><dd>{field.metadata.scope}</dd>{field.metadata.method && <><dt>Méthode</dt><dd>{field.metadata.method}</dd></>}</dl>
           {field.metadata.sourceUrls.length ? <ul>{field.metadata.sourceUrls.map((url) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{url}</a></li>)}</ul> : <p className="ds-note">Source individuelle non renseignée dans le registre.</p>}
           {field.metadata.note && <p className="ds-note">{field.metadata.note}</p>}
