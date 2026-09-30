@@ -188,24 +188,25 @@ async function testBrokerComparator(page) {
   // Le texte généré vit dans la value d'un <textarea> (bc-tweet-textarea) — jamais capturé par
   // innerText(), qui n'expose pas le contenu des champs de formulaire.
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
-  const ok = tweet.includes("Si tu transfères ton PEA") && tweet.includes("BoursoMarkets")
-    && tweet.includes("Quand tu passes un ordre") && tweet.includes("Direct Price")
-    && !tweet.includes("Liquidités rémunérées")
-    && !/à vérifier|à confirmer|non établi/i.test(tweet) && !/Livret|liquidités non rémunérées|vérifié le/i.test(tweet)
+  const ok = tweet.includes("🔄 Transfert du PEA") && tweet.includes("BoursoMarkets")
+    && tweet.includes("💰 Frais de courtage PEA") && tweet.includes("Direct Price")
+    && tweet.includes("💵 Liquidités rémunérées") && tweet.includes("preuve corroborée")
+    && !/undefined|NaN/i.test(tweet)
     && (await page.locator('.bc-evidence-broker').count()) === 2
     && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 0;
   await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
   await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('Saxo Bank'));
   const fortuneoSaxo = await page.locator('.bc-tweet-textarea').inputValue();
   await page.locator('.bc-evidence-broker').first().locator('summary').click();
-  const sourceOk = !fortuneoSaxo.includes('Liquidités rémunérées')
-    && !fortuneoSaxo.includes('Si tu investis automatiquement')
-    && !/à vérifier|à confirmer|non établi/i.test(fortuneoSaxo)
-    && fortuneoSaxo.includes('PEA Jeune ❌')
+  const sourceOk = fortuneoSaxo.includes('💵 Liquidités rémunérées')
+    && fortuneoSaxo.includes('📅 Achats automatiques sur PEA')
+    && fortuneoSaxo.includes('preuve corroborée')
+    && fortuneoSaxo.includes('PEA Jeune : Fortuneo ❌ · Saxo Bank ❌')
+    && fortuneoSaxo.includes('Plus de 150 ETF Amundi')
     && (await page.locator('.bc-evidence-broker').count()) === 2
     && (await page.locator('.bc-evidence').innerText()).includes('les conditions générales Fortuneo du 01/09/2025, art. 12 p. 35, excluent explicitement les intérêts')
     && (await page.locator('.bc-evidence').innerText()).includes('source externe');
-  record("Comparatif courtiers", ok && sourceOk, "duels réservés aux preuves directes et provenance externe visible au registre");
+  record("Comparatif courtiers", ok && sourceOk, "rubriques complètes avec réserves et provenance externe visibles");
 }
 
 async function testTweetMidi(page) {
