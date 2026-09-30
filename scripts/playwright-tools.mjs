@@ -80,12 +80,14 @@ async function testCalculateur(page) {
   await annualPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
   await page.locator("select.ic-control").first().selectOption("ethereum");
+  await page.locator('.ic-method-note').filter({ hasText: 'Série en USD' }).waitFor();
   const ethereumText = await page.locator("body").innerText();
   const ethereumDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   const ethereumCoverage = (await page.locator('.ic-method-note').innerText()).match(/Série en USD : (\d+) points présents dans le code sur (\d+) mois/);
   const ethereumMonthlyOk = ethereumCoverage && Number(ethereumCoverage[1]) > 12 && ethereumCoverage[1] === ethereumCoverage[2]
     && !ethereumText.includes('DCA non disponible pour Ethereum') && await ethereumDca.isEnabled();
   await ethereumDca.click();
+  await page.locator('.ic-mode-pill').filter({ hasText: 'DCA mensuel' }).waitFor();
   const ethereumDcaOk = (await page.locator('.ic-mode-pill').innerText()) === 'DCA mensuel';
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
@@ -95,7 +97,7 @@ async function testCalculateur(page) {
 
   const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-cac40-lump.png';
   record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
-    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel/DCA: ${ethereumMonthlyOk && ethereumDcaOk}`);
+    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel: ${ethereumMonthlyOk}, DCA: ${ethereumDcaOk}, couverture: ${JSON.stringify(ethereumCoverage)}`);
 }
 
 async function testPortfolioGenerator(page) {
