@@ -25,7 +25,8 @@
     "check-freshness": "node scripts/check-freshness.mjs",
     "audit:instrument-catalog": "node scripts/audit-instrument-catalog.mjs",
     "audit:calculator-series": "node scripts/audit-calculator-series.mjs",
-    "audit:instrument-listings": "node scripts/audit-instrument-listings.mjs && node scripts/test-listing-evidence.mjs"
+    "audit:instrument-listings": "node scripts/audit-instrument-listings.mjs && node scripts/test-listing-evidence.mjs",
+    "audit:index-facts": "node scripts/audit-index-facts.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

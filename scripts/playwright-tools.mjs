@@ -23,6 +23,7 @@ import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { stat } from "node:fs/promises";
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
+import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/pages/factsheet-tweets/data.js";
 import { CASES } from "../src/pages/concrete-cases/data.js";
 
@@ -252,6 +253,10 @@ async function testIndexComparator(page) {
     const text = await page.locator(".xc-preview-text").innerText();
     if (/L'EXPOSITION/.test(text) && /DIVERSIFICATION/.test(text) && /PERFORMANCE/.test(text) && /LE VERDICT/.test(text) && !/à revérifier|vérifié le|non vérifi[ée]|à vérifier/i.test(text)) ok++;
   }
+  await select.selectOption('monde');
+  const worldText = await page.locator('.xc-preview-text').innerText();
+  const sharedCountsOk = ['acwi', 'ftse-all-world', 'world'].every((id) =>
+    worldText.replaceAll('\u202f', ' ').includes(formatIndexConstituents(id, '2026-08-31')));
   // La famille Europe comporte désormais trois parts sur EURO STOXX 50 ;
   // exercer aussi l'export PNG, dont la hauteur dépend du nombre de lignes.
   await select.selectOption({ index: 0 });
@@ -262,7 +267,7 @@ async function testIndexComparator(page) {
   const imageFile = await stat(await europeImage.path());
   const imageOk = imageFile.size > 10000;
   const distinctionOk = /ceux des ETF et parts nommés, pas les rendements bruts des indices/.test(await page.locator('.xc-control-col').innerText());
-  record("Comparateur d'indices", ok === count && distinctionOk && imageOk, `${ok}/${count} familles avec les 4 blocs clés, distinction indice/ETF: ${distinctionOk}, image Europe: ${imageOk}`);
+  record("Comparateur d'indices", ok === count && distinctionOk && imageOk && sharedCountsOk, `${ok}/${count} familles avec les 4 blocs clés, photographies partagées: ${sharedCountsOk}, distinction indice/ETF: ${distinctionOk}, image Europe: ${imageOk}`);
 }
 
 async function testFeeImpact(page) {
@@ -326,6 +331,7 @@ async function testFactsheetTweets(page) {
   for (let index = 0; index < count; index++) {
     await select.selectOption({ index });
     const tweet = await draft.inputValue();
+    ok &&= tweet.includes(SHEETS[index].constituents.toLocaleString('fr-FR'));
     ok &&= tweet.includes('2025') && /Les (principaux )?secteurs/.test(tweet);
     ok &&= !/undefined|NaN/.test(tweet) && (await page.locator('.fs-sources a').count()) >= 1;
   }

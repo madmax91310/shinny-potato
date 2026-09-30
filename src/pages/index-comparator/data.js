@@ -1,8 +1,13 @@
+import { getIndexFacts, formatIndexConstituents } from '../../data/index-facts.js';
 import { getInstrumentComparatorReturns } from '../../data/instrument-comparator-returns.js';
 import { getInstrumentAum, getInstrumentAumBillions } from '../../data/instrument-aum.js';
 import { getInstrumentName, getInstrumentPeaStatus } from '../../data/instruments.js';
 import { requireInstrumentListing } from '../../data/instrument-listings.js';
 import { formatEtfTer } from '../../data/etf-ter.js';
+// Centralisation du 30/09/2026 : les commentaires de revue ci-dessous restent historiques ;
+// les comptages affichés utilisent les photographies explicites du registre.
+// Composition partagée : src/data/index-facts.js, par photographie explicite.
+// Les nombres 500/100 sont des périmètres nominaux (sociétés), pas des comptages de titres.
 // Données du Comparateur d'indices — extrait de App.jsx le 14/09/2026 (audit "outils", point 3)
 // pour aligner cet outil sur la convention data.js/lib.js/App.jsx du reste de l'application (cf.
 // CLAUDE.md) : App.jsx était le seul composant à mélanger données et logique/rendu dans un seul
@@ -39,10 +44,10 @@ export const FAMILIES = [
     indices: [
       // STOXX inclut explicitement grandes, moyennes et petites capitalisations.
       // https://stoxx.com/index/sxxp/ (consulté le 27/09/2026)
-      { name: 'STOXX 600', desc: '600 entreprises de grandes, moyennes et petites capitalisations européennes, dans 17 pays.', bullets: ['✅ UK + Suisse + Scandinavie inclus'], tag: 'Le plus large 🌍' },
-      { name: 'EURO STOXX 50', desc: 'Les 50 plus grosses boîtes de la zone euro uniquement.', tag: 'Ultra-concentré (ASML, SAP, LVMH…) 🎯' },
+      { name: 'STOXX 600', indexFacts: getIndexFacts('stoxx600', '2026-08-31'), desc: `${formatIndexConstituents('stoxx600', '2026-08-31')} entreprises de grandes, moyennes et petites capitalisations européennes, dans 17 pays.`, bullets: ['✅ UK + Suisse + Scandinavie inclus'], tag: 'Le plus large 🌍' },
+      { name: 'EURO STOXX 50', indexFacts: getIndexFacts('eurostoxx50', '2026-08-31'), desc: `Les ${formatIndexConstituents('eurostoxx50', '2026-08-31')} plus grosses boîtes de la zone euro uniquement.`, tag: 'Ultra-concentré (ASML, SAP, LVMH…) 🎯' },
       // https://www.msci.com/indexes/index/990500/msci-europe-index
-      { name: 'MSCI Europe', desc: 'Grandes et moyennes capitalisations de 15 pays développés européens.', tag: 'Très proche du STOXX 600 👯' },
+      { name: 'MSCI Europe', indexFacts: getIndexFacts('mscieurope', '2026-08-31'), desc: 'Grandes et moyennes capitalisations de 15 pays développés européens.', tag: 'Très proche du STOXX 600 👯' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -74,7 +79,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (facsheets STOXX/MSCI) le 01/09/2026.
-      chain: ['STOXX 600 (600 lignes)', 'MSCI Europe (396)', 'EURO STOXX 50 (50)'],
+      chain: [`STOXX 600 (${formatIndexConstituents('stoxx600', '2026-08-31')} lignes)`, `MSCI Europe (${formatIndexConstituents('mscieurope', '2026-08-31')})`, `EURO STOXX 50 (${formatIndexConstituents('eurostoxx50', '2026-08-31')})`],
       notes: ['⚠️ Le 50 concentre ton risque : ses 10 plus grosses lignes pèsent +41 % de l\'indice.', '→ Une forte dépendance à quelques grandes sociétés de la zone euro.'],
     },
     // Performance 2023-2025 des fonds ci-dessus. PCEU revu sur les fiches Amundi
@@ -127,9 +132,9 @@ export const FAMILIES = [
     label: '🌍 Monde large',
     intro: '« ETF monde » : derrière ces deux mots, certains fonds incluent les émergents et d’autres non 🌍\nMSCI World, ACWI et FTSE All-World : on compare 👇',
     indices: [
-      { name: 'MSCI World', desc: 'Les 1 283 plus grandes entreprises de 23 pays développés.', tag: 'Le classique du monde développé 🏛️' },
-      { name: 'MSCI ACWI', desc: 'Le MSCI World + les marchés émergents (Chine, Inde, Brésil…), 2 461 valeurs.', tag: 'Le monde presque entier 🌐' },
-      { name: 'FTSE All-World', desc: 'Grandes et moyennes entreprises des pays développés et émergents, comme l’ACWI : 4 263 valeurs au 31/08/2026.', tag: 'Le plus large des trois 🔭' },
+      { name: 'MSCI World', indexFacts: getIndexFacts('world', '2026-08-31'), desc: `Les ${formatIndexConstituents('world', '2026-08-31')} grandes et moyennes entreprises de 23 pays développés au 31/08/2026.`, tag: 'Le classique du monde développé 🏛️' },
+      { name: 'MSCI ACWI', indexFacts: getIndexFacts('acwi', '2026-08-31'), desc: `Le MSCI World + les marchés émergents (Chine, Inde, Brésil…), ${formatIndexConstituents('acwi', '2026-08-31')} valeurs au 31/08/2026.`, tag: 'Le monde presque entier 🌐' },
+      { name: 'FTSE All-World', indexFacts: getIndexFacts('ftse-all-world', '2026-08-31'), desc: `Grandes et moyennes entreprises des pays développés et émergents, comme l’ACWI : ${formatIndexConstituents('ftse-all-world', '2026-08-31')} valeurs au 31/08/2026.`, tag: 'Le plus large des trois 🔭' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -161,7 +166,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, juin-juillet 2026) le 01/09/2026.
-      chain: ['MSCI World (1 283 lignes)', 'MSCI ACWI (2 461)', 'FTSE All-World (4 263 au 31/08/2026)'],
+      chain: [`MSCI World (${formatIndexConstituents('world', '2026-08-31')} lignes)`, `MSCI ACWI (${formatIndexConstituents('acwi', '2026-08-31')})`, `FTSE All-World (${formatIndexConstituents('ftse-all-world', '2026-08-31')} au 31/08/2026)`],
       notes: ['⚠️ Peu importe lequel des trois tu prends : ils pèsent tous 60 à 70 % d\'actions américaines.', '→ Le vrai choix, c\'est les émergents (dedans ou pas) — pas le poids des USA, qui est de toute façon similaire partout.'],
     },
     // Performance 2023-2025 (source : justETF/extraetf, recherche web du 02/09/2026). CW8 retenu en
@@ -200,7 +205,7 @@ export const FAMILIES = [
       // Le comité applique notamment des critères de flottant et de liquidité ;
       // il ne prend pas mécaniquement les 500 plus grandes capitalisations.
       // https://www.spglobal.com/spdji/en/research-insights/index-literacy/the-sp-500-and-the-dow/
-      { name: 'S&P 500', desc: 'Environ 500 grandes entreprises américaines sélectionnées selon plusieurs critères, dont le flottant et la liquidité.', tag: 'La référence mondiale 🏆' },
+      { name: 'S&P 500', indexFacts: getIndexFacts('sp500-pea', '2026-06-30'), desc: 'Environ 500 grandes entreprises américaines sélectionnées selon plusieurs critères, dont le flottant et la liquidité.', tag: 'La référence mondiale 🏆' },
       { name: 'Nasdaq 100', desc: 'Les 100 plus grosses non-financières du Nasdaq : ultra tech.', tag: 'Le plus concentré tech 💻' },
       { name: 'MSCI USA', desc: 'Grandes ET moyennes capitalisations US, 527 valeurs.', tag: 'Un peu plus large que le S&P 500 📏' },
       { name: 'Russell 1000', desc: 'Les 1 000 plus grandes valeurs US, ~93 % de la capitalisation du marché américain.', tag: 'Le plus large des quatre 🌊' },
@@ -477,7 +482,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI, juillet 2026) le 01/09/2026.
-      chain: ['MSCI World (1 283 lignes, univers de départ)', 'MSCI World Value (401)', 'MSCI World Quality (301)'],
+      chain: [`MSCI World (${formatIndexConstituents('world', '2026-08-31')} lignes, univers de départ)`, 'MSCI World Value (401)', 'MSCI World Quality (301)'],
       notes: ['⚠️ Contrairement à un indice classique, ces indices factoriels ne s\'emboîtent pas les uns dans les autres : ce sont des sous-ensembles indépendants du MSCI World, pas des poupées russes.'],
     },
     // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Value Factor recoupé
@@ -767,8 +772,8 @@ export const FAMILIES = [
       // Nikkei choisit des valeurs liquides de la section Prime en équilibrant
       // les secteurs, pas les 225 plus grandes par capitalisation.
       // https://indexes.nikkei.co.jp/en/nkave/index/profile
-      { name: 'Nikkei 225', desc: '225 valeurs liquides sélectionnées à la Bourse de Tokyo ; indice pondéré par le PRIX de l\'action (pas la capitalisation).', tag: 'Le plus connu, pas le plus rigoureux 📰' },
-      { name: 'TOPIX', desc: '1 637 valeurs (juillet 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation.', bullets: ['⚠️ Réforme en cours : retrait graduel de 600+ valeurs à partir d\'oct. 2026, étalé sur 2 ans — passage sous 1 000 valeurs attendu vers 2028, pas dès octobre'], tag: 'Le plus large et le plus représentatif 🗾' },
+      { name: 'Nikkei 225', indexFacts: getIndexFacts('nikkei225', '2026-08-31'), desc: `${formatIndexConstituents('nikkei225', '2026-08-31')} valeurs liquides sélectionnées à la Bourse de Tokyo ; indice pondéré par le PRIX de l'action (pas la capitalisation).`, tag: 'Le plus connu, pas le plus rigoureux 📰' },
+      { name: 'TOPIX', indexFacts: getIndexFacts('topix', '2026-07-31'), desc: `${formatIndexConstituents('topix', '2026-07-31')} valeurs (juillet 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation.`, bullets: ['⚠️ Réforme en cours : retrait graduel de 600+ valeurs à partir d\'oct. 2026, étalé sur 2 ans — passage sous 1 000 valeurs attendu vers 2028, pas dès octobre'], tag: 'Le plus large et le plus représentatif 🗾' },
       { name: 'MSCI Japan IMI', desc: '957 grandes, moyennes ET petites capitalisations japonaises (méthodologie MSCI, comparable aux autres indices MSCI Pays).', tag: 'Le standard international 🌐' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
@@ -807,7 +812,7 @@ export const FAMILIES = [
       // IMI recompté à la même date (960 au 31/05/2026, MSCI) : écart de 3 avec le chiffre existant,
       // dans la marge de bruit normal de rebalancement déjà documentée pour d'autres familles
       // (≤ quelques unités), pas corrigé.
-      chain: ['TOPIX (1 637 lignes, juillet 2026)', 'MSCI Japan IMI (957)', 'Nikkei 225 (225, prix-pondéré)'],
+      chain: [`TOPIX (${formatIndexConstituents('topix', '2026-07-31')} lignes, juillet 2026)`, 'MSCI Japan IMI (957)', `Nikkei 225 (${formatIndexConstituents('nikkei225', '2026-08-31')}, prix-pondéré)`],
       notes: ['⚠️ Le Nikkei 225, pondéré par le prix de l\'action et non la capitalisation, peut sur-pondérer des valeurs chères mais économiquement mineures.', '→ TOPIX et MSCI Japan (pondérés par capitalisation) sont jugés plus représentatifs de l\'économie japonaise réelle.'],
     },
     // Performance 2023-2025 : Nikkei 225, part 1C en JPY selon DWS (document du 16/02/2026) ;
@@ -957,9 +962,9 @@ export const FAMILIES = [
     label: '🔎 Monde : quels segments ?',
     intro: 'World, World sans États-Unis, petites capitalisations : trois façons très différentes d’investir dans les pays développés 🌍\nOn regarde ce qui change 👇',
     indices: [
-      { name: 'MSCI World', desc: 'Grandes et moyennes capitalisations de 23 pays développés ; les États-Unis en représentent la plus grande part.', tag: 'Le cœur développé 🌍' },
-      { name: 'MSCI World ex USA', desc: 'Grandes et moyennes capitalisations des pays développés hors États-Unis : 755 sociétés au 31/08/2026.', tag: 'Réduire le poids américain 🇺🇸' },
-      { name: 'MSCI World Small Cap', desc: 'Petites capitalisations des pays développés : 3 866 sociétés au 31/08/2026.', tag: 'Ajouter les petites entreprises 🔎' },
+      { name: 'MSCI World', indexFacts: getIndexFacts('world', '2026-08-31'), desc: 'Grandes et moyennes capitalisations de 23 pays développés ; les États-Unis en représentent la plus grande part.', tag: 'Le cœur développé 🌍' },
+      { name: 'MSCI World ex USA', indexFacts: getIndexFacts('world-ex-usa', '2026-08-31'), desc: `Grandes et moyennes capitalisations des pays développés hors États-Unis : ${formatIndexConstituents('world-ex-usa', '2026-08-31')} sociétés au 31/08/2026.`, tag: 'Réduire le poids américain 🇺🇸' },
+      { name: 'MSCI World Small Cap', indexFacts: getIndexFacts('world-small-cap', '2026-08-31'), desc: `Petites capitalisations des pays développés : ${formatIndexConstituents('world-small-cap', '2026-08-31')} sociétés au 31/08/2026.`, tag: 'Ajouter les petites entreprises 🔎' },
     ],
     block2Title: '2️⃣ EXEMPLES D’ETF DISPONIBLES (CTO) 💳',
     etfGroups: [
@@ -971,7 +976,7 @@ export const FAMILIES = [
         funds: [{ name: getInstrumentName("IE00BF4RFH31", "index"), listing: requireInstrumentListing('IE00BF4RFH31'), isin: 'IE00BF4RFH31', ter: formatEtfTer('IE00BF4RFH31', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("IE00BF4RFH31", "index") }] },
     ],
     diversification: {
-      chain: ['World (1 280, août 2026)', 'World ex USA (755, août 2026)', 'World Small Cap (3 866, août 2026)'],
+      chain: [`World (${formatIndexConstituents('world', '2026-08-31')}, août 2026)`, `World ex USA (${formatIndexConstituents('world-ex-usa', '2026-08-31')}, août 2026)`, `World Small Cap (${formatIndexConstituents('world-small-cap', '2026-08-31')}, août 2026)`],
       notes: ['⚠️ Le World ex USA conserve les grandes et moyennes capitalisations : il retire un pays, pas une tranche de taille.', '→ World Small Cap ajoute une tranche de taille absente du World classique ; il contient encore beaucoup d’entreprises américaines.'],
     },
     // SWDA et WSML : séries USD du Générateur, mêmes ISIN ; confiance élevée.
