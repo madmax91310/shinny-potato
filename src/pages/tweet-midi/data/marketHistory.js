@@ -1,17 +1,17 @@
 // Formats "Anniversaire" et "Performance depuis" (Tweet Midi) — aucune donnée de prix dupliquée
 // ici : tout vient directement de la bibliothèque déjà vérifiée du Calculateur d'investissement
-// (src/pages/investment-calculator/data.js), via les mêmes fonctions d'interpolation que le
+// (src/data/market-history.js), via les mêmes fonctions d'interpolation que le
 // Calculateur utilise lui-même (src/pages/investment-calculator/lib.js). Si cette bibliothèque
 // est mise à jour (nouveaux points, nouvel actif), ces deux formats suivent automatiquement.
 import {
   ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS,
-} from "../../investment-calculator/data.js";
+} from '../../../data/market-history.js';
 import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../investment-calculator/lib.js";
 
 const LATEST_YEAR = Number(LATEST_YM.slice(0, 4));
 
 // getAssetMinDate (plancher LVMH pré-2020-12 non vérifié) déplacé le 04/09/2026 dans
-// investment-calculator/data.js — c'était la seule protection contre les points LVMH "NON
+// src/data/market-history.js — c'était la seule protection contre les points LVMH "NON
 // VÉRIFIÉS... valeurs illustratives" jusqu'à cette date, désormais partagée avec le Calculateur
 // lui-même plutôt que dupliquée ici. Réexportée pour ne rien casser côté appelants existants.
 export { getAssetMinDate };
@@ -162,7 +162,7 @@ export function getBenchmarkPerformance(startYm, endYm) {
 
 // Trois actifs du Calculateur (stoxx600, sp500, msciWorld) sont stockés en indice total-return
 // REBASÉ à une valeur arbitraire ("base 10 000 au [date]", cf. commentaires sur ces actifs dans
-// investment-calculator/data.js) — un niveau interne qui sert uniquement au calcul de ratio du
+// src/data/market-history.js) — un niveau interne qui sert uniquement au calcul de ratio du
 // Calculateur, jamais un niveau que l'actif "cote" réellement quelque part. Le format Anniversaire
 // demande à l'utilisateur de saisir le niveau ACTUEL réel (vérifié sur Yahoo Finance...) et de le
 // comparer au prix historique affiché : pour ces 3 actifs, le prix historique affiché (base 10 000
@@ -176,7 +176,7 @@ export function getBenchmarkPerformance(startYm, endYm) {
 // pourcentage : pour ces 3 actifs, seul le pourcentage est affiché (cf. hasComparableLevel).
 const REBASED_INDEX_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
 
-// Trois autres actifs (SPARSE_MONTHLY_DATA_IDS, importé de investment-calculator/data.js — même
+// Trois autres actifs (SPARSE_MONTHLY_DATA_IDS, importé de src/data/market-history.js — même
 // source que le Calculateur, pas une liste redéfinie ici) n'ont, sur toute leur plage actuellement
 // valide pour ce format, QUE des points annuels (décembre) : ethereum, cac40, et lvmh (dont la
 // plage vérifiée démarre à 2020-12, cf. getAssetMinDate, elle-même exclusivement composée de
@@ -185,7 +185,7 @@ const REBASED_INDEX_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
 // comme "le prix en [mois]" qui ne correspond en réalité à aucune clôture réelle vérifiable
 // ailleurs. Même défaut que SOXX et l'argent avant leur passage en série mensuelle réelle (30/08 et
 // 02/09/2026) ; resté ouvert par erreur pour ces 3-là lors de l'audit du 03/09/2026 — le "cac40"
-// corrigé dans le commit du 02/09 était en réalité celui de portfolio-generator/data.js (rendements
+// corrigé dans le commit du 02/09 était en réalité celui de src/data/portfolio-assets.js (rendements
 // annuels), un fichier distinct sans rapport avec celui-ci. Mesuré à l'implémentation : 0 des
 // options actuellement proposées (9 pour ethereum, 10 pour cac40, 5 pour lvmh) ne tombe sur un vrai
 // point. Exclus du format Anniversaire pour cette raison ; restent disponibles pour Performance

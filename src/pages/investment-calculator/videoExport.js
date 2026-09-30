@@ -10,7 +10,7 @@
 // vrais points adjacents à l'instant t écoulé (mode Comparatif, drawComparativeFrame/revealSide) —
 // jamais une troisième source de donnée inventée entre les deux.
 import { fmtEUR, fmtPct, computeAssetSeries, sparseAssetSeries, indexAnchorPoints, applyPriceOverride, ymIndex } from './lib'
-import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_SHORT } from './data'
+import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_SHORT } from '../../data/market-history.js'
 
 const W = 1080
 const H = 1080

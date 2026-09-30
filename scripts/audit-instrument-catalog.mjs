@@ -11,13 +11,13 @@ import { COMPARATOR_ISIN_BY_FAMILY_KEY, getInstrumentComparatorReturns } from '.
 import { ETFS } from '../src/pages/etf-sheets/data.js';
 import { DEFAULT_THEMES } from '../src/pages/etf-tweets/data/themes.js';
 import { FAMILIES } from '../src/pages/index-comparator/data.js';
-import { ASSETS } from '../src/pages/portfolio-generator/data.js';
+import { ASSETS } from '../src/data/portfolio-assets.js';
 
 const collections = [
   ['sheet', 'src/pages/etf-sheets/data.js', ETFS.map(item => ({ ...item, displayName: item.name }))],
   ['tweet', 'src/pages/etf-tweets/data/themes.js', DEFAULT_THEMES.flatMap(theme => theme.etfs.map(item => ({ ...item, displayName: item.nom })))],
   ['index', 'src/pages/index-comparator/data.js', FAMILIES.flatMap(family => (family.etfGroups ?? []).flatMap(group => (group.funds ?? []).map(item => ({ ...item, displayName: item.name }))))],
-  ['portfolio', 'src/pages/portfolio-generator/data.js', ASSETS.filter(item => item.isin).map(item => ({ ...item, displayName: item.name }))],
+  ['portfolio', 'src/data/portfolio-assets.js', ASSETS.filter(item => item.isin).map(item => ({ ...item, displayName: item.name }))],
 ];
 const aumSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-aum-2026-09-29.json', import.meta.url), 'utf8'));
 
@@ -208,7 +208,7 @@ for (const family of FAMILIES) for (const row of family.perfFunds ?? []) {
     errors++;
   }
 }
-const portfolioSource = readFileSync(new URL('../src/pages/portfolio-generator/data.js', import.meta.url), 'utf8');
+const portfolioSource = readFileSync(new URL('../src/data/portfolio-assets.js', import.meta.url), 'utf8');
 if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length !== returnUsages) {
   console.error('Générateur : une série ISIN reste codée dans l’outil.');
   errors++;

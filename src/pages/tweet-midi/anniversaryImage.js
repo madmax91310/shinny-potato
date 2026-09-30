@@ -1,4 +1,4 @@
-import { MONTHS_FULL } from '../investment-calculator/data.js'
+import { MONTHS_FULL } from '../../data/market-history.js'
 import { getHistoricalPrice, ymForYearsBack, fmtYm } from './data/marketHistory.js'
 import { getMarketAsset, MODES, TODAY } from './lib.js'
 

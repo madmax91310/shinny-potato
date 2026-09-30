@@ -1,6 +1,6 @@
 import { ETFS } from '../etf-sheets/data.js'
 import { getInstrumentDuelSeries } from '../../data/instrument-returns.js'
-import { YEARS, getAsset } from '../portfolio-generator/data.js'
+import { YEARS, getAsset } from '../../data/portfolio-assets.js'
 import { computeYearlyPerf } from '../portfolio-generator/performance.js'
 import { ITEM_BY_ID, CATALOG, FX_SOURCE, euroReturn } from './catalog.js'
 

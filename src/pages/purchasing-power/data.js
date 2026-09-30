@@ -1,13 +1,13 @@
 // Données du Simulateur de pouvoir d'achat — séries annuelles 2010-2026, sourcées INSEE (voir
 // commentaire au-dessus de chaque série). Convention commune à toutes les séries "taux" (ALIMENTATION,
-// ENERGIE, et INFLATION réutilisée depuis investment-calculator/data.js) : la valeur de l'année Y est
+// ENERGIE, et INFLATION réutilisée depuis src/data/market-history.js) : la valeur de l'année Y est
 // la variation moyenne annuelle des prix DURANT l'année Y (communiqué INSEE publié en général en
 // janvier de l'année Y+1), donc le facteur cumulé entre une année de départ Y0 et aujourd'hui se calcule
 // en composant les taux de Y0+1 à 2026 inclus (cf. cumulateRate dans lib.js) — jamais le taux de Y0
 // lui-même, qui décrit la hausse déjà passée avant le point de départ.
 // Les séries IRL et SMIC sont des NIVEAUX (pas des taux) : le facteur se calcule par un simple ratio
 // niveau[2026] / niveau[Y0] (cf. cumulateLevel dans lib.js).
-export { INFLATION as GENERAL_INFLATION, LATEST_YM, AMOUNT_PRESETS } from '../investment-calculator/data.js'
+export { INFLATION as GENERAL_INFLATION, LATEST_YM, AMOUNT_PRESETS } from '../../data/market-history.js'
 
 export const YEAR_MIN = 2010
 export const YEAR_MAX = 2025 // dernière année de départ sélectionnable — 2026 est l'année d'arrivée (en cours, non terminée)

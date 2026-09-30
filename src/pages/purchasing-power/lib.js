@@ -1,7 +1,7 @@
 import { GENERAL_INFLATION, YEAR_MAX, POSTES, SMIC } from './data.js'
 
 // Année d'arrivée fixe : "aujourd'hui" au sens de la fraîcheur de données de l'app (cf. LATEST_YM
-// dans investment-calculator/data.js, qui s'arrête à 2026-08) — jamais sélectionnable par
+// dans src/data/market-history.js, qui s'arrête à 2026-08) — jamais sélectionnable par
 // l'utilisateur, seule l'année de départ l'est (2010 à YEAR_MAX).
 export const CURRENT_YEAR = 2026
 

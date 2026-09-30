@@ -22,7 +22,7 @@ import { formatEtfTer } from '../../data/etf-ter.js';
 // de référence fourni. Familles suivantes rédigées à partir de données réelles
 // vérifiées (cf. commentaire de sourcing sur chaque famille), en reprenant
 // pour plusieurs fonds les ISIN déjà vérifiés ailleurs dans l'application
-// (src/pages/etf-sheets/data.js, src/pages/portfolio-generator/data.js) —
+// (src/pages/etf-sheets/data.js, src/data/portfolio-assets.js) —
 // jamais une nouvelle donnée non recoupée quand une donnée déjà vérifiée
 // cette session existe.
 //
@@ -418,7 +418,7 @@ export const FAMILIES = [
     // d'un autre jeu de chiffres — ce diagnostic était FAUX. Le fonds coté (IE00BK5BR733, part USD
     // Acc) a bien 7,86 % / 12,06 % / 25,67 % net de frais sur 2023/2024/2025 : confirmé par 2
     // requêtes web indépendantes le 23/09/2026, dont une directement sur les fiches officielles
-    // Vanguard — valeur identique à portfolio-generator/data.js pour ce même ISIN.
+    // Vanguard — valeur identique à src/data/portfolio-assets.js pour ce même ISIN.
     // L'ancien jeu de chiffres (4,12 %
     // etc.) n'a pas pu être retracé à une source fiable lors de cette revérification.
     perfFunds: [
@@ -481,7 +481,7 @@ export const FAMILIES = [
       notes: ['⚠️ Contrairement à un indice classique, ces indices factoriels ne s\'emboîtent pas les uns dans les autres : ce sont des sous-ensembles indépendants du MSCI World, pas des poupées russes.'],
     },
     // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Value Factor recoupé
-    // avec la série "actions_value" déjà vérifiée cette session dans portfolio-generator/data.js
+    // avec la série "actions_value" déjà vérifiée cette session dans src/data/portfolio-assets.js
     // (même fonds, écart <0,1 pt sur les 3 années) — confirme la fiabilité de la recherche.
     perfFunds: [
       { key: 'value', label: 'iShares Edge MSCI World Value Factor', ...getInstrumentComparatorReturns('IE00BP3QZB59') },
@@ -504,7 +504,7 @@ export const FAMILIES = [
   // ── Famille 6a : Dividendes (CTO) ────────────────────────────────────
   // Sources : justETF (recherche web du 01/09/2026). High Dividend et
   // Quality Dividend (part Dist) déjà référencés ailleurs dans l'appli
-  // (portfolio-generator/data.js) ; part Acc et Aristocrats confirmées
+  // (src/data/portfolio-assets.js) ; part Acc et Aristocrats confirmées
   // cette session. Contenu inchangé depuis la scission du 02/09/2026 (ces
   // 3 indices n'ont toujours aucun équivalent PEA) — seul le titre du
   // bloc 2 a été mis à jour pour ne plus dire « aucune option PEA », ce
@@ -566,7 +566,7 @@ export const FAMILIES = [
     // - high_div (IE00B8GKDB10) : 11,51 % / 9,39 % / 26,40 % confirmé par 2 requêtes web
     //   indépendantes le 23/09/2026 (documentation officielle Vanguard + recoupement justETF/
     //   fiches fonds) — identique à la série déjà vérifiée pour ce même fonds dans
-    //   portfolio-generator/data.js ("high_dividend"/"high_dividend_dist"), donc cohérence
+    //   src/data/portfolio-assets.js ("high_dividend"/"high_dividend_dist"), donc cohérence
     //   rétablie entre les deux outils sur cet ISIN.
     // - quality_div (IE00BYYHSQ67) : 17,16 % / 9,76 % / 23,97 %, mêmes
     //   rendements NAV officiels que la part distribuante du Générateur.

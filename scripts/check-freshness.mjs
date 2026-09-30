@@ -48,13 +48,13 @@ const TOOLS = [
   {
     key: "calculateur",
     label: "Calculateur d'investissement",
-    file: "src/pages/investment-calculator/data.js",
+    file: "src/data/market-history.js",
     entryRegex: /^ {2}([a-zA-Z0-9]+):\s*\{/,
   },
   {
     key: "portefeuilles",
     label: "Générateur de portefeuilles",
-    file: "src/pages/portfolio-generator/data.js",
+    file: "src/data/portfolio-assets.js",
     entryRegex: /id:\s*"([a-z0-9_]+)",\s*name:\s*"([^"]+)"/,
   },
   {

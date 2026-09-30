@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Inventaire des bases de performances du Générateur. Un accord entre outils ne vérifie pas
 // une source primaire : seuls les fonds recoupés avec l'émetteur sont marqués « confirmé ».
-import { ASSETS } from '../src/pages/portfolio-generator/data.js'
+import { ASSETS } from '../src/data/portfolio-assets.js'
 import { VERIFIED_RETURNS } from '../src/data/verified-returns.js'
 
 const groups = {

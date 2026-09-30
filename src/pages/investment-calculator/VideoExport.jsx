@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ASSET_ORDER, ASSETS, SPARSE_MONTHLY_DATA_IDS } from './data'
+import { ASSET_ORDER, ASSETS, SPARSE_MONTHLY_DATA_IDS } from '../../data/market-history.js'
 import {
   isVideoExportSupported,
   renderResultVideo,

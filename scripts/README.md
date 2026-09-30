@@ -76,7 +76,7 @@ date avant de corriger les valeurs enregistrées.
 ## `audit-performance-consistency.mjs`
 
 Même principe qu'`audit-etf-consistency.mjs`, mais pour la **performance annuelle** (2023/2024/2025)
-plutôt que le TER — entre `portfolio-generator/data.js` (tableau `r`) et `index-comparator/data.js`
+plutôt que le TER — entre `src/data/portfolio-assets.js` (tableau `r`) et `index-comparator/data.js`
 (`perfFunds`). Un mapping explicite relie chaque ligne de performance à l'ISIN du fonds
 réellement cité, y compris lorsque la famille présente plusieurs ETF :
 
@@ -87,7 +87,7 @@ npm run audit:performance-consistency
 Écrit le 23/09/2026 suite à un signalement utilisateur ayant révélé que le tweet "Dividendes (CTO)"
 du Comparateur d'indices portait deux séries de performance fausses depuis leur création, en
 désaccord silencieux avec les séries déjà vérifiées pour les mêmes fonds dans
-`portfolio-generator/data.js` — un type d'erreur qu'`audit-etf-consistency.mjs` ne pouvait pas
+`src/data/portfolio-assets.js` — un type d'erreur qu'`audit-etf-consistency.mjs` ne pouvait pas
 détecter (il ne couvre que le TER). Le même audit a ensuite trouvé 2 autres divergences réelles
 (MSCI EM IMI, Nasdaq-100) le même jour.
 

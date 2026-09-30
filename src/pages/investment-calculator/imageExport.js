@@ -1,4 +1,4 @@
-import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_FULL, SPARSE_MONTHLY_DATA_IDS } from './data'
+import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_FULL, SPARSE_MONTHLY_DATA_IDS } from '../../data/market-history.js'
 import { fmtEUR, fmtPct, pct, ymIndex } from './lib'
 
 const INK = '#172437'

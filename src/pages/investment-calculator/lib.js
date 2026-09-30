@@ -1,6 +1,6 @@
 // Logique de calcul — reprise telle quelle de la session d'origine (vanilla JS),
 // juste modernisée en syntaxe ES / modules, aucune formule modifiée.
-import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION, INCONSISTENT_MONTHLY_DATA_IDS } from './data'
+import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/market-history.js'
 
 export function ymIndex(ym) {
   const [y, m] = ym.split('-')
