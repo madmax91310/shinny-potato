@@ -185,6 +185,17 @@ async function testEtfSheets(page) {
 async function testBrokerComparator(page) {
   await page.goto(`${BASE}/comparatif-courtiers`, { waitUntil: "networkidle" });
   await page.waitForTimeout(150);
+  await page.waitForFunction(() => {
+    const canvas = document.querySelector('.bc-versus-canvas');
+    return canvas?.width === 1600 && canvas?.height === 900;
+  });
+  const versusBefore = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
+  const [duelDownload] = await Promise.all([
+    page.waitForEvent('download'),
+    page.getByRole('button', { name: 'Télécharger l’image PNG' }).click(),
+  ]);
+  const versusOk = versusBefore.startsWith('data:image/png;base64,') && versusBefore.length > 30000
+    && duelDownload.suggestedFilename() === 'duel-courtiers-tr-bourso.png';
   // Le texte généré vit dans la value d'un <textarea> (bc-tweet-textarea) — jamais capturé par
   // innerText(), qui n'expose pas le contenu des champs de formulaire.
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
@@ -196,7 +207,18 @@ async function testBrokerComparator(page) {
     && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 0;
   await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
   await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('Saxo Bank'));
+  await page.waitForFunction((previous) => {
+    const canvas = document.querySelector('.bc-versus-canvas');
+    return canvas?.width === 1600 && canvas.toDataURL('image/png') !== previous;
+  }, versusBefore);
   const fortuneoSaxo = await page.locator('.bc-tweet-textarea').inputValue();
+  let previousVersus = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
+  for (const duo of ['IBKR vs XTB', 'CA vs BD']) {
+    await page.locator('.bc-duel-chip').filter({ hasText: duo }).click();
+    await page.waitForFunction((previous) => document.querySelector('.bc-versus-canvas')?.toDataURL('image/png') !== previous, previousVersus);
+    previousVersus = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
+  }
+  await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
   await page.locator('.bc-evidence-broker').first().locator('summary').click();
   const sourceOk = fortuneoSaxo.includes('💵 Liquidités rémunérées')
     && fortuneoSaxo.includes('📅 Achats automatiques sur PEA')
@@ -206,7 +228,7 @@ async function testBrokerComparator(page) {
     && (await page.locator('.bc-evidence-broker').count()) === 2
     && (await page.locator('.bc-evidence').innerText()).includes('les conditions générales Fortuneo du 01/09/2025, art. 12 p. 35, excluent explicitement les intérêts')
     && (await page.locator('.bc-evidence').innerText()).includes('source externe');
-  record("Comparatif courtiers", ok && sourceOk, "rubriques complètes avec réserves et provenance externe visibles");
+  record("Comparatif courtiers", ok && sourceOk && versusOk, "rubriques complètes, logos officiels et image PNG du duel");
 }
 
 async function testTweetMidi(page) {
