@@ -1,4 +1,4 @@
-# Bibliothèque commune des instruments
+# Bibliothèque commune des données
 
 Les outils identifient une part par son ISIN et lisent ses données partagées ici.
 Les contenus des fiches et formats communs résident aussi dans cette bibliothèque ;
@@ -9,6 +9,8 @@ les pages gardent leur logique d’affichage. Les chiffres partagés sont servis
 | Identité et libellés | `instruments.js` | Fiches ETF, Comparatif ETF, Comparateur d’indices, Générateur |
 | Frais | `etf-ter.js` | Fiches ETF, Comparatif ETF, Comparateur d’indices |
 | Encours | `instrument-aum.js` | Fiches ETF, Comparateur d’indices |
+| Cotations, ticker, place et devise | `instrument-listings.js` | Fiches ETF, Comparatifs ETF, Comparateur d’indices |
+| Composition des indices par photographie | `index-facts.js` | Coulisses des indices, Comparateur d’indices |
 | Caractéristiques | `instrument-facts.js` | Fiches ETF, Comparateur d’indices |
 | Éligibilité PEA documentée | `instrument-pea.js` | Fiches ETF, Comparatif ETF, Comparateur d’indices |
 | Rendements 2020–2025 | `instrument-returns.js`, `verified-returns.js` | Générateur, Fiches ETF, Duels de portefeuilles, fiches de composition |
@@ -37,3 +39,27 @@ fiches ETF importent directement les registres de `src/data/`.
 Pour ajouter une part ou modifier un rendement, mettre d’abord à jour sa série
 dans `src/data/`, puis lancer `npm run audit:instrument-catalog`,
 `npm run audit:performance-consistency` et les vérifications des outils concernés.
+
+
+## Centralisation : suite utile
+
+1. Étendre le registre aux faits des indices encore propres au comparateur
+   (MSCI USA, Russell 1000, familles émergentes, facteurs, dividendes et Chine),
+   avec identifiants stables et photographies explicites. Les commentaires existants
+   ne suffisent pas toujours à établir une date exacte ; ne pas en inventer.
+2. Ajouter une recherche commune par ISIN, nom, ticker ou identifiant d’indice,
+   indiquant le registre, les photographies, les sources et les outils consommateurs.
+   Les registres restent séparés par nature ; une recherche commune ne les fusionne pas.
+3. Harmoniser progressivement les métadonnées de source, date de photographie,
+   date de contrôle, devise et périmètre. Étendre les audits aux nouveaux consommateurs.
+
+Les courtiers (`src/pages/broker-comparator/data.js` et `evidence.js`), les faits de
+marché et les cas concrets restent propres à leur outil. Leur déplacement vers
+`src/data/` faciliterait le rangement, mais ne résoudrait à lui seul aucun doublon
+identifié entre outils : à faire lorsqu’un second consommateur apparaît.
+Les scénarios, exemples pédagogiques et textes éditoriaux restent distincts des faits.
+
+Les compositions communes migrées le 30/09/2026 conservent les valeurs déjà sourcées
+au dépôt. Le TOPIX d’avril et de juillet reste distinct ; les anciennes valeurs World
+et ACWI sans date exacte sont archivées sous `legacy-undated`.
+Contrôle : `npm run audit:index-facts`, vérification des fiches, build et Playwright.

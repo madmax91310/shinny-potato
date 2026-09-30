@@ -67,6 +67,14 @@ réutilise la série d'inflation générale de investment-calculator plutôt que
 Une correction en amont se propage alors automatiquement — mais ça crée aussi un angle mort :
 penser à revérifier les outils qui dépendent d'un fichier qu'on modifie.
 
+Les compositions d’indices sont dans `src/data/index-facts.js`, par identifiant et date
+explicite de photographie (source, comptage de titres, pays, secteurs, principales lignes).
+Les Fiches d’indices et le Comparateur d’indices consomment ce registre. Une nouvelle date
+ajoute une photographie ; elle ne remplace pas les anciennes. `legacy-undated` conserve
+les anciens comptages dont la date exacte manque, sans les utiliser comme valeurs actuelles.
+Les nombres nominaux de sociétés (S&P 500, Nasdaq 100) ne sont pas des comptages de titres.
+`npm run audit:index-facts` contrôle les références, sources, dates et divergences et tourne en CI.
+
 ## Méthode de sourcing
 
 - WebFetch est bloqué dans ce sandbox — seul WebSearch (résumé par IA) est disponible, et ses
