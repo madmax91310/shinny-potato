@@ -29,6 +29,7 @@
     "audit:index-facts": "node scripts/audit-index-facts.mjs",
     "data:search": "node scripts/search-data.mjs",
     "audit:data-catalog": "node scripts/audit-data-catalog.mjs",
+    "report:data-provenance": "node scripts/report-data-provenance.mjs",
     "audit:data-provenance": "node scripts/audit-data-provenance.mjs"
   },
   "dependencies": {

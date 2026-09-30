@@ -10,20 +10,39 @@ import { REVIEWED_INDEX_SNAPSHOTS } from '../src/data/index-source-review.js';
 import { VERIFIED_RETURNS } from '../src/data/verified-returns.js';
 import { ARCHIVE_SOURCE_REVIEW } from '../src/data/archive-source-review.js';
 import { INDEX_FACTS } from '../src/data/index-facts.js';
+import { SHEETS } from '../src/data/index-factsheets.js';
+import { getDataProvenanceReport, formatDataProvenanceReport } from './data-provenance-report.mjs';
 
-const unresolved = DATA_CATALOG.flatMap(r => r.fields.filter(f => !f.metadata.sourceUrls.length).map(f => ({ id: r.id, field: f })));
-assert.equal(unresolved.length, 16, 'Reliquat sans URL modifié : une nouvelle preuve doit être revue explicitement');
-assert.equal(ARCHIVE_SOURCE_REVIEW.length, 19);
-for (const { id, field } of unresolved) {
-  const review = ARCHIVE_SOURCE_REVIEW.find(r => r.id === id && (r.key ? field.value === INDEX_FACTS[id][r.key] : true));
-  assert(review, `${id}: nouvelle absence de source sans revue individuelle`);
-  assert.equal(field.metadata.sourceStatus, 'archive-unverifiable');
-  assert.equal(field.metadata.sourceReason, review.sourceReason);
-  assert.equal(field.metadata.reviewedAt, '2026-09-30');
-  assert.equal(field.metadata.checkedAt, null, `${id}: revue transformée en certification`);
+function auditSourceCoverage(catalog = DATA_CATALOG, families = FAMILIES, sheets = SHEETS) {
+  const report = getDataProvenanceReport(catalog, families, sheets);
+  assert.equal(report.activeSourceGaps.length, 0, `Manque actif de source : ${report.activeSourceGaps.map(e => `${e.id}/${e.field.label}`).join(', ')}`);
+  assert.equal(report.invalidArchives.length, 0, 'Archive non revue ou utilisée par un consommateur actif');
+  assert.equal(report.unverifiableArchives.length, 16, 'Inventaire des archives non recertifiables modifié : revue explicite requise');
+  return report;
 }
-for (const family of FAMILIES) for (const index of family.indices) if (index.indexFacts) {
-  assert.notEqual(index.indexFacts.metadata.sourceStatus, 'archive-unverifiable', `${index.name}: archive non vérifiable devenue active`);
+const report = auditSourceCoverage();
+assert.equal(ARCHIVE_SOURCE_REVIEW.length, 19);
+
+// Une nouvelle absence active doit échouer même si le total sans URL reste à 16.
+const archive = report.unverifiableArchives[0];
+const missingField = { label: 'Champ actif de régression', registry: 'src/data/instruments.js', value: 'test', metadata: normalizeEvidence() };
+const activeGap = { id: 'regression:active', type: 'instrument', fields: [missingField] };
+const replacedArchive = DATA_CATALOG.map(r => r.id === archive.id ? { ...r, fields: r.fields.filter(f => f !== archive.field) } : r);
+assert.throws(() => auditSourceCoverage([...replacedArchive, activeGap]), /Manque actif de source/);
+// Un faux statut d'archive ne doit pas permettre de masquer ce manque.
+const disguisedGap = { ...activeGap, fields: [{ ...missingField, metadata: archive.field.metadata }] };
+assert.throws(() => auditSourceCoverage([...replacedArchive, disguisedGap]), /Manque actif de source/);
+// Protéger les deux consommateurs de photographies, même pour une archive déjà revue.
+assert.throws(() => auditSourceCoverage(DATA_CATALOG, [...FAMILIES, { indices: [{ indexFacts: archive.field.value }] }]), /Manque actif de source|consommateur actif/);
+assert.throws(() => auditSourceCoverage(DATA_CATALOG, FAMILIES, [...SHEETS, { indexFacts: archive.field.value }]), /Manque actif de source|consommateur actif/);
+for (const id of ['history:ethereum', 'history:soxx']) {
+  const field = DATA_CATALOG.find(r => r.id === id).fields[0];
+  assert.equal(field.metadata.sourceStatus, 'documented', `${id}: série active non documentée`);
+  assert(field.metadata.sourceUrls.length, `${id}: source active absente`);
+}
+for (const facts of [...FAMILIES.flatMap(f => f.indices.map(index => index.indexFacts)), ...SHEETS.map(sheet => sheet.indexFacts)].filter(Boolean)) {
+  assert.notEqual(facts.metadata.sourceStatus, 'archive-unverifiable', `${facts.index}: archive non vérifiable devenue active`);
+  assert(facts.metadata.sourceUrls.length, `${facts.index}: photographie active sans source`);
 }
 const february = INDEX_FACTS['ftse-all-world-high-dividend-yield']['2026-02-27'];
 assert.equal(february.constituents, 2397);
@@ -68,4 +87,5 @@ assert.throws(() => normalizeEvidence({ dateStatus: 'dated' }), /incompatible/);
 assert.throws(() => normalizeEvidence({ dateStatus: 'not-published', asOf: '2026-09-30' }), /incompatible/);
 assert.match(describeEvidenceDate(normalizeEvidence({ dateStatus: 'not-published' })), /non publiée/);
 assert.equal(normalizeEvidence({ checkedAt: '2026-09-30', dateStatus: 'not-published' }).asOf, null);
+console.log(formatDataProvenanceReport(report));
 console.log('Provenance : sources individuelles, indices actifs contrôlés, périodes, encours datés distincts et absence de dates fabriquées OK.');
