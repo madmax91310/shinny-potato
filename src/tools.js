@@ -11,7 +11,7 @@ export const TOOLS = [
   },
   {
     to: '/france-100-menages', navLabel: '100 ménages', title: 'La France en 100 ménages',
-    icon: '🇫🇷', accent: '#e7c97c', description: 'Neuf sujets Insee sur le patrimoine, les placements et les transmissions. Visuels en 100 ménages, tweets et export PNG.', status: 'disponible',
+    icon: '🇫🇷', accent: '#e7c97c', description: '17 sujets Insee sur le patrimoine, les salaires et le niveau de vie. Quatre designs, tweets sourcés et export PNG.', status: 'disponible',
   },
   {
     to: '/donnees-a-revoir', navLabel: 'À revoir', title: 'Données à revoir',

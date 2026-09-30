@@ -466,13 +466,18 @@ async function testDataSearch(page) {
 async function testHouseholds(page) {
   await page.goto(`${BASE}/france-100-menages`, { waitUntil: 'networkidle' });
   let ok = true;
-  for (const id of ['wealth-share', 'wealth-top10', 'wealth-median', 'pea', 'livret-assurance', 'homeowners', 'debt', 'inheritance', 'donation']) {
+  for (const { id, referencePeriod } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
     await page.getByLabel('Sujet', { exact: true }).selectOption(id);
     await page.waitForURL(`**sujet=${id}`);
     ok &&= await page.locator('.hh-preview').evaluate(async img => { await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
     const text = await page.getByLabel('Texte modifiable').inputValue();
-    ok &&= text.includes('https://www.insee.fr/') && text.includes('début 2024');
+    ok &&= text.includes('https://www.insee.fr/') && text.includes(referencePeriod.toLowerCase());
   }
+  for (const design of ['poster', 'editorial', 'cards', 'original']) {
+    await page.getByLabel('Design', { exact: true }).selectOption(design);
+    ok &&= await page.locator('.hh-preview').evaluate(async img => { await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+  }
+  await page.getByLabel('Sujet', { exact: true }).selectOption('donation');
   const editor = page.getByLabel('Texte modifiable');
   await editor.fill('Mon texte personnalisé');
   await page.getByRole('button', { name: 'Réinitialiser le texte' }).click();
@@ -490,7 +495,7 @@ async function testHouseholds(page) {
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   if (process.env.HOUSEHOLD_SCREENSHOT) await page.screenshot({ path: process.env.HOUSEHOLD_SCREENSHOT, fullPage: true });
   await page.setViewportSize({ width: 1280, height: 720 });
-  record('La France en 100 ménages', ok, '9 images, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
+  record('La France en 100 ménages', ok, '17 sujets, quatre designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
 }
 
 let server;
