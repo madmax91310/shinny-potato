@@ -505,6 +505,23 @@ try {
   await testFactsheetTweets(page);
   await testDataSearch(page);
   await testHouseholds(page);
+  await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
+  const reviewChecks = { ibkr: (await page.locator('.dr-item').count()) === 3 };
+  await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil' }).fill('Interactive Brokers');
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.dr-item').length === 3);
+  reviewChecks.search = (await page.locator('.dr-item').count()) === 3;
+  await page.reload({ waitUntil: 'networkidle' });
+  reviewChecks.reload = (await page.locator('.dr-item').count()) === 3;
+  await page.getByRole('searchbox').fill('');
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.dr-item').length === 9);
+  await page.getByLabel('Afficher', { exact: true }).selectOption('deadlines');
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.dr-item').length === 3);
+  reviewChecks.deadlines = (await page.locator('.dr-item').count()) === 3;
+  reviewChecks.sources = (await page.getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;
+  await page.setViewportSize({ width: 390, height: 844 });
+  reviewChecks.mobile = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  record('Données à revoir', Object.values(reviewChecks).every(Boolean), JSON.stringify(reviewChecks));
 
   await browser.close();
 } finally {
