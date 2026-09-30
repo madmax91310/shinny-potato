@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { BROKERS, buildTweet, documentedForAll } from '../src/pages/broker-comparator/data.js'
-import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES } from '../src/pages/broker-comparator/evidence.js'
+import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 
 const officialHosts = new Set([
   'assets.traderepublic.com', 'www.boursobank.com', 'www.fortuneo.fr',
@@ -14,6 +14,12 @@ for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
 }
+const secondaryHosts = new Set(['www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'moneyradar.org', 'finance-heros.fr', 'trading.prorealtime.com', 'pea.fr'])
+for (const [id, document] of Object.entries(SECONDARY_SOURCES)) {
+  assert(secondaryHosts.has(new URL(document.url).hostname), `${id}: source externe non autorisée`)
+  assert(['secondary-page', 'secondary-pdf'].includes(document.kind), `${id}: type externe absent`)
+  assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
+}
 assert.equal(Object.keys(BROKER_EVIDENCE).length, BROKERS.length)
 for (const broker of BROKERS) {
   const evidence = BROKER_EVIDENCE[broker.id]
@@ -23,15 +29,18 @@ for (const broker of BROKERS) {
   assert(broker.cash.resume && broker.cash.detail && broker.cash.post, `${broker.id}: liquidités incomplètes`)
   const cashProof = evidence.cash
   if (cashProof.status === 'non établi') assert.equal(broker.cash.resume, 'À vérifier', `${broker.id}: cash présenté comme prouvé`)
+  else if (cashProof.status === 'corroboré') assert.equal(broker.cash.resume, 'Non*', `${broker.id}: source secondaire non signalée`)
   else assert.equal(broker.cash.resume, 'Oui', `${broker.id}: offre de rémunération non annoncée`)
   for (const [field, item] of Object.entries(evidence)) {
-    assert(item.summary && ['confirmé', 'partiel', 'non établi'].includes(item.status), `${broker.id}.${field}: état invalide`)
+    assert(item.summary && ['confirmé', 'corroboré', 'partiel', 'non établi'].includes(item.status), `${broker.id}.${field}: état invalide`)
     if (item.status !== 'non établi') assert(item.refs?.length, `${broker.id}.${field}: référence absente`)
     for (const ref of item.refs ?? []) {
-      const source = OFFICIAL_SOURCES[ref.document]
-      assert(source && (source.kind === 'page' ? ref.page === undefined : Number.isInteger(ref.page) && ref.page > 0), `${broker.id}.${field}: référence invalide`)
+      const source = OFFICIAL_SOURCES[ref.document] ?? SECONDARY_SOURCES[ref.document]
+      assert(source && (source.kind?.endsWith('page') ? ref.page === undefined : Number.isInteger(ref.page) && ref.page > 0), `${broker.id}.${field}: référence invalide`)
       assert(!source.availability, `${broker.id}.${field}: source indisponible`)
     }
+    if (item.status === 'confirmé') assert(item.refs.every(({ document }) => document in OFFICIAL_SOURCES), `${broker.id}.${field}: confirmation sans source officielle`)
+    if (item.status === 'corroboré') assert(item.refs.some(({ document }) => document in SECONDARY_SOURCES), `${broker.id}.${field}: corroboration sans source externe`)
     for (const id of item.checked ?? []) assert(OFFICIAL_SOURCES[id], `${broker.id}.${field}: document inconnu`)
   }
   for (const field of ['frais', 'dca', 'garde', 'ifu']) {
@@ -44,6 +53,7 @@ for (const broker of BROKERS) {
     if (evidence[field].status === 'non établi')
       assert.equal(broker.pea[key], null, `${broker.id}.${field}: réponse oui/non sans preuve`)
   }
+  if (evidence.pme.status === 'corroboré') assert.equal(broker.pea.pme, false, `${broker.id}: PEA-PME selon source externe`)
 }
 for (let i = 0; i < BROKERS.length; i++) {
   for (let j = i + 1; j < BROKERS.length; j++) {
@@ -55,4 +65,4 @@ for (let i = 0; i < BROKERS.length; i++) {
     }
   }
 }
-console.log(`Registre officiel : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(OFFICIAL_SOURCES).length} sources référencées.`)
+console.log(`Registre : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(OFFICIAL_SOURCES).length} sources officielles et ${Object.keys(SECONDARY_SOURCES).length} externes.`)

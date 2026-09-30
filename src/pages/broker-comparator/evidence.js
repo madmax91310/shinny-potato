@@ -77,6 +77,21 @@ export const OFFICIAL_SOURCES = {
   },
 }
 
+// Analyses éditoriales externes : distinctes des documents des courtiers.
+export const SECONDARY_SOURCES = {
+  moneyvoxPea2026: { title: 'MoneyVox · PEA des banques en ligne', edition: '2026', checked: '30/09/2026', url: 'https://www.moneyvox.fr/banque-en-ligne/actualites/103315/investir-en-bourse-en-2026-quelle-banque-en-ligne-offre-le-meilleur-pea', kind: 'secondary-page' },
+  cafePeaPme: { title: 'Café de la Bourse · Comparatif PEA-PME', edition: '2026', checked: '30/09/2026', url: 'https://www.cafedelabourse.com/dossiers/article/osez-les-petites-valeurs-avec-le-pea-pme', kind: 'secondary-page' },
+  brokerBoursoCash: { title: 'BrokerChooser · Cash BoursoBank', edition: '09/2026', checked: '30/09/2026', url: 'https://brokerchooser.com/fr/invest-long-term/learn/eur-cash-yield-at-boursobank', kind: 'secondary-page' },
+  brokerFortuneoCash: { title: 'BrokerChooser · Cash Fortuneo', edition: '09/2026', checked: '30/09/2026', url: 'https://brokerchooser.com/fr/invest-long-term/learn/eur-cash-yield-at-fortuneo-banque', kind: 'secondary-page' },
+  brokerBdCash: { title: 'BrokerChooser · Cash Bourse Direct', edition: '09/2026', checked: '30/09/2026', url: 'https://brokerchooser.com/fr/broker-reviews/bourse-direct-review/bourse-direct-fees', kind: 'secondary-page' },
+  mondeDca: { title: 'Le Monde · Investissements programmés en PEA', edition: '26/09/2025', checked: '30/09/2026', url: 'https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html', kind: 'secondary-page' },
+  starFortuneoDca: { title: 'Starfinance · PEA Fortuneo', edition: '08/2026', checked: '30/09/2026', url: 'https://starfinance.fr/pea-fortuneo-avis-avec-analyse-et-test/', kind: 'secondary-page' },
+  radarIbkrDca: { title: 'MoneyRadar · Test du PEA IBKR', edition: '14/09/2026', checked: '30/09/2026', url: 'https://moneyradar.org/bourse/interactive-brokers/pea/', kind: 'secondary-page' },
+  financeHerosPea: { title: 'Finance Héros · Comparatif PEA', edition: '22/07/2026', checked: '30/09/2026', url: 'https://finance-heros.fr/ouvrir-meilleur-pea-comparatif/', kind: 'secondary-page' },
+  prorealtimeIbkr: { title: 'Avenant IBIE diffusé par ProRealTime', edition: '03/12/2024', checked: '30/09/2026', url: 'https://trading.prorealtime.com/fr/ib_agreement_pdf?r=ib_ie_pea_disclosures', kind: 'secondary-pdf' },
+  peaFrIbkr: { title: 'PEA.fr · Analyse IBKR', edition: '2026', checked: '30/09/2026', url: 'https://pea.fr/courtiers/pea-interactive-brokers-avis-2026/', kind: 'secondary-page' },
+}
+
 const proved = (summary, document, page) => ({ status: 'confirmé', summary, refs: [{ document, ...(page ? { page } : {}) }] })
 const unknown = (summary, checked = []) => ({ status: 'non établi', summary, checked })
 
@@ -89,7 +104,7 @@ export const BROKER_EVIDENCE = {
     dca: { status: 'confirmé', summary: 'Plans programmés prévus par contrat ; PEA sans frais sur les plans selon sa page de présentation ; titres éligibles dans l’application.', refs: [{ document: 'trContract', page: 91 }, { document: 'trPea' }] },
     garde: { status: 'confirmé', summary: 'Trade Republic indique qu’aucun frais n’est facturé pour l’administration et la conservation des titres. Son contrat décrit le compte de titres PEA détenu chez Trade Republic ; aucune exception PEA n’est annoncée dans l’aide consultée.', refs: [{ document: 'trCustody' }, { document: 'trContract', page: 189 }] },
     pea: proved('PEA prévu par les conditions France.', 'trContract', 189),
-    pme: unknown('Offre PEA-PME non établie.', ['trContract']),
+    pme: { status: 'corroboré', summary: 'PEA-PME non proposé selon MoneyVox et Café de la Bourse ; absence non explicitée dans le contrat Trade Republic.', refs: [{ document: 'moneyvoxPea2026' }, { document: 'cafePeaPme' }] },
     jeune: proved('PEA ouvert sous conditions aux jeunes rattachés au foyer fiscal.', 'trContract', 190),
     ifu: proved('IFU lié à la migration vers l’offre française.', 'trContract', 3),
     cash: { status: 'confirmé', summary: 'Oui sur espèces éligibles du compte général sous conditions ; offre 3 % nouveau client jusqu’à 50 000 € après activation. Le contrat exclut les espèces PEA.', refs: [{ document: 'trInterest' }, { document: 'trContract', page: 57 }, { document: 'trContract', page: 190 }] },
@@ -104,17 +119,17 @@ export const BROKER_EVIDENCE = {
     pme: proved('Tarifs PEA-PME prévus.', 'boursoTariff', 20),
     jeune: proved('Tarifs PEA 18-25 ans prévus.', 'boursoTariff', 20),
     ifu: proved('IFU disponible dans les documents fiscaux si revenus ou opérations à déclarer.', 'boursoIfu'),
-    cash: unknown('Aucune source officielle consultée ne permet de répondre oui ou non pour le cash non investi.', ['boursoTariff']),
+    cash: { status: 'corroboré', summary: 'Non : aucun intérêt versé sur les espèces non investies des comptes titres, PEA et PEA-PME selon BrokerChooser ; livret distinct exclu.', refs: [{ document: 'brokerBoursoCash' }] },
     transfert: proved('Transfert PEA sortant : 15 € par ligne, plafond 150 €.', 'boursoTariff', 25),
   },
   ibkr: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: { status: 'confirmé', summary: 'PEA : à partir de 0,05 %. Pour les actions France, tarif dégressif 0,05 % et minimum 1,25 € ; tarif fixe SmartRouting 0,05 % et minimum 3 € ; routage direct 0,10 % et minimum 4 €. Frais de Bourse possibles au tarif dégressif ; autre marché ou fonds : autre barème.', refs: [{ document: 'ibkrPea' }, { document: 'ibkrFees' }] },
-    dca: { status: 'partiel', summary: 'Plan programmé officiel pour des actions éligibles ; disponibilité dans le PEA non établie.', refs: [{ document: 'ibkrDca' }] },
+    dca: { status: 'partiel', summary: 'MoneyRadar décrit des achats récurrents en PEA ; Finance Héros (2026) les annonce encore à venir et Le Monde (2025) indiquait une saisie manuelle. La page IBKR reste générale : contradiction à confirmer directement.', refs: [{ document: 'ibkrDca' }, { document: 'radarIbkrDca' }, { document: 'financeHerosPea' }, { document: 'mondeDca' }] },
     garde: proved('Aucun droit de garde ni frais de tenue de compte PEA annoncés.', 'ibkrPea'),
     pea: proved('PEA Classique commercialisé.', 'ibkrPea'),
-    pme: unknown('PEA-PME non annoncé sur la page PEA consultée.', ['ibkrPea']),
-    jeune: unknown('La page PEA officielle décrit le PEA Classique pour les majeurs résidant en France, sans confirmer l’ouverture aux majeurs rattachés au foyer fiscal de leurs parents.', ['ibkrPea']),
+    pme: { status: 'corroboré', summary: 'PEA-PME non proposé selon Café de la Bourse ; la page IBKR ne présente que le PEA Classique.', refs: [{ document: 'cafePeaPme' }, { document: 'ibkrPea' }] },
+    jeune: { status: 'partiel', summary: 'Avenant IBIE daté de 2024 diffusé par ProRealTime : plafond de 20 000 € pour l’enfant majeur rattaché. PEA.fr indique pourtant « pas de PEA Jeune » en 2026. La page IBKR n’explicite pas cette offre : contradiction non résolue.', refs: [{ document: 'prorealtimeIbkr', page: 70 }, { document: 'peaFrIbkr' }, { document: 'ibkrPea' }] },
     ifu: proved('IFU disponible pour le PEA.', 'ibkrPea'),
     cash: { status: 'confirmé', summary: 'Oui pour soldes éligibles : 0 % sur les premiers 10 000 € EUR, taux variable au-delà et selon valeur du compte ; PEA non documenté.', refs: [{ document: 'ibkrInterest' }] },
     transfert: proved('Transfert du PEA possible, sans frais de transfert annoncés.', 'ibkrPea'),
@@ -122,13 +137,13 @@ export const BROKER_EVIDENCE = {
   fortuneo: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: proved('Starter : premier ordre mensuel ≤ 500 € gratuit sur Euronext/Equiduct, puis 0,35 %.', 'fortuneoTariff', 10),
-    dca: unknown('Absence de plan automatique non démontrée par la brochure.', ['fortuneoTariff']),
+    dca: { status: 'partiel', summary: 'Le Monde (2025) et Starfinance (2026) indiquent que les achats sur PEA sont manuels ; MoneyRadar (2026) emploie « ordres programmés » sans préciser l’automatisation. À confirmer avant de conclure.', refs: [{ document: 'mondeDca' }, { document: 'starFortuneoDca' }, { document: 'radarIbkrDca' }] },
     garde: proved('Droits de garde gratuits.', 'fortuneoTariff', 10),
     pea: proved('Tarifs PEA prévus.', 'fortuneoTariff', 10),
     pme: proved('Tarifs PEA-PME prévus.', 'fortuneoTariff', 10),
     jeune: proved('PEA Jeune non commercialisé selon les conditions générales.', 'fortuneoContract', 35),
     ifu: proved('IFU disponible dans l’espace client, notamment pour le compte titres.', 'fortuneoIfu'),
-    cash: unknown('PEA et PEA-PME non rémunérés ; traitement des autres espèces non établi, donc réponse globale indéterminée.', ['fortuneoContract', 'fortuneoTariff']),
+    cash: { status: 'corroboré', summary: 'Non : BrokerChooser indique qu’aucun intérêt n’est versé sur le cash CTO, PEA et PEA-PME ; les livrets distincts ne comptent pas.', refs: [{ document: 'brokerFortuneoCash' }, { document: 'fortuneoContract', page: 35 }] },
     transfert: proved('Transfert PEA sortant 15 € par ligne, plafond 150 € ; clôture distincte à 85 €.', 'fortuneoTariff', 13),
   },
   xtb: {
@@ -164,7 +179,7 @@ export const BROKER_EVIDENCE = {
     pme: proved('PEA-PME prévu dans le barème.', 'bdTariff', 2),
     jeune: proved('PEA Jeunes prévu dans le barème.', 'bdTariff', 2),
     ifu: proved('IFU mis à disposition pour la déclaration du compte titres.', 'bdIfu'),
-    cash: unknown('Compte espèces PEA non rémunéré ; compte titres ordinaire non établi, donc réponse globale indéterminée.', ['bdPea', 'bdTariff']),
+    cash: { status: 'corroboré', summary: 'Non : BrokerChooser indique qu’aucun intérêt n’est versé sur les espèces du CTO, PEA et PEA-PME ; page PEA officielle cohérente.', refs: [{ document: 'brokerBdCash' }, { document: 'bdPea' }] },
     transfert: { status: 'confirmé', summary: 'Transfert PEA sortant : 15 € par ligne, plafond 150 €. Pour un transfert entrant, la page tarifaire actuelle prévoit un remboursement jusqu’à 150 € pour PEA/PEA-PME/PEA Jeune (200 € pour CTO), sur justificatif ; la FAQ générique non ventilée annonce 200 € par compte.', refs: [{ document: 'bdTariff', page: 4 }, { document: 'bdTariffPage' }, { document: 'bdSupport' }] },
   },
   saxo: {

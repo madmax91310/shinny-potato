@@ -188,8 +188,9 @@ async function testBrokerComparator(page) {
     && !/à vérifier|à confirmer|non établi/i.test(fortuneoSaxo)
     && fortuneoSaxo.includes('PEA Jeune ❌')
     && (await page.locator('.bc-evidence-broker').count()) === 2
-    && (await page.locator('.bc-evidence').innerText()).includes('traitement des autres espèces non établi');
-  record("Comparatif courtiers", ok && sourceOk, "duels sans données non établies et limites conservées au registre");
+    && (await page.locator('.bc-evidence').innerText()).includes('Non : BrokerChooser indique')
+    && (await page.locator('.bc-evidence').innerText()).includes('source externe');
+  record("Comparatif courtiers", ok && sourceOk, "duels réservés aux preuves directes et provenance externe visible au registre");
 }
 
 async function testTweetMidi(page) {
