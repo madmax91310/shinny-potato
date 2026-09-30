@@ -259,3 +259,8 @@ sans étape de déploiement. Lance `vite preview` en groupe de
 processus détaché (`detached: true`) pour pouvoir le tuer entièrement à la fin
 (`process.kill(-pid)`) — un bug constaté à l'écriture de ce script : `server.kill()` seul ne tue que
 le wrapper `npx`, laissant le vrai process `vite preview` tourner en orphelin sur le port.
+
+
+### Provenance active et archives
+
+`npm run report:data-provenance` (ou `-- --json`) sépare les manques actifs de source des archives non recertifiables. Après la PR #150 : **0 manque actif de source ; 16 archives non recertifiables**, toutes motivées et exclues des consommateurs. Ethereum et SOXX sont documentés. `npm run audit:data-provenance` impose zéro manque actif et vérifie séparément l’inventaire des archives ; une nouvelle absence active ne peut pas se fondre dans ce compteur. Voir `docs/sourcing-2026-09-30.md` pour les critères et limites. Ce rapport couvre les champs du catalogue, pas la certification de chaque ancienne valeur ni les dates non publiées.
