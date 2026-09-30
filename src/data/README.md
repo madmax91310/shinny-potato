@@ -47,11 +47,11 @@ dans `src/data/`, puis lancer `npm run audit:instrument-catalog`,
 
 ## Centralisation : les trois étapes réalisées
 
-* Les 34 références d’indices sont dans `index-facts.js`, par identifiant stable et
+* Les <!-- data-count:index-facts -->35<!-- /data-count --> références d’indices sont dans `index-facts.js`, par identifiant stable et
   photographie. Les nombres exacts, objectifs nominaux de méthodologie et fourchettes
   restent distincts. Les descriptions des 13 familles sont générées depuis ce registre.
-* La Bibliothèque de données (`/bibliotheque-donnees`) recherche 142 instruments,
-  34 indices, 24 séries et 44 définitions par ISIN, ticker, nom et identifiant.
+* La Bibliothèque de données (`/bibliotheque-donnees`) recherche <!-- data-count:catalog-total -->245<!-- /data-count --> fiches : <!-- data-count:instruments -->142<!-- /data-count --> instruments,
+  <!-- data-count:indices -->35<!-- /data-count --> indices, <!-- data-count:series -->24<!-- /data-count --> séries et <!-- data-count:lexicon -->44<!-- /data-count --> définitions par ISIN, ticker, nom et identifiant.
   Elle indique les registres, sources, dates, devises, périmètres et outils consommateurs.
   Chaque fiche propose un lien direct et un export JSON autonome, avec `schemaVersion: 1`.
 * `normalizeEvidence` donne le même contrat de lecture et d’export aux différents
@@ -62,6 +62,12 @@ dans `src/data/`, puis lancer `npm run audit:instrument-catalog`,
 Les fichiers de chaque outil restent des façades de compatibilité ; les registres
 communs n’importent pas les pages. Les valeurs des rendements et textes existants
 ont été conservées, et leurs conventions distinctes n’ont pas été fusionnées.
+
+Les compteurs balisés `data-count` sont dérivés des registres :
+`npm run audit:documentation-counts` bloque la CI en cas de dérive.
+Après une modification du catalogue ou du pool Tweet Midi, lancer
+`npm run docs:update-counts`, puis les audits concernés. Cette commande actualise
+uniquement les compteurs actuels balisés ; les validations historiques restent figées.
 
 ### Rechercher ou partager depuis la ligne de commande
 

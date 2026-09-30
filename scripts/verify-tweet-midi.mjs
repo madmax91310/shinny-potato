@@ -5,7 +5,7 @@
 //
 // Usage : node scripts/verify-tweet-midi.mjs   (ou npm run verify:tweet-midi)
 //
-// Ce que ça vérifie, sur les ~2000 entrées de ALL_ITEMS (7 formats confondus) :
+// Ce que ça vérifie, sur toutes les entrées de ALL_ITEMS (7 formats confondus) :
 //   1. buildTweetText() ne lève jamais d'exception et ne renvoie jamais une chaîne vide/trop
 //      courte pour être un vrai tweet.
 //   2. Aucun placeholder de gabarit non résolu ne fuit dans le texte final (ex. "{yearsPhrase}",
