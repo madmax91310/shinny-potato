@@ -14,7 +14,7 @@ for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
 }
-const secondaryHosts = new Set(['www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'moneyradar.org', 'finance-heros.fr', 'trading.prorealtime.com', 'pea.fr'])
+const secondaryHosts = new Set(['www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'www.epargnant30.fr', 'moneyradar.org', 'finance-heros.fr', 'forum.finance-heros.fr', 'trading.prorealtime.com', 'pea.fr', 'sinvestir.fr', 'placements-boursiers.fr', 'www.detective-banque.fr'])
 for (const [id, document] of Object.entries(SECONDARY_SOURCES)) {
   assert(secondaryHosts.has(new URL(document.url).hostname), `${id}: source externe non autorisée`)
   assert(['secondary-page', 'secondary-pdf'].includes(document.kind), `${id}: type externe absent`)
@@ -46,6 +46,8 @@ for (const broker of BROKERS) {
   for (const field of ['frais', 'dca', 'garde', 'ifu']) {
     if (evidence[field].status === 'non établi')
       assert(/vérifier/i.test(broker[field].resume), `${broker.id}.${field}: donnée non établie présentée comme confirmée`)
+    if (evidence[field].status === 'corroboré')
+      assert(/\*/.test(broker[field].resume), `${broker.id}.${field}: source externe non signalée`)
   }
   if (evidence.boursomarkets.status === 'non établi')
     assert.equal(broker.boursomarkets.resume, 'Sans objet', `${broker.id}: offre BoursoMarkets attribuée sans preuve`)
