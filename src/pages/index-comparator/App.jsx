@@ -50,7 +50,8 @@ export default function IndexComparator() {
     try {
       await downloadIndexImage(family)
       setImageState('idle')
-    } catch {
+    } catch (error) {
+      console.error('Export du comparateur :', error)
       setImageState('error')
     }
   }, [family])

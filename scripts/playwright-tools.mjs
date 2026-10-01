@@ -328,6 +328,7 @@ async function testIndexComparator(page) {
   const count = await select.locator('option').count();
   let ok = 0, images = 0;
   for (const family of FAMILIES) {
+    console.log(`    Comparateur : ${family.id}`);
     await select.selectOption(family.id);
     const text = await page.locator('.xc-preview-text').innerText();
     const editorial = getIndexComparisonEditorial(family);
@@ -340,7 +341,8 @@ async function testIndexComparator(page) {
     if (dataOk && copied === text && text.startsWith(editorial.hook)
       && text.endsWith(editorial.question) && editorial.exposures.every(p => text.includes(p))
       && !/L'EXPOSITION|LE VERDICT|DIVERSIFICATION|undefined|NaN|à compléter/.test(text)) ok++;
-    const [download] = await Promise.all([page.waitForEvent('download'),
+    const [download] = await Promise.all([Promise.race([page.waitForEvent('download'),
+      page.getByRole('button', { name: 'Réessayer le téléchargement PNG' }).waitFor().then(() => { throw new Error(`Export PNG impossible : ${family.id}`); })]),
       page.getByRole('button', { name: 'Télécharger l’image PNG' }).click()]);
     const png = await readFile(await download.path());
     if (download.suggestedFilename() === `comparateur-indices-${family.id}.png`
