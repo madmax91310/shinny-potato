@@ -54,6 +54,11 @@ function EtfCard({ etf }) {
         {etf.isNew && <span className="es-badge-new">🆕 Nouveau</span>}
       </h2>
 
+      <section className="es-block">
+        <p className="es-engagement">{etf.hook}</p>
+        <p>{etf.whatIs}</p>
+      </section>
+
       <ul className="es-facts">
         {etf.listing && <li><span className="es-fi">📍</span><span className="es-fv">Cotation : {etf.listing.exchange} · {etf.listing.currency}</span></li>}
         <li className="mono">
@@ -97,24 +102,14 @@ function EtfCard({ etf }) {
       </ul>
 
       <section className="es-block">
-        <h3 className="es-block-title">🔍 C'est quoi ?</h3>
-        <p>{etf.whatIs}</p>
-      </section>
-      <section className="es-block">
-        <h3 className="es-block-title">✅ Pourquoi c'est intéressant ?</h3>
         <p>{etf.whyInteresting}</p>
       </section>
       <section className="es-block">
-        <h3 className="es-block-title">⚠️ Ce qu'il faut savoir</h3>
-        <p>{etf.whatToKnow}</p>
-      </section>
-      <section className="es-block">
-        <h3 className="es-block-title">🏆 Verdict</h3>
-        <p>{etf.verdict}</p>
+        <p>⚠️ {etf.whatToKnow}</p>
       </section>
 
       <div className="es-foot">
-        <p className="es-engagement">💬 {etf.question} 👇</p>
+        <p className="es-engagement">{etf.question} 👀</p>
         <p className="es-disclaimer">⚠️ Pas un conseil en investissement</p>
       </div>
     </article>

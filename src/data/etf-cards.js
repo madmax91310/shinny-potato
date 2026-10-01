@@ -5,8 +5,12 @@ import { getInstrumentName, getInstrumentPea } from './instruments.js';
 import { formatEtfTer } from './etf-ter.js';
 // Bibliothèque de fiches ETF — contenu pré-rédigé, données stockées en dur, aucune donnée de
 // marché en temps réel. Les encours sont désormais dans instrument-aum.js. Modifie les autres champs (isin, ter, positions, distribution,
-// pea, cto, location, whatIs, whyInteresting, whatToKnow, verdict, question) sans rien casser
+// pea, cto, location, hook, whatIs, whyInteresting, whatToKnow, verdict, question) sans rien casser
 // ailleurs.
+// Édition du 01/10/2026 : accroches et paragraphes propres à chaque exposition.
+// Les descriptions reformulent le périmètre déjà documenté, sans nouvelle donnée
+// chiffrée. Le tweet enchaîne description, repères, intérêt, limite et question ;
+// verdict reste disponible dans la fiche mais n'est plus répété dans le tweet.
 //
 // Audit "meilleurs ETF" du 25/08/2026 (même passe que le générateur de tweets ETF) : la fiche
 // msci-world utilisait le CW8 (Amundi MSCI World, 0,38%) — remplacé par Amundi PEA Monde
@@ -67,8 +71,9 @@ export const ETFS = [
       // BlackRock : caractéristiques du fonds, TER, lancement le 29/05/2025,
       // fonds commercialisé PEA ; notice : intention de conserver l'éligibilité.
       // https://www.blackrock.com/fr/intermediaries/products/342916/
-      whatIs: "Un ETF S&P 500 en euros qui utilise un swap pour suivre les grandes sociétés américaines. Lancé en mai 2025, il n'a pas d'historique annuel complet sur 2023 et 2024.",
-      whyInteresting: `Il propose l'exposition S&P 500 dans un PEA avec ${formatEtfTer("IE000DQLYVB9", "index")} de frais annuels annoncés, moins que l'Amundi PSP5 sélectionné dans le comparateur.`,
+      hook: "🇺🇸 Suivre les grandes entreprises américaines dans un PEA pour peu de frais : que propose cet ETF récent ?",
+      whatIs: "Son indice, le S&P 500, rassemble de grandes sociétés américaines de plusieurs secteurs. Cette part utilise un swap : un contrat permet au fonds de recevoir la performance de l’indice. C’est ce mécanisme qui rend cette exposition accessible dans un PEA.",
+      whyInteresting: "L’intérêt est de suivre ce marché avec une seule ligne et des frais réduits. Mais un fonds récent mérite aussi qu’on regarde son historique et les conditions auxquelles on peut l’acheter ou le vendre.",
       whatToKnow: "Son encours est plus petit et son historique plus court que ceux des ETF S&P 500 anciens. La réplication par swap comporte un risque de contrepartie ; vérifie aussi la liquidité et l'éligibilité auprès de ton courtier avant d'acheter.",
       verdict: "Une option PEA peu chargée en frais, encore récente ; le coût affiché ne suffit pas à lui seul pour choisir.",
       question: "Pour suivre le S&P 500 en PEA, tu privilégies les frais ou l'ancienneté du fonds ?"
@@ -83,8 +88,9 @@ export const ETFS = [
       // Amundi, fiche historique du 30/04/2026 : 0,48 %, PEA, 150,05 M€, part couverte.
       // Encours affiché : relevé justETF plus récent dans instrument-aum.js.
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260430
-      whatIs: "Suit le TOPIX, large indice japonais pondéré par capitalisation, avec une couverture du risque de change entre le yen et l'euro.",
-      whyInteresting: "Permet de suivre le marché japonais en PEA sans subir directement toutes les variations du yen face à l'euro.",
+      hook: "🇯🇵 Investir au Japon, c’est aussi s’exposer au yen. Et si tu voulais limiter cet effet ?",
+      whatIs: "Le TOPIX rassemble un large ensemble d’entreprises japonaises. Cette part ajoute une couverture entre le yen et l’euro pour limiter l’effet des variations de change. Tu suis donc les actions japonaises avec un mécanisme supplémentaire, qui change aussi ton résultat.",
+      whyInteresting: "C’est une façon d’accéder au marché japonais dans un PEA en donnant moins de place aux mouvements du yen. Cette protection a toutefois un coût : elle peut aussi te priver de l’effet favorable d’une hausse de la monnaie japonaise.",
       whatToKnow: "La couverture a un coût et peut réduire la performance lorsque le yen monte. Ne confonds pas cette part avec la part TOPIX PEA non couverte FR0013411980 : leurs rendements en euros peuvent diverger.",
       verdict: "Une exposition large au Japon en PEA pour qui veut limiter l'effet du change, sans éliminer le risque actions.",
       question: "Pour investir au Japon, tu garderais l'exposition au yen ou tu la couvrirais ?"
@@ -98,8 +104,9 @@ export const ETFS = [
       location: getInstrumentLocation("LU1834983550"),
       // Amundi, fiche du 30/06/2026 : PEA, 0,30 %, 752,60 M€.
       // https://www.amundietf.com/pdfDocuments/monthly-factsheet/LU1834983550/ENG/LUX/RETAIL/ETF/20260630
-      whatIs: "Suit les entreprises européennes des ressources de base présentes dans le STOXX Europe 600 ; ce sont des actions d'entreprises, pas des métaux détenus physiquement.",
-      whyInteresting: "Ajoute un secteur cyclique européen à un portefeuille, avec une part annoncée éligible au PEA.",
+      hook: "⛏️ Acheter un ETF de ressources de base : sais-tu ce qui se cache derrière le mot « ressources » ?",
+      whatIs: "Son indice sélectionne les entreprises du secteur des ressources de base au sein du STOXX Europe 600. Tu achètes donc des actions de producteurs européens, dont l’activité dépend du cycle industriel et des matières premières.",
+      whyInteresting: "L’intérêt est de réunir ces entreprises dans une seule ligne éligible au PEA. Leur résultat dépend aussi de leurs coûts et de leurs marges : le prix d’un métal ne suffit pas à expliquer le cours de leurs actions.",
       whatToKnow: "Le secteur est sensible aux prix des matières premières et au cycle industriel. Cette exposition concentrée peut déjà être présente dans un ETF Europe large.",
       verdict: "Un ETF sectoriel PEA pour cibler les producteurs de ressources, à distinguer d'un ETC sur un métal.",
       question: "Tu préfères les entreprises minières ou une exposition directe aux métaux ?"
@@ -119,8 +126,9 @@ export const ETFS = [
       pea: getInstrumentPea("FR001400U5Q4"),
       cto: true,
       location: getInstrumentLocation("FR001400U5Q4"),
-      whatIs: "Un seul ETF pour suivre environ 1 500 grandes et moyennes entreprises de 23 pays développés. « Monde » ne veut toutefois pas dire répartition égale : les États-Unis représentent environ 70 % de l’indice, et les géants technologiques y occupent une grande place.",
-      whyInteresting: `Si tu veux une ligne principale sur ton PEA sans choisir toi-même tes pays et tes secteurs, c’est une solution simple. Sa réplication synthétique lui permet de suivre le MSCI World tout en restant éligible au PEA, avec ${formatEtfTer("FR001400U5Q4", "index")} de frais annuels.`,
+      hook: "🌍 Tu achètes un ETF « World ». Mais sais-tu vraiment quelle place chaque pays y occupe ?",
+      whatIs: "Le MSCI World réunit de grandes et moyennes entreprises de pays développés. Les plus grosses capitalisations occupent le plus de place : les États-Unis et leurs grands groupes influencent donc fortement le résultat. Les marchés émergents et les petites entreprises ne font pas partie de cette exposition.",
+      whyInteresting: "L’intérêt est de suivre de nombreux pays et secteurs avec une seule ligne, sans les sélectionner toi-même. Cette part utilise une réplication synthétique pour rendre cette exposition mondiale accessible dans un PEA.",
       whatToKnow: "Tu détiens beaucoup d’entreprises, mais ton résultat dépend fortement du marché américain. Il n’y a pas de petites capitalisations. Et si tu investis sur CTO, compare les frais : d’autres ETF World y coûtent moins cher.",
       verdict: "Une base simple pour un PEA de long terme, à condition d’être à l’aise avec son poids américain.",
       question: "Dans ton PEA, tu préfères un seul ETF World ou ajouter d’autres régions à côté ?"
@@ -140,8 +148,9 @@ export const ETFS = [
       pea: getInstrumentPea("FR0011871128"),
       cto: true,
       location: getInstrumentLocation("FR0011871128"),
-      whatIs: "Réplique le S&P 500, l'indice des 500 plus grandes capitalisations cotées aux États-Unis. Fortement pondéré tech : Apple, Nvidia, Microsoft, Amazon et Alphabet pèsent à eux cinq plus d'un quart de l'indice. 100% USA, tous secteurs représentés mais la tech domine largement.",
-      whyInteresting: "Tu suis les grandes entreprises américaines dans un PEA, avec une seule ligne. La réplication synthétique rend cette exposition possible dans cette enveloppe.",
+      hook: "🇺🇸 Un seul ETF pour les grandes entreprises américaines. Mais quelle exposition ajoutes-tu vraiment ?",
+      whatIs: "Le S&P 500 rassemble de grandes entreprises cotées aux États-Unis, dans plusieurs secteurs. Leur poids dépend de leur capitalisation : quelques groupes peuvent donc influencer fortement l’indice. Tu suis un marché national, même si beaucoup de ces entreprises vendent dans le monde entier.",
+      whyInteresting: "Cette part permet d’accéder au S&P 500 dans un PEA grâce à une réplication synthétique. C’est une façon simple de renforcer les actions américaines, à condition de regarder celles que tu détiens déjà ailleurs.",
       whatToKnow: "Tu restes investi uniquement aux États-Unis, avec un poids important des grandes valeurs technologiques. Une ligne MSCI World en détient déjà beaucoup : vérifie ce que cet ETF ajoute à ton portefeuille.",
       verdict: "Si tu veux concentrer ta poche actions sur les États-Unis tout en restant sur PEA, cet ETF va droit au but. Il ne t’apporte aucune exposition aux autres marchés.",
       question: "Tu détiens déjà un ETF World : ajouterais-tu aussi du S&P 500, sachant que les grandes valeurs américaines y sont déjà présentes ?"
@@ -161,8 +170,9 @@ export const ETFS = [
       pea: getInstrumentPea("FR0011871110"),
       cto: true,
       location: getInstrumentLocation("FR0011871110"),
-      whatIs: "Réplique le Nasdaq-100, les 100 plus grosses valeurs non-financières cotées au Nasdaq. Ultra tech : Nvidia, Apple, Microsoft, Broadcom, Amazon en tête. Quasi aucune banque, aucune valeur pétrolière — un pari pur sur la croissance et la technologie américaine.",
-      whyInteresting: "Tu veux donner plus de place aux grandes valeurs de croissance américaines ? Cet ETF le permet depuis un PEA, sans sélectionner toi-même les entreprises.",
+      hook: "💻 Le Nasdaq-100 te tente ? Regarde d’abord ce que ses entreprises ont en commun.",
+      whatIs: "L’indice rassemble les grandes entreprises non financières cotées au Nasdaq. La technologie et les valeurs de croissance y prennent beaucoup de place, même si tous les titres ne sont pas des entreprises technologiques. La sélection dépend aussi de leur place de cotation.",
+      whyInteresting: "Cette part permet de suivre cet univers dans un PEA avec une seule ligne. Elle peut intéresser pour renforcer ce biais, mais plusieurs de ses entreprises occupent déjà une place importante dans les indices mondiaux.",
       whatToKnow: "Le Nasdaq-100 dépend fortement de quelques grands noms de la tech. Si tu possèdes déjà un ETF World ou S&P 500, tu renforces souvent les mêmes titres. Les baisses peuvent être marquées.",
       verdict: "Une exposition assumée aux grandes valeurs non financières du Nasdaq. À considérer pour accentuer ce biais, pas pour diversifier un portefeuille déjà chargé en tech.",
       question: "Si tu as déjà un ETF World ou S&P 500, quelle place laisserais-tu encore au Nasdaq-100 ?"
@@ -182,8 +192,9 @@ export const ETFS = [
       pea: getInstrumentPea("LU1681047236"),
       cto: true,
       location: getInstrumentLocation("LU1681047236"),
-      whatIs: "Réplique l'Euro Stoxx 50, les 50 plus grandes capitalisations de la zone euro. Top positions : LVMH, ASML, SAP, TotalEnergies, Siemens. Un mix de luxe, de tech européenne, d'énergie et d'industrie, très différent de la composition d'un indice américain.",
-      whyInteresting: "Une seule ligne pour suivre 50 grandes entreprises de la zone euro dans un PEA. Elle peut donner davantage de poids à l’Europe dans un portefeuille dominé par les États-Unis.",
+      hook: "🇪🇺 Cinquante grandes entreprises de la zone euro dans un ETF : est-ce l’Europe que tu veux détenir ?",
+      whatIs: "L’Euro STOXX 50 rassemble de grandes sociétés de la zone euro. Tu retrouves plusieurs métiers, de l’industrie aux services, dans une sélection resserrée. Son périmètre géographique laisse de côté les marchés européens qui utilisent d’autres monnaies.",
+      whyInteresting: "L’intérêt est de donner une place aux grandes entreprises de la zone euro dans un PEA, sans choisir chaque action. Le choix entre cet indice et un indice européen plus large dépend surtout de l’exposition recherchée.",
       whatToKnow: "Cinquante titres, c’est moins diversifié qu’un indice mondial. Regarde aussi les secteurs présents : l’exposition à la technologie américaine y est faible.",
       verdict: "Cinquante grandes sociétés de la zone euro à faible coût. Le nombre limité de lignes mérite d’être assumé.",
       question: "Pour ajouter de l’Europe, tu choisirais ces 50 grandes valeurs ou un indice européen plus large ?"
@@ -203,8 +214,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BKM4GZ66"),
       cto: true,
       location: getInstrumentLocation("IE00BKM4GZ66"),
-      whatIs: "Réplique le MSCI Emerging Markets IMI, environ 3 000 valeurs de pays émergents toutes tailles confondues. Chine, Taïwan, Inde et Corée du Sud en tête. Top positions : Taiwan Semiconductor, Tencent, Samsung, Alibaba — un mix de tech asiatique et de conglomérats locaux.",
-      whyInteresting: "Cet ETF ajoute les petites, moyennes et grandes entreprises des marchés émergents à un portefeuille centré sur les pays développés.",
+      hook: "🌏 Un ETF World laisse de côté les marchés émergents. Que contient une ligne qui les ajoute ?",
+      whatIs: "Le MSCI Emerging Markets IMI couvre de grandes, moyennes et petites entreprises des marchés émergents. Tu accèdes à plusieurs pays, avec une place importante pour les marchés asiatiques. Le poids de chaque pays et de chaque entreprise suit les règles de l’indice.",
+      whyInteresting: "L’intérêt est d’ajouter un univers absent d’un World classique avec une seule ligne. Tu élargis la couverture géographique, tout en acceptant des risques propres à ces marchés et à leurs monnaies.",
       whatToKnow: "Le poids des pays et des devises change avec l’indice. Tu prends aussi des risques politiques et réglementaires supplémentaires : ce n’est pas une façon automatique de réduire la volatilité.",
       verdict: "Il ajoute les marchés émergents, y compris leurs petites capitalisations, à un portefeuille centré sur les pays développés. La diversification s’accompagne de risques propres à ces marchés.",
       question: "Tu préfères détenir les émergents séparément ou dans un ETF ACWI tout-en-un ?"
@@ -231,8 +243,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00B6R52259"),
       cto: true,
       location: getInstrumentLocation("IE00B6R52259"),
-      whatIs: "Réplique le MSCI ACWI (All Country World Index), qui combine environ 1 970 valeurs de pays développés ET de marchés émergents en une seule ligne — la version \"tout compris\" du MSCI World, émergents inclus. Top positions : Nvidia, Apple, Microsoft, Amazon, Alphabet — même dominance tech US que le World, avec un peu plus de diversification géographique.",
-      whyInteresting: "Un seul ETF réunit pays développés et émergents. Pratique si tu veux cette couverture sans suivre deux lignes séparées.",
+      hook: "🌍 Pays développés et émergents dans un seul ETF : qu’apporte le MSCI ACWI ?",
+      whatIs: "Le MSCI ACWI réunit de grandes et moyennes entreprises de pays développés et émergents. Les grandes capitalisations pèsent davantage : la couverture mondiale ne signifie donc pas que tous les pays occupent une place égale. Les petites entreprises restent en dehors de cet univers.",
+      whyInteresting: "L’intérêt est de réunir ces deux ensembles dans une seule ligne. L’indice détermine leur poids, ce qui évite de gérer séparément un ETF World et un ETF émergents.",
       whatToKnow: "Les États-Unis conservent une place majeure : ajouter les émergents ne fait pas disparaître la concentration des grands indices mondiaux. Éligibilité PEA de cette part à vérifier avant tout ordre.",
       verdict: "Un ETF mondial qui inclut aussi les pays émergents. Pratique si tu veux une seule ligne en CTO et ne souhaites pas fixer leur poids toi-même.",
       question: "Tu laisserais l’indice déterminer la place des émergents ou tu choisirais leur poids séparément ?"
@@ -260,8 +273,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BK5BQT80"),
       cto: true,
       location: getInstrumentLocation("IE00BK5BQT80"),
-      whatIs: "Suit le FTSE All-World, un indice de grandes et moyennes entreprises de pays développés et émergents. Au 31/08/2026, le fonds détient 3 784 titres et son indice en compte 4 263. Le MSCI ACWI couvre lui aussi les grandes et moyennes capitalisations de pays développés et émergents ; les deux indices ne sélectionnent pas exactement les mêmes valeurs.",
-      whyInteresting: `Tu peux couvrir les grandes entreprises des pays développés et émergents avec une seule ligne. Les frais annuels affichés pour cette part sont de ${formatEtfTer("IE00BK5BQT80", "index")}.`,
+      hook: "🌍 Un seul ETF pour les pays développés et émergents : que couvre vraiment l’All-World ?",
+      whatIs: "Le FTSE All-World rassemble de grandes et moyennes entreprises de pays développés et émergents. Les plus grosses sociétés y prennent le plus de place. Le fonds peut détenir une sélection de titres pour suivre l’indice : le nombre de lignes du portefeuille et celui de l’indice peuvent différer.",
+      whyInteresting: "L’intérêt est d’avoir une couverture mondiale en une seule ligne, avec des dividendes réinvestis dans cette part. Tu laisses l’indice fixer la répartition entre les pays, sans devoir ajuster toi-même plusieurs ETF.",
       whatToKnow: "Éligibilité PEA de cette part à vérifier avant tout ordre. Les grandes capitalisations pèsent le plus lourd dans l’indice : posséder beaucoup de titres ne signifie pas que chacun influence autant la performance.",
       verdict: "Une seule ligne pour mêler pays développés et émergents en CTO. Vérifie ce que tu possèdes déjà avant d’en ajouter une deuxième très proche.",
       question: "Si tu détenais déjà un MSCI World, remplacerais-tu cette ligne par un All-World ou ajouterais-tu les émergents à part ?"
@@ -283,8 +297,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE000I8KRLL9"),
       cto: true,
       location: getInstrumentLocation("IE000I8KRLL9"),
-      whatIs: "Réplique le MSCI ACWI IMI Semiconductors & Semiconductor Equipment. Concentré sur les fabricants de puces et équipementiers mondiaux : Nvidia, TSMC, Broadcom, ASML, AMD en tête. C'est le maillon matériel de toute la chaîne de valeur IA.",
-      whyInteresting: "Cet ETF cible les fabricants de puces et leurs fournisseurs. C’est une manière de suivre les investissements en calcul, en électronique et en infrastructures numériques.",
+      hook: "🔬 Derrière l’IA et nos appareils, il y a des puces. Comment investir dans les entreprises qui les produisent ?",
+      whatIs: "Son indice cible les fabricants de semi-conducteurs et les équipementiers qui rendent leur production possible. Tu suis donc plusieurs maillons de la fabrication des puces, au sein d’un même secteur. Le résultat dépend à la fois de la demande et des investissements nécessaires pour y répondre.",
+      whyInteresting: "L’intérêt est de répartir cette exposition entre plusieurs entreprises sans miser sur un seul fabricant. Le besoin de calcul peut progresser, mais les cycles industriels et la concurrence continuent à compter.",
       whatToKnow: "La demande en puces suit des cycles. Quelques entreprises peuvent peser lourd dans le résultat, et une exposition technologique déjà importante dans ton portefeuille accentue ce risque.",
       verdict: "Il rassemble les fabricants de puces plutôt que de faire reposer toute cette conviction sur Nvidia. Le secteur reste très cyclique.",
       question: "Tu préfères répartir ton exposition aux puces entre plusieurs fabricants ou choisir une entreprise ?"
@@ -304,8 +319,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BYXG2H39"),
       cto: true,
       location: getInstrumentLocation("IE00BYXG2H39"),
-      whatIs: "Réplique le Nasdaq Biotechnology Index, environ 200 entreprises biotech et pharma cotées au Nasdaq. Top positions : Amgen, Gilead, Vertex, Regeneron — un mix de biotechs innovantes et de laboratoires déjà établis.",
-      whyInteresting: "Il donne accès à des entreprises de biotechnologie cotées aux États-Unis, sans miser sur un seul traitement ou laboratoire.",
+      hook: "🧬 Un traitement prometteur peut faire rêver. Que se passe-t-il quand tu investis dans un ETF biotech ?",
+      whatIs: "Son indice rassemble des entreprises de biotechnologie et de pharmacie cotées au Nasdaq. Tu retrouves des laboratoires déjà établis et des entreprises dont les perspectives dépendent davantage de nouveaux traitements. Leurs résultats peuvent être très sensibles aux essais cliniques et aux autorisations.",
+      whyInteresting: "L’intérêt est de réunir plusieurs entreprises plutôt que de faire dépendre toute l’exposition d’un seul traitement. Cette répartition réduit le poids d’un échec individuel, sans faire disparaître les risques du secteur.",
       whatToKnow: "Une biotech peut fortement varier après un essai clinique ou une décision réglementaire. Le secteur est bien moins défensif qu’un indice de santé généraliste.",
       verdict: "Une exposition ciblée aux biotechnologies américaines, avec des résultats très dépendants des essais cliniques et des autorisations.",
       question: "Pour investir dans la santé, tu choisirais la biotech ou un indice santé plus large ?"
@@ -325,8 +341,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BYTRR863"),
       cto: true,
       location: getInstrumentLocation("IE00BYTRR863"),
-      whatIs: "Réplique le MSCI World Energy, environ 100 entreprises mondiales du secteur pétrole, gaz et énergie. Top positions : ExxonMobil, Chevron, Shell, TotalEnergies — les grandes majors énergétiques occidentales.",
-      whyInteresting: "Il rassemble des entreprises mondiales du secteur énergétique. Si tu veux augmenter leur poids dans ton portefeuille, tu vois précisément le secteur que tu ajoutes.",
+      hook: "🛢️ Le pétrole monte. Est-ce que les actions d’un ETF énergie vont forcément suivre ?",
+      whatIs: "Son indice rassemble des entreprises du secteur énergétique des marchés développés, notamment actives dans le pétrole et le gaz. Tu détiens leurs actions : leurs coûts, leurs investissements et leurs décisions influencent aussi le résultat, en plus du prix des hydrocarbures.",
+      whyInteresting: "L’intérêt est de donner davantage de place à ces entreprises dans un portefeuille sans sélectionner une seule major. C’est une exposition à leur activité et à leurs bénéfices, avec une forte sensibilité au cycle énergétique.",
       whatToKnow: "Les cours du pétrole et du gaz pèsent sur les résultats. Les dividendes peuvent varier, et cet ETF reste concentré sur un secteur sensible aux décisions politiques.",
       verdict: "Pour ajouter les grandes sociétés énergétiques mondiales à ton portefeuille. Leur résultat reste lié au cycle des hydrocarbures.",
       question: "Tu vois cette ligne comme une exposition durable ou comme un pari sur le cycle du pétrole ?"
@@ -346,8 +363,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE000YYE6WK5"),
       cto: true,
       location: getInstrumentLocation("IE000YYE6WK5"),
-      whatIs: "Réplique le MarketVector Global Defense Index, un panier d'entreprises mondiales de défense et d'armement. Top positions : Palantir, RTX, Lockheed Martin, Rheinmetall, Thales — un mix USA-Europe centré sur les grands programmes militaires.",
-      whyInteresting: "Cet ETF donne accès à des entreprises liées à la défense sans devoir choisir un fabricant précis. Leur activité dépend notamment des commandes publiques.",
+      hook: "🛡️ Les budgets de défense attirent l’attention. Mais qu’achètes-tu avec un ETF sur ce secteur ?",
+      whatIs: "Son indice sélectionne des entreprises liées à la défense et à ses équipements. Leur activité dépend notamment des programmes militaires et des commandes publiques. Tu réunis plusieurs fournisseurs, avec des métiers et des implantations différents.",
+      whyInteresting: "L’intérêt est de suivre ce secteur sans devoir choisir un fabricant précis. Les commandes peuvent soutenir l’activité, mais les attentes des investisseurs peuvent déjà être intégrées au prix des actions.",
       whatToKnow: "Une hausse des budgets ne garantit pas une hausse du cours : les attentes peuvent déjà être intégrées dans les prix. Le fonds reste sectoriel et ses frais sont à comparer à ceux d’un ETF large.",
       verdict: "Un accès diversifié aux entreprises de défense, avec une question à se poser avant les chiffres : est-ce compatible avec tes convictions ?",
       question: "La défense aurait-elle sa place dans ton portefeuille, même avec un poids limité ?"
@@ -367,8 +385,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BYPLS672"),
       cto: true,
       location: getInstrumentLocation("IE00BYPLS672"),
-      whatIs: "Réplique l'ISE Cyber Security Select Index, une trentaine de pure players de la cybersécurité. Top positions : Palo Alto Networks, CrowdStrike, Fortinet, Cisco — les principaux fournisseurs de solutions de protection numérique.",
-      whyInteresting: "Il cible les entreprises dont l’activité est liée à la cybersécurité. C’est une exposition ciblée si tu veux suivre ce marché plutôt que la technologie dans son ensemble.",
+      hook: "🔐 Protéger les données devient essentiel. Comment un ETF transforme-t-il ce besoin en investissement ?",
+      whatIs: "Son indice rassemble des fournisseurs de solutions de cybersécurité. Tu investis dans les entreprises qui développent ces outils et ces services, avec des modèles économiques différents. Leur capacité à gagner des clients et à conserver leurs marges compte autant que la progression du marché.",
+      whyInteresting: "L’intérêt est de réunir plusieurs acteurs de la protection numérique dans une ligne dédiée. Cela permet de cibler cette activité plus précisément qu’avec un ETF technologique généraliste.",
       whatToKnow: `La demande peut progresser sans que chaque action monte : concurrence, valorisations et bénéfices comptent aussi. Avec des frais de ${formatEtfTer("IE00BYPLS672", "index")} par an, le thème doit justifier sa place dans ton portefeuille.`,
       verdict: "Il permet de suivre plusieurs entreprises de cybersécurité sans choisir un seul gagnant. Reste à vérifier le prix payé pour cette croissance attendue.",
       question: "Tu préfères une exposition dédiée à la cybersécurité ou la tech déjà présente dans ton ETF World ?"
@@ -388,8 +407,9 @@ export const ETFS = [
       pea: getInstrumentPea("FR0010527275"),
       cto: true,
       location: getInstrumentLocation("FR0010527275"),
-      whatIs: "Réplique le World Water Index, des entreprises liées au traitement, à la distribution et à la gestion de l'eau. Top positions : American Water Works, Veolia, Xylem, Ecolab — un mix d'utilities et d'équipementiers industriels.",
-      whyInteresting: "Il regroupe des entreprises liées à l’eau, notamment dans les services et les équipements. L’intérêt est d’identifier cette activité dans une ligne dédiée.",
+      hook: "💧 L’eau est indispensable. Mais que détient vraiment un ETF consacré à cette ressource ?",
+      whatIs: "Le fonds suit des entreprises liées au traitement, à la distribution et à la gestion de l’eau. On y retrouve des services et des équipements industriels. Tu investis donc dans les activités de ces sociétés, dont les bénéfices dépendent de leurs contrats, de leurs coûts et de leurs investissements.",
+      whyInteresting: "L’intérêt est d’identifier ces métiers dans une seule ligne. Le besoin d’eau donne du sens au thème, mais il faut regarder comment chaque entreprise transforme ce besoin en revenus.",
       whatToKnow: `L’eau est indispensable, mais cela ne rend pas les actions du fonds peu risquées. Regarde les entreprises réellement détenues et les frais de ${formatEtfTer("FR0010527275", "index")} par an avant de te fier au thème.`,
       verdict: "Une exposition aux entreprises liées à l’eau, qui ne revient pas à investir directement dans le prix de cette ressource.",
       question: "Dans un ETF eau, tu cherches surtout les services publics ou les technologies de traitement ?"
@@ -411,8 +431,9 @@ export const ETFS = [
       pea: getInstrumentPea("LU1681048630"),
       cto: true,
       location: getInstrumentLocation("LU1681048630"),
-      whatIs: "Réplique le S&P Global Luxury Index, des entreprises mondiales du luxe et des biens haut de gamme. Top positions : LVMH, Hermès, L'Oréal, Ferrari, Richemont — les grandes maisons de luxe européennes et quelques acteurs mondiaux.",
-      whyInteresting: "Tu investis dans des marques de luxe mondiales via un seul fonds. C’est une exposition à leur capacité à vendre à des prix élevés, sans choisir une maison en particulier.",
+      hook: "💎 Une marque peut faire rêver. Est-ce suffisant pour que son action soit un bon investissement ?",
+      whatIs: "Son indice rassemble des entreprises du luxe et des biens haut de gamme. Tu suis des marques présentes sur plusieurs marchés, dont les résultats dépendent de la demande, de leur image et de leur capacité à préserver leurs marges.",
+      whyInteresting: "L’intérêt est de répartir cette exposition entre plusieurs groupes, sans choisir une seule maison. Une marque forte peut soutenir son activité, mais le prix payé en Bourse reste une question à part entière.",
       whatToKnow: "Le secteur dépend aussi de la demande des consommateurs, notamment en Chine. Une marque forte n’empêche ni une baisse des ventes ni une baisse de son cours.",
       verdict: "Un panier de marques mondiales, mais quelques groupes pèsent lourd et leurs ventes restent sensibles aux consommateurs aisés.",
       question: "Tu ajouterais un ETF luxe si tu possèdes déjà ses principales valeurs dans un indice européen ?"
@@ -440,8 +461,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BJ5JP097"),
       cto: true,
       location: getInstrumentLocation("IE00BJ5JP097"),
-      whatIs: "Réplique le MSCI World Financials Advanced Select 20/35 Capped, environ 228 banques, assureurs et sociétés de paiement des marchés développés. Top positions : JPMorgan Chase, Visa, Berkshire Hathaway, Mastercard, Goldman Sachs — un mix de banques classiques et de réseaux de paiement.",
-      whyInteresting: "Cet ETF donne davantage de poids aux banques, assureurs et autres sociétés financières mondiales. Utile si c’est précisément ce secteur que tu veux renforcer.",
+      hook: "🏦 Banques, assureurs, paiements : sais-tu ce que regroupe un ETF sur les financières ?",
+      whatIs: "Son indice rassemble des sociétés financières des marchés développés. Leurs métiers diffèrent : prêter, assurer ou faciliter les paiements ne repose pas sur les mêmes sources de revenus. Les taux et la qualité du crédit peuvent donc avoir des effets différents selon les entreprises.",
+      whyInteresting: "L’intérêt est de renforcer ce secteur en une seule ligne, tout en réunissant plusieurs activités. Cela mérite de regarder la composition plutôt que de résumer le fonds aux seules banques.",
       whatToKnow: "Une hausse des taux peut aider certaines banques et en pénaliser d’autres. Les crises de crédit restent un risque majeur. La part distribue des revenus, à prendre en compte sur CTO.",
       verdict: "Pour augmenter délibérément la part des banques et autres sociétés financières dans un portefeuille mondial.",
       question: "Tu veux surpondérer la finance ou laisser ton ETF World déterminer son poids ?"
@@ -461,8 +483,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00B1FZS350"),
       cto: true,
       location: getInstrumentLocation("IE00B1FZS350"),
-      whatIs: "Réplique un indice de foncières cotées (REIT) des marchés développés, environ 339 sociétés qui possèdent et gèrent de l'immobilier (bureaux, entrepôts, data centers, commerces). Top positions : Prologis (entrepôts logistiques), Equinix (data centers), Simon Property Group, Digital Realty Trust, Realty Income.",
-      whyInteresting: "Il permet d’acheter des foncières cotées sans gérer directement un bien immobilier. Tu gardes la liquidité d’un ETF et reçois les distributions de cette part.",
+      hook: "🏢 Acheter de l’immobilier avec un ETF : pourquoi sa valeur peut-elle bouger chaque jour ?",
+      whatIs: "Le fonds suit des sociétés immobilières cotées et des foncières. Tu détiens leurs actions, qui se négocient en Bourse. Leurs immeubles, leurs loyers et leur financement influencent leur activité, tandis que le marché fait varier le prix auquel tu peux acheter ou vendre ces titres.",
+      whyInteresting: "L’intérêt est d’accéder à plusieurs entreprises immobilières avec une seule ligne, sans gérer un bien toi-même. Cette facilité d’achat et de vente s’accompagne toutefois des fluctuations du marché boursier.",
       whatToKnow: `Les foncières cotées peuvent chuter comme les autres actions, surtout quand les taux montent. Ne confonds pas leurs distributions avec des loyers garantis ; les frais sont de ${formatEtfTer("IE00B1FZS350", "index")} par an.`,
       verdict: "De l’immobilier coté, achetable comme une action. Sa liquidité ne le protège ni des baisses en Bourse ni des variations de taux.",
       question: "Tu choisirais les foncières cotées pour leur liquidité, malgré leurs variations quotidiennes ?"
@@ -482,8 +505,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BJ5JNY98"),
       cto: true,
       location: getInstrumentLocation("IE00BJ5JNY98"),
-      whatIs: "Réplique le MSCI World Information Technology Advanced Select 20/35 Capped, environ 161 entreprises du secteur technologique mondial — plus large qu'un pari pur semi-conducteurs ou IA. Top positions : Nvidia (17,3%), Apple (14,2%), Microsoft (10,3%), Broadcom (7,1%), ASML — logiciel, matériel et semi-conducteurs réunis.",
-      whyInteresting: "Il permet de renforcer le secteur technologique mondial sans choisir une seule activité, comme les puces ou les logiciels.",
+      hook: "💻 Un ETF technologique peut contenir beaucoup d’entreprises… et dépendre fortement de quelques-unes.",
+      whatIs: "Son indice rassemble des entreprises du secteur des technologies de l’information dans les marchés développés. Il couvre plusieurs métiers, notamment les logiciels, le matériel et les semi-conducteurs. Les très grandes sociétés peuvent occuper une place importante dans cette sélection.",
+      whyInteresting: "L’intérêt est de renforcer plusieurs activités technologiques à la fois. Mais une nouvelle ligne ne suffit pas à diversifier si elle reprend les entreprises qui pèsent déjà lourd dans ton portefeuille.",
       whatToKnow: "Quelques très grandes entreprises pèsent lourd dans le fonds. Compare ses premières positions à celles de tes ETF World et Nasdaq-100 pour mesurer le chevauchement.",
       verdict: "Une façon de surpondérer toute la tech mondiale. Regarde les premières lignes : elles peuvent déjà peser lourd dans ton ETF World.",
       question: "Combien de tes principales positions se retrouveraient à la fois ici et dans ton ETF World ?"
@@ -505,8 +529,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE0007Y8Y157"),
       cto: true,
       location: getInstrumentLocation("IE0007Y8Y157"),
-      whatIs: "Un panier d’environ 30 entreprises liées à l’informatique quantique. Certaines en font leur activité centrale ; pour d’autres, le quantique n’est qu’une partie de leurs projets. Acheter cet ETF ne revient donc pas à acheter uniquement des spécialistes du secteur.",
-      whyInteresting: "Tu peux suivre ce thème sans devoir choisir toi-même entre une jeune entreprise très risquée et un groupe déjà établi. C’est surtout une façon de prendre une position ciblée sur une technologie dont l’usage commercial reste à construire.",
+      hook: "⚛️ L’informatique quantique fait rêver. Mais que contiennent les ETF qui portent ce nom ?",
+      whatIs: "Le fonds rassemble des entreprises liées à l’informatique quantique. Pour certaines, ce thème est central ; pour d’autres, il représente une partie de leurs projets. Tu réunis donc des sociétés dont l’exposition et la maturité commerciale peuvent être très différentes.",
+      whyInteresting: "L’intérêt est de suivre plusieurs acteurs sans devoir choisir seul une jeune entreprise ou un groupe établi. Le point décisif reste leur capacité à transformer la technologie en usages commerciaux, puis en bénéfices.",
       whatToKnow: `Avec environ 30 lignes, le fonds reste concentré et ses variations peuvent être fortes. Les frais sont de ${formatEtfTer("IE0007Y8Y157", "index")} par an ; éligibilité PEA de cette part à vérifier. Les hausses passées ne disent pas si ces entreprises transformeront la technologie en bénéfices.`,
       verdict: "Une petite position thématique éventuelle, pour qui accepte une forte volatilité et un résultat très incertain.",
       question: "Si tu voulais investir dans le quantique, tu choisirais cet ETF ou quelques entreprises précises ?"
@@ -533,8 +558,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BK5BCD43"),
       cto: true,
       location: getInstrumentLocation("IE00BK5BCD43"),
-      whatIs: "Réplique le ROBO Global Artificial Intelligence Index, des entreprises actives sur toute la chaîne de valeur de l'IA : infrastructure, logiciels, applications. Parmi les principales sociétés de l’indice au 31/08/2026 : Tempus AI, Palo Alto Networks, Everpure, Elastic et Cloudflare. Le portefeuille du fonds peut différer de l’indice.",
-      whyInteresting: "Cet ETF cherche des entreprises liées à l’intelligence artificielle dans plusieurs métiers, au-delà des seuls fabricants de puces.",
+      hook: "🧠 Tout le monde parle d’IA. Mais quelles entreprises achètes-tu dans un ETF consacré à ce thème ?",
+      whatIs: "Son indice cherche des entreprises liées à plusieurs maillons de l’intelligence artificielle : infrastructures, logiciels et applications. Il couvre donc des métiers différents. Le nom du thème ne dit pas, à lui seul, quelle part des revenus de chaque société dépend réellement de l’IA.",
+      whyInteresting: "L’intérêt est de suivre cette chaîne dans une seule ligne, sans devoir identifier un unique gagnant. La composition mérite qu’on s’y attarde : elle détermine l’exposition concrète bien davantage que l’étiquette du fonds.",
       whatToKnow: "Le thème ne dit pas combien ces entreprises gagneront grâce à l’IA. Regarde les titres détenus et leur poids : tu peux déjà posséder plusieurs de ces sociétés dans un ETF technologique ou mondial.",
       verdict: "Cet ETF rassemble plusieurs métiers liés à l’IA. Vérifie sa composition avant de supposer qu’il suit uniquement les fabricants de modèles ou de puces.",
       question: "Tu veux investir dans les fabricants de puces, les logiciels ou l’ensemble de la chaîne IA ?"
@@ -554,11 +580,12 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BYZK4552"),
       cto: true,
       location: getInstrumentLocation("IE00BYZK4552"),
-      whatIs: "Réplique le iSTOXX FactSet Automation & Robotics Index, des entreprises liées à l'automatisation industrielle et à la robotique. Top positions : Nvidia, Fanuc, Intuitive Surgical, Keyence — mix de robotique industrielle et de robotique chirurgicale.",
-      whyInteresting: "Il réunit des entreprises de l’automatisation et de la robotique. Cela donne une exposition à plusieurs usages, de l’industrie à d’autres équipements.",
+      hook: "🤖 Tu vois passer des robots partout. Mais quand tu achètes un ETF robotique, qu’est-ce que tu achètes vraiment ?",
+      whatIs: "Son indice rassemble des entreprises liées à l’automatisation et à la robotique. Tu retrouves plusieurs métiers autour des machines et des équipements qui automatisent des tâches. Pour comprendre cette exposition, il faut donc regarder les entreprises détenues et les activités qui leur rapportent de l’argent.",
+      whyInteresting: "L’intérêt est de réunir plusieurs entreprises de cet univers sans devoir deviner laquelle prendra le dessus. Mais une technologie peut changer notre quotidien et décevoir en Bourse : la concurrence, les bénéfices et le prix des actions comptent aussi.",
       whatToKnow: "La composition compte plus que l’étiquette « robotique » : certaines sociétés n’en tirent qu’une partie de leurs revenus. Les investissements industriels peuvent ralentir avec l’économie.",
       verdict: "Une exposition à l’automatisation des entreprises, plus concrète que le seul récit autour de l’IA générative.",
-      question: "Tu préfères la robotique industrielle ou les entreprises de logiciels d’IA ?"
+      question: "Tu donnerais une place à la robotique dans ton portefeuille, ou une exposition mondiale te suffit ?"
     },
     {
       id: "blockchain",
@@ -575,8 +602,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE000RDRMSD1"),
       cto: true,
       location: getInstrumentLocation("IE000RDRMSD1"),
-      whatIs: "Réplique un indice d'entreprises liées à l'écosystème blockchain : mineurs de cryptomonnaies, plateformes d'échange, fournisseurs d'infrastructure. Top positions : Coinbase, Strategy (ex-MicroStrategy), Marathon Digital, Robinhood.",
-      whyInteresting: "Tu suis des sociétés cotées actives dans l’écosystème blockchain et crypto, sans acheter toi-même de cryptomonnaies.",
+      hook: "🔗 Un ETF blockchain suit-il vraiment la même chose que du bitcoin ?",
+      whatIs: "Le fonds rassemble des actions d’entreprises liées à l’écosystème blockchain et crypto, comme les plateformes, les mineurs et les fournisseurs d’infrastructures. Tu t’exposes à leur activité. Leur financement, leurs coûts et leur gestion ajoutent des risques à ceux du marché crypto.",
+      whyInteresting: "L’intérêt est de suivre plusieurs sociétés de cet univers depuis un compte-titres. Il faut toutefois distinguer la réussite de ces entreprises de l’évolution du prix des cryptomonnaies auxquelles elles sont liées.",
       whatToKnow: "Tu détiens des actions, pas du bitcoin. Leurs cours peuvent pourtant suivre fortement le marché crypto et subir en plus les risques propres à chaque entreprise.",
       verdict: "Tu achètes ici des actions d’entreprises liées à la blockchain, pas du Bitcoin. Leurs risques d’entreprise s’ajoutent au cycle crypto.",
       question: "Tu préférerais détenir directement du Bitcoin ou des sociétés exposées à son écosystème ?"
@@ -596,8 +624,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE000M7V94E1"),
       cto: true,
       location: getInstrumentLocation("IE000M7V94E1"),
-      whatIs: "Réplique le MarketVector Uranium & Nuclear Technologies Index : mines d'uranium, exploitants de centrales, équipementiers, et acteurs émergents de la fusion nucléaire. Top positions : Cameco, Constellation Energy, NuScale, Oklo.",
-      whyInteresting: "Il rassemble des entreprises liées à l’uranium et à la filière nucléaire. Cela donne accès à plusieurs maillons d’une même industrie.",
+      hook: "☢️ Le nucléaire attire les investisseurs. Mais quelle partie de la filière achètes-tu avec cet ETF ?",
+      whatIs: "Son indice rassemble des entreprises liées à l’uranium et aux technologies nucléaires. Il couvre plusieurs maillons de la filière, avec des activités et des projets à des stades différents. Une société minière et un industriel n’ont pas les mêmes coûts ni les mêmes perspectives.",
+      whyInteresting: "L’intérêt est de réunir ces activités dans une seule ligne. Pour apprécier l’exposition, il faut regarder ce qui pèse réellement dans le fonds : les besoins en électricité ne disent pas quels acteurs en tireront des bénéfices.",
       whatToKnow: "Un besoin accru d’électricité ne garantit pas des gains pour chaque entreprise du fonds. Les prix de l’uranium, les coûts des projets et les décisions publiques peuvent peser lourd.",
       verdict: "Il réunit plusieurs maillons du nucléaire. La demande d’électricité ne suffit pas, à elle seule, à garantir la hausse de ces actions.",
       question: "Tu chercherais plutôt les producteurs d’uranium ou les industriels du nucléaire ?"
@@ -617,8 +646,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BF0M2Z96"),
       cto: true,
       location: getInstrumentLocation("IE00BF0M2Z96"),
-      whatIs: "Réplique la Solactive Battery Value-Chain Index, toute la chaîne de valeur des batteries : extraction de lithium, fabricants de cellules, constructeurs de véhicules électriques. Top positions : Tesla, CATL, Albemarle, BYD.",
-      whyInteresting: "Le fonds couvre plusieurs activités autour des batteries et des véhicules électriques, au lieu de miser sur un seul constructeur.",
+      hook: "🔋 Les batteries prennent de la place dans notre quotidien. Qui en tire vraiment les bénéfices ?",
+      whatIs: "Son indice couvre plusieurs activités de la chaîne des batteries : matières premières, fabrication et véhicules électriques. Tu réunis des entreprises dont les résultats peuvent réagir différemment au coût des matériaux, aux capacités de production et à la demande.",
+      whyInteresting: "L’intérêt est de suivre cette filière sans miser sur un seul constructeur. La progression des usages ne garantit toutefois pas celle des marges : une entreprise peut vendre davantage et gagner moins.",
       whatToKnow: "La croissance du marché ne protège pas les marges des entreprises. Surcapacités, prix des matières premières et concurrence peuvent rendre cette ligne très volatile.",
       verdict: "Une exposition à toute la chaîne des batteries, pas seulement aux constructeurs automobiles. Le thème a déjà montré qu’une tendance de fond peut décevoir en Bourse.",
       question: "Tu regarderais plutôt les fabricants de batteries ou les fournisseurs de matériaux ?"
@@ -640,8 +670,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE000YU9K6K2"),
       cto: true,
       location: getInstrumentLocation("IE000YU9K6K2"),
-      whatIs: "Réplique l'indice MarketVector Global Space Industry Screened : environ 25 entreprises actives dans l'économie spatiale (fabricants de satellites, lanceurs, équipements de communication, tourisme spatial).",
-      whyInteresting: "Cet ETF donne accès à plusieurs sociétés liées aux services et aux technologies spatiales. Il évite de faire dépendre cette exposition d’une seule entreprise.",
+      hook: "🚀 Investir dans le spatial fait rêver. Mais quelles activités se cachent dans cet ETF ?",
+      whatIs: "Son indice rassemble des entreprises liées à l’économie spatiale, notamment aux satellites, aux équipements et aux services associés. Le thème couvre plusieurs métiers : la place de chacun dans le fonds compte pour comprendre ce que tu détiens réellement.",
+      whyInteresting: "L’intérêt est d’accéder à plusieurs acteurs de cet univers sans choisir une seule entreprise. Il faut toutefois regarder leurs activités actuelles, leurs contrats et leurs besoins de financement au-delà des projets annoncés.",
       whatToKnow: "L’univers reste étroit et le thème couvre des métiers très différents. Vérifie les positions : le nom de l’ETF ne suffit pas à dire quelle part des revenus vient réellement du spatial.",
       verdict: "Une exposition très ciblée à l’économie spatiale, avec peu de recul sur plusieurs entreprises du secteur.",
       question: "Quelles activités spatiales voudrais-tu réellement détenir : satellites, lanceurs ou équipements ?"
@@ -663,8 +694,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00B6YX5D40"),
       cto: true,
       location: getInstrumentLocation("IE00B6YX5D40"),
-      whatIs: "Réplique le S&P High Yield Dividend Aristocrats, des entreprises américaines ayant augmenté leur dividende chaque année depuis au moins 20 ans. Sélection dominée par la consommation, l'industrie et la santé plutôt que par la tech.",
-      whyInteresting: "L’indice sélectionne des sociétés américaines ayant augmenté leur dividende pendant une longue période. Cette part distribue les revenus aux porteurs.",
+      hook: "💸 Des entreprises qui augmentent leur dividende depuis longtemps : que sélectionne vraiment cet ETF ?",
+      whatIs: "Son indice sélectionne des sociétés américaines selon leur historique de hausse du dividende. Cette règle change la composition par rapport à un indice américain classique. La part distribue des revenus, dont le montant dépend aussi des versements reçus par le fonds.",
+      whyInteresting: "L’intérêt est de réunir des entreprises ayant un long historique de distributions en hausse. Pour juger le placement, il faut aussi regarder l’évolution de la valeur des parts : les revenus ne racontent qu’une partie du résultat.",
       whatToKnow: "Un historique de hausses n’est pas une promesse : le dividende peut être réduit. Le fonds écarte beaucoup de valeurs de croissance et les distributions ont une incidence fiscale sur CTO.",
       verdict: "Une sélection de sociétés américaines ayant augmenté leur dividende pendant au moins vingt ans. La régularité du versement ne garantit pas le rendement total.",
       question: "Tu regardes d’abord le dividende versé ou la performance totale de ton placement ?"
@@ -687,8 +719,9 @@ export const ETFS = [
       // Global X, page produit consultée le 29/09/2026 : stratégie synthétique sur
       // l'indice Cboe Nasdaq-100 BuyWrite v2 UCITS, sans détention directe garantie des 100 titres.
       // https://globalxetfs.eu/fr/funds/qyld
-      whatIs: "Suit par réplication synthétique un indice combinant une exposition au Nasdaq-100 et la vente d'options d'achat couvertes. Les distributions sont mensuelles.",
-      whyInteresting: "Ce fonds vend des options sur le Nasdaq-100 et verse des distributions mensuelles. Il peut intéresser quelqu’un qui souhaite percevoir des revenus réguliers.",
+      hook: "💰 Des distributions chaque mois avec le Nasdaq-100 : quel compromis se cache derrière ?",
+      whatIs: "Le fonds suit une stratégie qui combine une exposition au Nasdaq-100 et la vente d’options d’achat couvertes. Ces options génèrent des primes, mais elles limitent une partie du potentiel de hausse. Les distributions mensuelles viennent donc d’une stratégie différente de la simple détention de l’indice.",
+      whyInteresting: "L’intérêt est de percevoir des distributions régulières. Pour comparer ce fonds au Nasdaq-100 classique, il faut additionner les sommes reçues et la variation de la valeur des parts, plutôt que regarder uniquement les versements.",
       whatToKnow: "Les distributions ne sont pas un rendement garanti. La vente d’options limite une partie de la hausse lorsque le Nasdaq s’envole, tandis que le fonds reste exposé aux baisses.",
       verdict: "Des distributions régulières en échange d’une partie du potentiel de hausse du Nasdaq-100. À comparer avec la détention directe de l’indice.",
       question: "Accepterais-tu de limiter la hausse possible pour recevoir des distributions mensuelles ?"
@@ -708,8 +741,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00B8FHGS14"),
       cto: true,
       location: getInstrumentLocation("IE00B8FHGS14"),
-      whatIs: "Réplique le MSCI World Minimum Volatility Index, qui sélectionne et pondère les titres du MSCI World pour minimiser la volatilité globale du portefeuille. Sur-pondère la santé et les biens de consommation défensifs, sous-pondère la tech et l'énergie.",
-      whyInteresting: "L’indice privilégie une combinaison d’actions historiquement moins volatiles. Cela peut modifier le profil d’un portefeuille très exposé aux titres de croissance.",
+      hook: "🌊 Un ETF « minimum volatility » peut-il baisser ? Oui. Alors que cherche-t-il à changer ?",
+      whatIs: "Son indice sélectionne et pondère des actions du MSCI World pour rechercher un portefeuille globalement moins volatil. C’est la combinaison des titres qui compte. Cette méthode modifie leur poids et peut donner une composition différente de celle d’un World classique.",
+      whyInteresting: "L’intérêt est de chercher des fluctuations moins fortes tout en restant investi en actions. Ce choix peut aussi modifier la participation aux hausses : il faut accepter que le résultat s’écarte de l’indice mondial habituel.",
       whatToKnow: "« Minimum volatility » ne veut pas dire sans baisse. Le fonds peut reculer avec le marché et manquer une partie des fortes hausses ; regarde aussi ses frais face à un ETF World.",
       verdict: "Un ETF World sélectionné pour réduire les fluctuations. Il peut quand même baisser et sa composition s’éloigne de l’indice classique.",
       question: "Tu accepterais de t’écarter du MSCI World pour chercher des variations moins fortes ?"
@@ -729,8 +763,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BP3QZB59"),
       cto: true,
       location: getInstrumentLocation("IE00BP3QZB59"),
-      whatIs: "Réplique le MSCI World Enhanced Value Index, qui sélectionne les entreprises décotées par rapport à leurs fondamentaux (PER bas, price-to-book bas). Sur-pondère la finance, l'énergie et l'industrie, sous-pondère la tech chère.",
-      whyInteresting: "Il privilégie des entreprises jugées moins chères selon les critères de l’indice. Tu peux ainsi ajouter un biais value à un portefeuille mondial.",
+      hook: "🔎 Une action paraît peu chère. Est-ce une opportunité ou le reflet de ses difficultés ?",
+      whatIs: "Son indice sélectionne des entreprises des marchés développés selon des critères de valorisation liés à leurs fondamentaux. Tu donnes davantage de place aux sociétés jugées moins chères par cette méthode. La sélection peut donc différer sensiblement d’un indice mondial classique.",
+      whyInteresting: "L’intérêt est de suivre une règle de valorisation sans choisir les titres toi-même. Mais une décote peut durer : pour que ce biais fonctionne, il ne suffit pas qu’une action paraisse bon marché.",
       whatToKnow: "Une action peu chère peut le rester longtemps. Ce fonds ne garantit ni un rattrapage ni une meilleure performance qu’un indice mondial classique.",
       verdict: "Il privilégie les sociétés jugées moins chères selon les critères de l’indice. Une valorisation basse ne promet pas un rebond.",
       question: "Tu serais prêt à garder ce biais value plusieurs années s’il fait moins bien que le World ?"
@@ -750,8 +785,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BF4RFH31"),
       cto: true,
       location: getInstrumentLocation("IE00BF4RFH31"),
-      whatIs: "Réplique le MSCI World Small Cap Index, environ 3 400 petites capitalisations des marchés développés. Extrêmement diversifié : aucune ligne individuelle ne dépasse 0,5% du fonds.",
-      whyInteresting: "Tu ajoutes de petites entreprises des marchés développés, souvent absentes des grands ETF World. C’est une exposition différente des mégacapitalisations.",
+      hook: "🏭 Ton ETF World couvre les grands groupes. Où sont les petites entreprises ?",
+      whatIs: "Le MSCI World Small Cap rassemble des petites capitalisations des marchés développés. Tu accèdes à un univers différent de celui des grandes et moyennes entreprises d’un World classique. Leur taille change aussi leur accès au financement et la facilité à négocier leurs actions.",
+      whyInteresting: "L’intérêt est d’élargir les tailles d’entreprises présentes dans un portefeuille mondial. Cette différence d’exposition peut être utile à comprendre, mais elle ne garantit pas une meilleure performance.",
       whatToKnow: "Ces sociétés peuvent être plus sensibles au crédit et leurs actions moins liquides. Leur taille ne garantit pas une prime de performance.",
       verdict: "Il complète un World classique avec de petites entreprises des marchés développés. Leur taille apporte une autre exposition, avec davantage de variations possibles.",
       question: "Si tu ajoutes des small caps à ton World, quel poids leur donnerais-tu ?"
@@ -785,8 +821,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BP3QZ601"),
       cto: true,
       location: getInstrumentLocation("IE00BP3QZ601"),
-      whatIs: "Réplique le MSCI World Quality Factor, environ 290 entreprises sélectionnées pour leur rentabilité élevée, leur endettement maîtrisé et la stabilité de leurs résultats. Top positions : Nvidia, Apple, Microsoft, Visa, Meta — les mêmes géants que le World, mais filtrés sur des critères de qualité financière plutôt que sur la seule capitalisation.",
-      whyInteresting: "L’indice privilégie des entreprises selon des critères financiers de qualité. C’est une manière précise de sélectionner des actions mondiales plutôt que de suivre leur seule taille.",
+      hook: "🔍 Une entreprise solide est-elle toujours un bon investissement ? Voici ce que sélectionne un ETF quality.",
+      whatIs: "Son indice sélectionne des entreprises selon des critères de qualité financière, comme la rentabilité, l’endettement et la stabilité des résultats. Tu suis une méthode précise plutôt que la seule taille des sociétés. Certaines grandes entreprises peuvent toutefois rester communes avec le World classique.",
+      whyInteresting: "L’intérêt est de donner davantage de place à ces caractéristiques financières avec une seule ligne. La qualité de l’entreprise et le prix auquel on achète son action restent deux questions à examiner ensemble.",
       whatToKnow: "Plusieurs grandes lignes peuvent déjà se trouver dans ton ETF World. Compare les positions et les frais pour savoir ce que cette sélection change vraiment.",
       verdict: "Un filtre de solidité appliqué aux grandes actions mondiales. Avant de l’ajouter, compare ses premières positions à celles de ton ETF World.",
       question: "Tu vois assez de différence avec le World classique pour payer ce filtre supplémentaire ?"
@@ -806,8 +843,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BP3QZ825"),
       cto: true,
       location: getInstrumentLocation("IE00BP3QZ825"),
-      whatIs: "Réplique le MSCI World Momentum Factor, environ 434 entreprises sélectionnées pour leur tendance de prix haussière récente — l'indice \"achète ce qui monte\" et rééquilibre régulièrement. Top positions récentes : Micron, Nvidia, Broadcom, Alphabet, ASML.",
-      whyInteresting: "Le fonds privilégie les actions qui ont récemment mieux progressé selon les règles de son indice. Il permet de suivre ce facteur sans choisir les titres toi-même.",
+      hook: "📈 Acheter les actions qui ont récemment monté : c’est l’idée du momentum. Mais comment ça fonctionne ?",
+      whatIs: "Son indice privilégie des actions des marchés développés dont la tendance récente répond à ses critères. La sélection évolue avec les rééquilibrages. Tu suis donc une règle fondée sur les mouvements de prix, qui peut changer les entreprises et les secteurs les plus représentés.",
+      whyInteresting: "L’intérêt est d’appliquer cette méthode sans sélectionner toi-même les titres. Il faut accepter que la composition change et qu’une tendance favorable puisse se retourner rapidement.",
       whatToKnow: "Les tendances se retournent. La composition peut changer aux rééquilibrages et le fonds peut acheter après une hausse, puis vendre après une baisse.",
       verdict: "Il renforce les titres dont la tendance récente est favorable. Cette règle peut se retourner lorsque les leaders changent rapidement.",
       question: "Tu pourrais conserver un ETF momentum après un retournement brutal des valeurs en tête ?"
@@ -838,8 +876,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00B4ND3602"),
       cto: true,
       location: getInstrumentLocation("IE00B4ND3602"),
-      whatIs: "Chaque part de cet ETC correspond à une quantité d'or physique détenue en coffre pour le compte des porteurs. Ce n'est pas une action minière ni un fonds synthétique : le cours suit directement le cours spot de l'or, moins les frais.",
-      whyInteresting: "Historiquement, l'or a joué un rôle de valeur refuge en période d'inflation ou d'incertitude, et reste peu corrélé aux actions. C'est un moyen simple d'y être exposé sans acheter et stocker du métal toi-même.",
+      hook: "🥇 De l’or en portefeuille sans gérer un coffre : qu’achètes-tu avec cet ETC ?",
+      whatIs: "Chaque part donne une exposition à de l’or physique détenu en coffre. Le produit suit le prix du métal, après ses frais. Il s’agit d’un ETC : tu détiens un titre coté lié à une matière première, avec une structure différente de celle d’un ETF d’actions.",
+      whyInteresting: "L’intérêt est d’accéder au métal depuis un compte-titres sans organiser son stockage toi-même. Ton résultat dépend surtout du cours de l’or et, en euros, des mouvements de change : le métal ne produit pas de revenu.",
       whatToKnow: "L'or ne verse aucun dividende ni coupon : sa seule source de gain est la variation de son cours. Ce cours peut aussi baisser, parfois plusieurs années de suite. Éligibilité PEA de ce produit à vérifier ; le rendement en euros dépend aussi du taux de change €/$.",
       verdict: "Une exposition directe et simple au métal physique, sans diversification interne — un seul actif, pas un panier de titres.",
       question: "L'or, une assurance que tu gardes en petite dose ou une ligne que tu évites complètement ?"
@@ -863,8 +902,9 @@ export const ETFS = [
       pea: getInstrumentPea("GB00BLD4ZL17"),
       cto: true,
       location: getInstrumentLocation("GB00BLD4ZL17"),
-      whatIs: "Chaque part de cet ETP correspond à une quantité de bitcoin détenue par un dépositaire agréé pour le compte des porteurs. Ce n'est pas un contrat à terme ni un fonds qui réplique le bitcoin de façon synthétique.",
-      whyInteresting: "Ça permet de détenir une exposition au bitcoin sur un compte-titres classique, sans gérer soi-même un portefeuille crypto (clés privées, plateforme d'échange).",
+      hook: "₿ Du bitcoin depuis un compte-titres : que change le passage par un ETP ?",
+      whatIs: "Ce produit coté donne une exposition à du bitcoin détenu auprès d’un dépositaire. Tu achètes des parts sur ton compte-titres, tandis que le produit organise la conservation de l’actif. C’est un ETP, avec une structure différente d’un ETF d’actions diversifié.",
+      whyInteresting: "L’intérêt est de suivre le bitcoin sans gérer toi-même des clés privées. Cette facilité ne réduit pas ses variations et ajoute une structure de détention, un dépositaire et des frais à comprendre.",
       whatToKnow: "Le bitcoin est extrêmement volatil : des variations de plusieurs dizaines de pourcents dans l'année, dans un sens comme dans l'autre, ne sont pas rares. Éligibilité PEA de ce produit à vérifier. Aucun revenu versé, et la valeur peut tomber à une fraction de son point haut.",
       verdict: "Une façon simple d'être exposé au bitcoin depuis un compte-titres, mais sans aucune diversification : un seul actif, à l'amplitude de variation parmi les plus fortes de cette bibliothèque.",
       question: "Le bitcoin dans ton portefeuille : une conviction assumée ou une ligne que tu préfères éviter ?"
@@ -888,8 +928,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00B4WXJJ64"),
       cto: true,
       location: getInstrumentLocation("IE00B4WXJJ64"),
-      whatIs: "Cet ETF détient des obligations émises par plusieurs États de la zone euro, avec des échéances différentes. Sa duration effective était d’environ 6,7 ans en septembre 2026 : c’est le chiffre à regarder pour comprendre sa réaction aux taux.",
-      whyInteresting: `Il ajoute des obligations à un portefeuille composé surtout d’actions, pour ${formatEtfTer("IE00B4WXJJ64", "index")} de frais annuels. Cela peut aider à répartir les risques, même si les obligations ne protègent pas lors de toutes les baisses boursières.`,
+      hook: "🏛️ Des obligations d’État dans un ETF : pourquoi sa valeur peut-elle baisser quand les taux montent ?",
+      whatIs: "Le fonds détient des obligations de plusieurs États de la zone euro, avec des échéances différentes. Leur prix varie en Bourse : lorsque les taux changent, la valeur des obligations déjà émises s’ajuste. La duration aide à comprendre cette sensibilité.",
+      whyInteresting: "L’intérêt est de réunir ces emprunts d’État dans une seule ligne, avec une part qui distribue les revenus. Cette exposition apporte une autre source de risque qu’un ETF actions, mais son comportement dépend notamment des taux.",
       whatToKnow: "Avec une duration d’environ 6,7 ans, une hausse parallèle des taux d’un point pourrait entraîner une baisse approximative de 6,7 % du prix, toutes choses égales par ailleurs. Il porte aussi le risque des États présents dans l’indice. Éligibilité PEA de cette part à vérifier.",
       verdict: "Utile si tu veux des obligations d’État en portefeuille, mais à choisir en comprenant d’abord sa sensibilité aux taux.",
       question: "Pour ta poche prudente, tu préfères ces obligations ou un fonds à duration plus courte ?"
@@ -909,8 +950,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00B66F4759"),
       cto: true,
       location: getInstrumentLocation("IE00B66F4759"),
-      whatIs: "Réplique un indice d'obligations d'entreprises notées \"spéculatives\" (BB et en dessous), libellées en euros. Diversifié sur environ 500 émetteurs de secteurs variés.",
-      whyInteresting: "Il rassemble des obligations d’entreprises en euros moins bien notées. Leurs intérêts sont généralement plus élevés pour rémunérer un risque de crédit supérieur.",
+      hook: "💶 Des obligations qui paient davantage : quel risque acceptes-tu en échange ?",
+      whatIs: "Le fonds rassemble des obligations d’entreprises en euros classées dans la catégorie spéculative. Les intérêts plus élevés rémunèrent notamment un risque de crédit supérieur. Cette part distribue les revenus : leur versement et l’évolution du prix des parts contribuent ensemble au résultat.",
+      whyInteresting: "L’intérêt est d’accéder à de nombreux emprunteurs sans acheter leurs obligations une par une. La répartition limite le poids d’un seul émetteur, mais ne protège pas d’une dégradation générale du crédit.",
       whatToKnow: "Si les défauts augmentent, le cours peut baisser malgré les coupons. En période de crise, ce segment peut se comporter davantage comme des actions que comme des obligations d’État.",
       verdict: "Des obligations d’entreprises offrant davantage de rendement, avec un risque de défaut plus élevé. Elles ne jouent pas le même rôle que des obligations d’État.",
       question: "Quel risque de baisse accepterais-tu pour chercher plus de revenus obligataires ?"
@@ -934,8 +976,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00B3F81R35"),
       cto: true,
       location: getInstrumentLocation("IE00B3F81R35"),
-      whatIs: "Réplique un indice large d'obligations d'entreprises \"investment grade\" (notées BBB- et au-dessus) libellées en euros, tous secteurs confondus.",
-      whyInteresting: "Il permet d’investir dans de nombreuses obligations d’entreprises en euros de catégorie investment grade. Cette part distribue les revenus.",
+      hook: "🏢 Prêter à des entreprises bien notées avec un ETF : est-ce vraiment sans risque ?",
+      whatIs: "Son indice rassemble des obligations d’entreprises en euros de catégorie investment grade. Cette notation renseigne sur la qualité du crédit, sans garantir le remboursement. La valeur des obligations varie aussi lorsque les taux ou la perception du risque changent.",
+      whyInteresting: "L’intérêt est de réunir de nombreux emprunts d’entreprises en une seule ligne. Cette part distribue les revenus, mais le résultat total dépend aussi du prix auquel les parts s’achètent et se vendent.",
       whatToKnow: "Investment grade ne veut pas dire sans risque : les taux et la qualité de crédit font varier le prix. Les distributions peuvent aussi compter dans ta fiscalité sur CTO.",
       verdict: "Des obligations d’entreprises bien notées pour diversifier la poche obligataire. La qualité de crédit n’efface pas le risque de taux.",
       question: "Pour tes obligations, tu privilégierais les entreprises bien notées ou les États ?"
@@ -959,8 +1002,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BF3N7094"),
       cto: true,
       location: getInstrumentLocation("IE00BF3N7094"),
-      whatIs: "Version capitalisante de l'exposition high yield en euros : obligations d'entreprises notées \"spéculatives\" (BB et en dessous), coupons réinvestis automatiquement.",
-      whyInteresting: "Il donne accès aux obligations d’entreprises en euros à haut rendement en capitalisant les revenus. C’est une autre façon de détenir cette exposition que la part distribuante.",
+      hook: "♻️ Réinvestir les intérêts du high yield : que change une part capitalisante ?",
+      whatIs: "Le fonds suit des obligations d’entreprises en euros de catégorie spéculative. Cette part conserve et réinvestit les revenus dans le fonds. Tu retrouves donc une exposition au crédit à haut rendement, avec un traitement des revenus différent de celui d’une part distribuante.",
+      whyInteresting: "L’intérêt est de garder les intérêts investis sans gérer leur réinvestissement toi-même. La capitalisation change la manière de recevoir le résultat, mais elle ne rend pas les emprunteurs moins risqués.",
       whatToKnow: "La capitalisation des revenus ne réduit pas le risque de défaut. Vérifie aussi la taille du fonds et sa liquidité si tu compares les deux parts.",
       verdict: "La version capitalisante du crédit à haut rendement. Les intérêts sont réinvestis dans le fonds, mais le risque de crédit reste le même.",
       question: "Sur du high yield, tu veux des distributions ou préfères-tu leur réinvestissement automatique ?"
@@ -988,8 +1032,9 @@ export const ETFS = [
       pea: getInstrumentPea("IE00BFZPF546"),
       cto: true,
       location: getInstrumentLocation("IE00BFZPF546"),
-      whatIs: "Réplique un indice de dette d'État de pays émergents, émise en devise locale (et non en dollar) : Brésil, Mexique, Afrique du Sud, Indonésie, Inde, etc.",
-      whyInteresting: "Il réunit des obligations d’État émergents libellées dans leurs monnaies locales. Tu t’exposes donc à la fois aux taux et aux devises de ces pays.",
+      hook: "🌏 Des obligations émergentes en monnaie locale : pourquoi les intérêts ne disent-ils pas tout ?",
+      whatIs: "Le fonds suit des obligations d’État de pays émergents émises dans leurs monnaies locales. Tu t’exposes donc aux emprunteurs, à leurs taux et à leurs devises. Pour un investisseur en euros, le change peut modifier fortement le résultat final.",
+      whyInteresting: "L’intérêt est de réunir plusieurs marchés obligataires et plusieurs monnaies dans une seule ligne. Pour comprendre cette exposition, il faut regarder les revenus attendus et les risques de change ensemble.",
       whatToKnow: "Une monnaie qui baisse face à l’euro peut effacer les intérêts reçus. Il faut aussi compter avec le risque souverain : le rendement affiché ne raconte pas tout.",
       verdict: "Une exposition à la fois aux obligations et aux devises émergentes. Une dépréciation des monnaies locales peut effacer les coupons reçus.",
       question: "Dans ta poche obligataire, prendrais-tu aussi le risque des monnaies émergentes ?"
