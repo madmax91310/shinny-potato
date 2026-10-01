@@ -64,7 +64,7 @@ export default function InvestorPortfolio() {
       {portfolio && <>
         <div className="ip-meta">
           <strong>{portfolio.identity.displayName} · {portfolio.identity.entityName}</strong>
-          <span>Positions au {dateFR(portfolio.snapshot.periodEnd)} · déposées le {dateFR(portfolio.snapshot.filedAt)}</span>
+          <span>Positions au {dateFR(portfolio.snapshot.periodEnd)}{portfolio.snapshot.filedAt && ` · déposées le ${dateFR(portfolio.snapshot.filedAt)}`}</span>
           <span>{portfolio.holdings.length} positions affichées · poids hors options</span>
         </div>
         <div className="ip-grid">
@@ -88,7 +88,7 @@ export default function InvestorPortfolio() {
           <Button type="button" variant="secondary" onClick={download}>⬇️ Télécharger le PNG</Button>
         </div>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
-        <p className="ip-credit">{portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
+        <p className="ip-credit">{portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
       </>}
     </section>
   </div>

@@ -46,6 +46,6 @@ export function renderPortfolioImage(portfolio) {
   rounded(ctx, 'Autres positions', 117, 1222, 650, 29, '#bacad0')
   ctx.textAlign = 'right'; rounded(ctx, percentage(other), 995, 1222, 280, 30, '#bacad0')
   ctx.textAlign = 'left'
-  rounded(ctx, identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR · Formulaire 13F' : ATTRIBUTION, 77, 1308, 930, 22, '#a6bac2')
+  rounded(ctx, identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR · Formulaire 13F' : ATTRIBUTION, 77, 1308, 930, 22, '#a6bac2')
   return canvas.toDataURL('image/png')
 }

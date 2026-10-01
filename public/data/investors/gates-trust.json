@@ -1,211 +1,162 @@
 {
-  "as_of": "2026-10-01T04:49:35.303949+00:00",
+  "as_of": "2026-10-01T05:07:32.024532+00:00",
   "data": {
     "identity": {
       "slug": "gates-trust",
       "archetype": "hedge_fund",
       "displayName": "Gates Foundation Trust",
       "entityName": "Gates Foundation Trust",
-      "dataProvider": "SEC"
+      "dataProvider": "FolioFact"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
-      "filedAt": "2026-08-14",
       "holdings": [
         {
-          "issuerName": "ANHEUSER BUSCH INBEV SA NV",
-          "ticker": "",
-          "cusip": "03524A108",
+          "issuerName": "Berkshire Hathaway Inc.",
+          "ticker": "BRK.{A,B}",
           "putCall": null,
-          "value": 140327200.0,
-          "weight": 0.004076341268153231
-        },
-        {
-          "issuerName": "BERKSHIRE HATHAWAY INC DEL",
-          "ticker": "",
-          "cusip": "084670702",
-          "putCall": null,
-          "value": 7350651039.0,
           "weight": 0.2135278276632693
         },
         {
-          "issuerName": "CANADIAN NATL RY CO",
-          "ticker": "",
-          "cusip": "136375102",
+          "issuerName": "Caterpillar Inc.",
+          "ticker": "CAT",
           "putCall": null,
-          "value": 6179825963.0,
-          "weight": 0.17951672664302917
-        },
-        {
-          "issuerName": "CATERPILLAR INC",
-          "ticker": "",
-          "cusip": "149123101",
-          "putCall": null,
-          "value": 6765963549.0,
           "weight": 0.19654333895074652
         },
         {
-          "issuerName": "COCA-COLA FEMSA SAB DE CV",
-          "ticker": "",
-          "cusip": "191241108",
+          "issuerName": "Canadian Natl Ry Co.",
+          "ticker": "CNI",
           "putCall": null,
-          "value": 660313894.0,
-          "weight": 0.019181347422646204
+          "weight": 0.17951672664302917
         },
         {
-          "issuerName": "COUPANG INC",
-          "ticker": "",
-          "cusip": "22266T109",
+          "issuerName": "Waste Management Inc. Del",
+          "ticker": "WM",
           "putCall": null,
-          "value": 160638542.0,
-          "weight": 0.00466636203109993
-        },
-        {
-          "issuerName": "DANAHER CORP DEL",
-          "ticker": "",
-          "cusip": "235851102",
-          "putCall": null,
-          "value": 71049040.0,
-          "weight": 0.002063891631947831
-        },
-        {
-          "issuerName": "DEERE & CO",
-          "ticker": "",
-          "cusip": "244199105",
-          "putCall": null,
-          "value": 2256551587.0,
-          "weight": 0.06555018811609414
-        },
-        {
-          "issuerName": "ECOLAB INC",
-          "ticker": "",
-          "cusip": "278865100",
-          "putCall": null,
-          "value": 1453799239.0,
-          "weight": 0.042231169962384074
-        },
-        {
-          "issuerName": "FEDEX CORP",
-          "ticker": "",
-          "cusip": "31428X106",
-          "putCall": null,
-          "value": 746615273.0,
-          "weight": 0.021688301688934083
-        },
-        {
-          "issuerName": "FEDEX FGHT HLDG CO INC",
-          "ticker": "",
-          "cusip": "314352105",
-          "putCall": null,
-          "value": 180019331.0,
-          "weight": 0.0052293513162140785
-        },
-        {
-          "issuerName": "HOME DEPOT INC",
-          "ticker": "",
-          "cusip": "437076102",
-          "putCall": null,
-          "value": 352680000.0,
-          "weight": 0.01024494209570405
-        },
-        {
-          "issuerName": "HORMEL FOODS CORP",
-          "ticker": "",
-          "cusip": "440452100",
-          "putCall": null,
-          "value": 51756898.0,
-          "weight": 0.001503477438650507
-        },
-        {
-          "issuerName": "KRAFT HEINZ CO",
-          "ticker": "",
-          "cusip": "500754106",
-          "putCall": null,
-          "value": 58402812.0,
-          "weight": 0.0016965334784118456
-        },
-        {
-          "issuerName": "MADISON SQUARE GRDN SPRT COR",
-          "ticker": "",
-          "cusip": "55825T103",
-          "putCall": null,
-          "value": 238052427.0,
-          "weight": 0.006915144976627015
-        },
-        {
-          "issuerName": "MCDONALDS CORP",
-          "ticker": "",
-          "cusip": "580135101",
-          "putCall": null,
-          "value": 90526819.0,
-          "weight": 0.0026296983632847944
-        },
-        {
-          "issuerName": "ON HLDG AG",
-          "ticker": "",
-          "cusip": "H5919C104",
-          "putCall": null,
-          "value": 17710000.0,
-          "weight": 0.0005144548160227933
-        },
-        {
-          "issuerName": "PACCAR INC",
-          "ticker": "",
-          "cusip": "693718108",
-          "putCall": null,
-          "value": 120120000.0,
-          "weight": 0.0034893457086763373
-        },
-        {
-          "issuerName": "SCHRODINGER INC",
-          "ticker": "",
-          "cusip": "80810D103",
-          "putCall": null,
-          "value": 113452040.0,
-          "weight": 0.003295649258363105
-        },
-        {
-          "issuerName": "VERALTO CORP",
-          "ticker": "",
-          "cusip": "92338C103",
-          "putCall": null,
-          "value": 11025850.0,
-          "weight": 0.00032028806511829
-        },
-        {
-          "issuerName": "WALMART INC",
-          "ticker": "",
-          "cusip": "931142103",
-          "putCall": null,
-          "value": 950305425.0,
-          "weight": 0.02760526270942052
-        },
-        {
-          "issuerName": "WASTE CONNECTIONS INC",
-          "ticker": "",
-          "cusip": "94106B101",
-          "putCall": null,
-          "value": 339910081.0,
-          "weight": 0.009873990863080054
-        },
-        {
-          "issuerName": "WASTE MGMT INC DEL",
-          "ticker": "",
-          "cusip": "94106L109",
-          "putCall": null,
-          "value": 5955519423.0,
           "weight": 0.1730008836295673
         },
         {
-          "issuerName": "WEST PHARMACEUTICAL SVSC INC",
-          "ticker": "",
-          "cusip": "955306105",
+          "issuerName": "Deere & Co.",
+          "ticker": "DE",
           "putCall": null,
-          "value": 159575500.0,
+          "weight": 0.06555018811609414
+        },
+        {
+          "issuerName": "Ecolab Inc.",
+          "ticker": "ECL",
+          "putCall": null,
+          "weight": 0.042231169962384074
+        },
+        {
+          "issuerName": "Wal Mart Stores Inc.",
+          "ticker": "WMT",
+          "putCall": null,
+          "weight": 0.02760526270942052
+        },
+        {
+          "issuerName": "FedEx Corp.",
+          "ticker": "FDX",
+          "putCall": null,
+          "weight": 0.021688301688934083
+        },
+        {
+          "issuerName": "Coca-Cola Femsa Sab De CV",
+          "ticker": "KOF",
+          "putCall": null,
+          "weight": 0.019181347422646204
+        },
+        {
+          "issuerName": "Home Depot Inc.",
+          "ticker": "HD",
+          "putCall": null,
+          "weight": 0.01024494209570405
+        },
+        {
+          "issuerName": "Waste Connections Inc.",
+          "ticker": "WCN",
+          "putCall": null,
+          "weight": 0.009873990863080054
+        },
+        {
+          "issuerName": "Madison Square GRDN SPRT Cor",
+          "ticker": "MSGS",
+          "putCall": null,
+          "weight": 0.006915144976627015
+        },
+        {
+          "issuerName": "Fedex FGHT Holding Co. Inc.",
+          "ticker": "FDXF",
+          "putCall": null,
+          "weight": 0.0052293513162140785
+        },
+        {
+          "issuerName": "Coupang Inc.",
+          "ticker": "CPNG",
+          "putCall": null,
+          "weight": 0.00466636203109993
+        },
+        {
+          "issuerName": "West Pharmaceutical SVSC Inc.",
+          "ticker": "WST",
+          "putCall": null,
           "weight": 0.004635481902554786
+        },
+        {
+          "issuerName": "Anheuser Busch Inbev Sa/Nv",
+          "ticker": "BUD",
+          "putCall": null,
+          "weight": 0.004076341268153231
+        },
+        {
+          "issuerName": "Paccar Inc.",
+          "ticker": "PCAR",
+          "putCall": null,
+          "weight": 0.0034893457086763373
+        },
+        {
+          "issuerName": "Schrodinger Inc",
+          "ticker": "SDGR",
+          "putCall": null,
+          "weight": 0.003295649258363105
+        },
+        {
+          "issuerName": "McDonald's Corp.",
+          "ticker": "MCD",
+          "putCall": null,
+          "weight": 0.0026296983632847944
+        },
+        {
+          "issuerName": "Danaher Corporation",
+          "ticker": "DHR",
+          "putCall": null,
+          "weight": 0.002063891631947831
+        },
+        {
+          "issuerName": "Kraft Heinz Co.",
+          "ticker": "KHC",
+          "putCall": null,
+          "weight": 0.0016965334784118456
+        },
+        {
+          "issuerName": "Hormel Foods Corp.",
+          "ticker": "HRL",
+          "putCall": null,
+          "weight": 0.001503477438650507
+        },
+        {
+          "issuerName": "On Holding AG",
+          "ticker": "ONON",
+          "putCall": null,
+          "weight": 0.0005144548160227933
+        },
+        {
+          "issuerName": "Veralto Corp.",
+          "ticker": "VLTO",
+          "putCall": null,
+          "weight": 0.00032028806511829
         }
       ]
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1166559/000110465926097175/0001104659-26-097175-index.html"
+    "sourceUrl": "https://foliofact.com/funds/gates-foundation-trust"
   }
 }
