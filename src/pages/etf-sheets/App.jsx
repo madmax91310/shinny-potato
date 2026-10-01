@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CATEGORY_ORDER, CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
-import { buildText } from './lib'
+import { accountLabel, buildText } from './lib'
 import { renderETFImage } from './canvasImage'
 import { renderAnnualETFImage } from './annualImage'
 import { INSTRUMENT_AUM_BY_ISIN } from '../../data/instrument-aum'
@@ -54,6 +54,8 @@ function EtfCard({ etf }) {
         {etf.isNew && <span className="es-badge-new">🆕 Nouveau</span>}
       </h2>
 
+      <p className="es-engagement">{etf.hook}</p>
+
       <ul className="es-facts">
         {etf.listing && <li><span className="es-fi">📍</span><span className="es-fv">Cotation : {etf.listing.exchange} · {etf.listing.currency}</span></li>}
         <li className="mono">
@@ -81,10 +83,7 @@ function EtfCard({ etf }) {
         </li>
         <li>
           <span className="es-fi">🏦</span>
-          <span>
-            PEA : <span className={etf.pea === true ? 'es-yes' : etf.pea === false ? 'es-no' : ''}>{etf.pea === null ? 'à vérifier' : etf.pea ? '✅' : '❌'}</span>
-            &nbsp;|&nbsp; CTO : <span className={etf.cto ? 'es-yes' : 'es-no'}>{etf.cto ? '✅' : '❌'}</span>
-          </span>
+          <span className="es-fv">{accountLabel(etf)}</span>
         </li>
         <li>
           <span className="es-fi">📍</span>

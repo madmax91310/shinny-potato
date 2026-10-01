@@ -185,6 +185,9 @@ async function testEtfSheets(page) {
     if (/undefined|NaN/.test(text)) badCount++;
     const selectedId = await select.inputValue();
     const card = ETFS.find(item => item.id === selectedId);
+    if (!text.includes(card.hook)) badCount++;
+    const accounts = await page.locator('.es-facts li').filter({ hasText: 'CTO :' }).textContent();
+    if (accounts.includes('PEA') !== (card.pea === true)) badCount++;
     if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
     const sectionLabels = ["🔍 C'est quoi ?", "✅ Pourquoi c'est intéressant ?", "⚠️ Ce qu'il faut savoir", '🏆 Verdict'];
     const explanations = [card.whatIs, card.whyInteresting, card.whatToKnow, card.verdict];
@@ -194,7 +197,8 @@ async function testEtfSheets(page) {
     const copied = await page.evaluate(() => window.__etfCopiedText);
     const sectionPositions = sectionLabels.map(label => copied?.indexOf(label) ?? -1);
     if (!copied?.startsWith("📋 Présentation d'ETF\n") || !copied.includes(card.name)
-      || !copied.includes(card.isin) || !copied.includes(card.ter)
+      || !copied.includes(card.isin) || !copied.includes(card.ter) || !copied.includes(card.hook)
+      || (copied.includes('PEA') !== (card.pea === true))
       || !explanations.every(value => copied.includes(value))
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
       || !copied.includes('💬 ' + card.question + ' 👇')
