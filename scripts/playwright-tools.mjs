@@ -590,12 +590,20 @@ async function testInvestorIntroductions(page) {
     await route.fulfill({ headers: { 'access-control-allow-origin': '*' }, json: { as_of: '2026-10-01', data: { identity: { slug, displayName, entityName: 'Déclarant de test', archetype: 'hedge_fund' }, snapshot: { periodEnd: '2026-06-30', filedAt: '2026-08-14', holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .6 }] } } } });
   });
   await page.goto(`${BASE}/portefeuilles-investisseurs`, { waitUntil: 'networkidle' });
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__investorCopiedText = text; } },
+  }));
   let ok = true;
   for (const [slug] of INVESTORS) {
     await page.getByLabel('Choisir un investisseur').selectOption(slug);
     await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro && document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
     ok &&= (await page.locator('.ip-bio').innerText()) === investorIntroduction(slug);
-    ok &&= !(await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes('place-t-il');
+    const tweet = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
+    ok &&= tweet.startsWith('📊 ') && tweet.split('\n')[0].includes('%')
+      && ['💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '📅 Photographie', '💬 '].every(label => tweet.includes(label))
+      && !/place-t-il|undefined|NaN|\\\\n/.test(tweet);
+    await page.getByRole('button', { name: /Copier le tweet|Copié/ }).click();
+    ok &&= (await page.evaluate(() => window.__investorCopiedText)) === tweet;
   }
   await page.getByLabel('Présentation de l’investisseur (modifiable)', { exact: true }).fill('Ma présentation personnalisée.');
   ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes('Ma présentation personnalisée.');
