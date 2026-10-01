@@ -23,8 +23,9 @@ def make_portfolio(slug, source_slug, display, entity):
     base = f'https://foliofact.com/api/v1/funds/{source_slug}'
     fund = get_json(base)
     table = get_json(f'{base}/holdings')
-    print('API schema', slug, json.dumps({'fund': fund, 'holdings': table}, ensure_ascii=False)[:2500], flush=True)
-    raise NotImplementedError('Verify the API schema before publishing percentages')
+    history = get_json(f'{base}/history')
+    print('History schema', slug, json.dumps(history, ensure_ascii=False)[:1200], flush=True)
+    raise NotImplementedError('Verify filing date schema')
 
 
 def main():
