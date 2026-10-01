@@ -29,7 +29,7 @@ export function getIndexImageFacts(index) {
     count: facts.constituents,
     asOf: facts.asOf,
     countries: numericRows(facts.countries).slice(0, 3),
-    sectors: numericRows(facts.sectors).slice(0, 2),
+    sectors: numericRows(facts.sectors).slice(0, 3),
   }
 }
 const cleanLabel = label => label.replace(/^[^\p{L}\p{N}]+/u, '').trim()
