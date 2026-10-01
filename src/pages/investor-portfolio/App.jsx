@@ -3,12 +3,13 @@ import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
 import { renderPortfolioImage } from './image.js'
+import { INVESTOR_PROFILES, investorIntroduction } from '../../data/investor-profiles.js'
 import './style.css'
 
 export default function InvestorPortfolio() {
   const [slug, setSlug] = useState('tepper')
   const [portfolio, setPortfolio] = useState(null)
-  const [intro, setIntro] = useState('')
+  const [intro, setIntro] = useState(() => investorIntroduction('tepper'))
   const [draft, setDraft] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -16,10 +17,11 @@ export default function InvestorPortfolio() {
 
   useEffect(() => {
     const controller = new AbortController()
-    setPortfolio(null); setLoading(true); setError(''); setCopied(false)
+    setPortfolio(null); setIntro(investorIntroduction(slug)); setDraft(''); setLoading(true); setError(''); setCopied(false)
     loadPortfolio(slug, controller.signal).then((next) => {
+      if (controller.signal.aborted) return
       setPortfolio(next)
-      setIntro('')
+      setIntro(investorIntroduction(next.identity.slug))
       setDraft(buildTweet(next))
     }).catch((problem) => {
       if (problem.name !== 'AbortError') setError(problem.message)
@@ -29,6 +31,7 @@ export default function InvestorPortfolio() {
 
   function updateIntro(value) {
     setIntro(value)
+    setCopied(false)
     if (portfolio) setDraft(buildTweet(portfolio, value))
   }
 
@@ -55,6 +58,7 @@ export default function InvestorPortfolio() {
       <select id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
         {INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}
       </select>
+      <p className="ip-bio">{intro.trim() || investorIntroduction(slug)}</p>
       {loading && <p role="status">Chargement des déclarations…</p>}
       {error && <p role="alert" className="ip-error">{error}</p>}
       {portfolio && <>
@@ -71,8 +75,10 @@ export default function InvestorPortfolio() {
             </div>)}
           </div>
           <div className="ip-editor">
-            <label htmlFor="ip-intro">Présentation personnelle (facultative, à vérifier avant publication)</label>
-            <textarea id="ip-intro" value={intro} onChange={(event) => updateIntro(event.target.value)} placeholder="Ex. David Tepper a fondé Appaloosa en 1993…" rows="3" />
+            <label htmlFor="ip-intro">Présentation de l’investisseur (modifiable)</label>
+            <textarea id="ip-intro" value={intro} onChange={(event) => updateIntro(event.target.value)} rows="3" />
+            <Button type="button" variant="secondary" onClick={() => updateIntro(investorIntroduction(slug))}>Rétablir la présentation</Button>
+            <p className="ip-note">Source de la présentation proposée : {INVESTOR_PROFILES[slug]?.sourceUrls.map((url, i) => <span key={url}>{i > 0 && ' · '}<a href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} ↗</a></span>)}</p>
             <label htmlFor="ip-draft">Tweet modifiable</label>
             <textarea id="ip-draft" value={draft} onChange={(event) => setDraft(event.target.value)} rows="16" />
           </div>

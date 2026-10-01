@@ -1,3 +1,4 @@
+import { investorIntroduction } from '../../data/investor-profiles.js'
 export const INVESTORS = [
   ['tepper', 'David Tepper'], ['ackman', 'Bill Ackman'], ['berkshire', 'Berkshire Hathaway'],
   ['cathie-wood', 'Cathie Wood'], ['thiel', 'Peter Thiel'],
@@ -42,19 +43,14 @@ export function buildTweet(portfolio, intro = '') {
   const top = holdings.slice(0, 5)
   const sum = top.reduce((value, row) => value + row.weight, 0)
   const icon = ['🥇', '🥈', '🥉', '📍', '📍']
-  const bios = {
-    tepper: 'David Tepper a fondé Appaloosa en 1993. Il s’est fait connaître en investissant dans des entreprises en difficulté.',
-    'li-lu': 'Li Lu dirige Himalaya Capital, connu pour son portefeuille américain très concentré.',
-    'gates-trust': 'Le Gates Foundation Trust investit les actifs qui financent les activités de la fondation Gates.',
-    klarman: 'Seth Klarman dirige Baupost, une société de gestion associée à l’investissement value.',
-  }
-  const presentation = intro.trim() || bios[identity.slug] || `${identity.displayName} gère les investissements déclarés par ${identity.entityName || identity.displayName}.`
+  const presentation = intro.trim() || investorIntroduction(identity.slug) || `${identity.displayName} gère les investissements déclarés par ${identity.entityName || identity.displayName}.`
+  const owner = identity.slug === 'gates-trust' ? 'du Gates Foundation Trust' : `de ${identity.displayName}`
   return [
-    `Où ${identity.displayName} place-t-il ses plus gros paris ? 👇`,
+    `Les plus grosses positions ${owner} 👇`,
     presentation,
     `Voici les principales positions déclarées par ${identity.entityName || identity.displayName} au ${dateFR(snapshot.periodEnd)} :`,
     top.map((row, i) => `${icon[i]} ${holdingName(row)} ${row.ticker ? `$${row.ticker}` : ''} → ${percentage(row.weight)}`).join('\n'),
-    `Ces cinq lignes représentent ${percentage(sum)} des positions affichées.`,
+    `${top.length === 1 ? 'Cette ligne représente' : `Ces ${top.length === 5 ? 'cinq' : top.length} lignes représentent`} ${percentage(sum)} des positions affichées.`,
     'Quel poids te surprend le plus ?',
   ].filter(Boolean).join('\n\n')
 }
