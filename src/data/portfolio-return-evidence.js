@@ -1,5 +1,90 @@
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
+  "LU0290358497": {
+  "sourceUrls": [
+    "https://etf.dws.com/download/asset/dc127135-9f60-472d-9b80-c73e46cc307b"
+  ],
+  "asOf": "2025-12-31",
+  "dateStatus": "dated",
+  "periodStart": "2020-01-01",
+  "periodEnd": "2025-12-31",
+  "checkedAt": "2026-10-01",
+  "currency": "EUR",
+  "scope": "Rendements calendaires NAV de la part LU0290358497",
+  "method": "Tableau émetteur ; graphique émetteur pour DWS",
+  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement. DWS a changé d’indice en décembre 2020 et novembre 2023 ; série de la part conservée."
+},
+  "IE00B3FH7618": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf"
+  ],
+  "asOf": "2025-12-31",
+  "dateStatus": "dated",
+  "periodStart": "2020-01-01",
+  "periodEnd": "2025-12-31",
+  "checkedAt": "2026-10-01",
+  "currency": "EUR",
+  "scope": "Rendements calendaires NAV de la part IE00B3FH7618",
+  "method": "Tableau émetteur ; graphique émetteur pour DWS",
+  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+},
+  "IE00BDBRDM35": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true"
+  ],
+  "asOf": "2025-12-31",
+  "dateStatus": "dated",
+  "periodStart": "2020-01-01",
+  "periodEnd": "2025-12-31",
+  "checkedAt": "2026-10-01",
+  "currency": "EUR",
+  "scope": "Rendements calendaires NAV de la part IE00BDBRDM35",
+  "method": "Tableau émetteur ; graphique émetteur pour DWS",
+  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+},
+  "IE00BMG6Z448": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y"
+  ],
+  "asOf": "2025-12-31",
+  "dateStatus": "dated",
+  "periodStart": "2022-01-01",
+  "periodEnd": "2025-12-31",
+  "checkedAt": "2026-10-01",
+  "currency": "USD",
+  "scope": "Rendements calendaires NAV de la part IE00BMG6Z448",
+  "method": "Tableau émetteur ; graphique émetteur pour DWS",
+  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+},
+  "IE00BZCQB185": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf"
+  ],
+  "asOf": "2025-12-31",
+  "dateStatus": "dated",
+  "periodStart": "2020-01-01",
+  "periodEnd": "2025-12-31",
+  "checkedAt": "2026-10-01",
+  "currency": "USD",
+  "scope": "Rendements calendaires NAV de la part IE00BZCQB185",
+  "method": "Tableau émetteur ; graphique émetteur pour DWS",
+  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+},
+  "IE00B1FZS467": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf"
+  ],
+  "asOf": "2025-12-31",
+  "dateStatus": "dated",
+  "periodStart": "2020-01-01",
+  "periodEnd": "2025-12-31",
+  "checkedAt": "2026-10-01",
+  "currency": "USD",
+  "scope": "Rendements calendaires NAV de la part IE00B1FZS467",
+  "method": "Tableau émetteur ; graphique émetteur pour DWS",
+  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+},
+
   "IE00BF3N7094": {
     "sourceUrls": [
       "https://www.ishares.com/uk/individual/en/products/290618/ishares-high-yield-corp-bond-ucits-etf"

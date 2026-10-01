@@ -5,6 +5,12 @@
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
+  "LU0290358497": Object.freeze({name: "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C"}),
+  "IE00B3FH7618": Object.freeze({name: "iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist)"}),
+  "IE00BDBRDM35": Object.freeze({name: "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)"}),
+  "IE00BZCQB185": Object.freeze({name: "iShares MSCI India UCITS ETF USD (Acc)"}),
+  "IE00B1FZS467": Object.freeze({name: "iShares Global Infrastructure UCITS ETF USD (Dist)"}),
+
   "CH0454664001": Object.freeze({name: "21Shares Bitcoin ETP"}),
   "DE000A0H08Q4": Object.freeze({name: "iShares STOXX Europe 600 Technology UCITS ETF (DE)"}),
   "DE000A27Z304": Object.freeze({name: "Bitwise Physical Bitcoin ETP"}),

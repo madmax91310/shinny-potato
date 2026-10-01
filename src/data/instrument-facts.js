@@ -1,6 +1,6 @@
 import { getInstrumentListings } from './instrument-listings.js';
 export { getInstrumentListings } from './instrument-listings.js';
-// Caractéristiques par ISIN des 41 parts des Fiches ETF.
+// Caractéristiques par ISIN des parts des Fiches ETF.
 // benchmark, incomePolicy, replicationMethod et domicile ont été contrôlés le 29/09/2026
 // dans characteristicsSource (émetteur pour IE00BFZPF546 et IE00BM8R0J59,
 // justETF pour les autres).
@@ -10,6 +10,119 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+  "LU0290358497": {
+  "distribution": "Capitalisant",
+  "location": "Luxembourg, réplication synthétique (swap)",
+  "benchmark": "Solactive €STR +8.5 Daily Total Return Index",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Synthetic (Unfunded swap)",
+  "domicile": "Luxembourg",
+  "currencyHedge": null,
+  "reviewedAt": "01/10/2026",
+  "positionsLabel": "Indice de taux monétaire €STR + 8,5 pb",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6",
+    "checkedAt": "2026-10-01"
+  }
+},
+  "IE00B3FH7618": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "Bloomberg Euro Short Treasury Index (EUR)",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Irlande",
+  "currencyHedge": null,
+  "reviewedAt": "01/10/2026",
+  "positionsLabel": "34 obligations détenues (29/09/2026)",
+  "positionsAsOf": "2026-09-29",
+  "characteristicsSource": {
+    "url": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",
+    "checkedAt": "2026-10-01"
+  }
+},
+  "IE00BDBRDM35": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique, couverture en euros",
+  "benchmark": "Bloomberg Global Aggregate Bond Index",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Irlande",
+  "currencyHedge": "EUR",
+  "reviewedAt": "01/10/2026",
+  "positionsLabel": "19 977 obligations détenues (29/09/2026)",
+  "positionsAsOf": "2026-09-29",
+  "characteristicsSource": {
+    "url": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
+    "checkedAt": "2026-10-01"
+  }
+},
+  "IE00B0M62X26": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "Bloomberg Euro Government Inflation-Linked Bond Index (EUR)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Irlande",
+  "currencyHedge": null,
+  "reviewedAt": "01/10/2026",
+  "positionsLabel": "38 obligations détenues (29/09/2026)",
+  "positionsAsOf": "2026-09-29",
+  "characteristicsSource": {
+    "url": "https://www.ishares.com/uk/individual/en/products/251739/ishares-euro-inflation-linked-government-bond-ucits-etf",
+    "checkedAt": "2026-10-01"
+  }
+},
+  "IE00BMG6Z448": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI Emerging Markets ex China Index (Net)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Irlande",
+  "currencyHedge": null,
+  "reviewedAt": "01/10/2026",
+  "positionsLabel": "570 actions détenues (29/09/2026)",
+  "positionsAsOf": "2026-09-29",
+  "characteristicsSource": {
+    "url": "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
+    "checkedAt": "2026-10-01"
+  }
+},
+  "IE00BZCQB185": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI India Index (Net)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Irlande",
+  "currencyHedge": null,
+  "reviewedAt": "01/10/2026",
+  "positionsLabel": "165 actions détenues (29/09/2026)",
+  "positionsAsOf": "2026-09-29",
+  "characteristicsSource": {
+    "url": "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf",
+    "checkedAt": "2026-10-01"
+  }
+},
+  "IE00B1FZS467": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "FTSE Global Core Infrastructure Index (USD)",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Irlande",
+  "currencyHedge": null,
+  "reviewedAt": "01/10/2026",
+  "positionsLabel": "275 actions détenues (29/09/2026)",
+  "positionsAsOf": "2026-09-29",
+  "characteristicsSource": {
+    "url": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf",
+    "checkedAt": "2026-10-01"
+  }
+},
+
   "IE000DQLYVB9": {
     "distribution": "Capitalisant",
     "location": "Irlande, réplication synthétique (swap)",
@@ -602,4 +715,11 @@ export function getInstrumentDistribution(isin) {
 
 export function getInstrumentLocation(isin) {
   return getInstrumentFacts(isin).location;
+}
+
+// Libellés datés de positions, distincts des dates d’encours.
+export function getInstrumentPositions(isin) {
+  const label = INSTRUMENT_FACTS_BY_ISIN[isin]?.positionsLabel;
+  if (!label) throw new Error(`Positions absentes pour ${isin}`);
+  return label;
 }

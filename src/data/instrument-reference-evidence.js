@@ -1,5 +1,56 @@
 // Profils individuels consultés le 30/09/2026. Les preuves chiffrées sont figées dans scripts/source-snapshots/instrument-profiles-2026-09-30.json.
 export const INSTRUMENT_REFERENCE_EVIDENCE = {
+  "LU0290358497": {
+  "sourceUrls": [
+    "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6"
+  ],
+  "checkedAt": "2026-10-01",
+  "dateStatus": "not-applicable",
+  "scope": "Part LU0290358497",
+  "method": "Identité et caractéristiques recoupées sur la publication de l’émetteur",
+  "note": "Nom éditorial de la part ; devise de cotation distincte de la devise de rendement."
+},
+  "IE00B3FH7618": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf"
+  ],
+  "checkedAt": "2026-10-01",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B3FH7618",
+  "method": "Identité et caractéristiques recoupées sur la publication de l’émetteur",
+  "note": "Nom éditorial de la part ; devise de cotation distincte de la devise de rendement."
+},
+  "IE00BDBRDM35": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true"
+  ],
+  "checkedAt": "2026-10-01",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BDBRDM35",
+  "method": "Identité et caractéristiques recoupées sur la publication de l’émetteur",
+  "note": "Nom éditorial de la part ; devise de cotation distincte de la devise de rendement."
+},
+  "IE00BZCQB185": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf"
+  ],
+  "checkedAt": "2026-10-01",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BZCQB185",
+  "method": "Identité et caractéristiques recoupées sur la publication de l’émetteur",
+  "note": "Nom éditorial de la part ; devise de cotation distincte de la devise de rendement."
+},
+  "IE00B1FZS467": {
+  "sourceUrls": [
+    "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf"
+  ],
+  "checkedAt": "2026-10-01",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B1FZS467",
+  "method": "Identité et caractéristiques recoupées sur la publication de l’émetteur",
+  "note": "Nom éditorial de la part ; devise de cotation distincte de la devise de rendement."
+},
+
   "IE00B4L5Y983": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5Y983"

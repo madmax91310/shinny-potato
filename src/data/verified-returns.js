@@ -1,6 +1,79 @@
 // Rendements calendaires de la part exacte (NAV, 2020–2025), dans la devise publiée.
 // Chaque source est une publication de l'émetteur ; null = année complète indisponible.
 export const VERIFIED_RETURNS = {
+  "LU0290358497": {
+  "currency": "EUR",
+  "values": [
+    -0.5,
+    -0.6,
+    0,
+    3.3,
+    3.8,
+    2.1
+  ],
+  "source": "https://etf.dws.com/download/asset/dc127135-9f60-472d-9b80-c73e46cc307b"
+},
+  "IE00B3FH7618": {
+  "currency": "EUR",
+  "values": [
+    -0.6,
+    -0.7,
+    -1,
+    2.7,
+    3.6,
+    2.2
+  ],
+  "source": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf"
+},
+  "IE00BDBRDM35": {
+  "currency": "EUR",
+  "values": [
+    3.9,
+    -2.5,
+    -13.6,
+    4.6,
+    1.5,
+    2.6
+  ],
+  "source": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true"
+},
+  "IE00BMG6Z448": {
+  "currency": "USD",
+  "values": [
+    null,
+    null,
+    -19.4,
+    19.7,
+    3.6,
+    34.8
+  ],
+  "source": "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y"
+},
+  "IE00BZCQB185": {
+  "currency": "USD",
+  "values": [
+    14.9,
+    25.1,
+    -8.5,
+    19.7,
+    10.6,
+    3.1
+  ],
+  "source": "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf"
+},
+  "IE00B1FZS467": {
+  "currency": "USD",
+  "values": [
+    -1.6,
+    16.6,
+    -6.8,
+    0.5,
+    8.7,
+    12.5
+  ],
+  "source": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf"
+},
+
   IE00B6R52259: { currency: 'USD', values: [15.62, 18.71, -18.19, 22.35, 17.35, 22.41], source: 'https://www.ishares.com/uk/individual/en/literature/fact-sheet/ssac-ishares-msci-acwi-ucits-etf-fund-fact-sheet-en-gb.pdf' },
   IE00BYXG2H39: { currency: 'USD', values: [25.91, -0.40, -10.53, 4.22, -0.96, 32.87], source: 'https://www.ishares.com/ch/institutional/en/literature/fact-sheet/btec-ishares-nasdaq-us-biotechnology-ucits-etf-fund-fact-sheet-fr-ch.pdf' },
   IE00BYTRR863: { currency: 'USD', values: [-31.10, 40.49, 46.31, 2.79, 2.88, 13.56], source: 'https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-world-energy-ucits-etf-wrde-gy' },
