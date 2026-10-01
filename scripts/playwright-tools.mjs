@@ -325,6 +325,14 @@ async function testIndexComparator(page) {
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__indexCopiedText = text; } },
   }));
+  await page.evaluate(() => {
+    const original = CanvasRenderingContext2D.prototype.fillText;
+    window.__indexImageText = [];
+    CanvasRenderingContext2D.prototype.fillText = function(text, ...args) {
+      window.__indexImageText.push(String(text));
+      return original.call(this, text, ...args);
+    };
+  });
   const select = page.locator('select').first();
   const count = await select.locator('option').count();
   let ok = 0, images = 0;
@@ -346,11 +354,20 @@ async function testIndexComparator(page) {
       && !/L'EXPOSITION|LE VERDICT|DIVERSIFICATION|undefined|NaN|à compléter/.test(text)) ok++;
     // Espacer la série de PNG pour éviter le blocage des téléchargements en rafale.
     await page.waitForTimeout(250);
+    await page.evaluate(() => { window.__indexImageText = []; });
     const [download] = await Promise.all([Promise.race([page.waitForEvent('download'),
       page.getByRole('button', { name: 'Réessayer le téléchargement PNG' }).waitFor().then(() => { throw new Error(`Export PNG impossible : ${family.id}`); })]),
       page.getByRole('button', { name: 'Télécharger l’image PNG' }).click()]);
     const png = await readFile(await download.path());
-    if (download.suggestedFilename() === `comparateur-indices-${family.id}.png`
+    const drawn = await page.evaluate(() => window.__indexImageText.join('\n'));
+    const noIdentifiers = refs.every(fund => !drawn.includes(fund.isin));
+    const composition = family.indices.every(index => {
+      const facts = index.indexFacts;
+      if (facts?.metadata?.sourceStatus !== 'documented') return true;
+      return (!facts.constituents || drawn.includes(`${facts.constituents.toLocaleString('fr-FR')} valeurs`))
+        && (facts.countries ?? []).slice(0, 3).every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
+    });
+    if (noIdentifiers && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
       && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 800
       && png.readUInt32BE(20) < 2100 && png.length > 10000) images++;
   }
