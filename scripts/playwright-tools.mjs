@@ -156,6 +156,11 @@ async function testPortfolioDuels(page) {
 
 async function testEtfSheets(page) {
   await page.goto(`${BASE}/fiches-etf`, { waitUntil: "networkidle" });
+  // Capture la sortie du bouton sans dépendre du presse-papiers du navigateur CI.
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true,
+    value: { writeText: async text => { window.__etfCopiedText = text; } },
+  }));
   const select = page.locator("select").first();
   const defaultEtf = await select.inputValue();
   const count = await select.locator("option").count();
@@ -168,6 +173,13 @@ async function testEtfSheets(page) {
     const selectedId = await select.inputValue();
     const card = ETFS.find(item => item.id === selectedId);
     if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
+    if (!text.includes(card.hook) || !text.includes(card.whatIs)) badCount++;
+    await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
+    const copied = await page.evaluate(() => window.__etfCopiedText);
+    if (!copied?.startsWith(card.hook) || !copied.includes(card.name)
+      || !copied.includes(card.isin) || !copied.includes(card.ter)
+      || !copied.endsWith(card.question + ' 👀')
+      || /C'est quoi|Pourquoi c'est intéressant|🏆 Verdict|undefined|NaN/.test(copied)) badCount++;
   }
   await select.selectOption('sp500');
   await page.getByRole('button', { name: '📊 Télécharger le graphique annuel' }).click();
@@ -179,7 +191,7 @@ async function testEtfSheets(page) {
   ]);
   await preview.getByRole('button', { name: "Fermer l'aperçu" }).click();
   record("Fiches ETF", badCount === 0 && defaultEtf === 'sp500' && imageOk && download.suggestedFilename() === 'sp500-performances-annuelles.png',
-    `${count} fiches cyclées, défaut ${defaultEtf}, ${badCount} avec un champ "undefined"/"NaN", aperçu et téléchargement PNG`);
+    `${count} fiches et textes copiés personnalisés, défaut ${defaultEtf}, ${badCount} erreur(s), aperçu et téléchargement PNG`);
 }
 
 async function testBrokerComparator(page) {

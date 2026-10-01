@@ -31,7 +31,10 @@ uniqueIds('Thèmes ETF', DEFAULT_THEMES)
 uniqueIds('Fiches ETF', ETFS)
 uniqueIds('Cas concrets', CASES)
 for (const fact of FACTS) requireFields(`Fait ${fact.id}`, fact, ['hook', 'context', 'source', 'question'])
-for (const etf of ETFS) requireFields(`Fiche ETF ${etf.id}`, etf, ['isin', 'ter', 'whatIs', 'whyInteresting', 'whatToKnow', 'verdict', 'question'])
+for (const etf of ETFS) requireFields(`Fiche ETF ${etf.id}`, etf, ['isin', 'ter', 'hook', 'whatIs', 'whyInteresting', 'whatToKnow', 'verdict', 'question'])
+if (new Set(ETFS.map(etf => etf.hook)).size !== ETFS.length) {
+  failures.push('Fiches ETF : chaque produit doit avoir une accroche propre à son exposition')
+}
 for (const item of CASES) {
   requireFields(`Cas ${item.id}`, item, ['text'])
   if (!item.sources?.length || item.sources.some(source => !source.label || !/^https:\/\//.test(source.url))) {
