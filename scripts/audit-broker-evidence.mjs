@@ -19,6 +19,13 @@ const officialHosts = new Set([
   'www.interactivebrokers.ie', 'www.ibkrguides.com', 'www.credit-agricole.fr', 'www.ca-sicavetfcp.fr', 'traderepublic.com', 'support.traderepublic.com',
 ])
 for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
+  if (document.kind === 'customer-notice') {
+    assert(/^broker-evidence\/[a-z0-9-]+\.jpg$/.test(document.url), `${id}: chemin de capture invalide`)
+    const capture = readFileSync(new URL(`../public/${document.url}`, import.meta.url))
+    assert(capture[0] === 0xff && capture[1] === 0xd8, `${id}: capture JPEG absente ou invalide`)
+    assert(document.checked && document.edition, `${id}: date de réception et édition requises`)
+    continue
+  }
   const url = new URL(document.url)
   assert(officialHosts.has(url.hostname), `${id}: hébergeur non officiel`)
   assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
@@ -69,7 +76,7 @@ for (const broker of BROKERS) {
     if (item.status !== 'non établi') assert(item.refs?.length, `${broker.id}.${field}: référence absente`)
     for (const ref of item.refs ?? []) {
       const source = OFFICIAL_SOURCES[ref.document] ?? SECONDARY_SOURCES[ref.document]
-      assert(source && (source.kind?.endsWith('page') ? ref.page === undefined : Number.isInteger(ref.page) && ref.page > 0), `${broker.id}.${field}: référence invalide`)
+      assert(source && (source.kind?.endsWith('page') || source.kind === 'customer-notice' ? ref.page === undefined : Number.isInteger(ref.page) && ref.page > 0), `${broker.id}.${field}: référence invalide`)
       assert(!source.availability, `${broker.id}.${field}: source indisponible`)
     }
     if (item.status === 'confirmé') assert(item.refs.every(({ document }) => document in OFFICIAL_SOURCES), `${broker.id}.${field}: confirmation sans source officielle`)

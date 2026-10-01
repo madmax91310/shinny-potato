@@ -82,7 +82,7 @@ function EvidencePanel({ selected }) {
   return (
     <section className="bc-panel bc-evidence" aria-labelledby="bc-evidence-title">
       <h2 id="bc-evidence-title">Registre des preuves</h2>
-      <p className="bc-hint">État au 30/09/2026. Les sources officielles et les analyses externes sont identifiées séparément. L’astérisque (*) signifie « selon une analyse externe », sans confirmation directe du courtier. Le cash concerne uniquement les espèces non investies, hors livrets et fonds. Les taux variables doivent être contrôlés avant publication.</p>
+      <p className="bc-hint">État au 01/10/2026. Les sources officielles et les analyses externes sont identifiées séparément. L’astérisque (*) signifie « selon une analyse externe », sans confirmation directe du courtier. Le cash concerne uniquement les espèces non investies, hors livrets et fonds. Les taux variables doivent être contrôlés avant publication.</p>
       {selected.map((id) => {
         const broker = byId(id)
         return (
@@ -96,8 +96,9 @@ function EvidencePanel({ selected }) {
                     <strong>{label} · {entry.status}</strong> — {entry.summary}
                     {entry.refs?.map(({ document, page }) => {
                       const source = OFFICIAL_SOURCES[document] ?? SECONDARY_SOURCES[document]
-                      const type = source.kind?.startsWith('secondary') ? `source externe ${source.edition}` : source.kind === 'page' ? 'page officielle' : `PDF officiel ${source.edition}`
-                      return <span key={`${document}-${page ?? 'web'}`}> <a href={page ? `${source.url}#page=${page}` : source.url} target="_blank" rel="noreferrer">{source.title}{page ? `, p. ${page}` : ''} ({type})</a></span>
+                      const type = source.kind?.startsWith('secondary') ? `source externe ${source.edition}` : source.kind === 'customer-notice' ? `avis client, ${source.edition}` : source.kind === 'page' ? 'page officielle' : `PDF officiel ${source.edition}`
+                      const url = source.kind === 'customer-notice' ? `${import.meta.env.BASE_URL}${source.url}` : source.url
+                      return <span key={`${document}-${page ?? 'web'}`}> <a href={page ? `${url}#page=${page}` : url} target="_blank" rel="noreferrer">{source.title}{page ? `, p. ${page}` : ''} ({type})</a></span>
                     })}
                     {entry.checked?.map((document) => {
                       const source = OFFICIAL_SOURCES[document]

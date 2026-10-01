@@ -42,7 +42,7 @@ export const BROKERS = [
   {
     id: "bourso", nom: "BoursoBank", code: "BB", color: "#E4735E", emoji: "🟡", lastVerified: "29/09/2026",
     frais: { rank: 2, resume: "1,99€ puis 0,60%", detail: "Plafonné à 0,5% du montant" },
-    boursomarkets: { resume: "0 € à l’achat", detail: "ETF iShares éligibles · vérifier l’ISIN · vente payante possible" },
+    boursomarkets: { resume: "0 € à l’achat", detail: "Dès le 05/10/2026 : sélection d’ETF Amundi BoursoMarkets · vérifier l’ISIN et le tarif à la vente" },
     // Brochure 2026 p. 20 : commission de négociation gratuite, frais de gestion selon chaque DIC.
     // Nombre de fonds, périodicité exclusive et taux de 0,59% non validés par PDF officiel.
     dca: { rank: 2, resume: "0€ de négociation", detail: "Frais des fonds : voir DIC" },
@@ -255,7 +255,7 @@ export function buildTweet(selected) {
   const envelopes = (field, label) => `${label} : ${brokers.map((b) => `${b.nom} ${b.pea[field] ? '✅' : '❌'}${status(b, field) === 'corroboré' ? ' selon les analyses consultées' : ''}`).join(' · ')}`;
 
   const offers = {
-    bourso: 'BoursoMarkets : certains ETF iShares éligibles sans courtage à l’achat ; vérifier l’ISIN et le tarif à la vente.',
+    bourso: 'BoursoMarkets : à partir du 5 octobre 2026, achats sans frais de courtage sur les ETF Amundi proposés dans l’offre. L’exonération prend fin pour les ETF visés par l’avis BoursoBank : un ordre exécuté dès le 5 octobre, même passé avant, sera facturé selon ton forfait. Vérifie l’éligibilité de chaque ISIN et le tarif à la vente.',
     fortuneo: 'Formule Starter : premier ordre mensuel jusqu’à 500 € sans courtage sur les places concernées.',
     bd: 'Plans programmés sur une sélection d’ETF sans frais de courtage.',
     saxo: 'Jusqu’au 31 décembre 2026 : 70 actions européennes sélectionnées sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Plus de 150 ETF Amundi sélectionnés sans courtage à l’achat, dont certains éligibles au PEA ; vente au tarif applicable. Les positions achetées via l’offre ETF ne sont pas transférables pendant six mois.',
