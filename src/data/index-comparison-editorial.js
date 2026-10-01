@@ -25,9 +25,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Grandes et moyennes"
       ]
     ],
-    "imageTitle": "Europe",
-    "imageHeadline": "Europe ne veut pas\ntoujours dire Europe.",
-    "imageSubtitle": "La différence commence par les pays et les secteurs que tu détiens.",
+    "imageTitle": "Les indices européens",
     "fundTransition": "Et pour retrouver ces indices en Bourse, voici les ETF de la comparaison 👇"
   },
   "monde": {
@@ -55,7 +53,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Méthode FTSE"
       ]
     ],
-    "imageTitle": "Monde",
+    "imageTitle": "Les indices mondiaux",
     "fundTransition": "Voici les ETF cités pour ces trois indices 👇"
   },
   "usa": {
@@ -88,7 +86,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Growth / Value : filtres"
       ]
     ],
-    "imageTitle": "États-Unis",
+    "imageTitle": "Les indices américains",
     "fundTransition": "Côté ETF, voilà les produits dont on parle 👇"
   },
   "emergents-pea": {
@@ -126,7 +124,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Hors Égypte · filtres ESG"
       ]
     ],
-    "imageTitle": "Émergents · PEA",
+    "imageTitle": "Les indices émergents",
     "fundTransition": "Voici les cinq ETF PEA en question 👇"
   },
   "emergents-cto": {
@@ -154,7 +152,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Sans la Chine"
       ]
     ],
-    "imageTitle": "Émergents · CTO",
+    "imageTitle": "Les indices émergents",
     "fundTransition": "Les trois ETF de la comparaison 👇"
   },
   "style": {
@@ -182,7 +180,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Entreprises en croissance"
       ]
     ],
-    "imageTitle": "Value · Quality · Growth",
+    "imageTitle": "Les indices de style",
     "fundTransition": "Pour Value et Quality, voici les ETF cités 👇"
   },
   "dividendes-cto": {
@@ -210,7 +208,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Règles monde / US distinctes"
       ]
     ],
-    "imageTitle": "Dividendes · CTO",
+    "imageTitle": "Les indices de dividendes",
     "fundTransition": "Voici les ETF à dividendes dont on parle 👇"
   },
   "dividendes-pea": {
@@ -233,7 +231,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Historique de dividendes"
       ]
     ],
-    "imageTitle": "Dividendes · PEA",
+    "imageTitle": "Les indices de dividendes",
     "fundTransition": "Pour la version zone euro, voici le fonds PEA cité 👇"
   },
   "chine": {
@@ -261,7 +259,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Actions domestiques"
       ]
     ],
-    "imageTitle": "Chine",
+    "imageTitle": "Les indices chinois",
     "fundTransition": "Voici les fonds cités, dont la version filtrée pour le PEA 👇"
   },
   "japon": {
@@ -289,7 +287,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Méthode MSCI"
       ]
     ],
-    "imageTitle": "Japon",
+    "imageTitle": "Les indices japonais",
     "fundTransition": "Voici les ETF japonais de la comparaison 👇"
   },
   "or-argent": {
@@ -312,7 +310,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Usages industriels aussi"
       ]
     ],
-    "imageTitle": "Or · Argent",
+    "imageTitle": "L’or et l’argent",
     "fundTransition": "Pour suivre ces métaux en Bourse, voici les ETC cités 👇"
   },
   "crypto": {
@@ -335,7 +333,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Réseau Ethereum"
       ]
     ],
-    "imageTitle": "Bitcoin · Ethereum",
+    "imageTitle": "Bitcoin et Ethereum",
     "fundTransition": "Voici les produits cotés de la comparaison 👇"
   },
   "monde-segments": {
@@ -363,7 +361,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
         "Petites entreprises"
       ]
     ],
-    "imageTitle": "Compléter un World",
+    "imageTitle": "Les variantes du MSCI World",
     "fundTransition": "Les trois ETF cités pour ces approches 👇"
   }
 }

@@ -69,16 +69,13 @@ export async function renderIndexImage(family) {
     })
     rows.push({ countOffset, sections, height: sectionOffset + 24 })
   }
-  font(ctx, 62, 700); const title = lines(ctx, editorial.imageHeadline ?? editorial.imageTitle, W - PAD * 2)
-  font(ctx, 30); const subtitle = lines(ctx, editorial.imageSubtitle ?? 'Pays, secteurs et règles de sélection.', W - PAD * 2)
-  const HEADER = 92 + title.length * 74 + 20 + subtitle.length * 38 + 48
+  font(ctx, 62, 700); const title = lines(ctx, editorial.imageTitle, W - PAD * 2)
+  const HEADER = 50 + title.length * 74 + 40
   const H = Math.ceil(HEADER + rows.reduce((sum, row) => sum + row.height + GAP, 0) + 72)
   canvas.width = W; canvas.height = H
   ctx.textBaseline = 'top'; ctx.fillStyle = BG; ctx.fillRect(0, 0, W, H)
   ctx.textAlign = 'center'
-  font(ctx, 26, 700); draw(ctx, ['LES INDICES À LA LOUPE'], W / 2, 38, 34, '#6ee7b7')
-  font(ctx, 62, 700); const end = draw(ctx, title, W / 2, 90, 74, INK)
-  font(ctx, 30); draw(ctx, subtitle, W / 2, end + 20, 38, MUTED)
+  font(ctx, 62, 700); draw(ctx, title, W / 2, 50, 74, INK)
   ctx.textAlign = 'left'
   let top = HEADER
   cards.forEach((card, i) => {
