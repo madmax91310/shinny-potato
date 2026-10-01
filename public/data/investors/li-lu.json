@@ -1,83 +1,60 @@
 {
-  "as_of": "2026-10-01T04:49:20.436557+00:00",
+  "as_of": "2026-10-01T05:07:31.120303+00:00",
   "data": {
     "identity": {
       "slug": "li-lu",
       "archetype": "hedge_fund",
       "displayName": "Li Lu",
       "entityName": "Himalaya Capital Management LLC",
-      "dataProvider": "SEC"
+      "dataProvider": "FolioFact"
     },
     "snapshot": {
       "periodEnd": "2026-06-30",
-      "filedAt": "2026-08-14",
       "holdings": [
         {
-          "issuerName": "ALPHABET INC",
-          "ticker": "",
-          "cusip": "02079K305",
+          "issuerName": "Alphabet Inc.",
+          "ticker": "GOOG(L)",
           "putCall": null,
-          "value": 908899121.0,
-          "weight": 0.24545462803554055
+          "weight": 0.47935586596197144
         },
         {
-          "issuerName": "ALPHABET INC",
-          "ticker": "",
-          "cusip": "02079K107",
+          "issuerName": "PDD Holdings Inc.",
+          "ticker": "PDD",
           "putCall": null,
-          "value": 866117829.0,
-          "weight": 0.23390123792643092
-        },
-        {
-          "issuerName": "APPLE INC",
-          "ticker": "",
-          "cusip": "037833100",
-          "putCall": null,
-          "value": 32003216.0,
-          "weight": 0.008642694549619946
-        },
-        {
-          "issuerName": "BERKSHIRE HATHAWAY INC DEL",
-          "ticker": "",
-          "cusip": "084670702",
-          "putCall": null,
-          "value": 554591244.0,
-          "weight": 0.14977128304185883
-        },
-        {
-          "issuerName": "CROCS INC",
-          "ticker": "",
-          "cusip": "227046109",
-          "putCall": null,
-          "value": 107018900.0,
-          "weight": 0.028901209920163085
-        },
-        {
-          "issuerName": "EAST WEST BANCORP INC",
-          "ticker": "",
-          "cusip": "27579R104",
-          "putCall": null,
-          "value": 358399151.0,
-          "weight": 0.09678822243789861
-        },
-        {
-          "issuerName": "PDD HOLDINGS INC",
-          "ticker": "",
-          "cusip": "722304102",
-          "putCall": null,
-          "value": 820858157.0,
           "weight": 0.22167854379119192
         },
         {
-          "issuerName": "TENCENT MUSIC ENTERTAINM",
-          "ticker": "",
-          "cusip": "88034P109",
+          "issuerName": "Berkshire Hathaway Inc.",
+          "ticker": "BRK.{A,B}",
           "putCall": null,
-          "value": 55033481.0,
+          "weight": 0.14977128304185883
+        },
+        {
+          "issuerName": "East West Bancorp Inc.",
+          "ticker": "EWBC",
+          "putCall": null,
+          "weight": 0.09678822243789861
+        },
+        {
+          "issuerName": "Crocs Inc.",
+          "ticker": "CROX",
+          "putCall": null,
+          "weight": 0.028901209920163085
+        },
+        {
+          "issuerName": "Tencent Music Entmt Group",
+          "ticker": "TME",
+          "putCall": null,
           "weight": 0.014862180297296149
+        },
+        {
+          "issuerName": "Apple Inc.",
+          "ticker": "AAPL",
+          "putCall": null,
+          "weight": 0.008642694549619946
         }
       ]
     },
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/0002043585-26-000022-index.html"
+    "sourceUrl": "https://foliofact.com/funds/himalaya-capital-management"
   }
 }
