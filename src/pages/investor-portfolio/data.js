@@ -18,7 +18,7 @@ export function holdingName(row) {
 export function normalizePortfolio(payload) {
   const identity = payload?.data?.identity
   const snapshot = payload?.data?.snapshot
-  if (identity?.archetype !== 'hedge_fund' || !snapshot?.periodEnd || !snapshot?.filedAt || !Array.isArray(snapshot.holdings)) {
+  if (identity?.archetype !== 'hedge_fund' || !snapshot?.periodEnd || !Array.isArray(snapshot.holdings)) {
     throw new Error('Ce portefeuille 13F ne contient pas de photographie exploitable.')
   }
   const holdings = snapshot.holdings.filter((row) => !row.putCall && Number.isFinite(row.weight) && row.weight > 0)
@@ -53,7 +53,7 @@ export function buildTweet(portfolio, intro = '') {
     `Où ${identity.displayName} place-t-il ses plus gros paris ? 👇`,
     presentation,
     `Voici les principales positions déclarées par ${identity.entityName || identity.displayName} au ${dateFR(snapshot.periodEnd)} :`,
-    top.map((row, i) => `${icon[i]} ${holdingName(row)} ${row.ticker ? `$${row.ticker}` : ''} → ${percentage(row.weight)}`).join('\n'),
+    top.map((row, i) => `${icon[i]} ${holdingName(row)} ${row.ticker ? ({ 'GOOG(L)': '$GOOG $GOOGL', 'BRK.{A,B}': '$BRK.A $BRK.B' }[row.ticker] || `$${row.ticker}`) : ''} → ${percentage(row.weight)}`).join('\n'),
     `Ces cinq lignes représentent ${percentage(sum)} des positions affichées.`,
     'Quel poids te surprend le plus ?',
   ].filter(Boolean).join('\n\n')

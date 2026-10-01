@@ -23,9 +23,24 @@ def make_portfolio(slug, source_slug, display, entity):
     base = f'https://foliofact.com/api/v1/funds/{source_slug}'
     fund = get_json(base)
     table = get_json(f'{base}/holdings')
-    history = get_json(f'{base}/history')
-    print('History schema', slug, json.dumps(history, ensure_ascii=False)[:1200], flush=True)
-    raise NotImplementedError('Verify filing date schema')
+    period = fund['filing']['report_period_on']
+    total = float(table['total_value'])
+    if not period or total <= 0 or total != float(fund['filing']['total_value']):
+        raise ValueError(f'Inconsistent report for {slug}')
+    rows = table['holdings']
+    holdings = [
+        {'issuerName': row['security']['name'], 'ticker': row['security']['ticker'] or '',
+         'putCall': None, 'weight': float(row['value']) / total}
+        for row in rows if row.get('position_type') == 'direct' and float(row.get('value') or 0) > 0
+    ]
+    if len(holdings) != fund['filing']['positions'] or sum(row['weight'] for row in holdings) > 1.02:
+        raise ValueError(f'Incomplete portfolio for {slug}')
+    return {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
+        'identity': {'slug': slug, 'archetype': 'hedge_fund', 'displayName': display,
+                     'entityName': entity, 'dataProvider': 'FolioFact'},
+        'snapshot': {'periodEnd': period, 'holdings': holdings},
+        'sourceUrl': f'https://foliofact.com/funds/{source_slug}',
+    }}
 
 
 def main():
