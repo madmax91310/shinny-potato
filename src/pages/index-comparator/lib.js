@@ -9,7 +9,7 @@ export function fmtPct(raw) {
   return `${value >= 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %`
 }
 function renderFundGroup(group) {
-  if (group.narrativeNote) return `🔎 ${group.indexName}\nAucun ETF répliquant exactement cet indice n’est référencé dans cette sélection.`
+  if (group.narrativeNote) return `🔎 ${group.indexName}\nL’outil ne propose pas de fonds répliquant exactement cet indice.`
   return [`🔎 ${group.indexName}`, ...group.funds.map(fund => {
     const pea = getInstrumentPeaStatus(fund.isin)
     return [fund.name,
@@ -31,11 +31,11 @@ export function buildTweetText(family, perfValues = {}) {
     ].join('\n')
   }).join('\n\n')
   return [editorial.hook, editorial.intro, exposures,
-    `📊 Quelques repères sur les univers présentés :\n${family.diversification.chain.join('\n')}`,
+    `📊 Pour situer la taille de chaque panier :\n${family.diversification.chain.join('\n')}`,
     editorial.insight,
-    'Pour accéder à ces expositions, voici les fonds référencés dans cette comparaison 👇',
+    editorial.fundTransition,
     family.etfGroups.map(renderFundGroup).join('\n\n'),
-    'Et pour leur comportement récent, voici les séries disponibles. Elles décrivent les parts ou actifs nommés, pas un rendement identique pour tous les fonds du même indice.',
+    '📈 Voilà ce qu’ont donné les parts ou actifs ci-dessous en 2023, 2024 et 2025 :',
     performance, ...(family.perfMethodNote ? [family.perfMethodNote] : []),
     editorial.takeaway, `💬 ${editorial.question}`,
   ].join('\n\n')
