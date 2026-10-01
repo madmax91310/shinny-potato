@@ -1,7 +1,11 @@
 import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance.js'
 
-const peaLabel = (status) => status === null ? 'à vérifier' : status ? '✅' : '❌'
+// Un statut inconnu n'est pas une confirmation d'éligibilité.
+export const accountLabel = (etf, separator = ' | ') => [
+  ...(etf.pea === true ? ['PEA : ✅'] : []),
+  'CTO : ' + (etf.cto ? '✅' : '❌'),
+].join(separator)
 
 // Squelette historique conservé ; les explications enrichies viennent du registre commun.
 export function buildText(etf) {
@@ -12,13 +16,14 @@ export function buildText(etf) {
   return (
     '📋 Présentation d\'ETF\n' +
     dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + newTag + '\n' +
+    '\n' + etf.hook + '\n\n' +
     (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +
     '🆔 ISIN : ' + etf.isin + '\n' +
     '💸 Frais : ' + etf.ter + '\n' +
     '📦 ' + etf.positions + '\n' +
     '💰 Encours : ' + etf.aum + '\n' +
     '🔄 ' + etf.distribution + '\n' +
-    '🏦 PEA : ' + peaLabel(etf.pea) + ' | CTO : ' + (etf.cto ? '✅' : '❌') + '\n' +
+    '🏦 ' + accountLabel(etf) + '\n' +
     '📍 ' + etf.location + '\n' +
     (annual ? '📈 Performances ' + annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) + '\n' : '') +
     '\n' +
@@ -49,7 +54,7 @@ export function buildFactRows(etf) {
     { icon: '📦', text: etf.positions },
     { icon: '💰', text: 'Encours : ' + etf.aum },
     { icon: '🔄', text: etf.distribution },
-    { icon: '🏦', text: 'PEA : ' + peaLabel(etf.pea) + '   |   CTO : ' + (etf.cto ? '✅' : '❌') },
+    { icon: '🏦', text: accountLabel(etf, '   |   ') },
     { icon: '📍', text: etf.location },
     ...(annual ? [{ icon: '📈', text: annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) }] : []),
   ]
