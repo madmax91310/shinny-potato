@@ -109,7 +109,7 @@ export default function IndexComparator() {
           <Button type="button" className="w-full" disabled={imageState === 'loading'} onClick={handleDownload}>
             {imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le téléchargement PNG' : 'Télécharger l’image PNG'}
           </Button>
-          <p className="xc-hint">L’image compare les expositions côte à côte, avec les données de composition disponibles et les frais des produits. Les performances sont dans le tweet.</p>
+          <p className="xc-hint">L’image compare les expositions côte à côte, avec les données de composition disponibles : nombre de valeurs, principaux pays et secteurs. Les performances sont dans le tweet.</p>
           <textarea ref={textareaRef} className="xc-clipboard-fallback" readOnly />
         </section>
 

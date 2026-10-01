@@ -177,7 +177,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
       ],
       [
         "Croissance attendue",
-        "Pas de fonds exact détaillé"
+        "Entreprises en croissance"
       ]
     ],
     "imageTitle": "Value · Quality · Growth",
@@ -224,11 +224,11 @@ export const INDEX_COMPARISON_EDITORIAL = {
     "visualPoints": [
       [
         "Plusieurs pays",
-        "Fonds mondial : CTO"
+        "Sélection mondiale"
       ],
       [
         "Zone euro uniquement",
-        "Part citée : PEA"
+        "Historique de dividendes"
       ]
     ],
     "imageTitle": "Dividendes · PEA",
@@ -326,11 +326,11 @@ export const INDEX_COMPARISON_EDITORIAL = {
     "visualPoints": [
       [
         "Exposition au Bitcoin",
-        "Frais propres au produit"
+        "Actif numérique"
       ],
       [
         "Exposition à Ethereum",
-        "Staking selon le produit"
+        "Réseau Ethereum"
       ]
     ],
     "imageTitle": "Bitcoin · Ethereum",

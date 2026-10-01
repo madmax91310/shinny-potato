@@ -1,6 +1,5 @@
-// Colonnes comparatives : composition chiffrée et frais, sans identifiants dans le visuel.
+// Colonnes comparatives consacrées aux indices et à leur composition.
 import { getIndexComparisonEditorial } from '../../data/index-comparison-editorial.js'
-import { getInstrumentPeaStatus } from '../../data/instruments.js'
 const BG = '#0b1426', CARD = '#152238', INK = '#f3f5f7', MUTED = '#acbbcd'
 const COLORS = ['#6ee7b7', '#f2cc80', '#8fc5ff', '#c4afff', '#f6afa2']
 const FONT = 'Arial, "Helvetica Neue", sans-serif'
@@ -20,13 +19,6 @@ function draw(ctx, rows, x, y, height, color) {
   ctx.fillStyle = color
   rows.forEach((row, i) => ctx.fillText(row, x, y + i * height))
   return y + rows.length * height
-}
-const normalize = text => text.toLowerCase().replace(/\s*\(.*?\)/g, '').replace(/[^\p{L}\p{N}]/gu, '')
-export function getIndexImageGroups(family) {
-  return family.indices.map(index => family.etfGroups.find(group => normalize(group.indexName) === normalize(index.name)) ?? null)
-}
-function productName(fund) {
-  return fund.name.replace(/\bUCITS ETF\b/gi, '').replace(/\s+/g, ' ').trim()
 }
 // N’afficher que les photographies documentées du registre commun.
 export function getIndexImageFacts(index) {
@@ -49,7 +41,6 @@ export async function renderIndexImage(family) {
   const WIDTH = (W - PAD * 2 - GAP * (columns - 1)) / columns, INNER = WIDTH - 48
   const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
   if (!ctx) throw new Error('Impossible de générer le visuel.')
-  const groups = getIndexImageGroups(family)
   const cards = family.indices.map((index, i) => {
     const displayName = index.name.replace(' (rappel, non-PEA)', '').replace(' (PEA)', '').replace('Émergents global (indice ESG)', 'Émergents ESG')
     font(ctx, 36, 700); const name = lines(ctx, displayName, INNER)
@@ -61,17 +52,13 @@ export async function renderIndexImage(family) {
       font(ctx, 25); return { name: lines(ctx, cleanLabel(name), INNER - 105), value }
     }) }))
     const dataHeight = allocations.reduce((sum, section) => sum + 46 + section.rows.reduce((total, entry) => total + entry.name.length * 30 + 24, 0), 0)
-    const funds = (groups[i]?.funds ?? []).map(fund => {
-      font(ctx, 30, 700); const name = lines(ctx, productName(fund), INNER)
-      return { fund, name, height: name.length * 36 + 85 }
-    })
     const topHeight = 28 + name.length * 43 + 26 + points.reduce((sum, rows) => sum + rows.length * 36 + 12, 0) + (count ? 74 : 10) + dataHeight
-    return { name, points, count, stamp, allocations, funds, topHeight, color: COLORS[i], bottomHeight: 66 + (funds.length ? funds.reduce((sum, fund) => sum + fund.height + 18, 0) : 112) + 25 }
+    return { name, points, count, stamp, allocations, topHeight, color: COLORS[i] }
   })
   const rowHeights = []
   for (let i = 0; i < cards.length; i += columns) {
     const row = cards.slice(i, i + columns)
-    rowHeights.push(Math.max(...row.map(card => card.topHeight)) + Math.max(...row.map(card => card.bottomHeight)))
+    rowHeights.push(Math.max(...row.map(card => card.topHeight)) + 32)
   }
   font(ctx, 66, 700); const title = lines(ctx, editorial.imageTitle, W - PAD * 2)
   const HEADER = 112 + title.length * 78 + 75
@@ -80,7 +67,7 @@ export async function renderIndexImage(family) {
   ctx.textBaseline = 'top'; ctx.fillStyle = BG; ctx.fillRect(0, 0, W, H)
   font(ctx, 26, 700); draw(ctx, ['LES INDICES À LA LOUPE'], PAD, 42, 34, '#6ee7b7')
   font(ctx, 66, 700); const end = draw(ctx, title, PAD, 92, 78, INK)
-  font(ctx, 30); draw(ctx, ['Composition des indices · poids des pays et secteurs · frais'], PAD, end + 14, 38, MUTED)
+  font(ctx, 30); draw(ctx, ['Composition des indices · poids des pays et secteurs'], PAD, end + 14, 38, MUTED)
   let top = HEADER
   cards.forEach((card, i) => {
     const row = Math.floor(i / columns), column = i % columns
@@ -106,18 +93,7 @@ export async function renderIndexImage(family) {
         y += 18
       }
     }
-    // Le début des références reste aligné dans chaque rangée.
-    const sharedTop = Math.max(...cards.slice(row * columns, (row + 1) * columns).map(c => c.topHeight))
-    y = top + sharedTop
-    ctx.fillStyle = '#344259'; ctx.fillRect(left, y, INNER, 2)
-    font(ctx, 24, 700); y = draw(ctx, [family.id === 'crypto' ? 'ETP CITÉS' : family.id === 'or-argent' ? 'ETC CITÉS' : 'ETF CITÉS'], left, y + 18, 30, MUTED) + 16
-    for (const product of card.funds) {
-      font(ctx, 30, 700); y = draw(ctx, product.name, left, y, 36, INK) + 8
-      font(ctx, 38, 700); y = draw(ctx, [`${product.fund.ter} / an`], left, y, 46, card.color)
-      const pea = getInstrumentPeaStatus(product.fund.isin)
-      font(ctx, 25); y = draw(ctx, [pea === null ? 'PEA : statut non établi' : pea ? 'Éligible au PEA' : 'Non éligible au PEA'], left, y, 31, MUTED) + 18
-    }
-    if (!card.funds.length) { font(ctx, 28); draw(ctx, lines(ctx, 'Pas de produit détaillé dans cette sélection.', INNER), left, y, 36, MUTED) }
+
   })
   font(ctx, 24); draw(ctx, ['Sources et références dans le tweet · secteurs selon chaque fournisseur'], PAD, H - 82, 32, MUTED)
   font(ctx, 27, 700); ctx.textAlign = 'right'; draw(ctx, ['@epargnantlibre'], W - PAD, H - 42, 34, INK)

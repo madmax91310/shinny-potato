@@ -25,7 +25,6 @@ import { stat, readFile } from "node:fs/promises";
 import { FAMILIES } from "../src/data/index-comparisons.js";
 import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
 import { fmtPct } from "../src/pages/index-comparator/lib.js";
-import { getIndexImageGroups } from "../src/pages/index-comparator/imageExport.js";
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
@@ -342,9 +341,7 @@ async function testIndexComparator(page) {
     const text = await page.locator('.xc-preview-text').innerText();
     const editorial = getIndexComparisonEditorial(family);
     const refs = family.etfGroups.flatMap(group => group.funds);
-    const imageRefs = getIndexImageGroups(family).filter(Boolean).flatMap(group => group.funds.map(fund => fund.isin)).sort();
-    const imageRefsOk = JSON.stringify(imageRefs) === JSON.stringify(refs.map(fund => fund.isin).sort());
-    const dataOk = imageRefsOk && refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
+    const dataOk = refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
       && family.perfFunds.every(fund => fund.perfNote ? text.includes(fund.perfNote) :
         [2023, 2024, 2025].every(year => text.includes(`${year} : ${fmtPct(fund[`y${year}`]) ?? 'Non disponible'}`)));
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
@@ -360,15 +357,16 @@ async function testIndexComparator(page) {
       page.getByRole('button', { name: 'Télécharger l’image PNG' }).click()]);
     const png = await readFile(await download.path());
     const drawn = await page.evaluate(() => window.__indexImageText.join('\n'));
-    const noIdentifiers = refs.every(fund => !drawn.includes(fund.isin));
+    const indicesOnly = refs.every(fund => !drawn.includes(fund.isin) && !drawn.includes(fund.name))
+      && !/ETF CITÉS|ETP CITÉS|ETC CITÉS|Éligible au PEA|éligible au PEA|PEA :|\/ an/.test(drawn);
     const composition = family.indices.every(index => {
       const facts = index.indexFacts;
       if (facts?.metadata?.sourceStatus !== 'documented') return true;
       return (!facts.constituents || drawn.includes(`${facts.constituents.toLocaleString('fr-FR')} valeurs`))
         && (facts.countries ?? []).slice(0, 3).every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
     });
-    if (noIdentifiers && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
-      && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 800
+    if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
+      && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 500
       && png.readUInt32BE(20) < 2100 && png.length > 10000) images++;
   }
   await select.selectOption('monde');
