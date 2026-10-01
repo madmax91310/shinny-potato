@@ -25,6 +25,7 @@ import { stat, readFile } from "node:fs/promises";
 import { FAMILIES } from "../src/data/index-comparisons.js";
 import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
 import { fmtPct } from "../src/pages/index-comparator/lib.js";
+import { getIndexImageGroups } from "../src/pages/index-comparator/imageExport.js";
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
@@ -333,7 +334,9 @@ async function testIndexComparator(page) {
     const text = await page.locator('.xc-preview-text').innerText();
     const editorial = getIndexComparisonEditorial(family);
     const refs = family.etfGroups.flatMap(group => group.funds);
-    const dataOk = refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
+    const imageRefs = getIndexImageGroups(family).filter(Boolean).flatMap(group => group.funds.map(fund => fund.isin)).sort();
+    const imageRefsOk = JSON.stringify(imageRefs) === JSON.stringify(refs.map(fund => fund.isin).sort());
+    const dataOk = imageRefsOk && refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
       && family.perfFunds.every(fund => fund.perfNote ? text.includes(fund.perfNote) :
         [2023, 2024, 2025].every(year => text.includes(`${year} : ${fmtPct(fund[`y${year}`]) ?? 'Non disponible'}`)));
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
@@ -348,7 +351,7 @@ async function testIndexComparator(page) {
       page.getByRole('button', { name: 'Télécharger l’image PNG' }).click()]);
     const png = await readFile(await download.path());
     if (download.suggestedFilename() === `comparateur-indices-${family.id}.png`
-      && png.readUInt32BE(16) === 1080 && png.readUInt32BE(20) > 900
+      && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 800
       && png.readUInt32BE(20) < 2100 && png.length > 10000) images++;
   }
   await select.selectOption('monde');
@@ -364,7 +367,7 @@ async function testIndexComparator(page) {
   ytdOk &&= !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
   const distinctionOk = /ceux des ETF et parts nommés, pas les rendements bruts des indices/.test(await page.locator('.xc-control-col').innerText());
   record("Comparateur d'indices", ok === count && count === FAMILIES.length && images === count && distinctionOk && sharedCountsOk && ytdOk,
-    `${ok}/${count} tweets personnalisés copiés, ${images} images mobile, repères partagés et YTD vide/zéro/réinitialisé`);
+    `${ok}/${count} tweets personnalisés copiés, ${images} images comparatives, repères partagés et YTD vide/zéro/réinitialisé`);
 }
 
 async function testFeeImpact(page) {
