@@ -2,112 +2,10 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './index-comparator.css'
-import { formatInstrumentListing } from '../../data/instrument-listings.js'
 import { FAMILIES } from './data.js'
 import { downloadIndexImage } from './imageExport.js'
 
-// Comparateur d'indices — génère un tweet comparatif (structure fixe en 5 blocs numérotés +
-// verdict + question finale) pour une famille d'indices concurrents. Données (FAMILIES) dans
-// ./data.js depuis le 14/09/2026 (cf. son en-tête pour la méthodologie de sourcing) — ce fichier
-// ne porte plus que la logique de rendu du tweet et le composant.
-
-const PERF_COLOR_EMOJI = ['🟢', '🔵', '🟡', '🟣', '🟠']
-
-function fmtPct(raw) {
-  if (raw === '' || raw === null || raw === undefined) return null
-  const n = Number(String(raw).replace(',', '.'))
-  if (!Number.isFinite(n)) return null
-  const sign = n > 0 ? '+' : n < 0 ? '' : '+'
-  return `${sign}${n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %`
-}
-
-// Formate un groupe de fonds pour un indice donné du bloc 2. Un seul fonds
-// disponible → format détaillé (4 lignes). Plusieurs fonds → format
-// condensé (2-3 lignes par fonds), pour rester lisible dans un tweet.
-function renderFundGroup(group) {
-  const lines = []
-  const headerEmoji = group.pea === false ? '⛔' : '🟢'
-  lines.push(`${headerEmoji} ${group.indexName} → ${group.choiceNote}`)
-  if (group.subNote) lines.push(group.subNote)
-  if (group.narrativeNote) {
-    lines.push(group.narrativeNote)
-    return lines.join('\n')
-  }
-  const multi = group.funds.length > 1
-  group.funds.forEach((f) => {
-    lines.push(f.name)
-    const idLine = f.listing ? `📍 ${formatInstrumentListing(f.listing)} · ISIN : ${f.isin}` : `📍 ISIN : ${f.isin}`
-    lines.push(idLine)
-    if (multi) {
-      const feeParts = [`💰 TER ${f.ter}`]
-      if (f.aum) feeParts.push(`📦 ${f.aum}`)
-      lines.push(feeParts.join(' · ') + (f.note ? ` ${f.note}` : ''))
-    } else {
-      lines.push(`💰 TER ${f.ter}`)
-      if (f.repl || f.dist) lines.push([f.repl, f.dist].filter(Boolean).join(' · '))
-      if (f.aum) lines.push(`📦 Encours : ${f.aum}`)
-      if (f.note) lines.push(f.note)
-    }
-  })
-  return lines.join('\n')
-}
-
-function buildTweetText(family, perfValues) {
-  const out = []
-  out.push(family.intro)
-  out.push('')
-  out.push('1️⃣ L\'EXPOSITION')
-  out.push('')
-  family.indices.forEach((idx, i) => {
-    out.push(`🔹 ${idx.name}`)
-    out.push(idx.desc)
-    if (idx.bullets) idx.bullets.forEach((b) => out.push(b))
-    out.push(`→ ${idx.tag}`)
-    if (i < family.indices.length - 1) out.push('')
-  })
-  out.push('')
-  out.push(family.block2Title)
-  out.push('')
-  family.etfGroups.forEach((g, i) => {
-    out.push(renderFundGroup(g))
-    if (i < family.etfGroups.length - 1) out.push('')
-  })
-  out.push('')
-  out.push('3️⃣ DIVERSIFICATION 📊')
-  out.push('')
-  out.push(family.diversification.chain.join('\n⬇️\n'))
-  out.push('')
-  family.diversification.notes.forEach((n) => out.push(n))
-  out.push('')
-  out.push('4️⃣ PERFORMANCE 📈')
-  out.push('')
-  family.perfFunds.forEach((f, i) => {
-    if (f.perfNote) return
-    const v = perfValues[f.key] || {}
-    out.push(`${PERF_COLOR_EMOJI[i % PERF_COLOR_EMOJI.length]} ${f.label}`)
-    out.push(`2023 ${fmtPct(f.y2023) ?? '[à compléter]'}`)
-    out.push(`2024 ${fmtPct(f.y2024) ?? '[à compléter]'}`)
-    out.push(`2025 ${fmtPct(f.y2025) ?? '[à compléter]'}`)
-    if (v.ytdEnabled) out.push(`YTD ${fmtPct(v.ytd) ?? '[à compléter]'}`)
-    if (i < family.perfFunds.length - 1) out.push('')
-  })
-  if (family.perfMethodNote) {
-    out.push('')
-    out.push(family.perfMethodNote)
-  }
-  out.push('')
-  out.push(family.verdictTitle)
-  out.push('')
-  family.verdict.forEach((v, i) => {
-    out.push(v.q)
-    out.push(`→ ${v.a}`)
-    if (i < family.verdict.length - 1) out.push('')
-  })
-  out.push('')
-  out.push(family.closing)
-  return out.join('\n')
-}
-
+import { buildTweetText, fmtPct } from './lib.js'
 
 export default function IndexComparator() {
   const [familyId, setFamilyId] = useState(FAMILIES[0].id)
@@ -150,18 +48,18 @@ export default function IndexComparator() {
   const handleDownload = useCallback(async () => {
     setImageState('loading')
     try {
-      await downloadIndexImage(family, perfValues)
+      await downloadIndexImage(family)
       setImageState('idle')
     } catch {
       setImageState('error')
     }
-  }, [family, perfValues])
+  }, [family])
 
   return (
     <div className="xc-scope">
       <PageHeader
         title="Comparateur d'indices"
-        subtitle="Compare les indices concurrents d'une même famille : exposition, ETF PEA/CTO, diversification, performance."
+        subtitle="Comprends ce que chaque indice change : pays, taille des entreprises et règles de sélection."
       />
 
       <div className="xc-layout">
@@ -210,6 +108,7 @@ export default function IndexComparator() {
           <Button type="button" className="w-full" disabled={imageState === 'loading'} onClick={handleDownload}>
             {imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le téléchargement PNG' : 'Télécharger l’image PNG'}
           </Button>
+          <p className="xc-hint">L’image résume les différences d’exposition. Les fonds et les performances restent détaillés dans le texte associé.</p>
           <textarea ref={textareaRef} className="xc-clipboard-fallback" readOnly />
         </section>
 

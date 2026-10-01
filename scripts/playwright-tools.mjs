@@ -21,7 +21,10 @@ import { ETFS } from '../src/data/etf-cards.js';
 
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
-import { stat } from "node:fs/promises";
+import { stat, readFile } from "node:fs/promises";
+import { FAMILIES } from "../src/data/index-comparisons.js";
+import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
+import { fmtPct } from "../src/pages/index-comparator/lib.js";
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
@@ -317,31 +320,47 @@ async function testConcreteCases(page) {
 }
 
 async function testIndexComparator(page) {
-  await page.goto(`${BASE}/comparateur-indices`, { waitUntil: "networkidle" });
-  const select = page.locator("select").first();
-  const count = await select.locator("option").count();
-  let ok = 0;
-  for (let i = 0; i < count; i++) {
-    await select.selectOption({ index: i });
-    await page.waitForTimeout(100);
-    const text = await page.locator(".xc-preview-text").innerText();
-    if (/L'EXPOSITION/.test(text) && /DIVERSIFICATION/.test(text) && /PERFORMANCE/.test(text) && /LE VERDICT/.test(text) && !/à revérifier|vérifié le|non vérifi[ée]|à vérifier/i.test(text)) ok++;
+  await page.goto(`${BASE}/comparateur-indices`, { waitUntil: 'networkidle' });
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__indexCopiedText = text; } },
+  }));
+  const select = page.locator('select').first();
+  const count = await select.locator('option').count();
+  let ok = 0, images = 0;
+  for (const family of FAMILIES) {
+    await select.selectOption(family.id);
+    const text = await page.locator('.xc-preview-text').innerText();
+    const editorial = getIndexComparisonEditorial(family);
+    const refs = family.etfGroups.flatMap(group => group.funds);
+    const dataOk = refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
+      && family.perfFunds.every(fund => fund.perfNote ? text.includes(fund.perfNote) :
+        [2023, 2024, 2025].every(year => text.includes(`${year} : ${fmtPct(fund[`y${year}`]) ?? 'Non disponible'}`)));
+    await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
+    const copied = await page.evaluate(() => window.__indexCopiedText);
+    if (dataOk && copied === text && text.startsWith(editorial.hook)
+      && text.endsWith(editorial.question) && editorial.exposures.every(p => text.includes(p))
+      && !/L'EXPOSITION|LE VERDICT|DIVERSIFICATION|undefined|NaN|à compléter/.test(text)) ok++;
+    const [download] = await Promise.all([page.waitForEvent('download'),
+      page.getByRole('button', { name: 'Télécharger l’image PNG' }).click()]);
+    const png = await readFile(await download.path());
+    if (download.suggestedFilename() === `comparateur-indices-${family.id}.png`
+      && png.readUInt32BE(16) === 1080 && png.readUInt32BE(20) > 900
+      && png.readUInt32BE(20) < 2100 && png.length > 10000) images++;
   }
   await select.selectOption('monde');
   const worldText = await page.locator('.xc-preview-text').innerText();
-  const sharedCountsOk = ['acwi', 'ftse-all-world', 'world'].every((id) =>
+  const sharedCountsOk = ['acwi', 'ftse-all-world', 'world'].every(id =>
     worldText.replaceAll('\u202f', ' ').includes(formatIndexConstituents(id, '2026-08-31')));
-  // La famille Europe comporte désormais trois parts sur EURO STOXX 50 ;
-  // exercer aussi l'export PNG, dont la hauteur dépend du nombre de lignes.
-  await select.selectOption({ index: 0 });
-  const [europeImage] = await Promise.all([
-    page.waitForEvent('download'),
-    page.getByRole('button', { name: 'Télécharger l’image PNG' }).click(),
-  ]);
-  const imageFile = await stat(await europeImage.path());
-  const imageOk = imageFile.size > 10000;
+  await select.selectOption('europe');
+  await page.getByRole('checkbox', { name: 'Inclure le YTD' }).first().check();
+  let ytdOk = !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
+  await page.getByPlaceholder('YTD %').fill('0');
+  ytdOk &&= (await page.locator('.xc-preview-text').innerText()).includes('YTD saisi : +0,00 %');
+  await select.selectOption('monde');
+  ytdOk &&= !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
   const distinctionOk = /ceux des ETF et parts nommés, pas les rendements bruts des indices/.test(await page.locator('.xc-control-col').innerText());
-  record("Comparateur d'indices", ok === count && distinctionOk && imageOk && sharedCountsOk, `${ok}/${count} familles avec les 4 blocs clés, photographies partagées: ${sharedCountsOk}, distinction indice/ETF: ${distinctionOk}, image Europe: ${imageOk}`);
+  record("Comparateur d'indices", ok === count && count === FAMILIES.length && images === count && distinctionOk && sharedCountsOk && ytdOk,
+    `${ok}/${count} tweets personnalisés copiés, ${images} images mobile, repères partagés et YTD vide/zéro/réinitialisé`);
 }
 
 async function testFeeImpact(page) {
