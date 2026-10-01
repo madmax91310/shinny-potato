@@ -26,6 +26,8 @@ export const INDEX_COMPARISON_EDITORIAL = {
       ]
     ],
     "imageTitle": "Europe",
+    "imageHeadline": "Europe ne veut pas\ntoujours dire Europe.",
+    "imageSubtitle": "La différence commence par les pays et les secteurs que tu détiens.",
     "fundTransition": "Et pour retrouver ces indices en Bourse, voici les ETF de la comparaison 👇"
   },
   "monde": {
