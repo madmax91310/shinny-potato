@@ -46,56 +46,74 @@ export async function renderIndexImage(family) {
     font(ctx, 36, 700); const name = lines(ctx, displayName, INNER)
     font(ctx, 29); const points = editorial.visualPoints[i].map(point => lines(ctx, point, INNER))
     const facts = getIndexImageFacts(index)
-    const count = facts?.count ? `${facts.count.toLocaleString('fr-FR')} valeurs` : null
     const stamp = facts?.asOf ? facts.asOf.split('-').reverse().join('/') : null
     const allocations = [['PRINCIPAUX PAYS', facts?.countries], ['PRINCIPAUX SECTEURS', facts?.sectors]].filter(([, rows]) => rows?.length).map(([label, rows]) => ({ label, rows: rows.map(([name, value]) => {
       font(ctx, 25); return { name: lines(ctx, cleanLabel(name), INNER - 105), value }
     }) }))
-    const dataHeight = allocations.reduce((sum, section) => sum + 46 + section.rows.reduce((total, entry) => total + entry.name.length * 30 + 24, 0), 0)
-    const topHeight = 28 + name.length * 43 + 26 + points.reduce((sum, rows) => sum + rows.length * 36 + 12, 0) + (count ? 74 : 10) + dataHeight
-    return { name, points, count, stamp, allocations, topHeight, color: COLORS[i] }
+    return { name, points, count: facts?.count ?? null, stamp, allocations, color: COLORS[i] }
   })
-  const rowHeights = []
+  // Chaque rangée partage les mêmes positions pour les titres, chiffres et catégories.
+  const rows = []
   for (let i = 0; i < cards.length; i += columns) {
     const row = cards.slice(i, i + columns)
-    rowHeights.push(Math.max(...row.map(card => card.topHeight)) + 32)
+    const nameHeight = Math.max(...row.map(c => c.name.length * 43))
+    const pointHeight = Math.max(...row.map(c => c.points.reduce((sum, point) => sum + point.length * 36 + 8, 0)))
+    const countOffset = 28 + nameHeight + 24 + pointHeight + 12
+    let sectionOffset = countOffset + (row.some(c => c.count) ? 128 : 12)
+    const sections = ['PRINCIPAUX PAYS', 'PRINCIPAUX SECTEURS'].map(label => {
+      const offset = sectionOffset
+      const maxRows = Math.max(...row.map(c => c.allocations.find(s => s.label === label)?.rows.length ?? 0))
+      const heights = Array.from({ length: maxRows }, (_, n) => Math.max(...row.map(c => (c.allocations.find(s => s.label === label)?.rows[n]?.name.length ?? 1) * 30 + 26)))
+      if (maxRows) sectionOffset += 54 + heights.reduce((sum, height) => sum + height, 0) + 18
+      return { label, offset, heights, active: maxRows > 0 }
+    })
+    rows.push({ countOffset, sections, height: sectionOffset + 24 })
   }
-  font(ctx, 66, 700); const title = lines(ctx, editorial.imageTitle, W - PAD * 2)
-  const HEADER = 112 + title.length * 78 + 75
-  const H = Math.ceil(HEADER + rowHeights.reduce((sum, height) => sum + height + GAP, 0) + 72)
+  font(ctx, 62, 700); const title = lines(ctx, editorial.imageHeadline ?? editorial.imageTitle, W - PAD * 2)
+  font(ctx, 30); const subtitle = lines(ctx, editorial.imageSubtitle ?? 'Pays, secteurs et règles de sélection.', W - PAD * 2)
+  const HEADER = 92 + title.length * 74 + 20 + subtitle.length * 38 + 48
+  const H = Math.ceil(HEADER + rows.reduce((sum, row) => sum + row.height + GAP, 0) + 72)
   canvas.width = W; canvas.height = H
   ctx.textBaseline = 'top'; ctx.fillStyle = BG; ctx.fillRect(0, 0, W, H)
   ctx.textAlign = 'center'
-  font(ctx, 26, 700); draw(ctx, ['LES INDICES À LA LOUPE'], W / 2, 42, 34, '#6ee7b7')
-  font(ctx, 66, 700); const end = draw(ctx, title, W / 2, 92, 78, INK)
-  font(ctx, 30); draw(ctx, ['Composition des indices · poids des pays et secteurs'], W / 2, end + 14, 38, MUTED)
+  font(ctx, 26, 700); draw(ctx, ['LES INDICES À LA LOUPE'], W / 2, 38, 34, '#6ee7b7')
+  font(ctx, 62, 700); const end = draw(ctx, title, W / 2, 90, 74, INK)
+  font(ctx, 30); draw(ctx, subtitle, W / 2, end + 20, 38, MUTED)
   ctx.textAlign = 'left'
   let top = HEADER
   cards.forEach((card, i) => {
-    const row = Math.floor(i / columns), column = i % columns
-    if (column === 0 && row > 0) top += rowHeights[row - 1] + GAP
-    const x = PAD + column * (WIDTH + GAP), left = x + 24
-    ctx.fillStyle = CARD; ctx.fillRect(x, top, WIDTH, rowHeights[row])
+    const rowIndex = Math.floor(i / columns), column = i % columns, row = rows[rowIndex]
+    if (column === 0 && rowIndex > 0) top += rows[rowIndex - 1].height + GAP
+    const x = PAD + column * (WIDTH + GAP), left = x + 24, center = x + WIDTH / 2
+    ctx.fillStyle = CARD; ctx.beginPath(); ctx.roundRect(x, top, WIDTH, row.height, 16); ctx.fill()
     ctx.fillStyle = card.color; ctx.fillRect(x, top, WIDTH, 5)
-    font(ctx, 36, 700); let y = draw(ctx, card.name, left, top + 28, 43, card.color) + 26
+    ctx.textAlign = 'center'
+    font(ctx, 36, 700); let y = draw(ctx, card.name, center, top + 28, 43, card.color)
+    const nameHeight = Math.max(...cards.slice(rowIndex * columns, (rowIndex + 1) * columns).map(c => c.name.length * 43))
+    y = top + 28 + nameHeight + 24
     font(ctx, 29)
-    for (const point of card.points) y = draw(ctx, point, left, y, 36, INK) + 12
+    for (const point of card.points) y = draw(ctx, point, center, y, 36, INK) + 8
     if (card.count) {
-      font(ctx, 34, 700); y = draw(ctx, [card.count], left, y + 4, 42, card.color)
-      if (card.stamp) { font(ctx, 23); y = draw(ctx, [`Composition au ${card.stamp}`], left, y, 29, MUTED) }
+      font(ctx, 68, 700); draw(ctx, [card.count.toLocaleString('fr-FR')], center, top + row.countOffset, 78, card.color)
+      font(ctx, 25); draw(ctx, ['valeurs dans l’indice'], center, top + row.countOffset + 78, 32, MUTED)
     }
-    for (const section of card.allocations) {
-      font(ctx, 23, 700); y = draw(ctx, [section.label], left, y + 12, 34, MUTED)
-      for (const entry of section.rows) {
+    if (card.stamp) { font(ctx, 22); draw(ctx, [card.stamp], center, top + row.countOffset + 111, 28, MUTED) }
+    ctx.textAlign = 'left'
+    for (const sectionLayout of row.sections.filter(s => s.active)) {
+      const section = card.allocations.find(s => s.label === sectionLayout.label)
+      if (!section) continue
+      y = top + sectionLayout.offset + 12
+      font(ctx, 23, 700); y = draw(ctx, [section.label], left, y, 34, MUTED) + 8
+      for (let n = 0; n < section.rows.length; n++) {
+        const entry = section.rows[n]
         font(ctx, 25); draw(ctx, entry.name, left, y, 30, INK)
         font(ctx, 26, 700); ctx.textAlign = 'right'; draw(ctx, [percent(entry.value)], left + INNER, y, 30, card.color); ctx.textAlign = 'left'
-        y += entry.name.length * 30 + 6
-        ctx.fillStyle = '#344259'; ctx.fillRect(left, y, INNER, 5)
-        ctx.fillStyle = card.color; ctx.fillRect(left, y, INNER * entry.value / 100, 5)
-        y += 18
+        const barY = y + sectionLayout.heights[n] - 20
+        ctx.fillStyle = '#344259'; ctx.fillRect(left, barY, INNER, 5)
+        ctx.fillStyle = card.color; ctx.fillRect(left, barY, INNER * entry.value / 100, 5)
+        y += sectionLayout.heights[n]
       }
     }
-
   })
   font(ctx, 27, 700); ctx.textAlign = 'right'; draw(ctx, ['@epargnantlibre'], W - PAD, H - 42, 34, INK)
   return canvas
