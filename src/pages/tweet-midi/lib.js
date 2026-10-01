@@ -439,10 +439,10 @@ export function buildDilemmeText(item) {
   const lines = [];
   lines.push(item.contexteTexte);
   lines.push("");
-  lines.push(`A) ${item.optionA}`);
-  lines.push(`B) ${item.optionB}`);
+  lines.push(`🅰️ ${item.optionA}`);
+  lines.push(`🅱️ ${item.optionB}`);
   lines.push("");
-  lines.push(item.question);
+  lines.push(`💬 ${item.question}`);
   return lines.join("\n");
 }
 
