@@ -5,7 +5,7 @@ import {
   isCompatible, getFrequencyCap,
 } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
-import { dynamicHookPair } from "./dynamicHooks.js";
+import { buildEditorial } from "./editorial.js";
 
 function rand(min, max) {
   return Math.random() * (max - min) + min;
@@ -129,8 +129,7 @@ function buildSelection(combo, usageCounts, historyLength) {
     return {
       ...asset,
       pct: a.pct,
-      desc: pick(asset.desc),
-      pourquoi: pick(a.pourquoi),
+      desc: asset.desc[0],
     };
   });
 }
@@ -257,61 +256,6 @@ function tooSimilarToLast(selection, profileId, history) {
   return false;
 }
 
-// ── Textes variantes : jamais deux fois la même accroche / le même sous-titre / le même CTA
-// pour un même profil tant que le pool n'a pas été entièrement parcouru dans la session.
-// Exclusion glissante (les N-1 derniers choix pour ce champ, sur un pool de N variantes) plutôt
-// qu'un simple "déjà vu un jour" : un Set d'historique complet se vide dès que tout le pool est
-// passé une fois, ce qui autoriserait une répétition immédiate juste après le premier cycle.
-function recentTexts(history, profileId, field, keep) {
-  const seq = history.filter((h) => h.profileId === profileId).map((h) => h[field]);
-  return new Set(seq.slice(-keep));
-}
-function pickNonRepeating(pool, history, profileId, field) {
-  const recent = recentTexts(history, profileId, field, pool.length - 1);
-  const fresh = pool.filter((t) => !recent.has(t));
-  return pick(fresh.length > 0 ? fresh : pool);
-}
-
-// Accroche d'ouverture du tweet (hook + intro, demande utilisateur du 15/09/2026) : chaque combo
-// (profil × palier) porte SA propre bibliothèque de 2-3 paires écrites à la main (cf. `hooks` sur
-// chaque riskCombo dans theses.js), ancrées sur le trait le plus marquant de CE combo précis —
-// jamais une formule générique substituable à un autre combo (les deux systèmes précédents, ligne
-// fixe puis familles A-F par critères de palier, ont été abandonnés pour cette raison). Hook et
-// intro viennent TOUJOURS de la même paire (l'intro doit répondre explicitement à la question du
-// hook) — jamais mélangés entre deux paires différentes. Anti-répétition sur le combo EXACT (profil
-// + palier, comme pairKey), sur le hook (qui identifie la paire de façon unique dans son pool).
-function pickHookPair(profile, riskId, history, selection, worst) {
-  const pool = profile.riskCombos[riskId].hooks;
-  const recentHooks = new Set(
-    history
-      .filter((h) => h.profileId === profile.id && h.riskId === riskId)
-      .map((h) => h.hookTemplate)
-      .slice(-(pool.length - 1))
-  );
-  const fresh = pool.filter((p) => !recentHooks.has(p.hook));
-  const selected = pick(fresh.length > 0 ? fresh : pool);
-  const index = pool.indexOf(selected);
-  return { ...dynamicHookPair(profile.id, riskId, index, selection, worst, fmtPct), hookTemplate: selected.hook };
-}
-
-// Le "pourquoi" est choisi avant le jitter (le pourcentage n'est pas encore figé) : les textes
-// qui citent leur propre allocation utilisent le témoin {pct}, remplacé ici une fois le
-// pourcentage final connu — jamais un chiffre codé en dur qui pourrait se décaler du jitter.
-function resolvePourquoi(selection) {
-  selection.forEach((s) => {
-    s.pourquoi = s.pourquoi.replace(/\{pct\}/g, s.pct);
-    // Certaines anciennes variantes gardaient le poids initial après le tirage des nouveaux poids.
-    const percentages = [...s.pourquoi.matchAll(/(\d+(?:[,.]\d+)?)\s*%/g)];
-    if (percentages.length === 1 && Number(percentages[0][1].replace(',', '.')) !== s.pct) {
-      s.pourquoi = s.pourquoi.replace(percentages[0][0], `${s.pct}%`);
-    }
-    if (s.pourquoi.includes('La moitié du portefeuille') && s.pct !== 50) {
-      s.pourquoi = s.pourquoi.replace('La moitié du portefeuille', `${s.pct}% du portefeuille`);
-    }
-  });
-  return selection;
-}
-
 function worstYearOf(perf) {
   const availableYears = YEARS.filter((y) => Number.isFinite(perf[y]));
   let worst = availableYears[0];
@@ -362,110 +306,6 @@ function msciComparisonLine(selection, perf) {
   return `→ En ${worst.year}, quand le MSCI World ${worldVerb} ${worldFmt}, ce portefeuille ${portVerb} ${fmtAbsPct(worst.value)}.`;
 }
 
-// Retourne {text, fallbackPick} plutôt qu'un simple texte : fallbackPick n'est renseigné que
-// lorsque la ligne de contexte "générique" (profile.contextFallback) est effectivement utilisée,
-// pour que l'anti-répétition (cf. generatePortfolio) ne porte que sur ces occurrences-là — pas
-// sur les lignes "boosted year" / comparaison MSCI, qui sont déjà uniques par construction.
-function contextLine(profile, selection, perf, history) {
-  const boosted = boostedYearLine(selection, perf);
-  if (boosted) return { text: boosted, fallbackPick: null };
-  const msci = msciComparisonLine(selection, perf);
-  if (msci) return { text: msci, fallbackPick: null };
-  const fallbackPick = pickNonRepeating(profile.contextFallback, history, profile.id, "contextFallbackPick");
-  return { text: `→ ${fallbackPick}`, fallbackPick };
-}
-
-// Résout {pct}-like tokens qui ne sont pas liés à une ligne précise mais au portefeuille dans
-// son ensemble (pire année, meilleure année, dose de Bitcoin) — utilisé pour les CTA.
-function resolvePortfolioPlaceholders(text, { worst, best, selection }) {
-  // Le CTA "Bitcoin, Ethereum, ou les deux" (Crypto-Curieux) ne mentionne aucun placeholder, donc
-  // sans ce garde-fou il resterait toujours "résolvable" même quand Ethereum n'a pas été tiré dans
-  // ce portefeuille (id fixe, présent uniquement au palier Offensif de ce profil, cf. theses.js) —
-  // corrigé le 14/09/2026 : le CTA doit toujours refléter la composition réellement affichée.
-  if (/\bEthereum\b/.test(text) && !selection.some((s) => s.id === "ethereum")) return null;
-  if (!text.includes("{")) return text;
-  let out = text
-    .replace(/\{worst_pct\}/g, fmtPct(worst.value))
-    .replace(/\{worst_year\}/g, worst.year)
-    .replace(/\{best_pct\}/g, fmtPct(best.value))
-    .replace(/\{best_year\}/g, best.year);
-  if (out.includes("{bitcoin_pct}")) {
-    const btc = selection.find((s) => s.id.startsWith("bitcoin"));
-    if (!btc) return null; // pas de ligne Bitcoin dans ce tirage : ce CTA ne peut pas s'appliquer
-    out = out.replace(/\{bitcoin_pct\}/g, btc.pct);
-  }
-  return out;
-}
-
-// Le suivi anti-répétition porte sur le *template* du CTA, pas sur le texte résolu : deux CTA
-// "Tu oserais mettre {bitcoin_pct}% en Bitcoin" tirés à des générations différentes doivent
-// compter comme "le même CTA déjà utilisé" même si le pourcentage affiché diffère.
-function pickCta(profile, history, ctx) {
-  const resolvable = profile.ctas
-    .map((template) => ({ template, resolved: resolvePortfolioPlaceholders(template, ctx) }))
-    .filter((c) => c.resolved !== null);
-  const recent = recentTexts(history, profile.id, "ctaTemplate", profile.ctas.length - 1);
-  const fresh = resolvable.filter((c) => !recent.has(c.template));
-  const pool = fresh.length > 0 ? fresh : resolvable;
-  return pick(pool);
-}
-
-// Bloc ⚠️ : factorisé (utilisé par generatePortfolio ET buildManualPortfolio, cf. plus bas) pour ne
-// jamais dupliquer cette logique — un seul bloc par tweet, toujours dans le même ordre (pool tiré
-// au sort, puis les ajouts fixes/dynamiques propres au profil ou à la composition).
-function buildWarning(profile, profileId, selection, worst, history) {
-  let warning = pickNonRepeating(profile.warnings, history, profileId, "warning");
-  if (profile.capitalNote) {
-    // Toujours présente (pas tirée au sort) : pour un profil "revenu", la baisse de capital
-    // reste un risque réel même quand les distributions continuent — jamais un simple détail.
-    warning += " Une distribution peut accompagner une baisse du capital et n'est jamais garantie. Prévoir une réserve de sécurité hors portefeuille.";
-  }
-  if (profile.mandatoryWarning) {
-    // Toujours présente elle aussi (Pro-Européen) : le contre-pied assumé face aux US n'est
-    // jamais un détail optionnel qu'un tirage au sort pourrait faire disparaître.
-    warning += ` ${profile.mandatoryWarning}`;
-  }
-  const coveredCall = selection.find((s) => s.id === "qyld_ucits");
-  if (coveredCall && coveredCall.pct > 30) {
-    // Avertissement dynamique (pas stocké en dur dans theses.js) : ne se déclenche que si le
-    // covered call dépasse effectivement 30% de CE tirage/CETTE composition précise.
-    warning += " Le covered call (QYLD) limite les gains quand le Nasdaq-100 monte fortement. Ses distributions ne sont pas garanties.";
-  }
-  const leveraged = selection.find((s) => s.id === "lqq" || s.id === "cl2");
-  if (leveraged) {
-    // Toujours présente dès qu'un ETF à levier (LQQ ou CL2, cf. LEVERAGE_OPTIONS) figure dans le
-    // tirage/la composition (pas de seuil de %, contrairement au QYLD ci-dessus) : la mécanique de
-    // capitalisation quotidienne du levier mérite d'être rappelée à chaque apparition.
-    warning += ` ${leveraged.name} est un ETF à levier 2x quotidien : sur plusieurs années, sa performance n'est jamais un simple x2 de son indice sous-jacent (capitalisation quotidienne du levier, dans un sens comme dans l'autre). Pas fait pour être oublié en portefeuille sans suivi.`;
-  }
-  return warning;
-}
-
-// ── Composition manuelle (demande utilisateur du 22/09/2026) ───────────────────────────────────
-// Contrairement au mode auto, dont chaque combo (profil × palier) est prédéfini et porte sa propre
-// bibliothèque de hooks écrits à la main (ancrés sur les VRAIS chiffres de CE combo précis, cf.
-// `hooks` plus haut), une composition manuelle est arbitraire : aucun texte pré-écrit ne peut lui
-// correspondre sans risquer d'afficher un chiffre faux. Le reste du pipeline (calcul de
-// performance, détection de pire année, avertissement, sous-titre, CTA, contexte, rendu du tweet)
-// est en revanche identique et directement réutilisé — buildManualPortfolio ne fait que remplacer
-// l'étape de tirage aléatoire des lignes/pourcentages par la saisie utilisateur.
-
-// Dans le mode libre, rattacher chaque poids au type d'actif choisi. Une formule identique sur
-// cinq lignes d'un même portefeuille répétait l'allocation sans expliquer ce qu'elle exposait.
-function manualPourquoi(asset, pct) {
-  if (asset.id === "fonds_euros") return `${pct}% en fonds euros : la part du capital que tu as placée sur un support garanti.`;
-  const byCategory = {
-    obligataire: `À ${pct}%, cette ligne ajoute une exposition aux obligations : surveille les taux et la qualité de l'émetteur.`,
-    actions_larges: `À ${pct}%, ces actions portent une partie de la performance et des baisses possibles du portefeuille.`,
-    matieres_premieres: `À ${pct}%, cette ligne dépend des cours des matières premières plutôt que des bénéfices d'entreprises.`,
-    dividendes: `À ${pct}%, tu donnes ce poids à des entreprises sélectionnées autour des dividendes.`,
-    immobilier: `À ${pct}%, cette ligne ajoute de l'immobilier et ses risques propres à cette composition.`,
-    emergents: `À ${pct}%, cette ligne te rend sensible aux marchés et aux devises émergents.`,
-    crypto: `À ${pct}%, cette ligne crypto peut peser fortement sur le résultat lors d'une baisse.`,
-  };
-  return byCategory[asset.cat] ?? `${pct}% sur ${asset.name} : vérifie la place de cette ligne dans l'ensemble.`;
-}
-
 // Palier de risque le plus proche, pour affichage informatif uniquement (jamais bloquant en mode
 // manuel) : celui dont le plancher (RISK_BOUNDS[r].min) est numériquement le plus proche de la
 // pire année réellement calculée sur CETTE composition. Offensif (pas de plancher, min: null) n'a
@@ -486,124 +326,15 @@ function closestRiskTier(worstValue) {
   return best ?? "offensif";
 }
 
-// Détecte le fait le plus marquant de CETTE composition précise, par ordre de priorité identique
-// à celui utilisé pour écrire la bibliothèque de hooks du mode auto : (1) une ligne crypto ou à
-// levier à poids significatif — le pari le plus inattendu/fort ; (2) une ligne dominante (>=45%)
-// à défaut ; (3) une pire année notable (<= -10%) ; (4) un fonds euros dominant (trait prudent
-// caractéristique) ; (5) repli générique sur la composition dans son ensemble.
-function detectManualHighlight(selection, worst) {
-  const sorted = selection.slice().sort((a, b) => b.pct - a.pct);
-  const top = sorted[0];
-  const cryptoOrLeverage = sorted.find(
-    (s) => BITCOIN_OPTIONS.includes(s.id) || s.id === "ethereum" || LEVERAGE_OPTIONS.includes(s.id)
-  );
-  if (cryptoOrLeverage && cryptoOrLeverage.pct >= 15) {
-    return { type: "risky", asset: cryptoOrLeverage };
-  }
-  if (top.pct >= 45) {
-    return { type: "concentration", asset: top };
-  }
-  if (worst.value <= -10) {
-    return { type: "worstYear" };
-  }
-  const fondsEuros = selection.find((s) => s.id === "fonds_euros");
-  if (fondsEuros && fondsEuros.pct >= 40) {
-    return { type: "cautious", asset: fondsEuros };
-  }
-  return { type: "generic", asset: top };
-}
-
-function buildManualHookPool(selection, worst) {
-  const highlight = detectManualHighlight(selection, worst);
-  const lineCount = selection.length;
-  if (highlight.type === "risky") {
-    const a = highlight.asset;
-    return [
-      {
-        hook: `${a.pct}% en ${a.name} dans une composition que tu as choisie toi-même. Tu assumes ce niveau de risque ?`,
-        intro: "Cette seule ligne peut peser lourd sur le résultat, même si les autres positions évoluent autrement.",
-      },
-      {
-        hook: `Tu es allé jusqu'à ${a.pct}% sur ${a.name}. Volontaire, ou tu n'avais pas réalisé le poids que ça prenait ?`,
-        intro: "Regarde ce que cette position représente dans le total avant de juger le risque de la composition.",
-      },
-    ];
-  }
-  if (highlight.type === "concentration") {
-    const a = highlight.asset;
-    return [
-      {
-        hook: `${a.pct}% du portefeuille sur une seule ligne, ${a.name}. Concentré ou juste convaincu ?`,
-        intro: "Les autres lignes existent, mais aucune n'a individuellement le même poids.",
-      },
-      {
-        hook: `Une ligne à elle seule à ${a.pct}%. C'est le pari central de ta composition, ${a.name} ?`,
-        intro: "Tout le reste vient en accompagnement de ce choix.",
-      },
-    ];
-  }
-  if (highlight.type === "worstYear") {
-    return [
-      {
-        hook: `${fmtPct(worst.value)} en ${worst.year} sur cette composition. Tu encaisserais ça sans bouger ?`,
-        intro: "Cette année-là montre comment les lignes choisies ont bougé ensemble.",
-      },
-      {
-        hook: `Ta composition serait tombée à ${fmtPct(worst.value)} en ${worst.year}. Ça change ton avis sur un des choix faits ?`,
-        intro: "Rien d'imposé ici — juste la conséquence des lignes que tu as choisies.",
-      },
-    ];
-  }
-  if (highlight.type === "cautious") {
-    const a = highlight.asset;
-    return [
-      {
-        hook: `${a.pct}% en fonds euros dans une composition que tu as bâtie toi-même. Par prudence, ou par manque d'idées pour le reste ?`,
-        intro: "La part garantie limite l'effet des autres lignes sur le total, sans effacer leur risque.",
-      },
-      {
-        hook: "Près de la moitié du portefeuille en fonds euros, et c'est toi qui l'as choisi. Volontaire ?",
-        intro: "Le reste de la composition a donc beaucoup moins de marge pour faire la performance.",
-      },
-    ];
-  }
-  const top = highlight.asset;
-  return [
-    {
-      hook: `${lineCount} lignes, ${top.pct}% sur la plus grosse (${top.name}). Une composition équilibrée, à ton avis ?`,
-      intro: "Le poids de la plus grosse ligne te donne un premier repère ; regarde aussi les expositions qui se recoupent.",
-    },
-    {
-      hook: `Tu as construit cette composition toi-même, ${lineCount} lignes en tout. Tu la trouves cohérente avec tes objectifs ?`,
-      intro: "Le nombre de lignes ne dit pas à lui seul si leurs risques se recoupent.",
-    },
-  ];
-}
-
-// Anti-répétition scopée sur riskId === "manuel" (cf. buildManualPortfolio) : ne se mélange jamais
-// avec l'historique du mode auto pour ce même profil, exactement comme pickHookPair scope sur
-// (profileId + riskId) pour les combos prédéfinis.
-function pickManualHookPair(profile, selection, worst, history) {
-  const pool = buildManualHookPool(selection, worst);
-  const recentHooks = new Set(
-    history
-      .filter((h) => h.profileId === profile.id && h.riskId === "manuel")
-      .map((h) => h.hookTemplate)
-      .slice(-(pool.length - 1))
-  );
-  const fresh = pool.filter((p) => !recentHooks.has(p.hook));
-  return pick(fresh.length > 0 ? fresh : pool);
-}
-
+// La saisie manuelle partage le modèle éditorial de la génération automatique.
 export function buildManualPortfolio(rawSelection, profileId, history) {
   const profile = PROFILES.find((p) => p.id === profileId);
-  const selection = rawSelection.map((r) => {
+  const selection = rawSelection.filter(r => r.pct > 0).map((r) => {
     const asset = getAsset(r.id);
     return {
       ...asset,
       pct: r.pct,
-      desc: pick(asset.desc),
-      pourquoi: manualPourquoi(asset, r.pct),
+      desc: asset.desc[0],
     };
   });
 
@@ -612,10 +343,8 @@ export function buildManualPortfolio(rawSelection, profileId, history) {
   const best = bestYearOf(perf);
   const closestRiskId = closestRiskTier(worst.value);
 
-  const warning = buildWarning(profile, profileId, selection, worst, history);
-  const cta = pickCta(profile, history, { worst, best, selection });
-  const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
-  const hookPair = pickManualHookPair(profile, selection, worst, history);
+  const contextText = boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || "";
+  const editorial = buildEditorial(selection, history, profileId, "manuel");
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -629,19 +358,13 @@ export function buildManualPortfolio(rawSelection, profileId, history) {
     closestRiskId,
     closestRiskLabel: RISK_LABELS[closestRiskId],
     closestBound: RISK_BOUNDS[closestRiskId],
-    hook: hookPair.hook,
-    hookTemplate: hookPair.hook,
-    intro: hookPair.intro,
-    sousTitre: pickNonRepeating(profile.sousTitres, history, profileId, "sousTitre"),
-    ctaTemplate: cta.template,
-    cta: cta.resolved,
-    warning,
     selection,
     perf,
     worst,
     best,
     context: contextText,
-    contextFallbackPick: fallbackPick,
+    contextFallbackPick: null,
+    ...editorial,
   };
 }
 
@@ -655,9 +378,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     ({ profileId, riskId } = pickPair(targetRiskKey, targetProfileKey, pairUsage));
     profile = PROFILES.find((p) => p.id === profileId);
     combo = profile.riskCombos[riskId];
-    selection = resolvePourquoi(
-      jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId, riskId)
-    );
+    selection = jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId, riskId);
     tries++;
   } while (
     (history.some((h) => h.sig === signature(selection)) ||
@@ -672,16 +393,10 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
 
   const perf = computeYearlyPerf(selection);
   const worst = worstYearOf(perf);
-  const best = bestYearOf(perf);
   const bound = RISK_BOUNDS[riskId];
 
-  // Un seul bloc ⚠️ par tweet (cf. renderTweetText, qui préfixe déjà `warning` avec ⚠️) : tout
-  // ajout ci-dessous rejoint la même phrase, jamais un second "⚠️" collé au premier. Factorisé
-  // dans buildWarning (cf. plus haut), partagé avec buildManualPortfolio.
-  const warning = buildWarning(profile, profileId, selection, worst, history);
-  const cta = pickCta(profile, history, { worst, best, selection });
-  const { text: contextText, fallbackPick } = contextLine(profile, selection, perf, history);
-  const hookPair = pickHookPair(profile, riskId, history, selection, worst);
+  const contextText = boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || "";
+  const editorial = buildEditorial(selection, history, profileId, riskId);
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -693,18 +408,12 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     riskLabel: RISK_LABELS[riskId],
     title: `${profile.label} ${RISK_LABELS[riskId]}`,
     bound,
-    hook: hookPair.hook,
-    hookTemplate: hookPair.hookTemplate,
-    intro: hookPair.intro,
-    sousTitre: pickNonRepeating(profile.sousTitres, history, profileId, "sousTitre"),
-    ctaTemplate: cta.template,
-    cta: cta.resolved,
-    warning,
     selection,
     perf,
     worst,
     context: contextText,
-    contextFallbackPick: fallbackPick,
+    contextFallbackPick: null,
+    ...editorial,
   };
 }
 
@@ -719,6 +428,7 @@ export function renderTweetText(p) {
       .map((s) => `${s.emoji} ${s.pct}% ${s.name}\n→ ${s.desc}\n💡 ${s.pourquoi}`)
       .join("\n\n")
   );
+  blocks.push(`🔍 La logique de l’ensemble\n${p.logic}`);
   blocks.push(SEPARATOR);
   const yearsLine = YEARS.map((y) => `${y} ${fmtPct(p.perf[y])}`).join(" · ");
   blocks.push(
@@ -732,3 +442,4 @@ export function renderTweetText(p) {
 }
 
 export { fmtPct, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, PROFILES, isCompatible };
+
