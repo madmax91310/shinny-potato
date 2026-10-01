@@ -465,7 +465,7 @@ async function testDataSearch(page) {
 
 async function testHouseholds(page) {
   await page.goto(`${BASE}/france-100-menages`, { waitUntil: 'networkidle' });
-  let ok = true;
+  let ok = await page.getByLabel('Design', { exact: true }).inputValue() === 'ivory';
   for (const { id, referencePeriod } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
     await page.getByLabel('Sujet', { exact: true }).selectOption(id);
     await page.waitForURL(`**sujet=${id}`);
@@ -473,9 +473,18 @@ async function testHouseholds(page) {
     const text = await page.getByLabel('Texte modifiable').inputValue();
     ok &&= text.includes('https://www.insee.fr/') && text.includes(referencePeriod.toLowerCase());
   }
-  for (const design of ['poster', 'editorial', 'cards', 'original']) {
+  for (const { id: design } of (await import('../src/pages/france-100-menages/image.js')).HOUSEHOLD_DESIGNS) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);
     ok &&= await page.locator('.hh-preview').evaluate(async img => { await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+  }
+  for (const design of ['ivory', 'blue', 'plum']) {
+    await page.getByLabel('Design', { exact: true }).selectOption(design);
+    for (const id of ['wealth-top10', 'wealth-share', 'unexpected-expense', 'salary-median', 'donation']) {
+      await page.getByLabel('Sujet', { exact: true }).selectOption(id);
+      ok &&= await page.locator('.hh-preview').evaluate(async img => { await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+    }
+    const [file] = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Télécharger le PNG' }).click()]);
+    ok &&= file.suggestedFilename().endsWith(`-${design}.png`) && (await stat(await file.path())).size > 10000;
   }
   await page.getByLabel('Sujet', { exact: true }).selectOption('donation');
   const editor = page.getByLabel('Texte modifiable');
@@ -491,11 +500,12 @@ async function testHouseholds(page) {
   ok &&= data.id === 'donation' && data.value === 20 && data.source.url.startsWith('https://www.insee.fr/');
   await page.reload({ waitUntil: 'networkidle' });
   ok &&= await page.getByLabel('Sujet', { exact: true }).inputValue() === 'donation';
+  ok &&= await page.getByLabel('Design', { exact: true }).inputValue() === 'plum';
   await page.setViewportSize({ width: 390, height: 844 });
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   if (process.env.HOUSEHOLD_SCREENSHOT) await page.screenshot({ path: process.env.HOUSEHOLD_SCREENSHOT, fullPage: true });
   await page.setViewportSize({ width: 1280, height: 720 });
-  record('La France en 100 ménages', ok, '17 sujets, quatre designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
+  record('La France en 100 ménages', ok, '17 sujets, sept designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
 }
 
 let server;

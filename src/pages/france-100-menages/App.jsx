@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import { HOUSEHOLD_STATISTICS, HOUSEHOLD_SOURCES, buildHouseholdTweet } from '../../data/household-statistics.js'
-import { renderHouseholdImage, HOUSEHOLD_DESIGNS } from './image.js'
+import { renderHouseholdImage, HOUSEHOLD_DESIGNS, DEFAULT_HOUSEHOLD_DESIGN } from './image.js'
 import './style.css'
 
 function Editor({ record, onSelect, design, onDesign }) {
@@ -49,7 +49,7 @@ function Editor({ record, onSelect, design, onDesign }) {
 }
 export default function HouseholdApp() {
   const [params, setParams] = useSearchParams()
-  const design = HOUSEHOLD_DESIGNS.some(item => item.id === params.get('design')) ? params.get('design') : 'original'
+  const design = HOUSEHOLD_DESIGNS.some(item => item.id === params.get('design')) ? params.get('design') : DEFAULT_HOUSEHOLD_DESIGN
   function selectDesign(id) { const next = new URLSearchParams(params); next.set('design', id); setParams(next) }
   const record = HOUSEHOLD_STATISTICS.find((item) => item.id === params.get('sujet')) ?? HOUSEHOLD_STATISTICS[0]
   function select(id) { const next = new URLSearchParams(params); next.set('sujet', id); setParams(next) }
