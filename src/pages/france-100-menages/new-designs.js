@@ -55,7 +55,7 @@ function groupLabel(record) {
   if (record.kind === 'threshold') return record.populationPercent === 10 ? 'au-dessus du seuil' : 'sous la médiane'
   return 'Environ.'
 }
-export function renderNewHouseholdImage(record, design, { sourceCaption, visualNote }) {
+export function renderNewHouseholdImage(record, design) {
   const p = PALETTES[design]
   if (!p) throw new Error('Design inconnu.')
   const canvas = document.createElement('canvas'); canvas.width = 1080; canvas.height = 1440
@@ -63,7 +63,6 @@ export function renderNewHouseholdImage(record, design, { sourceCaption, visualN
   panel(ctx, 0, 0, 1080, 1440, p.bg)
   const blue = design === 'blue', plum = design === 'plum'
   if (plum) panel(ctx, 0, 0, 1080, 444, p.panel)
-  text(ctx, `LA FRANCE EN 100 ${record.population.toUpperCase()}`, 64, 104, 27, plum ? p.bg : p.ink, true)
   if (design === 'ivory') panel(ctx, 64, 140, 952, 8, p.accent)
   paragraph(ctx, record.headline, 64, plum ? 222 : blue ? 226 : 252, 952, { size: plum ? 75 : blue ? 65 : 78, min: 52, maxLines: 2, height: 1.15, color: plum ? p.bg : p.ink, bold: !plum, family: plum ? 'Georgia, serif' : undefined })
   const grids = getHouseholdVisual(record)
@@ -76,7 +75,6 @@ export function renderNewHouseholdImage(record, design, { sourceCaption, visualN
       panel(ctx, x, y, 450, 465, blue ? p.panel : plum ? '#e8daca' : p.panel, blue)
       grid(ctx, x + 16, y + 26, 418, item.count, p.accent, p.inactive, { squares: blue })
     })
-    paragraph(ctx, record.comparisonNote ?? 'Deux grilles de 100 ménages. Un même ménage peut détenir les deux placements.', 64, 1220, 952, { size: 27, min: 24, color: p.ink })
   } else {
     const value = `${formatHouseholdNumber(record.value)} ${record.unit === 'EUR' ? '€' : '%'}`
     metric(ctx, value, blue ? 52 : 64, plum ? 620 : blue ? 534 : 566, 952, plum ? 164 : blue ? 205 : 191, p.ink)
@@ -97,8 +95,6 @@ export function renderNewHouseholdImage(record, design, { sourceCaption, visualN
       paragraph(ctx, groupLabel(record), x, y + 432, blue ? 284 : 330, { size: 26, min: 24, color: p.accent, bold: true })
     }
   }
-  paragraph(ctx, `${visualNote(record)} ${blue ? 'Cases' : 'Silhouettes'} arrondies à l’unité.`, 64, 1294, 952, { size: 22, min: 20, maxLines: 2, color: p.muted })
-  text(ctx, sourceCaption(record), 64, 1380, 23, p.muted)
   ctx.textAlign = 'right'; text(ctx, '@epargnantlibre', 1016, 1420, 23, p.muted, true)
   return canvas.toDataURL('image/png')
 }
