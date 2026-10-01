@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { BROKERS, buildTweet, documentedForAll } from '../src/pages/broker-comparator/data.js'
+import { BROKERS, buildTweet } from '../src/pages/broker-comparator/data.js'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 import { BROKER_LOGOS } from '../src/pages/broker-comparator/versus-image.js'
 
@@ -94,15 +94,30 @@ for (let i = 0; i < BROKERS.length; i++) {
   for (let j = i + 1; j < BROKERS.length; j++) {
     const ids = [BROKERS[i].id, BROKERS[j].id]
     const post = buildTweet(ids)
-    assert(!/undefined|NaN|PEA-PME \?|PEA Jeune \?/i.test(post), `${ids}: lacune dans le post`)
-    for (const label of ['💰 Frais de courtage PEA', '💱 Si une conversion est nécessaire', '🎁 Les offres', '📅 Achats automatiques sur PEA', '🗂️ Frais de garde', '🌱 Enveloppes proposées', '🧾 IFU fourni', '💵 Liquidités rémunérées', '🔄 Transfert du PEA', '⚠️ Le point faible à retenir']) {
+    assert(!/undefined|\bNaN\b|PEA-PME \?|PEA Jeune \?|à vérifier|non vérifié|non établie|aucune offre spécifique|preuve corroborée|détails dans le registre|conversion|💱/i.test(post), `${ids}: lacune dans le post`)
+    for (const label of ['💰 Frais de courtage PEA', '📅 Achats automatiques sur PEA', '🗂️ Frais de garde', '🌱 Enveloppes proposées', '🧾 IFU fourni', '💵 Liquidités rémunérées', '🔄 Transfert du PEA', '⚠️ Le point faible à retenir']) {
       assert(post.includes(label), `${ids}: critère ${label} absent du duel`)
     }
     for (const broker of [BROKERS[i], BROKERS[j]]) {
       if (BROKER_EVIDENCE[broker.id].cash.status === 'corroboré')
-        assert(post.includes(`${broker.nom} : ${broker.cash.post} (preuve corroborée ; détails dans le registre)`), `${ids}: cash externe présenté sans réserve`)
+        assert(post.includes(`${broker.nom} : ${broker.cash.post}`), `${ids}: cash externe présenté sans réserve`)
       if (BROKER_EVIDENCE[broker.id].dca.status === 'corroboré')
-        assert(post.includes('📅 Achats automatiques sur PEA') && post.includes('preuve corroborée ; détails dans le registre'), `${ids}: DCA externe présenté sans réserve`)
+        assert(post.includes('📅 Achats automatiques sur PEA') && /analyses|divergent/i.test(broker.post.dca.join(' ')), `${ids}: DCA externe présenté sans réserve`)
+    }
+    const hasOffers = ids.some(id => ['bourso', 'fortuneo', 'bd', 'saxo'].includes(id))
+    assert.equal(post.includes('🎁 Les offres'), hasOffers, `${ids}: bloc offres vide ou absent`)
+    for (const label of ['💰 Frais de courtage PEA', '📅 Achats automatiques sur PEA', '🗂️ Frais de garde', '🧾 IFU fourni', '💵 Liquidités rémunérées', '🔄 Transfert du PEA', '⚠️ Le point faible à retenir']) {
+      const section = post.split(label + '\n\n')[1]?.split(/\n\n(?=🌱|🎁|📅|🗂️|🧾|💵|🔄|⚠️|💬|🤝)/u)[0]
+      for (const broker of [BROKERS[i], BROKERS[j]]) {
+        assert(section?.includes(`${broker.nom} : `), `${ids}: ${label} sans réponse pour ${broker.nom}`)
+        const answer = section.split(`${broker.nom} : `)[1]?.split('\n')[0]
+        assert(answer && answer.trim().length > 0 && !/^(?:[-—?]|N\/A)$/.test(answer.trim()), `${ids}: réponse vide ${label} ${broker.nom}`)
+      }
+    }
+    for (const id of ids) {
+      assert.equal(BROKER_EVIDENCE[id].transfert.status, 'confirmé', `${id}: transfert non documenté`)
+      assert.equal(BROKER_EVIDENCE[id].ifu.status, 'confirmé', `${id}: IFU non documenté`)
+      assert(post.includes(BROKER_EVIDENCE[id].transfert.summary), `${id}: transfert non raccordé au registre`)
     }
     assert.equal(post.includes('je suis affilié à XTB'), ids.includes('xtb'), `${ids}: transparence affiliation`)
   }

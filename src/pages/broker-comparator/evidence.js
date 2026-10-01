@@ -2,6 +2,9 @@
 // Dans les PDF, la première page porte le numéro 1.
 // « Non établi » ne signifie jamais « non proposé ».
 export const OFFICIAL_SOURCES = {
+  fortuneoTransferConditions: {'title': 'Fortuneo · Justificatifs de remboursement du transfert', 'edition': 'page en ligne, publication non datée', 'checked': '01/10/2026', 'url': 'https://www.fortuneo.fr/faq/quelles-sont-les-conditions-de-remboursement-des-frais-de-transfert-de-compte-bourse-chez-fortuneo', 'kind': 'page'},
+  fortuneoTransferOffer: {'title': 'Fortuneo · Remboursement du transfert entrant', 'edition': 'page en ligne, publication non datée', 'checked': '01/10/2026', 'url': 'https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse', 'kind': 'page'},
+  boursoTransferOffer: {'title': 'BoursoBank · Remboursement du transfert entrant', 'edition': 'page en ligne, publication non datée', 'checked': '01/10/2026', 'url': 'https://www.boursobank.com/aide-en-ligne/bourse/mobilite-bourse/question/proposez-vous-une-offre-en-cas-de-transfert-de-compte-bourse-53103659', 'kind': 'page'},
   boursoContract: { title: 'BoursoBank · Conditions générales', edition: '15/04/2026', checked: '30/09/2026', url: 'https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf' },
   fortuneoSmartOrders: { title: 'Fortuneo · Ordres Intelligents', edition: 'page en ligne, publication non datée', checked: '30/09/2026', url: 'https://www.fortuneo.fr/bourse/ordres-intelligents', kind: 'page' },
   caIdfContract: { title: 'Crédit Agricole Île-de-France · Convention de compte particuliers', edition: '07/08/2025', checked: '30/09/2026', url: 'https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/relation-banque-client/CGL_CPT_FUSIONNE_PART_PDF(002).pdf' },
@@ -130,9 +133,9 @@ export const BROKER_EVIDENCE = {
     pea: proved('PEA prévu par les conditions France.', 'trContract', 189),
     pme: { status: 'corroboré', review: { checked: '30/09/2026', outcome: 'unresolved', documents: ["trContract"], gap: "Exclusion explicite du PEA-PME distinct ou preuve datée de sa disponibilité chez Trade Republic." }, summary: 'PEA-PME non proposé selon MoneyVox, Café de la Bourse et Place au Rendement (27/09/2026) ; le contrat Trade Republic ne formule pas cette exclusion.', refs: [{ document: 'placeTrPme' }, { document: 'moneyvoxPea2026' }, { document: 'cafePeaPme' }, { document: 'trContract', page: 189 }] },
     jeune: proved('PEA ouvert sous conditions aux jeunes rattachés au foyer fiscal.', 'trContract', 190),
-    ifu: proved('IFU lié à la migration vers l’offre française.', 'trContract', 3),
+    ifu: { status: 'confirmé', summary: 'Oui avec l’offre française : le PEA est proposé par la succursale française ; la migration déclenche les obligations fiscales françaises, dont l’IFU.', refs: [{ document: 'trContract', page: 3 }, { document: 'trContract', page: 4 }] },
     cash: { status: 'confirmé', summary: 'Oui sur espèces éligibles du compte général sous conditions ; offre 3 % nouveau client jusqu’à 50 000 € après activation. Le contrat exclut les espèces PEA.', refs: [{ document: 'trInterest' }, { document: 'trContract', page: 57 }, { document: 'trContract', page: 190 }] },
-    transfert: proved('Transfert entrant du PEA prévu par le contrat.', 'trContract', 189),
+    transfert: proved('Transfert entrant et sortant possible. À l’entrée, un PEA contenant des titres non cotés est refusé.', 'trContract', 189),
   },
   bourso: {
     boursomarkets: proved('ETF iShares éligibles : 0 € à l’achat ; conditions de vente selon le titre. Pastille sur chaque fiche pour établir l’éligibilité.', 'boursoMarkets'),
@@ -144,7 +147,7 @@ export const BROKER_EVIDENCE = {
     jeune: proved('Tarifs PEA 18-25 ans prévus.', 'boursoTariff', 20),
     ifu: proved('IFU disponible dans les documents fiscaux si revenus ou opérations à déclarer.', 'boursoIfu'),
     cash: { status: 'corroboré', review: { checked: '30/09/2026', outcome: 'unresolved', documents: ["boursoContract", "boursoTariff"], gap: "Clause couvrant explicitement les espèces non investies du CTO, au-delà des clauses PEA/PEA-PME." }, summary: 'Non selon S’investir, Détective Banque et l’avis BrokerChooser du 30/09/2026 pour les espèces non investies du CTO ; BrokerChooser déduit notamment sa réponse du silence tarifaire, qui ne constitue pas une preuve directe ; les livrets distincts sont exclus. Les conditions générales du 15/04/2026 excluent directement la rémunération des espèces PEA (p. 73) et PEA-PME (p. 75). Le chapitre CTO (p. 70–71) et les règles communes du compte espèces (art. 5, p. 60–61) ne tranchent pas explicitement le CTO ; pas de confirmation de portée complète.', refs: [{ document: 'brokerBoursoReview' }, { document: 'sinvestirBoursoCash' }, { document: 'detectiveBdCash' }, { document: 'boursoTariff', page: 20 }, { document: 'boursoContract', page: 73 }, { document: 'boursoContract', page: 75 }] },
-    transfert: proved('Transfert PEA sortant : 15 € par ligne, plafond 150 €.', 'boursoTariff', 25),
+    transfert: { status: 'confirmé', summary: 'Transfert entrant possible : pour un premier transfert total, frais remboursés au double, jusqu’à 3 000 € et sans dépasser la valeur du compte. Justificatif à envoyer dans les 3 mois suivant le transfert effectif. Sortie : 15 € par ligne, maximum 150 €.', refs: [{ document: 'boursoTransferOffer' }, { document: 'boursoTariff', page: 25 }] },
   },
   ibkr: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
@@ -156,7 +159,7 @@ export const BROKER_EVIDENCE = {
     jeune: { status: 'corroboré', review: { checked: '30/09/2026', outcome: 'unresolved', documents: ["ibkrPea"], gap: "Ouverture effective du PEA pour un majeur rattaché, au-delà du plafond légal prévu par l’avenant IBIE." }, summary: 'PEA Jeune non disponible selon S’investir (2026, relu le 30/09). PEA.fr est écarté des références probantes : son duel Trade Republic/IBKR marqué septembre 2026 nie encore l’existence du PEA IBKR. L’avenant IBIE du 03/12/2024 prévoit pourtant le plafond légal de 20 000 € pour un enfant majeur rattaché : cette clause ne démontre pas que le parcours d’ouverture actuel lui est ouvert. Contradiction conservée ; une clause officielle actuelle ou un parcours daté pour majeur rattaché permettrait de trancher.', refs: [{ document: 'sinvestirIbkr' }, { document: 'prorealtimeIbkr', page: 70 }, { document: 'ibkrPea' }] },
     ifu: proved('IFU disponible pour le PEA.', 'ibkrPea'),
     cash: { status: 'confirmé', summary: 'Oui pour soldes éligibles : 0 % sur les premiers 10 000 € EUR, taux variable au-delà et selon valeur du compte ; PEA non documenté.', refs: [{ document: 'ibkrInterest' }] },
-    transfert: proved('Transfert du PEA possible, sans frais de transfert annoncés.', 'ibkrPea'),
+    transfert: proved('Transfert du PEA possible. IBKR annonce 0 € de frais de transfert ; les frais facturés par l’établissement d’origine restent distincts.', 'ibkrPea'),
   },
   fortuneo: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
@@ -168,7 +171,7 @@ export const BROKER_EVIDENCE = {
     jeune: proved('PEA Jeune non commercialisé selon les conditions générales.', 'fortuneoContract', 35),
     ifu: proved('IFU disponible dans l’espace client, notamment pour le compte titres.', 'fortuneoIfu'),
     cash: { status: 'corroboré', review: { checked: '30/09/2026', outcome: 'unresolved', documents: ["fortuneoContract"], gap: "Clause CTO explicite ; l’exclusion PEA/PEA-PME ne couvre pas toute la ligne cash." }, summary: 'Non : les conditions générales Fortuneo du 01/09/2025, art. 12 p. 35, excluent explicitement les intérêts sur le compte espèces PEA/PEA-PME. Leur art. 3.1 p. 31 décrit le compte espèces CTO sans préciser sa rémunération. BrokerChooser (analyse des frais du 28/09/2026) exclut expressément les intérêts CTO/PEA/PEA-PME et distingue le Livret + séparé ; Détective Banque indique aussi non pour le CTO ; aucune clause officielle équivalente pour le CTO n’a été identifiée. Les livrets distincts ne comptent pas.', refs: [{ document: 'brokerFortuneoFees' }, { document: 'fortuneoContract', page: 35 }, { document: 'fortuneoContract', page: 31 }, { document: 'detectiveBdCash' }] },
-    transfert: proved('Transfert PEA sortant 15 € par ligne, plafond 150 € ; clôture distincte à 85 €.', 'fortuneoTariff', 13),
+    transfert: { status: 'confirmé', summary: 'Transfert entrant possible : premier transfert remboursé jusqu’à 100 € si l’encours est inférieur à 3 000 €, 150 € de 3 000 à moins de 5 000 €, et 2 000 € à partir de 5 000 €. Justificatif à envoyer dans les 3 mois suivant l’ouverture. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.', refs: [{ document: 'fortuneoTransferOffer' }, { document: 'fortuneoTransferConditions' }, { document: 'fortuneoTariff', page: 13 }] },
   },
   xtb: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
@@ -180,7 +183,7 @@ export const BROKER_EVIDENCE = {
     jeune: proved('PEA non ouvert aux personnes majeures fiscalement rattachées à leurs parents chez XTB.', 'xtbPea'),
     ifu: proved('XTB déclare fournir un IFU pour les opérations sur valeurs mobilières.', 'xtbIfu', 7),
     cash: { status: 'confirmé', summary: 'Oui pour fonds non investis du compte de trading, sans minimum ni maximum ; taux préférentiel 90 jours jusqu’à 100 000 €, puis standard, variables. PEA sans intérêts.', refs: [{ document: 'xtbInterest' }, { document: 'xtbPea' }] },
-    transfert: proved('Transfert entrant PEA actuellement indisponible ; tarif du transfert sortant documenté séparément.', 'xtbPea'),
+    transfert: { status: 'confirmé', summary: 'Transfert entrant du PEA encore indisponible. Sortie : 15 € par ligne, maximum 150 €.', refs: [{ document: 'xtbPea' }, { document: 'xtbTariff', page: 6 }] },
   },
   caidf: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
@@ -192,7 +195,7 @@ export const BROKER_EVIDENCE = {
     jeune: proved('La page de la caisse Île-de-France annonce le PEA Jeune pour un majeur rattaché, avec un plafond de 20 000 €.', 'caIdfPea'),
     ifu: { status: 'confirmé', summary: 'La brochure Île-de-France 2026 tarifie explicitement la réédition de l’IFU ; Invest Store indique que l’IFU est consultable. La production du document dépend des opérations à déclarer.', refs: [{ document: 'caTariff', page: 8 }, { document: 'caInvest' }] },
     cash: { status: 'corroboré', review: { checked: '30/09/2026', outcome: 'unresolved', documents: ['caIdfContract', 'caIdfPeaPme', 'caCtoCash'], gap: 'Condition régionale Île-de-France explicitement applicable au solde espèces CTO.' }, summary: 'Non selon les sources consultées : la page régionale exclut les intérêts sur le cash PEA-PME et la page Amundi du groupe indique que le cash PEA n’est pas rémunéré. MoneyVox (tarifs CA Île-de-France 2026) indique que la rémunération du compte courant n’est pas proposée. Le CTO s’appuie sur un compte espèces bancaire classique selon le Crédit Agricole. La convention régionale du 07/08/2025 (p. 1–2, 16–17 et 43–44) ne fournit pas de clause explicite de non-rémunération de ce solde CTO ; son silence ne prouve pas l’absence de rémunération. Livrets et dépôts à terme exclus.', refs: [{ document: 'caIdfPeaPme' }, { document: 'amundiCaPeaCash' }, { document: 'moneyvoxCaIdf' }, { document: 'caCtoCash' }] },
-    transfert: proved('Transfert sortant de compte-titres ou PEA hors Crédit Agricole : 15 €/ligne, maximum 150 €/compte ; frais du correspondant possibles pour titres étrangers.', 'caTariff', 31),
+    transfert: { status: 'confirmé', summary: 'Transfert possible entre banques en conservant l’antériorité fiscale. Sortie vers un établissement hors Crédit Agricole : 15 € par ligne, maximum 150 € par PEA ; frais du correspondant possibles pour les titres étrangers.', refs: [{ document: 'caIdfPea' }, { document: 'caTariff', page: 31 }] },
   },
   bd: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
@@ -202,9 +205,9 @@ export const BROKER_EVIDENCE = {
     pea: proved('PEA prévu dans le barème.', 'bdTariff', 2),
     pme: proved('PEA-PME prévu dans le barème.', 'bdTariff', 2),
     jeune: proved('PEA Jeunes prévu dans le barème.', 'bdTariff', 2),
-    ifu: proved('IFU mis à disposition pour la déclaration du compte titres.', 'bdIfu'),
+    ifu: proved('Oui : un IFU est prévu pour les clients soumis à la fiscalité française, avec transmission d’un double à l’administration fiscale.', 'bdContract', 24),
     cash: { status: 'corroboré', review: { checked: '30/09/2026', outcome: 'unresolved', documents: ["bdContract", "bdCto"], gap: "Clause officielle applicable aux espèces CTO, au-delà de la page PEA." }, summary: 'Non selon BrokerChooser et Détective Banque pour les espèces du CTO et du PEA ; la page PEA officielle précise aussi l’absence d’intérêt. Les conditions générales du 01/03/2024 et la page CTO ont aussi été relues : aucune exclusion officielle explicite de tous les soldes CTO n’a été identifiée. Ce silence ne constitue pas une preuve négative.', refs: [{ document: 'brokerBdCash' }, { document: 'detectiveBdCash' }, { document: 'bdPea' }] },
-    transfert: { status: 'confirmé', summary: 'Transfert PEA sortant : 15 € par ligne, plafond 150 €. Pour un transfert entrant, la page tarifaire actuelle prévoit un remboursement jusqu’à 150 € pour PEA/PEA-PME/PEA Jeune (200 € pour CTO), sur justificatif ; la FAQ générique non ventilée annonce 200 € par compte.', refs: [{ document: 'bdTariff', page: 4 }, { document: 'bdTariffPage' }, { document: 'bdSupport' }] },
+    transfert: { status: 'confirmé', summary: 'Transfert entrant possible : frais remboursés jusqu’à 150 € pour le PEA, sur justificatif. Sortie : 15 € par ligne, maximum 150 €.', refs: [{ document: 'bdTariff', page: 4 }, { document: 'bdTariffPage' }, { document: 'bdSupport' }] },
   },
   saxo: {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
@@ -216,7 +219,7 @@ export const BROKER_EVIDENCE = {
     jeune: proved('Saxo Banque indique explicitement ne pas proposer de PEA Jeune.', 'saxoPeaHelp'),
     ifu: proved('IFU en ligne gratuit dans la brochure.', 'saxoTariff', 3),
     cash: { status: 'confirmé', summary: 'Oui pour espèces éligibles en EUR/USD selon solde et niveau de compte ; taux variable. PEA exclu de cette offre.', refs: [{ document: 'saxoContract', page: 24 }, { document: 'saxoInterest' }] },
-    transfert: { status: 'confirmé', summary: 'Transfert PEA/PEA-PME sortant à 15 € par ligne, plafond 150 €. Transfert total de PEA entrant avant le 31/12/2026 : remboursement de 100 % des frais dans la limite de 150 €, sous conditions.', refs: [{ document: 'saxoTariff', page: 16 }, { document: 'saxoPeaTransferOffer' }] },
+    transfert: { status: 'confirmé', summary: 'Transfert entrant possible : pour un transfert total avant le 31 décembre 2026, frais remboursés jusqu’à 150 €, sous conditions ; justificatif à transmettre dans le mois suivant le débit. Sortie : 15 € par ligne, maximum 150 €.', refs: [{ document: 'saxoTariff', page: 16 }, { document: 'saxoPeaTransferOffer' }] },
   },
 }
 
