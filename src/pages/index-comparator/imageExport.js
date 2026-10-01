@@ -62,12 +62,14 @@ export async function renderIndexImage(family) {
   }
   font(ctx, 66, 700); const title = lines(ctx, editorial.imageTitle, W - PAD * 2)
   const HEADER = 112 + title.length * 78 + 75
-  const H = Math.ceil(HEADER + rowHeights.reduce((sum, height) => sum + height + GAP, 0) + 112)
+  const H = Math.ceil(HEADER + rowHeights.reduce((sum, height) => sum + height + GAP, 0) + 72)
   canvas.width = W; canvas.height = H
   ctx.textBaseline = 'top'; ctx.fillStyle = BG; ctx.fillRect(0, 0, W, H)
-  font(ctx, 26, 700); draw(ctx, ['LES INDICES À LA LOUPE'], PAD, 42, 34, '#6ee7b7')
-  font(ctx, 66, 700); const end = draw(ctx, title, PAD, 92, 78, INK)
-  font(ctx, 30); draw(ctx, ['Composition des indices · poids des pays et secteurs'], PAD, end + 14, 38, MUTED)
+  ctx.textAlign = 'center'
+  font(ctx, 26, 700); draw(ctx, ['LES INDICES À LA LOUPE'], W / 2, 42, 34, '#6ee7b7')
+  font(ctx, 66, 700); const end = draw(ctx, title, W / 2, 92, 78, INK)
+  font(ctx, 30); draw(ctx, ['Composition des indices · poids des pays et secteurs'], W / 2, end + 14, 38, MUTED)
+  ctx.textAlign = 'left'
   let top = HEADER
   cards.forEach((card, i) => {
     const row = Math.floor(i / columns), column = i % columns
@@ -95,7 +97,6 @@ export async function renderIndexImage(family) {
     }
 
   })
-  font(ctx, 24); draw(ctx, ['Sources et références dans le tweet · secteurs selon chaque fournisseur'], PAD, H - 82, 32, MUTED)
   font(ctx, 27, 700); ctx.textAlign = 'right'; draw(ctx, ['@epargnantlibre'], W - PAD, H - 42, 34, INK)
   return canvas
 }
