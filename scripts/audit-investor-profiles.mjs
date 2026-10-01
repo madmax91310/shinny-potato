@@ -24,8 +24,8 @@ console.log(`${INVESTORS.length} présentations sourcées : couverture complète
 for (const slug of ['li-lu', 'gates-trust', 'klarman']) {
   const portfolio = normalizePortfolio(JSON.parse(readFileSync(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8')))
   assert.equal(portfolio.identity.slug, slug)
-  assert.equal(portfolio.identity.dataProvider, 'SEC')
-  assert.equal(new URL(portfolio.sourceUrl).hostname, 'www.sec.gov')
+  assert.equal(portfolio.identity.dataProvider, 'FolioFact')
+  assert.equal(new URL(portfolio.sourceUrl).hostname, 'foliofact.com')
   assert(buildTweet(portfolio).includes(investorIntroduction(slug)))
 }
-console.log('Les trois déclarations SEC locales sont présentes et exploitables.')
+console.log('Les trois instantanés 13F locaux sont présents et exploitables.')
