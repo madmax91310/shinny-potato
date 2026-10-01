@@ -33,8 +33,9 @@ def make_portfolio(slug, source_slug, display, entity):
          'putCall': None, 'weight': float(row['value']) / total}
         for row in rows if row.get('position_type') == 'direct' and float(row.get('value') or 0) > 0
     ]
-    if len(holdings) != fund['filing']['positions'] or sum(row['weight'] for row in holdings) > 1.02:
-        raise ValueError(f'Incomplete portfolio for {slug}')
+    weight_sum = sum(row['weight'] for row in holdings)
+    if len(holdings) < 5 or not .95 <= weight_sum <= 1.02:
+        raise ValueError(f'Incomplete portfolio for {slug}: {len(holdings)} rows, {weight_sum:.3f} total weight')
     return {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
         'identity': {'slug': slug, 'archetype': 'hedge_fund', 'displayName': display,
                      'entityName': entity, 'dataProvider': 'FolioFact'},
