@@ -122,7 +122,7 @@ const BASE_THEMES = [
         isin: 'FR0011871128',
         frais: formatEtfTer('FR0011871128'),
 
-        differenciateur: affirmInstrumentPea('FR0011871128', true, 'le classique S&P 500 éligible PEA depuis 2014'),
+        differenciateur: affirmInstrumentPea('FR0011871128', true, 'S&P 500 éligible PEA ; part créée en 2014'),
       }),
       createEtf({
         // BlackRock, page produit au 25/09/2026 : TER 0,10 %.
@@ -133,7 +133,7 @@ const BASE_THEMES = [
         isin: 'IE000DQLYVB9',
         frais: formatEtfTer('IE000DQLYVB9'),
 
-        differenciateur: affirmInstrumentPea('IE000DQLYVB9', true, 'S&P 500 éligible PEA, moins cher en TER que l’Amundi, mais fonds plus récent'),
+        differenciateur: affirmInstrumentPea('IE000DQLYVB9', true, 'S&P 500 éligible PEA ; part créée en 2025'),
       }),
       createEtf({
         nom: getInstrumentName("FR0011871110", "tweet"),
@@ -566,7 +566,7 @@ const BASE_THEMES = [
         isin: 'IE000C6ITGC8',
         frais: formatEtfTer('IE000C6ITGC8'),
 
-        differenciateur: 'compare le volume échangé et la fourchette achat/vente, CTO',
+        differenciateur: 'informatique quantique, CTO',
       }),
       createEtf({
         nom: getInstrumentName("IE000W8WMSL2", "tweet"),
@@ -601,7 +601,7 @@ const BASE_THEMES = [
         isin: 'IE000YU9K6K2',
         frais: formatEtfTer('IE000YU9K6K2'),
 
-        differenciateur: 'ETF spatial UCITS, CTO ; d’autres fonds sont arrivés en 2026',
+        differenciateur: 'ETF spatial UCITS, CTO',
       }),
     ],
     cloture:
@@ -645,7 +645,7 @@ const BASE_THEMES = [
         isin: 'LU1834983634',
         frais: formatEtfTer('LU1834983634'),
 
-        differenciateur: affirmInstrumentPea('LU1834983634', true, 'matériaux européens, éligible PEA ; vérifie la fourchette achat/vente'),
+        differenciateur: affirmInstrumentPea('LU1834983634', true, 'matériaux européens, éligible PEA'),
       }),
       createEtf({
         nom: getInstrumentName("IE00BM67HS53", "tweet"),
@@ -709,92 +709,94 @@ const BASE_THEMES = [
   }),
 ]
 
-// Une ouverture et une question propres au choix réel de chaque famille. Les ETF et leurs
-// données restent ceux de BASE_THEMES ; Tweet Midi réutilise directement cette sortie.
+// Texte propre à chaque famille ; caractéristiques et frais restent dans les registres partagés.
 const EDITORIAL = {
-  monde: {
-    accroche: '🌍 MSCI World, ACWI, All-World : « investir dans le monde » ne veut pas dire acheter la même chose.',
-    cloture: 'Regarde d’abord si tu veux les émergents, puis ton enveloppe et les frais. Deux ETF « Monde » peuvent se recouvrir largement.',
-    ctaEngagement: 'Ton ETF mondial inclut les émergents ou tu les ajoutes séparément ?',
+  "monde": {
+    transition: "Quatre ETF pour les marchés mondiaux, avec ou sans pays émergents.",
+    cloture: "Le MSCI World couvre les marchés développés. Les indices ACWI et FTSE All-World incluent aussi les émergents. Parmi ces quatre produits, Amundi PEA Monde est éligible au PEA.",
+    ctaEngagement: "Ton ETF mondial inclut les émergents ou tu les ajoutes séparément ?",
   },
-  usa: {
-    accroche: '🇺🇸 S&P 500 ou Nasdaq-100 : même pays, mais pas le même pari.',
-    cloture: 'Le S&P 500 couvre davantage de secteurs. Le Nasdaq-100 donne plus de poids aux grandes valeurs de croissance : vérifie aussi ce que ton World contient déjà.',
-    ctaEngagement: 'Si tu as déjà un World, pourquoi ajouterais-tu un ETF américain ?',
+  "usa": {
+    transition: "Quatre ETF sur les actions américaines : S&P 500 ou Nasdaq-100.",
+    cloture: () => `Trois ETF suivent le S&P 500 ; le quatrième suit le Nasdaq-100. Sur le S&P 500 en PEA, iShares affiche ${formatEtfTer('IE000DQLYVB9')} % de frais annuels, contre ${formatEtfTer('FR0011871128')} % pour Amundi.`,
+    ctaEngagement: "Pour les actions américaines, tu détiens un S&P 500 ou un Nasdaq-100 ?",
   },
-  europe: {
-    accroche: '🇪🇺 Europe ne veut pas forcément dire zone euro : le choix de l’indice change les pays que tu achètes.',
-    cloture: 'Entre un indice européen large et 50 valeurs de la zone euro, la diversification n’est pas la même. Regarde le périmètre avant les frais.',
-    ctaEngagement: 'Pour renforcer l’Europe, tu préfères toute la région ou uniquement la zone euro ?',
+  "europe": {
+    transition: "Trois ETF pour les actions européennes, avec des périmètres différents.",
+    cloture: "Le MSCI Europe et le STOXX Europe 600 couvrent plusieurs marchés européens. L’EURO STOXX 50 se limite à la zone euro. Les produits BNP Paribas et iShares EURO STOXX 50 de cette liste sont éligibles au PEA.",
+    ctaEngagement: "Tu préfères une exposition à toute l’Europe ou uniquement à la zone euro ?",
   },
-  'tech-europe': {
-    accroche: '💻 Tu veux de la tech européenne en Bourse ? L’offre en ETF est bien plus étroite qu’aux États-Unis.',
-    cloture: 'La tech européenne est un thème ciblé. Compare la composition des fonds avant de l’ajouter à un indice Europe que tu détiens déjà.',
-    ctaEngagement: 'Tu chercherais la tech européenne dans un ETF dédié ou dans un indice Europe plus large ?',
+  "tech-europe": {
+    transition: "Deux ETF sur le secteur technologique européen.",
+    cloture: () => `Ces deux ETF suivent le STOXX Europe 600 Technology. Amundi affiche ${formatEtfTer('LU1834988518')} % de frais annuels et une éligibilité PEA ; iShares affiche ${formatEtfTer('DE000A0H08Q4')} %.`,
+    ctaEngagement: "Pour ce secteur, tu passes par le PEA ou le compte-titres ?",
   },
-  emergents: {
-    accroche: '🌏 « Pays émergents » couvre des marchés très différents. Quel poids veux-tu donner à chacun ?',
-    cloture: 'Regarde la part des grandes places asiatiques, la taille des entreprises suivies et l’éligibilité PEA avant de comparer uniquement les frais.',
-    ctaEngagement: 'Tu préfères un ETF émergents séparé pour fixer son poids toi-même ?',
+  "emergents": {
+    transition: "Trois ETF sur les marchés émergents.",
+    cloture: "L’iShares Core MSCI EM IMI inclut les petites capitalisations. Le produit Amundi est éligible au PEA et applique des filtres ESG. Les univers suivis ne sont donc pas identiques.",
+    ctaEngagement: "Tu privilégies les petites capitalisations ou une exposition émergents dans le PEA ?",
   },
-  luxe: {
-    accroche: '👜 Acheter le luxe en ETF, c’est souvent retrouver les mêmes grandes marques avec des poids différents.',
-    cloture: 'Ces fonds restent concentrés sur quelques groupes. Vérifie s’ils sont déjà présents dans ton portefeuille Europe.',
-    ctaEngagement: 'Tu achèterais un ETF luxe en plus d’un indice Europe ?',
+  "luxe": {
+    transition: "Deux ETF Amundi pour les entreprises du luxe.",
+    cloture: "Amundi Global Luxury suit le S&P Global Luxury. Amundi PEA Luxe Monde permet une exposition au luxe dans le PEA. Le périmètre de l’indice et l’enveloppe distinguent ces deux produits.",
+    ctaEngagement: "Ton exposition au luxe est dans le PEA ou le compte-titres ?",
   },
-  'ia-robotique': {
-    accroche: '🤖 Un ETF « IA » peut détenir des puces, des logiciels ou des industriels de la robotique.',
-    cloture: 'Le nom du thème ne suffit pas : compare les premières lignes et la méthode de sélection pour voir ce que tu achètes vraiment.',
-    ctaEngagement: 'Tu veux investir dans les puces, les logiciels ou toute la chaîne IA ?',
+  "ia-robotique": {
+    transition: "Trois ETF dédiés à l’intelligence artificielle et à la robotique.",
+    cloture: "Xtrackers cible l’IA et le big data. L&G suit le ROBO Global Artificial Intelligence ; iShares suit l’iSTOXX FactSet Automation & Robotics. Les trois produits couvrent des univers différents.",
+    ctaEngagement: "Tu recherches surtout l’IA, le big data ou la robotique ?",
   },
-  sante: {
-    accroche: '🧬 Santé mondiale ou européenne : deux ETF du même secteur peuvent avoir des poids très différents.',
-    cloture: 'Le choix de la région change les entreprises détenues, la devise d’exposition et la possibilité de passer par le PEA.',
-    ctaEngagement: 'Pour la santé, tu chercherais une exposition mondiale ou une ligne éligible PEA ?',
+  "sante": {
+    transition: "Trois ETF sur la santé, à l’échelle mondiale ou européenne.",
+    cloture: "Les produits iShares et Xtrackers ciblent la santé mondiale. Amundi suit le secteur santé du STOXX Europe 600 et est éligible au PEA. Le produit iShares applique des exclusions dans son indice Advanced.",
+    ctaEngagement: "Pour la santé, tu préfères une exposition mondiale ou européenne dans le PEA ?",
   },
-  renouvelables: {
-    accroche: '🌱 Les énergies renouvelables ont une belle histoire à raconter. Leur parcours en Bourse a été bien moins régulier.',
-    cloture: 'Ces ETF ciblent des entreprises sensibles aux taux, aux coûts et aux politiques publiques. Le thème ne protège pas d’une forte baisse.',
-    ctaEngagement: 'Tu serais prêt à garder cette ligne si le secteur continuait de décevoir ?',
+  "renouvelables": {
+    transition: "Trois ETF sur les entreprises de l’énergie propre et des nouvelles énergies.",
+    cloture: "Les indices suivis diffèrent : Global Clean Energy Transition, MSCI New Energy et Solactive Clean Energy. La part Amundi présentée distribue les revenus. L&G affiche les frais les plus bas de cette sélection.",
+    ctaEngagement: "Tu privilégies quel indice pour les énergies propres ?",
   },
-  dividendes: {
-    accroche: '💸 Tous les ETF à dividendes ne cherchent pas la même chose : rendement actuel, qualité ou historique de hausse.',
-    cloture: 'Un gros dividende ne garantit pas une meilleure performance. Vérifie aussi si la part verse les revenus ou les réinvestit.',
-    ctaEngagement: 'Tu veux recevoir les dividendes ou les voir réinvestis automatiquement ?',
+  "dividendes": {
+    transition: "Trois ETF avec des méthodes de sélection fondées sur les dividendes.",
+    cloture: "Vanguard cible le rendement des dividendes. SPDR sélectionne des entreprises ayant maintenu ou augmenté leurs dividendes pendant au moins dix ans. WisdomTree combine qualité et croissance des dividendes ; sa part présentée est capitalisante.",
+    ctaEngagement: "Tu cherches des revenus versés ou des dividendes réinvestis ?",
   },
-  japon: {
-    accroche: '🇯🇵 Investir au Japon : même indice ou pas, la couverture du yen peut changer ton résultat en euros.',
-    cloture: 'Demande-toi si tu veux garder le risque de change et si le PEA est nécessaire pour cette exposition.',
-    ctaEngagement: 'Tu garderais l’exposition au yen ou choisirais une part couverte ?',
+  "japon": {
+    transition: "Quatre ETF pour les actions japonaises, avec ou sans couverture du yen.",
+    cloture: "Deux parts Amundi suivent le TOPIX dans le PEA : l’une sans couverture, l’autre couverte en euros. Le produit Xtrackers suit le Nikkei 225 avec couverture en euros. Ces choix changent l’indice suivi et l’exposition au yen.",
+    ctaEngagement: "Pour le Japon, tu gardes l’exposition au yen ou tu choisis une part couverte ?",
   },
-  defense: {
-    accroche: '🛡️ Défense européenne ou mondiale : ces ETF ne misent pas sur les mêmes budgets ni les mêmes entreprises.',
-    cloture: 'Compare la zone couverte, le poids des premières positions et l’ancienneté du fonds. Tes convictions personnelles comptent aussi.',
-    ctaEngagement: 'Si tu investissais dans la défense, tu choisirais l’Europe ou une exposition mondiale ?',
+  "defense": {
+    transition: "Trois ETF sur la défense mondiale ou européenne.",
+    cloture: "VanEck couvre la défense mondiale, y compris les entreprises américaines. WisdomTree et Amundi ciblent l’Europe. Amundi affiche les frais les plus bas de ce trio.",
+    ctaEngagement: "Pour la défense, tu préfères une exposition européenne ou mondiale ?",
   },
-  quantique: {
-    accroche: '⚛️ Quantique : plusieurs ETF portent le même thème, mais leurs entreprises ne font pas toutes du quantique leur métier principal.',
-    cloture: 'Regarde la part des spécialistes et celle des grands groupes. Le secteur est jeune, concentré et peut varier fortement.',
-    ctaEngagement: 'Tu chercherais les spécialistes du quantique ou un fonds qui inclut aussi de grands groupes ?',
+  "quantique": {
+    transition: "Trois ETF sur le thème de l’informatique quantique.",
+    cloture: "VanEck suit le MarketVector Global Quantum Leaders. WisdomTree utilise un indice développé avec Classiq. Le thème commun ne signifie pas que les fonds suivent le même indice.",
+    ctaEngagement: "Tu regardes d’abord l’indice suivi ou les entreprises détenues pour ce thème ?",
   },
-  spatial: {
-    accroche: '🚀 Un ETF spatial peut mêler satellites, lanceurs et équipementiers. Que détient-il vraiment ?',
-    cloture: 'Satellites, équipements, lanceurs : lis les premières positions avant de supposer que toutes profitent des mêmes contrats.',
-    ctaEngagement: 'Dans le spatial, quelle activité voudrais-tu réellement détenir ?',
+  "spatial": {
+    transition: "Un ETF de la sélection consacré à l’industrie spatiale.",
+    cloture: "VanEck Space Innovators suit le MarketVector Global Space Industry Screened. La part présentée est capitalisante et utilise une réplication physique intégrale.",
+    ctaEngagement: "Dans le spatial, quelle activité t’intéresse le plus : satellites, lanceurs ou équipements ?",
   },
-  'ressources-naturelles': {
-    accroche: '⛏️ Un ETF de minières ne suit pas directement le prix des matières premières.',
-    cloture: 'Tu détiens des entreprises, avec leurs coûts et leurs risques propres. Vérifie aussi les régions couvertes par chaque indice.',
-    ctaEngagement: 'Tu veux les sociétés minières ou une exposition directe aux matières premières ?',
+  "ressources-naturelles": {
+    transition: "Quatre ETF sur les entreprises minières, les ressources de base et les matériaux.",
+    cloture: "VanEck et Xtrackers offrent une exposition mondiale. Les deux produits Amundi ciblent l’Europe et sont éligibles au PEA. Ces ETF détiennent des actions d’entreprises ; ils ne suivent pas directement le prix des métaux.",
+    ctaEngagement: "Tu recherches les entreprises du secteur ou une exposition directe aux métaux ?",
   },
-  'etc-metaux': {
-    accroche: '🥇 Or, argent, cuivre : ces produits n’ont ni le même métal ni forcément la même méthode de réplication.',
-    cloture: 'Ce sont des ETC, pas des ETF actions. Pour le cuivre présenté ici, la réplication passe par un swap : lis la structure du produit avant de comparer les frais.',
-    ctaEngagement: 'Tu chercherais plutôt l’or physique ou une exposition au cuivre ?',
+  "etc-metaux": {
+    transition: "Quatre ETC pour une exposition à l’or, à l’argent ou au cuivre.",
+    cloture: "Les deux produits or et le produit argent sont adossés à du métal physique. WisdomTree Copper suit des contrats à terme via swap : ses 0,49 % de frais de gestion s’accompagnent d’un taux de swap annuel de 0,45 %. Ces produits sont des ETC, non éligibles au PEA.",
+    ctaEngagement: "Tu recherches une exposition à l’or, à l’argent ou au cuivre ?",
   },
 }
 
 export const DEFAULT_THEMES = BASE_THEMES.map((theme) => ({
   ...theme,
   ...EDITORIAL[theme.id],
+  cloture: typeof EDITORIAL[theme.id].cloture === 'function'
+    ? EDITORIAL[theme.id].cloture()
+    : EDITORIAL[theme.id].cloture,
 }))
