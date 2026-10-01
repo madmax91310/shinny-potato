@@ -1,31 +1,42 @@
+import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance.js'
 
 const peaLabel = (status) => status === null ? 'à vérifier' : status ? '✅' : '❌'
 
-// Chaque fiche fournit son accroche et ses explications. Les données chiffrées
-// restent celles des registres communs, pour l'aperçu comme pour le texte copié.
+// Squelette historique conservé ; les explications enrichies viennent du registre commun.
 export function buildText(etf) {
   const tickerStr = etf.listing?.ticker ?? ''
+  const newTag = etf.isNew ? ' 🆕' : ''
+  const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
-  const facts = [
-    '📦 ' + etf.positions,
-    '💸 Frais annuels : ' + etf.ter,
-    '🔄 ' + etf.distribution,
-    '💰 Encours : ' + etf.aum,
-    '🏦 PEA : ' + peaLabel(etf.pea) + ' | CTO : ' + (etf.cto ? '✅' : '❌'),
-    '🆔 ISIN : ' + etf.isin,
-    ...(etf.listing ? ['📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + (tickerStr ? ' · ' + tickerStr : '')] : []),
-    ...(annual ? ['📈 Performances ' + annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual)] : []),
-  ]
-  return [
-    etf.hook,
-    'Voici ce que propose ' + etf.name + ' 👇',
-    etf.whatIs,
-    facts.join('\n'),
-    etf.whyInteresting,
-    '⚠️ ' + etf.whatToKnow,
-    etf.question + ' 👀',
-  ].join('\n\n')
+  return (
+    '📋 Présentation d\'ETF\n' +
+    dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + newTag + '\n' +
+    (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +
+    '🆔 ISIN : ' + etf.isin + '\n' +
+    '💸 Frais : ' + etf.ter + '\n' +
+    '📦 ' + etf.positions + '\n' +
+    '💰 Encours : ' + etf.aum + '\n' +
+    '🔄 ' + etf.distribution + '\n' +
+    '🏦 PEA : ' + peaLabel(etf.pea) + ' | CTO : ' + (etf.cto ? '✅' : '❌') + '\n' +
+    '📍 ' + etf.location + '\n' +
+    (annual ? '📈 Performances ' + annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) + '\n' : '') +
+    '\n' +
+    '🔍 C\'est quoi ?\n' +
+    etf.whatIs + '\n' +
+    '\n' +
+    '✅ Pourquoi c\'est intéressant ?\n' +
+    etf.whyInteresting + '\n' +
+    '\n' +
+    '⚠️ Ce qu\'il faut savoir\n' +
+    etf.whatToKnow + '\n' +
+    '\n' +
+    '🏆 Verdict\n' +
+    etf.verdict + '\n' +
+    '\n' +
+    '💬 ' + etf.question + ' 👇\n' +
+    '⚠️ Pas un conseil en investissement'
+  )
 }
 
 // Lignes de faits en texte brut, utilisées pour dessiner l'image (canvas).
