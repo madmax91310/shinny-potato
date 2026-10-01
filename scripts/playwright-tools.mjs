@@ -244,8 +244,8 @@ async function testBrokerComparator(page) {
   const tweet = await page.locator(".bc-tweet-textarea").inputValue();
   const ok = tweet.includes("🔄 Transfert du PEA") && tweet.includes("BoursoMarkets")
     && tweet.includes("💰 Frais de courtage PEA") && tweet.includes("Direct Price")
-    && tweet.includes("💵 Liquidités rémunérées") && tweet.includes("preuve corroborée")
-    && !/undefined|NaN/i.test(tweet)
+    && tweet.includes("💵 Liquidités rémunérées") && tweet.includes("Non : PEA/PEA-PME selon contrat")
+    && !/undefined|\bNaN\b|conversion|💱|à vérifier|aucune offre spécifique|preuve corroborée/i.test(tweet)
     && (await page.locator('.bc-evidence-broker').count()) === 2
     && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 0;
   await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
@@ -265,13 +265,17 @@ async function testBrokerComparator(page) {
   await page.locator('.bc-evidence-broker').first().locator('summary').click();
   const sourceOk = fortuneoSaxo.includes('💵 Liquidités rémunérées')
     && fortuneoSaxo.includes('📅 Achats automatiques sur PEA')
-    && fortuneoSaxo.includes('preuve corroborée')
+    && fortuneoSaxo.includes('Non : PEA/PEA-PME selon contrat')
     && fortuneoSaxo.includes('PEA Jeune : Fortuneo ❌ · Saxo Bank ❌')
     && fortuneoSaxo.includes('Plus de 150 ETF Amundi')
     && (await page.locator('.bc-evidence-broker').count()) === 2
     && (await page.locator('.bc-evidence').innerText()).includes('les conditions générales Fortuneo du 01/09/2025, art. 12 p. 35, excluent explicitement les intérêts')
     && (await page.locator('.bc-evidence').innerText()).includes('source externe');
-  record("Comparatif courtiers", ok && sourceOk && versusOk, "rubriques complètes, logos officiels et image PNG du duel");
+  await page.locator('.bc-duel-chip').filter({ hasText: 'TR vs IBKR' }).click();
+  const noOffers = await page.locator('.bc-tweet-textarea').inputValue();
+  const complete = !/🎁|conversion|💱|à vérifier|aucune offre spécifique|preuve corroborée|portée PEA non établie/i.test(noOffers)
+    && noOffers.includes('Transfert entrant et sortant possible') && noOffers.includes('IFU disponible pour le PEA');
+  record("Comparatif courtiers", ok && sourceOk && versusOk && complete, "rubriques complètes, logos officiels et image PNG du duel");
 }
 
 async function testTweetMidi(page) {

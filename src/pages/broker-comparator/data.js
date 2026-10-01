@@ -29,13 +29,12 @@ export const BROKERS = [
     cash: { resume: "Oui", detail: "Espèces éligibles sous conditions", post: "Oui sur les espèces éligibles sous conditions ; offre nouveaux clients soumise à activation." },
     // Correction du 03/09/2026 : le transfert PEA entrant est possible chez Trade Republic.
     pointFaible: "PEA-PME non proposé selon analyses externes",
-    transfertPea: { resume: "Entrant ✅" },
     post: {
       frais: ["PEA : 1 € de règlement par ordre ponctuel, ou 2 € avec Direct Price ; plans programmés sans frais d’exécution. Spread et coûts tiers possibles."],
       dca: ["Plans programmés ; page PEA annonce l’absence de frais sur les plans. Titres éligibles dans l’application."],
       garde: ["0 € pour l’administration et la conservation des titres selon l’aide Trade Republic France."],
       pea: "PEA ✅ / PEA-PME ❌* / PEA Jeune ✅",
-      ifu: ["✅ IFU après migration vers l'offre française ; compte non migré : à vérifier."],
+      ifu: ["✅ Oui pour l’offre française, dont le PEA. Les anciens comptes étrangers relèvent d’un régime distinct."],
       faibles: ["PEA-PME non proposé selon analyses externes"],
       verdict: "Tu veux investir petit et souvent sans réfléchir aux frais",
     },
@@ -52,14 +51,13 @@ export const BROKERS = [
     ifu: { resume: "Oui, si imposable" },
     cash: { resume: "Non*", detail: "PEA/PEA-PME : contrat · CTO : analyse externe", post: "Non : PEA/PEA-PME selon contrat ; CTO selon analyses externes." },
     pointFaible: "DCA : frais des fonds à vérifier. ℹ️ Ordre minimum : 100€ actions / 200€ ETF / 500€ OPCVM & Warrants / 2 500€ Bourses EU",
-    transfertPea: { resume: "Entrant : à vérifier / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["1,99€ ≤500€, puis 0,60% (plafonné à 0,5% sur PEA)"],
       dca: ["Plan d'Épargne : 0 € de commission de négociation, dès 10 €/fonds/mois. Frais propres à chaque fonds indiqués dans son DIC."],
       garde: ["0€"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
       ifu: ["IFU disponible pour les opérations et revenus imposables à déclarer."],
-      faibles: ["Frais des fonds du plan à vérifier dans leurs DIC, ordre min ETF 200€, Bourses EU 2 500€"],
+      faibles: ["Frais des fonds en plus du courtage gratuit du plan ; ordre minimum ETF de 200 € et de 2 500 € sur les Bourses européennes concernées"],
       verdict: "Tu veux un écosystème bancaire complet avec PEA-PME",
     },
   },
@@ -73,14 +71,13 @@ export const BROKERS = [
     ifu: { resume: "Oui pour le PEA" },
     cash: { resume: "Oui", detail: "Sous conditions · 0 % sur les premiers 10 000 € EUR", post: "Oui sur les soldes éligibles au-delà de 10 000 € EUR, selon la valeur du compte." },
     pointFaible: "PEA-PME et PEA Jeune non disponibles selon analyses 2026 ; contrat IBIE 2024 contradictoire pour le Jeune ; DCA PEA controversé",
-    transfertPea: { resume: "Entrant ✅ · 0 € annoncés" },
     post: {
       frais: ["PEA, actions France : dégressif 0,05 %, min 1,25 € (plus frais de Bourse possibles) ; fixe SmartRouting 0,05 %, min 3 € ; routage direct 0,10 %, min 4 €. Autres places et fonds : barèmes distincts."],
-      dca: ["Disponibilité des achats récurrents sur PEA contestée entre analyses de 2026 ; confirmation directe d’IBKR absente."],
+      dca: ["Les analyses récentes divergent sur les achats récurrents dans le PEA. Le service général IBKR utilise des fractions ; sa disponibilité ne suffit pas à garantir celle du PEA."],
       garde: ["PEA : pas de droits de garde annoncés."],
       pea: "PEA ✅ / PEA-PME ❌* / PEA Jeune ❌* selon analyses 2026 (contrat IBIE 2024 contradictoire)",
       ifu: ["IFU disponible pour le PEA."],
-      faibles: ["PEA-PME et PEA Jeune non disponibles selon analyses 2026 ; clause IBIE 2024 contradictoire pour le Jeune ; DCA PEA controversé"],
+      faibles: ["PEA-PME et PEA Jeune non proposés selon les analyses consultées ; disponibilité des achats automatiques sur PEA discutée"],
       verdict: "tu veux un PEA avec IFU et une tarification par marché",
     },
   },
@@ -96,7 +93,6 @@ export const BROKERS = [
     ifu: { resume: "Oui" },
     cash: { resume: "Non*", detail: "PEA/PEA-PME : contrat · CTO : analyses externes", post: "Non : PEA/PEA-PME selon contrat ; CTO selon analyses externes (28/09/2026)." },
     pointFaible: "Clôture PEA 85€, frais élevés hors Euronext ; pas de DCA automatique selon analyses externes",
-    transfertPea: { resume: "Entrant : à vérifier / Sortant 15€/ligne (max 150€)" },
     post: {
       frais: ["Starter sur Euronext/Equiduct : 0€ le 1er ordre du mois si ≤500€, puis 0,35% ; anciens tarifs possibles"],
       dca: ["Pas d’achats récurrents automatiques sur PEA selon analyses externes ; les ordres conditionnels et préordres documentés ne prouvent pas un plan récurrent."],
@@ -120,7 +116,6 @@ export const BROKERS = [
     ifu: { resume: "Oui" },
     cash: { resume: "Oui", detail: "Espèces éligibles · taux variable", post: "Oui sur les fonds libres éligibles, taux variable selon les conditions XTB." },
     pointFaible: "DCA PEA et PEA-PME annoncés à venir ; transfert entrant indisponible",
-    transfertPea: { resume: "Entrant : indisponible" },
     post: {
       frais: ["0% de commission jusqu’à 100K€/mois de volume, puis 0,20% au-delà (minimum 10€ non appliqué sur PEA)"],
       dca: ["Plans programmés PEA annoncés comme une extension à venir par XTB ; pas de disponibilité actuelle confirmée."],
@@ -143,7 +138,6 @@ export const BROKERS = [
     ifu: { resume: "Oui, service national" },
     cash: { resume: "Non*", detail: "Cash PEA-PME non rémunéré ; compte courant non rémunéré selon MoneyVox 2026", post: "Non selon les sources consultées : cash PEA-PME non rémunéré et rémunération du compte courant non proposée en Île-de-France (MoneyVox, tarifs 2026)." },
     pointFaible: "Droits de garde hors Intégral ; cash non rémunéré selon sources consultées",
-    transfertPea: { resume: "Sortant 15 €/ligne (max 150 €)" },
     post: {
       frais: ["Île-de-France Euronext en ligne : Initial 0,50 % ; Intégral PEA/PEA-PME 0,48 % ≤500 €, 0,18 % entre 500 et 1 000 €, 0,12 % au-delà. Intégral 96 €/an sous 12 ordres, gratuit de 18 à 30 ans."],
       dca: ["Plan d’Épargne Boursière : dès 45 €/mois sur 1 à 3 SICAV/FCP éligibles au PEA/PEA-PME ; mise en place gratuite en Île-de-France ; frais des fonds selon DIC."],
@@ -161,16 +155,15 @@ export const BROKERS = [
     dca: { rank: 1, resume: "Oui, PEA & CTO", detail: "ETF éligibles : 0€ de courtage ; actions : tarif habituel" },
     garde: { rank: 1, resume: "0€", detail: "Bourses étrangères : 0,036%/an" },
     pea: { pea: true, pme: true, jeune: true },
-    ifu: { resume: "Oui pour CTO" },
+    ifu: { resume: "Oui" },
     cash: { resume: "Non*", detail: "Cash non rémunéré selon analyse externe", post: "Non selon analyse externe, cash non investi." },
     pointFaible: "Tarification par paliers ; cash non rémunéré selon analyse externe ; garde sur bourses étrangères",
-    transfertPea: { resume: "Entrant : remboursement ≤150 € sur PEA / Sortant 15 €/ligne (max 150 €)" },
     post: {
       frais: ["PEA ≤198€ : 0,5% ; puis 0,99€ jusqu’à 500€ / 1,90€ jusqu’à 1 000€ / 2,90€ jusqu’à 2 000€", "3,80€ jusqu’à 4 400€ / 0,09% au-delà"],
       dca: ["✅ Plans automatisés PEA & CTO, mensuels ou trimestriels ; ETF éligibles sans courtage, actions au tarif habituel"],
       garde: ["0€ hors bourses étrangères ; 0,036%/an sur bourses étrangères"],
       pea: "PEA ✅ / PEA-PME ✅ / PEA Jeune ✅",
-      ifu: ["IFU mis à disposition pour les comptes titres."],
+      ifu: ["✅ Oui, pour les clients soumis à la fiscalité française."],
       faibles: ["Tarification par paliers ; cash non rémunéré selon analyse externe ; garde sur bourses étrangères"],
       verdict: "Tu fais des ordres ponctuels et veux un tarif par palier transparent",
     },
@@ -186,7 +179,6 @@ export const BROKERS = [
     ifu: { rank: 1, resume: "Oui" },
     cash: { resume: "Oui", detail: "Espèces éligibles selon solde et niveau de compte", post: "Oui sur les espèces éligibles selon solde et niveau de compte." },
     pointFaible: "Plan programmé indisponible sur PEA ; PEA Jeune non proposé",
-    transfertPea: { resume: "Remboursement entrant : à vérifier" },
     post: {
       frais: ["Classic Euronext : 0,08%, minimum 2€ ; plafonnement PEA à 0,5%. Jusqu’au 31/12/2026, 0€ de courtage à l’achat et à la vente sur 70 actions sélectionnées pour certains PEA nouvellement ouverts ou transférés ; autres frais possibles."],
       dca: ["Plan Épargne Programmé : sans commission d’achat ni frais mensuels ; actuellement indisponible sur PEA."],
@@ -197,7 +189,7 @@ export const BROKERS = [
       verdict: "Tu veux une plateforme avec courtage Euronext dès 2€",
     },
   },
-];
+].map((broker) => ({ ...broker, transfertPea: { resume: BROKER_EVIDENCE[broker.id].transfert.summary } }));
 
 export const ROWS = [
   { key: "frais", icon: "💰", label: "Frais (PEA)" },
@@ -260,22 +252,13 @@ export function buildTweet(selected) {
   const names = (b) => `${b.emoji} ${b.nom}`;
   const pair = (label, describe) => `${label}\n\n${brokers.map((b) => `${b.nom} : ${describe(b)}`).join('\n\n')}`;
   const status = (b, field) => BROKER_EVIDENCE[b.id][field].status;
-  const qualified = (b, field, value) => status(b, field) === 'confirmé' ? value : `${value} (preuve ${status(b, field)}e ; détails dans le registre)`;
-  const envelopes = (field, label) => `${label} : ${brokers.map((b) => `${b.nom} ${b.pea[field] ? '✅' : '❌'}${status(b, field) === 'corroboré' ? '*' : ''}`).join(' · ')}`;
+  const envelopes = (field, label) => `${label} : ${brokers.map((b) => `${b.nom} ${b.pea[field] ? '✅' : '❌'}${status(b, field) === 'corroboré' ? ' selon les analyses consultées' : ''}`).join(' · ')}`;
 
   const offers = {
     bourso: 'BoursoMarkets : certains ETF iShares éligibles sans courtage à l’achat ; vérifier l’ISIN et le tarif à la vente.',
     fortuneo: 'Formule Starter : premier ordre mensuel jusqu’à 500 € sans courtage sur les places concernées.',
     bd: 'Plans programmés sur une sélection d’ETF sans frais de courtage.',
     saxo: 'Jusqu’au 31 décembre 2026 : 70 actions européennes sélectionnées sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Plus de 150 ETF Amundi sélectionnés sans courtage à l’achat, dont certains éligibles au PEA ; vente au tarif applicable. Les positions achetées via l’offre ETF ne sont pas transférables pendant six mois.',
-  };
-  const fx = {
-    xtb: '0,50 % si une conversion s’applique.',
-    saxo: '0,25 % si une conversion s’applique.',
-  };
-  const transfer = {
-    xtb: 'Transfert entrant du PEA encore indisponible. Sortie : 15 € par ligne, maximum 150 €.',
-    saxo: 'Transfert entrant possible. Pour un transfert total avant le 31 décembre 2026, frais remboursés jusqu’à 150 € sous conditions. Sortie : 15 € par ligne, maximum 150 €.',
   };
   const weakness = {
     saxo: 'Hors offres gratuites, le minimum de 2 € pèse sur les petits ordres, malgré le plafond légal.',
@@ -292,21 +275,20 @@ export function buildTweet(selected) {
   const activeOffers = brokers.filter((b) => offers[b.id]);
   const offerBlock = activeOffers.length
     ? `🎁 Les offres${activeOffers.length === 1 ? ` ${activeOffers[0].nom}` : ''}\n\n${activeOffers.map((b) => `${activeOffers.length === 1 ? '→' : `${b.nom} :`} ${offers[b.id]}`).join('\n\n')}`
-    : '🎁 Les offres\n\nAucune offre spécifique vérifiée dans le registre pour cette paire ; les tarifs habituels figurent ci-dessus.';
+    : '';
 
   return [
     `${names(brokers[0])} ou ${names(brokers[1])} pour ton PEA ?`,
-    'Frais, offres, transferts : on compare les deux courtiers 👇',
+    `${activeOffers.length ? 'Frais, offres, transferts' : 'Frais et transferts'} : on compare les deux courtiers 👇`,
     pair('💰 Frais de courtage PEA', (b) => fees[b.id] ?? b.post.frais.join(' ')),
-    pair('💱 Si une conversion est nécessaire', (b) => fx[b.id] ?? 'Tarif de conversion non vérifié dans ce registre ; consulter le barème avant un ordre en devises.'),
     offerBlock,
-    pair('📅 Achats automatiques sur PEA', (b) => qualified(b, 'dca', dca[b.id] ?? b.post.dca.join(' '))),
+    pair('📅 Achats automatiques sur PEA', (b) => dca[b.id] ?? b.post.dca.join(' ')),
     pair('🗂️ Frais de garde', (b) => b.post.garde.join(' ')),
     `🌱 Enveloppes proposées\n\n${['pea', 'pme', 'jeune'].map((field, i) => envelopes(field, ['PEA', 'PEA-PME', 'PEA Jeune'][i])).join('\n')}`,
-    pair('🧾 IFU fourni', (b) => b.id === 'tr' ? 'Oui après migration vers l’offre française ; situation du compte non migré à vérifier.' : b.id === 'bd' ? 'Oui pour le compte titres ; portée PEA non établie par la source utilisée.' : 'Oui ✅'),
-    pair('💵 Liquidités rémunérées', (b) => qualified(b, 'cash', b.cash.post)),
+    pair('🧾 IFU fourni', (b) => b.post.ifu.join(' ')),
+    pair('💵 Liquidités rémunérées', (b) => b.cash.post),
     'Le oui signifie qu’au moins un compte de courtage rémunère les espèces éligibles, selon ses conditions. Les livrets et fonds monétaires sont exclus.',
-    pair('🔄 Transfert du PEA', (b) => transfer[b.id] ?? BROKER_EVIDENCE[b.id].transfert.summary),
+    pair('🔄 Transfert du PEA', (b) => BROKER_EVIDENCE[b.id].transfert.summary),
     pair('⚠️ Le point faible à retenir', (b) => weakness[b.id] ?? b.post.faibles.join(' ')),
     '💬 Tu es chez quel courtier, et qu’est-ce qui a fait la différence dans ton choix ?',
     selected.includes('xtb') && '🤝 Par souci de transparence : je suis affilié à XTB, mais ce comparatif est réalisé de ma propre initiative, sans rémunération pour cette publication ni lien affilié.',
