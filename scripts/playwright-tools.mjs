@@ -171,7 +171,8 @@ async function testEtfSheets(page) {
   for (let i = 0; i < count; i++) {
     await select.selectOption({ index: i });
     await page.waitForTimeout(40);
-    const text = await page.locator("body").innerText();
+    // textContent vérifie le contenu des rubriques sans la mise en capitales CSS des titres.
+    const text = await page.locator(".es-card").textContent();
     if (/undefined|NaN/.test(text)) badCount++;
     const selectedId = await select.inputValue();
     const card = ETFS.find(item => item.id === selectedId);
