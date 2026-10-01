@@ -2,6 +2,7 @@
 // Dans les PDF, la première page porte le numéro 1.
 // « Non établi » ne signifie jamais « non proposé ».
 export const OFFICIAL_SOURCES = {
+  boursoEtfNotice: { title: 'BoursoBank · Avis client sur la fin de l’exonération ETF', edition: 'capture fournie le 01/10/2026 ; effet le 05/10/2026', checked: '01/10/2026', url: 'broker-evidence/bourso-etf-notice-2026-10-01.jpg', kind: 'customer-notice' },
   fortuneoTransferConditions: {'title': 'Fortuneo · Justificatifs de remboursement du transfert', 'edition': 'page en ligne, publication non datée', 'checked': '01/10/2026', 'url': 'https://www.fortuneo.fr/faq/quelles-sont-les-conditions-de-remboursement-des-frais-de-transfert-de-compte-bourse-chez-fortuneo', 'kind': 'page'},
   fortuneoTransferOffer: {'title': 'Fortuneo · Remboursement du transfert entrant', 'edition': 'page en ligne, publication non datée', 'checked': '01/10/2026', 'url': 'https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse', 'kind': 'page'},
   boursoTransferOffer: {'title': 'BoursoBank · Remboursement du transfert entrant', 'edition': 'page en ligne, publication non datée', 'checked': '01/10/2026', 'url': 'https://www.boursobank.com/aide-en-ligne/bourse/mobilite-bourse/question/proposez-vous-une-offre-en-cas-de-transfert-de-compte-bourse-53103659', 'kind': 'page'},
@@ -138,7 +139,7 @@ export const BROKER_EVIDENCE = {
     transfert: proved('Transfert entrant et sortant possible. À l’entrée, un PEA contenant des titres non cotés est refusé.', 'trContract', 189),
   },
   bourso: {
-    boursomarkets: proved('ETF iShares éligibles : 0 € à l’achat ; conditions de vente selon le titre. Pastille sur chaque fiche pour établir l’éligibilité.', 'boursoMarkets'),
+    boursomarkets: { status: 'confirmé', summary: 'À partir du 05/10/2026 : exonération des frais de courtage à l’achat sur les ETF Amundi proposés dans BoursoMarkets. L’avis client met fin à l’exonération pour l’ETF concerné ; tout achat non exécuté à la clôture du 02/10 et exécuté dès le 05/10 relève du forfait Bourse. La capture ne montre ni nom ni ISIN : elle ne permet pas de dresser la liste des ETF sortants, ni d’affirmer que tous les ETF Amundi sont inclus. Vérifier la pastille de chaque fiche et le tarif à la vente. La page publique BoursoMarkets documente l’offre historique ; le changement daté est documenté par la capture client fournie le 01/10/2026.', refs: [{ document: 'boursoEtfNotice' }, { document: 'boursoMarkets' }] },
     frais: proved('Découverte : 1,99 € jusqu’à 500 €, puis 0,60 % ; plafond PEA à 0,5 %.', 'boursoTariff', 20),
     dca: proved('Plan d’épargne : négociation gratuite, minimum 10 € par fonds et frais de gestion selon DIC.', 'boursoTariff', 20),
     garde: proved('Droits de garde gratuits dans le barème indiqué.', 'boursoTariff', 23),
