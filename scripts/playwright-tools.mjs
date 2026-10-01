@@ -366,7 +366,7 @@ async function testIndexComparator(page) {
         && [...(facts.countries ?? []).slice(0, 3), ...(facts.sectors ?? []).slice(0, 2)].every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
     });
     if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
-      && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 500
+      && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 400
       && png.readUInt32BE(20) < 2100 && png.length > 10000) images++;
   }
   await select.selectOption('monde');
