@@ -1,3 +1,4 @@
+import { renderNewHouseholdImage } from './new-designs.js'
 import { formatHouseholdNumber, getHouseholdVisual } from '../../data/household-statistics.js'
 const INK = '#f1f5f9', MUTED = '#b6c3d4', GREEN = '#38d5af', GOLD = '#e7c97c'
 function wrap(ctx, text, x, y, width, lineHeight) {
@@ -21,13 +22,18 @@ function people(ctx, x, y, width, count, color = GREEN) {
     ctx.fillRect(cx + step * .035, cy + step * .72, step * .115, step * .24)
   }
 }
+export const DEFAULT_HOUSEHOLD_DESIGN = 'ivory'
 export const HOUSEHOLD_DESIGNS = Object.freeze([
+  { id: 'ivory', label: '01 · Ivoire & noir' },
+  { id: 'blue', label: '02 · Bleu & blanc' },
+  { id: 'plum', label: '03 · Prune & sable' },
   { id: 'original', label: 'Original · silhouettes' },
   { id: 'poster', label: '01 · Affiche typographique' },
   { id: 'editorial', label: '02 · Éditorial clair' },
   { id: 'cards', label: '03 · Cartes contrastées' },
 ])
-export function renderHouseholdImage(record, design = 'original') {
+export function renderHouseholdImage(record, design = DEFAULT_HOUSEHOLD_DESIGN) {
+  if (['ivory', 'blue', 'plum'].includes(design)) return renderNewHouseholdImage(record, design, { sourceCaption, visualNote })
   if (design !== 'original') return renderAlternative(record, design)
   const canvas = document.createElement('canvas'); canvas.width = 1080; canvas.height = 1440
   const ctx = canvas.getContext('2d')
