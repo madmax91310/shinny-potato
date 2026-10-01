@@ -3,6 +3,7 @@ export const INVESTORS = [
   ['cathie-wood', 'Cathie Wood'], ['thiel', 'Peter Thiel'],
   ['druckenmiller', 'Stanley Druckenmiller'], ['loeb', 'Daniel Loeb'],
   ['aschenbrenner', 'Leopold Aschenbrenner'],
+  ['li-lu', 'Li Lu'], ['gates-trust', 'Gates Foundation Trust'], ['klarman', 'Seth Klarman'],
 ]
 
 export const ATTRIBUTION = 'Données : Tracefour · tracefour.com · CC BY 4.0'
@@ -25,7 +26,7 @@ export function normalizePortfolio(payload) {
   if (!holdings.length || holdings.some((row) => row.weight > 1) || holdings.reduce((sum, row) => sum + row.weight, 0) > 1.02) {
     throw new Error('Les poids transmis ne permettent pas une répartition fiable.')
   }
-  return { identity, snapshot, holdings, filingHistory: payload.data.filingHistory || [], sourceUrl: `https://tracefour.com/trackers/${identity.slug}`, fetchedAt: payload.as_of }
+  return { identity, snapshot, holdings, filingHistory: payload.data.filingHistory || [], sourceUrl: payload.data.sourceUrl || `https://tracefour.com/trackers/${identity.slug}`, fetchedAt: payload.as_of }
 }
 
 export function percentage(weight) {
@@ -41,9 +42,13 @@ export function buildTweet(portfolio, intro = '') {
   const top = holdings.slice(0, 5)
   const sum = top.reduce((value, row) => value + row.weight, 0)
   const icon = ['🥇', '🥈', '🥉', '📍', '📍']
-  const presentation = intro.trim() || (identity.slug === 'tepper'
-    ? 'David Tepper a fondé Appaloosa en 1993. Il s’est fait connaître en investissant dans des entreprises en difficulté.'
-    : `${identity.displayName} gère les investissements déclarés par ${identity.entityName || identity.displayName}.`)
+  const bios = {
+    tepper: 'David Tepper a fondé Appaloosa en 1993. Il s’est fait connaître en investissant dans des entreprises en difficulté.',
+    'li-lu': 'Li Lu dirige Himalaya Capital, connu pour son portefeuille américain très concentré.',
+    'gates-trust': 'Le Gates Foundation Trust investit les actifs qui financent les activités de la fondation Gates.',
+    klarman: 'Seth Klarman dirige Baupost, une société de gestion associée à l’investissement value.',
+  }
+  const presentation = intro.trim() || bios[identity.slug] || `${identity.displayName} gère les investissements déclarés par ${identity.entityName || identity.displayName}.`
   return [
     `Où ${identity.displayName} place-t-il ses plus gros paris ? 👇`,
     presentation,
@@ -56,8 +61,10 @@ export function buildTweet(portfolio, intro = '') {
 
 export async function loadPortfolio(slug, signal) {
   if (!INVESTORS.some(([key]) => key === slug)) throw new Error('Investisseur inconnu.')
-  const response = await fetch(`https://tracefour.com/data/trackers/${slug}.json`, { signal, cache: 'no-cache' })
-  if (!response.ok) throw new Error(`Tracefour ne répond pas (${response.status}). Réessaie plus tard.`)
+  const extra = ['li-lu', 'gates-trust', 'klarman'].includes(slug)
+  const url = extra ? `${import.meta.env.BASE_URL}data/investors/${slug}.json` : `https://tracefour.com/data/trackers/${slug}.json`
+  const response = await fetch(url, { signal, cache: 'no-cache' })
+  if (!response.ok) throw new Error(`Données indisponibles (${response.status}). Réessaie plus tard.`)
   const portfolio = normalizePortfolio(await response.json())
   if (portfolio.identity.slug !== slug) throw new Error('La réponse ne correspond pas à l’investisseur choisi.')
   return portfolio

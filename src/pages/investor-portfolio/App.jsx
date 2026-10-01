@@ -55,7 +55,7 @@ export default function InvestorPortfolio() {
       <select id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
         {INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}
       </select>
-      {loading && <p role="status">Chargement des données Tracefour…</p>}
+      {loading && <p role="status">Chargement des déclarations…</p>}
       {error && <p role="alert" className="ip-error">{error}</p>}
       {portfolio && <>
         <div className="ip-meta">
@@ -82,7 +82,7 @@ export default function InvestorPortfolio() {
           <Button type="button" variant="secondary" onClick={download}>⬇️ Télécharger le PNG</Button>
         </div>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
-        <p className="ip-credit">{ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir Tracefour ↗</a> · <a href={portfolio.filingHistory?.[0]?.sourceUrl || `https://www.sec.gov/edgar/search/`} target="_blank" rel="noreferrer">Voir la SEC ↗</a></p>
+        <p className="ip-credit">{portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
       </>}
     </section>
   </div>
