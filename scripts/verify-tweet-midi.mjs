@@ -30,6 +30,37 @@ import { ALL_ITEMS, FORMATS, FORMAT_LABELS, MODES, buildTweetText } from "../src
 import { TERMES } from "../src/data/financial-lexicon.js";
 import { getAnnualReturns } from "../src/pages/tweet-midi/data/marketHistory.js";
 
+import assert from 'node:assert/strict';
+import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
+import { getComparatifEtfText } from '../src/pages/tweet-midi/data/comparatifEtf.js';
+import { buildTweetText as buildEtfTweet } from '../src/pages/etf-tweets/lib/tweetFormat.js';
+
+// Vérifie la sortie réellement copiée par Tweet Midi, y compris les cas où les
+// caractéristiques/PEA ne sont pas documentés et les produits qui ne sont pas des ETF.
+for (const theme of DEFAULT_THEMES) {
+  const text = getComparatifEtfText(theme.id);
+  assert.match(text, /^(?:⚖️ Comparatif|📋 Présentation) (?:ETF|ETC) : /u);
+  assert.equal((text.match(/^🔎 ISIN : /gmu) ?? []).length, theme.etfs.length);
+  for (const fund of theme.etfs) {
+    assert.ok(text.includes(`ISIN : ${fund.isin}`));
+    assert.ok(text.includes(`${fund.frais} %`));
+  }
+  assert.ok(text.endsWith(theme.ctaEngagement));
+  assert.ok(!text.includes(theme.ctaPartage));
+}
+const unknown = buildEtfTweet({ nom: 'Test', etfs: [{ nom: 'Part sans fiche', isin: 'IE00BD4TXV59', frais: '0,20' }] });
+assert.doesNotMatch(unknown, /Éligible au PEA|Dividendes|Réplication|Création/u);
+const metals = getComparatifEtfText('etc-metaux');
+assert.match(metals, /^⚖️ Comparatif ETC/u);
+assert.doesNotMatch(metals, /💶 Dividendes/u);
+assert.match(metals, /Frais de gestion : 0,49 %/u);
+assert.match(metals, /taux de swap annuel : 0,45 %/u);
+const space = getComparatifEtfText('spatial');
+assert.match(space, /^📋 Présentation ETF/u);
+assert.ok(space.includes('📌 À retenir'));
+assert.ok(!space.includes('📌 Les différences'));
+assert.match(getComparatifEtfText('usa'), /0,10 % de frais annuels, contre 0,12 % pour Amundi/u);
+
 const termeIds = new Set(TERMES.map((t) => t.id));
 
 // Extras génériques passés à toutes les générations : ignorés par les formats qui n'en ont pas
