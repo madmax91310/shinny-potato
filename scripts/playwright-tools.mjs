@@ -508,6 +508,38 @@ async function testHouseholds(page) {
   record('La France en 100 ménages', ok, '17 sujets, sept designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
 }
 
+async function testInvestorIntroductions(page) {
+  const { INVESTORS } = await import('../src/pages/investor-portfolio/data.js');
+  const { investorIntroduction } = await import('../src/data/investor-profiles.js');
+  // Données de test contrôlées pour isoler les champs éditoriaux du réseau tiers.
+  await page.route('**/data/trackers/*.json', async route => {
+    const slug = new URL(route.request().url()).pathname.split('/').at(-1).replace('.json', '');
+    const displayName = INVESTORS.find(([id]) => id === slug)?.[1];
+    await route.fulfill({ headers: { 'access-control-allow-origin': '*' }, json: { as_of: '2026-10-01', data: { identity: { slug, displayName, entityName: 'Déclarant de test', archetype: 'hedge_fund' }, snapshot: { periodEnd: '2026-06-30', filedAt: '2026-08-14', holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .6 }] } } } });
+  });
+  await page.goto(`${BASE}/portefeuilles-investisseurs`, { waitUntil: 'networkidle' });
+  let ok = true;
+  for (const [slug] of INVESTORS) {
+    await page.getByLabel('Choisir un investisseur').selectOption(slug);
+    await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro && document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
+    ok &&= (await page.locator('.ip-bio').innerText()) === investorIntroduction(slug);
+    ok &&= !(await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes('place-t-il');
+  }
+  await page.getByLabel('Présentation de l’investisseur (modifiable)', { exact: true }).fill('Ma présentation personnalisée.');
+  ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes('Ma présentation personnalisée.');
+  ok &&= (await page.locator('.ip-bio').innerText()) === 'Ma présentation personnalisée.';
+  await page.getByRole('button', { name: 'Rétablir la présentation' }).click();
+  ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes(investorIntroduction('klarman'));
+  await page.getByLabel('Choisir un investisseur').selectOption('cathie-wood');
+  await page.waitForFunction(() => document.querySelector('#ip-intro')?.value.startsWith('Cathie Wood'));
+  ok &&= !(await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes('Seth Klarman');
+  await page.setViewportSize({ width: 390, height: 844 });
+  ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.unroute('**/data/trackers/*.json');
+  record('Portefeuille d’investisseur', ok, '11 présentations et tweets synchronisés, modification, réinitialisation, changement de profil et mobile');
+}
+
 let server;
 try {
   console.log(`Démarrage de vite preview sur le port ${PORT}...`);
@@ -538,6 +570,7 @@ try {
   await testFactsheetTweets(page);
   await testDataSearch(page);
   await testHouseholds(page);
+  await testInvestorIntroductions(page);
   await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
   const reviewChecks = { ibkr: (await page.locator('.dr-item').count()) === 3 };
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil' }).fill('Interactive Brokers');
