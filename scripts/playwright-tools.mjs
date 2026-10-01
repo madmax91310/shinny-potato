@@ -341,6 +341,8 @@ async function testIndexComparator(page) {
     if (dataOk && copied === text && text.startsWith(editorial.hook)
       && text.endsWith(editorial.question) && editorial.exposures.every(p => text.includes(p))
       && !/L'EXPOSITION|LE VERDICT|DIVERSIFICATION|undefined|NaN|à compléter/.test(text)) ok++;
+    // Espacer la série de PNG pour éviter le blocage des téléchargements en rafale.
+    await page.waitForTimeout(250);
     const [download] = await Promise.all([Promise.race([page.waitForEvent('download'),
       page.getByRole('button', { name: 'Réessayer le téléchargement PNG' }).waitFor().then(() => { throw new Error(`Export PNG impossible : ${family.id}`); })]),
       page.getByRole('button', { name: 'Télécharger l’image PNG' }).click()]);
