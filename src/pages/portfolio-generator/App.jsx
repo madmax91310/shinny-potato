@@ -187,7 +187,7 @@ function ManualComposer({
       <div className="pg-panel-title">Composition manuelle</div>
 
       <label className="pg-manual-label" htmlFor="pg-manual-profile">
-        Profil-thèse (calibre le ton du texte, pas les actifs disponibles)
+        Profil (étiquette de la composition)
       </label>
       <select
         id="pg-manual-profile"

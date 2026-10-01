@@ -123,7 +123,16 @@ async function testPortfolioGenerator(page) {
     page.getByRole('link', { name: '⬇️ Télécharger l’image PNG' }).click(),
   ]);
   const imageOk = firstImage?.startsWith('data:image/png;base64,') && newImage?.startsWith('data:image/png;base64,') && firstImage !== newImage && download.suggestedFilename() === 'repartition-portefeuille.png';
-  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}`);
+  const autoEditorialOk = /La logique de l’ensemble/.test(await page.locator(".pg-tweet-body").innerText());
+  await page.getByRole("button", { name: /Composition manuelle/ }).click();
+  await page.locator("#pg-manual-profile").selectOption("crypto_curieux");
+  await page.locator("#pg-manual-search").fill("Fonds euros");
+  await page.locator(".pg-manual-asset-option").first().click();
+  await page.locator(".pg-manual-pct-input").fill("100");
+  await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
+  const manualTweet = await page.locator(".pg-tweet-body").innerText();
+  const manualEditorialOk = /100%/.test(manualTweet) && /La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}`);
 }
 
 async function testPortfolioDuels(page) {

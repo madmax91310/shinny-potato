@@ -44,6 +44,7 @@ jobs:
       - run: npm run audit:data-provenance
       - run: npm run audit:index-facts
       - run: npm run verify:factsheet-tweets
+      - run: node scripts/test-portfolio-editorial.mjs
       - run: npm run stress-test:portfolios
       - run: npm run build
       - run: npx playwright install --with-deps chromium
