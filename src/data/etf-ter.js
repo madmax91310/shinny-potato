@@ -4,6 +4,13 @@ import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.j
 // pas une nouvelle vérification chez l'émetteur. Mettre à jour ici puis contrôler
 // les mentions de frais dans les textes éditoriaux lors d'une modification.
 export const ETF_TER_BY_ISIN = Object.freeze({
+  "LU0290358497": "0,10",
+  "IE00B3FH7618": "0,07",
+  "IE00BDBRDM35": "0,10",
+  "IE00B0M62X26": "0,09",
+  "IE00BZCQB185": "0,65",
+  "IE00B1FZS467": "0,65",
+
   // Or et crypto ajoutés le 25/09/2026 (nouvelle famille Comparateur d'indices + 2 fiches ETF) :
   // TER confirmés via justETF/fiches émetteur (recherche web du 25/09/2026).
   'CH0454664001': '1,49',
@@ -138,6 +145,14 @@ export function formatEtfTer(isin, format = 'tweet') {
 
 // Les frais sont ceux observés au contrôle ; leur date d’entrée en vigueur n’est pas publiée.
 const primaryTerSources = {
+  "LU0290358497": "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6",
+  "IE00B3FH7618": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",
+  "IE00BDBRDM35": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
+  "IE00B0M62X26": "https://www.ishares.com/uk/individual/en/products/251739/ishares-euro-inflation-linked-government-bond-ucits-etf",
+  "IE00BMG6Z448": "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
+  "IE00BZCQB185": "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf",
+  "IE00B1FZS467": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf",
+
   IE00B52SFT06: 'https://www.blackrock.com/fr/intermediaries/products/253740/ishares-msci-usa-b-ucits-etf',
   IE00BP3QZ825: 'https://www.ishares.com/uk/individual/en/products/270051/?siteEntryPassthrough=true&switchLocale=y',
   LU1681048630: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/FRA/FRA/INSTITUTIONNEL/ETF',
@@ -145,8 +160,9 @@ const primaryTerSources = {
 export const ETF_TER_EVIDENCE = Object.freeze(Object.fromEntries(Object.keys(ETF_TER_BY_ISIN).map(isin => [isin, {
   ...INSTRUMENT_REFERENCE_EVIDENCE[isin],
   sourceUrls: [primaryTerSources[isin], ...INSTRUMENT_REFERENCE_EVIDENCE[isin].sourceUrls].filter(Boolean),
+  checkedAt: ["LU0290358497", "IE00B3FH7618", "IE00BDBRDM35", "IE00B0M62X26", "IE00BMG6Z448", "IE00BZCQB185", "IE00B1FZS467"].includes(isin) ? '2026-10-01' : INSTRUMENT_REFERENCE_EVIDENCE[isin].checkedAt,
   dateStatus: 'not-published',
-  method: primaryTerSources[isin] ? 'Frais publiés par l’émetteur, recoupés avec justETF' : 'TER publié sur le profil de la part, consulté par ISIN',
+  method: primaryTerSources[isin] ? 'Frais publiés par l’émetteur pour la part exacte' : 'TER publié sur le profil de la part, consulté par ISIN',
   note: isin === 'LU1681048630'
     ? 'Fiche officielle Amundi au 31/08/2026 : frais de gestion et autres frais administratifs ou d’exploitation 0,25 %. justETF affiche 0,35 % : divergence conservée explicitement, priorité à l’émetteur.'
     : 'Frais observés au contrôle ; aucune date d’entrée en vigueur déduite de la consultation.',

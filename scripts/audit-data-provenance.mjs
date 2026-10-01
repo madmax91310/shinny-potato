@@ -4,7 +4,8 @@ import { FAMILIES } from '../src/data/index-comparisons.js';
 import { normalizeEvidence } from '../src/data/evidence.js';
 import { describeEvidenceDate } from '../src/pages/data-search/lib.js';
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js';
-import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
+import { INSTRUMENT_REFERENCE_EVIDENCE } from '../src/data/instrument-reference-evidence.js';
+import { ETF_TER_EVIDENCE, ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
 import { OFFICIAL_AUM_OBSERVATIONS } from '../src/data/instrument-aum-observations.js';
 import { REVIEWED_INDEX_SNAPSHOTS } from '../src/data/index-source-review.js';
 import { VERIFIED_RETURNS } from '../src/data/verified-returns.js';
@@ -57,7 +58,11 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
   const record = DATA_CATALOG.find(r => r.id === isin);
   for (const field of record.fields.filter(f => ['Identité', 'Frais annuels (%)', 'Rendements 2020–2025', 'Rendements 2023–2025 du comparateur'].includes(f.label))) {
     assert(field.metadata.sourceUrls.length, `${isin}/${field.label}: source individuelle supprimée`);
-    if (field.label === 'Identité' || field.label.startsWith('Frais')) assert.equal(field.metadata.checkedAt, '2026-09-30');
+    if (field.label === 'Identité' || field.label.startsWith('Frais')) {
+      const expected = field.label === 'Identité' ? INSTRUMENT_REFERENCE_EVIDENCE[isin] : ETF_TER_EVIDENCE[isin];
+      assert.match(expected.checkedAt, /^\d{4}-\d{2}-\d{2}$/, `${isin}: contrôle individuel absent`);
+      assert.equal(field.metadata.checkedAt, expected.checkedAt, `${isin}/${field.label}: date différente du registre source`);
+    }
     if (field.label.startsWith('Rendements')) assert.equal(field.metadata.periodEnd, '2025-12-31');
   }
   if (VERIFIED_RETURNS[isin]) assert.deepEqual(record.fields.find(f => f.label === 'Rendements 2020–2025').value, VERIFIED_RETURNS[isin].values, `${isin}: catalogue différent de la série réellement consommée`);

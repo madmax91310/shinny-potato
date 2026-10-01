@@ -2,6 +2,84 @@
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+  "LU0290358497": [
+  {
+    "ticker": "XEON",
+    "exchange": "Xetra",
+    "mic": "XETR",
+    "currency": "EUR",
+    "sourceUrl": "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6",
+    "checkedAt": "2026-10-01",
+    "evidenceId": "LU0290358497-XETR-XEON-EUR"
+  }
+],
+  "IE00B3FH7618": [
+  {
+    "ticker": "IEGE",
+    "exchange": "Euronext Amsterdam",
+    "mic": "XAMS",
+    "currency": "EUR",
+    "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",
+    "checkedAt": "2026-10-01",
+    "evidenceId": "IE00B3FH7618-XAMS-IEGE-EUR"
+  }
+],
+  "IE00BDBRDM35": [
+  {
+    "ticker": "AGGH",
+    "exchange": "Borsa Italiana",
+    "mic": "ETFP",
+    "currency": "EUR",
+    "sourceUrl": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
+    "checkedAt": "2026-10-01",
+    "evidenceId": "IE00BDBRDM35-ETFP-AGGH-EUR"
+  }
+],
+  "IE00B0M62X26": [
+  {
+    "ticker": "IBCI",
+    "exchange": "Euronext Amsterdam",
+    "mic": "XAMS",
+    "currency": "EUR",
+    "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251739/ishares-euro-inflation-linked-government-bond-ucits-etf",
+    "checkedAt": "2026-10-01",
+    "evidenceId": "IE00B0M62X26-XAMS-IBCI-EUR"
+  }
+],
+  "IE00BMG6Z448": [
+  {
+    "ticker": "EXCH",
+    "exchange": "Borsa Italiana",
+    "mic": "ETFP",
+    "currency": "EUR",
+    "sourceUrl": "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
+    "checkedAt": "2026-10-01",
+    "evidenceId": "IE00BMG6Z448-ETFP-EXCH-EUR"
+  }
+],
+  "IE00BZCQB185": [
+  {
+    "ticker": "NDIA",
+    "exchange": "Euronext Amsterdam",
+    "mic": "XAMS",
+    "currency": "EUR",
+    "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf",
+    "checkedAt": "2026-10-01",
+    "evidenceId": "IE00BZCQB185-XAMS-NDIA-EUR"
+  }
+],
+  "IE00B1FZS467": [
+  {
+    "ticker": "INFR",
+    "exchange": "Euronext Amsterdam",
+    "mic": "XAMS",
+    "currency": "EUR",
+    "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf",
+    "checkedAt": "2026-10-01",
+    "evidenceId": "IE00B1FZS467-XAMS-INFR-EUR"
+  }
+],
+
   "FR0010527275": [
     {
       "ticker": "WAT",

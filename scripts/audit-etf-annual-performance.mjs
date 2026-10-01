@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 // Vérifie que les performances publiées dans les Fiches ETF correspondent à la part exacte
 // du Générateur, sans proposer une part à historique incomplet dans ses choix.
+import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
+import { INSTRUMENT_FACTS_BY_ISIN } from '../src/data/instrument-facts.js'
+import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js'
 import { ETFS } from '../src/data/etf-cards.js'
 import { ASSETS } from '../src/data/portfolio-assets.js'
 import { getAnnualPerformance } from '../src/pages/etf-sheets/annualPerformance.js'
@@ -47,3 +51,32 @@ for (const asset of ASSETS) {
 }
 console.log(`${ETFS.length} fiches, ${ETFS.filter((e) => getAnnualPerformance(e)?.values.every(Number.isFinite)).length} séries complètes, ${errors} erreur(s).`)
 if (errors) process.exitCode = 1
+
+// Les nouvelles fiches restent alignées sur le relevé conservé, y compris la
+// devise de rendement et les années absentes avant le lancement de la part.
+const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-additions-2026-10-01.json', import.meta.url), 'utf8'))
+assert.equal(snapshot.products.length, 7)
+for (const product of snapshot.products) {
+  const card = ETFS.find(e => e.isin === product.isin)
+  assert(card, `Fiche absente : ${product.isin}`)
+  assert.equal(card.ter, product.ter + '%')
+  assert.equal(card.pea, false)
+  assert.equal(card.positions, product.positions)
+  assert.equal(card.listing.ticker, product.ticker)
+  assert.equal(card.listing.exchange, product.exchange)
+  const facts = INSTRUMENT_FACTS_BY_ISIN[product.isin]
+  assert.equal(facts.benchmark, product.benchmark)
+  assert.equal(facts.incomePolicy, product.income)
+  assert.equal(facts.characteristicsSource.checkedAt, snapshot.checkedAt)
+  const aum = INSTRUMENT_AUM_BY_ISIN[product.isin]
+  if (product.isin !== 'IE00BMG6Z448') {
+    assert.equal(aum.source.amount, product.amount)
+    assert.equal(aum.source.asOf, product.asOf)
+    assert.equal(aum.source.currency, product.currency)
+    assert.equal(aum.source.scope, product.aumScope)
+  } else assert.equal(aum.sheet, aum.index, 'Une part conserve le même relevé dans les deux vues')
+  const series = getAnnualPerformance(card)
+  assert.equal(series.currency, product.currency)
+  if (product.returns) assert.deepEqual(series.values, product.returns)
+}
+console.log('7 ajouts : frais, identité, cotation, encours datés et séries conformes aux sources conservées.')

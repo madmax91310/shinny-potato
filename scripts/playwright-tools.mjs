@@ -180,6 +180,17 @@ async function testEtfSheets(page) {
       || !copied.includes(card.isin) || !copied.includes(card.ter)
       || !copied.endsWith(card.question + ' 👀')
       || /C'est quoi|Pourquoi c'est intéressant|🏆 Verdict|undefined|NaN/.test(copied)) badCount++;
+    if (card.lastVerified === '01/10/2026') {
+      for (const buttonName of ['🖼️ Image récapitulative', '📊 Télécharger le graphique annuel']) {
+        await page.getByRole('button', { name: buttonName }).click();
+        const dialog = page.getByRole('dialog');
+        const valid = await dialog.locator('img').evaluate(async img => { await img.decode(); return img.naturalWidth > 0 && img.src.startsWith('data:image/png;base64,'); });
+        if (!valid) badCount++;
+        const [file] = await Promise.all([page.waitForEvent('download'), dialog.getByRole('button', { name: '⬇️ Télécharger' }).click()]);
+        if (!file.suggestedFilename().endsWith('.png')) badCount++;
+        await dialog.getByRole('button', { name: "Fermer l'aperçu" }).click();
+      }
+    }
   }
   await select.selectOption('sp500');
   await page.getByRole('button', { name: '📊 Télécharger le graphique annuel' }).click();

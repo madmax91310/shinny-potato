@@ -1,6 +1,6 @@
 import { getPreferredInstrumentListing } from './instrument-listings.js';
 import { getInstrumentAum } from './instrument-aum.js';
-import { getInstrumentDistribution, getInstrumentLocation } from './instrument-facts.js';
+import { getInstrumentDistribution, getInstrumentLocation, getInstrumentPositions } from './instrument-facts.js';
 import { getInstrumentName, getInstrumentPea } from './instruments.js';
 import { formatEtfTer } from './etf-ter.js';
 // Bibliothèque de fiches ETF — contenu pré-rédigé, données stockées en dur, aucune donnée de
@@ -57,6 +57,106 @@ export const CATEGORY_EMOJI = {
   };
 
 export const ETFS = [
+  // Ajouts du 01/10/2026 : caractéristiques, dates et preuves dans les registres communs.
+  {
+    id: "monetaire-eur", category: "Obligataires",
+    name: getInstrumentName("LU0290358497", "sheet"), listing: getPreferredInstrumentListing("LU0290358497"), isNew: true,
+    isin: "LU0290358497", ter: formatEtfTer("LU0290358497", "sheet"),
+    positions: getInstrumentPositions("LU0290358497"), aum: getInstrumentAum("LU0290358497", "sheet"),
+    lastVerified: "01/10/2026", distribution: getInstrumentDistribution("LU0290358497"), pea: getInstrumentPea("LU0290358497"), cto: true,
+    location: getInstrumentLocation("LU0290358497"),
+    hook: "💶 Un ETF qui suit les taux à court terme : que devient son rendement quand la BCE baisse ses taux ?",
+    whatIs: "Son indice reflète un taux monétaire en euros, le €STR, auquel s’ajoute une petite marge avant les frais. Le fonds reçoit cette performance grâce à un swap. Tu t’exposes donc aux taux au jour le jour, plutôt qu’à un panier d’actions ou à des obligations de longue durée.",
+    whyInteresting: "L’intérêt est de comprendre une exposition dont le rendement évolue avec les taux courts. Cette part capitalise les revenus : ils restent investis dans le fonds, sans versement à réinvestir toi-même.",
+    whatToKnow: "Le rendement n’est pas fixé à l’avance : il diminue lorsque les taux courts baissent et peut devenir négatif. Le swap ajoute un risque de contrepartie. Il faut aussi compter les frais du fonds et ceux du courtier : ce placement ne bénéficie pas de la garantie d’un dépôt bancaire.",
+    verdict: "Une exposition aux taux courts en euros, dont le rendement et les risques diffèrent de ceux d’un livret.",
+    question: "Pour comprendre un placement monétaire, tu regardes d’abord son taux actuel ou ce qui se passe si les taux baissent ?",
+  },
+  {
+    id: "obligations-etat-0-1", category: "Obligataires",
+    name: getInstrumentName("IE00B3FH7618", "sheet"), listing: getPreferredInstrumentListing("IE00B3FH7618"), isNew: true,
+    isin: "IE00B3FH7618", ter: formatEtfTer("IE00B3FH7618", "sheet"),
+    positions: getInstrumentPositions("IE00B3FH7618"), aum: getInstrumentAum("IE00B3FH7618", "sheet"),
+    lastVerified: "01/10/2026", distribution: getInstrumentDistribution("IE00B3FH7618"), pea: getInstrumentPea("IE00B3FH7618"), cto: true,
+    location: getInstrumentLocation("IE00B3FH7618"),
+    hook: "🏛️ Deux ETF d’obligations d’État peuvent réagir très différemment aux taux. Pourquoi ?",
+    whatIs: "Ce fonds rassemble des obligations d’État de la zone euro dont l’échéance est courte, entre zéro et un an. Leur remboursement approche, ce qui limite leur sensibilité aux mouvements de taux par rapport à des obligations plus longues. Cette part distribue les revenus.",
+    whyInteresting: "L’intérêt est d’accéder à plusieurs emprunts d’État en euros avec une seule ligne. Pour comprendre son comportement, la durée des obligations compte davantage que la seule présence du mot « État » dans le nom.",
+    whatToKnow: "Une échéance courte ne garantit pas ton capital. La valeur des parts peut baisser, et le fonds renouvelle ses obligations : tu ne détiens pas un placement qui te rembourse automatiquement à une date choisie. Les revenus évolueront aussi avec les taux.",
+    verdict: "Des emprunts d’État à échéance courte, sans garantie de remboursement de la part à une date fixe.",
+    question: "Dans un ETF obligataire, tu regardes d’abord le rendement affiché ou la sensibilité aux taux ?",
+  },
+  {
+    id: "obligations-globales-eur", category: "Obligataires",
+    name: getInstrumentName("IE00BDBRDM35", "sheet"), listing: getPreferredInstrumentListing("IE00BDBRDM35"), isNew: true,
+    isin: "IE00BDBRDM35", ter: formatEtfTer("IE00BDBRDM35", "sheet"),
+    positions: getInstrumentPositions("IE00BDBRDM35"), aum: getInstrumentAum("IE00BDBRDM35", "sheet"),
+    lastVerified: "01/10/2026", distribution: getInstrumentDistribution("IE00BDBRDM35"), pea: getInstrumentPea("IE00BDBRDM35"), cto: true,
+    location: getInstrumentLocation("IE00BDBRDM35"),
+    hook: "🌍 Des obligations du monde entier dans un seul ETF : à quoi sert la couverture en euros ?",
+    whatIs: "Le fonds rassemble des obligations mondiales de catégorie investment grade : États, entreprises et titres adossés à des actifs. Cette part ajoute une couverture du risque de change vers l’euro. Tu suis donc un large marché obligataire, avec un mécanisme destiné à limiter l’effet des devises.",
+    whyInteresting: "L’intérêt est de réunir de nombreux emprunteurs et plusieurs marchés dans une seule ligne. La part capitalise les revenus, tandis que la couverture évite de laisser les mouvements des monnaies expliquer seuls une grande partie du résultat en euros.",
+    whatToKnow: "La couverture ne supprime ni le risque de taux ni le risque de crédit, et elle a un coût. Le fonds peut subir des baisses marquées malgré ses nombreuses lignes. L’émetteur annonce aussi la suppression d’une ligne de cotation le 15 décembre 2026 : vérifie la place utilisée auprès de ton courtier.",
+    verdict: "Une exposition obligataire mondiale avec couverture en euros, dont les risques de taux et de crédit restent présents.",
+    question: "Pour des obligations mondiales, tu préfères limiter l’effet des devises ou conserver cette exposition au change ?",
+  },
+  {
+    id: "obligations-inflation", category: "Obligataires",
+    name: getInstrumentName("IE00B0M62X26", "sheet"), listing: getPreferredInstrumentListing("IE00B0M62X26"), isNew: true,
+    isin: "IE00B0M62X26", ter: formatEtfTer("IE00B0M62X26", "sheet"),
+    positions: getInstrumentPositions("IE00B0M62X26"), aum: getInstrumentAum("IE00B0M62X26", "sheet"),
+    lastVerified: "01/10/2026", distribution: getInstrumentDistribution("IE00B0M62X26"), pea: getInstrumentPea("IE00B0M62X26"), cto: true,
+    location: getInstrumentLocation("IE00B0M62X26"),
+    hook: "🛒 Un ETF d’obligations indexées sur l’inflation peut baisser. Comment est-ce possible ?",
+    whatIs: "Le fonds détient des obligations d’État de la zone euro dont les paiements sont liés à l’inflation selon les règles de chaque emprunt. Cette indexation modifie les sommes dues, mais les obligations continuent à se négocier en Bourse. Leur prix peut donc évoluer dans les deux sens.",
+    whyInteresting: "L’intérêt est de s’exposer à ce mécanisme d’indexation avec plusieurs emprunts réunis dans une seule ligne. Cette part réinvestit les revenus. Elle permet aussi de comprendre pourquoi protéger les paiements d’une obligation et stabiliser le prix d’un ETF sont deux questions différentes.",
+    whatToKnow: "La hausse de l’inflation ne garantit pas une hausse de l’ETF. Une augmentation des taux réels peut faire baisser le prix des obligations. Leur durée compte aussi : le fonds ne promet ni capital stable ni compensation exacte de ton inflation personnelle.",
+    verdict: "Une exposition à des obligations indexées, avec un prix de marché qui reste sensible aux taux réels.",
+    question: "Quand tu lis « indexé sur l’inflation », t’attends-tu à des paiements ajustés ou à un placement qui ne baisse jamais ?",
+  },
+  {
+    id: "em-ex-chine", category: "Cœur de portefeuille",
+    name: getInstrumentName("IE00BMG6Z448", "sheet"), listing: getPreferredInstrumentListing("IE00BMG6Z448"), isNew: true,
+    isin: "IE00BMG6Z448", ter: formatEtfTer("IE00BMG6Z448", "sheet"),
+    positions: getInstrumentPositions("IE00BMG6Z448"), aum: getInstrumentAum("IE00BMG6Z448", "sheet"),
+    lastVerified: "01/10/2026", distribution: getInstrumentDistribution("IE00BMG6Z448"), pea: getInstrumentPea("IE00BMG6Z448"), cto: true,
+    location: getInstrumentLocation("IE00BMG6Z448"),
+    hook: "🌏 Retirer la Chine d’un ETF émergents : qu’est-ce que ça change vraiment dans ton exposition ?",
+    whatIs: "Son indice couvre les grandes et moyennes entreprises des marchés émergents en excluant la Chine. Les autres pays prennent mécaniquement davantage de place dans cette sélection. Tu achètes donc une répartition différente de celle d’un ETF émergents classique.",
+    whyInteresting: "L’intérêt est de distinguer la Chine du reste des marchés émergents. Cette ligne permet de choisir une exposition sans ses actions dans l’indice, ou de gérer ce marché séparément plutôt que de laisser l’indice global en fixer le poids.",
+    whatToKnow: "Exclure la Chine ne fait pas disparaître les risques politiques, économiques ou de change des autres pays. Cela ne coupe pas non plus les liens commerciaux de leurs entreprises avec la Chine. La part a été lancée en 2021 : seules les années calendaires complètes disponibles sont affichées.",
+    verdict: "Une sélection émergente sans actions chinoises dans l’indice, mais sans suppression des risques émergents.",
+    question: "Pour les marchés émergents, tu garderais la Chine dans l’indice ou tu choisirais son poids séparément ?",
+  },
+  {
+    id: "inde", category: "Cœur de portefeuille",
+    name: getInstrumentName("IE00BZCQB185", "sheet"), listing: getPreferredInstrumentListing("IE00BZCQB185"), isNew: true,
+    isin: "IE00BZCQB185", ter: formatEtfTer("IE00BZCQB185", "sheet"),
+    positions: getInstrumentPositions("IE00BZCQB185"), aum: getInstrumentAum("IE00BZCQB185", "sheet"),
+    lastVerified: "01/10/2026", distribution: getInstrumentDistribution("IE00BZCQB185"), pea: getInstrumentPea("IE00BZCQB185"), cto: true,
+    location: getInstrumentLocation("IE00BZCQB185"),
+    hook: "🇮🇳 Croire à la croissance de l’Inde suffit-il pour investir dans ses entreprises ?",
+    whatIs: "Le MSCI India rassemble de grandes et moyennes entreprises du marché indien. Tu t’exposes à leurs actions, avec des poids différents selon leur capitalisation. La croissance économique du pays peut soutenir leur activité, mais elle ne détermine pas à elle seule le rendement de ton placement.",
+    whyInteresting: "L’intérêt est de suivre ce marché en une seule ligne, sans devoir sélectionner les entreprises toi-même. Cela rend l’exposition précise : tu renforces volontairement un pays plutôt que l’ensemble des marchés émergents.",
+    whatToKnow: "Le fonds reste concentré sur un pays et ses entreprises. Les valorisations, la réglementation et la roupie influencent le résultat. Ses frais de 0,65 % par an méritent aussi une comparaison avec les alternatives : une économie dynamique ne garantit pas des actions toujours rentables.",
+    verdict: "Une exposition ciblée au marché indien, avec des frais et un risque pays à examiner au-delà du récit économique.",
+    question: "Pour investir dans les émergents, tu préfères un panier de pays ou une ligne dédiée à l’Inde ?",
+  },
+  {
+    id: "infrastructures", category: "Sectoriels classiques",
+    name: getInstrumentName("IE00B1FZS467", "sheet"), listing: getPreferredInstrumentListing("IE00B1FZS467"), isNew: true,
+    isin: "IE00B1FZS467", ter: formatEtfTer("IE00B1FZS467", "sheet"),
+    positions: getInstrumentPositions("IE00B1FZS467"), aum: getInstrumentAum("IE00B1FZS467", "sheet"),
+    lastVerified: "01/10/2026", distribution: getInstrumentDistribution("IE00B1FZS467"), pea: getInstrumentPea("IE00B1FZS467"), cto: true,
+    location: getInstrumentLocation("IE00B1FZS467"),
+    hook: "🌉 Acheter des infrastructures en Bourse : quelles entreprises se cachent derrière ce mot ?",
+    whatIs: "Son indice rassemble des sociétés cotées liées aux infrastructures dans plusieurs pays. Tu détiens leurs actions : leurs contrats, leurs investissements et leur financement comptent pour leurs résultats. Le caractère essentiel de leurs services ne garantit pas la stabilité de leur cours.",
+    whyInteresting: "L’intérêt est de réunir plusieurs acteurs de cet univers dans une seule ligne. Cette part distribue des revenus : pour évaluer le placement, il faut regarder les versements et l’évolution de la valeur des parts ensemble.",
+    whatToKnow: "Ces actions restent sensibles aux taux, à l’endettement et aux décisions réglementaires. Les dividendes peuvent varier. Les frais de 0,65 % par an comptent aussi : des services indispensables ne rendent pas le placement sans risque.",
+    verdict: "Des actions d’entreprises d’infrastructures mondiales, avec des distributions et des fluctuations boursières.",
+    question: "Les infrastructures t’intéressent pour leurs activités ou surtout pour les revenus distribués ?",
+  },
+
     // ---------- CŒUR DE PORTEFEUILLE ----------
     // Ajouts du 27/09/2026 : parts déjà présentes dans le Comparatif ETF et
     // le Comparateur d'indices. Montants et dates issus des fiches émetteurs.

@@ -83,6 +83,8 @@ export function getInstrumentReturnValues(isin) {
 // Les fiches ne publient que les historiques de la part effectivement recoupés.
 // Les identifiants et devises sont ceux déjà employés dans annualPerformance.js.
 const CARD_SERIES_BY_ISIN = Object.freeze({
+  'IE00B0M62X26': { id: 'oblig_inflation', currency: 'EUR' },
+
   'FR0011871128': { id: 'sp500', currency: 'EUR' },
   'FR0011871110': { id: 'nasdaq100', currency: 'EUR' },
   'LU1681047236': { id: 'eurostoxx50', currency: 'EUR' },
