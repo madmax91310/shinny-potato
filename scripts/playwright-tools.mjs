@@ -171,18 +171,26 @@ async function testEtfSheets(page) {
   for (let i = 0; i < count; i++) {
     await select.selectOption({ index: i });
     await page.waitForTimeout(40);
-    const text = await page.locator("body").innerText();
+    // textContent vérifie le contenu des rubriques sans la mise en capitales CSS des titres.
+    const text = await page.locator(".es-card").textContent();
     if (/undefined|NaN/.test(text)) badCount++;
     const selectedId = await select.inputValue();
     const card = ETFS.find(item => item.id === selectedId);
     if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
-    if (!text.includes(card.hook) || !text.includes(card.whatIs)) badCount++;
+    const sectionLabels = ["🔍 C'est quoi ?", "✅ Pourquoi c'est intéressant ?", "⚠️ Ce qu'il faut savoir", '🏆 Verdict'];
+    const explanations = [card.whatIs, card.whyInteresting, card.whatToKnow, card.verdict];
+    if (!explanations.every(value => value && text.includes(value))
+      || !sectionLabels.every(label => text.includes(label))) badCount++;
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
     const copied = await page.evaluate(() => window.__etfCopiedText);
-    if (!copied?.startsWith(card.hook) || !copied.includes(card.name)
+    const sectionPositions = sectionLabels.map(label => copied?.indexOf(label) ?? -1);
+    if (!copied?.startsWith("📋 Présentation d'ETF\n") || !copied.includes(card.name)
       || !copied.includes(card.isin) || !copied.includes(card.ter)
-      || !copied.endsWith(card.question + ' 👀')
-      || /C'est quoi|Pourquoi c'est intéressant|🏆 Verdict|undefined|NaN/.test(copied)) badCount++;
+      || !explanations.every(value => copied.includes(value))
+      || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
+      || !copied.includes('💬 ' + card.question + ' 👇')
+      || !copied.endsWith('⚠️ Pas un conseil en investissement')
+      || /undefined|NaN/.test(copied)) badCount++;
     if (card.lastVerified === '01/10/2026') {
       for (const buttonName of ['🖼️ Image récapitulative', '📊 Télécharger le graphique annuel']) {
         await page.getByRole('button', { name: buttonName }).click();

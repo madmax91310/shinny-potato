@@ -9,8 +9,8 @@ import { formatEtfTer } from './etf-ter.js';
 // ailleurs.
 // Édition du 01/10/2026 : accroches et paragraphes propres à chaque exposition.
 // Les descriptions reformulent le périmètre déjà documenté, sans nouvelle donnée
-// chiffrée. Le tweet enchaîne description, repères, intérêt, limite et question ;
-// verdict reste disponible dans la fiche mais n'est plus répété dans le tweet.
+// chiffrée. Le tweet conserve le squelette historique : caractéristiques,
+// description, intérêt, limites, verdict et question.
 //
 // Audit "meilleurs ETF" du 25/08/2026 (même passe que le générateur de tweets ETF) : la fiche
 // msci-world utilisait le CW8 (Amundi MSCI World, 0,38%) — remplacé par Amundi PEA Monde
