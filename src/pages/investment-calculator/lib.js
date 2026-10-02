@@ -210,24 +210,29 @@ export function derive(state) {
   return { amount, isCustom, effectiveMode, startYm: safeStartYm, endYm, result, livretA, inflation }
 }
 
-// Ligne de "morale" : jamais un ton figé "j'aurais dû investir" qui sonnerait faux si l'actif a en
-// réalité perdu de l'argent sur la période choisie, ou si un simple Livret A a fait aussi bien sans
-// aucun risque — le texte s'ajuste au résultat réel plutôt que de supposer que l'actif a toujours
-// gagné (demande utilisateur du 22/09/2026, nouveau format de tweet plus direct/meme que l'ancien
-// "Si tu avais investi...").
-function moraleLine(assetLabel, gainPct, hasLivretCompare, livretValue, assetValue) {
-  if (hasLivretCompare && livretValue > assetValue) {
-    return gainPct < 0
-      ? `Sur cette période, ${assetLabel} a baissé. Le Livret A termine devant, avec une trajectoire bien différente.`
-      : gainPct === 0
-        ? `${assetLabel} revient à la somme investie. Le Livret A termine devant sur cette période.`
-      : `Même avec une hausse de ${assetLabel}, le Livret A termine devant sur cette période.`
+// Conclusion liée aux montants calculés et au mode réel, sans supposer une hausse.
+function resultLine(state, d, assetLabel, currency) {
+  const { finalValue, totalInvested } = d.result
+  const gain = finalValue - totalInvested
+  const invested = fmtEUR(totalInvested, currency)
+  const final = fmtEUR(finalValue, currency)
+  const monthly = d.effectiveMode === 'dca'
+  if (currency === 'EUR' && Math.round(d.livretA.finalValue) > Math.round(finalValue)) {
+    const direction = Math.round(gain) > 0 ? 'en hausse' : Math.round(gain) < 0 ? 'en baisse' : 'au montant investi à l’euro près'
+    const contribution = monthly ? `tes ${invested} de versements` : `tes ${invested}`
+    return `${assetLabel} termine ${direction}, mais ${contribution} auraient atteint ${final}, contre ${fmtEUR(d.livretA.finalValue)} dans la simulation du Livret A.`
   }
-  if (hasLivretCompare && livretValue === assetValue) return `${assetLabel} et le Livret A arrivent au même montant sur cette période.`
-  if (gainPct < 0) return `${assetLabel} termine sous la somme investie sur cette période. C'est aussi une issue possible.`
-  if (gainPct === 0) return `${assetLabel} revient à la somme investie, sans gain sur cette période.`
-  if (hasLivretCompare) return `${assetLabel} termine devant le Livret A sur cette période. Sur une autre période, le résultat peut changer.`
-  return `${assetLabel} progresse sur cette période, dans sa devise de cotation.`
+  if (currency === 'EUR' && Math.round(d.livretA.finalValue) === Math.round(finalValue)) {
+    return `Ton placement et la simulation du Livret A arrivent au même montant à l’euro près : ${final}.`
+  }
+  if (Math.round(gain) === 0) return `Tu retrouverais les ${invested} versés, sans gain ni perte ${currency === 'USD' ? 'au dollar' : 'à l’euro'} près.`
+  if (state.assetId === 'bitcoin' && !monthly && !state.overridePriceRaw) {
+    const date = ym => `${MONTHS_FULL[Number(ym.split('-')[1]) - 1]} ${ym.split('-')[0]}`
+    return `Les ${invested} seraient devenus ${final}, à condition d’avoir conservé le placement de ${date(d.startYm)} à ${date(d.endYm)}.`
+  }
+  const outcome = gain < 0 ? 'perdu' : 'gagné'
+  if (monthly) return `Avec ${invested} versés au total, ton placement afficherait ${fmtEUR(Math.abs(gain), currency)} de ${gain < 0 ? 'perte' : 'gain'}.`
+  return `Tu aurais ${outcome} ${fmtEUR(Math.abs(gain), currency)} sur les ${invested} investis au départ, sans versement supplémentaire.`
 }
 
 export function buildTweetText(state, d) {
@@ -247,8 +252,10 @@ export function buildTweetText(state, d) {
   const endLabel = `${MONTHS_FULL[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
   const gainAbs = d.result.finalValue - d.result.totalInvested
   const endingQuestion = state.assetId === 'bitcoin'
-    ? 'Tu as du Bitcoin en portefeuille ?'
-    : `Tu as déjà investi dans ${d.isCustom ? assetLabel : asset.tweetPhrase} ?`
+    ? 'Tu as du Bitcoin en portefeuille ? Depuis quand ?'
+    : currency === 'EUR' && Math.round(d.livretA.finalValue) > Math.round(d.result.finalValue)
+      ? 'Tu compares parfois les résultats de tes placements à ceux de ton épargne ?'
+      : 'Tu as commencé avec une somme d’un coup ou avec des versements mensuels ?'
   const hookLine = d.effectiveMode === 'dca'
     ? `Et si tu avais investi ${amountFmt} par mois dans ${investmentLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
     : `Et si tu avais investi ${amountFmt} dans ${investmentLabel} en ${monthLabel} ${yearLabel} ? 🫢`
@@ -277,7 +284,7 @@ export function buildTweetText(state, d) {
   if (hasLivretCompare) {
     lines.push('', `Avec les mêmes versements sur un Livret A : ${fmtEUR(d.livretA.finalValue, 'EUR')} (simulation indicative)`)
   }
-  lines.push('', `📌 ${moraleLine(assetLabel, gainPct, hasLivretCompare, d.livretA.finalValue, d.result.finalValue)}`)
+  lines.push('', `📌 ${resultLine(state, d, assetLabel, currency)}`)
   lines.push('', `💬 ${endingQuestion}`)
 
   return lines.join('\n')
