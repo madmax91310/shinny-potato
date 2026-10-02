@@ -7,6 +7,9 @@ import { generateDuel } from '../src/pages/portfolio-duels/generate.js'
 
 assert.equal(new Set(DUELS.map((duel) => duel.id)).size, DUELS.length)
 assert.ok(DUELS.length >= 9)
+const bases = CATALOG.filter((asset) => asset.role === 'base')
+assert.equal(new Set(bases.map((asset) => asset.exposure)).size, bases.length, 'Une seule part par exposition de base')
+assert.equal(new Set(CATALOG.map((asset) => asset.isin)).size, CATALOG.length)
 const inspect = (duel) => {
   assert.equal(duel.currency, 'EUR')
   assert.ok(duel.years.length >= 3)
@@ -30,7 +33,8 @@ const inspect = (duel) => {
   assert.ok(tweet.includes('Simulation en euros') && tweet.includes('pondérations rétablies'))
 }
 for (const definition of DUELS) inspect(buildDuel(definition))
-const full = buildDuel(DUELS[0])
+const original = DUELS.find((duel) => duel.id === 'world-em-ou-acwi')
+const full = buildDuel(original)
 assert.equal(full.b.assets.length, 1)
 assert.equal(full.b.assets[0].pct, 100)
 assert.equal(full.years[0], 2020)
@@ -41,9 +45,9 @@ const usd = CATALOG.find((item) => item.id === 'msci_world_ishares')
 const converted = ((1 + usd.values[0] / 100) * EUR_USD[2019] / EUR_USD[2020] - 1) * 100
 assert.ok(Math.abs(euroReturn(usd, 2020) - converted) < 1e-9)
 // Changer l’ordre des lignes ne change ni la période, ni le capital final.
-const reversed = buildCustomDuel({ left: [...DUELS[0].left].reverse(), right: DUELS[0].right })
+const reversed = buildCustomDuel({ left: [...original.left].reverse(), right: original.right })
 assert.equal(reversed.a.final, full.a.final)
-const identical = buildCustomDuel({ left: DUELS[0].right, right: DUELS[0].right })
+const identical = buildCustomDuel({ left: original.right, right: original.right })
 assert.match(resultReading(identical), /même montant/)
 assert.ok(!/de plus pour|termine devant/.test(buildTweet(identical)))
 const reinforced = buildCustomDuel({ left: [{ id: 'msci_acwi_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }], right: DUELS[0].right })

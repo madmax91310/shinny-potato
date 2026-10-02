@@ -59,4 +59,25 @@ export const DUELS = [
     right: [row('ftse_allworld_vanguard', 90), row('sect_tech_world_ishares', 10)],
     labels: ['World + émergents + énergie', 'All-World + tech'], question: 'Tu renforces un secteur en particulier ?',
   },
+  {
+    id: 'world-value-ou-world-quality', title: 'World + Value ou World + Quality ?',
+    hook: 'Tu gardes ton World. À côté, tu privilégies les entreprises peu chères ou leurs critères de qualité ?',
+    left: [row('msci_world_ishares', 80), row('actions_value', 20)],
+    right: [row('msci_world_ishares', 80), row('world_quality_ishares', 20)],
+    labels: ['World + Value', 'World + Quality'], question: 'Tu ajouterais un filtre Value ou Quality à ton portefeuille ?',
+  },
+  {
+    id: 'sp500-japon-ou-acwi-inde', title: 'S&P 500 + Japon ou ACWI + Inde ?',
+    hook: 'Une base américaine complétée par le Japon, ou une base mondiale avec plus d’Inde ?',
+    left: [row('sp500_ishares', 80), row('actions_japon', 20)],
+    right: [row('msci_acwi_ishares', 80), row('actions_india_ishares', 20)],
+    labels: ['S&P 500 + Japon', 'ACWI + Inde'], question: 'Tu donnerais davantage de place au Japon ou à l’Inde ?',
+  },
+  {
+    id: 'world-energie-propre-ou-allworld-infrastructure', title: 'World + énergies propres ou All-World + infrastructures ?',
+    hook: 'Pour ta poche thématique, tu choisirais les énergies propres ou les infrastructures ?',
+    left: [row('msci_world_ishares', 90), row('sect_energie_propre', 10)],
+    right: [row('ftse_allworld_vanguard', 90), row('infrastructure_ishares', 10)],
+    labels: ['World + énergies propres', 'All-World + infrastructures'], question: 'Lequel de ces deux portefeuilles te correspondrait le mieux ?',
+  },
 ]

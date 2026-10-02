@@ -14,13 +14,17 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 const choices = [
   ['msci_world_ishares', 'base', 'MSCI World', 'world'],
   ['msci_acwi_ishares', 'base', 'MSCI ACWI', 'acwi'],
-  ['msci_acwi', 'base', 'MSCI ACWI (SPDR)', 'acwi'],
   ['ftse_allworld_vanguard', 'base', 'FTSE All-World', 'allworld'],
   ['sp500_ishares', 'base', 'S&P 500 (iShares)', 'sp500'],
-  ['sp500', 'base', 'S&P 500 (Amundi PEA)', 'sp500'],
   ['msci_em', 'complement', 'Marchés émergents IMI', 'em'],
   ['msci_europe', 'complement', 'MSCI Europe', 'europe'],
   ['smallcap_monde', 'complement', 'Petites capitalisations mondiales', 'smallcap'],
+  ['nasdaq100', 'complement', 'Nasdaq-100', 'nasdaq'],
+  ['actions_japon', 'complement', 'Japon IMI', 'japan'],
+  ['actions_india_ishares', 'complement', 'Inde', 'india'],
+  ['actions_value', 'complement', 'World Value', 'value'],
+  ['world_quality_ishares', 'complement', 'World Quality', 'quality'],
+  ['world_minvol_ishares', 'complement', 'World Minimum Volatility', 'minvol'],
   ['sect_tech_world_ishares', 'theme', 'Technologie mondiale', 'tech'],
   ['sect_energy_spdr', 'theme', 'Énergie mondiale', 'energy'],
   ['sect_sante', 'theme', 'Santé américaine', 'health'],
@@ -31,9 +35,13 @@ const choices = [
   ['sect_water_amundi', 'theme', 'Eau', 'water'],
   ['sect_luxury_amundi', 'theme', 'Luxe', 'luxury'],
   ['sect_batteries_lg', 'theme', 'Batteries', 'batteries'],
+  ['sect_energie_propre', 'theme', 'Énergies propres', 'cleanenergy'],
+  ['infrastructure_ishares', 'theme', 'Infrastructures mondiales', 'infrastructure'],
+  ['immo_ishares_yield', 'theme', 'Immobilier coté des pays développés', 'property'],
 ]
 // Devises explicites dans les commentaires vérifiés de portfolio-assets.js (24/09/2026).
-const legacyCurrencies = { msci_europe: 'EUR', sect_sante: 'USD' }
+// Japon : capture de la fiche officielle du 30/08/2026 ; énergies propres : contrôle du 24/09/2026.
+const legacyCurrencies = { msci_europe: 'EUR', sect_sante: 'USD', actions_japon: 'USD', sect_energie_propre: 'USD' }
 const fundItems = choices.map(([id, role, label, exposure]) => {
   const asset = ASSETS.find((item) => item.id === id)
   if (!asset?.isin) throw new Error(`ETF absent : ${id}`)

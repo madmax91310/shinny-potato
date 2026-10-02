@@ -40,6 +40,19 @@ function exposureReading(portfolio) {
     ? `Les ${complement.pct} % d’Europe ajoutent une autre zone géographique.`
     : `Les ${complement.pct} % d’Europe renforcent une zone déjà présente dans la base.`)
   if (complement?.exposure === 'smallcap') parts.push(`Les ${complement.pct} % de petites capitalisations des pays développés ajoutent un segment absent de la base.`)
+  if (complement?.exposure === 'nasdaq') parts.push(`Les ${complement.pct} % de Nasdaq-100 renforcent les grandes entreprises non financières cotées au Nasdaq, avec un poids important de la technologie. Plusieurs figurent déjà dans la base.`)
+  if (complement?.exposure === 'japan') parts.push(base.exposure === 'sp500'
+    ? `Les ${complement.pct} % de Japon IMI ajoutent les actions japonaises, y compris des petites capitalisations.`
+    : `Les ${complement.pct} % de Japon IMI renforcent un pays déjà présent dans la base et incluent aussi des petites capitalisations.`)
+  if (complement?.exposure === 'india') parts.push(['acwi', 'allworld'].includes(base.exposure)
+    ? `Les ${complement.pct} % d’Inde renforcent un pays déjà présent dans la base.`
+    : `Les ${complement.pct} % d’Inde ajoutent une exposition à ce marché émergent.`)
+  const factorReadings = {
+    value: 'privilégient les actions des pays développés jugées peu chères par rapport à leurs fondamentaux',
+    quality: 'privilégient les actions des pays développés sélectionnées selon leur rentabilité, leur endettement et la stabilité de leurs bénéfices',
+    minvol: 'visent une volatilité plus faible dans les actions des pays développés, sans garantir une protection contre les baisses',
+  }
+  if (factorReadings[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${factorReadings[complement.exposure]}. Ce filtre peut retenir des entreprises déjà présentes dans la base.`)
   if (theme) parts.push(`La poche ${theme.label.toLowerCase()} représente ${theme.pct} % du portefeuille. Les entreprises de ce thème peuvent aussi être présentes dans les autres ETF.`)
   return parts.join(' ')
 }
