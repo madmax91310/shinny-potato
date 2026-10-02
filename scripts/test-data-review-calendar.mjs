@@ -22,6 +22,7 @@ try {
   await page.waitForFunction(() => document.querySelectorAll('.dr-item').length === 3)
   assert.equal(await page.getByRole('link', { name: 'Ouvrir le portefeuille investisseur' }).count(), 3)
   await page.getByLabel('Outil', { exact: true }).selectOption('')
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('tool') === '' && document.querySelectorAll('.dr-item').length > 24)
   await page.getByLabel('Afficher', { exact: true }).selectOption('reserve')
   await page.waitForFunction(() => document.querySelectorAll('.dr-item').length === 9)
   await page.setViewportSize({ width: 390, height: 844 })
