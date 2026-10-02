@@ -475,7 +475,7 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
 
   const phrase = yearsPhrase(item.yearsBack);
   const lines = [];
-  lines.push(`🎂 Il y a ${phrase} jour pour jour`);
+  lines.push(`🎂 En ${dateLabel}, il y a ${phrase} 👇`);
   lines.push("");
   lines.push(`${asset.icon} ${asset.label}`);
   lines.push(`Prix en ${dateLabel} : ${fmtEUR(historicalPrice, asset.currency)}`);
@@ -547,7 +547,7 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   const ordered = bothKnown && pctB > pctA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
-  lines.push(`🎂 Il y a ${yearsPhrase(item.yearsBack)}, ${assetA.tweetPhrase} et ${assetB.tweetPhrase} valaient...`);
+  lines.push(`🎂 En ${dateLabel}, il y a ${yearsPhrase(item.yearsBack)} 👇`);
   lines.push("");
   ordered.forEach(({ asset, hist, cur, hasCur, gain }, i) => {
     lines.push(`${asset.icon} ${asset.label}`);

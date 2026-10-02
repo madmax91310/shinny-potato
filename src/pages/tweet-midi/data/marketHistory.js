@@ -112,7 +112,7 @@ export function getAnnualReturns(assetId, startYear) {
   return out;
 }
 
-// Format A ("il y a X ans jour pour jour") : décalage réel du mois/jour courant, jamais un
+// Format A ("Il y a X ans") : mois de référence décalé depuis le mois courant, jamais un
 // nombre d'années fixe supposé disponible pour tous les actifs — filtré au plancher vérifié de
 // CET actif. `today` est un objet Date réel (jamais codé en dur : passé par l'appelant à partir
 // de `new Date()` au moment du clic, pour rester exact indéfiniment).
