@@ -45,7 +45,7 @@ export default function ConcreteCases() {
     <div className="cc-scope">
       <PageHeader
         title="Cas concrets"
-        subtitle={`${CASES.length} situations d'investissement, chacune avec une question à se poser avant de décider. Textes rédigés, pas générés automatiquement.`}
+        subtitle={`${CASES.length} situations d'investissement, chacune avec une question à se poser avant de décider. Situations rédigées et exemples chiffrés depuis les compositions datées des indices.`}
       />
 
       <div className="cc-layout">

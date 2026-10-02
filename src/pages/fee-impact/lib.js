@@ -1,3 +1,4 @@
+import { FEE_COMPARISON_ASSETS } from '../../data/fee-comparison-assets.js'
 import { fmtEUR } from '../investment-calculator/lib.js'
 import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, DEFAULT_PERSONAL_LINE } from './data.js'
 
@@ -73,7 +74,8 @@ export function buildTweetText(state) {
   const personalLine = punchline?.trim() || (sameFees
     ? 'Pour mesurer l’impact des frais, il faut comparer deux taux différents.'
     : DEFAULT_PERSONAL_LINE)
-  const scenario = (fee, capital) => `${sameFees ? '⚪' : fee === Math.min(fee1, fee2) ? '🟢' : '🔴'} Avec ${feeLabel(fee)} de frais annuels : ${fmtEUR(capital)}`
+  const selectedFunds = [state.isin1, state.isin2].map(isin => FEE_COMPARISON_ASSETS.find(asset => asset.isin === isin))
+  const scenario = (fee, capital, fund) => `${sameFees ? '⚪' : fee === Math.min(fee1, fee2) ? '🟢' : '🔴'} ${fund ? `${fund.name} (${fund.isin}), avec` : 'Avec'} ${feeLabel(fee)} de frais annuels : ${fmtEUR(capital)}`
   const returnLabel = returnRate.toLocaleString('fr-FR')
 
   return [
@@ -81,8 +83,8 @@ export function buildTweetText(state) {
     ``,
     `Prenons ${fmtEUR(amount)} investis chaque mois pendant ${yearsLabel}, avec un rendement brut supposé de ${returnLabel} % par an 👇`,
     ``,
-    scenario(fee1, d.capital1),
-    scenario(fee2, d.capital2),
+    scenario(fee1, d.capital1, selectedFunds[0]),
+    scenario(fee2, d.capital2, selectedFunds[1]),
     ``,
     sameFees ? `💰 Aucun écart, pour les mêmes ${fmtEUR(d.totalInvested)} versés.`
       : `💰 ${fmtEUR(d.ecart)} d’écart, pour les mêmes ${fmtEUR(d.totalInvested)} versés.`,
@@ -94,6 +96,7 @@ export function buildTweetText(state) {
     ``,
     '💬 Tu connais celui de tes ETF ou de ton assurance-vie ?',
     ``,
+    ...(selectedFunds.some(Boolean) ? ['Frais des produits relevés dans la banque de données ; même rendement brut supposé, sans comparer leurs performances réelles.', ...selectedFunds.filter(Boolean).map(fund => `Source frais ${fund.isin} : ${fund.evidence.sourceUrls[0]}`), ''] : []),
     '📌 Simulation à rendement brut constant, versements en début de mois. Frais annuels déduits du rendement. Hors fiscalité et inflation.',
   ].join('\n')
 }

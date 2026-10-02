@@ -4,6 +4,7 @@ import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
 import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, DEFAULT_FEE_LOW, DEFAULT_FEE_HIGH } from './data.js'
 import { buildTweetText, computeComparison, pickRandomState, simulateCapitalSeries } from './lib.js'
 import { drawFeeImpactImage } from './imageExport.js'
+import { FEE_COMPARISON_ASSETS } from '../../data/fee-comparison-assets.js'
 import './fee-impact.css'
 
 const BADGE_CLASS = { ok: 'fi-badge-ok', warn: 'fi-badge-warn', danger: 'fi-badge-danger' }
@@ -14,6 +15,8 @@ export default function App() {
   const [years, setYears] = useState(20)
   const [yearsRaw, setYearsRaw] = useState('20')
   const [returnRate, setReturnRate] = useState(7)
+  const [isin1, setIsin1] = useState('')
+  const [isin2, setIsin2] = useState('')
   const [fee1, setFee1] = useState(DEFAULT_FEE_LOW)
   const [fee2, setFee2] = useState(DEFAULT_FEE_HIGH)
   const [punchline, setPunchline] = useState('')
@@ -22,8 +25,8 @@ export default function App() {
   const imageRef = useRef(null)
 
   // Une phrase rédigée pour un écart précis ne suit pas un changement de scénario.
-  useEffect(() => setPunchline(''), [amount, years, returnRate, fee1, fee2])
-  const state = useMemo(() => ({ amount, years, returnRate, fee1, fee2, punchline }), [amount, years, returnRate, fee1, fee2, punchline])
+  useEffect(() => setPunchline(''), [amount, years, returnRate, fee1, fee2, isin1, isin2])
+  const state = useMemo(() => ({ amount, years, returnRate, fee1, fee2, punchline, isin1, isin2 }), [amount, years, returnRate, fee1, fee2, punchline, isin1, isin2])
   const text = useMemo(() => buildTweetText(state), [state])
   const status = getLengthStatus(text.length)
   const comparison = useMemo(() => computeComparison(state), [state])
@@ -47,6 +50,12 @@ export default function App() {
     }, 'image/png')
   }
 
+  function selectFund(side, isin) {
+    const asset = FEE_COMPARISON_ASSETS.find(item => item.isin === isin)
+    if (side === 1) { setIsin1(isin); if (asset) setFee1(asset.fee) }
+    else { setIsin2(isin); if (asset) setFee2(asset.fee) }
+    setCopied(false)
+  }
   function handleAmountChip(value) {
     setAmount(value)
     setAmountRaw(String(value))
@@ -75,6 +84,8 @@ export default function App() {
     setYears(picked.years)
     setYearsRaw(String(picked.years))
     setReturnRate(picked.returnRate)
+    setIsin1('')
+    setIsin2('')
     setFee1(picked.fee1)
     setFee2(picked.fee2)
     setCopied(false)
@@ -143,9 +154,21 @@ export default function App() {
 
           <div className="fi-panel">
             <p className="fi-eyebrow">Frais annuels — scénario 1</p>
+            {[1, 2].map(side => {
+              const isin = side === 1 ? isin1 : isin2
+              const asset = FEE_COMPARISON_ASSETS.find(item => item.isin === isin)
+              return <label key={side}>ETF du scénario {side}
+                <select className="fi-control" aria-label={`ETF du scénario ${side}`} value={isin} onChange={event => selectFund(side, event.target.value)}>
+                  <option value="">Frais hypothétiques</option>
+                  {FEE_COMPARISON_ASSETS.map(item => <option key={item.isin} value={item.isin}>{item.name} · {item.fee.toLocaleString('fr-FR')} %</option>)}
+                </select>
+                {asset && <small>{asset.isin} · Frais contrôlés le {asset.evidence.checkedAt ?? 'date non documentée'} · <a href={asset.evidence.sourceUrls[0]} target="_blank" rel="noreferrer">Source</a></small>}
+              </label>
+            })}
+            <p className="fi-hint">Les frais des ETF sont ceux du registre commun. Le rendement brut reste une même hypothèse pour les deux scénarios : ce calcul ne compare pas leurs performances réelles.</p>
             <div className="fi-chip-row">
               {FEE_LEVELS.map((f) => (
-                <button key={f.value} type="button" className={`fi-chip ${fee1 === f.value ? 'active' : ''}`} onClick={() => setFee1(f.value)}>
+                <button key={f.value} type="button" className={`fi-chip ${fee1 === f.value ? 'active' : ''}`} onClick={() => { setIsin1(''); setFee1(f.value) }}>
                   {f.label}
                 </button>
               ))}
@@ -153,7 +176,7 @@ export default function App() {
             <p className="fi-eyebrow" style={{ marginTop: 6 }}>Frais annuels — scénario 2</p>
             <div className="fi-chip-row">
               {FEE_LEVELS.map((f) => (
-                <button key={f.value} type="button" className={`fi-chip ${fee2 === f.value ? 'active' : ''}`} onClick={() => setFee2(f.value)}>
+                <button key={f.value} type="button" className={`fi-chip ${fee2 === f.value ? 'active' : ''}`} onClick={() => { setIsin2(''); setFee2(f.value) }}>
                   {f.label}
                 </button>
               ))}

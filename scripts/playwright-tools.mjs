@@ -775,6 +775,37 @@ async function testInvestorIntroductions(page) {
   record('Portefeuille d’investisseur', ok, '11 présentations et tweets synchronisés, modification, réinitialisation, changement de profil et mobile');
 }
 
+async function testDataReuse(page) {
+  await page.goto(`${BASE}/impact-frais`, { waitUntil: 'networkidle' });
+  await page.getByLabel('ETF du scénario 1', { exact: true }).selectOption('FR001400U5Q4');
+  await page.getByLabel('ETF du scénario 2', { exact: true }).selectOption('IE00BP3QZ601');
+  let ok = (await page.locator('.fi-preview-text').innerText()).includes('FR001400U5Q4')
+    && (await page.locator('.fi-preview-text').innerText()).includes('sans comparer leurs performances réelles');
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.__reuseCopied = text; } } }));
+  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click();
+  ok &&= (await page.evaluate(() => window.__reuseCopied)).includes('IE00BP3QZ601');
+  await page.setViewportSize({ width: 390, height: 844 });
+  ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
+  const prepared = await page.locator('#pd-select option').allTextContents();
+  await page.locator('#pd-select').selectOption(String(prepared.findIndex(text => text.includes('XEON'))));
+  ok &&= (await page.locator('#pd-tweet').inputValue()).includes('XEON');
+  await page.locator('#pd-select').selectOption(String(prepared.findIndex(text => text.includes('semi-conducteurs ou blockchain'))));
+  ok &&= (await page.locator('.pd-table tbody th').allTextContents()).join(',') === '2023,2024,2025';
+  await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: 'networkidle' });
+  await page.getByLabel('Choisir un fait').selectOption('monthly-drawdown-paypal');
+  ok &&= (await page.locator('.mf-fact-text').innerText()).includes('clôtures mensuelles ajustées');
+  await page.getByLabel('Choisir un fait').selectOption('monthly-dca-costco');
+  ok &&= (await page.locator('.mf-fact-text').innerText()).includes('L’argent en attente n’est pas rémunéré');
+  await page.goto(`${BASE}/bibliotheque-donnees?id=IE00B4JNQZ49&q=IE00B4JNQZ49`, { waitUntil: 'networkidle' });
+  ok &&= (await page.locator('.ds-detail').innerText()).includes('Duels de portefeuilles');
+  await page.goto(`${BASE}/cas-concrets`, { waitUntil: 'networkidle' });
+  await page.getByRole('button', { name: /World \+ Europe : ce que change une ligne/ }).click();
+  ok &&= (await page.locator('.cc-text').innerText()) === CASES.find(item => item.id === 'world-europe-chiffre').text;
+  record('Réutilisation des données', ok, 'ETF et copie frais, mobile, nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
+}
+
 let server;
 try {
   console.log(`Démarrage de vite preview sur le port ${PORT}...`);
@@ -800,6 +831,7 @@ try {
   await testConcreteCases(page);
   await testIndexComparator(page);
   await testFeeImpact(page);
+  await testDataReuse(page);
   await testMarketFacts(page);
   await testTweetBank(page);
   await testFactsheetTweets(page);

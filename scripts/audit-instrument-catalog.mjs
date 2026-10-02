@@ -78,7 +78,9 @@ for (const [isin, facts] of Object.entries(INSTRUMENT_FACTS_BY_ISIN)) {
 for (const [context, file, items] of collections) {
   const source = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
   const references = source.match(/name:\s*getInstrumentName\(|nom:\s*getInstrumentName\(/g) ?? [];
-  if (references.length !== items.length) {
+  // Les nouveaux thèmes construisent les libellés par une fonction commune ;
+  // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
+  if (context !== 'tweet' && references.length !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }

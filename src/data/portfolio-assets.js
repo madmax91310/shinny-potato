@@ -72,31 +72,31 @@ export const ASSETS = [
   // Vérifiés le 01/10/2026 : parts des nouvelles présentations, sélection manuelle uniquement.
   {
     id: "monetaire_xeon", name: getInstrumentName("LU0290358497", "portfolio"), isin: "LU0290358497", cat: "obligataire", emoji: "🔵",
-    manualOnly: true, r: getInstrumentReturnValues("LU0290358497"),
+     r: getInstrumentReturnValues("LU0290358497"),
     confidenceNote: "Rendements NAV de la part en euros ; arrondis publiés par l’émetteur. Le fonds a changé d’indice en décembre 2020 et novembre 2023.",
     desc: ["Son indice reflète un taux monétaire en euros, le €STR, auquel s’ajoute une petite marge avant les frais. Le fonds reçoit cette performance grâce à un swap. Tu t’exposes donc aux taux au jour le jour, plutôt qu’à un panier d’actions ou à des obligations de longue durée.", "L’intérêt est de comprendre une exposition dont le rendement évolue avec les taux courts. Cette part capitalise les revenus : ils restent investis dans le fonds, sans versement à réinvestir toi-même.", "Le rendement n’est pas fixé à l’avance : il diminue lorsque les taux courts baissent et peut devenir négatif. Le swap ajoute un risque de contrepartie. Il faut aussi compter les frais du fonds et ceux du courtier : ce placement ne bénéficie pas de la garantie d’un dépôt bancaire."],
   },
   {
     id: "oblig_0_1_ishares", name: getInstrumentName("IE00B3FH7618", "portfolio"), isin: "IE00B3FH7618", cat: "obligataire", emoji: "🔵",
-    manualOnly: true, r: getInstrumentReturnValues("IE00B3FH7618"),
+     r: getInstrumentReturnValues("IE00B3FH7618"),
     confidenceNote: "Rendements NAV de la part en euros ; arrondis publiés par l’émetteur.",
     desc: ["Ce fonds rassemble des obligations d’État de la zone euro dont l’échéance est courte, entre zéro et un an. Leur remboursement approche, ce qui limite leur sensibilité aux mouvements de taux par rapport à des obligations plus longues. Cette part distribue les revenus.", "L’intérêt est d’accéder à plusieurs emprunts d’État en euros avec une seule ligne. Pour comprendre son comportement, la durée des obligations compte davantage que la seule présence du mot « État » dans le nom.", "Une échéance courte ne garantit pas ton capital. La valeur des parts peut baisser, et le fonds renouvelle ses obligations : tu ne détiens pas un placement qui te rembourse automatiquement à une date choisie. Les revenus évolueront aussi avec les taux."],
   },
   {
     id: "oblig_global_agg_eur_hedged", name: getInstrumentName("IE00BDBRDM35", "portfolio"), isin: "IE00BDBRDM35", cat: "obligataire", emoji: "🔵",
-    manualOnly: true, r: getInstrumentReturnValues("IE00BDBRDM35"),
+     r: getInstrumentReturnValues("IE00BDBRDM35"),
     confidenceNote: "Rendements NAV de la part en euros ; arrondis publiés par l’émetteur.",
     desc: ["Le fonds rassemble des obligations mondiales de catégorie investment grade : États, entreprises et titres adossés à des actifs. Cette part ajoute une couverture du risque de change vers l’euro. Tu suis donc un large marché obligataire, avec un mécanisme destiné à limiter l’effet des devises.", "L’intérêt est de réunir de nombreux emprunteurs et plusieurs marchés dans une seule ligne. La part capitalise les revenus, tandis que la couverture évite de laisser les mouvements des monnaies expliquer seuls une grande partie du résultat en euros.", "La couverture ne supprime ni le risque de taux ni le risque de crédit, et elle a un coût. Le fonds peut subir des baisses marquées malgré ses nombreuses lignes. L’émetteur annonce aussi la suppression d’une ligne de cotation le 15 décembre 2026 : vérifie la place utilisée auprès de ton courtier."],
   },
   {
     id: "actions_india_ishares", name: getInstrumentName("IE00BZCQB185", "portfolio"), isin: "IE00BZCQB185", cat: "emergents", emoji: "🟢",
-    manualOnly: true, r: getInstrumentReturnValues("IE00BZCQB185"),
+     r: getInstrumentReturnValues("IE00BZCQB185"),
     confidenceNote: "Rendements NAV de la part en dollars ; le résultat en euros dépend du change.",
     desc: ["Le MSCI India rassemble de grandes et moyennes entreprises du marché indien. Tu t’exposes à leurs actions, avec des poids différents selon leur capitalisation. La croissance économique du pays peut soutenir leur activité, mais elle ne détermine pas à elle seule le rendement de ton placement.", "L’intérêt est de suivre ce marché en une seule ligne, sans devoir sélectionner les entreprises toi-même. Cela rend l’exposition précise : tu renforces volontairement un pays plutôt que l’ensemble des marchés émergents.", "Le fonds reste concentré sur un pays et ses entreprises. Les valorisations, la réglementation et la roupie influencent le résultat. Ses frais de 0,65 % par an méritent aussi une comparaison avec les alternatives : une économie dynamique ne garantit pas des actions toujours rentables."],
   },
   {
     id: "infrastructure_ishares", name: getInstrumentName("IE00B1FZS467", "portfolio"), isin: "IE00B1FZS467", cat: "actions_larges", emoji: "🟢",
-    manualOnly: true, r: getInstrumentReturnValues("IE00B1FZS467"),
+     r: getInstrumentReturnValues("IE00B1FZS467"),
     confidenceNote: "Rendements NAV de la part en dollars ; le résultat en euros dépend du change.",
     desc: ["Son indice rassemble des sociétés cotées liées aux infrastructures dans plusieurs pays. Tu détiens leurs actions : leurs contrats, leurs investissements et leur financement comptent pour leurs résultats. Le caractère essentiel de leurs services ne garantit pas la stabilité de leur cours.", "L’intérêt est de réunir plusieurs acteurs de cet univers dans une seule ligne. Cette part distribue des revenus : pour évaluer le placement, il faut regarder les versements et l’évolution de la valeur des parts ensemble.", "Ces actions restent sensibles aux taux, à l’endettement et aux décisions réglementaires. Les dividendes peuvent varier. Les frais de 0,65 % par an comptent aussi : des services indispensables ne rendent pas le placement sans risque."],
   },
@@ -1455,17 +1455,17 @@ export const ASSETS = [
   },
   {
     id: 'oblig_hy_ishares_acc', name: getInstrumentName("IE00BF3N7094", "portfolio"), cat: 'obligataire', emoji: '🔵', isin: 'IE00BF3N7094',
-    // Part capitalisante : disponible en composition manuelle, sans remplacer les parts
+    // Part capitalisante : disponible en composition manuelle et dans le profil Thématique, sans remplacer les parts
     // distribuantes du profil Rentier. Rendements de la part exacte dans src/data/verified-returns.js.
-    manualOnly: true,
+
     r: getInstrumentReturnValues('IE00BF3N7094'),
     desc: ['obligations d’entreprises européennes à haut rendement.', 'les coupons sont réinvestis dans la part.', 'un risque de crédit supérieur aux obligations de meilleure qualité.'],
   },
   {
     id: 'oblig_em_local_ishares_acc', name: getInstrumentName("IE00BFZPF546", "portfolio"), cat: 'obligataire', emoji: '🔵', isin: 'IE00BFZPF546',
-    // Dette souveraine émergente en monnaies locales : disponible en composition manuelle,
+    // Dette souveraine émergente en monnaies locales : disponible en manuel et dans le Thématique,
     // pas assimilée aux emprunts d’État EUR ou US des profils automatiques.
-    manualOnly: true,
+
     r: getInstrumentReturnValues('IE00BFZPF546'),
     confidenceNote: 'Rendements NAV de la part en dollars ; les devises émergentes et le change EUR/USD influencent le résultat en euros.',
     desc: ['obligations souveraines émergentes en devises locales.', 'exposition au crédit des États et à leurs monnaies.', 'la valeur peut varier fortement avec les taux et les changes.'],

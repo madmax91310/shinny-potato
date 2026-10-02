@@ -104,7 +104,7 @@ export const TOOLS = [
     title: 'Faits marquants des marchés',
     icon: '📚',
     accent: '#34d399',
-    description: "Statistiques historiques sourcées (S&P 500, Nasdaq, Dow Jones, CAC 40) sur les chocs, corrections et séquences des marchés, prêtes à publier en format \"le saviez-vous\".",
+    description: "Statistiques historiques sourcées sur les indices et calculs de baisse, récupération et versements sur huit actions sur les chocs, corrections et séquences des marchés, prêtes à publier en format \"le saviez-vous\".",
     status: 'disponible',
   },
   {

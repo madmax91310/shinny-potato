@@ -381,7 +381,8 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     selection = jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId, riskId);
     tries++;
   } while (
-    (history.some((h) => h.sig === signature(selection)) ||
+    (!withinBound(worstYearOf(computeYearlyPerf(selection)).value, RISK_BOUNDS[riskId]) ||
+      history.some((h) => h.sig === signature(selection)) ||
       tooSimilarToLast(selection, profileId, history) ||
       violatesProfileInvariant(profileId, selection, riskId)) &&
     // Plafond relevé de 60 à 200 : avec le jitter élargi ci-dessus (attempts >= 1, magnitude
@@ -394,6 +395,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const perf = computeYearlyPerf(selection);
   const worst = worstYearOf(perf);
   const bound = RISK_BOUNDS[riskId];
+  if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection, riskId)) throw new Error("Aucune composition respectant le profil et le risque n’a été trouvée.");
 
   const contextText = boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || "";
   const editorial = buildEditorial(selection, history, profileId, riskId);

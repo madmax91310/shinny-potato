@@ -96,7 +96,7 @@ export const HIGHYIELD_OPTIONS = ["oblig_hy", "oblig_hy_amundi"];
 export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities"];
 // VanEck Semiconductor reste suspendu : ni sa part ni son indice exact n'ont un
 // rendement 2020 vérifié. On ne l'offre pas tant que la série 2020-2025 est trouée.
-export const THEME_OPTIONS_FULL = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_biotech_ishares", "sect_energy_spdr", "sect_tech_world_ishares", "sect_water_amundi", "sect_luxury_amundi", "sect_batteries_lg", "sect_cyber_lg"];
+export const THEME_OPTIONS_FULL = ["sect_financieres", "infrastructure_ishares", "sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_biotech_ishares", "sect_energy_spdr", "sect_tech_world_ishares", "sect_water_amundi", "sect_luxury_amundi", "sect_batteries_lg", "sect_cyber_lg"];
 export const THEME_OPTIONS_AGGRESSIVE = ["sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre", "sect_energy_spdr", "sect_tech_world_ishares", "sect_ai_lg", "sect_batteries_lg", "sect_cyber_lg"];
 // ETF à levier (réplication synthétique 2x quotidien) : lqq (Nasdaq-100) et cl2 (MSCI USA, plus
 // large que le seul Nasdaq-100) — indices proches mais pas identiques (même logique que
@@ -130,7 +130,7 @@ export const LEVERAGE_OPTIONS = ["lqq", "cl2"];
 // uniques, très volatils, portés par les semi-conducteurs), Asie-Pacifique hors Japon (le plus
 // diversifié des quatre, Chine/Taïwan/Corée/Inde/Asean réunis). Chaque option revalidée sur les
 // bornes de pire année du combo qui l'utilise, comme tous les autres groupes ci-dessus.
-export const ASIA_OPTIONS = ["actions_japon", "actions_coree", "actions_taiwan", "actions_asie_ex_japon"];
+export const ASIA_OPTIONS = ["actions_india_ishares", "actions_japon", "actions_coree", "actions_taiwan", "actions_asie_ex_japon"];
 
 // Plafond de fréquence par groupe : au-delà de ce ratio d'apparition dans l'historique de la
 // session, un membre du groupe est exclu des tirages tant qu'une autre option reste disponible
@@ -1936,6 +1936,24 @@ export const PROFILES = [
 
 // Compatibilité (profil, niveau de risque) — dérivée directement de `riskCombos`, exposée pour
 // l'UI (griser les chips incompatibles) sans dupliquer l'information.
+// Extension du 02/10/2026 : compléments déjà sourcés, pondérations inchangées.
+// Les composantes gardent leur rôle ; les bornes sont vérifiées par le moteur et les stress-tests.
+for (const profile of PROFILES) {
+  for (const [risk, combo] of Object.entries(profile.riskCombos)) {
+    for (const slot of combo.assets) {
+      if (profile.id === 'generaliste' && slot.idOptions === CORPBOND_OPTIONS) {
+        slot.idOptions = [...CORPBOND_OPTIONS, 'monetaire_xeon', 'oblig_0_1_ishares', 'oblig_global_agg_eur_hedged']
+      }
+      if (profile.id === 'generaliste' && slot.idOptions === EM_OPTIONS && ['equilibre', 'dynamique', 'offensif'].includes(risk)) {
+        slot.idOptions = [...EM_OPTIONS, 'smallcap_monde', 'actions_india_ishares']
+      }
+      if (profile.id === 'thematique' && slot.idOptions === CORPBOND_OPTIONS && ['equilibre', 'dynamique'].includes(risk)) {
+        slot.idOptions = [...CORPBOND_OPTIONS, 'oblig_hy_ishares_acc', 'oblig_em_local_ishares_acc']
+      }
+    }
+  }
+}
+
 export function isCompatible(profileId, riskId) {
   const profile = PROFILES.find((p) => p.id === profileId);
   return !!profile && !!profile.riskCombos[riskId];

@@ -108,6 +108,11 @@ export function getInstrumentAnnualPerformance(isin) {
 // Compléments de devise et de provenance utilisés par les Duels de portefeuilles.
 // Ils identifient la part exacte, y compris les cinq parts absentes des Fiches ETF.
 export const DUEL_SERIES_BY_ISIN = Object.freeze({
+  // Réutilisation du contrôle documenté dans portfolio-assets.js, pas une nouvelle revue externe.
+  IE00B9CQXS71: { currency: 'USD', source: 'https://www.ssga.com/library-content/products/fund-docs/etfs/emea/kid-supplement/PRIIPS%20Performance%20file_IE00B9CQXS71.pdf' },
+  IE00BK5BR626: { currency: 'USD', source: 'https://fund-docs.vanguard.com/ie00bk5br626-en.pdf' },
+  IE00BKPSFC54: { currency: 'USD', source: 'https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf' },
+  IE00B4JNQZ49: { currency: 'USD', source: 'https://www.ishares.com/uk/individual/en/products/280523/' },
   IE00B4L5Y983: { currency: 'USD', source: 'https://www.ishares.com/gls-download/literature/fact-sheet/swda-ishares-core-msci-world-ucits-etf-fund-fact-sheet-en-gb.pdf' },
   IE00B5BMR087: { currency: 'USD', source: 'https://www.ishares.com/uk/individual/en/products/253743/ishares-core-sp-500-ucits-etf' },
   IE00B44Z5B48: { currency: 'USD', source: 'https://www.ssga.com/uk/en_gb/intermediary/etfs/spdr-msci-acwi-ucits-etf-spyy-gy' },
@@ -120,6 +125,8 @@ export const DUEL_SERIES_BY_ISIN = Object.freeze({
 export function getInstrumentDuelSeries(isin) {
   const base = getInstrumentAnnualPerformance(isin);
   const supplement = DUEL_SERIES_BY_ISIN[isin];
-  return base ? { ...supplement, ...base, source: base.source ?? supplement?.source ?? null } :
+  const result = base ? { ...supplement, ...base, source: base.source ?? supplement?.source ?? null } :
     supplement?.currency ? { ...supplement, values: getInstrumentReturnValues(isin) } : null;
+  // La part Acc Quality Dividend n’a pas d’année 2020 complète ; exclure le proxy Dist.
+  return result && isin === 'IE00BKPSFC54' ? { ...result, values: result.values.map((v, i) => i === 0 ? null : v) } : result;
 }

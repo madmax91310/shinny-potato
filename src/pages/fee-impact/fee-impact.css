@@ -57,3 +57,8 @@
 
 .fi-copy-btn { align-self: flex-start; background: var(--fi-accent); color: var(--fi-surface); border: none; padding: 10px 18px; border-radius: 9px; font-size: 13.5px; font-weight: 700; cursor: pointer; transition: all .15s ease; }
 .fi-copy-btn:hover { background: var(--fi-accent-bright); }
+
+.fi-control-col { min-width: 0; }
+.fi-panel label:has(select) { display: block; margin-bottom: 12px; }
+.fi-panel select { min-width: 0; text-overflow: ellipsis; }
+.fi-panel small { overflow-wrap: anywhere; }

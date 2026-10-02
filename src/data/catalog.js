@@ -1,3 +1,7 @@
+import { CATALOG as DUEL_ASSETS } from './duel-assets.js';
+import { FEE_COMPARISON_ASSETS } from './fee-comparison-assets.js';
+import { HISTORY_STATISTIC_IDS } from './history-statistics.js';
+import { ALLOCATION_CASE_DEFINITIONS } from './allocation-cases.js';
 import { INSTRUMENTS_BY_ISIN } from './instruments.js';
 import { ETF_TER_BY_ISIN } from './etf-ter.js';
 import { INSTRUMENT_FACTS_BY_ISIN } from './instrument-facts.js';
@@ -18,7 +22,7 @@ import { DEFAULT_THEMES } from './etf-themes.js';
 import { SUPPORTING_EVIDENCE } from './supporting-evidence.js';
 import { OFFICIAL_AUM_OBSERVATIONS } from './instrument-aum-observations.js';
 import { TERMES } from './financial-lexicon.js';
-import { ASSETS as HISTORY } from './market-history.js';
+import { ASSETS as HISTORY, SPARSE_MONTHLY_DATA_IDS } from './market-history.js';
 import { FAMILIES } from './index-comparisons.js';
 import { SHEETS } from './index-factsheets.js';
 import { HOUSEHOLD_STATISTICS } from './household-statistics.js';
@@ -35,9 +39,10 @@ function use(isin, tool, path) {
 ETFS.forEach((x) => use(x.isin, 'Présentation ETF', '/fiches-etf'));
 ASSETS.forEach((x) => {
   use(x.isin, 'Générateur de portefeuilles', '/generateur-portefeuilles');
-  // L’éditeur manuel/génératif des duels utilise le même roster entier.
-  use(x.isin, 'Duels de portefeuilles', '/duels-portefeuilles');
+
 });
+DUEL_ASSETS.forEach(x => use(x.isin, 'Duels de portefeuilles', '/duels-portefeuilles'));
+FEE_COMPARISON_ASSETS.forEach(x => use(x.isin, 'Impact des frais', '/impact-frais'));
 DEFAULT_THEMES.forEach((t) => t.etfs.forEach((x) => use(x.isin, 'Comparatif ETF · Tweet Midi', '/tweet-midi')));
 FAMILIES.forEach((f) => f.etfGroups.forEach((g) => g.funds.forEach((x) => use(x.isin, 'Comparateur d’indices', '/comparateur-indices'))));
 SHEETS.forEach((x) => use(x.isin, 'Coulisses des indices', '/tweets-factsheets'));
@@ -71,6 +76,7 @@ function index(id, history) {
   const consumers = [];
   if (SHEETS.some((s) => values.includes(s.indexFacts))) consumers.push({ tool: 'Coulisses des indices', path: '/tweets-factsheets' });
   if (FAMILIES.some((f) => f.indices.some((s) => values.includes(s.indexFacts)))) consumers.push({ tool: 'Comparateur d’indices', path: '/comparateur-indices' });
+  if (ALLOCATION_CASE_DEFINITIONS.some(x => x.left === id || x.right === id)) consumers.push({ tool: 'Cas concrets', path: '/cas-concrets' });
   return { id, type: 'index', name: values[0].index,
     aliases: [id, ...FAMILIES.flatMap((f) => f.indices.filter((x) => values.includes(x.indexFacts)).map((x) => x.name))], consumers,
     fields: [...Object.entries(history).sort(([a], [b]) => /^\d{4}/.test(a) !== /^\d{4}/.test(b) ? (/^\d{4}/.test(a) ? -1 : 1) : b.localeCompare(a)).map(([key, facts]) => field(`Photographie · ${facts.snapshot}`, 'index-facts', facts, { ...facts.metadata, note: `${facts.provenance} Clé : ${key}` })), ...Object.entries(INDEX_RETURNS[id] ?? {}).map(([date, series]) => field(`Rendements d’indice · ${date}`, 'index-returns', series, series.metadata))] };
@@ -81,7 +87,7 @@ export const DATA_CATALOG = Object.freeze([
     fields: [field('Statistique de ménages', 'household-statistics', value, value.metadata)] })),
   ...Object.entries(INSTRUMENTS_BY_ISIN).map(([isin, identity]) => instrument(isin, identity)),
   ...Object.entries(INDEX_FACTS).map(([id, history]) => index(id, history)),
-  ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
+  ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: `Tweet Midi · Performance depuis${!SPARSE_MONTHLY_DATA_IDS.has(id) && value.priceMethod !== 'adjusted' && value.priceUnit !== 'points' ? ' et Anniversaire' : ''}`, path: '/tweet-midi' }, ...(HISTORY_STATISTIC_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
   ...TERMES.map((value) => ({ id: `lexicon:${value.id}`, type: 'lexicon', name: value.titre ?? value.nom ?? value.title ?? value.terme ?? value.id, aliases: [value.id], consumers: [{ tool: 'Lexique · Tweet Midi', path: '/tweet-midi' }], fields: [field('Définition', 'financial-lexicon', value, { ...SUPPORTING_EVIDENCE[`lexicon:${value.id}`], dateStatus: 'not-applicable', scope: value.id })] })),
 ]);
 const normalize = (value) => String(value).normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().trim();
