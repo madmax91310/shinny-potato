@@ -16,6 +16,31 @@ def portfolio(period, weight=1):
 
 
 class RefreshTests(unittest.TestCase):
+    def test_provider_movements_and_pagination(self):
+        def row(ticker, value, change, percent=None):
+            return {'security': {'name': ticker, 'ticker': ticker}, 'position_type': 'direct',
+                    'shares': value, 'value': value, 'change': change, 'change_percent': percent}
+        rows = [row('NEW', 20, 'new'), row('UP', 20, 'add', 18), row('DOWN', 20, 'trim', 12),
+                row('HOLD', 20, 'hold'), row('LAST', 20, 'hold'), row('EXIT', 0, 'sold')]
+        fund = {'filing': {'report_period_on': '2026-03-31', 'quarter': 'Q1 2026', 'total_value': 100}}
+        table = {'quarter': 'Q1 2026', 'total_value': 100, 'holdings': rows[:3],
+                 'pagination': {'total_pages': 2, 'total': 6}}
+        last = {**table, 'holdings': rows[3:]}
+        with patch.object(module, 'get_json', side_effect=[fund, table, last]) as fetch:
+            result = module.make_portfolio('klarman', 'baupost-group', 'Seth Klarman', 'Baupost')
+        self.assertTrue(fetch.call_args.args[0].endswith('?page=2'))
+        snapshot = result['data']['snapshot']
+        self.assertTrue(snapshot['holdings'][0]['isNew'])
+        self.assertEqual(snapshot['holdings'][1]['sharesChangePct'], 18)
+        self.assertEqual(snapshot['holdings'][2]['sharesChangePct'], -12)
+        self.assertIsNone(snapshot['holdings'][3]['sharesChangePct'])
+        self.assertEqual(snapshot['quarterChanges']['priorPeriodLabel'], 'Q4 2025')
+        self.assertEqual(snapshot['quarterChanges']['exits'][0]['ticker'], 'EXIT')
+        self.assertEqual(len(snapshot['holdings']), 5)
+        self.assertIsNone(module.shares_change({'security': {'ticker': 'BRK.{A,B}'}, 'change': 'add', 'change_percent': 20}))
+        for value in [None, '18', float('nan'), -1, 101]:
+            self.assertIsNone(module.shares_change({'change': 'trim', 'change_percent': value}))
+
     def test_unchanged_ignores_check_timestamp(self):
         with tempfile.TemporaryDirectory() as folder:
             path = pathlib.Path(folder) / 'li-lu.json'

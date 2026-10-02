@@ -709,7 +709,7 @@ async function testInvestorIntroductions(page) {
   await page.route('**/data/trackers/*.json', async route => {
     const slug = new URL(route.request().url()).pathname.split('/').at(-1).replace('.json', '');
     const displayName = INVESTORS.find(([id]) => id === slug)?.[1];
-    await route.fulfill({ headers: { 'access-control-allow-origin': '*' }, json: { as_of: '2026-10-01', data: { identity: { slug, displayName, entityName: 'Déclarant de test', archetype: 'hedge_fund' }, snapshot: { periodEnd: '2026-06-30', filedAt: '2026-08-14', holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .6 }] } } } });
+    await route.fulfill({ headers: { 'access-control-allow-origin': '*' }, json: { as_of: '2026-10-01', data: { identity: { slug, displayName, entityName: 'Déclarant de test', archetype: 'hedge_fund' }, snapshot: { periodEnd: '2026-06-30', filedAt: '2026-08-14', quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [{ issuerName: 'Sortie de test', ticker: 'EXIT' }] }, holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .6, isNew: true }, { issuerName: 'Hausse de test', ticker: 'UP', weight: .2, sharesChangePct: 18 }, { issuerName: 'Baisse de test', ticker: 'DOWN', weight: .1, sharesChangePct: -12 }] } } } });
   });
   await page.goto(`${BASE}/portefeuilles-investisseurs`, { waitUntil: 'networkidle' });
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
@@ -724,6 +724,9 @@ async function testInvestorIntroductions(page) {
     ok &&= tweet.startsWith('📊 ') && tweet.split('\n')[0].includes('%')
       && ['💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '📅 Photographie', '💬 '].every(label => tweet.includes(label))
       && !/place-t-il|undefined|NaN|\\\\n/.test(tweet);
+    if (!['li-lu', 'gates-trust', 'klarman'].includes(slug)) {
+      ok &&= ['🔄 Quelques mouvements depuis T1 2026', '🆕 Nouvelle ligne', 'nombre d’actions +18 %', 'nombre d’actions −12 %', '🚪 Ligne sortie'].every(label => tweet.includes(label));
+    }
     await page.getByRole('button', { name: /Copier le tweet|Copié/ }).click();
     ok &&= (await page.evaluate(() => window.__investorCopiedText)) === tweet;
   }

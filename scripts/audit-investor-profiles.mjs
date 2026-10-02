@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { INVESTOR_PROFILES, investorIntroduction } from '../src/data/investor-profiles.js'
-import { INVESTORS, buildTweet, normalizePortfolio, portfolioCompanies, portfolioEditorial } from '../src/pages/investor-portfolio/data.js'
+import { INVESTORS, buildTweet, normalizePortfolio, portfolioCompanies, portfolioEditorial, movementExcerpt } from '../src/pages/investor-portfolio/data.js'
 assert.deepEqual(Object.keys(INVESTOR_PROFILES).sort(), INVESTORS.map(([id]) => id).sort())
 for (const [slug, displayName] of INVESTORS) {
   const profile = INVESTOR_PROFILES[slug]
@@ -54,3 +54,27 @@ const fund = { issuerName: 'Vanguard ETF', ticker: 'ETF', weight: 1 }
 assert(portfolioEditorial(make([fund])).hook.includes('position'))
 assert(!portfolioEditorial(make([fund])).hook.includes('entreprise'))
 console.log('Hooks calculés, catégories regroupées, concentration et fonds : cas limites validés.')
+
+const movements = { periodEnd: '2026-06-30', quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [
+  { issuerName: 'Sortie', ticker: 'EXIT', putCall: null },
+  { issuerName: 'Option sortie', ticker: 'OPT', putCall: 'PUT' },
+] }, holdings: [
+  { issuerName: 'Alphabet A', ticker: 'GOOGL', weight: .4, isNew: true, sharesChangePct: 999 },
+  { issuerName: 'Alphabet C', ticker: 'GOOG', weight: .2, isNew: false, sharesChangePct: 18 },
+  { issuerName: 'Baisse', ticker: 'DOWN', weight: .1, sharesChangePct: -12 },
+  { issuerName: 'Poids seul', ticker: 'WEIGHT', weight: .1, deltaWeightPp: 8 },
+  { issuerName: 'Option', ticker: 'OPT', weight: .1, putCall: 'CALL', isNew: true },
+] }
+const excerpt = movementExcerpt(movements)
+assert(excerpt.includes('depuis T1 2026'))
+assert.equal(excerpt.split('\n').length, 5)
+assert(excerpt.includes('Nouvelle ligne : Alphabet $GOOGL'))
+assert(excerpt.includes('Alphabet $GOOG : nombre d’actions +18 %'))
+assert(excerpt.includes('nombre d’actions −12 %') && excerpt.includes('Ligne sortie : Sortie $EXIT'))
+assert(!/WEIGHT|OPT|999/.test(excerpt))
+assert.equal(movementExcerpt({ holdings: movements.holdings }), '')
+assert.equal(movementExcerpt({ ...movements, holdings: [], quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [] } }), '')
+const withMoves = buildTweet({ ...make(movements.holdings), snapshot: movements })
+assert(withMoves.indexOf('🔄 Quelques mouvements') > withMoves.indexOf('💼 Ses principales positions'))
+assert(withMoves.indexOf('🔄 Quelques mouvements') < withMoves.indexOf('🔍 Ce qui distingue'))
+console.log('Encart mouvements : quatre lignes, quantités, classes distinctes, options exclues et comparaison manquante validés.')
