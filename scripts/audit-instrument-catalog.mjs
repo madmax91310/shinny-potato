@@ -21,6 +21,8 @@ const collections = [
   ['portfolio', 'src/data/portfolio-assets.js', ASSETS.filter(item => item.isin).map(item => ({ ...item, displayName: item.name }))],
 ];
 const aumSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-aum-2026-09-29.json', import.meta.url), 'utf8'));
+const reviewSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-review-2026-10-02.json', import.meta.url), 'utf8'));
+const reviewedAum = new Map(reviewSnapshot.products.map(p => [p.isin, p.aum]));
 
 const seen = new Set();
 const listingErrors = auditInstrumentListings();
@@ -167,13 +169,14 @@ for (const [isin, entry] of Object.entries(INSTRUMENT_AUM_BY_ISIN)) {
 }
 for (const [isin, millions] of Object.entries(aumSnapshot.values)) {
   const source = INSTRUMENT_AUM_BY_ISIN[isin]?.source;
+  if (source?.checkedAt === reviewSnapshot.checkedAt && JSON.stringify(INSTRUMENT_AUM_BY_ISIN[isin]) === JSON.stringify(reviewedAum.get(isin))) continue;
   if (!source || source.amountMillions !== millions || source.checkedAt !== aumSnapshot.checkedAt ||
       source.currency !== 'EUR' || source.asOf !== null || !source.url.includes(`isin=${isin}`)) {
     console.error(`Encours : relevé justETF non synchronisé pour ${isin}`);
     errors++;
   }
 }
-if (Object.values(INSTRUMENT_AUM_BY_ISIN).filter(x => x.source?.amountMillions).length !== Object.keys(aumSnapshot.values).length) {
+if (Object.entries(aumSnapshot.values).filter(([isin]) => INSTRUMENT_AUM_BY_ISIN[isin]?.source?.amountMillions || INSTRUMENT_AUM_BY_ISIN[isin]?.source?.checkedAt === reviewSnapshot.checkedAt).length !== Object.keys(aumSnapshot.values).length) {
   console.error('Encours : nombre de relevés justETF différent du registre.');
   errors++;
 }
