@@ -1,6 +1,6 @@
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
-// Bitcoin : données réelles (export Yahoo Finance). Les 22 autres actifs ont été mis à jour avec des
+// Bitcoin et S&P 500 : clôtures mensuelles Yahoo recoupées le 02/10/2026. Les autres actifs ont des
 // clôtures réelles sourcées (voir commentaire au-dessus de chaque actif pour le détail des sources et
 // des points restant NON vérifiés / illustratifs).
 function P(list) {
@@ -11,47 +11,51 @@ function P(list) {
 
 export const ASSETS = {
   bitcoin: {
-    // Source consultée : https://finance.yahoo.com/quote/BTC-USD/history/
-    // Source : export Yahoo Finance (BTC-USD), prix d'ouverture mensuel réel, août 2026.
-    // Les 140 points ont été recoupés le 29/09/2026 avec le relevé Yahoo figé dans
-    // scripts/source-snapshots/calculator-yahoo-2026-09-29.json. Voir audit:calculator-series.
+    // Mise à jour du 02/10/2026 : Yahoo BTC-USD, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
+    // 141 clôtures mensuelles complètes, janvier 2015 à septembre 2026, sans interpolation des points source.
+    // Remplace entièrement les anciennes ouvertures mensuelles : les simulations changent pour cette raison.
+    // Les anciennes ouvertures restent dans calculator-yahoo-2026-09-29.json.
     label: 'Bitcoin', tweetPhrase: 'le Bitcoin', icon: '₿', currency: 'USD',
     points: P([
-      '2015-01', 320.43, '2015-02', 216.87, '2015-03', 254.28, '2015-04', 244.22,
-      '2015-05', 235.94, '2015-06', 230.23, '2015-07', 263.35, '2015-08', 284.69,
-      '2015-09', 230.26, '2015-10', 236.00, '2015-11', 315.01, '2015-12', 377.41,
-      '2016-01', 430.72, '2016-02', 369.35, '2016-03', 437.92, '2016-04', 416.76,
-      '2016-05', 448.48, '2016-06', 531.11, '2016-07', 672.52, '2016-08', 624.60,
-      '2016-09', 575.55, '2016-10', 609.93, '2016-11', 701.34, '2016-12', 746.05,
-      '2017-01', 963.66, '2017-02', 970.94, '2017-03', 1180.04, '2017-04', 1071.71,
-      '2017-05', 1348.30, '2017-06', 2288.33, '2017-07', 2492.60, '2017-08', 2871.30,
-      '2017-09', 4701.76, '2017-10', 4341.05, '2017-11', 6440.97, '2017-12', 10198.60,
-      '2018-01', 14112.20, '2018-02', 10237.30, '2018-03', 10385.00, '2018-04', 7003.06,
-      '2018-05', 9251.47, '2018-06', 7500.70, '2018-07', 6411.68, '2018-08', 7769.04,
-      '2018-09', 7044.81, '2018-10', 6619.85, '2018-11', 6318.14, '2018-12', 4024.46,
-      '2019-01', 3746.71, '2019-02', 3460.55, '2019-03', 3853.76, '2019-04', 4105.36,
-      '2019-05', 5350.91, '2019-06', 8573.84, '2019-07', 10796.93, '2019-08', 10077.44,
-      '2019-09', 9630.59, '2019-10', 8299.72, '2019-11', 9193.99, '2019-12', 7571.62,
-      '2020-01', 7194.89, '2020-02', 9346.36, '2020-03', 8599.76, '2020-04', 6437.32,
-      '2020-05', 8672.78, '2020-06', 9463.61, '2020-07', 9145.99, '2020-08', 11322.57,
-      '2020-09', 11679.32, '2020-10', 10795.25, '2020-11', 13781.00, '2020-12', 19633.77,
-      '2021-01', 28994.01, '2021-02', 33114.58, '2021-03', 45159.50, '2021-04', 58926.56,
-      '2021-05', 57714.66, '2021-06', 37293.79, '2021-07', 35035.98, '2021-08', 41460.84,
-      '2021-09', 47099.77, '2021-10', 43816.74, '2021-11', 61320.45, '2021-12', 56907.96,
-      '2022-01', 46311.75, '2022-02', 38481.77, '2022-03', 43194.50, '2022-04', 45554.16,
-      '2022-05', 37713.27, '2022-06', 31792.55, '2022-07', 19820.47, '2022-08', 23336.72,
-      '2022-09', 20050.50, '2022-10', 19431.11, '2022-11', 20494.90, '2022-12', 17168.00,
-      '2023-01', 16547.91, '2023-02', 23137.84, '2023-03', 23150.93, '2023-04', 28473.33,
-      '2023-05', 29227.10, '2023-06', 27218.41, '2023-07', 30471.85, '2023-08', 29230.87,
-      '2023-09', 25934.02, '2023-10', 26967.40, '2023-11', 34657.27, '2023-12', 37718.01,
-      '2024-01', 42280.23, '2024-02', 42569.76, '2024-03', 61168.06, '2024-04', 71333.48,
-      '2024-05', 60609.50, '2024-06', 67489.61, '2024-07', 62673.61, '2024-08', 64625.84,
-      '2024-09', 58969.80, '2024-10', 63335.61, '2024-11', 70216.90, '2024-12', 96461.34,
-      '2025-01', 93425.10, '2025-02', 102402.80, '2025-03', 84373.87, '2025-04', 82551.92,
-      '2025-05', 94212.86, '2025-06', 104637.30, '2025-07', 107144.38, '2025-08', 115738.95,
-      '2025-09', 108228.75, '2025-10', 114057.59, '2025-11', 109558.63, '2025-12', 90389.11,
-      '2026-01', 87508.05, '2026-02', 78626.13, '2026-03', 67005.88, '2026-04', 68232.89,
-      '2026-05', 76305.05, '2026-06', 73580.21, '2026-07', 58562.45, '2026-08', 62813.66,
+      '2015-01', 217.46, '2015-02', 254.26, '2015-03', 244.22, '2015-04', 236.15,
+      '2015-05', 230.19, '2015-06', 263.07, '2015-07', 284.65, '2015-08', 230.06,
+      '2015-09', 236.06, '2015-10', 314.17, '2015-11', 377.32, '2015-12', 430.57,
+      '2016-01', 368.77, '2016-02', 437.70, '2016-03', 416.73, '2016-04', 448.32,
+      '2016-05', 531.39, '2016-06', 673.34, '2016-07', 624.68, '2016-08', 575.47,
+      '2016-09', 609.73, '2016-10', 700.97, '2016-11', 745.69, '2016-12', 963.74,
+      '2017-01', 970.40, '2017-02', 1179.97, '2017-03', 1071.79, '2017-04', 1347.89,
+      '2017-05', 2286.41, '2017-06', 2480.84, '2017-07', 2875.34, '2017-08', 4703.39,
+      '2017-09', 4338.71, '2017-10', 6468.40, '2017-11', 10233.60, '2017-12', 14156.40,
+      '2018-01', 10221.10, '2018-02', 10397.90, '2018-03', 6973.53, '2018-04', 9240.55,
+      '2018-05', 7494.17, '2018-06', 6404.00, '2018-07', 7780.44, '2018-08', 7037.58,
+      '2018-09', 6625.56, '2018-10', 6317.61, '2018-11', 4017.27, '2018-12', 3742.70,
+      '2019-01', 3457.79, '2019-02', 3854.79, '2019-03', 4105.40, '2019-04', 5350.73,
+      '2019-05', 8574.50, '2019-06', 10817.16, '2019-07', 10085.63, '2019-08', 9630.66,
+      '2019-09', 8293.87, '2019-10', 9199.58, '2019-11', 7569.63, '2019-12', 7193.60,
+      '2020-01', 9350.53, '2020-02', 8599.51, '2020-03', 6438.64, '2020-04', 8658.55,
+      '2020-05', 9461.06, '2020-06', 9137.99, '2020-07', 11323.47, '2020-08', 11680.82,
+      '2020-09', 10784.49, '2020-10', 13781.00, '2020-11', 19625.84, '2020-12', 29001.72,
+      '2021-01', 33114.36, '2021-02', 45137.77, '2021-03', 58918.83, '2021-04', 57750.18,
+      '2021-05', 37332.86, '2021-06', 35040.84, '2021-07', 41626.20, '2021-08', 47166.69,
+      '2021-09', 43790.89, '2021-10', 61318.96, '2021-11', 57005.43, '2021-12', 46306.45,
+      '2022-01', 38483.13, '2022-02', 43193.23, '2022-03', 45538.68, '2022-04', 37714.88,
+      '2022-05', 31792.31, '2022-06', 19784.73, '2022-07', 23336.90, '2022-08', 20049.76,
+      '2022-09', 19431.79, '2022-10', 20495.77, '2022-11', 17168.57, '2022-12', 16547.50,
+      '2023-01', 23139.28, '2023-02', 23147.35, '2023-03', 28478.48, '2023-04', 29268.81,
+      '2023-05', 27219.66, '2023-06', 30477.25, '2023-07', 29230.11, '2023-08', 25931.47,
+      '2023-09', 26967.92, '2023-10', 34667.78, '2023-11', 37712.75, '2023-12', 42265.19,
+      '2024-01', 42582.61, '2024-02', 61198.38, '2024-03', 71333.65, '2024-04', 60636.86,
+      '2024-05', 67491.41, '2024-06', 62678.29, '2024-07', 64619.25, '2024-08', 58969.90,
+      '2024-09', 63329.50, '2024-10', 70215.19, '2024-11', 96449.05, '2024-12', 93429.20,
+      '2025-01', 102405.02, '2025-02', 84373.01, '2025-03', 82548.91, '2025-04', 94207.31,
+      '2025-05', 104638.09, '2025-06', 107135.34, '2025-07', 115758.20, '2025-08', 108236.71,
+      '2025-09', 114056.09, '2025-10', 109556.16, '2025-11', 90394.31, '2025-12', 87508.83,
+      '2026-01', 78621.12, '2026-02', 66995.86, '2026-03', 68233.31, '2026-04', 76304.32,
+      '2026-05', 73579.69, '2026-06', 58558.86, '2026-07', 62813.75, '2026-08', 78548.63,
+      '2026-09', 83553.85,
     ]),
   },
   ethereum: {
@@ -59,6 +63,10 @@ export const ASSETS = {
     // Export mensuel et dernières clôtures quotidiennes concordants point par point.
     // Capture et dates de séance : scripts/source-snapshots/calculator-certified-2026-09-30.json.
     // Premier mois complet disponible : décembre 2017 ; novembre 2017 incomplet exclu.
+    // Mise à jour du 02/10/2026 : Yahoo ETH-USD, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Ethereum', tweetPhrase: "l'Ethereum", icon: 'Ξ', currency: 'USD',
     points: P([
       '2017-12', 756.73, '2018-01', 1118.31, '2018-02', 855.20, '2018-03', 396.46,
@@ -88,6 +96,7 @@ export const ASSETS = {
       '2025-12', 2967.04, '2026-01', 2445.09, '2026-02', 1965.05, '2026-03', 2104.71,
       '2026-04', 2256.25, '2026-05', 2004.34, '2026-06', 1569.58, '2026-07', 1860.35,
       '2026-08', 2466.82,
+      '2026-09', 2683.68,
     ]),
   },
   cac40: {
@@ -100,139 +109,115 @@ export const ASSETS = {
     // baisse de 0,79 % ce jour-là) — cohérent avec la convention "clôtures réelles" du reste de la
     // série, contrairement au point précédent qui était un record intrajournalier. Dernier point
     // réel : 31/08/2026.
+    // Mise à jour du 02/10/2026 : Yahoo ^FCHI, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/%5EFCHI?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'CAC 40', tweetPhrase: 'le CAC 40', icon: '🇫🇷', currency: 'EUR',
     points: P([
       '2015-12', 4637.06, '2016-12', 4862.31, '2017-12', 5312.56, '2018-12', 4730.69,
       '2019-12', 5978.06, '2020-12', 5551.41, '2021-12', 7153.03, '2022-12', 6473.76,
       '2023-12', 7319.76, '2024-12', 7380.74, '2025-12', 8183,
       '2026-01', 8259, '2026-04', 7959, '2026-08', 8334.50,
+      '2026-09', 7964.51,
     ]),
   },
   stoxx600: {
-    // Source : indice STOXX Europe 600 (rendement total, base 10 000 au 31/12/1986), export CSV mensuel
-    // réel fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier
-    // point disponible dans l'export).
-    // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
-    // rendements annuels imprécis par rapport aux vrais rendements connus de l'indice — import CSV
-    // d'origine approximatif. Point de DÉCEMBRE de chaque année 2016-2025 recalculé à partir du
-    // rendement annuel réel vérifié (2016-2024 : iShares STOXX Europe 600 UCITS ETF "EXSA", réplication
-    // physique, recoupé avec une recherche directe sur l'indice — écarts trouvés très faibles, <1,3%,
-    // l'import d'origine était déjà proche pour cet indice ; 2025 : +20,66%, confirmé par deux sources
-    // indépendantes convergentes — le bulletin mensuel STOXX de décembre 2025 et l'ETF Invesco STOXX
-    // Europe 600, après qu'une première recherche avait renvoyé un chiffre contradictoire de 35,31%
-    // visiblement confondu avec l'indice "MSCI Europe 600", différent du STOXX Europe 600), composé à
-    // partir du point de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les points de
-    // décembre ont été recalculés ; les mois intermédiaires de chaque année restent tels quels (non
-    // re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une
-    // même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) — limitation assumée,
-    // aucune valeur mensuelle inventée.
-    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée, retentée avec des requêtes plus précises
-    // après un premier échec) : même méthode que les corrections de décembre ci-dessus — pas de niveau
-    // "STOXX Europe 600 rebasé" public à chercher (c'est une reconstruction interne), donc calculé en
-    // appliquant le rendement total RÉEL du mois au point de juillet. Rendement retenu : +0,49 %, à
-    // partir du STOXX Europe 600 EUR Net Return Index (STOXXR), 1 654,78 au 31/07/2026 -> 1 662,91 au
-    // 31/08/2026, cohérent avec le retour sur 1 mois publié par l'ETF iShares STOXX Europe 600 (DE)
-    // UCITS (EXSA) sur la même période (+0,59 %) — 2 sources indépendantes convergentes. 224 956 x
-    // 1,0049 = 226 061.
-    label: 'Indice STOXX Europe 600', tweetPhrase: "l'indice STOXX Europe 600", icon: '🇪🇺', currency: 'EUR',
+    // Contrôle du 02/10/2026, source officielle STOXX :
+    // https://stoxx.com/index/SXXR/?factsheet=true — ISIN EU0009658210.
+    // Net Return EUR : dividendes nets réinvestis, niveaux réels en points.
+    // 141 dernières séances mensuelles de janvier 2015 à septembre 2026 extraites
+    // du tableau quotidien officiel, sans interpolation ; capture calculator-stoxx600-2026-10-02.json.
+    // Toute l’ancienne série composite rebasée et ses décembre corrigés sont remplacés.
+    // Les résultats historiques changent ; le DCA est maintenant possible sur cette série homogène.
+    // Septembre 1622,67 recoupé avec Investing STOXXR ; août officiel 1662,91 concordant.
+    label: 'Indice STOXX Europe 600', tweetPhrase: "l'indice STOXX Europe 600", icon: '🇪🇺', currency: 'EUR', priceUnit: 'points',
     points: P([
-      '2015-01', 93786, '2015-02', 100336, '2015-03', 102017, '2015-04', 102119,
-      '2015-05', 103824, '2015-06', 99165, '2015-07', 103146, '2015-08', 94657,
-      '2015-09', 90813, '2015-10', 98153, '2015-11', 100915, '2015-12', 95840,
-      '2016-01', 89736, '2016-02', 87756, '2016-03', 88985, '2016-04', 90542,
-      '2016-05', 92803, '2016-06', 88317, '2016-07', 91610, '2016-08', 92288,
-      '2016-09', 92189, '2016-10', 91236, '2016-11', 92197, '2016-12', 97316,
-      '2017-01', 97198, '2017-02', 100164, '2017-03', 103490, '2017-04', 105536,
-      '2017-05', 107070, '2017-06', 104367, '2017-07', 103999, '2017-08', 103177,
-      '2017-09', 107198, '2017-10', 109247, '2017-11', 107041, '2017-12', 107709,
-      '2018-01', 109603, '2018-02', 105427, '2018-03', 103331, '2018-04', 107970,
-      '2018-05', 108114, '2018-06', 107437, '2018-07', 110808, '2018-08', 108437,
-      '2018-09', 108787, '2018-10', 102772, '2018-11', 101756, '2018-12', 95894,
-      '2019-01', 102289, '2019-02', 106535, '2019-03', 108729, '2019-04', 112818,
-      '2019-05', 107249, '2019-06', 112039, '2019-07', 112390, '2019-08', 110873,
-      '2019-09', 114971, '2019-10', 116170, '2019-11', 119456, '2019-12', 123137,
-      '2020-01', 120570, '2020-02', 110514, '2020-03', 94474, '2020-04', 100616,
-      '2020-05', 104042, '2020-06', 107221, '2020-07', 106199, '2020-08', 109443,
-      '2020-09', 107904, '2020-10', 102394, '2020-11', 116566, '2020-12', 120933,
-      '2021-01', 118679, '2021-02', 121572, '2021-03', 129381, '2021-04', 132244,
-      '2021-05', 135666, '2021-06', 137696, '2021-07', 140529, '2021-08', 143586,
-      '2021-09', 138862, '2021-10', 145348, '2021-11', 141676, '2021-12', 150646,
-      '2022-01', 143642, '2022-02', 138979, '2022-03', 140366, '2022-04', 139354,
-      '2022-05', 138076, '2022-06', 127002, '2022-07', 136830, '2022-08', 129918,
-      '2022-09', 121508, '2022-10', 129220, '2022-11', 138128, '2022-12', 135069,
-      '2023-01', 142454, '2023-02', 145125, '2023-03', 144666, '2023-04', 148204,
-      '2023-05', 144467, '2023-06', 147951, '2023-07', 151123, '2023-08', 147285,
-      '2023-09', 144836, '2023-10', 139599, '2023-11', 148847, '2023-12', 155964,
-      '2024-01', 156809, '2024-02', 159921, '2024-03', 166376, '2024-04', 164768,
-      '2024-05', 170224, '2024-06', 168250, '2024-07', 170616, '2024-08', 173256,
-      '2024-09', 172671, '2024-10', 167039, '2024-11', 168921, '2024-12', 169237,
-      '2025-01', 178820, '2025-02', 184927, '2025-03', 177833, '2025-04', 176637,
-      '2025-05', 185159, '2025-06', 182901, '2025-07', 184668, '2025-08', 186410,
-      '2025-09', 189244, '2025-10', 194093, '2025-11', 195939, '2025-12', 204201,
-      '2026-01', 207911, '2026-02', 215928, '2026-03', 199380, '2026-04', 210113,
-      '2026-05', 216467, '2026-06', 222182, '2026-07', 224956, '2026-08', 226061,
+      '2015-01', 689.89, '2015-02', 738.07, '2015-03', 750.44, '2015-04', 751.19,
+      '2015-05', 763.73, '2015-06', 729.46, '2015-07', 758.74, '2015-08', 696.30,
+      '2015-09', 668.02, '2015-10', 722.01, '2015-11', 742.33, '2015-12', 705.00,
+      '2016-01', 660.10, '2016-02', 645.53, '2016-03', 654.57, '2016-04', 666.03,
+      '2016-05', 682.66, '2016-06', 649.66, '2016-07', 673.88, '2016-08', 678.87,
+      '2016-09', 678.14, '2016-10', 671.13, '2016-11', 678.20, '2016-12', 717.21,
+      '2017-01', 714.99, '2017-02', 736.81, '2017-03', 761.27, '2017-04', 776.32,
+      '2017-05', 787.61, '2017-06', 767.72, '2017-07', 765.02, '2017-08', 758.97,
+      '2017-09', 788.55, '2017-10', 803.62, '2017-11', 787.39, '2017-12', 793.07,
+      '2018-01', 806.24, '2018-02', 775.52, '2018-03', 760.10, '2018-04', 794.23,
+      '2018-05', 795.29, '2018-06', 790.31, '2018-07', 815.10, '2018-08', 797.66,
+      '2018-09', 800.24, '2018-10', 755.99, '2018-11', 748.52, '2018-12', 707.68,
+      '2019-01', 752.44, '2019-02', 783.67, '2019-03', 799.81, '2019-04', 829.89,
+      '2019-05', 788.92, '2019-06', 824.16, '2019-07', 826.74, '2019-08', 815.58,
+      '2019-09', 845.73, '2019-10', 854.55, '2019-11', 878.72, '2019-12', 897.47,
+      '2020-01', 886.91, '2020-02', 812.94, '2020-03', 694.95, '2020-04', 740.13,
+      '2020-05', 765.33, '2020-06', 788.72, '2020-07', 781.20, '2020-08', 805.06,
+      '2020-09', 793.74, '2020-10', 753.21, '2020-11', 857.46, '2020-12', 879.59,
+      '2021-01', 873.00, '2021-02', 894.28, '2021-03', 951.73, '2021-04', 972.79,
+      '2021-05', 997.96, '2021-06', 1012.89, '2021-07', 1033.73, '2021-08', 1056.22,
+      '2021-09', 1021.47, '2021-10', 1069.18, '2021-11', 1042.17, '2021-12', 1098.69,
+      '2022-01', 1056.63, '2022-02', 1022.33, '2022-03', 1032.53, '2022-04', 1025.09,
+      '2022-05', 1015.69, '2022-06', 934.23, '2022-07', 1006.52, '2022-08', 955.68,
+      '2022-09', 893.81, '2022-10', 950.54, '2022-11', 1016.07, '2022-12', 981.76,
+      '2023-01', 1047.89, '2023-02', 1067.54, '2023-03', 1064.16, '2023-04', 1090.19,
+      '2023-05', 1062.70, '2023-06', 1088.33, '2023-07', 1111.66, '2023-08', 1083.43,
+      '2023-09', 1065.41, '2023-10', 1026.89, '2023-11', 1094.92, '2023-12', 1136.87,
+      '2024-01', 1153.49, '2024-02', 1176.38, '2024-03', 1223.86, '2024-04', 1212.03,
+      '2024-05', 1252.17, '2024-06', 1237.65, '2024-07', 1255.05, '2024-08', 1274.47,
+      '2024-09', 1270.17, '2024-10', 1228.74, '2024-11', 1242.58, '2024-12', 1236.82,
+      '2025-01', 1315.40, '2025-02', 1360.32, '2025-03', 1308.14, '2025-04', 1299.34,
+      '2025-05', 1362.03, '2025-06', 1345.42, '2025-07', 1358.42, '2025-08', 1371.23,
+      '2025-09', 1392.08, '2025-10', 1427.75, '2025-11', 1441.33, '2025-12', 1481.66,
+      '2026-01', 1529.39, '2026-02', 1588.37, '2026-03', 1466.64, '2026-04', 1545.59,
+      '2026-05', 1592.33, '2026-06', 1634.37, '2026-07', 1654.78, '2026-08', 1662.91,
+      '2026-09', 1622.67,
     ]),
   },
   sp500: {
-    // Source : indice S&P 500 (rendement total, base 10 000 au 29/02/1992), export CSV mensuel réel
-    // fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier point
-    // disponible dans l'export).
-    // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
-    // rendements annuels erronés par rapport aux vrais rendements connus de l'indice (ex. 2017 donnait
-    // +7,1% au lieu de +21,8% réel) — import CSV d'origine imprécis. Point de DÉCEMBRE de chaque année
-    // 2016-2025 recalculé à partir du rendement annuel total réel vérifié (sources multiples
-    // convergentes : Motley Fool, dqydj, FT Portfolios — 2016:+11,96%, 2017:+21,83%, 2018:-4,38%,
-    // 2019:+31,49%, 2020:+18,40%, 2021:+28,71%, 2022:-18,11%, 2023:+26,29%, 2024:+25,02%, 2025:+17,88%),
-    // 2025 corrigé le 23/09/2026 d'après S&P DJI (+17,88 %, ancienne valeur +17,44 %) :
-    // https://www.spglobal.com/spdji/en/commentary/article/us-equities-market-attributes/
-    // Composé à partir du point de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les
-    // points de décembre ont été recalculés ; les mois intermédiaires de chaque année restent tels
-    // quels (non re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et
-    // décembre d'une même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) —
-    // limitation assumée, aucune valeur mensuelle inventée.
-    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée, retentée avec des requêtes plus précises
-    // après un premier échec) : même méthode que les corrections de décembre ci-dessus, appliquée au
-    // rendement du mois. Rendement retenu : +2,54 %, à partir de l'indice S&P 500 Total Return
-    // (^SP500TR), 16 763,42 au 31/07/2026 -> 17 189,63 au 31/08/2026 — cohérent avec la presse
-    // financière ("le S&P 500 a gagné plus de 2 % en août, record mensuel"), 2 sources indépendantes
-    // convergentes. 386 824 x 1,0254 = 396 659.
-    label: 'S&P 500', tweetPhrase: 'le S&P 500', icon: '🇺🇸', currency: 'USD',
+    // Mise à jour du 02/10/2026 : Yahoo ^SP500TR, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
+    // 141 clôtures mensuelles complètes, janvier 2015 à septembre 2026, sans interpolation des points source.
+    // S&P 500 Total Return en USD, dividendes bruts réinvestis, niveaux réels en points.
+    // Remplace la série composite rebasée ; rendements 2016–2025 recoupés avec les valeurs annuelles vérifiées.
+    // Ce rendement d’indice est hors frais et ne représente pas un ETF précis.
+    label: 'S&P 500', tweetPhrase: 'le S&P 500', icon: '🇺🇸', currency: 'USD', priceUnit: 'points',
     points: P([
-      '2015-01', 85714, '2015-02', 91164, '2015-03', 93734, '2015-04', 90785,
-      '2015-05', 94006, '2015-06', 90382, '2015-07', 94144, '2015-08', 86507,
-      '2015-09', 84457, '2015-10', 93128, '2015-11', 97272, '2015-12', 93029,
-      '2016-01', 88145, '2016-02', 88285, '2016-03', 90159, '2016-04', 90366,
-      '2016-05', 94042, '2016-06', 94727, '2016-07', 98122, '2016-08', 98093,
-      '2016-09', 97856, '2016-10', 97958, '2016-11', 104557, '2016-12', 104155,
-      '2017-01', 107433, '2017-02', 113365, '2017-03', 112499, '2017-04', 111169,
-      '2017-05', 109810, '2017-06', 108646, '2017-07', 107902, '2017-08', 107335,
-      '2017-09', 109725, '2017-10', 113907, '2017-11', 115310, '2017-12', 126892,
-      '2018-01', 117251, '2018-02', 115176, '2018-03', 111274, '2018-04', 113939,
-      '2018-05', 120473, '2018-06', 121641, '2018-07', 125329, '2018-08', 130357,
-      '2018-09', 131948, '2018-10', 125732, '2018-11', 127831, '2018-12', 121334,
-      '2019-01', 124197, '2019-02', 128994, '2019-03', 133619, '2019-04', 139239,
-      '2019-05', 131174, '2019-06', 137594, '2019-07', 142438, '2019-08', 141642,
-      '2019-09', 146240, '2019-10', 145858, '2019-11', 153520, '2019-12', 159543,
-      '2020-01', 157090, '2020-02', 145143, '2020-03', 127460, '2020-04', 144857,
-      '2020-05', 148213, '2020-06', 150324, '2020-07', 150088, '2020-08', 159637,
-      '2020-09', 156614, '2020-10', 152580, '2020-11', 165297, '2020-12', 188899,
-      '2021-01', 167735, '2021-02', 172574, '2021-03', 186215, '2021-04', 190358,
-      '2021-05', 189818, '2021-06', 199430, '2021-07', 204048, '2021-08', 211265,
-      '2021-09', 205875, '2021-10', 219050, '2021-11', 222931, '2021-12', 243131,
-      '2022-01', 224967, '2022-02', 217393, '2022-03', 227456, '2022-04', 218672,
-      '2022-05', 215535, '2022-06', 203950, '2022-07', 226884, '2022-08', 221940,
-      '2022-09', 206709, '2022-10', 219703, '2022-11', 221652, '2022-12', 199100,
-      '2023-01', 212641, '2023-02', 211633, '2023-03', 214238, '2023-04', 215482,
-      '2023-05', 222456, '2023-06', 233160, '2023-07', 237223, '2023-08', 236776,
-      '2023-09', 231318, '2023-10', 225921, '2023-11', 239517, '2023-12', 251444,
-      '2024-01', 256814, '2024-02', 270802, '2024-03', 279903, '2024-04', 270799,
-      '2024-05', 280717, '2024-06', 294783, '2024-07', 294982, '2024-08', 295079,
-      '2024-09', 298447, '2024-10', 304274, '2024-11', 331895, '2024-12', 314355,
-      '2025-01', 338421, '2025-02', 333427, '2025-03', 302887, '2025-04', 286073,
-      '2025-05', 304992, '2025-06', 310082, '2025-07', 324631, '2025-08', 325189,
-      '2025-09', 334675, '2025-10', 348055, '2025-11', 348546, '2025-12', 370562,
-      '2026-01', 343338, '2026-02', 344019, '2026-03', 335616, '2026-04', 364367,
-      '2026-05', 385455, '2026-06', 390161, '2026-07', 386824, '2026-08', 396659,
+      '2015-01', 3656.28, '2015-02', 3866.42, '2015-03', 3805.27, '2015-04', 3841.78,
+      '2015-05', 3891.18, '2015-06', 3815.85, '2015-07', 3895.80, '2015-08', 3660.75,
+      '2015-09', 3570.17, '2015-10', 3871.33, '2015-11', 3882.84, '2015-12', 3821.60,
+      '2016-01', 3631.96, '2016-02', 3627.06, '2016-03', 3873.11, '2016-04', 3888.13,
+      '2016-05', 3957.95, '2016-06', 3968.21, '2016-07', 4114.51, '2016-08', 4120.29,
+      '2016-09', 4121.06, '2016-10', 4045.89, '2016-11', 4195.73, '2016-12', 4278.66,
+      '2017-01', 4359.81, '2017-02', 4532.93, '2017-03', 4538.21, '2017-04', 4584.82,
+      '2017-05', 4649.34, '2017-06', 4678.36, '2017-07', 4774.56, '2017-08', 4789.18,
+      '2017-09', 4887.97, '2017-10', 5002.03, '2017-11', 5155.44, '2017-12', 5212.76,
+      '2018-01', 5511.21, '2018-02', 5308.09, '2018-03', 5173.19, '2018-04', 5193.04,
+      '2018-05', 5318.10, '2018-06', 5350.83, '2018-07', 5549.96, '2018-08', 5730.80,
+      '2018-09', 5763.42, '2018-10', 5369.49, '2018-11', 5478.91, '2018-12', 4984.22,
+      '2019-01', 5383.63, '2019-02', 5556.49, '2019-03', 5664.46, '2019-04', 5893.81,
+      '2019-05', 5519.27, '2019-06', 5908.25, '2019-07', 5993.17, '2019-08', 5898.23,
+      '2019-09', 6008.59, '2019-10', 6138.73, '2019-11', 6361.56, '2019-12', 6553.57,
+      '2020-01', 6551.00, '2020-02', 6011.73, '2020-03', 5269.20, '2020-04', 5944.68,
+      '2020-05', 6227.81, '2020-06', 6351.67, '2020-07', 6709.81, '2020-08', 7192.11,
+      '2020-09', 6918.83, '2020-10', 6734.84, '2020-11', 7472.06, '2020-12', 7759.35,
+      '2021-01', 7681.01, '2021-02', 7892.81, '2021-03', 8238.48, '2021-04', 8678.16,
+      '2021-05', 8738.77, '2021-06', 8942.78, '2021-07', 9155.21, '2021-08', 9433.58,
+      '2021-09', 8994.83, '2021-10', 9625.02, '2021-11', 9558.33, '2021-12', 9986.70,
+      '2022-01', 9469.92, '2022-02', 9186.37, '2022-03', 9527.46, '2022-04', 8696.65,
+      '2022-05', 8712.60, '2022-06', 7993.43, '2022-07', 8730.46, '2022-08', 8374.42,
+      '2022-09', 7603.14, '2022-10', 8218.70, '2022-11', 8678.00, '2022-12', 8178.02,
+      '2023-01', 8691.88, '2023-02', 8479.80, '2023-03', 8791.13, '2023-04', 8928.35,
+      '2023-05', 8967.16, '2023-06', 9559.67, '2023-07', 9866.77, '2023-08', 9709.68,
+      '2023-09', 9246.74, '2023-10', 9052.31, '2023-11', 9879.02, '2023-12', 10327.83,
+      '2024-01', 10501.38, '2024-02', 11062.11, '2024-03', 11418.03, '2024-04', 10951.66,
+      '2024-05', 11494.70, '2024-06', 11907.15, '2024-07', 12052.09, '2024-08', 12344.43,
+      '2024-09', 12608.07, '2024-10', 12493.74, '2024-11', 13227.13, '2024-12', 12911.82,
+      '2025-01', 13271.38, '2025-02', 13098.22, '2025-03', 12360.21, '2025-04', 12276.39,
+      '2025-05', 13049.13, '2025-06', 13712.71, '2025-07', 14020.46, '2025-08', 14304.68,
+      '2025-09', 14826.80, '2025-10', 15173.95, '2025-11', 15211.14, '2025-12', 15220.45,
+      '2026-01', 15441.15, '2026-02', 15323.80, '2026-03', 14560.75, '2026-04', 16088.56,
+      '2026-05', 16935.35, '2026-06', 16774.07, '2026-07', 16763.42, '2026-08', 17219.94,
+      '2026-09', 17160.41,
     ]),
   },
   msciWorld: {
@@ -307,6 +292,10 @@ export const ASSETS = {
     // Recoupé avec la mémoire générale de l'indice (ex. clôture du 31/12/2020 = 12 888,28, chiffre
     // largement documenté) : cohérent. Ajouté en réponse au blocage précédent de la roadmap
     // ("Nasdaq-100 non sourcé, faute de données fiables") — débloqué par l'export fourni.
+    // Mise à jour du 02/10/2026 : Yahoo ^NDX, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Nasdaq-100', tweetPhrase: 'le Nasdaq-100', icon: '💻', currency: 'USD',
     points: P([
       '2016-08', 4771.05, '2016-09', 4875.7, '2016-10', 4801.27, '2016-11', 4810.81,
@@ -340,6 +329,7 @@ export const ASSETS = {
       '2025-12', 25249.85, '2026-01', 25552.39, '2026-02', 24960.04, '2026-03', 23740.19,
       '2026-04', 27452.12, '2026-05', 30333.18, '2026-06', 30276.35, '2026-07', 28274.19,
       '2026-08', 29433.43,
+      '2026-09', 30408.50,
     ]),
   },
   soxx: {
@@ -348,6 +338,10 @@ export const ASSETS = {
     // Capture et dates de séance : scripts/source-snapshots/calculator-certified-2026-09-30.json.
     // Cours ajustés des splits, sans réinvestissement des dividendes (pas adjclose).
     // Août corrigé : 508,62 était la séance du 28/08, 511,04 clôture du 31/08.
+    // Mise à jour du 02/10/2026 : Yahoo SOXX, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/SOXX?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'ETF Semi-conducteurs (SOXX)', tweetPhrase: 'un ETF semi-conducteurs (SOXX)', icon: '🖥️', currency: 'USD',
     points: P([
       '2016-01', 27.68, '2016-02', 28.16, '2016-03', 30.54, '2016-04', 29.13,
@@ -382,6 +376,7 @@ export const ASSETS = {
       '2025-09', 271.12, '2025-10', 306.55, '2025-11', 296.74, '2025-12', 301.15,
       '2026-01', 346.30, '2026-02', 352.29, '2026-03', 328.66, '2026-04', 461.44,
       '2026-05', 569.08, '2026-06', 640.76, '2026-07', 504.89, '2026-08', 511.04,
+      '2026-09', 568.64,
     ]),
   },
   or: {
@@ -448,6 +443,10 @@ export const ASSETS = {
     // 29/01/2026, déjà documenté) plutôt qu'à une erreur. La nouvelle valeur est retenue pour la
     // cohérence de méthode (une seule source, mensuelle, plutôt que mélanger spot et futures).
     // Série de prix d'un contrat à terme continu : hors frais de roulement et sans détention réelle du métal.
+    // Mise à jour du 02/10/2026 : Yahoo SI=F, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/SI%3DF?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Argent (futures COMEX, once)', tweetPhrase: "le contrat à terme sur l'argent", icon: '🥈', currency: 'USD',
     points: P([
       '2015-01', 17.228, '2015-02', 16.558, '2015-03', 16.619, '2015-04', 16.153,
@@ -485,6 +484,7 @@ export const ASSETS = {
       '2025-09', 46.640, '2025-10', 48.569, '2025-11', 56.711, '2025-12', 70.896,
       '2026-01', 78.832, '2026-02', 93.291, '2026-03', 75.198, '2026-04', 73.534,
       '2026-05', 75.875, '2026-06', 59.922, '2026-07', 57.786, '2026-08', 66.990,
+      '2026-09', 60.10,
     ]),
   },
   lvmh: {
@@ -498,6 +498,10 @@ export const ASSETS = {
     // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
     // remplacé 450 € (~21/08/2026) par 453,30 €, la vraie clôture du 31/08/2026 (-1,06 % ce jour-là).
     // Dernier point réel : 31/08/2026.
+    // Mise à jour du 02/10/2026 : Yahoo MC.PA, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'LVMH', tweetPhrase: 'LVMH', icon: '◆', currency: 'EUR',
     points: P([
       '2015-01', 140, '2015-04', 165, '2015-07', 155, '2015-10', 160,
@@ -507,6 +511,7 @@ export const ASSETS = {
       '2019-01', 260, '2019-04', 340, '2019-07', 370, '2019-10', 390,
       '2020-12', 510.90, '2021-12', 727.00, '2022-12', 679.90, '2023-12', 733.60,
       '2024-12', 638.25, '2025-12', 643.65, '2026-01', 649.65, '2026-08', 453.30,
+      '2026-09', 390.00,
     ]),
   },
   apple: {
@@ -515,6 +520,10 @@ export const ASSETS = {
     // Août 2026 corrigé avec la clôture du 31/08 ; série complète de janvier 2015 à août 2026.
     // Les 140 points ont été recoupés le 29/09/2026 avec le relevé Yahoo figé dans
     // scripts/source-snapshots/calculator-yahoo-2026-09-29.json. Voir audit:calculator-series.
+    // Mise à jour du 02/10/2026 : Yahoo AAPL, champ adjclose, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/AAPL?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Apple', tweetPhrase: 'Apple', icon: '🍎', currency: 'USD',
     points: P([
       '2015-01', 25.9, '2015-02', 28.51, '2015-03', 27.62, '2015-04', 27.78,
@@ -552,6 +561,7 @@ export const ASSETS = {
       '2025-09', 253.69, '2025-10', 269.38, '2025-11', 278.09, '2025-12', 271.12,
       '2026-01', 258.78, '2026-02', 263.71, '2026-03', 253.34, '2026-04', 270.87,
       '2026-05', 311.79, '2026-06', 289.11, '2026-07', 308.64, '2026-08', 316.85,
+      '2026-09', 333.02,
     ]),
   },
   microsoft: {
@@ -560,6 +570,10 @@ export const ASSETS = {
     // Série complète de janvier 2015 à août 2026.
     // Les 140 points ont été recoupés le 29/09/2026 avec le relevé Yahoo figé dans
     // scripts/source-snapshots/calculator-yahoo-2026-09-29.json. Voir audit:calculator-series.
+    // Mise à jour du 02/10/2026 : Yahoo MSFT, champ adjclose, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/MSFT?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Microsoft', tweetPhrase: 'Microsoft', icon: '🪟', currency: 'USD',
     points: P([
       '2015-01', 34.22, '2015-02', 37.41, '2015-03', 34.69, '2015-04', 41.49,
@@ -597,6 +611,7 @@ export const ASSETS = {
       '2025-09', 513.72, '2025-10', 513.58, '2025-11', 488.91, '2025-12', 480.57,
       '2026-01', 427.58, '2026-02', 391.15, '2026-03', 368.68, '2026-04', 406.13,
       '2026-05', 449.39, '2026-06', 372.32, '2026-07', 463.85, '2026-08', 507.29,
+      '2026-09', 512.90,
     ]),
   },
   broadcom: {
@@ -608,6 +623,10 @@ export const ASSETS = {
     // scripts/source-snapshots/calculator-yahoo-2026-09-29.json. Voir audit:calculator-series.
     // Les clôtures ajustées historiques ont été alignées sur Yahoo : les ajustements
     // de dividendes différaient légèrement de l’ancienne extraction MacroTrends.
+    // Mise à jour du 02/10/2026 : Yahoo AVGO, champ adjclose, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/AVGO?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Broadcom', tweetPhrase: 'Broadcom', icon: '📡', currency: 'USD',
     points: P([
       '2015-01', 7.73, '2015-02', 9.59, '2015-03', 9.57, '2015-04', 8.81,
@@ -645,6 +664,7 @@ export const ASSETS = {
       '2025-09', 327.48, '2025-10', 366.90, '2025-11', 399.99, '2025-12', 344.20,
       '2026-01', 329.48, '2026-02', 317.80, '2026-03', 308.46, '2026-04', 416.01,
       '2026-05', 445.25, '2026-06', 377.06, '2026-07', 388.57, '2026-08', 369.67,
+      '2026-09', 351.19,
     ]),
   },
   tesla: {
@@ -654,6 +674,10 @@ export const ASSETS = {
     // à août 2026.
     // Les 140 points ont été recoupés le 29/09/2026 avec le relevé Yahoo figé dans
     // scripts/source-snapshots/calculator-yahoo-2026-09-29.json. Voir audit:calculator-series.
+    // Mise à jour du 02/10/2026 : Yahoo TSLA, champ adjclose, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/TSLA?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Tesla', tweetPhrase: 'Tesla', icon: '⚡', currency: 'USD',
     points: P([
       '2015-01', 13.57, '2015-02', 13.56, '2015-03', 12.58, '2015-04', 15.07,
@@ -691,6 +715,7 @@ export const ASSETS = {
       '2025-09', 444.72, '2025-10', 456.56, '2025-11', 430.17, '2025-12', 449.72,
       '2026-01', 430.41, '2026-02', 402.51, '2026-03', 371.75, '2026-04', 381.63,
       '2026-05', 435.79, '2026-06', 420.6, '2026-07', 311.21, '2026-08', 367.95,
+      '2026-09', 354.81,
     ]),
   },
   nvidia: {
@@ -711,12 +736,17 @@ export const ASSETS = {
     // marché de prédiction seulement). Conséquence : actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA
     // mensuel bloqué, versement unique uniquement), même traitement qu'ethereum/cac40 — pas de points
     // mensuels inventés entre les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo NVDA, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/NVDA?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Nvidia', tweetPhrase: 'Nvidia', icon: '🧠', currency: 'USD',
     points: P([
       '2015-12', 0.8040, '2016-12', 2.6287, '2017-12', 4.7839, '2018-12', 3.3097,
       '2019-12', 5.8563, '2020-12', 13.0184, '2021-12', 29.3541, '2022-12', 14.5994,
       '2023-12', 49.4944, '2024-12', 134.2530, '2025-12', 186.5000,
       '2026-08', 220.78,
+      '2026-09', 228.38,
     ]),
   },
   amazon: {
@@ -732,12 +762,17 @@ export const ASSETS = {
     // 2e requête convergente. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement
     // unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels inventés entre
     // les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo AMZN, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/AMZN?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Amazon', tweetPhrase: 'Amazon', icon: '📦', currency: 'USD',
     points: P([
       '2015-12', 33.7945, '2016-12', 37.4935, '2017-12', 58.4735, '2018-12', 75.0985,
       '2019-12', 92.3920, '2020-12', 162.8460, '2021-12', 166.7170, '2022-12', 84.0000,
       '2023-12', 151.9400, '2024-12', 219.3900, '2025-12', 230.82,
       '2026-08', 259.77,
+      '2026-09', 249.15,
     ]),
   },
   google: {
@@ -754,11 +789,16 @@ export const ASSETS = {
     // clôture au 31 août. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement
     // unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels inventés entre
     // les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo GOOGL, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/GOOGL?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Google (Alphabet)', tweetPhrase: 'Google', icon: '🔍', currency: 'USD',
     points: P([
       '2015-12', 38.76, '2016-12', 39.48, '2017-12', 52.48, '2018-12', 52.06,
       '2019-12', 66.73, '2020-12', 87.31, '2021-12', 144.33, '2022-12', 87.91,
       '2023-12', 139.18, '2024-12', 189.30, '2025-12', 312.78,
+      '2026-09', 344.08,
     ]),
   },
   meta: {
@@ -778,11 +818,16 @@ export const ASSETS = {
     // Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué,
     // versement unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels
     // inventés entre les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo META, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/META?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Meta', tweetPhrase: 'Meta', icon: '📘', currency: 'USD',
     points: P([
       '2015-12', 103.85, '2016-12', 114.15, '2017-12', 175.79, '2018-12', 130.07,
       '2019-12', 203.46, '2020-12', 271.67, '2021-12', 333.42, '2022-12', 119.78,
       '2023-12', 351.20, '2024-12', 583.17, '2025-12', 660.09,
+      '2026-09', 725.18,
     ]),
   },
   nestle: {
@@ -805,12 +850,17 @@ export const ASSETS = {
     // fourchette 52 semaines citée dans la même recherche (88,47-109,59 $). Actif ajouté à
     // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
     // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo NSRGY, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/NSRGY?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Nestlé', tweetPhrase: 'Nestlé', icon: '🍫', currency: 'USD',
     points: P([
       '2015-12', 56.01, '2016-12', 55.67, '2017-12', 68.79, '2018-12', 66.91,
       '2019-12', 91.80, '2020-12', 102.48, '2021-12', 125.35, '2022-12', 105.42,
       '2023-12', 108.36, '2024-12', 79.15, '2025-12', 98.78,
       '2026-08', 99.95,
+      '2026-09', 90.78,
     ]),
   },
   sap: {
@@ -829,11 +879,16 @@ export const ASSETS = {
     // Actif ajouté à SPARSE_MONTHLY_DATA_IDS
     // (DCA mensuel bloqué, versement unique uniquement), même traitement qu'ethereum/cac40 — pas de
     // points mensuels inventés entre les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo SAP, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/SAP?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'SAP', tweetPhrase: 'SAP', icon: '💻', currency: 'USD',
     points: P([
       '2015-12', 68.69, '2016-12', 76.32, '2017-12', 100.55, '2018-12', 90.39,
       '2019-12', 122.79, '2020-12', 121.27, '2021-12', 132.49, '2022-12', 100.25,
       '2023-12', 152.68, '2024-12', 246.21,
+      '2026-09', 208.48,
     ]),
   },
   visa: {
@@ -851,11 +906,16 @@ export const ASSETS = {
     // rangé à tort comme clôture d'août. Actif ajouté à
     // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
     // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo V, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/V?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Visa', tweetPhrase: 'Visa', icon: '💳', currency: 'USD',
     points: P([
       '2015-12', 72.69, '2016-12', 73.69, '2017-12', 108.45, '2018-12', 126.34,
       '2019-12', 181.07, '2020-12', 212.08, '2021-12', 211.41, '2022-12', 204.21,
       '2023-12', 257.94, '2024-12', 315.51, '2025-12', 355.85,
+      '2026-09', 359.33,
     ]),
   },
   netflix: {
@@ -877,11 +937,16 @@ export const ASSETS = {
     // le 23/09/2026 : prix de septembre rangé à tort comme clôture d'août. Actif ajouté à
     // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
     // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo NFLX, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/NFLX?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Netflix', tweetPhrase: 'Netflix', icon: '🎬', currency: 'USD',
     points: P([
       '2015-12', 11.44, '2016-12', 12.38, '2017-12', 19.20, '2018-12', 26.77,
       '2019-12', 32.36, '2020-12', 54.07, '2021-12', 60.24, '2022-12', 29.49,
       '2023-12', 48.69, '2024-12', 89.13, '2025-12', 93.76,
+      '2026-09', 69.58,
     ]),
   },
   cocacola: {
@@ -898,11 +963,16 @@ export const ASSETS = {
     // 23/09/2026 : prix de septembre rangé à tort comme clôture d'août. Actif ajouté à
     // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
     // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
+    // Mise à jour du 02/10/2026 : Yahoo KO, champ close, clôture du 30/09/2026.
+    // Source : https://query2.finance.yahoo.com/v8/finance/chart/KO?period1=1788220800&period2=1790899200&interval=1mo
+    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
+    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
     label: 'Coca-Cola', tweetPhrase: 'Coca-Cola', icon: '🥤', currency: 'USD',
     points: P([
       '2015-12', 31.84, '2016-12', 31.72, '2017-12', 36.29, '2018-12', 38.74,
       '2019-12', 46.72, '2020-12', 47.88, '2021-12', 53.32, '2022-12', 58.98,
       '2023-12', 56.36, '2024-12', 61.37, '2025-12', 69.47,
+      '2026-09', 86.08,
     ]),
   },
 }
@@ -946,12 +1016,11 @@ export function getAssetMinDate(assetId) {
 // CHF native sourçable dans ce sandbox — cf. leurs commentaires individuels pour le détail.
 export const SPARSE_MONTHLY_DATA_IDS = new Set(['cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola'])
 
-// Les points de décembre de ces indices ont été recalés sur les rendements annuels officiels,
-// mais les autres mois de l'ancien export ne l'ont pas été (sauts artificiels Nov/Déc/Jan).
-// Un DCA mensuel ou un départ à un mois intermédiaire mélangerait deux séries incohérentes.
-// Jusqu'à remplacement par des séries mensuelles officielles complètes, seul un versement
-// unique à une clôture de décembre est proposé pour ces trois indices.
-export const INCONSISTENT_MONTHLY_DATA_IDS = new Set(['stoxx600', 'sp500', 'msciWorld'])
+// S&P 500 retiré le 02/10/2026 après remplacement par 141 clôtures Total Return certifiées.
+// Seul le MSCI World conserve des décembre recalés et des mois intermédiaires incohérents.
+// Les 141 clôtures officielles STOXX Net Return EUR remplacent sa série composite le 02/10/2026.
+// Jusqu’au remplacement du MSCI World, seul un départ à une clôture de décembre est proposé.
+export const INCONSISTENT_MONTHLY_DATA_IDS = new Set(['msciWorld'])
 
 // Actifs dont le DERNIER point (donc le "dernier niveau connu" affiché à l'étape 1) a une confiance
 // réduite documentée dans le commentaire de l'actif — surfacé dans l'UI (badge ⚠️, cf. App.jsx)
@@ -975,7 +1044,7 @@ export const LIVRET_A = { 2015: 0.9, 2016: 0.75, 2017: 0.75, 2018: 0.75, 2019: 0
 // 2014 : « Hausse des prix à la consommation de 0,5 % en moyenne en 2014 » (insee.fr/fr/statistiques/1564994)
 export const INFLATION = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9, 2014: 0.5, 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9, 2026: 1.0 }
 
-export const LATEST_YM = '2026-08' // dernière donnée disponible dans les tableaux ci-dessus
+export const LATEST_YM = '2026-09' // dernière donnée disponible dans les tableaux ci-dessus
 export const MONTHS_FULL = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 export const MONTHS_SHORT = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']
 

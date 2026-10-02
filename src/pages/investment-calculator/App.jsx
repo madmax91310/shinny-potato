@@ -148,6 +148,7 @@ function ResultCard({ state, d, copied, onCopy }) {
       <p className="ic-method-note">
         {asset && <>Série en {currency} : {observedMonths} points présents dans le code sur {simulatedMonths} mois de simulation. {observedMonths < simulatedMonths ? 'Les mois sans point sont interpolés entre les points connus. ' : ''}{state.overridePriceRaw !== '' ? 'Le dernier prix a été saisi manuellement. ' : ''}</>}
         Le versement unique achète au prix de départ ; en DCA, chaque versement mensuel achète au prix du mois. Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Livret A et inflation sont estimés avec des taux annuels moyens.
+        {asset?.priceUnit === 'points' ? (state.assetId === 'stoxx600' ? ' Indice STOXX Europe 600 Net Return en euros, dividendes nets réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.' : ' Indice S&P 500 Total Return en dollars, dividendes bruts réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.') : ''}
         {monthlyIndex ? ' Pour cet indice, la simulation part d’une clôture de décembre et relie uniquement les points annuels vérifiés ; elle ne représente pas la performance nette d’un ETF précis.' : ''}
       </p>
 
@@ -324,7 +325,7 @@ export default function App() {
                 <>
                   <p className="ic-current-level">
                     📍 Dernier niveau connu :{' '}
-                    <strong>{fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
+                    <strong>{ASSETS[state.assetId].priceUnit === 'points' ? `${lastPoint.price.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} points` : fmtEUR(lastPoint.price, ASSETS[state.assetId].currency)}</strong>
                     {' '}(au {lastPointLabel})
                   </p>
                   {REDUCED_CONFIDENCE_LAST_POINT[state.assetId] && (
