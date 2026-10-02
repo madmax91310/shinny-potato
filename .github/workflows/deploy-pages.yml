@@ -18,16 +18,23 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  # Only newer revisions of the same PR may cancel their validation. Production
+  # builds (including workflow_call from 13F refresh) have independent lifetimes.
+  group: pages-validation-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      commit_sha: ${{ steps.snapshot.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.ref || github.sha }}
+      - name: Record the exact built snapshot
+        id: snapshot
+        run: echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -49,6 +56,7 @@ jobs:
       - run: npm run verify:tweet-midi
       - run: npm run audit:investor-profiles
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
+      - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: npm run audit:household-statistics
       - run: node scripts/test-data-reuse.mjs
       - run: npm run audit:data-catalog
@@ -72,9 +80,22 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    # Serialize actual publications, without interrupting an active publication
+    # or replacing a waiting 13F deployment with an unrelated/older run.
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
+      queue: max
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.build.outputs.commit_sha }}
+      - name: Skip superseded production snapshots
+        id: current
+        run: bash scripts/check-pages-head.sh
       - id: deployment
+        if: steps.current.outputs.current == 'true'
         uses: actions/deploy-pages@v4
