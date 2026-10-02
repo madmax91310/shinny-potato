@@ -1,6 +1,8 @@
+import { MSCI_HISTORY_REVIEW } from './msci-history.js';
 import { COMPANY_HISTORY_REVIEW } from './company-history.js';
 // Contrôle du 02/10/2026. Aucun prix dupliqué ici ; captures rejouées par audit:calculator-series.
 export const MARKET_HISTORY_REVIEW = {
+  ...MSCI_HISTORY_REVIEW,
   ...COMPANY_HISTORY_REVIEW,
   "history:msciWorld": {
     "sourceUrls": [

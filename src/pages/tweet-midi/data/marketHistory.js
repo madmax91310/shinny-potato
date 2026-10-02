@@ -164,8 +164,9 @@ export function getBenchmarkPerformance(startYm, endYm) {
 // disposent désormais de niveaux officiels, mais restent
 // exclus d’Anniversaire : la saisie manuelle du niveau actuel n’identifie pas encore
 // explicitement la variante Total/Net Return et pourrait être confondue avec Price.
-// Les niveaux de ces trois indices restent masqués dans Performance depuis.
-const REBASED_INDEX_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
+// Même règle pour les nouveaux indices MSCI Gross Return issus du registre commun.
+// Leurs niveaux restent masqués dans Performance depuis.
+const REBASED_INDEX_IDS = new Set(ASSET_ORDER.filter(id => ASSETS[id].priceUnit === 'points'));
 
 // Les séries éparses sont exclues des anniversaires : interpoler entre deux clôtures
 // annuelles ne fournit pas un prix mensuel réel. La liste est partagée avec le Calculateur,

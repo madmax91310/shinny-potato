@@ -1,3 +1,4 @@
+import { MSCI_HISTORY } from './msci-history.js'
 import { COMPANY_HISTORY } from './company-history.js'
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
@@ -963,11 +964,12 @@ export const ASSETS = {
       '2026-09', 86.08,
     ]),
   },
+  ...MSCI_HISTORY,
   ...COMPANY_HISTORY,
 }
 
 export const ASSET_ORDER = [
-  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'nasdaq100', 'soxx',
+  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
   'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
   ...Object.keys(COMPANY_HISTORY),

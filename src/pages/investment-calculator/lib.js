@@ -270,7 +270,7 @@ export function buildTweetText(state, d) {
     `${gainPct < 0 ? '🔻' : '🚀'} Performance : ${fmtPct(gainPct)}`,
   ]
   if (ASSETS[state.assetId]?.priceUnit === 'points' || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
-    lines.push('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
+    lines.push(asset?.methodNote ?? 'Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
   }
 
   if (asset?.priceMethod === 'adjusted') {
