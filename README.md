@@ -76,3 +76,10 @@ publication des déclarations et de leur intégration par les sources ; les date
 photographie affichées ne sont pas remplacées par la date du contrôle.
 
 Vérification : `python -m unittest discover -s scripts -p test_investor_refresh.py`.
+
+Les tweets investisseurs ajoutent un encart de quatre mouvements au maximum,
+issus de la comparaison trimestrielle fournie par Tracefour ou FolioFact : nouvelles
+lignes, variations du nombre d’actions et sorties. Les données sont conservées avant
+le regroupement des catégories d’actions. Une variation de poids ne sert jamais à
+inférer un achat ou une vente. Sans mouvement exploitable ou comparaison disponible,
+l’encart est omis. Les mêmes récupérations automatiques actualisent cet encart.

@@ -105,6 +105,34 @@ export function portfolioEditorial(portfolio) {
   return { hook, top, explanation: [overview, explanation, classes].filter(Boolean).join('\n\n'), question }
 }
 
+// Compare reported security lines, before company/class grouping. Weight changes
+// are intentionally never interpreted as changes in the number of shares.
+export function movementExcerpt(snapshot) {
+  const prior = snapshot.quarterChanges?.priorPeriodLabel
+  if (!prior || !Array.isArray(snapshot.holdings)) return ''
+  const rows = snapshot.holdings.filter(row => !row.putCall && row.weight > 0)
+    .sort((a, b) => b.weight - a.weight)
+  const label = row => [holdingName(row), tickers(row)].filter(Boolean).join(' ')
+  const change = row => Math.abs(row.sharesChangePct).toLocaleString('fr-FR', { maximumFractionDigits: 1 })
+  const buckets = [
+    rows.filter(row => row.isNew === true).map(row => '🆕 Nouvelle ligne : ' + label(row)),
+    rows.filter(row => !row.isNew && row.ticker !== 'BRK.{A,B}' && Number.isFinite(row.sharesChangePct) && row.sharesChangePct >= .05)
+      .map(row => '📈 ' + label(row) + ' : nombre d’actions +' + change(row) + ' %'),
+    rows.filter(row => !row.isNew && row.ticker !== 'BRK.{A,B}' && Number.isFinite(row.sharesChangePct) && row.sharesChangePct <= -.05 && row.sharesChangePct >= -100)
+      .map(row => '📉 ' + label(row) + ' : nombre d’actions −' + change(row) + ' %'),
+    (snapshot.quarterChanges.exits || []).filter(row => !row.putCall && !rows.some(current => row.ticker ? current.ticker === row.ticker : current.issuerName === row.issuerName))
+      .map(row => '🚪 Ligne sortie : ' + label(row)),
+  ]
+  // One example per available category, then fill remaining slots by position size.
+  const selected = buckets.flatMap(bucket => bucket.slice(0, 1))
+  for (const bucket of buckets) {
+    for (const line of bucket.slice(1)) if (selected.length < 4) selected.push(line)
+  }
+  if (!selected.length) return ''
+  const period = String(prior).replace(/^Q([1-4]) /, 'T$1 ')
+  return '🔄 Quelques mouvements depuis ' + period + '\n' + selected.join('\n')
+}
+
 export function buildTweet(portfolio, intro = '') {
   const { identity, snapshot } = portfolio
   const editorial = portfolioEditorial(portfolio)
@@ -116,10 +144,11 @@ export function buildTweet(portfolio, intro = '') {
     editorial.hook,
     who + '\n' + presentation,
     '💼 Ses principales positions au ' + dateFR(snapshot.periodEnd) + '\n' + editorial.top.map((row, i) => icon[i] + ' ' + holdingName(row) + ' ' + tickers(row) + ' : ' + percentage(row.weight)).join('\n'),
+    movementExcerpt(snapshot),
     '🔍 Ce qui distingue ce portefeuille\n' + editorial.explanation,
     '📅 Photographie au ' + dateFR(snapshot.periodEnd) + ' des positions déclarées par ' + (identity.entityName || identity.displayName) + '. Les options sont exclues de cette présentation ; ce relevé ne représente pas nécessairement l’ensemble des actifs du gestionnaire.',
     '💬 ' + editorial.question,
-  ].join('\n\n')
+  ].filter(Boolean).join('\n\n')
 }
 
 export async function loadPortfolio(slug, signal) {

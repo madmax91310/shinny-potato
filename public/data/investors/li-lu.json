@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-01T05:07:31.120303+00:00",
+  "as_of": "2026-10-02T17:50:26.593203+00:00",
   "data": {
     "identity": {
       "slug": "li-lu",
@@ -15,45 +15,94 @@
           "issuerName": "Alphabet Inc.",
           "ticker": "GOOG(L)",
           "putCall": null,
-          "weight": 0.47935586596197144
+          "weight": 0.47935586596197144,
+          "isNew": false,
+          "sharesChangePct": null
         },
         {
           "issuerName": "PDD Holdings Inc.",
           "ticker": "PDD",
           "putCall": null,
-          "weight": 0.22167854379119192
+          "weight": 0.22167854379119192,
+          "isNew": false,
+          "sharesChangePct": 133.5
         },
         {
           "issuerName": "Berkshire Hathaway Inc.",
           "ticker": "BRK.{A,B}",
           "putCall": null,
-          "weight": 0.14977128304185883
+          "weight": 0.14977128304185883,
+          "isNew": false,
+          "sharesChangePct": null
         },
         {
           "issuerName": "East West Bancorp Inc.",
           "ticker": "EWBC",
           "putCall": null,
-          "weight": 0.09678822243789861
+          "weight": 0.09678822243789861,
+          "isNew": false,
+          "sharesChangePct": null
         },
         {
           "issuerName": "Crocs Inc.",
           "ticker": "CROX",
           "putCall": null,
-          "weight": 0.028901209920163085
+          "weight": 0.028901209920163085,
+          "isNew": false,
+          "sharesChangePct": null
         },
         {
           "issuerName": "Tencent Music Entmt Group",
           "ticker": "TME",
           "putCall": null,
-          "weight": 0.014862180297296149
+          "weight": 0.014862180297296149,
+          "isNew": false,
+          "sharesChangePct": null
         },
         {
           "issuerName": "Apple Inc.",
           "ticker": "AAPL",
           "putCall": null,
-          "weight": 0.008642694549619946
+          "weight": 0.008642694549619946,
+          "isNew": false,
+          "sharesChangePct": null
         }
-      ]
+      ],
+      "quarterChanges": {
+        "priorPeriodLabel": "Q1 2026",
+        "exits": [
+          {
+            "issuerName": "Bank of America Corp.",
+            "ticker": "BAC",
+            "putCall": null
+          },
+          {
+            "issuerName": "Occidental Petroleum Corp.",
+            "ticker": "OXY",
+            "putCall": null
+          },
+          {
+            "issuerName": "S&P Global Inc.",
+            "ticker": "SPGI",
+            "putCall": null
+          },
+          {
+            "issuerName": "Block H & R Inc.",
+            "ticker": "HRB",
+            "putCall": null
+          },
+          {
+            "issuerName": "Moody's Corp.",
+            "ticker": "MCO",
+            "putCall": null
+          },
+          {
+            "issuerName": "MSCI Inc.",
+            "ticker": "MSCI",
+            "putCall": null
+          }
+        ]
+      }
     },
     "sourceUrl": "https://foliofact.com/funds/himalaya-capital-management"
   }

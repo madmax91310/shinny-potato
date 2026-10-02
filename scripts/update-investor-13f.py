@@ -1,6 +1,7 @@
 """Refresh selected 13F managers from FolioFact's public holdings API."""
 import datetime as dt
 import json
+import math
 import os
 import pathlib
 import time
@@ -20,6 +21,20 @@ def get_json(url):
         return json.load(response)
 
 
+def shares_change(row):
+    # FolioFact supplies a positive magnitude for add/trim; normalize to the
+    # signed sharesChangePct used by Tracefour. Never derive this from values.
+    # Berkshire A/B share counts have different units; the provider folds them.
+    if row.get('security', {}).get('ticker') == 'BRK.{A,B}':
+        return None
+    value = row.get('change_percent')
+    if row.get('change') not in ('add', 'trim') or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+        return None
+    if row['change'] == 'trim' and value > 100:
+        return None
+    return value if row['change'] == 'add' else -value
+
+
 def make_portfolio(slug, source_slug, display, entity):
     base = f'https://foliofact.com/api/v1/funds/{source_slug}'
     fund = get_json(base)
@@ -29,19 +44,38 @@ def make_portfolio(slug, source_slug, display, entity):
     dt.date.fromisoformat(period)
     if total <= 0 or total != float(fund['filing']['total_value']):
         raise ValueError(f'Inconsistent report for {slug}')
-    rows = table['holdings']
+    if table.get('quarter') != fund['filing'].get('quarter'):
+        raise ValueError(f'Inconsistent quarter for {slug}')
+    rows = list(table['holdings'])
+    pagination = table.get('pagination', {})
+    for page in range(2, int(pagination.get('total_pages', 1)) + 1):
+        next_table = get_json(f'{base}/holdings?page={page}')
+        if next_table['quarter'] != table['quarter'] or float(next_table['total_value']) != total:
+            raise ValueError(f'Inconsistent holdings page for {slug}')
+        rows.extend(next_table['holdings'])
+    if pagination.get('total') is not None and len(rows) != int(pagination['total']):
+        raise ValueError(f'Incomplete holdings pages for {slug}')
     holdings = [
         {'issuerName': row['security']['name'], 'ticker': row['security']['ticker'] or '',
-         'putCall': None, 'weight': float(row['value']) / total}
+         'putCall': None, 'weight': float(row['value']) / total,
+         'isNew': row.get('change') == 'new',
+         'sharesChangePct': shares_change(row)}
         for row in rows if row.get('position_type') == 'direct' and float(row.get('value') or 0) > 0
     ]
     weight_sum = sum(row['weight'] for row in holdings)
     if len(holdings) < 5 or not .95 <= weight_sum <= 1.02:
         raise ValueError(f'Incomplete portfolio for {slug}: {len(holdings)} rows, {weight_sum:.3f} total weight')
+    quarter = (dt.date.fromisoformat(period).month - 1) // 3 + 1
+    year = dt.date.fromisoformat(period).year
+    prior_label = f'Q{quarter - 1 if quarter > 1 else 4} {year if quarter > 1 else year - 1}'
+    exits = [{'issuerName': row['security']['name'], 'ticker': row['security']['ticker'] or '', 'putCall': None}
+             for row in rows if row.get('position_type') == 'direct' and row.get('change') == 'sold'
+             and float(row.get('value') or 0) == 0 and float(row.get('shares') or 0) == 0]
     return {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
         'identity': {'slug': slug, 'archetype': 'hedge_fund', 'displayName': display,
                      'entityName': entity, 'dataProvider': 'FolioFact'},
-        'snapshot': {'periodEnd': period, 'holdings': holdings},
+        'snapshot': {'periodEnd': period, 'holdings': holdings,
+                     'quarterChanges': {'priorPeriodLabel': prior_label, 'exits': exits}},
         'sourceUrl': f'https://foliofact.com/funds/{source_slug}',
     }}
 
