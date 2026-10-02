@@ -155,6 +155,19 @@ Il baisse ? J'accumule, sans regarder le prix.
 💬 Et toi, ton DCA de septembre est déjà passé ?
 
 ⚠️ Pas un conseil financier.` },
+  { id: 47, month: "Septembre", category: "Storytelling", formats: ["Bilan de la semaine"], text: `Mon patrimoine approche des 80K et honnêtement, je n'aurais pas imaginé ça quand j'ai acheté mes premiers 29,87€ de MSCI World 🙃
+
+Je gagne environ 2 200€ par mois et, pendant longtemps, j'ai simplement fait ce que mes parents m'avaient appris : mettre mon argent sur un Livret A. On ne parlait pas de bourse à la maison, alors j'ai découvert tout ça seul, en prenant le temps de comprendre où je mettais mon argent 📚
+
+En septembre, mon patrimoine a gagné 1 617€, soit presque les trois quarts de mon salaire. Ça me fait quelque chose de voir ce montant, même en sachant qu'une baisse peut très bien en effacer une partie le mois prochain.
+
+Quand je partage mes chiffres ici, j'espère surtout que quelqu'un qui se dit « avec mon salaire, ça ne sert à rien » pourra s'y reconnaître. Parce que je me suis posé la même question avant de commencer.
+
+Aujourd'hui, je suis à 79 189€ et je continue mes versements chaque mois, à mon rythme 🌱
+
+Et toi, tu te souviens du montant de ton premier investissement ? 👇
+
+⚠️ Pas un conseil financier.` },
 ]
 
 export function getTweet(id) {
