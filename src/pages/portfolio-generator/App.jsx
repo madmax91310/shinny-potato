@@ -627,6 +627,7 @@ export default function App() {
 
           <div className="pg-panel">
             <div className="pg-panel-title">Répartition — {current.selection.length} lignes</div>
+            {current.recipeLabel && <p className="pg-fine-print pg-recipe-label">{current.recipeLabel}</p>}
             <AllocationList selection={current.selection} />
             <CategorySummary selection={current.selection} />
           </div>

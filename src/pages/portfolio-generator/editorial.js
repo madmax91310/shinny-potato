@@ -46,7 +46,7 @@ function role(s, selection) {
   return explanation + " " + place;
 }
 
-export function buildEditorial(selection, history = [], profileId, riskId) {
+export function buildEditorial(selection, history = [], profileId, riskId, recipe = null) {
   const top = [...selection].sort((a, b) => b.pct - a.pct)[0];
   const euros = selection.find(s => s.id === "fonds_euros");
   const crypto = selection.find(s => s.cat === "crypto");
@@ -82,6 +82,7 @@ export function buildEditorial(selection, history = [], profileId, riskId) {
     `${top.pct}% sur ${top.name} : que racontent les autres lignes de ce portefeuille ? 👇`,
     `${selection.length} lignes, la plus grosse à ${top.pct}% : où se concentre réellement l’exposition ? 👇`,
   ];
+  if (recipe?.hook && !crypto && !lever && !shared) hooks = [recipe.hook + " 👇", ...hooks];
   const last = [...history].reverse().find(p => p.profileId === profileId && p.riskId === riskId);
   const hookIndex = last?.hookTemplate === hooks[0] ? 1 : 0;
   const equityPct = weight(selection, isEquity);
@@ -103,7 +104,7 @@ export function buildEditorial(selection, history = [], profileId, riskId) {
   return {
     selection: selection.map(s => ({ ...s, pourquoi: role(s, selection) })),
     hook: "📊 " + hooks[hookIndex], hookTemplate: hooks[hookIndex],
-    intro: "Voici la place de chaque support, puis ce que leur association implique.",
+    intro: recipe?.description ?? "Voici la place de chaque support, puis ce que leur association implique.",
     sousTitre: "💼 La répartition", logic,
     cta: `💬 Tu garderais ${top.name} à ${top.pct}% ou tu changerais sa place dans cette répartition ?`,
     ctaTemplate: "place-de-la-plus-grosse-ligne", warning: warnings.join(" "),
