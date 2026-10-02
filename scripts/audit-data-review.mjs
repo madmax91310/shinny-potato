@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { DATA_CATALOG } from '../src/data/catalog.js'
-import { buildReview, dayNumber, expiry, freshness, parisToday } from '../src/pages/data-review/lib.js'
+import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview } from '../src/pages/data-review/lib.js'
 import { OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 
 assert.equal(dayNumber('2026-02-30'), null)
@@ -54,3 +54,16 @@ assert.equal(remaining.items.filter(x => x.category === 'reserve').length, 9, 'A
 assert.equal(remaining.archives, 16, 'La recherche ne doit pas masquer un reliquat en archive')
 console.log(`Revue au ${current.today} : ${current.items.length} éléments, 9 réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
 console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, 4 contrôles non datés et 9 réserves conservés.`)
+
+assert.equal(addMonths('2026-01-31', 1), '2026-02-28')
+assert.equal(addMonths('2027-11-30', 3), '2028-02-29')
+const monthly = { registry: 'src/data/market-history.js', value: { points: [{ date: '2026-08', price: 1 }] } }
+assert.equal(scheduledReview({ checkedAt: '2026-10-02' }, monthly, '2026-10-02').category, 'stale', 'Une consultation ne repousse pas un mois manquant')
+monthly.value.points.push({ date: '2026-09', price: 2 })
+assert.equal(scheduledReview({ checkedAt: '2026-10-02' }, monthly, '2026-10-02').nextReviewAt, '2026-11-01')
+assert.equal(scheduledReview({ checkedAt: '2026-09-30' }, { registry: 'src/data/etf-ter.js' }, '2026-12-30').category, 'stale')
+assert.equal(scheduledReview({ checkedAt: '2026-09-30' }, { registry: 'src/data/instrument-returns.js' }, '2026-10-02').nextReviewAt, '2027-01-01')
+assert.equal(new Set(current.schedule.map(x => x.id)).size, current.schedule.length)
+assert(current.schedule.every(x => x.nextReviewAt || x.category === 'undated'))
+assert.equal(current.schedule.filter(x => x.id.startsWith('investor:')).length, 3)
+assert(current.schedule.filter(x => x.id.startsWith('investor:')).every(x => x.nextReviewAt === '2026-11-14'))

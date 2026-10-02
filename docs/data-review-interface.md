@@ -9,12 +9,37 @@ courtiers, sans copie des chiffres. Elle propose recherche par nom, ISIN, alias
 ou outil, filtres et liens vers les fiches et sources. Les filtres sont conservés
 dans l’URL. Les dates du jour suivent Europe/Paris.
 
-Les contrôles de source sont à revoir à partir de 180 jours ; une revue prochaine
-est signalée 30 jours avant. Le calcul utilise `checkedAt` ou `checked`, jamais
-la date de photographie, la période historique ou la date d’édition d’un contrat.
-Une date absente ne devient pas une donnée fausse ou non sourcée. Une date de
-contrôle future est signalée séparément. Les sources courtiers sont examinées
-individuellement : la consultation récente de l’une ne rajeunit pas les autres.
+Les échéances sont calculées par type de données et affichées pour chaque champ :
+
+| Données | Prochaine vérification |
+| --- | --- |
+| Clôtures mensuelles du calculateur | Début du mois suivant celui de la prochaine clôture attendue : septembre présent → 1er novembre ; août seulement → 1er octobre |
+| Performances annuelles | 1er janvier après la dernière vérification, pour rechercher la nouvelle année complète ; les séries à période fixe restent historiques |
+| Frais, caractéristiques, encours et PEA des ETF | Dernière vérification + 3 mois |
+| Photographies de composition des indices | Dernière vérification + 3 mois ; conserver la photographie historique |
+| Documents courtiers | Dernière vérification + 3 mois, séparément pour chaque document |
+| Statistiques de ménages | Dernière vérification + 12 mois, ou dès nouvelle publication |
+| Références, cotations et définitions | Dernière vérification + 6 mois |
+| Copies locales des portefeuilles 13F | 45 jours après la clôture du trimestre suivant celui du relevé |
+| Offres | Échéance explicite `reviewUntil` |
+
+Les jours de fin de mois sont bornés au dernier jour valide. Les vérifications
+sont « à jour », « revue prochaine » dans les 30 jours, ou « à revoir / en retard »
+dès l'échéance. Une date de contrôle absente ou future reste à examiner. Les
+photographies historiques ne sont jamais réécrites par le calendrier.
+Une consultation récente ne décale pas l'échéance d'une clôture mensuelle ou
+d'un trimestre 13F manquant. Les trois copies locales 13F (Li Lu, Gates, Klarman)
+sont collectées et déployées automatiquement ; la date de récupération est
+présentée comme dernière vérification technique, sans certifier le contenu.
+Les huit autres portefeuilles sont chargés en direct et ne possèdent pas de
+copie locale datée dans ce calendrier.
+
+Les vues « Calendrier des vérifications » et « Dans les 30 prochains jours »
+complètent les tâches actives. Un filtre explicite par outil conserve sa valeur
+dans l'URL après rechargement. Le calendrier regroupe les échéances de champs
+communs, avec les outils consommateurs du catalogue, et les offres. Les réserves
+restent dans leur propre vue même après une recherche récente. Les alertes
+actives suivent leur priorité puis leur échéance ; le calendrier suit les dates.
 
 Les réserves sont dérivées des statuts du registre. Les champs « sans objet »
 sont exclus. Les archives `archive-unverifiable` sont comptées séparément et ne
@@ -45,3 +70,10 @@ l’exclusion des archives, la distinction photographie/contrôle et les sources
 consultées à des dates différentes. Il est exécuté en CI. Playwright vérifie
 recherche IBKR, filtres après rechargement, sources des échéances et absence de
 débordement à 390 px. Les autres audits continuent de vérifier les générateurs.
+
+Au 2 octobre 2026, le nouveau calendrier contient 939 contrôles de champs et
+sources, ainsi que les trois offres. Une échéance mensuelle est atteinte pour
+l'or (dernière moyenne mensuelle disponible : août). Les 23 autres séries
+mensuelles arrivent à échéance le 1er novembre. Les 9 réserves et les 4 contrôles
+non datés restent visibles. Les dates ne certifient pas les données et ne
+déclenchent pas de recherche automatique supplémentaire.
