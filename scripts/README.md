@@ -236,6 +236,14 @@ ceux-ci restent soumis aux documents des émetteurs et aux audits dédiés.
 
 ## `playwright-tools.mjs`
 
+Le duel de portefeuilles compare deux constructions indépendantes : une base ETF obligatoire,
+un complément facultatif et une thématique facultative, soit 1 à 3 ETF par côté. Les trois modes
+(préparé, généré et manuel) utilisent le même moteur en euros et uniquement les années communes.
+Le STOXX Europe 600 est limité aux rendements sourcés 2023–2025. `audit-portfolio-duels.mjs`
+contrôle les rôles, les poids, les sources, la conversion USD/EUR et les calculs, puis exerce
+500 générations. Le test navigateur couvre aussi le retrait du complément, l'ajout d'une
+thématique, les sommes invalides, le PNG à trois lignes et l'affichage mobile.
+
 Un test fonctionnel réel (Chromium) par outil, formalisant le "write→look once" fait à la main tout
 au long de la session en suite réutilisable :
 

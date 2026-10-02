@@ -47,7 +47,7 @@ export const TOOLS = [
     title: 'Duel de portefeuilles',
     publicationDay: 'Mardi soir · alternance',
     icon: '⚔️',
-    description: 'Compare deux portefeuilles : duels préparés, compositions manuelles ou idées générées, avec texte et image prêts à publier.',
+    description: 'Compare deux constructions : une base ETF, un complément et une thématique facultatifs. Duels préparés, génération, texte et image.',
     status: 'disponible',
   },
   {

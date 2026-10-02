@@ -48,3 +48,6 @@
 .pd-sources ul { margin-left: 20px; list-style: disc; }
 .pd-sources a { color: #5eead4; text-decoration: underline; }
 @media (max-width: 720px) { .pd-editors, .pd-cards { grid-template-columns: 1fr; } .pd-table { min-width: 520px; } }
+
+.pd-reading { margin-top: 20px; color: #cbd5e1; line-height: 1.65; }
+.pd-reading p { margin: 10px 0; }

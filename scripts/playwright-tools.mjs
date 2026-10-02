@@ -25,6 +25,7 @@ import { stat, readFile } from "node:fs/promises";
 import { FAMILIES } from "../src/data/index-comparisons.js";
 import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
 import { fmtPct } from "../src/pages/index-comparator/lib.js";
+import { buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
@@ -143,8 +144,9 @@ async function testPortfolioDuels(page) {
   for (let index = 0; index < DUELS.length; index++) {
     await select.selectOption(String(index));
     const text = await page.locator('#pd-tweet').inputValue();
-    valid &&= /2020 : [+-]/.test(text) && /2025 : [+-]/.test(text) && /10 000 \$/.test(text) && !/\bNaN\b|\bundefined\b/.test(text);
-    valid &&= (await page.locator('.pd-table tbody tr').count()) === 6;
+    const expected = buildDuel(DUELS[index]);
+    valid &&= text === buildTweet(expected) && /10\s000 €/.test(text) && !/\bNaN\b|\bundefined\b/.test(text);
+    valid &&= (await page.locator('.pd-table tbody tr').count()) === expected.years.length;
   }
   const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -158,12 +160,32 @@ async function testPortfolioDuels(page) {
   valid &&= (await page.locator('.pd-card').count()) === 2;
   await page.getByRole('button', { name: 'Composer A et B' }).click();
   valid &&= (await page.locator('.pd-editor-side').count()) === 2;
-  valid &&= /10 000 €/.test(await page.locator('#pd-tweet').inputValue());
-  await page.getByRole('spinbutton', { name: 'Poids de l’actif 1 du portefeuille A' }).fill('65');
+  valid &&= /10\s000 €/.test(await page.locator('#pd-tweet').inputValue());
+  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('65');
   valid &&= await page.getByRole('alert').isVisible();
   valid &&= (await page.locator('.pd-card').count()) === 0;
-  await page.getByRole('spinbutton', { name: 'Poids de l’actif 1 du portefeuille A' }).fill('70');
+  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('80');
   valid &&= (await page.locator('.pd-card').count()) === 2;
+  await page.getByRole('combobox', { name: 'Complément du portefeuille A', exact: true }).selectOption('');
+  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('100');
+  valid &&= (await page.locator('.pd-card').first().locator('p').count()) === 1;
+  await page.getByRole('combobox', { name: 'Thématique du portefeuille A', exact: true }).selectOption('sect_cyber_lg');
+  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('90');
+  valid &&= /cybersécurité/i.test(await page.locator('#pd-tweet').inputValue());
+  await page.getByRole('combobox', { name: 'Complément du portefeuille A', exact: true }).selectOption('stoxx600_bnp');
+  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('80');
+  valid &&= (await page.locator('.pd-table tbody tr').count()) === 3;
+  valid &&= /début 2023/.test(await page.locator('#pd-tweet').inputValue());
+  const [manualImage] = await Promise.all([
+    page.waitForEvent('download'),
+    page.getByRole('button', { name: /Télécharger l’image PNG/i }).click(),
+  ]);
+  valid &&= (await stat(await manualImage.path())).size > 10000;
+  await page.setViewportSize({ width: 390, height: 844 });
+  valid &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  if (process.env.DUEL_SCREENSHOT) await page.screenshot({ path: process.env.DUEL_SCREENSHOT, fullPage: true });
+  if (process.env.DUEL_IMAGE) await manualImage.saveAs(process.env.DUEL_IMAGE);
+  await page.setViewportSize({ width: 1280, height: 720 });
   record('Duel de portefeuilles', valid, `${DUELS.length} duels, génération, composition, total 100 % et image PNG`);
 }
 
