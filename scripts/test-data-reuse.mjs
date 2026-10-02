@@ -28,6 +28,11 @@ for (const fact of HISTORY_FACTS) {
   assert(!/NaN|undefined/.test(text))
 }
 assert.equal(HISTORY_FACTS.length, 16)
+for (const item of ALLOCATION_CASES) {
+  assert.equal(item.sources.length, 2)
+  assert(item.sources.every(source => source.url.startsWith('https://')))
+  assert.match(item.text, /Photographie des indices au \d{4}-\d{2}-\d{2}/)
+}
 assert.equal(buildDuel(DUELS.find(x => x.id === 'semiconducteurs_monde-contre-blockchain_ishares')).years[0], 2023)
 assert.equal(buildDuel(DUELS.find(x => x.id === 'world-avec-quality_dividend')).years[0], 2021)
 for (const record of DATA_CATALOG.filter(x => x.type === 'instrument')) {
