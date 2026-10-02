@@ -23,6 +23,5 @@ export const FEE_LEVELS = [
 export const DEFAULT_FEE_LOW = 0.2
 export const DEFAULT_FEE_HIGH = 1.5
 
-// La phrase personnelle est saisie dans l'interface. En l'absence de saisie, le tweet copié
-// garde une mention explicite de brouillon pour éviter qu'une punchline factice soit publiée.
-export const PUNCHLINE_DRAFT = '[Brouillon à compléter : ta phrase sur cet écart de frais]'
+// Formulation personnelle validée par l'utilisateur ; le champ permet de la remplacer.
+export const DEFAULT_PERSONAL_LINE = 'Quand je vois ça, le pourcentage de frais me parle beaucoup plus.'

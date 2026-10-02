@@ -1,5 +1,5 @@
 import { fmtEUR } from '../investment-calculator/lib.js'
-import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, PUNCHLINE_DRAFT } from './data.js'
+import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, DEFAULT_PERSONAL_LINE } from './data.js'
 
 export { fmtEUR }
 
@@ -69,24 +69,32 @@ export function buildTweetText(state) {
   const { amount, years, returnRate, fee1, fee2, punchline } = state
   const d = computeComparison(state)
   const yearsLabel = `${years} an${years > 1 ? 's' : ''}`
-  const ecartPctLabel = d.ecartPct.toLocaleString('fr-FR', { maximumFractionDigits: 0 })
-  const personalLine = punchline?.trim() || PUNCHLINE_DRAFT
-  const question = fee1 === fee2
-    ? `Tes deux scénarios ont les mêmes frais : quels taux voudrais-tu vraiment comparer ?`
-    : `Sur ${yearsLabel}, tu avais déjà comparé ${feeLabel(fee1)} et ${feeLabel(fee2)} de frais sur tes placements ?`
+  const sameFees = fee1 === fee2
+  const personalLine = punchline?.trim() || (sameFees
+    ? 'Pour mesurer l’impact des frais, il faut comparer deux taux différents.'
+    : DEFAULT_PERSONAL_LINE)
+  const scenario = (fee, capital) => `${sameFees ? '⚪' : fee === Math.min(fee1, fee2) ? '🟢' : '🔴'} Avec ${feeLabel(fee)} de frais annuels : ${fmtEUR(capital)}`
+  const returnLabel = returnRate.toLocaleString('fr-FR')
 
   return [
-    `${fmtEUR(amount)}/mois pendant ${yearsLabel} à ${returnRate} % de rendement brut (hypothèse de simulation, pas une performance de marché réelle) :`,
+    'Tu connais les frais annuels de tes placements ? Et ce qu’ils peuvent représenter en euros ? 👀',
     ``,
-    `Avec ${feeLabel(fee1)} de frais → ${fmtEUR(d.capital1)}`,
-    `Avec ${feeLabel(fee2)} de frais → ${fmtEUR(d.capital2)}`,
+    `Prenons ${fmtEUR(amount)} investis chaque mois pendant ${yearsLabel}, avec un rendement brut supposé de ${returnLabel} % par an 👇`,
     ``,
-    `Écart : ${fmtEUR(d.ecart)} (${ecartPctLabel} % du capital final le plus élevé) lié aux frais dans cette simulation.`,
-    `Hypothèses : mêmes versements en début de mois, rendement brut constant ; frais déduits du taux annuel avant division par 12. Hors fiscalité et inflation.`,
+    scenario(fee1, d.capital1),
+    scenario(fee2, d.capital2),
+    ``,
+    sameFees ? `💰 Aucun écart, pour les mêmes ${fmtEUR(d.totalInvested)} versés.`
+      : `💰 ${fmtEUR(d.ecart)} d’écart, pour les mêmes ${fmtEUR(d.totalInvested)} versés.`,
+    ``,
+    sameFees ? 'Les deux scénarios ont les mêmes frais et les mêmes versements : ils donnent donc le même résultat.'
+      : 'Cet écart comprend les frais supplémentaires, mais aussi les gains que l’argent prélevé n’a plus pu produire au fil des années.',
     ``,
     personalLine,
     ``,
-    question,
+    '💬 Tu connais celui de tes ETF ou de ton assurance-vie ?',
+    ``,
+    '📌 Simulation à rendement brut constant, versements en début de mois. Frais annuels déduits du rendement. Hors fiscalité et inflation.',
   ].join('\n')
 }
 
