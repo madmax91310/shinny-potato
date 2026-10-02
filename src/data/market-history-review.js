@@ -1,5 +1,20 @@
 // Contrôle du 02/10/2026. Aucun prix dupliqué ici ; captures rejouées par audit:calculator-series.
 export const MARKET_HISTORY_REVIEW = {
+  "history:msciWorld": {
+    "sourceUrls": [
+        "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20141231&end_date=20260930&data_frequency=END_OF_MONTH&index_codes=990100",
+        "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+        "https://www.investing.com/indices/msci-world-gross-usd-historical-data"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodStart": "2015-01",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "MSCI World 990100 GRTR USD, clôture de la dernière séance de chaque mois, niveaux réels en points",
+    "note": "141 niveaux mensuels officiels homogènes. Capture calculator-msci-world-2026-10-02.json ; ancienne série composite remplacée intégralement. Dix rendements annuels et août recoupés avec la fiche officielle MSCI ; clôture de septembre confirmée par Investing. Résultats historiques modifiés, DCA réactivé."
+},
   "history:stoxx600": {
     "sourceUrls": [
         "https://stoxx.com/index/SXXR/?factsheet=true",

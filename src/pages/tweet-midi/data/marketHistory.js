@@ -160,8 +160,8 @@ export function getBenchmarkPerformance(startYm, endYm) {
   };
 }
 
-// Le MSCI World reste une série composite rebasée. Le S&P 500 Total Return et
-// le STOXX 600 Net Return disposent désormais de niveaux officiels, mais restent
+// Le MSCI World Gross Return, le S&P 500 Total Return et le STOXX 600 Net Return
+// disposent désormais de niveaux officiels, mais restent
 // exclus d’Anniversaire : la saisie manuelle du niveau actuel n’identifie pas encore
 // explicitement la variante Total/Net Return et pourrait être confondue avec Price.
 // Les niveaux de ces trois indices restent masqués dans Performance depuis.

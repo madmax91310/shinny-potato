@@ -143,20 +143,59 @@ annualStoxx.forEach((expected, i) => {
   if (Math.abs((get(2016 + i) / get(2015 + i) - 1) * 100 - expected) > .02) throw new Error(`STOXX ${2016 + i}: rendement différent du benchmark Franklin`);
 });
 console.log('STOXX : 141 fins de mois officielles et dix rendements annuels recoupés.');
-for (const id of ['or', 'msciWorld']) {
+// MSCI : données mensuelles officielles recoupées avec les dernières séances.
+const world = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-msci-world-2026-10-02.json', import.meta.url)));
+const monthlyWorld = world.response.indexes.INDEX_LEVELS;
+const dailyWorld = world.dailyResponse.indexes.INDEX_LEVELS;
+if (world.indexCode !== '990100' || world.variant !== 'GRTR' || world.currency !== 'USD'
+    || !world.url.startsWith('https://app2.msci.com/') || !world.url.includes('data_frequency=END_OF_MONTH')
+    || world.checkedAt !== '2026-10-02' || ASSETS.msciWorld.points.length !== 141
+    || INCONSISTENT_MONTHLY_DATA_IDS.has('msciWorld') || ASSETS.msciWorld.priceUnit !== 'points') throw new Error('MSCI : provenance incorrecte');
+for (const response of [world.response, world.dailyResponse]) {
+  if (response.msci_index_code !== '990100' || response.index_variant_type !== 'GRTR' || response.ISO_currency_symbol !== 'USD') throw new Error('MSCI : variante incompatible');
+}
+const worldEnds = new Map();
+let worldPreviousDate = 0;
+for (const row of dailyWorld) {
+  if (row.calc_date <= worldPreviousDate || !(row.level_eod > 0)) throw new Error('MSCI : séance incorrecte');
+  worldPreviousDate = row.calc_date;
+  worldEnds.set(String(row.calc_date).slice(0, 6), row);
+}
+const worldObserved = monthlyWorld.filter(row => row.calc_date >= 20150101);
+if (worldObserved.length !== 141 || world.points.length !== 141) throw new Error('MSCI : couverture incomplète');
+for (const [i, row] of worldObserved.entries()) {
+  const date = String(row.calc_date);
+  const month = `${date.slice(0, 4)}-${date.slice(4, 6)}`;
+  const end = worldEnds.get(date.slice(0, 6));
+  const actual = ASSETS.msciWorld.points[i];
+  if (month !== new Date(Date.UTC(2015, i, 1)).toISOString().slice(0, 7)
+      || end.calc_date !== row.calc_date || Math.abs(end.level_eod - row.level_eod) > 1e-8
+      || actual.date !== month || actual.price !== Math.round(row.level_eod * 100) / 100
+      || world.points[i][0] !== month || world.points[i][1] !== actual.price) throw new Error(`MSCI ${month} : fin de mois incorrecte`);
+}
+for (const [year, expected] of Object.entries(world.annualGrossReturns)) {
+  const get = y => ASSETS.msciWorld.points.find(p => p.date === `${y}-12`).price;
+  if (Math.abs((get(year) / get(Number(year) - 1) - 1) * 100 - expected) > .006) throw new Error(`MSCI ${year} : rendement annuel non conforme`);
+}
+const worldGet = month => ASSETS.msciWorld.points.find(p => p.date === month).price;
+if (Math.abs((worldGet('2026-08') / worldGet('2025-12') - 1) * 100 - 13.40) > .006
+    || Math.abs((worldGet('2026-08') / worldGet('2026-07') - 1) * 100 - 2.60) > .006
+    || ASSETS.msciWorld.points.at(-1).price !== world.septemberCrossCheck.level) throw new Error('MSCI : recoupement août/septembre incorrect');
+console.log('MSCI : 141 fins de mois Gross USD officielles, séances quotidiennes concordantes et dix années recoupées.');
+for (const id of ['or']) {
   if (ASSETS[id].points.at(-1).date !== '2026-08') throw new Error(`${id}: une date non confirmée a été ajoutée`);
 }
 for (const id of expectedIds.filter(id => id !== 'sp500' && snapshot[id] == null && !['bitcoin', 'ethereum', 'soxx', 'silver', 'nasdaq100'].includes(id))) {
   if (!SPARSE_MONTHLY_DATA_IDS.has(id)) throw new Error(`${id}: ajout du dernier mois ne certifiant pas l'historique DCA`);
 }
-console.log(`Septembre : ${verified} points contrôlés, dont 141 clôtures Bitcoin et 141 S&P 500 ; 22 actifs à jour, 2 restent en août.`);
+console.log(`Septembre : ${verified} points contrôlés, dont 141 clôtures Bitcoin et 141 S&P 500 ; 23 actifs à jour, seul l’or reste en août.`);
 
 // Contrôle des consommateurs : résultat terminal indépendant, dernière date réelle,
 // nombre de versements, absence de prolongement au mois d'octobre et export vidéo.
 const { derive, buildTweetText } = await import('../src/pages/investment-calculator/lib.js');
 const { getAssetMaxDate, getSharedEndDate, getAnnualReturns } = await import('../src/pages/tweet-midi/data/marketHistory.js');
 const { computeComparativeSeries, getComparativeAssetIssue } = await import('../src/pages/investment-calculator/videoExport.js');
-for (const id of [...expectedIds, 'stoxx600']) {
+for (const id of [...expectedIds, 'stoxx600', 'msciWorld']) {
   const state = { assetId: id, amountRaw: '1000', startYear: 2020, startMonth: 1, mode: 'lump', overridePriceRaw: '' };
   const result = derive(state);
   const points = ASSETS[id].points;
@@ -168,7 +207,7 @@ for (const id of [...expectedIds, 'stoxx600']) {
   if (result.endYm !== '2026-09' || getAssetMaxDate(id) !== '2026-09' || result.result.months.at(-1) !== '2026-09'
       || !buildTweetText(state, result).includes('septembre 2026')) throw new Error(`${id}: date consommée incorrecte`);
 }
-for (const id of ['bitcoin', 'ethereum', 'sp500', 'soxx', 'apple', 'microsoft', 'broadcom', 'tesla', 'stoxx600']) {
+for (const id of ['bitcoin', 'ethereum', 'sp500', 'soxx', 'apple', 'microsoft', 'broadcom', 'tesla', 'stoxx600', 'msciWorld']) {
   const state = { assetId: id, amountRaw: '100', startYear: 2020, startMonth: 1, mode: 'dca', overridePriceRaw: '' };
   const result = derive(state);
   const prices = ASSETS[id].points.filter(p => p.date >= '2020-01' && p.date <= '2026-09');
@@ -177,9 +216,9 @@ for (const id of ['bitcoin', 'ethereum', 'sp500', 'soxx', 'apple', 'microsoft', 
   if (result.result.months.length !== 81 || result.result.totalInvested !== 8100 || Math.abs(result.result.finalValue - expected) > .0001
       || Math.abs(video.finalValue - expected) > .0001 || getComparativeAssetIssue(id, '2020-01', 'dca', '2026-09') !== null) throw new Error(`${id}: DCA ou vidéo incorrect`);
 }
-for (const id of ['or', 'msciWorld']) {
+for (const id of ['or']) {
   const d = derive({ assetId: id, amountRaw: '1000', startYear: 2020, startMonth: id === 'or' ? 1 : 12, mode: 'lump', overridePriceRaw: '' });
   if (d.endYm !== '2026-08' || getSharedEndDate('bitcoin', id) !== '2026-08' || getComparativeAssetIssue(id, '2020-12', 'lump', '2026-09') === null) throw new Error(`${id}: fin ancienne extrapolée`);
 }
-if (getAnnualReturns('sp500', 2016).some(p => p.year >= 2026) || getAnnualReturns('bitcoin', 2016).some(p => p.year >= 2026)) throw new Error('Année 2026 partielle publiée comme performance annuelle');
+if (getAnnualReturns('msciWorld', 2016).some(p => p.year >= 2026) || getAnnualReturns('sp500', 2016).some(p => p.year >= 2026) || getAnnualReturns('bitcoin', 2016).some(p => p.year >= 2026)) throw new Error('Année 2026 partielle publiée comme performance annuelle');
 console.log('Consommateurs : simulations, quantités DCA, fins réelles, comparatifs vidéo et exclusion des années incomplètes OK.');
