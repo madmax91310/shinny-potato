@@ -4,7 +4,7 @@ Le dernier mois complet est septembre 2026. Aucun point d’octobre n’est ajou
 
 ## Séries intégrées
 
-22 actifs : STOXX Europe 600 Net Return, Bitcoin, Ethereum, CAC 40, Nasdaq 100, SOXX, argent (SI=F), LVMH, Apple, Microsoft, Broadcom, Tesla, Nvidia, Amazon, Alphabet classe A (GOOGL), Meta, Nestlé ADR (NSRGY), SAP ADR, Visa, Netflix, Coca-Cola et S&P 500 Total Return.
+23 actifs : MSCI World Gross Return USD, STOXX Europe 600 Net Return, Bitcoin, Ethereum, CAC 40, Nasdaq 100, SOXX, argent (SI=F), LVMH, Apple, Microsoft, Broadcom, Tesla, Nvidia, Amazon, Alphabet classe A (GOOGL), Meta, Nestlé ADR (NSRGY), SAP ADR, Visa, Netflix, Coca-Cola et S&P 500 Total Return.
 
 Les données et leurs méthodes sont partagées par le calculateur, ses exports et les formats historiques de Tweet Midi. Les rendements annuels affichés par Performance depuis s’arrêtent toujours en 2025. Les duels et le générateur de portefeuilles utilisent d’autres séries annuelles.
 
@@ -26,12 +26,24 @@ Argent : la clôture Yahoo du contrat continu `SI=F`, 60,098 USD, est arrondie �
 
 Pour les actions et le CAC 40 à historique épars, seul le nouveau point de septembre est certifié le 2 octobre. Cela ne certifie pas rétroactivement les anciens points et ne permet pas de réactiver le DCA. Les blocages existants sont maintenus.
 
-## Séries restant en août
+## Série restant en août
 
 - Or : le fichier officiel Banque mondiale téléchargé le 2 octobre reste marqué « Updated on September 02, 2026 » ; sa dernière observation Gold est `2026M08` à 4 411 USD. La moyenne de septembre est absente. Conserver la moyenne mensuelle, jamais la remplacer par un cours de fin de mois. Source : https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx
-- MSCI World : la fiche officielle disponible reste datée du 31 août 2026, USD Gross Returns. Les observations USD Net ou Price de septembre ne sont pas compatibles. Source : https://www.msci.com/documents/10199/255599/msci-world-index.pdf
+La borne globale passe à septembre, mais l’or conserve sa propre date de fin en août. Les simulations et comparatifs ne doivent pas prolonger l’or jusqu’en septembre.
 
-La borne globale passe à septembre, mais chaque actif conserve sa propre date de fin. Les simulations et comparatifs ne doivent pas prolonger l’or et le MSCI World jusqu’en septembre.
+## MSCI World : historique officiel complet
+
+Le service utilisé par l’interface publique MSCI a fourni les niveaux END_OF_MONTH et DAILY du code 990100, variante GRTR (dividendes bruts réinvestis), devise USD. Capture calculator-msci-world-2026-10-02.json : décembre 2014 comme ancrage d’audit, puis 141 fins de mois de janvier 2015 à septembre 2026. Toute l’ancienne série composite est remplacée ; aucune valeur recalée, interpolée ou issue d’un ETF. Les résultats historiques changent et le DCA est réactivé.
+
+Août : 23 927,59 points ; septembre : 23 651,41 points, soit −1,1543 %. Les dernières séances quotidiennes concordent avec les observations mensuelles. Dix rendements annuels 2016–2025 concordent à 0,006 point près avec la fiche officielle MSCI World USD Gross du 31 août. Le YTD d’août (+13,40 %) et son rendement mensuel (+2,60 %) concordent également. La clôture du 30 septembre est confirmée par Investing (MIWO00000GUS). Le recoupement mensuel/quotidien repose sur le même fournisseur et ne constitue pas deux sources indépendantes.
+
+Source : https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20141231&end_date=20260930&data_frequency=END_OF_MONTH&index_codes=990100
+
+Fiche : https://www.msci.com/documents/10199/255599/msci-world-index.pdf
+Recoupement septembre : https://www.investing.com/indices/msci-world-gross-usd-historical-data
+
+L’export Banque mondiale a été téléchargé à nouveau lors de cette intervention : dernière ligne Gold 2026M08 = 4 411 USD/once, mise à jour affichée au 2 septembre. Septembre reste absent ; ne pas remplacer sa moyenne mensuelle par une clôture spot ou futures.
+
 
 ## Validation
 

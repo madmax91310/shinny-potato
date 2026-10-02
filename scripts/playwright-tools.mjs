@@ -124,6 +124,15 @@ async function testCalculateur(page) {
   septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('versés au total')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('dividendes nets');
+  await page.locator('select.ic-control').first().selectOption('msciWorld');
+  const worldDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
+  septemberOk &&= await worldDca.isEnabled();
+  await worldDca.click();
+  await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
+  const worldTweet = await page.evaluate(() => window.__investmentCopiedText);
+  septemberOk &&= worldTweet.includes('septembre 2026') && worldTweet.includes('versés au total')
+    && (await page.locator('.ic-current-level').innerText()).includes('points')
+    && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
   await page.locator('select.ic-control').first().selectOption('or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('août 2026');
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
