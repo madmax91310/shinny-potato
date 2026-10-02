@@ -1,62 +1,67 @@
-import { ETFS } from '../../data/etf-cards.js'
-import { DUEL_SERIES_BY_ISIN, getInstrumentDuelSeries } from '../../data/instrument-returns.js'
-import { ASSETS, YEARS } from '../../data/portfolio-assets.js'
-import { ASSETS as CALCULATOR_ASSETS } from '../../data/market-history.js'
+import { ASSETS } from '../../data/portfolio-assets.js'
+import { getInstrumentDuelSeries } from '../../data/instrument-returns.js'
+import { COMPARATOR_RETURNS_BY_ISIN } from '../../data/instrument-comparator-returns.js'
+import { COMPARATOR_RETURN_EVIDENCE } from '../../data/comparator-return-evidence.js'
+import { PORTFOLIO_RETURN_EVIDENCE } from '../../data/portfolio-return-evidence.js'
+import { getInstrumentName } from '../../data/instruments.js'
 
-// Taux BCE EUR/USD des derniers jours ouvrés de chaque année, déjà documentés pour
-// la conversion de l'ETC argent dans le Générateur de portefeuilles.
+// Taux de fin d’année BCE déjà utilisés dans le duel, sans modification des valeurs.
 export const EUR_USD = { 2019: 1.1234, 2020: 1.2271, 2021: 1.1326, 2022: 1.0666, 2023: 1.1050, 2024: 1.0389, 2025: 1.1750 }
 export const FX_SOURCE = 'https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf'
+export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thématique' }
 
-const etfs = new Map(ETFS.map((etf) => [etf.isin, etf]))
-const CORES = new Set(['sp500', 'sp500_ishares', 'msci_world_ishares', 'msci_acwi_ishares', 'ftse_allworld_vanguard', 'msci_world', 'msci_acwi'])
-const STOCKS = ['apple', 'microsoft', 'nvidia', 'amazon', 'google', 'meta', 'visa', 'cocacola', 'netflix', 'broadcom', 'tesla', 'lvmh', 'nestle', 'sap']
-const ALTERNATIVES = new Set(['or', 'or_ishares', 'or_amundi', 'or_wisdomtree', 'argent', 'mp_large', 'mp_large_icom', 'foncieres_etf'])
-function stockSeries(key) {
-  const stock = CALCULATOR_ASSETS[key]
-  const points = new Map(stock.points.map(({ date, price }) => [date, price]))
-  return YEARS.map((year) => {
-    const previous = points.get(`${year - 1}-12`)
-    const current = points.get(`${year}-12`)
-    return Number.isFinite(previous) && Number.isFinite(current) && previous > 0
-      ? (current / previous - 1) * 100 : null
-  })
-}
-
-const fundItems = ASSETS.flatMap((asset) => {
-  const card = etfs.get(asset.isin)
-  const series = (card || DUEL_SERIES_BY_ISIN[asset.isin]?.currency) && getInstrumentDuelSeries(asset.isin)
-  if (!series || !['EUR', 'USD'].includes(series.currency) || !series.values.some(Number.isFinite)) return []
-  // Le montant calculé doit désigner la part exacte, jamais un indice ou un autre fonds.
-  if (asset.r.some((value, i) => Number.isFinite(series.values[i]) && value !== series.values[i])) return []
-  const group = CORES.has(asset.id) ? 'Cœur ETF' : ALTERNATIVES.has(asset.id) || asset.cat === 'immobilier' || asset.cat === 'matieres_premieres'
-    ? 'Immobilier et matières premières' : 'ETF thématiques et autres'
-  return [{ id: asset.id, name: asset.name, group, currency: series.currency, values: series.values,
-    source: series.source ?? null, note: 'Rendements de la part du fonds, revenus réinvestis selon la part.' }]
-})
-
-const stockItems = STOCKS.map((id) => ({ id: `action_${id}`, name: CALCULATOR_ASSETS[id].label, group: 'Actions individuelles',
-  currency: CALCULATOR_ASSETS[id].currency, values: stockSeries(id), source: null,
-  note: 'Cours de clôture annuels issus du calculateur, hors dividendes.' }))
-
-const otherItems = [
-  { id: 'spot_bitcoin', name: 'Bitcoin (cours spot)', group: 'Crypto', currency: 'USD', values: ASSETS.find((a) => a.id === 'bitcoin').r,
-    source: 'https://www.slickcharts.com/currency/BTC/returns', note: 'Cours spot, hors frais et rendement de tout ETP.' },
-  { id: 'spot_ethereum', name: 'Ethereum (cours spot)', group: 'Crypto', currency: 'USD', values: ASSETS.find((a) => a.id === 'ethereum').r,
-    source: 'https://www.slickcharts.com/currency/ETH/returns', note: 'Cours spot, sans staking ni frais d’ETP.' },
-  { id: 'scpi', name: 'SCPI (moyenne de marché)', group: 'Immobilier et matières premières', currency: 'EUR',
-    values: [null, ...ASSETS.find((a) => a.id === 'scpi').r.slice(1)],
-    source: 'https://www.aspim.fr/', note: 'Moyenne de marché ASPIM, non investissable comme une part précise ; 2020 écarté (méthode différente).' },
-  // L'argent est une estimation en EUR du fonds exact ; ne pas la présenter comme une NAV officielle.
-  { id: 'argent_indicatif', name: 'iShares Physical Silver ETC (estimation EUR)', group: 'Immobilier et matières premières', currency: 'EUR',
-    values: ASSETS.find((a) => a.id === 'argent').r, source: 'https://www.ishares.com/uk/individual/en/products/258443/',
-    note: 'Rendement de l’ETC en USD converti à titre indicatif en EUR avec les taux BCE.' },
+// Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
+const choices = [
+  ['msci_world_ishares', 'base', 'MSCI World', 'world'],
+  ['msci_acwi_ishares', 'base', 'MSCI ACWI', 'acwi'],
+  ['ftse_allworld_vanguard', 'base', 'FTSE All-World', 'allworld'],
+  ['sp500_ishares', 'base', 'S&P 500 (iShares)', 'sp500'],
+  ['msci_em', 'complement', 'Marchés émergents IMI', 'em'],
+  ['msci_europe', 'complement', 'MSCI Europe', 'europe'],
+  ['smallcap_monde', 'complement', 'Petites capitalisations mondiales', 'smallcap'],
+  ['nasdaq100', 'complement', 'Nasdaq-100', 'nasdaq'],
+  ['actions_japon', 'complement', 'Japon IMI', 'japan'],
+  ['actions_india_ishares', 'complement', 'Inde', 'india'],
+  ['actions_value', 'complement', 'World Value', 'value'],
+  ['world_quality_ishares', 'complement', 'World Quality', 'quality'],
+  ['world_minvol_ishares', 'complement', 'World Minimum Volatility', 'minvol'],
+  ['sect_tech_world_ishares', 'theme', 'Technologie mondiale', 'tech'],
+  ['sect_energy_spdr', 'theme', 'Énergie mondiale', 'energy'],
+  ['sect_sante', 'theme', 'Santé américaine', 'health'],
+  ['sect_cyber_lg', 'theme', 'Cybersécurité', 'cyber'],
+  ['sect_ai_lg', 'theme', 'Intelligence artificielle', 'ai'],
+  ['sect_robotique', 'theme', 'Robotique', 'robotics'],
+  ['sect_biotech_ishares', 'theme', 'Biotechnologie américaine', 'biotech'],
+  ['sect_water_amundi', 'theme', 'Eau', 'water'],
+  ['sect_luxury_amundi', 'theme', 'Luxe', 'luxury'],
+  ['sect_batteries_lg', 'theme', 'Batteries', 'batteries'],
+  ['sect_energie_propre', 'theme', 'Énergies propres', 'cleanenergy'],
+  ['infrastructure_ishares', 'theme', 'Infrastructures mondiales', 'infrastructure'],
+  ['immo_ishares_yield', 'theme', 'Immobilier coté des pays développés', 'property'],
 ]
-
-export const CATALOG = [...fundItems, ...stockItems, ...otherItems]
-  .filter((item) => Number.isFinite(item.values.at(-1)) && item.values.filter(Number.isFinite).length >= 3)
-  .filter((item, i, list) => list.findIndex((other) => other.id === item.id) === i)
-  .sort((a, b) => a.group.localeCompare(b.group, 'fr') || a.name.localeCompare(b.name, 'fr'))
+// Devises explicites dans les commentaires vérifiés de portfolio-assets.js (24/09/2026).
+// Japon : capture de la fiche officielle du 30/08/2026 ; énergies propres : contrôle du 24/09/2026.
+const legacyCurrencies = { msci_europe: 'EUR', sect_sante: 'USD', actions_japon: 'USD', sect_energie_propre: 'USD' }
+const fundItems = choices.map(([id, role, label, exposure]) => {
+  const asset = ASSETS.find((item) => item.id === id)
+  if (!asset?.isin) throw new Error(`ETF absent : ${id}`)
+  const evidence = PORTFOLIO_RETURN_EVIDENCE[asset.isin]
+  const original = getInstrumentDuelSeries(asset.isin)
+  const series = { values: original?.values ?? asset.r, currency: original?.currency ?? evidence?.currency ?? legacyCurrencies[id], source: original?.source ?? evidence?.sourceUrls[0] }
+  if (!series?.source || !['EUR', 'USD'].includes(series.currency)) throw new Error(`Preuve de part absente : ${id}`)
+  if (asset.r.some((value, i) => value !== series.values[i])) throw new Error(`Rendements divergents : ${id}`)
+  return { id, isin: asset.isin, name: asset.name, role, label, exposure, group: ROLES[role],
+    currency: series.currency, values: series.values, source: series.source,
+    note: 'Rendements de la part du fonds, revenus réinvestis.' }
+})
+const stoxxIsin = 'FR0011550193'
+const stoxxEvidence = COMPARATOR_RETURN_EVIDENCE[stoxxIsin]
+export const CATALOG = [...fundItems, {
+  id: 'stoxx600_bnp', isin: stoxxIsin, name: getInstrumentName(stoxxIsin),
+  role: 'complement', label: 'STOXX Europe 600', exposure: 'europe', group: ROLES.complement,
+  currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],
+  source: stoxxEvidence.sourceUrls[0], note: 'Rendements de la part exacte, disponibles sur 2023–2025 seulement.',
+}].filter((item) => Number.isFinite(item.values.at(-1)) && item.values.filter(Number.isFinite).length >= 3)
 export const ITEM_BY_ID = new Map(CATALOG.map((item) => [item.id, item]))
 
 export function euroReturn(item, year) {
