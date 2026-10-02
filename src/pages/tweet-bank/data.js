@@ -4,7 +4,7 @@
 // calendaires recoupées chez Amundi, BNP et BlackRock à la place de chiffres YTD non datés.
 // Pas de logique ici — cf. lib.js pour les fonctions pures (filtre/tri/cooldown).
 
-export const MONTHS = ["Avril", "Mai", "Juin", "Juillet", "Août", "Septembre"]
+export const MONTHS = ["Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre"]
 export const CATEGORIES = [
   "Storytelling",
   "Simulation & chiffres",
@@ -70,6 +70,91 @@ export const TWEETS = [
   { id: 41, month: "Août", category: "Guide ETF", text: "Le meilleur MSCI World du marché coûte 0,05%/an. Le souci ? Il n'est pas éligible PEA.\n\nEst-ce qu'il est plus intéressant de prendre un ETF MSCI World sur PEA (avantage fiscal) ou sur CTO (moins de frais) ? J'ai fait le calcul avec un lump sum de 10 000€, 8%/an de performance, sur 30 ans\n\nCTO | Invesco MSCI World\nTER : 0,05%/an\nCapital après 30 ans : ~99 200€\nFlat tax 31,4% sur la plus-value : -28 000€\nNet en poche : ~71 200€\n\nPEA | WPEA (iShares) ou DCAM (Amundi)\nTER : 0,20%/an\nCapital après 30 ans : ~95 200€\nPrélèvements sociaux 18,6% uniquement : -15 800€\nNet en poche : ~79 340€\n\nRésultat : le PEA rapporte +8 100€ de plus, malgré des frais 4x plus élevés. La fiscalité écrase les frais sur le long terme.\n\nLe CTO est le seul moyen d'acheter des actions US, mais le PEA est souvent plus avantageux pour les ETF qui y sont éligibles.\n\nPas un conseil financier" },
 
   { id: 42, month: "Septembre", category: "Storytelling", formats: ["Preuve vendredi soir", "Bilan de la semaine"], text: "Mon patrimoine se rapproche petit à petit de la barre symbolique des 80K 📈\n\n78 002€ aujourd'hui, il y a un mois, j'étais encore sous les 76K.\n\nJe me souviens d'un temps où je regardais mon compte en banque en espérant qu'il me reste assez à la fin du mois pour m'acheter mon shit, ma bouteille pour sortir en soirée 🎉\n\nAujourd'hui, tu sais ce que je vois quand je regarde ce graphique ? Des années de discipline, des versements que j'ai jamais loupés, des baisses que j'ai laissées passer sans paniquer.\n\nJe me rappelle quand j'ai vu le Bitcoin grimper à 120K, après l'avoir acheté à 40K. L'euphorie, puis la descente aux enfers 📉\n\nJ'ai rien vendu. Parce que quand tu crois en un actif sur le long terme, sa volatilité ne devrait pas t'effrayer.\n\n80K, c'est pas un chiffre magique. C'est juste la preuve que ce qui paraît lent finit toujours par compter 👍\n\nSi toi aussi tu pars de loin, ou que t'as l'impression que ça avance trop lentement : continue. Le graphique ne ment jamais sur la durée 📊\n\n💬 C'est quoi ton prochain palier symbolique ?" },
+  // Ajouts transmis par l'auteur le 02/10/2026, conservés tels quels.
+  { id: 43, month: "Octobre", category: "Storytelling", formats: ["Preuve vendredi soir", "Bilan de la semaine"], text: `Je suis quelqu'un de lambda. 👋
+Je touche le salaire médian, environ 2200€ par mois.
+
+Mes parents m'ont toujours appris à épargner sur un Livret A 🏦
+On a jamais parlé d'investissement, de bourse, d'inflation.
+
+Pendant longtemps j'ai fait pareil ce que mes parents m'ont dit, mettre gentiment mon argent sur le Livret A.
+
+Puis j'ai compris que mon argent perdait de la valeur chaque année, et que ce n'est pas comme ça que je me construirais un patrimoine 📉
+
+Alors j'ai appris, seul dans mon coin 📚
+
+J'ai appris à gérer un budget, à mettre de côté chaque début de mois et à investir mon argent dans des actifs que je comprends 💡
+
+Et cette semaine, mon patrimoine a gagné 556€, sans aucune action de ma part 💰
+
+La bourse, l'investissement, c'est accessible à tous, même avec peu d'argent 💪
+
+La seule vraie différence entre ceux qui construisent un patrimoine et les autres ?
+
+Ils ont commencé🔥
+
+Et toi, tes parents t'ont parlé d'investissement ? 👇
+
+⚠️ Pas un conseil financier.` },
+  { id: 44, month: "Octobre", category: "Storytelling", text: `On voit souvent des comptes qui partagent leur portefeuille à 300k, 500k, parfois plus d'un million d'euros 📈
+
+Et honnêtement, ça fait quelque chose. On se compare, on se sent tout petit, et on se dit "moi j'en suis loin, à quoi bon continuer" 😔
+
+Mais on oublie un truc important : ce portefeuille à 500k, il a commencé quelque part.
+
+Je me rappelle mon premier investissement sur mon PEA : 29,87€ sur un MSCI World 🙃
+
+Sur le moment, ça paraissait ridicule. Genre "à quoi bon investir un montant pareil". Mais c'était ça, le vrai début. Pas impressionnant, juste un premier pas hésitant.
+
+Personne ne montre ça ici, le premier versement sur son PEA. On montre le portefeuille à 6 chiffres, jamais le premier versement à deux chiffres.
+
+Alors si aujourd'hui ton portefeuille fait 30€, 100€ ou 500€ : tu es exactement là où j'étais, là où tout le monde a commencé un jour 🌱
+
+La différence, elle se fera dans le temps. Cette personne à plusieurs centaines de milliers d'euros, elle investit depuis combien d'années ? Elle gagne combien ? On n'en sait rien, et franchement, on s'en fiche.
+
+Se comparer pour se flageller, c'est contre-productif. Se comparer pour se projeter, c'est différent.
+
+Alors regarde ton portefeuille à 30€, 100€ ou 500€, et dis-toi une seule chose : dans 10 ans, ça peut être toi.` },
+  { id: 45, month: "Octobre", category: "Simulation & chiffres", text: `À 32 ans, comme beaucoup, j'ai longtemps repoussé l'idée de regarder combien j'aurais réellement à la retraite. Et ça ne m'a pas plu 😅
+
+Puis j'ai pris 5 minutes pour faire un calcul 👇
+
+Si je mets 300 € par mois dans un ETF à 8 % jusqu'à 65 ans :
+
+→ Je sors seulement 118 800 € de ma poche…
+→ Pour avoir 580 000 € au total 💰
+
+Ça veut dire que 462 000 € viendront juste avec du temps et de la patience ⏳
+
+Ma pension de retraite seule ne me donnera jamais ça.
+
+Le plus dur, ce n'est pas d'investir, mais d'arrêter de tout remettre à demain.
+Le vrai risque, c'est d'attendre 📈
+
+Et toi, tu as fait ce calcul aussi? 👇` },
+  { id: 46, month: "Septembre", category: "Bilan patrimoine", formats: ["Bilan de la semaine"], text: `Certains attendent le bon moment pour investir.
+
+Personnellement je reste investi, peu importe le niveau du marché, chaque mois, sans exception 🎯
+
+Le DCA de septembre est passé ✅👇
+
+🌍 MSCI World
+📦 62 parts | 💰 6,92€ | 💸 429€
+
+🇪🇺 Stoxx 600
+📦 2 parts | 💰 21,29€ | 💸 42,57€
+
+👌 Emerging Markets
+📦 1 part | 💰 35,60€ | 💸 35,60€
+
+Total investi : 507,17€ ce mois-ci 🏦
+
+Le marché est en ATH ? J'accumule.
+Il baisse ? J'accumule, sans regarder le prix.
+
+💬 Et toi, ton DCA de septembre est déjà passé ?
+
+⚠️ Pas un conseil financier.` },
 ]
 
 export function getTweet(id) {
