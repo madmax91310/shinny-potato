@@ -58,7 +58,13 @@ function record(tool, ok, detail) {
 
 async function testCalculateur(page) {
   await page.goto(`${BASE}/calculateur-investissement`, { waitUntil: "networkidle" });
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__investmentCopiedText = text; } },
+  }));
   await page.locator("select.ic-control").first().selectOption("bitcoin");
+  await page.getByRole('button', { name: /Copier le texte du post/ }).click();
+  let conclusionsOk = /à condition d’avoir conservé le placement de janvier 2020 à/.test(await page.evaluate(() => window.__investmentCopiedText));
+  conclusionsOk &&= !(await page.evaluate(() => window.__investmentCopiedText)).includes('Livret A');
   await page.waitForTimeout(150);
   const hero = await page.locator(".ic-hero-number").innerText();
   const heroOk = /\d/.test(hero);
@@ -94,6 +100,9 @@ async function testCalculateur(page) {
   await ethereumDca.click();
   await page.locator('.ic-mode-pill').filter({ hasText: 'DCA mensuel' }).waitFor();
   const ethereumDcaOk = (await page.locator('.ic-mode-pill').textContent()).trim() === 'DCA mensuel';
+  await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
+  const monthlyTweet = await page.evaluate(() => window.__investmentCopiedText);
+  conclusionsOk &&= /versés au total/.test(monthlyTweet) && !/sans versement supplémentaire/.test(monthlyTweet);
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
@@ -101,7 +110,7 @@ async function testCalculateur(page) {
   const dcaBlockOk = /DCA non disponible pour LVMH/.test(text);
 
   const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-cac40-lump.png';
-  record("Calculateur d'investissement", heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
+  record("Calculateur d'investissement", conclusionsOk && heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
     `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel: ${ethereumMonthlyOk}, DCA: ${ethereumDcaOk}, couverture: ${JSON.stringify(ethereumCoverage)}`);
 }
 
