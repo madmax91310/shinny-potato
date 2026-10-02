@@ -57,3 +57,22 @@ Le générateur `/france-100-menages` propose 17 sujets et sept rendus PNG : Ivo
 Trois nouvelles compositions sont disponibles dans La France en 100 : Ivoire & noir (par défaut), Bleu & blanc et Prune & sable. Elles couvrent les taux, les seuils en euros, les parts de patrimoine et les comparaisons. Les quatre rendus précédents restent accessibles, y compris via leurs liens partagés.
 
 Les 11 profils de Portefeuille d’investisseur disposent d’une présentation courte sourcée dans `src/data/investor-profiles.js`. La même phrase préremplit l’éditeur et le tweet ; elle est modifiable et réinitialisable. Les sources biographiques sont affichées dans l’application, séparées de celles des déclarations 13F.
+
+### Actualisation automatique des portefeuilles 13F
+
+Les huit profils Tracefour chargent la dernière photographie disponible à chaque ouverture
+ou changement d’investisseur, avec revalidation du cache. Li Lu, Gates Foundation Trust et
+Seth Klarman sont contrôlés chaque jour à 12 h 25 UTC par `update-investor-13f.yml`,
+sans clé API, depuis FolioFact. Les nouveaux fichiers sont commités puis le workflow
+réutilisable de déploiement construit, contrôle et publie ce commit sur GitHub Pages.
+L’appel explicite évite de dépendre d’un événement push émis par `GITHUB_TOKEN`, qui ne
+déclenche pas le déploiement habituel. Le déploiement est également retenté au contrôle
+suivant si les données n’ont pas changé.
+
+Toutes les réponses sont validées avant écriture. Une erreur du fournisseur ou un retour
+à un trimestre plus ancien fait échouer le contrôle et conserve les fichiers précédents.
+Les corrections du trimestre courant restent acceptées. La fraîcheur dépend de la
+publication des déclarations et de leur intégration par les sources ; les dates de
+photographie affichées ne sont pas remplacées par la date du contrôle.
+
+Vérification : `python -m unittest discover -s scripts -p test_investor_refresh.py`.

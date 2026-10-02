@@ -1,6 +1,7 @@
 """Refresh selected 13F managers from FolioFact's public holdings API."""
 import datetime as dt
 import json
+import os
 import pathlib
 import time
 import urllib.request
@@ -25,7 +26,8 @@ def make_portfolio(slug, source_slug, display, entity):
     table = get_json(f'{base}/holdings')
     period = fund['filing']['report_period_on']
     total = float(table['total_value'])
-    if not period or total <= 0 or total != float(fund['filing']['total_value']):
+    dt.date.fromisoformat(period)
+    if total <= 0 or total != float(fund['filing']['total_value']):
         raise ValueError(f'Inconsistent report for {slug}')
     rows = table['holdings']
     holdings = [
@@ -44,20 +46,40 @@ def make_portfolio(slug, source_slug, display, entity):
     }}
 
 
-def main():
-    directory = ROOT / 'public/data/investors'
-    directory.mkdir(parents=True, exist_ok=True)
+def prepare_update(destination, portfolio):
+    """Never replace a newer filing with an older provider response."""
+    if destination.exists():
+        previous = json.loads(destination.read_text())
+        old_period = dt.date.fromisoformat(previous['data']['snapshot']['periodEnd'])
+        new_period = dt.date.fromisoformat(portfolio['data']['snapshot']['periodEnd'])
+        if new_period < old_period:
+            raise ValueError(f'Refusing older report for {destination.stem}: {new_period} < {old_period}')
+        if previous['data'] == portfolio['data']:
+            return None
+    return json.dumps(portfolio, ensure_ascii=False, indent=2) + '\n'
+
+
+def refresh(directory, fetch_portfolio=make_portfolio):
+    # Validate all responses before changing any snapshot. A provider failure keeps
+    # the last successful set intact and fails the workflow visibly.
+    pending = []
     for slug, (source_slug, display, entity) in MANAGERS.items():
-        portfolio = make_portfolio(slug, source_slug, display, entity)
+        portfolio = fetch_portfolio(slug, source_slug, display, entity)
         destination = directory / f'{slug}.json'
-        if destination.exists():
-            previous = json.loads(destination.read_text())
-            if previous['data'] == portfolio['data']:
-                print(slug, 'unchanged')
-                continue
-        destination.write_text(json.dumps(portfolio, ensure_ascii=False, indent=2) + '\n')
-        print(slug, portfolio['data']['snapshot']['periodEnd'], len(portfolio['data']['snapshot']['holdings']))
+        content = prepare_update(destination, portfolio)
+        if content is not None:
+            pending.append((destination, content))
+        print(slug, portfolio['data']['snapshot']['periodEnd'], 'changed' if content else 'unchanged')
         time.sleep(.2)
+    directory.mkdir(parents=True, exist_ok=True)
+    for destination, content in pending:
+        temporary = destination.with_suffix('.json.tmp')
+        temporary.write_text(content, encoding='utf-8')
+        os.replace(temporary, destination)
+
+
+def main():
+    refresh(ROOT / 'public/data/investors')
 
 
 if __name__ == '__main__':
