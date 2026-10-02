@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
+import { ASSETS } from '../src/data/market-history.js'
+const calculatorCount = Object.keys(ASSETS).length
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4311'], { stdio: 'ignore' })
 let browser
 try {
@@ -13,16 +15,16 @@ try {
   browser = await chromium.launch(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {})
   const page = await browser.newPage()
   await page.goto(`${base}/donnees-a-revoir?view=calendar&tool=Calculateur`, { waitUntil: 'networkidle' })
-  assert.equal(await page.locator('.dr-item').count(), 24)
-  assert.equal(await page.getByText('Prochaine vérification', { exact: true }).count(), 24)
+  assert.equal(await page.locator('.dr-item').count(), calculatorCount)
+  assert.equal(await page.getByText('Prochaine vérification', { exact: true }).count(), calculatorCount)
   await page.reload({ waitUntil: 'networkidle' })
   assert.equal(await page.getByLabel('Outil', { exact: true }).inputValue(), 'Calculateur')
-  assert.equal(await page.locator('.dr-item').count(), 24)
+  assert.equal(await page.locator('.dr-item').count(), calculatorCount)
   await page.getByLabel('Outil', { exact: true }).selectOption('Présentation investisseur')
   await page.waitForFunction(() => document.querySelectorAll('.dr-item').length === 3)
   assert.equal(await page.getByRole('link', { name: 'Ouvrir le portefeuille investisseur' }).count(), 3)
   await page.getByLabel('Outil', { exact: true }).selectOption('')
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('tool') === '' && document.querySelectorAll('.dr-item').length > 24)
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('tool') === '' && document.querySelectorAll('.dr-item').length > count, calculatorCount)
   await page.getByLabel('Afficher', { exact: true }).selectOption('reserve')
   await page.waitForFunction(() => document.querySelectorAll('.dr-item').length === 9)
   await page.setViewportSize({ width: 390, height: 844 })
