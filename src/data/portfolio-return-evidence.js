@@ -1,90 +1,89 @@
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
   "LU0290358497": {
-  "sourceUrls": [
-    "https://etf.dws.com/download/asset/dc127135-9f60-472d-9b80-c73e46cc307b"
-  ],
-  "asOf": "2025-12-31",
-  "dateStatus": "dated",
-  "periodStart": "2020-01-01",
-  "periodEnd": "2025-12-31",
-  "checkedAt": "2026-10-01",
-  "currency": "EUR",
-  "scope": "Rendements calendaires NAV de la part LU0290358497",
-  "method": "Tableau émetteur ; graphique émetteur pour DWS",
-  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement. DWS a changé d’indice en décembre 2020 et novembre 2023 ; série de la part conservée."
-},
+    "sourceUrls": [
+      "https://etf.dws.com/download/asset/dc127135-9f60-472d-9b80-c73e46cc307b"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-10-01",
+    "currency": "EUR",
+    "scope": "Rendements calendaires NAV de la part LU0290358497",
+    "method": "Tableau émetteur ; graphique émetteur pour DWS",
+    "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement. DWS a changé d’indice en décembre 2020 et novembre 2023 ; série de la part conservée."
+  },
   "IE00B3FH7618": {
-  "sourceUrls": [
-    "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf"
-  ],
-  "asOf": "2025-12-31",
-  "dateStatus": "dated",
-  "periodStart": "2020-01-01",
-  "periodEnd": "2025-12-31",
-  "checkedAt": "2026-10-01",
-  "currency": "EUR",
-  "scope": "Rendements calendaires NAV de la part IE00B3FH7618",
-  "method": "Tableau émetteur ; graphique émetteur pour DWS",
-  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
-},
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-10-01",
+    "currency": "EUR",
+    "scope": "Rendements calendaires NAV de la part IE00B3FH7618",
+    "method": "Tableau émetteur ; graphique émetteur pour DWS",
+    "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+  },
   "IE00BDBRDM35": {
-  "sourceUrls": [
-    "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true"
-  ],
-  "asOf": "2025-12-31",
-  "dateStatus": "dated",
-  "periodStart": "2020-01-01",
-  "periodEnd": "2025-12-31",
-  "checkedAt": "2026-10-01",
-  "currency": "EUR",
-  "scope": "Rendements calendaires NAV de la part IE00BDBRDM35",
-  "method": "Tableau émetteur ; graphique émetteur pour DWS",
-  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
-},
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-10-01",
+    "currency": "EUR",
+    "scope": "Rendements calendaires NAV de la part IE00BDBRDM35",
+    "method": "Tableau émetteur ; graphique émetteur pour DWS",
+    "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+  },
   "IE00BMG6Z448": {
-  "sourceUrls": [
-    "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y"
-  ],
-  "asOf": "2025-12-31",
-  "dateStatus": "dated",
-  "periodStart": "2022-01-01",
-  "periodEnd": "2025-12-31",
-  "checkedAt": "2026-10-01",
-  "currency": "USD",
-  "scope": "Rendements calendaires NAV de la part IE00BMG6Z448",
-  "method": "Tableau émetteur ; graphique émetteur pour DWS",
-  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
-},
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2022-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-10-01",
+    "currency": "USD",
+    "scope": "Rendements calendaires NAV de la part IE00BMG6Z448",
+    "method": "Tableau émetteur ; graphique émetteur pour DWS",
+    "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+  },
   "IE00BZCQB185": {
-  "sourceUrls": [
-    "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf"
-  ],
-  "asOf": "2025-12-31",
-  "dateStatus": "dated",
-  "periodStart": "2020-01-01",
-  "periodEnd": "2025-12-31",
-  "checkedAt": "2026-10-01",
-  "currency": "USD",
-  "scope": "Rendements calendaires NAV de la part IE00BZCQB185",
-  "method": "Tableau émetteur ; graphique émetteur pour DWS",
-  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
-},
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-10-01",
+    "currency": "USD",
+    "scope": "Rendements calendaires NAV de la part IE00BZCQB185",
+    "method": "Tableau émetteur ; graphique émetteur pour DWS",
+    "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+  },
   "IE00B1FZS467": {
-  "sourceUrls": [
-    "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf"
-  ],
-  "asOf": "2025-12-31",
-  "dateStatus": "dated",
-  "periodStart": "2020-01-01",
-  "periodEnd": "2025-12-31",
-  "checkedAt": "2026-10-01",
-  "currency": "USD",
-  "scope": "Rendements calendaires NAV de la part IE00B1FZS467",
-  "method": "Tableau émetteur ; graphique émetteur pour DWS",
-  "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
-},
-
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-10-01",
+    "currency": "USD",
+    "scope": "Rendements calendaires NAV de la part IE00B1FZS467",
+    "method": "Tableau émetteur ; graphique émetteur pour DWS",
+    "note": "Arrondis publiés par l’émetteur. Années complètes uniquement ; aucun rendement extrapolé avant le lancement."
+  },
   "IE00BF3N7094": {
     "sourceUrls": [
       "https://www.ishares.com/uk/individual/en/products/290618/ishares-high-yield-corp-bond-ucits-etf"
@@ -213,17 +212,17 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
   },
   "IE00BYTRR863": {
     "sourceUrls": [
-      "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-msci-world-energy-ucits-etf-wrde-gy"
+      "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na"
     ],
     "asOf": "2025-12-31",
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
+    "checkedAt": "2026-10-02",
     "currency": "USD",
     "scope": "Rendements calendaires NAV de la part IE00BYTRR863",
     "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
-    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur."
+    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "IE00BJ5JNY98": {
     "sourceUrls": [
@@ -317,11 +316,11 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
-    "currency": null,
+    "checkedAt": "2026-10-02",
+    "currency": "EUR",
     "scope": "Série 2020–2025 du générateur pour LU1681043599",
     "method": "Fonds confirmé chez l’émetteur",
-    "note": "Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "note": "Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "FR0011871128": {
     "sourceUrls": [
@@ -535,31 +534,31 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
   },
   "FR0010342592": {
     "sourceUrls": [
-      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/RETAIL/ETF/20260331"
+      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
     ],
     "asOf": "2025-12-31",
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
-    "currency": null,
+    "checkedAt": "2026-10-02",
+    "currency": "EUR",
     "scope": "Série 2020–2025 du générateur pour FR0010342592",
     "method": "Fonds confirmé chez l’émetteur",
-    "note": "Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "note": "Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "FR0010755611": {
     "sourceUrls": [
-      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20251231"
+      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
     ],
     "asOf": "2025-12-31",
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
-    "currency": null,
+    "checkedAt": "2026-10-02",
+    "currency": "EUR",
     "scope": "Série 2020–2025 du générateur pour FR0010755611",
     "method": "Fonds confirmé chez l’émetteur",
-    "note": "Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "note": "Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "IE00B43HR379": {
     "sourceUrls": [
@@ -843,17 +842,17 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
   },
   "LU1931975079": {
     "sourceUrls": [
-      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1931975079/FRA/FRA/INSTITUTIONNEL/ETF/20260331"
+      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1931975079/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
     ],
     "asOf": "2025-12-31",
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
-    "currency": null,
+    "checkedAt": "2026-10-02",
+    "currency": "EUR",
     "scope": "Série 2020–2025 du générateur pour LU1931975079",
     "method": "Fonds confirmé chez l’émetteur",
-    "note": "Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "note": "Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "IE00BZ163G84": {
     "sourceUrls": [
@@ -927,31 +926,31 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
   },
   "LU1437018838": {
     "sourceUrls": [
-      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231"
+      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
     ],
     "asOf": "2025-12-31",
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
-    "currency": null,
+    "checkedAt": "2026-10-02",
+    "currency": "EUR",
     "scope": "Série 2020–2025 du générateur pour LU1437018838",
     "method": "Fonds confirmé chez l’émetteur",
-    "note": "Rendements du fonds Amundi en euros, dividendes réinvestis ; le prix de marché peut différer de la valeur liquidative. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "note": "Rendements du fonds Amundi en euros, dividendes réinvestis ; le prix de marché peut différer de la valeur liquidative. asOf est la fin de la période calendaire, pas la date de publication. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique. La fiche Amundi commune identifie explicitement les parts C et D et publie un tableau de performances du portefeuille, revenus réinvestis."
   },
   "LU1737652823": {
     "sourceUrls": [
-      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20251231"
+      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1737652823/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
     ],
     "asOf": "2025-12-31",
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
-    "currency": null,
+    "checkedAt": "2026-10-02",
+    "currency": "EUR",
     "scope": "Série 2020–2025 du générateur pour LU1737652823",
     "method": "Fonds confirmé chez l’émetteur",
-    "note": "Rendements du fonds Amundi en euros, dividendes réinvestis ; la part distribuante verse ses revenus séparément. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "note": "Rendements du fonds Amundi en euros, dividendes réinvestis ; la part distribuante verse ses revenus séparément. asOf est la fin de la période calendaire, pas la date de publication. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique. La fiche Amundi commune identifie explicitement les parts C et D et publie un tableau de performances du portefeuille, revenus réinvestis."
   },
   "IE00BK5BQT80": {
     "sourceUrls": [
@@ -1131,11 +1130,11 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
-    "currency": null,
+    "checkedAt": "2026-10-02",
+    "currency": "USD",
     "scope": "Série 2020–2025 du générateur pour CH0454664001",
     "method": "Indice ou cours du sous-jacent",
-    "note": "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP 21Shares ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "note": "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP 21Shares ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte. asOf est la fin de la période calendaire, pas la date de publication. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "GB00BLD4ZM24": {
     "sourceUrls": [
@@ -1234,11 +1233,11 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
-    "currency": null,
+    "checkedAt": "2026-10-02",
+    "currency": "USD",
     "scope": "Série 2020–2025 du générateur pour IE00BKPX3K41",
     "method": "Autre fonds ou historique mixte",
-    "note": "2020 : rendement de la part distribuante du même fonds, en dollars et dividendes réinvestis (part Acc lancée en avril). 2021-2025 : rendements de la part Acc en dollars. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "note": "2020 : rendement de la part distribuante du même fonds, en dollars et dividendes réinvestis (part Acc lancée en avril). 2021-2025 : rendements de la part Acc en dollars. asOf est la fin de la période calendaire, pas la date de publication. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "IE00BKPSFC54": {
     "sourceUrls": [
@@ -1279,10 +1278,10 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
+    "checkedAt": "2026-10-02",
     "scope": "Rendements calendaires NAV de la part IE00BJ5JP097",
     "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
-    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur."
+    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "IE000I8KRLL9": {
     "sourceUrls": [
@@ -1293,10 +1292,10 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
+    "checkedAt": "2026-10-02",
     "scope": "Rendements calendaires NAV de la part IE000I8KRLL9",
     "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
-    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur."
+    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "IE000YYE6WK5": {
     "sourceUrls": [
@@ -1307,10 +1306,10 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
+    "checkedAt": "2026-10-02",
     "scope": "Rendements calendaires NAV de la part IE000YYE6WK5",
     "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
-    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur."
+    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   },
   "IE000RDRMSD1": {
     "sourceUrls": [
@@ -1321,9 +1320,9 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": null,
+    "checkedAt": "2026-10-02",
     "scope": "Rendements calendaires NAV de la part IE000RDRMSD1",
     "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
-    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur."
+    "note": "Source de la série déjà recoupée dans verified-returns. asOf désigne la fin de la période de rendement, pas la publication ni la consultation. Les sources oppl.io sont des copies de documents émetteur. Contrôle individuel du 02/10/2026 : les rendements complets 2020–2025 disponibles concordent avec la publication. Capture data-review-2026-10-02.json. La date de contrôle ne modifie pas la période historique."
   }
 };

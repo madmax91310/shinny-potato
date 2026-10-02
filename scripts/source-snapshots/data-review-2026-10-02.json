@@ -1,0 +1,414 @@
+{
+  "checkedAt": "2026-10-02",
+  "note": "Observations numériques lues dans les publications ; hash des réponses sources. Les proxys restent identifiés.",
+  "records": [
+    {
+      "type": "portfolio",
+      "isin": "CH0454664001",
+      "currency": "USD",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        303.16,
+        59.67,
+        -64.27,
+        155.42,
+        121.05,
+        -6.34
+      ],
+      "sourceUrls": [
+        "https://www.slickcharts.com/currency/BTC/returns",
+        "https://www.21shares.com/fr-eu/product/abtc"
+      ],
+      "sha256": null,
+      "method": "Indice ou cours du sous-jacent",
+      "proxy": "BTC/USD avant frais de l’ETP",
+      "retrieval": "Page Slickcharts BTC/returns consultée avec le service de recherche ; téléchargement direct HTTP 403. Six rendements annuels visibles et concordants."
+    },
+    {
+      "type": "portfolio",
+      "isin": "LU1931975079",
+      "currency": "EUR",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        2.42,
+        -1.21,
+        -14.15,
+        7.82,
+        4.64,
+        2.99
+      ],
+      "sourceUrls": [
+        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1931975079/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
+      ],
+      "sha256": "696b390c346d9777d35255052168843aa1cfe90b0e36455460e8abf933a51379",
+      "method": "Fonds confirmé chez l’émetteur",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "LU1437018838",
+      "currency": "EUR",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        -16.53,
+        35.57,
+        -20.34,
+        6.02,
+        7.62,
+        -3.43
+      ],
+      "sourceUrls": [
+        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
+      ],
+      "sha256": "43cd36b790e6d62a70a304e2462f83e3343937f84d8efaa095154b8e0c3475c8",
+      "method": "Fonds confirmé chez l’émetteur",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "LU1737652823",
+      "currency": "EUR",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        -16.53,
+        35.57,
+        -20.34,
+        6.02,
+        7.62,
+        -3.43
+      ],
+      "sourceUrls": [
+        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1737652823/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
+      ],
+      "sha256": "43cd36b790e6d62a70a304e2462f83e3343937f84d8efaa095154b8e0c3475c8",
+      "method": "Fonds confirmé chez l’émetteur",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "FR0010755611",
+      "currency": "EUR",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        8.23,
+        81.38,
+        -31.43,
+        41.19,
+        65.62,
+        -0.19
+      ],
+      "sourceUrls": [
+        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
+      ],
+      "sha256": "3113a0f77abe2158b283cfdd375c9bdacb8bb3f4cb182e212369e372e3297b6e",
+      "method": "Fonds confirmé chez l’émetteur",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "LU1681043599",
+      "currency": "EUR",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        6.26,
+        30.94,
+        -12.87,
+        19.46,
+        26.33,
+        6.39
+      ],
+      "sourceUrls": [
+        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
+      ],
+      "sha256": "38df457f4496f8cbcbcd769ac5c280fd2cca4e13f756152fdb4a6ddeb94aa347",
+      "method": "Fonds confirmé chez l’émetteur",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "FR0010342592",
+      "currency": "EUR",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        74.02,
+        67.05,
+        -57.69,
+        110.24,
+        52.51,
+        14.97
+      ],
+      "sourceUrls": [
+        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF/20260831"
+      ],
+      "sha256": "df4cff3e226ebeaa561400fc6b74862d3fe3e26213023b3204a859ed415489f2",
+      "method": "Fonds confirmé chez l’émetteur",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "IE000RDRMSD1",
+      "currency": "USD",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        null,
+        null,
+        null,
+        197.37,
+        17.67,
+        27.43
+      ],
+      "sourceUrls": [
+        "https://www.ishares.com/gls-download/literature/fact-sheet/blkc-ishares-blockchain-technology-ucits-etf-fund-fact-sheet-en-gb.pdf"
+      ],
+      "sha256": "daac564da93fe8ddced2d95a64d354c44f483d29d87f9f187d89bc66245a4a30",
+      "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "IE00BKPX3K41",
+      "currency": "USD",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        25.1,
+        -8.92,
+        -21.95,
+        2.3,
+        11.67,
+        39.91
+      ],
+      "sourceUrls": [
+        "https://www.ishares.com/gls-download/literature/fact-sheet/iffi-ishares-msci-ac-far-east-ex-japan-ucits-etf-fund-fact-sheet-en-gb.pdf",
+        "https://www.ishares.com/uk/professionals/en/products/251848/ishares-msci-ac-far-east-ex-japan-ucits-etf"
+      ],
+      "sha256": "2034037c1028c0cd74f3bb0c3a2307cf04080195060ccb867c73e95a39466c64",
+      "method": "Autre fonds ou historique mixte",
+      "proxy": "2020 : part distribuante ; 2021–2025 : part Acc",
+      "proxySource": {
+        "url": "https://www.ishares.com/uk/professionals/en/products/251848/ishares-msci-ac-far-east-ex-japan-ucits-etf",
+        "year": 2020,
+        "value": 25.1,
+        "sha256": "788db994e2ad4a103dde326478d7918b8509b3ce9fd358ef83f181c9789a17ba"
+      }
+    },
+    {
+      "type": "portfolio",
+      "isin": "IE000I8KRLL9",
+      "currency": "USD",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        null,
+        null,
+        -34.84,
+        64.13,
+        13.79,
+        53.46
+      ],
+      "sourceUrls": [
+        "https://www.ishares.com/uk/individual/en/literature/fact-sheet/semi-ishares-msci-global-semiconductors-ucits-etf-fund-fact-sheet-en-gb.pdf"
+      ],
+      "sha256": "26e97c0a3971f5e0312819f30d42006ae5dc3177f4d0d2ec6c78560667d497f0",
+      "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "IE00BJ5JP097",
+      "currency": "USD",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        null,
+        null,
+        -9.6,
+        17.4,
+        25.3,
+        29.5
+      ],
+      "sourceUrls": [
+        "https://www.ishares.com/uk/individual/en/products/308836/ishares-msci-world-financials-sector-advanced-ucits-etf"
+      ],
+      "sha256": "b5cf22b0d76e4e2965ea57e32862d62628b12b0a0dca7ec3464fca4e3778b329",
+      "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "IE00BYTRR863",
+      "currency": "USD",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        -31.1,
+        40.49,
+        46.31,
+        2.79,
+        2.88,
+        13.56
+      ],
+      "sourceUrls": [
+        "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na"
+      ],
+      "sha256": "abe81735ded35b4b8a4b2dcab080099f709cf62e408352ba417c3f1f2037641b",
+      "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
+      "proxy": null
+    },
+    {
+      "type": "portfolio",
+      "isin": "IE000YYE6WK5",
+      "currency": "USD",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        null,
+        null,
+        null,
+        null,
+        43.5,
+        68.8
+      ],
+      "sourceUrls": [
+        "https://www.vaneck.com/fr/fr/dfns-supporting-doc.pdf"
+      ],
+      "sha256": "269493179db985fb4108006af1970252ff605556a90c61dcac8e264e2d177fca",
+      "method": "Rendements de la part exacte dans la devise publiée ; années complètes indisponibles conservées null",
+      "proxy": null
+    },
+    {
+      "type": "comparator",
+      "isin": "IE00B5M1WJ87",
+      "currency": "EUR",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        18.39,
+        8.55,
+        20.06
+      ],
+      "sourceUrls": [
+        "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy"
+      ],
+      "sha256": "806e37819d4594b79f715d245be20c9fc0440fa9f4cb58f984411bfba1b5e0d3"
+    },
+    {
+      "type": "comparator",
+      "isin": "LU2196470426",
+      "currency": "JPY",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "values": [
+        30.5,
+        20.9,
+        28.2
+      ],
+      "sourceUrls": [
+        "https://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR"
+      ],
+      "sha256": "3b781a6d12ec04779d17d68f98e19df070ecd523c8f1fe91c5616984421c32f7"
+    },
+    {
+      "type": "index",
+      "id": "topix",
+      "asOf": "2026-07-31",
+      "constituents": 1637,
+      "sourceUrls": [
+        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/ENG/FRA/INSTITUTIONNEL/ETF/20260731"
+      ],
+      "sha256": "d1ad0086d6268e04f9bedaca1a4aa56c8302d0f02ee61255e27c201c4e541efc"
+    }
+  ]
+}

@@ -219,12 +219,12 @@ export const COMPARATOR_RETURN_EVIDENCE = {
     "sourceUrls": [
       "https://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy"
     ],
-    "checkedAt": null,
+    "checkedAt": "2026-10-02",
     "asOf": null,
     "currency": "EUR",
     "scope": "Part IE00B5M1WJ87 ; rendements calendaires 2023–2025",
     "method": "Rendements du comparateur ; convention décrite dans la note existante",
-    "note": "Corrigé le 25/09/2026 : 2024 8,58 → 8,55, ligne « Fund Net » EUR de State Street ; confiance élevée.\nhttps://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy"
+    "note": "Corrigé le 25/09/2026 : 2024 8,58 → 8,55, ligne « Fund Net » EUR de State Street ; confiance élevée.\nhttps://www.ssga.com/uk/en_gb/intermediary/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy\nRecontrôlé le 02/10/2026 : tableau Fund Net EUR 2023–2025 de State Street ; concordance au centième."
   },
   "IE00BJ5JPG56": {
     "sourceUrls": [
@@ -275,12 +275,12 @@ export const COMPARATOR_RETURN_EVIDENCE = {
     "sourceUrls": [
       "https://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR"
     ],
-    "checkedAt": null,
+    "checkedAt": "2026-10-02",
     "asOf": null,
     "currency": "JPY",
     "scope": "Part LU2196470426 ; rendements calendaires 2023–2025",
     "method": "Rendements du comparateur ; convention décrite dans la note existante",
-    "note": "Corrigé le 25/09/2026 : 2025 28,3 → 28,2, performance part 1C JPY DWS ; confiance élevée.\nhttps://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR"
+    "note": "Corrigé le 25/09/2026 : 2025 28,3 → 28,2, performance part 1C JPY DWS ; confiance élevée.\nhttps://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR\nRecontrôlé le 02/10/2026 : graphique de la part 1C JPY DWS 2023–2025 ; concordance au dixième."
   },
   "FR0013411980": {
     "sourceUrls": [
