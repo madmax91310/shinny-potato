@@ -650,4 +650,4 @@ for (const review of ARCHIVE_SOURCE_REVIEW.filter(r => !r.key)) {
 }
 
 // La revue mensuelle prime sur les métadonnées héritées ; son périmètre est explicite.
-for (const [id, review] of Object.entries(MARKET_HISTORY_REVIEW)) Object.assign(SUPPORTING_EVIDENCE[id], review);
+for (const [id, review] of Object.entries(MARKET_HISTORY_REVIEW)) SUPPORTING_EVIDENCE[id] = { ...SUPPORTING_EVIDENCE[id], ...review };

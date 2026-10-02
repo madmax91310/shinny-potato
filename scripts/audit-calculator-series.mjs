@@ -222,3 +222,40 @@ for (const id of ['or']) {
 }
 if (getAnnualReturns('msciWorld', 2016).some(p => p.year >= 2026) || getAnnualReturns('sp500', 2016).some(p => p.year >= 2026) || getAnnualReturns('bitcoin', 2016).some(p => p.year >= 2026)) throw new Error('Année 2026 partielle publiée comme performance annuelle');
 console.log('Consommateurs : simulations, quantités DCA, fins réelles, comparatifs vidéo et exclusion des années incomplètes OK.');
+
+// Nouvelles entreprises : aucune interpolation des mois source, prix ajustés
+// quotidien de fin de mois et close non ajusté concordant avec l'export mensuel.
+const companies = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-companies-2026-10-02.json', import.meta.url)));
+const { COMPANY_HISTORY, COMPANY_HISTORY_REVIEW } = await import('../src/data/company-history.js');
+const { ASSET_ORDER } = await import('../src/data/market-history.js');
+const { ANNIVERSAIRE_ELIGIBLE_ASSETS, MARKET_ASSETS } = await import('../src/pages/tweet-midi/data/marketHistory.js');
+const companyIds = ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal'];
+if (Object.keys(COMPANY_HISTORY).sort().join() !== companyIds.sort().join() || companies.checkedAt !== '2026-10-02') throw new Error('Périmètre des entreprises incorrect');
+for (const id of companyIds) {
+  const a = ASSETS[id], r = companies.records[id], m = r.monthlyResponse.chart.result[0];
+  const count = (2026 - Number(r.periodStart.slice(0, 4))) * 12 + 9 - Number(r.periodStart.slice(5)) + 1;
+  if (a.currency !== r.currency || m.meta.symbol !== r.symbol || m.meta.currency !== r.currency || a.points.length !== count || r.points.length !== count || r.lastDailyCloses.length !== count
+      || !ASSET_ORDER.includes(id) || !MARKET_ASSETS.some(x => x.id === id) || ANNIVERSAIRE_ELIGIBLE_ASSETS.some(x => x.id === id)
+      || SPARSE_MONTHLY_DATA_IDS.has(id) || a.priceMethod !== 'adjusted') throw new Error(`${id}: couverture, méthode ou exposition incorrecte`);
+  for (const [i, p] of a.points.entries()) {
+    const daily = r.lastDailyCloses[i];
+    const monthIndex = m.timestamp.findIndex(t => monthAtExchange(t, m.meta.exchangeTimezoneName).slice(0, 7) === p.date);
+    const wantedDate = new Date(Date.UTC(Number(r.periodStart.slice(0, 4)), Number(r.periodStart.slice(5)) - 1 + i, 1)).toISOString().slice(0, 7);
+    if (p.date !== wantedDate || daily.date.slice(0, 7) !== p.date || monthAtExchange(daily.timestamp, m.meta.exchangeTimezoneName) !== daily.date
+        || p.price !== Math.round(daily.adjclose * 1e6) / 1e6 || p.price !== r.points[i][1] || !(p.price > 0)
+        || monthIndex < 0 || Math.abs(m.indicators.quote[0].close[monthIndex] - daily.close) > .005) throw new Error(`${id} ${p.date}: source ou continuité incorrecte`);
+  }
+  const evidence = COMPANY_HISTORY_REVIEW[`history:${id}`];
+  if (evidence.periodStart !== a.points[0].date || evidence.periodEnd !== a.points.at(-1).date || !evidence.sourceUrls.includes(r.dailyUrl)) throw new Error(`${id}: provenance incohérente`);
+  for (const mode of ['lump', 'dca']) {
+    const state = { assetId: id, amountRaw: '100', startYear: 2020, startMonth: 1, mode, overridePriceRaw: '' };
+    const d = derive(state), prices = a.points.filter(p => p.date >= '2020-01');
+    const expected = (mode === 'lump' ? 100 / prices[0].price : prices.reduce((n, p) => n + 100 / p.price, 0)) * prices.at(-1).price;
+    if (d.endYm !== '2026-09' || d.effectiveMode !== mode || Math.abs(d.result.finalValue - expected) > 1e-7 || !buildTweetText(state, d).includes('Cours ajustés')) throw new Error(`${id}: calcul ou méthode du tweet incorrect`);
+    const video = computeComparativeSeries(id, '2020-01', '2026-09', 100, mode);
+    if (Math.abs(video.finalValue - expected) > 1e-7) throw new Error(`${id}: vidéo incohérente`);
+  }
+  if (getAnnualReturns(id, 2020).length !== 6) throw new Error(`${id}: années civiles de Tweet Midi incorrectes`);
+}
+if (ASSETS.paypal.points.find(p => p.date === '2022-12').price >= ASSETS.paypal.points.find(p => p.date === '2021-12').price) throw new Error('Trajectoire défavorable PayPal non représentée');
+console.log('8 entreprises : sources, devise, continuité, DCA, versement unique, vidéo et Performance depuis contrôlés.');

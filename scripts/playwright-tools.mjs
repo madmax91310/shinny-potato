@@ -143,9 +143,19 @@ async function testCalculateur(page) {
   const badgeOk = /non vérifiées avant/.test(text);
   const dcaBlockOk = /DCA non disponible pour LVMH/.test(text);
 
+  let companiesOk = true;
+  for (const id of ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal']) {
+    await page.locator('select.ic-control').first().selectOption(id);
+    await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
+    await page.getByRole('button', { name: /Copier le texte du post/ }).click();
+    const post = await page.evaluate(() => window.__investmentCopiedText);
+    companiesOk &&= post.includes('Cours ajustés') && post.includes('septembre 2026') && !/NaN|undefined/.test(post);
+    if (id === 'airliquide') companiesOk &&= post.includes('Prime de fidélité exclue');
+    companiesOk &&= !(await page.locator('body').innerText()).includes('DCA non disponible pour');
+  }
   const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-cac40-lump.png';
-  record("Calculateur d'investissement", septemberOk && spDcaOk && conclusionsOk && heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
-    `septembre/fins réelles: ${septemberOk}, S&P DCA: ${spDcaOk}, résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel: ${ethereumMonthlyOk}, DCA: ${ethereumDcaOk}, couverture: ${JSON.stringify(ethereumCoverage)}`);
+  record("Calculateur d'investissement", companiesOk && septemberOk && spDcaOk && conclusionsOk && heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
+    `8 entreprises: ${companiesOk}, septembre/fins réelles: ${septemberOk}, S&P DCA: ${spDcaOk}, résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel: ${ethereumMonthlyOk}, DCA: ${ethereumDcaOk}, couverture: ${JSON.stringify(ethereumCoverage)}`);
 }
 
 async function testPortfolioGenerator(page) {
@@ -393,6 +403,14 @@ async function testTweetMidi(page) {
   if ((comparison.match(/^📈 Performance /gmu) ?? []).length !== 2
       || (comparison.match(/^Cumulé sur la période : /gmu) ?? []).length !== 2
       || comparison.includes('💬')) failed.push('Performance depuis : comparatif');
+  await page.getByRole('button', { name: 'Performance depuis', exact: true }).click();
+  for (const id of ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal']) {
+    await page.locator('#subject-select').selectOption(id);
+    await page.locator('#secondary-select').selectOption('2020');
+    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+    const post = await page.locator('pre').innerText();
+    if (!post.includes('2025 :') || post.includes('2026 :') || /NaN|undefined/.test(post)) failed.push(`Nouvelle entreprise ${id}`);
+  }
   record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
 }
 

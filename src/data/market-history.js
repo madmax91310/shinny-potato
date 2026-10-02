@@ -1,3 +1,4 @@
+import { COMPANY_HISTORY } from './company-history.js'
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
 // Bitcoin et S&P 500 : clôtures mensuelles Yahoo recoupées le 02/10/2026. Les autres actifs ont des
@@ -962,12 +963,14 @@ export const ASSETS = {
       '2026-09', 86.08,
     ]),
   },
+  ...COMPANY_HISTORY,
 }
 
 export const ASSET_ORDER = [
   'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
   'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
+  ...Object.keys(COMPANY_HISTORY),
 ]
 
 // DÉPLACÉ le 04/09/2026 depuis tweet-midi/data/marketHistory.js (où cette protection existait
