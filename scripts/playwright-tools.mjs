@@ -29,6 +29,7 @@ import { buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
+import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { CASES } from "../src/pages/concrete-cases/data.js";
 
 const PORT = 4310;
@@ -480,7 +481,7 @@ async function testTweetBank(page) {
   await page.waitForTimeout(150);
   const cooldownCount = (await page.locator(".tb-summary-num").allInnerTexts())[1];
   const badge = await page.locator(".tb-pub-badge.cooldown").first().count();
-  const ok = totalBefore === "42" && cooldownCount === "1" && badge === 1;
+  const ok = Number(totalBefore) === TWEETS.length && cooldownCount === "1" && badge === 1;
   record("Banque de tweets", ok, `total: ${totalBefore}, en repos après marquage: ${cooldownCount}, badge cooldown affiché: ${badge === 1}`);
 }
 
