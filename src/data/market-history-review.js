@@ -1,5 +1,7 @@
+import { COMPANY_HISTORY_REVIEW } from './company-history.js';
 // Contrôle du 02/10/2026. Aucun prix dupliqué ici ; captures rejouées par audit:calculator-series.
 export const MARKET_HISTORY_REVIEW = {
+  ...COMPANY_HISTORY_REVIEW,
   "history:msciWorld": {
     "sourceUrls": [
         "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20141231&end_date=20260930&data_frequency=END_OF_MONTH&index_codes=990100",

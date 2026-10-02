@@ -172,7 +172,7 @@ const REBASED_INDEX_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
 // qui bloque leur DCA. Ethereum en est retiré le 30/09/2026 après contrôle des 105 mois
 // complets Yahoo ; sa plage commence en décembre 2017. Performance depuis conserve
 // les seuls points réels de clôture d’année (getLastRealPointOfYear).
-const ANNIVERSAIRE_EXCLUDED_IDS = new Set([...REBASED_INDEX_IDS, ...SPARSE_MONTHLY_DATA_IDS]);
+const ANNIVERSAIRE_EXCLUDED_IDS = new Set([...REBASED_INDEX_IDS, ...SPARSE_MONTHLY_DATA_IDS, ...ASSET_ORDER.filter(id => ASSETS[id].priceMethod === 'adjusted')]);
 
 // Un niveau de prix brut n'a de sens à afficher (ex. "Prix en 2015 : 625 $US") que pour un actif
 // dont les points sont de vrais prix/indices externes — jamais pour les 3 indices rebasés

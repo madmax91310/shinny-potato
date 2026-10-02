@@ -273,6 +273,10 @@ export function buildTweetText(state, d) {
     lines.push('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
   }
 
+  if (asset?.priceMethod === 'adjusted') {
+    lines.push('Cours ajustés : dividendes réinvestis et divisions d’actions pris en compte, hors frais et fiscalité.' + (asset.returnNote ? ' ' + asset.returnNote : ''))
+  }
+
   if (state.assetId === 'silver') {
     lines.push('', 'Prix de futures COMEX continus en dollars, sans frais ni renouvellement des contrats : ce calcul ne représente pas le rendement d’un placement réel en argent.')
   }

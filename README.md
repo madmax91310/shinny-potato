@@ -83,3 +83,16 @@ lignes, variations du nombre d’actions et sorties. Les données sont conservé
 le regroupement des catégories d’actions. Une variation de poids ne sert jamais à
 inférer un achat ou une vente. Sans mouvement exploitable ou comparaison disponible,
 l’encart est omis. Les mêmes récupérations automatiques actualisent cet encart.
+
+Huit entreprises supplémentaires sont disponibles dans le Calculateur et Performance depuis :
+Costco, McDonald’s, Air Liquide, Schneider Electric, Hermès, L’Oréal, Intel et PayPal.
+Les dernières clôtures quotidiennes ajustées Yahoo de chaque mois couvrent janvier 2015
+à septembre 2026 pour Costco, McDonald’s et Intel ; août 2015 pour PayPal ; janvier 2016
+pour Schneider, Hermès et L’Oréal ; janvier 2017 pour Air Liquide. Les cours ajustés
+simulent le réinvestissement des dividendes et tiennent compte des divisions, hors frais
+et fiscalité ; la prime de fidélité Air Liquide est exclue. Les mêmes données alimentent
+le versement unique, le DCA, les vidéos et les rendements annuels, sans modifier les anciens actifs.
+Elles sont exclues du format Anniversaire, qui affiche un prix historique brut : une
+clôture ajustée ne correspond pas au prix effectivement coté à cette date.
+Capture et limites : scripts/source-snapshots/calculator-companies-2026-10-02.json.
+Ces séries sont figées au dernier contrôle ; leur ajout ne crée pas d’actualisation programmée.
