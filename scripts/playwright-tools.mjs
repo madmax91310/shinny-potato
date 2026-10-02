@@ -133,6 +133,18 @@ async function testCalculateur(page) {
   septemberOk &&= worldTweet.includes('septembre 2026') && worldTweet.includes('versés au total')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
+  for (const [id, name] of [['msciEmerging', 'MSCI Emerging Markets'], ['msciWorldSmallCap', 'MSCI World Small Cap']]) {
+    await page.locator('select.ic-control').first().selectOption(id);
+    const dca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
+    septemberOk &&= await dca.isEnabled();
+    await dca.click();
+    await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
+    const post = await page.evaluate(() => window.__investmentCopiedText);
+    septemberOk &&= post.includes(name) && post.includes('septembre 2026') && post.includes('Gross Return')
+      && post.includes('versés au total') && !/NaN|undefined/.test(post)
+      && (await page.locator('.ic-current-level').innerText()).includes('points')
+      && (await page.locator('.ic-method-note').innerText()).includes(`${name} Gross Return`);
+  }
   await page.locator('select.ic-control').first().selectOption('or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('août 2026');
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();

@@ -63,6 +63,21 @@ Les fichiers de chaque outil restent des façades de compatibilité ; les regist
 communs n’importent pas les pages. Les valeurs des rendements et textes existants
 ont été conservées, et leurs conventions distinctes n’ont pas été fusionnées.
 
+### Historiques MSCI mensuels
+
+`msci-history.js` contient les niveaux du MSCI Emerging Markets et du MSCI World
+Small Cap ; `market-history.js` les expose à tous les consommateurs, sans copie
+locale. Les séries couvrent janvier 2015 à septembre 2026 en **Gross Return USD**
+(dividendes bruts réinvestis, niveaux d’indice en points, hors frais).
+
+Les captures mensuelles et quotidiennes ainsi que les références des fiches MSCI
+sont conservées dans `scripts/source-snapshots/calculator-msci-additions-2026-10-02.json`.
+`npm run audit:calculator-series` rejoue la continuité, les fins de mois, les
+rendements annuels et les simulations avec versement unique ou DCA. La provenance
+est exposée dans la Bibliothèque de données et les échéances de revue mensuelle
+sont dérivées du dernier mois disponible. Ces séries restent distinctes des
+rendements annuels des ETF ou des autres variantes d’indice.
+
 ### Rechercher ou partager depuis la ligne de commande
 
 ```sh

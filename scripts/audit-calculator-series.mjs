@@ -259,3 +259,67 @@ for (const id of companyIds) {
 }
 if (ASSETS.paypal.points.find(p => p.date === '2022-12').price >= ASSETS.paypal.points.find(p => p.date === '2021-12').price) throw new Error('Trajectoire défavorable PayPal non représentée');
 console.log('8 entreprises : sources, devise, continuité, DCA, versement unique, vidéo et Performance depuis contrôlés.');
+
+// Ajouts MSCI : même variante Gross USD que le World, source commune et mois complets.
+const msciAdditions = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-msci-additions-2026-10-02.json', import.meta.url)));
+const { DATA_CATALOG } = await import('../src/data/catalog.js');
+const { hasComparableLevel } = await import('../src/pages/tweet-midi/data/marketHistory.js');
+for (const [id, code] of [['msciEmerging', '891800'], ['msciWorldSmallCap', '106230']]) {
+  const capture = msciAdditions.records[id];
+  const asset = ASSETS[id];
+  if (capture.indexCode !== code || capture.checkedAt !== '2026-10-02' || capture.variant !== 'GRTR' || capture.currency !== 'USD'
+      || !capture.url.startsWith('https://app2.msci.com/') || !capture.url.includes('data_frequency=END_OF_MONTH')
+      || !capture.dailyUrl.includes('data_frequency=DAILY') || capture.factsheetAsOf !== '2026-08-31'
+      || !capture.factsheetUrl.startsWith('https://www.msci.com/') || !/^[a-f0-9]{64}$/.test(capture.factsheetSha256)
+      || asset.points.length !== 141 || capture.points.length !== 141 || asset.priceUnit !== 'points'
+      || asset.currency !== 'USD' || !asset.methodNote.includes('Gross Return')
+      || SPARSE_MONTHLY_DATA_IDS.has(id) || INCONSISTENT_MONTHLY_DATA_IDS.has(id)) throw new Error(`${id}: provenance ou variante incorrecte`);
+  for (const response of [capture.response, capture.dailyResponse]) {
+    if (response.msci_index_code !== code || response.index_variant_type !== 'GRTR' || response.ISO_currency_symbol !== 'USD') throw new Error(`${id}: variante source incorrecte`);
+  }
+  const dailyEnds = new Map();
+  let previousDate = 0;
+  for (const row of capture.dailyResponse.indexes.INDEX_LEVELS) {
+    if (row.calc_date <= previousDate || !(row.level_eod > 0)) throw new Error(`${id}: séance source invalide`);
+    previousDate = row.calc_date;
+    dailyEnds.set(String(row.calc_date).slice(0, 6), row);
+  }
+  const sourceRows = capture.response.indexes.INDEX_LEVELS.filter(row => row.calc_date >= 20150101);
+  if (sourceRows.length !== 141) throw new Error(`${id}: couverture mensuelle incorrecte`);
+  sourceRows.forEach((row, i) => {
+    const date = String(row.calc_date);
+    const month = `${date.slice(0, 4)}-${date.slice(4, 6)}`;
+    const end = dailyEnds.get(date.slice(0, 6));
+    const actual = asset.points[i];
+    if (month !== new Date(Date.UTC(2015, i, 1)).toISOString().slice(0, 7)
+        || end.calc_date !== row.calc_date || Math.abs(end.level_eod - row.level_eod) > 1e-8
+        || actual.date !== month || actual.price !== Math.round(row.level_eod * 100) / 100
+        || capture.points[i][0] !== month || capture.points[i][1] !== actual.price) throw new Error(`${id} ${month}: fin de mois incorrecte`);
+  });
+  // L’ancre décembre 2014 sert au recoupement, pas à prolonger la plage simulable.
+  const annualSource = capture.response.indexes.INDEX_LEVELS;
+  for (const [year, expected] of Object.entries(capture.annualGrossReturns)) {
+    const get = y => annualSource.find(row => String(row.calc_date).startsWith(`${y}12`)).level_eod;
+    if (Math.abs((get(year) / get(Number(year) - 1) - 1) * 100 - expected) > .006) throw new Error(`${id} ${year}: rendement différent de la fiche MSCI`);
+  }
+  const record = DATA_CATALOG.find(row => row.id === `history:${id}`);
+  if (!record || record.fields[0].value !== asset || record.fields[0].metadata.checkedAt !== capture.checkedAt
+      || !record.fields[0].metadata.sourceUrls.includes(capture.url) || !ASSET_ORDER.includes(id)
+      || !MARKET_ASSETS.some(a => a.id === id) || ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id)
+      || hasComparableLevel(id) || getAssetMaxDate(id) !== '2026-09') throw new Error(`${id}: registre ou consommateur divergent`);
+  for (const mode of ['lump', 'dca']) {
+    const state = { assetId: id, amountRaw: '100', startYear: 2020, startMonth: 1, mode, overridePriceRaw: '' };
+    const result = derive(state);
+    const prices = asset.points.filter(point => point.date >= '2020-01');
+    const quantity = mode === 'dca' ? prices.reduce((sum, point) => sum + 100 / point.price, 0) : 100 / prices[0].price;
+    const expected = quantity * prices.at(-1).price;
+    const video = computeComparativeSeries(id, '2020-01', '2026-09', 100, mode);
+    if (result.endYm !== '2026-09' || result.effectiveMode !== mode || result.result.months.length !== 81
+        || result.result.totalInvested !== (mode === 'dca' ? 8100 : 100)
+        || Math.abs(result.result.finalValue - expected) > 1e-8 || Math.abs(video.finalValue - expected) > 1e-8
+        || getComparativeAssetIssue(id, '2020-01', mode, '2026-09') !== null
+        || !buildTweetText(state, result).includes(asset.methodNote)) throw new Error(`${id}: simulation ou export divergent`);
+  }
+  if (getAnnualReturns(id, 2016).some(row => row.year >= 2026)) throw new Error(`${id}: année partielle publiée`);
+}
+console.log('Emerging Markets et World Small Cap : 282 clôtures mensuelles/quotidiennes concordantes, 22 rendements annuels recoupés, catalogue commun, DCA et vidéos OK.');
