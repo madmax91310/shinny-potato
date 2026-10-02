@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict'
+import { chromium } from 'playwright'
+import { spawn } from 'node:child_process'
+const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4311'], { stdio: 'ignore' })
+let browser
+try {
+  const base = 'http://127.0.0.1:4311/shinny-potato'
+  for (let attempt = 0; ; attempt++) {
+    try { if ((await fetch(`${base}/`)).ok) break } catch { /* démarrage */ }
+    if (attempt > 100) throw new Error('Serveur de test indisponible')
+    await new Promise(resolve => setTimeout(resolve, 100))
+  }
+  browser = await chromium.launch(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {})
+  const page = await browser.newPage()
+  await page.goto(`${base}/donnees-a-revoir?view=calendar&tool=Calculateur`, { waitUntil: 'networkidle' })
+  assert.equal(await page.locator('.dr-item').count(), 24)
+  assert.equal(await page.getByText('Prochaine vérification', { exact: true }).count(), 24)
+  await page.reload({ waitUntil: 'networkidle' })
+  assert.equal(await page.getByLabel('Outil', { exact: true }).inputValue(), 'Calculateur')
+  assert.equal(await page.locator('.dr-item').count(), 24)
+  await page.getByLabel('Outil', { exact: true }).selectOption('Présentation investisseur')
+  await page.waitForFunction(() => document.querySelectorAll('.dr-item').length === 3)
+  assert.equal(await page.getByRole('link', { name: 'Ouvrir le portefeuille investisseur' }).count(), 3)
+  await page.getByLabel('Outil', { exact: true }).selectOption('')
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('tool') === '' && document.querySelectorAll('.dr-item').length > 24)
+  await page.getByLabel('Afficher', { exact: true }).selectOption('reserve')
+  await page.waitForFunction(() => document.querySelectorAll('.dr-item').length === 9)
+  await page.setViewportSize({ width: 390, height: 844 })
+  assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+  console.log('Calendrier : dates, filtre outil, rechargement, réserves et mobile validés.')
+} finally {
+  await browser?.close()
+  server.kill('SIGTERM')
+}
