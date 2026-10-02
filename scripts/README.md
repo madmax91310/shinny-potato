@@ -272,3 +272,20 @@ le wrapper `npx`, laissant le vrai process `vite preview` tourner en orphelin su
 ### Provenance active et archives
 
 `npm run report:data-provenance` (ou `-- --json`) sépare les manques actifs de source des archives non recertifiables. Après la PR #150 : **0 manque actif de source ; 16 archives non recertifiables**, toutes motivées et exclues des consommateurs. Ethereum et SOXX sont documentés. `npm run audit:data-provenance` impose zéro manque actif et vérifie séparément l’inventaire des archives ; une nouvelle absence active ne peut pas se fondre dans ce compteur. Voir `docs/sourcing-2026-09-30.md` pour les critères et limites. Ce rapport couvre les champs du catalogue, pas la certification de chaque ancienne valeur ni les dates non publiées.
+
+### Constructions du générateur
+
+`node scripts/test-portfolio-recipes.mjs` vérifie les 93 constructions (trois pour chacun
+des 31 couples profil × risque) : toutes les combinaisons de supports aux poids de départ,
+puis une exploration déterministe de la génération avec pondérations variables. Il contrôle
+les bornes historiques, les règles Europe/Bitcoin, les sources de revenu du Rentier, la poche
+centrale et les compatibilités sectorielles du Thématique, ainsi que la rotation et les doublons.
+À relancer après toute modification de `portfolio-generator/recipes.js` ou du moteur.
+
+Les nouvelles constructions réutilisent `portfolio-assets.js` et les registres communs.
+World, All-World, facteurs, émergents et petites capitalisations gardent des rôles distincts.
+L’historique favorise les constructions les moins vues pour le couple choisi et exclut sa
+dernière construction ; les supports tournent ensuite, puis les poids varient dans les limites
+de chaque poche. Le levier et la conviction centrale thématique gardent leurs poids de départ.
+La composition manuelle reste indépendante de ces contraintes de génération automatique.
+Les bornes restent des filtres sur les années simulées, jamais des pertes maximales garanties.

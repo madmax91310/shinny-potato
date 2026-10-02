@@ -1,10 +1,11 @@
 import { YEARS, getAsset } from '../../data/portfolio-assets.js';
 import { computeYearlyPerf } from './performance.js';
 import {
-  PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS, BITCOIN_OPTIONS,
+  PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap,
 } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
+import { getRecipes, withinRecipe } from "./recipes.js";
 import { buildEditorial } from "./editorial.js";
 
 function rand(min, max) {
@@ -49,8 +50,7 @@ function fmtAbsPctPrecise(val) {
 }
 
 // ── Axe 1 (risque) × Axe 2 (profil) : une paire valide == un couple {profileId, riskId} tel que
-// isCompatible(profileId, riskId), et il n'existe qu'un seul combo pour cette paire (plus besoin
-// de tirer un combo parmi plusieurs comme dans l'ancien modèle mono-axe).
+// isCompatible(profileId, riskId). Chaque paire dispose de plusieurs constructions.
 function pairKey(profileId, riskId) {
   return `${profileId}#${riskId}`;
 }
@@ -158,7 +158,7 @@ function buildSelection(combo, usageCounts, historyLength) {
 // plancher de perte très serré (-5%), donc la plupart des swaps sont de toute façon annulés par la
 // revalidation de borne ci-dessous, quelle que soit la magnitude : limite structurelle, pas un
 // paramètre de jitter à pousser davantage (voir le rapport d'audit pour le détail des mesures).
-function jitterSelection(selection, bound, profileId, riskId) {
+function jitterSelection(selection, bound, profileId, riskId, recipe) {
   const attempts = randInt(2, 6);
   for (let i = 0; i < attempts; i++) {
     if (selection.length < 2) break;
@@ -169,7 +169,7 @@ function jitterSelection(selection, bound, profileId, riskId) {
     selection[ib].pct += amount;
     const perf = computeYearlyPerf(selection);
     const worst = worstYearOf(perf);
-    if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection, riskId)) {
+    if (!withinRecipe(selection, recipe) || !withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection, riskId)) {
       selection[ia].pct += amount;
       selection[ib].pct -= amount;
     }
@@ -229,31 +229,6 @@ function signature(selection) {
     .map((s) => `${s.id}:${s.pct}`)
     .sort()
     .join(",");
-}
-
-// Règle #4 (variété d'allocation) : deux générations du même profil ne doivent pas partager le
-// même actif dominant (>35%) ni exactement le même trio de tête. Clé sur le profil (axe 2), qui
-// porte la narration — le palier de risque (axe 1) peut changer d'une génération à l'autre.
-function topAssets(selection, n) {
-  return selection
-    .slice()
-    .sort((a, b) => b.pct - a.pct)
-    .slice(0, n)
-    .map((s) => s.id);
-}
-function dominantAsset(selection) {
-  const top = selection.slice().sort((a, b) => b.pct - a.pct)[0];
-  return top.pct > 35 ? top.id : null;
-}
-function tooSimilarToLast(selection, profileId, history) {
-  const last = [...history].reverse().find((h) => h.profileId === profileId);
-  if (!last) return false;
-  const newDominant = dominantAsset(selection);
-  if (newDominant && newDominant === dominantAsset(last.selection)) return true;
-  const newTop3 = new Set(topAssets(selection, 3));
-  const oldTop3 = new Set(topAssets(last.selection, 3));
-  if (newTop3.size === oldTop3.size && [...newTop3].every((id) => oldTop3.has(id))) return true;
-  return false;
 }
 
 function worstYearOf(perf) {
@@ -368,6 +343,16 @@ export function buildManualPortfolio(rawSelection, profileId, history) {
   };
 }
 
+function pickRecipe(profileId, riskId, history) {
+  const recipes = getRecipes(profileId, riskId);
+  const recent = history.filter(h => h.profileId === profileId && h.riskId === riskId);
+  const last = recent.at(-1)?.recipeId;
+  const candidates = recipes.filter(r => r.id !== last);
+  const count = r => recent.filter(h => h.recipeId === r.id).length;
+  const minimum = Math.min(...candidates.map(count));
+  return pick(candidates.filter(r => count(r) === minimum));
+}
+
 export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const assetUsage = computeAssetUsage(history);
   const pairUsage = computePairUsage(history);
@@ -377,13 +362,12 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   do {
     ({ profileId, riskId } = pickPair(targetRiskKey, targetProfileKey, pairUsage));
     profile = PROFILES.find((p) => p.id === profileId);
-    combo = profile.riskCombos[riskId];
-    selection = jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId, riskId);
+    combo = pickRecipe(profileId, riskId, history);
+    selection = jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId, riskId, combo);
     tries++;
   } while (
     (!withinBound(worstYearOf(computeYearlyPerf(selection)).value, RISK_BOUNDS[riskId]) ||
       history.some((h) => h.sig === signature(selection)) ||
-      tooSimilarToLast(selection, profileId, history) ||
       violatesProfileInvariant(profileId, selection, riskId)) &&
     // Plafond relevé de 60 à 200 : avec le jitter élargi ci-dessus (attempts >= 1, magnitude
     // variable), l'espace de combos atteignables par combo est nettement plus grand, donc plus de
@@ -398,12 +382,14 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection, riskId)) throw new Error("Aucune composition respectant le profil et le risque n’a été trouvée.");
 
   const contextText = boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || "";
-  const editorial = buildEditorial(selection, history, profileId, riskId);
+  const editorial = buildEditorial(selection, history, profileId, riskId, combo);
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     sig: signature(selection),
     mode: "auto",
+    recipeId: combo.id,
+    recipeLabel: combo.label,
     profileId,
     riskId,
     profileName: profile.label,

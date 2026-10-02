@@ -191,6 +191,24 @@ async function testPortfolioGenerator(page) {
   ]);
   const imageOk = firstImage?.startsWith('data:image/png;base64,') && newImage?.startsWith('data:image/png;base64,') && firstImage !== newImage && download.suggestedFilename() === 'repartition-portefeuille.png';
   const autoEditorialOk = /La logique de l’ensemble/.test(await page.locator(".pg-tweet-body").innerText());
+  // Un profil/palier fixé doit faire tourner les trois constructions.
+  await page.getByRole('group', { name: "Choisir un profil d'investisseur" }).getByRole('button', { name: 'Le Généraliste', exact: true }).click();
+  await page.getByRole('group', { name: 'Choisir un niveau de risque cible' }).getByRole('button', { name: 'Équilibré', exact: true }).click();
+  const recipesSeen = new Set();
+  let lastRecipe = null, recipesOk = true;
+  for (let i = 0; i < 6; i++) {
+    await page.getByRole('button', { name: /Générer un nouveau portefeuille/i }).click();
+    const label = await page.locator('.pg-recipe-label').innerText();
+    recipesOk &&= label !== lastRecipe;
+    recipesSeen.add(label); lastRecipe = label;
+    recipesOk &&= !/undefined|NaN/.test(await page.locator('.pg-tweet-body').innerText());
+    const weights = await page.locator('.pg-alloc-pct').allInnerTexts();
+    recipesOk &&= weights.reduce((sum, text) => sum + parseFloat(text), 0) === 100;
+  }
+  recipesOk &&= recipesSeen.size === 3;
+  await page.setViewportSize({ width: 390, height: 844 });
+  recipesOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
   await page.getByRole("button", { name: /Composition manuelle/ }).click();
   await page.locator("#pg-manual-profile").selectOption("crypto_curieux");
   await page.locator("#pg-manual-search").fill("Fonds euros");
@@ -199,7 +217,7 @@ async function testPortfolioGenerator(page) {
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
   const manualEditorialOk = /100%/.test(manualTweet) && /La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
-  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}`);
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, trois constructions et mobile: ${recipesOk}`);
 }
 
 async function testPortfolioDuels(page) {
