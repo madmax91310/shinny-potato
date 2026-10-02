@@ -32,6 +32,14 @@ Au 30 septembre 2026 : 9 réserves, 36 champs utilisés sans date explicite de
 contrôle et 3 échéances à venir. Les 36 champs ne sont pas des valeurs manquantes
 ni des preuves d’absence de source. Les compteurs évoluent depuis les registres.
 
+Revue du 2 octobre 2026, après la PR #199 : 16 contrôles supplémentaires clôturés
+sur publications retrouvées, dont le TOPIX de juillet. Le MSCI World mensuel a
+également été résolu dans la PR #200, intégrée avant cette revue. Il reste 9 réserves
+courtiers et 4 champs sans contrôle complet documenté ; les 3 échéances Saxo et
+les 16 archives restent séparées. Les tentatives et les preuves encore nécessaires
+sont détaillées dans `docs/data-review-2026-10-02.md`. La recherche de sources
+ne constitue pas une confirmation lorsque le document est muet ou inaccessible.
+
 Validation : `npm run audit:data-review` contrôle les limites calendaires,
 l’exclusion des archives, la distinction photographie/contrôle et les sources
 consultées à des dates différentes. Il est exécuté en CI. Playwright vérifie

@@ -45,10 +45,11 @@ export const INDEX_FACTS = {
       "snapshot": "31 juillet 2026",
       "constituents": 1637,
       "source": {
-        "label": "JPX, source déjà citée par le comparateur ; comptage de juillet hérité",
-        "url": "https://www.jpx.co.jp/english/markets/indices/topix/"
+        "label": "Composition du benchmark TOPIX · fiche Amundi au 31/07/2026, relue le 02/10/2026",
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/ENG/FRA/INSTITUTIONNEL/ETF/20260731",
+        "checkedAt": "2026-10-02"
       },
-      "provenance": "Comparateur : revue du 04/09/2026, attribution à la presse japonaise sans URL archivée ; valeur historique conservée, non recertifiée.",
+      "provenance": "Comptage historique de 1 637 valeurs recertifié le 02/10/2026 dans la section de composition du benchmark TOPIX de la fiche Amundi au 31/07/2026. Il ne s’agit pas du nombre de positions du fonds.",
       "descriptionTemplates": {
         "japon": "{{constituents}} valeurs (juillet 2026) du 1er compartiment de la Bourse de Tokyo, pondérées par capitalisation."
       }
