@@ -160,20 +160,11 @@ export function getBenchmarkPerformance(startYm, endYm) {
   };
 }
 
-// Trois actifs du Calculateur (stoxx600, sp500, msciWorld) sont stockés en indice total-return
-// REBASÉ à une valeur arbitraire ("base 10 000 au [date]", cf. commentaires sur ces actifs dans
-// src/data/market-history.js) — un niveau interne qui sert uniquement au calcul de ratio du
-// Calculateur, jamais un niveau que l'actif "cote" réellement quelque part. Le format Anniversaire
-// demande à l'utilisateur de saisir le niveau ACTUEL réel (vérifié sur Yahoo Finance...) et de le
-// comparer au prix historique affiché : pour ces 3 actifs, le prix historique affiché (base 10 000
-// rebasée, ex. S&P 500 à ~211 000 en août 2021) n'a rien à voir avec ce qu'on trouve coté ailleurs
-// (le vrai S&P 500 valait ~4 500 points à cette date) — comparaison non-sens garantie. Signalé par
-// un utilisateur le 29/08/2026 (S&P 500, 5 ans en arrière → 211 265 affiché). Exclus du format
-// Anniversaire pour cette raison (cf. ANNIVERSAIRE_ELIGIBLE_ASSETS plus bas) ; restent disponibles
-// pour Performance depuis, qui ne compare jamais à une source externe — seul le ratio interne
-// compte, valide quelle que soit la base de l'indice. Même règle réutilisée par lib.js pour décider
-// si Performance depuis peut afficher les DEUX niveaux de prix bruts (début/fin) en plus du
-// pourcentage : pour ces 3 actifs, seul le pourcentage est affiché (cf. hasComparableLevel).
+// Le MSCI World reste une série composite rebasée. Le S&P 500 Total Return et
+// le STOXX 600 Net Return disposent désormais de niveaux officiels, mais restent
+// exclus d’Anniversaire : la saisie manuelle du niveau actuel n’identifie pas encore
+// explicitement la variante Total/Net Return et pourrait être confondue avec Price.
+// Les niveaux de ces trois indices restent masqués dans Performance depuis.
 const REBASED_INDEX_IDS = new Set(["stoxx600", "sp500", "msciWorld"]);
 
 // Les séries éparses sont exclues des anniversaires : interpoler entre deux clôtures

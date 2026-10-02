@@ -1,5 +1,19 @@
 // Contrôle du 02/10/2026. Aucun prix dupliqué ici ; captures rejouées par audit:calculator-series.
 export const MARKET_HISTORY_REVIEW = {
+  "history:stoxx600": {
+    "sourceUrls": [
+        "https://stoxx.com/index/SXXR/?factsheet=true",
+        "https://www.investing.com/indices/stoxx-europe-600-eur-nr-historical-data"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodStart": "2015-01",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "Net Return EUR, clôture de la dernière séance de chaque mois, niveaux réels en points",
+    "note": "141 clôtures mensuelles issues du tableau quotidien officiel STOXX. Capture calculator-stoxx600-2026-10-02.json ; ancienne série composite remplacée intégralement, résultats historiques modifiés. Septembre recoupé avec Investing."
+},
   "history:bitcoin": {
     "sourceUrls": [
       "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",

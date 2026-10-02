@@ -4,7 +4,7 @@ Le dernier mois complet est septembre 2026. Aucun point d’octobre n’est ajou
 
 ## Séries intégrées
 
-21 actifs : Bitcoin, Ethereum, CAC 40, Nasdaq 100, SOXX, argent (SI=F), LVMH, Apple, Microsoft, Broadcom, Tesla, Nvidia, Amazon, Alphabet classe A (GOOGL), Meta, Nestlé ADR (NSRGY), SAP ADR, Visa, Netflix, Coca-Cola et S&P 500 Total Return.
+22 actifs : STOXX Europe 600 Net Return, Bitcoin, Ethereum, CAC 40, Nasdaq 100, SOXX, argent (SI=F), LVMH, Apple, Microsoft, Broadcom, Tesla, Nvidia, Amazon, Alphabet classe A (GOOGL), Meta, Nestlé ADR (NSRGY), SAP ADR, Visa, Netflix, Coca-Cola et S&P 500 Total Return.
 
 Les données et leurs méthodes sont partagées par le calculateur, ses exports et les formats historiques de Tweet Midi. Les rendements annuels affichés par Performance depuis s’arrêtent toujours en 2025. Les duels et le générateur de portefeuilles utilisent d’autres séries annuelles.
 
@@ -30,10 +30,19 @@ Pour les actions et le CAC 40 à historique épars, seul le nouveau point de sep
 
 - Or : le fichier officiel Banque mondiale téléchargé le 2 octobre reste marqué « Updated on September 02, 2026 » ; sa dernière observation Gold est `2026M08` à 4 411 USD. La moyenne de septembre est absente. Conserver la moyenne mensuelle, jamais la remplacer par un cours de fin de mois. Source : https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx
 - MSCI World : la fiche officielle disponible reste datée du 31 août 2026, USD Gross Returns. Les observations USD Net ou Price de septembre ne sont pas compatibles. Source : https://www.msci.com/documents/10199/255599/msci-world-index.pdf
-- STOXX 600 : le niveau septembre Net Return a été repéré dans un historique secondaire, mais l’export officiel est inaccessible (403) et la continuité avec les anciens points rebasés n’est pas confirmée. Aucun niveau brut ou rendement de l’indice Price n’est injecté dans la série composite. Sources de recherche : https://stoxx.com/index/sxxr/ ; https://www.stoxx.com/document/Indices/Current/HistoricalData/h_sxxr.txt ; https://www.investing.com/indices/stoxx-europe-600-eur-nr-historical-data
 
-La borne globale passe à septembre, mais chaque actif conserve sa propre date de fin. Les simulations et comparatifs ne doivent pas prolonger les trois séries ci-dessus jusqu’en septembre.
+La borne globale passe à septembre, mais chaque actif conserve sa propre date de fin. Les simulations et comparatifs ne doivent pas prolonger l’or et le MSCI World jusqu’en septembre.
 
 ## Validation
 
 Le contrôle des données couvre les clôtures mensuelles/quotidiennes, les dates dans le fuseau de la place, les périodes du catalogue, les rendements annuels S&P 500, les quantités achetées en DCA, le nombre de versements, les valeurs finales et les séries utilisées par l’export vidéo. Le navigateur exerce les textes de septembre, les fins d’août, le DCA S&P 500, les blocages des séries éparses, les PNG, l’historique Bitcoin dans Tweet Midi et la fiche de provenance SOXX.
+
+## STOXX 600 : historique officiel complet
+
+Le tableau quotidien de https://stoxx.com/index/SXXR/?factsheet=true a pu être téléchargé intégralement. Capture calculator-stoxx600-2026-10-02.json : 3 037 séances depuis décembre 2014, 141 dernières séances de chaque mois de janvier 2015 à septembre 2026, ISIN EU0009658210, Net Return EUR. Les anciennes 140 valeurs composites sont conservées dans la capture pour comparaison mais remplacées dans la banque active par les niveaux réels. Pas de raccord arbitraire ni d’interpolation. Les résultats historiques changent et le DCA est réactivé.
+
+Août : 1 662,91 points ; septembre : 1 622,67 points, soit −2,41985 %. Le calcul de raccord 220 591 sur l’ancienne base n’est donc plus utilisé. Les dix rendements annuels 2016–2025 des niveaux quotidiens concordent à 0,02 point près avec le benchmark général STOXX Europe 600 Index-NR EUR publié par Franklin Templeton (distinct de son indice PAB et du fonds). La table annuelle de la page STOXX contient des rendements divergents ; les niveaux quotidiens, concordants avec ce recoupement, sont retenus. 2025 est ainsi +19,80 %, contre +20,66 % dans l’ancienne série composite.
+
+Source du recoupement annuel : https://www.franklintempleton.lu/our-funds/price-and-performance-etfs/products/29820/SINGLCLASS/franklin-stoxx-europe-600-paris-aligned-climate-ucits-etf/IE00BMDPBY65. Septembre est aussi confirmé par Investing. Le calculateur affiche des points et la méthode Net Return EUR. L’audit rejoue l’agrégation, les rendements annuels, les quantités DCA, la vidéo et les consommateurs Tweet Midi. Le format Anniversaire conserve son exclusion des indices Total Return pour éviter une saisie manuelle d’un indice Price incompatible.
+
+Écarts annuels résiduels : tableau quotidien +15,7992 % en 2023 contre +15,81 % chez Franklin, puis +8,7917 % en 2024 contre +8,78 %. Tolérance de recoupement 0,02 point, sans ajustement des niveaux officiels pour forcer une égalité.

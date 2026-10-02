@@ -123,68 +123,52 @@ export const ASSETS = {
     ]),
   },
   stoxx600: {
-    // Source : indice STOXX Europe 600 (rendement total, base 10 000 au 31/12/1986), export CSV mensuel
-    // réel fourni par l'utilisateur. Série complète et fiable de janvier 2015 à juillet 2026 (dernier
-    // point disponible dans l'export).
-    // CORRECTIF du 29/08/2026 : le détail annuel de Tweet Midi (Performance depuis) a révélé des
-    // rendements annuels imprécis par rapport aux vrais rendements connus de l'indice — import CSV
-    // d'origine approximatif. Point de DÉCEMBRE de chaque année 2016-2025 recalculé à partir du
-    // rendement annuel réel vérifié (2016-2024 : iShares STOXX Europe 600 UCITS ETF "EXSA", réplication
-    // physique, recoupé avec une recherche directe sur l'indice — écarts trouvés très faibles, <1,3%,
-    // l'import d'origine était déjà proche pour cet indice ; 2025 : +20,66%, confirmé par deux sources
-    // indépendantes convergentes — le bulletin mensuel STOXX de décembre 2025 et l'ETF Invesco STOXX
-    // Europe 600, après qu'une première recherche avait renvoyé un chiffre contradictoire de 35,31%
-    // visiblement confondu avec l'indice "MSCI Europe 600", différent du STOXX Europe 600), composé à
-    // partir du point de décembre 2015 existant (non modifié, sert d'ancrage). Seuls les points de
-    // décembre ont été recalculés ; les mois intermédiaires de chaque année restent tels quels (non
-    // re-vérifiés individuellement), d'où un éventuel écart ponctuel entre novembre et décembre d'une
-    // même année, et entre décembre 2025 (corrigé) et janvier 2026 (non corrigé) — limitation assumée,
-    // aucune valeur mensuelle inventée.
-    // Point 2026-08 ajouté le 05/09/2026 (recherche demandée, retentée avec des requêtes plus précises
-    // après un premier échec) : même méthode que les corrections de décembre ci-dessus — pas de niveau
-    // "STOXX Europe 600 rebasé" public à chercher (c'est une reconstruction interne), donc calculé en
-    // appliquant le rendement total RÉEL du mois au point de juillet. Rendement retenu : +0,49 %, à
-    // partir du STOXX Europe 600 EUR Net Return Index (STOXXR), 1 654,78 au 31/07/2026 -> 1 662,91 au
-    // 31/08/2026, cohérent avec le retour sur 1 mois publié par l'ETF iShares STOXX Europe 600 (DE)
-    // UCITS (EXSA) sur la même période (+0,59 %) — 2 sources indépendantes convergentes. 224 956 x
-    // 1,0049 = 226 061.
-    label: 'Indice STOXX Europe 600', tweetPhrase: "l'indice STOXX Europe 600", icon: '🇪🇺', currency: 'EUR',
+    // Contrôle du 02/10/2026, source officielle STOXX :
+    // https://stoxx.com/index/SXXR/?factsheet=true — ISIN EU0009658210.
+    // Net Return EUR : dividendes nets réinvestis, niveaux réels en points.
+    // 141 dernières séances mensuelles de janvier 2015 à septembre 2026 extraites
+    // du tableau quotidien officiel, sans interpolation ; capture calculator-stoxx600-2026-10-02.json.
+    // Toute l’ancienne série composite rebasée et ses décembre corrigés sont remplacés.
+    // Les résultats historiques changent ; le DCA est maintenant possible sur cette série homogène.
+    // Septembre 1622,67 recoupé avec Investing STOXXR ; août officiel 1662,91 concordant.
+    label: 'Indice STOXX Europe 600', tweetPhrase: "l'indice STOXX Europe 600", icon: '🇪🇺', currency: 'EUR', priceUnit: 'points',
     points: P([
-      '2015-01', 93786, '2015-02', 100336, '2015-03', 102017, '2015-04', 102119,
-      '2015-05', 103824, '2015-06', 99165, '2015-07', 103146, '2015-08', 94657,
-      '2015-09', 90813, '2015-10', 98153, '2015-11', 100915, '2015-12', 95840,
-      '2016-01', 89736, '2016-02', 87756, '2016-03', 88985, '2016-04', 90542,
-      '2016-05', 92803, '2016-06', 88317, '2016-07', 91610, '2016-08', 92288,
-      '2016-09', 92189, '2016-10', 91236, '2016-11', 92197, '2016-12', 97316,
-      '2017-01', 97198, '2017-02', 100164, '2017-03', 103490, '2017-04', 105536,
-      '2017-05', 107070, '2017-06', 104367, '2017-07', 103999, '2017-08', 103177,
-      '2017-09', 107198, '2017-10', 109247, '2017-11', 107041, '2017-12', 107709,
-      '2018-01', 109603, '2018-02', 105427, '2018-03', 103331, '2018-04', 107970,
-      '2018-05', 108114, '2018-06', 107437, '2018-07', 110808, '2018-08', 108437,
-      '2018-09', 108787, '2018-10', 102772, '2018-11', 101756, '2018-12', 95894,
-      '2019-01', 102289, '2019-02', 106535, '2019-03', 108729, '2019-04', 112818,
-      '2019-05', 107249, '2019-06', 112039, '2019-07', 112390, '2019-08', 110873,
-      '2019-09', 114971, '2019-10', 116170, '2019-11', 119456, '2019-12', 123137,
-      '2020-01', 120570, '2020-02', 110514, '2020-03', 94474, '2020-04', 100616,
-      '2020-05', 104042, '2020-06', 107221, '2020-07', 106199, '2020-08', 109443,
-      '2020-09', 107904, '2020-10', 102394, '2020-11', 116566, '2020-12', 120933,
-      '2021-01', 118679, '2021-02', 121572, '2021-03', 129381, '2021-04', 132244,
-      '2021-05', 135666, '2021-06', 137696, '2021-07', 140529, '2021-08', 143586,
-      '2021-09', 138862, '2021-10', 145348, '2021-11', 141676, '2021-12', 150646,
-      '2022-01', 143642, '2022-02', 138979, '2022-03', 140366, '2022-04', 139354,
-      '2022-05', 138076, '2022-06', 127002, '2022-07', 136830, '2022-08', 129918,
-      '2022-09', 121508, '2022-10', 129220, '2022-11', 138128, '2022-12', 135069,
-      '2023-01', 142454, '2023-02', 145125, '2023-03', 144666, '2023-04', 148204,
-      '2023-05', 144467, '2023-06', 147951, '2023-07', 151123, '2023-08', 147285,
-      '2023-09', 144836, '2023-10', 139599, '2023-11', 148847, '2023-12', 155964,
-      '2024-01', 156809, '2024-02', 159921, '2024-03', 166376, '2024-04', 164768,
-      '2024-05', 170224, '2024-06', 168250, '2024-07', 170616, '2024-08', 173256,
-      '2024-09', 172671, '2024-10', 167039, '2024-11', 168921, '2024-12', 169237,
-      '2025-01', 178820, '2025-02', 184927, '2025-03', 177833, '2025-04', 176637,
-      '2025-05', 185159, '2025-06', 182901, '2025-07', 184668, '2025-08', 186410,
-      '2025-09', 189244, '2025-10', 194093, '2025-11', 195939, '2025-12', 204201,
-      '2026-01', 207911, '2026-02', 215928, '2026-03', 199380, '2026-04', 210113,
-      '2026-05', 216467, '2026-06', 222182, '2026-07', 224956, '2026-08', 226061,
+      '2015-01', 689.89, '2015-02', 738.07, '2015-03', 750.44, '2015-04', 751.19,
+      '2015-05', 763.73, '2015-06', 729.46, '2015-07', 758.74, '2015-08', 696.30,
+      '2015-09', 668.02, '2015-10', 722.01, '2015-11', 742.33, '2015-12', 705.00,
+      '2016-01', 660.10, '2016-02', 645.53, '2016-03', 654.57, '2016-04', 666.03,
+      '2016-05', 682.66, '2016-06', 649.66, '2016-07', 673.88, '2016-08', 678.87,
+      '2016-09', 678.14, '2016-10', 671.13, '2016-11', 678.20, '2016-12', 717.21,
+      '2017-01', 714.99, '2017-02', 736.81, '2017-03', 761.27, '2017-04', 776.32,
+      '2017-05', 787.61, '2017-06', 767.72, '2017-07', 765.02, '2017-08', 758.97,
+      '2017-09', 788.55, '2017-10', 803.62, '2017-11', 787.39, '2017-12', 793.07,
+      '2018-01', 806.24, '2018-02', 775.52, '2018-03', 760.10, '2018-04', 794.23,
+      '2018-05', 795.29, '2018-06', 790.31, '2018-07', 815.10, '2018-08', 797.66,
+      '2018-09', 800.24, '2018-10', 755.99, '2018-11', 748.52, '2018-12', 707.68,
+      '2019-01', 752.44, '2019-02', 783.67, '2019-03', 799.81, '2019-04', 829.89,
+      '2019-05', 788.92, '2019-06', 824.16, '2019-07', 826.74, '2019-08', 815.58,
+      '2019-09', 845.73, '2019-10', 854.55, '2019-11', 878.72, '2019-12', 897.47,
+      '2020-01', 886.91, '2020-02', 812.94, '2020-03', 694.95, '2020-04', 740.13,
+      '2020-05', 765.33, '2020-06', 788.72, '2020-07', 781.20, '2020-08', 805.06,
+      '2020-09', 793.74, '2020-10', 753.21, '2020-11', 857.46, '2020-12', 879.59,
+      '2021-01', 873.00, '2021-02', 894.28, '2021-03', 951.73, '2021-04', 972.79,
+      '2021-05', 997.96, '2021-06', 1012.89, '2021-07', 1033.73, '2021-08', 1056.22,
+      '2021-09', 1021.47, '2021-10', 1069.18, '2021-11', 1042.17, '2021-12', 1098.69,
+      '2022-01', 1056.63, '2022-02', 1022.33, '2022-03', 1032.53, '2022-04', 1025.09,
+      '2022-05', 1015.69, '2022-06', 934.23, '2022-07', 1006.52, '2022-08', 955.68,
+      '2022-09', 893.81, '2022-10', 950.54, '2022-11', 1016.07, '2022-12', 981.76,
+      '2023-01', 1047.89, '2023-02', 1067.54, '2023-03', 1064.16, '2023-04', 1090.19,
+      '2023-05', 1062.70, '2023-06', 1088.33, '2023-07', 1111.66, '2023-08', 1083.43,
+      '2023-09', 1065.41, '2023-10', 1026.89, '2023-11', 1094.92, '2023-12', 1136.87,
+      '2024-01', 1153.49, '2024-02', 1176.38, '2024-03', 1223.86, '2024-04', 1212.03,
+      '2024-05', 1252.17, '2024-06', 1237.65, '2024-07', 1255.05, '2024-08', 1274.47,
+      '2024-09', 1270.17, '2024-10', 1228.74, '2024-11', 1242.58, '2024-12', 1236.82,
+      '2025-01', 1315.40, '2025-02', 1360.32, '2025-03', 1308.14, '2025-04', 1299.34,
+      '2025-05', 1362.03, '2025-06', 1345.42, '2025-07', 1358.42, '2025-08', 1371.23,
+      '2025-09', 1392.08, '2025-10', 1427.75, '2025-11', 1441.33, '2025-12', 1481.66,
+      '2026-01', 1529.39, '2026-02', 1588.37, '2026-03', 1466.64, '2026-04', 1545.59,
+      '2026-05', 1592.33, '2026-06', 1634.37, '2026-07', 1654.78, '2026-08', 1662.91,
+      '2026-09', 1622.67,
     ]),
   },
   sp500: {
@@ -1033,12 +1017,10 @@ export function getAssetMinDate(assetId) {
 export const SPARSE_MONTHLY_DATA_IDS = new Set(['cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola'])
 
 // S&P 500 retiré le 02/10/2026 après remplacement par 141 clôtures Total Return certifiées.
-// Les points de décembre de ces indices ont été recalés sur les rendements annuels officiels,
-// mais les autres mois de l'ancien export ne l'ont pas été (sauts artificiels Nov/Déc/Jan).
-// Un DCA mensuel ou un départ à un mois intermédiaire mélangerait deux séries incohérentes.
-// Jusqu'à remplacement par des séries mensuelles officielles complètes, seul un versement
-// unique à une clôture de décembre est proposé pour ces deux indices.
-export const INCONSISTENT_MONTHLY_DATA_IDS = new Set(['stoxx600', 'msciWorld'])
+// Seul le MSCI World conserve des décembre recalés et des mois intermédiaires incohérents.
+// Les 141 clôtures officielles STOXX Net Return EUR remplacent sa série composite le 02/10/2026.
+// Jusqu’au remplacement du MSCI World, seul un départ à une clôture de décembre est proposé.
+export const INCONSISTENT_MONTHLY_DATA_IDS = new Set(['msciWorld'])
 
 // Actifs dont le DERNIER point (donc le "dernier niveau connu" affiché à l'étape 1) a une confiance
 // réduite documentée dans le commentaire de l'actif — surfacé dans l'UI (badge ⚠️, cf. App.jsx)

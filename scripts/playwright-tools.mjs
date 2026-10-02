@@ -30,7 +30,7 @@ import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
 import { ASSETS as HISTORY } from '../src/data/market-history.js';
-import { fmtEUR as fmtHistoryPrice } from '../src/pages/investment-calculator/lib.js';
+import { fmtEUR as fmtHistoryPrice, fmtPct as fmtHistoryPct } from '../src/pages/investment-calculator/lib.js';
 import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { CASES } from "../src/pages/concrete-cases/data.js";
 
@@ -115,6 +115,15 @@ async function testCalculateur(page) {
   const spTweet = await page.evaluate(() => window.__investmentCopiedText);
   septemberOk &&= spTweet.includes('septembre 2026') && spTweet.includes('hors frais')
     && (await page.locator('.ic-current-level').innerText()).includes('points');
+  await page.locator('select.ic-control').first().selectOption('stoxx600');
+  const stoxxDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
+  septemberOk &&= await stoxxDca.isEnabled();
+  await stoxxDca.click();
+  await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
+  const stoxxTweet = await page.evaluate(() => window.__investmentCopiedText);
+  septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('versés au total')
+    && (await page.locator('.ic-current-level').innerText()).includes('points')
+    && (await page.locator('.ic-method-note').innerText()).includes('dividendes nets');
   await page.locator('select.ic-control').first().selectOption('or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('août 2026');
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
@@ -360,6 +369,13 @@ async function testTweetMidi(page) {
     && !/💬|Livret A|Cours en dollars/u.test(performance)
     && (await page.getByRole('checkbox').count()) === 0;
   if (!minimal) failed.push('Performance depuis : format minimal');
+  await page.locator('#subject-select').selectOption('stoxx600');
+  await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+  const stoxxPerformance = await page.locator('pre').innerText();
+  const stoxxAnnual = (HISTORY.stoxx600.points.find(p => p.date === '2025-12').price
+    / HISTORY.stoxx600.points.find(p => p.date === '2024-12').price - 1) * 100;
+  if (!stoxxPerformance.includes(`2025 : ${fmtHistoryPct(stoxxAnnual)}`)
+      || stoxxPerformance.includes('2026 :')) failed.push('Performance depuis : historique officiel STOXX');
   await page.getByRole("button", { name: "Comparatif (2 actifs)", exact: true }).click();
   await page.locator('#subject-select-a').selectOption('sp500');
   await page.locator('#subject-select-b').selectOption('bitcoin');
