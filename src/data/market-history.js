@@ -222,6 +222,8 @@ export const ASSETS = {
   },
   msciWorld: {
     // Série officielle MSCI 990100, GRTR USD : dernières séances de chaque mois.
+    // Vérification de toute la série le 02/10/2026.
+    // Source : https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=GRTR&start_date=20141231&end_date=20260930&data_frequency=END_OF_MONTH&index_codes=990100
     // 141 niveaux réels, janvier 2015 à septembre 2026 ; pas de rebasing ni raccord.
     // L’ancienne série composite est conservée dans la capture pour comparaison.
     // Capture : scripts/source-snapshots/calculator-msci-world-2026-10-02.json.
