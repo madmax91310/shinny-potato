@@ -9,7 +9,7 @@
 // invested[] à un index entier (mode Simple, drawFrame), soit interpolés en ligne droite entre deux
 // vrais points adjacents à l'instant t écoulé (mode Comparatif, drawComparativeFrame/revealSide) —
 // jamais une troisième source de donnée inventée entre les deux.
-import { fmtEUR, fmtPct, computeAssetSeries, sparseAssetSeries, indexAnchorPoints, applyPriceOverride, ymIndex } from './lib'
+import { fmtEUR, fmtPct, computeAssetSeries, sparseAssetSeries, indexAnchorPoints, applyPriceOverride, ymIndex } from './lib.js'
 import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_SHORT } from '../../data/market-history.js'
 
 const W = 1080

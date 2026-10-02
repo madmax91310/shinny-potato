@@ -1,0 +1,279 @@
+// Contrôle du 02/10/2026. Aucun prix dupliqué ici ; captures rejouées par audit:calculator-series.
+export const MARKET_HISTORY_REVIEW = {
+  "history:bitcoin": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; série entière remplacée et vérifiée",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants.  Anciennes ouvertures remplacées par des clôtures sur toute la période ; résultats modifiés.",
+    "periodStart": "2015-01"
+  },
+  "history:ethereum": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:cac40": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5EFCHI?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5EFCHI?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:nasdaq100": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:soxx": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/SOXX?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/SOXX?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:silver": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/SI%3DF?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/SI%3DF?period1=1788220800&period2=1790899200&interval=1d",
+      "https://www.investing.com/commodities/silver-historical-data?cid=1178343"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. Contrat continu Yahoo SI=F conservé. 60,098 USD au 30/09 recoupé avec le contrat Investing.com cid=1178343 ; 60,560/60,566 concernent une autre échéance. Arrondi au centime comme l’historique."
+  },
+  "history:lvmh": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:apple": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/AAPL?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/AAPL?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "adjclose mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:microsoft": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/MSFT?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/MSFT?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "adjclose mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:broadcom": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/AVGO?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/AVGO?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "adjclose mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:tesla": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/TSLA?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/TSLA?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "adjclose mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:nvidia": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/NVDA?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/NVDA?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:amazon": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/AMZN?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/AMZN?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:google": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/GOOGL?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/GOOGL?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:meta": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/META?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/META?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:nestle": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/NSRGY?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/NSRGY?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:sap": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/SAP?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/SAP?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:visa": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/V?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/V?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:netflix": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/NFLX?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/NFLX?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:cocacola": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/KO?period1=1788220800&period2=1790899200&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/KO?period1=1788220800&period2=1790899200&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; seul le nouveau point de septembre est contrôlé le 02/10/2026",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants. "
+  },
+  "history:sp500": {
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1mo",
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d"
+    ],
+    "asOf": null,
+    "checkedAt": "2026-10-02",
+    "periodEnd": "2026-09",
+    "dateStatus": "month-only",
+    "sourceStatus": "documented",
+    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; série entière remplacée et vérifiée",
+    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants.  S&P 500 Total Return : niveaux réels en points, dividendes bruts réinvestis, hors frais. Ancienne série composite remplacée.",
+    "periodStart": "2015-01"
+  }
+};

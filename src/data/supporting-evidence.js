@@ -1,3 +1,4 @@
+import { MARKET_HISTORY_REVIEW } from './market-history-review.js';
 import { ARCHIVE_SOURCE_REVIEW } from './archive-source-review.js';
 // Sources, périodes et limites individuelles ; aucune date déduite de la consultation.
 export const SUPPORTING_EVIDENCE = {
@@ -647,3 +648,6 @@ for (const review of ARCHIVE_SOURCE_REVIEW.filter(r => !r.key)) {
   Object.assign(evidence, review);
   if (review.sourceStatus === 'archive-unverifiable') evidence.note = 'Attributions historiques conservées dans market-history.js ; elles ne sont pas une certification. Raison de la revue dans sourceReason.';
 }
+
+// La revue mensuelle prime sur les métadonnées héritées ; son périmètre est explicite.
+for (const [id, review] of Object.entries(MARKET_HISTORY_REVIEW)) Object.assign(SUPPORTING_EVIDENCE[id], review);

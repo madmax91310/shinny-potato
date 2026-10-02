@@ -29,6 +29,8 @@ import { buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
+import { ASSETS as HISTORY } from '../src/data/market-history.js';
+import { fmtEUR as fmtHistoryPrice } from '../src/pages/investment-calculator/lib.js';
 import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { CASES } from "../src/pages/concrete-cases/data.js";
 
@@ -68,6 +70,7 @@ async function testCalculateur(page) {
   await page.waitForTimeout(150);
   const hero = await page.locator(".ic-hero-number").innerText();
   const heroOk = /\d/.test(hero);
+  let septemberOk = (await page.evaluate(() => window.__investmentCopiedText)).includes('septembre 2026');
   const priceContextOk = /Série en USD : \d+ points présents dans le code sur \d+ mois/.test(await page.locator('.ic-method-note').innerText());
 
   const imageButton = page.getByRole('button', { name: '📊 Télécharger une image' });
@@ -103,6 +106,19 @@ async function testCalculateur(page) {
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const monthlyTweet = await page.evaluate(() => window.__investmentCopiedText);
   conclusionsOk &&= /versés au total/.test(monthlyTweet) && !/sans versement supplémentaire/.test(monthlyTweet);
+  septemberOk &&= monthlyTweet.includes('septembre 2026');
+  await page.locator('select.ic-control').first().selectOption('sp500');
+  const spDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
+  const spDcaOk = await spDca.isEnabled();
+  await spDca.click();
+  await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
+  const spTweet = await page.evaluate(() => window.__investmentCopiedText);
+  septemberOk &&= spTweet.includes('septembre 2026') && spTweet.includes('hors frais')
+    && (await page.locator('.ic-current-level').innerText()).includes('points');
+  await page.locator('select.ic-control').first().selectOption('or');
+  septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('août 2026');
+  await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
+  septemberOk &&= (await page.evaluate(() => window.__investmentCopiedText)).includes('En août 2026');
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
@@ -110,8 +126,8 @@ async function testCalculateur(page) {
   const dcaBlockOk = /DCA non disponible pour LVMH/.test(text);
 
   const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-cac40-lump.png';
-  record("Calculateur d'investissement", conclusionsOk && heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
-    `résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel: ${ethereumMonthlyOk}, DCA: ${ethereumDcaOk}, couverture: ${JSON.stringify(ethereumCoverage)}`);
+  record("Calculateur d'investissement", septemberOk && spDcaOk && conclusionsOk && heroOk && badgeOk && dcaBlockOk && priceContextOk && imagesOk && ethereumMonthlyOk && ethereumDcaOk,
+    `septembre/fins réelles: ${septemberOk}, S&P DCA: ${spDcaOk}, résultat Bitcoin rendu: ${heroOk}, contexte des prix: ${priceContextOk}, badge LVMH: ${badgeOk}, DCA bloqué: ${dcaBlockOk}, images mensuelle et annuelle: ${imagesOk}, Ethereum mensuel: ${ethereumMonthlyOk}, DCA: ${ethereumDcaOk}, couverture: ${JSON.stringify(ethereumCoverage)}`);
 }
 
 async function testPortfolioGenerator(page) {
@@ -324,6 +340,16 @@ async function testTweetMidi(page) {
     const text = await page.locator("body").innerText();
     if (text.length < 500) failed.push(label);
   }
+  await page.getByRole("button", { name: "Il y a X ans", exact: true }).click();
+  await page.locator("#subject-select").selectOption("bitcoin");
+  await page.locator("#secondary-select").selectOption("1");
+  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
+  await page.locator("#niveau-actuel").fill(String(HISTORY.bitcoin.points.at(-1).price));
+  const past = new Date();
+  const pastYm = `${past.getFullYear() - 1}-${String(past.getMonth() + 1).padStart(2, "0")}`;
+  const historical = HISTORY.bitcoin.points.find(p => p.date === pastYm);
+  const anniversary = await page.locator("pre").innerText();
+  if (historical && !anniversary.includes(fmtHistoryPrice(historical.price, "USD"))) failed.push("Il y a X ans : clôture historique Bitcoin");
   await page.getByRole("button", { name: "Performance depuis", exact: true }).click();
   await page.locator('#subject-select').selectOption('sp500');
   await page.locator('#secondary-select').selectOption('2016');
@@ -591,8 +617,8 @@ async function testDataSearch(page) {
       || (f.metadata.sourceReason && f.metadata.checkedAt === null && f.metadata.reviewedAt === '2026-09-30'));
   await page.goto(`${BASE}/bibliotheque-donnees?type=series&id=history:soxx`, { waitUntil: 'networkidle' });
   const soxxText = await page.locator('.ds-detail').innerText();
-  checks.certifiedSeries = !soxxText.includes('Archive non vérifiable') && soxxText.includes('2026-09-30') && soxxText.includes('close mensuel')
-    && soxxText.includes('2016-01 à 2026-08');
+  checks.certifiedSeries = !soxxText.includes('Archive non vérifiable') && soxxText.includes('2026-10-02') && soxxText.includes('close mensuel')
+    && soxxText.includes('2016-01 à 2026-09');
   await page.getByLabel('Type de donnée').selectOption('all');
   await page.getByRole('searchbox').fill('zzzintrouvablezzz');
   await page.locator('.ds-detail').filter({ hasText: 'Aucune donnée' }).waitFor();

@@ -269,7 +269,7 @@ export function buildTweetText(state, d) {
     `${gainAbs < 0 ? '📉 Perte' : '📈 Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)}`,
     `${gainPct < 0 ? '🔻' : '🚀'} Performance : ${fmtPct(gainPct)}`,
   ]
-  if (INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
+  if (ASSETS[state.assetId]?.priceUnit === 'points' || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
     lines.push('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
   }
 
