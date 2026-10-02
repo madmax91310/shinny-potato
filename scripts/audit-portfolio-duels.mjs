@@ -1,73 +1,75 @@
 #!/usr/bin/env node
+import assert from 'node:assert/strict'
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
-import { buildCustomDuel, buildDuel, buildTweet, CATALOG } from '../src/pages/portfolio-duels/lib.js'
-import { EUR_USD } from '../src/pages/portfolio-duels/catalog.js'
+import { buildCustomDuel, buildDuel, buildTweet, CATALOG, resultReading } from '../src/pages/portfolio-duels/lib.js'
+import { EUR_USD, euroReturn } from '../src/pages/portfolio-duels/catalog.js'
 import { generateDuel } from '../src/pages/portfolio-duels/generate.js'
-import { YEARS } from '../src/data/portfolio-assets.js'
 
-if (DUELS.length !== 9 || new Set(DUELS.map((duel) => duel.id)).size !== DUELS.length) {
-  throw new Error('Les neuf duels préparés doivent être distincts')
-}
-for (const definition of DUELS) {
-  const duel = buildDuel(definition)
+assert.equal(new Set(DUELS.map((duel) => duel.id)).size, DUELS.length)
+assert.ok(DUELS.length >= 9)
+const inspect = (duel) => {
+  assert.equal(duel.currency, 'EUR')
+  assert.ok(duel.years.length >= 3)
+  assert.equal(duel.years.at(-1), 2025)
+  assert.ok(duel.sources.every((source) => source.url?.startsWith('https://')))
+  for (const portfolio of [duel.a, duel.b]) {
+    assert.equal(portfolio.assets.reduce((sum, asset) => sum + asset.pct, 0), 100)
+    assert.equal(portfolio.assets.filter((asset) => asset.role === 'base').length, 1)
+    assert.equal(new Set(portfolio.assets.map((asset) => asset.role)).size, portfolio.assets.length)
+    const expected = duel.years.reduce((capital, year) => {
+      const annual = portfolio.assets.reduce((sum, asset) => sum + euroReturn(asset, year) * asset.pct / 100, 0)
+      assert.ok(Math.abs(annual - portfolio.annual[year]) < 1e-9)
+      return capital * (1 + annual / 100)
+    }, 10000)
+    assert.ok(Math.abs(expected - portfolio.final) < 1e-8)
+    assert.equal(portfolio.worst, Math.min(...duel.years.map((year) => portfolio.annual[year])))
+  }
   const tweet = buildTweet(duel)
-  if (!duel.sources.every((source) => source.url?.startsWith('https://'))) {
-    throw new Error(`Source officielle absente : ${duel.id}`)
-  }
-  if ([duel.a, duel.b].some((portfolio) =>
-    portfolio.assets.reduce((total, asset) => total + asset.pct, 0) !== 100 ||
-    YEARS.some((year) => !Number.isFinite(portfolio.annual[year])) ||
-    !Number.isFinite(portfolio.final) || !Number.isFinite(portfolio.worst))) {
-    throw new Error(`Résultat incomplet : ${duel.id}`)
-  }
-  if (/\bNaN\b|\bundefined\b|Méthode\s*:|rebalanc|proxy/i.test(tweet)) {
-    throw new Error(`Texte non publiable : ${duel.id}`)
-  }
-  console.log(`${duel.id}: A ${duel.a.final.toFixed(0)} ${duel.currency}, B ${duel.b.final.toFixed(0)} ${duel.currency}`)
+  assert.ok(!/NaN|undefined|\[.*saisir.*\]|70 % dans.*pour les deux/.test(tweet))
+  assert.ok(tweet.includes(`début ${duel.years[0]}`) && tweet.includes(`fin ${duel.years.at(-1)}`))
+  assert.ok(tweet.includes('Simulation en euros') && tweet.includes('pondérations rétablies'))
 }
-// L'ajout d'une part avec une série incomplète ou une devise différente doit échouer.
-for (const [change, reason] of [
-  [{ right: 'sect_financieres' }, 'historique partiel'],
-  [{ right: 'oblig_hy_ishares_acc' }, 'devises distinctes'],
-]) {
-  try {
-    buildDuel({ ...DUELS[0], ...change })
-    throw new Error(`Garde-fou absent : ${reason}`)
-  } catch (error) {
-    if (error.message.startsWith('Garde-fou absent')) throw error
-  }
+for (const definition of DUELS) inspect(buildDuel(definition))
+const full = buildDuel(DUELS[0])
+assert.equal(full.b.assets.length, 1)
+assert.equal(full.b.assets[0].pct, 100)
+assert.equal(full.years[0], 2020)
+const limited = buildDuel(DUELS.find((duel) => duel.id === 'world-stoxx-ou-acwi'))
+assert.deepEqual(limited.years, [2023, 2024, 2025])
+assert.ok(!/2020 :|2021 :|2022 :/.test(buildTweet(limited)))
+const usd = CATALOG.find((item) => item.id === 'msci_world_ishares')
+const converted = ((1 + usd.values[0] / 100) * EUR_USD[2019] / EUR_USD[2020] - 1) * 100
+assert.ok(Math.abs(euroReturn(usd, 2020) - converted) < 1e-9)
+// Changer l’ordre des lignes ne change ni la période, ni le capital final.
+const reversed = buildCustomDuel({ left: [...DUELS[0].left].reverse(), right: DUELS[0].right })
+assert.equal(reversed.a.final, full.a.final)
+const identical = buildCustomDuel({ left: DUELS[0].right, right: DUELS[0].right })
+assert.match(resultReading(identical), /même montant/)
+assert.ok(!/de plus pour|termine devant/.test(buildTweet(identical)))
+const reinforced = buildCustomDuel({ left: [{ id: 'msci_acwi_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }], right: DUELS[0].right })
+assert.match(reinforced.readings[0], /renforcent une zone déjà présente/)
+const invalid = [
+  [], [{ id: 'msci_em', pct: 100 }],
+  [{ id: 'msci_world_ishares', pct: 50 }, { id: 'msci_acwi_ishares', pct: 50 }],
+  [{ id: 'msci_world_ishares', pct: 60 }, { id: 'msci_em', pct: 20 }, { id: 'msci_europe', pct: 20 }],
+  [{ id: 'msci_world_ishares', pct: 60 }, { id: 'sect_ai_lg', pct: 20 }, { id: 'sect_cyber_lg', pct: 20 }],
+  [{ id: 'msci_world_ishares', pct: 99 }], [{ id: 'msci_world_ishares', pct: 100.5 }],
+  [{ id: 'msci_world_ishares', pct: 101 }, { id: 'msci_em', pct: -1 }],
+  [{ id: 'action_visa', pct: 100 }], [{ id: 'spot_bitcoin', pct: 100 }],
+]
+for (const left of invalid) assert.throws(() => buildCustomDuel({ left, right: DUELS[0].right }))
+// Tous les types de construction et toutes les parts sont couverts, y compris les séries courtes.
+for (const asset of CATALOG) {
+  const left = asset.role === 'base' ? [{ id: asset.id, pct: 100 }]
+    : [{ id: 'msci_world_ishares', pct: 80 }, { id: asset.id, pct: 20 }]
+  inspect(buildCustomDuel({ left, right: DUELS[0].right }))
 }
-console.log(`${DUELS.length} duels et garde-fous vérifiés.`)
-
-const a = [{ id: 'msci_acwi_ishares', pct: 70 }, { id: 'action_visa', pct: 10 }, { id: 'action_microsoft', pct: 10 }, { id: 'action_cocacola', pct: 10 }]
-const b = [{ id: 'sp500_ishares', pct: 60 }, { id: 'sect_tech_world_ishares', pct: 20 }, { id: 'or', pct: 10 }, { id: 'spot_bitcoin', pct: 10 }]
-const custom = buildCustomDuel({ left: a, right: b })
-if (custom.years[0] !== 2020 || custom.currency !== 'EUR' || !/Apple|Visa/.test(CATALOG.map((item) => item.name).join(' '))) {
-  throw new Error('Composition ou catalogue incomplet')
+let previous = ''
+for (let i = 0; i < 500; i++) {
+  const duel = generateDuel(previous)
+  assert.notEqual(duel.id, previous)
+  assert.ok(duel.years.some((year) => Math.abs(duel.a.annual[year] - duel.b.annual[year]) >= .001))
+  inspect(duel)
+  previous = duel.id
 }
-const visa = CATALOG.find((item) => item.id === 'action_visa')
-const visaUsd = visa.values[0]
-const visaEur = ((1 + visaUsd / 100) * EUR_USD[2019] / EUR_USD[2020] - 1) * 100
-const expected = a.reduce((sum, line) => {
-  const item = CATALOG.find((candidate) => candidate.id === line.id)
-  const result = item.currency === 'USD' ? ((1 + item.values[0] / 100) * EUR_USD[2019] / EUR_USD[2020] - 1) * 100 : item.values[0]
-  return sum + line.pct * result / 100
-}, 0)
-if (!Number.isFinite(visaEur) || Math.abs(custom.a.annual[2020] - expected) > 1e-9 || /NaN|undefined/.test(buildTweet(custom))) {
-  throw new Error('Conversion ou rendu de la composition incorrect')
-}
-const lvmh = buildCustomDuel({ left: [{ id: 'msci_acwi_ishares', pct: 70 }, { id: 'action_lvmh', pct: 30 }], right: b })
-if (lvmh.years[0] !== 2021 || lvmh.years.at(-1) !== 2025) throw new Error('Historique partiel de LVMH ignoré')
-const scpi = buildCustomDuel({ left: [{ id: 'msci_acwi_ishares', pct: 70 }, { id: 'scpi', pct: 30 }], right: b })
-if (scpi.years[0] !== 2021) throw new Error('Ancienne méthode SCPI de 2020 incluse')
-for (const invalid of [[{ ...a[0], pct: 71 }, ...a.slice(1)], [{ ...a[0] }, { ...a[0], pct: 30 }]]) {
-  try { buildCustomDuel({ left: invalid, right: b }); throw new Error('Composition invalide acceptée') }
-  catch (error) { if (error.message === 'Composition invalide acceptée') throw error }
-}
-for (let i = 0; i < 60; i++) {
-  const duel = generateDuel()
-  if (duel.years.length < 3 || !Number.isFinite(duel.a.final) || !Number.isFinite(duel.b.final) || duel.currency !== 'EUR') {
-    throw new Error('Duel généré invalide')
-  }
-}
-console.log(`${CATALOG.length} actifs, composition manuelle, change et 60 duels générés vérifiés.`)
+console.log(`${DUELS.length} duels préparés, ${CATALOG.length} ETF, 500 générations : rôles, mono-ETF, historique commun, change, capitaux et textes vérifiés.`)

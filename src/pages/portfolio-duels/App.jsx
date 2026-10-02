@@ -2,34 +2,40 @@ import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { DUELS } from './data.js'
-import { buildCustomDuel, buildDuel, buildTweet, CATALOG, formatCapital, formatPercent } from './lib.js'
+import { buildCustomDuel, buildDuel, buildTweet, CATALOG, ROLES, resultReading, formatCapital, formatPercent } from './lib.js'
 import { renderDuelImage } from './canvasImage.js'
 import { YEARS } from '../../data/portfolio-assets.js'
 import { generateDuel } from './generate.js'
 import './portfolio-duels.css'
 
 const duels = DUELS.map(buildDuel)
-const initialLeft = [{ id: 'msci_acwi_ishares', pct: 70 }, { id: 'action_visa', pct: 10 }, { id: 'action_microsoft', pct: 10 }, { id: 'action_cocacola', pct: 10 }]
-const initialRight = [{ id: 'sp500_ishares', pct: 60 }, { id: 'sect_tech_world_ishares', pct: 20 }, { id: 'or', pct: 10 }, { id: 'spot_bitcoin', pct: 10 }]
-const groups = [...new Set(CATALOG.map((asset) => asset.group))]
+const initialLeft = [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }]
+const initialRight = [{ id: 'msci_acwi_ishares', pct: 100 }]
 
 function AllocationEditor({ label, lines, onChange }) {
   const total = lines.reduce((sum, line) => sum + Number(line.pct || 0), 0)
-  function edit(index, field, value) {
-    onChange(lines.map((line, i) => i === index ? { ...line, [field]: value } : line))
+  function setRole(role, id) {
+    const current = lines.find((line) => CATALOG.find((item) => item.id === line.id)?.role === role)
+    const others = lines.filter((line) => CATALOG.find((item) => item.id === line.id)?.role !== role)
+    onChange([...others, ...(id ? [{ id, pct: current?.pct ?? 10 }] : [])])
+  }
+  function setWeight(id, value) {
+    onChange(lines.map((line) => line.id === id ? { ...line, pct: value === '' ? '' : Number(value) } : line))
   }
   return <section className="pd-editor-side">
     <h3>Portefeuille {label} <span className={total === 100 ? 'pd-total-ok' : 'pd-total-bad'}>{total} % / 100 %</span></h3>
-    {lines.map((line, index) => <div className="pd-editor-line" key={index}>
-      <label><span>Actif {index + 1}</span><select aria-label={`Actif ${index + 1} du portefeuille ${label}`} value={line.id} onChange={(event) => edit(index, 'id', event.target.value)}>
-        {groups.map((group) => <optgroup key={group} label={group}>
-          {CATALOG.filter((item) => item.group === group).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
-        </optgroup>)}
-      </select></label>
-      <label className="pd-weight"><span>Poids (%)</span><input aria-label={`Poids de l’actif ${index + 1} du portefeuille ${label}`} type="number" min="1" max="95" step="1" value={line.pct} onChange={(event) => edit(index, 'pct', event.target.value === '' ? '' : Number(event.target.value))} /></label>
-      <button type="button" aria-label={`Retirer l’actif ${index + 1} du portefeuille ${label}`} disabled={lines.length <= 2} onClick={() => onChange(lines.filter((_, i) => i !== index))}>✕</button>
-    </div>)}
-    <button type="button" className="pd-add" disabled={lines.length >= 5} onClick={() => onChange([...lines, { id: CATALOG.find((asset) => !lines.some((line) => line.id === asset.id)).id, pct: 10 }])}>+ Ajouter un actif</button>
+    {Object.entries(ROLES).map(([role, title]) => {
+      const line = lines.find((entry) => CATALOG.find((item) => item.id === entry.id)?.role === role)
+      return <div className="pd-editor-line" key={role}>
+        <label><span>{title}{role !== 'base' ? ' (facultatif)' : ' (obligatoire)'}</span>
+          <select aria-label={`${title} du portefeuille ${label}`} value={line?.id ?? ''} onChange={(event) => setRole(role, event.target.value)}>
+            {role !== 'base' && <option value="">Aucun</option>}
+            {CATALOG.filter((item) => item.role === role).map((item) => <option key={item.id} value={item.id}>{item.label} · {item.name}</option>)}
+          </select>
+        </label>
+        <label className="pd-weight"><span>Poids (%)</span><input aria-label={`Poids ${title.toLowerCase()} du portefeuille ${label}`} type="number" min="1" max="100" step="1" disabled={!line} value={line?.pct ?? ''} onChange={(event) => setWeight(line.id, event.target.value)} /></label>
+      </div>
+    })}
   </section>
 }
 
@@ -98,7 +104,7 @@ export default function App() {
 
   return (
     <div className="pd-scope">
-      <PageHeader title="Duel de portefeuilles" subtitle="Compare deux allocations : choisis un duel, génère une idée ou compose tes portefeuilles." />
+      <PageHeader title="Duel de portefeuilles" subtitle="Une base ETF, un complément et une thématique si tu le souhaites : compare deux constructions de portefeuille." />
       <div className="pd-modes" role="group" aria-label="Mode de duel">
         {[['prepared', 'Duels préparés'], ['generated', 'Générer un duel'], ['manual', 'Composer A et B']].map(([key, label]) =>
           <button key={key} type="button" className={mode === key ? 'pd-mode-active' : ''} aria-pressed={mode === key} onClick={() => { setMode(key); setCopyStatus('') }}>{label}</button>)}
@@ -110,10 +116,10 @@ export default function App() {
         </select>
         <Button type="button" variant="secondary" onClick={randomDuel}>🎲 Un autre duel</Button>
       </div>}
-      {mode === 'generated' && <div className="pd-controls"><p>Un nouveau face-à-face tiré parmi les cœurs ETF, actions, thèmes et actifs de diversification.</p><Button type="button" onClick={regenerate}>🎲 Générer un autre duel</Button></div>}
+      {mode === 'generated' && <div className="pd-controls"><p>Chaque portefeuille contient une base ETF, avec éventuellement un complément et une thématique.</p><Button type="button" onClick={regenerate}>🎲 Générer un autre duel</Button></div>}
       {mode === 'manual' && <>
         <div className="pd-editors"><AllocationEditor label="A" lines={left} onChange={setLeft} /><AllocationEditor label="B" lines={right} onChange={setRight} /></div>
-        <p className="pd-hint">2 à 5 actifs par portefeuille · mêmes dates et calcul en euros · pondérations rétablies au début de chaque année.</p>
+        <p className="pd-hint">1 à 3 ETF par portefeuille : une base, un complément facultatif, une thématique facultative · mêmes dates et calcul en euros · pondérations rétablies au début de chaque année.</p>
         {error && <p className="pd-error" role="alert">{error}</p>}
       </>}
 
@@ -125,7 +131,7 @@ export default function App() {
           {[duel.a, duel.b].map((portfolio, i) => (
             <section className={`pd-card pd-${i ? 'b' : 'a'}`} key={portfolio.name}>
               <h3>{i ? 'B' : 'A'} · {portfolio.name}</h3>
-              {portfolio.assets.map((asset) => <p key={asset.id}>{asset.pct} % {asset.name}</p>)}
+              {portfolio.assets.map((asset) => <p key={asset.id}>{asset.pct} % {asset.label} <small>· {ROLES[asset.role]}</small></p>)}
               <strong>{formatCapital(portfolio.final, duel.currency)}</strong>
               <small>pour 10 000 {duel.currency === 'USD' ? '$' : '€'} au départ</small>
             </section>
@@ -139,6 +145,7 @@ export default function App() {
           </table>
         </div>
         <p className="pd-worst">📉 Pire année : A {formatPercent(duel.a.worst)} ({duel.a.worstYear}) · B {formatPercent(duel.b.worst)} ({duel.b.worstYear})</p>
+        <div className="pd-reading"><p>🅰️ {duel.readings[0]}</p><p>🅱️ {duel.readings[1]}</p><p>{resultReading(duel)}</p></div>
         <p className="pd-question">💬 {duel.question}</p>
       </article>
 
@@ -151,7 +158,7 @@ export default function App() {
       <textarea id="pd-tweet" readOnly value={tweet} rows={18} onFocus={(event) => event.target.select()} />
       <details className="pd-sources">
         <summary>Sources et calcul</summary>
-        <p>{duel.currency === 'EUR' && !duel.commonAsset ? 'Calcul en euros. Rendements USD convertis chaque année avec les taux EUR/USD de fin d’année de la BCE. ' : `Parts en ${duel.currency}. `}Pondérations rétablies au début de chaque année. Résultats indicatifs hors courtage et fiscalité. Les actions sont calculées sur leurs cours, hors dividendes ; la SCPI est une moyenne de marché et les cryptos des cours spot.</p>
+        <p>Calcul en euros sur les années complètes disponibles pour les deux portefeuilles. Rendements USD convertis chaque année avec les taux EUR/USD de fin d’année de la BCE. Revenus réinvestis, pondérations rétablies au début de chaque année. Résultats indicatifs hors courtage, frais de rééquilibrage et fiscalité. Les frais courants des fonds sont déjà intégrés à leurs rendements publiés.</p>
         <ul>{duel.sources.map((source, i) => <li key={`${source.name}-${i}`}>{source.url ? <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a> : source.name}{source.isin ? ` · ${source.isin}` : ''}{source.note ? ` · ${source.note}` : ''}</li>)}</ul>
       </details>
       </>}
