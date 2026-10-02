@@ -177,20 +177,20 @@ export default function App() {
             <button type="button" className="fi-copy-btn" onClick={handleDownloadImage}>Télécharger l’image PNG</button>
           </div>
           <div className="fi-preview" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <label className="fi-eyebrow" htmlFor="fi-punchline" style={{ margin: 0 }}>Ta phrase personnelle · brouillon à compléter</label>
+            <label className="fi-eyebrow" htmlFor="fi-punchline" style={{ margin: 0 }}>Ta phrase personnelle · facultatif</label>
             <input
               id="fi-punchline" className="fi-control" type="text" value={punchline}
               onChange={(e) => setPunchline(e.target.value)}
               placeholder="Ce que cet écart t'inspire..."
             />
-            <p className="fi-hint">Si tu laisses ce champ vide, le texte copié indique clairement qu'il reste à compléter.</p>
+            <p className="fi-hint">Laisse ce champ vide pour conserver la conclusion proposée. Une phrase personnalisée est réinitialisée quand tu changes de scénario.</p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <p className="fi-eyebrow" style={{ margin: 0 }}>Aperçu du tweet</p>
               <span className={`fi-badge ${BADGE_CLASS[status.level]}`}>{status.label}</span>
             </div>
             <pre className="fi-preview-text">{text}</pre>
             <button type="button" className="fi-copy-btn" onClick={handleCopy}>
-              {copied ? 'Copié ✓' : punchline.trim() ? 'Copier le texte' : 'Copier le brouillon'}
+              {copied ? 'Copié ✓' : 'Copier le texte'}
             </button>
           </div>
         </section>

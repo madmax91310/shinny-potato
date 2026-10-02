@@ -28,6 +28,7 @@ import { fmtPct } from "../src/pages/index-comparator/lib.js";
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
+import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { CASES } from "../src/pages/concrete-cases/data.js";
 
 const PORT = 4310;
@@ -412,6 +413,28 @@ async function testIndexComparator(page) {
 
 async function testFeeImpact(page) {
   await page.goto(`${BASE}/impact-frais`, { waitUntil: "networkidle" });
+  const preview = page.locator('.fi-preview-text');
+  const initial = await preview.innerText();
+  let editorialOk = initial.startsWith('Tu connais les frais annuels de tes placements ?')
+    && /153\s402\s€/.test(initial) && /131\s287\s€/.test(initial)
+    && /22\s115\s€ d’écart/.test(initial) && /72\s000\s€ versés/.test(initial)
+    && initial.includes('les gains que l’argent prélevé') && !/Brouillon|à compléter/.test(initial);
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__feeCopiedText = text; } },
+  }));
+  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click();
+  editorialOk &&= await page.evaluate(expected => window.__feeCopiedText === expected, initial);
+  // Les couleurs suivent le niveau des frais, même si les scénarios sont inversés.
+  await page.getByRole('button', { name: '1,5 %', exact: true }).first().click();
+  await page.getByRole('button', { name: '0,20 %', exact: true }).last().click();
+  editorialOk &&= /🔴 Avec 1,5 %/.test(await preview.innerText()) && /🟢 Avec 0,20 %/.test(await preview.innerText());
+  await page.getByRole('button', { name: '0,20 %', exact: true }).first().click();
+  editorialOk &&= (await preview.innerText()).includes('Aucun écart') && !(await preview.innerText()).includes('les frais supplémentaires');
+  await page.locator('#fi-punchline').fill('Ma conclusion personnalisée');
+  editorialOk &&= (await preview.innerText()).includes('Ma conclusion personnalisée');
+  await page.getByRole('button', { name: '500 €', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('#fi-punchline').value === '');
+  editorialOk &&= !(await preview.innerText()).includes('Ma conclusion personnalisée');
   await page.getByRole("button", { name: /Aléatoire/i }).click();
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
@@ -422,10 +445,10 @@ async function testFeeImpact(page) {
     page.getByRole("button", { name: "Télécharger l’image PNG" }).click(),
   ]);
   const file = await stat(await download.path());
-  const ok = /Avec [\d,]+\s*%\s+de frais/.test(text)
+  const ok = editorialOk && /Avec [\d,]+\s*%\s+de frais/.test(text)
     && drawing.width === 1600 && drawing.height === 1200 && drawing.png
     && download.suggestedFilename() === "epargnant-libre-impact-des-frais.png" && file.size > 10000;
-  record("Impact des frais", ok, "comparaison générée et image PNG téléchargeable");
+  record("Impact des frais", ok, "texte validé, chiffres, copie, frais inversés/égaux, personnalisation, génération et PNG");
 }
 
 async function testMarketFacts(page) {
@@ -458,7 +481,7 @@ async function testTweetBank(page) {
   await page.waitForTimeout(150);
   const cooldownCount = (await page.locator(".tb-summary-num").allInnerTexts())[1];
   const badge = await page.locator(".tb-pub-badge.cooldown").first().count();
-  const ok = totalBefore === "42" && cooldownCount === "1" && badge === 1;
+  const ok = Number(totalBefore) === TWEETS.length && cooldownCount === "1" && badge === 1;
   record("Banque de tweets", ok, `total: ${totalBefore}, en repos après marquage: ${cooldownCount}, badge cooldown affiché: ${badge === 1}`);
 }
 
