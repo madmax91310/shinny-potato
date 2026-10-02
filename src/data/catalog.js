@@ -53,7 +53,7 @@ function instrument(isin, identity) {
   const pea = PEA_REVIEWS_BY_ISIN[isin];
   if (pea) fields.push(field('Éligibilité PEA', 'instrument-pea', pea.eligible, { ...pea, dateStatus: 'not-applicable', scope }));
   const aum = INSTRUMENT_AUM_BY_ISIN[isin];
-  if (aum) fields.push(field('Encours', 'instrument-aum', aum, { ...aum.source, dateStatus: aum.source.asOf ? 'dated' : 'not-published', scope: `${scope} ; périmètre du profil source`, note: aum.source.asOf ? 'Date publiée par l’émetteur ; la consultation reste distincte.' : 'Le profil justETF ne publie pas la date de valeur de cet encours. La date des positions ne date pas l’encours. La consultation reste distincte.' }));
+  if (aum) fields.push(field('Encours', 'instrument-aum', aum, { ...aum.source, dateStatus: aum.source.asOf ? 'dated' : 'not-published', scope: aum.source.scope ?? `${scope} ; périmètre du profil source`, note: aum.source.asOf ? 'Date publiée par l’émetteur ; la consultation reste distincte.' : 'Le profil justETF ne publie pas la date de valeur de cet encours. La date des positions ne date pas l’encours. La consultation reste distincte.' }));
   const listings = INSTRUMENT_LISTINGS_BY_ISIN[isin] ?? [];
   const officialAum = OFFICIAL_AUM_OBSERVATIONS[isin];
   if (officialAum) fields.push(field('Encours daté publié par l’émetteur', 'instrument-aum-observations', officialAum, officialAum));

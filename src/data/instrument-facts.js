@@ -1,3 +1,5 @@
+// Revue du 02/10/2026 : positionsSource date le contrôle des positions ; positionsAsOf date le relevé.
+// Les corrections de structure sont sourcées séparément dans characteristicsSource.
 import { getInstrumentListings } from './instrument-listings.js';
 export { getInstrumentListings } from './instrument-listings.js';
 // Caractéristiques par ISIN des parts des Fiches ETF.
@@ -18,7 +20,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "replicationMethod": "Synthetic (Unfunded swap)",
   "domicile": "Luxembourg",
   "currencyHedge": null,
-  "reviewedAt": "01/10/2026",
+  "reviewedAt": "02/10/2026",
   "positionsLabel": "Indice de taux monétaire €STR + 8,5 pb",
   "positionsAsOf": null,
   "characteristicsSource": {
@@ -34,7 +36,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "replicationMethod": "Physical (sampling)",
   "domicile": "Irlande",
   "currencyHedge": null,
-  "reviewedAt": "01/10/2026",
+  "reviewedAt": "02/10/2026",
   "positionsLabel": "34 obligations détenues (29/09/2026)",
   "positionsAsOf": "2026-09-29",
   "characteristicsSource": {
@@ -50,7 +52,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "replicationMethod": "Physical (sampling)",
   "domicile": "Irlande",
   "currencyHedge": "EUR",
-  "reviewedAt": "01/10/2026",
+  "reviewedAt": "02/10/2026",
   "positionsLabel": "19 977 obligations détenues (29/09/2026)",
   "positionsAsOf": "2026-09-29",
   "characteristicsSource": {
@@ -66,7 +68,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "replicationMethod": "Physical (sampling)",
   "domicile": "Irlande",
   "currencyHedge": null,
-  "reviewedAt": "01/10/2026",
+  "reviewedAt": "02/10/2026",
   "positionsLabel": "38 obligations détenues (29/09/2026)",
   "positionsAsOf": "2026-09-29",
   "characteristicsSource": {
@@ -82,7 +84,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "replicationMethod": "Physical (Full replication)",
   "domicile": "Irlande",
   "currencyHedge": null,
-  "reviewedAt": "01/10/2026",
+  "reviewedAt": "02/10/2026",
   "positionsLabel": "570 actions détenues (29/09/2026)",
   "positionsAsOf": "2026-09-29",
   "characteristicsSource": {
@@ -98,7 +100,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "replicationMethod": "Physical (Full replication)",
   "domicile": "Irlande",
   "currencyHedge": null,
-  "reviewedAt": "01/10/2026",
+  "reviewedAt": "02/10/2026",
   "positionsLabel": "165 actions détenues (29/09/2026)",
   "positionsAsOf": "2026-09-29",
   "characteristicsSource": {
@@ -114,7 +116,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
   "replicationMethod": "Physical (Full replication)",
   "domicile": "Irlande",
   "currencyHedge": null,
-  "reviewedAt": "01/10/2026",
+  "reviewedAt": "02/10/2026",
   "positionsLabel": "275 actions détenues (29/09/2026)",
   "positionsAsOf": "2026-09-29",
   "characteristicsSource": {
@@ -122,7 +124,6 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "checkedAt": "2026-10-01"
   }
 },
-
   "IE000DQLYVB9": {
     "distribution": "Capitalisant",
     "location": "Irlande, réplication synthétique (swap)",
@@ -131,7 +132,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Synthetic (Unfunded swap)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "27/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE000DQLYVB9",
       "checkedAt": "2026-09-29"
@@ -145,10 +146,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Synthetic (Unfunded swap)",
     "domicile": "France",
     "currencyHedge": "JPY/EUR",
-    "reviewedAt": "27/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0013411998",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "1 636 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "LU1834983550": {
@@ -159,10 +167,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Synthetic (Unfunded swap)",
     "domicile": "Luxembourg",
     "currencyHedge": null,
-    "reviewedAt": "27/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=LU1834983550",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "21 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "FR001400U5Q4": {
@@ -173,10 +188,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Synthetic (Unfunded swap)",
     "domicile": "France",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=FR001400U5Q4",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "1 280 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "FR0011871128": {
@@ -187,10 +209,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Synthetic (Unfunded swap)",
     "domicile": "France",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0011871128",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "Indice S&P 500 : environ 500 entreprises",
+    "positionsAsOf": null,
+    "positionsSource": {
+      "url": "https://www.borsaitaliana.it/borsa/etf/scheda/FR0011871128-XPAR.html",
+      "checkedAt": "2026-10-02",
+      "scope": "Indice suivi, pas le panier détenu par le fonds synthétique"
     }
   },
   "FR0011871110": {
@@ -201,10 +230,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Synthetic (Unfunded swap)",
     "domicile": "France",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0011871110",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "102 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "LU1681047236": {
@@ -215,10 +251,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Luxembourg",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=LU1681047236",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "50 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "IE00BKM4GZ66": {
@@ -229,10 +272,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "2 956 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/264659/?siteEntryPassthrough=true&switchLocale=y",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00B6R52259": {
@@ -243,10 +293,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Optimized sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "08/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B6R52259",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "1 695 titres détenus (07/08/2026)",
+    "positionsAsOf": "2026-08-07",
+    "positionsSource": {
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/ssac-ishares-msci-acwi-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BK5BQT80": {
@@ -257,7 +314,7 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Optimized sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "08/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
       "checkedAt": "2026-09-29"
@@ -271,38 +328,59 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE000I8KRLL9",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "258 titres détenus (03/09/2026)",
+    "positionsAsOf": "2026-09-03",
+    "positionsSource": {
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/semi-ishares-msci-global-semiconductors-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BYXG2H39": {
     "distribution": "Capitalisant",
-    "location": "Irlande, réplication physique optimisée (échantillonnage)",
+    "location": "Irlande, réplication physique intégrale",
     "benchmark": "Nasdaq Biotechnology",
     "incomePolicy": "accumulating",
-    "replicationMethod": "Physical (Optimized sampling)",
+    "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
-      "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BYXG2H39",
-      "checkedAt": "2026-09-29"
+      "url": "https://www.ishares.com/ch/institutional/en/literature/fact-sheet/btec-ishares-nasdaq-us-biotechnology-ucits-etf-fund-fact-sheet-fr-ch.pdf",
+      "checkedAt": "2026-10-02"
+    },
+    "positionsLabel": "255 titres détenus (04/09/2026)",
+    "positionsAsOf": "2026-09-04",
+    "positionsSource": {
+      "url": "https://www.ishares.com/ch/institutional/en/literature/fact-sheet/btec-ishares-nasdaq-us-biotechnology-ucits-etf-fund-fact-sheet-fr-ch.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BYTRR863": {
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique intégrale",
-    "benchmark": "MSCI World Energy",
+    "benchmark": "MSCI World Energy 35/20 Capped Index",
     "incomePolicy": "accumulating",
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
-      "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BYTRR863",
-      "checkedAt": "2026-09-29"
+      "url": "https://www.ssga.com/library-content/products/factsheets/etfs/emea/israel/factsheet-is-en_gb-wnrg-na.pdf",
+      "checkedAt": "2026-10-02"
+    },
+    "positionsLabel": "51 titres détenus (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.ssga.com/library-content/products/factsheets/etfs/emea/israel/factsheet-is-en_gb-wnrg-na.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE000YYE6WK5": {
@@ -313,10 +391,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE000YYE6WK5",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "45 titres détenus (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.vaneck.com/fr/en/library/fact-sheets/dfns-fact-sheet.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BYPLS672": {
@@ -327,10 +412,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BYPLS672",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "30 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://docs.fundconnect.com/GetDocument.aspx?Isin=IE00BYPLS672&clientid=18svzhes-n8uj-xtdb-oidd-a58dzenasvsr&lang=en-GB&save=false&type=Factsheet",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "FR0010527275": {
@@ -341,10 +433,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "France",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0010527275",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "44 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010527275/FRA/FRA/RETAIL/ETF",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "LU1681048630": {
@@ -355,10 +454,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Luxembourg",
     "currencyHedge": null,
-    "reviewedAt": "25/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=LU1681048630",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "80 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "IE00BJ5JP097": {
@@ -369,10 +475,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "08/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BJ5JP097",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "228 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/308836/ishares-msci-world-financials-sector-advanced-ucits-etf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00B1FZS350": {
@@ -383,10 +496,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Optimized sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "08/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B1FZS350",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "319 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/251801/ishares-developed-markets-property-yield-ucits-etf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BJ5JNY98": {
@@ -397,10 +517,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "08/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BJ5JNY98",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "130 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/308858/ishares-msci-world-information-technology-sector-advanced-ucits-etf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE0007Y8Y157": {
@@ -411,10 +538,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE0007Y8Y157",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "31 titres détenus (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BK5BCD43": {
@@ -425,24 +559,38 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BCD43",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "53 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://dokumenty.analizy.pl/pobierz/etf/E_LG001_A_USD/KA/2026-08-31",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "IE00BYZK4552": {
     "distribution": "Capitalisant",
     "location": "Irlande, réplication physique optimisée (échantillonnage)",
-    "benchmark": "iSTOXX® FactSet Automation & Robotics",
+    "benchmark": "STOXX Global Automation & Robotics Net USD Index",
     "incomePolicy": "accumulating",
     "replicationMethod": "Physical (Optimized sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
-      "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BYZK4552",
-      "checkedAt": "2026-09-29"
+      "url": "https://www.ishares.com/uk/individual/en/products/284219/?siteEntryPassthrough=true&switchLocale=y",
+      "checkedAt": "2026-10-02"
+    },
+    "positionsLabel": "158 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/284219/?siteEntryPassthrough=true&switchLocale=y",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE000RDRMSD1": {
@@ -453,10 +601,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE000RDRMSD1",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "39 titres détenus (03/09/2026)",
+    "positionsAsOf": "2026-09-03",
+    "positionsSource": {
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/blkc-ishares-blockchain-technology-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE000M7V94E1": {
@@ -467,10 +622,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE000M7V94E1",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "25 titres détenus (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.vaneck.com/fr/fr/library/fact-sheets/nucl-fact-sheet.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BF0M2Z96": {
@@ -481,10 +643,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF0M2Z96",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "46 valeurs dans l’indice (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.fundslibrary.co.uk/FundsLibrary.DataRetrieval//Documents.aspx?id=10bd7cf4-b986-4027-9174-6e7df8612816&type=packet_fund_class_doc_factsheet_private&user=fidelitydocumentreport",
+      "checkedAt": "2026-10-02",
+      "scope": "valeurs dans l’indice"
     }
   },
   "IE000YU9K6K2": {
@@ -495,10 +664,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE000YU9K6K2",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "25 titres détenus (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00B6YX5D40": {
@@ -509,10 +685,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B6YX5D40",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "155 titres détenus (31/08/2026)",
+    "positionsAsOf": "2026-08-31",
+    "positionsSource": {
+      "url": "https://www.ssga.com/library-content/products/factsheets/etfs/emea/israel/factsheet-is-en_gb-spyd-gy.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BM8R0J59": {
@@ -523,10 +706,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Synthetic (Unfunded swap)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://globalxetfs.eu/fr/funds/qyld",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "Indice Nasdaq-100 et stratégie de vente d’options d’achat",
+    "positionsAsOf": null,
+    "positionsSource": {
+      "url": "https://globalxetfs.eu/funds/qyld",
+      "checkedAt": "2026-10-02",
+      "scope": "Indice suivi, pas le panier détenu par le fonds synthétique"
     }
   },
   "IE00B8FHGS14": {
@@ -537,10 +727,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Optimized sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8FHGS14",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "296 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/251382/ishares-msci-world-minimum-volatility-ucits-etf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BP3QZB59": {
@@ -551,10 +748,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Full replication)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZB59",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "391 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/270048/ishares-msci-world-value-factor-ucits-etf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BF4RFH31": {
@@ -565,10 +769,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Optimized sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF4RFH31",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "3 577 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/296576/?siteEntryPassthrough=true&switchLocale=y",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BP3QZ601": {
@@ -579,10 +790,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Optimized sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "10/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZ601",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "290 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/270054/ishares-msci-world-quality-factor-ucits-etf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00BP3QZ825": {
@@ -593,35 +811,42 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Optimized sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "08/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZ825",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "351 titres détenus (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/270051/ishares-msci-world-momentum-factor-ucits-etf",
+      "checkedAt": "2026-10-02",
+      "scope": "titres détenus"
     }
   },
   "IE00B4ND3602": {
-    "distribution": "Capitalisant (pas de revenu versé — l'or n'en génère aucun)",
+    "distribution": "Aucun revenu distribué",
     "location": "Irlande, adossé à de l'or physique alloué (pas de réplication synthétique)",
     "benchmark": "Gold",
-    "incomePolicy": "accumulating",
+    "incomePolicy": "none",
     "replicationMethod": "Physical (Physically backed)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4ND3602",
       "checkedAt": "2026-09-29"
     }
   },
   "GB00BLD4ZL17": {
-    "distribution": "Capitalisant (pas de revenu versé)",
+    "distribution": "Aucun revenu distribué",
     "location": "Jersey, adossé à du bitcoin physiquement détenu (pas un produit dérivé/synthétique)",
     "benchmark": "Bitcoin",
-    "incomePolicy": "accumulating",
+    "incomePolicy": "none",
     "replicationMethod": "Physical (Physically backed)",
     "domicile": "Jersey",
     "currencyHedge": null,
-    "reviewedAt": "25/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=GB00BLD4ZL17",
       "checkedAt": "2026-09-29"
@@ -635,10 +860,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "22/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4WXJJ64",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "552 obligations détenues (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/251740/?siteEntryPassthrough=true&switchLocale=y",
+      "checkedAt": "2026-10-02",
+      "scope": "obligations détenues"
     }
   },
   "IE00B66F4759": {
@@ -649,10 +881,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "25/08/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B66F4759",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "665 obligations détenues (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/251843/?siteEntryPassthrough=true&switchLocale=y",
+      "checkedAt": "2026-10-02",
+      "scope": "obligations détenues"
     }
   },
   "IE00B3F81R35": {
@@ -663,10 +902,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "14/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B3F81R35",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "4 214 obligations détenues (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/251726/?siteEntryPassthrough=true&switchLocale=y",
+      "checkedAt": "2026-10-02",
+      "scope": "obligations détenues"
     }
   },
   "IE00BF3N7094": {
@@ -677,10 +923,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "14/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF3N7094",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "665 obligations détenues (30/09/2026)",
+    "positionsAsOf": "2026-09-30",
+    "positionsSource": {
+      "url": "https://www.ishares.com/uk/individual/en/products/290618/ishares-high-yield-corp-bond-ucits-etf",
+      "checkedAt": "2026-10-02",
+      "scope": "obligations détenues"
     }
   },
   "IE00BFZPF546": {
@@ -691,10 +944,17 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "replicationMethod": "Physical (Sampling)",
     "domicile": "Irlande",
     "currencyHedge": null,
-    "reviewedAt": "14/09/2026",
+    "reviewedAt": "02/10/2026",
     "characteristicsSource": {
       "url": "https://www.ishares.com/uk/professionals/en/products/297676/ishares-j-p-morgan-em-local-govt-bond-ucits-etf-usd-%28acc%29-fund",
       "checkedAt": "2026-09-29"
+    },
+    "positionsLabel": "339 obligations détenues (03/09/2026)",
+    "positionsAsOf": "2026-09-03",
+    "positionsSource": {
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/emga-ishares-j-p-morgan-em-local-govt-bond-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-02",
+      "scope": "obligations détenues"
     }
   }
 });

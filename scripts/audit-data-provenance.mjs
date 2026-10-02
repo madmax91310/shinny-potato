@@ -1,3 +1,4 @@
+import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js';
 import assert from 'node:assert/strict';
 import { DATA_CATALOG } from '../src/data/catalog.js';
 import { FAMILIES } from '../src/data/index-comparisons.js';
@@ -76,7 +77,7 @@ for (const [isin, observation] of Object.entries(OFFICIAL_AUM_OBSERVATIONS)) {
   const fields = DATA_CATALOG.find(r => r.id === isin).fields;
   assert.equal(fields.find(f => f.label === 'Encours daté publié par l’émetteur').metadata.asOf, observation.asOf);
   // Une nouvelle observation ne doit jamais dater rétroactivement l’encours justETF.
-  if (isin !== 'IE000DQLYVB9') assert.equal(fields.find(f => f.label === 'Encours').metadata.asOf, null);
+  if (isin !== 'IE000DQLYVB9') assert.equal(fields.find(f => f.label === 'Encours').metadata.asOf, INSTRUMENT_AUM_BY_ISIN[isin].source.asOf);
 }
 for (const series of DATA_CATALOG.filter(r => r.type === 'series')) {
   const f = series.fields[0];
