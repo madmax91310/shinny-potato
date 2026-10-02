@@ -76,8 +76,8 @@ export function drawFeeImpactImage(ctx, state, first, second, comparison) {
   c.fillStyle = COLORS.ink; c.fillText(`Scénario 2 · ${pct(fee2)} % / an`, 830, 925)
 
   for (const { x: col, label, value, color } of [
-    { x: 110, label: 'SCÉNARIO 1', value: capital1, color: COLORS.green },
-    { x: 610, label: 'SCÉNARIO 2', value: capital2, color: COLORS.gold },
+    { x: 110, label: state.isin1 ? `SCÉNARIO 1 · ${state.isin1}` : 'SCÉNARIO 1', value: capital1, color: COLORS.green },
+    { x: 610, label: state.isin2 ? `SCÉNARIO 2 · ${state.isin2}` : 'SCÉNARIO 2', value: capital2, color: COLORS.gold },
     { x: 1110, label: 'ÉCART FINAL', value: ecart, color: COLORS.brand },
   ]) {
     c.fillStyle = color; c.font = 'bold 21px sans-serif'; c.fillText(label, col, 1000)

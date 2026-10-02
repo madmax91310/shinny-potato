@@ -9,6 +9,7 @@ export function buildTweetText(fact) {
     "",
     ...(fact.twist ? [fact.twist, ""] : []),
     fact.question,
+    ...(fact.methodNote ? ["", `📌 ${fact.methodNote}`] : []),
     "",
     `Source : ${fact.source}`,
   ];

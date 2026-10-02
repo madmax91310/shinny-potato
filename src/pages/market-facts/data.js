@@ -1,3 +1,4 @@
+import { HISTORY_FACTS } from '../../data/history-statistics.js';
 // Bibliothèque de faits marquants et statistiques historiques sur les grands indices boursiers,
 // destinée à générer des tweets "le saviez-vous". Contrairement au reste de l'app (qui calcule
 // depuis des séries de prix brutes, cf. investment-calculator/portfolio-generator), CHAQUE fait ici
@@ -17,6 +18,7 @@
 // ne couvre que les dividendes. Pas d'ajout arbitraire pour "égaliser" avec les indices US.
 
 export const FAMILIES = [
+  { id: 'actions-historiques', label: '📉 Historiques des actions', emoji: '📉' },
   { id: "chocs", label: "⚡ Chocs et corrections", emoji: "⚡" },
   { id: "continuite", label: "📈 Continuité et séquences", emoji: "📈" },
   { id: "cac40", label: "🇫🇷 CAC 40", emoji: "🇫🇷" },
@@ -343,8 +345,10 @@ const EDITORIAL = {
   },
 };
 
-export const FACTS = RAW_FACTS.map((fact) => ({ ...fact, ...EDITORIAL[fact.id] }));
+const publishedFacts = RAW_FACTS.map((fact) => ({ ...fact, ...EDITORIAL[fact.id] }));
 
 export function getFact(id) {
   return FACTS.find((f) => f.id === id);
 }
+
+export const FACTS = [...publishedFacts, ...HISTORY_FACTS];

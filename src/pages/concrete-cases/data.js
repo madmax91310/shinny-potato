@@ -1,6 +1,7 @@
+import { ALLOCATION_CASES } from '../../data/allocation-cases.js'
 // Posts éditoriaux relus individuellement. Cette bibliothèque n'invente ni performance ni
 // ETF précis : chaque cas illustre une décision, et les liens renvoient aux sources primaires.
-export const CASES = [
+const editorialCases = [
   {
     id: 'world-sp500',
     title: 'ETF World + S&P 500',
@@ -216,3 +217,5 @@ Pourquoi cela peut arriver ? Quand les taux du marché montent, les obligations 
     ],
   },
 ]
+
+export const CASES = [...editorialCases, ...ALLOCATION_CASES]

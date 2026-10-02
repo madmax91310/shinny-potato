@@ -4,6 +4,9 @@ import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.j
 // pas une nouvelle vérification chez l'émetteur. Mettre à jour ici puis contrôler
 // les mentions de frais dans les textes éditoriaux lors d'une modification.
 export const ETF_TER_BY_ISIN = Object.freeze({
+  // iShares IUFS, IE00B4JNQZ49, 0,15 %, vérifié le 02/10/2026 sur profil et fiche officiels.
+  // https://www.ishares.com/uk/individual/en/products/280523/ishares-sp-500-financials-sector-ucits-etf
+  'IE00B4JNQZ49': '0,15',
   "LU0290358497": "0,10",
   "IE00B3FH7618": "0,07",
   "IE00BDBRDM35": "0,10",
@@ -145,6 +148,7 @@ export function formatEtfTer(isin, format = 'tweet') {
 
 // Les frais sont ceux observés au contrôle ; leur date d’entrée en vigueur n’est pas publiée.
 const primaryTerSources = {
+  IE00B4JNQZ49: 'https://www.ishares.com/uk/individual/en/products/280523/ishares-sp-500-financials-sector-ucits-etf',
   "LU0290358497": "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6",
   "IE00B3FH7618": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",
   "IE00BDBRDM35": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
@@ -160,7 +164,7 @@ const primaryTerSources = {
 export const ETF_TER_EVIDENCE = Object.freeze(Object.fromEntries(Object.keys(ETF_TER_BY_ISIN).map(isin => [isin, {
   ...INSTRUMENT_REFERENCE_EVIDENCE[isin],
   sourceUrls: [primaryTerSources[isin], ...INSTRUMENT_REFERENCE_EVIDENCE[isin].sourceUrls].filter(Boolean),
-  checkedAt: ["LU0290358497", "IE00B3FH7618", "IE00BDBRDM35", "IE00B0M62X26", "IE00BMG6Z448", "IE00BZCQB185", "IE00B1FZS467"].includes(isin) ? '2026-10-01' : INSTRUMENT_REFERENCE_EVIDENCE[isin].checkedAt,
+  checkedAt: isin === 'IE00B4JNQZ49' ? '2026-10-02' : ["LU0290358497", "IE00B3FH7618", "IE00BDBRDM35", "IE00B0M62X26", "IE00BMG6Z448", "IE00BZCQB185", "IE00B1FZS467"].includes(isin) ? '2026-10-01' : INSTRUMENT_REFERENCE_EVIDENCE[isin].checkedAt,
   dateStatus: 'not-published',
   method: primaryTerSources[isin] ? 'Frais publiés par l’émetteur pour la part exacte' : 'TER publié sur le profil de la part, consulté par ISIN',
   note: isin === 'LU1681048630'

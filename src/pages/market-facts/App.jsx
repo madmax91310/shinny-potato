@@ -124,8 +124,7 @@ export default function App() {
       <FactCard fact={currentFact} />
 
       <p className="mf-disclaimer" style={{ marginTop: 22 }}>
-        Chaque statistique est reprise telle que publiée par la source citée, jamais recalculée depuis des
-        données brutes. Le CAC 40 a un scope volontairement restreint faute de sources publiées équivalentes.
+        Les faits publiés sont distingués des calculs sur historiques mensuels : leur méthode figure dans les précisions. Les baisses calculées entre clôtures mensuelles peuvent sous-estimer les baisses au cours du mois.
       </p>
     </div>
   )

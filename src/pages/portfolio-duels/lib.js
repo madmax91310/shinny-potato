@@ -50,9 +50,17 @@ function exposureReading(portfolio) {
   const factorReadings = {
     value: 'privilégient les actions des pays développés jugées peu chères par rapport à leurs fondamentaux',
     quality: 'privilégient les actions des pays développés sélectionnées selon leur rentabilité, leur endettement et la stabilité de leurs bénéfices',
+    momentum: 'privilégient les actions des pays développés dont les cours ont récemment le plus progressé',
     minvol: 'visent une volatilité plus faible dans les actions des pays développés, sans garantir une protection contre les baisses',
   }
   if (factorReadings[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${factorReadings[complement.exposure]}. Ce filtre peut retenir des entreprises déjà présentes dans la base.`)
+  const complements = {
+    cash: 'suivent le taux monétaire en euros via swap. Le capital n’est pas garanti et le rendement varie avec les taux',
+    shortbond: 'ajoutent des emprunts d’État en euros à très courte échéance. Leur valeur peut baisser',
+    globalbond: 'ajoutent des obligations mondiales avec couverture du change vers l’euro. Le risque de taux et de crédit reste présent',
+    dividend: 'renforcent les actions sélectionnées selon une stratégie de dividendes. Les revenus sont réinvestis dans cette comparaison ; ces actions peuvent déjà être présentes dans la base',
+  }
+  if (complements[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${complements[complement.exposure]}.`)
   if (theme) parts.push(`La poche ${theme.label.toLowerCase()} représente ${theme.pct} % du portefeuille. Les entreprises de ce thème peuvent aussi être présentes dans les autres ETF.`)
   return parts.join(' ')
 }

@@ -793,10 +793,36 @@ const EDITORIAL = {
   },
 }
 
-export const DEFAULT_THEMES = BASE_THEMES.map((theme) => ({
+const existingThemes = BASE_THEMES.map((theme) => ({
   ...theme,
   ...EDITORIAL[theme.id],
   cloture: typeof EDITORIAL[theme.id].cloture === 'function'
     ? EDITORIAL[theme.id].cloture()
     : EDITORIAL[theme.id].cloture,
 }))
+
+// Extension du 02/10/2026 : identité, frais et caractéristiques issus des registres communs.
+const reusedTheme = (id, nom, emoji, transition, products, cloture, question) => createTheme({
+  id, nom, emoji, transition, cloture, ctaEngagement: question,
+  etfs: products.map(([isin, differenciateur]) => createEtf({ isin,
+    nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur })),
+})
+export const DEFAULT_THEMES = [...existingThemes,
+  reusedTheme('financieres', 'Financières américaines ou mondiales', '🏦',
+    'Tu veux renforcer la finance : seulement aux États-Unis, ou dans plusieurs pays développés ?',
+    [['IE00B4JNQZ49', 'Secteur financier américain ; exposition concentrée sur un pays.'],
+     ['IE00BJ5JP097', 'Secteur financier des pays développés ; part distribuante.']],
+    'Deux périmètres différents. Le fonds mondial peut aussi détenir des entreprises américaines ; choisir les deux ne garantit pas une nouvelle diversification.',
+    'Tu choisirais une exposition américaine ou mondiale ?'),
+  reusedTheme('semiconducteurs-tech', 'Semi-conducteurs ou technologie mondiale', '💻',
+    'Toute la technologie mondiale, ou un pari plus ciblé sur les semi-conducteurs ?',
+    [['IE000I8KRLL9', 'Entreprises mondiales des semi-conducteurs ; exposition spécialisée.'],
+     ['IE00BJ5JNY98', 'Secteur technologique des pays développés ; exposition plus large.']],
+    'Les deux fonds peuvent détenir les mêmes entreprises. Les semi-conducteurs ciblent une industrie, tandis que la technologie couvre un secteur plus large.',
+    'Tu préfères le secteur entier ou une industrie précise ?'),
+  reusedTheme('blockchain', 'Entreprises de la blockchain', '🔗',
+    'Un ETF blockchain détient des actions. Voici le produit déjà présent dans notre sélection.',
+    [['IE000RDRMSD1', 'Actions d’entreprises liées à la blockchain ; aucune détention directe de Bitcoin.']],
+    'Ce fonds expose à des entreprises, avec leurs risques propres. Sa performance n’est pas celle du Bitcoin et le thème peut connaître de fortes variations.',
+    'Tu recherches les entreprises du secteur ou la cryptomonnaie elle-même ?'),
+]

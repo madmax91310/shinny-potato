@@ -4,7 +4,7 @@ const SP500 = ["sp500", "sp500_ishares"];
 const EURO = ["eurostoxx50", "eurostoxx50_ishares"];
 const LEVERAGE = ["lqq", "cl2"];
 const isEquity = s => ["actions_larges", "emergents", "dividendes"].includes(s.cat) || (s.cat === "immobilier" && s.id !== "scpi");
-const isTheme = s => s.id.startsWith("sect_") || s.id === "tech_europe";
+const isTheme = s => s.id.startsWith("sect_") || ["tech_europe", "infrastructure_ishares"].includes(s.id);
 const weight = (selection, test) => selection.filter(test).reduce((sum, s) => sum + s.pct, 0);
 
 function overlap(selection) {

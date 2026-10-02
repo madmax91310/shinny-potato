@@ -50,6 +50,7 @@ jobs:
       - run: npm run audit:investor-profiles
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
       - run: npm run audit:household-statistics
+      - run: node scripts/test-data-reuse.mjs
       - run: npm run audit:data-catalog
       - run: npm run audit:data-provenance
       - run: npm run audit:index-facts
