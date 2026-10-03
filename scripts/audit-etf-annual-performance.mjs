@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { SIMULATION_PROXIES } from '../src/data/simulation-proxies.js';
+import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 // Vérifie que les performances publiées dans les Fiches ETF correspondent à la part exacte
 // du Générateur, sans proposer une part à historique incomplet dans ses choix.
 import assert from 'node:assert/strict'
@@ -27,7 +29,7 @@ for (const etf of ETFS) {
   if (asset && series.values.every(Number.isFinite) && JSON.stringify(asset.r) !== JSON.stringify(series.values)) {
     console.error(`Divergence Fiches / Générateur : ${etf.isin}`); errors++
   }
-  if (asset && !series.values.every(Number.isFinite)) {
+  if (asset && !series.values.every(Number.isFinite) && !SIMULATION_PROXIES[etf.isin]) {
     console.error(`Part à historique incomplet dans le Générateur : ${etf.isin}`); errors++
   }
 }
@@ -41,6 +43,7 @@ function visit(value) {
   }
 }
 visit(PROFILES)
+for (const p of PROFILES) for (const risk of Object.keys(p.riskCombos)) visit(getRecipes(p.id, risk))
 for (const asset of ASSETS) {
   if (asset.manualOnly && selectable.has(asset.id)) {
     console.error(`Part manuelle ajoutée à un profil automatique : ${asset.id}`); errors++

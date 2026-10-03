@@ -1,3 +1,4 @@
+import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js';
 import { YEARS } from '../../data/portfolio-assets.js'
 import { ITEM_BY_ID, CATALOG, FX_SOURCE, ROLES, euroReturn } from './catalog.js'
 
@@ -29,10 +30,11 @@ function exposureReading(portfolio) {
   const theme = portfolio.assets.find((asset) => asset.role === 'theme')
   const parts = []
   if (base.exposure === 'world') parts.push('Le World couvre les pays développés.')
-  else if (['acwi', 'allworld'].includes(base.exposure)) parts.push(`Le ${base.exposure === 'acwi' ? 'MSCI ACWI' : 'FTSE All-World'} inclut les pays développés et émergents.`)
+  else if (['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)) parts.push(`Le ${base.exposure.startsWith('acwi') ? 'MSCI ACWI' : 'FTSE All-World'} inclut les pays développés et émergents.`)
+  else if (base.exposure === 'equalweight') parts.push('Les entreprises du S&P 500 partent du même poids à chaque rééquilibrage trimestriel.');
   else parts.push('Le S&P 500 constitue une base d’actions américaines.')
   if (complement?.exposure === 'em') {
-    parts.push(['acwi', 'allworld'].includes(base.exposure)
+    parts.push(['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)
       ? `Les ${complement.pct} % d’émergents IMI renforcent une zone déjà présente dans la base et incluent aussi des petites capitalisations.`
       : `Les ${complement.pct} % d’émergents IMI ajoutent ces marchés, avec leurs grandes, moyennes et petites capitalisations.`)
   }
@@ -44,7 +46,7 @@ function exposureReading(portfolio) {
   if (complement?.exposure === 'japan') parts.push(base.exposure === 'sp500'
     ? `Les ${complement.pct} % de Japon IMI ajoutent les actions japonaises, y compris des petites capitalisations.`
     : `Les ${complement.pct} % de Japon IMI renforcent un pays déjà présent dans la base et incluent aussi des petites capitalisations.`)
-  if (complement?.exposure === 'india') parts.push(['acwi', 'allworld'].includes(base.exposure)
+  if (complement?.exposure === 'india') parts.push(['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)
     ? `Les ${complement.pct} % d’Inde renforcent un pays déjà présent dans la base.`
     : `Les ${complement.pct} % d’Inde ajoutent une exposition à ce marché émergent.`)
   const factorReadings = {
@@ -55,6 +57,11 @@ function exposureReading(portfolio) {
   }
   if (factorReadings[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${factorReadings[complement.exposure]}. Ce filtre peut retenir des entreprises déjà présentes dans la base.`)
   const complements = {
+    exusa: 'renforcent les pays développés hors États-Unis ; ce choix réduit le poids américain sans ajouter les émergents',
+    'us-small': 'ajoutent les petites entreprises américaines, plus sensibles aux conditions économiques et de financement',
+    'em-bond': 'ajoutent des obligations émergentes émises en dollars, avec risque de crédit, de taux et de change',
+    'em-local-bond': 'ajoutent des obligations émergentes émises en monnaies locales, avec risque de crédit, de taux et de change',
+    longbond: 'ajoutent des obligations d’État longues en euros, très sensibles aux mouvements de taux',
     cash: 'suivent le taux monétaire en euros via swap. Le capital n’est pas garanti et le rendement varie avec les taux',
     shortbond: 'ajoutent des emprunts d’État en euros à très courte échéance. Leur valeur peut baisser',
     globalbond: 'ajoutent des obligations mondiales avec couverture du change vers l’euro. Le risque de taux et de crédit reste présent',
@@ -117,6 +124,7 @@ export function buildTweet(duel) {
     : `${formatCapital(Math.abs(difference), currency)} de plus pour le portefeuille ${difference > 0 ? 'B' : 'A'}.`
   return [
     `⚔️ ${duel.hook}`, '',
+    ...([...a.assets, ...b.assets].some(asset => SIMULATION_PROXIES[asset.isin]) ? ['Base historique : ' + [...new Set([...a.assets, ...b.assets].filter(asset => SIMULATION_PROXIES[asset.isin]).map(asset => SIMULATION_PROXIES[asset.isin].scope))].join(' ; '), ''] : []),
     `Deux portefeuilles, ${formatCapital(INITIAL, currency)} investis début ${years[0]}, sans versement supplémentaire jusqu’à fin ${years.at(-1)} 👇`, '',
     `🅰️ ${a.name}`, allocation(a), '', `🅱️ ${b.name}`, allocation(b), '',
     'Ce que tu détiens :', `🅰️ ${duel.readings[0]}`, `🅱️ ${duel.readings[1]}`, '',

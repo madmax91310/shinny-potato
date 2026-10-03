@@ -1,3 +1,4 @@
+import { BOND_EXPOSURE_CASES } from '../../data/bond-exposure-cases.js';
 import { ALLOCATION_CASES } from '../../data/allocation-cases.js'
 // Posts éditoriaux relus individuellement. Cette bibliothèque n'invente ni performance ni
 // ETF précis : chaque cas illustre une décision, et les liens renvoient aux sources primaires.
@@ -218,4 +219,4 @@ Pourquoi cela peut arriver ? Quand les taux du marché montent, les obligations 
   },
 ]
 
-export const CASES = [...editorialCases, ...ALLOCATION_CASES]
+export const CASES = [...editorialCases, ...ALLOCATION_CASES, ...BOND_EXPOSURE_CASES]

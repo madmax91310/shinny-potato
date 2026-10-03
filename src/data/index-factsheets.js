@@ -1,3 +1,4 @@
+import { getInstrumentAnnualPerformance } from './instrument-returns.js';
 import { getIndexReturns } from './index-returns.js'
 import { getIndexComposition, getIndexFacts } from './index-facts.js'
 import { getInstrumentFactsheetReturns } from './instrument-comparator-returns.js'
@@ -7,6 +8,22 @@ import { getInstrumentFactsheetReturns } from './instrument-comparator-returns.j
 const emFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260630'
 
 export const SHEETS = [
+{
+ ...getIndexComposition('sp500-equal-weight','methodology'),id:'sp500-equal-weight',title:'S&P 500 Equal Weight',index:'S&P 500 Equal Weight',snapshot:getIndexFacts('sp500-equal-weight','methodology').snapshot,
+ source:[getIndexFacts('sp500-equal-weight','methodology').source,{label:'Performances de l’ETF · DWS',url:'https://etf.dws.com/Download/Past%20Performance/IE00BLNMYC90/FR/FR'}],
+ intro:'🇺🇸 Les mêmes entreprises que le S&P 500, mais un autre poids pour chacune. Voilà comment fonctionne l’Equal Weight 👇',
+ isin:'IE00BLNMYC90',returns:[2025,2024,2023,2022,2021].map(y=>[y,getInstrumentAnnualPerformance('IE00BLNMYC90').values[y-2020]]),
+ performance:{kind:'ETF',detail:'Part Xtrackers 1C, rendement NAV USD, dividendes réinvestis, net de frais',date:'31 décembre 2025'},
+ insight:'Le poids des géants baisse parce que les entreprises partent du même poids. Cela ne supprime pas le risque du marché américain.',takeaway:'L’Equal Weight change la pondération, pas l’univers d’entreprises.',
+ methodologyPanels:[['LES ENTREPRISES','Le même univers que le S&P 500 : environ 500 sociétés américaines. Le nombre de titres peut différer du nombre de sociétés.'],['LEUR POIDS','Chaque société reçoit 0,2 % à chaque rééquilibrage trimestriel. Ensuite, les poids évoluent avec les cours.'],['CE QUE ÇA CHANGE','Les plus petites sociétés du S&P 500 prennent davantage de place. Les secteurs restent ceux du marché américain, avec d’autres poids.']],
+},
+{
+ ...getIndexComposition('russell-2000','2026-08-31'),id:'russell-2000',title:'Russell 2000',index:'Russell 2000',snapshot:'31 août 2026',source:[getIndexFacts('russell-2000','2026-08-31').source],
+ intro:'🇺🇸 La Bourse américaine ne se limite pas aux géants. Voici le Russell 2000 et ses petites entreprises 👇',returns:getIndexReturns('russell-2000','2026-08-31'),
+ performance:{kind:'indice',detail:'Russell 2000, rendement total USD, dividendes réinvestis, hors frais ETF',date:'31 août 2026',tenYear:10.55},
+ insight:'Le panier vise environ 2 000 petites entreprises ; le nombre exact varie avec les révisions et opérations sur titres.',takeaway:'Un autre segment de la Bourse américaine, dont les entreprises peuvent être plus sensibles au financement.',
+ methodologyPanels:[['LES ENTREPRISES','Les petites capitalisations américaines. Le Russell 2000 est un sous-ensemble du Russell 3000.'],['LEUR POIDS','La pondération suit la capitalisation ajustée du flottant. Deux révisions de composition par an à partir de 2026, et ajouts d’introductions en Bourse trimestriels.'],['CE QUE ÇA CHANGE','Les plus grandes entreprises américaines sont à part. Une exposition mondiale aux small caps conserve d’autres pays ; le Russell 2000 cible les États-Unis.']],
+},
   // Ajouts du 27/09/2026. Composition et performances ont des sources et des
   // dates propres : l'indice n'est jamais assimilé à l'ETF synthétique.
   {

@@ -1,3 +1,4 @@
+import { SIMULATION_PROXIES } from './simulation-proxies.js';
 // Rendements 2020–2025 par part (ISIN), repris sans modification du générateur.
 // Les commentaires de provenance historiques restent dans src/data/portfolio-assets.js.
 // Ce déplacement ne constitue pas une nouvelle vérification des cours.
@@ -75,7 +76,8 @@ export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentReturnValues(isin) {
-  const values = VERIFIED_RETURNS[isin]?.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin];
+  const proxy = SIMULATION_PROXIES[isin];
+  const values = proxy ? proxy.values ?? VERIFIED_RETURNS[proxy.referenceIsin]?.values : VERIFIED_RETURNS[isin]?.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin];
   if (!values) throw new Error(`Rendements absents pour ${isin}`);
   return values;
 }
@@ -100,7 +102,7 @@ const CARD_SERIES_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentAnnualPerformance(isin) {
-  if (VERIFIED_RETURNS[isin]) return VERIFIED_RETURNS[isin];
+  if (VERIFIED_RETURNS[isin]) return VERIFIED_RETURNS[isin].values.some(Number.isFinite) ? VERIFIED_RETURNS[isin] : null;
   const card = CARD_SERIES_BY_ISIN[isin];
   return card ? { ...card, values: getInstrumentReturnValues(isin) } : null;
 }
@@ -123,6 +125,8 @@ export const DUEL_SERIES_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentDuelSeries(isin) {
+  const proxy = SIMULATION_PROXIES[isin];
+  if (proxy) return { ...proxy, values: getInstrumentReturnValues(isin), basis: 'proxy' };
   const base = getInstrumentAnnualPerformance(isin);
   const supplement = DUEL_SERIES_BY_ISIN[isin];
   const result = base ? { ...supplement, ...base, source: base.source ?? supplement?.source ?? null } :

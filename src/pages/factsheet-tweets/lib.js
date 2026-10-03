@@ -3,6 +3,8 @@ const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digit
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
 
 const questions = {
+  'sp500-equal-weight': 'Tu préfères un poids égal ou un poids lié à la taille des entreprises ?',
+  'russell-2000': 'Tu ferais une place aux petites entreprises américaines ?',
   'em-standard': 'Tu imaginais Taïwan et la Corée aussi présents dans les émergents ?',
   topix: 'Pour le Japon, tu choisirais le TOPIX ou le Nikkei 225 ?',
   nikkei225: 'Tu connaissais le poids des trois premières valeurs du Nikkei 225 ?',
@@ -25,16 +27,17 @@ export function buildFactsheetTweet(sheet) {
     '',
     `${sheet.index} en chiffres 👇`,
     '',
-    `📊 ${sheet.constituents.toLocaleString('fr-FR')} valeurs`,
+    `📊 ${(sheet.constituents ?? sheet.indexFacts.targetConstituents).toLocaleString('fr-FR') + (sheet.constituents === null ? ' sociétés visées' : ' valeurs')}`,
     `🌍 ${sheet.markets}`,
   ]
   if (sheet.marketCap) lines.push(`💰 ${sheet.marketCap}`)
   if (sheet.isin) lines.push(`📍 ETF cité : ${sheet.isin}`)
   lines.push('', 'La répartition géographique de l’indice :')
   for (const [name, value] of sheet.countries) lines.push(`${name} → ${weight(value)}`)
-  lines.push('', sheet.insight, '', sheet.sectors.reduce((sum, [, value]) => sum + value, 0) < 99 ? 'Les principaux secteurs :' : 'Les secteurs :')
+  lines.push('', sheet.insight, '', sheet.sectors.length === 0 ? 'La pondération :' : sheet.sectors.reduce((sum, [, value]) => sum + value, 0) < 99 ? 'Les principaux secteurs :' : 'Les secteurs :')
   for (const [name, value] of sheet.sectors) lines.push(`${name} → ${weight(value)}`)
-  lines.push('', `Les principales entreprises de l’indice (au ${sheet.snapshot.split(' (')[0].split(' · ')[0]}) :`)
+  if (!sheet.methodologyPanels) lines.push('', `Les principales entreprises de l’indice (au ${sheet.snapshot.split(' (')[0].split(' · ')[0]}) :`)
+  for (const [title, text] of sheet.methodologyPanels ?? []) lines.push('', title + ' :', text)
   for (const [name, value] of sheet.holdings) lines.push(`• ${name} : ${weight(value)}`)
   lines.push('', `Les performances ${sheet.performance.kind === 'ETF' ? `de l’ETF ${sheet.isin}` : `de l’indice ${sheet.index}`} :`)
   lines.push(`${sheet.performance.detail}.`)

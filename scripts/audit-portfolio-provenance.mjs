@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+import { EXPOSURE_ADDITIONS } from '../src/data/exposure-additions.js';
+import { SIMULATION_PROXIES } from '../src/data/simulation-proxies.js';
+import { getInstrumentReturnValues } from '../src/data/instrument-returns.js';
 // Inventaire des bases de performances du Générateur. Un accord entre outils ne vérifie pas
 // une source primaire : seuls les fonds recoupés avec l'émetteur sont marqués « confirmé ».
 import { ASSETS } from '../src/data/portfolio-assets.js'
@@ -9,6 +12,10 @@ const groups = {
   'Indice ou cours du sous-jacent': `bitcoin bitcoin_21shares ethereum msci_world_amundi_pea smallcap_europe`,
   'Autre fonds ou historique mixte': `argent qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
+}
+for (const r of EXPOSURE_ADDITIONS) {
+  const basis = r.id === 'world_ex_usa' ? 'Indice ou cours du sous-jacent' : r.id === 'pea_global_amundi' ? 'Autre fonds ou historique mixte' : 'Fonds confirmé chez l’émetteur';
+  groups[basis] += ' ' + r.id;
 }
 const tagged = new Map()
 let errors = 0
@@ -43,6 +50,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+...Object.fromEntries(EXPOSURE_ADDITIONS.filter(r => !SIMULATION_PROXIES[r.isin]).map(r => [r.id, r.perfSource ?? r.source])),
   monetaire_xeon: VERIFIED_RETURNS.LU0290358497.source,
   oblig_0_1_ishares: VERIFIED_RETURNS.IE00B3FH7618.source,
   oblig_global_agg_eur_hedged: VERIFIED_RETURNS.IE00BDBRDM35.source,
@@ -133,6 +141,7 @@ const partialIssuerSources = {
   quality_dividend: 'https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf + https://www.ishares.com/gls-download/literature/fact-sheet/wqdv-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf',
 }
 const proxySources = {
+pea_global_amundi: SIMULATION_PROXIES.FR0014017NX3.source,
   argent: 'https://www.ishares.com/uk/individual/en/products/258443/ + https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf',
   oblig_hy_amundi: 'https://etf.dws.com/en/AssetDownload/Index/1ebf0fe4-b1c2-4d0f-a165-da75e3bcca7e/DWS-PASTPERF-LU1109943388-LU-en-2026-02-16.pdf + https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/RETAIL/ETF',
 }
@@ -141,6 +150,7 @@ const genericSources = {
   scpi: 'ASPIM : https://www.aspim.fr/storage/documents/le-bilan-de-l-annee-2020-pour-les-scpi-et-les-opci-60263f3b06256.pdf (2020, ancienne méthode), https://www.aspim.fr/storage/documents/aspim-infos-la-lettre-d-information-des-fonds-immobiliers-non-cotes-n017-64b7a9122bb3f.pdf (2021-2022), https://www.aspim.fr/actualites/les-fonds-immobiliers-grand-public-au-1er-trimestre-2025-les-indicateurs-de-performance-2024-des-scpi/ (2023-2024), https://www.aspim.fr/actualites/collecte-et-performance-des-fonds-immobiliers-grand-public-au-premier-trimestre-2026-et-principaux-indicateurs-des-scpi-en-2025/ (2025)',
 }
 const indexSources = {
+world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.source,
   msci_world_amundi_pea: 'https://www.msci.com/documents/10199/1ee87397-6313-4f46-87ae-6761f666558e',
   smallcap_europe: 'https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-ucits-etf-smc-fp',
   // Clôtures annuelles du fournisseur ; ces chiffres ne sont pas les NAV des ETP.
@@ -151,6 +161,7 @@ const indexSources = {
 // Garde les corrections chiffrées issues des tableaux annuels du fournisseur indiqué.
 // Les cours crypto proviennent de Slickcharts, les rendements d'ETF de leur émetteur.
 const primarySeries = new Map(Object.entries({
+world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.values,
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   smallcap_europe: [4.37, 23.72, -22.11, 12.86, 5.70, 16.62],
   bitcoin: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
@@ -180,6 +191,7 @@ const verifiedSeries = new Map(Object.entries({
 // Historique mixte : figer les années déjà recoupées et les absences intentionnelles.
 // Les sources et la raison du mélange figurent dans partialIssuerSources/proxySources.
 const mixedSeries = new Map(Object.entries({
+pea_global_amundi: getInstrumentReturnValues('FR0014017NX3'),
   argent: [33.84, -5.74, 9.90, -4.25, 29.02, 119.80],
   qyld_ucits: [8.76, 10.34, -19.00, 22.82, 19.13, 9.31],
   oblig_hy_amundi: [1.50, 3.10, -9.60, 11.60, 6.80, 4.70],

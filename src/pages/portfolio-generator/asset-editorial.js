@@ -2,7 +2,10 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+// Chaque nouvelle exposition a un rôle distinct, sans changer les explications existantes.
+
 function add(ids, kind, label, text) {
+
   for (const id of ids.split(" ")) entries[id] = { kind, label, text };
 }
 
@@ -109,6 +112,23 @@ for (const [id, entry] of Object.entries(entries)) {
   if (id === "oblig_0_1_ishares") entry.description = "Des emprunts d’État de la zone euro à échéance de zéro à un an.";
   if (id === "oblig_etat_eur_short") entry.description = "Des emprunts d’État de la zone euro à échéance de un à trois ans.";
 }
+
+add('sp500_equal_weight', 'us-equal', 'le S&P 500 équipondéré', 'On garde les entreprises du S&P 500, mais on part du même poids pour chacune à chaque rééquilibrage. Les géants décident moins du résultat ; en contrepartie, on peut rester derrière le S&P 500 classique quand ils dominent.');
+add('russell2000_spdr', 'us-small', 'les petites entreprises américaines', 'On donne ici une place aux petites entreprises américaines. Elles ne réagissent pas toujours comme les grandes : leur financement et les difficultés économiques peuvent peser davantage, même avec beaucoup de sociétés dans le fonds.');
+add('world_ex_usa', 'world-ex-us', 'les marchés développés hors États-Unis', 'On fait une place aux grandes et moyennes entreprises des pays développés, en retirant les États-Unis. Cela permet de choisir leur poids à part ; on accepte aussi de rater leur avance lorsque le marché américain domine.');
+add('pea_global_amundi', 'world-all', 'le monde en une ligne PEA', 'On réunit les entreprises des pays développés et émergents dans une seule ligne PEA. Leur poids suit celui de l’indice : moins de rééquilibrages à gérer soi-même, mais toujours les baisses des marchés actions à accepter.');
+add('oblig_em_usd_ishares', 'em-bond', 'les coupons émergents en dollars', 'On prête ici à des emprunteurs émergents qui émettent en dollars. Les revenus sont distribués, mais le crédit, les taux et le change peuvent faire baisser la valeur du placement : les coupons ne garantissent pas le capital.');
+add('oblig_eur_long_ishares', 'long-bond', 'les obligations longues en euros', 'On assume ici une forte sensibilité aux taux longs en euros. Cette poche peut profiter de leur baisse, mais elle peut aussi subir des pertes importantes lorsqu’ils remontent : ce n’est pas une réserve stable.');
+
+const newDescriptions = {
+ sp500_equal_weight: 'Les entreprises du S&P 500, équipondérées à chaque rééquilibrage.',
+ russell2000_spdr: 'Les petites capitalisations américaines du Russell 2000.',
+ world_ex_usa: 'Des actions des pays développés hors États-Unis.',
+ pea_global_amundi: 'Les actions développées et émergentes, dans un ETF PEA.',
+ oblig_em_usd_ishares: 'Des emprunts émergents en dollars, avec revenus distribués.',
+ oblig_eur_long_ishares: 'Des emprunts d’État de longue durée en euros.',
+};
+for (const [id, description] of Object.entries(newDescriptions)) entries[id].description = description;
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];

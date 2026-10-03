@@ -54,6 +54,7 @@ function bars(ctx, entries, { y, step, rows, max = 30, size = 24, color = C.acce
 }
 
 export function renderFactsheetImage(sheet) {
+  if (sheet.methodologyPanels) return renderMethodologyImage(sheet)
   const canvas = document.createElement('canvas')
   canvas.width = W * 2; canvas.height = H * 2
   const ctx = canvas.getContext('2d')
@@ -116,4 +117,30 @@ export function renderFactsheetImage(sheet) {
   fitted(ctx, `${sheet.performance.detail} · ${sheet.performance.date}`, 54, sheet.performance.historyNote ? 1409 : 1413, 972, sheet.performance.historyNote ? 12 : 16, C.muted, 400, 'left', 11)
   if (sheet.performance.historyNote) fitted(ctx, sheet.performance.historyNote, 54, 1423, 972, 11, C.muted, 400, 'left', 10)
   return canvas
+}
+
+function renderMethodologyImage(sheet) {
+ const canvas = document.createElement('canvas'); canvas.width=W*2;canvas.height=H*2;
+ const ctx=canvas.getContext('2d');ctx.scale(2,2);ctx.fillStyle=C.paper;ctx.fillRect(0,0,W,H);
+ ctx.fillStyle=C.ink;ctx.fillRect(0,0,W,230);
+ write(ctx,'ÉPARGNANT LIBRE',540,28,24,C.white,700,'center');
+ fitted(ctx,sheet.title,540,75,990,65,C.white,700,'center',34);
+ fitted(ctx,sheet.markets,540,150,980,28,C.white,400,'center');
+ fitted(ctx,sheet.snapshot,540,194,980,20,C.white,400,'center');
+ ctx.fillStyle=C.hero;ctx.fillRect(0,230,W,130);
+ const count=sheet.constituents??sheet.indexFacts.targetConstituents;
+ write(ctx,count.toLocaleString('fr-FR'),540,246,65,C.white,700,'center');
+ write(ctx,sheet.constituents===null?'SOCIÉTÉS VISÉES PAR LA MÉTHODE':'TITRES AU 31 AOÛT 2026',540,322,22,C.white,700,'center');
+ function paragraph(value,y) {
+  ctx.font='30px Arial';let line='',top=y;
+  for(const word of value.split(' ')) { const candidate=line?line+' '+word:word;
+   if(ctx.measureText(candidate).width>930 && line) {write(ctx,line,64,top,30);top+=44;line=word;} else line=candidate;
+  }if(line)write(ctx,line,64,top,30);
+ }
+ sheet.methodologyPanels.forEach(([title,value],i)=>{const y=410+i*240;section(ctx,y,String(i+1).padStart(2,'0'),title);paragraph(value,y+65);});
+ section(ctx,1140,'04','PERFORMANCES');
+ sheet.returns.slice().reverse().forEach(([year,result],i)=>{const x=54+i*205;write(ctx,year,x,1214,22,C.muted);fitted(ctx,percent(result,true),x,1260,190,32,result<0?C.negative:C.ink,700);});
+ paragraph(sheet.performance.kind==='ETF'?'Performances de l’ETF cité, distinctes de la méthodologie d’indice.':'Performances de l’indice, distinctes des rendements de l’ETF.',1330);
+ fitted(ctx,sheet.performance.detail,54,1420,970,15,C.muted,400);
+ return canvas;
 }

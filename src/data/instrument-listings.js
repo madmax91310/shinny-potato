@@ -1,7 +1,9 @@
+import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Cotations contrôlées le 30/09/2026 auprès des émetteurs et des places.
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+...Object.fromEntries(EXPOSURE_ADDITIONS.filter(r => r.ticker).map(r => [r.isin, [{ ticker: r.ticker, exchange: r.exchange, mic: r.mic, currency: 'EUR', sourceUrl: r.listingSource ?? r.source, checkedAt: '2026-10-03', evidenceId: `${r.isin}-${r.mic}-${r.ticker}-EUR` }]])),
   "LU0290358497": [
   {
     "ticker": "XEON",
