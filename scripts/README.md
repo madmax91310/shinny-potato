@@ -289,3 +289,32 @@ dernière construction ; les supports tournent ensuite, puis les poids varient d
 de chaque poche. Le levier et la conviction centrale thématique gardent leurs poids de départ.
 La composition manuelle reste indépendante de ces contraintes de génération automatique.
 Les bornes restent des filtres sur les années simulées, jamais des pertes maximales garanties.
+
+### Chargement par route
+
+Les 16 pages d’outils sont importées avec `React.lazy` dans `src/App.jsx`.
+Le `Suspense` autour de l’Outlet conserve l’en-tête et la navigation pendant
+le chargement ; l’accueil reste disponible immédiatement. Le basename et la
+restauration `404.html` / `__route` de GitHub Pages restent inchangés.
+
+Mesure Vite sur la même base `cd577fc` (avant/après découpage) :
+
+| JavaScript initial | Avant | Après |
+| --- | ---: | ---: |
+| Minifié | 1 636,30 kB | 242,60 kB |
+| Gzip rapporté par Vite | 432,83 kB | 78,31 kB |
+
+Les dépendances partagées sont extraites par Vite et téléchargées uniquement
+quand une route qui les utilise est ouverte. Aucun chunk ne dépasse 500 kB.
+Le CSS propre aux pages est aussi différé (CSS initial : 84,84 → 24,62 kB).
+
+Chaque build exécute `scripts/audit-route-bundles.mjs` à partir du manifeste :
+16 entrées dynamiques, absence des pages dans les imports initiaux, budget de
+300 kB pour le JavaScript initial et 500 kB par chunk. Sa mesure gzip utilise
+Node/zlib et peut différer légèrement de celle du rapporteur Vite.
+
+Après le build, `node scripts/test-route-loading.mjs` vérifie en Chromium les
+requêtes de l’accueil, le chargement lent, la navigation, le retour arrière et
+les 16 liens directs/rechargements avec paramètres et fragment. Il simule la
+vraie réponse 404 de Pages plutôt que le fallback SPA de Vite preview.
+Ce contrôle complète `scripts/playwright-tools.mjs` dans la CI.
