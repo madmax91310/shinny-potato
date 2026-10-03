@@ -1,3 +1,4 @@
+import { MONTHLY_HISTORY_ADDITIONS_REVIEW } from './monthly-history-additions.js';
 import { MSCI_HISTORY_REVIEW } from './msci-history.js';
 import { COMPANY_HISTORY_REVIEW } from './company-history.js';
 // Contrôle du 02/10/2026. Aucun prix dupliqué ici ; captures rejouées par audit:calculator-series.
@@ -308,5 +309,6 @@ export const MARKET_HISTORY_REVIEW = {
     "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; série entière remplacée et vérifiée",
     "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants.  S&P 500 Total Return : niveaux réels en points, dividendes bruts réinvestis, hors frais. Ancienne série composite remplacée.",
     "periodStart": "2015-01"
-  }
+  },
+  ...MONTHLY_HISTORY_ADDITIONS_REVIEW,
 };

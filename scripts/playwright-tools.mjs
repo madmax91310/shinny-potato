@@ -153,11 +153,11 @@ async function testCalculateur(page) {
   await page.locator("select.ic-control").first().selectOption("lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
-  const badgeOk = /non vérifiées avant/.test(text);
-  const dcaBlockOk = /DCA non disponible pour LVMH/.test(text);
+  const badgeOk = !/non vérifiées avant/.test(text);
+  const dcaBlockOk = !/DCA non disponible pour LVMH/.test(text) && await page.getByRole('button', { name: 'Mensuel (DCA)', exact: true }).isEnabled();
 
   let companiesOk = true;
-  for (const id of ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal']) {
+  for (const id of ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
     await page.locator('select.ic-control').first().selectOption(id);
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
@@ -359,7 +359,7 @@ async function testEtfSheets(page) {
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
     const copied = await page.evaluate(() => window.__etfCopiedText);
     const sectionPositions = sectionLabels.map(label => copied?.indexOf(label) ?? -1);
-    if (!copied?.startsWith("📋 Présentation d'ETF\n") || !copied.includes(card.name)
+    if (!/^📋 Présentation d'(?:ETF|ETC|ETP)\n/.test(copied ?? "") || !copied.includes(card.name)
       || !copied.includes(card.isin) || !copied.includes(card.ter) || !copied.includes(card.hook)
       || (copied.includes('PEA') !== (card.pea === true))
       || !explanations.every(value => copied.includes(value))
@@ -491,7 +491,7 @@ async function testTweetMidi(page) {
       || (comparison.match(/^Cumulé sur la période : /gmu) ?? []).length !== 2
       || comparison.includes('💬')) failed.push('Performance depuis : comparatif');
   await page.getByRole('button', { name: 'Performance depuis', exact: true }).click();
-  for (const id of ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal']) {
+  for (const id of ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
     await page.locator('#subject-select').selectOption(id);
     await page.locator('#secondary-select').selectOption('2020');
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
@@ -827,8 +827,22 @@ async function testHouseholds(page) {
 async function testInvestorIntroductions(page) {
   const { INVESTORS } = await import('../src/pages/investor-portfolio/data.js');
   const { investorIntroduction } = await import('../src/data/investor-profiles.js');
+  // Exercise every shipped filing before using editorial fixtures. The actual
+  // local payloads include large paginated portfolios and disclosed options.
+  await page.goto(`${BASE}/portefeuilles-investisseurs`, { waitUntil: 'networkidle' });
+  let snapshotsOk = true;
+  for (const [slug] of INVESTORS) {
+    const payload = JSON.parse(await readFile(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8'));
+    await page.getByLabel('Choisir un investisseur').selectOption(slug);
+    await page.waitForFunction(intro => document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
+    const actual = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
+    snapshotsOk &&= actual.includes('30 juin 2026') && !/NaN|undefined/.test(actual);
+    snapshotsOk &&= actual.includes('Les options du relevé sont exclues') === payload.data.snapshot.holdings.some(row => row.putCall);
+    const credit = await page.locator('.ip-credit').innerText();
+    snapshotsOk &&= credit.includes(payload.data.identity.dataProvider);
+  }
   // Données de test contrôlées pour isoler les champs éditoriaux du réseau tiers.
-  await page.route('**/data/trackers/*.json', async route => {
+  await page.route('**/data/investors/*.json', async route => {
     const slug = new URL(route.request().url()).pathname.split('/').at(-1).replace('.json', '');
     const displayName = INVESTORS.find(([id]) => id === slug)?.[1];
     await route.fulfill({ headers: { 'access-control-allow-origin': '*' }, json: { as_of: '2026-10-01', data: { identity: { slug, displayName, entityName: 'Déclarant de test', archetype: 'hedge_fund' }, snapshot: { periodEnd: '2026-06-30', filedAt: '2026-08-14', quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [{ issuerName: 'Sortie de test', ticker: 'EXIT' }] }, holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .6, isNew: true }, { issuerName: 'Hausse de test', ticker: 'UP', weight: .2, sharesChangePct: 18 }, { issuerName: 'Baisse de test', ticker: 'DOWN', weight: .1, sharesChangePct: -12 }] } } } });
@@ -837,7 +851,7 @@ async function testInvestorIntroductions(page) {
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__investorCopiedText = text; } },
   }));
-  let ok = true;
+  let ok = snapshotsOk;
   for (const [slug] of INVESTORS) {
     await page.getByLabel('Choisir un investisseur').selectOption(slug);
     await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro && document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
@@ -863,7 +877,7 @@ async function testInvestorIntroductions(page) {
   await page.setViewportSize({ width: 390, height: 844 });
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
-  await page.unroute('**/data/trackers/*.json');
+  await page.unroute('**/data/investors/*.json');
   record('Portefeuille d’investisseur', ok, '11 présentations et tweets synchronisés, modification, réinitialisation, changement de profil et mobile');
 }
 

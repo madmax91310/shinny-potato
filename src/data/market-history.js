@@ -1,3 +1,4 @@
+import { MONTHLY_HISTORY_ADDITIONS } from './monthly-history-additions.js'
 import { MSCI_HISTORY } from './msci-history.js'
 import { COMPANY_HISTORY } from './company-history.js'
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
@@ -101,29 +102,7 @@ export const ASSETS = {
       '2026-09', 2683.68,
     ]),
   },
-  cac40: {
-    // Source : clôtures annuelles réelles de l'indice CAC 40 (MacroTrends, "CAC 40 Index (1990-2025)"),
-    // recoupées avec la presse (CNBC "European markets on December 31") pour 2024-2025, puis niveaux
-    // réels de presse pour 2026 (janvier, avril : moyenne sur futures mi-mars/mi-avril).
-    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
-    // remplacé 8650 (un pic intrajournalier de mi-août, pas une clôture) par 8 334,50, la vraie
-    // clôture du 31/08/2026 (Boursorama, "Août s'achève dans le rouge pour le CAC 40 et l'Europe" —
-    // baisse de 0,79 % ce jour-là) — cohérent avec la convention "clôtures réelles" du reste de la
-    // série, contrairement au point précédent qui était un record intrajournalier. Dernier point
-    // réel : 31/08/2026.
-    // Mise à jour du 02/10/2026 : Yahoo ^FCHI, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/%5EFCHI?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'CAC 40', tweetPhrase: 'le CAC 40', icon: '🇫🇷', currency: 'EUR',
-    points: P([
-      '2015-12', 4637.06, '2016-12', 4862.31, '2017-12', 5312.56, '2018-12', 4730.69,
-      '2019-12', 5978.06, '2020-12', 5551.41, '2021-12', 7153.03, '2022-12', 6473.76,
-      '2023-12', 7319.76, '2024-12', 7380.74, '2025-12', 8183,
-      '2026-01', 8259, '2026-04', 7959, '2026-08', 8334.50,
-      '2026-09', 7964.51,
-    ]),
-  },
+
   stoxx600: {
     // Contrôle du 02/10/2026, source officielle STOXX :
     // https://stoxx.com/index/SXXR/?factsheet=true — ISIN EU0009658210.
@@ -478,33 +457,7 @@ export const ASSETS = {
       '2026-09', 60.10,
     ]),
   },
-  lvmh: {
-    // Source : clôtures réelles de l'action LVMH (MC.PA, Euronext Paris) pour 2020-2025 et 2026
-    // (MarketScreener pour 2020-2023 ; presse spécialisée pour 2024/2025/2026). Points 2015-01 à
-    // 2019-10 : NON VÉRIFIÉS dans cette session (aucune clôture fiable retrouvée malgré plusieurs
-    // recherches) — valeurs illustratives d'origine conservées, à vérifier manuellement avant
-    // publication (cf. VERIFIED_MIN_DATE_OVERRIDES ci-dessous, qui exclut ces points des calculs).
-    // Point 2026-04 : absent (aucune clôture fiable trouvée), interpolé automatiquement par
-    // l'application entre les points réels de janvier et août 2026.
-    // Point 2026-08 mis à jour le 05/09/2026 (recherche demandée pour combler les points manquants) :
-    // remplacé 450 € (~21/08/2026) par 453,30 €, la vraie clôture du 31/08/2026 (-1,06 % ce jour-là).
-    // Dernier point réel : 31/08/2026.
-    // Mise à jour du 02/10/2026 : Yahoo MC.PA, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'LVMH', tweetPhrase: 'LVMH', icon: '◆', currency: 'EUR',
-    points: P([
-      '2015-01', 140, '2015-04', 165, '2015-07', 155, '2015-10', 160,
-      '2016-01', 145, '2016-04', 150, '2016-07', 145, '2016-10', 165,
-      '2017-01', 195, '2017-04', 220, '2017-07', 235, '2017-10', 260,
-      '2018-01', 270, '2018-04', 260, '2018-07', 280, '2018-10', 235,
-      '2019-01', 260, '2019-04', 340, '2019-07', 370, '2019-10', 390,
-      '2020-12', 510.90, '2021-12', 727.00, '2022-12', 679.90, '2023-12', 733.60,
-      '2024-12', 638.25, '2025-12', 643.65, '2026-01', 649.65, '2026-08', 453.30,
-      '2026-09', 390.00,
-    ]),
-  },
+
   apple: {
     // Source consultée : https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history
     // Extraction initiale MacroTrends (AAPL), clôtures ajustées des splits et dividendes.
@@ -709,265 +662,18 @@ export const ASSETS = {
       '2026-09', 354.81,
     ]),
   },
-  nvidia: {
-    // Ajouté le 08/09/2026 (audit "densité du Calculateur", 4 méga-caps demandées : Nvidia, Amazon,
-    // Google, Meta). Contrairement à apple/microsoft/broadcom/tesla (export CSV mensuel réel fourni
-    // par l'utilisateur), aucun CSV fourni ici — recherche web (WebSearch) seule, car WebFetch/curl
-    // vers les sites financiers est bloqué dans ce sandbox. Testé explicitement : les clôtures
-    // MENSUELLES se sont révélées instables d'une requête à l'autre sur cette source (ex. un résultat
-    // a donné "301,16 $" pour début 2025, contredit par 3 autres requêtes de la même session situant
-    // le titre entre 86 $ et 111 $ sur cette période — écart >150%, non exploitable). Les clôtures
-    // ANNUELLES (31 décembre), elles, convergent bien : chaque année listée ci-dessous vient d'une
-    // table MacroTrends (1re requête), puis 5 des 11 années (2018, 2020, 2023, 2024, 2025) ont été
-    // recroisées individuellement via une 2e requête indépendante (StatMuse) — écarts ≤0,5% à chaque
-    // fois, aucune contradiction. Prix split-adjusted (le split 10:1 de juin 2024 est déjà reflété
-    // sur toute la série, jamais un saut artificiel en 2024). Seul le point 2026-08 (le plus récent)
-    // reste à confiance plus faible : une seule source (Finbold, clôture du 31/08/2026 à 220,78 $),
-    // non recoupée par une 2e requête convergente (résultats obtenus trop indirects : fourchette de
-    // marché de prédiction seulement). Conséquence : actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA
-    // mensuel bloqué, versement unique uniquement), même traitement qu'ethereum/cac40 — pas de points
-    // mensuels inventés entre les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo NVDA, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/NVDA?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'Nvidia', tweetPhrase: 'Nvidia', icon: '🧠', currency: 'USD',
-    points: P([
-      '2015-12', 0.8040, '2016-12', 2.6287, '2017-12', 4.7839, '2018-12', 3.3097,
-      '2019-12', 5.8563, '2020-12', 13.0184, '2021-12', 29.3541, '2022-12', 14.5994,
-      '2023-12', 49.4944, '2024-12', 134.2530, '2025-12', 186.5000,
-      '2026-08', 220.78,
-      '2026-09', 228.38,
-    ]),
-  },
-  amazon: {
-    // Ajouté le 08/09/2026, même audit que nvidia (cf. son commentaire pour le contexte général :
-    // WebSearch seule, clôtures mensuelles testées et jugées non exploitables). Clôtures ANNUELLES
-    // (31 décembre) : table MacroTrends en 1re requête, puis recroisées individuellement en 2e requête
-    // indépendante (StatMuse) pour 2018, 2022 et 2025 — écarts ≤0,1% à chaque fois (2025 : 230,82 $
-    // obtenu deux fois à l'identique). Prix split-adjusted (le split 20:1 de juin 2022 est déjà
-    // reflété sur toute la série — la "baisse" apparente 2021→2022 dans les chiffres bruts est un
-    // artefact du split, pas une vraie perte, cf. le commentaire équivalent pour broadcom/tesla).
-    // Point 2026-08 (le plus récent) : une seule source (TradingKey, clôture du 31/08/2026 à 259,77 $,
-    // article daté nommant explicitement cette séance) — confiance correcte mais non recoupée par une
-    // 2e requête convergente. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement
-    // unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels inventés entre
-    // les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo AMZN, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/AMZN?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'Amazon', tweetPhrase: 'Amazon', icon: '📦', currency: 'USD',
-    points: P([
-      '2015-12', 33.7945, '2016-12', 37.4935, '2017-12', 58.4735, '2018-12', 75.0985,
-      '2019-12', 92.3920, '2020-12', 162.8460, '2021-12', 166.7170, '2022-12', 84.0000,
-      '2023-12', 151.9400, '2024-12', 219.3900, '2025-12', 230.82,
-      '2026-08', 259.77,
-      '2026-09', 249.15,
-    ]),
-  },
-  google: {
-    // Ajouté le 08/09/2026, même audit que nvidia/amazon (cf. leurs commentaires pour le contexte
-    // général). Titre : Alphabet Inc. Classe A (ticker GOOGL). Clôtures ANNUELLES (31 décembre) :
-    // table MacroTrends en 1re requête (2015-2024), 2025 obtenu séparément (312,78 $, recoupé à
-    // l'identique par une 2e requête indépendante StatMuse). 2018 recoupé indirectement : une requête
-    // a renvoyé le prix PRE-split (1 051,79 $ au 31/12/2018) — divisé par 20 (split 20:1 de juillet
-    // 2022) cela donne 52,59 $, cohérent à 1% près avec le 52,06 $ de la table split-adjusted. 2022
-    // recoupé directement (87,57 $ vs 87,91 $ en table, écart 0,4%). Prix split-adjusted sur toute la
-    // série (pas de saut artificiel en 2022). Point 2026-08 (le plus récent) : deux sources trouvées
-    // mais non convergentes (335,41 $ et 339,35 $ selon l'article) — retenu 337,00 $ (milieu de
-    // fourchette). Point supprimé le 23/09/2026 : une moyenne de fourchette ne prouve pas une
-    // clôture au 31 août. Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement
-    // unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels inventés entre
-    // les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo GOOGL, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/GOOGL?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'Google (Alphabet)', tweetPhrase: 'Google', icon: '🔍', currency: 'USD',
-    points: P([
-      '2015-12', 38.76, '2016-12', 39.48, '2017-12', 52.48, '2018-12', 52.06,
-      '2019-12', 66.73, '2020-12', 87.31, '2021-12', 144.33, '2022-12', 87.91,
-      '2023-12', 139.18, '2024-12', 189.30, '2025-12', 312.78,
-      '2026-09', 344.08,
-    ]),
-  },
-  meta: {
-    // Ajouté le 08/09/2026, même audit que nvidia/amazon/google (cf. leurs commentaires pour le
-    // contexte général). Meta n'a jamais splitté ses actions : aucun ajustement de split nécessaire
-    // sur toute la série, seule source d'incertitude ici est la fiabilité de chaque requête WebSearch
-    // individuelle. Clôtures ANNUELLES (31 décembre), sourcées une par une (StatMuse, requêtes
-    // ciblées par année plutôt qu'un tableau multi-années — méthode jugée plus fiable après le constat
-    // d'instabilité sur nvidia) : chaque valeur recoupée avec la variation % en glissement annuel citée
-    // dans le même résultat (ex. 2017 : "+52,1% sur l'année" cohérent avec 175,79 $ vs 114,15 $ en
-    // 2016 ; 2019 : "+59,1%" cohérent avec 203,46 $ vs 130,07 $ en 2018 ; 2024 : "+67,3%" cohérent avec
-    // 583,17 $ vs 351,20 $ en 2023) — validation croisée systématique plutôt qu'une 2e requête séparée
-    // par année. 2025 (660,09 $) confirmé à l'identique par 2 requêtes indépendantes. Point 2026-08
-    // (le plus récent) : aucune clôture exacte trouvée pour le 31/08/2026 malgré plusieurs requêtes —
-    // seulement un encadrement large (560,43 $ le 24/08 ; 616,77 $ au 04/09) — retenu 590,00 $ (milieu
-    // approximatif). Point supprimé le 23/09/2026 : la valeur n'est pas une clôture vérifiée.
-    // Actif ajouté à SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué,
-    // versement unique uniquement), même traitement qu'ethereum/cac40 — pas de points mensuels
-    // inventés entre les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo META, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/META?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'Meta', tweetPhrase: 'Meta', icon: '📘', currency: 'USD',
-    points: P([
-      '2015-12', 103.85, '2016-12', 114.15, '2017-12', 175.79, '2018-12', 130.07,
-      '2019-12', 203.46, '2020-12', 271.67, '2021-12', 333.42, '2022-12', 119.78,
-      '2023-12', 351.20, '2024-12', 583.17, '2025-12', 660.09,
-      '2026-09', 725.18,
-    ]),
-  },
-  nestle: {
-    // Ajouté le 14/09/2026 (retour utilisateur : roster 100% méga-caps tech US, aucune action
-    // européenne ni secteur défensif — audit "élargissement du roster"). Nestlé (Suisse, alimentaire/
-    // consommation de base) répond aux deux manques à la fois : premier actif du roster hors zone
-    // tech ET hors marché américain d'origine.
-    // Cotation retenue : ADR NSRGY (OTC, 1 ADR = 1 action nominative Nestlé SA), pas la cotation
-    // native NESN.SW (Six Swiss Exchange, en CHF) — la donnée CHF/EUR s'est révélée impossible à
-    // sourcer de façon fiable dans ce sandbox (WebFetch bloqué sur tous les sites financiers testés,
-    // WebSearch ne renvoyant jamais de tableau exploitable pour les cotations natives européennes,
-    // contrairement aux ADR USD largement indexées via MacroTrends) — même contrainte documentée sur
-    // plusieurs tentatives ce jour-là (L'Oréal, Air Liquide, ASML, TotalEnergies, écartés pour cette
-    // même raison, cf. rapport de session). Clôtures ANNUELLES (31 décembre) via une table MacroTrends
-    // synthétisée en une seule requête — PAS recoupées par une 2e requête indépendante (les tentatives
-    // de recoupement point par point n'ont renvoyé aucune donnée exploitable ce jour-là), confiance
-    // donc plus faible que les séries megacaps US (nvidia/amazon/google/meta), mais split-clean :
-    // aucun split Nestlé depuis 2008 (confirmé), donc aucun risque de saut artificiel sur cette
-    // fenêtre 2015-2025. Point 2026-08 (99,95 $, au 24/08/2026) trouvé séparément, cohérent avec la
-    // fourchette 52 semaines citée dans la même recherche (88,47-109,59 $). Actif ajouté à
-    // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
-    // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo NSRGY, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/NSRGY?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'Nestlé', tweetPhrase: 'Nestlé', icon: '🍫', currency: 'USD',
-    points: P([
-      '2015-12', 56.01, '2016-12', 55.67, '2017-12', 68.79, '2018-12', 66.91,
-      '2019-12', 91.80, '2020-12', 102.48, '2021-12', 125.35, '2022-12', 105.42,
-      '2023-12', 108.36, '2024-12', 79.15, '2025-12', 98.78,
-      '2026-08', 99.95,
-      '2026-09', 90.78,
-    ]),
-  },
-  sap: {
-    // Ajouté le 14/09/2026, même audit que nestle (cf. son commentaire pour le contexte général).
-    // SAP (Allemagne, logiciel d'entreprise) — 2e actif européen du roster, diversifie la géographie
-    // (Allemagne, jamais représentée jusqu'ici) même si le secteur reste tech, contrairement à nestle.
-    // Cotation retenue : ADR SAP (NYSE), pas la cotation native SAP.DE (Xetra Francfort, en EUR) —
-    // même contrainte de sandbox que nestle (EUR non sourçable de façon fiable ce jour-là). Clôtures
-    // ANNUELLES (31 décembre) 2015-2024 via une table MacroTrends synthétisée en une seule requête,
-    // non recoupée par une 2e requête indépendante (même limite que nestle, confiance donc plus
-    // faible que les megacaps US). Split-clean : aucun split SAP depuis 2000 (confirmé), aucun risque
-    // de saut artificiel sur la fenêtre.
-    // Les points 2025-12 (296,93 $, daté en réalité du 29/05/2025) et 2026-08 (205,95 $,
-    // daté du 10/09/2026) ont été supprimés le 23/09/2026. On ne peut pas calculer une
-    // performance annuelle avec des clôtures rangées sous de mauvaises dates.
-    // Actif ajouté à SPARSE_MONTHLY_DATA_IDS
-    // (DCA mensuel bloqué, versement unique uniquement), même traitement qu'ethereum/cac40 — pas de
-    // points mensuels inventés entre les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo SAP, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/SAP?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'SAP', tweetPhrase: 'SAP', icon: '💻', currency: 'USD',
-    points: P([
-      '2015-12', 68.69, '2016-12', 76.32, '2017-12', 100.55, '2018-12', 90.39,
-      '2019-12', 122.79, '2020-12', 121.27, '2021-12', 132.49, '2022-12', 100.25,
-      '2023-12', 152.68, '2024-12', 246.21,
-      '2026-09', 208.48,
-    ]),
-  },
-  visa: {
-    // Ajouté le 14/09/2026 (audit "double-outil" : nouveaux actifs cherchés en parallèle pour ce
-    // fichier et le Générateur de portefeuilles — cf. CLAUDE.md, section duplication ; Visa n'existe
-    // que dans ce fichier, pas dans le Générateur qui est 100% ETF/fonds, aucune action individuelle).
-    // Clôtures ANNUELLES (31 décembre) via une table complète en une seule requête (MacroTrends,
-    // format "Year Close / Annual % Change") — recoupée une 2e fois de façon indépendante sur 2022
-    // (204,21 $ vs 204,55/204,99 $ selon la source, écart <0,4%) et 2023 (257,94 $ vs 258,37 $, écart
-    // <0,2%) : les deux requêtes convergent, confiance équivalente aux megacaps US déjà en place.
-    // Split-clean : split 4:1 en mars 2015, déjà pris en compte dans la table source (confirmé par la
-    // note "2015 ending price adjusted for a 4 for 1 stock split") — aucun ajustement supplémentaire
-    // nécessaire. Point 2026-08 (370,74 $, réellement daté du 13/09/2026) étiqueté par cohérence avec
-    // LATEST_YM et le reste du roster. Point supprimé le 23/09/2026 : prix de septembre
-    // rangé à tort comme clôture d'août. Actif ajouté à
-    // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
-    // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo V, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/V?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'Visa', tweetPhrase: 'Visa', icon: '💳', currency: 'USD',
-    points: P([
-      '2015-12', 72.69, '2016-12', 73.69, '2017-12', 108.45, '2018-12', 126.34,
-      '2019-12', 181.07, '2020-12', 212.08, '2021-12', 211.41, '2022-12', 204.21,
-      '2023-12', 257.94, '2024-12', 315.51, '2025-12', 355.85,
-      '2026-09', 359.33,
-    ]),
-  },
-  netflix: {
-    // Ajouté le 14/09/2026, même audit "double-outil" que visa ci-dessus (Netflix aussi absent du
-    // Générateur de portefeuilles, qui est 100% ETF/fonds). Clôtures ANNUELLES (31 décembre) via une
-    // table complète MacroTrends. PARTICULARITÉ IMPORTANTE : Netflix a réalisé un split 10:1 le
-    // 17/11/2025 (annoncé le 30/10/2025, cf. communiqué officiel) — la table de prix brute obtenue en
-    // 1re requête (114,38 $ → 1 184,86 $ sur 2015-2025) N'ÉTAIT PAS split-adjustée pour les années
-    // récentes, ce qui aurait produit un saut artificiel incohérent avec le prix actuel (~77 $ en
-    // septembre 2026). Détecté par une 2e requête indépendante donnant 93,76 $ pour la clôture du
-    // 31/12/2025 (soit ~12x moins que 1 184,86 $) — contradiction résolue en confirmant le split 10:1
-    // via une 3e requête dédiée : la valeur pré-split (2015-2024, plus le prix intrajournalier 2025
-    // avant le 17/11) a donc été divisée par 10 pour toute la série 2015-2024, la clôture 2025
-    // (93,76 $) étant elle déjà post-split. Les rendements annuels en % obtenus séparément (55,06% en
-    // 2017, 67,11% en 2020, -51,05% en 2022, 83,07% en 2024...) confirment la cohérence de la série
-    // ainsi corrigée d'une année sur l'autre, y compris le +5,19% de 2025 (89,13 $ en réel début
-    // d'année → 93,76 $ en fin d'année post-split). Point 2026-08 (77,40 $, réellement daté du
-    // 11/09/2026) étiqueté par cohérence avec LATEST_YM et le reste du roster. Point supprimé
-    // le 23/09/2026 : prix de septembre rangé à tort comme clôture d'août. Actif ajouté à
-    // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
-    // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo NFLX, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/NFLX?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'Netflix', tweetPhrase: 'Netflix', icon: '🎬', currency: 'USD',
-    points: P([
-      '2015-12', 11.44, '2016-12', 12.38, '2017-12', 19.20, '2018-12', 26.77,
-      '2019-12', 32.36, '2020-12', 54.07, '2021-12', 60.24, '2022-12', 29.49,
-      '2023-12', 48.69, '2024-12', 89.13, '2025-12', 93.76,
-      '2026-09', 69.58,
-    ]),
-  },
-  cocacola: {
-    // Ajouté le 14/09/2026, même audit "double-outil" que visa/netflix ci-dessus (Coca-Cola aussi
-    // absent du Générateur de portefeuilles, 100% ETF/fonds). 3e action défensive/non-tech du roster
-    // avec Nestlé, consommation de base comme elle mais géographie différente (US natif, pas un ADR).
-    // Clôtures ANNUELLES (31 décembre) via une table complète MacroTrends en une seule requête — non
-    // recoupée point par point une 2e fois, mais la variation YTD 2026 citée par une source séparée
-    // ("+26% depuis le 1er janvier 2026") est cohérente avec 69,47 $ (clôture 2025) → 88,35 $ (point
-    // le plus récent), ce qui corrobore indirectement au moins les deux derniers points de la série.
-    // Split-clean : dernier split (2:1) en 2012, confirmé aucun split depuis — aucun ajustement
-    // nécessaire sur la fenêtre 2015-2025. Point 2026-08 (88,35 $, réellement daté du 13/09/2026)
-    // étiqueté par cohérence avec LATEST_YM et le reste du roster. Point supprimé le
-    // 23/09/2026 : prix de septembre rangé à tort comme clôture d'août. Actif ajouté à
-    // SPARSE_MONTHLY_DATA_IDS (DCA mensuel bloqué, versement unique uniquement), même traitement
-    // qu'ethereum/cac40 — pas de points mensuels inventés entre les 31 décembre.
-    // Mise à jour du 02/10/2026 : Yahoo KO, champ close, clôture du 30/09/2026.
-    // Source : https://query2.finance.yahoo.com/v8/finance/chart/KO?period1=1788220800&period2=1790899200&interval=1mo
-    // Export mensuel recoupé avec les dernières séances quotidiennes du même fournisseur.
-    // Capture : scripts/source-snapshots/calculator-monthly-2026-10-02.json.
-    label: 'Coca-Cola', tweetPhrase: 'Coca-Cola', icon: '🥤', currency: 'USD',
-    points: P([
-      '2015-12', 31.84, '2016-12', 31.72, '2017-12', 36.29, '2018-12', 38.74,
-      '2019-12', 46.72, '2020-12', 47.88, '2021-12', 53.32, '2022-12', 58.98,
-      '2023-12', 56.36, '2024-12', 61.37, '2025-12', 69.47,
-      '2026-09', 86.08,
-    ]),
-  },
+
+
+
+
+
+
+
+
+
   ...MSCI_HISTORY,
   ...COMPANY_HISTORY,
+  ...MONTHLY_HISTORY_ADDITIONS,
 }
 
 export const ASSET_ORDER = [
@@ -975,40 +681,16 @@ export const ASSET_ORDER = [
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
   'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
   ...Object.keys(COMPANY_HISTORY),
+  'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond',
 ]
 
-// DÉPLACÉ le 04/09/2026 depuis tweet-midi/data/marketHistory.js (où cette protection existait
-// seule jusqu'ici) : un seul actif a une plage réellement utilisable plus courte que ses points
-// bruts — LVMH a des points de 2015-01 à 2019-10 explicitement marqués "NON VÉRIFIÉS... valeurs
-// illustratives d'origine conservées" ci-dessus (cf. commentaire sur l'actif lvmh). Centralisé ici
-// (plutôt que dupliqué) pour que le Calculateur ET Tweet Midi appliquent la même règle à partir de
-// la même source — le Calculateur ne la respectait pas du tout avant cette date, laissant calculer
-// silencieusement sur les points illustratifs si l'utilisateur choisissait LVMH avant 2020-12.
-export const VERIFIED_MIN_DATE_OVERRIDES = {
-  lvmh: '2020-12',
-}
-
-// Premier point réellement vérifié pour cet actif (cf. VERIFIED_MIN_DATE_OVERRIDES ci-dessus).
+// Les anciennes séries espacées ont été remplacées par des observations mensuelles.
+// Le premier mois utilisable vient de la série sourcée elle-même.
+export const VERIFIED_MIN_DATE_OVERRIDES = {}
 export function getAssetMinDate(assetId) {
   return VERIFIED_MIN_DATE_OVERRIDES[assetId] ?? ASSETS[assetId].points[0].date
 }
-
-// Actifs dont l'historique n'a que des points annuels (décembre) sur la quasi-totalité de leur
-// plage utilisable, plutôt qu'un vrai historique mensuel — cac40 sur toute sa plage,
-// lvmh sur sa plage vérifiée (post-2020-12, cf. ci-dessus). Un DCA mensuel sur l'un de ces actifs
-// interpole donc linéairement entre deux vraies clôtures pour la quasi-totalité des mois, plutôt
-// que d'utiliser une vraie clôture mensuelle comme pour les autres actifs. Recensé lors de l'audit
-// du 03/09/2026 (Tweet Midi, format Anniversaire — mêmes 3 actifs, même cause) ; réutilisé ici tel
-// quel plutôt que redéfini, pour le Calculateur (avertissement DCA, pas un blocage).
-// nvidia/amazon/google/meta ajoutés le 08/09/2026 (audit "densité du Calculateur") : pour ces 4
-// actifs, aucun historique mensuel n'a pu être sourcé de façon fiable (WebSearch instable sur les
-// clôtures mensuelles, cf. le commentaire détaillé sur l'actif nvidia) — seules les clôtures
-// annuelles (31 décembre) sont vérifiées, donc même traitement qu'ethereum/cac40/lvmh plutôt que
-// d'interpoler silencieusement 11 mois sur 12 entre deux vraies clôtures.
-// nestle/sap ajoutés le 14/09/2026 (audit "élargissement du roster") : même cause que nvidia/amazon/
-// google/meta (aucun historique mensuel exploitable trouvé), avec en plus l'absence de cotation EUR/
-// CHF native sourçable dans ce sandbox — cf. leurs commentaires individuels pour le détail.
-export const SPARSE_MONTHLY_DATA_IDS = new Set(['cac40', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola'])
+export const SPARSE_MONTHLY_DATA_IDS = new Set([])
 
 // Les trois indices disposent de séries mensuelles homogènes : S&P 500 Total
 // Return USD, STOXX Net Return EUR et MSCI World Gross Return USD.

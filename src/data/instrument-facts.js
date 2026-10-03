@@ -956,7 +956,893 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
       "checkedAt": "2026-10-02",
       "scope": "obligations détenues"
     }
+  },
+
+  // Supports déjà utilisés : profils ISIN contrôlés le 03/10/2026.
+  "LU1681043599": {
+  "distribution": "Capitalisant",
+  "location": "Luxembourg, réplication synthétique (swap)",
+  "benchmark": "MSCI World",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Synthetic (Unfunded swap)",
+  "domicile": "Luxembourg",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI World",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=LU1681043599",
+    "checkedAt": "2026-10-03"
   }
+},
+  "IE00B5BMR087": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P 500®",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P 500®",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B53SZB19": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "Nasdaq 100®",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Nasdaq 100®",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B53SZB19",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "FR0010342592": {
+  "distribution": "Capitalisant",
+  "location": "France, réplication synthétique (swap)",
+  "benchmark": "Nasdaq 100® Leverage (2x)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Synthetic (Unfunded swap)",
+  "domicile": "France",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Nasdaq 100® Leverage (2x)",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0010342592",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "FR0010755611": {
+  "distribution": "Capitalisant",
+  "location": "France, réplication synthétique (swap)",
+  "benchmark": "MSCI USA Leveraged (2x)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Synthetic (Unfunded swap)",
+  "domicile": "France",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI USA Leveraged (2x)",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0010755611",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "FR0013380607": {
+  "distribution": "Capitalisant",
+  "location": "France, réplication physique",
+  "benchmark": "CAC 40®",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "France",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : CAC 40®",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0013380607",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B53L3W79": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "EURO STOXX® 50",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : EURO STOXX® 50",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B53L3W79",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B4K48X80": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI Europe",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI Europe",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4K48X80",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B43HR379": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P 500 Capped 35/20 Health Care",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P 500 Capped 35/20 Health Care",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B43HR379",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B579F325": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, adossement physique ; titre de dette, distinct d’un fonds UCITS",
+  "benchmark": "Gold",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Physically backed)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETC",
+  "positionsLabel": "Exposition suivie : Gold",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B4NCWG09": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, adossement physique ; titre de dette, distinct d’un fonds UCITS",
+  "benchmark": "Silver",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Physically backed)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETC",
+  "positionsLabel": "Exposition suivie : Silver",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4NCWG09",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BD6FTQ80": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication synthétique (swap)",
+  "benchmark": "Bloomberg Commodity",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Synthetic (Unfunded swap)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Bloomberg Commodity",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BDFL4P12": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication synthétique (swap)",
+  "benchmark": "Bloomberg Commodity",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Synthetic (Unfunded swap)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Bloomberg Commodity",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFL4P12",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "GB00BLD4ZM24": {
+  "distribution": "Capitalisant",
+  "location": "Jersey, adossement physique ; titre de dette, distinct d’un fonds UCITS",
+  "benchmark": "Ethereum",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Physically backed)",
+  "domicile": "Jersey",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETN",
+  "positionsLabel": "Exposition suivie : Ethereum",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=GB00BLD4ZM24",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "LU1437018838": {
+  "distribution": "Capitalisant",
+  "location": "Luxembourg, réplication physique",
+  "benchmark": "FTSE EPRA/NAREIT Developed",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Luxembourg",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : FTSE EPRA/NAREIT Developed",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=LU1437018838",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "LU1737652823": {
+  "distribution": "Distribuant",
+  "location": "Luxembourg, réplication physique",
+  "benchmark": "FTSE EPRA/NAREIT Developed",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Luxembourg",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : FTSE EPRA/NAREIT Developed",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=LU1737652823",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B9CQXS71": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P Global Dividend Aristocrats",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P Global Dividend Aristocrats",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B9CQXS71",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BK5BR626": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "FTSE All-World High Dividend Yield",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : FTSE All-World High Dividend Yield",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B8GKDB10": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "FTSE All-World High Dividend Yield",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : FTSE All-World High Dividend Yield",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BKPSFC54": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI World High Dividend Yield Advanced Select",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI World High Dividend Yield Advanced Select",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKPSFC54",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BYYHSQ67": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI World High Dividend Yield Advanced Select",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI World High Dividend Yield Advanced Select",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BYYHSQ67",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "JE00B1VS3770": {
+  "distribution": "Capitalisant",
+  "location": "Jersey, adossement physique ; titre de dette, distinct d’un fonds UCITS",
+  "benchmark": "Gold",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Physically backed)",
+  "domicile": "Jersey",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETC",
+  "positionsLabel": "Exposition suivie : Gold",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=JE00B1VS3770",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "FR0013416716": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, adossement physique ; titre de dette, distinct d’un fonds UCITS",
+  "benchmark": "Gold",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Physically backed)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETC",
+  "positionsLabel": "Exposition suivie : Gold",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=FR0013416716",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "GB00BJYDH287": {
+  "distribution": "Capitalisant",
+  "location": "Jersey, adossement physique ; titre de dette, distinct d’un fonds UCITS",
+  "benchmark": "Bitcoin",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Physically backed)",
+  "domicile": "Jersey",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETN",
+  "positionsLabel": "Exposition suivie : Bitcoin",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=GB00BJYDH287",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "DE000A27Z304": {
+  "distribution": "Capitalisant",
+  "location": "Allemagne, adossement physique ; titre de dette, distinct d’un fonds UCITS",
+  "benchmark": "Bitcoin",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Physically backed)",
+  "domicile": "Germany",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETN",
+  "positionsLabel": "Exposition suivie : Bitcoin",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "CH0454664001": {
+  "distribution": "Capitalisant",
+  "location": "Suisse, adossement physique ; titre de dette, distinct d’un fonds UCITS",
+  "benchmark": "Bitcoin",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Physically backed)",
+  "domicile": "Switzerland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETN",
+  "positionsLabel": "Exposition suivie : Bitcoin",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "LU1931975079": {
+  "distribution": "Distribuant",
+  "location": "Luxembourg, réplication physique",
+  "benchmark": "Bloomberg Euro Aggregate Corporate Bond",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Sampling)",
+  "domicile": "Luxembourg",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Bloomberg Euro Aggregate Corporate Bond",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=LU1931975079",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BZ163G84": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "Bloomberg Euro Corporate Bond",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Bloomberg Euro Corporate Bond",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BZ163G84",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B3T9LM79": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "Bloomberg Euro Corporate Bond",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Bloomberg Euro Corporate Bond",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B3T9LM79",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B4L5Y983": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI World",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI World",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5Y983",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B44Z5B48": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI All Country World (ACWI)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI All Country World (ACWI)",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B44Z5B48",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "LU1681045370": {
+  "distribution": "Capitalisant",
+  "location": "Luxembourg, réplication synthétique (swap)",
+  "benchmark": "MSCI Emerging Markets",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Synthetic (Unfunded swap)",
+  "domicile": "Luxembourg",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI Emerging Markets",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=LU1681045370",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BK5BR733": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "FTSE Emerging",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : FTSE Emerging",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR733",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B469F816": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI Emerging Markets",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI Emerging Markets",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B469F816",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B14X4Q57": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "Bloomberg Euro Government Bond 1-3",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Bloomberg Euro Government Bond 1-3",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B14X4Q57",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BMW42413": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI Europe Information Technology 20/35 Capped",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI Europe Information Technology 20/35 Capped",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BMW42413",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE0000N55FP4": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI Europe Small Cap",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI Europe Small Cap",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE0000N55FP4",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B42NKQ00": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P 500 Capped 35/20 Energy",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P 500 Capped 35/20 Energy",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B42NKQ00",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B3WJKG14": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P 500 Capped 35/20 Information Technology",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P 500 Capped 35/20 Information Technology",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B3WJKG14",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BG0J4C88": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "STOXX® Global Digital Security",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : STOXX® Global Digital Security",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BG0J4C88",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B1XNHC34": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P Global Clean Energy Transition",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P Global Clean Energy Transition",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B1XNHC34",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B40B8R38": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P 500 Capped 35/20 Consumer Staples",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P 500 Capped 35/20 Consumer Staples",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B40B8R38",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B4KBBD01": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P 500 Capped 35/20 Utilities",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P 500 Capped 35/20 Utilities",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4KBBD01",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "NL0011683594": {
+  "distribution": "Distribuant",
+  "location": "Pays-Bas, réplication physique",
+  "benchmark": "Morningstar Developed Markets Large Cap Dividend Leaders Screened Select",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Netherlands",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Morningstar Developed Markets Large Cap Dividend Leaders Screened Select",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=NL0011683594",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "NL0009690239": {
+  "distribution": "Distribuant",
+  "location": "Pays-Bas, réplication physique",
+  "benchmark": "GPR Global 100",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Netherlands",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : GPR Global 100",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=NL0009690239",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "LU2970735911": {
+  "distribution": "Capitalisant",
+  "location": "Luxembourg, réplication physique",
+  "benchmark": "iBoxx® EUR Liquid High Yield",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Sampling)",
+  "domicile": "Luxembourg",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : iBoxx® EUR Liquid High Yield",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=LU2970735911",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BK95B138": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "ICE US Treasury Core Bond",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : ICE US Treasury Core Bond",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK95B138",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B4L5YX21": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI Japan IMI",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI Japan IMI",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5YX21",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B5W4TY14": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI Korea 20/35",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI Korea 20/35",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5W4TY14",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B0M63623": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI Taiwan 20/35",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI Taiwan 20/35",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B0M63623",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00BKPX3K41": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "MSCI AC Far East ex Japan",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : MSCI AC Far East ex Japan",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKPX3K41",
+    "checkedAt": "2026-10-03"
+  }
+},
+  "IE00B4JNQZ49": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique",
+  "benchmark": "S&P 500 Capped 35/20 Financials",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "03/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P 500 Capped 35/20 Financials",
+  "positionsAsOf": null,
+  "characteristicsSource": {
+    "url": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4JNQZ49",
+    "checkedAt": "2026-10-03"
+  }
+},
 });
 
 export function getInstrumentFacts(isin) {

@@ -3,6 +3,8 @@
 // Une capture ne garantit pas qu'un fournisseur ne corrigera jamais l'historique.
 import { readFileSync } from 'node:fs';
 import { ASSETS, LATEST_YM, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS } from '../src/data/market-history.js';
+import { MONTHLY_HISTORY_ADDITIONS } from '../src/data/monthly-history-additions.js';
+import './audit-monthly-history-additions.mjs';
 
 const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-yahoo-2026-09-29.json', import.meta.url)));
 const gold = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-worldbank-gold-2026-10-03.json', import.meta.url)));
@@ -88,6 +90,9 @@ const monthAtExchange = (timestamp, timeZone) => {
 };
 let verified = 0;
 for (const [id, record] of Object.entries(current.records)) {
+  // These series were replaced in full on 03/10. The archived September-only
+  // capture remains intact; the new full-period capture is checked above.
+  if (Object.hasOwn(MONTHLY_HISTORY_ADDITIONS, id)) continue;
   const raw = record.monthlyResponse.chart.result[0];
   const all = ASSETS[id].points;
   const full = record.scope === 'full-series';
@@ -186,7 +191,7 @@ for (const id of ['or']) {
   if (ASSETS[id].points.at(-1).date !== (id === 'or' ? gold.points.at(-1)[0] : '2026-08')) throw new Error(`${id}: une date non confirmée a été ajoutée`);
 }
 for (const id of expectedIds.filter(id => id !== 'sp500' && snapshot[id] == null && !['bitcoin', 'ethereum', 'soxx', 'silver', 'nasdaq100'].includes(id))) {
-  if (!SPARSE_MONTHLY_DATA_IDS.has(id)) throw new Error(`${id}: ajout du dernier mois ne certifiant pas l'historique DCA`);
+  if (!Object.hasOwn(MONTHLY_HISTORY_ADDITIONS, id) && !SPARSE_MONTHLY_DATA_IDS.has(id)) throw new Error(`${id}: historique DCA non certifié`);
 }
 console.log(`Septembre : ${verified} points contrôlés, dont 141 clôtures Bitcoin et 141 S&P 500 ; 24 actifs à jour, or inclus (moyenne mensuelle Banque mondiale).`);
 

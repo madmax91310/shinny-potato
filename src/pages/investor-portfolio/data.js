@@ -144,6 +144,7 @@ export function buildTweet(portfolio, intro = '') {
     editorial.hook,
     who + '\n' + presentation,
     '💼 Ses principales positions au ' + dateFR(snapshot.periodEnd) + '\n' + editorial.top.map((row, i) => icon[i] + ' ' + holdingName(row) + ' ' + tickers(row) + ' : ' + percentage(row.weight)).join('\n'),
+    snapshot.holdings?.some(row => row.putCall) ? 'Les options du relevé sont exclues de cette liste ; les poids restent calculés sur le total déclaré.' : '',
     movementExcerpt(snapshot),
     '🔍 Ce qui distingue ce portefeuille\n' + editorial.explanation,
     '💬 ' + editorial.question,
@@ -152,8 +153,7 @@ export function buildTweet(portfolio, intro = '') {
 
 export async function loadPortfolio(slug, signal) {
   if (!INVESTORS.some(([key]) => key === slug)) throw new Error('Investisseur inconnu.')
-  const extra = ['li-lu', 'gates-trust', 'klarman'].includes(slug)
-  const url = extra ? `${import.meta.env.BASE_URL}data/investors/${slug}.json` : `https://tracefour.com/data/trackers/${slug}.json`
+  const url = `${import.meta.env.BASE_URL}data/investors/${slug}.json`
   const response = await fetch(url, { signal, cache: 'no-cache' })
   if (!response.ok) throw new Error(`Données indisponibles (${response.status}). Réessaie plus tard.`)
   const portfolio = normalizePortfolio(await response.json())

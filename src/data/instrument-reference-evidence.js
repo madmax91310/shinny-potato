@@ -52,15 +52,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
 },
 
   "IE00B4L5Y983": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5Y983"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B4L5Y983",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5Y983"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B4L5Y983",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BK5BQT80": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80"
@@ -72,15 +72,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "CH0454664001": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part CH0454664001",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=CH0454664001"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part CH0454664001",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "FR0011550185": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=FR0011550185"
@@ -132,25 +132,25 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "DE000A27Z304": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part DE000A27Z304",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part DE000A27Z304",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "FR0010342592": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=FR0010342592"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part FR0010342592",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=FR0010342592"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part FR0010342592",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "FR0010524777": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=FR0010524777"
@@ -172,15 +172,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "FR0010755611": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=FR0010755611"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part FR0010755611",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=FR0010755611"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part FR0010755611",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "FR0011440478": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=FR0011440478"
@@ -242,15 +242,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "FR0013380607": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=FR0013380607"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part FR0013380607",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=FR0013380607"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part FR0013380607",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "FR0013411980": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=FR0013411980"
@@ -302,15 +302,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "FR0013416716": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=FR0013416716"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part FR0013416716",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=FR0013416716"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part FR0013416716",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "FR001400S9V0": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=FR001400S9V0"
@@ -342,15 +342,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "GB00BJYDH287": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=GB00BJYDH287"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part GB00BJYDH287",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=GB00BJYDH287"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part GB00BJYDH287",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "GB00BLD4ZL17": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=GB00BLD4ZL17"
@@ -362,25 +362,25 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "GB00BLD4ZM24": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=GB00BLD4ZM24"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part GB00BLD4ZM24",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=GB00BLD4ZM24"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part GB00BLD4ZM24",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE0000N55FP4": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE0000N55FP4"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE0000N55FP4",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE0000N55FP4"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE0000N55FP4",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE0002XZSHO1": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE0002XZSHO1"
@@ -542,25 +542,25 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00B0M63623": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B0M63623"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B0M63623",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B0M63623"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B0M63623",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B14X4Q57": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B14X4Q57"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B14X4Q57",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B14X4Q57"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B14X4Q57",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B1FZS350": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B1FZS350"
@@ -572,15 +572,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00B1XNHC34": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B1XNHC34"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B1XNHC34",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B1XNHC34"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B1XNHC34",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B3F81R35": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B3F81R35"
@@ -592,15 +592,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00B3T9LM79": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B3T9LM79"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B3T9LM79",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B3T9LM79"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B3T9LM79",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B3VVMM84": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B3VVMM84"
@@ -612,85 +612,85 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00B3WJKG14": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B3WJKG14"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B3WJKG14",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B3WJKG14"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B3WJKG14",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B40B8R38": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B40B8R38"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B40B8R38",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B40B8R38"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B40B8R38",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B42NKQ00": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B42NKQ00"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B42NKQ00",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B42NKQ00"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B42NKQ00",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B43HR379": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B43HR379"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B43HR379",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B43HR379"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B43HR379",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B44Z5B48": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B44Z5B48"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B44Z5B48",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B44Z5B48"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B44Z5B48",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B469F816": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B469F816"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B469F816",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B469F816"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B469F816",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B4JNQZ49": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B4JNQZ49"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B4JNQZ49",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B4JNQZ49"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B4JNQZ49",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B4K48X80": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B4K48X80"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B4K48X80",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B4K48X80"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B4K48X80",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B4K6B022": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B4K6B022"
@@ -702,35 +702,35 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00B4KBBD01": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B4KBBD01"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B4KBBD01",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B4KBBD01"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B4KBBD01",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B4L5YX21": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5YX21"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B4L5YX21",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5YX21"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B4L5YX21",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B4NCWG09": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B4NCWG09"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B4NCWG09",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B4NCWG09"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B4NCWG09",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B4ND3602": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B4ND3602"
@@ -762,45 +762,45 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00B53L3W79": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B53L3W79"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B53L3W79",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B53L3W79"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B53L3W79",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B53SZB19": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B53SZB19"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B53SZB19",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B53SZB19"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B53SZB19",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B579F325": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B579F325",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B579F325",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B5BMR087": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B5BMR087",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B5BMR087",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B5M1WJ87": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B5M1WJ87"
@@ -812,15 +812,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00B5W4TY14": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B5W4TY14"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B5W4TY14",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B5W4TY14"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B5W4TY14",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B66F4759": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00B66F4759"
@@ -862,25 +862,25 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00B8GKDB10": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B8GKDB10",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B8GKDB10",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00B9CQXS71": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00B9CQXS71"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00B9CQXS71",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00B9CQXS71"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00B9CQXS71",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BD4TXV59": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BD4TXV59"
@@ -892,15 +892,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00BD6FTQ80": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BD6FTQ80",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BD6FTQ80",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BDFBTQ78": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFBTQ78"
@@ -912,15 +912,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00BDFL4P12": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFL4P12"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BDFL4P12",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFL4P12"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BDFL4P12",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BF0M2Z96": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BF0M2Z96"
@@ -962,15 +962,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00BG0J4C88": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BG0J4C88"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BG0J4C88",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BG0J4C88"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BG0J4C88",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BGV5VN51": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BGV5VN51"
@@ -1042,35 +1042,35 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00BK5BR626": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BK5BR626",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BK5BR626",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BK5BR733": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR733"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BK5BR733",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR733"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BK5BR733",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BK95B138": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BK95B138"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BK95B138",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BK95B138"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BK95B138",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BKM4GZ66": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66"
@@ -1082,25 +1082,25 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00BKPSFC54": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BKPSFC54"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BKPSFC54",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BKPSFC54"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BKPSFC54",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BKPX3K41": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BKPX3K41"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BKPX3K41",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BKPX3K41"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BKPX3K41",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BM67HK77": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
@@ -1142,15 +1142,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00BMW42413": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BMW42413"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BMW42413",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BMW42413"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BMW42413",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BP3QZ601": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BP3QZ601"
@@ -1232,15 +1232,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00BYYHSQ67": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BYYHSQ67"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BYYHSQ67",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BYYHSQ67"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BYYHSQ67",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BYZK4552": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BYZK4552"
@@ -1252,15 +1252,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "IE00BZ163G84": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=IE00BZ163G84"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part IE00BZ163G84",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=IE00BZ163G84"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part IE00BZ163G84",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "IE00BZ56SW52": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=IE00BZ56SW52"
@@ -1272,15 +1272,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "JE00B1VS3770": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=JE00B1VS3770"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part JE00B1VS3770",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=JE00B1VS3770"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part JE00B1VS3770",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "LU0908500753": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=LU0908500753"
@@ -1292,35 +1292,35 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "LU1437018838": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=LU1437018838"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part LU1437018838",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=LU1437018838"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part LU1437018838",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "LU1681043599": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=LU1681043599"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part LU1681043599",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=LU1681043599"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part LU1681043599",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "LU1681045370": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=LU1681045370"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part LU1681045370",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=LU1681045370"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part LU1681045370",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "LU1681047236": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=LU1681047236"
@@ -1342,15 +1342,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "LU1737652823": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=LU1737652823"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part LU1737652823",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=LU1737652823"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part LU1737652823",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "LU1834983550": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=LU1834983550"
@@ -1402,15 +1402,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "LU1931975079": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=LU1931975079"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part LU1931975079",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=LU1931975079"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part LU1931975079",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "LU2089238385": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=LU2089238385"
@@ -1432,15 +1432,15 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "LU2970735911": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=LU2970735911"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part LU2970735911",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=LU2970735911"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part LU2970735911",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "LU3038520774": {
     "sourceUrls": [
       "https://www.justetf.com/en/etf-profile.html?isin=LU3038520774"
@@ -1452,23 +1452,23 @@ export const INSTRUMENT_REFERENCE_EVIDENCE = {
     "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
   },
   "NL0009690239": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=NL0009690239"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part NL0009690239",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  },
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=NL0009690239"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part NL0009690239",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+},
   "NL0011683594": {
-    "sourceUrls": [
-      "https://www.justetf.com/en/etf-profile.html?isin=NL0011683594"
-    ],
-    "checkedAt": "2026-09-30",
-    "dateStatus": "not-applicable",
-    "scope": "Identification de la part NL0011683594",
-    "method": "Profil individuel justETF consulté par ISIN",
-    "note": "Produit identifié ; les variantes de libellé sont éditoriales, pas des noms juridiques certifiés."
-  }
+  "sourceUrls": [
+    "https://www.justetf.com/en/etf-profile.html?isin=NL0011683594"
+  ],
+  "checkedAt": "2026-10-03",
+  "dateStatus": "not-applicable",
+  "scope": "Part NL0011683594",
+  "method": "Profil consulté par ISIN ; caractéristiques et TER observés",
+  "note": "Capture instrument-supports-2026-10-03.json. Les anciens encours conservent leur date de contrôle ; aucun statut PEA déduit."
+}
 };
