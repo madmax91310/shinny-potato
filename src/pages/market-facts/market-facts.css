@@ -2,15 +2,15 @@
    Repris du vocabulaire visuel des Fiches ETF (thème teal/navy commun à l'app). */
 
 .mf-scope {
-  --mf-surface: #0f172a;
-  --mf-border: #1e293b;
-  --mf-border-soft: #334155;
-  --mf-text: #f1f5f9;
-  --mf-text-dim: #c7cde3;
-  --mf-text-faint: #64748b;
-  --mf-accent: #2dd4bf;
-  --mf-accent-bright: #5eead4;
-  --mf-font-display: ui-serif, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --mf-surface: #ffffff;
+  --mf-border: #e2e5ed;
+  --mf-border-soft: #d7dce6;
+  --mf-text: #222636;
+  --mf-text-dim: #626a7a;
+  --mf-text-faint: #626a7a;
+  --mf-accent: #6552c4;
+  --mf-accent-bright: #6552c4;
+  --mf-font-display: ui-sans-serif, system-ui, sans-serif;
   color: var(--mf-text);
 }
 
@@ -32,7 +32,7 @@
 
 .mf-card {
   background: var(--mf-surface); border: 1px solid var(--mf-border); border-radius: 16px;
-  padding: clamp(20px, 4.5vw, 34px); box-shadow: 0 24px 60px -30px rgba(0, 0, 0, .65);
+  padding: clamp(20px, 4.5vw, 34px); box-shadow: none;
 }
 .mf-card-kicker { font-size: 13px; font-weight: 700; color: var(--mf-text-dim); margin: 0 0 16px; }
 .mf-fact-text {

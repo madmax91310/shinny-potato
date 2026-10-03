@@ -33,12 +33,12 @@ try {
   const started = new Promise(resolve => { requestedTool = resolve })
   const gate = new Promise(resolve => { release = resolve })
   await page.route('**/assets/*.js', async route => { requestedTool(); await gate; await route.continue() })
-  await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Impact des frais', exact: true }).click()
+  await page.locator('.workspace-tool-card[href$="/impact-frais"]').click()
   try {
     await started
     // Router transitions keep the previous content while a lazy route loads.
     assert(await page.getByRole('heading', { name: 'Boîte à outils' }).isVisible())
-    assert(await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).isVisible())
+    assert.equal(await page.locator('.workspace-tool-card').count(), 16, 'Previous home stays usable during loading')
   } finally { release() }
   await page.getByLabel('ETF du scénario 1', { exact: true }).waitFor()
   await page.unroute('**/assets/*.js')

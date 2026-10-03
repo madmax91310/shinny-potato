@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
 // Tests Playwright par outil — navigateur réel (Chromium), un "write→look once" formalisé en
@@ -63,6 +64,7 @@ function record(tool, ok, detail) {
 async function testWorkspaceNavigation(page) {
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
   const checks = { allTools: await page.locator('.workspace-tool-card').count() === 16 };
+  checks.publicationDays = (await page.locator('.workspace-publication-day').allTextContents()).sort().join('|') === TOOLS.filter(tool => tool.publicationDay).map(tool => tool.publicationDay).sort().join('|');
   await page.getByRole('searchbox', { name: 'Rechercher un outil' }).fill('donnees');
   checks.accentSearch = await page.locator('.workspace-tool-card').count() === 2;
   await page.getByRole('button', { name: 'Données', exact: true }).click();
@@ -81,6 +83,9 @@ async function testWorkspaceNavigation(page) {
   }
   await page.setViewportSize({ width: 390, height: 844 });
   checks.allVisibleOnPhone = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.length === 16 && cards.every(card => card.getBoundingClientRect().bottom <= innerHeight));
+  checks.noBrand = await page.locator('.workspace-brand').count() === 0;
+  await page.locator('.workspace-tool-card[href$="/impact-frais"]').click();
+  await page.getByRole('heading', { name: "Calculateur d'impact des frais", exact: true }).waitFor();
   await page.locator('.workspace-mobile-menu summary').click();
   await page.locator('.workspace-mobile-menu').getByRole('link', { name: 'Fiches ETF', exact: true }).click();
   await page.getByRole('combobox', { name: 'Choisir un ETF' }).waitFor();
@@ -88,6 +93,28 @@ async function testWorkspaceNavigation(page) {
   await page.reload({ waitUntil: 'networkidle' });
   checks.directLink = await page.getByRole('heading', { name: "Présentation d'ETF", exact: true }).isVisible();
   checks.mobileEtf = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  const selectedEtf = await page.getByRole('combobox', { name: 'Choisir un ETF' }).inputValue();
+  await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
+  checks.focusedPreview = await page.locator('.es-card').isVisible() && !(await page.getByRole('combobox', { name: 'Choisir un ETF' }).isVisible());
+  await page.getByRole('button', { name: 'Réglages', exact: true }).click();
+  checks.selectionPreserved = await page.getByRole('combobox', { name: 'Choisir un ETF' }).inputValue() === selectedEtf;
+  // Each tool must expose a usable view on small phones without losing its mounted output.
+  for (const tool of TOOLS) {
+    await page.goto(`${BASE}${tool.to}`, { waitUntil: 'networkidle' });
+    const switcher = page.locator('.workspace-view-switch');
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      checks[`settings${tool.to}${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+      if (await switcher.count()) {
+        await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
+        checks[`preview${tool.to}${width}`] = await page.locator('.tool-preview').isVisible()
+          && !(await page.locator('.tool-settings').isVisible())
+          && await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+        await page.getByRole('button', { name: 'Réglages', exact: true }).click();
+      }
+    }
+  }
+  await page.goto(`${BASE}/fiches-etf`, { waitUntil: 'networkidle' });
   await page.setViewportSize({ width: 1280, height: 720 });
   checks.active = await page.locator('.workspace-sidebar').getByRole('link', { name: 'Fiches ETF', exact: true }).getAttribute('aria-current') === 'page';
   record('Accueil et navigation', Object.values(checks).every(Boolean), JSON.stringify(checks));

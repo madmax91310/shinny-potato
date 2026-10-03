@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useMemo, useRef, useState } from 'react'
 import { FAMILIES, FACTS } from './data'
 import { buildTweetText } from './lib'
@@ -99,6 +100,12 @@ export default function App() {
         subtitle={`Bibliothèque de ${FACTS.length} statistiques historiques sourcées — vérifie la source avant publication.`}
       />
 
+      <ToolWorkspace actions={<>
+        <Button type="button" onClick={copyCurrent}>
+          {copied ? '✅ Copié !' : '📋 Copier le texte'}
+        </Button>
+      </>}>
+      <section className="tool-settings">
       <div className="mf-controls">
         <div className="mf-select-shell">
           <select className="mf-select" aria-label="Choisir un fait" value={currentId} onChange={(e) => selectFact(e.target.value)}>
@@ -116,16 +123,18 @@ export default function App() {
         <Button type="button" variant="secondary" onClick={pickRandom}>
           🔄 Fait aléatoire
         </Button>
-        <Button type="button" onClick={copyCurrent}>
-          {copied ? '✅ Copié !' : '📋 Copier le texte'}
-        </Button>
+
       </div>
 
+      </section>
+      <section className="tool-preview">
       <FactCard fact={currentFact} />
 
       <p className="mf-disclaimer" style={{ marginTop: 22 }}>
         Les faits publiés sont distingués des calculs sur historiques mensuels : leur méthode figure dans les précisions. Les baisses calculées entre clôtures mensuelles peuvent sous-estimer les baisses au cours du mois.
       </p>
+      </section>
+      </ToolWorkspace>
     </div>
   )
 }

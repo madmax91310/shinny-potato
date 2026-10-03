@@ -1,8 +1,6 @@
 // Registre central des outils : source unique pour le dashboard, la nav et les routes.
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
-// accent : couleur de la tuile d'icône sur le dashboard (ToolCard) — une teinte distincte par
-// outil pour la repérabilité visuelle, cf. maquette validée le 25/09/2026 (option "tuile icône
-// colorée, disposition horizontale"), seule des 3 options à rester lisible en largeur mobile réelle.
+// Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
   {
     to: '/portefeuilles-investisseurs', navLabel: 'Investisseurs', title: "Portefeuille d’investisseur",

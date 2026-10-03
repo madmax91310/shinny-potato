@@ -3,18 +3,18 @@
    recolorés en teal/navy, cf. commentaire en tête de investment-calculator.css). */
 
 .xc-scope {
-  --xc-surface: #0f172a;
-  --xc-surface-raised: #16213b;
-  --xc-surface-hover: #1e293b;
-  --xc-border: #1e293b;
-  --xc-border-soft: #334155;
-  --xc-ink: #f1f5f9;
-  --xc-ink-dim: #94a3b8;
-  --xc-ink-faint: #64748b;
-  --xc-accent: #d4a94a;
-  --xc-accent-bright: #f0c869;
-  --xc-positive: #34d399;
-  --xc-negative: #fb7185;
+  --xc-surface: #ffffff;
+  --xc-surface-raised: #f7f8fb;
+  --xc-surface-hover: #e2e5ed;
+  --xc-border: #e2e5ed;
+  --xc-border-soft: #d7dce6;
+  --xc-ink: #222636;
+  --xc-ink-dim: #626a7a;
+  --xc-ink-faint: #626a7a;
+  --xc-accent: #6552c4;
+  --xc-accent-bright: #6552c4;
+  --xc-positive: #16825f;
+  --xc-negative: #bb3651;
   --xc-font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
   color: var(--xc-ink);
 }
@@ -25,7 +25,7 @@
 .xc-control-col { display: flex; flex-direction: column; gap: 16px; }
 .xc-preview-col { min-width: 0; }
 
-.xc-panel { background: linear-gradient(175deg, var(--xc-surface-raised), var(--xc-surface)); border: 1px solid var(--xc-border); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.xc-panel { background: var(--xc-surface); border: 1px solid var(--xc-border); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
 
 .xc-eyebrow { font-family: var(--xc-font-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--xc-accent); margin: 0; display: flex; align-items: center; gap: 8px; }
 .xc-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--xc-border-soft); }
@@ -50,7 +50,7 @@ select.xc-control { padding-right: 30px; cursor: pointer; }
 
 .xc-clipboard-fallback { position: absolute; left: -9999px; width: 1px; height: 1px; display: none; }
 
-.xc-preview { background: linear-gradient(175deg, var(--xc-surface-raised), var(--xc-surface)); border: 1px solid var(--xc-border); border-radius: 16px; padding: 22px; }
+.xc-preview { background: var(--xc-surface); border: 1px solid var(--xc-border); border-radius: 16px; padding: 22px; }
 .xc-preview-text {
   font-family: var(--xc-font-mono);
   font-size: 13.5px;

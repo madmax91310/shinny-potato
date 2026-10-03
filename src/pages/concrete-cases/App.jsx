@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -48,8 +49,8 @@ export default function ConcreteCases() {
         subtitle={`${CASES.length} situations d'investissement, chacune avec une question à se poser avant de décider. Situations rédigées et exemples chiffrés depuis les compositions datées des indices.`}
       />
 
-      <div className="cc-layout">
-        <nav className="cc-list" aria-label="Choisir un cas concret">
+      <ToolWorkspace className="cc-layout">
+        <nav className="cc-list tool-settings" aria-label="Choisir un cas concret">
           {CASES.map((item) => (
             <button
               type="button" key={item.id}
@@ -63,7 +64,7 @@ export default function ConcreteCases() {
           ))}
         </nav>
 
-        <article className="cc-preview">
+        <article className="cc-preview tool-preview">
           <div className="cc-preview-head">
             <span>Post prêt à relire · {selected.title}</span>
             <Button type="button" onClick={copyText}>{copied ? '✅ Copié !' : copyError ? '⚠️ Sélectionner le texte' : '📋 Copier le texte'}</Button>
@@ -86,7 +87,7 @@ export default function ConcreteCases() {
             </ul>
           </div>
         </article>
-      </div>
+      </ToolWorkspace>
     </div>
   )
 }

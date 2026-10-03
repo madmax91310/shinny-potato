@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useState } from 'react'
 import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
@@ -291,8 +292,8 @@ export default function App() {
         subtitle={`Simulateur d'éducation financière — données arrêtées au plus tard en ${MONTHS_FULL[Number(LATEST_YM.split('-')[1]) - 1]} ${LATEST_YM.split('-')[0]}.`}
       />
 
-      <div className="ic-layout">
-        <div className="ic-panel">
+      <ToolWorkspace className="ic-layout">
+        <div className="ic-panel tool-settings">
           <div>
             <p className="ic-eyebrow">Actif</p>
             <div className="ic-field">
@@ -505,6 +506,7 @@ export default function App() {
           </div>
         </div>
 
+        <section className="tool-preview" aria-label="Résultat de la simulation">
         {resultBlocked ? (
           <div className="ic-card ic-card-invalid">
             <p className="ic-invalid-message">
@@ -522,7 +524,8 @@ export default function App() {
         ) : (
           <ResultCard state={state} d={d} copied={copied} onCopy={handleCopy} />
         )}
-      </div>
+        </section>
+      </ToolWorkspace>
     </div>
   )
 }
