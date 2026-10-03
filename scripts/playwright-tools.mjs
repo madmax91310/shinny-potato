@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
+import { instrumentOption } from '../src/data/asset-selection.js';
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
 import { portfolioAssetLabel } from '../src/pages/portfolio-generator/compact.js';
 // Tests Playwright par outil — navigateur réel (Chromium), un "write→look once" formalisé en
@@ -94,9 +95,24 @@ async function testWorkspaceNavigation(page) {
   await page.reload({ waitUntil: 'networkidle' });
   checks.directLink = await page.getByRole('heading', { name: "Présentation d'ETF", exact: true }).isVisible();
   checks.mobileEtf = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  const etfPicker = page.locator('.asset-picker').first();
+  await etfPicker.getByRole('searchbox').fill('S&P');
+  await etfPicker.getByRole('button', { name: 'Monde', exact: true }).click();
+  const worldOptions = ETFS.map(instrumentOption).filter(item => item.group === 'Monde');
+  checks.categoryClearsSearch = await etfPicker.getByRole('searchbox').inputValue() === '';
+  const worldId = await etfPicker.getByRole('combobox').inputValue();
+  checks.categorySelectsMatchingEtf = worldOptions.some(item => String(item.id) === worldId);
+  checks.categoryOptionsMatch = await etfPicker.locator('option').count() === worldOptions.length;
+  checks.compactMobileFilters = await etfPicker.getByRole('button', { name: 'Monde', exact: true }).evaluate(button => button.getBoundingClientRect().width < button.closest('.asset-picker').getBoundingClientRect().width / 2);
+  const anotherWorld = worldOptions.find(item => String(item.id) !== worldId);
+  checks.worldCardsMatchFilter = await page.locator('.es-matching-etfs .support-alternative').count() === worldOptions.length;
+  await page.locator('.es-matching-etfs .support-alternative').filter({ hasText: anotherWorld.isin }).getByRole('button', { name: 'Présenter cet ETF', exact: true }).click();
+  checks.presentButtonSelectsEtf = await etfPicker.getByRole('combobox').inputValue() === String(anotherWorld.id);
+  checks.manualSelectionUpdatesPreview = (await page.locator('.es-card').textContent()).includes(ETFS.find(item => String(item.id) === String(anotherWorld.id)).name);
   const selectedEtf = await page.getByRole('combobox', { name: 'Choisir un ETF' }).inputValue();
   await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
   checks.focusedPreview = await page.locator('.es-card').isVisible() && !(await page.getByRole('combobox', { name: 'Choisir un ETF' }).isVisible());
+  checks.presentedEtfSurvivesScreenSwitch = (await page.locator('.es-card').innerText()).includes(ETFS.find(item => String(item.id) === String(anotherWorld.id)).name);
   await page.getByRole('button', { name: 'Réglages', exact: true }).click();
   checks.selectionPreserved = await page.getByRole('combobox', { name: 'Choisir un ETF' }).inputValue() === selectedEtf;
   // Each tool must expose a usable view on small phones without losing its mounted output.
@@ -1016,10 +1032,12 @@ async function testAssetSelection(page) {
   let ok = (await picker.locator('.asset-picker-results').innerText()).includes('1 résultat');
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
   await picker.getByRole('button', { name: 'Émergents', exact: true }).click();
-  ok &&= await picker.getByRole('combobox').inputValue() === worldCard.id;
+  const emergingId = await picker.getByRole('combobox').inputValue();
+  ok &&= ETFS.map(instrumentOption).some(item => item.id === emergingId && item.group === 'Émergents');
   await picker.getByRole('searchbox').fill('introuvable-xyz');
   ok &&= (await picker.locator('.asset-picker-results').innerText()).includes('Aucun résultat');
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
+  await picker.getByRole('combobox').selectOption(worldCard.id);
   await page.locator('.support-alternative input[type=checkbox]').first().check();
   await page.getByRole('button', { name: 'Comparer ces supports', exact: true }).click();
   ok &&= await page.locator('.support-comparison table').isVisible();

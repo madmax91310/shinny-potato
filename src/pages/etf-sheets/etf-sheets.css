@@ -23,6 +23,8 @@
 @media (max-width: 420px) { .es-controls { flex-direction: column; } }
 .es-controls button { width: auto; }
 @media (max-width: 420px) { .es-controls button { justify-content: center; width: 100%; } }
+.es-controls .asset-picker-groups button,
+.es-controls .asset-picker-results button { width: auto; flex: 0 0 auto; }
 
 .es-select-shell { position: relative; flex: 1 1 260px; }
 .es-select {
