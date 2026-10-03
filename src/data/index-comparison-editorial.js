@@ -1,5 +1,14 @@
 // Textes propres à chaque comparaison ; chiffres et fonds issus des registres communs.
 export const INDEX_COMPARISON_EDITORIAL = {
+'usa-constructions': {
+ hook:'🇺🇸 Investir aux États-Unis : donner plus de poids aux géants, le même poids à chacun, ou choisir les petites entreprises ?',
+ intro:'Ces trois choix ne changent pas la même chose. On regarde ce que tu achètes 👇',
+ exposures:['Le S&P 500 classique laisse les plus grandes capitalisations prendre davantage de place.','L’Equal Weight garde le même univers, mais repart du même poids par société chaque trimestre.','Le Russell 2000 suit les petites entreprises américaines, avec des poids liés à leur capitalisation flottante.'],
+ insight:'Les deux S&P 500 partagent leurs entreprises. Le Russell 2000 change le segment du marché ; il ne se contente pas de changer les poids.',
+ takeaway:'Changer de pondération et ajouter des petites entreprises sont deux décisions différentes. Aucune méthode ne gagne tous les ans.',
+ question:'Tu choisirais lequel pour ta poche américaine ?',visualPoints:[['Grandes entreprises','Capitalisation flottante'],['Même univers','Poids égal au rééquilibrage'],['Petites entreprises','Autre segment du marché']],
+ imageTitle:'Trois façons d’investir aux USA',fundTransition:'Voici les trois ETF utilisés pour la comparaison 👇',
+},
   "europe": {
     "hook": "🇪🇺 Tu achètes un ETF Europe. Mais est-ce que tu investis aussi au Royaume-Uni et en Suisse ?",
     "intro": "Avec un EURO STOXX 50, non. Avec un STOXX 600 ou un MSCI Europe, oui.\n\nEt ce n’est pas la seule différence 👇",

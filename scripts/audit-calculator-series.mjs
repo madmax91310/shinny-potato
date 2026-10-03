@@ -238,12 +238,15 @@ const { COMPANY_HISTORY, COMPANY_HISTORY_REVIEW } = await import('../src/data/co
 const { ASSET_ORDER } = await import('../src/data/market-history.js');
 const { ANNIVERSAIRE_ELIGIBLE_ASSETS, MARKET_ASSETS } = await import('../src/pages/tweet-midi/data/marketHistory.js');
 const companyIds = ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal'];
+const addedCompanies = JSON.parse(readFileSync(new URL('./source-snapshots/companies-additions-2026-10-03.json', import.meta.url)));
+for (const [id, r] of Object.entries(addedCompanies)) companies.records[id] = { ...r, lastDailyCloses: r.lastDailyCloses.map(p => ({...p, adjclose: p.adjustedClose})), dailyUrl: r.url, periodStart: '2015-01' };
+companyIds.push(...Object.keys(addedCompanies));
 if (Object.keys(COMPANY_HISTORY).sort().join() !== companyIds.sort().join() || companies.checkedAt !== '2026-10-02') throw new Error('Périmètre des entreprises incorrect');
 for (const id of companyIds) {
   const a = ASSETS[id], r = companies.records[id], m = r.monthlyResponse.chart.result[0];
   const count = (2026 - Number(r.periodStart.slice(0, 4))) * 12 + 9 - Number(r.periodStart.slice(5)) + 1;
   if (a.currency !== r.currency || m.meta.symbol !== r.symbol || m.meta.currency !== r.currency || a.points.length !== count || r.points.length !== count || r.lastDailyCloses.length !== count
-      || !ASSET_ORDER.includes(id) || !MARKET_ASSETS.some(x => x.id === id) || ANNIVERSAIRE_ELIGIBLE_ASSETS.some(x => x.id === id)
+      || !ASSET_ORDER.includes(id) || !MARKET_ASSETS.some(x => x.id === id) || (ANNIVERSAIRE_ELIGIBLE_ASSETS.some(x => x.id === id) !== Boolean(a.anniversaryPoints))
       || SPARSE_MONTHLY_DATA_IDS.has(id) || a.priceMethod !== 'adjusted') throw new Error(`${id}: couverture, méthode ou exposition incorrecte`);
   for (const [i, p] of a.points.entries()) {
     const daily = r.lastDailyCloses[i];
@@ -251,6 +254,7 @@ for (const id of companyIds) {
     const wantedDate = new Date(Date.UTC(Number(r.periodStart.slice(0, 4)), Number(r.periodStart.slice(5)) - 1 + i, 1)).toISOString().slice(0, 7);
     if (p.date !== wantedDate || daily.date.slice(0, 7) !== p.date || monthAtExchange(daily.timestamp, m.meta.exchangeTimezoneName) !== daily.date
         || p.price !== Math.round(daily.adjclose * 1e6) / 1e6 || p.price !== r.points[i][1] || !(p.price > 0)
+        || (a.anniversaryPoints && a.anniversaryPoints[i].price !== Math.round(daily.close * 1e6) / 1e6)
         || monthIndex < 0 || Math.abs(m.indicators.quote[0].close[monthIndex] - daily.close) > .005) throw new Error(`${id} ${p.date}: source ou continuité incorrecte`);
   }
   const evidence = COMPANY_HISTORY_REVIEW[`history:${id}`];
@@ -266,7 +270,7 @@ for (const id of companyIds) {
   if (getAnnualReturns(id, 2020).length !== 6) throw new Error(`${id}: années civiles de Tweet Midi incorrectes`);
 }
 if (ASSETS.paypal.points.find(p => p.date === '2022-12').price >= ASSETS.paypal.points.find(p => p.date === '2021-12').price) throw new Error('Trajectoire défavorable PayPal non représentée');
-console.log('8 entreprises : sources, devise, continuité, DCA, versement unique, vidéo et Performance depuis contrôlés.');
+console.log('10 entreprises : sources, devise, continuité, DCA, versement unique, vidéo et Performance depuis contrôlés.');
 
 // Ajouts MSCI : même variante Gross USD que le World, source commune et mois complets.
 const msciAdditions = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-msci-additions-2026-10-02.json', import.meta.url)));

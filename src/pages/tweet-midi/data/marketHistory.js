@@ -48,7 +48,7 @@ export function getAssetAvailableYears(assetId) {
 export function getHistoricalPrice(assetId, ym) {
   const minDate = getAssetMinDate(assetId);
   const clampedYm = ymIndex(ym) < ymIndex(minDate) ? minDate : ym;
-  return interpolatePrice(assetPoints(assetId), clampedYm);
+  return interpolatePrice(ASSETS[assetId].anniversaryPoints ?? assetPoints(assetId), clampedYm);
 }
 
 // Le point réel le plus proche (à la date exacte ou avant) du premier jour de l'année donnée —
@@ -173,7 +173,7 @@ const REBASED_INDEX_IDS = new Set(ASSET_ORDER.filter(id => ASSETS[id].priceUnit 
 // qui bloque leur DCA. Ethereum en est retiré le 30/09/2026 après contrôle des 105 mois
 // complets Yahoo ; sa plage commence en décembre 2017. Performance depuis conserve
 // les seuls points réels de clôture d’année (getLastRealPointOfYear).
-const ANNIVERSAIRE_EXCLUDED_IDS = new Set([...REBASED_INDEX_IDS, ...SPARSE_MONTHLY_DATA_IDS, ...ASSET_ORDER.filter(id => ASSETS[id].priceMethod === 'adjusted')]);
+const ANNIVERSAIRE_EXCLUDED_IDS = new Set([...REBASED_INDEX_IDS, ...SPARSE_MONTHLY_DATA_IDS, ...ASSET_ORDER.filter(id => ASSETS[id].priceMethod === 'adjusted' && !ASSETS[id].anniversaryPoints)]);
 
 // Un niveau de prix brut n'a de sens à afficher (ex. "Prix en 2015 : 625 $US") que pour un actif
 // dont les points sont de vrais prix/indices externes — jamais pour les 3 indices rebasés

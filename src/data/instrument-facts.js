@@ -1,3 +1,4 @@
+import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Revue du 02/10/2026 : positionsSource date le contrôle des positions ; positionsAsOf date le relevé.
 // Les corrections de structure sont sourcées séparément dans characteristicsSource.
 import { getInstrumentListings } from './instrument-listings.js';
@@ -12,6 +13,14 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, {
+ distribution: r.incomePolicy === 'accumulating' ? 'Capitalisant' : 'Distribuant',
+ location: `${r.domicile}, réplication ${r.replicationMethod.startsWith('Synthetic') ? 'synthétique (swap)' : 'physique'}`,
+ benchmark: r.benchmark, incomePolicy: r.incomePolicy, replicationMethod: r.replicationMethod, domicile: r.domicile,
+ currencyHedge: null, reviewedAt: '03/10/2026', positionsLabel: r.positions, positionsAsOf: r.positionsDate ?? null,
+ characteristicsSource: { url: r.source, checkedAt: '2026-10-03' },
+ ...(r.positionsDate ? { positionsSource: { url: r.isin === 'IE00BJ38QD84' ? 'https://www.ssga.com/library-content/products/factsheets/etfs/emea/factsheet-emea-fr-zprr-gy.pdf' : r.source, checkedAt: '2026-10-03' } } : {}),
+}])),
   "LU0290358497": {
   "distribution": "Capitalisant",
   "location": "Luxembourg, réplication synthétique (swap)",

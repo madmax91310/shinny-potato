@@ -37,8 +37,8 @@ Math.random=()=> { seed = (Math.imul(seed,1664525)+1013904223)>>>0; return seed/
 try {
   for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombos)) {
     const recipes = getRecipes(profile.id,risk);
-    assert.equal(recipes.length,3);
-    assert.equal(new Set(recipes.map(r=>r.id)).size,3);
+    assert.ok(recipes.length >= 3);
+    assert.equal(new Set(recipes.map(r=>r.id)).size,recipes.length);
     for (const recipe of recipes) {
       constructions++;
       function visit(index, selection) {
@@ -72,7 +72,7 @@ try {
       seen.add(p.recipeId); signatures.add(p.sig); generations++;
       history.push(p); if(history.length>40)history.shift();
     }
-    assert.equal(seen.size,3,`${profile.id}/${risk}: couverture`);
+    assert.equal(seen.size,recipes.length,`${profile.id}/${risk}: couverture`);
     assert.ok(signatures.size>=80,`${profile.id}/${risk}: variété`);
   }
   const world=[{id:'msci_world',pct:60},{id:'or',pct:40}];

@@ -1,3 +1,5 @@
+import { VERIFIED_RETURNS } from './verified-returns.js';
+import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { CATALOG as DUEL_ASSETS } from './duel-assets.js';
 import { FEE_COMPARISON_ASSETS } from './fee-comparison-assets.js';
 import { HISTORY_STATISTIC_IDS } from './history-statistics.js';
@@ -46,6 +48,7 @@ FEE_COMPARISON_ASSETS.forEach(x => use(x.isin, 'Impact des frais', '/impact-frai
 DEFAULT_THEMES.forEach((t) => t.etfs.forEach((x) => use(x.isin, 'Comparatif ETF · Tweet Midi', '/tweet-midi')));
 FAMILIES.forEach((f) => f.etfGroups.forEach((g) => g.funds.forEach((x) => use(x.isin, 'Comparateur d’indices', '/comparateur-indices'))));
 SHEETS.forEach((x) => use(x.isin, 'Coulisses des indices', '/tweets-factsheets'));
+['IE00B1FZS913','IE00B2NPKV68'].forEach(isin => use(isin, 'Cas concrets', '/cas-concrets'));
 function field(label, registry, value, evidence) {
   return { label, registry: `src/data/${registry}.js`, value, metadata: normalizeEvidence(evidence) };
 }
@@ -64,9 +67,11 @@ function instrument(isin, identity) {
   if (officialAum) fields.push(field('Encours daté publié par l’émetteur', 'instrument-aum-observations', officialAum, officialAum));
   for (const listing of listings) fields.push(field(`Cotation ${listing.mic}`, 'instrument-listings', listing, { ...listing, dateStatus: 'not-applicable', scope: `${scope} ; ${listing.exchange}`, method: 'Devise de négociation, distincte de celle des rendements.' }));
   const evidence = getInstrumentAnnualPerformance(isin);
-  const returns = PORTFOLIO_RETURN_EVIDENCE[isin] || evidence ? getInstrumentReturnValues(isin) : null;
+  const proxy = SIMULATION_PROXIES[isin];
+  if (proxy) fields.push(field('Historique de simulation (proxy)', 'simulation-proxies', { ...proxy, values: getInstrumentReturnValues(isin) }, { sourceUrls: [proxy.source], checkedAt: '2026-10-03', asOf: '2025-12-31', periodStart: '2020-01-01', periodEnd: '2025-12-31', currency: proxy.currency, scope: proxy.scope, method: 'Proxy documenté, distinct de la part exacte', note: proxy.note }));
+  const returns = proxy ? VERIFIED_RETURNS[isin].values : PORTFOLIO_RETURN_EVIDENCE[isin] || evidence ? getInstrumentReturnValues(isin) : null;
   if (returns) {
-    fields.push(field('Rendements 2020–2025', 'instrument-returns', returns, { ...PORTFOLIO_RETURN_EVIDENCE[isin], ...(evidence?.currency ? { currency: evidence.currency } : {}), ...(evidence?.source ? { source: evidence.source } : {}), scope }));
+    fields.push(field('Rendements 2020–2025', 'instrument-returns', returns, { ...PORTFOLIO_RETURN_EVIDENCE[isin], ...(proxy ? {sourceUrls:[VERIFIED_RETURNS[isin].source], scope:`Part exacte ${isin}`} : {}), ...(evidence?.currency ? { currency: evidence.currency } : {}), ...(evidence?.source ? { source: evidence.source } : {}), scope }));
   }
   if (COMPARATOR_RETURNS_BY_ISIN[isin]) fields.push(field('Rendements 2023–2025 du comparateur', 'instrument-comparator-returns', COMPARATOR_RETURNS_BY_ISIN[isin], { ...COMPARATOR_RETURN_EVIDENCE[isin], asOf: '2025-12-31', periodStart: '2023-01-01', periodEnd: '2025-12-31', scope, note: COMPARATOR_RETURN_EVIDENCE[isin]?.note ?? 'Source individuelle non renseignée ; ne pas confondre les devises.' }));
   return { id: isin, type: 'instrument', name: identity.name, aliases: [isin, ...Object.values(identity.labels ?? {}), ...listings.map((x) => x.ticker)], consumers: uses.get(isin) ?? [], fields };
@@ -87,7 +92,7 @@ export const DATA_CATALOG = Object.freeze([
     fields: [field('Statistique de ménages', 'household-statistics', value, value.metadata)] })),
   ...Object.entries(INSTRUMENTS_BY_ISIN).map(([isin, identity]) => instrument(isin, identity)),
   ...Object.entries(INDEX_FACTS).map(([id, history]) => index(id, history)),
-  ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: `Tweet Midi · Performance depuis${!SPARSE_MONTHLY_DATA_IDS.has(id) && value.priceMethod !== 'adjusted' && value.priceUnit !== 'points' ? ' et Anniversaire' : ''}`, path: '/tweet-midi' }, ...(HISTORY_STATISTIC_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
+  ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: `Tweet Midi · Performance depuis${!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? ' et Anniversaire' : ''}`, path: '/tweet-midi' }, ...(HISTORY_STATISTIC_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
   ...TERMES.map((value) => ({ id: `lexicon:${value.id}`, type: 'lexicon', name: value.titre ?? value.nom ?? value.title ?? value.terme ?? value.id, aliases: [value.id], consumers: [{ tool: 'Lexique · Tweet Midi', path: '/tweet-midi' }], fields: [field('Définition', 'financial-lexicon', value, { ...SUPPORTING_EVIDENCE[`lexicon:${value.id}`], dateStatus: 'not-applicable', scope: value.id })] })),
 ]);
 const normalize = (value) => String(value).normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().trim();

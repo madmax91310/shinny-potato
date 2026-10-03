@@ -1,7 +1,9 @@
+import { RUSSELL_INDEX_RETURNS } from './new-index-returns.js';
 import { INDEX_FACTS } from './index-facts.js';
 import { normalizeEvidence } from './evidence.js';
 // Séries d’indices distinctes des rendements des parts ETF ; valeurs migrées sans correction.
 export const INDEX_RETURNS = {
+'russell-2000': RUSSELL_INDEX_RETURNS,
   "em-standard": {
     "2026-08-31": {
       "values": [

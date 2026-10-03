@@ -1,8 +1,10 @@
+import { COMPANY_HISTORY_ADDITIONS, COMPANY_HISTORY_ADDITIONS_REVIEW } from './company-history-additions.js';
 // Séries mensuelles contrôlées le 02/10/2026 : dernières clôtures quotidiennes
 // ajustées Yahoo (dividendes et divisions), recoupées avec le close mensuel.
 // Source et captures : scripts/source-snapshots/calculator-companies-2026-10-02.json.
 // Six décimales conservées pour limiter l’arrondi des rendements historiques.
 export const COMPANY_HISTORY = {
+...COMPANY_HISTORY_ADDITIONS,
   costco: {
     label: "Costco", tweetPhrase: "Costco", icon: "🛒", currency: "USD", priceMethod: "adjusted", returnNote: "",
     points: [
@@ -317,6 +319,7 @@ export const COMPANY_HISTORY = {
 }
 
 export const COMPANY_HISTORY_REVIEW = {
+...COMPANY_HISTORY_ADDITIONS_REVIEW,
   "history:costco": {
     "sourceUrls": [
       "https://query2.finance.yahoo.com/v8/finance/chart/COST?period1=1420070400&period2=1790812800&events=div%2Csplits&interval=1d",

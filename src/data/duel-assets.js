@@ -12,6 +12,13 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
 const choices = [
+['sp500_equal_weight', 'base', 'S&P 500 équipondéré', 'equalweight'],
+ ['pea_global_amundi', 'base', 'MSCI ACWI en PEA', 'acwi-pea'],
+ ['world_ex_usa', 'complement', 'World hors États-Unis', 'exusa'],
+ ['russell2000_spdr', 'complement', 'Petites capitalisations américaines', 'us-small'],
+ ['oblig_em_usd_ishares', 'complement', 'Dette émergente en dollars', 'em-bond'],
+ ['oblig_em_local_ishares_acc', 'complement', 'Dette émergente en monnaies locales', 'em-local-bond'],
+ ['oblig_eur_long_ishares', 'complement', 'Obligations d’État euro longues', 'longbond'],
   ['msci_world_ishares', 'base', 'MSCI World', 'world'],
   ['msci_acwi_ishares', 'base', 'MSCI ACWI', 'acwi'],
   ['ftse_allworld_vanguard', 'base', 'FTSE All-World', 'allworld'],
@@ -60,7 +67,7 @@ const fundItems = choices.map(([id, role, label, exposure]) => {
   if (asset.r.some((value, i) => series.values[i] !== null && value !== series.values[i])) throw new Error(`Rendements divergents : ${id}`)
   return { id, isin: asset.isin, name: asset.name, role, label, exposure, group: ROLES[role],
     currency: series.currency, values: series.values, source: series.source,
-    note: 'Rendements de la part du fonds, revenus réinvestis.' }
+    note: original?.basis === 'proxy' ? original.note : 'Rendements de la part du fonds, revenus réinvestis.', basis: original?.basis ?? 'fund' }
 })
 // Revue du 02/10/2026 déjà consignée dans verified-returns.js ; aucune année inventée.
 const extraFunds = [

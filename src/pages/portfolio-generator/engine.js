@@ -1,3 +1,4 @@
+import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js';
 import { YEARS, getAsset } from '../../data/portfolio-assets.js';
 import { computeYearlyPerf } from './performance.js';
 import {
@@ -407,6 +408,7 @@ export function renderTweetText(p) {
   blocks.push(
     `📈 Performances simulées :\n${yearsLine}\n\n→ Pire année : ${fmtPct(p.worst.value)} en ${p.worst.year}.\n${p.context}`
   );
+  for (const asset of p.selection) if (SIMULATION_PROXIES[asset.isin]) blocks.push(`Base historique pour ${asset.name} : ${SIMULATION_PROXIES[asset.isin].scope}.`);
   if (p.warning) blocks.push(`⚠️ ${p.warning}`);
   blocks.push(SEPARATOR);
   blocks.push(p.cta);

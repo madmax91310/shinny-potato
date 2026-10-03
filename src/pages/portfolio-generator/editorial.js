@@ -89,6 +89,10 @@ function compositionLogic(selection, shared) {
     : allWorld ? "La ligne émergente accentue donc un choix déjà présent dans l’indice mondial." : "Les actions émergentes font le choix de marchés aux trajectoires parfois très différentes.");
   const roles = {
     euros: "Le fonds euros garde une partie de l’épargne à l’écart des marchés, quitte à rester derrière quand la Bourse s’envole.",
+    "us-equal": "Le S&P 500 équipondéré répartit autrement les grandes entreprises américaines, sans changer leur univers.",
+    "us-small": "Le Russell 2000 ajoute les petites entreprises américaines, avec leur sensibilité au financement et à l’économie.",
+    "world-ex-us": "Les pays développés hors États-Unis permettent de régler la place américaine à part ; les émergents restent absents de cette ligne.",
+    "long-bond": "Les obligations longues en euros ajoutent une forte sensibilité aux taux : elles peuvent varier beaucoup malgré leurs émetteurs d’État.",
     us: "Le S&P 500 donne davantage de place aux grandes entreprises américaines.",
     nasdaq: "Le Nasdaq renforce le choix des grandes entreprises non financières, avec une forte place pour la technologie.",
     leverage: "Le levier amplifie les mouvements quotidiens : sa taille ne suffit pas à mesurer son influence sur le portefeuille.",

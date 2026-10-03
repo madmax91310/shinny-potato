@@ -1,6 +1,8 @@
+import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Rendements calendaires de la part exacte (NAV, 2020–2025), dans la devise publiée.
 // Chaque source est une publication de l'émetteur ; null = année complète indisponible.
 export const VERIFIED_RETURNS = {
+...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, { currency: r.currency, values: r.values, source: r.perfSource ?? r.source }])),
   "LU0290358497": {
   "currency": "EUR",
   "values": [

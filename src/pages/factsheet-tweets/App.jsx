@@ -29,7 +29,7 @@ export default function App() {
   }
 
   return <div className="fs-scope">
-    <PageHeader title="Dans les coulisses des indices" subtitle="Onze sujets décryptés à partir de fiches officielles, avec des publications prêtes à relire, modifier et copier." />
+    <PageHeader title="Dans les coulisses des indices" subtitle={`${SHEETS.length} sujets décryptés à partir de fiches officielles, avec des publications prêtes à relire, modifier et copier.`} />
     <div className="fs-panel">
       <label className="fs-label" htmlFor="factsheet-subject">Choisir un indice ou un ETF</label>
       <select id="factsheet-subject" value={selected} onChange={(event) => { setSelected(event.target.value); setCopied(false) }}>

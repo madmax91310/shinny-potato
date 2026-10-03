@@ -1,5 +1,7 @@
+import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
+...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, { sourceUrls: [r.perfSource ?? r.source], asOf: '2025-12-31', checkedAt: '2026-10-03', periodStart: '2020-01-01', periodEnd: '2025-12-31', currency: r.currency, scope: `Part exacte ${r.isin}`, method: 'Rendements NAV calendaires, revenus réinvestis, frais du fonds déduits', note: 'Années complètes uniquement. Les historiques de simulation des fonds récents disposent de preuves distinctes.' }])),
   "LU0290358497": {
     "sourceUrls": [
       "https://etf.dws.com/download/asset/dc127135-9f60-472d-9b80-c73e46cc307b"

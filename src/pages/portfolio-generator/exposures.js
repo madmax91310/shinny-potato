@@ -2,7 +2,7 @@
 // Certains indices voisins gardent des différences réelles de sociétés et de rendements.
 const FAMILIES = [
   ['world', ['msci_world','msci_world_ishares','msci_world_amundi_pea']],
-  ['world-all', ['msci_acwi','msci_acwi_ishares','ftse_allworld_vanguard']],
+  ['world-all', ['msci_acwi','msci_acwi_ishares','ftse_allworld_vanguard','pea_global_amundi']],
   ['emerging', ['msci_em','msci_em_amundi','msci_em_spdr','ftse_em_vanguard']],
   ['gold', ['or','or_ishares','or_amundi','or_wisdomtree']],
   ['bitcoin', ['bitcoin','bitcoin_wisdomtree','bitcoin_etcgroup','bitcoin_21shares']],

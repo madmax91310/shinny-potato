@@ -1,3 +1,4 @@
+import { INDEX_EXPOSURE_ADDITIONS } from './index-exposure-additions.js';
 import { ARCHIVE_SOURCE_REVIEW } from './archive-source-review.js';
 import { REVIEWED_INDEX_SNAPSHOTS, REVIEWED_EXISTING_INDEX_KEYS } from './index-source-review.js';
 import { normalizeEvidence } from './evidence.js';
@@ -5,6 +6,8 @@ import { normalizeEvidence } from './evidence.js';
 // Clé = indice + photographie : une nouvelle date ajoute une entrée, elle ne remplace pas l’histoire.
 // Les archives migrées gardent leur provenance ; les revues externes sont identifiées séparément.
 export const INDEX_FACTS = {
+...INDEX_EXPOSURE_ADDITIONS,
+
   "em-standard": {
     "2026-08-31": {
       "index": "MSCI Emerging Markets",
@@ -702,6 +705,8 @@ export const INDEX_FACTS = {
     }
   }
 };
+
+INDEX_FACTS['sp500-pea']['2026-06-30'].descriptionTemplates['usa-constructions'] = 'Grandes entreprises américaines ; pondération par capitalisation ajustée du flottant.';
 
 for (const [id, key] of Object.entries(REVIEWED_EXISTING_INDEX_KEYS)) {
   const facts = INDEX_FACTS[id][key];

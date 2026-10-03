@@ -37,6 +37,18 @@ import { formatEtfTer } from './etf-ter.js';
 // ─────────────────────────────────────────────────────────────────────────
 
 export const FAMILIES = [
+{
+ id:'usa-constructions', label:'🇺🇸 USA : pondération et petites entreprises',
+ indices: [
+  {name:'S&P 500',indexFacts:getIndexFacts('sp500-pea','2026-06-30'),desc:getIndexDescription('sp500-pea','2026-06-30','usa-constructions')},
+  {name:'S&P 500 Equal Weight',indexFacts:getIndexFacts('sp500-equal-weight','methodology'),desc:getIndexDescription('sp500-equal-weight','methodology','usa-constructions')},
+  {name:'Russell 2000',indexFacts:getIndexFacts('russell-2000','2026-08-31'),desc:getIndexDescription('russell-2000','2026-08-31','usa-constructions')},
+ ],
+ etfGroups:[['S&P 500','IE00B5BMR087'],['S&P 500 Equal Weight','IE00BLNMYC90'],['Russell 2000','IE00BJ38QD84']].map(([indexName,isin])=>({indexName,pea:false,funds:[{isin,name:getInstrumentName(isin,'index'),...(isin !== 'IE00B5BMR087' ? {listing:requireInstrumentListing(isin)} : {}),ter:formatEtfTer(isin,'index'),aum:getInstrumentAum(isin,'index')}]})),
+ diversification:{chain:[`S&P 500 : ${formatIndexFact('sp500-pea','2026-06-30','targetConstituents')} sociétés visées`, `S&P 500 Equal Weight : même univers, autre pondération`, `Russell 2000 : ${formatIndexFact('russell-2000','2026-08-31')} titres au 31/08/2026`],notes:[]},
+ perfFunds:[['sp500','S&P 500 · iShares','IE00B5BMR087'],['equal','S&P 500 Equal Weight · Xtrackers','IE00BLNMYC90'],['russell','Russell 2000 · SPDR','IE00BJ38QD84']].map(([key,label,isin])=>({key,label,isin,...getInstrumentComparatorReturns(isin)})),
+ perfMethodNote:'Rendements des trois parts en USD, revenus réinvestis, frais des fonds déduits. Les cotations EUR ne constituent pas une couverture de change.',
+},
   {
     id: 'europe',
     label: '🇪🇺 Europe',

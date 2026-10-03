@@ -1,7 +1,10 @@
+import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Contrôles PEA sur une part exacte (ISIN), distincts des revues historiques
 // des Fiches ETF. null signifie que la recherche n'a pas permis de trancher.
 // Ne jamais déduire l'éligibilité du domicile, de l'indice ou du nom commercial.
+const exposurePeaSources = {"IE00BLNMYC90": "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/", "IE00B2NPKV68": "https://www.zonebourse.com/cours/etf/ISHARES-J-P-MORGAN-EM-BON-17138508/composition/", "IE00B1FZS913": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-15-30yr-IE00B1FZS913-IBGL-EUR-XAMS/seance", "IE0006WW1TQ4": "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"};
 export const PEA_REVIEWS_BY_ISIN = Object.freeze({
+...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, { eligible: r.isin === 'FR0014017NX3', checkedAt: '2026-10-03', sourceUrl: ['FR0014017NX3','IE00BJ38QD84'].includes(r.isin) ? r.source : exposurePeaSources[r.isin] }])),
   LU0290358497: {"eligible": false, "checkedAt": "2026-10-01", "sourceUrl": "https://etf.agefi.fr/etf/XEON", "note": "Statut PEA explicitement non éligible publié pour cet ISIN exact ; source secondaire financière ou courtier, sans déduction à partir du domicile ou de l’indice."},
   IE00B3FH7618: {"eligible": false, "checkedAt": "2026-10-01", "sourceUrl": "https://etf.agefi.fr/etf/IEGE", "note": "Statut PEA explicitement non éligible publié pour cet ISIN exact ; source secondaire financière ou courtier, sans déduction à partir du domicile ou de l’indice."},
   IE00BDBRDM35: {"eligible": false, "checkedAt": "2026-10-01", "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-CORE-GLOBAL-AGGRE-67015255/actualite/", "note": "Statut PEA explicitement non éligible publié pour cet ISIN exact ; source secondaire financière ou courtier, sans déduction à partir du domicile ou de l’indice."},

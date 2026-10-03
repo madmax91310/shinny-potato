@@ -22,11 +22,12 @@ import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
 
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
-import { stat, readFile } from "node:fs/promises";
+import { stat, readFile, mkdir, writeFile } from "node:fs/promises";
 import { FAMILIES } from "../src/data/index-comparisons.js";
 import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
 import { fmtPct } from "../src/pages/index-comparator/lib.js";
 import { buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
+import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
@@ -190,7 +191,7 @@ async function testCalculateur(page) {
   const dcaBlockOk = !/DCA non disponible pour LVMH/.test(text) && await page.getByRole('button', { name: 'Mensuel (DCA)', exact: true }).isEnabled();
 
   let companiesOk = true;
-  for (const id of ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
+  for (const id of ['berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
     await page.locator('select.ic-control').first().selectOption(id);
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
@@ -226,12 +227,13 @@ async function testPortfolioGenerator(page) {
   const imageOk = firstImage?.startsWith('data:image/png;base64,') && newImage?.startsWith('data:image/png;base64,') && firstImage !== newImage && download.suggestedFilename() === 'repartition-portefeuille.png';
   const autoTweet = await page.locator(".pg-tweet-body").innerText();
   const autoEditorialOk = autoTweet.startsWith("🧩 Portefeuille ") && /La logique de l’ensemble/.test(autoTweet);
-  // Un profil/palier fixé doit faire tourner les trois constructions.
+  // Un profil/palier fixé doit faire tourner toutes les constructions disponibles.
   await page.getByRole('group', { name: "Choisir un profil d'investisseur" }).getByRole('button', { name: 'Le Généraliste', exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un niveau de risque cible' }).getByRole('button', { name: 'Équilibré', exact: true }).click();
   const recipesSeen = new Set();
   let lastRecipe = null, recipesOk = true;
-  for (let i = 0; i < 6; i++) {
+  const expectedRecipes = getRecipes('generaliste', 'equilibre').length;
+  for (let i = 0; i < expectedRecipes * 2; i++) {
     await page.getByRole('button', { name: /Générer un nouveau portefeuille/i }).click();
     const label = await page.locator('.pg-recipe-label').innerText();
     recipesOk &&= label !== lastRecipe;
@@ -240,7 +242,7 @@ async function testPortfolioGenerator(page) {
     const weights = await page.locator('.pg-alloc-pct').allInnerTexts();
     recipesOk &&= weights.reduce((sum, text) => sum + parseFloat(text), 0) === 100;
   }
-  recipesOk &&= recipesSeen.size === 3;
+  recipesOk &&= recipesSeen.size === expectedRecipes;
   await page.setViewportSize({ width: 390, height: 844 });
   recipesOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
@@ -307,7 +309,7 @@ async function testPortfolioGenerator(page) {
   await page.setViewportSize({ width: 390, height: 844 });
   manualEditorialOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
-  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, trois constructions et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk}, intitulés manuels et rotation: ${manualEditorialOk}`);
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, constructions disponibles et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk}, intitulés manuels et rotation: ${manualEditorialOk}`);
 }
 
 async function testPortfolioDuels(page) {
@@ -498,6 +500,15 @@ async function testTweetMidi(page) {
   const historical = HISTORY.bitcoin.points.find(p => p.date === pastYm);
   const anniversary = await page.locator("pre").innerText();
   if (historical && !anniversary.includes(fmtHistoryPrice(historical.price, "USD"))) failed.push("Il y a X ans : clôture historique Bitcoin");
+  for (const id of ['berkshire', 'asml']) {
+    await page.locator('#subject-select').selectOption(id);
+    await page.locator('#secondary-select').selectOption('1');
+    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+    await page.locator('#niveau-actuel').fill(String(HISTORY[id].anniversaryPoints.at(-1).price));
+    const raw = HISTORY[id].anniversaryPoints.find(p => p.date === pastYm);
+    const post = await page.locator('pre').innerText();
+    if (!post.includes(fmtHistoryPrice(raw.price, HISTORY[id].currency)) || /NaN|undefined/.test(post)) failed.push(`${id} : prix brut anniversaire`);
+  }
   await page.getByRole("button", { name: "Performance depuis", exact: true }).click();
   await page.locator('#subject-select').selectOption('sp500');
   await page.locator('#secondary-select').selectOption('2016');
@@ -524,7 +535,7 @@ async function testTweetMidi(page) {
       || (comparison.match(/^Cumulé sur la période : /gmu) ?? []).length !== 2
       || comparison.includes('💬')) failed.push('Performance depuis : comparatif');
   await page.getByRole('button', { name: 'Performance depuis', exact: true }).click();
-  for (const id of ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
+  for (const id of ['berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
     await page.locator('#subject-select').selectOption(id);
     await page.locator('#secondary-select').selectOption('2020');
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
@@ -731,8 +742,8 @@ async function testFactsheetTweets(page) {
   for (let index = 0; index < count; index++) {
     await select.selectOption({ index });
     const tweet = await draft.inputValue();
-    ok &&= tweet.includes(SHEETS[index].constituents.toLocaleString('fr-FR'));
-    ok &&= tweet.includes('2025') && /Les (principaux )?secteurs/.test(tweet);
+    ok &&= tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR'));
+    ok &&= tweet.includes('2025') && /Les (principaux )?secteurs|La pondération/.test(tweet);
     ok &&= !/undefined|NaN/.test(tweet) && (await page.locator('.fs-sources a').count()) >= 1;
   }
   await draft.fill('Texte corrigé avant publication');
@@ -752,7 +763,7 @@ async function testFactsheetTweets(page) {
   ]);
   ok &&= download.suggestedFilename().endsWith('.png');
   await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
-  for (const id of ['em-standard', 'topix', 'nikkei225', 'acwi', 'em-esg', 'stoxx600']) {
+  for (const id of ['sp500-equal-weight', 'russell-2000', 'em-standard', 'topix', 'nikkei225', 'acwi', 'em-esg', 'stoxx600']) {
     await select.selectOption(id);
     await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
@@ -760,8 +771,18 @@ async function testFactsheetTweets(page) {
       await img.decode();
       return img.naturalWidth === 2160 && img.naturalHeight === 2880;
     });
+    if (['sp500-equal-weight', 'russell-2000'].includes(id)) {
+      await mkdir('test-artifacts', { recursive: true });
+      const data = await current.locator('img').getAttribute('src');
+      await writeFile(`test-artifacts/${id}.png`, Buffer.from(data.split(',')[1], 'base64'));
+    }
     await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
   }
+  await select.selectOption('sp500-equal-weight');
+  await page.setViewportSize({ width: 390, height: 844 });
+  ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  await page.screenshot({ path: 'test-artifacts/coulisses-mobile.png', fullPage: true });
+  await page.setViewportSize({ width: 1280, height: 720 });
   record('Dans les coulisses des indices', ok, `${count} fiches, modification et réinitialisation vérifiées`);
 }
 

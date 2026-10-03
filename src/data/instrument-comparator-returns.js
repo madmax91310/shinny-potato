@@ -7,6 +7,7 @@
 import { getInstrumentReturnValues } from './instrument-returns.js';
 
 export const COMPARATOR_ISIN_BY_FAMILY_KEY = Object.freeze({
+'usa-constructions': {sp500:'IE00B5BMR087',equal:'IE00BLNMYC90',russell:'IE00BJ38QD84'},
   "europe": {
     "msci_europe": "FR0013412038",
     "stoxx600": "FR0011550193",

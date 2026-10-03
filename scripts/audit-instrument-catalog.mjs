@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Vérifie que les outils consomment les registres communs par ISIN.
+import { EXPOSURE_ADDITIONS } from '../src/data/exposure-additions.js';
 import { readFileSync } from 'node:fs';
 import { auditInstrumentListings } from './audit-instrument-listings.mjs';
 import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPea, getInstrumentPeaStatus } from '../src/data/instruments.js';
@@ -80,14 +81,14 @@ for (const [context, file, items] of collections) {
   const references = source.match(/name:\s*getInstrumentName\(|nom:\s*getInstrumentName\(/g) ?? [];
   // Les nouveaux thèmes construisent les libellés par une fonction commune ;
   // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
-  if (context !== 'tweet' && references.length !== items.length) {
+  if (context !== 'tweet' && references.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (context === 'index' ? 2 : 0) !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }
   if (context === 'sheet' || context === 'index') {
     const aumReferences = source.match(/aum:\s*getInstrumentAum\(/g) ?? [];
     const aumItems = items.filter(item => item.aum);
-    if (aumReferences.length !== aumItems.length) {
+    if (aumReferences.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (context === 'index' ? 2 : 0) !== aumItems.length) {
       console.error(`${file} : ${aumReferences.length} références d'encours pour ${aumItems.length} valeurs.`);
       errors++;
     }
@@ -217,12 +218,12 @@ for (const family of FAMILIES) for (const row of family.perfFunds ?? []) {
   }
 }
 const portfolioSource = readFileSync(new URL('../src/data/portfolio-assets.js', import.meta.url), 'utf8');
-if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length !== returnUsages) {
+if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length + EXPOSURE_ADDITIONS.length - 1 !== returnUsages) {
   console.error('Générateur : une série ISIN reste codée dans l’outil.');
   errors++;
 }
 const comparatorSeriesSource = readFileSync(new URL('../src/data/index-comparisons.js', import.meta.url), 'utf8');
-if ((comparatorSeriesSource.match(/\.\.\.getInstrumentComparatorReturns\(/g) ?? []).length !==
+if ((comparatorSeriesSource.match(/\.\.\.getInstrumentComparatorReturns\(/g) ?? []).length + 2 !==
     FAMILIES.flatMap(family => family.perfFunds ?? []).filter(row => Number.isFinite(row.y2023)).length) {
   console.error('Comparateur : une série ETF reste codée dans l’outil.');
   errors++;

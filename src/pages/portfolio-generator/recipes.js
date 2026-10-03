@@ -123,6 +123,19 @@ for (const [risk, w] of Object.entries({defensif:[35,30,25,10],equilibre:[35,35,
   ];
 }
 
+
+const newConstructions = {
+ generaliste: {
+  equilibre: [R('monde-pea-simple','Monde en une ligne PEA','Une exposition ACWI en PEA accompagnée d’obligations courtes.','Développés et émergents : tu garderais une seule ligne PEA ?',A(['pea_global_amundi',60],[SHORT,40])), R('usa-choisi','Poids américain choisi','Les États-Unis ont leur propre ligne ; les autres pays développés sont séparés.','Et si tu choisissais toi-même la place des États-Unis ?',A([['sp500','sp500_ishares'],30],['world_ex_usa',35],[CORP,35]))],
+  dynamique: [R('usa-equipondere','Amérique équipondérée et reste du monde','Le S&P 500 équipondéré rejoint les autres marchés développés et émergents.','La taille d’une entreprise doit-elle décider de sa place dans ton portefeuille ?',A(['sp500_equal_weight',40],['world_ex_usa',30],[EM,15],[GOLD,15])), R('smallcaps-us','Petites entreprises américaines','Les petites capitalisations américaines complètent le socle mondial.','Les petites entreprises américaines méritent-elles une place à part ?',A([WORLD,55],['russell2000_spdr',20],[EM,10],[GOLD,15]))],
+  offensif: [R('capitalisations-us','Grandes et petites américaines','Le marché américain est partagé entre grandes et petites entreprises, avec le reste des pays développés.','Pourquoi résumer la Bourse américaine à ses plus grands noms ?',A(['sp500_equal_weight',40],['russell2000_spdr',25],['world_ex_usa',35]))],
+ },
+ rentier: {
+  equilibre: [R('coupons-emergents-usd','Dividendes et coupons émergents','Les distributions d’actions sont accompagnées de dette émergente en dollars et de coupons en euros.','Pour tes revenus, tu regarderais aussi les emprunteurs émergents ?',A([DIV,50],['oblig_em_usd_ishares',15],[HY,15],['oblig_0_1_ishares',20]))],
+  dynamique: [R('revenus-taux-longs','Revenus avec taux longs','Une poche limitée d’obligations longues ajoute un risque de taux assumé aux distributions d’actions.','Des obligations dans un portefeuille dynamique : quelle durée choisir ?',A([DIV,60],['oblig_em_usd_ishares',20],['oblig_eur_long_ishares',20]))],
+ },
+};
+
 function protectSlots(assets, profileId) {
   return assets.map((slot, index) => {
     const options = slot.idOptions ?? [slot.id];
@@ -146,7 +159,7 @@ export function getRecipes(profileId, riskId) {
   });
   return [
     { ...base, id: 'historique', label: 'Construction historique', assets: protectSlots(assets, profileId) },
-    ...additions[profileId][riskId].map(r => ({ ...r, assets: protectSlots(r.assets, profileId) })),
+    ...[...additions[profileId][riskId], ...(newConstructions[profileId]?.[riskId] ?? [])].map(r => ({ ...r, assets: protectSlots(r.assets, profileId) })),
   ];
 }
 

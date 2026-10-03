@@ -1,9 +1,11 @@
+import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.js';
 // Frais annuels publiés dans l'application, indexés par ISIN. Valeurs héritées des
 // trois bibliothèques ETF et de leurs vérifications ; cette centralisation n'est
 // pas une nouvelle vérification chez l'émetteur. Mettre à jour ici puis contrôler
 // les mentions de frais dans les textes éditoriaux lors d'une modification.
 export const ETF_TER_BY_ISIN = Object.freeze({
+...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, r.ter])),
   // iShares IUFS, IE00B4JNQZ49, 0,15 %, vérifié le 02/10/2026 sur profil et fiche officiels.
   // https://www.ishares.com/uk/individual/en/products/280523/ishares-sp-500-financials-sector-ucits-etf
   'IE00B4JNQZ49': '0,15',
@@ -182,6 +184,7 @@ export function formatEtfTer(isin, format = 'tweet') {
 
 // Les frais sont ceux observés au contrôle ; leur date d’entrée en vigueur n’est pas publiée.
 const primaryTerSources = {
+...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, r.source])),
   IE00B4JNQZ49: 'https://www.ishares.com/uk/individual/en/products/280523/ishares-sp-500-financials-sector-ucits-etf',
   "LU0290358497": "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6",
   "IE00B3FH7618": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",

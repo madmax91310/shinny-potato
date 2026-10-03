@@ -376,3 +376,25 @@ Validation : `node scripts/test-data-review-reminder.mjs`,
 - `audit-support-enrichment.mjs` contrôle les 52 nouvelles fiches par ISIN contre la capture des profils justETF. Les caractéristiques et frais sont dans les registres communs. Les encours déjà présents gardent leur date ; les nouveaux relevés ne prétendent pas connaître une date de photographie ou un périmètre part/fonds absent de la source. Aucun nombre de positions non daté n'est publié.
 - `update-investor-13f.py` suit les 11 profils existants via la tâche quotidienne déjà installée. FolioFact fournit les relevés paginés ; pour Ackman, Tracefour est préféré quand son trimestre est plus récent. Les options sont conservées dans le relevé pour contrôler le total, puis exclues des principales positions sans renormaliser leurs poids. Les requêtes FolioFact sont espacées pour respecter 20 requêtes/minute.
 - Lors d'un nouveau trimestre, le précédent est conservé dans `public/data/investors/archive/<profil>/<date>.json` et référencé dans `filingHistory`. Un amendement du trimestre courant ne modifie pas l'archive du précédent. Un relevé incomplet, une erreur fournisseur ou un recul de période interrompt la mise à jour avant l'écriture des fichiers.
+
+
+## Expositions complémentaires du 03/10/2026
+
+Les six expositions de `src/data/exposure-additions.js` alimentent les registres communs par ISIN : identité, frais, caractéristiques, PEA, cotations, encours et performances. Les dates des positions et des encours restent distinctes. Les chiffres annuels viennent des publications DWS, State Street et iShares ; les frais et dividendes réinvestis sont déjà inclus dans les rendements des parts.
+
+| Exposition | Outils alimentés |
+| --- | --- |
+| S&P 500 Equal Weight | Présentation ETF, Impact des frais, Comparateur, Coulisses, Générateur, Duels |
+| Russell 2000 | Présentation ETF, Impact des frais, Comparateur, Coulisses, Générateur, Duels |
+| Dette émergente USD | Présentation ETF, Impact des frais, Générateur rentier, Duels, Cas concrets |
+| État euro 15–30 ans | Présentation ETF, Impact des frais, Générateur rentier, Duels, Cas concrets |
+| World hors USA | Présentation ETF, Impact des frais, Générateur, Duels ; comparateur et Coulisses déjà présents |
+| PEA Global ACWI | Présentation ETF, Impact des frais, Générateur, Duels ; comparateur déjà présent |
+
+Les parts World hors USA et PEA Global n'ont pas six années civiles propres. `simulation-proxies.js` identifie explicitement les bases utilisées dans Générateur et Duels : indice MSCI World ex USA Net USD hors frais ETF, et ancienne part iShares MSCI ACWI USD Acc. Présentation ETF conserve uniquement les années de la part exacte ; le catalogue expose séparément les deux historiques. Les textes exportés des simulations indiquent leur base.
+
+Les nouvelles fiches Coulisses utilisent une présentation de méthodologie : aucun poids sectoriel ou poids d'entreprise n'est inventé pour Equal Weight. Les 500 sociétés sont une cible ; le Russell contient 1 953 titres au 31/08/2026 (publication FTSE Russell). Ses rendements d'indice Total Return USD sont distincts des rendements nets de frais du fonds SPDR. Le nombre de titres du fonds est lui-même distinct du nombre de titres de l'indice.
+
+Berkshire classe B (BRK-B, USD) et ASML Amsterdam (ASML.AS, EUR) disposent de 141 mois continus, janvier 2015 à septembre 2026. La capture `companies-additions-2026-10-03.json` conserve les exportations mensuelles et les dernières séances quotidiennes. `audit:calculator-series` recoupe les clôtures brutes et les clôtures ajustées. Le fuseau de chaque place sert à identifier le mois Yahoo. Calculateur et Performance depuis utilisent les clôtures ajustées ; Il y a X ans utilise les clôtures brutes conservées dans `anniversaryPoints`, afin de comparer des cours cohérents avec une saisie actuelle. Les deux granularités viennent du même fournisseur, sans recoupement indépendant.
+
+Les audits existants couvrent les six supports, les nouvelles recettes et les duels. Playwright parcourt toutes les fiches ETF et Coulisses, exporte aussi les deux nouveaux PNG, et vérifie les deux nouvelles entreprises dans Performance depuis et Il y a X ans.

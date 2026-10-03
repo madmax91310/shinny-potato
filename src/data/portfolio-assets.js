@@ -1,3 +1,5 @@
+import { SIMULATION_PROXIES } from './simulation-proxies.js';
+import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { getInstrumentName } from './instruments.js';
 import { getInstrumentReturnValues } from './instrument-returns.js';
 // Bibliothèque d'actifs — rendements calendaires 2020-2025 : supports exacts quand
@@ -69,6 +71,7 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+...EXPOSURE_ADDITIONS.map(r => ({ id: r.id, isin: r.isin, name: getInstrumentName(r.isin, 'portfolio'), cat: r.cat, emoji: r.cat === 'obligataire' ? '🔵' : '🟢', r: getInstrumentReturnValues(r.isin), distributing: r.incomePolicy === 'distributing', confidenceNote: SIMULATION_PROXIES[r.isin]?.note ?? `Rendements NAV de la part en ${r.currency === 'USD' ? 'dollars ; le résultat en euros dépend du change' : 'euros'}, revenus réinvestis.`, desc: [r.whatIs, r.whyInteresting, r.whatToKnow] })),
   // Vérifiés le 01/10/2026 : parts des nouvelles présentations, sélection manuelle uniquement.
   {
     id: "monetaire_xeon", name: getInstrumentName("LU0290358497", "portfolio"), isin: "LU0290358497", cat: "obligataire", emoji: "🔵",
@@ -77,7 +80,7 @@ export const ASSETS = [
     desc: ["Son indice reflète un taux monétaire en euros, le €STR, auquel s’ajoute une petite marge avant les frais. Le fonds reçoit cette performance grâce à un swap. Tu t’exposes donc aux taux au jour le jour, plutôt qu’à un panier d’actions ou à des obligations de longue durée.", "L’intérêt est de comprendre une exposition dont le rendement évolue avec les taux courts. Cette part capitalise les revenus : ils restent investis dans le fonds, sans versement à réinvestir toi-même.", "Le rendement n’est pas fixé à l’avance : il diminue lorsque les taux courts baissent et peut devenir négatif. Le swap ajoute un risque de contrepartie. Il faut aussi compter les frais du fonds et ceux du courtier : ce placement ne bénéficie pas de la garantie d’un dépôt bancaire."],
   },
   {
-    id: "oblig_0_1_ishares", name: getInstrumentName("IE00B3FH7618", "portfolio"), isin: "IE00B3FH7618", cat: "obligataire", emoji: "🔵",
+    id: "oblig_0_1_ishares", distributing: true, name: getInstrumentName("IE00B3FH7618", "portfolio"), isin: "IE00B3FH7618", cat: "obligataire", emoji: "🔵",
      r: getInstrumentReturnValues("IE00B3FH7618"),
     confidenceNote: "Rendements NAV de la part en euros ; arrondis publiés par l’émetteur.",
     desc: ["Ce fonds rassemble des obligations d’État de la zone euro dont l’échéance est courte, entre zéro et un an. Leur remboursement approche, ce qui limite leur sensibilité aux mouvements de taux par rapport à des obligations plus longues. Cette part distribue les revenus.", "L’intérêt est d’accéder à plusieurs emprunts d’État en euros avec une seule ligne. Pour comprendre son comportement, la durée des obligations compte davantage que la seule présence du mot « État » dans le nom.", "Une échéance courte ne garantit pas ton capital. La valeur des parts peut baisser, et le fonds renouvelle ses obligations : tu ne détiens pas un placement qui te rembourse automatiquement à une date choisie. Les revenus évolueront aussi avec les taux."],
