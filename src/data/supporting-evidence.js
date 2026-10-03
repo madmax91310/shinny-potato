@@ -453,10 +453,10 @@ export const SUPPORTING_EVIDENCE = {
       "https://thedocs.worldbank.org/en/doc/74e8be41ceb20fa0da750cda2f6b9e4e-0050012026/related/CMO-Historical-Data-Monthly.xlsx"
     ],
     "asOf": null,
-    "checkedAt": "2026-09-29",
-    "note": "Classeur mis à jour le 2026-09-02, export et comparaison point par point archivés le 2026-09-29. La date de publication du classeur n’est pas la date de valeur de chaque cours.",
+    "checkedAt": "2026-10-03",
+    "note": "Classeur mis à jour le 2026-10-02, export et comparaison point par point archivés le 2026-10-03. La date de publication du classeur n’est pas la date de valeur de chaque cours.",
     "periodStart": "2015-01",
-    "periodEnd": "2026-08",
+    "periodEnd": "2026-09",
     "dateStatus": "month-only",
     "method": "Banque mondiale, Pink Sheet : moyenne mensuelle des cours spot USD par once troy, pas une clôture"
   },

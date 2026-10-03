@@ -371,8 +371,9 @@ export const ASSETS = {
   or: {
     // Banque mondiale, Pink Sheet « Monthly Prices », colonne Gold (USD/once troy).
     // Moyenne mensuelle des cours spot quotidiens, et non clôture de fin de mois.
-    // Classeur mis à jour le 02/09/2026, relevé et comparé point par point le 29/09/2026 :
-    // scripts/source-snapshots/calculator-worldbank-gold-2026-09-29.json.
+    // Classeur mis à jour le 02/10/2026, relevé et comparé point par point le 03/10/2026 :
+    // scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json.
+    // Les 140 points précédents restent identiques ; septembre ajouté à 4319 USD/once.
     // La série antérieure de clôtures attribuée à MacroTrends ne disposait pas d'export
     // vérifiable ; ce changement de convention modifie les simulations sur l'or.
     label: 'Or (once, moyenne mensuelle)', tweetPhrase: "l'or", icon: '●', currency: 'USD',
@@ -412,6 +413,7 @@ export const ASSETS = {
       '2025-09', 3668, '2025-10', 4058, '2025-11', 4087, '2025-12', 4309,
       '2026-01', 4753, '2026-02', 5020, '2026-03', 4856, '2026-04', 4721,
       '2026-05', 4587, '2026-06', 4228, '2026-07', 4073, '2026-08', 4411,
+      '2026-09', 4319,
     ]),
   },
   silver: {
@@ -1019,20 +1021,31 @@ export const INCONSISTENT_MONTHLY_DATA_IDS = new Set([])
 // aucun dernier point ne requiert actuellement ce badge. Réservé aux futurs cas documentés.
 export const REDUCED_CONFIDENCE_LAST_POINT = {}
 
-// Taux Livret A (moyenne annuelle, %) et inflation France INSEE (moyenne annuelle, %).
-// À ajuster si besoin — sert uniquement de comparaison pédagogique.
-export const LIVRET_A = { 2015: 0.9, 2016: 0.75, 2017: 0.75, 2018: 0.75, 2019: 0.75, 2020: 0.52, 2021: 0.5, 2022: 1.4, 2023: 2.9, 2024: 3.0, 2025: 2.16, 2026: 1.6 }
+// Taux réglementaires Livret A, dates d’entrée en vigueur (mois), contrôlés le 03/10/2026.
+// 2015–2019 : rapports Banque de France 2015 et 2018 ; 2020 : rapport 2020.
+// https://publications.banque-france.fr/sites/default/files/medias/documents/observatoire-de-l-epargne-reglementee-rapport_2015.pdf
+// https://publications.banque-france.fr/sites/default/files/medias/documents/rapport_oer_2018.pdf
+// https://publications.banque-france.fr/sites/default/files/medias/documents/rapport_er_2020.pdf
+// 2022–2024 : https://www.banque-france.fr/fr/publications-et-statistiques/publications/rapport-annuel-sur-lepargne-reglementee-2022
+// 2025–2026 : https://www.banque-france.fr/fr/publications-et-statistiques/publications/rapport-sur-lepargne-reglementee-2025
+// Règles d’intérêt : https://www.banque-france.fr/fr/a-votre-service/particuliers/connaitre-pratiques-bancaires-assurance/epargne/livret-a
+// Ces taux remplacent les anciennes moyennes annuelles arrondies.
+export const LIVRET_A = {
+  '2015-01': 1, '2015-08': 0.75, '2020-02': 0.5,
+  '2022-02': 1, '2022-08': 2, '2023-02': 3,
+  '2025-02': 2.4, '2025-08': 1.7, '2026-02': 1.5, '2026-08': 1.7,
+}
 // 2010-2014 ajoutés le 05/09/2026, à la demande du Simulateur de pouvoir d'achat (purchasing-power)
 // qui a besoin d'un historique remontant à 2010 : réutilisé ici (plutôt que dupliqué dans le nouvel
 // outil) puisque c'est déjà la source d'inflation générale partagée par l'app. Source : communiqués
 // annuels INSEE "Indice des prix à la consommation" (moyenne annuelle, IPC ensemble des ménages,
-// hors tabac) — chaque valeur reprend le titre même du communiqué INSEE correspondant :
+// tabac inclus) — chaque valeur reprend le titre même du communiqué INSEE correspondant :
 // 2010 : « Entre 2009 et 2010, les prix ont augmenté de 1,5 % en moyenne » (insee.fr/fr/statistiques/1562347)
 // 2011 : « Entre 2010 et 2011, les prix ont augmenté de 2,1 % en moyenne » (insee.fr/fr/statistiques/1563697)
 // 2012 : « Entre 2011 et 2012, les prix ont augmenté de 2,0 % en moyenne » (insee.fr/fr/statistiques/1563699)
 // 2013 : « Entre 2012 et 2013, les prix ont augmenté de 0,9 % en moyenne » (insee.fr/fr/statistiques/1563562)
 // 2014 : « Hausse des prix à la consommation de 0,5 % en moyenne en 2014 » (insee.fr/fr/statistiques/1564994)
-export const INFLATION = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9, 2014: 0.5, 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9, 2026: 1.0 }
+export const INFLATION = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9, 2014: 0.5, 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9 }
 
 export const LATEST_YM = '2026-09' // dernière donnée disponible dans les tableaux ci-dessus
 export const MONTHS_FULL = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']

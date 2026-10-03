@@ -1,5 +1,5 @@
 import { CURRENT_YEAR, computeBrut, computePoste, fmtEUR, fmtPct } from '../purchasing-power/lib.js'
-import { POSTES } from '../../data/purchasing-power.js'
+import { POSTES, PRICE_OBSERVATION } from '../../data/purchasing-power.js'
 
 const W = 1200
 const H = 1500
@@ -68,12 +68,12 @@ export function renderPurchasingPowerImage(item) {
   ctx.closePath(); ctx.fill()
   fitted(ctx, fmtPct(pct), 80, 1258, 105, 1040)
   const note = general
-    ? 'Inflation générale · 2026 estimée'
+    ? `Inflation générale · ${PRICE_OBSERVATION.label}`
     : item.posteId === 'loyer'
-      ? 'Indice IRL · projection théorique · 2026 en cours'
+      ? 'Indice IRL · T2 2026'
       : item.posteId === 'carburant'
-        ? 'Indice Énergie, pas prix à la pompe · 2026 provisoire'
-        : 'Indice alimentaire · 2026 provisoire'
+        ? `Indice Énergie · ${PRICE_OBSERVATION.label}`
+        : `Indice alimentaire · ${PRICE_OBSERVATION.label}`
   fitted(ctx, note, 80, 1392, 26, 1050)
   return canvas
 }

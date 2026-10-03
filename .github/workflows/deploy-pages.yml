@@ -51,6 +51,7 @@ jobs:
       - run: npm run audit:instrument-catalog
       - run: npm run audit:calculator-series
       - run: node scripts/test-investment-conclusions.mjs
+      - run: node scripts/test-household-benchmarks.mjs
       - run: npm run audit:publishable-content
       - run: npm run audit:source-inventory
       - run: npm run verify:tweet-midi

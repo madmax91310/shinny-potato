@@ -1,12 +1,7 @@
-// Données du Simulateur de pouvoir d'achat — séries annuelles 2010-2026, sourcées INSEE (voir
-// commentaire au-dessus de chaque série). Convention commune à toutes les séries "taux" (ALIMENTATION,
-// ENERGIE, et INFLATION réutilisée depuis src/data/market-history.js) : la valeur de l'année Y est
-// la variation moyenne annuelle des prix DURANT l'année Y (communiqué INSEE publié en général en
-// janvier de l'année Y+1), donc le facteur cumulé entre une année de départ Y0 et aujourd'hui se calcule
-// en composant les taux de Y0+1 à 2026 inclus (cf. cumulateRate dans lib.js) — jamais le taux de Y0
-// lui-même, qui décrit la hausse déjà passée avant le point de départ.
-// Les séries IRL et SMIC sont des NIVEAUX (pas des taux) : le facteur se calcule par un simple ratio
-// niveau[2026] / niveau[Y0] (cf. cumulateLevel dans lib.js).
+// Historique : variations moyennes annuelles INSEE, jusqu’à 2025 inclus.
+// Arrivée : niveau mensuel observé, base 100 = moyenne 2025. Le facteur est le produit
+// des variations annuelles Y0+1..2025 puis indice courant / 100 ; jamais le glissement annuel.
+// IRL et SMIC restent des ratios de niveaux, avec leurs dates propres.
 export { INFLATION as GENERAL_INFLATION, LATEST_YM, AMOUNT_PRESETS } from './market-history.js'
 
 export const YEAR_MIN = 2010
@@ -50,23 +45,19 @@ export const SMIC = {
   2025: 1801.80, 2026: 1867.02,
 }
 
-// Indice des prix à la consommation INSEE, fonction "Produits alimentaires et boissons non
-// alcoolisées" — variation moyenne annuelle, %. Recherché le 05/09/2026 à partir des communiqués
+// Indice des prix à la consommation INSEE, regroupement conjoncturel "Alimentation" — variation moyenne annuelle, %. Recherché le 05/09/2026 à partir des communiqués
 // annuels INSEE « Prix à la consommation » ; chaque valeur se recoupe avec le "après +X% en (année-1)"
 // cité dans le communiqué de l'année suivante (chaîne d'auto-cohérence sur 2011-2024 : ex. le
 // communiqué 2012 cite "+1,9% en 2011" qui correspond exactement à la valeur retenue pour 2011).
 // 2015 : deux formulations légèrement différentes trouvées (+0,4% et +0,5% selon le communiqué source)
 // — écart probable définitif/provisoire, +0,4% retenu (version la plus citée).
-// 2026 : ANNÉE EN COURS, non terminée — valeur = variation sur 12 mois glissants à fin juillet 2026
-// (+1,0%), PAS une moyenne annuelle comme les autres années (qui n'existe pas encore). Signalé dans
-// l'UI plutôt que présenté comme comparable aux autres années.
+// Le niveau mensuel observé est séparé de ces taux annuels : PRICE_OBSERVATION ci-dessous.
 export const ALIMENTATION = {
   2010: 0.8, 2011: 1.9, 2012: 3.0, 2013: 1.4, 2014: -0.6,
   2015: 0.4, 2016: 0.6, 2017: 1.0, 2018: 1.9, 2019: 2.5,
   2020: 1.9, 2021: 0.6, 2022: 6.8, 2023: 11.8, 2024: 1.4,
-  2025: 1.2, 2026: 1.0,
+  2025: 1.2,
 }
-export const ALIMENTATION_2026_IS_PARTIAL = true
 
 // Indice des prix à la consommation INSEE, fonction "Énergie" (carburants, électricité, gaz, fioul,
 // combustibles) — variation moyenne annuelle, %. C'est la série que l'INSEE lui-même utilise pour
@@ -75,15 +66,21 @@ export const ALIMENTATION_2026_IS_PARTIAL = true
 // 05/09/2026, même méthode de recoupement par chaîne d'auto-cohérence que ALIMENTATION ci-dessus
 // (ex. le communiqué 2019 cite "+9,7% en 2018" qui correspond à la valeur retenue pour 2018 ; le
 // communiqué 2018 cite "-2,8% en 2016... +6,2% en 2017" qui correspond aux valeurs retenues 2016/2017).
-// 2026 : ANNÉE EN COURS, non terminée — valeur = variation sur 12 mois glissants à fin juillet 2026
-// (+12,6%), PAS une moyenne annuelle comme les autres années. Signalé dans l'UI.
+// Le niveau mensuel observé est séparé de ces taux annuels : PRICE_OBSERVATION ci-dessous.
 export const ENERGIE = {
   2010: 10.0, 2011: 12.3, 2012: 5.2, 2013: 0.8, 2014: -0.9,
   2015: -4.7, 2016: -2.8, 2017: 6.2, 2018: 9.7, 2019: 1.9,
   2020: -6.1, 2021: 10.5, 2022: 23.1, 2023: 5.6, 2024: 2.3,
-  2025: -5.6, 2026: 12.6,
+  2025: -5.6,
 }
-export const ENERGIE_2026_IS_PARTIAL = true
+
+// INSEE, résultats définitifs août 2026, tableau national, base 100 = moyenne 2025.
+// Source : https://www.insee.fr/fr/statistiques/9051406, contrôlé le 03/10/2026.
+// Capture : scripts/source-snapshots/household-benchmarks-2026-10-03.json.
+export const PRICE_OBSERVATION = {
+  asOf: '2026-08', label: 'août 2026', baseYear: 2025,
+  general: 103.35, alimentation: 101.69, energie: 115.60,
+}
 
 export const POSTES = {
   loyer: {
@@ -95,13 +92,13 @@ export const POSTES = {
   alimentation: {
     id: 'alimentation', label: 'Alimentation', icon: '🛒',
     tweetNoun: 'tes courses', tweetVerb: "d'alimentation",
-    series: ALIMENTATION, seriesType: 'rate', isPartialLatestYear: ALIMENTATION_2026_IS_PARTIAL,
+    series: ALIMENTATION, seriesType: 'rate', latestFactor: PRICE_OBSERVATION.alimentation / 100,
     sourceLabel: "Indice des prix à la consommation - fonction Alimentation, INSEE",
   },
   carburant: {
     id: 'carburant', label: 'Carburant', icon: '⛽',
     tweetNoun: 'le plein', tweetVerb: "de carburant",
-    series: ENERGIE, seriesType: 'rate', isPartialLatestYear: ENERGIE_2026_IS_PARTIAL,
+    series: ENERGIE, seriesType: 'rate', latestFactor: PRICE_OBSERVATION.energie / 100,
     sourceLabel: "Indice des prix à la consommation - fonction Énergie, INSEE",
   },
 }
