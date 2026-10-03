@@ -27,6 +27,7 @@ import { FAMILIES } from "../src/data/index-comparisons.js";
 import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
 import { fmtPct } from "../src/pages/index-comparator/lib.js";
 import { buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
+import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
@@ -218,12 +219,13 @@ async function testPortfolioGenerator(page) {
   const imageOk = firstImage?.startsWith('data:image/png;base64,') && newImage?.startsWith('data:image/png;base64,') && firstImage !== newImage && download.suggestedFilename() === 'repartition-portefeuille.png';
   const autoTweet = await page.locator(".pg-tweet-body").innerText();
   const autoEditorialOk = autoTweet.startsWith("🧩 Portefeuille ") && /La logique de l’ensemble/.test(autoTweet);
-  // Un profil/palier fixé doit faire tourner les trois constructions.
+  // Un profil/palier fixé doit faire tourner toutes les constructions disponibles.
   await page.getByRole('group', { name: "Choisir un profil d'investisseur" }).getByRole('button', { name: 'Le Généraliste', exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un niveau de risque cible' }).getByRole('button', { name: 'Équilibré', exact: true }).click();
   const recipesSeen = new Set();
   let lastRecipe = null, recipesOk = true;
-  for (let i = 0; i < 6; i++) {
+  const expectedRecipes = getRecipes('generaliste', 'equilibre').length;
+  for (let i = 0; i < expectedRecipes * 2; i++) {
     await page.getByRole('button', { name: /Générer un nouveau portefeuille/i }).click();
     const label = await page.locator('.pg-recipe-label').innerText();
     recipesOk &&= label !== lastRecipe;
@@ -232,7 +234,7 @@ async function testPortfolioGenerator(page) {
     const weights = await page.locator('.pg-alloc-pct').allInnerTexts();
     recipesOk &&= weights.reduce((sum, text) => sum + parseFloat(text), 0) === 100;
   }
-  recipesOk &&= recipesSeen.size === 3;
+  recipesOk &&= recipesSeen.size === expectedRecipes;
   await page.setViewportSize({ width: 390, height: 844 });
   recipesOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
@@ -299,7 +301,7 @@ async function testPortfolioGenerator(page) {
   await page.setViewportSize({ width: 390, height: 844 });
   manualEditorialOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
-  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, trois constructions et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk}, intitulés manuels et rotation: ${manualEditorialOk}`);
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, constructions disponibles et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk}, intitulés manuels et rotation: ${manualEditorialOk}`);
 }
 
 async function testPortfolioDuels(page) {
@@ -492,6 +494,7 @@ async function testTweetMidi(page) {
   if (historical && !anniversary.includes(fmtHistoryPrice(historical.price, "USD"))) failed.push("Il y a X ans : clôture historique Bitcoin");
   for (const id of ['berkshire', 'asml']) {
     await page.locator('#subject-select').selectOption(id);
+    await page.locator('#secondary-select').selectOption('1');
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     await page.locator('#niveau-actuel').fill(String(HISTORY[id].anniversaryPoints.at(-1).price));
     const raw = HISTORY[id].anniversaryPoints.find(p => p.date === pastYm);
