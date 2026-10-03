@@ -8,6 +8,7 @@ import { INDEX_FACTS } from '../src/data/index-facts.js';
 import { INDEX_RETURNS } from '../src/data/index-returns.js';
 import { describeDataField } from '../src/pages/data-search/lib.js';
 import { getRestoredRoute } from '../src/restore-route.js';
+import { maintenanceLinks } from '../src/data/maintenance-links.js';
 import { TOOLS } from '../src/tools.js';
 const ids = new Set();
 for (const file of readdirSync(new URL('../src/data/', import.meta.url)).filter((name) => name.endsWith('.js'))) {
@@ -57,3 +58,33 @@ const route = '/shinny-potato/bibliotheque-donnees?q=DCAM&type=instrument&id=FR0
 assert.equal(getRestoredRoute(`https://example.com/shinny-potato/?__route=${encodeURIComponent(route)}`, '/shinny-potato/'), route);
 assert.equal(getRestoredRoute('https://example.com/shinny-potato/?__route=https%3A%2F%2Fevil.example%2F', '/shinny-potato/'), null);
 assert.equal(getRestoredRoute('https://example.com/shinny-potato/?__route=%2Fautre%2F', '/shinny-potato/'), null);
+
+// Un raccourci de maintenance ne réécrit ni une preuve ni une valeur historique.
+const beforeMaintenance = JSON.stringify(DATA_CATALOG);
+let maintenanceFields = 0;
+for (const record of DATA_CATALOG) for (const field of record.fields) {
+  const links = maintenanceLinks(record, field);
+  if (field.metadata.sourceStatus === 'archive-unverifiable') {
+    assert.equal(links.length, 0, 'Une archive ne doit pas paraître recertifiée');
+    continue;
+  }
+  if (record.consumers.length && field.metadata.sourceUrls.length) {
+    assert(links.length, `${record.id}/${field.label}: accès de maintenance absent`);
+    maintenanceFields++;
+  }
+  assert.equal(new Set(links.map(x => x.url)).size, links.length);
+  assert(links.every(x => new URL(x.url).protocol === 'https:'));
+}
+const dcam = DATA_CATALOG.find(r => r.id === 'FR001400U5Q4');
+const peaField = dcam.fields.find(f => f.label === 'Éligibilité PEA');
+const dcamLinks = maintenanceLinks(dcam, peaField);
+const searchLink = dcamLinks.find(x => x.kind === 'search');
+assert(searchLink, 'Le PDF Amundi daté doit proposer une recherche explicite');
+assert.equal(new URL(searchLink.url).searchParams.get('q'), 'site:www.amundietf.fr FR001400U5Q4 fiche mensuelle');
+assert(dcamLinks.some(x => x.kind === 'profile' && x.url.includes('isin=FR001400U5Q4')));
+const monthly = DATA_CATALOG.find(r => r.id === 'history:cac40');
+const monthlyLinks = maintenanceLinks(monthly, monthly.fields[0]);
+assert.equal(monthlyLinks.filter(x => x.url.includes('/quote/')).length, 1, 'Requêtes journalière et mensuelle dédoublonnées');
+assert(monthlyLinks.some(x => x.url === 'https://finance.yahoo.com/quote/%5EFCHI/history/'));
+assert.equal(JSON.stringify(DATA_CATALOG), beforeMaintenance);
+console.log(`${maintenanceFields} champs actifs avec accès de consultation ; preuves historiques et archives inchangées.`);
