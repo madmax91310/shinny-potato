@@ -1,3 +1,4 @@
+import Button from '../../design-system/Button'
 import AssetPicker from '../../design-system/AssetPicker'
 import { instrumentOption } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -111,7 +112,11 @@ export default function App() {
         subtitle="Ce que les frais de gestion (TER) coûtent réellement en euros sur le long terme, via l'effet cumulé des intérêts composés — simulation pédagogique, pas une donnée de marché."
       />
 
-      <ToolWorkspace className="fi-layout">
+      <ToolWorkspace className="fi-layout" imageContent={<div className="fi-preview fi-image-panel">
+            <p className="fi-eyebrow">Aperçu de l’image</p>
+            <canvas ref={imageRef} width="1600" height="1200" className="fi-image" role="img" aria-label="Évolution comparée des deux scénarios de frais et écart final" />
+
+          </div>} actions={<><Button onClick={handleCopy}>{copied ? "Copié ✓" : "Copier le texte"}</Button><Button variant="secondary" onClick={handleDownloadImage}>Télécharger l’image PNG</Button></>}>
         <section className="fi-control-col tool-settings">
           <div className="fi-panel">
             <p className="fi-eyebrow">Montant investi / mois</p>
@@ -196,11 +201,6 @@ export default function App() {
         </section>
 
         <section className="fi-preview-col tool-preview">
-          <div className="fi-preview fi-image-panel">
-            <p className="fi-eyebrow">Aperçu de l’image</p>
-            <canvas ref={imageRef} width="1600" height="1200" className="fi-image" role="img" aria-label="Évolution comparée des deux scénarios de frais et écart final" />
-            <button type="button" className="fi-copy-btn" onClick={handleDownloadImage}>Télécharger l’image PNG</button>
-          </div>
           <div className="fi-preview" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <label className="fi-eyebrow" htmlFor="fi-punchline" style={{ margin: 0 }}>Ta phrase personnelle · facultatif</label>
             <input
@@ -214,9 +214,7 @@ export default function App() {
               <span className={`fi-badge ${BADGE_CLASS[status.level]}`}>{status.label}</span>
             </div>
             <pre className="fi-preview-text">{text}</pre>
-            <button type="button" className="fi-copy-btn" onClick={handleCopy}>
-              {copied ? 'Copié ✓' : 'Copier le texte'}
-            </button>
+
           </div>
         </section>
       </ToolWorkspace>

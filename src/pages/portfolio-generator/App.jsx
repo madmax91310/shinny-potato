@@ -506,7 +506,7 @@ export default function App() {
         </span>
       </div>
 
-      <ToolWorkspace className="pg-main" actions={<>
+      <ToolWorkspace renderImage={() => imageDataUrl} imageAlt={`Répartition ${current.title}`} className="pg-main" actions={<>
           <div className="pg-tweet-actions">
             <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
               {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
@@ -516,10 +516,7 @@ export default function App() {
         </>}>
         <section className="pg-tweet-col tool-preview">
           <TweetCard portfolio={current} />
-          <div className="pg-image-preview">
-            <img src={imageDataUrl} alt={`Image de la répartition du portefeuille ${current.title}`} />
 
-          </div>
           <textarea ref={textareaRef} className="pg-clipboard-fallback" readOnly />
         </section>
 

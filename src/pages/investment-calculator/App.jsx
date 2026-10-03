@@ -1,3 +1,4 @@
+import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -160,12 +161,12 @@ function ResultCard({ state, d, copied, onCopy }) {
         <p className="ic-disclaimer">
           Éducation financière, pas un conseil en investissement. Données historiques parfois approximatives, frais et fiscalité non pris en compte. Les performances passées ne préjugent pas des performances futures.
         </p>
-        <div className="ic-card-footer-actions">
+        <WorkspaceActions>
           <Button type="button" onClick={onCopy}>
             {copied === 'done' ? '✓ Copié' : copied === 'error' ? 'Copie impossible' : '𝕏 Copier le texte du post'}
           </Button>
           <Button type="button" variant="secondary" onClick={showImage}>📊 Télécharger une image</Button>
-        </div>
+        </WorkspaceActions>
         <VideoExport
           videoParams={{
             series: videoResult.series,
@@ -294,7 +295,7 @@ export default function App() {
         subtitle={`Simulateur d'éducation financière — données arrêtées au plus tard en ${MONTHS_FULL[Number(LATEST_YM.split('-')[1]) - 1]} ${LATEST_YM.split('-')[0]}.`}
       />
 
-      <ToolWorkspace className="ic-layout">
+      <ToolWorkspace className="ic-layout" renderImage={() => renderInvestmentImage(state, d)} imageDisabled={resultBlocked} imageAlt="Graphique du placement">
         <div className="ic-panel tool-settings">
           <div>
             <p className="ic-eyebrow">Actif</p>

@@ -1,3 +1,5 @@
+import ActionMenu from '../../design-system/ActionMenu'
+import { downloadImage } from '../../design-system/downloadImage'
 import AssetPicker from '../../design-system/AssetPicker'
 import SupportAlternatives from './SupportAlternatives'
 import { instrumentOption } from '../../data/asset-selection.js'
@@ -264,10 +266,11 @@ export default function App() {
         subtitle={`Bibliothèque de ${ETFS.length} ETF — vérifie les chiffres (ISIN, encours, performance) avant publication.`}
       />
 
-      <ToolWorkspace actions={<>
+      <ToolWorkspace renderImage={() => renderETFImage(currentEtf)} imageAlt={`Fiche ETF ${currentEtf.name}`} actions={<>
         <Button type="button" variant="secondary" onClick={copyCurrent}>{copied ? '✅ Copié !' : '📋 Copier le texte'}</Button>
-        <Button type="button" onClick={generateSummaryImage}>🖼️ Image récapitulative</Button>
-        {hasAnnualImage && <Button type="button" variant="secondary" onClick={generateAnnualImage}>📊 Télécharger le graphique annuel</Button>}
+        <Button type="button" onClick={() => downloadImage(renderETFImage(currentEtf), `${currentEtf.id}-fiche-etf.png`)}>Télécharger l’image</Button>
+        <ActionMenu><Button type="button" variant="secondary" onClick={generateSummaryImage}>🖼️ Image récapitulative</Button>
+        {hasAnnualImage && <Button type="button" variant="secondary" onClick={generateAnnualImage}>📊 Télécharger le graphique annuel</Button>}</ActionMenu>
       </>}>
         <section className="es-preparation tool-settings" aria-labelledby="es-preparation-title">
           <div className="es-panel-heading"><h2 id="es-preparation-title">Réglages de la fiche</h2></div>

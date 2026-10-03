@@ -1,3 +1,4 @@
+import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -8,10 +9,10 @@ import {
 } from "./lib.js";
 import { getLengthStatus } from "../etf-tweets/lib/tweetFormat.js";
 import { getComparatifEtfTheme } from "./data/comparatifEtf.js";
-import { downloadComparatifEtfImage } from "./comparatifEtfImage.js";
-import { downloadPerformanceImage } from "./performanceImage.js";
-import { downloadAnniversaryImage } from "./anniversaryImage.js";
-import { downloadPurchasingPowerImage } from "./purchasingPowerImage.js";
+import { downloadComparatifEtfImage, renderComparatifEtfImage } from "./comparatifEtfImage.js";
+import { downloadPerformanceImage, renderPerformanceImage } from "./performanceImage.js";
+import { downloadAnniversaryImage, renderAnniversaryImage } from "./anniversaryImage.js";
+import { downloadPurchasingPowerImage, renderPurchasingPowerImage } from "./purchasingPowerImage.js";
 import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER, PRICE_OBSERVATION } from "../../data/purchasing-power.js";
 import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
@@ -256,7 +257,11 @@ export default function App() {
         subtitle="Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."
       />
 
-      <ToolWorkspace>
+      <ToolWorkspace renderImage={current.format === FORMATS.PERFORMANCE_DEPUIS ? () => renderPerformanceImage(current)
+        : isAnniversaire ? () => renderAnniversaryImage(current, niveauActuel, niveauActuelB)
+        : current.format === FORMATS.POUVOIR_ACHAT ? () => renderPurchasingPowerImage(current)
+        : current.format === FORMATS.COMPARATIF_ETF ? () => renderComparatifEtfImage(getComparatifEtfTheme(current.themeId))
+        : undefined} imageDisabled={copyDisabled} imageAlt="Visuel Tweet Midi">
         <div className="tool-settings">
           <Card className="flex flex-col gap-4 p-5">
             <div>
@@ -576,6 +581,7 @@ export default function App() {
               {text}
             </pre>
 
+            <WorkspaceActions>
             <Button type="button" onClick={handleCopy} disabled={copyDisabled} className="self-start">
               {copied ? "Copié ✓" : copyDisabled ? "Renseigne le(s) niveau(x) actuel(s) pour copier" : "Copier le texte"}
             </Button>
@@ -584,6 +590,7 @@ export default function App() {
                 {copyDisabled ? 'Renseigne le(s) niveau(x) actuel(s) pour télécharger' : imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le PNG' : 'Télécharger l’image PNG'}
               </Button>
             )}
+            </WorkspaceActions>
           </div>
         </div>
       </ToolWorkspace>

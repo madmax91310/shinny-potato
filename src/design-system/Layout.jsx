@@ -18,7 +18,8 @@ function Navigation() {
 export default function Layout() {
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
-  return <div className={`workspace ${pathname === '/' ? 'workspace--home' : 'workspace--tool'}`}>
+  const family = TOOL_GROUPS.find(group => group.tools.some(tool => tool.to === pathname))?.id ?? 'publish'
+  return <div data-family={family} className={`workspace ${pathname === '/' ? 'workspace--home' : 'workspace--tool'}`}>
     <a className="workspace-skip" href="#workspace-main">Aller au contenu</a>
     <div className="workspace-body">
       <aside className="workspace-sidebar"><Navigation /></aside>
