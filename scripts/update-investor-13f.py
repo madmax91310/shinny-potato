@@ -1,11 +1,15 @@
 """Refresh selected 13F managers from FolioFact's public holdings API."""
 import datetime as dt
+from email.utils import parsedate_to_datetime
 import json
 import math
 import os
 import pathlib
+import sys
 import time
 import urllib.request
+import urllib.error
+import urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MANAGERS = {
@@ -22,18 +26,52 @@ MANAGERS = {
     'klarman': ('baupost-group', 'Seth Klarman', 'Baupost Group LLC'),
 }
 _last_request_at = 0
+MAX_RATE_LIMIT_RETRIES = 3
+MAX_RETRY_AFTER_SECONDS = 300
+
+
+def retry_after_seconds(value):
+    """Accept HTTP delta-seconds or an HTTP date; malformed hints use backoff."""
+    if value is None:
+        return None
+    value = value.strip()
+    if value.isascii() and value.isdigit():
+        return int(value)
+    try:
+        deadline = parsedate_to_datetime(value)
+        if deadline.tzinfo is None:
+            deadline = deadline.replace(tzinfo=dt.timezone.utc)
+        return max(0, (deadline - dt.datetime.now(dt.timezone.utc)).total_seconds())
+    except (ValueError, TypeError, OverflowError):
+        return None
 
 
 def get_json(url):
     global _last_request_at
-    # Public FolioFact limit: 20 requests/minute. ARK alone spans eight pages;
-    # spacing every request keeps the expanded refresh inside that budget.
-    if 'foliofact.com/' in url:
-        time.sleep(max(0, 3.1 - (time.monotonic() - _last_request_at)))
-        _last_request_at = time.monotonic()
     request = urllib.request.Request(url, headers={'Accept': 'application/json', 'User-Agent': 'EpargnantLibre/1.0'})
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return json.load(response)
+    for attempt in range(MAX_RATE_LIMIT_RETRIES + 1):
+        # Apply FolioFact's 20 requests/minute pacing to retries as well.
+        if urllib.parse.urlparse(url).hostname == 'foliofact.com':
+            time.sleep(max(0, 3.1 - (time.monotonic() - _last_request_at)))
+            _last_request_at = time.monotonic()
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as error:
+            if error.code != 429 or attempt == MAX_RATE_LIMIT_RETRIES:
+                error.close()
+                raise
+            delay = retry_after_seconds(error.headers.get('Retry-After'))
+            # Never retry earlier than the provider requests. An excessive hint
+            # fails visibly instead of blocking indefinitely or being truncated.
+            if delay is not None and delay > MAX_RETRY_AFTER_SECONDS:
+                print(f'HTTP 429: Retry-After exceeds {MAX_RETRY_AFTER_SECONDS}s budget: {url}', file=sys.stderr, flush=True)
+                error.close()
+                raise
+            delay = delay if delay is not None else min(15 * 2 ** attempt, 60)
+            error.close()
+            print(f'HTTP 429: retry {attempt + 1}/{MAX_RATE_LIMIT_RETRIES} in {delay:.1f}s: {url}', file=sys.stderr, flush=True)
+            time.sleep(delay)
 
 
 def shares_change(row):

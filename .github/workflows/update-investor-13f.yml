@@ -2,6 +2,11 @@ name: Update all 11 investor 13F portfolios
 on:
   schedule:
     - cron: '25 12 * * *'
+  pull_request:
+    paths:
+      - 'scripts/update-investor-13f.py'
+      - 'scripts/test_investor_refresh.py'
+      - '.github/workflows/update-investor-13f.yml'
   workflow_dispatch:
 permissions:
   contents: write
@@ -11,8 +16,23 @@ concurrency:
   group: investor-13f-refresh
   cancel-in-progress: false
 jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
+      # Fetch and validate all 11 live portfolios in the disposable PR workspace.
+      # No commit or deployment is possible from this read-only job.
+      - run: python -u scripts/update-investor-13f.py
   update:
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.commit.outputs.changed }}

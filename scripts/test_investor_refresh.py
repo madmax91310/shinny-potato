@@ -1,6 +1,9 @@
 """Regression checks for automatic 13F snapshot refresh."""
 import importlib.util
 import json
+import io
+from email.message import Message
+from contextlib import redirect_stderr
 import pathlib
 import tempfile
 import unittest
@@ -122,6 +125,101 @@ class RefreshTests(unittest.TestCase):
                 self.assertEqual(data['data']['snapshot']['holdings'][0]['weight'], .9)
             self.assertFalse(list(directory.glob('*.tmp')))
 
+
+
+class RateLimitTests(unittest.TestCase):
+    url = 'https://foliofact.com/api/v1/funds/third-point/holdings?page=2'
+
+    def error(self, hint=None, code=429):
+        headers = Message()
+        if hint is not None:
+            headers['Retry-After'] = hint
+        return module.urllib.error.HTTPError(self.url, code, 'provider error', headers, io.BytesIO())
+
+    def setUp(self):
+        self.clock = 1000.0
+        self.delays = []
+        self.starts = []
+        self.patches = [patch.object(module, '_last_request_at', 0),
+                        patch.object(module.time, 'monotonic', lambda: self.clock),
+                        patch.object(module.time, 'sleep', self.sleep)]
+        for mock in self.patches:
+            mock.start()
+            self.addCleanup(mock.stop)
+
+    def sleep(self, seconds):
+        self.delays.append(seconds)
+        self.clock += seconds
+
+    def fetch(self, outcomes):
+        def open_request(*args, **kwargs):
+            self.starts.append(self.clock)
+            result = outcomes.pop(0)
+            if isinstance(result, Exception):
+                raise result
+            return io.BytesIO(json.dumps(result).encode())
+        return patch.object(module.urllib.request, 'urlopen', side_effect=open_request)
+
+    def test_delta_seconds_and_same_paginated_url_retry(self):
+        with self.fetch([self.error('42'), {'holdings': [1]}]) as fetch, redirect_stderr(io.StringIO()) as log:
+            self.assertEqual(module.get_json(self.url), {'holdings': [1]})
+        self.assertEqual(self.starts, [1000, 1042])
+        self.assertEqual([call.args[0].full_url for call in fetch.call_args_list], [self.url, self.url])
+        self.assertIn('retry 1/3', log.getvalue())
+
+    def test_http_date_retry_after(self):
+        now = module.dt.datetime(2026, 10, 3, 16, 31, tzinfo=module.dt.timezone.utc)
+        with patch.object(module.dt, 'datetime', wraps=module.dt.datetime) as clock:
+            clock.now.return_value = now
+            with self.fetch([self.error('Sat, 03 Oct 2026 16:32:00 GMT'), {}]), redirect_stderr(io.StringIO()):
+                module.get_json(self.url)
+        self.assertEqual(self.starts, [1000, 1060])
+
+    def test_missing_or_invalid_hint_uses_bounded_backoff_and_exhausts(self):
+        for hint in [None, 'invalid', '-1', 'nan']:
+            with self.subTest(hint=hint):
+                errors = [self.error(hint) for _ in range(4)]
+                start = self.clock
+                with self.fetch(errors.copy()), redirect_stderr(io.StringIO()), self.assertRaises(module.urllib.error.HTTPError) as raised:
+                    module.get_json(self.url)
+                self.assertIs(raised.exception, errors[-1])
+                self.assertEqual([b - a for a, b in zip(self.starts[-4:], self.starts[-3:])], [15, 30, 60])
+                self.assertGreaterEqual(self.starts[-4], start)
+
+    def test_zero_hint_still_respects_request_pacing(self):
+        with self.fetch([self.error('0'), {}, {}]), redirect_stderr(io.StringIO()):
+            module.get_json(self.url)
+            module.get_json(self.url)
+        for first, second in zip(self.starts, self.starts[1:]):
+            self.assertAlmostEqual(second - first, 3.1)
+
+    def test_excessive_hint_fails_without_retrying_early(self):
+        with self.fetch([self.error('301')]) as fetch, redirect_stderr(io.StringIO()), self.assertRaises(module.urllib.error.HTTPError):
+            module.get_json(self.url)
+        self.assertEqual(fetch.call_count, 1)
+        self.assertEqual(sum(self.delays), 0)
+
+    def test_other_http_errors_and_invalid_json_are_not_retried(self):
+        with self.fetch([self.error(code=500)]) as fetch, self.assertRaises(module.urllib.error.HTTPError):
+            module.get_json(self.url)
+        self.assertEqual(fetch.call_count, 1)
+        with patch.object(module.urllib.request, 'urlopen', return_value=io.BytesIO(b'invalid')) as fetch, self.assertRaises(json.JSONDecodeError):
+            module.get_json(self.url)
+        self.assertEqual(fetch.call_count, 1)
+
+    def test_exhausted_pagination_keeps_all_snapshots_and_archives_intact(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = pathlib.Path(folder)
+            for slug in module.MANAGERS:
+                (directory / f'{slug}.json').write_text(json.dumps(portfolio('2026-06-30')))
+            before = {p.relative_to(directory): p.read_bytes() for p in directory.rglob('*') if p.is_file()}
+            def fetch(slug, *args):
+                if slug == 'loeb':
+                    module.get_json(self.url)
+                return portfolio('2026-09-30')
+            with self.fetch([self.error() for _ in range(4)]), redirect_stderr(io.StringIO()), self.assertRaises(module.urllib.error.HTTPError):
+                module.refresh(directory, fetch)
+            self.assertEqual(before, {p.relative_to(directory): p.read_bytes() for p in directory.rglob('*') if p.is_file()})
 
 if __name__ == '__main__':
     unittest.main()
