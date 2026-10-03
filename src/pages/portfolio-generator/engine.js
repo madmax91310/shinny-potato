@@ -366,7 +366,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection, riskId)) throw new Error("Aucune composition respectant le profil et le risque n’a été trouvée.");
 
   const contextText = boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || "";
-  const editorial = buildEditorial(selection, history, profileId, riskId, combo);
+  const editorial = buildEditorial(selection, history, profileId, riskId);
 
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
