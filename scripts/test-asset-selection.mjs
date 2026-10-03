@@ -1,3 +1,4 @@
+import { portfolioAssetLabel } from '../src/pages/portfolio-generator/compact.js'
 import assert from 'node:assert/strict'
 import { normalizeSearch, instrumentOption, sameBenchmarkSupports, benchmarkKey, exposureGroup } from '../src/data/asset-selection.js'
 import { ASSETS, YEARS } from '../src/data/portfolio-assets.js'
@@ -31,7 +32,7 @@ try {
     assert.ok(YEARS.every(y=>Number.isFinite(updated.perf[y])))
     const worst=Math.min(...Object.values(updated.perf)), bounds=RISK_BOUNDS[risk]
     assert.ok(bounds.min===null||worst>=bounds.min); assert.ok(bounds.max===null||worst<=bounds.max)
-    assert.ok(renderTweetText(updated).includes(candidate.name))
+    assert.ok(renderTweetText(updated).includes(portfolioAssetLabel(candidate)))
     assert.ok(!getReplacementCandidates(updated,candidate.id).some(a=>updated.selection.some(s=>s.id===a.id)))
    }
    count++

@@ -61,7 +61,7 @@ function checkInvariants(p) {
   if (/\b(?:undefined|NaN)\b/.test(tweet)) problems.push("tweet contenant une valeur indéfinie");
   if (/Méthode\s*:|Historique incomplet|non disponible|n\.d\./i.test(tweet)) problems.push("note de méthode ou année vide dans le tweet");
   for (const y of YEARS) if (!Number.isFinite(p.perf[y])) problems.push(`performance absente en ${y}`);
-  if (!tweet.includes(`⚠️ ${p.warning}`)) problems.push("avertissement absent du tweet");
+  if (p.selection.some(s => LEVERAGE_IDS.includes(s.id)) && !tweet.includes("Le levier 2x est quotidien")) problems.push("explication du levier absente du tweet");
   const weights = p.selection.map((s) => s.pct);
   // Un total éditorial (bloc Europe, capital hors crypto…) peut réunir plus de trois lignes.
   // Vérifier toutes les sommes de poches réellement présentes, sans accepter un nombre arbitraire.

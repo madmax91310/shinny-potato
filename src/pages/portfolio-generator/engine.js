@@ -1,12 +1,12 @@
 import { benchmarkKey } from '../../data/asset-selection.js';
-import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js';
+import { compactRole, portfolioAssetLabel, compactHooks } from "./compact.js";
 import { ASSETS, YEARS, getAsset } from '../../data/portfolio-assets.js';
 import { computeYearlyPerf } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
 } from "./theses.js";
-import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
+import { DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
 import { exposureVector, exposureSignature, exposureDistance } from "./exposures.js";
 import { getRecipes, withinRecipe } from "./recipes.js";
 import { buildEditorial } from "./editorial.js";
@@ -393,25 +393,10 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
 }
 
 export function renderTweetText(p) {
-  const blocks = [];
-  blocks.push(p.hook);
-  blocks.push(p.intro);
-  blocks.push(p.sousTitre);
-  blocks.push(SEPARATOR);
-  blocks.push(
-    p.selection
-      .map((s) => `${s.emoji} ${s.pct}% ${s.name}\n→ ${s.desc}\n💡 ${s.pourquoi}`)
-      .join("\n\n")
-  );
-  blocks.push(`🔍 La logique de l’ensemble\n${p.logic}`);
-  blocks.push(SEPARATOR);
-  const yearsLine = YEARS.map((y) => `${y} ${fmtPct(p.perf[y])}`).join(" · ");
-  blocks.push(
-    `📈 Performances simulées :\n${yearsLine}\n\n→ Pire année : ${fmtPct(p.worst.value)} en ${p.worst.year}.\n${p.context}`
-  );
-  for (const asset of p.selection) if (SIMULATION_PROXIES[asset.isin]) blocks.push(`Base historique pour ${asset.name} : ${SIMULATION_PROXIES[asset.isin].scope}.`);
-  if (p.warning) blocks.push(`⚠️ ${p.warning}`);
-  blocks.push(SEPARATOR);
+  // Rebuild from the actual holdings as saved history can contain the old copy.
+  const blocks = [p.hook?.startsWith('🧩 Exemple de portefeuille :') ? p.hook : compactHooks(p.selection)[0]];
+  blocks.push(p.selection.map(s => `${s.emoji} ${s.pct}% ${portfolioAssetLabel(s)}\n${compactRole(s, p.selection)}`).join("\n\n"));
+  if (p.selection.some(s => ["lqq", "cl2"].includes(s.id))) blocks.push("Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.");
   blocks.push(p.cta);
   blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE}`);
   return blocks.join("\n\n");

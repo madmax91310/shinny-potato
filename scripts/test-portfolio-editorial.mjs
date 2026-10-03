@@ -10,7 +10,7 @@ for (const profile of PROFILES) {
   const p = manual(base, profile.id);
   assert.match(p.logic, /entreprises en commun/);
   assert.deepEqual(p.perf, computeYearlyPerf(p.selection));
-  assert.match(renderTweetText(p), /🔍 La logique de l’ensemble/);
+  assert.doesNotMatch(renderTweetText(p), /🔍 La logique de l’ensemble|💡|📈 Performances/);
   assert.doesNotMatch(p.warning + p.cta, /Ethereum|Bitcoin|absence d.actions américaines/i);
 }
 const dominant = manual([{id:"msci_world",pct:90},{id:"or",pct:10}]);
@@ -20,7 +20,7 @@ assert.match(satellite.selection[0].pourquoi, /10%.*davantage en fonds euros/);
 const euro = manual([{id:"cac40",pct:30},{id:"eurostoxx50",pct:70}]);
 assert.match(euro.logic, /entreprises en commun/);
 const crypto = manual([{id:"fonds_euros",pct:58},{id:"bitcoin",pct:10},{id:"msci_world",pct:22},{id:"or",pct:10}]);
-assert.match(crypto.hook, /^🧩 Portefeuille Monde \+ Bitcoin/);
+assert.match(crypto.hook, /^🧩 Exemple de portefeuille :.*Bitcoin/);
 assert.doesNotMatch(crypto.hook, /\d+(?:[,.]\d+)?\s*%/);
 assert.match(crypto.logic, /petite ligne.*difficile à garder/);
 const leverage = manual([{id:"lqq",pct:10},{id:"fonds_euros",pct:90}]);
@@ -38,7 +38,7 @@ for (const asset of ASSETS) {
 }
 for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombos)) {
   const p = generatePortfolio([], risk, profile.id);
-  assert.ok(p.hook.startsWith(`🧩 Portefeuille ${profile.label.replace(/^(?:Le |L['’])/, "")}\n\n`));
+  assert.ok(p.hook.startsWith("🧩 Exemple de portefeuille :"));
   assert.match(p.sousTitre, /La répartition/);
   assert.ok(p.logic.length > 50);
   assert.deepEqual(p.perf, computeYearlyPerf(p.selection));
@@ -46,7 +46,7 @@ for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombo
 // La sélection manuelle n’hérite pas du profil choisi dans le formulaire.
 for (const profile of PROFILES) {
   const p = manual([{id:"fonds_euros",pct:100}], profile.id);
-  assert.match(p.hook, /^🧩 Portefeuille à dominante fonds euros\n/);
+  assert.match(p.hook, /^🧩 Exemple de portefeuille :.*fonds euros/);
   assert.doesNotMatch(p.hook, /Crypto-Curieux|Bitcoin|Thématique|à la carte/i);
 }
 const headingCases = [
@@ -55,8 +55,8 @@ const headingCases = [
   [[{id:"msci_europe",pct:75},{id:"or",pct:25}], "à dominante européenne"],
   [[{id:"ethereum",pct:40},{id:"argent",pct:30},{id:"scpi",pct:30}], ""],
 ];
-for (const [rows, label] of headingCases) {
-  assert.equal(manual(rows).hook.split("\n")[0], "🧩 Portefeuille" + (label ? ` ${label}` : ""));
+for (const [rows] of headingCases) {
+  assert.match(manual(rows).hook, /^🧩 Exemple de portefeuille :/);
 }
 // Les familles d’accroches tournent même si les poids changent entre deux générations.
 const hookHistory = [];
@@ -123,7 +123,7 @@ for (let i=0;i<6;i++) {
   assert.doesNotMatch(p.cta, /à le |à les |de le |de les /);
   btcHistory.push(p);
 }
-assert.match(btcHistory[0].hook, /montagnes russes/);
+assert.match(btcHistory[0].hook, /fonds euros.*Bitcoin/);
 assert.match(btcHistory[0].selection[1].pourquoi, /davantage en fonds euros/);
 assert.match(btcHistory[0].cta, /fonds mondial/);
 const stale = buildEditorial(minority.selection, [], "bouclier", "prudent", {description:"Fonds euros dominants : 90%."});
@@ -196,5 +196,31 @@ const longBonds = manual([{id:'msci_world_ishares',pct:70},{id:'oblig_eur_long_i
 assert.match(longBonds.logic,/obligations longues.*sensibilité aux taux/s);
 for (const isin of ['IE0006WW1TQ4','FR0014017NX3']) {
   const asset = ASSETS.find(a => a.isin === isin);
-  assert.match(renderTweetText(manual([{id:asset.id,pct:100}])),/Base historique.*2020–2025/);
+  assert.match(asset.confidenceNote,/2020–2025/);
 }
+
+// Compact publication stays identifiable and keeps instrument-specific roles.
+const example = manual([{id:'msci_world_amundi_pea',pct:24},{id:'nasdaq100_ishares',pct:9},{id:'actions_value',pct:28},{id:'cl2',pct:4},{id:'msci_em_spdr',pct:20},{id:'or_wisdomtree',pct:15}]);
+const compactText = renderTweetText(example);
+assert.equal(example.hook, '🧩 Exemple de portefeuille : des actions mondiales, de l’or et une touche de levier 👇');
+assert.ok(compactText.length < 1600);
+assert.doesNotMatch(compactText, /La logique|💡|→|Pire année|Performances simulées|Base historique/);
+assert.match(compactText, /levier 2x est quotidien/);
+assert.equal(compactText.split('\n').filter(line => /^\S+ \d+% /.test(line)).length, 6);
+assert.match(example.selection.find(s=>s.id==='actions_value').shortRole,/moins chères/);
+assert.match(acwiEmerging.selection[1].shortRole, /émergents déjà présents/);
+assert.match(worldEmerging.selection[1].shortRole, /ne couvre pas.*petites entreprises/);
+const { dataLabels, portfolioAssetLabel } = await import('../src/pages/portfolio-generator/compact.js');
+assert.deepEqual(dataLabels({confidenceNote:'Rendements NAV de la part en euros ; arrondis publiés par l’émetteur.'}), []);
+assert.deepEqual(dataLabels({confidenceNote:'Rendements de la part en dollars.'}), ['Données en USD']);
+assert.ok(dataLabels(ASSETS.find(a=>a.isin==='FR0014017NX3')).includes('Historique reconstitué'));
+assert.equal(portfolioAssetLabel(example.selection[3]), 'MSCI USA ×2 · Amundi');
+for (const asset of ASSETS) {
+  const p = manual([{id:asset.id,pct:100}]);
+  assert.ok(p.selection[0].shortRole.split(/\s+/).length <= 45, asset.id);
+  assert.ok(p.hook.length <= 200, asset.id);
+  assert.match(renderTweetText(p), /pas un conseil en investissement/);
+}
+// Saved portfolios from the previous generator also receive compact export copy.
+assert.doesNotMatch(renderTweetText({...example, hook:'🧩 Portefeuille Généraliste\nLongue accroche', selection:example.selection.map(s=>({id:s.id,isin:s.isin,name:s.name,pct:s.pct,emoji:s.emoji,cat:s.cat}))}), /Longue accroche|La logique/);
+console.log('OK : publication compacte, chevauchements, titres courts et précision des données.');

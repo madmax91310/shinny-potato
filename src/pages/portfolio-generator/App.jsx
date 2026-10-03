@@ -1,3 +1,4 @@
+import { dataLabels } from './compact.js'
 import { instrumentOption, normalizeSearch } from '../../data/asset-selection.js'
 import ReplacementPanel from './ReplacementPanel'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -311,11 +312,9 @@ function AllocationList({ selection }) {
               <span className="pg-alloc-name-text">
                 {s.emoji} {s.name}
               </span>
-              {s.confidenceNote && (
-                <span className="pg-confidence-badge" title={s.confidenceNote}>
-                  ⚠️
-                </span>
-              )}
+              {dataLabels(s).map(label => (
+                <span key={label} className="pg-data-label" title={s.confidenceNote}>{label}</span>
+              ))}
             </span>
             <span className="pg-alloc-cat">{CATEGORIES[s.cat].label}</span>
             <span className="pg-alloc-pct">{s.pct}%</span>
@@ -619,9 +618,12 @@ export default function App() {
             <PerfChart perf={current.perf} />
           </div>
 
+          {current.selection.some(asset => dataLabels(asset).includes('Données en USD')) && (
+            <p className="pg-method-summary">Simulation à partir des devises publiées, sans conversion : ce résultat ne représente pas une performance en euros.</p>
+          )}
           {current.selection.some((asset) => asset.confidenceNote) && (
             <details className="pg-panel pg-panel-muted">
-              <summary>Sources et limites des performances simulées</summary>
+              <summary>Sources et méthode</summary>
               <ul>
                 {current.selection.filter((asset) => asset.confidenceNote).map((asset) => (
                   <li key={asset.id}><strong>{asset.name}</strong> : {asset.confidenceNote}</li>
