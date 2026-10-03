@@ -59,6 +59,31 @@ function record(tool, ok, detail) {
   console.log(`  [${ok ? "OK" : "ÉCHEC"}] ${tool}${detail ? " — " + detail : ""}`);
 }
 
+async function testWorkspaceNavigation(page) {
+  await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+  const checks = { allTools: await page.locator('.workspace-tool-card').count() === 16 };
+  await page.getByRole('searchbox', { name: 'Rechercher un outil' }).fill('donnees');
+  checks.accentSearch = await page.locator('.workspace-tool-card').count() === 2;
+  await page.getByRole('searchbox').fill('outil inexistant');
+  checks.empty = await page.getByRole('status').isVisible();
+  await page.getByRole('searchbox').fill('');
+  for (const width of [320, 390, 768, 1280]) {
+    await page.setViewportSize({ width, height: 844 });
+    checks[`overflow${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('.workspace-mobile-menu summary').click();
+  await page.locator('.workspace-mobile-menu').getByRole('link', { name: 'Fiches ETF', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Choisir un ETF' }).waitFor();
+  checks.menuCloses = await page.locator('.workspace-mobile-menu').getAttribute('open') === null;
+  await page.reload({ waitUntil: 'networkidle' });
+  checks.directLink = await page.getByRole('heading', { name: "Présentation d'ETF", exact: true }).isVisible();
+  checks.mobileEtf = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  checks.active = await page.locator('.workspace-sidebar').getByRole('link', { name: 'Fiches ETF', exact: true }).getAttribute('aria-current') === 'page';
+  record('Accueil et navigation', Object.values(checks).every(Boolean), JSON.stringify(checks));
+}
+
 async function testCalculateur(page) {
   await page.goto(`${BASE}/calculateur-investissement`, { waitUntil: "networkidle" });
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
@@ -930,6 +955,7 @@ try {
     : {});
   const page = await browser.newPage();
 
+  await testWorkspaceNavigation(page);
   await testCalculateur(page);
   await testPortfolioGenerator(page);
   await testPortfolioDuels(page);

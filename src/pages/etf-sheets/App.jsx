@@ -264,9 +264,12 @@ export default function App() {
         subtitle={`Bibliothèque de ${ETFS.length} ETF — vérifie les chiffres (ISIN, encours, performance) avant publication.`}
       />
 
+      <section className="es-preparation" aria-labelledby="es-preparation-title">
+        <div className="es-panel-heading"><h2 id="es-preparation-title">Préparer ta fiche</h2><p>Choisis un ETF, puis copie le texte ou crée ton visuel.</p></div>
       <div className="es-controls">
         <div className="es-select-shell">
-          <select className="es-select" aria-label="Choisir un ETF" value={currentId} onChange={(e) => selectETF(e.target.value)}>
+          <label htmlFor="es-etf-select">ETF à présenter</label>
+          <select id="es-etf-select" className="es-select" aria-label="Choisir un ETF" value={currentId} onChange={(e) => selectETF(e.target.value)}>
             {optgroups.map(({ cat, etfs }) => (
               <optgroup key={cat} label={`${CATEGORY_EMOJI[cat] || ''} ${cat}`}>
                 {etfs.map((e) => (
@@ -293,6 +296,8 @@ export default function App() {
         {!hasAnnualImage && <span className="es-image-hint">Graphique annuel indisponible pour cet ETF.</span>}
       </div>
 
+      </section>
+      <div className="es-preview-heading"><h2>Aperçu de la publication</h2><span>Texte et chiffres de la fiche</span></div>
       <EtfCard etf={currentEtf} />
 
       <p className="es-disclaimer" style={{ marginTop: 22 }}>

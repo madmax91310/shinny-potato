@@ -25,7 +25,7 @@ try {
   })
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
   assert.deepEqual(requested, initialFiles, 'Home fetched deferred code')
-  await page.getByRole('heading', { name: 'Boîte à outils' }).waitFor()
+  await page.getByRole('heading', { name: /Une idée\. Un outil\./ }).waitFor()
 
   // Hold a tool's JS to prove that Suspense leaves the shell visible and usable.
   let release
@@ -33,18 +33,18 @@ try {
   const started = new Promise(resolve => { requestedTool = resolve })
   const gate = new Promise(resolve => { release = resolve })
   await page.route('**/assets/*.js', async route => { requestedTool(); await gate; await route.continue() })
-  await page.locator('nav').getByRole('link', { name: 'Impact des frais', exact: true }).click()
+  await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Impact des frais', exact: true }).click()
   try {
     await started
     // Router transitions keep the previous content while a lazy route loads.
-    assert(await page.getByRole('heading', { name: 'Boîte à outils' }).isVisible())
-    assert(await page.locator('nav').getByRole('link', { name: 'Accueil', exact: true }).isVisible())
+    assert(await page.getByRole('heading', { name: /Une idée\. Un outil\./ }).isVisible())
+    assert(await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).isVisible())
   } finally { release() }
   await page.getByLabel('ETF du scénario 1', { exact: true }).waitFor()
   await page.unroute('**/assets/*.js')
   assert(requested.size > initialFiles.size, 'Navigation did not fetch deferred code')
-  await page.locator('nav').getByRole('link', { name: 'Accueil', exact: true }).click()
-  await page.getByRole('heading', { name: 'Boîte à outils' }).waitFor()
+  await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).click()
+  await page.getByRole('heading', { name: /Une idée\. Un outil\./ }).waitFor()
   await page.goBack()
   await page.getByLabel('ETF du scénario 1', { exact: true }).waitFor()
 
@@ -57,7 +57,7 @@ try {
   await slow.goto(`${base}/impact-frais`, { waitUntil: 'domcontentloaded' })
   try {
     await slow.getByRole('status').filter({ hasText: 'Chargement de l’outil' }).waitFor()
-    assert(await slow.locator('nav').getByRole('link', { name: 'Accueil', exact: true }).isVisible())
+    assert(await slow.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).isVisible())
   } finally { releaseSlow() }
   await slow.getByLabel('ETF du scénario 1', { exact: true }).waitFor()
   await slow.close()

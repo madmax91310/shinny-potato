@@ -1,25 +1,27 @@
+import { useState } from 'react'
 import ToolCard from '../design-system/ToolCard'
-import { TOOLS } from '../tools'
+import { TOOLS, TOOL_GROUPS } from '../tools'
 
 export default function Home() {
-  return (
-    <div>
-      <div className="mb-8 space-y-2">
-        <h1 className="text-2xl font-semibold text-slate-50 sm:text-3xl">Boîte à outils</h1>
-        <p className="max-w-2xl text-sm text-slate-400 sm:text-base">
-          Les outils du compte d'éducation financière, réunis au même endroit.
-        </p>
-      </div>
-      {/* 2 par ligne à toutes les tailles d'écran (demande explicite du 25/09/2026). Colonnes de
-          largeur fixe (pas 50/50 du conteneur) : avec grid-cols-2 classique, plafonner la largeur
-          de ToolCard laissait un vide énorme entre les deux colonnes sur les grands écrans —
-          repéré à l'écran avant de pousser ce correctif. minmax(0, 220px) garde les cartes collées
-          l'une à l'autre, quelle que soit la largeur du conteneur. */}
-      <div className="grid grid-cols-[repeat(2,minmax(0,220px))] gap-3 sm:gap-4">
-        {TOOLS.map((tool) => (
-          <ToolCard key={tool.to} {...tool} />
-        ))}
-      </div>
+  const [query, setQuery] = useState('')
+  const normalized = query.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  const matches = tool => `${tool.title} ${tool.description} ${tool.navLabel}`.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(normalized)
+  return <div className="workspace-home">
+    <header className="workspace-hero">
+      <p className="workspace-eyebrow">Ton atelier Épargnant Libre</p>
+      <h1>Une idée. Un outil.<br /><span>Ta prochaine publication.</span></h1>
+      <p>Compare, explore et prépare tes contenus depuis un seul espace.</p>
+      <label className="workspace-search"><span>Rechercher un outil</span><input type="search" placeholder="ETF, portefeuille, données…" value={query} onChange={e => setQuery(e.target.value)} /></label>
+    </header>
+    <div className="workspace-catalog">
+      {TOOL_GROUPS.map(group => {
+        const tools = group.tools.filter(matches)
+        return tools.length > 0 && <section key={group.id} aria-labelledby={`group-${group.id}`} className="workspace-tool-group">
+          <div className="workspace-section-heading"><div><h2 id={`group-${group.id}`}>{group.title}</h2><p>{group.description}</p></div><span>{tools.length} outils</span></div>
+          <div className="workspace-tool-grid">{tools.map(tool => <ToolCard key={tool.to} {...tool} />)}</div>
+        </section>
+      })}
+      {!TOOLS.some(matches) && <p role="status" className="workspace-empty">Aucun outil trouvé. Essaie « ETF », « indices » ou « données ».</p>}
     </div>
-  )
+  </div>
 }

@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { TOOLS, TOOL_GROUPS } from '../tools'
+import ToolIcon from './ToolIcon'
 
-// En-tête commune à chaque page outil : fil d'ariane retour + titre + sous-titre.
 export default function PageHeader({ title, subtitle }) {
-  return (
-    <div className="mb-6 space-y-2">
-      <Link to="/" className="text-sm text-slate-500 transition-colors hover:text-teal-300">
-        ← Retour aux outils
-      </Link>
-      <h1 className="text-2xl font-semibold text-slate-50 sm:text-3xl">{title}</h1>
-      {subtitle && <p className="text-sm text-slate-400 sm:text-base">{subtitle}</p>}
-    </div>
-  )
+  const { pathname } = useLocation()
+  const tool = TOOLS.find(item => item.to === pathname)
+  const group = TOOL_GROUPS.find(item => item.paths.includes(pathname))
+  return <header className="workspace-page-header">
+    <div className="workspace-breadcrumb"><Link to="/">← Retour aux outils</Link>{group && <span>{group.title}</span>}</div>
+    <div className="workspace-page-title">{tool && <span className="workspace-page-icon" aria-hidden="true"><ToolIcon to={tool.to} /></span>}<h1>{title}</h1></div>
+    {subtitle && <p>{subtitle}</p>}
+  </header>
 }

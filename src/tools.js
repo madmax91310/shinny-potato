@@ -135,3 +135,30 @@ export const TOOLS = [
     status: 'disponible',
   },
 ]
+
+const TOOL_SUMMARIES = {
+  '/comparateur-indices': 'Expositions, diversification et performances des indices.',
+  '/comparatif-courtiers': 'Frais, PEA et services des courtiers en face à face.',
+  '/calculateur-investissement': 'Ce que serait devenu ton investissement au fil du temps.',
+  '/impact-frais': 'Mesure ce que les frais changent à ton capital final.',
+  '/generateur-portefeuilles': 'Explore des allocations selon le profil et le risque.',
+  '/duels-portefeuilles': 'Deux portefeuilles, deux façons d’investir.',
+  '/portefeuilles-investisseurs': 'Les positions déclarées de grands investisseurs.',
+  '/tweet-midi': 'Des formats variés pour ton rendez-vous du midi.',
+  '/fiches-etf': 'Un ETF expliqué, avec son texte et ses visuels.',
+  '/tweets-factsheets': 'Décrypte la composition et les caractéristiques des indices.',
+  '/faits-marquants-marches': 'Des faits historiques pour raconter les marchés.',
+  '/cas-concrets': 'Des situations concrètes pour comprendre un choix de placement.',
+  '/france-100-menages': 'Le patrimoine et les revenus en chiffres et en images.',
+  '/banque-tweets': 'Retrouve tes publications et prépare leur réutilisation.',
+  '/bibliotheque-donnees': 'Recherche un actif, ses chiffres et ses sources.',
+  '/donnees-a-revoir': 'Les données à actualiser et leurs prochaines échéances.',
+}
+
+// Les mêmes groupes alimentent l’accueil et la navigation.
+export const TOOL_GROUPS = [
+  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/comparateur-indices', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
+  { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/tweet-midi', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/cas-concrets', '/france-100-menages', '/banque-tweets'] },
+  { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
+].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })) }))
