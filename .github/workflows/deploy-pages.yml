@@ -44,6 +44,7 @@ jobs:
       - run: npm run audit:portfolio-duels
       - run: npm run audit:broker-evidence
       - run: npm run audit:data-review
+      - run: node scripts/test-data-review-reminder.mjs
       - run: npm run audit:performance-consistency
       - run: npm run audit:etf-annual-performance
       - run: npm run audit:etf-consistency
