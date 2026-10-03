@@ -1183,18 +1183,17 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
   },
   "IE00B4NCWG09": {
     "sourceUrls": [
-      "https://www.ishares.com/uk/individual/en/products/258443/",
-      "https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf"
+      "https://www.ishares.com/uk/individual/en/products/258443/"
     ],
     "asOf": "2025-12-31",
     "dateStatus": "dated",
     "periodStart": "2020-01-01",
     "periodEnd": "2025-12-31",
-    "checkedAt": "2026-09-30",
-    "currency": null,
-    "scope": "Série 2020–2025 du générateur pour IE00B4NCWG09",
-    "method": "Autre fonds ou historique mixte",
-    "note": "Rendements annuels de l'ETC publiés en dollars par BlackRock, convertis approximativement en euros avec les taux de fin d'année de la BCE. Ce ne sont pas des rendements officiels en euros. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+    "checkedAt": "2026-10-03",
+    "currency": "USD",
+    "scope": "Rendements calendaires 2020–2025 de la part IE00B4NCWG09",
+    "method": "Rendements NAV calendaires de la part exacte dans la devise publiée",
+    "note": "Tableau Total Return (%) USD de BlackRock recoupé le 03/10/2026. Chiffres nets des frais du produit, aucune conversion en euros. asOf désigne la fin de la période calendaire."
   },
   "IE00BM8R0J59": {
     "sourceUrls": [

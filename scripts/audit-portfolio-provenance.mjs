@@ -8,9 +8,9 @@ import { ASSETS } from '../src/data/portfolio-assets.js'
 import { VERIFIED_RETURNS } from '../src/data/verified-returns.js'
 
 const groups = {
-  'Fonds confirmé chez l’émetteur': `monetaire_xeon oblig_0_1_ishares oblig_global_agg_eur_hedged actions_india_ishares infrastructure_ishares oblig_hy_ishares_acc oblig_em_local_ishares_acc world_minvol_ishares world_quality_ishares world_momentum_ishares msci_acwi_ishares immo_ishares_yield sect_cyber_lg sect_biotech_ishares sect_energy_spdr sect_tech_world_ishares sect_ai_lg sect_batteries_lg sect_water_amundi sect_luxury_amundi dividend_aristocrats_us_spdr msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
+  'Fonds confirmé chez l’émetteur': `argent monetaire_xeon oblig_0_1_ishares oblig_global_agg_eur_hedged actions_india_ishares infrastructure_ishares oblig_hy_ishares_acc oblig_em_local_ishares_acc world_minvol_ishares world_quality_ishares world_momentum_ishares msci_acwi_ishares immo_ishares_yield sect_cyber_lg sect_biotech_ishares sect_energy_spdr sect_tech_world_ishares sect_ai_lg sect_batteries_lg sect_water_amundi sect_luxury_amundi dividend_aristocrats_us_spdr msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
   'Indice ou cours du sous-jacent': `bitcoin bitcoin_21shares ethereum msci_world_amundi_pea smallcap_europe`,
-  'Autre fonds ou historique mixte': `argent qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
+  'Autre fonds ou historique mixte': `qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
 for (const r of EXPOSURE_ADDITIONS) {
@@ -32,7 +32,7 @@ const requiresNote = new Set(['Indice ou cours du sous-jacent', 'Autre fonds ou 
 const additionalNotes = new Set('nasdaq100_ishares sp500_ishares ftse_em_vanguard actions_coree actions_taiwan actions_japon actions_value oblig_etat_us sect_energie sect_tech sect_robotique sect_cybersecurite sect_financieres sect_sante smallcap_monde mp_large high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes strat_dividendes_dist'.split(' '))
 // Devise de la série effectivement utilisée, indépendamment de la place où la part se cote.
 // Les autres lignes restent « à documenter » tant qu'une fiche ne l'établit pas clairement.
-const usdReturns = new Set(`actions_india_ishares infrastructure_ishares nasdaq100_ishares actions_coree actions_taiwan actions_asie_ex_japon
+const usdReturns = new Set(`argent actions_india_ishares infrastructure_ishares nasdaq100_ishares actions_coree actions_taiwan actions_asie_ex_japon
   ftse_em_vanguard or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
@@ -50,6 +50,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+  argent: VERIFIED_RETURNS.IE00B4NCWG09.source,
 ...Object.fromEntries(EXPOSURE_ADDITIONS.filter(r => !SIMULATION_PROXIES[r.isin]).map(r => [r.id, r.perfSource ?? r.source])),
   monetaire_xeon: VERIFIED_RETURNS.LU0290358497.source,
   oblig_0_1_ishares: VERIFIED_RETURNS.IE00B3FH7618.source,
@@ -142,7 +143,6 @@ const partialIssuerSources = {
 }
 const proxySources = {
 pea_global_amundi: SIMULATION_PROXIES.FR0014017NX3.source,
-  argent: 'https://www.ishares.com/uk/individual/en/products/258443/ + https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf',
   oblig_hy_amundi: 'https://etf.dws.com/en/AssetDownload/Index/1ebf0fe4-b1c2-4d0f-a165-da75e3bcca7e/DWS-PASTPERF-LU1109943388-LU-en-2026-02-16.pdf + https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/RETAIL/ETF',
 }
 const genericSources = {
@@ -161,6 +161,7 @@ world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.source,
 // Garde les corrections chiffrées issues des tableaux annuels du fournisseur indiqué.
 // Les cours crypto proviennent de Slickcharts, les rendements d'ETF de leur émetteur.
 const primarySeries = new Map(Object.entries({
+  argent: [46.2, -13.0, 3.5, -0.8, 21.3, 148.6],
 world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.values,
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   smallcap_europe: [4.37, 23.72, -22.11, 12.86, 5.70, 16.62],
@@ -192,7 +193,6 @@ const verifiedSeries = new Map(Object.entries({
 // Les sources et la raison du mélange figurent dans partialIssuerSources/proxySources.
 const mixedSeries = new Map(Object.entries({
 pea_global_amundi: getInstrumentReturnValues('FR0014017NX3'),
-  argent: [33.84, -5.74, 9.90, -4.25, 29.02, 119.80],
   qyld_ucits: [8.76, 10.34, -19.00, 22.82, 19.13, 9.31],
   oblig_hy_amundi: [1.50, 3.10, -9.60, 11.60, 6.80, 4.70],
   actions_asie_ex_japon: [25.10, -8.92, -21.95, 2.30, 11.67, 39.91],
@@ -200,7 +200,7 @@ pea_global_amundi: getInstrumentReturnValues('FR0014017NX3'),
   bitcoin_etcgroup: [303.16, 55.46, -64.67, 150.42, 120.73, -9.68],
 }))
 const requiredDisclosures = new Map(Object.entries({
-  argent: /convertis.*euros|conversion.*euros/i,
+  argent: /publiés en dollars.*aucune conversion/i,
   qyld_ucits: /2020-2025.*NAV USD.*américain.*novembre 2022.*BXNTU.*pas ceux de sa part UCITS/i,
   tech_europe: /2020.*indice MSCI.*2021-2025.*iShares/i,
   oblig_hy_amundi: /2020-2025.*Xtrackers.*même indice.*Amundi/i,

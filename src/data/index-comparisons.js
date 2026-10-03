@@ -862,12 +862,8 @@ export const FAMILIES = [
   // Or : perfFunds reprend la série "or_ishares" (NAV BlackRock USD, source directe iShares) pour
   // rester cohérent avec le fonds affiché en premier dans le bloc 2 ci-dessous — les 3 autres
   // émetteurs ont chacun leur propre série, très proche (à 0,3 pt près), dans le Générateur.
-  // Argent : valeur reprise telle quelle du Générateur (id "argent") — NAV BlackRock USD convertie
-  // en € via les taux BCE (méthode documentée dans son commentaire), pas un cours spot direct.
-  // Résultat : l'or reste en $ (NAV du fonds, devise native) et l'argent en € (converti) — deux
-  // devises différentes dans la même famille, même situation déjà acceptée dans la famille
-  // "Japon" (Nikkei en ¥, TOPIX en €), disclosure explicite plutôt que masquée (cf.
-  // perfMethodNote ci-dessous).
+  // Contrôle du 03/10/2026 : or et argent utilisent leurs rendements NAV officiels USD,
+  // nets des frais de chaque ETC, sans conversion de devise. L’argent vient de VERIFIED_RETURNS.
   {
     id: 'or-argent',
     label: '🥇 Or & Argent',
@@ -900,7 +896,7 @@ export const FAMILIES = [
       { key: 'or', label: 'Or physique', ...getInstrumentComparatorReturns('IE00B4ND3602') },
       { key: 'argent', label: 'Argent physique', ...getInstrumentComparatorReturns('IE00B4NCWG09') },
     ],
-    perfMethodNote: 'ℹ️ Pas de dividende ni de coupon : un ETC or/argent ne verse aucun revenu, sa performance suit le NAV du fonds. Or : NAV nette de frais en $, devise native du fonds. Argent : NAV $ convertie en € par le Générateur de portefeuilles (cf. son commentaire pour le détail du calcul) — les deux lignes ne sont donc pas dans la même devise.',
+    perfMethodNote: 'ℹ️ Or et argent : rendements NAV officiels des ETC iShares en dollars, nets des frais du produit, sans conversion de devise. Aucun dividende ni coupon.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '🛡️ Tu veux la valeur refuge la plus reconnue ?', a: 'Or physique.' },
