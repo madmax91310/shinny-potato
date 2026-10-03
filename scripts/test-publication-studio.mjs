@@ -63,7 +63,7 @@ try {
  const [download] = await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()])
  assert.equal(download.suggestedFilename(),'msci-world-fiche-etf.png')
  await page.locator('.workspace-action-menu summary').click()
- assert(await page.getByRole('button',{name:/graphique annuel/}).isVisible())
+ await page.getByRole('button',{name:/Image récapitulative/}).waitFor()
  await page.keyboard.press('Escape')
  assert.equal(await page.locator('.workspace-action-menu').getAttribute('open'),null)
  await page.setViewportSize({width:1440,height:900})
