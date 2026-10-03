@@ -65,7 +65,7 @@ export function scheduledReview(base, field, today) {
   }
   const remaining = nextReviewAt ? dayNumber(nextReviewAt) - dayNumber(today) : null
   const category = checked === null ? 'undated' : checked > dayNumber(today) ? 'future-date' : remaining <= 0 ? 'stale' : remaining <= SOON_DAYS ? 'soon' : 'current'
-  return { ...base, nextReviewAt, category, dataType: policy.type, reason: policy.rule }
+  return { ...base, nextReviewAt, category, cadence: policy.annual ? 'annual' : { 1: 'monthly', 3: 'quarterly', 6: 'semiannual', 12: 'annual' }[policy.months], dataType: policy.type, reason: policy.rule }
 }
 
 // Interface de maintenance uniquement : aucune modification des valeurs ou des générateurs.
@@ -105,7 +105,7 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
         if (status && !items.some(x => x.id === id)) items.push({ ...review, id, dataType: 'Courtiers', field: source.title, checkedAt: source.checked, urls: [source.url], category: status, reason: status === 'undated' ? 'Date du contrôle non documentée.' : 'Source du courtier à revoir ; la date d’édition du contrat ne date pas son contrôle.' })
         if (source.reviewUntil) {
           const offerId = `offer:${broker.id}:${ref.document}`
-          if (!items.some(x => x.id === offerId)) items.push({ ...base, id: offerId, field: source.title, checkedAt: source.checked, until: source.reviewUntil, urls: [source.url], nextReviewAt: source.reviewUntil, dataType: 'Offres promotionnelles', category: expiry(source.reviewUntil, today), reason: 'Échéance enregistrée dans la source. Vérifier une éventuelle prolongation avant de modifier l’offre.' })
+          if (!items.some(x => x.id === offerId)) items.push({ ...base, id: offerId, field: source.title, checkedAt: source.checked, until: source.reviewUntil, urls: [source.url], nextReviewAt: source.reviewUntil, cadence: 'event', dataType: 'Offres promotionnelles', category: expiry(source.reviewUntil, today), reason: 'Échéance enregistrée dans la source. Vérifier une éventuelle prolongation avant de modifier l’offre.' })
         }
       }
     }
@@ -120,7 +120,7 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
     date.setUTCDate(date.getUTCDate() + 45)
     const nextReviewAt = date.toISOString().slice(0, 10)
     const remaining = dayNumber(nextReviewAt) - dayNumber(today)
-    const row = { id: `investor:${payload.data.identity.slug}`, name: payload.data.identity.displayName, aliases: [payload.data.identity.slug], field: `Portefeuille au ${snapshot.periodEnd}`, checkedAt: payload.as_of?.slice(0, 10), nextReviewAt, category: remaining <= 0 ? 'stale' : remaining <= SOON_DAYS ? 'soon' : 'current', dataType: 'Portefeuilles trimestriels', tools: ['Présentation investisseur'], registry: 'public/data/investors', to: '/portefeuilles-investisseurs', urls: [payload.data.sourceUrl || 'https://www.sec.gov/edgar/search/'], reason: 'Contrôler le trimestre suivant 45 jours après sa clôture. La collecte et le déploiement sont automatiques ; une date de récupération récente ne prouve pas la présence du nouveau trimestre.' }
+    const row = { id: `investor:${payload.data.identity.slug}`, name: payload.data.identity.displayName, aliases: [payload.data.identity.slug], field: `Portefeuille au ${snapshot.periodEnd}`, checkedAt: payload.as_of?.slice(0, 10), nextReviewAt, category: remaining <= 0 ? 'stale' : remaining <= SOON_DAYS ? 'soon' : 'current', cadence: 'quarterly', dataType: 'Portefeuilles trimestriels', tools: ['Présentation investisseur'], registry: 'public/data/investors', to: '/portefeuilles-investisseurs', urls: [payload.data.sourceUrl || 'https://www.sec.gov/edgar/search/'], reason: 'Contrôler le trimestre suivant 45 jours après sa clôture. La collecte et le déploiement sont automatiques ; une date de récupération récente ne prouve pas la présence du nouveau trimestre.' }
     schedule.push(row)
     if (row.category !== 'current') items.push(row)
   }
@@ -128,4 +128,30 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
   items.sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category) || (dayNumber(a.nextReviewAt ?? a.until) ?? -Infinity) - (dayNumber(b.nextReviewAt ?? b.until) ?? -Infinity) || a.name.localeCompare(b.name, 'fr') || a.field.localeCompare(b.field, 'fr'))
   schedule.sort((a, b) => (dayNumber(a.nextReviewAt) ?? -Infinity) - (dayNumber(b.nextReviewAt) ?? -Infinity) || a.name.localeCompare(b.name, 'fr'))
   return { today, items, schedule, archives }
+}
+
+// Le regroupement consomme la périodicité de la règle qui a calculé la date.
+// Il ne recalcule aucune échéance et n'assimile pas un retard à une erreur.
+export const REVIEW_CADENCES = {
+  monthly: 'Mensuel', quarterly: 'Trimestriel', semiannual: 'Semestriel',
+  annual: 'Annuel', event: 'Échéances des offres',
+}
+export function reviewCalendar(report) {
+  return [...new Map([...report.schedule, ...report.items.filter(item => item.until)].map(item => [item.id, item])).values()]
+}
+export function summarizeCadences(rows, today) {
+  const currentDay = dayNumber(today)
+  if (currentDay === null) throw new Error('Date de revue invalide')
+  return Object.entries(REVIEW_CADENCES).map(([id, label]) => {
+    const items = rows.filter(item => item.cadence === id)
+    const dated = items.filter(item => dayNumber(item.nextReviewAt) !== null && !['undated', 'future-date'].includes(item.category))
+    const due = dated.filter(item => dayNumber(item.nextReviewAt) <= currentDay)
+    const upcoming = dated.filter(item => dayNumber(item.nextReviewAt) > currentDay)
+    const earliest = list => list.map(item => item.nextReviewAt).sort()[0] ?? null
+    return { id, label, total: items.length, due: due.length,
+      oldestDueAt: earliest(due), nextReviewAt: earliest(upcoming),
+      unplanned: items.length - dated.length,
+      types: [...new Set(items.map(item => item.dataType))],
+    }
+  })
 }

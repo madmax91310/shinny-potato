@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
-import { buildReview, parisToday } from './lib.js'
+import { buildReview, parisToday, REVIEW_CADENCES, reviewCalendar, summarizeCadences } from './lib.js'
 import './data-review.css'
 
 const LABELS = { expired: 'Offre expirée', 'future-date': 'Date à examiner', reserve: 'Réserve ouverte', stale: 'À revoir / en retard', current: 'À jour', undated: 'Contrôle non daté', ending: 'Échéance proche', soon: 'Revue prochaine', scheduled: 'Échéance à venir' }
@@ -17,13 +17,30 @@ export default function DataReview() {
   const [params, setParams] = useSearchParams()
   const query = params.get('q') ?? ''
   const view = Object.hasOwn(VIEWS, params.get('view')) ? params.get('view') : 'action'
-  function update(key, value) { const next = new URLSearchParams(params); next.set(key, value); setParams(next, { replace: true }) }
+  function update(key, value) {
+    const next = new URLSearchParams(params)
+    next.set(key, value)
+    // Une réserve n'a pas de cycle de contrôle : ne pas la masquer derrière
+    // la temporalité du calendrier précédemment sélectionnée.
+    if (key === 'view' && value === 'reserve') next.delete('cadence')
+    setParams(next, { replace: true })
+  }
   const tool = params.get('tool') ?? ''
   const tools = [...new Set([...report.schedule, ...report.items].flatMap(item => item.tools))].sort((a, b) => a.localeCompare(b, 'fr'))
-  const rows = view === 'calendar' || view === 'soon' ? [...report.schedule, ...report.items.filter(item => item.until)] : report.items
+  const cadence = Object.hasOwn(REVIEW_CADENCES, params.get('cadence')) ? params.get('cadence') : ''
+  const matches = item => (!tool || item.tools.includes(tool)) && normalize([item.name, item.field, ...item.tools, ...item.aliases ?? []].join(' ')).includes(normalize(query.trim()))
+  const calendar = reviewCalendar(report)
+  const summaries = summarizeCadences(calendar.filter(matches), today)
+  function selectCadence(value) {
+    const next = new URLSearchParams(params)
+    next.set('cadence', value)
+    next.set('view', 'calendar')
+    setParams(next, { replace: true })
+  }
+  const rows = view === 'calendar' || view === 'soon' ? calendar : report.items
   const items = rows.filter(item => {
     const visible = view === 'calendar' || (view === 'soon' && ['soon', 'ending'].includes(item.category)) || view === 'all' || (view === 'action' && ACTIONABLE.includes(item.category)) || (view === 'deadlines' && item.until) || (view === 'reserve' && item.category === 'reserve') || (view === 'dates' && !item.until && item.category !== 'reserve')
-    return visible && (!tool || item.tools.includes(tool)) && normalize([item.name, item.field, ...item.tools, ...item.aliases ?? []].join(' ')).includes(normalize(query.trim()))
+    return visible && (!cadence || item.cadence === cadence) && matches(item)
   })
   const count = categories => report.items.filter(item => categories.includes(item.category)).length
   return <div className="data-review">
@@ -35,9 +52,23 @@ export default function DataReview() {
       <div><strong>{count(['stale'])}</strong><span>vérifications arrivées à échéance</span></div>
       <div><strong>{count(['undated', 'future-date'])}</strong><span>dates de contrôle à examiner</span></div>
     </div>
+    <section className="dr-reminders" aria-labelledby="dr-reminders-title">
+      <h2 id="dr-reminders-title">Rappels par temporalité</h2>
+      <p className="dr-note">Retrouve les données à vérifier chaque mois, trimestre, semestre ou année. Les dates suivent les contrôles déjà réalisés et les publications attendues.</p>
+      <div className="dr-cadences">{summaries.map(group => <button type="button" className="dr-cadence" key={group.id} aria-pressed={cadence === group.id} onClick={() => selectCadence(group.id)}>
+        <strong>{group.label}</strong>
+        <span className="dr-cadence-types">{group.types.join(' · ') || 'Aucune donnée pour cette sélection'}</span>
+        <span>{group.total} contrôle{group.total > 1 ? 's' : ''} suivi{group.total > 1 ? 's' : ''}</span>
+        <span className={group.due ? 'dr-cadence-due' : ''}>{group.due ? `${group.due} à revoir · depuis le ${dateLabel(group.oldestDueAt)}` : 'Aucune échéance à revoir aujourd’hui'}</span>
+        <span>Prochaine échéance : {group.nextReviewAt ? dateLabel(group.nextReviewAt) : 'Aucune date à venir'}</span>
+        {group.unplanned > 0 && <span>{group.unplanned} date{group.unplanned > 1 ? 's' : ''} à examiner</span>}
+        <span className="dr-cadence-link">Voir les données →</span>
+      </button>)}</div>
+    </section>
     <div className="dr-controls">
       <label>Rechercher une donnée ou un outil<input type="search" value={query} onChange={event => update('q', event.target.value)} placeholder="IBKR, encours, Fortuneo…" /></label>
       <label>Afficher<select aria-label="Afficher" value={view} onChange={event => update('view', event.target.value)}>{Object.entries(VIEWS).map(([key, label]) => <option value={key} key={key}>{label}</option>)}</select></label>
+      <label>Temporalité<select aria-label="Temporalité" value={cadence} onChange={event => selectCadence(event.target.value)}><option value="">Toutes les temporalités</option>{Object.entries(REVIEW_CADENCES).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
       <label>Outil<select aria-label="Outil" value={tool} onChange={event => update('tool', event.target.value)}><option value="">Tous les outils</option>{tools.map(name => <option key={name} value={name}>{name}</option>)}</select></label>
     </div>
     <p role="status" className="dr-note">{items.length} élément{items.length > 1 ? 's' : ''} affiché{items.length > 1 ? 's' : ''}</p>
@@ -45,7 +76,7 @@ export default function DataReview() {
       <span className={`dr-badge dr-${item.category}`}>{LABELS[item.category]}</span>
       <h2>{item.name} · {item.field}</h2>
       <p>{item.reason}</p>
-      <dl>{item.dataType && <><dt>Type de données</dt><dd>{item.dataType}</dd></>}<dt>Dernière vérification</dt><dd>{dateLabel(item.checkedAt)}</dd>{!item.until && item.category !== 'reserve' && <><dt>Prochaine vérification</dt><dd>{dateLabel(item.nextReviewAt)}</dd></>}{item.until && <><dt>Fin de l’offre</dt><dd>{dateLabel(item.until)}</dd></>}<dt>Outils concernés</dt><dd>{item.tools.join(' · ')}</dd></dl>
+      <dl>{item.cadence && <><dt>Temporalité</dt><dd>{REVIEW_CADENCES[item.cadence]}</dd></>}{item.dataType && <><dt>Type de données</dt><dd>{item.dataType}</dd></>}<dt>Dernière vérification</dt><dd>{dateLabel(item.checkedAt)}</dd>{!item.until && item.category !== 'reserve' && <><dt>Prochaine vérification</dt><dd>{dateLabel(item.nextReviewAt)}</dd></>}{item.until && <><dt>Fin de l’offre</dt><dd>{dateLabel(item.until)}</dd></>}<dt>Outils concernés</dt><dd>{item.tools.join(' · ')}</dd></dl>
       {item.detail && <details><summary>Lire la réserve</summary><p>{item.detail}</p></details>}
       <div className="dr-links"><Link to={item.to}>Ouvrir {item.to.startsWith('/bibliotheque') ? 'la fiche de données' : item.to === '/comparatif-courtiers' ? 'le comparatif courtiers' : 'le portefeuille investisseur'}</Link>{item.urls.map((url, index) => <a href={url} key={url} target="_blank" rel="noreferrer">Source{item.urls.length > 1 ? ` ${index + 1}` : ''} ↗</a>)}</div>
     </article>)}</div>
