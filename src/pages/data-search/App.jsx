@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
+import MaintenanceLinks from '../../design-system/MaintenanceLinks'
 import { searchData, exportDataRecord } from '../../data/catalog.js'
 import { describeDataField, describeEvidenceDate } from './lib.js'
 import './data-search.css'
@@ -52,6 +53,7 @@ export default function DataSearch() {
         {selected.fields.map((field, i) => <section className="ds-field" key={`${field.label}-${i}`}>
           <h4>{field.label}</h4>{describeDataField(field) && <p className="ds-value">{describeDataField(field)}</p>}<code>{field.registry}</code>
           <dl><dt>Date de référence</dt><dd>{describeEvidenceDate(field.metadata)}</dd>{field.metadata.periodStart && <><dt>Période couverte</dt><dd>{field.metadata.periodStart} à {field.metadata.periodEnd}</dd></>}<dt>Contrôle de la source</dt><dd>{field.metadata.sourceStatus === 'archive-unverifiable' ? 'Aucune publication historique recertifiée' : unknown(field.metadata.checkedAt)}</dd>{field.metadata.reviewedAt && <><dt>Revue de provenance</dt><dd>{field.metadata.reviewedAt}</dd></>}<dt>Devise</dt><dd>{unknown(field.metadata.currency)}</dd><dt>Périmètre</dt><dd>{field.metadata.scope}</dd>{field.metadata.method && <><dt>Méthode</dt><dd>{field.metadata.method}</dd></>}</dl>
+          <MaintenanceLinks record={selected} field={field} />
           {field.metadata.sourceUrls.length ? <ul>{field.metadata.sourceUrls.map((url) => <li key={url}><a href={url} target="_blank" rel="noreferrer">{url}</a></li>)}</ul> : <p className="ds-note">{field.metadata.sourceStatus === 'archive-unverifiable' ? 'Archive non vérifiable' : 'Source individuelle non renseignée dans le registre.'}</p>}
           {field.metadata.sourceReason && <p className="ds-note">{field.metadata.sourceReason}</p>}
           {field.metadata.note && <p className="ds-note">{field.metadata.note}</p>}

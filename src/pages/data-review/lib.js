@@ -78,7 +78,7 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
     for (const [index, field] of record.fields.entries()) {
       if (field.metadata.sourceStatus === 'archive-unverifiable') { archives++; continue }
       if (!record.consumers.length) continue
-      const base = { name: record.name, aliases: [record.id, ...record.aliases ?? []], field: field.label, checkedAt: field.metadata.checkedAt, urls: field.metadata.sourceUrls, to: `/bibliotheque-donnees?id=${encodeURIComponent(record.id)}`, tools: record.consumers.map(c => c.tool), registry: field.registry }
+      const base = { maintenanceRecord: record, maintenanceField: field, name: record.name, aliases: [record.id, ...record.aliases ?? []], field: field.label, checkedAt: field.metadata.checkedAt, urls: field.metadata.sourceUrls, to: `/bibliotheque-donnees?id=${encodeURIComponent(record.id)}`, tools: record.consumers.map(c => c.tool), registry: field.registry }
       const review = scheduledReview({ ...base, id: `data:${record.id}:${index}` }, field, today)
       schedule.push(review)
       if (review.category !== 'current') items.push(review)

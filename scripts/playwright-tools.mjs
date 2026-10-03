@@ -739,6 +739,8 @@ async function testDataSearch(page) {
   await search.fill('DCAM');
   // Le changement de paramètres est une navigation React ; attendre la fiche correspondante.
   await page.locator('.ds-detail').filter({ hasText: 'FR001400U5Q4' }).waitFor();
+  const maintenanceSearch = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Éligibilité PEA', exact: true }) }).locator('.maintenance-links a').filter({ hasText: 'Rechercher la nouvelle publication' });
+  checks.maintenance = new URL(await maintenanceSearch.getAttribute('href')).searchParams.get('q') === 'site:www.amundietf.fr FR001400U5Q4 fiche mensuelle';
   const instrumentText = await page.locator('.ds-detail').innerText();
   checks.instrument = instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes('2026-09-30');
   const aum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours', exact: true }) });
@@ -957,6 +959,9 @@ try {
   await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.dr-item').length === 3);
   reviewChecks.deadlines = (await page.locator('.dr-item').count()) === 3;
   reviewChecks.sources = (await page.getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;
+  await page.goto(`${BASE}/donnees-a-revoir?view=calendar&q=FR001400U5Q4`, { waitUntil: 'networkidle' });
+  reviewChecks.maintenance = (await page.locator('.dr-item .maintenance-links a').filter({ hasText: 'Rechercher la nouvelle publication' }).count()) > 0;
+  reviewChecks.historicalEvidence = (await page.locator('.dr-links a[href*="20260331"]').count()) > 0;
   await page.setViewportSize({ width: 390, height: 844 });
   reviewChecks.mobile = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });

@@ -77,3 +77,22 @@ l'or (dernière moyenne mensuelle disponible : août). Les 23 autres séries
 mensuelles arrivent à échéance le 1er novembre. Les 9 réserves et les 4 contrôles
 non datés restent visibles. Les dates ne certifient pas les données et ne
 déclenchent pas de recherche automatique supplémentaire.
+
+## Accès pour les mises à jour manuelles
+
+Chaque champ sourcé de la bibliothèque et du calendrier propose un bloc
+« Pour préparer la mise à jour ». Les pages et documents sans date figée
+restent consultables directement. Une preuve PDF datée propose une recherche
+sur le domaine du fournisseur, avec l’ISIN pour les instruments ou le nom de
+la fiche pour les autres données. Ce lien est identifié comme recherche :
+il ne prétend pas avoir retrouvé ni vérifié la dernière publication.
+Les requêtes Yahoo figées disposent d’un lien de consultation manuelle vers
+l’historique du même ticker. Aucun appel externe n’est exécuté par l’application.
+Pour les ETF, le profil déjà enregistré dans les preuves d’identité complète
+les liens de recherche. Les liens identiques sont dédoublonnés.
+
+Les preuves du dernier contrôle, dates, valeurs, exports JSON et échéances ne
+changent pas. Les archives non recertifiables ne reçoivent pas de raccourci
+pouvant laisser croire qu’elles ont été validées. Avant une mise à jour,
+comparer la période, la devise et le périmètre, puis mettre à jour le registre
+commun et sa preuve. Les générateurs ne sont pas modifiés.

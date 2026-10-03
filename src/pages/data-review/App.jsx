@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
+import MaintenanceLinks from '../../design-system/MaintenanceLinks'
 import { buildReview, parisToday, REVIEW_CADENCES, reviewCalendar, summarizeCadences } from './lib.js'
 import './data-review.css'
 
@@ -78,6 +79,7 @@ export default function DataReview() {
       <p>{item.reason}</p>
       <dl>{item.cadence && <><dt>Temporalité</dt><dd>{REVIEW_CADENCES[item.cadence]}</dd></>}{item.dataType && <><dt>Type de données</dt><dd>{item.dataType}</dd></>}<dt>Dernière vérification</dt><dd>{dateLabel(item.checkedAt)}</dd>{!item.until && item.category !== 'reserve' && <><dt>Prochaine vérification</dt><dd>{dateLabel(item.nextReviewAt)}</dd></>}{item.until && <><dt>Fin de l’offre</dt><dd>{dateLabel(item.until)}</dd></>}<dt>Outils concernés</dt><dd>{item.tools.join(' · ')}</dd></dl>
       {item.detail && <details><summary>Lire la réserve</summary><p>{item.detail}</p></details>}
+      {item.maintenanceRecord && <MaintenanceLinks record={item.maintenanceRecord} field={item.maintenanceField} />}
       <div className="dr-links"><Link to={item.to}>Ouvrir {item.to.startsWith('/bibliotheque') ? 'la fiche de données' : item.to === '/comparatif-courtiers' ? 'le comparatif courtiers' : 'le portefeuille investisseur'}</Link>{item.urls.map((url, index) => <a href={url} key={url} target="_blank" rel="noreferrer">Source{item.urls.length > 1 ? ` ${index + 1}` : ''} ↗</a>)}</div>
     </article>)}</div>
     {!items.length && <p className="dr-empty">Aucun élément pour cette sélection.</p>}
