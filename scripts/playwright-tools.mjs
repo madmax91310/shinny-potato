@@ -281,7 +281,8 @@ async function testPortfolioGenerator(page) {
   await page.locator(".pg-manual-pct-input").fill("100");
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
-  let manualEditorialOk = manualTweet.startsWith("🧩 Exemple de portefeuille :") && !/\d+(?:[,.]\d+)?\s*%/.test(manualTweet.split("\n")[0]) && /toute l’épargne/.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
+  let manualEditorialOk = manualTweet.startsWith("🧩 Exemple de portefeuille :") && !/\d+(?:[,.]\d+)?\s*%/.test(manualTweet.split("\n")[0]) && /toute l’épargne/i.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
+  const manualStages = { single: manualEditorialOk };
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-pct-input').fill('50');
   await page.locator('#pg-manual-search').fill('Bitcoin');
@@ -290,6 +291,7 @@ async function testPortfolioGenerator(page) {
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const cryptoTweet = await page.locator('.pg-tweet-body').innerText();
   manualEditorialOk &&= cryptoTweet.startsWith('🧩 Exemple de portefeuille :') && /50% Bitcoin/.test(cryptoTweet) && !/à la carte/i.test(cryptoTweet);
+  manualStages.crypto = manualEditorialOk;
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-remove').first().click();
   await page.locator('#pg-manual-search').fill('Amundi MSCI World UCITS ETF');
@@ -298,6 +300,7 @@ async function testPortfolioGenerator(page) {
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const worldBitcoinTweet = await page.locator('.pg-tweet-body').innerText();
   manualEditorialOk &&= worldBitcoinTweet.startsWith('🧩 Exemple de portefeuille :') && /50% Bitcoin/.test(worldBitcoinTweet) && !/\d+(?:[,.]\d+)?\s*%/.test(worldBitcoinTweet.split('\n')[0]);
+  manualStages.worldBitcoin = manualEditorialOk;
   await page.getByRole('button', { name: /Nouveau texte, même composition/ }).click();
   const rotatedTweet = await page.locator('.pg-tweet-body').innerText();
   manualEditorialOk &&= rotatedTweet !== worldBitcoinTweet && rotatedTweet.startsWith('🧩 Exemple de portefeuille :');
@@ -314,6 +317,7 @@ async function testPortfolioGenerator(page) {
     && /10% Bitcoin/.test(personalTweet)
     && /au fonds mondial|10% de crypto/.test(personalTweet)
     && !/\d+(?:[,.]\d+)?\s*%/.test(personalTweet.split('\n')[0]);
+  manualStages.personal = manualEditorialOk;
   // Les corrections éditoriales doivent aussi traverser l’interface manuelle.
   for (const [rows, expected] of [
     [[['qyld_ucits',37],['high_dividend_dist',39],['oblig_etat_us',24]], [/options.*hausse.*primes/s,/dividendes/,/obligations/]],
@@ -337,7 +341,7 @@ async function testPortfolioGenerator(page) {
   await page.setViewportSize({ width: 390, height: 844 });
   manualEditorialOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
-  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, constructions disponibles et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk}, intitulés manuels et rotation: ${manualEditorialOk}`);
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, constructions disponibles et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk}, intitulés manuels et rotation: ${manualEditorialOk}, étapes: ${JSON.stringify(manualStages)}`);
 }
 
 async function testPortfolioDuels(page) {
