@@ -767,7 +767,7 @@ async function testFactsheetTweets(page) {
   const count = await select.locator('option').count();
   let ok = count === SHEETS.length;
   for (let index = 0; index < count; index++) {
-    await select.selectOption({ index });
+    await select.selectOption(SHEETS[index].id);
     const tweet = await draft.inputValue();
     ok &&= tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR'));
     ok &&= tweet.includes('2025') && /Les (principaux )?secteurs|La pondération/.test(tweet);
