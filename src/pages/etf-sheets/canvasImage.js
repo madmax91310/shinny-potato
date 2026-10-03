@@ -2,7 +2,7 @@ import { loadArtImage, loadEditorialFont, drawTitaniumMark } from '../tweet-midi
 import { getETFArt } from './visualIdentity.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance.js'
 
-const W = 1600, H = 2000, PAD = 100, INK = '#252822', MUTED = '#64655d', PAPER = '#eeede7'
+const W = 1600, H = 2000, PAD = 100, INK = '#252822', MUTED = '#45473f', PAPER = '#eeede7'
 const sans = size => `${size}px Arial, sans-serif`
 function wrap(ctx, text, width) {
   if (String(text).includes('\n')) return String(text).split('\n').flatMap(line => wrap(ctx, line, width))
@@ -15,10 +15,10 @@ function wrap(ctx, text, width) {
   return lines
 }
 // Measured text keeps long names and dated evidence complete, without truncation.
-function block(ctx, text, x, y, width, height, { size = 34, min = 22, editorial = false, color = INK } = {}) {
+function block(ctx, text, x, y, width, height, { size = 34, min = 22, editorial = false, color = INK, weight = 400 } = {}) {
   let lines, lineHeight
   for (; size >= min; size--) {
-    ctx.font = editorial ? `500 ${size}px ExportEditorial, Georgia, serif` : sans(size)
+    ctx.font = editorial ? `500 ${size}px ExportEditorial, Georgia, serif` : `${weight} ${sans(size)}`
     lines = wrap(ctx, text, width); lineHeight = Math.ceil(size * 1.2)
     if (lines.length * lineHeight <= height && lines.every(line => ctx.measureText(line).width <= width)) break
   }
@@ -31,8 +31,8 @@ function rule(ctx, y) {
   ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke()
 }
 function fact(ctx, label, value, x, y, width, height = 112) {
-  block(ctx, label.toLocaleUpperCase('fr'), x, y, width, 30, { size: 23, color: MUTED })
-  block(ctx, value, x, y + 42, width, height, { size: 34 })
+  block(ctx, label.toLocaleUpperCase('fr'), x, y, width, 40, { size: 30, min: 28, color: MUTED, weight: 600 })
+  block(ctx, value, x, y + 50, width, height, { size: 48, min: 28, weight: 600 })
 }
 export async function renderETFImage(etf) {
   const art = getETFArt(etf.id)
@@ -67,16 +67,16 @@ export async function renderETFImage(etf) {
     ctx.fillStyle = y % 9 === 0 ? 'rgba(75,72,57,.025)' : 'rgba(255,255,255,.06)'
     ctx.fillRect(0, y, W, 1)
   }
-  block(ctx, 'ÉPARGNANT LIBRE', PAD, 65, 600, 42, { size: 30 })
+  block(ctx, 'ÉPARGNANT LIBRE', PAD, 65, 600, 42, { size: 34, weight: 600 })
   const issuer = etf.name.match(/^(Amundi(?: PEA)?|iShares(?: Core| Edge)?|Xtrackers(?: II)?|(?:State Street )?SPDR|Vanguard|L&G|VanEck|Global X|CoinShares|Invesco|WisdomTree|Bitwise|21Shares)\s+/)
   const name = issuer ? `${issuer[1]}\n${etf.name.slice(issuer[0].length)}` : etf.name
-  block(ctx, name, PAD, 670, 1400, 270, { size: 88, min: 58, editorial: true })
-  if (etf.listing) block(ctx, etf.listing.ticker, PAD, 970, 1400, 50, { size: 34, color: MUTED })
+  block(ctx, name, PAD, 670, 1400, 270, { size: 96, min: 64, editorial: true })
+  if (etf.listing) block(ctx, etf.listing.ticker, PAD, 970, 1400, 50, { size: 40, color: MUTED, weight: 600 })
   rule(ctx, 1050)
-  block(ctx, 'FRAIS ANNUELS', PAD, 1080, 540, 30, { size: 23, color: MUTED })
-  block(ctx, etf.ter, PAD, 1115, 500, 64, { size: 46 })
+  block(ctx, 'FRAIS ANNUELS', PAD, 1080, 540, 40, { size: 30, color: MUTED, weight: 600 })
+  block(ctx, etf.ter, PAD, 1125, 500, 72, { size: 64, weight: 600 })
   const accounts = [etf.pea === true ? 'PEA' : null, etf.cto ? 'CTO' : 'CTO indisponible'].filter(Boolean).join(' · ')
-  ctx.textAlign = 'right'; block(ctx, accounts, W - PAD, 1115, 700, 64, { size: 36 }); ctx.textAlign = 'left'
+  ctx.textAlign = 'right'; block(ctx, accounts, W - PAD, 1125, 700, 72, { size: 48, weight: 600 }); ctx.textAlign = 'left'
   rule(ctx, 1200)
   const right = 840, col = 660
   fact(ctx, 'Positions', etf.positions, PAD, 1230, col, 108)
@@ -91,11 +91,11 @@ export async function renderETFImage(etf) {
   const annual = getAnnualPerformance(etf)
   if (annual) {
     rule(ctx, 1750)
-    block(ctx, `${annualPerformanceRange(annual)} (${annual.currency}) : ${formatAnnualPerformance(annual)}`, PAD, 1775, 1400, 100, { size: 27, min: 21, color: MUTED })
+    block(ctx, `${annualPerformanceRange(annual)} (${annual.currency}) : ${formatAnnualPerformance(annual)}`, PAD, 1775, 1400, 100, { size: 34, min: 28, color: INK, weight: 500 })
   }
   rule(ctx, 1895)
-  block(ctx, `ISIN ${etf.isin}`, PAD, 1920, 650, 36, { size: 25, color: MUTED })
+  block(ctx, `ISIN ${etf.isin}`, PAD, 1920, 650, 40, { size: 30, color: MUTED })
   ctx.textAlign = 'right'
-  block(ctx, 'Pas un conseil en investissement', W - PAD, 1920, 750, 36, { size: 25, color: MUTED })
+  block(ctx, 'Pas un conseil en investissement', W - PAD, 1920, 750, 40, { size: 30, color: MUTED })
   return canvas
 }
