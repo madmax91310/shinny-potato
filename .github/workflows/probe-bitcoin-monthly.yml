@@ -1,0 +1,46 @@
+name: Free Bitcoin monthly data pilot
+
+on:
+  schedule:
+    # Only completed months; one lightweight collection per month.
+    - cron: '40 6 2 * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/probe-bitcoin-monthly.yml'
+      - 'scripts/data_automation.py'
+      - 'scripts/probe_bitcoin_monthly.py'
+      - 'scripts/test_data_automation.py'
+      - 'scripts/export-bitcoin-baseline.mjs'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bitcoin-pilot-${{ github.event_name == 'pull_request' && github.ref || 'scheduled' }}
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Test validation and failure handling
+        run: python -m unittest discover -s scripts -p 'test_data_automation.py'
+      - name: Read the existing shared registry
+        run: node scripts/export-bitcoin-baseline.mjs > "$RUNNER_TEMP/bitcoin-baseline.json"
+      - name: Collect six complete months and compare providers
+        run: python scripts/probe_bitcoin_monthly.py --baseline "$RUNNER_TEMP/bitcoin-baseline.json" --output "$RUNNER_TEMP/bitcoin-coinbase-observation.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bitcoin-coinbase-observation
+          path: ${{ runner.temp }}/bitcoin-coinbase-observation.json
+          if-no-files-found: error
+          retention-days: 35
