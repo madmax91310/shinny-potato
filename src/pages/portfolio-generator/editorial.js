@@ -112,8 +112,8 @@ function pickHook(selection, history, profileId, riskId, shared) {
       `${euros ? `${euros}% de fonds euros et ` : ""}${crypto}% de crypto. Voici comment le reste du portefeuille accompagne ce choix.`,
     ] : [
       `${crypto}% de crypto. À ce poids-là, accepter l’idée est une chose. Garder le portefeuille pendant une chute en est une autre.`,
-      `La crypto prend ${crypto}% du capital. Que choisit-on pour les ${100 - crypto}% restants ?`,
-      `${crypto}% de crypto : la conviction est visible. Regardons ce qu’on lui a mis à côté.`,
+      crypto < 100 ? `La crypto prend ${crypto}% du capital. Que choisit-on pour les ${100 - crypto}% restants ?` : "100% de crypto. Plusieurs supports, mais quelles expositions derrière leurs noms ?",
+      `${crypto}% de crypto : la conviction est visible. ${crypto < 100 ? "Regardons ce qu’on lui a mis à côté." : "Regardons ce que chaque ligne apporte."}`,
     ];
   } else if (shared) {
     kind = "overlap"; hooks = [
@@ -141,7 +141,7 @@ function pickHook(selection, history, profileId, riskId, shared) {
     ];
   } else if (europe >= 70) {
     kind = "europe"; hooks = [
-      `Le bloc Europe prend ${europe}% du portefeuille. Le choix est assumé. Que garde-t-on à côté ?`,
+      `Le bloc Europe prend ${europe}% du portefeuille. Le choix est assumé. ${europe < 100 ? "Que garde-t-on à côté ?" : "Regardons ce qu’il recouvre."}`,
       `${europe}% dans le bloc Europe. Voici comment ce portefeuille donne du poids à cette conviction.`,
       `L’Europe occupe ${europe}% du capital. ${europe < 100 ? `La question intéressante : que font les ${100 - europe}% restants ?` : "Que retrouve-t-on derrière ce choix géographique ?"}`,
     ];

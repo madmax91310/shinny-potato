@@ -71,5 +71,16 @@ assert.match(majority.hookId, /euros-majority/);
 assert.doesNotMatch(minority.hookId, /euros-majority/);
 const inflation = manual([{id:"oblig_inflation",pct:20},{id:"or",pct:80}]);
 assert.doesNotMatch(inflation.hook, /première place aux obligations|obligations indexées prennent la plus grosse/);
+for (const rows of [
+  [{id:"bitcoin",pct:60},{id:"ethereum",pct:40}],
+  [{id:"msci_europe",pct:50},{id:"oblig_etat_eur_short",pct:50}],
+]) {
+  const history = [];
+  for (let i = 0; i < 3; i++) {
+    const p = buildManualPortfolio(rows, "generaliste", history);
+    assert.doesNotMatch(p.hook, /0% restants|à côté/);
+    history.push(p);
+  }
+}
 console.log("OK : 92 supports manuels, tous les profils et paliers, poids, chevauchements et performances.");
 
