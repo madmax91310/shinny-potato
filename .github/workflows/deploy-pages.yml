@@ -69,6 +69,7 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-tools.mjs
+      - run: node scripts/test-route-loading.mjs
       - run: node scripts/test-data-review-calendar.mjs
       - uses: actions/configure-pages@v5
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

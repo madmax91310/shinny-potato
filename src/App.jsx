@@ -1,24 +1,27 @@
+import { lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Layout from './design-system/Layout'
 import Home from './pages/Home'
 import ComingSoon from './pages/ComingSoon'
-import PortfolioGenerator from './pages/portfolio-generator/App'
-import PortfolioDuels from './pages/portfolio-duels/App'
-import BrokerComparator from './pages/broker-comparator/App'
-import InvestmentCalculator from './pages/investment-calculator/App'
-import EtfSheets from './pages/etf-sheets/App'
-import TweetMidi from './pages/tweet-midi/App'
-import IndexComparator from './pages/index-comparator/App'
-import FeeImpact from './pages/fee-impact/App'
-import MarketFacts from './pages/market-facts/App'
-import ConcreteCases from './pages/concrete-cases/App'
-import TweetBank from './pages/tweet-bank/App'
-import FactsheetTweets from './pages/factsheet-tweets/App'
-import DataSearch from './pages/data-search/App'
-import HouseholdApp from './pages/france-100-menages/App'
-import DataReview from './pages/data-review/App'
-import InvestorPortfolio from './pages/investor-portfolio/App'
 import { TOOLS } from './tools'
+
+// Each tool and its data are fetched only when its route is opened.
+const PortfolioGenerator = lazy(() => import('./pages/portfolio-generator/App'))
+const PortfolioDuels = lazy(() => import('./pages/portfolio-duels/App'))
+const BrokerComparator = lazy(() => import('./pages/broker-comparator/App'))
+const InvestmentCalculator = lazy(() => import('./pages/investment-calculator/App'))
+const EtfSheets = lazy(() => import('./pages/etf-sheets/App'))
+const TweetMidi = lazy(() => import('./pages/tweet-midi/App'))
+const IndexComparator = lazy(() => import('./pages/index-comparator/App'))
+const FeeImpact = lazy(() => import('./pages/fee-impact/App'))
+const MarketFacts = lazy(() => import('./pages/market-facts/App'))
+const ConcreteCases = lazy(() => import('./pages/concrete-cases/App'))
+const TweetBank = lazy(() => import('./pages/tweet-bank/App'))
+const FactsheetTweets = lazy(() => import('./pages/factsheet-tweets/App'))
+const DataSearch = lazy(() => import('./pages/data-search/App'))
+const HouseholdApp = lazy(() => import('./pages/france-100-menages/App'))
+const DataReview = lazy(() => import('./pages/data-review/App'))
+const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 
 // Tweets ETF, Lexique financier et Pouvoir d'achat n'ont plus de route dédiée : leurs pages
 // faisaient doublon avec les formats équivalents de Tweet Midi (Comparatif ETF, Fiche lexique,

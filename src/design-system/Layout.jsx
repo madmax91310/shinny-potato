@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { TOOLS } from '../tools'
 
@@ -39,7 +40,11 @@ export default function Layout() {
         </div>
       </header>
       <main className="mx-auto max-w-5xl px-4 py-6">
-        <Outlet />
+        <Suspense fallback={
+          <p role="status" className="py-8 text-sm text-slate-400">Chargement de l’outil…</p>
+        }>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   )
