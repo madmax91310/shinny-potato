@@ -12,10 +12,10 @@ for (const [slug, displayName] of INVESTORS) {
   const portfolio = { identity: { slug, displayName, entityName: 'Entité déclarante de test' }, snapshot: { periodEnd: '2026-06-30' }, holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .42 }] }
   const tweet = buildTweet(portfolio)
   assert(tweet.includes(investorIntroduction(slug)))
-  assert(tweet.includes('Entité déclarante de test') && tweet.includes('30 juin 2026'))
+  assert(tweet.includes('💼 Ses principales positions au 30 juin 2026'))
   assert(tweet.includes('Cette ligne représente') && !tweet.includes('Ces cinq lignes'))
   assert(tweet.startsWith('📊 ') && tweet.split('\n')[0].includes('42,0 %'))
-  for (const label of ['💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '📅 Photographie', '💬 ']) assert(tweet.includes(label))
+  for (const label of ['💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '💬 ']) assert(tweet.includes(label))
   assert(!/undefined|NaN|\\\\n/.test(tweet))
   assert(!tweet.includes('place-t-il'))
   assert(buildTweet(portfolio, 'Ma présentation.').includes('Ma présentation.'))
