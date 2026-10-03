@@ -205,6 +205,8 @@ export default function App() {
   const [currentId, setCurrentId] = useState('sp500')
   const [copied, setCopied] = useState(false)
   const [lightbox, setLightbox] = useState(null)
+  const [imageBusy, setImageBusy] = useState(false)
+  const [imageError, setImageError] = useState('')
   const seenThisSession = useRef([currentId])
 
   const currentEtf = byId[currentId]
@@ -249,9 +251,19 @@ export default function App() {
     }
   }
 
-  function generateSummaryImage() {
-    const canvas = renderETFImage(currentEtf)
-    setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-fiche-etf.png', title: 'Fiche ETF' })
+  async function generateSummaryImage(directDownload = false) {
+    if (imageBusy) return
+    setImageBusy(true)
+    setImageError('')
+    try {
+      const canvas = await renderETFImage(currentEtf)
+      if (directDownload) downloadImage(canvas, `${currentEtf.id}-fiche-etf.png`)
+      else setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-fiche-etf.png', title: currentEtf.name })
+    } catch (error) {
+      setImageError(error.message || 'L’image n’a pas pu être créée. Réessaie.')
+    } finally {
+      setImageBusy(false)
+    }
   }
 
   function generateAnnualImage() {
@@ -268,8 +280,8 @@ export default function App() {
 
       <ToolWorkspace renderImage={() => renderETFImage(currentEtf)} imageAlt={`Fiche ETF ${currentEtf.name}`} actions={<>
         <Button type="button" variant="secondary" onClick={copyCurrent}>{copied ? '✅ Copié !' : '📋 Copier le texte'}</Button>
-        <Button type="button" onClick={() => downloadImage(renderETFImage(currentEtf), `${currentEtf.id}-fiche-etf.png`)}>Télécharger l’image</Button>
-        <ActionMenu><Button type="button" variant="secondary" onClick={generateSummaryImage}>🖼️ Image récapitulative</Button>
+        <Button type="button" onClick={() => generateSummaryImage(true)} disabled={imageBusy}>{imageBusy ? 'Création de l’image…' : 'Télécharger l’image'}</Button>
+        <ActionMenu><Button type="button" variant="secondary" onClick={() => generateSummaryImage()} disabled={imageBusy}>🖼️ Image récapitulative</Button>
         {hasAnnualImage && <Button type="button" variant="secondary" onClick={generateAnnualImage}>📊 Télécharger le graphique annuel</Button>}</ActionMenu>
       </>}>
         <section className="es-preparation tool-settings" aria-labelledby="es-preparation-title">
@@ -283,6 +295,7 @@ export default function App() {
           <p className="es-disclaimer" style={{ marginTop: 16 }}>Choisis un ETF, puis ouvre l’aperçu pour relire ta publication. Les boutons ci-dessous créent les visuels.</p>
           <SupportAlternatives key={currentId} etf={currentEtf} onSelect={selectETF} />
           {!hasAnnualImage && <p className="es-disclaimer" style={{ marginTop: 12 }}>Graphique annuel indisponible pour cet ETF.</p>}
+          {imageError && <p role="alert" className="es-disclaimer">{imageError}</p>}
         </section>
         <section className="tool-preview" aria-label="Publication ETF">
           <div className="es-preview-heading"><h2>Aperçu de la publication</h2></div>
