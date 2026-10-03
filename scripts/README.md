@@ -334,3 +334,36 @@ La génération essaie jusqu’à 16 candidats nouveaux dans une même recette, 
 le plus éloigné des 20 derniers résultats de son couple. L’historique entier transmis par
 l’interface est pris en compte pour éviter les répétitions exactes de familles et de poids.
 Si une recette est saturée, le repli conserve impérativement toutes les règles de risque.
+
+### Rappels hebdomadaires du calendrier
+
+`node scripts/data-review-reminder.mjs --report [AAAA-MM-JJ]` lit exclusivement
+`buildReview` pour présenter les échéances. `--json` fournit les lots à créer sans
+écriture ; `--sync` les ouvre avec `gh api` dans `GITHUB_REPOSITORY`.
+La date par défaut est celle de Paris, comme dans l'interface.
+
+La fenêtre utile est de **7 jours**, plus toutes les échéances dépassées : le
+calendrier peut afficher « bientôt » à 30 jours sans ouvrir prématurément une
+issue. Les offres sont incluses ; les réserves, dates futures, champs sans date et
+archives ne déclenchent pas seuls un rappel. Les règles mensuelles, annuelles,
+trimestrielles et 13F restent uniquement dans `src/pages/data-review/lib.js`.
+Aucune date de contrôle n'est modifiée par ce script.
+
+Les issues sont lues avec pagination complète, ouvertes et fermées. Leurs
+marqueurs identifient chaque couple donnée/échéance, sans dépendre du titre ni de
+l'état. Fermer une issue acquitte ce rappel ; une nouvelle échéance ou une nouvelle
+donnée à la même date reste rappelable. Les lots sont groupés par date, au plus
+50 champs par issue pour respecter la limite du corps GitHub. Un lot créé avant
+une erreur n'est pas recréé à la relance. Les anciennes issues du cycle fixe
+n'acquittent pas implicitement des données qu'elles ne listaient pas.
+Le job sérialise les exécutions et reste non bloquant en cas d'échec de GitHub.
+
+Au **3 octobre 2026**, le catalogue récemment audité ne produit aucun rappel à
+7 jours. Une série mensuelle à jour jusqu'en septembre est rappelable le
+25 octobre pour sa revue du 1er novembre ; les trois 13F le 7 novembre pour le
+14 novembre. Ces dates sont des observations du calendrier, pas des règles
+recopiées dans le rappel.
+
+Validation : `node scripts/test-data-review-reminder.mjs`,
+`npm run audit:data-review`, `npm run build`, puis
+`node scripts/test-data-review-calendar.mjs` (Playwright).
