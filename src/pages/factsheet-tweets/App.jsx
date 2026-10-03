@@ -1,3 +1,6 @@
+import ActionMenu from '../../design-system/ActionMenu'
+import { downloadImage } from '../../design-system/downloadImage'
+import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -33,7 +36,7 @@ export default function App() {
 
   return <div className="fs-scope">
     <PageHeader title="Dans les coulisses des indices" subtitle={`${SHEETS.length} sujets décryptés à partir de fiches officielles, avec des publications prêtes à relire, modifier et copier.`} />
-    <ToolWorkspace>
+    <ToolWorkspace renderImage={() => renderFactsheetImage(sheet)} imageAlt={`Coulisses ${sheet.title}`}>
     <div className="fs-panel tool-settings">
       <AssetPicker id="factsheet-subject" label="Choisir un indice ou un ETF" value={selected}
         items={SHEETS.map(entry => ({ id: entry.id, label: entry.title, isin: entry.isin, group: exposureGroup(entry), detail: entry.index }))}
@@ -50,7 +53,7 @@ export default function App() {
     <div className="fs-panel fs-editor tool-preview">
       <div className="fs-editor-top"><label className="fs-label" htmlFor="factsheet-draft">Publication modifiable</label><span>{text.length.toLocaleString('fr-FR')} caractères</span></div>
       <textarea id="factsheet-draft" spellCheck="true" value={text} onChange={(event) => { setDrafts((current) => ({ ...current, [selected]: event.target.value })); setCopied(false) }} />
-      <div className="fs-actions"><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => setDrafts((current) => { const next = { ...current }; delete next[selected]; return next })}>↩️ Rétablir le modèle</Button></div>
+      <WorkspaceActions><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={() => downloadImage(renderFactsheetImage(sheet), `${sheet.id}-dans-les-coulisses.png`)}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => setDrafts((current) => { const next = { ...current }; delete next[selected]; return next })}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
     </div>
     </ToolWorkspace>
     {image && <div className="fs-image-overlay" role="presentation" onClick={() => setImage(null)}>

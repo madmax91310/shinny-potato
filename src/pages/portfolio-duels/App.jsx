@@ -1,3 +1,4 @@
+import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
@@ -106,7 +107,7 @@ export default function App() {
   return (
     <div className="pd-scope">
       <PageHeader title="Duel de portefeuilles" subtitle="Une base ETF, un complément et une thématique si tu le souhaites : compare deux constructions de portefeuille." />
-      <ToolWorkspace>
+      <ToolWorkspace renderImage={() => renderDuelImage(duel)} imageDisabled={!duel} imageAlt="Duel de portefeuilles">
       <section className="tool-settings">
       <div className="pd-modes" role="group" aria-label="Mode de duel">
         {[['prepared', 'Duels préparés'], ['generated', 'Générer un duel'], ['manual', 'Composer A et B']].map(([key, label]) =>
@@ -154,11 +155,11 @@ export default function App() {
         <p className="pd-question">💬 {duel.question}</p>
       </article>
 
-      <div className="pd-actions">
+      <WorkspaceActions>
         <Button type="button" onClick={copyTweet}>📋 Copier le texte</Button>
         <Button type="button" variant="secondary" onClick={downloadImage}>🖼️ Télécharger l’image PNG</Button>
         {copyStatus && <span role="status">{copyStatus}</span>}
-      </div>
+      </WorkspaceActions>
       <label className="pd-text-label" htmlFor="pd-tweet">Texte prêt à publier</label>
       <textarea id="pd-tweet" readOnly value={tweet} rows={18} onFocus={(event) => event.target.select()} />
       <details className="pd-sources">

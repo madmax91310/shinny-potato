@@ -49,7 +49,7 @@ export default function ConcreteCases() {
         subtitle={`${CASES.length} situations d'investissement, chacune avec une question à se poser avant de décider. Situations rédigées et exemples chiffrés depuis les compositions datées des indices.`}
       />
 
-      <ToolWorkspace className="cc-layout">
+      <ToolWorkspace className="cc-layout" actions={<Button onClick={copyText}>{copied ? "✅ Copié !" : copyError ? "⚠️ Sélectionner le texte" : "📋 Copier le texte"}</Button>}>
         <nav className="cc-list tool-settings" aria-label="Choisir un cas concret">
           {CASES.map((item) => (
             <button
@@ -67,7 +67,7 @@ export default function ConcreteCases() {
         <article className="cc-preview tool-preview">
           <div className="cc-preview-head">
             <span>Post prêt à relire · {selected.title}</span>
-            <Button type="button" onClick={copyText}>{copied ? '✅ Copié !' : copyError ? '⚠️ Sélectionner le texte' : '📋 Copier le texte'}</Button>
+
           </div>
           <p className="cc-text">{buildTweetText(selected)}</p>
           {copyError && (

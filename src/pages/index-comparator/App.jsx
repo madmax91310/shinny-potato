@@ -6,7 +6,7 @@ import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './index-comparator.css'
 import { FAMILIES } from './data.js'
-import { downloadIndexImage } from './imageExport.js'
+import { downloadIndexImage, renderIndexImage } from './imageExport.js'
 
 import { buildTweetText, fmtPct } from './lib.js'
 
@@ -66,7 +66,7 @@ export default function IndexComparator() {
         subtitle="Comprends ce que chaque indice change : pays, taille des entreprises et règles de sélection."
       />
 
-      <ToolWorkspace className="xc-layout" actions={<>
+      <ToolWorkspace renderImage={() => renderIndexImage(family)} imageAlt={`Comparaison ${family.label}`} className="xc-layout" actions={<>
           <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
             {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
           </Button>

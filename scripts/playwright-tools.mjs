@@ -234,8 +234,8 @@ async function testCalculateur(page) {
 
 async function testPortfolioGenerator(page) {
   await page.goto(`${BASE}/generateur-portefeuilles`, { waitUntil: "networkidle" });
-  const image = page.locator('.pg-image-preview img');
-  const firstImage = await image.getAttribute('src');
+  const image = page.locator('.pg-image-download');
+  const firstImage = await image.getAttribute('href');
   await page.getByRole("button", { name: /Générer un nouveau portefeuille/i }).click();
   await page.waitForTimeout(200);
   const pcts = await page.locator(".pg-alloc-pct").allInnerTexts();
@@ -246,7 +246,7 @@ async function testPortfolioGenerator(page) {
   const categoriesOk = categoryPcts.length > 0 && Math.abs(categorySum - 100) < 0.5;
   const cta = await page.locator("body").innerText();
   const hasContent = cta.length > 500;
-  const newImage = await image.getAttribute('src');
+  const newImage = await image.getAttribute('href');
   const [download] = await Promise.all([
     page.waitForEvent('download'),
     page.getByRole('link', { name: '⬇️ Télécharger l’image PNG' }).click(),
@@ -431,6 +431,7 @@ async function testEtfSheets(page) {
       || /undefined|NaN/.test(copied)) badCount++;
     if (card.lastVerified === '01/10/2026') {
       for (const buttonName of ['🖼️ Image récapitulative', '📊 Télécharger le graphique annuel']) {
+        await page.locator('.workspace-action-menu summary').click();
         await page.getByRole('button', { name: buttonName }).click();
         const dialog = page.getByRole('dialog');
         const valid = await dialog.locator('img').evaluate(async img => { await img.decode(); return img.naturalWidth > 0 && img.src.startsWith('data:image/png;base64,'); });
@@ -442,6 +443,7 @@ async function testEtfSheets(page) {
     }
   }
   await select.selectOption('sp500');
+  await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: '📊 Télécharger le graphique annuel' }).click();
   const preview = page.getByRole('dialog', { name: 'Aperçu : Performances annuelles de l’ETF' });
   const imageOk = (await preview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
@@ -774,8 +776,10 @@ async function testFactsheetTweets(page) {
     ok &&= !/undefined|NaN/.test(tweet) && (await page.locator('.fs-sources a').count()) >= 1;
   }
   await draft.fill('Texte corrigé avant publication');
+  await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Rétablir le modèle/ }).click();
   ok &&= (await draft.inputValue()).includes('2025');
+  await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
   const preview = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
   ok &&= await preview.isVisible();
@@ -792,7 +796,8 @@ async function testFactsheetTweets(page) {
   await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
   for (const id of ['sp500-equal-weight', 'russell-2000', 'em-standard', 'topix', 'nikkei225', 'acwi', 'em-esg', 'stoxx600']) {
     await select.selectOption(id);
-    await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
+    await page.locator('.workspace-action-menu summary').click();
+  await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
     ok &&= await current.locator('img').evaluate(async (img) => {
       await img.decode();
@@ -868,19 +873,19 @@ async function testHouseholds(page) {
   for (const { id, referencePeriod } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
     await page.getByLabel('Sujet', { exact: true }).selectOption(id);
     await page.waitForURL(`**sujet=${id}`);
-    ok &&= await page.locator('.hh-preview').evaluate(async img => { await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
     const text = await page.getByLabel('Texte modifiable').inputValue();
     ok &&= text.includes('https://www.insee.fr/') && text.includes(referencePeriod.toLowerCase());
   }
   for (const { id: design } of (await import('../src/pages/france-100-menages/image.js')).HOUSEHOLD_DESIGNS) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);
-    ok &&= await page.locator('.hh-preview').evaluate(async img => { await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
   }
   for (const design of ['ivory', 'blue', 'plum']) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);
     for (const id of ['wealth-top10', 'wealth-share', 'unexpected-expense', 'salary-median', 'donation']) {
       await page.getByLabel('Sujet', { exact: true }).selectOption(id);
-      ok &&= await page.locator('.hh-preview').evaluate(async img => { await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+      ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
     }
     const [file] = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Télécharger le PNG' }).click()]);
     ok &&= file.suggestedFilename().endsWith(`-${design}.png`) && (await stat(await file.path())).size > 10000;
@@ -904,7 +909,7 @@ async function testHouseholds(page) {
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   if (process.env.HOUSEHOLD_SCREENSHOT) await page.screenshot({ path: process.env.HOUSEHOLD_SCREENSHOT, fullPage: true });
   await page.setViewportSize({ width: 1280, height: 720 });
-  record('La France en 100 ménages', ok, '17 sujets, sept designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
+  record('La France en 100 ménages', ok, '29 sujets, sept designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
 }
 
 async function testInvestorIntroductions(page) {

@@ -1,3 +1,4 @@
+import WorkspaceActions from '../../design-system/WorkspaceActions'
 import { useEffect, useRef, useState } from 'react'
 import Button from '../../design-system/Button'
 import { drawBrokerVersus } from './versus-image'
@@ -44,7 +45,7 @@ export default function BrokerVersusCard({ selected }) {
       {duel ? <>
         <canvas ref={canvasRef} className="bc-versus-canvas" aria-label={`Visuel ${left} contre ${right}`} />
         {error && <p role="alert" className="bc-select-warning">{error}</p>}
-        <div className="bc-versus-actions"><Button type="button" onClick={download} disabled={Boolean(error) || !ready}>Télécharger l’image PNG</Button></div>
+        <WorkspaceActions><Button type="button" onClick={download} disabled={Boolean(error) || !ready}>Télécharger l’image PNG</Button></WorkspaceActions>
       </> : <p className="bc-select-warning">Sélectionne exactement deux courtiers pour créer l’image du duel.</p>}
     </section>
   )

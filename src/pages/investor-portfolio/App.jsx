@@ -1,3 +1,4 @@
+import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
@@ -54,7 +55,7 @@ export default function InvestorPortfolio() {
 
   return <div className="ip-scope">
     <PageHeader title="Portefeuille d’investisseur" subtitle="La dernière photographie 13F disponible, un tweet modifiable et un visuel assorti." />
-    <ToolWorkspace>
+    <ToolWorkspace renderImage={() => renderPortfolioImage(portfolio)} imageDisabled={!portfolio} imageAlt={`Portefeuille ${portfolio?.identity.displayName ?? "investisseur"}`}>
     <section className="ip-panel tool-settings">
       <label htmlFor="ip-investor">Choisir un investisseur</label>
       <select id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
@@ -87,10 +88,10 @@ export default function InvestorPortfolio() {
             <textarea id="ip-draft" value={draft} onChange={(event) => setDraft(event.target.value)} rows="16" />
           </div>
         </div>
-        <div className="ip-actions">
+        <WorkspaceActions>
           <Button type="button" onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le tweet'}</Button>
           <Button type="button" variant="secondary" onClick={download}>⬇️ Télécharger le PNG</Button>
-        </div>
+        </WorkspaceActions>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
         <p className="ip-credit">{portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
       </>}

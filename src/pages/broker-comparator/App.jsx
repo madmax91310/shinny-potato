@@ -240,7 +240,7 @@ export default function App() {
         subtitle="Choisis un duel de la série, ou coche 2 à 3 courtiers à la main. La carte se génère automatiquement, prête à capturer."
       />
 
-      <ToolWorkspace>
+      <ToolWorkspace imageContent={<BrokerVersusCard selected={selected} />} actions={<Button onClick={copyTweet}>{copied ? "Copié ✓" : "Copier le tweet"}</Button>}>
       <section className="tool-settings">
       <div className="bc-panel">
         <h2>Prochain duel de la série</h2>
@@ -305,7 +305,7 @@ export default function App() {
         <ComparisonCard selected={selected} />
       </div>
 
-      <BrokerVersusCard selected={selected} />
+
 
       <EvidencePanel selected={selected} />
 
@@ -324,9 +324,7 @@ export default function App() {
           }}
         />
         <div className="bc-tweet-actions">
-          <Button type="button" onClick={copyTweet}>
-            Copier le tweet
-          </Button>
+
           <span className={`bc-copy-msg${copied ? ' show' : ''}`}>Copié ✓</span>
           <span className="bc-char-count">{tweet.length} caractères</span>
         </div>
