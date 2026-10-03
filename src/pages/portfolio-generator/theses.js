@@ -5,6 +5,9 @@
 // (cf. `riskCombos` de chaque profil, qui ne définit une entrée que pour les niveaux compatibles
 // — voir aussi le tableau de compatibilité exposé par `isCompatible()` en bas de fichier).
 
+// Bloc Europe reconnu par le moteur et les intitulés éditoriaux.
+export const PRO_EUROPE_CORE_IDS = ["eurostoxx50", "eurostoxx50_ishares", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
+
 export const RISK_ORDER = ["prudent", "defensif", "equilibre", "dynamique", "offensif"];
 
 export const RISK_LABELS = {

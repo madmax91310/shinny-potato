@@ -190,7 +190,8 @@ async function testPortfolioGenerator(page) {
     page.getByRole('link', { name: '⬇️ Télécharger l’image PNG' }).click(),
   ]);
   const imageOk = firstImage?.startsWith('data:image/png;base64,') && newImage?.startsWith('data:image/png;base64,') && firstImage !== newImage && download.suggestedFilename() === 'repartition-portefeuille.png';
-  const autoEditorialOk = /La logique de l’ensemble/.test(await page.locator(".pg-tweet-body").innerText());
+  const autoTweet = await page.locator(".pg-tweet-body").innerText();
+  const autoEditorialOk = autoTweet.startsWith("🧩 Portefeuille ") && /La logique de l’ensemble/.test(autoTweet);
   // Un profil/palier fixé doit faire tourner les trois constructions.
   await page.getByRole('group', { name: "Choisir un profil d'investisseur" }).getByRole('button', { name: 'Le Généraliste', exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un niveau de risque cible' }).getByRole('button', { name: 'Équilibré', exact: true }).click();
@@ -212,12 +213,31 @@ async function testPortfolioGenerator(page) {
   await page.getByRole("button", { name: /Composition manuelle/ }).click();
   await page.locator("#pg-manual-profile").selectOption("crypto_curieux");
   await page.locator("#pg-manual-search").fill("Fonds euros");
-  await page.locator(".pg-manual-asset-option").first().click();
+  await page.locator(".pg-manual-asset-option").filter({ hasText: "Fonds euros (assurance-vie)" }).click();
   await page.locator(".pg-manual-pct-input").fill("100");
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
-  const manualEditorialOk = /100%/.test(manualTweet) && /La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
-  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, trois constructions et mobile: ${recipesOk}`);
+  let manualEditorialOk = manualTweet.startsWith("🧩 Portefeuille à dominante fonds euros") && /100%/.test(manualTweet) && /La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
+  await page.getByRole('button', { name: /Modifier la composition/ }).click();
+  await page.locator('.pg-manual-pct-input').fill('50');
+  await page.locator('#pg-manual-search').fill('Bitcoin');
+  await page.locator('.pg-manual-asset-option').first().click();
+  await page.locator('.pg-manual-pct-input').last().fill('50');
+  await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
+  const cryptoTweet = await page.locator('.pg-tweet-body').innerText();
+  manualEditorialOk &&= cryptoTweet.startsWith('🧩 Portefeuille à dominante fonds euros') && /50% de crypto/.test(cryptoTweet) && !/petite place|à la carte/i.test(cryptoTweet);
+  await page.getByRole('button', { name: /Modifier la composition/ }).click();
+  await page.locator('.pg-manual-remove').first().click();
+  await page.locator('#pg-manual-search').fill('Amundi MSCI World UCITS ETF');
+  await page.locator('.pg-manual-asset-option').first().click();
+  await page.locator('.pg-manual-pct-input').last().fill('50');
+  await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
+  const worldBitcoinTweet = await page.locator('.pg-tweet-body').innerText();
+  manualEditorialOk &&= worldBitcoinTweet.startsWith('🧩 Portefeuille Monde + Bitcoin') && /50% de crypto|crypto prend 50%/.test(worldBitcoinTweet);
+  await page.getByRole('button', { name: /Nouveau texte, même composition/ }).click();
+  const rotatedTweet = await page.locator('.pg-tweet-body').innerText();
+  manualEditorialOk &&= rotatedTweet !== worldBitcoinTweet && rotatedTweet.startsWith('🧩 Portefeuille Monde + Bitcoin');
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, trois constructions et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk}, intitulés manuels et rotation: ${manualEditorialOk}`);
 }
 
 async function testPortfolioDuels(page) {

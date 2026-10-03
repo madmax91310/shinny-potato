@@ -2,7 +2,7 @@ import { YEARS, getAsset } from '../../data/portfolio-assets.js';
 import { computeYearlyPerf } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
-  isCompatible, getFrequencyCap,
+  isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
 } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
 import { exposureVector, exposureSignature, exposureDistance } from "./exposures.js";
@@ -167,7 +167,6 @@ function withinBound(value, bound) {
 // déplacer du poids d'un actif vers un autre sans savoir qu'il casse une règle propre à un profil
 // précis. Pro-Européen a une invariante supplémentaire (minimum 70% Europe) qui n'est pas capturée
 // par la borne de risque : on la revérifie après jitter et on retire le tirage sinon.
-const PRO_EUROPE_CORE_IDS = ["eurostoxx50", "eurostoxx50_ishares", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
 
 // Crypto-Curieux : plancher/plafond Bitcoin par palier de risque (audit "Ajustement Crypto-Curieux
 // Dynamique", 14/09/2026) — en dessous du plancher, l'étiquette du profil n'est plus justifiée par

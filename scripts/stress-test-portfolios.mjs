@@ -36,7 +36,7 @@
 
 import { generatePortfolio, renderTweetText } from "../src/pages/portfolio-generator/engine.js";
 import {
-  PROFILES, RISK_BOUNDS, RISK_ORDER,
+  PROFILES, RISK_BOUNDS, PRO_EUROPE_CORE_IDS,
 } from "../src/pages/portfolio-generator/theses.js";
 import { getAsset, YEARS } from "../src/data/portfolio-assets.js";
 
@@ -48,7 +48,6 @@ const args = Object.fromEntries(
 );
 const mode = args.mode ?? "regression";
 
-const PRO_EUROPE_CORE_IDS = ["eurostoxx50", "eurostoxx50_ishares", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
 const CRYPTO_CURIEUX_BITCOIN_BOUNDS = {
   defensif: { min: null, max: 10 },
   equilibre: { min: 10, max: 20 },
@@ -64,13 +63,12 @@ function checkInvariants(p) {
   for (const y of YEARS) if (!Number.isFinite(p.perf[y])) problems.push(`performance absente en ${y}`);
   if (!tweet.includes(`⚠️ ${p.warning}`)) problems.push("avertissement absent du tweet");
   const weights = p.selection.map((s) => s.pct);
-  const expected = new Set([...weights, Math.abs(p.worst.value)]);
-  for (let i = 0; i < weights.length; i++) {
-    for (let j = i + 1; j < weights.length; j++) {
-      expected.add(weights[i] + weights[j]);
-      for (let k = j + 1; k < weights.length; k++) expected.add(weights[i] + weights[j] + weights[k]);
-    }
-  }
+  // Un total éditorial (bloc Europe, capital hors crypto…) peut réunir plus de trois lignes.
+  // Vérifier toutes les sommes de poches réellement présentes, sans accepter un nombre arbitraire.
+  const sums = new Set([0]);
+  for (const pct of weights) for (const sum of [...sums]) sums.add(sum + pct);
+  sums.delete(0);
+  const expected = new Set([...sums, Math.abs(p.worst.value)]);
   for (const number of `${p.hook} ${p.intro}`.matchAll(/([+-]?\d+(?:[,.]\d+)?)\s*%/g)) {
     const value = Math.abs(Number(number[1].replace(',', '.')));
     if (![...expected].some((v) => Math.abs(v - value) < 0.11)) {
