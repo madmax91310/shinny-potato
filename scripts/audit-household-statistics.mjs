@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { HOUSEHOLD_STATISTICS as records, HOUSEHOLD_SOURCES as sources, buildHouseholdTweet, getHouseholdVisual } from '../src/data/household-statistics.js'
 import { DATA_CATALOG, searchData } from '../src/data/catalog.js'
-assert.equal(records.length, 17)
+assert.equal(records.length, 29)
 assert.equal(new Set(records.map(r => r.id)).size, records.length)
 for (const record of records) {
   assert(record.table && record.note && record.question)
@@ -31,7 +31,7 @@ assert.equal(byId['wealth-top10'].value, 750400)
 assert.equal(byId['wealth-median'].value, 148100)
 assert.equal(byId.debt.value, 45.6)
 assert.match(byId.debt.table, /corrigé/)
-console.log('17 sujets financiers : sources Insee, populations, unités, dates, arrondis, tweets et catalogue OK.')
+console.log('29 sujets financiers : sources Insee, populations, unités, dates, arrondis, tweets et catalogue OK.')
 
 assert.equal(byId['unexpected-expense'].population, 'personnes')
 assert.equal(byId.holidays.provisional, true)
