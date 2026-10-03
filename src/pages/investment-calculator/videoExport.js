@@ -450,10 +450,10 @@ function drawFrame(ctx, params, elapsedMs) {
 
   ctx.font = FONTS.footer
   ctx.fillStyle = COLORS.inkFaint
-  ctx.fillText('Éducation financière, pas un conseil en investissement.', PAD, H - 52)
+  ctx.fillText('Éducation financière, pas un conseil en investissement.', PAD, H - (params.sourceCredit ? 80 : 52))
   if (params.sourceCredit) {
     ctx.font = "16px Arial, sans-serif"
-    params.sourceCredit.split('\n').forEach((line, i) => ctx.fillText(line, PAD, H - 32 + i * 20))
+    params.sourceCredit.split('\n').forEach((line, i) => ctx.fillText(line, PAD, H - 50 + i * 22))
   }
 }
 
@@ -614,10 +614,10 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
 
   ctx.font = FONTS.footer
   ctx.fillStyle = COLORS.inkFaint
-  ctx.fillText('Éducation financière, pas un conseil en investissement.', PAD, H - 52)
+  ctx.fillText('Éducation financière, pas un conseil en investissement.', PAD, H - (params.sourceCredit ? 80 : 52))
   if (params.sourceCredit) {
     ctx.font = "16px Arial, sans-serif"
-    params.sourceCredit.split('\n').forEach((line, i) => ctx.fillText(line, PAD, H - 32 + i * 20))
+    params.sourceCredit.split('\n').forEach((line, i) => ctx.fillText(line, PAD, H - 50 + i * 22))
   }
 }
 

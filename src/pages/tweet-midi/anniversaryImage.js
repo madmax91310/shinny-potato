@@ -80,7 +80,7 @@ export function renderAnniversaryImage(item, currentRaw, currentRawB = '') {
     comparison(ctx, a, 414)
   }
   const credit = a.asset.sourceCredit || b?.asset.sourceCredit
-  if (credit) credit.split('\n').forEach((line, i) => txt(ctx, line, 96, canvas.height - 80 + i * 30, 24, C.muted))
+  if (credit) credit.split('\n').forEach((line, i) => txt(ctx, line, 96, canvas.height - (comparative ? 55 : 80) + i * (comparative ? 26 : 30), comparative ? 20 : 24, C.muted))
   return canvas
 }
 
