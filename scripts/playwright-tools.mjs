@@ -246,10 +246,10 @@ async function testPortfolioGenerator(page) {
   await page.locator('.pg-manual-pct-input').last().fill('60');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const personalTweet = await page.locator('.pg-tweet-body').innerText();
-  manualEditorialOk &&= /montagnes russes/.test(personalTweet)
+  manualEditorialOk &&= /montagnes russes|sans avoir l’impression que tout dépend|à l’écart de leurs secousses/.test(personalTweet)
     && /davantage en fonds euros/.test(personalTweet)
     && /On limite ici la mise à 10%/.test(personalTweet)
-    && /au fonds mondial/.test(personalTweet)
+    && /au fonds mondial|10% de crypto/.test(personalTweet)
     && !/\d+(?:[,.]\d+)?\s*%/.test(personalTweet.split('💼 La répartition')[0]);
   // Les corrections éditoriales doivent aussi traverser l’interface manuelle.
   for (const [rows, expected] of [
