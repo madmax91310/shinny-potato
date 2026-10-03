@@ -2,6 +2,7 @@
 import { TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
+import { portfolioAssetLabel } from '../src/pages/portfolio-generator/compact.js';
 // Tests Playwright par outil — navigateur réel (Chromium), un "write→look once" formalisé en
 // script réutilisable plutôt que refait à la main à chaque changement. Committé le 14/09/2026
 // (audit "outils", documenté comme "à committer" dans scripts/README.md).
@@ -1043,10 +1044,18 @@ async function testAssetSelection(page) {
   const candidates=page.getByRole('combobox',{name:'Support de remplacement',exact:true});
   const replacement=await candidates.locator('option').evaluateAll(nodes=>nodes.find(n=>n.value)?.value);
   await candidates.selectOption(replacement);
-  const previous=await page.locator('.pg-tweet-body').innerText();
+  const originalId = await page.locator('#pg-replacement-line').inputValue();
+  const previousIds = await page.locator('#pg-replacement-line option').evaluateAll(nodes => nodes.map(node => node.value));
+  const expectedIds = previousIds.map(id => id === originalId ? replacement : id);
   await page.getByRole('button',{name:'Appliquer le remplacement',exact:true}).click();
+  await page.waitForFunction(expected => {
+    const ids = [...document.querySelectorAll('#pg-replacement-line option')].map(node => node.value);
+    return ids.join('|') === expected.join('|');
+  }, expectedIds);
   ok &&= (await page.getByRole('status').innerText()).includes('Support remplacé');
-  ok &&= await page.locator('.pg-tweet-body').innerText() !== previous;
+  // Same-issuer share classes can legitimately share their compact tweet label.
+  // Check the actual support identity and its published label, not a text inequality.
+  ok &&= (await page.locator('.pg-tweet-body').innerText()).includes(portfolioAssetLabel(PORTFOLIO_ASSETS.find(asset => asset.id === replacement)));
   await page.setViewportSize({width:390,height:844});
   ok &&= await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth);
   await page.screenshot({path:'test-artifacts/asset-replacement-mobile.png',fullPage:true});
