@@ -61,7 +61,7 @@ try {
     for (const definition of DUELS) await check(`duel-${definition.id}`, () => renderDuelImage(buildDuel(definition)), (_, text) => !/DUEL DE PORTEFEUILLES|PIRE ANNÉE|ÉDITION LIBRE/.test(text))
     const { generatePortfolio } = await module('pages/portfolio-generator/engine.js')
     const { renderPortfolioImage } = await module('pages/portfolio-generator/canvasImage.js')
-    await check('generator', () => renderPortfolioImage(generatePortfolio([], 'equilibre', 'generaliste')), (words, text) => !words.some(word => /100\s*%/.test(word)) && !/NON PRÉDICTIF/.test(text))
+    await check('generator', () => renderPortfolioImage(generatePortfolio([], 'equilibre', 'generaliste')), (words, text) => !words.some(word => /100\s*%/.test(word)) && !/NON PRÉDICTIF|Répartition de|portefeuille|COMPOSITION|…/.test(text))
     const { renderPerformanceImage } = await module('pages/tweet-midi/performanceImage.js')
     await check('performance', () => renderPerformanceImage({mode:'simple', assetId:'msciWorld',year:2016}), (words,text) => !/SÉRIE|Hausse|Baisse/.test(text) && words.filter(word => word === 'PERFORMANCE CUMULÉE').length === 1)
     const { renderAnniversaryImage } = await module('pages/tweet-midi/anniversaryImage.js')

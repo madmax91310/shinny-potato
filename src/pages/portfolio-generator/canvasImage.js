@@ -1,3 +1,4 @@
+import { portfolioAssetLabel } from './compact.js'
 import { YEARS } from '../../data/portfolio-assets.js'
 
 const PALETTE = ['#d0aa64', '#84b3b0', '#6989a8', '#e1ca8d', '#b47868', '#8cbd83', '#c684a0', '#77a7be', '#d99372', '#aab181']
@@ -39,12 +40,30 @@ function fitted(ctx, value, x, y, width, size, color = WHITE, align = 'left', mi
   label(ctx, value, x, y, size, color, align)
 }
 
+// Short, identifiable names wrap rather than disappear behind an ellipsis.
+function wrappedLabel(ctx, value, x, y, width) {
+  let size = 21, lines;
+  do {
+    ctx.font = `bold ${size}px Arial, sans-serif`;
+    lines = [''];
+    for (const word of value.split(/\s+/)) {
+      const last = lines.length - 1;
+      const next = `${lines[last]} ${word}`.trim();
+      if (ctx.measureText(next).width > width && lines[last]) lines.push(word);
+      else lines[last] = next;
+    }
+    if (lines.length <= 2) break;
+    size -= 1;
+  } while (size > 12);
+  lines.forEach((line, index) => label(ctx, line, x, y + index * (size + 3), size, '#d7deda'));
+}
+
 export function renderPortfolioImage(portfolio) {
   const selection = portfolio.selection
     .filter((asset) => asset.pct > 0)
     .slice()
     .sort((a, b) => b.pct - a.pct)
-  const mainBottom = Math.max(875, 423 + selection.length * 76 + 55)
+  const mainBottom = Math.max(665, 170 + selection.length * 76 + 45)
   const height = mainBottom + 475
   const canvas = document.createElement('canvas')
   canvas.width = 2160
@@ -57,23 +76,21 @@ export function renderPortfolioImage(portfolio) {
   background.addColorStop(1, '#090e15')
   ctx.fillStyle = background
   ctx.fillRect(0, 0, 1080, height)
-  const glow = ctx.createRadialGradient(325, 644, 40, 325, 644, 340)
+  const glow = ctx.createRadialGradient(325, 390, 40, 325, 390, 340)
   glow.addColorStop(0, 'rgba(49,67,67,.42)')
   glow.addColorStop(1, 'rgba(12,19,25,0)')
   ctx.fillStyle = glow
-  ctx.fillRect(0, 280, 680, 750)
+  ctx.fillRect(0, 120, 680, mainBottom - 120)
 
   rect(ctx, 62, 54, 9, 42, '#d4af6a', 3)
   label(ctx, 'ÉPARGNANT LIBRE', 93, 84, 25, '#e6d4aa')
-  label(ctx, 'Répartition de', 62, 189, 57, WHITE, 'left', 'Georgia, serif')
-  label(ctx, 'portefeuille', 62, 258, 65, WHITE, 'left', 'Georgia, serif')
-  rect(ctx, 62, 294, 956, 1, RULE)
-  label(ctx, 'COMPOSITION', 62, 345, 21, MUTED)
+  rect(ctx, 62, 124, 956, 1, RULE)
 
   // Same order and colors for the donut and the corresponding large legend squares.
   const cx = 329
-  const cy = 638
-  const radius = 179
+  const rowStep = selection.length <= 6 ? 83 : 76
+  const cy = Math.max(390, 190 + (selection.length - 1) * rowStep / 2)
+  const radius = 190
   const total = selection.reduce((sum, asset) => sum + asset.pct, 0)
   ctx.strokeStyle = '#27363b'
   ctx.lineWidth = 78
@@ -92,11 +109,10 @@ export function renderPortfolioImage(portfolio) {
     angle = end
   })
 
-  const rowStep = selection.length <= 6 ? 83 : 76
   selection.forEach((asset, index) => {
-    const y = 464 + index * rowStep
-    rect(ctx, 620, y - 27, 34, 34, PALETTE[index % PALETTE.length], 8)
-    fitted(ctx, asset.name, 675, y - 1, 240, 22, '#d7deda', 'left', 17)
+    const y = cy - (selection.length - 1) * rowStep / 2 + index * rowStep
+    rect(ctx, 600, y - 27, 34, 34, PALETTE[index % PALETTE.length], 8)
+    wrappedLabel(ctx, portfolioAssetLabel(asset), 651, y - 10, 250)
     label(ctx, `${asset.pct} %`, 1015, y + 2, 34, WHITE, 'right')
   })
 

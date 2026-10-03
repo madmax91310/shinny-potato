@@ -1,5 +1,6 @@
+import { compactHooks, compactRole, portfolioAssetLabel } from './compact.js';
 import { assetEditorial } from "./asset-editorial.js";
-import { PROFILES, PRO_EUROPE_CORE_IDS } from "./theses.js";
+import { PRO_EUROPE_CORE_IDS } from "./theses.js";
 
 // Le texte décrit la composition finale, indépendamment du profil et du mode.
 const WORLD = ["msci_world", "msci_world_ishares", "msci_world_amundi_pea", "msci_acwi", "msci_acwi_ishares", "ftse_allworld_vanguard"];
@@ -43,33 +44,6 @@ function role(s, selection) {
   else if (["bitcoin", "ethereum"].includes(info.kind) && euros) link = s.pct <= 15 ? " Cette petite poche ne joue pas le même rôle que le fonds euros." : " Cette ligne ne joue pas le même rôle que le fonds euros.";
   else if (info.kind === "theme" && selection.some(a => WORLD.includes(a.id))) link = " À côté du fonds mondial, on assume donc une préférence pour ce thème ; certaines entreprises peuvent déjà être présentes dans les deux.";
   return `${info.text}${place ? ` ${place}` : ""}${link}`;
-}
-
-// Les intitulés manuels décrivent les expositions, sans déduire un profil de risque.
-function portfolioHeading(selection, profileId, riskId) {
-  if (riskId !== "manuel") {
-    const label = PROFILES.find(p => p.id === profileId)?.label.replace(/^(?:Le |L['’])/, "");
-    return "🧩 Portefeuille" + (label ? ` ${label}` : "");
-  }
-  const world = weight(selection, s => WORLD.includes(s.id));
-  const bitcoin = weight(selection, s => s.id.startsWith("bitcoin"));
-  const gold = weight(selection, isGold);
-  const tech = weight(selection, s => ["sect_tech", "tech_europe", "nasdaq100", "nasdaq100_ishares", "lqq"].includes(s.id));
-  const dividends = weight(selection, s => s.cat === "dividendes" && s.id !== "qyld_ucits");
-  const bonds = weight(selection, isBond);
-  let label = "";
-  if (world && bitcoin) label = "Monde + Bitcoin";
-  else if (tech >= 10 && gold >= 10) label = "tech et or";
-  else if (dividends >= 10 && bonds >= 10) label = "dividendes et obligations";
-  else if (weight(selection, s => PRO_EUROPE_CORE_IDS.includes(s.id)) >= 70) label = "à dominante européenne";
-  else if (weight(selection, s => s.id === "fonds_euros") >= 50) label = "à dominante fonds euros";
-  else if (bitcoin >= 50) label = "à dominante Bitcoin";
-  else if (gold >= 50) label = "à dominante or";
-  else if (world >= 50) label = "à dominante mondiale";
-  else if (dividends >= 50) label = "à dominante dividendes";
-  else if (bonds >= 50) label = "à dominante obligataire";
-  else if (weight(selection, isTheme) >= 50) label = "thématique";
-  return "🧩 Portefeuille" + (label ? ` ${label}` : "");
 }
 
 const isGold = s => s.id === "or" || s.id.startsWith("or_");
@@ -365,15 +339,15 @@ export function buildEditorial(selection, history = [], profileId, riskId) {
   const content = scene(selection, shared, profileId, riskId);
   // Une série de publications peut alterner profils, paliers et mode manuel.
   const recent = history.slice(-20);
-  const hook = rotate(content.hooks, content.kind, recent, "hookId");
+  const hook = rotate(compactHooks(selection), content.kind, recent, "hookId");
   const cta = rotate(content.questions, content.kind, recent, "ctaTemplate");
   const lever = selection.some(s => LEVERAGE.includes(s.id));
-  const warnings = ["La pire année simulée ne constitue pas une perte maximale : d’autres périodes peuvent être plus défavorables."];
+  const warnings = [];
   if (lever) warnings.push("Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.");
   if (selection.some(s => s.distributing || s.id === "qyld_ucits" || s.id === "scpi")) warnings.push("Les distributions ne sont pas garanties et peuvent accompagner une baisse du capital.");
   return {
-    selection: selection.map(s => ({ ...s, desc: assetEditorial(s).description, pourquoi: role(s, selection) })),
-    hook: `${portfolioHeading(selection, profileId, riskId)}\n\n${hook.text}`,
+    selection: selection.map(s => ({ ...s, desc: assetEditorial(s).description, pourquoi: role(s, selection), shortRole: compactRole(s, selection), shortName: portfolioAssetLabel(s) })),
+    hook: hook.text,
     hookTemplate: hook.text, hookId: hook.id,
     intro: content.intro, sousTitre: "💼 La répartition", logic: compositionLogic(selection, shared),
     cta: `💬 ${cta.text}`, ctaTemplate: cta.id, warning: warnings.join(" "),
