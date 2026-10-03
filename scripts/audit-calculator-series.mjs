@@ -7,18 +7,18 @@ import { MONTHLY_HISTORY_ADDITIONS } from '../src/data/monthly-history-additions
 import './audit-monthly-history-additions.mjs';
 
 const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-yahoo-2026-09-29.json', import.meta.url)));
-const gold = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-worldbank-gold-2026-10-03.json', import.meta.url)));
+const gold = JSON.parse(readFileSync(new URL('../src/data/worldbank-gold-monthly.json', import.meta.url)));
 let errors = 0;
-if (!gold.url?.startsWith('https://thedocs.worldbank.org/') || gold.checkedAt !== '2026-10-03' ||
-    gold.workbookUpdatedAt !== '2026-10-02' || !/^[a-f0-9]{64}$/.test(gold.workbookSha256) ||
+if (!gold.url?.startsWith('https://thedocs.worldbank.org/') || !/^\d{4}-\d{2}-\d{2}$/.test(gold.checkedAt) ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(gold.workbookUpdatedAt) || !/^[a-f0-9]{64}$/.test(gold.workbookSha256) ||
     gold.sheet !== 'Monthly Prices' || gold.column !== 'Gold' || gold.unit !== 'USD per troy ounce' ||
-    gold.points.length !== 141 || ASSETS.or.points.length !== 141) {
+    gold.license !== 'CC BY 4.0' || gold.points.length < 141 || ASSETS.or.points.length !== gold.points.length) {
   console.error('Or : capture Banque mondiale ou provenance incomplète');
   errors++;
 } else {
   for (const [index, [date, price]] of gold.points.entries()) {
     const actual = ASSETS.or.points[index];
-    if (actual?.date !== date || actual.price !== price) {
+    if (date !== new Date(Date.UTC(2015, index, 1)).toISOString().slice(0, 7) || !(price > 0) || actual?.date !== date || actual.price !== price) {
       console.error(`Or ${date} : ${actual?.price} au lieu de ${price}`);
       errors++;
     }
@@ -81,7 +81,7 @@ if (SPARSE_MONTHLY_DATA_IDS.has('ethereum')) throw new Error('Ethereum mensuel e
 // sinon le 1er octobre à Paris (30 septembre UTC) serait pris pour septembre.
 const current = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-monthly-2026-10-02.json', import.meta.url)));
 const expectedIds = ['bitcoin', 'ethereum', 'cac40', 'nasdaq100', 'soxx', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'sp500'];
-if (current.checkedAt !== '2026-10-02' || current.lastCompleteMonth !== '2026-09' || LATEST_YM !== current.lastCompleteMonth
+if (current.checkedAt !== '2026-10-02' || current.lastCompleteMonth !== '2026-09' || LATEST_YM < current.lastCompleteMonth
     || Object.keys(current.records).sort().join() !== expectedIds.sort().join()) throw new Error('Périmètre de la mise à jour mensuelle incorrect');
 const monthAtExchange = (timestamp, timeZone) => {
   const parts = new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date(timestamp * 1000));

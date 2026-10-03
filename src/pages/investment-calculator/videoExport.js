@@ -451,6 +451,10 @@ function drawFrame(ctx, params, elapsedMs) {
   ctx.font = FONTS.footer
   ctx.fillStyle = COLORS.inkFaint
   ctx.fillText('Éducation financière, pas un conseil en investissement.', PAD, H - 52)
+  if (params.sourceCredit) {
+    ctx.font = "16px Arial, sans-serif"
+    params.sourceCredit.split('\n').forEach((line, i) => ctx.fillText(line, PAD, H - 32 + i * 20))
+  }
 }
 
 // Frame du mode Comparatif — même squelette que drawFrame (fond, kicker, période, pastille de mode,
@@ -611,6 +615,10 @@ function drawComparativeFrame(ctx, params, elapsedMs) {
   ctx.font = FONTS.footer
   ctx.fillStyle = COLORS.inkFaint
   ctx.fillText('Éducation financière, pas un conseil en investissement.', PAD, H - 52)
+  if (params.sourceCredit) {
+    ctx.font = "16px Arial, sans-serif"
+    params.sourceCredit.split('\n').forEach((line, i) => ctx.fillText(line, PAD, H - 32 + i * 20))
+  }
 }
 
 // Boucle d'enregistrement partagée par les deux modes : dessine `drawFn(ctx, elapsedMs)` sur le

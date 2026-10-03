@@ -29,6 +29,7 @@
 import { ALL_ITEMS, FORMATS, FORMAT_LABELS, MODES, buildTweetText } from "../src/pages/tweet-midi/lib.js";
 import { TERMES } from "../src/data/financial-lexicon.js";
 import { getAnnualReturns } from "../src/pages/tweet-midi/data/marketHistory.js";
+import { ASSETS } from '../src/data/market-history.js';
 
 import assert from 'node:assert/strict';
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
@@ -122,7 +123,9 @@ for (const item of ALL_ITEMS) {
   if (!error && item.format === FORMATS.PERFORMANCE_DEPUIS) {
     const blocks = text.split(/\n\n(?=📈)/u);
     const blockPattern = /^📈 Performance [^\n]+ depuis \d{4} 👇\n\n(?:[🟢🔴] \d{4} : [+-]?[\d\s.,]+ %\n)+\nCumulé sur la période : [+-]?[\d\s.,]+ %$/u;
-    if (!blocks.every((block) => blockPattern.test(block))) {
+    // The licensed gold dataset needs its attribution on text-only publications too.
+    const credit = `\n\n${ASSETS.or.sourceCredit}`;
+    if (!blocks.every((block) => blockPattern.test(block.endsWith(credit) ? block.slice(0, -credit.length) : block))) {
       problems.push('format minimal de performance non respecté');
     }
   }

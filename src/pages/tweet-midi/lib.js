@@ -483,6 +483,7 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
   lines.push(`Performance : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
   lines.push("");
   lines.push(anniversaryConclusion(asset, item.yearsBack, gainPct));
+  if (asset.sourceCredit) lines.push("", asset.sourceCredit);
   return lines.join("\n");
 }
 
@@ -513,6 +514,7 @@ function buildPerformanceBlock(asset, year, returns) {
     ...returns.map(({ year: annualYear, pct }) => `${pct >= 0 ? "🟢" : "🔴"} ${annualYear} : ${fmtPct(pct)}`),
     "",
     `Cumulé sur la période : ${fmtPct(cumulatePct(returns))}`,
+    ...(asset.sourceCredit ? ["", asset.sourceCredit] : []),
   ].join("\n");
 }
 
@@ -559,6 +561,8 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   lines.push("");
   if (bothKnown) lines.push(fmtEcart(pctA, pctB));
   lines.push(comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, item.yearsBack));
+  const credit = assetA.sourceCredit || assetB.sourceCredit;
+  if (credit) lines.push("", credit);
   return lines.join("\n");
 }
 

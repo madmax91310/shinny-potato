@@ -58,8 +58,8 @@ function ResultCard({ state, d, copied, onCopy }) {
   const currency = d.isCustom ? 'EUR' : asset.currency
   const gainAbs = d.result.finalValue - d.result.totalInvested
   const gainPct = pct(d.result.finalValue, d.result.totalInvested)
-  const livretPct = pct(d.livretA.finalValue, d.livretA.totalInvested)
-  const inflPct = pct(d.inflation.finalValue, d.inflation.totalInvested)
+  const livretPct = d.livretA ? pct(d.livretA.finalValue, d.livretA.totalInvested) : null
+  const inflPct = d.inflation ? pct(d.inflation.finalValue, d.inflation.totalInvested) : null
   const monthShort = MONTHS_SHORT[parseInt(d.startYm.split('-')[1], 10) - 1]
   const yearLabel = d.startYm.split('-')[0]
   const endLabel = `${MONTHS_SHORT[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
@@ -167,6 +167,7 @@ function ResultCard({ state, d, copied, onCopy }) {
           videoParams={{
             series: videoResult.series,
             invested: videoResult.invested,
+            sourceCredit: asset?.sourceCredit,
             assetLabel: `${d.isCustom ? '✎' : asset.icon} ${assetLabel}`,
             periodLabel: `${monthShort} ${yearLabel} → ${endLabel}`,
             modeLabel: d.effectiveMode === 'dca' ? 'DCA MENSUEL' : 'VERSEMENT UNIQUE',

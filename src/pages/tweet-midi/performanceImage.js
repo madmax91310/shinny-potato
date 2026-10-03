@@ -111,6 +111,8 @@ export function renderPerformanceImage(item) {
     // La source « argent » est un future continu : cette précision doit accompagner son image.
     text(ctx, 'ARGENT : FUTURES COMEX CONTINUS, HORS FRAIS ET ROULEMENT', 80, comparative ? 2544 : 1955, 24, C.muted)
   }
+  const credit = assets.find(a => a.sourceCredit)?.sourceCredit
+  if (credit) credit.split('\n').forEach((line, i) => text(ctx, line, 80, (comparative ? 2580 : 2000) + i * 32, 25, C.muted))
   return canvas
 }
 
