@@ -17,12 +17,11 @@ export const accountLabel = (etf, separator = ' | ') => [
 // Squelette historique conservé ; les explications enrichies viennent du registre commun.
 export function buildText(etf) {
   const tickerStr = etf.listing?.ticker ?? ''
-  const newTag = etf.isNew ? ' 🆕' : ''
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
   return (
     "📋 Présentation d'" + presentationType(etf) + '\n' +
-    dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + newTag + '\n' +
+    dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + '\n' +
     '\n' + etf.hook + '\n\n' +
     (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +
     '🆔 ISIN : ' + etf.isin + '\n' +

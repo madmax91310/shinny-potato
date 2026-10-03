@@ -166,7 +166,6 @@ export async function drawBrokerVersus(canvas, leftId, rightId, isCurrent = () =
   ctx.fillStyle = '#f5f5f7'
   ctx.textAlign = 'center'
   ctx.font = '700 28px Arial, sans-serif'
-  ctx.fillText('DUEL DE COURTIERS', 800, 104)
   ctx.font = '700 24px Arial, sans-serif'
   ctx.fillText('ÉPARGNANT LIBRE', 800, 825)
 }

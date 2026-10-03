@@ -48,7 +48,7 @@ export function renderAnnualETFImage(etf) {
   ctx.textBaseline = 'alphabetic'
   ctx.fillStyle = BRONZE
   ctx.font = 'bold 17px Arial, sans-serif'
-  ctx.fillText('PRÉSENTATION D’ETF', 60, 104)
+  ctx.fillText('ÉPARGNANT LIBRE', 60, 104)
   ctx.font = 'bold 54px Georgia, serif'
   ctx.fillStyle = INK
   titleLines(ctx, etf.name).forEach((text, index) => ctx.fillText(text, 60, 180 + index * 60))
@@ -123,6 +123,6 @@ export function renderAnnualETFImage(etf) {
   ctx.fillText(`en ${worst.year}`, 567, 1252)
   line(ctx, 60, 1283, 1020, BRONZE)
   ctx.font = '17px Arial, sans-serif'
-  ctx.fillText(`Rendements calendaires de la part en ${series.currency} · Historique, pas une prévision`, 60, 1317)
+  ctx.fillText('Historique, pas une prévision', 60, 1317)
   return canvas
 }

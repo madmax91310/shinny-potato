@@ -107,7 +107,7 @@ function renderAlternative(record, design) {
     roundedPanel(ctx, 64, 612, 952, 573, '#1c2b3d')
     dots(ctx, 76, 650, 470, grids[0].count, accent, '#364359')
     ctx.fillStyle = fg; ctx.font = 'bold 39px Arial, sans-serif'; wrap(ctx, grids[0].label, 592, 781, 370, 48)
-    ctx.fillStyle = paper ? '#50645c' : '#b9cec5'; ctx.font = '25px Arial, sans-serif'; wrap(ctx, 'Chaque point représente 1 sur 100.', 592, 1020, 350, 34)
+    ctx.fillStyle = paper ? '#50645c' : '#b9cec5'; ctx.font = '25px Arial, sans-serif'; wrap(ctx, `1 point = 1 ${record.population === 'ménages' ? 'ménage' : record.population === 'personnes' ? 'personne' : record.population === 'salariés' ? 'salarié' : 'sur 100'}.`, 592, 1020, 350, 34)
   } else {
     ctx.fillStyle = accent; ctx.font = 'bold 132px Arial, sans-serif'; ctx.fillText(metric, 64, 468)
     ctx.fillStyle = fg; ctx.font = '30px Arial, sans-serif'; wrap(ctx, record.metricLabel, 64, 526, 952, 38)

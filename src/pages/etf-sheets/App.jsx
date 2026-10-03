@@ -52,7 +52,6 @@ function EtfCard({ etf }) {
         <span className="es-dot">{dot}</span>
         <span className="es-name">{etf.name}</span>
         {tickerStr && <span className="es-tickers">({tickerStr})</span>}
-        {etf.isNew && <span className="es-badge-new">🆕 Nouveau</span>}
       </h2>
 
       <p className="es-engagement">{etf.hook}</p>

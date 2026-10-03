@@ -71,7 +71,8 @@ function card(ctx, fund, i, total) {
   ctx.fillStyle = '#cbd5ca'; ctx.fillRect(x + 38, y + 536, 644, 3);
   txt(ctx, fund.isin, x + 38, y + 560, 39, INK, true);
   if (fund.encours) txt(ctx, `${fund.encours} d’encours`, x + 38, y + 616, 36, MUTED);
-  const detail = fitted(ctx, fund.differenciateur, 644, 3, 30, 25);
+  const detailText = badge ? fund.differenciateur.replace(/(?:non[ -]éligible\s+|éligible\s+|hors\s+|en\s+)?\bPEA\b(?: selon [^,;]+)?|\bCTO\b/gi, '').replace(/\s+([,;])/g, '$1').replace(/[,;]\s*[,;]/g, ',').replace(/^[\s·,;:|–—-]+|[\s·,;:|–—-]+$/g, '').trim() : fund.differenciateur;
+  const detail = fitted(ctx, detailText, 644, 3, 30, 25);
   detail.rows.forEach((row, j) => txt(ctx, row, x + 38, y + (fund.encours ? 662 : 616) + j * (detail.size + 5), detail.size, MUTED));
 }
 
@@ -87,7 +88,6 @@ export async function renderComparatifEtfImage(theme) {
   ctx.fillStyle = '#122c35'; ctx.fillRect(0, 0, W, H);
   ctx.strokeStyle = '#345b5a'; ctx.lineWidth = 48;
   ctx.beginPath(); ctx.arc(1820, -130, 350, 0.5, 2.8); ctx.stroke();
-  txt(ctx, `ÉPARGNANT LIBRE  /  COMPARATIF ${theme.id === 'etc-metaux' ? 'ETC' : 'ETF'}`, W / 2, 72, 35, '#c6e6d6', true, 'center');
   const kind = theme.id === 'etc-metaux' ? 'PRODUITS' : 'ETF';
   const title = `${theme.id === 'monde' ? 'LE MONDE' : theme.nom.toLocaleUpperCase('fr-FR')} EN ${theme.etfs.length} ${kind}`;
   const heading = fitted(ctx, title, W - 130, 2, 100, 51, true);

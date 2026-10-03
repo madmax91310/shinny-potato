@@ -34,7 +34,6 @@ const IMG_FONTS = {
   kicker: "700 22px -apple-system, 'Segoe UI', Arial, sans-serif",
   name: "600 50px Georgia, 'Times New Roman', serif",
   ticker: "26px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
-  badge: "700 22px -apple-system, 'Segoe UI', Arial, sans-serif",
   fact: "32px -apple-system, 'Segoe UI', Arial, sans-serif",
   factMono: "30px 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace",
   footer: "24px -apple-system, 'Segoe UI', Arial, sans-serif",
@@ -64,7 +63,6 @@ export function renderETFImage(etf) {
 
   const kickerH = 30, gapAfterKicker = 22
   const nameLineH = 60, tickerLineH = 48
-  const badgeH = etf.isNew ? 58 : 0
   const gapBeforeDivider = 30, dividerGap = 38
   const factLineH = 44, factRowGap = 24
   const gapBeforeFooterDivider = 6, footerDividerGap = 32, footerH = 30
@@ -73,7 +71,6 @@ export function renderETFImage(etf) {
   y += kickerH + gapAfterKicker
   y += nameLines.length * nameLineH
   y += tickerLineH
-  if (etf.isNew) y += badgeH
   y += gapBeforeDivider + dividerGap
   factLineWraps.forEach((lines) => {
     y += Math.max(1, lines.length) * factLineH + factRowGap
@@ -108,7 +105,7 @@ export function renderETFImage(etf) {
 
   ctx.font = IMG_FONTS.kicker
   ctx.fillStyle = '#2dd4bf'
-  ctx.fillText('📋 PRÉSENTATION D\'ETF', cx, cy)
+  ctx.fillText('ÉPARGNANT LIBRE', cx, cy)
   cy += kickerH + gapAfterKicker
 
   ctx.font = IMG_FONTS.name
@@ -123,20 +120,6 @@ export function renderETFImage(etf) {
   ctx.fillText(tickerStr, cx, cy)
   cy += tickerLineH
 
-  if (etf.isNew) {
-    const badgeText = '🆕 Nouveau'
-    ctx.font = IMG_FONTS.badge
-    const bw = ctx.measureText(badgeText).width + 34
-    const bh = 42
-    ctx.fillStyle = '#5eead4'
-    roundRectPath(ctx, cx, cy, bw, bh, bh / 2)
-    ctx.fill()
-    ctx.fillStyle = '#052e2b'
-    ctx.textBaseline = 'middle'
-    ctx.fillText(badgeText, cx + 17, cy + bh / 2 + 1)
-    ctx.textBaseline = 'top'
-    cy += badgeH
-  }
 
   cy += gapBeforeDivider
   ctx.strokeStyle = 'rgba(255,255,255,0.08)'
