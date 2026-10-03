@@ -288,7 +288,15 @@ export default function App() {
           <div className="es-panel-heading"><h2 id="es-preparation-title">Réglages de la fiche</h2></div>
           <div className="es-controls">
             <div className="es-select-shell">
-              <AssetPicker id="es-etf-select" className="es-select" label="Choisir un ETF" items={options} value={currentId} onChange={selectETF} />
+              <AssetPicker id="es-etf-select" className="es-select" label="Choisir un ETF" items={options} value={currentId} onChange={selectETF} selectOnGroupChange
+                renderResults={matches => <section className="support-alternatives es-matching-etfs" aria-label="ETF correspondant aux filtres">
+                  {matches.map(item => <div className="support-alternative" key={item.id}>
+                    <strong>{item.label}</strong>
+                    <span>{item.badges.join(' · ')}</span>
+                    <small>{item.isin}</small>
+                    <Button type="button" variant="secondary" onClick={() => selectETF(item.id)}>Présenter cet ETF</Button>
+                  </div>)}
+                </section>} />
             </div>
             <Button type="button" variant="secondary" onClick={pickRandom}>🔄 ETF aléatoire</Button>
           </div>

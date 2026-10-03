@@ -2,7 +2,7 @@ import { useId, useMemo, useState } from 'react'
 import { normalizeSearch } from '../data/asset-selection.js'
 import './asset-picker.css'
 
-export default function AssetPicker({ items, value, onChange, label, id, className = '', emptyOption }) {
+export default function AssetPicker({ items, value, onChange, label, id, className = '', emptyOption, selectOnGroupChange = false, renderResults }) {
   const uniqueId = useId()
   const selectId = id ?? uniqueId
   const [query, setQuery] = useState('')
@@ -19,7 +19,14 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
       aria-label={`Rechercher : ${label ?? 'actif'}`} placeholder="Nom, indice, ticker ou ISIN…" />
     <div className="asset-picker-groups" role="group" aria-label={`Expositions : ${label ?? 'actif'}`}>
       {['Tous', ...groups].map(name => <button type="button" key={name} aria-pressed={group === name}
-        onClick={() => setGroup(name)}>{name}</button>)}
+        onClick={() => {
+          setGroup(name)
+          if (selectOnGroupChange) {
+            setQuery('')
+            const matches = items.filter(item => name === 'Tous' || (item.group ?? 'Autres actifs') === name)
+            if (!matches.includes(current) && matches.length) onChange(String(matches[0].id))
+          }
+        }}>{name}</button>)}
     </div>
     <select id={selectId} aria-label={label} className={className} value={value} onChange={event => onChange(event.target.value)}>
       {emptyOption && <option value={emptyOption.id}>{emptyOption.label}</option>}
@@ -36,5 +43,6 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
     {current?.isin && <details className="asset-picker-details"><summary>Identité du support</summary>
       <p>{current.name ?? current.label}</p><p>{current.isin}</p>
     </details>}
+    {(query || group !== 'Tous') && renderResults?.(filtered)}
   </div>
 }
