@@ -35,7 +35,7 @@ add("bitcoin bitcoin_wisdomtree bitcoin_etcgroup bitcoin_21shares", "bitcoin", "
 add("ethereum", "ethereum", "Ethereum", "On choisit ici Ethereum, dont le fonctionnement et les usages diffèrent de ceux de Bitcoin. Ce produit intègre aussi le staking. Il reste exposé aux fortes variations d’Ethereum : cela n’en fait pas une poche stable.");
 add("or or_wisdomtree or_ishares or_amundi", "gold", "l’or", "On fait une place à un métal plutôt qu’aux bénéfices d’une entreprise ou aux intérêts d’une obligation. L’or ne verse pas de revenu : on compte sur son cours. Il peut évoluer différemment des actions, mais ne les protège pas à tous les coups.");
 add("argent", "silver", "l’argent", "On ajoute ici de l’argent, un métal qui sert aussi à l’industrie. Son cours peut donc réagir à la fois à la demande de métal et à l’activité économique. Ce n’est pas simplement une deuxième ligne d’or.");
-add("mp_large mp_large_icom", "commodities", "les matières premières", "On fait une place à plusieurs matières premières plutôt qu’à un seul métal. Leurs prix apportent autre chose que les bénéfices des entreprises, mais peuvent aussi chuter lorsque la demande ralentit. Le fonds suit cette exposition avec ses propres mécanismes, pas en stockant un panier de marchandises chez toi.");
+add("mp_large mp_large_icom", "commodities", "les matières premières", "On fait une place à plusieurs matières premières plutôt qu’à un seul métal. Leurs prix apportent autre chose que les bénéfices des entreprises, mais peuvent aussi chuter lorsque la demande ralentit. Le fonds utilise des contrats à terme : son parcours peut différer de celui des prix au comptant.");
 add("monetaire_xeon", "money", "le fonds monétaire", "On cherche ici à suivre les taux courts en euros, sans prendre une exposition aux actions. Le revenu évolue avec ces taux : il peut diminuer lorsqu’ils baissent. Ce fonds utilise un swap et n’offre pas la garantie d’un dépôt bancaire.");
 add("oblig_0_1_ishares", "short-bond", "les obligations de zéro à un an", "On choisit des emprunts d’État de la zone euro proches de leur remboursement. Leurs échéances courtes limitent les secousses liées aux taux, sans garantir le capital. Le fonds renouvelle ses obligations : il ne te rembourse pas tout à une date fixée.");
 add("oblig_etat_eur_short", "short-bond", "les obligations de un à trois ans", "On prête ici aux États de la zone euro sur des échéances courtes. L’idée est de limiter la sensibilité aux mouvements de taux par rapport à des obligations longues, tout en acceptant que le cours du fonds varie.");
@@ -43,7 +43,7 @@ add("oblig_etat_eur", "bond", "les obligations d’État en euros", "On prête i
 add("oblig_etat_us", "bond", "les obligations d’État américaines", "On prête ici à l’État américain. C’est un autre choix que d’acheter ses entreprises, avec un résultat qui dépend notamment des taux et du dollar. Cette poche peut donc baisser même sans problème de remboursement de l’État.");
 add("oblig_corp_ig oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr", "bond", "les obligations d’entreprises", "On prête ici à des entreprises jugées suffisamment solides selon les agences de notation. On cherche des intérêts plutôt que de participer directement à leurs bénéfices. Cela laisse quand même un risque de défaut et de baisse du cours quand les taux montent.");
 add("oblig_hy oblig_hy_amundi oblig_hy_ishares_acc", "high-yield", "les obligations à haut rendement", "On accepte de prêter à des entreprises moins bien notées pour espérer davantage d’intérêts. Ce supplément ne tombe pas du ciel : les difficultés de remboursement peuvent augmenter lorsque l’économie se dégrade.");
-add("oblig_inflation", "inflation", "les obligations indexées", "On choisit ici des obligations dont les paiements tiennent compte de l’inflation. C’est utile pour comprendre ce pari, mais pas suffisant pour garantir un gain quand les prix grimpent : leur cours dépend aussi des taux réels.");
+add("oblig_inflation", "inflation", "les obligations indexées", "On cherche à faire une place à des obligations dont les paiements suivent l’inflation. Mais le fonds peut baisser même quand les prix grimpent : son cours dépend aussi des taux réels.");
 add("oblig_global_agg_eur_hedged", "bond", "les obligations mondiales couvertes en euros", "On réunit ici des emprunts de plusieurs marchés et emprunteurs. La couverture vers l’euro cherche à limiter l’effet des devises. Elle ne supprime pas les baisses liées aux taux ou aux difficultés des emprunteurs.");
 add("oblig_em_local_ishares_acc", "em-bond", "les obligations émergentes en monnaie locale", "On prête ici à des États émergents dans leurs monnaies locales. On ajoute donc le pari sur ces monnaies à celui sur les obligations. Cette poche peut être secouée par les changes et les difficultés locales, même si elle porte le mot « obligataire ».");
 add("scpi", "property-private", "les SCPI", "On fait ici une place à l’immobilier non coté et aux loyers. Il faut pouvoir laisser cet argent investi : la revente peut prendre du temps. Les revenus comme la valeur des parts peuvent baisser.");
@@ -80,6 +80,35 @@ theme("sect_utilities", "les services collectifs", "On fait une place aux entrep
 theme("sect_financieres", "les sociétés financières", "On mise ici sur les entreprises financières du S&P 500.", "Le crédit et les mouvements de taux peuvent les aider à certaines périodes, puis les fragiliser à d’autres. Cette ligne ne joue pas le rôle d’un dépôt bancaire.");
 theme("infrastructure_ishares", "les infrastructures", "On investit ici dans des sociétés cotées liées aux infrastructures de plusieurs pays.", "On compte sur leur activité, mais l’utilité de leurs services ne rend pas leurs actions stables : les taux, les dettes et les décisions publiques restent importants.");
 
+// L’identité courte reste distincte du rôle dans la composition. Elle remplace
+// les anciennes descriptions longues ou absolues, sans toucher la banque commune.
+const descriptions = {
+  euros: "Un fonds euros au sein d’un contrat d’assurance-vie.",
+  "world-developed": "Des actions de plusieurs pays développés.",
+  "world-all": "Des actions des pays développés et émergents.",
+  us: "Les grandes entreprises américaines du S&P 500.",
+  nasdaq: "Les grandes entreprises non financières du Nasdaq-100.",
+  leverage: "Une exposition aux actions avec un levier quotidien de deux.",
+  emerging: "Une sélection d’actions des marchés émergents.",
+  bitcoin: "Une exposition au cours de Bitcoin via un produit coté.",
+  ethereum: "Une exposition à Ethereum avec staking via un produit coté.",
+  gold: "Une exposition au cours de l’or via un produit coté.",
+  silver: "Une exposition au cours de l’argent via un produit coté.",
+  commodities: "Un panier de matières premières suivi via des contrats à terme.",
+  money: "Une exposition aux taux courts en euros via un swap.",
+  "high-yield": "Des obligations d’entreprises moins bien notées.",
+  inflation: "Des obligations dont les paiements sont liés à l’inflation.",
+  "em-bond": "Des emprunts d’États émergents dans leurs monnaies locales.",
+  "property-private": "De l’immobilier non coté détenu à travers des SCPI.",
+  options: "Des actions du Nasdaq-100 et une stratégie de vente d’options.",
+};
+for (const [id, entry] of Object.entries(entries)) {
+  entry.description = descriptions[entry.kind] ?? `${entry.label[0].toUpperCase()}${entry.label.slice(1)}.`;
+  if (entry.kind === "theme") entry.description = `Une sélection d’entreprises sur un thème : ${entry.label}.`;
+  if (entry.kind === "factor") entry.description = `${entry.label[0].toUpperCase()}${entry.label.slice(1)}, sélectionnées selon les critères de l’indice.`;
+  if (id === "oblig_0_1_ishares") entry.description = "Des emprunts d’État de la zone euro à échéance de zéro à un an.";
+  if (id === "oblig_etat_eur_short") entry.description = "Des emprunts d’État de la zone euro à échéance de un à trois ans.";
+}
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];
