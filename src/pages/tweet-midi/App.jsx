@@ -1,3 +1,5 @@
+import AssetPicker from '../../design-system/AssetPicker'
+import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState } from "react";
 import {
@@ -239,34 +241,12 @@ export default function App() {
   // aucune paire correspondante et retombait silencieusement sur une paire aléatoire différente,
   // sans que l'utilisateur s'en rende compte (cf. audit du 29/08/2026).
   function renderSubjectSelect(id, value, onChange, excludeId) {
-    return (
-      <select
-        id={id}
-        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-400"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      >
-        <option value={SUBJECT_ALEATOIRE}>🔀 Aléatoire</option>
-        {subjectGroups.map((group) => {
-          const items = excludeId ? group.items.filter((it) => it.id !== excludeId) : group.items;
-          return group.categorie ? (
-            <optgroup key={group.categorie} label={group.categorie}>
-              {items.map((it) => (
-                <option key={it.id} value={it.id}>
-                  {it.label}
-                </option>
-              ))}
-            </optgroup>
-          ) : (
-            items.map((it) => (
-              <option key={it.id} value={it.id}>
-                {it.label}
-              </option>
-            ))
-          );
-        })}
-      </select>
-    );
+    return <AssetPicker id={id} label={id === 'subject-select-b' ? 'Actif B' : id === 'subject-select-a' ? 'Actif A' : 'Sujet'}
+      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+      value={value} onChange={onChange} emptyOption={{ id: SUBJECT_ALEATOIRE, label: 'Aléatoire' }}
+      items={subjectGroups.flatMap(group => group.items.filter(item => item.id !== excludeId).map(item => ({
+        ...item, group: group.categorie ?? exposureGroup(item),
+      })))} />
   }
 
   return (

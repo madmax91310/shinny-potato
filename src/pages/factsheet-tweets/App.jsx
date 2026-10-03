@@ -1,3 +1,5 @@
+import AssetPicker from '../../design-system/AssetPicker'
+import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
@@ -33,10 +35,9 @@ export default function App() {
     <PageHeader title="Dans les coulisses des indices" subtitle={`${SHEETS.length} sujets décryptés à partir de fiches officielles, avec des publications prêtes à relire, modifier et copier.`} />
     <ToolWorkspace>
     <div className="fs-panel tool-settings">
-      <label className="fs-label" htmlFor="factsheet-subject">Choisir un indice ou un ETF</label>
-      <select id="factsheet-subject" value={selected} onChange={(event) => { setSelected(event.target.value); setCopied(false) }}>
-        {SHEETS.map((entry) => <option key={entry.id} value={entry.id}>{entry.title}</option>)}
-      </select>
+      <AssetPicker id="factsheet-subject" label="Choisir un indice ou un ETF" value={selected}
+        items={SHEETS.map(entry => ({ id: entry.id, label: entry.title, isin: entry.isin, group: exposureGroup(entry), detail: entry.index }))}
+        onChange={value => { setSelected(value); setCopied(false) }} />
       <div className="fs-meta">
         <span>📅 Composition : {sheet.snapshot}</span>
         <span>📈 Performances : {sheet.performance.kind === 'ETF' ? `ETF ${sheet.isin}` : 'indice'} · {sheet.performance.date}</span>

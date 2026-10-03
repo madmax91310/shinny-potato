@@ -1,6 +1,9 @@
+import AssetPicker from '../../design-system/AssetPicker'
+import SupportAlternatives from './SupportAlternatives'
+import { instrumentOption } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { CATEGORY_ORDER, CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
+import { CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
 import { accountLabel, buildText } from './lib'
 import { renderETFImage } from './canvasImage'
@@ -206,10 +209,7 @@ export default function App() {
   const currentAnnual = getAnnualPerformance(currentEtf)
   const hasAnnualImage = currentAnnual?.values.filter(Number.isFinite).length >= 2
 
-  const optgroups = useMemo(
-    () => CATEGORY_ORDER.map((cat) => ({ cat, etfs: ETFS.filter((e) => e.category === cat) })),
-    [],
-  )
+  const options = useMemo(() => ETFS.map(instrumentOption), [])
 
   function selectETF(id) {
     setCurrentId(id)
@@ -273,16 +273,12 @@ export default function App() {
           <div className="es-panel-heading"><h2 id="es-preparation-title">Réglages de la fiche</h2></div>
           <div className="es-controls">
             <div className="es-select-shell">
-              <label htmlFor="es-etf-select">ETF à présenter</label>
-              <select id="es-etf-select" className="es-select" aria-label="Choisir un ETF" value={currentId} onChange={(e) => selectETF(e.target.value)}>
-                {optgroups.map(({ cat, etfs }) => <optgroup key={cat} label={`${CATEGORY_EMOJI[cat] || ''} ${cat}`}>
-                  {etfs.map(e => <option key={e.id} value={e.id}>{e.name} ({e.listing?.ticker ?? e.isin})</option>)}
-                </optgroup>)}
-              </select>
+              <AssetPicker id="es-etf-select" className="es-select" label="Choisir un ETF" items={options} value={currentId} onChange={selectETF} />
             </div>
             <Button type="button" variant="secondary" onClick={pickRandom}>🔄 ETF aléatoire</Button>
           </div>
           <p className="es-disclaimer" style={{ marginTop: 16 }}>Choisis un ETF, puis ouvre l’aperçu pour relire ta publication. Les boutons ci-dessous créent les visuels.</p>
+          <SupportAlternatives key={currentId} etf={currentEtf} onSelect={selectETF} />
           {!hasAnnualImage && <p className="es-disclaimer" style={{ marginTop: 12 }}>Graphique annuel indisponible pour cet ETF.</p>}
         </section>
         <section className="tool-preview" aria-label="Publication ETF">
