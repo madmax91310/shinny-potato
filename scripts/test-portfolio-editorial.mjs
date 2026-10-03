@@ -140,3 +140,51 @@ for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombo
 }
 console.log("OK : 92 supports manuels, tous les profils et paliers, poids, chevauchements et performances.");
 
+// Régressions issues de la relecture : une famille de hook ne doit pas cacher
+// une autre poche importante dans la logique de l’ensemble.
+const optionsIncome = manual([{id:"qyld_ucits",pct:37},{id:"high_dividend_dist",pct:39},{id:"oblig_etat_us",pct:24}], "rentier");
+assert.match(optionsIncome.hookId, /income-options/);
+assert.match(optionsIncome.logic, /options.*hausse.*primes/);
+assert.match(optionsIncome.logic, /dividendes/);
+assert.match(optionsIncome.logic, /obligations/);
+const indexMix = manual([{id:"msci_acwi",pct:50},{id:"msci_em",pct:30},{id:"oblig_etat_eur_short",pct:20}]);
+assert.match(indexMix.logic, /émergente.*déjà présent/);
+assert.match(indexMix.logic, /obligations courtes/);
+const metalsCrypto = manual([{id:"bitcoin",pct:25},{id:"ethereum",pct:25},{id:"or",pct:25},{id:"argent",pct:25}]);
+assert.match(metalsCrypto.logic, /crypto représente 50%/);
+assert.match(metalsCrypto.logic, /L’or.*sans revenu/);
+assert.match(metalsCrypto.logic, /L’argent.*industrie/);
+const themeMoney = manual([{id:"sect_utilities",pct:35},{id:"msci_world",pct:7},{id:"msci_em",pct:10},{id:"monetaire_xeon",pct:38},{id:"or",pct:10}]);
+assert.match(themeMoney.logic, /monétaire.*taux courts/);
+assert.match(themeMoney.logic, /conviction.*services collectifs/);
+assert.doesNotMatch(themeMoney.hook, /quelle place lui donner/);
+const factors = manual([{id:"msci_world",pct:20},{id:"world_quality_ishares",pct:25},{id:"world_momentum_ishares",pct:25},{id:"world_minvol_ishares",pct:30}]);
+assert.match(factors.hookId, /factors/);
+assert.match(factors.logic, /facteurs.*marchés indépendants/);
+assert.match(factors.logic, /se recouper/);
+const globalHistory = [];
+for (const [profile,risk] of [["generaliste","prudent"],["generaliste","defensif"],["generaliste","manuel"]]) {
+  const p = buildEditorial(majority.selection,globalHistory,profile,risk);
+  assert.notEqual(p.hookId,globalHistory.at(-1)?.hookId);
+  assert.notEqual(p.ctaTemplate,globalHistory.at(-1)?.ctaTemplate);
+  globalHistory.push({...p,profileId:profile,riskId:risk});
+}
+assert.equal(new Set(globalHistory.map(p=>p.hookId)).size,3);
+const shield = buildEditorial(majority.selection, [globalHistory[0]], "bouclier", "prudent");
+assert.notEqual(shield.cta,globalHistory[0].cta);
+const mixedWorld = manual([{id:"msci_world",pct:30},{id:"msci_acwi",pct:40},{id:"msci_em",pct:30}]);
+assert.match(mixedWorld.selection[2].pourquoi,/contient déjà.*au lieu de les ajouter/);
+const reinvestedIncome = manual([{id:"high_dividend",pct:60},{id:"oblig_corp_ig",pct:40}]);
+assert.doesNotMatch(reinvestedIncome.hook,/Recevoir des revenus/);
+assert.match(reinvestedIncome.logic,/capitalisantes.*réinvestissent/);
+const cautiousIncome = buildEditorial(manual([{id:"fonds_euros",pct:50},{id:"high_dividend_dist",pct:12},{id:"oblig_hy",pct:38}]).selection, [], "rentier", "prudent");
+assert.match(cautiousIncome.hookId,/income/);
+const europeanDebt = manual([{id:"oblig_etat_eur_short",pct:60},{id:"msci_europe",pct:13},{id:"fonds_euros",pct:27}]);
+assert.match(europeanDebt.hookId,/europe-lending/);
+assert.doesNotMatch(europeanDebt.cta,/indice mondial/);
+for (const p of [optionsIncome,indexMix,metalsCrypto,themeMoney,factors,...globalHistory]) {
+  assert.doesNotMatch(p.hook,/\d+(?:[,.]\d+)?\s*%/);
+  assert.doesNotMatch(p.selection.map(s=>s.pourquoi).join(" "), /assez pour compter dans le résultat/);
+  for (const s of p.selection) assert.ok(s.desc.split(/\s+/).length <= 22);
+}
+console.log("OK : logique complète, revenus/options, facteurs, descriptions courtes et rotation entre profils et modes.");

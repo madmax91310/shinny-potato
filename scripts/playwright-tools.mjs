@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { ETFS } from '../src/data/etf-cards.js';
+import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
 // Tests Playwright par outil — navigateur réel (Chromium), un "write→look once" formalisé en
 // script réutilisable plutôt que refait à la main à chaque changement. Committé le 14/09/2026
 // (audit "outils", documenté comme "à committer" dans scripts/README.md).
@@ -245,11 +246,31 @@ async function testPortfolioGenerator(page) {
   await page.locator('.pg-manual-pct-input').last().fill('60');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const personalTweet = await page.locator('.pg-tweet-body').innerText();
-  manualEditorialOk &&= /montagnes russes/.test(personalTweet)
+  manualEditorialOk &&= /montagnes russes|sans avoir l’impression que tout dépend|à l’écart de leurs secousses/.test(personalTweet)
     && /davantage en fonds euros/.test(personalTweet)
     && /On limite ici la mise à 10%/.test(personalTweet)
-    && /au fonds mondial/.test(personalTweet)
+    && /au fonds mondial|10% de crypto/.test(personalTweet)
     && !/\d+(?:[,.]\d+)?\s*%/.test(personalTweet.split('💼 La répartition')[0]);
+  // Les corrections éditoriales doivent aussi traverser l’interface manuelle.
+  for (const [rows, expected] of [
+    [[['qyld_ucits',37],['high_dividend_dist',39],['oblig_etat_us',24]], [/options.*hausse.*primes/s,/dividendes/,/obligations/]],
+    [[['msci_acwi',50],['msci_em',30],['oblig_etat_eur_short',20]], [/émergente.*déjà présent/s,/obligations courtes/]],
+  ]) {
+    await page.getByRole('button', { name: /Modifier la composition/ }).click();
+    while (await page.locator('.pg-manual-remove').count()) await page.locator('.pg-manual-remove').first().click();
+    for (const [id,pct] of rows) {
+      const asset = PORTFOLIO_ASSETS.find(a=>a.id===id);
+      await page.locator('#pg-manual-search').fill(asset.name);
+      await page.locator('.pg-manual-asset-option').filter({hasText:asset.name}).first().click();
+      await page.locator('.pg-manual-pct-input').last().fill(String(pct));
+    }
+    await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
+    const reviewedTweet = await page.locator('.pg-tweet-body').innerText();
+    const logic = reviewedTweet.split('🔍 La logique de l’ensemble')[1].split('📈')[0];
+    manualEditorialOk &&= expected.every(re=>re.test(logic))
+      && !/assez pour compter dans le résultat|valeur refuge par excellence/.test(reviewedTweet)
+      && !/\d+(?:[,.]\d+)?\s*%/.test(reviewedTweet.split('💼 La répartition')[0]);
+  }
   await page.setViewportSize({ width: 390, height: 844 });
   manualEditorialOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
