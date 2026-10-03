@@ -323,7 +323,7 @@ async function testPortfolioGenerator(page) {
     for (const [id,pct] of rows) {
       const asset = PORTFOLIO_ASSETS.find(a=>a.id===id);
       await page.locator('#pg-manual-search').fill(asset.name);
-      await page.locator('.pg-manual-asset-option').filter({hasText:asset.name}).first().click();
+      await page.locator(`.pg-manual-asset-option[data-asset-id="${id}"]`).click();
       await page.locator('.pg-manual-pct-input').last().fill(String(pct));
     }
     await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();

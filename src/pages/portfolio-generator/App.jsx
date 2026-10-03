@@ -231,7 +231,7 @@ function ManualComposer({
               {CATEGORIES[cat].label}
             </p>
             {items.map((a) => (
-              <button key={a.id} type="button" className="pg-manual-asset-option" onClick={() => onAdd(a.id)}>
+              <button key={a.id} type="button" className="pg-manual-asset-option" data-asset-id={a.id} title={a.name} onClick={() => onAdd(a.id)}>
                 <strong>{a.emoji} {instrumentOption(a).label}</strong>
                 <small className="pg-asset-description">{instrumentOption(a).detail || CATEGORIES[a.cat].label}{instrumentOption(a).badges.length ? ` · ${instrumentOption(a).badges.join(' · ')}` : ''}</small>
               </button>
