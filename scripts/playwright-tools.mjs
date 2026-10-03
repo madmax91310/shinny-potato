@@ -338,6 +338,19 @@ async function testPortfolioGenerator(page) {
       && !/assez pour compter dans le résultat|valeur refuge par excellence/.test(reviewedTweet)
       && !/\d+(?:[,.]\d+)?\s*%/.test(reviewedTweet.split('\n')[0]);
   }
+  // Rendements officiels : aucune étiquette de proxy créée par le mot « simulation ».
+  for (const id of ['nasdaq100_ishares', 'argent']) {
+    await page.getByRole('button', { name: /Modifier la composition/ }).click();
+    while (await page.locator('.pg-manual-remove').count()) await page.locator('.pg-manual-remove').first().click();
+    const asset = PORTFOLIO_ASSETS.find(a=>a.id===id);
+    await page.locator('#pg-manual-search').fill(asset.name);
+    await page.locator(`.pg-manual-asset-option[data-asset-id="${id}"]`).click();
+    await page.locator('.pg-manual-pct-input').fill('100');
+    await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
+    const labels = await page.locator('.pg-data-label').allInnerTexts();
+    manualEditorialOk &&= labels.length === 1 && labels[0] === 'Données en USD';
+    if (id === 'argent') manualEditorialOk &&= (await page.locator('.pg-bar-value').last().innerText()).includes('148,6');
+  }
   await page.setViewportSize({ width: 390, height: 844 });
   manualEditorialOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
@@ -649,7 +662,8 @@ async function testIndexComparator(page) {
     const text = await page.locator('.xc-preview-text').innerText();
     const editorial = getIndexComparisonEditorial(family);
     const refs = family.etfGroups.flatMap(group => group.funds);
-    const dataOk = refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
+    const silverOk = family.id !== 'or-argent' || (/148,6/.test(text) && family.perfMethodNote.includes('en dollars') && !/convertie en €/.test(family.perfMethodNote));
+    const dataOk = silverOk && refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
       && family.perfFunds.every(fund => fund.perfNote ? text.includes(fund.perfNote) :
         [2023, 2024, 2025].every(year => text.includes(`${year} : ${fmtPct(fund[`y${year}`]) ?? 'Non disponible'}`)));
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();

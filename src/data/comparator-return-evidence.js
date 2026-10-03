@@ -303,13 +303,18 @@ export const COMPARATOR_RETURN_EVIDENCE = {
     "note": "Aucune note individuelle immédiatement attachée à cet usage ; voir les commentaires de la famille."
   },
   "IE00B4NCWG09": {
-    "sourceUrls": [],
-    "checkedAt": null,
-    "asOf": null,
-    "currency": null,
-    "scope": "Part IE00B4NCWG09 ; rendements calendaires 2023–2025",
-    "method": "Rendements du comparateur ; convention décrite dans la note existante",
-    "note": "Aucune note individuelle immédiatement attachée à cet usage ; voir les commentaires de la famille."
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/258443/"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2023-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-10-03",
+    "currency": "USD",
+    "scope": "Rendements calendaires 2023–2025 de la part IE00B4NCWG09",
+    "method": "Rendements NAV calendaires de la part exacte dans la devise publiée",
+    "note": "Tableau Total Return (%) USD de BlackRock recoupé le 03/10/2026. Chiffres nets des frais du produit, aucune conversion en euros. asOf désigne la fin de la période calendaire."
   },
   "GB00BLD4ZL17": {
     "sourceUrls": [],

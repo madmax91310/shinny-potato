@@ -90,8 +90,8 @@ export function compactHooks(selection) {
 export function dataLabels(asset) {
  const note = (asset.confidenceNote ?? '').toLowerCase()
  const labels = []
- if (SIMULATION_PROXIES[asset.isin] || /simul|approxim|précède|ancienne méthode|autre part|part distribuante du même|convertis/.test(note)) labels.push('Historique reconstitué')
+ if (SIMULATION_PROXIES[asset.isin] || /simulation sur|simulation \d{4}|simulées|approxim|précède|ancienne méthode|autre part|part distribuante du même|provient de la part distribuante|convertis/.test(note)) labels.push('Historique reconstitué')
  if (/dollars|\busd\b/.test(note) && !/convertis.*euros/.test(note)) labels.push('Données en USD')
- if (/changé d’indice/.test(note)) labels.push('Indice modifié')
+ if (/changé d’indice|indice modifié/.test(note)) labels.push('Indice modifié')
  return labels
 }

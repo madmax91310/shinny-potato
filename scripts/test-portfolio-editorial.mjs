@@ -224,3 +224,18 @@ for (const asset of ASSETS) {
 // Saved portfolios from the previous generator also receive compact export copy.
 assert.doesNotMatch(renderTweetText({...example, hook:'🧩 Portefeuille Généraliste\nLongue accroche', selection:example.selection.map(s=>({id:s.id,isin:s.isin,name:s.name,pct:s.pct,emoji:s.emoji,cat:s.cat}))}), /Longue accroche|La logique/);
 console.log('OK : publication compacte, chevauchements, titres courts et précision des données.');
+
+// Une note qui mentionne une simulation ne transforme pas une série officielle en proxy.
+const nasdaqOfficial = ASSETS.find(a=>a.id==='nasdaq100_ishares');
+assert.deepEqual(dataLabels(nasdaqOfficial), ['Données en USD']);
+const silverOfficial = ASSETS.find(a=>a.id==='argent');
+assert.deepEqual(dataLabels(silverOfficial), ['Données en USD']);
+assert.deepEqual(silverOfficial.r, [46.2, -13, 3.5, -0.8, 21.3, 148.6]);
+const { getInstrumentAnnualPerformance } = await import('../src/data/instrument-returns.js');
+const { getInstrumentComparatorReturns } = await import('../src/data/instrument-comparator-returns.js');
+assert.equal(getInstrumentAnnualPerformance(silverOfficial.isin).currency,'USD');
+assert.deepEqual(getInstrumentComparatorReturns(silverOfficial.isin),{y2023:-0.8,y2024:21.3,y2025:148.6});
+assert.ok(dataLabels(ASSETS.find(a=>a.id==='bitcoin')).includes('Historique reconstitué'));
+assert.ok(dataLabels(ASSETS.find(a=>a.id==='quality_dividend')).includes('Historique reconstitué'));
+assert.ok(dataLabels(ASSETS.find(a=>a.id==='quality_dividend')).includes('Indice modifié'));
+console.log('OK : séries officielles USD distinguées des proxies, argent sans conversion.');

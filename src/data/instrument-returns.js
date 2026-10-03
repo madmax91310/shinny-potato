@@ -35,7 +35,6 @@ export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
   'IE00B4KBBD01': Object.freeze([-0.14, 16.94, 1.03, -7.68, 22.7, 15.36]),
   'IE00B4L5Y983': Object.freeze([15.95, 21.9, -18.03, 23.86, 18.7, 21.16]),
   'IE00B4L5YX21': Object.freeze([13.03, 0.92, -15.88, 18.86, 7.47, 25.36]),
-  'IE00B4NCWG09': Object.freeze([33.84, -5.74, 9.9, -4.25, 29.02, 119.8]),
   'IE00B4ND3602': Object.freeze([23.9, -3.9, -0.5, 13.7, 26.4, 64.8]),
   'IE00B4WXJJ64': Object.freeze([4.84, -3.53, -18.52, 7.06, 1.75, 0.61]),
   'IE00B53L3W79': Object.freeze([-2.89, 23.98, -9.04, 22.78, 11.54, 21.78]),

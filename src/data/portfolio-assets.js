@@ -423,19 +423,11 @@ export const ASSETS = [
   {
     id: "argent", name: getInstrumentName("IE00B4NCWG09", "portfolio"), cat: "matieres_premieres", emoji: "🛢️",
     isin: "IE00B4NCWG09",
-    // Contrôle individuel du proxy le 24/09/2026 : rendements USD iShares et conversion EUR indicative, 2020-2025 ; calcul non publié par l’émetteur. Confiance : proxy documenté, pas rendement du produit affiché.
-    // Sources : https://www.ishares.com/uk/individual/en/products/258443/ et https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf
-    // Estimation EUR du rendement annuel de CET ETC (et non du cours spot ni des futures) :
-    // BlackRock publie en USD 2020-2025 : +46,2/-13,0/+3,5/-0,8/+21,3/+148,6 %.
-    // https://www.ishares.com/uk/individual/en/products/258443/
-    // Conversion sans couverture : (1 + rendement USD) × (EUR/USD fin année précédente)
-    // / (EUR/USD fin année courante) - 1. Taux de référence BCE des derniers jours ouvrés :
-    // 2019 1,1234 ; 2020 1,2271 ; 2021 1,1326 ; 2022 1,0666 ; 2023 1,1050 ;
-    // 2024 1,0389 ; 2025 1,1750. Les rendements BlackRock sont arrondis au dixième et les
-    // taux BCE relevés en journée : résultat indicatif, pas performance publiée en EUR du fonds.
-    // https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf
+    // Contrôle du 03/10/2026 : rendements NAV de cet ETC en USD, publiés par BlackRock, 2020–2025.
+    // Source : https://www.ishares.com/uk/individual/en/products/258443/ ; confiance élevée.
+    // Remplace l’ancienne conversion EUR indicative par les chiffres officiels dans leur devise publiée.
     r: getInstrumentReturnValues('IE00B4NCWG09'),
-    confidenceNote: "Rendements annuels de l'ETC publiés en dollars par BlackRock, convertis approximativement en euros avec les taux de fin d'année de la BCE. Ce ne sont pas des rendements officiels en euros.",
+    confidenceNote: "Rendements NAV de cet ETC publiés en dollars par BlackRock, nets des frais du produit ; aucune conversion de devise. Le résultat en euros dépend du change.",
     desc: [
       "souvent surnommé « l'or du pauvre », plus volatil que l'or car aussi utilisé dans l'industrie.",
       "profite à la fois de la demande refuge et de la demande industrielle.",

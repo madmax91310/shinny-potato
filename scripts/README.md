@@ -131,8 +131,8 @@ réinvestis ; celle des semi-conducteurs reste indisponible et le support reste 
 QYLD dispose d'une série 2020-2025 complète issue de l'ETF américain Global X, dont la stratégie
 covered call existait déjà avant janvier 2020. Cette série est un proxy pour le fonds UCITS,
 lancé en novembre 2022 et lié à une variante de l'indice (BXNTU plutôt que BXNT).
-Les autres proxies sont l'argent converti en EUR à partir de la performance USD et des taux BCE,
-les small caps Europe simulées via l'ETF SPDR suivant le même indice et les
+Depuis le contrôle du 03/10/2026, l’argent utilise les rendements officiels BlackRock en USD, sans conversion.
+Les autres proxies sont les small caps Europe simulées via l'ETF SPDR suivant le même indice et les
 obligations haut rendement Amundi simulées via la part Xtrackers suivant le même indice. Le
 script conserve les références émetteur et ne classe pas ces proxies comme fonds vérifiés.
 
@@ -160,7 +160,7 @@ Une nouvelle vérification le 24/09/2026 a retrouvé les performances propres de
 WisdomTree Bitcoin et Bitwise Bitcoin. Bitwise n'a pas d'année calendaire complète en 2020 :
 elle reste absente. Les **cinq proxies de cours ou d'indice** sont CoinShares Bitcoin,
 21Shares Bitcoin, CoinShares Ether, Amundi PEA Monde et iShares petites capitalisations Europe.
-Ce décompte exclut QYLD UCITS, l'argent converti, Amundi High Yield et les années empruntées
+Ce décompte exclut QYLD UCITS, Amundi High Yield et les années empruntées
 dans les historiques mixtes. Les ETP encore
 en proxy affichent le cours spot USD sans l'attribuer à leur ETP. Après les changements NAV,
 les allocations Crypto-Curieux Dynamique (18 % Bitcoin, 21 % or) et Thématique Équilibré
@@ -176,8 +176,8 @@ variation du **prix de part**, alors que +3,1 % est le *RGI* calculé avec la va
 réalisation : leur différence et la rupture de méthode en 2020 sont affichées dans la note.
 Le RGI n'est pas le résultat net d'un investisseur qui vend ses parts.
 
-Contrôle des historiques mixtes : `argent` reste une conversion indicative des rendements
-BlackRock USD en EUR avec les taux BCE. VanEck Semiconductor a été retiré du générateur
+Contrôle du 03/10/2026 : `argent` utilise désormais la série NAV officielle BlackRock USD, sans conversion.
+Contrôle des historiques mixtes : VanEck Semiconductor a été retiré du générateur
 à cause de son année 2020 non vérifiée. `qyld_ucits` reprend uniquement les rendements de l'ETF américain QYLD sur 2020-2025,
 déjà exposé aux ventes d'options, et signale l'écart avec le fonds UCITS. `tech_europe` prend son indice MSCI exact pour 2020 et la part
 iShares pour 2021-2025. `bitcoin_etcgroup` prend le cours spot BTC en 2020, puis sa NAV.
