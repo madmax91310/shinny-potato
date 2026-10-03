@@ -318,3 +318,19 @@ requêtes de l’accueil, le chargement lent, la navigation, le retour arrière 
 les 16 liens directs/rechargements avec paramètres et fragment. Il simule la
 vraie réponse 404 de Pages plutôt que le fallback SPA de Vite preview.
 Ce contrôle complète `scripts/playwright-tools.mjs` dans la CI.
+
+### Variété de composition
+
+`node scripts/audit-portfolio-variety.mjs` mesure les 31 couples sur trois graines,
+100 tirages par graine et un historique de génération volontairement borné à 40.
+`--baseline-ref=cd577fc` compare au moteur de la PR #211 (la référence doit être présente
+dans le clone). Le script garde les registres de données actuels pour isoler le changement
+du moteur ; ce n’est pas une comparaison des anciennes données de marché.
+
+Les familles de `portfolio-generator/exposures.js` servent à reconnaître les changements
+d’émetteurs et les constructions voisines. Elles ne calculent ni le chevauchement des titres
+ni l’identité des rendements. « Proche » = au plus 10 points de capital à déplacer.
+La génération essaie jusqu’à 16 candidats nouveaux dans une même recette, et privilégie
+le plus éloigné des 20 derniers résultats de son couple. L’historique entier transmis par
+l’interface est pris en compte pour éviter les répétitions exactes de familles et de poids.
+Si une recette est saturée, le repli conserve impérativement toutes les règles de risque.
