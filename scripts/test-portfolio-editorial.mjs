@@ -188,3 +188,13 @@ for (const p of [optionsIncome,indexMix,metalsCrypto,themeMoney,factors,...globa
   for (const s of p.selection) assert.ok(s.desc.split(/\s+/).length <= 22);
 }
 console.log("OK : logique complète, revenus/options, facteurs, descriptions courtes et rotation entre profils et modes.");
+
+// Les nouvelles expositions doivent expliquer toute la construction, même sans World classique.
+const newExposures = manual([{id:'sp500_equal_weight',pct:40},{id:'russell2000_spdr',pct:25},{id:'world_ex_usa',pct:35}]);
+for (const role of [/équipondéré/, /Russell 2000/, /hors États-Unis/]) assert.match(newExposures.logic, role);
+const longBonds = manual([{id:'msci_world_ishares',pct:70},{id:'oblig_eur_long_ishares',pct:30}]);
+assert.match(longBonds.logic,/obligations longues.*sensibilité aux taux/s);
+for (const isin of ['IE0006WW1TQ4','FR0014017NX3']) {
+  const asset = ASSETS.find(a => a.isin === isin);
+  assert.match(renderTweetText(manual([{id:asset.id,pct:100}])),/Base historique.*2020–2025/);
+}
