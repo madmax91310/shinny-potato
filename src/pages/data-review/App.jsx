@@ -17,7 +17,14 @@ export default function DataReview() {
   const [params, setParams] = useSearchParams()
   const query = params.get('q') ?? ''
   const view = Object.hasOwn(VIEWS, params.get('view')) ? params.get('view') : 'action'
-  function update(key, value) { const next = new URLSearchParams(params); next.set(key, value); setParams(next, { replace: true }) }
+  function update(key, value) {
+    const next = new URLSearchParams(params)
+    next.set(key, value)
+    // Une réserve n'a pas de cycle de contrôle : ne pas la masquer derrière
+    // la temporalité du calendrier précédemment sélectionnée.
+    if (key === 'view' && value === 'reserve') next.delete('cadence')
+    setParams(next, { replace: true })
+  }
   const tool = params.get('tool') ?? ''
   const tools = [...new Set([...report.schedule, ...report.items].flatMap(item => item.tools))].sort((a, b) => a.localeCompare(b, 'fr'))
   const cadence = Object.hasOwn(REVIEW_CADENCES, params.get('cadence')) ? params.get('cadence') : ''
