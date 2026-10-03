@@ -265,5 +265,9 @@ export function renderInvestmentImage(state, d) {
   ctx.fillStyle = MUTED
   ctx.font = '21px Arial, sans-serif'
   ctx.fillText(state.overridePriceRaw && !d.isCustom ? 'Valeur finale calculée avec le prix saisi · Historique, pas une prévision' : 'Évolution historique · Les performances passées ne préjugent pas des performances futures', 60, 1287)
+  if (asset?.sourceCredit) {
+    ctx.font = '18px Arial, sans-serif'
+    asset.sourceCredit.split('\n').forEach((line, i) => ctx.fillText(line, 60, 1310 + i * 26))
+  }
   return canvas
 }

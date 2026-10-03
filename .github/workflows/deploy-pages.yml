@@ -52,6 +52,7 @@ jobs:
       - run: npm run audit:instrument-catalog
       - run: node scripts/audit-support-enrichment.mjs
       - run: npm run audit:calculator-series
+      - run: node scripts/test-gold-consumers.mjs
       - run: node scripts/test-investment-conclusions.mjs
       - run: node scripts/test-household-benchmarks.mjs
       - run: npm run audit:publishable-content
@@ -60,6 +61,8 @@ jobs:
       - run: npm run audit:investor-profiles
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
       - run: python -m unittest discover -s scripts -p "test_data_automation.py"
+      - run: pip install -r scripts/requirements-gold.txt
+      - run: python -m unittest discover -s scripts -p "test_gold_monthly.py"
       - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: npm run audit:household-statistics
       - run: node scripts/test-data-reuse.mjs

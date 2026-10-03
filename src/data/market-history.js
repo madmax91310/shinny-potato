@@ -1,3 +1,4 @@
+import GOLD_MONTHLY from './worldbank-gold-monthly.json' with { type: 'json' }
 import { MONTHLY_HISTORY_ADDITIONS } from './monthly-history-additions.js'
 import { MSCI_HISTORY } from './msci-history.js'
 import { COMPANY_HISTORY } from './company-history.js'
@@ -348,52 +349,10 @@ export const ASSETS = {
     ]),
   },
   or: {
-    // Banque mondiale, Pink Sheet « Monthly Prices », colonne Gold (USD/once troy).
-    // Moyenne mensuelle des cours spot quotidiens, et non clôture de fin de mois.
-    // Classeur mis à jour le 02/10/2026, relevé et comparé point par point le 03/10/2026 :
-    // scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json.
-    // Les 140 points précédents restent identiques ; septembre ajouté à 4319 USD/once.
-    // La série antérieure de clôtures attribuée à MacroTrends ne disposait pas d'export
-    // vérifiable ; ce changement de convention modifie les simulations sur l'or.
+    // Série officielle homogène, actualisée par scripts/update_gold_monthly.py.
     label: 'Or (once, moyenne mensuelle)', tweetPhrase: "l'or", icon: '●', currency: 'USD',
-    points: P([
-      '2015-01', 1251, '2015-02', 1227, '2015-03', 1179, '2015-04', 1199,
-      '2015-05', 1199, '2015-06', 1182, '2015-07', 1128, '2015-08', 1118,
-      '2015-09', 1125, '2015-10', 1159, '2015-11', 1086, '2015-12', 1076,
-      '2016-01', 1098, '2016-02', 1200, '2016-03', 1245, '2016-04', 1242,
-      '2016-05', 1261, '2016-06', 1276, '2016-07', 1337, '2016-08', 1340,
-      '2016-09', 1327, '2016-10', 1267, '2016-11', 1238, '2016-12', 1157,
-      '2017-01', 1192, '2017-02', 1234, '2017-03', 1231, '2017-04', 1267,
-      '2017-05', 1246, '2017-06', 1260, '2017-07', 1237, '2017-08', 1283,
-      '2017-09', 1314, '2017-10', 1280, '2017-11', 1282, '2017-12', 1264,
-      '2018-01', 1331, '2018-02', 1331, '2018-03', 1325, '2018-04', 1335,
-      '2018-05', 1303, '2018-06', 1282, '2018-07', 1238, '2018-08', 1202,
-      '2018-09', 1198, '2018-10', 1215, '2018-11', 1221, '2018-12', 1250,
-      '2019-01', 1292, '2019-02', 1320, '2019-03', 1301, '2019-04', 1286,
-      '2019-05', 1284, '2019-06', 1359, '2019-07', 1413, '2019-08', 1500,
-      '2019-09', 1511, '2019-10', 1495, '2019-11', 1471, '2019-12', 1479,
-      '2020-01', 1561, '2020-02', 1597, '2020-03', 1592, '2020-04', 1683,
-      '2020-05', 1716, '2020-06', 1732, '2020-07', 1847, '2020-08', 1969,
-      '2020-09', 1922, '2020-10', 1900, '2020-11', 1866, '2020-12', 1858,
-      '2021-01', 1867, '2021-02', 1808, '2021-03', 1718, '2021-04', 1760,
-      '2021-05', 1850, '2021-06', 1835, '2021-07', 1808, '2021-08', 1785,
-      '2021-09', 1775, '2021-10', 1777, '2021-11', 1822, '2021-12', 1790,
-      '2022-01', 1816, '2022-02', 1856, '2022-03', 1948, '2022-04', 1937,
-      '2022-05', 1849, '2022-06', 1837, '2022-07', 1733, '2022-08', 1765,
-      '2022-09', 1681, '2022-10', 1664, '2022-11', 1725, '2022-12', 1798,
-      '2023-01', 1898, '2023-02', 1855, '2023-03', 1913, '2023-04', 2000,
-      '2023-05', 1992, '2023-06', 1943, '2023-07', 1951, '2023-08', 1919,
-      '2023-09', 1916, '2023-10', 1916, '2023-11', 1984, '2023-12', 2026,
-      '2024-01', 2034, '2024-02', 2023, '2024-03', 2158, '2024-04', 2331,
-      '2024-05', 2351, '2024-06', 2326, '2024-07', 2398, '2024-08', 2470,
-      '2024-09', 2571, '2024-10', 2690, '2024-11', 2651, '2024-12', 2648,
-      '2025-01', 2710, '2025-02', 2895, '2025-03', 2983, '2025-04', 3218,
-      '2025-05', 3309, '2025-06', 3353, '2025-07', 3340, '2025-08', 3368,
-      '2025-09', 3668, '2025-10', 4058, '2025-11', 4087, '2025-12', 4309,
-      '2026-01', 4753, '2026-02', 5020, '2026-03', 4856, '2026-04', 4721,
-      '2026-05', 4587, '2026-06', 4228, '2026-07', 4073, '2026-08', 4411,
-      '2026-09', 4319,
-    ]),
+    sourceCredit: GOLD_MONTHLY.attribution,
+    points: GOLD_MONTHLY.points.map(([date, price]) => ({ date, price })),
   },
   silver: {
     // REMPLACÉ le 02/09/2026 : série annuelle éparse (11 points + 3 en 2026) remplacée par une série
@@ -729,7 +688,7 @@ export const LIVRET_A = {
 // 2014 : « Hausse des prix à la consommation de 0,5 % en moyenne en 2014 » (insee.fr/fr/statistiques/1564994)
 export const INFLATION = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9, 2014: 0.5, 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9 }
 
-export const LATEST_YM = '2026-09' // dernière donnée disponible dans les tableaux ci-dessus
+export const LATEST_YM = Object.values(ASSETS).map(asset => asset.points.at(-1).date).sort().at(-1) // Chaque outil borne ensuite sa période à l’actif choisi.
 export const MONTHS_FULL = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 export const MONTHS_SHORT = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']
 
@@ -740,4 +699,4 @@ export const DATE_PRESETS = [
   { label: 'janv. 2020', y: 2020, m: 1 },
   { label: 'janv. 2023', y: 2023, m: 1 },
 ]
-export const YEARS = Array.from({ length: 2026 - 2015 + 1 }, (_, i) => 2015 + i)
+export const YEARS = Array.from({ length: Number(LATEST_YM.slice(0, 4)) - 2015 + 1 }, (_, i) => 2015 + i)

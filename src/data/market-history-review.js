@@ -1,3 +1,4 @@
+import GOLD_MONTHLY from './worldbank-gold-monthly.json' with { type: 'json' };
 import { MONTHLY_HISTORY_ADDITIONS_REVIEW } from './monthly-history-additions.js';
 import { MSCI_HISTORY_REVIEW } from './msci-history.js';
 import { COMPANY_HISTORY_REVIEW } from './company-history.js';
@@ -311,4 +312,12 @@ export const MARKET_HISTORY_REVIEW = {
     "periodStart": "2015-01"
   },
   ...MONTHLY_HISTORY_ADDITIONS_REVIEW,
+  'history:or': {
+    sourceUrls: [GOLD_MONTHLY.url, GOLD_MONTHLY.catalogUrl, GOLD_MONTHLY.licenseUrl],
+    asOf: null, checkedAt: GOLD_MONTHLY.checkedAt,
+    periodStart: GOLD_MONTHLY.points[0][0], periodEnd: GOLD_MONTHLY.points.at(-1)[0],
+    dateStatus: 'month-only', sourceStatus: 'documented',
+    method: 'Banque mondiale, Pink Sheet : moyenne mensuelle des cours spot USD par once troy, pas une clôture',
+    note: `Classeur du ${GOLD_MONTHLY.workbookUpdatedAt}, SHA-256 ${GOLD_MONTHLY.workbookSha256}. Série entière validée automatiquement. ${GOLD_MONTHLY.seriesDescription}. ${GOLD_MONTHLY.attribution}.`,
+  },
 };

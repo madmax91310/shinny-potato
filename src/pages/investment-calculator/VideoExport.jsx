@@ -156,6 +156,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         months2: s2.months,
         startYm,
         endYm,
+        sourceCredit: ASSETS[asset1Id].sourceCredit || ASSETS[asset2Id].sourceCredit,
         asset1Label: `${ASSETS[asset1Id].icon} ${ASSETS[asset1Id].label}`,
         asset2Label: `${ASSETS[asset2Id].icon} ${ASSETS[asset2Id].label}`,
         periodLabel: comparativeInputs.periodLabel,

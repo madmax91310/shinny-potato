@@ -190,6 +190,7 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   tweetPhrase: ASSETS[id].tweetPhrase,
   icon: ASSETS[id].icon,
   currency: ASSETS[id].currency,
+  sourceCredit: ASSETS[id].sourceCredit,
 }));
 
 // Sous-ensemble de MARKET_ASSETS utilisable par le format Anniversaire (cf.

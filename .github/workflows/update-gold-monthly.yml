@@ -1,0 +1,83 @@
+name: Update World Bank monthly gold data
+
+on:
+  schedule:
+    # Retry after the second business day, accounting for weekends/publication lag.
+    - cron: '15 7 3-10 * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/update-gold-monthly.yml'
+      - 'scripts/update_gold_monthly.py'
+      - 'scripts/test_gold_monthly.py'
+      - 'scripts/requirements-gold.txt'
+      - 'src/data/worldbank-gold-monthly.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gold-refresh-${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.sha || 'master' }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/requirements-gold.txt
+      - run: python -m unittest discover -s scripts -p 'test_gold_monthly.py'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Collect official monthly workbook
+        run: |
+          python scripts/update_gold_monthly.py
+          node scripts/audit-calculator-series.mjs
+          node scripts/test-gold-consumers.mjs
+      - name: Commit validated gold update
+        id: commit
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/worldbank-gold-monthly.json
+          if git diff --cached --quiet; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            git commit -m 'Update World Bank monthly gold history'
+            pushed=false
+            for attempt in 1 2 3; do
+              if git push origin HEAD:master; then pushed=true; break; fi
+              git fetch origin master
+              git rebase origin/master
+              node scripts/audit-calculator-series.mjs
+            done
+            if [ "$pushed" != 'true' ]; then exit 1; fi
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Collection summary
+        run: |
+          node --input-type=module -e "import fs from 'node:fs'; const d = JSON.parse(fs.readFileSync('src/data/worldbank-gold-monthly.json')); fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, 'Or : ' + d.points.length + ' mois, jusqu’à ' + d.points.at(-1)[0] + '. Source Banque mondiale, CC BY 4.0.\n');"
+  deploy:
+    needs: update
+    if: needs.update.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.update.outputs.commit_sha }}

@@ -217,7 +217,7 @@ export function derive(state) {
   const startYm = clampYm(state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth), LATEST_YM)
   // Sans prix saisi, on s'arrête au dernier mois réellement renseigné pour cet actif.
   // Sinon le DCA achète des mois supplémentaires au dernier prix, sans donnée de marché.
-  const lastAssetYm = isCustom ? LATEST_YM : ASSETS[state.assetId].points.at(-1).date
+  const lastAssetYm = isCustom ? clampYm(Object.keys(INFLATION_MONTHLY).sort().at(-1), LATEST_YM) : ASSETS[state.assetId].points.at(-1).date
   // Le prix facultatif revalorise les parts au terme de cette série, sans inventer
   // de nouveaux versements mensuels entre la dernière clôture et la saisie.
   const endYm = clampYm(lastAssetYm, LATEST_YM)
@@ -233,8 +233,9 @@ export function derive(state) {
     result = applyPriceOverride(result, ASSETS[state.assetId].points, state.overridePriceRaw, endYm)
   }
 
-  const livretA = computeBenchmarkSeries(LIVRET_A, safeStartYm, endYm, amount, effectiveMode)
-  const inflation = computeBenchmarkSeries(INFLATION, safeStartYm, endYm, amount, effectiveMode)
+  const compareEuro = isCustom || ASSETS[state.assetId].currency === 'EUR'
+  const livretA = compareEuro ? computeBenchmarkSeries(LIVRET_A, safeStartYm, endYm, amount, effectiveMode) : null
+  const inflation = compareEuro ? computeBenchmarkSeries(INFLATION, safeStartYm, endYm, amount, effectiveMode) : null
 
   return { amount, isCustom, effectiveMode, startYm: safeStartYm, endYm, result, livretA, inflation }
 }
@@ -318,6 +319,7 @@ export function buildTweetText(state, d) {
     lines.push('', `Avec les mêmes versements sur un Livret A : ${fmtEUR(d.livretA.finalValue, 'EUR')} (simulation indicative)`)
   }
   lines.push('', `📌 ${resultLine(state, d, assetLabel, currency)}`)
+  if (asset?.sourceCredit) lines.push('', asset.sourceCredit)
   lines.push('', `💬 ${endingQuestion}`)
 
   return lines.join('\n')
