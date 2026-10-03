@@ -187,7 +187,13 @@ function scanTool(tool) {
       if (editorialStart !== -1) nextLine = editorialStart;
     }
 
-    const blockText = lines.slice(start, nextLine).join("\n");
+    let blockText = lines.slice(start, nextLine).join("\n");
+    // La série automatisée porte sa date et sa source dans le fichier de données.
+    if (tool.key === 'calculateur' && anchor.name === 'or') {
+      const gold = JSON.parse(readFileSync(path.join(ROOT, 'src/data/worldbank-gold-monthly.json'), 'utf8'));
+      const [year, month, day] = gold.checkedAt.split('-');
+      blockText += `\n// Source : ${gold.url}. Vérifié le ${day}/${month}/${year}.`;
+    }
     const { mostRecent, deadlines } = scanDatesInText(blockText);
     // Indice de traçabilité seulement : une URL dans un commentaire ne prouve ni
     // que tous les chiffres de l'entrée sont exacts, ni qu'ils ont été revus récemment.
