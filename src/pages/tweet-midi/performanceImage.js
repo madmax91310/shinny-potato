@@ -1,128 +1,80 @@
 import { getAnnualReturns } from './data/marketHistory.js'
 import { getMarketAsset, MODES } from './lib.js'
+import { loadNeonArt, drawNeonArt } from './stylizedArt.js'
 
 const W = 1600
-const C = { paper: '#F1ECDF', ink: '#173D38', green: '#257B68', coral: '#C86F61', muted: '#73827A', card: '#FFFCF5', grid: '#E3E7DA' }
-const number = (n) => `${n >= 0 ? '+' : '−'}${Math.abs(n).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
-const cumulative = (rows) => (rows.reduce((acc, row) => acc * (1 + row.pct / 100), 1) - 1) * 100
-
-function text(ctx, value, x, y, size, color = C.ink, face = 'sans', align = 'left', weight = 700) {
-  ctx.fillStyle = color
-  ctx.textAlign = align
-  ctx.textBaseline = 'top'
-  ctx.font = `${weight} ${size}px ${face === 'serif' ? 'Georgia, "Times New Roman", serif' : 'Arial, sans-serif'}`
+const INK = '#fff2cd', MUTED = '#a7c2c8', GREEN = '#84efca', RED = '#ff9b91'
+export const cumulativePerformance = rows => (rows.reduce((acc, row) => acc * (1 + row.pct / 100), 1) - 1) * 100
+const percentage = value => `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+function text(ctx, value, x, y, size, { width = W, color = INK, align = 'left', weight = 700 } = {}) {
+  ctx.textBaseline = 'top'; ctx.textAlign = align; ctx.fillStyle = color
+  let fitted = size
+  do { ctx.font = `${weight} ${fitted}px Arial, sans-serif`; if (ctx.measureText(value).width <= width) break; fitted-- } while (fitted > 12)
   ctx.fillText(value, x, y)
 }
-
-function rounded(ctx, x, y, w, h, radius, color) {
-  ctx.fillStyle = color
-  ctx.beginPath()
-  ctx.roundRect(x, y, w, h, radius)
-  ctx.fill()
-}
-
-function header(ctx, title, year, comparative) {
-  ctx.fillStyle = C.coral; ctx.fillRect(0, 0, W, 22)
-  ctx.fillStyle = C.ink; ctx.fillRect(0, 22, W, 5)
-  ctx.fillStyle = '#C2C8B8'; ctx.fillRect(78, 88, 1444, 2)
-  text(ctx, '@Epargnantlibre', 83, 107, 36)
-  let titleSize = comparative ? 94 : 148
-  while (titleSize > 55) {
-    ctx.font = `700 ${titleSize}px Georgia, serif`
-    if (ctx.measureText(title).width <= 1390) break
-    titleSize -= 4
+function chart(ctx, rows, x, y, w, h) {
+  const values = [0]; let capital = 1
+  rows.forEach(row => { capital *= 1 + row.pct / 100; values.push((capital - 1) * 100) })
+  let min = Math.min(0, ...values), max = Math.max(0, ...values)
+  const range = Math.max(10, max - min); min -= range * .1; max += range * .1
+  const plotX = x + 78, plotW = w - 100, plotY = y + 30, plotH = h - 110
+  const px = i => plotX + i / (values.length - 1) * plotW, py = value => plotY + (max - value) / (max - min) * plotH
+  for (let i = 0; i <= 4; i++) {
+    const value = min + (max - min) * i / 4, lineY = py(value)
+    ctx.strokeStyle = '#23444a'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(plotX, lineY); ctx.lineTo(plotX + plotW, lineY); ctx.stroke()
+    text(ctx, `${Math.round(value)} %`, plotX - 15, lineY - 9, 17, { width: 64, align: 'right', color: MUTED, weight: 400 })
   }
-  text(ctx, title, 800, comparative ? 217 : 197, titleSize, C.ink, 'serif', 'center')
-  text(ctx, `DEPUIS ${year}`, 800, comparative ? 373 : 402, 52, C.coral, 'sans', 'center')
-  ctx.fillStyle = C.ink; ctx.fillRect(80, 477, 1440, 4)
+  const points = values.map((value, i) => [px(i), py(value)])
+  ctx.beginPath(); ctx.moveTo(points[0][0], py(0)); points.forEach(([a, b]) => ctx.lineTo(a, b)); ctx.lineTo(points.at(-1)[0], py(0)); ctx.closePath()
+  const gradient = ctx.createLinearGradient(0, plotY, 0, plotY + plotH); gradient.addColorStop(0, '#49c99c44'); gradient.addColorStop(1, '#49c99c00')
+  ctx.fillStyle = gradient; ctx.fill()
+  ctx.save(); ctx.strokeStyle = values.at(-1) < 0 ? RED : GREEN; ctx.shadowColor = ctx.strokeStyle; ctx.shadowBlur = 13; ctx.lineWidth = 4
+  ctx.beginPath(); points.forEach(([a, b], i) => i ? ctx.lineTo(a, b) : ctx.moveTo(a, b)); ctx.stroke(); ctx.restore()
+  const labels = [String(rows[0].year - 1), ...rows.map(row => String(row.year))]
+  labels.forEach((label, i) => { if (labels.length <= 8 || i === 0 || i === labels.length - 1 || i % 2 === 0) text(ctx, label, px(i), plotY + plotH + 18, 20, { align: 'center', color: MUTED, weight: 400 }) })
+  text(ctx, 'Performance cumulée · clôtures annuelles', x + w / 2, y + h - 27, 19, { align: 'center', color: MUTED, weight: 400 })
 }
-
-function summary(ctx, pct, y = 545) {
-  rounded(ctx, 83, y, 14, 320, 7, C.coral)
-  text(ctx, 'PERFORMANCE CUMULÉE', 131, y, 43, C.muted)
-  text(ctx, number(pct), 119, y + 82, 181)
+function panel(ctx, entry, image, y) {
+  const { asset, returns } = entry, total = cumulativePerformance(returns)
+  ctx.save(); ctx.translate(0, y)
+  drawNeonArt(ctx, image, 0, 195, 600)
+  text(ctx, asset.label.replace(/^Indice /, ''), 650, 165, 49, { width: 870, color: INK })
+  text(ctx, percentage(total), 640, 242, 150, { width: 880, color: total < 0 ? RED : GREEN })
+  text(ctx, 'PERFORMANCE CUMULÉE', 655, 420, 26, { color: MUTED })
+  text(ctx, `Fin ${returns[0].year - 1} → Fin ${returns.at(-1).year} · ${asset.currency}`, 655, 465, 27, { width: 850, color: INK, weight: 400 })
+  chart(ctx, returns, 635, 526, 900, 350)
+  text(ctx, `EN ${asset.currency}${asset.currency === 'USD' ? ' · SANS CONVERSION EN EUR' : ''}`, 65, 829, 22, { width: 535, color: MUTED, weight: 400 })
+  ctx.restore()
 }
-
-function plot(ctx, returns, x, top, width, height) {
-  if (!returns.length) return
-  const bottom = top + height
-  const max = Math.max(...returns.map((r) => Math.abs(r.pct)), 25)
-  // Keep the longest negative bar clear of the year labels, including volatile assets.
-  const range = Math.min(240, height * 0.36)
-  const axis = top + range + 90
-  const gap = width / returns.length
-  const barW = Math.min(156, gap * 0.67)
-  const labelFont = returns.length > 8 ? 30 : returns.length > 6 ? 36 : 43
-  const yearFont = returns.length > 8 ? 34 : 48
-  for (const offset of [-range, -range / 2, range / 2]) {
-    ctx.fillStyle = C.grid; ctx.fillRect(x, axis + offset, width, 2)
-  }
-  ctx.fillStyle = C.ink; ctx.fillRect(x, axis, width, 5)
-  returns.forEach(({ year, pct }, i) => {
-    const center = x + gap * (i + 0.5)
-    const h = Math.max(5, Math.abs(pct) / max * range)
-    const positive = pct >= 0
-    const barTop = positive ? axis - h : axis + 4
-    rounded(ctx, center - barW / 2, barTop, barW, h, 11, positive ? C.green : C.coral)
-    rounded(ctx, center - barW / 2 + 11, barTop + 9, 6, Math.max(4, h - 18), 3, positive ? '#54A38A' : '#E49A89')
-    text(ctx, number(pct), center, positive ? barTop - labelFont - 18 : barTop + Math.min(h - labelFont - 12, 36), labelFont, positive ? C.ink : C.card, 'sans', 'center')
-    text(ctx, String(year), center, bottom - 72, yearFont, C.ink, 'sans', 'center')
-  })
-}
-
-function card(ctx, rows, y, height, label, total = null) {
-  rounded(ctx, 77, y + 13, 1451, height, 32, '#D9D5C9')
-  rounded(ctx, 70, y, 1450, height, 32, C.card)
-  text(ctx, label, 117, y + 43, 38)
-  if (total !== null) text(ctx, number(total), 1477, y + 43, 40, C.green, 'sans', 'right')
-  ctx.fillStyle = '#D8DCCF'; ctx.fillRect(114, y + 126, 1362, 2)
-  plot(ctx, rows, 110, y + 158, 1370, height - 208)
-}
-
-export function renderPerformanceImage(item) {
+export async function renderPerformanceImage(item) {
   const comparative = item.mode === MODES.COMPARATIF
-  const assets = comparative ? [getMarketAsset(item.assetIdA), getMarketAsset(item.assetIdB)] : [getMarketAsset(item.assetId)]
-  if (assets.some((asset) => !asset)) throw new Error('Actif absent')
-  const lastYear = comparative ? Math.min(...assets.map((asset) => getAnnualReturns(asset.id, item.year).at(-1)?.year ?? Infinity)) : Infinity
-  const rows = assets.map((asset) => ({ asset, returns: getAnnualReturns(asset.id, item.year).filter((r) => r.year <= lastYear) }))
-  if (rows.some((row) => !row.returns.length)) throw new Error('Performances annuelles absentes')
-  const height = comparative ? 2600 : 2000
-  const canvas = document.createElement('canvas')
-  canvas.width = W; canvas.height = height
-  const ctx = canvas.getContext('2d')
-  ctx.fillStyle = C.paper; ctx.fillRect(0, 0, W, height)
-  header(ctx, comparative ? `${assets[0].label} / ${assets[1].label}` : assets[0].label, item.year, comparative)
+  const ids = comparative ? [item.assetIdA, item.assetIdB] : [item.assetId]
+  const entries = ids.map(id => ({ asset: getMarketAsset(id), returns: getAnnualReturns(id, item.year) }))
+  if (entries.some(entry => !entry.asset || !entry.returns.length)) throw new Error('Actif ou performances annuelles absents')
   if (comparative) {
-    const ordered = rows.map((r) => ({ ...r, total: cumulative(r.returns) })).sort((a, b) => b.total - a.total)
-    card(ctx, ordered[0].returns, 558, 880, ordered[0].asset.label, ordered[0].total)
-    card(ctx, ordered[1].returns, 1490, 880, ordered[1].asset.label, ordered[1].total)
-    const note = assets[0].currency !== assets[1].currency ? `DEVISES ${assets[0].currency} / ${assets[1].currency} · SANS CONVERSION` : `COURS EN ${assets[0].currency} · SANS CONVERSION EN EUR`
-    text(ctx, note, 1518, 2490, 31, C.muted, 'sans', 'right')
-  } else {
-    summary(ctx, cumulative(rows[0].returns))
-    text(ctx, `Sur ${rows[0].returns.length} année${rows[0].returns.length > 1 ? 's' : ''} · cours en ${assets[0].currency === 'USD' ? 'dollars' : 'euros'}`, 130, 825, 40, C.muted, 'sans', 'left', 400)
-    card(ctx, rows[0].returns, 954, 900, 'RENDEMENT PAR ANNÉE')
-    text(ctx, `EN ${assets[0].currency}${assets[0].currency === 'USD' ? ' · SANS CONVERSION EN EUR' : ''}`, 1518, 1904, 30, C.muted, 'sans', 'right')
+    const commonYears = entries[0].returns.map(row => row.year).filter(year => entries[1].returns.some(row => row.year === year))
+    entries.forEach(entry => { entry.returns = entry.returns.filter(row => commonYears.includes(row.year)) })
+    if (!commonYears.length) throw new Error('Aucune année commune aux deux actifs')
   }
-  if (assets.some((a) => a.id === 'silver')) {
-    // La source « argent » est un future continu : cette précision doit accompagner son image.
-    text(ctx, 'ARGENT : FUTURES COMEX CONTINUS, HORS FRAIS ET ROULEMENT', 80, comparative ? 2544 : 1955, 24, C.muted)
-  }
-  const credit = assets.find(a => a.sourceCredit)?.sourceCredit
-  if (credit) credit.split('\n').forEach((line, i) => text(ctx, line, 80, (comparative ? 2580 : 2000) + i * 32, 25, C.muted))
+  const images = await Promise.all(ids.map(loadNeonArt)); await document.fonts.ready
+  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = comparative ? 1920 : 1040
+  const ctx = canvas.getContext('2d'); ctx.fillStyle = '#061523'; ctx.fillRect(0, 0, W, canvas.height)
+  text(ctx, 'PERFORMANCE DEPUIS', 65, 47, 70, { width: 1320 })
+  ctx.fillStyle = '#ebc56d'; ctx.fillRect(65, 139, 1460, 2)
+  entries.forEach((entry, i) => panel(ctx, entry, images[i], i * 880))
+  const footerY = comparative ? 1780 : 900
+  if (ids.includes('silver')) text(ctx, 'ARGENT : FUTURES COMEX CONTINUS, HORS FRAIS ET ROULEMENT', 65, footerY, 20, { width: 1460, color: MUTED, weight: 400 })
+  const credits = [...new Set(entries.map(entry => entry.asset.sourceCredit).filter(Boolean))].flatMap(credit => credit.replace(' · Calculs Épargnant Libre', '').split('\n'))
+  credits.forEach((credit, i) => text(ctx, credit, 65, footerY + 30 + i * 22, 18, { width: 1460, color: MUTED, weight: 400 }))
+  text(ctx, 'Les performances passées ne préjugent pas des performances futures.', 65, canvas.height - 65, 20, { width: 1100, color: MUTED, weight: 400 })
+  text(ctx, '@Epargnantlibre', 1525, canvas.height - 65, 24, { align: 'right', width: 340 })
   return canvas
 }
-
 export async function downloadPerformanceImage(item) {
-  const canvas = renderPerformanceImage(item)
-  const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'))
+  const canvas = await renderPerformanceImage(item)
+  const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('Export PNG impossible')
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = `performance-depuis-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`
-  document.body.appendChild(link)
-  link.click()
-  link.remove()
-  setTimeout(() => URL.revokeObjectURL(url), 1000)
+  const url = URL.createObjectURL(blob), link = document.createElement('a')
+  link.href = url; link.download = `performance-depuis-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`
+  document.body.appendChild(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
