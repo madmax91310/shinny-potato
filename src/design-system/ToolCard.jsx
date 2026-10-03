@@ -9,9 +9,9 @@ const COMPACT_LABELS = {
   '/banque-tweets': 'Banque de tweets',
 }
 
-export default function ToolCard({ to, title, group, status = 'disponible' }) {
+export default function ToolCard({ to, title, group, publicationDay, status = 'disponible' }) {
   return <Link to={to} className="workspace-tool-card" data-group={group}>
     <span className="workspace-tool-icon" aria-hidden="true"><ToolIcon to={to} /></span>
-    <div><h2>{COMPACT_LABELS[to] ?? title}</h2>{status === 'bientot' && <span className="workspace-card-status">Bientôt</span>}</div>
+    <div><h2>{COMPACT_LABELS[to] ?? title}</h2>{publicationDay && <span className="workspace-publication-day">{publicationDay}</span>}{status === 'bientot' && <span className="workspace-card-status">Bientôt</span>}</div>
   </Link>
 }
