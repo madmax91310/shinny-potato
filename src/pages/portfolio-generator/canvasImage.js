@@ -65,12 +65,10 @@ export function renderPortfolioImage(portfolio) {
 
   rect(ctx, 62, 54, 9, 42, '#d4af6a', 3)
   label(ctx, 'ÉPARGNANT LIBRE', 93, 84, 25, '#e6d4aa')
-  label(ctx, 'PORTEFEUILLE', 1018, 84, 18, '#8c9b9d', 'right')
   label(ctx, 'Répartition de', 62, 189, 57, WHITE, 'left', 'Georgia, serif')
   label(ctx, 'portefeuille', 62, 258, 65, WHITE, 'left', 'Georgia, serif')
   rect(ctx, 62, 294, 956, 1, RULE)
   label(ctx, 'COMPOSITION', 62, 345, 21, MUTED)
-  label(ctx, `${selection.length} SUPPORT${selection.length > 1 ? 'S' : ''} · 100 %`, 1018, 345, 19, MUTED, 'right')
 
   // Same order and colors for the donut and the corresponding large legend squares.
   const cx = 329
@@ -93,8 +91,6 @@ export function renderPortfolioImage(portfolio) {
     ctx.stroke()
     angle = end
   })
-  label(ctx, `${Number.isInteger(total) ? total : total.toLocaleString('fr-FR')} %`, cx, 632, 68, '#f9f2de', 'center', 'Georgia, serif')
-  label(ctx, 'RÉPARTIS', cx, 673, 18, '#a8b4b1', 'center')
 
   const rowStep = selection.length <= 6 ? 83 : 76
   selection.forEach((asset, index) => {
@@ -106,7 +102,6 @@ export function renderPortfolioImage(portfolio) {
 
   rect(ctx, 62, mainBottom, 956, 1, RULE)
   label(ctx, 'RÉSULTAT ANNUEL', 62, mainBottom + 46, 19, MUTED)
-  label(ctx, 'HISTORIQUE · NON PRÉDICTIF', 1018, mainBottom + 46, 16, '#8c9b9d', 'right')
   YEARS.forEach((year, index) => {
     const x = 62 + (index % 3) * 326
     const y = mainBottom + 88 + Math.floor(index / 3) * 119

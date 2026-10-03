@@ -44,13 +44,10 @@ function comparison(ctx, snap, top, compact = false) {
   const badgeY = top + (compact ? 416 : 532)
   ctx.fillStyle = color; ctx.beginPath(); ctx.roundRect(left, badgeY, width, compact ? 156 : 195, 20); ctx.fill()
   fit(ctx, percentage(change), left + 30, badgeY + 19, compact ? 111 : 145, width - 80, C.bg, 'left', 70)
-  txt(ctx, 'ÉVOLUTION DU COURS', left, top + (compact ? 630 : 788), compact ? 32 : 38, C.white)
   const firstY = top + (compact ? 694 : 864)
   const secondY = firstY + (compact ? 186 : 236)
   txt(ctx, dateLabel.toUpperCase(), left, firstY, 35, C.muted)
   fit(ctx, currency(past, asset.currency), 1503, firstY, 39, 630, C.white, 'right')
-  txt(ctx, 'AUJOURD’HUI', left, secondY, 35, C.muted)
-  fit(ctx, currency(current, asset.currency), 1503, secondY, 39, 630, C.white, 'right')
   const max = Math.max(past, current)
   for (const [y, value, fill] of [[firstY + 73, past, C.past], [secondY + 73, current, color]]) {
     ctx.fillStyle = fill; ctx.beginPath()
@@ -67,6 +64,7 @@ export function renderAnniversaryImage(item, currentRaw, currentRawB = '') {
   const ctx = canvas.getContext('2d')
   ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, canvas.height)
   ctx.fillStyle = C.orange; ctx.fillRect(0, 0, W, 20)
+  txt(ctx, 'ÉPARGNANT LIBRE', 1503, 55, 25, C.muted, 'right')
   txt(ctx, `IL Y A ${item.yearsBack} AN${item.yearsBack > 1 ? 'S' : ''}`, 96, 87, 58, C.orange)
   if (comparative) {
     fit(ctx, `${a.asset.label.toUpperCase()}  /  ${b.asset.label.toUpperCase()}`, 96, 190, 112, 1406)

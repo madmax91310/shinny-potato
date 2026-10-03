@@ -18,7 +18,7 @@ export function renderPortfolioImage(portfolio) {
   const { identity, snapshot, holdings } = portfolio
   const top = holdings.slice(0, 5)
   const other = Math.max(0, 1 - top.reduce((sum, row) => sum + row.weight, 0))
-  rounded(ctx, 'ÉPARGNANT LIBRE  /  INVESTISSEURS', 76, 94, 940, 25, '#d9b974')
+  rounded(ctx, 'ÉPARGNANT LIBRE', 76, 94, 940, 25, '#d9b974')
   rounded(ctx, identity.displayName, 76, 178, 930, 66)
   rounded(ctx, identity.entityName || 'Portefeuille déclaré', 78, 229, 910, 29, '#a8bdc4')
   rounded(ctx, `Positions au ${dateFR(snapshot.periodEnd)}`, 78, 288, 900, 26, '#c4d2d4')

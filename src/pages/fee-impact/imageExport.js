@@ -16,13 +16,12 @@ export function drawFeeImpactImage(ctx, state, first, second, comparison) {
   c.textAlign = 'left'
   c.fillStyle = COLORS.brand
   c.font = 'bold 25px sans-serif'
-  c.fillText('ÉPARGNANT LIBRE  /  SIMULATION', 110, 100)
+  c.fillText('ÉPARGNANT LIBRE', 110, 100)
   c.fillStyle = COLORS.ink
   c.font = 'bold 84px sans-serif'
   c.fillText('Impact des frais', 110, 200)
   c.fillStyle = COLORS.muted
   c.font = '31px sans-serif'
-  c.fillText('Deux scénarios, les mêmes versements.', 110, 255)
 
   const left = 205, right = 1450, top = 330, bottom = 790
   const peak = Math.max(1, capital1, capital2)
@@ -87,6 +86,6 @@ export function drawFeeImpactImage(ctx, state, first, second, comparison) {
   c.font = '23px sans-serif'
   c.fillText(`${fmtEUR(amount)} / mois · ${pct(years)} ans · rendement brut supposé : ${pct(returnRate)} % / an`, 110, 1110)
   c.font = '19px sans-serif'
-  c.fillText(`Frais annuels : ${pct(fee1)} % contre ${pct(fee2)} % · versements en début de mois.`, 110, 1145)
+  c.fillText('Versements en début de mois.', 110, 1145)
   c.fillText('Simulation illustrative · taux constants hypothétiques · hors fiscalité et inflation.', 110, 1175)
 }

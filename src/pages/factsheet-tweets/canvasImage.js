@@ -36,8 +36,7 @@ function label(name) {
 }
 
 function section(ctx, y, number, title) {
-  write(ctx, number, 54, y + 1, 21, C.accent, 700)
-  write(ctx, title, 100, y - 3, 30, C.ink, 700)
+  write(ctx, title, 54, y - 3, 30, C.ink, 700)
   ctx.fillStyle = C.ink
   ctx.fillRect(54, y + 39, 972, 2)
 }
@@ -53,6 +52,33 @@ function bars(ctx, entries, { y, step, rows, max = 30, size = 24, color = C.acce
   })
 }
 
+
+// Compact labels for PNG only; the full sourced explanation stays in the tweet and registry.
+function performanceNote(sheet) {
+  const detail = sheet.performance.detail
+    .replace(sheet.title + ', ', '')
+    .replace('rendements nets en dollars', 'USD · rendement net')
+    .replace('rendement brut en dollars', 'USD · rendement brut')
+    .replace('rendement total en dollars', 'USD · rendement total')
+    .replace('rendement net en euros', 'EUR · rendement net')
+    .replace('en EUR, hors dividendes (Price Return)', 'EUR · hors dividendes')
+    .replace(' ; secteurs selon la classification ICB de FTSE', ' · secteurs ICB')
+  const fundNotes = {
+    'sp500-equal-weight': 'ETF Xtrackers 1C · USD · dividendes réinvestis · net de frais',
+    topix: 'ETF Amundi TOPIX · EUR · non couvert · net de frais',
+    nikkei225: 'ETF Xtrackers 1C · JPY · dividendes réinvestis · net de frais',
+    'em-esg': 'ETF Amundi PEA Émergent ESG · EUR · net de frais',
+    'sp500-pea': 'ETF Amundi PEA S&P 500 · EUR · net de frais',
+    'nasdaq-pea': 'ETF Amundi PEA Nasdaq-100 · EUR · net de frais',
+  }
+  const history = sheet.performance.historyNote
+    ? /27 septembre 2023/.test(sheet.performance.historyNote)
+      ? 'Indice changé le 27/09/2023 ; historique du fonds.'
+      : 'Rendements de l’ETF ; composition de l’indice.'
+    : null
+  return { detail: fundNotes[sheet.id] ?? detail, history }
+}
+
 export function renderFactsheetImage(sheet) {
   if (sheet.methodologyPanels) return renderMethodologyImage(sheet)
   const canvas = document.createElement('canvas')
@@ -64,7 +90,7 @@ export function renderFactsheetImage(sheet) {
   ctx.fillStyle = C.ink; ctx.fillRect(0, 0, W, 208)
   write(ctx, 'ÉPARGNANT LIBRE', 540, 22, 25, C.white, 700, 'center')
   fitted(ctx, sheet.title.toLocaleUpperCase('fr-FR'), 540, 52, 1000, 72, C.white, 700, 'center', 36)
-  fitted(ctx, `${sheet.markets} · ${sheet.marketCap ?? `${sheet.constituents.toLocaleString('fr-FR')} entreprises`}`, 540, 145, 1010, 23, C.white, 400, 'center', 17)
+  fitted(ctx, sheet.markets, 540, 145, 1010, 23, C.white, 400, 'center', 17)
   fitted(ctx, `COMPOSITION AU ${sheet.snapshot.toLocaleUpperCase('fr-FR')}`, 540, 180, 1000, 17, '#B7CBD0', 700, 'center', 13)
 
   ctx.fillStyle = C.hero; ctx.fillRect(0, 208, W, 150)
@@ -74,16 +100,14 @@ export function renderFactsheetImage(sheet) {
   ctx.strokeStyle = '#95B2B4'; ctx.lineWidth = 1.5
   ctx.beginPath(); ctx.moveTo(0, 216); ctx.lineTo(540, 204); ctx.lineTo(W, 216); ctx.stroke()
 
-  const main = sheet.countries.find(([name]) => label(name).toLowerCase() !== 'autres') ?? sheet.countries[0]
   const topTen = sheet.topWeight ?? sheet.holdings.slice(0, 10).reduce((sum, [, weight]) => sum + weight, 0)
   const perf = sheet.performance.tenYear != null
-    ? [sheet.performance.tenYear, 'SUR 10 ANS · PAR AN']
+    ? [sheet.performance.tenYear, 'SUR 10 ANS']
     : sheet.performance.annualizedFiveYear != null
-      ? [sheet.performance.annualizedFiveYear, 'SUR 5 ANS · PAR AN']
+      ? [sheet.performance.annualizedFiveYear, 'SUR 5 ANS']
       : [sheet.returns[0][1], `EN ${sheet.returns[0][0]}`]
-  write(ctx, '1ER PAYS', 54, 224, 18, C.white, 700)
-  fitted(ctx, percent(main[1]), 54, 242, 480, 80, C.white, 700, 'left', 57)
-  fitted(ctx, label(main[0]).toLocaleUpperCase('fr-FR'), 57, 325, 480, 26, C.white, 700)
+  write(ctx, 'POIDS DES 10 PREMIÈRES', 54, 224, 18, C.white, 700)
+  fitted(ctx, percent(topTen), 54, 242, 480, 80, C.white, 700, 'left', 57)
   ctx.fillStyle = '#93B2B4'; ctx.fillRect(550, 221, 2, 125)
   write(ctx, sheet.constituents.toLocaleString('fr-FR'), 595, 214, 54, C.white, 700)
   write(ctx, 'ENTREPRISES', 595, 272, 19, C.white, 700)
@@ -98,7 +122,6 @@ export function renderFactsheetImage(sheet) {
   bars(ctx, sheet.sectors, { y: 710, step: 49, rows: Math.ceil(sheet.sectors.length / 2), size: 23, color: C.hero, max: Math.max(30, ...sheet.sectors.map(([, weight]) => weight)) })
 
   section(ctx, 1010, '03', 'DIX PREMIÈRES ENTREPRISES')
-  write(ctx, `TOP 10 : ${percent(topTen)}`, 1026, 1020, 21, C.accent, 700, 'right')
   sheet.holdings.slice(0, 10).forEach(([name, weight], i) => {
     const x = 54 + Math.floor(i / 5) * 504
     const y = 1066 + i % 5 * 34
@@ -114,8 +137,9 @@ export function renderFactsheetImage(sheet) {
     fitted(ctx, percent(result, true), x, 1360, 190, 26, result < 0 ? C.negative : C.ink, 700, 'left', 18)
   })
   ctx.fillStyle = C.ink; ctx.fillRect(54, 1405, 972, 2)
-  fitted(ctx, `${sheet.performance.detail} · ${sheet.performance.date}`, 54, sheet.performance.historyNote ? 1409 : 1413, 972, sheet.performance.historyNote ? 12 : 16, C.muted, 400, 'left', 11)
-  if (sheet.performance.historyNote) fitted(ctx, sheet.performance.historyNote, 54, 1423, 972, 11, C.muted, 400, 'left', 10)
+  const note = performanceNote(sheet)
+  fitted(ctx, `${note.detail} · ${sheet.performance.date}`, 54, note.history ? 1409 : 1413, 972, note.history ? 15 : 17, C.muted, 400, 'left', 12)
+  if (note.history) fitted(ctx, note.history, 54, 1426, 972, 13, C.muted, 400, 'left', 11)
   return canvas
 }
 
@@ -130,7 +154,7 @@ function renderMethodologyImage(sheet) {
  ctx.fillStyle=C.hero;ctx.fillRect(0,230,W,130);
  const count=sheet.constituents??sheet.indexFacts.targetConstituents;
  write(ctx,count.toLocaleString('fr-FR'),540,246,65,C.white,700,'center');
- write(ctx,sheet.constituents===null?'SOCIÉTÉS VISÉES PAR LA MÉTHODE':'TITRES AU 31 AOÛT 2026',540,322,22,C.white,700,'center');
+ write(ctx,sheet.constituents===null?'SOCIÉTÉS VISÉES PAR LA MÉTHODE':'TITRES',540,322,22,C.white,700,'center');
  function paragraph(value,y) {
   ctx.font='30px Arial';let line='',top=y;
   for(const word of value.split(' ')) { const candidate=line?line+' '+word:word;
@@ -140,7 +164,7 @@ function renderMethodologyImage(sheet) {
  sheet.methodologyPanels.forEach(([title,value],i)=>{const y=410+i*240;section(ctx,y,String(i+1).padStart(2,'0'),title);paragraph(value,y+65);});
  section(ctx,1140,'04','PERFORMANCES');
  sheet.returns.slice().reverse().forEach(([year,result],i)=>{const x=54+i*205;write(ctx,year,x,1214,22,C.muted);fitted(ctx,percent(result,true),x,1260,190,32,result<0?C.negative:C.ink,700);});
- paragraph(sheet.performance.kind==='ETF'?'Performances de l’ETF cité, distinctes de la méthodologie d’indice.':'Performances de l’indice, distinctes des rendements de l’ETF.',1330);
- fitted(ctx,sheet.performance.detail,54,1420,970,15,C.muted,400);
+ const note = performanceNote(sheet);
+ fitted(ctx,`${note.detail} · ${sheet.performance.date}`,54,1408,970,17,C.muted,400);
  return canvas;
 }

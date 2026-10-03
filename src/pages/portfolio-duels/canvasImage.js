@@ -1,5 +1,4 @@
 import { YEARS } from '../../data/portfolio-assets.js'
-import { DUELS } from './data.js'
 import { formatCapital, formatPercent, ROLES } from './lib.js'
 
 const W = 1080
@@ -82,7 +81,7 @@ function portfolio(ctx, item, letter, x, currency, accent, extra) {
 export function renderDuelImage(duel) {
   const years = duel.years ?? YEARS
   const extra = Math.max(0, Math.max(duel.a.assets.length, duel.b.assets.length) - 2) * 75
-  const height = 1350 + extra
+  const height = 1300 + extra
   const canvas = document.createElement('canvas')
   canvas.width = W * 2
   canvas.height = height * 2
@@ -94,9 +93,6 @@ export function renderDuelImage(duel) {
   ctx.fillStyle = NAVY
   ctx.fillRect(0, 0, W, 280)
   write(ctx, 'ÉPARGNANT LIBRE', 540, 28, 27, PAPER, 700, 'center')
-  const seriesIndex = DUELS.findIndex((entry) => entry.id === duel.id)
-  const edition = seriesIndex >= 0 ? ` · ${String(seriesIndex + 1).padStart(2, '0')}` : ' · ÉDITION LIBRE'
-  write(ctx, `DUEL DE PORTEFEUILLES${edition}`, 540, 76, 19, '#7FD3C1', 700, 'center')
   title(ctx, duel.title.toUpperCase().replace(' OU ', '  VS  ').replace(' ?', ''))
   const symbol = duel.currency === 'USD' ? '$' : '€'
   write(ctx, `10 000 ${symbol} investis en ${years[0]}  ·  valeur fin ${years.at(-1)}`, 540, 236, 27, '#DCE7E2', 400, 'center')
@@ -121,9 +117,6 @@ export function renderDuelImage(duel) {
     fit(ctx, `B ${formatPercent(duel.b.annual[year])}`, x + 162, y + 32, 25, 160, B, 700, 'left', 18)
   })
   rule(ctx, 50, 1260 + extra, 980)
-  write(ctx, 'PIRE ANNÉE', 50, 1274 + extra, 21, MUTED)
-  fit(ctx, `A ${formatPercent(duel.a.worst)} (${duel.a.worstYear})`, 260, 1274 + extra, 22, 360, A)
-  fit(ctx, `B ${formatPercent(duel.b.worst)} (${duel.b.worstYear})`, 632, 1274 + extra, 22, 390, B)
-  write(ctx, `En ${duel.currency} · Rééquilibrage annuel · Hors courtage et fiscalité`, 50, 1320 + extra, 16, MUTED, 400)
+  write(ctx, `En ${duel.currency} · Rééquilibrage annuel · Hors courtage et fiscalité`, 50, 1270 + extra, 16, MUTED, 400)
   return canvas.toDataURL('image/png')
 }

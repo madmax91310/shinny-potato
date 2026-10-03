@@ -70,12 +70,15 @@ export async function renderIndexImage(family) {
     rows.push({ countOffset, sections, height: sectionOffset + 24 })
   }
   font(ctx, 62, 700); const title = lines(ctx, editorial.imageTitle, W - PAD * 2)
-  const HEADER = 50 + title.length * 74 + 40
+  const stamps = [...new Set(cards.map(card => card.stamp).filter(Boolean))]
+  const commonStamp = stamps.length === 1 && cards.every(card => card.stamp) ? stamps[0] : null
+  const HEADER = 50 + title.length * 74 + (commonStamp ? 75 : 40)
   const H = Math.ceil(HEADER + rows.reduce((sum, row) => sum + row.height + GAP, 0) + 72)
   canvas.width = W; canvas.height = H
   ctx.textBaseline = 'top'; ctx.fillStyle = BG; ctx.fillRect(0, 0, W, H)
   ctx.textAlign = 'center'
   font(ctx, 62, 700); draw(ctx, title, W / 2, 50, 74, INK)
+  if (commonStamp) { font(ctx, 22); draw(ctx, [`Composition au ${commonStamp}`], W / 2, 50 + title.length * 74 + 12, 28, MUTED) }
   ctx.textAlign = 'left'
   let top = HEADER
   cards.forEach((card, i) => {
@@ -94,7 +97,7 @@ export async function renderIndexImage(family) {
       font(ctx, 68, 700); draw(ctx, [card.count.toLocaleString('fr-FR')], center, top + row.countOffset, 78, card.color)
       font(ctx, 25); draw(ctx, ['valeurs dans l’indice'], center, top + row.countOffset + 78, 32, MUTED)
     }
-    if (card.stamp) { font(ctx, 22); draw(ctx, [card.stamp], center, top + row.countOffset + 111, 28, MUTED) }
+    if (card.stamp && !commonStamp) { font(ctx, 22); draw(ctx, [card.stamp], center, top + row.countOffset + 111, 28, MUTED) }
     ctx.textAlign = 'left'
     for (const sectionLayout of row.sections.filter(s => s.active)) {
       const section = card.allocations.find(s => s.label === sectionLayout.label)

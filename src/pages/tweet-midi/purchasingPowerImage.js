@@ -47,11 +47,7 @@ export function renderPurchasingPowerImage(item) {
   canvas.width = W; canvas.height = H
   const ctx = canvas.getContext('2d')
   ctx.fillStyle = C.paper; ctx.fillRect(0, 0, W, H)
-  ctx.fillStyle = C.ink
-  ctx.beginPath()
-  ctx.moveTo(870, 0); ctx.lineTo(W, 0); ctx.lineTo(W, 450); ctx.lineTo(1010, 305)
-  ctx.closePath(); ctx.fill()
-  label(ctx, 'ÉPARGNANT LIBRE  /  POUVOIR D’ACHAT', 76, 75, 25, C.ink, 'monospace')
+  label(ctx, 'ÉPARGNANT LIBRE', 76, 75, 25, C.ink, 'monospace')
   ctx.fillRect(76, 124, 1048, 3)
   fitted(ctx, lines[0], 74, 177, 78, 1050)
   fitted(ctx, lines[1], 74, 263, 89, 1050)

@@ -26,7 +26,6 @@ function header(ctx, title, year, comparative) {
   ctx.fillStyle = C.ink; ctx.fillRect(0, 22, W, 5)
   ctx.fillStyle = '#C2C8B8'; ctx.fillRect(78, 88, 1444, 2)
   text(ctx, '@Epargnantlibre', 83, 107, 36)
-  text(ctx, 'SÉRIE / PERFORMANCE DEPUIS', 1518, 107, 29, C.muted, 'sans', 'right')
   let titleSize = comparative ? 94 : 148
   while (titleSize > 55) {
     ctx.font = `700 ${titleSize}px Georgia, serif`
@@ -71,11 +70,11 @@ function plot(ctx, returns, x, top, width, height) {
   })
 }
 
-function card(ctx, rows, y, height, label, total) {
+function card(ctx, rows, y, height, label, total = null) {
   rounded(ctx, 77, y + 13, 1451, height, 32, '#D9D5C9')
   rounded(ctx, 70, y, 1450, height, 32, C.card)
   text(ctx, label, 117, y + 43, 38)
-  text(ctx, number(total), 1477, y + 43, 40, C.green, 'sans', 'right')
+  if (total !== null) text(ctx, number(total), 1477, y + 43, 40, C.green, 'sans', 'right')
   ctx.fillStyle = '#D8DCCF'; ctx.fillRect(114, y + 126, 1362, 2)
   plot(ctx, rows, 110, y + 158, 1370, height - 208)
 }
@@ -102,9 +101,7 @@ export function renderPerformanceImage(item) {
   } else {
     summary(ctx, cumulative(rows[0].returns))
     text(ctx, `Sur ${rows[0].returns.length} année${rows[0].returns.length > 1 ? 's' : ''} · cours en ${assets[0].currency === 'USD' ? 'dollars' : 'euros'}`, 130, 825, 40, C.muted, 'sans', 'left', 400)
-    card(ctx, rows[0].returns, 954, 900, 'RENDEMENT PAR ANNÉE', cumulative(rows[0].returns))
-    rounded(ctx, 86, 1910, 21, 21, 11, C.green); text(ctx, 'Hausse', 120, 1904, 31, C.muted, 'sans', 'left', 400)
-    rounded(ctx, 290, 1910, 21, 21, 11, C.coral); text(ctx, 'Baisse', 324, 1904, 31, C.muted, 'sans', 'left', 400)
+    card(ctx, rows[0].returns, 954, 900, 'RENDEMENT PAR ANNÉE')
     text(ctx, `EN ${assets[0].currency}${assets[0].currency === 'USD' ? ' · SANS CONVERSION EN EUR' : ''}`, 1518, 1904, 30, C.muted, 'sans', 'right')
   }
   if (assets.some((a) => a.id === 'silver')) {

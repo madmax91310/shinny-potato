@@ -30,7 +30,7 @@ function centeredTitle(ctx, label) {
   ctx.textAlign = 'center'
   ctx.fillStyle = BRONZE
   ctx.font = 'bold 26px Arial, sans-serif'
-  ctx.fillText('ÉPARGNANT LIBRE  /  ET SI TU AVAIS INVESTI ?', 540, 125)
+  ctx.fillText('ÉPARGNANT LIBRE', 540, 125)
   ctx.fillStyle = INK
   const name = label.toUpperCase()
   const size = fittedText(ctx, name, 950, 'Georgia, serif', 40, 92)
@@ -158,7 +158,7 @@ function drawAnnual(ctx, rows, d, currency) {
   ctx.fillText(calendar ? 'Performances de l’actif par année' : 'Performance sur la période', 60, 621)
   ctx.font = '23px Arial, sans-serif'
   ctx.fillStyle = MUTED
-  ctx.fillText(calendar ? 'Clôture de décembre à clôture de décembre · axe en %' : 'Variation de la valeur du placement · axe en %', 60, 654)
+  ctx.fillText(calendar ? 'Rendements annuels (%)' : 'Variation de la valeur du placement · axe en %', 60, 654)
   const positives = rows.filter(({ value }) => value > 0).map(({ value }) => value)
   const negatives = rows.filter(({ value }) => value < 0).map(({ value }) => -value)
   const zero = positives.length && negatives.length ? 974 : positives.length ? 1070 : 741
@@ -264,7 +264,7 @@ export function renderInvestmentImage(state, d) {
   rule(ctx, 1247)
   ctx.fillStyle = MUTED
   ctx.font = '21px Arial, sans-serif'
-  ctx.fillText(state.overridePriceRaw && !d.isCustom ? 'Valeur finale calculée avec le prix saisi · Historique, pas une prévision' : 'Évolution historique · Les performances passées ne préjugent pas des performances futures', 60, 1287)
+  ctx.fillText(state.overridePriceRaw && !d.isCustom ? 'Prix final saisi · performances passées' : 'Les performances passées ne préjugent pas des performances futures', 60, 1287)
   if (asset?.sourceCredit) {
     ctx.font = '18px Arial, sans-serif'
     asset.sourceCredit.split('\n').forEach((line, i) => ctx.fillText(line, 60, 1310 + i * 26))
