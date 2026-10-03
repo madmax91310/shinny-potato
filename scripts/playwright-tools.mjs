@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 20057)
-Total output lines: 1124
-
 #!/usr/bin/env node
 import { TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
@@ -450,7 +447,238 @@ async function testEtfSheets(page) {
   const preview = page.getByRole('dialog', { name: 'Aperçu : Performances annuelles de l’ETF' });
   const imageOk = (await preview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
   const [download] = await Promise.all([
-    …4057 tokens truncated…r('YTD %').fill('0');
+    page.waitForEvent('download'),
+    preview.getByRole('button', { name: '⬇️ Télécharger' }).click(),
+  ]);
+  await preview.getByRole('button', { name: "Fermer l'aperçu" }).click();
+  record("Fiches ETF", badCount === 0 && defaultEtf === 'sp500' && imageOk && download.suggestedFilename() === 'sp500-performances-annuelles.png',
+    `${count} fiches et textes copiés personnalisés, défaut ${defaultEtf}, ${badCount} erreur(s), aperçu et téléchargement PNG`);
+}
+
+async function testBrokerComparator(page) {
+  await page.goto(`${BASE}/comparatif-courtiers`, { waitUntil: "networkidle" });
+  await page.waitForTimeout(150);
+  await page.waitForFunction(() => {
+    const canvas = document.querySelector('.bc-versus-canvas');
+    return canvas?.width === 1600 && canvas?.height === 900;
+  });
+  const versusBefore = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
+  const [duelDownload] = await Promise.all([
+    page.waitForEvent('download'),
+    page.getByRole('button', { name: 'Télécharger l’image PNG' }).click(),
+  ]);
+  const versusOk = versusBefore.startsWith('data:image/png;base64,') && versusBefore.length > 30000
+    && duelDownload.suggestedFilename() === 'duel-courtiers-tr-bourso.png';
+  // Le texte généré vit dans la value d'un <textarea> (bc-tweet-textarea) — jamais capturé par
+  // innerText(), qui n'expose pas le contenu des champs de formulaire.
+  const tweet = await page.locator(".bc-tweet-textarea").inputValue();
+  const ok = tweet.includes("🔄 Transfert du PEA") && tweet.includes("BoursoMarkets")
+    && tweet.includes("💰 Frais de courtage PEA") && tweet.includes("Direct Price")
+    && tweet.includes("💵 Liquidités rémunérées") && tweet.includes("Non : PEA/PEA-PME selon contrat")
+    && !/undefined|\bNaN\b|conversion|💱|à vérifier|aucune offre spécifique|preuve corroborée/i.test(tweet)
+    && (await page.locator('.bc-evidence-broker').count()) === 2
+    && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 0;
+  await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
+  await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('Saxo Bank'));
+  await page.waitForFunction((previous) => {
+    const canvas = document.querySelector('.bc-versus-canvas');
+    return canvas?.width === 1600 && canvas.toDataURL('image/png') !== previous;
+  }, versusBefore);
+  const fortuneoSaxo = await page.locator('.bc-tweet-textarea').inputValue();
+  let previousVersus = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
+  for (const duo of ['IBKR vs XTB', 'CA vs BD']) {
+    await page.locator('.bc-duel-chip').filter({ hasText: duo }).click();
+    await page.waitForFunction((previous) => document.querySelector('.bc-versus-canvas')?.toDataURL('image/png') !== previous, previousVersus);
+    previousVersus = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
+  }
+  await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
+  await page.locator('.bc-evidence-broker').first().locator('summary').click();
+  const sourceOk = fortuneoSaxo.includes('💵 Liquidités rémunérées')
+    && fortuneoSaxo.includes('📅 Achats automatiques sur PEA')
+    && fortuneoSaxo.includes('Non : PEA/PEA-PME selon contrat')
+    && fortuneoSaxo.includes('PEA Jeune : Fortuneo ❌ · Saxo Bank ❌')
+    && fortuneoSaxo.includes('Plus de 150 ETF Amundi')
+    && (await page.locator('.bc-evidence-broker').count()) === 2
+    && (await page.locator('.bc-evidence').innerText()).includes('les conditions générales Fortuneo du 01/09/2025, art. 12 p. 35, excluent explicitement les intérêts')
+    && (await page.locator('.bc-evidence').innerText()).includes('source externe');
+  await page.locator('.bc-duel-chip').filter({ hasText: 'TR vs IBKR' }).click();
+  const noOffers = await page.locator('.bc-tweet-textarea').inputValue();
+  const complete = !/🎁|conversion|💱|à vérifier|aucune offre spécifique|preuve corroborée|portée PEA non établie/i.test(noOffers)
+    && noOffers.includes('Transfert entrant et sortant possible') && noOffers.includes('IFU disponible pour le PEA');
+  record("Comparatif courtiers", ok && sourceOk && versusOk && complete, "rubriques complètes, logos officiels et image PNG du duel");
+}
+
+async function testTweetMidi(page) {
+  await page.goto(`${BASE}/tweet-midi`, { waitUntil: "networkidle" });
+  const formats = ["Vrai ou Faux", "Dilemme", "Fiche lexique", "Comparatif ETF", "Il y a X ans", "Performance depuis", "Pouvoir d'achat"];
+  let failed = [];
+  for (const label of formats) {
+    await page.getByRole("button", { name: label, exact: true }).click();
+    await page.waitForTimeout(150);
+    const text = await page.locator("body").innerText();
+    if (text.length < 500) failed.push(label);
+  }
+  await page.getByRole("button", { name: "Il y a X ans", exact: true }).click();
+  await page.locator("#subject-select").selectOption("bitcoin");
+  await page.locator("#secondary-select").selectOption("1");
+  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
+  await page.locator("#niveau-actuel").fill(String(HISTORY.bitcoin.points.at(-1).price));
+  const past = new Date();
+  const pastYm = `${past.getFullYear() - 1}-${String(past.getMonth() + 1).padStart(2, "0")}`;
+  const historical = HISTORY.bitcoin.points.find(p => p.date === pastYm);
+  const anniversary = await page.locator("pre").innerText();
+  if (historical && !anniversary.includes(fmtHistoryPrice(historical.price, "USD"))) failed.push("Il y a X ans : clôture historique Bitcoin");
+  for (const id of ['berkshire', 'asml']) {
+    await page.locator('#subject-select').selectOption(id);
+    await page.locator('#secondary-select').selectOption('1');
+    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+    await page.locator('#niveau-actuel').fill(String(HISTORY[id].anniversaryPoints.at(-1).price));
+    const raw = HISTORY[id].anniversaryPoints.find(p => p.date === pastYm);
+    const post = await page.locator('pre').innerText();
+    if (!post.includes(fmtHistoryPrice(raw.price, HISTORY[id].currency)) || /NaN|undefined/.test(post)) failed.push(`${id} : prix brut anniversaire`);
+  }
+  await page.getByRole("button", { name: "Performance depuis", exact: true }).click();
+  await page.locator('#subject-select').selectOption('sp500');
+  await page.locator('#secondary-select').selectOption('2016');
+  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
+  const performance = await page.locator('pre').innerText();
+  const minimal = /^📈 Performance du S&P 500 depuis 2016 👇\n\n/u.test(performance)
+    && performance.split('\n').at(-1).startsWith('Cumulé sur la période : ')
+    && !/💬|Livret A|Cours en dollars/u.test(performance)
+    && (await page.getByRole('checkbox').count()) === 0;
+  if (!minimal) failed.push('Performance depuis : format minimal');
+  await page.locator('#subject-select').selectOption('stoxx600');
+  await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+  const stoxxPerformance = await page.locator('pre').innerText();
+  const stoxxAnnual = (HISTORY.stoxx600.points.find(p => p.date === '2025-12').price
+    / HISTORY.stoxx600.points.find(p => p.date === '2024-12').price - 1) * 100;
+  if (!stoxxPerformance.includes(`2025 : ${fmtHistoryPct(stoxxAnnual)}`)
+      || stoxxPerformance.includes('2026 :')) failed.push('Performance depuis : historique officiel STOXX');
+  await page.getByRole("button", { name: "Comparatif (2 actifs)", exact: true }).click();
+  await page.locator('#subject-select-a').selectOption('sp500');
+  await page.locator('#subject-select-b').selectOption('bitcoin');
+  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
+  const comparison = await page.locator('pre').innerText();
+  if ((comparison.match(/^📈 Performance /gmu) ?? []).length !== 2
+      || (comparison.match(/^Cumulé sur la période : /gmu) ?? []).length !== 2
+      || comparison.includes('💬')) failed.push('Performance depuis : comparatif');
+  await page.getByRole('button', { name: 'Performance depuis', exact: true }).click();
+  for (const id of ['berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
+    await page.locator('#subject-select').selectOption(id);
+    await page.locator('#secondary-select').selectOption('2020');
+    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+    const post = await page.locator('pre').innerText();
+    if (!post.includes('2025 :') || post.includes('2026 :') || /NaN|undefined/.test(post)) failed.push(`Nouvelle entreprise ${id}`);
+  }
+  await page.getByRole('button', { name: "Pouvoir d'achat", exact: true }).click();
+  await page.locator('select').selectOption('2025');
+  await page.getByRole('button', { name: '1000 €', exact: true }).click();
+  for (const [poste, expected] of [[null, '1\u202f034'], ['Alimentation', '1\u202f017'], ['Carburant', '1\u202f156']]) {
+    if (poste) {
+      await page.getByRole('button', { name: 'Par poste', exact: true }).click();
+      await page.getByRole('button', { name: new RegExp(poste) }).click();
+    } else await page.getByRole('button', { name: "Pouvoir d'achat brut", exact: true }).click();
+    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+    const post = await page.locator('pre').innerText();
+    if (!post.includes(expected) || !post.includes('août 2026') || /provisoire|12 mois glissants|NaN|undefined/.test(post)) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : observation datée`);
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      page.getByRole('button', { name: /Télécharger.*image|Télécharger.*PNG/i }).click(),
+    ]);
+    if (!(await download.path())) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : PNG`);
+  }
+  record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
+}
+
+async function testConcreteCases(page) {
+  await page.goto(`${BASE}/cas-concrets`, { waitUntil: "networkidle" });
+  const choices = page.locator(".cc-choice");
+  const count = await choices.count();
+  let allRendered = count === CASES.length;
+  for (let i = 0; i < count; i++) {
+    await choices.nth(i).click();
+    const body = await page.locator('.cc-text').innerText();
+    allRendered &&= body.replace(/\s+/g, ' ').trim() === CASES[i].text.replace(/\s+/g, ' ').trim()
+      && (await page.locator('.cc-sources a').count()) === CASES[i].sources.length;
+  }
+  await choices.nth(1).click();
+  const title = await choices.nth(1).locator("strong").innerText();
+  const selected = await choices.nth(1).getAttribute("aria-current");
+  const preview = await page.locator(".cc-preview").innerText();
+  const switched = selected === "true" && preview.includes(title);
+
+  // Force les deux mécanismes de copie à échouer pour vérifier le dernier recours visible.
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: () => Promise.reject(new Error("denied")) } });
+    document.execCommand = () => false;
+  });
+  await page.getByRole("button", { name: /Copier le texte/i }).click();
+  const manual = page.getByRole("textbox", { name: /Texte du cas concret à copier manuellement/i });
+  const visible = await manual.isVisible();
+  const sameText = (await manual.inputValue()) === (await page.locator(".cc-text").innerText());
+  const selection = await manual.evaluate((el) => el.selectionStart === 0 && el.selectionEnd === el.value.length);
+  record("Cas concrets", allRendered && switched && visible && sameText && selection,
+    `${count} cas et sources: ${allRendered}, sélection: ${switched}, repli de copie: ${visible && sameText && selection}`);
+}
+
+async function testIndexComparator(page) {
+  await page.goto(`${BASE}/comparateur-indices`, { waitUntil: 'networkidle' });
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__indexCopiedText = text; } },
+  }));
+  await page.evaluate(() => {
+    const original = CanvasRenderingContext2D.prototype.fillText;
+    window.__indexImageText = [];
+    CanvasRenderingContext2D.prototype.fillText = function(text, ...args) {
+      window.__indexImageText.push(String(text));
+      return original.call(this, text, ...args);
+    };
+  });
+  const select = page.locator('select').first();
+  const count = await select.locator('option').count();
+  let ok = 0, images = 0;
+  for (const family of FAMILIES) {
+    console.log(`    Comparateur : ${family.id}`);
+    await select.selectOption(family.id);
+    const text = await page.locator('.xc-preview-text').innerText();
+    const editorial = getIndexComparisonEditorial(family);
+    const refs = family.etfGroups.flatMap(group => group.funds);
+    const dataOk = refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
+      && family.perfFunds.every(fund => fund.perfNote ? text.includes(fund.perfNote) :
+        [2023, 2024, 2025].every(year => text.includes(`${year} : ${fmtPct(fund[`y${year}`]) ?? 'Non disponible'}`)));
+    await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
+    const copied = await page.evaluate(() => window.__indexCopiedText);
+    if (dataOk && copied === text && text.startsWith(editorial.hook)
+      && text.endsWith(editorial.question) && editorial.exposures.every(p => text.includes(p))
+      && !/L'EXPOSITION|LE VERDICT|DIVERSIFICATION|undefined|NaN|à compléter/.test(text)) ok++;
+    // Espacer la série de PNG pour éviter le blocage des téléchargements en rafale.
+    await page.waitForTimeout(250);
+    await page.evaluate(() => { window.__indexImageText = []; });
+    const [download] = await Promise.all([Promise.race([page.waitForEvent('download'),
+      page.getByRole('button', { name: 'Réessayer le téléchargement PNG' }).waitFor().then(() => { throw new Error(`Export PNG impossible : ${family.id}`); })]),
+      page.getByRole('button', { name: 'Télécharger l’image PNG' }).click()]);
+    const png = await readFile(await download.path());
+    const drawn = await page.evaluate(() => window.__indexImageText.join('\n'));
+    const indicesOnly = refs.every(fund => !drawn.includes(fund.isin) && !drawn.includes(fund.name))
+      && !/ETF CITÉS|ETP CITÉS|ETC CITÉS|Éligible au PEA|éligible au PEA|PEA :|\/ an/.test(drawn);
+    const composition = family.indices.every(index => {
+      const facts = index.indexFacts;
+      if (facts?.metadata?.sourceStatus !== 'documented') return true;
+      return (!facts.constituents || (drawn.includes(facts.constituents.toLocaleString('fr-FR')) && drawn.includes('valeurs dans l’indice')))
+        && [...(facts.countries ?? []).slice(0, 3), ...(facts.sectors ?? []).slice(0, 3)].every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
+    });
+    if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
+      && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 400
+      && png.readUInt32BE(20) < 2100 && png.length > 10000) images++;
+  }
+  await select.selectOption('monde');
+  const worldText = await page.locator('.xc-preview-text').innerText();
+  const sharedCountsOk = ['acwi', 'ftse-all-world', 'world'].every(id =>
+    worldText.replaceAll('\u202f', ' ').includes(formatIndexConstituents(id, '2026-08-31')));
+  await select.selectOption('europe');
+  await page.getByRole('checkbox', { name: 'Inclure le YTD' }).first().check();
+  let ytdOk = !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
+  await page.getByPlaceholder('YTD %').fill('0');
   ytdOk &&= (await page.locator('.xc-preview-text').innerText()).includes('YTD saisi : +0,00 %');
   await select.selectOption('monde');
   ytdOk &&= !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
