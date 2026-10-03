@@ -5,6 +5,7 @@ import {
   isCompatible, getFrequencyCap,
 } from "./theses.js";
 import { SEPARATOR, DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
+import { exposureVector, exposureSignature, exposureDistance } from "./exposures.js";
 import { getRecipes, withinRecipe } from "./recipes.js";
 import { buildEditorial } from "./editorial.js";
 
@@ -134,36 +135,15 @@ function buildSelection(combo, usageCounts, historyLength) {
   });
 }
 
-// Jitter (swap de points entre deux lignes) pour varier les combos d'une génération à l'autre,
-// toujours revalidé contre la borne de pire année du palier ET contre l'invariante propre au
-// profil (ex. Pro-Européen, minimum 70% Europe) — chaque swap individuel est vérifié et annulé
-// s'il casse l'une ou l'autre, pour que le résultat final respecte toujours les deux, sans
-// dépendre d'un tirage au sort favorable dans la boucle de relance.
-//
-// Au moins 1 swap garanti (attempts >= 1, contre 0-2 auparavant — un tirage à "0 attempts" ne
-// changeait jamais rien) et magnitude variable (contre un ±5 fixe) : corrige un bug signalé où
-// "Générer un nouveau portefeuille" pouvait renvoyer exactement le même résultat sur une sélection
-// profil+risque étroite (peu de idOptions, jitter fixe) — l'ancien espace de combos atteignables
-// s'épuisait en quelques générations dans une session, après quoi la boucle anti-doublon de
-// generatePortfolio (tries < 60, puis 200) finissait par abandonner et renvoyer un doublon exact.
-// Élargir l'espace atteignable ici, plutôt que relâcher la détection de doublon, pour que les
-// combos restent tous valides (bornés/revérifiés) tout en étant beaucoup plus nombreux.
-//
-// Élargi une deuxième fois le 08/09/2026 (audit "variété insuffisante") : mesuré par script sur
-// les 29 combos (30 générations chacun, taux de doublon exact + quasi-doublon à ±3pt près) que les
-// combos à peu de lignes tournantes (Pro-Européen, Rentier/Offensif) restaient nettement plus
-// sujets aux doublons que la moyenne malgré le premier élargissement. Testé (1-4, {2,3,5,8}) contre
-// (2-6, {2,3,5,8,12,15}) sur les 4 pires combos : gain net partout sauf Pro-Européen/Prudent
-// (inchangé, 2/30 avant et après) — ce dernier est dominé par 2 lignes fixes (75% du combo) sous un
-// plancher de perte très serré (-5%), donc la plupart des swaps sont de toute façon annulés par la
-// revalidation de borne ci-dessous, quelle que soit la magnitude : limite structurelle, pas un
-// paramètre de jitter à pousser davantage (voir le rapport d'audit pour le détail des mesures).
+// Échange de 1 à 25 points entre deux lignes, dans les limites propres à la recette.
+// Chaque échange est annulé s’il casse ces limites, le filtre historique ou une règle
+// du profil. Le levier et la conviction centrale thématique sont fixes dans recipes.js.
 function jitterSelection(selection, bound, profileId, riskId, recipe) {
-  const attempts = randInt(2, 6);
+  const attempts = randInt(3, 9);
   for (let i = 0; i < attempts; i++) {
     if (selection.length < 2) break;
     const [ia, ib] = shuffle(selection.map((_, idx) => idx)).slice(0, 2);
-    const amount = pick([2, 3, 5, 8, 12, 15]);
+    const amount = randInt(1, 25);
     if (selection[ia].pct - amount < 5) continue;
     selection[ia].pct -= amount;
     selection[ib].pct += amount;
@@ -357,28 +337,33 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   const assetUsage = computeAssetUsage(history);
   const pairUsage = computePairUsage(history);
 
-  let profileId, riskId, profile, combo, selection;
-  let tries = 0;
-  do {
-    ({ profileId, riskId } = pickPair(targetRiskKey, targetProfileKey, pairUsage));
-    profile = PROFILES.find((p) => p.id === profileId);
-    combo = pickRecipe(profileId, riskId, history);
-    selection = jitterSelection(buildSelection(combo, assetUsage, history.length), RISK_BOUNDS[riskId], profileId, riskId, combo);
-    tries++;
-  } while (
-    (!withinBound(worstYearOf(computeYearlyPerf(selection)).value, RISK_BOUNDS[riskId]) ||
-      history.some((h) => h.sig === signature(selection)) ||
-      violatesProfileInvariant(profileId, selection, riskId)) &&
-    // Plafond relevé de 60 à 200 : avec le jitter élargi ci-dessus (attempts >= 1, magnitude
-    // variable), l'espace de combos atteignables par combo est nettement plus grand, donc plus de
-    // tentatives avant d'abandonner change concrètement le taux de réussite plutôt que de juste
-    // boucler pour rien.
-    tries < 200
-  );
+  const { profileId, riskId } = pickPair(targetRiskKey, targetProfileKey, pairUsage);
+  const profile = PROFILES.find(p => p.id === profileId);
+  const combo = pickRecipe(profileId, riskId, history);
+  const bound = RISK_BOUNDS[riskId];
+  const used = new Set(history.map(h => h.exposureSig ?? exposureSignature(h.selection)));
+  const recent = history.filter(h => h.profileId === profileId && h.riskId === riskId)
+    .slice(-20).map(h => exposureVector(h.selection));
+  let selection, fallback, bestScore = -Infinity, freshCandidates = 0;
+  // Compare plusieurs tirages de la même recette ; la rotation des recettes reste prioritaire.
+  // Un changement d’émetteur ne suffit plus à faire passer une allocation pour nouvelle.
+  for (let tries = 0; tries < 200 && freshCandidates < 16; tries++) {
+    const candidate = jitterSelection(buildSelection(combo, assetUsage, history.length), bound, profileId, riskId, combo);
+    if (!withinRecipe(candidate, combo) || !withinBound(worstYearOf(computeYearlyPerf(candidate)).value, bound)
+      || violatesProfileInvariant(profileId, candidate, riskId)) continue;
+    fallback ??= candidate;
+    if (used.has(exposureSignature(candidate))) continue;
+    freshCandidates++;
+    const vector = exposureVector(candidate);
+    const score = recent.length ? Math.min(...recent.map(old => exposureDistance(vector, old))) : 100;
+    if (score > bestScore) { selection = candidate; bestScore = score; }
+  }
+  // Un historique saturé ne doit jamais conduire à relâcher les règles de risque.
+  selection ??= fallback;
+  if (!selection) throw new Error("Aucune composition respectant le profil et le risque n’a été trouvée.");
 
   const perf = computeYearlyPerf(selection);
   const worst = worstYearOf(perf);
-  const bound = RISK_BOUNDS[riskId];
   if (!withinBound(worst.value, bound) || violatesProfileInvariant(profileId, selection, riskId)) throw new Error("Aucune composition respectant le profil et le risque n’a été trouvée.");
 
   const contextText = boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || "";
@@ -388,6 +373,7 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     sig: signature(selection),
     mode: "auto",
+    exposureSig: exposureSignature(selection),
     recipeId: combo.id,
     recipeLabel: combo.label,
     profileId,

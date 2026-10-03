@@ -14,7 +14,7 @@ const SHORT = ['monetaire_xeon', 'oblig_0_1_ishares'];
 const rows = (...pairs) => pairs.map(([ids, pct]) => ({
   ...(Array.isArray(ids) ? { idOptions: ids } : { id: ids }), pct,
   // Préserve le rôle de chaque poche lors des variations de pondération.
-  minPct: Math.max(5, pct - 10), maxPct: Math.min(100, pct + 10),
+  minPct: Math.max(5, pct - 25), maxPct: Math.min(100, pct + 25),
 }));
 const recipe = (id, label, description, hook, assets) => ({ id, label, description, hook, assets });
 const R = recipe;
@@ -28,7 +28,7 @@ const additions = {
     ],
     defensif: [
       R('monde-simple', 'Monde et obligations', 'Un indice mondial large, une poche obligataire et le fonds euros suffisent à organiser cette construction.', 'Trois lignes suffisent-elles pour répartir le risque ?', A(['fonds_euros',40],[CORP,30],[ALLWORLD,30])),
-      R('capitalisations', 'Grandes et petites entreprises', 'Les petites capitalisations complètent les grandes entreprises mondiales, avec un socle stable majoritaire.', 'Pourquoi laisser les petites entreprises hors du portefeuille ?', A(['fonds_euros',40],[SHORT,25],[WORLD,25],['smallcap_monde',10])),
+      R('capitalisations', 'Grandes et petites entreprises', 'Les petites capitalisations complètent les grandes entreprises mondiales, avec un socle de supports stabilisateurs.', 'Pourquoi laisser les petites entreprises hors du portefeuille ?', A(['fonds_euros',40],[SHORT,25],[WORLD,25],['smallcap_monde',10])),
     ],
     equilibre: [
       R('developpes-emergents', 'Développés, émergents et obligations', 'Les actions sont réparties entre développés et émergents ; les obligations constituent le reste.', 'Un World couvre-t-il vraiment tous les marchés ?', A([WORLD,50],[EM,15],[CORP,35])),
@@ -45,7 +45,7 @@ const additions = {
   },
   rentier: {
     prudent: [
-      R('dividendes-obligations', 'Dividendes et coupons', 'Les dividendes et coupons complètent une majorité de fonds euros. Les versements restent variables.', 'Chercher du revenu oblige-t-il à prendre beaucoup de risque ?', A(['fonds_euros',65],[DIV,15],[HY,20])),
+      R('dividendes-obligations', 'Dividendes et coupons', 'Les dividendes et coupons complètent une poche de fonds euros. Les versements restent variables.', 'Chercher du revenu oblige-t-il à prendre beaucoup de risque ?', A(['fonds_euros',65],[DIV,15],[HY,20])),
       R('loyers-coupons', 'Loyers et coupons', 'Le fonds euros accompagne deux sources de revenu : SCPI et obligations à haut rendement.', 'Des loyers et des coupons : que risque-t-on derrière ces revenus ?', A(['fonds_euros',65],['scpi',20],[HY,15])),
     ],
     defensif: [
@@ -58,16 +58,16 @@ const additions = {
     ],
     dynamique: [
       R('dividendes-immobilier', 'Dividendes et immobilier sans options', 'La recherche de revenu repose sur les actions et immobilier coté, avec une poche obligataire.', 'Faut-il des options pour construire un portefeuille de revenus dynamique ?', A([DIV,55],['foncieres_etf_dist',30],[HY,15])),
-      R('options-complement', 'Options en complément', 'Les options restent une source de distributions complémentaire aux dividendes et aux coupons.', 'Un revenu mensuel attire, mais quelle place donner aux options ?', A([DIV,40],['qyld_ucits',25],[HY,20],['foncieres_etf_dist',15])),
+      R('options-complement', 'Options en complément', 'Les options restent une source de distributions complémentaire aux dividendes et aux coupons.', 'Un revenu mensuel attire, mais quelle place donner aux options ?', A([DIV,40],['qyld_ucits',25],[HY,20],['oblig_etat_us',15])),
     ],
     offensif: [
-      R('revenus-actions', 'Revenus entièrement en actions', 'Les dividendes et immobilier coté concentrent le portefeuille sur des actifs risqués, sans options.', 'Viser les distributions avec un portefeuille entièrement en actions : prêt à accepter les baisses ?', A([DIV,65],['foncieres_etf_dist',35])),
-      R('options-dividendes', 'Options et dividendes', 'La stratégie d’options et les actions à dividendes sont les deux moteurs de distribution.', 'Des distributions élevées valent-elles une hausse potentiellement plafonnée ?', A(['qyld_ucits',50],[DIV,50])),
+      R('revenus-actions', 'Dividendes et deux formes d’immobilier', 'Les dividendes, immobilier coté et SCPI répartissent les revenus entre trois poches ; chacune expose à une perte en capital.', 'Immobilier coté et SCPI : que change leur association avec les dividendes ?', A([DIV,50],['foncieres_etf_dist',35],['scpi',15])),
+      R('options-dividendes', 'Options, dividendes et coupons', 'Les options et dividendes sont accompagnés d’obligations américaines distribuantes ; les versements restent variables.', 'Des distributions élevées valent-elles une hausse potentiellement plafonnée ?', A(['qyld_ucits',45],[DIV,40],['oblig_etat_us',15])),
     ],
   },
   pro_europe: {
     prudent: [
-      R('europe-large', 'Europe large et dette courte', 'La dette européenne courte domine, accompagnée d’actions européennes larges et de fonds euros.', 'Investir en Europe sans faire des actions le moteur principal : quel compromis ?', A(['oblig_etat_eur_short',65],['msci_europe',15],['fonds_euros',20])),
+      R('europe-large', 'Europe large et dette courte', 'La dette européenne courte est accompagnée d’actions européennes larges et de fonds euros.', 'Investir en Europe sans faire des actions le moteur principal : quel compromis ?', A(['oblig_etat_eur_short',65],['msci_europe',15],['fonds_euros',20])),
       R('europe-petites', 'Petites entreprises et dette courte', 'Une petite poche de petites capitalisations européennes complète les grandes et la dette courte.', 'Les petites entreprises européennes ont-elles une place dans une allocation prudente ?', A(['oblig_etat_eur_short',65],[EURO,10],['smallcap_europe',5],['fonds_euros',20])),
     ],
     defensif: [
@@ -97,7 +97,7 @@ for (const [risk, weights] of Object.entries({
 })) {
   const [inflation,gold,commodity,euros] = weights;
   additions.anti_inflation[risk] = [
-    R('obligations-indexees', 'Obligations indexées et actifs réels', 'Les obligations indexées ont leur propre rôle aux côtés de l’or et matières premières ; les taux peuvent peser sur leur cours.', 'Des obligations indexées protègent-elles de toutes les conséquences de l’inflation ?', A(['oblig_inflation',inflation],[GOLD,gold],[MP,commodity],...(euros ? [['fonds_euros',euros]] : []))),
+    R('obligations-indexees', 'Obligations indexées et actifs réels', 'Les obligations indexées sont associées à l’or et, selon le palier, à d’autres supports. Les taux peuvent peser sur leur cours.', 'Des obligations indexées protègent-elles de toutes les conséquences de l’inflation ?', risk === 'prudent' ? A(['oblig_inflation',50],[GOLD,25],['fonds_euros',25]) : ['defensif','dynamique'].includes(risk) ? A(['oblig_inflation',inflation+commodity],[GOLD,gold],...(euros ? [['fonds_euros',euros]] : [])) : A(['oblig_inflation',inflation],[GOLD,gold],[MP,commodity],...(euros ? [['fonds_euros',euros]] : []))),
     R('metaux', 'Métaux et obligations indexées', 'L’or et l’argent remplacent le panier large de matières premières, avec des obligations indexées et éventuellement un fonds euros.', 'Or et argent face à l’inflation : diversification ou pari sur les métaux ?', A([GOLD,gold+commodity-5],['argent',5],['oblig_inflation',inflation],...(euros ? [['fonds_euros',euros]] : []))),
   ];
 }
@@ -142,7 +142,7 @@ export function getRecipes(profileId, riskId) {
     if (options?.includes('msci_em')) options = EM;
     if (options?.includes('oblig_corp_ig')) options = CORP;
     return { ...slot, ...(options ? { idOptions: options } : {}),
-      minPct: Math.max(5, slot.pct - 10), maxPct: Math.min(100, slot.pct + 10) };
+      minPct: Math.max(5, slot.pct - 25), maxPct: Math.min(100, slot.pct + 25) };
   });
   return [
     { ...base, id: 'historique', label: 'Construction historique', assets: protectSlots(assets, profileId) },
