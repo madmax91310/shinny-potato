@@ -64,6 +64,13 @@ async function testWorkspaceNavigation(page) {
   const checks = { allTools: await page.locator('.workspace-tool-card').count() === 16 };
   await page.getByRole('searchbox', { name: 'Rechercher un outil' }).fill('donnees');
   checks.accentSearch = await page.locator('.workspace-tool-card').count() === 2;
+  await page.getByRole('button', { name: 'Données', exact: true }).click();
+  checks.categoryWithSearch = await page.locator('.workspace-tool-card').count() === 2;
+  await page.getByRole('searchbox').fill('');
+  await page.getByRole('button', { name: 'Portefeuilles', exact: true }).click();
+  checks.portfolioFilter = await page.locator('.workspace-tool-card').count() === 3;
+  await page.getByRole('button', { name: 'Tous', exact: true }).click();
+  checks.resetFilter = await page.locator('.workspace-tool-card').count() === 16;
   await page.getByRole('searchbox').fill('outil inexistant');
   checks.empty = await page.getByRole('status').isVisible();
   await page.getByRole('searchbox').fill('');
@@ -72,6 +79,7 @@ async function testWorkspaceNavigation(page) {
     checks[`overflow${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   }
   await page.setViewportSize({ width: 390, height: 844 });
+  checks.allVisibleOnPhone = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.length === 16 && cards.every(card => card.getBoundingClientRect().bottom <= innerHeight));
   await page.locator('.workspace-mobile-menu summary').click();
   await page.locator('.workspace-mobile-menu').getByRole('link', { name: 'Fiches ETF', exact: true }).click();
   await page.getByRole('combobox', { name: 'Choisir un ETF' }).waitFor();

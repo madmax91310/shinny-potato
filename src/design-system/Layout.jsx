@@ -31,7 +31,7 @@ export default function Layout() {
         <summary>Explorer les outils <span aria-hidden="true">☰</span></summary>
         <Navigation />
       </details>
-      <main id="workspace-main" tabIndex={-1} className="workspace-main">
+      <main id="workspace-main" tabIndex={-1} className={`workspace-main ${pathname === '/' ? 'workspace-main--home' : ''}`}>
         <Suspense fallback={<p role="status" className="workspace-loading">Chargement de l’outil…</p>}><Outlet /></Suspense>
       </main>
     </div>
