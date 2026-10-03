@@ -146,7 +146,6 @@ export function buildTweet(portfolio, intro = '') {
     '💼 Ses principales positions au ' + dateFR(snapshot.periodEnd) + '\n' + editorial.top.map((row, i) => icon[i] + ' ' + holdingName(row) + ' ' + tickers(row) + ' : ' + percentage(row.weight)).join('\n'),
     movementExcerpt(snapshot),
     '🔍 Ce qui distingue ce portefeuille\n' + editorial.explanation,
-    '📅 Photographie au ' + dateFR(snapshot.periodEnd) + ' des positions déclarées par ' + (identity.entityName || identity.displayName) + '. Les options sont exclues de cette présentation ; ce relevé ne représente pas nécessairement l’ensemble des actifs du gestionnaire.',
     '💬 ' + editorial.question,
   ].filter(Boolean).join('\n\n')
 }
