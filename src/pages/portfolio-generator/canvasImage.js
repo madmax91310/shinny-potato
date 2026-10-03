@@ -88,7 +88,8 @@ export function renderPortfolioImage(portfolio) {
 
   // Same order and colors for the donut and the corresponding large legend squares.
   const cx = 329
-  const cy = 390
+  const rowStep = selection.length <= 6 ? 83 : 76
+  const cy = Math.max(390, 190 + (selection.length - 1) * rowStep / 2)
   const radius = 190
   const total = selection.reduce((sum, asset) => sum + asset.pct, 0)
   ctx.strokeStyle = '#27363b'
@@ -108,9 +109,8 @@ export function renderPortfolioImage(portfolio) {
     angle = end
   })
 
-  const rowStep = selection.length <= 6 ? 83 : 76
   selection.forEach((asset, index) => {
-    const y = 190 + index * rowStep
+    const y = cy - (selection.length - 1) * rowStep / 2 + index * rowStep
     rect(ctx, 600, y - 27, 34, 34, PALETTE[index % PALETTE.length], 8)
     wrappedLabel(ctx, portfolioAssetLabel(asset), 651, y - 10, 250)
     label(ctx, `${asset.pct} %`, 1015, y + 2, 34, WHITE, 'right')
