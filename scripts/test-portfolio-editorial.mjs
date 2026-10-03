@@ -138,7 +138,7 @@ for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombo
     history.push(p);
   }
 }
-console.log("OK : 92 supports manuels, tous les profils et paliers, poids, chevauchements et performances.");
+console.log(`OK : ${ASSETS.length} supports manuels, tous les profils et paliers, poids, chevauchements et performances.`);
 
 // Régressions issues de la relecture : une famille de hook ne doit pas cacher
 // une autre poche importante dans la logique de l’ensemble.
