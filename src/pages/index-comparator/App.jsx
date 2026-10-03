@@ -1,3 +1,5 @@
+import AssetPicker from '../../design-system/AssetPicker'
+import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
@@ -76,11 +78,9 @@ export default function IndexComparator() {
           <div className="xc-panel">
             <p className="xc-eyebrow">Famille d'indices</p>
             <div className="xc-select-wrap">
-              <select className="xc-control" value={familyId} onChange={(e) => { setFamilyId(e.target.value); setPerfValues({}) }}>
-                {FAMILIES.map((f) => (
-                  <option key={f.id} value={f.id}>{f.label}</option>
-                ))}
-              </select>
+              <AssetPicker className="xc-control" label="Choisir une famille d’indices" value={familyId}
+                items={FAMILIES.map(f => ({ id: f.id, label: f.label, group: exposureGroup({ label: f.label }) }))}
+                onChange={value => { setFamilyId(value); setPerfValues({}) }} />
             </div>
           </div>
 

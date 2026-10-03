@@ -1,7 +1,10 @@
+import { instrumentOption, normalizeSearch } from '../../data/asset-selection.js'
+import ReplacementPanel from './ReplacementPanel'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useMemo, useState, useRef, useCallback } from 'react'
 import {
   generatePortfolio,
+  replacePortfolioAsset,
   buildManualPortfolio,
   renderTweetText,
   fmtPct,
@@ -155,15 +158,17 @@ function ManualComposer({
   onGenerate,
 }) {
   const selectedIds = useMemo(() => new Set(selection.map((s) => s.id)), [selection])
-  const query = search.trim().toLowerCase()
+  const [category, setCategory] = useState('Tous')
+  const query = normalizeSearch(search.trim())
   const available = useMemo(
     () =>
       ASSETS.filter(
         (a) =>
           !selectedIds.has(a.id) &&
-          (!query || a.name.toLowerCase().includes(query) || CATEGORIES[a.cat].label.toLowerCase().includes(query))
+          (category === 'Tous' || category === a.cat) &&
+          normalizeSearch(`${instrumentOption(a).search} ${CATEGORIES[a.cat].label}`).includes(query)
       ),
-    [selectedIds, query]
+    [selectedIds, query, category]
   )
   // Regroupé par grande catégorie (même code couleur que AllocationList/CategorySummary plus bas)
   // — demande utilisateur du 25/09/2026 : 71 actifs en liste plate, sans distinction visuelle,
@@ -210,10 +215,14 @@ function ManualComposer({
         id="pg-manual-search"
         type="text"
         className="pg-manual-search"
-        placeholder="Rechercher un actif (nom, catégorie)..."
+        placeholder="Nom, catégorie, indice, ticker ou ISIN…"
         value={search}
         onChange={(e) => onSearchChange(e.target.value)}
       />
+      <div className="asset-picker-groups" role="group" aria-label="Catégories des actifs">
+        <button type="button" aria-pressed={category === 'Tous'} onClick={() => setCategory('Tous')}>Tous</button>
+        {Object.entries(CATEGORIES).map(([cat, info]) => <button key={cat} type="button" aria-pressed={category === cat} onClick={() => setCategory(cat)}>{info.label}</button>)}
+      </div>
       <div className="pg-manual-asset-list">
         {groupedAvailable.map(({ cat, items }) => (
           <div key={cat} className="pg-manual-asset-group">
@@ -223,7 +232,8 @@ function ManualComposer({
             </p>
             {items.map((a) => (
               <button key={a.id} type="button" className="pg-manual-asset-option" onClick={() => onAdd(a.id)}>
-                {a.emoji} {a.name}
+                <strong>{a.emoji} {instrumentOption(a).label}</strong>
+                <small className="pg-asset-description">{instrumentOption(a).detail || CATEGORIES[a.cat].label}{instrumentOption(a).badges.length ? ` · ${instrumentOption(a).badges.join(' · ')}` : ''}</small>
               </button>
             ))}
           </div>
@@ -400,6 +410,7 @@ export default function App() {
   const [selectedProfile, setSelectedProfile] = useState('auto')
   const [history, setHistory] = useState(() => [generatePortfolio([], 'auto', 'auto')])
   const [copyState, setCopyState] = useState('idle')
+  const [replacementNotice, setReplacementNotice] = useState('')
   const textareaRef = useRef(null)
 
   // Composition manuelle : état séparé du tirage auto, jamais mélangé (cf. engine.js,
@@ -417,6 +428,7 @@ export default function App() {
       const risk = riskOverride ?? selectedRisk
       const profile = profileOverride ?? selectedProfile
       setHistory((h) => [...h, generatePortfolio(h, risk, profile)])
+      setReplacementNotice('')
       setCopyState('idle')
     },
     [selectedRisk, selectedProfile],
@@ -594,6 +606,13 @@ export default function App() {
             {current.recipeLabel && <p className="pg-fine-print pg-recipe-label">{current.recipeLabel}</p>}
             <AllocationList selection={current.selection} />
             <CategorySummary selection={current.selection} />
+            {current.mode === 'auto' && <ReplacementPanel key={current.id} portfolio={current} onReplace={(assetId, replacementId) => {
+              const updated = replacePortfolioAsset(current, assetId, replacementId, history.slice(0, -1))
+              setHistory(previous => [...previous.slice(0, -1), updated])
+              setCopyState('idle')
+              setReplacementNotice('Support remplacé. Répartition, calculs, tweet et image actualisés.')
+            }} />}
+            <p role="status">{replacementNotice}</p>
           </div>
 
           <div className="pg-panel">

@@ -1,5 +1,6 @@
+import { benchmarkKey } from '../../data/asset-selection.js';
 import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js';
-import { YEARS, getAsset } from '../../data/portfolio-assets.js';
+import { ASSETS, YEARS, getAsset } from '../../data/portfolio-assets.js';
 import { computeYearlyPerf } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
@@ -418,3 +419,40 @@ export function renderTweetText(p) {
 
 export { fmtPct, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, PROFILES, isCompatible };
 
+
+// Replacements use the recipe's allowed slots, plus supports of exactly the same
+// benchmark. Keep income policy for income profiles; revalidate historical risk.
+export function getReplacementCandidates(portfolio, assetId) {
+  if (portfolio.mode !== 'auto') return [];
+  const index = portfolio.selection.findIndex(asset => asset.id === assetId);
+  const recipe = getRecipes(portfolio.profileId, portfolio.riskId).find(item => item.id === portfolio.recipeId);
+  if (index < 0 || !recipe?.assets[index]) return [];
+  const slot = recipe.assets[index];
+  const ids = slot.idOptions ?? [slot.id];
+  const original = portfolio.selection[index];
+  const existing = new Set(portfolio.selection.map(asset => asset.id));
+  const keys = new Set(ids.map(id => benchmarkKey(getAsset(id)?.isin)).filter(Boolean));
+  return ASSETS.filter(asset => !existing.has(asset.id) &&
+    (ids.includes(asset.id) || (benchmarkKey(asset.isin) && keys.has(benchmarkKey(asset.isin)))) &&
+    (portfolio.profileId !== 'rentier' || Boolean(asset.distributing) === Boolean(original.distributing)))
+    .filter(asset => {
+      const selection = portfolio.selection.map((row, i) => i === index ? { ...asset, pct: row.pct, desc: asset.desc[0] } : row);
+      const perf = computeYearlyPerf(selection);
+      return YEARS.every(year => Number.isFinite(perf[year])) && withinRecipe(selection, recipe) &&
+        withinBound(worstYearOf(perf).value, RISK_BOUNDS[portfolio.riskId]) &&
+        !violatesProfileInvariant(portfolio.profileId, selection, portfolio.riskId);
+    }).map(asset => ({ ...asset, sameBenchmark: Boolean(benchmarkKey(original.isin)) && benchmarkKey(asset.isin) === benchmarkKey(original.isin) }))
+    .sort((a, b) => Number(b.sameBenchmark) - Number(a.sameBenchmark) || a.name.localeCompare(b.name, 'fr'));
+}
+
+export function replacePortfolioAsset(portfolio, assetId, replacementId, history = []) {
+  const replacement = getReplacementCandidates(portfolio, assetId).find(asset => asset.id === replacementId);
+  if (!replacement) throw new Error('Ce remplacement ne respecte pas les règles du portefeuille.');
+  const selection = portfolio.selection.map(asset => asset.id === assetId ? { ...getAsset(replacementId), pct: asset.pct, desc: getAsset(replacementId).desc[0] } : asset);
+  const perf = computeYearlyPerf(selection);
+  return { ...portfolio, id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    sig: signature(selection), exposureSig: exposureSignature(selection), selection, perf,
+    worst: worstYearOf(perf), best: bestYearOf(perf),
+    context: boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || '',
+    contextFallbackPick: null, ...buildEditorial(selection, history, portfolio.profileId, portfolio.riskId) };
+}

@@ -995,6 +995,55 @@ async function testDataReuse(page) {
   record('Réutilisation des données', ok, 'ETF et copie frais, mobile, nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
 }
 
+async function testAssetSelection(page) {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto(`${BASE}/fiches-etf`, { waitUntil: 'networkidle' });
+  const worldCard = ETFS.find(etf => etf.isin === 'FR001400U5Q4');
+  const picker = page.locator('.asset-picker').first();
+  await picker.getByRole('searchbox').fill('FR001400U5Q4');
+  await picker.getByRole('combobox').selectOption(worldCard.id);
+  let ok = (await picker.locator('.asset-picker-results').innerText()).includes('1 résultat');
+  await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
+  await picker.getByRole('button', { name: 'Émergents', exact: true }).click();
+  ok &&= await picker.getByRole('combobox').inputValue() === worldCard.id;
+  await picker.getByRole('searchbox').fill('introuvable-xyz');
+  ok &&= (await picker.locator('.asset-picker-results').innerText()).includes('Aucun résultat');
+  await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
+  await page.locator('.support-alternative input[type=checkbox]').first().check();
+  await page.getByRole('button', { name: 'Comparer ces supports', exact: true }).click();
+  ok &&= await page.locator('.support-comparison table').isVisible();
+  for (const width of [320,390,768]) {
+    await page.setViewportSize({ width, height: 900 });
+    ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  }
+  await page.setViewportSize({width:1280,height:900});
+  await page.screenshot({path:'test-artifacts/asset-selection.png',fullPage:true});
+  await page.goto(`${BASE}/generateur-portefeuilles`, { waitUntil: 'networkidle' });
+  let selected=false;
+  for(let i=0;i<20&&!selected;i++) {
+    await page.locator('.pg-replacement summary').click();
+    const lines=await page.locator('#pg-replacement-line option').evaluateAll(nodes=>nodes.map(n=>n.value));
+    for(const line of lines) {
+      await page.locator('#pg-replacement-line').selectOption(line);
+      if(await page.getByRole('combobox',{name:'Support de remplacement',exact:true}).count()) {selected=true;break}
+    }
+    if(!selected) await page.getByRole('button',{name:/Générer un nouveau portefeuille/}).click();
+  }
+  if(!selected) throw new Error('No replaceable generated portfolio');
+  const candidates=page.getByRole('combobox',{name:'Support de remplacement',exact:true});
+  const replacement=await candidates.locator('option').evaluateAll(nodes=>nodes.find(n=>n.value)?.value);
+  await candidates.selectOption(replacement);
+  const previous=await page.locator('.pg-tweet-body').innerText();
+  await page.getByRole('button',{name:'Appliquer le remplacement',exact:true}).click();
+  ok &&= (await page.getByRole('status').innerText()).includes('Support remplacé');
+  ok &&= await page.locator('.pg-tweet-body').innerText() !== previous;
+  await page.setViewportSize({width:390,height:844});
+  ok &&= await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth);
+  await page.screenshot({path:'test-artifacts/asset-replacement-mobile.png',fullPage:true});
+  await page.setViewportSize({width:1280,height:720});
+  record('Sélection et remplacement des actifs',ok,'recherche ISIN, catégories, aucun résultat, comparaison, remplacement, mobile');
+}
+
 let server;
 try {
   console.log(`Démarrage de vite preview sur le port ${PORT}...`);
@@ -1011,6 +1060,7 @@ try {
     : {});
   const page = await browser.newPage();
 
+  await testAssetSelection(page);
   await testWorkspaceNavigation(page);
   await testCalculateur(page);
   await testPortfolioGenerator(page);

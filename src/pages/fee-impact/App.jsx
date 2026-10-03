@@ -1,3 +1,5 @@
+import AssetPicker from '../../design-system/AssetPicker'
+import { instrumentOption } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
@@ -158,13 +160,12 @@ export default function App() {
             {[1, 2].map(side => {
               const isin = side === 1 ? isin1 : isin2
               const asset = FEE_COMPARISON_ASSETS.find(item => item.isin === isin)
-              return <label key={side}>ETF du scénario {side}
-                <select className="fi-control" aria-label={`ETF du scénario ${side}`} value={isin} onChange={event => selectFund(side, event.target.value)}>
-                  <option value="">Frais hypothétiques</option>
-                  {FEE_COMPARISON_ASSETS.map(item => <option key={item.isin} value={item.isin}>{item.name} · {item.fee.toLocaleString('fr-FR')} %</option>)}
-                </select>
+              return <div key={side}>
+                <AssetPicker className="fi-control" label={`ETF du scénario ${side}`} value={isin}
+                  items={FEE_COMPARISON_ASSETS.map(item => instrumentOption({ ...item, id: item.isin }))}
+                  emptyOption={{ id: '', label: 'Frais hypothétiques' }} onChange={value => selectFund(side, value)} />
                 {asset && <small>{asset.isin} · Frais contrôlés le {asset.evidence.checkedAt ?? 'date non documentée'} · <a href={asset.evidence.sourceUrls[0]} target="_blank" rel="noreferrer">Source</a></small>}
-              </label>
+              </div>
             })}
             <p className="fi-hint">Les frais des ETF sont ceux du registre commun. Le rendement brut reste une même hypothèse pour les deux scénarios : ce calcul ne compare pas leurs performances réelles.</p>
             <div className="fi-chip-row">

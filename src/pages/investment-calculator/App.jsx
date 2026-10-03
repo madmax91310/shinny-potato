@@ -1,3 +1,5 @@
+import AssetPicker from '../../design-system/AssetPicker'
+import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useState } from 'react'
 import {
@@ -298,26 +300,17 @@ export default function App() {
             <p className="ic-eyebrow">Actif</p>
             <div className="ic-field">
               <div className="ic-select-wrap">
-                <select
-                  className="ic-control"
-                  value={state.assetId}
-                  onChange={(e) => {
-                    const id = e.target.value
+                <AssetPicker className="ic-control" label="Choisir un actif" value={state.assetId}
+                  items={ASSET_ORDER.map(id => ({ id, label: ASSETS[id].label, group: exposureGroup(ASSETS[id]) }))}
+                  emptyOption={{ id: 'custom', label: 'Autre (saisie manuelle)' }}
+                  onChange={(id) => {
                     set({
                       assetId: id,
                       overridePriceRaw: '',
                       startMonth: INCONSISTENT_MONTHLY_DATA_IDS.has(id) ? 12 : state.startMonth,
                       mode: id !== 'custom' && (SPARSE_MONTHLY_DATA_IDS.has(id) || INCONSISTENT_MONTHLY_DATA_IDS.has(id)) ? 'lump' : state.mode,
                     })
-                  }}
-                >
-                  {ASSET_ORDER.map((id) => (
-                    <option key={id} value={id}>
-                      {ASSETS[id].icon} {ASSETS[id].label}
-                    </option>
-                  ))}
-                  <option value="custom">✎ Autre (saisie manuelle)</option>
-                </select>
+                  }} />
               </div>
               {hasTruncatedHistory && (
                 <p className="ic-field-warning" title={`Les points antérieurs à ${assetMinDateLabel} restent affichés dans le graphique mais ne sont jamais utilisés pour un calcul.`}>
