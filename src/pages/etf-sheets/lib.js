@@ -1,5 +1,12 @@
 import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance.js'
+import { getInstrumentFacts } from '../../data/instrument-facts.js'
+
+export function presentationType(etf) {
+  const type = getInstrumentFacts(etf.isin).instrumentType
+  return type === 'ETC' || /\bETC\b/.test(etf.name) ? 'ETC'
+    : type === 'ETN' || /\bETP\b/.test(etf.name) ? 'ETP' : 'ETF'
+}
 
 // Un statut inconnu n'est pas une confirmation d'éligibilité.
 export const accountLabel = (etf, separator = ' | ') => [
@@ -14,7 +21,7 @@ export function buildText(etf) {
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
   return (
-    '📋 Présentation d\'ETF\n' +
+    "📋 Présentation d'" + presentationType(etf) + '\n' +
     dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + newTag + '\n' +
     '\n' + etf.hook + '\n\n' +
     (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +

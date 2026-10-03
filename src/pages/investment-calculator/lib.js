@@ -303,7 +303,7 @@ export function buildTweetText(state, d) {
   }
 
   if (asset?.priceMethod === 'adjusted') {
-    lines.push('Cours ajustés : dividendes réinvestis et divisions d’actions pris en compte, hors frais et fiscalité.' + (asset.returnNote ? ' ' + asset.returnNote : ''))
+    lines.push((asset.isin ? 'Cours ajustés de l’ETF : revenus réinvestis, frais du fonds déjà inclus ; hors frais du courtier et fiscalité.' : 'Cours ajustés : dividendes réinvestis et divisions d’actions pris en compte, hors frais et fiscalité.') + (asset.returnNote ? ' ' + asset.returnNote : ''))
   }
 
   if (state.assetId === 'silver') {

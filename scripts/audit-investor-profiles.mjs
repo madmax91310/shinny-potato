@@ -24,14 +24,14 @@ for (const [slug, displayName] of INVESTORS) {
 }
 console.log(`${INVESTORS.length} présentations sourcées : couverture complète, tweets cohérents et personnalisation OK.`)
 
-for (const slug of ['li-lu', 'gates-trust', 'klarman']) {
+for (const [slug] of INVESTORS) {
   const portfolio = normalizePortfolio(JSON.parse(readFileSync(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8')))
   assert.equal(portfolio.identity.slug, slug)
-  assert.equal(portfolio.identity.dataProvider, 'FolioFact')
-  assert.equal(new URL(portfolio.sourceUrl).hostname, 'foliofact.com')
+  assert.equal(portfolio.identity.dataProvider, slug === 'ackman' ? 'Tracefour' : 'FolioFact')
+  assert.equal(new URL(portfolio.sourceUrl).hostname, slug === 'ackman' ? 'tracefour.com' : 'foliofact.com')
   assert(buildTweet(portfolio).includes(investorIntroduction(slug)))
 }
-console.log('Les trois instantanés 13F locaux sont présents et exploitables.')
+console.log('Les onze instantanés 13F locaux sont présents et exploitables.')
 
 const splitClasses = [
   { issuerName: 'Alphabet Inc.', ticker: 'GOOGL', weight: .25 },

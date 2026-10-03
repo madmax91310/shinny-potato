@@ -50,6 +50,7 @@ jobs:
       - run: npm run audit:etf-consistency
       - run: npm run audit:instrument-listings
       - run: npm run audit:instrument-catalog
+      - run: node scripts/audit-support-enrichment.mjs
       - run: npm run audit:calculator-series
       - run: node scripts/test-investment-conclusions.mjs
       - run: node scripts/test-household-benchmarks.mjs

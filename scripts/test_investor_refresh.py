@@ -16,6 +16,47 @@ def portfolio(period, weight=1):
 
 
 class RefreshTests(unittest.TestCase):
+    def test_all_existing_investors_are_tracked(self):
+        self.assertEqual(set(module.MANAGERS), {'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
+                         'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman'})
+
+    def test_options_keep_declared_weight_denominator(self):
+        rows = [{'security': {'name': str(i), 'ticker': str(i)}, 'position_type': kind,
+                 'value': value, 'change': 'hold'} for i, (kind, value) in enumerate([
+                     ('direct', 40), ('direct', 30), ('call', 20), ('put', 10)])]
+        fund = {'filing': {'report_period_on': '2026-06-30', 'quarter': 'Q2 2026', 'total_value': 100}}
+        table = {'quarter': 'Q2 2026', 'total_value': 100, 'holdings': rows}
+        with patch.object(module, 'get_json', side_effect=[fund, table]):
+            result = module.make_portfolio('druckenmiller', 'duquesne-family-office', 'Stanley', 'Duquesne')
+        holdings = result['data']['snapshot']['holdings']
+        self.assertEqual([row['putCall'] for row in holdings], [None, None, 'CALL', 'PUT'])
+        self.assertEqual(sum(row['weight'] for row in holdings if row['putCall'] is None), .7)
+
+    def test_ackman_uses_fresher_validated_alternate(self):
+        fund = {'filing': {'report_period_on': '2026-03-31'}}
+        alternate = portfolio('2026-06-30')
+        alternate['data']['identity'] = {'slug': 'ackman', 'archetype': 'hedge_fund'}
+        with patch.object(module, 'get_json', side_effect=[fund, {}, alternate]):
+            result = module.make_portfolio('ackman', 'pershing-square-capital-management', 'Bill', 'Pershing')
+        self.assertEqual(result['data']['identity']['dataProvider'], 'Tracefour')
+        self.assertEqual(result['data']['snapshot']['periodEnd'], '2026-06-30')
+
+    def test_previous_quarter_survives_current_amendment(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = pathlib.Path(folder)
+            for slug in module.MANAGERS:
+                (directory / f'{slug}.json').write_text(json.dumps(portfolio('2026-03-31')))
+            with patch.object(module.time, 'sleep'):
+                module.refresh(directory, lambda *args: portfolio('2026-06-30'))
+                module.refresh(directory, lambda *args: portfolio('2026-06-30', .9))
+            for slug in module.MANAGERS:
+                archive = directory / 'archive' / slug / '2026-03-31.json'
+                self.assertEqual(json.loads(archive.read_text())['data']['snapshot']['holdings'][0]['weight'], 1)
+                current = json.loads((directory / f'{slug}.json').read_text())
+                self.assertEqual(len(current['data']['filingHistory']), 1)
+                self.assertEqual(current['data']['filingHistory'][0]['periodEnd'], '2026-03-31')
+                self.assertFalse((directory / 'archive' / slug / '2026-06-30.json').exists())
+
     def test_provider_movements_and_pagination(self):
         def row(ticker, value, change, percent=None):
             return {'security': {'name': ticker, 'ticker': ticker}, 'position_type': 'direct',

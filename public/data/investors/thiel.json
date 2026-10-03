@@ -1,0 +1,87 @@
+{
+  "as_of": "2026-10-03T10:47:38.602496+00:00",
+  "data": {
+    "identity": {
+      "slug": "thiel",
+      "archetype": "hedge_fund",
+      "displayName": "Peter Thiel",
+      "entityName": "Thiel Macro LLC",
+      "dataProvider": "FolioFact"
+    },
+    "snapshot": {
+      "periodEnd": "2026-06-30",
+      "holdings": [
+        {
+          "issuerName": "Amazon.com Inc.",
+          "ticker": "AMZN",
+          "putCall": null,
+          "weight": 0.28179541068900316,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Vista Energy Sab De CV",
+          "ticker": "VIST",
+          "putCall": null,
+          "weight": 0.18131073040746182,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Vistra Corp.",
+          "ticker": "VST",
+          "putCall": null,
+          "weight": 0.14123443158837262,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "American Elec PWR Co. Inc.",
+          "ticker": "AEP",
+          "putCall": null,
+          "weight": 0.10084850685428368,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "DTE Energy Co.",
+          "ticker": "DTE",
+          "putCall": null,
+          "weight": 0.09624425747590136,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Firstenergy Corp.",
+          "ticker": "FE",
+          "putCall": null,
+          "weight": 0.09530551030036304,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "CMS Energy Corp.",
+          "ticker": "CMS",
+          "putCall": null,
+          "weight": 0.09449044868184416,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "X-Energy Inc.",
+          "ticker": "XE",
+          "putCall": null,
+          "weight": 0.008770704002770167,
+          "isNew": true,
+          "sharesChangePct": null
+        }
+      ],
+      "quarterChanges": {
+        "priorPeriodLabel": "Q1 2026",
+        "exits": []
+      }
+    },
+    "sourceUrl": "https://foliofact.com/funds/thiel-macro-llc",
+    "filingHistory": []
+  }
+}
