@@ -9,7 +9,7 @@ import { downloadComparatifEtfImage } from "./comparatifEtfImage.js";
 import { downloadPerformanceImage } from "./performanceImage.js";
 import { downloadAnniversaryImage } from "./anniversaryImage.js";
 import { downloadPurchasingPowerImage } from "./purchasingPowerImage.js";
-import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER } from "../../data/purchasing-power.js";
+import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER, PRICE_OBSERVATION } from "../../data/purchasing-power.js";
 import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
 import Card from "../../design-system/Card";
@@ -392,7 +392,7 @@ export default function App() {
                       </option>
                     ))}
                   </select>
-                  <p className="mt-1.5 text-[11px] text-slate-500">Comparé à aujourd'hui (2026, dernière donnée disponible).</p>
+                  <p className="mt-1.5 text-[11px] text-slate-500">Comparé aux observations INSEE : prix {PRICE_OBSERVATION.label}, IRL T2 2026.</p>
                 </div>
 
                 <div>

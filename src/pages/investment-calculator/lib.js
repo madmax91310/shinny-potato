@@ -1,5 +1,5 @@
-// Logique de calcul — reprise telle quelle de la session d'origine (vanilla JS),
-// juste modernisée en syntaxe ES / modules, aucune formule modifiée.
+import { INFLATION_MONTHLY } from '../../data/inflation-monthly.js'
+// Logique de calcul partagée avec Tweet Midi.
 import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/market-history.js'
 
 export function ymIndex(ym) {
@@ -98,6 +98,7 @@ export function indexAnchorPoints(assetId, endYm) {
 }
 
 export function computeBenchmarkSeries(rateTable, startYm, endYm, amount, mode) {
+  if (rateTable === LIVRET_A) return computeLivretSeries(startYm, endYm, amount, mode)
   const months = monthsBetween(startYm, endYm)
   const series = []
   const invested = []
@@ -107,7 +108,13 @@ export function computeBenchmarkSeries(rateTable, startYm, endYm, amount, mode) 
     if (i > 0) {
       const year = parseInt(months[i].split('-')[0], 10)
       const annual = rateTable[year] !== undefined ? rateTable[year] : 0
-      const factor = Math.pow(1 + annual / 100, 1 / 12)
+      const observedMonthly = rateTable === INFLATION ? INFLATION_MONTHLY[months[i]] : undefined
+      if (rateTable === INFLATION && months[i] >= '2017-01' && observedMonthly === undefined) {
+        throw new Error(`Variation mensuelle INSEE absente pour ${months[i]}`)
+      }
+      const factor = observedMonthly !== undefined
+        ? 1 + observedMonthly / 100
+        : Math.pow(1 + annual / 100, 1 / 12)
       value *= factor
     }
     if (mode === 'dca') {
@@ -121,6 +128,28 @@ export function computeBenchmarkSeries(rateTable, startYm, endYm, amount, mode) 
     invested.push(totalInvested)
   }
   return { months, series, invested, finalValue: series[series.length - 1], totalInvested: invested[invested.length - 1] }
+}
+
+// Convention commune aux séries : versements en fin de mois, intérêts à partir du mois suivant.
+// Deux quinzaines complètes par mois sur le capital, capitalisation au 31 décembre uniquement.
+// La valeur affichée inclut les intérêts courus ; simulation sans plafond, sans retrait.
+export function computeLivretSeries(startYm, endYm, amount, mode) {
+  const months = monthsBetween(startYm, endYm)
+  const series = [], invested = []
+  const changes = Object.entries(LIVRET_A)
+  let capital = 0, accrued = 0, totalInvested = 0
+  for (let i = 0; i < months.length; i++) {
+    if (i > 0) {
+      const rate = changes.findLast(([since]) => since <= months[i])?.[1]
+      if (rate === undefined) throw new Error(`Taux Livret A absent pour ${months[i]}`)
+      accrued += capital * rate / 100 / 12
+      if (months[i].endsWith('-12')) { capital += accrued; accrued = 0 }
+    }
+    if (mode === 'dca' || i === 0) { capital += amount; totalInvested += amount }
+    series.push(capital + accrued)
+    invested.push(totalInvested)
+  }
+  return { months, series, invested, finalValue: series.at(-1), totalInvested }
 }
 
 export function computeCustomSeries(startYm, endYm, amount, customStart, customEnd) {

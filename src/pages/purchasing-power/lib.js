@@ -1,20 +1,16 @@
-import { GENERAL_INFLATION, YEAR_MAX, POSTES, SMIC } from '../../data/purchasing-power.js'
+import { GENERAL_INFLATION, YEAR_MAX, POSTES, SMIC, PRICE_OBSERVATION } from '../../data/purchasing-power.js'
 
-// Année d'arrivée fixe : "aujourd'hui" au sens de la fraîcheur de données de l'app (cf. LATEST_YM
-// dans src/data/market-history.js, qui s'arrête à 2026-08) — jamais sélectionnable par
-// l'utilisateur, seule l'année de départ l'est (2010 à YEAR_MAX).
 export const CURRENT_YEAR = 2026
 
-// Compose une série de TAUX annuels (%) entre startYear+1 et CURRENT_YEAR inclus — jamais le taux
-// de startYear lui-même (cf. commentaire de convention en tête de data.js).
-export function cumulateRate(rateTable, startYear) {
+// Moyenne de l’année de départ -> moyenne 2025 -> observation mensuelle datée.
+export function cumulateRate(rateTable, startYear, latestFactor = PRICE_OBSERVATION.general / 100) {
   let factor = 1
-  for (let y = startYear + 1; y <= CURRENT_YEAR; y++) {
+  for (let y = startYear + 1; y <= PRICE_OBSERVATION.baseYear; y++) {
     const rate = rateTable[y]
-    if (rate === undefined) continue
+    if (rate === undefined) throw new Error(`Inflation annuelle absente pour ${y}`)
     factor *= 1 + rate / 100
   }
-  return factor
+  return factor * latestFactor
 }
 
 // Ratio simple entre deux points d'une série de NIVEAUX (IRL, SMIC).
@@ -27,7 +23,7 @@ export function cumulateLevel(levelTable, startYear) {
 
 export function fmtEUR(n) {
   try {
-    return n.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
+    return (Math.round(n * 100) / 100).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
   } catch {
     return Math.round(n).toLocaleString('fr-FR') + ' €'
   }
@@ -43,7 +39,7 @@ export function fmtPct(n) {
 export function computeBrut(amount, startYear) {
   const factor = cumulateRate(GENERAL_INFLATION, startYear)
   const newAmount = amount * factor
-  const inflationCumPct = (factor - 1) * 100
+  const inflationCumPct = Math.round((factor - 1) * 1e10) / 1e8
   return { amount, startYear, newAmount, inflationCumPct, factor }
 }
 
@@ -51,11 +47,11 @@ export function computeBrut(amount, startYear) {
 // startYear pour un poste donné (loyer = ratio de niveaux IRL, alimentation/carburant = taux composés).
 export function computePoste(amount, startYear, posteId) {
   const poste = POSTES[posteId]
-  const factor = poste.seriesType === 'level' ? cumulateLevel(poste.series, startYear) : cumulateRate(poste.series, startYear)
+  const factor = poste.seriesType === 'level' ? cumulateLevel(poste.series, startYear) : cumulateRate(poste.series, startYear, poste.latestFactor)
   const newAmount = amount * factor
-  const posteCumPct = (factor - 1) * 100
+  const posteCumPct = Math.round((factor - 1) * 1e10) / 1e8
   const generalFactor = cumulateRate(GENERAL_INFLATION, startYear)
-  const generalCumPct = (generalFactor - 1) * 100
+  const generalCumPct = Math.round((generalFactor - 1) * 1e10) / 1e8
   return { amount, startYear, posteId, newAmount, posteCumPct, generalCumPct, factor }
 }
 
@@ -63,7 +59,7 @@ export function computePoste(amount, startYear, posteId) {
 // l'inflation ou pas ?).
 export function computeSmicEvolution(startYear) {
   const factor = cumulateLevel(SMIC, startYear)
-  return (factor - 1) * 100
+  return Math.round((factor - 1) * 1e10) / 1e8
 }
 
 export function buildTweetText(state) {
@@ -73,17 +69,16 @@ export function buildTweetText(state) {
     return [
       `${fmtEUR(state.amount)} en ${state.startYear}.`,
       ``,
-      `Pour retrouver le même pouvoir d'achat en ${CURRENT_YEAR}, il faudrait environ ${fmtEUR(d.newAmount)}.`,
+      `Pour retrouver le même pouvoir d'achat en ${PRICE_OBSERVATION.label}, il faudrait environ ${fmtEUR(d.newAmount)}.`,
       ``,
       `${fmtEUR(difference)} ${d.newAmount >= state.amount ? "d'écart" : 'de moins'} sur cette somme. Les prix ont ${d.inflationCumPct >= 0 ? 'augmenté' : 'baissé'} de ${Math.abs(d.inflationCumPct).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} % sur la période, selon l'indice général des prix (INSEE).`,
       ``,
-      `2026 : estimation provisoire, l'année n'est pas terminée.`,
+      `Données INSEE : moyenne ${state.startYear} → ${PRICE_OBSERVATION.label}.`,
       ``,
       `Ton revenu a-t-il évolué dans les mêmes proportions ?`,
     ].join('\n')
   }
 
-  const poste = POSTES[state.posteId]
   const d = computePoste(state.amount, state.startYear, state.posteId)
   const difference = Math.abs(d.newAmount - state.amount)
   const change = Math.abs(d.posteCumPct).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
@@ -91,8 +86,8 @@ export function buildTweetText(state) {
   const intro = state.posteId === 'loyer'
     ? `${fmtEUR(state.amount)} de loyer en ${state.startYear} correspondraient à environ ${fmtEUR(d.newAmount)} en ${CURRENT_YEAR} si cette somme avait suivi l'IRL.`
     : state.posteId === 'carburant'
-      ? `${fmtEUR(state.amount)} consacrés au carburant en ${state.startYear} correspondent à environ ${fmtEUR(d.newAmount)} en ${CURRENT_YEAR} selon l'indice Énergie, plus large que les seuls carburants.`
-      : `${fmtEUR(state.amount)} consacrés à l'alimentation en ${state.startYear} correspondent à environ ${fmtEUR(d.newAmount)} en ${CURRENT_YEAR}, selon l'indice des prix alimentaires.`
+      ? `${fmtEUR(state.amount)} consacrés au carburant en ${state.startYear} correspondent à environ ${fmtEUR(d.newAmount)} en ${PRICE_OBSERVATION.label} selon l'indice Énergie, plus large que les seuls carburants.`
+      : `${fmtEUR(state.amount)} consacrés à l'alimentation en ${state.startYear} correspondent à environ ${fmtEUR(d.newAmount)} en ${PRICE_OBSERVATION.label}, selon l'indice des prix alimentaires.`
   const indicator = state.posteId === 'loyer' ? "L'IRL" : state.posteId === 'carburant' ? "L'indice Énergie" : "L'alimentation"
   const question = state.posteId === 'loyer'
     ? `Ton loyer a-t-il suivi cette évolution ?`
@@ -104,14 +99,14 @@ export function buildTweetText(state) {
     : state.posteId === 'carburant'
       ? `L'indice Énergie inclut aussi le gaz et l'électricité : ce n'est pas l'évolution exacte du prix à la pompe.`
       : ''
-  const provisional = poste.isPartialLatestYear
-    ? `2026 : variation sur 12 mois glissants, l'année n'est pas terminée.`
-    : `2026 : année en cours, comparaison indicative.`
+  const observation = state.posteId === 'loyer'
+    ? `IRL : T1 ${state.startYear} → T2 2026. Prix en général : moyenne ${state.startYear} → ${PRICE_OBSERVATION.label}.`
+    : `Données INSEE : moyenne ${state.startYear} → ${PRICE_OBSERVATION.label}.`
   return [
     intro,
     `${fmtEUR(difference)} ${d.newAmount >= state.amount ? 'de plus' : 'de moins'} sur cette somme.`,
     `${indicator} a ${d.posteCumPct >= 0 ? 'augmenté' : 'baissé'} de ${change} % sur la période, contre ${generalChange} % pour les prix en général.`,
-    [caveat, provisional].filter(Boolean).join(' '),
+    [caveat, observation].filter(Boolean).join(' '),
     question,
   ].join('\n\n')
 }
