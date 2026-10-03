@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { DATA_CATALOG } from '../src/data/catalog.js'
-import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview } from '../src/pages/data-review/lib.js'
+import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview, reviewCalendar, summarizeCadences } from '../src/pages/data-review/lib.js'
 import { OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 
 assert.equal(dayNumber('2026-02-30'), null)
@@ -67,3 +67,25 @@ assert.equal(new Set(current.schedule.map(x => x.id)).size, current.schedule.len
 assert(current.schedule.every(x => x.nextReviewAt || x.category === 'undated'))
 assert.equal(current.schedule.filter(x => x.id.startsWith('investor:')).length, 3)
 assert(current.schedule.filter(x => x.id.startsWith('investor:')).every(x => x.nextReviewAt === '2026-11-14'))
+
+const calendar = reviewCalendar(buildReview('2026-10-03'))
+assert.equal(new Set(calendar.map(item => item.id)).size, calendar.length)
+assert(calendar.every(item => item.cadence), 'Chaque contrôle possède la temporalité de sa règle')
+const groups = summarizeCadences(calendar, '2026-10-03')
+assert.equal(groups.reduce((sum, group) => sum + group.total, 0), calendar.length)
+assert(groups.every(group => group.due === 0), 'Les contrôles de cette semaine sont pris en compte')
+assert.equal(groups.find(group => group.id === 'monthly').nextReviewAt, '2026-11-01')
+assert(groups.find(group => group.id === 'quarterly').types.includes('Portefeuilles trimestriels'))
+assert.equal(calendar.filter(item => item.id.startsWith('investor:') && item.cadence === 'quarterly').length, 3)
+assert.equal(groups.find(group => group.id === 'event').total, 3)
+assert.equal(groups.find(group => group.id === 'annual').nextReviewAt, '2027-01-01')
+const groupFixture = summarizeCadences([
+  { cadence: 'monthly', nextReviewAt: '2026-09-01', category: 'stale', dataType: 'Cours mensuels' },
+  { cadence: 'monthly', nextReviewAt: '2026-10-03', category: 'stale', dataType: 'Cours mensuels' },
+  { cadence: 'monthly', nextReviewAt: '2026-11-01', category: 'soon', dataType: 'Cours mensuels' },
+  { cadence: 'monthly', nextReviewAt: null, category: 'undated', dataType: 'Cours mensuels' },
+  { cadence: 'monthly', nextReviewAt: '2026-10-04', category: 'future-date', dataType: 'Cours mensuels' },
+], '2026-10-03')[0]
+assert.deepEqual({ total: groupFixture.total, due: groupFixture.due, unplanned: groupFixture.unplanned, oldest: groupFixture.oldestDueAt, next: groupFixture.nextReviewAt }, { total: 5, due: 2, unplanned: 2, oldest: '2026-09-01', next: '2026-11-01' })
+assert.throws(() => summarizeCadences([], '2026-02-30'), /Date de revue invalide/)
+console.log('Temporalités : mensuel, trimestriel (dont 13F), semestriel, annuel et offres ; dates et compteurs dérivés du calendrier validés.')
