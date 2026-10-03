@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { TOOLS, TOOL_GROUPS } from '../tools'
+import { TOOL_GROUPS } from '../tools'
 import ToolIcon from './ToolIcon'
 
 function Navigation() {
@@ -17,18 +17,13 @@ function Navigation() {
 
 export default function Layout() {
   const { pathname } = useLocation()
-  const activeTool = TOOLS.find(tool => tool.to === pathname)
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
-  return <div className="workspace">
+  return <div className={`workspace ${pathname === '/' ? 'workspace--home' : 'workspace--tool'}`}>
     <a className="workspace-skip" href="#workspace-main">Aller au contenu</a>
-    <header className="workspace-topbar">
-      <NavLink to="/" className="workspace-brand"><span className="workspace-monogram" aria-hidden="true">ÉL</span><span>Épargnant Libre<small>Atelier de publications</small></span></NavLink>
-      <span className="workspace-context">{activeTool?.navLabel ?? 'Boîte à outils'}</span>
-    </header>
     <div className="workspace-body">
       <aside className="workspace-sidebar"><Navigation /></aside>
       <details className="workspace-mobile-menu" key={pathname}>
-        <summary>Explorer les outils <span aria-hidden="true">☰</span></summary>
+        <summary><span>Outils</span><span aria-hidden="true">☰</span></summary>
         <Navigation />
       </details>
       <main id="workspace-main" tabIndex={-1} className={`workspace-main ${pathname === '/' ? 'workspace-main--home' : ''}`}>

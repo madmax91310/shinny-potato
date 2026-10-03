@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CATEGORY_ORDER, CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
@@ -264,45 +265,33 @@ export default function App() {
         subtitle={`Bibliothèque de ${ETFS.length} ETF — vérifie les chiffres (ISIN, encours, performance) avant publication.`}
       />
 
-      <section className="es-preparation" aria-labelledby="es-preparation-title">
-        <div className="es-panel-heading"><h2 id="es-preparation-title">Préparer ta fiche</h2><p>Choisis un ETF, puis copie le texte ou crée ton visuel.</p></div>
-      <div className="es-controls">
-        <div className="es-select-shell">
-          <label htmlFor="es-etf-select">ETF à présenter</label>
-          <select id="es-etf-select" className="es-select" aria-label="Choisir un ETF" value={currentId} onChange={(e) => selectETF(e.target.value)}>
-            {optgroups.map(({ cat, etfs }) => (
-              <optgroup key={cat} label={`${CATEGORY_EMOJI[cat] || ''} ${cat}`}>
-                {etfs.map((e) => (
-                  <option key={e.id} value={e.id}>
-                    {e.name} ({e.listing?.ticker ?? e.isin})
-                  </option>
-                ))}
-              </optgroup>
-            ))}
-          </select>
-        </div>
-        <Button type="button" variant="secondary" onClick={pickRandom}>
-          🔄 ETF aléatoire
-        </Button>
-        <Button type="button" onClick={copyCurrent}>
-          {copied ? '✅ Copié !' : '📋 Copier le texte'}
-        </Button>
-        {hasAnnualImage && <Button type="button" onClick={generateAnnualImage}>
-          📊 Télécharger le graphique annuel
-        </Button>}
-        <Button type="button" variant="secondary" onClick={generateSummaryImage}>
-          🖼️ Image récapitulative
-        </Button>
-        {!hasAnnualImage && <span className="es-image-hint">Graphique annuel indisponible pour cet ETF.</span>}
-      </div>
-
-      </section>
-      <div className="es-preview-heading"><h2>Aperçu de la publication</h2><span>Texte et chiffres de la fiche</span></div>
-      <EtfCard etf={currentEtf} />
-
-      <p className="es-disclaimer" style={{ marginTop: 22 }}>
-        Contenu pré-rédigé, données stockées en dur — aucune donnée de marché en temps réel.
-      </p>
+      <ToolWorkspace actions={<>
+        <Button type="button" variant="secondary" onClick={copyCurrent}>{copied ? '✅ Copié !' : '📋 Copier le texte'}</Button>
+        <Button type="button" onClick={generateSummaryImage}>🖼️ Image récapitulative</Button>
+        {hasAnnualImage && <Button type="button" variant="secondary" onClick={generateAnnualImage}>📊 Télécharger le graphique annuel</Button>}
+      </>}>
+        <section className="es-preparation tool-settings" aria-labelledby="es-preparation-title">
+          <div className="es-panel-heading"><h2 id="es-preparation-title">Réglages de la fiche</h2></div>
+          <div className="es-controls">
+            <div className="es-select-shell">
+              <label htmlFor="es-etf-select">ETF à présenter</label>
+              <select id="es-etf-select" className="es-select" aria-label="Choisir un ETF" value={currentId} onChange={(e) => selectETF(e.target.value)}>
+                {optgroups.map(({ cat, etfs }) => <optgroup key={cat} label={`${CATEGORY_EMOJI[cat] || ''} ${cat}`}>
+                  {etfs.map(e => <option key={e.id} value={e.id}>{e.name} ({e.listing?.ticker ?? e.isin})</option>)}
+                </optgroup>)}
+              </select>
+            </div>
+            <Button type="button" variant="secondary" onClick={pickRandom}>🔄 ETF aléatoire</Button>
+          </div>
+          <p className="es-disclaimer" style={{ marginTop: 16 }}>Choisis un ETF, puis ouvre l’aperçu pour relire ta publication. Les boutons ci-dessous créent les visuels.</p>
+          {!hasAnnualImage && <p className="es-disclaimer" style={{ marginTop: 12 }}>Graphique annuel indisponible pour cet ETF.</p>}
+        </section>
+        <section className="tool-preview" aria-label="Publication ETF">
+          <div className="es-preview-heading"><h2>Aperçu de la publication</h2></div>
+          <EtfCard etf={currentEtf} />
+          <p className="es-disclaimer" style={{ marginTop: 16 }}>Contenu pré-rédigé, données stockées en dur — aucune donnée de marché en temps réel.</p>
+        </section>
+      </ToolWorkspace>
 
       {lightbox && <Lightbox {...lightbox} onClose={() => setLightbox(null)} />}
     </div>

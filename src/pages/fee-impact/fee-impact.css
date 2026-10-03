@@ -3,19 +3,19 @@
    rester visuellement cohérent avec le reste de l'appli. */
 
 .fi-scope {
-  --fi-surface: #0f172a;
-  --fi-surface-raised: #16213b;
-  --fi-surface-hover: #1e293b;
-  --fi-border: #1e293b;
-  --fi-border-soft: #334155;
-  --fi-ink: #f1f5f9;
-  --fi-ink-dim: #94a3b8;
-  --fi-ink-faint: #64748b;
-  --fi-accent: #d4a94a;
-  --fi-accent-bright: #f0c869;
-  --fi-positive: #34d399;
-  --fi-negative: #fb7185;
-  --fi-warning: #fbbf24;
+  --fi-surface: #ffffff;
+  --fi-surface-raised: #f7f8fb;
+  --fi-surface-hover: #e2e5ed;
+  --fi-border: #e2e5ed;
+  --fi-border-soft: #d7dce6;
+  --fi-ink: #222636;
+  --fi-ink-dim: #626a7a;
+  --fi-ink-faint: #626a7a;
+  --fi-accent: #6552c4;
+  --fi-accent-bright: #6552c4;
+  --fi-positive: #16825f;
+  --fi-negative: #bb3651;
+  --fi-warning: #986609;
   --fi-font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
   color: var(--fi-ink);
 }
@@ -26,7 +26,7 @@
 .fi-control-col { display: flex; flex-direction: column; gap: 16px; }
 .fi-preview-col { min-width: 0; }
 
-.fi-panel { background: linear-gradient(175deg, var(--fi-surface-raised), var(--fi-surface)); border: 1px solid var(--fi-border); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.fi-panel { background: var(--fi-surface); border: 1px solid var(--fi-border); border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
 
 .fi-eyebrow { font-family: var(--fi-font-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--fi-accent); margin: 0; display: flex; align-items: center; gap: 8px; }
 .fi-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--fi-border-soft); }
@@ -45,7 +45,7 @@
 .fi-random-btn { width: 100%; border: 1px dashed var(--fi-accent); background: transparent; color: var(--fi-accent-bright); padding: 10px; border-radius: 9px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s ease; }
 .fi-random-btn:hover { background: rgba(212, 169, 74, .1); }
 
-.fi-preview { background: linear-gradient(175deg, var(--fi-surface-raised), var(--fi-surface)); border: 1px solid var(--fi-border); border-radius: 16px; padding: 22px; }
+.fi-preview { background: var(--fi-surface); border: 1px solid var(--fi-border); border-radius: 16px; padding: 22px; }
 .fi-image-panel { display: flex; flex-direction: column; gap: 16px; margin-bottom: 16px; }
 .fi-image { display: block; width: 100%; height: auto; border-radius: 10px; }
 .fi-preview-text { font-family: var(--fi-font-mono); font-size: 13.5px; line-height: 1.65; color: var(--fi-ink); white-space: pre-wrap; word-break: break-word; margin: 0; }

@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
@@ -104,12 +105,12 @@ export default function App() {
   return (
     <div className="fi-scope">
       <PageHeader
-        title="🧮 Calculateur d'impact des frais"
+        title="Calculateur d'impact des frais"
         subtitle="Ce que les frais de gestion (TER) coûtent réellement en euros sur le long terme, via l'effet cumulé des intérêts composés — simulation pédagogique, pas une donnée de marché."
       />
 
-      <div className="fi-layout">
-        <section className="fi-control-col">
+      <ToolWorkspace className="fi-layout">
+        <section className="fi-control-col tool-settings">
           <div className="fi-panel">
             <p className="fi-eyebrow">Montant investi / mois</p>
             <div className="fi-chip-row">
@@ -193,7 +194,7 @@ export default function App() {
           )}
         </section>
 
-        <section className="fi-preview-col">
+        <section className="fi-preview-col tool-preview">
           <div className="fi-preview fi-image-panel">
             <p className="fi-eyebrow">Aperçu de l’image</p>
             <canvas ref={imageRef} width="1600" height="1200" className="fi-image" role="img" aria-label="Évolution comparée des deux scénarios de frais et écart final" />
@@ -217,7 +218,7 @@ export default function App() {
             </button>
           </div>
         </section>
-      </div>
+      </ToolWorkspace>
     </div>
   )
 }

@@ -1,22 +1,22 @@
-.ip-scope { max-width: 1100px; margin: 0 auto; padding: 20px; }
-.ip-panel { padding: 24px; background: #12232e; border: 1px solid #315260; border-radius: 22px; }
-.ip-panel label { display: block; color: #d4c199; font-weight: 650; margin-bottom: 9px; }
-.ip-panel select, .ip-panel textarea { width: 100%; background: #091924; border: 1px solid #45616c; border-radius: 10px; color: #f8f5ed; padding: 13px; }
+.ip-scope { max-width: 1100px; margin: 0 auto; padding: 0; }
+.ip-panel { padding: 24px; background: #ffffff; border: 1px solid #e2e5ed; border-radius: 22px; }
+.ip-panel label { display: block; color: #626a7a; font-weight: 650; margin-bottom: 9px; }
+.ip-panel select, .ip-panel textarea { width: 100%; background: #f7f8fb; border: 1px solid #d7dce6; border-radius: 10px; color: #222636; padding: 13px; }
 .ip-panel select { max-width: 440px; }
-.ip-meta { display: flex; flex-direction: column; gap: 6px; margin: 22px 0; color: #b3c9cc; }
-.ip-meta strong { font-size: 1.3rem; color: white; }
+.ip-meta { display: flex; flex-direction: column; gap: 6px; margin: 22px 0; color: #626a7a; }
+.ip-meta strong { font-size: 1.3rem; color: #222636; }
 .ip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.ip-preview { padding: 24px; border-radius: 16px; background: #071722; align-self: start; }
-.ip-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #24404c; }
+.ip-preview { padding: 24px; border-radius: 16px; background: #f7f8fb; align-self: start; }
+.ip-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #e2e5ed; }
 .ip-row:last-child { border: 0; }
 .ip-row span:nth-child(2) { flex: 1; }
-.ip-row small { display: block; color: #9cb9bf; }
+.ip-row small { display: block; color: #626a7a; }
 .ip-dot { width: 13px; height: 13px; border-radius: 50%; flex: none; }
 .ip-editor textarea { display: block; resize: vertical; margin-bottom: 17px; }
 .ip-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-.ip-note, .ip-credit { font-size: .88rem; color: #b9ccd0; margin-top: 18px; line-height: 1.5; }
-.ip-credit a { color: #dfc27e; }
-.ip-error { color: #ffc2b8; }
-@media (max-width: 760px) { .ip-scope { padding: 12px; } .ip-panel { padding: 17px; } .ip-grid { grid-template-columns: 1fr; } }
+.ip-note, .ip-credit { font-size: .88rem; color: #626a7a; margin-top: 18px; line-height: 1.5; }
+.ip-credit a { color: #6552c4; }
+.ip-error { color: #a52d46; }
+@media (max-width: 760px) { .ip-scope { padding: 0; } .ip-panel { padding: 17px; } .ip-grid { grid-template-columns: 1fr; } }
 
-.ip-bio{font-size:14px;line-height:1.65;color:#c8d5dc;margin:16px 0}.ip-editor .ip-note a{color:#54d5b0;overflow-wrap:anywhere}
+.ip-bio{font-size:14px;line-height:1.65;color:#626a7a;margin:16px 0}.ip-editor .ip-note a{color:#6552c4;overflow-wrap:anywhere}

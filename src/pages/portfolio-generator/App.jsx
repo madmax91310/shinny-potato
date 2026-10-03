@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useMemo, useState, useRef, useCallback } from 'react'
 import {
   generatePortfolio,
@@ -376,27 +377,12 @@ function PerfChart({ perf }) {
   )
 }
 
-function TweetCard({ portfolio, likeSeed }) {
+function TweetCard({ portfolio }) {
   const text = useMemo(() => renderTweetText(portfolio), [portfolio])
   const paragraphs = text.split('\n\n')
 
   return (
     <article className="pg-tweet-card" aria-label="Aperçu du post X">
-      <div className="pg-tweet-head">
-        <div className="pg-tweet-avatar">
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-            <path fill="currentColor" d="M4 19h2v-7H4v7Zm5.5 0h2V9h-2v10Zm5.5 0h2V5h-2v14Zm5.5 0h2v-4h-2v4Z" />
-          </svg>
-        </div>
-        <div className="pg-tweet-identity">
-          <span className="pg-tweet-name">
-            Patrimoine &amp; Compagnie <span className="pg-tweet-badge">✓</span>
-          </span>
-          <span className="pg-tweet-handle">
-            @patrimoine_edu · {new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
-          </span>
-        </div>
-      </div>
       <div className="pg-tweet-body">
         {paragraphs.map((p, i) => (
           <p key={i} className={i === 0 ? 'pg-tweet-title' : undefined}>
@@ -404,29 +390,8 @@ function TweetCard({ portfolio, likeSeed }) {
           </p>
         ))}
       </div>
-      <div className="pg-tweet-footer">
-        <span className="pg-tweet-icon">
-          💬 <b>{likeSeed.replies}</b>
-        </span>
-        <span className="pg-tweet-icon">
-          🔁 <b>{likeSeed.reposts}</b>
-        </span>
-        <span className="pg-tweet-icon">
-          ♥ <b>{likeSeed.likes}</b>
-        </span>
-        <span className="pg-tweet-icon">📊 {likeSeed.views}</span>
-      </div>
     </article>
   )
-}
-
-function randomEngagement() {
-  return {
-    replies: Math.floor(8 + Math.random() * 60),
-    reposts: Math.floor(20 + Math.random() * 300),
-    likes: Math.floor(120 + Math.random() * 2200),
-    views: `${(6 + Math.random() * 90).toFixed(1)} k`,
-  }
 }
 
 export default function App() {
@@ -435,7 +400,6 @@ export default function App() {
   const [selectedProfile, setSelectedProfile] = useState('auto')
   const [history, setHistory] = useState(() => [generatePortfolio([], 'auto', 'auto')])
   const [copyState, setCopyState] = useState('idle')
-  const [engagement, setEngagement] = useState(randomEngagement)
   const textareaRef = useRef(null)
 
   // Composition manuelle : état séparé du tirage auto, jamais mélangé (cf. engine.js,
@@ -453,7 +417,6 @@ export default function App() {
       const risk = riskOverride ?? selectedRisk
       const profile = profileOverride ?? selectedProfile
       setHistory((h) => [...h, generatePortfolio(h, risk, profile)])
-      setEngagement(randomEngagement())
       setCopyState('idle')
     },
     [selectedRisk, selectedProfile],
@@ -491,7 +454,6 @@ export default function App() {
   }, [])
   const handleManualGenerate = useCallback(() => {
     setHistory((h) => [...h, buildManualPortfolio(manualSelection, manualProfile, h)])
-    setEngagement(randomEngagement())
     setCopyState('idle')
     setManualEditing(false)
   }, [manualSelection, manualProfile])
@@ -533,22 +495,24 @@ export default function App() {
         </span>
       </div>
 
-      <div className="pg-main">
-        <section className="pg-tweet-col">
-          <TweetCard portfolio={current} likeSeed={engagement} />
+      <ToolWorkspace className="pg-main" actions={<>
           <div className="pg-tweet-actions">
             <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
               {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
             </Button>
           </div>
+            <a className="pg-image-download" href={imageDataUrl} download="repartition-portefeuille.png">⬇️ Télécharger l’image PNG</a>
+        </>}>
+        <section className="pg-tweet-col tool-preview">
+          <TweetCard portfolio={current} />
           <div className="pg-image-preview">
             <img src={imageDataUrl} alt={`Image de la répartition du portefeuille ${current.title}`} />
-            <a className="pg-image-download" href={imageDataUrl} download="repartition-portefeuille.png">⬇️ Télécharger l’image PNG</a>
+
           </div>
           <textarea ref={textareaRef} className="pg-clipboard-fallback" readOnly />
         </section>
 
-        <section className="pg-control-col">
+        <section className="pg-control-col tool-settings">
           <div className="pg-mode-toggle" role="group" aria-label="Mode de génération">
             <button
               type="button"
@@ -657,7 +621,7 @@ export default function App() {
             </p>
           </div>
         </section>
-      </div>
+      </ToolWorkspace>
     </div>
   )
 }

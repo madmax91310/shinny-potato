@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -30,7 +31,8 @@ export default function App() {
 
   return <div className="fs-scope">
     <PageHeader title="Dans les coulisses des indices" subtitle={`${SHEETS.length} sujets décryptés à partir de fiches officielles, avec des publications prêtes à relire, modifier et copier.`} />
-    <div className="fs-panel">
+    <ToolWorkspace>
+    <div className="fs-panel tool-settings">
       <label className="fs-label" htmlFor="factsheet-subject">Choisir un indice ou un ETF</label>
       <select id="factsheet-subject" value={selected} onChange={(event) => { setSelected(event.target.value); setCopied(false) }}>
         {SHEETS.map((entry) => <option key={entry.id} value={entry.id}>{entry.title}</option>)}
@@ -44,11 +46,12 @@ export default function App() {
       </div>
       <p className="fs-warning">Données figées : relisez les pourcentages et les dates sur les fiches avant chaque publication. La composition décrit l’indice sous-jacent, pas les titres détenus par un ETF synthétique.</p>
     </div>
-    <div className="fs-panel fs-editor">
+    <div className="fs-panel fs-editor tool-preview">
       <div className="fs-editor-top"><label className="fs-label" htmlFor="factsheet-draft">Publication modifiable</label><span>{text.length.toLocaleString('fr-FR')} caractères</span></div>
       <textarea id="factsheet-draft" spellCheck="true" value={text} onChange={(event) => { setDrafts((current) => ({ ...current, [selected]: event.target.value })); setCopied(false) }} />
       <div className="fs-actions"><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => setDrafts((current) => { const next = { ...current }; delete next[selected]; return next })}>↩️ Rétablir le modèle</Button></div>
     </div>
+    </ToolWorkspace>
     {image && <div className="fs-image-overlay" role="presentation" onClick={() => setImage(null)}>
       <div className="fs-image-dialog" role="dialog" aria-modal="true" aria-label="Aperçu de la fiche PNG" onClick={(event) => event.stopPropagation()}>
         <div className="fs-image-toolbar"><strong>Aperçu de l’image</strong><button type="button" onClick={() => setImage(null)} aria-label="Fermer l’aperçu">✕</button></div>

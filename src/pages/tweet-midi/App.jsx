@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState } from "react";
 import {
   FORMATS, FORMAT_LABELS, MODES, SUBJECT_ALEATOIRE, pickForSelection, pickNext, getSubjectsForFormat,
@@ -271,12 +272,12 @@ export default function App() {
   return (
     <div>
       <PageHeader
-        title="🕐 Tweet Midi"
+        title="Tweet Midi"
         subtitle="Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."
       />
 
-      <div className="flex flex-col gap-6 lg:flex-row">
-        <div className="flex-1 lg:max-w-md">
+      <ToolWorkspace>
+        <div className="tool-settings">
           <Card className="flex flex-col gap-4 p-5">
             <div>
               <div className="mb-2 flex items-center justify-between">
@@ -509,7 +510,7 @@ export default function App() {
           </Card>
         </div>
 
-        <div className="flex-1">
+        <div className="tool-preview">
           <div className="flex flex-col gap-3 lg:sticky lg:top-4 lg:h-fit">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -605,7 +606,7 @@ export default function App() {
             )}
           </div>
         </div>
-      </div>
+      </ToolWorkspace>
     </div>
   );
 }

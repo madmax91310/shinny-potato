@@ -3,19 +3,19 @@
    recoloré ici pour matcher le reste du produit plutôt que copié tel quel). */
 
 .tb-scope {
-  --tb-surface: #0f172a;
-  --tb-surface-raised: #16213b;
-  --tb-border: #1e293b;
-  --tb-border-soft: #334155;
-  --tb-ink: #f1f5f9;
-  --tb-ink-dim: #c7cde3;
-  --tb-ink-faint: #64748b;
-  --tb-accent: #2dd4bf;
-  --tb-accent-bright: #5eead4;
-  --tb-accent-dim: rgba(45, 212, 191, 0.14);
-  --tb-gold: #d9a441;
+  --tb-surface: #ffffff;
+  --tb-surface-raised: #f7f8fb;
+  --tb-border: #e2e5ed;
+  --tb-border-soft: #d7dce6;
+  --tb-ink: #222636;
+  --tb-ink-dim: #626a7a;
+  --tb-ink-faint: #626a7a;
+  --tb-accent: #6552c4;
+  --tb-accent-bright: #6552c4;
+  --tb-accent-dim: rgba(101, 82, 196, 0.14);
+  --tb-gold: #986609;
   --tb-gold-dim: rgba(217, 164, 65, 0.14);
-  --tb-format: #e5789c;
+  --tb-format: #a52d46;
   --tb-format-dim: rgba(229, 120, 156, 0.14);
   color: var(--tb-ink);
 }

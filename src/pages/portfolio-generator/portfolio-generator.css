@@ -4,20 +4,20 @@
    (on garde la pile système déjà utilisée par le reste de l'app). */
 
 .pg-scope {
-  --surface: #0f172a;
-  --surface-raised: #16213b;
-  --surface-hover: #1e293b;
-  --border: #1e293b;
-  --border-soft: #1e293b;
-  --ink: #f1f5f9;
-  --ink-dim: #94a3b8;
-  --ink-faint: #64748b;
-  --accent: #2dd4bf;
-  --accent-bright: #5eead4;
-  --accent-dim: rgba(45, 212, 191, 0.14);
-  --positive: #34d399;
-  --negative: #fb7185;
-  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --surface: #ffffff;
+  --surface-raised: #f7f8fb;
+  --surface-hover: #e2e5ed;
+  --border: #e2e5ed;
+  --border-soft: #e2e5ed;
+  --ink: #222636;
+  --ink-dim: #626a7a;
+  --ink-faint: #626a7a;
+  --accent: #6552c4;
+  --accent-bright: #6552c4;
+  --accent-dim: rgba(101, 82, 196, 0.14);
+  --positive: #16825f;
+  --negative: #bb3651;
+  --font-display: ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -38,26 +38,12 @@
 @media (max-width: 900px) { .pg-tweet-col { position: static; } }
 
 .pg-tweet-card {
-  background: linear-gradient(180deg, var(--surface-raised), var(--surface));
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 22px 22px 16px;
-  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255,255,255,0.02) inset;
+  box-shadow: none;
 }
-.pg-tweet-head { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
-.pg-tweet-avatar {
-  width: 42px; height: 42px; border-radius: 50%;
-  display: grid; place-items: center;
-  background: radial-gradient(circle at 30% 25%, #1c2c4a, #0b1220);
-  border: 1.5px solid var(--accent);
-  color: var(--accent-bright);
-  flex: none;
-}
-.pg-tweet-identity { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
-.pg-tweet-name { font-weight: 700; font-size: 0.95rem; color: var(--ink); }
-.pg-tweet-badge { color: var(--accent); font-size: 0.8rem; }
-.pg-tweet-handle { font-size: 0.82rem; color: var(--ink-faint); }
-
 .pg-tweet-body { display: flex; flex-direction: column; gap: 12px; }
 .pg-tweet-body p {
   margin: 0;
@@ -75,23 +61,11 @@
   color: var(--accent-bright);
 }
 
-.pg-tweet-footer {
-  display: flex;
-  gap: 22px;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-soft);
-  color: var(--ink-faint);
-  font-size: 0.82rem;
-}
-.pg-tweet-icon { display: inline-flex; align-items: center; gap: 5px; }
-.pg-tweet-icon b { color: var(--ink-dim); font-weight: 600; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
-
 .pg-tweet-actions { display: flex; }
-.pg-image-preview { margin-top: 16px; padding: 14px; border: 1px solid var(--border); border-radius: 16px; background: #101923; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.pg-image-preview { margin-top: 16px; padding: 14px; border: 1px solid var(--border); border-radius: 16px; background: #f7f8fb; display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .pg-image-preview img { display: block; width: auto; max-width: 100%; max-height: 480px; object-fit: contain; border-radius: 8px; }
-.pg-image-download { display: block; width: 100%; padding: 11px 16px; border-radius: 9px; background: #b88d45; color: #0b1521; font-weight: 700; text-align: center; text-decoration: none; }
-.pg-image-download:hover { background: #e2b35e; }
+.pg-image-download { display: block; width: 100%; padding: 11px 16px; border-radius: 9px; background: #6552c4; color: #ffffff; font-weight: 700; text-align: center; text-decoration: none; }
+.pg-image-download:hover { background: #5140a6; }
 .pg-clipboard-fallback { position: absolute; left: -9999px; display: none; }
 
 .pg-control-col { display: flex; flex-direction: column; gap: 16px; }
@@ -163,7 +137,7 @@
   background: var(--ink);
   border: 3px solid var(--surface);
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 1px var(--accent);
+  box-shadow: none;
 }
 .pg-riskgauge-detail {
   margin: 12px 0 0;
@@ -412,7 +386,7 @@
 .pg-manual-warning {
   margin: 10px 0 0;
   font-size: 0.82rem;
-  color: #f0b429;
+  color: #986609;
   line-height: 1.5;
 }
 
@@ -420,5 +394,5 @@
 .pg-manual-result-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
 .pg-manual-length { margin: 0 0 10px; font-size: 0.8rem; line-height: 1.5; }
 .pg-manual-length-ok { color: var(--positive); }
-.pg-manual-length-warn { color: #f0b429; }
+.pg-manual-length-warn { color: #986609; }
 .pg-manual-length-danger { color: var(--negative); }

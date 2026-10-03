@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
@@ -24,13 +25,13 @@ function Editor({ record, onSelect, design, onDesign }) {
     const link = document.createElement('a'); link.href = url; link.download = `france-100-menages-${record.id}.json`; link.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
-  return <>
-    <div className="hh-controls">
+  return <ToolWorkspace>
+    <div className="hh-controls tool-settings">
       <label>Sujet<select aria-label="Sujet" value={record.id} onChange={(e) => onSelect(e.target.value)}>{HOUSEHOLD_STATISTICS.map((item, i) => <option key={item.id} value={item.id}>{i + 1}. {item.title}</option>)}</select></label>
       <label>Design<select aria-label="Design" value={design} onChange={(e) => onDesign(e.target.value)}>{HOUSEHOLD_DESIGNS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
       <button onClick={() => { const pool = HOUSEHOLD_STATISTICS.filter((item) => item.id !== record.id); onSelect(pool[Math.floor(Math.random() * pool.length)].id) }}>Autre sujet au hasard</button>
     </div>
-    <div className="hh-layout">
+    <div className="hh-layout tool-preview">
       <section className="hh-panel" aria-label="Visuel prêt à publier">
         <div className="hh-panel-head"><h2>Visuel</h2><span>1080 × 1440 PNG</span></div>
         {image.url ? <><img className="hh-preview" src={image.url} alt={`La France en 100 ménages : ${record.headline}. ${record.metricLabel}. ${record.note}`} /><a className="hh-primary" href={image.url} download={`france-100-menages-${record.id}-${design}.png`}>Télécharger le PNG</a></> : <p role="alert">{image.error}</p>}
@@ -45,7 +46,7 @@ function Editor({ record, onSelect, design, onDesign }) {
         <div className="hh-source"><h3>Source officielle</h3><a href={source.url} target="_blank" rel="noreferrer">Insee : {source.title} ↗</a><dl><dt>Données</dt><dd>{record.referencePeriod}{record.provisional ? ' — provisoires' : ''}</dd><dt>Publication</dt><dd>{source.publishedAt}</dd><dt>Consultation</dt><dd>{record.metadata.checkedAt}</dd><dt>Tableau / passage</dt><dd>{record.table}</dd><dt>Population</dt><dd>{record.metadata.scope}</dd></dl><p>{record.note}</p><Link to={`/bibliotheque-donnees?type=household&id=household:${record.id}`}>Voir la fiche dans la bibliothèque de données →</Link></div>
       </section>
     </div>
-  </>
+  </ToolWorkspace>
 }
 export default function HouseholdApp() {
   const [params, setParams] = useSearchParams()

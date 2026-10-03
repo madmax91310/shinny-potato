@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -63,8 +64,15 @@ export default function IndexComparator() {
         subtitle="Comprends ce que chaque indice change : pays, taille des entreprises et règles de sélection."
       />
 
-      <div className="xc-layout">
-        <section className="xc-control-col">
+      <ToolWorkspace className="xc-layout" actions={<>
+          <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
+            {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
+          </Button>
+          <Button type="button" className="w-full" disabled={imageState === 'loading'} onClick={handleDownload}>
+            {imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le téléchargement PNG' : 'Télécharger l’image PNG'}
+          </Button>
+        </>}>
+        <section className="xc-control-col tool-settings">
           <div className="xc-panel">
             <p className="xc-eyebrow">Famille d'indices</p>
             <div className="xc-select-wrap">
@@ -103,22 +111,16 @@ export default function IndexComparator() {
             {family.perfMethodNote && <p className="xc-hint">{family.perfMethodNote}</p>}
           </div>
 
-          <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
-            {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
-          </Button>
-          <Button type="button" className="w-full" disabled={imageState === 'loading'} onClick={handleDownload}>
-            {imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le téléchargement PNG' : 'Télécharger l’image PNG'}
-          </Button>
           <p className="xc-hint">L’image compare les expositions côte à côte, avec les données de composition disponibles : nombre de valeurs, principaux pays et secteurs. Les performances sont dans le tweet.</p>
           <textarea ref={textareaRef} className="xc-clipboard-fallback" readOnly />
         </section>
 
-        <section className="xc-preview-col">
+        <section className="xc-preview-col tool-preview">
           <div className="xc-preview">
             <pre className="xc-preview-text">{text}</pre>
           </div>
         </section>
-      </div>
+      </ToolWorkspace>
     </div>
   )
 }

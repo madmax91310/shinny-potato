@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -105,6 +106,8 @@ export default function App() {
   return (
     <div className="pd-scope">
       <PageHeader title="Duel de portefeuilles" subtitle="Une base ETF, un complément et une thématique si tu le souhaites : compare deux constructions de portefeuille." />
+      <ToolWorkspace>
+      <section className="tool-settings">
       <div className="pd-modes" role="group" aria-label="Mode de duel">
         {[['prepared', 'Duels préparés'], ['generated', 'Générer un duel'], ['manual', 'Composer A et B']].map(([key, label]) =>
           <button key={key} type="button" className={mode === key ? 'pd-mode-active' : ''} aria-pressed={mode === key} onClick={() => { setMode(key); setCopyStatus('') }}>{label}</button>)}
@@ -123,6 +126,8 @@ export default function App() {
         {error && <p className="pd-error" role="alert">{error}</p>}
       </>}
 
+      </section>
+      <section className="tool-preview">
       {duel && <><article className="pd-result">
         <p className="pd-kicker">⚔️ DUEL DE PORTEFEUILLES</p>
         <h2>{duel.title}</h2>
@@ -162,6 +167,9 @@ export default function App() {
         <ul>{duel.sources.map((source, i) => <li key={`${source.name}-${i}`}>{source.url ? <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a> : source.name}{source.isin ? ` · ${source.isin}` : ''}{source.note ? ` · ${source.note}` : ''}</li>)}</ul>
       </details>
       </>}
+      {!duel && <p role="status">Complète les deux portefeuilles dans les réglages pour voir le résultat.</p>}
+      </section>
+      </ToolWorkspace>
     </div>
   )
 }

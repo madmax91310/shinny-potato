@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -53,7 +54,8 @@ export default function InvestorPortfolio() {
 
   return <div className="ip-scope">
     <PageHeader title="Portefeuille d’investisseur" subtitle="La dernière photographie 13F disponible, un tweet modifiable et un visuel assorti." />
-    <section className="ip-panel">
+    <ToolWorkspace>
+    <section className="ip-panel tool-settings">
       <label htmlFor="ip-investor">Choisir un investisseur</label>
       <select id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
         {INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}
@@ -61,6 +63,8 @@ export default function InvestorPortfolio() {
       <p className="ip-bio">{intro.trim() || investorIntroduction(slug)}</p>
       {loading && <p role="status">Chargement des déclarations…</p>}
       {error && <p role="alert" className="ip-error">{error}</p>}
+    </section>
+    <section className="ip-panel tool-preview">
       {portfolio && <>
         <div className="ip-meta">
           <strong>{portfolio.identity.displayName} · {portfolio.identity.entityName}</strong>
@@ -90,6 +94,8 @@ export default function InvestorPortfolio() {
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
         <p className="ip-credit">{portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
       </>}
+      {!portfolio && <p role="status">{loading ? 'Chargement des déclarations…' : 'Choisis un investisseur dans les réglages.'}</p>}
     </section>
+    </ToolWorkspace>
   </div>
 }

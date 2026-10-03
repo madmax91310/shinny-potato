@@ -1,3 +1,4 @@
+import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState, useEffect, useRef, Fragment } from 'react'
 import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet, documentedForAll } from './data'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from './evidence'
@@ -239,6 +240,8 @@ export default function App() {
         subtitle="Choisis un duel de la série, ou coche 2 à 3 courtiers à la main. La carte se génère automatiquement, prête à capturer."
       />
 
+      <ToolWorkspace>
+      <section className="tool-settings">
       <div className="bc-panel">
         <h2>Prochain duel de la série</h2>
         <p className="bc-hint">Les duels déjà publiés restent cliquables si tu veux régénérer un visuel.</p>
@@ -296,6 +299,8 @@ export default function App() {
         {selected.length < 2 && <div className="bc-select-warning">Sélectionne au moins 2 courtiers pour générer la carte.</div>}
       </div>
 
+      </section>
+      <section className="tool-preview">
       <div className="bc-stage">
         <ComparisonCard selected={selected} />
       </div>
@@ -326,6 +331,8 @@ export default function App() {
           <span className="bc-char-count">{tweet.length} caractères</span>
         </div>
       </div>
+      </section>
+      </ToolWorkspace>
     </div>
   )
 }
