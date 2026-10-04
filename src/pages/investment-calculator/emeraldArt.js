@@ -42,6 +42,16 @@ export function drawEmeraldMark(ctx, image, x, y, w, h) {
 }
 export function drawInvestmentArt(ctx, art) {
   ctx.drawImage(art.background, 0, 0, 1600, 1040)
-  if (art.scene) ctx.drawImage(art.scene, 40, 160, 550, 550)
+  if (art.scene) {
+    const layer = document.createElement('canvas'); layer.width = 550; layer.height = 550
+    const c = layer.getContext('2d'); c.drawImage(art.scene, 0, 0, 550, 550)
+    c.globalCompositeOperation = 'destination-in'
+    for (const vertical of [false, true]) {
+      const fade = c.createLinearGradient(0, 0, vertical ? 0 : 550, vertical ? 550 : 0)
+      fade.addColorStop(0, '#ffffff00'); fade.addColorStop(.12, '#fff'); fade.addColorStop(.88, '#fff'); fade.addColorStop(1, '#ffffff00')
+      c.fillStyle = fade; c.fillRect(0, 0, 550, 550)
+    }
+    ctx.drawImage(layer, 40, 160)
+  }
   if (art.mark) drawEmeraldMark(ctx, art.mark, 95, 225, 420, 330)
 }

@@ -28,7 +28,12 @@ try {
     try { await loadInvestmentArt('microsoft'); return false } catch { return true }
   }), true)
   await page.unroute('**/asset-art/microsoft.svg')
-  const result = await page.evaluate(async () => {
+  await mkdir('test-artifacts/investment-emerald', { recursive: true })
+  await page.exposeFunction('saveInvestmentSample', async sample => {
+    await writeFile(`test-artifacts/investment-emerald/${sample.name}.png`, Buffer.from(sample.png.split(',')[1], 'base64'))
+    await writeFile(`test-artifacts/investment-emerald/${sample.name}.txt`, sample.labels.join('\n'))
+  })
+  await page.evaluate(async () => {
     const { ASSETS, ASSET_ORDER } = await import('/shinny-potato/src/data/market-history.js')
     const { derive, fmtEUR, fmtPct, pct } = await import('/shinny-potato/src/pages/investment-calculator/lib.js')
     const { renderInvestmentImage, investmentChartKind, annualInvestmentCapital } = await import('/shinny-potato/src/pages/investment-calculator/imageExport.js')
@@ -40,7 +45,7 @@ try {
       for (const prior of boxes) if (Math.min(box.r, prior.r) - Math.max(box.l, prior.l) > 1 && Math.min(box.b, prior.b) - Math.max(box.t, prior.t) > 1) throw new Error(`Overlap ${current}: ${prior.text} / ${value}`)
       boxes.push(box); labels.push(String(value)); return original.call(this, value, x, y, ...rest)
     }
-    const samples = [], stateFor = (id, mode = 'lump') => {
+    const stateFor = (id, mode = 'lump') => {
       const date = ASSETS[id].points.find(p => p.date >= '2020-01')?.date || ASSETS[id].points[0].date
       return { assetId: id, mode, amountRaw: '1000', startYear: Number(date.slice(0, 4)), startMonth: Number(date.slice(5, 7)), overridePriceRaw: '' }
     }
@@ -53,7 +58,8 @@ try {
       if (!labels.includes(`En ${currency}`) && !labels.some(label => label.startsWith(`En ${currency} ·`))) throw new Error('Wrong currency')
       if (labels.filter(label => /[ée]pargnant.?libre/i.test(label)).length !== 1) throw new Error('Signature must appear once')
       if (d.effectiveMode === 'dca' && !labels.some(label => label.startsWith('TOTAL VERSÉ'))) throw new Error('Lost monthly contributions')
-      if (keep) samples.push({ name, png: canvas.toDataURL(), labels })
+      for (const credit of (ASSETS[state.assetId]?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)) if (!labels.includes(credit)) throw new Error('Missing source credit')
+      if (keep) await window.saveInvestmentSample({ name, png: canvas.toDataURL(), labels })
       return d
     }
     try {
@@ -74,14 +80,11 @@ try {
         const rows = annualInvestmentCapital(state, d)
         if (rows.length !== ASSETS.apple.points.length || rows.some(row => !ASSETS.apple.points.some(point => point.date === row.date))) throw new Error('Invented annual observation')
         if (rows.at(-1).value !== d.result.finalValue || !labels.includes('Capital en fin d’année')) throw new Error('Annual capital must match the final result')
+        ASSETS.apple.points = [...ASSETS.apple.points.filter(p => p.date < '2025'), originalPoints.find(p => p.date === '2025-07')]
+        const partial = await check('annual-partial-year', state, true)
+        if (!labels.includes('Capital aux dates observées') || annualInvestmentCapital(state, partial).at(-1).date !== '2025-07') throw new Error('Partial year labelled as a December close')
       } finally { ASSETS.apple.points = originalPoints }
     } finally { CanvasRenderingContext2D.prototype.fillText = original }
-    return samples
   })
-  await mkdir('test-artifacts/investment-emerald', { recursive: true })
-  for (const sample of result) {
-    await writeFile(`test-artifacts/investment-emerald/${sample.name}.png`, Buffer.from(sample.png.split(',')[1], 'base64'))
-    await writeFile(`test-artifacts/investment-emerald/${sample.name}.txt`, sample.labels.join('\n'))
-  }
   console.log(`${ASSET_ORDER.length} actifs × versement unique/DCA : identités, devises, résultats, points annuels, prix saisi, pertes, grands montants et absence de chevauchement vérifiés.`)
 } finally { await browser?.close(); server.kill('SIGTERM') }

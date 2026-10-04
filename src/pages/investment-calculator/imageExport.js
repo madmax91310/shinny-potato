@@ -52,10 +52,12 @@ function chart(ctx, state, d, currency, kind) {
   const values = annual ? rows.map(p => p.value) : d.result.series
   const left = 195, right = 1515, top = 735, bottom = 947
   const peak = Math.max(1, ...values, ...d.result.invested)
-  const maximum = peak * 1.15
+  const magnitude = 10 ** Math.floor(Math.log10(peak / 2))
+  const step = [1, 2, 2.5, 5, 10].map(n => n * magnitude).find(n => n * 2 >= peak * 1.15) || magnitude * 10
+  const maximum = step * 2
   const py = v => bottom - v / maximum * (bottom - top)
   const px = i => left + (values.length <= 1 ? .5 : i / (values.length - 1)) * (right - left)
-  text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : annual ? 'Capital en fin d’année' : 'Capital suivi chaque mois', 650, 661, 27, { width: 870 })
+  text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : annual ? (rows.every(p => p.date.endsWith('-12')) ? 'Capital en fin d’année' : 'Capital aux dates observées') : 'Capital suivi chaque mois', 650, 661, 27, { width: 870 })
   if (d.effectiveMode === 'dca' && !annual) {
     ctx.strokeStyle = GOLD; ctx.lineWidth = 2; ctx.setLineDash([8, 7]); ctx.beginPath(); ctx.moveTo(1095, 652); ctx.lineTo(1125, 652); ctx.stroke(); ctx.setLineDash([])
     text(ctx, 'Versements cumulés', 1135, 661, 20, { width: 380, color: MUTED, weight: 400 })
@@ -106,7 +108,7 @@ export async function renderInvestmentImage(state, d) {
   const dca = d.effectiveMode === 'dca', gain = d.result.finalValue - d.result.totalInvested
   text(ctx, dca ? 'VERSEMENT PAR MOIS' : 'MISE DE DÉPART', 650, 266, 25, { color: MUTED, width: 870 })
   text(ctx, money(d.amount, currency), 650, 346, 65, { width: 650 })
-  text(ctx, '↓', 1120, 375, 55, { color: GOLD, width: 200 })
+  text(ctx, '↓', 1120, 405, 55, { color: GOLD, width: 200 })
   text(ctx, 'CAPITAL FINAL', 650, 426, 25, { width: 870, color: MUTED })
   text(ctx, money(d.result.finalValue, currency), 640, 537, 110, { width: 640, color: gain < 0 ? RED : GREEN })
   text(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 1515, 534, 40, { width: 225, color: gain < 0 ? RED : GREEN, align: 'right' })
