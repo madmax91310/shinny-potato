@@ -212,7 +212,7 @@ const COMPARATIF_ETF_SUBJECTS_FLAT = [{ categorie: null, items: COMPARATIF_ETF_S
 // ANNIVERSAIRE_ELIGIBLE_ASSETS/ANNIVERSAIRE_EXCLUDED_IDS dans marketHistory.js) ; Performance
 // depuis garde la liste complète, jamais restreinte (aucune comparaison externe demandée).
 const ANNIVERSAIRE_SUBJECTS_FLAT = [
-  { categorie: null, items: ANNIVERSAIRE_ELIGIBLE_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}` })) },
+  { categorie: null, items: ANNIVERSAIRE_ELIGIBLE_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}${a.anniversaryVariant ? ` — ${a.anniversaryVariant}` : ""}` })) },
 ];
 const PERFORMANCE_DEPUIS_SUBJECTS_FLAT = [
   { categorie: null, items: MARKET_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}` })) },
@@ -460,6 +460,10 @@ export function getMarketAsset(assetId) {
   return findAsset(assetId);
 }
 
+function fmtAnniversaryLevel(asset, value) {
+  return asset.priceUnit === 'points' ? `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} points` : fmtEUR(value, asset.currency);
+}
+
 // Le "niveau actuel" (rawNiveauActuel) n'est jamais dérivé ni deviné : tant qu'il n'est pas
 // renseigné, la performance et le niveau actuel restent en placeholder plutôt que d'inventer une
 // valeur — cf. contrainte du brief ("jamais deviné ni estimé automatiquement").
@@ -478,8 +482,9 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
   lines.push(`🎂 En ${dateLabel}, il y a ${phrase} 👇`);
   lines.push("");
   lines.push(`${asset.icon} ${asset.label}`);
-  lines.push(`Prix en ${dateLabel} : ${fmtEUR(historicalPrice, asset.currency)}`);
-  lines.push(`Niveau actuel : ${hasCurrent ? fmtEUR(niveauActuel, asset.currency) : "[à saisir]"}`);
+  if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant);
+  lines.push(`${asset.priceUnit === 'points' ? 'Niveau' : 'Prix'} en ${dateLabel} : ${fmtAnniversaryLevel(asset, historicalPrice)}`);
+  lines.push(`Niveau actuel : ${hasCurrent ? fmtAnniversaryLevel(asset, niveauActuel) : "[à saisir]"}`);
   lines.push(`Performance : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
   lines.push("");
   lines.push(anniversaryConclusion(asset, item.yearsBack, gainPct));
@@ -553,8 +558,9 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   lines.push("");
   ordered.forEach(({ asset, hist, cur, hasCur, gain }, i) => {
     lines.push(`${asset.icon} ${asset.label}`);
-    lines.push(`Prix en ${dateLabel} : ${fmtEUR(hist, asset.currency)}`);
-    lines.push(`Niveau actuel : ${hasCur ? fmtEUR(cur, asset.currency) : "[à saisir]"}`);
+    if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant);
+    lines.push(`${asset.priceUnit === 'points' ? 'Niveau' : 'Prix'} en ${dateLabel} : ${fmtAnniversaryLevel(asset, hist)}`);
+    lines.push(`Niveau actuel : ${hasCur ? fmtAnniversaryLevel(asset, cur) : "[à saisir]"}`);
     lines.push(`Performance : ${hasCur ? fmtPct(gain) : "—"}`);
     if (i === 0) lines.push("");
   });
