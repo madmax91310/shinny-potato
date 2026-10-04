@@ -33,7 +33,7 @@ try {
     const result = await page.evaluate(async ({ id, keep }) => {
       const { ETFS } = await import('/shinny-potato/src/data/etf-cards.js')
       const { renderETFImage } = await import('/shinny-potato/src/pages/etf-sheets/canvasImage.js')
-      const { getAnnualPerformance } = await import('/shinny-potato/src/pages/etf-sheets/annualPerformance.js')
+      const { getAnnualPerformance, performanceEntries } = await import('/shinny-potato/src/pages/etf-sheets/annualPerformance.js')
       const etf = ETFS.find(e => e.id === id)
       const labels = [], bounds = [], performanceText = [], identifiers = []
       const original = CanvasRenderingContext2D.prototype.fillText
@@ -51,11 +51,10 @@ try {
         const canvas = await renderETFImage(etf)
         const annual = getAnnualPerformance(etf)
         if (annual) {
-          annual.values.forEach((value, index) => {
-            if (!Number.isFinite(value)) return
+          performanceEntries(annual).forEach(({ value, label }) => {
             const expected = `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
             const number = performanceText.find(item => item.text === expected)
-            if (!performanceText.some(item => item.text === String(2020 + index)) || !number || Number(number.font.match(/(\d+)px/)?.[1]) < 58) throw new Error(`Unreadable annual cell ${id}: ${expected}`)
+            if (!performanceText.some(item => item.text === label) || !number || Number(number.font.match(/(\d+)px/)?.[1]) < 58) throw new Error(`Unreadable annual cell ${id}: ${expected}`)
             if (number.color !== (value > 0 ? '#9bebb4' : value < 0 ? '#ff998b' : '#fff4da')) throw new Error(`Wrong annual sign color ${id}`)
           })
         }

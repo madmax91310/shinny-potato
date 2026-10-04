@@ -47,6 +47,7 @@ jobs:
       - run: node scripts/test-data-review-reminder.mjs
       - run: npm run audit:performance-consistency
       - run: npm run audit:etf-annual-performance
+      - run: npm run audit:etf-completeness
       - run: npm run audit:etf-consistency
       - run: npm run audit:instrument-listings
       - run: npm run audit:instrument-catalog
