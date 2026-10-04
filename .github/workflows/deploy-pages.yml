@@ -85,6 +85,7 @@ jobs:
       - run: node scripts/test-index-ribbon.mjs
       - run: node scripts/test-index-ceramic.mjs
       - run: node scripts/test-household-sculpture.mjs
+      - run: node scripts/test-purchasing-power-editorial.mjs
       - run: node scripts/test-purchasing-power-receipt.mjs
       - run: node scripts/test-export-copy.mjs
       - run: node scripts/test-publication-studio.mjs

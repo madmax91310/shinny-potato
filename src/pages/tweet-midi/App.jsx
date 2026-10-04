@@ -82,6 +82,7 @@ export default function App() {
   const [paYear, setPaYear] = useState(2015);
   const [paMode, setPaMode] = useState("brut");
   const [paPoste, setPaPoste] = useState("loyer");
+  const [paGrowth, setPaGrowth] = useState(null);
 
   const isMarketFormat = format === FORMATS.ANNIVERSAIRE || format === FORMATS.PERFORMANCE_DEPUIS;
   const isPouvoirAchat = format === FORMATS.POUVOIR_ACHAT;
@@ -130,7 +131,7 @@ export default function App() {
     // propre bouton (handlePouvoirAchatRandom), jamais par "Générer".
     if (isPouvoirAchat) {
       const { item } = pickForSelection({
-        format, history, pouvoirAchat: { amount: paAmount, startYear: paYear, paMode, posteId: paPoste },
+        format, history, pouvoirAchat: { amount: paAmount, startYear: paYear, paMode, posteId: paPoste, growthPct: paGrowth ?? undefined },
       });
       setCurrent(item);
       setCopied(false);
@@ -157,6 +158,7 @@ export default function App() {
     setPaAmount(item.amount);
     setPaAmountRaw(String(item.amount));
     setPaYear(item.startYear);
+    setPaGrowth(null);
     setPaMode(item.mode);
     if (item.mode === "par-poste" && item.posteId) setPaPoste(item.posteId);
     setCurrent(item);
@@ -395,7 +397,7 @@ export default function App() {
                     <Button
                       type="button"
                       variant={paMode === "brut" ? "primary" : "secondary"}
-                      onClick={() => setPaMode("brut")}
+                      onClick={() => { setPaMode("brut"); setPaGrowth(null); }}
                       aria-pressed={paMode === "brut"}
                     >
                       Revenu nécessaire
@@ -403,13 +405,13 @@ export default function App() {
                     <Button
                       type="button"
                       variant={paMode === "par-poste" ? "primary" : "secondary"}
-                      onClick={() => setPaMode("par-poste")}
+                      onClick={() => { setPaMode("par-poste"); setPaGrowth(null); }}
                       aria-pressed={paMode === "par-poste"}
                     >
                       Par poste
                     </Button>
                     <Button type="button" variant={paMode === "erosion" ? "primary" : "secondary"}
-                      onClick={() => setPaMode("erosion")} aria-pressed={paMode === "erosion"}>
+                      onClick={() => { setPaMode("erosion"); setPaGrowth(null); }} aria-pressed={paMode === "erosion"}>
                       Budget inchangé
                     </Button>
                   </div>
@@ -426,13 +428,30 @@ export default function App() {
                             key={id}
                             type="button"
                             variant={paPoste === id ? "primary" : "secondary"}
-                            onClick={() => setPaPoste(id)}
+                            onClick={() => { setPaPoste(id); setPaGrowth(null); }}
                           >
                             {p.icon} {p.label}
                           </Button>
                         );
                       })}
                     </div>
+                  </div>
+                )}
+
+                {(paMode === "brut" || (paMode === "par-poste" && paPoste === "alimentation")) && (
+                  <div>
+                    <label htmlFor="pa-growth" className="mb-2 block text-xs font-semibold text-slate-500">
+                      {paMode === "brut" ? "Hausse de revenu testée (%)" : "Hausse du budget courses testée (%)"}
+                    </label>
+                    <input id="pa-growth" type="number" min="-99" step="any"
+                      value={paGrowth ?? (paMode === "brut" ? 10 : 20)}
+                      onChange={(event) => {
+                        const value = Number(event.target.value);
+                        if (event.target.value && Number.isFinite(value) && value > -100) setPaGrowth(value);
+                      }}
+                      className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-900"
+                    />
+                    <p className="mt-1 text-xs text-slate-500">Hypothèse de comparaison, modifiable.</p>
                   </div>
                 )}
 

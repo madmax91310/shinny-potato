@@ -77,6 +77,10 @@ export function purchasingPowerStory(state) {
   const equivalentPct = (1 / result.factor - 1) * 100
   const rent = !general && state.posteId === 'loyer'
   const energy = !general && state.posteId === 'carburant'
+  const growthPct = state.growthPct ?? (general ? 10 : 20)
+  if (!Number.isFinite(growthPct) || growthPct <= -100) throw new Error('Variation testée invalide')
+  const testedAmount = state.amount * (1 + growthPct / 100)
+  const generalAmount = state.amount * (general ? result.factor : 1 + result.generalCumPct / 100)
   const observation = rent ? 'T2 2026' : PRICE_OBSERVATION.label
   const startLabel = rent ? `T1 ${state.startYear}` : String(state.startYear)
   const headline = erosion
@@ -85,53 +89,58 @@ export function purchasingPowerStory(state) {
       : rent ? ['SI TON LOYER', 'SUIVAIT L’IRL']
         : [energy ? 'TON BUDGET ÉNERGIE.' : 'LE MÊME PANIER.', `${fmtEUR(Math.abs(change))} DE ${change >= 0 ? 'PLUS' : 'MOINS'}.`]
   return {
-    ...result, endAmount, change, pricePct, equivalentPct, erosion, general, rent, energy,
+    ...result, endAmount, change, pricePct, equivalentPct, erosion, general, rent, energy, growthPct, testedAmount, generalAmount,
     observation, startLabel, headline,
     scene: general ? 'revenu' : rent ? 'loyer' : energy ? 'energie' : 'courses',
-    metricLabel: erosion ? `Pouvoir d’achat en euros de ${state.startYear}` : general ? 'Revenu nécessaire pour suivre les prix' : rent ? 'Estimation si le loyer suivait l’IRL' : energy ? 'Estimation selon l’indice Énergie' : 'Estimation selon les prix alimentaires',
+    metricLabel: erosion ? `Pouvoir d’achat en euros de ${state.startYear}` : general ? `Revenu testé : ${fmtEUR(testedAmount)} · seuil pour suivre les prix` : rent ? 'Estimation si le loyer suivait l’IRL' : energy ? 'Estimation selon l’indice Énergie' : `Budget testé : ${fmtEUR(testedAmount)} · seuil pour les mêmes courses`,
     period: `${startLabel} → ${observation}`,
   }
 }
 
 export function buildTweetText(state) {
   const d = purchasingPowerStory(state)
-  const difference = fmtEUR(Math.abs(d.change))
-  const priceChange = fmtPct(d.pricePct)
+  const base = fmtEUR(state.amount), end = fmtEUR(d.endAmount), tested = fmtEUR(d.testedAmount)
+  const growth = fmtPct(d.growthPct), prices = fmtPct(d.pricePct)
+  const direction = d.testedAmount - d.endAmount
+  const equal = Math.abs(direction) < 0.005
+  const verdict = equal ? 'autant' : direction > 0 ? 'davantage' : 'moins'
   if (d.erosion) return [
-    `💶 Le montant n’a pas changé. Ce qu’il permet d’acheter, si.`,
-    `Avec un budget resté à ${fmtEUR(state.amount)} depuis ${state.startYear}, ton pouvoir d’achat en ${d.observation} équivaut à environ ${fmtEUR(d.endAmount)} en euros de ${state.startYear}.`,
-    `📉 ${difference} de pouvoir d’achat ${d.change <= 0 ? 'en moins' : 'en plus'}, soit ${fmtPct(d.equivalentPct)}.`,
-    `Les prix ont évolué de ${priceChange} sur la période. Une hausse des prix et une perte de pouvoir d’achat ne se calculent pas avec le même pourcentage.`,
-    `Repère INSEE : moyenne ${state.startYear} → ${d.observation}. Il s’agit d’une moyenne, pas de ton panier personnel.`,
-    `💬 Quel poste pèse davantage dans ton budget aujourd’hui ?`,
+    `💶 ${base} par mois depuis ${state.startYear}. Même budget… mais peux-tu encore acheter autant ?`,
+    `Entre ${state.startYear} et ${d.observation}, les prix ont évolué de ${prices}.`,
+    `Tes ${base} équivalent désormais à environ ${end} en euros de ${state.startYear} : ${fmtPct(d.equivalentPct)} de pouvoir d’achat.`,
+    `Pour acheter l’équivalent de ce que ce budget permettait au départ, il faudrait environ ${fmtEUR(d.newAmount)} par mois.`,
+    `💬 Tu as ajusté ton budget, changé tes achats ou réduit les quantités ?`,
   ].join('\n\n')
   if (d.general) return [
-    `💶 Ton revenu a-t-il suivi les prix depuis ${state.startYear} ?`,
-    `Pour conserver le pouvoir d’achat d’un revenu mensuel de ${fmtEUR(state.amount)} en ${state.startYear}, il faudrait environ ${fmtEUR(d.endAmount)} en ${d.observation}.`,
-    `📍 ${fmtEUR(state.amount)} → ${fmtEUR(d.endAmount)}`,
-    `Soit ${difference} ${d.change >= 0 ? 'de plus' : 'de moins'} par mois pour acheter l’équivalent, selon l’inflation générale (${priceChange}).`,
-    `Cette hausse permettrait de suivre les prix. Elle ne signifierait pas forcément vivre mieux.`,
-    `Repère INSEE : moyenne ${state.startYear} → ${d.observation}. Ton budget peut évoluer différemment de cette moyenne.`,
-    `💬 Ton revenu a-t-il évolué dans les mêmes proportions ?`,
+    `💶 Ton salaire passe de ${base} à ${tested} depuis ${state.startYear}. Tu gagnes ${fmtEUR(Math.abs(d.testedAmount - state.amount))} ${d.growthPct >= 0 ? 'de plus' : 'de moins'}… mais peux-tu acheter davantage ?`,
+    `Testons cette évolution face aux prix 👇`,
+    `📈 Ton salaire : ${growth}\n🛒 Les prix entre ${state.startYear} et ${d.observation} : ${prices}`,
+    `Pour conserver le pouvoir d’achat de tes ${base} de départ, il faudrait environ ${end} par mois.`,
+    equal ? `Avec ${tested}, ton salaire suit exactement les prix.` : `Avec ${tested}, tu peux acheter ${verdict} : ton revenu a ${direction > 0 ? 'davantage' : 'moins'} progressé que les prix.`,
+    `💬 Tes dernières augmentations t’ont permis de vivre mieux, ou surtout de suivre les dépenses ?`,
   ].join('\n\n')
-  const hook = d.rent
-    ? `🏠 Si ton loyer avait suivi l’IRL depuis ${state.startYear}, où en serait-il ?`
-    : d.energy ? `⚡ Ton budget énergie de ${state.startYear} suffirait-il encore aujourd’hui ?`
-      : `🛒 Le même panier de courses, ${difference} ${d.change >= 0 ? 'de plus' : 'de moins'}.`
-  const intro = d.rent
-    ? `Un loyer de ${fmtEUR(state.amount)} au T1 ${state.startYear} atteindrait environ ${fmtEUR(d.endAmount)} au ${d.observation} s’il avait suivi l’IRL.`
-    : `Un budget mensuel de ${fmtEUR(state.amount)} ${d.energy ? 'pour l’énergie' : 'pour les courses'} en ${state.startYear} correspondrait à environ ${fmtEUR(d.endAmount)} en ${d.observation}, selon l’indice ${d.energy ? 'Énergie' : 'Alimentation'}.`
-  const caveat = d.rent
-    ? `L’IRL sert de référence aux révisions : il ne mesure pas le prix de tous les loyers.`
-    : d.energy ? `L’énergie regroupe notamment carburants, gaz et électricité. Ce n’est pas l’évolution exacte de ta facture ou du prix à la pompe.`
-      : `C’est un repère moyen pour un panier comparable, pas le prix d’une liste précise de produits.`
+  if (d.rent) return [
+    `🏠 ${base} de loyer au ${d.startLabel} : que donnerait une révision suivant l’IRL jusqu’au ${d.observation} ?`,
+    `Un loyer révisé selon cet indice atteindrait environ ${end} par mois, soit ${fmtEUR(Math.abs(d.change))} ${d.change >= 0 ? 'de plus' : 'de moins'}.`,
+    `📍 IRL : ${prices} entre ${d.startLabel} et ${d.observation}.`,
+    `💬 Ton loyer a-t-il suivi cette évolution, ou est-il resté stable ?`,
+  ].join('\n\n')
+  if (d.energy) {
+    const gap = d.endAmount - d.generalAmount
+    return [
+      `⚡ ${fmtPct(d.generalCumPct)} pour les prix en général. ${prices} pour l’énergie.`,
+      `Voilà l’écart entre ${state.startYear} et ${d.observation} 👇`,
+      `Pour l’équivalent d’un budget énergie de ${base} par mois au départ :\n• en suivant les prix en général : ${fmtEUR(d.generalAmount)}\n• en suivant les prix de l’énergie : ${end}`,
+      `Soit ${fmtEUR(Math.abs(gap))} ${gap >= 0 ? 'de plus' : 'de moins'} par mois que si l’énergie avait suivi l’inflation générale.`,
+      `💬 Tu as changé de contrat, réduit ta consommation ou absorbé la différence ?`,
+    ].join('\n\n')
+  }
   return [
-    hook, intro,
-    `📍 ${fmtEUR(state.amount)} → ${fmtEUR(d.endAmount)}`,
-    `Soit ${difference} ${d.change >= 0 ? 'de plus' : 'de moins'} par mois. Sur 12 mois au même niveau de dépense, l’écart représenterait ${fmtEUR(Math.abs(d.change) * 12)}.`,
-    `${d.rent ? 'L’IRL' : d.energy ? 'L’énergie' : 'L’alimentation'} : ${priceChange}, contre ${fmtPct(d.generalCumPct)} pour les prix en général.`,
-    `${caveat} Repère INSEE : ${d.rent ? 'T1' : 'moyenne'} ${state.startYear} → ${d.observation}${d.rent ? `. Prix en général : ${PRICE_OBSERVATION.label}` : ''}.`,
-    d.rent ? `💬 Ton loyer a-t-il suivi cette évolution ?` : d.energy ? `💬 Quel poste énergie pèse le plus dans ton budget ?` : `💬 Tu le ressens surtout sur quels produits ?`,
+    `🛒 Ton budget courses évolue de ${growth} depuis ${state.startYear} ? ${equal ? 'C’est exactement l’évolution des prix alimentaires.' : direction < 0 ? 'Pourtant, les prix alimentaires ont augmenté davantage.' : 'Cette fois, ton budget progresse davantage que les prix alimentaires.'}`,
+    `Entre ${state.startYear} et ${d.observation} :\n🥦 Alimentation : ${prices}\n🛒 Prix en général : ${fmtPct(d.generalCumPct)}`,
+    `Les courses qui coûtaient ${base} au départ demanderaient environ ${end} pour acheter l’équivalent.`,
+    `Avec la variation testée, ton budget passe à ${tested}. Il permet d’acheter ${verdict} qu’au départ.`,
+    `💬 Tu as augmenté ton budget courses, ou changé les produits et les quantités ?`,
   ].join('\n\n')
 }
 

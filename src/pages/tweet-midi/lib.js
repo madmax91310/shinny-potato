@@ -339,12 +339,12 @@ export function pickNext(format, history, mode = MODES.SIMPLE) {
 // précise, jamais ajoutée à l'historique/l'anti-répétition, comme le reste de l'app pour une
 // combinaison précisément choisie (revisitable librement). Le tirage aléatoire DANS ce format passe
 // par un bouton dédié dans App.jsx (pickNext appelé directement), jamais par ici.
-function buildPouvoirAchatItem({ amount, startYear, paMode, posteId }) {
+function buildPouvoirAchatItem({ amount, startYear, paMode, posteId, growthPct }) {
   const poste = paMode === "par-poste" ? posteId : null;
   return {
-    id: `pouvoir-achat:manual:${amount}:${startYear}:${paMode}:${poste ?? "none"}`,
+    id: `pouvoir-achat:manual:${amount}:${startYear}:${paMode}:${poste ?? "none"}:${growthPct ?? "default"}`,
     format: FORMATS.POUVOIR_ACHAT,
-    amount, startYear, mode: paMode, posteId: poste,
+    amount, startYear, mode: paMode, posteId: poste, growthPct,
   };
 }
 
@@ -596,7 +596,7 @@ export function buildPerformanceDepuisComparatifText(item) {
 }
 
 export function buildPouvoirAchatText(item) {
-  const state = { amount: item.amount, startYear: item.startYear, mode: item.mode, posteId: item.posteId };
+  const state = { amount: item.amount, startYear: item.startYear, mode: item.mode, posteId: item.posteId, growthPct: item.growthPct };
   return buildPouvoirAchatTweetText(state);
 }
 
