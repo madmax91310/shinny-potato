@@ -31,7 +31,5 @@ export function performanceExcerpt(perf) {
     ...YEARS.map(year => `${year} : ${formatPerformance(perf?.[year])}`),
     '',
     `📊 Performance annualisée (${YEARS[0]} à ${YEARS.at(-1)}) : ${formatPerformance(annualized)}${annualized === null ? '' : ' par an'}`,
-    '',
-    'Simulation avec rééquilibrage annuel, sans conversion des devises.',
   ].join('\n')
 }
