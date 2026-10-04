@@ -12,6 +12,6 @@ Photographies réelles, associations explicites et fichiers locaux. Le rendu app
 - **berkshire** : [File:Warren Buffett at the 2015 SelectUSA Investment Summit.jpg](https://commons.wikimedia.org/wiki/File%3AWarren_Buffett_at_the_2015_SelectUSA_Investment_Summit.jpg) — International Trade Administration ; Domaine public.
 - **li-lu** : [Li Lu · Himalaya Capital](https://www.himcap.com/) — Himalaya Capital ; Source officielle.
 - **aschenbrenner** : [Leopold Aschenbrenner · The Rhine Group](https://www.rhinegroup.eu/members/leopold-aschenbrenner) — The Rhine Group ; Source officielle.
-- **druckenmiller** : [Stanley Druckenmiller · Bridgespan](https://www.bridgespan.org/insights/stanley-druckenmiller-steps-into-the-philanthropy-spotlight) — The Bridgespan Group ; CC BY 4.0.
+- **druckenmiller** : [Stanley Druckenmiller · Hard Lessons](https://www.morganstanley.com/insights/videos/hard-lessons/duquesne-stan-druckenmiller-iliana-bouzali) — Morgan Stanley ; Source officielle.
 
-Les sources officielles Third Point, Himalaya Capital et The Rhine Group ne publient pas de licence ouverte documentée : ne pas les présenter comme des images libres de droits. Les crédits sont affichés dans l’application et le PNG. Les photographies sous CC BY-SA conservent leur licence pour leurs adaptations.
+Les sources officielles Morgan Stanley, Third Point, Himalaya Capital et The Rhine Group ne publient pas de licence ouverte documentée : ne pas les présenter comme des images libres de droits. Les crédits sont affichés dans l’application et le PNG. Les photographies sous CC BY-SA conservent leur licence pour leurs adaptations.

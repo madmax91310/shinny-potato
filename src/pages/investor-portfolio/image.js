@@ -44,7 +44,7 @@ export async function renderPortfolioImage(portfolio) {
   ctx.save(); ctx.beginPath(); ctx.moveTo(42,204); ctx.lineTo(532,210); ctx.lineTo(544,904); ctx.lineTo(36,914); ctx.closePath(); ctx.clip()
   const w = 520, h = 724, scale = Math.max(w / photo.width, h / photo.height)
   ctx.filter = 'grayscale(40%) sepia(22%) contrast(110%)'
-  ctx.drawImage(photo, 30 + w / 2 - photo.width * scale * (identity.slug === 'druckenmiller' ? .72 : .5), 198 + (h - photo.height * scale) / 2, photo.width * scale, photo.height * scale)
+  ctx.drawImage(photo, 30 + w / 2 - photo.width * scale * .5, 198 + (h - photo.height * scale) / 2, photo.width * scale, photo.height * scale)
   ctx.filter = 'none'
   ctx.fillStyle = 'rgba(243,231,204,.14)'; ctx.fillRect(30,198,w,h)
   for (let y = 208; y < 922; y += 5) for (let x = 40; x < 546; x += 5) {
