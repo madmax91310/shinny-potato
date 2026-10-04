@@ -1,3 +1,4 @@
+import { duelEditorial } from './editorial.js';
 import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js';
 import { YEARS } from '../../data/portfolio-assets.js'
 import { ITEM_BY_ID, CATALOG, FX_SOURCE, ROLES, euroReturn } from './catalog.js'
@@ -55,16 +56,16 @@ function exposureReading(portfolio) {
     momentum: 'privilégient les actions des pays développés dont les cours ont récemment le plus progressé',
     minvol: 'visent une volatilité plus faible dans les actions des pays développés, sans garantir une protection contre les baisses',
   }
-  if (factorReadings[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${factorReadings[complement.exposure]}. Ce filtre peut retenir des entreprises déjà présentes dans la base.`)
+  if (factorReadings[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${factorReadings[complement.exposure]}. Ce filtre peut retenir des entreprises déjà présentes dans la base.${complement.exposure === 'value' ? ' Une action peu chère peut le rester longtemps.' : complement.exposure === 'quality' ? ' Ces critères ne garantissent ni un bon prix d’achat ni de meilleures performances.' : ''}`)
   const complements = {
     exusa: 'renforcent les pays développés hors États-Unis ; ce choix réduit le poids américain sans ajouter les émergents',
     'us-small': 'ajoutent les petites entreprises américaines, plus sensibles aux conditions économiques et de financement',
-    'em-bond': 'ajoutent des obligations émergentes émises en dollars, avec risque de crédit, de taux et de change',
-    'em-local-bond': 'ajoutent des obligations émergentes émises en monnaies locales, avec risque de crédit, de taux et de change',
-    longbond: 'ajoutent des obligations d’État longues en euros, très sensibles aux mouvements de taux',
+    'em-bond': 'ajoutent des obligations émergentes émises en dollars, avec un risque de non-remboursement, des cours sensibles aux taux et une exposition aux variations des monnaies',
+    'em-local-bond': 'ajoutent des obligations émergentes émises dans les monnaies des pays emprunteurs, avec un risque de non-remboursement, des cours sensibles aux taux et une exposition aux variations des monnaies',
+    longbond: 'ajoutent des obligations d’État longues en euros, dont les cours peuvent beaucoup baisser lorsque les taux montent',
     cash: 'suivent le taux monétaire en euros via swap. Le capital n’est pas garanti et le rendement varie avec les taux',
     shortbond: 'ajoutent des emprunts d’État en euros à très courte échéance. Leur valeur peut baisser',
-    globalbond: 'ajoutent des obligations mondiales avec couverture du change vers l’euro. Le risque de taux et de crédit reste présent',
+    globalbond: 'ajoutent des obligations mondiales avec une couverture qui cherche à limiter les variations des devises face à l’euro. Les cours peuvent baisser lorsque les taux montent ou que les emprunteurs rencontrent des difficultés',
     dividend: 'renforcent les actions sélectionnées selon une stratégie de dividendes. Les revenus sont réinvestis dans cette comparaison ; ces actions peuvent déjà être présentes dans la base',
   }
   if (complements[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${complements[complement.exposure]}.`)
@@ -93,7 +94,7 @@ export function buildCustomDuel(definition) {
   const baseA = a.assets[0].label
   const baseB = b.assets[0].label
   const unique = [...new Set(selection.map((line) => line.id))].map((id) => ITEM_BY_ID.get(id))
-  return {
+  const duel = {
     id: definition.id ?? 'composition-personnalisee', title: definition.title ?? 'Deux façons de construire ton portefeuille',
     hook: definition.hook ?? (a.assets[0].exposure !== b.assets[0].exposure
       ? `${baseA} ou ${baseB} : quelle base choisirais-tu pour ton portefeuille ?`
@@ -104,17 +105,12 @@ export function buildCustomDuel(definition) {
     sources: [...unique.map((asset) => ({ name: asset.name, isin: asset.isin, url: asset.source, note: asset.note })),
       ...(unique.some((asset) => asset.currency === 'USD') ? [{ name: 'Taux EUR/USD de fin d’année (BCE)', url: FX_SOURCE, note: 'Conversion annuelle des rendements USD vers EUR.' }] : [])],
   }
+  const editorial = duelEditorial(duel)
+  return { ...duel, hook: editorial.hook, question: editorial.question }
 }
 export function buildDuel(definition) { return buildCustomDuel(definition) }
 
-export function resultReading(duel) {
-  const { a, b, years } = duel
-  const difference = b.final - a.final
-  if (Math.abs(difference) < .5) return 'Les deux portefeuilles terminent au même montant à l’euro près.'
-  const winner = difference > 0 ? 'B' : 'A'
-  const year = years.reduce((largest, current) => Math.abs(a.annual[current] - b.annual[current]) > Math.abs(a.annual[largest] - b.annual[largest]) ? current : largest)
-  return `Le portefeuille ${winner} termine devant. L’écart annuel le plus marqué apparaît en ${year} : A ${formatPercent(a.annual[year])}, B ${formatPercent(b.annual[year])}.`
-}
+export function resultReading(duel) { return duelEditorial(duel).conclusion }
 
 export function buildTweet(duel) {
   const { a, b, years, currency } = duel
@@ -127,12 +123,11 @@ export function buildTweet(duel) {
     ...([...a.assets, ...b.assets].some(asset => SIMULATION_PROXIES[asset.isin]) ? ['Base historique : ' + [...new Set([...a.assets, ...b.assets].filter(asset => SIMULATION_PROXIES[asset.isin]).map(asset => SIMULATION_PROXIES[asset.isin].scope))].join(' ; '), ''] : []),
     `Deux portefeuilles, ${formatCapital(INITIAL, currency)} investis début ${years[0]}, sans versement supplémentaire jusqu’à fin ${years.at(-1)} 👇`, '',
     `🅰️ ${a.name}`, allocation(a), '', `🅱️ ${b.name}`, allocation(b), '',
-    'Ce que tu détiens :', `🅰️ ${duel.readings[0]}`, `🅱️ ${duel.readings[1]}`, '',
+    '🔎 Ce qui change :', `🅰️ ${duel.readings[0]}`, `🅱️ ${duel.readings[1]}`, '',
     `💰 Fin ${years.at(-1)} :`, `🅰️ ${formatCapital(a.final, currency)}`, `🅱️ ${formatCapital(b.final, currency)}`, gap, '',
     '📊 Chaque année (A / B) :', ...years.map((year) => `${year} : ${formatPercent(a.annual[year])} / ${formatPercent(b.annual[year])}`), '',
     `📉 Pire année : A ${formatPercent(a.worst)} en ${a.worstYear}, B ${formatPercent(b.worst)} en ${b.worstYear}.`, '',
     resultReading(duel), '', `💬 ${duel.question}`, '',
-    '📌 Simulation en euros, revenus réinvestis, pondérations rétablies chaque début d’année. Rendements USD convertis en EUR. Hors courtage, frais de rééquilibrage et fiscalité.',
     '⚠️ Les performances passées ne préjugent pas des performances futures. Pas un conseil financier.',
   ].join('\n')
 }
