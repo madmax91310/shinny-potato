@@ -1,3 +1,4 @@
+import { allocationQuestions } from './allocationEditorial.js';
 import { compactHooks, compactRole, portfolioAssetLabel } from './compact.js';
 import { assetEditorial } from "./asset-editorial.js";
 import { PRO_EUROPE_CORE_IDS } from "./theses.js";
@@ -340,7 +341,7 @@ export function buildEditorial(selection, history = [], profileId, riskId) {
   // Une série de publications peut alterner profils, paliers et mode manuel.
   const recent = history.slice(-20);
   const hook = rotate(compactHooks(selection), content.kind, recent, "hookId");
-  const cta = rotate(content.questions, content.kind, recent, "ctaTemplate");
+  const cta = rotate(allocationQuestions(selection) ?? content.questions, content.kind, recent, "ctaTemplate");
   const lever = selection.some(s => LEVERAGE.includes(s.id));
   const warnings = [];
   if (lever) warnings.push("Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.");

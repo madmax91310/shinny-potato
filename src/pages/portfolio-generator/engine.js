@@ -1,3 +1,4 @@
+import { allocationAngle } from './allocationEditorial.js';
 import { benchmarkKey } from '../../data/asset-selection.js';
 import { compactRole, portfolioAssetLabel, compactHooks } from "./compact.js";
 import { ASSETS, YEARS, getAsset } from '../../data/portfolio-assets.js';
@@ -6,7 +7,7 @@ import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
 } from "./theses.js";
-import { DISCLAIMER, GUARANTEE_LINE } from "./copy.js";
+import { DISCLAIMER } from "./copy.js";
 import { exposureVector, exposureSignature, exposureDistance } from "./exposures.js";
 import { getRecipes, withinRecipe } from "./recipes.js";
 import { buildEditorial } from "./editorial.js";
@@ -394,11 +395,13 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
 
 export function renderTweetText(p) {
   // Rebuild from the actual holdings as saved history can contain the old copy.
-  const blocks = [p.hook?.startsWith('🧩 Exemple de portefeuille :') ? p.hook : compactHooks(p.selection)[0]];
+  const index = Number(p.hookId?.match(/-(\d+)$/)?.[1] ?? 0) % 3;
+  const blocks = [compactHooks(p.selection)[index], '💼 La répartition'];
   blocks.push(p.selection.map(s => `${s.emoji} ${s.pct}% ${portfolioAssetLabel(s)}\n${compactRole(s, p.selection)}`).join("\n\n"));
   if (p.selection.some(s => ["lqq", "cl2"].includes(s.id))) blocks.push("Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.");
-  blocks.push(p.cta);
-  blocks.push(`${DISCLAIMER}\n${GUARANTEE_LINE}`);
+  blocks.push(`🔎 Le choix derrière cette allocation\n${allocationAngle(p.selection).logic}`);
+  blocks.push(p.hook === compactHooks(p.selection)[index] ? p.cta : buildEditorial(p.selection, [], p.profileId, p.riskId).cta);
+  blocks.push(DISCLAIMER);
   return blocks.join("\n\n");
 }
 

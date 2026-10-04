@@ -20,8 +20,8 @@ assert.match(satellite.selection[0].pourquoi, /10%.*davantage en fonds euros/);
 const euro = manual([{id:"cac40",pct:30},{id:"eurostoxx50",pct:70}]);
 assert.match(euro.logic, /entreprises en commun/);
 const crypto = manual([{id:"fonds_euros",pct:58},{id:"bitcoin",pct:10},{id:"msci_world",pct:22},{id:"or",pct:10}]);
-assert.match(crypto.hook, /^🧩 Exemple de portefeuille :.*Bitcoin/);
-assert.doesNotMatch(crypto.hook, /\d+(?:[,.]\d+)?\s*%/);
+assert.match(crypto.hook, /^🧩 .*Bitcoin.*exemple de portefeuille/i);
+assert.match(crypto.hook, /\d+(?:[,.]\d+)?\s*%/);
 assert.match(crypto.logic, /petite ligne.*difficile à garder/);
 const leverage = manual([{id:"lqq",pct:10},{id:"fonds_euros",pct:90}]);
 assert.match(leverage.warning, /2x.*quotidien/);
@@ -31,14 +31,14 @@ assert.doesNotMatch(zero.hook + zero.logic + zero.cta, /Bitcoin|crypto/);
 for (const asset of ASSETS) {
   const p = manual([{id:asset.id,pct:100}]);
   assert.equal(p.selection[0].pct, 100);
-  assert.doesNotMatch(p.hook, /\d+(?:[,.]\d+)?\s*%/);
+  assert.match(p.hook, /\d+(?:[,.]\d+)?\s*%/);
   assert.match(p.selection[0].pourquoi, /toute l’épargne/);
   assert.ok(p.selection[0].pourquoi.startsWith(assetEditorial(asset).text));
   assert.doesNotMatch(renderTweetText(p), /undefined|NaN|\{pct\}/);
 }
 for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombos)) {
   const p = generatePortfolio([], risk, profile.id);
-  assert.ok(p.hook.startsWith("🧩 Exemple de portefeuille :"));
+  assert.ok(/^🧩 .*exemple de portefeuille/i.test(p.hook));
   assert.match(p.sousTitre, /La répartition/);
   assert.ok(p.logic.length > 50);
   assert.deepEqual(p.perf, computeYearlyPerf(p.selection));
@@ -46,7 +46,7 @@ for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombo
 // La sélection manuelle n’hérite pas du profil choisi dans le formulaire.
 for (const profile of PROFILES) {
   const p = manual([{id:"fonds_euros",pct:100}], profile.id);
-  assert.match(p.hook, /^🧩 Exemple de portefeuille :.*fonds euros/);
+  assert.match(p.hook, /^🧩 .*fonds euros/i);
   assert.doesNotMatch(p.hook, /Crypto-Curieux|Bitcoin|Thématique|à la carte/i);
 }
 const headingCases = [
@@ -56,14 +56,14 @@ const headingCases = [
   [[{id:"ethereum",pct:40},{id:"argent",pct:30},{id:"scpi",pct:30}], ""],
 ];
 for (const [rows] of headingCases) {
-  assert.match(manual(rows).hook, /^🧩 Exemple de portefeuille :/);
+  assert.match(manual(rows).hook, /^🧩 .*exemple de portefeuille/i);
 }
 // Les familles d’accroches tournent même si les poids changent entre deux générations.
 const hookHistory = [];
 for (const pct of [10, 11, 12, 13, 14, 15]) {
   const p = buildManualPortfolio([{id:"bitcoin",pct},{id:"msci_world",pct:100-pct}], "generaliste", hookHistory);
   assert.notEqual(p.hookId, hookHistory.at(-1)?.hookId);
-  assert.doesNotMatch(p.hook, /\d+(?:[,.]\d+)?\s*%/);
+  assert.match(p.hook, /\d+(?:[,.]\d+)?\s*%/);
   assert.match(p.selection.find(s => s.id === "bitcoin").pourquoi, new RegExp(`${pct}%`));
   hookHistory.push(p);
 }
@@ -86,7 +86,7 @@ for (const rows of [
   const history = [];
   for (let i = 0; i < 3; i++) {
     const p = buildManualPortfolio(rows, "generaliste", history);
-    assert.doesNotMatch(p.hook, /\d+(?:[,.]\d+)?\s*%/);
+    assert.match(p.hook, /\d+(?:[,.]\d+)?\s*%/);
     assert.doesNotMatch(p.logic, /0% restants/);
     history.push(p);
   }
@@ -119,11 +119,11 @@ for (let i=0;i<6;i++) {
   const p = buildManualPortfolio([{id:"fonds_euros",pct:60},{id:"msci_world",pct:30},{id:"bitcoin",pct:10}], "generaliste", btcHistory);
   assert.notEqual(p.hookId, btcHistory.at(-1)?.hookId);
   assert.notEqual(p.ctaTemplate, btcHistory.at(-1)?.ctaTemplate);
-  assert.doesNotMatch(p.hook, /\d+(?:[,.]\d+)?\s*%/);
+  assert.match(p.hook, /\d+(?:[,.]\d+)?\s*%/);
   assert.doesNotMatch(p.cta, /à le |à les |de le |de les /);
   btcHistory.push(p);
 }
-assert.match(btcHistory[0].hook, /fonds euros.*Bitcoin/);
+assert.match(btcHistory[0].hook, /Bitcoin.*fonds euros|fonds euros.*Bitcoin/);
 assert.match(btcHistory[0].selection[1].pourquoi, /davantage en fonds euros/);
 assert.match(btcHistory[0].cta, /fonds mondial/);
 const stale = buildEditorial(minority.selection, [], "bouclier", "prudent", {description:"Fonds euros dominants : 90%."});
@@ -132,7 +132,7 @@ for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombo
   const history = [];
   for (let i=0;i<6;i++) {
     const p = generatePortfolio(history,risk,profile.id);
-    assert.doesNotMatch(p.hook, /\d+(?:[,.]\d+)?\s*%|vous|votre/);
+    assert.match(p.hook, /\d+(?:[,.]\d+)?\s*%|vous|votre/);
     assert.doesNotMatch(p.cta+p.intro+p.logic, /à le |à les |de le |de les |undefined/);
     for (const s of p.selection) assert.ok(s.pourquoi.startsWith(assetEditorial(s).text));
     history.push(p);
@@ -183,7 +183,7 @@ const europeanDebt = manual([{id:"oblig_etat_eur_short",pct:60},{id:"msci_europe
 assert.match(europeanDebt.hookId,/europe-lending/);
 assert.doesNotMatch(europeanDebt.cta,/indice mondial/);
 for (const p of [optionsIncome,indexMix,metalsCrypto,themeMoney,factors,...globalHistory]) {
-  assert.doesNotMatch(p.hook,/\d+(?:[,.]\d+)?\s*%/);
+  assert.match(p.hook,/\d+(?:[,.]\d+)?\s*%/);
   assert.doesNotMatch(p.selection.map(s=>s.pourquoi).join(" "), /assez pour compter dans le résultat/);
   for (const s of p.selection) assert.ok(s.desc.split(/\s+/).length <= 22);
 }
@@ -202,8 +202,8 @@ for (const isin of ['IE0006WW1TQ4','FR0014017NX3']) {
 // Compact publication stays identifiable and keeps instrument-specific roles.
 const example = manual([{id:'msci_world_amundi_pea',pct:24},{id:'nasdaq100_ishares',pct:9},{id:'actions_value',pct:28},{id:'cl2',pct:4},{id:'msci_em_spdr',pct:20},{id:'or_wisdomtree',pct:15}]);
 const compactText = renderTweetText(example);
-assert.equal(example.hook, '🧩 Exemple de portefeuille : des actions mondiales, de l’or et une touche de levier 👇');
-assert.ok(compactText.length < 1600);
+assert.match(example.hook, /4 % d’ETF à levier.*24 %.*World/);
+assert.ok(compactText.length < 2200);
 assert.doesNotMatch(compactText, /La logique|💡|→|Pire année|Performances simulées|Base historique/);
 assert.match(compactText, /levier 2x est quotidien/);
 assert.equal(compactText.split('\n').filter(line => /^\S+ \d+% /.test(line)).length, 6);
@@ -239,3 +239,30 @@ assert.ok(dataLabels(ASSETS.find(a=>a.id==='bitcoin')).includes('Historique reco
 assert.ok(dataLabels(ASSETS.find(a=>a.id==='quality_dividend')).includes('Historique reconstitué'));
 assert.ok(dataLabels(ASSETS.find(a=>a.id==='quality_dividend')).includes('Indice modifié'));
 console.log('OK : séries officielles USD distinguées des proxies, argent sans conversion.');
+
+// Les quatre exemples validés décrivent des poids de la composition, pas des rendements.
+for (const [rows, hook, logic, question] of [
+ [[{id:'fonds_euros',pct:40},{id:'monetaire_xeon',pct:38},{id:'msci_acwi_ishares',pct:22}], /22 % en actions, 78 % en fonds euros et monétaire/, /ne répondent pas aux mêmes conditions de garantie/, /actions à 22 %/],
+ [[{id:'sp500_ishares',pct:36},{id:'world_ex_usa',pct:18},{id:'oblig_corp_ig',pct:46}], /36 % en actions américaines, 18 % dans les autres pays développés/, /marchés émergents ne sont pas inclus/, /poids des États-Unis/],
+ [[{id:'msci_world_ishares',pct:46},{id:'bitcoin_wisdomtree',pct:18},{id:'nasdaq100_ishares',pct:16},{id:'cl2',pct:10},{id:'or_ishares',pct:10}], /18 % de Bitcoin et 10 % d’ETF à levier/, /renforce cette exposition/, /à la fois la crypto et le levier/],
+ [[{id:'sp500_equal_weight',pct:32},{id:'russell2000_spdr',pct:49},{id:'world_ex_usa',pct:19}], /49 % en petites entreprises américaines, 81 % en actions américaines/, /Toute l’allocation est exposée aux actions/, /petites entreprises américaines/],
+]) {
+ const p=manual(rows);const text=renderTweetText(p);
+ assert.match(p.hook,hook);assert.match(text,logic);assert.match(text,question);
+ assert.match(text,/💼 La répartition/);assert.match(text,/🔎 Le choix derrière cette allocation/);
+ assert.doesNotMatch(text,/\nPour /);
+ assert.deepEqual(p.perf,computeYearlyPerf(p.selection));
+ const stale=renderTweetText({...p,hook:'🧩 Exemple de portefeuille : ancien texte',cta:'💬 Ancienne question',hookId:'ancien-0'});
+ assert.match(stale,hook);assert.doesNotMatch(stale,/ancien texte|Ancienne question/);
+}
+const moneyOnly=manual([{id:'monetaire_xeon',pct:80},{id:'msci_world',pct:20}]);
+assert.match(moneyOnly.hook,/80 % en monétaire/);
+assert.doesNotMatch(renderTweetText(moneyOnly),/fonds euros/);
+const cryptoOnly=manual([{id:'bitcoin',pct:60},{id:'ethereum',pct:40}]);
+assert.match(cryptoOnly.hook,/100 % en crypto/);
+assert.doesNotMatch(renderTweetText(cryptoOnly),/fonds euros|hors crypto/);
+console.log('OK : accroches chiffrées, agrégats, questions adaptées et anciens portefeuilles reconstruits.');
+assert.match(renderTweetText(optionsIncome), /obligations financent l’État américain/);
+assert.match(renderTweetText(optionsIncome), /options.*hausse.*primes/s);
+assert.match(renderTweetText(indexMix), /échéances courtes pour limiter/);
+for (const asset of ASSETS) assert.doesNotMatch(manual([{id:asset.id,pct:100}]).selection[0].shortRole,/ et limiter|ligne réunit.*une seule ligne/);
