@@ -54,8 +54,7 @@ for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [date, ser
   if (independent) {
     assert.equal(series.metadata.periodEnd, '2025-12-31');
     assert.equal(series.metadata.periodStart, '2023-01-01');
-    assert(series.metadata.sourceUrls.length, `${id}: source indépendante absente`);
-    if (!['bitcoin', 'ethereum'].includes(id)) assert(series.metadata.checkedAt, `${id}: source indépendante non datée`);
+    assert(series.metadata.sourceUrls.length && series.metadata.checkedAt, `${id}: source indépendante non datée`);
     assert(DATA_CATALOG.some(record => record.fields.some(field => field.value === series)), `${id}: série absente du catalogue`);
   }
   assert(series.values.every(([year, value]) => year >= 2021 && year <= 2025 && (Number.isFinite(value) || (independent && value === null && !series.currency))), `${id}: série invalide`);

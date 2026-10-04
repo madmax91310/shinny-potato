@@ -981,13 +981,14 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
       },
       "source": {
         "label": "Cours spot · Slickcharts",
-        "url": "https://www.slickcharts.com/currency/bitcoin/returns"
+        "url": "https://www.slickcharts.com/currency/BTC/returns"
       },
       "currency": "USD",
       "method": "cours spot",
-      "note": "Migration de la série spot déjà sourcée dans le comparateur. Frais des ETP et staking exclus ; aucune nouvelle vérification externe certifiée.",
+      "note": "Cours spot USD, clôture de l’année précédente à clôture de l’année courante. Table annuelle Slickcharts relue le 04/10/2026 ; frais des ETP et staking exclus.",
       "periodStart": "2023-01-01",
-      "periodEnd": "2025-12-31"
+      "periodEnd": "2025-12-31",
+      "checkedAt": "2026-10-04"
     }
   },
   "ethereum": {
@@ -1013,13 +1014,14 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
       },
       "source": {
         "label": "Cours spot · Slickcharts",
-        "url": "https://www.slickcharts.com/currency/ethereum/returns"
+        "url": "https://www.slickcharts.com/currency/ETH/returns"
       },
       "currency": "USD",
       "method": "cours spot",
-      "note": "Migration de la série spot déjà sourcée dans le comparateur. Frais des ETP et staking exclus ; aucune nouvelle vérification externe certifiée.",
+      "note": "Cours spot USD, clôture de l’année précédente à clôture de l’année courante. Table annuelle Slickcharts relue le 04/10/2026 ; frais des ETP et staking exclus.",
       "periodStart": "2023-01-01",
-      "periodEnd": "2025-12-31"
+      "periodEnd": "2025-12-31",
+      "checkedAt": "2026-10-04"
     }
   }
 };

@@ -727,6 +727,56 @@
         "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF"
       },
       "note": "La fiche du fonds publie une ligne indice, mais sa devise et les éventuels changements de benchmark sur 2023–2025 ne sont pas suffisamment établis. Aucun chiffre publié dans le tweet."
+    },
+    {
+      "id": "bitcoin",
+      "label": "Bitcoin",
+      "values": [
+        [
+          2023,
+          155.42
+        ],
+        [
+          2024,
+          121.05
+        ],
+        [
+          2025,
+          -6.34
+        ]
+      ],
+      "currency": "USD",
+      "method": "cours spot",
+      "source": {
+        "label": "Cours spot · Slickcharts",
+        "url": "https://www.slickcharts.com/currency/BTC/returns"
+      },
+      "note": "Cours spot USD, clôture de l’année précédente à clôture de l’année courante. Table annuelle Slickcharts relue le 04/10/2026 ; frais des ETP et staking exclus."
+    },
+    {
+      "id": "ethereum",
+      "label": "Ethereum",
+      "values": [
+        [
+          2023,
+          90.64
+        ],
+        [
+          2024,
+          46.07
+        ],
+        [
+          2025,
+          -10.97
+        ]
+      ],
+      "currency": "USD",
+      "method": "cours spot",
+      "source": {
+        "label": "Cours spot · Slickcharts",
+        "url": "https://www.slickcharts.com/currency/ETH/returns"
+      },
+      "note": "Cours spot USD, clôture de l’année précédente à clôture de l’année courante. Table annuelle Slickcharts relue le 04/10/2026 ; frais des ETP et staking exclus."
     }
   ],
   "documentHashes": [
