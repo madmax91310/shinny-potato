@@ -141,11 +141,10 @@ export const HOUSEHOLD_STATISTICS = Object.freeze([
   note: `Référence publiée : ${record.referencePeriod ?? 'Début 2024'}, sans jour exact. ${record.note}`,
 }) })))
 export const formatHouseholdNumber = (value) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(value)
-export function buildHouseholdTweet(record, { includeUrl = true } = {}) {
+export function buildHouseholdTweet(record) {
   const replacements = { value: formatHouseholdNumber(record.value), complement: formatHouseholdNumber(100 - record.value), rounded: Math.round(record.value), secondRounded: Math.round(record.secondValue ?? 0) }
   const fill = (text) => text.replace(/\{(\w+)\}/g, (_, key) => replacements[key])
-  const source = HOUSEHOLD_SOURCES[record.source]
-  return `${fill(record.intro)}\n\n${fill(record.body)}\n\n${record.question}\n\n📚 Insee, données ${(record.referencePeriod).toLowerCase()}${record.provisional ? ' (provisoires)' : ''}.${includeUrl ? `\n${source.url}` : ''}`
+  return `${fill(record.intro)}\n\n${fill(record.body)}\n\n${record.question}`
 }
 export function getHouseholdVisual(record) {
   if (record.kind === 'comparison') return [

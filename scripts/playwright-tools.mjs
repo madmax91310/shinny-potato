@@ -609,11 +609,11 @@ async function testTweetMidi(page) {
   await page.getByRole('button', { name: "Pouvoir d'achat", exact: true }).click();
   await page.locator('select').selectOption('2025');
   await page.getByRole('button', { name: '1000 €', exact: true }).click();
-  for (const [poste, expected] of [[null, '1\u202f034'], ['Alimentation', '1\u202f017'], ['Carburant', '1\u202f156']]) {
+  for (const [poste, expected] of [[null, '1\u202f034'], ['Alimentation', '1\u202f017'], ['Énergie', '1\u202f156']]) {
     if (poste) {
       await page.getByRole('button', { name: 'Par poste', exact: true }).click();
       await page.getByRole('button', { name: new RegExp(poste) }).click();
-    } else await page.getByRole('button', { name: "Pouvoir d'achat brut", exact: true }).click();
+    } else await page.getByRole('button', { name: "Revenu nécessaire", exact: true }).click();
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     const post = await page.locator('pre').innerText();
     if (!post.includes(expected) || !post.includes('août 2026') || /provisoire|12 mois glissants|NaN|undefined/.test(post)) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : observation datée`);
@@ -701,12 +701,12 @@ async function testIndexComparator(page) {
     const composition = family.indices.every(index => {
       const facts = index.indexFacts;
       if (facts?.metadata?.sourceStatus !== 'documented') return true;
-      return (!facts.constituents || (drawn.includes(facts.constituents.toLocaleString('fr-FR')) && drawn.includes('valeurs dans l’indice')))
+      return (!facts.constituents || (drawn.includes(facts.constituents.toLocaleString('fr-FR')) && drawn.includes('titres')))
         && [...(facts.countries ?? []).slice(0, 3), ...(facts.sectors ?? []).slice(0, 3)].every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
     });
     if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
-      && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 400
-      && png.readUInt32BE(20) < 2100 && png.length > 10000) images++;
+      && png.readUInt32BE(16) === 1800 && png.readUInt32BE(20) > 400
+      && png.readUInt32BE(20) < 3600 && png.length > 10000) images++;
   }
   await select.selectOption('monde');
   const worldText = await page.locator('.xc-preview-text').innerText();
@@ -907,12 +907,15 @@ async function testDataSearch(page) {
 async function testHouseholds(page) {
   await page.goto(`${BASE}/france-100-menages`, { waitUntil: 'networkidle' });
   let ok = await page.getByLabel('Design', { exact: true }).inputValue() === 'sculptural';
-  for (const { id, referencePeriod } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
+  for (const { id, referencePeriod, source } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
     await page.getByLabel('Sujet', { exact: true }).selectOption(id);
     await page.waitForURL(`**sujet=${id}`);
     ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 2400 && img.naturalHeight === 1620; });
     const text = await page.getByLabel('Texte modifiable').inputValue();
-    ok &&= text.includes('https://www.insee.fr/') && text.includes(referencePeriod.toLowerCase());
+    const sourceURL = (await import('../src/data/household-statistics.js')).HOUSEHOLD_SOURCES[source].url;
+    ok &&= !/https?:\/\/|Source\s*:/i.test(text)
+      && (await page.locator('.hh-source a[target="_blank"]').getAttribute('href')) === sourceURL
+      && (await page.locator('.hh-source').innerText()).includes(referencePeriod);
   }
   for (const { id: design } of (await import('../src/pages/france-100-menages/image.js')).HOUSEHOLD_DESIGNS) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);

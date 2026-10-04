@@ -1,6 +1,12 @@
+import { ANNIVERSARY_INDEX_VARIANTS } from './data/marketHistory.js'
 // Explicit identities: an issuer logo is never substituted for an index or fund.
 // Sources and visual review: public/asset-art/README.md.
 export const ANNIVERSARY_ART = Object.freeze({
+  ...Object.fromEntries([
+    ['cac40', 'CAC 40'], ['sp500', 'S&P 500'], ['stoxx600', 'STOXX EUROPE 600'],
+    ['msciWorld', 'MSCI WORLD'], ['msciEmerging', 'MSCI EMERGING MARKETS'],
+    ['msciWorldSmallCap', 'MSCI WORLD SMALL CAP'],
+  ].map(([id, title]) => [id, { title, subtitle: ANNIVERSARY_INDEX_VARIANTS[id], kind: 'illustration', unit: 'pts', indexTitle: title }])),
   bitcoin: { title: 'BITCOIN', mark: 'bitcoin.svg', kind: 'logo' },
   ethereum: { title: 'ETHEREUM', mark: 'ethereum.svg', kind: 'logo' },
   nasdaq100: { title: 'NASDAQ-100', mark: 'nasdaq.svg', kind: 'illustration', unit: 'pts' },
