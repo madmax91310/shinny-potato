@@ -317,7 +317,7 @@ for (const [id, code] of [['msciEmerging', '891800'], ['msciWorldSmallCap', '106
   const record = DATA_CATALOG.find(row => row.id === `history:${id}`);
   if (!record || record.fields[0].value !== asset || record.fields[0].metadata.checkedAt !== capture.checkedAt
       || !record.fields[0].metadata.sourceUrls.includes(capture.url) || !ASSET_ORDER.includes(id)
-      || !MARKET_ASSETS.some(a => a.id === id) || ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id)
+      || !MARKET_ASSETS.some(a => a.id === id) || !ANNIVERSAIRE_ELIGIBLE_ASSETS.find(a => a.id === id)?.anniversaryVariant
       || hasComparableLevel(id) || getAssetMaxDate(id) !== '2026-09') throw new Error(`${id}: registre ou consommateur divergent`);
   for (const mode of ['lump', 'dca']) {
     const state = { assetId: id, amountRaw: '100', startYear: 2020, startMonth: 1, mode, overridePriceRaw: '' };

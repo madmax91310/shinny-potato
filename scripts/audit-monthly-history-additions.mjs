@@ -17,7 +17,11 @@ for (const [id, asset] of Object.entries(MONTHLY_HISTORY_ADDITIONS)) {
   assert.equal(raw.meta.symbol, record.symbol); assert.equal(raw.meta.currency, asset.currency);
   assert.equal(getAssetMinDate(id), record.periodStart); assert.equal(asset.points.at(-1).date, '2026-09');
   assert(!SPARSE_MONTHLY_DATA_IDS.has(id)); assert(ASSET_ORDER.includes(id)); assert(MARKET_ASSETS.some(a => a.id === id));
-  assert(!ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id), 'Prix ajusté/indice exclu de la saisie de cours brut');
+  const anniversary = ANNIVERSAIRE_ELIGIBLE_ASSETS.find(a => a.id === id);
+  if (asset.priceUnit === 'points') {
+    assert(anniversary?.anniversaryVariant, 'Indice accessible avec variante explicite');
+    assert.equal(anniversary.priceUnit, 'points');
+  } else assert(!anniversary, 'Prix ajusté exclu de la saisie de cours brut');
   assert.equal(review.checkedAt, capture.checkedAt); assert(review.sourceUrls.includes(record.dailyUrl));
   const months = new Map(raw.timestamp.map((t, i) => [localDate(t, raw.meta.exchangeTimezoneName).slice(0, 7), raw.indicators.quote[0].close[i]]));
   assert.equal(asset.points.length, record.points.length); assert.equal(asset.points.length, record.lastDailyCloses.length);
