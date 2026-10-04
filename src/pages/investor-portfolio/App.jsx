@@ -5,6 +5,7 @@ import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { ATTRIBUTION, buildTweet, dateFR, holdingName, INVESTORS, loadPortfolio, percentage } from './data.js'
 import { renderPortfolioImage } from './image.js'
+import { investorPortrait } from './portrait.js'
 import { INVESTOR_PROFILES, investorIntroduction } from '../../data/investor-profiles.js'
 import './style.css'
 
@@ -16,6 +17,7 @@ export default function InvestorPortfolio() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
+  const [exporting, setExporting] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -44,13 +46,15 @@ export default function InvestorPortfolio() {
     } catch { setError('Copie impossible : sélectionne le texte ci-dessous.') }
   }
 
-  function download() {
+  async function download() {
+    setExporting(true); setError('')
     try {
       const link = document.createElement('a')
-      link.href = renderPortfolioImage(portfolio)
+      link.href = await renderPortfolioImage(portfolio)
       link.download = `portefeuille-${slug}-${portfolio.snapshot.periodEnd}.png`
       link.click()
     } catch (problem) { setError(problem.message) }
+    finally { setExporting(false) }
   }
 
   return <div className="ip-scope">
@@ -90,9 +94,10 @@ export default function InvestorPortfolio() {
         </div>
         <WorkspaceActions>
           <Button type="button" onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le tweet'}</Button>
-          <Button type="button" variant="secondary" onClick={download}>⬇️ Télécharger le PNG</Button>
+          <Button type="button" variant="secondary" onClick={download} disabled={exporting}>{exporting ? 'Création du PNG…' : '⬇️ Télécharger le PNG'}</Button>
         </WorkspaceActions>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
+        <p className="ip-note">Photo de {investorPortrait(portfolio.identity.slug).person} : <a href={investorPortrait(portfolio.identity.slug).source} target="_blank" rel="noreferrer">{investorPortrait(portfolio.identity.slug).author} ↗</a> · {investorPortrait(portfolio.identity.slug).license}</p>
         <p className="ip-credit">{portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
       </>}
       {!portfolio && <p role="status">{loading ? 'Chargement des déclarations…' : 'Choisis un investisseur dans les réglages.'}</p>}
