@@ -6,6 +6,8 @@ export const INVESTORS = [
   ['aschenbrenner', 'Leopold Aschenbrenner'],
   ['li-lu', 'Li Lu'], ['gates-trust', 'Gates Foundation Trust'], ['klarman', 'Seth Klarman'],
   ['terry-smith', 'Terry Smith'], ['pabrai', 'Mohnish Pabrai'], ['hohn', 'Christopher Hohn'],
+  ['baker-bros', 'Baker Bros. Advisors'], ['icahn', 'Carl Icahn'],
+  ['laffont', 'Philippe Laffont'], ['renaissance', 'Renaissance Technologies'],
 ]
 
 export const ATTRIBUTION = 'Données : Tracefour · tracefour.com · CC BY 4.0'
@@ -79,7 +81,8 @@ export function portfolioEditorial(portfolio) {
   const concentration = cumulative[count - 1]
   const near = Math.abs(concentration * 100 - Math.round(concentration * 100)) > .05
   const hookWeight = near ? 'Près de ' + Math.round(concentration * 100) + ' %' : percentage(concentration)
-  const owner = identity.slug === 'gates-trust' ? 'du Gates Foundation Trust' : 'de ' + identity.displayName
+  const owner = identity.slug === 'gates-trust' ? 'du Gates Foundation Trust'
+    : identity.slug === 'baker-bros' ? 'des frères Baker' : 'de ' + identity.displayName
   const hook = count === 1
     ? '📊 ' + percentage(top[0].weight) + ' sur une seule ' + (funds ? 'position' : 'entreprise') + ' : voici le portefeuille déclaré ' + owner + ' 👇'
     : '📊 ' + hookWeight + ' sur ' + (concentration >= .7 ? 'seulement ' : '') + count + ' ' + unit + ' : voici le portefeuille déclaré ' + owner + ' 👇'
@@ -140,7 +143,8 @@ export function buildTweet(portfolio, intro = '') {
   const icon = ['🥇', '🥈', '🥉', '📍', '📍']
   const presentation = intro.trim() || investorIntroduction(identity.slug) || identity.displayName + ' gère les investissements déclarés par ' + (identity.entityName || identity.displayName) + '.'
   const who = identity.slug === 'cathie-wood' ? '👤 Qui est-elle ?'
-    : ['berkshire', 'gates-trust'].includes(identity.slug) ? '🏛️ Qui est-ce ?' : '👤 Qui est-il ?'
+    : ['berkshire', 'gates-trust', 'renaissance'].includes(identity.slug) ? '🏛️ Qui est-ce ?'
+      : identity.slug === 'baker-bros' ? '👥 Qui sont-ils ?' : '👤 Qui est-il ?'
   return [
     editorial.hook,
     who + '\n' + presentation,

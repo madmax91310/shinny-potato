@@ -27,6 +27,10 @@ MANAGERS = {
     'terry-smith': ('fundsmith', 'Terry Smith', 'Fundsmith LLP'),
     'pabrai': ('pabrai-investment-funds', 'Mohnish Pabrai', 'Dalal Street LLC'),
     'hohn': ('tci-fund-management', 'Christopher Hohn', 'TCI Fund Management Ltd'),
+    'baker-bros': ('baker-bros-advisors', 'Baker Bros. Advisors', 'Baker Bros. Advisors LP'),
+    'icahn': ('icahn-capital', 'Carl Icahn', 'Carl C. Icahn (déclarant 13F)'),
+    'laffont': ('coatue-management', 'Philippe Laffont', 'Coatue Management LLC'),
+    'renaissance': ('renaissance-technologies', 'Renaissance Technologies', 'Renaissance Technologies LLC'),
 }
 _last_request_at = 0
 MAX_RATE_LIMIT_RETRIES = 3
@@ -94,7 +98,9 @@ def shares_change(row):
 def make_portfolio(slug, source_slug, display, entity):
     base = f'https://foliofact.com/api/v1/funds/{source_slug}'
     fund = get_json(base)
-    table = get_json(f'{base}/holdings')
+    # The larger page size keeps broad portfolios (Renaissance) within the
+    # same paced request budget; every page is still validated before writing.
+    table = get_json(f'{base}/holdings?per_page=100')
     period = fund['filing']['report_period_on']
     # Ackman's FolioFact feed was still Q1 when Tracefour already served Q2 on
     # 03/10/2026. Prefer the freshest validated filing, never an older quarter.
@@ -125,7 +131,9 @@ def make_portfolio(slug, source_slug, display, entity):
     rows = list(table['holdings'])
     pagination = table.get('pagination', {})
     for page in range(2, int(pagination.get('total_pages', 1)) + 1):
-        next_table = get_json(f'{base}/holdings?page={page}')
+        if page == 2 or page % 10 == 0:
+            print(f'{slug}: holdings page {page}/{pagination["total_pages"]}', flush=True)
+        next_table = get_json(f'{base}/holdings?per_page=100&page={page}')
         if next_table['quarter'] != table['quarter'] or float(next_table['total_value']) != total:
             raise ValueError(f'Inconsistent holdings page for {slug}')
         rows.extend(next_table['holdings'])
@@ -181,6 +189,7 @@ def refresh(directory, fetch_portfolio=make_portfolio):
     # Validate all responses before changing any snapshot. A provider failure keeps
     # the last successful set intact and fails the workflow visibly.
     pending = []
+    reviews = []
     for slug, (source_slug, display, entity) in MANAGERS.items():
         portfolio = fetch_portfolio(slug, source_slug, display, entity)
         destination = directory / f'{slug}.json'
@@ -196,8 +205,21 @@ def refresh(directory, fetch_portfolio=make_portfolio):
                     if not archive.exists():
                         pending.append((archive, json.dumps(previous, ensure_ascii=False, indent=2) + '\n'))
             pending.append((destination, content))
+        # Review screens only need metadata, not thousands of security lines.
+        # Preserve the stored check date on unchanged data so this index does
+        # not create a new commit on every successful poll.
+        current = json.loads(content) if content else json.loads(destination.read_text())
+        reviews.append({'as_of': current.get('as_of'), 'data': {
+            'identity': current['data'].get('identity', {'slug': slug, 'displayName': display}),
+            'snapshot': {'periodEnd': current['data']['snapshot']['periodEnd']},
+            'sourceUrl': current['data'].get('sourceUrl', f'https://foliofact.com/funds/{source_slug}'),
+        }})
         print(slug, portfolio['data']['snapshot']['periodEnd'], 'changed' if content else 'unchanged')
         time.sleep(.2)
+    review_file = directory / 'review-metadata.json'
+    review_content = json.dumps(reviews, ensure_ascii=False, indent=2) + '\n'
+    if not review_file.exists() or review_file.read_text() != review_content:
+        pending.append((review_file, review_content))
     directory.mkdir(parents=True, exist_ok=True)
     for destination, content in pending:
         destination.parent.mkdir(parents=True, exist_ok=True)

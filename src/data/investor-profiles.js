@@ -14,6 +14,10 @@ export const INVESTOR_PROFILES = Object.freeze(Object.fromEntries([
   ['terry-smith', 'Terry Smith a fondé Fundsmith, une société de gestion qui sélectionne des entreprises de qualité pour investir à long terme.', ['https://www.fundsmith.co.uk/sef/about-us/']],
   ['pabrai', 'Mohnish Pabrai dirige Pabrai Investment Funds, dont les investissements sont gérés par Dalal Street LLC.', ['https://pabraifunds.com/partnership-rules/', 'https://www.chaiwithpabrai.com/']],
   ['hohn', 'Christopher Hohn a fondé TCI, une société de gestion qui investit à long terme et dialogue avec les dirigeants des entreprises.', ['https://www.tcifund.com/']],
-].map(([slug, intro, sourceUrls]) => [slug, Object.freeze({ intro, sourceUrls: Object.freeze(sourceUrls), checkedAt: ['terry-smith', 'pabrai', 'hohn'].includes(slug) ? '2026-10-04' : '2026-10-01' })])))
+  ['baker-bros', 'Felix et Julian Baker ont cofondé Baker Bros Advisors, une société de gestion spécialisée dans les biotechnologies.', ['https://www.bicycletherapeutics.com/people/felix-j-baker-ph-d/']],
+  ['icahn', 'Carl Icahn est un investisseur activiste qui prend des participations dans les entreprises et cherche à influencer leurs décisions.', ['https://carlicahn.com/about/']],
+  ['laffont', 'Philippe Laffont a fondé Coatue, une société de gestion qui investit dans les entreprises technologiques cotées et privées.', ['https://www.coatue.com/']],
+  ['renaissance', 'Renaissance Technologies est une société de gestion quantitative fondée par le mathématicien Jim Simons, décédé en 2024.', ['https://www.simonsfoundation.org/2024/05/10/simons-foundation-co-founder-mathematician-and-investor-jim-simons-dies-at-86/']],
+].map(([slug, intro, sourceUrls]) => [slug, Object.freeze({ intro, sourceUrls: Object.freeze(sourceUrls), checkedAt: ['terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'].includes(slug) ? '2026-10-04' : '2026-10-01' })])))
 
 export function investorIntroduction(slug) { return INVESTOR_PROFILES[slug]?.intro ?? '' }

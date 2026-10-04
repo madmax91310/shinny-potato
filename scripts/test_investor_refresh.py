@@ -21,7 +21,7 @@ def portfolio(period, weight=1):
 class RefreshTests(unittest.TestCase):
     def test_all_existing_investors_are_tracked(self):
         self.assertEqual(set(module.MANAGERS), {'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
-                         'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman', 'terry-smith', 'pabrai', 'hohn'})
+                         'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman', 'terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'})
 
     def test_options_keep_declared_weight_denominator(self):
         rows = [{'security': {'name': str(i), 'ticker': str(i)}, 'position_type': kind,
@@ -77,7 +77,8 @@ class RefreshTests(unittest.TestCase):
         last = {**table, 'holdings': rows[3:]}
         with patch.object(module, 'get_json', side_effect=[fund, table, last]) as fetch:
             result = module.make_portfolio('klarman', 'baupost-group', 'Seth Klarman', 'Baupost')
-        self.assertTrue(fetch.call_args.args[0].endswith('?page=2'))
+        self.assertTrue(fetch.call_args_list[1].args[0].endswith('/holdings?per_page=100'))
+        self.assertTrue(fetch.call_args.args[0].endswith('?per_page=100&page=2'))
         snapshot = result['data']['snapshot']
         self.assertTrue(snapshot['holdings'][0]['isNew'])
         self.assertEqual(snapshot['holdings'][1]['sharesChangePct'], 18)
@@ -97,6 +98,21 @@ class RefreshTests(unittest.TestCase):
             prior['as_of'] = 'previous-check'
             path.write_text(json.dumps(prior))
             self.assertIsNone(module.prepare_update(path, portfolio('2026-06-30')))
+
+    def test_review_metadata_is_lightweight_and_unchanged_poll_is_stable(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = pathlib.Path(folder)
+            with patch.object(module.time, 'sleep'):
+                module.refresh(directory, lambda *args: portfolio('2026-06-30'))
+                before = {p.name: p.read_bytes() for p in directory.iterdir()}
+                checked_later = portfolio('2026-06-30')
+                checked_later['as_of'] = 'later-poll'
+                module.refresh(directory, lambda *args: checked_later)
+            self.assertEqual(before, {p.name: p.read_bytes() for p in directory.iterdir()})
+            reviews = json.loads((directory / 'review-metadata.json').read_text())
+            self.assertEqual({row['data']['identity']['slug'] for row in reviews}, set(module.MANAGERS))
+            self.assertTrue(all(row['data']['snapshot'] == {'periodEnd': '2026-06-30'} for row in reviews))
+            self.assertTrue(all(row['as_of'] == 'checked-now' for row in reviews))
 
     def test_older_report_cannot_overwrite(self):
         with tempfile.TemporaryDirectory() as folder:

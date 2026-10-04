@@ -78,3 +78,23 @@ const withMoves = buildTweet({ ...make(movements.holdings), snapshot: movements 
 assert(withMoves.indexOf('🔄 Quelques mouvements') > withMoves.indexOf('💼 Ses principales positions'))
 assert(withMoves.indexOf('🔄 Quelques mouvements') < withMoves.indexOf('🔍 Ce qui distingue'))
 console.log('Encart mouvements : quatre lignes, quantités, classes distinctes, options exclues et comparaison manquante validés.')
+
+const baker = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/baker-bros.json', import.meta.url), 'utf8')))
+const renaissance = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/renaissance.json', import.meta.url), 'utf8')))
+assert(buildTweet(baker).includes('👥 Qui sont-ils ?'))
+assert(buildTweet(baker).includes('portefeuille déclaré des frères Baker'))
+assert(buildTweet(renaissance).includes('🏛️ Qui est-ce ?'))
+assert(buildTweet(renaissance).includes('décédé en 2024'))
+assert(buildTweet(renaissance).includes('portefeuille déclaré de Renaissance Technologies'))
+assert(!buildTweet(renaissance).includes('portefeuille déclaré de Jim Simons'))
+console.log('Baker Bros et Renaissance : identités collectives et fondateur historique correctement distingués.')
+
+const reviews = JSON.parse(readFileSync(new URL('../public/data/investors/review-metadata.json', import.meta.url), 'utf8'))
+assert.deepEqual(reviews.map(row => row.data.identity.slug).sort(), INVESTORS.map(([slug]) => slug).sort())
+for (const review of reviews) {
+  const stored = JSON.parse(readFileSync(new URL(`../public/data/investors/${review.data.identity.slug}.json`, import.meta.url), 'utf8'))
+  assert.equal(review.data.snapshot.periodEnd, stored.data.snapshot.periodEnd)
+  assert.equal(review.as_of, stored.as_of)
+  assert(!('holdings' in review.data.snapshot))
+}
+console.log('Calendrier : métadonnées synchronisées pour tous les investisseurs, sans charger leurs positions.')
