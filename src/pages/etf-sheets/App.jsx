@@ -8,7 +8,7 @@ import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
 import { formatTweetPerformance, getAnnualPerformance } from './annualPerformance'
-import { accountLabel, buildText } from './lib'
+import { accountLabel, buildText, presentationType } from './lib'
 import { renderETFImage } from './canvasImage'
 import { renderAnnualETFImage } from './annualImage'
 import { INSTRUMENT_AUM_BY_ISIN } from '../../data/instrument-aum'
@@ -105,7 +105,7 @@ function EtfCard({ etf: sourceEtf }) {
         <p>{etf.whatIs}</p>
       </section>
       <section className="es-block">
-        <h3 className="es-block-title">✅ Ce que cet ETF t’apporte</h3>
+        <h3 className="es-block-title">✅ Ce que cet {presentationType(etf)} t’apporte</h3>
         <p>{etf.whyInteresting}</p>
       </section>
       <section className="es-block">

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { buildText } from '../src/pages/etf-sheets/lib.js';
+import { buildText, presentationType } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
@@ -453,7 +453,7 @@ async function testEtfSheets(page) {
     const accounts = await page.locator('.es-facts li').filter({ hasText: 'CTO :' }).textContent();
     if (accounts.includes('PEA') !== (card.pea === true)) badCount++;
     if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
-    const sectionLabels = ["🔍 C'est quoi ?", "✅ Ce que cet ETF t’apporte", "⚠️ Ce qu'il faut savoir", '🏆 À retenir'];
+    const sectionLabels = ["🔍 C'est quoi ?", `✅ Ce que cet ${presentationType(card)} t’apporte`, "⚠️ Ce qu'il faut savoir", '🏆 À retenir'];
     const explanations = [card.whatIs, card.whyInteresting, card.whatToKnow, card.verdict];
     if (!explanations.every(value => value && text.includes(value))
       || !sectionLabels.every(label => text.includes(label))) badCount++;

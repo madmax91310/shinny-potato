@@ -38,7 +38,7 @@ export function buildText(sourceEtf) {
     '🔍 C\'est quoi ?\n' +
     etf.whatIs + '\n' +
     '\n' +
-    '✅ Ce que cet ETF t’apporte\n' +
+    '✅ Ce que cet ' + presentationType(etf) + ' t’apporte\n' +
     etf.whyInteresting + '\n' +
     '\n' +
     '⚠️ Ce qu\'il faut savoir\n' +
