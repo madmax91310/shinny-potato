@@ -6,7 +6,14 @@ import { ETFS } from '../src/data/etf-cards.js'
 import { ETF_ART } from '../src/pages/etf-sheets/visualIdentity.js'
 
 assert.deepEqual(Object.keys(ETF_ART).sort(), ETFS.map(e => e.id).sort(), 'All fiches must have an explicit visual identity')
-for (const art of Object.values(ETF_ART)) for (const file of [art.scene || 'titanium.webp', art.mark].filter(Boolean)) await readFile(`public/asset-art/${file}`)
+for (const art of Object.values(ETF_ART)) for (const file of [art.scene, art.mark].filter(Boolean)) await readFile(`public/asset-art/${file}`)
+for (const [id, theme] of Object.entries({ sp500: 'america', 'msci-world': 'world', eurostoxx50: 'europe', 'topix-pea-hedged': 'asia', or: 'gold', 'support-argent': 'silver', bitcoin: 'bitcoin', 'support-ethereum': 'ethereum', semiconducteurs: 'chip', cybersecurite: 'security' })) assert.equal(ETF_ART[id].theme, theme, `Wrong exposure illustration: ${id}`)
+assert.equal(ETF_ART.bitcoin.mark, 'bitcoin.svg')
+assert.equal(ETF_ART['support-ethereum'].mark, 'ethereum.svg')
+for (const art of Object.values(ETF_ART)) {
+  if (art.kind === 'illustration') assert.equal(art.scene, `etf-night/${art.theme}.webp`)
+  else assert.equal(art.kind, 'asset-symbol')
+}
 const port = 4315, base = `http://127.0.0.1:${port}/shinny-potato/`
 const server = spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', String(port)], { stdio: 'ignore' })
 let browser
@@ -22,13 +29,13 @@ try {
   await mkdir('test-artifacts/etf-titanium', { recursive: true })
   const samples = new Set()
   for (const etf of ETFS) {
-    const keep = !samples.has(ETF_ART[etf.id].theme); samples.add(ETF_ART[etf.id].theme)
+    const keep = etf.id === 'sp500' || !samples.has(ETF_ART[etf.id].theme); samples.add(ETF_ART[etf.id].theme)
     const result = await page.evaluate(async ({ id, keep }) => {
       const { ETFS } = await import('/shinny-potato/src/data/etf-cards.js')
       const { renderETFImage } = await import('/shinny-potato/src/pages/etf-sheets/canvasImage.js')
       const { getAnnualPerformance } = await import('/shinny-potato/src/pages/etf-sheets/annualPerformance.js')
       const etf = ETFS.find(e => e.id === id)
-      const labels = [], bounds = [], performanceText = []
+      const labels = [], bounds = [], performanceText = [], identifiers = []
       const original = CanvasRenderingContext2D.prototype.fillText
       CanvasRenderingContext2D.prototype.fillText = function(value, x, y, ...rest) {
         const m = this.measureText(value)
@@ -36,6 +43,7 @@ try {
         if (box.l < 0 || box.r > this.canvas.width || box.t < 0 || box.b > this.canvas.height) throw new Error(`Clipped ${id}: ${value}`)
         for (const p of bounds) if (Math.min(box.r, p.r) - Math.max(box.l, p.l) > 1 && Math.min(box.b, p.b) - Math.max(box.t, p.t) > 1) throw new Error(`Overlap ${id}: ${p.text} / ${value}`)
         bounds.push(box); labels.push(String(value));
+        if (String(value) === `ISIN ${etf.isin}` || value === etf.listing?.ticker) identifiers.push({ text: String(value), x, y });
         if (y >= 1600 && y < 1895) performanceText.push({ text: String(value), font: this.font, color: this.fillStyle })
         return original.call(this, value, x, y, ...rest)
       }
@@ -48,9 +56,10 @@ try {
             const expected = `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
             const number = performanceText.find(item => item.text === expected)
             if (!performanceText.some(item => item.text === String(2020 + index)) || !number || Number(number.font.match(/(\d+)px/)?.[1]) < 58) throw new Error(`Unreadable annual cell ${id}: ${expected}`)
-            if (number.color !== (value > 0 ? '#226641' : value < 0 ? '#a13d35' : '#252822')) throw new Error(`Wrong annual sign color ${id}`)
+            if (number.color !== (value > 0 ? '#9bebb4' : value < 0 ? '#ff998b' : '#fff4da')) throw new Error(`Wrong annual sign color ${id}`)
           })
         }
+        if (identifiers.length !== (etf.listing ? 2 : 1) || identifiers.some(item => item.y > 850) || (etf.listing && identifiers[1].x <= identifiers[0].x)) throw new Error(`Misplaced identity ${id}`)
         if (canvas.width !== 1600 || canvas.height !== 2000) throw new Error('Incorrect X aspect ratio')
         const text = labels.join(' '), normalize = s => s.replace(/\s+/g, ' ').trim()
         for (const value of [etf.name, etf.isin, etf.ter, etf.positions, etf.aum, etf.distribution, etf.listing?.ticker].filter(Boolean)) if (!normalize(text).includes(normalize(value))) throw new Error(`Lost fact ${id}: ${value}`)
@@ -66,11 +75,11 @@ try {
   assert.ok(requests.every(url => url.startsWith(`http://127.0.0.1:${port}`)), 'Exports must use local resources')
   // Retry after a failed local asset fetch, then exercise the actual download controls.
   const retry = await browser.newPage(); await retry.goto(base)
-  await retry.route('**/asset-art/etf/america.webp', route => route.abort())
+  await retry.route('**/asset-art/etf-night/america.webp', route => route.abort())
   await retry.locator('a[href$="/fiches-etf"]:visible').first().click()
   await retry.getByRole('button', { name: 'Télécharger l’image', exact: true }).click()
   await retry.getByRole('alert').waitFor()
-  await retry.unroute('**/asset-art/etf/america.webp')
+  await retry.unroute('**/asset-art/etf-night/america.webp')
   const download = retry.waitForEvent('download')
   await retry.getByRole('button', { name: 'Télécharger l’image', exact: true }).click()
   const file = await download

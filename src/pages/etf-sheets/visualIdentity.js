@@ -1,4 +1,4 @@
-// Explicit exposure illustrations, never issuer/index logos. Review: public/asset-art/etf/README.md.
+// Explicit exposure illustrations, never issuer/index logos. Review: public/asset-art/etf-night/README.md.
 const groups = {
   world: 'world_ex_usa pea_global_amundi msci-world msci-em msci-acwi ftse-all-world em-ex-chine low-volatility value small-caps quality momentum dividendes covered-call support-msci_world support-msci_world_ishares support-msci_acwi support-msci_em_amundi support-ftse_em_vanguard support-msci_em_spdr support-strat_dividendes_dist support-high_dividend support-high_dividend_dist support-quality_dividend support-quality_dividend_dist support-dividend_leaders',
   america: 'sp500_equal_weight russell2000_spdr sp500-spea sp500 nasdaq100 support-sp500_ishares support-nasdaq100_ishares support-lqq support-cl2',
@@ -25,9 +25,9 @@ const groups = {
   resources: 'basic-resources-pea',
   consumer: 'support-sect_conso_defensive',
 }
-const entries = Object.entries(groups).flatMap(([theme, ids]) => ids.split(' ').map(id => [id, { theme, scene: `etf/${theme}.webp`, kind: 'illustration' }]))
-entries.push(...'or support-or support-or_wisdomtree support-or_amundi'.split(' ').map(id => [id, { theme: 'gold', scene: 'gold.webp', kind: 'illustration' }]))
-entries.push(['support-argent', { theme: 'silver', scene: 'silver.webp', kind: 'illustration' }])
+const entries = Object.entries(groups).flatMap(([theme, ids]) => ids.split(' ').map(id => [id, { theme, scene: `etf-night/${theme}.webp`, kind: 'illustration' }]))
+entries.push(...'or support-or support-or_wisdomtree support-or_amundi'.split(' ').map(id => [id, { theme: 'gold', scene: 'etf-night/gold.webp', kind: 'illustration' }]))
+entries.push(['support-argent', { theme: 'silver', scene: 'etf-night/silver.webp', kind: 'illustration' }])
 entries.push(...'bitcoin support-bitcoin_wisdomtree support-bitcoin_etcgroup support-bitcoin_21shares'.split(' ').map(id => [id, { theme: 'bitcoin', mark: 'bitcoin.svg', kind: 'asset-symbol' }]))
 entries.push(['support-ethereum', { theme: 'ethereum', mark: 'ethereum.svg', kind: 'asset-symbol' }])
 if (new Set(entries.map(([id]) => id)).size !== entries.length) throw new Error('Identité ETF dupliquée')
