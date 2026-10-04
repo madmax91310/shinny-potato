@@ -6,6 +6,7 @@ import { ETFS } from '../src/data/etf-cards.js';
 import { instrumentOption } from '../src/data/asset-selection.js';
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
 import { portfolioAssetLabel } from '../src/pages/portfolio-generator/compact.js';
+import { DILEMMES, SITUATIONS } from '../src/pages/tweet-midi/data/dilemmes.js';
 // Tests Playwright par outil — navigateur réel (Chromium), un "write→look once" formalisé en
 // script réutilisable plutôt que refait à la main à chaque changement. Committé le 14/09/2026
 // (audit "outils", documenté comme "à committer" dans scripts/README.md).
@@ -557,6 +558,21 @@ async function testTweetMidi(page) {
     await page.waitForTimeout(150);
     const text = await page.locator("body").innerText();
     if (text.length < 500) failed.push(label);
+  }
+  await page.getByRole('button', { name: 'Dilemme', exact: true }).click();
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__dilemmeCopied = text; } },
+  }));
+  for (const situation of SITUATIONS) {
+    await page.locator('#subject-select').selectOption(situation.id);
+    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+    const post = await page.locator('pre').innerText();
+    const variant = DILEMMES.find(d => d.situationId === situation.id && post.startsWith(d.contexteTexte) && post.includes(d.tension));
+    const expected = variant && [variant.contexteTexte, `${variant.choix} 👇`,
+      `🅰️ ${variant.optionA}`, `🅱️ ${variant.optionB}`, variant.tension, `💬 ${variant.question}`].join('\n\n');
+    await page.getByRole('button', { name: /Copier le texte|Copié ✓/ }).click();
+    if (post !== expected || (await page.evaluate(() => window.__dilemmeCopied)) !== expected
+        || !post.split('\n').at(-1).startsWith('💬 A ou B')) failed.push(`Dilemme : ${situation.id}`);
   }
   await page.getByRole("button", { name: "Il y a X ans", exact: true }).click();
   await page.locator("#subject-select").selectOption("bitcoin");
