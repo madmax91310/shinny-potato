@@ -122,7 +122,7 @@ export function buildTweetText(state) {
   if (d.rent) return [
     `🏠 ${base} de loyer au ${d.startLabel} : que donnerait une révision suivant l’IRL jusqu’au ${d.observation} ?`,
     `Un loyer révisé selon cet indice atteindrait environ ${end} par mois, soit ${fmtEUR(Math.abs(d.change))} ${d.change >= 0 ? 'de plus' : 'de moins'}.`,
-    `📍 IRL : ${prices} entre ${d.startLabel} et ${d.observation}.`,
+    `📍 IRL : ${prices} entre ${d.startLabel} et ${d.observation}. Pour les prix en général : ${fmtPct(d.generalCumPct)} entre ${state.startYear} et ${PRICE_OBSERVATION.label}.`,
     `💬 Ton loyer a-t-il suivi cette évolution, ou est-il resté stable ?`,
   ].join('\n\n')
   if (d.energy) {
