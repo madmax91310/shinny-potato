@@ -53,7 +53,7 @@
 .es-facts { list-style: none; margin: 0 0 24px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
 .es-facts li { display: flex; align-items: baseline; gap: 10px; font-size: 14.5px; color: var(--es-text-dim); }
 .es-facts li .es-fi { flex: 0 0 20px; font-size: 14.5px; }
-.es-facts li .es-fv { color: var(--es-text); }
+.es-facts li .es-fv { color: var(--es-text); white-space: pre-line; }
 .es-last-verified { font-size: 0.78em; color: var(--es-text-faint); }
 .es-facts li.mono .es-fv { font-family: var(--es-font-mono); font-variant-numeric: tabular-nums; }
 .es-yes { color: var(--es-positive); font-weight: 700; }
@@ -62,7 +62,7 @@
 .es-block { margin: 0 0 20px; }
 .es-block:last-of-type { margin-bottom: 0; }
 .es-block-title { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--es-accent); margin: 0 0 8px; }
-.es-block p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--es-text-dim); }
+.es-block p { white-space: pre-line; margin: 0; font-size: 15px; line-height: 1.55; color: var(--es-text-dim); }
 
 .es-foot { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--es-border-soft); }
 .es-engagement { margin: 0 0 10px; font-size: 15px; color: var(--es-text); line-height: 1.5; }

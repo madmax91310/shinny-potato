@@ -1,5 +1,6 @@
+import { getPresentationCopy, presentationTicker } from './editorial.js'
 import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
-import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance.js'
+import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance, formatTweetPerformance } from './annualPerformance.js'
 import { getInstrumentFacts } from '../../data/instrument-facts.js'
 
 export function presentationType(etf) {
@@ -14,35 +15,36 @@ export const accountLabel = (etf, separator = ' | ') => [
   'CTO : ' + (etf.cto ? '✅' : '❌'),
 ].join(separator)
 
-// Squelette historique conservé ; les explications enrichies viennent du registre commun.
-export function buildText(etf) {
-  const tickerStr = etf.listing?.ticker ?? ''
+// Copie éditoriale distincte des données utilisées dans les images.
+export function buildText(sourceEtf) {
+  const etf = getPresentationCopy(sourceEtf)
+  const tickerStr = presentationTicker(etf)
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
   return (
-    "📋 Présentation d'" + presentationType(etf) + '\n' +
+    etf.hook + '\n\n' +
     dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + '\n' +
-    '\n' + etf.hook + '\n\n' +
-    (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +
+    '\n' +
     '🆔 ISIN : ' + etf.isin + '\n' +
-    '💸 Frais : ' + etf.ter + '\n' +
+    (etf.listing ? '📍 Cotation : ' + etf.listing.exchange + ' · ' + etf.listing.currency + '\n' : '') +
+    '💸 Frais annuels : ' + etf.ter + '\n' +
     '📦 ' + etf.positions + '\n' +
     '💰 Encours : ' + etf.aum + '\n' +
     '🔄 ' + etf.distribution + '\n' +
     '🏦 ' + accountLabel(etf) + '\n' +
     '📍 ' + etf.location + '\n' +
-    (annual ? '📈 Performances ' + annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) + '\n' : '') +
+    (annual ? '\n' + formatTweetPerformance(annual) + '\n' : '') +
     '\n' +
     '🔍 C\'est quoi ?\n' +
     etf.whatIs + '\n' +
     '\n' +
-    '✅ Pourquoi c\'est intéressant ?\n' +
+    '✅ Ce que cet ' + presentationType(etf) + ' t’apporte\n' +
     etf.whyInteresting + '\n' +
     '\n' +
     '⚠️ Ce qu\'il faut savoir\n' +
     etf.whatToKnow + '\n' +
     '\n' +
-    '🏆 Verdict\n' +
+    '🏆 À retenir\n' +
     etf.verdict + '\n' +
     '\n' +
     '💬 ' + etf.question + ' 👇\n' +

@@ -1,3 +1,4 @@
+import { getPresentationCopy, presentationTicker } from './editorial.js'
 import ActionMenu from '../../design-system/ActionMenu'
 import { downloadImage } from '../../design-system/downloadImage'
 import AssetPicker from '../../design-system/AssetPicker'
@@ -6,8 +7,8 @@ import { instrumentOption } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
-import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance } from './annualPerformance'
-import { accountLabel, buildText } from './lib'
+import { formatTweetPerformance, getAnnualPerformance } from './annualPerformance'
+import { accountLabel, buildText, presentationType } from './lib'
 import { renderETFImage } from './canvasImage'
 import { renderAnnualETFImage } from './annualImage'
 import { INSTRUMENT_AUM_BY_ISIN } from '../../data/instrument-aum'
@@ -45,31 +46,30 @@ function triggerAnchorDownload(dataUrl, filename) {
   document.body.removeChild(a)
 }
 
-function EtfCard({ etf }) {
+function EtfCard({ etf: sourceEtf }) {
+  const etf = getPresentationCopy(sourceEtf)
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
-  const tickerStr = etf.listing?.ticker ?? ''
+  const tickerStr = presentationTicker(etf)
   const annual = getAnnualPerformance(etf)
 
   return (
     <article className="es-card">
-      <p className="es-card-kicker">📋 Présentation d'ETF</p>
+      <p className="es-engagement">{etf.hook}</p>
       <h2 className="es-identity">
         <span className="es-dot">{dot}</span>
         <span className="es-name">{etf.name}</span>
         {tickerStr && <span className="es-tickers">({tickerStr})</span>}
       </h2>
 
-      <p className="es-engagement">{etf.hook}</p>
-
       <ul className="es-facts">
-        {etf.listing && <li><span className="es-fi">📍</span><span className="es-fv">Cotation : {etf.listing.exchange} · {etf.listing.currency}</span></li>}
         <li className="mono">
           <span className="es-fi">🆔</span>
           <span className="es-fv">ISIN : {etf.isin}</span>
         </li>
+        {etf.listing && <li><span className="es-fi">📍</span><span className="es-fv">Cotation : {etf.listing.exchange} · {etf.listing.currency}</span></li>}
         <li>
           <span className="es-fi">💸</span>
-          <span className="es-fv">Frais : {etf.ter}</span>
+          <span className="es-fv">Frais annuels : {etf.ter}</span>
         </li>
         <li>
           <span className="es-fi">📦</span>
@@ -96,7 +96,7 @@ function EtfCard({ etf }) {
         </li>
         {annual && <li>
           <span className="es-fi">📈</span>
-          <span className="es-fv">Performances {annualPerformanceRange(annual)} ({annual.currency}) : {formatAnnualPerformance(annual)}</span>
+          <span className="es-fv">{formatTweetPerformance(annual)}</span>
         </li>}
       </ul>
 
@@ -105,7 +105,7 @@ function EtfCard({ etf }) {
         <p>{etf.whatIs}</p>
       </section>
       <section className="es-block">
-        <h3 className="es-block-title">✅ Pourquoi c'est intéressant ?</h3>
+        <h3 className="es-block-title">✅ Ce que cet {presentationType(etf)} t’apporte</h3>
         <p>{etf.whyInteresting}</p>
       </section>
       <section className="es-block">
@@ -113,7 +113,7 @@ function EtfCard({ etf }) {
         <p>{etf.whatToKnow}</p>
       </section>
       <section className="es-block">
-        <h3 className="es-block-title">🏆 Verdict</h3>
+        <h3 className="es-block-title">🏆 À retenir</h3>
         <p>{etf.verdict}</p>
       </section>
 
