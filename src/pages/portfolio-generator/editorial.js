@@ -141,7 +141,7 @@ function scene(selection, shared, profileId, riskId) {
     "Chercher davantage de performance, c’est tentant. Accepter des mouvements amplifiés l’est moins. Voici comment un portefeuille peut faire une place au levier 👇",
   ], "On fait ici une place à un ETF à levier. C’est un choix qui mérite de regarder au-delà de la taille de la ligne.",
   [
-    `${crypto ? "Tu garderais à la fois la crypto et le levier, ou tu choisirais une seule de ces deux expositions ?" : `Tu garderais les ${lever.pct}% sur cet ETF à levier, ou tu choisirais une exposition sans levier ?`}`,
+    `Tu garderais les ${lever.pct}% sur cet ETF à levier, ou tu choisirais une exposition sans levier ?`,
     "Le levier, tu lui ferais une place dans ton épargne ou tu préfères rester sur des ETF classiques ?",
   ]);
 

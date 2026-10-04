@@ -262,3 +262,7 @@ const cryptoOnly=manual([{id:'bitcoin',pct:60},{id:'ethereum',pct:40}]);
 assert.match(cryptoOnly.hook,/100 % en crypto/);
 assert.doesNotMatch(renderTweetText(cryptoOnly),/fonds euros|hors crypto/);
 console.log('OK : accroches chiffrées, agrégats, questions adaptées et anciens portefeuilles reconstruits.');
+assert.match(renderTweetText(optionsIncome), /obligations financent l’État américain/);
+assert.match(renderTweetText(optionsIncome), /options.*hausse.*primes/s);
+assert.match(renderTweetText(indexMix), /échéances courtes pour limiter/);
+for (const asset of ASSETS) assert.doesNotMatch(manual([{id:asset.id,pct:100}]).selection[0].shortRole,/ et limiter|ligne réunit.*une seule ligne/);

@@ -56,7 +56,7 @@ export function allocationAngle(selection) {
    logic=assetEditorial(world).kind==='world-all' ? 'Le fonds mondial contient déjà des marchés émergents. La ligne dédiée renforce leur place, plutôt que de les ajouter pour la première fois.' : 'Les marchés émergents ajoutent des pays absents du World. Leur poids est ici choisi séparément.'
   } else {
    fact=line(top);detail=top.pct>50 ? 'où cette ligne est majoritaire' : 'construit autour de cette ligne'
-   logic=`${name(top)} occupe ${pct(top.pct)} du portefeuille${top.pct>50 ? ' et constitue sa ligne majoritaire' : ' et constitue sa plus grosse ligne'}. ${line(sorted[1])} complète ce choix.`
+   logic=`La ligne ${name(top)} représente ${pct(top.pct)} du portefeuille${top.pct>50 ? ' et constitue sa ligne majoritaire' : ' et constitue sa plus grosse ligne'}. ${line(sorted[1])} complète ce choix.`
   }
  }
  const sharedUs = world && sorted.some(s=>['us','nasdaq'].includes(assetEditorial(s).kind))

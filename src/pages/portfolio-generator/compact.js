@@ -5,8 +5,8 @@ import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js'
 
 const roles = {}
 const add = (ids, text) => ids.split(' ').forEach(id => { roles[id] = text })
-add('msci_world msci_world_ishares msci_world_amundi_pea', 'Cette ligne investit dans plusieurs pays développés, sans choisir toi-même les prochaines entreprises gagnantes.')
-add('msci_acwi msci_acwi_ishares ftse_allworld_vanguard pea_global_amundi', 'Cette ligne réunit les actions des pays développés et émergents dans une seule ligne.')
+add('msci_world msci_world_ishares msci_world_amundi_pea', 'Cette ligne investit dans plusieurs pays développés, sans avoir à choisir toi-même chaque entreprise.')
+add('msci_acwi msci_acwi_ishares ftse_allworld_vanguard pea_global_amundi', 'Ce fonds réunit les actions des pays développés et émergents.')
 add('sp500 sp500_ishares', 'On donne une place aux grandes entreprises américaines, au-delà de leurs activités à l’étranger.')
 add('nasdaq100 nasdaq100_ishares', 'On renforce les grandes entreprises du Nasdaq, avec une forte place pour la technologie.')
 add('actions_value', 'La sélection privilégie les actions moins chères selon les critères de l’indice, même si elles peuvent le rester longtemps.')
@@ -22,7 +22,10 @@ add('ethereum', 'Cette ligne investit dans Ethereum avec staking, en acceptant s
 add('fonds_euros', 'Une partie de l’épargne reste à l’écart des fluctuations des marchés, selon les conditions de garantie du contrat.')
 add('monetaire_xeon', 'Cette ligne suit les taux courts en euros. Son rendement diminue quand ces taux baissent, sans garantie de dépôt.')
 add('qyld_ucits', 'Cette approche cherche des distributions via les options : une partie de la hausse est échangée contre des primes.')
-add('oblig_etat_eur_short', 'On prête aux États de la zone euro sur des échéances courtes et limiter la sensibilité aux taux.')
+add('oblig_etat_eur_short', 'On prête aux États de la zone euro sur des échéances courtes pour limiter la sensibilité aux taux.')
+add('oblig_etat_us', 'Ces obligations financent l’État américain. Leur résultat dépend notamment des taux et du dollar.')
+add('oblig_etat_eur', 'Ces obligations financent les États de la zone euro. Une hausse des taux peut faire baisser leur cours.')
+add('oblig_corp_ig oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr', 'Ces obligations financent des entreprises bien notées. Leur cours reste sensible aux taux et aux difficultés de remboursement.')
 add('oblig_0_1_ishares', 'On prête aux États de la zone euro sur zéro à un an, sans garantie de capital.')
 add('oblig_eur_long_ishares', 'Cette ligne permet de miser sur les obligations longues en euros, dont les cours réagissent fortement aux mouvements des taux.')
 add('oblig_em_usd_ishares', 'Cette ligne permet de recevoir les intérêts d’emprunts émergents en dollars, en acceptant les risques de crédit et de change.')
