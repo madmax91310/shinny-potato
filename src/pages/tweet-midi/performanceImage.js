@@ -5,6 +5,11 @@ import { loadNeonArt, drawNeonArt } from './stylizedArt.js'
 const W = 1600
 const INK = '#fff2cd', MUTED = '#a7c2c8', GREEN = '#84efca', RED = '#ff9b91'
 export const cumulativePerformance = rows => (rows.reduce((acc, row) => acc * (1 + row.pct / 100), 1) - 1) * 100
+const assetTitle = asset => {
+  const name = (asset.tweetPhrase || asset.label).replace(/^l['’]indice /i, 'le ')
+  return name.charAt(0).toUpperCase() + name.slice(1)
+}
+const periodTitle = ({ asset, returns }) => `${assetTitle(asset)} de ${returns[0].year - 1} à ${returns.at(-1).year}`
 const percentage = value => `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
 function text(ctx, value, x, y, size, { width = W, color = INK, align = 'left', weight = 700 } = {}) {
   ctx.textBaseline = 'top'; ctx.textAlign = align; ctx.fillStyle = color
@@ -31,19 +36,17 @@ function chart(ctx, rows, x, y, w, h) {
   ctx.save(); ctx.strokeStyle = values.at(-1) < 0 ? RED : GREEN; ctx.shadowColor = ctx.strokeStyle; ctx.shadowBlur = 13; ctx.lineWidth = 4
   ctx.beginPath(); points.forEach(([a, b], i) => i ? ctx.lineTo(a, b) : ctx.moveTo(a, b)); ctx.stroke(); ctx.restore()
   const labels = [String(rows[0].year - 1), ...rows.map(row => String(row.year))]
-  labels.forEach((label, i) => { if (labels.length <= 8 || i === 0 || i === labels.length - 1 || i % 2 === 0) text(ctx, label, px(i), plotY + plotH + 18, 20, { align: 'center', color: MUTED, weight: 400 }) })
-  text(ctx, 'Performance cumulée · clôtures annuelles', x + w / 2, y + h - 27, 19, { align: 'center', color: MUTED, weight: 400 })
+  labels.forEach((label, i) => { if (labels.length <= 8 || i === 0 || i === labels.length - 1 || i % 2 === 0) text(ctx, label, px(i), plotY + plotH + 18, i === 0 || i === labels.length - 1 ? 32 : 26, { align: 'center', color: INK }) })
 }
-function panel(ctx, entry, image, y) {
+function panel(ctx, entry, image, y, comparative) {
   const { asset, returns } = entry, total = cumulativePerformance(returns)
   ctx.save(); ctx.translate(0, y)
   drawNeonArt(ctx, image, 0, 195, 600)
-  text(ctx, asset.label.replace(/^Indice /, ''), 650, 165, 49, { width: 870, color: INK })
+  if (comparative) text(ctx, assetTitle(asset), 650, 165, 49, { width: 870, color: INK })
   text(ctx, percentage(total), 640, 242, 150, { width: 880, color: total < 0 ? RED : GREEN })
-  text(ctx, 'PERFORMANCE CUMULÉE', 655, 420, 26, { color: MUTED })
-  text(ctx, `Fin ${returns[0].year - 1} → Fin ${returns.at(-1).year} · ${asset.currency}`, 655, 465, 27, { width: 850, color: INK, weight: 400 })
+  text(ctx, `Fin ${returns[0].year - 1} → Fin ${returns.at(-1).year}`, 655, 425, 48, { width: 850, color: INK })
   chart(ctx, returns, 635, 526, 900, 350)
-  text(ctx, `EN ${asset.currency}${asset.currency === 'USD' ? ' · SANS CONVERSION EN EUR' : ''}`, 65, 829, 22, { width: 535, color: MUTED, weight: 400 })
+  text(ctx, `EN ${asset.currency}`, 65, 829, 22, { width: 535, color: MUTED, weight: 400 })
   ctx.restore()
 }
 export async function renderPerformanceImage(item) {
@@ -59,9 +62,12 @@ export async function renderPerformanceImage(item) {
   const images = await Promise.all(ids.map(loadNeonArt)); await document.fonts.ready
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = comparative ? 1920 : 1040
   const ctx = canvas.getContext('2d'); ctx.fillStyle = '#061523'; ctx.fillRect(0, 0, W, canvas.height)
-  text(ctx, 'PERFORMANCE DEPUIS', 65, 47, 70, { width: 1320 })
+  const title = comparative
+    ? `${assetTitle(entries[0].asset)} face à ${assetTitle(entries[1].asset)}`
+    : periodTitle(entries[0])
+  text(ctx, title, 65, 47, 66, { width: 1460 })
   ctx.fillStyle = '#ebc56d'; ctx.fillRect(65, 139, 1460, 2)
-  entries.forEach((entry, i) => panel(ctx, entry, images[i], i * 880))
+  entries.forEach((entry, i) => panel(ctx, entry, images[i], i * 880, comparative))
   const footerY = comparative ? 1780 : 900
   if (ids.includes('silver')) text(ctx, 'ARGENT : FUTURES COMEX CONTINUS, HORS FRAIS ET ROULEMENT', 65, footerY, 20, { width: 1460, color: MUTED, weight: 400 })
   const credits = [...new Set(entries.map(entry => entry.asset.sourceCredit).filter(Boolean))].flatMap(credit => credit.replace(' · Calculs Épargnant Libre', '').split('\n'))
