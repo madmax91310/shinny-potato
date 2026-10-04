@@ -479,7 +479,7 @@ async function testEtfSheets(page) {
       || !copied.endsWith('⚠️ Pas un conseil en investissement')
       || /undefined|NaN/.test(copied)) badCount++;
     if (card.lastVerified === '01/10/2026') {
-      for (const buttonName of ['🖼️ Image récapitulative', '📊 Télécharger le graphique annuel']) {
+      for (const buttonName of ['🖼️ Image récapitulative']) {
         await page.locator('.workspace-action-menu summary').click();
         await page.getByRole('button', { name: buttonName }).click();
         const dialog = page.getByRole('dialog');
@@ -493,15 +493,16 @@ async function testEtfSheets(page) {
   }
   await select.selectOption('sp500');
   await page.locator('.workspace-action-menu summary').click();
-  await page.getByRole('button', { name: '📊 Télécharger le graphique annuel' }).click();
-  const preview = page.getByRole('dialog', { name: 'Aperçu : Performances annuelles de l’ETF' });
+  if (await page.getByRole('button', { name: /graphique annuel/i }).count()) badCount++;
+  await page.getByRole('button', { name: '🖼️ Image récapitulative' }).click();
+  const preview = page.getByRole('dialog');
   const imageOk = (await preview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
   const [download] = await Promise.all([
     page.waitForEvent('download'),
     preview.getByRole('button', { name: '⬇️ Télécharger' }).click(),
   ]);
   await preview.getByRole('button', { name: "Fermer l'aperçu" }).click();
-  record("Fiches ETF", badCount === 0 && defaultEtf === 'sp500' && imageOk && download.suggestedFilename() === 'sp500-performances-annuelles.png',
+  record("Fiches ETF", badCount === 0 && defaultEtf === 'sp500' && imageOk && download.suggestedFilename() === 'sp500-fiche-etf.png',
     `${count} fiches et textes copiés personnalisés, défaut ${defaultEtf}, ${badCount} erreur(s), aperçu et téléchargement PNG`);
 }
 
