@@ -26,18 +26,31 @@ try {
     const result = await page.evaluate(async ({ id, keep }) => {
       const { ETFS } = await import('/shinny-potato/src/data/etf-cards.js')
       const { renderETFImage } = await import('/shinny-potato/src/pages/etf-sheets/canvasImage.js')
+      const { getAnnualPerformance } = await import('/shinny-potato/src/pages/etf-sheets/annualPerformance.js')
       const etf = ETFS.find(e => e.id === id)
-      const labels = [], bounds = []
+      const labels = [], bounds = [], performanceText = []
       const original = CanvasRenderingContext2D.prototype.fillText
       CanvasRenderingContext2D.prototype.fillText = function(value, x, y, ...rest) {
         const m = this.measureText(value)
         const box = { text: String(value), l: x - m.actualBoundingBoxLeft, r: x + m.actualBoundingBoxRight, t: y - m.actualBoundingBoxAscent, b: y + m.actualBoundingBoxDescent }
         if (box.l < 0 || box.r > this.canvas.width || box.t < 0 || box.b > this.canvas.height) throw new Error(`Clipped ${id}: ${value}`)
         for (const p of bounds) if (Math.min(box.r, p.r) - Math.max(box.l, p.l) > 1 && Math.min(box.b, p.b) - Math.max(box.t, p.t) > 1) throw new Error(`Overlap ${id}: ${p.text} / ${value}`)
-        bounds.push(box); labels.push(String(value)); return original.call(this, value, x, y, ...rest)
+        bounds.push(box); labels.push(String(value));
+        if (y >= 1600 && y < 1895) performanceText.push({ text: String(value), font: this.font, color: this.fillStyle })
+        return original.call(this, value, x, y, ...rest)
       }
       try {
         const canvas = await renderETFImage(etf)
+        const annual = getAnnualPerformance(etf)
+        if (annual) {
+          annual.values.forEach((value, index) => {
+            if (!Number.isFinite(value)) return
+            const expected = `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
+            const number = performanceText.find(item => item.text === expected)
+            if (!performanceText.some(item => item.text === String(2020 + index)) || !number || Number(number.font.match(/(\d+)px/)?.[1]) < 58) throw new Error(`Unreadable annual cell ${id}: ${expected}`)
+            if (number.color !== (value > 0 ? '#226641' : value < 0 ? '#a13d35' : '#252822')) throw new Error(`Wrong annual sign color ${id}`)
+          })
+        }
         if (canvas.width !== 1600 || canvas.height !== 2000) throw new Error('Incorrect X aspect ratio')
         const text = labels.join(' '), normalize = s => s.replace(/\s+/g, ' ').trim()
         for (const value of [etf.name, etf.isin, etf.ter, etf.positions, etf.aum, etf.distribution, etf.listing?.ticker].filter(Boolean)) if (!normalize(text).includes(normalize(value))) throw new Error(`Lost fact ${id}: ${value}`)
