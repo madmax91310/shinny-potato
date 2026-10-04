@@ -21,10 +21,9 @@ try{
    if(!labels.includes(`${formatHouseholdNumber(r.value)} ${r.unit==='EUR'?'€':'%'}`))throw new Error('Changed metric')
    if(r.kind==='comparison'&&!labels.includes(`${formatHouseholdNumber(r.secondValue)} %`))throw new Error('Changed comparison')
    if(r.kind==='rate'&&!words.includes(`environ ${Math.round(r.value)} ${r.population} sur 100`))throw new Error('Changed rounding or population')
+   if(r.id==='unexpected-expense'&&!labels.some(t=>t.includes('1 000 €')))throw new Error('Split amount in title')
    if(r.kind==='share'&&!words.includes('50 ménages les moins dotés en patrimoine brut'))throw new Error('Wealth share confused with population rate')
-   if(r.visualNote&&!words.includes(r.visualNote))throw new Error('Missing qualification')
-   if(!words.includes(r.referencePeriod)||labels.filter(t=>t==='Épargnant Libre').length!==1)throw new Error('Date/signature')
-   if(r.provisional&&!words.includes('Données provisoires'))throw new Error('Missing provisional status')
+   if(words.includes('Source :')||words.includes('Données provisoires')||labels.filter(t=>t==='Épargnant Libre').length!==1)throw new Error('Footer must contain signature only')
    results.push({id:r.id,png,labels})
   }}finally{CanvasRenderingContext2D.prototype.fillText=original}
   return results
@@ -36,5 +35,5 @@ try{
  await page.getByRole('button',{name:'Réglages',exact:true}).click();await page.getByLabel('Sujet',{exact:true}).selectOption('protein-meals');await page.getByRole('button',{name:'Aperçu',exact:true}).click();await page.getByRole('tab',{name:'Image',exact:true}).click();await page.waitForFunction(src=>{const next=document.querySelector('.hh-scope img')?.getAttribute('src');return next&&next!==src},before);await img.evaluate(i=>i.decode())
  const [download]=await Promise.all([page.waitForEvent('download'),link.click()]);if(!download.suggestedFilename().endsWith('-protein-meals-sculptural.png'))throw new Error('Stale download')
  await page.getByRole('button',{name:'Réglages',exact:true}).click();await page.getByLabel('Design',{exact:true}).selectOption('ivory');await page.waitForFunction(()=>document.querySelector('.hh-scope a[download$="-ivory.png"]')?.href.startsWith('data:image/png'))
- console.log(`${samples.length} sculptural cards: real values/populations, comparisons, thresholds, share distinction, dates/notes, no titles, no overlap; mobile refresh/download and legacy design verified.`)
+ console.log(`${samples.length} sculptural cards: real values/populations, comparisons, thresholds, share distinction, signature-only footer, no titles, no overlap; mobile refresh/download and legacy design verified.`)
 }finally{await browser?.close();server.kill('SIGTERM')}
