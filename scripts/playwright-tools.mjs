@@ -850,12 +850,19 @@ async function testFactsheetTweets(page) {
   const draft = page.locator('#factsheet-draft');
   const count = await select.locator('option').count();
   let ok = count === SHEETS.length;
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__factsheetCopied = text; } },
+  }));
   for (let index = 0; index < count; index++) {
     await select.selectOption(SHEETS[index].id);
     const tweet = await draft.inputValue();
     ok &&= tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR'));
     ok &&= tweet.includes('2025') && /Les (principaux )?secteurs|La pondération/.test(tweet);
     ok &&= !/undefined|NaN/.test(tweet) && (await page.locator('.fs-sources a').count()) >= 1;
+    ok &&= ['🌍 La répartition', '📈 Les performances', '📌 Ce que ça signifie'].every(label => tweet.includes(label));
+    ok &&= !tweet.includes('31 août 2026') && (await page.locator('.fs-meta').innerText()).includes(SHEETS[index].snapshot);
+    await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié/ }).click();
+    ok &&= (await page.evaluate(() => window.__factsheetCopied)) === tweet;
   }
   await draft.fill('Texte corrigé avant publication');
   await page.locator('.workspace-action-menu summary').click();
