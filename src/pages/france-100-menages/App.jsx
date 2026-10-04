@@ -11,7 +11,6 @@ function Editor({ record, onSelect, design, onDesign }) {
   const [tweet, setTweet] = useState(() => buildHouseholdTweet(record))
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
-  const [includeUrl, setIncludeUrl] = useState(true)
   const imageKey = `${record.id}:${design}`
   const imagePromise = useMemo(() => Promise.resolve().then(() => renderHouseholdImage(record, design)), [record, design])
   const [loadedImage, setLoadedImage] = useState({})
@@ -42,10 +41,9 @@ function Editor({ record, onSelect, design, onDesign }) {
     <div className="hh-layout tool-preview">
       <section className="hh-panel" aria-label="Tweet et sources">
         <div className="hh-panel-head"><h2>Tweet</h2><span>{Array.from(tweet).length} caractères</span></div>
-        <label className="hh-checkbox"><input type="checkbox" checked={includeUrl} onChange={(e) => { setIncludeUrl(e.target.checked); setTweet(buildHouseholdTweet(record, { includeUrl: e.target.checked })); setMessage('') }} /> Inclure le lien de la source</label>
         <label className="hh-tweet-label">Texte modifiable<textarea value={tweet} onChange={(e) => { setTweet(e.target.value); setMessage('') }} /></label>
         <p className="hh-note">Le compteur indique les caractères du texte. La limite X dépend du compte et du calcul des liens.</p>
-        <div className="hh-actions"><button onClick={() => { setTweet(buildHouseholdTweet(record, { includeUrl })); setMessage('Texte réinitialisé.'); setError('') }}>Réinitialiser le texte</button><button onClick={exportJson}>Exporter le JSON</button></div>
+        <div className="hh-actions"><button onClick={() => { setTweet(buildHouseholdTweet(record)); setMessage('Texte réinitialisé.'); setError('') }}>Réinitialiser le texte</button><button onClick={exportJson}>Exporter le JSON</button></div>
         <p className="hh-message" role="status">{message}</p>{error && <p role="alert">{error}</p>}
         <div className="hh-source"><h3>Source officielle</h3><a href={source.url} target="_blank" rel="noreferrer">Insee : {source.title} ↗</a><dl><dt>Données</dt><dd>{record.referencePeriod}{record.provisional ? ' — provisoires' : ''}</dd><dt>Publication</dt><dd>{source.publishedAt}</dd><dt>Consultation</dt><dd>{record.metadata.checkedAt}</dd><dt>Tableau / passage</dt><dd>{record.table}</dd><dt>Population</dt><dd>{record.metadata.scope}</dd></dl><p>{record.note}</p><Link to={`/bibliotheque-donnees?type=household&id=household:${record.id}`}>Voir la fiche dans la bibliothèque de données →</Link></div>
       </section>

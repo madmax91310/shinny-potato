@@ -1,4 +1,5 @@
 import { renderSculpturalHouseholdImage } from './sculpturalImage.js'
+import { renderEditorialHouseholdImage } from './editorialImage.js'
 import { renderNewHouseholdImage } from './new-designs.js'
 import { formatHouseholdNumber, getHouseholdVisual } from '../../data/household-statistics.js'
 const INK = '#f1f5f9', GREEN = '#38d5af', GOLD = '#e7c97c'
@@ -23,8 +24,9 @@ function people(ctx, x, y, width, count, color = GREEN) {
     ctx.fillRect(cx + step * .035, cy + step * .72, step * .115, step * .24)
   }
 }
-export const DEFAULT_HOUSEHOLD_DESIGN = 'sculptural'
+export const DEFAULT_HOUSEHOLD_DESIGN = 'illustrated'
 export const HOUSEHOLD_DESIGNS = Object.freeze([
+  { id: 'illustrated', label: 'Illustration éditoriale · crème & vert' },
   { id: 'sculptural', label: 'Portefeuille violet & cuivre' },
   { id: 'ivory', label: '01 · Ivoire & noir' },
   { id: 'blue', label: '02 · Bleu & blanc' },
@@ -35,6 +37,7 @@ export const HOUSEHOLD_DESIGNS = Object.freeze([
   { id: 'cards', label: '03 · Cartes contrastées' },
 ])
 export function renderHouseholdImage(record, design = DEFAULT_HOUSEHOLD_DESIGN) {
+  if (design === 'illustrated') return renderEditorialHouseholdImage(record)
   if (design === 'sculptural') return renderSculpturalHouseholdImage(record)
   if (['ivory', 'blue', 'plum'].includes(design)) return renderNewHouseholdImage(record, design)
   if (design !== 'original') return renderAlternative(record, design)
