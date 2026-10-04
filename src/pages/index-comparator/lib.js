@@ -1,3 +1,4 @@
+import { getIndexComparisonComposition, cleanExposureLabel, exposurePercent } from '../../data/index-comparison-composition.js'
 import { getIndexComparisonPerformance, getIndexComparisonPerformanceHeading, getIndexComparisonPerformanceLabel } from '../../data/index-comparison-performance.js'
 import { getIndexComparisonEditorial } from '../../data/index-comparison-editorial.js'
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
@@ -23,7 +24,15 @@ export function buildTweetText(family, perfValues = {}) {
   const editorial = getIndexComparisonEditorial(family)
   const rows = getIndexComparisonPerformance(family)
   const detailedLabels = ['emergents-pea', 'style', 'dividendes-cto', 'dividendes-pea'].includes(family.id)
-  const exposures = family.indices.map((index, i) => `🔹 ${detailedLabels ? rows[i].label : index.name}\n${editorial.exposures[i]}`).join('\n\n')
+  const exposures = family.indices.map((index, i) => {
+    const composition = getIndexComparisonComposition(index)
+    const details = composition ? [
+      `Composition${composition.asOf ? ` au ${composition.asOf.split('-').reverse().join('/')}` : ' : photographie chiffrée non documentée'}`,
+      `🌍 Pays : ${composition.countries.length ? composition.countries.map(([name, value]) => `${cleanExposureLabel(name)} ${exposurePercent(value)}`).join(' · ') : 'répartition de cet indice non documentée'}`,
+      `🏭 Secteurs : ${composition.sectors.length ? composition.sectors.map(([name, value]) => `${cleanExposureLabel(name)} ${exposurePercent(value)}`).join(' · ') : 'répartition de cet indice non documentée'}`,
+    ] : []
+    return [`🔹 ${detailedLabels ? rows[i].label : index.name}`, editorial.exposures[i], ...details].join('\n')
+  }).join('\n\n')
   const performance = rows.map((row, i) => {
     const extra = perfValues[row.key]
     return [
@@ -36,7 +45,7 @@ export function buildTweetText(family, perfValues = {}) {
     const facts = index.indexFacts
     if (facts?.constituents) return `${detailedLabels ? rows[i].label : index.name} : ${facts.constituents.toLocaleString('fr-FR').replaceAll('\u202f', ' ')} valeurs`
     if (facts?.targetConstituents) return `${detailedLabels ? rows[i].label : index.name} : ${facts.targetConstituents.toLocaleString('fr-FR')} sociétés visées`
-    return `${index.name} : exposition à un seul actif`
+    return `${index.name} : ${index.indexFacts ? 'nombre de titres non documenté' : 'exposition à un seul actif'}`
   }).join('\n')
   return [editorial.hook, editorial.intro, exposures,
     `📊 Pour situer la taille de chaque panier :\n\n${size}`,

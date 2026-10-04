@@ -1,3 +1,6 @@
+import { getIndexComparisonComposition } from '../../data/index-comparison-composition.js'
+import { getIndexComparisonPerformance } from '../../data/index-comparison-performance.js'
+import { fmtPct } from './lib.js'
 // Reference 2: ivory ceramic, sculpted counts and aligned composition tables.
 // All copy and figures stay dynamic; decorative reliefs encode no financial data.
 import { getIndexComparisonEditorial } from '../../data/index-comparison-editorial.js'
@@ -22,12 +25,8 @@ function draw(ctx, rows, x, y, height, color) {
   return y + rows.length * height
 }
 // Only dated, documented composition snapshots from the shared registry.
-export function getIndexImageFacts(index) {
-  const facts = index.indexFacts
-  if (facts?.metadata?.sourceStatus !== 'documented') return null
-  const numericRows = rows => (rows ?? []).filter(([, value]) => Number.isFinite(value) && value >= 0 && value <= 100)
-  return { count: facts.constituents, asOf: facts.asOf, countries: numericRows(facts.countries).slice(0, 3), sectors: numericRows(facts.sectors).slice(0, 3) }
-}
+export const getIndexImageFacts = getIndexComparisonComposition
+
 const cleanLabel = label => label.replace(/^[^\p{L}\p{N}]+/u, '').trim()
 const percent = value => `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
 function sourceProvider(source) {
@@ -88,28 +87,33 @@ export async function renderIndexImage(family) {
   const WIDTH = (W - PAD * 2 - GAP * (columns - 1)) / columns, INNER = WIDTH - 40
   const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
   if (!ctx) throw new Error('Impossible de générer le visuel.')
+  const performanceRows = getIndexComparisonPerformance(family)
   const cards = family.indices.map((index, i) => {
-    const displayName = index.name.replace(' (rappel, non-PEA)', '').replace(' (PEA)', '').replace('Émergents global (indice ESG)', 'Émergents ESG')
+    const displayName = (index.indexFacts?.index ?? index.name).replace(' (rappel, non-PEA)', '').replace(' (PEA)', '').replace('Émergents global (indice ESG)', 'Émergents ESG')
     font(ctx, 46, 700, SERIF); const name = lines(ctx, displayName, INNER)
     font(ctx, 29); const points = editorial.visualPoints[i].map(point => lines(ctx, point, INNER))
     const facts = getIndexImageFacts(index), stamp = facts?.asOf ? facts.asOf.split('-').reverse().join('/') : null
-    const allocations = [['PRINCIPAUX PAYS', facts?.countries], ['SECTEURS', facts?.sectors]].filter(([, entries]) => entries?.length).map(([label, entries]) => ({ label, rows: entries.map(([name, value]) => {
+    const allocations = [['PRINCIPAUX PAYS', facts?.countries?.length ? facts.countries : facts ? [['Répartition non documentée', null]] : []], ['SECTEURS', facts?.sectors?.length ? facts.sectors : facts ? [['Répartition non documentée', null]] : []]].filter(([, entries]) => entries?.length).map(([label, entries]) => ({ label, rows: entries.map(([name, value]) => {
       font(ctx, 28); return { name: lines(ctx, cleanLabel(name), INNER - 145), value }
     }) }))
-    return { name, points, count: facts?.count ?? null, stamp, allocations, source: facts ? sourceProvider(index.indexFacts.source) : null, color: COLORS[i % COLORS.length] }
+    const perf = performanceRows[i]
+    const basis = `${perf.currency} · ${perf.method}`
+    font(ctx, 24); const perfBasis = lines(ctx, basis, INNER)
+    allocations.push({ label: 'PERFORMANCES', rows: [2023, 2024, 2025].map(year => ({ name: [String(year)], text: fmtPct(perf[`y${year}`]) })) })
+    return { name, points, perfBasis, count: facts?.count ?? facts?.targetCount ?? null, countLabel: Number.isFinite(facts?.count) ? 'titres' : 'sociétés visées', stamp, allocations, source: facts ? sourceProvider(index.indexFacts.source) : null, color: COLORS[i % COLORS.length] }
   })
   const rows = []
   for (let i = 0; i < cards.length; i += columns) {
     const group = cards.slice(i, i + columns), nameHeight = Math.max(...group.map(c => c.name.length * 56))
     const countOffset = 130 + nameHeight + 14, hasCount = group.some(c => Number.isFinite(c.count))
-    const pointOffset = countOffset + (hasCount ? 200 : 20)
+    const pointOffset = countOffset + (hasCount ? 220 : 20)
     const pointHeight = Math.max(...group.map(c => c.points.reduce((sum, p) => sum + p.length * 36 + 12, 0)))
     const hasStamp = group.some(c => c.stamp)
     let sectionOffset = pointOffset + pointHeight + 22 + (hasStamp ? 38 : 0)
-    const sections = ['PRINCIPAUX PAYS', 'SECTEURS'].map(label => {
+    const sections = ['PRINCIPAUX PAYS', 'SECTEURS', 'PERFORMANCES'].map(label => {
       const offset = sectionOffset, maxRows = Math.max(...group.map(c => c.allocations.find(s => s.label === label)?.rows.length ?? 0))
       const heights = Array.from({ length: maxRows }, (_, n) => Math.max(...group.map(c => (c.allocations.find(s => s.label === label)?.rows[n]?.name.length ?? 1) * 36 + 12)))
-      if (maxRows) sectionOffset += 53 + heights.reduce((sum, height) => sum + height, 0) + 24
+      if (maxRows) sectionOffset += 53 + heights.reduce((sum, height) => sum + height, 0) + 24 + (label === 'PERFORMANCES' ? Math.max(...group.map(c => c.perfBasis.length)) * 30 + 12 : 0)
       return { label, offset, heights, active: maxRows > 0 }
     })
     rows.push({ nameHeight, countOffset, pointOffset, pointHeight, hasStamp, sections, height: sectionOffset + 24 })
@@ -121,7 +125,7 @@ export async function renderIndexImage(family) {
   const HEADER = 45 + title.length * 74 + (commonStamp ? 68 : 24)
   const takeaway = family.id === 'monde' ? 'Le World exclut les émergents. ACWI et All-World les incluent.' : editorial.insight
   font(ctx, 30, 700, SERIF); const takeawayLines = lines(ctx, takeaway, W - PAD * 2 - 100)
-  const sources = [...new Set(cards.map(c => c.source).filter(Boolean))]
+  const sources = [...new Set([...cards.map(c => c.source), ...performanceRows.map(p => sourceProvider(p.source))].filter(Boolean))]
   const sourcesText = sources.length ? `Sources : ${sources.join(' · ')}${cards.some(c => c.allocations.some(a => a.label === 'SECTEURS')) ? ' · Classifications sectorielles propres à chaque fournisseur' : ''}` : null
   font(ctx, 20); const sourceLines = sourcesText ? lines(ctx, sourcesText, W - PAD * 2 - 260) : []
   const footerTop = HEADER + rows.reduce((sum, row) => sum + row.height + GAP, 0)
@@ -140,7 +144,7 @@ export async function renderIndexImage(family) {
     ctx.textAlign = 'center'; font(ctx, 46, 700, SERIF); draw(ctx, card.name, center, top + 130, 56, card.color)
     if (Number.isFinite(card.count)) {
       ceramicNumber(ctx, card.count.toLocaleString('fr-FR'), center, top + row.countOffset, INNER - 8, card.color)
-      font(ctx, 36, 700, SERIF); draw(ctx, ['titres'], center, top + row.countOffset + 156, 44, INK)
+      font(ctx, 36, 700, SERIF); draw(ctx, [card.countLabel], center, top + row.countOffset + 156, 44, INK)
     }
     rule(ctx, left, top + row.pointOffset - 12, INNER)
     font(ctx, 29); let y = top + row.pointOffset
@@ -159,10 +163,11 @@ export async function renderIndexImage(family) {
       for (let n = 0; n < section.rows.length; n++) {
         const entry = section.rows[n]
         font(ctx, 28); draw(ctx, entry.name, left + 10, y, 36, INK)
-        font(ctx, 28, 700); ctx.textAlign = 'right'; draw(ctx, [percent(entry.value)], left + INNER - 10, y, 36, INK); ctx.textAlign = 'left'
+        font(ctx, 28, 700); ctx.textAlign = 'right'; draw(ctx, [entry.text ?? (Number.isFinite(entry.value) ? percent(entry.value) : '')], left + INNER - 10, y, 36, INK); ctx.textAlign = 'left'
         y += sectionLayout.heights[n]
         if (n < section.rows.length - 1) rule(ctx, left, y - 8, INNER)
       }
+      if (section.label === 'PERFORMANCES') { font(ctx, 24); draw(ctx, card.perfBasis, left + 10, y + 8, 30, MUTED) }
     }
   })
   ctx.save(); ctx.shadowColor = '#a18e7150'; ctx.shadowBlur = 5; ctx.shadowOffsetY = 3; ctx.fillStyle = '#f8f3e9'; ctx.beginPath(); ctx.roundRect(PAD, footerTop, W - PAD * 2, takeawayHeight, 28); ctx.fill(); ctx.restore()

@@ -34,7 +34,8 @@
     "audit:household-statistics": "node scripts/audit-household-statistics.mjs",
     "audit:data-review": "node scripts/audit-data-review.mjs",
     "audit:investor-profiles": "node scripts/audit-investor-profiles.mjs",
-    "audit:etf-completeness": "node scripts/audit-etf-completeness.mjs"
+    "audit:etf-completeness": "node scripts/audit-etf-completeness.mjs",
+    "audit:index-completeness": "node scripts/audit-index-completeness.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

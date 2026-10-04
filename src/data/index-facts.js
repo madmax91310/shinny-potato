@@ -1,3 +1,4 @@
+import { INDEX_COMPOSITION_REVIEW } from './index-composition-review.js';
 import { INDEX_EXPOSURE_ADDITIONS } from './index-exposure-additions.js';
 import { ARCHIVE_SOURCE_REVIEW } from './archive-source-review.js';
 import { REVIEWED_INDEX_SNAPSHOTS, REVIEWED_EXISTING_INDEX_KEYS } from './index-source-review.js';
@@ -714,6 +715,11 @@ for (const [id, key] of Object.entries(REVIEWED_EXISTING_INDEX_KEYS)) {
   facts.provenance += ' Publication officielle retrouvée le 30/09/2026, avec la date de photographie citée (ou la méthodologie nominale) ; cette consultation ne date pas les anciennes archives.';
 }
 for (const [id, snapshots] of Object.entries(REVIEWED_INDEX_SNAPSHOTS)) {
+  INDEX_FACTS[id] = { ...INDEX_FACTS[id], ...snapshots };
+}
+
+// Revue de complétude : nouvelles dates conservées séparément des archives.
+for (const [id, snapshots] of Object.entries(INDEX_COMPOSITION_REVIEW)) {
   INDEX_FACTS[id] = { ...INDEX_FACTS[id], ...snapshots };
 }
 

@@ -30,7 +30,7 @@ try {
         if (before !== JSON.stringify(family) || tweet !== buildTweetText(family, {})) throw Error('Data or tweet changed')
         if (labels.filter(v => v === 'Épargnant Libre').length !== 1 || /ISIN|…/.test(all)) throw Error('Signature or truncated content')
         for (const index of family.indices) {
-          const name = index.name.replace(' (rappel, non-PEA)', '').replace(' (PEA)', '').replace('Émergents global (indice ESG)', 'Émergents ESG')
+          const name = (index.indexFacts?.index ?? index.name).replace(' (rappel, non-PEA)', '').replace(' (PEA)', '').replace('Émergents global (indice ESG)', 'Émergents ESG')
           if (!all.includes(name)) throw Error(`Lost name ${name}`)
           const facts = getIndexImageFacts(index)
           if (Number.isFinite(facts?.count) && !labels.includes(facts.count.toLocaleString('fr-FR'))) throw Error(`Wrong count ${name}`)
