@@ -701,12 +701,12 @@ async function testIndexComparator(page) {
     const composition = family.indices.every(index => {
       const facts = index.indexFacts;
       if (facts?.metadata?.sourceStatus !== 'documented') return true;
-      return (!facts.constituents || (drawn.includes(facts.constituents.toLocaleString('fr-FR')) && drawn.includes('valeurs dans l’indice')))
+      return (!facts.constituents || (drawn.includes(facts.constituents.toLocaleString('fr-FR')) && drawn.includes('titres')))
         && [...(facts.countries ?? []).slice(0, 3), ...(facts.sectors ?? []).slice(0, 3)].every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
     });
     if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
-      && png.readUInt32BE(16) === 1440 && png.readUInt32BE(20) > 400
-      && png.readUInt32BE(20) < 2100 && png.length > 10000) images++;
+      && png.readUInt32BE(16) === 1800 && png.readUInt32BE(20) > 400
+      && png.readUInt32BE(20) < 3600 && png.length > 10000) images++;
   }
   await select.selectOption('monde');
   const worldText = await page.locator('.xc-preview-text').innerText();
