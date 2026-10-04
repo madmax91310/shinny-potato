@@ -1,59 +1,22 @@
-// Affiche 3:4 pour X. Tous les chiffres proviennent de la fiche sélectionnée.
-const W = 1080
-const H = 1440
-const C = {
-  paper: '#F2EFE8', ink: '#152A35', hero: '#315963', accent: '#327982',
-  white: '#F4F1EB', muted: '#53666C', rule: '#C7C9BD', negative: '#AD6258',
+import { getIndexArt, loadIndexArt } from './visualIdentity.js'
+const W = 1600, H = 1080
+const C = { ink: '#F8F3F8', muted: '#C3B8CA', accent: '#FFAA79', positive: '#D7B6FF', negative: '#FF6D72', rule: '#744835' }
+function write(ctx, text, x, y, size, color=C.ink, weight=400, align='left') {
+ ctx.font=`${weight} ${size}px Arial, sans-serif`;ctx.textBaseline='top';ctx.textAlign=align;ctx.fillStyle=color;ctx.fillText(String(text),x,y);ctx.textAlign='left'
 }
-
-function write(ctx, value, x, y, size, color = C.ink, weight = 400, align = 'left') {
-  ctx.fillStyle = color
-  ctx.font = `${weight} ${size}px Arial, sans-serif`
-  ctx.textBaseline = 'top'
-  ctx.textAlign = align
-  ctx.fillText(String(value), x, y)
-  ctx.textAlign = 'left'
+function fitted(ctx,text,x,y,width,size,color=C.ink,weight=700,min=16) {
+ while(size>min){ctx.font=`${weight} ${size}px Arial`;if(ctx.measureText(String(text)).width<=width)break;size--}
+ write(ctx,text,x,y,size,color,weight)
 }
-
-function fitted(ctx, value, x, y, width, size, color = C.ink, weight = 700, align = 'left', min = 13) {
-  let font = size
-  while (font > min) {
-    ctx.font = `${weight} ${font}px Arial, sans-serif`
-    if (ctx.measureText(String(value)).width <= width) break
-    font--
-  }
-  let label = String(value)
-  while (ctx.measureText(label).width > width && label.length > 2) label = `${label.slice(0, -2).trimEnd()}…`
-  write(ctx, label, x, y, font, color, weight, align)
+function paragraph(ctx,text,x,y,width,size=22,color=C.muted,lineHeight=size*1.35) {
+ ctx.font=`400 ${size}px Arial`;let line='',top=y
+ for(const word of String(text).split(/\s+/)){const next=line?`${line} ${word}`:word;if(ctx.measureText(next).width>width&&line){write(ctx,line,x,top,size,color);top+=lineHeight;line=word}else line=next}
+ if(line)write(ctx,line,x,top,size,color);return top+lineHeight
 }
-
-function percent(n, signed = false) {
-  return `${signed && n > 0 ? '+' : n < 0 ? '−' : ''}${Math.abs(n).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %`
-}
-
-function label(name) {
-  return name.replace(/[\p{Extended_Pictographic}\p{Regional_Indicator}\uFE0F\u200D]/gu, '').trim()
-}
-
-function section(ctx, y, number, title) {
-  write(ctx, title, 54, y - 3, 30, C.ink, 700)
-  ctx.fillStyle = C.ink
-  ctx.fillRect(54, y + 39, 972, 2)
-}
-
-function bars(ctx, entries, { y, step, rows, max = 30, size = 24, color = C.accent }) {
-  entries.forEach(([name, weight], i) => {
-    const x = 54 + Math.floor(i / rows) * 504
-    const top = y + i % rows * step
-    fitted(ctx, label(name), x, top, 355, size, C.ink, 400, 'left', 17)
-    write(ctx, percent(weight), x + 450, top, size + 1, color, 700, 'right')
-    ctx.fillStyle = '#DDDCD3'; ctx.fillRect(x, top + 34, 450, 4)
-    ctx.fillStyle = color; ctx.fillRect(x, top + 34, Math.min(450, 450 * weight / max), 4)
-  })
-}
-
-
-// Compact labels for PNG only; the full sourced explanation stays in the tweet and registry.
+function percent(n,signed=false){return `${signed&&n>0?'+':n<0?'−':''}${Math.abs(n).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})} %`}
+function label(n){return n.replace(/[\p{Extended_Pictographic}\p{Regional_Indicator}\uFE0F\u200D]/gu,'').trim()}
+function rule(ctx,x,y,width){ctx.fillStyle=C.rule;ctx.fillRect(x,y,width,1)}
+function list(ctx,title,entries,x){write(ctx,title,x,240,23,C.ink,700);rule(ctx,x,276,330);entries.slice(0,3).forEach(([name,value],i)=>{const y=300+i*86;fitted(ctx,label(name),x,y,330,24,C.ink,400,16);write(ctx,percent(value),x,y+32,34,C.accent,700)})}
 function performanceNote(sheet) {
   const detail = sheet.performance.detail
     .replace(sheet.title + ', ', '')
@@ -79,92 +42,40 @@ function performanceNote(sheet) {
   return { detail: fundNotes[sheet.id] ?? detail, history }
 }
 
-export function renderFactsheetImage(sheet) {
-  if (sheet.methodologyPanels) return renderMethodologyImage(sheet)
-  const canvas = document.createElement('canvas')
-  canvas.width = W * 2; canvas.height = H * 2
-  const ctx = canvas.getContext('2d')
-  ctx.scale(2, 2)
-  ctx.fillStyle = C.paper; ctx.fillRect(0, 0, W, H)
-
-  ctx.fillStyle = C.ink; ctx.fillRect(0, 0, W, 208)
-  write(ctx, 'ÉPARGNANT LIBRE', 540, 22, 25, C.white, 700, 'center')
-  fitted(ctx, sheet.title.toLocaleUpperCase('fr-FR'), 540, 52, 1000, 72, C.white, 700, 'center', 36)
-  fitted(ctx, sheet.markets, 540, 145, 1010, 23, C.white, 400, 'center', 17)
-  fitted(ctx, `COMPOSITION AU ${sheet.snapshot.toLocaleUpperCase('fr-FR')}`, 540, 180, 1000, 17, '#B7CBD0', 700, 'center', 13)
-
-  ctx.fillStyle = C.hero; ctx.fillRect(0, 208, W, 150)
-  // Un léger bord en pointe relie les deux bandeaux sans changer leur hauteur.
-  ctx.fillStyle = C.ink
-  ctx.beginPath(); ctx.moveTo(0, 208); ctx.lineTo(0, 216); ctx.lineTo(540, 204); ctx.lineTo(W, 216); ctx.lineTo(W, 208); ctx.closePath(); ctx.fill()
-  ctx.strokeStyle = '#95B2B4'; ctx.lineWidth = 1.5
-  ctx.beginPath(); ctx.moveTo(0, 216); ctx.lineTo(540, 204); ctx.lineTo(W, 216); ctx.stroke()
-
-  const topTen = sheet.topWeight ?? sheet.holdings.slice(0, 10).reduce((sum, [, weight]) => sum + weight, 0)
-  const perf = sheet.performance.tenYear != null
-    ? [sheet.performance.tenYear, 'SUR 10 ANS']
-    : sheet.performance.annualizedFiveYear != null
-      ? [sheet.performance.annualizedFiveYear, 'SUR 5 ANS']
-      : [sheet.returns[0][1], `EN ${sheet.returns[0][0]}`]
-  write(ctx, 'POIDS DES 10 PREMIÈRES', 54, 224, 18, C.white, 700)
-  fitted(ctx, percent(topTen), 54, 242, 480, 80, C.white, 700, 'left', 57)
-  ctx.fillStyle = '#93B2B4'; ctx.fillRect(550, 221, 2, 125)
-  write(ctx, sheet.constituents.toLocaleString('fr-FR'), 595, 214, 54, C.white, 700)
-  write(ctx, 'ENTREPRISES', 595, 272, 19, C.white, 700)
-  fitted(ctx, `${perf[0] > 0 ? '+' : ''}${percent(perf[0])}${sheet.performance.tenYear != null || sheet.performance.annualizedFiveYear != null ? ' / AN' : ''}`, 595, 294, 452, 37, C.white)
-  fitted(ctx, perf[1], 595, 337, 456, 16, C.white)
-
-  section(ctx, 401, '01', 'RÉPARTITION PAR PAYS')
-  // Le nombre de pays listés peut varier (6 pour MSCI Europe, 8 pour STOXX 600).
-  bars(ctx, sheet.countries, { y: 459, step: 49, rows: Math.ceil(sheet.countries.length / 2), size: 25, max: Math.max(30, ...sheet.countries.map(([, weight]) => weight)) })
-
-  section(ctx, 655, '02', 'SECTEURS')
-  bars(ctx, sheet.sectors, { y: 710, step: 49, rows: Math.ceil(sheet.sectors.length / 2), size: 23, color: C.hero, max: Math.max(30, ...sheet.sectors.map(([, weight]) => weight)) })
-
-  section(ctx, 1010, '03', 'DIX PREMIÈRES ENTREPRISES')
-  sheet.holdings.slice(0, 10).forEach(([name, weight], i) => {
-    const x = 54 + Math.floor(i / 5) * 504
-    const y = 1066 + i % 5 * 34
-    write(ctx, String(i + 1).padStart(2, '0'), x, y, 18, C.accent, 700)
-    fitted(ctx, name, x + 42, y, 315, 24, C.ink, 400, 'left', 17)
-    write(ctx, percent(weight), x + 450, y, 24, C.ink, 700, 'right')
-  })
-
-  section(ctx, 1256, '04', 'PERFORMANCES')
-  sheet.returns.slice().reverse().forEach(([year, result], i) => {
-    const x = 54 + i * 205
-    write(ctx, year, x, 1335, 20, C.muted)
-    fitted(ctx, percent(result, true), x, 1360, 190, 26, result < 0 ? C.negative : C.ink, 700, 'left', 18)
-  })
-  ctx.fillStyle = C.ink; ctx.fillRect(54, 1405, 972, 2)
-  const note = performanceNote(sheet)
-  fitted(ctx, `${note.detail} · ${sheet.performance.date}`, 54, note.history ? 1409 : 1413, 972, note.history ? 15 : 17, C.muted, 400, 'left', 12)
-  if (note.history) fitted(ctx, note.history, 54, 1426, 972, 13, C.muted, 400, 'left', 11)
-  return canvas
-}
-
-function renderMethodologyImage(sheet) {
- const canvas = document.createElement('canvas'); canvas.width=W*2;canvas.height=H*2;
- const ctx=canvas.getContext('2d');ctx.scale(2,2);ctx.fillStyle=C.paper;ctx.fillRect(0,0,W,H);
- ctx.fillStyle=C.ink;ctx.fillRect(0,0,W,230);
- write(ctx,'ÉPARGNANT LIBRE',540,28,24,C.white,700,'center');
- fitted(ctx,sheet.title,540,75,990,65,C.white,700,'center',34);
- fitted(ctx,sheet.markets,540,150,980,28,C.white,400,'center');
- fitted(ctx,sheet.snapshot,540,194,980,20,C.white,400,'center');
- ctx.fillStyle=C.hero;ctx.fillRect(0,230,W,130);
- const count=sheet.constituents??sheet.indexFacts.targetConstituents;
- write(ctx,count.toLocaleString('fr-FR'),540,246,65,C.white,700,'center');
- write(ctx,sheet.constituents===null?'SOCIÉTÉS VISÉES PAR LA MÉTHODE':'TITRES',540,322,22,C.white,700,'center');
- function paragraph(value,y) {
-  ctx.font='30px Arial';let line='',top=y;
-  for(const word of value.split(' ')) { const candidate=line?line+' '+word:word;
-   if(ctx.measureText(candidate).width>930 && line) {write(ctx,line,64,top,30);top+=44;line=word;} else line=candidate;
-  }if(line)write(ctx,line,64,top,30);
+export async function renderFactsheetImage(sheet) {
+ const art=await loadIndexArt(sheet),identity=getIndexArt(sheet)
+ const canvas=document.createElement('canvas');canvas.width=W*1.5;canvas.height=H*1.5
+ const ctx=canvas.getContext('2d');ctx.scale(1.5,1.5)
+ const background=ctx.createLinearGradient(0,0,W,H);background.addColorStop(0,'#190f20');background.addColorStop(.5,'#130d1a');background.addColorStop(1,'#0d0b12');ctx.fillStyle=background;ctx.fillRect(0,0,W,H)
+ // Preserve the full subject and aspect ratio; feather the studio backdrop only.
+ const layer=document.createElement('canvas');layer.width=820;layer.height=680
+ const l=layer.getContext('2d'),scale=Math.min(820/art.width,680/art.height),aw=art.width*scale,ah=art.height*scale
+ l.drawImage(art,(820-aw)/2,(680-ah)/2,aw,ah);l.globalCompositeOperation='destination-in'
+ const fade=l.createLinearGradient(0,0,820,0);fade.addColorStop(0,'transparent');fade.addColorStop(.08,'white');fade.addColorStop(.9,'white');fade.addColorStop(1,'transparent');l.fillStyle=fade;l.fillRect(0,0,820,680)
+ const vertical=l.createLinearGradient(0,0,0,680);vertical.addColorStop(0,'transparent');vertical.addColorStop(.15,'white');vertical.addColorStop(.82,'white');vertical.addColorStop(1,'transparent');l.fillStyle=vertical;l.fillRect(0,0,820,680)
+ ctx.drawImage(layer,10,75)
+ fitted(ctx,identity.description,55,710,710,27,C.accent,700)
+ if(sheet.countries?.length){const countries=sheet.countries.slice(0,3).map(([name,value])=>`${label(name)} ${percent(value)}`).join(' · ');paragraph(ctx,countries,55,755,710,22)}
+ fitted(ctx,sheet.index??sheet.title,850,65,695,65,C.ink,700,30)
+ const count=sheet.constituents
+ paragraph(ctx,count==null?`${sheet.indexFacts.targetConstituents.toLocaleString('fr-FR')} sociétés visées par la méthode`:`${count.toLocaleString('fr-FR')} titres · Composition au ${sheet.snapshot}`,850,150,690,22)
+ if(sheet.methodologyPanels){
+  let y=235
+  for(const [title,text] of sheet.methodologyPanels){write(ctx,title,850,y,23,C.accent,700);y=paragraph(ctx,text,850,y+36,690,24,C.ink,32)+30}
+ }else{
+  list(ctx,'SECTEURS',sheet.sectors,850);list(ctx,'PRINCIPALES POSITIONS',sheet.holdings,1215)
+  const top=sheet.topWeight??sheet.holdings.slice(0,10).reduce((sum,[,v])=>sum+v,0)
+  write(ctx,percent(top),850,585,97,C.accent,700)
+  write(ctx,'Poids des 10 premières lignes',850,697,30,C.muted)
  }
- sheet.methodologyPanels.forEach(([title,value],i)=>{const y=410+i*240;section(ctx,y,String(i+1).padStart(2,'0'),title);paragraph(value,y+65);});
- section(ctx,1140,'04','PERFORMANCES');
- sheet.returns.slice().reverse().forEach(([year,result],i)=>{const x=54+i*205;write(ctx,year,x,1214,22,C.muted);fitted(ctx,percent(result,true),x,1260,190,32,result<0?C.negative:C.ink,700);});
- const note = performanceNote(sheet);
- fitted(ctx,`${note.detail} · ${sheet.performance.date}`,54,1408,970,17,C.muted,400);
- return canvas;
+ rule(ctx,55,835,1490)
+ write(ctx,'PERFORMANCES',55,862,26,C.ink,700)
+ const returns=sheet.returns.slice().sort((a,b)=>a[0]-b[0]),step=1490/returns.length
+ returns.forEach(([year,value],i)=>{const x=55+i*step;write(ctx,year,x,907,25,C.muted);fitted(ctx,percent(value,true),x,946,step-26,48,value<0?C.negative:C.positive,700,25);if(i)rule(ctx,x-20,907,1)})
+ rule(ctx,55,1008,1490)
+ const note=performanceNote(sheet)
+ fitted(ctx,`${note.detail} · ${sheet.performance.date}`,55,1025,1230,20,C.muted,400,14)
+ if(note.history)fitted(ctx,note.history,55,1052,1230,16,C.muted,400,13)
+ write(ctx,'Épargnant Libre',1545,1025,23,C.muted,400,'right')
+ return canvas
 }

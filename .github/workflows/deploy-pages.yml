@@ -79,6 +79,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-tools.mjs
       - run: node scripts/test-portfolio-metallic.mjs
+      - run: node scripts/test-index-ribbon.mjs
       - run: node scripts/test-export-copy.mjs
       - run: node scripts/test-publication-studio.mjs
       - run: node scripts/test-anniversary-art.mjs
