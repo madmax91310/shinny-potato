@@ -41,15 +41,11 @@ try {
     }
     const { ETFS } = await module('data/etf-cards.js')
     const { renderETFImage } = await module('pages/etf-sheets/canvasImage.js')
-    const { renderAnnualETFImage } = await module('pages/etf-sheets/annualImage.js')
-    const { getAnnualPerformance } = await module('pages/etf-sheets/annualPerformance.js')
     const { buildText } = await module('pages/etf-sheets/lib.js')
     for (const etf of ETFS) {
       if (/🆕|Nouveau/.test(buildText(etf))) throw new Error(`New label in tweet: ${etf.id}`)
       await check(`etf-${etf.id}`, () => renderETFImage(etf), (_, text) => !/PRÉSENTATION|Nouveau/.test(text) && text.includes('Pas un conseil en investissement'))
-      if (getAnnualPerformance(etf)?.values.filter(Number.isFinite).length >= 2) {
-        await check(`annual-${etf.id}`, () => renderAnnualETFImage(etf), (_, text) => !text.includes('PRÉSENTATION') && !text.includes('Rendements calendaires de la part'))
-      }
+
     }
     const { SHEETS } = await module('data/index-factsheets.js')
     const { renderFactsheetImage } = await module('pages/factsheet-tweets/canvasImage.js')

@@ -10,7 +10,6 @@ import { CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
 import { formatTweetPerformance, getAnnualPerformance } from './annualPerformance'
 import { accountLabel, buildText, presentationType } from './lib'
 import { renderETFImage } from './canvasImage'
-import { renderAnnualETFImage } from './annualImage'
 import { INSTRUMENT_AUM_BY_ISIN } from '../../data/instrument-aum'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -210,8 +209,6 @@ export default function App() {
   const seenThisSession = useRef([currentId])
 
   const currentEtf = byId[currentId]
-  const currentAnnual = getAnnualPerformance(currentEtf)
-  const hasAnnualImage = currentAnnual?.values.filter(Number.isFinite).length >= 2
 
   const options = useMemo(() => ETFS.map(instrumentOption), [])
 
@@ -266,10 +263,6 @@ export default function App() {
     }
   }
 
-  function generateAnnualImage() {
-    const canvas = renderAnnualETFImage(currentEtf)
-    setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-performances-annuelles.png', title: 'Performances annuelles de l’ETF' })
-  }
 
   return (
     <div className="es-scope">
@@ -282,7 +275,7 @@ export default function App() {
         <Button type="button" variant="secondary" onClick={copyCurrent}>{copied ? '✅ Copié !' : '📋 Copier le texte'}</Button>
         <Button type="button" onClick={() => generateSummaryImage(true)} disabled={imageBusy}>{imageBusy ? 'Création de l’image…' : 'Télécharger l’image'}</Button>
         <ActionMenu><Button type="button" variant="secondary" onClick={() => generateSummaryImage()} disabled={imageBusy}>🖼️ Image récapitulative</Button>
-        {hasAnnualImage && <Button type="button" variant="secondary" onClick={generateAnnualImage}>📊 Télécharger le graphique annuel</Button>}</ActionMenu>
+        </ActionMenu>
       </>}>
         <section className="es-preparation tool-settings" aria-labelledby="es-preparation-title">
           <div className="es-panel-heading"><h2 id="es-preparation-title">Réglages de la fiche</h2></div>
@@ -302,7 +295,6 @@ export default function App() {
           </div>
           <p className="es-disclaimer" style={{ marginTop: 16 }}>Choisis un ETF, puis ouvre l’aperçu pour relire ta publication. Les boutons ci-dessous créent les visuels.</p>
           <SupportAlternatives key={currentId} etf={currentEtf} onSelect={selectETF} />
-          {!hasAnnualImage && <p className="es-disclaimer" style={{ marginTop: 12 }}>Graphique annuel indisponible pour cet ETF.</p>}
           {imageError && <p role="alert" className="es-disclaimer">{imageError}</p>}
         </section>
         <section className="tool-preview" aria-label="Publication ETF">
