@@ -739,10 +739,13 @@ async function testFeeImpact(page) {
   await page.goto(`${BASE}/impact-frais`, { waitUntil: "networkidle" });
   const preview = page.locator('.fi-preview-text');
   const initial = await preview.innerText();
-  let editorialOk = initial.startsWith('Tu connais les frais annuels de tes placements ?')
+  let editorialOk = /^💸 22\s115\s€ de moins après 20 ans/.test(initial)
     && /153\s402\s€/.test(initial) && /131\s287\s€/.test(initial)
-    && /22\s115\s€ d’écart/.test(initial) && /72\s000\s€ versés/.test(initial)
-    && initial.includes('les gains que l’argent prélevé') && !/Brouillon|à compléter/.test(initial);
+    && /Dans les deux cas, tu as versé 72\s000\s€/.test(initial)
+    && initial.includes('ils comprennent aussi ces gains manqués')
+    && initial.includes('Tu connais le montant des frais annuels de tes placements ?')
+    && initial.includes('Hypothèse de rendement constant')
+    && !/Brouillon|à compléter|Quand je vois ça|Tu connais celui/.test(initial);
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__feeCopiedText = text; } },
   }));
@@ -753,7 +756,7 @@ async function testFeeImpact(page) {
   await page.getByRole('button', { name: '0,20 %', exact: true }).last().click();
   editorialOk &&= /🔴 Avec 1,5 %/.test(await preview.innerText()) && /🟢 Avec 0,20 %/.test(await preview.innerText());
   await page.getByRole('button', { name: '0,20 %', exact: true }).first().click();
-  editorialOk &&= (await preview.innerText()).includes('Aucun écart') && !(await preview.innerText()).includes('les frais supplémentaires');
+  editorialOk &&= (await preview.innerText()).includes('capitaux simulés sont identiques') && !(await preview.innerText()).includes('gains manqués');
   await page.locator('#fi-punchline').fill('Ma conclusion personnalisée');
   editorialOk &&= (await preview.innerText()).includes('Ma conclusion personnalisée');
   await page.getByRole('button', { name: '500 €', exact: true }).click();
