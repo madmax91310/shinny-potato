@@ -4,10 +4,11 @@ import { spawn } from 'node:child_process'
 import { mkdir, writeFile, readFile } from 'node:fs/promises'
 import { ASSET_ORDER } from '../src/data/market-history.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
-import { NEON_ASSET_ART, getPaperArt } from '../src/pages/tweet-midi/stylizedArt.js'
+import { NEON_ASSET_ART } from '../src/pages/tweet-midi/stylizedArt.js'
+import { comparisonArt } from '../src/pages/tweet-midi/comparatifEtfImage.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
 assert.deepEqual(Object.keys(NEON_ASSET_ART).sort(), [...ASSET_ORDER].sort())
-for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) await readFile(`public/asset-art/paper/${getPaperArt(theme.id, fund.isin)}.webp`)
+for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) await readFile(`public/asset-art/${comparisonArt(theme.id, fund.isin)}`)
 for (const art of Object.values(NEON_ASSET_ART)) for (const file of [art.scene && `neon/${art.scene}.webp`, art.mark].filter(Boolean)) await readFile(`public/asset-art/${file}`)
 assert.equal(getComparisonPerformance('FR001400U5Q4').label, 'Indice MSCI World net')
 assert.equal(getComparisonPerformance('FR001400U5Q4').currency, 'EUR')

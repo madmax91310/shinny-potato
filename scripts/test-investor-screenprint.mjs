@@ -35,10 +35,10 @@ try {
         const portfolio=normalizePortfolio(await(await fetch(`/shinny-potato/data/investors/${slug}.json`)).json()),before=JSON.stringify(portfolio),tweet=buildTweet(portfolio)
         const png=await renderPortfolioImage(portfolio)
         if(before!==JSON.stringify(portfolio)||tweet!==buildTweet(portfolio))throw Error('Data changed')
-        if(photos.length!==1||photos[0]!==investorPortrait(slug).file)throw Error(`Wrong portrait ${slug}`)
+        if(photos[0]!=='approved/investor-glass.webp'||photos.length!==2||photos[1]!==investorPortrait(slug).file)throw Error(`Wrong portrait ${slug}`)
         const all=labels.join(' ')
         for(const row of portfolio.holdings.slice(0,5))if(!all.includes(holdingName(row))||!labels.includes(percentage(row.weight)))throw Error(`Lost holding ${slug}: ${row.issuerName}`)
-        if(!labels.includes(portfolio.identity.displayName)||!labels.includes(`Positions au ${dateFR(portfolio.snapshot.periodEnd)}`)||!labels.includes(investorPortrait(slug).person))throw Error('Lost identity/date')
+        if(!all.includes(portfolio.identity.displayName)||!labels.includes(`Positions au ${dateFR(portfolio.snapshot.periodEnd)}`)||!labels.includes(investorPortrait(slug).person))throw Error('Lost identity/date')
         if(!labels.includes('Autres positions'))throw Error('Lost remainder')
         await window.saveInvestor({slug,png})
       }

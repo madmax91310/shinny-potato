@@ -50,7 +50,8 @@ try {
       const before = JSON.stringify(duel), tweet = buildTweet(duel), png = await renderDuelImage(duel)
       if (JSON.stringify(duel) !== before || buildTweet(duel) !== tweet) throw new Error('Calculation or tweet changed')
       const expectedScenes = [...duel.a.assets, ...duel.b.assets].map(asset => getDuelArt(asset).scene)
-      if (JSON.stringify(scenes) !== JSON.stringify(expectedScenes)) throw new Error(`Wrong/missing scene in ${name}`)
+      if (scenes[0] !== 'approved/duel-studio.webp') throw new Error('Approved plate studio missing')
+      if (JSON.stringify(scenes.slice(1)) !== JSON.stringify(expectedScenes)) throw new Error(`Wrong/missing scene in ${name}`)
       for (const item of [duel.a, duel.b]) {
         for (const asset of item.assets) {
           if (!labels.join(' ').includes(asset.label) || !labels.includes(`${asset.pct} %`)) throw new Error(`Lost asset/weight: ${asset.id}`)
