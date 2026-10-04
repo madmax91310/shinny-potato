@@ -31,6 +31,7 @@ import { TERMES } from "../src/data/financial-lexicon.js";
 import { getAnnualReturns } from "../src/pages/tweet-midi/data/marketHistory.js";
 
 import assert from 'node:assert/strict';
+import './test-anniversary-editorial.mjs';
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
 import { getComparatifEtfText } from '../src/pages/tweet-midi/data/comparatifEtf.js';
 import { buildTweetText as buildEtfTweet } from '../src/pages/etf-tweets/lib/tweetFormat.js';

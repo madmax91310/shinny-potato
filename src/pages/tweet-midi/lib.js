@@ -1,3 +1,4 @@
+import { anniversaryResult, anniversaryClosing } from './anniversaryEditorial.js';
 import { VRAI_FAUX } from "./data/vraiFaux.js";
 import { VRAI_FAUX_QUESTIONS } from "./data/vraiFauxQuestions.js";
 import { DILEMMES, SITUATIONS } from "./data/dilemmes.js";
@@ -407,22 +408,13 @@ function dePhrase(tweetPhrase) {
   return "de " + tweetPhrase;
 }
 
-// Chaque fin s'appuie sur la période et les chiffres déjà présents dans le tweet.
-function anniversaryConclusion(asset, yearsBack, gainPct) {
-  const horizon = yearsPhrase(yearsBack);
-  if (gainPct === null) return `À quel niveau est ${asset.label} aujourd'hui ? Renseigne-le pour comparer avec il y a ${horizon}.`;
-  if (gainPct === 0) return `Sur ${horizon}, ${asset.label} est revenu au même niveau. Tu t'attendais à ce résultat ?`;
-  if (gainPct < 0) return `Même après ${horizon}, ${asset.label} reste sous son niveau de départ. Tu aurais conservé ta position ?`;
-  if (gainPct >= 100) return `Sur ${horizon}, la valeur de ${asset.label} a plus que doublé. Tu aurais tenu toute la période ?`;
-  return `Sur ${horizon}, ${asset.label} a progressé. Quelle baisse intermédiaire aurais-tu accepté de traverser ?`;
-}
-
 function comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, yearsBack) {
   if (pctA === null || pctB === null) return `Renseigne les deux niveaux actuels pour comparer ${assetA.label} et ${assetB.label} sur ${yearsPhrase(yearsBack)}.`;
   if (pctA === pctB) return `Sur ${yearsPhrase(yearsBack)}, ${assetA.label} et ${assetB.label} finissent à égalité. Tu aurais préféré détenir lequel ?`;
   const leading = pctA > pctB ? assetA : assetB;
   const trailing = pctA > pctB ? assetB : assetA;
-  return `Sur ${yearsPhrase(yearsBack)}, ${leading.label} fait mieux que ${trailing.label}. Tu aurais tenu les deux jusqu'ici ?`;
+  const result = pctA < 0 && pctB < 0 ? `${leading.label} a moins baissé que ${trailing.label}` : `${leading.label} termine avec une meilleure variation que ${trailing.label}`;
+  return `Sur ${yearsPhrase(yearsBack)}, ${result}.\n\n💬 À l’époque, tu aurais choisi ${assetA.label}, ${assetB.label}, ou les deux ?`;
 }
 
 export function buildVraiFauxText(item) {
@@ -481,7 +473,8 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
 
   const phrase = yearsPhrase(item.yearsBack);
   const lines = [];
-  lines.push(`🎂 En ${dateLabel}, il y a ${phrase} 👇`);
+  lines.push(`${asset.icon} ${asset.tweetPhrase.charAt(0).toUpperCase() + asset.tweetPhrase.slice(1)} ${asset.priceUnit === 'points' ? 'était à' : 'valait'} ${fmtAnniversaryLevel(asset, historicalPrice)} en ${dateLabel}. ${phrase.charAt(0).toUpperCase() + phrase.slice(1)} plus tard, ${anniversaryResult(asset, gainPct, hasCurrent ? fmtPct(gainPct) : '')} 👇`);
+
   lines.push("");
   lines.push(`${asset.icon} ${asset.label}`);
   if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant);
@@ -489,7 +482,7 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
   lines.push(`Niveau actuel : ${hasCurrent ? fmtAnniversaryLevel(asset, niveauActuel) : "[à saisir]"}`);
   lines.push(`Performance : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
   lines.push("");
-  lines.push(anniversaryConclusion(asset, item.yearsBack, gainPct));
+  lines.push(anniversaryClosing(asset, gainPct, ym.slice(0, 4)));
   if (asset.sourceCredit) lines.push("", asset.sourceCredit);
   return lines.join("\n");
 }
@@ -555,7 +548,7 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   const ordered = bothKnown && pctB > pctA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
-  lines.push(`🎂 En ${dateLabel}, il y a ${yearsPhrase(item.yearsBack)} 👇`);
+  lines.push(`⚖️ ${assetA.label} ou ${assetB.label} : quelle différence après ${yearsPhrase(item.yearsBack)}, depuis ${dateLabel} ? 👇`);
   lines.push("");
   ordered.forEach(({ asset, hist, cur, hasCur, gain }, i) => {
     lines.push(`${asset.icon} ${asset.label}`);
