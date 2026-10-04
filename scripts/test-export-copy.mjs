@@ -14,6 +14,13 @@ try {
   browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
   const page = await browser.newPage()
   await page.goto(base)
+  await mkdir('test-artifacts/export-copy', { recursive: true })
+  // Stream each result instead of returning hundreds of full PNGs in one
+  // Playwright message (which can exceed Node's maximum string size).
+  await page.exposeFunction('saveExportCopy', async result => {
+    await writeFile(`test-artifacts/export-copy/${result.name}.txt`, result.text)
+    if (result.png) await writeFile(`test-artifacts/export-copy/${result.name}.png`, Buffer.from(result.png.split(',')[1], 'base64'))
+  })
   const results = await page.evaluate(async () => {
     const module = path => import(`/shinny-potato/src/${path}`)
     const records = []
@@ -29,7 +36,8 @@ try {
       const text = words.join('\n')
       if (!validate(words, text)) throw new Error(`${name}: unexpected export copy\n${text}`)
       if (words.filter(word => /[ée]pargnant.?libre/i.test(word)).length !== 1) throw new Error(`${name}: signature must appear once`)
-      records.push({ name, png, text })
+      await window.saveExportCopy({ name, text, png: !name.startsWith('etf-') || records.length === 0 ? png : null })
+      records.push(name)
     }
     const { ETFS } = await module('data/etf-cards.js')
     const { renderETFImage } = await module('pages/etf-sheets/canvasImage.js')
@@ -88,12 +96,6 @@ try {
     for (const design of HOUSEHOLD_DESIGNS) for (const record of HOUSEHOLD_STATISTICS) await check(`household-${design.id}-${record.id}`, () => renderHouseholdImage(record,design.id), (_,text) => !text.includes('Chaque point représente'))
     return records
   })
-  await mkdir('test-artifacts/export-copy', { recursive: true })
-  // Representative images, plus all written labels, remain reviewable in the CI artifact.
-  for (const result of results) {
-    await writeFile(`test-artifacts/export-copy/${result.name}.txt`, result.text)
-    if (!result.name.startsWith('etf-') || result === results[0]) await writeFile(`test-artifacts/export-copy/${result.name}.png`, Buffer.from(result.png.split(',')[1], 'base64'))
-  }
   console.log(`${results.length} PNG exports: copy, signatures and duplicate removal verified.`)
 } finally {
   await browser?.close()
