@@ -1,3 +1,4 @@
+import { getIndexComparisonPerformance } from '../../data/index-comparison-performance.js'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -18,9 +19,10 @@ export default function IndexComparator() {
   const textareaRef = useRef(null)
 
   const family = useMemo(() => FAMILIES.find((f) => f.id === familyId) ?? FAMILIES[0], [familyId])
+  const performanceRows = useMemo(() => getIndexComparisonPerformance(family), [family])
   const text = useMemo(() => buildTweetText(family, perfValues), [family, perfValues])
 
-  const setFundValue = useCallback((key, field, value) => {
+  const setIndexValue = useCallback((key, field, value) => {
     setPerfValues((prev) => ({ ...prev, [key]: { ...prev[key], [field]: value } }))
   }, [])
 
@@ -86,29 +88,31 @@ export default function IndexComparator() {
 
           <div className="xc-panel">
             <p className="xc-eyebrow">Performance</p>
-            <p className="xc-hint">Les chiffres 2023–2025 ci-dessous sont ceux des ETF et parts nommés, pas les rendements bruts des indices décrits dans le premier bloc. Vérifie la part et sa devise avant publication. Seul le YTD est saisi ici.</p>
-            {family.perfFunds.map((f) => {
+            <p className="xc-hint">Les chiffres 2023–2025 sont les performances des indices ou actifs comparés. La devise et le traitement des dividendes sont précisés pour chaque série. Les frais des ETF ne sont pas déduits. Aucune conversion de devise n’est appliquée. Seul le YTD est saisi ici.</p>
+            {performanceRows.map((f) => {
               const v = perfValues[f.key] || {}
               return (
                 <div key={f.key} className="xc-fund-block">
                   <p className="xc-fund-label">{f.label}</p>
                   <p className="xc-perf-readout">
-                    {f.perfNote ?? `2023 ${fmtPct(f.y2023) ?? '[à vérifier]'} · 2024 ${fmtPct(f.y2024) ?? '[à vérifier]'} · 2025 ${fmtPct(f.y2025) ?? '[à vérifier]'}`}
+                    {`2023 ${fmtPct(f.y2023) ?? 'Non disponible'} · 2024 ${fmtPct(f.y2024) ?? 'Non disponible'} · 2025 ${fmtPct(f.y2025) ?? 'Non disponible'}`}
                   </p>
-                  <label className="xc-ytd-toggle">
-                    <input type="checkbox" checked={!!v.ytdEnabled} onChange={(e) => setFundValue(f.key, 'ytdEnabled', e.target.checked)} />
+                  <p className="xc-hint">{f.currency ?? 'Devise à confirmer'} · {f.method}. {f.note}</p>
+                  <a className="xc-hint" href={f.source.url} target="_blank" rel="noreferrer">Consulter la source des performances</a>
+                  {f.currency && <label className="xc-ytd-toggle">
+                    <input type="checkbox" checked={!!v.ytdEnabled} onChange={(e) => setIndexValue(f.key, 'ytdEnabled', e.target.checked)} />
                     Inclure le YTD
-                  </label>
-                  {v.ytdEnabled && (
+                  </label>}
+                  {f.currency && v.ytdEnabled && (
                     <>
-                      <input className="xc-control" type="text" inputMode="decimal" placeholder="YTD %" value={v.ytd ?? ''} onChange={(e) => setFundValue(f.key, 'ytd', e.target.value)} />
-                      <p className="xc-hint xc-hint-tight">⚠️ Donnée continue : vérifie le YTD sur justETF ou le site de l'émetteur avant publication.</p>
+                      <input className="xc-control" type="text" inputMode="decimal" placeholder="YTD %" value={v.ytd ?? ''} onChange={(e) => setIndexValue(f.key, 'ytd', e.target.value)} />
+                      <p className="xc-hint xc-hint-tight">⚠️ Donnée continue : vérifie le YTD de cet indice ou actif, dans la même devise et avec la même méthode, sur le site de sa source avant publication.</p>
                     </>
                   )}
                 </div>
               )
             })}
-            {family.perfMethodNote && <p className="xc-hint">{family.perfMethodNote}</p>}
+
           </div>
 
           <p className="xc-hint">L’image compare les expositions côte à côte, avec les données de composition disponibles : nombre de valeurs, principaux pays et secteurs. Les performances sont dans le tweet.</p>

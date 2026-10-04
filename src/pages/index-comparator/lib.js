@@ -1,3 +1,4 @@
+import { getIndexComparisonPerformance, getIndexComparisonPerformanceHeading, getIndexComparisonPerformanceLabel } from '../../data/index-comparison-performance.js'
 import { getIndexComparisonEditorial } from '../../data/index-comparison-editorial.js'
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
 import { formatInstrumentListing } from '../../data/instrument-listings.js'
@@ -20,23 +21,30 @@ function renderFundGroup(group) {
 }
 export function buildTweetText(family, perfValues = {}) {
   const editorial = getIndexComparisonEditorial(family)
-  const exposures = family.indices.map((index, i) => `🔹 ${index.name}\n${editorial.exposures[i]}`).join('\n\n')
-  const performance = family.perfFunds.map(fund => {
-    if (fund.perfNote) return `📈 ${fund.label}\n${fund.perfNote}`
-    const extra = perfValues[fund.key]
+  const rows = getIndexComparisonPerformance(family)
+  const detailedLabels = ['emergents-pea', 'style', 'dividendes-cto', 'dividendes-pea'].includes(family.id)
+  const exposures = family.indices.map((index, i) => `🔹 ${detailedLabels ? rows[i].label : index.name}\n${editorial.exposures[i]}`).join('\n\n')
+  const performance = rows.map((row, i) => {
+    const extra = perfValues[row.key]
     return [
-      `📈 ${fund.label}`,
-      [2023, 2024, 2025].map(year => `${year} : ${fmtPct(fund[`y${year}`]) ?? 'Non disponible'}`).join(' · '),
-      ...(extra?.ytdEnabled && fmtPct(extra.ytd) !== null ? [`YTD saisi : ${fmtPct(extra.ytd)}`] : []),
+      `${['🟢', '🔵', '🟣', '🟠', '🔴'][i]} ${getIndexComparisonPerformanceLabel(row, rows)}`,
+      [2023, 2024, 2025].map(year => `${year} : ${fmtPct(row[`y${year}`]) ?? 'Non disponible'}`).join(' · '),
+      ...(row.currency && extra?.ytdEnabled && fmtPct(extra.ytd) !== null ? [`YTD saisi : ${fmtPct(extra.ytd)}`] : []),
     ].join('\n')
   }).join('\n\n')
+  const size = family.indices.map((index, i) => {
+    const facts = index.indexFacts
+    if (facts?.constituents) return `${detailedLabels ? rows[i].label : index.name} : ${facts.constituents.toLocaleString('fr-FR').replaceAll('\u202f', ' ')} valeurs`
+    if (facts?.targetConstituents) return `${detailedLabels ? rows[i].label : index.name} : ${facts.targetConstituents.toLocaleString('fr-FR')} sociétés visées`
+    return `${index.name} : exposition à un seul actif`
+  }).join('\n')
   return [editorial.hook, editorial.intro, exposures,
-    `📊 Pour situer la taille de chaque panier :\n${family.diversification.chain.join('\n')}`,
+    `📊 Pour situer la taille de chaque panier :\n\n${size}`,
     editorial.insight,
     editorial.fundTransition,
     family.etfGroups.map(renderFundGroup).join('\n\n'),
-    '📈 Voilà ce qu’ont donné les parts ou actifs ci-dessous en 2023, 2024 et 2025 :',
-    performance, ...(family.perfMethodNote ? [family.perfMethodNote] : []),
+    getIndexComparisonPerformanceHeading(family, rows),
+    performance,
     editorial.takeaway, `💬 ${editorial.question}`,
   ].join('\n\n')
 }

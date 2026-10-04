@@ -7,7 +7,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
  insight:'Les deux S&P 500 partagent leurs entreprises. Le Russell 2000 change le segment du marché ; il ne se contente pas de changer les poids.',
  takeaway:'Changer de pondération et ajouter des petites entreprises sont deux décisions différentes. Aucune méthode ne gagne tous les ans.',
  question:'Tu choisirais lequel pour ta poche américaine ?',visualPoints:[['Grandes entreprises','Capitalisation flottante'],['Même univers','Poids égal au rééquilibrage'],['Petites entreprises','Autre segment du marché']],
- imageTitle:'Trois façons d’investir aux USA',fundTransition:'Voici les trois ETF utilisés pour la comparaison 👇',
+ imageTitle:'Trois façons d’investir aux USA',fundTransition:'Voici quelques ETF pour suivre ces indices 👇',
 },
   "europe": {
     "hook": "🇪🇺 Tu achètes un ETF Europe. Mais est-ce que tu investis aussi au Royaume-Uni et en Suisse ?",
@@ -38,16 +38,16 @@ export const INDEX_COMPARISON_EDITORIAL = {
     "fundTransition": "Et pour retrouver ces indices en Bourse, voici les ETF de la comparaison 👇"
   },
   "monde": {
-    "hook": "🌍 Tu as un ETF World. Pourtant, la Chine, l’Inde et le Brésil peuvent être absents de ton portefeuille.",
-    "intro": "Le mot « World » donne l’impression de couvrir toute la planète. Mais entre MSCI World, ACWI et FTSE All-World, il y a une différence à connaître 👇",
+    "hook": "🌍 Quand tu as un ETF « World », tu as l’impression de couvrir toute la planète. Mais entre MSCI World, ACWI et FTSE All-World, il y a des différences à connaître.",
+    "intro": "On décrypte les trois 👇",
     "exposures": [
       "Avec le MSCI World, tu restes dans les pays développés. Les marchés émergents ne sont pas inclus.",
       "Avec le MSCI ACWI, tu ajoutes les marchés émergents aux pays développés, dans la même ligne.",
       "Avec le FTSE All-World, tu retrouves aussi les deux. FTSE et MSCI n’utilisent simplement pas exactement les mêmes règles pour construire leur indice."
     ],
-    "insight": "Entre World et ACWI ou All-World, tu changes donc d’abord la place des émergents. Entre les deux derniers, les différences viennent plutôt de la sélection et des poids attribués aux entreprises.",
-    "takeaway": "Et même avec beaucoup de pays, les États-Unis gardent une place importante. « Mondial » ne veut pas dire que chaque pays reçoit la même part.",
-    "question": "Tu préfères les émergents dans ton ETF principal ou dans une ligne à part ?",
+    "insight": "Entre le World et les deux autres, la principale différence est donc l’inclusion des émergents. Entre ACWI et All-World, les différences viennent plutôt de la sélection des entreprises et de leur pondération.",
+    "takeaway": "Même avec des milliers d’entreprises, les États-Unis gardent une place importante. Un indice mondial ne donne pas le même poids à chaque pays.",
+    "question": "Tu as une préférence entre ces indices ?",
     "visualPoints": [
       [
         "Pays développés",
@@ -63,7 +63,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
       ]
     ],
     "imageTitle": "Les indices mondiaux",
-    "fundTransition": "Voici les ETF cités pour ces trois indices 👇"
+    "fundTransition": "Voici quelques ETF pour suivre ces indices 👇"
   },
   "usa": {
     "hook": "🇺🇸 Tu ajoutes un Nasdaq-100 à ton S&P 500. Est-ce que tu achètes vraiment autre chose ?",
@@ -102,11 +102,11 @@ export const INDEX_COMPARISON_EDITORIAL = {
     "hook": "🌏 Deux ETF émergents dans un PEA : l’un peut couvrir plusieurs régions, l’autre seulement l’Inde.",
     "intro": "Le mot « émergents » ne suffit donc pas pour savoir ce que tu achètes. Voici les cinq approches 👇",
     "exposures": [
-      "PAEEM te donne une exposition généraliste aux émergents, hors Égypte, avec des filtres ESG et climatiques.",
-      "PAASI se concentre sur les marchés émergents d’Asie. Tu laisses donc les autres régions de côté.",
-      "PALAT va chercher des entreprises d’Amérique latine, avec une sélection et des plafonds de pondération.",
-      "PINR suit le marché indien. Ici, toute la ligne est tournée vers un seul pays.",
-      "PLEM couvre l’Europe émergente, le Moyen-Orient et l’Afrique, hors Égypte, avec des filtres ESG et climatiques."
+      "L’indice MSCI EM ex-Egypt ESG Broad CTB Select te donne une exposition généraliste aux émergents, hors Égypte, avec des filtres ESG et climatiques.",
+      "L’indice MSCI EM Asia Screened Select ex Thermal Coal se concentre sur les marchés émergents d’Asie. Tu laisses donc les autres régions de côté.",
+      "L’indice MSCI EM Latin America Selection 20/35% Capped va chercher des entreprises d’Amérique latine, avec une sélection et des plafonds de pondération.",
+      "Le MSCI India suit le marché indien. Ici, toute la ligne est tournée vers un seul pays.",
+      "L’indice MSCI EM EMEA ex-Egypt ESG Broad CTB Select couvre l’Europe émergente, le Moyen-Orient et l’Afrique, hors Égypte, avec des filtres ESG et climatiques."
     ],
     "insight": "Choisir l’Inde ou une région, c’est lui donner une place particulière dans ton portefeuille. Ce n’est pas une autre façon d’obtenir exactement le même panier que le fonds généraliste.",
     "takeaway": "Et dans cette sélection, les filtres comptent aussi. Un ETF émergent en PEA peut suivre des règles différentes d’un ETF émergent classique sur CTO.",
@@ -166,10 +166,10 @@ export const INDEX_COMPARISON_EDITORIAL = {
   },
   "style": {
     "hook": "🎨 Un ETF World Value et un World Quality partent du monde… mais ne choisissent pas les mêmes entreprises.",
-    "intro": "Le petit mot ajouté après « World » change beaucoup de choses. Voilà ce qu’il veut dire 👇",
+    "intro": "On décrypte les trois approches 👇",
     "exposures": [
-      "Value cherche des entreprises selon leur valorisation par rapport à leurs fondamentaux. L’idée est de sélectionner celles que cette méthode juge relativement décotées.",
-      "Quality regarde notamment la rentabilité, la stabilité des bénéfices et l’endettement.",
+      "Enhanced Value cherche des entreprises selon leur valorisation par rapport à leurs fondamentaux. L’idée est de sélectionner celles que cette méthode juge relativement décotées.",
+      "Sector Neutral Quality regarde notamment la rentabilité, la stabilité des bénéfices et l’endettement, tout en gardant les poids sectoriels proches de ceux de l’univers de départ.",
       "Growth s’intéresse à la croissance attendue. Aucun ETF UCITS répliquant exactement cet indice n’est détaillé dans l’outil."
     ],
     "insight": "Ces trois approches ne sont pas des versions de plus en plus larges du même panier. Chacune applique ses critères et peut donner davantage de place à certains secteurs.",
@@ -193,12 +193,12 @@ export const INDEX_COMPARISON_EDITORIAL = {
     "fundTransition": "Pour Value et Quality, voici les ETF cités 👇"
   },
   "dividendes-cto": {
-    "hook": "💰 Tu regardes deux ETF à dividendes. L’un cherche surtout un rendement élevé, l’autre regarde aussi la qualité des entreprises.",
-    "intro": "Ils versent tous les deux des revenus, mais ils ne construisent pas leur panier de la même façon 👇",
+    "hook": "💰 Derrière un ETF à dividendes, tu peux trouver un rendement élevé, des critères de qualité ou un historique de distributions.",
+    "intro": "On décrypte les trois approches 👇",
     "exposures": [
       "High Dividend sélectionne des entreprises mondiales au rendement de dividende élevé.",
       "Quality Dividend ajoute des critères de qualité financière à la recherche de dividendes.",
-      "Dividend Aristocrats regarde l’historique des distributions. Les versions mondiale et américaine n’appliquent pas exactement les mêmes règles."
+      "La variante Global Dividend Aristocrats Quality Income regarde l’historique des distributions et ajoute des critères de qualité financière."
     ],
     "insight": "Un dividende qui arrive sur ton compte, c’est concret. Mais ce n’est qu’une partie du résultat : le prix de tes parts peut monter ou baisser en parallèle.",
     "takeaway": "Les performances ci-dessous incluent les dividendes réinvestis. Elles permettent de regarder le résultat total, plutôt que le seul montant distribué.",
@@ -241,7 +241,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
       ]
     ],
     "imageTitle": "Les indices de dividendes",
-    "fundTransition": "Pour la version zone euro, voici le fonds PEA cité 👇"
+    "fundTransition": "Voici les ETF cités pour les deux indices, avec leur statut PEA 👇"
   },
   "chine": {
     "hook": "🇨🇳 Tu achètes un ETF Chine. Mais quelles actions chinoises retrouves-tu vraiment dedans ?",

@@ -1,0 +1,949 @@
+{
+  "checkedAt": "2026-10-04",
+  "period": "2023–2025",
+  "method": "Transcription des tableaux annuels : indice/benchmark exclusivement, jamais la ligne fonds. Séries ambiguës laissées null.",
+  "observations": [
+    {
+      "id": "sp500-pea",
+      "label": "S&P 500",
+      "values": [
+        [
+          2023,
+          26.29
+        ],
+        [
+          2024,
+          25.02
+        ],
+        [
+          2025,
+          17.88
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.spglobal.com/spdji/en/documents/commentary/market-attributes-us-equities-202512.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "sp500-equal-weight",
+      "label": "S&P 500 Equal Weight",
+      "values": [
+        [
+          2023,
+          13.87
+        ],
+        [
+          2024,
+          13.01
+        ],
+        [
+          2025,
+          11.43
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.invesco.com/us-rest/contentdetail?contentId=e3fc7c23dbd92610VgnVCM1000006e36b50aRCRD&dnsName=us"
+      },
+      "note": null
+    },
+    {
+      "id": "nasdaq-pea",
+      "label": "Nasdaq-100",
+      "values": [
+        [
+          2023,
+          55.13
+        ],
+        [
+          2024,
+          25.88
+        ],
+        [
+          2025,
+          21.02
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://indexes.nasdaq.com/docs/FS_XNDX.pdf"
+      },
+      "note": "Version Total Return XNDX ; distincte de l’indice prix NDX et de la version nette suivie par certains ETF."
+    },
+    {
+      "id": "msci-usa",
+      "label": "MSCI USA",
+      "values": [
+        [
+          2023,
+          27.1
+        ],
+        [
+          2024,
+          25.08
+        ],
+        [
+          2025,
+          17.75
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-usa-index-gross.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "russell-1000",
+      "label": "Russell 1000",
+      "values": [
+        [
+          2023,
+          26.53
+        ],
+        [
+          2024,
+          24.51
+        ],
+        [
+          2025,
+          17.37
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD"
+      },
+      "note": null
+    },
+    {
+      "id": "mscieurope",
+      "label": "MSCI Europe",
+      "values": [
+        [
+          2023,
+          12.73
+        ],
+        [
+          2024,
+          5.75
+        ],
+        [
+          2025,
+          16.34
+        ]
+      ],
+      "currency": "EUR",
+      "method": "hors dividendes",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-price.pdf"
+      },
+      "note": "Version prix choisie pour comparer les trois indices européens sur la même base, sans dividendes."
+    },
+    {
+      "id": "em-esg",
+      "label": "MSCI EM ex-Egypt ESG Broad CTB Select",
+      "values": [
+        [
+          2023,
+          5.32
+        ],
+        [
+          2024,
+          7.18
+        ],
+        [
+          2025,
+          38.26
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-em-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf"
+      },
+      "note": "Historique partiellement rétrosimulé : indice lancé le 6 juillet 2023."
+    },
+    {
+      "id": "msci-em-asia-screened",
+      "label": "MSCI EM Asia Screened Select ex Thermal Coal",
+      "values": [
+        [
+          2023,
+          0.96
+        ],
+        [
+          2024,
+          9.99
+        ],
+        [
+          2025,
+          39.04
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/40ed8526-20a0-ef81-fc55-ee99f1315c5c"
+      },
+      "note": "Historique partiellement rétrosimulé : indice lancé le 6 juillet 2023."
+    },
+    {
+      "id": "msci-india",
+      "label": "MSCI India",
+      "values": [
+        [
+          2023,
+          20.81
+        ],
+        [
+          2024,
+          11.22
+        ],
+        [
+          2025,
+          2.62
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-india-index-net.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "msci-em-imi",
+      "label": "MSCI EM IMI",
+      "values": [
+        [
+          2023,
+          11.67
+        ],
+        [
+          2024,
+          7.09
+        ],
+        [
+          2025,
+          31.38
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.ishares.com/gls-download/literature/fact-sheet/eimi-ishares-core-msci-em-imi-ucits-etf-fund-fact-sheet-en-gb.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "msci-em-ex-china",
+      "label": "MSCI EM ex-China",
+      "values": [
+        [
+          2023,
+          20.03
+        ],
+        [
+          2024,
+          3.56
+        ],
+        [
+          2025,
+          34.61
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-ex-china-index-usd-net.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "msci-world-enhanced-value",
+      "label": "MSCI World Enhanced Value",
+      "values": [
+        [
+          2023,
+          19.31
+        ],
+        [
+          2024,
+          5.09
+        ],
+        [
+          2025,
+          39.39
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-enhanced-value-index-net-usd.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "msci-world-sector-neutral-quality",
+      "label": "MSCI World Sector Neutral Quality",
+      "values": [
+        [
+          2023,
+          25.83
+        ],
+        [
+          2024,
+          16.81
+        ],
+        [
+          2025,
+          15.49
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-sector-neutral-quality-index-usd-net.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "msci-world-growth",
+      "label": "MSCI World Growth",
+      "values": [
+        [
+          2023,
+          37
+        ],
+        [
+          2024,
+          25.92
+        ],
+        [
+          2025,
+          21.14
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-growth-index-usd-net.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "msci-world-high-dividend-yield-advanced-select",
+      "label": "MSCI World High Dividend Yield Advanced Select",
+      "values": [
+        [
+          2023,
+          17.09
+        ],
+        [
+          2024,
+          9.82
+        ],
+        [
+          2025,
+          23.92
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-high-dividend-yield-advanced-select-index-usd-net.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "msci-china",
+      "label": "MSCI China",
+      "values": [
+        [
+          2023,
+          -11.2
+        ],
+        [
+          2024,
+          19.42
+        ],
+        [
+          2025,
+          31.17
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-china-a-index-usd-net.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "msci-china-a",
+      "label": "MSCI China A",
+      "values": [
+        [
+          2023,
+          -13.47
+        ],
+        [
+          2024,
+          11.7
+        ],
+        [
+          2025,
+          26.48
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-china-a-index-usd-net.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "ftse-em",
+      "label": "FTSE Emerging",
+      "values": [
+        [
+          2023,
+          8.6
+        ],
+        [
+          2024,
+          12.4
+        ],
+        [
+          2025,
+          26.0
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open"
+      },
+      "note": null
+    },
+    {
+      "id": "ftse-all-world-high-dividend-yield",
+      "label": "FTSE All-World High Dividend Yield",
+      "values": [
+        [
+          2023,
+          12.3
+        ],
+        [
+          2024,
+          10.1
+        ],
+        [
+          2025,
+          27.3
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=AWHDY&openfile=open"
+      },
+      "note": null
+    },
+    {
+      "id": "sp-global-dividend-aristocrats",
+      "label": "S&P Global Dividend Aristocrats Quality Income",
+      "values": [
+        [
+          2023,
+          6.9
+        ],
+        [
+          2024,
+          7.48
+        ],
+        [
+          2025,
+          16.97
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy"
+      },
+      "note": "Ligne Index (net total return), pas la performance de la part. Le fonds suit la variante Quality Income depuis février 2020."
+    },
+    {
+      "id": "sp-euro-dividend-aristocrats",
+      "label": "S&P Euro High Yield Dividend Aristocrats",
+      "values": [
+        [
+          2023,
+          17.95
+        ],
+        [
+          2024,
+          8.23
+        ],
+        [
+          2025,
+          19.47
+        ]
+      ],
+      "currency": "EUR",
+      "method": "dividendes nets réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy"
+      },
+      "note": "Ligne Index (net total return), pas la performance de la part."
+    },
+    {
+      "id": "ftse-china-50",
+      "label": "FTSE China 50",
+      "values": [
+        [
+          2023,
+          -12.6
+        ],
+        [
+          2024,
+          31.7
+        ],
+        [
+          2025,
+          29.8
+        ]
+      ],
+      "currency": "HKD",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=XIN0&openfile=open"
+      },
+      "note": null
+    },
+    {
+      "id": "nikkei225",
+      "label": "Nikkei 225",
+      "values": [
+        [
+          2023,
+          30.66
+        ],
+        [
+          2024,
+          21.33
+        ],
+        [
+          2025,
+          28.69
+        ]
+      ],
+      "currency": "JPY",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr"
+      },
+      "note": null
+    },
+    {
+      "id": "topix",
+      "label": "TOPIX",
+      "values": [
+        [
+          2023,
+          28.26
+        ],
+        [
+          2024,
+          20.45
+        ],
+        [
+          2025,
+          25.46
+        ]
+      ],
+      "currency": "JPY",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf"
+      },
+      "note": "Table Calendar Year, ligne Index, benchmark TOPIX Total Return ; pas la ligne Total Return du fonds."
+    },
+    {
+      "id": "msci-japan-imi",
+      "label": "MSCI Japan IMI",
+      "values": [
+        [
+          2023,
+          27.59
+        ],
+        [
+          2024,
+          20.35
+        ],
+        [
+          2025,
+          25.59
+        ]
+      ],
+      "currency": "JPY",
+      "method": "dividendes réinvestis",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.msci.com/documents/10199/255599/msci-japan-imi-jpy-gross.pdf"
+      },
+      "note": null
+    },
+    {
+      "id": "gold-physical",
+      "label": "Or physique",
+      "values": [
+        [
+          2023,
+          13.8
+        ],
+        [
+          2024,
+          26.59
+        ],
+        [
+          2025,
+          65.0
+        ]
+      ],
+      "currency": "USD",
+      "method": "cours de référence du métal",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.ishares.com/gls-download/literature/fact-sheet/sgln-ishares-physical-gold-etc-fund-fact-sheet-en-gb.pdf"
+      },
+      "note": "Ligne Benchmark, LBMA Gold Price ; distincte du rendement de l’ETC après frais."
+    },
+    {
+      "id": "silver-physical",
+      "label": "Argent physique",
+      "values": [
+        [
+          2023,
+          -0.65
+        ],
+        [
+          2024,
+          21.5
+        ],
+        [
+          2025,
+          149.06
+        ]
+      ],
+      "currency": "USD",
+      "method": "cours de référence du métal",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf"
+      },
+      "note": "Ligne Benchmark, référence physique argent publiée par BlackRock ; distincte du rendement de l’ETC après frais."
+    },
+    {
+      "id": "msci-em-latin-america-selection",
+      "label": "MSCI EM Latin America Selection 20/35% Capped",
+      "values": [
+        [
+          2023,
+          null
+        ],
+        [
+          2024,
+          null
+        ],
+        [
+          2025,
+          null
+        ]
+      ],
+      "currency": null,
+      "method": "série à confirmer",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF"
+      },
+      "note": "La fiche du fonds publie une ligne indice, mais sa devise et les éventuels changements de benchmark sur 2023–2025 ne sont pas suffisamment établis. Aucun chiffre publié dans le tweet."
+    },
+    {
+      "id": "msci-em-emea-esg",
+      "label": "MSCI EM EMEA ex-Egypt ESG Broad CTB Select",
+      "values": [
+        [
+          2023,
+          null
+        ],
+        [
+          2024,
+          null
+        ],
+        [
+          2025,
+          null
+        ]
+      ],
+      "currency": null,
+      "method": "série à confirmer",
+      "source": {
+        "label": "Source officielle · performances de l’indice ou de l’actif",
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF"
+      },
+      "note": "La fiche du fonds publie une ligne indice, mais sa devise et les éventuels changements de benchmark sur 2023–2025 ne sont pas suffisamment établis. Aucun chiffre publié dans le tweet."
+    }
+  ],
+  "documentHashes": [
+    {
+      "name": "equal-invesco",
+      "url": "https://www.invesco.com/us-rest/contentdetail?contentId=e3fc7c23dbd92610VgnVCM1000006e36b50aRCRD&dnsName=us",
+      "sha256": "883cea177d262d3400a3284acd512611e639b68cf1d7279d000975804b181c13"
+    },
+    {
+      "name": "nikkei-dws",
+      "url": "https://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR",
+      "sha256": "3b781a6d12ec04779d17d68f98e19df070ecd523c8f1fe91c5616984421c32f7"
+    },
+    {
+      "name": "gold-blackrock",
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/sgln-ishares-physical-gold-etc-fund-fact-sheet-en-gb.pdf",
+      "sha256": "3e07a5dcb9d1cc0aad38289b124041ebbab9861afdc9e37268cff837b314755f"
+    },
+    {
+      "name": "silver-blackrock",
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf",
+      "sha256": "59537673893bba96bca183a3e3bb555a3f815b9cd7669ebaba75a2a0e5ea4a6b"
+    },
+    {
+      "name": "sp500-blackrock",
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/cspx-ishares-core-s-p-500-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "sha256": "771c6662e46ba3f0810d0d0a147eb1d54ce12da837742d12e28ffbdb7bd4d480"
+    },
+    {
+      "name": "nasdaq-official",
+      "url": "https://indexes.nasdaq.com/docs/FS_XNDX.pdf",
+      "sha256": "0808136580b2868dc19668968c21dd98ad461c31ba53cda373c3a7a842e9d978"
+    },
+    {
+      "name": "S&P 500",
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630",
+      "sha256": "2c622946307dfd4fa080ed7f6abac2f7724fbdcef81dab5b08dc97e1f718cc8f"
+    },
+    {
+      "name": "Russell 2000",
+      "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US2000USD",
+      "sha256": "0b81a40f7e9458f42a9fd1a8dce3b45ce7711ba0e3dfe5147a361a3f55ebc8ea"
+    },
+    {
+      "name": "STOXX Europe 600",
+      "url": "https://stoxx.com/index/sxxp/?factsheet=true",
+      "sha256": "ad58207dad2a3bea2b3b4f22e6ebd66963aa11fe9db3031ca197a7ae1b2c1d22"
+    },
+    {
+      "name": "MSCI Europe",
+      "url": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf",
+      "sha256": "a6a760c90262d6c36a743eaf96205ae9e5268e324e083f48cd86fd8555737779"
+    },
+    {
+      "name": "MSCI World",
+      "url": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+      "sha256": "d959fcf93eb73b9e14603b9cbbaa2ccf3f79cc6d936fe409ea6e90fe0c965f57"
+    },
+    {
+      "name": "MSCI ACWI",
+      "url": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf",
+      "sha256": "2fda2470b0b920c3f09d654b4828063c7d3d6dce3bc6c9f42179b5ff3084ccf8"
+    },
+    {
+      "name": "FTSE All-World",
+      "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
+      "sha256": "2d664fcbb4a383bfaa7ca8bd2281c809a1085792a1c40fe61c61a9b35a51b411"
+    },
+    {
+      "name": "NASDAQ-100 Notional Net Total Return",
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/RETAIL/ETF/20260831",
+      "sha256": "e5225d0d27a2c658b9c649d0eeb04871cd7e0a7eb822a8dd6687892a6354ed0c"
+    },
+    {
+      "name": "Russell 1000",
+      "url": "https://www.lseg.com/en/media-centre/press-releases/ftse-russell/2025/ftse-russell-announces-first-russell-1000-index-fund-in-japan",
+      "sha256": "e3f8654f46d93e5bb5bd1d7b09b3ba101923b3ae4a546c0b052807539f5862cc"
+    },
+    {
+      "name": "MSCI EM ex-Egypt ESG Broad CTB Select",
+      "url": "https://www.msci.com/documents/10199/255599/msci-em-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
+      "sha256": "4cd4b6205248b63e9bc335700eac369c687c6a20cac0784939ecf876bed75786"
+    },
+    {
+      "name": "MSCI EM Asia Screened Select ex Thermal Coal",
+      "url": "https://www.msci.com/documents/10199/40ed8526-20a0-ef81-fc55-ee99f1315c5c",
+      "sha256": "fd7ab58d96ef6e0d38627773cc889734a6409c005491fa1fe8901490d5420b43"
+    },
+    {
+      "name": "MSCI EM Latin America Selection 20/35% Capped",
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF",
+      "sha256": "bc459d11693482df47a38d97e2db2928454f0e3eef34025ff41c9e5b4077b0df"
+    },
+    {
+      "name": "FTSE EM",
+      "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
+      "sha256": "1fba83c57c35df71411367ef04bf1513bc13d0054d72bc8546f462ef34603f19"
+    },
+    {
+      "name": "MSCI World Growth",
+      "url": "https://www.msci.com/documents/10199/255599/msci-world-growth-index.pdf",
+      "sha256": "1c27ffe67f7cef122f3a5cb55e6e78dd49b574e4835009d5ed959fad246567d0"
+    },
+    {
+      "name": "FTSE All-World High Dividend Yield",
+      "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=AWHDY&openfile=open",
+      "sha256": "5acb2ddf48cefa1a8de7ff4adac481f98a3785e0eb2fff8c6198e617737d1eb4"
+    },
+    {
+      "name": "S&P Global Dividend Aristocrats",
+      "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
+      "sha256": "25cf6d5ef1aae6009d49e710f976215c1eb0660cd31f4437133635457008c018"
+    },
+    {
+      "name": "S&P Euro Dividend Aristocrats",
+      "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+      "sha256": "eba5e0545cd4de6cc89573eaf26252d380f3dc9782e4c7f38e2e657b6e60a8c5"
+    },
+    {
+      "name": "FTSE China 50",
+      "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-china-50-index-english-ground-rules.pdf",
+      "sha256": "fa550181550928bedb16eead9c305dac0a4f65c0a067bc6ed7adf894351c16f9"
+    },
+    {
+      "name": "TOPIX",
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF",
+      "sha256": "4d993b54118d196e3f915f5360a9967db03b95771f39bdfa3e5cdc71abd91d5f"
+    },
+    {
+      "name": "MSCI World ex USA",
+      "url": "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf",
+      "sha256": "640d6cafac8641d0f50b8ad774bfb03c7b1a9acea8c6049b93300c50ab7b7e52"
+    },
+    {
+      "name": "MSCI World Small Cap",
+      "url": "https://www.msci.com/documents/10199/255599/msci-world-small-cap-index.pdf",
+      "sha256": "38b0eea0f06c9fd7994ae0947e4787ac47b11d781f2c666edd05605e00726e88"
+    },
+    {
+      "name": "msci-usa-index-gross",
+      "url": "https://www.msci.com/documents/10199/255599/msci-usa-index-gross.pdf",
+      "sha256": "b493dd3785e96143858e8cea860e04cf52f48142f51021daa9d8713e0ee48957"
+    },
+    {
+      "name": "msci-emerging-markets-ex-china-index-usd-net",
+      "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-ex-china-index-usd-net.pdf",
+      "sha256": "69a8379148e73ca522151d2eb9bbdd16c24b3e55cb32ece1a29d146275671e35"
+    },
+    {
+      "name": "msci-world-enhanced-value-index-net-usd",
+      "url": "https://www.msci.com/documents/10199/255599/msci-world-enhanced-value-index-net-usd.pdf",
+      "sha256": "57d5c4258e39c1caafa6e965c6d5ce02fd8725212baddf0cd9735a44d69c1c67"
+    },
+    {
+      "name": "msci-china-a-index-usd-net",
+      "url": "https://www.msci.com/documents/10199/255599/msci-china-a-index-usd-net.pdf",
+      "sha256": "0eb97bdb4796c3c999e3dda5c206a7b2535eeb36c68b87f9620af85620966f05"
+    },
+    {
+      "name": "msci-china-index",
+      "url": "https://www.msci.com/documents/10199/255599/msci-china-index.pdf",
+      "sha256": "a9e5517d8b0107607b032a89e1a697baaf60433d2ab307df58d8acfcb1d3c0c4"
+    },
+    {
+      "name": "msci-world-high-dividend-yield-advanced-select-index-usd-net",
+      "url": "https://www.msci.com/documents/10199/255599/msci-world-high-dividend-yield-advanced-select-index-usd-net.pdf",
+      "sha256": "4497e625c148582f77fc3e4acd0551d8375f63341ac2a1ce5f08e0047a2eb0bd"
+    },
+    {
+      "name": "msci-europe-index-eur-price",
+      "url": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-price.pdf",
+      "sha256": "636ebe09a51ea2e61e430ce6ae1fe816712538fa738d0bc51b2f4a8bcd770a01"
+    },
+    {
+      "name": "russell-1000-returns",
+      "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD",
+      "sha256": "2fa04efdf87edd5fdafc049fbba907443dcca69adde2f3a805d18590652bcd07"
+    },
+    {
+      "name": "msci-world-sector-neutral-quality-index-usd-net",
+      "url": "https://www.msci.com/documents/10199/255599/msci-world-sector-neutral-quality-index-usd-net.pdf",
+      "sha256": "3781490740cff2a28d66ea35edba52d263eebdbd70f2f3abdb77a2611d7bb619"
+    },
+    {
+      "name": "msci-india-index-net",
+      "url": "https://www.msci.com/documents/10199/255599/msci-india-index-net.pdf",
+      "sha256": "c69a9bc5c6dabda303c5df0d41ae2334c93a783a195a441f5c68d3ee4260f428"
+    },
+    {
+      "name": "msci-japan-imi-index-usd-net",
+      "url": "https://www.msci.com/documents/10199/255599/msci-japan-imi-index-usd-net.pdf",
+      "sha256": "027b781780c4598f71aa0859065d2c5c34213cdac94fc2c0892d278e707ce290"
+    },
+    {
+      "name": "msci-world-growth-index-usd-net",
+      "url": "https://www.msci.com/documents/10199/255599/msci-world-growth-index-usd-net.pdf",
+      "sha256": "d2a48ffe17cdcc1e662d6788057db4acb3489a555d93f58b5b0f34364fbe0adb"
+    },
+    {
+      "name": "em-imi-blackrock",
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/eimi-ishares-core-msci-em-imi-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "sha256": "a8fc54c5db036a75dcc979f479033f2fd756b4beb7e916555a8b26fbd42904f8"
+    },
+    {
+      "name": "japan-imi-blackrock",
+      "url": "https://www.ishares.com/gls-download/literature/fact-sheet/sjpa-ishares-core-msci-japan-imi-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "sha256": "0eea4a2588066284d0085327b173481fe2f05fee5da36771e45d6df3f7a02c5c"
+    },
+    {
+      "name": "ftse-china50-returns",
+      "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=XIN0&openfile=open",
+      "sha256": "ae9f035fb64543f678abbdcfc0113d5ac691f2efdc44346045eb5efe0a32a491"
+    },
+    {
+      "name": "em-emea-amundi",
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF",
+      "sha256": "a8d07e773339709641968c90b7e9cbad1ac0ebe6e961af186df0b5ac88576fe7"
+    }
+  ]
+}
