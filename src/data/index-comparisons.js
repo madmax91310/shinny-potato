@@ -636,7 +636,7 @@ export const FAMILIES = [
       // https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy
       // https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy
       { name: 'Dividend Aristocrats mondial (rappel, non-PEA)', indexFacts: getIndexFacts('sp-global-dividend-aristocrats', '2026-08-31'), desc: getIndexDescription('sp-global-dividend-aristocrats', '2026-08-31', 'dividendes-pea'), tag: 'Large mais non-PEA 🌍' },
-      { name: 'Euro Dividend Aristocrats (PEA)', indexFacts: getIndexFacts('sp-euro-dividend-aristocrats', 'methodology'), desc: getIndexDescription('sp-euro-dividend-aristocrats', 'methodology', 'dividendes-pea'), tag: 'Option dividendes en PEA 🇪🇺' },
+      { name: 'Euro Dividend Aristocrats (PEA)', indexFacts: getIndexFacts('sp-euro-dividend-aristocrats', '2026-09-30'), desc: getIndexDescription('sp-euro-dividend-aristocrats', '2026-09-30', 'dividendes-pea'), tag: 'Option dividendes en PEA 🇪🇺' },
     ],
     block2Title: '2️⃣ L\'ETF PEA DISPONIBLE 💳',
     etfGroups: [
@@ -646,8 +646,8 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: [`Dividend Aristocrats mondial (${formatIndexFact('sp-global-dividend-aristocrats', '2026-08-31', 'targetConstituents')} lignes, CTO)`, `Euro Dividend Aristocrats (${formatIndexFact('sp-euro-dividend-aristocrats', 'methodology', 'targetConstituents')} lignes, PEA)`],
-      notes: ['⚠️ Dans cette comparaison, EUDV passe de 100 valeurs mondiales à 40 valeurs zone euro. D’autres ETF à dividendes éligibles PEA existent, mais suivent un autre indice.', '→ Résultat : plus concentré sur la finance et l\'énergie européennes, secteurs traditionnellement gros payeurs de dividendes en zone euro.'],
+      chain: [`Dividend Aristocrats mondial (${formatIndexFact('sp-global-dividend-aristocrats', '2026-08-31', 'targetConstituents')} lignes, CTO)`, `Euro Dividend Aristocrats (${formatIndexFact('sp-euro-dividend-aristocrats', '2026-09-30', 'targetConstituents')} lignes, PEA)`],
+      notes: ['⚠️ Dans cette comparaison, EUDV passe de 100 valeurs mondiales à 40 valeurs zone euro. D’autres ETF à dividendes éligibles PEA existent, mais suivent un autre indice.', '→ Résultat : les trois premiers secteurs sont la finance, l’industrie et les services aux collectivités.'],
     },
     // Performance 2023-2025 (source : recherche web du 02/09/2026, recoupée sur plusieurs pages —
     // fonds EUDV et indice S&P Euro High Yield Dividend Aristocrats cohérents à moins de 0,5 pt sur

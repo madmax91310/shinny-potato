@@ -10,11 +10,11 @@ Le PNG et le tweet utilisent un résumé commun : les trois principales expositi
 
 Les sources et les dates individuelles sont enregistrées dans `src/data/index-composition-review.js`. Les rendements restent dans le registre commun existant, avec leurs références exactes. Aucune composition de portefeuille ETF n’est substituée à une composition d’indice.
 
-## Lacune restante
+## Dernière lacune résolue
 
-34 indices sur 35 disposent de pays et de secteurs chiffrés. Pour **S&P Euro Dividend Aristocrats**, les pages officielles consultées ne fournissent pas les pondérations exploitables de la variante exacte. Les répartitions du fonds SPYW et celles de l’indice Screened ne sont pas utilisées. Le PNG et le tweet signalent explicitement cette absence ; les rendements annuels de l’indice restent disponibles.
+Les 35 indices disposent désormais de pays et de secteurs chiffrés. La fiche officielle S&P DJI du 30 septembre 2026 pour le **S&P Euro High Yield Dividend Aristocrats**, obtenue par l’export de fiche de l’indice 5475610, contient le comptage (40), les secteurs GICS (page 4) et les pays de domiciliation (page 5). Le graphique sectoriel a été contrôlé visuellement. Chaque total vaut 99,9 % après arrondis au dixième. Cette photographie remplace la référence de méthodologie dans le comparateur, sans modifier l’archive ni les rendements nets 2023–2025. Les répartitions du fonds SPYW et de la variante Screened ne sont pas utilisées.
 
-`npm run audit:index-completeness` contrôle les 14 familles et interdit toute nouvelle lacune. Ajouter `-- --strict` fait échouer le contrôle tant que cette dernière composition n’est pas sourcée.
+`npm run audit:index-completeness` exige désormais les compositions pour chacun des 35 indices, sans exception. Le test vérifie également que le PNG et le tweet reprennent la nouvelle photographie exacte.
 
 ## Validation
 
