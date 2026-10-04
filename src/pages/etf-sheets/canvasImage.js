@@ -2,7 +2,7 @@ import { loadArtImage, loadEditorialFont, drawTitaniumMark } from '../tweet-midi
 import { getETFArt } from './visualIdentity.js'
 import { annualPerformanceRange, getAnnualPerformance } from './annualPerformance.js'
 
-const W = 1600, H = 2000, PAD = 100, INK = '#252822', MUTED = '#45473f', PAPER = '#eeede7'
+const W = 1600, H = 2000, PAD = 100, INK = '#fff4da', MUTED = '#bdc8cf', PAPER = '#061522', GOLD = '#e6bf79'
 const sans = size => `${size}px Arial, sans-serif`
 function wrap(ctx, text, width) {
   if (String(text).includes('\n')) return String(text).split('\n').flatMap(line => wrap(ctx, line, width))
@@ -19,93 +19,125 @@ function block(ctx, text, x, y, width, height, { size = 34, min = 22, editorial 
   let lines, lineHeight
   for (; size >= min; size--) {
     ctx.font = editorial ? `500 ${size}px ExportEditorial, Georgia, serif` : `${weight} ${sans(size)}`
-    lines = wrap(ctx, text, width); lineHeight = Math.ceil(size * 1.2)
+    lines = wrap(ctx, text, width); lineHeight = Math.ceil(size * (editorial ? 1.4 : 1.2))
     if (lines.length * lineHeight <= height && lines.every(line => ctx.measureText(line).width <= width)) break
   }
   if (size < min) throw new Error(`Le texte est trop long pour l’image : ${text}`)
   ctx.fillStyle = color
   lines.forEach((line, i) => ctx.fillText(line, x, y + i * lineHeight))
+  return lines.length * lineHeight
 }
 function rule(ctx, y) {
-  ctx.strokeStyle = '#b4b0a4'; ctx.lineWidth = 1
+  ctx.strokeStyle = '#b18d55'; ctx.lineWidth = 1.5
   ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke()
 }
 function fact(ctx, label, value, x, y, width, height = 112) {
-  block(ctx, label.toLocaleUpperCase('fr'), x, y, width, 40, { size: 30, min: 28, color: MUTED, weight: 600 })
-  block(ctx, value, x, y + 50, width, height, { size: 48, min: 28, weight: 600 })
+  block(ctx, label, x, y, width, 40, { size: 30, min: 28, color: MUTED, weight: 400 })
+  block(ctx, value, x, y + 50, width, height, { size: 48, min: 28, editorial: true, weight: 600 })
 }
 export async function renderETFImage(etf) {
   const art = getETFArt(etf.id)
   const [scene, mark] = await Promise.all([
-    loadArtImage(art.scene || 'titanium.webp'),
+    art.scene ? loadArtImage(art.scene) : null,
     art.mark ? loadArtImage(art.mark) : null,
     loadEditorialFont(),
   ])
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
   const ctx = canvas.getContext('2d'); ctx.textBaseline = 'top'
   ctx.fillStyle = PAPER; ctx.fillRect(0, 0, W, H)
-  // No baked financial data; only the selected local scene is loaded.
-  const hero = document.createElement('canvas'); hero.width = W; hero.height = 460
+  // Illustrations contain no financial text. Identity mapping stays explicit.
+  const hero = document.createElement('canvas'); hero.width = W; hero.height = 1000
   const hctx = hero.getContext('2d')
-  const sh = art.scene?.startsWith('etf/') ? scene.height : scene.height / 2
-  const scale = Math.min(1400 / scene.width, 460 / sh)
-  const dw = scene.width * scale, dh = sh * scale, dx = (W - dw) / 2
-  hctx.drawImage(scene, 0, 0, scene.width, sh, dx, 0, dw, dh)
-  hctx.globalCompositeOperation = 'destination-in'
-  const edges = hctx.createLinearGradient(dx, 0, dx + dw, 0)
-  edges.addColorStop(0, 'transparent'); edges.addColorStop(.12, '#fff'); edges.addColorStop(.88, '#fff'); edges.addColorStop(1, 'transparent')
-  hctx.fillStyle = edges; hctx.fillRect(0, 0, W, 460)
-  const bottom = hctx.createLinearGradient(0, 280, 0, 460)
-  bottom.addColorStop(0, '#fff'); bottom.addColorStop(1, 'transparent')
-  hctx.fillStyle = bottom; hctx.fillRect(0, 0, W, 460)
-  ctx.drawImage(hero, 0, 0)
-  if (mark) drawTitaniumMark(ctx, mark, 610, 100, 380, 330)
-  const fade = ctx.createLinearGradient(0, 320, 0, 600)
-  fade.addColorStop(0, 'rgba(238,237,231,0)'); fade.addColorStop(1, PAPER)
-  ctx.fillStyle = fade; ctx.fillRect(0, 320, W, 280)
-  for (let y = 600; y < H; y += 3) {
-    ctx.fillStyle = y % 9 === 0 ? 'rgba(75,72,57,.025)' : 'rgba(255,255,255,.06)'
-    ctx.fillRect(0, y, W, 1)
+  if (scene) {
+    const scale = Math.min(W / scene.width, 900 / scene.height)
+    const dw = scene.width * scale, dh = scene.height * scale
+    hctx.drawImage(scene, W - dw, 0, dw, dh)
+    hctx.globalCompositeOperation = 'destination-in'
+    const edge = hctx.createLinearGradient(W - dw, 0, W - dw + 180, 0)
+    edge.addColorStop(0, 'transparent'); edge.addColorStop(1, '#fff')
+    hctx.fillStyle = edge; hctx.fillRect(0, 0, W, 1000)
+    const bottom = hctx.createLinearGradient(0, 550, 0, 900)
+    bottom.addColorStop(0, '#fff'); bottom.addColorStop(1, 'transparent')
+    hctx.fillStyle = bottom; hctx.fillRect(0, 0, W, 1000)
+    ctx.drawImage(hero, 0, 0)
+  } else {
+    const glow = ctx.createRadialGradient(1210, 300, 10, 1210, 300, 600)
+    glow.addColorStop(0, '#364b59'); glow.addColorStop(.6, '#122e42'); glow.addColorStop(1, PAPER)
+    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, 850)
   }
-  block(ctx, 'ÉPARGNANT LIBRE', PAD, 65, 600, 42, { size: 34, weight: 600 })
+  if (mark) {
+    ctx.save(); ctx.shadowColor = 'rgba(230,191,121,.35)'; ctx.shadowBlur = 50
+    drawTitaniumMark(ctx, mark, 960, 170, 480, 440); ctx.restore()
+  }
+  // A quiet title surface protects contrast even on bright thematic scenes.
+  const shade = ctx.createLinearGradient(0, 0, 1150, 0)
+  shade.addColorStop(0, 'rgba(6,21,34,.94)'); shade.addColorStop(.65, 'rgba(6,21,34,.82)'); shade.addColorStop(1, 'rgba(6,21,34,0)')
+  const titleShade = document.createElement('canvas'); titleShade.width = W; titleShade.height = 850
+  const tctx = titleShade.getContext('2d'); tctx.fillStyle = shade; tctx.fillRect(0, 0, W, 850)
+  tctx.globalCompositeOperation = 'destination-in'
+  const feather = tctx.createLinearGradient(0, 0, 0, 850)
+  feather.addColorStop(0, 'transparent'); feather.addColorStop(.22, '#fff'); feather.addColorStop(.75, '#fff'); feather.addColorStop(1, 'transparent')
+  tctx.fillStyle = feather; tctx.fillRect(0, 0, W, 850); ctx.drawImage(titleShade, 0, 0)
+  for (let y = 1000; y < H; y += 4) {
+    ctx.strokeStyle = 'rgba(137,166,186,.025)'; ctx.lineWidth = 1
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y - 180); ctx.stroke()
+  }
+  block(ctx, 'ÉPARGNANT LIBRE', PAD, 65, 600, 42, { size: 34, weight: 600, color: GOLD })
+  ctx.strokeStyle = GOLD; ctx.beginPath(); ctx.moveTo(PAD, 125); ctx.lineTo(520, 125); ctx.stroke()
   const issuer = etf.name.match(/^(Amundi(?: PEA)?|iShares(?: Core| Edge)?|Xtrackers(?: II)?|(?:State Street )?SPDR|Vanguard|L&G|VanEck|Global X|CoinShares|Invesco|WisdomTree|Bitwise|21Shares)\s+/)
   const name = issuer ? `${issuer[1]}\n${etf.name.slice(issuer[0].length)}` : etf.name
-  block(ctx, name, PAD, 470, 1400, 270, { size: 96, min: 64, editorial: true })
-  if (etf.listing) block(ctx, etf.listing.ticker, PAD, 770, 1400, 50, { size: 40, color: MUTED, weight: 600 })
+  const legal = name.match(/\s+(UCITS ETF.*)$/)
+  const title = legal ? name.slice(0, legal.index) : name
+  const titleHeight = block(ctx, title, PAD, 230, 890, 430, { size: 112, min: 54, editorial: true })
+  if (legal) block(ctx, legal[1], PAD, Math.min(680, 250 + titleHeight), 900, 70, { size: 32, min: 26, color: MUTED })
+  if (etf.listing) block(ctx, etf.listing.ticker, PAD, 770, 650, 50, { size: 44, color: GOLD, weight: 600 })
+  ctx.textAlign = 'right'
+  block(ctx, `ISIN ${etf.isin}`, W - PAD, 778, 650, 50, { size: 34, color: GOLD })
+  ctx.textAlign = 'left'
   rule(ctx, 850)
-  block(ctx, 'FRAIS ANNUELS', PAD, 880, 540, 40, { size: 30, color: MUTED, weight: 600 })
-  block(ctx, etf.ter, PAD, 925, 500, 72, { size: 64, weight: 600 })
+  block(ctx, 'Frais annuels', PAD, 880, 540, 40, { size: 30, color: MUTED, weight: 600 })
+  block(ctx, etf.ter, PAD, 925, 500, 72, { size: 64, weight: 600, editorial: true, color: GOLD })
   const accounts = [etf.pea === true ? 'PEA' : null, etf.cto ? 'CTO' : 'CTO indisponible'].filter(Boolean).join(' · ')
-  ctx.textAlign = 'right'; block(ctx, accounts, W - PAD, 925, 700, 72, { size: 48, weight: 600 }); ctx.textAlign = 'left'
+  ctx.textAlign = 'right'; block(ctx, accounts, W - PAD, 925, 700, 72, { size: 48, weight: 600, color: GOLD }); ctx.textAlign = 'left'
   rule(ctx, 1000)
   const right = 840, col = 660
   fact(ctx, 'Positions', etf.positions, PAD, 1030, col, 108)
   fact(ctx, 'Distribution', etf.distribution, right, 1030, col, 108)
+  rule(ctx, 1180)
   const comma = etf.location.indexOf(',')
   const domicile = comma < 0 ? etf.location : etf.location.slice(0, comma)
   const replication = comma < 0 ? 'Non documentée' : etf.location.slice(comma + 1).trim().replace(/^réplication\s+/i, '')
   fact(ctx, 'Réplication / adossement', replication, PAD, 1200, col, 122)
   fact(ctx, 'Domicile', domicile, right, 1200, col, 122)
+  rule(ctx, 1360)
   fact(ctx, 'Cotation', etf.listing ? `${etf.listing.exchange} · ${etf.listing.currency}` : 'Non documentée', PAD, 1380, col, 112)
-  fact(ctx, 'Encours', etf.aum, right, 1380, col, 112)
+  const datedAum = etf.aum.match(/^(.*?)\s+(\(relevé le .*\))$/)
+  if (datedAum) {
+    fact(ctx, 'Encours', datedAum[1], right, 1380, col, 70)
+    block(ctx, datedAum[2], right, 1500, col, 42, { size: 30, min: 26, color: MUTED })
+  } else fact(ctx, 'Encours', etf.aum, right, 1380, col, 112)
   const annual = getAnnualPerformance(etf)
   if (annual) {
     rule(ctx, 1550)
-    block(ctx, `PERFORMANCES ANNUELLES · ${annualPerformanceRange(annual)} · ${annual.currency}`, PAD, 1570, 1400, 42, { size: 30, weight: 600 })
+    block(ctx, `Performances annuelles · ${annualPerformanceRange(annual)} · ${annual.currency}`, PAD, 1570, 1400, 42, { size: 30, weight: 600 })
     const entries = annual.values.map((value, index) => ({ year: 2020 + index, value })).filter(item => Number.isFinite(item.value))
     const gap = 20, cellWidth = (1400 - 2 * gap) / 3, cellHeight = 130
     entries.forEach(({ year, value }, index) => {
       const x = PAD + (index % 3) * (cellWidth + gap), y = 1620 + Math.floor(index / 3) * (cellHeight + 10)
-      ctx.fillStyle = value > 0 ? '#e0e9df' : value < 0 ? '#f0e1db' : '#e4e3dc'
+      const surface = ctx.createLinearGradient(x, y, x, y + cellHeight)
+      surface.addColorStop(0, value < 0 ? '#29303a' : '#123044'); surface.addColorStop(1, '#071925')
+      ctx.fillStyle = surface
       ctx.beginPath(); ctx.roundRect(x, y, cellWidth, cellHeight, 14); ctx.fill()
-      block(ctx, String(year), x + 22, y + 14, cellWidth - 44, 38, { size: 30, weight: 600, color: MUTED })
+      ctx.strokeStyle = value < 0 ? '#a27d6c' : '#426880'; ctx.lineWidth = 1.5; ctx.stroke()
+      ctx.textAlign = 'center'
+      block(ctx, String(year), x + cellWidth / 2, y + 14, cellWidth - 44, 38, { size: 30, weight: 600, color: MUTED })
       const performance = `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
-      block(ctx, performance, x + 22, y + 52, cellWidth - 44, 78, { size: 64, min: 58, weight: 700, color: value > 0 ? '#226641' : value < 0 ? '#a13d35' : INK })
+      block(ctx, performance, x + cellWidth / 2, y + 52, cellWidth - 44, 78, { size: 64, min: 58, weight: 700, color: value > 0 ? '#9bebb4' : value < 0 ? '#ff998b' : INK })
+      ctx.textAlign = 'left'
     })
   }
   rule(ctx, 1895)
-  block(ctx, `ISIN ${etf.isin}`, PAD, 1920, 650, 40, { size: 30, color: MUTED })
-  ctx.textAlign = 'right'
-  block(ctx, 'Pas un conseil en investissement', W - PAD, 1920, 750, 40, { size: 30, color: MUTED })
+  ctx.textAlign = 'center'
+  block(ctx, 'Pas un conseil en investissement', W / 2, 1920, 1400, 40, { size: 30, color: MUTED })
   return canvas
 }
