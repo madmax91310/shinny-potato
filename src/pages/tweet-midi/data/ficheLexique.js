@@ -19,10 +19,10 @@ export function getFicheLexiqueText(termeId) {
   const texte = FICHE_LEXIQUE_EDITORIAL[termeId];
   if (!texte) throw new Error(`Rédaction Tweet Midi manquante pour le terme ${termeId}`);
   const lines = [
-    `📖 Le lexique : ${texte.titre ?? terme.titre}`,
-    texte.ouverture,
-    `${texte.emojiDefinition ?? "💡"} ${texte.definition}`,
-    `🔍 ${texte.point}`,
+    `${texte.emojiDefinition ?? "📖"} ${texte.ouverture} 👇`,
+    `🔎 Ce que ça veut dire\n\n${texte.definition}`,
+    `🧩 Un exemple\n\n${texte.exemple}`,
+    `💡 À quoi ça sert ?\n\n${texte.point}`,
     `⚠️ ${texte.limite}`,
   ];
   if (texte.question) lines.push(`💬 ${texte.question}`);
