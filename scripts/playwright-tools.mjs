@@ -838,7 +838,7 @@ async function testFactsheetTweets(page) {
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
     ok &&= await current.locator('img').evaluate(async (img) => {
       await img.decode();
-      return img.naturalWidth === 2400 && img.naturalHeight === 1350;
+      return img.naturalWidth === 2400 && img.naturalHeight === 1620;
     });
     if (['sp500-equal-weight', 'russell-2000'].includes(id)) {
       await mkdir('test-artifacts', { recursive: true });
