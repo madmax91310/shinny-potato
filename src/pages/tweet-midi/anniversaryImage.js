@@ -52,7 +52,7 @@ function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack }
   text(ctx,art.title,W/2,1045,200,{ width: 1420 })
   if (art.subtitle) text(ctx,art.subtitle,W/2,1270,32,{ serif:false,weight:400,color:MUTED })
   const change = (current / past - 1) * 100
-  text(ctx,percentage(change),W/2,1310,230,{ width:1430, color:change < 0 ? '#752d28' : INK })
+  text(ctx,percentage(change),W/2,1330,230,{ width:1430, color:change < 0 ? '#752d28' : INK })
   if (period) text(ctx,`EN ${yearsBack} AN${yearsBack > 1 ? 'S' : ''}`,W/2,1590,43,{ spacing:5 })
   rule(ctx,100,1660,1500,1660); rule(ctx,800,1710,800,1860)
   text(ctx,dateLabel.toUpperCase(),440,1700,34,{ width:650,spacing:1.5 })
