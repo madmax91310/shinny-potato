@@ -433,8 +433,13 @@ export function buildDilemmeText(item) {
   const lines = [];
   lines.push(item.contexteTexte);
   lines.push("");
+  lines.push(`${item.choix} 👇`);
+  lines.push("");
   lines.push(`🅰️ ${item.optionA}`);
+  lines.push("");
   lines.push(`🅱️ ${item.optionB}`);
+  lines.push("");
+  lines.push(item.tension);
   lines.push("");
   lines.push(`💬 ${item.question}`);
   return lines.join("\n");
