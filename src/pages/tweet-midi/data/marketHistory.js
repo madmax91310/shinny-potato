@@ -160,12 +160,16 @@ export function getBenchmarkPerformance(startYm, endYm) {
   };
 }
 
-// Le MSCI World Gross Return, le S&P 500 Total Return et le STOXX 600 Net Return
-// disposent désormais de niveaux officiels, mais restent
-// exclus d’Anniversaire : la saisie manuelle du niveau actuel n’identifie pas encore
-// explicitement la variante Total/Net Return et pourrait être confondue avec Price.
-// Même règle pour les nouveaux indices MSCI Gross Return issus du registre commun.
-// Leurs niveaux restent masqués dans Performance depuis.
+// Les indices disposent de niveaux officiels ; leur variante doit rester explicite
+// dans le sélecteur, la saisie, le tweet et l’image pour ne jamais mélanger Price/TR.
+export const ANNIVERSARY_INDEX_VARIANTS = {
+  cac40: 'Prix · EUR · hors dividendes',
+  sp500: 'Total Return · USD · dividendes bruts réinvestis',
+  stoxx600: 'Net Return · EUR · dividendes nets réinvestis',
+  msciWorld: 'Gross Return · USD · dividendes bruts réinvestis',
+  msciEmerging: 'Gross Return · USD · dividendes bruts réinvestis',
+  msciWorldSmallCap: 'Gross Return · USD · dividendes bruts réinvestis',
+};
 const REBASED_INDEX_IDS = new Set(ASSET_ORDER.filter(id => ASSETS[id].priceUnit === 'points'));
 
 // Les séries éparses sont exclues des anniversaires : interpoler entre deux clôtures
@@ -173,11 +177,9 @@ const REBASED_INDEX_IDS = new Set(ASSET_ORDER.filter(id => ASSETS[id].priceUnit 
 // qui bloque leur DCA. Ethereum en est retiré le 30/09/2026 après contrôle des 105 mois
 // complets Yahoo ; sa plage commence en décembre 2017. Performance depuis conserve
 // les seuls points réels de clôture d’année (getLastRealPointOfYear).
-const ANNIVERSAIRE_EXCLUDED_IDS = new Set([...REBASED_INDEX_IDS, ...SPARSE_MONTHLY_DATA_IDS, ...ASSET_ORDER.filter(id => ASSETS[id].priceMethod === 'adjusted' && !ASSETS[id].anniversaryPoints)]);
+const ANNIVERSAIRE_EXCLUDED_IDS = new Set([...SPARSE_MONTHLY_DATA_IDS, ...ASSET_ORDER.filter(id => ASSETS[id].priceMethod === 'adjusted' && !ASSETS[id].anniversaryPoints)]);
 
-// Un niveau de prix brut n'a de sens à afficher (ex. "Prix en 2015 : 625 $US") que pour un actif
-// dont les points sont de vrais prix/indices externes — jamais pour les 3 indices rebasés
-// ci-dessus, où le nombre affiché ne correspondrait à rien de vérifiable ailleurs.
+// Performance depuis conserve son comportement historique : pas de niveau d’indice.
 export function hasComparableLevel(assetId) {
   return !REBASED_INDEX_IDS.has(assetId);
 }
@@ -191,6 +193,8 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   icon: ASSETS[id].icon,
   currency: ASSETS[id].currency,
   sourceCredit: ASSETS[id].sourceCredit,
+  anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id],
+  priceUnit: ASSETS[id].priceUnit,
 }));
 
 // Sous-ensemble de MARKET_ASSETS utilisable par le format Anniversaire (cf.
@@ -199,3 +203,6 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
 export const ANNIVERSAIRE_ELIGIBLE_ASSETS = MARKET_ASSETS.filter((a) => !ANNIVERSAIRE_EXCLUDED_IDS.has(a.id));
 
 export { indexToYm };
+
+// La liste explique les absences dans l’interface, sans supprimer les actifs de la base.
+export const ANNIVERSAIRE_EXCLUDED_ASSETS = MARKET_ASSETS.filter(a => ANNIVERSAIRE_EXCLUDED_IDS.has(a.id));

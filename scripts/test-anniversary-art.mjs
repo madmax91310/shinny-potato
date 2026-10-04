@@ -10,6 +10,8 @@ for (const asset of ANNIVERSAIRE_ELIGIBLE_ASSETS) {
   assert.ok(art, `${asset.id}: no verified visual identity`)
   for (const file of [art.scene || 'titanium.webp', art.mark].filter(Boolean)) await readFile(`public/asset-art/${file}`)
 }
+assert.ok(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === 'sp500'), 'S&P 500 absent')
+assert.ok(ANNIVERSAIRE_ELIGIBLE_ASSETS.find(a => a.id === 'sp500').anniversaryVariant.includes('Total Return'))
 const port = 4314, base = `http://127.0.0.1:${port}/shinny-potato/`
 const server = spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port',String(port)],{stdio:'ignore'})
 let browser
@@ -22,6 +24,12 @@ try {
   const page = await browser.newPage()
   const requests=[]; page.on('request', request=>requests.push(request.url()))
   await page.goto(base)
+  await page.goto(`${base}tweet-midi`)
+  await page.getByRole('button', {name:'Il y a X ans', exact:true}).click()
+  await page.locator('#subject-select').selectOption('sp500')
+  await page.getByRole('button', {name:'🔄 Générer', exact:true}).click()
+  await page.locator('#niveau-actuel').fill('15000')
+  assert.ok(await page.getByText('S&P 500 : saisir le niveau Total Return', {exact:false}).isVisible(), 'Index variant missing in input')
   const records=await page.evaluate(async()=>{
     const { renderAnniversaryImage }=await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js')
     const { ANNIVERSARY_ART }=await import('/shinny-potato/src/pages/tweet-midi/anniversaryArt.js')
@@ -30,6 +38,8 @@ try {
     const records=[];let labels=[], bounds=[]
     const original=CanvasRenderingContext2D.prototype.fillText
     CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...rest){
+      // Only compare text on the exported canvas, not an offscreen metal mask.
+      if (this.canvas.width === 1400 && this.canvas.height === 380) return original.call(this,value,x,y,...rest)
       const metric=this.measureText(value)
       const start=this.textAlign==='center'?x-metric.width/2:this.textAlign==='right'?x-metric.width:x
       if(start<0 || start+metric.width>this.canvas.width+1) throw new Error(`Text clipped: ${value}`)
@@ -54,7 +64,7 @@ try {
       if(canvas.width!==1600||canvas.height!==2000)throw new Error('Incorrect single aspect ratio')
       records.push({name:asset.id,png:canvas.toDataURL(),labels:[...labels]})
     }
-    for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx']]){
+    for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600']]){
       const yearsBack=3, pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
       labels=[];bounds=[]
       const canvas=await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack},String(pastA*1.5),String(pastB*.75))

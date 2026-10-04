@@ -1,3 +1,4 @@
+import { ANNIVERSAIRE_ELIGIBLE_ASSETS, ANNIVERSAIRE_EXCLUDED_ASSETS } from './data/marketHistory.js';
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
@@ -294,6 +295,13 @@ export default function App() {
               </div>
             </div>
 
+            {format === FORMATS.ANNIVERSAIRE && (
+              <details className="text-xs text-slate-400">
+                <summary>{ANNIVERSAIRE_ELIGIBLE_ASSETS.length} actifs disponibles · pourquoi certaines absences ?</summary>
+                <p className="mt-2">Les cours ajustés des dividendes demandent une série de prix comparable au cours actuel. Ces actifs restent dans « Performance depuis » : {ANNIVERSAIRE_EXCLUDED_ASSETS.map(a => a.label).join(', ')}.</p>
+              </details>
+            )}
+
             {isMarketFormat && (
               <div>
                 <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">Mode</label>
@@ -513,6 +521,12 @@ export default function App() {
                 {displayStatus.label}
               </span>
             </div>
+
+            {isAnniversaire && (
+              <p className="text-sm font-semibold text-rose-200">
+                {[isComparatifCurrent ? currentAssetA : getMarketAsset(current.assetId), ...(isComparatifCurrent ? [currentAssetB] : [])].filter(a => a?.anniversaryVariant).map(a => `${a.label} : saisir le niveau ${a.anniversaryVariant}, en points.`).join(' ')}
+              </p>
+            )}
 
             {isAnniversaire && !isComparatifCurrent && (
               <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4">
