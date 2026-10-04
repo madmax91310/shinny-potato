@@ -906,11 +906,15 @@ async function testDataSearch(page) {
 
 async function testHouseholds(page) {
   await page.goto(`${BASE}/france-100-menages`, { waitUntil: 'networkidle' });
-  let ok = await page.getByLabel('Design', { exact: true }).inputValue() === 'sculptural';
+  const waitImage = async (id, design) => {
+    await page.waitForFunction(({id, design}) => document.querySelector(`.hh-scope a[download="france-100-menages-${id}-${design}.png"]`)?.href.startsWith('data:image/png'), {id, design});
+  };
+  let ok = await page.getByLabel('Design', { exact: true }).inputValue() === 'illustrated';
   for (const { id, referencePeriod, source } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
     await page.getByLabel('Sujet', { exact: true }).selectOption(id);
     await page.waitForURL(`**sujet=${id}`);
-    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 2400 && img.naturalHeight === 1620; });
+    await waitImage(id, 'illustrated');
+    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 2400 && img.naturalHeight === 1350; });
     const text = await page.getByLabel('Texte modifiable').inputValue();
     const sourceURL = (await import('../src/data/household-statistics.js')).HOUSEHOLD_SOURCES[source].url;
     ok &&= !/https?:\/\/|Source\s*:/i.test(text)
@@ -919,23 +923,26 @@ async function testHouseholds(page) {
   }
   for (const { id: design } of (await import('../src/pages/france-100-menages/image.js')).HOUSEHOLD_DESIGNS) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);
-    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async (link, design) => { const img = new Image(); img.src = link.href; await img.decode(); return design === 'sculptural' ? img.naturalWidth === 2400 && img.naturalHeight === 1620 : img.naturalWidth === 1080 && img.naturalHeight === 1440; }, design);
+    await waitImage(await page.getByLabel('Sujet', { exact: true }).inputValue(), design);
+    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async (link, design) => { const img = new Image(); img.src = link.href; await img.decode(); return design === 'illustrated' ? img.naturalWidth === 2400 && img.naturalHeight === 1350 : design === 'sculptural' ? img.naturalWidth === 2400 && img.naturalHeight === 1620 : img.naturalWidth === 1080 && img.naturalHeight === 1440; }, design);
   }
   for (const design of ['ivory', 'blue', 'plum']) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);
     for (const id of ['wealth-top10', 'wealth-share', 'unexpected-expense', 'salary-median', 'donation']) {
       await page.getByLabel('Sujet', { exact: true }).selectOption(id);
+      await waitImage(id, design);
       ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
     }
     const [file] = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Télécharger le PNG' }).click()]);
     ok &&= file.suggestedFilename().endsWith(`-${design}.png`) && (await stat(await file.path())).size > 10000;
   }
   await page.getByLabel('Sujet', { exact: true }).selectOption('donation');
+  await waitImage('donation', 'plum');
   const editor = page.getByLabel('Texte modifiable');
   await editor.fill('Mon texte personnalisé');
   await page.getByRole('button', { name: 'Réinitialiser le texte' }).click();
   ok &&= (await editor.inputValue()).includes('donation déclarée');
-  await page.getByLabel('Inclure le lien de la source').uncheck();
+  ok &&= await page.getByLabel('Inclure le lien de la source').count() === 0;
   ok &&= !(await editor.inputValue()).includes('https://');
   const [png] = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Télécharger le PNG' }).click()]);
   ok &&= (await stat(await png.path())).size > 10000;
@@ -949,7 +956,7 @@ async function testHouseholds(page) {
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   if (process.env.HOUSEHOLD_SCREENSHOT) await page.screenshot({ path: process.env.HOUSEHOLD_SCREENSHOT, fullPage: true });
   await page.setViewportSize({ width: 1280, height: 720 });
-  record('La France en 100 ménages', ok, '29 sujets, huit designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
+  record('La France en 100 ménages', ok, '29 sujets, neuf designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
 }
 
 async function testInvestorIntroductions(page) {
