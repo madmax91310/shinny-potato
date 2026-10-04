@@ -244,25 +244,27 @@ export function derive(state) {
 function resultLine(state, d, assetLabel, currency) {
   const { finalValue, totalInvested } = d.result
   const gain = finalValue - totalInvested
-  const invested = fmtEUR(totalInvested, currency)
-  const final = fmtEUR(finalValue, currency)
   const monthly = d.effectiveMode === 'dca'
+  const date = ym => `${MONTHS_FULL[Number(ym.split('-')[1]) - 1]} ${ym.split('-')[0]}`
   if (currency === 'EUR' && Math.round(d.livretA.finalValue) > Math.round(finalValue)) {
     const direction = Math.round(gain) > 0 ? 'en hausse' : Math.round(gain) < 0 ? 'en baisse' : 'au montant investi à l’euro près'
-    const contribution = monthly ? `tes ${invested} de versements` : `tes ${invested}`
-    return `${assetLabel} termine ${direction}, mais ${contribution} auraient atteint ${final}, contre ${fmtEUR(d.livretA.finalValue)} dans la simulation du Livret A.`
+    return `${assetLabel} termine ${direction}, mais reste en dessous du Livret A simulé sur cette période.`
   }
   if (currency === 'EUR' && Math.round(d.livretA.finalValue) === Math.round(finalValue)) {
-    return `Ton placement et la simulation du Livret A arrivent au même montant à l’euro près : ${final}.`
+    return 'Le placement et le Livret A simulé arrivent au même montant à l’euro près.'
   }
-  if (Math.round(gain) === 0) return `Tu retrouverais les ${invested} versés, sans gain ni perte ${currency === 'USD' ? 'au dollar' : 'à l’euro'} près.`
-  if (state.assetId === 'bitcoin' && !monthly && !state.overridePriceRaw) {
-    const date = ym => `${MONTHS_FULL[Number(ym.split('-')[1]) - 1]} ${ym.split('-')[0]}`
-    return `Les ${invested} seraient devenus ${final}, à condition d’avoir conservé le placement de ${date(d.startYm)} à ${date(d.endYm)}.`
+  if (Math.round(gain) === 0) return `Le placement retrouve la somme versée, sans gain ni perte ${currency === 'USD' ? 'au dollar' : 'à l’euro'} près.`
+  if (d.isCustom) return 'Ce résultat repose uniquement sur les deux prix saisis, sans versement supplémentaire.'
+  if (state.overridePriceRaw) return `Ce résultat utilise le prix final saisi${monthly ? `, avec des versements jusqu’en ${date(d.endYm)}` : ', sans versement supplémentaire'}.`
+  if (monthly) return gain < 0
+    ? 'Répartir les achats dans le temps n’aurait donc pas évité une perte sur cette période.'
+    : 'Le résultat porte sur l’ensemble des versements, et non sur une somme investie dès le départ.'
+  if (state.assetId === 'bitcoin') {
+    return `Ce résultat suppose d’avoir conservé le placement de ${date(d.startYm)} à ${date(d.endYm)}, sans vente intermédiaire.`
   }
-  const outcome = gain < 0 ? 'perdu' : 'gagné'
-  if (monthly) return `Avec ${invested} versés au total, ton placement afficherait ${fmtEUR(Math.abs(gain), currency)} de ${gain < 0 ? 'perte' : 'gain'}.`
-  return `Tu aurais ${outcome} ${fmtEUR(Math.abs(gain), currency)} sur les ${invested} investis au départ, sans versement supplémentaire.`
+  return gain < 0
+    ? `Conserver le placement jusqu’en ${date(d.endYm)} n’aurait pas suffi à retrouver la somme investie au départ.`
+    : 'Toute la somme aurait été investie au début de la période, sans versement supplémentaire.'
 }
 
 export function buildTweetText(state, d) {
@@ -281,11 +283,23 @@ export function buildTweetText(state, d) {
 
   const endLabel = `${MONTHS_FULL[Number(d.endYm.split('-')[1]) - 1]} ${d.endYm.split('-')[0]}`
   const gainAbs = d.result.finalValue - d.result.totalInvested
-  const endingQuestion = state.assetId === 'bitcoin'
-    ? 'Tu as du Bitcoin en portefeuille ? Depuis quand ?'
-    : currency === 'EUR' && Math.round(d.livretA.finalValue) > Math.round(d.result.finalValue)
-      ? 'Tu compares parfois les résultats de tes placements à ceux de ton épargne ?'
-      : 'Tu as commencé avec une somme d’un coup ou avec des versements mensuels ?'
+  const monthly = d.effectiveMode === 'dca'
+  const loss = Math.round(gainAbs) < 0
+  const neutral = Math.round(gainAbs) === 0
+  const endingQuestion = neutral
+    ? 'Sans gain sur cette période, tu aurais conservé ce placement ou changé de stratégie ?'
+    : loss
+      ? monthly ? 'Tu aurais maintenu tes versements malgré cette perte, ou arrêté les achats ? Pourquoi ?'
+        : 'Face à cette baisse, tu garderais ta ligne, tu renforcerais ou tu vendrais ? Pourquoi ?'
+      : currency === 'EUR' && Math.round(d.livretA.finalValue) > Math.round(d.result.finalValue)
+        ? 'Tu aurais choisi ce placement ou gardé cette somme sur un Livret A ? Pourquoi ?'
+        : monthly
+          ? `Tu aurais maintenu tes versements dans ${investmentLabel}, même si son cours avait baissé ?`
+          : state.assetId === 'bitcoin'
+            ? `Tu aurais gardé tes bitcoins jusqu’en ${endLabel}, ou vendu une partie après une forte hausse ?`
+            : asset?.priceUnit === 'points' || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
+              ? 'Pour investir sur cet indice, tu aurais placé la somme d’un coup ou réparti les achats ?'
+              : 'Avec ce gain, tu aurais conservé toute ta position ou vendu une partie ?'
   const hookLine = d.effectiveMode === 'dca'
     ? `Et si tu avais investi ${amountFmt} par mois dans ${investmentLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
     : `Et si tu avais investi ${amountFmt} dans ${investmentLabel} en ${monthLabel} ${yearLabel} ? 🫢`
@@ -297,7 +311,7 @@ export function buildTweetText(state, d) {
     '',
     `💰 Somme investie : ${fmtEUR(d.result.totalInvested, currency)}`,
     `${gainAbs < 0 ? '📉 Perte' : '📈 Gain'} : ${fmtEUR(Math.abs(gainAbs), currency)}`,
-    `${gainPct < 0 ? '🔻' : '🚀'} Performance : ${fmtPct(gainPct)}`,
+    `${gainPct < 0 ? '🔻' : '🚀'} ${monthly ? gainAbs < 0 ? 'Perte rapportée aux sommes versées' : 'Gain rapporté aux sommes versées' : 'Performance'} : ${fmtPct(gainPct)}`,
   ]
   if (ASSETS[state.assetId]?.priceUnit === 'points' || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)) {
     lines.push(asset?.methodNote ?? 'Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
