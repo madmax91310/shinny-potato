@@ -90,12 +90,12 @@ export async function renderETFImage(etf) {
   fact(ctx, 'Encours', etf.aum, right, 1380, col, 112)
   const annual = getAnnualPerformance(etf)
   if (annual) {
-    rule(ctx, 1520)
-    block(ctx, `PERFORMANCES ANNUELLES · ${annualPerformanceRange(annual)} · ${annual.currency}`, PAD, 1545, 1400, 42, { size: 30, weight: 600 })
+    rule(ctx, 1550)
+    block(ctx, `PERFORMANCES ANNUELLES · ${annualPerformanceRange(annual)} · ${annual.currency}`, PAD, 1570, 1400, 42, { size: 30, weight: 600 })
     const entries = annual.values.map((value, index) => ({ year: 2020 + index, value })).filter(item => Number.isFinite(item.value))
     const gap = 20, cellWidth = (1400 - 2 * gap) / 3, cellHeight = 130
     entries.forEach(({ year, value }, index) => {
-      const x = PAD + (index % 3) * (cellWidth + gap), y = 1600 + Math.floor(index / 3) * (cellHeight + gap)
+      const x = PAD + (index % 3) * (cellWidth + gap), y = 1620 + Math.floor(index / 3) * (cellHeight + 10)
       ctx.fillStyle = value > 0 ? '#e0e9df' : value < 0 ? '#f0e1db' : '#e4e3dc'
       ctx.beginPath(); ctx.roundRect(x, y, cellWidth, cellHeight, 14); ctx.fill()
       block(ctx, String(year), x + 22, y + 14, cellWidth - 44, 38, { size: 30, weight: 600, color: MUTED })
