@@ -276,7 +276,11 @@ async function testPortfolioGenerator(page) {
   const imageOk = firstImage?.startsWith('data:image/png;base64,') && newImage?.startsWith('data:image/png;base64,') && firstImage !== newImage && download.suggestedFilename() === 'repartition-portefeuille.png';
   const autoTweet = await page.locator(".pg-tweet-body").innerText();
   const dataLabelsOk = await page.locator('.pg-confidence-badge').count() === 0 && await page.getByText('Sources et méthode', {exact:true}).count() === 1;
-  const autoEditorialOk = dataLabelsOk && /^🧩 .*exemple de portefeuille/i.test(autoTweet) && !/La logique de l’ensemble|💡|📈 Performances/.test(autoTweet);
+  const { YEARS: portfolioYears, getAsset: portfolioAsset } = await import('../src/data/portfolio-assets.js');
+  const { annualizedReturn, formatPerformance } = await import('../src/pages/portfolio-generator/performance.js');
+  const autoPerformanceOk = portfolioYears.every(year => new RegExp(`${year} : [＋+−-]?[0-9]+,[0-9] %`).test(autoTweet))
+    && /Performance annualisée \(2020 à 2025\) : [＋+−-]?[0-9]+,[0-9] % par an/.test(autoTweet);
+  const autoEditorialOk = autoPerformanceOk && dataLabelsOk && /^🧩 .*exemple de portefeuille/i.test(autoTweet) && !/La logique de l’ensemble|💡/.test(autoTweet);
   // Un profil/palier fixé doit faire tourner toutes les constructions disponibles.
   await page.getByRole('group', { name: "Choisir un profil d'investisseur" }).getByRole('button', { name: 'Le Généraliste', exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un niveau de risque cible' }).getByRole('button', { name: 'Équilibré', exact: true }).click();
@@ -304,6 +308,9 @@ async function testPortfolioGenerator(page) {
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
   let manualEditorialOk = /^🧩 .*exemple de portefeuille/i.test(manualTweet) && /100 %/.test(manualTweet.split("\n")[0]) && /toute l’épargne/i.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
+  const euroPerf = Object.fromEntries(portfolioYears.map((year, i) => [year, portfolioAsset('fonds_euros').r[i]]));
+  manualEditorialOk &&= portfolioYears.every(year => manualTweet.includes(`${year} : ${formatPerformance(euroPerf[year])}`))
+    && manualTweet.includes(`Performance annualisée (2020 à 2025) : ${formatPerformance(annualizedReturn(euroPerf))} par an`);
   const manualStages = { single: manualEditorialOk };
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-pct-input').fill('50');

@@ -1,16 +1,12 @@
 import { YEARS } from '../../data/portfolio-assets.js'
+import { annualizedReturn, formatPerformance as percent } from './performance.js'
+export { annualizedReturn } from './performance.js'
 
 const PALETTE = ['#d1b273', '#afc6d2', '#55bd98', '#9dabc9', '#c28c78', '#9eb778', '#bd8eaf', '#79adba', '#cbab8f', '#a7aaa5']
 const WHITE = '#f5f2e9'
 const MUTED = '#a8b3b8'
-const percent = value => `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
 const weightLabel = value => `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
 
-export function annualizedReturn(perf) {
-  if (!YEARS.every(year => Number.isFinite(perf[year]))) return null
-  const growth = YEARS.reduce((product, year) => product * (1 + perf[year] / 100), 1)
-  return growth > 0 ? (Math.pow(growth, 1 / YEARS.length) - 1) * 100 : null
-}
 
 function mix(hex, target, amount) {
   const rgb = hex.match(/\w\w/g).map(value => parseInt(value, 16))

@@ -1,16 +1,16 @@
 import assert from "node:assert/strict";
-import { ASSETS } from "../src/data/portfolio-assets.js";
+import { ASSETS, YEARS } from "../src/data/portfolio-assets.js";
 import { buildManualPortfolio, generatePortfolio, renderTweetText, PROFILES } from "../src/pages/portfolio-generator/engine.js";
 import { ASSET_EDITORIAL, assetEditorial } from "../src/pages/portfolio-generator/asset-editorial.js";
 import { buildEditorial } from "../src/pages/portfolio-generator/editorial.js";
-import { computeYearlyPerf } from "../src/pages/portfolio-generator/performance.js";
+import { computeYearlyPerf, annualizedReturn, formatPerformance } from "../src/pages/portfolio-generator/performance.js";
 const manual = (rows, profile = "generaliste") => buildManualPortfolio(rows, profile, []);
 const base = [{id:"msci_world",pct:60},{id:"sp500",pct:40}];
 for (const profile of PROFILES) {
   const p = manual(base, profile.id);
   assert.match(p.logic, /entreprises en commun/);
   assert.deepEqual(p.perf, computeYearlyPerf(p.selection));
-  assert.doesNotMatch(renderTweetText(p), /🔍 La logique de l’ensemble|💡|📈 Performances/);
+  assert.doesNotMatch(renderTweetText(p), /🔍 La logique de l’ensemble|💡/);
   assert.doesNotMatch(p.warning + p.cta, /Ethereum|Bitcoin|absence d.actions américaines/i);
 }
 const dominant = manual([{id:"msci_world",pct:90},{id:"or",pct:10}]);
@@ -204,7 +204,7 @@ const example = manual([{id:'msci_world_amundi_pea',pct:24},{id:'nasdaq100_ishar
 const compactText = renderTweetText(example);
 assert.match(example.hook, /4 % d’ETF à levier.*24 %.*World/);
 assert.ok(compactText.length < 2200);
-assert.doesNotMatch(compactText, /La logique|💡|→|Pire année|Performances simulées|Base historique/);
+assert.doesNotMatch(compactText, /La logique|💡|→|Pire année|Base historique/);
 assert.match(compactText, /levier 2x est quotidien/);
 assert.equal(compactText.split('\n').filter(line => /^\S+ \d+% /.test(line)).length, 6);
 assert.match(example.selection.find(s=>s.id==='actions_value').shortRole,/moins chères/);
@@ -266,3 +266,20 @@ assert.match(renderTweetText(optionsIncome), /obligations financent l’État am
 assert.match(renderTweetText(optionsIncome), /options.*hausse.*primes/s);
 assert.match(renderTweetText(indexMix), /échéances courtes pour limiter/);
 for (const asset of ASSETS) assert.doesNotMatch(manual([{id:asset.id,pct:100}]).selection[0].shortRole,/ et limiter|ligne réunit.*une seule ligne/);
+
+// Le tweet reprend exactement les rendements de la composition, comme l’image.
+for (const p of [example, ...PROFILES.map(profile => manual(base, profile.id))]) {
+  const text = renderTweetText(p);
+  for (const year of YEARS) assert(text.includes(`${year} : ${formatPerformance(p.perf[year])}`));
+  assert(text.includes(`Performance annualisée (2020 à 2025) : ${formatPerformance(annualizedReturn(p.perf))} par an`));
+  assert(text.includes('rééquilibrage annuel, sans conversion des devises'));
+}
+const alternating = Object.fromEntries(YEARS.map((year, index) => [year, index % 2 ? -10 : 10]));
+assert(Math.abs(annualizedReturn(alternating) - (Math.sqrt(.99) - 1) * 100) < 1e-10, 'Capitalisation géométrique, pas moyenne arithmétique');
+const incomplete = { ...alternating, 2021: null, 2020: 0 };
+const incompleteTweet = renderTweetText({ ...example, perf: incomplete });
+assert(incompleteTweet.includes('2020 : +0,0 %'));
+assert(incompleteTweet.includes('2021 : non disponible'));
+assert(incompleteTweet.includes('Performance annualisée (2020 à 2025) : non disponible'));
+assert(!/NaN|undefined/.test(incompleteTweet));
+console.log('OK : performances annuelles et annualisée dans le tweet, capitalisation géométrique, zéro et historique incomplet.');

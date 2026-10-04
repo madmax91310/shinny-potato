@@ -2,7 +2,7 @@ import { allocationAngle } from './allocationEditorial.js';
 import { benchmarkKey } from '../../data/asset-selection.js';
 import { compactRole, portfolioAssetLabel, compactHooks } from "./compact.js";
 import { ASSETS, YEARS, getAsset } from '../../data/portfolio-assets.js';
-import { computeYearlyPerf } from './performance.js';
+import { computeYearlyPerf, performanceExcerpt } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
@@ -399,6 +399,7 @@ export function renderTweetText(p) {
   const blocks = [compactHooks(p.selection)[index], '💼 La répartition'];
   blocks.push(p.selection.map(s => `${s.emoji} ${s.pct}% ${portfolioAssetLabel(s)}\n${compactRole(s, p.selection)}`).join("\n\n"));
   if (p.selection.some(s => ["lqq", "cl2"].includes(s.id))) blocks.push("Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.");
+  blocks.push(performanceExcerpt(p.perf));
   blocks.push(`🔎 Le choix derrière cette allocation\n${allocationAngle(p.selection).logic}`);
   blocks.push(p.hook === compactHooks(p.selection)[index] ? p.cta : buildEditorial(p.selection, [], p.profileId, p.riskId).cta);
   blocks.push(DISCLAIMER);
