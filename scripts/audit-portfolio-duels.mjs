@@ -30,7 +30,10 @@ const inspect = (duel) => {
   const tweet = buildTweet(duel)
   assert.ok(!/NaN|undefined|\[.*saisir.*\]|70 % dans.*pour les deux/.test(tweet))
   assert.ok(tweet.includes(`début ${duel.years[0]}`) && tweet.includes(`fin ${duel.years.at(-1)}`))
-  assert.ok(tweet.includes('Simulation en euros') && tweet.includes('pondérations rétablies'))
+  assert.doesNotMatch(tweet, /📌 Simulation en euros|pondérations rétablies|Hors courtage/)
+  assert.match(duel.hook, /\d/)
+  assert.match(tweet, /🔎 Ce qui change/)
+  assert.ok(duel.sources.length > 0)
 }
 for (const definition of DUELS) inspect(buildDuel(definition))
 const original = DUELS.find((duel) => duel.id === 'world-em-ou-acwi')
@@ -77,3 +80,26 @@ for (let i = 0; i < 500; i++) {
   previous = duel.id
 }
 console.log(`${DUELS.length} duels préparés, ${CATALOG.length} ETF, 500 générations : rôles, mono-ETF, historique commun, change, capitaux et textes vérifiés.`)
+
+// Accroches validées : chiffres issus des résultats, période commune et absence de méthode dans le tweet.
+const cashDuel=buildDuel(DUELS.find(d=>d.id==='world-avec-monetaire_xeon'))
+assert.match(cashDuel.hook,/3\s903 € de moins.*2022.*40 %.*2020.*2025/)
+const maturityDuel=buildDuel(DUELS.find(d=>d.id==='oblig-courtes-longues'))
+assert.match(maturityDuel.hook,/2022.*perd 9,4 %.*perd 19,5 %/)
+assert.match(buildTweet(maturityDuel),/cours peuvent beaucoup baisser lorsque les taux montent/)
+const factorsDuel=buildDuel(DUELS.find(d=>d.id==='world-value-ou-world-quality'))
+assert.match(factorsDuel.hook,/116 €.*2020.*2025/)
+assert.match(buildTweet(factorsDuel),/peu chère peut le rester longtemps/)
+assert.doesNotMatch(buildTweet(buildDuel(DUELS.find(d=>d.id==='em-bond-local-usd'))),/coupons émergents|sensibilité des obligations longues/)
+assert.match(limited.hook,/2023.*2025/)
+for (const definition of DUELS) {
+ const duel=buildDuel(definition)
+ assert.doesNotMatch(duel.hook,/Tu gardes 100 % de World|vous|votre/)
+ assert.doesNotMatch(buildTweet(duel),/Simulation en euros|Hors courtage/)
+}
+// La conclusion doit suivre les résultats, même si A/B est inversé ou si les capitaux sont égaux.
+const swapped={...cashDuel,a:cashDuel.b,b:cashDuel.a,id:'custom-swap'}
+assert.match(resultReading(swapped),/portefeuille B termine/)
+const flat={...identical,a:{...identical.a,annual:Object.fromEntries(identical.years.map(y=>[y,0]))},b:{...identical.b,annual:Object.fromEntries(identical.years.map(y=>[y,0]))}}
+assert.doesNotMatch(resultReading(flat),/écart annuel|gagne|perd/)
+console.log('Accroches des trois exemples, textes des 28 thèmes, périodes courtes et conclusions inversées/égales vérifiés.')
