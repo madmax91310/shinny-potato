@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js';
 import { SIMULATION_PROXIES } from '../src/data/simulation-proxies.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 // Vérifie que les performances publiées dans les Fiches ETF correspondent à la part exacte
@@ -29,7 +30,7 @@ for (const etf of ETFS) {
   if (asset && series.values.every(Number.isFinite) && JSON.stringify(asset.r) !== JSON.stringify(series.values)) {
     console.error(`Divergence Fiches / Générateur : ${etf.isin}`); errors++
   }
-  if (asset && !series.values.every(Number.isFinite) && !SIMULATION_PROXIES[etf.isin]) {
+  if (asset && !series.values.every(Number.isFinite) && !SIMULATION_PROXIES[etf.isin] && !(REVIEWED_PERFORMANCE_META[etf.isin]?.portfolioHistoryBasis === 'proxy' && asset.confidenceNote)) {
     console.error(`Part à historique incomplet dans le Générateur : ${etf.isin}`); errors++
   }
 }

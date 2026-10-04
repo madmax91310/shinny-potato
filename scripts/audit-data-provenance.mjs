@@ -66,7 +66,11 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
     }
     if (field.label.startsWith('Rendements')) assert.equal(field.metadata.periodEnd, '2025-12-31');
   }
-  if (VERIFIED_RETURNS[isin]) assert.deepEqual(record.fields.find(f => f.label === 'Rendements 2020–2025').value, VERIFIED_RETURNS[isin].values, `${isin}: catalogue différent de la série réellement consommée`);
+  if (VERIFIED_RETURNS[isin]) {
+    const values = VERIFIED_RETURNS[isin].values;
+    if (values.some(Number.isFinite)) assert.deepEqual(record.fields.find(f => f.label === 'Rendements 2020–2025').value, values, `${isin}: catalogue différent de la série réellement consommée`);
+    else assert(record.fields.some(f => f.label === 'Disponibilité de la performance'), `${isin}: absence d’historique non expliquée`);
+  }
 }
 for (const family of FAMILIES) for (const index of family.indices) if (index.indexFacts) {
   assert(index.indexFacts.metadata.sourceUrls.length, `${index.name}: indice actif sans source`);

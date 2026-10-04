@@ -71,6 +71,18 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+  // Parts de fiches désormais documentées sur 2020–2025, proposées en manuel.
+  {
+    id: 'topix_pea_hedged', isin: 'FR0013411998', name: getInstrumentName('FR0013411998', 'portfolio'),
+    cat: 'actions_larges', emoji: '🟢', manualOnly: true, r: getInstrumentReturnValues('FR0013411998'),
+    desc: ['actions japonaises TOPIX', 'part couverte en euros', 'rendements EUR de la part exacte, source Amundi'],
+  },
+  {
+    id: 'basic_resources_pea', isin: 'LU1834983550', name: getInstrumentName('LU1834983550', 'portfolio'),
+    cat: 'actions_larges', emoji: '🟣', manualOnly: true, r: getInstrumentReturnValues('LU1834983550'),
+    desc: ['ressources de base européennes', 'exposition sectorielle concentrée', 'rendements EUR de la part exacte, source Amundi'],
+  },
+
 ...EXPOSURE_ADDITIONS.map(r => ({ id: r.id, isin: r.isin, name: getInstrumentName(r.isin, 'portfolio'), cat: r.cat, emoji: r.cat === 'obligataire' ? '🔵' : '🟢', r: getInstrumentReturnValues(r.isin), distributing: r.incomePolicy === 'distributing', confidenceNote: SIMULATION_PROXIES[r.isin]?.note ?? `Rendements NAV de la part en ${r.currency === 'USD' ? 'dollars ; le résultat en euros dépend du change' : 'euros'}, revenus réinvestis.`, desc: [r.whatIs, r.whyInteresting, r.whatToKnow] })),
   // Vérifiés le 01/10/2026 : parts des nouvelles présentations, sélection manuelle uniquement.
   {

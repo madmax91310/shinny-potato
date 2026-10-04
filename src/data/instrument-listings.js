@@ -3,6 +3,569 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+...{
+  "LU1834983550": [
+    {
+      "ticker": "BRES",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "LU1834983550-XPAR-BRES-EUR"
+    }
+  ],
+  "IE00B5BMR087": [
+    {
+      "ticker": "CSPX",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/cspx-ishares-core-s-p-500-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B5BMR087-XLON-CSPX-USD"
+    }
+  ],
+  "IE00B53SZB19": [
+    {
+      "ticker": "CNDX",
+      "exchange": "Euronext Amsterdam",
+      "mic": "XAMS",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/253741/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B53SZB19-XAMS-CNDX-EUR"
+    }
+  ],
+  "FR0010342592": [
+    {
+      "ticker": "LQQ",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "FR0010342592-XPAR-LQQ-EUR"
+    }
+  ],
+  "FR0010755611": [
+    {
+      "ticker": "CL2",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "FR0010755611-XPAR-CL2-EUR"
+    }
+  ],
+  "FR0013380607": [
+    {
+      "ticker": "CACC",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/RETAIL/ETF",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "FR0013380607-XPAR-CACC-EUR"
+    }
+  ],
+  "IE00B53L3W79": [
+    {
+      "ticker": "CSX5",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/cssx5e-ishares-core-euro-stoxx-50-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B53L3W79-XLON-CSX5-EUR"
+    }
+  ],
+  "IE00B4K48X80": [
+    {
+      "ticker": "SMEA",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "GBP",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/smea-ishares-core-msci-europe-ucits-etf-eur-acc-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B4K48X80-XLON-SMEA-GBP"
+    }
+  ],
+  "IE00B43HR379": [
+    {
+      "ticker": "QDVG",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/280507/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B43HR379-XETR-QDVG-EUR"
+    }
+  ],
+  "IE00B4NCWG09": [
+    {
+      "ticker": "SSLN",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/258443/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B4NCWG09-XPAR-SSLN-EUR"
+    }
+  ],
+  "IE00BDFL4P12": [
+    {
+      "ticker": "ICOM",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/icom-ishares-diversified-commodity-swap-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BDFL4P12-XLON-ICOM-USD"
+    }
+  ],
+  "GB00BLD4ZM24": [
+    {
+      "ticker": "CETH",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "GB00BLD4ZM24-XPAR-CETH-EUR"
+    }
+  ],
+  "LU1437018838": [
+    {
+      "ticker": "EPRA",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "LU1437018838-XPAR-EPRA-EUR"
+    }
+  ],
+  "IE00BYYHSQ67": [
+    {
+      "ticker": "WQDV",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/wqdv-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BYYHSQ67-XLON-WQDV-USD"
+    }
+  ],
+  "JE00B1VS3770": [
+    {
+      "ticker": "PHAU",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "JE00B1VS3770-ETFP-PHAU-EUR"
+    }
+  ],
+  "GB00BJYDH287": [
+    {
+      "ticker": "WBTC",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "GB00BJYDH287-ETFP-WBTC-EUR"
+    }
+  ],
+  "LU1931975079": [
+    {
+      "ticker": "ETFCOR",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1931975079/FRA/FRA/INSTITUTIONNEL/ETF/20260731",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "LU1931975079-ETFP-ETFCOR-EUR"
+    }
+  ],
+  "IE00B3T9LM79": [
+    {
+      "ticker": "EUCO",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-bloomberg-euro-corporate-bond-ucits-etf-dist-sybc-gy",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B3T9LM79-ETFP-EUCO-EUR"
+    }
+  ],
+  "IE00B44Z5B48": [
+    {
+      "ticker": "ACWE",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B44Z5B48-XPAR-ACWE-EUR"
+    }
+  ],
+  "LU1681045370": [
+    {
+      "ticker": "AEEM",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "LU1681045370-XPAR-AEEM-EUR"
+    }
+  ],
+  "IE00B469F816": [
+    {
+      "ticker": "EMRG",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-msci-emerging-markets-ucits-etf-spym-gy",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B469F816-ETFP-EMRG-EUR"
+    }
+  ],
+  "IE00B14X4Q57": [
+    {
+      "ticker": "IBGS",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "GBP",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/ibgs-ishares-govt-bond-1-3yr-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B14X4Q57-XLON-IBGS-GBP"
+    }
+  ],
+  "IE00BMW42413": [
+    {
+      "ticker": "ESIT",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/315818/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BMW42413-XETR-ESIT-EUR"
+    }
+  ],
+  "IE0000N55FP4": [
+    {
+      "ticker": "ESCE",
+      "exchange": "Euronext Amsterdam",
+      "mic": "XAMS",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/348766/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE0000N55FP4-XAMS-ESCE-EUR"
+    }
+  ],
+  "IE00B42NKQ00": [
+    {
+      "ticker": "IUES",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/iues-ishares-s-p-500-energy-sector-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B42NKQ00-XLON-IUES-USD"
+    }
+  ],
+  "IE00B3WJKG14": [
+    {
+      "ticker": "IUIT",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/iuit-ishares-s-p-500-information-technology-sector-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B3WJKG14-XLON-IUIT-USD"
+    }
+  ],
+  "IE00BG0J4C88": [
+    {
+      "ticker": "LOCK",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/lock-ishares-digital-security-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BG0J4C88-XLON-LOCK-USD"
+    }
+  ],
+  "IE00B40B8R38": [
+    {
+      "ticker": "IUCS",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/iucs-ishares-s-p-500-consumer-staples-sector-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B40B8R38-XLON-IUCS-USD"
+    }
+  ],
+  "IE00B4KBBD01": [
+    {
+      "ticker": "IUUS",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/iuus-ishares-s-p-500-utilities-sector-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B4KBBD01-XLON-IUUS-USD"
+    }
+  ],
+  "NL0011683594": [
+    {
+      "ticker": "TDIV",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "NL0011683594-XPAR-TDIV-EUR"
+    }
+  ],
+  "NL0009690239": [
+    {
+      "ticker": "TRET",
+      "exchange": "Euronext Amsterdam",
+      "mic": "XAMS",
+      "currency": "EUR",
+      "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "NL0009690239-XAMS-TRET-EUR"
+    }
+  ],
+  "LU2970735911": [
+    {
+      "ticker": "AEHY",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "LU2970735911-XETR-AEHY-EUR"
+    }
+  ],
+  "IE00BK95B138": [
+    {
+      "ticker": "SNA2",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/309947/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BK95B138-XETR-SNA2-EUR"
+    }
+  ],
+  "IE00B4L5YX21": [
+    {
+      "ticker": "IJPA",
+      "exchange": "Euronext Amsterdam",
+      "mic": "XAMS",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251867/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B4L5YX21-XAMS-IJPA-EUR"
+    }
+  ],
+  "IE00B5W4TY14": [
+    {
+      "ticker": "CSKR",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/253733",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B5W4TY14-ETFP-CSKR-EUR"
+    }
+  ],
+  "IE00B0M63623": [
+    {
+      "ticker": "ITWN",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "GBP",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/itwn-ishares-msci-taiwan-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B0M63623-XLON-ITWN-GBP"
+    }
+  ],
+  "IE00BKPX3K41": [
+    {
+      "ticker": "IS3Z",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/313316/ishares-msci-ac-far-east-ex-japan-ucits-etf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BKPX3K41-XETR-IS3Z-EUR"
+    }
+  ],
+  "IE00B4JNQZ49": [
+    {
+      "ticker": "QDVH",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/280523/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B4JNQZ49-XETR-QDVH-EUR"
+    }
+  ],
+  "IE00BK5BR626": [
+    {
+      "ticker": "VHYA",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9677/ftse-all-world-high-dividend-yield-ucits",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BK5BR626-ETFP-VHYA-EUR"
+    }
+  ],
+  "IE00B8GKDB10": [
+    {
+      "ticker": "VHYL",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9506/ftse-all-world-high-dividend-yield-ucits-etf-usd-distributing",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B8GKDB10-ETFP-VHYL-EUR"
+    }
+  ],
+  "IE00BK5BR733": [
+    {
+      "ticker": "VFEA",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9678/ftse-emerging-markets-ucits",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BK5BR733-ETFP-VFEA-EUR"
+    }
+  ],
+  "IE00BZ163G84": [
+    {
+      "ticker": "VECP",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/bond/9659/eur-corporate-bond-ucits-etf-eur-distributing",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BZ163G84-ETFP-VECP-EUR"
+    }
+  ],
+  "IE00BKPSFC54": [
+    {
+      "ticker": "WQDA",
+      "exchange": "Euronext Amsterdam",
+      "mic": "XAMS",
+      "currency": "USD",
+      "sourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/wqda-ishares-msci-world-quality-dividend-advanced-ucits-etf-fund-fact-sheet-en-gb.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BKPSFC54-XAMS-WQDA-USD"
+    }
+  ],
+  "IE00B1XNHC34": [
+    {
+      "ticker": "INRG",
+      "exchange": "London Stock Exchange",
+      "mic": "XLON",
+      "currency": "GBP",
+      "sourceUrl": "https://www.ishares.com/ch/privatkunden/de/literature/fact-sheet/inrg-ishares-global-clean-energy-transition-ucits-etf-fund-fact-sheet-de-ch.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B1XNHC34-XLON-INRG-GBP"
+    }
+  ],
+  "DE000A27Z304": [
+    {
+      "ticker": "BTCE",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "DE000A27Z304-XETR-BTCE-EUR"
+    }
+  ],
+  "CH0454664001": [
+    {
+      "ticker": "ABTC",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://cdn.21shares.com/uploads/current-documents/factsheets/all/Factsheet_ABTC.pdf",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "CH0454664001-XPAR-ABTC-EUR"
+    }
+  ],
+  "IE00B9CQXS71": [
+    {
+      "ticker": "ZPRG",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ssga.com/uk/en_gb/intermediary/etfs/spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B9CQXS71-XETR-ZPRG-EUR"
+    }
+  ],
+  "LU1737652823": [
+    {
+      "ticker": "10AJ",
+      "exchange": "Xetra",
+      "mic": "XETR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=LU1737652823",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "LU1737652823-XETR-10AJ-EUR"
+    }
+  ],
+  "IE00BD6FTQ80": [
+    {
+      "ticker": "CMOD",
+      "exchange": "Borsa Italiana",
+      "mic": "ETFP",
+      "currency": "EUR",
+      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00BD6FTQ80-ETFP-CMOD-EUR"
+    }
+  ],
+  "FR0013416716": [
+    {
+      "ticker": "GOLD",
+      "exchange": "Euronext Paris",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=FR0013416716",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "FR0013416716-XPAR-GOLD-EUR"
+    }
+  ],
+  "IE00B579F325": [
+    {
+      "ticker": "SGLD",
+      "exchange": "Euronext Amsterdam",
+      "mic": "XAMS",
+      "currency": "EUR",
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00B579F325-XAMS/financial-calendar",
+      "checkedAt": "2026-10-04",
+      "evidenceId": "IE00B579F325-XAMS-SGLD-EUR"
+    }
+  ]
+},
 ...Object.fromEntries(EXPOSURE_ADDITIONS.filter(r => r.ticker).map(r => [r.isin, [{ ticker: r.ticker, exchange: r.exchange, mic: r.mic, currency: 'EUR', sourceUrl: r.listingSource ?? r.source, checkedAt: '2026-10-03', evidenceId: `${r.isin}-${r.mic}-${r.ticker}-EUR` }]])),
   "LU0290358497": [
   {

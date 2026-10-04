@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview, reviewCalendar, summarizeCadences } from '../src/pages/data-review/lib.js'
 import { OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
@@ -40,13 +41,21 @@ assert.equal(buildReview('2027-01-01').items.filter(x => x.category === 'expired
 const closure = JSON.parse(readFileSync(new URL('./source-snapshots/data-review-2026-10-02.json', import.meta.url)))
 for (const observation of closure.records) {
   const record = DATA_CATALOG.find(x => x.id === (observation.isin ?? observation.id))
+  const reviewed = REVIEWED_PERFORMANCE_META[observation.isin]
+  const historicalProxy = reviewed?.portfolioHistoryBasis === 'proxy'
   const field = record.fields.find(x => observation.type === 'index'
     ? x.value.asOf === observation.asOf
-    : x.label === (observation.type === 'comparator' ? 'Rendements 2023–2025 du comparateur' : 'Rendements 2020–2025'))
+    : x.label === (observation.type === 'comparator' ? 'Rendements 2023–2025 du comparateur' : historicalProxy ? 'Historique de simulation 2020–2025' : 'Rendements 2020–2025'))
   assert(field, `Champ contrôlé absent : ${record.id}`)
   assert.deepEqual(observation.type === 'index' ? field.value.constituents : field.value, observation.constituents ?? observation.values)
-  assert.equal(field.metadata.checkedAt, closure.checkedAt)
-  assert(observation.sourceUrls.every(url => field.metadata.sourceUrls.includes(url)), `${record.id}: source contrôlée différente`)
+  if (reviewed && !historicalProxy && observation.type === 'portfolio') {
+    // Les mêmes années calendaires ont été recertifiées dans une publication plus récente.
+    assert.equal(field.metadata.checkedAt, reviewed.checkedAt)
+    assert(field.metadata.sourceUrls.includes(reviewed.source), `${record.id}: nouvelle source contrôlée absente`)
+  } else {
+    assert.equal(field.metadata.checkedAt, closure.checkedAt)
+    assert(observation.sourceUrls.every(url => field.metadata.sourceUrls.includes(url)), `${record.id}: source contrôlée différente`)
+  }
 }
 const remaining = buildReview(closure.checkedAt)
 assert.equal(remaining.items.filter(x => x.category === 'undated').length, 4, 'Les quatre contrôles non résolus doivent rester visibles')

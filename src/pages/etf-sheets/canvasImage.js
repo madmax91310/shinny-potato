@@ -1,6 +1,6 @@
 import { loadArtImage, loadEditorialFont, drawTitaniumMark } from '../tweet-midi/anniversaryArt.js'
 import { getETFArt } from './visualIdentity.js'
-import { annualPerformanceRange, getAnnualPerformance } from './annualPerformance.js'
+import { getAnnualPerformance, performanceEntries, performanceImageHeading } from './annualPerformance.js'
 
 const W = 1600, H = 2000, PAD = 100, INK = '#fff4da', MUTED = '#bdc8cf', PAPER = '#061522', GOLD = '#e6bf79'
 const sans = size => `${size}px Arial, sans-serif`
@@ -119,10 +119,10 @@ export async function renderETFImage(etf) {
   const annual = getAnnualPerformance(etf)
   if (annual) {
     rule(ctx, 1550)
-    block(ctx, `Performances annuelles · ${annualPerformanceRange(annual)} · ${annual.currency}`, PAD, 1570, 1400, 42, { size: 30, weight: 600 })
-    const entries = annual.values.map((value, index) => ({ year: 2020 + index, value })).filter(item => Number.isFinite(item.value))
+    block(ctx, performanceImageHeading(annual), PAD, 1570, 1400, 42, { size: 30, weight: 600 })
+    const entries = performanceEntries(annual)
     const gap = 20, cellWidth = (1400 - 2 * gap) / 3, cellHeight = 130
-    entries.forEach(({ year, value }, index) => {
+    entries.forEach(({ label, value }, index) => {
       const x = PAD + (index % 3) * (cellWidth + gap), y = 1620 + Math.floor(index / 3) * (cellHeight + 10)
       const surface = ctx.createLinearGradient(x, y, x, y + cellHeight)
       surface.addColorStop(0, value < 0 ? '#29303a' : '#123044'); surface.addColorStop(1, '#071925')
@@ -130,11 +130,14 @@ export async function renderETFImage(etf) {
       ctx.beginPath(); ctx.roundRect(x, y, cellWidth, cellHeight, 14); ctx.fill()
       ctx.strokeStyle = value < 0 ? '#a27d6c' : '#426880'; ctx.lineWidth = 1.5; ctx.stroke()
       ctx.textAlign = 'center'
-      block(ctx, String(year), x + cellWidth / 2, y + 14, cellWidth - 44, 38, { size: 30, weight: 600, color: MUTED })
+      block(ctx, label, x + cellWidth / 2, y + 14, cellWidth - 44, 38, { size: 30, weight: 600, color: MUTED })
       const performance = `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
       block(ctx, performance, x + cellWidth / 2, y + 52, cellWidth - 44, 78, { size: 64, min: 58, weight: 700, color: value > 0 ? '#9bebb4' : value < 0 ? '#ff998b' : INK })
       ctx.textAlign = 'left'
     })
+    if (!annual.values.some(Number.isFinite)) {
+      block(ctx, annual.note, PAD, entries.length ? 1780 : 1640, 1400, entries.length ? 95 : 220, { size: 32, min: 30, color: MUTED })
+    }
   }
   rule(ctx, 1895)
   ctx.textAlign = 'center'

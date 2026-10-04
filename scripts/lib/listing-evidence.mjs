@@ -1,13 +1,14 @@
 // Contrôle hors réseau : les preuves conservées viennent d'une revue des sources,
+// Trois profils justETF sont recoupés avec les documents primaires ;
 // pas d'une inférence sur le domicile ou la devise du fonds.
-const SOURCE_HOSTS = new Set(['www.ishares.com', 'www.amundietf.fr', 'www.amundietf.com',
+const SOURCE_HOSTS = new Set(['www.ishares.com', 'www.invesco.com', 'www.amundietf.fr', 'www.amundietf.com',
   'www.vaneck.com', 'www.ssga.com', 'www.vanguard.co.uk', 'coinshares.com',
-  'globalxetfs.eu', 'etf.dws.com', 'www.borsaitaliana.it', 'live.euronext.com']);
+  'globalxetfs.eu', 'dataspanapi.wisdomtree.com', 'bitwiseinvestments.eu', 'cdn.21shares.com', 'www.justetf.com', 'etf.dws.com', 'www.borsaitaliana.it', 'live.euronext.com']);
 const MARKETS = {
   XPAR: ['Euronext Paris', /Euronext Paris|EURONEXT PARIS|EN Paris|Venue: Paris|MIC\s*\|\s*XPAR/],
-  XAMS: ['Euronext Amsterdam', /Euronext Amsterdam|EN Amsterdam|NYSE Euronext - Amsterdam|NYSE Euronext EUR/],
+  XAMS: ['Euronext Amsterdam', /Euronext Amsterdam|EURONEXT AMSTERDAM|EN Amsterdam|NYSE Euronext - Amsterdam|NYSE Euronext EUR/],
   XLON: ['London Stock Exchange', /London Stock\s+Exchange|LONDON STOCK EXCHANGE|LSE/],
-  XETR: ['Xetra', /Xetra|XETRA|DEUTSCHE BÖRSE|Deutsche Boerse/],
+  XETR: ['Xetra', /Xetra|XETRA|DEUTSCHE BÖRSE|Deutsche Börse|Deutsche Boerse/],
   ETFP: ['Borsa Italiana', /Borsa Italiana|BORSA ITALIANA|Euronext Milan/],
   XSWX: ['SIX Swiss Exchange', /SIX Swiss Ex|SIX SWISS EXCHANGE|Six Swiss Exchange/],
   XMEX: ['Bolsa Mexicana De Valores', /Bolsa Mexicana De Valores/],
@@ -42,6 +43,10 @@ export function validateListingEvidence({ published, listings, evidence, today =
       const proof = evidence[row.evidenceId];
       if (!proof) { fail(isin, `preuve absente : ${key}`); continue; }
       usedEvidence.add(row.evidenceId);
+      if (row.sourceUrl?.startsWith('https://www.justetf.com/') &&
+          (proof.sourceType !== 'specialist-listing-profile' || !validUrl(proof.identitySourceUrl) ||
+           new URL(proof.identitySourceUrl).hostname === 'www.justetf.com' ||
+           !proof.identitySourceUrl.includes(isin))) fail(isin, `profil de cotation sans recoupement primaire : ${key}`);
       if (proof.isin !== isin || !proof.identityEvidence?.includes(isin)) fail(isin, `preuve d'une autre part : ${key}`);
       if (!validUrl(row.sourceUrl) || proof.sourceUrl !== row.sourceUrl ||
           proof.currencySourceUrl && !validUrl(proof.currencySourceUrl)) fail(isin, `source non officielle ou divergente : ${key}`);

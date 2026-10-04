@@ -120,7 +120,12 @@ add('pea_global_amundi', 'world-all', 'le monde en une ligne PEA', 'On réunit l
 add('oblig_em_usd_ishares', 'em-bond', 'les coupons émergents en dollars', 'On prête ici à des emprunteurs émergents qui émettent en dollars. Les revenus sont distribués, mais le crédit, les taux et le change peuvent faire baisser la valeur du placement : les coupons ne garantissent pas le capital.');
 add('oblig_eur_long_ishares', 'long-bond', 'les obligations longues en euros', 'On assume ici une forte sensibilité aux taux longs en euros. Cette poche peut profiter de leur baisse, mais elle peut aussi subir des pertes importantes lorsqu’ils remontent : ce n’est pas une réserve stable.');
 
+add('topix_pea_hedged', 'country', 'les actions japonaises couvertes en euros', 'On suit ici les entreprises japonaises du TOPIX avec une couverture du yen vers l’euro. Cette couverture cherche à réduire l’effet du change, avec un coût et une efficacité imparfaite ; elle ne protège pas contre les baisses des actions japonaises.');
+add('basic_resources_pea', 'theme', 'les producteurs européens de ressources', 'On choisit ici les entreprises européennes du secteur des ressources de base. On détient leurs actions, pas directement les matières premières : les prix des ressources, leurs coûts et le cycle économique influencent leurs résultats.');
+
 const newDescriptions = {
+ topix_pea_hedged: 'Les actions japonaises du TOPIX, avec couverture du yen vers l’euro.',
+ basic_resources_pea: 'Les entreprises européennes des ressources de base, sélectionnées par STOXX.', 
  sp500_equal_weight: 'Les entreprises du S&P 500, équipondérées à chaque rééquilibrage.',
  russell2000_spdr: 'Les petites capitalisations américaines du Russell 2000.',
  world_ex_usa: 'Des actions des pays développés hors États-Unis.',

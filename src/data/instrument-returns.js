@@ -1,3 +1,4 @@
+import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 // Rendements 2020–2025 par part (ISIN), repris sans modification du générateur.
 // Les commentaires de provenance historiques restent dans src/data/portfolio-assets.js.
@@ -5,6 +6,8 @@ import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { VERIFIED_RETURNS } from './verified-returns.js';
 
 export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
+  'LU1834983550': Object.freeze([12.32, 26.65, 9.57, -2.07, -8.16, 31.8]),
+  'FR0013411998': Object.freeze([5.36, 10.55, -3.92, 31.24, 22.72, 25.86]),
   'CH0454664001': Object.freeze([303.16, 59.67, -64.27, 155.42, 121.05, -6.34]),
   'DE000A27Z304': Object.freeze([303.16, 55.46, -64.67, 150.42, 120.73, -9.68]),
   'FR0010342592': Object.freeze([74.02, 67.05, -57.69, 110.24, 52.51, 14.97]),
@@ -101,6 +104,8 @@ const CARD_SERIES_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentAnnualPerformance(isin) {
+  const reviewed = REVIEWED_PERFORMANCE_META[isin];
+  if (reviewed) return { ...reviewed, values: reviewed.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin] };
   if (VERIFIED_RETURNS[isin]) return VERIFIED_RETURNS[isin].values.some(Number.isFinite) ? VERIFIED_RETURNS[isin] : null;
   const card = CARD_SERIES_BY_ISIN[isin];
   return card ? { ...card, values: getInstrumentReturnValues(isin) } : null;
@@ -126,7 +131,8 @@ export const DUEL_SERIES_BY_ISIN = Object.freeze({
 export function getInstrumentDuelSeries(isin) {
   const proxy = SIMULATION_PROXIES[isin];
   if (proxy) return { ...proxy, values: getInstrumentReturnValues(isin), basis: 'proxy' };
-  const base = getInstrumentAnnualPerformance(isin);
+  const annual = getInstrumentAnnualPerformance(isin);
+  const base = annual?.values.some(Number.isFinite) ? annual : null;
   const supplement = DUEL_SERIES_BY_ISIN[isin];
   const result = base ? { ...supplement, ...base, source: base.source ?? supplement?.source ?? null } :
     supplement?.currency ? { ...supplement, values: getInstrumentReturnValues(isin) } : null;

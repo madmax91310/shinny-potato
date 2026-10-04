@@ -1,6 +1,34 @@
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
+...{
+  "FR0013411998": {
+    "sourceUrls": [
+      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF"
+    ],
+    "checkedAt": "2026-10-04",
+    "asOf": "2025-12-31",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "currency": "EUR",
+    "scope": "Part exacte FR0013411998",
+    "method": "Rendements calendaires NAV, revenus réinvestis, frais déduits",
+    "note": "Tableau annuel Amundi au 31/08/2026 ; historique 2020–2025 de la part exacte."
+  },
+  "LU1834983550": {
+    "sourceUrls": [
+      "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF"
+    ],
+    "checkedAt": "2026-10-04",
+    "asOf": "2025-12-31",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "currency": "EUR",
+    "scope": "Part exacte LU1834983550",
+    "method": "Rendements calendaires NAV, revenus réinvestis, frais déduits",
+    "note": "Tableau annuel Amundi au 31/08/2026 ; historique 2020–2025 de la part exacte."
+  }
+},
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, { sourceUrls: [r.perfSource ?? r.source], asOf: '2025-12-31', checkedAt: '2026-10-03', periodStart: '2020-01-01', periodEnd: '2025-12-31', currency: r.currency, scope: `Part exacte ${r.isin}`, method: 'Rendements NAV calendaires, revenus réinvestis, frais du fonds déduits', note: 'Années complètes uniquement. Les historiques de simulation des fonds récents disposent de preuves distinctes.' }])),
   "LU0290358497": {
     "sourceUrls": [
