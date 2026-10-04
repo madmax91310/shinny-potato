@@ -1,43 +1,33 @@
-import { INSTRUMENT_FACTS_BY_ISIN } from '../../../data/instrument-facts.js'
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
-
-const REPLICATION_LABELS = {
-  'Synthetic (Unfunded swap)': 'synthétique (swap)',
-  'Physical (Full replication)': 'physique intégrale',
-  'Physical (Optimized sampling)': 'physique par échantillonnage',
-  'Physical (sampling)': 'physique par échantillonnage',
-  'Physical (Physically backed)': 'adossé à du métal physique',
-}
+import { COMPARISON_EDITORIAL, FUND_EXPOSURES } from './editorial.js'
 
 export function buildTweetText(theme) {
   const isEtc = theme.id === 'etc-metaux'
   const single = theme.etfs.length === 1
   const kind = isEtc ? 'ETC' : 'ETF'
-  const lines = [`${single ? '📋 Présentation' : '⚖️ Comparatif'} ${kind} : ${theme.nom}`, '']
-  if (theme.transition?.trim()) lines.push(theme.transition.trim(), '')
+  const editorial = COMPARISON_EDITORIAL[theme.id]
+  const hook = theme.hook?.trim() || editorial?.hook || `${theme.emoji || '📊'} Tu cherches ${single ? 'un' : 'des'} ${kind} sur ${theme.nom}. ${single ? 'Que détient ce fonds ?' : 'Qu’est-ce qui distingue ces fonds ?'}`
+  const count = ['zéro', 'un', 'deux', 'trois', 'quatre'][theme.etfs.length] ?? theme.etfs.length
+  const lines = [hook, '']
+  if (editorial) lines.push(`Voici ${count} ${kind} ${single ? 'à regarder' : 'à comparer'} : ${editorial.focus} 👇`, '')
+  else if (theme.transition?.trim()) lines.push(theme.transition.trim(), '')
 
   theme.etfs.forEach((etf, index) => {
-    const facts = INSTRUMENT_FACTS_BY_ISIN[etf.isin]
     const pea = getInstrumentPeaStatus(etf.isin)
     lines.push(`${['🟢', '🟡', '🔵', '🟣'][index % 4]} ${etf.nom || '…'}`)
+    const exposure = FUND_EXPOSURES[etf.isin] || etf.differenciateur?.trim()
+    if (exposure) lines.push(exposure)
     lines.push(`💰 ${etf.isCopperEtc ? 'Frais de gestion' : 'Frais annuels'} : ${etf.frais ? `${etf.frais} %` : 'non renseignés'}`)
-    if (facts?.benchmark) lines.push(`📊 Indice : ${facts.benchmark}`)
-    if (REPLICATION_LABELS[facts?.replicationMethod]) {
-      lines.push(`🔄 Réplication : ${REPLICATION_LABELS[facts.replicationMethod]}`)
-    }
-    if (!isEtc && ['accumulating', 'distributing'].includes(facts?.incomePolicy)) {
-      lines.push(`💶 Dividendes : ${facts.incomePolicy === 'accumulating' ? 'capitalisés' : 'distribués'}`)
-    }
-    if (pea !== null) lines.push(`🏛️ Éligible au PEA : ${pea ? 'oui' : 'non'}`)
-    if (etf.differenciateur?.trim()) lines.push(`🎯 À savoir : ${etf.differenciateur.trim()}`)
-    if (etf.encours) lines.push(`🏦 Encours : ${etf.encours}`)
-    lines.push(`🔎 ISIN : ${etf.isin || '…'}`, '')
+    if (pea === true) lines.push('🏦 PEA ou CTO')
+    else if (isEtc || pea === false || /\bCTO\b/.test(etf.differenciateur || '')) lines.push('🏦 CTO')
+    lines.push(`🆔 ISIN : ${etf.isin || '…'}`, '')
   })
-  if (theme.cloture?.trim()) {
-    lines.push(single ? '📌 À retenir' : '📌 Les différences', theme.cloture.trim(), '')
+  const conclusion = editorial?.conclusion || theme.cloture?.trim()
+  if (conclusion) {
+    lines.push(single ? '📌 À retenir' : '📌 Ce qui change pour toi', '', conclusion, '')
   }
   // La question personnalisée clôt le texte, sans appel au partage générique.
-  if (theme.ctaEngagement?.trim()) lines.push(theme.ctaEngagement.trim())
+  if (theme.ctaEngagement?.trim()) lines.push(`💬 ${theme.ctaEngagement.trim().replace(/^💬\s*/, '')}`)
   return lines.join('\n')
 }
 

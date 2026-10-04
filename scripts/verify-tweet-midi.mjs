@@ -39,27 +39,38 @@ import { buildTweetText as buildEtfTweet } from '../src/pages/etf-tweets/lib/twe
 // caractéristiques/PEA ne sont pas documentés et les produits qui ne sont pas des ETF.
 for (const theme of DEFAULT_THEMES) {
   const text = getComparatifEtfText(theme.id);
-  assert.match(text, /^(?:⚖️ Comparatif|📋 Présentation) (?:ETF|ETC) : /u);
-  assert.equal((text.match(/^🔎 ISIN : /gmu) ?? []).length, theme.etfs.length);
+  assert.doesNotMatch(text, /^(?:⚖️ Comparatif|📋 Présentation) /u);
+  assert.match(text.split('\n')[0], /ETF|ETC/u);
+  assert.equal((text.match(/^🆔 ISIN : /gmu) ?? []).length, theme.etfs.length);
   for (const fund of theme.etfs) {
     assert.ok(text.includes(`ISIN : ${fund.isin}`));
     assert.ok(text.includes(`${fund.frais} %`));
   }
   assert.ok(text.endsWith(theme.ctaEngagement));
   assert.ok(!text.includes(theme.ctaPartage));
+  assert.doesNotMatch(text, /🎯 À savoir|📌 Les différences/u);
 }
+assert.equal(new Set(DEFAULT_THEMES.map(theme => getComparatifEtfText(theme.id).split('\n')[0])).size, DEFAULT_THEMES.length);
 const unknown = buildEtfTweet({ nom: 'Test', etfs: [{ nom: 'Part sans fiche', isin: 'IE00BD4TXV59', frais: '0,20' }] });
 assert.doesNotMatch(unknown, /Éligible au PEA|Dividendes|Réplication|Création/u);
 const metals = getComparatifEtfText('etc-metaux');
-assert.match(metals, /^⚖️ Comparatif ETC/u);
+assert.match(metals, /^🥇.*quatre ETC/u);
+assert.doesNotMatch(metals, /🏦 PEA/u);
 assert.doesNotMatch(metals, /💶 Dividendes/u);
 assert.match(metals, /Frais de gestion : 0,49 %/u);
 assert.match(metals, /taux de swap annuel : 0,45 %/u);
 const space = getComparatifEtfText('spatial');
-assert.match(space, /^📋 Présentation ETF/u);
+assert.match(space, /^🚀.*un ETF/u);
+assert.ok(space.includes('Voici un ETF à regarder'));
 assert.ok(space.includes('📌 À retenir'));
 assert.ok(!space.includes('📌 Les différences'));
 assert.match(getComparatifEtfText('usa'), /0,10 % de frais annuels, contre 0,12 % pour Amundi/u);
+const world = getComparatifEtfText('monde');
+assert.match(world, /Voici quatre ETF à comparer : pays couverts, frais et accès au PEA/u);
+assert.match(world, /même indice, mais frais, réplication et enveloppes accessibles différents/u);
+assert.equal((world.match(/^🏦 PEA ou CTO/gmu) ?? []).length, 1);
+const unknownStatus = buildEtfTweet({ nom: 'Test', etfs: [{ nom: 'Sans statut', isin: 'IE00BD4TXV59', frais: '0,20' }] });
+assert.doesNotMatch(unknownStatus, /🏦 PEA|🏦 CTO/u);
 
 const termeIds = new Set(TERMES.map((t) => t.id));
 
