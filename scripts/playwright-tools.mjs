@@ -609,11 +609,11 @@ async function testTweetMidi(page) {
   await page.getByRole('button', { name: "Pouvoir d'achat", exact: true }).click();
   await page.locator('select').selectOption('2025');
   await page.getByRole('button', { name: '1000 €', exact: true }).click();
-  for (const [poste, expected] of [[null, '1\u202f034'], ['Alimentation', '1\u202f017'], ['Carburant', '1\u202f156']]) {
+  for (const [poste, expected] of [[null, '1\u202f034'], ['Alimentation', '1\u202f017'], ['Énergie', '1\u202f156']]) {
     if (poste) {
       await page.getByRole('button', { name: 'Par poste', exact: true }).click();
       await page.getByRole('button', { name: new RegExp(poste) }).click();
-    } else await page.getByRole('button', { name: "Pouvoir d'achat brut", exact: true }).click();
+    } else await page.getByRole('button', { name: "Revenu nécessaire", exact: true }).click();
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     const post = await page.locator('pre').innerText();
     if (!post.includes(expected) || !post.includes('août 2026') || /provisoire|12 mois glissants|NaN|undefined/.test(post)) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : observation datée`);

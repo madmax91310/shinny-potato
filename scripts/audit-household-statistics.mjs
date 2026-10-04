@@ -16,6 +16,8 @@ for (const record of records) {
   assert(!/\{\w+\}/.test(tweet), 'Variable non remplacée')
   assert(!/https?:\/\/|Source\s*:/i.test(tweet), 'La source reste dans l’application, pas dans le tweet')
   assert(tweet.endsWith(record.question), 'Question finale conservée')
+  assert(record.metadata.sourceUrls.includes(sources[record.source].url))
+  assert(record.metadata.note.includes(record.referencePeriod))
   assert(!buildHouseholdTweet(record, { includeUrl: false }).includes('https://'))
   for (const grid of getHouseholdVisual(record)) assert(Number.isInteger(grid.count) && grid.count >= 0 && grid.count <= 100)
   const entry = DATA_CATALOG.find(r => r.id === `household:${record.id}`)

@@ -157,15 +157,17 @@ for (let i = 0; i < MARKET_ASSETS.length; i++) {
 // faible fréquence de la rotation, pas un pilier (cf. brief). Réutilise les raccourcis montant et
 // la plage d'années déjà définis dans le simulateur d'origine (PA_AMOUNT_PRESETS, PA_YEAR_MIN/MAX,
 // PA_POSTE_ORDER) plutôt que d'en redéfinir une variante ici — 4 montants × 16 années × (1 "brut" +
-// 3 postes) = 256 combinaisons, contre 1500+ pour Anniversaire/Performance depuis Comparatif.
+// 1 "erosion" + 3 postes) = 320 combinaisons, contre 1500+ pour Anniversaire/Performance depuis Comparatif.
 const PA_YEARS = Array.from({ length: PA_YEAR_MAX - PA_YEAR_MIN + 1 }, (_, i) => PA_YEAR_MIN + i);
 const POOL_POUVOIR_ACHAT = [];
 for (const amount of PA_AMOUNT_PRESETS) {
   for (const startYear of PA_YEARS) {
-    POOL_POUVOIR_ACHAT.push({
-      id: `pouvoir-achat:${amount}:${startYear}:brut`, format: FORMATS.POUVOIR_ACHAT,
-      amount, startYear, mode: "brut", posteId: null,
-    });
+    for (const paMode of ['brut', 'erosion']) {
+      POOL_POUVOIR_ACHAT.push({
+        id: `pouvoir-achat:${amount}:${startYear}:${paMode}`, format: FORMATS.POUVOIR_ACHAT,
+        amount, startYear, mode: paMode, posteId: null,
+      });
+    }
     for (const posteId of PA_POSTE_ORDER) {
       POOL_POUVOIR_ACHAT.push({
         id: `pouvoir-achat:${amount}:${startYear}:par-poste:${posteId}`, format: FORMATS.POUVOIR_ACHAT,

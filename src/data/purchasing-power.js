@@ -96,8 +96,9 @@ export const POSTES = {
     sourceLabel: "Indice des prix à la consommation - fonction Alimentation, INSEE",
   },
   carburant: {
-    id: 'carburant', label: 'Carburant', icon: '⛽',
-    tweetNoun: 'le plein', tweetVerb: "de carburant",
+    // Keep the historical ID for saved selections; this series covers all energy.
+    id: 'carburant', label: 'Énergie', icon: '⚡',
+    tweetNoun: 'ton budget énergie', tweetVerb: "d'énergie",
     series: ENERGIE, seriesType: 'rate', latestFactor: PRICE_OBSERVATION.energie / 100,
     sourceLabel: "Indice des prix à la consommation - fonction Énergie, INSEE",
   },
