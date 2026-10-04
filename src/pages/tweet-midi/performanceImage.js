@@ -1,52 +1,75 @@
 import { getAnnualReturns } from './data/marketHistory.js'
 import { getMarketAsset, MODES } from './lib.js'
-import { loadNeonArt, drawNeonArt } from './stylizedArt.js'
+import { loadPerformanceArt, drawPerformanceArt } from './performanceArt.js'
+
+import { loadArtImage } from './anniversaryArt.js'
 
 const W = 1600
-const INK = '#fff2cd', MUTED = '#a7c2c8', GREEN = '#84efca', RED = '#ff9b91'
+const INK = '#f4f5ff', MUTED = '#b7cbdc', GREEN = '#9ee8ff', RED = '#ffaaa0', GOLD = '#ecd8b0'
 export const cumulativePerformance = rows => (rows.reduce((acc, row) => acc * (1 + row.pct / 100), 1) - 1) * 100
 const assetTitle = asset => {
   const name = (asset.tweetPhrase || asset.label).replace(/^l['’]indice /i, 'le ')
   return name.charAt(0).toUpperCase() + name.slice(1)
 }
-const periodTitle = ({ asset, returns }) => `${assetTitle(asset)} de ${returns[0].year - 1} à ${returns.at(-1).year}`
 const percentage = value => `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
-function text(ctx, value, x, y, size, { width = W, color = INK, align = 'left', weight = 700 } = {}) {
+function text(ctx, value, x, y, size, { width = W, color = INK, align = 'left', weight = 700, serif = false } = {}) {
   ctx.textBaseline = 'top'; ctx.textAlign = align; ctx.fillStyle = color
   let fitted = size
-  do { ctx.font = `${weight} ${fitted}px Arial, sans-serif`; if (ctx.measureText(value).width <= width) break; fitted-- } while (fitted > 12)
+  do { ctx.font = `${weight} ${fitted}px ${serif ? 'Georgia, serif' : 'Arial, sans-serif'}`; if (ctx.measureText(value).width <= width) break; fitted-- } while (fitted > 12)
   ctx.fillText(value, x, y)
 }
-function chart(ctx, rows, x, y, w, h) {
-  const values = [0]; let capital = 1
-  rows.forEach(row => { capital *= 1 + row.pct / 100; values.push((capital - 1) * 100) })
-  let min = Math.min(0, ...values), max = Math.max(0, ...values)
-  const range = Math.max(10, max - min); min -= range * .1; max += range * .1
-  const plotX = x + 78, plotW = w - 100, plotY = y + 30, plotH = h - 110
-  const px = i => plotX + i / (values.length - 1) * plotW, py = value => plotY + (max - value) / (max - min) * plotH
-  for (let i = 0; i <= 4; i++) {
-    const value = min + (max - min) * i / 4, lineY = py(value)
-    ctx.strokeStyle = '#23444a'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(plotX, lineY); ctx.lineTo(plotX + plotW, lineY); ctx.stroke()
-    text(ctx, `${Math.round(value)} %`, plotX - 15, lineY - 9, 17, { width: 64, align: 'right', color: MUTED, weight: 400 })
-  }
-  const points = values.map((value, i) => [px(i), py(value)])
-  ctx.beginPath(); ctx.moveTo(points[0][0], py(0)); points.forEach(([a, b]) => ctx.lineTo(a, b)); ctx.lineTo(points.at(-1)[0], py(0)); ctx.closePath()
-  const gradient = ctx.createLinearGradient(0, plotY, 0, plotY + plotH); gradient.addColorStop(0, '#49c99c44'); gradient.addColorStop(1, '#49c99c00')
-  ctx.fillStyle = gradient; ctx.fill()
-  ctx.save(); ctx.strokeStyle = values.at(-1) < 0 ? RED : GREEN; ctx.shadowColor = ctx.strokeStyle; ctx.shadowBlur = 13; ctx.lineWidth = 4
-  ctx.beginPath(); points.forEach(([a, b], i) => i ? ctx.lineTo(a, b) : ctx.moveTo(a, b)); ctx.stroke(); ctx.restore()
-  const labels = [String(rows[0].year - 1), ...rows.map(row => String(row.year))]
-  labels.forEach((label, i) => { if (labels.length <= 8 || i === 0 || i === labels.length - 1 || i % 2 === 0) text(ctx, label, px(i), plotY + plotH + 18, i === 0 || i === labels.length - 1 ? 32 : 26, { align: 'center', color: INK }) })
+// Same glass materials as the approved investor portraits; financial values stay in code.
+function glass(ctx, x, y, w, h) {
+  ctx.save()
+  const body = ctx.createLinearGradient(x,y,x+w,y+h)
+  body.addColorStop(0,'rgba(49,107,151,.38)'); body.addColorStop(.4,'rgba(7,24,44,.86)'); body.addColorStop(1,'rgba(17,42,66,.94)')
+  ctx.fillStyle = body; ctx.beginPath(); ctx.roundRect(x,y,w,h,20); ctx.fill()
+  const rim = ctx.createLinearGradient(x,y,x+w,y+h)
+  rim.addColorStop(0,'#e6faff'); rim.addColorStop(.18,'#58bcff'); rim.addColorStop(.44,'#172d51'); rim.addColorStop(.67,'#f5dbc0'); rim.addColorStop(.8,'#99ddff'); rim.addColorStop(1,'#5882a0')
+  ctx.strokeStyle = rim; ctx.lineWidth = 3; ctx.shadowColor = '#34a4ff'; ctx.shadowBlur = 12; ctx.stroke()
+  ctx.shadowBlur = 0; ctx.strokeStyle = 'rgba(215,241,255,.35)'; ctx.lineWidth = 1
+  ctx.beginPath(); ctx.roundRect(x+6,y+6,w-12,h-12,15); ctx.stroke(); ctx.restore()
 }
-function panel(ctx, entry, image, y, comparative) {
+export function performanceLayout(count) {
+  const columns = Math.min(count, count <= 6 ? 3 : 4)
+  const rows = Math.ceil(count / columns)
+  return { columns, rows, height: Math.max(1100, 660 + rows * 176 + 170) }
+}
+function panel(ctx, entry, image, studio, goldStudio, y) {
   const { asset, returns } = entry, total = cumulativePerformance(returns)
+  const { columns, height } = performanceLayout(returns.length)
   ctx.save(); ctx.translate(0, y)
-  drawNeonArt(ctx, image, 0, 195, 600)
-  if (comparative) text(ctx, assetTitle(asset), 650, 165, 49, { width: 870, color: INK })
-  text(ctx, percentage(total), 640, 242, 150, { width: 880, color: total < 0 ? RED : GREEN })
-  text(ctx, `Fin ${returns[0].year - 1} → Fin ${returns.at(-1).year}`, 655, 425, 48, { width: 850, color: INK })
-  chart(ctx, returns, 635, 526, 900, 350)
-  text(ctx, `EN ${asset.currency}`, 65, 829, 22, { width: 535, color: MUTED, weight: 400 })
+  ctx.drawImage(asset.id === 'or' && height === 1100 ? goldStudio : studio, 0, 0, W, height)
+  if (asset.id !== 'or' || height !== 1100) {
+    ctx.save(); ctx.beginPath(); ctx.roundRect(95,160,485,height-320,18); ctx.clip()
+    ctx.fillStyle = 'rgba(7,26,48,.28)'; ctx.fillRect(95,160,485,height-320)
+    if (asset.id === 'or') {
+      // Keep the bullion's proportions on long histories, rather than stretching it.
+      const h = Math.min(780,height-360), w = h * .56
+      ctx.drawImage(goldStudio,120,180,400,650,337-w/2,(height-h)/2,w,h)
+    } else {
+      drawPerformanceArt(ctx, image, 95, 175, 485, height - 350)
+    }
+    ctx.restore()
+  }
+  text(ctx, assetTitle(asset), 670, 120, 98, { width: 830, color: GOLD, serif: true })
+  text(ctx, `Fin ${returns[0].year - 1} → Fin ${returns.at(-1).year}`, 670, 252, 48, { width: 825, serif: true })
+  text(ctx, `EN ${asset.currency}`, 675, 327, 27, { color: MUTED })
+  ctx.save(); ctx.shadowColor = total < 0 ? '#b02d38' : '#2f9fe6'; ctx.shadowBlur = 14
+  text(ctx, percentage(total), 1080, 385, 151, { width: 825, align: 'center', color: total < 0 ? RED : GREEN, serif: true })
+  ctx.restore()
+  text(ctx, 'Cumul sur la période', 1080, 558, 38, { width: 815, align: 'center', serif: true })
+  text(ctx, 'Rendements annuels', 1080, 620, 36, { width: 815, align: 'center', color: GOLD, serif: true })
+  const gap = 18, cellW = (850 - gap * (columns - 1)) / columns
+  returns.forEach(({ year, pct }, i) => {
+    const row = Math.floor(i / columns), col = i % columns
+    const count = Math.min(columns, returns.length - row * columns)
+    const left = 650 + (850 - count * cellW - (count - 1) * gap) / 2
+    const x = left + col * (cellW + gap), top = 690 + row * 176
+    glass(ctx, x, top, cellW, 150)
+    text(ctx, String(year), x + cellW / 2, top + 22, 35, { width: cellW - 24, align: 'center', color: GOLD, serif: true })
+    text(ctx, percentage(pct), x + cellW / 2, top + 80, columns <= 3 ? 52 : 39, { width: cellW - 24, align: 'center', color: pct < 0 ? RED : GREEN, serif: true })
+  })
   ctx.restore()
 }
 export async function renderPerformanceImage(item) {
@@ -59,21 +82,21 @@ export async function renderPerformanceImage(item) {
     entries.forEach(entry => { entry.returns = entry.returns.filter(row => commonYears.includes(row.year)) })
     if (!commonYears.length) throw new Error('Aucune année commune aux deux actifs')
   }
-  const images = await Promise.all(ids.map(loadNeonArt)); await document.fonts.ready
-  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = comparative ? 1920 : 1040
-  const ctx = canvas.getContext('2d'); ctx.fillStyle = '#061523'; ctx.fillRect(0, 0, W, canvas.height)
-  const title = comparative
-    ? `${assetTitle(entries[0].asset)} face à ${assetTitle(entries[1].asset)}`
-    : periodTitle(entries[0])
-  text(ctx, title, 65, 47, 66, { width: 1460 })
-  ctx.fillStyle = '#ebc56d'; ctx.fillRect(65, 139, 1460, 2)
-  entries.forEach((entry, i) => panel(ctx, entry, images[i], i * 880, comparative))
-  const footerY = comparative ? 1780 : 900
-  if (ids.includes('silver')) text(ctx, 'ARGENT : FUTURES COMEX CONTINUS, HORS FRAIS ET ROULEMENT', 65, footerY, 20, { width: 1460, color: MUTED, weight: 400 })
+  const [images, studio, goldStudio] = await Promise.all([
+    Promise.all(ids.map(loadPerformanceArt)), loadArtImage('approved/investor-glass.webp'), loadArtImage('approved/performance-gold-glass.webp'),
+  ]); await document.fonts.ready
   const credits = [...new Set(entries.map(entry => entry.asset.sourceCredit).filter(Boolean))].flatMap(credit => credit.replace(' · Calculs Épargnant Libre', '').split('\n'))
-  credits.forEach((credit, i) => text(ctx, credit, 65, footerY + 30 + i * 22, 18, { width: 1460, color: MUTED, weight: 400 }))
-  text(ctx, 'Les performances passées ne préjugent pas des performances futures.', 65, canvas.height - 65, 20, { width: 1100, color: MUTED, weight: 400 })
-  text(ctx, '@Epargnantlibre', 1525, canvas.height - 65, 24, { align: 'right', width: 340 })
+  const bodyHeight = entries.reduce((sum, entry) => sum + performanceLayout(entry.returns.length).height, 0)
+  const footerHeight = Math.max(140, 85 + credits.length * 24 + (ids.includes('silver') ? 24 : 0))
+  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = bodyHeight + footerHeight
+  const ctx = canvas.getContext('2d'); ctx.fillStyle = '#061523'; ctx.fillRect(0, 0, W, canvas.height)
+  let panelY = 0
+  entries.forEach((entry, i) => { panel(ctx, entry, images[i], studio, goldStudio, panelY); panelY += performanceLayout(entry.returns.length).height })
+  let creditY = bodyHeight + 20
+  if (ids.includes('silver')) { text(ctx, 'ARGENT : FUTURES COMEX CONTINUS, HORS FRAIS ET ROULEMENT', 45, creditY, 19, { width: 1500, color: MUTED, weight: 400 }); creditY += 24 }
+  credits.forEach(credit => { text(ctx, credit, 45, creditY, 18, { width: 1500, color: MUTED, weight: 400 }); creditY += 24 })
+  text(ctx, 'Les performances passées ne préjugent pas des performances futures.', 45, canvas.height - 45, 20, { width: 1120, color: MUTED, weight: 400 })
+  text(ctx, '@Epargnantlibre', 1535, canvas.height - 48, 26, { align: 'right', width: 340, color: GOLD, serif: true })
   return canvas
 }
 export async function downloadPerformanceImage(item) {

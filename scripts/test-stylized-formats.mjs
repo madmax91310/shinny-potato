@@ -4,12 +4,18 @@ import { spawn } from 'node:child_process'
 import { mkdir, writeFile, readFile } from 'node:fs/promises'
 import { ASSET_ORDER } from '../src/data/market-history.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
-import { NEON_ASSET_ART } from '../src/pages/tweet-midi/stylizedArt.js'
+import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
+import { performanceLayout } from '../src/pages/tweet-midi/performanceImage.js'
 import { comparisonArt } from '../src/pages/tweet-midi/comparatifEtfImage.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
-assert.deepEqual(Object.keys(NEON_ASSET_ART).sort(), [...ASSET_ORDER].sort())
+assert.deepEqual(Object.keys(PERFORMANCE_ART).sort(), [...ASSET_ORDER].sort())
+for (let count = 1; count <= 40; count++) {
+  const layout = performanceLayout(count)
+  assert.ok(layout.rows * layout.columns >= count)
+  assert.ok(690 + (layout.rows - 1) * 176 + 150 < layout.height)
+}
 for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) await readFile(`public/asset-art/${comparisonArt(theme.id, fund.isin)}`)
-for (const art of Object.values(NEON_ASSET_ART)) for (const file of [art.scene && `neon/${art.scene}.webp`, art.mark].filter(Boolean)) await readFile(`public/asset-art/${file}`)
+for (const art of Object.values(PERFORMANCE_ART)) await readFile(`public/asset-art/${art.mark || art.scene}`)
 assert.equal(getComparisonPerformance('FR001400U5Q4').label, 'Indice MSCI World net')
 assert.equal(getComparisonPerformance('FR001400U5Q4').currency, 'EUR')
 assert.equal(getComparisonPerformance('IE00BD4TXV59').referenceIsin, 'IE00B4L5Y983')
@@ -54,12 +60,16 @@ try {
         if (peaOnImage !== peaInNames || words.includes('CTO')) throw new Error('Envelope badge returned outside the official product names')
       }
       for (const id of ASSET_ORDER) {
-        const years = getAnnualReturnStartYears(id), year = years.includes(2020) ? 2020 : years[0]
+        const years = getAnnualReturnStartYears(id), year = years[0]
         const words = await check(`performance-${id}`, () => renderPerformanceImage({ mode: 'simple', assetId: id, year }), ['msciWorld', 'or', 'apple', 'bitcoin', 'silver'].includes(id))
         const rows = getAnnualReturns(id, year)
         if (words.some(word => /PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(word))) throw new Error('Generic series heading returned')
-        if (!words.some(word => word.endsWith(`de ${rows[0].year - 1} à ${rows.at(-1).year}`))) throw new Error('Title must match the actual period')
+        if (!words.includes('Rendements annuels')) throw new Error('Annual observations must remain discrete')
         if (!words.includes(`Fin ${rows[0].year - 1} → Fin ${rows.at(-1).year}`) || !words.includes(`EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
+        for (const row of rows) {
+          const annual = `${row.pct >= 0 ? '+' : '−'}${Math.abs(row.pct).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+          if (!words.includes(annual) || !words.includes(String(row.year))) throw new Error('Missing annual bar label')
+        }
         const total = cumulativePerformance(rows)
         const percent = `${total >= 0 ? '+' : '−'}${Math.abs(total).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
         if (!words.includes(percent)) throw new Error('Changed performance calculation')

@@ -519,7 +519,6 @@ function buildPerformanceBlock(asset, year, returns) {
     ...returns.map(({ year: annualYear, pct }) => `${pct >= 0 ? "🟢" : "🔴"} ${annualYear} : ${fmtPct(pct)}`),
     "",
     `Cumulé sur la période : ${fmtPct(cumulatePct(returns))}`,
-    ...(asset.sourceCredit ? ["", asset.sourceCredit] : []),
   ].join("\n");
 }
 
