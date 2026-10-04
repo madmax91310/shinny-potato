@@ -782,13 +782,22 @@ async function testMarketFacts(page) {
   // correctif : 21 faits cyclés donnaient ~10 "échecs" en alternance, pas 0 ni 21).
   await page.locator(".mf-details summary").click();
   await page.waitForTimeout(20);
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__marketFactsCopied = text; } },
+  }));
   for (let i = 0; i < count; i++) {
     await select.selectOption({ index: i });
     await page.waitForTimeout(40);
     const text = await page.locator("body").innerText();
-    if (/undefined|NaN/.test(text) || !/Source :/.test(text)) badCount++;
+    const tweet = await page.locator('.mf-fact-text').innerText();
+    const evidence = await page.locator('.mf-details').innerText();
+    await page.getByRole('button', { name: /Copier le texte|Copié/ }).click();
+    const copied = await page.evaluate(() => window.__marketFactsCopied);
+    if (/undefined|NaN/.test(text) || !/Source :/.test(evidence)
+      || /Source\s*:|https?:\/\//i.test(tweet) || copied !== tweet
+      || !/\d/.test(tweet.split('\n')[0]) || !tweet.split('\n').at(-1).startsWith('💬')) badCount++;
   }
-  record("Faits marquants des marchés", badCount === 0, `${count} faits cyclés, ${badCount} sans source/avec un champ manquant`);
+  record("Faits marquants des marchés", badCount === 0, `${count} faits : accroches chiffrées, copie sans source, sources consultables et question finale ; ${badCount} échec(s)`);
 }
 
 async function testTweetBank(page) {

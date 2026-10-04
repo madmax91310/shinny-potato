@@ -1,5 +1,5 @@
-// Une ouverture, un fait, ce qu'il raconte, puis une question liée au sujet.
-// La source reste dans le texte copié, à la fin pour ne pas couper le récit.
+// Le fait et son périmètre d'abord, puis sa portée et une question liée au sujet.
+// Les sources restent consultables dans les précisions de la fiche.
 
 export function buildTweetText(fact) {
   const lines = [
@@ -8,10 +8,8 @@ export function buildTweetText(fact) {
     fact.context,
     "",
     ...(fact.twist ? [fact.twist, ""] : []),
-    fact.question,
     ...(fact.methodNote ? ["", `📌 ${fact.methodNote}`] : []),
-    "",
-    `Source : ${fact.source}`,
+    ...(fact.question ? ["", fact.question] : []),
   ];
-  return lines.join("\n");
+  return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
