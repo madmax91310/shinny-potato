@@ -41,7 +41,7 @@ export const FAMILIES = [
  id:'usa-constructions', label:'🇺🇸 USA : pondération et petites entreprises',
  indices: [
   {name:'S&P 500',indexFacts:getIndexFacts('sp500-pea','2026-06-30'),desc:getIndexDescription('sp500-pea','2026-06-30','usa-constructions')},
-  {name:'S&P 500 Equal Weight',indexFacts:getIndexFacts('sp500-equal-weight','methodology'),desc:getIndexDescription('sp500-equal-weight','methodology','usa-constructions')},
+  {name:'S&P 500 Equal Weight',indexFacts:getIndexFacts('sp500-equal-weight','2026-08-31'),desc:getIndexDescription('sp500-equal-weight','2026-08-31','usa-constructions')},
   {name:'Russell 2000',indexFacts:getIndexFacts('russell-2000','2026-08-31'),desc:getIndexDescription('russell-2000','2026-08-31','usa-constructions')},
  ],
  etfGroups:[['S&P 500','IE00B5BMR087'],['S&P 500 Equal Weight','IE00BLNMYC90'],['Russell 2000','IE00BJ38QD84']].map(([indexName,isin])=>({indexName,pea:false,funds:[{isin,name:getInstrumentName(isin,'index'),...(isin !== 'IE00B5BMR087' ? {listing:requireInstrumentListing(isin)} : {}),ter:formatEtfTer(isin,'index'),aum:getInstrumentAum(isin,'index')}]})),
@@ -59,7 +59,7 @@ export const FAMILIES = [
       { name: 'STOXX 600', indexFacts: getIndexFacts('stoxx600', '2026-08-31'), desc: getIndexDescription('stoxx600', '2026-08-31', 'europe'), bullets: ['✅ UK + Suisse + Scandinavie inclus'], tag: 'Le plus large 🌍' },
       { name: 'EURO STOXX 50', indexFacts: getIndexFacts('eurostoxx50', '2026-08-31'), desc: getIndexDescription('eurostoxx50', '2026-08-31', 'europe'), tag: 'Ultra-concentré (ASML, SAP, LVMH…) 🎯' },
       // https://www.msci.com/indexes/index/990500/msci-europe-index
-      { name: 'MSCI Europe', indexFacts: getIndexFacts('mscieurope', '2026-08-31'), desc: getIndexDescription('mscieurope', '2026-08-31', 'europe'), tag: 'Très proche du STOXX 600 👯' },
+      { name: 'MSCI Europe', indexFacts: getIndexFacts('mscieurope', '2026-09-30'), desc: getIndexDescription('mscieurope', '2026-09-30', 'europe'), tag: 'Très proche du STOXX 600 👯' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -91,7 +91,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (facsheets STOXX/MSCI) le 01/09/2026.
-      chain: [`STOXX 600 (${formatIndexConstituents('stoxx600', '2026-08-31')} lignes)`, `MSCI Europe (${formatIndexConstituents('mscieurope', '2026-08-31')})`, `EURO STOXX 50 (${formatIndexConstituents('eurostoxx50', '2026-08-31')})`],
+      chain: [`STOXX 600 (${formatIndexConstituents('stoxx600', '2026-08-31')} lignes)`, `MSCI Europe (${formatIndexConstituents('mscieurope', '2026-09-30')})`, `EURO STOXX 50 (${formatIndexConstituents('eurostoxx50', '2026-08-31')})`],
       notes: ['⚠️ Le 50 concentre ton risque : ses 10 plus grosses lignes pèsent +41 % de l\'indice.', '→ Une forte dépendance à quelques grandes sociétés de la zone euro.'],
     },
     // Performance 2023-2025 des fonds ci-dessus. PCEU revu sur les fiches Amundi
@@ -144,8 +144,8 @@ export const FAMILIES = [
     label: '🌍 Monde large',
     intro: '« ETF monde » : derrière ces deux mots, certains fonds incluent les émergents et d’autres non 🌍\nMSCI World, ACWI et FTSE All-World : on compare 👇',
     indices: [
-      { name: 'MSCI World', indexFacts: getIndexFacts('world', '2026-08-31'), desc: getIndexDescription('world', '2026-08-31', 'monde'), tag: 'Le classique du monde développé 🏛️' },
-      { name: 'MSCI ACWI', indexFacts: getIndexFacts('acwi', '2026-08-31'), desc: getIndexDescription('acwi', '2026-08-31', 'monde'), tag: 'Le monde presque entier 🌐' },
+      { name: 'MSCI World', indexFacts: getIndexFacts('world', '2026-09-30'), desc: getIndexDescription('world', '2026-09-30', 'monde'), tag: 'Le classique du monde développé 🏛️' },
+      { name: 'MSCI ACWI', indexFacts: getIndexFacts('acwi', '2026-09-30'), desc: getIndexDescription('acwi', '2026-09-30', 'monde'), tag: 'Le monde presque entier 🌐' },
       { name: 'FTSE All-World', indexFacts: getIndexFacts('ftse-all-world', '2026-08-31'), desc: getIndexDescription('ftse-all-world', '2026-08-31', 'monde'), tag: 'Le plus large des trois 🔭' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
@@ -178,7 +178,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, juin-juillet 2026) le 01/09/2026.
-      chain: [`MSCI World (${formatIndexConstituents('world', '2026-08-31')} lignes)`, `MSCI ACWI (${formatIndexConstituents('acwi', '2026-08-31')})`, `FTSE All-World (${formatIndexConstituents('ftse-all-world', '2026-08-31')} au 31/08/2026)`],
+      chain: [`MSCI World (${formatIndexConstituents('world', '2026-09-30')} lignes)`, `MSCI ACWI (${formatIndexConstituents('acwi', '2026-09-30')})`, `FTSE All-World (${formatIndexConstituents('ftse-all-world', '2026-08-31')} au 31/08/2026)`],
       notes: ['⚠️ Peu importe lequel des trois tu prends : ils pèsent tous 60 à 70 % d\'actions américaines.', '→ Le vrai choix, c\'est les émergents (dedans ou pas) — pas le poids des USA, qui est de toute façon similaire partout.'],
     },
     // Performance 2023-2025 (source : justETF/extraetf, recherche web du 02/09/2026). CW8 retenu en
@@ -219,8 +219,8 @@ export const FAMILIES = [
       // https://www.spglobal.com/spdji/en/research-insights/index-literacy/the-sp-500-and-the-dow/
       { name: 'S&P 500', indexFacts: getIndexFacts('sp500-pea', '2026-06-30'), desc: getIndexDescription('sp500-pea', '2026-06-30', 'usa'), tag: 'La référence mondiale 🏆' },
       { name: 'Nasdaq 100', indexFacts: getIndexFacts('nasdaq-pea', '2026-08-31'), desc: getIndexDescription('nasdaq-pea', '2026-08-31', 'usa'), tag: 'Le plus concentré tech 💻' },
-      { name: 'MSCI USA', indexFacts: getIndexFacts('msci-usa', '2026-08-31'), desc: getIndexDescription('msci-usa', '2026-08-31', 'usa'), tag: 'Un peu plus large que le S&P 500 📏' },
-      { name: 'Russell 1000', indexFacts: getIndexFacts('russell-1000', 'methodology'), desc: getIndexDescription('russell-1000', 'methodology', 'usa'), tag: 'Le plus large des quatre 🌊' },
+      { name: 'MSCI USA', indexFacts: getIndexFacts('msci-usa', '2026-09-30'), desc: getIndexDescription('msci-usa', '2026-09-30', 'usa'), tag: 'Un peu plus large que le S&P 500 📏' },
+      { name: 'Russell 1000', indexFacts: getIndexFacts('russell-1000', '2026-08-31'), desc: getIndexDescription('russell-1000', '2026-08-31', 'usa'), tag: 'Le plus large des quatre 🌊' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -258,7 +258,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/S&P, juillet 2026) le 01/09/2026.
-      chain: [`Russell 1000 (${formatIndexFact('russell-1000', 'methodology', 'targetConstituents')} lignes)`, `MSCI USA (${formatIndexFact('msci-usa', '2026-08-31', 'constituents')})`, `S&P 500 (${formatIndexFact('sp500-pea', '2026-06-30', 'targetConstituents')})`, `Nasdaq 100 (${formatIndexFact('nasdaq-pea', '2026-08-31', 'targetConstituents')})`],
+      chain: [`Russell 1000 (${formatIndexFact('russell-1000', '2026-08-31', 'targetConstituents')} lignes)`, `MSCI USA (${formatIndexFact('msci-usa', '2026-09-30', 'constituents')})`, `S&P 500 (${formatIndexFact('sp500-pea', '2026-06-30', 'targetConstituents')})`, `Nasdaq 100 (${formatIndexFact('nasdaq-pea', '2026-08-31', 'targetConstituents')})`],
       notes: ['⚠️ Le Nasdaq 100 exclut tout le secteur financier et concentre près de 50 % sur ses 10 plus grosses lignes.', '→ Si ton portefeuille contient déjà un S&P 500, vérifie combien de ses grandes valeurs tu rachètes avec le Nasdaq-100.'],
     },
     // Nasdaq PEA : performances calendaires officielles de la part Amundi FR0011871110 en EUR,
@@ -327,10 +327,10 @@ export const FAMILIES = [
     intro: 'Un ETF émergents en PEA, oui. Mais entre tous les pays et une seule région, le risque n’est pas le même 🌏\nVoici les cinq déclinaisons 👇',
     indices: [
       { name: 'Émergents global (indice ESG)', indexFacts: getIndexFacts('em-esg', '2026-08-31'), desc: getIndexDescription('em-esg', '2026-08-31', 'emergents-pea'), tag: 'Le PEA généraliste 🌍' },
-      { name: 'Asie émergente', indexFacts: getIndexFacts('msci-em-asia-screened', '2026-08-31'), desc: getIndexDescription('msci-em-asia-screened', '2026-08-31', 'emergents-pea'), tag: 'Concentré sur l\'Asie 🌏' },
+      { name: 'Asie émergente', indexFacts: getIndexFacts('msci-em-asia-screened', '2026-09-30'), desc: getIndexDescription('msci-em-asia-screened', '2026-09-30', 'emergents-pea'), tag: 'Concentré sur l\'Asie 🌏' },
       { name: 'Amérique latine', indexFacts: getIndexFacts('msci-em-latin-america-selection', '2026-08-31'), desc: getIndexDescription('msci-em-latin-america-selection', '2026-08-31', 'emergents-pea'), tag: 'Le pari régional le plus étroit 🌎' },
-      { name: 'Inde seule', indexFacts: getIndexFacts('msci-india', '2026-08-31'), desc: getIndexDescription('msci-india', '2026-08-31', 'emergents-pea'), tag: 'Le pari 100 % Inde 🇮🇳' },
-      { name: 'EMEA émergente', indexFacts: getIndexFacts('msci-em-emea-esg', '2026-08-31'), desc: getIndexDescription('msci-em-emea-esg', '2026-08-31', 'emergents-pea'), tag: 'La zone la plus confidentielle 🌍' },
+      { name: 'Inde seule', indexFacts: getIndexFacts('msci-india', '2026-09-30'), desc: getIndexDescription('msci-india', '2026-09-30', 'emergents-pea'), tag: 'Le pari 100 % Inde 🇮🇳' },
+      { name: 'EMEA émergente', indexFacts: getIndexFacts('msci-em-emea-esg', '2026-09-30'), desc: getIndexDescription('msci-em-emea-esg', '2026-09-30', 'emergents-pea'), tag: 'La zone la plus confidentielle 🌍' },
     ],
     block2Title: '2️⃣ LES ETF PEA DISPONIBLES 💳',
     etfGroups: [
@@ -358,7 +358,7 @@ export const FAMILIES = [
     diversification: {
       // Pas de relation d'emboîtement ici (contrairement à un MSCI World → MSCI ACWI) : 5 fonds sur
       // 5 zones distinctes, pas des sous-ensembles les uns des autres.
-      chain: [`PAEEM (${formatIndexFact('em-esg', '2026-08-31', 'marketCount')} pays, Égypte exclue, généraliste ESG)`, `PAASI (${formatIndexFact('msci-em-asia-screened', '2026-08-31', 'marketCount')} pays, Asie émergente)`, 'PALAT (Amérique latine)', 'PINR (Inde seule)', 'PLEM (zone EMEA émergente)'],
+      chain: [`PAEEM (${formatIndexFact('em-esg', '2026-08-31', 'marketCount')} pays, Égypte exclue, généraliste ESG)`, `PAASI (${formatIndexFact('msci-em-asia-screened', '2026-09-30', 'marketCount')} pays, Asie émergente)`, 'PALAT (Amérique latine)', 'PINR (Inde seule)', 'PLEM (zone EMEA émergente)'],
       notes: ['⚠️ PAEEM est le seul fonds « généraliste » du lot : les quatre autres sont des paris régionaux ou pays, à combiner avec lui plutôt qu\'à sa place.', `→ Plus la zone est étroite (Inde, Amérique latine, EMEA), plus l'encours est petit et le TER élevé — PINR grimpe à ${formatEtfTer('FR0011869320', 'index')}.`],
     },
     // Performance 2023-2025 (source : justETF/boursedirect, recherche web du 02/09/2026, recoupée sur
@@ -400,9 +400,9 @@ export const FAMILIES = [
     label: '🌏 Émergents (CTO)',
     intro: 'Corée du Sud incluse ou non ? Chine incluse ou non ? Deux ETF émergents peuvent raconter deux histoires différentes 🌏\nOn compare les trois 👇',
     indices: [
-      { name: 'MSCI EM IMI', indexFacts: getIndexFacts('msci-em-imi', '2026-08-31'), desc: getIndexDescription('msci-em-imi', '2026-08-31', 'emergents-cto'), tag: 'La référence émergents, en version large 🏳️' },
+      { name: 'MSCI EM IMI', indexFacts: getIndexFacts('msci-em-imi', '2026-09-30'), desc: getIndexDescription('msci-em-imi', '2026-09-30', 'emergents-cto'), tag: 'La référence émergents, en version large 🏳️' },
       { name: 'FTSE EM', indexFacts: getIndexFacts('ftse-em', '2026-08-31'), desc: getIndexDescription('ftse-em', '2026-08-31', 'emergents-cto'), tag: 'Sans la Corée du Sud 🇰🇷' },
-      { name: 'MSCI EM ex-China', indexFacts: getIndexFacts('msci-em-ex-china', '2026-08-31'), desc: getIndexDescription('msci-em-ex-china', '2026-08-31', 'emergents-cto'), tag: 'L\'anti-concentration Chine 🚫' },
+      { name: 'MSCI EM ex-China', indexFacts: getIndexFacts('msci-em-ex-china', '2026-09-30'), desc: getIndexDescription('msci-em-ex-china', '2026-09-30', 'emergents-cto'), tag: 'L\'anti-concentration Chine 🚫' },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES (CTO) 💳',
     etfGroups: [
@@ -424,7 +424,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, 2026) le 01/09/2026.
-      chain: [`MSCI EM IMI (${formatIndexFact('msci-em-imi', '2026-08-31', 'constituents')} lignes)`, `FTSE EM (${formatIndexFact('ftse-em', '2026-08-31', 'constituents')}, sans la Corée du Sud)`, `MSCI EM ex-China (${formatIndexFact('msci-em-ex-china', '2026-08-31', 'constituents')}, sans la Chine)`],
+      chain: [`MSCI EM IMI (${formatIndexFact('msci-em-imi', '2026-09-30', 'constituents')} lignes)`, `FTSE EM (${formatIndexFact('ftse-em', '2026-08-31', 'constituents')}, sans la Corée du Sud)`, `MSCI EM ex-China (${formatIndexFact('msci-em-ex-china', '2026-09-30', 'constituents')}, sans la Chine)`],
       notes: ['⚠️ La Chine pèse encore 25 à 30 % du MSCI EM, malgré sa baisse ces dernières années.'],
     },
     // iShares EM IMI : performances calendaires de la part USD IE00BKM4GZ66,
@@ -472,9 +472,9 @@ export const FAMILIES = [
     label: '🎨 Style (facteurs)',
     intro: 'Value, Quality, Growth : ces mots changent la sélection des entreprises dans un indice mondial 🎨\nOn regarde les trois approches 👇',
     indices: [
-      { name: 'MSCI World Value', indexFacts: getIndexFacts('msci-world-enhanced-value', '2026-08-31'), desc: getIndexDescription('msci-world-enhanced-value', '2026-08-31', 'style'), bullets: ['ℹ️ Le vrai nom de l\'indice répliqué : MSCI World Enhanced Value'], tag: 'Le pari à contre-courant 📉' },
-      { name: 'MSCI World Quality', indexFacts: getIndexFacts('msci-world-sector-neutral-quality', '2026-08-31'), desc: getIndexDescription('msci-world-sector-neutral-quality', '2026-08-31', 'style'), bullets: ['ℹ️ Le vrai nom de l\'indice répliqué : MSCI World Sector Neutral Quality'], tag: 'Le style « qualité avant tout » 💎' },
-      { name: 'MSCI World Growth', indexFacts: getIndexFacts('msci-world-growth', '2026-08-31'), desc: getIndexDescription('msci-world-growth', '2026-08-31', 'style'), tag: 'Aucun ETF trouvé pour l\'instant ⚠️' },
+      { name: 'MSCI World Enhanced Value', indexFacts: getIndexFacts('msci-world-enhanced-value', '2026-09-30'), desc: getIndexDescription('msci-world-enhanced-value', '2026-09-30', 'style'), bullets: ['ℹ️ Le vrai nom de l\'indice répliqué : MSCI World Enhanced Value'], tag: 'Le pari à contre-courant 📉' },
+      { name: 'MSCI World Sector Neutral Quality', indexFacts: getIndexFacts('msci-world-sector-neutral-quality', '2026-09-30'), desc: getIndexDescription('msci-world-sector-neutral-quality', '2026-09-30', 'style'), bullets: ['ℹ️ Le vrai nom de l\'indice répliqué : MSCI World Sector Neutral Quality'], tag: 'Le style « qualité avant tout » 💎' },
+      { name: 'MSCI World Growth', indexFacts: getIndexFacts('msci-world-growth', '2026-09-30'), desc: getIndexDescription('msci-world-growth', '2026-09-30', 'style'), tag: 'Aucun ETF trouvé pour l\'instant ⚠️' },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES — AUCUNE OPTION PEA 💳',
     etfGroups: [
@@ -494,7 +494,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI, juillet 2026) le 01/09/2026.
-      chain: [`MSCI World (${formatIndexConstituents('world', '2026-08-31')} lignes, univers de départ)`, `MSCI World Value (${formatIndexFact('msci-world-enhanced-value', '2026-08-31', 'constituents')})`, `MSCI World Quality (${formatIndexFact('msci-world-sector-neutral-quality', '2026-08-31', 'constituents')})`],
+      chain: [`MSCI World (${formatIndexConstituents('world', '2026-09-30')} lignes, univers de départ)`, `MSCI World Value (${formatIndexFact('msci-world-enhanced-value', '2026-09-30', 'constituents')})`, `MSCI World Quality (${formatIndexFact('msci-world-sector-neutral-quality', '2026-09-30', 'constituents')})`],
       notes: ['⚠️ Contrairement à un indice classique, ces indices factoriels ne s\'emboîtent pas les uns dans les autres : ce sont des sous-ensembles indépendants du MSCI World, pas des poupées russes.'],
     },
     // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Value Factor recoupé
@@ -545,9 +545,9 @@ export const FAMILIES = [
     intro: 'Trois ETF à dividendes, trois méthodes de sélection : haut rendement, qualité financière ou historique de distribution 🟣\nOn compare les trois 👇',
     indices: [
       { name: 'High Dividend', indexFacts: getIndexFacts('ftse-all-world-high-dividend-yield', '2026-08-31'), desc: getIndexDescription('ftse-all-world-high-dividend-yield', '2026-08-31', 'dividendes-cto'), tag: 'Le rendement brut, sans filtre 💰' },
-      { name: 'Quality Dividend', indexFacts: getIndexFacts('msci-world-high-dividend-yield-advanced-select', '2026-08-31'), desc: getIndexDescription('msci-world-high-dividend-yield-advanced-select', '2026-08-31', 'dividendes-cto'), tag: 'Le compromis entre rendement et solidité 💎' },
+      { name: 'Quality Dividend', indexFacts: getIndexFacts('msci-world-high-dividend-yield-advanced-select', '2026-09-30'), desc: getIndexDescription('msci-world-high-dividend-yield-advanced-select', '2026-09-30', 'dividendes-cto'), tag: 'Le compromis entre rendement et solidité 💎' },
       {
-        name: 'Dividend Aristocrats', indexFacts: getIndexFacts('sp-global-dividend-aristocrats', 'methodology'), desc: getIndexDescription('sp-global-dividend-aristocrats', 'methodology', 'dividendes-cto'), tag: 'Le plus exigeant des trois 🏅',
+        name: 'Dividend Aristocrats', indexFacts: getIndexFacts('sp-global-dividend-aristocrats', '2026-08-31'), desc: getIndexDescription('sp-global-dividend-aristocrats', '2026-08-31', 'dividendes-cto'), tag: 'Le plus exigeant des trois 🏅',
         bullets: ['ℹ️ Le critère "10 ans" vaut pour la version mondiale ci-dessous ; l\'alternative US (bloc 2) exige elle 20 ans consécutifs de hausse — un filtre différent, plus strict.'],
       },
     ],
@@ -574,7 +574,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets FTSE/MSCI/S&P, 2026) le 01/09/2026.
-      chain: [`High Dividend (${formatIndexFact('ftse-all-world-high-dividend-yield', '2026-08-31', 'constituents')} lignes)`, `Quality Dividend (${formatIndexFact('msci-world-high-dividend-yield-advanced-select', '2026-08-31', 'constituents')})`, `Dividend Aristocrats mondial (${formatIndexFact('sp-global-dividend-aristocrats', 'methodology', 'targetConstituents')})`],
+      chain: [`High Dividend (${formatIndexFact('ftse-all-world-high-dividend-yield', '2026-08-31', 'constituents')} lignes)`, `Quality Dividend (${formatIndexFact('msci-world-high-dividend-yield-advanced-select', '2026-09-30', 'constituents')})`, `Dividend Aristocrats mondial (${formatIndexFact('sp-global-dividend-aristocrats', '2026-08-31', 'targetConstituents')})`],
       notes: ['⚠️ Plus le filtre est exigeant (Quality, Aristocrats), plus le nombre de lignes chute.', '→ Concentration sectorielle plus forte (finance, énergie, conso de base) sur les deux derniers.'],
     },
     // Performance 2023-2025 — RECORRIGÉE le 23/09/2026 suite à un signalement utilisateur sur ce
@@ -635,7 +635,7 @@ export const FAMILIES = [
       // Les deux indices acceptent un dividende stable OU en hausse pendant dix ans.
       // https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy
       // https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy
-      { name: 'Dividend Aristocrats mondial (rappel, non-PEA)', indexFacts: getIndexFacts('sp-global-dividend-aristocrats', 'methodology'), desc: getIndexDescription('sp-global-dividend-aristocrats', 'methodology', 'dividendes-pea'), tag: 'Large mais non-PEA 🌍' },
+      { name: 'Dividend Aristocrats mondial (rappel, non-PEA)', indexFacts: getIndexFacts('sp-global-dividend-aristocrats', '2026-08-31'), desc: getIndexDescription('sp-global-dividend-aristocrats', '2026-08-31', 'dividendes-pea'), tag: 'Large mais non-PEA 🌍' },
       { name: 'Euro Dividend Aristocrats (PEA)', indexFacts: getIndexFacts('sp-euro-dividend-aristocrats', 'methodology'), desc: getIndexDescription('sp-euro-dividend-aristocrats', 'methodology', 'dividendes-pea'), tag: 'Option dividendes en PEA 🇪🇺' },
     ],
     block2Title: '2️⃣ L\'ETF PEA DISPONIBLE 💳',
@@ -646,7 +646,7 @@ export const FAMILIES = [
       },
     ],
     diversification: {
-      chain: [`Dividend Aristocrats mondial (${formatIndexFact('sp-global-dividend-aristocrats', 'methodology', 'targetConstituents')} lignes, CTO)`, `Euro Dividend Aristocrats (${formatIndexFact('sp-euro-dividend-aristocrats', 'methodology', 'targetConstituents')} lignes, PEA)`],
+      chain: [`Dividend Aristocrats mondial (${formatIndexFact('sp-global-dividend-aristocrats', '2026-08-31', 'targetConstituents')} lignes, CTO)`, `Euro Dividend Aristocrats (${formatIndexFact('sp-euro-dividend-aristocrats', 'methodology', 'targetConstituents')} lignes, PEA)`],
       notes: ['⚠️ Dans cette comparaison, EUDV passe de 100 valeurs mondiales à 40 valeurs zone euro. D’autres ETF à dividendes éligibles PEA existent, mais suivent un autre indice.', '→ Résultat : plus concentré sur la finance et l\'énergie européennes, secteurs traditionnellement gros payeurs de dividendes en zone euro.'],
     },
     // Performance 2023-2025 (source : recherche web du 02/09/2026, recoupée sur plusieurs pages —
@@ -688,9 +688,9 @@ export const FAMILIES = [
     indices: [
       // MSCI China inclut aussi des actions A continentales (à 20 % de leur flottant ajusté).
       // https://www.msci.com/indexes/index/302400/msci-china-index (31/08/2026)
-      { name: 'MSCI China', indexFacts: getIndexFacts('msci-china', '2026-08-31'), desc: getIndexDescription('msci-china', '2026-08-31', 'chine'), tag: 'La référence la plus suivie 🏙️' },
-      { name: 'FTSE China 50', indexFacts: getIndexFacts('ftse-china-50', 'methodology'), desc: getIndexDescription('ftse-china-50', 'methodology', 'chine'), tag: 'Ultra-concentré 🎯' },
-      { name: 'MSCI China A', indexFacts: getIndexFacts('msci-china-a', '2026-08-31'), desc: getIndexDescription('msci-china-a', '2026-08-31', 'chine'), tag: 'La Chine « intérieure » 🏯' },
+      { name: 'MSCI China', indexFacts: getIndexFacts('msci-china', '2026-09-30'), desc: getIndexDescription('msci-china', '2026-09-30', 'chine'), tag: 'La référence la plus suivie 🏙️' },
+      { name: 'FTSE China 50', indexFacts: getIndexFacts('ftse-china-50', '2026-08-31'), desc: getIndexDescription('ftse-china-50', '2026-08-31', 'chine'), tag: 'Ultra-concentré 🎯' },
+      { name: 'MSCI China A', indexFacts: getIndexFacts('msci-china-a', '2026-09-30'), desc: getIndexDescription('msci-china-a', '2026-09-30', 'chine'), tag: 'La Chine « intérieure » 🏯' },
     ],
     block2Title: '2️⃣ LES ETF DISPONIBLES (PEA / CTO) 💳',
     etfGroups: [
@@ -720,7 +720,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI, 2026) le 01/09/2026.
-      chain: [`MSCI China (${formatIndexFact('msci-china', '2026-08-31', 'constituents')} lignes, y compris des actions A)`, `MSCI China A (${formatIndexFact('msci-china-a', '2026-08-31', 'constituents')}, actions continentales)`, `FTSE China 50 (${formatIndexFact('ftse-china-50', 'methodology', 'targetConstituents')}, Hong Kong)`],
+      chain: [`MSCI China (${formatIndexFact('msci-china', '2026-09-30', 'constituents')} lignes, y compris des actions A)`, `MSCI China A (${formatIndexFact('msci-china-a', '2026-09-30', 'constituents')}, actions continentales)`, `FTSE China 50 (${formatIndexFact('ftse-china-50', '2026-08-31', 'targetConstituents')}, Hong Kong)`],
       notes: ['⚠️ MSCI China inclut déjà des actions A du marché continental. MSCI China A s\'y concentre : les deux indices peuvent donc se recouper.', '→ Le FTSE China 50 concentre l\'essentiel du risque sur une poignée de méga-caps (tech, finance).'],
     },
     // Performance 2023-2025 (source : justETF, recherche web du 02/09/2026). Amundi PEA Chine
@@ -786,7 +786,7 @@ export const FAMILIES = [
       // https://indexes.nikkei.co.jp/en/nkave/index/profile
       { name: 'Nikkei 225', indexFacts: getIndexFacts('nikkei225', '2026-08-31'), desc: getIndexDescription('nikkei225', '2026-08-31', 'japon'), tag: 'Le plus connu, pas le plus rigoureux 📰' },
       { name: 'TOPIX', indexFacts: getIndexFacts('topix', '2026-08-31'), desc: getIndexDescription('topix', '2026-08-31', 'japon'), bullets: ['⚠️ Réforme en cours : retrait graduel de 600+ valeurs à partir d\'oct. 2026, étalé sur 2 ans — passage sous 1 000 valeurs attendu vers 2028, pas dès octobre'], tag: 'Le plus large et le plus représentatif 🗾' },
-      { name: 'MSCI Japan IMI', indexFacts: getIndexFacts('msci-japan-imi', '2026-08-31'), desc: getIndexDescription('msci-japan-imi', '2026-08-31', 'japon'), tag: 'Le standard international 🌐' },
+      { name: 'MSCI Japan IMI', indexFacts: getIndexFacts('msci-japan-imi', '2026-09-30'), desc: getIndexDescription('msci-japan-imi', '2026-09-30', 'japon'), tag: 'Le standard international 🌐' },
     ],
     block2Title: '2️⃣ LES ETF ÉLIGIBLES PEA 💳',
     etfGroups: [
@@ -824,7 +824,7 @@ export const FAMILIES = [
       // IMI recompté à la même date (960 au 31/05/2026, MSCI) : écart de 3 avec le chiffre existant,
       // dans la marge de bruit normal de rebalancement déjà documentée pour d'autres familles
       // (≤ quelques unités), pas corrigé.
-      chain: [`TOPIX (${formatIndexConstituents('topix', '2026-08-31')} lignes, août 2026)`, `MSCI Japan IMI (${formatIndexFact('msci-japan-imi', '2026-08-31', 'constituents')})`, `Nikkei 225 (${formatIndexConstituents('nikkei225', '2026-08-31')}, prix-pondéré)`],
+      chain: [`TOPIX (${formatIndexConstituents('topix', '2026-08-31')} lignes, septembre 2026)`, `MSCI Japan IMI (${formatIndexFact('msci-japan-imi', '2026-09-30', 'constituents')})`, `Nikkei 225 (${formatIndexConstituents('nikkei225', '2026-08-31')}, prix-pondéré)`],
       notes: ['⚠️ Le Nikkei 225, pondéré par le prix de l\'action et non la capitalisation, peut sur-pondérer des valeurs chères mais économiquement mineures.', '→ TOPIX et MSCI Japan (pondérés par capitalisation) sont jugés plus représentatifs de l\'économie japonaise réelle.'],
     },
     // Performance 2023-2025 : Nikkei 225, part 1C en JPY selon DWS (document du 16/02/2026) ;
@@ -970,7 +970,7 @@ export const FAMILIES = [
     label: '🔎 Monde : quels segments ?',
     intro: 'World, World sans États-Unis, petites capitalisations : trois façons très différentes d’investir dans les pays développés 🌍\nOn regarde ce qui change 👇',
     indices: [
-      { name: 'MSCI World', indexFacts: getIndexFacts('world', '2026-08-31'), desc: getIndexDescription('world', '2026-08-31', 'monde-segments'), tag: 'Le cœur développé 🌍' },
+      { name: 'MSCI World', indexFacts: getIndexFacts('world', '2026-09-30'), desc: getIndexDescription('world', '2026-09-30', 'monde-segments'), tag: 'Le cœur développé 🌍' },
       { name: 'MSCI World ex USA', indexFacts: getIndexFacts('world-ex-usa', '2026-08-31'), desc: getIndexDescription('world-ex-usa', '2026-08-31', 'monde-segments'), tag: 'Réduire le poids américain 🇺🇸' },
       { name: 'MSCI World Small Cap', indexFacts: getIndexFacts('world-small-cap', '2026-08-31'), desc: getIndexDescription('world-small-cap', '2026-08-31', 'monde-segments'), tag: 'Ajouter les petites entreprises 🔎' },
     ],
@@ -984,7 +984,7 @@ export const FAMILIES = [
         funds: [{ name: getInstrumentName("IE00BF4RFH31", "index"), listing: requireInstrumentListing('IE00BF4RFH31'), isin: 'IE00BF4RFH31', ter: formatEtfTer('IE00BF4RFH31', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("IE00BF4RFH31", "index") }] },
     ],
     diversification: {
-      chain: [`World (${formatIndexConstituents('world', '2026-08-31')}, août 2026)`, `World ex USA (${formatIndexConstituents('world-ex-usa', '2026-08-31')}, août 2026)`, `World Small Cap (${formatIndexConstituents('world-small-cap', '2026-08-31')}, août 2026)`],
+      chain: [`World (${formatIndexConstituents('world', '2026-09-30')}, septembre 2026)`, `World ex USA (${formatIndexConstituents('world-ex-usa', '2026-08-31')}, septembre 2026)`, `World Small Cap (${formatIndexConstituents('world-small-cap', '2026-08-31')}, septembre 2026)`],
       notes: ['⚠️ Le World ex USA conserve les grandes et moyennes capitalisations : il retire un pays, pas une tranche de taille.', '→ World Small Cap ajoute une tranche de taille absente du World classique ; il contient encore beaucoup d’entreprises américaines.'],
     },
     // SWDA et WSML : séries USD du Générateur, mêmes ISIN ; confiance élevée.

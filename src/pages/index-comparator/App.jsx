@@ -1,4 +1,5 @@
 import { getIndexComparisonPerformance } from '../../data/index-comparison-performance.js'
+import { completeIndexAllocation } from '../../data/index-comparison-composition.js'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -115,7 +116,17 @@ export default function IndexComparator() {
 
           </div>
 
-          <p className="xc-hint">L’image compare les expositions côte à côte, avec les données de composition disponibles : nombre de valeurs, principaux pays et secteurs. Les performances sont dans le tweet.</p>
+          <p className="xc-hint">L’image compare les expositions côte à côte, avec les données de composition disponibles : nombre de valeurs, principaux pays et secteurs. Les performances 2023–2025 figurent aussi sur l’image. Le détail complet des répartitions est consultable ci-dessous.</p>
+          {family.indices.filter(index => index.indexFacts).map(index => <details className="xc-panel" key={index.name}>
+            <summary>{index.indexFacts.index} : composition détaillée</summary>
+            <p className="xc-hint">{index.indexFacts.snapshot}</p>
+            {[['Pays', completeIndexAllocation(index.indexFacts.countries, 'Autres pays')], ['Secteurs', completeIndexAllocation(index.indexFacts.sectors, 'Autres secteurs')]].map(([label, entries]) => <div key={label}>
+              <p className="xc-fund-label">{label}</p>
+              {entries?.length ? entries.map(([name, value]) => <p className="xc-hint" key={name}>{name} : {value.toLocaleString('fr-FR')} %</p>) : <p className="xc-hint">Répartition de cet indice non documentée.</p>}
+            </div>)}
+            <p className="xc-hint">Les autres expositions complètent les pondérations documentées à 100 %, sous réserve des arrondis.</p>
+            <a className="xc-hint" href={index.indexFacts.source.url} target="_blank" rel="noreferrer">Consulter la source de composition</a>
+          </details>)}
           <textarea ref={textareaRef} className="xc-clipboard-fallback" readOnly />
         </section>
 

@@ -32,11 +32,11 @@ import { DATA_CATALOG } from '../src/data/catalog.js';
 import { FAMILIES } from "../src/data/index-comparisons.js";
 import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
 import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js';
+import { getIndexComparisonComposition } from '../src/data/index-comparison-composition.js';
 import { fmtPct } from "../src/pages/index-comparator/lib.js";
 import { buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
-import { formatIndexConstituents } from "../src/data/index-facts.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
 import { ASSETS as HISTORY } from '../src/data/market-history.js';
 import { fmtEUR as fmtHistoryPrice, fmtPct as fmtHistoryPct } from '../src/pages/investment-calculator/lib.js';
@@ -706,7 +706,7 @@ async function testIndexComparator(page) {
       const facts = index.indexFacts;
       if (facts?.metadata?.sourceStatus !== 'documented') return true;
       return (!facts.constituents || (drawn.includes(facts.constituents.toLocaleString('fr-FR')) && drawn.includes('titres')))
-        && [...(facts.countries ?? []).slice(0, 3), ...(facts.sectors ?? []).slice(0, 3)].every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
+        && [...getIndexComparisonComposition(index).countries, ...getIndexComparisonComposition(index).sectors].every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
     });
     if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
       && png.readUInt32BE(16) === 1800 && png.readUInt32BE(20) > 400
@@ -714,8 +714,8 @@ async function testIndexComparator(page) {
   }
   await select.selectOption('monde');
   const worldText = await page.locator('.xc-preview-text').innerText();
-  const sharedCountsOk = ['acwi', 'ftse-all-world', 'world'].every(id =>
-    worldText.replaceAll('\u202f', ' ').includes(formatIndexConstituents(id, '2026-08-31')));
+  const sharedCountsOk = FAMILIES.find(f => f.id === 'monde').indices.every(index =>
+    worldText.replaceAll('\u202f', ' ').includes(String(index.indexFacts.constituents.toLocaleString('fr-FR')).replaceAll('\u202f', ' ')));
   await select.selectOption('europe');
   await page.getByRole('checkbox', { name: 'Inclure le YTD' }).first().check();
   let ytdOk = !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
