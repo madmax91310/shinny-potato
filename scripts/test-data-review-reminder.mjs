@@ -40,9 +40,9 @@ assert.equal(reminderCandidates(offerReview('2026-10-21')).length, 1)
 
 const real = buildReview('2026-10-03')
 assert.deepEqual(planReminders(real), [], 'Catalogue réel audité cette semaine : aucun rappel prématuré')
-assert.equal(real.schedule.filter(x => x.id.startsWith('investor:') && x.nextReviewAt === '2026-11-14').length, 6)
+assert.equal(real.schedule.filter(x => x.id.startsWith('investor:') && x.nextReviewAt === '2026-11-14').length, 18)
 assert.equal(reminderCandidates(buildReview('2026-11-06')).filter(x => x.id.startsWith('investor:')).length, 0)
-assert.equal(reminderCandidates(buildReview('2026-11-07')).filter(x => x.id.startsWith('investor:')).length, 6)
+assert.equal(reminderCandidates(buildReview('2026-11-07')).filter(x => x.id.startsWith('investor:')).length, 18)
 
 const planned = planReminders(review('2026-10-25'))
 for (const state of ['open', 'closed']) assert.equal(planReminders(review('2026-11-20'), [{ state, body: planned[0].body }]).length, 0, `Déduplication d'une issue ${state}`)

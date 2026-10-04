@@ -29,7 +29,8 @@ export async function renderPortfolioImage(portfolio) {
   ctx.drawImage(studio,0,0,W,H)
   ctx.save(); ctx.beginPath(); ctx.moveTo(115,115);ctx.lineTo(610,172);ctx.lineTo(610,932);ctx.lineTo(100,958);ctx.closePath();ctx.clip()
   const scale=Math.max(515/photo.width,850/photo.height)
-  ctx.drawImage(photo,100+(515-photo.width*scale)/2,110+(850-photo.height*scale)/2,photo.width*scale,photo.height*scale)
+  const photoX = Math.max(100 + 515 - photo.width * scale, Math.min(100, 100 + 515 / 2 - photo.width * scale * (portrait.focusX ?? .5)))
+  ctx.drawImage(photo,photoX,110+(850-photo.height*scale)/2,photo.width*scale,photo.height*scale)
   const tint=ctx.createLinearGradient(0,127,0,971); tint.addColorStop(0,'rgba(30,102,180,.05)'); tint.addColorStop(.65,'transparent'); tint.addColorStop(1,'rgba(2,12,28,.65)'); ctx.fillStyle=tint; ctx.fillRect(100,110,515,850); ctx.restore()
 
   text(ctx,portrait.person,650,174,875,74,GOLD,true)
