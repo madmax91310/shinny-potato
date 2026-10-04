@@ -907,12 +907,15 @@ async function testDataSearch(page) {
 async function testHouseholds(page) {
   await page.goto(`${BASE}/france-100-menages`, { waitUntil: 'networkidle' });
   let ok = await page.getByLabel('Design', { exact: true }).inputValue() === 'sculptural';
-  for (const { id, referencePeriod } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
+  for (const { id, referencePeriod, source } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
     await page.getByLabel('Sujet', { exact: true }).selectOption(id);
     await page.waitForURL(`**sujet=${id}`);
     ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 2400 && img.naturalHeight === 1620; });
     const text = await page.getByLabel('Texte modifiable').inputValue();
-    ok &&= text.includes('https://www.insee.fr/') && text.includes(referencePeriod.toLowerCase());
+    const sourceURL = (await import('../src/data/household-statistics.js')).HOUSEHOLD_SOURCES[source].url;
+    ok &&= !/https?:\/\/|Source\s*:/i.test(text)
+      && (await page.locator('.hh-source a[target="_blank"]').getAttribute('href')) === sourceURL
+      && (await page.locator('.hh-source').innerText()).includes(referencePeriod);
   }
   for (const { id: design } of (await import('../src/pages/france-100-menages/image.js')).HOUSEHOLD_DESIGNS) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);
