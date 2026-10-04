@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { buildText } from '../src/pages/etf-sheets/lib.js';
+import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { instrumentOption } from '../src/data/asset-selection.js';
@@ -446,19 +448,19 @@ async function testEtfSheets(page) {
     const text = await page.locator(".es-card").textContent();
     if (/undefined|NaN/.test(text)) badCount++;
     const selectedId = await select.inputValue();
-    const card = ETFS.find(item => item.id === selectedId);
+    const card = getPresentationCopy(ETFS.find(item => item.id === selectedId));
     if (!text.includes(card.hook)) badCount++;
     const accounts = await page.locator('.es-facts li').filter({ hasText: 'CTO :' }).textContent();
     if (accounts.includes('PEA') !== (card.pea === true)) badCount++;
     if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
-    const sectionLabels = ["🔍 C'est quoi ?", "✅ Pourquoi c'est intéressant ?", "⚠️ Ce qu'il faut savoir", '🏆 Verdict'];
+    const sectionLabels = ["🔍 C'est quoi ?", "✅ Ce que cet ETF t’apporte", "⚠️ Ce qu'il faut savoir", '🏆 À retenir'];
     const explanations = [card.whatIs, card.whyInteresting, card.whatToKnow, card.verdict];
     if (!explanations.every(value => value && text.includes(value))
       || !sectionLabels.every(label => text.includes(label))) badCount++;
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
     const copied = await page.evaluate(() => window.__etfCopiedText);
     const sectionPositions = sectionLabels.map(label => copied?.indexOf(label) ?? -1);
-    if (!/^📋 Présentation d'(?:ETF|ETC|ETP)\n/.test(copied ?? "") || !copied.includes(card.name)
+    if (copied !== buildText(card) || !copied?.startsWith(card.hook + "\n\n") || !copied.includes(card.name)
       || !copied.includes(card.isin) || !copied.includes(card.ter) || !copied.includes(card.hook)
       || (copied.includes('PEA') !== (card.pea === true))
       || !explanations.every(value => copied.includes(value))
