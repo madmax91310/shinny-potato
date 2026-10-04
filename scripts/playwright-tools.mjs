@@ -207,7 +207,7 @@ async function testCalculateur(page) {
   await stoxxDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const stoxxTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('versés au total')
+  septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('rapporté aux sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('dividendes nets');
   await page.locator('select.ic-control').first().selectOption('msciWorld');
@@ -216,7 +216,7 @@ async function testCalculateur(page) {
   await worldDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const worldTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= worldTweet.includes('septembre 2026') && worldTweet.includes('versés au total')
+  septemberOk &&= worldTweet.includes('septembre 2026') && worldTweet.includes('rapporté aux sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
   for (const [id, name] of [['msciEmerging', 'MSCI Emerging Markets'], ['msciWorldSmallCap', 'MSCI World Small Cap']]) {
@@ -227,7 +227,7 @@ async function testCalculateur(page) {
     await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
     septemberOk &&= post.includes(name) && post.includes('septembre 2026') && post.includes('Gross Return')
-      && post.includes('versés au total') && !/NaN|undefined/.test(post)
+      && post.includes('rapporté aux sommes versées') && !/NaN|undefined/.test(post)
       && (await page.locator('.ic-current-level').innerText()).includes('points')
       && (await page.locator('.ic-method-note').innerText()).includes(`${name} Gross Return`);
   }
