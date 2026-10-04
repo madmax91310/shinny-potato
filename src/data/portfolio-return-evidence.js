@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 19390)
-Total output lines: 1357
-
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
@@ -675,7 +672,100 @@ export const PORTFOLIO_RETURN_EVIDENCE = {
     "currency": null,
     "scope": "Série 2020–2025 du générateur pour IE00BYYHSQ67",
     "method": "Fonds confirmé chez l’émetteur",
-    "note": "Performances NAV pub…1390 tokens truncated… "periodEnd": "2025-12-31",
+    "note": "Performances NAV publiées en dollars, dividendes réinvestis ; une cotation en euros peut donner un autre résultat. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+  },
+  "IE00BMW42413": {
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/315818/"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-09-30",
+    "currency": null,
+    "scope": "Série 2020–2025 du générateur pour IE00BMW42413",
+    "method": "Fonds confirmé chez l’émetteur",
+    "note": "2020 : indice MSCI Europe Information Technology 20/35 Capped net EUR avant l'année complète du fonds ; 2021-2025 : part iShares EUR, nette de frais. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+  },
+  "IE00B42NKQ00": {
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/280503/"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-09-30",
+    "currency": null,
+    "scope": "Série 2020–2025 du générateur pour IE00B42NKQ00",
+    "method": "Fonds confirmé chez l’émetteur",
+    "note": "Rendements de la part iShares publiés en dollars ; le résultat en euros peut différer selon le change EUR/USD. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+  },
+  "IE00B3WJKG14": {
+    "sourceUrls": [
+      "https://www.ishares.com/gls-download/literature/fact-sheet/iuit-ishares-s-p-500-information-technology-sector-ucits-etf-fund-fact-sheet-en-gb.pdf"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-09-30",
+    "currency": null,
+    "scope": "Série 2020–2025 du générateur pour IE00B3WJKG14",
+    "method": "Fonds confirmé chez l’émetteur",
+    "note": "Rendements de la part iShares publiés en dollars ; le résultat en euros peut différer selon le change EUR/USD. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+  },
+  "IE00BYZK4552": {
+    "sourceUrls": [
+      "https://www.ishares.com/gls-download/literature/fact-sheet/rbot-ishares-automation-robotics-ucits-etf-fund-fact-sheet-en-gb.pdf"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-09-30",
+    "currency": null,
+    "scope": "Série 2020–2025 du générateur pour IE00BYZK4552",
+    "method": "Fonds confirmé chez l’émetteur",
+    "note": "Rendements de la part iShares publiés en dollars ; le résultat en euros peut différer selon le change EUR/USD. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+  },
+  "IE00BG0J4C88": {
+    "sourceUrls": [
+      "https://www.ishares.com/uk/individual/en/products/297843/"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-09-30",
+    "currency": null,
+    "scope": "Série 2020–2025 du générateur pour IE00BG0J4C88",
+    "method": "Fonds confirmé chez l’émetteur",
+    "note": "Rendements de la part iShares publiés en dollars ; le résultat en euros peut différer selon le change EUR/USD. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+  },
+  "NL0011683594": {
+    "sourceUrls": [
+      "https://www.vaneck.com/uk/en/blog/etf-insights/vaneck-dividend-leaders-ucits-etf-turns-10--a-decade-of-dividends/"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
+    "checkedAt": "2026-09-30",
+    "currency": null,
+    "scope": "Série 2020–2025 du générateur pour NL0011683594",
+    "method": "Fonds confirmé chez l’émetteur",
+    "note": "Rendements NAV en euros, dividendes réinvestis ; le montant perçu dépend des distributions. Provenance extraite de l’audit existant. La consultation du 30/09 date l’accès à la publication ; elle ne constitue pas une nouvelle certification de chaque rendement. asOf est la fin de la période calendaire, pas la date de publication."
+  },
+  "NL0009690239": {
+    "sourceUrls": [
+      "https://www.vaneck.com/ch/fr/blog/etf-insights/ans-dimmobilier-cote-linteret-des-reit-dans-le-cadre-dune-allocation-immobiliere-diversifiee/"
+    ],
+    "asOf": "2025-12-31",
+    "dateStatus": "dated",
+    "periodStart": "2020-01-01",
+    "periodEnd": "2025-12-31",
     "checkedAt": "2026-09-30",
     "currency": null,
     "scope": "Série 2020–2025 du générateur pour NL0009690239",
