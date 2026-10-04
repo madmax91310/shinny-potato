@@ -102,6 +102,12 @@ export const DATA_CATALOG = Object.freeze([
     fields: [field('Statistique de ménages', 'household-statistics', value, value.metadata)] })),
   ...Object.entries(INSTRUMENTS_BY_ISIN).map(([isin, identity]) => instrument(isin, identity)),
   ...Object.entries(INDEX_FACTS).map(([id, history]) => index(id, history)),
+  ...Object.entries(INDEX_RETURNS).filter(([id]) => !INDEX_FACTS[id]).map(([id, history]) => ({
+    id, type: Object.values(history)[0].performance.kind === 'actif' ? 'series' : 'index',
+    name: Object.values(history)[0].performance.detail.split(' · ')[0], aliases: [id],
+    consumers: [{ tool: 'Comparateur d’indices', path: '/comparateur-indices' }],
+    fields: Object.entries(history).map(([date, series]) => field(`Rendements · ${date}`, 'index-returns', series, series.metadata)),
+  })),
   ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: `Tweet Midi · Performance depuis${!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? ' et Anniversaire' : ''}`, path: '/tweet-midi' }, ...(HISTORY_STATISTIC_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
   ...TERMES.map((value) => ({ id: `lexicon:${value.id}`, type: 'lexicon', name: value.titre ?? value.nom ?? value.title ?? value.terme ?? value.id, aliases: [value.id], consumers: [{ tool: 'Lexique · Tweet Midi', path: '/tweet-midi' }], fields: [field('Définition', 'financial-lexicon', value, { ...SUPPORTING_EVIDENCE[`lexicon:${value.id}`], dateStatus: 'not-applicable', scope: value.id })] })),
 ]);

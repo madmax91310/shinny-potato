@@ -26,8 +26,10 @@ import { portfolioAssetLabel } from '../src/pages/portfolio-generator/compact.js
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { stat, readFile, mkdir, writeFile } from "node:fs/promises";
+import { DATA_CATALOG } from '../src/data/catalog.js';
 import { FAMILIES } from "../src/data/index-comparisons.js";
 import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
+import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js';
 import { fmtPct } from "../src/pages/index-comparator/lib.js";
 import { buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
@@ -679,10 +681,10 @@ async function testIndexComparator(page) {
     const text = await page.locator('.xc-preview-text').innerText();
     const editorial = getIndexComparisonEditorial(family);
     const refs = family.etfGroups.flatMap(group => group.funds);
-    const silverOk = family.id !== 'or-argent' || (/148,6/.test(text) && family.perfMethodNote.includes('en dollars') && !/convertie en €/.test(family.perfMethodNote));
+    const silverOk = family.id !== 'or-argent' || (/149,06/.test(text) && text.includes('en dollars'));
     const dataOk = silverOk && refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
-      && family.perfFunds.every(fund => fund.perfNote ? text.includes(fund.perfNote) :
-        [2023, 2024, 2025].every(year => text.includes(`${year} : ${fmtPct(fund[`y${year}`]) ?? 'Non disponible'}`)));
+      && getIndexComparisonPerformance(family).every(row =>
+        [2023, 2024, 2025].every(year => text.includes(`${year} : ${fmtPct(row[`y${year}`]) ?? 'Non disponible'}`)));
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
     const copied = await page.evaluate(() => window.__indexCopiedText);
     if (dataOk && copied === text && text.startsWith(editorial.hook)
@@ -719,7 +721,7 @@ async function testIndexComparator(page) {
   ytdOk &&= (await page.locator('.xc-preview-text').innerText()).includes('YTD saisi : +0,00 %');
   await select.selectOption('monde');
   ytdOk &&= !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
-  const distinctionOk = /ceux des ETF et parts nommés, pas les rendements bruts des indices/.test(await page.locator('.xc-control-col').innerText());
+  const distinctionOk = /performances des indices ou actifs comparés/.test(await page.locator('.xc-control-col').innerText());
   record("Comparateur d'indices", ok === count && count === FAMILIES.length && images === count && distinctionOk && sharedCountsOk && ytdOk,
     `${ok}/${count} tweets personnalisés copiés, ${images} images comparatives, repères partagés et YTD vide/zéro/réinitialisé`);
 }
@@ -876,7 +878,7 @@ async function testDataSearch(page) {
   checks.export = exported.id === 'FR001400U5Q4' && exported.schemaVersion === 1;
   await page.goto(`${BASE}/bibliotheque-donnees?q=msci-world-enhanced-value&type=index&id=msci-world-enhanced-value`, { waitUntil: 'networkidle' });
   const fields = page.locator('.ds-field');
-  checks.historyCount = await fields.count() === 3;
+  checks.historyCount = await fields.count() === DATA_CATALOG.find(record => record.id === 'msci-world-enhanced-value').fields.length;
   for (let i = 0; i < await fields.count(); i++) await fields.nth(i).locator('summary').click();
   const history = await page.locator('.ds-detail').innerText();
   checks.history = history.includes('401') && history.includes('400') && history.includes('2026-07-31') && history.includes('2026-08-31');

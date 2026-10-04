@@ -85,6 +85,13 @@ for (const [isin, observation] of Object.entries(OFFICIAL_AUM_OBSERVATIONS)) {
 }
 for (const series of DATA_CATALOG.filter(r => r.type === 'series')) {
   const f = series.fields[0];
+  if (f.registry === 'src/data/index-returns.js') {
+    assert.equal(f.metadata.periodStart, `${Math.min(...f.value.values.map(([year]) => year))}-01-01`);
+    assert.equal(f.metadata.periodEnd, `${Math.max(...f.value.values.map(([year]) => year))}-12-31`);
+    assert.equal(f.metadata.dateStatus, 'dated');
+    assert.equal(f.value.performance.kind, 'actif');
+    continue;
+  }
   assert.equal(f.metadata.periodStart, f.value.points[0].date);
   assert.equal(f.metadata.periodEnd, f.value.points.at(-1).date);
   assert.equal(f.metadata.dateStatus, 'month-only');

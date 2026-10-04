@@ -5,6 +5,7 @@ import { normalizeEvidence, EVIDENCE_FIELDS } from '../src/data/evidence.js';
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js';
 import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js';
 import { INDEX_FACTS } from '../src/data/index-facts.js';
+import { INDEX_COMPARISON_RETURN_ADDITIONS } from '../src/data/index-comparison-return-additions.js';
 import { INDEX_RETURNS } from '../src/data/index-returns.js';
 import { describeDataField } from '../src/pages/data-search/lib.js';
 import { getRestoredRoute } from '../src/restore-route.js';
@@ -48,8 +49,15 @@ assert.equal(normalizeEvidence({ checkedAt: '2026-09-30' }).asOf, null);
 assert.throws(() => normalizeEvidence({ asOf: '30/09/2026' }), /invalide/);
 assert.throws(() => normalizeEvidence({ url: 'invented-source' }), /invalide/);
 for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [date, series] of Object.entries(history)) {
-  assert(INDEX_FACTS[id]?.[date], `${id}: rendements sans photographie`);
-  assert(series.values.every(([year, value]) => year >= 2021 && year <= 2025 && Number.isFinite(value)), `${id}: série invalide`);
+  const independent = INDEX_COMPARISON_RETURN_ADDITIONS[id]?.[date];
+  assert(INDEX_FACTS[id]?.[date] || independent === series, `${id}: série sans photographie ni preuve indépendante`);
+  if (independent) {
+    assert.equal(series.metadata.periodEnd, '2025-12-31');
+    assert.equal(series.metadata.periodStart, '2023-01-01');
+    assert(series.metadata.sourceUrls.length && series.metadata.checkedAt, `${id}: source indépendante non datée`);
+    assert(DATA_CATALOG.some(record => record.fields.some(field => field.value === series)), `${id}: série absente du catalogue`);
+  }
+  assert(series.values.every(([year, value]) => year >= 2021 && year <= 2025 && (Number.isFinite(value) || (independent && value === null && !series.currency))), `${id}: série invalide`);
   assert.equal(series.metadata.asOf, date);
 }
 console.log(`${DATA_CATALOG.length} fiches recherchables ; couverture des instruments/indices/cotations, provenance, consommateurs et export JSON OK.`);

@@ -69,6 +69,7 @@ jobs:
       - run: node scripts/test-data-reuse.mjs
       - run: npm run audit:data-catalog
       - run: npm run audit:data-provenance
+      - run: node scripts/test-index-comparison-copy.mjs
       - run: npm run audit:index-facts
       - run: npm run verify:factsheet-tweets
       - run: node scripts/test-portfolio-editorial.mjs
