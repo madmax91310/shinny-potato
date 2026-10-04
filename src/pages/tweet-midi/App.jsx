@@ -383,14 +383,14 @@ export default function App() {
 
                 <div>
                   <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">Mode</label>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     <Button
                       type="button"
                       variant={paMode === "brut" ? "primary" : "secondary"}
                       onClick={() => setPaMode("brut")}
                       aria-pressed={paMode === "brut"}
                     >
-                      Pouvoir d'achat brut
+                      Revenu nécessaire
                     </Button>
                     <Button
                       type="button"
@@ -399,6 +399,10 @@ export default function App() {
                       aria-pressed={paMode === "par-poste"}
                     >
                       Par poste
+                    </Button>
+                    <Button type="button" variant={paMode === "erosion" ? "primary" : "secondary"}
+                      onClick={() => setPaMode("erosion")} aria-pressed={paMode === "erosion"}>
+                      Budget inchangé
                     </Button>
                   </div>
                 </div>
