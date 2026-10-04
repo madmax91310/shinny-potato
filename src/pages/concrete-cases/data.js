@@ -1,5 +1,7 @@
 import { BOND_EXPOSURE_CASES } from '../../data/bond-exposure-cases.js';
 import { ALLOCATION_CASES } from '../../data/allocation-cases.js'
+// Revue éditoriale du 04/10/2026 : situations racontées et conséquences concrètes.
+// Les nouveaux chiffres sont des exemples arithmétiques fictifs, hors taux réglementés.
 // Posts éditoriaux relus individuellement. Cette bibliothèque n'invente ni performance ni
 // ETF précis : chaque cas illustre une décision, et les liens renvoient aux sources primaires.
 const editorialCases = [
@@ -7,19 +9,7 @@ const editorialCases = [
     id: 'world-sp500',
     title: 'ETF World + S&P 500',
     category: 'Diversification',
-    text: `🌍 Tu as déjà un ETF World. Ajouter un S&P 500, ça diversifie ton portefeuille ?
-
-Pas forcément 👇
-
-Le MSCI World détient déjà de grandes entreprises américaines. En ajoutant un S&P 500, tu rachètes donc une partie des mêmes sociétés.
-
-📌 Ce que tu changes surtout : tu donnes davantage de poids aux États-Unis dans ton portefeuille.
-
-Ça peut être un choix assumé. Mais avant d’ajouter cette ligne, pose-toi la vraie question :
-
-« Est-ce que je veux plus d’actions américaines, ou est-ce que je cherche une diversification que cet ETF ne m’apportera pas ? »
-
-💬 Tu détiens les deux ? C’était pour renforcer les États-Unis ou pour te diversifier ?`,
+    text: "🌍 Tu as déjà un ETF MSCI World et tu veux ajouter un S&P 500 pour diversifier. Tu vas pourtant retrouver une partie des mêmes entreprises 👇\n\nTon World contient déjà de grandes sociétés américaines. En ajoutant le S&P 500, tu renforces surtout leur place dans ton portefeuille.\n\nSi c’est ce que tu cherches, cette deuxième ligne peut correspondre à ton choix.\n\nMais si tu voulais investir dans d’autres pays, elle ne répond pas à ce besoin : tu mets davantage d’argent sur les États-Unis.\n\n📌 Avant d’ajouter un ETF, regarde ce qu’il apporte à ceux que tu détiens déjà.\n\n💬 Si tu as les deux, c’était pour renforcer les États-Unis ou pour te diversifier ?",
     sources: [
       { label: 'MSCI World · MSCI', url: 'https://www.msci.com/indexes/index/990100/msci-world-index' },
       { label: 'S&P 500 · S&P Dow Jones Indices', url: 'https://www.spglobal.com/spdji/en/indices/equity/sp-500/' },
@@ -29,17 +19,7 @@ Le MSCI World détient déjà de grandes entreprises américaines. En ajoutant u
     id: 'dividendes-cto',
     title: 'Dividendes sur CTO',
     category: 'Revenus et performance',
-    text: `💰 Deux ETF affichent des dividendes. Tu choisis celui qui verse le plus ?
-
-Attends une seconde 👇
-
-Un dividende arrive sur ton compte, c’est concret. Mais pour savoir ce que ton placement t’a rapporté, il faut aussi regarder l’évolution du prix de tes parts.
-
-Un ETF peut verser beaucoup et perdre de la valeur. Un autre peut verser moins et progresser davantage.
-
-📌 Si tu veux un revenu à dépenser, regarde les distributions. Si tu veux comparer deux investissements, regarde leur performance totale, dividendes compris, sur la même période et dans la même devise.
-
-💬 Tu cherches des revenus à toucher maintenant ou un capital à faire grandir ?`,
+    text: "💰 Tu hésites entre deux ETF : l’un verse beaucoup de dividendes, l’autre moins. Tu prends celui qui te rapporte le plus sur ton compte ? 👇\n\nPrenons un exemple fictif, sur la même période et dans la même devise.\n\nTu investis 1 000 € dans chacun, sans réinvestir les distributions.\n\nAvec le premier, tu reçois 60 €, mais tes parts ne valent plus que 920 €. Il te reste 980 € au total.\n\nAvec le second, tu reçois 20 € et tes parts valent 1 030 €. Tu as 1 050 € au total.\n\nLe premier a versé davantage. Le second t’a laissé plus d’argent, avant frais et fiscalité.\n\n📌 Si tu veux dépenser les revenus, les versements comptent. Pour comparer ce que tu as gagné, il faut aussi regarder la valeur des parts.\n\n💬 Tu cherches un revenu à utiliser maintenant ou un capital à faire grandir ?",
     sources: [
       { label: 'Rendement et risque des actions · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/rendement-et-risque-des-placements-en-actions-0' },
       { label: 'Compte-titres et fiscalité · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/supports-dinvestissement/compte-titres' },
@@ -49,17 +29,7 @@ Un ETF peut verser beaucoup et perdre de la valeur. Un autre peut verser moins e
     id: 'projet-trois-ans',
     title: 'Un projet dans trois ans',
     category: 'Horizon et risque',
-    text: `🏠 Tu comptes utiliser cet argent dans trois ans. Un ETF actions peut-il accueillir toute la somme ?
-
-La question, c’est ce qui se passe si le marché baisse juste avant ton achat 👇
-
-Tu pourrais attendre une remontée. Mais ton projet, lui, ne pourra peut-être pas attendre. Il faudrait alors vendre au mauvais moment ou revoir ton budget.
-
-📌 Avant de choisir un placement, sépare l’argent dont tu auras besoin à une date précise de celui que tu peux laisser investi plus longtemps.
-
-Le montant que tu peux voir baisser n’est pas forcément le montant que tu peux te permettre d’immobiliser.
-
-💬 Pour un projet daté, tu privilégies la disponibilité de l’argent ou son potentiel de rendement ?`,
+    text: "🏠 Tu as mis 20 000 € de côté pour acheter un logement dans trois ans. Tu hésites à les placer en ETF pour faire grossir ton apport.\n\nMais si la Bourse baisse au moment où tu trouves le bon logement ? 👇\n\nImaginons que tes 20 000 € deviennent 16 000 € après une baisse de 20 %, hors frais.\n\nLe vendeur ne va pas attendre que ton ETF remonte.\n\nIl te manque alors 4 000 €. Il faut les trouver ailleurs, acheter moins cher ou repousser le projet.\n\nGarder ton apport sur un support garanti et disponible peut sembler moins intéressant quand la Bourse monte. Mais le jour où tu dois signer, tu sais sur quelle somme tu peux compter.\n\n📌 Avant d’investir cet argent, demande-toi si tu pourrais vraiment décaler ton achat.\n\n💬 Tu prendrais ce risque avec ton apport ?",
     sources: [
       { label: 'Définir son horizon de placement · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/fixer-son-horizon-de-placement' },
       { label: 'Risque des placements en actions · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/rendement-et-risque-des-placements-en-actions-0' },
@@ -69,15 +39,7 @@ Le montant que tu peux voir baisser n’est pas forcément le montant que tu peu
     id: 'epargne-precaution',
     title: 'Investir sans réserve',
     category: 'Épargne de précaution',
-    text: `🚗 Ta voiture tombe en panne. Tu n’as pas de réserve disponible, mais tu as des ETF.
-
-Tu vends quelques parts pour payer la réparation. Sauf que la Bourse a baissé ce mois-ci 👇
-
-Le souci n’est pas d’avoir investi. C’est d’avoir confié à la Bourse de l’argent qui pouvait te servir à tout moment.
-
-📌 Une épargne de précaution sert à faire face aux imprévus sans devoir vendre tes placements au mauvais moment. Son montant dépend de tes dépenses et de ta situation, pas d’un chiffre magique valable pour tout le monde.
-
-💬 Si une grosse dépense arrivait demain, tu pourrais la payer sans toucher à tes investissements ?`,
+    text: "🚗 Ta voiture tombe en panne : 1 500 € de réparation.\n\nTu as de l’argent, mais tout est investi en actions. Et tes placements viennent de perdre 20 % 👇\n\nPrenons un exemple fictif.\n\nTes 10 000 € investis ne valent plus que 8 000 €. Pour payer le garage, tu dois vendre près de 19 % de ton portefeuille, hors frais et fiscalité.\n\nTu aurais préféré laisser tes placements tranquilles. Mais tu as besoin de ta voiture et la facture doit être réglée.\n\nC’est à ça que sert une réserve disponible : pouvoir payer un imprévu sans que les cours de Bourse décident du moment où tu vends.\n\nPas besoin de chercher un montant valable pour tout le monde. Regarde les dépenses qui pourraient tomber chez toi et ce que tu pourrais absorber avec tes revenus.\n\n💬 Si tu devais sortir 1 500 € demain, tu toucherais à tes investissements ?",
     sources: [
       { label: 'Définir son objectif d’épargne · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/cadrer-son-projet/definir-son-objectif' },
       { label: 'Les règles d’or de l’investisseur · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/savoir-bien-investir/conseils-pratiques/les-regles-dor-de-linvestisseur' },
@@ -87,15 +49,7 @@ Le souci n’est pas d’avoir investi. C’est d’avoir confié à la Bourse d
     id: 'world-emergents',
     title: 'World + émergents',
     category: 'Diversification géographique',
-    text: `🌍 « J’ai un ETF MSCI World, donc j’investis partout dans le monde. »
-
-Pas tout à fait 👇
-
-Cet indice rassemble des actions de pays développés. Les marchés émergents, comme l’Inde ou le Brésil, n’en font pas partie.
-
-📌 Ajouter un ETF émergents peut élargir ton exposition géographique. Mais ça ajoute aussi d’autres risques. La vraie question, c’est la place que tu veux leur donner dans ton portefeuille, pas le nombre de lignes que tu peux accumuler.
-
-💬 Tu savais que « World » ne comprend pas les marchés émergents ?`,
+    text: "🌍 Tu investis sur un ETF MSCI World et tu veux aussi avoir des entreprises d’Inde et du Brésil. Ton ETF actuel les couvre-t-il ? 👇\n\nLe MSCI World se limite aux pays développés. Ces deux marchés émergents n’en font pas partie.\n\nAjouter un ETF émergents peut élargir les pays présents dans ton portefeuille. Mais il faut encore décider combien tu veux y mettre.\n\nSi cette nouvelle ligne pèse beaucoup, elle peut aussi faire davantage bouger le résultat de ton portefeuille. Elle apporte ses propres risques, notamment politiques et de change.\n\n📌 Choisir une exposition, c’est aussi choisir sa place dans l’ensemble. Une nouvelle ligne n’est pas juste une case à cocher.\n\n💬 Tu as ajouté des émergents à ton World ? Qu’est-ce qui t’a décidé ?",
     sources: [
       { label: 'MSCI World Index · MSCI', url: 'https://www.msci.com/indexes/index/990100/msci-world-index' },
       { label: 'MSCI Emerging Markets Index · MSCI', url: 'https://www.msci.com/indexes/index/891800/msci-em-emerging-markets-index-2' },
@@ -103,19 +57,9 @@ Cet indice rassemble des actions de pays développés. Les marchés émergents, 
   },
   {
     id: 'etf-frais',
-    title: 'ETF à petits frais',
+    title: '100 € par mois : combien de courtage ?',
     category: 'Coût réel',
-    text: `💸 Tu hésites entre deux ETF et tu compares uniquement leurs frais annuels ?
-
-Il manque peut-être une partie de l’addition 👇
-
-Les frais de gestion pèsent chaque année sur la valeur de l’ETF. Mais quand tu achètes ou vends, il peut aussi y avoir des frais de courtage et un écart entre le prix d’achat et le prix de vente.
-
-📌 Avant de choisir, regarde ce que tu détiens vraiment, puis le coût total dans TON cas : montant des ordres, fréquence d’achat, frais du courtier et conditions de négociation.
-
-Un ETF moins cher sur la fiche n’est pas automatiquement le moins coûteux pour toi.
-
-💬 Tu vérifies seulement les frais annuels, ou aussi le prix de tes ordres ?`,
+    text: "💸 Tu mets 100 € par mois sur un ETF. Ton courtier prend 2 € à chaque achat.\n\nÇa paraît peu. Mais sur l’année, tu lui laisses 24 € pour investir 1 200 € 👇\n\nAvec ce tarif fictif, tu as deux possibilités :\n\n📅 Acheter chaque mois\n12 achats, donc 24 € de courtage.\n\n📆 Acheter 300 € tous les trois mois\n4 achats, donc 8 € de courtage.\n\nTu économises 16 € en regroupant tes achats.\n\nEn revanche, une partie de ton argent attend plus longtemps avant d’entrer en Bourse. Si les cours montent pendant ce temps, elle ne profite pas de la hausse.\n\nAvant de changer tes habitudes, regarde aussi le tarif des achats programmés chez ton courtier. Ils peuvent coûter moins cher.\n\n💬 Sur tes versements, tu paies combien à chaque achat ?",
     sources: [
       { label: 'Ce qu’il faut savoir sur les ETF · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf' },
       { label: 'Comprendre les frais des placements · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/les-frais-des-placements-financiers/comprendre-les-frais-des-placements-financiers' },
@@ -127,17 +71,7 @@ Un ETF moins cher sur la fiche n’est pas automatiquement le moins coûteux pou
     id: 'ordre-limite-etf',
     title: 'Un ETF à 99 € ou 101 € ?',
     category: 'Passer un ordre',
-    text: `📱 Ton ETF affiche deux prix : achat à 101 €, vente à 99 €. Pourquoi cet écart ?
-
-Imagine que tu achètes 10 parts à 101 € : tu paies 1 010 €. Si tu les revends aussitôt à 99 €, tu récupères 990 €, soit 20 € de moins, même si les prix affichés n'ont pas bougé. Exemple fictif, hors frais de courtage.
-
-Cet écart entre prix d'achat et prix de vente s'appelle la fourchette. Il peut varier selon la liquidité et le moment où tu passes l'ordre.
-
-📌 Un ordre d'achat à cours limité à 100 € fixe ton prix maximal. En contrepartie, il peut rester sans exécution si aucun vendeur n'accepte ce prix.
-
-Avant de valider, regarde les deux prix et le montant total de ton ordre, pas seulement le dernier cours affiché.
-
-💬 Tu vérifies la fourchette avant d'acheter un ETF ?`,
+    text: "📱 Tu veux acheter dix parts d’un ETF. Le dernier cours est à 100 €, mais le prix proposé à l’achat est de 101 €. Tu valides quand même ? 👇\n\nDans cet exemple fictif, tu paies 1 010 € pour les dix parts.\n\nLe prix auquel tu pourrais les vendre aussitôt est de 99 € : tu récupérerais 990 €, soit 20 € de moins, même si les prix proposés n’ont pas bougé. Hors frais de courtage.\n\nCet écart s’appelle la fourchette entre achat et vente.\n\nTu peux fixer un prix maximal de 100 € avec un ordre d’achat à cours limité. Mais ton ordre peut rester sans exécution si personne ne vend à ce prix.\n\n📌 Avant de valider, regarde le prix proposé à l’achat et le montant total. Le dernier cours ne garantit pas le prix de ton ordre.\n\n💬 Tu fixes un prix limite ou tu achètes au prix disponible ?",
     sources: [
       { label: 'Choisir et passer un ordre de bourse · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-marches-financiers/les-ordres-de-bourse/choisir-et-passer-un-ordre-de-bourse-ce-quil-faut-savoir' },
       { label: 'Ce qu’il faut savoir sur les ETF · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf' },
@@ -147,15 +81,7 @@ Avant de valider, regarde les deux prix et le montant total de ton ordre, pas se
     id: 'etf-change-euro',
     title: 'ETF acheté en euros, risque dollar ?',
     category: 'Risque de change',
-    text: `🌍 Tu achètes en euros un ETF exposé à des actions américaines. Tu penses être protégé du dollar ?
-
-Regarde cet exemple fictif : 1 000 € investis dans des actifs en dollars. Ils gagnent 10 % en dollars, mais, sur la même période, le dollar perd 10 % de sa valeur face à l'euro.
-
-Le calcul en euros : 1 000 × 1,10 × 0,90 = 990 €. Soit −1 % avant frais, malgré la hausse des actifs en dollars.
-
-📌 Le prix de négociation affiché en euros ne change pas, à lui seul, les devises auxquelles les actifs sont exposés. Pour réduire cet effet, il faut regarder si la part prévoit une couverture de change, qui a aussi ses limites et ses coûts.
-
-💬 Tu regardes la devise des actifs ou seulement celle affichée par ton courtier ?`,
+    text: "🌍 Tes actions américaines gagnent 10 %, mais ton placement acheté en euros finit en baisse. Comment c’est possible ? 👇\n\nPrenons un exemple fictif avec une exposition non couverte au dollar.\n\nTu investis 1 000 €. Les actifs gagnent 10 % en dollars, mais le dollar perd 10 % de sa valeur face à l’euro sur la même période.\n\nLe calcul donne : 1 000 × 1,10 × 0,90 = 990 €.\n\nTu finis donc avec une baisse de 1 %, avant frais, malgré la hausse des actifs en dollars.\n\nAcheter la part en euros ne supprime pas cet effet. Une part couverte contre le change cherche à le réduire, avec ses propres coûts et limites.\n\n📌 Regarde si la couverture existe vraiment. La devise affichée chez ton courtier ne suffit pas.\n\n💬 Quand tu achètes un ETF, tu vérifies son exposition aux devises ?",
     sources: [
       { label: 'Devise de cotation et actifs détenus · iShares', url: 'https://www.ishares.com/uk/individual/education/getting-started-with-etfs/investor-education/etf-checklist' },
       { label: 'Risques et couverture de change des ETF · iShares', url: 'https://www.ishares.com/uk/individual/en/products/251891/ishares-msci-world-eur-hedged-ucits-etf' },
@@ -165,17 +91,7 @@ Le calcul en euros : 1 000 × 1,10 × 0,90 = 990 €. Soit −1 % avant frais, m
     id: 'reequilibrer-portefeuille',
     title: 'Une allocation qui a changé',
     category: 'Répartition du portefeuille',
-    text: `⚖️ Ton portefeuille part avec 7 000 € en actions et 3 000 € en obligations : 70 % / 30 %.
-
-Plus tard, imaginons 9 000 € d'actions et toujours 3 000 € d'obligations. Le total vaut 12 000 €, mais la répartition est passée à 75 % / 25 %.
-
-Si ton objectif reste 70 % / 30 %, cela représente désormais 8 400 € d'actions et 3 600 € d'obligations. L'écart est de 600 € pour chaque poche.
-
-📌 Rééquilibrer, c'est ramener les poids vers l'objectif que tu as choisi. Cela peut passer par les nouveaux versements ou par des ventes et achats, avec d'éventuels frais et conséquences fiscales.
-
-Ce n'est pas une promesse de mieux performer : c'est une façon de garder le niveau de risque que tu avais décidé.
-
-💬 Tu regardes encore la répartition réelle de ton portefeuille ?`,
+    text: "⚖️ Tu avais choisi 70 % d’actions et 30 % d’obligations. Les actions montent, et ton portefeuille passe à 75 % / 25 %. Tu laisses faire ou tu reviens à ton choix de départ ? 👇\n\nPrenons un exemple fictif.\n\nTu pars avec 7 000 € d’actions et 3 000 € d’obligations. Plus tard, les actions valent 9 000 € et les obligations toujours 3 000 €.\n\nPour revenir à 70 % / 30 % sur ces 12 000 €, il faudrait 8 400 € d’actions et 3 600 € d’obligations.\n\nTu pourrais déplacer 600 € d’une poche vers l’autre, avec d’éventuels frais et impôts. Tu pourrais aussi orienter tes prochains versements vers les obligations pour te rapprocher de la cible, sans vendre.\n\n📌 Rééquilibrer ne garantit pas de gagner plus. Cela sert à garder la répartition que tu avais choisie.\n\n💬 Tu vérifies encore tes pourcentages ou tu laisses évoluer tes lignes ?",
     sources: [
       { label: 'Allocation et rééquilibrage · Investor.gov (SEC)', url: 'https://www.investor.gov/introduction-investing/getting-started/asset-allocation' },
       { label: 'Méthodes et coûts du rééquilibrage · Investor.gov (SEC)', url: 'https://www.investor.gov/additional-resources/general-resources/publications-research/info-sheets/beginners-guide-asset' },
@@ -185,15 +101,7 @@ Ce n'est pas une promesse de mieux performer : c'est une façon de garder le niv
     id: 'investir-somme-en-plusieurs-fois',
     title: '12 000 € d’un coup ou étalés ?',
     category: 'Rythme d’investissement',
-    text: `💶 Tu disposes de 12 000 € pour investir sur le long terme. Tout placer aujourd'hui ou investir 1 000 € par mois pendant un an ?
-
-Avec la première option, les 12 000 € suivent immédiatement les marchés. Avec la seconde, seuls 1 000 € sont investis au départ ; le reste attend les prochains versements.
-
-📌 Étaler les achats peut aider à moins subir une baisse juste après le premier ordre et à investir sans chercher « le bon jour ». Mais si le marché monte pendant cette attente, l'argent non encore investi ne profite pas de cette hausse.
-
-Ce choix dépend aussi des frais de courtage par ordre et de la tranquillité d'esprit que t'apporte un calendrier décidé à l'avance. Aucun des deux rythmes ne garantit un meilleur résultat.
-
-💬 Avec une somme déjà disponible, tu investirais tout de suite ou par étapes ?`,
+    text: "💶 Tu as 12 000 € à investir sur le long terme. Tu mets tout aujourd’hui ou 1 000 € par mois pendant un an ? 👇\n\nSi tu places tout, les 12 000 € suivent immédiatement la Bourse. Une baisse juste après ton achat touche toute la somme.\n\nSi tu étales, tu n’investis que 1 000 € au premier achat. Le reste attend les suivants : une baisse au début touche donc une somme plus petite.\n\nMais si les cours montent, l’argent qui attend ne profite pas de cette hausse.\n\nTu peux préférer étaler parce que tu te sens plus à l’aise avec ce rythme. Il faut simplement accepter ce que l’attente peut coûter, et regarder les frais de chaque ordre.\n\n📌 Dans les deux cas, l’argent investi peut baisser. Aucun calendrier ne garantit le meilleur résultat.\n\n💬 Avec 12 000 € déjà disponibles, tu ferais quoi ?",
     sources: [
       { label: 'Mieux s’informer et investissement programmé · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/actualites-mises-en-garde/mieux-sinformer-pour-mieux-investir' },
       { label: 'Investir progressivement dans les fonds · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/bien-demarrer-avec-les-fonds-et-sicav' },
@@ -203,15 +111,7 @@ Ce choix dépend aussi des frais de courtage par ordre et de la tranquillité d'
     id: 'etf-obligataire-taux',
     title: 'Un ETF obligataire peut baisser ?',
     category: 'Obligations et taux',
-    text: `🏦 Tu mets 10 000 € dans un ETF obligataire. Tu t'attends à ce que sa valeur ne bouge presque pas ?
-
-Exemple fictif : sa part perd 5 % et ta position vaut 9 500 €, hors éventuelles distributions et frais. Ce n'est pas le rendement observé d'un ETF précis.
-
-Pourquoi cela peut arriver ? Quand les taux du marché montent, les obligations à taux fixe déjà détenues deviennent moins attractives. Leur prix peut baisser, et la valeur de l'ETF avec elles.
-
-📌 Un ETF obligataire détient un portefeuille d'obligations qui évolue. Il n'offre pas, à lui seul, une date de remboursement garantie de tes parts à leur prix d'achat. Il faut aussi regarder la durée des obligations, la qualité des émetteurs et la devise.
-
-💬 Tu savais qu'un ETF obligataire pouvait afficher une perte malgré ses obligations ?`,
+    text: "🏦 Tu places 10 000 € sur un ETF obligataire pour éviter les grosses variations. Quelque temps plus tard, il ne vaut plus que 9 500 €. Tu t’attendais à ça ? 👇\n\nC’est un exemple fictif de baisse de 5 %, hors distributions, frais et fiscalité.\n\nUn ETF obligataire peut baisser quand les taux montent : les anciennes obligations à taux fixe deviennent moins attractives, et leur prix peut reculer.\n\nSi tu avais prévu d’utiliser ces 10 000 € à une date précise, le mot « obligations » ne suffit donc pas à sécuriser ton budget.\n\nAvant d’acheter, regarde notamment la sensibilité du fonds aux taux, les émetteurs et les devises. Un ETF obligataire classique ne promet pas de te rendre tes parts à leur prix d’achat à une date donnée.\n\n💬 Tu avais vérifié ces points avant ton premier achat d’obligations ?",
     sources: [
       { label: 'Pourquoi les obligations baissent quand les taux montent · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/actions-obligations/obligations/pourquoi-le-prix-des-obligations-baisse-lorsque-les-taux-montent' },
       { label: 'Comprendre les obligations et leurs fonds · AMF', url: 'https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/actions-obligations/obligations/comprendre-les-obligations-avant-dinvestir' },
