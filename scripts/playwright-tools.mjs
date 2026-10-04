@@ -906,17 +906,17 @@ async function testDataSearch(page) {
 
 async function testHouseholds(page) {
   await page.goto(`${BASE}/france-100-menages`, { waitUntil: 'networkidle' });
-  let ok = await page.getByLabel('Design', { exact: true }).inputValue() === 'ivory';
+  let ok = await page.getByLabel('Design', { exact: true }).inputValue() === 'sculptural';
   for (const { id, referencePeriod } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
     await page.getByLabel('Sujet', { exact: true }).selectOption(id);
     await page.waitForURL(`**sujet=${id}`);
-    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 2400 && img.naturalHeight === 1620; });
     const text = await page.getByLabel('Texte modifiable').inputValue();
     ok &&= text.includes('https://www.insee.fr/') && text.includes(referencePeriod.toLowerCase());
   }
   for (const { id: design } of (await import('../src/pages/france-100-menages/image.js')).HOUSEHOLD_DESIGNS) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);
-    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
+    ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async (link, design) => { const img = new Image(); img.src = link.href; await img.decode(); return design === 'sculptural' ? img.naturalWidth === 2400 && img.naturalHeight === 1620 : img.naturalWidth === 1080 && img.naturalHeight === 1440; }, design);
   }
   for (const design of ['ivory', 'blue', 'plum']) {
     await page.getByLabel('Design', { exact: true }).selectOption(design);
@@ -946,7 +946,7 @@ async function testHouseholds(page) {
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   if (process.env.HOUSEHOLD_SCREENSHOT) await page.screenshot({ path: process.env.HOUSEHOLD_SCREENSHOT, fullPage: true });
   await page.setViewportSize({ width: 1280, height: 720 });
-  record('La France en 100 ménages', ok, '29 sujets, sept designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
+  record('La France en 100 ménages', ok, '29 sujets, huit designs, tweets, édition, lien source, PNG, JSON, rechargement et mobile');
 }
 
 async function testInvestorIntroductions(page) {
