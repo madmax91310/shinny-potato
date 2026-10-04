@@ -3022,5 +3022,107 @@ export const INDEX_COMPOSITION_REVIEW = {
       },
       "provenance": "Composition relue dans la publication officielle : comptage, poids des pays et secteurs de l’indice, sans utiliser le portefeuille du fonds comme substitut. Poids au 31/08/2026 recoupés par deux recherches indépendantes de la publication S&P DJI ; arrondis du fournisseur au dixième."
     }
+  },
+  "sp-euro-dividend-aristocrats": {
+    "2026-09-30": {
+      "index": "S&P Euro High Yield Dividend Aristocrats",
+      "asOf": "2026-09-30",
+      "snapshot": "30 septembre 2026",
+      "constituents": 40,
+      "targetConstituents": 40,
+      "descriptionTemplates": {
+        "dividendes-pea": "{{constituents}} entreprises de la zone euro au 30/09/2026, sélectionnées pour un dividende stable ou en hausse pendant au moins 10 ans. Pondération selon le rendement du dividende."
+      },
+      "countries": [
+        [
+          "🇩🇪 Allemagne",
+          21
+        ],
+        [
+          "🇮🇹 Italie",
+          19.6
+        ],
+        [
+          "🇫🇮 Finlande",
+          17.2
+        ],
+        [
+          "🇫🇷 France",
+          12.3
+        ],
+        [
+          "🇳🇱 Pays-Bas",
+          11.7
+        ],
+        [
+          "🇧🇪 Belgique",
+          6.1
+        ],
+        [
+          "🇦🇹 Autriche",
+          5.5
+        ],
+        [
+          "🇪🇸 Espagne",
+          3.5
+        ],
+        [
+          "🇵🇹 Portugal",
+          3
+        ]
+      ],
+      "sectors": [
+        [
+          "🏦 Finance",
+          29
+        ],
+        [
+          "🏭 Industrie",
+          21.4
+        ],
+        [
+          "⚡ Services aux collectivités",
+          15.5
+        ],
+        [
+          "🪨 Matériaux",
+          9.6
+        ],
+        [
+          "🩺 Santé",
+          6.6
+        ],
+        [
+          "📡 Communication",
+          5.4
+        ],
+        [
+          "🛢️ Énergie",
+          5.2
+        ],
+        [
+          "🧺 Consommation non cyclique",
+          3.6
+        ],
+        [
+          "🏠 Immobilier",
+          2.2
+        ],
+        [
+          "💻 Technologie",
+          1.4
+        ]
+      ],
+      "sectorClassification": "GICS",
+      "markets": "Zone euro, pays de domiciliation des entreprises",
+      "topWeight": 37.1,
+      "holdings": [],
+      "source": {
+        "label": "S&P DJI, fiche officielle de l’indice au 30/09/2026, pages 4–5",
+        "url": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=5475610",
+        "checkedAt": "2026-10-04"
+      },
+      "provenance": "Fiche officielle S&P DJI, variante Euro High Yield Dividend Aristocrats sans filtre Screened : 40 constituants, pays de domiciliation (page 5), secteurs GICS et poids des dix premières lignes (page 4). Graphique sectoriel contrôlé visuellement. Les poids géographiques et sectoriels totalisent chacun 99,9 % après arrondis au dixième. La composition est indépendante du type de rendement ; les performances nettes restent issues du registre de rendements commun."
+    }
   }
 };

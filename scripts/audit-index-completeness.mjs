@@ -3,7 +3,7 @@ import { FAMILIES } from '../src/data/index-comparisons.js'
 import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js'
 import { completeIndexAllocation, getIndexComparisonComposition, summarizeIndexAllocation } from '../src/data/index-comparison-composition.js'
 import { buildTweetText } from '../src/pages/index-comparator/lib.js'
-const seen = new Set(), gaps = []
+const seen = new Set()
 for (const family of FAMILIES) {
   const rows = getIndexComparisonPerformance(family), tweet = buildTweetText(family)
   for (const [i, index] of family.indices.entries()) {
@@ -15,13 +15,7 @@ for (const family of FAMILIES) {
     seen.add(facts.index)
     const composition = getIndexComparisonComposition(index)
     const missing = ['countries', 'sectors'].filter(field => !composition?.[field]?.length)
-    if (missing.length) {
-      gaps.push(`${facts.index}: ${missing.join(', ')}`)
-      // Lacune explicite, jamais remplacée par la variante Screened ni par le portefeuille SPYW.
-      assert.equal(facts.index, 'S&P Euro Dividend Aristocrats')
-      assert(tweet.includes('non documentée'))
-      continue
-    }
+    assert.equal(missing.length, 0, `${facts.index}: ${missing.join(', ')} non documentés`)
     assert(facts.asOf && Number.isInteger(facts.constituents) && facts.constituents > 0)
     for (const field of ['countries', 'sectors']) {
       assert(facts[field].every(([label, value]) => label && Number.isFinite(value) && value >= 0 && value <= 100))
@@ -37,6 +31,14 @@ assert.deepEqual(summarizeIndexAllocation([['Autres', 40], ['France', 20], ['USA
 assert.deepEqual(summarizeIndexAllocation([['USA', 100]]), [['USA', 100]])
 assert.deepEqual(summarizeIndexAllocation(undefined), [])
 assert.deepEqual(completeIndexAllocation([['Finance', 40], ['Industrie', 30]], 'Autres secteurs'), [['Finance', 40], ['Industrie', 30], ['Autres secteurs', 30]])
-console.log(`${FAMILIES.length} familles ; ${seen.size - gaps.length}/${seen.size} indices avec pays, secteurs, date et comptage ; 2023–2025 complets pour chaque indice/actif.`)
-for (const gap of gaps) console.warn(`À sourcer : ${gap}`)
-if (process.argv.includes('--strict') && gaps.length) process.exitCode = 1
+const euro = FAMILIES.find(f => f.id === 'dividendes-pea').indices[1]
+assert.equal(euro.indexFacts.index, 'S&P Euro High Yield Dividend Aristocrats')
+assert.equal(euro.indexFacts.constituents, 40)
+assert.equal(euro.indexFacts.asOf, '2026-09-30')
+assert.equal(euro.indexFacts.countries.length, 9)
+assert.equal(euro.indexFacts.sectors.length, 10)
+assert(euro.indexFacts.source.url.includes('indexId=5475610'))
+assert.deepEqual(getIndexComparisonComposition(euro).countries, [['🇩🇪 Allemagne', 21], ['🇮🇹 Italie', 19.6], ['🇫🇮 Finlande', 17.2], ['Autres pays', 42.2]])
+assert.deepEqual(getIndexComparisonComposition(euro).sectors, [['🏦 Finance', 29], ['🏭 Industrie', 21.4], ['⚡ Services aux collectivités', 15.5], ['Autres secteurs', 34.1]])
+assert.equal(seen.size, 35)
+console.log(`${FAMILIES.length} familles ; ${seen.size}/${seen.size} indices avec pays, secteurs, date et comptage ; 2023–2025 complets pour chaque indice/actif.`)
