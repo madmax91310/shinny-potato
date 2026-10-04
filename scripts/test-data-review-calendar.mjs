@@ -40,7 +40,7 @@ try {
   await page.getByRole('button', { name: /^Trimestriel/ }).click()
   const quarterlyCount = reviewCalendar(report).filter(item => item.cadence === 'quarterly').length
   await page.waitForFunction(count => document.querySelectorAll('.dr-item').length === count, quarterlyCount)
-  assert.equal(await page.getByRole('link', { name: 'Ouvrir le portefeuille investisseur' }).count(), 3)
+  assert.equal(await page.getByRole('link', { name: 'Ouvrir le portefeuille investisseur' }).count(), investorCount)
   await page.getByLabel('Temporalité', { exact: true }).selectOption('event')
   await page.waitForFunction(() => document.querySelectorAll('.dr-item').length === 3)
   assert.equal(await page.getByText('Fin de l’offre', { exact: true }).count(), 3)

@@ -21,7 +21,7 @@ def portfolio(period, weight=1):
 class RefreshTests(unittest.TestCase):
     def test_all_existing_investors_are_tracked(self):
         self.assertEqual(set(module.MANAGERS), {'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
-                         'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman'})
+                         'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman', 'terry-smith', 'pabrai', 'hohn'})
 
     def test_options_keep_declared_weight_denominator(self):
         rows = [{'security': {'name': str(i), 'ticker': str(i)}, 'position_type': kind,
@@ -34,6 +34,11 @@ class RefreshTests(unittest.TestCase):
         holdings = result['data']['snapshot']['holdings']
         self.assertEqual([row['putCall'] for row in holdings], [None, None, 'CALL', 'PUT'])
         self.assertEqual(sum(row['weight'] for row in holdings if row['putCall'] is None), .7)
+
+    def test_ui_and_collector_track_the_same_managers(self):
+        import re
+        ui = (module.ROOT / 'src/pages/investor-portfolio/data.js').read_text().split('export const ATTRIBUTION')[0]
+        self.assertEqual(set(module.MANAGERS), set(re.findall(r"\['([^']+)',", ui)))
 
     def test_ackman_uses_fresher_validated_alternate(self):
         fund = {'filing': {'report_period_on': '2026-03-31'}}

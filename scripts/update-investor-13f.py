@@ -24,6 +24,9 @@ MANAGERS = {
     'li-lu': ('himalaya-capital-management', 'Li Lu', 'Himalaya Capital Management LLC'),
     'gates-trust': ('gates-foundation-trust', 'Gates Foundation Trust', 'Gates Foundation Trust'),
     'klarman': ('baupost-group', 'Seth Klarman', 'Baupost Group LLC'),
+    'terry-smith': ('fundsmith', 'Terry Smith', 'Fundsmith LLP'),
+    'pabrai': ('pabrai-investment-funds', 'Mohnish Pabrai', 'Dalal Street LLC'),
+    'hohn': ('tci-fund-management', 'Christopher Hohn', 'TCI Fund Management Ltd'),
 }
 _last_request_at = 0
 MAX_RATE_LIMIT_RETRIES = 3

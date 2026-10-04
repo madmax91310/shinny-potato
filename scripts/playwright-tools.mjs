@@ -1009,15 +1009,15 @@ async function testInvestorIntroductions(page) {
   ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes('Ma présentation personnalisée.');
   ok &&= (await page.locator('.ip-bio').innerText()) === 'Ma présentation personnalisée.';
   await page.getByRole('button', { name: 'Rétablir la présentation' }).click();
-  ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes(investorIntroduction('klarman'));
+  ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes(investorIntroduction(INVESTORS.at(-1)[0]));
   await page.getByLabel('Choisir un investisseur').selectOption('cathie-wood');
   await page.waitForFunction(() => document.querySelector('#ip-intro')?.value.startsWith('Cathie Wood'));
-  ok &&= !(await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes('Seth Klarman');
+  ok &&= !(await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes(investorIntroduction(INVESTORS.at(-1)[0]));
   await page.setViewportSize({ width: 390, height: 844 });
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.unroute('**/data/investors/*.json');
-  record('Portefeuille d’investisseur', ok, '11 présentations et tweets synchronisés, modification, réinitialisation, changement de profil et mobile');
+  record('Portefeuille d’investisseur', ok, `${INVESTORS.length} présentations et tweets synchronisés, modification, réinitialisation, changement de profil et mobile`);
 }
 
 async function testDataReuse(page) {

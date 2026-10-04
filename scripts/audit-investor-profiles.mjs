@@ -31,7 +31,7 @@ for (const [slug] of INVESTORS) {
   assert.equal(new URL(portfolio.sourceUrl).hostname, slug === 'ackman' ? 'tracefour.com' : 'foliofact.com')
   assert(buildTweet(portfolio).includes(investorIntroduction(slug)))
 }
-console.log('Les onze instantanés 13F locaux sont présents et exploitables.')
+console.log(`${INVESTORS.length} instantanés 13F locaux sont présents et exploitables.`)
 
 const splitClasses = [
   { issuerName: 'Alphabet Inc.', ticker: 'GOOGL', weight: .25 },

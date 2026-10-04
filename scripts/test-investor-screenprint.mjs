@@ -54,5 +54,5 @@ try {
   await page.getByRole('tab',{name:'Image',exact:true}).click()
   await page.getByRole('img',{name:'Portefeuille David Tepper',exact:true}).waitFor()
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true)
-  console.log('11 vrais portraits distincts, positions, poids, dates, absence de chevauchement, export asynchrone, reprise après erreur et mobile vérifiés dans Chromium.')
+  console.log(`${INVESTORS.length} vrais portraits distincts, positions, poids, dates, absence de chevauchement, export asynchrone, reprise après erreur et mobile vérifiés dans Chromium.`)
 }finally{await browser?.close();server.kill('SIGTERM')}
