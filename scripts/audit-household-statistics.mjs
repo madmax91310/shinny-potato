@@ -14,8 +14,11 @@ for (const record of records) {
   if (record.unit === '%') assert(record.value <= 100)
   const tweet = buildHouseholdTweet(record)
   assert(!/\{\w+\}/.test(tweet), 'Variable non remplacée')
-  assert(tweet.includes(sources[record.source].url) && tweet.includes(record.referencePeriod.toLowerCase()))
-  assert(!buildHouseholdTweet(record, { includeUrl: false }).includes('https://'))
+  // The public tweet footer was removed; evidence remains in the data catalogue.
+  assert(record.metadata.sourceUrls.includes(sources[record.source].url))
+  assert(record.metadata.note.includes(record.referencePeriod))
+  assert(tweet.includes(record.question))
+  assert(!tweet.includes('https://') && !tweet.includes('Source :'))
   for (const grid of getHouseholdVisual(record)) assert(Number.isInteger(grid.count) && grid.count >= 0 && grid.count <= 100)
   const entry = DATA_CATALOG.find(r => r.id === `household:${record.id}`)
   assert(entry && entry.fields[0].value === record)
