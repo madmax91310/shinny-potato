@@ -55,7 +55,11 @@ try {
       for (const id of ASSET_ORDER) {
         const years = getAnnualReturnStartYears(id), year = years.includes(2020) ? 2020 : years[0]
         const words = await check(`performance-${id}`, () => renderPerformanceImage({ mode: 'simple', assetId: id, year }), ['msciWorld', 'or', 'apple', 'bitcoin', 'silver'].includes(id))
-        const total = cumulativePerformance(getAnnualReturns(id, year))
+        const rows = getAnnualReturns(id, year)
+        if (words.some(word => /PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(word))) throw new Error('Generic series heading returned')
+        if (!words.some(word => word.endsWith(`de ${rows[0].year - 1} à ${rows.at(-1).year}`))) throw new Error('Title must match the actual period')
+        if (!words.includes(`Fin ${rows[0].year - 1} → Fin ${rows.at(-1).year}`) || !words.includes(`EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
+        const total = cumulativePerformance(rows)
         const percent = `${total >= 0 ? '+' : '−'}${Math.abs(total).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
         if (!words.includes(percent)) throw new Error('Changed performance calculation')
       }

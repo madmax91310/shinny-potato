@@ -63,7 +63,7 @@ try {
     const { renderPortfolioImage } = await module('pages/portfolio-generator/canvasImage.js')
     await check('generator', () => renderPortfolioImage(generatePortfolio([], 'equilibre', 'generaliste')), (words, text) => !words.some(word => /100\s*%/.test(word)) && !/NON PRÉDICTIF|Répartition de|portefeuille|COMPOSITION|…/.test(text))
     const { renderPerformanceImage } = await module('pages/tweet-midi/performanceImage.js')
-    await check('performance', () => renderPerformanceImage({mode:'simple', assetId:'msciWorld',year:2016}), (words,text) => !/SÉRIE|Hausse|Baisse/.test(text) && words.filter(word => word === 'PERFORMANCE CUMULÉE').length === 1)
+    await check('performance', () => renderPerformanceImage({mode:'simple', assetId:'msciWorld',year:2016}), (words,text) => !/SÉRIE|Hausse|Baisse|PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(text) && words.some(word => /^Le MSCI World de 2015 à \d{4}$/.test(word)))
     const { renderAnniversaryImage } = await module('pages/tweet-midi/anniversaryImage.js')
     await check('anniversary', () => renderAnniversaryImage({mode:'simple',assetId:'bitcoin',yearsBack:5}, '123456'), (words,text) => !text.includes('ÉVOLUTION DU COURS') && words.filter(word => word.includes('123')).length === 1)
     const { renderInvestmentImage } = await module('pages/investment-calculator/imageExport.js')
