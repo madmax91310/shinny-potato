@@ -13,6 +13,6 @@ for (const sheet of SHEETS) {
   if (!sheet.returns?.length || sheet.returns.some(([year, value]) => year < 2021 || year > 2025 || !Number.isFinite(value))) throw new Error(`${sheet.id}: rendements incomplets`)
   if (sheet.performance.kind === 'ETF' && (!sheet.isin || !text.includes(`performances de l’ETF ${sheet.isin}`))) throw new Error(`${sheet.id}: confusion indice/ETF`)
   if (sheet.performance.kind === 'indice' && text.includes('performances de l’ETF')) throw new Error(`${sheet.id}: fausse attribution des rendements`)
-  if (!text.includes(sheet.insight) || !text.includes(sheet.takeaway)) throw new Error(`${sheet.id}: texte incomplet`)
+  if ((sheet.id !== 'world' && !text.includes(sheet.insight.replace(' au 31 août 2026', ''))) || !text.includes(sheet.takeaway)) throw new Error(`${sheet.id}: texte incomplet`)
   console.log(`${sheet.id}: pays ${countries.toFixed(2)} %, secteurs ${sectors.toFixed(2)} %, ${text.length} caractères`)
 }

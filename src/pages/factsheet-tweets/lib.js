@@ -10,12 +10,12 @@ const questions = {
   nikkei225: 'Tu connaissais le poids des trois premières valeurs du Nikkei 225 ?',
   acwi: 'Tu connaissais la place des États-Unis dans le MSCI ACWI ?',
   'ftse-all-world': 'Tu pensais que les États-Unis pesaient autant dans le FTSE All-World ?',
-  'world-small-cap': 'Tu connaissais cet indice de petites capitalisations ?',
+  'world-small-cap': 'Tu ajouterais ces petites capitalisations à un ETF World classique ?',
   'world-ex-usa': 'Tu envisagerais un indice World sans les États-Unis ?',
-  world: 'Tu connaissais le poids des dix premières entreprises du MSCI World ?',
+  world: 'Quelle partie de cette répartition te surprend le plus ?',
   stoxx600: 'Tu connaissais cette répartition du STOXX Europe 600 ?',
   eurostoxx50: 'Tu pensais que l’EURO STOXX 50 était aussi concentré ?',
-  mscieurope: 'Tu connaissais cet indice ?',
+  mscieurope: 'Tu imaginais que la finance prenait autant de place dans le MSCI Europe ?',
   'em-esg': 'Tu connaissais la concentration de cet indice émergent ESG ?',
   'sp500-pea': 'Tu connaissais le poids de la technologie dans le S&P 500 ?',
   'nasdaq-pea': 'Tu pensais que le Nasdaq 100 était aussi concentré ?',
@@ -25,26 +25,32 @@ export function buildFactsheetTweet(sheet) {
   const lines = [
     sheet.intro,
     '',
-    `${sheet.index} en chiffres 👇`,
+    `📊 ${sheet.index} en chiffres`,
     '',
     `📊 ${(sheet.constituents ?? sheet.indexFacts.targetConstituents).toLocaleString('fr-FR') + (sheet.constituents === null ? ' sociétés visées' : ' valeurs')}`,
     `🌍 ${sheet.markets}`,
   ]
   if (sheet.marketCap) lines.push(`💰 ${sheet.marketCap}`)
   if (sheet.isin) lines.push(`📍 ETF cité : ${sheet.isin}`)
-  lines.push('', 'La répartition géographique de l’indice :')
+  lines.push('', '🌍 La répartition géographique de l’indice :')
   for (const [name, value] of sheet.countries) lines.push(`${name} → ${weight(value)}`)
-  lines.push('', sheet.insight, '', sheet.sectors.length === 0 ? 'La pondération :' : sheet.sectors.reduce((sum, [, value]) => sum + value, 0) < 99 ? 'Les principaux secteurs :' : 'Les secteurs :')
+  if (sheet.id === 'world') lines.push('', `Sur 100 € investis dans un ETF qui suit cet indice, environ ${Math.round(sheet.countries[0][1])} € correspondent donc aux entreprises américaines.`)
+  else lines.push('', sheet.insight.replace(' au 31 août 2026', ''))
+  lines.push('', sheet.sectors.length === 0 ? '⚖️ La pondération :' : sheet.sectors.reduce((sum, [, value]) => sum + value, 0) < 99 ? '🧩 Les principaux secteurs :' : '🧩 Les secteurs :')
   for (const [name, value] of sheet.sectors) lines.push(`${name} → ${weight(value)}`)
-  if (!sheet.methodologyPanels) lines.push('', `Les principales entreprises de l’indice (au ${sheet.snapshot.split(' (')[0].split(' · ')[0]}) :`)
+  if (!sheet.methodologyPanels) lines.push('', '🏢 Les principales entreprises de l’indice :')
   for (const [title, text] of sheet.methodologyPanels ?? []) lines.push('', title + ' :', text)
   for (const [name, value] of sheet.holdings) lines.push(`• ${name} : ${weight(value)}`)
-  lines.push('', `Les performances ${sheet.performance.kind === 'ETF' ? `de l’ETF ${sheet.isin}` : `de l’indice ${sheet.index}`} :`)
+  if (sheet.id === 'world') {
+    const topWeight = sheet.holdings.reduce((sum, [, value]) => sum + value, 0)
+    lines.push('', `Ces dix lignes représentent ensemble ${weight(topWeight)} de l’indice. Alphabet apparaît deux fois, avec deux catégories d’actions.`)
+  }
+  lines.push('', `📈 Les performances ${sheet.performance.kind === 'ETF' ? `de l’ETF ${sheet.isin}` : `de l’indice ${sheet.index}`} :`)
   lines.push(`${sheet.performance.detail}.`)
   for (const [year, value] of sheet.returns ?? []) lines.push(`${value >= 0 ? '📈' : '📉'} ${year} : ${pct(value)}`)
-  if (sheet.performance.tenYear != null) lines.push(`Sur dix ans, au ${sheet.performance.date} : ${pct(sheet.performance.tenYear)} par an pour l’indice.`)
-  if (sheet.performance.annualizedFiveYear != null) lines.push(`Sur cinq ans, au ${sheet.performance.date} : ${pct(sheet.performance.annualizedFiveYear)} par an pour l’indice.`)
-  if (sheet.performance.historyNote) lines.push('', `⚠️ ${sheet.performance.historyNote}`)
-  lines.push('', sheet.takeaway, '', `💬 ${questions[sheet.id]}`, '', '⚠️ Pas un conseil financier.')
+  if (sheet.performance.tenYear != null) lines.push(`Sur dix ans : ${pct(sheet.performance.tenYear)} par an pour l’indice.`)
+  if (sheet.performance.annualizedFiveYear != null) lines.push(`Sur cinq ans : ${pct(sheet.performance.annualizedFiveYear)} par an pour l’indice.`)
+  if (sheet.performance.historyNote) lines.push('', `⚠️ ${sheet.performance.historyNote.replace('Les poids sont ceux de l’indice au 31 août 2026 ; les rendements', 'Les rendements')}`)
+  lines.push('', '📌 Ce que ça signifie pour ton placement', sheet.takeaway, '', `💬 ${questions[sheet.id]}`, '', '⚠️ Pas un conseil financier.')
   return lines.join('\n')
 }
