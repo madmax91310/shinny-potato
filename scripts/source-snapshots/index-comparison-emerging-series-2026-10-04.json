@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-10-04",
+  "periodStart": "2023-01-01",
+  "periodEnd": "2025-12-31",
+  "confidence": "high",
+  "observations": [
+    {
+      "id": "msci-em-latin-america-selection",
+      "previous": {
+        "values": [
+          [
+            2023,
+            null
+          ],
+          [
+            2024,
+            null
+          ],
+          [
+            2025,
+            null
+          ]
+        ],
+        "currency": null
+      },
+      "values": [
+        [
+          2023,
+          27.39
+        ],
+        [
+          2024,
+          -29.4
+        ],
+        [
+          2025,
+          54.75
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "sourceUrls": [
+        "https://www.msci.com/indexes/index/750531/msci-latin-america-selection-20-35-capped-index",
+        "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
+        "https://www.msci.com/documents/10199/dfb0e559-3dfb-7485-9dd1-4fc46f311b28"
+      ],
+      "note": "Série annuelle de l’indice MSCI 750531, en USD, dividendes nets réinvestis. Le nom actuel et les rendements sont confirmés sur la page MSCI ; le PDF conserve l’ancien libellé ESG Leaders Select 5% Issuer Capped. La méthode 20/35 est documentée dans la méthodologie MSCI de mai 2025. Les chiffres EUR et la série de benchmarks successifs du fonds PALAT ne sont pas utilisés."
+    },
+    {
+      "id": "msci-em-emea-esg",
+      "previous": {
+        "values": [
+          [
+            2023,
+            null
+          ],
+          [
+            2024,
+            null
+          ],
+          [
+            2025,
+            null
+          ]
+        ],
+        "currency": null
+      },
+      "values": [
+        [
+          2023,
+          8.8
+        ],
+        [
+          2024,
+          6.96
+        ],
+        [
+          2025,
+          31.92
+        ]
+      ],
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "sourceUrls": [
+        "https://www.msci.com/documents/10199/255599/msci-em-emea-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
+        "https://www.msci.com/documents/10199/39939d5d-24c6-df4f-969c-dfdc3d076189"
+      ],
+      "note": "Table ANNUAL PERFORMANCE de MSCI, colonne EM EMEA Ex-Egypt ESG Broad CTB Select, rendements nets USD. Les URL gardent un ancien nom, mais le titre du document est celui de l’indice actuel. Les performances EUR du fonds PLEM ne sont pas utilisées."
+    }
+  ],
+  "documentHashes": [
+    {
+      "filename": "emea-certified",
+      "sha256": "4314360cb76717aa1ad8f6133fba6c5120be1bf5ead6092f5d97db396e20d522"
+    },
+    {
+      "filename": "latam-legacy-certified",
+      "sha256": "c929fde8751e86a3403c7206d6fa5852784efbb3035824683aa25ad3207f5e75"
+    },
+    {
+      "filename": "latam-methodology",
+      "sha256": "c2e2685be450a408fa703336e357446545b376a1d7df4c61f39aea572ef8fdbf"
+    },
+    {
+      "filename": "latam-annual-report",
+      "sha256": "8149b2bb5e6fb8609023992c5b7e52671a1b692bb8ad9a221effa3590b563f88"
+    }
+  ]
+}

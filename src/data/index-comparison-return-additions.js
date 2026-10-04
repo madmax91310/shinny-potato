@@ -897,32 +897,38 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
       "values": [
         [
           2023,
-          null
+          27.39
         ],
         [
           2024,
-          null
+          -29.4
         ],
         [
           2025,
-          null
+          54.75
         ]
       ],
       "performance": {
         "kind": "indice",
-        "detail": "MSCI EM Latin America Selection 20/35% Capped · devise à confirmer · série à confirmer",
+        "detail": "MSCI Latin America Selection 20/35 Capped · USD · dividendes nets réinvestis",
         "date": "Années calendaires 2023–2025"
       },
       "source": {
-        "label": "Source officielle · performances de l’indice ou de l’actif",
-        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF"
+        "label": "MSCI · série annuelle nette USD vérifiée le 04/10/2026",
+        "url": "https://www.msci.com/indexes/index/750531/msci-latin-america-selection-20-35-capped-index"
       },
-      "currency": null,
-      "method": "série à confirmer",
-      "note": "La fiche du fonds publie une ligne indice, mais sa devise et les éventuels changements de benchmark sur 2023–2025 ne sont pas suffisamment établis. Aucun chiffre publié dans le tweet.",
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "note": "Série annuelle de l’indice MSCI 750531, en USD, dividendes nets réinvestis. Le nom actuel et les rendements sont confirmés sur la page MSCI ; le PDF conserve l’ancien libellé ESG Leaders Select 5% Issuer Capped. La méthode 20/35 est documentée dans la méthodologie MSCI de mai 2025. Les chiffres EUR et la série de benchmarks successifs du fonds PALAT ne sont pas utilisés.",
       "checkedAt": "2026-10-04",
       "periodStart": "2023-01-01",
-      "periodEnd": "2025-12-31"
+      "periodEnd": "2025-12-31",
+      "sourceUrls": [
+        "https://www.msci.com/indexes/index/750531/msci-latin-america-selection-20-35-capped-index",
+        "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
+        "https://www.msci.com/documents/10199/dfb0e559-3dfb-7485-9dd1-4fc46f311b28"
+      ],
+      "confidence": "high"
     }
   },
   "msci-em-emea-esg": {
@@ -930,32 +936,37 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
       "values": [
         [
           2023,
-          null
+          8.8
         ],
         [
           2024,
-          null
+          6.96
         ],
         [
           2025,
-          null
+          31.92
         ]
       ],
       "performance": {
         "kind": "indice",
-        "detail": "MSCI EM EMEA ex-Egypt ESG Broad CTB Select · devise à confirmer · série à confirmer",
+        "detail": "MSCI EM EMEA ex-Egypt ESG Broad CTB Select · USD · dividendes nets réinvestis",
         "date": "Années calendaires 2023–2025"
       },
       "source": {
-        "label": "Source officielle · performances de l’indice ou de l’actif",
-        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF"
+        "label": "MSCI · série annuelle nette USD vérifiée le 04/10/2026",
+        "url": "https://www.msci.com/documents/10199/255599/msci-em-emea-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf"
       },
-      "currency": null,
-      "method": "série à confirmer",
-      "note": "La fiche du fonds publie une ligne indice, mais sa devise et les éventuels changements de benchmark sur 2023–2025 ne sont pas suffisamment établis. Aucun chiffre publié dans le tweet.",
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "note": "Table ANNUAL PERFORMANCE de MSCI, colonne EM EMEA Ex-Egypt ESG Broad CTB Select, rendements nets USD. Les URL gardent un ancien nom, mais le titre du document est celui de l’indice actuel. Les performances EUR du fonds PLEM ne sont pas utilisées.",
       "checkedAt": "2026-10-04",
       "periodStart": "2023-01-01",
-      "periodEnd": "2025-12-31"
+      "periodEnd": "2025-12-31",
+      "sourceUrls": [
+        "https://www.msci.com/documents/10199/255599/msci-em-emea-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
+        "https://www.msci.com/documents/10199/39939d5d-24c6-df4f-969c-dfdc3d076189"
+      ],
+      "confidence": "high"
     }
   },
   "bitcoin": {
