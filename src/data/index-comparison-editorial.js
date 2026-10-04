@@ -104,7 +104,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
     "exposures": [
       "L’indice MSCI EM ex-Egypt ESG Broad CTB Select te donne une exposition généraliste aux émergents, hors Égypte, avec des filtres ESG et climatiques.",
       "L’indice MSCI EM Asia Screened Select ex Thermal Coal se concentre sur les marchés émergents d’Asie. Tu laisses donc les autres régions de côté.",
-      "L’indice MSCI EM Latin America Selection 20/35% Capped va chercher des entreprises d’Amérique latine, avec une sélection et des plafonds de pondération.",
+      "L’indice MSCI Latin America Selection 20/35 Capped va chercher des entreprises d’Amérique latine, avec une sélection et des plafonds de pondération.",
       "Le MSCI India suit le marché indien. Ici, toute la ligne est tournée vers un seul pays.",
       "L’indice MSCI EM EMEA ex-Egypt ESG Broad CTB Select couvre l’Europe émergente, le Moyen-Orient et l’Afrique, hors Égypte, avec des filtres ESG et climatiques."
     ],

@@ -334,7 +334,7 @@ export const INDEX_RETURNS = {
 };
 for (const [id, history] of Object.entries(INDEX_COMPARISON_RETURN_ADDITIONS)) INDEX_RETURNS[id] = { ...INDEX_RETURNS[id], ...history };
 for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [asOf, series] of Object.entries(history)) {
-  series.metadata = normalizeEvidence({ url: series.source.url, asOf, checkedAt: series.checkedAt ?? (INDEX_FACTS[id]?.[asOf]?.source.url === series.source.url ? INDEX_FACTS[id]?.[asOf]?.metadata.checkedAt : null), periodStart: series.periodStart ?? '2021-01-01', periodEnd: series.periodEnd ?? '2025-12-31', scope: `${series.performance.kind === 'actif' ? 'Actif' : 'Indice'} ${id}`,
+  series.metadata = normalizeEvidence({ url: series.source.url, sourceUrls: series.sourceUrls, asOf, checkedAt: series.checkedAt ?? (INDEX_FACTS[id]?.[asOf]?.source.url === series.source.url ? INDEX_FACTS[id]?.[asOf]?.metadata.checkedAt : null), periodStart: series.periodStart ?? '2021-01-01', periodEnd: series.periodEnd ?? '2025-12-31', scope: `${series.performance.kind === 'actif' ? 'Actif' : 'Indice'} ${id}`,
     currency: series.currency ?? (/dollars|USD/.test(series.performance.detail) ? 'USD' : /euros|EUR/.test(series.performance.detail) ? 'EUR' : null),
     method: series.performance.detail, note: series.note ?? 'Série historique d’indice ; ne remplace jamais le rendement d’une part.' });
 }
