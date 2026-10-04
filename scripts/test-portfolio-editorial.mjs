@@ -272,7 +272,7 @@ for (const p of [example, ...PROFILES.map(profile => manual(base, profile.id))])
   const text = renderTweetText(p);
   for (const year of YEARS) assert(text.includes(`${year} : ${formatPerformance(p.perf[year])}`));
   assert(text.includes(`Performance annualisée (2020 à 2025) : ${formatPerformance(annualizedReturn(p.perf))} par an`));
-  assert(text.includes('rééquilibrage annuel, sans conversion des devises'));
+  assert.doesNotMatch(text, /Simulation avec rééquilibrage annuel, sans conversion des devises\./);
 }
 const alternating = Object.fromEntries(YEARS.map((year, index) => [year, index % 2 ? -10 : 10]));
 assert(Math.abs(annualizedReturn(alternating) - (Math.sqrt(.99) - 1) * 100) < 1e-10, 'Capitalisation géométrique, pas moyenne arithmétique');
