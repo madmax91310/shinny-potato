@@ -84,6 +84,14 @@ jobs:
       - run: node scripts/test-etf-art.mjs
       - run: node scripts/test-stylized-formats.mjs
       - run: node scripts/test-investment-emerald.mjs
+      - run: node scripts/test-duel-titanium.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: duel-visual-checks
+          path: test-artifacts/duel-titanium
+          if-no-files-found: ignore
+          retention-days: 7
       - uses: actions/upload-artifact@v4
         if: always()
         with:

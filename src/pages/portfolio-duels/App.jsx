@@ -61,6 +61,8 @@ export default function App() {
   const [right, setRight] = useState(initialRight)
   const [generated, setGenerated] = useState(() => generateDuel())
   const [copyStatus, setCopyStatus] = useState('')
+  const [imageStatus, setImageStatus] = useState('')
+  const [imageError, setImageError] = useState('')
   const lastIndex = useRef(0)
   let manual = null
   let error = ''
@@ -95,13 +97,17 @@ export default function App() {
     setCopyStatus(ok ? 'Copié !' : 'Sélectionne et copie le texte ci-dessous.')
   }
 
-  function downloadImage() {
-    const link = document.createElement('a')
-    link.href = renderDuelImage(duel)
-    link.download = `duel-${duel.id}.png`
-    document.body.append(link)
-    link.click()
-    link.remove()
+  async function downloadImage() {
+    if (!duel || imageStatus === 'loading') return
+    setImageStatus('loading'); setImageError('')
+    try {
+      const url = await renderDuelImage(duel)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `duel-${duel.id}.png`
+      document.body.append(link); link.click(); link.remove()
+    } catch (problem) { setImageError(problem.message || 'Impossible de préparer le visuel. Réessaie.') }
+    finally { setImageStatus('') }
   }
 
   return (
@@ -157,7 +163,8 @@ export default function App() {
 
       <WorkspaceActions>
         <Button type="button" onClick={copyTweet}>📋 Copier le texte</Button>
-        <Button type="button" variant="secondary" onClick={downloadImage}>🖼️ Télécharger l’image PNG</Button>
+        <Button type="button" variant="secondary" onClick={downloadImage} disabled={imageStatus === 'loading'}>{imageStatus === 'loading' ? 'Préparation de l’image…' : '🖼️ Télécharger l’image PNG'}</Button>
+        {imageError && <span role="alert">{imageError}</span>}
         {copyStatus && <span role="status">{copyStatus}</span>}
       </WorkspaceActions>
       <label className="pd-text-label" htmlFor="pd-tweet">Texte prêt à publier</label>

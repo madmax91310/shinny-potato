@@ -1,122 +1,123 @@
 import { YEARS } from '../../data/portfolio-assets.js'
-import { formatCapital, formatPercent, ROLES } from './lib.js'
+import { formatCapital, formatPercent } from './lib.js'
+import { loadEditorialFont } from '../tweet-midi/anniversaryArt.js'
+import { loadDuelArt, drawDuelArt } from './visualIdentity.js'
 
-const W = 1080
-const NAVY = '#132830'
-const PAPER = '#F4F0E9'
-const INK = '#152C33'
-const MUTED = '#627078'
-const RULE = '#D5D9D3'
-const A = '#136E66'
-const B = '#AF5943'
-
-function write(ctx, value, x, y, size, color = INK, weight = 700, align = 'left') {
-  ctx.fillStyle = color
-  ctx.font = `${weight} ${size}px Arial, sans-serif`
-  ctx.textAlign = align
-  ctx.textBaseline = 'top'
-  ctx.fillText(String(value), x, y)
-  ctx.textAlign = 'left'
+const W = 1600, H = 1380, GOLD = '#e5c48b', INK = '#fff2d7', MUTED = '#ccd0cb'
+const CARD_W = 665, CARD_Y = 142, CARD_H = 884
+function text(ctx, value, x, y, size, color = INK, editorial = false, align = 'left') {
+  ctx.font = editorial ? `500 ${size}px ExportEditorial, Georgia, serif` : `600 ${size}px Arial, sans-serif`
+  ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = 'top'
+  ctx.fillText(String(value), x, y); ctx.textAlign = 'left'
 }
-
-function fit(ctx, value, x, y, size, width, color = INK, weight = 700, align = 'left', min = 16) {
-  let font = size
-  while (font > min) {
-    ctx.font = `${weight} ${font}px Arial, sans-serif`
-    if (ctx.measureText(String(value)).width <= width) break
-    font--
-  }
-  let label = String(value)
-  while (ctx.measureText(label).width > width && label.length > 2) label = `${label.slice(0, -2).trimEnd()}…`
-  write(ctx, label, x, y, font, color, weight, align)
-}
-
-function rule(ctx, x, y, width, color = RULE) {
-  ctx.fillStyle = color
-  ctx.fillRect(x, y, width, 2)
-}
-
-function title(ctx, value) {
-  // Deux lignes au maximum : les compositions longues restent lisibles sans troncature.
-  let lines
-  let size = 52
-  do {
-    ctx.font = `700 ${size}px Arial, sans-serif`
-    lines = ['']
-    for (const word of value.split(' ')) {
-      const last = lines.length - 1
-      const next = [lines[last], word].filter(Boolean).join(' ')
-      if (lines[last] && ctx.measureText(next).width > 1000) lines.push(word)
-      else lines[last] = next
-    }
-    if (lines.length <= 2) break
+function fitted(ctx, value, x, y, size, width, color = INK, editorial = false, align = 'left') {
+  while (size > 22) {
+    ctx.font = editorial ? `500 ${size}px ExportEditorial, Georgia, serif` : `600 ${size}px Arial, sans-serif`
+    if (ctx.measureText(value).width <= width) break
     size--
-  } while (size > 24)
-  lines.forEach((line, i) => write(ctx, line, 540, 112 + i * (size + 5), size, PAPER, 700, 'center'))
+  }
+  if (ctx.measureText(value).width > width) throw new Error(`Texte du duel trop long : ${value}`)
+  text(ctx, value, x, y, size, color, editorial, align)
 }
-
-function portfolio(ctx, item, letter, x, currency, accent, extra) {
-  ctx.fillStyle = '#FFFFFF'
-  ctx.fillRect(x, 312, 480, 535 + extra)
-  ctx.fillStyle = accent
-  ctx.fillRect(x, 312, 480, 9)
-  ctx.fillRect(x + 27, 340, 70, 70)
-  write(ctx, letter, x + 62, 346, 52, '#FFFFFF', 800, 'center')
-  fit(ctx, item.name.toUpperCase(), x + 116, 357, 33, 340)
-  write(ctx, 'VALEUR FINALE', x + 28, 454, 20, MUTED)
-  fit(ctx, formatCapital(item.final, currency), x + 28, 483, 66, 440, accent, 700, 'left', 40)
-  rule(ctx, x + 28, 582, 424)
-  write(ctx, 'ALLOCATION', x + 28, 608, 19, MUTED)
+function label(ctx, value, x, y, width) {
+  // Up to two lines, without ellipses: all selected assets remain identifiable.
+  for (let size = 37; size >= 26; size--) {
+    ctx.font = `500 ${size}px ExportEditorial, Georgia, serif`
+    const lines = ['']
+    for (const word of value.split(' ')) {
+      const i = lines.length - 1, next = [lines[i], word].filter(Boolean).join(' ')
+      if (lines[i] && ctx.measureText(next).width > width) lines.push(word)
+      else lines[i] = next
+    }
+    if (lines.length <= 2 && lines.every(line => ctx.measureText(line).width <= width)) {
+      lines.forEach((line, i) => text(ctx, line, x, y + i * (size + 5), size, INK, true))
+      return
+    }
+  }
+  throw new Error(`Nom du support trop long : ${value}`)
+}
+function rule(ctx, x, y, width, color = '#957e57') {
+  ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + width, y); ctx.stroke()
+}
+function surface(ctx, x, accent, dark) {
+  // The plate is drawn independently of its data: engraved edges, metal grain,
+  // extrusion and studio shadow remain identical for every composition.
+  ctx.save(); ctx.shadowColor = '#000'; ctx.shadowBlur = 38; ctx.shadowOffsetY = 18
+  const edge = ctx.createLinearGradient(x, CARD_Y, x + CARD_W, CARD_Y + CARD_H)
+  edge.addColorStop(0, '#fff0cc'); edge.addColorStop(.25, accent); edge.addColorStop(.6, '#4b473e'); edge.addColorStop(1, GOLD)
+  ctx.fillStyle = edge; ctx.beginPath(); ctx.roundRect(x - 7, CARD_Y - 7, CARD_W + 14, CARD_H + 19, 26); ctx.fill(); ctx.restore()
+  const face = ctx.createLinearGradient(x, CARD_Y, x + CARD_W, CARD_Y + CARD_H)
+  face.addColorStop(0, dark ? '#343b3d' : '#555d60'); face.addColorStop(.2, dark ? '#19232a' : '#303c43')
+  face.addColorStop(.52, '#101d29'); face.addColorStop(.8, dark ? '#1b2329' : '#3c464c'); face.addColorStop(1, '#162029')
+  ctx.fillStyle = face; ctx.beginPath(); ctx.roundRect(x, CARD_Y, CARD_W, CARD_H, 22); ctx.fill()
+  ctx.save(); ctx.clip()
+  for (let y = CARD_Y; y < CARD_Y + CARD_H; y += 3) {
+    ctx.strokeStyle = y % 9 === 0 ? 'rgba(237,230,205,.045)' : 'rgba(0,0,0,.045)'
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + CARD_W, y - 3); ctx.stroke()
+  }
+  ctx.restore(); ctx.strokeStyle = accent; ctx.lineWidth = 2
+  ctx.beginPath(); ctx.roundRect(x + 10, CARD_Y + 10, CARD_W - 20, CARD_H - 20, 15); ctx.stroke()
+}
+function portfolio(ctx, item, images, letter, x, currency, accent, dark) {
+  surface(ctx, x, accent, dark)
+  text(ctx, letter, x + 27, CARD_Y + 24, 27, accent)
+  const count = item.assets.length, galleryW = CARD_W - 70, gap = 8, cellW = (galleryW - (count - 1) * gap) / count
+  images.forEach((image, i) => drawDuelArt(ctx, image, x + 35 + i * (cellW + gap), 190, cellW, 240))
+  rule(ctx, x + 35, 425, CARD_W - 70)
+  const top = 449, rowHeight = 88
   item.assets.forEach((asset, i) => {
-    const y = 651 + i * 75
-    fit(ctx, `${asset.pct} %`, x + 28, y + 13, 35, 120, accent)
-    write(ctx, ROLES[asset.role].toUpperCase(), x + 170, y, 15, MUTED)
-    fit(ctx, asset.label, x + 170, y + 24, 26, 275, INK, 700, 'left', 18)
-    rule(ctx, x + 28, y + 55, 424, RULE)
-    ctx.fillStyle = accent
-    ctx.fillRect(x + 28, y + 55, 424 * asset.pct / 100, 7)
+    const y = top + i * rowHeight
+    // Same ordered asset on the plate and in the gallery above it.
+    fitted(ctx, `${asset.pct} %`, x + CARD_W - 35, y + 5, 40, 130, accent, true, 'right')
+    label(ctx, asset.label, x + 35, y, CARD_W - 220)
   })
+  rule(ctx, x + 35, 720, CARD_W - 70)
+  text(ctx, 'Capital final', x + CARD_W / 2, 740, 29, MUTED, true, 'center')
+  fitted(ctx, formatCapital(item.final, currency), x + CARD_W / 2, 783, 86, CARD_W - 75, GOLD, true, 'center')
+  rule(ctx, x + 35, 887, CARD_W - 70)
+  text(ctx, 'Performance cumulée', x + CARD_W / 2, 902, 27, MUTED, true, 'center')
+  const performance = (item.final / 10000 - 1) * 100
+  fitted(ctx, formatPercent(performance), x + CARD_W / 2, 943, 66, CARD_W - 75, performance < 0 ? '#ffb09c' : '#b3edcc', true, 'center')
 }
-
-export function renderDuelImage(duel) {
+export async function renderDuelImage(duel) {
+  if (!duel) throw new Error('Choisis deux portefeuilles avant de préparer l’image.')
   const years = duel.years ?? YEARS
-  const extra = Math.max(0, Math.max(duel.a.assets.length, duel.b.assets.length) - 2) * 75
-  const height = 1300 + extra
-  const canvas = document.createElement('canvas')
-  canvas.width = W * 2
-  canvas.height = height * 2
+  const [aImages, bImages] = await Promise.all([
+    Promise.all(duel.a.assets.map(loadDuelArt)), Promise.all(duel.b.assets.map(loadDuelArt)), loadEditorialFont(),
+  ])
+  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
   const ctx = canvas.getContext('2d')
-  ctx.scale(2, 2)
-  ctx.fillStyle = PAPER
-  ctx.fillRect(0, 0, W, height)
-
-  ctx.fillStyle = NAVY
-  ctx.fillRect(0, 0, W, 280)
-  write(ctx, 'ÉPARGNANT LIBRE', 540, 28, 27, PAPER, 700, 'center')
-  title(ctx, duel.title.toUpperCase().replace(' OU ', '  VS  ').replace(' ?', ''))
+  const backdrop = ctx.createLinearGradient(0, 0, W, H)
+  backdrop.addColorStop(0, '#16232b'); backdrop.addColorStop(.45, '#050d15'); backdrop.addColorStop(1, '#29302e')
+  ctx.fillStyle = backdrop; ctx.fillRect(0, 0, W, H)
+  const glow = ctx.createRadialGradient(1260, 0, 0, 1260, 0, 1100)
+  glow.addColorStop(0, 'rgba(221,175,88,.2)'); glow.addColorStop(1, 'transparent')
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H)
+  // A sober plinth joins the cards without giving either side a winner's pedestal.
+  const floor = ctx.createLinearGradient(0, 995, 0, 1090)
+  floor.addColorStop(0, '#777063'); floor.addColorStop(.12, '#232b2e'); floor.addColorStop(1, '#09131c')
+  ctx.fillStyle = floor; ctx.fillRect(35, 1012, W - 70, 82)
   const symbol = duel.currency === 'USD' ? '$' : '€'
-  write(ctx, `10 000 ${symbol} investis en ${years[0]}  ·  valeur fin ${years.at(-1)}`, 540, 236, 27, '#DCE7E2', 400, 'center')
-
-  portfolio(ctx, duel.a, 'A', 50, duel.currency, A, extra)
-  portfolio(ctx, duel.b, 'B', 550, duel.currency, B, extra)
-
-  ctx.fillStyle = NAVY
-  ctx.fillRect(50, 872 + extra, 980, 95)
-  write(ctx, 'ÉCART À L’ARRIVÉE', 78, 890 + extra, 19, '#B7D2CD')
+  text(ctx, `Début ${years[0]} → Fin ${years.at(-1)}`, W / 2, 30, 39, INK, true, 'center')
+  text(ctx, `10 000 ${symbol} au départ · Sans versement supplémentaire`, W / 2, 85, 27, MUTED, false, 'center')
+  portfolio(ctx, duel.a, aImages, 'A', 70, duel.currency, '#9dd9bb', false)
+  portfolio(ctx, duel.b, bImages, 'B', 865, duel.currency, GOLD, true)
+  text(ctx, 'VS', W / 2, 562, 40, GOLD, true, 'center')
   const difference = duel.b.final - duel.a.final
-  const winner = difference >= 0 ? 'B' : 'A'
-  fit(ctx, Math.abs(difference) < .5 ? 'Même montant à l’euro près' : `+${formatCapital(Math.abs(difference), duel.currency)} pour ${winner}`, 78, 917 + extra, 36, 925, PAPER)
-
-  write(ctx, 'LE PARCOURS, ANNÉE PAR ANNÉE', 50, 996 + extra, 30)
-  rule(ctx, 50, 1041 + extra, 980)
+  const gap = Math.abs(difference) < .5 ? 'Même capital final à l’euro près'
+    : `${formatCapital(Math.abs(difference), duel.currency)} de plus pour ${difference > 0 ? 'B' : 'A'}`
+  fitted(ctx, gap, W / 2, 1050, 34, W - 150, GOLD, true, 'center')
+  rule(ctx, 70, 1108, W - 140)
+  const colW = (W - 140) / years.length
   years.forEach((year, i) => {
-    const x = 50 + i % 3 * 335
-    const y = 1061 + extra + Math.floor(i / 3) * 95
-    write(ctx, year, x, y, 21, MUTED)
-    fit(ctx, `A ${formatPercent(duel.a.annual[year])}`, x, y + 32, 25, 154, A, 700, 'left', 18)
-    fit(ctx, `B ${formatPercent(duel.b.annual[year])}`, x + 162, y + 32, 25, 160, B, 700, 'left', 18)
+    const center = 70 + (i + .5) * colW
+    text(ctx, year, center, 1123, 26, MUTED, false, 'center')
+    fitted(ctx, `A ${formatPercent(duel.a.annual[year])}`, center, 1164, 32, colW - 20, '#b3edcc', false, 'center')
+    fitted(ctx, `B ${formatPercent(duel.b.annual[year])}`, center, 1209, 32, colW - 20, GOLD, false, 'center')
   })
-  rule(ctx, 50, 1260 + extra, 980)
-  write(ctx, `En ${duel.currency} · Rééquilibrage annuel · Hors courtage et fiscalité`, 50, 1270 + extra, 16, MUTED, 400)
+  rule(ctx, 70, 1261, W - 140)
+  text(ctx, `En ${duel.currency} · Revenus réinvestis · Rééquilibrage annuel · Hors courtage et fiscalité`, W / 2, 1279, 22, MUTED, false, 'center')
+  text(ctx, 'Les performances passées ne préjugent pas des performances futures.', W / 2, 1312, 20, MUTED, false, 'center')
+  text(ctx, 'Épargnant Libre', W / 2, 1346, 23, GOLD, true, 'center')
   return canvas.toDataURL('image/png')
 }
