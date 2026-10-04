@@ -635,11 +635,18 @@ async function testConcreteCases(page) {
   const choices = page.locator(".cc-choice");
   const count = await choices.count();
   let allRendered = count === CASES.length;
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__concreteCopied = text; } },
+  }));
   for (let i = 0; i < count; i++) {
     await choices.nth(i).click();
     const body = await page.locator('.cc-text').innerText();
     allRendered &&= body.replace(/\s+/g, ' ').trim() === CASES[i].text.replace(/\s+/g, ' ').trim()
-      && (await page.locator('.cc-sources a').count()) === CASES[i].sources.length;
+      && (await page.locator('.cc-sources a').count()) === CASES[i].sources.length
+      && !/undefined|NaN|https?:\/\/|Source\s*:/.test(body)
+      && body.split('\n').at(-1).startsWith('💬');
+    await page.getByRole('button', { name: /Copier le texte|Copié/ }).click();
+    allRendered &&= (await page.evaluate(() => window.__concreteCopied)) === CASES[i].text;
   }
   await choices.nth(1).click();
   const title = await choices.nth(1).locator("strong").innerText();
@@ -658,7 +665,7 @@ async function testConcreteCases(page) {
   const sameText = (await manual.inputValue()) === (await page.locator(".cc-text").innerText());
   const selection = await manual.evaluate((el) => el.selectionStart === 0 && el.selectionEnd === el.value.length);
   record("Cas concrets", allRendered && switched && visible && sameText && selection,
-    `${count} cas et sources: ${allRendered}, sélection: ${switched}, repli de copie: ${visible && sameText && selection}`);
+    `${count} cas : rendu, sources et copie fidèle sans URL ${allRendered}, sélection ${switched}, repli de copie ${visible && sameText && selection}`);
 }
 
 async function testIndexComparator(page) {
