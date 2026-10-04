@@ -1,6 +1,6 @@
 import Button from '../../design-system/Button'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import { HOUSEHOLD_STATISTICS, HOUSEHOLD_SOURCES, buildHouseholdTweet } from '../../data/household-statistics.js'
@@ -12,9 +12,15 @@ function Editor({ record, onSelect, design, onDesign }) {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [includeUrl, setIncludeUrl] = useState(true)
-  const image = useMemo(() => {
-    try { return { url: renderHouseholdImage(record, design) } } catch (cause) { return { error: cause.message } }
-  }, [record, design])
+  const imageKey = `${record.id}:${design}`
+  const imagePromise = useMemo(() => Promise.resolve().then(() => renderHouseholdImage(record, design)), [record, design])
+  const [loadedImage, setLoadedImage] = useState({})
+  const image = loadedImage.key === imageKey ? loadedImage : {}
+  useEffect(() => {
+    let active = true
+    imagePromise.then(url => { if (active) setLoadedImage({ key: imageKey, url }) }, cause => { if (active) setLoadedImage({ key: imageKey, error: cause.message }) })
+    return () => { active = false }
+  }, [imagePromise, imageKey])
   const source = HOUSEHOLD_SOURCES[record.source]
   async function copy() {
     try { await navigator.clipboard.writeText(tweet); setMessage('Tweet copié.') }
@@ -26,8 +32,9 @@ function Editor({ record, onSelect, design, onDesign }) {
     const link = document.createElement('a'); link.href = url; link.download = `france-100-menages-${record.id}.json`; link.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
-  return <ToolWorkspace renderImage={() => { if (image.error) throw new Error(image.error); return image.url }} imageAlt={`La France en 100 ménages : ${record.headline}`} actions={<><Button onClick={copy}>Copier le tweet</Button>{image.url && <Button as="a" variant="secondary" href={image.url} download={`france-100-menages-${record.id}-${design}.png`}>Télécharger le PNG</Button>}</>}>
+  return <ToolWorkspace renderImage={() => imagePromise} imageAlt={`La France en 100 ménages : ${record.headline}`} actions={<><Button onClick={copy}>Copier le tweet</Button>{image.url && <Button as="a" variant="secondary" href={image.url} download={`france-100-menages-${record.id}-${design}.png`}>Télécharger le PNG</Button>}</>}>
     <div className="hh-controls tool-settings">
+      {image.error && <p role="alert">{image.error}</p>}
       <label>Sujet<select aria-label="Sujet" value={record.id} onChange={(e) => onSelect(e.target.value)}>{HOUSEHOLD_STATISTICS.map((item, i) => <option key={item.id} value={item.id}>{i + 1}. {item.title}</option>)}</select></label>
       <label>Design<select aria-label="Design" value={design} onChange={(e) => onDesign(e.target.value)}>{HOUSEHOLD_DESIGNS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
       <button onClick={() => { const pool = HOUSEHOLD_STATISTICS.filter((item) => item.id !== record.id); onSelect(pool[Math.floor(Math.random() * pool.length)].id) }}>Autre sujet au hasard</button>
