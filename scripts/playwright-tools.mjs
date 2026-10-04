@@ -149,7 +149,7 @@ async function testCalculateur(page) {
   }));
   await page.locator("select.ic-control").first().selectOption("bitcoin");
   await page.getByRole('button', { name: /Copier le texte du post/ }).click();
-  let conclusionsOk = /à condition d’avoir conservé le placement de janvier 2020 à/.test(await page.evaluate(() => window.__investmentCopiedText));
+  let conclusionsOk = /suppose d’avoir conservé le placement de janvier 2020 à/.test(await page.evaluate(() => window.__investmentCopiedText));
   conclusionsOk &&= !(await page.evaluate(() => window.__investmentCopiedText)).includes('Livret A');
   await page.waitForTimeout(150);
   const hero = await page.locator(".ic-hero-number").innerText();
@@ -189,7 +189,9 @@ async function testCalculateur(page) {
   const ethereumDcaOk = (await page.locator('.ic-mode-pill').textContent()).trim() === 'DCA mensuel';
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const monthlyTweet = await page.evaluate(() => window.__investmentCopiedText);
-  conclusionsOk &&= /versés au total/.test(monthlyTweet) && !/sans versement supplémentaire/.test(monthlyTweet);
+  conclusionsOk &&= /Gain rapporté aux sommes versées/.test(monthlyTweet)
+    && /Le résultat porte sur l’ensemble des versements/.test(monthlyTweet)
+    && !/sans versement supplémentaire/.test(monthlyTweet);
   septemberOk &&= monthlyTweet.includes('septembre 2026');
   await page.locator('select.ic-control').first().selectOption('sp500');
   const spDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
