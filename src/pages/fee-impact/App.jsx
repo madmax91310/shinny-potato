@@ -208,7 +208,7 @@ export default function App() {
               onChange={(e) => setPunchline(e.target.value)}
               placeholder="Ce que cet écart t'inspire..."
             />
-            <p className="fi-hint">Laisse ce champ vide pour conserver la conclusion proposée. Une phrase personnalisée est réinitialisée quand tu changes de scénario.</p>
+            <p className="fi-hint">Ce champ ajoute ta phrase au tweet. Une phrase personnalisée est réinitialisée quand tu changes de scénario.</p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <p className="fi-eyebrow" style={{ margin: 0 }}>Aperçu du tweet</p>
               <span className={`fi-badge ${BADGE_CLASS[status.level]}`}>{status.label}</span>

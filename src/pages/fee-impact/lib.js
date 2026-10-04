@@ -1,6 +1,6 @@
 import { FEE_COMPARISON_ASSETS } from '../../data/fee-comparison-assets.js'
 import { fmtEUR } from '../investment-calculator/lib.js'
-import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, DEFAULT_PERSONAL_LINE } from './data.js'
+import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS } from './data.js'
 
 export { fmtEUR }
 
@@ -71,33 +71,42 @@ export function buildTweetText(state) {
   const d = computeComparison(state)
   const yearsLabel = `${years} an${years > 1 ? 's' : ''}`
   const sameFees = fee1 === fee2
-  const personalLine = punchline?.trim() || (sameFees
-    ? 'Pour mesurer l’impact des frais, il faut comparer deux taux différents.'
-    : DEFAULT_PERSONAL_LINE)
+  const lowFee = Math.min(fee1, fee2)
+  const highFee = Math.max(fee1, fee2)
+  const negligibleGap = d.ecart < 0.5
+  const gapLabel = d.ecart < 1 ? 'moins de 1 €' : fmtEUR(d.ecart)
+  let hook = `💸 ${gapLabel} de moins après ${yearsLabel}, en versant pourtant les mêmes ${fmtEUR(amount)} chaque mois.`
+  if (highFee - lowFee <= 0.3 + 1e-9) hook = `💸 ${feeLabel(lowFee)} ou ${feeLabel(highFee)} de frais : ça semble presque pareil. Avec ${fmtEUR(amount)} investis chaque mois pendant ${yearsLabel}, cette simulation aboutit pourtant à ${gapLabel} d’écart.`
+  else if (amount <= 100) hook = `💸 Tu investis ${fmtEUR(amount)} par mois. Après ${yearsLabel}, les frais font une différence de ${gapLabel} dans cette simulation.`
+  if (negligibleGap) hook = sameFees
+    ? `💸 ${feeLabel(fee1)} de frais dans les deux cas : avec ${fmtEUR(amount)} investis chaque mois pendant ${yearsLabel}, les capitaux simulés sont identiques.`
+    : `💸 ${feeLabel(lowFee)} ou ${feeLabel(highFee)} de frais : après ${yearsLabel}, l’écart simulé reste inférieur à 1 € avec ${fmtEUR(amount)} investis chaque mois.`
   const selectedFunds = [state.isin1, state.isin2].map(isin => FEE_COMPARISON_ASSETS.find(asset => asset.isin === isin))
   const scenario = (fee, capital, fund) => `${sameFees ? '⚪' : fee === Math.min(fee1, fee2) ? '🟢' : '🔴'} ${fund ? `${fund.name} (${fund.isin}), avec` : 'Avec'} ${feeLabel(fee)} de frais annuels : ${fmtEUR(capital)}`
   const returnLabel = returnRate.toLocaleString('fr-FR')
 
   return [
-    'Tu connais les frais annuels de tes placements ? Et ce qu’ils peuvent représenter en euros ? 👀',
+    hook,
     ``,
-    `Prenons ${fmtEUR(amount)} investis chaque mois pendant ${yearsLabel}, avec un rendement brut supposé de ${returnLabel} % par an 👇`,
+    sameFees ? 'Dans cette simulation, les deux scénarios ont les mêmes frais annuels 👇'
+      : `Dans cette simulation, seule une chose change : les frais annuels, de ${feeLabel(lowFee)} à ${feeLabel(highFee)} 👇`,
+    ``,
+    `📊 Avec un rendement supposé de ${returnLabel} % par an avant frais :`,
     ``,
     scenario(fee1, d.capital1, selectedFunds[0]),
     scenario(fee2, d.capital2, selectedFunds[1]),
     ``,
-    sameFees ? `💰 Aucun écart, pour les mêmes ${fmtEUR(d.totalInvested)} versés.`
-      : `💰 ${fmtEUR(d.ecart)} d’écart, pour les mêmes ${fmtEUR(d.totalInvested)} versés.`,
+    `Dans les deux cas, tu as versé ${fmtEUR(d.totalInvested)}.`,
     ``,
-    sameFees ? 'Les deux scénarios ont les mêmes frais et les mêmes versements : ils donnent donc le même résultat.'
-      : 'Cet écart comprend les frais supplémentaires, mais aussi les gains que l’argent prélevé n’a plus pu produire au fil des années.',
+    ...(sameFees ? ['Les mêmes versements, les mêmes frais et le même rendement supposé donnent le même résultat.']
+      : returnRate <= highFee ? ['Cet écart reflète les prélèvements de frais et leur effet cumulé sur le capital restant investi.']
+      : ['Pourquoi cet écart ?', '', 'Les frais réduisent ton capital au fil du temps. Et l’argent prélevé ne peut plus produire de gains les années suivantes.', '', `${d.ecart < 1 ? 'Cet écart ne correspond' : `Les ${gapLabel} ne correspondent`} donc pas uniquement aux frais payés : ${d.ecart < 1 ? 'il comprend' : 'ils comprennent'} aussi ces gains manqués.`]),
+    ...(punchline?.trim() ? ['', punchline.trim()] : []),
     ``,
-    personalLine,
-    ``,
-    '💬 Tu connais celui de tes ETF ou de ton assurance-vie ?',
+    '💬 Tu connais le montant des frais annuels de tes placements ?',
     ``,
     ...(selectedFunds.some(Boolean) ? ['Frais des produits relevés dans la banque de données ; même rendement brut supposé, sans comparer leurs performances réelles.', ...selectedFunds.filter(Boolean).map(fund => `Source frais ${fund.isin} : ${fund.evidence.sourceUrls[0]}`), ''] : []),
-    '📌 Simulation à rendement brut constant, versements en début de mois. Frais annuels déduits du rendement. Hors fiscalité et inflation.',
+    'Hypothèse de rendement constant, versements en début de mois. Hors fiscalité et inflation.',
   ].join('\n')
 }
 

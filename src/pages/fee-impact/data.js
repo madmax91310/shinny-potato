@@ -22,6 +22,3 @@ export const FEE_LEVELS = [
 
 export const DEFAULT_FEE_LOW = 0.2
 export const DEFAULT_FEE_HIGH = 1.5
-
-// Formulation personnelle validée par l'utilisateur ; le champ permet de la remplacer.
-export const DEFAULT_PERSONAL_LINE = 'Quand je vois ça, le pourcentage de frais me parle beaucoup plus.'
