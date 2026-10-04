@@ -1,3 +1,4 @@
+import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 import { getIndexArt, loadIndexArt } from './visualIdentity.js'
 const W = 1600, H = 1080
 const C = { ink: '#F8F3F8', muted: '#C3B8CA', accent: '#FFAA79', positive: '#D7B6FF', negative: '#FF6D72', rule: '#744835' }
@@ -16,7 +17,7 @@ function paragraph(ctx,text,x,y,width,size=22,color=C.muted,lineHeight=size*1.35
 function percent(n,signed=false){return `${signed&&n>0?'+':n<0?'−':''}${Math.abs(n).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})} %`}
 function label(n){return n.replace(/[\p{Extended_Pictographic}\p{Regional_Indicator}\uFE0F\u200D]/gu,'').trim()}
 function rule(ctx,x,y,width){ctx.fillStyle=C.rule;ctx.fillRect(x,y,width,1)}
-function list(ctx,title,entries,x){write(ctx,title,x,240,23,C.ink,700);rule(ctx,x,276,330);entries.slice(0,3).forEach(([name,value],i)=>{const y=300+i*86;fitted(ctx,label(name),x,y,330,24,C.ink,400,16);write(ctx,percent(value),x,y+32,34,C.accent,700)})}
+function list(ctx,title,entries,x,y){write(ctx,title,x,y,26,C.ink,700);rule(ctx,x,y+35,575);entries.slice(0,3).forEach(([name,value],i)=>{const top=y+48+i*43;fitted(ctx,label(name),x,top,390,28,C.ink,400,16);ctx.textAlign='right';ctx.font='700 30px Arial';ctx.fillStyle=C.accent;ctx.textBaseline='top';ctx.fillText(percent(value),1540,top);ctx.textAlign='left'})}
 function performanceNote(sheet) {
   const detail = sheet.performance.detail
     .replace(sheet.title + ', ', '')
@@ -43,30 +44,35 @@ function performanceNote(sheet) {
 }
 
 export async function renderFactsheetImage(sheet) {
- const art=await loadIndexArt(sheet),identity=getIndexArt(sheet)
+ const identity=getIndexArt(sheet)
+ const art=await (identity.scene==='sp500' ? loadArtImage('approved/index-sp500.webp') : loadIndexArt(sheet))
  const canvas=document.createElement('canvas');canvas.width=W*1.5;canvas.height=H*1.5
  const ctx=canvas.getContext('2d');ctx.scale(1.5,1.5)
  const background=ctx.createLinearGradient(0,0,W,H);background.addColorStop(0,'#190f20');background.addColorStop(.5,'#130d1a');background.addColorStop(1,'#0d0b12');ctx.fillStyle=background;ctx.fillRect(0,0,W,H)
- // Preserve the full subject and aspect ratio; feather the studio backdrop only.
- const layer=document.createElement('canvas');layer.width=820;layer.height=680
- const l=layer.getContext('2d'),scale=Math.min(820/art.width,680/art.height),aw=art.width*scale,ah=art.height*scale
- l.drawImage(art,(820-aw)/2,(680-ah)/2,aw,ah);l.globalCompositeOperation='destination-in'
- const fade=l.createLinearGradient(0,0,820,0);fade.addColorStop(0,'transparent');fade.addColorStop(.08,'white');fade.addColorStop(.9,'white');fade.addColorStop(1,'transparent');l.fillStyle=fade;l.fillRect(0,0,820,680)
- const vertical=l.createLinearGradient(0,0,0,680);vertical.addColorStop(0,'transparent');vertical.addColorStop(.15,'white');vertical.addColorStop(.82,'white');vertical.addColorStop(1,'transparent');l.fillStyle=vertical;l.fillRect(0,0,820,680)
- ctx.drawImage(layer,10,75)
- fitted(ctx,identity.description,55,710,710,27,C.accent,700)
- if(sheet.countries?.length){const countries=sheet.countries.slice(0,3).map(([name,value])=>`${label(name)} ${percent(value)}`).join(' · ');paragraph(ctx,countries,55,755,710,22)}
- fitted(ctx,sheet.index??sheet.title,850,65,695,65,C.ink,700,30)
+ if(identity.scene==='sp500') ctx.drawImage(art,0,0,1520,1013)
+ else {
+  const layer=document.createElement('canvas');layer.width=940;layer.height=790
+  const l=layer.getContext('2d'),scale=Math.min(940/art.width,790/art.height),aw=art.width*scale,ah=art.height*scale
+  l.drawImage(art,(940-aw)/2,(790-ah)/2,aw,ah);l.globalCompositeOperation='destination-in'
+  const fade=l.createLinearGradient(0,0,940,0);fade.addColorStop(0,'transparent');fade.addColorStop(.08,'white');fade.addColorStop(.88,'white');fade.addColorStop(1,'transparent');l.fillStyle=fade;l.fillRect(0,0,940,790)
+  ctx.drawImage(layer,0,0)
+ }
+ fitted(ctx,sheet.index??sheet.title,970,45,585,100,C.ink,700,30)
  const count=sheet.constituents
- paragraph(ctx,count==null?`${sheet.indexFacts.targetConstituents.toLocaleString('fr-FR')} sociétés visées par la méthode`:`${count.toLocaleString('fr-FR')} titres · Composition au ${sheet.snapshot}`,850,150,690,22)
+ const country=sheet.countries?.length===1 ? label(sheet.countries[0][0])+' · ' : ''
+ paragraph(ctx,count==null?`${sheet.indexFacts.targetConstituents.toLocaleString('fr-FR')} sociétés visées par la méthode`:`${country}${count.toLocaleString('fr-FR')} titres`,970,160,575,29)
  if(sheet.methodologyPanels){
-  let y=235
-  for(const [title,text] of sheet.methodologyPanels){write(ctx,title,850,y,23,C.accent,700);y=paragraph(ctx,text,850,y+36,690,24,C.ink,32)+30}
+  let y=245
+  for(const [title,text] of sheet.methodologyPanels){write(ctx,title,970,y,25,C.accent,700);y=paragraph(ctx,text,970,y+36,575,25,C.ink,33)+24}
  }else{
-  list(ctx,'SECTEURS',sheet.sectors,850);list(ctx,'PRINCIPALES POSITIONS',sheet.holdings,1215)
+  list(ctx,'SECTEURS',sheet.sectors,970,255);list(ctx,'PRINCIPALES POSITIONS',sheet.holdings,970,465)
   const top=sheet.topWeight??sheet.holdings.slice(0,10).reduce((sum,[,v])=>sum+v,0)
-  write(ctx,percent(top),850,585,97,C.accent,700)
-  write(ctx,'Poids des 10 premières lignes',850,697,30,C.muted)
+  write(ctx,percent(top),970,665,92,C.accent,700)
+  write(ctx,'Poids des 10 premières lignes',970,773,27,C.muted)
+ }
+ if(identity.scene!=='sp500') {
+  fitted(ctx,identity.description,55,755,830,24,C.accent,700)
+  if(sheet.countries?.length){const countries=sheet.countries.slice(0,3).map(([name,value])=>`${label(name)} ${percent(value)}`).join(' · ');paragraph(ctx,countries,55,790,830,18)}
  }
  rule(ctx,55,835,1490)
  write(ctx,'PERFORMANCES',55,862,26,C.ink,700)

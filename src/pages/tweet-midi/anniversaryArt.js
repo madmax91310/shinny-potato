@@ -7,7 +7,7 @@ export const ANNIVERSARY_ART = Object.freeze({
   soxx: { title: 'SEMI-CONDUCTEURS', subtitle: 'ETF SOXX', mark: 'chip.svg', kind: 'illustration' },
   or: { title: 'OR', subtitle: 'Once · moyenne mensuelle', scene: 'gold.webp', kind: 'illustration', unit: '$/oz' },
   silver: { title: 'ARGENT', subtitle: 'Futures COMEX · once', scene: 'silver.webp', kind: 'illustration', unit: '$/oz' },
-  apple: { title: 'APPLE', mark: 'apple.svg', kind: 'logo' },
+  apple: { title: 'APPLE', mark: 'apple.svg', kind: 'logo', scene: 'approved/anniversary-apple.webp', embeddedMark: true },
   microsoft: { title: 'MICROSOFT', mark: 'microsoft.svg', kind: 'logo' },
   broadcom: { title: 'BROADCOM', mark: 'broadcom.svg', kind: 'logo' },
   tesla: { title: 'TESLA', mark: 'tesla.svg', kind: 'logo' },

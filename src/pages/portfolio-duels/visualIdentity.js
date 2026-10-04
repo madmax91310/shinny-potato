@@ -29,16 +29,11 @@ export async function loadDuelArt(asset) {
 // the feathered perimeter merges them into the machined card, without stretching.
 export function drawDuelArt(ctx, image, x, y, width, height) {
   const layer = document.createElement('canvas'); layer.width = Math.ceil(width); layer.height = Math.ceil(height)
-  const c = layer.getContext('2d'), scale = Math.min(width / image.width, height / image.height)
-  const w = image.width * scale, h = image.height * scale
-  const left = (width - w) / 2, top = (height - h) / 2
-  c.drawImage(image, left, top, w, h)
-  c.globalCompositeOperation = 'destination-in'
-  const mask = c.createLinearGradient(left, 0, left + w, 0)
-  mask.addColorStop(0, 'transparent'); mask.addColorStop(.12, '#fff'); mask.addColorStop(.9, '#fff'); mask.addColorStop(1, 'transparent')
-  c.fillStyle = mask; c.fillRect(0, 0, width, height)
-  const vertical = c.createLinearGradient(0, top, 0, top + h)
-  vertical.addColorStop(0, 'transparent'); vertical.addColorStop(.12, '#fff'); vertical.addColorStop(.85, '#fff'); vertical.addColorStop(1, 'transparent')
-  c.fillStyle = vertical; c.fillRect(0, 0, width, height)
-  ctx.drawImage(layer, x, y)
+  const c = layer.getContext('2d'), side = Math.min(width-6,height-6), cx=width/2,cy=height/2
+  c.save(); c.beginPath(); c.arc(cx,cy,side/2,0,Math.PI*2); c.clip()
+  const scale=side/(image.height*.88),w=image.width*scale,h=image.height*scale
+  c.drawImage(image,cx-w*.69,cy-h*.44,w,h); c.restore()
+  const rim=c.createLinearGradient(0,0,width,height);rim.addColorStop(0,'#fff3ce');rim.addColorStop(.3,'#a18554');rim.addColorStop(.55,'#f7d69c');rim.addColorStop(1,'#46534d')
+  c.lineWidth=3;c.strokeStyle=rim;c.beginPath();c.arc(cx,cy,side/2,0,Math.PI*2);c.stroke()
+  ctx.save();ctx.shadowColor='rgba(0,0,0,.6)';ctx.shadowBlur=12;ctx.shadowOffsetY=8;ctx.drawImage(layer,x,y);ctx.restore()
 }

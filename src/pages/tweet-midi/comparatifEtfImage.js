@@ -1,9 +1,9 @@
-import { loadArtImage } from './anniversaryArt.js'
+import { loadArtImage, loadEditorialFont } from './anniversaryArt.js'
 import { getPaperArt } from './stylizedArt.js'
 import { getComparisonPerformance } from './comparisonPerformance.js'
 
 const W = 2000, H = 1250
-const INK = '#102a38', MUTED = '#50615d', GREEN = '#166d53', RED = '#ae5547'
+const INK = '#f1f4ff', MUTED = '#b9c6d5', GREEN = '#9cebc5', RED = '#ffafa0'
 const pct = value => `${value > 0 ? '+' : value < 0 ? '−' : ''}${Math.abs(value).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
 function text(ctx, value, x, y, size, { width = W, color = INK, align = 'left', serif = false, weight = 700 } = {}) {
   ctx.textBaseline = 'top'; ctx.textAlign = align; ctx.fillStyle = color
@@ -29,24 +29,45 @@ function lines(ctx, value, x, y, width, maxRows, startSize, options = {}) {
 function detail(fund) {
   return fund.differenciateur.replace(/(?:non[ -]éligible\s+|éligible\s+|hors\s+|en\s+)?\bPEA\b(?: selon [^,;]+)?|\bCTO\b/gi, '').replace(/\s+([,;])/g, '$1').replace(/[,;]\s*[,;]/g, ',').replace(/^[\s·,;:|–—-]+|[\s·,;:|–—-]+$/g, '').trim()
 }
+
+// Reference 11: emerald glass / amber sculpture, never the former paper art.
+export function comparisonArt(themeId, isin) {
+  const exposure = getPaperArt(themeId, isin)
+  if (exposure==='world' || exposure==='america') return `approved/comparison-${exposure}.webp`
+  const neon = ['world','america','europe','emerging','luxury','chip','gold','silver']
+  if (neon.includes(exposure)) return `neon/${exposure}.webp`
+  const studio = { dividends:'finance', quantum:'chip', blockchain:'chip', copper:'resources', japan:'asia' }
+  return `etf-night/${studio[exposure] || exposure}.webp`
+}
+function drawScene(ctx,image,x,y,w,h) {
+  const layer=document.createElement('canvas'); layer.width=Math.ceil(w); layer.height=h
+  const c=layer.getContext('2d'), scale=Math.min(w/image.width,h/image.height)
+  const iw=image.width*scale,ih=image.height*scale
+  c.drawImage(image,(w-iw)/2,(h-ih)/2,iw,ih)
+  c.globalCompositeOperation='destination-in'
+  const fade=c.createLinearGradient(0,0,0,h);fade.addColorStop(0,'transparent');fade.addColorStop(.12,'white');fade.addColorStop(.8,'white');fade.addColorStop(1,'transparent');c.fillStyle=fade;c.fillRect(0,0,w,h)
+  ctx.drawImage(layer,x,y)
+}
+
 export async function renderComparatifEtfImage(theme) {
-  await document.fonts.ready
-  const art = await Promise.all(theme.etfs.map(fund => loadArtImage(`paper/${getPaperArt(theme.id, fund.isin)}.webp`)))
+  await loadEditorialFont()
+  const art = await Promise.all(theme.etfs.map(fund => loadArtImage(comparisonArt(theme.id, fund.isin))))
   const series = theme.etfs.map(fund => getComparisonPerformance(fund.isin))
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
-  const ctx = canvas.getContext('2d'); ctx.fillStyle = '#f8f2e5'; ctx.fillRect(0, 0, W, H)
+  const ctx = canvas.getContext('2d'); const background = ctx.createLinearGradient(0,0,W,H); background.addColorStop(0,'#041b31'); background.addColorStop(.5,'#021026'); background.addColorStop(1,'#1e2030'); ctx.fillStyle=background; ctx.fillRect(0,0,W,H)
   text(ctx, `${theme.nom.toLocaleUpperCase('fr-FR')} : QUEL ${theme.id === 'etc-metaux' ? 'PRODUIT' : 'ETF'} CHOISIR ?`, W / 2, 52, 66, { width: W - 120, align: 'center', serif: true })
   const count = theme.etfs.length, labelWidth = count > 1 ? 245 : 0, left = 65 + labelWidth, available = W - left - 65, cell = available / count
   const hasPerformance = series.some(Boolean)
   if (hasPerformance) {
-    text(ctx, 'PERFORMANCES', 65, 540, 25, { width: 225, color: GREEN })
+    text(ctx, 'PERFORMANCES', 65, 540, 25, { width: 225, color: '#eac788' })
     for (const [i, year] of [2025, 2024, 2023].entries()) text(ctx, String(year), 80, 605 + i * 75, 35, { color: MUTED })
     text(ctx, 'FRAIS / AN', 65, 860, 28, { width: 225, color: MUTED })
   }
   theme.etfs.forEach((fund, i) => {
     const center = left + cell * (i + .5), width = cell - 35
-    const side = Math.min(300, width)
-    ctx.drawImage(art[i], center - side / 2, 157, side, side)
+    const side = Math.min(510, cell - 12)
+    const glow = ctx.createRadialGradient(center,335,10,center,335,side*.6); glow.addColorStop(0,i%2 ? 'rgba(255,169,43,.18)' : 'rgba(53,255,193,.15)'); glow.addColorStop(1,'transparent'); ctx.fillStyle=glow; ctx.fillRect(center-side/2,145,side,380)
+    drawScene(ctx,art[i],center-side/2,150,side,300)
     // Full product identity remains readable beneath the exposure illustration.
     lines(ctx, fund.nom.replace(/ UCITS ETF.*$/i, '').replace(/ ETF$/i, ''), center, 448, width, 3, 31, { align: 'center' })
     const current = series[i]
@@ -54,7 +75,7 @@ export async function renderComparatifEtfImage(theme) {
       text(ctx, `${current.label} · ${current.currency}`, center, 552, 24, { width, align: 'center', color: MUTED })
       for (const [j, year] of [2025, 2024, 2023].entries()) {
         const row = current.rows.find(row => row.year === year)
-        if (row) text(ctx, pct(row.pct), center, 600 + j * 75, 47, { width, align: 'center', color: row.pct < 0 ? RED : GREEN })
+        if (row) text(ctx, pct(row.pct), center, 600 + j * 75, 47, { width, align: 'center', color: row.pct < 0 ? RED : i % 2 ? '#ffd286' : GREEN })
         else text(ctx, 'Année incomplète', center, 607 + j * 75, 22, { width, align: 'center', color: MUTED, weight: 400 })
       }
     } else {
@@ -65,10 +86,10 @@ export async function renderComparatifEtfImage(theme) {
     if (!hasPerformance) text(ctx, 'Frais annuels', center, 886, 25, { width, align: 'center', color: MUTED })
     text(ctx, fund.isin, center, 935, 25, { width, align: 'center', color: MUTED })
     if (current) lines(ctx, detail(fund), center, 984, width, 3, 23, { align: 'center', color: MUTED, weight: 400 })
-    if (i) { ctx.strokeStyle = '#d7d7c9'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(left + i * cell, 430); ctx.lineTo(left + i * cell, 1100); ctx.stroke() }
+    if (i) { ctx.strokeStyle = 'rgba(229,190,115,.35)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(left + i * cell, 430); ctx.lineTo(left + i * cell, 1100); ctx.stroke() }
   })
-  ctx.fillStyle = '#d6d7c7'; ctx.fillRect(65, 1114, W - 130, 2)
-  if (hasPerformance) text(ctx, 'Années civiles · devises indiquées · références identifiées · aucune conversion', W / 2, 1140, 24, { width: W - 130, align: 'center', color: MUTED, weight: 400 })
+  ctx.fillStyle = 'rgba(229,190,115,.45)'; ctx.fillRect(65, 1114, W - 130, 2)
+  if (hasPerformance) text(ctx, 'Années civiles · devises indiquées · références identifiées', W / 2, 1140, 24, { width: W - 130, align: 'center', color: MUTED, weight: 400 })
   text(ctx, 'Les performances passées ne préjugent pas des performances futures.', W / 2, 1180, 22, { width: W - 130, align: 'center', color: MUTED, weight: 400 })
   text(ctx, '@Epargnantlibre', W / 2, 1215, 23, { align: 'center' })
   return canvas

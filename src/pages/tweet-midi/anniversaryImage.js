@@ -40,7 +40,7 @@ function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack }
   ctx.save(); ctx.translate(x,0); ctx.scale(scale,scale)
   const { art, past, current, dateLabel } = snap
   ctx.drawImage(images.scene,0,0,W,H)
-  if (images.mark) {
+  if (images.mark && !art.embeddedMark) {
     // Ground the mark just above the studio horizon; fit wide wordmarks separately.
     const wide = images.mark.width / images.mark.height > 2
     drawTitaniumMark(ctx, images.mark, wide ? 220 : 435, wide ? 365 : 240, wide ? 1160 : 730, wide ? 480 : 730)
@@ -50,9 +50,9 @@ function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack }
   wash.addColorStop(0,'rgba(245,242,233,0)'); wash.addColorStop(.25,'rgba(245,242,233,.24)'); wash.addColorStop(1,'rgba(245,242,233,.32)')
   ctx.fillStyle = wash; ctx.fillRect(0,1010,W,H-1010)
   text(ctx,art.title,W/2,1045,200,{ width: 1420 })
-  if (art.subtitle) text(ctx,art.subtitle,W/2,1220,32,{ serif:false,weight:400,color:MUTED })
+  if (art.subtitle) text(ctx,art.subtitle,W/2,1270,32,{ serif:false,weight:400,color:MUTED })
   const change = (current / past - 1) * 100
-  text(ctx,percentage(change),W/2,1310,280,{ width:1430, color:change < 0 ? '#752d28' : INK })
+  text(ctx,percentage(change),W/2,1320,230,{ width:1430, color:change < 0 ? '#752d28' : INK })
   if (period) text(ctx,`EN ${yearsBack} AN${yearsBack > 1 ? 'S' : ''}`,W/2,1590,43,{ spacing:5 })
   rule(ctx,100,1660,1500,1660); rule(ctx,800,1710,800,1860)
   text(ctx,dateLabel.toUpperCase(),440,1700,34,{ width:650,spacing:1.5 })
