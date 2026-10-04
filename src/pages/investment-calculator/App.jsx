@@ -40,6 +40,8 @@ function CompareItem({ label, value, deltaVal, currency, highlight }) {
 
 function ResultCard({ state, d, copied, onCopy }) {
   const [image, setImage] = useState(null)
+  const [imageLoading, setImageLoading] = useState(false)
+  const [imageError, setImageError] = useState('')
   useEffect(() => {
     if (!image) return undefined
     const close = (event) => { if (event.key === 'Escape') setImage(null) }
@@ -47,9 +49,13 @@ function ResultCard({ state, d, copied, onCopy }) {
     return () => document.removeEventListener('keydown', close)
   }, [image])
 
-  function showImage() {
-    const dataUrl = renderInvestmentImage(state, d).toDataURL('image/png')
-    setImage({ dataUrl, filename: `investissement-${state.assetId}-${d.effectiveMode}.png` })
+  async function showImage() {
+    setImageLoading(true); setImageError('')
+    try {
+      const canvas = await renderInvestmentImage(state, d)
+      setImage({ dataUrl: canvas.toDataURL('image/png'), filename: `investissement-${state.assetId}-${d.effectiveMode}.png` })
+    } catch (error) { setImageError(error.message || 'Création de l’image impossible. Réessaie.') }
+    finally { setImageLoading(false) }
   }
 
   const asset = d.isCustom ? null : ASSETS[state.assetId]
@@ -165,8 +171,9 @@ function ResultCard({ state, d, copied, onCopy }) {
           <Button type="button" onClick={onCopy}>
             {copied === 'done' ? '✓ Copié' : copied === 'error' ? 'Copie impossible' : '𝕏 Copier le texte du post'}
           </Button>
-          <Button type="button" variant="secondary" onClick={showImage}>📊 Télécharger une image</Button>
+          <Button type="button" variant="secondary" onClick={showImage} disabled={imageLoading}>{imageLoading ? 'Création de l’image…' : '📊 Télécharger une image'}</Button>
         </WorkspaceActions>
+        {imageError && <p role="alert">{imageError}</p>}
         <VideoExport
           videoParams={{
             series: videoResult.series,
