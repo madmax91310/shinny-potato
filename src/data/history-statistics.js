@@ -34,16 +34,19 @@ export const HISTORY_FACTS = HISTORY_STATISTIC_IDS.flatMap(id => {
   const lump = initial * points.at(-1).price / points[0].price
   const dca = points.reduce((units, p) => units + 100 / p.price, 0) * points.at(-1).price
   const money = n => n.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' ' + asset.currency
+  // Revue éditoriale 04/10/2026 : chiffres issus des mêmes calculs, sans nouvelle série.
+  const gap = lump - dca
+  const result = gap > 0 ? 'en faveur du placement en une fois' : gap < 0 ? 'en faveur des achats mensuels' : 'entre les deux approches'
   return [
     { ...common, id: `monthly-drawdown-${id}`, category: 'Baisse maximale mensuelle',
-      hook: `${asset.label} : aurais-tu gardé tes titres après une baisse de ${pct(Math.abs(stats.drawdown))} % ?`,
-      context: `Sur l’historique ${period}, la plus forte baisse entre un sommet et un creux de clôture mensuelle est de ${pct(stats.drawdown)} %, de ${stats.peak.date} à ${stats.trough.date}.`,
-      twist: stats.recovery ? `Le niveau du sommet a été retrouvé en ${stats.recovery.date}, ${stats.monthsToRecovery} mois après ce sommet.` : `Ce sommet n’a pas été retrouvé à la dernière clôture disponible, ${points.at(-1).date}.`,
-      question: 'Tu aurais continué, réduit ta position ou vendu ?', fact: `Baisse et récupération calculées sur les seuls points mensuels. ${note}` },
+      hook: `📉 ${asset.label} : ${pct(Math.abs(stats.drawdown))} % pour la plus forte baisse entre clôtures mensuelles sur l’historique ${period}. Voici le parcours mesuré 👇`,
+      context: `La baisse depuis un sommet jusqu’au creux qui suit se mesure ici de ${stats.peak.date} à ${stats.trough.date}.\n\n${stats.recovery ? `Le niveau du sommet a été retrouvé en ${stats.recovery.date}, ${stats.monthsToRecovery} mois après ce sommet.` : `Ce sommet n’a pas été retrouvé à la dernière clôture disponible, ${points.at(-1).date}.`}`,
+      twist: '💡 Le résultat final ne montre pas toute la baisse traversée. Ce calcul mensuel peut sous-estimer une chute au cours du mois ; la baisse passée ne fixe pas une perte maximale future.',
+      question: '💬 Tu aurais continué, réduit ta position ou vendu ?', fact: `Baisse et récupération calculées sur les seuls points mensuels. ${note}` },
     { ...common, id: `monthly-dca-${id}`, category: 'Tout investir ou étaler',
-      hook: `${asset.label} : tout investir au départ ou 100 ${asset.currency} chaque mois ?`,
-      context: `De ${period}, pour ${money(initial)} versés au total :\n💰 Investissement unique à la première clôture : ${money(lump)} à la fin.\n📅 100 ${asset.currency} à chaque clôture mensuelle : ${money(dca)} à la fin.`,
+      hook: `⚖️ ${asset.label} : environ ${money(Math.abs(gap))} d’écart ${result}, de ${period}. Voici la comparaison 👇`,
+      context: `Pour ${money(initial)} versés au total :\n💰 Investissement unique à la première clôture : ${money(lump)} à la fin.\n📅 100 ${asset.currency} à chaque clôture mensuelle : ${money(dca)} à la fin.`,
       twist: 'Les montants versés sont identiques, mais l’argent est exposé au marché plus longtemps avec le versement unique. L’argent en attente n’est pas rémunéré dans ce calcul.',
-      question: 'Tu préfères investir tout de suite ou étaler tes versements ?', fact: `Versements aux clôtures mensuelles, fractions de titres admises. ${note}` },
+      question: '💬 Avec toute la somme disponible au départ, tu aurais investi tout de suite ou étalé tes achats ?', fact: `Versements aux clôtures mensuelles, fractions de titres admises. ${note}` },
   ]
 })

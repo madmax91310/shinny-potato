@@ -222,127 +222,137 @@ const RAW_FACTS = [
   },
 ];
 
-// Textes éditoriaux propres à chaque fiche. Les nombres reprennent les faits sourcés ci-dessus ;
-// les images et questions n'ajoutent aucune statistique nouvelle.
+// Textes éditoriaux : fait et périmètre dès l’accroche, explication, portée, question.
+// Revue éditoriale du 04/10/2026 : aucune nouvelle statistique de marché.
+// Black Monday arrondi à 22,6 % (Federal Reserve History) ; montants en euros
+// illustratifs, sans conversion de devise. Les autres valeurs gardent leurs sources.
 const EDITORIAL = {
   "corrections-27-bear-markets": {
-    hook: "📉 On parle souvent du prochain krach comme s'il allait être le premier.",
-    context: "Le décompte de Hartford Funds recense 27 bear markets du S&P 500 depuis 1928. Chaque fois, l'indice a perdu au moins 20 % depuis un sommet.",
-    twist: "Ce chiffre n'annonce évidemment pas quand le prochain arrivera. Il rappelle surtout qu'une grosse baisse fait partie de l'histoire des marchés.",
-    question: "Tu as déjà traversé une baisse de cette ampleur en restant investi ?",
+    "hook": "📉 Le S&P 500 a connu 27 baisses d’au moins 20 % depuis 1928 dans le décompte de Hartford Funds. Voici ce que ce chiffre mesure 👇",
+    "context": "Ces épisodes sont appelés « bear markets » : la baisse se mesure depuis un sommet jusqu’au creux qui suit.",
+    "twist": "💡 Ce décompte rappelle que les fortes baisses font partie de l’histoire de cet indice. Il ne donne ni la date ni l’ampleur de la prochaine.",
+    "question": "💬 Tu as déjà traversé une baisse de cette ampleur en restant investi ?"
   },
   "corrections-ampleur-moyenne": {
-    hook: "🫣 « Je tiendrai pendant un krach. » Plus facile à dire quand les cours montent.",
-    context: "Depuis 1929, la baisse moyenne d'un bear market du S&P 500 est de 33,5 %. Sur 10 000 € investis, cela représenterait une valeur affichée de 6 650 €.",
-    twist: "Et c'est une moyenne : la chute de 1929 à 1932 a atteint 86,2 % dans la série citée.",
-    question: "À quel niveau de baisse commencerais-tu vraiment à douter de ton plan ?",
+    "hook": "📉 33,5 % de baisse en moyenne lors des bear markets du S&P 500 depuis 1929, selon la série citée. Que représente cette baisse sur ton capital ? 👇",
+    "context": "Une exposition de 10 000 € suivant exactement une baisse de 33,5 % tomberait à 6 650 €, hors frais et effet de change. C’est une illustration, pas une conversion de la performance en euros.",
+    "twist": "💡 Une moyenne ne fixe pas une perte maximale : la baisse de 1929 à 1932 a atteint 86,2 % dans cette série historique. Avant 1957, celle-ci repose sur les indices prédécesseurs du S&P 500 actuel.",
+    "question": "💬 À quel niveau de baisse commencerais-tu à douter de ton plan ?"
   },
   "corrections-48-depuis-guerre": {
-    hook: "📉 Le S&P 500 baisse de 10 %. Et tout de suite, la même question : jusqu'où ?",
-    context: "Depuis la Seconde Guerre mondiale, Carson Group recense 48 corrections d'au moins 10 %. Douze ont ensuite franchi le seuil de 20 % d'un bear market.",
-    twist: "Une correction mérite d'être prise au sérieux, mais elle ne raconte pas à elle seule la suite du marché.",
-    question: "À -10 %, tu regardes les cours plus souvent ou tu suis ton plan habituel ?",
+    "hook": "📉 Sur 48 corrections du S&P 500 recensées depuis la Seconde Guerre mondiale, 12 ont atteint une baisse d’au moins 20 %. Une baisse de 10 % ne raconte pas toute la suite 👇",
+    "context": "Dans le décompte de Carson Group, une correction désigne une baisse d’au moins 10 % depuis un sommet. Le seuil de 20 % correspond à un « bear market ».",
+    "twist": "💡 Ces épisodes passés montrent qu’une correction ne se prolonge pas systématiquement jusqu’à ce seuil. Ce rapport n’est pas une probabilité pour la prochaine baisse.",
+    "question": "💬 À moins 10 %, tu regardes les cours plus souvent ou tu gardes ton rythme habituel ?"
   },
   "records-1987-pire-seance": {
-    hook: "🧨 Imagine ouvrir ton portefeuille le soir et voir une baisse de plus de 20 %.",
-    context: "C'est ce qu'a vécu Wall Street le 19 octobre 1987 : -22,61 % pour le Dow Jones et -20,4 % pour le S&P 500, en une seule séance.",
-    question: "Tu aurais regardé les cours minute par minute, ou fermé l'application ?",
+    "hook": "📉 Le Dow Jones a perdu 22,6 % en une seule journée. Voici ce qui s’est passé le 19 octobre 1987 👇",
+    "context": "Cette séance est restée dans l’histoire sous le nom de « Black Monday ». Le S&P 500 a lui aussi chuté, de 20,4 %.\n\nPour mesurer le choc, une exposition de 10 000 € suivant exactement une baisse de 22,6 % serait tombée à environ 7 740 €, hors frais et effet de change.",
+    "twist": "💡 Le risque en Bourse ne se mesure pas seulement à la performance de fin d’année. Il faut aussi pouvoir traverser les baisses entre deux dates.",
+    "question": "💬 Tu avais envisagé qu’une baisse aussi forte puisse arriver en une seule séance ?"
   },
   "records-1933-meilleure-seance-dow": {
-    hook: "🚀 La meilleure séance du Dow Jones n'a pas eu lieu en plein marché euphorique.",
-    context: "Le 15 mars 1933, l'indice a gagné 15,34 % en une journée, après la réouverture des banques américaines décidée par Roosevelt en pleine crise bancaire.",
-    question: "Tu aurais parié sur un tel rebond à ce moment-là ?",
+    "hook": "📈 Le Dow Jones a gagné 15,34 % en une journée, le 15 mars 1933. Son meilleur rebond de séance est survenu en pleine crise bancaire 👇",
+    "context": "Les banques américaines venaient de rouvrir après la fermeture temporaire décidée par Roosevelt.",
+    "twist": "💡 Une très forte hausse peut arriver au milieu d’une crise. Une seule séance ne suffit toutefois pas à confirmer que les difficultés sont terminées.",
+    "question": "💬 Après une hausse pareille, tu aurais attendu ou recommencé à investir ?"
   },
   "records-1933-meilleures-seances-sp500": {
-    hook: "📈 Les plus gros rebonds arrivent parfois quand l'ambiance est au plus bas.",
-    context: "Dans la série historique du S&P 500, la plus forte séance remonte au 15 mars 1933 : +16,61 %. Deux autres records de hausse datent du 30 octobre 1929 et du 13 octobre 2008.",
-    question: "Ces dates t'étonnent, ou tu t'attendais à voir de fortes hausses en pleine crise ?",
+    "hook": "📈 +16,61 % en une séance : le 15 mars 1933 détient le record de hausse dans la série historique prolongée du S&P 500 👇",
+    "context": "Deux autres fortes hausses de cette série datent du 30 octobre 1929 (+12,53 %) et du 13 octobre 2008 (+11,58 %).\n\nLes chiffres antérieurs à 1957 concernent les indices prédécesseurs : le S&P 500 à 500 valeurs n’existait pas encore.",
+    "twist": "💡 Ces fortes séances sont survenues pendant des crises. Un marché en difficulté peut connaître un rebond brutal sans avoir achevé sa baisse.",
+    "question": "💬 Une forte hausse en pleine crise te rassure ou tu attends de voir la suite ?"
   },
   "records-2001-nasdaq": {
-    hook: "⚡ Le Nasdaq a gagné 14,2 % en une journée. Et pourtant, la bulle internet avait déjà éclaté.",
-    context: "C'était le 3 janvier 2001, après une baisse surprise des taux de la Fed. Une séance spectaculaire au milieu d'une période très difficile pour l'indice.",
-    question: "Un rebond pareil t'aurait redonné confiance, ou rendu encore plus méfiant ?",
+    "hook": "⚡ Le Nasdaq Composite a gagné 14,2 % le 3 janvier 2001. La bulle internet avait pourtant déjà éclaté 👇",
+    "context": "Cette séance a suivi une baisse surprise des taux de la Réserve fédérale américaine.",
+    "twist": "💡 Une journée de rebond ne résume pas une période boursière. Elle peut survenir alors que l’indice traverse encore une longue baisse.",
+    "question": "💬 Un rebond pareil t’aurait redonné confiance ou tu aurais attendu ?"
   },
   "duree-bull-bear-moyenne": {
-    hook: "🐂 Les baisses font plus de bruit. Mais dans cette étude, les hausses ont duré bien plus longtemps.",
-    context: "Pour le S&P 500, Ned Davis Research mesure en moyenne 988 jours pour un bull market, contre 289 jours pour un bear market.",
-    twist: "Cela décrit des cycles passés. Personne ne connaît la durée de celui qu'on traverse aujourd'hui.",
-    question: "Quand le marché baisse, c'est l'ampleur ou la durée qui te pèse le plus ?",
+    "hook": "📆 988 jours de hausse contre 289 jours de baisse en moyenne : voici les durées des cycles du S&P 500 dans l’étude de Ned Davis Research 👇",
+    "context": "Un « bull market » désigne une phase de marché haussier. Un « bear market » correspond à une baisse d’au moins 20 % depuis un sommet.",
+    "twist": "💡 Dans cette étude, les phases de hausse ont duré plus longtemps en moyenne. Ces durées ne donnent pas une date de fin au cycle en cours.",
+    "question": "💬 Quand le marché baisse, c’est l’ampleur ou la durée qui te pèse le plus ?"
   },
   "duree-frequence-bear-markets": {
-    hook: "⏳ Si tu investis sur plusieurs décennies, tu verras probablement de grosses baisses.",
-    context: "Dans le décompte historique de Ned Davis Research, un bear market du S&P 500 revient en moyenne tous les 3,5 ans. On parle d'une baisse d'au moins 20 %.",
-    twist: "Une moyenne n'est pas un calendrier : les marchés ne prennent pas rendez-vous tous les trois ans et demi.",
-    question: "Tu sais déjà ce que tu ferais si ton indice perdait 20 % ?",
+    "hook": "📉 Une baisse d’au moins 20 % tous les 3,5 ans en moyenne : c’est le rythme des bear markets du S&P 500 dans le décompte de Ned Davis Research 👇",
+    "context": "La baisse se mesure depuis un sommet. Cette fréquence est une moyenne historique, avec des écarts variables entre les épisodes.",
+    "twist": "💡 Ce repère sert à envisager des baisses pendant une longue période d’investissement. Il ne permet pas de programmer ses achats ou ses ventes tous les trois ans et demi.",
+    "question": "💬 Tu sais déjà ce que tu ferais si ton indice perdait 20 % ?"
   },
   "crash-1929": {
-    hook: "🕰️ En 1929, le Dow Jones a perdu 25 % en quatre séances. La suite a été encore plus longue.",
-    context: "La baisse s'est prolongée jusqu'en 1932. L'indice n'a retrouvé son sommet d'avant-krach qu'en novembre 1954, vingt-cinq ans plus tard.",
-    twist: "Il s'agit du niveau de l'indice, sans compter les dividendes.",
-    question: "Vingt-cinq ans pour revoir un sommet : ça change ta façon de penser ton horizon ?",
+    "hook": "🕰️ Après le krach de 1929, le Dow Jones a attendu novembre 1954 pour retrouver son sommet : vingt-cinq ans plus tard 👇",
+    "context": "Il avait perdu 25 % en quatre séances d’octobre 1929. La baisse s’est ensuite prolongée jusqu’en 1932.",
+    "twist": "💡 Ce délai concerne le niveau nominal de l’indice, sans dividendes réinvestis ni correction de l’inflation. Il ne mesure donc pas à lui seul le résultat d’un investisseur.",
+    "question": "💬 Un délai aussi long change-t-il la place que tu donnerais aux actions ?"
   },
   "crash-1987": {
-    hook: "🧨 Le 19 octobre 1987, Wall Street a échangé trois fois plus de titres qu'un jour ordinaire.",
-    context: "604 millions de titres ont changé de mains pendant le Black Monday. Après cette séance, il a fallu environ 21 mois au marché pour retrouver son niveau d'avant-krach.",
-    question: "Après un choc comme celui-là, tu aurais continué à suivre la Bourse chaque jour ?",
+    "hook": "🧨 Pendant le Black Monday du 19 octobre 1987, 604 millions de titres ont été échangés : environ trois fois le volume quotidien habituel 👇",
+    "context": "Le retour au niveau d’avant-krach a ensuite pris environ 21 mois, dans le repère de marché cité.",
+    "twist": "💡 Le volume décrit l’intensité des échanges pendant le choc. Il ne permet pas, à lui seul, de savoir quand les cours se stabiliseront.",
+    "question": "💬 Pendant une séance de panique, tu suivrais les cours ou tu prendrais du recul ?"
   },
   "crash-2000-2002": {
-    hook: "💻 Le Nasdaq a mis quinze ans à retrouver son sommet de la bulle internet.",
-    context: "Entre mars 2000 et octobre 2002, il a perdu 78 %. Son ancien niveau nominal n'a été dépassé qu'en avril 2015.",
-    twist: "Le S&P 500 a aussi chuté sur cette période, d'environ 49 à 50 % : la crise a largement dépassé les seules valeurs internet.",
-    question: "Quinze ans sans revoir ton ancien sommet : tu aurais tenu ?",
+    "hook": "💻 Le Nasdaq Composite a perdu 78 % entre mars 2000 et octobre 2002. Il a fallu attendre avril 2015 pour dépasser son ancien sommet 👇",
+    "context": "L’éclatement de la bulle internet a aussi touché le S&P 500, qui a perdu environ 49 à 50 % sur cette période.",
+    "twist": "💡 Le délai du Nasdaq concerne son niveau nominal, sans dividendes ni inflation. Il montre aussi qu’une exposition concentrée peut traverser des baisses très différentes de celles d’un indice plus large.",
+    "question": "💬 Quinze ans avant de revoir un sommet : quelle place donnerais-tu à un indice aussi concentré ?"
   },
   "crash-2008": {
-    hook: "🏦 En mars 2009, le S&P 500 avait perdu environ 57 % depuis son sommet d'octobre 2007.",
-    context: "La crise financière avait déjà duré dix-sept mois. L'indice n'a retrouvé son ancien niveau de clôture qu'en avril 2013.",
-    question: "Pendant une baisse aussi longue, tu aurais pu continuer tes versements ?",
+    "hook": "🏦 Le S&P 500 a perdu environ 57 % entre octobre 2007 et mars 2009. La chute s’est étalée sur dix-sept mois 👇",
+    "context": "Pendant la crise financière, l’indice a reculé depuis son sommet du 9 octobre 2007 jusqu’au creux du 9 mars 2009.",
+    "twist": "💡 Une baisse peut durer bien plus qu’une mauvaise semaine. Si tu dois vendre pour financer une dépense, ton horizon et ta réserve disponible comptent autant que ta capacité à supporter les fluctuations.",
+    "question": "💬 Pendant une baisse aussi longue, tu aurais pu continuer tes versements ?"
   },
   "crash-2020": {
-    hook: "🦠 Au début du Covid, le S&P 500 a perdu 33,9 % en 33 jours.",
-    context: "Pour mesurer la vitesse du choc : la durée médiane des bear markets recensés entre 1929 et 2020 était de 302 jours. Le creux est arrivé en un peu plus d'un mois.",
-    twist: "L'indice a ensuite retrouvé son ancien sommet dès août 2020. À l'époque, rien ne garantissait un rebond aussi rapide.",
-    question: "Tu te souviens de ce que tu as fait pendant la chute de mars 2020 ?",
+    "hook": "⚡ En 2020, le S&P 500 a perdu environ un tiers de sa valeur en 33 jours calendaires. Du sommet au creux, à peine plus d’un mois 👇",
+    "context": "Le 19 février, l’indice atteint un sommet.\n\nLe 23 mars, il a perdu 33,9 %, pendant le choc du Covid.",
+    "twist": "💡 Attendre que les marchés commencent à baisser pour réfléchir à sa stratégie peut laisser très peu de temps pour décider.\n\nSavoir pourquoi tu investis, pour combien de temps et avec quelle réserve disponible donne des repères quand les cours chutent.",
+    "question": "💬 En mars 2020, tu avais déjà un plan ou tu décidais au jour le jour ?"
   },
   "series-9-annees-positives": {
-    hook: "📅 Neuf années de Bourse positives d'affilée. Puis le compteur repart de zéro.",
-    context: "Le S&P 500 a connu une telle série de 1991 à 1999, puis une autre de 2009 à 2017, dividendes compris.",
-    twist: "Ces séries ne racontent pas les baisses vécues en cours d'année. Elles mesurent seulement le résultat de chaque année civile.",
-    question: "Après neuf années dans le vert, tu te serais senti rassuré ou inquiet ?",
+    "hook": "📈 Le S&P 500 a terminé neuf années de suite dans le vert, de 1991 à 1999. Vendre parce que « ça monte depuis trop longtemps » aurait pu te faire sortir bien tôt 👇",
+    "context": "Chaque année civile de cette période a affiché une performance positive, dividendes réinvestis. Une autre série de neuf années positives a eu lieu de 2009 à 2017.\n\nCela ne signifie pas que l’indice montait tous les jours : une année positive peut contenir des baisses importantes.",
+    "twist": "💡 Une série de hausses ne donne pas, à elle seule, la date de la prochaine chute. Elle ne garantit pas non plus que la hausse continuera.",
+    "question": "💬 Après plusieurs années positives, tu continues tes versements ou tu commences à attendre une baisse ?"
   },
   "series-annees-20-pourcent": {
-    hook: "🔥 +20 % ou plus, cinq années de suite. C'est ce qu'a fait le S&P 500 de 1995 à 1999.",
-    context: "Une série pareille peut vite donner l'impression que ces rendements sont devenus la norme. Dans la série historique étudiée, cet enchaînement reste exceptionnel.",
-    question: "À force de voir de telles hausses, tu aurais fini par les attendre chaque année ?",
+    "hook": "🔥 Le S&P 500 a gagné au moins 20 % par an pendant cinq années de suite, de 1995 à 1999, dans la série de rendement total citée 👇",
+    "context": "Cette séquence inclut les dividendes réinvestis. Dans la série historique étudiée depuis 1929, un tel enchaînement reste exceptionnel.",
+    "twist": "💡 Une suite de très bonnes années peut modifier tes attentes. Elle ne transforme pas ces rendements en objectif réaliste pour chaque année suivante.",
+    "question": "💬 À force de voir de telles hausses, tu aurais fini par les attendre chaque année ?"
   },
   "annees-extremes": {
-    hook: "🎢 Une année à -43,8 %. Une autre à +54 %. Les marchés ont connu les deux en deux ans.",
-    context: "Dans la série historique américaine, 1931 est la pire année civile et 1933 la meilleure. Ces extrêmes montrent combien une seule année peut déformer notre impression du long terme.",
-    twist: "La partie de cette série antérieure à 1957 précède le S&P 500 à 500 valeurs que l'on connaît aujourd'hui.",
-    question: "Tu te fies davantage au résultat de l'année ou à ton horizon complet ?",
+    "hook": "🎢 Moins 43,8 % en 1931, plus 54 % en 1933 : voici deux années extrêmes de la série historique prolongée du S&P 500 👇",
+    "context": "Ce sont deux années civiles distinctes, pas une baisse immédiatement suivie de cette hausse. La période antérieure à 1957 repose sur les indices prédécesseurs du S&P 500 actuel.",
+    "twist": "💡 Une année extrême ne décrit pas le résultat sur toute la durée de détention. Le point de départ et les années intermédiaires comptent aussi.",
+    "question": "💬 Tu juges ton portefeuille sur l’année écoulée ou sur tout ton horizon ?"
   },
   "annees-part-positives": {
-    hook: "📆 Sur une longue période, près de trois années sur quatre ont fini dans le vert aux États-Unis.",
-    context: "Dimensional Fund Advisors trouve environ 73 à 74 % d'années civiles positives sur quelque 154 ans de données. Il reste donc aussi des années où l'investisseur termine dans le rouge.",
-    twist: "L'étude porte sur le marché actions américain dans son ensemble, et non sur le seul S&P 500.",
-    question: "Une année négative te ferait-elle remettre en cause ta stratégie ?",
+    "hook": "📆 Environ 73 à 74 % des années ont été positives sur quelque 154 ans de données du marché actions américain étudiées par Dimensional 👇",
+    "context": "Ce chiffre porte sur le marché américain dans son ensemble, pas uniquement sur le S&P 500. Il compare les résultats de chaque année civile.",
+    "twist": "💡 Une majorité d’années positives laisse aussi des années négatives. Ce constat historique ne fixe pas la probabilité de gain de l’année prochaine.",
+    "question": "💬 Une année négative te ferait-elle remettre en cause ta stratégie ?"
   },
   "fenetres-20-ans": {
-    hook: "🗓️ Vingt ans, c'est long. Sur la période étudiée depuis 1950, ça a changé le résultat.",
-    context: "Dans les données de J.P. Morgan sur les actions américaines, aucune période glissante de vingt ans ne s'est terminée avec un rendement annualisé négatif.",
-    twist: "Ce constat dépend de la période et du marché étudiés. Il ne promet rien pour les vingt prochaines années.",
-    question: "Tu connais la date à laquelle tu auras réellement besoin de l'argent investi ?",
+    "hook": "🗓️ Aucune période glissante de vingt ans négative pour les actions américaines dans la série de J.P. Morgan étudiée depuis 1950. Voici la limite de ce constat 👇",
+    "context": "L’étude compare les rendements annualisés de périodes de vingt ans ayant des dates de départ différentes. Elle concerne les actions américaines, dans le périmètre de l’édition citée.",
+    "twist": "💡 Ce résultat historique n’est pas une garantie pour les vingt prochaines années, ni pour un autre marché. Il ne décrit pas non plus les baisses traversées pendant ces vingt ans.",
+    "question": "💬 Tu connais la date à laquelle tu auras réellement besoin de l’argent investi ?"
   },
   "cac40-record-21-ans": {
-    hook: "🇫🇷 « Le CAC 40 a mis 21 ans à retrouver son record. » C'est vrai, avec une précision essentielle.",
-    context: "Son ancien sommet de cours, atteint en septembre 2000, n'a été dépassé qu'en novembre 2021.",
-    twist: "Ce calcul suit l'indice de prix et laisse les dividendes réinvestis de côté. Pour juger ce qu'aurait rapporté un placement, il faut les prendre en compte.",
-    question: "Quand tu compares deux indices, tu vérifies s'ils incluent les dividendes ?",
+    "hook": "🇫🇷 Le CAC 40 a attendu vingt et un ans pour dépasser son record de septembre 2000. Mais ce chiffre laisse les dividendes de côté 👇",
+    "context": "L’ancien sommet de son indice de prix n’a été dépassé qu’en novembre 2021.",
+    "twist": "💡 Le niveau de l’indice et la performance avec dividendes réinvestis ne mesurent pas la même chose. Pour juger le résultat d’un placement, les revenus reçus comptent aussi.",
+    "question": "💬 Quand tu compares deux indices, tu vérifies s’ils incluent les dividendes ?"
   },
   "cac40-pire-seance-2020": {
-    hook: "🇫🇷 Le 12 mars 2020, le CAC 40 a perdu 12,28 % en une seule séance.",
-    context: "C'est sa pire journée historique. Pour quelqu'un qui regardait son portefeuille ce soir-là, la baisse ne ressemblait plus à une simple ligne rouge sur un graphique.",
-    question: "Tu te souviens de ta réaction ce jour-là, ou tu n'investissais pas encore ?",
-  },
+    "hook": "🇫🇷 Le CAC 40 a perdu 12,28 % le 12 mars 2020. Une seule séance, pendant le choc du Covid 👇",
+    "context": "Cette journée est son record historique de baisse dans les données citées.",
+    "twist": "💡 Une forte baisse peut se produire avant que tu aies le temps de modifier tes placements. Garder disponible l’argent destiné aux dépenses proches évite de dépendre d’une vente ce jour-là.",
+    "question": "💬 Tu investissais déjà à cette date ? Comment avais-tu réagi ?"
+  }
 };
 
 const publishedFacts = RAW_FACTS.map((fact) => ({ ...fact, ...EDITORIAL[fact.id] }));
