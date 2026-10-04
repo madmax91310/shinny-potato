@@ -1,0 +1,108 @@
+{
+  "as_of": "2026-10-04T17:30:26.202759+00:00",
+  "data": {
+    "identity": {
+      "slug": "hohn",
+      "archetype": "hedge_fund",
+      "displayName": "Christopher Hohn",
+      "entityName": "TCI Fund Management Ltd",
+      "dataProvider": "FolioFact"
+    },
+    "snapshot": {
+      "periodEnd": "2026-06-30",
+      "holdings": [
+        {
+          "issuerName": "General Electric Co.",
+          "ticker": "GE",
+          "putCall": null,
+          "weight": 0.33589904011585453,
+          "isNew": false,
+          "sharesChangePct": -0.2
+        },
+        {
+          "issuerName": "Visa Inc.",
+          "ticker": "V",
+          "putCall": null,
+          "weight": 0.19826141763938432,
+          "isNew": false,
+          "sharesChangePct": 0.1
+        },
+        {
+          "issuerName": "Moody's Corp.",
+          "ticker": "MCO",
+          "putCall": null,
+          "weight": 0.12302788952597805,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "S&P Global Inc.",
+          "ticker": "SPGI",
+          "putCall": null,
+          "weight": 0.10867974930314461,
+          "isNew": false,
+          "sharesChangePct": 0.3
+        },
+        {
+          "issuerName": "Alphabet Inc.",
+          "ticker": "GOOG(L)",
+          "putCall": null,
+          "weight": 0.08318648138825335,
+          "isNew": false,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Canadian Pacific Kansas City",
+          "ticker": "CP",
+          "putCall": null,
+          "weight": 0.07439682031127624,
+          "isNew": false,
+          "sharesChangePct": -2.6
+        },
+        {
+          "issuerName": "Ferrovial SE",
+          "ticker": "FER",
+          "putCall": null,
+          "weight": 0.027186186878152094,
+          "isNew": false,
+          "sharesChangePct": 1.0
+        },
+        {
+          "issuerName": "Canadian Natl Ry Co.",
+          "ticker": "CNI",
+          "putCall": null,
+          "weight": 0.021310164455697368,
+          "isNew": false,
+          "sharesChangePct": -4.2
+        },
+        {
+          "issuerName": "Martin Marietta Matls Inc.",
+          "ticker": "MLM",
+          "putCall": null,
+          "weight": 0.014372276318910533,
+          "isNew": true,
+          "sharesChangePct": null
+        },
+        {
+          "issuerName": "Vulcan Matls Co.",
+          "ticker": "VMC",
+          "putCall": null,
+          "weight": 0.013679974063348909,
+          "isNew": true,
+          "sharesChangePct": null
+        }
+      ],
+      "quarterChanges": {
+        "priorPeriodLabel": "Q1 2026",
+        "exits": [
+          {
+            "issuerName": "Microsoft Corp.",
+            "ticker": "MSFT",
+            "putCall": null
+          }
+        ]
+      }
+    },
+    "sourceUrl": "https://foliofact.com/funds/tci-fund-management"
+  }
+}

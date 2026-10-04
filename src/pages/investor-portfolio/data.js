@@ -5,6 +5,7 @@ export const INVESTORS = [
   ['druckenmiller', 'Stanley Druckenmiller'], ['loeb', 'Daniel Loeb'],
   ['aschenbrenner', 'Leopold Aschenbrenner'],
   ['li-lu', 'Li Lu'], ['gates-trust', 'Gates Foundation Trust'], ['klarman', 'Seth Klarman'],
+  ['terry-smith', 'Terry Smith'], ['pabrai', 'Mohnish Pabrai'], ['hohn', 'Christopher Hohn'],
 ]
 
 export const ATTRIBUTION = 'Données : Tracefour · tracefour.com · CC BY 4.0'

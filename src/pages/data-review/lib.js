@@ -1,3 +1,6 @@
+import terrySmith from '../../../public/data/investors/terry-smith.json' with { type: 'json' }
+import pabrai from '../../../public/data/investors/pabrai.json' with { type: 'json' }
+import hohn from '../../../public/data/investors/hohn.json' with { type: 'json' }
 import liLu from '../../../public/data/investors/li-lu.json' with { type: 'json' }
 import gates from '../../../public/data/investors/gates-trust.json' with { type: 'json' }
 import klarman from '../../../public/data/investors/klarman.json' with { type: 'json' }
@@ -110,9 +113,9 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
       }
     }
   }
-  // Les trois copies locales sont rafraîchies automatiquement ; l'échéance
+  // Les copies locales suivies sont rafraîchies automatiquement ; l'échéance
   // contrôle la présence du trimestre suivant, pas la réussite du workflow.
-  if (catalog === DATA_CATALOG) for (const payload of [liLu, gates, klarman]) {
+  if (catalog === DATA_CATALOG) for (const payload of [liLu, gates, klarman, terrySmith, pabrai, hohn]) {
     const snapshot = payload.data.snapshot
     const quarterEnd = addMonths(snapshot.periodEnd, 3)
     const boundary = new Date(`${quarterEnd}T00:00:00Z`)

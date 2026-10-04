@@ -56,7 +56,7 @@ Le générateur `/france-100-menages` propose 17 sujets et sept rendus PNG : Ivo
 
 Trois nouvelles compositions sont disponibles dans La France en 100 : Ivoire & noir (par défaut), Bleu & blanc et Prune & sable. Elles couvrent les taux, les seuils en euros, les parts de patrimoine et les comparaisons. Les quatre rendus précédents restent accessibles, y compris via leurs liens partagés.
 
-Les 11 profils de Portefeuille d’investisseur disposent d’une présentation courte sourcée dans `src/data/investor-profiles.js`. La même phrase préremplit l’éditeur et le tweet ; elle est modifiable et réinitialisable. Les sources biographiques sont affichées dans l’application, séparées de celles des déclarations 13F.
+Les 14 profils de Portefeuille d’investisseur disposent d’une présentation courte sourcée dans `src/data/investor-profiles.js`. La même phrase préremplit l’éditeur et le tweet ; elle est modifiable et réinitialisable. Les sources biographiques sont affichées dans l’application, séparées de celles des déclarations 13F.
 
 ### Actualisation automatique des portefeuilles 13F
 
@@ -96,3 +96,5 @@ Elles sont exclues du format Anniversaire, qui affiche un prix historique brut :
 clôture ajustée ne correspond pas au prix effectivement coté à cette date.
 Capture et limites : scripts/source-snapshots/calculator-companies-2026-10-02.json.
 Ces séries sont figées au dernier contrôle ; leur ajout ne crée pas d’actualisation programmée.
+
+Le workflow 13F actualise quotidiennement les 14 profils à 12:25 UTC, dont Terry Smith (Fundsmith LLP), Mohnish Pabrai (Dalal Street LLC) et Christopher Hohn (TCI Fund Management Ltd). Il conserve les dernières données valides en cas d’échec, refuse tout retour à un trimestre antérieur et archive les snapshots lors du passage au trimestre suivant. Les portraits sont stockés localement avec leurs sources et crédits dans `public/asset-art/investors/sources.json`.

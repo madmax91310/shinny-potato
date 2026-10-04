@@ -11,6 +11,9 @@ export const INVESTOR_PROFILES = Object.freeze(Object.fromEntries([
   ['li-lu', 'Li Lu est le fondateur d’Himalaya Capital, une société de gestion qui investit à long terme dans les entreprises en Asie et en Amérique du Nord.', ['https://www.himcap.com/']],
   ['gates-trust', 'Le Gates Foundation Trust détient et gère la dotation qui finance les activités de la fondation Gates.', ['https://www.gatesfoundation.org/about/financials/foundation-trust']],
   ['klarman', 'Seth Klarman dirige les investissements de Baupost, une société de gestion qui recherche la valeur sur le long terme.', ['https://www.baupost.com/About']],
-].map(([slug, intro, sourceUrls]) => [slug, Object.freeze({ intro, sourceUrls: Object.freeze(sourceUrls), checkedAt: '2026-10-01' })])))
+  ['terry-smith', 'Terry Smith a fondé Fundsmith, une société de gestion qui sélectionne des entreprises de qualité pour investir à long terme.', ['https://www.fundsmith.co.uk/sef/about-us/']],
+  ['pabrai', 'Mohnish Pabrai dirige Pabrai Investment Funds, dont les investissements sont gérés par Dalal Street LLC.', ['https://pabraifunds.com/partnership-rules/', 'https://www.chaiwithpabrai.com/']],
+  ['hohn', 'Christopher Hohn a fondé TCI, une société de gestion qui investit à long terme et dialogue avec les dirigeants des entreprises.', ['https://www.tcifund.com/']],
+].map(([slug, intro, sourceUrls]) => [slug, Object.freeze({ intro, sourceUrls: Object.freeze(sourceUrls), checkedAt: ['terry-smith', 'pabrai', 'hohn'].includes(slug) ? '2026-10-04' : '2026-10-01' })])))
 
 export function investorIntroduction(slug) { return INVESTOR_PROFILES[slug]?.intro ?? '' }
