@@ -30,6 +30,19 @@ export function getIndexImageFacts(index) {
 }
 const cleanLabel = label => label.replace(/^[^\p{L}\p{N}]+/u, '').trim()
 const percent = value => `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
+function sourceProvider(source) {
+  if (!source?.url) return null
+  const host = new URL(source.url).hostname
+  if (host.endsWith('msci.com')) return 'MSCI'
+  if (host.endsWith('ftserussell.com') || host.endsWith('lseg.com')) return 'FTSE Russell'
+  if (host.endsWith('amundietf.fr')) return 'Amundi (fiche ETF)'
+  if (host.endsWith('spglobal.com')) return 'S&P DJI'
+  if (host.endsWith('stoxx.com')) return 'STOXX'
+  if (host.endsWith('nikkei.co.jp')) return 'Nikkei'
+  if (host.endsWith('ssga.com')) return 'State Street (fiche ETF)'
+  return host.replace(/^www\./, '')
+}
+
 function rule(ctx, x, y, width) {
   ctx.fillStyle = '#c9bda8'; ctx.fillRect(x, y, width, 1)
   ctx.fillStyle = '#fffaf0'; ctx.fillRect(x, y + 1, width, 1)
@@ -83,7 +96,7 @@ export async function renderIndexImage(family) {
     const allocations = [['PRINCIPAUX PAYS', facts?.countries], ['SECTEURS', facts?.sectors]].filter(([, entries]) => entries?.length).map(([label, entries]) => ({ label, rows: entries.map(([name, value]) => {
       font(ctx, 28); return { name: lines(ctx, cleanLabel(name), INNER - 145), value }
     }) }))
-    return { name, points, count: facts?.count ?? null, stamp, allocations, source: facts ? index.indexFacts.source?.label : null, color: COLORS[i % COLORS.length] }
+    return { name, points, count: facts?.count ?? null, stamp, allocations, source: facts ? sourceProvider(index.indexFacts.source) : null, color: COLORS[i % COLORS.length] }
   })
   const rows = []
   for (let i = 0; i < cards.length; i += columns) {
