@@ -1,3 +1,4 @@
+import { allocationQuestions } from './allocationEditorial.js';
 import { compactHooks, compactRole, portfolioAssetLabel } from './compact.js';
 import { assetEditorial } from "./asset-editorial.js";
 import { PRO_EUROPE_CORE_IDS } from "./theses.js";
@@ -140,7 +141,7 @@ function scene(selection, shared, profileId, riskId) {
     "Chercher davantage de performance, c’est tentant. Accepter des mouvements amplifiés l’est moins. Voici comment un portefeuille peut faire une place au levier 👇",
   ], "On fait ici une place à un ETF à levier. C’est un choix qui mérite de regarder au-delà de la taille de la ligne.",
   [
-    `Tu garderais les ${lever.pct}% sur cet ETF à levier, ou tu choisirais une exposition sans levier ?`,
+    `${crypto ? "Tu garderais à la fois la crypto et le levier, ou tu choisirais une seule de ces deux expositions ?" : `Tu garderais les ${lever.pct}% sur cet ETF à levier, ou tu choisirais une exposition sans levier ?`}`,
     "Le levier, tu lui ferais une place dans ton épargne ou tu préfères rester sur des ETF classiques ?",
   ]);
 
@@ -340,7 +341,7 @@ export function buildEditorial(selection, history = [], profileId, riskId) {
   // Une série de publications peut alterner profils, paliers et mode manuel.
   const recent = history.slice(-20);
   const hook = rotate(compactHooks(selection), content.kind, recent, "hookId");
-  const cta = rotate(content.questions, content.kind, recent, "ctaTemplate");
+  const cta = rotate(allocationQuestions(selection) ?? content.questions, content.kind, recent, "ctaTemplate");
   const lever = selection.some(s => LEVERAGE.includes(s.id));
   const warnings = [];
   if (lever) warnings.push("Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.");
