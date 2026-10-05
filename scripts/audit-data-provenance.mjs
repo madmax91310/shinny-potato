@@ -10,6 +10,7 @@ import { ETF_TER_EVIDENCE, ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
 import { OFFICIAL_AUM_OBSERVATIONS } from '../src/data/instrument-aum-observations.js';
 import { REVIEWED_INDEX_SNAPSHOTS } from '../src/data/index-source-review.js';
 import { VERIFIED_RETURNS } from '../src/data/verified-returns.js';
+import { getInstrumentAnnualPerformance } from '../src/data/instrument-returns.js';
 import { ARCHIVE_SOURCE_REVIEW } from '../src/data/archive-source-review.js';
 import { INDEX_FACTS } from '../src/data/index-facts.js';
 import { SHEETS } from '../src/data/index-factsheets.js';
@@ -67,7 +68,7 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
     if (field.label.startsWith('Rendements')) assert.equal(field.metadata.periodEnd, '2025-12-31');
   }
   if (VERIFIED_RETURNS[isin]) {
-    const values = VERIFIED_RETURNS[isin].values;
+    const values = getInstrumentAnnualPerformance(isin).values;
     if (values.some(Number.isFinite)) assert.deepEqual(record.fields.find(f => f.label === 'Rendements 2020–2025').value, values, `${isin}: catalogue différent de la série réellement consommée`);
     else assert(record.fields.some(f => f.label === 'Disponibilité de la performance'), `${isin}: absence d’historique non expliquée`);
   }

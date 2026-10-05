@@ -162,7 +162,7 @@ for (const [isin, entry] of Object.entries(INSTRUMENT_AUM_BY_ISIN)) {
     console.error(`Encours : deux valeurs divergentes malgré une source unique pour ${isin}`);
     errors++;
   }
-  if (entry.source?.amountMillions) {
+  if (entry.source?.amountMillions && !AUTOMATED_ETF[isin]?.aum) {
     const amount = `${String(entry.source.amountMillions).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} M€`;
     const date = entry.source.checkedAt.split('-').reverse().join('/');
     if ([entry.sheet, entry.index].filter(Boolean).some(label => label !== `${amount} (relevé le ${date})`)) {
@@ -173,7 +173,7 @@ for (const [isin, entry] of Object.entries(INSTRUMENT_AUM_BY_ISIN)) {
 }
 for (const [isin, automated] of Object.entries(AUTOMATED_ETF)) {
   const source = INSTRUMENT_AUM_BY_ISIN[isin]?.source;
-  if (!source || source.amount !== automated.aum.amount || source.currency !== automated.currency || source.asOf !== automated.aum.asOf || source.checkedAt !== automated.aum.checkedAt || source.url !== automated.sourceUrl || !source.url.endsWith(`/products/${automated.productId}`)) {
+  if (!source || source.amount !== automated.aum.amount || source.amountMillions !== automated.aum.amount / 1e6 || source.currency !== automated.aum.currency || source.asOf !== automated.aum.asOf || source.checkedAt !== automated.aum.checkedAt || source.url !== automated.sourceUrl) {
     console.error(`Encours automatisé incohérent : ${isin}`);
     errors++;
   }

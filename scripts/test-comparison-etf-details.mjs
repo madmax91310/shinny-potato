@@ -20,7 +20,11 @@ for (const fund of emerging.etfs) {
  assert.equal(p.label,'ETF');assert.equal(p.referenceIsin,fund.isin)
  const details=COMPARISON_ETF_DETAILS[fund.isin]
  assert.ok(details.source && details.asOf && details.checkedAt)
- assert.equal(details.holdings.length,3)
+ assert.ok(details.holdings.length >= 3)
+ if (AUTOMATED_ETF[fund.isin]?.holdings) {
+  assert.equal(details.holdingsAsOf, AUTOMATED_ETF[fund.isin].holdings.asOf)
+  assert.deepEqual(details.holdings.slice(0,3), AUTOMATED_ETF[fund.isin].holdings.rows.slice(0,3).map(r => [r.name,r.weightPct]))
+ }
  assert.ok(Math.abs(details.sectors.reduce((sum,[,pct])=>sum+pct,0)-100) <= (AUTOMATED_ETF[fund.isin] ? 1 : .1))
 }
 for (const theme of DEFAULT_THEMES) {

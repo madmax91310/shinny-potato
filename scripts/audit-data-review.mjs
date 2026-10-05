@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js'
+import { AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview, reviewCalendar, summarizeCadences } from '../src/pages/data-review/lib.js'
 import { OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
@@ -47,8 +48,13 @@ for (const observation of closure.records) {
     ? x.value.asOf === observation.asOf
     : x.label === (observation.type === 'comparator' ? 'Rendements 2023–2025 du comparateur' : historicalProxy ? 'Historique de simulation 2020–2025' : 'Rendements 2020–2025'))
   assert(field, `Champ contrôlé absent : ${record.id}`)
-  assert.deepEqual(observation.type === 'index' ? field.value.constituents : field.value, observation.constituents ?? observation.values)
-  if (reviewed && !historicalProxy && observation.type === 'portfolio') {
+  const automated = observation.type === 'portfolio' && !historicalProxy ? AUTOMATED_PERFORMANCE[observation.isin] : null
+  assert.deepEqual(observation.type === 'index' ? field.value.constituents : field.value, automated?.values ?? observation.constituents ?? observation.values)
+  if (automated) {
+    assert.equal(field.metadata.checkedAt, automated.checkedAt)
+    assert(field.metadata.checkedAt >= closure.checkedAt, `${record.id}: contrôle automatisé antérieur à la revue`)
+    assert(field.metadata.sourceUrls.includes(automated.source), `${record.id}: source automatisée absente`)
+  } else if (reviewed && !historicalProxy && observation.type === 'portfolio') {
     // Les mêmes années calendaires ont été recertifiées dans une publication plus récente.
     assert.equal(field.metadata.checkedAt, reviewed.checkedAt)
     assert(field.metadata.sourceUrls.includes(reviewed.source), `${record.id}: nouvelle source contrôlée absente`)

@@ -1,10 +1,479 @@
 {
   "provider": "iShares",
   "instruments": [
-    {"isin":"IE00B4L5Y983","productId":251882,"name":"Core MSCI World","currency":"USD"},
-    {"isin":"IE00B5BMR087","productId":253743,"name":"Core S&P 500","currency":"USD"},
-    {"isin":"IE00BKM4GZ66","productId":264659,"name":"Core MSCI EM IMI","currency":"USD"},
-    {"isin":"IE00B4L5YX21","productId":251867,"name":"Core MSCI Japan IMI","currency":"USD"},
-    {"isin":"IE00BF4RFH31","productId":296576,"name":"MSCI World Small Cap","currency":"USD"}
+    {
+      "isin": "IE00B4L5Y983",
+      "productId": 251882,
+      "name": "iShares Core MSCI World UCITS ETF (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251882/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B5BMR087",
+      "productId": 253743,
+      "name": "Core S&P 500",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BKM4GZ66",
+      "productId": 264659,
+      "name": "iShares Core MSCI EM IMI UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/264659/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B4L5YX21",
+      "productId": 251867,
+      "name": "iShares Core MSCI Japan IMI UCITS ETF (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251867/",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BF4RFH31",
+      "productId": 296576,
+      "name": "iShares MSCI World Small Cap UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/296576/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B3FH7618",
+      "productId": 251741,
+      "name": "iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",
+      "currency": "EUR",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BDBRDM35",
+      "productId": 291770,
+      "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
+      "currency": "EUR",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BZCQB185",
+      "productId": 297617,
+      "name": "iShares MSCI India UCITS ETF USD (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B1FZS467",
+      "productId": 251809,
+      "name": "iShares Global Infrastructure UCITS ETF USD (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE000I8KRLL9",
+      "productId": 319084,
+      "name": "iShares MSCI Global Semiconductors UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/319084/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE000RDRMSD1",
+      "productId": 328618,
+      "name": "iShares Blockchain Technology UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/328618/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B0M62X26",
+      "productId": 251739,
+      "name": "iShares € Inflation Linked Govt Bond UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251739/ishares-euro-inflation-linked-government-bond-ucits-etf",
+      "currency": "EUR",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B1FZS350",
+      "productId": 251801,
+      "name": "iShares Developed Markets Property Yield UCITS ETF USD (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251801/ishares-developed-markets-property-yield-ucits-etf",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B3F81R35",
+      "productId": 251726,
+      "name": "iShares Core € Corp Bond UCITS ETF (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251726/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "EUR",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B43HR379",
+      "productId": 280507,
+      "name": "iShares S&P 500 Health Care Sector UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/280507/",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B4JNQZ49",
+      "productId": 280523,
+      "name": "iShares S&P 500 Financials Sector UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/280523/",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B4WXJJ64",
+      "productId": 251740,
+      "name": "iShares Core Euro Government Bond UCITS ETF (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251740/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "EUR",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B53SZB19",
+      "productId": 253741,
+      "name": "iShares Nasdaq 100 UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/253741/",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B66F4759",
+      "productId": 251843,
+      "name": "iShares Euro High Yield Corporate Bond UCITS ETF (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251843/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "EUR",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B6R52259",
+      "productId": 251850,
+      "name": "iShares MSCI ACWI UCITS ETF USD (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251850/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B8FHGS14",
+      "productId": 251382,
+      "name": "iShares Edge MSCI World Minimum Volatility UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251382/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BF3N7094",
+      "productId": 290618,
+      "name": "iShares € High Yield Corp Bond UCITS ETF (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/290618/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "EUR",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BFZPF546",
+      "productId": 297676,
+      "name": "iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297676/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BJ5JNY98",
+      "productId": 308858,
+      "name": "iShares MSCI World Information Technology Sector Advanced UCITS ETF USD (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308858/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BJ5JP097",
+      "productId": 308836,
+      "name": "iShares MSCI World Financials Sector Advanced UCITS ETF USD (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308836/ishares-msci-world-financials-sector-advanced-ucits-etf",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BK95B138",
+      "productId": 309947,
+      "name": "iShares $ Treasury Bond UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/309947/",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BKPX3K41",
+      "productId": 313316,
+      "name": "iShares MSCI AC Far East ex-Japan UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/313316/ishares-msci-ac-far-east-ex-japan-ucits-etf",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BMG6Z448",
+      "productId": 315592,
+      "name": "iShares MSCI EM ex-China UCITS ETF (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BMW42413",
+      "productId": 315818,
+      "name": "iShares MSCI Europe Information Technology Sector UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/315818/",
+      "currency": "EUR",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BP3QZ601",
+      "productId": 270054,
+      "name": "iShares Edge MSCI World Quality Factor UCITS ETF (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/270054/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BP3QZ825",
+      "productId": 270051,
+      "name": "iShares Edge MSCI World Momentum Factor UCITS ETF (Acc)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/270051/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BP3QZB59",
+      "productId": 270048,
+      "name": "iShares Edge MSCI World Value Factor UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/270048/ishares-msci-world-value-factor-ucits-etf",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BYXG2H39",
+      "productId": 291450,
+      "name": "iShares Nasdaq US Biotechnology UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/291450/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BYZK4552",
+      "productId": 284219,
+      "name": "iShares Automation & Robotics UCITS ETF",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/284219/?siteEntryPassthrough=true&switchLocale=y",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BYZK4776",
+      "productId": 284216,
+      "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B4K48X80",
+      "productId": 251861,
+      "name": "iShares Core MSCI Europe UCITS ETF",
+      "currency": "EUR",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BYYHSQ67",
+      "productId": 288147,
+      "name": "iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE000C6ITGC8",
+      "productId": 345953,
+      "name": "iShares Quantum Computing UCITS ETF",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00BG0J4C88",
+      "productId": 297843,
+      "name": "iShares Digital Security UCITS ETF",
+      "currency": "USD",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE00B1XNHC34",
+      "productId": 251911,
+      "name": "iShares Global Clean Energy Transition UCITS ETF",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    },
+    {
+      "isin": "IE0000N55FP4",
+      "productId": 348766,
+      "name": "iShares MSCI Europe Small Cap UCITS ETF",
+      "currency": "EUR",
+      "distribution": "Accumulating",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares"
+    }
+  ],
+  "excluded": [
+    {
+      "isin": "IE0002XZSHO1",
+      "reason": "'keyFundFacts'"
+    },
+    {
+      "isin": "IE000DQLYVB9",
+      "reason": "'keyFundFacts'"
+    },
+    {
+      "isin": "IE00B4NCWG09",
+      "reason": "'seriesBaseCurrencyCode'"
+    },
+    {
+      "isin": "IE00B4ND3602",
+      "reason": "'seriesBaseCurrencyCode'"
+    },
+    {
+      "isin": "IE00B5W4TY14",
+      "reason": "'seriesBaseCurrencyCode'"
+    }
   ]
 }

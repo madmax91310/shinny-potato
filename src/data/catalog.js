@@ -1,5 +1,6 @@
 import { INDEX_DECISION_CASE_DEFINITIONS } from './index-decision-cases.js'
 import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
+import { AUTOMATED_PERFORMANCE } from './automated-etf.js';
 import { VERIFIED_RETURNS } from './verified-returns.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { CATALOG as DUEL_ASSETS } from './duel-assets.js';
@@ -75,7 +76,7 @@ function instrument(isin, identity) {
   const returns = reviewed ? (evidence.values.some(Number.isFinite) ? evidence.values : null) :
     proxy ? VERIFIED_RETURNS[isin].values : PORTFOLIO_RETURN_EVIDENCE[isin] || evidence ? getInstrumentReturnValues(isin) : null;
   if (returns) {
-    fields.push(field('Rendements 2020–2025', 'instrument-returns', returns, reviewed ? {
+    fields.push(field('Rendements 2020–2025', 'instrument-returns', returns, reviewed || AUTOMATED_PERFORMANCE[isin] ? {
       source: evidence.source, checkedAt: evidence.checkedAt, currency: evidence.currency,
       asOf: '2025-12-31', periodStart: `${2020 + returns.findIndex(Number.isFinite)}-01-01`, periodEnd: '2025-12-31',
       scope, method: 'Rendements calendaires NAV de la part exacte ; années complètes uniquement', note: evidence.note,

@@ -1,4 +1,5 @@
 import { PROPERTY_INFRA_RETURNS } from '../src/data/property-infrastructure-additions.js';
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import { WORLD_FACTOR_RETURNS } from '../src/data/world-factor-additions.js';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
@@ -43,8 +44,8 @@ assert(searchData('emergents').length > 0, 'Recherche sans accents absente');
 assert.equal(searchData('zzzintrouvablezzz').length, 0);
 assert(searchData('world', 'index').every((r) => r.type === 'index'));
 const aum = searchData('FR001400U5Q4')[0].fields.find((f) => f.label === 'Encours');
-assert.equal(aum.metadata.asOf, null, 'Une consultation a été transformée en photographie');
-assert.equal(aum.metadata.checkedAt, '2026-09-29');
+assert.equal(aum.metadata.asOf, AUTOMATED_ETF.FR001400U5Q4?.aum?.asOf ?? null, 'Seule une date publiée doit dater la photographie');
+assert.equal(aum.metadata.checkedAt, AUTOMATED_ETF.FR001400U5Q4?.aum?.checkedAt ?? '2026-09-29');
 assert(describeDataField({ label: 'Rendements 2020–2025', value: [1, 2, 3, 4, 5, 6] }).includes('2020 : +1'));
 assert(describeDataField({ label: 'Rendements d’indice', value: { values: [[2025, 4]] } }).includes('2025 : +4'));
 assert.equal(normalizeEvidence({ checkedAt: '2026-09-30' }).asOf, null);

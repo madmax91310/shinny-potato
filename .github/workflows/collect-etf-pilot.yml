@@ -1,12 +1,21 @@
-name: Update active ETF iShares data
+name: Update active ETF issuer data
 on:
   schedule:
     - cron: '10 7 3,16 * *'
   workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/collect-etf-pilot.yml'
+      - 'scripts/collect_*etf*.py'
+      - 'scripts/apply_etf_collection.py'
+      - 'scripts/*etf.json'
   pull_request:
     paths:
       - '.github/workflows/collect-etf-pilot.yml'
       - 'scripts/*etf*'
+      - 'scripts/*amundi*'
+      - 'scripts/test_issuer_refresh.py'
       - 'scripts/update_bitcoin_monthly.py'
       - 'scripts/test_active_refresh.py'
       - 'src/data/automated-etf*'
@@ -14,16 +23,17 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: active-etf-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
-  cancel-in-progress: false
+  group: active-etf-issuers-v2-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 30
     permissions:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,8 +44,17 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
-      - run: python scripts/collect_etf_pilot.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/observation.json" --apply
+      - id: ishares
+        continue-on-error: true
+        run: python scripts/collect_etf_pilot.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/observation.json" --apply
+      - id: amundi
+        continue-on-error: true
+        run: python scripts/collect_amundi_etf.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/amundi-observation.json" --apply
+      - id: ssga
+        continue-on-error: true
+        run: python scripts/collect_ssga_etf.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/ssga-observation.json" --apply
       - run: npm run audit:etf-annual-performance
       - run: npm run audit:etf-consistency
       - run: npm run audit:calculator-series
@@ -45,7 +64,10 @@ jobs:
         if: always()
         with:
           name: active-etf-observation
-          path: ${{ runner.temp }}/observation.json
+          path: |
+            ${{ runner.temp }}/observation.json
+            ${{ runner.temp }}/amundi-observation.json
+            ${{ runner.temp }}/ssga-observation.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Commit validated active data
@@ -56,7 +78,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add src/data/automated-etf.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Refresh validated active ETF iShares data'
+            git commit -m 'Refresh validated active ETF issuer data'
             git pull --rebase origin master
             git push origin HEAD:master
           fi
@@ -71,3 +93,11 @@ jobs:
     uses: ./.github/workflows/deploy-pages.yml
     with:
       ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo 'Une source ETF a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1
