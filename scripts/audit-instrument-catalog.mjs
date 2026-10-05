@@ -1,5 +1,5 @@
-import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 #!/usr/bin/env node
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 // Vérifie que les outils consomment les registres communs par ISIN.
 import { EXPOSURE_ADDITIONS } from '../src/data/exposure-additions.js';
 import { readFileSync } from 'node:fs';
