@@ -58,6 +58,7 @@ jobs:
       - run: node scripts/test-household-benchmarks.mjs
       - run: npm run audit:publishable-content
       - run: npm run audit:source-inventory
+      - run: node scripts/test-comparison-etf-details.mjs
       - run: npm run verify:tweet-midi
       - run: npm run audit:investor-profiles
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
