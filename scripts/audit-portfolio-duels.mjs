@@ -83,18 +83,20 @@ console.log(`${DUELS.length} duels préparés, ${CATALOG.length} ETF, 500 géné
 
 // Accroches validées : chiffres issus des résultats, période commune et absence de méthode dans le tweet.
 const cashDuel=buildDuel(DUELS.find(d=>d.id==='world-avec-monetaire_xeon'))
-assert.match(cashDuel.hook,/3\s903 € de moins.*2022.*40 %.*2020.*2025/)
+assert.match(cashDuel.hook,/40 %.*\?[\s\S]*2020[\s\S]*2025[\s\S]*3\s903 € de plus/)
 const maturityDuel=buildDuel(DUELS.find(d=>d.id==='oblig-courtes-longues'))
-assert.match(maturityDuel.hook,/2022.*perd 9,4 %.*perd 19,5 %/)
+assert.match(maturityDuel.hook,/\?[\s\S]*10 000 €[\s\S]*de plus/)
 assert.match(buildTweet(maturityDuel),/cours peuvent beaucoup baisser lorsque les taux montent/)
 const factorsDuel=buildDuel(DUELS.find(d=>d.id==='world-value-ou-world-quality'))
-assert.match(factorsDuel.hook,/116 €.*2020.*2025/)
+assert.match(factorsDuel.hook,/2020.*2025.*116 €/)
 assert.match(buildTweet(factorsDuel),/peu chère peut le rester longtemps/)
 assert.doesNotMatch(buildTweet(buildDuel(DUELS.find(d=>d.id==='em-bond-local-usd'))),/coupons émergents|sensibilité des obligations longues/)
 assert.match(limited.hook,/2023.*2025/)
 for (const definition of DUELS) {
  const duel=buildDuel(definition)
- assert.doesNotMatch(duel.hook,/Tu gardes 100 % de World|vous|votre/)
+ assert.doesNotMatch(duel.hook,/Tu gardes 100 % de World|vous|votre|Qu’a changé cette répartition|comparons ces deux choix|performances annuelles à comparer/)
+ assert.match(duel.hook,/\?\n\nAvec 10 000 € investis début \d{4},/)
+ assert.ok(duel.hook.endsWith('Voici le détail du duel, année par année 👇'))
  assert.doesNotMatch(buildTweet(duel),/Simulation en euros|Hors courtage/)
 }
 // La conclusion doit suivre les résultats, même si A/B est inversé ou si les capitaux sont égaux.
@@ -102,4 +104,5 @@ const swapped={...cashDuel,a:cashDuel.b,b:cashDuel.a,id:'custom-swap'}
 assert.match(resultReading(swapped),/portefeuille B termine/)
 const flat={...identical,a:{...identical.a,annual:Object.fromEntries(identical.years.map(y=>[y,0]))},b:{...identical.b,annual:Object.fromEntries(identical.years.map(y=>[y,0]))}}
 assert.doesNotMatch(resultReading(flat),/écart annuel|gagne|perd/)
-console.log('Accroches des trois exemples, textes des 28 thèmes, périodes courtes et conclusions inversées/égales vérifiés.')
+assert.doesNotMatch(buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:[{id:'msci_world_ishares',pct:100}]}).hook, /Ajouter  à/)
+console.log('Accroches de tous les duels, périodes courtes et conclusions inversées/égales vérifiées.')
