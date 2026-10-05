@@ -35,22 +35,29 @@ const topics = {
 export function duelEditorial(duel) {
  const {a,b,years}=duel
  const gap=Math.abs(b.final-a.final)
- const period=`entre ${years[0]} et ${years.at(-1)}`
  const same=Math.abs(b.final-a.final)<.5
  const topic=topics[duel.id]
- const describe=p=>p.assets.map(s=>`${s.pct} % ${s.label}`).join(' + ')
- const choice=topic?.[0] ?? `${describe(a)} ou ${describe(b)}`
+ const describe=p=>p.assets.map(s=>`${s.pct} % de ${s.label}`).join(' et ')
+ const soloWorld=p=>p.assets.length===1 && p.assets[0].exposure==='world'
+ const sameBase=a.assets[0].id===b.assets[0].id && a.assets[0].pct===b.assets[0].pct
+ const extra=p=>p.assets.slice(1).map(s=>`${s.pct} % de ${s.label.toLowerCase()}`).join(' et ')
+ const hookQuestion=duel.hookQuestion ?? (soloWorld(a) && b.assets[0].exposure==='world'
+  ? `Ajouter ${extra(b)} à un ETF World : bonne idée ?`
+  : soloWorld(b) && a.assets[0].exposure==='world'
+   ? `Ajouter ${extra(a)} à un ETF World : bonne idée ?`
+   : sameBase && a.assets.length>1 && b.assets.length>1
+    ? `Avec ${a.assets[0].pct} % de ${a.assets[0].label}, tu choisirais ${extra(a)} ou ${extra(b)} pour compléter ton portefeuille ?`
+    : `${describe(a)} ou ${describe(b)} : quel portefeuille aurais-tu choisi ?`)
+ const winner=b.final>a.final ? b : a
+ const winnerSide=b.final>a.final ? 'B' : 'A'
+ const winnerName=soloWorld(winner) ? 'le portefeuille 100 % World'
+  : winner.name!==`Portefeuille ${winnerSide}` ? `le portefeuille « ${winner.name} »` : `le portefeuille ${winnerSide}`
+ const result=same
+  ? `Avec 10 000 € investis début ${years[0]}, les deux portefeuilles terminent fin ${years.at(-1)} avec le même capital à l’euro près.`
+  : `Avec 10 000 € investis début ${years[0]}, ${winnerName} termine fin ${years.at(-1)} avec ${money(gap)} de plus.`
+ const hook=`${hookQuestion}\n\n${result}\n\nVoici le détail du duel, année par année 👇`
  const year=years.reduce((best,y)=>Math.abs(a.annual[y]-b.annual[y])>Math.abs(a.annual[best]-b.annual[best])?y:best)
- const result=same ? `le même capital final à l’euro près ${period}` : `${money(gap)} d’écart ${period}`
- const index=topic ? Object.keys(topics).indexOf(duel.id)%3 : 0
- let hook=[`${choice} : ${result}. Qu’a changé cette répartition ?`,`${result} pour 10 000 € investis : comparons ces deux choix : ${choice}.`,`${choice} ? ${result}, mais des performances annuelles à comparer.`][index]
- if (duel.id==='world-avec-monetaire_xeon') {
-  const badYear=years.find(y=>a.annual[y]<0 && b.annual[y]<0 && b.annual[y]>a.annual[y])
-  hook=`${money(gap)} ${b.final<a.final ? 'de moins' : 'de plus'} à l’arrivée${badYear ? `, mais une baisse moins forte en ${badYear}` : ''} : voilà ce qu’ont changé 40 % de monétaire à côté du World ${period}.`
- }
- if (duel.id==='oblig-courtes-longues') hook=`Ajouter 30 % d’obligations à ton World pour calmer les baisses ? En ${year}, le portefeuille ${move(a.annual[year])} avec des obligations courtes… et ${move(b.annual[year])} avec des longues.`
- if (duel.id==='world-value-ou-world-quality') hook=`${choice} ? À côté du même World, ces deux choix finissent à ${gap<200 ? 'seulement ' : ''}${money(gap)} d’écart ${period}.${same ? '' : ' Mais pas par le même chemin.'}`
- const question=topic?.[1] ?? `Tu choisirais ${a.name} ou ${b.name}, et quelle différence d’exposition compte le plus pour toi ?`
+ const question=topic?.[1] ?? duel.closingQuestion ?? `Tu choisirais ${a.name} ou ${b.name}, et quelle différence d’exposition compte le plus pour toi ?`
  let conclusion=same ? 'Les deux portefeuilles terminent au même montant à l’euro près.' : gap<200 ? `Les capitaux finaux restent proches : ${money(gap)} d’écart sur cette période.` : `Le portefeuille ${b.final>a.final ? 'B' : 'A'} termine avec ${money(gap)} de plus sur cette période.`
  if (!years.every(y=>Math.abs(a.annual[y]-b.annual[y])<.001)) conclusion+=` En ${year}, l’écart annuel est le plus marqué : A ${move(a.annual[year])}, B ${move(b.annual[year])}.`
  return {hook,question,conclusion}

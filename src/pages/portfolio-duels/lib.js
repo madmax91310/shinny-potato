@@ -100,6 +100,8 @@ export function buildCustomDuel(definition) {
       ? `${baseA} ou ${baseB} : quelle base choisirais-tu pour ton portefeuille ?`
       : `Tu pars d’un ${baseA}. Qu’est-ce que tu ajoutes autour ?`),
     question: definition.question ?? 'Tu aurais construit le portefeuille A ou le B ?',
+    closingQuestion: definition.question,
+    hookQuestion: definition.hookQuestion ?? (definition.hook?.trim().endsWith('?') && !definition.hook.startsWith('Tu gardes 100 % de World') ? definition.hook : undefined),
     currency: 'EUR', years, a, b,
     readings: [exposureReading(a), exposureReading(b)],
     sources: [...unique.map((asset) => ({ name: asset.name, isin: asset.isin, url: asset.source, note: asset.note })),
