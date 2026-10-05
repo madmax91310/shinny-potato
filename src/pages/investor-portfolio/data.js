@@ -73,6 +73,7 @@ export function portfolioEditorial(portfolio) {
   const funds = companies.some(row => /\b(?:ETF|ISHARES|SPDR|PROSHARES|INVESCO|VANGUARD|FUND|FUNDS|TRUST)\b/i.test(row.issuerName)
     && !['BRK.{A,B}'].includes(row.ticker))
   const unit = funds ? 'positions' : 'entreprises'
+  const singularUnit = funds ? 'position' : 'entreprise'
   let sum = 0
   const cumulative = top.map(row => (sum += row.weight))
   let count = cumulative.findIndex(value => value >= .9 - 1e-9) + 1
@@ -90,19 +91,40 @@ export function portfolioEditorial(portfolio) {
   const lead = top[0]
   const rest = Math.max(0, total - topSum)
   const countLabel = count === 1 ? 'Cette ligne représente' : 'Les ' + count + ' premières ' + unit + ' représentent'
-  const overview = countLabel + ' ' + percentage(concentration) + ' du portefeuille déclaré.'
+  let overview = countLabel + ' ' + percentage(concentration) + ' du portefeuille déclaré.'
+  const leadName = holdingName(lead)
+  const second = top[1]
+  const otherCount = companies.length - top.length
   let explanation
   let question
   if (lead.weight > total / 2) {
-    explanation = holdingName(lead) + ' représente à elle seule ' + percentage(lead.weight) + ' du relevé. Son poids dépasse celui de toutes les autres positions affichées réunies' + (lead.weight > total / 2 ? '.' : ' dans le top 5.')
-    question = 'Jusqu’à quel poids serais-tu à l’aise avec une seule position dans ton portefeuille ?'
+    const others = Math.max(0, total - lead.weight)
+    explanation = leadName + ' pèse davantage que toutes les autres positions présentées réunies : ' + percentage(lead.weight) + ' contre ' + percentage(others) + '.'
+    question = leadName + ' à ' + percentage(lead.weight) + ' : serais-tu à l’aise avec ce poids sur une seule ligne ?'
   } else if ((cumulative[2] ?? topSum) >= .7) {
     const n = Math.min(3, top.length)
-    explanation = 'Les ' + n + ' premières ' + unit + ' totalisent ' + percentage(cumulative[n - 1]) + '. ' + holdingName(lead) + ' pèse ' + percentage(lead.weight) + ' : le résultat de cette partie du portefeuille dépend donc fortement d’un petit nombre de positions.'
-    question = 'Tu préfères concentrer tes investissements sur quelques positions ou répartir davantage ?'
+    const concentratedWeight = cumulative[n - 1] < 1 && cumulative[n - 1] >= .9995 ? 'près de 100 %' : percentage(cumulative[n - 1])
+    overview = leadName + ' arrive en tête avec ' + percentage(lead.weight) + '.'
+    explanation = 'Les ' + n + ' premières ' + unit + ' totalisent à elles seules ' + concentratedWeight + ' du relevé.'
+    question = 'Concentrer ' + concentratedWeight + ' sur ' + n + ' ' + unit + ' comme ici : tu pourrais garder cette répartition ?'
+  } else if (second && lead.weight - second.weight <= .005 + 1e-9) {
+    overview = 'Les ' + top.length + ' premières ' + unit + ' représentent ' + percentage(topSum) + ' du portefeuille déclaré.'
+    if (otherCount) overview += otherCount === 1
+      ? ' L’autre ' + singularUnit + ' représente les ' + percentage(rest) + ' restants.'
+      : ' Les ' + otherCount + ' autres ' + unit + ' se partagent les ' + percentage(rest) + ' restants.'
+    explanation = leadName + ' et ' + holdingName(second) + ' sont presque à égalité en tête : ' + percentage(lead.weight) + ' et ' + percentage(second.weight) + '. Aucune ligne ne domine seule cette répartition.'
+    question = leadName + ' ou ' + holdingName(second) + ' : laquelle choisirais-tu pour ta première ligne ?'
+  } else if (lead.weight > .25 && otherCount && lead.weight > rest) {
+    explanation = leadName + ' représente ' + percentage(lead.weight) + ' du portefeuille déclaré. À elle seule, cette ligne pèse davantage que ' + (otherCount === 1 ? 'la position hors du top 5, qui représente ' : 'les ' + otherCount + ' positions hors du top 5 réunies, qui totalisent ') + percentage(rest) + '.'
+    const weightLabel = lead.weight <= 1 / 3 ? 'plus d’un quart de ton portefeuille' : percentage(lead.weight) + ' de ton portefeuille'
+    question = 'Mettre ' + weightLabel + ' sur ' + leadName + ' : tu serais à l’aise avec ce choix ?'
+    // Start with the concrete comparison, then give the concentration already announced in the hook.
+    const concentrationSummary = overview
+    overview = explanation
+    explanation = concentrationSummary
   } else {
-    explanation = holdingName(lead) + ' arrive en tête avec ' + percentage(lead.weight) + (top[1] ? ', devant ' + holdingName(top[1]) + ' à ' + percentage(top[1].weight) : '') + '. ' + (companies.length > top.length ? 'Les ' + (companies.length - top.length) + ' autres ' + unit + ' représentent ensemble ' + percentage(rest) + ' du relevé.' : 'Toutes les ' + unit + ' du relevé figurent ici.')
-    question = 'Quelle position ou quelle répartition te surprend le plus dans ce portefeuille ?'
+    explanation = leadName + ' arrive en tête avec ' + percentage(lead.weight) + (second ? ', devant ' + holdingName(second) + ' à ' + percentage(second.weight) : '') + '. ' + (otherCount ? (otherCount === 1 ? 'L’autre ' + singularUnit + ' représente ' : 'Les ' + otherCount + ' autres ' + unit + ' représentent ensemble ') + percentage(rest) + ' du relevé.' : 'Toutes les ' + unit + ' du relevé figurent ici.')
+    question = leadName + ' à ' + percentage(lead.weight) + ' : tu garderais ce poids ou tu répartirais davantage ?'
   }
   const classes = companies.some(row => ['GOOG(L)', 'BRK.{A,B}'].includes(row.ticker))
     ? 'Les catégories d’actions d’une même entreprise sont regroupées : deux catégories ne constituent pas deux entreprises différentes.' : ''

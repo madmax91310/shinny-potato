@@ -98,3 +98,40 @@ for (const review of reviews) {
   assert(!('holdings' in review.data.snapshot))
 }
 console.log('Calendrier : métadonnées synchronisées pour tous les investisseurs, sans charger leurs positions.')
+
+// Editorial endings must follow the current holdings, even after a quarterly refresh.
+const readPortfolio = slug => normalizePortfolio(JSON.parse(readFileSync(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8')))
+const ackmanEditorial = portfolioEditorial(make([
+  { issuerName: 'Uber', ticker: 'UBER', weight: .127 },
+  { issuerName: 'Brookfield Corp', ticker: 'BN', weight: .126 },
+  { issuerName: 'Autre', ticker: 'OTHER', weight: .12 },
+]))
+assert(ackmanEditorial.explanation.includes('presque à égalité'))
+assert(ackmanEditorial.question.includes('Uber ou Brookfield'))
+const thielEditorial = portfolioEditorial(make([.282, .181, .141, .101, .096, .08, .07, .049].map((weight, i) => ({ issuerName: i === 0 ? 'Amazon' : 'Entreprise ' + i, ticker: i === 0 ? 'AMZN' : 'T' + i, weight }))))
+assert(thielEditorial.explanation.includes('3 positions hors du top 5'))
+assert(thielEditorial.question.includes('plus d’un quart de ton portefeuille sur Amazon'))
+const nearLeaders = [ .28, .277, .09, .08, .07, .06, .06, .06, .023 ].map((weight, i) => ({ issuerName: 'Société ' + i, ticker: 'S' + i, weight }))
+const nearEditorial = portfolioEditorial(make(nearLeaders))
+assert(nearEditorial.hook.includes('4 entreprises'))
+assert(nearEditorial.explanation.includes('5 premières entreprises représentent 79,7 %'))
+assert(nearEditorial.explanation.includes('4 autres entreprises se partagent les 20,3 %'))
+const singleRest = portfolioEditorial(make([.18, .177, .17, .16, .16, .153].map((weight, i) => ({ issuerName: 'Société ' + i, ticker: 'S' + i, weight }))))
+assert(singleRest.explanation.includes('L’autre entreprise représente les 15,3 %'))
+const dominant = portfolioEditorial(make([{ issuerName: 'Leader', ticker: 'LEAD', weight: .65 }, { issuerName: 'Autre', ticker: 'OTHER', weight: .35 }]))
+assert(dominant.explanation.includes('65,0 % contre 35,0 %'))
+assert(dominant.question.includes('Leader à 65,0 %'))
+const fundEnding = portfolioEditorial(make([fund]))
+assert(fundEnding.question.includes('une seule ligne'))
+assert(!fundEnding.question.includes('entreprise'))
+const nearlyAll = portfolioEditorial(make([.4332, .3053, .2611, .0004].map((weight, i) => ({ issuerName: 'Entreprise ' + i, ticker: 'E' + i, weight }))))
+assert(nearlyAll.question.includes('près de 100 % sur 3 entreprises'))
+const questions = new Set()
+for (const [slug] of INVESTORS) {
+  const portfolio = readPortfolio(slug), before = JSON.stringify(portfolio), ending = portfolioEditorial(portfolio)
+  assert.equal(JSON.stringify(portfolio), before, 'La rédaction ne modifie pas les données')
+  assert(!ending.question.includes('Quelle position ou quelle répartition'))
+  assert(ending.question.endsWith('?'))
+  questions.add(ending.question)
+}
+console.log(`${questions.size} conclusions et questions personnalisées : concentration, égalité, complément du top 5 et arrondi vérifiés.`)
