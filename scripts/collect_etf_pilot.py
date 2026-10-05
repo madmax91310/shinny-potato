@@ -5,6 +5,7 @@ from html.parser import HTMLParser
 import json
 import os
 import pathlib
+import urllib.error
 
 from data_automation import UTC, get_text, number, reject, write_json_atomic
 
@@ -111,7 +112,7 @@ def collect(config, baseline, now=None, fetch=get_text):
     now = now or dt.datetime.now(UTC)
     shares = []
     for share in config['instruments']:
-        url = f"https://www.ishares.com/uk/individual/en/products/{share['productId']}/"
+        url = f"https://www.ishares.com/uk/individual/en/products/{share['productId']}"
         result = parse_share(fetch(url, ('text/html',), 6_000_000), share, now)
         active = baseline[share['isin']]
         if active['currency'] != share['currency']:
