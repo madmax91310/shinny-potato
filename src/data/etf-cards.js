@@ -59,7 +59,7 @@ export const CATEGORY_EMOJI = {
   };
 
 export const ETFS = [
-...EXPOSURE_ADDITIONS.map(r => ({ id: r.id, category: r.category, name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin), isNew: true, isin: r.isin, ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin), aum: getInstrumentAum(r.isin, 'sheet'), lastVerified: '03/10/2026', distribution: getInstrumentDistribution(r.isin), pea: getInstrumentPea(r.isin), cto: true, location: getInstrumentLocation(r.isin), hook: r.hook, whatIs: r.whatIs, whyInteresting: r.whyInteresting, whatToKnow: r.whatToKnow, verdict: r.verdict, question: r.question })),
+...EXPOSURE_ADDITIONS.map(r => ({ id: r.id, category: r.category, name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin), isNew: true, isin: r.isin, ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin), aum: getInstrumentAum(r.isin, 'sheet'), lastVerified: r.reviewedAt ?? '03/10/2026', distribution: getInstrumentDistribution(r.isin), pea: getInstrumentPea(r.isin), cto: true, location: getInstrumentLocation(r.isin), hook: r.hook, whatIs: r.whatIs, whyInteresting: r.whyInteresting, whatToKnow: r.whatToKnow, verdict: r.verdict, question: r.question })),
   // Ajouts du 01/10/2026 : caractéristiques, dates et preuves dans les registres communs.
   {
     id: "monetaire-eur", category: "Obligataires",

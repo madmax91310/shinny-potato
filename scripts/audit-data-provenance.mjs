@@ -74,7 +74,7 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
 }
 for (const family of FAMILIES) for (const index of family.indices) if (index.indexFacts) {
   assert(index.indexFacts.metadata.sourceUrls.length, `${index.name}: indice actif sans source`);
-  assert.match(index.indexFacts.metadata.checkedAt, /^2026-(09-30|10-03|10-04)$/, `${index.name}: indice actif non contrôlé`);
+  assert.match(index.indexFacts.metadata.checkedAt, /^2026-(09-30|10-03|10-04|10-05)$/, `${index.name}: indice actif non contrôlé`);
 }
 for (const [isin, observation] of Object.entries(OFFICIAL_AUM_OBSERVATIONS)) {
   assert(observation.amountMillions > 0 && ['EUR', 'USD'].includes(observation.currency));

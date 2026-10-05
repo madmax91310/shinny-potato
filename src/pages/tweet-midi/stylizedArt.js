@@ -1,7 +1,7 @@
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 
 const paperGroups = {
-  world: ['monde'], america: ['usa'], europe: ['europe'], emerging: ['emergents'],
+  world: ['monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde'], america: ['usa'], europe: ['europe'], emerging: ['emergents'],
   luxury: ['luxe'], robotics: ['ia-robotique'], health: ['sante'], renewables: ['renouvelables'],
   dividends: ['dividendes'], japan: ['japon'], defense: ['defense'], quantum: ['quantique'],
   space: ['spatial'], resources: ['ressources-naturelles'], finance: ['financieres'],
@@ -16,7 +16,7 @@ export function getPaperArt(themeId, isin) {
 }
 
 const neonGroups = {
-  world: ['msciWorld', 'msciWorldSmallCap'], america: ['sp500', 'nasdaq100'], france: ['cac40'], europe: ['stoxx600'], emerging: ['msciEmerging'],
+  world: ['msciWorld', 'msciWorldSmallCap', 'msciAcwi','msciAcwiImi','msciWorldExUsa'], america: ['sp500', 'nasdaq100'], france: ['cac40'], europe: ['stoxx600'], emerging: ['msciEmerging'],
   chip: ['soxx', 'apple', 'microsoft', 'broadcom', 'nvidia', 'google', 'meta', 'sap', 'asml', 'intel'],
   gold: ['or'], silver: ['silver'], money: ['euroMoney'], bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond', 'berkshire'],
   luxury: ['lvmh', 'hermes'], car: ['tesla'], shopping: ['amazon', 'costco'], cinema: ['netflix'], payments: ['visa', 'paypal'], groceries: ['nestle', 'cocacola'],

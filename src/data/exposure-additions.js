@@ -1,5 +1,46 @@
 // Revue du 03/10/2026. Données factuelles par ISIN ; séries exactes distinctes des proxies de simulation.
 export const EXPOSURE_ADDITIONS = [
+  // Émetteur et fiche officielle recoupés le 05/10/2026 ; rendements nets NAV USD, 2020–2025.
+  {
+  "isin": "IE00B3YLTY66",
+  "id": "acwi_imi_spdr",
+  "name": "State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc)",
+  "checkedAt": "2026-10-05",
+  "reviewedAt": "05/10/2026",
+  "ter": "0,17",
+  "category": "Cœur de portefeuille",
+  "cat": "actions_larges",
+  "currency": "USD",
+  "benchmark": "MSCI ACWI IMI Index (Net Total Return)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (sampling)",
+  "domicile": "Irlande",
+  "source": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
+  "values": [
+    15.35,
+    18.25,
+    -17.52,
+    21.1,
+    16.13,
+    22.2
+  ],
+  "ticker": "IMIE",
+  "exchange": "Euronext Paris",
+  "mic": "XPAR",
+  "pea": false,
+  "aum": "Part : 9 051,84 M$ au 02/10/2026",
+  "aumAmount": 9051840000,
+  "aumCurrency": "USD",
+  "aumDate": "2026-10-02",
+  "positions": "5 994 positions détenues (01/10/2026)",
+  "positionsDate": "2026-10-01",
+  "hook": "🌍 Ton ETF mondial laisse-t-il les petites entreprises de côté ? Voici une exposition qui les inclut aussi.",
+  "whatIs": "Le fonds suit le MSCI ACWI IMI : grandes, moyennes et petites entreprises des pays développés et émergents. L’indice vise environ 99 % de l’univers mondial investissable en actions. Le fonds en détient un échantillon et réinvestit les revenus.",
+  "whyInteresting": "Tu réunis les marchés développés, les émergents et les petites capitalisations dans une seule ligne. Tu peux comparer cette construction à un World accompagné de plusieurs compléments.",
+  "whatToKnow": "Les pays et les tailles d’entreprises ne reçoivent pas le même poids : les grandes capitalisations restent dominantes. La cotation parisienne en euros ne couvre pas le change. Le fonds est accessible en compte-titres.",
+  "verdict": "Une base mondiale qui inclut les petites capitalisations, avec une pondération par capitalisation et un risque de perte en actions.",
+  "question": "Tu préférerais tout réunir dans une ligne ou régler toi-même le poids des émergents et des petites entreprises ?"
+},
   {
     "isin": "IE00BLNMYC90",
     "id": "sp500_equal_weight",

@@ -566,7 +566,7 @@ export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
     }
   ]
 },
-...Object.fromEntries(EXPOSURE_ADDITIONS.filter(r => r.ticker).map(r => [r.isin, [{ ticker: r.ticker, exchange: r.exchange, mic: r.mic, currency: 'EUR', sourceUrl: r.listingSource ?? r.source, checkedAt: '2026-10-03', evidenceId: `${r.isin}-${r.mic}-${r.ticker}-EUR` }]])),
+...Object.fromEntries(EXPOSURE_ADDITIONS.filter(r => r.ticker).map(r => [r.isin, [{ ticker: r.ticker, exchange: r.exchange, mic: r.mic, currency: 'EUR', sourceUrl: r.listingSource ?? r.source, checkedAt: r.checkedAt ?? '2026-10-03', evidenceId: `${r.isin}-${r.mic}-${r.ticker}-EUR` }]])),
   "LU0290358497": [
   {
     "ticker": "XEON",

@@ -8,6 +8,14 @@ import { getInstrumentFactsheetReturns } from './instrument-comparator-returns.j
 const emFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260630'
 
 export const SHEETS = [
+ {
+  ...getIndexComposition('acwi-imi','2026-09-30'), id:'acwi-imi', title:'MSCI ACWI IMI', index:'MSCI ACWI IMI', snapshot:'30 septembre 2026', source:[getIndexFacts('acwi-imi','2026-09-30').source],
+  intro:'🌍 Un World laisse les émergents et les petites entreprises de côté. Le MSCI ACWI IMI les inclut : qu’est-ce que tu achètes en plus ? 👇',
+  returns:getIndexReturns('acwi-imi','2026-09-30'), performance:{kind:'indice',detail:'MSCI ACWI IMI, rendement net USD, dividendes nets réinvestis, hors frais ETF',date:'30 septembre 2026',tenYear:12.05},
+  insight:'Ajouter les petites capitalisations élargit le panier, mais ne donne pas le même poids à chaque taille d’entreprise. Les grandes restent dominantes.',
+  takeaway:'ACWI IMI associe développés, émergents et petites capitalisations ; le World Small Cap couvre uniquement les petites des pays développés.',
+  methodologyPanels:[['LES ENTREPRISES','Grandes, moyennes et petites capitalisations de 23 pays développés et 24 émergents. Environ 99 % de l’univers mondial investissable en actions.'],['LEUR POIDS','Pondération par capitalisation ajustée du flottant : un petit titre ne pèse pas autant qu’un géant.'],['CE QUE ÇA CHANGE','Le MSCI ACWI classique laisse les petites capitalisations à part. IMI ajoute cette tranche de taille, avec toujours une forte place pour les États-Unis.']],
+ },
 {
  ...getIndexComposition('sp500-equal-weight','methodology'),id:'sp500-equal-weight',title:'S&P 500 Equal Weight',index:'S&P 500 Equal Weight',snapshot:getIndexFacts('sp500-equal-weight','methodology').snapshot,
  source:[getIndexFacts('sp500-equal-weight','methodology').source,{label:'Performances de l’ETF · DWS',url:'https://etf.dws.com/Download/Past%20Performance/IE00BLNMYC90/FR/FR'}],

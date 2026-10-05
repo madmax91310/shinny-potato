@@ -1,6 +1,6 @@
 import { assetEditorial } from './asset-editorial.js'
 
-const equityKinds = new Set(['world-developed','world-all','world-ex-us','us','us-equal','us-small','nasdaq','europe','country','region','small','factor','theme','emerging','dividend','property','options','leverage'])
+const equityKinds = new Set(['world-developed','world-all','world-imi','world-ex-us','us','us-equal','us-small','nasdaq','europe','country','region','small','factor','theme','emerging','dividend','property','options','leverage'])
 const total = (selection, kinds) => selection.filter(s => kinds.includes(assetEditorial(s).kind)).reduce((sum,s) => sum+s.pct,0)
 const pct = value => `${new Intl.NumberFormat('fr-FR', {maximumFractionDigits:2}).format(value)} %`
 const label = asset => assetEditorial(asset).label
@@ -15,7 +15,7 @@ export function allocationAngle(selection) {
  const equities = sorted.filter(s=>equityKinds.has(assetEditorial(s).kind)).reduce((sum,s)=>sum+s.pct,0)
  const eurosMoney = total(sorted,['euros','money'])
  const cashName = total(sorted,['euros']) && total(sorted,['money']) ? 'fonds euros et monétaire' : total(sorted,['euros']) ? 'fonds euros' : 'monétaire'
- const world = sorted.find(s=>['world-developed','world-all'].includes(assetEditorial(s).kind))
+ const world = sorted.find(s=>['world-developed','world-all','world-imi'].includes(assetEditorial(s).kind))
  const us = total(sorted,['us','us-equal','us-small','nasdaq','leverage'])
  const exUs = total(sorted,['world-ex-us'])
  const line = s => `${pct(s.pct)} sur ${label(s)}`
@@ -40,7 +40,7 @@ export function allocationAngle(selection) {
   logic=`Les actions représentent ${pct(equities)} du portefeuille. Leur progression comme leurs baisses auront moins d’effet que si elles occupaient toute l’allocation. ${cashName==='fonds euros et monétaire' ? 'Le fonds euros et le monétaire ne répondent pas aux mêmes conditions de garantie.' : cashName==='fonds euros' ? 'Le fonds euros conserve les conditions de garantie du contrat.' : 'Le monétaire suit les taux courts et ne bénéficie pas d’une garantie de dépôt.'}`
  } else if (exUs && us) {
   fact=total(sorted,['us-small'])>=40 ? `${pct(total(sorted,['us-small']))} en petites entreprises américaines, ${pct(us)} en actions américaines au total` : `${pct(us)} en actions américaines, ${pct(exUs)} dans les autres pays développés`;detail='qui règle séparément la place des États-Unis'
-  logic=`Les lignes américaines représentent ${pct(us)} du portefeuille, contre ${pct(exUs)} pour les autres pays développés. Leur poids est choisi directement, plutôt que repris d’un indice World.${!total(sorted,['emerging','world-all']) ? ' Les marchés émergents ne sont pas inclus.' : ''}`
+  logic=`Les lignes américaines représentent ${pct(us)} du portefeuille, contre ${pct(exUs)} pour les autres pays développés. Leur poids est choisi directement, plutôt que repris d’un indice World.${!total(sorted,['emerging','world-all','world-imi']) ? ' Les marchés émergents ne sont pas inclus.' : ''}`
  } else {
   const themes=sorted.filter(s=>assetEditorial(s).kind==='theme')
   const small=total(sorted,['small','us-small'])
@@ -50,10 +50,10 @@ export function allocationAngle(selection) {
    logic=`${pct(themes.reduce((sum,s)=>sum+s.pct,0))} du portefeuille est consacré à des thèmes précis. Croire à leur développement ne garantit pas de bons rendements : le prix des actions et les entreprises sélectionnées comptent aussi.`
   } else if (small && world) {
    fact=`${pct(small)} en petites entreprises à côté de ${pct(world.pct)} sur ${label(world)}`;detail='qui va au-delà des grands groupes'
-   logic='Les petites entreprises élargissent la sélection au-delà des grandes et moyennes entreprises du fonds mondial. Elles ajoutent aussi leurs propres risques de financement et de liquidité.'
+   logic=assetEditorial(world).kind==='world-imi' ? 'L’ACWI IMI inclut déjà les petites capitalisations. La ligne dédiée aux petites entreprises développées renforce ce segment, avec ses risques de financement et de liquidité.' : 'Les petites entreprises élargissent la sélection au-delà des grandes et moyennes entreprises du fonds mondial. Elles ajoutent aussi leurs propres risques de financement et de liquidité.'
   } else if (emerging && world) {
    fact=`${pct(world.pct)} sur ${label(world)}, ${pct(emerging)} en marchés émergents`;detail='qui choisit leur poids séparément'
-   logic=assetEditorial(world).kind==='world-all' ? 'Le fonds mondial contient déjà des marchés émergents. La ligne dédiée renforce leur place, plutôt que de les ajouter pour la première fois.' : 'Les marchés émergents ajoutent des pays absents du World. Leur poids est ici choisi séparément.'
+   logic=['world-all','world-imi'].includes(assetEditorial(world).kind) ? 'Le fonds mondial contient déjà des marchés émergents. La ligne dédiée renforce leur place, plutôt que de les ajouter pour la première fois.' : 'Les marchés émergents ajoutent des pays absents du World. Leur poids est ici choisi séparément.'
   } else {
    fact=line(top);detail=top.pct>50 ? 'où cette ligne est majoritaire' : 'construit autour de cette ligne'
    logic=`La ligne ${name(top)} représente ${pct(top.pct)} du portefeuille${top.pct>50 ? ' et constitue sa ligne majoritaire' : ' et constitue sa plus grosse ligne'}. ${line(sorted[1])} complète ce choix.`
@@ -61,7 +61,7 @@ export function allocationAngle(selection) {
  }
  const sharedUs = world && sorted.some(s=>['us','nasdaq'].includes(assetEditorial(s).kind))
  if (sharedUs) logic+=' Les entreprises américaines sont déjà présentes dans le fonds mondial : la ligne ajoutée renforce cette exposition.'
- if (sorted.filter(s=>['world-developed','world-all'].includes(assetEditorial(s).kind)).length>1) logic+=' Les fonds mondiaux se recoupent : plusieurs lignes ne multiplient pas automatiquement la diversification.'
+ if (sorted.filter(s=>['world-developed','world-all','world-imi'].includes(assetEditorial(s).kind)).length>1) logic+=' Les fonds mondiaux se recoupent : plusieurs lignes ne multiplient pas automatiquement la diversification.'
  if (equities===100) logic+=' Toute l’allocation est exposée aux actions ; aucune poche obligataire ou de fonds euros n’est présente.'
  return {fact,detail,logic}
 }

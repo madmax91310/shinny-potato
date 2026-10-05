@@ -4,6 +4,8 @@ import { shortAssetName } from '../../data/asset-selection.js'
 import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js'
 
 const roles = {}
+const lotOneRoles = { acwi_imi_spdr: 'Cette ligne réunit grandes, moyennes et petites entreprises des pays développés et émergents. Leur poids suit leur capitalisation.', world_ex_usa: 'Cette ligne retire les entreprises américaines des pays développés, sans ajouter les émergents ni les petites capitalisations.' }
+Object.assign(roles, lotOneRoles)
 const add = (ids, text) => ids.split(' ').forEach(id => { roles[id] = text })
 add('msci_world msci_world_ishares msci_world_amundi_pea', 'Cette ligne investit dans plusieurs pays développés, sans avoir à choisir toi-même chaque entreprise.')
 add('msci_acwi msci_acwi_ishares ftse_allworld_vanguard pea_global_amundi', 'Ce fonds réunit les actions des pays développés et émergents.')

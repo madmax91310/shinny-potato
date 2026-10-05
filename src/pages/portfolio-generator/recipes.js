@@ -31,14 +31,18 @@ const additions = {
       R('capitalisations', 'Grandes et petites entreprises', 'Les petites capitalisations complètent les grandes entreprises mondiales, avec un socle de supports stabilisateurs.', 'Pourquoi laisser les petites entreprises hors du portefeuille ?', A(['fonds_euros',40],[SHORT,25],[WORLD,25],['smallcap_monde',10])),
     ],
     equilibre: [
+      R('acwi-imi-obligations', 'ACWI IMI et obligations', 'Une seule ligne couvre les actions développées et émergentes de plusieurs tailles ; les obligations complètent la construction.', 'Une ligne mondiale suffit-elle pour ta poche actions ?', A(['acwi_imi_spdr',60],[CORP,40])),
+      R('world-hors-usa', 'World et marchés hors États-Unis', 'Le complément hors États-Unis réduit leur poids dans la poche actions, avec des obligations à échéance courte.', 'Tu laisserais le marché fixer le poids américain ?', A([WORLD,40],['world_ex_usa',20],[SHORT,40])),
       R('developpes-emergents', 'Développés, émergents et obligations', 'Les actions sont réparties entre développés et émergents ; les obligations constituent le reste.', 'Un World couvre-t-il vraiment tous les marchés ?', A([WORLD,50],[EM,15],[CORP,35])),
       R('capitalisations', 'Grandes et petites entreprises avec or', 'Les tailles d’entreprises sont séparées, avec de l’or et des supports courts pour diversifier les moteurs.', 'Grandes ou petites entreprises : pourquoi choisir un seul camp ?', A([WORLD,45],['smallcap_monde',15],[SHORT,20],[GOLD,20])),
     ],
     dynamique: [
+      R('acwi-imi-or', 'ACWI IMI et or', 'Les actions mondiales de plusieurs tailles sont réunies dans une ligne ; l’or apporte une autre exposition.', 'Tu réunirais tes actions mondiales dans un ACWI IMI ?', A(['acwi_imi_spdr',80],[GOLD,20])),
       R('actions-mondiales', 'Actions mondiales sans levier', 'Le socle développé est complété par les émergents et petites capitalisations, avec une poche d’or.', 'Peut-on construire un portefeuille dynamique sans levier ?', A([WORLD,50],[EM,20],['smallcap_monde',15],[GOLD,15])),
       R('monde-qualite', 'Monde et biais qualité', 'Le biais qualité est une conviction distincte du socle mondial, avec des émergents et des obligations.', 'Ajouter un filtre qualité au World : conviction utile ou doublon ?', A([WORLD,40],['world_quality_ishares',20],[EM,20],[CORP,20])),
     ],
     offensif: [
+      R('acwi-imi-complements', 'ACWI IMI avec deux biais assumés', 'L’ACWI IMI constitue le socle ; les deux compléments surpondèrent les pays développés hors États-Unis et les petites entreprises déjà présents en partie dans cette base.', 'Une base mondiale, puis deux biais : tu choisirais ces surpondérations ?', A(['acwi_imi_spdr',60],['world_ex_usa',25],['smallcap_monde',15])),
       R('actions-globales', 'Actions mondiales toutes capitalisations', 'Une construction entièrement en actions, répartie entre marchés développés, émergents et petites entreprises.', 'Tout miser sur les actions oblige-t-il à tout miser sur la tech ?', A([WORLD,55],[EM,25],['smallcap_monde',20])),
       R('monde-momentum', 'Monde et biais momentum', 'Le momentum complète un socle mondial ; les petites capitalisations ajoutent une autre exposition.', 'Suivre les gagnants récents : quelle place donner au momentum ?', A([ALLWORLD,50],['world_momentum_ishares',30],['smallcap_monde',20])),
     ],

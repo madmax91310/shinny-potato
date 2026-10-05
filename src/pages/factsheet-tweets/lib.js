@@ -3,6 +3,7 @@ const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digit
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
 
 const questions = {
+  'acwi-imi': 'Tu réunirais les émergents et les petites entreprises dans une seule ligne mondiale ?',
   'sp500-equal-weight': 'Tu préfères un poids égal ou un poids lié à la taille des entreprises ?',
   'russell-2000': 'Tu ferais une place aux petites entreprises américaines ?',
   'em-standard': 'Tu imaginais Taïwan et la Corée aussi présents dans les émergents ?',
@@ -40,6 +41,7 @@ export function buildFactsheetTweet(sheet) {
   for (const [name, value] of sheet.sectors) lines.push(`${name} → ${weight(value)}`)
   if (!sheet.methodologyPanels) lines.push('', '🏢 Les principales entreprises de l’indice :')
   for (const [title, text] of sheet.methodologyPanels ?? []) lines.push('', title + ' :', text)
+  if (sheet.methodologyPanels && sheet.holdings.length) lines.push('', '🏢 Les principales entreprises de l’indice :')
   for (const [name, value] of sheet.holdings) lines.push(`• ${name} : ${weight(value)}`)
   if (sheet.id === 'world') {
     const topWeight = sheet.holdings.reduce((sum, [, value]) => sum + value, 0)

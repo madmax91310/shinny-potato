@@ -4,6 +4,7 @@ import { INDEX_RETURNS } from './index-returns.js'
 const HISTORICAL = '2026-08-31'
 const PERIOD_END = '2025-12-31'
 const selections = {
+ 'monde-toutes-tailles': ['world','acwi',['acwi-imi','2026-09-30']],
   'usa-constructions': ['sp500-pea', 'sp500-equal-weight', ['russell-2000', HISTORICAL]],
   europe: [['stoxx600', HISTORICAL], ['eurostoxx50', HISTORICAL], 'mscieurope'],
   monde: [['world', HISTORICAL], ['acwi', HISTORICAL], ['ftse-all-world', HISTORICAL]],
@@ -19,7 +20,7 @@ const selections = {
   'or-argent': ['gold-physical', 'silver-physical'],
   'monde-segments': [['world', HISTORICAL], ['world-ex-usa', HISTORICAL], ['world-small-cap', HISTORICAL]],
 }
-const existingLabels = { world: 'MSCI World', acwi: 'MSCI ACWI', 'ftse-all-world': 'FTSE All-World', 'world-ex-usa': 'MSCI World ex USA', 'world-small-cap': 'MSCI World Small Cap', 'russell-2000': 'Russell 2000', stoxx600: 'STOXX 600', eurostoxx50: 'EURO STOXX 50' }
+const existingLabels = { 'acwi-imi': 'MSCI ACWI IMI', world: 'MSCI World', acwi: 'MSCI ACWI', 'ftse-all-world': 'FTSE All-World', 'world-ex-usa': 'MSCI World ex USA', 'world-small-cap': 'MSCI World Small Cap', 'russell-2000': 'Russell 2000', stoxx600: 'STOXX 600', eurostoxx50: 'EURO STOXX 50' }
 const currencyNames = { USD: 'dollars', EUR: 'euros', JPY: 'yens', HKD: 'dollars de Hong Kong' }
 
 export function getIndexComparisonPerformance(family) {

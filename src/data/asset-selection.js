@@ -19,7 +19,7 @@ export function exposureGroup(asset) {
   if (asset.cat === 'emergents' || /emerging|emergent|china|chine|india|inde|taiwan|latin|emea/.test(text)) return 'Émergents'
   if (/europe|euro stoxx|eurostoxx|cac 40|cac40|stoxx.*600/.test(text)) return 'Europe'
   if (/s&p.?500|sp500|nasdaq|russell|usa|americain/.test(text)) return 'États-Unis'
-  if (/world|acwi|monde/.test(text)) return 'Monde'
+  if (/world|acwi|all country|monde/.test(text)) return 'Monde'
   if (/japan|japon|topix/.test(text)) return 'Japon'
   return asset.group ?? 'Autres actifs'
 }
