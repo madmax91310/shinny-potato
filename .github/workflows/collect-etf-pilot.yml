@@ -3,6 +3,13 @@ on:
   schedule:
     - cron: '10 7 3,16 * *'
   workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/collect-etf-pilot.yml'
+      - 'scripts/collect_*etf*.py'
+      - 'scripts/apply_etf_collection.py'
+      - 'scripts/*etf.json'
   pull_request:
     paths:
       - '.github/workflows/collect-etf-pilot.yml'
@@ -17,7 +24,7 @@ permissions:
   contents: read
 concurrency:
   group: active-etf-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   refresh:
     runs-on: ubuntu-latest
