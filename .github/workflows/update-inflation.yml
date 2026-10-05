@@ -1,0 +1,91 @@
+name: Update INSEE monthly inflation
+on:
+  schedule:
+    - cron: '15 7 1,16 * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/update-inflation.yml'
+      - 'scripts/update_inflation.py'
+      - 'scripts/data_automation.py'
+      - 'scripts/test_data_refresh.py'
+      - 'scripts/export-inflation-baseline.mjs'
+permissions:
+  contents: read
+concurrency:
+  group: insee-inflation-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
+      - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
+      - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
+      - uses: actions/upload-artifact@v4
+        with:
+          name: insee-inflation-pr-observation
+          path: ${{ runner.temp }}/inflation-observation.json
+          retention-days: 35
+          if-no-files-found: error
+  collect:
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
+      - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
+      - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
+      - uses: actions/upload-artifact@v4
+        with:
+          name: insee-inflation-observation
+          path: ${{ runner.temp }}/inflation-observation.json
+          retention-days: 35
+          if-no-files-found: error
+      - name: Commit only validated changes on master
+        id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/inflation-monthly.js scripts/source-snapshots/inflation-automated.json
+          echo "changed=false" >> "$GITHUB_OUTPUT"
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update validated INSEE monthly inflation and observation quality'
+            git push origin HEAD:master
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: collect
+    if: needs.collect.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.collect.outputs.commit_sha }}

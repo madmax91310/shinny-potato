@@ -1,0 +1,809 @@
+{
+  "schemaVersion": 1,
+  "status": "observation-only",
+  "checkedAt": "2026-10-05T17:23:23.318847+00:00",
+  "automaticConnectionAllowed": false,
+  "shares": [
+    {
+      "isin": "IE00B4L5Y983",
+      "productId": 251882,
+      "name": "Core MSCI World",
+      "currency": "USD",
+      "terPct": 0.2,
+      "index": "MSCI World Index (Net)",
+      "distribution": "Accumulating",
+      "aum": {
+        "amount": 148006611174.36,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-02"
+      },
+      "countries": {
+        "asOf": "2026-10-02",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 73.01
+          },
+          {
+            "name": "Japan",
+            "weightPct": 5.86
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 3.32
+          },
+          {
+            "name": "Canada",
+            "weightPct": 3.28
+          },
+          {
+            "name": "France",
+            "weightPct": 2.2
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 2.1
+          },
+          {
+            "name": "Germany",
+            "weightPct": 2.04
+          },
+          {
+            "name": "Australia",
+            "weightPct": 1.48
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 1.45
+          },
+          {
+            "name": "Other",
+            "weightPct": 4.92
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.36
+          }
+        ]
+      },
+      "sectors": {
+        "asOf": "2026-10-02",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 32.11
+          },
+          {
+            "name": "Financials",
+            "weightPct": 15.49
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 10.82
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 8.97
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 8.37
+          },
+          {
+            "name": "Communication",
+            "weightPct": 8.22
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 4.71
+          },
+          {
+            "name": "Energy",
+            "weightPct": 4.06
+          },
+          {
+            "name": "Materials",
+            "weightPct": 3.17
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 2.27
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.48
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.36
+          }
+        ]
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 7.73,
+          "2017": 22.45,
+          "2018": -8.65,
+          "2019": 27.76,
+          "2020": 15.95,
+          "2021": 21.9,
+          "2022": -18.03,
+          "2023": 23.86,
+          "2024": 18.7,
+          "2025": 21.16
+        }
+      },
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251882/",
+      "comparison": [
+        {
+          "year": 2020,
+          "active": 15.95,
+          "issuer": 15.95,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2021,
+          "active": 21.9,
+          "issuer": 21.9,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2022,
+          "active": -18.03,
+          "issuer": -18.03,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2023,
+          "active": 23.86,
+          "issuer": 23.86,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2024,
+          "active": 18.7,
+          "issuer": 18.7,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2025,
+          "active": 21.16,
+          "issuer": 21.16,
+          "differencePp": 0.0
+        }
+      ]
+    },
+    {
+      "isin": "IE00B5BMR087",
+      "productId": 253743,
+      "name": "Core S&P 500",
+      "currency": "USD",
+      "terPct": 0.07,
+      "index": "S&P 500 Index",
+      "distribution": "Accumulating",
+      "aum": {
+        "amount": 155965547294.18,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-02"
+      },
+      "countries": {
+        "status": "not-published",
+        "rows": []
+      },
+      "sectors": {
+        "asOf": "2026-10-02",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 39.98
+          },
+          {
+            "name": "Financials",
+            "weightPct": 11.29
+          },
+          {
+            "name": "Communication",
+            "weightPct": 9.8
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 9.03
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 8.61
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 8.1
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 4.32
+          },
+          {
+            "name": "Energy",
+            "weightPct": 3.43
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 1.88
+          },
+          {
+            "name": "Materials",
+            "weightPct": 1.68
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.67
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.21
+          }
+        ]
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 11.54,
+          "2017": 21.4,
+          "2018": -4.72,
+          "2019": 31.02,
+          "2020": 18.02,
+          "2021": 28.36,
+          "2022": -18.35,
+          "2023": 25.92,
+          "2024": 24.69,
+          "2025": 17.58
+        }
+      },
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/253743/",
+      "comparison": [
+        {
+          "year": 2020,
+          "active": 18.02,
+          "issuer": 18.02,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2021,
+          "active": 28.36,
+          "issuer": 28.36,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2022,
+          "active": -18.35,
+          "issuer": -18.35,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2023,
+          "active": 25.92,
+          "issuer": 25.92,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2024,
+          "active": 24.69,
+          "issuer": 24.69,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2025,
+          "active": 17.58,
+          "issuer": 17.58,
+          "differencePp": 0.0
+        }
+      ]
+    },
+    {
+      "isin": "IE00BKM4GZ66",
+      "productId": 264659,
+      "name": "Core MSCI EM IMI",
+      "currency": "USD",
+      "terPct": 0.18,
+      "index": "MSCI Emerging Markets Investable Market Index (USD) (Net)",
+      "distribution": "Accumulating",
+      "aum": {
+        "amount": 45224064692.33,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-02"
+      },
+      "countries": {
+        "asOf": "2026-10-02",
+        "rows": [
+          {
+            "name": "Taiwan",
+            "weightPct": 28.8
+          },
+          {
+            "name": "Korea (South)",
+            "weightPct": 21.09
+          },
+          {
+            "name": "China",
+            "weightPct": 18.01
+          },
+          {
+            "name": "India",
+            "weightPct": 11.6
+          },
+          {
+            "name": "Brazil",
+            "weightPct": 3.61
+          },
+          {
+            "name": "South Africa",
+            "weightPct": 2.9
+          },
+          {
+            "name": "Saudi Arabia",
+            "weightPct": 2.18
+          },
+          {
+            "name": "Mexico",
+            "weightPct": 1.54
+          },
+          {
+            "name": "Poland",
+            "weightPct": 1.19
+          },
+          {
+            "name": "United Arab Emirates",
+            "weightPct": 1.19
+          },
+          {
+            "name": "Thailand",
+            "weightPct": 1.12
+          },
+          {
+            "name": "Malaysia",
+            "weightPct": 1.08
+          },
+          {
+            "name": "Other",
+            "weightPct": 5.140000000000001
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.53
+          }
+        ]
+      },
+      "sectors": {
+        "asOf": "2026-10-02",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 41.99
+          },
+          {
+            "name": "Financials",
+            "weightPct": 18.33
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 7.57
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 7.5
+          },
+          {
+            "name": "Materials",
+            "weightPct": 6.12
+          },
+          {
+            "name": "Communication",
+            "weightPct": 5.37
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 3.37
+          },
+          {
+            "name": "Energy",
+            "weightPct": 3.09
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 2.79
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 1.89
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.46
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.53
+          },
+          {
+            "name": "Other",
+            "weightPct": 0
+          }
+        ]
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 9.61,
+          "2017": 36.98,
+          "2018": -14.83,
+          "2019": 17.45,
+          "2020": 18.35,
+          "2021": -0.24,
+          "2022": -19.79,
+          "2023": 11.58,
+          "2024": 7.21,
+          "2025": 31.58
+        }
+      },
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/264659/",
+      "comparison": [
+        {
+          "year": 2020,
+          "active": 18.35,
+          "issuer": 18.35,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2021,
+          "active": -0.24,
+          "issuer": -0.24,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2022,
+          "active": -19.79,
+          "issuer": -19.79,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2023,
+          "active": 11.58,
+          "issuer": 11.58,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2024,
+          "active": 7.21,
+          "issuer": 7.21,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2025,
+          "active": 31.58,
+          "issuer": 31.58,
+          "differencePp": 0.0
+        }
+      ]
+    },
+    {
+      "isin": "IE00B4L5YX21",
+      "productId": 251867,
+      "name": "Core MSCI Japan IMI",
+      "currency": "USD",
+      "terPct": 0.12,
+      "index": "MSCI Japan Investable Market Net Index (USD)",
+      "distribution": "Accumulating",
+      "aum": {
+        "amount": 8621119325.93,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-02"
+      },
+      "countries": {
+        "status": "not-published",
+        "rows": []
+      },
+      "sectors": {
+        "asOf": "2026-10-02",
+        "rows": [
+          {
+            "name": "Industrials",
+            "weightPct": 24.05
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 18.57
+          },
+          {
+            "name": "Financials",
+            "weightPct": 17.26
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 14.11
+          },
+          {
+            "name": "Communication",
+            "weightPct": 6.06
+          },
+          {
+            "name": "Materials",
+            "weightPct": 5.04
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 4.88
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 4.32
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 2.65
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 1.15
+          },
+          {
+            "name": "Energy",
+            "weightPct": 0.92
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.96
+          },
+          {
+            "name": "Other",
+            "weightPct": 0.03
+          }
+        ]
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 3.12,
+          "2017": 25.09,
+          "2018": -13.58,
+          "2019": 19.43,
+          "2020": 13.03,
+          "2021": 0.92,
+          "2022": -15.88,
+          "2023": 18.86,
+          "2024": 7.47,
+          "2025": 25.36
+        }
+      },
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251867/",
+      "comparison": [
+        {
+          "year": 2020,
+          "active": 13.03,
+          "issuer": 13.03,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2021,
+          "active": 0.92,
+          "issuer": 0.92,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2022,
+          "active": -15.88,
+          "issuer": -15.88,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2023,
+          "active": 18.86,
+          "issuer": 18.86,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2024,
+          "active": 7.47,
+          "issuer": 7.47,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2025,
+          "active": 25.36,
+          "issuer": 25.36,
+          "differencePp": 0.0
+        }
+      ]
+    },
+    {
+      "isin": "IE00BF4RFH31",
+      "productId": 296576,
+      "name": "MSCI World Small Cap",
+      "currency": "USD",
+      "terPct": 0.35,
+      "index": "MSCI World Small Cap Index (Net)",
+      "distribution": "Accumulating",
+      "aum": {
+        "amount": 8862414909.63,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-02"
+      },
+      "countries": {
+        "asOf": "2026-10-02",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 61.25
+          },
+          {
+            "name": "Japan",
+            "weightPct": 12.75
+          },
+          {
+            "name": "Canada",
+            "weightPct": 4.28
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 4.15
+          },
+          {
+            "name": "Australia",
+            "weightPct": 3.73
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 1.69
+          },
+          {
+            "name": "Israel",
+            "weightPct": 1.47
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 1.47
+          },
+          {
+            "name": "Germany",
+            "weightPct": 1.32
+          },
+          {
+            "name": "France",
+            "weightPct": 1.21
+          },
+          {
+            "name": "Other",
+            "weightPct": 6.16
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.52
+          }
+        ]
+      },
+      "sectors": {
+        "asOf": "2026-10-02",
+        "rows": [
+          {
+            "name": "Industrials",
+            "weightPct": 19.32
+          },
+          {
+            "name": "Financials",
+            "weightPct": 14.26
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 13.88
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 11.4
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 10.02
+          },
+          {
+            "name": "Materials",
+            "weightPct": 8.42
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 7.58
+          },
+          {
+            "name": "Energy",
+            "weightPct": 4.94
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 3.93
+          },
+          {
+            "name": "Communication",
+            "weightPct": 3.14
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 2.57
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.52
+          },
+          {
+            "name": "Other",
+            "weightPct": 0.01
+          }
+        ]
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2019": 25.73,
+          "2020": 15.83,
+          "2021": 15.81,
+          "2022": -18.64,
+          "2023": 16.02,
+          "2024": 7.93,
+          "2025": 19.84
+        }
+      },
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/296576/",
+      "comparison": [
+        {
+          "year": 2020,
+          "active": 15.83,
+          "issuer": 15.83,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2021,
+          "active": 15.81,
+          "issuer": 15.81,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2022,
+          "active": -18.64,
+          "issuer": -18.64,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2023,
+          "active": 16.02,
+          "issuer": 16.02,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2024,
+          "active": 7.93,
+          "issuer": 7.93,
+          "differencePp": 0.0
+        },
+        {
+          "year": 2025,
+          "active": 19.84,
+          "issuer": 19.84,
+          "differencePp": 0.0
+        }
+      ]
+    }
+  ],
+  "note": "Première collecte réelle du pilote ; composants bruts conservés dans les artefacts des exécutions. Encours et compositions observés, pas appliqués aux outils."
+}
