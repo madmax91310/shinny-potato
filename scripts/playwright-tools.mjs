@@ -791,7 +791,7 @@ async function testFeeImpact(page) {
   ]);
   const file = await stat(await download.path());
   const ok = editorialOk && /Avec [\d,]+\s*%\s+de frais/.test(text)
-    && drawing.width === 1600 && drawing.height === 1200 && drawing.png
+    && drawing.width === 1600 && drawing.height === 1600 && drawing.png
     && download.suggestedFilename() === "epargnant-libre-impact-des-frais.png" && file.size > 10000;
   record("Impact des frais", ok, "texte validé, chiffres, copie, frais inversés/égaux, personnalisation, génération et PNG");
 }

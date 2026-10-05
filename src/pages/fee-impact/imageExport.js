@@ -1,91 +1,127 @@
 import { fmtEUR } from './lib.js'
 
+// Modèle crème validé : deux courbes, écart centré, sans titre de série ni accolade.
 const COLORS = {
-  bg: '#0B1622', ink: '#F7F3EA', muted: '#AAB8BC', grid: '#33404A',
-  green: '#43D7A4', gold: '#E7B765', brand: '#B9A774',
+  bg: '#F3EEE4', ink: '#122D27', muted: '#6C786F',
+  green: '#168160', gold: '#B27B30', greenLight: '#65BD91', goldLight: '#D5AD67',
 }
 const pct = value => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 }).format(value)
-const crisp = value => Math.round(value * 10) / 10
 
 export function drawFeeImpactImage(ctx, state, first, second, comparison) {
-  const { amount, years, returnRate, fee1, fee2 } = state
-  const { capital1, capital2, ecart } = comparison
   const c = ctx
+  const { amount, years, returnRate, fee1, fee2 } = state
+  const { capital1, capital2, ecart, totalInvested = amount * Math.round(years * 12) } = comparison
+  c.save()
   c.fillStyle = COLORS.bg
-  c.fillRect(0, 0, 1600, 1200)
-  c.textAlign = 'left'
-  c.fillStyle = COLORS.brand
-  c.font = 'bold 25px sans-serif'
-  c.fillText('ÉPARGNANT LIBRE', 110, 100)
-  c.fillStyle = COLORS.ink
-  c.font = 'bold 84px sans-serif'
-  c.fillText('Impact des frais', 110, 200)
-  c.fillStyle = COLORS.muted
-  c.font = '31px sans-serif'
+  c.fillRect(0, 0, 1600, 1600)
 
-  const left = 205, right = 1450, top = 330, bottom = 790
+  // Grain papier reproductible : aucun effet aléatoire à chaque régénération.
+  let seed = 18
+  c.fillStyle = 'rgba(92,79,56,0.025)'
+  for (let i = 0; i < 26000; i++) {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
+    const gx = seed % 1600
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
+    c.fillRect(gx, seed % 1600, 1, 1)
+  }
+
+  function text(value, x, y, size, color, { align = 'center', bold = false, serif = false, width = 1420 } = {}) {
+    c.fillStyle = color
+    c.textAlign = align
+    let fontSize = size
+    const font = () => `${bold ? 'bold ' : ''}${fontSize}px ${serif ? 'Georgia, serif' : 'Arial, sans-serif'}`
+    c.font = font()
+    while (c.measureText(value).width > width && fontSize > 18) { fontSize--; c.font = font() }
+    c.fillText(value, x, y)
+  }
+
+  text(fmtEUR(ecart), 800, 205, 142, COLORS.ink, { bold: true, serif: true })
+  text(`d’écart de capital après ${pct(years)} an${years > 1 ? 's' : ''}`, 800, 270, 45, COLORS.ink)
+  text(`${pct(fee1)} % contre ${pct(fee2)} % de frais annuels`, 800, 335, 31, COLORS.muted)
+
+  const left = 168, right = 1218, top = 430, bottom = 1285
   const peak = Math.max(1, capital1, capital2)
-  const rough = peak / 4
+  const ceiling = peak * 1.14
+  const duration = Math.max(first.at(-1)?.year || 0, second.at(-1)?.year || 0, 1 / 12)
+  const x = year => left + (right - left) * year / duration
+  const y = capital => bottom - (bottom - top) * capital / ceiling
+  const rough = peak / 2
   const power = 10 ** Math.floor(Math.log10(rough))
   const step = [1, 2, 2.5, 5, 10].map(n => n * power).find(n => n >= rough) || 10 * power
-  const ceiling = Math.ceil(peak / step) * step
-  const x = year => left + (right - left) * year / Math.max(years, 1 / 12)
-  const y = capital => bottom - (bottom - top) * capital / ceiling
-
-  c.font = '23px sans-serif'
-  c.textAlign = 'right'
-  for (let tick = 0; tick <= ceiling + step / 100; tick += step) {
-    const py = y(tick)
-    c.strokeStyle = COLORS.grid
-    c.lineWidth = 2
-    c.beginPath(); c.moveTo(left, py); c.lineTo(right, py); c.stroke()
-    c.fillStyle = COLORS.muted
-    c.fillText(tick === 0 ? '0' : fmtEUR(tick), left - 24, py + 8)
+  const tickValues = [0, step, 2 * step].filter(v => v <= ceiling)
+  const axisEUR = value => value >= 1e6 ? `${pct(value / 1e6)} M€`
+    : value >= 1000 ? `${pct(value / 1000)} k€` : fmtEUR(value)
+  for (const value of tickValues) {
+    const py = y(value)
+    c.strokeStyle = 'rgba(108,120,111,0.13)'
+    c.lineWidth = 1.3
+    c.beginPath(); c.moveTo(left, py); c.lineTo(1460, py); c.stroke()
+    text(value === 0 ? '0' : axisEUR(value), left - 28, py + 9, 28, COLORS.muted, { align: 'right', width: 135 })
   }
-  c.textAlign = 'center'
-  const duration = Math.round(years * 12) / 12
-  const ticks = [...new Set([0, 1, 2, 3, 4].map(i => crisp(duration * i / 4)))]
-  for (const tick of ticks) c.fillText(String(tick).replace('.', ','), x(tick), bottom + 42)
-  c.textAlign = 'left'
-  c.font = 'bold 19px sans-serif'
-  c.fillText('DURÉE (ANNÉES)', 110, bottom + 79)
+  const timeStep = duration < 1 ? duration / 3
+    : [1, 2, 5, 10, 20, 25, 50, 100].find(v => v >= duration / 3) || duration / 3
+  const timeTicks = [0]
+  for (let tick = timeStep; tick < duration - 1e-8; tick += timeStep) timeTicks.push(tick)
+  if (duration - timeTicks.at(-1) < timeStep * .5 && timeTicks.length > 1) timeTicks.pop()
+  timeTicks.push(duration)
+  for (const year of timeTicks) {
+    text(year === 0 ? '0' : `${pct(year)} an${year > 1 ? 's' : ''}`, x(year), bottom + 49, 28, COLORS.muted, { width: 250 })
+  }
 
-  function curve(points, color) {
-    c.beginPath()
+  function path(points) {
     points.forEach(({ year, capital }, index) => {
       if (index === 0) c.moveTo(x(year), y(capital))
       else c.lineTo(x(year), y(capital))
     })
-    c.strokeStyle = color
-    c.lineWidth = 8
-    c.lineCap = 'round'
-    c.lineJoin = 'round'
-    c.stroke()
-    const last = points.at(-1)
-    c.fillStyle = color
-    c.beginPath(); c.arc(x(last.year), y(last.capital), 10, 0, Math.PI * 2); c.fill()
   }
-  curve(first, COLORS.green)
-  curve(second, COLORS.gold)
+  c.beginPath()
+  path(first)
+  second.slice().reverse().forEach(({ year, capital }) => c.lineTo(x(year), y(capital)))
+  c.closePath()
+  const gradient = c.createLinearGradient(0, bottom, 0, top)
+  gradient.addColorStop(0, 'rgba(22,129,96,0.03)')
+  gradient.addColorStop(1, 'rgba(22,129,96,0.16)')
+  c.fillStyle = gradient
+  c.fill()
 
-  c.font = 'bold 27px sans-serif'
-  c.fillStyle = COLORS.green; c.fillText('●', 210, 925)
-  c.fillStyle = COLORS.ink; c.fillText(`Scénario 1 · ${pct(fee1)} % / an`, 250, 925)
-  c.fillStyle = COLORS.gold; c.fillText('●', 790, 925)
-  c.fillStyle = COLORS.ink; c.fillText(`Scénario 2 · ${pct(fee2)} % / an`, 830, 925)
-
-  for (const { x: col, label, value, color } of [
-    { x: 110, label: state.isin1 ? `SCÉNARIO 1 · ${state.isin1}` : 'SCÉNARIO 1', value: capital1, color: COLORS.green },
-    { x: 610, label: state.isin2 ? `SCÉNARIO 2 · ${state.isin2}` : 'SCÉNARIO 2', value: capital2, color: COLORS.gold },
-    { x: 1110, label: 'ÉCART FINAL', value: ecart, color: COLORS.brand },
-  ]) {
-    c.fillStyle = color; c.font = 'bold 21px sans-serif'; c.fillText(label, col, 1000)
-    c.fillStyle = COLORS.ink; c.font = 'bold 44px sans-serif'; c.fillText(fmtEUR(value), col, 1050)
+  // Les couleurs suivent les frais, y compris quand l’utilisateur inverse les scénarios.
+  const scenarios = [
+    { points: first, capital: capital1, fee: fee1, isin: state.isin1 },
+    { points: second, capital: capital2, fee: fee2, isin: state.isin2 },
+  ].map((s, index) => ({ ...s, color: s.fee === Math.min(fee1, fee2) && (fee1 !== fee2 || index === 0) ? COLORS.green : COLORS.gold,
+    light: s.fee === Math.min(fee1, fee2) && (fee1 !== fee2 || index === 0) ? COLORS.greenLight : COLORS.goldLight }))
+  function curve(s) {
+    for (const [width, color] of [[20, `${s.color}17`], [11, s.color], [3, s.light]]) {
+      c.beginPath(); path(s.points)
+      c.strokeStyle = color; c.lineWidth = width; c.lineCap = 'round'; c.lineJoin = 'round'; c.stroke()
+    }
+    c.fillStyle = s.color
+    c.beginPath(); c.arc(right, y(s.capital), 11, 0, Math.PI * 2); c.fill()
   }
-  c.fillStyle = COLORS.muted
-  c.font = '23px sans-serif'
-  c.fillText(`${fmtEUR(amount)} / mois · ${pct(years)} ans · rendement brut supposé : ${pct(returnRate)} % / an`, 110, 1110)
-  c.font = '19px sans-serif'
-  c.fillText('Versements en début de mois.', 110, 1145)
-  c.fillText('Simulation illustrative · taux constants hypothétiques · hors fiscalité et inflation.', 110, 1175)
+  scenarios.forEach(curve)
+  const ordered = scenarios.slice().sort((a, b) => b.capital - a.capital)
+  const close = Math.abs(y(capital1) - y(capital2)) < 160
+  ordered.forEach((s, index) => {
+    let tx, ty, align, labelWidth
+    if (close) {
+      // Deux résultats proches/égaux : étiquettes séparées, reliées à leur vrai point.
+      tx = right + 24; align = 'left'; labelWidth = 285
+      ty = Math.max(top + 20, y(ordered[0].capital) - 85) + index * 145
+      c.strokeStyle = s.color; c.lineWidth = 1.5
+      c.beginPath(); c.moveTo(right + 12, y(s.capital)); c.lineTo(tx - 8, ty + 12); c.stroke()
+    } else {
+      tx = index === 0 ? right - 22 : right + 24
+      ty = index === 0 ? y(s.capital) - 90 : y(s.capital) + 42
+      align = index === 0 ? 'right' : 'left'
+      labelWidth = index === 0 ? 410 : 285
+    }
+    text(`${pct(s.fee)} % / an`, tx, ty, 34, s.color, { align, bold: true, width: labelWidth })
+    text(fmtEUR(s.capital), tx, ty + 55, 47, COLORS.ink, { align, bold: true, width: labelWidth })
+    if (s.isin) text(s.isin, tx, ty + 86, 20, COLORS.muted, { align, width: labelWidth })
+  })
+
+  text(`${fmtEUR(amount)} / mois  ·  ${pct(years)} an${years > 1 ? 's' : ''}  ·  ${pct(returnRate)} % brut supposé / an`, 800, 1415, 35, COLORS.ink, { bold: true })
+  text(`Pour les mêmes ${fmtEUR(totalInvested)} versés`, 800, 1470, 31, COLORS.muted)
+  text('Épargnant Libre', 800, 1560, 27, COLORS.ink)
+  c.restore()
 }

@@ -114,7 +114,7 @@ export default function App() {
 
       <ToolWorkspace className="fi-layout" imageContent={<div className="fi-preview fi-image-panel">
             <p className="fi-eyebrow">Aperçu de l’image</p>
-            <canvas ref={imageRef} width="1600" height="1200" className="fi-image" role="img" aria-label="Évolution comparée des deux scénarios de frais et écart final" />
+            <canvas ref={imageRef} width="1600" height="1600" className="fi-image" role="img" aria-label="Évolution comparée des deux scénarios de frais et écart final" />
 
           </div>} actions={<><Button onClick={handleCopy}>{copied ? "Copié ✓" : "Copier le texte"}</Button><Button variant="secondary" onClick={handleDownloadImage}>Télécharger l’image PNG</Button></>}>
         <section className="fi-control-col tool-settings">
