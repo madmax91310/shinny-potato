@@ -44,6 +44,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p 'test_data*.py'
+      - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: npm run audit:portfolio-provenance
       - run: npm run audit:portfolio-duels
       - run: npm run audit:broker-evidence

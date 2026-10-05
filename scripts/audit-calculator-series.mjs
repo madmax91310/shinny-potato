@@ -92,7 +92,7 @@ let verified = 0;
 for (const [id, record] of Object.entries(current.records)) {
   // These series were replaced in full on 03/10. The archived September-only
   // capture remains intact; the new full-period capture is checked above.
-  if (Object.hasOwn(MONTHLY_HISTORY_ADDITIONS, id)) continue;
+  if (id === 'bitcoin' || Object.hasOwn(MONTHLY_HISTORY_ADDITIONS, id)) continue;
   const raw = record.monthlyResponse.chart.result[0];
   const all = ASSETS[id].points;
   const full = record.scope === 'full-series';
@@ -335,3 +335,5 @@ for (const [id, code] of [['msciEmerging', '891800'], ['msciWorldSmallCap', '106
   if (getAnnualReturns(id, 2016).some(row => row.year >= 2026)) throw new Error(`${id}: année partielle publiée`);
 }
 console.log('Emerging Markets et World Small Cap : 282 clôtures mensuelles/quotidiennes concordantes, 22 rendements annuels recoupés, catalogue commun, DCA et vidéos OK.');
+
+await import('./audit-bitcoin-automated.mjs');

@@ -1,3 +1,4 @@
+import { AUTOMATED_AUM } from './automated-etf.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Encours revus le 02/10/2026 : relevés émetteurs datés et périmètre part/fonds explicite.
 // Encours revus le 02/10/2026 : relevés émetteurs datés et périmètre part/fonds explicite.
@@ -661,6 +662,7 @@ export const INSTRUMENT_AUM_BY_ISIN = Object.freeze({
     "scope": "Encours affiché sur le profil ; distinction fonds/part non publiée"
   }
 }),
+  ...AUTOMATED_AUM,
 });
 
 export function getInstrumentAum(isin, context) {

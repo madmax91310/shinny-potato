@@ -1,6 +1,7 @@
+import { AUTOMATED_ETF, refreshFundDetails } from './automated-etf.js';
 // Exact fund holdings, or explicitly identified exposure for a synthetic fund.
 // Dates refer to compositions, not to calendar-year performances.
-export const COMPARISON_ETF_DETAILS = Object.freeze({
+const MANUAL_DETAILS = {
   "IE00BKM4GZ66": {
     "asOf": "2026-08-31",
     "basis": "fund",
@@ -220,4 +221,6 @@ export const COMPARISON_ETF_DETAILS = Object.freeze({
     ],
     "sectorMethod": "Somme des poids publiés de tous les titres par secteur DWS ; poids non classés conservés, sans renormalisation."
   }
-})
+};
+
+export const COMPARISON_ETF_DETAILS = Object.freeze(Object.fromEntries([...new Set([...Object.keys(MANUAL_DETAILS), ...Object.keys(AUTOMATED_ETF)])].map(isin => [isin, refreshFundDetails(isin, MANUAL_DETAILS[isin])])));
