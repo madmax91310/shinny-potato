@@ -75,12 +75,12 @@ export async function renderComparatifEtfImage(theme) {
       text(ctx, `${current.label} · ${current.currency}`, center, 552, 24, { width, align: 'center', color: MUTED })
       for (const [j, year] of [2025, 2024, 2023].entries()) {
         const row = current.rows.find(row => row.year === year)
-        if (row) text(ctx, pct(row.pct), center, 600 + j * 75, 47, { width, align: 'center', color: row.pct < 0 ? RED : i % 2 ? '#ffd286' : GREEN })
-        else text(ctx, 'Année incomplète', center, 607 + j * 75, 22, { width, align: 'center', color: MUTED, weight: 400 })
+        if (row) text(ctx, pct(row.pct), center, 600 + j * 75, 47, { width, align: 'center', color: row.pct < 0 ? RED : GREEN })
+        else text(ctx, 'Non disponible', center, 607 + j * 75, 22, { width, align: 'center', color: MUTED, weight: 400 })
       }
     } else {
       lines(ctx, detail(fund), center, hasPerformance ? 630 : 580, width - 15, 5, 27, { align: 'center', color: MUTED, weight: 400 })
-      if (hasPerformance) text(ctx, 'Exposition du produit', center, 552, 24, { width, align: 'center', color: MUTED })
+      if (hasPerformance) text(ctx, 'Performances non disponibles', center, 552, 24, { width, align: 'center', color: MUTED })
     }
     text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, center, hasPerformance ? 845 : 820, 48, { width, align: 'center', color: GREEN })
     if (!hasPerformance) text(ctx, 'Frais annuels', center, 886, 25, { width, align: 'center', color: MUTED })
@@ -89,7 +89,7 @@ export async function renderComparatifEtfImage(theme) {
     if (i) { ctx.strokeStyle = 'rgba(229,190,115,.35)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(left + i * cell, 430); ctx.lineTo(left + i * cell, 1100); ctx.stroke() }
   })
   ctx.fillStyle = 'rgba(229,190,115,.45)'; ctx.fillRect(65, 1114, W - 130, 2)
-  if (hasPerformance) text(ctx, 'Années civiles · devises indiquées · références identifiées', W / 2, 1140, 24, { width: W - 130, align: 'center', color: MUTED, weight: 400 })
+  if (hasPerformance) text(ctx, 'Performances des ETF cités · années civiles · devises indiquées', W / 2, 1140, 24, { width: W - 130, align: 'center', color: MUTED, weight: 400 })
   text(ctx, 'Les performances passées ne préjugent pas des performances futures.', W / 2, 1180, 22, { width: W - 130, align: 'center', color: MUTED, weight: 400 })
   text(ctx, '@Epargnantlibre', W / 2, 1215, 23, { align: 'center' })
   return canvas

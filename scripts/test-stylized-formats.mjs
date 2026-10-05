@@ -16,9 +16,10 @@ for (let count = 1; count <= 40; count++) {
 }
 for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) await readFile(`public/asset-art/${comparisonArt(theme.id, fund.isin)}`)
 for (const art of Object.values(PERFORMANCE_ART)) await readFile(`public/asset-art/${art.mark || art.scene}`)
-assert.equal(getComparisonPerformance('FR001400U5Q4').label, 'Indice MSCI World net')
-assert.equal(getComparisonPerformance('FR001400U5Q4').currency, 'EUR')
-assert.equal(getComparisonPerformance('IE00BD4TXV59').referenceIsin, 'IE00B4L5Y983')
+assert.equal(getComparisonPerformance('FR001400U5Q4'), null, 'No complete calendar year for this share class')
+assert.equal(getComparisonPerformance('IE00BD4TXV59'), null, 'Never substitute another share class')
+assert.equal(getComparisonPerformance('IE00BTJRMP35').label, 'ETF')
+assert.equal(getComparisonPerformance('IE00BTJRMP35').referenceIsin, 'IE00BTJRMP35')
 assert.equal(getComparisonPerformance('IE00BK5BQT80').currency, 'USD')
 assert.equal(getComparisonPerformance('IE0007Y8Y157'), null, 'No invented full calendar year for a new fund')
 const port = 4321, base = `http://127.0.0.1:${port}/shinny-potato/`

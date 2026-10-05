@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict'
+import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
+import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
+import { buildTweetText } from '../src/pages/etf-tweets/lib/tweetFormat.js'
+import { COMPARISON_ETF_DETAILS } from '../src/data/comparison-etf-details.js'
+import { readFileSync } from 'node:fs'
+const emerging = DEFAULT_THEMES.find(t => t.etfs.some(f => f.isin === 'IE00BTJRMP35'))
+const text = buildTweetText(emerging)
+assert.match(text,/2025 : \+33,7 %/)
+assert.match(text,/2025 : \+21,04 %/)
+assert.match(text,/2025 : \+31,58 %/)
+assert.equal((text.match(/🏭 /g)||[]).length,3)
+assert.equal((text.match(/🏢 /g)||[]).length,3)
+assert.match(text,/Secteurs de l’indice suivi au 30\/06\/2026/)
+assert.match(text,/Répartition sectorielle du fonds au 02\/10\/2026/)
+for (const fund of emerging.etfs) {
+ const p=getComparisonPerformance(fund.isin)
+ assert.equal(p.label,'ETF');assert.equal(p.referenceIsin,fund.isin)
+ const details=COMPARISON_ETF_DETAILS[fund.isin]
+ assert.ok(details.source && details.asOf && details.checkedAt)
+ assert.equal(details.holdings.length,3)
+ assert.ok(Math.abs(details.sectors.reduce((sum,[,pct])=>sum+pct,0)-100)<.1)
+}
+for (const theme of DEFAULT_THEMES) {
+ assert.ok(buildTweetText(theme).length<=25000)
+ for (const fund of theme.etfs) {
+  const p=getComparisonPerformance(fund.isin)
+  if(p) {assert.equal(p.label,'ETF');assert.equal(p.referenceIsin,fund.isin)}
+ }
+}
+for(const isin of ['IE00BD4TXV59','IE000XZSV718','IE000DQLYVB9','FR001400U5Q4']) assert.equal(getComparisonPerformance(isin),null,'No reference ETF or index substituted')
+const image=readFileSync('src/pages/tweet-midi/comparatifEtfImage.js','utf8')
+assert.ok(!image.includes("'#ffd286'"))
+assert.match(image,/color: row.pct < 0 \? RED : GREEN/)
+console.log('Comparatif : parts exactes, aucune substitution, compositions datées et distinctes, secteurs complets, cohérence texte/image et couleurs vérifiés.')
