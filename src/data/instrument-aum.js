@@ -672,7 +672,8 @@ export function getInstrumentAum(isin, context) {
 }
 
 export function getInstrumentAumBillions(isin) {
-  const millions = INSTRUMENT_AUM_BY_ISIN[isin]?.source?.amountMillions;
+  const source = INSTRUMENT_AUM_BY_ISIN[isin]?.source;
+  const millions = source?.amountMillions;
   if (!Number.isFinite(millions)) throw new Error(`Encours EUR en millions absent pour ${isin}`);
-  return `${(millions / 1000).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} Md€`;
+  return `${(millions / 1000).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} Md${source?.currency === 'USD' ? '$' : source?.currency && source.currency !== 'EUR' ? source.currency : '€'}`;
 }
