@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import ToolIcon from './ToolIcon'
 
 const COMPACT_LABELS = {
+  '/france-100-menages': 'France en 100 ménages',
   '/impact-frais': 'Impact des frais',
   '/tweets-factsheets': 'Coulisses des indices',
   '/faits-marquants-marches': 'Faits marquants',
