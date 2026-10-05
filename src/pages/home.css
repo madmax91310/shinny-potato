@@ -1,0 +1,51 @@
+/* Compact home only. Tool pages keep their existing chrome and navigation. */
+.workspace.workspace--home { background: #0c151a; color: #eff4ef; }
+.workspace.workspace--home .workspace-body { max-width: 1040px; }
+.workspace.workspace--home .workspace-main--home {
+  margin: 0; padding: 14px; border: 0; border-radius: 0; background: transparent;
+  padding-top: max(14px, env(safe-area-inset-top));
+  padding-bottom: max(14px, env(safe-area-inset-bottom));
+}
+.workspace--home .workspace-tool-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px;
+  grid-auto-rows: clamp(60px, calc((100svh - max(14px, env(safe-area-inset-top)) - max(14px, env(safe-area-inset-bottom)) - 49px) / 8), 95px);
+}
+.workspace--home .workspace-tool-card {
+  position: relative; min-height: 0; height: 100%; gap: 8px; align-items: center;
+  padding: 15px 11px; border: 1px solid #2c3b41; border-radius: 13px;
+  background: linear-gradient(135deg, #1b2a31, #142127); color: #eff4ef;
+  text-decoration: none;
+}
+.workspace--home .workspace-tool-card:has(.workspace-publication-day) { align-items: flex-start; }
+.workspace--home .workspace-tool-card > div { min-width: 0; }
+.workspace--home .workspace-tool-card h2 {
+  margin: 0; font-size: 13.2px; line-height: 17px; font-weight: 600; letter-spacing: -.15px;
+}
+.workspace--home .workspace-tool-icon { width: 19px; height: 21px; }
+.workspace--home .workspace-tool-icon svg { width: 19px; height: 19px; }
+.workspace--home .workspace-tool-card[data-group="publish"] { --ui-accent: #7cc6ae; }
+.workspace--home .workspace-tool-card[data-group="portfolio"] { --ui-accent: #d4ba81; }
+.workspace--home .workspace-tool-card[data-group="compare"] { --ui-accent: #8eafd1; }
+.workspace--home .workspace-tool-card[data-group="data"] { --ui-accent: #a6a5cb; }
+.workspace--home .workspace-publication-day {
+  position: absolute; left: 11px; bottom: 13px; margin: 0;
+  font-size: 10.5px; line-height: 14px; color: #98b5ae; letter-spacing: -.1px;
+}
+.workspace--home .workspace-tool-card[href$="/tweet-midi"] {
+  background: linear-gradient(125deg, #244a3c, #1b352e); border-color: #557762;
+}
+.workspace--home .workspace-tool-card[href$="/tweet-midi"] .workspace-publication-day { color: #b7d1bc; }
+.workspace--home .workspace-tool-card:hover { border-color: #608477; background: #20372f; }
+@media (max-width: 360px), (max-height: 700px) {
+  .workspace--home .workspace-tool-card { padding: 9px 8px; gap: 6px; }
+  .workspace--home .workspace-tool-card h2 { font-size: 11.5px; line-height: 14px; }
+  .workspace--home .workspace-tool-icon { width: 17px; }
+  .workspace--home .workspace-tool-icon svg { width: 17px; height: 17px; }
+  .workspace--home .workspace-publication-day { left: 8px; bottom: 9px; font-size: 9.5px; line-height: 12px; }
+}
+@media (min-width: 700px) {
+  .workspace.workspace--home .workspace-main--home { padding: 28px; }
+  .workspace--home .workspace-tool-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; grid-auto-rows: 108px; }
+  .workspace--home .workspace-tool-card h2 { font-size: 14px; line-height: 19px; }
+  .workspace--home .workspace-publication-day { font-size: 11px; }
+}

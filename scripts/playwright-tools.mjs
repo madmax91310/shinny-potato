@@ -72,18 +72,8 @@ async function testWorkspaceNavigation(page) {
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
   const checks = { allTools: await page.locator('.workspace-tool-card').count() === 16 };
   checks.publicationDays = (await page.locator('.workspace-publication-day').allTextContents()).sort().join('|') === TOOLS.filter(tool => tool.publicationDay).map(tool => tool.publicationDay).sort().join('|');
-  await page.getByRole('searchbox', { name: 'Rechercher un outil' }).fill('donnees');
-  checks.accentSearch = await page.locator('.workspace-tool-card').count() === 2;
-  await page.getByRole('button', { name: 'Données', exact: true }).click();
-  checks.categoryWithSearch = await page.locator('.workspace-tool-card').count() === 2;
-  await page.getByRole('searchbox').fill('');
-  await page.getByRole('button', { name: 'Portefeuilles', exact: true }).click();
-  checks.portfolioFilter = await page.locator('.workspace-tool-card').count() === 3;
-  await page.getByRole('button', { name: 'Tous', exact: true }).click();
-  checks.resetFilter = await page.locator('.workspace-tool-card').count() === 16;
-  await page.getByRole('searchbox').fill('outil inexistant');
-  checks.empty = await page.getByRole('status').isVisible();
-  await page.getByRole('searchbox').fill('');
+  checks.onlyTools = await page.locator('.workspace-search,.workspace-filters,.workspace-brand').count() === 0;
+  checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === 'tweet-midi|generateur-portefeuilles|tweets-factsheets|duels-portefeuilles|calculateur-investissement|fiches-etf|comparatif-courtiers|portefeuilles-investisseurs|comparateur-indices|impact-frais|france-100-menages|cas-concrets|faits-marquants-marches|banque-tweets|bibliotheque-donnees|donnees-a-revoir';
   for (const width of [320, 390, 768, 1280]) {
     await page.setViewportSize({ width, height: 844 });
     checks[`overflow${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
