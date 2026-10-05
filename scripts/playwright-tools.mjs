@@ -946,6 +946,7 @@ async function testDataSearch(page) {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('searchbox').fill('MSCI USA');
   await page.locator('.ds-detail').filter({ hasText: 'MSCI USA' }).waitFor();
+  checks.filterSurvivesTyping = new URLSearchParams(page.url().split('?')[1]).get('type') === 'all';
   if (process.env.DATA_SEARCH_SCREENSHOT) await page.screenshot({ path: process.env.DATA_SEARCH_SCREENSHOT, fullPage: true });
   checks.mobile = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });

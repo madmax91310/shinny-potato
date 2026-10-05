@@ -18,7 +18,9 @@ export default function DataSearch() {
   const selected = results.find((r) => r.id === params.get('id')) ?? results[0]
   const [message, setMessage] = useState('')
   function update(key, value) {
-    const next = new URLSearchParams(params)
+    // Navigation updates the URL before React finishes rendering the new filters.
+    // Preserve that latest choice when the user immediately types a search.
+    const next = new URLSearchParams(window.location.search)
     next.set(key, value)
     if (key !== 'id') next.delete('id')
     setParams(next, { replace: true })
