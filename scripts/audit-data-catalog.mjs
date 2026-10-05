@@ -1,3 +1,4 @@
+import { PROPERTY_INFRA_RETURNS } from '../src/data/property-infrastructure-additions.js';
 import { WORLD_FACTOR_RETURNS } from '../src/data/world-factor-additions.js';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
@@ -51,11 +52,12 @@ assert.throws(() => normalizeEvidence({ asOf: '30/09/2026' }), /invalide/);
 assert.throws(() => normalizeEvidence({ url: 'invented-source' }), /invalide/);
 for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [date, series] of Object.entries(history)) {
   const factorSeries = WORLD_FACTOR_RETURNS[id]?.[date];
-  const independent = INDEX_COMPARISON_RETURN_ADDITIONS[id]?.[date] ?? factorSeries;
+  const propertyInfraSeries = PROPERTY_INFRA_RETURNS[id]?.[date];
+  const independent = INDEX_COMPARISON_RETURN_ADDITIONS[id]?.[date] ?? factorSeries ?? propertyInfraSeries;
   assert(INDEX_FACTS[id]?.[date] || independent === series, `${id}: série sans photographie ni preuve indépendante`);
   if (independent) {
     assert.equal(series.metadata.periodEnd, '2025-12-31');
-    assert.equal(series.metadata.periodStart, factorSeries ? '2021-01-01' : '2023-01-01');
+    assert.equal(series.metadata.periodStart, factorSeries || propertyInfraSeries ? '2021-01-01' : '2023-01-01');
     assert(series.metadata.sourceUrls.length && series.metadata.checkedAt, `${id}: source indépendante non datée`);
     assert(DATA_CATALOG.some(record => record.fields.some(field => field.value === series)), `${id}: série absente du catalogue`);
   }

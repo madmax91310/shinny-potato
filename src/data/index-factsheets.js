@@ -8,16 +8,27 @@ import { getInstrumentFactsheetReturns } from './instrument-comparator-returns.j
 const emFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260630'
 
 // Réutilisation de photographies déjà vérifiées ; les performances conservent leur propre source et période.
-function reusedIndexSheet(id, title, intro, insight, takeaway, methodologyPanels) {
- const composition = getIndexFacts(id, '2026-09-30');
+function reusedIndexSheet(id, title, intro, insight, takeaway, methodologyPanels, asOf = '2026-09-30') {
+ const composition = getIndexFacts(id, asOf);
  const returns = INDEX_RETURNS[id]['2025-12-31'];
- return { ...getIndexComposition(id,'2026-09-30'), id, title, index: composition.index,
+ return { ...getIndexComposition(id,asOf), id, title, index: composition.index,
   snapshot: composition.snapshot, source: [composition.source, returns.source, ...(composition.methodologySources ?? [])],
   returns: getIndexReturns(id,'2025-12-31'), performance: returns.performance,
   intro, insight, takeaway, methodologyPanels };
 }
 
 export const SHEETS = [
+ reusedIndexSheet('ftse-epra-nareit-developed-dividend-plus','Immobilier développé Dividend+',
+  '🏠 Immobilier coté : que sélectionne le FTSE EPRA Nareit Developed Dividend+ ? 👇',
+  'Ce panier regroupe des sociétés immobilières et des REIT. Il reste concentré sur les États-Unis et ne correspond pas à un achat direct de logements.',
+  'Les loyers, le financement et les taux peuvent peser sur ces entreprises. Un dividende ne protège pas le capital.',
+  [['LA SÉLECTION','Immobilier des pays développés hors Grèce. Règles de mai 2026 : dividende anticipé ≥ 3 % pour entrer, ≥ 1 % pour rester.'],['LES POIDS ET LA DATE','Capitalisation flottante ; revue annuelle en septembre. Photo du 31/08/2026 : sa fiche mentionne encore 2 %, contrairement aux règles publiées.']], '2026-08-31'),
+ reusedIndexSheet('ftse-global-core-infrastructure','Infrastructures mondiales Core',
+  '🏗️ Réseaux, transport, énergie : que contient vraiment le FTSE Global Core Infrastructure ? 👇',
+  'Les pays émergents sont inclus, mais les États-Unis dominent. Ce panier comprend aussi des REIT d’infrastructures : les deux expositions peuvent se recouper.',
+  'Les infrastructures cotées restent des actions, exposées aux taux, à la réglementation et aux marchés. Ce n’est pas une protection du capital.',
+  [['LA SÉLECTION','Univers FTSE Global All Cap : au moins 65 % des revenus dans les activités Core pour entrer ; sortie sous 55 %.'],['LA PONDÉRATION','Capitalisation investissable, revue en mars et septembre. Cet indice ne suit pas la répartition sectorielle de la variante 50/50.']]),
+
  reusedIndexSheet('msci-world-momentum','World Momentum',
   '🔎 Momentum : comment les gagnants récents du World sont-ils sélectionnés ? 👇',
   'Le filtre Momentum change les poids sectoriels et les principales positions. Il n’ajoute ni émergents ni petites capitalisations.',

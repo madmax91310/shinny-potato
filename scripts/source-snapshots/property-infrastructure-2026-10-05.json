@@ -1,0 +1,412 @@
+{
+  "checkedAt": "2026-10-05",
+  "compositions": {
+    "ftse-epra-nareit-developed-dividend-plus": {
+      "2026-08-31": {
+        "index": "FTSE EPRA Nareit Developed Dividend+",
+        "asOf": "2026-08-31",
+        "snapshot": "31 août 2026",
+        "source": {
+          "label": "Composition de l’indice · FTSE Russell",
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+          "checkedAt": "2026-10-05"
+        },
+        "provenance": "Fiche officielle FTSE Russell au 2026-08-31, consultée le 05/10/2026 et recoupée avec la page LSEG de la série. Confiance élevée. Poids et comptage de l’indice, jamais du fonds. Autres pays calculé par différence à 100 % des cinq pays affichés.",
+        "constituents": 313,
+        "markets": "Immobilier coté des pays développés, hors Grèce ; filtre de rendement des dividendes",
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            66.37
+          ],
+          [
+            "🇯🇵 Japon",
+            7.04
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            4.2
+          ],
+          [
+            "🇦🇺 Australie",
+            3.84
+          ],
+          [
+            "🇸🇬 Singapour",
+            3.37
+          ],
+          [
+            "🌍 Autres",
+            15.18
+          ]
+        ],
+        "sectors": [
+          [
+            "🛍️ Commerces",
+            18.72
+          ],
+          [
+            "🏘️ Diversifié",
+            16.81
+          ],
+          [
+            "🏭 Industriel",
+            14.62
+          ],
+          [
+            "🏠 Résidentiel",
+            12.42
+          ],
+          [
+            "💻 Centres de données",
+            12.13
+          ],
+          [
+            "🏥 Santé",
+            8.01
+          ],
+          [
+            "📦 Stockage individuel",
+            5.52
+          ],
+          [
+            "🏢 Bureaux",
+            5.11
+          ],
+          [
+            "🏨 Hôtels et loisirs",
+            2.71
+          ],
+          [
+            "🧩 Spécialisé",
+            2.67
+          ],
+          [
+            "🏭 Industriel / bureaux",
+            1.3
+          ]
+        ],
+        "holdings": [
+          [
+            "Prologis",
+            7.68
+          ],
+          [
+            "Equinix",
+            5.97
+          ],
+          [
+            "Simon Property Group",
+            3.93
+          ],
+          [
+            "Digital Realty Trust",
+            3.89
+          ],
+          [
+            "Realty Income",
+            3.31
+          ],
+          [
+            "Public Storage",
+            2.99
+          ],
+          [
+            "Vivmark Residential",
+            2.87
+          ],
+          [
+            "Ventas",
+            2.56
+          ],
+          [
+            "Iron Mountain",
+            1.97
+          ],
+          [
+            "Extra Space Storage",
+            1.71
+          ]
+        ],
+        "topWeight": 36.89,
+        "sectorClassification": "FTSE EPRA Nareit · sous-secteurs immobiliers",
+        "descriptionTemplates": {
+          "immobilier-infrastructures": "Immobilier coté des marchés développés, hors Grèce, avec un filtre de dividendes ; pondération par capitalisation flottante."
+        },
+        "methodologySources": [
+          {
+            "label": "Règles de sélection · FTSE Russell",
+            "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-dividend-plus-index-ground-rules.pdf",
+            "checkedAt": "2026-10-05"
+          }
+        ],
+        "methodologyNote": "Règles v3.1 de mai 2026 : entrée à 3 % et maintien à 1 %. La fiche de composition d’août et la présentation iShares affichent encore 2 %. Cette divergence est signalée ; le seuil des règles ne redéfinit pas rétroactivement la photographie d’août."
+      }
+    },
+    "ftse-global-core-infrastructure": {
+      "2026-09-30": {
+        "index": "FTSE Global Core Infrastructure",
+        "asOf": "2026-09-30",
+        "snapshot": "30 septembre 2026",
+        "source": {
+          "label": "Composition de l’indice · FTSE Russell",
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
+          "checkedAt": "2026-10-05"
+        },
+        "provenance": "Fiche officielle FTSE Russell au 2026-09-30, consultée le 05/10/2026 et recoupée avec la page LSEG de la série. Confiance élevée. Poids et comptage de l’indice, jamais du fonds. Autres pays calculé par différence à 100 % des cinq pays affichés.",
+        "constituents": 277,
+        "markets": "Infrastructures cotées des pays développés et émergents, sélectionnées dans le FTSE Global All Cap",
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            62.99
+          ],
+          [
+            "🇨🇦 Canada",
+            13.02
+          ],
+          [
+            "🇯🇵 Japon",
+            4.12
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            3.86
+          ],
+          [
+            "🇪🇸 Espagne",
+            1.98
+          ],
+          [
+            "🌍 Autres",
+            14.03
+          ]
+        ],
+        "sectors": [
+          [
+            "💡 Électricité conventionnelle",
+            34.42
+          ],
+          [
+            "🛢️ Oléoducs et gazoducs",
+            17.41
+          ],
+          [
+            "🚆 Chemins de fer",
+            17.15
+          ],
+          [
+            "💡 Services publics multiples",
+            10.47
+          ],
+          [
+            "🚢 Services de transport",
+            5.38
+          ],
+          [
+            "🔥 Distribution de gaz",
+            5.2
+          ],
+          [
+            "🏠 REIT d’infrastructures",
+            4.0
+          ],
+          [
+            "💧 Eau",
+            3.15
+          ],
+          [
+            "📡 Services télécoms",
+            1.48
+          ],
+          [
+            "📡 Équipements télécoms",
+            0.89
+          ],
+          [
+            "🌱 Électricité alternative",
+            0.4
+          ],
+          [
+            "🧳 Voyages et tourisme",
+            0.05
+          ],
+          [
+            "🏗️ Construction",
+            0.0
+          ]
+        ],
+        "holdings": [
+          [
+            "Union Pacific",
+            5.28
+          ],
+          [
+            "NextEra Energy",
+            5.17
+          ],
+          [
+            "Enbridge",
+            3.39
+          ],
+          [
+            "Southern Company",
+            3.12
+          ],
+          [
+            "Duke Energy",
+            2.9
+          ],
+          [
+            "CSX",
+            2.82
+          ],
+          [
+            "Williams Companies",
+            2.71
+          ],
+          [
+            "National Grid",
+            2.5
+          ],
+          [
+            "American Tower",
+            2.49
+          ],
+          [
+            "Canadian Pacific Kansas City",
+            2.48
+          ]
+        ],
+        "topWeight": 32.86,
+        "sectorClassification": "ICB · sous-secteurs",
+        "descriptionTemplates": {
+          "immobilier-infrastructures": "Infrastructures cotées des marchés développés et émergents ; filtre de revenus Core et pondération par capitalisation investissable."
+        },
+        "methodologySources": [
+          {
+            "label": "Règles de sélection · FTSE Russell",
+            "url": "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-infrastructure-index-series-ground-rules.pdf",
+            "checkedAt": "2026-10-05"
+          }
+        ]
+      }
+    }
+  },
+  "returns": {
+    "ftse-epra-nareit-developed-dividend-plus": {
+      "2025-12-31": {
+        "values": [
+          [
+            2025,
+            9.5
+          ],
+          [
+            2024,
+            2.2
+          ],
+          [
+            2023,
+            10.1
+          ],
+          [
+            2022,
+            -23.4
+          ],
+          [
+            2021,
+            26.5
+          ]
+        ],
+        "performance": {
+          "kind": "indice",
+          "detail": "FTSE EPRA Nareit Developed Dividend+ · USD, dividendes réinvestis (Total Return FTSE), hors frais ETF",
+          "date": "Années calendaires 2021–2025"
+        },
+        "source": {
+          "label": "Rendements Total Return USD · FTSE Russell",
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+          "checkedAt": "2026-10-05"
+        },
+        "sourceUrls": [
+          "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-epra-nareit-dividend-plus-index-ground-rules.pdf"
+        ],
+        "checkedAt": "2026-10-05",
+        "periodStart": "2021-01-01",
+        "periodEnd": "2025-12-31",
+        "currency": "USD",
+        "method": "dividendes réinvestis (Total Return FTSE)",
+        "note": "Ligne Year-on-Year Performance – Total Return, USD, de l’indice exact. Les rendements Net Index/Benchmark iShares et ceux de la part sont différents et ne sont pas utilisés. Années postérieures au lancement ; fiche publiée au 2026-08-31, contrôlée le 05/10/2026. Confiance élevée. Aucune série mensuelle déduite de ces observations annuelles."
+      }
+    },
+    "ftse-global-core-infrastructure": {
+      "2025-12-31": {
+        "values": [
+          [
+            2025,
+            13.7
+          ],
+          [
+            2024,
+            9.8
+          ],
+          [
+            2023,
+            1.6
+          ],
+          [
+            2022,
+            -5.8
+          ],
+          [
+            2021,
+            17.8
+          ]
+        ],
+        "performance": {
+          "kind": "indice",
+          "detail": "FTSE Global Core Infrastructure · USD, dividendes réinvestis (Total Return FTSE), hors frais ETF",
+          "date": "Années calendaires 2021–2025"
+        },
+        "source": {
+          "label": "Rendements Total Return USD · FTSE Russell",
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
+          "checkedAt": "2026-10-05"
+        },
+        "sourceUrls": [
+          "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
+          "https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/ftse-infrastructure-index-series-ground-rules.pdf"
+        ],
+        "checkedAt": "2026-10-05",
+        "periodStart": "2021-01-01",
+        "periodEnd": "2025-12-31",
+        "currency": "USD",
+        "method": "dividendes réinvestis (Total Return FTSE)",
+        "note": "Ligne Year-on-Year Performance – Total Return, USD, de l’indice exact. Les rendements Net Index/Benchmark iShares et ceux de la part sont différents et ne sont pas utilisés. Années postérieures au lancement ; fiche publiée au 2026-09-30, contrôlée le 05/10/2026. Confiance élevée. Aucune série mensuelle déduite de ces observations annuelles."
+      }
+    }
+  },
+  "capturedDocuments": {
+    "property": {
+      "sha256": "96387284b9195f4624f285a5942b113e9e13fe0b4ab26f4cbd5dfcb79131e867",
+      "fileBytes": 408136,
+      "annualTable": "Year-on-Year Performance - Total Return                                                                                                                     INFORMATION\nIndex % (USD)                             2016       2017       2018           2019         2020       2021         2022       2023       2024      2025\n                                                                                                                                                            Index Universe\nFTSE EPRA Nareit Developed\n                                            6.5       11.7        -4.8         23.2          -8.7          26.5     -23.4       10.1         2.2      9.5\nDividend+                                                                                                                                                   FTSE EPRA Nareit Global Real Estate Index\nFTSE EPRA Nareit Developed                  5.0       11.4        -4.7         23.1          -8.2          27.2     -24.4       10.9         2.0     10.7   Series\nFTSE Developed                              8.2       23.9        -8.6         28.0         16.7           21.4     -17.8       24.2       18.2      22.8   Index Launch"
+    },
+    "infra": {
+      "sha256": "b9544f5a031687b845d392c10aadb92dfe20012abaf5bc26d36549dbca43e03b",
+      "fileBytes": 427044,
+      "annualTable": "Year-on-Year Performance - Total Return                                                                                                                                      Actual free float applied and liquidity\nIndex % (USD)                             2016           2017         2018          2019         2020       2021          2022              2023       2024       2025       screened\nFTSE Global Core Infrastructure            13.1          16.9          -0.9         26.3          -0.7          17.8          -5.8           1.6         9.8         13.7    Index Calculation\nFTSE Developed Core\nInfrastructure\n                                           13.1          16.2          -0.5         26.4          0.1           18.8          -5.8           1.0        10.2         13.3    End-of-day\n\nFTSE Emerging Core                                                                                                                                                           End-of-Day Distribution\n                                           12.0          28.3          -7.4         23.7         -10.1           5.3          -6.3           8.6         5.9         18.1\nInfrastructure\n                                                                                                                                                                             Via FTP and email\nFTSE Global Equity Index Series\n                                            9.0          24.4          -9.6         27.1         16.8           18.5      -17.9             22.2        16.8         22.6\nwi All Cap                                                                                                                                                                   Currency\nFTSE Developed                              8.2          23.9          -8.6         28.0         16.7           21.4      -17.8             24.2        18.2         22.8\n                                                                                                                                                                             USD, EUR, GBP, JPY and AUD\nFTSE Emerging                              13.5          32.5         -13.0         20.6         15.5            0.1      -16.9              9.1        12.8         26.5\n                                                                                                                                                                             Review Dates"
+    },
+    "property-rules": {
+      "sha256": "f52ac754711361d0577658f19a0d0ce38f580fb2e3f1d1ce41975e7733706ed6",
+      "fileBytes": 198651,
+      "ruleExcerpt": "4.4.1      Within each review, universe constituents that have a forecast/estimate one-year dividend yield (see Rule\n           4.5) of three per cent or greater are eligible for inclusion into the Index Series. If a forecast/estimate one-\n           year dividend yield is not available, FTSE Russell’s historical dividend yield data is used.\n4.4.2      An existing constituent of the index will remain eligible provided its forecast/estimate one-year dividend yield\n           is one per cent or greater. If an existing constituent’s forecast/estimate one-year dividend yield falls below\n           one per cent, it will be ineligible and will be deleted from the index.\n4.4.3      The FTSE EPRA Nareit Dividend+ Index Series constituents are not fixed at review so can change in\n           number prior to the next annual review.\n4.4.4      The FTSE EPRA Nareit Dividend+ Index Series constituents are screened for liquidity in line with the\n           FTSE EPRA Nareit Global Real Estate Index Series review.\n4.4.5      Adjustments in stock weightings (including free float and shares in issue) will be in line with the FTSE EPRA\n           Narei"
+    },
+    "infra-rules": {
+      "sha256": "fc1898a7e9e0cdbe9f25f6d50b708edcdd204c7cf315dce6daffa71b3fd6b153",
+      "fileBytes": 290829,
+      "ruleExcerpt": "6.2.5      Buffers will be implemented at review to reduce turnover and costs.\n           A. Additions at the periodic review:\n               A company will be included in the FTSE Core Infrastructure Indices if at least 65% of its revenue is\n               attributable to business activity in core sectors.\n           B. Deletions at the periodic review:\n               A company will be excluded from the FTSE Core Infrastructure Indices if its revenue falls below 55% of\n               that attributable to business activity in core sectors.\n6.2.6      Constituents are weighted by their investable market capitalisation.\n\n\n\n\nFTSE Russell                                                                                                         14 of 28\n\fFTSE Infrastructure Index Series, v4.1, January 2026\n\n\n\n\n6.3        Steps for Conducting a Review of the FTSE Infrastructure Opportunities Indices\n6.3.1      The underlying universe for the FTSE Infrastructure Opportunities Indices is the current constituents of the\n           FTSE Global All Cap Index Series.\n6.3.2      ICB subsectors will be used to screen the constituents of the FTSE Glo"
+    }
+  }
+}

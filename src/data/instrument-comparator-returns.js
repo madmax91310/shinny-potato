@@ -8,6 +8,7 @@ import { getInstrumentReturnValues } from './instrument-returns.js';
 
 export const COMPARATOR_ISIN_BY_FAMILY_KEY = Object.freeze({
  'monde-toutes-tailles': {},
+ 'immobilier-infrastructures': {}, // Rendements d’indices exclusivement.
  'monde-facteurs': {}, // La famille affiche les rendements des indices, aucune ligne perfFunds.
 'usa-constructions': {sp500:'IE00B5BMR087',equal:'IE00BLNMYC90',russell:'IE00BJ38QD84'},
   "europe": {

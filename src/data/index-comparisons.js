@@ -1047,3 +1047,24 @@ FAMILIES.push({
   { q: 'Choisir une règle spécifique ?', a: 'Quality, Momentum ou Minimum Volatility changent la sélection et les poids ; aucun ne garantit une surperformance.' },
  ], closing: 'Quelle règle souhaiterais-tu ajouter à ton World ?',
 });
+
+// 05/10/2026 : indices FTSE exacts. Photos d’août/septembre et rendements TR USD distincts des parts ETF.
+FAMILIES.push({
+ id: 'immobilier-infrastructures', label: '🏠 Immobilier coté / infrastructures',
+ intro: 'Bâtiments et réseaux : deux expositions cotées, avec des règles et des concentrations différentes. 👇',
+ indices: [
+  { name: 'FTSE EPRA Nareit Developed Dividend+', indexFacts: getIndexFacts('ftse-epra-nareit-developed-dividend-plus','2026-08-31'), desc: getIndexDescription('ftse-epra-nareit-developed-dividend-plus','2026-08-31','immobilier-infrastructures'), tag: 'Immobilier développé avec filtre de dividendes' },
+  { name: 'FTSE Global Core Infrastructure', indexFacts: getIndexFacts('ftse-global-core-infrastructure','2026-09-30'), desc: getIndexDescription('ftse-global-core-infrastructure','2026-09-30','immobilier-infrastructures'), tag: 'Réseaux et transport, développés et émergents' },
+ ],
+ block2Title: 'EXEMPLES D’ETF DISPONIBLES',
+ etfGroups: [
+  { indexName: 'FTSE EPRA Nareit Developed Dividend+', pea: false, choiceNote: 'La part suit la variante Net USD ; les rendements affichés ici sont ceux de l’indice Total Return FTSE.', funds: [{ name: getInstrumentName('IE00B1FZS350','index'), isin: 'IE00B1FZS350', listing: requireInstrumentListing('IE00B1FZS350'), ter: formatEtfTer('IE00B1FZS350','index') }] },
+  { indexName: 'FTSE Global Core Infrastructure', choiceNote: 'Statut PEA non documenté. Les rendements de l’indice FTSE ne sont pas ceux de la part citée.', funds: [{ name: getInstrumentName('IE00B1FZS467','index'), isin: 'IE00B1FZS467', listing: requireInstrumentListing('IE00B1FZS467'), ter: formatEtfTer('IE00B1FZS467','index') }] },
+ ],
+ diversification: { chain: ['Immobilier développé Dividend+','Infrastructures mondiales Core'], notes: ['Les deux paniers peuvent partager des entreprises, notamment des REIT. Les secteurs immobiliers EPRA et sous-secteurs ICB ne sont pas une classification identique. Photos du 31/08/2026 et du 30/09/2026 : aucun calcul de recouvrement sur une date commune.'] },
+ perfFunds: [], perfMethodNote: 'Indices en dollars, dividendes réinvestis (Total Return FTSE), hors frais ETF. Les variantes Net/Benchmark iShares ne sont pas utilisées.',
+ verdictTitle: 'LE VERDICT', verdict: [
+  { q: 'Exposer le portefeuille à l’immobilier coté ?', a: 'Dividend+ sélectionne l’immobilier développé selon un critère de dividendes.' },
+  { q: 'Exposer le portefeuille aux réseaux et au transport ?', a: 'Core Infrastructure sélectionne les revenus d’infrastructures, avec pays développés et émergents.' },
+ ], closing: 'Quelle exposition correspond à la poche que tu veux construire ?',
+});

@@ -1,3 +1,4 @@
+import { PROPERTY_INFRA_RETURNS } from './property-infrastructure-additions.js';
 import { WORLD_FACTOR_RETURNS } from './world-factor-additions.js';
 import { INDEX_COMPARISON_RETURN_ADDITIONS } from './index-comparison-return-additions.js';
 import { RUSSELL_INDEX_RETURNS } from './new-index-returns.js';
@@ -6,6 +7,7 @@ import { normalizeEvidence } from './evidence.js';
 // Séries d’indices distinctes des rendements des parts ETF ; valeurs migrées sans correction.
 export const INDEX_RETURNS = {
  ...WORLD_FACTOR_RETURNS,
+ ...PROPERTY_INFRA_RETURNS,
  "acwi-imi": { "2026-09-30": {
   "values": [
     [
