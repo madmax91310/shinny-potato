@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { choose } from './card-selection.mjs'
+import { DUELS } from '../src/pages/portfolio-duels/data.js'
 import { CATALOG } from '../src/data/duel-assets.js'
 import { DUEL_EXPOSURE_ART, getDuelArt } from '../src/pages/portfolio-duels/visualIdentity.js'
 assert.deepEqual(Object.keys(DUEL_EXPOSURE_ART).sort(), [...new Set(CATALOG.map(a => a.exposure))].sort())
@@ -86,6 +88,9 @@ try {
   // Real UI: failed art does not silently substitute a different asset, and retry works.
   await page.route('**/asset-art/etf-night/america.webp', route => route.abort())
   await page.goto(`${base}duels-portefeuilles`)
+  const failureDuel = DUELS.findIndex(duel => duel.id === 'sp500-pondere-ou-equal')
+  assert(failureDuel >= 0, 'An American exposure is required for the failed-art/retry test')
+  await choose(page.locator('#pd-select'), String(failureDuel))
   await page.getByRole('button', { name: /Télécharger l’image PNG/i }).click()
   await page.getByRole('alert').filter({ hasText: 'n’a pas pu être chargé' }).waitFor()
   await page.unroute('**/asset-art/etf-night/america.webp')
@@ -95,5 +100,5 @@ try {
   await page.getByRole('img', { name: 'Duel de portefeuilles', exact: true }).waitFor()
   await page.setViewportSize({ width: 390, height: 844 })
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true)
-  console.log('45 supports, 28 duels, 1–3 actifs par côté : illustrations effectivement dessinées, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium.')
+  console.log(`${CATALOG.length} supports, ${DUELS.length} duels, 1–3 actifs par côté : illustrations effectivement dessinées, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium.`)
 } finally { await browser?.close(); server.kill('SIGTERM') }
