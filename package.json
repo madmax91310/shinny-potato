@@ -32,7 +32,7 @@
     "report:data-provenance": "node scripts/report-data-provenance.mjs",
     "audit:data-provenance": "node scripts/audit-data-provenance.mjs",
     "audit:household-statistics": "node scripts/audit-household-statistics.mjs",
-    "audit:data-review": "node scripts/audit-data-review.mjs",
+    "audit:data-review": "node scripts/audit-data-review.mjs && node scripts/test-data-review-observation.mjs",
     "audit:investor-profiles": "node scripts/audit-investor-profiles.mjs",
     "audit:etf-completeness": "node scripts/audit-etf-completeness.mjs",
     "audit:index-completeness": "node scripts/audit-index-completeness.mjs"

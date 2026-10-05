@@ -13,6 +13,9 @@ on:
   pull_request:
     paths:
       - '.github/workflows/collect-etf-pilot.yml'
+      - 'scripts/audit-data-review.mjs'
+      - 'scripts/lib/data-review-observation.mjs'
+      - 'scripts/test-data-review-observation.mjs'
       - 'scripts/*etf*'
       - 'scripts/*amundi*'
       - 'scripts/test_issuer_refresh.py'
@@ -55,6 +58,7 @@ jobs:
       - id: ssga
         continue-on-error: true
         run: python scripts/collect_ssga_etf.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/ssga-observation.json" --apply
+      - run: npm run audit:data-review
       - run: npm run audit:etf-annual-performance
       - run: npm run audit:etf-consistency
       - run: npm run audit:calculator-series
