@@ -1,3 +1,4 @@
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 #!/usr/bin/env node
 // Vérifie que les outils consomment les registres communs par ISIN.
 import { EXPOSURE_ADDITIONS } from '../src/data/exposure-additions.js';
@@ -170,8 +171,16 @@ for (const [isin, entry] of Object.entries(INSTRUMENT_AUM_BY_ISIN)) {
     }
   }
 }
+for (const [isin, automated] of Object.entries(AUTOMATED_ETF)) {
+  const source = INSTRUMENT_AUM_BY_ISIN[isin]?.source;
+  if (!source || source.amount !== automated.aum.amount || source.currency !== automated.currency || source.asOf !== automated.aum.asOf || source.checkedAt !== automated.aum.checkedAt || source.url !== automated.sourceUrl || !source.url.endsWith(`/products/${automated.productId}`)) {
+    console.error(`Encours automatisé incohérent : ${isin}`);
+    errors++;
+  }
+}
 for (const [isin, millions] of Object.entries(aumSnapshot.values)) {
   const source = INSTRUMENT_AUM_BY_ISIN[isin]?.source;
+  if (AUTOMATED_ETF[isin]?.aum) continue; // Official dated share AUM supersedes the archived EUR profile.
   if (source?.checkedAt === reviewSnapshot.checkedAt && JSON.stringify(INSTRUMENT_AUM_BY_ISIN[isin]) === JSON.stringify(reviewedAum.get(isin))) continue;
   if (!source || source.amountMillions !== millions || source.checkedAt !== aumSnapshot.checkedAt ||
       source.currency !== 'EUR' || source.asOf !== null || !source.url.includes(`isin=${isin}`)) {
@@ -179,7 +188,7 @@ for (const [isin, millions] of Object.entries(aumSnapshot.values)) {
     errors++;
   }
 }
-if (Object.entries(aumSnapshot.values).filter(([isin]) => INSTRUMENT_AUM_BY_ISIN[isin]?.source?.amountMillions || INSTRUMENT_AUM_BY_ISIN[isin]?.source?.checkedAt === reviewSnapshot.checkedAt).length !== Object.keys(aumSnapshot.values).length) {
+if (Object.entries(aumSnapshot.values).filter(([isin]) => AUTOMATED_ETF[isin]?.aum || INSTRUMENT_AUM_BY_ISIN[isin]?.source?.amountMillions || INSTRUMENT_AUM_BY_ISIN[isin]?.source?.checkedAt === reviewSnapshot.checkedAt).length !== Object.keys(aumSnapshot.values).length) {
   console.error('Encours : nombre de relevés justETF différent du registre.');
   errors++;
 }
