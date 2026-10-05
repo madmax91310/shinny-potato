@@ -1,10 +1,10 @@
 # Enrichissement des expositions — roadmap du 5 octobre 2026
 
-Ordre retenu : monde et diversification, obligations, géographie, thématiques. Chaque lot enrichit d’abord les registres communs, puis les formats concernés. Les éléments déjà présents sont réutilisés ; aucune nouvelle exposition ne justifie de recopier une fiche ou un historique.
+Ordre retenu après ajustement : monde et diversification, jeux vidéo et innovation médicale, puis réutilisation utile du catalogue. Aucun nouvel ajout obligataire ni nouvelle fiche pays dans cette roadmap. Agriculture et terres rares retirées. Or, argent et cuivre sont déjà présents. Chaque lot enrichit d’abord les registres communs, puis les formats concernés. Les éléments déjà présents sont réutilisés ; aucune nouvelle exposition ne justifie de recopier une fiche ou un historique.
 
 ## Lot 1 — Monde et diversification
 
-Statut : implémenté sur `codex/world-diversification-lot-1`, en validation avant fusion et déploiement.
+Statut : livré avec la PR #290, fusionnée et déployée.
 
 ### Données ajoutées
 
@@ -34,71 +34,43 @@ Statut : implémenté sur `codex/world-diversification-lot-1`, en validation ava
 
 Les recettes ne traitent pas les compléments d’ACWI IMI comme des marchés absents : elles expliquent les surpondérations. Les bornes historiques de risque sont vérifiées pour toutes les combinaisons de supports et pour les portefeuilles réellement générés.
 
-## Lot 2 — Obligations par maturité et couverture
+## Lot 2 — Jeux vidéo et innovation médicale
 
-Statut : à faire. Confirmer les supports existants avant tout ajout.
-
-1. Documenter trois expositions aux emprunts d’État américains : 1–3 ans, 7–10 ans et 20 ans et plus. Choisir une part UCITS exacte par exposition.
-2. Pour la maturité longue, documenter une part non couverte et une part couverte en EUR afin de séparer le risque de taux du risque de change.
-3. Raccorder les expositions euro courtes et longues déjà présentes aux mêmes formats ; ajouter l’intermédiaire si aucun support documenté ne la couvre.
-4. Compléter les fiches : indice, maturité, duration à date publiée, crédit souverain, devise, couverture, distribution, frais, pays émetteurs, encours et performances de chaque part. Les secteurs actions ne sont pas substitués à la composition obligataire.
+Statut : implémenté sur `codex/gaming-medical-catalog-reuse`, en validation avant publication.
 
 | Outil | Ajout précis |
 |---|---|
-| Présentation d’ETF | Trois maturités US et variante longue couverte EUR |
-| Comparatif ETF / indices | Courts / intermédiaires / longs dans une même zone et devise ; longues US avec / sans couverture |
-| Coulisses | Règles de sélection des emprunts, renouvellement du panier et sensibilité aux taux |
-| Générateur / duels | Même poche actions, complément obligataire court ou long ; couverture identifiée |
-| Historiques / anniversaires | Supports anciens et périodes communes attestées ; aucun historique avant lancement attribué à une nouvelle part |
-| Faits marquants | Baisses et récupérations obligataires sur observations vérifiées |
-| Frais | Supports suivant une exposition proche, couverture identique |
-| Cas concrets | Raccourcir la maturité ; couvrir en EUR ; expliquer pourquoi un ETF ne rembourse pas automatiquement à une date choisie |
+| Présentation d’ETF | VanEck Video Gaming and eSports, IE00BYWQWR46 ; iShares Healthcare Innovation USD (Acc), IE00BYZK4776. Identités, indices exacts, frais 0,55 % / 0,40 %, capitalisation, réplication, encours et comptages avec dates propres, cotations EUR, performances NAV USD 2020–2025 et sources individuelles. Statut PEA conservé inconnu tant qu’une source ciblée ne le tranche pas. |
+| Comparatif ETF | Sélection dédiée jeux vidéo ; santé mondiale Advanced / innovation médicale / Nasdaq Biotechnology. Les différences d’univers et les possibles recouvrements sont expliqués. |
+| Générateur de portefeuilles | Deux supports en sélection manuelle et dans les options thématiques Équilibré, Dynamique et Offensif. Les pondérations des recettes restent celles du profil existant, avec contrôle exhaustif des combinaisons et des générations. |
+| Duel de portefeuilles | 100 % World / 90 % World + 10 % jeux vidéo ; 100 % World / 90 % World + 10 % innovation médicale ; même socle World à 90 %, innovation médicale ou biotech à 10 %. |
+| Impact des frais | Deux supports dans la sélection commune : comparaison de frais sous rendement brut hypothétique identique, sans prétendre qu’ils suivent la même exposition. |
+| Bibliothèque | Identités, caractéristiques, rendements, frais, cotations, dates et consommateurs dérivés des registres. |
 
-## Lot 3 — Géographie
+Les performances jeux vidéo décrivent la part du fonds : son changement d’indice en décembre 2022 est indiqué. Les années antérieures ne sont pas attribuées rétrospectivement au nouvel indice. La cotation EUR est distincte des rendements USD ; le duel applique le change explicite déjà utilisé dans l’outil.
 
-Statut : à faire.
+## Lot 3 — Réutilisation du catalogue
 
-1. Sélectionner et documenter un ETF UCITS large pour chacun : Canada, Australie, Suisse, Royaume-Uni. Confirmer l’indice exact et les tailles d’entreprises couvertes.
-2. Remplir les quatre fiches avec secteurs, principales positions, devise, frais, PEA vérifié, distribution, réplication, encours et performances sourcées.
-3. Réutiliser les nouvelles expositions dans les formats ci-dessous.
+Statut : implémenté lorsque les données nécessaires existent déjà.
 
 | Outil | Ajout précis |
 |---|---|
-| Présentation d’ETF | Quatre fiches pays |
-| Comparatif ETF / indices | Canada / Australie ; Suisse / Royaume-Uni ; distinction pays / région européenne |
-| Coulisses | Une fiche par indice retenu, règles et concentrations sectorielles propres |
-| Générateur | Canada et Australie en compléments ; Suisse et Royaume-Uni en sélection manuelle avec rôle explicite |
-| Duels | Même World, complément Canada ou Australie ; montrer le pays renforcé plutôt que promettre une diversification nouvelle |
-| Historiques / anniversaires | Chaque exposition dont les prix ou niveaux sont suffisamment documentés |
-| Faits marquants | Baisses et récupérations propres aux quatre marchés |
-| Frais | Fonds comparables sur le même pays et le même univers |
-| Cas concrets | Renforcer un pays déjà présent dans World ou Europe ; effet sur le poids géographique et les secteurs |
+| Comparatif ETF | EM IMI / EM ex-China, avec différence de tailles explicitée ; immobilier coté des pays développés / infrastructures mondiales. |
+| Coulisses des indices | World Sector Neutral Quality, World Enhanced Value, MSCI EM ex-China : photographies du 30/09/2026, pays, secteurs, dix premières lignes, règles de sélection, performances nettes USD 2023–2025. Les compositions et performances gardent leurs sources et dates distinctes. |
+| Duel de portefeuilles | 70 % World + 30 % EM IMI / 70 % World + 30 % EM ex-China, sur les seules années communes 2022–2025 ; 80 % World + 20 % immobilier / 80 % World + 20 % infrastructures. |
+| Cas concrets | Retirer la Chine et observer le poids relatif de Taïwan ; ajouter 20 % Quality au World et calculer le poids américain sur la même photographie. Aucun poids ETF inventé. |
+| Comparateur d’indices | Réutilisation des familles existantes `style` et `emergents-cto` : les comparaisons Quality / Value / Growth et EM IMI / FTSE EM / ex-China sont déjà disponibles, sans ajouter de doublon. |
 
-## Lot 4 — Agriculture et métaux stratégiques
+## Étapes conditionnées aux données
 
-Statut : à faire.
+| Liste / outil | Ajouts potentiels | Condition avant raccordement |
+|---|---|---|
+| Coulisses | World Momentum et World Minimum Volatility | Méthodologie exacte de l’indice retenu, composition d’indice complète et datée, comptage et rendements d’indice sourcés. Les seuls rendements ETF ne suffisent pas. |
+| Coulisses | Indices immobilier et infrastructures | Composition de l’indice FTSE exact, règles et historique distincts de ceux du fonds. |
+| Et si tu avais investi ? / Performance depuis… | Japon, Inde, Quality, Momentum, immobilier, infrastructures ; puis jeux vidéo et innovation médicale | Série mensuelle longue, homogène, devise et méthode explicites, dividendes et changements de référence documentés, contrôles indépendants. Les tableaux annuels ne sont pas interpolés. |
+| Il y a X ans | Parts ETF anciennes sur ces mêmes expositions | Prix historiques réellement comparables, traitement des distributions et divisions de parts. Un niveau d’indice ne devient pas un cours d’ETF. |
+| Faits marquants | Baisses et récupérations de ces expositions | Observations suffisamment fréquentes et continues ; préciser la fréquence du drawdown. |
+| Générateur | Émergents hors Chine | Six années calendaires complètes pour la part exacte, ou un proxy explicitement documenté. Les quatre années actuelles ne sont pas complétées artificiellement. |
+| Impact des frais | Plusieurs supports suivant le même indice jeux vidéo ou innovation médicale | Autre part réellement comparable, même univers et couverture, frais sourcés. La biotech ne sert pas de faux équivalent. |
 
-1. Documenter une exposition UCITS aux entreprises agricoles.
-2. Documenter une exposition UCITS aux entreprises de terres rares et métaux stratégiques.
-3. Confirmer les supports VanEck envisagés et leurs indices exacts. Distinguer actions d’entreprises, produits agricoles et métaux physiques.
-4. Remplir les fiches avec pays, secteurs, principales lignes, frais, PEA, devises, distribution, réplication, encours et performances.
-
-| Outil | Ajout précis |
-|---|---|
-| Présentation d’ETF | Agriculture ; terres rares et métaux stratégiques |
-| Comparatif | Agriculture : entreprises / matières premières, si deux supports documentés ; métaux stratégiques / ressources naturelles avec différence d’univers expliquée |
-| Coulisses | Sélection thématique, seuils de revenus si documentés, exclusions et concentration |
-| Générateur / duels | Deux poches thématiques ; même World avec l’une ou l’autre, poids et risque vérifiés |
-| Historiques / anniversaires | Dates et séries propres aux supports ; proxies séparés et explicitement identifiés si nécessaires |
-| Faits marquants | Baisse et récupération des expositions, sans les confondre avec les prix physiques |
-| Frais | Plusieurs fonds sur une même exposition seulement s’ils sont réellement comparables |
-| Cas concrets | Investir dans un producteur ne revient pas à détenir sa matière première |
-
-## Conditions de clôture de chaque lot
-
-* Données communes uniquement ; sources consultées et dates de photographie distinctes.
-* Aucun rendement, poids, ticker ou statut PEA inventé. Une absence reste visible et bloque les usages incompatibles.
-* Historiques : même devise, même variante de rendement, observations réelles, années partielles exclues des performances calendaires.
-* Les nouveaux identifiants ont une illustration explicite dans chaque format, avec contrôle des exports PNG et de leur lisibilité.
-* Audits de catalogue, indices, performances et provenance ; contrôles des bornes du générateur ; navigation et export en navigateur réel ; validation CI.
-* Fusion et déploiement après l’autorisation explicite prévue dans `CLAUDE.md`.
+Chaque raccordement est décidé outil par outil. Aucun nouvel ETF n’est introduit dans un format qui demande des données encore absentes.

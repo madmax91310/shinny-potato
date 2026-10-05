@@ -1,3 +1,4 @@
+import { INDEX_DECISION_CASES } from '../../data/index-decision-cases.js'
 import { BOND_EXPOSURE_CASES } from '../../data/bond-exposure-cases.js';
 import { ALLOCATION_CASES } from '../../data/allocation-cases.js'
 // Revue éditoriale du 04/10/2026 : situations racontées et conséquences concrètes.
@@ -119,4 +120,4 @@ const editorialCases = [
   },
 ]
 
-export const CASES = [...editorialCases, ...ALLOCATION_CASES, ...BOND_EXPOSURE_CASES]
+export const CASES = [...editorialCases, ...ALLOCATION_CASES, ...INDEX_DECISION_CASES, ...BOND_EXPOSURE_CASES]

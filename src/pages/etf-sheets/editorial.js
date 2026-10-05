@@ -2,6 +2,8 @@ import { getInstrumentFacts } from '../../data/instrument-facts.js'
 
 // Intentions propres à chaque exposition ; les données financières restent dans le registre.
 const GOALS = {
+  gaming_vaneck: 'investir dans les entreprises du jeu vidéo et de l’eSport',
+  medical_innovation_ishares: 'investir dans les entreprises de l’innovation médicale',
   acwi_imi_spdr: 'réunir développés, émergents et petites entreprises dans une seule ligne',
   pea_global_amundi: "réunir pays développés et émergents dans une seule ligne de ton PEA",
   "msci-world": "investir dans plusieurs pays développés, sans choisir les actions une par une",

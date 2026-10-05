@@ -40,3 +40,5 @@ Mode intégré ImageGen, puis encodage WebP qualité 88. Prompt commun : « Prod
 ## Validation
 
 `node scripts/test-etf-art.mjs` vérifie les 106 rendus, les faits complets, les identifiants côte à côte, l’absence de coupures et chevauchements, les performances exactes et leurs couleurs, ainsi que le téléchargement et sa reprise après échec. Un PNG par thème et le S&P 500 choisi comme référence sont conservés dans les artefacts CI.
+
+- `gaming.webp` : illustration originale de manette, créée pour les entreprises du jeu vidéo et de l’eSport le 05/10/2026 ; aucun logo émetteur, aucune pondération représentée.

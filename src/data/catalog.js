@@ -1,3 +1,4 @@
+import { INDEX_DECISION_CASE_DEFINITIONS } from './index-decision-cases.js'
 import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
 import { VERIFIED_RETURNS } from './verified-returns.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
@@ -91,7 +92,7 @@ function index(id, history) {
   const consumers = [];
   if (SHEETS.some((s) => values.includes(s.indexFacts))) consumers.push({ tool: 'Coulisses des indices', path: '/tweets-factsheets' });
   if (FAMILIES.some((f) => f.indices.some((s) => values.includes(s.indexFacts)))) consumers.push({ tool: 'Comparateur d’indices', path: '/comparateur-indices' });
-  if (ALLOCATION_CASE_DEFINITIONS.some(x => x.left === id || x.right === id)) consumers.push({ tool: 'Cas concrets', path: '/cas-concrets' });
+  if ([...ALLOCATION_CASE_DEFINITIONS, ...INDEX_DECISION_CASE_DEFINITIONS].some(x => x.left === id || x.right === id)) consumers.push({ tool: 'Cas concrets', path: '/cas-concrets' });
   return { id, type: 'index', name: values[0].index,
     aliases: [id, ...FAMILIES.flatMap((f) => f.indices.filter((x) => values.includes(x.indexFacts)).map((x) => x.name))], consumers,
     fields: [...Object.entries(history).sort(([a], [b]) => /^\d{4}/.test(a) !== /^\d{4}/.test(b) ? (/^\d{4}/.test(a) ? -1 : 1) : b.localeCompare(a)).map(([key, facts]) => field(`Photographie · ${facts.snapshot}`, 'index-facts', facts, { ...facts.metadata, note: `${facts.provenance} Clé : ${key}` })), ...Object.entries(INDEX_RETURNS[id] ?? {}).map(([date, series]) => field(`Rendements d’indice · ${date}`, 'index-returns', series, series.metadata))] };

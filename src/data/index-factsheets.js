@@ -1,5 +1,5 @@
 import { getInstrumentAnnualPerformance } from './instrument-returns.js';
-import { getIndexReturns } from './index-returns.js'
+import { INDEX_RETURNS, getIndexReturns } from './index-returns.js'
 import { getIndexComposition, getIndexFacts } from './index-facts.js'
 import { getInstrumentFactsheetReturns } from './instrument-comparator-returns.js'
 // Relevé de fiches officielles, figé au 31 août 2026 (au 30 juin pour deux fonds).
@@ -7,7 +7,33 @@ import { getInstrumentFactsheetReturns } from './instrument-comparator-returns.j
 // Les rendements du fonds sont les lignes « Portefeuille » des tableaux Amundi.
 const emFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260630'
 
+// Réutilisation de photographies déjà vérifiées ; les performances conservent leur propre source et période.
+function reusedIndexSheet(id, title, intro, insight, takeaway, methodologyPanels) {
+ const composition = getIndexFacts(id, '2026-09-30');
+ const returns = INDEX_RETURNS[id]['2025-12-31'];
+ return { ...getIndexComposition(id,'2026-09-30'), id, title, index: composition.index,
+  snapshot: composition.snapshot, source: [composition.source, returns.source],
+  returns: getIndexReturns(id,'2025-12-31'), performance: returns.performance,
+  intro, insight, takeaway, methodologyPanels };
+}
+
 export const SHEETS = [
+ reusedIndexSheet('msci-world-sector-neutral-quality','World Sector Neutral Quality',
+  '🔎 Quality : quels critères changent la sélection des entreprises du World ? 👇',
+  'La neutralité sectorielle n’impose pas des poids géographiques identiques à ceux du World : les États-Unis restent dominants.',
+  'Le filtre Quality cherche des fondamentaux spécifiques, sans garantir une meilleure performance ni éviter les baisses.',
+  [['LA SÉLECTION','Rentabilité des capitaux propres élevée, faible endettement et bénéfices peu variables ; comparaison entre entreprises du même secteur GICS.'],['LE PÉRIMÈTRE','Grandes et moyennes entreprises des pays développés ; ce n’est pas un indice incluant les émergents ou les petites capitalisations.']]),
+ reusedIndexSheet('msci-world-enhanced-value','World Enhanced Value',
+  '🔎 Value : un prix jugé faible au regard des fondamentaux, mais selon quels critères ? 👇',
+  'Un filtre de valorisation peut déplacer fortement le poids des pays et des principales entreprises par rapport au World.',
+  'Une entreprise peu chère peut le rester ou connaître des difficultés : le filtre Value conserve un risque actions.',
+  [['LA SÉLECTION','Comparaison au sein des secteurs GICS à partir du prix sur valeur comptable, du prix sur bénéfices anticipés et de la valeur d’entreprise sur flux de trésorerie opérationnel.'],['LE PÉRIMÈTRE','Grandes et moyennes entreprises des pays développés, sélectionnées pour leurs caractéristiques de valorisation.']]),
+ reusedIndexSheet('msci-em-ex-china','Marchés émergents hors Chine',
+  '🌏 Retirer la Chine des émergents : quels pays et entreprises prennent davantage de place ? 👇',
+  'Sans la Chine, Taïwan et la Corée du Sud occupent une place importante. Exclure un pays peut renforcer la concentration ailleurs.',
+  'Le MSCI EM ex-China couvre les grandes et moyennes entreprises ; les petites capitalisations de l’EM IMI sont une autre différence.',
+  [['LE PÉRIMÈTRE','Grandes et moyennes capitalisations des marchés émergents, en excluant la Chine.'],['LA PONDÉRATION','Poids liés à la capitalisation ajustée du flottant ; les pays restants ne reçoivent pas des parts égales.']]),
+
  {
   ...getIndexComposition('acwi-imi','2026-09-30'), id:'acwi-imi', title:'MSCI ACWI IMI', index:'MSCI ACWI IMI', snapshot:'30 septembre 2026', source:[getIndexFacts('acwi-imi','2026-09-30').source],
   intro:'🌍 Un World laisse les émergents et les petites entreprises de côté. Le MSCI ACWI IMI les inclut : qu’est-ce que tu achètes en plus ? 👇',
