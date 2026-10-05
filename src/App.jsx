@@ -23,15 +23,8 @@ const HouseholdApp = lazy(() => import('./pages/france-100-menages/App'))
 const DataReview = lazy(() => import('./pages/data-review/App'))
 const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 
-// Tweets ETF, Lexique financier et Pouvoir d'achat n'ont plus de route dédiée : leurs pages
-// faisaient doublon avec les formats équivalents de Tweet Midi (Comparatif ETF, Fiche lexique,
-// Pouvoir d'achat), qui produisent le même texte via les mêmes données/fonctions (cf.
-// tweet-midi/data/comparatifEtf.js, ficheLexique.js, tweet-midi/lib.js) — retiré du
-// dashboard/routing le 03/09/2026 à la demande de l'utilisateur, désormais accessibles uniquement
-// depuis Tweet Midi. Leurs App.jsx de page autonome (devenus du code mort une fois la route retirée)
-// ont été supprimés le 14/09/2026 après vérification qu'aucun import résiduel n'y pointait — seuls
-// lib.js subsiste pour les fonctions de formatage ; les données vivent dans src/data/.
-// Les anciens data.js ne sont que des réexports de compatibilité.
+// Individual publication routes reuse one lazy engine and its existing data.
+// The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
   '/france-100-menages': <HouseholdApp />,
   '/donnees-a-revoir': <DataReview />,
@@ -41,7 +34,6 @@ const TOOL_ELEMENTS = {
   '/comparatif-courtiers': <BrokerComparator />,
   '/calculateur-investissement': <InvestmentCalculator />,
   '/fiches-etf': <EtfSheets />,
-  '/tweet-midi': <TweetMidi />,
   '/comparateur-indices': <IndexComparator />,
   '/impact-frais': <FeeImpact />,
   '/faits-marquants-marches': <MarketFacts />,
@@ -60,9 +52,10 @@ export default function App() {
           <Route
             key={tool.to}
             path={tool.to.slice(1)}
-            element={TOOL_ELEMENTS[tool.to] ?? <ComingSoon title={tool.title} description={tool.description} />}
+            element={tool.format ? <TweetMidi key={tool.to} initialFormat={tool.format} title={tool.title} description={tool.description} /> : TOOL_ELEMENTS[tool.to] ?? <ComingSoon title={tool.title} description={tool.description} />}
           />
         ))}
+        <Route path="tweet-midi" element={<TweetMidi />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>

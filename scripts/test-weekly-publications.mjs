@@ -1,0 +1,79 @@
+import assert from 'node:assert/strict'
+import { spawn } from 'node:child_process'
+import { mkdir } from 'node:fs/promises'
+import { chromium } from 'playwright'
+
+const base = 'http://127.0.0.1:4324/shinny-potato'
+const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4324', '--strictPort'], { stdio: 'ignore' })
+const formats = [
+  ['/fiche-lexique', 'Fiche lexique', 'Fiche lexique'],
+  ['/comparatif-etf', 'Comparatif ETF', 'Comparatif ETF'],
+  ['/il-y-a-x-ans', 'Il y a X ans', 'Il y a X ans'],
+  ['/performance-depuis', 'Performance depuis', 'Performance depuis'],
+  ['/pouvoir-achat', 'Pouvoir d’achat', "Pouvoir d'achat"],
+  ['/dilemme', 'Dilemme', 'Dilemme'],
+  ['/vrai-faux', 'Vrai ou faux', 'Vrai ou Faux'],
+]
+let browser
+try {
+  for (let attempt = 0; ; attempt++) {
+    try { if ((await fetch(`${base}/`)).ok) break } catch { /* starting */ }
+    assert(attempt < 100, 'Preview server unavailable')
+    await new Promise(resolve => setTimeout(resolve, 100))
+  }
+  browser = await chromium.launch(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {})
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } })
+  const errors = []
+  page.on('pageerror', error => errors.push(error.message))
+  await page.goto(`${base}/`, { waitUntil: 'networkidle' })
+  assert.equal(await page.locator('.workspace-tool-card').count(), 22)
+  assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
+  for (const [path, day] of [
+    ['/fiche-lexique', 'Lundi midi'], ['/duels-portefeuilles', 'Lundi soir · alternance'],
+    ['/generateur-portefeuilles', 'Mardi soir · alternance'], ['/vrai-faux', 'Publication ponctuelle'],
+  ]) assert.equal(await page.locator(`.workspace-tool-card[href$="${path}"] .workspace-publication-day`).innerText(), day)
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 844 })
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: horizontal overflow`)
+    const problems = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.flatMap(card => {
+      const title = card.querySelector('h2').getBoundingClientRect()
+      const day = card.querySelector('.workspace-publication-day')?.getBoundingClientRect()
+      const box = card.getBoundingClientRect()
+      return box.bottom > innerHeight || (day && title.bottom > day.top) ? [card.textContent] : []
+    }))
+    assert.deepEqual(problems, [], `${width}: cards cropped or title/day overlap`)
+  }
+  await mkdir('test-artifacts/weekly-publications', { recursive: true })
+  await page.screenshot({ path: 'test-artifacts/weekly-publications/home-mobile.png' })
+  for (const [path, title, badge] of formats) {
+    await page.goto(`${base}/`, { waitUntil: 'networkidle' })
+    await page.locator(`.workspace-tool-card[href$="${path}"]`).click()
+    await page.getByRole('heading', { name: title, exact: true, level: 1 }).waitFor()
+    assert.equal(await page.getByText('Étape 1 — Format', { exact: true }).count(), 0)
+    await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
+    assert.equal(await page.locator('.tool-preview').getByText(badge, { exact: true }).count(), 1, `${path}: incorrect initial format`)
+    await page.getByRole('button', { name: 'Réglages', exact: true }).click()
+    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click()
+    await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
+    assert.equal(await page.locator('.tool-preview').getByText(badge, { exact: true }).count(), 1, `${path}: generation escaped format`)
+    await page.reload({ waitUntil: 'networkidle' })
+    await page.getByRole('heading', { name: title, exact: true, level: 1 }).waitFor()
+  }
+  // Switching between routes backed by the same component must remount its state.
+  await page.setViewportSize({ width: 1280, height: 900 })
+  await page.goto(`${base}/dilemme`, { waitUntil: 'networkidle' })
+  await page.locator('.workspace-sidebar').getByRole('link', { name: 'Comparatif ETF', exact: true }).click()
+  await page.getByRole('heading', { name: 'Comparatif ETF', exact: true, level: 1 }).waitFor()
+  assert.equal(await page.locator('.tool-preview').getByText('Comparatif ETF', { exact: true }).count(), 1)
+  await page.goBack()
+  await page.getByRole('heading', { name: 'Dilemme', exact: true, level: 1 }).waitFor()
+  assert.equal(await page.locator('.tool-preview').getByText('Dilemme', { exact: true }).count(), 1)
+  await page.goto(`${base}/tweet-midi`, { waitUntil: 'networkidle' })
+  await page.getByRole('heading', { name: 'Tweet Midi', exact: true, level: 1 }).waitFor()
+  assert.equal(await page.getByText('Étape 1 — Format', { exact: true }).count(), 1)
+  assert.deepEqual(errors, [])
+  console.log('Weekly publications: mobile layout, schedule, seven direct formats, generation, reload, shared-route switching and legacy URL OK.')
+} finally {
+  await browser?.close()
+  server.kill('SIGTERM')
+}

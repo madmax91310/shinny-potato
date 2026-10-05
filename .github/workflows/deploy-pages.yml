@@ -125,6 +125,7 @@ jobs:
           path: test-artifacts
           if-no-files-found: ignore
           retention-days: 7
+      - run: node scripts/test-weekly-publications.mjs
       - run: node scripts/test-route-loading.mjs
       - run: node scripts/test-data-review-calendar.mjs
       - uses: actions/configure-pages@v5
