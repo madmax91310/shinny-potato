@@ -4,7 +4,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 export const VERIFIED_RETURNS = {
   // Contrôle du 03/10/2026 : tableau BlackRock Total Return USD, recoupé sur la publication UK et sa version professionnels. Confiance élevée ; aucune conversion.
   IE00B4NCWG09: {"currency": "USD", "values": [46.2, -13.0, 3.5, -0.8, 21.3, 148.6], "source": "https://www.ishares.com/uk/individual/en/products/258443/"},
-...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, { currency: r.currency, values: r.values, source: r.perfSource ?? r.source }])),
+...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, { currency: r.currency, values: r.values, source: r.perfSource ?? r.source, ...(r.checkedAt ? { checkedAt: r.checkedAt, periodStart: '2020-01-01', periodEnd: '2025-12-31', basis: 'fund' } : {}) }])),
   "LU0290358497": {
   "currency": "EUR",
   "values": [

@@ -60,6 +60,8 @@ add("dividend_leaders", "dividend", "les leaders du dividende", "On privilégie 
 add("dividend_aristocrats_us_spdr", "dividend", "les dividendes américains", "On choisit ici des entreprises américaines avec un historique de progression des dividendes. On mise sur cette régularité passée, tout en gardant à l’esprit qu’elle ne promet pas la même chose pour les années à venir.");
 add("qyld_ucits", "options", "la stratégie avec options", "On cherche ici des distributions grâce à la vente d’options sur le Nasdaq-100. Le compromis est concret : on échange une partie de la hausse possible contre des primes. Cela ne supprime pas les baisses ni les variations des distributions.");
 
+add("acwi_imi_spdr", "world-imi", "le monde avec les petites entreprises", "On réunit grandes, moyennes et petites entreprises des pays développés et émergents. Les poids suivent leur capitalisation : les géants restent dominants.");
+
 function theme(ids, label, aim, tradeoff) {
   add(ids, "theme", label, `${aim} ${tradeoff}`);
 }

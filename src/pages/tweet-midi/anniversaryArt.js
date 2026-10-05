@@ -6,6 +6,7 @@ export const ANNIVERSARY_ART = Object.freeze({
     ['cac40', 'CAC 40'], ['sp500', 'S&P 500'], ['stoxx600', 'STOXX EUROPE 600'],
     ['msciWorld', 'MSCI WORLD'], ['msciEmerging', 'MSCI EMERGING MARKETS'],
     ['msciWorldSmallCap', 'MSCI WORLD SMALL CAP'],
+    ['msciAcwi','MSCI ACWI'], ['msciAcwiImi','MSCI ACWI IMI'], ['msciWorldExUsa','MSCI WORLD EX USA'],
   ].map(([id, title]) => [id, { title, subtitle: ANNIVERSARY_INDEX_VARIANTS[id], kind: 'illustration', unit: 'pts', indexTitle: title }])),
   bitcoin: { title: 'BITCOIN', mark: 'bitcoin.svg', kind: 'logo' },
   ethereum: { title: 'ETHEREUM', mark: 'ethereum.svg', kind: 'logo' },

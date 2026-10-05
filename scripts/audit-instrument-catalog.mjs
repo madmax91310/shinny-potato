@@ -81,7 +81,7 @@ for (const [context, file, items] of collections) {
   const references = source.match(/name:\s*getInstrumentName\(|nom:\s*getInstrumentName\(/g) ?? [];
   // Les nouveaux thèmes construisent les libellés par une fonction commune ;
   // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
-  if (context !== 'tweet' && references.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (context === 'index' ? 2 : 0) !== items.length) {
+  if (context !== 'tweet' && references.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (context === 'index' ? 3 : 0) !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }

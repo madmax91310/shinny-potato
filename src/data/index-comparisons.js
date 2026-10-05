@@ -1006,3 +1006,19 @@ export const FAMILIES = [
     closing: '💬 Pour compléter un World, tu préférerais moins d’USA ou davantage de petites capitalisations ?',
   },
 ]
+
+// Lot 1 : périmètres mondiaux. Fonds et performances d’indices restent distincts.
+const worldFamily = FAMILIES.find(f => f.id === 'monde');
+const segmentsFamily = FAMILIES.find(f => f.id === 'monde-segments');
+FAMILIES.push({
+ id:'monde-toutes-tailles', label:'🌍 Monde : avec les petites entreprises ?',
+ intro:'World, ACWI, ACWI IMI : ajouter les émergents, puis les petites entreprises. Qu’est-ce qui change ? 👇',
+ indices:[{...worldFamily.indices[0],desc:getIndexDescription('world','2026-09-30','monde-toutes-tailles')},{...worldFamily.indices[1],desc:getIndexDescription('acwi','2026-09-30','monde-toutes-tailles')},{name:'MSCI ACWI IMI',indexFacts:getIndexFacts('acwi-imi','2026-09-30'),desc:getIndexDescription('acwi-imi','2026-09-30','monde-toutes-tailles'),tag:'Émergents et petites entreprises 🔎'}],
+ block2Title:'EXEMPLES D’ETF DISPONIBLES',
+ etfGroups:[segmentsFamily.etfGroups[0],{indexName:'MSCI ACWI',pea:false,funds:[{name:getInstrumentName('IE00B6R52259'),listing:requireInstrumentListing('IE00B6R52259'),isin:'IE00B6R52259',ter:formatEtfTer('IE00B6R52259','index'),repl:'🔄 Physique',dist:'capitalisant'}]},
+ {indexName:'MSCI ACWI IMI',pea:false,funds:[{name:getInstrumentName('IE00B3YLTY66'),listing:requireInstrumentListing('IE00B3YLTY66'),isin:'IE00B3YLTY66',ter:formatEtfTer('IE00B3YLTY66','index'),repl:'🔄 Physique, échantillonnage',dist:'capitalisant',aum:getInstrumentAum('IE00B3YLTY66','index')}]}],
+ diversification:{chain:['Développés','Développés + émergents','Développés + émergents + petites'],notes:['Les petites capitalisations s’ajoutent aux grandes et moyennes. Les poids suivent la capitalisation, pas un partage égal.']},
+ perfFunds:[],perfMethodNote:'Indices en dollars, dividendes nets réinvestis, hors frais ETF.',verdictTitle:'LE VERDICT',
+ verdict:[{q:'Pays développés ?',a:'World.'},{q:'Ajouter les émergents ?',a:'ACWI.'},{q:'Inclure aussi les petites entreprises ?',a:'ACWI IMI.'}],
+ closing:'Tu choisirais quelle base mondiale ?',
+});

@@ -1,6 +1,72 @@
 // Séries d’indices et de références physiques. Les lignes de parts ETF sont exclues.
 // La clé désigne la fin de période couverte, pas la date de composition.
 export const INDEX_COMPARISON_RETURN_ADDITIONS = {
+
+  "world": {
+    "2025-12-31": {
+      "values": [
+        [
+          2023,
+          23.79
+        ],
+        [
+          2024,
+          18.67
+        ],
+        [
+          2025,
+          21.09
+        ]
+      ],
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World · USD · dividendes nets réinvestis",
+        "date": "Années calendaires 2023–2025"
+      },
+      "source": {
+        "label": "Rendements nets USD · MSCI",
+        "url": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+      },
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "checkedAt": "2026-10-05",
+      "periodStart": "2023-01-01",
+      "periodEnd": "2025-12-31"
+    }
+  },
+  "acwi": {
+    "2025-12-31": {
+      "values": [
+        [
+          2023,
+          22.2
+        ],
+        [
+          2024,
+          17.49
+        ],
+        [
+          2025,
+          22.34
+        ]
+      ],
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI ACWI · USD · dividendes nets réinvestis",
+        "date": "Années calendaires 2023–2025"
+      },
+      "source": {
+        "label": "Rendements nets USD · MSCI",
+        "url": "https://www.msci.com/documents/10199/255599/msci-acwi-net.pdf"
+      },
+      "currency": "USD",
+      "method": "dividendes nets réinvestis",
+      "checkedAt": "2026-10-05",
+      "periodStart": "2023-01-01",
+      "periodEnd": "2025-12-31"
+    }
+  }
+,
   "sp500-pea": {
     "2025-12-31": {
       "values": [

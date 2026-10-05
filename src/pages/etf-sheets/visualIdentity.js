@@ -1,6 +1,6 @@
 // Explicit exposure illustrations, never issuer/index logos. Review: public/asset-art/etf-night/README.md.
 const groups = {
-  world: 'world_ex_usa pea_global_amundi msci-world msci-em msci-acwi ftse-all-world em-ex-chine low-volatility value small-caps quality momentum dividendes covered-call support-msci_world support-msci_world_ishares support-msci_acwi support-msci_em_amundi support-ftse_em_vanguard support-msci_em_spdr support-strat_dividendes_dist support-high_dividend support-high_dividend_dist support-quality_dividend support-quality_dividend_dist support-dividend_leaders',
+  world: 'acwi_imi_spdr world_ex_usa pea_global_amundi msci-world msci-em msci-acwi ftse-all-world em-ex-chine low-volatility value small-caps quality momentum dividendes covered-call support-msci_world support-msci_world_ishares support-msci_acwi support-msci_em_amundi support-ftse_em_vanguard support-msci_em_spdr support-strat_dividendes_dist support-high_dividend support-high_dividend_dist support-quality_dividend support-quality_dividend_dist support-dividend_leaders',
   america: 'sp500_equal_weight russell2000_spdr sp500-spea sp500 nasdaq100 support-sp500_ishares support-nasdaq100_ishares support-lqq support-cl2',
   europe: 'eurostoxx50 support-cac40 support-eurostoxx50_ishares support-msci_europe support-smallcap_europe',
   asia: 'inde topix-pea-hedged support-actions_japon support-actions_coree support-actions_taiwan support-actions_asie_ex_japon',

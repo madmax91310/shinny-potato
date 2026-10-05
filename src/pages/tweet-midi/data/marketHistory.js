@@ -163,6 +163,9 @@ export function getBenchmarkPerformance(startYm, endYm) {
 // Les indices disposent de niveaux officiels ; leur variante doit rester explicite
 // dans le sélecteur, la saisie, le tweet et l’image pour ne jamais mélanger Price/TR.
 export const ANNIVERSARY_INDEX_VARIANTS = {
+  msciAcwiImi: 'Net Return · USD · dividendes nets réinvestis',
+  msciAcwi: 'Net Return · USD · dividendes nets réinvestis',
+  msciWorldExUsa: 'Net Return · USD · dividendes nets réinvestis',
   cac40: 'Prix · EUR · hors dividendes',
   sp500: 'Total Return · USD · dividendes bruts réinvestis',
   stoxx600: 'Net Return · EUR · dividendes nets réinvestis',

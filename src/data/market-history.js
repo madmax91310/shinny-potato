@@ -1,3 +1,4 @@
+import { DIVERSIFICATION_HISTORY } from './diversification-history.js'
 import GOLD_MONTHLY from './worldbank-gold-monthly.json' with { type: 'json' }
 import { MONTHLY_HISTORY_ADDITIONS } from './monthly-history-additions.js'
 import { MSCI_HISTORY } from './msci-history.js'
@@ -631,12 +632,13 @@ export const ASSETS = {
 
 
   ...MSCI_HISTORY,
+  ...DIVERSIFICATION_HISTORY,
   ...COMPANY_HISTORY,
   ...MONTHLY_HISTORY_ADDITIONS,
 }
 
 export const ASSET_ORDER = [
-  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), 'nasdaq100', 'soxx',
+  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), ...Object.keys(DIVERSIFICATION_HISTORY), 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
   'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
   ...Object.keys(COMPANY_HISTORY),

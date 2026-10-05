@@ -23,7 +23,7 @@ assert.throws(() => monthlyDrawdown([{date: '2020-01', price: 0}]))
 for (const fact of HISTORY_FACTS) {
   const text = factTweet(fact)
   assert.match(text, /mensuel/)
-  assert.match(text, /(?:dividendes|revenus) (?:non )?réinvestis/)
+  assert.match(text, /(?:dividendes|revenus) (?:(?:non|nets|bruts) )?réinvestis/)
   assert.match(text, /(?:Hors|hors) frais(?: du courtier)? et fiscalité/)
   assert(!/NaN|undefined/.test(text))
 }

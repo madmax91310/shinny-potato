@@ -211,17 +211,17 @@ async function testCalculateur(page) {
   septemberOk &&= worldTweet.includes('septembre 2026') && worldTweet.includes('rapporté aux sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
-  for (const [id, name] of [['msciEmerging', 'MSCI Emerging Markets'], ['msciWorldSmallCap', 'MSCI World Small Cap']]) {
+  for (const [id, name, variant] of [['msciEmerging', 'MSCI Emerging Markets', 'Gross Return'], ['msciWorldSmallCap', 'MSCI World Small Cap', 'Gross Return'], ['msciAcwiImi', 'MSCI ACWI IMI', 'Net Return'], ['msciAcwi', 'MSCI ACWI', 'Net Return'], ['msciWorldExUsa', 'MSCI World ex USA', 'Net Return']]) {
     await choose(page.locator('[data-selector].ic-control').first(), id);
     const dca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
     septemberOk &&= await dca.isEnabled();
     await dca.click();
     await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
-    septemberOk &&= post.includes(name) && post.includes('septembre 2026') && post.includes('Gross Return')
+    septemberOk &&= post.includes(name) && post.includes('septembre 2026') && post.includes(variant)
       && post.includes('rapporté aux sommes versées') && !/NaN|undefined/.test(post)
       && (await page.locator('.ic-current-level').innerText()).includes('points')
-      && (await page.locator('.ic-method-note').innerText()).includes(`${name} Gross Return`);
+      && (await page.locator('.ic-method-note').innerText()).includes(`${name} ${variant}`);
   }
   await choose(page.locator('[data-selector].ic-control').first(), 'or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('septembre 2026');

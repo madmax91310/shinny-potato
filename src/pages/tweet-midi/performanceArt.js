@@ -2,7 +2,7 @@ import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 
 // Explicit market identities. Index illustrations depict geography, never an ETF issuer.
 const groups = {
-  world: ['msciWorld', 'msciWorldSmallCap'], america: ['sp500', 'nasdaq100'],
+  world: ['msciWorld', 'msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa'], america: ['sp500', 'nasdaq100'],
   europe: ['stoxx600', 'cac40'], asia: ['msciEmerging'], chip: ['soxx', 'nvidia', 'google', 'meta', 'sap', 'intel'],
   bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond'],
   finance: ['euroMoney', 'visa', 'paypal'], luxury: ['lvmh', 'hermes', 'loreal'],

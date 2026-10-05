@@ -1,9 +1,11 @@
+import { DIVERSIFICATION_HISTORY, DIVERSIFICATION_HISTORY_REVIEW } from './diversification-history.js'
+import { MSCI_HISTORY, MSCI_HISTORY_REVIEW } from './msci-history.js'
 import { COMPANY_HISTORY, COMPANY_HISTORY_REVIEW } from './company-history.js'
 import { MONTHLY_HISTORY_ADDITIONS, MONTHLY_HISTORY_ADDITIONS_REVIEW } from './monthly-history-additions.js'
 // Calcul sur les seules clôtures mensuelles ajustées, jamais sur des prix interpolés.
 // Le drawdown mensuel peut sous-estimer une baisse entre deux clôtures.
-const histories = { ...COMPANY_HISTORY, ...MONTHLY_HISTORY_ADDITIONS }
-const reviews = { ...COMPANY_HISTORY_REVIEW, ...MONTHLY_HISTORY_ADDITIONS_REVIEW }
+const histories = { ...COMPANY_HISTORY, ...MONTHLY_HISTORY_ADDITIONS, ...DIVERSIFICATION_HISTORY, msciWorldSmallCap: MSCI_HISTORY.msciWorldSmallCap }
+const reviews = { ...COMPANY_HISTORY_REVIEW, ...MONTHLY_HISTORY_ADDITIONS_REVIEW, ...DIVERSIFICATION_HISTORY_REVIEW, "history:msciWorldSmallCap": MSCI_HISTORY_REVIEW["history:msciWorldSmallCap"] }
 export const HISTORY_STATISTIC_IDS = Object.keys(histories)
 const monthIndex = date => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7)) - 1
 export function monthlyDrawdown(points) {
@@ -28,8 +30,8 @@ export const HISTORY_FACTS = HISTORY_STATISTIC_IDS.flatMap(id => {
   const stats = monthlyDrawdown(points)
   const evidence = reviews[`history:${id}`]
   const period = `${points[0].date} à ${points.at(-1).date}`
-  const note = `${asset.isin ? 'Calcul sur les cours mensuels ajustés de l’ETF, revenus réinvestis. Frais du fonds déjà inclus ; hors frais du courtier et fiscalité.' : asset.priceMethod === 'adjusted' ? 'Calcul sur les clôtures mensuelles ajustées, dividendes réinvestis et divisions d’actions pris en compte. Hors frais et fiscalité.' : 'Calcul sur les niveaux mensuels d’un indice de prix, dividendes non réinvestis. Hors frais et fiscalité ; ce n’est pas la performance d’un ETF.'} Devise : ${asset.currency}.${asset.returnNote ? ' ' + asset.returnNote : ''}`
-  const common = { methodNote: note, family: asset.isin ? 'obligations-historiques' : 'actions-historiques', indices: [asset.label], source: `Yahoo Finance · ${evidence.sourceUrls[0]}`, note }
+  const note = asset.methodNote && asset.priceUnit === 'points' ? `${asset.methodNote} Calcul sur les seuls niveaux mensuels ; hors frais et fiscalité.` : `${asset.isin ? 'Calcul sur les cours mensuels ajustés de l’ETF, revenus réinvestis. Frais du fonds déjà inclus ; hors frais du courtier et fiscalité.' : asset.priceMethod === 'adjusted' ? 'Calcul sur les clôtures mensuelles ajustées, dividendes réinvestis et divisions d’actions pris en compte. Hors frais et fiscalité.' : 'Calcul sur les niveaux mensuels d’un indice de prix, dividendes non réinvestis. Hors frais et fiscalité ; ce n’est pas la performance d’un ETF.'} Devise : ${asset.currency}.${asset.returnNote ? ' ' + asset.returnNote : ''}`
+  const common = { methodNote: note, family: asset.isin ? 'obligations-historiques' : asset.priceUnit === 'points' ? 'indices-historiques' : 'actions-historiques', indices: [asset.label], source: `${asset.methodNote && /MSCI/.test(asset.label) ? 'MSCI' : 'Yahoo Finance'} · ${evidence.sourceUrls[0]}`, note }
   const initial = points.length * 100
   const lump = initial * points.at(-1).price / points[0].price
   const dca = points.reduce((units, p) => units + 100 / p.price, 0) * points.at(-1).price

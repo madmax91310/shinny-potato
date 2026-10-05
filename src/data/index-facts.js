@@ -730,6 +730,11 @@ for (const review of ARCHIVE_SOURCE_REVIEW.filter(r => r.key)) {
   facts.provenance += ` Revue du reliquat : ${review.sourceStatus}. Raison dans sourceReason.`;
 }
 
+for (const id of ['world','acwi']) {
+ const facts = INDEX_FACTS[id]['2026-09-30'];
+ facts.descriptionTemplates['monde-toutes-tailles'] = facts.descriptionTemplates.monde;
+}
+
 function deepFreeze(value) {
   if (value && typeof value === 'object') {
     Object.values(value).forEach(deepFreeze);

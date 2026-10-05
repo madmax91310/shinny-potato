@@ -1,5 +1,6 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'acwi-imi': ['world','Développés, émergents et petites capitalisations'],
   'sp500-pea': ['sp500', 'Grandes entreprises américaines'],
   'sp500-equal-weight': ['sp500', 'Même univers, pondération égale'],
   'nasdaq-pea': ['nasdaq', 'Grandes entreprises du Nasdaq'],

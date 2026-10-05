@@ -4,6 +4,46 @@ import { INDEX_FACTS } from './index-facts.js';
 import { normalizeEvidence } from './evidence.js';
 // Séries d’indices distinctes des rendements des parts ETF ; valeurs migrées sans correction.
 export const INDEX_RETURNS = {
+ "acwi-imi": { "2026-09-30": {
+  "values": [
+    [
+      2025,
+      22.06
+    ],
+    [
+      2024,
+      16.37
+    ],
+    [
+      2023,
+      21.58
+    ],
+    [
+      2022,
+      -18.4
+    ],
+    [
+      2021,
+      18.22
+    ]
+  ],
+  "performance": {
+    "kind": "indice",
+    "detail": "MSCI ACWI IMI, rendement net en dollars, dividendes nets réinvestis, hors frais ETF",
+    "date": "30 septembre 2026",
+    "tenYear": 12.05
+  },
+  "source": {
+    "label": "Composition et rendements nets USD · MSCI",
+    "url": "https://www.msci.com/documents/10199/255599/msci-acwi-imi-net.pdf",
+    "checkedAt": "2026-10-05"
+  },
+  "checkedAt": "2026-10-05",
+  "periodStart": "2021-01-01",
+  "periodEnd": "2025-12-31",
+  "currency": "USD",
+  "method": "dividendes nets réinvestis"
+} },
 'russell-2000': RUSSELL_INDEX_RETURNS,
   "em-standard": {
     "2026-08-31": {

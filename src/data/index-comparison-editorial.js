@@ -1,5 +1,11 @@
 // Textes propres à chaque comparaison ; chiffres et fonds issus des registres communs.
 export const INDEX_COMPARISON_EDITORIAL = {
+ 'monde-toutes-tailles': {
+  hook:'🌍 Ton ETF mondial inclut-il les émergents ? Et les petites entreprises ?',intro:'World, ACWI, ACWI IMI : trois univers, trois choix de couverture 👇',
+  exposures:['Le World couvre les grandes et moyennes entreprises des pays développés.','L’ACWI ajoute les marchés émergents, toujours avec les grandes et moyennes entreprises.','L’ACWI IMI inclut aussi les petites capitalisations des deux groupes de pays.'],
+  insight:'IMI élargit le panier. Il ne répartit pas le capital à parts égales entre grandes et petites entreprises.',takeaway:'Tu peux choisir une base qui inclut déjà les émergents et petites capitalisations, ou construire tes compléments toi-même.',question:'Une seule ligne mondiale, ou plusieurs poches dont tu fixes les poids ?',
+  visualPoints:[['Pays développés','Grandes et moyennes'],['Développés et émergents','Grandes et moyennes'],['Développés et émergents','Grandes, moyennes et petites']],imageTitle:'Quelle couverture mondiale ?',fundTransition:'Voici des ETF pour suivre ces trois indices 👇',
+ },
 'usa-constructions': {
  hook:'🇺🇸 Investir aux États-Unis : donner plus de poids aux géants, le même poids à chacun, ou choisir les petites entreprises ?',
  intro:'Ces trois choix ne changent pas la même chose. On regarde ce que tu achètes 👇',

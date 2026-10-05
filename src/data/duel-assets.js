@@ -12,6 +12,7 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
 const choices = [
+ ['acwi_imi_spdr', 'base', 'MSCI ACWI IMI', 'acwi-imi'],
 ['sp500_equal_weight', 'base', 'S&P 500 équipondéré', 'equalweight'],
  ['pea_global_amundi', 'base', 'MSCI ACWI en PEA', 'acwi-pea'],
  ['world_ex_usa', 'complement', 'World hors États-Unis', 'exusa'],
