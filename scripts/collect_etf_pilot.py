@@ -155,7 +155,7 @@ def collect(config, baseline, now=None, fetch=get_text):
 def product_data_url(share):
     return 'https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?' + urlencode({
         'appSubType': 'ISHARES', 'appType': 'PRODUCT_PAGE',
-        'component': 'keyFundFacts,performance,exposureBreakdowns,holdings',
+        'component': 'keyFundFacts,performance,exposureBreakdowns' + (',holdings.all' if share.get('collectHoldings') else ''),
         'locale': 'en_GB', 'portfolioId': share['productId'], 'targetSite': 'ishares-uk',
         'userType': 'individual', 'excludeContent': 'true', 'includeConfig': 'true'})
 
