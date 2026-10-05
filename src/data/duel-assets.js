@@ -12,6 +12,8 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
 const choices = [
+ ['gaming_vaneck', 'theme', 'Jeux vidéo et eSport', 'gaming'],
+ ['medical_innovation_ishares', 'theme', 'Innovation médicale', 'medical'],
  ['acwi_imi_spdr', 'base', 'MSCI ACWI IMI', 'acwi-imi'],
 ['sp500_equal_weight', 'base', 'S&P 500 équipondéré', 'equalweight'],
  ['pea_global_amundi', 'base', 'MSCI ACWI en PEA', 'acwi-pea'],
@@ -72,13 +74,14 @@ const fundItems = choices.map(([id, role, label, exposure]) => {
 })
 // Revue du 02/10/2026 déjà consignée dans verified-returns.js ; aucune année inventée.
 const extraFunds = [
+  ['em_ex_china', 'IE00BMG6Z448', 'Émergents hors Chine', 'em-ex-china', 'complement'],
   ['semiconducteurs_monde', 'IE000I8KRLL9', 'Semi-conducteurs mondiaux', 'semiconductors'],
   ['financieres_monde', 'IE00BJ5JP097', 'Financières mondiales', 'financials'],
   ['blockchain_ishares', 'IE000RDRMSD1', 'Blockchain', 'blockchain'],
-].map(([id, isin, label, exposure]) => {
+].map(([id, isin, label, exposure, role = 'theme']) => {
   const series = getInstrumentDuelSeries(isin)
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
-  return { id, isin, label, exposure, name: getInstrumentName(isin), role: 'theme', group: ROLES.theme,
+  return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
     ...series, note: 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.' }
 })
 const stoxxIsin = 'FR0011550193'

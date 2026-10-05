@@ -4,9 +4,10 @@ import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 // Each exposure reuses its reviewed ETF illustration. These are exposure scenes,
 // never fund-provider logos; names distinguish geographic/factor variants.
 const references = {
+  gaming: 'gaming_vaneck', medical: 'medical_innovation_ishares',
   world: 'support-msci_world_ishares', 'acwi-imi': 'acwi_imi_spdr', acwi: 'msci-acwi', 'acwi-pea': 'pea_global_amundi', allworld: 'ftse-all-world',
   exusa: 'world_ex_usa', equalweight: 'sp500_equal_weight', sp500: 'support-sp500_ishares', 'us-small': 'russell2000_spdr',
-  em: 'msci-em', europe: 'support-msci_europe', smallcap: 'small-caps', nasdaq: 'nasdaq100', japan: 'support-actions_japon', india: 'inde',
+  'em-ex-china': 'em-ex-chine', em: 'msci-em', europe: 'support-msci_europe', smallcap: 'small-caps', nasdaq: 'nasdaq100', japan: 'support-actions_japon', india: 'inde',
   value: 'value', quality: 'quality', momentum: 'momentum', minvol: 'low-volatility', dividend: 'support-high_dividend',
   'em-bond': 'oblig_em_usd_ishares', 'em-local-bond': 'em-local-bond', longbond: 'oblig_eur_long_ishares',
   cash: 'monetaire-eur', shortbond: 'obligations-etat-0-1', globalbond: 'obligations-globales-eur',

@@ -67,6 +67,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: npm run audit:household-statistics
       - run: node scripts/test-diversification-lot-one.mjs
+      - run: node scripts/test-gaming-medical-reuse.mjs
       - run: node scripts/test-data-reuse.mjs
       - run: node scripts/test-fee-impact-editorial.mjs
       - run: npm run audit:data-catalog

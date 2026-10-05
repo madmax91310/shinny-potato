@@ -99,8 +99,8 @@ export const HIGHYIELD_OPTIONS = ["oblig_hy", "oblig_hy_amundi"];
 export const THEME_OPTIONS_CALM = ["sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities"];
 // VanEck Semiconductor reste suspendu : ni sa part ni son indice exact n'ont un
 // rendement 2020 vérifié. On ne l'offre pas tant que la série 2020-2025 est trouée.
-export const THEME_OPTIONS_FULL = ["sect_financieres", "infrastructure_ishares", "sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_biotech_ishares", "sect_energy_spdr", "sect_tech_world_ishares", "sect_water_amundi", "sect_luxury_amundi", "sect_batteries_lg", "sect_cyber_lg"];
-export const THEME_OPTIONS_AGGRESSIVE = ["sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre", "sect_energy_spdr", "sect_tech_world_ishares", "sect_ai_lg", "sect_batteries_lg", "sect_cyber_lg"];
+export const THEME_OPTIONS_FULL = ["gaming_vaneck", "medical_innovation_ishares", "sect_financieres", "infrastructure_ishares", "sect_sante", "sect_energie", "sect_conso_defensive", "sect_utilities", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_biotech_ishares", "sect_energy_spdr", "sect_tech_world_ishares", "sect_water_amundi", "sect_luxury_amundi", "sect_batteries_lg", "sect_cyber_lg"];
+export const THEME_OPTIONS_AGGRESSIVE = ["gaming_vaneck", "medical_innovation_ishares", "sect_energie", "sect_tech", "sect_robotique", "sect_cybersecurite", "sect_energie_propre", "sect_energy_spdr", "sect_tech_world_ishares", "sect_ai_lg", "sect_batteries_lg", "sect_cyber_lg"];
 // ETF à levier (réplication synthétique 2x quotidien) : lqq (Nasdaq-100) et cl2 (MSCI USA, plus
 // large que le seul Nasdaq-100) — indices proches mais pas identiques (même logique que
 // WORLD_OPTIONS/EM_OPTIONS ci-dessus), chaque option revalidée sur les bornes de pire année du
