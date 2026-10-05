@@ -104,4 +104,5 @@ const swapped={...cashDuel,a:cashDuel.b,b:cashDuel.a,id:'custom-swap'}
 assert.match(resultReading(swapped),/portefeuille B termine/)
 const flat={...identical,a:{...identical.a,annual:Object.fromEntries(identical.years.map(y=>[y,0]))},b:{...identical.b,annual:Object.fromEntries(identical.years.map(y=>[y,0]))}}
 assert.doesNotMatch(resultReading(flat),/écart annuel|gagne|perd/)
-console.log('Accroches des trois exemples, textes des 28 thèmes, périodes courtes et conclusions inversées/égales vérifiés.')
+assert.doesNotMatch(buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:[{id:'msci_world_ishares',pct:100}]}).hook, /Ajouter  à/)
+console.log('Accroches de tous les duels, périodes courtes et conclusions inversées/égales vérifiées.')

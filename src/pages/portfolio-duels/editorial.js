@@ -37,13 +37,14 @@ export function duelEditorial(duel) {
  const gap=Math.abs(b.final-a.final)
  const same=Math.abs(b.final-a.final)<.5
  const topic=topics[duel.id]
- const describe=p=>p.assets.map(s=>`${s.pct} % de ${s.label}`).join(' et ')
+ const allocation=s=>`${s.pct} % ${/^[aeiouéèêîôœ]/i.test(s.label) ? 'd’' : 'de '}${s.label}`
+ const describe=p=>p.assets.map(allocation).join(' et ')
  const soloWorld=p=>p.assets.length===1 && p.assets[0].exposure==='world'
  const sameBase=a.assets[0].id===b.assets[0].id && a.assets[0].pct===b.assets[0].pct
- const extra=p=>p.assets.slice(1).map(s=>`${s.pct} % de ${s.label.toLowerCase()}`).join(' et ')
- const hookQuestion=duel.hookQuestion ?? (soloWorld(a) && b.assets[0].exposure==='world'
+ const extra=p=>p.assets.slice(1).map(allocation).join(' et ')
+ const hookQuestion=duel.hookQuestion ?? (soloWorld(a) && b.assets.length>1 && b.assets[0].exposure==='world'
   ? `Ajouter ${extra(b)} à un ETF World : bonne idée ?`
-  : soloWorld(b) && a.assets[0].exposure==='world'
+  : soloWorld(b) && a.assets.length>1 && a.assets[0].exposure==='world'
    ? `Ajouter ${extra(a)} à un ETF World : bonne idée ?`
    : sameBase && a.assets.length>1 && b.assets.length>1
     ? `Avec ${a.assets[0].pct} % de ${a.assets[0].label}, tu choisirais ${extra(a)} ou ${extra(b)} pour compléter ton portefeuille ?`
