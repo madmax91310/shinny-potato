@@ -43,6 +43,20 @@ try {
     }))
     assert.deepEqual(problems, [], `${width}: cards cropped or title/day overlap`)
   }
+  // Short screens and enlarged text must grow cards instead of overlapping labels.
+  for (const [width, height, enlarged] of [[320, 568, false], [360, 640, false], [390, 700, false], [390, 844, true]]) {
+    await page.setViewportSize({ width, height })
+    const style = enlarged ? await page.addStyleTag({ content: '.workspace--home .workspace-tool-card h2 { font-size: 20px !important; line-height: 1.25 !important; } .workspace--home .workspace-publication-day { font-size: 15px !important; line-height: 1.25 !important; }' }) : null
+    const problems = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.flatMap(card => {
+      const title = card.querySelector('h2').getBoundingClientRect()
+      const day = card.querySelector('.workspace-publication-day')?.getBoundingClientRect()
+      const box = card.getBoundingClientRect()
+      return title.bottom > box.bottom || (day && (title.bottom > day.top || day.bottom > box.bottom || day.right > box.right)) ? [card.textContent] : []
+    }))
+    assert.deepEqual(problems, [], `${width}x${height}${enlarged ? ' enlarged text' : ''}: label overlap or clipping`)
+    if (style) await style.evaluate(node => node.remove())
+  }
+  await page.setViewportSize({ width: 390, height: 844 })
   await mkdir('test-artifacts/weekly-publications', { recursive: true })
   await page.screenshot({ path: 'test-artifacts/weekly-publications/home-mobile.png' })
   for (const [path, title, badge] of formats) {
