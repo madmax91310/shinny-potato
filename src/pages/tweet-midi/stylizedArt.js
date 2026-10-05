@@ -1,7 +1,7 @@
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 
 const paperGroups = {
-  world: ['monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde'], america: ['usa'], europe: ['europe'], emerging: ['emergents','emergents-avec-sans-chine'], property: ['immobilier-infrastructures'],
+  world: ['world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde'], america: ['usa'], europe: ['europe'], emerging: ['emergents','emergents-avec-sans-chine'], property: ['immobilier-infrastructures'],
   gaming: ['jeux-video'], luxury: ['luxe'], robotics: ['ia-robotique'], health: ['sante','innovation-medicale'], renewables: ['renouvelables'],
   dividends: ['dividendes'], japan: ['japon'], defense: ['defense'], quantum: ['quantique'],
   space: ['spatial'], resources: ['ressources-naturelles'], finance: ['financieres'],

@@ -12,12 +12,23 @@ function reusedIndexSheet(id, title, intro, insight, takeaway, methodologyPanels
  const composition = getIndexFacts(id, '2026-09-30');
  const returns = INDEX_RETURNS[id]['2025-12-31'];
  return { ...getIndexComposition(id,'2026-09-30'), id, title, index: composition.index,
-  snapshot: composition.snapshot, source: [composition.source, returns.source],
+  snapshot: composition.snapshot, source: [composition.source, returns.source, ...(composition.methodologySources ?? [])],
   returns: getIndexReturns(id,'2025-12-31'), performance: returns.performance,
   intro, insight, takeaway, methodologyPanels };
 }
 
 export const SHEETS = [
+ reusedIndexSheet('msci-world-momentum','World Momentum',
+  '🔎 Momentum : comment les gagnants récents du World sont-ils sélectionnés ? 👇',
+  'Le filtre Momentum change les poids sectoriels et les principales positions. Il n’ajoute ni émergents ni petites capitalisations.',
+  'Les tendances peuvent se retourner ; le Momentum peut sous-performer le World classique.',
+  [['LA SÉLECTION','Scores combinant les performances sur six et douze mois, hors dernier mois et ajustées du risque.'],['LES POIDS','Capitalisation flottante multipliée par le score Momentum ; rééquilibrage trimestriel depuis août 2025.']]),
+ reusedIndexSheet('msci-world-minimum-volatility-usd','World Minimum Volatility (USD)',
+  '🔎 Minimum Volatility : comment réduire le risque estimé du panier World ? 👇',
+  'Le panier résulte d’une optimisation sous contraintes. Il ne suffit pas de choisir individuellement les actions les moins volatiles.',
+  'USD désigne la référence de l’optimisation, pas une couverture en euros. Le risque actions et le risque de change subsistent.',
+  [['LA SÉLECTION','Optimisation de la variance estimée du portefeuille World, avec corrélations et contraintes de diversification.'],['CE QUE ÇA CHANGE','Une volatilité recherchée plus faible, sans protection du capital ni garantie de battre le World.']]),
+
  reusedIndexSheet('msci-world-sector-neutral-quality','World Sector Neutral Quality',
   '🔎 Quality : quels critères changent la sélection des entreprises du World ? 👇',
   'La neutralité sectorielle n’impose pas des poids géographiques identiques à ceux du World : les États-Unis restent dominants.',

@@ -1,3 +1,4 @@
+import { WORLD_FACTOR_FACTS } from './world-factor-additions.js';
 import { INDEX_COMPOSITION_REVIEW } from './index-composition-review.js';
 import { INDEX_EXPOSURE_ADDITIONS } from './index-exposure-additions.js';
 import { ARCHIVE_SOURCE_REVIEW } from './archive-source-review.js';
@@ -8,6 +9,7 @@ import { normalizeEvidence } from './evidence.js';
 // Les archives migrées gardent leur provenance ; les revues externes sont identifiées séparément.
 export const INDEX_FACTS = {
 ...INDEX_EXPOSURE_ADDITIONS,
+...WORLD_FACTOR_FACTS,
 
   "em-standard": {
     "2026-08-31": {
@@ -734,6 +736,14 @@ for (const id of ['world','acwi']) {
  const facts = INDEX_FACTS[id]['2026-09-30'];
  facts.descriptionTemplates['monde-toutes-tailles'] = facts.descriptionTemplates.monde;
 }
+
+// Descriptions communes de la nouvelle famille, avant gel des photographies.
+INDEX_FACTS.world['2026-09-30'].descriptionTemplates['monde-facteurs'] = 'Grandes et moyennes entreprises développées, pondérées par capitalisation flottante.';
+INDEX_FACTS['msci-world-sector-neutral-quality']['2026-09-30'].descriptionTemplates['monde-facteurs'] = 'Rentabilité, endettement et stabilité des bénéfices ; sélection au sein de chaque secteur.';
+for (const [id, desc] of [
+ ['msci-world-momentum', 'Tendances récentes ajustées du risque ; les poids des pays et secteurs peuvent changer.'],
+ ['msci-world-minimum-volatility-usd', 'Optimisation du risque estimé du portefeuille sous contraintes, avec référence USD.'],
+]) INDEX_FACTS[id]['2026-09-30'].descriptionTemplates = { 'monde-facteurs': desc };
 
 function deepFreeze(value) {
   if (value && typeof value === 'object') {

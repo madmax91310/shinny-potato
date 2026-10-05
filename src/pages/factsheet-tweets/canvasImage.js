@@ -57,7 +57,8 @@ export async function renderFactsheetImage(sheet) {
   const fade=l.createLinearGradient(0,0,940,0);fade.addColorStop(0,'transparent');fade.addColorStop(.08,'white');fade.addColorStop(.88,'white');fade.addColorStop(1,'transparent');l.fillStyle=fade;l.fillRect(0,0,940,790)
   ctx.drawImage(layer,0,0)
  }
- fitted(ctx,sheet.index??sheet.title,970,45,585,100,C.ink,700,30)
+ // Les noms exacts des indices longs restent dans le bloc de titre, avec la marge droite.
+ fitted(ctx,sheet.index??sheet.title,970,45,585,100,C.ink,700,16)
  const count=sheet.constituents
  const country=sheet.countries?.length===1 ? label(sheet.countries[0][0])+' · ' : ''
  paragraph(ctx,count==null?`${sheet.indexFacts.targetConstituents.toLocaleString('fr-FR')} sociétés visées par la méthode`:`${country}${count.toLocaleString('fr-FR')} titres`,970,160,575,29)

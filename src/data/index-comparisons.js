@@ -1022,3 +1022,28 @@ FAMILIES.push({
  verdict:[{q:'Pays développés ?',a:'World.'},{q:'Ajouter les émergents ?',a:'ACWI.'},{q:'Inclure aussi les petites entreprises ?',a:'ACWI IMI.'}],
  closing:'Tu choisirais quelle base mondiale ?',
 });
+
+// 05/10/2026 : même photographie de septembre et même base NET USD pour les quatre indices.
+FAMILIES.push({
+ id: 'monde-facteurs', label: '🌍 World : classique ou facteurs ?',
+ intro: 'Même univers développé, quatre règles : capitalisation, Quality, Momentum ou Minimum Volatility. 👇',
+ indices: [
+  { name: 'MSCI World', indexFacts: getIndexFacts('world','2026-09-30'), desc: getIndexDescription('world','2026-09-30','monde-facteurs'), tag: 'Le marché développé' },
+  { name: 'MSCI World Sector Neutral Quality', indexFacts: getIndexFacts('msci-world-sector-neutral-quality','2026-09-30'), desc: getIndexDescription('msci-world-sector-neutral-quality','2026-09-30','monde-facteurs'), tag: 'Filtre Quality sectoriellement neutre' },
+  { name: 'MSCI World Momentum', indexFacts: getIndexFacts('msci-world-momentum','2026-09-30'), desc: getIndexDescription('msci-world-momentum','2026-09-30','monde-facteurs'), tag: 'Filtre Momentum' },
+  { name: 'MSCI World Minimum Volatility (USD)', indexFacts: getIndexFacts('msci-world-minimum-volatility-usd','2026-09-30'), desc: getIndexDescription('msci-world-minimum-volatility-usd','2026-09-30','monde-facteurs'), tag: 'Volatilité minimale recherchée' },
+ ],
+ block2Title: 'EXEMPLES D’ETF DISPONIBLES',
+ etfGroups: [
+  { indexName: 'MSCI World', choiceNote: 'Part citée non couverte en euros ; statut PEA non documenté', funds: [{ name: getInstrumentName('IE00B4L5Y983','index'), isin: 'IE00B4L5Y983', listing: requireInstrumentListing('IE00B4L5Y983'), ter: formatEtfTer('IE00B4L5Y983','index') }] },
+  { indexName: 'MSCI World Sector Neutral Quality', choiceNote: 'Part citée non couverte en euros ; statut PEA non documenté', funds: [{ name: getInstrumentName('IE00BP3QZ601','index'), isin: 'IE00BP3QZ601', listing: requireInstrumentListing('IE00BP3QZ601'), ter: formatEtfTer('IE00BP3QZ601','index') }] },
+  { indexName: 'MSCI World Momentum', choiceNote: 'Part citée non couverte en euros ; statut PEA non documenté', funds: [{ name: getInstrumentName('IE00BP3QZ825','index'), isin: 'IE00BP3QZ825', listing: requireInstrumentListing('IE00BP3QZ825'), ter: formatEtfTer('IE00BP3QZ825','index') }] },
+  { indexName: 'MSCI World Minimum Volatility (USD)', choiceNote: 'USD ne signifie pas couvert en euros ; statut PEA non documenté', funds: [{ name: getInstrumentName('IE00B8FHGS14','index'), isin: 'IE00B8FHGS14', listing: requireInstrumentListing('IE00B8FHGS14'), ter: formatEtfTer('IE00B8FHGS14','index') }] },
+ ],
+ diversification: { chain: ['Capitalisation','Fondamentaux Quality','Tendances Momentum','Risque estimé minimum'], notes: ['Ces filtres partent du World et conservent des entreprises communes ; les réunir ne garantit pas davantage de diversification.'] },
+ perfFunds: [], perfMethodNote: 'Indices en dollars, dividendes nets réinvestis, hors frais ETF. Ces rendements ne sont pas ceux des parts citées.',
+ verdictTitle: 'LE VERDICT', verdict: [
+  { q: 'Suivre le marché développé ?', a: 'World classique.' },
+  { q: 'Choisir une règle spécifique ?', a: 'Quality, Momentum ou Minimum Volatility changent la sélection et les poids ; aucun ne garantit une surperformance.' },
+ ], closing: 'Quelle règle souhaiterais-tu ajouter à ton World ?',
+});

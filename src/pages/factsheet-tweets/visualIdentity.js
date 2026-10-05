@@ -1,5 +1,7 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'msci-world-momentum': ['world','Pays développés · filtre Momentum'],
+  'msci-world-minimum-volatility-usd': ['world','Pays développés · volatilité minimale en USD'],
   'msci-world-sector-neutral-quality': ['world','Pays développés · filtre Quality'],
   'msci-world-enhanced-value': ['world','Pays développés · filtre Value'],
   'msci-em-ex-china': ['emerging','Marchés émergents hors Chine'],
