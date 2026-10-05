@@ -173,7 +173,7 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   "IE00B5W4TY14": "0,65",
   "IE00B0M63623": "0,74",
   "IE00BKPX3K41": "0,74",
-  ...Object.fromEntries(Object.entries(AUTOMATED_ETF).filter(([, r]) => r.characteristics).map(([isin, r]) => [isin, String(r.characteristics.terPct).replace('.', ',')])),
+  ...Object.fromEntries(Object.entries(AUTOMATED_ETF).filter(([, r]) => r.characteristics).map(([isin, r]) => [isin, r.characteristics.terPct.toFixed(2).replace('.', ',')])),
 });
 
 export function formatEtfTer(isin, format = 'tweet') {
