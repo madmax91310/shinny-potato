@@ -23,7 +23,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: active-etf-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  group: active-etf-issuers-v2-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   refresh:
