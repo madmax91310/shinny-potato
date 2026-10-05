@@ -4,6 +4,7 @@ import { INDEX_RETURNS } from './index-returns.js'
 const HISTORICAL = '2026-08-31'
 const PERIOD_END = '2025-12-31'
 const selections = {
+ 'immobilier-infrastructures': ['ftse-epra-nareit-developed-dividend-plus','ftse-global-core-infrastructure'],
  'monde-facteurs': ['world','msci-world-sector-neutral-quality','msci-world-momentum','msci-world-minimum-volatility-usd'],
  'monde-toutes-tailles': ['world','acwi',['acwi-imi','2026-09-30']],
   'usa-constructions': ['sp500-pea', 'sp500-equal-weight', ['russell-2000', HISTORICAL]],

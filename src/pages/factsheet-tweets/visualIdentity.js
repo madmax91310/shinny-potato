@@ -1,5 +1,7 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'ftse-epra-nareit-developed-dividend-plus': ['property','Immobilier coté · pays développés · Dividend+'],
+  'ftse-global-core-infrastructure': ['infrastructure','Infrastructures cotées · développés et émergents'],
   'msci-world-momentum': ['world','Pays développés · filtre Momentum'],
   'msci-world-minimum-volatility-usd': ['world','Pays développés · volatilité minimale en USD'],
   'msci-world-sector-neutral-quality': ['world','Pays développés · filtre Quality'],
@@ -31,12 +33,13 @@ export function getIndexArt(sheet) {
 export function loadIndexArt(sheet) {
   const { scene } = getIndexArt(sheet)
   if (!images.has(scene)) images.set(scene, (async () => {
-    const response = await fetch(`${import.meta.env.BASE_URL}asset-art/index-ribbon/${scene}.webp.b64`)
+    const reused = ['property', 'infrastructure'].includes(scene)
+    const response = await fetch(`${import.meta.env.BASE_URL}asset-art/${reused ? `etf-night/${scene}.webp` : `index-ribbon/${scene}.webp.b64`}`)
     if (!response.ok) throw new Error(`Illustration indisponible : ${scene}`)
     const image = new Image()
-    image.src = `data:image/webp;base64,${(await response.text()).trim()}`
-    await image.decode()
-    return image
+    const objectUrl = reused ? URL.createObjectURL(await response.blob()) : null
+    image.src = objectUrl ?? `data:image/webp;base64,${(await response.text()).trim()}`
+    try { await image.decode(); return image } finally { if (objectUrl) URL.revokeObjectURL(objectUrl) }
   })().catch(error => { images.delete(scene); throw error }))
   return images.get(scene)
 }

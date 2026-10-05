@@ -77,7 +77,7 @@ Chaque raccordement est décidé outil par outil. Aucun nouvel ETF n’est intro
 
 ## Étape 1 ajustée — Facteurs mondiaux
 
-Statut : implémentée sur `codex/world-factors-step-one`, validation avant fusion.
+Statut : livré avec la PR #293, fusionnée et déployée.
 
 | Outil | Ajout précis |
 |---|---|
@@ -91,8 +91,22 @@ Aucune série mensuelle ajoutée à cette étape. Les jeux vidéo et l’innovat
 
 ## Propositions suivantes, à sélectionner
 
-* Étape 2 : documenter les indices exacts d’immobilier et d’infrastructures pour deux coulisses et un comparateur dédié ; données d’indice nécessaires, les seules fiches ETF ne suffisent pas.
+* Étape 2 : ajouts ciblés décrits ci-dessous ; publication par le workflow de la branche master.
 * Étape 3 : choisir parmi Japon, Inde, immobilier, Quality et Momentum les historiques utiles aux formats rétrospectifs. Vérifier une vraie série mensuelle homogène avant tout raccordement ; aucun ajout systématique, aucune interpolation des rendements annuels.
 * Étape 4 : cas concrets ciblés sur les règles factorielles, en utilisant les compositions communes : mesurer ce que change une poche de 20 %, avec recouvrements et concentration explicités.
 
 Aucun nouvel obligataire, aucune nouvelle exposition pays, agriculture ou terres rares dans ces étapes.
+
+## Étape 2 ajustée — Immobilier coté et infrastructures
+
+Statut : implémentation complète ; validation et publication par le workflow de la branche master.
+
+| Outil | Ajout précis |
+|---|---|
+| Registres | FTSE EPRA Nareit Developed Dividend+ : composition du 31/08/2026, 313 titres, pays, sous-secteurs immobiliers EPRA et dix principales lignes. FTSE Global Core Infrastructure : composition du 30/09/2026, 277 titres, pays, sous-secteurs ICB et dix principales lignes. Poids des indices exacts, jamais des ETF. |
+| Performances d’indices | Années calendaires 2021–2025, USD, Total Return FTSE, dividendes réinvestis et hors frais ETF. Ces séries ne sont pas les rendements Net/Benchmark iShares ni ceux des parts. |
+| Coulisses | Deux fiches : filtre de dividendes et capitalisation flottante pour l’immobilier ; revenus Core, seuils d’entrée/sortie, capitalisation investissable et revues semestrielles pour les infrastructures. Les règles immobilières de mai 2026 indiquent 3 % à l’entrée et 1 % au maintien, tandis que la fiche d’août mentionne encore 2 % : divergence affichée, photo d’août conservée. |
+| Comparateur d’indices | Une famille immobilier coté / infrastructures : univers, règles, concentrations, trois années communes 2023–2025, dates distinctes et classifications explicites. Réutilisation des parts IE00B1FZS350 et IE00B1FZS467 et de leurs frais/cotations dans les registres. Aucun doublon du comparatif ETF ou du duel existant. |
+| Bibliothèque / suivi | Deux nouvelles fiches d’indice, photographies et séries indépendantes datées, sources et consommateurs dérivés des registres. |
+
+Les photos d’août et septembre ne servent pas à calculer un recouvrement chiffré à date commune. Aucun historique mensuel, format « Et si tu avais investi ? », anniversaire ou fait marquant ajouté dans cette étape. Les propositions 3 et 4 restent à sélectionner ; pas de nouvel obligataire ni de nouvelle fiche pays.

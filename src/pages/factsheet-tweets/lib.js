@@ -3,6 +3,8 @@ const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digit
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
 
 const questions = {
+  'ftse-epra-nareit-developed-dividend-plus': 'Tu préfèrerais l’immobilier coté ou une exposition plus large aux infrastructures ?',
+  'ftse-global-core-infrastructure': 'Tu connaissais la place des réseaux d’énergie et du transport dans cet indice ?',
   'msci-world-momentum': 'Tu choisirais les tendances récentes ou le World classique ?',
   'msci-world-minimum-volatility-usd': 'Tu accepterais une autre répartition pour viser moins de volatilité ?',
   'msci-world-sector-neutral-quality': 'Tu choisirais le filtre Quality ou le World classique ?',

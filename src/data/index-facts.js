@@ -1,3 +1,4 @@
+import { PROPERTY_INFRA_FACTS } from './property-infrastructure-additions.js';
 import { WORLD_FACTOR_FACTS } from './world-factor-additions.js';
 import { INDEX_COMPOSITION_REVIEW } from './index-composition-review.js';
 import { INDEX_EXPOSURE_ADDITIONS } from './index-exposure-additions.js';
@@ -10,6 +11,7 @@ import { normalizeEvidence } from './evidence.js';
 export const INDEX_FACTS = {
 ...INDEX_EXPOSURE_ADDITIONS,
 ...WORLD_FACTOR_FACTS,
+...PROPERTY_INFRA_FACTS,
 
   "em-standard": {
     "2026-08-31": {

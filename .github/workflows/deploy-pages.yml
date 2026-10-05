@@ -69,6 +69,7 @@ jobs:
       - run: node scripts/test-diversification-lot-one.mjs
       - run: node scripts/test-gaming-medical-reuse.mjs
       - run: node scripts/test-world-factors-step-one.mjs
+      - run: node scripts/test-property-infrastructure-step-two.mjs
       - run: node scripts/test-data-reuse.mjs
       - run: node scripts/test-fee-impact-editorial.mjs
       - run: npm run audit:data-catalog
