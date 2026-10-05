@@ -8,6 +8,7 @@ import datetime as dt
 import json
 import os
 import pathlib
+import statistics
 import urllib.parse
 
 from data_automation import UTC, completed_month_window, get_json, month_shift, number, reject, write_json_atomic
@@ -75,8 +76,24 @@ def compare(points, baseline):
     overlaps = [row for row in rows if row['activePrice'] is not None]
     if not overlaps:
         reject('No overlapping months: cannot assess the provider against the active series')
+    errors = [abs(row['differencePct']) for row in overlaps]
+    months_without_active = [row['date'] for row in rows if row['activePrice'] is None]
+    qualification = {
+        'status': 'migration-required',
+        'activeHistoryMonths': len(existing), 'observedHistoryMonths': len(rows),
+        'medianAbsoluteDifferencePct': round(statistics.median(errors), 6),
+        'diagnosticThresholdPct': 0.1,
+        'priceDiagnosticPassed': max(errors) <= 0.1 and not months_without_active,
+        'monthsWithoutActiveReference': months_without_active,
+        'unqualifiedRequirements': [
+            'Homogeneous history covering every active month',
+            'Explicit migration of all consumers from Yahoo aggregate to Coinbase single exchange',
+            'Provider availability and reuse terms reviewed before production connection',
+        ],
+    }
     return {'rows': rows, 'overlappingMonths': len(overlaps),
             'maxAbsoluteDifferencePct': max(abs(row['differencePct']) for row in overlaps),
+            'qualification': qualification,
             # Even close prices are not an authorization to splice two providers.
             'automaticConnectionAllowed': False,
             'reason': 'Coinbase exchange prices and the active Yahoo series have different providers and scopes.'}
@@ -121,6 +138,8 @@ def summary(report):
         rows.append(f"| {row['date']} | {row['price']:.2f} | {active} | {difference} |")
     rows.extend(['', '**Observation uniquement : aucun prix actif ni tweet modifié.**',
                  'Les deux fournisseurs ne constituent pas une même série, même si les prix sont proches.',
+                 f"Qualification : {comparison['qualification']['status']} ; médiane des écarts absolus {comparison['qualification']['medianAbsoluteDifferencePct']:.6f} %.",
+                 'Une migration de toute la série reste nécessaire avant tout raccord.',
                  'Réponses et provenance conservées dans le rapport JSON.'])
     return '\n'.join(rows) + '\n'
 

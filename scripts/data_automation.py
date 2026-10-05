@@ -11,6 +11,29 @@ import urllib.request
 UTC = dt.timezone.utc
 
 
+def get_text(url, content_types, max_bytes=2_000_000, opener=urllib.request.urlopen, sleep=time.sleep):
+    """Bounded, typed downloads for SDMX XML and issuer HTML with embedded JSON."""
+    request = urllib.request.Request(url, headers={
+        'Accept': ', '.join(content_types), 'User-Agent': 'EpargnantLibre-DataPilot/1.0',
+    })
+    for attempt in range(3):
+        try:
+            with opener(request, timeout=20) as response:
+                if response.headers.get_content_type() not in content_types:
+                    reject('Unexpected response content type')
+                body = response.read(max_bytes + 1)
+                if len(body) > max_bytes:
+                    reject('Response exceeds the size limit')
+                return body.decode('utf-8-sig')
+        except urllib.error.HTTPError as error:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt == 2:
+                raise
+        sleep(2 ** attempt)
+
+
 def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep):
     """Bounded retries; a successful HTML page is never treated as market data."""
     request = urllib.request.Request(url, headers={
