@@ -1,3 +1,4 @@
+import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { ETFS } from '../src/data/etf-cards.js';
@@ -29,7 +30,14 @@ for (const etf of ETFS) {
     if (entry.asOf) assert(entry.asOf <= series.checkedAt && entry.asOf <= today, `${etf.isin}: période future`);
   }
   const evidence = capture.performances[etf.isin];
-  if (evidence) {
+  const automated = AUTOMATED_ETF[etf.isin];
+  if (automated?.performance) {
+    assert.deepEqual(series.values, AUTOMATED_PERFORMANCE[etf.isin].values);
+    assert.equal(series.currency, automated.currency);
+    assert.equal(series.source, `https://www.ishares.com/uk/individual/en/products/${automated.productId}`);
+    assert.equal(series.checkedAt, automated.performance.checkedAt);
+    assert(series.checkedAt <= today);
+  } else if (evidence) {
     assert.deepEqual(series.values, evidence.values, `${etf.isin}: divergence du relevé`);
     assert.equal(series.currency, evidence.currency);
     assert.equal(series.source, evidence.source);
