@@ -77,7 +77,7 @@ export const TOOLS = [
   },
   {
     to: '/comparatif-etf', navLabel: 'Comparatif ETF', title: 'Comparatif ETF',
-    format: 'comparatif-etf', bundle: '/tweet-midi', publicationDay: 'Mardi midi · alternance',
+    format: 'comparatif-etf', bundle: '/tweet-midi', publicationDay: 'Jeudi midi',
     icon: '🕐', accent: '#a78bfa',
     description: 'Compare les expositions, frais et performances de deux ETF.', status: 'disponible',
   },
@@ -115,7 +115,7 @@ export const TOOLS = [
     to: '/comparateur-indices',
     navLabel: 'Comparateur indices',
     title: "Comparateur d'indices",
-    publicationDay: 'Mardi midi · alternance',
+    publicationDay: 'Mardi midi',
     icon: '📐',
     accent: '#38bdf8',
     description: "Compare les indices concurrents d'une même famille : exposition, ETF PEA/CTO, diversification, performance.",
@@ -125,7 +125,7 @@ export const TOOLS = [
     to: '/impact-frais',
     navLabel: 'Impact des frais',
     title: "Calculateur d'impact des frais",
-    publicationDay: 'Jeudi midi · alternance',
+    publicationDay: 'Publication ponctuelle',
     icon: '🧮',
     accent: '#fbbf24',
     description: "Compare le capital final entre deux niveaux de frais de gestion (TER), en euros, sur simulation d'intérêts composés — hypothèse pédagogique, pas une donnée de marché.",
@@ -145,7 +145,7 @@ export const TOOLS = [
     to: '/cas-concrets',
     navLabel: 'Cas concrets',
     title: 'Cas concrets pour investir',
-    publicationDay: 'Jeudi midi · alternance',
+    publicationDay: 'Publication ponctuelle',
     icon: '🧩',
     accent: '#fb7185',
     description: 'Des situations pour comprendre ce que change réellement un choix de placement, avec sources et texte prêt à copier.',
@@ -207,12 +207,12 @@ export const TOOL_GROUPS = [
 // Publication order for the home screen, followed by occasional and maintenance tools.
 export const WEEKLY_ORDER = [
   '/fiche-lexique', '/duels-portefeuilles', '/tweets-factsheets',
-  '/comparatif-etf', '/comparateur-indices', '/generateur-portefeuilles',
+  '/comparateur-indices', '/generateur-portefeuilles',
   '/il-y-a-x-ans', '/performance-depuis', '/calculateur-investissement',
-  '/cas-concrets', '/impact-frais', '/fiches-etf',
+  '/comparatif-etf', '/fiches-etf',
   '/france-100-menages', '/pouvoir-achat', '/comparatif-courtiers',
   '/dilemme', '/faits-marquants-marches', '/portefeuilles-investisseurs',
-  '/vrai-faux', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
+  '/vrai-faux', '/cas-concrets', '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]
 export const HOME_TOOLS = TOOL_GROUPS.flatMap(group => group.tools.map(tool => ({ ...tool, group: group.id })))
   .sort((a, b) => WEEKLY_ORDER.indexOf(a.to) - WEEKLY_ORDER.indexOf(b.to))

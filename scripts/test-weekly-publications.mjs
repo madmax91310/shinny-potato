@@ -31,6 +31,8 @@ try {
   for (const [path, day] of [
     ['/fiche-lexique', 'Lundi midi'], ['/duels-portefeuilles', 'Lundi soir · alternance'],
     ['/generateur-portefeuilles', 'Mardi soir · alternance'], ['/vrai-faux', 'Publication ponctuelle'],
+    ['/comparateur-indices', 'Mardi midi'], ['/comparatif-etf', 'Jeudi midi'],
+    ['/cas-concrets', 'Publication ponctuelle'], ['/impact-frais', 'Publication ponctuelle'],
   ]) assert.equal(await page.locator(`.workspace-tool-card[href$="${path}"] .workspace-publication-day`).innerText(), day)
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 844 })
