@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useState } from 'react'
@@ -62,9 +63,9 @@ export default function InvestorPortfolio() {
     <ToolWorkspace renderImage={() => renderPortfolioImage(portfolio)} imageDisabled={!portfolio} imageAlt={`Portefeuille ${portfolio?.identity.displayName ?? "investisseur"}`}>
     <section className="ip-panel tool-settings">
       <label htmlFor="ip-investor">Choisir un investisseur</label>
-      <select id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
+      <ChoicePicker id="ip-investor" value={slug} onChange={(event) => setSlug(event.target.value)}>
         {INVESTORS.map(([key, name]) => <option key={key} value={key}>{name}</option>)}
-      </select>
+      </ChoicePicker>
       <p className="ip-bio">{intro.trim() || investorIntroduction(slug)}</p>
       {loading && <p role="status">Chargement des déclarations…</p>}
       {error && <p role="alert" className="ip-error">{error}</p>}

@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS, ANNIVERSAIRE_EXCLUDED_ASSETS } from './data/marketHistory.js';
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
@@ -377,7 +378,7 @@ export default function App() {
                       </Button>
                     ))}
                   </div>
-                  <select
+                  <ChoicePicker
                     className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400"
                     value={paYear}
                     onChange={(e) => setPaYear(parseInt(e.target.value, 10))}
@@ -387,7 +388,7 @@ export default function App() {
                         {y}
                       </option>
                     ))}
-                  </select>
+                  </ChoicePicker>
                   <p className="mt-1.5 text-[11px] text-slate-500">Comparé aux observations INSEE : prix {PRICE_OBSERVATION.label}, IRL T2 2026.</p>
                 </div>
 
@@ -498,7 +499,7 @@ export default function App() {
                 <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase" htmlFor="secondary-select">
                   Étape 3 — {SECONDARY_LABELS[format]}
                 </label>
-                <select
+                <ChoicePicker
                   id="secondary-select"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-400"
                   value={secondary}
@@ -510,7 +511,7 @@ export default function App() {
                       {secondaryOptionLabel(format, value)}
                     </option>
                   ))}
-                </select>
+                </ChoicePicker>
               </div>
             )}
 

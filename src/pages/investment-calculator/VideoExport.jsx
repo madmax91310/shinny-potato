@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useEffect, useRef, useState } from 'react'
 import { ASSET_ORDER, ASSETS, SPARSE_MONTHLY_DATA_IDS } from '../../data/market-history.js'
 import {
@@ -214,13 +215,13 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         <div className="ic-video-comparative-fields">
           <div className="ic-row2">
             <div>
-              <select className="ic-control" value={asset1Id} onChange={(e) => changeAsset1(e.target.value)}>
+              <ChoicePicker className="ic-control" value={asset1Id} onChange={(e) => changeAsset1(e.target.value)}>
                 {COMPARATIVE_ASSET_IDS.map((id) => (
                   <option key={id} value={id}>
                     {ASSETS[id].icon} {ASSETS[id].label}
                   </option>
                 ))}
-              </select>
+              </ChoicePicker>
               <div className="ic-segmented ic-video-mode-toggle">
                 <button type="button" className={mode1 === 'lump' ? 'active' : ''} onClick={() => changeMode1('lump')}>
                   Versement unique
@@ -237,13 +238,13 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
               {issue1 && <p className="ic-field-error">{issue1}</p>}
             </div>
             <div>
-              <select className="ic-control" value={asset2Id} onChange={(e) => changeAsset2(e.target.value)}>
+              <ChoicePicker className="ic-control" value={asset2Id} onChange={(e) => changeAsset2(e.target.value)}>
                 {COMPARATIVE_ASSET_IDS.map((id) => (
                   <option key={id} value={id}>
                     {ASSETS[id].icon} {ASSETS[id].label}
                   </option>
                 ))}
-              </select>
+              </ChoicePicker>
               <div className="ic-segmented ic-video-mode-toggle">
                 <button type="button" className={mode2 === 'lump' ? 'active' : ''} onClick={() => changeMode2('lump')}>
                   Versement unique

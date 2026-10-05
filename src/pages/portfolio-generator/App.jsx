@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { dataLabels } from './compact.js'
 import { instrumentOption, normalizeSearch } from '../../data/asset-selection.js'
 import ReplacementPanel from './ReplacementPanel'
@@ -196,7 +197,7 @@ function ManualComposer({
       <label className="pg-manual-label" htmlFor="pg-manual-profile">
         Profil (étiquette de la composition)
       </label>
-      <select
+      <ChoicePicker
         id="pg-manual-profile"
         className="pg-manual-select"
         value={profile}
@@ -207,7 +208,7 @@ function ManualComposer({
             {p.label}
           </option>
         ))}
-      </select>
+      </ChoicePicker>
 
       <label className="pg-manual-label" htmlFor="pg-manual-search">
         Ajouter un actif ({ASSETS.length} disponibles)

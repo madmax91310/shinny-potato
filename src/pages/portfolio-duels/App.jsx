@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useRef, useState } from 'react'
@@ -30,10 +31,10 @@ function AllocationEditor({ label, lines, onChange }) {
       const line = lines.find((entry) => CATALOG.find((item) => item.id === entry.id)?.role === role)
       return <div className="pd-editor-line" key={role}>
         <label><span>{title}{role !== 'base' ? ' (facultatif)' : ' (obligatoire)'}</span>
-          <select aria-label={`${title} du portefeuille ${label}`} value={line?.id ?? ''} onChange={(event) => setRole(role, event.target.value)}>
+          <ChoicePicker aria-label={`${title} du portefeuille ${label}`} value={line?.id ?? ''} onChange={(event) => setRole(role, event.target.value)}>
             {role !== 'base' && <option value="">Aucun</option>}
             {CATALOG.filter((item) => item.role === role).map((item) => <option key={item.id} value={item.id}>{item.label} · {item.name}</option>)}
-          </select>
+          </ChoicePicker>
         </label>
         <label className="pd-weight"><span>Poids (%)</span><input aria-label={`Poids ${title.toLowerCase()} du portefeuille ${label}`} type="number" min="1" max="100" step="1" disabled={!line} value={line?.pct ?? ''} onChange={(event) => setWeight(line.id, event.target.value)} /></label>
       </div>
@@ -121,9 +122,9 @@ export default function App() {
       </div>
       {mode === 'prepared' && <div className="pd-controls">
         <label htmlFor="pd-select">Choisir un duel</label>
-        <select id="pd-select" value={index} onChange={(event) => choose(Number(event.target.value))}>
+        <ChoicePicker id="pd-select" value={index} onChange={(event) => choose(Number(event.target.value))}>
           {duels.map((item, i) => <option key={item.id} value={i}>{item.title}</option>)}
-        </select>
+        </ChoicePicker>
         <Button type="button" variant="secondary" onClick={randomDuel}>🎲 Un autre duel</Button>
       </div>}
       {mode === 'generated' && <div className="pd-controls"><p>Chaque portefeuille contient une base ETF, avec éventuellement un complément et une thématique.</p><Button type="button" onClick={regenerate}>🎲 Générer un autre duel</Button></div>}
