@@ -19,6 +19,8 @@ import { ALLOCATION_CASES } from '../src/data/allocation-cases.js';
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { assetEditorial } from '../src/pages/portfolio-generator/asset-editorial.js';
+import { CATALOG as DUEL_ASSETS } from '../src/data/duel-assets.js';
+import { getDuelArt } from '../src/pages/portfolio-duels/visualIdentity.js';
 import { allocationAngle } from '../src/pages/portfolio-generator/allocationEditorial.js';
 const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/diversification-history-2026-10-05.json', import.meta.url)));
 const expectedAnnual = {
@@ -61,6 +63,7 @@ for (const [id, asset] of Object.entries(DIVERSIFICATION_HISTORY)) {
 }
 // Le rendement du fonds ne doit jamais être remplacé par celui de l’indice.
 const card=ETFS.find(e=>e.isin==='IE00B3YLTY66');assert(card&&ETF_ART[card.id]);
+assert.equal(getDuelArt(DUEL_ASSETS.find(a=>a.id==='acwi_imi_spdr')).scene,ETF_ART[card.id].scene);
 assert.equal(card.listing.ticker,'IMIE');assert.equal(card.listing.currency,'EUR');assert.equal(getInstrumentPeaStatus(card.isin),false);
 assert.deepEqual(getAnnualPerformance(card).values,[15.35,18.25,-17.52,21.10,16.13,22.20]);
 assert.deepEqual(getInstrumentReturnValues(card.isin),getAnnualPerformance(card).values);
