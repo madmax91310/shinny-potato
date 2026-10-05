@@ -14,7 +14,7 @@ export function staticFiles(key, files = new Set()) {
 }
 export const initialFiles = staticFiles('index.html')
 export const toolChunks = Object.entries(manifest).filter(([key]) => /^src\/pages\/.+\/App\.jsx$/.test(key))
-assert.equal(toolChunks.length, TOOLS.filter(tool => tool.status === 'disponible').length)
+assert.equal(toolChunks.length, new Set(TOOLS.filter(tool => tool.status === 'disponible').map(tool => tool.bundle ?? tool.to)).size)
 assert.deepEqual(new Set(manifest['index.html'].dynamicImports), new Set(toolChunks.map(([key]) => key)))
 for (const [key, chunk] of toolChunks) {
   assert(chunk.isDynamicEntry, `${key} is not a dynamic entry`)

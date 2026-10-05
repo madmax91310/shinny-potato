@@ -2,7 +2,7 @@
 import { choose } from './card-selection.mjs'
 import { buildText, presentationType } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
-import { TOOLS } from '../src/tools.js';
+import { TOOLS, WEEKLY_ORDER } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { instrumentOption } from '../src/data/asset-selection.js';
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
@@ -71,16 +71,16 @@ function record(tool, ok, detail) {
 
 async function testWorkspaceNavigation(page) {
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-  const checks = { allTools: await page.locator('.workspace-tool-card').count() === 16 };
+  const checks = { allTools: await page.locator('.workspace-tool-card').count() === TOOLS.length };
   checks.publicationDays = (await page.locator('.workspace-publication-day').allTextContents()).sort().join('|') === TOOLS.filter(tool => tool.publicationDay).map(tool => tool.publicationDay).sort().join('|');
   checks.onlyTools = await page.locator('.workspace-search,.workspace-filters,.workspace-brand').count() === 0;
-  checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === 'tweet-midi|generateur-portefeuilles|tweets-factsheets|duels-portefeuilles|calculateur-investissement|fiches-etf|comparatif-courtiers|portefeuilles-investisseurs|comparateur-indices|impact-frais|france-100-menages|cas-concrets|faits-marquants-marches|banque-tweets|bibliotheque-donnees|donnees-a-revoir';
+  checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === WEEKLY_ORDER.map(path => path.slice(1)).join('|');
   for (const width of [320, 390, 768, 1280]) {
     await page.setViewportSize({ width, height: 844 });
     checks[`overflow${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   }
   await page.setViewportSize({ width: 390, height: 844 });
-  checks.allVisibleOnPhone = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.length === 16 && cards.every(card => card.getBoundingClientRect().bottom <= innerHeight));
+  checks.allVisibleOnPhone = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.every(card => card.getBoundingClientRect().bottom <= innerHeight));
   checks.noBrand = await page.locator('.workspace-brand').count() === 0;
   await page.locator('.workspace-tool-card[href$="/impact-frais"]').click();
   await page.getByRole('heading', { name: "Calculateur d'impact des frais", exact: true }).waitFor();

@@ -38,7 +38,7 @@ try {
     await started
     // Router transitions keep the previous content while a lazy route loads.
     assert(await page.getByRole('heading', { name: 'Boîte à outils' }).isVisible())
-    assert.equal(await page.locator('.workspace-tool-card').count(), 16, 'Previous home stays usable during loading')
+    assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.length, 'Previous home stays usable during loading')
   } finally { release() }
   await page.getByLabel('ETF du scénario 1', { exact: true }).waitFor()
   await page.unroute('**/assets/*.js')
@@ -84,7 +84,7 @@ try {
     await direct.locator('main h1').first().waitFor()
   }
   assert.deepEqual(errors, [], 'Browser JavaScript errors')
-  console.log('Route loading: cold home network, delayed navigation, shell, browser back, 16 Pages direct links and reloads with query/hash OK.')
+  console.log('Route loading: cold home network, delayed navigation, shell, browser back, all Pages direct links and reloads with query/hash OK.')
 } finally {
   await browser?.close()
   server.kill('SIGTERM')

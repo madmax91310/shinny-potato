@@ -59,13 +59,16 @@ function isValidLevel(raw) {
   return raw !== "" && raw !== null && raw !== undefined && Number.isFinite(n) && n > 0;
 }
 
-export default function App() {
-  const [format, setFormat] = useState(FORMATS.ALEATOIRE);
+export default function App({ initialFormat = FORMATS.ALEATOIRE, title, description }) {
+  const [format, setFormat] = useState(initialFormat);
   const [mode, setMode] = useState(MODES.SIMPLE);
   const [subject, setSubject] = useState(SUBJECT_ALEATOIRE);
   const [subjectB, setSubjectB] = useState(SUBJECT_ALEATOIRE);
   const [secondary, setSecondary] = useState(SUBJECT_ALEATOIRE);
-  const [current, setCurrent] = useState(() => pickNext(FORMATS.ALEATOIRE, []));
+  const [current, setCurrent] = useState(() => pickForSelection({
+    format: initialFormat, history: [],
+    pouvoirAchat: { amount: 1000, startYear: 2015, paMode: 'brut', posteId: 'loyer' },
+  }).item);
   const [history, setHistory] = useState(() => [current.id]);
   const [copied, setCopied] = useState(false);
   const [imageState, setImageState] = useState('idle');
@@ -257,18 +260,18 @@ export default function App() {
   return (
     <div>
       <PageHeader
-        title="Tweet Midi"
-        subtitle="Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."
+        title={title ?? "Tweet Midi"}
+        subtitle={description ?? "Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."}
       />
 
       <ToolWorkspace renderImage={current.format === FORMATS.PERFORMANCE_DEPUIS ? () => renderPerformanceImage(current)
         : isAnniversaire ? () => renderAnniversaryImage(current, niveauActuel, niveauActuelB)
         : current.format === FORMATS.POUVOIR_ACHAT ? () => renderPurchasingPowerImage(current)
         : current.format === FORMATS.COMPARATIF_ETF ? () => renderComparatifEtfImage(getComparatifEtfTheme(current.themeId))
-        : undefined} imageDisabled={copyDisabled} imageAlt="Visuel Tweet Midi">
+        : undefined} imageDisabled={copyDisabled} imageAlt={`Visuel ${title ?? "Tweet Midi"}`}>
         <div className="tool-settings">
           <Card className="flex flex-col gap-4 p-5">
-            <div>
+            {initialFormat === FORMATS.ALEATOIRE && <div>
               <div className="mb-2 flex items-center justify-between">
                 <label className="block text-xs font-semibold tracking-widest text-slate-500 uppercase">
                   Étape 1 — Format
@@ -296,7 +299,9 @@ export default function App() {
                   </Button>
                 ))}
               </div>
-            </div>
+            </div>}
+
+            {initialFormat !== FORMATS.ALEATOIRE && hasPreciseSelection && <button type="button" onClick={handleResetSelection} className="text-xs text-teal-400 underline decoration-dotted underline-offset-2">↺ Réinitialiser (retour à Aléatoire)</button>}
 
             {format === FORMATS.ANNIVERSAIRE && (
               <details className="text-xs text-slate-400">
@@ -333,7 +338,7 @@ export default function App() {
               <div className="flex flex-col gap-3 border-l-2 border-indigo-500/30 pl-3">
                 <div>
                   <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">
-                    Étape 2 — Montant
+                    Étape {initialFormat === FORMATS.ALEATOIRE ? 2 : 1} — Montant
                   </label>
                   <div className="mb-2 flex flex-wrap gap-2">
                     {PA_AMOUNT_PRESETS.map((v) => (
@@ -364,7 +369,7 @@ export default function App() {
 
                 <div>
                   <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">
-                    Étape 3 — Année de départ
+                    Étape {initialFormat === FORMATS.ALEATOIRE ? 3 : 2} — Année de départ
                   </label>
                   <div className="mb-2 flex flex-wrap gap-2">
                     {PA_YEAR_PRESETS.map((y) => (
@@ -465,7 +470,7 @@ export default function App() {
             {showSubjectSelector && mode === MODES.SIMPLE && (
               <div className="border-l-2 border-teal-500/30 pl-3">
                 <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase" htmlFor="subject-select">
-                  Étape 2 — Sujet
+                  Étape {initialFormat === FORMATS.ALEATOIRE ? 2 : 1} — Sujet
                 </label>
                 {renderSubjectSelect("subject-select", subject, (v) => handleSelectSubject(setSubject, v))}
               </div>
@@ -475,7 +480,7 @@ export default function App() {
               <div className="flex flex-col gap-3 border-l-2 border-teal-500/30 pl-3">
                 <div>
                   <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase" htmlFor="subject-select-a">
-                    Étape 2 — Actif 1
+                    Étape {initialFormat === FORMATS.ALEATOIRE ? 2 : 1} — Actif 1
                   </label>
                   {renderSubjectSelect(
                     "subject-select-a", subject, (v) => handleSelectSubject(setSubject, v),
@@ -497,7 +502,7 @@ export default function App() {
             {showSecondarySelector && (
               <div className="border-l-2 border-teal-500/30 pl-3">
                 <label className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase" htmlFor="secondary-select">
-                  Étape 3 — {SECONDARY_LABELS[format]}
+                  Étape {initialFormat === FORMATS.ALEATOIRE ? 3 : 2} — {SECONDARY_LABELS[format]}
                 </label>
                 <ChoicePicker
                   id="secondary-select"
