@@ -7,6 +7,7 @@ import json
 import os
 import pathlib
 import urllib.error
+from urllib.parse import urlencode
 
 from data_automation import UTC, get_text, number, reject, write_json_atomic
 
@@ -52,9 +53,14 @@ def allocation(container, now):
 
 
 def parse_share(body, share, now):
-    parser = Components()
-    parser.feed(body)
-    components = parser.components
+    if isinstance(body, dict):
+        if str(body['productId']) != str(share['productId']) or body['currencyCode'] != share['currency']:
+            reject('Unexpected API product or currency')
+        components = body['componentsByNameMap']
+    else:
+        parser = Components()
+        parser.feed(body)
+        components = parser.components
     facts = components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
     value = lambda key: facts[key]['value']
     if value('isin') != share['isin'] or value('seriesBaseCurrencyCode') != share['currency']:
@@ -118,13 +124,16 @@ def parse_share(body, share, now):
 def collect(config, baseline, now=None, fetch=get_text):
     now = now or dt.datetime.now(UTC)
     def collect_one(share):
-        url = share.get('sourceUrl') or f"https://www.ishares.com/uk/individual/en/products/{share['productId']}"
-        body = fetch(url, ('text/html',), 6_000_000)
+        # This public endpoint is published in the official product-page components.
+        # Fetch the latest structured snapshot directly, without the HTML consent page.
+        url = product_data_url(share)
+        body = json.loads(fetch(url, ('application/json',), 6_000_000),
+                          parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
         result = parse_share(body, share, now)
         if share.get('collectHoldings'):
-            from collect_etf_holdings import collect_holdings
-            parser = Components(); parser.feed(body)
-            result['holdings'], holdings_countries = collect_holdings(parser.components['holdings'], share, now)
+            from collect_etf_holdings import parse_holdings
+            result['holdings'], holdings_countries = parse_holdings(body, share, now)
+            result['holdings']['sourceUrl'] = holdings_countries['sourceUrl'] = url
             if not result['countries'].get('rows'):
                 result['countries'] = holdings_countries
         active = baseline[share['isin']]
@@ -141,6 +150,14 @@ def collect(config, baseline, now=None, fetch=get_text):
         shares = list(pool.map(collect_one, config['instruments']))
     return {'schemaVersion': 1, 'status': 'observation-only', 'checkedAt': now.isoformat(),
             'automaticConnectionAllowed': False, 'shares': shares}
+
+
+def product_data_url(share):
+    return 'https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?' + urlencode({
+        'appSubType': 'ISHARES', 'appType': 'PRODUCT_PAGE',
+        'component': 'keyFundFacts,performance,exposureBreakdowns,holdings',
+        'locale': 'en_GB', 'portfolioId': share['productId'], 'targetSite': 'ishares-uk',
+        'userType': 'individual', 'excludeContent': 'true', 'includeConfig': 'true'})
 
 
 def main():
