@@ -24,7 +24,7 @@ export const TERMES = [
   ],
   attention:`Un retrait avant 5 ans clôture en principe le PEA (sauf exceptions, notamment la création ou la reprise d'entreprise) ; les gains retirés sont alors imposés. Après 5 ans, un retrait partiel ne clôture plus le plan.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Avant 5 ans, les gains retirés relèvent en principe du PFU de 31,4% (option globale possible pour le barème). Après 5 ans, ils sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux : 18,6% pour les gains acquis depuis 2026, avec des taux historiques possibles sur une partie des gains des anciens plans.`,
+  fraisContenu:`Avant 5 ans, les gains retirés relèvent en principe du PFU de 31,4% (option globale possible pour le barème). Après 5 ans, ils sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux : 18,6% au taux en vigueur à la sortie en 2026 pour les plans ouverts depuis 2018, avec des taux historiques possibles sur une partie des gains des anciens plans.`,
   avantage:`Le compteur des cinq ans part du premier versement, qui fixe la date d’ouverture fiscale du plan. Un petit premier versement peut lancer l’ancienneté.`
 },
 
@@ -628,7 +628,7 @@ export const TERMES = [
 {
   // Vérifié le 25/09/2026 : date du premier versement et exonération après cinq ans ; confiance élevée.
   // https://www.service-public.fr/particuliers/vosdroits/F2385
-  id:"abattement-pea", categorie:"Fiscalité française", titre:"l'Abattement PEA après 5 ans", variante:"B",
+  id:"abattement-pea", categorie:"Fiscalité française", titre:"l'exonération du PEA après 5 ans", variante:"B",
   intro:`Après cinq ans de PEA, les gains peuvent être exonérés d’impôt sur le revenu. Les prélèvements sociaux, eux, restent à prendre en compte.`,
   definitionContenu:`Après 5 ans, les gains retirés d'un PEA sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux. Pour un gain de 10 000€ entièrement soumis au taux de 18,6%, ceux-ci représenteraient 1 860€ ; le taux effectif peut dépendre de la date à laquelle les gains ont été acquis.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
