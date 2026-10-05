@@ -808,6 +808,9 @@ const reusedTheme = (id, nom, emoji, transition, products, cloture, question) =>
     nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur })),
 })
 export const DEFAULT_THEMES = [...existingThemes,
+ reusedTheme('world-minvol','World classique ou Minimum Volatility','🌍','La capitalisation du marché, ou un portefeuille dont on optimise le risque estimé ?',
+  [['IE00B4L5Y983','MSCI World : pondération par capitalisation flottante.'],['IE00B8FHGS14','MSCI World Minimum Volatility (USD) : optimisation du risque sous contraintes.']],
+  'Les deux fonds partent des pays développés. Minimum Volatility modifie la sélection et les poids, sans garantir une baisse moindre à chaque période. USD ne signifie pas couvert en euros ; une cotation EUR ne couvre pas le change.', 'Tu privilégies le marché entier ou une volatilité recherchée plus faible ?'),
  reusedTheme('jeux-video','Jeux vidéo et eSport','🎮','Un thème lié aux jeux vidéo : voici une exposition dédiée, distincte de toute la technologie.',
   [['IE00BYWQWR46','Éditeurs, développeurs et activités liées aux jeux vidéo et à l’eSport ; panier concentré.']],
   'Ce fonds cible une industrie précise. Ses principaux pays sont le Japon, les États-Unis et la Chine dans la photographie du 31 août 2026 ; son histoire comprend un changement d’indice en décembre 2022.', 'Tu ferais une place aux entreprises du jeu vidéo ?'),

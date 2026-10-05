@@ -36,7 +36,7 @@ Les recettes ne traitent pas les compléments d’ACWI IMI comme des marchés ab
 
 ## Lot 2 — Jeux vidéo et innovation médicale
 
-Statut : implémenté sur `codex/gaming-medical-catalog-reuse`, en validation avant publication.
+Statut : livré avec la PR #291, fusionnée et déployée.
 
 | Outil | Ajout précis |
 |---|---|
@@ -51,7 +51,7 @@ Les performances jeux vidéo décrivent la part du fonds : son changement d’in
 
 ## Lot 3 — Réutilisation du catalogue
 
-Statut : implémenté lorsque les données nécessaires existent déjà.
+Statut : livré avec la PR #291, fusionnée et déployée, pour les usages où les données sont suffisantes.
 
 | Outil | Ajout précis |
 |---|---|
@@ -65,12 +65,34 @@ Statut : implémenté lorsque les données nécessaires existent déjà.
 
 | Liste / outil | Ajouts potentiels | Condition avant raccordement |
 |---|---|---|
-| Coulisses | World Momentum et World Minimum Volatility | Méthodologie exacte de l’indice retenu, composition d’indice complète et datée, comptage et rendements d’indice sourcés. Les seuls rendements ETF ne suffisent pas. |
+| Coulisses | World Momentum et World Minimum Volatility (USD) | Documentés et raccordés dans l’étape 1 ajustée ci-dessous. |
 | Coulisses | Indices immobilier et infrastructures | Composition de l’indice FTSE exact, règles et historique distincts de ceux du fonds. |
-| Et si tu avais investi ? / Performance depuis… | Japon, Inde, Quality, Momentum, immobilier, infrastructures ; puis jeux vidéo et innovation médicale | Série mensuelle longue, homogène, devise et méthode explicites, dividendes et changements de référence documentés, contrôles indépendants. Les tableaux annuels ne sont pas interpolés. |
+| Et si tu avais investi ? / Performance depuis… | Japon, Inde, Quality, Momentum, immobilier, infrastructures — sélection à décider selon l’intérêt pédagogique | Série mensuelle longue, homogène, devise et méthode explicites, dividendes et changements de référence documentés, contrôles indépendants. Les tableaux annuels ne sont pas interpolés. |
 | Il y a X ans | Parts ETF anciennes sur ces mêmes expositions | Prix historiques réellement comparables, traitement des distributions et divisions de parts. Un niveau d’indice ne devient pas un cours d’ETF. |
 | Faits marquants | Baisses et récupérations de ces expositions | Observations suffisamment fréquentes et continues ; préciser la fréquence du drawdown. |
 | Générateur | Émergents hors Chine | Six années calendaires complètes pour la part exacte, ou un proxy explicitement documenté. Les quatre années actuelles ne sont pas complétées artificiellement. |
 | Impact des frais | Plusieurs supports suivant le même indice jeux vidéo ou innovation médicale | Autre part réellement comparable, même univers et couverture, frais sourcés. La biotech ne sert pas de faux équivalent. |
 
 Chaque raccordement est décidé outil par outil. Aucun nouvel ETF n’est introduit dans un format qui demande des données encore absentes.
+
+## Étape 1 ajustée — Facteurs mondiaux
+
+Statut : implémentée sur `codex/world-factors-step-one`, validation avant fusion.
+
+| Outil | Ajout précis |
+|---|---|
+| Registres | MSCI World Momentum et MSCI World Minimum Volatility (USD) : compositions du 30/09/2026, comptages, pays, secteurs, dix principales lignes ; rendements annuels d’indice NET USD 2021–2025. Minimum Volatility est recoupé avec la ligne Benchmark iShares ; la série GROSS de sa fiche de composition reste exclue. |
+| Coulisses | Deux fiches distinctes : critères Momentum et optimisation Minimum Volatility, sources et limites ; rééquilibrage Momentum trimestriel depuis août 2025. |
+| Comparateur d’indices | World / World Sector Neutral Quality / World Momentum / World Minimum Volatility (USD), compositions de même date et comparaison NET USD 2023–2025. Une part ETF existante par indice, référencée par ISIN. |
+| Comparatif ETF | iShares World classique / iShares World Minimum Volatility ; rendements propres aux fonds et frais des registres existants. |
+| Duel | 80 % World + 20 % Quality / 80 % World + 20 % Momentum ; rendements des parts existantes, années communes 2020–2025 et conversion EUR de l’outil. |
+
+Aucune série mensuelle ajoutée à cette étape. Les jeux vidéo et l’innovation médicale restent des thèmes ciblés : ils ne sont pas prévus dans « Et si tu avais investi ? ». La présence d’un actif dans le catalogue ne l’autorise pas automatiquement dans tous les outils.
+
+## Propositions suivantes, à sélectionner
+
+* Étape 2 : documenter les indices exacts d’immobilier et d’infrastructures pour deux coulisses et un comparateur dédié ; données d’indice nécessaires, les seules fiches ETF ne suffisent pas.
+* Étape 3 : choisir parmi Japon, Inde, immobilier, Quality et Momentum les historiques utiles aux formats rétrospectifs. Vérifier une vraie série mensuelle homogène avant tout raccordement ; aucun ajout systématique, aucune interpolation des rendements annuels.
+* Étape 4 : cas concrets ciblés sur les règles factorielles, en utilisant les compositions communes : mesurer ce que change une poche de 20 %, avec recouvrements et concentration explicités.
+
+Aucun nouvel obligataire, aucune nouvelle exposition pays, agriculture ou terres rares dans ces étapes.

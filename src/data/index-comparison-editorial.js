@@ -380,6 +380,40 @@ export const INDEX_COMPARISON_EDITORIAL = {
     "fundTransition": "Les trois ETF cités pour ces approches 👇"
   }
 }
+INDEX_COMPARISON_EDITORIAL['monde-facteurs'] = {
+  "hook": "🌍 World classique ou facteurs : quelles règles changent ton panier ?",
+  "intro": "Les quatre indices partent des grandes et moyennes entreprises des pays développés. Leur construction diffère 👇",
+  "exposures": [
+    "World suit la capitalisation flottante des entreprises.",
+    "Sector Neutral Quality sélectionne selon la rentabilité, la dette et la stabilité des bénéfices, au sein des secteurs.",
+    "Momentum privilégie les tendances récentes ajustées du risque.",
+    "Minimum Volatility (USD) optimise le risque estimé du portefeuille sous contraintes."
+  ],
+  "insight": "Les facteurs changent les poids et la concentration. Ils conservent des entreprises du World ; les additionner ne garantit pas une meilleure diversification.",
+  "takeaway": "Chaque règle peut traverser de longues périodes de sous-performance. Minimum Volatility reste une exposition actions, sans couverture en euros.",
+  "question": "Tu garderais le World classique ou tu choisirais un filtre particulier ?",
+  "visualPoints": [
+    [
+      "Capitalisation flottante",
+      "Marché développé"
+    ],
+    [
+      "Rentabilité, dette, bénéfices",
+      "Neutralité sectorielle"
+    ],
+    [
+      "Tendances ajustées du risque",
+      "Sélection Momentum"
+    ],
+    [
+      "Optimisation sous contraintes",
+      "Référence USD, non couverte"
+    ]
+  ],
+  "imageTitle": "World : quatre règles de construction",
+  "fundTransition": "Voici une part ETF pour chacun des quatre indices 👇"
+};
+
 export function getIndexComparisonEditorial(family) {
   const editorial = INDEX_COMPARISON_EDITORIAL[family.id]
   if (!editorial || editorial.exposures.length !== family.indices.length || editorial.visualPoints.length !== family.indices.length) throw new Error(`Éditorial incomplet : ${family.id}`)
