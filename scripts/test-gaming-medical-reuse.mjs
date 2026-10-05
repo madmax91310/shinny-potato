@@ -33,7 +33,7 @@ for (const proof of capture.funds) {
  assert.ok(Math.abs(euroReturn(asset,2025)-expected)<1e-10, 'Une cotation EUR ne transforme pas les rendements NAV USD en rendements EUR')
  assert.equal(HISTORY[proof.id], undefined, 'Pas de série mensuelle inventée à partir des tableaux annuels')
  const record = DATA_CATALOG.find(x => x.type === 'instrument' && x.id === proof.isin)
- for (const path of ['/fiches-etf','/tweet-midi','/generateur-portefeuilles','/duels-portefeuilles','/impact-frais']) assert(record.consumers.some(c => c.path === path), `${proof.isin}: ${path}`)
+ for (const path of ['/fiches-etf','/comparatif-etf','/generateur-portefeuilles','/duels-portefeuilles','/impact-frais']) assert(record.consumers.some(c => c.path === path), `${proof.isin}: ${path}`)
 }
 assert.equal(buildDuel(DUELS.find(x => x.id === 'emergents-chine')).years[0],2022, 'Ex-China : aucune année avant la première année complète du fonds')
 for (const id of ['world-jeux-video','world-innovation-medicale','sante-innovation-biotech','world-immo-infrastructure']) assert.equal(buildDuel(DUELS.find(x => x.id === id)).years[0],2020)
