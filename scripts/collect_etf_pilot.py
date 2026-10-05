@@ -1,4 +1,4 @@
-"""Collect issuer-embedded structured data for five existing shares; observation only."""
+"""Collect issuer-embedded structured data for five existing shares; with optional validated application."""
 import argparse
 import datetime as dt
 from html.parser import HTMLParser
@@ -132,11 +132,17 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--baseline', required=True, type=pathlib.Path)
     parser.add_argument('--output', required=True, type=pathlib.Path)
+    parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()
     config = json.loads(pathlib.Path(__file__).with_name('etf-pilot.json').read_text())
-    report = collect(config, json.loads(args.baseline.read_text()))
+    baseline = json.loads(args.baseline.read_text())
+    report = collect(config, baseline)
+    if args.apply:
+        from apply_etf_collection import apply
+        changed = apply(report, pathlib.Path(__file__).resolve().parents[1] / 'src/data/automated-etf.json', baseline)
+        report.update(status='applied' if changed else 'unchanged', automaticConnectionAllowed=True)
     write_json_atomic(args.output, report)
-    print('Five shares validated: exact ISIN, share AUM, published allocations and annual NAV total returns. Active ETF registries unchanged.')
+    print('Five shares validated: exact ISIN, share AUM, published allocations and annual NAV total returns. Application mode: ' + report['status'] + '.')
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         rows = ['## Pilote iShares : cinq parts', '',
                 '| ISIN | Encours daté | Géographie | Écart maximal 2020–2025 (points) |',
@@ -145,7 +151,7 @@ def main():
             delta = max(abs(row['differencePp']) for row in share['comparison'])
             geography = 'Collectée' if share['countries']['rows'] else 'Non publiée sur cette page'
             rows.append(f"| {share['isin']} | {share['aum']['asOf']} | {geography} | {delta:.4f} |")
-        rows += ['', 'Collecte et comparaison uniquement. Registres actifs conservés. Devise USD, part exacte, NAV total return ; aucune performance d’indice substituée.']
+        rows += ['', f"Mode : {report['status']}. Devise USD, part exacte, NAV total return ; aucune performance d’indice substituée."]
         with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as handle:
             handle.write('\n'.join(rows) + '\n')
 

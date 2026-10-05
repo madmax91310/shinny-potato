@@ -1,11 +1,11 @@
-name: Update active ETF iShares data
+name: Update active Bitcoin Yahoo data
 on:
   schedule:
-    - cron: '10 7 3,16 * *'
+    - cron: '40 6 2,4,8 * *'
   workflow_dispatch:
   pull_request:
     paths:
-      - '.github/workflows/collect-etf-pilot.yml'
+      - '.github/workflows/update-bitcoin-monthly.yml'
       - 'scripts/*etf*'
       - 'scripts/update_bitcoin_monthly.py'
       - 'scripts/test_active_refresh.py'
@@ -14,7 +14,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: active-etf-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  group: active-bitcoin-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
   cancel-in-progress: false
 jobs:
   refresh:
@@ -34,8 +34,8 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
-      - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
-      - run: python scripts/collect_etf_pilot.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/observation.json" --apply
+      - run: node scripts/export-bitcoin-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+      - run: python scripts/update_bitcoin_monthly.py --output "$RUNNER_TEMP/observation.json" --apply
       - run: npm run audit:etf-annual-performance
       - run: npm run audit:etf-consistency
       - run: npm run audit:calculator-series
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: active-etf-observation
+          name: active-bitcoin-observation
           path: ${{ runner.temp }}/observation.json
           if-no-files-found: ignore
           retention-days: 35
@@ -54,9 +54,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-etf.json
+          git add src/data/bitcoin-yahoo-monthly.json scripts/source-snapshots/bitcoin-automated.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Refresh validated active ETF iShares data'
+            git commit -m 'Refresh validated active Bitcoin Yahoo data'
             git pull --rebase origin master
             git push origin HEAD:master
           fi

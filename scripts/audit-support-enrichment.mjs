@@ -1,3 +1,4 @@
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -11,7 +12,7 @@ assert.equal(Object.keys(capture.records).length, 52);
 for (const [isin, record] of Object.entries(capture.records)) {
   const facts = INSTRUMENT_FACTS_BY_ISIN[isin], card = ETFS.find(c => c.isin === isin);
   assert.deepEqual(facts, record.facts); assert(card);
-  assert.equal(ETF_TER_BY_ISIN[isin], record.ter);
+  assert.equal(ETF_TER_BY_ISIN[isin], AUTOMATED_ETF[isin]?.characteristics ? AUTOMATED_ETF[isin].characteristics.terPct.toFixed(2).replace('.', ',') : record.ter);
   assert.equal(new URL(record.sourceUrl).searchParams.get('isin'), isin);
   assert.match(record.htmlSha256, /^[a-f0-9]{64}$/);
   const basics = record.basicsExcerpt;

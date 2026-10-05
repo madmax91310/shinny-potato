@@ -1,3 +1,4 @@
+import { AUTOMATED_ETF } from './automated-etf.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.js';
 // Frais annuels publiés dans l'application, indexés par ISIN. Valeurs héritées des
@@ -172,6 +173,7 @@ export const ETF_TER_BY_ISIN = Object.freeze({
   "IE00B5W4TY14": "0,65",
   "IE00B0M63623": "0,74",
   "IE00BKPX3K41": "0,74",
+  ...Object.fromEntries(Object.entries(AUTOMATED_ETF).filter(([, r]) => r.characteristics).map(([isin, r]) => [isin, r.characteristics.terPct.toFixed(2).replace('.', ',')])),
 });
 
 export function formatEtfTer(isin, format = 'tweet') {
@@ -200,8 +202,9 @@ const primaryTerSources = {
 };
 export const ETF_TER_EVIDENCE = Object.freeze(Object.fromEntries(Object.keys(ETF_TER_BY_ISIN).map(isin => [isin, {
   ...INSTRUMENT_REFERENCE_EVIDENCE[isin],
-  sourceUrls: [primaryTerSources[isin], ...INSTRUMENT_REFERENCE_EVIDENCE[isin].sourceUrls].filter(Boolean),
-  checkedAt: isin === 'IE00B4JNQZ49' ? '2026-10-02' : ["LU0290358497", "IE00B3FH7618", "IE00BDBRDM35", "IE00B0M62X26", "IE00BMG6Z448", "IE00BZCQB185", "IE00B1FZS467"].includes(isin) ? '2026-10-01' : INSTRUMENT_REFERENCE_EVIDENCE[isin].checkedAt,
+  ...(AUTOMATED_ETF[isin]?.characteristics ? { checkedAt: AUTOMATED_ETF[isin].characteristics.checkedAt } : {}),
+  sourceUrls: [AUTOMATED_ETF[isin]?.sourceUrl, primaryTerSources[isin], ...INSTRUMENT_REFERENCE_EVIDENCE[isin].sourceUrls].filter(Boolean),
+  checkedAt: AUTOMATED_ETF[isin]?.characteristics?.checkedAt ?? (isin === 'IE00B4JNQZ49' ? '2026-10-02' : ["LU0290358497", "IE00B3FH7618", "IE00BDBRDM35", "IE00B0M62X26", "IE00BMG6Z448", "IE00BZCQB185", "IE00B1FZS467"].includes(isin) ? '2026-10-01' : INSTRUMENT_REFERENCE_EVIDENCE[isin].checkedAt),
   dateStatus: 'not-published',
   method: primaryTerSources[isin] ? 'Frais publiés par l’émetteur pour la part exacte' : 'TER publié sur le profil de la part, consulté par ISIN',
   note: isin === 'LU1681048630'

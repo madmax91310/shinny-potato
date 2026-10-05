@@ -1,3 +1,4 @@
+import { AUTOMATED_PERFORMANCE } from './automated-etf.js';
 import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 // Rendements 2020–2025 par part (ISIN), repris sans modification du générateur.
@@ -78,6 +79,7 @@ export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentReturnValues(isin) {
+  if (AUTOMATED_PERFORMANCE[isin]) return AUTOMATED_PERFORMANCE[isin].values;
   const proxy = SIMULATION_PROXIES[isin];
   const values = proxy ? proxy.values ?? VERIFIED_RETURNS[proxy.referenceIsin]?.values : VERIFIED_RETURNS[isin]?.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin];
   if (!values) throw new Error(`Rendements absents pour ${isin}`);
@@ -104,6 +106,7 @@ const CARD_SERIES_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentAnnualPerformance(isin) {
+  if (AUTOMATED_PERFORMANCE[isin]) return AUTOMATED_PERFORMANCE[isin];
   const reviewed = REVIEWED_PERFORMANCE_META[isin];
   if (reviewed) return { ...reviewed, values: reviewed.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin] };
   if (VERIFIED_RETURNS[isin]) return VERIFIED_RETURNS[isin].values.some(Number.isFinite) ? VERIFIED_RETURNS[isin] : null;

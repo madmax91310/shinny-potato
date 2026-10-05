@@ -1,3 +1,4 @@
+import BITCOIN_MONTHLY from './bitcoin-yahoo-monthly.json' with { type: 'json' };
 import { DIVERSIFICATION_HISTORY_REVIEW } from './diversification-history.js';
 import GOLD_MONTHLY from './worldbank-gold-monthly.json' with { type: 'json' };
 import { MONTHLY_HISTORY_ADDITIONS_REVIEW } from './monthly-history-additions.js';
@@ -38,18 +39,10 @@ export const MARKET_HISTORY_REVIEW = {
     "note": "141 clôtures mensuelles issues du tableau quotidien officiel STOXX. Capture calculator-stoxx600-2026-10-02.json ; ancienne série composite remplacée intégralement, résultats historiques modifiés. Septembre recoupé avec Investing."
 },
   "history:bitcoin": {
-    "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
-      "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1d"
-    ],
-    "asOf": null,
-    "checkedAt": "2026-10-02",
-    "periodEnd": "2026-09",
-    "dateStatus": "month-only",
-    "sourceStatus": "documented",
-    "method": "close mensuel Yahoo ; dernières séances quotidiennes concordantes ; série entière remplacée et vérifiée",
-    "note": "Capture calculator-monthly-2026-10-02.json. Recoupement de deux granularités du même fournisseur, pas de deux fournisseurs indépendants.  Anciennes ouvertures remplacées par des clôtures sur toute la période ; résultats modifiés.",
-    "periodStart": "2015-01"
+    sourceUrls: BITCOIN_MONTHLY.sourceUrls, checkedAt: BITCOIN_MONTHLY.checkedAt,
+    asOf: null, periodStart: BITCOIN_MONTHLY.periodStart, periodEnd: BITCOIN_MONTHLY.periodEnd,
+    dateStatus: 'month-only', sourceStatus: 'documented', method: BITCOIN_MONTHLY.method,
+    note: 'Actualisation automatique de la même série Yahoo BTC-USD ; clôtures mensuelles recoupées avec le dernier jour UTC. Aucun raccord Coinbase.',
   },
   "history:ethereum": {
     "sourceUrls": [
