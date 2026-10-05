@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { choose } from './card-selection.mjs'
 import { buildText, presentationType } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { TOOLS } from '../src/tools.js';
@@ -85,7 +86,7 @@ async function testWorkspaceNavigation(page) {
   await page.getByRole('heading', { name: "Calculateur d'impact des frais", exact: true }).waitFor();
   await page.locator('.workspace-mobile-menu summary').click();
   await page.locator('.workspace-mobile-menu').getByRole('link', { name: 'Fiches ETF', exact: true }).click();
-  await page.getByRole('combobox', { name: 'Choisir un ETF' }).waitFor();
+  await page.getByRole('group', { name: 'Choisir un ETF', exact: true }).waitFor();
   checks.menuCloses = await page.locator('.workspace-mobile-menu').getAttribute('open') === null;
   await page.reload({ waitUntil: 'networkidle' });
   checks.directLink = await page.getByRole('heading', { name: "Présentation d'ETF", exact: true }).isVisible();
@@ -95,27 +96,28 @@ async function testWorkspaceNavigation(page) {
   await etfPicker.getByRole('button', { name: 'Monde', exact: true }).click();
   const worldOptions = ETFS.map(instrumentOption).filter(item => item.group === 'Monde');
   checks.categoryClearsSearch = await etfPicker.getByRole('searchbox').inputValue() === '';
-  const worldId = await etfPicker.getByRole('combobox').inputValue();
+  const worldId = await etfPicker.locator('[data-selector]').getAttribute('data-value');
   checks.categorySelectsMatchingEtf = worldOptions.some(item => String(item.id) === worldId);
-  checks.categoryOptionsMatch = await etfPicker.locator('option').count() === worldOptions.length;
+  checks.categoryOptionsMatch = await etfPicker.locator('[data-option]').count() === worldOptions.length;
   checks.compactMobileFilters = await etfPicker.getByRole('button', { name: 'Monde', exact: true }).evaluate(button => button.getBoundingClientRect().width < button.closest('.asset-picker').getBoundingClientRect().width / 2);
   const anotherWorld = worldOptions.find(item => String(item.id) !== worldId);
-  checks.worldCardsMatchFilter = await page.locator('.es-matching-etfs .support-alternative').count() === worldOptions.length;
-  await page.locator('.es-matching-etfs .support-alternative').filter({ hasText: anotherWorld.isin }).getByRole('button', { name: 'Présenter cet ETF', exact: true }).click();
-  checks.presentButtonSelectsEtf = await etfPicker.getByRole('combobox').inputValue() === String(anotherWorld.id);
+  checks.worldCardsMatchFilter = await etfPicker.locator('[data-option]').count() === worldOptions.length;
+  await choose(etfPicker.getByRole('group', { name: 'Choisir un ETF', exact: true }), anotherWorld.id);
+  checks.presentButtonSelectsEtf = await etfPicker.locator('[data-selector]').getAttribute('data-value') === String(anotherWorld.id);
   checks.manualSelectionUpdatesPreview = (await page.locator('.es-card').textContent()).includes(ETFS.find(item => String(item.id) === String(anotherWorld.id)).name);
-  const selectedEtf = await page.getByRole('combobox', { name: 'Choisir un ETF' }).inputValue();
+  const selectedEtf = await page.getByRole('group', { name: 'Choisir un ETF', exact: true }).getAttribute('data-value');
   await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
-  checks.focusedPreview = await page.locator('.es-card').isVisible() && !(await page.getByRole('combobox', { name: 'Choisir un ETF' }).isVisible());
+  checks.focusedPreview = await page.locator('.es-card').isVisible() && !(await page.getByRole('group', { name: 'Choisir un ETF', exact: true }).isVisible());
   checks.presentedEtfSurvivesScreenSwitch = (await page.locator('.es-card').innerText()).includes(ETFS.find(item => String(item.id) === String(anotherWorld.id)).name);
   await page.getByRole('button', { name: 'Réglages', exact: true }).click();
-  checks.selectionPreserved = await page.getByRole('combobox', { name: 'Choisir un ETF' }).inputValue() === selectedEtf;
+  checks.selectionPreserved = await page.getByRole('group', { name: 'Choisir un ETF', exact: true }).getAttribute('data-value') === selectedEtf;
   // Each tool must expose a usable view on small phones without losing its mounted output.
   for (const tool of TOOLS) {
     await page.goto(`${BASE}${tool.to}`, { waitUntil: 'networkidle' });
     const switcher = page.locator('.workspace-view-switch');
     for (const width of [320, 390]) {
       await page.setViewportSize({ width, height: 844 });
+      checks[`noDropdown${tool.to}`] = await page.locator('select').count() === 0;
       checks[`settings${tool.to}${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
       if (await switcher.count()) {
         await page.getByRole('button', { name: 'Aperçu', exact: true }).click();
@@ -137,7 +139,7 @@ async function testCalculateur(page) {
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__investmentCopiedText = text; } },
   }));
-  await page.locator("select.ic-control").first().selectOption("bitcoin");
+  await choose(page.locator("[data-selector].ic-control").first(), "bitcoin");
   await page.getByRole('button', { name: /Copier le texte du post/ }).click();
   let conclusionsOk = /suppose d’avoir conservé le placement de janvier 2020 à/.test(await page.evaluate(() => window.__investmentCopiedText));
   conclusionsOk &&= !(await page.evaluate(() => window.__investmentCopiedText)).includes('Livret A');
@@ -157,7 +159,7 @@ async function testCalculateur(page) {
   ]);
   await monthlyPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
-  await page.locator("select.ic-control").first().selectOption('cac40');
+  await choose(page.locator("[data-selector].ic-control").first(), 'cac40');
   await imageButton.click();
   const annualPreview = page.getByRole('dialog', { name: 'Aperçu de l’image du placement' });
   const annualImage = (await annualPreview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
@@ -167,7 +169,7 @@ async function testCalculateur(page) {
   ]);
   await annualPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
-  await page.locator("select.ic-control").first().selectOption("ethereum");
+  await choose(page.locator("[data-selector].ic-control").first(), "ethereum");
   await page.locator('.ic-method-note').filter({ hasText: 'Série en USD' }).waitFor();
   const ethereumText = await page.locator("body").innerText();
   const ethereumDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
@@ -183,7 +185,7 @@ async function testCalculateur(page) {
     && /Le résultat porte sur l’ensemble des versements/.test(monthlyTweet)
     && !/sans versement supplémentaire/.test(monthlyTweet);
   septemberOk &&= monthlyTweet.includes('septembre 2026');
-  await page.locator('select.ic-control').first().selectOption('sp500');
+  await choose(page.locator('[data-selector].ic-control').first(), 'sp500');
   const spDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   const spDcaOk = await spDca.isEnabled();
   await spDca.click();
@@ -191,7 +193,7 @@ async function testCalculateur(page) {
   const spTweet = await page.evaluate(() => window.__investmentCopiedText);
   septemberOk &&= spTweet.includes('septembre 2026') && spTweet.includes('hors frais')
     && (await page.locator('.ic-current-level').innerText()).includes('points');
-  await page.locator('select.ic-control').first().selectOption('stoxx600');
+  await choose(page.locator('[data-selector].ic-control').first(), 'stoxx600');
   const stoxxDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   septemberOk &&= await stoxxDca.isEnabled();
   await stoxxDca.click();
@@ -200,7 +202,7 @@ async function testCalculateur(page) {
   septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('rapporté aux sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('dividendes nets');
-  await page.locator('select.ic-control').first().selectOption('msciWorld');
+  await choose(page.locator('[data-selector].ic-control').first(), 'msciWorld');
   const worldDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   septemberOk &&= await worldDca.isEnabled();
   await worldDca.click();
@@ -210,7 +212,7 @@ async function testCalculateur(page) {
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
   for (const [id, name] of [['msciEmerging', 'MSCI Emerging Markets'], ['msciWorldSmallCap', 'MSCI World Small Cap']]) {
-    await page.locator('select.ic-control').first().selectOption(id);
+    await choose(page.locator('[data-selector].ic-control').first(), id);
     const dca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
     septemberOk &&= await dca.isEnabled();
     await dca.click();
@@ -221,11 +223,11 @@ async function testCalculateur(page) {
       && (await page.locator('.ic-current-level').innerText()).includes('points')
       && (await page.locator('.ic-method-note').innerText()).includes(`${name} Gross Return`);
   }
-  await page.locator('select.ic-control').first().selectOption('or');
+  await choose(page.locator('[data-selector].ic-control').first(), 'or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('septembre 2026');
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   septemberOk &&= (await page.evaluate(() => window.__investmentCopiedText)).includes('En septembre 2026');
-  await page.locator("select.ic-control").first().selectOption("lvmh");
+  await choose(page.locator("[data-selector].ic-control").first(), "lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
   const badgeOk = !/non vérifiées avant/.test(text);
@@ -233,7 +235,7 @@ async function testCalculateur(page) {
 
   let companiesOk = true;
   for (const id of ['berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
-    await page.locator('select.ic-control').first().selectOption(id);
+    await choose(page.locator('[data-selector].ic-control').first(), id);
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
@@ -293,7 +295,7 @@ async function testPortfolioGenerator(page) {
   recipesOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.getByRole("button", { name: /Composition manuelle/ }).click();
-  await page.locator("#pg-manual-profile").selectOption("crypto_curieux");
+  await choose(page.locator("#pg-manual-profile"), "crypto_curieux");
   await page.locator("#pg-manual-search").fill("Fonds euros");
   await page.locator(".pg-manual-asset-option").filter({ hasText: "Fonds euros (assurance-vie)" }).click();
   await page.locator(".pg-manual-pct-input").fill("100");
@@ -381,9 +383,9 @@ async function testPortfolioGenerator(page) {
 async function testPortfolioDuels(page) {
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
   const select = page.locator('#pd-select');
-  let valid = (await select.locator('option').count()) === DUELS.length;
+  let valid = (await select.locator('[data-option]').count()) === DUELS.length;
   for (let index = 0; index < DUELS.length; index++) {
-    await select.selectOption(String(index));
+    await choose(select, String(index));
     const text = await page.locator('#pd-tweet').inputValue();
     const expected = buildDuel(DUELS[index]);
     valid &&= text === buildTweet(expected) && /10\s000 €/.test(text) && !/\bNaN\b|\bundefined\b/.test(text);
@@ -407,13 +409,13 @@ async function testPortfolioDuels(page) {
   valid &&= (await page.locator('.pd-card').count()) === 0;
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('80');
   valid &&= (await page.locator('.pd-card').count()) === 2;
-  await page.getByRole('combobox', { name: 'Complément du portefeuille A', exact: true }).selectOption('');
+  await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), '');
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('100');
   valid &&= (await page.locator('.pd-card').first().locator('p').count()) === 1;
-  await page.getByRole('combobox', { name: 'Thématique du portefeuille A', exact: true }).selectOption('sect_cyber_lg');
+  await choose(page.getByRole('group', { name: 'Thématique du portefeuille A', exact: true }), 'sect_cyber_lg');
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('90');
   valid &&= /cybersécurité/i.test(await page.locator('#pd-tweet').inputValue());
-  await page.getByRole('combobox', { name: 'Complément du portefeuille A', exact: true }).selectOption('stoxx600_bnp');
+  await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), 'stoxx600_bnp');
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('80');
   valid &&= (await page.locator('.pd-table tbody tr').count()) === 3;
   valid &&= /début 2023/.test(await page.locator('#pd-tweet').inputValue());
@@ -437,17 +439,17 @@ async function testEtfSheets(page) {
     configurable: true,
     value: { writeText: async text => { window.__etfCopiedText = text; } },
   }));
-  const select = page.locator("select").first();
-  const defaultEtf = await select.inputValue();
-  const count = await select.locator("option").count();
+  const select = page.locator("[data-selector]").first();
+  const defaultEtf = await select.getAttribute('data-value');
+  const count = await select.locator("[data-option]").count();
   let badCount = 0;
   for (let i = 0; i < count; i++) {
-    await select.selectOption({ index: i });
+    await choose(select, { index: i });
     await page.waitForTimeout(40);
     // textContent vérifie le contenu des rubriques sans la mise en capitales CSS des titres.
     const text = await page.locator(".es-card").textContent();
     if (/undefined|NaN/.test(text)) badCount++;
-    const selectedId = await select.inputValue();
+    const selectedId = await select.getAttribute('data-value');
     const card = getPresentationCopy(ETFS.find(item => item.id === selectedId));
     if (!text.includes(card.hook)) badCount++;
     const accounts = await page.locator('.es-facts li').filter({ hasText: 'CTO :' }).textContent();
@@ -481,7 +483,7 @@ async function testEtfSheets(page) {
       }
     }
   }
-  await select.selectOption('sp500');
+  await choose(select, 'sp500');
   await page.locator('.workspace-action-menu summary').click();
   if (await page.getByRole('button', { name: /graphique annuel/i }).count()) badCount++;
   await page.getByRole('button', { name: '🖼️ Image récapitulative' }).click();
@@ -564,7 +566,7 @@ async function testTweetMidi(page) {
     configurable: true, value: { writeText: async text => { window.__dilemmeCopied = text; } },
   }));
   for (const situation of SITUATIONS) {
-    await page.locator('#subject-select').selectOption(situation.id);
+    await choose(page.locator('#subject-select'), situation.id);
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     const post = await page.locator('pre').innerText();
     const variant = DILEMMES.find(d => d.situationId === situation.id && post.startsWith(d.contexteTexte) && post.includes(d.tension));
@@ -575,8 +577,8 @@ async function testTweetMidi(page) {
         || !post.split('\n').at(-1).startsWith('💬 A ou B')) failed.push(`Dilemme : ${situation.id}`);
   }
   await page.getByRole("button", { name: "Il y a X ans", exact: true }).click();
-  await page.locator("#subject-select").selectOption("bitcoin");
-  await page.locator("#secondary-select").selectOption("1");
+  await choose(page.locator("#subject-select"), "bitcoin");
+  await choose(page.locator("#secondary-select"), "1");
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   await page.locator("#niveau-actuel").fill(String(HISTORY.bitcoin.points.at(-1).price));
   const past = new Date();
@@ -585,8 +587,8 @@ async function testTweetMidi(page) {
   const anniversary = await page.locator("pre").innerText();
   if (historical && !anniversary.includes(fmtHistoryPrice(historical.price, "USD"))) failed.push("Il y a X ans : clôture historique Bitcoin");
   for (const id of ['berkshire', 'asml']) {
-    await page.locator('#subject-select').selectOption(id);
-    await page.locator('#secondary-select').selectOption('1');
+    await choose(page.locator('#subject-select'), id);
+    await choose(page.locator('#secondary-select'), '1');
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     await page.locator('#niveau-actuel').fill(String(HISTORY[id].anniversaryPoints.at(-1).price));
     const raw = HISTORY[id].anniversaryPoints.find(p => p.date === pastYm);
@@ -594,8 +596,8 @@ async function testTweetMidi(page) {
     if (!post.includes(fmtHistoryPrice(raw.price, HISTORY[id].currency)) || /NaN|undefined/.test(post)) failed.push(`${id} : prix brut anniversaire`);
   }
   await page.getByRole("button", { name: "Performance depuis", exact: true }).click();
-  await page.locator('#subject-select').selectOption('sp500');
-  await page.locator('#secondary-select').selectOption('2016');
+  await choose(page.locator('#subject-select'), 'sp500');
+  await choose(page.locator('#secondary-select'), '2016');
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   const performance = await page.locator('pre').innerText();
   const minimal = /^📈 Performance du S&P 500 depuis 2016 👇\n\n/u.test(performance)
@@ -603,7 +605,7 @@ async function testTweetMidi(page) {
     && !/💬|Livret A|Cours en dollars/u.test(performance)
     && (await page.getByRole('checkbox').count()) === 0;
   if (!minimal) failed.push('Performance depuis : format minimal');
-  await page.locator('#subject-select').selectOption('stoxx600');
+  await choose(page.locator('#subject-select'), 'stoxx600');
   await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
   const stoxxPerformance = await page.locator('pre').innerText();
   const stoxxAnnual = (HISTORY.stoxx600.points.find(p => p.date === '2025-12').price
@@ -611,8 +613,8 @@ async function testTweetMidi(page) {
   if (!stoxxPerformance.includes(`2025 : ${fmtHistoryPct(stoxxAnnual)}`)
       || stoxxPerformance.includes('2026 :')) failed.push('Performance depuis : historique officiel STOXX');
   await page.getByRole("button", { name: "Comparatif (2 actifs)", exact: true }).click();
-  await page.locator('#subject-select-a').selectOption('sp500');
-  await page.locator('#subject-select-b').selectOption('bitcoin');
+  await choose(page.locator('#subject-select-a'), 'sp500');
+  await choose(page.locator('#subject-select-b'), 'bitcoin');
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   const comparison = await page.locator('pre').innerText();
   if ((comparison.match(/^📈 Performance /gmu) ?? []).length !== 2
@@ -620,14 +622,14 @@ async function testTweetMidi(page) {
       || comparison.includes('💬')) failed.push('Performance depuis : comparatif');
   await page.getByRole('button', { name: 'Performance depuis', exact: true }).click();
   for (const id of ['berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
-    await page.locator('#subject-select').selectOption(id);
-    await page.locator('#secondary-select').selectOption('2020');
+    await choose(page.locator('#subject-select'), id);
+    await choose(page.locator('#secondary-select'), '2020');
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     const post = await page.locator('pre').innerText();
     if (!post.includes('2025 :') || post.includes('2026 :') || /NaN|undefined/.test(post)) failed.push(`Nouvelle entreprise ${id}`);
   }
   await page.getByRole('button', { name: "Pouvoir d'achat", exact: true }).click();
-  await page.locator('select').selectOption('2025');
+  await choose(page.locator('[data-selector]'), '2025');
   await page.getByRole('button', { name: '1000 €', exact: true }).click();
   for (const [poste, expected] of [[null, '1\u202f034'], ['Alimentation', '1\u202f017'], ['Énergie', '1\u202f156']]) {
     if (poste) {
@@ -697,12 +699,12 @@ async function testIndexComparator(page) {
       return original.call(this, text, ...args);
     };
   });
-  const select = page.locator('select').first();
-  const count = await select.locator('option').count();
+  const select = page.locator('[data-selector]').first();
+  const count = await select.locator('[data-option]').count();
   let ok = 0, images = 0;
   for (const family of FAMILIES) {
     console.log(`    Comparateur : ${family.id}`);
-    await select.selectOption(family.id);
+    await choose(select, family.id);
     const text = await page.locator('.xc-preview-text').innerText();
     const editorial = getIndexComparisonEditorial(family);
     const refs = family.etfGroups.flatMap(group => group.funds);
@@ -735,16 +737,16 @@ async function testIndexComparator(page) {
       && png.readUInt32BE(16) === 1800 && png.readUInt32BE(20) > 400
       && png.readUInt32BE(20) < 3600 && png.length > 10000) images++;
   }
-  await select.selectOption('monde');
+  await choose(select, 'monde');
   const worldText = await page.locator('.xc-preview-text').innerText();
   const sharedCountsOk = FAMILIES.find(f => f.id === 'monde').indices.every(index =>
     worldText.replaceAll('\u202f', ' ').includes(String(index.indexFacts.constituents.toLocaleString('fr-FR')).replaceAll('\u202f', ' ')));
-  await select.selectOption('europe');
+  await choose(select, 'europe');
   await page.getByRole('checkbox', { name: 'Inclure le YTD' }).first().check();
   let ytdOk = !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
   await page.getByPlaceholder('YTD %').fill('0');
   ytdOk &&= (await page.locator('.xc-preview-text').innerText()).includes('YTD saisi : +0,00 %');
-  await select.selectOption('monde');
+  await choose(select, 'monde');
   ytdOk &&= !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
   const distinctionOk = /performances des indices ou actifs comparés/.test(await page.locator('.xc-control-col').innerText());
   record("Comparateur d'indices", ok === count && count === FAMILIES.length && images === count && distinctionOk && sharedCountsOk && ytdOk,
@@ -796,8 +798,8 @@ async function testFeeImpact(page) {
 
 async function testMarketFacts(page) {
   await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: "networkidle" });
-  const select = page.locator("select").first();
-  const count = await select.locator("option").count();
+  const select = page.locator("[data-selector]").first();
+  const count = await select.locator("[data-option]").count();
   let badCount = 0;
   // La source est repliée dans un <details> ("Voir le fait complet et ses précisions") depuis la
   // réécriture du 23/09/2026 — innerText() ne voit pas le contenu d'un <details> fermé (masqué au
@@ -812,7 +814,7 @@ async function testMarketFacts(page) {
     configurable: true, value: { writeText: async text => { window.__marketFactsCopied = text; } },
   }));
   for (let i = 0; i < count; i++) {
-    await select.selectOption({ index: i });
+    await choose(select, { index: i });
     await page.waitForTimeout(40);
     const text = await page.locator("body").innerText();
     const tweet = await page.locator('.mf-fact-text').innerText();
@@ -841,13 +843,13 @@ async function testFactsheetTweets(page) {
   await page.goto(`${BASE}/tweets-factsheets`, { waitUntil: 'networkidle' });
   const select = page.locator('#factsheet-subject');
   const draft = page.locator('#factsheet-draft');
-  const count = await select.locator('option').count();
+  const count = await select.locator('[data-option]').count();
   let ok = count === SHEETS.length;
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__factsheetCopied = text; } },
   }));
   for (let index = 0; index < count; index++) {
-    await select.selectOption(SHEETS[index].id);
+    await choose(select, SHEETS[index].id);
     const tweet = await draft.inputValue();
     ok &&= tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR'));
     ok &&= tweet.includes('2025') && /Les (principaux )?secteurs|La pondération/.test(tweet);
@@ -878,7 +880,7 @@ async function testFactsheetTweets(page) {
   ok &&= download.suggestedFilename().endsWith('.png');
   await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
   for (const id of ['sp500-equal-weight', 'russell-2000', 'em-standard', 'topix', 'nikkei225', 'acwi', 'em-esg', 'stoxx600']) {
-    await select.selectOption(id);
+    await choose(select, id);
     await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
@@ -893,7 +895,7 @@ async function testFactsheetTweets(page) {
     }
     await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
   }
-  await select.selectOption('sp500-equal-weight');
+  await choose(select, 'sp500-equal-weight');
   await page.setViewportSize({ width: 390, height: 844 });
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.screenshot({ path: 'test-artifacts/coulisses-mobile.png', fullPage: true });
@@ -937,7 +939,7 @@ async function testDataSearch(page) {
   const soxxText = await page.locator('.ds-detail').innerText();
   checks.certifiedSeries = !soxxText.includes('Archive non vérifiable') && soxxText.includes('2026-10-02') && soxxText.includes('close mensuel')
     && soxxText.includes('2016-01 à 2026-09');
-  await page.getByLabel('Type de donnée').selectOption('all');
+  await choose(page.getByLabel('Type de donnée'), 'all');
   await page.getByRole('searchbox').fill('zzzintrouvablezzz');
   await page.locator('.ds-detail').filter({ hasText: 'Aucune donnée' }).waitFor();
   checks.empty = (await page.getByRole('status').innerText()).includes('0 résultat');
@@ -955,9 +957,9 @@ async function testHouseholds(page) {
   const waitImage = async (id, design) => {
     await page.waitForFunction(({id, design}) => document.querySelector(`.hh-scope a[download="france-100-menages-${id}-${design}.png"]`)?.href.startsWith('data:image/png'), {id, design});
   };
-  let ok = await page.getByLabel('Design', { exact: true }).inputValue() === 'illustrated';
+  let ok = await page.getByLabel('Design', { exact: true }).getAttribute('data-value') === 'illustrated';
   for (const { id, referencePeriod, source } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
-    await page.getByLabel('Sujet', { exact: true }).selectOption(id);
+    await choose(page.getByLabel('Sujet', { exact: true }), id);
     await page.waitForURL(`**sujet=${id}`);
     await waitImage(id, 'illustrated');
     ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 2400 && img.naturalHeight === 1350; });
@@ -968,21 +970,21 @@ async function testHouseholds(page) {
       && (await page.locator('.hh-source').innerText()).includes(referencePeriod);
   }
   for (const { id: design } of (await import('../src/pages/france-100-menages/image.js')).HOUSEHOLD_DESIGNS) {
-    await page.getByLabel('Design', { exact: true }).selectOption(design);
-    await waitImage(await page.getByLabel('Sujet', { exact: true }).inputValue(), design);
+    await choose(page.getByLabel('Design', { exact: true }), design);
+    await waitImage(await page.getByLabel('Sujet', { exact: true }).getAttribute('data-value'), design);
     ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async (link, design) => { const img = new Image(); img.src = link.href; await img.decode(); return design === 'illustrated' ? img.naturalWidth === 2400 && img.naturalHeight === 1350 : design === 'sculptural' ? img.naturalWidth === 2400 && img.naturalHeight === 1620 : img.naturalWidth === 1080 && img.naturalHeight === 1440; }, design);
   }
   for (const design of ['ivory', 'blue', 'plum']) {
-    await page.getByLabel('Design', { exact: true }).selectOption(design);
+    await choose(page.getByLabel('Design', { exact: true }), design);
     for (const id of ['wealth-top10', 'wealth-share', 'unexpected-expense', 'salary-median', 'donation']) {
-      await page.getByLabel('Sujet', { exact: true }).selectOption(id);
+      await choose(page.getByLabel('Sujet', { exact: true }), id);
       await waitImage(id, design);
       ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 1080 && img.naturalHeight === 1440; });
     }
     const [file] = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Télécharger le PNG' }).click()]);
     ok &&= file.suggestedFilename().endsWith(`-${design}.png`) && (await stat(await file.path())).size > 10000;
   }
-  await page.getByLabel('Sujet', { exact: true }).selectOption('donation');
+  await choose(page.getByLabel('Sujet', { exact: true }), 'donation');
   await waitImage('donation', 'plum');
   const editor = page.getByLabel('Texte modifiable');
   await editor.fill('Mon texte personnalisé');
@@ -996,8 +998,8 @@ async function testHouseholds(page) {
   const data = JSON.parse(await (await import('node:fs/promises')).readFile(await json.path(), 'utf8'));
   ok &&= data.id === 'donation' && data.value === 20 && data.source.url.startsWith('https://www.insee.fr/');
   await page.reload({ waitUntil: 'networkidle' });
-  ok &&= await page.getByLabel('Sujet', { exact: true }).inputValue() === 'donation';
-  ok &&= await page.getByLabel('Design', { exact: true }).inputValue() === 'plum';
+  ok &&= await page.getByLabel('Sujet', { exact: true }).getAttribute('data-value') === 'donation';
+  ok &&= await page.getByLabel('Design', { exact: true }).getAttribute('data-value') === 'plum';
   await page.setViewportSize({ width: 390, height: 844 });
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   if (process.env.HOUSEHOLD_SCREENSHOT) await page.screenshot({ path: process.env.HOUSEHOLD_SCREENSHOT, fullPage: true });
@@ -1014,7 +1016,7 @@ async function testInvestorIntroductions(page) {
   let snapshotsOk = true;
   for (const [slug] of INVESTORS) {
     const payload = JSON.parse(await readFile(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8'));
-    await page.getByLabel('Choisir un investisseur').selectOption(slug);
+    await choose(page.getByLabel('Choisir un investisseur'), slug);
     await page.waitForFunction(intro => document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
     const actual = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
     snapshotsOk &&= actual.includes('30 juin 2026') && !/NaN|undefined/.test(actual);
@@ -1034,7 +1036,7 @@ async function testInvestorIntroductions(page) {
   }));
   let ok = snapshotsOk;
   for (const [slug] of INVESTORS) {
-    await page.getByLabel('Choisir un investisseur').selectOption(slug);
+    await choose(page.getByLabel('Choisir un investisseur'), slug);
     await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro && document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
     ok &&= (await page.locator('.ip-bio').innerText()) === investorIntroduction(slug);
     const tweet = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
@@ -1052,7 +1054,7 @@ async function testInvestorIntroductions(page) {
   ok &&= (await page.locator('.ip-bio').innerText()) === 'Ma présentation personnalisée.';
   await page.getByRole('button', { name: 'Rétablir la présentation' }).click();
   ok &&= (await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes(investorIntroduction(INVESTORS.at(-1)[0]));
-  await page.getByLabel('Choisir un investisseur').selectOption('cathie-wood');
+  await choose(page.getByLabel('Choisir un investisseur'), 'cathie-wood');
   await page.waitForFunction(() => document.querySelector('#ip-intro')?.value.startsWith('Cathie Wood'));
   ok &&= !(await page.getByLabel('Tweet modifiable', { exact: true }).inputValue()).includes(investorIntroduction(INVESTORS.at(-1)[0]));
   await page.setViewportSize({ width: 390, height: 844 });
@@ -1064,8 +1066,8 @@ async function testInvestorIntroductions(page) {
 
 async function testDataReuse(page) {
   await page.goto(`${BASE}/impact-frais`, { waitUntil: 'networkidle' });
-  await page.getByLabel('ETF du scénario 1', { exact: true }).selectOption('FR001400U5Q4');
-  await page.getByLabel('ETF du scénario 2', { exact: true }).selectOption('IE00BP3QZ601');
+  await choose(page.getByLabel('ETF du scénario 1', { exact: true }), 'FR001400U5Q4');
+  await choose(page.getByLabel('ETF du scénario 2', { exact: true }), 'IE00BP3QZ601');
   let ok = (await page.locator('.fi-preview-text').innerText()).includes('FR001400U5Q4')
     && (await page.locator('.fi-preview-text').innerText()).includes('sans comparer leurs performances réelles');
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.__reuseCopied = text; } } }));
@@ -1075,15 +1077,15 @@ async function testDataReuse(page) {
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
-  const prepared = await page.locator('#pd-select option').allTextContents();
-  await page.locator('#pd-select').selectOption(String(prepared.findIndex(text => text.includes('XEON'))));
+  const prepared = await page.locator('#pd-select [data-option]').allTextContents();
+  await choose(page.locator('#pd-select'), String(prepared.findIndex(text => text.includes('XEON'))));
   ok &&= (await page.locator('#pd-tweet').inputValue()).includes('XEON');
-  await page.locator('#pd-select').selectOption(String(prepared.findIndex(text => text.includes('semi-conducteurs ou blockchain'))));
+  await choose(page.locator('#pd-select'), String(prepared.findIndex(text => text.includes('semi-conducteurs ou blockchain'))));
   ok &&= (await page.locator('.pd-table tbody th').allTextContents()).join(',') === '2023,2024,2025';
   await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: 'networkidle' });
-  await page.getByLabel('Choisir un fait').selectOption('monthly-drawdown-paypal');
+  await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-paypal');
   ok &&= (await page.locator('.mf-fact-text').innerText()).includes('clôtures mensuelles ajustées');
-  await page.getByLabel('Choisir un fait').selectOption('monthly-dca-costco');
+  await choose(page.getByLabel('Choisir un fait'), 'monthly-dca-costco');
   ok &&= (await page.locator('.mf-fact-text').innerText()).includes('L’argent en attente n’est pas rémunéré');
   await page.goto(`${BASE}/bibliotheque-donnees?id=IE00B4JNQZ49&q=IE00B4JNQZ49`, { waitUntil: 'networkidle' });
   ok &&= (await page.locator('.ds-detail').innerText()).includes('Duels de portefeuilles');
@@ -1099,16 +1101,25 @@ async function testAssetSelection(page) {
   const worldCard = ETFS.find(etf => etf.isin === 'FR001400U5Q4');
   const picker = page.locator('.asset-picker').first();
   await picker.getByRole('searchbox').fill('FR001400U5Q4');
-  await picker.getByRole('combobox').selectOption(worldCard.id);
+  await choose(picker.locator('[data-selector]'), worldCard.id);
   let ok = (await picker.locator('.asset-picker-results').innerText()).includes('1 résultat');
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
   await picker.getByRole('button', { name: 'Émergents', exact: true }).click();
-  const emergingId = await picker.getByRole('combobox').inputValue();
+  const emergingId = await picker.locator('[data-selector]').getAttribute('data-value');
   ok &&= ETFS.map(instrumentOption).some(item => item.id === emergingId && item.group === 'Émergents');
   await picker.getByRole('searchbox').fill('introuvable-xyz');
   ok &&= (await picker.locator('.asset-picker-results').innerText()).includes('Aucun résultat');
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
-  await picker.getByRole('combobox').selectOption(worldCard.id);
+  await choose(picker.locator('[data-selector]'), worldCard.id);
+  const choices = picker.locator('[data-selector]');
+  await choices.locator('[data-option]').nth(1).focus();
+  await page.keyboard.press('Enter');
+  ok &&= await choices.locator('[data-option]').nth(1).getAttribute('aria-pressed') === 'true';
+  await picker.getByRole('button', { name: 'Éligibles PEA', exact: true }).click();
+  const peaValues = await choices.locator('[data-option]').evaluateAll(nodes => nodes.map(node => node.dataset.value));
+  ok &&= peaValues.length > 0 && peaValues.every(id => ETFS.map(instrumentOption).find(item => item.id === id)?.badges.includes('PEA'));
+  await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
+  await choose(choices, worldCard.id);
   await page.locator('.support-alternative input[type=checkbox]').first().check();
   await page.getByRole('button', { name: 'Comparer ces supports', exact: true }).click();
   ok &&= await page.locator('.support-comparison table').isVisible();
@@ -1122,23 +1133,23 @@ async function testAssetSelection(page) {
   let selected=false;
   for(let i=0;i<20&&!selected;i++) {
     await page.locator('.pg-replacement summary').click();
-    const lines=await page.locator('#pg-replacement-line option').evaluateAll(nodes=>nodes.map(n=>n.value));
+    const lines=await page.locator('#pg-replacement-line [data-option]').evaluateAll(nodes=>nodes.map(n=>n.dataset.value));
     for(const line of lines) {
-      await page.locator('#pg-replacement-line').selectOption(line);
-      if(await page.getByRole('combobox',{name:'Support de remplacement',exact:true}).count()) {selected=true;break}
+      await choose(page.locator('#pg-replacement-line'), line);
+      if(await page.getByRole('group',{name:'Support de remplacement',exact:true}).count()) {selected=true;break}
     }
     if(!selected) await page.getByRole('button',{name:/Générer un nouveau portefeuille/}).click();
   }
   if(!selected) throw new Error('No replaceable generated portfolio');
-  const candidates=page.getByRole('combobox',{name:'Support de remplacement',exact:true});
-  const replacement=await candidates.locator('option').evaluateAll(nodes=>nodes.find(n=>n.value)?.value);
-  await candidates.selectOption(replacement);
-  const originalId = await page.locator('#pg-replacement-line').inputValue();
-  const previousIds = await page.locator('#pg-replacement-line option').evaluateAll(nodes => nodes.map(node => node.value));
+  const candidates=page.getByRole('group',{name:'Support de remplacement',exact:true});
+  const replacement=await candidates.locator('[data-option]').evaluateAll(nodes=>nodes.find(n=>n.dataset.value)?.dataset.value);
+  await choose(candidates, replacement);
+  const originalId = await page.locator('#pg-replacement-line').getAttribute('data-value');
+  const previousIds = await page.locator('#pg-replacement-line [data-option]').evaluateAll(nodes => nodes.map(node => node.dataset.value));
   const expectedIds = previousIds.map(id => id === originalId ? replacement : id);
   await page.getByRole('button',{name:'Appliquer le remplacement',exact:true}).click();
   await page.waitForFunction(expected => {
-    const ids = [...document.querySelectorAll('#pg-replacement-line option')].map(node => node.value);
+    const ids = [...document.querySelectorAll('#pg-replacement-line [data-option]')].map(node => node.dataset.value);
     return ids.join('|') === expected.join('|');
   }, expectedIds);
   ok &&= (await page.getByRole('status').innerText()).includes('Support remplacé');
@@ -1193,9 +1204,9 @@ try {
   reviewChecks.search = (await page.locator('.dr-item').count()) === 3;
   await page.reload({ waitUntil: 'networkidle' });
   reviewChecks.reload = (await page.locator('.dr-item').count()) === 3;
-  await page.getByRole('searchbox').fill('');
+  await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil', exact: true }).fill('');
   await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.dr-item').length === 9);
-  await page.getByLabel('Afficher', { exact: true }).selectOption('deadlines');
+  await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
   await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.dr-item').length === 3);
   reviewChecks.deadlines = (await page.locator('.dr-item').count()) === 3;
   reviewChecks.sources = (await page.getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;

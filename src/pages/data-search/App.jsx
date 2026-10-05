@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
@@ -39,7 +40,7 @@ export default function DataSearch() {
     <PageHeader title="Bibliothèque de données" subtitle="Retrouve un instrument ou un indice, ses sources, ses historiques et les outils qui l’utilisent." />
     <div className="ds-controls">
       <label>ISIN, ticker, nom ou identifiant<input type="search" value={query} onChange={(e) => update('q', e.target.value)} placeholder="DCAM, MSCI USA, FR001400U5Q4…" /></label>
-      <label>Type de donnée<select value={type} onChange={(e) => update('type', e.target.value)}>{Object.entries(TYPES).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
+      <label>Type de donnée<ChoicePicker value={type} onChange={(e) => update('type', e.target.value)}>{Object.entries(TYPES).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</ChoicePicker></label>
     </div>
     <p role="status" className="ds-status">{results.length} résultat{results.length > 1 ? 's' : ''}{message ? ` · ${message}` : ''}</p>
     <div className="ds-layout">

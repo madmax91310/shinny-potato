@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
@@ -68,9 +69,9 @@ export default function DataReview() {
     </section>
     <div className="dr-controls">
       <label>Rechercher une donnée ou un outil<input type="search" value={query} onChange={event => update('q', event.target.value)} placeholder="IBKR, encours, Fortuneo…" /></label>
-      <label>Afficher<select aria-label="Afficher" value={view} onChange={event => update('view', event.target.value)}>{Object.entries(VIEWS).map(([key, label]) => <option value={key} key={key}>{label}</option>)}</select></label>
-      <label>Temporalité<select aria-label="Temporalité" value={cadence} onChange={event => selectCadence(event.target.value)}><option value="">Toutes les temporalités</option>{Object.entries(REVIEW_CADENCES).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
-      <label>Outil<select aria-label="Outil" value={tool} onChange={event => update('tool', event.target.value)}><option value="">Tous les outils</option>{tools.map(name => <option key={name} value={name}>{name}</option>)}</select></label>
+      <label>Afficher<ChoicePicker aria-label="Afficher" value={view} onChange={event => update('view', event.target.value)}>{Object.entries(VIEWS).map(([key, label]) => <option value={key} key={key}>{label}</option>)}</ChoicePicker></label>
+      <label>Temporalité<ChoicePicker aria-label="Temporalité" value={cadence} onChange={event => selectCadence(event.target.value)}><option value="">Toutes les temporalités</option>{Object.entries(REVIEW_CADENCES).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</ChoicePicker></label>
+      <label>Outil<ChoicePicker aria-label="Outil" value={tool} onChange={event => update('tool', event.target.value)}><option value="">Tous les outils</option>{tools.map(name => <option key={name} value={name}>{name}</option>)}</ChoicePicker></label>
     </div>
     <p role="status" className="dr-note">{items.length} élément{items.length > 1 ? 's' : ''} affiché{items.length > 1 ? 's' : ''}</p>
     <div className="dr-list">{items.map(item => <article className="dr-item" key={item.id}>

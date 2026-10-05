@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
@@ -397,7 +398,7 @@ export default function App() {
             <p className="ic-eyebrow">Date de départ</p>
             <div className="ic-row2">
               <div className="ic-select-wrap">
-                <select
+                <ChoicePicker
                   className="ic-control"
                   value={state.startMonth}
                   onChange={(e) => set({ startMonth: parseInt(e.target.value, 10) })}
@@ -408,10 +409,10 @@ export default function App() {
                       {mn}
                     </option>
                   ))}
-                </select>
+                </ChoicePicker>
               </div>
               <div className="ic-select-wrap">
-                <select
+                <ChoicePicker
                   className="ic-control"
                   value={state.startYear}
                   onChange={(e) => set({ startYear: parseInt(e.target.value, 10) })}
@@ -422,7 +423,7 @@ export default function App() {
                       {yr}
                     </option>
                   ))}
-                </select>
+                </ChoicePicker>
               </div>
             </div>
             <div className="ic-chips">

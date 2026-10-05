@@ -1,3 +1,4 @@
+import { choose } from './card-selection.mjs'
 import {chromium}from'playwright'
 import {spawn}from'node:child_process'
 import {mkdir,writeFile}from'node:fs/promises'
@@ -32,8 +33,8 @@ try{
  await page.setViewportSize({width:390,height:844});await page.goto(`${base}france-100-menages?sujet=pea`)
  const link=page.getByRole('link',{name:'Télécharger le PNG',exact:true});await link.waitFor()
  await page.getByRole('button',{name:'Aperçu',exact:true}).click();await page.getByRole('tab',{name:'Image',exact:true}).click();const img=page.locator('.hh-scope img').first();await img.evaluate(i=>i.decode());const before=await img.getAttribute('src')
- await page.getByRole('button',{name:'Réglages',exact:true}).click();await page.getByLabel('Sujet',{exact:true}).selectOption('protein-meals');await page.getByRole('button',{name:'Aperçu',exact:true}).click();await page.getByRole('tab',{name:'Image',exact:true}).click();await page.waitForFunction(src=>{const next=document.querySelector('.hh-scope img')?.getAttribute('src');return next&&next!==src},before);await img.evaluate(i=>i.decode())
+ await page.getByRole('button',{name:'Réglages',exact:true}).click();await choose(page.getByLabel('Sujet',{exact:true}), 'protein-meals');await page.getByRole('button',{name:'Aperçu',exact:true}).click();await page.getByRole('tab',{name:'Image',exact:true}).click();await page.waitForFunction(src=>{const next=document.querySelector('.hh-scope img')?.getAttribute('src');return next&&next!==src},before);await img.evaluate(i=>i.decode())
  const [download]=await Promise.all([page.waitForEvent('download'),link.click()]);if(!download.suggestedFilename().endsWith('-protein-meals-illustrated.png'))throw new Error('Stale download')
- await page.getByRole('button',{name:'Réglages',exact:true}).click();await page.getByLabel('Design',{exact:true}).selectOption('ivory');await page.waitForFunction(()=>document.querySelector('.hh-scope a[download$="-ivory.png"]')?.href.startsWith('data:image/png'))
+ await page.getByRole('button',{name:'Réglages',exact:true}).click();await choose(page.getByLabel('Design',{exact:true}), 'ivory');await page.waitForFunction(()=>document.querySelector('.hh-scope a[download$="-ivory.png"]')?.href.startsWith('data:image/png'))
  console.log(`${samples.length} editorial cards: real values/populations, comparisons, thresholds, share distinction, signature-only footer, no titles, no overlap; mobile refresh/download and legacy design verified.`)
 }finally{await browser?.close();server.kill('SIGTERM')}

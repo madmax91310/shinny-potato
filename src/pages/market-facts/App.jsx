@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useMemo, useRef, useState } from 'react'
 import { FAMILIES, FACTS } from './data'
@@ -108,7 +109,7 @@ export default function App() {
       <section className="tool-settings">
       <div className="mf-controls">
         <div className="mf-select-shell">
-          <select className="mf-select" aria-label="Choisir un fait" value={currentId} onChange={(e) => selectFact(e.target.value)}>
+          <ChoicePicker className="mf-select" aria-label="Choisir un fait" value={currentId} onChange={(e) => selectFact(e.target.value)}>
             {optgroups.map(({ fam, facts }) => (
               <optgroup key={fam.id} label={fam.label}>
                 {facts.map((f) => (
@@ -118,7 +119,7 @@ export default function App() {
                 ))}
               </optgroup>
             ))}
-          </select>
+          </ChoicePicker>
         </div>
         <Button type="button" variant="secondary" onClick={pickRandom}>
           🔄 Fait aléatoire

@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useState } from 'react'
 import AssetPicker from '../../design-system/AssetPicker'
 import Button from '../../design-system/Button'
@@ -14,9 +15,9 @@ export default function ReplacementPanel({ portfolio, onReplace }) {
     <summary>Remplacer un support</summary>
     <div className="pg-replacement-list">
       <label htmlFor="pg-replacement-line">Ligne à remplacer</label>
-      <select id="pg-replacement-line" value={assetId} onChange={event => { setAssetId(event.target.value); setReplacementId('') }}>
+      <ChoicePicker id="pg-replacement-line" value={assetId} onChange={event => { setAssetId(event.target.value); setReplacementId('') }}>
         {portfolio.selection.map(asset => <option value={asset.id} key={asset.id}>{asset.name} · {asset.pct} %</option>)}
-      </select>
+      </ChoicePicker>
       <p>Le poids reste à {original.pct} %. Les choix respectent la construction, le profil et la borne historique de risque.</p>
       {candidates.length ? <>
         <AssetPicker label="Support de remplacement" items={options} value={replacementId} onChange={setReplacementId}

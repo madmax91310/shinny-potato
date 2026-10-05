@@ -1,3 +1,4 @@
+import { choose } from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
@@ -26,7 +27,7 @@ try {
   await page.goto(base)
   await page.goto(`${base}tweet-midi`)
   await page.getByRole('button', {name:'Il y a X ans', exact:true}).click()
-  await page.locator('#subject-select').selectOption('sp500')
+  await choose(page.locator('#subject-select'), 'sp500')
   await page.getByRole('button', {name:'🔄 Générer', exact:true}).click()
   await page.locator('#niveau-actuel').fill('15000')
   assert.ok(await page.getByText('S&P 500 : saisir le niveau Total Return', {exact:false}).isVisible(), 'Index variant missing in input')

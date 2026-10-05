@@ -1,3 +1,4 @@
+import { choose } from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
@@ -57,7 +58,7 @@ try {
  await page.goto(`${base}/fiches-etf`,{waitUntil:'networkidle'})
  await page.getByRole('button',{name:'Aperçu',exact:true}).click();await page.getByRole('tab',{name:'Image',exact:true}).click()
  const img=page.getByRole('tabpanel').locator('img');await img.waitFor();const before=await img.getAttribute('src')
- await page.getByRole('button',{name:'Réglages',exact:true}).click();await page.locator('#es-etf-select').selectOption('msci-world')
+ await page.getByRole('button',{name:'Réglages',exact:true}).click();await choose(page.locator('#es-etf-select'), 'msci-world')
  await page.getByRole('button',{name:'Aperçu',exact:true}).click()
  await page.waitForFunction(previous=>document.querySelector('.publication-image-stage img')?.src!==previous&&document.querySelector('.publication-image-stage img')?.complete,before)
  const [download] = await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()])
