@@ -24,13 +24,13 @@ on:
       - 'src/data/history-statistics.js'
 permissions:
   contents: read
-concurrency:
-  # Serialize writers of automated-indices.json; keep PR validations independent.
-  group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
-  cancel-in-progress: false
-  queue: max
 jobs:
   refresh:
+    concurrency:
+      # Serialize writers of automated-indices.json; keep PR validations independent.
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
