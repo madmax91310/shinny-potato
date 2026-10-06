@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { assertReviewObservation } from './lib/data-review-observation.mjs'
 import { readFileSync } from 'node:fs'
 import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js'
 import { AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
@@ -48,20 +49,10 @@ for (const observation of closure.records) {
     ? x.value.asOf === observation.asOf
     : x.label === (observation.type === 'comparator' ? 'Rendements 2023–2025 du comparateur' : historicalProxy ? 'Historique de simulation 2020–2025' : 'Rendements 2020–2025'))
   assert(field, `Champ contrôlé absent : ${record.id}`)
-  const automated = observation.type === 'portfolio' && !historicalProxy ? AUTOMATED_PERFORMANCE[observation.isin] : null
-  assert.deepEqual(observation.type === 'index' ? field.value.constituents : field.value, automated?.values ?? observation.constituents ?? observation.values)
-  if (automated) {
-    assert.equal(field.metadata.checkedAt, automated.checkedAt)
-    assert(field.metadata.checkedAt >= closure.checkedAt, `${record.id}: contrôle automatisé antérieur à la revue`)
-    assert(field.metadata.sourceUrls.includes(automated.source), `${record.id}: source automatisée absente`)
-  } else if (reviewed && !historicalProxy && observation.type === 'portfolio') {
-    // Les mêmes années calendaires ont été recertifiées dans une publication plus récente.
-    assert.equal(field.metadata.checkedAt, reviewed.checkedAt)
-    assert(field.metadata.sourceUrls.includes(reviewed.source), `${record.id}: nouvelle source contrôlée absente`)
-  } else {
-    assert.equal(field.metadata.checkedAt, closure.checkedAt)
-    assert(observation.sourceUrls.every(url => field.metadata.sourceUrls.includes(url)), `${record.id}: source contrôlée différente`)
-  }
+  assertReviewObservation({ recordId: record.id, field, observation, closureCheckedAt: closure.checkedAt,
+    automated: observation.type === 'portfolio' && !historicalProxy ? AUTOMATED_PERFORMANCE[observation.isin] : null,
+    reviewed: reviewed && !historicalProxy && observation.type === 'portfolio' ? reviewed : null,
+  })
 }
 const remaining = buildReview(closure.checkedAt)
 assert.equal(remaining.items.filter(x => x.category === 'undated').length, 4, 'Les quatre contrôles non résolus doivent rester visibles')
