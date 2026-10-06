@@ -28,6 +28,12 @@ class IssuerSources(unittest.TestCase):
         for a,b in [('IE00BZ56SW52','IE00OTHER001'),('05/10/2026','05/01/2026'),('61.34%','1.34%'),('US$1,645,809,873','1,645,809,873')]:
             with self.assertRaises(ValueError):wisdomtree(text.replace(a,b),s,NOW)
 
+    def test_copper_fee_components_stay_separate(self):
+        text=(FIX/'copper.html').read_text()
+        result=wisdomtree(text,share('GB00B15KXQ89'),NOW)
+        self.assertEqual(result['characteristics']['terPct'],.49)
+        self.assertEqual(result['characteristics']['annualSwapRatePct'],.45)
+
     def test_bitwise_launch_year_not_full_fund_history(self):
         text=(FIX/'bitwise.html').read_text();s=share('DE000A27Z304');r=bitwise(text,s,NOW)
         self.assertEqual(r['aum']['amount'],917010591.29)

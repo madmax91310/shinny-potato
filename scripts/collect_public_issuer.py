@@ -74,11 +74,14 @@ def wisdomtree(text, share, now):
     fee = charges.get('Total expense ratio (TER)', charges.get('Management Fee (MER)'))
     if fee is None: reject('Missing WisdomTree explicit fee')
     ter = float(fee.rstrip('%'))
-    # Commodity swap charge is separately disclosed; never hide it in the MER.
-    if 'Annual Swap Rate' in charges: ter += float(charges['Annual Swap Rate'].rstrip('%'))
     if not 0 <= ter <= 5: reject('Invalid WisdomTree expenses')
     digest = proof(text.encode()); result = base(share, fees_stamp, digest)
     result['characteristics'].update(terPct=round(ter, 4))
+    # MER/TER and the separately disclosed commodity swap charge have different labels.
+    if 'Annual Swap Rate' in charges:
+        swap=float(charges['Annual Swap Rate'].rstrip('%'))
+        if not 0<=swap<=5:reject('Invalid WisdomTree swap rate')
+        result['characteristics']['annualSwapRatePct']=swap
     nav = table('Net Asset Value'); amount, currency = money(dict(nav[1:])['Total AUM of fund'])
     result['aum'] = {'amount':amount,'currency':currency,'scope':'fund',
                      'asOf':document_date(nav[0][1].removeprefix('As of '),now),
