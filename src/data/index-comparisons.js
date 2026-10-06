@@ -977,7 +977,7 @@ export const FAMILIES = [
     block2Title: '2️⃣ EXEMPLES D’ETF DISPONIBLES 💳',
     etfGroups: [
       { indexName: 'MSCI World', choiceNote: 'MSCI World éligible PEA, réplication synthétique', pea: true,
-        funds: [{ name: getInstrumentName("LU1681043599", "index"), listing: requireInstrumentListing('LU1681043599'), isin: 'LU1681043599', ter: formatEtfTer('LU1681043599', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant' }] },
+        funds: [{ name: getInstrumentName("IE0002XZSHO1", "index"), listing: requireInstrumentListing('IE0002XZSHO1'), isin: 'IE0002XZSHO1', ter: formatEtfTer('IE0002XZSHO1', 'index'), repl: '🔄 Synthétique', dist: 'capitalisant' }] },
       { indexName: 'MSCI World ex USA', choiceNote: 'fonds récent, CTO uniquement', pea: false,
         funds: [{ name: getInstrumentName("IE0006WW1TQ4", "index"), listing: requireInstrumentListing('IE0006WW1TQ4'), isin: 'IE0006WW1TQ4', ter: formatEtfTer('IE0006WW1TQ4', 'index'), repl: '🔄 Physique', dist: 'capitalisant', aum: getInstrumentAum("IE0006WW1TQ4", "index") }] },
       { indexName: 'MSCI World Small Cap', choiceNote: 'CTO uniquement', pea: false,
@@ -987,16 +987,16 @@ export const FAMILIES = [
       chain: [`World (${formatIndexConstituents('world', '2026-09-30')}, septembre 2026)`, `World ex USA (${formatIndexConstituents('world-ex-usa', '2026-08-31')}, septembre 2026)`, `World Small Cap (${formatIndexConstituents('world-small-cap', '2026-08-31')}, septembre 2026)`],
       notes: ['⚠️ Le World ex USA conserve les grandes et moyennes capitalisations : il retire un pays, pas une tranche de taille.', '→ World Small Cap ajoute une tranche de taille absente du World classique ; il contient encore beaucoup d’entreprises américaines.'],
     },
-    // CW8 et WSML : séries des parts exactes, sans historique antérieur au lancement.
+    // WPEA et WSML : séries des parts exactes, sans historique antérieur au lancement.
     // https://www.ishares.com/uk/individual/en/products/251882/ishares-core-msci-world-ucits-etf
     // https://www.ishares.com/uk/professionals/en/products/296576/ishares-msci-world-small-cap-ucits-etf
     // EXUS lancé le 06/03/2024 : pas de rendement propre sur les trois années.
     perfFunds: [
-      { key: 'world', label: 'Amundi MSCI World (CW8)', ...getInstrumentComparatorReturns('LU1681043599') },
+      { key: 'world', label: 'iShares MSCI World Swap PEA (WPEA)', y2023: null, y2024: null, y2025: 6.6, perfNote: 'Part lancée en mars 2024 ; seule année civile complète publiée : 2025.' },
       { key: 'ex_usa', label: 'Xtrackers MSCI World ex USA (EXUS)', y2023: null, y2024: null, y2025: null, perfNote: 'Part lancée en mars 2024 : pas de série annuelle complète 2023–2025.' },
       { key: 'small_cap', label: 'iShares MSCI World Small Cap (WSML)', ...getInstrumentComparatorReturns('IE00BF4RFH31') },
     ],
-    perfMethodNote: 'ℹ️ CW8 : part en euros ; WSML : part en dollars. Dividendes réinvestis et frais déduits. La part EXUS, plus récente, n’a pas trois années civiles complètes. Performances passées non prédictives.',
+    perfMethodNote: 'ℹ️ WPEA : part en euros ; WSML : part en dollars. Dividendes réinvestis et frais déduits. La part EXUS, plus récente, n’a pas trois années civiles complètes. Performances passées non prédictives.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '🌍 Une base développée ?', a: 'MSCI World inclut grandes et moyennes sociétés, notamment américaines.' },
@@ -1035,7 +1035,7 @@ FAMILIES.push({
  ],
  block2Title: 'EXEMPLES D’ETF DISPONIBLES',
  etfGroups: [
-  { indexName: 'MSCI World', pea: true, choiceNote: 'MSCI World éligible PEA, sans couverture de change', funds: [{ name: getInstrumentName('LU1681043599','index'), isin: 'LU1681043599', listing: requireInstrumentListing('LU1681043599'), ter: formatEtfTer('LU1681043599','index') }] },
+  { indexName: 'MSCI World', pea: true, choiceNote: 'MSCI World éligible PEA, sans couverture de change', funds: [{ name: getInstrumentName('IE0002XZSHO1','index'), isin: 'IE0002XZSHO1', listing: requireInstrumentListing('IE0002XZSHO1'), ter: formatEtfTer('IE0002XZSHO1','index') }] },
   { indexName: 'MSCI World Sector Neutral Quality', choiceNote: 'Part citée non couverte en euros ; statut PEA non documenté', funds: [{ name: getInstrumentName('IE00BP3QZ601','index'), isin: 'IE00BP3QZ601', listing: requireInstrumentListing('IE00BP3QZ601'), ter: formatEtfTer('IE00BP3QZ601','index') }] },
   { indexName: 'MSCI World Momentum', choiceNote: 'Part citée non couverte en euros ; statut PEA non documenté', funds: [{ name: getInstrumentName('IE00BP3QZ825','index'), isin: 'IE00BP3QZ825', listing: requireInstrumentListing('IE00BP3QZ825'), ter: formatEtfTer('IE00BP3QZ825','index') }] },
   { indexName: 'MSCI World Minimum Volatility (USD)', choiceNote: 'USD ne signifie pas couvert en euros ; statut PEA non documenté', funds: [{ name: getInstrumentName('IE00B8FHGS14','index'), isin: 'IE00B8FHGS14', listing: requireInstrumentListing('IE00B8FHGS14'), ter: formatEtfTer('IE00B8FHGS14','index') }] },

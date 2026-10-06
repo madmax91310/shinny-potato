@@ -3,7 +3,7 @@ export const COMPARISON_EDITORIAL = {
   monde: {
     hook: '🌍 Tu cherches un ETF mondial pour ton portefeuille. Mais entre World, ACWI et All-World, lequel correspond à ce que tu veux acheter ?',
     focus: 'pays couverts, frais et accès au PEA',
-    conclusion: 'Amundi MSCI World suit le MSCI World : les pays développés, sans les émergents. Amundi PEA Global suit le MSCI ACWI et ajoute les émergents. Ces deux ETF sont éligibles au PEA.\n\nVanguard suit le FTSE All-World sur un CTO : un univers proche de l’ACWI, avec des règles et des pondérations différentes.',
+    conclusion: 'iShares WPEA suit le MSCI World : les pays développés, sans les émergents. Amundi PEA Global suit le MSCI ACWI et ajoute les émergents. Ces deux ETF sont éligibles au PEA.\n\nVanguard suit le FTSE All-World sur un CTO : un univers proche de l’ACWI, avec des règles et des pondérations différentes.',
   },
   usa: { hook: '🇺🇸 Tu veux un ETF sur les actions américaines. S&P 500, Nasdaq-100 et Dow Jones ne sélectionnent pas les mêmes entreprises : lequel correspond à ce que tu recherches ?', focus: 'indice suivi, frais et accès au PEA' },
   europe: { hook: '🇪🇺 Tu veux investir en Europe avec un ETF. Mais choisir la zone euro ou plusieurs marchés européens ne te donne pas les mêmes entreprises.', focus: 'marchés couverts, frais et accès au PEA' },
@@ -38,7 +38,7 @@ export const FUND_EXPOSURES = {
   IE00BD4TXV59: 'Des actions de pays développés, sans les marchés émergents.',
   IE00BK5BQT80: 'Des actions de pays développés et émergents dans une seule ligne.',
   IE00B44Z5B48: 'Des pays développés et émergents également, avec un indice construit par MSCI plutôt que FTSE.',
-  LU1681043599: 'Le MSCI World dans ton PEA, grâce à une réplication synthétique.',
+  IE0002XZSHO1: 'Le MSCI World dans ton PEA, grâce à une réplication synthétique.',
   IE000XZSV718: 'Les grandes entreprises du S&P 500, avec une réplication physique.',
   FR0011871128: 'Un large panier de grandes entreprises américaines via le S&P 500, accessible dans le PEA.',
   FR0007056841: 'Le Dow Jones : 30 grandes sociétés américaines, pondérées par le prix de leurs actions, sur un CTO.',

@@ -93,6 +93,6 @@ assert.equal(getComparisonPerformance('FR0007056841').referenceIsin, 'FR00070568
 assert.deepEqual(getComparisonPerformance('FR0007056841').calendarReturns, {2023:11.66,2024:22.07,2025:.70});
 assert.match(buildTweetText(usa), /Dow Jones/);
 for (const id of ['world-minvol','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde']) {
- assert(DEFAULT_THEMES.find(t => t.id === id).etfs.some(f => f.isin === 'LU1681043599'));
+ assert(DEFAULT_THEMES.find(t => t.id === id).etfs.some(f => f.isin === 'IE0002XZSHO1'));
  assert(!DEFAULT_THEMES.find(t => t.id === id).etfs.some(f => f.isin === 'IE00B4L5Y983'));
 }

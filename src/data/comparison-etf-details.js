@@ -2,6 +2,7 @@ import { AUTOMATED_ETF, refreshFundDetails } from './automated-etf.js';
 // Exact fund holdings, or explicitly identified exposure for a synthetic fund.
 // Dates refer to compositions, not to calendar-year performances.
 const MANUAL_DETAILS = {
+  IE0002XZSHO1: {asOf: '2025-12-31', checkedAt: '2026-10-06', basis: 'fund', source: 'https://www.blackrock.com/fr/intermediaries/products/335178/ishares-msci-world-swap-pea-ucits-etf', performance: {currency: 'EUR', basis: 'fund', years: {2025: 6.6}, source: 'https://www.blackrock.com/fr/intermediaries/products/335178/ishares-msci-world-swap-pea-ucits-etf'}},
   FR0007056841: {asOf: '2026-08-31', checkedAt: '2026-10-06', basis: 'tracked-index', index: 'Dow Jones Industrial Average', source: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831', holdings: [['Goldman Sachs',11.47],['Caterpillar',8.88],['Microsoft',5.70]], sectors: [['Finance',27.48],['Technologie',18.34],['Industrie',15.56],['Santé',13.78],['Consommation cyclique',10],['Communication',5.05],['Matériaux',3.83],['Consommation de base',3.73],['Énergie',2.24]], performance: {currency: 'EUR', basis: 'fund', years: {2023:11.66,2024:22.07,2025:0.70}, source: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831'} },
   "IE00BKM4GZ66": {
     "asOf": "2026-08-31",

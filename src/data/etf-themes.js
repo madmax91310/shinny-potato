@@ -41,7 +41,7 @@ export function createTheme(overrides = {}) {
 // produit d'un comparatif. Les frais et l'éligibilité peuvent aussi changer :
 // contrôler les fiches émetteurs avant publication.
 const BASE_THEMES = [
-  // Priorité PEA par indice : CW8 pour World, PEA Global pour ACWI.
+  // Priorité PEA par indice : WPEA pour World, PEA Global pour ACWI.
   // FTSE All-World conserve son exposition et son ETF en CTO.
   createTheme({
     id: 'monde',
@@ -52,7 +52,7 @@ const BASE_THEMES = [
     transition:
       'World, ACWI et All-World : voici trois univers, avec une option PEA dès que possible :',
     etfs: [
-      createEtf({ nom: getInstrumentName('LU1681043599', 'tweet'), isin: 'LU1681043599', frais: formatEtfTer('LU1681043599'), differenciateur: affirmInstrumentPea('LU1681043599', true, 'MSCI World : pays développés, éligible PEA') }),
+      createEtf({ nom: getInstrumentName('IE0002XZSHO1', 'tweet'), isin: 'IE0002XZSHO1', frais: formatEtfTer('IE0002XZSHO1'), differenciateur: affirmInstrumentPea('IE0002XZSHO1', true, 'MSCI World : pays développés, éligible PEA') }),
       createEtf({ nom: getInstrumentName('FR0014017NX3', 'tweet'), isin: 'FR0014017NX3', frais: formatEtfTer('FR0014017NX3'), differenciateur: affirmInstrumentPea('FR0014017NX3', true, 'MSCI ACWI : pays développés et émergents, éligible PEA') }),
       createEtf({ nom: getInstrumentName('IE00BK5BQT80', 'tweet'), isin: 'IE00BK5BQT80', frais: formatEtfTer('IE00BK5BQT80'), differenciateur: 'FTSE All-World : pays développés et émergents, CTO' }),
     ],
@@ -741,7 +741,7 @@ const reusedTheme = (id, nom, emoji, transition, products, cloture, question) =>
 })
 const COMPARISON_THEMES = [...existingThemes,
  reusedTheme('world-minvol','World classique ou Minimum Volatility','🌍','La capitalisation du marché, ou un portefeuille dont on optimise le risque estimé ?',
-  [['LU1681043599','MSCI World : pondération par capitalisation flottante.'],['IE00B8FHGS14','MSCI World Minimum Volatility (USD) : optimisation du risque sous contraintes.']],
+  [['IE0002XZSHO1','MSCI World : pondération par capitalisation flottante.'],['IE00B8FHGS14','MSCI World Minimum Volatility (USD) : optimisation du risque sous contraintes.']],
   'Les deux fonds partent des pays développés. Minimum Volatility modifie la sélection et les poids, sans garantir une baisse moindre à chaque période. USD ne signifie pas couvert en euros ; une cotation EUR ne couvre pas le change.', 'Tu privilégies le marché entier ou une volatilité recherchée plus faible ?'),
  reusedTheme('jeux-video','Jeux vidéo et eSport','🎮','Un thème lié aux jeux vidéo : voici une exposition dédiée, distincte de toute la technologie.',
   [['IE00BYWQWR46','Éditeurs, développeurs et activités liées aux jeux vidéo et à l’eSport ; panier concentré.']],
@@ -757,13 +757,13 @@ const COMPARISON_THEMES = [...existingThemes,
   'Ces fonds détiennent des actions : leur prix peut baisser. L’immobilier coté et les infrastructures ne constituent pas la même activité et restent sensibles, notamment, aux taux et au financement.', 'Tu choisirais l’immobilier coté ou les infrastructures ?'),
 
  reusedTheme('monde-toutes-tailles','World, ACWI ou ACWI IMI','🌍','Un ETF mondial : pays développés seuls, avec les émergents, ou avec les petites entreprises aussi ?',
-  [['LU1681043599','MSCI World : grandes et moyennes entreprises des pays développés.'],['FR0014017NX3','MSCI ACWI : développés et émergents, grandes et moyennes.'],['IE00B3YLTY66','MSCI ACWI IMI : développés et émergents, grandes, moyennes et petites.']],
+  [['IE0002XZSHO1','MSCI World : grandes et moyennes entreprises des pays développés.'],['FR0014017NX3','MSCI ACWI : développés et émergents, grandes et moyennes.'],['IE00B3YLTY66','MSCI ACWI IMI : développés et émergents, grandes, moyennes et petites.']],
   'Trois univers différents. L’ACWI IMI ajoute les petites capitalisations, sans leur donner le même poids qu’aux géants.', 'Tu choisirais quelle couverture mondiale ?'),
  reusedTheme('world-avec-sans-usa','World avec ou sans États-Unis','🌍','Garder les États-Unis au poids du World, ou les séparer du reste des marchés développés ?',
-  [['LU1681043599','MSCI World : pays développés, États-Unis inclus.'],['IE0006WW1TQ4','MSCI World ex USA : les mêmes tailles d’entreprises, hors États-Unis.']],
+  [['IE0002XZSHO1','MSCI World : pays développés, États-Unis inclus.'],['IE0006WW1TQ4','MSCI World ex USA : les mêmes tailles d’entreprises, hors États-Unis.']],
   'Retirer les États-Unis change le périmètre géographique. Les émergents et petites capitalisations restent absents des deux indices.', 'Tu réglerais toi-même le poids américain ?'),
  reusedTheme('grandes-petites-monde','Grandes ou petites entreprises mondiales','🔎','Ton World ne couvre pas les petites entreprises. Qu’apporte une seconde ligne ?',
-  [['LU1681043599','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00BF4RFH31','MSCI World Small Cap : petites entreprises des pays développés.']],
+  [['IE0002XZSHO1','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00BF4RFH31','MSCI World Small Cap : petites entreprises des pays développés.']],
   'Les petites capitalisations complètent une tranche de taille ; elles restent exposées aux baisses des actions et aux devises.', 'Tu ajouterais des petites entreprises à ton World ?'),
   reusedTheme('financieres', 'Financières américaines ou mondiales', '🏦',
     'Tu veux renforcer la finance : seulement aux États-Unis, ou dans plusieurs pays développés ?',
