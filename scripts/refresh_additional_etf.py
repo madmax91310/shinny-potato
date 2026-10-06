@@ -17,6 +17,15 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 
 def collect_one(share,now):
+    if share['parser'] in ('coinshares-document', 'ubs-document'):
+        from collect_remaining_documents import collect_one as remaining_document
+        return remaining_document(share, now)
+    if share['parser']=='lg-api':
+        from collect_lg_api import collect_one as lg_api
+        return lg_api(share, now)
+    if share['parser'] in ('wisdomtree-html', 'globalx-html', 'bitwise-html'):
+        from collect_public_issuer import collect_one as public_issuer
+        return public_issuer(share, now)
     if share['parser']=='ishares-legacy':
         from collect_document_etf import collect_legacy
         return collect_legacy(share,now)
