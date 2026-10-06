@@ -41,6 +41,9 @@ export function createTheme(overrides = {}) {
 // produit d'un comparatif. Les frais et l'éligibilité peuvent aussi changer :
 // contrôler les fiches émetteurs avant publication.
 const BASE_THEMES = [
+  // Source WPEA contrôlée le 06/10/2026 : identité, TER, PEA et rendement 2025.
+  // https://www.blackrock.com/fr/intermediaries/products/335178/ishares-msci-world-swap-pea-ucits-etf
+  // ACWI et All-World : preuves individuelles maintenues dans les registres par ISIN.
   // Priorité PEA par indice : WPEA pour World, PEA Global pour ACWI.
   // FTSE All-World conserve son exposition et son ETF en CTO.
   createTheme({
