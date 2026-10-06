@@ -73,8 +73,9 @@ function instrument(isin, identity) {
   const proxy = SIMULATION_PROXIES[isin];
   if (proxy) fields.push(field('Historique de simulation (proxy)', 'simulation-proxies', { ...proxy, values: getInstrumentReturnValues(isin) }, { sourceUrls: [proxy.source], checkedAt: '2026-10-03', asOf: '2025-12-31', periodStart: '2020-01-01', periodEnd: '2025-12-31', currency: proxy.currency, scope: proxy.scope, method: 'Proxy documenté, distinct de la part exacte', note: proxy.note }));
   const reviewed = REVIEWED_PERFORMANCE_META[isin];
-  const returns = reviewed ? (evidence.values.some(Number.isFinite) ? evidence.values : null) :
+  const candidateReturns = reviewed ? (evidence.values.some(Number.isFinite) ? evidence.values : null) :
     proxy ? VERIFIED_RETURNS[isin].values : PORTFOLIO_RETURN_EVIDENCE[isin] || evidence ? getInstrumentReturnValues(isin) : null;
+  const returns = candidateReturns?.some(Number.isFinite) ? candidateReturns : null;
   if (returns) {
     fields.push(field('Rendements 2020–2025', 'instrument-returns', returns, reviewed || AUTOMATED_PERFORMANCE[isin] ? {
       source: evidence.source, checkedAt: evidence.checkedAt, currency: evidence.currency,
