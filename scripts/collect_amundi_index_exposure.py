@@ -3,6 +3,30 @@ import datetime as dt
 import re
 from data_automation import UTC, reject
 from issuer_documents import download, pdf_text, document_date, proof, validated_rows
+from collect_amundi_etf import API, fetch_api, breakdown
+
+
+def parse_product(product, share, now):
+    facts = product['characteristics']
+    if product['productId'] != share['isin'] or facts.get('ISIN') != share['isin']:
+        reject('Wrong Amundi index-exposure share')
+    if facts.get('FUND_REPLICATION_METHODOLOGY') != 'Indirect(Swap Based)':
+        reject('Amundi index exposure requires the exact synthetic share')
+    if not facts.get('BENCHMARK_NAME') or facts['BENCHMARK_NAME'] != share['expectedIndex']:
+        reject('Amundi tracked index changed')
+    # This is the INDEX date, never POSITION_AS_OF_DATE / FUND_BREAKDOWNS_AS_OF_DATE.
+    date = document_date(facts['INDEX_BREAKDOWNS_AS_OF_DATE'], now)
+    result = {**share, 'sourceUrl': API, 'productId': share['isin'], 'exposureOnly': True}
+    for key, field, top in [('countries', 'INDEX_COUNTRIES', False),
+                            ('sectors', 'INDEX_SECTORS', False), ('holdings', 'INDEX_TOP10', True)]:
+        allocation = breakdown(product['breakDowns'], field, date, now, top)
+        if not allocation:
+            reject('Missing Amundi index allocation: ' + field)
+        allocation['basis'] = 'index'
+        if top and len(allocation['rows']) != 10:
+            reject('Incomplete Amundi top-ten index allocation')
+        result[key] = allocation
+    return result
 
 
 def rows(block):
@@ -31,9 +55,24 @@ def parse_document(body,share,now):
               'sourceUrl':share['sourceUrl']}for key,value in [('countries',countries),('sectors',sectors),('holdings',holdings)]}}
 
 
-def collect_one(share,now=None,fetch=download):
+def collect_one(share,now=None,fetch=download,api_fetch=fetch_api):
     now=now or dt.datetime.now(UTC);end=now.date().replace(day=1)-dt.timedelta(days=1)
     errors=[]
+    if share.get('expectedIndex'):
+        payload = {'productIds': [share['isin']],
+            'context': {'countryCode': 'FRA', 'languageCode': 'fr', 'userProfileName': 'INSTIT'},
+            'characteristics': ['ISIN', 'BENCHMARK_NAME', 'FUND_REPLICATION_METHODOLOGY',
+                                'INDEX_BREAKDOWNS_AS_OF_DATE'],
+            'breakDown': {'aggregationFields': ['INDEX_TOP10', 'INDEX_COUNTRIES', 'INDEX_SECTORS']}}
+        try:
+            products = api_fetch(payload)['products']
+            if len(products) != 1:
+                reject('Missing or duplicate Amundi index-exposure share')
+            return parse_product(products[0], share, now)
+        except Exception as error:
+            # A changed identity/method cannot be rescued by an older PDF.
+            # Qualified API sources fail closed and retain their existing values.
+            reject('Amundi index API: ' + str(error))
     for _ in range(2):
         url=f"https://www.amundietf.fr/pdfDocuments/monthly-factsheet/{share['isin']}/FRA/FRA/INSTITUTIONNEL/ETF/{end:%Y%m%d}"
         try:

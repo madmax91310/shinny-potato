@@ -57,7 +57,23 @@ La composition du panier de substitution d’un ETF synthétique ne devient jama
 
 Toutes les données ne sont pas collectées par chaque source : DWS fournit ici les frais et les années calendaires, sans encours/composition datés qualifiés ; Vanguard fournit les encours de part, frais, principaux titres et secteurs, sans transformer ses rendements glissants en rendements annuels ; les champs absents ou tronqués conservent leurs valeurs précédentes. Les encours de fonds et de part demeurent distingués.
 
-Restent hors remplacement automatique : Vanguard `IE00B3VVMM84`, expositions Amundi `FR0014017NX3`, `FR0011871128`, `FR001400S9V0`, indices Russell 1000/2000 et MSCI China. Leurs dernières données fiables restent disponibles. La composition Minimum Volatility est automatisée, mais son historique NET conserve sa série officielle existante : le PDF NET testé n’est pas disponible.
+Les exceptions de ce lot sont traitées dans la suite du 6 octobre ci-dessous.
+
+## Complément du 6 octobre 2026 : exceptions et champs manquants
+
+Le périmètre configuré passe à **111 parts ETF/ETC**, **22 expositions d’indices des synthétiques Amundi**, **28 compositions d’indices** et **30 historiques annuels d’indices**. Les mêmes workflows et cadences s’appliquent.
+
+- Amundi : les expositions utilisent les champs `INDEX_TOP10`, `INDEX_COUNTRIES` et `INDEX_SECTORS` de l’API officielle. ISIN, identifiant produit, réplication synthétique et nom exact du benchmark sont vérifiés. Seule `INDEX_BREAKDOWNS_AS_OF_DATE` date ces expositions. Cela inclut désormais les trois parts précédemment exclues.
+- Vanguard : correction de l’identifiant produit de `IE00B3VVMM84` vers `9507`. L’API publique GPX fournit les rendements NAV calendaires des six parts : seules les observations annuelles au 31 décembre sont acceptées, jamais les rendements glissants. Les géographies des cinq fonds actions utilisent le pays de risque MSCI ou FTSE réellement déclaré par le produit, les poids du fonds et leur date propre ; les autres classifications et poids du benchmark sont exclus.
+- DWS : les dix parts disposent d’un encours issu du téléchargement historique daté, vérifié contre l’ISIN, la devise et la date NAV publiée. Cet encours couvre **le fonds et toutes ses parts**, dans la devise du fichier, et ne devient pas un encours de la part. Les neuf fonds physiques fournissent leurs dix principales positions, pays d’enregistrement et secteurs depuis le portefeuille complet. Les liquidités, dérivés et catégories inconnues sont conservés, sans renormalisation.
+- MSCI : la composition et les rendements NET de China, ainsi que l’historique NET de World Minimum Volatility, utilisent les documents officiels disponibles. La devise et la convention de rendement restent contrôlées.
+- Russell 1000/2000 : leurs lignes annuelles exactes sont publiées dans les fiches officielles des variantes Equal Weight, avec la devise USD et la convention TOTAL. La ligne du benchmark de base est sélectionnée explicitement ; ni les rendements ni les compositions Equal Weight ne sont substitués à ceux du benchmark de base.
+
+Les sources, devises et dates propres à chaque champ alimentent les consommateurs communs. L’affichage des encours distingue notamment les yens des euros. Les données manquantes ou invalides préservent la photographie précédente ; aucune date d’export ne remplace la date de valorisation.
+
+Limites conservées : les compositions Russell restent manuelles, leurs documents testés ne publiant pas de pondérations numériques exploitables. Le panier de substitution du fonds DWS overnight synthétique reste exclu de l’exposition d’indice. Les fonds récents sans six années calendaires complètes conservent leur proxy de simulation. Les photographies historiques et fenêtres 2020–2025 restent fixes.
+
+Les régressions couvrent les mauvaises identités, devises, dates, variantes NET/GROSS, rendements glissants, classifications géographiques, fichiers tronqués et séparation fonds/indice. Les réponses officielles minimales utilisées comme fixtures sont décrites dans `scripts/fixtures/official-documents/coverage-provenance.md`.
 
 ### Correction de l’audit de revue
 

@@ -12,6 +12,9 @@ from issuer_documents import document_date, validated_rows, pdf_text, download
 from collect_index_documents import msci_composition, msci_returns, ftse_composition, ftse_returns
 from refresh_index_sources import merge_records
 from refresh_additional_etf import refresh
+from collect_amundi_index_exposure import parse_product as amundi_index
+from collect_vanguard_etf import parse_api as vanguard_api
+from collect_dws_etf import parse_aum_workbook, parse_holdings as dws_holdings
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 NOW=dt.datetime(2026,10,5,tzinfo=UTC)
@@ -98,5 +101,111 @@ class Documents(unittest.TestCase):
         self.assertEqual(merged,{'bad':{'value':'retained'},'ok':{'value':'new'}})
         self.assertEqual([o['status'] for o in report['shares']],['validated','failed'])
         self.assertEqual(previous,{'bad':{'value':'retained'}})
+
+class CompletedIssuerCoverage(unittest.TestCase):
+    now = dt.datetime(2026, 10, 6, tzinfo=UTC)
+    folder = ROOT / 'scripts/fixtures/official-documents'
+    shares = json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']
+
+    def fixture(self, name):
+        return json.loads((self.folder/name).read_text())
+
+    def share(self, isin):
+        return next(s for s in self.shares if s['isin'] == isin)
+
+    def test_amundi_uses_only_the_explicit_index_date_and_index_rows(self):
+        p = self.fixture('amundi-index-share.json'); s = self.share(p['productId'])
+        p['characteristics']['POSITION_AS_OF_DATE'] = '2026-10-05'
+        p['characteristics']['FUND_BREAKDOWNS_AS_OF_DATE'] = '2026-10-05'
+        r = amundi_index(p, s, self.now)
+        self.assertEqual(r['holdings']['asOf'], '2026-10-02')
+        self.assertEqual(r['sectors']['basis'], 'index')
+        for defect in ['identity', 'index', 'date', 'method', 'missing', 'truncated']:
+            bad = copy.deepcopy(p)
+            if defect == 'identity': bad['characteristics']['ISIN'] = 'WRONG'
+            if defect == 'index': bad['characteristics']['BENCHMARK_NAME'] = 'MSCI World'
+            if defect == 'date': bad['characteristics'].pop('INDEX_BREAKDOWNS_AS_OF_DATE')
+            if defect == 'method': bad['characteristics']['FUND_REPLICATION_METHODOLOGY'] = 'Direct(Physical)'
+            if defect == 'missing': bad['breakDowns'] = []
+            if defect == 'truncated': bad['breakDowns'][1]['breakDownData'] = bad['breakDowns'][1]['breakDownData'][:1]
+            with self.subTest(defect=defect), self.assertRaises((ValueError, KeyError)):
+                amundi_index(bad, s, self.now)
+
+    def test_vanguard_calendar_years_exclude_rolling_periods_and_use_fund_countries(self):
+        p = self.fixture('vanguard-exact-share.json'); s = self.share('IE00B3VVMM84')
+        r = vanguard_api(p, s, self.now)
+        self.assertEqual(r['unavailable'], [])
+        self.assertEqual(set(r['performance']['years']), {str(y) for y in range(2020, 2026)})
+        self.assertEqual(r['performance']['years']['2025'], 25.67)
+        self.assertEqual(r['countries']['asOf'], '2026-08-31')
+        self.assertAlmostEqual(sum(p['weightPct'] for p in r['countries']['rows']), 100, delta=.01)
+        self.assertTrue(all(row['name'] for row in r['countries']['rows']))
+        for key, value in [('fundCurrency', 'EUR'), ('portId', '9508')]:
+            bad = copy.deepcopy(p); bad['data']['funds'][0]['profile'][key] = value
+            with self.assertRaises(ValueError): vanguard_api(bad, s, self.now)
+        bad = copy.deepcopy(p);bad['data']['funds'][0]['profile']['identifiers'][0]['altIdValue'] = 'WRONG'
+        with self.assertRaises(ValueError): vanguard_api(bad, s, self.now)
+
+    def test_vanguard_field_failure_is_independent_and_does_not_erase_previous_values(self):
+        p = self.fixture('vanguard-exact-share.json'); s = self.share('IE00B3VVMM84')
+        p['data']['funds'][0]['marketAllocation'] = []
+        r = vanguard_api(p, s, self.now)
+        self.assertIn('performance', r); self.assertNotIn('countries', r)
+        p = self.fixture('vanguard-exact-share.json')
+        points = p['data']['funds'][0]['performanceDetails']['items']['quarterlyReturns']['totalReturns']['items']
+        points.append(copy.deepcopy(points[0]))
+        r = vanguard_api(p, s, self.now)
+        self.assertNotIn('performance', r); self.assertIn('countries', r)
+        p = self.fixture('vanguard-exact-share.json')
+        for row in p['data']['funds'][0]['marketAllocation']: row['date'] = '2020-01-01'
+        r = vanguard_api(p, s, self.now)
+        self.assertNotIn('countries', r); self.assertIn('performance', r)
+
+    def test_dws_workbook_uses_actual_value_date_currency_and_fund_scope(self):
+        body = (self.folder/'dws-history.xlsx').read_bytes()
+        product = self.fixture('dws-exact-share.json'); share = self.share('IE00BLNMYC90')
+        r = parse_aum_workbook(body, share, self.now, 'https://etf.dws.com/history', product)
+        self.assertEqual(r['asOf'], '2026-10-02') # not the 06/10 export date
+        self.assertEqual(r['scope'], 'fund'); self.assertEqual(r['currency'], 'USD')
+        self.assertAlmostEqual(r['amount'], 15294969181.9763)
+        with self.assertRaises(ValueError): parse_aum_workbook(body, {**share, 'currency':'EUR'}, self.now, '', product)
+        with self.assertRaises(ValueError): parse_aum_workbook(body, {**share, 'isin':'WRONG'}, self.now, '', product)
+        with self.assertRaises(ValueError): parse_aum_workbook(body, share, dt.datetime(2027,1,1,tzinfo=UTC), '', product)
+
+    def test_dws_physical_portfolio_preserves_cash_and_unclassified_positions(self):
+        p = self.fixture('dws-physical-holdings.json'); s = self.share('IE00BM67HK77')
+        r = dws_holdings(p, s, self.now, s['sourceUrl'])
+        self.assertEqual(r['holdings']['asOf'], '2026-10-02')
+        self.assertEqual(len(r['holdings']['rows']), 10)
+        sectors = {v['name']:v['weightPct'] for v in r['sectors']['rows']}
+        self.assertIn('Unassigned', sectors); self.assertIn('Cash and/or Derivatives', sectors)
+        self.assertAlmostEqual(sum(sectors.values()), 100, delta=.01)
+        self.assertTrue(all(row['basis']=='fund' for row in r.values()))
+        for defect in ['missing-date','future-date','truncated','duplicate-security']:
+            bad = copy.deepcopy(p)
+            if defect == 'missing-date': bad['tables'][0]['disclaimers'] = []
+            if defect == 'future-date': bad['tables'][0]['disclaimers'][0]['text'] = 'Source: DWS 07/10/2026'
+            if defect == 'truncated': bad['tables'][0]['values'] = bad['tables'][0]['values'][:1]
+            if defect == 'duplicate-security': bad['tables'][0]['values'].append(copy.deepcopy(bad['tables'][0]['values'][0]))
+            with self.subTest(defect=defect), self.assertRaises(ValueError): dws_holdings(bad, s, self.now, '')
+
+    def test_russell_uses_exact_benchmark_row_not_equal_weight_returns(self):
+        for id in ['russell-1000','russell-2000']:
+            config = next(s for s in CONFIG if s['id']==id)
+            text = (self.folder/(id+'-benchmark-row.txt')).read_text()
+            config = {**config, 'documentName':config['returnDocumentName']}
+            returns = ftse_returns(text, config, self.now)
+            self.assertEqual(len(returns), 6)
+            self.assertEqual(returns[0][1], 6.06) # fabricated fixture value, not market data
+            with self.assertRaises(ValueError): ftse_returns(text, {**config, 'returnCurrency':'EUR'}, self.now)
+            with self.assertRaises(ValueError): ftse_returns(text, {**config, 'returnVariant':'NET'}, self.now)
+            with self.assertRaises(ValueError): ftse_returns(text, {**config, 'returnRowName':'Russell 3000'}, self.now)
+
+    def test_new_msci_sources_and_historical_snapshots(self):
+        for id, file in [('msci-china','msci-china.txt'), ('msci-world-minimum-volatility-usd','msci-min-vol-net.txt')]:
+            config=next(s for s in CONFIG if s['id']==id);text=(self.folder/file).read_text()
+            self.assertEqual(len(msci_returns(text,config,self.now)),6)
+            self.assertEqual(msci_composition(text,config,self.now)['asOf'],'2026-09-30')
+            with self.assertRaises(ValueError): msci_returns(text,{**config,'returnVariant':'GROSS'},self.now)
 
 if __name__=='__main__':unittest.main()

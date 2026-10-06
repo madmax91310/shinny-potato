@@ -1,0 +1,508 @@
+{
+  "productId": "FR0014017NX3",
+  "characteristics": {
+    "ISIN": "FR0014017NX3",
+    "BENCHMARK_NAME": "MSCI AC World Index Daily Net TR EUR",
+    "INDEX_BREAKDOWNS_AS_OF_DATE": "2026-10-02",
+    "FUND_REPLICATION_METHODOLOGY": "Indirect(Swap Based)"
+  },
+  "productType": "PRODUCT",
+  "currencies": {
+    "CURRENCY": "EUR",
+    "BASE_CURRENCY": "EUR",
+    "INDEX_CURRENCY": "EUR"
+  },
+  "metrics": [],
+  "historics": [],
+  "passportingCountries": null,
+  "composition": null,
+  "breakDowns": [
+    {
+      "aggregationField": "INDEX_TOP10",
+      "breakDownData": [
+        {
+          "aggregationName": "NVIDIA CORP",
+          "weight": 0.0,
+          "adjustedWeight": 0.05214232590047,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "NVDA UW",
+            "currency": "USD",
+            "sector": "Information Technology",
+            "isin": "US67066G1040",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "APPLE INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.04751329879213,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "AAPL UW",
+            "currency": "USD",
+            "sector": "Information Technology",
+            "isin": "US0378331005",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "MICROSOFT CORP",
+          "weight": 0.0,
+          "adjustedWeight": 0.03540664918857,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "MSFT UW",
+            "currency": "USD",
+            "sector": "Information Technology",
+            "isin": "US5949181045",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "AMAZON.COM INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.02360690203897,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "AMZN UW",
+            "currency": "USD",
+            "sector": "Consumer Discretionary",
+            "isin": "US0231351067",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "ALPHABET INC CL A",
+          "weight": 0.0,
+          "adjustedWeight": 0.01953923333898,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "GOOGL UW",
+            "currency": "USD",
+            "sector": "Communication Services",
+            "isin": "US02079K3059",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "weight": 0.0,
+          "adjustedWeight": 0.01871672649222,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "2330 TT",
+            "currency": "TWD",
+            "sector": "Information Technology",
+            "isin": "TW0002330008",
+            "countryOfRisk": "Taiwan"
+          }
+        },
+        {
+          "aggregationName": "BROADCOM INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.0155610069966,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "AVGO UW",
+            "currency": "USD",
+            "sector": "Information Technology",
+            "isin": "US11135F1012",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "META PLATFORMS INC-CLASS A",
+          "weight": 0.0,
+          "adjustedWeight": 0.01550061165883,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "META UW",
+            "currency": "USD",
+            "sector": "Communication Services",
+            "isin": "US30303M1027",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "ALPHABET INC CL C",
+          "weight": 0.0,
+          "adjustedWeight": 0.01542436148551,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "GOOG UW",
+            "currency": "USD",
+            "sector": "Communication Services",
+            "isin": "US02079K1079",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "MICRON TECHNOLOGY INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.01176894551802,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "MU UW",
+            "currency": "USD",
+            "sector": "Information Technology",
+            "isin": "US5951121038",
+            "countryOfRisk": "United States"
+          }
+        }
+      ]
+    },
+    {
+      "aggregationField": "INDEX_SECTORS",
+      "breakDownData": [
+        {
+          "aggregationName": "Information Technology",
+          "weight": 0.33720431748906,
+          "adjustedWeight": 0.33720431748906,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Financials",
+          "weight": 0.15932450276695,
+          "adjustedWeight": 0.15932450276695,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Industrials",
+          "weight": 0.10317399754748,
+          "adjustedWeight": 0.10317399754748,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Health Care",
+          "weight": 0.08250323918402,
+          "adjustedWeight": 0.08250323918402,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Consumer Discretionary",
+          "weight": 0.08229760511736,
+          "adjustedWeight": 0.08229760511736,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Communication Services",
+          "weight": 0.07935134417604,
+          "adjustedWeight": 0.07935134417604,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Consumer Staples",
+          "weight": 0.04497438062478,
+          "adjustedWeight": 0.04497438062478,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Energy",
+          "weight": 0.03986802277444,
+          "adjustedWeight": 0.03986802277444,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Others",
+          "weight": 0.03672223211813,
+          "adjustedWeight": 0.03672223211813,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Materials",
+          "weight": 0.03458035820174,
+          "adjustedWeight": 0.03458035820174,
+          "additionalProperties": null
+        }
+      ]
+    },
+    {
+      "aggregationField": "INDEX_COUNTRIES",
+      "breakDownData": [
+        {
+          "aggregationName": "United States",
+          "weight": 0.64536312364413,
+          "adjustedWeight": 0.64536312364413,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Japan",
+          "weight": 0.0515973692414,
+          "adjustedWeight": 0.0515973692414,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Taiwan",
+          "weight": 0.03473445630501,
+          "adjustedWeight": 0.03473445630501,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "United Kingdom",
+          "weight": 0.02936611096192,
+          "adjustedWeight": 0.02936611096192,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Canada",
+          "weight": 0.02904765388343,
+          "adjustedWeight": 0.02904765388343,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "South Korea",
+          "weight": 0.02620626261318,
+          "adjustedWeight": 0.02620626261318,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "China",
+          "weight": 0.02316110803481,
+          "adjustedWeight": 0.02316110803481,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "France",
+          "weight": 0.01931210049725,
+          "adjustedWeight": 0.01931210049725,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Switzerland",
+          "weight": 0.01870975523896,
+          "adjustedWeight": 0.01870975523896,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Germany",
+          "weight": 0.01795606400474,
+          "adjustedWeight": 0.01795606400474,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Australia",
+          "weight": 0.01326442146388,
+          "adjustedWeight": 0.01326442146388,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Netherlands",
+          "weight": 0.01266829428446,
+          "adjustedWeight": 0.01266829428446,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "India",
+          "weight": 0.01250672564626,
+          "adjustedWeight": 0.01250672564626,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Spain",
+          "weight": 0.00814140694927,
+          "adjustedWeight": 0.00814140694927,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Sweden",
+          "weight": 0.00698848047838,
+          "adjustedWeight": 0.00698848047838,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Italy",
+          "weight": 0.00657888913656,
+          "adjustedWeight": 0.00657888913656,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Brazil",
+          "weight": 0.00498231963842,
+          "adjustedWeight": 0.00498231963842,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Singapore",
+          "weight": 0.00385399350951,
+          "adjustedWeight": 0.00385399350951,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Hong Kong",
+          "weight": 0.0036709410057,
+          "adjustedWeight": 0.0036709410057,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "South Africa",
+          "weight": 0.0034327376089,
+          "adjustedWeight": 0.0034327376089,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Denmark",
+          "weight": 0.00320970494028,
+          "adjustedWeight": 0.00320970494028,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Saudi Arabia",
+          "weight": 0.00272628867008,
+          "adjustedWeight": 0.00272628867008,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Israel",
+          "weight": 0.00246161132036,
+          "adjustedWeight": 0.00246161132036,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Finland",
+          "weight": 0.00245735773368,
+          "adjustedWeight": 0.00245735773368,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Belgium",
+          "weight": 0.0022374777666,
+          "adjustedWeight": 0.0022374777666,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Mexico",
+          "weight": 0.00185775197349,
+          "adjustedWeight": 0.00185775197349,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "UAE",
+          "weight": 0.00144034178756,
+          "adjustedWeight": 0.00144034178756,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Poland",
+          "weight": 0.0013407166654,
+          "adjustedWeight": 0.0013407166654,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Norway",
+          "weight": 0.00129568883408,
+          "adjustedWeight": 0.00129568883408,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Thailand",
+          "weight": 0.0010952119488,
+          "adjustedWeight": 0.0010952119488,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Malaysia",
+          "weight": 0.00103834268561,
+          "adjustedWeight": 0.00103834268561,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Ireland",
+          "weight": 0.00087638912561,
+          "adjustedWeight": 0.00087638912561,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Austria",
+          "weight": 0.00076839400736,
+          "adjustedWeight": 0.00076839400736,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Greece",
+          "weight": 0.00069836003754,
+          "adjustedWeight": 0.00069836003754,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Kuwait",
+          "weight": 0.00064045376849,
+          "adjustedWeight": 0.00064045376849,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Indonesia",
+          "weight": 0.00051476300833,
+          "adjustedWeight": 0.00051476300833,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Qatar",
+          "weight": 0.00050460535493,
+          "adjustedWeight": 0.00050460535493,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Chile",
+          "weight": 0.00048791575059,
+          "adjustedWeight": 0.00048791575059,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Peru",
+          "weight": 0.00047965544684,
+          "adjustedWeight": 0.00047965544684,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Turkey",
+          "weight": 0.00045181361662,
+          "adjustedWeight": 0.00045181361662,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Portugal",
+          "weight": 0.00044672839163,
+          "adjustedWeight": 0.00044672839163,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "New Zealand",
+          "weight": 0.000374934957,
+          "adjustedWeight": 0.000374934957,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Hungary",
+          "weight": 0.00036171326142,
+          "adjustedWeight": 0.00036171326142,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Philippines",
+          "weight": 0.00029145884463,
+          "adjustedWeight": 0.00029145884463,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Colombia",
+          "weight": 0.00019567653768,
+          "adjustedWeight": 0.00019567653768,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Czech Republic",
+          "weight": 0.00012810749313,
+          "adjustedWeight": 0.00012810749313,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Egypt",
+          "weight": 7.632192608e-05,
+          "adjustedWeight": 7.632192608e-05,
+          "additionalProperties": null
+        }
+      ]
+    }
+  ]
+}

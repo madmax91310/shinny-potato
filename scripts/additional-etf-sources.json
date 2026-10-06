@@ -158,8 +158,8 @@
     },
     {
       "isin": "IE00B3VVMM84",
-      "productCode": 9508,
-      "pageUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9508/ftse-emerging-markets-ucits-etf-usd-distributing",
+      "productCode": 9507,
+      "pageUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9507/ftse-emerging-markets-ucits-etf-usd-distributing",
       "provider": "Vanguard",
       "parser": "vanguard",
       "currency": "USD",
@@ -168,8 +168,7 @@
       "benchmark": "FTSE Emerging",
       "name": "Vanguard FTSE Emerging Markets UCITS ETF (Dist)",
       "required": true,
-      "enabled": false,
-      "qualificationIssue": "Vanguard current factsheet link ambiguous"
+      "enabled": true
     },
     {
       "isin": "IE00BZ163G84",
@@ -305,8 +304,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": false,
-      "qualificationIssue": "2026-09-30: HTTP Error 404: Not Found ; 2026-08-31: HTTP Error 404: Not Found"
+      "enabled": true,
+      "expectedIndex": "MSCI AC World Index Daily Net TR EUR"
     },
     {
       "isin": "FR0010342592",
@@ -318,7 +317,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "Nasdaq 100 Leveraged Notional Net Total Return Index"
     },
     {
       "isin": "FR0010755611",
@@ -330,7 +330,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI USA Leveraged 2X Index"
     },
     {
       "isin": "FR0011440478",
@@ -342,7 +343,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI EM EMEA Ex-Egypt ESG Broad CTB Select Index"
     },
     {
       "isin": "FR0011869320",
@@ -354,7 +356,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI Emerging Markets India Net TR (USD)"
     },
     {
       "isin": "FR0011871078",
@@ -366,7 +369,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI China Screened Select ex Thermal Coal Index"
     },
     {
       "isin": "FR0011871110",
@@ -378,7 +382,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "NASDAQ-100 Notional Net Total Return Index"
     },
     {
       "isin": "FR0011871128",
@@ -390,8 +395,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": false,
-      "qualificationIssue": "2026-09-30: HTTP Error 404: Not Found ; 2026-08-31: HTTP Error 404: Not Found"
+      "enabled": true,
+      "expectedIndex": "S&P 500 Net Total Return Index"
     },
     {
       "isin": "FR0013411980",
@@ -403,7 +408,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "Topix Total Return Index JPY"
     },
     {
       "isin": "FR0013411998",
@@ -415,7 +421,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "TOPIX Total Return EUR Daily Hedge Index"
     },
     {
       "isin": "FR0013412004",
@@ -427,7 +434,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI EM Latin America Selection 20/35% Capped Index"
     },
     {
       "isin": "FR0013412012",
@@ -439,7 +447,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI EM Asia Screened Select ex Thermal Coal Index"
     },
     {
       "isin": "FR0013412020",
@@ -451,7 +460,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI EM ex-Egypt ESG Broad CTB Select Index"
     },
     {
       "isin": "FR0013412038",
@@ -463,7 +473,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI Europe Net TR EUR Index"
     },
     {
       "isin": "FR001400S9V0",
@@ -475,8 +486,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": false,
-      "qualificationIssue": "2026-09-30: HTTP Error 404: Not Found ; 2026-08-31: HTTP Error 404: Not Found"
+      "enabled": true,
+      "expectedIndex": "S&P Global Luxury Index Net TR"
     },
     {
       "isin": "FR001400U5Q4",
@@ -488,7 +499,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI Daily Net TR World Euro"
     },
     {
       "isin": "LU1681043599",
@@ -500,7 +512,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI Daily Net TR World Euro"
     },
     {
       "isin": "LU1681045370",
@@ -512,7 +525,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "MSCI Emerging Markets Net Total Return USD Index"
     },
     {
       "isin": "LU1834983550",
@@ -524,7 +538,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "STOXX Europe 600 Basic Resources Net Return EUR"
     },
     {
       "isin": "LU1834983634",
@@ -536,7 +551,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "STOXX Europe 600 Industry Basic Materials 30-15 EUR Net Return"
     },
     {
       "isin": "LU1834986900",
@@ -548,7 +564,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "STOXX Europe 600 Health Care Net Return EUR"
     },
     {
       "isin": "LU1834988518",
@@ -560,7 +577,8 @@
       "parser": "amundi-index",
       "exposureOnly": true,
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "expectedIndex": "STOXX Europe 600 Technology Net Return EUR"
     }
   ]
 }

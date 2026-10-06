@@ -5,9 +5,9 @@ import datetime as dt
 import json
 import os
 import pathlib
-from data_automation import UTC,get_text,reject,write_json_atomic
+from data_automation import UTC,write_json_atomic
 from apply_etf_collection import merge_collection
-from collect_dws_etf import parse_product
+from collect_dws_etf import collect_one as dws
 from collect_vanguard_etf import collect_one as vanguard
 from collect_vaneck_etf import collect_one as vaneck
 from collect_invesco_etf import collect_one as invesco
@@ -18,8 +18,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 def collect_one(share,now):
     if share['parser']=='dws':
-        body=json.loads(get_text(share['sourceUrl'],('application/json',),3_000_000),parse_constant=lambda _:reject('Non-finite issuer JSON'))
-        return parse_product(body,share,now)
+        return dws(share, now)
     return {'vanguard':vanguard,'vaneck':vaneck,'invesco':invesco,'amundi-index':amundi_index}[share['parser']](share,now)
 
 
