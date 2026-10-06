@@ -1,4 +1,4 @@
-import { INDEX_RETURNS } from './index-returns.js'
+import { getCurrentIndexReturnSeries } from './index-returns.js'
 
 // Sélection explicite de la version d’indice ; jamais de fallback vers une part ETF.
 const HISTORICAL = '2026-08-31'
@@ -30,7 +30,7 @@ export function getIndexComparisonPerformance(family) {
   if (!selected || selected.length !== family.indices.length) throw new Error(`Séries de comparaison absentes : ${family.id}`)
   return selected.map(selection => {
     const [id, asOf] = Array.isArray(selection) ? selection : [selection, PERIOD_END]
-    const series = INDEX_RETURNS[id]?.[asOf]
+    const series = getCurrentIndexReturnSeries(id, asOf)
     if (!series) throw new Error(`Rendements d’indice absents : ${id}/${asOf}`)
     const values = Object.fromEntries(series.values.map(([year, value]) => [`y${year}`, value]))
     const method = series.method ?? (/hors dividendes/.test(series.performance.detail) ? 'hors dividendes' : 'dividendes réinvestis')

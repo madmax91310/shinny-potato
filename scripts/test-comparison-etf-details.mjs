@@ -8,12 +8,12 @@ import { COMPARISON_ETF_DETAILS } from '../src/data/comparison-etf-details.js'
 import { readFileSync } from 'node:fs'
 const emerging = DEFAULT_THEMES.find(t => t.etfs.some(f => f.isin === 'IE00BTJRMP35'))
 const text = buildTweetText(emerging)
-assert.match(text,/2025 : \+33,7 %/)
-assert.match(text,/2025 : \+21,04 %/)
+for (const isin of ['IE00BTJRMP35', 'FR0013412020']) assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance(isin).rows.find(r => r.year === 2025).pct)}`))
 assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance('IE00BKM4GZ66').rows.find(r => r.year === 2025).pct)}`))
 assert.equal((text.match(/🏭 /g)||[]).length,3)
 assert.equal((text.match(/🏢 /g)||[]).length,3)
-assert.match(text,/Secteurs de l’indice suivi au 30\/06\/2026/)
+assert.equal(COMPARISON_ETF_DETAILS.FR0013412020.basis, 'tracked-index')
+assert.ok(text.includes(`Secteurs de l’indice suivi au ${(COMPARISON_ETF_DETAILS.FR0013412020.sectorsAsOf ?? COMPARISON_ETF_DETAILS.FR0013412020.asOf).split('-').reverse().join('/')}`))
 assert.ok(text.includes(`Répartition sectorielle du fonds au ${COMPARISON_ETF_DETAILS['IE00BKM4GZ66'].sectorsAsOf.split('-').reverse().join('/')}`))
 for (const fund of emerging.etfs) {
  const p=getComparisonPerformance(fund.isin)

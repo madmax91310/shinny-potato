@@ -39,6 +39,22 @@ assert(current.items.every(x => x.to.startsWith('/') && x.reason && x.name && x.
 assert.equal(buildReview('2027-01-01').items.filter(x => x.category === 'expired').length, 3)
 // Rejouer les observations de la revue, y compris les proxys conservés : le catalogue
 // et les consommateurs doivent exposer les valeurs effectivement lues dans la source.
+function assertRecertified(field, publication, baselineDate, id) {
+  assert.deepEqual(field.value, publication.values, `${id}: valeurs différentes de la publication validée`)
+  assert.notEqual(dayNumber(publication.checkedAt), null, `${id}: date de publication invalide`)
+  assert(publication.checkedAt >= baselineDate, `${id}: recertification antérieure à la revue`)
+  assert.equal(field.metadata.checkedAt, publication.checkedAt, `${id}: contrôle différent de la publication validée`)
+  assert(field.metadata.sourceUrls.includes(publication.source), `${id}: source de publication absente`)
+}
+const recertifiedFixture = { value: [1, 2], metadata: { checkedAt: '2026-10-05', sourceUrls: ['https://issuer.example/performance'] } }
+const publicationFixture = { values: [1, 2], checkedAt: '2026-10-05', source: 'https://issuer.example/performance' }
+assertRecertified(recertifiedFixture, publicationFixture, '2026-10-04', 'fixture')
+assert.throws(() => assertRecertified({ ...recertifiedFixture, value: [1, 3] }, publicationFixture, '2026-10-04', 'fixture'), /valeurs différentes/)
+assert.throws(() => assertRecertified({ ...recertifiedFixture, metadata: { ...recertifiedFixture.metadata, sourceUrls: [] } }, publicationFixture, '2026-10-04', 'fixture'), /source de publication absente/)
+assert.throws(() => assertRecertified({ ...recertifiedFixture, metadata: { ...recertifiedFixture.metadata, checkedAt: '2026-10-06' } }, publicationFixture, '2026-10-04', 'fixture'), /contrôle différent/)
+assert.throws(() => assertRecertified(recertifiedFixture, { ...publicationFixture, checkedAt: '2026-02-30' }, '2026-10-04', 'fixture'), /date de publication invalide/)
+assert.throws(() => assertRecertified(recertifiedFixture, { ...publicationFixture, checkedAt: '2026-10-03' }, '2026-10-04', 'fixture'), /recertification antérieure/)
+
 const closure = JSON.parse(readFileSync(new URL('./source-snapshots/data-review-2026-10-02.json', import.meta.url)))
 for (const observation of closure.records) {
   const record = DATA_CATALOG.find(x => x.id === (observation.isin ?? observation.id))
@@ -51,13 +67,9 @@ for (const observation of closure.records) {
   const automated = observation.type === 'portfolio' && !historicalProxy ? AUTOMATED_PERFORMANCE[observation.isin] : null
   assert.deepEqual(observation.type === 'index' ? field.value.constituents : field.value, automated?.values ?? observation.constituents ?? observation.values)
   if (automated) {
-    assert.equal(field.metadata.checkedAt, automated.checkedAt)
-    assert(field.metadata.checkedAt >= closure.checkedAt, `${record.id}: contrôle automatisé antérieur à la revue`)
-    assert(field.metadata.sourceUrls.includes(automated.source), `${record.id}: source automatisée absente`)
+    assertRecertified(field, automated, closure.checkedAt, record.id)
   } else if (reviewed && !historicalProxy && observation.type === 'portfolio') {
-    // Les mêmes années calendaires ont été recertifiées dans une publication plus récente.
-    assert.equal(field.metadata.checkedAt, reviewed.checkedAt)
-    assert(field.metadata.sourceUrls.includes(reviewed.source), `${record.id}: nouvelle source contrôlée absente`)
+    assertRecertified(field, { ...reviewed, values: observation.values }, closure.checkedAt, record.id)
   } else {
     assert.equal(field.metadata.checkedAt, closure.checkedAt)
     assert(observation.sourceUrls.every(url => field.metadata.sourceUrls.includes(url)), `${record.id}: source contrôlée différente`)

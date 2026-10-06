@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import { choose } from './card-selection.mjs'
 import { buildText, presentationType } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
@@ -915,7 +916,7 @@ async function testDataSearch(page) {
   const instrumentText = await page.locator('.ds-detail').innerText();
   checks.instrument = instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes('2026-09-30');
   const aum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours', exact: true }) });
-  checks.dates = (await aum.locator('dd').first().innerText()) === 'Date de valeur non publiée par la source';
+  checks.dates = (await aum.locator('dd').first().innerText()) === (AUTOMATED_ETF.FR001400U5Q4?.aum?.asOf ?? 'Date de valeur non publiée par la source');
   const officialAum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours daté publié par l’émetteur', exact: true }) });
   checks.officialAum = (await officialAum.locator('dd').first().innerText()) === '2026-08-31'
     && (await officialAum.innerText()).includes('1 407,36 millions EUR');

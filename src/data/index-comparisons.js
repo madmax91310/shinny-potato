@@ -1,4 +1,4 @@
-import { getIndexFacts, getIndexDescription, formatIndexFact, formatIndexConstituents } from './index-facts.js';
+import { getCurrentIndexFacts as getIndexFacts, getCurrentIndexDescription as getIndexDescription, formatCurrentIndexFact as formatIndexFact, formatCurrentIndexConstituents as formatIndexConstituents } from './index-facts.js';
 import { getInstrumentComparatorReturns } from './instrument-comparator-returns.js';
 import { getInstrumentAum, getInstrumentAumBillions } from './instrument-aum.js';
 import { getInstrumentName, getInstrumentPeaStatus } from './instruments.js';

@@ -1,3 +1,4 @@
+import { refreshIndexSheet } from './automated-indices.js';
 import { getInstrumentAnnualPerformance } from './instrument-returns.js';
 import { INDEX_RETURNS, getIndexReturns } from './index-returns.js'
 import { getIndexComposition, getIndexFacts } from './index-facts.js'
@@ -17,7 +18,7 @@ function reusedIndexSheet(id, title, intro, insight, takeaway, methodologyPanels
   intro, insight, takeaway, methodologyPanels };
 }
 
-export const SHEETS = [
+const ARCHIVE_SHEETS = [
  reusedIndexSheet('ftse-epra-nareit-developed-dividend-plus','Immobilier développé Dividend+',
   '🏠 Immobilier coté : que sélectionne le FTSE EPRA Nareit Developed Dividend+ ? 👇',
   'Ce panier regroupe des sociétés immobilières et des REIT. Il reste concentré sur les États-Unis et ne correspond pas à un achat direct de logements.',
@@ -211,3 +212,5 @@ export const SHEETS = [
     takeaway: 'Ce n’est pas un indice qui couvre toutes les entreprises américaines : la finance en est pratiquement absente.',
   },
 ]
+
+export const SHEETS = ARCHIVE_SHEETS.map(refreshIndexSheet);
