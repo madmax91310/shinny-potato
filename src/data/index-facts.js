@@ -1,3 +1,4 @@
+import automatedIndices from './automated-indices.json' with { type: 'json' };
 import { PROPERTY_INFRA_FACTS } from './property-infrastructure-additions.js';
 import { WORLD_FACTOR_FACTS } from './world-factor-additions.js';
 import { INDEX_COMPOSITION_REVIEW } from './index-composition-review.js';
@@ -747,6 +748,33 @@ for (const [id, desc] of [
  ['msci-world-minimum-volatility-usd', 'Optimisation du risque estimé du portefeuille sous contraintes, avec référence USD.'],
 ]) INDEX_FACTS[id]['2026-09-30'].descriptionTemplates = { 'monde-facteurs': desc };
 
+function formatCompositionDate(asOf) {
+  return new Intl.DateTimeFormat('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', timeZone:'UTC' }).format(new Date(asOf));
+}
+
+// Add newly dated observations; a named historical snapshot remains immutable.
+export const CURRENT_INDEX_KEYS = {};
+for (const [id, record] of Object.entries(automatedIndices)) {
+  const history = INDEX_FACTS[id];
+  if (!history || !record.facts) continue;
+  const observations = { ...record.factsHistory, [record.facts.asOf]: record.facts };
+  for (const facts of Object.values(observations)) {
+    if (history[facts.asOf]) continue;
+    const baseline = Object.values(history).filter(f => f.asOf && f.asOf <= facts.asOf).sort((a,b) => b.asOf.localeCompare(a.asOf))[0];
+    if (!baseline) continue;
+    history[facts.asOf] = { ...facts,
+      markets: facts.markets ?? baseline.markets,
+      snapshot: new Intl.DateTimeFormat('fr-FR', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(new Date(facts.asOf)),
+      descriptionTemplates: Object.fromEntries(Object.entries(baseline.descriptionTemplates ?? {}).map(([key, text]) =>
+        [key, text.replaceAll(formatCompositionDate(baseline.asOf), formatCompositionDate(facts.asOf))])),
+      ...(baseline.marketCount ? { marketCount: baseline.marketCount } : {}),
+      ...(baseline.approximateConstituents ? { approximateConstituents: Math.round(facts.constituents / 100) * 100 } : {}),
+      methodologySources: baseline.methodologySources,
+    };
+  }
+  if (history[record.facts.asOf]) CURRENT_INDEX_KEYS[id] = record.facts.asOf;
+}
+
 function deepFreeze(value) {
   if (value && typeof value === 'object') {
     Object.values(value).forEach(deepFreeze);
@@ -790,4 +818,29 @@ export function getIndexDescription(id, asOf, variant) {
   const template = getIndexFacts(id, asOf).descriptionTemplates?.[variant];
   if (!template) throw new Error(`Description d’indice absente : ${id}/${asOf}/${variant}`);
   return template.replace(/\{\{(\w+)\}\}/g, (_, field) => formatIndexFact(id, asOf, field));
+}
+
+// Current consumers opt in explicitly; the exact-date API continues to read archives.
+export function getCurrentIndexFacts(id, fallback) {
+  const key = CURRENT_INDEX_KEYS[id];
+  return getIndexFacts(id, key && (!/^\d{4}-\d{2}-\d{2}$/.test(fallback) || key >= fallback) ? key : fallback);
+}
+export function getCurrentIndexComposition(id, fallback) {
+  const facts = getCurrentIndexFacts(id, fallback);
+  const { constituents, markets, marketCap, countries, sectors, holdings, topWeight } = facts;
+  return { indexFacts: facts, constituents, markets, marketCap, countries, sectors, holdings, topWeight };
+}
+export function formatCurrentIndexFact(id, fallback, field = 'constituents') {
+  return formatIndexFact(id, getCurrentIndexFacts(id, fallback).asOf ?? fallback, field);
+}
+export function formatCurrentIndexConstituents(id, fallback) {
+  return formatCurrentIndexFact(id, fallback);
+}
+export function getCurrentIndexDescription(id, fallback, variant) {
+  const facts = getCurrentIndexFacts(id, fallback);
+  return getIndexDescription(id, facts.asOf ?? fallback, variant);
+}
+
+export function formatCurrentIndexDate(id, fallback) {
+  return formatCompositionDate(getCurrentIndexFacts(id, fallback).asOf);
 }

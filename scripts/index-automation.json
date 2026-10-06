@@ -1,0 +1,501 @@
+{
+  "indices": [
+    {
+      "id": "acwi-imi",
+      "name": "MSCI ACWI IMI",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-imi-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi-imi-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI ACWI IMI, rendement net en dollars, dividendes nets réinvestis, hors frais ETF",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "russell-2000",
+      "name": "Russell 2000",
+      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US2000USD",
+      "parser": "ftse",
+      "currency": "USD",
+      "returnSourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US2000USD",
+      "returnVariant": "TOTAL",
+      "returnCurrency": "USD",
+      "performanceDetail": "Russell 2000, rendement total USD, dividendes réinvestis, hors frais ETF",
+      "requiredFields": [],
+      "enabled": false
+    },
+    {
+      "id": "msci-world-momentum",
+      "name": "MSCI World Momentum",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-momentum-index-usd-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-momentum-index-usd-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World Momentum · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-world-minimum-volatility-usd",
+      "name": "MSCI World Minimum Volatility (USD)",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-minimum-volatility-index.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World Minimum Volatility (USD) · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+      "requiredFields": [
+        "composition"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "ftse-epra-nareit-developed-dividend-plus",
+      "name": "FTSE EPRA Nareit Developed Dividend+",
+      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+      "parser": "ftse",
+      "currency": "USD",
+      "returnSourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+      "returnVariant": "TOTAL",
+      "returnCurrency": "USD",
+      "performanceDetail": "FTSE EPRA Nareit Developed Dividend+ · USD, dividendes réinvestis (Total Return FTSE), hors frais ETF",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "ftse-global-core-infrastructure",
+      "name": "FTSE Global Core Infrastructure",
+      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
+      "parser": "ftse",
+      "currency": "USD",
+      "returnSourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
+      "returnVariant": "TOTAL",
+      "returnCurrency": "USD",
+      "performanceDetail": "FTSE Global Core Infrastructure · USD, dividendes réinvestis (Total Return FTSE), hors frais ETF",
+      "documentName": "FTSE Core Infrastructure Indices",
+      "returnRowName": "FTSE Global Core Infrastructure",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "em-standard",
+      "name": "MSCI Emerging Markets",
+      "sourceUrl": "https://www.msci.com/documents/10199/c0db0a48-01f2-4ba9-ad01-226fd5678111",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/c0db0a48-01f2-4ba9-ad01-226fd5678111",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI Emerging Markets, rendements nets en dollars, dividendes réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "ftse-all-world",
+      "name": "FTSE All-World",
+      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
+      "parser": "ftse",
+      "currency": "USD",
+      "returnSourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
+      "returnVariant": "TOTAL",
+      "returnCurrency": "USD",
+      "performanceDetail": "FTSE All-World, rendement total en dollars, dividendes réinvestis ; secteurs selon la classification ICB de FTSE",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "world-small-cap",
+      "name": "MSCI World Small Cap",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-small-cap-index.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-small-cap-index.pdf",
+      "returnVariant": "GROSS",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World Small Cap, rendement brut en dollars, dividendes réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "world-ex-usa",
+      "name": "MSCI World ex USA",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index.pdf",
+      "returnVariant": "GROSS",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World ex USA, rendement brut en dollars, dividendes réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "em-esg",
+      "name": "MSCI EM ex-Egypt ESG Broad CTB Select",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-em-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-em-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI EM ex-Egypt ESG Broad CTB Select · USD · dividendes nets réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "russell-1000",
+      "name": "Russell 1000",
+      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open",
+      "parser": "ftse",
+      "currency": "USD",
+      "returnSourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD",
+      "returnVariant": "TOTAL",
+      "returnCurrency": "USD",
+      "performanceDetail": "Russell 1000 · USD · dividendes réinvestis",
+      "requiredFields": [],
+      "enabled": false
+    },
+    {
+      "id": "msci-em-asia-screened",
+      "name": "MSCI EM Asia Screened Select ex Thermal Coal",
+      "sourceUrl": "https://www.msci.com/documents/10199/40ed8526-20a0-ef81-fc55-ee99f1315c5c",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/40ed8526-20a0-ef81-fc55-ee99f1315c5c",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI EM Asia Screened Select ex Thermal Coal · USD · dividendes nets réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "ftse-em",
+      "name": "FTSE EM",
+      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
+      "parser": "ftse",
+      "currency": "USD",
+      "returnSourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "FTSE Emerging · USD · dividendes nets réinvestis",
+      "documentName": "FTSE Emerging",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "ftse-all-world-high-dividend-yield",
+      "name": "FTSE All-World High Dividend Yield",
+      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=AWHDY&openfile=open",
+      "parser": "ftse",
+      "currency": "USD",
+      "returnSourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=AWHDY&openfile=open",
+      "returnVariant": "TOTAL",
+      "returnCurrency": "USD",
+      "performanceDetail": "FTSE All-World High Dividend Yield · USD · dividendes réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "ftse-china-50",
+      "name": "FTSE China 50",
+      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?IsManual=False&issueName=XIN0&openfile=open",
+      "parser": "ftse",
+      "currency": "USD",
+      "returnSourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=XIN0&openfile=open",
+      "returnVariant": "TOTAL",
+      "returnCurrency": "HKD",
+      "performanceDetail": "FTSE China 50 · HKD · dividendes réinvestis",
+      "countryScope": {
+        "name": "China",
+        "proof": "FTSE China 50"
+      },
+      "holdingHeading": "Top 5 Constituents",
+      "holdingCount": 5,
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "acwi",
+      "name": "MSCI ACWI",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-acwi.pdf",
+      "returnVariant": "GROSS",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI ACWI, rendement brut en dollars, dividendes réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "world",
+      "name": "MSCI World",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+      "returnVariant": "GROSS",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World, rendement brut en dollars, dividendes réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "mscieurope",
+      "name": "MSCI Europe",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf",
+      "parser": "msci",
+      "currency": "EUR",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "EUR",
+      "performanceDetail": "MSCI Europe, rendement net en euros, dividendes réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-usa",
+      "name": "MSCI USA",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-usa-index-gross.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-usa-index-gross.pdf",
+      "returnVariant": "GROSS",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI USA · USD · dividendes réinvestis",
+      "countryScope": {
+        "name": "United States",
+        "proof": "USA"
+      },
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-india",
+      "name": "Inde seule",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-india-index-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-india-index-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI India · USD · dividendes nets réinvestis",
+      "documentName": "MSCI India",
+      "countryScope": {
+        "name": "India",
+        "proof": "India"
+      },
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-em-ex-china",
+      "name": "MSCI EM ex-China",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-ex-china-index-usd-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-ex-china-index-usd-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI EM ex-China · USD · dividendes nets réinvestis",
+      "documentName": "MSCI Emerging Markets ex China",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-world-enhanced-value",
+      "name": "MSCI World Enhanced Value",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-enhanced-value-index-net-usd.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-enhanced-value-index-net-usd.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World Enhanced Value · USD · dividendes nets réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-world-sector-neutral-quality",
+      "name": "MSCI World Sector Neutral Quality",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-sector-neutral-quality-index-usd-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-sector-neutral-quality-index-usd-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World Sector Neutral Quality · USD · dividendes nets réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-world-growth",
+      "name": "MSCI World Growth",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-growth-index-usd-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-growth-index-usd-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World Growth · USD · dividendes nets réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-world-high-dividend-yield-advanced-select",
+      "name": "MSCI World High Dividend Yield Advanced Select",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-high-dividend-yield-advanced-select-index-usd-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-high-dividend-yield-advanced-select-index-usd-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI World High Dividend Yield Advanced Select · USD · dividendes nets réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-china",
+      "name": "MSCI China",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-china-index-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-china-index-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI China · USD · dividendes nets réinvestis",
+      "requiredFields": [],
+      "enabled": false
+    },
+    {
+      "id": "msci-china-a",
+      "name": "MSCI China A",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-china-a-index-usd-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-china-a-index-usd-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI China A · USD · dividendes nets réinvestis",
+      "countryScope": {
+        "name": "China",
+        "proof": "China"
+      },
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-japan-imi",
+      "name": "MSCI Japan IMI",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-japan-imi-jpy-gross.pdf",
+      "parser": "msci",
+      "currency": "JPY",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-japan-imi-jpy-gross.pdf",
+      "returnVariant": "GROSS",
+      "returnCurrency": "JPY",
+      "performanceDetail": "MSCI Japan IMI · JPY · dividendes réinvestis",
+      "countryScope": {
+        "name": "Japan",
+        "proof": "Japan"
+      },
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-em-emea-esg",
+      "name": "MSCI Emerging EMEA ESG Transition",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-em-emea-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
+      "parser": "msci",
+      "currency": "USD",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/255599/msci-em-emea-ex-egypt-esg-leaders-select-issuer-capped-index-usd-net.pdf",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI EM EMEA ex-Egypt ESG Broad CTB Select · USD · dividendes nets réinvestis",
+      "documentName": "MSCI EM EMEA Ex-Egypt ESG Broad CTB Select",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    }
+  ]
+}
