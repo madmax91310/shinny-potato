@@ -1,7 +1,7 @@
 import datetime as dt
 import unittest
 import urllib.error
-from collect_document_etf import parse, parse_legacy, collect_legacy
+from collect_document_etf import parse, parse_legacy, collect_legacy, parse_legacy_factsheet
 from apply_etf_collection import merge_collection
 from data_automation import UTC
 
@@ -66,5 +66,21 @@ class Documents(unittest.TestCase):
             self.assertEqual(calls,[primary])
         with self.assertRaises(ValueError):
             collect_legacy({**share,'fallbackUrls':['https://example.com/products/123/']},NOW,fetch)
+
+    def test_legacy_monthly_document_and_newer_active_values(self):
+        share={'isin':'IE00TEST0001','productId':123,'currency':'EUR','sourceUrl':'https://www.blackrock.com/fr/particuliers/literature/fact-sheet/test.pdf'}
+        text="Informations sur l'actif net au 31-août-2026. Toutes les autres statistiques\nsont en date du 07-sept.-2026."
+        facts="ISIN : IE00TEST0001\nDevise de la Classe d'Actions : EUR\nRatio des charges totales : 0,20%\nUtilisation des gains : Capitalisation\nActif net de la Catégorie d’actions (M) :\n2.070,79 EUR\nActif net du Fonds (M) : 2.085,27 EUR"
+        result=parse_legacy_factsheet(text,facts,share,NOW)
+        self.assertEqual(result['aum']['amount'],2070790000)
+        self.assertEqual(result['aum']['asOf'],'2026-08-31')
+        self.assertEqual(result['characteristics']['asOf'],'2026-09-07')
+        for old,new in [('IE00TEST0001','IE00OTHER001'),('EUR','USD'),('Capitalisation','Distribution')]:
+            with self.assertRaises(ValueError):parse_legacy_factsheet(text,facts.replace(old,new),share,NOW)
+        with self.assertRaises(ValueError):parse_legacy_factsheet(text.replace('31-août','31-mai'),facts,share,NOW)
+        current={'IE00TEST0001':{'currency':'EUR','productId':123,'sourceUrl':share['sourceUrl'],'aum':{'amount':2300000000,'asOf':'2026-10-02','checkedAt':'2026-10-06'},'characteristics':{'terPct':.1,'checkedAt':'2026-10-06'}}}
+        merged=merge_collection({'checkedAt':'2026-10-06','shares':[result]},current,{})
+        self.assertEqual(merged['IE00TEST0001']['aum'],current['IE00TEST0001']['aum'])
+        self.assertEqual(merged['IE00TEST0001']['characteristics'],current['IE00TEST0001']['characteristics'])
 
 if __name__=='__main__':unittest.main()

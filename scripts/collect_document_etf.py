@@ -120,9 +120,43 @@ def collect_legacy(share,now,fetch=None):
             text = fetch(url, ('text/html',), 6_000_000)
         except (urllib.error.URLError, TimeoutError):
             if position == len(urls) - 1:
-                raise
+                if not share.get('factsheetUrl'):
+                    raise
+                break
             continue
         result = parse_legacy(text, share, now)
         result['sourceUrl'] = url
         result['aum'].update(sourceUrl=url, sha256=proof(text.encode()))
         return result
+    url = share['factsheetUrl']
+    parsed = urlparse(url)
+    if (parsed.scheme != 'https' or parsed.hostname != 'www.blackrock.com'
+            or not parsed.path.startswith('/fr/particuliers/literature/fact-sheet/')
+            or not parsed.path.endswith('.pdf')):
+        reject('Unexpected iShares factsheet source')
+    body = download(url)
+    result = parse_legacy_factsheet(pdf_text(body), pdf_text(body, crop=(380,215)), share, now)
+    result['sourceUrl'] = url
+    for field in ('aum', 'characteristics'):
+        result[field].update(sourceUrl=url, sha256=proof(body))
+    return result
+
+
+def parse_legacy_factsheet(text, facts, share, now):
+    if (match(r'ISIN\s*:\s*([A-Z0-9]{12})', facts) != share['isin']
+            or match(r"Devise de la Classe d'Actions\s*:\s*([A-Z]{3})", facts) != share['currency']
+            or match(r'Utilisation des gains\s*:\s*(\w+)', facts) != 'Capitalisation'):
+        reject('Wrong iShares factsheet share/currency/distribution')
+    months={'janv.':1,'févr.':2,'mars':3,'avr.':4,'mai':5,'juin':6,'juil.':7,'août':8,'sept.':9,'oct.':10,'nov.':11,'déc.':12}
+    def date(value):
+        day,month,year=value.split('-')
+        return document_date(dt.date(int(year),months[month],int(day)).isoformat(),now)
+    stamp=date(match(r"l'actif net au (\d{2}-[a-zéû.]+-20\d{2})",text))
+    facts_stamp=date(match(r'sont en date du (\d{2}-[a-zéû.]+-20\d{2})',text))
+    ter=float(match(r'Ratio des charges totales\s*:\s*([\d,]+)%',facts).replace(',','.'))
+    if not 0<=ter<=5:reject('Invalid iShares factsheet TER')
+    amount,currency=match(r'Actif net de la Catégorie d[’\x27]actions \(M\)\s*:\s*([\d.,]+)\s*([A-Z]{3})',facts)
+    if currency!=share['currency']:reject('Wrong iShares factsheet AUM currency')
+    return {**share,'characteristics':{'terPct':ter,'asOf':facts_stamp},
+            'aum':{'amount':number(float(amount.replace('.','').replace(',','.'))*1e6),'currency':currency,'scope':'share-class','asOf':stamp},
+            'unavailable':['performance: no complete 2020–2025 share history','exposures: swap basket is not the tracked-index composition','aum: monthly factsheet; newer active observations are preserved']}
