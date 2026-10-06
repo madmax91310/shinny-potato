@@ -63,7 +63,7 @@ export const TOOLS = [
     to: '/comparatif-courtiers',
     navLabel: 'Comparatif courtiers',
     title: 'Comparatif courtiers',
-    publicationDay: 'Vendredi soir',
+    publicationDay: 'Publication ponctuelle',
     icon: '⚖️',
     accent: '#f472b6',
     description: 'Duels de courtiers en bourse (frais, PEA, DCA) prêts à publier.',
