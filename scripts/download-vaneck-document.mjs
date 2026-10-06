@@ -25,8 +25,8 @@ try {
     if (gateReady) {
       const individual = page.getByRole('button', { name: 'Individual Investor', exact: true });
       if (await individual.isVisible()) await individual.click({ timeout: 5000 });
-      const france = page.getByRole('button', { name: 'France', exact: true });
-      if (await france.isVisible()) await france.click({ timeout: 5000 });
+      // The regional URL already selected the country. Clicking its country
+      // button opens a dropdown over Accept & Continue instead of selecting it.
       await continuation.click({ timeout: 5000, noWaitAfter: true });
       await page.waitForTimeout(500);
     }
