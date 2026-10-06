@@ -36,7 +36,7 @@ for (const family of FAMILIES) {
 const segments = buildTweetText(FAMILIES.find(f => f.id === 'monde-segments'))
 assert(segments.startsWith('🌍 Avec un ETF World, tu investis dans plus de 1 200 entreprises.'))
 assert(segments.includes('Regardons ce qu’ils changent dans ton portefeuille 👇'))
-assert.equal((segments.match(/CTO · Non éligible au PEA/g) ?? []).length, 3)
+assert.equal((segments.match(/CTO · Non éligible au PEA/g) ?? []).length, 2)
 // Version prix EUR explicite, sans écraser la version nette utilisée par les fiches.
 assert.equal(INDEX_RETURNS.mscieurope['2026-08-31'].values.find(([year]) => year === 2025)[1], 19.39)
 assert.equal(getIndexComparisonPerformance(FAMILIES.find(f => f.id === 'europe'))[2].y2025, 16.34)

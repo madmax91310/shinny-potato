@@ -239,7 +239,9 @@ if ((comparatorSeriesSource.match(/\.\.\.getInstrumentComparatorReturns\(/g) ?? 
   errors++;
 }
 for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
-  if (!seen.has(isin)) {
+  // Parts retirées des sélections éditoriales le 06/10/2026 ; leurs données
+  // et collecteurs restent disponibles dans le catalogue partagé.
+  if (!seen.has(isin) && !['IE000XZSV718', 'IE00BD4TXV59'].includes(isin)) {
     console.error(`Catalogue : ISIN inutilisé ${isin}`);
     errors++;
   }

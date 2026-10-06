@@ -1,4 +1,4 @@
-import { getInstrumentName, affirmInstrumentPea } from './instruments.js';
+import { getInstrumentName, affirmInstrumentPea, getInstrumentPeaStatus } from './instruments.js';
 import { formatEtfTer } from './etf-ter.js';
 let uid = 0
 function nextId(prefix) {
@@ -41,13 +41,8 @@ export function createTheme(overrides = {}) {
 // produit d'un comparatif. Les frais et l'éligibilité peuvent aussi changer :
 // contrôler les fiches émetteurs avant publication.
 const BASE_THEMES = [
-  // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
-  // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
-  // IE00BD4TXV59 : https://www.justetf.com/en/etf-profile.html?isin=IE00BD4TXV59
-  // IE00BK5BQT80 : https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80
-  // IE00B44Z5B48 : https://www.justetf.com/en/etf-profile.html?isin=IE00B44Z5B48
-  // FR001400U5Q4 : https://www.justetf.com/en/etf-profile.html?isin=FR001400U5Q4
-  // PEA (FR001400U5Q4) : https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-pea-monde-msci-world-ucits-etf/fr001400u5q4
+  // Priorité PEA par indice : WPEA pour World, PEA Global pour ACWI.
+  // FTSE All-World conserve son exposition et son ETF en CTO.
   createTheme({
     id: 'monde',
     nom: 'Monde',
@@ -55,42 +50,11 @@ const BASE_THEMES = [
     hookAction: 'investir sur les plus grandes entreprises mondiales',
     hookDilemme: 'quel ETF World choisir',
     transition:
-      'Il existe plusieurs ETF pour capter la croissance mondiale. Voici 4 références à connaître :',
+      'World, ACWI et All-World : voici trois univers, avec une option PEA dès que possible :',
     etfs: [
-      createEtf({
-        nom: getInstrumentName("IE00BD4TXV59", "tweet"),
-        isin: 'IE00BD4TXV59',
-        frais: formatEtfTer('IE00BD4TXV59'),
-
-        differenciateur: 'MSCI World, réplication physique complète, CTO',
-      }),
-      createEtf({
-        nom: getInstrumentName("IE00BK5BQT80", "tweet"),
-        isin: 'IE00BK5BQT80',
-        frais: formatEtfTer('IE00BK5BQT80'),
-
-        // L'indice FTSE All-World couvre les grandes et moyennes capitalisations,
-        // pas les small caps (document du fonds Vanguard, ISIN IE00BK5BQT80).
-        differenciateur: 'grandes et moyennes capitalisations, pays développés + émergents, CTO',
-      }),
-      createEtf({
-        nom: getInstrumentName("IE00B44Z5B48", "tweet"),
-        isin: 'IE00B44Z5B48',
-        frais: formatEtfTer('IE00B44Z5B48'),
-
-        differenciateur: 'MSCI ACWI, pays développés et émergents, CTO',
-      }),
-      createEtf({
-        nom: getInstrumentName("FR001400U5Q4", "tweet"),
-        isin: 'FR001400U5Q4',
-        frais: formatEtfTer('FR001400U5Q4'),
-
-        // Vérifié le 27/09/2026 : CW8 (LU1681043599) et WPEA (IE0002XZSHO1)
-        // sont également éligibles PEA. Sources émetteurs :
-        // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/ENG/FRA/INSTITUTIONNEL/ETF/20260228
-        // https://www.ishares.com/ch/professionals/en/products/335178/ishares-msci-world-swap-pea-ucits-etf
-        differenciateur: affirmInstrumentPea('FR001400U5Q4', true, 'MSCI World éligible PEA, réplication synthétique'),
-      }),
+      createEtf({ nom: getInstrumentName('IE0002XZSHO1', 'tweet'), isin: 'IE0002XZSHO1', frais: formatEtfTer('IE0002XZSHO1'), differenciateur: affirmInstrumentPea('IE0002XZSHO1', true, 'MSCI World : pays développés, éligible PEA') }),
+      createEtf({ nom: getInstrumentName('FR0014017NX3', 'tweet'), isin: 'FR0014017NX3', frais: formatEtfTer('FR0014017NX3'), differenciateur: affirmInstrumentPea('FR0014017NX3', true, 'MSCI ACWI : pays développés et émergents, éligible PEA') }),
+      createEtf({ nom: getInstrumentName('IE00BK5BQT80', 'tweet'), isin: 'IE00BK5BQT80', frais: formatEtfTer('IE00BK5BQT80'), differenciateur: 'FTSE All-World : pays développés et émergents, CTO' }),
     ],
     cloture:
       'Le choix ne se joue pas sur la performance passée, mais sur les frais, la composition et l’éligibilité PEA qui collent à TA stratégie.',
@@ -108,50 +72,18 @@ const BASE_THEMES = [
     hookAction: 'miser sur le marché le plus performant des 15 dernières années',
     hookDilemme: 'quel ETF S&P 500 ou Nasdaq choisir',
     transition:
-      'Le marché américain domine les indices mondiaux. Voici 4 ETF à comparer, dont trois logeables en PEA :',
+      'Le marché américain domine les indices mondiaux. Voici trois indices à comparer, avec des ETF PEA pour le S&P 500 et le Nasdaq-100 :',
     etfs: [
-      createEtf({
-        nom: getInstrumentName("IE000XZSV718", "tweet"),
-        isin: 'IE000XZSV718',
-        frais: formatEtfTer('IE000XZSV718'),
-
-        differenciateur: 'S&P 500, réplication physique, CTO',
-      }),
-      createEtf({
-        nom: getInstrumentName("FR0011871128", "tweet"),
-        isin: 'FR0011871128',
-        frais: formatEtfTer('FR0011871128'),
-
-        differenciateur: affirmInstrumentPea('FR0011871128', true, 'S&P 500 éligible PEA ; part créée en 2014'),
-      }),
-      createEtf({
-        // BlackRock, page produit au 25/09/2026 : TER 0,10 %.
-        // Fonds lancé le 29/05/2025, sans 2023/2024 calendaires. Sa notice
-        // précise qu'il entend conserver son éligibilité au PEA.
-        // https://www.blackrock.com/fr/intermediaries/products/342916/
-        nom: getInstrumentName("IE000DQLYVB9", "tweet"),
-        isin: 'IE000DQLYVB9',
-        frais: formatEtfTer('IE000DQLYVB9'),
-
-        differenciateur: affirmInstrumentPea('IE000DQLYVB9', true, 'S&P 500 éligible PEA ; part créée en 2025'),
-      }),
-      createEtf({
-        nom: getInstrumentName("FR0011871110", "tweet"),
-        isin: 'FR0011871110',
-        frais: formatEtfTer('FR0011871110'),
-
-        // La part S FR001400ZGR7 de la même gamme est aussi affichée dans
-        // la gamme PEA Amundi (27/09/2026) : éviter toute exclusivité de part.
-        // https://www.amundietf.fr/fr/professionnels/produits/equity/amundi-pea-nasdaq100-ucits-etf-s-acc/fr001400zgr7
-        differenciateur: affirmInstrumentPea('FR0011871110', true, 'Nasdaq-100 éligible PEA, exposition concentrée'),
-      }),
+      createEtf({ nom: getInstrumentName('FR0011871128', 'tweet'), isin: 'FR0011871128', frais: formatEtfTer('FR0011871128'), differenciateur: affirmInstrumentPea('FR0011871128', true, 'S&P 500 : grandes entreprises américaines, éligible PEA') }),
+      createEtf({ nom: getInstrumentName('FR0011871110', 'tweet'), isin: 'FR0011871110', frais: formatEtfTer('FR0011871110'), differenciateur: affirmInstrumentPea('FR0011871110', true, 'Nasdaq-100 : grandes entreprises non financières cotées au Nasdaq, éligible PEA') }),
+      createEtf({ nom: getInstrumentName('FR0007056841', 'tweet'), isin: 'FR0007056841', frais: formatEtfTer('FR0007056841'), differenciateur: 'Dow Jones Industrial Average : 30 grandes sociétés américaines, pondération par prix, CTO' }),
     ],
     cloture:
-      'Le vrai choix : S&P 500 large et diversifié, ou Nasdaq concentré et plus volatil sur la tech. À arbitrer selon ton profil de risque.',
+      'Le S&P 500 couvre un large panier de grandes entreprises. Le Nasdaq-100 exclut les financières et concentre davantage la technologie. Le Dow Jones ne retient que 30 sociétés et les pondère par prix ; l’ETF cité reste en CTO.',
   }),
   // Contrôle des fiches par ISIN le 29/09/2026 : identité, indice et frais.
   // Les liens justETF ne prouvent pas à eux seuls l’éligibilité PEA ; vérifier celle-ci chez l’émetteur.
-  // IE00B4K48X80 : https://www.justetf.com/en/etf-profile.html?isin=IE00B4K48X80
+  // FR0013412038 : https://www.justetf.com/en/etf-profile.html?isin=FR0013412038
   // IE00B53L3W79 : https://www.justetf.com/en/etf-profile.html?isin=IE00B53L3W79
   // FR0011550193 : https://www.justetf.com/en/etf-profile.html?isin=FR0011550193
   createTheme({
@@ -164,11 +96,11 @@ const BASE_THEMES = [
       'Un ETF World te laisse déjà une place pour l’Europe. Si tu veux lui donner davantage de poids, ces trois indices ne couvrent pas la même chose :',
     etfs: [
       createEtf({
-        nom: getInstrumentName("IE00B4K48X80", "tweet"),
-        isin: 'IE00B4K48X80',
-        frais: formatEtfTer('IE00B4K48X80'),
+        nom: getInstrumentName("FR0013412038", "tweet"),
+        isin: 'FR0013412038',
+        frais: formatEtfTer('FR0013412038'),
 
-        differenciateur: 'MSCI Europe, grandes et moyennes capitalisations, CTO',
+        differenciateur: 'MSCI Europe, grandes et moyennes capitalisations, éligible PEA',
       }),
       createEtf({
         nom: getInstrumentName("IE00B53L3W79", "tweet"),
@@ -807,9 +739,9 @@ const reusedTheme = (id, nom, emoji, transition, products, cloture, question) =>
   etfs: products.map(([isin, differenciateur]) => createEtf({ isin,
     nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur })),
 })
-export const DEFAULT_THEMES = [...existingThemes,
+const COMPARISON_THEMES = [...existingThemes,
  reusedTheme('world-minvol','World classique ou Minimum Volatility','🌍','La capitalisation du marché, ou un portefeuille dont on optimise le risque estimé ?',
-  [['IE00B4L5Y983','MSCI World : pondération par capitalisation flottante.'],['IE00B8FHGS14','MSCI World Minimum Volatility (USD) : optimisation du risque sous contraintes.']],
+  [['IE0002XZSHO1','MSCI World : pondération par capitalisation flottante.'],['IE00B8FHGS14','MSCI World Minimum Volatility (USD) : optimisation du risque sous contraintes.']],
   'Les deux fonds partent des pays développés. Minimum Volatility modifie la sélection et les poids, sans garantir une baisse moindre à chaque période. USD ne signifie pas couvert en euros ; une cotation EUR ne couvre pas le change.', 'Tu privilégies le marché entier ou une volatilité recherchée plus faible ?'),
  reusedTheme('jeux-video','Jeux vidéo et eSport','🎮','Un thème lié aux jeux vidéo : voici une exposition dédiée, distincte de toute la technologie.',
   [['IE00BYWQWR46','Éditeurs, développeurs et activités liées aux jeux vidéo et à l’eSport ; panier concentré.']],
@@ -825,13 +757,13 @@ export const DEFAULT_THEMES = [...existingThemes,
   'Ces fonds détiennent des actions : leur prix peut baisser. L’immobilier coté et les infrastructures ne constituent pas la même activité et restent sensibles, notamment, aux taux et au financement.', 'Tu choisirais l’immobilier coté ou les infrastructures ?'),
 
  reusedTheme('monde-toutes-tailles','World, ACWI ou ACWI IMI','🌍','Un ETF mondial : pays développés seuls, avec les émergents, ou avec les petites entreprises aussi ?',
-  [['IE00B4L5Y983','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00B6R52259','MSCI ACWI : développés et émergents, grandes et moyennes.'],['IE00B3YLTY66','MSCI ACWI IMI : développés et émergents, grandes, moyennes et petites.']],
+  [['IE0002XZSHO1','MSCI World : grandes et moyennes entreprises des pays développés.'],['FR0014017NX3','MSCI ACWI : développés et émergents, grandes et moyennes.'],['IE00B3YLTY66','MSCI ACWI IMI : développés et émergents, grandes, moyennes et petites.']],
   'Trois univers différents. L’ACWI IMI ajoute les petites capitalisations, sans leur donner le même poids qu’aux géants.', 'Tu choisirais quelle couverture mondiale ?'),
  reusedTheme('world-avec-sans-usa','World avec ou sans États-Unis','🌍','Garder les États-Unis au poids du World, ou les séparer du reste des marchés développés ?',
-  [['IE00B4L5Y983','MSCI World : pays développés, États-Unis inclus.'],['IE0006WW1TQ4','MSCI World ex USA : les mêmes tailles d’entreprises, hors États-Unis.']],
+  [['IE0002XZSHO1','MSCI World : pays développés, États-Unis inclus.'],['IE0006WW1TQ4','MSCI World ex USA : les mêmes tailles d’entreprises, hors États-Unis.']],
   'Retirer les États-Unis change le périmètre géographique. Les émergents et petites capitalisations restent absents des deux indices.', 'Tu réglerais toi-même le poids américain ?'),
  reusedTheme('grandes-petites-monde','Grandes ou petites entreprises mondiales','🔎','Ton World ne couvre pas les petites entreprises. Qu’apporte une seconde ligne ?',
-  [['IE00B4L5Y983','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00BF4RFH31','MSCI World Small Cap : petites entreprises des pays développés.']],
+  [['IE0002XZSHO1','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00BF4RFH31','MSCI World Small Cap : petites entreprises des pays développés.']],
   'Les petites capitalisations complètent une tranche de taille ; elles restent exposées aux baisses des actions et aux devises.', 'Tu ajouterais des petites entreprises à ton World ?'),
   reusedTheme('financieres', 'Financières américaines ou mondiales', '🏦',
     'Tu veux renforcer la finance : seulement aux États-Unis, ou dans plusieurs pays développés ?',
@@ -851,3 +783,9 @@ export const DEFAULT_THEMES = [...existingThemes,
     'Ce fonds expose à des entreprises, avec leurs risques propres. Sa performance n’est pas celle du Bitcoin et le thème peut connaître de fortes variations.',
     'Tu recherches les entreprises du secteur ou la cryptomonnaie elle-même ?'),
 ]
+
+// PEA en premier, sans changer l’exposition des autres produits du comparatif.
+// Le tri est stable : les différences d’indice, de zone ou de couverture restent visibles.
+export const DEFAULT_THEMES = COMPARISON_THEMES.map(theme => ({ ...theme,
+  etfs: [...theme.etfs].sort((a, b) => Number(getInstrumentPeaStatus(b.isin) === true) - Number(getInstrumentPeaStatus(a.isin) === true)),
+}));

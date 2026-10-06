@@ -37,9 +37,9 @@ const family = FAMILIES.find(f=>f.id==='monde-facteurs'), rows = getIndexCompari
 assert.equal(family.indices.length,4)
 assert(family.indices.every(i=>i.indexFacts.asOf==='2026-09-30'))
 assert(rows.every(r=>r.kind==='indice' && r.currency==='USD' && r.method==='dividendes nets réinvestis'))
-assert.deepEqual(family.etfGroups.map(g=>g.funds[0].isin),['IE00B4L5Y983','IE00BP3QZ601','IE00BP3QZ825','IE00B8FHGS14'])
+assert.deepEqual(family.etfGroups.map(g=>g.funds[0].isin),['IE0002XZSHO1','IE00BP3QZ601','IE00BP3QZ825','IE00B8FHGS14'])
 const theme = DEFAULT_THEMES.find(t=>t.id==='world-minvol')
-assert.deepEqual(theme.etfs.map(f=>f.isin),['IE00B4L5Y983','IE00B8FHGS14'])
+assert.deepEqual(theme.etfs.map(f=>f.isin),['IE0002XZSHO1','IE00B8FHGS14'])
 for (const fund of theme.etfs) {
  const perf = getComparisonPerformance(fund.isin)
  assert.equal(perf.label,'ETF'); assert.equal(perf.referenceIsin,fund.isin)
