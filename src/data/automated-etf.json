@@ -222,67 +222,72 @@
       "checkedAt": "2026-10-06"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 39.98,
+          "weightPct": 40.08,
           "label": "Information Technology"
         },
         {
           "name": "Financials",
-          "weightPct": 11.29,
+          "weightPct": 11.3,
           "label": "Financials"
         },
         {
           "name": "Communication",
-          "weightPct": 9.8,
+          "weightPct": 9.85,
           "label": "Communication"
         },
         {
           "name": "Health Care",
-          "weightPct": 9.03,
+          "weightPct": 9.04,
           "label": "Health Care"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 8.61,
+          "weightPct": 8.58,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Industrials",
-          "weightPct": 8.1,
+          "weightPct": 8.05,
           "label": "Industrials"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 4.32,
+          "weightPct": 4.31,
           "label": "Consumer Staples"
         },
         {
           "name": "Energy",
-          "weightPct": 3.43,
+          "weightPct": 3.44,
           "label": "Energy"
         },
         {
           "name": "Utilities",
-          "weightPct": 1.88,
+          "weightPct": 1.87,
           "label": "Utilities"
         },
         {
           "name": "Materials",
-          "weightPct": 1.68,
+          "weightPct": 1.69,
           "label": "Materials"
         },
         {
           "name": "Real Estate",
-          "weightPct": 1.67,
+          "weightPct": 1.65,
           "label": "Immobilier"
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.21,
+          "weightPct": 0.14,
           "label": "Cash and/or Derivatives"
+        },
+        {
+          "name": "Other",
+          "weightPct": 0.0,
+          "label": "Autres"
         }
       ],
       "checkedAt": "2026-10-06"
@@ -4446,6 +4451,15 @@
         }
       ],
       "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "EUR",
+      "basis": "fund",
+      "method": "calendar-year share total return, income reinvested, fund fees included",
+      "years": {
+        "2025": 1.06
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "FR001400U5Q4": {
@@ -6509,6 +6523,15 @@
         }
       ],
       "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "EUR",
+      "basis": "fund",
+      "method": "calendar-year share total return, income reinvested, fund fees included",
+      "years": {
+        "2025": 12.14
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "LU1834986900": {
@@ -7325,6 +7348,19 @@
       "index": "Solactive GBS Japan Large & Mid Cap Index NTR",
       "distribution": "Capitalisation",
       "checkedAt": "2026-10-05"
+    },
+    "performance": {
+      "currency": "JPY",
+      "basis": "fund",
+      "method": "calendar-year share total return, income reinvested, fund fees included",
+      "years": {
+        "2021": 13.4,
+        "2022": -3.82,
+        "2023": 28.18,
+        "2024": 20.57,
+        "2025": 24.5
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "LU2970735911": {
@@ -8432,6 +8468,18 @@
       "index": "MSCI ACWI IMI Semiconductors & Semiconductor Equipment ESG Screened Capped",
       "distribution": "Accumulating",
       "checkedAt": "2026-10-05"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2022": -34.84,
+        "2023": 64.13,
+        "2024": 13.79,
+        "2025": 53.46
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "IE000RDRMSD1": {
@@ -8570,6 +8618,17 @@
       "index": "NYSE FactSet Global Blockchain Technologies Capped Index (USD)",
       "distribution": "Accumulating",
       "checkedAt": "2026-10-05"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2023": 197.37,
+        "2024": 17.67,
+        "2025": 27.43
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "IE00B0M62X26": {
@@ -9447,36 +9506,36 @@
       "checkedAt": "2026-10-06"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 60.21,
+          "weightPct": 60.01,
           "label": "Information Technology"
         },
         {
           "name": "Communication",
-          "weightPct": 14.91,
+          "weightPct": 15.14,
           "label": "Communication"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 10.07,
+          "weightPct": 10.08,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 5.51,
+          "weightPct": 5.49,
           "label": "Consumer Staples"
         },
         {
           "name": "Health Care",
-          "weightPct": 3.6,
+          "weightPct": 3.59,
           "label": "Health Care"
         },
         {
           "name": "Industrials",
-          "weightPct": 3.11,
+          "weightPct": 3.08,
           "label": "Industrials"
         },
         {
@@ -9746,41 +9805,41 @@
       "checkedAt": "2026-10-06"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 33.34,
+          "weightPct": 33.46,
           "label": "Information Technology"
         },
         {
           "name": "Financials",
-          "weightPct": 17.55,
+          "weightPct": 17.59,
           "label": "Financials"
         },
         {
           "name": "Industrials",
-          "weightPct": 10.1,
+          "weightPct": 10.0,
           "label": "Industrials"
         },
         {
           "name": "Health Care",
-          "weightPct": 8.05,
+          "weightPct": 8.02,
           "label": "Health Care"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 7.99,
+          "weightPct": 7.97,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Communication",
-          "weightPct": 7.77,
+          "weightPct": 7.8,
           "label": "Communication"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 4.32,
+          "weightPct": 4.31,
           "label": "Consumer Staples"
         },
         {
@@ -9795,87 +9854,87 @@
         },
         {
           "name": "Utilities",
-          "weightPct": 2.08,
+          "weightPct": 2.06,
           "label": "Utilities"
         },
         {
           "name": "Real Estate",
-          "weightPct": 1.38,
+          "weightPct": 1.37,
           "label": "Immobilier"
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.43,
+          "weightPct": 0.42,
           "label": "Cash and/or Derivatives"
         }
       ],
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 64.24
+          "weightPct": 64.23
         },
         {
           "name": "Japan",
-          "weightPct": 5.17
+          "weightPct": 5.2
         },
         {
           "name": "Taiwan",
-          "weightPct": 3.45
+          "weightPct": 3.54
         },
         {
           "name": "United Kingdom",
-          "weightPct": 2.9
-        },
-        {
-          "name": "Canada",
           "weightPct": 2.89
         },
         {
+          "name": "Canada",
+          "weightPct": 2.87
+        },
+        {
           "name": "Korea (South)",
-          "weightPct": 2.63
+          "weightPct": 2.62
         },
         {
           "name": "Germany",
-          "weightPct": 2.31
+          "weightPct": 2.36
         },
         {
           "name": "Ireland",
-          "weightPct": 2.03
-        },
-        {
-          "name": "France",
-          "weightPct": 1.92
+          "weightPct": 2.01
         },
         {
           "name": "China",
           "weightPct": 1.89
         },
         {
+          "name": "France",
+          "weightPct": 1.88
+        },
+        {
           "name": "Switzerland",
-          "weightPct": 1.86
+          "weightPct": 1.85
         },
         {
           "name": "Australia",
-          "weightPct": 1.31
+          "weightPct": 1.3
         },
         {
           "name": "Netherlands",
-          "weightPct": 1.26
+          "weightPct": 1.25
         },
         {
           "name": "Other",
-          "weightPct": 5.709999999999999
+          "weightPct": 5.67
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.43
+          "weightPct": 0.42
         }
       ],
-      "checkedAt": "2026-10-05"
+      "checkedAt": "2026-10-06"
     },
     "holdings": {
       "asOf": "2026-10-05",
@@ -10690,6 +10749,18 @@
       "index": "MSCI World Financials Advanced Select 20 35 Capped Index",
       "distribution": "Distributing",
       "checkedAt": "2026-10-05"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2022": -9.65,
+        "2023": 17.41,
+        "2024": 25.25,
+        "2025": 29.53
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "IE00BK95B138": {
@@ -10912,6 +10983,19 @@
       "index": "MSCI All Country World Far East Ex Japan USD Index (USD)",
       "distribution": "Accumulating",
       "checkedAt": "2026-10-05"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2021": -8.92,
+        "2022": -21.95,
+        "2023": 2.3,
+        "2024": 11.67,
+        "2025": 39.91
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "IE00BMG6Z448": {
@@ -11113,6 +11197,18 @@
       "index": "MSCI Emerging Markets ex China Index (Net)",
       "distribution": "Accumulating",
       "checkedAt": "2026-10-05"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2022": -19.35,
+        "2023": 19.73,
+        "2024": 3.64,
+        "2025": 34.83
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "IE00BMW42413": {
@@ -11248,6 +11344,19 @@
       "index": "MSCI Europe Information Technology 20/35 Capped Index (EUR)",
       "distribution": "Accumulating",
       "checkedAt": "2026-10-05"
+    },
+    "performance": {
+      "currency": "EUR",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2021": 36.57,
+        "2022": -28.76,
+        "2023": 35.04,
+        "2024": 7.93,
+        "2025": 9.64
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "IE00BP3QZ601": {
@@ -12908,31 +13017,31 @@
       "checkedAt": "2026-10-06"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 69.16,
+          "weightPct": 68.85,
           "label": "Information Technology"
         },
         {
           "name": "Communication",
-          "weightPct": 19.23,
+          "weightPct": 19.41,
           "label": "Communication"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 4.68,
+          "weightPct": 4.73,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Industrials",
-          "weightPct": 4.61,
+          "weightPct": 4.67,
           "label": "Industrials"
         },
         {
           "name": "Materials",
-          "weightPct": 2.08,
+          "weightPct": 2.09,
           "label": "Materials"
         },
         {
@@ -12944,27 +13053,27 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 66.99
+          "weightPct": 66.84
         },
         {
           "name": "China",
-          "weightPct": 11.25
+          "weightPct": 11.37
         },
         {
           "name": "Japan",
-          "weightPct": 7.91
+          "weightPct": 7.98
         },
         {
           "name": "Germany",
-          "weightPct": 5.64
+          "weightPct": 5.63
         },
         {
           "name": "Finland",
-          "weightPct": 2.46
+          "weightPct": 2.39
         },
         {
           "name": "Taiwan",
@@ -12972,7 +13081,7 @@
         },
         {
           "name": "Korea (South)",
-          "weightPct": 1.81
+          "weightPct": 1.83
         },
         {
           "name": "Sweden",
@@ -12983,7 +13092,7 @@
           "weightPct": 0.25
         }
       ],
-      "checkedAt": "2026-10-05"
+      "checkedAt": "2026-10-06"
     },
     "holdings": {
       "asOf": "2026-10-05",
@@ -13471,61 +13580,61 @@
       "checkedAt": "2026-10-06"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "Industrials",
-          "weightPct": 25.91,
+          "weightPct": 25.87,
           "label": "Industrials"
         },
         {
           "name": "Financials",
-          "weightPct": 14.92,
+          "weightPct": 14.97,
           "label": "Financials"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 10.8,
+          "weightPct": 10.71,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Materials",
-          "weightPct": 8.51,
+          "weightPct": 8.49,
           "label": "Materials"
         },
         {
           "name": "Real Estate",
-          "weightPct": 8.02,
+          "weightPct": 8.03,
           "label": "Immobilier"
         },
         {
           "name": "Information Technology",
-          "weightPct": 8.02,
+          "weightPct": 8.01,
           "label": "Information Technology"
         },
         {
           "name": "Health Care",
-          "weightPct": 6.85,
+          "weightPct": 6.91,
           "label": "Health Care"
         },
         {
           "name": "Energy",
-          "weightPct": 5.39,
+          "weightPct": 5.49,
           "label": "Energy"
         },
         {
           "name": "Communication",
-          "weightPct": 4.89,
+          "weightPct": 4.88,
           "label": "Communication"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 3.47,
+          "weightPct": 3.44,
           "label": "Consumer Staples"
         },
         {
           "name": "Utilities",
-          "weightPct": 2.06,
+          "weightPct": 2.04,
           "label": "Utilities"
         },
         {
@@ -13537,55 +13646,55 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 28.3
+          "weightPct": 28.21
         },
         {
           "name": "Sweden",
-          "weightPct": 11.58
+          "weightPct": 11.64
         },
         {
           "name": "Switzerland",
-          "weightPct": 9.79
+          "weightPct": 9.8
         },
         {
           "name": "Germany",
-          "weightPct": 8.95
+          "weightPct": 8.9
         },
         {
           "name": "France",
-          "weightPct": 8.22
-        },
-        {
-          "name": "Italy",
-          "weightPct": 5.79
+          "weightPct": 8.24
         },
         {
           "name": "Norway",
-          "weightPct": 5.77
+          "weightPct": 5.83
+        },
+        {
+          "name": "Italy",
+          "weightPct": 5.8
         },
         {
           "name": "Denmark",
-          "weightPct": 4.57
+          "weightPct": 4.6
         },
         {
           "name": "Netherlands",
-          "weightPct": 3.42
+          "weightPct": 3.41
         },
         {
           "name": "Belgium",
-          "weightPct": 3.29
+          "weightPct": 3.28
         },
         {
           "name": "Spain",
-          "weightPct": 3.26
+          "weightPct": 3.25
         },
         {
           "name": "Finland",
-          "weightPct": 2.42
+          "weightPct": 2.41
         },
         {
           "name": "Austria",
@@ -13600,7 +13709,7 @@
           "weightPct": 1.16
         }
       ],
-      "checkedAt": "2026-10-05"
+      "checkedAt": "2026-10-06"
     },
     "holdings": {
       "asOf": "2026-10-05",
@@ -15670,7 +15779,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-      "sha256": "e289622f7169271dea2915e7d86773ee68fddbe7da38498dcbc05d43730889a6",
+      "sha256": "02fdf5aeb174c3c29642b5aecfefd8767762b24aadad9c557d204174986fed59",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
@@ -15852,7 +15961,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-      "sha256": "a758f8e3d74a36beed9df8ba5570dec902d7cc18a031a0e796643f361a52b335",
+      "sha256": "b76f47d422861e0597af02830346d08f7835cb403ea992e9f6bece58db2d7413",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
@@ -16127,6 +16236,15 @@
         }
       ],
       "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2025": 31.98
+      },
+      "checkedAt": "2026-10-06"
     }
   },
   "LU0290358497": {
@@ -16164,7 +16282,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/historicaldata/download",
-      "sha256": "0114eff778bc3ca40874bdeb7cf546dee3a15e539d6a902dfde6ac115f6181e8",
+      "sha256": "de71d301c56ec8fdeddd92fcc3fa5f0f6a2b643a481a198a0733f79fa13a1cb3",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     }
@@ -16186,7 +16304,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-      "sha256": "becd1db713014e3eafa2c4925f4d5cbdf3fe0fb41fb6459a3be8e2c3c5de768b",
+      "sha256": "450b1ca0ea76dcb999b86f481c086d8d1bec4ad379e41e574ff5f1bf807bb044",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
@@ -16586,160 +16704,172 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/historicaldata/download",
-      "sha256": "cef49ba9e58009a54a264ba56cb86af709f931d2f6a62cdc4efe9ab70e96d94c",
+      "sha256": "7126c96752bf3a16e1442c1ad9857c01c80b8dc7f263cb16596f3ff979645d0d",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "sha256": "8c47292128457cac209d9971bcf5723ef2676e536ea13e43b3467d1001b90681",
+      "sha256": "a40674844f4516d6e8a9c59abfffcd9488cc0cace843932d4c8daf72e46237c6",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "Technology",
-          "weightPct": 71.973246,
+          "weightPct": 71.929984,
           "label": "Technology"
         },
         {
           "name": "Telecommunications",
-          "weightPct": 10.955279,
+          "weightPct": 10.935015,
           "label": "Communication"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 10.49339,
+          "weightPct": 10.577833,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Financials",
-          "weightPct": 3.023793,
+          "weightPct": 3.023179,
           "label": "Financials"
         },
         {
           "name": "Unassigned",
-          "weightPct": 2.556334,
+          "weightPct": 2.548215,
           "label": "Non classé"
         },
         {
           "name": "Industrials",
-          "weightPct": 0.976447,
+          "weightPct": 0.952921,
           "label": "Industrials"
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.021511,
+          "weightPct": 0.032853,
           "label": "Cash and/or Derivatives"
         }
       ],
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "sha256": "8c47292128457cac209d9971bcf5723ef2676e536ea13e43b3467d1001b90681",
+      "sha256": "a40674844f4516d6e8a9c59abfffcd9488cc0cace843932d4c8daf72e46237c6",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 84.243697
+          "weightPct": 82.8465
         },
         {
           "name": "Korea, Republic of",
-          "weightPct": 7.522438
+          "weightPct": 7.518668
         },
         {
-          "name": "China",
-          "weightPct": 3.85033
+          "name": "Hong Kong",
+          "weightPct": 2.412068
         },
         {
           "name": "Germany",
-          "weightPct": 2.083021
+          "weightPct": 2.072636
+        },
+        {
+          "name": "China",
+          "weightPct": 1.524412
         },
         {
           "name": "Taiwan",
-          "weightPct": 1.060917
+          "weightPct": 1.069617
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.952921
         },
         {
           "name": "Japan",
-          "weightPct": 0.815115
+          "weightPct": 0.809935
         },
         {
-          "name": "Israel",
-          "weightPct": 0.149197
+          "name": "Australia",
+          "weightPct": 0.357486
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.148807
+          "weightPct": 0.149819
+        },
+        {
+          "name": "Israel",
+          "weightPct": 0.148856
         },
         {
           "name": "Canada",
-          "weightPct": 0.104967
+          "weightPct": 0.104228
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.021511
+          "weightPct": 0.032853
         }
       ],
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "sha256": "8c47292128457cac209d9971bcf5723ef2676e536ea13e43b3467d1001b90681",
+      "sha256": "a40674844f4516d6e8a9c59abfffcd9488cc0cace843932d4c8daf72e46237c6",
       "rows": [
         {
-          "name": "MICROSOFT",
+          "name": "MICROSOFT CORP",
           "isin": "US5949181045",
-          "weightPct": 5.74241671
+          "weightPct": 5.79914298
         },
         {
-          "name": "META PLATFORMS CLASS A",
+          "name": "META PLATFORMS INC CLASS A",
           "isin": "US30303M1027",
-          "weightPct": 5.3498031
+          "weightPct": 5.42501061
         },
         {
-          "name": "NVIDIA",
+          "name": "NVIDIA CORP",
           "isin": "US67066G1040",
-          "weightPct": 4.83937285
+          "weightPct": 4.91788819
         },
         {
-          "name": "APPLE",
+          "name": "APPLE INC",
           "isin": "US0378331005",
-          "weightPct": 4.77305231
+          "weightPct": 4.73860082
         },
         {
           "name": "ADVANCED MICRO DEVICES",
           "isin": "US0079031078",
-          "weightPct": 4.51658119
+          "weightPct": 4.4794395
         },
         {
-          "name": "AMAZON COM INC",
+          "name": "AMAZON.COM INC",
           "isin": "US0231351067",
-          "weightPct": 4.36783131
+          "weightPct": 4.34465423
         },
         {
-          "name": "SAMSUNG ELECTRONICS LTD",
-          "isin": "KR7005930003",
-          "weightPct": 3.98807786
-        },
-        {
-          "name": "ALPHABET CLASS A",
+          "name": "ALPHABET INC CL A",
           "isin": "US02079K3059",
-          "weightPct": 3.978315
+          "weightPct": 3.99332259
         },
         {
-          "name": "MICRON TECHNOLOGY",
-          "isin": "US5951121038",
-          "weightPct": 3.85428171
+          "name": "SAMSUNG ELECTRONICS CO LTD",
+          "isin": "KR7005930003",
+          "weightPct": 3.98607898
         },
         {
-          "name": "WALMART",
+          "name": "WALMART INC",
           "isin": "US9311421039",
-          "weightPct": 3.81006149
+          "weightPct": 3.82111006
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "isin": "US5951121038",
+          "weightPct": 3.7966596
         }
       ],
       "checkedAt": "2026-10-06"
@@ -16780,7 +16910,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-      "sha256": "c0ef75c01c6887b96418f0f50f6df6748903a79463ca78e64503ba239ec0bdd9",
+      "sha256": "043fd832fb21f02e46d9e2b88a7aa7998fc12d38accbab7322921ef4e71107bb",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
@@ -16990,7 +17120,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-      "sha256": "daabcafdb72bdc1052de09bb878ed91c114bdc2499cae826d8794cac2d23a3f4",
+      "sha256": "360c3a361ee5c8302672bab94d560ad12e7ed1ddd47eb9a6b804e086233cd993",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
@@ -17215,7 +17345,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/historicaldata/download",
-      "sha256": "1026c18de84e3e6b08da0f73387c9bb7396bd90a5c1e93eacc07fcc008cadee1",
+      "sha256": "da5600769769eb12f3eaa63f08228bee94d9788417b8692548beb024df2e48e5",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
@@ -17540,7 +17670,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/historicaldata/download",
-      "sha256": "d8111642ead1750c2979fed565848451e754a993adc6256e3f01cccc614f5702",
+      "sha256": "642081ab1a53a81eaf36c8903ad3a136fae1e94efa62b764b6e4697c9ca7f3cd",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
@@ -17548,7 +17678,7 @@
       "asOf": "2026-10-02",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
-      "sha256": "addd6cd001936bf5fff251ec7be5e885fe07fdb9542a945da40d9739ec9f099f",
+      "sha256": "b09280955ad1077ea6ec403d6cbca8de30bc8a0c09ba12689bd02d416bb89cee",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -17623,7 +17753,7 @@
       "asOf": "2026-10-02",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
-      "sha256": "addd6cd001936bf5fff251ec7be5e885fe07fdb9542a945da40d9739ec9f099f",
+      "sha256": "b09280955ad1077ea6ec403d6cbca8de30bc8a0c09ba12689bd02d416bb89cee",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -17641,20 +17771,20 @@
       "asOf": "2026-10-02",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
-      "sha256": "addd6cd001936bf5fff251ec7be5e885fe07fdb9542a945da40d9739ec9f099f",
+      "sha256": "b09280955ad1077ea6ec403d6cbca8de30bc8a0c09ba12689bd02d416bb89cee",
       "rows": [
         {
-          "name": "ADVANTEST",
+          "name": "ADVANTEST CORP",
           "isin": "JP3122400009",
           "weightPct": 12.18949629
         },
         {
-          "name": "TOKYO ELECTRON",
+          "name": "TOKYO ELECTRON LTD",
           "isin": "JP3571400005",
           "weightPct": 8.94868297
         },
         {
-          "name": "FAST RETAILING",
+          "name": "FAST RETAILING CO LTD",
           "isin": "JP3802300008",
           "weightPct": 8.49253336
         },
@@ -17664,32 +17794,32 @@
           "weightPct": 7.46654366
         },
         {
-          "name": "RECRUIT HOLDINGS LTD",
+          "name": "RECRUIT HOLDINGS CO LTD",
           "isin": "JP3970300004",
           "weightPct": 2.46788723
         },
         {
-          "name": "IBIDEN LTD",
+          "name": "IBIDEN CO LTD",
           "isin": "JP3148800000",
           "weightPct": 2.38636811
         },
         {
-          "name": "TDK",
+          "name": "TDK CORP",
           "isin": "JP3538800008",
           "weightPct": 2.36509258
         },
         {
-          "name": "KIOXIA HOLDINGS",
+          "name": "KIOXIA HOLDINGS CORP",
           "isin": "JP3236330001",
           "weightPct": 1.9980911
         },
         {
-          "name": "KDDI",
+          "name": "KDDI CORP",
           "isin": "JP3496400007",
           "weightPct": 1.71375044
         },
         {
-          "name": "FUJIKURA",
+          "name": "FUJIKURA LTD",
           "isin": "JP3811000003",
           "weightPct": 1.65578707
         }
@@ -17714,7 +17844,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download",
-      "sha256": "aea1e200fff12346dbdec84e1cf0e0c3518773ce51bae103c44a7283a0fb2698",
+      "sha256": "82816034e75ba2a0ee2d002932432a47dcd41e603f0ee3126fd53f9017d6e1b5",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-06"
     },
@@ -17722,7 +17852,7 @@
       "asOf": "2026-10-02",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
-      "sha256": "5ac9b47e17b99b357dfb663f2d80800eaa3d62070b8b0c08713bc9b23591cd21",
+      "sha256": "63ace6d83a966954b2ba715f301a998e4361d0bfe41ac3768b65aac5784fca3b",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -17797,7 +17927,7 @@
       "asOf": "2026-10-02",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
-      "sha256": "5ac9b47e17b99b357dfb663f2d80800eaa3d62070b8b0c08713bc9b23591cd21",
+      "sha256": "63ace6d83a966954b2ba715f301a998e4361d0bfe41ac3768b65aac5784fca3b",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -17815,20 +17945,20 @@
       "asOf": "2026-10-02",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
-      "sha256": "5ac9b47e17b99b357dfb663f2d80800eaa3d62070b8b0c08713bc9b23591cd21",
+      "sha256": "63ace6d83a966954b2ba715f301a998e4361d0bfe41ac3768b65aac5784fca3b",
       "rows": [
         {
-          "name": "ADVANTEST",
+          "name": "ADVANTEST CORP",
           "isin": "JP3122400009",
           "weightPct": 12.18949629
         },
         {
-          "name": "TOKYO ELECTRON",
+          "name": "TOKYO ELECTRON LTD",
           "isin": "JP3571400005",
           "weightPct": 8.94868297
         },
         {
-          "name": "FAST RETAILING",
+          "name": "FAST RETAILING CO LTD",
           "isin": "JP3802300008",
           "weightPct": 8.49253336
         },
@@ -17838,36 +17968,49 @@
           "weightPct": 7.46654366
         },
         {
-          "name": "RECRUIT HOLDINGS LTD",
+          "name": "RECRUIT HOLDINGS CO LTD",
           "isin": "JP3970300004",
           "weightPct": 2.46788723
         },
         {
-          "name": "IBIDEN LTD",
+          "name": "IBIDEN CO LTD",
           "isin": "JP3148800000",
           "weightPct": 2.38636811
         },
         {
-          "name": "TDK",
+          "name": "TDK CORP",
           "isin": "JP3538800008",
           "weightPct": 2.36509258
         },
         {
-          "name": "KIOXIA HOLDINGS",
+          "name": "KIOXIA HOLDINGS CORP",
           "isin": "JP3236330001",
           "weightPct": 1.9980911
         },
         {
-          "name": "KDDI",
+          "name": "KDDI CORP",
           "isin": "JP3496400007",
           "weightPct": 1.71375044
         },
         {
-          "name": "FUJIKURA",
+          "name": "FUJIKURA LTD",
           "isin": "JP3811000003",
           "weightPct": 1.65578707
         }
       ],
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "JPY",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2021": 6.31,
+        "2022": -7.69,
+        "2023": 30.51,
+        "2024": 20.91,
+        "2025": 28.24
+      },
       "checkedAt": "2026-10-06"
     }
   },
@@ -20656,46 +20799,46 @@
       "checkedAt": "2026-10-06"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 80.96,
+          "weightPct": 81.32,
           "label": "Information Technology"
         },
         {
           "name": "Financials",
-          "weightPct": 11.98,
+          "weightPct": 11.66,
           "label": "Financials"
         },
         {
           "name": "Materials",
-          "weightPct": 2.58,
+          "weightPct": 2.67,
           "label": "Materials"
         },
         {
           "name": "Industrials",
-          "weightPct": 1.54,
+          "weightPct": 1.47,
           "label": "Industrials"
         },
         {
           "name": "Communication",
-          "weightPct": 1.25,
+          "weightPct": 1.21,
           "label": "Communication"
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 0.6,
+          "weightPct": 0.59,
           "label": "Consumer Staples"
         },
         {
           "name": "Health Care",
-          "weightPct": 0.52,
+          "weightPct": 0.51,
           "label": "Health Care"
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 0.19,
+          "weightPct": 0.18,
           "label": "Consumer Discretionary"
         },
         {
@@ -21479,31 +21622,31 @@
       "checkedAt": "2026-10-06"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "rows": [
         {
           "name": "Consumer Discretionary",
-          "weightPct": 22.44,
+          "weightPct": 22.49,
           "label": "Consumer Discretionary"
         },
         {
           "name": "Financials",
-          "weightPct": 20.85,
+          "weightPct": 20.74,
           "label": "Financials"
         },
         {
           "name": "Communication",
-          "weightPct": 17.73,
+          "weightPct": 17.72,
           "label": "Communication"
         },
         {
           "name": "Information Technology",
-          "weightPct": 11.56,
+          "weightPct": 11.64,
           "label": "Information Technology"
         },
         {
           "name": "Health Care",
-          "weightPct": 6.31,
+          "weightPct": 6.34,
           "label": "Health Care"
         },
         {
@@ -21523,17 +21666,17 @@
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 2.83,
+          "weightPct": 2.81,
           "label": "Consumer Staples"
         },
         {
           "name": "Utilities",
-          "weightPct": 1.9,
+          "weightPct": 1.89,
           "label": "Utilities"
         },
         {
           "name": "Real Estate",
-          "weightPct": 1.5,
+          "weightPct": 1.49,
           "label": "Immobilier"
         },
         {
@@ -21861,6 +22004,19 @@
       "terPct": 0.38,
       "index": "MSCI World High Dividend Yield Advanced Select Index USD",
       "distribution": "Accumulating",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2021": 15.79,
+        "2022": -7.28,
+        "2023": 17.16,
+        "2024": 9.76,
+        "2025": 23.97
+      },
       "checkedAt": "2026-10-06"
     }
   },
@@ -22192,6 +22348,16 @@
       "terPct": 0.03,
       "index": "S&P 500<sup>®</sup> Index",
       "distribution": "Accumulation",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year fund NAV net total return, income reinvested, fund fees included",
+      "years": {
+        "2024": 24.72,
+        "2025": 17.6
+      },
       "checkedAt": "2026-10-06"
     }
   },
@@ -23538,7 +23704,7 @@
   "JE00B1VS3770": {
     "currency": "USD",
     "productId": "JE00B1VS3770",
-    "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
     "provider": "WisdomTree",
     "characteristics": {
       "terPct": 0.39,
@@ -23578,7 +23744,7 @@
   "GB00BJYDH287": {
     "currency": "USD",
     "productId": "GB00BJYDH287",
-    "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
     "provider": "WisdomTree",
     "characteristics": {
       "terPct": 0.15,
@@ -24420,6 +24586,22 @@
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
       "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
       "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2025": 52.01,
+        "2024": -14.5,
+        "2023": -8.57,
+        "2022": -9.4,
+        "2021": -6.32
+      },
+      "asOf": "2026-08-31",
+      "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "ef167a2732e4b0c9cd7d0a21649eb7a9fd92c7111e263ab380f1228e72b7170d",
+      "checkedAt": "2026-10-06"
     }
   },
   "DE000A27Z304": {
@@ -24433,13 +24615,13 @@
       "scope": "share-class",
       "asOf": "2026-10-06",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "0f1e4d93014f66c1f7317749a77a03f2c597f1b0054880822637e747e454e26a",
+      "sha256": "e82871326e1e2734258a705a7101e635148b85dbb57d49545c37c78c769f758f",
       "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "asOf": "2026-10-06",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "0f1e4d93014f66c1f7317749a77a03f2c597f1b0054880822637e747e454e26a",
+      "sha256": "e82871326e1e2734258a705a7101e635148b85dbb57d49545c37c78c769f758f",
       "terPct": 2.0,
       "checkedAt": "2026-10-06"
     }
@@ -24447,7 +24629,7 @@
   "GB00B15KXQ89": {
     "currency": "USD",
     "productId": "GB00B15KXQ89",
-    "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
     "provider": "WisdomTree",
     "aum": {
       "amount": 1998160479.0,
@@ -24491,7 +24673,7 @@
   "IE0002Y8CX98": {
     "currency": "EUR",
     "productId": "IE0002Y8CX98",
-    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
     "provider": "WisdomTree",
     "aum": {
       "amount": 4924897713.0,
@@ -24651,7 +24833,7 @@
   "IE000W8WMSL2": {
     "currency": "USD",
     "productId": "IE000W8WMSL2",
-    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
     "provider": "WisdomTree",
     "aum": {
       "amount": 364645070.0,
@@ -24812,7 +24994,7 @@
   "IE00BZ56SW52": {
     "currency": "USD",
     "productId": "IE00BZ56SW52",
-    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
     "provider": "WisdomTree",
     "aum": {
       "amount": 1645809873.0,
@@ -25092,7 +25274,7 @@
       "scope": "fund",
       "asOf": "2026-10-05",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "4d1c4b4383c0106cf0e9a77fa6b629ae748a1701cf26e1eeca7024e96cc0744c",
+      "sha256": "72f0e93a78df2eeddca0c6cdf478af6d1854fc140a0a2d19e13d5cbb21ffc592",
       "checkedAt": "2026-10-06"
     },
     "characteristics": {
