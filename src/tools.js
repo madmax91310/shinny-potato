@@ -77,19 +77,19 @@ export const TOOLS = [
   },
   {
     to: '/comparatif-etf', navLabel: 'Comparatif ETF', title: 'Comparatif ETF',
-    format: 'comparatif-etf', bundle: '/tweet-midi', publicationDay: 'Jeudi midi',
+    format: 'comparatif-etf', bundle: '/tweet-midi', publicationDay: 'Mercredi midi',
     icon: '🕐', accent: '#a78bfa',
     description: 'Compare les expositions, frais et performances de deux ETF.', status: 'disponible',
   },
   {
     to: '/il-y-a-x-ans', navLabel: 'Il y a X ans', title: 'Il y a X ans',
-    format: 'anniversaire', bundle: '/tweet-midi', publicationDay: 'Mercredi midi · alternance',
+    format: 'anniversaire', bundle: '/tweet-midi', publicationDay: 'Jeudi midi · alternance',
     icon: '🕐', accent: '#a78bfa',
     description: 'Compare un prix historique au niveau actuel que tu renseignes.', status: 'disponible',
   },
   {
     to: '/performance-depuis', navLabel: 'Performance depuis', title: 'Performance depuis',
-    format: 'performance-depuis', bundle: '/tweet-midi', publicationDay: 'Mercredi midi · alternance',
+    format: 'performance-depuis', bundle: '/tweet-midi', publicationDay: 'Jeudi midi · alternance',
     icon: '🕐', accent: '#a78bfa',
     description: 'Les performances annuelles d’un actif sur la période choisie.', status: 'disponible',
   },
@@ -208,8 +208,8 @@ export const TOOL_GROUPS = [
 export const WEEKLY_ORDER = [
   '/fiche-lexique', '/duels-portefeuilles', '/tweets-factsheets',
   '/comparateur-indices', '/generateur-portefeuilles',
-  '/il-y-a-x-ans', '/performance-depuis', '/calculateur-investissement',
-  '/comparatif-etf', '/fiches-etf',
+  '/comparatif-etf', '/calculateur-investissement',
+  '/il-y-a-x-ans', '/performance-depuis', '/fiches-etf',
   '/france-100-menages', '/pouvoir-achat', '/comparatif-courtiers',
   '/dilemme', '/faits-marquants-marches', '/portefeuilles-investisseurs',
   '/vrai-faux', '/cas-concrets', '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
