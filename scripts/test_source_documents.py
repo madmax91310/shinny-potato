@@ -208,4 +208,23 @@ class CompletedIssuerCoverage(unittest.TestCase):
             self.assertEqual(msci_composition(text,config,self.now)['asOf'],'2026-09-30')
             with self.assertRaises(ValueError): msci_returns(text,{**config,'returnVariant':'GROSS'},self.now)
 
+class VanEckRegionalSources(unittest.TestCase):
+    def test_transport_only_regional_fallback_and_exact_source(self):
+        from collect_vaneck_etf import collect_one
+        share={'sourceUrl':'https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf',
+               'fallbackUrls':['https://www.vaneck.com/nl/en/library/fact-sheets/espo-fact-sheet.pdf']}
+        calls=[]
+        def fetch(url):
+            calls.append(url)
+            if len(calls)==1:raise ValueError('Expected official PDF; regional landing page')
+            return b'%PDF-valid'
+        with patch('collect_vaneck_etf.parse_document',side_effect=lambda b,s,n:s):
+            self.assertEqual(collect_one(share,NOW,fetch)['sourceUrl'],share['fallbackUrls'][0])
+        self.assertEqual(calls,[share['sourceUrl'],share['fallbackUrls'][0]])
+        calls.clear()
+        with patch('collect_vaneck_etf.parse_document',side_effect=ValueError('Wrong identity')):
+            with self.assertRaises(ValueError):collect_one(share,NOW,lambda u:calls.append(u) or b'%PDF-wrong')
+        self.assertEqual(calls,[share['sourceUrl']])
+        with self.assertRaises(ValueError):collect_one({**share,'fallbackUrls':['https://example.com/espo-fact-sheet.pdf']},NOW,fetch)
+
 if __name__=='__main__':unittest.main()

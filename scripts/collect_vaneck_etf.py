@@ -2,6 +2,8 @@
 import re
 import pathlib
 import subprocess
+import urllib.error
+from urllib.parse import urlparse
 from data_automation import reject
 from issuer_documents import download,pdf_text,document_date,proof,validated_rows,bounded_return
 
@@ -55,14 +57,28 @@ def parse_document(body,share,now):
 
 
 def collect_one(share,now,fetch=download):
-    try:
-        body = fetch(share['sourceUrl'])
-    except ValueError as error:
-        if fetch is not download or 'Expected official PDF' not in str(error):
-            raise
-        script = pathlib.Path(__file__).with_name('download-vaneck-document.mjs')
-        result = subprocess.run(['node', str(script), share['sourceUrl']], capture_output=True, timeout=65)
-        if result.returncode:
-            reject(str(error) + '; browser initialisation failed: ' + result.stderr.decode('utf-8', errors='replace')[-5000:])
-        body = result.stdout
-    return parse_document(body,share,now)
+    urls=[share['sourceUrl'], *share.get('fallbackUrls',[])]
+    document=pathlib.PurePosixPath(urlparse(share['sourceUrl']).path).name
+    for url in urls:
+        parsed=urlparse(url)
+        if (parsed.scheme!='https' or parsed.hostname!='www.vaneck.com'
+                or not re.fullmatch(r'/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf',parsed.path)
+                or pathlib.PurePosixPath(parsed.path).name!=document):
+            reject('Unexpected VanEck regional document URL')
+    last_error=None
+    for url in urls:
+        try:
+            body=fetch(url)
+        except (urllib.error.URLError, TimeoutError) as error:
+            last_error=error;continue
+        except ValueError as error:
+            if 'Expected official PDF' not in str(error):raise
+            last_error=error;continue
+        # An incompatible document must fail, never trigger another source.
+        return parse_document(body,{**share,'sourceUrl':url},now)
+    if fetch is not download:raise last_error
+    script=pathlib.Path(__file__).with_name('download-vaneck-document.mjs')
+    result=subprocess.run(['node',str(script),share['sourceUrl']],capture_output=True,timeout=65)
+    if result.returncode:
+        reject(str(last_error)+'; browser initialisation failed: '+result.stderr.decode('utf-8',errors='replace')[-5000:])
+    return parse_document(result.stdout,share,now)

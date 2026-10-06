@@ -191,9 +191,13 @@
       "parser": "vaneck",
       "currency": "USD",
       "benchmark": "MarketVector Global Video Gaming & eSports Screened Index (MVESPGTR)",
-      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/espo-fact-sheet.pdf",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/espo-fact-sheet.pdf",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/espo-fact-sheet.pdf"
+      ]
     },
     {
       "isin": "IE0007Y8Y157",
