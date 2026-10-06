@@ -54,8 +54,10 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: active-etf-issuers-v2-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  # Serialize writers of automated-indices.json; keep PR validations independent.
+  group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  queue: max
 jobs:
   refresh:
     runs-on: ubuntu-latest

@@ -25,8 +25,10 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: market-monthly-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  # Serialize writers of automated-indices.json; keep PR validations independent.
+  group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
   cancel-in-progress: false
+  queue: max
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -38,6 +40,9 @@ jobs:
       collection_failed: ${{ steps.collect.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # A queued production run must start from the latest published data.
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

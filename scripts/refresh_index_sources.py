@@ -34,6 +34,8 @@ def collect_one(config, now, fetch=download):
             facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(),
                                'label': 'Composition officielle automatisée · ' + config['name'], 'sha256': digest}
             facts['provenance'] = config.get('identityNote', 'Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF.')
+            if config.get('identitySourceUrl'):
+                facts['source'].update(sourceUrls=[config['sourceUrl'],config['identitySourceUrl']], identityCheckedAt=config['identityCheckedAt'])
             result['facts'] = facts
         except Exception as error:
             result['errors'].append({'field':'composition','reason':str(error),'url':config['sourceUrl']})
@@ -55,6 +57,8 @@ def collect_one(config, now, fetch=download):
                 'source':{'url':config['returnSourceUrl'],'checkedAt':now.date().isoformat(),'sha256':digest,
                           'label':'Rendements calendaires officiels automatisés · '+config['name']},
                 'performance':{'kind':'indice','detail':config['performanceDetail'],'date':stamp}}
+            if config.get('identitySourceUrl'):
+                result['returns']['source'].update(sourceUrls=[config['returnSourceUrl'],config['identitySourceUrl']], identityCheckedAt=config['identityCheckedAt'])
         except Exception as error:
             result['errors'].append({'field':'returns','reason':str(error),'url':config['returnSourceUrl']})
     return result
