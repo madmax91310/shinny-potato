@@ -63,6 +63,6 @@ def collect_one(share,now,fetch=download):
         script = pathlib.Path(__file__).with_name('download-vaneck-document.mjs')
         result = subprocess.run(['node', str(script), share['sourceUrl']], capture_output=True, timeout=65)
         if result.returncode:
-            reject(str(error) + '; browser initialisation failed: ' + result.stderr.decode('utf-8', errors='replace')[-1200:])
+            reject(str(error) + '; browser initialisation failed: ' + result.stderr.decode('utf-8', errors='replace')[-5000:])
         body = result.stdout
     return parse_document(body,share,now)

@@ -10,19 +10,25 @@ const executablePath = ['/usr/bin/google-chrome', '/usr/bin/chromium'].find(exis
 const browser = await chromium.launch(executablePath ? { executablePath } : {});
 try {
   const context = await browser.newContext();
-  let response = await context.request.get(url.href, { timeout: 15000 });
+  const page = await context.newPage();
+  const userAgent = await page.evaluate(() => navigator.userAgent);
+  let response = await context.request.get(url.href, { timeout: 15000, headers: { 'User-Agent': userAgent } });
   let body = await response.body();
   if (!body.subarray(0, 5).equals(Buffer.from('%PDF-'))) {
     const landing = new URL(response.url());
     if (landing.hostname !== url.hostname || landing.protocol !== 'https:') throw new Error('Unexpected issuer redirect');
-    const page = await context.newPage();
     await page.goto(landing.href, { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1500);
-    response = await context.request.get(url.href, { timeout: 15000 });
+    response = await context.request.get(url.href, { timeout: 15000, headers: { 'User-Agent': userAgent } });
     body = await response.body();
   }
   if (!response.ok() || body.length > 8_000_000 || !body.subarray(0, 5).equals(Buffer.from('%PDF-'))) {
-    throw new Error(`Official VanEck document still unavailable after browser initialisation: ${response.status()} ${response.url()}`);
+    const state = await page.evaluate(() => ({
+      text: document.body.innerText.slice(0, 1800),
+      buttons: [...document.querySelectorAll('button, input[type="button"], input[type="submit"]')].map(b => b.innerText || b.value).filter(Boolean),
+      fields: [...document.querySelectorAll('input, select')].map(e => ({name:e.name, type:e.type, id:e.id})).filter(e => e.id || e.name),
+    }));
+    throw new Error(`Public region state: ${JSON.stringify(state)}; Official VanEck document still unavailable after browser initialisation: ${response.status()} ${response.url()}`);
   }
   process.stdout.write(body);
 } finally {
