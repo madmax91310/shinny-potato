@@ -25,7 +25,7 @@ try {
       if (await individual.isVisible()) await individual.click({ timeout: 5000 });
       const france = page.getByRole('button', { name: 'France', exact: true });
       if (await france.isVisible()) await france.click({ timeout: 5000 });
-      await continuation.click({ timeout: 5000 });
+      await continuation.click({ timeout: 5000, noWaitAfter: true });
       await page.waitForTimeout(500);
     }
     response = await context.request.get(url.href, { timeout: 15000, headers: { 'User-Agent': userAgent } });
