@@ -46,7 +46,15 @@ for (const theme of DEFAULT_THEMES) {
   if(p) {assert.equal(p.label,'ETF');assert.equal(p.referenceIsin,fund.isin)}
  }
 }
-for(const isin of ['IE00BD4TXV59','IE000XZSV718','IE000DQLYVB9','FR001400U5Q4']) assert.equal(getComparisonPerformance(isin),null,'No reference ETF or index substituted')
+for (const isin of ['IE00BD4TXV59','IE000XZSV718','IE000DQLYVB9','FR001400U5Q4']) {
+ const p = getComparisonPerformance(isin), actual = AUTOMATED_ETF[isin]?.performance
+ if (p) {
+  assert.equal(actual?.basis, 'fund', 'Only collected returns of the actual share may replace an unavailable history')
+  assert.equal(p.referenceIsin, isin)
+  assert.equal(p.currency, actual.currency)
+  for (const row of p.rows) assert.equal(row.pct, actual.years[row.year], 'No reference ETF or index substituted')
+ } else assert.equal(p, null)
+}
 const image=readFileSync('src/pages/tweet-midi/comparatifEtfImage.js','utf8')
 assert.ok(!image.includes("'#ffd286'"))
 assert.match(image,/color: row.pct < 0 \? RED : GREEN/)

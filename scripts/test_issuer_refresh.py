@@ -1,11 +1,13 @@
 """Regression checks for unattended issuer extensions: dates, identity, basis, partial history and atomic writes."""
 import copy
+import html
 import datetime as dt
 import json
 import pathlib
 import tempfile
 import unittest
 from collect_amundi_etf import parse_product, collect, request_payload
+from collect_ssga_etf import parse_page
 from collect_etf_holdings import parse_holdings, holdings_url
 from apply_etf_collection import apply, merge_collection
 from data_automation import UTC
@@ -32,6 +34,17 @@ def amundi(physical=True):
 
 
 class IssuerRefreshTests(unittest.TestCase):
+    def test_state_street_excludes_the_partial_inception_year(self):
+        attrs = {k: {'value': v} for k, v in {'isin': 'TESTSHARE', 'base-fund-currency': 'USD',
+            'benchmark': 'S&P 500', 'fund-income-treatment': 'Accumulating', 'inception-date': '31 Oct 2023'}.items()}
+        attrs['total-expense-ratio'] = {'originalValue': '0.03'}
+        attrs['aum'] = {'originalValue': '1000000', 'asOfDateSimple': '01 Oct 2026'}
+        components = {'fund-quick-info': {'attrs': attrs}, 'data-point-cal': {'fund-perf-cal-net-total-mon': {
+            'attrs': {str(y): {'label': str(y), 'originalValue': '10'} for y in range(2022, 2026)}}}}
+        body = ''.join(f'<input id="{k}" value="{html.escape(json.dumps(v), quote=True)}">' for k, v in components.items())
+        result, _ = parse_page(body, {'isin': 'TESTSHARE', 'currency': 'USD'}, NOW)
+        self.assertEqual(result['performance']['years'], {'2024': 10, '2025': 10})
+
     def test_amundi_adjusted_weights_and_separate_dates(self):
         p,s=amundi();r=parse_product(p,s,NOW)
         self.assertEqual(r['holdings']['rows'][0]['weightPct'],8)

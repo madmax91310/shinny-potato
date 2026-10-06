@@ -31,12 +31,16 @@ class Inputs(HTMLParser):
             self.holdings=attrs['href']
 
 
-def date(value, now):
+def date(value, now, *, historical=False):
     months={'jan':'Jan','feb':'Feb','fév':'Feb','mar':'Mar','mär':'Mar','apr':'Apr','avr':'Apr','may':'May','mai':'May','jun':'Jun','juin':'Jun','jul':'Jul','juil':'Jul','aug':'Aug','août':'Aug','sep':'Sep','sept':'Sep','oct':'Oct','okt':'Oct','nov':'Nov','dec':'Dec','déc':'Dec','dez':'Dec'}
     parts=value.replace('-', ' ').split()
     if len(parts)!=3 or parts[1].lower().rstrip('.') not in months:reject('Unknown State Street date format')
     value=' '.join([parts[0],months[parts[1].lower().rstrip('.')],parts[2]])
-    return source_date(dt.datetime.strptime(value,'%d %b %Y').strftime('%Y%m%d'),now)
+    parsed = dt.datetime.strptime(value,'%d %b %Y').date()
+    if historical:
+        if parsed > now.date(): reject('Future State Street inception date')
+        return parsed.isoformat()
+    return source_date(parsed.strftime('%Y%m%d'),now)
 
 
 def allocation(component, now):
@@ -61,12 +65,15 @@ def parse_page(body, share, now):
     if share.get('collectComposition'):
         for key,component in [('sectors','fund-sector-breakdown'),('countries','fund-geographical-breakdown')]:
             if component in parser.data:result[key]=allocation(parser.data[component],now)
+    launch = facts.get('inception-date')
+    inception = date(launch.get('originalValue') or launch['value'], now, historical=True) if launch else None
     years={}
     calendar=parser.data.get('data-point-cal',{}).get('fund-perf-cal-net-total-mon',{})
     for key,point in calendar.get('attrs',{}).items():
         year=point['label']
         if key=='ytd':continue
         if not year.isdigit() or int(year)>=now.year or year in years:reject('Invalid State Street annual year')
+        if inception and year + '-01-01' < inception: continue
         raw=point.get('originalValue')
         if raw in (None,'','-'):continue
         value=float(raw)
