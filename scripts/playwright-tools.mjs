@@ -851,11 +851,18 @@ async function testFactsheetTweets(page) {
   for (let index = 0; index < count; index++) {
     await choose(select, SHEETS[index].id);
     const tweet = await draft.inputValue();
-    ok &&= tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR'));
-    ok &&= tweet.includes('2025') && /Les (principaux )?secteurs|La pondération/.test(tweet);
-    ok &&= !/undefined|NaN/.test(tweet) && (await page.locator('.fs-sources a').count()) >= 1;
-    ok &&= ['🌍 La répartition', '📈 Les performances', '📌 Ce que ça signifie'].every(label => tweet.includes(label));
-    ok &&= !tweet.includes('31 août 2026') && (await page.locator('.fs-meta').innerText()).includes(SHEETS[index].snapshot);
+    const checks = {
+      constituents: tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR')),
+      annualReturns: tweet.includes('2025'),
+      sectors: /Les (principaux )?secteurs|La pondération/.test(tweet),
+      validText: !/undefined|NaN/.test(tweet),
+      sources: (await page.locator('.fs-sources a').count()) >= 1,
+      sections: ['🌍 La répartition', '📈 Les performances', '📌 Ce que ça signifie'].every(label => tweet.includes(label)),
+      noOldDateInTweet: !tweet.includes('31 août 2026'),
+      currentSnapshot: (await page.locator('.fs-meta').innerText()).includes(SHEETS[index].snapshot),
+    };
+    if (Object.values(checks).some(value => !value)) console.log(`    Fiche ${SHEETS[index].id}: ${JSON.stringify(checks)}`);
+    ok &&= Object.values(checks).every(Boolean);
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié/ }).click();
     ok &&= (await page.evaluate(() => window.__factsheetCopied)) === tweet;
   }
