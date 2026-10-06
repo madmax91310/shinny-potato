@@ -280,6 +280,14 @@
       "replication": "Direct(Physical)",
       "collectComposition": true,
       "provider": "Amundi"
+    },
+    {
+      "isin": "FR0007056841",
+      "name": "Amundi Dow Jones Industrial Average UCITS ETF Dist",
+      "currency": "EUR",
+      "replication": "Indirect(Swap Based)",
+      "collectComposition": true,
+      "provider": "Amundi"
     }
   ]
 }

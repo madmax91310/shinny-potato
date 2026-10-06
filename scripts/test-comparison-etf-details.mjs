@@ -86,3 +86,13 @@ const image=readFileSync('src/pages/tweet-midi/comparatifEtfImage.js','utf8')
 assert.ok(!image.includes("'#ffd286'"))
 assert.match(image,/color: row.pct < 0 \? RED : GREEN/)
 console.log('Comparatif : parts exactes, aucune substitution, compositions datées et distinctes, secteurs complets, cohérence texte/image et couleurs vérifiés.')
+
+const usa = DEFAULT_THEMES.find(t => t.id === 'usa');
+assert.deepEqual(usa.etfs.map(f => f.isin), ['FR0011871128', 'FR0011871110', 'FR0007056841']);
+assert.equal(getComparisonPerformance('FR0007056841').referenceIsin, 'FR0007056841');
+assert.deepEqual(getComparisonPerformance('FR0007056841').calendarReturns, {2023:11.66,2024:22.07,2025:.70});
+assert.match(buildTweetText(usa), /Dow Jones/);
+for (const id of ['world-minvol','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde']) {
+ assert(DEFAULT_THEMES.find(t => t.id === id).etfs.some(f => f.isin === 'LU1681043599'));
+ assert(!DEFAULT_THEMES.find(t => t.id === id).etfs.some(f => f.isin === 'IE00B4L5Y983'));
+}

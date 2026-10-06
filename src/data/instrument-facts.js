@@ -13,6 +13,7 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+  FR0007056841: { distribution: 'Distribuant', location: 'France, réplication synthétique (swap)', benchmark: 'Dow Jones Industrial Average Net Total Return', incomePolicy: 'distributing', replicationMethod: 'Synthetic (swap)', domicile: 'France', currencyHedge: null, reviewedAt: '06/10/2026', characteristicsSource: {url: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831', checkedAt: '2026-10-06'} },
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, {
  distribution: r.incomePolicy === 'accumulating' ? 'Capitalisant' : 'Distribuant',
  location: `${r.domicile}, réplication ${r.replicationMethod.startsWith('Synthetic') ? 'synthétique (swap)' : 'physique'}`,

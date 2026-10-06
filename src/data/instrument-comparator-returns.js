@@ -70,7 +70,7 @@ export const COMPARATOR_ISIN_BY_FAMILY_KEY = Object.freeze({
     "ethereum": "GB00BLD4ZM24"
   },
   "monde-segments": {
-    "world": "IE00B4L5Y983",
+    "world": "LU1681043599",
     "ex_usa": "IE0006WW1TQ4",
     "small_cap": "IE00BF4RFH31"
   }
