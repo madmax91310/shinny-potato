@@ -1,5 +1,5 @@
-import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 #!/usr/bin/env node
+import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { buildText, presentationType } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
