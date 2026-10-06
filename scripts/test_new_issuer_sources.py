@@ -1,0 +1,90 @@
+"""Regression guards against wrong shares, dates, economic scope and partial years."""
+import copy
+import datetime as dt
+import json
+from pathlib import Path
+import unittest
+from unittest.mock import patch
+from collect_public_issuer import wisdomtree, bitwise, globalx
+from collect_lg_api import parse as lg, decode
+from collect_remaining_documents import coinshares, ubs, collect_one, ubs_urls
+from apply_etf_collection import merge_collection
+from data_automation import UTC
+
+FIX=Path(__file__).parent/'fixtures/official-documents/new-issuers'
+NOW=dt.datetime(2026,10,6,tzinfo=UTC)
+CONFIG=json.loads((Path(__file__).parent/'additional-etf-sources.json').read_text())
+def share(isin):return next(s for s in CONFIG['instruments']if s['isin']==isin)
+
+class IssuerSources(unittest.TestCase):
+    def test_wisdomtree_identity_dates_and_allocations(self):
+        text=(FIX/'wisdomtree.html').read_text();s=share('IE00BZ56SW52')
+        result=wisdomtree(text,s,NOW)
+        self.assertEqual(result['characteristics']['terPct'],.38)
+        self.assertEqual(result['aum']['scope'],'fund')
+        self.assertEqual(result['sectors']['basis'],'fund')
+        self.assertAlmostEqual(sum(r['weightPct']for r in result['countries']['rows']),100,delta=.1)
+        self.assertNotIn('performance',result)
+        for a,b in [('IE00BZ56SW52','IE00OTHER001'),('05/10/2026','05/01/2026'),('61.34%','1.34%'),('US$1,645,809,873','1,645,809,873')]:
+            with self.assertRaises(ValueError):wisdomtree(text.replace(a,b),s,NOW)
+
+    def test_bitwise_launch_year_not_full_fund_history(self):
+        text=(FIX/'bitwise.html').read_text();s=share('DE000A27Z304');r=bitwise(text,s,NOW)
+        self.assertEqual(r['aum']['amount'],917010591.29)
+        self.assertNotIn('performance',r)
+        with self.assertRaises(ValueError):bitwise(text.replace('Price Reference Currency</p>\n<p>USD','Price Reference Currency</p>\n<p>EUR'),s,NOW)
+        with self.assertRaises(ValueError):bitwise(text.replace('DE000A27Z304','DE000OTHER00'),s,NOW)
+
+    def test_globalx_exact_share_aum_and_no_basket_exposure(self):
+        text=(FIX/'globalx.html').read_text();s=share('IE00BM8R0J59');r=globalx(text,s,NOW)
+        self.assertEqual(r['characteristics']['terPct'],.45)
+        self.assertNotIn('holdings',r)
+        with self.assertRaises(ValueError):globalx(text.replace(s['isin'],'IE00OTHER001'),s,NOW)
+
+    def test_lg_calendar_not_rolling_and_current_document_authority(self):
+        payload=json.loads((FIX/'lg.json').read_text());s=share('IE00BF0M2Z96');r=lg(payload,s,NOW,'hash')
+        self.assertEqual(r['performance']['years'],{'2025':72.17,'2024':-1.14,'2023':8.11,'2022':-14.01,'2021':15.95,'2020':79.49})
+        self.assertEqual(r['aum']['asOf'],'2026-10-05')
+        self.assertEqual(r['characteristics']['asOf'],'2026-08-31')
+        fields=[f['code_name']for f in payload['metadata']['share_class_fields']]
+        def changed(key,value):
+            c=copy.deepcopy(payload);c['funds'][0]['share_classes'][0]['data'][fields.index(key)]=value;return c
+        self.assertEqual(lg(changed('launchDate','2020-06-08'),s,NOW,'h')['performance']['years'].get('2020'),None)
+        for key,value in [('shareclassISIN','IE00OTHER001'),('shareclassCurrency','EUR'),('factSheet',[['https://example.com/facts.pdf',0,'English','2026-08-31']])]:
+            with self.assertRaises(ValueError):lg(changed(key,value),s,NOW,'h')
+        c=copy.deepcopy(payload);c['metadata']['year_end_date']='2026-12-31'
+        with self.assertRaises(ValueError):lg(c,s,NOW,'h')
+        with self.assertRaises(ValueError):decode([{'code_name':'x'},{'code_name':'x'}],[1,2])
+
+    def test_coinshares_price_table_never_fund_performance(self):
+        for isin,file,fee in [('GB00BLD4ZL17','coinshares.txt',.15),('GB00BLD4ZM24','coinshares-eth.txt',0)]:
+            text=(FIX/file).read_text();s=share(isin);r=coinshares(text,s,NOW,'h')
+            self.assertEqual(r['characteristics']['terPct'],fee)
+            self.assertNotIn('performance',r)
+            self.assertNotIn('aum',r)
+            with self.assertRaises(ValueError):coinshares(text.replace('31 August 2026','31 January 2026'),s,NOW,'h')
+
+    def test_ubs_exact_index_scope_and_month_discovery(self):
+        text=(FIX/'ubs.txt').read_text();s=share('IE00BD4TXV59');r=ubs(text,s,NOW,'h')
+        self.assertEqual(r['aum']['amount'],17446660000)
+        self.assertEqual(len(r['holdings']['rows']),10)
+        self.assertEqual(r['holdings']['basis'],'index')
+        urls=list(ubs_urls(NOW));self.assertIn('20260930',urls[0]);self.assertIn('20260831',urls[1])
+        def fetch(url):
+            if url==urls[0]:raise ValueError('Expected official PDF; received Dokument nicht gefunden | Swiss Fund Data at '+url)
+            return b'%PDF-body'
+        with patch('collect_remaining_documents.download',side_effect=fetch),patch('collect_remaining_documents.pdf_text',return_value=text):
+            r=collect_one(s,NOW)
+            self.assertEqual(r['sourceUrl'],urls[1])
+        with patch('collect_remaining_documents.download',side_effect=ValueError('unexpected HTML')):
+            with self.assertRaises(ValueError):collect_one(s,NOW)
+
+    def test_recent_launch_preserves_existing_simulation(self):
+        s=share('IE00BF0M2Z96');p=json.loads((FIX/'lg.json').read_text());fields=[f['code_name']for f in p['metadata']['share_class_fields']]
+        p['funds'][0]['share_classes'][0]['data'][fields.index('launchDate')]='2020-06-08'
+        r=lg(p,s,NOW,'h');old={s['isin']:{'productId':s['isin'],'currency':'USD','sourceUrl':s['sourceUrl'],'performance':{'years':{'2020':99},'checkedAt':'2026-10-01'}}}
+        merged=merge_collection({'checkedAt':'2026-10-06','shares':[r]},old,{s['isin']:{'currency':'USD'}})
+        self.assertEqual(merged[s['isin']]['performance'],old[s['isin']]['performance'])
+        self.assertIn('aum',merged[s['isin']])
+
+if __name__=='__main__':unittest.main()

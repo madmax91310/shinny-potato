@@ -10853,5 +10853,681 @@
         }
       }
     }
+  },
+  "msci-em-latin-america": {
+    "facts": {
+      "index": "MSCI Emerging Markets Latin America",
+      "asOf": "2026-09-30",
+      "constituents": 82,
+      "countries": [
+        [
+          "🇧🇷 Brésil",
+          61.54
+        ],
+        [
+          "Mexico",
+          23.55
+        ],
+        [
+          "Chile",
+          6.32
+        ],
+        [
+          "Peru",
+          6.09
+        ],
+        [
+          "Colombia",
+          2.5
+        ]
+      ],
+      "sectors": [
+        [
+          "🏦 Finance",
+          35.19
+        ],
+        [
+          "🪨 Matériaux",
+          19.56
+        ],
+        [
+          "⚡ Énergie",
+          11.34
+        ],
+        [
+          "🛒 Consommation de base",
+          9.98
+        ],
+        [
+          "🏭 Industrie",
+          8.66
+        ],
+        [
+          "💡 Services publics",
+          7.84
+        ],
+        [
+          "📡 Communication",
+          2.83
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          2.45
+        ],
+        [
+          "🏠 Immobilier",
+          1.44
+        ],
+        [
+          "🏥 Santé",
+          0.71
+        ]
+      ],
+      "holdings": [
+        [
+          "VALE ON",
+          6.07
+        ],
+        [
+          "ITAU UNIBANCO PN",
+          5.68
+        ],
+        [
+          "NU HOLDINGS A",
+          5.61
+        ],
+        [
+          "PETROBRAS PN",
+          5.39
+        ],
+        [
+          "PETROBRAS ON",
+          4.75
+        ],
+        [
+          "GRUPO MEXICO B",
+          4.53
+        ],
+        [
+          "CREDICORP",
+          3.15
+        ],
+        [
+          "GRUPO FIN BANORTE O",
+          3.1
+        ],
+        [
+          "BANCO BRADESCO PN",
+          2.45
+        ],
+        [
+          "FEMSA UNIT UBD",
+          2.44
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/099bb74e-4808-420f-b8b6-28efd0993ea6",
+        "checkedAt": "2026-10-06",
+        "label": "Composition officielle automatisée · MSCI Emerging Markets Latin America",
+        "sha256": "6b9bc8879c6f5e64e10787e2890803dae05485b20377f8c96d6d1cb524aff0ab"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI Emerging Markets Latin America",
+        "asOf": "2026-09-30",
+        "constituents": 82,
+        "countries": [
+          [
+            "🇧🇷 Brésil",
+            61.54
+          ],
+          [
+            "Mexico",
+            23.55
+          ],
+          [
+            "Chile",
+            6.32
+          ],
+          [
+            "Peru",
+            6.09
+          ],
+          [
+            "Colombia",
+            2.5
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            35.19
+          ],
+          [
+            "🪨 Matériaux",
+            19.56
+          ],
+          [
+            "⚡ Énergie",
+            11.34
+          ],
+          [
+            "🛒 Consommation de base",
+            9.98
+          ],
+          [
+            "🏭 Industrie",
+            8.66
+          ],
+          [
+            "💡 Services publics",
+            7.84
+          ],
+          [
+            "📡 Communication",
+            2.83
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            2.45
+          ],
+          [
+            "🏠 Immobilier",
+            1.44
+          ],
+          [
+            "🏥 Santé",
+            0.71
+          ]
+        ],
+        "holdings": [
+          [
+            "VALE ON",
+            6.07
+          ],
+          [
+            "ITAU UNIBANCO PN",
+            5.68
+          ],
+          [
+            "NU HOLDINGS A",
+            5.61
+          ],
+          [
+            "PETROBRAS PN",
+            5.39
+          ],
+          [
+            "PETROBRAS ON",
+            4.75
+          ],
+          [
+            "GRUPO MEXICO B",
+            4.53
+          ],
+          [
+            "CREDICORP",
+            3.15
+          ],
+          [
+            "GRUPO FIN BANORTE O",
+            3.1
+          ],
+          [
+            "BANCO BRADESCO PN",
+            2.45
+          ],
+          [
+            "FEMSA UNIT UBD",
+            2.44
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/099bb74e-4808-420f-b8b6-28efd0993ea6",
+          "checkedAt": "2026-10-06",
+          "label": "Composition officielle automatisée · MSCI Emerging Markets Latin America",
+          "sha256": "6b9bc8879c6f5e64e10787e2890803dae05485b20377f8c96d6d1cb524aff0ab"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          54.81
+        ],
+        [
+          2024,
+          -26.38
+        ],
+        [
+          2023,
+          32.71
+        ],
+        [
+          2022,
+          8.92
+        ],
+        [
+          2021,
+          -8.09
+        ],
+        [
+          2020,
+          -13.8
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/099bb74e-4808-420f-b8b6-28efd0993ea6",
+        "checkedAt": "2026-10-06",
+        "sha256": "6b9bc8879c6f5e64e10787e2890803dae05485b20377f8c96d6d1cb524aff0ab",
+        "label": "Rendements calendaires officiels automatisés · MSCI Emerging Markets Latin America"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI Emerging Markets Latin America · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            54.81
+          ],
+          [
+            2024,
+            -26.38
+          ],
+          [
+            2023,
+            32.71
+          ],
+          [
+            2022,
+            8.92
+          ],
+          [
+            2021,
+            -8.09
+          ],
+          [
+            2020,
+            -13.8
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/099bb74e-4808-420f-b8b6-28efd0993ea6",
+          "checkedAt": "2026-10-06",
+          "sha256": "6b9bc8879c6f5e64e10787e2890803dae05485b20377f8c96d6d1cb524aff0ab",
+          "label": "Rendements calendaires officiels automatisés · MSCI Emerging Markets Latin America"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI Emerging Markets Latin America · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "msci-em-imi": {
+    "facts": {
+      "index": "MSCI EM IMI",
+      "asOf": "2026-09-30",
+      "constituents": 2914,
+      "countries": [
+        [
+          "🇹🇼 Taïwan",
+          28.8
+        ],
+        [
+          "🇰🇷 Corée du Sud",
+          20.65
+        ],
+        [
+          "🇨🇳 Chine",
+          18.51
+        ],
+        [
+          "🇮🇳 Inde",
+          11.87
+        ],
+        [
+          "🇧🇷 Brésil",
+          4.02
+        ],
+        [
+          "🌍 Autres",
+          16.15
+        ]
+      ],
+      "sectors": [
+        [
+          "💻 Technologie",
+          41.59
+        ],
+        [
+          "🏦 Finance",
+          18.3
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          7.69
+        ],
+        [
+          "🏭 Industrie",
+          7.65
+        ],
+        [
+          "🪨 Matériaux",
+          6.24
+        ],
+        [
+          "📡 Communication",
+          5.53
+        ],
+        [
+          "🏥 Santé",
+          3.41
+        ],
+        [
+          "⚡ Énergie",
+          3.24
+        ],
+        [
+          "🛒 Consommation de base",
+          2.88
+        ],
+        [
+          "💡 Services publics",
+          1.97
+        ],
+        [
+          "🏠 Immobilier",
+          1.5
+        ]
+      ],
+      "holdings": [
+        [
+          "TAIWAN SEMICONDUCTOR MFG",
+          13.76
+        ],
+        [
+          "SAMSUNG ELECTRONICS CO",
+          6.65
+        ],
+        [
+          "SK HYNIX",
+          5.19
+        ],
+        [
+          "TENCENT HOLDINGS LI (CN)",
+          2.42
+        ],
+        [
+          "ALIBABA GRP HLDG (HK)",
+          1.63
+        ],
+        [
+          "MEDIATEK INC",
+          1.6
+        ],
+        [
+          "SAMSUNG ELECTRONICS PREF",
+          0.83
+        ],
+        [
+          "DELTA ELECTRONICS",
+          0.83
+        ],
+        [
+          "CHINA CONSTRUCTION BK H",
+          0.75
+        ],
+        [
+          "HON HAI PRECISION IND CO",
+          0.7
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-imi-net.pdf",
+        "checkedAt": "2026-10-06",
+        "label": "Composition officielle automatisée · MSCI EM IMI",
+        "sha256": "0fc24ba627b69a93212b8c1684e5ac56ff654a03989494e984fecc4ec223091a"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI EM IMI",
+        "asOf": "2026-09-30",
+        "constituents": 2914,
+        "countries": [
+          [
+            "🇹🇼 Taïwan",
+            28.8
+          ],
+          [
+            "🇰🇷 Corée du Sud",
+            20.65
+          ],
+          [
+            "🇨🇳 Chine",
+            18.51
+          ],
+          [
+            "🇮🇳 Inde",
+            11.87
+          ],
+          [
+            "🇧🇷 Brésil",
+            4.02
+          ],
+          [
+            "🌍 Autres",
+            16.15
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            41.59
+          ],
+          [
+            "🏦 Finance",
+            18.3
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            7.69
+          ],
+          [
+            "🏭 Industrie",
+            7.65
+          ],
+          [
+            "🪨 Matériaux",
+            6.24
+          ],
+          [
+            "📡 Communication",
+            5.53
+          ],
+          [
+            "🏥 Santé",
+            3.41
+          ],
+          [
+            "⚡ Énergie",
+            3.24
+          ],
+          [
+            "🛒 Consommation de base",
+            2.88
+          ],
+          [
+            "💡 Services publics",
+            1.97
+          ],
+          [
+            "🏠 Immobilier",
+            1.5
+          ]
+        ],
+        "holdings": [
+          [
+            "TAIWAN SEMICONDUCTOR MFG",
+            13.76
+          ],
+          [
+            "SAMSUNG ELECTRONICS CO",
+            6.65
+          ],
+          [
+            "SK HYNIX",
+            5.19
+          ],
+          [
+            "TENCENT HOLDINGS LI (CN)",
+            2.42
+          ],
+          [
+            "ALIBABA GRP HLDG (HK)",
+            1.63
+          ],
+          [
+            "MEDIATEK INC",
+            1.6
+          ],
+          [
+            "SAMSUNG ELECTRONICS PREF",
+            0.83
+          ],
+          [
+            "DELTA ELECTRONICS",
+            0.83
+          ],
+          [
+            "CHINA CONSTRUCTION BK H",
+            0.75
+          ],
+          [
+            "HON HAI PRECISION IND CO",
+            0.7
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-imi-net.pdf",
+          "checkedAt": "2026-10-06",
+          "label": "Composition officielle automatisée · MSCI EM IMI",
+          "sha256": "0fc24ba627b69a93212b8c1684e5ac56ff654a03989494e984fecc4ec223091a"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          31.38
+        ],
+        [
+          2024,
+          7.09
+        ],
+        [
+          2023,
+          11.67
+        ],
+        [
+          2022,
+          -19.83
+        ],
+        [
+          2021,
+          -0.28
+        ],
+        [
+          2020,
+          18.39
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-imi-net.pdf",
+        "checkedAt": "2026-10-06",
+        "sha256": "0fc24ba627b69a93212b8c1684e5ac56ff654a03989494e984fecc4ec223091a",
+        "label": "Rendements calendaires officiels automatisés · MSCI EM IMI"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI EM IMI · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            31.38
+          ],
+          [
+            2024,
+            7.09
+          ],
+          [
+            2023,
+            11.67
+          ],
+          [
+            2022,
+            -19.83
+          ],
+          [
+            2021,
+            -0.28
+          ],
+          [
+            2020,
+            18.39
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-emerging-markets-imi-net.pdf",
+          "checkedAt": "2026-10-06",
+          "sha256": "0fc24ba627b69a93212b8c1684e5ac56ff654a03989494e984fecc4ec223091a",
+          "label": "Rendements calendaires officiels automatisés · MSCI EM IMI"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI EM IMI · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
   }
 }

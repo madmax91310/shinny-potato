@@ -23569,7 +23569,7 @@
   "JE00B1VS3770": {
     "currency": "USD",
     "productId": "JE00B1VS3770",
-    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
     "provider": "WisdomTree",
     "characteristics": {
       "terPct": 0.39,
@@ -23593,6 +23593,15 @@
       },
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
       "sha256": "d724a76135963d0c7e57cddc487d718a026ebd834c0b9639f39ab83038fbc430",
+      "checkedAt": "2026-10-06"
+    },
+    "aum": {
+      "amount": 6939206140.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+      "sha256": "cf900164c7c19ba45c3edc0ea177d0002a281c22ae8dc18e379e3ed06e62cf1c",
       "checkedAt": "2026-10-06"
     }
   },
@@ -23644,19 +23653,134 @@
   "IE00BYPLS672": {
     "currency": "USD",
     "productId": "IE00BYPLS672",
-    "sourceUrl": "https://docs.fundconnect.com/GetDocument.aspx?Isin=IE00BYPLS672&clientid=18svzhes-n8uj-xtdb-oidd-a58dzenasvsr&lang=en-GB&save=false&type=Factsheet",
+    "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
     "provider": "L&G",
     "aum": {
-      "amount": 3871700000.0,
+      "amount": 4323633864.12,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-08-31",
-      "sourceUrl": "https://docs.fundconnect.com/GetDocument.aspx?Isin=IE00BYPLS672&clientid=18svzhes-n8uj-xtdb-oidd-a58dzenasvsr&lang=en-GB&save=false&type=Factsheet",
-      "sha256": "fafb34b3b3470ac714d3c45135c076c97ab04921d059de7c9e909c18b483cffd",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
       "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.69,
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 96.3,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 2.6,
+          "label": "Communication"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 1.1,
+          "label": "Industrials"
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/ad766924-1e33-414a-aa1c-17fdba3f81ff/Fact-Sheet_LG-Cyber-Security-UCITS-ETF-Cyber-Security-USD-Acc.pdf",
+      "sha256": "a70ce9dce92900c74086bf52a80823b39db45f3d17d493f9c767959510a0df70",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 85.5
+        },
+        {
+          "name": "Israel",
+          "weightPct": 6.1
+        },
+        {
+          "name": "Japan",
+          "weightPct": 4.8
+        },
+        {
+          "name": "Canada",
+          "weightPct": 3.6
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/ad766924-1e33-414a-aa1c-17fdba3f81ff/Fact-Sheet_LG-Cyber-Security-UCITS-ETF-Cyber-Security-USD-Acc.pdf",
+      "sha256": "a70ce9dce92900c74086bf52a80823b39db45f3d17d493f9c767959510a0df70",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "Cloudflare",
+          "weightPct": 7.4
+        },
+        {
+          "name": "CrowdStrike",
+          "weightPct": 6.9
+        },
+        {
+          "name": "Palo Alto Networks",
+          "weightPct": 6.6
+        },
+        {
+          "name": "Fortinet",
+          "weightPct": 6.5
+        },
+        {
+          "name": "Qualys",
+          "weightPct": 6.3
+        },
+        {
+          "name": "Broadcom",
+          "weightPct": 5.9
+        },
+        {
+          "name": "SentinelOne",
+          "weightPct": 5.9
+        },
+        {
+          "name": "Gen Digital",
+          "weightPct": 5.8
+        },
+        {
+          "name": "Cisco Systems",
+          "weightPct": 5.7
+        },
+        {
+          "name": "Rubrik",
+          "weightPct": 5.4
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/ad766924-1e33-414a-aa1c-17fdba3f81ff/Fact-Sheet_LG-Cyber-Security-UCITS-ETF-Cyber-Security-USD-Acc.pdf",
+      "sha256": "a70ce9dce92900c74086bf52a80823b39db45f3d17d493f9c767959510a0df70",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2025": 7.77,
+        "2024": 17.72,
+        "2023": 39.77,
+        "2022": -31.7,
+        "2021": 7.28,
+        "2020": 42.01
+      },
+      "asOf": "2026-08-31",
+      "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
       "checkedAt": "2026-10-06"
     }
   },
@@ -23819,6 +23943,1351 @@
     },
     "characteristics": {
       "terPct": 0.1,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BF0M2Z96": {
+    "currency": "USD",
+    "productId": "IE00BF0M2Z96",
+    "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+    "provider": "L&G",
+    "aum": {
+      "amount": 751128748.87,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Industrials",
+          "weightPct": 38.4,
+          "label": "Industrials"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 26.2,
+          "label": "Materials"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 21.7,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 13.7,
+          "label": "Information Technology"
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/cd7d8bfc-9416-42bc-843d-cd1dbc3eb219/Fact-Sheet_LG-Battery-Value-Chain-UCITS-ETF-Battery-Value-Chain-USD-Acc.pdf",
+      "sha256": "101cc5237ab3357a02e67ee3e246acc9ba1d4a127cb68a7fcf6454f85980becc",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 25.5
+        },
+        {
+          "name": "Japan",
+          "weightPct": 17.4
+        },
+        {
+          "name": "China",
+          "weightPct": 13.5
+        },
+        {
+          "name": "Germany",
+          "weightPct": 9.7
+        },
+        {
+          "name": "Korea",
+          "weightPct": 9.3
+        },
+        {
+          "name": "Australia",
+          "weightPct": 8.6
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 3.3
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 2.9
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 2.8
+        },
+        {
+          "name": "Other",
+          "weightPct": 7.1
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/cd7d8bfc-9416-42bc-843d-cd1dbc3eb219/Fact-Sheet_LG-Battery-Value-Chain-UCITS-ETF-Battery-Value-Chain-USD-Acc.pdf",
+      "sha256": "101cc5237ab3357a02e67ee3e246acc9ba1d4a127cb68a7fcf6454f85980becc",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "Panasonic",
+          "weightPct": 3.6
+        },
+        {
+          "name": "Hitachi",
+          "weightPct": 3.2
+        },
+        {
+          "name": "Siemens",
+          "weightPct": 3.2
+        },
+        {
+          "name": "TDK Corporation",
+          "weightPct": 3.1
+        },
+        {
+          "name": "Zijin Mining Group",
+          "weightPct": 3.0
+        },
+        {
+          "name": "Rio Tinto",
+          "weightPct": 2.9
+        },
+        {
+          "name": "Contemporary Amperex Technology",
+          "weightPct": 2.8
+        },
+        {
+          "name": "NGK Insulators",
+          "weightPct": 2.8
+        },
+        {
+          "name": "ABB",
+          "weightPct": 2.8
+        },
+        {
+          "name": "Mineral Resources",
+          "weightPct": 2.7
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/cd7d8bfc-9416-42bc-843d-cd1dbc3eb219/Fact-Sheet_LG-Battery-Value-Chain-UCITS-ETF-Battery-Value-Chain-USD-Acc.pdf",
+      "sha256": "101cc5237ab3357a02e67ee3e246acc9ba1d4a127cb68a7fcf6454f85980becc",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.49,
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2025": 72.17,
+        "2024": -1.14,
+        "2023": 8.11,
+        "2022": -14.01,
+        "2021": 15.95,
+        "2020": 79.49
+      },
+      "asOf": "2026-08-31",
+      "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BK5BCD43": {
+    "currency": "USD",
+    "productId": "IE00BK5BCD43",
+    "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+    "provider": "L&G",
+    "aum": {
+      "amount": 2250863964.77,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 72.2,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 9.5,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 6.7,
+          "label": "Health Care"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 6.6,
+          "label": "Communication"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 3.6,
+          "label": "Financials"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 1.4,
+          "label": "Industrials"
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/05a27fcd-ca05-49a7-8a5e-97f65f47b6d5/Fact-Sheet_LG-Artificial-Intelligence-UCITS-ETF-Artificial-Intelligence-USD-Acc.pdf",
+      "sha256": "981d5afcef01eff5a94635c838d3ebaaa51943a341fab83ef635aa3524230c79",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 76.3
+        },
+        {
+          "name": "Taiwan",
+          "weightPct": 6.2
+        },
+        {
+          "name": "China",
+          "weightPct": 3.9
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 3.8
+        },
+        {
+          "name": "Canada",
+          "weightPct": 2.3
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 1.9
+        },
+        {
+          "name": "Israel",
+          "weightPct": 1.9
+        },
+        {
+          "name": "Germany",
+          "weightPct": 1.4
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 1.1
+        },
+        {
+          "name": "Other",
+          "weightPct": 1.0
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/05a27fcd-ca05-49a7-8a5e-97f65f47b6d5/Fact-Sheet_LG-Artificial-Intelligence-UCITS-ETF-Artificial-Intelligence-USD-Acc.pdf",
+      "sha256": "981d5afcef01eff5a94635c838d3ebaaa51943a341fab83ef635aa3524230c79",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "Tempus AI",
+          "weightPct": 2.9
+        },
+        {
+          "name": "Palo Alto Networks",
+          "weightPct": 2.7
+        },
+        {
+          "name": "Everpure Inc.",
+          "weightPct": 2.5
+        },
+        {
+          "name": "Elastic",
+          "weightPct": 2.4
+        },
+        {
+          "name": "Cloudflare",
+          "weightPct": 2.4
+        },
+        {
+          "name": "Crowdstrike Holdings",
+          "weightPct": 2.4
+        },
+        {
+          "name": "Global Unichip",
+          "weightPct": 2.4
+        },
+        {
+          "name": "Shopify",
+          "weightPct": 2.3
+        },
+        {
+          "name": "Samsara",
+          "weightPct": 2.3
+        },
+        {
+          "name": "Snowflake Inc.",
+          "weightPct": 2.3
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/05a27fcd-ca05-49a7-8a5e-97f65f47b6d5/Fact-Sheet_LG-Artificial-Intelligence-UCITS-ETF-Artificial-Intelligence-USD-Acc.pdf",
+      "sha256": "981d5afcef01eff5a94635c838d3ebaaa51943a341fab83ef635aa3524230c79",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.49,
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2025": 30.7,
+        "2024": 18.67,
+        "2023": 56.51,
+        "2022": -39.38,
+        "2021": 9.53,
+        "2020": 67.43
+      },
+      "asOf": "2026-08-31",
+      "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BK5BCH80": {
+    "currency": "USD",
+    "productId": "IE00BK5BCH80",
+    "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+    "provider": "L&G",
+    "aum": {
+      "amount": 694275647.72,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Industrials",
+          "weightPct": 58.3,
+          "label": "Industrials"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 25.4,
+          "label": "Utilities"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 12.3,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 2.8,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 1.2,
+          "label": "Materials"
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/94c1ad68-4c3d-4d55-9930-88b336c9367a/Fact-Sheet_LG-Clean-Energy-UCITS-ETF-Clean-Energy-USD-Acc.pdf",
+      "sha256": "f5841f19ed06158785bd1f7af41c2625319b67a840534a6a0056b74fad39681d",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 29.2
+        },
+        {
+          "name": "Germany",
+          "weightPct": 11.2
+        },
+        {
+          "name": "Spain",
+          "weightPct": 10.1
+        },
+        {
+          "name": "Japan",
+          "weightPct": 8.9
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 5.5
+        },
+        {
+          "name": "France",
+          "weightPct": 5.4
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 3.9
+        },
+        {
+          "name": "Italy",
+          "weightPct": 3.1
+        },
+        {
+          "name": "Canada",
+          "weightPct": 2.9
+        },
+        {
+          "name": "Other",
+          "weightPct": 19.9
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/94c1ad68-4c3d-4d55-9930-88b336c9367a/Fact-Sheet_LG-Clean-Energy-UCITS-ETF-Clean-Energy-USD-Acc.pdf",
+      "sha256": "f5841f19ed06158785bd1f7af41c2625319b67a840534a6a0056b74fad39681d",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "SMA Solar",
+          "weightPct": 3.1
+        },
+        {
+          "name": "Infineon Technologies",
+          "weightPct": 2.3
+        },
+        {
+          "name": "nVent",
+          "weightPct": 2.3
+        },
+        {
+          "name": "Vestas Wind Systems",
+          "weightPct": 2.2
+        },
+        {
+          "name": "Alfen",
+          "weightPct": 2.2
+        },
+        {
+          "name": "Siemens",
+          "weightPct": 2.1
+        },
+        {
+          "name": "On Semiconductor Corporation",
+          "weightPct": 2.1
+        },
+        {
+          "name": "RENOVA",
+          "weightPct": 2.0
+        },
+        {
+          "name": "Schneider Electric",
+          "weightPct": 2.0
+        },
+        {
+          "name": "Andritz Ag",
+          "weightPct": 2.0
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://fundcentres.landg.com/srp/documents-id/94c1ad68-4c3d-4d55-9930-88b336c9367a/Fact-Sheet_LG-Clean-Energy-UCITS-ETF-Clean-Energy-USD-Acc.pdf",
+      "sha256": "f5841f19ed06158785bd1f7af41c2625319b67a840534a6a0056b74fad39681d",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.49,
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "DE000A27Z304": {
+    "currency": "USD",
+    "productId": "DE000A27Z304",
+    "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+    "provider": "Bitwise",
+    "aum": {
+      "amount": 917010591.29,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-06",
+      "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+      "sha256": "1973c7907eabcab7795a436b4cc3040219cf3addd64eac28afef6e8e59852f7e",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "asOf": "2026-10-06",
+      "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+      "sha256": "1973c7907eabcab7795a436b4cc3040219cf3addd64eac28afef6e8e59852f7e",
+      "terPct": 2.0,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "GB00B15KXQ89": {
+    "currency": "USD",
+    "productId": "GB00B15KXQ89",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+    "provider": "WisdomTree",
+    "aum": {
+      "amount": 1998160479.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+      "sha256": "5e439d8c4c3c62b63a5cca4f46f18668a94605e0237d58c5868f97b8053eb1f4",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+      "sha256": "5e439d8c4c3c62b63a5cca4f46f18668a94605e0237d58c5868f97b8053eb1f4",
+      "terPct": 0.94,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE0002Y8CX98": {
+    "currency": "EUR",
+    "productId": "IE0002Y8CX98",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "provider": "WisdomTree",
+    "aum": {
+      "amount": 4924897713.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "sha256": "fb4c2c3ad0e0e4402c48efb57c47fdc88efd46b1be4817ea137c8675fdbb3722",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Industrials",
+          "weightPct": 97.46,
+          "label": "Industrials"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 2.24,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 0.31,
+          "label": "Communication"
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "sha256": "fb4c2c3ad0e0e4402c48efb57c47fdc88efd46b1be4817ea137c8675fdbb3722",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "France",
+          "weightPct": 33.04
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 25.1
+        },
+        {
+          "name": "Germany",
+          "weightPct": 17.0
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 7.67
+        },
+        {
+          "name": "Italy",
+          "weightPct": 7.35
+        },
+        {
+          "name": "Norway",
+          "weightPct": 6.3
+        },
+        {
+          "name": "Spain",
+          "weightPct": 1.67
+        },
+        {
+          "name": "Czech Republic",
+          "weightPct": 0.63
+        },
+        {
+          "name": "Cyprus",
+          "weightPct": 0.53
+        },
+        {
+          "name": "Finland",
+          "weightPct": 0.31
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 0.23
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 0.09
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 0.05
+        },
+        {
+          "name": "Poland",
+          "weightPct": 0.01
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "sha256": "fb4c2c3ad0e0e4402c48efb57c47fdc88efd46b1be4817ea137c8675fdbb3722",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "BAE Systems PLC",
+          "weightPct": 12.63
+        },
+        {
+          "name": "Thales SA",
+          "weightPct": 12.48
+        },
+        {
+          "name": "Rheinmetall AG",
+          "weightPct": 11.95
+        },
+        {
+          "name": "Rolls-Royce Holdings PLC",
+          "weightPct": 7.79
+        },
+        {
+          "name": "Safran SA",
+          "weightPct": 7.62
+        },
+        {
+          "name": "SAAB AB-B SEK NPV",
+          "weightPct": 7.37
+        },
+        {
+          "name": "Airbus SE",
+          "weightPct": 7.18
+        },
+        {
+          "name": "Leonardo Spa",
+          "weightPct": 6.55
+        },
+        {
+          "name": "Kongsberg Gruppen Asa",
+          "weightPct": 5.77
+        },
+        {
+          "name": "DASSAULT AVIATION EUR 0.8",
+          "weightPct": 4.42
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "sha256": "fb4c2c3ad0e0e4402c48efb57c47fdc88efd46b1be4817ea137c8675fdbb3722",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "sha256": "fb4c2c3ad0e0e4402c48efb57c47fdc88efd46b1be4817ea137c8675fdbb3722",
+      "terPct": 0.4,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE000W8WMSL2": {
+    "currency": "USD",
+    "productId": "IE000W8WMSL2",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+    "provider": "WisdomTree",
+    "aum": {
+      "amount": 364645070.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+      "sha256": "50c8adac82354fe80bde742d377b975058d379e9f7c99a6c5640a6a2ca1746e3",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 83.84,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 10.8,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 2.76,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 2.6,
+          "label": "Industrials"
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+      "sha256": "50c8adac82354fe80bde742d377b975058d379e9f7c99a6c5640a6a2ca1746e3",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 60.99
+        },
+        {
+          "name": "Japan",
+          "weightPct": 13.04
+        },
+        {
+          "name": "Canada",
+          "weightPct": 6.99
+        },
+        {
+          "name": "Germany",
+          "weightPct": 3.6
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 3.26
+        },
+        {
+          "name": "Finland",
+          "weightPct": 3.13
+        },
+        {
+          "name": "South Korea",
+          "weightPct": 2.3
+        },
+        {
+          "name": "France",
+          "weightPct": 1.92
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 1.59
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 1.14
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 0.91
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.78
+        },
+        {
+          "name": "Poland",
+          "weightPct": 0.36
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+      "sha256": "50c8adac82354fe80bde742d377b975058d379e9f7c99a6c5640a6a2ca1746e3",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "Ionq Inc",
+          "weightPct": 5.17
+        },
+        {
+          "name": "Rigetti Computing Inc",
+          "weightPct": 4.4
+        },
+        {
+          "name": "Infleqtion Inc",
+          "weightPct": 4.33
+        },
+        {
+          "name": "D-Wave Quantum Inc",
+          "weightPct": 4.05
+        },
+        {
+          "name": "Quantinuum Inc-A",
+          "weightPct": 3.6
+        },
+        {
+          "name": "Quantum Computing Inc",
+          "weightPct": 3.56
+        },
+        {
+          "name": "Intel Corp",
+          "weightPct": 3.24
+        },
+        {
+          "name": "Fujitsu Ltd",
+          "weightPct": 3.18
+        },
+        {
+          "name": "Nvidia Corp",
+          "weightPct": 3.09
+        },
+        {
+          "name": "Microsoft Corp",
+          "weightPct": 3.07
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+      "sha256": "50c8adac82354fe80bde742d377b975058d379e9f7c99a6c5640a6a2ca1746e3",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+      "sha256": "50c8adac82354fe80bde742d377b975058d379e9f7c99a6c5640a6a2ca1746e3",
+      "terPct": 0.5,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BZ56SW52": {
+    "currency": "USD",
+    "productId": "IE00BZ56SW52",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+    "provider": "WisdomTree",
+    "aum": {
+      "amount": 1645809873.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+      "sha256": "57838dd8e88d44cf87409fe1cc05e7a775938a4752399eb537f26e54a1a877e9",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 22.91,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 18.73,
+          "label": "Industrials"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 16.45,
+          "label": "Health Care"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 14.63,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 8.63,
+          "label": "Financials"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 7.77,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 6.53,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 3.79,
+          "label": "Materials"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 0.33,
+          "label": "Utilities"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 0.21,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 0.02,
+          "label": "Energy"
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+      "sha256": "57838dd8e88d44cf87409fe1cc05e7a775938a4752399eb537f26e54a1a877e9",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 61.34
+        },
+        {
+          "name": "Japan",
+          "weightPct": 8.83
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 5.24
+        },
+        {
+          "name": "France",
+          "weightPct": 3.98
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 3.5
+        },
+        {
+          "name": "Germany",
+          "weightPct": 3.45
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 2.21
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 2.18
+        },
+        {
+          "name": "Spain",
+          "weightPct": 1.71
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.19
+        },
+        {
+          "name": "Canada",
+          "weightPct": 1.12
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 1.1
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.86
+        },
+        {
+          "name": "Austria",
+          "weightPct": 0.71
+        },
+        {
+          "name": "Italy",
+          "weightPct": 0.64
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.52
+        },
+        {
+          "name": "Finland",
+          "weightPct": 0.35
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 0.27
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 0.18
+        },
+        {
+          "name": "Norway",
+          "weightPct": 0.13
+        },
+        {
+          "name": "Israel",
+          "weightPct": 0.13
+        },
+        {
+          "name": "Bermuda",
+          "weightPct": 0.1
+        },
+        {
+          "name": "Portugal",
+          "weightPct": 0.09
+        },
+        {
+          "name": "Macau",
+          "weightPct": 0.08
+        },
+        {
+          "name": "Puerto Rico",
+          "weightPct": 0.06
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 0.04
+        },
+        {
+          "name": "Lithuania",
+          "weightPct": 0.01
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+      "sha256": "57838dd8e88d44cf87409fe1cc05e7a775938a4752399eb537f26e54a1a877e9",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "Microsoft Corp",
+          "weightPct": 4.68
+        },
+        {
+          "name": "Apple Inc",
+          "weightPct": 4.48
+        },
+        {
+          "name": "AbbVie Inc",
+          "weightPct": 2.98
+        },
+        {
+          "name": "Merck & Co Inc/NJ",
+          "weightPct": 2.76
+        },
+        {
+          "name": "Nvidia Corp",
+          "weightPct": 2.69
+        },
+        {
+          "name": "Coca-Cola Co/The",
+          "weightPct": 2.64
+        },
+        {
+          "name": "Broadcom Inc",
+          "weightPct": 2.64
+        },
+        {
+          "name": "Cisco Systems Inc",
+          "weightPct": 2.25
+        },
+        {
+          "name": "Toyota Motor Corp",
+          "weightPct": 2.18
+        },
+        {
+          "name": "UnitedHealth Group Inc",
+          "weightPct": 1.95
+        }
+      ],
+      "asOf": "2026-10-05",
+      "basis": "fund",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+      "sha256": "57838dd8e88d44cf87409fe1cc05e7a775938a4752399eb537f26e54a1a877e9",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+      "sha256": "57838dd8e88d44cf87409fe1cc05e7a775938a4752399eb537f26e54a1a877e9",
+      "terPct": 0.38,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BM8R0J59": {
+    "currency": "USD",
+    "productId": "IE00BM8R0J59",
+    "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+    "provider": "Global X",
+    "aum": {
+      "amount": 952012772.68,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "sha256": "d53a9b84fbfd39682fa4c9f2dc679c9e706f7e94328f7f7c3f0c3234821d4d5a",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "asOf": "2026-10-05",
+      "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "sha256": "d53a9b84fbfd39682fa4c9f2dc679c9e706f7e94328f7f7c3f0c3234821d4d5a",
+      "terPct": 0.45,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "GB00BLD4ZL17": {
+    "currency": "USD",
+    "productId": "GB00BLD4ZL17",
+    "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-btc/",
+    "provider": "CoinShares",
+    "characteristics": {
+      "terPct": 0.15,
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-btc/",
+      "sha256": "bea88f7e537f80a340039b2ea2e920c64219db887e84ada177f00ba07bd5140d",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "GB00BLD4ZM24": {
+    "currency": "USD",
+    "productId": "GB00BLD4ZM24",
+    "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
+    "provider": "CoinShares",
+    "characteristics": {
+      "terPct": 0.0,
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
+      "sha256": "28d07b0893b3eae50c56e46ad06686ec434d1953b88931ca12cf9cfdbb65bf71",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BD4TXV59": {
+    "currency": "USD",
+    "productId": "IE00BD4TXV59",
+    "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
+    "provider": "UBS",
+    "aum": {
+      "amount": 17446660000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
+      "sha256": "bf68618d0bd470081b3d4542ee098a4d1ad4a3ff77478bbe995da4e1007fa42f",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 29.8,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 16.6,
+          "label": "Financials"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 11.1,
+          "label": "Industrials"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 9.3,
+          "label": "Health Care"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 8.8,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 7.9,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 4.9,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 4.1,
+          "label": "Energy"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 3.5,
+          "label": "Materials"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.4,
+          "label": "Utilities"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.6,
+          "label": "Immobilier"
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
+      "sha256": "bf68618d0bd470081b3d4542ee098a4d1ad4a3ff77478bbe995da4e1007fa42f",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 72.1
+        },
+        {
+          "name": "Japan",
+          "weightPct": 5.8
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 3.5
+        },
+        {
+          "name": "Canada",
+          "weightPct": 3.5
+        },
+        {
+          "name": "France",
+          "weightPct": 2.4
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 2.3
+        },
+        {
+          "name": "Germany",
+          "weightPct": 2.2
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.6
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 1.4
+        },
+        {
+          "name": "Others",
+          "weightPct": 5.3
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
+      "sha256": "bf68618d0bd470081b3d4542ee098a4d1ad4a3ff77478bbe995da4e1007fa42f",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "NVIDIA CORP COMMON STOCK USD.001",
+          "weightPct": 5.56
+        },
+        {
+          "name": "BROADCOM INC COMMON STOCK",
+          "weightPct": 1.82
+        },
+        {
+          "name": "APPLE INC COMMON STOCK USD.00001",
+          "weightPct": 5.07
+        },
+        {
+          "name": "ALPHABET INC CL C COMMON STOCK USD.001",
+          "weightPct": 1.69
+        },
+        {
+          "name": "MICROSOFT CORP COMMON STOCK USD.00000625",
+          "weightPct": 3.9
+        },
+        {
+          "name": "META PLATFORMS INC CLASS A COMMON STOCK USD.000006",
+          "weightPct": 1.37
+        },
+        {
+          "name": "AMAZON.COM INC COMMON STOCK USD.01",
+          "weightPct": 2.74
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC COMMON STOCK USD.1",
+          "weightPct": 1.18
+        },
+        {
+          "name": "ALPHABET INC CL A COMMON STOCK USD.001",
+          "weightPct": 2.15
+        },
+        {
+          "name": "TESLA INC COMMON STOCK USD.001",
+          "weightPct": 1.13
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
+      "sha256": "bf68618d0bd470081b3d4542ee098a4d1ad4a3ff77478bbe995da4e1007fa42f",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.06,
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
+      "sha256": "bf68618d0bd470081b3d4542ee098a4d1ad4a3ff77478bbe995da4e1007fa42f",
       "checkedAt": "2026-10-06"
     }
   }

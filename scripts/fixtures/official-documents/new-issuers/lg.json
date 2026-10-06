@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "fund_fields": [
+      {
+        "code_name": "baseCurrency"
+      }
+    ],
+    "share_class_fields": [
+      {
+        "code_name": "ter"
+      },
+      {
+        "code_name": "shareclassISIN"
+      },
+      {
+        "code_name": "shareclassCurrency"
+      },
+      {
+        "code_name": "shortName"
+      },
+      {
+        "code_name": "launchDate"
+      },
+      {
+        "code_name": "factSheet"
+      },
+      {
+        "code_name": "cal1y"
+      },
+      {
+        "code_name": "cal2y"
+      },
+      {
+        "code_name": "cal3y"
+      },
+      {
+        "code_name": "cal4y"
+      },
+      {
+        "code_name": "cal5y"
+      },
+      {
+        "code_name": "cal6y"
+      },
+      {
+        "code_name": "cal7y"
+      },
+      {
+        "code_name": "cal8y"
+      },
+      {
+        "code_name": "cal9y"
+      },
+      {
+        "code_name": "cal10y"
+      },
+      {
+        "code_name": "netAssetValueFund"
+      },
+      {
+        "code_name": "netAssetValueFund__date"
+      }
+    ],
+    "listing_fields": [
+      {
+        "code_name": "exchangeName",
+        "label": "Exchange",
+        "format": null,
+        "null_replacement": "-",
+        "type": "string"
+      },
+      {
+        "code_name": "listingCurrency",
+        "label": "Currency",
+        "format": null,
+        "null_replacement": "-",
+        "type": "string"
+      },
+      {
+        "code_name": "listingDate",
+        "label": "Listing date",
+        "format": "{:DD/MM/YYYY}",
+        "null_replacement": "-",
+        "type": "date"
+      },
+      {
+        "code_name": "isin",
+        "label": "ISIN",
+        "format": null,
+        "null_replacement": "-",
+        "type": "string"
+      },
+      {
+        "code_name": "listingTicker",
+        "label": "Ticker",
+        "format": null,
+        "null_replacement": "-",
+        "type": "string"
+      },
+      {
+        "code_name": "sedol",
+        "label": "SEDOL",
+        "format": null,
+        "null_replacement": "-",
+        "type": "string"
+      },
+      {
+        "code_name": "bloomberg",
+        "label": "Bloomberg",
+        "format": null,
+        "null_replacement": "-",
+        "type": "string"
+      },
+      {
+        "code_name": "wkn",
+        "label": "WKN",
+        "format": null,
+        "null_replacement": "-",
+        "type": "string"
+      }
+    ],
+    "profile_fields": [],
+    "product_range_fields": [],
+    "as_at_date": "2026-08-31",
+    "performance_end_date": "2026-08-31",
+    "quarter_end_date": "2026-06-30",
+    "year_end_date": "2025-12-31",
+    "featured_funds": [],
+    "audience_name": "UK Institutional Investor"
+  },
+  "funds": [
+    {
+      "data": [
+        "USD"
+      ],
+      "share_classes": [
+        {
+          "data": [
+            "0.49",
+            "IE00BF0M2Z96",
+            "USD",
+            "USD Acc",
+            "2018-01-23",
+            [
+              [
+                "https://fundcentres.landg.com/srp/documents-id/cd7d8bfc-9416-42bc-843d-cd1dbc3eb219/Fact-Sheet_LG-Battery-Value-Chain-UCITS-ETF-Battery-Value-Chain-USD-Acc.pdf",
+                "Fact sheet",
+                "English",
+                "2026-08-31"
+              ]
+            ],
+            "72.165300",
+            "-1.140255",
+            "8.107819",
+            "-14.008876",
+            "15.947052",
+            "79.486805",
+            "17.735719",
+            null,
+            null,
+            null,
+            "751128748.87",
+            "2026-10-05"
+          ],
+          "id": 887,
+          "currency": "USD",
+          "listings": [
+            {
+              "data": [
+                "London Stock Exchange",
+                "GBP",
+                "2018-01-23",
+                "IE00BF0M2Z96",
+                "BATG",
+                "BF0M668",
+                "BATG LN",
+                "A2H5GK"
+              ],
+              "id": 5,
+              "currency": "GBP"
+            },
+            {
+              "data": [
+                "London Stock Exchange",
+                "USD",
+                "2018-01-23",
+                "IE00BF0M2Z96",
+                "BATT",
+                "BF0M2Z9",
+                "BATT LN",
+                "A2H5GK"
+              ],
+              "id": 4,
+              "currency": "USD"
+            },
+            {
+              "data": [
+                "Borsa Italiana",
+                "EUR",
+                "2018-02-19",
+                "IE00BF0M2Z96",
+                "BATT",
+                "BF0M710",
+                "BATT IM",
+                "A2H5GK"
+              ],
+              "id": 6,
+              "currency": "EUR"
+            },
+            {
+              "data": [
+                "Deutsche Börse Xetra",
+                "EUR",
+                "2018-02-06",
+                "IE00BF0M2Z96",
+                "BATE",
+                "BF0M743",
+                "BATE GY",
+                "A2H5GK"
+              ],
+              "id": 7,
+              "currency": "EUR"
+            },
+            {
+              "data": [
+                "Euronext Amsterdam",
+                "EUR",
+                "2018-02-01",
+                "IE00BF0M2Z96",
+                "BATT",
+                "BF0M754",
+                "BATT NA",
+                "A2H5GK"
+              ],
+              "id": 8,
+              "currency": "EUR"
+            },
+            {
+              "data": [
+                "SIX Swiss Exchange",
+                "CHF",
+                "2020-06-05",
+                "IE00BF0M2Z96",
+                "BATT",
+                "BMG6964",
+                "BATT SW",
+                "A2H5GK"
+              ],
+              "id": 197,
+              "currency": "CHF"
+            }
+          ]
+        }
+      ],
+      "id": 101,
+      "fund_badge_info": null,
+      "primary_shareclass": null,
+      "currency": "USD",
+      "profile_ids": [
+        568
+      ],
+      "product_range_ids": [
+        78
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "data": [],
+      "id": 568
+    },
+    {
+      "data": [],
+      "id": 2492
+    }
+  ],
+  "product_ranges": []
+}

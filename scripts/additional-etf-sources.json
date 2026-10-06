@@ -827,9 +827,8 @@
       "isin": "JE00B1VS3770",
       "name": "WisdomTree Physical Gold",
       "provider": "WisdomTree",
-      "parser": "document",
-      "documentType": "wisdomtree",
-      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+      "parser": "wisdomtree-html",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
       "currency": "USD"
     },
     {
@@ -863,43 +862,37 @@
       "isin": "IE00BYPLS672",
       "name": "L&G Cyber Security UCITS ETF",
       "provider": "L&G",
-      "parser": "document",
-      "documentType": "lg",
-      "sourceUrl": "https://docs.fundconnect.com/GetDocument.aspx?Isin=IE00BYPLS672&clientid=18svzhes-n8uj-xtdb-oidd-a58dzenasvsr&lang=en-GB&save=false&type=Factsheet",
-      "currency": "USD"
+      "parser": "lg-api",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "currency": "USD",
+      "enabled": true
     },
     {
       "isin": "IE00BF0M2Z96",
       "name": "L&G Battery Value-Chain UCITS ETF",
       "provider": "L&G",
-      "parser": "document",
-      "documentType": "lg",
-      "sourceUrl": "https://docs.fundconnect.com/GetDocument.aspx?Isin=IE00BF0M2Z96&clientid=18svzhes-n8uj-xtdb-oidd-a58dzenasvsr&lang=en-GB&save=false&type=Factsheet",
+      "parser": "lg-api",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
       "currency": "USD",
-      "enabled": false,
-      "qualificationIssue": "Official Fundconnect URL returns HTTP 404; current exact-share factsheet discovery still required"
+      "enabled": true
     },
     {
       "isin": "IE00BK5BCD43",
       "name": "L&G Artificial Intelligence UCITS ETF",
       "provider": "L&G",
-      "parser": "document",
-      "documentType": "lg",
-      "sourceUrl": "https://docs.fundconnect.com/GetDocument.aspx?Isin=IE00BK5BCD43&clientid=18svzhes-n8uj-xtdb-oidd-a58dzenasvsr&lang=en-GB&save=false&type=Factsheet",
+      "parser": "lg-api",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
       "currency": "USD",
-      "enabled": false,
-      "qualificationIssue": "Official Fundconnect URL returns HTTP 404; current exact-share factsheet discovery still required"
+      "enabled": true
     },
     {
       "isin": "IE00BK5BCH80",
       "name": "L&G Clean Energy UCITS ETF",
       "provider": "L&G",
-      "parser": "document",
-      "documentType": "lg",
-      "sourceUrl": "https://docs.fundconnect.com/GetDocument.aspx?Isin=IE00BK5BCH80&clientid=18svzhes-n8uj-xtdb-oidd-a58dzenasvsr&lang=en-GB&save=false&type=Factsheet",
+      "parser": "lg-api",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
       "currency": "USD",
-      "enabled": false,
-      "qualificationIssue": "Official Fundconnect URL returns HTTP 404; current exact-share factsheet discovery still required"
+      "enabled": true
     },
     {
       "isin": "IE0002XZSHO1",
@@ -926,6 +919,108 @@
         "https://www.blackrock.com/fr/particuliers/products/342916/"
       ],
       "factsheetUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
+    },
+    {
+      "isin": "DE000A27Z304",
+      "name": "Bitwise Physical Bitcoin ETP",
+      "currency": "USD",
+      "provider": "Bitwise",
+      "parser": "bitwise-html",
+      "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+      "enabled": true
+    },
+    {
+      "isin": "GB00B15KXQ89",
+      "name": "WisdomTree Copper",
+      "currency": "USD",
+      "provider": "WisdomTree",
+      "parser": "wisdomtree-html",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+      "enabled": true
+    },
+    {
+      "isin": "IE0002Y8CX98",
+      "name": "WisdomTree Europe Defence UCITS ETF",
+      "currency": "EUR",
+      "provider": "WisdomTree",
+      "parser": "wisdomtree-html",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "enabled": true
+    },
+    {
+      "isin": "IE000W8WMSL2",
+      "name": "WisdomTree Quantum Computing UCITS ETF",
+      "currency": "USD",
+      "provider": "WisdomTree",
+      "parser": "wisdomtree-html",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+      "enabled": true
+    },
+    {
+      "isin": "IE00BZ56SW52",
+      "name": "WisdomTree Global Quality Dividend Growth UCITS ETF",
+      "currency": "USD",
+      "provider": "WisdomTree",
+      "parser": "wisdomtree-html",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+      "enabled": true
+    },
+    {
+      "isin": "IE00BM8R0J59",
+      "name": "Global X Nasdaq 100 Covered Call UCITS ETF",
+      "currency": "USD",
+      "provider": "Global X",
+      "parser": "globalx-html",
+      "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+      "enabled": true
+    },
+    {
+      "isin": "GB00BLD4ZL17",
+      "name": "CoinShares Physical Bitcoin",
+      "currency": "USD",
+      "provider": "CoinShares",
+      "parser": "coinshares-document",
+      "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-btc/",
+      "enabled": true
+    },
+    {
+      "isin": "GB00BLD4ZM24",
+      "name": "CoinShares Physical Staked Ethereum",
+      "currency": "USD",
+      "provider": "CoinShares",
+      "parser": "coinshares-document",
+      "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
+      "enabled": true
+    },
+    {
+      "isin": "IE00BD4TXV59",
+      "name": "UBS Core MSCI World UCITS ETF USD acc",
+      "currency": "USD",
+      "provider": "UBS",
+      "parser": "ubs-document",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-{month_end}-en.pdf",
+      "enabled": true
+    },
+    {
+      "isin": "FR0011550185",
+      "name": "BNP Paribas Easy S&P 500",
+      "provider": "BNP Paribas",
+      "enabled": false,
+      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+    },
+    {
+      "isin": "FR0011550193",
+      "name": "BNP Paribas Easy STOXX Europe 600",
+      "provider": "BNP Paribas",
+      "enabled": false,
+      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+    },
+    {
+      "isin": "IE000QDFFK00",
+      "name": "BNP Paribas Easy II Nasdaq 100",
+      "provider": "BNP Paribas",
+      "enabled": false,
+      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
     }
   ]
 }

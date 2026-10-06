@@ -7,9 +7,9 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
 | Historiques mensuels des simulateurs | 46/46 séries ; 44 nouveaux collecteurs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| ETF/ETC/ETP | 139/154 instruments, au moins un champ | 3 et 16 du mois |
-| Compositions d’indices | 28 indices | 3 et 16 du mois |
-| Rendements annuels d’indices | 30 indices | 3 et 16 du mois |
+| ETF/ETC/ETP | 151/154 instruments, au moins un champ | 3 et 16 du mois |
+| Compositions d’indices | 30 indices | 3 et 16 du mois |
+| Rendements annuels d’indices | 32 indices | 3 et 16 du mois |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -18,18 +18,23 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 ## Disponibilité à fiabiliser
 
-WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares ont fourni des données validées, mais plusieurs collectes GitHub du 6 octobre 2026 ont ensuite renvoyé HTTP 403. Les connecteurs et tentatives planifiées existent ; leurs dernières valeurs validées sont conservées. Le collecteur conserve les cookies régionaux, essaie aussi la page officielle BlackRock française, puis la fiche mensuelle officielle PDF si les pages HTML sont inaccessibles. Les encours et frais d’un PDF plus ancien ne remplacent pas une observation active plus récente. Un échec de tous ces accès reste signalé. Les 139 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 139 accès réussis à chaque exécution.
+WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares ont fourni des données validées, mais plusieurs collectes GitHub du 6 octobre 2026 ont ensuite renvoyé HTTP 403. Les connecteurs et tentatives planifiées existent ; leurs dernières valeurs validées sont conservées. Leur accès reste à fiabiliser. Les 151 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 151 accès réussis à chaque exécution.
+
+## Extension du 6 octobre 2026
+
+Douze des quinze instruments auparavant hors collecte sont désormais raccordés : Bitwise Bitcoin, WisdomTree Copper/Defence/Quantum/Dividend Growth, CoinShares Bitcoin/Ethereum, UBS World, L&G Battery/AI/Clean Energy et Global X QYLD. L&G Cyber Security reçoit aussi les calendriers exacts de la part ; WisdomTree Gold reçoit un encours daté depuis sa page officielle. Les séries complètes Battery, AI et Cyber Security sont intégrées lorsque leur devise correspond à la simulation. Clean Energy conserve son proxy : lancement en 2020, année incomplète.
+MSCI EM IMI et MSCI EM Latin America : compositions et rendements nets USD issus des fiches MSCI actuelles. Les trois instruments BNP restent hors collecte : accès au composant Fundsheet HTTP 502 et découverte récurrente de la fiche actuelle non qualifiée. Les anciens PDF ne sont pas promus en source actuelle.
 
 ## Limites par champ ETF
 
 | Champ collecté et consommé | Instruments |
 |---|---:|
-| Frais annuels | 139 |
-| Encours daté | 137 |
-| Rendements calendaires 2020–2025 de la part | 108 |
-| Pays | 123 |
-| Secteurs ou sous-secteurs publiés | 104 |
-| Principales positions | 111 |
+| Frais annuels | 151 |
+| Encours daté | 148 |
+| Rendements calendaires 2020–2025 de la part | 111 |
+| Pays | 131 |
+| Secteurs ou sous-secteurs publiés | 112 |
+| Principales positions | 119 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 22 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 22 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les séries de simulation restent limitées à 2020–2025 ; le choix automatique d’une nouvelle fenêtre annuelle n’est pas implémenté.
 
@@ -37,21 +42,9 @@ Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même i
 
 | ISIN | Instrument | Blocage actuel |
 |---|---|---|
-| DE000A27Z304 | Bitwise Physical Bitcoin ETP | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| FR0011550185 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| FR0011550193 | BNP Paribas Easy STOXX Europe 600 UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| GB00B15KXQ89 | WisdomTree Copper | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| GB00BLD4ZM24 | CoinShares Ethereum Staking ETP | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE000QDFFK00 | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE000W8WMSL2 | WisdomTree Quantum Computing UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BD4TXV59 | UBS Core MSCI World UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BF0M2Z96 | L&G Battery Value-Chain UCITS ETF | Official Fundconnect URL returns HTTP 404; current exact-share factsheet discovery still required |
-| IE00BK5BCD43 | L&G Artificial Intelligence UCITS ETF | Official Fundconnect URL returns HTTP 404; current exact-share factsheet discovery still required |
-| IE00BK5BCH80 | L&G Clean Energy UCITS ETF | Official Fundconnect URL returns HTTP 404; current exact-share factsheet discovery still required |
-| IE00BM8R0J59 | Global X Nasdaq 100 Covered Call UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BZ56SW52 | WisdomTree Global Quality Dividend Growth UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| FR0011550185 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente. |
+| FR0011550193 | BNP Paribas Easy STOXX Europe 600 UCITS ETF | Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente. |
+| IE000QDFFK00 | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente. |
 
 ## Champs restant manuels sur les instruments partiellement couverts
 
@@ -75,6 +68,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B1FZS467 | iShares Global Infrastructure UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | CH0454664001 | 21Shares Bitcoin ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
 | DE000A0H08Q4 | iShares STOXX Europe 600 Technology UCITS ETF (DE) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| DE000A27Z304 | Bitwise Physical Bitcoin ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
 | FR0010342592 | Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0010524777 | Amundi MSCI New Energy UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0010527275 | Amundi MSCI Water UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -94,9 +88,13 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR0013416716 | Amundi Physical Gold ETC | Pays, Secteurs, Principales positions |
 | FR001400S9V0 | Amundi PEA Luxe Monde UCITS ETF | Rendements calendaires |
 | FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Rendements calendaires |
+| GB00B15KXQ89 | WisdomTree Copper | Rendements calendaires, Pays, Secteurs, Principales positions |
 | GB00BJYDH287 | WisdomTree Physical Bitcoin | Encours, Pays, Secteurs, Principales positions |
+| GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Encours, Rendements calendaires, Pays, Secteurs, Principales positions |
+| GB00BLD4ZM24 | CoinShares Ethereum Staking ETP | Encours, Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE0000N55FP4 | iShares MSCI Europe Small Cap UCITS ETF | Rendements calendaires |
 | IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Rendements calendaires, Pays, Secteurs, Principales positions |
+| IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Rendements calendaires |
 | IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Rendements calendaires, Secteurs |
 | IE000C6ITGC8 | iShares Quantum Computing UCITS ETF | Rendements calendaires |
 | IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Rendements calendaires, Pays, Secteurs, Principales positions |
@@ -104,6 +102,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE000L6ZMMC4 | Xtrackers FTSE All-World UCITS ETF 1C | Rendements calendaires |
 | IE000M7V94E1 | VanEck Uranium and Nuclear Technologies UCITS ETF | Rendements calendaires, Secteurs |
 | IE000RDRMSD1 | iShares Blockchain Technology UCITS ETF | Rendements calendaires |
+| IE000W8WMSL2 | WisdomTree Quantum Computing UCITS ETF | Rendements calendaires |
 | IE000XZSV718 | SPDR S&P 500 UCITS ETF Acc | Rendements calendaires |
 | IE000YU9K6K2 | VanEck Space Innovators UCITS ETF | Rendements calendaires, Secteurs |
 | IE000YYE6WK5 | VanEck Defense UCITS ETF | Rendements calendaires, Secteurs |
@@ -144,9 +143,11 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B8FHGS14 | iShares Edge MSCI World Minimum Volatility UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B8GKDB10 | Vanguard FTSE All-World High Dividend Yield UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B9CQXS71 | SPDR S&P Global Dividend Aristocrats UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BD4TXV59 | UBS Core MSCI World UCITS ETF | Rendements calendaires |
 | IE00BD6FTQ80 | Invesco Bloomberg Commodity UCITS ETF | Pays, Secteurs, Principales positions |
 | IE00BDFBTQ78 | VanEck S&P Global Mining UCITS ETF | Secteurs |
 | IE00BDFL4P12 | iShares Diversified Commodity Swap UCITS ETF | Pays, Secteurs, Principales positions |
+| IE00BF0M2Z96 | L&G Battery Value-Chain UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BF3N7094 | iShares € High Yield Corp Bond UCITS ETF (Acc) | Secteurs, Principales positions |
 | IE00BF4RFH31 | iShares MSCI World Small Cap UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BFZPF546 | iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc) | Secteurs, Principales positions |
@@ -156,6 +157,8 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BJ5JNZ06 | iShares MSCI World Health Care Sector Advanced UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BJ5JP097 | iShares MSCI World Financials Sector Advanced UCITS ETF USD (Dist) | Rendements calendaires |
 | IE00BJ5JPG56 | iShares MSCI China UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BK5BCD43 | L&G Artificial Intelligence UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BK5BCH80 | L&G Clean Energy UCITS ETF | Rendements calendaires |
 | IE00BK5BQT80 | Vanguard FTSE All-World UCITS ETF (USD) Accumulating | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BR626 | Vanguard FTSE All-World High Dividend Yield UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BR733 | Vanguard FTSE Emerging Markets UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -165,6 +168,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BKPX3K41 | iShares MSCI AC Far East ex-Japan UCITS ETF | Rendements calendaires |
 | IE00BM67HK77 | Xtrackers MSCI World Health Care UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM67HS53 | Xtrackers MSCI World Materials UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BM8R0J59 | Global X Nasdaq 100 Covered Call UCITS ETF | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE00BMG6Z448 | iShares MSCI EM ex-China UCITS ETF (Acc) | Rendements calendaires |
 | IE00BMW42413 | iShares MSCI Europe Information Technology Sector UCITS ETF | Rendements calendaires |
 | IE00BP3QZ601 | iShares Edge MSCI World Quality Factor UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -172,13 +176,14 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BP3QZB59 | iShares Edge MSCI World Value Factor UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BQT3WG13 | iShares MSCI China A UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BTJRMP35 | Xtrackers MSCI Emerging Markets UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BYPLS672 | L&G Cyber Security UCITS ETF | Rendements calendaires, Pays, Secteurs, Principales positions |
+| IE00BYPLS672 | L&G Cyber Security UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYTRR863 | SPDR MSCI World Energy UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYXG2H39 | iShares Nasdaq US Biotechnology UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYYHSQ67 | iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYZK4552 | iShares Automation & Robotics UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BZ163G84 | Vanguard € Corp Bond UCITS ETF | Pays, Secteurs, Principales positions |
-| JE00B1VS3770 | WisdomTree Physical Gold | Encours, Pays, Secteurs, Principales positions |
+| IE00BZ56SW52 | WisdomTree Global Quality Dividend Growth UCITS ETF | Rendements calendaires |
+| JE00B1VS3770 | WisdomTree Physical Gold | Pays, Secteurs, Principales positions |
 | LU0908500753 | Amundi Core STOXX Europe 600 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU1437018838 | Amundi FTSE EPRA NAREIT Global UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU1681043599 | Amundi MSCI World Swap UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -214,8 +219,6 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | S&P 500 (sp500-pea) | Composition / méthodologie, Rendements annuels |
 | NASDAQ-100 Notional Net Total Return (nasdaq-pea) | Composition / méthodologie, Rendements annuels |
 | Russell 1000 (russell-1000) | Composition / méthodologie |
-| MSCI Emerging Markets Latin America (msci-em-latin-america) | Composition / méthodologie, Rendements annuels |
-| MSCI EM IMI (msci-em-imi) | Composition / méthodologie, Rendements annuels |
 | S&P Global Dividend Aristocrats (sp-global-dividend-aristocrats) | Composition / méthodologie, Rendements annuels |
 | S&P Euro Dividend Aristocrats (sp-euro-dividend-aristocrats) | Composition / méthodologie, Rendements annuels |
 | MSCI EM Latin America Selection 20/35% Capped (msci-em-latin-america-selection) | Composition / méthodologie, Rendements annuels |
@@ -235,8 +238,9 @@ Russell 1000/2000 : rendements annuels automatisés ; les compositions restent �
 
 ## Priorités suivantes
 
-1. Qualifier les sources des 15 instruments restants et les champs manquants des sources déjà connectées (encours WisdomTree, historiques calendaires HSBC/L&G, expositions des parts synthétiques).
-2. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles stables.
-3. Automatiser les caractéristiques/cotations et le renouvellement annuel des fenêtres de simulation ; maintenir une revue pour les règles fiscales et les offres de courtiers.
+1. Lever les blocages des 3 instruments encore hors collecte (BNP) ; compléter les encours CoinShares, calendriers complets disponibles et compositions des indices listés ci-dessus. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
+2. Automatiser le renouvellement annuel des fenêtres de simulation, avec contrôle des années complètes, devises, dividendes et proxys.
+3. Raccorder les caractéristiques et cotations (domicile, réplication, distribution, PEA) avec une provenance et une date propres à chaque champ.
+4. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles ; maintenir une revue des règles fiscales et offres de courtiers.
 
 Régénération : `npm run report:automation`. Ce rapport décrit une couverture, pas une garantie de disponibilité permanente des émetteurs.

@@ -24,7 +24,10 @@ const rows=[
  '| Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |','',
  'Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET/GROSS et devises restent distincts. Les clôtures Yahoo sont recoupées entre granularités ou fenêtres du même fournisseur ; ce ne sont pas deux fournisseurs indépendants. L’or reste une moyenne mensuelle Banque mondiale. Pour SI=F, Yahoo omet des bougies mensuelles : ces mois sont recoupés avec une seconde requête quotidienne de fin de mois. Les niveaux STOXX viennent de son tableau quotidien officiel.','',
  '## Disponibilité à fiabiliser','',
- 'WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares ont fourni des données validées, mais plusieurs collectes GitHub du 6 octobre 2026 ont ensuite renvoyé HTTP 403. Les connecteurs et tentatives planifiées existent ; leurs dernières valeurs validées sont conservées. Leur accès reste à fiabiliser. Les 139 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 139 accès réussis à chaque exécution.','',
+ `WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares ont fourni des données validées, mais plusieurs collectes GitHub du 6 octobre 2026 ont ensuite renvoyé HTTP 403. Les connecteurs et tentatives planifiées existent ; leurs dernières valeurs validées sont conservées. Leur accès reste à fiabiliser. Les ${Object.keys(etf).length} instruments décrivent donc une couverture configurée et validée au moins une fois, pas ${Object.keys(etf).length} accès réussis à chaque exécution.`,'',
+ '## Extension du 6 octobre 2026','',
+ 'Douze des quinze instruments auparavant hors collecte sont désormais raccordés : Bitwise Bitcoin, WisdomTree Copper/Defence/Quantum/Dividend Growth, CoinShares Bitcoin/Ethereum, UBS World, L&G Battery/AI/Clean Energy et Global X QYLD. L&G Cyber Security reçoit aussi les calendriers exacts de la part ; WisdomTree Gold reçoit un encours daté depuis sa page officielle. Les séries complètes Battery, AI et Cyber Security sont intégrées lorsque leur devise correspond à la simulation. Clean Energy conserve son proxy : lancement en 2020, année incomplète.',
+ 'MSCI EM IMI et MSCI EM Latin America : compositions et rendements nets USD issus des fiches MSCI actuelles. Les trois instruments BNP restent hors collecte : accès au composant Fundsheet HTTP 502 et découverte récurrente de la fiche actuelle non qualifiée. Les anciens PDF ne sont pas promus en source actuelle.', '',
  '## Limites par champ ETF','',
  '| Champ collecté et consommé | Instruments |','|---|---:|',
  ...[['Frais annuels','ter'],['Encours daté','aum'],['Rendements calendaires 2020–2025 de la part','performance'],['Pays','countries'],['Secteurs ou sous-secteurs publiés','sectors'],['Principales positions','holdings']].map(([label,field])=>`| ${label} | ${count(field)} |`),'',
@@ -51,9 +54,10 @@ const rows=[
  '- Ajout de nouveaux instruments, choix des sources, compatibilité de nouvelles devises/méthodes et remplacement de sources devenues incompatibles.',
  '- Réparation des connecteurs si un émetteur change son schéma, bloque l’accès ou retire une publication : les tâches réessaient et signalent l’échec, mais ne réécrivent pas seules le code.','',
  '## Priorités suivantes','',
- '1. Qualifier les sources des 15 instruments restants et les champs manquants des sources déjà connectées (encours WisdomTree, historiques calendaires HSBC/L&G, expositions des parts synthétiques).',
- '2. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles stables.',
- '3. Automatiser les caractéristiques/cotations et le renouvellement annuel des fenêtres de simulation ; maintenir une revue pour les règles fiscales et les offres de courtiers.',
+ `1. Lever les blocages des ${uncovered.length} instruments encore hors collecte (BNP) ; compléter les encours CoinShares, calendriers complets disponibles et compositions des indices listés ci-dessus. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.`,
+ '2. Automatiser le renouvellement annuel des fenêtres de simulation, avec contrôle des années complètes, devises, dividendes et proxys.',
+ '3. Raccorder les caractéristiques et cotations (domicile, réplication, distribution, PEA) avec une provenance et une date propres à chaque champ.',
+ '4. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles ; maintenir une revue des règles fiscales et offres de courtiers.',
  '', 'Régénération : `npm run report:automation`. Ce rapport décrit une couverture, pas une garantie de disponibilité permanente des émetteurs.',''
 ];
 const output=rows.join('\n');

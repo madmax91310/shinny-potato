@@ -17,6 +17,10 @@ on:
       - 'scripts/collect_document_etf.py'
       - 'scripts/download-vaneck-document.mjs'
       - 'scripts/refresh_additional_etf.py'
+      - 'scripts/collect_public_issuer.py'
+      - 'scripts/collect_lg_api.py'
+      - 'scripts/collect_remaining_documents.py'
+      - 'scripts/test_new_issuer_sources.py'
   pull_request:
     paths:
       - '.github/workflows/collect-etf-pilot.yml'
@@ -35,6 +39,10 @@ on:
       - 'scripts/test_document_etf.py'
       - 'scripts/collect_document_etf.py'
       - 'scripts/refresh_additional_etf.py'
+      - 'scripts/collect_public_issuer.py'
+      - 'scripts/collect_lg_api.py'
+      - 'scripts/collect_remaining_documents.py'
+      - 'scripts/test_new_issuer_sources.py'
       - 'scripts/fixtures/official-documents/**'
       - 'src/data/automated-indices*'
       - 'scripts/update_bitcoin_monthly.py'
@@ -70,6 +78,7 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
