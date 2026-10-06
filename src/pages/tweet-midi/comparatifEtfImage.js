@@ -75,7 +75,7 @@ function card(ctx, fund, performance, years, i, count, scaleMax) {
   if (performance && years.length) {
     years.forEach((year, j) => {
       const row = performance.rows.find(value => value.year === year)
-      const yy = y + 304 + j * 112
+      const yy = y + 304 + j * 99
       text(ctx, String(year), x + 27, yy, 26, { color: MUTED, weight: 400 })
       text(ctx, row ? pct(row.pct) : 'N/D', x + cardW - 27, yy - 6, count > 3 ? 36 : 42, { align: 'right', width: cardW - 130, color: row?.pct < 0 ? RED : GREEN })
       ctx.fillStyle = '#223a49'; roundedRect(ctx, x + 27, yy + 50, cardW - 54, 12, 6); ctx.fill()
@@ -84,14 +84,14 @@ function card(ctx, fund, performance, years, i, count, scaleMax) {
         roundedRect(ctx, x + 27, yy + 50, Math.max(6, (cardW - 54) * Math.abs(row.pct) / scaleMax), 12, 6); ctx.fill()
       }
     })
-    lines(ctx, detail(fund), x + 27, y + 593, cardW - 54, 2, 20, { color: MUTED, weight: 400 })
+    lines(ctx, detail(fund), x + 27, y + 568, cardW - 54, 2, 20, { color: MUTED, weight: 400 })
   } else {
     lines(ctx, detail(fund) || 'Données de performance non disponibles', x + 27, y + 315, cardW - 54, 5, 27, { color: MUTED, weight: 400 })
   }
-  ctx.fillStyle = 'rgba(177,218,223,.22)'; ctx.fillRect(x + 27, y + 651, cardW - 54, 2)
-  text(ctx, 'FRAIS / AN', x + 27, y + 676, 21, { color: MUTED, weight: 400 })
-  text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, x + cardW - 27, y + 665, 35, { align: 'right', width: cardW - 195, color: accent })
-  text(ctx, fund.isin, x + 27, y + 720, 21, { width: cardW - 54, color: MUTED, weight: 400 })
+  ctx.fillStyle = 'rgba(177,218,223,.22)'; ctx.fillRect(x + 27, y + 628, cardW - 54, 2)
+  text(ctx, 'FRAIS / AN', x + 27, y + 653, 21, { color: MUTED, weight: 400 })
+  text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, x + cardW - 27, y + 642, 35, { align: 'right', width: cardW - 195, color: accent })
+  text(ctx, fund.isin, x + 27, y + 695, 21, { width: cardW - 54, color: MUTED, weight: 400 })
 }
 
 export async function renderComparatifEtfImage(theme) {
