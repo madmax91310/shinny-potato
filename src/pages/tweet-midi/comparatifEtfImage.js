@@ -105,14 +105,10 @@ export async function renderComparatifEtfImage(theme) {
   ctx.fillStyle = background; ctx.fillRect(0, 0, W, H)
   const art = theme.id === 'etc-metaux' ? null : await loadArtImage(comparisonArt(theme.id, theme.etfs[0].isin))
   sceneAccent(ctx, art)
-  text(ctx, 'ÉPARGNANT LIBRE', 68, 48, 26, { color: '#e9bc79', weight: 700 })
-  text(ctx, theme.nom.toLocaleUpperCase('fr-FR'), 68, 112, 73, { width: 1380, serif: true })
-  text(ctx, `${theme.etfs.length} PRODUITS · ${years.length ? years.join(' / ') : 'FRAIS ET EXPOSITION'}`, 68, 241, 27, { color: MUTED, weight: 400, width: 1300 })
+  text(ctx, 'ÉPARGNANT LIBRE', W / 2, 48, 26, { color: '#e9bc79', weight: 700, align: 'center' })
+  text(ctx, theme.nom.toLocaleUpperCase('fr-FR'), W / 2, 112, 73, { width: W - 136, serif: true, align: 'center' })
   const scaleMax = Math.max(1, ...series.flatMap(item => item ? item.rows.map(row => Math.abs(row.pct)) : []))
   theme.etfs.forEach((fund, i) => card(ctx, fund, series[i], years, i, theme.etfs.length, scaleMax))
-  ctx.fillStyle = 'rgba(233,188,121,.55)'; ctx.fillRect(68, 1110, W - 136, 2)
-  text(ctx, 'Performances calendaires des ETF cités · devises indiquées', 68, 1140, 23, { color: MUTED, weight: 400 })
-  text(ctx, 'Les performances passées ne préjugent pas des performances futures.', 68, 1178, 22, { color: MUTED, weight: 400 })
   text(ctx, '@Epargnantlibre', W - 68, 1174, 25, { align: 'right', color: INK })
   return canvas
 }
