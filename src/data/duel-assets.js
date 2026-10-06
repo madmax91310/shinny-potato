@@ -1,13 +1,15 @@
+import annualFx from './annual-fx.json' with { type: 'json' };
 import { ASSETS } from './portfolio-assets.js'
-import { getInstrumentDuelSeries } from './instrument-returns.js'
+import { getInstrumentDuelSeries, getInstrumentCalendarReturns } from './instrument-returns.js'
 import { COMPARATOR_RETURNS_BY_ISIN } from './instrument-comparator-returns.js'
 import { COMPARATOR_RETURN_EVIDENCE } from './comparator-return-evidence.js'
 import { PORTFOLIO_RETURN_EVIDENCE } from './portfolio-return-evidence.js'
 import { getInstrumentName } from './instruments.js'
 
 // Taux de fin d’année BCE déjà utilisés dans le duel, sans modification des valeurs.
-export const EUR_USD = { 2019: 1.1234, 2020: 1.2271, 2021: 1.1326, 2022: 1.0666, 2023: 1.1050, 2024: 1.0389, 2025: 1.1750 }
-export const FX_SOURCE = 'https://www.ecb.europa.eu/stats/exchange/eurofxref/shared/pdf/2025/12/20251231.pdf'
+const historicalFx = { 2019: 1.1234, 2020: 1.2271, 2021: 1.1326, 2022: 1.0666, 2023: 1.1050, 2024: 1.0389, 2025: 1.1750 }
+export const EUR_USD = { ...historicalFx, ...Object.fromEntries(Object.entries(annualFx.years).map(([year, row]) => [year, row.value])) }
+export const FX_SOURCE = annualFx.sourceUrl
 export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thématique' }
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
@@ -92,10 +94,11 @@ export const CATALOG = [...fundItems, ...extraFunds, {
   currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],
   source: stoxxEvidence.sourceUrls[0], note: 'Rendements de la part exacte, disponibles sur 2023–2025 seulement.',
 }].filter((item) => Number.isFinite(item.values.at(-1)) && item.values.filter(Number.isFinite).length >= 3)
+for (const item of CATALOG) item.calendarReturns = getInstrumentCalendarReturns(item.isin, item.values);
 export const ITEM_BY_ID = new Map(CATALOG.map((item) => [item.id, item]))
 
 export function euroReturn(item, year) {
-  const original = item.values[year - 2020]
+  const original = item.calendarReturns?.[year] ?? item.values[year - 2020]
   if (!Number.isFinite(original)) return null
   if (item.currency === 'EUR') return original
   const start = EUR_USD[year - 1]

@@ -20,7 +20,7 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 151 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 151 accès réussis à chaque exécution.
 
-Les pages HTML WisdomTree Gold/Copper/Defence/Quantum/Dividend Growth renvoient HTTP 403 depuis GitHub. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié ; les erreurs temporaires sur un mois conduisent à essayer le mois précédent, dont la date et la fraîcheur sont vérifiées.
+Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth publient des encours datés ; elles peuvent renvoyer HTTP 403 depuis GitHub. Les six pages ont été qualifiées en collecte réelle, avec ISIN, devise et date propres contrôlés. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. Les encours CoinShares utilisent désormais les widgets officiels liés à la page produit : ISIN et devise USD contrôlés, Rate Date de valorisation (jamais la date de cache). Les documents PDF restent la preuve des frais ; leurs rendements crypto de référence ne sont pas assimilés à ceux de la part. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié ; les erreurs temporaires sur un mois conduisent à essayer le mois précédent, dont la date et la fraîcheur sont vérifiées.
 
 ## Extension du 6 octobre 2026
 
@@ -32,13 +32,13 @@ MSCI EM IMI, MSCI EM Latin America et Selection 20/35 Capped : compositions et r
 | Champ collecté et consommé | Instruments |
 |---|---:|
 | Frais annuels | 151 |
-| Encours daté | 148 |
-| Rendements calendaires 2020–2025 de la part | 113 |
+| Encours daté | 151 |
+| Rendements calendaires complets de la part | 113 |
 | Pays | 131 |
 | Secteurs ou sous-secteurs publiés | 112 |
 | Principales positions | 119 |
 
-Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 22 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 22 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les séries de simulation restent limitées à 2020–2025 ; le choix automatique d’une nouvelle fenêtre annuelle n’est pas implémenté.
+Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 22 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 22 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
 ## Instruments entièrement hors collecte active
 
@@ -91,9 +91,9 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR001400S9V0 | Amundi PEA Luxe Monde UCITS ETF | Rendements calendaires |
 | FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Rendements calendaires |
 | GB00B15KXQ89 | WisdomTree Copper | Pays, Secteurs, Principales positions |
-| GB00BJYDH287 | WisdomTree Physical Bitcoin | Encours, Pays, Secteurs, Principales positions |
-| GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Encours, Rendements calendaires, Pays, Secteurs, Principales positions |
-| GB00BLD4ZM24 | CoinShares Ethereum Staking ETP | Encours, Rendements calendaires, Pays, Secteurs, Principales positions |
+| GB00BJYDH287 | WisdomTree Physical Bitcoin | Pays, Secteurs, Principales positions |
+| GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
+| GB00BLD4ZM24 | CoinShares Ethereum Staking ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE0000N55FP4 | iShares MSCI Europe Small Cap UCITS ETF | Rendements calendaires |
 | IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Rendements calendaires |
@@ -238,8 +238,8 @@ Russell 1000/2000 : rendements annuels automatisés ; les compositions restent �
 
 ## Priorités suivantes
 
-1. Lever les blocages des 3 instruments encore hors collecte (BNP) et rétablir un accès récurrent aux encours WisdomTree/CoinShares ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
-2. Automatiser le renouvellement annuel des fenêtres de simulation, avec contrôle des années complètes, devises, dividendes et proxys.
+1. Lever les blocages des 3 instruments encore hors collecte (BNP) et fiabiliser la disponibilité des pages WisdomTree. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
+2. Suivre le renouvellement annuel désormais automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
 3. Raccorder les caractéristiques et cotations (domicile, réplication, distribution, PEA) avec une provenance et une date propres à chaque champ.
 4. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles ; maintenir une revue des règles fiscales et offres de courtiers.
 

@@ -14,7 +14,7 @@ export function annualPerformanceRange(series) {
   const first = series.values.findIndex(Number.isFinite)
   if (first < 0) return series.observations?.length ? 'sur les périodes publiées' : 'non encore publiées'
   const last = series.values.findLastIndex(Number.isFinite)
-  return first === last ? String(2020 + first) : `${2020 + first}–${2020 + last}`
+  return first === last ? String(series.calendarYears?.[first] ?? 2020 + first) : `${series.calendarYears?.[first] ?? 2020 + first}–${series.calendarYears?.[last] ?? 2020 + last}`
 }
 
 export function formatPerformanceDate(date) {
@@ -22,7 +22,7 @@ export function formatPerformanceDate(date) {
 }
 
 export function performanceEntries(series) {
-  const annual = series.values.flatMap((value, index) => Number.isFinite(value) ? [{ label: String(2020 + index), value }] : [])
+  const annual = series.values.flatMap((value, index) => Number.isFinite(value) ? [{ label: String(series.calendarYears?.[index] ?? 2020 + index), value }] : [])
   return annual.length ? annual : series.observations ?? []
 }
 

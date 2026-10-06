@@ -1,4 +1,4 @@
-import { YEARS } from '../../data/portfolio-assets.js'
+import { performanceYears } from './performance.js'
 import { annualizedReturn, formatPerformance as percent } from './performance.js'
 export { annualizedReturn } from './performance.js'
 
@@ -145,6 +145,7 @@ export function renderPortfolioImage(portfolio) {
   label(ctx, 'PERFORMANCES ANNUELLES', 54, upperHeight + 55, 21, '#dbbf87')
   const plotLeft = 70, plotWidth = 1168, plotTop = upperHeight + 112
   const halfHeight = 135, baseline = plotTop + halfHeight
+  const YEARS = performanceYears(portfolio.perf)
   const finite = YEARS.map(year => portfolio.perf[year]).filter(Number.isFinite)
   const maxAbs = Math.max(1, ...finite.map(Math.abs))
   rule(ctx, plotLeft, baseline, plotWidth)

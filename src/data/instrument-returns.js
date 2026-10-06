@@ -1,9 +1,10 @@
-import { AUTOMATED_PERFORMANCE } from './automated-etf.js';
+import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE } from './automated-etf.js';
 import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 // Rendements 2020–2025 par part (ISIN), repris sans modification du générateur.
 // Les commentaires de provenance historiques restent dans src/data/portfolio-assets.js.
 // Ce déplacement ne constitue pas une nouvelle vérification des cours.
+import { calendarMap, latestCommonYears, HISTORICAL_YEARS } from './annual-window.js';
 import { VERIFIED_RETURNS } from './verified-returns.js';
 
 export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
@@ -79,7 +80,8 @@ export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentReturnValues(isin) {
-  if (AUTOMATED_PERFORMANCE[isin]) return AUTOMATED_PERFORMANCE[isin].values;
+  const calendar = AUTOMATED_ETF[isin]?.performance?.years;
+  if (calendar && HISTORICAL_YEARS.every(year => Number.isFinite(calendar[year]))) return HISTORICAL_YEARS.map(year => calendar[year]);
   const proxy = SIMULATION_PROXIES[isin];
   const values = proxy ? proxy.values ?? VERIFIED_RETURNS[proxy.referenceIsin]?.values : VERIFIED_RETURNS[isin]?.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin];
   if (!values) throw new Error(`Rendements absents pour ${isin}`);
@@ -133,12 +135,37 @@ export const DUEL_SERIES_BY_ISIN = Object.freeze({
 
 export function getInstrumentDuelSeries(isin) {
   const proxy = SIMULATION_PROXIES[isin];
-  if (proxy) return { ...proxy, values: getInstrumentReturnValues(isin), basis: 'proxy' };
+  if (proxy && !latestCommonYears([AUTOMATED_ETF[isin]?.performance?.years ?? {}]).length) return { ...proxy, values: getInstrumentReturnValues(isin), basis: 'proxy' };
   const annual = getInstrumentAnnualPerformance(isin);
-  const base = annual?.values.some(Number.isFinite) ? annual : null;
+  const historicalValues = annual?.calendarYears ? HISTORICAL_YEARS.map(year => annual.years[year] ?? null) : annual?.values;
+  const base = historicalValues?.some(Number.isFinite) ? { ...annual, values: historicalValues } : null;
   const supplement = DUEL_SERIES_BY_ISIN[isin];
   const result = base ? { ...supplement, ...base, source: base.source ?? supplement?.source ?? null } :
     supplement?.currency ? { ...supplement, values: getInstrumentReturnValues(isin) } : null;
   // La part Acc Quality Dividend n’a pas d’année 2020 complète ; exclure le proxy Dist.
   return result && isin === 'IE00BKPSFC54' ? { ...result, values: result.values.map((v, i) => i === 0 ? null : v) } : result;
+}
+
+// Preserve archive-based getters above. Live simulations use dated year keys.
+export function getInstrumentCalendarReturns(isin, fallbackValues, { allowProxy = true } = {}) {
+  const record = AUTOMATED_ETF[isin];
+  const performance = record?.performance;
+  const legacy = getInstrumentAnnualPerformance(isin);
+  const proxy = SIMULATION_PROXIES[isin];
+  let archive;
+  try { archive = fallbackValues ?? getInstrumentReturnValues(isin); } catch { archive = legacy?.values; }
+  const actual = performance?.years ?? {};
+  const hasFullActualWindow = latestCommonYears([actual]).length > 0;
+  const proxyHistory = proxy || REVIEWED_PERFORMANCE_META[isin]?.portfolioHistoryBasis === 'proxy';
+  if (proxyHistory && !hasFullActualWindow) {
+    if (proxy?.referenceIsin && allowProxy) return getInstrumentCalendarReturns(proxy.referenceIsin, undefined, { allowProxy: false });
+    return calendarMap(proxy?.values ?? archive);
+  }
+  const result = proxyHistory ? {} : calendarMap(archive);
+  if (performance?.basis === 'fund' && performance.currency === (legacy?.currency ?? record.currency)) {
+    for (const [year, value] of Object.entries(performance.years)) {
+      if (/^20\d{2}$/.test(year) && Number.isFinite(value) && value > -100 && Number(year) < new Date().getUTCFullYear()) result[year] = value;
+    }
+  }
+  return result;
 }

@@ -1,0 +1,59 @@
+[
+  {
+    "code": "GB00BLD4ZL17",
+    "type": "STANDARD",
+    "sections": [
+      {
+        "type": "KEYSTAT",
+        "meta": [
+          {
+            "value": "1815061350",
+            "key": "AUM"
+          },
+          {
+            "value": "2026-10-05",
+            "key": "Rate Date"
+          }
+        ],
+        "updated": "2026-10-06T09:30:18.5703026Z",
+        "stale": "2026-10-06T09:30:19.5703026Z",
+        "source": "Coinshares TBA",
+        "sourceUri": "https://tba/",
+        "key": "GB00BLD4ZL17",
+        "from": "SOURCE"
+      }
+    ],
+    "updated": "2026-10-06T09:30:18.5703039Z",
+    "stale": "0001-01-01T00:00:00",
+    "key": "ISIN_DYNKEYSTATISTICS_GB00BLD4ZL17",
+    "cacheType": "REDIS",
+    "from": "CACHED"
+  },
+  {
+    "code": "GB00BLD4ZL17",
+    "type": "STANDARD",
+    "sections": [
+      {
+        "type": "KEYSTAT",
+        "meta": [
+          {
+            "value": "GB00BLD4ZL17",
+            "key": "iSIN"
+          }
+        ],
+        "lang": "en",
+        "updated": "2026-10-06T09:30:18.5804365Z",
+        "stale": "2026-10-06T09:30:19.5804366Z",
+        "source": "Coinshares TBA",
+        "sourceUri": "https://tba/",
+        "key": "GB00BLD4ZL17_NAN",
+        "from": "CACHED"
+      }
+    ],
+    "updated": "2026-10-06T09:30:18.5812193Z",
+    "stale": "0001-01-01T00:00:00",
+    "key": "ISIN_STATMETADATA_GB00BLD4ZL17",
+    "cacheType": "REDIS",
+    "from": "CACHED"
+  }
+]

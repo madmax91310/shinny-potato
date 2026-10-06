@@ -93,7 +93,7 @@ def msci_returns(text, config, now):
                 reject('Duplicate or unfinished MSCI calendar year')
             if year >= 2020:
                 years.append([year, bounded_return(float(m[2]))])
-    if not all(year in [p[0] for p in years] for year in range(2021,2026)):
+    if not any(all(year in [p[0] for p in years] for year in range(end-4,end+1)) for end in range(now.year-1,2024,-1)):
         reject('Missing MSCI completed calendar years')
     return sorted(years, reverse=True)
 

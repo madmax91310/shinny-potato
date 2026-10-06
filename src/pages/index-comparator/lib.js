@@ -37,7 +37,7 @@ export function buildTweetText(family, perfValues = {}) {
     const extra = perfValues[row.key]
     return [
       `${['🟢', '🔵', '🟣', '🟠', '🔴'][i]} ${getIndexComparisonPerformanceLabel(row, rows)}`,
-      [2023, 2024, 2025].map(year => `${year} : ${fmtPct(row[`y${year}`]) ?? 'Non disponible'}`).join(' · '),
+      row.years.map(year => `${year} : ${fmtPct(row[`y${year}`]) ?? 'Non disponible'}`).join(' · '),
       ...(row.currency && extra?.ytdEnabled && fmtPct(extra.ytd) !== null ? [`YTD saisi : ${fmtPct(extra.ytd)}`] : []),
     ].join('\n')
   }).join('\n\n')

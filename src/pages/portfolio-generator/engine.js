@@ -1,7 +1,7 @@
 import { benchmarkKey } from '../../data/asset-selection.js';
 import { compactRole, portfolioAssetLabel, compactHooks } from "./compact.js";
-import { ASSETS, YEARS, getAsset } from '../../data/portfolio-assets.js';
-import { computeYearlyPerf, performanceExcerpt } from './performance.js';
+import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
+import { computeYearlyPerf, performanceExcerpt, performanceYears, assetReturn } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
@@ -213,7 +213,7 @@ function signature(selection) {
 }
 
 function worstYearOf(perf) {
-  const availableYears = YEARS.filter((y) => Number.isFinite(perf[y]));
+  const availableYears = performanceYears(perf).filter((y) => Number.isFinite(perf[y]));
   let worst = availableYears[0];
   availableYears.forEach((y) => {
     if (perf[y] < perf[worst]) worst = y;
@@ -222,7 +222,7 @@ function worstYearOf(perf) {
 }
 
 function bestYearOf(perf) {
-  const availableYears = YEARS.filter((y) => Number.isFinite(perf[y]));
+  const availableYears = performanceYears(perf).filter((y) => Number.isFinite(perf[y]));
   let best = availableYears[0];
   availableYears.forEach((y) => {
     if (perf[y] > perf[best]) best = y;
@@ -235,13 +235,13 @@ function bestYearOf(perf) {
 // c'est la norme.
 function boostedYearLine(selection, perf) {
   const best = bestYearOf(perf);
-  const idx = YEARS.indexOf(best.year);
+
   let driver = null;
   selection.forEach((s) => {
-    if (!driver || s.r[idx] > driver.r[idx]) driver = s;
+    if (!driver || assetReturn(s, best.year) > assetReturn(driver, best.year)) driver = s;
   });
-  if (driver && driver.r[idx] > 90) {
-    return `→ ${best.year} boosté par ${driver.name} (${fmtPct(driver.r[idx])} cette année-là). Non représentatif.`;
+  if (driver && assetReturn(driver, best.year) > 90) {
+    return `→ ${best.year} boosté par ${driver.name} (${fmtPct(assetReturn(driver, best.year))} cette année-là). Non représentatif.`;
   }
   return null;
 }
@@ -250,8 +250,8 @@ function msciComparisonLine(selection, perf) {
   if (selection.some((s) => WORLD_OPTIONS.includes(s.id))) return null;
   const world = getAsset("msci_world");
   const worst = worstYearOf(perf);
-  const idx = YEARS.indexOf(worst.year);
-  const worldVal = world.r[idx];
+  const worldVal = assetReturn(world, worst.year);
+  if (!Number.isFinite(worldVal)) return null;
   const diff = Math.abs(worldVal - worst.value);
   if (diff < 5) return null;
   const worldVerb = worldVal >= 0 ? "gagnait" : "perdait";
@@ -427,7 +427,7 @@ export function getReplacementCandidates(portfolio, assetId) {
     .filter(asset => {
       const selection = portfolio.selection.map((row, i) => i === index ? { ...asset, pct: row.pct, desc: asset.desc[0] } : row);
       const perf = computeYearlyPerf(selection);
-      return YEARS.every(year => Number.isFinite(perf[year])) && withinRecipe(selection, recipe) &&
+      return performanceYears(perf).length === 6 && performanceYears(perf).every(year => Number.isFinite(perf[year])) && withinRecipe(selection, recipe) &&
         withinBound(worstYearOf(perf).value, RISK_BOUNDS[portfolio.riskId]) &&
         !violatesProfileInvariant(portfolio.profileId, selection, portfolio.riskId);
     }).map(asset => ({ ...asset, sameBenchmark: Boolean(benchmarkKey(original.isin)) && benchmarkKey(asset.isin) === benchmarkKey(original.isin) }))

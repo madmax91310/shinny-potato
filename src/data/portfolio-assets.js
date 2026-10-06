@@ -1,7 +1,7 @@
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { getInstrumentName } from './instruments.js';
-import { getInstrumentReturnValues } from './instrument-returns.js';
+import { getInstrumentCalendarReturns, getInstrumentReturnValues } from './instrument-returns.js';
 // Bibliothèque d'actifs — rendements calendaires 2020-2025 : supports exacts quand
 // l'émetteur publie la série, et proxies ou historiques mixtes explicitement signalés sinon.
 // Les séries USD et EUR ne sont pas converties dans une devise commune.
@@ -1478,6 +1478,8 @@ export const ASSETS = [
     desc: ['obligations souveraines émergentes en devises locales.', 'exposition au crédit des États et à leurs monnaies.', 'la valeur peut varier fortement avec les taux et les changes.'],
   },
 ];
+
+for (const asset of ASSETS) asset.calendarReturns = asset.isin ? getInstrumentCalendarReturns(asset.isin, asset.r) : Object.fromEntries(YEARS.map((year, i) => [year, asset.r[i]]));
 
 export function getAsset(id) {
   return ASSETS.find((a) => a.id === id);

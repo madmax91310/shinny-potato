@@ -150,7 +150,14 @@ def collect_one(share, now):
             return wisdomtree_factsheet(body,share,now)
     else:
         text=download(share['sourceUrl'], max_bytes=12_000_000).decode('utf-8')
-    return {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
+    result = {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
+    if share['parser'] == 'wisdomtree-html':
+        body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
+        document=wisdomtree_factsheet(body,share,now)
+        if document.get('performance'):
+            result['performance']=document['performance']
+            result['unavailable']=[item for item in result['unavailable'] if not item.startswith('performance:')]
+    return result
 
 
 def wisdomtree_factsheet(body, share, now):

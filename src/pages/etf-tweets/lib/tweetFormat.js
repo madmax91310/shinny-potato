@@ -1,3 +1,4 @@
+import { getComparisonYears } from '../../tweet-midi/comparisonPerformance.js'
 import { buildComparisonEtfDetails } from './comparisonDetails.js'
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
 import { COMPARISON_EDITORIAL, FUND_EXPOSURES } from './editorial.js'
@@ -21,7 +22,7 @@ export function buildTweetText(theme) {
     lines.push(`💰 ${etf.isCopperEtc ? 'Frais de gestion' : 'Frais annuels'} : ${etf.frais ? `${etf.frais} %` : 'non renseignés'}`)
     if (pea === true) lines.push('🏦 PEA ou CTO')
     else if (isEtc || pea === false || /\bCTO\b/.test(etf.differenciateur || '')) lines.push('🏦 CTO')
-    lines.push(`🆔 ISIN : ${etf.isin || '…'}`, '', ...buildComparisonEtfDetails(etf), '')
+    lines.push(`🆔 ISIN : ${etf.isin || '…'}`, '', ...buildComparisonEtfDetails(etf, getComparisonYears(theme.etfs.map(fund => fund.isin))), '')
   })
   const conclusion = editorial?.conclusion || theme.cloture?.trim()
   if (conclusion) {

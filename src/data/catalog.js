@@ -1,6 +1,6 @@
 import { INDEX_DECISION_CASE_DEFINITIONS } from './index-decision-cases.js'
 import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
-import { AUTOMATED_PERFORMANCE } from './automated-etf.js';
+import { HISTORICAL_AUTOMATED_PERFORMANCE as AUTOMATED_PERFORMANCE, AUTOMATED_PERFORMANCE as LIVE_PERFORMANCE } from './automated-etf.js';
 import { VERIFIED_RETURNS } from './verified-returns.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { CATALOG as DUEL_ASSETS } from './duel-assets.js';
@@ -69,7 +69,7 @@ function instrument(isin, identity) {
   const officialAum = OFFICIAL_AUM_OBSERVATIONS[isin];
   if (officialAum) fields.push(field('Encours daté publié par l’émetteur', 'instrument-aum-observations', officialAum, officialAum));
   for (const listing of listings) fields.push(field(`Cotation ${listing.mic}`, 'instrument-listings', listing, { ...listing, dateStatus: 'not-applicable', scope: `${scope} ; ${listing.exchange}`, method: 'Devise de négociation, distincte de celle des rendements.' }));
-  const evidence = getInstrumentAnnualPerformance(isin);
+  const evidence = AUTOMATED_PERFORMANCE[isin] ?? getInstrumentAnnualPerformance(isin);
   const proxy = SIMULATION_PROXIES[isin];
   if (proxy) fields.push(field('Historique de simulation (proxy)', 'simulation-proxies', { ...proxy, values: getInstrumentReturnValues(isin) }, { sourceUrls: [proxy.source], checkedAt: '2026-10-03', asOf: '2025-12-31', periodStart: '2020-01-01', periodEnd: '2025-12-31', currency: proxy.currency, scope: proxy.scope, method: 'Proxy documenté, distinct de la part exacte', note: proxy.note }));
   const reviewed = REVIEWED_PERFORMANCE_META[isin];
@@ -82,6 +82,8 @@ function instrument(isin, identity) {
       scope, method: 'Rendements calendaires NAV de la part exacte ; années complètes uniquement', note: evidence.note,
     } : { ...PORTFOLIO_RETURN_EVIDENCE[isin], ...(proxy ? {sourceUrls:[VERIFIED_RETURNS[isin].source], scope:`Part exacte ${isin}`} : {}), ...(evidence?.currency ? { currency: evidence.currency } : {}), ...(evidence?.source ? { source: evidence.source } : {}), scope }));
   }
+  const live = LIVE_PERFORMANCE[isin];
+  if (live && (live.periodStart !== '2020-01-01' || live.periodEnd !== '2025-12-31')) fields.push(field(`Rendements ${live.calendarYears[0]}–${live.calendarYears.at(-1)}`, 'automated-etf', live.values, { ...live, asOf: live.periodEnd, scope, method: live.method }));
   if (reviewed?.portfolioHistoryBasis === 'proxy') fields.push(field('Historique de simulation 2020–2025', 'instrument-returns', getInstrumentReturnValues(isin), { ...PORTFOLIO_RETURN_EVIDENCE[isin], scope: `${scope} ; proxy de simulation, distinct du rendement réel de la part` }));
   for (const observation of evidence?.observations ?? []) fields.push(field(`Performance ${observation.label}`, 'instrument-performance-review', observation, { source: evidence.source, checkedAt: evidence.checkedAt, asOf: observation.asOf, currency: evidence.currency, scope, method: 'Rendement cumulé NAV sur la période explicitement publiée', note: evidence.note }));
   if (evidence?.availability) fields.push(field('Disponibilité de la performance', 'instrument-performance-review', evidence.note, { source: evidence.source, checkedAt: evidence.checkedAt, currency: evidence.currency, dateStatus: 'not-published', scope, method: evidence.availability === 'source-conflict' ? 'Sources émetteur divergentes ; chiffre exclu en attente de confirmation' : 'Absence de performance réelle publiée ; aucun proxy attribué à la part' }));

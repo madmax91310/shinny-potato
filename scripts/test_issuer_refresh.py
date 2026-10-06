@@ -50,7 +50,8 @@ class IssuerRefreshTests(unittest.TestCase):
         r=parse_product(p,s,NOW)
         result=merge_collection({'checkedAt':NOW.isoformat(),'shares':[r]}, {}, {'TESTSHARE':{'currency':'EUR'}})
         self.assertIn('aum',result['TESTSHARE'])
-        self.assertNotIn('performance',result['TESTSHARE'])
+        self.assertNotIn('2020',result['TESTSHARE']['performance']['years'])
+        self.assertEqual(result['TESTSHARE']['performance']['years']['2025'],10)
 
     def test_amundi_rejects_identity_method_dates_truncation(self):
         p,s=amundi()

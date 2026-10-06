@@ -8,7 +8,8 @@ for (const family of FAMILIES) {
   const rows = getIndexComparisonPerformance(family), tweet = buildTweetText(family)
   for (const [i, index] of family.indices.entries()) {
     const perf = rows[i]
-    for (const y of [2023, 2024, 2025]) assert(Number.isFinite(perf[`y${y}`]), `${family.id}/${index.name}: ${y} absent`)
+    assert.equal(perf.years.length, 3)
+    for (const y of perf.years) assert(Number.isFinite(perf[`y${y}`]), `${family.id}/${index.name}: ${y} absent`)
     assert(perf.currency && perf.source.url && perf.method, `${index.name}: base de rendement absente`)
     const facts = index.indexFacts
     if (!facts || seen.has(facts.index)) continue
@@ -41,4 +42,4 @@ assert(euro.indexFacts.source.url.includes('indexId=5475610'))
 assert.deepEqual(getIndexComparisonComposition(euro).countries, [['🇩🇪 Allemagne', 21], ['🇮🇹 Italie', 19.6], ['🇫🇮 Finlande', 17.2], ['Autres pays', 42.2]])
 assert.deepEqual(getIndexComparisonComposition(euro).sectors, [['🏦 Finance', 29], ['🏭 Industrie', 21.4], ['⚡ Services aux collectivités', 15.5], ['Autres secteurs', 34.1]])
 assert.equal(seen.size, 40)
-console.log(`${FAMILIES.length} familles ; ${seen.size}/${seen.size} indices avec pays, secteurs, date et comptage ; 2023–2025 complets pour chaque indice/actif.`)
+console.log(`${FAMILIES.length} familles ; ${seen.size}/${seen.size} indices avec pays, secteurs, date et comptage ; trois années communes complètes pour chaque indice/actif.`)

@@ -119,9 +119,10 @@ class IssuerSources(unittest.TestCase):
     def test_recent_launch_preserves_existing_simulation(self):
         s=share('IE00BF0M2Z96');p=json.loads((FIX/'lg.json').read_text());fields=[f['code_name']for f in p['metadata']['share_class_fields']]
         p['funds'][0]['share_classes'][0]['data'][fields.index('launchDate')]='2020-06-08'
-        r=lg(p,s,NOW,'h');old={s['isin']:{'productId':s['isin'],'currency':'USD','sourceUrl':s['sourceUrl'],'performance':{'years':{'2020':99},'checkedAt':'2026-10-01'}}}
+        r=lg(p,s,NOW,'h');old={s['isin']:{'productId':s['isin'],'currency':'USD','sourceUrl':s['sourceUrl'],'characteristics':{'terPct':0.49,'checkedAt':'2026-10-01'}}}
         merged=merge_collection({'checkedAt':'2026-10-06','shares':[r]},old,{s['isin']:{'currency':'USD'}})
-        self.assertEqual(merged[s['isin']]['performance'],old[s['isin']]['performance'])
+        self.assertNotIn('2020',merged[s['isin']]['performance']['years'])
+        self.assertIn('2025',merged[s['isin']]['performance']['years'])
         self.assertIn('aum',merged[s['isin']])
 
 if __name__=='__main__':unittest.main()

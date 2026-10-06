@@ -62,13 +62,25 @@ def merge_collection(report, current, baseline):
         if not performance:
             next_records[isin] = record
             continue
-        # Never silently change the currency/method or the 2020–2025 simulation window.
+        # Store complete annual observations by year; consumers select a common window.
         if baseline.get(isin, {}).get('currency') and performance['currency'] != baseline[isin]['currency'] or performance['basis'] != 'fund':
             reject('Incompatible performance')
-        if any(str(year) not in performance['years'] for year in range(2020, 2026)):
+        # Recent shares can publish their own complete years without replacing a proxy.
+        years = performance['years']
+        if not years:
             next_records[isin] = record
-            continue  # Recent shares refresh facts and allocations without replacing simulation proxies.
-        if checked >= (old.get('performance', {}).get('checkedAt') or baseline[isin].get('performanceCheckedAt') or ''):
+            continue
+        import math
+        if any(not str(y).isdigit() or int(y) >= int(checked[:4]) or
+               isinstance(v, bool) or not isinstance(v, (int, float)) or
+               not math.isfinite(v) or not -100 < v < 1000 for y, v in years.items()):
+            reject('Invalid or incomplete calendar observation')
+        previous_performance = old.get('performance', {})
+        if previous_performance and any(previous_performance.get(k) != performance.get(k)
+                                        for k in ('currency', 'basis', 'method')):
+            reject('Annual performance convention changed')
+        performance = {**performance, 'years': {**previous_performance.get('years', {}), **years}}
+        if checked >= (old.get('performance', {}).get('checkedAt') or baseline.get(isin, {}).get('performanceCheckedAt') or ''):
             previous = {k: v for k, v in old.get('performance', {}).items() if k != 'checkedAt'}
             record['performance'] = old['performance'] if previous == performance else {**performance, 'checkedAt': checked}
         next_records[isin] = record
