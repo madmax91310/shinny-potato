@@ -516,7 +516,9 @@
         "composition",
         "returns"
       ],
-      "enabled": true
+      "enabled": true,
+      "identitySourceUrl": "https://www.msci.com/documents/10199/39939d5d-24c6-df4f-969c-dfdc3d076189",
+      "identityCheckedAt": "2026-10-04"
     },
     {
       "id": "msci-em-latin-america",
@@ -548,6 +550,211 @@
       "performanceDetail": "MSCI EM IMI · rendement net USD, dividendes nets réinvestis, hors frais ETF",
       "requiredFields": [
         "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "nikkei225",
+      "name": "Nikkei 225",
+      "parser": "nikkei",
+      "sourceUrl": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
+      "returnSourceUrl": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
+      "returnCurrency": "JPY",
+      "returnVariant": "TOTAL",
+      "performanceDetail": "Nikkei 225 · JPY · dividendes réinvestis",
+      "collectComposition": true,
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "stoxx600",
+      "name": "STOXX Europe 600",
+      "parser": "stoxx-price",
+      "symbol": "SXXP",
+      "isin": "EU0009658202",
+      "collectComposition": false,
+      "returnSourceUrl": "https://stoxx.com/index/sxxp/",
+      "returnCurrency": "EUR",
+      "returnVariant": "PRICE",
+      "performanceDetail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "eurostoxx50",
+      "name": "EURO STOXX 50",
+      "parser": "stoxx-price",
+      "symbol": "SX5E",
+      "isin": "EU0009658145",
+      "collectComposition": false,
+      "returnSourceUrl": "https://stoxx.com/index/sx5e/",
+      "returnCurrency": "EUR",
+      "returnVariant": "PRICE",
+      "performanceDetail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "sp-global-dividend-aristocrats",
+      "name": "S&P Global Dividend Aristocrats Quality Income",
+      "expectedIndex": "S&P Global Dividend Aristocrats Quality Income Index",
+      "isin": "IE00B9CQXS71",
+      "parser": "ssga-index",
+      "returnSourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
+      "collectComposition": false,
+      "returnCurrency": "USD",
+      "returnVariant": "NET",
+      "firstYear": 2021,
+      "performanceDetail": "S&P Global Dividend Aristocrats Quality Income · USD · dividendes nets réinvestis",
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "sp-euro-dividend-aristocrats",
+      "name": "S&P Euro High Yield Dividend Aristocrats",
+      "expectedIndex": "S&P Euro High Yield Dividend Aristocrats Index",
+      "isin": "IE00B5M1WJ87",
+      "parser": "ssga-index",
+      "returnSourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+      "collectComposition": false,
+      "returnCurrency": "EUR",
+      "returnVariant": "NET",
+      "firstYear": 2020,
+      "performanceDetail": "S&P Euro High Yield Dividend Aristocrats · EUR · dividendes nets réinvestis",
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "topix",
+      "name": "TOPIX",
+      "expectedIndex": "TOPIX Total Return Index",
+      "isin": "JP3048120004",
+      "parser": "blackrock-index",
+      "returnSourceUrl": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
+      "collectComposition": false,
+      "returnCurrency": "JPY",
+      "returnVariant": "TOTAL",
+      "firstYear": 2021,
+      "performanceDetail": "TOPIX · JPY · dividendes réinvestis",
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "msci-em-latin-america-selection",
+      "name": "MSCI Latin America Selection 20/35 Capped",
+      "documentName": "MSCI EM Latin America ESG Leaders Select 5% Issuer Capped",
+      "parser": "msci",
+      "sourceUrl": "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
+      "returnSourceUrl": "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
+      "returnVariant": "NET",
+      "returnCurrency": "USD",
+      "performanceDetail": "MSCI Latin America Selection 20/35 Capped · USD · dividendes nets réinvestis",
+      "requiredFields": [
+        "composition",
+        "returns"
+      ],
+      "enabled": true,
+      "identityNote": "Publication MSCI au libellé historique ESG Leaders Select 5% Issuer Capped ; URL déjà certifiée pour MSCI 750531 dans index-comparison-returns (04/10/2026). Le titre historique est contrôlé exactement, sans assimiler le MSCI Latin America standard.",
+      "identitySourceUrl": "https://www.msci.com/indexes/index/750531/msci-latin-america-selection-20-35-capped-index",
+      "identityCheckedAt": "2026-10-04"
+    },
+    {
+      "id": "sp500-pea",
+      "name": "S&P 500",
+      "symbol": "^SP500TR",
+      "dataPath": "src/data/automated-monthly.json",
+      "dataKey": "sp500",
+      "returnCurrency": "USD",
+      "returnVariant": "TOTAL",
+      "kind": "indice",
+      "performanceDetail": "S&P 500 · USD · dividendes réinvestis",
+      "parser": "monthly-derived",
+      "collectComposition": false,
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "bitcoin",
+      "name": "Bitcoin",
+      "symbol": "BTC-USD",
+      "dataPath": "src/data/bitcoin-yahoo-monthly.json",
+      "dataKey": null,
+      "returnCurrency": "USD",
+      "returnVariant": "PRICE",
+      "kind": "actif",
+      "performanceDetail": "Bitcoin · USD · cours spot",
+      "parser": "monthly-derived",
+      "collectComposition": false,
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "ethereum",
+      "name": "Ethereum",
+      "symbol": "ETH-USD",
+      "dataPath": "src/data/automated-monthly.json",
+      "dataKey": "ethereum",
+      "returnCurrency": "USD",
+      "returnVariant": "PRICE",
+      "kind": "actif",
+      "performanceDetail": "Ethereum · USD · cours spot",
+      "parser": "monthly-derived",
+      "collectComposition": false,
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "gold-physical",
+      "name": "Or physique",
+      "documentName": "iShares Physical Gold ETC",
+      "isin": "IE00B4ND3602",
+      "expectedIndex": "LBMA Gold Price",
+      "parser": "metal-benchmark",
+      "kind": "actif",
+      "collectComposition": false,
+      "returnSourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/sgln-ishares-physical-gold-etc-fund-fact-sheet-en-gb.pdf",
+      "returnCurrency": "USD",
+      "returnVariant": "PRICE",
+      "performanceDetail": "Or physique · USD · cours de référence du métal",
+      "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "silver-physical",
+      "name": "Argent physique",
+      "documentName": "iShares Physical Silver ETC",
+      "isin": "IE00B4NCWG09",
+      "expectedIndex": "Benchmark for Physical Silver",
+      "parser": "metal-benchmark",
+      "kind": "actif",
+      "collectComposition": false,
+      "returnSourceUrl": "https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf",
+      "returnCurrency": "USD",
+      "returnVariant": "PRICE",
+      "performanceDetail": "Argent physique · USD · cours de référence du métal",
+      "requiredFields": [
         "returns"
       ],
       "enabled": true

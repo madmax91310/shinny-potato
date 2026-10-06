@@ -7,22 +7,30 @@ on:
     branches: [master]
     paths:
       - '.github/workflows/update-market-monthly.yml'
+      - 'scripts/derive_index_returns.py'
+      - 'scripts/refresh_index_sources.py'
+      - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
       - 'scripts/monthly-automation.json'
   pull_request:
     paths:
       - '.github/workflows/update-market-monthly.yml'
+      - 'scripts/derive_index_returns.py'
+      - 'scripts/refresh_index_sources.py'
+      - 'scripts/index-automation.json'
       - 'scripts/*monthly*'
       - 'src/data/*monthly*'
       - 'src/data/market-history*'
       - 'src/data/history-statistics.js'
 permissions:
   contents: read
-concurrency:
-  group: market-monthly-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
-  cancel-in-progress: false
 jobs:
   refresh:
+    concurrency:
+      # Serialize writers of automated-indices.json; keep PR validations independent.
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
@@ -32,6 +40,9 @@ jobs:
       collection_failed: ${{ steps.collect.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # A queued production run must start from the latest published data.
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -44,6 +55,10 @@ jobs:
       - id: collect
         continue-on-error: true
         run: python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply
+      - run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
+      - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - run: npm run audit:index-facts
+      - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:calculator-series
       - run: node scripts/test-monthly-consumers.mjs
       - run: npm run audit:data-catalog
@@ -54,7 +69,9 @@ jobs:
         if: always()
         with:
           name: monthly-market-observation
-          path: ${{ runner.temp }}/monthly-observation.json
+          path: |
+            ${{ runner.temp }}/monthly-observation.json
+            ${{ runner.temp }}/derived-index-observation.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Commit validated active data
@@ -63,7 +80,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-monthly.json scripts/source-snapshots/monthly-automated.json
+          git add src/data/automated-indices.json src/data/automated-monthly.json scripts/source-snapshots/monthly-automated.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated monthly market histories'
             git pull --rebase origin master

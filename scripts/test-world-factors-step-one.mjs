@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { getIndexFacts } from '../src/data/index-facts.js'
-import { INDEX_RETURNS } from '../src/data/index-returns.js'
+import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js'
 import { FAMILIES } from '../src/data/index-comparisons.js'
 import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js'
 import { SHEETS } from '../src/data/index-factsheets.js'
@@ -20,7 +20,7 @@ for (const id of ids) {
  assert.deepEqual(series.values,proof.returns[id]['2025-12-31'].values)
  assert.equal(series.currency,'USD'); assert.equal(series.method,'dividendes nets réinvestis')
  const sheet = SHEETS.find(x => x.id === id), text = buildFactsheetTweet(sheet)
- assert.equal(sheet.indexFacts,facts); assert.equal(sheet.returns,series.values)
+ assert.equal(sheet.indexFacts,facts); assert.deepEqual(sheet.returns,getCurrentIndexReturnSeries(id,'2025-12-31').values)
  assert.match(text,/performances de l’indice/); assert.doesNotMatch(text,/undefined|NaN|performances de l’ETF/)
  assert.equal(HISTORY[id],undefined,'Aucun historique mensuel créé à partir de rendements annuels')
  const levels = id === ids[0] ? proof.momentumNetYearEnds : proof.minvolNetYearEnds

@@ -6,6 +6,9 @@ on:
   pull_request:
     paths:
       - '.github/workflows/update-bitcoin-monthly.yml'
+      - 'scripts/derive_index_returns.py'
+      - 'scripts/refresh_index_sources.py'
+      - 'scripts/index-automation.json'
       - 'scripts/*etf*'
       - 'scripts/update_bitcoin_monthly.py'
       - 'scripts/test_active_refresh.py'
@@ -13,11 +16,13 @@ on:
       - 'src/data/bitcoin-yahoo-monthly.json'
 permissions:
   contents: read
-concurrency:
-  group: active-bitcoin-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
-  cancel-in-progress: false
 jobs:
   refresh:
+    concurrency:
+      # Serialize writers of automated-indices.json; keep PR validations independent.
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
@@ -26,6 +31,9 @@ jobs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # A queued production run must start from the latest published data.
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -36,6 +44,10 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: node scripts/export-bitcoin-baseline.mjs > "$RUNNER_TEMP/baseline.json"
       - run: python scripts/update_bitcoin_monthly.py --output "$RUNNER_TEMP/observation.json" --apply
+      - run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
+      - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - run: npm run audit:index-facts
+      - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:etf-annual-performance
       - run: npm run audit:etf-consistency
       - run: npm run audit:calculator-series
@@ -45,7 +57,9 @@ jobs:
         if: always()
         with:
           name: active-bitcoin-observation
-          path: ${{ runner.temp }}/observation.json
+          path: |
+            ${{ runner.temp }}/observation.json
+            ${{ runner.temp }}/derived-index-observation.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Commit validated active data
@@ -54,7 +68,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/bitcoin-yahoo-monthly.json scripts/source-snapshots/bitcoin-automated.json
+          git add src/data/automated-indices.json src/data/bitcoin-yahoo-monthly.json scripts/source-snapshots/bitcoin-automated.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated active Bitcoin Yahoo data'
             git pull --rebase origin master

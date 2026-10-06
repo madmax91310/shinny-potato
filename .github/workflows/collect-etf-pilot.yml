@@ -18,6 +18,7 @@ on:
       - 'scripts/download-vaneck-document.mjs'
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/collect_public_issuer.py'
+      - 'scripts/*wisdomtree*.py'
       - 'scripts/collect_lg_api.py'
       - 'scripts/collect_remaining_documents.py'
       - 'scripts/test_new_issuer_sources.py'
@@ -40,6 +41,7 @@ on:
       - 'scripts/collect_document_etf.py'
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/collect_public_issuer.py'
+      - 'scripts/*wisdomtree*.py'
       - 'scripts/collect_lg_api.py'
       - 'scripts/collect_remaining_documents.py'
       - 'scripts/test_new_issuer_sources.py'
@@ -51,11 +53,13 @@ on:
       - 'src/data/bitcoin-yahoo-monthly.json'
 permissions:
   contents: read
-concurrency:
-  group: active-etf-issuers-v2-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   refresh:
+    concurrency:
+      # Serialize writers of automated-indices.json; keep PR validations independent.
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -79,6 +83,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+      - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
@@ -97,6 +103,7 @@ jobs:
       - id: indices
         continue-on-error: true
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
+      - run: node scripts/report-automation-coverage.mjs --write
       - run: npm run audit:data-review
       - run: npm run audit:index-facts
       - run: npm run audit:index-completeness
@@ -125,7 +132,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-etf.json src/data/automated-indices.json
+          git add src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated active ETF issuer data'
             git pull --rebase origin master

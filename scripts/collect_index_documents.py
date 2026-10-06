@@ -15,7 +15,7 @@ SECTOR_LABELS = {
 COUNTRY_LABELS = {'USA':'🇺🇸 États-Unis','UK':'🇬🇧 Royaume-Uni','United States':'🇺🇸 États-Unis','Japan':'🇯🇵 Japon','United Kingdom':'🇬🇧 Royaume-Uni',
  'China':'🇨🇳 Chine','Taiwan':'🇹🇼 Taïwan','Korea':'🇰🇷 Corée du Sud','South Korea':'🇰🇷 Corée du Sud',
  'France':'🇫🇷 France','Germany':'🇩🇪 Allemagne','Canada':'🇨🇦 Canada','Switzerland':'🇨🇭 Suisse',
- 'India':'🇮🇳 Inde','Brazil':'🇧🇷 Brésil','Australia':'🇦🇺 Australie','Other':'🌍 Autres'}
+ 'India':'🇮🇳 Inde','Brazil':'🇧🇷 Brésil','Australia':'🇦🇺 Australie','Other':'🌍 Autres','Mexico':'🇲🇽 Mexique','Chile':'🇨🇱 Chili','Peru':'🇵🇪 Pérou','Colombia':'🇨🇴 Colombie'}
 
 
 def normalized(value):
@@ -43,7 +43,7 @@ def msci_composition(text, config, now):
         reject('Missing MSCI composition table headings')
     section = text.split('SECTOR WEIGHTS', 1)[1].split('\f', 1)[0]
     # Legend labels are explicit text; never read values from the plotted pie labels.
-    legend = '\n'.join(line for line in section.splitlines() if re.search(r'[A-Za-z].*\d+(?:\.\d+)?%', line))
+    legend = '\n'.join(line for line in section.splitlines() if 'msci.com' not in line and re.search(r'[A-Za-z].*\d+(?:\.\d+)?%', line))
     legend = re.sub(r' {2,}', ' | ', legend)
     pairs = re.findall(r'([A-Za-z][A-Za-z /&\-]{0,80}?) +(\d+(?:\.\d+)?)%', legend)
     sectors, countries = [], []

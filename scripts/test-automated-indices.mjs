@@ -53,3 +53,11 @@ const nextChina = buildAutomatedIndexSnapshot({ asOf: '2026-09-30', constituents
 assert.equal(nextChina.targetConstituents, 50);
 assert.equal(nextChina.constituents, 49);
 assert(nextChina.descriptionTemplates.china.includes('30/09/2026'));
+
+// Annual metal/crypto reference prices must consume PRICE records, never ETC NAV.
+for (const id of ['gold-physical', 'silver-physical', 'bitcoin', 'ethereum', 'sp500-pea']) {
+  if (!AUTOMATED_INDICES[id]?.returns) continue;
+  const date = Object.keys(INDEX_RETURNS[id]).sort().at(-1);
+  const current = getCurrentIndexReturnSeries(id, date);
+  assert.equal(current.source.url, AUTOMATED_INDICES[id].returns.source.url, `${id}: active exact-reference calendar series ignored`);
+}
