@@ -66,11 +66,12 @@ assert.match(space, /^🚀.*un ETF/u);
 assert.ok(space.includes('Voici un ETF à regarder'));
 assert.ok(space.includes('📌 À retenir'));
 assert.ok(!space.includes('📌 Les différences'));
-assert.match(getComparatifEtfText('usa'), /0,10 % de frais annuels, contre 0,12 % pour Amundi/u);
+assert.match(getComparatifEtfText('usa'), /Dow Jones/u);
+assert.match(getComparatifEtfText('usa'), /Nasdaq/u);
 const world = getComparatifEtfText('monde');
-assert.match(world, /Voici quatre ETF à comparer : pays couverts, frais et accès au PEA/u);
-assert.match(world, /même indice, mais frais, réplication et enveloppes accessibles différents/u);
-assert.equal((world.match(/^🏦 PEA ou CTO/gmu) ?? []).length, 1);
+assert.match(world, /Voici trois ETF à comparer : pays couverts, frais et accès au PEA/u);
+assert.match(world, /Ces deux ETF sont éligibles au PEA/u);
+assert.equal((world.match(/^🏦 PEA ou CTO/gmu) ?? []).length, 2);
 const unknownStatus = buildEtfTweet({ nom: 'Test', etfs: [{ nom: 'Sans statut', isin: 'IE00BD4TXV59', frais: '0,20' }] });
 assert.doesNotMatch(unknownStatus, /🏦 PEA|🏦 CTO/u);
 
