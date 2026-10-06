@@ -9968,7 +9968,7 @@
   "ftse-china-50": {
     "facts": {
       "index": "FTSE China 50",
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "constituents": 50,
       "sectorMethod": "ICB Supersector Breakdown",
       "countries": [
@@ -9980,27 +9980,27 @@
       "sectors": [
         [
           "💻 Technologie",
-          16.5
+          16.71
         ],
         [
           "📡 Communication",
-          5.71
+          5.31
         ],
         [
           "🏥 Santé",
-          2.82
+          3.26
         ],
         [
           "🏦 Finance",
-          36.11
+          36.34
         ],
         [
           "🏠 Immobilier",
-          0.91
+          1.0
         ],
         [
           "🛍️ Consommation cyclique",
-          24.97
+          24.52
         ],
         [
           "🛒 Consommation de base",
@@ -10008,48 +10008,48 @@
         ],
         [
           "🏭 Industrie",
-          3.17
+          2.98
         ],
         [
           "🪨 Matériaux",
-          3.71
+          3.6
         ],
         [
           "⚡ Énergie",
-          4.98
+          5.11
         ],
         [
           "💡 Services publics",
-          0.34
+          0.37
         ]
       ],
       "holdings": [
         [
-          "Alibaba Group Holding (P Chip)",
-          9.54
-        ],
-        [
           "China Construction Bank (H)",
-          9.39
+          9.16
         ],
         [
           "Tencent Holdings (P Chip)",
-          8.67
+          9.15
+        ],
+        [
+          "Alibaba Group Holding (P Chip)",
+          9.02
         ],
         [
           "Industrial and Commercial Bank of China (H)",
-          6.38
+          6.45
         ],
         [
           "Xiaomi (P Chip)",
-          5.02
+          4.55
         ]
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?IsManual=False&issueName=XIN0&openfile=open",
-        "checkedAt": "2026-10-05",
+        "checkedAt": "2026-10-06",
         "label": "Composition officielle automatisée · FTSE China 50",
-        "sha256": "ae9f035fb64543f678abbdcfc0113d5ac691f2efdc44346045eb5efe0a32a491"
+        "sha256": "df728137f1e03e06519c9c9d2f38e948b675590ad98a6de195e43bff5c8a9f34"
       },
       "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
     },
@@ -10140,10 +10140,97 @@
           "sha256": "ae9f035fb64543f678abbdcfc0113d5ac691f2efdc44346045eb5efe0a32a491"
         },
         "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "2026-09-30": {
+        "index": "FTSE China 50",
+        "asOf": "2026-09-30",
+        "constituents": 50,
+        "sectorMethod": "ICB Supersector Breakdown",
+        "countries": [
+          [
+            "🇨🇳 Chine",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            16.71
+          ],
+          [
+            "📡 Communication",
+            5.31
+          ],
+          [
+            "🏥 Santé",
+            3.26
+          ],
+          [
+            "🏦 Finance",
+            36.34
+          ],
+          [
+            "🏠 Immobilier",
+            1.0
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            24.52
+          ],
+          [
+            "🛒 Consommation de base",
+            0.81
+          ],
+          [
+            "🏭 Industrie",
+            2.98
+          ],
+          [
+            "🪨 Matériaux",
+            3.6
+          ],
+          [
+            "⚡ Énergie",
+            5.11
+          ],
+          [
+            "💡 Services publics",
+            0.37
+          ]
+        ],
+        "holdings": [
+          [
+            "China Construction Bank (H)",
+            9.16
+          ],
+          [
+            "Tencent Holdings (P Chip)",
+            9.15
+          ],
+          [
+            "Alibaba Group Holding (P Chip)",
+            9.02
+          ],
+          [
+            "Industrial and Commercial Bank of China (H)",
+            6.45
+          ],
+          [
+            "Xiaomi (P Chip)",
+            4.55
+          ]
+        ],
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?IsManual=False&issueName=XIN0&openfile=open",
+          "checkedAt": "2026-10-06",
+          "label": "Composition officielle automatisée · FTSE China 50",
+          "sha256": "df728137f1e03e06519c9c9d2f38e948b675590ad98a6de195e43bff5c8a9f34"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
       }
     },
     "returns": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "currency": "HKD",
       "variant": "TOTAL",
       "values": [
@@ -10176,14 +10263,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=XIN0&openfile=open",
-        "checkedAt": "2026-10-05",
-        "sha256": "ae9f035fb64543f678abbdcfc0113d5ac691f2efdc44346045eb5efe0a32a491",
+        "checkedAt": "2026-10-06",
+        "sha256": "df728137f1e03e06519c9c9d2f38e948b675590ad98a6de195e43bff5c8a9f34",
         "label": "Rendements calendaires officiels automatisés · FTSE China 50"
       },
       "performance": {
         "kind": "indice",
         "detail": "FTSE China 50 · HKD · dividendes réinvestis",
-        "date": "2026-08-31"
+        "date": "2026-09-30"
       }
     },
     "returnsHistory": {
@@ -10229,6 +10316,50 @@
           "kind": "indice",
           "detail": "FTSE China 50 · HKD · dividendes réinvestis",
           "date": "2026-08-31"
+        }
+      },
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "HKD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            29.8
+          ],
+          [
+            2024,
+            31.7
+          ],
+          [
+            2023,
+            -12.6
+          ],
+          [
+            2022,
+            -19.2
+          ],
+          [
+            2021,
+            -19.4
+          ],
+          [
+            2020,
+            11.0
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=XIN0&openfile=open",
+          "checkedAt": "2026-10-06",
+          "sha256": "df728137f1e03e06519c9c9d2f38e948b675590ad98a6de195e43bff5c8a9f34",
+          "label": "Rendements calendaires officiels automatisés · FTSE China 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "FTSE China 50 · HKD · dividendes réinvestis",
+          "date": "2026-09-30"
         }
       }
     }

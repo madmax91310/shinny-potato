@@ -1,3 +1,4 @@
+import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 #!/usr/bin/env node
 import { choose } from './card-selection.mjs'
 import { buildText, presentationType } from '../src/pages/etf-sheets/lib.js';
@@ -949,8 +950,9 @@ async function testDataSearch(page) {
       || (f.metadata.sourceReason && f.metadata.checkedAt === null && f.metadata.reviewedAt === '2026-09-30'));
   await page.goto(`${BASE}/bibliotheque-donnees?type=series&id=history:soxx`, { waitUntil: 'networkidle' });
   const soxxText = await page.locator('.ds-detail').innerText();
-  checks.certifiedSeries = !soxxText.includes('Archive non vérifiable') && soxxText.includes('2026-10-02') && soxxText.includes('close mensuel')
-    && soxxText.includes('2016-01 à 2026-09');
+  const soxxReview = MARKET_HISTORY_REVIEW['history:soxx'];
+  checks.certifiedSeries = !soxxText.includes('Archive non vérifiable') && soxxText.includes(soxxReview.checkedAt) && soxxText.includes(soxxReview.method)
+    && soxxText.includes(`${soxxReview.periodStart} à ${soxxReview.periodEnd}`);
   await choose(page.getByLabel('Type de donnée'), 'all');
   await page.getByRole('searchbox').fill('zzzintrouvablezzz');
   await page.locator('.ds-detail').filter({ hasText: 'Aucune donnée' }).waitFor();

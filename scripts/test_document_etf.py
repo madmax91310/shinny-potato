@@ -29,6 +29,8 @@ class Documents(unittest.TestCase):
         result=parse_legacy(text,share,NOW)
         self.assertEqual(result['aum']['amount'],1234567)
         self.assertEqual(result['aum']['scope'],'share-class')
+        english=text.replace('au 30/sept./2026','as of 30/Sep/2026').replace('\u202f','’')
+        self.assertEqual(parse_legacy(english,share,NOW)['aum']['amount'],1234567)
         with self.assertRaises(ValueError):parse_legacy(text.replace('IE00TEST0001','IE00OTHER001'),share,NOW)
         with self.assertRaises(ValueError):parse_legacy(text.replace('30/sept./2026','30/janv./2026'),share,NOW)
 

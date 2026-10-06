@@ -80,12 +80,13 @@ def parse_legacy(text,share,now):
         if key in fields:reject('Duplicate legacy iShares field')
         p=Text();p.feed(body);fields[key]=p.parts
     if fields['isin'][-1]!=share['isin'] or fields['seriesBaseCurrencyCode'][-1]!=share['currency']:reject('Wrong legacy iShares share/currency')
-    aum=fields['totalNetAssets'];date=match(r'au (\d{2}/[a-zéû.]+/20\d{2})',' '.join(aum))
-    day,month,year=date.split('/');month={'janv.':1,'févr.':2,'mars':3,'avr.':4,'mai':5,'juin':6,'juil.':7,'août':8,'sept.':9,'oct.':10,'nov.':11,'déc.':12}[month]
-    stamp=document_date(dt.date(int(year),month,int(day)).isoformat(),now)
+    aum=fields['totalNetAssets'];date=match(r'(?:au|as of) (\d{2}/[A-Za-zéû.]+/20\d{2})',' '.join(aum))
+    day,month,year=date.split('/');names={'janv.':1,'févr.':2,'mars':3,'avr.':4,'mai':5,'juin':6,'juil.':7,'août':8,'sept.':9,'oct.':10,'nov.':11,'déc.':12}
+    names.update({name.lower():i for i,name in enumerate(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],1)})
+    stamp=document_date(dt.date(int(year),names[month.lower()],int(day)).isoformat(),now)
     amount=aum[-1].split(' ',1)
     if amount[0]!=share['currency']:reject('Wrong legacy iShares AUM currency')
-    value=float(re.sub(r'\s','',amount[1]).replace(',','.'));ter=float(fields['emeaMgt'][-1].replace('%','').replace(',','.'))
+    value=float(re.sub(r'[\s’]','',amount[1]).replace(',','.'));ter=float(fields['emeaMgt'][-1].replace('%','').replace(',','.'))
     if not 0<=ter<=5:reject('Invalid legacy iShares TER')
     return {**share,'characteristics':{'terPct':ter},'aum':{'amount':number(value),'currency':share['currency'],'scope':'share-class','asOf':stamp},
         'unavailable':['performance: new share lacks full 2020–2025 calendar history','exposures: swap basket is not the tracked-index composition']}
