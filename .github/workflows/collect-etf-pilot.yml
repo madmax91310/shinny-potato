@@ -14,6 +14,7 @@ on:
       - 'scripts/index-automation.json'
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
+      - 'scripts/download-vaneck-document.mjs'
       - 'scripts/refresh_additional_etf.py'
   pull_request:
     paths:
@@ -28,6 +29,7 @@ on:
       - 'scripts/index-automation.json'
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
+      - 'scripts/download-vaneck-document.mjs'
       - 'scripts/test_source_documents.py'
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/fixtures/official-documents/**'

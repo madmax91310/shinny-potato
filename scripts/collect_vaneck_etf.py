@@ -1,5 +1,7 @@
 """VanEck's automatically replaced official UCITS factsheets, with fund/share scope retained."""
 import re
+import pathlib
+import subprocess
 from data_automation import reject
 from issuer_documents import download,pdf_text,document_date,proof,validated_rows,bounded_return
 
@@ -53,4 +55,14 @@ def parse_document(body,share,now):
 
 
 def collect_one(share,now,fetch=download):
-    return parse_document(fetch(share['sourceUrl']),share,now)
+    try:
+        body = fetch(share['sourceUrl'])
+    except ValueError as error:
+        if fetch is not download or 'Expected official PDF' not in str(error):
+            raise
+        script = pathlib.Path(__file__).with_name('download-vaneck-document.mjs')
+        result = subprocess.run(['node', str(script), share['sourceUrl']], capture_output=True, timeout=65)
+        if result.returncode:
+            reject(str(error) + '; browser initialisation failed: ' + result.stderr.decode('utf-8', errors='replace')[-1200:])
+        body = result.stdout
+    return parse_document(body,share,now)

@@ -42,7 +42,7 @@ Limites explicites : le catalogue iShares sans page structurée qualifiée, Vang
 
 ## Suite préparée le 5 octobre 2026
 
-Branche `codex/finish-index-automation` : travail récupéré de la conversation interrompue, puis complété et testé localement. La publication de ce lot reste à effectuer.
+Ce lot raccorde les documents officiels aux données actives. Les contrôles GitHub couvrent la collecte réelle, les audits de cohérence et les outils dans Chromium. Les descriptions de périmètre méthodologique sont conservées lorsque le nouveau document ne les publie pas.
 
 | Données qualifiées | Périmètre du lot | Source |
 |---|---|---|
@@ -51,7 +51,7 @@ Branche `codex/finish-index-automation` : travail récupéré de la conversation
 | Compositions d’indices | 27 indices | Documents officiels MSCI et FTSE |
 | Performances annuelles d’indices | 26 indices | Ligne de l’indice exact, devise et variante NET/GROSS/TOTAL contrôlées |
 
-Le workflow commun prévu collecte, valide, remplace les données actives et déclenche Pages les **3 et 16 du mois**, ainsi qu’après modification des connecteurs. Aucune recherche par IA ni clé payante n’est nécessaire. Les erreurs d’une source préservent ses valeurs antérieures ; les autres collectes validées peuvent être publiées et l’échec reste signalé.
+Le workflow commun collecte, valide, remplace les données actives et déclenche Pages les **3 et 16 du mois**, ainsi qu’après modification des connecteurs. Aucune recherche par IA ni clé payante n’est nécessaire. Les erreurs d’une source préservent ses valeurs antérieures ; les autres collectes validées peuvent être publiées et l’échec reste signalé.
 
 La composition du panier de substitution d’un ETF synthétique ne devient jamais celle de l’indice suivi. Les photographies historiques nommées restent immuables. Les consommateurs utilisent la photographie la plus récente disponible ; les historiques de simulation et les périodes des exemples restent fixes. Une nouvelle table annuelle ne remplace une série que si sa devise et sa convention de rendement correspondent. Les années nouvelles restent dans les observations sans déplacer silencieusement les fenêtres affichées.
 
