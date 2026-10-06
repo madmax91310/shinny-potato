@@ -79,7 +79,8 @@ for (const product of snapshot.products) {
     assert.equal(aum.source.amount, automated.amount)
     assert.equal(aum.source.asOf, automated.asOf)
     assert.equal(aum.source.currency, product.currency)
-    assert.equal(aum.source.scope, 'Actif net de la part exacte')
+    assert.equal(aum.source.scope, automated.scope === 'fund' ? 'Actif net du fonds' : 'Actif net de la part exacte')
+    assert.equal(aum.source.url, automated.sourceUrl ?? AUTOMATED_ETF[product.isin].sourceUrl)
     assert(automated.asOf >= product.asOf, 'La collecte ne doit pas régresser')
   } else if (product.isin !== 'IE00BMG6Z448') {
     assert.equal(aum.source.amount, product.amount)

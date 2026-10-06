@@ -1,0 +1,1758 @@
+{
+  "pdpResult": {
+    "pageSections": {
+      "performanceSection": {
+        "performanceChart": {
+          "documents": [
+            {
+              "name": "NAV history (XLSX)",
+              "url": "https://etf.dws.com/etfdata/export/GBR/ENG/excel/product/composite/IE00BLNMYC90/{startDate}/{endDate}?aum=False&estg=False&index=True&interim=False&kstg=False&nav=True&monthlyperformance=True",
+              "type": "PERIOD"
+            }
+          ],
+          "periodButtons": [
+            {
+              "text": "1M",
+              "default": false,
+              "type": "1M"
+            },
+            {
+              "text": "3M",
+              "default": false,
+              "type": "3M"
+            },
+            {
+              "text": "6M",
+              "default": false,
+              "type": "6M"
+            },
+            {
+              "text": "YTD",
+              "default": false,
+              "type": "YTD"
+            },
+            {
+              "text": "1Y",
+              "default": false,
+              "type": "1Y"
+            },
+            {
+              "text": "3Y",
+              "default": false,
+              "type": "3Y"
+            },
+            {
+              "text": "5Y",
+              "default": true,
+              "type": "5Y"
+            },
+            {
+              "text": "10Y",
+              "default": false,
+              "type": "10Y"
+            },
+            {
+              "text": "MAX",
+              "default": false,
+              "type": "MAX"
+            }
+          ],
+          "disclaimerHtml": [
+            {
+              "text": "Source: DWS",
+              "disableDefaultWrapping": true
+            },
+            {
+              "text": "<p><strong>Past performance does not predict future returns.</strong> Performance shown above is net of fund fees and any index replication costs. The prices used for the charts are daily Net Asset Values (NAV) and index closing prices. ETF performance calculation includes reinvested dividends.</p><p>How it works: The chart shows the performance of the Net Asset Value (NAV) of the ETF and the corresponding underlying index. The NAV and index chart can be activated by clicking on the index and ETF NAV buttons above the chart respectively. Placing the mouse over the chart results in a text box displaying the NAV and index values with the corresponding date above the chart. The date can be adjusted with the slider below the chart.</p><p>The prices used for the charts are daily Net Asset Values (NAV) and index closing prices. The information on this page is for information purposes only. None of DWS or its affiliates or any information provider makes any express or implied warranty of any kind regarding the information on this page. None of DWS or its affiliates or the information providers will be liable to anyone for any interruption, inaccuracy, error or omission, regardless of cause, in the information on this page or for any kind of damages as a result.</p>",
+              "disableDefaultWrapping": true
+            },
+            {
+              "text": "<p>Event 1: On 26 June 2015 db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (a sub-fund of the Luxembourg domiciled Xtrackers) merged into db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (Prospective DR) (a sub-fund of the Irish domiciled Xtrackers (IE) Plc), which was renamed db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (DR) on the effective date of the merger. Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 26 June 2015 relates to the db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (the now closed Luxembourg domiciled sub-fund).</p>",
+              "disableDefaultWrapping": true
+            }
+          ]
+        },
+        "performanceTables": {
+          "tabs": [
+            {
+              "header": "Discrete",
+              "table": {
+                "columns": [
+                  {
+                    "key": "column_0",
+                    "value": "",
+                    "alignment": "left",
+                    "isVisibleOnHeader": true,
+                    "isEmptyHeader": true,
+                    "emptyHeaderText": "Date",
+                    "wordBreak": false
+                  },
+                  {
+                    "key": "column_1",
+                    "value": "From Sep 2016 to Sep 2017",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_2",
+                    "value": "From Sep 2017 to Sep 2018",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_3",
+                    "value": "From Sep 2018 to Sep 2019",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_4",
+                    "value": "From Sep 2019 to Sep 2020",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_5",
+                    "value": "From Sep 2020 to Sep 2021",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_6",
+                    "value": "From Sep 2021 to Sep 2022",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_7",
+                    "value": "From Sep 2022 to Sep 2023",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_8",
+                    "value": "From Sep 2023 to Sep 2024",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_9",
+                    "value": "From Sep 2024 to Sep 2025",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_10",
+                    "value": "From Sep 2025 to Sep 2026",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  }
+                ],
+                "values": [
+                  {
+                    "column_0": {
+                      "value": "Total return (USD)",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "15.58%",
+                      "sortValue": 15.58,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "13.32%",
+                      "sortValue": 13.32,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "2.74%",
+                      "sortValue": 2.74,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "1.92%",
+                      "sortValue": 1.92,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "40.04%",
+                      "sortValue": 40.04,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "-14.00%",
+                      "sortValue": -14.0,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "13.07%",
+                      "sortValue": 13.07,
+                      "type": "performance-value"
+                    },
+                    "column_8": {
+                      "value": "28.19%",
+                      "sortValue": 28.19,
+                      "type": "performance-value"
+                    },
+                    "column_9": {
+                      "value": "7.37%",
+                      "sortValue": 7.37,
+                      "type": "performance-value"
+                    },
+                    "column_10": {
+                      "value": "11.07%",
+                      "sortValue": 11.07,
+                      "type": "performance-value"
+                    }
+                  },
+                  {
+                    "column_0": {
+                      "value": "Benchmark (USD)",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "15.57%",
+                      "sortValue": 15.57,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "13.30%",
+                      "sortValue": 13.3,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "2.75%",
+                      "sortValue": 2.75,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "1.84%",
+                      "sortValue": 1.84,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "40.13%",
+                      "sortValue": 40.13,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "-14.00%",
+                      "sortValue": -14.0,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "12.95%",
+                      "sortValue": 12.95,
+                      "type": "performance-value"
+                    },
+                    "column_8": {
+                      "value": "28.07%",
+                      "sortValue": 28.07,
+                      "type": "performance-value"
+                    },
+                    "column_9": {
+                      "value": "7.24%",
+                      "sortValue": 7.24,
+                      "type": "performance-value"
+                    },
+                    "column_10": {
+                      "value": "10.96%",
+                      "sortValue": 10.96,
+                      "type": "performance-value"
+                    }
+                  }
+                ],
+                "summary": [],
+                "sortable": false,
+                "isMatrix": true,
+                "noRowHeader": false,
+                "standAlone": true,
+                "stickyHeader": false,
+                "initialSortOrder": 1,
+                "footnoteComponentId": "Discrete",
+                "rowsPerPage": 15,
+                "secondSortOrder": 1,
+                "id": "Discrete",
+                "headlineText": "",
+                "disclaimers": [],
+                "expanded": false
+              },
+              "lists": [],
+              "isSelected": false,
+              "disclaimerHtml": [
+                {
+                  "text": "Source: DWS",
+                  "disableDefaultWrapping": true
+                },
+                {
+                  "text": "<p><strong>Past performance does not predict future returns.</strong> Performance shown above is net of fund fees and any index replication costs. ETF performance calculation includes reinvested dividends. Performance figures are reported, based on the values as of the last business day of the relevant reporting month.</p><p>On 26 June 2015 db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (a sub-fund of the Luxembourg domiciled Xtrackers) merged into db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (Prospective DR) (a sub-fund of the Irish domiciled Xtrackers (IE) Plc), which was renamed db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (DR) on the effective date of the merger. Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 26 June 2015 relates to the db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (the now closed Luxembourg domiciled sub-fund).</p><p>Index performance and Tracking Difference calculations are reset on 26/06/2015. For further details on previous restructuring events please refer to the Notice to Shareholders section on our website etf.dws.com or visit the DWS contact page to request further information.</p>",
+                  "disableDefaultWrapping": true
+                }
+              ]
+            },
+            {
+              "header": "Annualised",
+              "table": {
+                "columns": [
+                  {
+                    "key": "column_0",
+                    "value": "",
+                    "alignment": "left",
+                    "isVisibleOnHeader": true,
+                    "isEmptyHeader": true,
+                    "emptyHeaderText": "Date"
+                  },
+                  {
+                    "key": "column_1",
+                    "value": "<span class=\"no-break\">1Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_2",
+                    "value": "<span class=\"no-break\">2Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_3",
+                    "value": "<span class=\"no-break\">3Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_4",
+                    "value": "<span class=\"no-break\">4Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_5",
+                    "value": "<span class=\"no-break\">5Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_6",
+                    "value": "<span class=\"no-break\">10Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_7",
+                    "value": "Since launch",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  }
+                ],
+                "values": [
+                  {
+                    "column_0": {
+                      "value": "Total return (USD)",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "11.51%",
+                      "sortValue": 11.51,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "10.04%",
+                      "sortValue": 10.04,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "15.95%",
+                      "sortValue": 15.95,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "14.90%",
+                      "sortValue": 14.9,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "8.15%",
+                      "sortValue": 8.15,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "11.15%",
+                      "sortValue": 11.15,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "12.21%",
+                      "sortValue": 12.21,
+                      "type": "performance-value"
+                    }
+                  },
+                  {
+                    "column_0": {
+                      "value": "Benchmark (USD)",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "11.40%",
+                      "sortValue": 11.4,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "9.91%",
+                      "sortValue": 9.91,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "15.82%",
+                      "sortValue": 15.82,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "14.78%",
+                      "sortValue": 14.78,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "8.06%",
+                      "sortValue": 8.06,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "11.10%",
+                      "sortValue": 11.1,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "10.23%",
+                      "sortValue": 10.23,
+                      "type": "performance-value"
+                    }
+                  }
+                ],
+                "summary": [],
+                "sortable": false,
+                "isMatrix": true,
+                "noRowHeader": false,
+                "standAlone": true,
+                "stickyHeader": false,
+                "initialSortOrder": 1,
+                "footnoteComponentId": "Annualized",
+                "rowsPerPage": 15,
+                "secondSortOrder": 1,
+                "id": "Annualized",
+                "headlineText": "",
+                "disclaimers": [],
+                "expanded": false
+              },
+              "lists": [],
+              "isSelected": false,
+              "disclaimerHtml": [
+                {
+                  "text": "Source: DWS 02/10/2026",
+                  "disableDefaultWrapping": true
+                },
+                {
+                  "text": "<p><strong>Past performance does not predict future returns.</strong> Performance shown above is net of fund fees and any index replication costs. ETF performance calculation includes reinvested dividends. </p><p>On 26 June 2015 db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (a sub-fund of the Luxembourg domiciled Xtrackers) merged into db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (Prospective DR) (a sub-fund of the Irish domiciled Xtrackers (IE) Plc), which was renamed db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (DR) on the effective date of the merger. Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 26 June 2015 relates to the db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (the now closed Luxembourg domiciled sub-fund).</p><p>Index performance and Tracking Difference calculations are reset on 26/06/2015. For further details on previous restructuring events please refer to the Notice to Shareholders section on our website etf.dws.com or visit the DWS contact page to request further information.</p>",
+                  "disableDefaultWrapping": true
+                }
+              ]
+            },
+            {
+              "header": "Cumulative",
+              "table": {
+                "columns": [
+                  {
+                    "key": "column_0",
+                    "value": "",
+                    "alignment": "left",
+                    "isVisibleOnHeader": true,
+                    "isEmptyHeader": true,
+                    "emptyHeaderText": "Date"
+                  },
+                  {
+                    "key": "column_1",
+                    "value": "YTD",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_2",
+                    "value": "<span class=\"no-break\">1M</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_3",
+                    "value": "<span class=\"no-break\">3M</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_4",
+                    "value": "<span class=\"no-break\">6M</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_5",
+                    "value": "<span class=\"no-break\">1Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_6",
+                    "value": "<span class=\"no-break\">2Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_7",
+                    "value": "<span class=\"no-break\">3Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_8",
+                    "value": "<span class=\"no-break\">4Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_9",
+                    "value": "<span class=\"no-break\">5Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_10",
+                    "value": "<span class=\"no-break\">10Y</span>",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_11",
+                    "value": "Since launch",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  }
+                ],
+                "values": [
+                  {
+                    "column_0": {
+                      "value": "Total return (USD)",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "10.58%",
+                      "sortValue": 10.58,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "-3.72%",
+                      "sortValue": -3.72,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "-2.14%",
+                      "sortValue": -2.14,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "9.30%",
+                      "sortValue": 9.3,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "11.51%",
+                      "sortValue": 11.51,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "21.08%",
+                      "sortValue": 21.08,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "55.87%",
+                      "sortValue": 55.87,
+                      "type": "performance-value"
+                    },
+                    "column_8": {
+                      "value": "74.30%",
+                      "sortValue": 74.3,
+                      "type": "performance-value"
+                    },
+                    "column_9": {
+                      "value": "47.95%",
+                      "sortValue": 47.95,
+                      "type": "performance-value"
+                    },
+                    "column_10": {
+                      "value": "187.91%",
+                      "sortValue": 187.91,
+                      "type": "performance-value"
+                    },
+                    "column_11": {
+                      "value": "454.77%",
+                      "sortValue": 454.77,
+                      "type": "performance-value"
+                    }
+                  },
+                  {
+                    "column_0": {
+                      "value": "Benchmark (USD)",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "10.51%",
+                      "sortValue": 10.51,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "-3.73%",
+                      "sortValue": -3.73,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "-2.16%",
+                      "sortValue": -2.16,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "9.24%",
+                      "sortValue": 9.24,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "11.40%",
+                      "sortValue": 11.4,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "20.80%",
+                      "sortValue": 20.8,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "55.38%",
+                      "sortValue": 55.38,
+                      "type": "performance-value"
+                    },
+                    "column_8": {
+                      "value": "73.57%",
+                      "sortValue": 73.57,
+                      "type": "performance-value"
+                    },
+                    "column_9": {
+                      "value": "47.31%",
+                      "sortValue": 47.31,
+                      "type": "performance-value"
+                    },
+                    "column_10": {
+                      "value": "186.59%",
+                      "sortValue": 186.59,
+                      "type": "performance-value"
+                    },
+                    "column_11": {
+                      "value": "199.65%",
+                      "sortValue": 199.65,
+                      "type": "performance-value"
+                    }
+                  }
+                ],
+                "summary": [],
+                "sortable": false,
+                "isMatrix": true,
+                "noRowHeader": false,
+                "standAlone": true,
+                "stickyHeader": false,
+                "initialSortOrder": 1,
+                "footnoteComponentId": "Cumulative",
+                "rowsPerPage": 15,
+                "secondSortOrder": 1,
+                "id": "Cumulative",
+                "headlineText": "",
+                "disclaimers": [],
+                "expanded": false
+              },
+              "lists": [],
+              "isSelected": false,
+              "disclaimerHtml": [
+                {
+                  "text": "Source: DWS 02/10/2026",
+                  "disableDefaultWrapping": true
+                },
+                {
+                  "text": "<p><strong>Past performance does not predict future returns.</strong> Performance shown above is net of fund fees and any index replication costs. ETF performance calculation includes reinvested dividends. </p><p>On 26 June 2015 db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (a sub-fund of the Luxembourg domiciled Xtrackers) merged into db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (Prospective DR) (a sub-fund of the Irish domiciled Xtrackers (IE) Plc), which was renamed db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (DR) on the effective date of the merger. Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 26 June 2015 relates to the db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (the now closed Luxembourg domiciled sub-fund).</p><p>Index performance and Tracking Difference calculations are reset on 26/06/2015. For further details on previous restructuring events please refer to the Notice to Shareholders section on our website etf.dws.com or visit the DWS contact page to request further information.</p>",
+                  "disableDefaultWrapping": true
+                }
+              ]
+            },
+            {
+              "header": "Calendar year",
+              "table": {
+                "columns": [
+                  {
+                    "key": "column_0",
+                    "value": "",
+                    "alignment": "left",
+                    "isVisibleOnHeader": true,
+                    "isEmptyHeader": true,
+                    "emptyHeaderText": "Date"
+                  },
+                  {
+                    "key": "column_1",
+                    "value": "2016",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_2",
+                    "value": "2017",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_3",
+                    "value": "2018",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_4",
+                    "value": "2019",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_5",
+                    "value": "2020",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_6",
+                    "value": "2021",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_7",
+                    "value": "2022",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_8",
+                    "value": "2023",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_9",
+                    "value": "2024",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  },
+                  {
+                    "key": "column_10",
+                    "value": "2025",
+                    "alignment": "right",
+                    "isVisibleOnHeader": true
+                  }
+                ],
+                "values": [
+                  {
+                    "column_0": {
+                      "value": "Total return (USD)",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "14.14%",
+                      "sortValue": 14.14,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "18.84%",
+                      "sortValue": 18.84,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "-9.41%",
+                      "sortValue": -9.41,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "29.53%",
+                      "sortValue": 29.53,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "12.17%",
+                      "sortValue": 12.17,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "28.90%",
+                      "sortValue": 28.9,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "-11.93%",
+                      "sortValue": -11.93,
+                      "type": "performance-value"
+                    },
+                    "column_8": {
+                      "value": "13.32%",
+                      "sortValue": 13.32,
+                      "type": "performance-value"
+                    },
+                    "column_9": {
+                      "value": "12.47%",
+                      "sortValue": 12.47,
+                      "type": "performance-value"
+                    },
+                    "column_10": {
+                      "value": "10.95%",
+                      "sortValue": 10.95,
+                      "type": "performance-value"
+                    }
+                  },
+                  {
+                    "column_0": {
+                      "value": "Benchmark (USD)",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "14.11%",
+                      "sortValue": 14.11,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "18.83%",
+                      "sortValue": 18.83,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "-9.37%",
+                      "sortValue": -9.37,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "29.47%",
+                      "sortValue": 29.47,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "12.12%",
+                      "sortValue": 12.12,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "28.98%",
+                      "sortValue": 28.98,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "-11.95%",
+                      "sortValue": -11.95,
+                      "type": "performance-value"
+                    },
+                    "column_8": {
+                      "value": "13.17%",
+                      "sortValue": 13.17,
+                      "type": "performance-value"
+                    },
+                    "column_9": {
+                      "value": "12.37%",
+                      "sortValue": 12.37,
+                      "type": "performance-value"
+                    },
+                    "column_10": {
+                      "value": "10.80%",
+                      "sortValue": 10.8,
+                      "type": "performance-value"
+                    }
+                  },
+                  {
+                    "column_0": {
+                      "value": "Tracking difference",
+                      "type": "text"
+                    },
+                    "column_1": {
+                      "value": "0.03%",
+                      "sortValue": 0.03,
+                      "type": "performance-value"
+                    },
+                    "column_2": {
+                      "value": "0.01%",
+                      "sortValue": 0.01,
+                      "type": "performance-value"
+                    },
+                    "column_3": {
+                      "value": "-0.04%",
+                      "sortValue": -0.04,
+                      "type": "performance-value"
+                    },
+                    "column_4": {
+                      "value": "0.07%",
+                      "sortValue": 0.07,
+                      "type": "performance-value"
+                    },
+                    "column_5": {
+                      "value": "0.05%",
+                      "sortValue": 0.05,
+                      "type": "performance-value"
+                    },
+                    "column_6": {
+                      "value": "-0.08%",
+                      "sortValue": -0.08,
+                      "type": "performance-value"
+                    },
+                    "column_7": {
+                      "value": "0.02%",
+                      "sortValue": 0.02,
+                      "type": "performance-value"
+                    },
+                    "column_8": {
+                      "value": "0.15%",
+                      "sortValue": 0.15,
+                      "type": "performance-value"
+                    },
+                    "column_9": {
+                      "value": "0.10%",
+                      "sortValue": 0.1,
+                      "type": "performance-value"
+                    },
+                    "column_10": {
+                      "value": "0.15%",
+                      "sortValue": 0.15,
+                      "type": "performance-value"
+                    }
+                  }
+                ],
+                "summary": [],
+                "sortable": false,
+                "isMatrix": true,
+                "noRowHeader": false,
+                "standAlone": true,
+                "stickyHeader": false,
+                "initialSortOrder": 1,
+                "footnoteComponentId": "CalendarYear",
+                "rowsPerPage": 15,
+                "secondSortOrder": 1,
+                "id": "CalendarYear",
+                "headlineText": "",
+                "disclaimers": [],
+                "expanded": false
+              },
+              "lists": [],
+              "isSelected": false,
+              "disclaimerHtml": [
+                {
+                  "text": "Source: DWS",
+                  "disableDefaultWrapping": true
+                },
+                {
+                  "text": "<p><strong>Past performance does not predict future returns.</strong> Performance shown above is net of fund fees and any index replication costs. ETF performance calculation includes reinvested dividends. </p><p>On 26 June 2015 db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (a sub-fund of the Luxembourg domiciled Xtrackers) merged into db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (Prospective DR) (a sub-fund of the Irish domiciled Xtrackers (IE) Plc), which was renamed db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (DR) on the effective date of the merger. Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 26 June 2015 relates to the db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (the now closed Luxembourg domiciled sub-fund).</p><p>Index performance and Tracking Difference calculations are reset on 26/06/2015. For further details on previous restructuring events please refer to the Notice to Shareholders section on our website etf.dws.com or visit the DWS contact page to request further information.</p>",
+                  "disableDefaultWrapping": true
+                }
+              ]
+            }
+          ],
+          "sideNavigationTitle": "",
+          "headlineText": "Performance",
+          "asOfDate": "",
+          "disclaimerHtml": []
+        },
+        "id": "etf-performance-chart",
+        "sideNavigationTitle": "Performance",
+        "headlineText": "Performance",
+        "asOfDate": "",
+        "disclaimerHtml": []
+      },
+      "keyFacts": {
+        "tables": [],
+        "accordionItems": [
+          {
+            "id": "fundinformation-basicinformation",
+            "type": "Bundle",
+            "headlineText": "Fund key facts",
+            "expanded": true,
+            "listBundle": [
+              {
+                "items": [
+                  {
+                    "value": "IE00BLNMYC90",
+                    "key": "ISIN",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "BLNMYC9",
+                    "key": "SEDOL",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "XDEW LN",
+                    "key": "Ticker",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "10/06/2014 (launch date of merged sub-fund 16/11/2011)<PageFootnoteReference component-id='fundinformation-basicinformation' title=\"On 26 June 2015 db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (a sub-fund of the Luxembourg domiciled Xtrackers) merged into db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (Prospective DR) (a sub-fund of the Irish domiciled Xtrackers (IE) Plc), which was renamed db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (DR) on the effective date of the merger. Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 26 June 2015 relates to the db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (the now closed Luxembourg domiciled sub-fund).\"></PageFootnoteReference>",
+                    "key": "Sub-fund launch date",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "10/06/2014 (launch date of merged sub-fund 16/11/2011)<PageFootnoteReference component-id='fundinformation-basicinformation' title=\"On 26 June 2015 db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (a sub-fund of the Luxembourg domiciled Xtrackers) merged into db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (Prospective DR) (a sub-fund of the Irish domiciled Xtrackers (IE) Plc), which was renamed db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (DR) on the effective date of the merger. Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 26 June 2015 relates to the db x-trackers S&P 500\u00ae Equal Weight UCITS ETF (the now closed Luxembourg domiciled sub-fund).\"></PageFootnoteReference>",
+                    "key": "Share class launch date",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "Global certificate",
+                    "key": "Type of investment fund shares",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": true,
+                    "key": "UCITS compliant",
+                    "type": "BOOL",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "Jan 01 - Dec 31",
+                    "key": "Fiscal year",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "USD",
+                    "key": "Share class currency",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "Capitalizing",
+                    "key": "Income treatment",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "Exchange traded fund",
+                    "key": "Exchange traded fund / Non-exchange traded fund",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  }
+                ],
+                "id": "fundinformation-fundprofile",
+                "headlineText": "Fund profile",
+                "disclaimers": [],
+                "scope": "fundinformation-basicinformation",
+                "expanded": true
+              },
+              {
+                "items": [
+                  {
+                    "value": "Direct Replication (physically)",
+                    "key": "Investment methodology",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "Full Replication",
+                    "key": "Portfolio structure",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": true,
+                    "key": "Securities lending<PageFootnoteReference component-id='fundinformation-basicinformation' title=\"Please refer to the section \u201cSecurities Lending\u201d for further details. If the details are unavailable, the Sub-Fund has not engaged in securities lending transactions during the previous 30 days.\"></PageFootnoteReference>",
+                    "type": "BOOL",
+                    "isHighlighted": false
+                  }
+                ],
+                "id": "fundinformation-indexreplication",
+                "headlineText": "Index replication technique",
+                "disclaimers": [],
+                "scope": "fundinformation-basicinformation",
+                "expanded": true
+              }
+            ],
+            "disclaimers": []
+          },
+          {
+            "id": "fundinformation-feesandexpenses",
+            "type": "List",
+            "headlineText": "Fund fees and expenses p.a.",
+            "subHeadlineText": "Fund (ETF)",
+            "expanded": true,
+            "list": {
+              "items": [
+                {
+                  "value": "0.05%",
+                  "key": "Fund management company fee",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "+ 0.10%",
+                  "key": "Fund fixed fee",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "= 0.15%",
+                  "key": "Fund all-in fee (TER)",
+                  "type": "STRING",
+                  "isHighlighted": false
+                }
+              ],
+              "id": "fundinformation-feesandexpenses",
+              "headlineText": "Fund fees and expenses p.a.",
+              "subHeadlineText": "Fund (ETF)",
+              "disclaimers": [
+                {
+                  "text": "<p>The All-in fee comprises the Fixed Fee and the Management Company Fee. The Fixed Fee covers certain administrative expenses including the Administrative Agent Fee, the Custodian Fee, the Registrar, Transfer Agent and Listing Agent Fee and the annual tax in Luxembourg (if any) (the \"Taxe d'Abonnement\"). Further details are available in the Xtrackers, Xtrackers II and Xtrackers (IE) Plc prospectuses.</p>",
+                  "disableDefaultWrapping": true
+                }
+              ],
+              "scope": "fundinformation-feesandexpenses",
+              "expanded": true
+            },
+            "disclaimers": [
+              {
+                "text": "<p>The All-in fee comprises the Fixed Fee and the Management Company Fee. The Fixed Fee covers certain administrative expenses including the Administrative Agent Fee, the Custodian Fee, the Registrar, Transfer Agent and Listing Agent Fee and the annual tax in Luxembourg (if any) (the \"Taxe d'Abonnement\"). Further details are available in the Xtrackers, Xtrackers II and Xtrackers (IE) Plc prospectuses.</p>",
+                "disableDefaultWrapping": true
+              }
+            ]
+          },
+          {
+            "id": "fundinformation-currentdata",
+            "type": "Bundle",
+            "headlineText": "Current data",
+            "expanded": false,
+            "listBundle": [
+              {
+                "items": [
+                  {
+                    "value": "88.38 GBP",
+                    "key": "NAV",
+                    "type": "STRING",
+                    "tooltip": "Conversion in GBP with 4 PM Reuters Fixing",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "02/10/2026",
+                    "key": "NAV date",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "108,644,676",
+                    "key": "Outstanding shares",
+                    "type": "STRING",
+                    "isHighlighted": false
+                  },
+                  {
+                    "value": "11.54 B GBP",
+                    "key": "Total AUM of fund",
+                    "type": "STRING",
+                    "tooltip": "Conversion in GBP with 4 PM Reuters Fixing",
+                    "isHighlighted": false
+                  }
+                ],
+                "id": "fundinformation-currentdata",
+                "headlineText": "",
+                "disclaimers": [],
+                "scope": "fundinformation-currentdata",
+                "expanded": false
+              }
+            ],
+            "disclaimers": []
+          },
+          {
+            "id": "fundinformation-tradinginformation",
+            "type": "Table",
+            "headlineText": "Trading volume",
+            "expanded": false,
+            "table": {
+              "columns": [
+                {
+                  "key": "StockExchange",
+                  "value": "Stock exchange",
+                  "alignment": "left",
+                  "isVisibleOnHeader": true,
+                  "wordBreak": false
+                },
+                {
+                  "key": "NumberOfTrades",
+                  "value": "Number of trades",
+                  "alignment": "right",
+                  "isVisibleOnHeader": true
+                },
+                {
+                  "key": "TradedVolumeShares",
+                  "value": "Traded volume shares",
+                  "alignment": "right",
+                  "isVisibleOnHeader": true
+                },
+                {
+                  "key": "Value",
+                  "value": "Value",
+                  "alignment": "right",
+                  "isVisibleOnHeader": true
+                },
+                {
+                  "key": "Currency",
+                  "value": "Currency",
+                  "alignment": "center",
+                  "isVisibleOnHeader": true
+                },
+                {
+                  "key": "Nsin",
+                  "value": "NSIN",
+                  "alignment": "left",
+                  "isVisibleOnHeader": true,
+                  "wordBreak": false
+                },
+                {
+                  "key": "BloombergTicker",
+                  "value": "Bloomberg ticker",
+                  "alignment": "left",
+                  "isVisibleOnHeader": true,
+                  "wordBreak": false
+                },
+                {
+                  "key": "ReutersRic",
+                  "value": "Reuters RIC",
+                  "alignment": "left",
+                  "isVisibleOnHeader": true,
+                  "wordBreak": false
+                },
+                {
+                  "key": "InavReuters",
+                  "value": "iNAV Reuters",
+                  "alignment": "left",
+                  "isVisibleOnHeader": true
+                }
+              ],
+              "values": [
+                {
+                  "StockExchange": {
+                    "value": "Borsa Italiana",
+                    "type": "text"
+                  },
+                  "NumberOfTrades": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "TradedVolumeShares": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Value": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Currency": {
+                    "value": "EUR",
+                    "type": "text"
+                  },
+                  "Nsin": {
+                    "value": "--",
+                    "type": "text"
+                  },
+                  "BloombergTicker": {
+                    "value": "XDEW IM",
+                    "type": "text"
+                  },
+                  "ReutersRic": {
+                    "value": "XDEW.MI",
+                    "type": "text"
+                  },
+                  "InavReuters": {
+                    "value": "X2HLINAV.DE",
+                    "type": "text"
+                  }
+                },
+                {
+                  "StockExchange": {
+                    "value": "XETRA",
+                    "type": "text"
+                  },
+                  "NumberOfTrades": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "TradedVolumeShares": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Value": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Currency": {
+                    "value": "EUR",
+                    "type": "text"
+                  },
+                  "Nsin": {
+                    "value": "A1106A",
+                    "type": "text"
+                  },
+                  "BloombergTicker": {
+                    "value": "XDEW GY",
+                    "type": "text"
+                  },
+                  "ReutersRic": {
+                    "value": "XDEW.DE",
+                    "type": "text"
+                  },
+                  "InavReuters": {
+                    "value": "X2HLINAV.DE",
+                    "type": "text"
+                  }
+                },
+                {
+                  "StockExchange": {
+                    "value": "London Stock Exchange",
+                    "type": "text"
+                  },
+                  "NumberOfTrades": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "TradedVolumeShares": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Value": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Currency": {
+                    "value": "USD",
+                    "type": "text"
+                  },
+                  "Nsin": {
+                    "value": "BLNMYC9",
+                    "type": "text"
+                  },
+                  "BloombergTicker": {
+                    "value": "XDEW LN",
+                    "type": "text"
+                  },
+                  "ReutersRic": {
+                    "value": "XDEW.L",
+                    "type": "text"
+                  },
+                  "InavReuters": {
+                    "value": "--",
+                    "type": "text"
+                  }
+                },
+                {
+                  "StockExchange": {
+                    "value": "London Stock Exchange",
+                    "type": "text"
+                  },
+                  "NumberOfTrades": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "TradedVolumeShares": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Value": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Currency": {
+                    "value": "GBX",
+                    "type": "text"
+                  },
+                  "Nsin": {
+                    "value": "BNGMZY9",
+                    "type": "text"
+                  },
+                  "BloombergTicker": {
+                    "value": "XDWE LN",
+                    "type": "text"
+                  },
+                  "ReutersRic": {
+                    "value": "XDWE.L",
+                    "type": "text"
+                  },
+                  "InavReuters": {
+                    "value": "--",
+                    "type": "text"
+                  }
+                },
+                {
+                  "StockExchange": {
+                    "value": "SIX - Swiss Exchange",
+                    "type": "text"
+                  },
+                  "NumberOfTrades": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "TradedVolumeShares": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Value": {
+                    "value": "--",
+                    "type": "empty"
+                  },
+                  "Currency": {
+                    "value": "CHF",
+                    "type": "text"
+                  },
+                  "Nsin": {
+                    "value": "24514626",
+                    "type": "text"
+                  },
+                  "BloombergTicker": {
+                    "value": "XDEW SW",
+                    "type": "text"
+                  },
+                  "ReutersRic": {
+                    "value": "XDEW.S",
+                    "type": "text"
+                  },
+                  "InavReuters": {
+                    "value": "--",
+                    "type": "text"
+                  }
+                }
+              ],
+              "summary": [
+                {
+                  "key": "StockExchange",
+                  "value": "Total",
+                  "alignment": "left",
+                  "colspan": 1
+                },
+                {
+                  "key": "NumberOfTrades",
+                  "value": "0",
+                  "alignment": "right",
+                  "colspan": 1
+                },
+                {
+                  "key": "TradedVolumeShares",
+                  "value": "0",
+                  "alignment": "right",
+                  "colspan": 1
+                },
+                {
+                  "key": "Value",
+                  "value": "0.00",
+                  "alignment": "right",
+                  "colspan": 1
+                },
+                {
+                  "key": "Currency",
+                  "value": "GBP",
+                  "alignment": "center",
+                  "colspan": 1
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "alignment": "center",
+                  "colspan": 0
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "alignment": "center",
+                  "colspan": 0
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "alignment": "center",
+                  "colspan": 0
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "alignment": "center",
+                  "colspan": 0
+                }
+              ],
+              "sortable": true,
+              "isMatrix": false,
+              "noRowHeader": false,
+              "standAlone": true,
+              "stickyHeader": false,
+              "initialSort": "NumberOfTrades.sortValue",
+              "initialSortOrder": -1,
+              "footnoteComponentId": "fundinformation-tradinginformation",
+              "rowsPerPage": 15,
+              "secondSortOrder": 1,
+              "id": "fundinformation-tradinginformation",
+              "headlineText": "",
+              "disclaimers": [],
+              "expanded": false
+            },
+            "disclaimers": []
+          },
+          {
+            "id": "fundinformation-serviceproviders",
+            "type": "List",
+            "headlineText": "Service providers",
+            "expanded": false,
+            "list": {
+              "items": [
+                {
+                  "value": "Xtrackers (IE) Plc",
+                  "key": "Issuing company",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "Ireland",
+                  "key": "Fund domicile",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "Authorised and regulated as an undertaking for collective investment in transferable securities by the Central Bank of Ireland.",
+                  "key": "Regulatory status",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "DWS Investment S.A.",
+                  "key": "Management company",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "State Street Custodial Services (Ireland) Limited",
+                  "key": "Depositary bank",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "State Street Fund Services (Ireland) Limited",
+                  "key": "Administrator",
+                  "type": "STRING",
+                  "isHighlighted": false
+                }
+              ],
+              "id": "fundinformation-serviceproviders",
+              "headlineText": "Service providers",
+              "disclaimers": [],
+              "scope": "fundinformation-serviceproviders",
+              "expanded": false
+            },
+            "disclaimers": []
+          },
+          {
+            "id": "fundinformation-taxdata",
+            "type": "List",
+            "headlineText": "Tax data",
+            "expanded": false,
+            "list": {
+              "items": [
+                {
+                  "value": true,
+                  "key": "SIPP",
+                  "type": "BOOL",
+                  "isHighlighted": false
+                },
+                {
+                  "value": true,
+                  "key": "ISA",
+                  "type": "BOOL",
+                  "isHighlighted": false
+                },
+                {
+                  "value": true,
+                  "key": "UK reporting status",
+                  "type": "BOOL",
+                  "isHighlighted": false
+                }
+              ],
+              "id": "fundinformation-taxdata",
+              "headlineText": "Tax data",
+              "disclaimers": [],
+              "scope": "fundinformation-taxdata",
+              "expanded": false
+            },
+            "disclaimers": []
+          },
+          {
+            "id": "fundinformation-registeredcountries",
+            "type": "Grid",
+            "headlineText": "Registered countries",
+            "expanded": false,
+            "grid": {
+              "items": [
+                "Austria",
+                "Czech Republic",
+                "Denmark",
+                "Estonia",
+                "Finland",
+                "France",
+                "Germany",
+                "Ireland",
+                "Italy",
+                "Latvia",
+                "Lithuania",
+                "Luxembourg",
+                "Netherlands",
+                "Norway",
+                "Poland",
+                "Portugal",
+                "Singapore",
+                "Spain",
+                "Sweden",
+                "Switzerland",
+                "United Kingdom"
+              ],
+              "columnCount": 2,
+              "id": "fundinformation-registeredcountries",
+              "headlineText": "Registered countries",
+              "disclaimers": [],
+              "scope": "fundinformation-registeredcountries",
+              "expanded": false
+            },
+            "disclaimers": []
+          }
+        ],
+        "accordionDisclaimers": [],
+        "settings": [],
+        "id": "etf-fund-facts",
+        "sideNavigationTitle": "Fund information",
+        "headlineText": "Fund facts",
+        "asOfDate": "",
+        "disclaimerHtml": [],
+        "footnoteComponentId": "etf-fund-facts"
+      },
+      "indexKeyFacts": {
+        "tables": [],
+        "accordionItems": [
+          {
+            "id": "indexinformation-indexdescription",
+            "type": "Text",
+            "headlineText": "Index key features",
+            "expanded": true,
+            "text": {
+              "text": "The S&P 500 Equal Weight Index (NTR, USD) aims to reflect the performance of the following market:<ul><li>The 500 Largest companies listed in the USA</li><li>Covers approximately 80% of free-float market capitalisation</li><li>Every stock is equally weighted, regardless of market capitalisation</li><li>Reviewed on a quarterly basis</li></ul>Additional information on the index, selection and weighting methodology is available at <a target='_blank' rel='noopener' href='https://www.spglobal.com/spdji/en/'>https://www.spglobal.com/spdji/en/</a>",
+              "id": "indexinformation-indexdescription",
+              "headlineText": "Index key features",
+              "disclaimers": [],
+              "expanded": true
+            },
+            "disclaimers": []
+          },
+          {
+            "id": "indexinformation-keyfacts",
+            "type": "List",
+            "headlineText": "Index key facts",
+            "expanded": false,
+            "list": {
+              "items": [
+                {
+                  "value": "S&P 500\u00ae Equal Weight Index",
+                  "key": "Index name",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "S&P Dow Jones Indices LLC",
+                  "key": "Index provider",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "8",
+                  "key": "Countries in index",
+                  "type": "STRING",
+                  "tooltip": "Note: the country classification shown is based on the securities\u2019 countries of registration, this may differ from the index provider\u2019s classification.",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "504",
+                  "key": "Constituents count",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "1.69%",
+                  "key": "Dividend yield",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": ".SPXEWNTR",
+                  "key": "Reuters index ticker",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "SPXEWNTR",
+                  "key": "Bloomberg index ticker",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "USD",
+                  "key": "Index base currency",
+                  "type": "STRING",
+                  "isHighlighted": false
+                },
+                {
+                  "value": "17.02",
+                  "key": "P/E ratio",
+                  "type": "STRING",
+                  "isHighlighted": false
+                }
+              ],
+              "id": "indexinformation-keyfacts",
+              "headlineText": "Index key facts",
+              "disclaimers": [
+                {
+                  "text": "<p>Source: DWS 30/06/2026</p>",
+                  "disableDefaultWrapping": true
+                }
+              ],
+              "scope": "indexinformation-keyfacts",
+              "expanded": false
+            },
+            "disclaimers": [
+              {
+                "text": "<p>Source: DWS 30/06/2026</p>",
+                "disableDefaultWrapping": true
+              }
+            ]
+          }
+        ],
+        "accordionDisclaimers": [
+          {
+            "text": "<p>The S&P 500\u00ae Equal Weight Index is a product of S&P Dow Jones Indices LLC or its affiliates (\u201cSPDJI\u201d), and has been licensed for use by DWS.  S&P\u00ae, S&P 500\u00ae, US 500, The 500, iBoxx\u00ae, iTraxx\u00ae and CDX\u00ae are trademarks of S&P Global, Inc. or its affiliates (\u201cS&P\u201d); Dow Jones\u00ae is a registered trademark of Dow Jones Trademark Holdings LLC (\u201cDow Jones\u201d); these trademarks have been licensed for use by SPDJI and sublicensed for certain purposes by DWS. S&P 500 Equal Weight UCITS ETF is not sponsored, endorsed, sold or promoted by SPDJI, Dow Jones, S&P, their respective affiliates, and none of such parties make any representation regarding the advisability of investing in such product(s) nor do they have any liability for any errors, omissions, or interruptions of the S&P 500\u00ae Equal Weight Index.</p>",
+            "disableDefaultWrapping": true
+          }
+        ],
+        "settings": [],
+        "id": "etf-index-facts",
+        "sideNavigationTitle": "Index information",
+        "headlineText": "Index facts",
+        "asOfDate": "",
+        "disclaimerHtml": [],
+        "footnoteComponentId": "etf-index-facts"
+      }
+    }
+  }
+}

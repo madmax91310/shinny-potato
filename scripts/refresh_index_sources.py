@@ -19,17 +19,20 @@ def collect_one(config, now, fetch=download):
         if url not in cache:
             body = fetch(url); cache[url] = (pdf_text(body), proof(body))
         return cache[url]
-    result = {'id': config['id'], 'name': config['name'], 'errors': []}
-    try:
-        text, digest = load(config['sourceUrl'])
-        parser = msci_composition if config['parser'] == 'msci' else ftse_composition
-        facts = parser(text, config, now)
-        facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(),
-                           'label': 'Composition officielle automatisée · ' + config['name'], 'sha256': digest}
-        facts['provenance'] = 'Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF.'
-        result['facts'] = facts
-    except Exception as error:
-        result['errors'].append({'field':'composition','reason':str(error),'url':config['sourceUrl']})
+    result = {'id': config['id'], 'name': config['name'], 'errors': [], 'unavailable': []}
+    if config.get('collectComposition', True):
+        try:
+            text, digest = load(config['sourceUrl'])
+            parser = msci_composition if config['parser'] == 'msci' else ftse_composition
+            facts = parser(text, config, now)
+            facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(),
+                               'label': 'Composition officielle automatisée · ' + config['name'], 'sha256': digest}
+            facts['provenance'] = 'Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF.'
+            result['facts'] = facts
+        except Exception as error:
+            result['errors'].append({'field':'composition','reason':str(error),'url':config['sourceUrl']})
+    else:
+        result['unavailable'].append(config['qualificationIssue'])
     if config.get('returnSourceUrl'):
         try:
             text,digest=load(config['returnSourceUrl'])
@@ -39,7 +42,8 @@ def collect_one(config, now, fetch=download):
             if not dates:raise ValueError('Missing index performance snapshot date')
             stamp=document_date(dates[0],now)
             parser=msci_returns if config['parser']=='msci'else ftse_returns
-            values=parser(text,config,now)
+            return_config = {**config, 'documentName': config['returnDocumentName']} if config.get('returnDocumentName') else config
+            values=parser(text,return_config,now)
             result['returns']={'asOf':stamp,'currency':config['returnCurrency'],'variant':config['returnVariant'],
                 'values':values,'periodStart':f'{min(v[0]for v in values)}-01-01','periodEnd':f'{max(v[0]for v in values)}-12-31',
                 'source':{'url':config['returnSourceUrl'],'checkedAt':now.date().isoformat(),'sha256':digest,
@@ -88,7 +92,7 @@ def main():
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a')as h:
             h.write('\n## Sources d’indices\n\n| Indice | Composition | Performances | Exceptions |\n|---|---|---|---|\n')
             h.write('Hors automatisation : '+', '.join(report['notQualified'])+'\n\n')
-            for o in observations:h.write(f"| {o['name']} | {o.get('facts',{}).get('asOf','Conservée')} | {o.get('returns',{}).get('asOf','Conservées')} | {' ; '.join(e['reason'] for e in o['errors'])} |\n")
+            for o in observations:h.write(f"| {o['name']} | {o.get('facts',{}).get('asOf','Conservée')} | {o.get('returns',{}).get('asOf','Conservées')} | {' ; '.join([e['reason'] for e in o['errors']] + o['unavailable'])} |\n")
     # Configured sources remain observable; only qualified sources run in production.
     if any(e['field'] in next(c for c in config['indices'] if c['id']==o['id']).get('requiredFields', []) for o in observations for e in o['errors']):raise SystemExit(1)
 

@@ -2,11 +2,12 @@ import records from './automated-etf.json' with { type: 'json' };
 export const AUTOMATED_ETF = records;
 export const AUTOMATED_AUM = Object.fromEntries(Object.entries(records).filter(([, r]) => r.aum).map(([isin, r]) => {
   const a = r.aum;
-  const label = `${a.scope === 'fund' ? 'Fonds' : 'Part'} : ${(a.amount / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} M${a.currency === 'USD' ? '$' : '€'} au ${a.asOf.split('-').reverse().join('/')}`;
-  return [isin, { sheet: label, index: label, source: { ...a, amountMillions: a.amount / 1e6, url: r.sourceUrl, checkedAt: a.checkedAt, scope: a.scope === 'fund' ? 'Actif net du fonds' : 'Actif net de la part exacte' } }];
+  const symbol = { USD: '$', EUR: '€', GBP: '£', JPY: '¥' }[a.currency] ?? ` ${a.currency}`;
+  const label = `${a.scope === 'fund' ? 'Fonds' : 'Part'} : ${(a.amount / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} M${symbol} au ${a.asOf.split('-').reverse().join('/')}`;
+  return [isin, { sheet: label, index: label, source: { ...a, amountMillions: a.amount / 1e6, url: a.sourceUrl ?? r.sourceUrl, checkedAt: a.checkedAt, scope: a.scope === 'fund' ? 'Actif net du fonds' : 'Actif net de la part exacte' } }];
 }));
 export const AUTOMATED_PERFORMANCE = Object.fromEntries(Object.entries(records).filter(([, r]) => r.performance).map(([isin, r]) => [isin, {
-  ...r.performance, source: r.sourceUrl, values: Array.from({ length: 6 }, (_, i) => r.performance.years[String(2020 + i)]),
+  ...r.performance, source: r.performance.sourceUrl ?? r.sourceUrl, values: Array.from({ length: 6 }, (_, i) => r.performance.years[String(2020 + i)]),
   periodStart: '2020-01-01', periodEnd: '2025-12-31',
 }]));
 // Holdings keep their own date; a sector refresh cannot re-date them.

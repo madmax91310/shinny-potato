@@ -1,4 +1,4 @@
-import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
+import { AUTOMATED_ETF, AUTOMATED_AUM, AUTOMATED_PERFORMANCE, refreshFundDetails } from '../src/data/automated-etf.js'
 import { comparisonPct } from '../src/pages/etf-tweets/lib/comparisonDetails.js'
 import assert from 'node:assert/strict'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
@@ -7,6 +7,18 @@ import { buildTweetText } from '../src/pages/etf-tweets/lib/tweetFormat.js'
 import { COMPARISON_ETF_DETAILS } from '../src/data/comparison-etf-details.js'
 import { readFileSync } from 'node:fs'
 const emerging = DEFAULT_THEMES.find(t => t.etfs.some(f => f.isin === 'IE00BTJRMP35'))
+// Each issuer field keeps its own document and date through the shared adapter.
+for (const [isin, record] of Object.entries(AUTOMATED_ETF)) {
+ if (record.aum) {
+  assert.equal(AUTOMATED_AUM[isin].source.url, record.aum.sourceUrl ?? record.sourceUrl)
+  assert.equal(AUTOMATED_AUM[isin].source.scope, record.aum.scope === 'fund' ? 'Actif net du fonds' : 'Actif net de la part exacte')
+  if (record.aum.currency === 'JPY') assert.match(AUTOMATED_AUM[isin].sheet, /M¥/)
+ }
+ if (record.performance) assert.equal(AUTOMATED_PERFORMANCE[isin].source, record.performance.sourceUrl ?? record.sourceUrl)
+ const details = refreshFundDetails(isin)
+ if (record.performance) assert.equal(details.performance.source, AUTOMATED_PERFORMANCE[isin].source)
+ if (record.countries) assert.equal(details.countriesAsOf, record.countries.asOf)
+}
 const text = buildTweetText(emerging)
 for (const isin of ['IE00BTJRMP35', 'FR0013412020']) assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance(isin).rows.find(r => r.year === 2025).pct)}`))
 assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance('IE00BKM4GZ66').rows.find(r => r.year === 2025).pct)}`))
