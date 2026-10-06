@@ -20,7 +20,9 @@ try {
     await page.goto(landing.href, { waitUntil: 'domcontentloaded', timeout: 15000 });
     await page.waitForTimeout(1500);
     const continuation = page.getByRole('button', { name: 'Accept & Continue', exact: true });
-    if (await continuation.isVisible()) {
+    // The regional gate can render after DOMContentLoaded; isVisible() does not wait.
+    const gateReady = await continuation.waitFor({ state: 'visible', timeout: 10000 }).then(() => true, () => false);
+    if (gateReady) {
       const individual = page.getByRole('button', { name: 'Individual Investor', exact: true });
       if (await individual.isVisible()) await individual.click({ timeout: 5000 });
       const france = page.getByRole('button', { name: 'France', exact: true });
