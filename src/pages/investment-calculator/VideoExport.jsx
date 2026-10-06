@@ -1,14 +1,14 @@
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ASSET_ORDER, ASSETS, SPARSE_MONTHLY_DATA_IDS } from '../../data/market-history.js'
 import {
   isVideoExportSupported,
   renderResultVideo,
   renderComparativeVideo,
   getComparativeAssetIssue,
-  computeComparativeSeries,
 } from './videoExport'
-import { pct, monthsBetween } from './lib'
+import { pct } from './lib'
+import { computeComparison, buildComparisonTweet } from './comparison.js'
 import Button from '../../design-system/Button'
 
 function triggerAnchorDownload(url, filename) {
@@ -31,10 +31,11 @@ const MODE_LABELS = { lump: 'VERSEMENT UNIQUE', dca: 'DCA MENSUEL' }
 // Bouton "Générer la vidéo" du Calculateur — anime sur un <canvas> une (mode Simple) ou deux (mode
 // Comparatif) série(s) déjà calculée(s) par derive()/computeAssetSeries (aucun nouveau calcul, cf.
 // videoExport.js) et l'enregistre via MediaRecorder. 100% côté client, aucun service tiers.
-export default function VideoExport({ videoParams, filenameBase, comparativeInputs }) {
+export default function VideoExport({ videoParams, filenameBase, comparativeInputs, onModeChange }) {
   const canvasRef = useRef(null)
   const [compMode, setCompMode] = useState('simple') // simple | comparative
   const [status, setStatus] = useState('idle') // idle | recording | done | error
+  const [copied, setCopied] = useState('idle')
   const [progress, setProgress] = useState(0)
   const [videoUrl, setVideoUrl] = useState(null)
   const supported = isVideoExportSupported()
@@ -71,6 +72,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   function switchMode(next) {
     if (next === compMode) return
     setCompMode(next)
+    onModeChange?.(next)
     resetVideo()
   }
 
@@ -107,6 +109,25 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   const sameDuel = asset1Id === asset2Id && mode1 === mode2
   const comparativeBlocked = Boolean(issue1 || issue2 || sameDuel)
 
+  const comparison = useMemo(() => compMode === 'comparative' && comparativeInputs && !comparativeBlocked
+    ? computeComparison(comparativeInputs, asset1Id, asset2Id, mode1, mode2) : null,
+    [compMode, comparativeInputs, comparativeBlocked, asset1Id, asset2Id, mode1, mode2])
+  const comparisonText = comparison ? buildComparisonTweet(comparison) : ''
+
+  useEffect(() => {
+    resetVideo()
+    setCopied('idle')
+  }, [videoParams, comparisonText])
+
+  async function copyComparison() {
+    try {
+      await navigator.clipboard.writeText(comparisonText)
+      setCopied('done')
+    } catch {
+      setCopied('error')
+    }
+  }
+
   async function handleGenerateSimple() {
     setStatus('recording')
     setProgress(0)
@@ -120,29 +141,11 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   }
 
   async function handleGenerateComparative() {
-    const { amount, startYm, endYm, overrideAssetId, overridePriceRaw } = comparativeInputs
+    const { startYm, endYm, sides } = comparison
+    const [s1, s2] = sides.map(side => side.result)
     setStatus('recording')
     setProgress(0)
     try {
-      // Même somme investie au total des deux côtés, pas le même chiffre appliqué tel quel aux deux
-      // modes (100€/mois pendant 5 ans, ce n'est PAS la même chose que 100€ en une fois — demande
-      // utilisateur du 14/09/2026, exemple donné : 100€/mois sur 5 ans doit correspondre à 6 000€ en
-      // versement unique, pas à 100€). `amount` vient du panneau Simple et son sens dépend du mode
-      // dans lequel il a été saisi (comparativeInputs.mode, cf. App.jsx : "Avec X€/mois" en DCA,
-      // "Ton X€" en versement unique) — on part de cette valeur telle que l'utilisateur l'a tapée et
-      // on dérive l'autre montant pour que le total investi sur la période soit identique des deux
-      // côtés. N'change rien quand les deux côtés partagent le même mode que le panneau Simple (cas
-      // par défaut, deux actifs différents) : aucune mise à l'échelle n'est appliquée dans ce cas.
-      const n = monthsBetween(startYm, endYm).length
-      const dcaAmount = comparativeInputs.mode === 'dca' ? amount : amount / n
-      const lumpAmount = comparativeInputs.mode === 'dca' ? amount * n : amount
-      const amountFor = (mode) => (mode === 'dca' ? dcaAmount : lumpAmount)
-
-      // overridePriceRaw ne s'applique qu'à UN SEUL actif (celui du panneau Simple) — et seulement
-      // au premier des deux côtés qui correspond, dans le cas où le même actif est comparé deux fois
-      // (sinon le "prix à jour" serait appliqué deux fois à la même série, silencieusement doublé).
-      const s1 = computeComparativeSeries(asset1Id, startYm, endYm, amountFor(mode1), mode1, asset1Id === overrideAssetId ? overridePriceRaw : '')
-      const s2 = computeComparativeSeries(asset2Id, startYm, endYm, amountFor(mode2), mode2, asset2Id === overrideAssetId && asset2Id !== asset1Id ? overridePriceRaw : '')
       const params = {
         canvas: canvasRef.current,
         series1: s1.series,
@@ -187,9 +190,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
     else handleGenerateSimple()
   }
 
-  if (!supported) {
-    return <p className="ic-hint">🎬 Génération vidéo indisponible sur ce navigateur (MediaRecorder non supporté).</p>
-  }
+
 
   // Même actif des deux côtés (DCA vs versement unique) : "asset-vs-asset" ne distinguerait plus les
   // deux exports, d'où le suffixe de mode dans ce cas précis.
@@ -269,6 +270,16 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         </div>
       )}
 
+      {comparisonText && (
+        <div className="ic-comparison-post">
+          <label htmlFor="ic-comparison-text">Texte du comparatif</label>
+          <textarea id="ic-comparison-text" className="ic-control" value={comparisonText} readOnly rows={16} style={{ width: '100%', margin: '12px 0', resize: 'vertical' }} />
+          <Button type="button" onClick={copyComparison}>
+            {copied === 'done' ? '✓ Copié' : copied === 'error' ? 'Copie impossible — sélectionne le texte ci-dessus' : '𝕏 Copier le texte du comparatif'}
+          </Button>
+        </div>
+      )}
+      {!supported && <p className="ic-hint">🎬 Génération vidéo indisponible sur ce navigateur. Le texte du comparatif reste disponible.</p>}
       <canvas ref={canvasRef} className="ic-video-canvas" hidden={status === 'idle'} />
       {status === 'recording' && (
         <div className="ic-video-progress">
@@ -288,7 +299,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
           type="button"
           variant="secondary"
           onClick={handleGenerate}
-          disabled={status === 'recording' || (compMode === 'comparative' && comparativeBlocked)}
+          disabled={!supported || status === 'recording' || (compMode === 'comparative' && comparativeBlocked)}
         >
           {status === 'recording' ? '⏳ Génération…' : status === 'done' ? '🔄 Régénérer la vidéo' : '🎬 Générer la vidéo'}
         </Button>

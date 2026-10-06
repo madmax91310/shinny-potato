@@ -57,7 +57,7 @@ function chart(ctx, state, d, currency, kind) {
   const maximum = step * 2
   const py = v => bottom - v / maximum * (bottom - top)
   const px = i => left + (values.length <= 1 ? .5 : i / (values.length - 1)) * (right - left)
-  text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : annual ? (rows.every(p => p.date.endsWith('-12')) ? 'Capital en fin d’année' : 'Capital aux dates observées') : 'Capital suivi chaque mois', 650, 661, 27, { width: 870 })
+  if (annual) text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : rows.every(p => p.date.endsWith('-12')) ? 'Capital en fin d’année' : 'Capital aux dates observées', 650, 661, 27, { width: 870 })
   if (d.effectiveMode === 'dca' && !annual) {
     ctx.strokeStyle = GOLD; ctx.lineWidth = 2; ctx.setLineDash([8, 7]); ctx.beginPath(); ctx.moveTo(1095, 652); ctx.lineTo(1125, 652); ctx.stroke(); ctx.setLineDash([])
     text(ctx, 'Versements cumulés', 1135, 661, 20, { width: 380, color: MUTED, weight: 400 })
