@@ -1,6 +1,7 @@
 import datetime as dt
 import unittest
-from collect_document_etf import parse, parse_legacy
+import urllib.error
+from collect_document_etf import parse, parse_legacy, collect_legacy
 from apply_etf_collection import merge_collection
 from data_automation import UTC
 
@@ -33,5 +34,37 @@ class Documents(unittest.TestCase):
         self.assertEqual(parse_legacy(english,share,NOW)['aum']['amount'],1234567)
         with self.assertRaises(ValueError):parse_legacy(text.replace('IE00TEST0001','IE00OTHER001'),share,NOW)
         with self.assertRaises(ValueError):parse_legacy(text.replace('30/sept./2026','30/janv./2026'),share,NOW)
+
+    def test_legacy_transport_fallback_preserves_exact_source(self):
+        primary='https://www.ishares.com/ch/professionals/en/products/123/'
+        backup='https://www.blackrock.com/fr/particuliers/products/123/'
+        share={'isin':'IE00TEST0001','productId':123,'currency':'EUR','sourceUrl':primary,'fallbackUrls':[backup]}
+        text='var portfolioId = "123";'
+        for key,value in [('isin','IE00TEST0001'),('seriesBaseCurrencyCode','EUR'),('totalNetAssets','Actif net <span>au 30/sept./2026</span> EUR 1 234 567'),('emeaMgt','<b>TER</b><span>0,20%</span>')]:
+            text+=f'<div class="product-data-item col-{key}"><span>{value}</span></div>'
+        text+='</section>'
+        calls=[]
+        def fetch(url,*args):
+            calls.append(url)
+            if url==primary:raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
+            return text
+        result=collect_legacy(share,NOW,fetch)
+        self.assertEqual(calls,[primary,backup])
+        self.assertEqual(result['aum']['amount'],1234567)
+        self.assertEqual(result['sourceUrl'],backup)
+        self.assertEqual(result['aum']['sourceUrl'],backup)
+        self.assertEqual(len(result['aum']['sha256']),64)
+        def unavailable(url,*args):raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
+        with self.assertRaises(urllib.error.HTTPError):collect_legacy(share,NOW,unavailable)
+        # Successful but invalid data never silently falls back to another page.
+        for old,new in [('IE00TEST0001','IE00OTHER001'),('30/sept./2026','30/janv./2026'),('EUR','USD')]:
+            calls.clear()
+            def invalid(url,*args):
+                calls.append(url)
+                return text.replace(old,new)
+            with self.assertRaises(ValueError):collect_legacy(share,NOW,invalid)
+            self.assertEqual(calls,[primary])
+        with self.assertRaises(ValueError):
+            collect_legacy({**share,'fallbackUrls':['https://example.com/products/123/']},NOW,fetch)
 
 if __name__=='__main__':unittest.main()
