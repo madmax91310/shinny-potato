@@ -70,7 +70,11 @@ def main():
             h.write('\n## Extensions ETF et expositions synthétiques\n\n| Part | Source | État | Limites |\n|---|---|---|---|\n')
             h.write('Hors automatisation : '+', '.join(report['notQualified'])+'\n\n')
             for o in report['shares']:h.write(f"| {o['isin']} | {o['provider']} | {o['status']} | {o.get('reason',' ; '.join(o.get('unavailable',[])))} |\n")
-    if any(o['status']=='failed'for o in report['shares']if next(s for s in config['instruments']if s['isin']==o['isin']and s['provider']==o['provider']).get('required',False)):raise SystemExit(1)
+    # Every enabled connector belongs to active coverage. A transport/parser
+    # failure must reach the workflow signal, including recently added sources.
+    # Valid records were applied above; missing published fields are not failures.
+    if any(o['status']=='failed' for o in report['shares']):
+        raise SystemExit(1)
 
 
 if __name__=='__main__':main()

@@ -23,6 +23,8 @@ const rows=[
  '| Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |',
  '| Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |','',
  'Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET/GROSS et devises restent distincts. Les clôtures Yahoo sont recoupées entre granularités ou fenêtres du même fournisseur ; ce ne sont pas deux fournisseurs indépendants. L’or reste une moyenne mensuelle Banque mondiale. Pour SI=F, Yahoo omet des bougies mensuelles : ces mois sont recoupés avec une seconde requête quotidienne de fin de mois. Les niveaux STOXX viennent de son tableau quotidien officiel.','',
+ '## Disponibilité à fiabiliser','',
+ 'WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares ont fourni des données validées, mais plusieurs collectes GitHub du 6 octobre 2026 ont ensuite renvoyé HTTP 403. Les connecteurs et tentatives planifiées existent ; leurs dernières valeurs validées sont conservées. Leur accès reste à fiabiliser. Les 139 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 139 accès réussis à chaque exécution.','',
  '## Limites par champ ETF','',
  '| Champ collecté et consommé | Instruments |','|---|---:|',
  ...[['Frais annuels','ter'],['Encours daté','aum'],['Rendements calendaires 2020–2025 de la part','performance'],['Pays','countries'],['Secteurs ou sous-secteurs publiés','sectors'],['Principales positions','holdings']].map(([label,field])=>`| ${label} | ${count(field)} |`),'',
