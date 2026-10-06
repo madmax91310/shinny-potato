@@ -127,6 +127,7 @@ def collect_legacy(share,now,fetch=None):
         result = parse_legacy(text, share, now)
         result['sourceUrl'] = url
         result['aum'].update(sourceUrl=url, sha256=proof(text.encode()))
+        result['characteristics'].update(asOf=now.date().isoformat(), sourceUrl=url, sha256=proof(text.encode()))
         return result
     url = share['factsheetUrl']
     parsed = urlparse(url)

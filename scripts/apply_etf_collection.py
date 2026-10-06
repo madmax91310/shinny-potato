@@ -54,7 +54,7 @@ def merge_collection(report, current, baseline):
             previous = {k: v for k, v in old.get('characteristics', {}).items() if k != 'checkedAt'}
             # Monthly document facts must not overwrite more recent page facts.
             facts_date = share.get('characteristics', {}).get('asOf')
-            active_facts_date = old.get('characteristics', {}).get('asOf') or old.get('characteristics', {}).get('checkedAt')
+            active_facts_date = max(old.get('characteristics', {}).get('asOf', ''), old.get('characteristics', {}).get('checkedAt', ''))
             if (checked >= old.get('characteristics', {}).get('checkedAt', '')
                     and (not facts_date or not active_facts_date or facts_date >= active_facts_date)):
                 record['characteristics'] = old['characteristics'] if previous == characteristics else {**characteristics, 'checkedAt': checked}

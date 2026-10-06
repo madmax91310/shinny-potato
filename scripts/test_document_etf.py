@@ -82,5 +82,8 @@ class Documents(unittest.TestCase):
         merged=merge_collection({'checkedAt':'2026-10-06','shares':[result]},current,{})
         self.assertEqual(merged['IE00TEST0001']['aum'],current['IE00TEST0001']['aum'])
         self.assertEqual(merged['IE00TEST0001']['characteristics'],current['IE00TEST0001']['characteristics'])
+        current['IE00TEST0001']['characteristics']['asOf']='2026-09-07'
+        merged=merge_collection({'checkedAt':'2026-10-06','shares':[result]},current,{})
+        self.assertEqual(merged['IE00TEST0001']['characteristics'],current['IE00TEST0001']['characteristics'])
 
 if __name__=='__main__':unittest.main()
