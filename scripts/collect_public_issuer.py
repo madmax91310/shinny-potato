@@ -1,8 +1,10 @@
 """Dated exact-share issuer HTML; tables retain their economic scope."""
 import re
+import urllib.request
+import http.cookiejar
 import datetime as dt
 from html.parser import HTMLParser
-from data_automation import reject, number
+from data_automation import reject, number, get_text
 from issuer_documents import download, document_date, proof, validated_rows
 
 
@@ -133,6 +135,14 @@ def bitwise(text, share, now):
 
 
 def collect_one(share, now):
-    body=download(share['sourceUrl'], max_bytes=12_000_000)
-    text=body.decode('utf-8')
+    if share['parser']=='wisdomtree-html':
+        opener=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+        def open_page(request, **kwargs):
+            # Same public-page headers used by the qualified legacy iShares collector.
+            request.add_header('User-Agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36')
+            request.add_header('Accept-Language','en-GB,en;q=0.9')
+            return opener.open(request, **kwargs)
+        text=get_text(share['sourceUrl'],('text/html',),12_000_000,opener=open_page)
+    else:
+        text=download(share['sourceUrl'], max_bytes=12_000_000).decode('utf-8')
     return {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
