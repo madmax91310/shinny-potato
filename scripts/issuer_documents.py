@@ -13,10 +13,10 @@ import urllib.parse
 from data_automation import UTC, reject
 
 
-def download(url, max_bytes=8_000_000):
+def download(url, max_bytes=8_000_000, headers=None):
     # Issuer region redirects set cookies; keep them within this download chain.
     opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
-    request = urllib.request.Request(url, headers={'User-Agent': 'EpargnantLibre-Data/1.0', 'Accept-Language': 'en'})
+    request = urllib.request.Request(url, headers={'User-Agent': 'EpargnantLibre-Data/1.0', 'Accept-Language': 'en', **(headers or {})})
     for attempt in range(3):
         try:
             with opener.open(request, timeout=25) as response:

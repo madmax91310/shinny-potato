@@ -20,9 +20,11 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares ont fourni des données validées, mais plusieurs collectes GitHub du 6 octobre 2026 ont ensuite renvoyé HTTP 403. Les connecteurs et tentatives planifiées existent ; leurs dernières valeurs validées sont conservées. Leur accès reste à fiabiliser. Les 151 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 151 accès réussis à chaque exécution.
 
+Les pages HTML WisdomTree Gold/Copper/Defence/Quantum/Dividend Growth renvoient HTTP 403 depuis GitHub. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés, tandis que les encours et allocations complets issus des pages restent à leur dernière date validée tant que cet accès est bloqué. UBS : découverte du dernier PDF mensuel publié ; les erreurs temporaires sur un mois conduisent à essayer le mois précédent, dont la date et la fraîcheur sont vérifiées.
+
 ## Extension du 6 octobre 2026
 
-Douze des quinze instruments auparavant hors collecte sont désormais raccordés : Bitwise Bitcoin, WisdomTree Copper/Defence/Quantum/Dividend Growth, CoinShares Bitcoin/Ethereum, UBS World, L&G Battery/AI/Clean Energy et Global X QYLD. L&G Cyber Security reçoit aussi les calendriers exacts de la part ; WisdomTree Gold reçoit un encours daté depuis sa page officielle. Les séries complètes Battery, AI et Cyber Security sont intégrées lorsque leur devise correspond à la simulation. Clean Energy conserve son proxy : lancement en 2020, année incomplète.
+Douze des quinze instruments auparavant hors collecte sont désormais raccordés : Bitwise Bitcoin, WisdomTree Copper/Defence/Quantum/Dividend Growth, CoinShares Bitcoin/Ethereum, UBS World, L&G Battery/AI/Clean Energy et Global X QYLD. Les calendriers complets WisdomTree Copper et Dividend Growth proviennent des fiches PDF officielles. L&G Cyber Security reçoit aussi les calendriers exacts de la part ; WisdomTree Gold reçoit un encours daté depuis sa page officielle. Les séries complètes Battery, AI et Cyber Security sont intégrées lorsque leur devise correspond à la simulation. Clean Energy conserve son proxy : lancement en 2020, année incomplète.
 MSCI EM IMI et MSCI EM Latin America : compositions et rendements nets USD issus des fiches MSCI actuelles. Les trois instruments BNP restent hors collecte : accès au composant Fundsheet HTTP 502 et découverte récurrente de la fiche actuelle non qualifiée. Les anciens PDF ne sont pas promus en source actuelle.
 
 ## Limites par champ ETF
@@ -31,7 +33,7 @@ MSCI EM IMI et MSCI EM Latin America : compositions et rendements nets USD issus
 |---|---:|
 | Frais annuels | 151 |
 | Encours daté | 148 |
-| Rendements calendaires 2020–2025 de la part | 111 |
+| Rendements calendaires 2020–2025 de la part | 113 |
 | Pays | 131 |
 | Secteurs ou sous-secteurs publiés | 112 |
 | Principales positions | 119 |
@@ -88,7 +90,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR0013416716 | Amundi Physical Gold ETC | Pays, Secteurs, Principales positions |
 | FR001400S9V0 | Amundi PEA Luxe Monde UCITS ETF | Rendements calendaires |
 | FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Rendements calendaires |
-| GB00B15KXQ89 | WisdomTree Copper | Rendements calendaires, Pays, Secteurs, Principales positions |
+| GB00B15KXQ89 | WisdomTree Copper | Pays, Secteurs, Principales positions |
 | GB00BJYDH287 | WisdomTree Physical Bitcoin | Encours, Pays, Secteurs, Principales positions |
 | GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Encours, Rendements calendaires, Pays, Secteurs, Principales positions |
 | GB00BLD4ZM24 | CoinShares Ethereum Staking ETP | Encours, Rendements calendaires, Pays, Secteurs, Principales positions |
@@ -182,7 +184,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BYYHSQ67 | iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYZK4552 | iShares Automation & Robotics UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BZ163G84 | Vanguard € Corp Bond UCITS ETF | Pays, Secteurs, Principales positions |
-| IE00BZ56SW52 | WisdomTree Global Quality Dividend Growth UCITS ETF | Rendements calendaires |
+| IE00BZ56SW52 | WisdomTree Global Quality Dividend Growth UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | JE00B1VS3770 | WisdomTree Physical Gold | Pays, Secteurs, Principales positions |
 | LU0908500753 | Amundi Core STOXX Europe 600 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU1437018838 | Amundi FTSE EPRA NAREIT Global UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -238,7 +240,7 @@ Russell 1000/2000 : rendements annuels automatisés ; les compositions restent �
 
 ## Priorités suivantes
 
-1. Lever les blocages des 3 instruments encore hors collecte (BNP) ; compléter les encours CoinShares, calendriers complets disponibles et compositions des indices listés ci-dessus. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
+1. Lever les blocages des 3 instruments encore hors collecte (BNP) et fiabiliser les pages WisdomTree pour leurs encours/allocations ; compléter les encours CoinShares, calendriers complets disponibles et compositions des indices listés ci-dessus. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
 2. Automatiser le renouvellement annuel des fenêtres de simulation, avec contrôle des années complètes, devises, dividendes et proxys.
 3. Raccorder les caractéristiques et cotations (domicile, réplication, distribution, PEA) avec une provenance et une date propres à chaque champ.
 4. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles ; maintenir une revue des règles fiscales et offres de courtiers.

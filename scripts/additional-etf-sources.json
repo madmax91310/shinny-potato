@@ -829,7 +829,9 @@
       "provider": "WisdomTree",
       "parser": "wisdomtree-html",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
-      "currency": "USD"
+      "currency": "USD",
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+      "documentType": "wisdomtree"
     },
     {
       "isin": "GB00BJYDH287",
@@ -936,7 +938,9 @@
       "provider": "WisdomTree",
       "parser": "wisdomtree-html",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
-      "enabled": true
+      "enabled": true,
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+      "documentType": "wisdomtree"
     },
     {
       "isin": "IE0002Y8CX98",
@@ -945,7 +949,10 @@
       "provider": "WisdomTree",
       "parser": "wisdomtree-html",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "enabled": true
+      "enabled": true,
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+      "documentType": "wisdomtree-ucits",
+      "documentName": "WisdomTree Europe Defence UCITS ETF - EUR Acc"
     },
     {
       "isin": "IE000W8WMSL2",
@@ -954,7 +961,10 @@
       "provider": "WisdomTree",
       "parser": "wisdomtree-html",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "enabled": true
+      "enabled": true,
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+      "documentType": "wisdomtree-ucits",
+      "documentName": "WisdomTree Quantum Computing UCITS ETF - USD Acc"
     },
     {
       "isin": "IE00BZ56SW52",
@@ -963,7 +973,10 @@
       "provider": "WisdomTree",
       "parser": "wisdomtree-html",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
-      "enabled": true
+      "enabled": true,
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+      "documentType": "wisdomtree-ucits",
+      "documentName": "WisdomTree Global Quality Dividend Growth UCITS ETF - USD Acc"
     },
     {
       "isin": "IE00BM8R0J59",

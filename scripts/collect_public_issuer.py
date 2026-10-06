@@ -1,5 +1,6 @@
 """Dated exact-share issuer HTML; tables retain their economic scope."""
 import re
+import urllib.error
 import urllib.request
 import http.cookiejar
 import datetime as dt
@@ -142,7 +143,49 @@ def collect_one(share, now):
             request.add_header('User-Agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36')
             request.add_header('Accept-Language','en-GB,en;q=0.9')
             return opener.open(request, **kwargs)
-        text=get_text(share['sourceUrl'],('text/html',),12_000_000,opener=open_page)
+        try:
+            text=get_text(share['sourceUrl'],('text/html',),12_000_000,opener=open_page)
+        except (urllib.error.URLError,TimeoutError):
+            body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
+            return wisdomtree_factsheet(body,share,now)
     else:
         text=download(share['sourceUrl'], max_bytes=12_000_000).decode('utf-8')
     return {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
+
+
+def wisdomtree_factsheet(body, share, now):
+    """Transport fallback: current official PDF, never a re-dated cached HTML page."""
+    from issuer_documents import pdf_text, bounded_return
+    from collect_document_etf import parse as document_parse
+    from urllib.parse import urlparse
+    url=share['factsheetUrl'];parsed=urlparse(url)
+    if parsed.scheme!='https' or parsed.netloc!='dataspanapi.wisdomtree.com' or not parsed.path.startswith('/pdr/documents/FACTSHEET/') or not parsed.path.endswith('/'+share['isin']):
+        reject('Unexpected WisdomTree official factsheet URL')
+    text=pdf_text(body);dates=re.findall(r'Document Date:\s*(\d{2}/\d{2}/\d{4})',text)
+    stamp=document_date(only(dates,'WisdomTree factsheet date'),now)
+    share={**share,'sourceUrl':url};digest=proof(body)
+    if share['documentType']=='wisdomtree':
+        result=document_parse(text,share,now)
+        swap=re.findall(r'Annual Swap Rate\s+([\d.]+)%',text)
+        if swap:result['characteristics']['annualSwapRatePct']=float(only(swap,'swap rate'))
+    else:
+        currency=only(re.findall(r'Base Currency\s+([A-Z]{3})\s*$',text,re.M),'factsheet currency')
+        if currency!=share['currency'] or share['isin'] not in text or share['documentName'] not in ' '.join(text.split()):
+            reject('Wrong WisdomTree UCITS exact share/currency')
+        ter=float(only(re.findall(r'Total Expense Ratio\s+([\d.]+)%',text),'factsheet TER'))
+        if not 0<=ter<=5:reject('Invalid WisdomTree TER')
+        result=base(share,stamp,digest);result['characteristics']['terPct']=ter
+        if 'Calendar Year Performance (Net of fees)' in text:
+            block=text.split('Calendar Year Performance (Net of fees)',1)[1].split('Rolling 12-month',1)[0]
+            chunks=[c.strip()for c in re.split(r'\n\s*\n',block)if c.strip()]
+            years=re.findall(r'\b(20\d{2})\b',chunks[0]);row=chunks[1]
+            values=re.findall(r'(-?[\d.]+)%',row)
+            label=' '.join(re.sub(r'-?[\d.]+%','',row).split())
+            if label!=share['documentName'] or len(values)!=len(years) or len(set(years))!=len(years) or any(int(y)>=now.year for y in years):
+                reject('WisdomTree fund calendar row/columns mismatch')
+            launch=dt.datetime.strptime(only(re.findall(r'Inception Date\s+(\d{2}/\d{2}/\d{4})',text),'inception date'),'%d/%m/%Y').date()
+            result['performance']={'currency':currency,'basis':'fund','years':{y:bounded_return(float(v))for y,v in zip(years,values)if launch<=dt.date(int(y),1,1)},'method':'calendar-year exact-share NAV return, net of fees'}
+    result['characteristics'].update(asOf=stamp,sourceUrl=url,sha256=digest)
+    if 'performance'in result:result['performance'].update(asOf=stamp,sourceUrl=url,sha256=digest)
+    result['unavailable'].append('HTML unavailable: official PDF used; AUM and complete allocations not published in this PDF, previous dated values preserved')
+    return result

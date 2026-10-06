@@ -4,8 +4,9 @@ import datetime as dt
 import json
 from pathlib import Path
 import unittest
+import urllib.error
 from unittest.mock import patch
-from collect_public_issuer import wisdomtree, bitwise, globalx
+from collect_public_issuer import wisdomtree, bitwise, globalx, wisdomtree_factsheet, collect_one as public_collect
 from collect_lg_api import parse as lg, decode
 from collect_remaining_documents import coinshares, ubs, collect_one, ubs_urls
 from apply_etf_collection import merge_collection
@@ -33,6 +34,31 @@ class IssuerSources(unittest.TestCase):
         result=wisdomtree(text,share('GB00B15KXQ89'),NOW)
         self.assertEqual(result['characteristics']['terPct'],.49)
         self.assertEqual(result['characteristics']['annualSwapRatePct'],.45)
+
+    def test_wisdomtree_pdf_calendar_and_launch_year(self):
+        text=(FIX/'wisdomtree-calendar.txt').read_text();s=share('IE00BZ56SW52')
+        def parse(t,config=s):
+            with patch('issuer_documents.pdf_text',return_value=t):return wisdomtree_factsheet(b'%PDF-body',config,NOW)
+        r=parse(text)
+        self.assertEqual(r['performance']['years']['2025'],16.33)
+        self.assertEqual(r['performance']['years']['2020'],16.26)
+        self.assertNotIn('aum',r)
+        self.assertNotIn('2020',parse(text.replace('03/06/2016','03/06/2020'))['performance']['years'])
+        for a,b in [('IE00BZ56SW52','IE00OTHER001'),('Base Currency USD','Base Currency EUR'),('31/08/2026','31/01/2026'),('2025','2026')]:
+            with self.assertRaises(ValueError):parse(text.replace(a,b))
+        with self.assertRaises(ValueError):parse(text,{**s,'factsheetUrl':'https://example.com/facts.pdf'})
+
+    def test_wisdomtree_fallback_only_on_transport_failure(self):
+        text=(FIX/'wisdomtree-calendar.txt').read_text();s=share('IE00BZ56SW52')
+        failure=urllib.error.HTTPError(s['sourceUrl'],403,'Forbidden',{},None)
+        with patch('collect_public_issuer.get_text',side_effect=failure),patch('collect_public_issuer.download',return_value=b'%PDF-body'),patch('issuer_documents.pdf_text',return_value=text):
+            r=public_collect(s,NOW)
+            self.assertEqual(r['sourceUrl'],s['factsheetUrl'])
+            self.assertEqual(r['performance']['asOf'],'2026-08-31')
+        bad=(FIX/'wisdomtree.html').read_text().replace(s['isin'],'IE00OTHER001')
+        with patch('collect_public_issuer.get_text',return_value=bad),patch('collect_public_issuer.download')as fetch:
+            with self.assertRaises(ValueError):public_collect(s,NOW)
+            fetch.assert_not_called()
 
     def test_bitwise_launch_year_not_full_fund_history(self):
         text=(FIX/'bitwise.html').read_text();s=share('DE000A27Z304');r=bitwise(text,s,NOW)
@@ -82,6 +108,11 @@ class IssuerSources(unittest.TestCase):
         with patch('collect_remaining_documents.download',side_effect=fetch),patch('collect_remaining_documents.pdf_text',return_value=text):
             r=collect_one(s,NOW)
             self.assertEqual(r['sourceUrl'],urls[1])
+        def timeout(url):
+            if url==urls[0]:raise TimeoutError('latest month timed out')
+            return b'%PDF-body'
+        with patch('collect_remaining_documents.download',side_effect=timeout),patch('collect_remaining_documents.pdf_text',return_value=text):
+            self.assertEqual(collect_one(s,NOW)['sourceUrl'],urls[1])
         with patch('collect_remaining_documents.download',side_effect=ValueError('unexpected HTML')):
             with self.assertRaises(ValueError):collect_one(s,NOW)
 

@@ -74,8 +74,10 @@ def collect_one(share,now):
     for url in ubs_urls(now):
         try:body=download(url)
         except urllib.error.HTTPError as e:
-            if e.code==404:continue
+            if e.code in (404,429,500,502,503,504):continue
             raise
+        except (urllib.error.URLError,TimeoutError):
+            continue  # Try another published month, retaining each document’s true date.
         except ValueError as e:
             if 'received Dokument nicht gefunden | Swiss Fund Data at '+url in str(e):continue
             raise
