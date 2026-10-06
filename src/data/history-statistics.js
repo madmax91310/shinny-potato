@@ -1,11 +1,14 @@
-import { DIVERSIFICATION_HISTORY, DIVERSIFICATION_HISTORY_REVIEW } from './diversification-history.js'
-import { MSCI_HISTORY, MSCI_HISTORY_REVIEW } from './msci-history.js'
-import { COMPANY_HISTORY, COMPANY_HISTORY_REVIEW } from './company-history.js'
-import { MONTHLY_HISTORY_ADDITIONS, MONTHLY_HISTORY_ADDITIONS_REVIEW } from './monthly-history-additions.js'
+import { ASSETS } from './market-history.js'
+import { MARKET_HISTORY_REVIEW } from './market-history-review.js'
+import { DIVERSIFICATION_HISTORY } from './diversification-history.js'
+import { MSCI_HISTORY } from './msci-history.js'
+import { COMPANY_HISTORY } from './company-history.js'
+import { MONTHLY_HISTORY_ADDITIONS } from './monthly-history-additions.js'
 // Calcul sur les seules clôtures mensuelles ajustées, jamais sur des prix interpolés.
 // Le drawdown mensuel peut sous-estimer une baisse entre deux clôtures.
-const histories = { ...COMPANY_HISTORY, ...MONTHLY_HISTORY_ADDITIONS, ...DIVERSIFICATION_HISTORY, msciWorldSmallCap: MSCI_HISTORY.msciWorldSmallCap }
-const reviews = { ...COMPANY_HISTORY_REVIEW, ...MONTHLY_HISTORY_ADDITIONS_REVIEW, ...DIVERSIFICATION_HISTORY_REVIEW, "history:msciWorldSmallCap": MSCI_HISTORY_REVIEW["history:msciWorldSmallCap"] }
+const baselineHistories = { ...COMPANY_HISTORY, ...MONTHLY_HISTORY_ADDITIONS, ...DIVERSIFICATION_HISTORY, msciWorldSmallCap: MSCI_HISTORY.msciWorldSmallCap }
+const histories = Object.fromEntries(Object.keys(baselineHistories).map(id => [id, ASSETS[id]]))
+const reviews = MARKET_HISTORY_REVIEW
 export const HISTORY_STATISTIC_IDS = Object.keys(histories)
 const monthIndex = date => Number(date.slice(0, 4)) * 12 + Number(date.slice(5, 7)) - 1
 export function monthlyDrawdown(points) {

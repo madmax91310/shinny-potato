@@ -17,6 +17,18 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 
 def collect_one(share,now):
+    if share['parser']=='ishares-legacy':
+        from collect_document_etf import collect_legacy
+        return collect_legacy(share,now)
+    if share['parser']=='document':
+        from collect_document_etf import collect_one as document
+        return document(share,now)
+    if share['parser']=='ishares':
+        from collect_etf_pilot import collect
+        return collect({'instruments':[share]}, {share['isin']:{}}, now)['shares'][0]
+    if share['parser']=='ssga':
+        from collect_ssga_etf import collect
+        return collect({'instruments':[share]},now)['shares'][0]
     if share['parser']=='dws':
         return dws(share, now)
     return {'vanguard':vanguard,'vaneck':vaneck,'invesco':invesco,'amundi-index':amundi_index}[share['parser']](share,now)

@@ -63,14 +63,14 @@ def parse_share(body, share, now):
         components = parser.components
     facts = components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
     value = lambda key: facts[key]['value']
-    if value('isin') != share['isin'] or value('seriesBaseCurrencyCode') != share['currency']:
+    if value('isin') != share['isin'] or value(share.get('currencyField','seriesBaseCurrencyCode')) != share['currency']:
         reject('Unexpected share identity or currency')
     if value('useOfProfitsCode') != share.get('distribution', 'Accumulating'):
         reject('Unexpected distribution policy')
     ter = number(value('emeaMgt'), positive=False)
     if ter > 5:
         reject('Invalid TER')
-    aum = facts['totalNetAssets']
+    aum = facts[share.get('aumField','totalNetAssets')]
     if aum.get('prefix', '').strip() != share['currency']:
         reject('Share AUM currency mismatch')
     exposure = components.get('exposureBreakdowns', {}).get('containersByNameMap', {})
@@ -82,7 +82,7 @@ def parse_share(body, share, now):
     types = calendar.get('returnTypes', {}).get('value', [])
     if not types and not share.get('requireFullHistory', True):
         return {**share, 'terPct': ter, 'index': value('indexSeriesName'), 'distribution': value('useOfProfitsCode'),
-            'aum': {'amount': number(aum['value']), 'currency': share['currency'], 'scope': 'share-class', 'asOf': source_date(aum['asOfDate'], now)},
+            'aum': {'amount': number(aum['value']), 'currency': share['currency'], 'scope': share.get('aumScope','share-class'), 'asOf': source_date(aum['asOfDate'], now)},
             'countries': countries, 'sectors': sectors, 'rawComponents': components}
     if not isinstance(types, list) or types.count('annualNav') != 1:
         reject('Calendar NAV total return missing or ambiguous')
@@ -113,7 +113,7 @@ def parse_share(body, share, now):
     return {**share, 'terPct': ter, 'index': value('indexSeriesName'),
             'distribution': value('useOfProfitsCode'),
             'aum': {'amount': number(aum['value']), 'currency': share['currency'],
-                    'scope': 'share-class', 'asOf': source_date(aum['asOfDate'], now)},
+                    'scope': share.get('aumScope','share-class'), 'asOf': source_date(aum['asOfDate'], now)},
             'countries': countries, 'sectors': sectors,
             'performance': {'currency': share['currency'], 'basis': 'fund',
                             'method': 'calendar-year NAV total return, income reinvested, fund fees included',

@@ -163,7 +163,7 @@ world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.source,
 // Garde les corrections chiffrées issues des tableaux annuels du fournisseur indiqué.
 // Les cours crypto proviennent de Slickcharts, les rendements d'ETF de leur émetteur.
 const primarySeries = new Map(Object.entries({
-  argent: [46.2, -13.0, 3.5, -0.8, 21.3, 148.6],
+  argent: getInstrumentReturnValues('IE00B4NCWG09'),
 world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.values,
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   smallcap_europe: [4.37, 23.72, -22.11, 12.86, 5.70, 16.62],
@@ -182,7 +182,7 @@ const verifiedSeries = new Map(Object.entries({
   msci_acwi: [15.70, 18.59, -18.30, 22.01, 17.36, 22.81],
   msci_em_spdr: [18.00, -2.50, -20.39, 9.80, 7.62, 33.80],
   or: [23.95, -3.90, -0.54, 13.66, 26.44, 64.80],
-  or_ishares: [23.9, -3.9, -0.5, 13.7, 26.4, 64.8],
+  or_ishares: getInstrumentReturnValues('IE00B4ND3602'),
   or_amundi: [23.98, -3.89, -0.54, 13.66, 26.44, 64.80],
   or_wisdomtree: [23.69, -4.13, -0.81, 13.35, 26.10, 64.36],
   bitcoin_wisdomtree: [295.13, 65.77, -65.94, 156.24, 122.57, -7.91],

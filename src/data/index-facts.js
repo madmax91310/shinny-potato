@@ -752,6 +752,19 @@ function formatCompositionDate(asOf) {
   return new Intl.DateTimeFormat('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', timeZone:'UTC' }).format(new Date(asOf));
 }
 
+export function buildAutomatedIndexSnapshot(facts, baseline) {
+  return { ...facts,
+      markets: facts.markets ?? baseline.markets,
+      snapshot: new Intl.DateTimeFormat('fr-FR', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(new Date(facts.asOf)),
+      descriptionTemplates: Object.fromEntries(Object.entries(baseline.descriptionTemplates ?? {}).map(([key, text]) =>
+        [key, text.replaceAll(formatCompositionDate(baseline.asOf), formatCompositionDate(facts.asOf))])),
+      ...(baseline.marketCount ? { marketCount: baseline.marketCount } : {}),
+      ...(baseline.targetConstituents != null ? { targetConstituents: baseline.targetConstituents } : {}),
+      ...(baseline.approximateConstituents ? { approximateConstituents: Math.round(facts.constituents / 100) * 100 } : {}),
+      methodologySources: baseline.methodologySources,
+    };
+}
+
 // Add newly dated observations; a named historical snapshot remains immutable.
 export const CURRENT_INDEX_KEYS = {};
 for (const [id, record] of Object.entries(automatedIndices)) {
@@ -762,15 +775,7 @@ for (const [id, record] of Object.entries(automatedIndices)) {
     if (history[facts.asOf]) continue;
     const baseline = Object.values(history).filter(f => f.asOf && f.asOf <= facts.asOf).sort((a,b) => b.asOf.localeCompare(a.asOf))[0];
     if (!baseline) continue;
-    history[facts.asOf] = { ...facts,
-      markets: facts.markets ?? baseline.markets,
-      snapshot: new Intl.DateTimeFormat('fr-FR', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(new Date(facts.asOf)),
-      descriptionTemplates: Object.fromEntries(Object.entries(baseline.descriptionTemplates ?? {}).map(([key, text]) =>
-        [key, text.replaceAll(formatCompositionDate(baseline.asOf), formatCompositionDate(facts.asOf))])),
-      ...(baseline.marketCount ? { marketCount: baseline.marketCount } : {}),
-      ...(baseline.approximateConstituents ? { approximateConstituents: Math.round(facts.constituents / 100) * 100 } : {}),
-      methodologySources: baseline.methodologySources,
-    };
+    history[facts.asOf] = buildAutomatedIndexSnapshot(facts, baseline);
   }
   if (history[record.facts.asOf]) CURRENT_INDEX_KEYS[id] = record.facts.asOf;
 }

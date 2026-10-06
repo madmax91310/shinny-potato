@@ -1,3 +1,4 @@
+import { applyMonthlyReviews } from './monthly-automation.js';
 import BITCOIN_MONTHLY from './bitcoin-yahoo-monthly.json' with { type: 'json' };
 import { DIVERSIFICATION_HISTORY_REVIEW } from './diversification-history.js';
 import GOLD_MONTHLY from './worldbank-gold-monthly.json' with { type: 'json' };
@@ -5,7 +6,7 @@ import { MONTHLY_HISTORY_ADDITIONS_REVIEW } from './monthly-history-additions.js
 import { MSCI_HISTORY_REVIEW } from './msci-history.js';
 import { COMPANY_HISTORY_REVIEW } from './company-history.js';
 // Contrôle du 02/10/2026. Aucun prix dupliqué ici ; captures rejouées par audit:calculator-series.
-export const MARKET_HISTORY_REVIEW = {
+const BASELINE_REVIEW = {
   ...MSCI_HISTORY_REVIEW,
   ...DIVERSIFICATION_HISTORY_REVIEW,
   ...COMPANY_HISTORY_REVIEW,
@@ -316,3 +317,5 @@ export const MARKET_HISTORY_REVIEW = {
     note: `Classeur du ${GOLD_MONTHLY.workbookUpdatedAt}, SHA-256 ${GOLD_MONTHLY.workbookSha256}. Série entière validée automatiquement. ${GOLD_MONTHLY.seriesDescription}. ${GOLD_MONTHLY.attribution}.`,
   },
 };
+
+export const MARKET_HISTORY_REVIEW = applyMonthlyReviews(BASELINE_REVIEW);

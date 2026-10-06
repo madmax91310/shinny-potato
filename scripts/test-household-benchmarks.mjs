@@ -24,9 +24,12 @@ close(acrossYear.finalValue, 1002.5 * 1.0025);
 // Le recul de septembre reste un recul ; aucune moyenne annuelle positive n’est substituée.
 close(computeBenchmarkSeries(INFLATION, '2026-08', '2026-09', 1000, 'lump').finalValue, 997);
 close(getBenchmarkPerformance('2026-08', '2026-09').inflationPct, -0.3);
-assert.throws(() => computeBenchmarkSeries(INFLATION, '2026-09', '2026-10', 1000, 'lump'), /absente/);
+const lastInflationMonth=Object.keys(INFLATION_MONTHLY).sort().at(-1);
+const [lastYear,lastMonth]=lastInflationMonth.split('-').map(Number);
+const unpublishedMonth=new Date(Date.UTC(lastYear,lastMonth,1)).toISOString().slice(0,7);
+assert.throws(() => computeBenchmarkSeries(INFLATION,lastInflationMonth,unpublishedMonth,1000,'lump'), /absente/);
 const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/household-benchmarks-2026-10-03.json', import.meta.url)));
-assert.deepEqual(INFLATION_MONTHLY, snapshot.monthlyRates);
+assert.deepEqual(Object.fromEntries(Object.keys(snapshot.monthlyRates).map(month=>[month,INFLATION_MONTHLY[month]])), snapshot.monthlyRates);
 assert.deepEqual(snapshot.provisionalMonths, ['2026-09']);
 assert.equal(INFLATION[2026], undefined); // aucune moyenne annuelle fictive pour une année inachevée.
 for (let year = 2010; year <= 2025; year++) for (const posteId of [null, 'loyer', 'alimentation', 'carburant']) {
@@ -34,5 +37,6 @@ for (let year = 2010; year <= 2025; year++) for (const posteId of [null, 'loyer'
   assert.ok(!/NaN|undefined|provisoire|12 mois glissants/.test(text));
   assert.ok(text.includes('août 2026'));
 }
-assert.deepEqual(ASSETS.or.points.at(-1), { date: '2026-09', price: 4319 });
+const gold=JSON.parse(readFileSync(new URL('../src/data/worldbank-gold-monthly.json',import.meta.url)));
+assert.deepEqual(ASSETS.or.points.at(-1),{date:gold.points.at(-1)[0],price:gold.points.at(-1)[1]});
 console.log('Repères ménages : raccord base 2025, taux Livret A, capitalisation, DCA, 64 tweets et observations mensuelles validés.');

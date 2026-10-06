@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
 import { AUTOMATED_INDICES } from '../src/data/automated-indices.js';
-import { INDEX_FACTS, getIndexFacts, getCurrentIndexFacts, getCurrentIndexDescription, formatCurrentIndexDate, getIndexDescription } from '../src/data/index-facts.js';
+import { INDEX_FACTS, buildAutomatedIndexSnapshot, getIndexFacts, getCurrentIndexFacts, getCurrentIndexDescription, formatCurrentIndexDate, getIndexDescription } from '../src/data/index-facts.js';
 import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js';
 import { AUTOMATED_ETF, refreshFundDetails } from '../src/data/automated-etf.js';
 import { SHEETS } from '../src/data/index-factsheets.js';
@@ -47,3 +47,9 @@ for (const [isin, r] of Object.entries(AUTOMATED_ETF)) {
   }
 }
 console.log('Current index data, immutable historical snapshots, compatible return conventions and synthetic exposures verified.');
+
+// A new dated composition retains the nominal methodology used by descriptions.
+const nextChina = buildAutomatedIndexSnapshot({ asOf: '2026-09-30', constituents: 49 }, { asOf: '2026-08-31', targetConstituents: 50, descriptionTemplates: { china: 'Les {{targetConstituents}} valeurs nominales, photographie 31/08/2026.' } });
+assert.equal(nextChina.targetConstituents, 50);
+assert.equal(nextChina.constituents, 49);
+assert(nextChina.descriptionTemplates.china.includes('30/09/2026'));
