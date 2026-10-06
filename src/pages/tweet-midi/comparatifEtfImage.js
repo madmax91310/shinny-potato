@@ -77,7 +77,8 @@ function card(ctx, fund, performance, years, i, count, scaleMax) {
       const row = performance.rows.find(value => value.year === year)
       const yy = y + 304 + j * 99
       text(ctx, String(year), x + 27, yy, 26, { color: MUTED, weight: 400 })
-      text(ctx, row ? pct(row.pct) : 'N/D', x + cardW - 27, yy - 6, count > 3 ? 36 : 42, { align: 'right', width: cardW - 130, color: row?.pct < 0 ? RED : GREEN })
+      if (row) text(ctx, pct(row.pct), x + cardW - 27, yy - 6, count > 3 ? 36 : 42, { align: 'right', width: cardW - 130, color: row.pct < 0 ? RED : GREEN })
+      else text(ctx, 'N/D', x + cardW - 27, yy - 6, 30, { align: 'right', color: MUTED })
       ctx.fillStyle = '#223a49'; roundedRect(ctx, x + 27, yy + 50, cardW - 54, 12, 6); ctx.fill()
       if (row) {
         ctx.fillStyle = row.pct < 0 ? RED : accent
