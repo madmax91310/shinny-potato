@@ -1,6 +1,7 @@
 """Bounded official-document downloads and deterministic text extraction (no AI)."""
 import datetime as dt
 import hashlib
+import http.cookiejar
 import pathlib
 import re
 import subprocess
@@ -12,10 +13,12 @@ from data_automation import UTC, reject
 
 
 def download(url, max_bytes=8_000_000):
-    request = urllib.request.Request(url, headers={'User-Agent': 'EpargnantLibre-Data/1.0'})
+    # Issuer region redirects set cookies; keep them within this download chain.
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+    request = urllib.request.Request(url, headers={'User-Agent': 'EpargnantLibre-Data/1.0', 'Accept-Language': 'en'})
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(request, timeout=25) as response:
+            with opener.open(request, timeout=25) as response:
                 body = response.read(max_bytes + 1)
                 if len(body) > max_bytes:
                     reject('Official document exceeds size limit')

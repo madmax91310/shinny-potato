@@ -4,9 +4,11 @@ import datetime as dt
 import json
 import pathlib
 import unittest
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from unittest.mock import patch
 from data_automation import UTC
-from issuer_documents import document_date, validated_rows, pdf_text
+from issuer_documents import document_date, validated_rows, pdf_text, download
 from collect_index_documents import msci_composition, msci_returns, ftse_composition, ftse_returns
 from refresh_index_sources import merge_records
 from refresh_additional_etf import refresh
@@ -38,6 +40,19 @@ class Documents(unittest.TestCase):
         self.assertEqual({2021,2022,2023,2024,2025},{y for y,_ in returns if y>=2021})
         with self.assertRaises(ValueError):ftse_returns(text,{**config,'returnVariant':'NET'},NOW)
         with self.assertRaises(ValueError):ftse_returns(text,{**config,'returnCurrency':'EUR'},NOW)
+    def test_document_redirect_keeps_issuer_cookie(self):
+        class Issuer(BaseHTTPRequestHandler):
+            def do_GET(self):
+                if self.headers.get('Cookie') != 'issuerRegion=eu':
+                    self.send_response(302);self.send_header('Set-Cookie','issuerRegion=eu; Path=/')
+                    self.send_header('Location','/factsheet.pdf');self.end_headers()
+                else:
+                    self.send_response(200);self.end_headers();self.wfile.write(b'%PDF-proof')
+            def log_message(self,*args):pass
+        server=HTTPServer(('127.0.0.1',0),Issuer)
+        worker=threading.Thread(target=server.serve_forever,daemon=True);worker.start()
+        try:self.assertEqual(download(f'http://127.0.0.1:{server.server_port}/factsheet.pdf'),b'%PDF-proof')
+        finally:server.shutdown();worker.join();server.server_close()
     def test_invalid_dates_pdf_and_truncated_allocations(self):
         for stamp in ['2026-10-06','2026-02-30','2020-01-01']:
             with self.assertRaises(ValueError):document_date(stamp,NOW)
