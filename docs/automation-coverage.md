@@ -18,7 +18,7 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 ## Disponibilité à fiabiliser
 
-WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares ont fourni des données validées, mais plusieurs collectes GitHub du 6 octobre 2026 ont ensuite renvoyé HTTP 403. Les connecteurs et tentatives planifiées existent ; leurs dernières valeurs validées sont conservées. Leur accès reste à fiabiliser. Les 139 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 139 accès réussis à chaque exécution.
+WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares ont fourni des données validées, mais plusieurs collectes GitHub du 6 octobre 2026 ont ensuite renvoyé HTTP 403. Les connecteurs et tentatives planifiées existent ; leurs dernières valeurs validées sont conservées. Le collecteur conserve les cookies régionaux, essaie aussi la page officielle BlackRock française, puis la fiche mensuelle officielle PDF si les pages HTML sont inaccessibles. Les encours et frais d’un PDF plus ancien ne remplacent pas une observation active plus récente. Un échec de tous ces accès reste signalé. Les 139 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 139 accès réussis à chaque exécution.
 
 ## Limites par champ ETF
 

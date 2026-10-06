@@ -908,7 +908,11 @@
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
       "currency": "EUR",
       "provider": "iShares",
-      "parser": "ishares-legacy"
+      "parser": "ishares-legacy",
+      "fallbackUrls": [
+        "https://www.blackrock.com/fr/particuliers/products/335178/"
+      ],
+      "factsheetUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
     },
     {
       "isin": "IE000DQLYVB9",
@@ -917,7 +921,11 @@
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
       "currency": "EUR",
       "provider": "iShares",
-      "parser": "ishares-legacy"
+      "parser": "ishares-legacy",
+      "fallbackUrls": [
+        "https://www.blackrock.com/fr/particuliers/products/342916/"
+      ],
+      "factsheetUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
     }
   ]
 }

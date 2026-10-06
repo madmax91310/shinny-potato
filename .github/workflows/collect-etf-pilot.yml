@@ -57,6 +57,9 @@ jobs:
       collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.indices.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Queued runs and old-run retries must collect against current data.
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

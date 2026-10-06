@@ -1,6 +1,10 @@
 """Exact-share public issuer factsheets; publish only explicitly labelled fields."""
 import re
 import datetime as dt
+import urllib.error
+import urllib.request
+import http.cookiejar
+from urllib.parse import urlparse
 from html.parser import HTMLParser
 from data_automation import number, reject
 from issuer_documents import download, pdf_text, document_date, proof, bounded_return, validated_rows
@@ -92,8 +96,68 @@ def parse_legacy(text,share,now):
         'unavailable':['performance: new share lacks full 2020–2025 calendar history','exposures: swap basket is not the tracked-index composition']}
 
 
-def collect_legacy(share,now):
+def collect_legacy(share,now,fetch=None):
     from data_automation import get_text
-    text=get_text(share['sourceUrl'],('text/html',),6_000_000);result=parse_legacy(text,share,now)
-    result['aum'].update(sourceUrl=share['sourceUrl'],sha256=proof(text.encode()))
+    if fetch is None:
+        # The public legacy pages reject the generic collector agent on hosted
+        # runners. Keep regional cookies and send normal HTML request headers.
+        opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+        def open_page(request, **kwargs):
+            request.add_header('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36')
+            request.add_header('Accept-Language', 'en-GB,en;q=0.9,fr;q=0.8')
+            return opener.open(request, **kwargs)
+        def fetch(url, content_types, max_bytes):
+            return get_text(url, content_types, max_bytes, opener=open_page)
+    urls = [share['sourceUrl'], *share.get('fallbackUrls', [])]
+    # Only transport failures qualify for an alternate official page. A response
+    # with the wrong ISIN, currency or stale date must still fail validation.
+    for position, url in enumerate(urls):
+        parsed = urlparse(url)
+        if (parsed.scheme != 'https' or parsed.hostname not in ('www.ishares.com', 'www.blackrock.com')
+                or f'/products/{share["productId"]}/' not in parsed.path):
+            reject('Unexpected legacy iShares official source')
+        try:
+            text = fetch(url, ('text/html',), 6_000_000)
+        except (urllib.error.URLError, TimeoutError):
+            if position == len(urls) - 1:
+                if not share.get('factsheetUrl'):
+                    raise
+                break
+            continue
+        result = parse_legacy(text, share, now)
+        result['sourceUrl'] = url
+        result['aum'].update(sourceUrl=url, sha256=proof(text.encode()))
+        result['characteristics'].update(asOf=now.date().isoformat(), sourceUrl=url, sha256=proof(text.encode()))
+        return result
+    url = share['factsheetUrl']
+    parsed = urlparse(url)
+    if (parsed.scheme != 'https' or parsed.hostname != 'www.blackrock.com'
+            or not parsed.path.startswith('/fr/particuliers/literature/fact-sheet/')
+            or not parsed.path.endswith('.pdf')):
+        reject('Unexpected iShares factsheet source')
+    body = download(url)
+    result = parse_legacy_factsheet(pdf_text(body), pdf_text(body, crop=(380,215)), share, now)
+    result['sourceUrl'] = url
+    for field in ('aum', 'characteristics'):
+        result[field].update(sourceUrl=url, sha256=proof(body))
     return result
+
+
+def parse_legacy_factsheet(text, facts, share, now):
+    if (match(r'ISIN\s*:\s*([A-Z0-9]{12})', facts) != share['isin']
+            or match(r"Devise de la Classe d'Actions\s*:\s*([A-Z]{3})", facts) != share['currency']
+            or match(r'Utilisation des gains\s*:\s*(\w+)', facts) != 'Capitalisation'):
+        reject('Wrong iShares factsheet share/currency/distribution')
+    months={'janv.':1,'févr.':2,'mars':3,'avr.':4,'mai':5,'juin':6,'juil.':7,'août':8,'sept.':9,'oct.':10,'nov.':11,'déc.':12}
+    def date(value):
+        day,month,year=value.split('-')
+        return document_date(dt.date(int(year),months[month],int(day)).isoformat(),now)
+    stamp=date(match(r"l'actif net au (\d{2}-[a-zéû.]+-20\d{2})",text))
+    facts_stamp=date(match(r'sont en date du (\d{2}-[a-zéû.]+-20\d{2})',text))
+    ter=float(match(r'Ratio des charges totales\s*:\s*([\d,]+)%',facts).replace(',','.'))
+    if not 0<=ter<=5:reject('Invalid iShares factsheet TER')
+    amount,currency=match(r'Actif net de la Catégorie d[’\x27]actions \(M\)\s*:\s*([\d.,]+)\s*([A-Z]{3})',facts)
+    if currency!=share['currency']:reject('Wrong iShares factsheet AUM currency')
+    return {**share,'characteristics':{'terPct':ter,'asOf':facts_stamp},
+            'aum':{'amount':number(float(amount.replace('.','').replace(',','.'))*1e6),'currency':currency,'scope':'share-class','asOf':stamp},
+            'unavailable':['performance: no complete 2020–2025 share history','exposures: swap basket is not the tracked-index composition','aum: monthly factsheet; newer active observations are preserved']}
