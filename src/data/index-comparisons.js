@@ -1,4 +1,4 @@
-import { getCurrentIndexFacts as getIndexFacts, getCurrentIndexDescription as getIndexDescription, formatCurrentIndexFact as formatIndexFact, formatCurrentIndexConstituents as formatIndexConstituents } from './index-facts.js';
+import { formatCurrentIndexDate, getCurrentIndexFacts as getIndexFacts, getCurrentIndexDescription as getIndexDescription, formatCurrentIndexFact as formatIndexFact, formatCurrentIndexConstituents as formatIndexConstituents } from './index-facts.js';
 import { getInstrumentComparatorReturns } from './instrument-comparator-returns.js';
 import { getInstrumentAum, getInstrumentAumBillions } from './instrument-aum.js';
 import { getInstrumentName, getInstrumentPeaStatus } from './instruments.js';
@@ -178,7 +178,7 @@ export const FAMILIES = [
     ],
     diversification: {
       // Comptages exacts vérifiés via recherche web (factsheets MSCI/FTSE, juin-juillet 2026) le 01/09/2026.
-      chain: [`MSCI World (${formatIndexConstituents('world', '2026-09-30')} lignes)`, `MSCI ACWI (${formatIndexConstituents('acwi', '2026-09-30')})`, `FTSE All-World (${formatIndexConstituents('ftse-all-world', '2026-08-31')} au 31/08/2026)`],
+      chain: [`MSCI World (${formatIndexConstituents('world', '2026-09-30')} lignes)`, `MSCI ACWI (${formatIndexConstituents('acwi', '2026-09-30')})`, `FTSE All-World (${formatIndexConstituents('ftse-all-world', '2026-08-31')} au ${formatCurrentIndexDate('ftse-all-world', '2026-08-31')})`],
       notes: ['⚠️ Peu importe lequel des trois tu prends : ils pèsent tous 60 à 70 % d\'actions américaines.', '→ Le vrai choix, c\'est les émergents (dedans ou pas) — pas le poids des USA, qui est de toute façon similaire partout.'],
     },
     // Performance 2023-2025 (source : justETF/extraetf, recherche web du 02/09/2026). CW8 retenu en
@@ -1061,7 +1061,7 @@ FAMILIES.push({
   { indexName: 'FTSE EPRA Nareit Developed Dividend+', pea: false, choiceNote: 'La part suit la variante Net USD ; les rendements affichés ici sont ceux de l’indice Total Return FTSE.', funds: [{ name: getInstrumentName('IE00B1FZS350','index'), isin: 'IE00B1FZS350', listing: requireInstrumentListing('IE00B1FZS350'), ter: formatEtfTer('IE00B1FZS350','index') }] },
   { indexName: 'FTSE Global Core Infrastructure', choiceNote: 'Statut PEA non documenté. Les rendements de l’indice FTSE ne sont pas ceux de la part citée.', funds: [{ name: getInstrumentName('IE00B1FZS467','index'), isin: 'IE00B1FZS467', listing: requireInstrumentListing('IE00B1FZS467'), ter: formatEtfTer('IE00B1FZS467','index') }] },
  ],
- diversification: { chain: ['Immobilier développé Dividend+','Infrastructures mondiales Core'], notes: ['Les deux paniers peuvent partager des entreprises, notamment des REIT. Les secteurs immobiliers EPRA et sous-secteurs ICB ne sont pas une classification identique. Photos du 31/08/2026 et du 30/09/2026 : aucun calcul de recouvrement sur une date commune.'] },
+ diversification: { chain: ['Immobilier développé Dividend+','Infrastructures mondiales Core'], notes: [`Les deux paniers peuvent partager des entreprises, notamment des REIT. Les secteurs immobiliers EPRA et sous-secteurs ICB ne sont pas une classification identique. Photos du ${formatCurrentIndexDate('ftse-epra-nareit-developed-dividend-plus', '2026-08-31')} et du ${formatCurrentIndexDate('ftse-global-core-infrastructure', '2026-09-30')} : aucun calcul de recouvrement entre ces deux paniers.`] },
  perfFunds: [], perfMethodNote: 'Indices en dollars, dividendes réinvestis (Total Return FTSE), hors frais ETF. Les variantes Net/Benchmark iShares ne sont pas utilisées.',
  verdictTitle: 'LE VERDICT', verdict: [
   { q: 'Exposer le portefeuille à l’immobilier coté ?', a: 'Dividend+ sélectionne l’immobilier développé selon un critère de dividendes.' },

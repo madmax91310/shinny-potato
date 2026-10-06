@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
 import { AUTOMATED_INDICES } from '../src/data/automated-indices.js';
-import { INDEX_FACTS, getIndexFacts, getCurrentIndexFacts } from '../src/data/index-facts.js';
+import { INDEX_FACTS, getIndexFacts, getCurrentIndexFacts, getCurrentIndexDescription, formatCurrentIndexDate, getIndexDescription } from '../src/data/index-facts.js';
 import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js';
 import { AUTOMATED_ETF, refreshFundDetails } from '../src/data/automated-etf.js';
 import { SHEETS } from '../src/data/index-factsheets.js';
@@ -25,6 +25,10 @@ for (const [id, record] of Object.entries(AUTOMATED_INDICES)) {
       }
     }
   }
+}
+for (const [id, variant] of [['ftse-all-world','monde'],['world-ex-usa','monde-segments'],['world-small-cap','monde-segments']]) {
+  assert(getCurrentIndexDescription(id,'2026-08-31',variant).includes(formatCurrentIndexDate(id,'2026-08-31')), `${id}: description date must follow composition`);
+  assert(getIndexDescription(id,'2026-08-31',variant).includes('31/08/2026'), `${id}: archive date changed`);
 }
 const baseline = getIndexFacts('world','2026-08-31');
 assert.equal(baseline.asOf,'2026-08-31');

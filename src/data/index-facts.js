@@ -748,6 +748,10 @@ for (const [id, desc] of [
  ['msci-world-minimum-volatility-usd', 'Optimisation du risque estimé du portefeuille sous contraintes, avec référence USD.'],
 ]) INDEX_FACTS[id]['2026-09-30'].descriptionTemplates = { 'monde-facteurs': desc };
 
+function formatCompositionDate(asOf) {
+  return new Intl.DateTimeFormat('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', timeZone:'UTC' }).format(new Date(asOf));
+}
+
 // Add newly dated observations; a named historical snapshot remains immutable.
 export const CURRENT_INDEX_KEYS = {};
 for (const [id, record] of Object.entries(automatedIndices)) {
@@ -761,7 +765,8 @@ for (const [id, record] of Object.entries(automatedIndices)) {
     history[facts.asOf] = { ...facts,
       markets: facts.markets ?? baseline.markets,
       snapshot: new Intl.DateTimeFormat('fr-FR', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(new Date(facts.asOf)),
-      descriptionTemplates: baseline.descriptionTemplates,
+      descriptionTemplates: Object.fromEntries(Object.entries(baseline.descriptionTemplates ?? {}).map(([key, text]) =>
+        [key, text.replaceAll(formatCompositionDate(baseline.asOf), formatCompositionDate(facts.asOf))])),
       ...(baseline.marketCount ? { marketCount: baseline.marketCount } : {}),
       ...(baseline.approximateConstituents ? { approximateConstituents: Math.round(facts.constituents / 100) * 100 } : {}),
       methodologySources: baseline.methodologySources,
@@ -834,4 +839,8 @@ export function formatCurrentIndexConstituents(id, fallback) {
 export function getCurrentIndexDescription(id, fallback, variant) {
   const facts = getCurrentIndexFacts(id, fallback);
   return getIndexDescription(id, facts.asOf ?? fallback, variant);
+}
+
+export function formatCurrentIndexDate(id, fallback) {
+  return formatCompositionDate(getCurrentIndexFacts(id, fallback).asOf);
 }
