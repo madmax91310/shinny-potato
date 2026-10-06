@@ -53,6 +53,21 @@ class Documents(unittest.TestCase):
         worker=threading.Thread(target=server.serve_forever,daemon=True);worker.start()
         try:self.assertEqual(download(f'http://127.0.0.1:{server.server_port}/factsheet.pdf'),b'%PDF-proof')
         finally:server.shutdown();worker.join();server.server_close()
+    def test_regional_landing_initialises_document_cookie(self):
+        class Issuer(BaseHTTPRequestHandler):
+            def do_GET(self):
+                if self.path == '/region':
+                    self.send_response(200);self.send_header('Set-Cookie','issuerRegion=eu; Path=/');self.end_headers()
+                    self.wfile.write(b'<html><title>Public region</title></html>')
+                elif self.headers.get('Cookie') == 'issuerRegion=eu':
+                    self.send_response(200);self.end_headers();self.wfile.write(b'%PDF-proof')
+                else:
+                    self.send_response(302);self.send_header('Location','/region');self.end_headers()
+            def log_message(self,*args):pass
+        server=HTTPServer(('127.0.0.1',0),Issuer)
+        worker=threading.Thread(target=server.serve_forever,daemon=True);worker.start()
+        try:self.assertEqual(download(f'http://127.0.0.1:{server.server_port}/factsheet.pdf'),b'%PDF-proof')
+        finally:server.shutdown();worker.join();server.server_close()
     def test_invalid_dates_pdf_and_truncated_allocations(self):
         for stamp in ['2026-10-06','2026-02-30','2020-01-01']:
             with self.assertRaises(ValueError):document_date(stamp,NOW)

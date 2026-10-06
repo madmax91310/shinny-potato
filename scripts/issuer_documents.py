@@ -9,6 +9,7 @@ import tempfile
 import time
 import urllib.error
 import urllib.request
+import urllib.parse
 from data_automation import UTC, reject
 
 
@@ -23,6 +24,11 @@ def download(url, max_bytes=8_000_000):
                 if len(body) > max_bytes:
                     reject('Official document exceeds size limit')
                 if url.split('?')[0].endswith('.pdf') and not body.startswith(b'%PDF-'):
+                    # A public regional landing page may initialise its cookie only after
+                    # the redirect chain ends. Retry the original document with that jar.
+                    if (attempt < 2 and response.geturl() != url
+                            and urllib.parse.urlparse(response.geturl()).netloc == urllib.parse.urlparse(url).netloc):
+                        continue
                     title = re.search(br'<title[^>]*>(.*?)</title>', body, re.I | re.S)
                     label = title[1].decode('utf-8', errors='replace').strip()[:100] if title else 'non-PDF response'
                     reject(f'Expected official PDF at {url}; received {label} at {response.geturl()}')

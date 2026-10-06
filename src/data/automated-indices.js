@@ -12,7 +12,7 @@ export function refreshIndexSheet(previous) {
   const archivedReturn = Object.entries(INDEX_RETURNS[previous.id] ?? {}).find(([, series]) => series.values === previous.returns);
   const returns = previous.performance.kind === 'indice' && record.returns && archivedReturn
     ? getCurrentIndexReturnSeries(previous.id, archivedReturn[0]) : null;
-  return { ...previous, ...(changed ? composition : {}),
+  return { ...previous, ...(changed ? { ...composition, markets: facts.markets ?? previous.markets } : {}),
     ...(changed ? { snapshot: facts.snapshot,
       insight: `Cette photographie contient ${facts.constituents.toLocaleString('fr-FR')} titres. Le poids des pays et secteurs évolue : vérifie la date de composition.`,
       takeaway: `Les principales lignes publiées représentent ${facts.holdings.reduce((n, p) => n + p[1], 0).toFixed(2).replace('.', ',')} % de l’indice. Une diversification en nombre ne garantit pas des poids égaux.` } : {}),

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
 import { AUTOMATED_INDICES } from '../src/data/automated-indices.js';
 import { INDEX_FACTS, getIndexFacts, getCurrentIndexFacts } from '../src/data/index-facts.js';
 import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js';
@@ -28,6 +29,8 @@ for (const [id, record] of Object.entries(AUTOMATED_INDICES)) {
 const baseline = getIndexFacts('world','2026-08-31');
 assert.equal(baseline.asOf,'2026-08-31');
 for (const sheet of SHEETS) {
+  assert.equal(typeof sheet.markets, 'string', `${sheet.id}: index scope missing`);
+  assert(!/undefined|NaN/.test(buildFactsheetTweet(sheet)), `${sheet.id}: invalid generated text`);
   assert(sheet.source.some(s => s.url === sheet.indexFacts.source.url));
   assert(sheet.returns.every(([year,value]) => year <= 2025 && Number.isFinite(value)));
 }
