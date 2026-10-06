@@ -51,6 +51,9 @@ def main():
     write_json_atomic(args.output,report)
     if args.apply and merged!=json.loads(path.read_text()):write_json_atomic(path,merged)
     print(f"ETF extension: {sum(o['status']=='validated'for o in report['shares'])}/{len(report['shares'])} shares validated; all exceptions recorded.")
+    for observation in report['shares']:
+        if observation['status'] == 'failed':
+            print(f"Source failed: {observation['isin']} — {observation['reason']}")
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a')as h:
             h.write('\n## Extensions ETF et expositions synthétiques\n\n| Part | Source | État | Limites |\n|---|---|---|---|\n')
