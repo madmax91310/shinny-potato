@@ -1048,11 +1048,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 66162804.54,
+      "amount": 69194051.15249999,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -1067,11 +1067,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1397970342.7972002,
+      "amount": 1430591583.1256,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.6,
@@ -1092,6 +1092,147 @@
         "2025": 14.97
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 58.27,
+          "label": "Technologie"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 13.89,
+          "label": "Communication"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 11.13,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 6.22,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 4.01,
+          "label": "Santé"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 3.62,
+          "label": "Industrie"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.14,
+          "label": "Services publics"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 1.0,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 0.52,
+          "label": "Énergie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 0.21,
+          "label": "Finance"
+        }
+      ],
+      "sha256": "df4cff3e226ebeaa561400fc6b74862d3fe3e26213023b3204a859ed415489f2",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "États-Unis",
+          "weightPct": 94.78
+        },
+        {
+          "name": "Irlande",
+          "weightPct": 1.82
+        },
+        {
+          "name": "Pays-Bas",
+          "weightPct": 1.32
+        },
+        {
+          "name": "Canada",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 0.66
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 0.42
+        }
+      ],
+      "sha256": "df4cff3e226ebeaa561400fc6b74862d3fe3e26213023b3204a859ed415489f2",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 8.41
+        },
+        {
+          "name": "APPLE INC",
+          "weightPct": 7.5
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 6.09
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "weightPct": 4.64
+        },
+        {
+          "name": "AMAZON.COM INC",
+          "weightPct": 4.58
+        },
+        {
+          "name": "ADVANCED MICRO DEVICES",
+          "weightPct": 3.35
+        },
+        {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 3.22
+        },
+        {
+          "name": "ALPHABET INC CL C",
+          "weightPct": 2.99
+        },
+        {
+          "name": "BROADCOM INC",
+          "weightPct": 2.79
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 2.78
+        }
+      ],
+      "sha256": "df4cff3e226ebeaa561400fc6b74862d3fe3e26213023b3204a859ed415489f2",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0010524777": {
@@ -1100,11 +1241,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 881378112.492,
+      "amount": 878701466.0199999,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -1303,11 +1444,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1481110582.1200001,
+      "amount": 1503669002.7398002,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -1469,11 +1610,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1174663480.6595998,
+      "amount": 1205083641.4014,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.5,
@@ -1494,6 +1635,132 @@
         "2025": -0.19
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 37.19,
+          "label": "Technologie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 12.21,
+          "label": "Finance"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 9.69,
+          "label": "Communication"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 9.43,
+          "label": "Santé"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 9.29,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 8.63,
+          "label": "Industrie"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 4.44,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 3.49,
+          "label": "Énergie"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.97,
+          "label": "Services publics"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 1.91,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.75,
+          "label": "Immobilier"
+        }
+      ],
+      "sha256": "3113a0f77abe2158b283cfdd375c9bdacb8bb3f4cb182e212369e372e3297b6e",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "États-Unis",
+          "weightPct": 100.0
+        }
+      ],
+      "sha256": "3113a0f77abe2158b283cfdd375c9bdacb8bb3f4cb182e212369e372e3297b6e",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 7.57
+        },
+        {
+          "name": "APPLE INC",
+          "weightPct": 7.07
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 5.46
+        },
+        {
+          "name": "AMAZON.COM INC",
+          "weightPct": 3.88
+        },
+        {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 3.04
+        },
+        {
+          "name": "BROADCOM INC",
+          "weightPct": 2.5
+        },
+        {
+          "name": "ALPHABET INC CL C",
+          "weightPct": 2.39
+        },
+        {
+          "name": "META PLATFORMS INC-CLASS A",
+          "weightPct": 1.91
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "weightPct": 1.58
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 1.48
+        }
+      ],
+      "sha256": "3113a0f77abe2158b283cfdd375c9bdacb8bb3f4cb182e212369e372e3297b6e",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0011440478": {
@@ -1502,11 +1769,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 56177482.7231,
+      "amount": 56576947.6682,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.55,
@@ -1527,6 +1794,168 @@
         "2025": 15.11
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Finance",
+          "weightPct": 48.24,
+          "label": "Finance"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 16.71,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 7.08,
+          "label": "Communication"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 6.99,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 5.9,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 5.8,
+          "label": "Énergie"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 3.04,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 2.7,
+          "label": "Industrie"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 1.89,
+          "label": "Santé"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.27,
+          "label": "Services publics"
+        },
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 0.39,
+          "label": "Technologie"
+        }
+      ],
+      "sha256": "a8d07e773339709641968c90b7e9cbad1ac0ebe6e961af186df0b5ac88576fe7",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Afrique du Sud",
+          "weightPct": 31.91
+        },
+        {
+          "name": "Arabie Saoudite",
+          "weightPct": 24.45
+        },
+        {
+          "name": "Emirats Arabes Unis",
+          "weightPct": 11.19
+        },
+        {
+          "name": "Pologne",
+          "weightPct": 10.66
+        },
+        {
+          "name": "Koweit",
+          "weightPct": 5.03
+        },
+        {
+          "name": "Grèce",
+          "weightPct": 4.71
+        },
+        {
+          "name": "Qatar",
+          "weightPct": 4.51
+        },
+        {
+          "name": "Turquie",
+          "weightPct": 3.44
+        },
+        {
+          "name": "Hongrie",
+          "weightPct": 3.25
+        },
+        {
+          "name": "République Tchèque",
+          "weightPct": 0.84
+        }
+      ],
+      "sha256": "a8d07e773339709641968c90b7e9cbad1ac0ebe6e961af186df0b5ac88576fe7",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "ANGLOGOLD ASHANTI PLC",
+          "weightPct": 5.52
+        },
+        {
+          "name": "AL RAJHI BANK",
+          "weightPct": 4.65
+        },
+        {
+          "name": "GOLD FIELDS LTD",
+          "weightPct": 4.02
+        },
+        {
+          "name": "NASPERS LTD-N SHS",
+          "weightPct": 3.12
+        },
+        {
+          "name": "THE SAUDI NATIONAL BANK",
+          "weightPct": 2.74
+        },
+        {
+          "name": "FIRSTRAND LTD",
+          "weightPct": 2.43
+        },
+        {
+          "name": "KUWAIT FINANCE HOUSE",
+          "weightPct": 2.35
+        },
+        {
+          "name": "SAUDI TELECOM CO",
+          "weightPct": 2.17
+        },
+        {
+          "name": "PKO BANK POLSKI",
+          "weightPct": 2.07
+        },
+        {
+          "name": "CAPITEC LIMITED",
+          "weightPct": 1.91
+        }
+      ],
+      "sha256": "a8d07e773339709641968c90b7e9cbad1ac0ebe6e961af186df0b5ac88576fe7",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0011869320": {
@@ -1535,11 +1964,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 146471662.3398,
+      "amount": 147931025.928,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-01",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.85,
@@ -1560,6 +1989,132 @@
         "2025": -11.15
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Finance",
+          "weightPct": 30.49,
+          "label": "Finance"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 12.65,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 10.97,
+          "label": "Industrie"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 8.82,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 8.1,
+          "label": "Énergie"
+        },
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 7.2,
+          "label": "Technologie"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 6.45,
+          "label": "Santé"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 5.21,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 5.04,
+          "label": "Communication"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 3.63,
+          "label": "Services publics"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.44,
+          "label": "Immobilier"
+        }
+      ],
+      "sha256": "d8bb2ecb1f1e22325f3bede1c8a8f31141f48b2031d688c8507232e38bc853bd",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011869320/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Inde",
+          "weightPct": 100.0
+        }
+      ],
+      "sha256": "d8bb2ecb1f1e22325f3bede1c8a8f31141f48b2031d688c8507232e38bc853bd",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011869320/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "HDFC BANK LIMITED",
+          "weightPct": 6.2
+        },
+        {
+          "name": "RELIANCE INDUSTRIES LIMITED",
+          "weightPct": 5.92
+        },
+        {
+          "name": "ICICI BANK LTD",
+          "weightPct": 5.7
+        },
+        {
+          "name": "BHARTI AIRTEL LTD",
+          "weightPct": 3.9
+        },
+        {
+          "name": "INFOSYS LTD",
+          "weightPct": 2.63
+        },
+        {
+          "name": "AXIS BANK LTD",
+          "weightPct": 2.2
+        },
+        {
+          "name": "MAHINDRA & MAHINDRA LTD",
+          "weightPct": 2.19
+        },
+        {
+          "name": "LARSEN & TOUBRO LTD",
+          "weightPct": 2.06
+        },
+        {
+          "name": "BAJAJ FINANCE LIMITED",
+          "weightPct": 2.03
+        },
+        {
+          "name": "KOTAK MAHINDRA BANK LTD",
+          "weightPct": 1.75
+        }
+      ],
+      "sha256": "d8bb2ecb1f1e22325f3bede1c8a8f31141f48b2031d688c8507232e38bc853bd",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011869320/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0011871078": {
@@ -1568,11 +2123,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 67414937.18849999,
+      "amount": 68098074.462,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.65,
@@ -1593,6 +2148,132 @@
         "2025": 14.64
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 25.16,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 20.93,
+          "label": "Finance"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 19.32,
+          "label": "Communication"
+        },
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 11.34,
+          "label": "Technologie"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 6.22,
+          "label": "Santé"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 5.03,
+          "label": "Industrie"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 4.06,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 2.91,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 2.19,
+          "label": "Énergie"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.68,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.17,
+          "label": "Services publics"
+        }
+      ],
+      "sha256": "7cad83e892d00ac2d7c7362852b9fb313705d31c2e2cceffa98194e53336daf8",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871078/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Chine",
+          "weightPct": 100.0
+        }
+      ],
+      "sha256": "7cad83e892d00ac2d7c7362852b9fb313705d31c2e2cceffa98194e53336daf8",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871078/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "TENCENT HOLDINGS LTD",
+          "weightPct": 14.91
+        },
+        {
+          "name": "ALIBABA GROUP HOLDING LTD",
+          "weightPct": 10.14
+        },
+        {
+          "name": "CHINA CONSTRUCT BANK",
+          "weightPct": 4.09
+        },
+        {
+          "name": "IND & COMM BK OF CHINA-H",
+          "weightPct": 2.58
+        },
+        {
+          "name": "XIAOMI CORP",
+          "weightPct": 2.54
+        },
+        {
+          "name": "MEITUAN-CLASS B",
+          "weightPct": 2.08
+        },
+        {
+          "name": "PDD HOLDINGS INC",
+          "weightPct": 2.03
+        },
+        {
+          "name": "BANK OF CHINA LTD-H",
+          "weightPct": 1.99
+        },
+        {
+          "name": "PING AN INSURANCE",
+          "weightPct": 1.97
+        },
+        {
+          "name": "BYD CO LTD-H",
+          "weightPct": 1.8
+        }
+      ],
+      "sha256": "7cad83e892d00ac2d7c7362852b9fb313705d31c2e2cceffa98194e53336daf8",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871078/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0011871110": {
@@ -1601,11 +2282,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1297700862.3172,
+      "amount": 1317119034.6500998,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -1626,6 +2307,147 @@
         "2025": 6.01
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 58.27,
+          "label": "Technologie"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 13.89,
+          "label": "Communication"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 11.13,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 6.22,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 4.01,
+          "label": "Santé"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 3.62,
+          "label": "Industrie"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.14,
+          "label": "Services publics"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 1.0,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 0.52,
+          "label": "Énergie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 0.21,
+          "label": "Finance"
+        }
+      ],
+      "sha256": "ba0d8b379f3433cd39250dd8222e25446d65fd9313d408450a42d58194bbe6dd",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "États-Unis",
+          "weightPct": 94.78
+        },
+        {
+          "name": "Irlande",
+          "weightPct": 1.82
+        },
+        {
+          "name": "Pays-Bas",
+          "weightPct": 1.32
+        },
+        {
+          "name": "Canada",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 0.66
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 0.42
+        }
+      ],
+      "sha256": "ba0d8b379f3433cd39250dd8222e25446d65fd9313d408450a42d58194bbe6dd",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 8.41
+        },
+        {
+          "name": "APPLE INC",
+          "weightPct": 7.5
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 6.09
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "weightPct": 4.64
+        },
+        {
+          "name": "AMAZON.COM INC",
+          "weightPct": 4.58
+        },
+        {
+          "name": "ADVANCED MICRO DEVICES",
+          "weightPct": 3.35
+        },
+        {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 3.22
+        },
+        {
+          "name": "ALPHABET INC CL C",
+          "weightPct": 2.99
+        },
+        {
+          "name": "BROADCOM INC",
+          "weightPct": 2.79
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 2.78
+        }
+      ],
+      "sha256": "ba0d8b379f3433cd39250dd8222e25446d65fd9313d408450a42d58194bbe6dd",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0011871128": {
@@ -1634,11 +2456,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1228594694.47,
+      "amount": 1247128048.8264,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.12,
@@ -1667,11 +2489,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1050580607.2712998,
+      "amount": 1045196355.3956,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -1832,11 +2654,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 139893930.722,
+      "amount": 142369220.1022,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.2,
@@ -1857,6 +2679,132 @@
         "2025": 10.22
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Industrie",
+          "weightPct": 25.94,
+          "label": "Industrie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 18.74,
+          "label": "Finance"
+        },
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 15.3,
+          "label": "Technologie"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 14.66,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 6.25,
+          "label": "Communication"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 5.36,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 5.11,
+          "label": "Santé"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 4.8,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.64,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.26,
+          "label": "Services publics"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 0.94,
+          "label": "Énergie"
+        }
+      ],
+      "sha256": "d043c95ef22174506614afaca784e372a337b46e4f06a3ac15876be883cc81d3",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Japon",
+          "weightPct": 100.0
+        }
+      ],
+      "sha256": "d043c95ef22174506614afaca784e372a337b46e4f06a3ac15876be883cc81d3",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "MITSUBISHI UFJ FIN",
+          "weightPct": 3.95
+        },
+        {
+          "name": "TOYOTA MOTOR CORP",
+          "weightPct": 2.68
+        },
+        {
+          "name": "SUMITOMO MITSUI FINAN",
+          "weightPct": 2.58
+        },
+        {
+          "name": "HITACHI LTD",
+          "weightPct": 2.39
+        },
+        {
+          "name": "SONY GROUP CORP (JT)",
+          "weightPct": 2.32
+        },
+        {
+          "name": "RECRUIT HOLDINGS CO LTD",
+          "weightPct": 2.25
+        },
+        {
+          "name": "TOKYO ELECTRON LTD",
+          "weightPct": 2.05
+        },
+        {
+          "name": "MIZUHO FINANCIAL GROUP INC",
+          "weightPct": 2.04
+        },
+        {
+          "name": "ADVANTEST",
+          "weightPct": 1.75
+        },
+        {
+          "name": "SOFTBANK GROUP CORP",
+          "weightPct": 1.73
+        }
+      ],
+      "sha256": "d043c95ef22174506614afaca784e372a337b46e4f06a3ac15876be883cc81d3",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0013411998": {
@@ -1865,11 +2813,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 62587719.699999996,
+      "amount": 64439483.748,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.48,
@@ -1890,6 +2838,132 @@
         "2025": 25.86
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Industrie",
+          "weightPct": 25.94,
+          "label": "Industrie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 18.74,
+          "label": "Finance"
+        },
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 15.3,
+          "label": "Technologie"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 14.66,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 6.25,
+          "label": "Communication"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 5.36,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 5.11,
+          "label": "Santé"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 4.8,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.64,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.26,
+          "label": "Services publics"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 0.94,
+          "label": "Énergie"
+        }
+      ],
+      "sha256": "4d993b54118d196e3f915f5360a9967db03b95771f39bdfa3e5cdc71abd91d5f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Japon",
+          "weightPct": 100.0
+        }
+      ],
+      "sha256": "4d993b54118d196e3f915f5360a9967db03b95771f39bdfa3e5cdc71abd91d5f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "MITSUBISHI UFJ FIN",
+          "weightPct": 3.95
+        },
+        {
+          "name": "TOYOTA MOTOR CORP",
+          "weightPct": 2.68
+        },
+        {
+          "name": "SUMITOMO MITSUI FINAN",
+          "weightPct": 2.58
+        },
+        {
+          "name": "HITACHI LTD",
+          "weightPct": 2.39
+        },
+        {
+          "name": "SONY GROUP CORP (JT)",
+          "weightPct": 2.32
+        },
+        {
+          "name": "RECRUIT HOLDINGS CO LTD",
+          "weightPct": 2.25
+        },
+        {
+          "name": "TOKYO ELECTRON LTD",
+          "weightPct": 2.05
+        },
+        {
+          "name": "MIZUHO FINANCIAL GROUP INC",
+          "weightPct": 2.04
+        },
+        {
+          "name": "ADVANTEST",
+          "weightPct": 1.75
+        },
+        {
+          "name": "SOFTBANK GROUP CORP",
+          "weightPct": 1.73
+        }
+      ],
+      "sha256": "4d993b54118d196e3f915f5360a9967db03b95771f39bdfa3e5cdc71abd91d5f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0013412004": {
@@ -1898,11 +2972,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 193046513.75750002,
+      "amount": 206536628.48,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -1923,6 +2997,139 @@
         "2025": 35.75
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Finance",
+          "weightPct": 41.61,
+          "label": "Finance"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 12.78,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 11.42,
+          "label": "Services publics"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 10.55,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 9.23,
+          "label": "Industrie"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 4.45,
+          "label": "Communication"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 3.3,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 2.65,
+          "label": "Énergie"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 2.48,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 1.53,
+          "label": "Santé"
+        }
+      ],
+      "sha256": "34f3f9e361035e11804141437b87d9eeb041d9c643f01c5583c40aaed8f23668",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Brésil",
+          "weightPct": 43.03
+        },
+        {
+          "name": "Mexique",
+          "weightPct": 33.69
+        },
+        {
+          "name": "Chili",
+          "weightPct": 9.34
+        },
+        {
+          "name": "Pérou",
+          "weightPct": 8.46
+        },
+        {
+          "name": "Colombie",
+          "weightPct": 5.49
+        }
+      ],
+      "sha256": "34f3f9e361035e11804141437b87d9eeb041d9c643f01c5583c40aaed8f23668",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "ITAU UNIBANCO HO-PFD",
+          "weightPct": 11.87
+        },
+        {
+          "name": "GRUPO FINANCIERO BANORTE-O",
+          "weightPct": 7.03
+        },
+        {
+          "name": "CREDICORP LTD",
+          "weightPct": 7.03
+        },
+        {
+          "name": "FOMENTO ECONOMICO MEXICA-UBD",
+          "weightPct": 5.46
+        },
+        {
+          "name": "BANCO BRADESCO SA-PFD",
+          "weightPct": 5.16
+        },
+        {
+          "name": "AMERICA MOVIL SAB DE C-SER B",
+          "weightPct": 4.45
+        },
+        {
+          "name": "CEMEX SAB-CPO",
+          "weightPct": 3.99
+        },
+        {
+          "name": "CIA SANEAMENTO BASICO DE SP",
+          "weightPct": 3.34
+        },
+        {
+          "name": "WALMART DE MEXICO SAB DE CV",
+          "weightPct": 3.34
+        }
+      ],
+      "sha256": "34f3f9e361035e11804141437b87d9eeb041d9c643f01c5583c40aaed8f23668",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0013412012": {
@@ -1931,11 +3138,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 754635141.4290001,
+      "amount": 770568265.0,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -1956,6 +3163,156 @@
         "2025": 21.78
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 54.6,
+          "label": "Technologie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 15.15,
+          "label": "Finance"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 8.29,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 6.15,
+          "label": "Communication"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 5.72,
+          "label": "Industrie"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 3.2,
+          "label": "Santé"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 2.15,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 1.8,
+          "label": "Énergie"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 1.66,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 0.65,
+          "label": "Services publics"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 0.63,
+          "label": "Immobilier"
+        }
+      ],
+      "sha256": "4902973723ac1270c9498ab3e87291c40e35e5c5dfa09d8d12a3f036077cee2a",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412012/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Taiwan",
+          "weightPct": 36.03
+        },
+        {
+          "name": "Corée",
+          "weightPct": 26.25
+        },
+        {
+          "name": "Chine",
+          "weightPct": 23.33
+        },
+        {
+          "name": "Inde",
+          "weightPct": 11.47
+        },
+        {
+          "name": "Thaïlande",
+          "weightPct": 1.17
+        },
+        {
+          "name": "Malaysie",
+          "weightPct": 0.94
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 0.8
+        }
+      ],
+      "sha256": "4902973723ac1270c9498ab3e87291c40e35e5c5dfa09d8d12a3f036077cee2a",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412012/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "weightPct": 19.5
+        },
+        {
+          "name": "SAMSUNG ELECTRONICS",
+          "weightPct": 9.59
+        },
+        {
+          "name": "SK HYNIX INC",
+          "weightPct": 7.34
+        },
+        {
+          "name": "TENCENT HOLDINGS LTD",
+          "weightPct": 3.45
+        },
+        {
+          "name": "ALIBABA GROUP HOLDING LTD",
+          "weightPct": 2.32
+        },
+        {
+          "name": "MEDIATEK INC",
+          "weightPct": 2.27
+        },
+        {
+          "name": "SAMSUNG ELECT-PFD",
+          "weightPct": 1.23
+        },
+        {
+          "name": "DELTA ELECTRONICS INC",
+          "weightPct": 1.14
+        },
+        {
+          "name": "CHINA CONSTRUCT BANK",
+          "weightPct": 1.06
+        },
+        {
+          "name": "HON HAI PRECISION INDUSTRY",
+          "weightPct": 0.98
+        }
+      ],
+      "sha256": "4902973723ac1270c9498ab3e87291c40e35e5c5dfa09d8d12a3f036077cee2a",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412012/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0013412020": {
@@ -1964,11 +3321,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 918574213.0102999,
+      "amount": 941385739.0920999,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -1989,6 +3346,184 @@
         "2025": 21.04
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 43.95,
+          "label": "Technologie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 19.72,
+          "label": "Finance"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 7.35,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 6.29,
+          "label": "Industrie"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 5.99,
+          "label": "Communication"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 5.18,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 3.05,
+          "label": "Énergie"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 2.83,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 2.7,
+          "label": "Santé"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.63,
+          "label": "Services publics"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.3,
+          "label": "Immobilier"
+        }
+      ],
+      "sha256": "fbe6905fca95a2676b318ef6d78f5e8de3fc96787c7ef408b47aa971870cbc7f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Taiwan",
+          "weightPct": 28.93
+        },
+        {
+          "name": "Corée",
+          "weightPct": 21.57
+        },
+        {
+          "name": "Chine",
+          "weightPct": 19.78
+        },
+        {
+          "name": "Inde",
+          "weightPct": 10.58
+        },
+        {
+          "name": "Brésil",
+          "weightPct": 3.99
+        },
+        {
+          "name": "Afrique du Sud",
+          "weightPct": 3.04
+        },
+        {
+          "name": "Arabie Saoudite",
+          "weightPct": 2.34
+        },
+        {
+          "name": "Mexique",
+          "weightPct": 1.64
+        },
+        {
+          "name": "Emirats Arabes Unis",
+          "weightPct": 1.24
+        },
+        {
+          "name": "Pologne",
+          "weightPct": 1.17
+        },
+        {
+          "name": "Malaysie",
+          "weightPct": 0.97
+        },
+        {
+          "name": "Thaïlande",
+          "weightPct": 0.88
+        },
+        {
+          "name": "Grèce",
+          "weightPct": 0.58
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 3.29
+        }
+      ],
+      "sha256": "fbe6905fca95a2676b318ef6d78f5e8de3fc96787c7ef408b47aa971870cbc7f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "weightPct": 15.66
+        },
+        {
+          "name": "SAMSUNG ELECTRONICS",
+          "weightPct": 7.63
+        },
+        {
+          "name": "SK HYNIX INC",
+          "weightPct": 5.91
+        },
+        {
+          "name": "TENCENT HOLDINGS LTD",
+          "weightPct": 2.72
+        },
+        {
+          "name": "ALIBABA GROUP HOLDING LTD",
+          "weightPct": 1.84
+        },
+        {
+          "name": "MEDIATEK INC",
+          "weightPct": 1.8
+        },
+        {
+          "name": "SAMSUNG ELECT-PFD",
+          "weightPct": 1.09
+        },
+        {
+          "name": "DELTA ELECTRONICS INC",
+          "weightPct": 0.95
+        },
+        {
+          "name": "CHINA CONSTRUCT BANK",
+          "weightPct": 0.94
+        },
+        {
+          "name": "HDFC BANK LIMITED",
+          "weightPct": 0.75
+        }
+      ],
+      "sha256": "fbe6905fca95a2676b318ef6d78f5e8de3fc96787c7ef408b47aa971870cbc7f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0013412038": {
@@ -1997,11 +3532,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 373445861.8837001,
+      "amount": 374766426.345,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.15,
@@ -2022,6 +3557,188 @@
         "2025": 19.41
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Finance",
+          "weightPct": 25.61,
+          "label": "Finance"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 18.66,
+          "label": "Industrie"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 12.7,
+          "label": "Santé"
+        },
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 9.72,
+          "label": "Technologie"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 8.2,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 5.98,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 5.39,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 5.38,
+          "label": "Énergie"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 4.73,
+          "label": "Services publics"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 3.1,
+          "label": "Communication"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 0.53,
+          "label": "Immobilier"
+        }
+      ],
+      "sha256": "64de764ee7fcb442a56c3c9bc901965242eb08aa0c3086706f226d4147f0a7ba",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412038/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 22.41
+        },
+        {
+          "name": "France",
+          "weightPct": 14.84
+        },
+        {
+          "name": "Suisse",
+          "weightPct": 14.21
+        },
+        {
+          "name": "Allemagne",
+          "weightPct": 13.66
+        },
+        {
+          "name": "Pays-Bas",
+          "weightPct": 9.44
+        },
+        {
+          "name": "Espagne",
+          "weightPct": 6.31
+        },
+        {
+          "name": "Suède",
+          "weightPct": 5.32
+        },
+        {
+          "name": "Italie",
+          "weightPct": 5.16
+        },
+        {
+          "name": "Danemark",
+          "weightPct": 2.44
+        },
+        {
+          "name": "Finlande",
+          "weightPct": 1.86
+        },
+        {
+          "name": "Belgique",
+          "weightPct": 1.73
+        },
+        {
+          "name": "Norvège",
+          "weightPct": 0.99
+        },
+        {
+          "name": "Irlande",
+          "weightPct": 0.68
+        },
+        {
+          "name": "Autriche",
+          "weightPct": 0.61
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 0.35
+        }
+      ],
+      "sha256": "64de764ee7fcb442a56c3c9bc901965242eb08aa0c3086706f226d4147f0a7ba",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412038/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "ASML HOLDING NV",
+          "weightPct": 5.13
+        },
+        {
+          "name": "HSBC HOLDING PLC GBP",
+          "weightPct": 2.5
+        },
+        {
+          "name": "ROCHE HLDG AG-GENUSS CHF",
+          "weightPct": 2.14
+        },
+        {
+          "name": "SHELL PLC GBP",
+          "weightPct": 2.0
+        },
+        {
+          "name": "NOVARTIS AG-REG",
+          "weightPct": 1.93
+        },
+        {
+          "name": "ASTRAZENECA GBP",
+          "weightPct": 1.81
+        },
+        {
+          "name": "NESTLE SA-REG",
+          "weightPct": 1.71
+        },
+        {
+          "name": "SIEMENS AG-REG",
+          "weightPct": 1.68
+        },
+        {
+          "name": "SAP SE / XETRA",
+          "weightPct": 1.55
+        },
+        {
+          "name": "BANCO SANTANDER SA MADRID",
+          "weightPct": 1.47
+        }
+      ],
+      "sha256": "64de764ee7fcb442a56c3c9bc901965242eb08aa0c3086706f226d4147f0a7ba",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412038/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "FR0013416716": {
@@ -2063,11 +3780,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 11985114.256800001,
+      "amount": 12024470.883700002,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -2082,17 +3799,191 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1567510343.4808,
+      "amount": 1593924992.7722,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.2,
       "index": "MSCI Daily Net TR World Euro",
       "distribution": "Capitalisation",
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 31.55,
+          "label": "Technologie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 15.84,
+          "label": "Finance"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 10.85,
+          "label": "Industrie"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 9.28,
+          "label": "Santé"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 8.32,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 8.29,
+          "label": "Communication"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 4.81,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 4.03,
+          "label": "Énergie"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 3.21,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 2.3,
+          "label": "Services publics"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.53,
+          "label": "Immobilier"
+        }
+      ],
+      "sha256": "086a9e7e4eb1952a61cfe53c572963a0a3aaf847827d838d3a3bf8969d7a594f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "États-Unis",
+          "weightPct": 73.01
+        },
+        {
+          "name": "Japon",
+          "weightPct": 5.78
+        },
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 3.4
+        },
+        {
+          "name": "Canada",
+          "weightPct": 3.31
+        },
+        {
+          "name": "France",
+          "weightPct": 2.25
+        },
+        {
+          "name": "Suisse",
+          "weightPct": 2.16
+        },
+        {
+          "name": "Allemagne",
+          "weightPct": 2.07
+        },
+        {
+          "name": "Australie",
+          "weightPct": 1.52
+        },
+        {
+          "name": "Pays-Bas",
+          "weightPct": 1.43
+        },
+        {
+          "name": "Espagne",
+          "weightPct": 0.96
+        },
+        {
+          "name": "Suède",
+          "weightPct": 0.81
+        },
+        {
+          "name": "Italie",
+          "weightPct": 0.78
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 2.51
+        }
+      ],
+      "sha256": "086a9e7e4eb1952a61cfe53c572963a0a3aaf847827d838d3a3bf8969d7a594f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 5.77
+        },
+        {
+          "name": "APPLE INC",
+          "weightPct": 5.34
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 3.97
+        },
+        {
+          "name": "AMAZON.COM INC",
+          "weightPct": 2.64
+        },
+        {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 2.21
+        },
+        {
+          "name": "META PLATFORMS INC-CLASS A",
+          "weightPct": 1.79
+        },
+        {
+          "name": "BROADCOM INC",
+          "weightPct": 1.77
+        },
+        {
+          "name": "ALPHABET INC CL C",
+          "weightPct": 1.74
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "weightPct": 1.33
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 1.11
+        }
+      ],
+      "sha256": "086a9e7e4eb1952a61cfe53c572963a0a3aaf847827d838d3a3bf8969d7a594f",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "LU0908500753": {
@@ -2101,11 +3992,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 20762881968.861004,
+      "amount": 20971083717.392002,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -2330,11 +4221,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 351351290.2908,
+      "amount": 351505941.2202,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -2574,6 +4465,180 @@
         "2025": 6.39
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 31.55,
+          "label": "Technologie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 15.84,
+          "label": "Finance"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 10.85,
+          "label": "Industrie"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 9.28,
+          "label": "Santé"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 8.32,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 8.29,
+          "label": "Communication"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 4.81,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 4.03,
+          "label": "Énergie"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 3.21,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 2.3,
+          "label": "Services publics"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.53,
+          "label": "Immobilier"
+        }
+      ],
+      "sha256": "cf722198feb20de006600f644cc897e3f2d5b2ab418bca772c22f5d3f598cbb0",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "États-Unis",
+          "weightPct": 73.01
+        },
+        {
+          "name": "Japon",
+          "weightPct": 5.78
+        },
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 3.4
+        },
+        {
+          "name": "Canada",
+          "weightPct": 3.31
+        },
+        {
+          "name": "France",
+          "weightPct": 2.25
+        },
+        {
+          "name": "Suisse",
+          "weightPct": 2.16
+        },
+        {
+          "name": "Allemagne",
+          "weightPct": 2.07
+        },
+        {
+          "name": "Australie",
+          "weightPct": 1.52
+        },
+        {
+          "name": "Pays-Bas",
+          "weightPct": 1.43
+        },
+        {
+          "name": "Espagne",
+          "weightPct": 0.96
+        },
+        {
+          "name": "Suède",
+          "weightPct": 0.81
+        },
+        {
+          "name": "Italie",
+          "weightPct": 0.78
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 2.51
+        }
+      ],
+      "sha256": "cf722198feb20de006600f644cc897e3f2d5b2ab418bca772c22f5d3f598cbb0",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 5.77
+        },
+        {
+          "name": "APPLE INC",
+          "weightPct": 5.34
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 3.97
+        },
+        {
+          "name": "AMAZON.COM INC",
+          "weightPct": 2.64
+        },
+        {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 2.21
+        },
+        {
+          "name": "META PLATFORMS INC-CLASS A",
+          "weightPct": 1.79
+        },
+        {
+          "name": "BROADCOM INC",
+          "weightPct": 1.77
+        },
+        {
+          "name": "ALPHABET INC CL C",
+          "weightPct": 1.74
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "weightPct": 1.33
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 1.11
+        }
+      ],
+      "sha256": "cf722198feb20de006600f644cc897e3f2d5b2ab418bca772c22f5d3f598cbb0",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "LU1681045370": {
@@ -2607,6 +4672,188 @@
         "2025": 17.81
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 43.81,
+          "label": "Technologie"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 19.36,
+          "label": "Finance"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 7.4,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 6.32,
+          "label": "Industrie"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 5.9,
+          "label": "Communication"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 5.75,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Énergie",
+          "weightPct": 3.4,
+          "label": "Énergie"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 2.69,
+          "label": "Santé"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 2.59,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 1.85,
+          "label": "Services publics"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 0.95,
+          "label": "Immobilier"
+        }
+      ],
+      "sha256": "3bd79ded1d40a2c2102e8f5d5780ff22870355ecd9a5064c06cabd978fc12bf7",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Taiwan",
+          "weightPct": 28.79
+        },
+        {
+          "name": "Corée",
+          "weightPct": 21.55
+        },
+        {
+          "name": "Chine",
+          "weightPct": 19.75
+        },
+        {
+          "name": "Inde",
+          "weightPct": 10.67
+        },
+        {
+          "name": "Brésil",
+          "weightPct": 4.01
+        },
+        {
+          "name": "Afrique du Sud",
+          "weightPct": 2.95
+        },
+        {
+          "name": "Arabie Saoudite",
+          "weightPct": 2.31
+        },
+        {
+          "name": "Mexique",
+          "weightPct": 1.59
+        },
+        {
+          "name": "Emirats Arabes Unis",
+          "weightPct": 1.25
+        },
+        {
+          "name": "Pologne",
+          "weightPct": 1.16
+        },
+        {
+          "name": "Thaïlande",
+          "weightPct": 0.94
+        },
+        {
+          "name": "Malaysie",
+          "weightPct": 0.88
+        },
+        {
+          "name": "Grèce",
+          "weightPct": 0.62
+        },
+        {
+          "name": "Koweit",
+          "weightPct": 0.54
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 3.0
+        }
+      ],
+      "sha256": "3bd79ded1d40a2c2102e8f5d5780ff22870355ecd9a5064c06cabd978fc12bf7",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "weightPct": 15.58
+        },
+        {
+          "name": "SAMSUNG ELECTRONICS",
+          "weightPct": 7.66
+        },
+        {
+          "name": "SK HYNIX INC",
+          "weightPct": 5.86
+        },
+        {
+          "name": "TENCENT HOLDINGS LTD",
+          "weightPct": 2.76
+        },
+        {
+          "name": "ALIBABA GROUP HOLDING LTD",
+          "weightPct": 1.85
+        },
+        {
+          "name": "MEDIATEK INC",
+          "weightPct": 1.81
+        },
+        {
+          "name": "SAMSUNG ELECT-PFD",
+          "weightPct": 0.98
+        },
+        {
+          "name": "DELTA ELECTRONICS INC",
+          "weightPct": 0.91
+        },
+        {
+          "name": "CHINA CONSTRUCT BANK",
+          "weightPct": 0.85
+        },
+        {
+          "name": "HON HAI PRECISION INDUSTRY",
+          "weightPct": 0.79
+        }
+      ],
+      "sha256": "3bd79ded1d40a2c2102e8f5d5780ff22870355ecd9a5064c06cabd978fc12bf7",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "LU1681047236": {
@@ -2615,11 +4862,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 4056059695.966,
+      "amount": 4059816890.0046,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -2800,11 +5047,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 340971364.7351,
+      "amount": 342101135.83570004,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -2965,11 +5212,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 54770956.3995,
+      "amount": 54795052.007,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -3184,11 +5431,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 527171937.0368,
+      "amount": 531603303.2063999,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -3209,6 +5456,119 @@
         "2025": 31.8
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Matériaux",
+          "weightPct": 97.6,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 2.4,
+          "label": "Industrie"
+        }
+      ],
+      "sha256": "4e59844f64ec3a9342fc53ca005fa987a67a44c75ba9d55d2ca48c6b521a9606",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 67.61
+        },
+        {
+          "name": "Suède",
+          "weightPct": 10.27
+        },
+        {
+          "name": "France",
+          "weightPct": 7.85
+        },
+        {
+          "name": "Finlande",
+          "weightPct": 3.93
+        },
+        {
+          "name": "Pologne",
+          "weightPct": 3.86
+        },
+        {
+          "name": "Norvège",
+          "weightPct": 2.94
+        },
+        {
+          "name": "Autriche",
+          "weightPct": 1.5
+        },
+        {
+          "name": "Allemagne",
+          "weightPct": 1.09
+        },
+        {
+          "name": "Espagne",
+          "weightPct": 0.96
+        }
+      ],
+      "sha256": "4e59844f64ec3a9342fc53ca005fa987a67a44c75ba9d55d2ca48c6b521a9606",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "RIO TINTO PLC (GBR)",
+          "weightPct": 26.41
+        },
+        {
+          "name": "ANGLO AMERICAN PLC GBP",
+          "weightPct": 15.38
+        },
+        {
+          "name": "GLENCORE PLC-GBP",
+          "weightPct": 14.44
+        },
+        {
+          "name": "ARCELORMITTAL AMSTERDAM",
+          "weightPct": 7.85
+        },
+        {
+          "name": "ANTOFAGASTA PLC GBP",
+          "weightPct": 4.92
+        },
+        {
+          "name": "UPM-KYMMENE OYJ",
+          "weightPct": 3.93
+        },
+        {
+          "name": "BOLIDEN AB",
+          "weightPct": 3.78
+        },
+        {
+          "name": "ENDEAVOUR MINING PLC",
+          "weightPct": 3.24
+        },
+        {
+          "name": "KGHM POLSKA MIED",
+          "weightPct": 3.01
+        },
+        {
+          "name": "NORSK HYDRO",
+          "weightPct": 2.94
+        }
+      ],
+      "sha256": "4e59844f64ec3a9342fc53ca005fa987a67a44c75ba9d55d2ca48c6b521a9606",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "LU1834983634": {
@@ -3217,17 +5577,147 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 22444548.17,
+      "amount": 22686194.437500004,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
       "index": "STOXX Europe 600 Industry Basic Materials 30-15 EUR Net Return",
       "distribution": "Capitalisation",
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Matériaux",
+          "weightPct": 94.89,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 3.3,
+          "label": "Industrie"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 1.81,
+          "label": "Consommation de base"
+        }
+      ],
+      "sha256": "789ed7e06b2ddcce647b00bccbe22c15720889229dfb6694072ab4fd0d8186fa",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983634/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 39.65
+        },
+        {
+          "name": "France",
+          "weightPct": 22.03
+        },
+        {
+          "name": "Allemagne",
+          "weightPct": 14.5
+        },
+        {
+          "name": "Suède",
+          "weightPct": 5.74
+        },
+        {
+          "name": "Suisse",
+          "weightPct": 5.17
+        },
+        {
+          "name": "Norvège",
+          "weightPct": 2.8
+        },
+        {
+          "name": "Pays-Bas",
+          "weightPct": 2.53
+        },
+        {
+          "name": "Finlande",
+          "weightPct": 2.31
+        },
+        {
+          "name": "Pologne",
+          "weightPct": 2.24
+        },
+        {
+          "name": "Belgique",
+          "weightPct": 1.7
+        },
+        {
+          "name": "Autriche",
+          "weightPct": 0.81
+        },
+        {
+          "name": "Espagne",
+          "weightPct": 0.53
+        }
+      ],
+      "sha256": "789ed7e06b2ddcce647b00bccbe22c15720889229dfb6694072ab4fd0d8186fa",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983634/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "AIR LIQUIDE SA",
+          "weightPct": 17.0
+        },
+        {
+          "name": "RIO TINTO PLC (GBR)",
+          "weightPct": 14.46
+        },
+        {
+          "name": "GLENCORE PLC-GBP",
+          "weightPct": 10.36
+        },
+        {
+          "name": "ANGLO AMERICAN PLC GBP",
+          "weightPct": 8.68
+        },
+        {
+          "name": "BASF SE XETRA",
+          "weightPct": 7.37
+        },
+        {
+          "name": "ARCELORMITTAL AMSTERDAM",
+          "weightPct": 4.42
+        },
+        {
+          "name": "GIVAUDAN-REG",
+          "weightPct": 4.27
+        },
+        {
+          "name": "ANTOFAGASTA PLC",
+          "weightPct": 2.88
+        },
+        {
+          "name": "BOLIDEN AB",
+          "weightPct": 2.31
+        },
+        {
+          "name": "UPM-KYMMENE OYJ",
+          "weightPct": 1.99
+        }
+      ],
+      "sha256": "789ed7e06b2ddcce647b00bccbe22c15720889229dfb6694072ab4fd0d8186fa",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983634/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "LU1834986900": {
@@ -3236,11 +5726,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 828809840.7446,
+      "amount": 831117875.291,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -3261,6 +5751,123 @@
         "2025": 6.38
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Santé",
+          "weightPct": 98.7,
+          "label": "Santé"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 1.3,
+          "label": "Matériaux"
+        }
+      ],
+      "sha256": "1bc09105cc82b612f022ac02470ae6996332945747387ccfcf5a284c733e2ada",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834986900/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Suisse",
+          "weightPct": 41.17
+        },
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 21.76
+        },
+        {
+          "name": "Danemark",
+          "weightPct": 11.21
+        },
+        {
+          "name": "France",
+          "weightPct": 10.08
+        },
+        {
+          "name": "Allemagne",
+          "weightPct": 7.31
+        },
+        {
+          "name": "Belgique",
+          "weightPct": 5.21
+        },
+        {
+          "name": "Suède",
+          "weightPct": 1.11
+        },
+        {
+          "name": "Pays-Bas",
+          "weightPct": 1.09
+        },
+        {
+          "name": "Finlande",
+          "weightPct": 0.53
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 0.53
+        }
+      ],
+      "sha256": "1bc09105cc82b612f022ac02470ae6996332945747387ccfcf5a284c733e2ada",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834986900/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "ROCHE HLDG AG-GENUSS CHF",
+          "weightPct": 15.85
+        },
+        {
+          "name": "NOVARTIS AG-REG",
+          "weightPct": 15.15
+        },
+        {
+          "name": "ASTRAZENECA GBP",
+          "weightPct": 13.01
+        },
+        {
+          "name": "NOVO NORDISK A/S-B",
+          "weightPct": 7.65
+        },
+        {
+          "name": "GSK PLC",
+          "weightPct": 5.29
+        },
+        {
+          "name": "SANOFI - PARIS",
+          "weightPct": 5.23
+        },
+        {
+          "name": "ARGENX SE",
+          "weightPct": 3.36
+        },
+        {
+          "name": "ESSILORLUXOTTICA",
+          "weightPct": 3.04
+        },
+        {
+          "name": "BAYER AG-REG",
+          "weightPct": 2.88
+        },
+        {
+          "name": "LONZA GROUP AG-REG",
+          "weightPct": 2.64
+        }
+      ],
+      "sha256": "1bc09105cc82b612f022ac02470ae6996332945747387ccfcf5a284c733e2ada",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834986900/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "checkedAt": "2026-10-06"
     }
   },
   "LU1834988518": {
@@ -3269,11 +5876,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 215531163.018,
+      "amount": 216285081.1865,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -3294,6 +5901,137 @@
         "2025": 3.78
       },
       "checkedAt": "2026-10-05"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 83.63,
+          "label": "Technologie"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 8.41,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 6.5,
+          "label": "Industrie"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 1.45,
+          "label": "Communication"
+        }
+      ],
+      "sha256": "4949a9bee70d9a0a7b3d4924a2e8a9f8a91cb6d4c775530c71ba577c0cd3aee0",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834988518/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "Pays-Bas",
+          "weightPct": 43.73
+        },
+        {
+          "name": "Allemagne",
+          "weightPct": 26.21
+        },
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 9.08
+        },
+        {
+          "name": "Italie",
+          "weightPct": 4.84
+        },
+        {
+          "name": "France",
+          "weightPct": 4.83
+        },
+        {
+          "name": "Suède",
+          "weightPct": 3.7
+        },
+        {
+          "name": "Espagne",
+          "weightPct": 3.49
+        },
+        {
+          "name": "Suisse",
+          "weightPct": 2.35
+        },
+        {
+          "name": "Norvège",
+          "weightPct": 0.77
+        },
+        {
+          "name": "Autriche",
+          "weightPct": 0.66
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 0.34
+        }
+      ],
+      "sha256": "4949a9bee70d9a0a7b3d4924a2e8a9f8a91cb6d4c775530c71ba577c0cd3aee0",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834988518/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "rows": [
+        {
+          "name": "ASML HOLDING NV",
+          "weightPct": 31.01
+        },
+        {
+          "name": "SAP SE / XETRA",
+          "weightPct": 14.88
+        },
+        {
+          "name": "INFINEON TECHNOLOGIES AG",
+          "weightPct": 9.46
+        },
+        {
+          "name": "RELX PLC",
+          "weightPct": 6.5
+        },
+        {
+          "name": "PROSUS NV",
+          "weightPct": 5.64
+        },
+        {
+          "name": "ASM INTERNATIONAL NV",
+          "weightPct": 5.33
+        },
+        {
+          "name": "STMICROELECTRONICS/I",
+          "weightPct": 3.8
+        },
+        {
+          "name": "AMADEUS IT GROUP SA",
+          "weightPct": 2.77
+        },
+        {
+          "name": "HEXAGON AB-B SHS",
+          "weightPct": 2.25
+        },
+        {
+          "name": "CAPGEMINI SE",
+          "weightPct": 2.15
+        }
+      ],
+      "sha256": "4949a9bee70d9a0a7b3d4924a2e8a9f8a91cb6d4c775530c71ba577c0cd3aee0",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834988518/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "checkedAt": "2026-10-06"
     }
   },
   "LU1931975079": {
@@ -3302,11 +6040,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 1325406683.2883997,
+      "amount": 1328252879.3013,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -3639,11 +6377,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 119254381711.8355,
+      "amount": 120852322042.0145,
       "currency": "JPY",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -3786,11 +6524,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 71286665.896,
+      "amount": 71170468.0706,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -4053,11 +6791,11 @@
     "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
     "provider": "Amundi",
     "aum": {
-      "amount": 538170478.4268,
+      "amount": 544363042.644,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
-      "checkedAt": "2026-10-05"
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-06"
     },
     "sectors": {
       "asOf": "2026-10-02",
@@ -12086,6 +14824,1738 @@
         "2025": 13.56
       },
       "checkedAt": "2026-10-05"
+    }
+  },
+  "IE00BLNMYC90": {
+    "currency": "USD",
+    "productId": "IE00BLNMYC90",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.15,
+      "index": "S&P 500® Equal Weight Index",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2016": 14.14,
+        "2017": 18.84,
+        "2018": -9.41,
+        "2019": 29.53,
+        "2020": 12.17,
+        "2021": 28.9,
+        "2022": -11.93,
+        "2023": 13.32,
+        "2024": 12.47,
+        "2025": 10.95
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE0006WW1TQ4": {
+    "currency": "USD",
+    "productId": "IE0006WW1TQ4",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.15,
+      "index": "MSCI WORLD ex USA",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "LU0290358497": {
+    "currency": "EUR",
+    "productId": "LU0290358497",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.1,
+      "index": "Solactive €STR +8.5 Daily Total Return Index<PageFootnoteReference component-id='indexinformation-keyfacts' title=\"On 30/11/2023 the ETF changed its underlying benchmark to track the Solactive €STR +8.5 Daily Total Return Index and subsequently changed its name to EUR Overnight Rate Swap UCITS ETF. Prior to the change the ETF tracked the Deutsche Bank Euro Overnight Rate Total Return Index.\"></PageFootnoteReference>",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "EUR",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2016": -0.47,
+        "2017": -0.52,
+        "2018": -0.48,
+        "2019": -0.5,
+        "2020": -0.57,
+        "2021": -0.59,
+        "2022": -0.03,
+        "2023": 3.27,
+        "2024": 3.79,
+        "2025": 2.23
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE000L6ZMMC4": {
+    "currency": "USD",
+    "productId": "IE000L6ZMMC4",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.07,
+      "index": "FTSE All-World Index",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BGV5VN51": {
+    "currency": "USD",
+    "productId": "IE00BGV5VN51",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.35,
+      "index": "Nasdaq Global Artificial Intelligence and Big Data Total Net Return Index",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2020": 37.54,
+        "2021": 24.04,
+        "2022": -34.75,
+        "2023": 67.52,
+        "2024": 26.74,
+        "2025": 29.47
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BM67HK77": {
+    "currency": "USD",
+    "productId": "IE00BM67HK77",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.25,
+      "index": "MSCI WORLD HEALTH CARE TRN INDEX",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2016": -7.08,
+        "2017": 20.07,
+        "2018": 1.08,
+        "2019": 24.35,
+        "2020": 13.28,
+        "2021": 19.68,
+        "2022": -5.45,
+        "2023": 3.73,
+        "2024": 1.08,
+        "2025": 14.83
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BM67HS53": {
+    "currency": "USD",
+    "productId": "IE00BM67HS53",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.25,
+      "index": "MSCI WORLD MATERIALS TRN INDEX",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2016": 22.14,
+        "2017": 28.66,
+        "2018": -17.51,
+        "2019": 24.15,
+        "2020": 19.85,
+        "2021": 16.29,
+        "2022": -10.68,
+        "2023": 14.78,
+        "2024": -5.55,
+        "2025": 25.73
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BTJRMP35": {
+    "currency": "USD",
+    "productId": "IE00BTJRMP35",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.18,
+      "index": "MSCI Total Return Net Emerging Markets Index",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2018": -14.69,
+        "2019": 18.56,
+        "2020": 17.97,
+        "2021": -2.71,
+        "2022": -20.22,
+        "2023": 9.57,
+        "2024": 7.52,
+        "2025": 33.7
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "LU1875395870": {
+    "currency": "EUR",
+    "productId": "LU1875395870",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.19,
+      "index": "Nikkei 225 Net Total Return Index",
+      "distribution": "Distributing",
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "EUR",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2019": 19.46,
+        "2020": 15.87,
+        "2021": 5.13,
+        "2022": -8.14,
+        "2023": 34.54,
+        "2024": 24.22,
+        "2025": 29.63
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "LU2196470426": {
+    "currency": "JPY",
+    "productId": "LU2196470426",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "characteristics": {
+      "terPct": 0.09,
+      "index": "Nikkei 225 Net Total Return Index",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BK5BQT80": {
+    "currency": "USD",
+    "productId": "IE00BK5BQT80",
+    "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+    "provider": "Vanguard",
+    "aum": {
+      "amount": 58049000000.0,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+      "rows": [
+        {
+          "name": "Technology",
+          "weightPct": 34.1,
+          "label": "Technologie"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 3.9,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 15.5,
+          "label": "Finance"
+        },
+        {
+          "name": "Basic Materials",
+          "weightPct": 3.4,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 12.3,
+          "label": "Industrie"
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 3.3,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 11.0,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.5,
+          "label": "Services publics"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 8.0,
+          "label": "Santé"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.7,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 4.2,
+          "label": "Énergie"
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+      "rows": [
+        {
+          "name": "NVIDIA Corp.",
+          "weightPct": 4.8
+        },
+        {
+          "name": "Apple Inc.",
+          "weightPct": 4.3
+        },
+        {
+          "name": "Microsoft Corp.",
+          "weightPct": 3.5
+        },
+        {
+          "name": "Alphabet Inc.",
+          "weightPct": 3.3
+        },
+        {
+          "name": "Amazon.com Inc.",
+          "weightPct": 2.3
+        },
+        {
+          "name": "Taiwan Semiconductor Manufacturing Co. Ltd.",
+          "weightPct": 1.7
+        },
+        {
+          "name": "Broadcom Inc.",
+          "weightPct": 1.6
+        },
+        {
+          "name": "Meta Platforms Inc.",
+          "weightPct": 1.2
+        },
+        {
+          "name": "Micron Technology Inc.",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Tesla Inc.",
+          "weightPct": 1.0
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.14,
+      "index": "FTSE All-World",
+      "distribution": "Accumulating",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BK5BR626": {
+    "currency": "USD",
+    "productId": "IE00BK5BR626",
+    "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Accumulating_9677_EU_INT_UK_EN.pdf",
+    "provider": "Vanguard",
+    "aum": {
+      "amount": 3426000000.0,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Accumulating_9677_EU_INT_UK_EN.pdf",
+      "rows": [
+        {
+          "name": "Financials",
+          "weightPct": 30.4,
+          "label": "Finance"
+        },
+        {
+          "name": "Technology",
+          "weightPct": 6.4,
+          "label": "Technologie"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 12.3,
+          "label": "Industrie"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 5.1,
+          "label": "Services publics"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 11.2,
+          "label": "Santé"
+        },
+        {
+          "name": "Basic Materials",
+          "weightPct": 4.9,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 9.1,
+          "label": "Énergie"
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 4.2,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 8.0,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 0.7,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 7.7,
+          "label": "Consommation cyclique"
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Accumulating_9677_EU_INT_UK_EN.pdf",
+      "rows": [
+        {
+          "name": "JPMorgan Chase & Co.",
+          "weightPct": 2.2
+        },
+        {
+          "name": "ExxonMobil Holdings Corp.",
+          "weightPct": 1.5
+        },
+        {
+          "name": "Johnson & Johnson",
+          "weightPct": 1.5
+        },
+        {
+          "name": "AbbVie Inc.",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Cisco Systems Inc.",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Bank of America Corp.",
+          "weightPct": 0.9
+        },
+        {
+          "name": "Chevron Corp.",
+          "weightPct": 0.9
+        },
+        {
+          "name": "Merck & Co. Inc.",
+          "weightPct": 0.8
+        },
+        {
+          "name": "HSBC Holdings plc",
+          "weightPct": 0.8
+        },
+        {
+          "name": "UnitedHealth Group Inc.",
+          "weightPct": 0.8
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.29,
+      "index": "FTSE All-World High Dividend Yield",
+      "distribution": "Accumulating",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00B8GKDB10": {
+    "currency": "USD",
+    "productId": "IE00B8GKDB10",
+    "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
+    "provider": "Vanguard",
+    "aum": {
+      "amount": 11409000000.0,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
+      "rows": [
+        {
+          "name": "Financials",
+          "weightPct": 30.4,
+          "label": "Finance"
+        },
+        {
+          "name": "Technology",
+          "weightPct": 6.4,
+          "label": "Technologie"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 12.3,
+          "label": "Industrie"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 5.1,
+          "label": "Services publics"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 11.2,
+          "label": "Santé"
+        },
+        {
+          "name": "Basic Materials",
+          "weightPct": 4.9,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 9.1,
+          "label": "Énergie"
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 4.2,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 8.0,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 0.7,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 7.7,
+          "label": "Consommation cyclique"
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
+      "rows": [
+        {
+          "name": "JPMorgan Chase & Co.",
+          "weightPct": 2.2
+        },
+        {
+          "name": "ExxonMobil Holdings Corp.",
+          "weightPct": 1.5
+        },
+        {
+          "name": "Johnson & Johnson",
+          "weightPct": 1.5
+        },
+        {
+          "name": "AbbVie Inc.",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Cisco Systems Inc.",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Bank of America Corp.",
+          "weightPct": 0.9
+        },
+        {
+          "name": "Chevron Corp.",
+          "weightPct": 0.9
+        },
+        {
+          "name": "Merck & Co. Inc.",
+          "weightPct": 0.8
+        },
+        {
+          "name": "HSBC Holdings plc",
+          "weightPct": 0.8
+        },
+        {
+          "name": "UnitedHealth Group Inc.",
+          "weightPct": 0.8
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.29,
+      "index": "FTSE All-World High Dividend Yield",
+      "distribution": "Distributing",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BK5BR733": {
+    "currency": "USD",
+    "productId": "IE00BK5BR733",
+    "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Accumulating_9678_EU_INT_UK_EN.pdf",
+    "provider": "Vanguard",
+    "aum": {
+      "amount": 2385000000.0,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-06"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Accumulating_9678_EU_INT_UK_EN.pdf",
+      "rows": [
+        {
+          "name": "Technology",
+          "weightPct": 35.1,
+          "label": "Technologie"
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 3.8,
+          "label": "Communication"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 21.4,
+          "label": "Finance"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 3.4,
+          "label": "Santé"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 8.9,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 3.3,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 8.1,
+          "label": "Industrie"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.8,
+          "label": "Services publics"
+        },
+        {
+          "name": "Basic Materials",
+          "weightPct": 7.1,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.7,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 4.6,
+          "label": "Énergie"
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Accumulating_9678_EU_INT_UK_EN.pdf",
+      "rows": [
+        {
+          "name": "Taiwan Semiconductor Manufacturing Co. Ltd.",
+          "weightPct": 17.0
+        },
+        {
+          "name": "Tencent Holdings Ltd.",
+          "weightPct": 3.3
+        },
+        {
+          "name": "Alibaba Group Holding Ltd.",
+          "weightPct": 2.5
+        },
+        {
+          "name": "MediaTek Inc.",
+          "weightPct": 1.7
+        },
+        {
+          "name": "Delta Electronics Inc.",
+          "weightPct": 1.0
+        },
+        {
+          "name": "China Construction Bank Corp.",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Hon Hai Precision Industry Co. Ltd.",
+          "weightPct": 0.9
+        },
+        {
+          "name": "Reliance Industries Ltd.",
+          "weightPct": 0.8
+        },
+        {
+          "name": "HDFC Bank Ltd.",
+          "weightPct": 0.8
+        },
+        {
+          "name": "Industrial & Commercial Bank of China Ltd.",
+          "weightPct": 0.8
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.17,
+      "index": "FTSE Emerging",
+      "distribution": "Accumulating",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BZ163G84": {
+    "currency": "EUR",
+    "productId": "IE00BZ163G84",
+    "sourceUrl": "https://fund-docs.vanguard.com/EUR_Corporate_Bond_UCITS_ETF_EUR_Distributing_9659_EU_INT_UK_EN.pdf",
+    "provider": "Vanguard",
+    "aum": {
+      "amount": 3324000000.0,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.07,
+      "index": "Bloomberg Euro Corporate Bond",
+      "distribution": "Distributing",
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BYWQWR46": {
+    "currency": "USD",
+    "productId": "IE00BYWQWR46",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/espo-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 612500000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/espo-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "Japan",
+          "weightPct": 29.72
+        },
+        {
+          "name": "China",
+          "weightPct": 22.27
+        },
+        {
+          "name": "United States",
+          "weightPct": 16.71
+        },
+        {
+          "name": "Taiwan Region",
+          "weightPct": 9.17
+        },
+        {
+          "name": "South Korea",
+          "weightPct": 7.04
+        },
+        {
+          "name": "Australia",
+          "weightPct": 5.7
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 9.39
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/espo-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "TENCENT HOLDINGS LTD",
+          "weightPct": 7.91
+        },
+        {
+          "name": "NINTENDO CO LTD",
+          "weightPct": 7.35
+        },
+        {
+          "name": "NETEASE INC",
+          "weightPct": 7.29
+        },
+        {
+          "name": "TAKE-TWO INTERACTIVE SOFTWARE INC",
+          "weightPct": 6.36
+        },
+        {
+          "name": "ARISTOCRAT LEISURE LTD",
+          "weightPct": 5.7
+        },
+        {
+          "name": "BANDAI NAMCO HOLDINGS INC",
+          "weightPct": 5.68
+        },
+        {
+          "name": "GAMESTOP CORP",
+          "weightPct": 5.55
+        },
+        {
+          "name": "INTERNATIONAL GAMES SYSTEM CO LTD",
+          "weightPct": 4.94
+        },
+        {
+          "name": "UNITY SOFTWARE INC",
+          "weightPct": 4.79
+        },
+        {
+          "name": "CD PROJEKT RED SA",
+          "weightPct": 4.73
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.55,
+      "index": "MarketVector Global Video Gaming & eSports Screened Index (MVESPGTR)",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, net income reinvested, net of fees",
+      "years": {
+        "2020": 83.7,
+        "2021": -1.9,
+        "2022": -34.1,
+        "2023": 31.7,
+        "2024": 48.6,
+        "2025": 27.4
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE0007Y8Y157": {
+    "currency": "USD",
+    "productId": "IE0007Y8Y157",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 898400000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 65.97
+        },
+        {
+          "name": "Japan",
+          "weightPct": 16.06
+        },
+        {
+          "name": "South Korea",
+          "weightPct": 7.93
+        },
+        {
+          "name": "Finland",
+          "weightPct": 4.31
+        },
+        {
+          "name": "Germany",
+          "weightPct": 4.02
+        },
+        {
+          "name": "Canada",
+          "weightPct": 1.01
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 0.24
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.21
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 0.25
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "IONQ INC",
+          "weightPct": 9.08
+        },
+        {
+          "name": "D-WAVE QUANTUM INC",
+          "weightPct": 7.58
+        },
+        {
+          "name": "RIGETTI COMPUTING INC",
+          "weightPct": 5.95
+        },
+        {
+          "name": "INTEL CORP",
+          "weightPct": 4.47
+        },
+        {
+          "name": "SYNOPSYS INC",
+          "weightPct": 4.37
+        },
+        {
+          "name": "INFLEQTION INC",
+          "weightPct": 4.13
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 4.12
+        },
+        {
+          "name": "ALPHABET INC",
+          "weightPct": 4.11
+        },
+        {
+          "name": "HITACHI LTD",
+          "weightPct": 4.09
+        },
+        {
+          "name": "NEC CORP",
+          "weightPct": 4.07
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.55,
+      "index": "MarketVector Global Quantum Leaders",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE000M7V94E1": {
+    "currency": "USD",
+    "productId": "IE000M7V94E1",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 2094900000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "Canada",
+          "weightPct": 37.01
+        },
+        {
+          "name": "Japan",
+          "weightPct": 26.2
+        },
+        {
+          "name": "United States",
+          "weightPct": 21.83
+        },
+        {
+          "name": "South Korea",
+          "weightPct": 6.84
+        },
+        {
+          "name": "Australia",
+          "weightPct": 4.17
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 1.82
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 2.13
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "CAMECO CORP",
+          "weightPct": 14.66
+        },
+        {
+          "name": "SPROTT PHYSICAL URANIUM TRUST",
+          "weightPct": 7.12
+        },
+        {
+          "name": "NEXGEN ENERGY LTD",
+          "weightPct": 7.0
+        },
+        {
+          "name": "OKLO INC",
+          "weightPct": 6.02
+        },
+        {
+          "name": "FUJI ELECTRIC CO LTD",
+          "weightPct": 5.88
+        },
+        {
+          "name": "HITACHI LTD",
+          "weightPct": 5.86
+        },
+        {
+          "name": "ATKINSREALIS GROUP INC",
+          "weightPct": 5.57
+        },
+        {
+          "name": "MITSUBISHI HEAVY INDUSTRIES LTD",
+          "weightPct": 5.56
+        },
+        {
+          "name": "IHI CORP",
+          "weightPct": 5.31
+        },
+        {
+          "name": "SAMSUNG C&T CORP",
+          "weightPct": 5.08
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.55,
+      "index": "MarketVector Global Uranium and Nuclear Energy Infrastructure",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE000YU9K6K2": {
+    "currency": "USD",
+    "productId": "IE000YU9K6K2",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 1726600000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 67.69
+        },
+        {
+          "name": "Japan",
+          "weightPct": 7.33
+        },
+        {
+          "name": "Canada",
+          "weightPct": 5.69
+        },
+        {
+          "name": "Taiwan Region",
+          "weightPct": 4.53
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 4.38
+        },
+        {
+          "name": "Luxembourg",
+          "weightPct": 3.23
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 7.15
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "ROCKET LAB CORP",
+          "weightPct": 8.88
+        },
+        {
+          "name": "AST SPACEMOBILE INC",
+          "weightPct": 7.58
+        },
+        {
+          "name": "ECHOSTAR CORP",
+          "weightPct": 6.89
+        },
+        {
+          "name": "VIASAT INC",
+          "weightPct": 6.35
+        },
+        {
+          "name": "GLOBALSTAR INC",
+          "weightPct": 6.12
+        },
+        {
+          "name": "MDA SPACE LTD",
+          "weightPct": 5.69
+        },
+        {
+          "name": "FIREFLY AEROSPACE INC",
+          "weightPct": 4.8
+        },
+        {
+          "name": "PLANET LABS PBC",
+          "weightPct": 4.78
+        },
+        {
+          "name": "IRIDIUM COMMUNICATIONS INC",
+          "weightPct": 4.6
+        },
+        {
+          "name": "WISTRON NEWEB CORP",
+          "weightPct": 4.53
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.55,
+      "index": "MarketVector Global Space Industry Screened",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE000YYE6WK5": {
+    "currency": "USD",
+    "productId": "IE000YYE6WK5",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 6854800000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 46.7
+        },
+        {
+          "name": "South Korea",
+          "weightPct": 11.67
+        },
+        {
+          "name": "France",
+          "weightPct": 9.33
+        },
+        {
+          "name": "Israel",
+          "weightPct": 6.69
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 5.78
+        },
+        {
+          "name": "Italy",
+          "weightPct": 5.72
+        },
+        {
+          "name": "Norway",
+          "weightPct": 4.21
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 3.82
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 6.09
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "PALANTIR TECHNOLOGIES INC",
+          "weightPct": 8.97
+        },
+        {
+          "name": "RTX CORP",
+          "weightPct": 7.64
+        },
+        {
+          "name": "HANWHA AEROSPACE CO LTD",
+          "weightPct": 7.26
+        },
+        {
+          "name": "THALES SA",
+          "weightPct": 7.07
+        },
+        {
+          "name": "SAAB AB",
+          "weightPct": 5.78
+        },
+        {
+          "name": "LEONARDO SPA",
+          "weightPct": 5.72
+        },
+        {
+          "name": "ELBIT SYSTEMS LTD",
+          "weightPct": 5.4
+        },
+        {
+          "name": "CURTISS-WRIGHT CORP",
+          "weightPct": 4.49
+        },
+        {
+          "name": "KONGSBERG GRUPPEN ASA",
+          "weightPct": 4.21
+        },
+        {
+          "name": "SINGAPORE TECHNOLOGIES ENGINEERING LTD",
+          "weightPct": 3.82
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.55,
+      "index": "MarketVector Global Defense Industry",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BDFBTQ78": {
+    "currency": "USD",
+    "productId": "IE00BDFBTQ78",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 2349400000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "Australia",
+          "weightPct": 27.71
+        },
+        {
+          "name": "Canada",
+          "weightPct": 24.14
+        },
+        {
+          "name": "United States",
+          "weightPct": 16.73
+        },
+        {
+          "name": "South Africa",
+          "weightPct": 7.31
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 5.13
+        },
+        {
+          "name": "China",
+          "weightPct": 4.88
+        },
+        {
+          "name": "Mexico",
+          "weightPct": 3.13
+        },
+        {
+          "name": "Japan",
+          "weightPct": 2.1
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 8.85
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "BHP GROUP LTD",
+          "weightPct": 9.17
+        },
+        {
+          "name": "NEWMONT CORP",
+          "weightPct": 5.79
+        },
+        {
+          "name": "RIO TINTO PLC",
+          "weightPct": 4.79
+        },
+        {
+          "name": "FREEPORT-MCMORAN INC",
+          "weightPct": 4.79
+        },
+        {
+          "name": "AGNICO EAGLE MINES LTD",
+          "weightPct": 4.43
+        },
+        {
+          "name": "GLENCORE PLC",
+          "weightPct": 3.3
+        },
+        {
+          "name": "BARRICK MINING CORP",
+          "weightPct": 3.2
+        },
+        {
+          "name": "ANGLO AMERICAN PLC",
+          "weightPct": 3.03
+        },
+        {
+          "name": "WHEATON PRECIOUS METALS CORP",
+          "weightPct": 2.9
+        },
+        {
+          "name": "FRANCO-NEVADA CORP",
+          "weightPct": 2.19
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.5,
+      "index": "S&P Global Mining",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, net income reinvested, net of fees",
+      "years": {
+        "2020": 27.4,
+        "2021": 29.5,
+        "2022": 9.9,
+        "2023": 4.8,
+        "2024": -8.5,
+        "2025": 90.5
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "NL0009690239": {
+    "currency": "EUR",
+    "productId": "NL0009690239",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 433300000.0,
+      "currency": "EUR",
+      "scope": "fund",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 70.08
+        },
+        {
+          "name": "Japan",
+          "weightPct": 9.19
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 3.54
+        },
+        {
+          "name": "Australia",
+          "weightPct": 3.16
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 2.24
+        },
+        {
+          "name": "China",
+          "weightPct": 2.12
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 9.68
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "WELLTOWER INC",
+          "weightPct": 12.54
+        },
+        {
+          "name": "PROLOGIS INC",
+          "weightPct": 9.28
+        },
+        {
+          "name": "DIGITAL REALTY TRUST INC",
+          "weightPct": 4.91
+        },
+        {
+          "name": "SIMON PROPERTY GROUP INC",
+          "weightPct": 4.9
+        },
+        {
+          "name": "REALTY INCOME CORP",
+          "weightPct": 3.88
+        },
+        {
+          "name": "PUBLIC STORAGE",
+          "weightPct": 3.58
+        },
+        {
+          "name": "VENTAS INC",
+          "weightPct": 3.28
+        },
+        {
+          "name": "VIVMARK RESIDENTIAL",
+          "weightPct": 3.2
+        },
+        {
+          "name": "EXTRA SPACE STORAGE INC",
+          "weightPct": 2.09
+        },
+        {
+          "name": "MITSUBISHI ESTATE CO LTD",
+          "weightPct": 2.0
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.25,
+      "index": "GPR Global 100",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "NL0011683594": {
+    "currency": "EUR",
+    "productId": "NL0011683594",
+    "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
+    "provider": "VanEck",
+    "aum": {
+      "amount": 9763600000.0,
+      "currency": "EUR",
+      "scope": "fund",
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-06"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "United Kingdom",
+          "weightPct": 17.06
+        },
+        {
+          "name": "United States",
+          "weightPct": 15.88
+        },
+        {
+          "name": "France",
+          "weightPct": 12.45
+        },
+        {
+          "name": "Italy",
+          "weightPct": 8.83
+        },
+        {
+          "name": "Germany",
+          "weightPct": 7.12
+        },
+        {
+          "name": "Australia",
+          "weightPct": 6.76
+        },
+        {
+          "name": "Spain",
+          "weightPct": 5.82
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 4.58
+        },
+        {
+          "name": "Other/Cash",
+          "weightPct": 21.5
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
+      "rows": [
+        {
+          "name": "VERIZON COMMUNICATIONS INC",
+          "weightPct": 4.71
+        },
+        {
+          "name": "HSBC HOLDINGS PLC",
+          "weightPct": 4.61
+        },
+        {
+          "name": "PFIZER INC",
+          "weightPct": 4.34
+        },
+        {
+          "name": "NESTLE SA",
+          "weightPct": 3.75
+        },
+        {
+          "name": "SHELL PLC",
+          "weightPct": 3.64
+        },
+        {
+          "name": "TOTALENERGIES SE",
+          "weightPct": 3.23
+        },
+        {
+          "name": "PEPSICO INC",
+          "weightPct": 2.81
+        },
+        {
+          "name": "ALLIANZ SE",
+          "weightPct": 2.73
+        },
+        {
+          "name": "INTESA SANPAOLO SPA",
+          "weightPct": 2.58
+        },
+        {
+          "name": "BANCO BILBAO VIZCAYA ARGENTARIA SA",
+          "weightPct": 2.48
+        }
+      ],
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.38,
+      "index": "Morningstar Developed Markets Large Cap Dividend Leaders Screened Select",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00B579F325": {
+    "currency": "USD",
+    "productId": "IE00B579F325",
+    "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
+    "provider": "Invesco",
+    "aum": {
+      "amount": 31209310000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.12,
+      "index": "Gold",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, net income reinvested, net of ongoing charges",
+      "years": {
+        "2025": 64.8,
+        "2024": 26.44,
+        "2023": 13.66,
+        "2022": -0.54,
+        "2021": -3.9,
+        "2020": 23.95,
+        "2019": 18.55,
+        "2018": -1.43,
+        "2017": 11.53,
+        "2016": 8.8
+      },
+      "checkedAt": "2026-10-06"
+    }
+  },
+  "IE00BD6FTQ80": {
+    "currency": "USD",
+    "productId": "IE00BD6FTQ80",
+    "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
+    "provider": "Invesco",
+    "aum": {
+      "amount": 4463160000.0,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-06"
+    },
+    "characteristics": {
+      "terPct": 0.19,
+      "index": "Bloomberg Commodity",
+      "distribution": null,
+      "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, net income reinvested, net of ongoing charges",
+      "years": {
+        "2025": 15.39,
+        "2024": 5.02,
+        "2023": -8.47,
+        "2022": 14.9,
+        "2021": 26.7,
+        "2020": -3.13,
+        "2019": 7.49,
+        "2018": -11.65
+      },
+      "checkedAt": "2026-10-06"
     }
   }
 }
