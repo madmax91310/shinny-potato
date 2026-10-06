@@ -2,6 +2,8 @@
 import re
 import datetime as dt
 import urllib.error
+import urllib.request
+import http.cookiejar
 from urllib.parse import urlparse
 from html.parser import HTMLParser
 from data_automation import number, reject
@@ -96,7 +98,16 @@ def parse_legacy(text,share,now):
 
 def collect_legacy(share,now,fetch=None):
     from data_automation import get_text
-    fetch = fetch or get_text
+    if fetch is None:
+        # The public legacy pages reject the generic collector agent on hosted
+        # runners. Keep regional cookies and send normal HTML request headers.
+        opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+        def open_page(request, **kwargs):
+            request.add_header('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36')
+            request.add_header('Accept-Language', 'en-GB,en;q=0.9,fr;q=0.8')
+            return opener.open(request, **kwargs)
+        def fetch(url, content_types, max_bytes):
+            return get_text(url, content_types, max_bytes, opener=open_page)
     urls = [share['sourceUrl'], *share.get('fallbackUrls', [])]
     # Only transport failures qualify for an alternate official page. A response
     # with the wrong ISIN, currency or stale date must still fail validation.
