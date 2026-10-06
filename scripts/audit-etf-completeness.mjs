@@ -34,7 +34,7 @@ for (const etf of ETFS) {
   if (automated?.performance) {
     assert.deepEqual(series.values, AUTOMATED_PERFORMANCE[etf.isin].values);
     assert.equal(series.currency, automated.currency);
-    assert.equal(series.source, automated.sourceUrl);
+    assert.equal(series.source, automated.performance.sourceUrl ?? automated.sourceUrl);
     assert.equal(series.checkedAt, automated.performance.checkedAt);
     assert(series.checkedAt <= today);
   } else if (evidence) {

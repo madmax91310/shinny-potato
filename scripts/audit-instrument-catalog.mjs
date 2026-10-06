@@ -174,7 +174,7 @@ for (const [isin, entry] of Object.entries(INSTRUMENT_AUM_BY_ISIN)) {
 for (const [isin, automated] of Object.entries(AUTOMATED_ETF)) {
   if (!automated.aum) continue; // Some qualified sources publish only expenses/returns/exposures.
   const source = INSTRUMENT_AUM_BY_ISIN[isin]?.source;
-  if (!source || source.amount !== automated.aum.amount || source.amountMillions !== automated.aum.amount / 1e6 || source.currency !== automated.aum.currency || source.asOf !== automated.aum.asOf || source.checkedAt !== automated.aum.checkedAt || source.url !== automated.sourceUrl) {
+  if (!source || source.amount !== automated.aum.amount || source.amountMillions !== automated.aum.amount / 1e6 || source.currency !== automated.aum.currency || source.asOf !== automated.aum.asOf || source.checkedAt !== automated.aum.checkedAt || source.url !== (automated.aum.sourceUrl ?? automated.sourceUrl)) {
     console.error(`Encours automatisé incohérent : ${isin}`);
     errors++;
   }
