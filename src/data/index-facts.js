@@ -759,6 +759,7 @@ for (const [id, record] of Object.entries(automatedIndices)) {
     const baseline = Object.values(history).filter(f => f.asOf && f.asOf <= facts.asOf).sort((a,b) => b.asOf.localeCompare(a.asOf))[0];
     if (!baseline) continue;
     history[facts.asOf] = { ...facts,
+      markets: facts.markets ?? baseline.markets,
       snapshot: new Intl.DateTimeFormat('fr-FR', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(new Date(facts.asOf)),
       descriptionTemplates: baseline.descriptionTemplates,
       ...(baseline.marketCount ? { marketCount: baseline.marketCount } : {}),
