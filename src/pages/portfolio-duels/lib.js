@@ -1,6 +1,6 @@
 import { duelEditorial } from './editorial.js';
 import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js';
-import { YEARS } from '../../data/portfolio-assets.js'
+import { latestCommonYears } from '../../data/annual-window.js'
 import { ITEM_BY_ID, CATALOG, FX_SOURCE, ROLES, euroReturn } from './catalog.js'
 
 export { CATALOG, ROLES }
@@ -77,9 +77,13 @@ export function buildCustomDuel(definition) {
   validateAllocation(definition.left, 'A')
   validateAllocation(definition.right, 'B')
   const selection = [...definition.left, ...definition.right]
-  const years = YEARS.filter((year) => selection.every((line) => Number.isFinite(euroReturn(ITEM_BY_ID.get(line.id), year))))
-  if (years.length < 3 || years.some((year, i) => i && year !== years[i - 1] + 1) || years.at(-1) !== YEARS.at(-1)) {
-    throw new Error('Il faut au moins trois années consécutives communes se terminant en 2025.')
+  const maps = selection.map(line => {
+    const item = ITEM_BY_ID.get(line.id)
+    return Object.fromEntries(Object.keys(item.calendarReturns).map(Number).map(year => [year, euroReturn(item, year)]))
+  })
+  const years = latestCommonYears(maps, { length: 6, minimum: 3 })
+  if (years.length < 3 || years.some((year, i) => i && year !== years[i - 1] + 1)) {
+    throw new Error('Il faut au moins trois années complètes consécutives communes, avec un change vérifié pour les séries en dollars.')
   }
   const makePortfolio = (lines, name) => {
     const assets = lines.map((line) => ({ ...ITEM_BY_ID.get(line.id), pct: line.pct }))
@@ -122,7 +126,7 @@ export function buildTweet(duel) {
     : `${formatCapital(Math.abs(difference), currency)} de plus pour le portefeuille ${difference > 0 ? 'B' : 'A'}.`
   return [
     `⚔️ ${duel.hook}`, '',
-    ...([...a.assets, ...b.assets].some(asset => SIMULATION_PROXIES[asset.isin]) ? ['Base historique : ' + [...new Set([...a.assets, ...b.assets].filter(asset => SIMULATION_PROXIES[asset.isin]).map(asset => SIMULATION_PROXIES[asset.isin].scope))].join(' ; '), ''] : []),
+    ...([...a.assets, ...b.assets].some(asset => SIMULATION_PROXIES[asset.isin] && asset.basis === 'proxy') ? ['Base historique : ' + [...new Set([...a.assets, ...b.assets].filter(asset => SIMULATION_PROXIES[asset.isin] && asset.basis === 'proxy').map(asset => SIMULATION_PROXIES[asset.isin].scope.replace('2020–2025', `${years[0]}–${years.at(-1)}`)))].join(' ; '), ''] : []),
     `Deux portefeuilles, ${formatCapital(INITIAL, currency)} investis début ${years[0]}, sans versement supplémentaire jusqu’à fin ${years.at(-1)} 👇`, '',
     `🅰️ ${a.name}`, allocation(a), '', `🅱️ ${b.name}`, allocation(b), '',
     '🔎 Ce qui change :', `🅰️ ${duel.readings[0]}`, `🅱️ ${duel.readings[1]}`, '',

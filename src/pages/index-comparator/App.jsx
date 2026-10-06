@@ -96,7 +96,7 @@ export default function IndexComparator() {
                 <div key={f.key} className="xc-fund-block">
                   <p className="xc-fund-label">{f.label}</p>
                   <p className="xc-perf-readout">
-                    {`2023 ${fmtPct(f.y2023) ?? 'Non disponible'} · 2024 ${fmtPct(f.y2024) ?? 'Non disponible'} · 2025 ${fmtPct(f.y2025) ?? 'Non disponible'}`}
+                    {f.years.map(year => `${year} ${fmtPct(f[`y${year}`]) ?? 'Non disponible'}`).join(' · ')}
                   </p>
                   <p className="xc-hint">{f.currency ?? 'Devise à confirmer'} · {f.method}. {f.note}</p>
                   <a className="xc-hint" href={f.source.url} target="_blank" rel="noreferrer">Consulter la source des performances</a>

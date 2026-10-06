@@ -99,7 +99,7 @@ export async function renderIndexImage(family) {
     const perf = performanceRows[i]
     const basis = `${perf.currency} · ${perf.method}`
     font(ctx, 24); const perfBasis = lines(ctx, basis, INNER)
-    allocations.push({ label: 'PERFORMANCES', rows: [2023, 2024, 2025].map(year => ({ name: [String(year)], text: fmtPct(perf[`y${year}`]) })) })
+    allocations.push({ label: 'PERFORMANCES', rows: perf.years.map(year => ({ name: [String(year)], text: fmtPct(perf[`y${year}`]) })) })
     return { name, points, perfBasis, count: facts?.count ?? facts?.targetCount ?? null, countLabel: Number.isFinite(facts?.count) ? 'titres' : 'sociétés visées', stamp, allocations, source: facts ? sourceProvider(index.indexFacts.source) : null, color: COLORS[i % COLORS.length] }
   })
   const rows = []

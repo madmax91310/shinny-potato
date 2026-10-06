@@ -1,3 +1,4 @@
+import { performanceYears } from './performance.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { dataLabels } from './compact.js'
 import { instrumentOption, normalizeSearch } from '../../data/asset-selection.js'
@@ -15,7 +16,7 @@ import {
   PROFILES,
   isCompatible,
 } from './engine.js'
-import { CATEGORIES, YEARS, ASSETS, getAsset } from '../../data/portfolio-assets.js'
+import { CATEGORIES, ASSETS, getAsset } from '../../data/portfolio-assets.js'
 import { renderPortfolioImage } from './canvasImage.js'
 import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
 import PageHeader from '../../design-system/PageHeader'
@@ -347,6 +348,7 @@ function CategorySummary({ selection }) {
 }
 
 function PerfChart({ perf }) {
+  const YEARS = performanceYears(perf)
   const values = YEARS.map((y) => perf[y])
   const maxAbs = Math.max(1, ...values.filter(Number.isFinite).map((v) => Math.abs(v)))
   const half = 62
@@ -632,7 +634,7 @@ export default function App() {
 
           <div className="pg-panel pg-panel-muted">
             <p className="pg-fine-print">
-              Rendements 2020-2025 : données historiques approximatives par actif, à titre pédagogique et
+              Rendements sur les années complètes affichées : données historiques approximatives par actif, à titre pédagogique et
               éditables manuellement. Chaque année additionne les rendements des lignes selon des poids
               affichés, sans simuler les versements ni un capital cumulé ; des devises différentes peuvent
               coexister sans conversion. Chaque combinaison est validée pour respecter la borne de pire année

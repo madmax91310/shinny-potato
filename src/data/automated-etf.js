@@ -1,3 +1,4 @@
+import { latestCommonYears } from './annual-window.js';
 import records from './automated-etf.json' with { type: 'json' };
 export const AUTOMATED_ETF = records;
 export const AUTOMATED_AUM = Object.fromEntries(Object.entries(records).filter(([, r]) => r.aum).map(([isin, r]) => {
@@ -6,10 +7,14 @@ export const AUTOMATED_AUM = Object.fromEntries(Object.entries(records).filter((
   const label = `${a.scope === 'fund' ? 'Fonds' : 'Part'} : ${(a.amount / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} M${symbol} au ${a.asOf.split('-').reverse().join('/')}`;
   return [isin, { sheet: label, index: label, source: { ...a, amountMillions: a.amount / 1e6, url: a.sourceUrl ?? r.sourceUrl, checkedAt: a.checkedAt, scope: a.scope === 'fund' ? 'Actif net du fonds' : 'Actif net de la part exacte' } }];
 }));
-export const AUTOMATED_PERFORMANCE = Object.fromEntries(Object.entries(records).filter(([, r]) => r.performance).map(([isin, r]) => [isin, {
-  ...r.performance, source: r.performance.sourceUrl ?? r.sourceUrl, values: Array.from({ length: 6 }, (_, i) => r.performance.years[String(2020 + i)]),
-  periodStart: '2020-01-01', periodEnd: '2025-12-31',
-}]));
+export function buildAnnualPerformance(record, now = new Date()) {
+  const latest = latestCommonYears([record.performance.years], { length: 6, minimum: 1, now }).at(-1);
+  const years = latest ? Array.from({ length: 6 }, (_, i) => latest - 5 + i) : [];
+  return { ...record.performance, source: record.performance.sourceUrl ?? record.sourceUrl,
+    values: years.map(year => record.performance.years[year] ?? null), calendarYears: years,
+    periodStart: `${years[0]}-01-01`, periodEnd: `${years.at(-1)}-12-31` };
+}
+export const AUTOMATED_PERFORMANCE = Object.fromEntries(Object.entries(records).filter(([, r]) => r.performance).map(([isin, record]) => [isin, buildAnnualPerformance(record)]));
 // Holdings keep their own date; a sector refresh cannot re-date them.
 export function refreshFundDetails(isin, previous = {}) {
   const r = records[isin];
@@ -23,3 +28,5 @@ export function refreshFundDetails(isin, previous = {}) {
     ...(AUTOMATED_PERFORMANCE[isin] ? { performance: AUTOMATED_PERFORMANCE[isin] } : {}),
   };
 }
+
+export const HISTORICAL_AUTOMATED_PERFORMANCE = Object.fromEntries(Object.entries(AUTOMATED_PERFORMANCE).map(([isin, series]) => [isin, { ...series, values: Array.from({ length: 6 }, (_, i) => series.years[2020 + i] ?? null), calendarYears: [2020, 2021, 2022, 2023, 2024, 2025], periodStart: '2020-01-01', periodEnd: '2025-12-31' }]));

@@ -1,6 +1,6 @@
 import { loadArtImage, loadEditorialFont } from './anniversaryArt.js'
 import { getPaperArt } from './stylizedArt.js'
-import { getComparisonPerformance } from './comparisonPerformance.js'
+import { getComparisonPerformance, getComparisonYears } from './comparisonPerformance.js'
 
 const W = 2000, H = 1250
 const INK = '#f1f4ff', MUTED = '#b9c6d5', GREEN = '#9cebc5', RED = '#ffafa0'
@@ -52,7 +52,8 @@ function drawScene(ctx,image,x,y,w,h) {
 export async function renderComparatifEtfImage(theme) {
   await loadEditorialFont()
   const art = await Promise.all(theme.etfs.map(fund => loadArtImage(comparisonArt(theme.id, fund.isin))))
-  const series = theme.etfs.map(fund => getComparisonPerformance(fund.isin))
+  const years = getComparisonYears(theme.etfs.map(fund => fund.isin))
+  const series = theme.etfs.map(fund => getComparisonPerformance(fund.isin, years))
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
   const ctx = canvas.getContext('2d'); const background = ctx.createLinearGradient(0,0,W,H); background.addColorStop(0,'#041b31'); background.addColorStop(.5,'#021026'); background.addColorStop(1,'#1e2030'); ctx.fillStyle=background; ctx.fillRect(0,0,W,H)
   text(ctx, `${theme.nom.toLocaleUpperCase('fr-FR')} : QUEL ${theme.id === 'etc-metaux' ? 'PRODUIT' : 'ETF'} CHOISIR ?`, W / 2, 52, 66, { width: W - 120, align: 'center', serif: true })
@@ -60,7 +61,7 @@ export async function renderComparatifEtfImage(theme) {
   const hasPerformance = series.some(Boolean)
   if (hasPerformance) {
     text(ctx, 'PERFORMANCES', 65, 540, 25, { width: 225, color: '#eac788' })
-    for (const [i, year] of [2025, 2024, 2023].entries()) text(ctx, String(year), 80, 605 + i * 75, 35, { color: MUTED })
+    for (const [i, year] of years.entries()) text(ctx, String(year), 80, 605 + i * 75, 35, { color: MUTED })
     text(ctx, 'FRAIS / AN', 65, 860, 28, { width: 225, color: MUTED })
   }
   theme.etfs.forEach((fund, i) => {
@@ -73,7 +74,7 @@ export async function renderComparatifEtfImage(theme) {
     const current = series[i]
     if (current) {
       text(ctx, `${current.label} · ${current.currency}`, center, 552, 24, { width, align: 'center', color: MUTED })
-      for (const [j, year] of [2025, 2024, 2023].entries()) {
+      for (const [j, year] of years.entries()) {
         const row = current.rows.find(row => row.year === year)
         if (row) text(ctx, pct(row.pct), center, 600 + j * 75, 47, { width, align: 'center', color: row.pct < 0 ? RED : GREEN })
         else text(ctx, 'Non disponible', center, 607 + j * 75, 22, { width, align: 'center', color: MUTED, weight: 400 })

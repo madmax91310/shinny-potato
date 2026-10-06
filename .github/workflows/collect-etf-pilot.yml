@@ -21,6 +21,11 @@ on:
       - 'scripts/*wisdomtree*.py'
       - 'scripts/collect_lg_api.py'
       - 'scripts/collect_remaining_documents.py'
+      - 'scripts/collect_coinshares_aum.py'
+      - 'scripts/collect_annual_fx.py'
+      - 'scripts/test_remaining_aum.py'
+      - 'scripts/test-annual-rollover.mjs'
+      - 'src/data/annual-*'
       - 'scripts/test_new_issuer_sources.py'
   pull_request:
     paths:
@@ -44,6 +49,11 @@ on:
       - 'scripts/*wisdomtree*.py'
       - 'scripts/collect_lg_api.py'
       - 'scripts/collect_remaining_documents.py'
+      - 'scripts/collect_coinshares_aum.py'
+      - 'scripts/collect_annual_fx.py'
+      - 'scripts/test_remaining_aum.py'
+      - 'scripts/test-annual-rollover.mjs'
+      - 'src/data/annual-*'
       - 'scripts/test_new_issuer_sources.py'
       - 'scripts/fixtures/official-documents/**'
       - 'src/data/automated-indices*'
@@ -66,7 +76,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.indices.outcome == 'failure' }}
+      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -85,6 +95,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+      - run: node scripts/test-annual-rollover.mjs
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
@@ -100,6 +112,9 @@ jobs:
       - id: additional
         continue-on-error: true
         run: python scripts/refresh_additional_etf.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/additional-observation.json" --apply
+      - id: fx
+        continue-on-error: true
+        run: python scripts/collect_annual_fx.py --apply
       - id: indices
         continue-on-error: true
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
@@ -132,7 +147,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md
+          git add src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated active ETF issuer data'
             git pull --rebase origin master

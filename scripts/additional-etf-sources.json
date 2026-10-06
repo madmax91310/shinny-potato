@@ -841,10 +841,11 @@
       "isin": "GB00BJYDH287",
       "name": "WisdomTree Physical Bitcoin",
       "provider": "WisdomTree",
-      "parser": "document",
+      "parser": "wisdomtree-html",
       "documentType": "wisdomtree",
-      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
-      "currency": "USD"
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+      "currency": "USD",
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287"
     },
     {
       "isin": "IE00B4K6B022",
@@ -998,7 +999,9 @@
       "provider": "CoinShares",
       "parser": "coinshares-document",
       "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-btc/",
-      "enabled": true
+      "enabled": true,
+      "aumCurrency": "USD",
+      "aumPageUrl": "https://coinshares.com/etp/physical-bitcoin/"
     },
     {
       "isin": "GB00BLD4ZM24",
@@ -1007,7 +1010,9 @@
       "provider": "CoinShares",
       "parser": "coinshares-document",
       "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
-      "enabled": true
+      "enabled": true,
+      "aumCurrency": "USD",
+      "aumPageUrl": "https://coinshares.com/etp/physical-ethereum/"
     },
     {
       "isin": "IE00BD4TXV59",

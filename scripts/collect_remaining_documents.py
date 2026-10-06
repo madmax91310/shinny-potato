@@ -70,7 +70,11 @@ def ubs_urls(now):
 
 def collect_one(share,now):
     if share['parser']=='coinshares-document':
-        body=download(share['sourceUrl']);return coinshares(pdf_text(body),share,now,proof(body))
+        body=download(share['sourceUrl']);result=coinshares(pdf_text(body),share,now,proof(body))
+        from collect_coinshares_aum import collect as collect_aum
+        result['aum']=collect_aum(share,now)
+        result['unavailable']=[item for item in result['unavailable'] if not item.startswith('aum:')]
+        return result
     for url in ubs_urls(now):
         try:body=download(url)
         except urllib.error.HTTPError as e:

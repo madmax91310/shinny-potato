@@ -32,6 +32,15 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(report['aum']['scope'], 'share-class')
         self.assertEqual(report['sectors']['asOf'], '2026-10-02')
 
+    def test_optional_inception_and_first_partial_year(self):
+        facts = self.components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        facts.pop('inceptionDate', None)
+        self.assertIn('2020', parse_share(markup(self.components), SHARE, NOW)['performance']['years'])
+        facts['inceptionDate'] = {'value': '20200601'}
+        report = parse_share(markup(self.components), {**SHARE, 'requireFullHistory': False}, NOW)
+        self.assertNotIn('2020', report['performance']['years'])
+        self.assertIn('2021', report['performance']['years'])
+
     def test_reordered_performance_columns_still_selects_nav(self):
         calendar = self.components['performance']['containersByNameMap']['returns']['subContainersByNameMap']['calendar']['dataPointsByNameMap']
         calendar['returnTypes']['value'].reverse()

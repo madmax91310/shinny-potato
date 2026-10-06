@@ -11,7 +11,7 @@ export function refreshIndexSheet(previous) {
   const changed = facts !== previous.indexFacts;
   const archivedReturn = Object.entries(INDEX_RETURNS[previous.id] ?? {}).find(([, series]) => series.values === previous.returns);
   const returns = previous.performance.kind === 'indice' && record.returns && archivedReturn
-    ? getCurrentIndexReturnSeries(previous.id, archivedReturn[0]) : null;
+    ? getCurrentIndexReturnSeries(previous.id, archivedReturn[0], { rolling: true }) : null;
   return { ...previous, ...(changed ? { ...composition, markets: facts.markets ?? previous.markets } : {}),
     ...(changed ? { snapshot: facts.snapshot,
       insight: `Cette photographie contient ${facts.constituents.toLocaleString('fr-FR')} titres. Le poids des pays et secteurs évolue : vérifie la date de composition.`,

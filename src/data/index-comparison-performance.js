@@ -1,3 +1,4 @@
+import { latestCommonYears } from './annual-window.js'
 import { getCurrentIndexReturnSeries } from './index-returns.js'
 
 // Sélection explicite de la version d’indice ; jamais de fallback vers une part ETF.
@@ -28,16 +29,18 @@ const currencyNames = { USD: 'dollars', EUR: 'euros', JPY: 'yens', HKD: 'dollars
 export function getIndexComparisonPerformance(family) {
   const selected = selections[family.id]
   if (!selected || selected.length !== family.indices.length) throw new Error(`Séries de comparaison absentes : ${family.id}`)
-  return selected.map(selection => {
+  const rows = selected.map(selection => {
     const [id, asOf] = Array.isArray(selection) ? selection : [selection, PERIOD_END]
-    const series = getCurrentIndexReturnSeries(id, asOf)
+    const series = getCurrentIndexReturnSeries(id, asOf, { rolling: true })
     if (!series) throw new Error(`Rendements d’indice absents : ${id}/${asOf}`)
     const values = Object.fromEntries(series.values.map(([year, value]) => [`y${year}`, value]))
     const method = series.method ?? (/hors dividendes/.test(series.performance.detail) ? 'hors dividendes' : 'dividendes réinvestis')
     return { key: id, label: existingLabels[id] ?? series.performance.detail.split(' · ')[0],
-      ...values, currency: series.metadata.currency, method, kind: series.performance.kind,
+      ...values, calendarReturns: Object.fromEntries(series.values), currency: series.metadata.currency, method, kind: series.performance.kind,
       source: series.source, metadata: series.metadata, note: series.note }
   })
+  const years = latestCommonYears(rows.map(row => row.calendarReturns), { length: 3 }).sort((a, b) => a - b)
+  return rows.map(row => ({ ...row, years: years.length ? years : [2023, 2024, 2025] }))
 }
 export function getIndexComparisonPerformanceHeading(family, rows = getIndexComparisonPerformance(family)) {
   const asset = ['crypto', 'or-argent'].includes(family.id)

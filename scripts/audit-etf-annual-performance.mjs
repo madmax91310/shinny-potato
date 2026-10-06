@@ -28,7 +28,7 @@ for (const etf of ETFS) {
   if (series.values.every(Number.isFinite) && !asset) {
     console.error(`Part à historique complet absente de la composition manuelle : ${etf.isin}`); errors++
   }
-  if (asset && series.values.every(Number.isFinite) && JSON.stringify(asset.r) !== JSON.stringify(series.values)) {
+  if (asset && series.values.every(Number.isFinite) && JSON.stringify(series.calendarYears ? series.calendarYears.map(year => asset.calendarReturns[year] ?? null) : asset.r) !== JSON.stringify(series.values)) {
     console.error(`Divergence Fiches / Générateur : ${etf.isin}`); errors++
   }
   if (asset && !series.values.every(Number.isFinite) && !SIMULATION_PROXIES[etf.isin] && !(REVIEWED_PERFORMANCE_META[etf.isin]?.portfolioHistoryBasis === 'proxy' && asset.confidenceNote)) {
@@ -90,6 +90,6 @@ for (const product of snapshot.products) {
   } else assert.equal(aum.sheet, aum.index, 'Une part conserve le même relevé dans les deux vues')
   const series = getAnnualPerformance(card)
   assert.equal(series.currency, product.currency)
-  if (product.returns) assert.deepEqual(series.values, AUTOMATED_ETF[product.isin]?.performance ? Array.from({ length: 6 }, (_, i) => AUTOMATED_ETF[product.isin].performance.years[String(2020+i)]) : product.returns)
+  if (product.returns) assert.deepEqual(series.values, AUTOMATED_ETF[product.isin]?.performance ? series.calendarYears.map(year => AUTOMATED_ETF[product.isin].performance.years[year] ?? null) : product.returns)
 }
 console.log('7 ajouts : frais, identité, cotation, encours datés et séries conformes aux sources conservées.')

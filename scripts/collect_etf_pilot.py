@@ -102,14 +102,15 @@ def parse_share(body, share, now):
         values = point['value']
         if not isinstance(values, list) or len(values) != len(types):
             reject('Performance columns changed')
-        if values[position] is None and f'{date.year}0101' < str(value('inceptionDate')):
+        inception = facts.get('inceptionDate', {}).get('value')
+        if inception and f'{date.year}0101' < str(inception):
             continue
         result = float(values[position])
         if not -100 < result < 1000:
             reject('Invalid annual return')
         returns[str(date.year)] = round(result, 2)
-    if share.get('requireFullHistory', True) and not all(str(year) in returns for year in range(2020, 2026)):
-        reject('Missing complete 2020–2025 fund history')
+    if share.get('requireFullHistory', True) and not any(all(str(year) in returns for year in range(end-5,end+1)) for end in range(now.year-1,2019,-1)):
+        reject('Missing six complete calendar years')
     return {**share, 'terPct': ter, 'index': value('indexSeriesName'),
             'distribution': value('useOfProfitsCode'),
             'aum': {'amount': number(aum['value']), 'currency': share['currency'],
