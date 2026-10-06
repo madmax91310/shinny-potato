@@ -110,7 +110,6 @@ export async function renderComparatifEtfImage(theme) {
   text(ctx, theme.nom.toLocaleUpperCase('fr-FR'), W / 2, 112, 73, { width: W - 136, serif: true, align: 'center' })
   const scaleMax = Math.max(1, ...series.flatMap(item => item ? item.rows.map(row => Math.abs(row.pct)) : []))
   theme.etfs.forEach((fund, i) => card(ctx, fund, series[i], years, i, theme.etfs.length, scaleMax))
-  text(ctx, '@Epargnantlibre', W - 68, 1174, 25, { align: 'right', color: INK })
   return canvas
 }
 export async function downloadComparatifEtfImage(theme) {
