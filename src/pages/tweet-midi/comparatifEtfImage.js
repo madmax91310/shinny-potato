@@ -105,7 +105,7 @@ export async function renderComparatifEtfImage(theme) {
   ctx.fillStyle = background; ctx.fillRect(0, 0, W, H)
   const art = theme.id === 'etc-metaux' ? null : await loadArtImage(comparisonArt(theme.id, theme.etfs[0].isin))
   sceneAccent(ctx, art)
-  text(ctx, 'COMPARATIF ETF', 68, 48, 26, { color: '#e9bc79', weight: 700 })
+  text(ctx, 'ÉPARGNANT LIBRE', 68, 48, 26, { color: '#e9bc79', weight: 700 })
   text(ctx, theme.nom.toLocaleUpperCase('fr-FR'), 68, 112, 73, { width: 1380, serif: true })
   text(ctx, `${theme.etfs.length} PRODUITS · ${years.length ? years.join(' / ') : 'FRAIS ET EXPOSITION'}`, 68, 241, 27, { color: MUTED, weight: 400, width: 1300 })
   const scaleMax = Math.max(1, ...series.flatMap(item => item ? item.rows.map(row => Math.abs(row.pct)) : []))
