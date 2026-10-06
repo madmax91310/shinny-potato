@@ -13,11 +13,13 @@ SECTORS = {
     'Consumer Discretionary': 'Consommation cyclique', 'Consumer Staples': 'Consommation de base',
     'Industrials': 'Industrie', 'Materials': 'Matériaux', 'Communication': 'Communication',
     'Health Care': 'Santé', 'Energy': 'Énergie', 'Utilities': 'Services publics',
-    'Real Estate': 'Immobilier', 'Cash and/or Derivatives': 'Liquidités et/ou dérivés', 'Other': 'Autres', 'Others': 'Autres', 'Communication Services': 'Communication', 'Communications': 'Communication', 'Technology': 'Technologie',
+    'Real Estate': 'Immobilier', 'Cash & Others':'Liquidités et autres', 'Cash and/or Derivatives': 'Liquidités et/ou dérivés', 'Other': 'Autres', 'Others': 'Autres', 'Communication Services': 'Communication', 'Communications': 'Communication', 'Technology': 'Technologie',
     'Basic Materials': 'Matériaux', 'Telecommunications': 'Communication',
     "Technologies de l'info.": 'Technologie', 'Finance': 'Finance', 'Conso Cyclique': 'Consommation cyclique',
     'Conso non Cyclique': 'Consommation de base', 'Services de communication': 'Communication',
     **{s: s for s in ['Asset Management & Custody Banks', 'Biotechnology', 'Computer Services', 'Consumer Finance', 'Diversified Banks', 'Diversified Financial Services', 'Diversified Reits', 'Financial Exchanges & Data', 'Health Care Distributors', 'Health Care Equipment', 'Health Care Facilities', 'Health Care Services', 'Health Care Supplies', 'Health Care Technology', 'Hotel and Lodging REITs', 'Hotels and Motels', 'Insurance Brokers', 'Investment Banking & Brokerage', 'Life & Health Insurance', 'Life Sciences Tools & Services', 'Managed Health Care', 'Multi-Sector Holdings', 'Office REITs', 'Other Specialty REITs', 'Pharmaceuticals', 'Property & Casualty Insurance', 'Real Estate Holding and Development', 'Regional Banks', 'Reinsurance', 'Residential Reits', 'Retail Reits', 'Transaction & Payment Processing Services']},
+    # Issuer sub-industry breakdowns retain their published labels (no GICS aggregation).
+    **{name:name for name in ['Agricultural Products & Services', 'Application Software', 'Cash and/or Derivatives', 'Communication', 'Communications Equip.', 'Consumer Discretionary', 'Consumer Staples', 'Consumer Staples Merchandise Retail', 'Distillers & Vintners', 'Electric Utilities', 'Electronic Components', 'Electronic Equipment & Instruments', 'Electronic Manufacturing Services', 'Energy', 'Financials', 'Food Distributors', 'Food Retail', 'Gas Utilities', 'Health Care', 'Household Products', 'IT Consulting & Other Services', 'Independent Power Producers & Energy Traders', 'Industrial Goods & Services', 'Industrials', 'Information Technology', 'Integrated Oil & Gas', 'Internet Services & Infrastructure', 'Materials', 'Media', 'Multi-Utilities', 'Oil & Gas Equipment & Services', 'Oil & Gas Exploration & Production', 'Oil & Gas Refining & Marketing & Transportation', 'Oil & Gas Storage & Transportation', 'Packaged Foods & Meats', 'Personal Care Products', 'Semiconductor Equipment', 'Semiconductors', 'Soft Drinks & Non-Alcoholic Beverages', 'Systems Software', 'Technology', 'Technology Distributors', 'Technology Hardware, Storage & Peripherals', 'Tobacco', 'Utilities', 'Water Utilities']},
 }
 
 
@@ -47,7 +49,8 @@ def merge_collection(report, current, baseline):
             previous = {k: v for k, v in old.get(field, {}).items() if k != 'checkedAt'}
             record[field] = old[field] if previous == incoming else {**incoming, 'checkedAt': checked}
         if not share.get('exposureOnly'):
-            characteristics = {'terPct': share['terPct'], 'index': share['index'], 'distribution': share['distribution']}
+            characteristics = {k:v for k,v in old.get('characteristics',{}).items() if k != 'checkedAt'}
+            characteristics.update(share.get('characteristics') or {'terPct': share['terPct'], 'index': share['index'], 'distribution': share['distribution']})
             previous = {k: v for k, v in old.get('characteristics', {}).items() if k != 'checkedAt'}
             if checked >= old.get('characteristics', {}).get('checkedAt', ''):
                 record['characteristics'] = old['characteristics'] if previous == characteristics else {**characteristics, 'checkedAt': checked}

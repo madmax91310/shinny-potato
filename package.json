@@ -35,7 +35,8 @@
     "audit:data-review": "node scripts/audit-data-review.mjs && node scripts/test-data-review-observation.mjs",
     "audit:investor-profiles": "node scripts/audit-investor-profiles.mjs",
     "audit:etf-completeness": "node scripts/audit-etf-completeness.mjs",
-    "audit:index-completeness": "node scripts/audit-index-completeness.mjs"
+    "audit:index-completeness": "node scripts/audit-index-completeness.mjs",
+    "report:automation": "node scripts/report-automation-coverage.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

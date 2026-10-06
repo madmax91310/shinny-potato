@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { DIVERSIFICATION_HISTORY } from '../src/data/diversification-history.js';
-import { ASSETS, ASSET_ORDER } from '../src/data/market-history.js';
+import { ASSETS, BASELINE_ASSETS, ASSET_ORDER } from '../src/data/market-history.js';
 import { DATA_CATALOG } from '../src/data/catalog.js';
 import { derive, buildTweetText } from '../src/pages/investment-calculator/lib.js';
 import { getAnnualReturns, ANNIVERSAIRE_ELIGIBLE_ASSETS } from '../src/pages/tweet-midi/data/marketHistory.js';
@@ -30,7 +31,7 @@ const expectedAnnual = {
 };
 for (const [id, asset] of Object.entries(DIVERSIFICATION_HISTORY)) {
  const capture = snapshot.records[id];
- assert.equal(ASSETS[id], asset); assert(ASSET_ORDER.includes(id));
+ assert.equal(BASELINE_ASSETS[id], asset); assert(ASSET_ORDER.includes(id));
  assert.equal(asset.points.length, 141); assert.match(asset.methodNote, /Net Return.*dividendes nets réinvestis/);
  assert.match(capture.factsheetSha256, /^[a-f0-9]{64}$/); assert(capture.factsheetEvidence);
  for (const response of [capture.response,capture.dailyResponse]) {
@@ -50,16 +51,16 @@ for (const [id, asset] of Object.entries(DIVERSIFICATION_HISTORY)) {
  assert.deepEqual(Array.from({length:6},(_,i)=>capture.annualNetReturns[2020+i]),expectedAnnual[id]);
  for(const mode of ['lump','dca']) {
   const state={assetId:id,amountRaw:'100',startYear:2020,startMonth:1,mode,overridePriceRaw:''};
-  const points=asset.points.filter(p=>p.date>='2020-01');
+  const points=ASSETS[id].points.filter(p=>p.date>='2020-01');
   const units=mode==='lump'?100/points[0].price:points.reduce((n,p)=>n+100/p.price,0);
   const result=derive(state);assert.equal(result.effectiveMode,mode);assert(Math.abs(result.result.finalValue-units*points.at(-1).price)<1e-7);
   assert(!/undefined|NaN|Infinity/.test(buildTweetText(state,result)));
  }
- const annual=getAnnualReturns(id,2020);assert.equal(annual.length,6);
+ const annual=getAnnualReturns(id,2020);assert.equal(annual.length,ASSETS[id].points.filter(p=>p.date>='2020-01'&&p.date.endsWith('-12')).length);
  assert(ANNIVERSAIRE_ELIGIBLE_ASSETS.find(a=>a.id===id)?.anniversaryVariant.includes('Net Return'));
  assert.equal(HISTORY_FACTS.filter(f=>f.id.endsWith(`-${id}`)).length,2);
- const record=DATA_CATALOG.find(r=>r.id===`history:${id}`);assert(record.fields[0].metadata.sourceUrls.includes(capture.url));
- assert.equal(record.fields[0].metadata.checkedAt,'2026-10-05');
+ const record=DATA_CATALOG.find(r=>r.id===`history:${id}`);assert(record.fields[0].metadata.sourceUrls.some(url=>new URL(url).searchParams.get('index_codes')===capture.indexCode));
+ assert.equal(record.fields[0].metadata.checkedAt,MARKET_HISTORY_REVIEW[`history:${id}`].checkedAt);
 }
 // Le rendement du fonds ne doit jamais être remplacé par celui de l’indice.
 const card=ETFS.find(e=>e.isin==='IE00B3YLTY66');assert(card&&ETF_ART[card.id]);

@@ -1,0 +1,89 @@
+name: Update active monthly market histories
+on:
+  schedule:
+    - cron: '15 6 2,4,8,16 * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-market-monthly.yml'
+      - 'scripts/refresh_monthly_history.py'
+      - 'scripts/monthly-automation.json'
+  pull_request:
+    paths:
+      - '.github/workflows/update-market-monthly.yml'
+      - 'scripts/*monthly*'
+      - 'src/data/*monthly*'
+      - 'src/data/market-history*'
+      - 'src/data/history-statistics.js'
+permissions:
+  contents: read
+concurrency:
+  group: market-monthly-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+      - id: collect
+        continue-on-error: true
+        run: python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply
+      - run: npm run audit:calculator-series
+      - run: npm run audit:data-catalog
+      - run: npm run audit:data-provenance
+      - run: npm run verify:tweet-midi
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monthly-market-observation
+          path: ${{ runner.temp }}/monthly-observation.json
+          if-no-files-found: ignore
+          retention-days: 35
+      - name: Commit validated active data
+        id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/automated-monthly.json scripts/source-snapshots/monthly-automated.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh validated monthly market histories'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: refresh
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

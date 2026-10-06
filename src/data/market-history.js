@@ -1,3 +1,4 @@
+import { applyMonthlyAutomation } from './monthly-automation.js'
 import BITCOIN_MONTHLY from './bitcoin-yahoo-monthly.json' with { type: 'json' }
 import { DIVERSIFICATION_HISTORY } from './diversification-history.js'
 import GOLD_MONTHLY from './worldbank-gold-monthly.json' with { type: 'json' }
@@ -15,7 +16,7 @@ function P(list) {
   return out
 }
 
-export const ASSETS = {
+export const BASELINE_ASSETS = {
   bitcoin: {
     // Mise à jour du 02/10/2026 : Yahoo BTC-USD, champ close, clôture du 30/09/2026.
     // Source : https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo
@@ -600,6 +601,8 @@ export const ASSETS = {
   ...COMPANY_HISTORY,
   ...MONTHLY_HISTORY_ADDITIONS,
 }
+
+export const ASSETS = applyMonthlyAutomation(BASELINE_ASSETS)
 
 export const ASSET_ORDER = [
   'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), ...Object.keys(DIVERSIFICATION_HISTORY), 'nasdaq100', 'soxx',

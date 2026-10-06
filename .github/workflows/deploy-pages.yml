@@ -46,6 +46,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_data*.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:portfolio-provenance
       - run: npm run audit:portfolio-duels

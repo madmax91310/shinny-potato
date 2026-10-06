@@ -14,6 +14,7 @@ on:
       - 'scripts/index-automation.json'
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
+      - 'scripts/collect_document_etf.py'
       - 'scripts/download-vaneck-document.mjs'
       - 'scripts/refresh_additional_etf.py'
   pull_request:
@@ -31,6 +32,8 @@ on:
       - 'scripts/issuer_documents.py'
       - 'scripts/download-vaneck-document.mjs'
       - 'scripts/test_source_documents.py'
+      - 'scripts/test_document_etf.py'
+      - 'scripts/collect_document_etf.py'
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/fixtures/official-documents/**'
       - 'src/data/automated-indices*'
@@ -63,6 +66,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
+      - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
@@ -86,6 +90,7 @@ jobs:
       - run: npm run audit:index-completeness
       - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:etf-annual-performance
+      - run: npm run audit:etf-completeness
       - run: npm run audit:etf-consistency
       - run: npm run audit:calculator-series
       - run: node scripts/test-comparison-etf-details.mjs
