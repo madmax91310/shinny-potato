@@ -2,7 +2,6 @@ import { getIndexComparisonComposition, cleanExposureLabel, exposurePercent } fr
 import { getIndexComparisonPerformance, getIndexComparisonPerformanceHeading, getIndexComparisonPerformanceLabel } from '../../data/index-comparison-performance.js'
 import { getIndexComparisonEditorial } from '../../data/index-comparison-editorial.js'
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
-import { formatInstrumentListing } from '../../data/instrument-listings.js'
 
 export function fmtPct(raw) {
   if (raw === '' || raw === null || raw === undefined || !String(raw).trim()) return null
@@ -15,8 +14,9 @@ function renderFundGroup(group) {
   return [`🔎 ${group.indexName}`, ...group.funds.map(fund => {
     const pea = getInstrumentPeaStatus(fund.isin)
     return [fund.name,
-      `🆔 ${fund.isin} · Frais annuels : ${fund.ter} · ${pea === null ? 'Statut PEA non établi' : pea ? 'Éligible PEA' : 'Non éligible PEA'}`,
-      ...(fund.listing ? [`📍 ${formatInstrumentListing(fund.listing)}`] : []),
+      `🆔 ${fund.isin}`,
+      `💰 Frais annuels : ${fund.ter}`,
+      ...(pea === null ? [] : [`🏦 ${pea ? 'PEA ou CTO' : 'CTO · Non éligible au PEA'}`]),
     ].join('\n')
   })].join('\n\n')
 }

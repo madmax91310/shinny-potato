@@ -19,6 +19,8 @@ for (const family of FAMILIES) {
   const rows = getIndexComparisonPerformance(family)
   assert.equal(rows.length, family.indices.length)
   const tweet = buildTweetText(family)
+  assert(!tweet.includes('📍'), `${family.id}: pas de place de cotation dans le tweet`)
+  assert(!tweet.includes('Statut PEA non établi'), `${family.id}: les statuts inconnus sont omis, jamais inventés`)
   const markers = ['🔹', '📊', '🔎', '📈', '💬'].map(marker => tweet.indexOf(`\n\n${marker}`))
   assert(markers.every((position, i) => position >= 0 && (i === 0 || position > markers[i - 1])), family.id)
   assert(!/undefined|NaN|LES ETF|LE VERDICT|frais des fonds déduits/.test(tweet), family.id)
@@ -31,6 +33,10 @@ for (const family of FAMILIES) {
   assert(!buildTweetText(family, { [key]: { ytdEnabled: true, ytd: '' } }).includes('YTD saisi'))
   assert(buildTweetText(family, { [key]: { ytdEnabled: true, ytd: 0 } }).includes('YTD saisi : +0,00 %'))
 }
+const segments = buildTweetText(FAMILIES.find(f => f.id === 'monde-segments'))
+assert(segments.startsWith('🌍 Avec un ETF World, tu investis dans plus de 1 200 entreprises.'))
+assert(segments.includes('Regardons ce qu’ils changent dans ton portefeuille 👇'))
+assert.equal((segments.match(/CTO · Non éligible au PEA/g) ?? []).length, 3)
 // Version prix EUR explicite, sans écraser la version nette utilisée par les fiches.
 assert.equal(INDEX_RETURNS.mscieurope['2026-08-31'].values.find(([year]) => year === 2025)[1], 19.39)
 assert.equal(getIndexComparisonPerformance(FAMILIES.find(f => f.id === 'europe'))[2].y2025, 16.34)

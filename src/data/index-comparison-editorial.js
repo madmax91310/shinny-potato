@@ -352,8 +352,8 @@ export const INDEX_COMPARISON_EDITORIAL = {
     "fundTransition": "Voici les produits cotés de la comparaison 👇"
   },
   "monde-segments": {
-    "hook": "🔎 Tu veux compléter ton World. Un World sans les États-Unis et un World Small Cap ne changent pas la même chose.",
-    "intro": "L’un modifie les pays de ta ligne. L’autre ajoute des entreprises d’une autre taille 👇",
+    "hook": "🌍 Avec un ETF World, tu investis dans plus de 1 200 entreprises. Pourtant, les petites entreprises en sont absentes et les États-Unis occupent près des trois quarts du panier.",
+    "intro": "C’est là que le World ex USA et le World Small Cap peuvent t’intéresser. Regardons ce qu’ils changent dans ton portefeuille 👇",
     "exposures": [
       "Le World classique suit de grandes et moyennes entreprises des pays développés, avec une place importante pour les États-Unis.",
       "Le World ex USA garde les grandes et moyennes entreprises, mais retire les États-Unis.",
