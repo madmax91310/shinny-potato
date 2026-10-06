@@ -784,7 +784,7 @@ const EDITORIAL = {
   "ressources-naturelles": {
     transition: "Quatre ETF sur les entreprises minières, les ressources de base et les matériaux.",
     cloture: "VanEck et Xtrackers offrent une exposition mondiale. Les deux produits Amundi ciblent l’Europe et sont éligibles au PEA. Ces ETF détiennent des actions d’entreprises ; ils ne suivent pas directement le prix des métaux.",
-    ctaEngagement: "Tu recherches les entreprises du secteur ou une exposition directe aux métaux ?",
+    ctaEngagement: "Tu préfères cibler les minières ou investir plus largement dans les matériaux ?",
   },
   "etc-metaux": {
     transition: "Quatre ETC pour une exposition à l’or, à l’argent ou au cuivre.",
