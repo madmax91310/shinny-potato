@@ -1,3 +1,4 @@
+import { AUTOMATED_INDICES } from '../src/data/automated-indices.js';
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js';
 import assert from 'node:assert/strict';
 import { DATA_CATALOG } from '../src/data/catalog.js';
@@ -75,7 +76,13 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
 }
 for (const family of FAMILIES) for (const index of family.indices) if (index.indexFacts) {
   assert(index.indexFacts.metadata.sourceUrls.length, `${index.name}: indice actif sans source`);
-  assert.match(index.indexFacts.metadata.checkedAt, /^2026-(09-30|10-03|10-04|10-05)$/, `${index.name}: indice actif non contrôlé`);
+  const facts=index.indexFacts;
+  const automated=Object.values(AUTOMATED_INDICES).find(r=>r.facts?.asOf===facts.asOf && r.facts.source.sha256===facts.source.sha256 && r.facts.source.url===facts.source.url)?.facts;
+  if (automated) {
+    assert.equal(facts.metadata.checkedAt,automated.source.checkedAt);
+    assert.match(automated.source.sha256,/^[a-f0-9]{64}$/);
+    assert(facts.asOf<=facts.metadata.checkedAt && facts.metadata.checkedAt<=new Date().toISOString().slice(0,10));
+  } else assert.match(facts.metadata.checkedAt, /^2026-(09-30|10-03|10-04|10-05)$/, `${index.name}: indice actif non contrôlé`);
 }
 for (const [isin, observation] of Object.entries(OFFICIAL_AUM_OBSERVATIONS)) {
   assert(observation.amountMillions > 0 && ['EUR', 'USD'].includes(observation.currency));

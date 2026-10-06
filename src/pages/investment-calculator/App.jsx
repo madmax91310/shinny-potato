@@ -142,7 +142,8 @@ function ResultCard({ state, d, copied, onCopy }) {
         {currency === 'EUR' ? (
           <>
             <CompareItem label="Livret A" value={d.livretA.finalValue} deltaVal={livretPct} currency="EUR" />
-            <CompareItem label="Panier de dépenses (inflation indicative)" value={d.inflation.finalValue} deltaVal={inflPct} currency="EUR" />
+            {d.inflation ? <CompareItem label="Panier de dépenses (inflation indicative)" value={d.inflation.finalValue} deltaVal={inflPct} currency="EUR" />
+              : <p className="ic-compare-note">Le repère d’inflation attend les données INSEE pour toute la période.</p>}
           </>
         ) : (
           // Livret A et inflation sont des repères français en euros : les afficher à côté d'un

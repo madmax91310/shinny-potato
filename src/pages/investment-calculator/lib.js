@@ -235,7 +235,11 @@ export function derive(state) {
 
   const compareEuro = isCustom || ASSETS[state.assetId].currency === 'EUR'
   const livretA = compareEuro ? computeBenchmarkSeries(LIVRET_A, safeStartYm, endYm, amount, effectiveMode) : null
-  const inflation = compareEuro ? computeBenchmarkSeries(INFLATION, safeStartYm, endYm, amount, effectiveMode) : null
+  // Market month-ends can arrive before INSEE. Keep the market result available
+  // and omit a benchmark whose full period has not yet been published.
+  const inflationComplete = monthsBetween(safeStartYm, endYm).slice(1)
+    .every(month => month < '2017-01' || INFLATION_MONTHLY[month] !== undefined)
+  const inflation = compareEuro && inflationComplete ? computeBenchmarkSeries(INFLATION, safeStartYm, endYm, amount, effectiveMode) : null
 
   return { amount, isCustom, effectiveMode, startYm: safeStartYm, endYm, result, livretA, inflation }
 }

@@ -34,5 +34,6 @@ for (let year = 2010; year <= 2025; year++) for (const posteId of [null, 'loyer'
   assert.ok(!/NaN|undefined|provisoire|12 mois glissants/.test(text));
   assert.ok(text.includes('août 2026'));
 }
-assert.deepEqual(ASSETS.or.points.at(-1), { date: '2026-09', price: 4319 });
+const gold=JSON.parse(readFileSync(new URL('../src/data/worldbank-gold-monthly.json',import.meta.url)));
+assert.deepEqual(ASSETS.or.points.at(-1),{date:gold.points.at(-1)[0],price:gold.points.at(-1)[1]});
 console.log('Repères ménages : raccord base 2025, taux Livret A, capitalisation, DCA, 64 tweets et observations mensuelles validés.');

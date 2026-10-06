@@ -7,7 +7,7 @@ import { MONTHLY_HISTORY_ADDITIONS } from '../src/data/monthly-history-additions
 import './audit-monthly-history-additions.mjs';
 
 const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-yahoo-2026-09-29.json', import.meta.url)));
-const gold = JSON.parse(readFileSync(new URL('../src/data/worldbank-gold-monthly.json', import.meta.url)));
+const gold = { ...JSON.parse(readFileSync(new URL('../src/data/worldbank-gold-monthly.json', import.meta.url))), ...JSON.parse(readFileSync(new URL('./source-snapshots/calculator-worldbank-gold-2026-10-03.json', import.meta.url))) };
 let errors = 0;
 if (!gold.url?.startsWith('https://thedocs.worldbank.org/') || !/^\d{4}-\d{2}-\d{2}$/.test(gold.checkedAt) ||
     !/^\d{4}-\d{2}-\d{2}$/.test(gold.workbookUpdatedAt) || !/^[a-f0-9]{64}$/.test(gold.workbookSha256) ||
@@ -335,5 +335,3 @@ for (const [id, code] of [['msciEmerging', '891800'], ['msciWorldSmallCap', '106
   if (getAnnualReturns(id, 2016).some(row => row.year >= 2026)) throw new Error(`${id}: année partielle publiée`);
 }
 console.log('Emerging Markets et World Small Cap : 282 clôtures mensuelles/quotidiennes concordantes, 22 rendements annuels recoupés, catalogue commun, DCA et vidéos OK.');
-
-await import('./audit-bitcoin-automated.mjs');

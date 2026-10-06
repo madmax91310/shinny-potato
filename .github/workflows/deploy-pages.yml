@@ -63,6 +63,7 @@ jobs:
       - run: node scripts/audit-support-enrichment.mjs
       - run: npm run audit:calculator-series
       - run: node scripts/test-gold-consumers.mjs
+      - run: node scripts/test-monthly-consumers.mjs
       - run: node scripts/test-investment-conclusions.mjs
       - run: node scripts/test-household-benchmarks.mjs
       - run: npm run audit:publishable-content

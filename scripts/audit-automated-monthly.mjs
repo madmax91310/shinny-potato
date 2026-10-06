@@ -50,3 +50,17 @@ for (const [id, record] of Object.entries(records)) {
 }
 assert(Object.keys(records).length >= 44, 'Coverage must not regress');
 console.log(`${Object.keys(records).length} active automated histories: proofs, exact conventions and shared consumers validated.`);
+
+const gold=read('src/data/worldbank-gold-monthly.json');
+assert.equal(gold.unit,'USD per troy ounce');
+assert.equal(gold.sheet,'Monthly Prices');
+assert.equal(gold.column,'Gold');
+assert.equal(gold.license,'CC BY 4.0');
+assert.match(gold.workbookSha256,/^[a-f0-9]{64}$/);
+assert(gold.workbookUpdatedAt<=gold.checkedAt);
+for(const [i,[date,price]] of gold.points.entries()) {
+  assert.equal(date,new Date(Date.UTC(2015,i,1)).toISOString().slice(0,7));
+  assert(price>0&&Number.isFinite(price));
+  assert.deepEqual(ASSETS.or.points[i],{date,price});
+}
+assert.equal(ASSETS.or.points.length,gold.points.length);
