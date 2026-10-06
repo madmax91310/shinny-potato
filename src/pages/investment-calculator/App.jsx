@@ -40,6 +40,7 @@ function CompareItem({ label, value, deltaVal, currency, highlight }) {
 }
 
 function ResultCard({ state, d, copied, onCopy }) {
+  const [exportMode, setExportMode] = useState('simple')
   const [image, setImage] = useState(null)
   const [imageLoading, setImageLoading] = useState(false)
   const [imageError, setImageError] = useState('')
@@ -170,13 +171,14 @@ function ResultCard({ state, d, copied, onCopy }) {
           Éducation financière, pas un conseil en investissement. Données historiques parfois approximatives, frais et fiscalité non pris en compte. Les performances passées ne préjugent pas des performances futures.
         </p>
         <WorkspaceActions>
-          <Button type="button" onClick={onCopy}>
+          {exportMode === 'simple' && <Button type="button" onClick={onCopy}>
             {copied === 'done' ? '✓ Copié' : copied === 'error' ? 'Copie impossible' : '𝕏 Copier le texte du post'}
-          </Button>
+          </Button>}
           <Button type="button" variant="secondary" onClick={showImage} disabled={imageLoading}>{imageLoading ? 'Création de l’image…' : '📊 Télécharger une image'}</Button>
         </WorkspaceActions>
         {imageError && <p role="alert">{imageError}</p>}
         <VideoExport
+          onModeChange={setExportMode}
           videoParams={{
             series: videoResult.series,
             invested: videoResult.invested,
