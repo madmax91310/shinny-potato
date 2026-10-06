@@ -1065,7 +1065,7 @@
           2.91
         ],
         [
-          "Chile",
+          "🇨🇱 Chili",
           0.06
         ],
         [
@@ -1073,7 +1073,7 @@
           2.68
         ],
         [
-          "Colombia",
+          "🇨🇴 Colombie",
           0.03
         ],
         [
@@ -1153,7 +1153,7 @@
           0.15
         ],
         [
-          "Mexico",
+          "🇲🇽 Mexique",
           0.21
         ],
         [
@@ -1331,7 +1331,7 @@
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWORLDS&openfile=open",
-        "checkedAt": "2026-10-05",
+        "checkedAt": "2026-10-06",
         "label": "Composition officielle automatisée · FTSE All-World",
         "sha256": "84b28ab9759fd2a844340b86d5ab42a738e5a08ec703315a231dedcf5d8935b0"
       },
@@ -8301,7 +8301,7 @@
           13.02
         ],
         [
-          "Chile",
+          "🇨🇱 Chili",
           0.12
         ],
         [
@@ -8309,7 +8309,7 @@
           1.26
         ],
         [
-          "Colombia",
+          "🇨🇴 Colombie",
           0.12
         ],
         [
@@ -8353,7 +8353,7 @@
           0.56
         ],
         [
-          "Mexico",
+          "🇲🇽 Mexique",
           0.54
         ],
         [
@@ -8479,7 +8479,7 @@
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=FGCII",
-        "checkedAt": "2026-10-05",
+        "checkedAt": "2026-10-06",
         "label": "Composition officielle automatisée · FTSE Global Core Infrastructure",
         "sha256": "b9544f5a031687b845d392c10aadb92dfe20012abaf5bc26d36549dbca43e03b"
       },
@@ -8801,7 +8801,7 @@
           4.22
         ],
         [
-          "Chile",
+          "🇨🇱 Chili",
           0.68
         ],
         [
@@ -8809,7 +8809,7 @@
           27.18
         ],
         [
-          "Colombia",
+          "🇨🇴 Colombie",
           0.25
         ],
         [
@@ -8849,7 +8849,7 @@
           1.56
         ],
         [
-          "Mexico",
+          "🇲🇽 Mexique",
           2.2
         ],
         [
@@ -8979,7 +8979,7 @@
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
-        "checkedAt": "2026-10-05",
+        "checkedAt": "2026-10-06",
         "label": "Composition officielle automatisée · FTSE EM",
         "sha256": "1fba83c57c35df71411367ef04bf1513bc13d0054d72bc8546f462ef34603f19"
       },
@@ -9301,7 +9301,7 @@
           4.42
         ],
         [
-          "Chile",
+          "🇨🇱 Chili",
           0.13
         ],
         [
@@ -9309,7 +9309,7 @@
           3.3
         ],
         [
-          "Colombia",
+          "🇨🇴 Colombie",
           0.07
         ],
         [
@@ -9389,7 +9389,7 @@
           0.32
         ],
         [
-          "Mexico",
+          "🇲🇽 Mexique",
           0.4
         ],
         [
@@ -9567,7 +9567,7 @@
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=AWHDY&openfile=open",
-        "checkedAt": "2026-10-05",
+        "checkedAt": "2026-10-06",
         "label": "Composition officielle automatisée · FTSE All-World High Dividend Yield",
         "sha256": "42315d40e34eaddd5fdf29b849a9a75c8f5c7cd670760b162dbf987071a18f6e"
       },
@@ -10865,19 +10865,19 @@
           61.54
         ],
         [
-          "Mexico",
+          "🇲🇽 Mexique",
           23.55
         ],
         [
-          "Chile",
+          "🇨🇱 Chili",
           6.32
         ],
         [
-          "Peru",
+          "🇵🇪 Pérou",
           6.09
         ],
         [
-          "Colombia",
+          "🇨🇴 Colombie",
           2.5
         ]
       ],
@@ -11526,6 +11526,1524 @@
           "kind": "indice",
           "detail": "MSCI EM IMI · rendement net USD, dividendes nets réinvestis, hors frais ETF",
           "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "sp500-pea": {
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "TOTAL",
+      "values": [
+        [
+          2025,
+          17.88
+        ],
+        [
+          2024,
+          25.02
+        ],
+        [
+          2023,
+          26.29
+        ],
+        [
+          2022,
+          -18.11
+        ],
+        [
+          2021,
+          28.71
+        ],
+        [
+          2020,
+          18.4
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "sourceUrls": [
+          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+        ],
+        "checkedAt": "2026-10-06",
+        "sha256": "d15582c5c192f661a4a4169ea42825995e82aea3a4739d246e59c8f68b180be3",
+        "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "S&P 500 · USD · dividendes réinvestis",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            17.88
+          ],
+          [
+            2024,
+            25.02
+          ],
+          [
+            2023,
+            26.29
+          ],
+          [
+            2022,
+            -18.11
+          ],
+          [
+            2021,
+            28.71
+          ],
+          [
+            2020,
+            18.4
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+          ],
+          "checkedAt": "2026-10-06",
+          "sha256": "d15582c5c192f661a4a4169ea42825995e82aea3a4739d246e59c8f68b180be3",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P 500 · USD · dividendes réinvestis",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "bitcoin": {
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "PRICE",
+      "values": [
+        [
+          2025,
+          -6.34
+        ],
+        [
+          2024,
+          121.05
+        ],
+        [
+          2023,
+          155.42
+        ],
+        [
+          2022,
+          -64.27
+        ],
+        [
+          2021,
+          59.67
+        ],
+        [
+          2020,
+          303.16
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
+        "sourceUrls": [
+          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
+          "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1d"
+        ],
+        "checkedAt": "2026-10-05",
+        "sha256": "f13a624ba98c7b66cb3e0999f73e538fc0b968e21a91e8224c4393d8c5c0762e",
+        "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+      },
+      "performance": {
+        "kind": "actif",
+        "detail": "Bitcoin · USD · cours spot",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            -6.34
+          ],
+          [
+            2024,
+            121.05
+          ],
+          [
+            2023,
+            155.42
+          ],
+          [
+            2022,
+            -64.27
+          ],
+          [
+            2021,
+            59.67
+          ],
+          [
+            2020,
+            303.16
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1mo",
+            "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1420070400&period2=1790812800&interval=1d"
+          ],
+          "checkedAt": "2026-10-05",
+          "sha256": "f13a624ba98c7b66cb3e0999f73e538fc0b968e21a91e8224c4393d8c5c0762e",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Bitcoin · USD · cours spot",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "ethereum": {
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "PRICE",
+      "values": [
+        [
+          2025,
+          -10.97
+        ],
+        [
+          2024,
+          46.07
+        ],
+        [
+          2023,
+          90.64
+        ],
+        [
+          2022,
+          -67.5
+        ],
+        [
+          2021,
+          399.14
+        ],
+        [
+          2020,
+          469.25
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "sourceUrls": [
+          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1mo&events=div%2Csplits"
+        ],
+        "checkedAt": "2026-10-06",
+        "sha256": "d15582c5c192f661a4a4169ea42825995e82aea3a4739d246e59c8f68b180be3",
+        "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+      },
+      "performance": {
+        "kind": "actif",
+        "detail": "Ethereum · USD · cours spot",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            -10.97
+          ],
+          [
+            2024,
+            46.07
+          ],
+          [
+            2023,
+            90.64
+          ],
+          [
+            2022,
+            -67.5
+          ],
+          [
+            2021,
+            399.14
+          ],
+          [
+            2020,
+            469.25
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1d&events=div%2Csplits",
+          "sourceUrls": [
+            "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1d&events=div%2Csplits",
+            "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1mo&events=div%2Csplits"
+          ],
+          "checkedAt": "2026-10-06",
+          "sha256": "d15582c5c192f661a4a4169ea42825995e82aea3a4739d246e59c8f68b180be3",
+          "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Ethereum · USD · cours spot",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "nikkei225": {
+    "facts": {
+      "index": "Nikkei 225",
+      "asOf": "2026-09-30",
+      "constituents": 225,
+      "countries": [
+        [
+          "🇯🇵 Japon",
+          100
+        ]
+      ],
+      "sectorMethod": "Nikkei six-sector classification",
+      "sectors": [
+        [
+          "Technology",
+          56.96
+        ],
+        [
+          "Consumer Goods",
+          19.66
+        ],
+        [
+          "Materials",
+          12.26
+        ],
+        [
+          "Capital Goods/Others",
+          6.84
+        ],
+        [
+          "Financials",
+          2.98
+        ],
+        [
+          "Transportation and Utilities",
+          1.3
+        ]
+      ],
+      "holdings": [
+        [
+          "ADVANTEST CORP.",
+          12.39
+        ],
+        [
+          "TOKYO ELECTRON LTD.",
+          8.9
+        ],
+        [
+          "FAST RETAILING CO., LTD.",
+          8.54
+        ],
+        [
+          "SOFTBANK GROUP CORP.",
+          7.75
+        ],
+        [
+          "RECRUIT HOLDINGS CO., LTD.",
+          2.53
+        ],
+        [
+          "TDK CORP.",
+          2.25
+        ],
+        [
+          "IBIDEN CO., LTD.",
+          2.22
+        ],
+        [
+          "KIOXIA HOLDINGS CORP.",
+          1.91
+        ],
+        [
+          "KDDI CORP.",
+          1.76
+        ],
+        [
+          "FUJIKURA LTD.",
+          1.57
+        ]
+      ],
+      "source": {
+        "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
+        "checkedAt": "2026-10-06",
+        "sha256": "c3daefa92082b1580db51666733c434a0c8207211fd92776568d4297b5408155",
+        "label": "Composition officielle automatisée · Nikkei 225"
+      },
+      "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "Nikkei 225",
+        "asOf": "2026-09-30",
+        "constituents": 225,
+        "countries": [
+          [
+            "🇯🇵 Japon",
+            100
+          ]
+        ],
+        "sectorMethod": "Nikkei six-sector classification",
+        "sectors": [
+          [
+            "Technology",
+            56.96
+          ],
+          [
+            "Consumer Goods",
+            19.66
+          ],
+          [
+            "Materials",
+            12.26
+          ],
+          [
+            "Capital Goods/Others",
+            6.84
+          ],
+          [
+            "Financials",
+            2.98
+          ],
+          [
+            "Transportation and Utilities",
+            1.3
+          ]
+        ],
+        "holdings": [
+          [
+            "ADVANTEST CORP.",
+            12.39
+          ],
+          [
+            "TOKYO ELECTRON LTD.",
+            8.9
+          ],
+          [
+            "FAST RETAILING CO., LTD.",
+            8.54
+          ],
+          [
+            "SOFTBANK GROUP CORP.",
+            7.75
+          ],
+          [
+            "RECRUIT HOLDINGS CO., LTD.",
+            2.53
+          ],
+          [
+            "TDK CORP.",
+            2.25
+          ],
+          [
+            "IBIDEN CO., LTD.",
+            2.22
+          ],
+          [
+            "KIOXIA HOLDINGS CORP.",
+            1.91
+          ],
+          [
+            "KDDI CORP.",
+            1.76
+          ],
+          [
+            "FUJIKURA LTD.",
+            1.57
+          ]
+        ],
+        "source": {
+          "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
+          "checkedAt": "2026-10-06",
+          "sha256": "c3daefa92082b1580db51666733c434a0c8207211fd92776568d4297b5408155",
+          "label": "Composition officielle automatisée · Nikkei 225"
+        },
+        "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "JPY",
+      "variant": "TOTAL",
+      "values": [
+        [
+          2025,
+          28.65
+        ],
+        [
+          2024,
+          21.33
+        ],
+        [
+          2023,
+          30.96
+        ],
+        [
+          2022,
+          -7.34
+        ],
+        [
+          2021,
+          6.66
+        ]
+      ],
+      "periodStart": "2021-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
+        "checkedAt": "2026-10-06",
+        "sha256": "97a1cb9c1de8c8ec747421324dcb8ce25bbc367a3e1898d0aa631664ebeddbd4",
+        "label": "Rendements calendaires officiels automatisés · Nikkei 225"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "Nikkei 225 · JPY · dividendes réinvestis",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "JPY",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            28.65
+          ],
+          [
+            2024,
+            21.33
+          ],
+          [
+            2023,
+            30.96
+          ],
+          [
+            2022,
+            -7.34
+          ],
+          [
+            2021,
+            6.66
+          ]
+        ],
+        "periodStart": "2021-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
+          "checkedAt": "2026-10-06",
+          "sha256": "97a1cb9c1de8c8ec747421324dcb8ce25bbc367a3e1898d0aa631664ebeddbd4",
+          "label": "Rendements calendaires officiels automatisés · Nikkei 225"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "Nikkei 225 · JPY · dividendes réinvestis",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "stoxx600": {
+    "returns": {
+      "asOf": "2026-10-06",
+      "currency": "EUR",
+      "variant": "PRICE",
+      "values": [
+        [
+          2025,
+          16.66
+        ],
+        [
+          2024,
+          5.98
+        ],
+        [
+          2023,
+          12.73
+        ],
+        [
+          2022,
+          -12.9
+        ],
+        [
+          2021,
+          22.25
+        ],
+        [
+          2020,
+          -4.04
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://stoxx.com/index/sxxp/",
+        "checkedAt": "2026-10-06",
+        "sha256": "e7b878fca7356e8724d2e09d26f4f592c916b70103c2e868fcd2d435b59bab15",
+        "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
+        "date": "2026-10-06"
+      }
+    },
+    "returnsHistory": {
+      "2026-10-06": {
+        "asOf": "2026-10-06",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            16.66
+          ],
+          [
+            2024,
+            5.98
+          ],
+          [
+            2023,
+            12.73
+          ],
+          [
+            2022,
+            -12.9
+          ],
+          [
+            2021,
+            22.25
+          ],
+          [
+            2020,
+            -4.04
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxp/",
+          "checkedAt": "2026-10-06",
+          "sha256": "e7b878fca7356e8724d2e09d26f4f592c916b70103c2e868fcd2d435b59bab15",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-06"
+        }
+      }
+    }
+  },
+  "eurostoxx50": {
+    "returns": {
+      "asOf": "2026-10-05",
+      "currency": "EUR",
+      "variant": "PRICE",
+      "values": [
+        [
+          2025,
+          18.29
+        ],
+        [
+          2024,
+          8.28
+        ],
+        [
+          2023,
+          19.19
+        ],
+        [
+          2022,
+          -11.74
+        ],
+        [
+          2021,
+          20.99
+        ],
+        [
+          2020,
+          -5.14
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://stoxx.com/index/sx5e/",
+        "checkedAt": "2026-10-06",
+        "sha256": "827e79065e08be64246a7f57b51d95caeb464ecca370acd787482ca377032102",
+        "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+        "date": "2026-10-05"
+      }
+    },
+    "returnsHistory": {
+      "2026-10-05": {
+        "asOf": "2026-10-05",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            18.29
+          ],
+          [
+            2024,
+            8.28
+          ],
+          [
+            2023,
+            19.19
+          ],
+          [
+            2022,
+            -11.74
+          ],
+          [
+            2021,
+            20.99
+          ],
+          [
+            2020,
+            -5.14
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5e/",
+          "checkedAt": "2026-10-06",
+          "sha256": "827e79065e08be64246a7f57b51d95caeb464ecca370acd787482ca377032102",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-05"
+        }
+      }
+    }
+  },
+  "sp-global-dividend-aristocrats": {
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          16.97
+        ],
+        [
+          2024,
+          7.48
+        ],
+        [
+          2023,
+          6.9
+        ],
+        [
+          2022,
+          -6.85
+        ],
+        [
+          2021,
+          15.41
+        ]
+      ],
+      "periodStart": "2021-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
+        "checkedAt": "2026-10-06",
+        "sha256": "2549f8fe0023d7dd1574b0e9eb1e626de92be071e269fe36eccd3faa35889529",
+        "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "S&P Global Dividend Aristocrats Quality Income · USD · dividendes nets réinvestis",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            16.97
+          ],
+          [
+            2024,
+            7.48
+          ],
+          [
+            2023,
+            6.9
+          ],
+          [
+            2022,
+            -6.85
+          ],
+          [
+            2021,
+            15.41
+          ]
+        ],
+        "periodStart": "2021-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
+          "checkedAt": "2026-10-06",
+          "sha256": "2549f8fe0023d7dd1574b0e9eb1e626de92be071e269fe36eccd3faa35889529",
+          "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P Global Dividend Aristocrats Quality Income · USD · dividendes nets réinvestis",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "sp-euro-dividend-aristocrats": {
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "EUR",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          19.47
+        ],
+        [
+          2024,
+          8.23
+        ],
+        [
+          2023,
+          17.95
+        ],
+        [
+          2022,
+          -11.86
+        ],
+        [
+          2021,
+          14.59
+        ],
+        [
+          2020,
+          -12.45
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+        "checkedAt": "2026-10-06",
+        "sha256": "d60208afd771f4262fbb89f51d77580ad12af81c0531b74d8af53456f0a37302",
+        "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "S&P Euro High Yield Dividend Aristocrats · EUR · dividendes nets réinvestis",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "EUR",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            19.47
+          ],
+          [
+            2024,
+            8.23
+          ],
+          [
+            2023,
+            17.95
+          ],
+          [
+            2022,
+            -11.86
+          ],
+          [
+            2021,
+            14.59
+          ],
+          [
+            2020,
+            -12.45
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+          "checkedAt": "2026-10-06",
+          "sha256": "d60208afd771f4262fbb89f51d77580ad12af81c0531b74d8af53456f0a37302",
+          "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P Euro High Yield Dividend Aristocrats · EUR · dividendes nets réinvestis",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "topix": {
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "JPY",
+      "variant": "TOTAL",
+      "values": [
+        [
+          2025,
+          25.46
+        ],
+        [
+          2024,
+          20.45
+        ],
+        [
+          2023,
+          28.26
+        ],
+        [
+          2022,
+          -2.45
+        ],
+        [
+          2021,
+          12.74
+        ]
+      ],
+      "periodStart": "2021-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
+        "checkedAt": "2026-10-06",
+        "sha256": "58649bb96fc69e79bfefc1ed84eed79f8a7ff3605b4fef41d3da4d010ca1185a",
+        "label": "Rendements calendaires officiels automatisés · TOPIX"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "TOPIX · JPY · dividendes réinvestis",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "JPY",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            25.46
+          ],
+          [
+            2024,
+            20.45
+          ],
+          [
+            2023,
+            28.26
+          ],
+          [
+            2022,
+            -2.45
+          ],
+          [
+            2021,
+            12.74
+          ]
+        ],
+        "periodStart": "2021-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
+          "checkedAt": "2026-10-06",
+          "sha256": "58649bb96fc69e79bfefc1ed84eed79f8a7ff3605b4fef41d3da4d010ca1185a",
+          "label": "Rendements calendaires officiels automatisés · TOPIX"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "TOPIX · JPY · dividendes réinvestis",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "msci-em-latin-america-selection": {
+    "facts": {
+      "index": "MSCI Latin America Selection 20/35 Capped",
+      "asOf": "2026-09-30",
+      "constituents": 41,
+      "countries": [
+        [
+          "🇧🇷 Brésil",
+          44.25
+        ],
+        [
+          "🇲🇽 Mexique",
+          32.79
+        ],
+        [
+          "🇨🇱 Chili",
+          9.18
+        ],
+        [
+          "🇵🇪 Pérou",
+          8.3
+        ],
+        [
+          "🇨🇴 Colombie",
+          5.48
+        ]
+      ],
+      "sectors": [
+        [
+          "🏦 Finance",
+          42.17
+        ],
+        [
+          "🪨 Matériaux",
+          12.51
+        ],
+        [
+          "💡 Services publics",
+          11.59
+        ],
+        [
+          "🛒 Consommation de base",
+          10.35
+        ],
+        [
+          "🏭 Industrie",
+          9.18
+        ],
+        [
+          "📡 Communication",
+          4.31
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          3.29
+        ],
+        [
+          "⚡ Énergie",
+          2.62
+        ],
+        [
+          "🏠 Immobilier",
+          2.41
+        ],
+        [
+          "🏥 Santé",
+          1.56
+        ]
+      ],
+      "holdings": [
+        [
+          "ITAU UNIBANCO PN",
+          12.45
+        ],
+        [
+          "CREDICORP",
+          6.9
+        ],
+        [
+          "GRUPO FIN BANORTE O",
+          6.8
+        ],
+        [
+          "BANCO BRADESCO PN",
+          5.38
+        ],
+        [
+          "FEMSA UNIT UBD",
+          5.36
+        ],
+        [
+          "B3",
+          4.81
+        ],
+        [
+          "AMERICA MOVIL B",
+          4.31
+        ],
+        [
+          "CEMEX CPO",
+          3.91
+        ],
+        [
+          "SABESP ON",
+          3.39
+        ],
+        [
+          "WALMART MEXICO V",
+          3.27
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
+        "checkedAt": "2026-10-06",
+        "label": "Composition officielle automatisée · MSCI Latin America Selection 20/35 Capped",
+        "sha256": "c929fde8751e86a3403c7206d6fa5852784efbb3035824683aa25ad3207f5e75"
+      },
+      "provenance": "Publication MSCI au libellé historique ESG Leaders Select 5% Issuer Capped ; URL déjà certifiée pour MSCI 750531 dans index-comparison-returns (04/10/2026). Le titre historique est contrôlé exactement, sans assimiler le MSCI Latin America standard."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI Latin America Selection 20/35 Capped",
+        "asOf": "2026-09-30",
+        "constituents": 41,
+        "countries": [
+          [
+            "🇧🇷 Brésil",
+            44.25
+          ],
+          [
+            "🇲🇽 Mexique",
+            32.79
+          ],
+          [
+            "🇨🇱 Chili",
+            9.18
+          ],
+          [
+            "🇵🇪 Pérou",
+            8.3
+          ],
+          [
+            "🇨🇴 Colombie",
+            5.48
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            42.17
+          ],
+          [
+            "🪨 Matériaux",
+            12.51
+          ],
+          [
+            "💡 Services publics",
+            11.59
+          ],
+          [
+            "🛒 Consommation de base",
+            10.35
+          ],
+          [
+            "🏭 Industrie",
+            9.18
+          ],
+          [
+            "📡 Communication",
+            4.31
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            3.29
+          ],
+          [
+            "⚡ Énergie",
+            2.62
+          ],
+          [
+            "🏠 Immobilier",
+            2.41
+          ],
+          [
+            "🏥 Santé",
+            1.56
+          ]
+        ],
+        "holdings": [
+          [
+            "ITAU UNIBANCO PN",
+            12.45
+          ],
+          [
+            "CREDICORP",
+            6.9
+          ],
+          [
+            "GRUPO FIN BANORTE O",
+            6.8
+          ],
+          [
+            "BANCO BRADESCO PN",
+            5.38
+          ],
+          [
+            "FEMSA UNIT UBD",
+            5.36
+          ],
+          [
+            "B3",
+            4.81
+          ],
+          [
+            "AMERICA MOVIL B",
+            4.31
+          ],
+          [
+            "CEMEX CPO",
+            3.91
+          ],
+          [
+            "SABESP ON",
+            3.39
+          ],
+          [
+            "WALMART MEXICO V",
+            3.27
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
+          "checkedAt": "2026-10-06",
+          "label": "Composition officielle automatisée · MSCI Latin America Selection 20/35 Capped",
+          "sha256": "c929fde8751e86a3403c7206d6fa5852784efbb3035824683aa25ad3207f5e75"
+        },
+        "provenance": "Publication MSCI au libellé historique ESG Leaders Select 5% Issuer Capped ; URL déjà certifiée pour MSCI 750531 dans index-comparison-returns (04/10/2026). Le titre historique est contrôlé exactement, sans assimiler le MSCI Latin America standard."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          54.75
+        ],
+        [
+          2024,
+          -29.4
+        ],
+        [
+          2023,
+          27.39
+        ],
+        [
+          2022,
+          3.57
+        ],
+        [
+          2021,
+          -17.43
+        ],
+        [
+          2020,
+          -12.16
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
+        "checkedAt": "2026-10-06",
+        "sha256": "c929fde8751e86a3403c7206d6fa5852784efbb3035824683aa25ad3207f5e75",
+        "label": "Rendements calendaires officiels automatisés · MSCI Latin America Selection 20/35 Capped"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI Latin America Selection 20/35 Capped · USD · dividendes nets réinvestis",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            54.75
+          ],
+          [
+            2024,
+            -29.4
+          ],
+          [
+            2023,
+            27.39
+          ],
+          [
+            2022,
+            3.57
+          ],
+          [
+            2021,
+            -17.43
+          ],
+          [
+            2020,
+            -12.16
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/a2cd067c-1993-9961-e81f-6081eca393a3",
+          "checkedAt": "2026-10-06",
+          "sha256": "c929fde8751e86a3403c7206d6fa5852784efbb3035824683aa25ad3207f5e75",
+          "label": "Rendements calendaires officiels automatisés · MSCI Latin America Selection 20/35 Capped"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI Latin America Selection 20/35 Capped · USD · dividendes nets réinvestis",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "gold-physical": {
+    "returns": {
+      "asOf": "2026-08-31",
+      "currency": "USD",
+      "variant": "PRICE",
+      "values": [
+        [
+          2025,
+          65.0
+        ],
+        [
+          2024,
+          26.59
+        ],
+        [
+          2023,
+          13.8
+        ],
+        [
+          2022,
+          -0.43
+        ],
+        [
+          2021,
+          -3.75
+        ],
+        [
+          2020,
+          24.17
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.ishares.com/gls-download/literature/fact-sheet/sgln-ishares-physical-gold-etc-fund-fact-sheet-en-gb.pdf",
+        "checkedAt": "2026-10-06",
+        "sha256": "3e07a5dcb9d1cc0aad38289b124041ebbab9861afdc9e37268cff837b314755f",
+        "label": "Rendements calendaires officiels automatisés · Or physique"
+      },
+      "performance": {
+        "kind": "actif",
+        "detail": "Or physique · USD · cours de référence du métal",
+        "date": "2026-08-31"
+      }
+    },
+    "returnsHistory": {
+      "2026-08-31": {
+        "asOf": "2026-08-31",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            65.0
+          ],
+          [
+            2024,
+            26.59
+          ],
+          [
+            2023,
+            13.8
+          ],
+          [
+            2022,
+            -0.43
+          ],
+          [
+            2021,
+            -3.75
+          ],
+          [
+            2020,
+            24.17
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ishares.com/gls-download/literature/fact-sheet/sgln-ishares-physical-gold-etc-fund-fact-sheet-en-gb.pdf",
+          "checkedAt": "2026-10-06",
+          "sha256": "3e07a5dcb9d1cc0aad38289b124041ebbab9861afdc9e37268cff837b314755f",
+          "label": "Rendements calendaires officiels automatisés · Or physique"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Or physique · USD · cours de référence du métal",
+          "date": "2026-08-31"
+        }
+      }
+    }
+  },
+  "silver-physical": {
+    "returns": {
+      "asOf": "2026-08-31",
+      "currency": "USD",
+      "variant": "PRICE",
+      "values": [
+        [
+          2025,
+          149.06
+        ],
+        [
+          2024,
+          21.5
+        ],
+        [
+          2023,
+          -0.65
+        ],
+        [
+          2022,
+          3.73
+        ],
+        [
+          2021,
+          -12.84
+        ],
+        [
+          2020,
+          46.77
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf",
+        "checkedAt": "2026-10-06",
+        "sha256": "59537673893bba96bca183a3e3bb555a3f815b9cd7669ebaba75a2a0e5ea4a6b",
+        "label": "Rendements calendaires officiels automatisés · Argent physique"
+      },
+      "performance": {
+        "kind": "actif",
+        "detail": "Argent physique · USD · cours de référence du métal",
+        "date": "2026-08-31"
+      }
+    },
+    "returnsHistory": {
+      "2026-08-31": {
+        "asOf": "2026-08-31",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            149.06
+          ],
+          [
+            2024,
+            21.5
+          ],
+          [
+            2023,
+            -0.65
+          ],
+          [
+            2022,
+            3.73
+          ],
+          [
+            2021,
+            -12.84
+          ],
+          [
+            2020,
+            46.77
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf",
+          "checkedAt": "2026-10-06",
+          "sha256": "59537673893bba96bca183a3e3bb555a3f815b9cd7669ebaba75a2a0e5ea4a6b",
+          "label": "Rendements calendaires officiels automatisés · Argent physique"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Argent physique · USD · cours de référence du métal",
+          "date": "2026-08-31"
         }
       }
     }

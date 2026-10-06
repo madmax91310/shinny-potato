@@ -14,6 +14,12 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 def collect_one(config, now, fetch=download):
+    if config['parser'] == 'monthly-derived':
+        from derive_index_returns import collect_one as derived
+        return derived(config, now)
+    if config['parser'] in ('nikkei', 'stoxx-price', 'ssga-index', 'blackrock-index', 'metal-benchmark'):
+        from collect_remaining_indices import collect_one as remaining
+        return remaining(config, now, fetch)
     cache = {}
     def load(url):
         if url not in cache:
@@ -27,12 +33,12 @@ def collect_one(config, now, fetch=download):
             facts = parser(text, config, now)
             facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(),
                                'label': 'Composition officielle automatisée · ' + config['name'], 'sha256': digest}
-            facts['provenance'] = 'Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF.'
+            facts['provenance'] = config.get('identityNote', 'Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF.')
             result['facts'] = facts
         except Exception as error:
             result['errors'].append({'field':'composition','reason':str(error),'url':config['sourceUrl']})
     else:
-        result['unavailable'].append(config['qualificationIssue'])
+        result['unavailable'].append(config.get('qualificationIssue', 'composition: no qualified complete source'))
     if config.get('returnSourceUrl'):
         try:
             text,digest=load(config['returnSourceUrl'])
@@ -77,9 +83,9 @@ def merge_records(current, observations):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--apply',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--apply',action='store_true');p.add_argument('--only-derived',action='store_true');args=p.parse_args()
     config=json.loads((ROOT/'scripts/index-automation.json').read_text());now=dt.datetime.now(UTC)
-    with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(lambda c:collect_one(c,now),[c for c in config['indices'] if c.get('enabled', True)]))
+    with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(lambda c:collect_one(c,now),[c for c in config['indices'] if c.get('enabled', True) and (not args.only_derived or c['parser']=='monthly-derived')]))
     report={'checkedAt':now.isoformat(),'indices':observations,'status':'validated','notQualified':[c['id'] for c in config['indices'] if not c.get('enabled', True)]}
     write_json_atomic(args.output,report)
     if args.apply:

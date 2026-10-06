@@ -38,7 +38,7 @@ class IssuerSources(unittest.TestCase):
     def test_wisdomtree_pdf_calendar_and_launch_year(self):
         text=(FIX/'wisdomtree-calendar.txt').read_text();s=share('IE00BZ56SW52')
         def parse(t,config=s):
-            with patch('issuer_documents.pdf_text',return_value=t):return wisdomtree_factsheet(b'%PDF-body',config,NOW)
+            with patch('issuer_documents.pdf_text',return_value=t), patch('collect_wisdomtree_allocations.allocations',return_value={}):return wisdomtree_factsheet(b'%PDF-body',config,NOW)
         r=parse(text)
         self.assertEqual(r['performance']['years']['2025'],16.33)
         self.assertEqual(r['performance']['years']['2020'],16.26)
@@ -51,7 +51,7 @@ class IssuerSources(unittest.TestCase):
     def test_wisdomtree_fallback_only_on_transport_failure(self):
         text=(FIX/'wisdomtree-calendar.txt').read_text();s=share('IE00BZ56SW52')
         failure=urllib.error.HTTPError(s['sourceUrl'],403,'Forbidden',{},None)
-        with patch('collect_public_issuer.get_text',side_effect=failure),patch('collect_public_issuer.download',return_value=b'%PDF-body'),patch('issuer_documents.pdf_text',return_value=text):
+        with patch('collect_public_issuer.get_text',side_effect=failure),patch('collect_public_issuer.download',return_value=b'%PDF-body'),patch('issuer_documents.pdf_text',return_value=text),patch('collect_wisdomtree_allocations.allocations',return_value={}):
             r=public_collect(s,NOW)
             self.assertEqual(r['sourceUrl'],s['factsheetUrl'])
             self.assertEqual(r['performance']['asOf'],'2026-08-31')

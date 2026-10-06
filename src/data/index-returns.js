@@ -394,13 +394,12 @@ export function getCurrentIndexReturnSeries(id, asOf) {
   if (!previous) throw new Error(`Rendements d’indice absents : ${id}/${asOf}`);
   const current = automatedIndices[id]?.returns;
   const detail = previous.performance.detail;
-  const variant = /hors dividendes|price/i.test(detail) ? 'PRICE' : /nets?|NET/i.test(detail) ? 'NET' : /bruts?|GROSS/i.test(detail) ? 'GROSS' : 'TOTAL';
+  const variant = /hors dividendes|price|cours spot|cours de référence/i.test(detail) ? 'PRICE' : /nets?|NET/i.test(detail) ? 'NET' : /bruts?|GROSS/i.test(detail) ? 'GROSS' : 'TOTAL';
   if (!current || current.currency !== previous.metadata.currency || current.variant !== variant || current.asOf < asOf) return previous;
   const years = new Set(previous.values.map(([year]) => year));
   const values = current.values.filter(([year]) => years.has(year));
   if (values.length !== years.size) return previous;
-  if (previous.values.every(([year, value]) => values.some(([incomingYear, incomingValue]) => incomingYear === year && incomingValue === value))) return previous;
   return { ...current, values, method: previous.method,
     metadata: normalizeEvidence({ ...current.source, asOf: current.asOf, checkedAt: current.source.checkedAt,
-      currency: current.currency, method: current.performance.detail, periodStart: previous.metadata.periodStart, periodEnd: previous.metadata.periodEnd, scope: `Indice ${id}` }) };
+      currency: current.currency, method: current.performance.detail, periodStart: previous.metadata.periodStart, periodEnd: previous.metadata.periodEnd, scope: `${current.performance.kind === 'actif' ? 'Actif' : 'Indice'} ${id}` }) };
 }

@@ -7,11 +7,17 @@ on:
     branches: [master]
     paths:
       - '.github/workflows/update-market-monthly.yml'
+      - 'scripts/derive_index_returns.py'
+      - 'scripts/refresh_index_sources.py'
+      - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
       - 'scripts/monthly-automation.json'
   pull_request:
     paths:
       - '.github/workflows/update-market-monthly.yml'
+      - 'scripts/derive_index_returns.py'
+      - 'scripts/refresh_index_sources.py'
+      - 'scripts/index-automation.json'
       - 'scripts/*monthly*'
       - 'src/data/*monthly*'
       - 'src/data/market-history*'
@@ -44,6 +50,10 @@ jobs:
       - id: collect
         continue-on-error: true
         run: python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply
+      - run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
+      - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - run: npm run audit:index-facts
+      - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:calculator-series
       - run: node scripts/test-monthly-consumers.mjs
       - run: npm run audit:data-catalog
@@ -54,7 +64,9 @@ jobs:
         if: always()
         with:
           name: monthly-market-observation
-          path: ${{ runner.temp }}/monthly-observation.json
+          path: |
+            ${{ runner.temp }}/monthly-observation.json
+            ${{ runner.temp }}/derived-index-observation.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Commit validated active data
@@ -63,7 +75,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-monthly.json scripts/source-snapshots/monthly-automated.json
+          git add src/data/automated-indices.json src/data/automated-monthly.json scripts/source-snapshots/monthly-automated.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated monthly market histories'
             git pull --rebase origin master

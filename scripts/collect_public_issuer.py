@@ -187,5 +187,10 @@ def wisdomtree_factsheet(body, share, now):
             result['performance']={'currency':currency,'basis':'fund','years':{y:bounded_return(float(v))for y,v in zip(years,values)if launch<=dt.date(int(y),1,1)},'method':'calendar-year exact-share NAV return, net of fees'}
     result['characteristics'].update(asOf=stamp,sourceUrl=url,sha256=digest)
     if 'performance'in result:result['performance'].update(asOf=stamp,sourceUrl=url,sha256=digest)
-    result['unavailable'].append('HTML unavailable: official PDF used; AUM and complete allocations not published in this PDF, previous dated values preserved')
+    if share['documentType'] == 'wisdomtree-ucits':
+        from collect_wisdomtree_allocations import allocations
+        result.update(allocations(body, stamp, url, digest))
+        if 'countries' not in result:
+            result['unavailable'].append('countries: PDF publishes only ten countries; complete previous allocation preserved')
+    result['unavailable'].append('HTML unavailable: current official PDF used; AUM not published, previous dated value preserved')
     return result
