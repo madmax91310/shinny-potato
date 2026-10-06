@@ -6,6 +6,8 @@ import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerf
 import { buildTweetText } from '../src/pages/etf-tweets/lib/tweetFormat.js'
 import { COMPARISON_ETF_DETAILS } from '../src/data/comparison-etf-details.js'
 import { readFileSync } from 'node:fs'
+import { getComparisonPolicy } from '../src/pages/etf-tweets/lib/comparisonPolicy.js'
+import { buildComparisonEtfDetails } from '../src/pages/etf-tweets/lib/comparisonDetails.js'
 const emerging = DEFAULT_THEMES.find(t => t.etfs.some(f => f.isin === 'IE00BTJRMP35'))
 // Each issuer field keeps its own document and date through the shared adapter.
 for (const [isin, record] of Object.entries(AUTOMATED_ETF)) {
@@ -40,12 +42,37 @@ for (const fund of emerging.etfs) {
  assert.ok(Math.abs(details.sectors.reduce((sum,[,pct])=>sum+pct,0)-100) <= (AUTOMATED_ETF[fund.isin] ? 1 : .1))
 }
 for (const theme of DEFAULT_THEMES) {
- assert.ok(buildTweetText(theme).length<=25000)
+ const tweet = buildTweetText(theme)
+ assert.ok(tweet.length<=25000)
+ assert.doesNotMatch(tweet, /Répartition sectorielle : non disponible|Principales positions : non disponibles/)
+ const years = new Set(theme.etfs.map(fund => getComparisonPerformance(fund.isin)?.currency).filter(Boolean))
+ assert.equal(tweet.includes('classement à monnaie égale'), years.size > 1)
  for (const fund of theme.etfs) {
   const p=getComparisonPerformance(fund.isin)
   if(p) {assert.equal(p.label,'ETF');assert.equal(p.referenceIsin,fund.isin)}
+  const detailText = buildComparisonEtfDetails(fund).join('\n')
+  if (!getComparisonPolicy(fund).showSectors) assert.doesNotMatch(detailText, /🏭/)
+  if (!getComparisonPolicy(fund).showHoldings) assert.doesNotMatch(detailText, /🏢/)
  }
 }
+for (const id of ['tech-europe', 'sante', 'ressources-naturelles', 'financieres', 'semiconducteurs-tech', 'innovation-medicale', 'jeux-video']) {
+ assert.doesNotMatch(buildTweetText(DEFAULT_THEMES.find(t => t.id === id)), /🏭/, `${id}: activités et entreprises, sans bloc sectoriel redondant`)
+}
+for (const id of ['monde', 'emergents', 'ia-robotique', 'renouvelables']) {
+ assert.match(buildTweetText(DEFAULT_THEMES.find(t => t.id === id)), /🏭/, `${id}: les secteurs restent utiles pour un panier multisectoriel`)
+}
+const resources = buildTweetText(DEFAULT_THEMES.find(t => t.id === 'ressources-naturelles'))
+assert.equal((resources.match(/⚙️ Réplication physique/g) ?? []).length, 2)
+assert.equal((resources.match(/⚙️ Réplication synthétique/g) ?? []).length, 2)
+assert.match(resources, /Xtrackers couvre les matériaux des pays développés/)
+assert.match(resources, /chimie et les gaz industriels/)
+assert.doesNotMatch(resources, /Ces ETF détiennent des actions/)
+const synthetic = buildComparisonEtfDetails({ isin: 'LU1834983634', nom: 'ETF' }).join('\n')
+assert.match(synthetic, /Principales entreprises de l’indice suivi/)
+assert.doesNotMatch(synthetic, /Principales positions du fonds/)
+const noHistory = buildComparisonEtfDetails({ isin: 'UNKNOWN', nom: 'ETF' }, []).join('\n')
+assert.match(noHistory, /Historique annuel non disponible/)
+assert.doesNotMatch(noHistory, /🏢|🏭/)
 for (const isin of ['IE00BD4TXV59','IE000XZSV718','IE000DQLYVB9','FR001400U5Q4']) {
  const p = getComparisonPerformance(isin), actual = AUTOMATED_ETF[isin]?.performance
  if (p) {
