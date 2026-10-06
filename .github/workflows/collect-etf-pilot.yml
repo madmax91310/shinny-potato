@@ -18,6 +18,9 @@ on:
   pull_request:
     paths:
       - '.github/workflows/collect-etf-pilot.yml'
+      - 'scripts/audit-data-review.mjs'
+      - 'scripts/lib/data-review-observation.mjs'
+      - 'scripts/test-data-review-observation.mjs'
       - 'scripts/*etf*'
       - 'scripts/*amundi*'
       - 'scripts/test_issuer_refresh.py'

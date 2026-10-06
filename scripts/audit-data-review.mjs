@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { assertReviewObservation } from './lib/data-review-observation.mjs'
 import { readFileSync } from 'node:fs'
 import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js'
 import { AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
@@ -39,22 +40,6 @@ assert(current.items.every(x => x.to.startsWith('/') && x.reason && x.name && x.
 assert.equal(buildReview('2027-01-01').items.filter(x => x.category === 'expired').length, 3)
 // Rejouer les observations de la revue, y compris les proxys conservés : le catalogue
 // et les consommateurs doivent exposer les valeurs effectivement lues dans la source.
-function assertRecertified(field, publication, baselineDate, id) {
-  assert.deepEqual(field.value, publication.values, `${id}: valeurs différentes de la publication validée`)
-  assert.notEqual(dayNumber(publication.checkedAt), null, `${id}: date de publication invalide`)
-  assert(publication.checkedAt >= baselineDate, `${id}: recertification antérieure à la revue`)
-  assert.equal(field.metadata.checkedAt, publication.checkedAt, `${id}: contrôle différent de la publication validée`)
-  assert(field.metadata.sourceUrls.includes(publication.source), `${id}: source de publication absente`)
-}
-const recertifiedFixture = { value: [1, 2], metadata: { checkedAt: '2026-10-05', sourceUrls: ['https://issuer.example/performance'] } }
-const publicationFixture = { values: [1, 2], checkedAt: '2026-10-05', source: 'https://issuer.example/performance' }
-assertRecertified(recertifiedFixture, publicationFixture, '2026-10-04', 'fixture')
-assert.throws(() => assertRecertified({ ...recertifiedFixture, value: [1, 3] }, publicationFixture, '2026-10-04', 'fixture'), /valeurs différentes/)
-assert.throws(() => assertRecertified({ ...recertifiedFixture, metadata: { ...recertifiedFixture.metadata, sourceUrls: [] } }, publicationFixture, '2026-10-04', 'fixture'), /source de publication absente/)
-assert.throws(() => assertRecertified({ ...recertifiedFixture, metadata: { ...recertifiedFixture.metadata, checkedAt: '2026-10-06' } }, publicationFixture, '2026-10-04', 'fixture'), /contrôle différent/)
-assert.throws(() => assertRecertified(recertifiedFixture, { ...publicationFixture, checkedAt: '2026-02-30' }, '2026-10-04', 'fixture'), /date de publication invalide/)
-assert.throws(() => assertRecertified(recertifiedFixture, { ...publicationFixture, checkedAt: '2026-10-03' }, '2026-10-04', 'fixture'), /recertification antérieure/)
-
 const closure = JSON.parse(readFileSync(new URL('./source-snapshots/data-review-2026-10-02.json', import.meta.url)))
 for (const observation of closure.records) {
   const record = DATA_CATALOG.find(x => x.id === (observation.isin ?? observation.id))
@@ -64,16 +49,10 @@ for (const observation of closure.records) {
     ? x.value.asOf === observation.asOf
     : x.label === (observation.type === 'comparator' ? 'Rendements 2023–2025 du comparateur' : historicalProxy ? 'Historique de simulation 2020–2025' : 'Rendements 2020–2025'))
   assert(field, `Champ contrôlé absent : ${record.id}`)
-  const automated = observation.type === 'portfolio' && !historicalProxy ? AUTOMATED_PERFORMANCE[observation.isin] : null
-  assert.deepEqual(observation.type === 'index' ? field.value.constituents : field.value, automated?.values ?? observation.constituents ?? observation.values)
-  if (automated) {
-    assertRecertified(field, automated, closure.checkedAt, record.id)
-  } else if (reviewed && !historicalProxy && observation.type === 'portfolio') {
-    assertRecertified(field, { ...reviewed, values: observation.values }, closure.checkedAt, record.id)
-  } else {
-    assert.equal(field.metadata.checkedAt, closure.checkedAt)
-    assert(observation.sourceUrls.every(url => field.metadata.sourceUrls.includes(url)), `${record.id}: source contrôlée différente`)
-  }
+  assertReviewObservation({ recordId: record.id, field, observation, closureCheckedAt: closure.checkedAt,
+    automated: observation.type === 'portfolio' && !historicalProxy ? AUTOMATED_PERFORMANCE[observation.isin] : null,
+    reviewed: reviewed && !historicalProxy && observation.type === 'portfolio' ? reviewed : null,
+  })
 }
 const remaining = buildReview(closure.checkedAt)
 assert.equal(remaining.items.filter(x => x.category === 'undated').length, 4, 'Les quatre contrôles non résolus doivent rester visibles')
