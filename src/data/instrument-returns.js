@@ -1,4 +1,4 @@
-import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE } from './automated-etf.js';
+import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE, HISTORICAL_AUTOMATED_PERFORMANCE } from './automated-etf.js';
 import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 // Rendements 2020–2025 par part (ISIN), repris sans modification du générateur.
@@ -80,8 +80,8 @@ export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentReturnValues(isin) {
-  const calendar = AUTOMATED_ETF[isin]?.performance?.years;
-  if (calendar && HISTORICAL_YEARS.every(year => Number.isFinite(calendar[year]))) return HISTORICAL_YEARS.map(year => calendar[year]);
+  const historical = HISTORICAL_AUTOMATED_PERFORMANCE[isin]?.values;
+  if (historical?.every(Number.isFinite)) return historical;
   const proxy = SIMULATION_PROXIES[isin];
   const values = proxy ? proxy.values ?? VERIFIED_RETURNS[proxy.referenceIsin]?.values : VERIFIED_RETURNS[isin]?.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin];
   if (!values) throw new Error(`Rendements absents pour ${isin}`);
