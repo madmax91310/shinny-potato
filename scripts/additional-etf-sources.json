@@ -908,7 +908,10 @@
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
       "currency": "EUR",
       "provider": "iShares",
-      "parser": "ishares-legacy"
+      "parser": "ishares-legacy",
+      "fallbackUrls": [
+        "https://www.blackrock.com/fr/particuliers/products/335178/"
+      ]
     },
     {
       "isin": "IE000DQLYVB9",
@@ -917,7 +920,10 @@
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
       "currency": "EUR",
       "provider": "iShares",
-      "parser": "ishares-legacy"
+      "parser": "ishares-legacy",
+      "fallbackUrls": [
+        "https://www.blackrock.com/fr/particuliers/products/342916/"
+      ]
     }
   ]
 }
