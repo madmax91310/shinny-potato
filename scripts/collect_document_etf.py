@@ -1,6 +1,8 @@
 """Exact-share public issuer factsheets; publish only explicitly labelled fields."""
 import re
 import datetime as dt
+import urllib.error
+from urllib.parse import urlparse
 from html.parser import HTMLParser
 from data_automation import number, reject
 from issuer_documents import download, pdf_text, document_date, proof, bounded_return, validated_rows
@@ -92,8 +94,24 @@ def parse_legacy(text,share,now):
         'unavailable':['performance: new share lacks full 2020–2025 calendar history','exposures: swap basket is not the tracked-index composition']}
 
 
-def collect_legacy(share,now):
+def collect_legacy(share,now,fetch=None):
     from data_automation import get_text
-    text=get_text(share['sourceUrl'],('text/html',),6_000_000);result=parse_legacy(text,share,now)
-    result['aum'].update(sourceUrl=share['sourceUrl'],sha256=proof(text.encode()))
-    return result
+    fetch = fetch or get_text
+    urls = [share['sourceUrl'], *share.get('fallbackUrls', [])]
+    # Only transport failures qualify for an alternate official page. A response
+    # with the wrong ISIN, currency or stale date must still fail validation.
+    for position, url in enumerate(urls):
+        parsed = urlparse(url)
+        if (parsed.scheme != 'https' or parsed.hostname not in ('www.ishares.com', 'www.blackrock.com')
+                or f'/products/{share["productId"]}/' not in parsed.path):
+            reject('Unexpected legacy iShares official source')
+        try:
+            text = fetch(url, ('text/html',), 6_000_000)
+        except (urllib.error.URLError, TimeoutError):
+            if position == len(urls) - 1:
+                raise
+            continue
+        result = parse_legacy(text, share, now)
+        result['sourceUrl'] = url
+        result['aum'].update(sourceUrl=url, sha256=proof(text.encode()))
+        return result
