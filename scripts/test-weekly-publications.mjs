@@ -31,7 +31,10 @@ try {
   for (const [path, day] of [
     ['/fiche-lexique', 'Lundi midi'], ['/duels-portefeuilles', 'Lundi soir · alternance'],
     ['/generateur-portefeuilles', 'Mardi soir · alternance'], ['/vrai-faux', 'Publication ponctuelle'],
-    ['/comparateur-indices', 'Mardi midi'], ['/comparatif-etf', 'Jeudi midi'],
+    ['/comparateur-indices', 'Mardi midi'], ['/comparatif-etf', 'Mercredi midi'],
+    ['/calculateur-investissement', 'Mercredi soir'],
+    ['/il-y-a-x-ans', 'Jeudi midi · alternance'], ['/performance-depuis', 'Jeudi midi · alternance'],
+    ['/fiches-etf', 'Jeudi soir'],
     ['/cas-concrets', 'Publication ponctuelle'], ['/impact-frais', 'Publication ponctuelle'],
   ]) assert.equal(await page.locator(`.workspace-tool-card[href$="${path}"] .workspace-publication-day`).innerText(), day)
   for (const width of [320, 390]) {
