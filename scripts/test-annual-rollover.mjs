@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { latestCommonYears } from '../src/data/annual-window.js';
-import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE, buildAnnualPerformance } from '../src/data/automated-etf.js';
+import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE, HISTORICAL_AUTOMATED_PERFORMANCE, buildAnnualPerformance } from '../src/data/automated-etf.js';
 import { getInstrumentReturnValues, getInstrumentCalendarReturns } from '../src/data/instrument-returns.js';
 import { annualizedReturn, computeYearlyPerf, performanceExcerpt } from '../src/pages/portfolio-generator/performance.js';
 import { performanceEntries, annualPerformanceRange } from '../src/pages/etf-sheets/annualPerformance.js';
@@ -59,4 +59,15 @@ try {
   globalThis.Date = NativeDate;
   AUTOMATED_ETF[isin] = oldRecord;
   AUTOMATED_PERFORMANCE[isin] = oldDisplay;
+}
+
+const recentIsin = 'FR001400S9V0';
+const previousRecent = HISTORICAL_AUTOMATED_PERFORMANCE[recentIsin];
+try {
+  const partial = [null, null, null, null, null, 5];
+  HISTORICAL_AUTOMATED_PERFORMANCE[recentIsin] = { values: partial };
+  assert.equal(getInstrumentReturnValues(recentIsin), partial, 'A newly collected partial fund history remains available without a simulation proxy');
+} finally {
+  if (previousRecent) HISTORICAL_AUTOMATED_PERFORMANCE[recentIsin] = previousRecent;
+  else delete HISTORICAL_AUTOMATED_PERFORMANCE[recentIsin];
 }

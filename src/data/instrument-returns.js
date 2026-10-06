@@ -84,6 +84,7 @@ export function getInstrumentReturnValues(isin) {
   if (historical?.every(Number.isFinite)) return historical;
   const proxy = SIMULATION_PROXIES[isin];
   const values = proxy ? proxy.values ?? VERIFIED_RETURNS[proxy.referenceIsin]?.values : VERIFIED_RETURNS[isin]?.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin];
+  if (!values && historical) return historical;
   if (!values) throw new Error(`Rendements absents pour ${isin}`);
   return values;
 }
