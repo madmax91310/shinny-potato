@@ -96,20 +96,29 @@ class IssuerSources(unittest.TestCase):
             self.assertNotIn('aum',r)
             with self.assertRaises(ValueError):coinshares(text.replace('31 August 2026','31 January 2026'),s,NOW,'h')
 
+    def test_wisdomtree_pdf_outage_preserves_valid_html_and_reports_failure(self):
+        text=(FIX/'wisdomtree.html').read_text();s=share('IE00BZ56SW52')
+        failure=urllib.error.HTTPError(s['factsheetUrl'],502,'temporary outage',{},None)
+        with patch('collect_public_issuer.get_text',return_value=text),patch('collect_public_issuer.download',side_effect=failure):
+            result=public_collect(s,NOW)
+        self.assertIn('aum',result)
+        self.assertEqual(result['collectionErrors'][0]['field'],'performance')
+        self.assertNotIn('performance',result)
+
     def test_ubs_exact_index_scope_and_month_discovery(self):
         text=(FIX/'ubs.txt').read_text();s=share('IE00BD4TXV59');r=ubs(text,s,NOW,'h')
         self.assertEqual(r['aum']['amount'],17446660000)
         self.assertEqual(len(r['holdings']['rows']),10)
         self.assertEqual(r['holdings']['basis'],'index')
         urls=list(ubs_urls(NOW));self.assertIn('20260930',urls[0]);self.assertIn('20260831',urls[1])
-        def fetch(url):
-            if url==urls[0]:raise ValueError('Expected official PDF; received Dokument nicht gefunden | Swiss Fund Data at '+url)
+        def fetch(url, **kwargs):
+            if url.replace('https://www.swissfunddata.ch/', 'https://swissfunddata.ch/')==urls[0]:raise ValueError('Expected official PDF; received Dokument nicht gefunden | Swiss Fund Data at '+url)
             return b'%PDF-body'
         with patch('collect_remaining_documents.download',side_effect=fetch),patch('collect_remaining_documents.pdf_text',return_value=text):
             r=collect_one(s,NOW)
             self.assertEqual(r['sourceUrl'],urls[1])
-        def timeout(url):
-            if url==urls[0]:raise TimeoutError('latest month timed out')
+        def timeout(url, **kwargs):
+            if url.replace('https://www.swissfunddata.ch/', 'https://swissfunddata.ch/')==urls[0]:raise TimeoutError('latest month timed out')
             return b'%PDF-body'
         with patch('collect_remaining_documents.download',side_effect=timeout),patch('collect_remaining_documents.pdf_text',return_value=text):
             self.assertEqual(collect_one(s,NOW)['sourceUrl'],urls[1])

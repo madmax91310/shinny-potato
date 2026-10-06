@@ -152,7 +152,13 @@ def collect_one(share, now):
         text=download(share['sourceUrl'], max_bytes=12_000_000).decode('utf-8')
     result = {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
     if share['parser'] == 'wisdomtree-html':
-        body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
+        try:
+            body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
+        except (urllib.error.URLError, TimeoutError) as error:
+            # Independently dated HTML AUM/fees remain valid even when the
+            # calendar PDF is temporarily unavailable. Keep the failure visible.
+            result['collectionErrors'] = [{'field':'performance', 'url':share['factsheetUrl'], 'reason':str(error)}]
+            return result
         document=wisdomtree_factsheet(body,share,now)
         if document.get('performance'):
             result['performance']=document['performance']

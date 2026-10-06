@@ -14,6 +14,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 def collect_one(config, now, fetch=download):
+    if config['parser'] == 'nasdaq-factsheet':
+        from collect_remaining_indices import collect_one as remaining
+        return remaining(config, now, fetch)
     if config['parser'] == 'monthly-derived':
         from derive_index_returns import collect_one as derived
         return derived(config, now)

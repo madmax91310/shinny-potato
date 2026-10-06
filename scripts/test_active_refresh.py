@@ -41,6 +41,33 @@ class ActiveRefreshTests(unittest.TestCase):
             self.assertEqual(json.loads(active.read_text()), merged)
             self.assertEqual(json.loads(output.read_text()), report)
 
+    def test_extension_partial_field_failure_signals_after_applying_valid_fields(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            (root / 'scripts').mkdir()
+            (root / 'src/data').mkdir(parents=True)
+            (root / 'scripts/additional-etf-sources.json').write_text('{"instruments": []}')
+            active = root / 'src/data/automated-etf.json'
+            active.write_text('{"unavailable": {"old": true}}')
+            baseline = root / 'baseline.json'
+            baseline.write_text('{}')
+            output = root / 'observation.json'
+            merged = {'unavailable': {'old': True}, 'valid': {'updated': True}}
+            report = {'shares': [
+                {'isin': 'unavailable', 'provider': 'issuer', 'status': 'validated',
+                 'collectionErrors': [{'field': 'performance', 'reason': 'HTTP 502'}]},
+                {'isin': 'valid', 'provider': 'issuer', 'status': 'validated'}
+            ], 'notQualified': []}
+            with patch.object(refresh_additional_etf, 'ROOT', root), \
+                    patch.object(refresh_additional_etf, 'refresh', return_value=(merged, report)), \
+                    patch('sys.argv', ['refresh', '--baseline', str(baseline), '--output', str(output), '--apply']), \
+                    patch.dict('os.environ', {}, clear=True):
+                with self.assertRaises(SystemExit) as error:
+                    refresh_additional_etf.main()
+            self.assertEqual(error.exception.code, 1)
+            self.assertEqual(json.loads(active.read_text()), merged)
+            self.assertEqual(json.loads(output.read_text()), report)
+
     def setUp(self):
         self.report = json.loads((ROOT / 'scripts/source-snapshots/etf-pilot-2026-10-05.json').read_text())
         self.baseline = {s['isin']: {'currency': 'USD'} for s in self.report['shares']}
@@ -55,6 +82,17 @@ class ActiveRefreshTests(unittest.TestCase):
         isin = report['shares'][0]['isin']
         self.assertEqual(updated[isin]['aum']['amount'], first[isin]['aum']['amount'] + 100)
         self.assertEqual(merge_collection(report, updated, self.baseline), updated)
+
+    def test_published_fertilizer_subindustry_retains_exact_label(self):
+        report = copy.deepcopy(self.report)
+        row = report['shares'][0]['sectors']['rows'][0]
+        row['name'] = 'Fertilizers & Agricultural Chemicals'
+        result = merge_collection(report, {}, self.baseline)
+        actual = result[report['shares'][0]['isin']]['sectors']['rows'][0]
+        self.assertEqual(actual['label'], row['name'])
+        row['name'] = 'Unknown fertilizer classification'
+        with self.assertRaises(ValueError):
+            merge_collection(report, {}, self.baseline)
 
     def test_old_or_missing_allocation_does_not_erase_or_redate(self):
         first = merge_collection(self.report, {}, self.baseline)

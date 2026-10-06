@@ -89,15 +89,23 @@ def collect_one(config, now, fetch=download):
     result = {'id': config['id'], 'name': config['name'], 'errors': [], 'unavailable': []}
     if config.get('collectComposition'):
         try:
-            body = fetch(config['sourceUrl']); facts = nikkei_composition(pdf_text(body), config, now)
-            facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(), 'sha256': proof(body), 'label': 'Composition officielle automatisée · ' + config['name']}
-            facts['provenance'] = 'Publication officielle Nikkei ; classification sectorielle propre à Nikkei.'
+            if config.get('compositionParser') == 'amundi-index-document':
+                from collect_index_extensions import collect_amundi_composition
+                facts = collect_amundi_composition(config, now, fetch)
+                body = None
+            else:
+                body = fetch(config['sourceUrl']); facts = nikkei_composition(pdf_text(body), config, now)
+            if body is not None: facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(), 'sha256': proof(body), 'label': 'Composition officielle automatisée · ' + config['name']}
+            if body is not None: facts['provenance'] = 'Publication officielle Nikkei ; classification sectorielle propre à Nikkei.'
             result['facts'] = facts
         except Exception as e: result['errors'].append({'field': 'composition', 'reason': str(e), 'url': config['sourceUrl']})
     if config.get('returnSourceUrl'):
         try:
             body = fetch(config['returnSourceUrl'])
-            if config['parser'] == 'nikkei': stamp, values = nikkei_returns(pdf_text(body), config, now)
+            if config['parser'] == 'nasdaq-factsheet':
+                from collect_index_extensions import nasdaq_returns
+                stamp, values = nasdaq_returns(pdf_text(body), config, now)
+            elif config['parser'] == 'nikkei': stamp, values = nikkei_returns(pdf_text(body), config, now)
             elif config['parser'] == 'metal-benchmark': stamp, values = metal_benchmark_returns(pdf_text(body), config, now)
             elif config['parser'] in ('ssga-index', 'blackrock-index'): stamp, values = benchmark_page_returns(body, config, now)
             else: stamp, values = stoxx_returns(body, config, now)

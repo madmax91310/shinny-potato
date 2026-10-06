@@ -643,15 +643,20 @@
       "isin": "JP3048120004",
       "parser": "blackrock-index",
       "returnSourceUrl": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
-      "collectComposition": false,
+      "collectComposition": true,
       "returnCurrency": "JPY",
       "returnVariant": "TOTAL",
       "firstYear": 2021,
       "performanceDetail": "TOPIX · JPY · dividendes réinvestis",
       "requiredFields": [
+        "composition",
         "returns"
       ],
-      "enabled": true
+      "enabled": true,
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "FR0013411980",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF",
+      "compositionIdentityPattern": "TOPIx \\(RI\\)"
     },
     {
       "id": "msci-em-latin-america-selection",
@@ -687,7 +692,8 @@
       "requiredFields": [
         "returns"
       ],
-      "enabled": true
+      "enabled": true,
+      "qualificationIssue": "Composition: Amundi current monthly document unavailable (404); default retail publication stale. Previous composition preserved."
     },
     {
       "id": "bitcoin",
@@ -755,6 +761,26 @@
       "returnVariant": "PRICE",
       "performanceDetail": "Argent physique · USD · cours de référence du métal",
       "requiredFields": [
+        "returns"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "nasdaq-pea",
+      "name": "NASDAQ-100 Notional Net Total Return",
+      "parser": "nasdaq-factsheet",
+      "symbol": "XNDX",
+      "returnSourceUrl": "https://indexes.nasdaq.com/docs/FS_XNDX.pdf",
+      "returnCurrency": "USD",
+      "returnVariant": "TOTAL",
+      "performanceDetail": "Nasdaq-100 · USD · dividendes réinvestis (XNDX Total Return, distinct du Notional Net Total Return)",
+      "collectComposition": true,
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "FR0011871110",
+      "compositionIdentityPattern": "100% NASDAQ 100 NOTIONAL NET TOTAL RETURN",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+      "requiredFields": [
+        "composition",
         "returns"
       ],
       "enabled": true

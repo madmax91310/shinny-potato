@@ -46,6 +46,7 @@ jobs:
       - run: python scripts/update_bitcoin_monthly.py --output "$RUNNER_TEMP/observation.json" --apply
       - run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - run: npm run audit:index-facts
       - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:etf-annual-performance

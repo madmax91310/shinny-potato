@@ -75,16 +75,24 @@ def collect_one(share,now):
         result['aum']=collect_aum(share,now)
         result['unavailable']=[item for item in result['unavailable'] if not item.startswith('aum:')]
         return result
+    errors = []
     for url in ubs_urls(now):
-        try:body=download(url)
-        except urllib.error.HTTPError as e:
-            if e.code in (404,429,500,502,503,504):continue
-            raise
-        except (urllib.error.URLError,TimeoutError):
-            continue  # Try another published month, retaining each document’s true date.
-        except ValueError as e:
-            if 'received Dokument nicht gefunden | Swiss Fund Data at '+url in str(e):continue
-            raise
-        if not body.startswith(b'%PDF-'):continue  # SFD's missing documents return HTML with HTTP 200.
-        return ubs(pdf_text(body),{**share,'sourceUrl':url},now,proof(body))
-    reject('No current UBS exact-share factsheet published')
+        # Both official hostnames serve the same monthly exact-share PDF.
+        # A host-specific transport outage must not hide the current publication.
+        for candidate in (url, url.replace('https://swissfunddata.ch/', 'https://www.swissfunddata.ch/')):
+            try:
+                body = download(candidate, headers={'User-Agent':'Mozilla/5.0', 'Accept':'application/pdf'})
+            except (urllib.error.URLError, TimeoutError) as e:
+                errors.append(f'{candidate}: {e}')
+                continue
+            except ValueError as e:
+                if 'Dokument nicht gefunden | Swiss Fund Data' in str(e):
+                    errors.append(f'{candidate}: document not published')
+                    continue
+                raise
+            if not body.startswith(b'%PDF-'):
+                errors.append(f'{candidate}: non-PDF response')
+                continue
+            # Bad identity, currency or stale documents fail closed.
+            return ubs(pdf_text(body), {**share,'sourceUrl':candidate}, now, proof(body))
+    reject('No current UBS exact-share factsheet published: ' + ' ; '.join(errors))
