@@ -339,7 +339,9 @@ async function testPortfolioGenerator(page) {
   manualEditorialOk &&= /^🧩 .*exemple de portefeuille/i.test(personalTweet)
     && /davantage en fonds euros/.test(personalTweet)
     && /10% Bitcoin/.test(personalTweet)
-    && /au fonds mondial|10% de crypto/.test(personalTweet)
+    && /💬 Que penses-tu de ce portefeuille \?/.test(personalTweet)
+    && personalTweet.indexOf('60% Fonds euros') < personalTweet.indexOf('30% MSCI World')
+    && personalTweet.indexOf('30% MSCI World') < personalTweet.indexOf('10% Bitcoin')
     && /10 % de Bitcoin.*60 % en fonds euros/.test(personalTweet.split('\n')[0]);
   manualStages.personal = manualEditorialOk;
   // Les corrections éditoriales doivent aussi traverser l’interface manuelle.

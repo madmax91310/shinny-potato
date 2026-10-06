@@ -69,9 +69,9 @@ export function allocationAngle(selection) {
 export function allocationHooks(selection) {
  const {fact,detail}=allocationAngle(selection)
  return [
-  `🧩 ${fact} : voici un exemple de portefeuille ${detail} 👇`,
-  `🧩 Un exemple de portefeuille ${detail} : ${fact} 👇`,
-  `🧩 ${fact}. Que change ce choix ? Regardons cet exemple de portefeuille 👇`,
+  `🧩 Voici un exemple de portefeuille ${detail}. On y retrouve ${fact} 👇`,
+  `🧩 Voici un exemple de portefeuille ${detail}. Et toi, que penserais-tu de cette répartition : ${fact} ? 👇`,
+  `🧩 Voici un exemple de portefeuille ${detail}. Avec ${fact}, voilà ce que donne cette allocation 👇`,
  ]
 }
 

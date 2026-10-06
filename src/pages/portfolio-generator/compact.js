@@ -34,9 +34,9 @@ add('oblig_0_1_ishares', 'On prête aux États de la zone euro sur zéro à un a
 add('oblig_eur_long_ishares', 'Cette ligne permet de miser sur les obligations longues en euros, dont les cours réagissent fortement aux mouvements des taux.')
 add('oblig_em_usd_ishares', 'Cette ligne permet de recevoir les intérêts d’emprunts émergents en dollars, en acceptant les risques de crédit et de change.')
 add('oblig_em_local_ishares_acc', 'On prête aux États émergents dans leurs monnaies locales, avec les variations de change à assumer.')
-add('oblig_global_agg_eur_hedged', 'Une exposition les emprunteurs dans le monde, avec une couverture vers l’euro qui ne supprime pas le risque de taux.')
+add('oblig_global_agg_eur_hedged', 'On prête à des emprunteurs dans le monde, avec une couverture vers l’euro qui ne supprime pas le risque de taux.')
 add('sp500_equal_weight', 'On répartit autrement les entreprises du S&P 500, avec le même poids pour chacune à chaque rééquilibrage.')
-add('world_ex_usa', 'Cette ligne investit dans les pays développés hors États-Unis et choisir séparément la place américaine.')
+add('world_ex_usa', 'Cette ligne investit dans les pays développés hors États-Unis, pour choisir séparément la place américaine.')
 
 export function compactRole(asset, selection) {
   const kind = assetEditorial(asset).kind
