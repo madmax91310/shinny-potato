@@ -3,6 +3,7 @@
 ## Changements réalisés
 
 - UBS World : découverte mensuelle conservée, repli entre swissfunddata.ch et www.swissfunddata.ch, puis mois précédent ; contrôle du PDF, ISIN, devise et fraîcheur. Collecte du document du 31 août validée ; diagnostics de transport conservés.
+- iShares Consumer Staples : ajout du libellé officiel « Fertilizers & Agricultural Chemicals » au registre des sous-secteurs autorisés, sans regroupement ni changement de poids. La collecte GitHub a révélé ce libellé manquant ; les libellés inconnus restent rejetés.
 - WisdomTree : les champs HTML valides restent applicables lorsqu’un téléchargement PDF échoue. Le problème du PDF reste visible et provoque un signal d’échec ; les anciennes performances sont conservées. Ce changement ne supprime pas les blocages HTTP 403 de l’émetteur.
 - TOPIX et Nasdaq-100 : compositions issues des sections « Données de l’indice » des fiches mensuelles Amundi du 31 août 2026. Pays et secteurs complets, dix principales positions et nombre de constituants ; le panier de substitution est exclu. Recherche du dernier mois clos, puis du mois précédent, avec concordance des dates.
 - Nasdaq : rendements annuels depuis la fiche officielle XNDX Total Return USD du 30 septembre 2026. Année en cours exclue ; six années closes exigées. Cette convention historique reste distincte du Notional Net Total Return décrit dans la composition.

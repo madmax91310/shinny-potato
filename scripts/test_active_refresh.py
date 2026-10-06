@@ -83,6 +83,17 @@ class ActiveRefreshTests(unittest.TestCase):
         self.assertEqual(updated[isin]['aum']['amount'], first[isin]['aum']['amount'] + 100)
         self.assertEqual(merge_collection(report, updated, self.baseline), updated)
 
+    def test_published_fertilizer_subindustry_retains_exact_label(self):
+        report = copy.deepcopy(self.report)
+        row = report['shares'][0]['sectors']['rows'][0]
+        row['name'] = 'Fertilizers & Agricultural Chemicals'
+        result = merge_collection(report, {}, self.baseline)
+        actual = result[report['shares'][0]['isin']]['sectors']['rows'][0]
+        self.assertEqual(actual['label'], row['name'])
+        row['name'] = 'Unknown fertilizer classification'
+        with self.assertRaises(ValueError):
+            merge_collection(report, {}, self.baseline)
+
     def test_old_or_missing_allocation_does_not_erase_or_redate(self):
         first = merge_collection(self.report, {}, self.baseline)
         report = copy.deepcopy(self.report)
