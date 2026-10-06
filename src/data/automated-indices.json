@@ -12536,7 +12536,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-10-06",
-        "sha256": "49d8c9a2eb4612e7c07dd844397388e5e3d86783d05e25a575215194ef3b984f",
+        "sha256": "9541a23258d6560361800a06401e9f1722a79305eb76805a81d5ffd8a500c8b0",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
@@ -12585,6 +12585,220 @@
           "detail": "TOPIX · JPY · dividendes réinvestis",
           "date": "2026-09-30"
         }
+      }
+    },
+    "facts": {
+      "index": "TOPIX",
+      "asOf": "2026-08-31",
+      "constituents": 1636,
+      "countries": [
+        [
+          "Japon",
+          100.0
+        ]
+      ],
+      "sectors": [
+        [
+          "Industrie",
+          25.94
+        ],
+        [
+          "Finance",
+          18.74
+        ],
+        [
+          "Technologies de l'info.",
+          15.3
+        ],
+        [
+          "Conso Cyclique",
+          14.66
+        ],
+        [
+          "Services de communication",
+          6.25
+        ],
+        [
+          "Matériaux",
+          5.36
+        ],
+        [
+          "Santé",
+          5.11
+        ],
+        [
+          "Conso non Cyclique",
+          4.8
+        ],
+        [
+          "Immobilier",
+          1.64
+        ],
+        [
+          "Services publics",
+          1.26
+        ],
+        [
+          "Énergie",
+          0.94
+        ]
+      ],
+      "holdings": [
+        [
+          "MITSUBISHI UFJ FIN",
+          3.95
+        ],
+        [
+          "TOYOTA MOTOR CORP",
+          2.68
+        ],
+        [
+          "SUMITOMO MITSUI FINAN",
+          2.58
+        ],
+        [
+          "HITACHI LTD",
+          2.39
+        ],
+        [
+          "SONY GROUP CORP (JT)",
+          2.32
+        ],
+        [
+          "RECRUIT HOLDINGS CO LTD",
+          2.25
+        ],
+        [
+          "TOKYO ELECTRON LTD",
+          2.05
+        ],
+        [
+          "MIZUHO FINANCIAL GROUP INC",
+          2.04
+        ],
+        [
+          "ADVANTEST",
+          1.75
+        ],
+        [
+          "SOFTBANK GROUP CORP",
+          1.73
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+        "checkedAt": "2026-10-06",
+        "sha256": "d043c95ef22174506614afaca784e372a337b46e4f06a3ac15876be883cc81d3",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "factsHistory": {
+      "2026-08-31": {
+        "index": "TOPIX",
+        "asOf": "2026-08-31",
+        "constituents": 1636,
+        "countries": [
+          [
+            "Japon",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrie",
+            25.94
+          ],
+          [
+            "Finance",
+            18.74
+          ],
+          [
+            "Technologies de l'info.",
+            15.3
+          ],
+          [
+            "Conso Cyclique",
+            14.66
+          ],
+          [
+            "Services de communication",
+            6.25
+          ],
+          [
+            "Matériaux",
+            5.36
+          ],
+          [
+            "Santé",
+            5.11
+          ],
+          [
+            "Conso non Cyclique",
+            4.8
+          ],
+          [
+            "Immobilier",
+            1.64
+          ],
+          [
+            "Services publics",
+            1.26
+          ],
+          [
+            "Énergie",
+            0.94
+          ]
+        ],
+        "holdings": [
+          [
+            "MITSUBISHI UFJ FIN",
+            3.95
+          ],
+          [
+            "TOYOTA MOTOR CORP",
+            2.68
+          ],
+          [
+            "SUMITOMO MITSUI FINAN",
+            2.58
+          ],
+          [
+            "HITACHI LTD",
+            2.39
+          ],
+          [
+            "SONY GROUP CORP (JT)",
+            2.32
+          ],
+          [
+            "RECRUIT HOLDINGS CO LTD",
+            2.25
+          ],
+          [
+            "TOKYO ELECTRON LTD",
+            2.05
+          ],
+          [
+            "MIZUHO FINANCIAL GROUP INC",
+            2.04
+          ],
+          [
+            "ADVANTEST",
+            1.75
+          ],
+          [
+            "SOFTBANK GROUP CORP",
+            1.73
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+          "checkedAt": "2026-10-06",
+          "sha256": "d043c95ef22174506614afaca784e372a337b46e4f06a3ac15876be883cc81d3",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
       }
     }
   },
@@ -13108,6 +13322,344 @@
           "kind": "actif",
           "detail": "Argent physique · USD · cours de référence du métal",
           "date": "2026-08-31"
+        }
+      }
+    }
+  },
+  "nasdaq-pea": {
+    "facts": {
+      "index": "NASDAQ-100 Notional Net Total Return",
+      "asOf": "2026-08-31",
+      "constituents": 102,
+      "countries": [
+        [
+          "États-Unis",
+          94.78
+        ],
+        [
+          "Irlande",
+          1.82
+        ],
+        [
+          "Pays-Bas",
+          1.32
+        ],
+        [
+          "Canada",
+          1.0
+        ],
+        [
+          "Royaume-Uni",
+          0.66
+        ],
+        [
+          "Autres pays",
+          0.42
+        ]
+      ],
+      "sectors": [
+        [
+          "Technologies de l'info.",
+          58.27
+        ],
+        [
+          "Services de communication",
+          13.89
+        ],
+        [
+          "Conso Cyclique",
+          11.13
+        ],
+        [
+          "Conso non Cyclique",
+          6.22
+        ],
+        [
+          "Santé",
+          4.01
+        ],
+        [
+          "Industrie",
+          3.62
+        ],
+        [
+          "Services publics",
+          1.14
+        ],
+        [
+          "Matériaux",
+          1.0
+        ],
+        [
+          "Énergie",
+          0.52
+        ],
+        [
+          "Finance",
+          0.21
+        ]
+      ],
+      "holdings": [
+        [
+          "NVIDIA CORP",
+          8.41
+        ],
+        [
+          "APPLE INC",
+          7.5
+        ],
+        [
+          "MICROSOFT CORP",
+          6.09
+        ],
+        [
+          "MICRON TECHNOLOGY INC",
+          4.64
+        ],
+        [
+          "AMAZON.COM INC",
+          4.58
+        ],
+        [
+          "ADVANCED MICRO DEVICES",
+          3.35
+        ],
+        [
+          "ALPHABET INC CL A",
+          3.22
+        ],
+        [
+          "ALPHABET INC CL C",
+          2.99
+        ],
+        [
+          "BROADCOM INC",
+          2.79
+        ],
+        [
+          "TESLA INC",
+          2.78
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+        "checkedAt": "2026-10-06",
+        "sha256": "ba0d8b379f3433cd39250dd8222e25446d65fd9313d408450a42d58194bbe6dd",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "factsHistory": {
+      "2026-08-31": {
+        "index": "NASDAQ-100 Notional Net Total Return",
+        "asOf": "2026-08-31",
+        "constituents": 102,
+        "countries": [
+          [
+            "États-Unis",
+            94.78
+          ],
+          [
+            "Irlande",
+            1.82
+          ],
+          [
+            "Pays-Bas",
+            1.32
+          ],
+          [
+            "Canada",
+            1.0
+          ],
+          [
+            "Royaume-Uni",
+            0.66
+          ],
+          [
+            "Autres pays",
+            0.42
+          ]
+        ],
+        "sectors": [
+          [
+            "Technologies de l'info.",
+            58.27
+          ],
+          [
+            "Services de communication",
+            13.89
+          ],
+          [
+            "Conso Cyclique",
+            11.13
+          ],
+          [
+            "Conso non Cyclique",
+            6.22
+          ],
+          [
+            "Santé",
+            4.01
+          ],
+          [
+            "Industrie",
+            3.62
+          ],
+          [
+            "Services publics",
+            1.14
+          ],
+          [
+            "Matériaux",
+            1.0
+          ],
+          [
+            "Énergie",
+            0.52
+          ],
+          [
+            "Finance",
+            0.21
+          ]
+        ],
+        "holdings": [
+          [
+            "NVIDIA CORP",
+            8.41
+          ],
+          [
+            "APPLE INC",
+            7.5
+          ],
+          [
+            "MICROSOFT CORP",
+            6.09
+          ],
+          [
+            "MICRON TECHNOLOGY INC",
+            4.64
+          ],
+          [
+            "AMAZON.COM INC",
+            4.58
+          ],
+          [
+            "ADVANCED MICRO DEVICES",
+            3.35
+          ],
+          [
+            "ALPHABET INC CL A",
+            3.22
+          ],
+          [
+            "ALPHABET INC CL C",
+            2.99
+          ],
+          [
+            "BROADCOM INC",
+            2.79
+          ],
+          [
+            "TESLA INC",
+            2.78
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+          "checkedAt": "2026-10-06",
+          "sha256": "ba0d8b379f3433cd39250dd8222e25446d65fd9313d408450a42d58194bbe6dd",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "TOTAL",
+      "values": [
+        [
+          2025,
+          21.02
+        ],
+        [
+          2024,
+          25.88
+        ],
+        [
+          2023,
+          55.13
+        ],
+        [
+          2022,
+          -32.38
+        ],
+        [
+          2021,
+          27.51
+        ],
+        [
+          2020,
+          48.88
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://indexes.nasdaq.com/docs/FS_XNDX.pdf",
+        "checkedAt": "2026-10-06",
+        "sha256": "840c3056add22c4e1ec250ebf60691e670785af329cd39f43c63f7d2fee42adf",
+        "label": "Rendements calendaires officiels automatisés · NASDAQ-100 Notional Net Total Return"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "Nasdaq-100 · USD · dividendes réinvestis (XNDX Total Return, distinct du Notional Net Total Return)",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            21.02
+          ],
+          [
+            2024,
+            25.88
+          ],
+          [
+            2023,
+            55.13
+          ],
+          [
+            2022,
+            -32.38
+          ],
+          [
+            2021,
+            27.51
+          ],
+          [
+            2020,
+            48.88
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://indexes.nasdaq.com/docs/FS_XNDX.pdf",
+          "checkedAt": "2026-10-06",
+          "sha256": "840c3056add22c4e1ec250ebf60691e670785af329cd39f43c63f7d2fee42adf",
+          "label": "Rendements calendaires officiels automatisés · NASDAQ-100 Notional Net Total Return"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "Nasdaq-100 · USD · dividendes réinvestis (XNDX Total Return, distinct du Notional Net Total Return)",
+          "date": "2026-09-30"
         }
       }
     }

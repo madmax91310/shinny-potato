@@ -53,7 +53,8 @@ def refresh(config,current,baseline,now=None,collect=collect_one):
                 result.pop('performance')
             merged=merge_collection({'checkedAt':now.isoformat(),'shares':[result]},current,baseline)
             return {'isin':share['isin'],'provider':share['provider'],'status':'validated','record':merged[share['isin']],
-                    'unavailable':result.get('unavailable',[]),'sourceUrl':result.get('sourceUrl')}
+                    'unavailable':result.get('unavailable',[]),'sourceUrl':result.get('sourceUrl'),
+                    'collectionErrors':result.get('collectionErrors',[])}
         except Exception as error:
             return {'isin':share['isin'],'provider':share['provider'],'status':'failed','reason':str(error),
                     'sourceUrl':share.get('sourceUrl',share.get('pageUrl'))}
@@ -74,15 +75,17 @@ def main():
     for observation in report['shares']:
         if observation['status'] == 'failed':
             print(f"Source failed: {observation['isin']} — {observation['reason']}")
+        for error in observation.get('collectionErrors', []):
+            print(f"Source field failed: {observation['isin']} {error['field']} — {error['reason']}")
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a')as h:
             h.write('\n## Extensions ETF et expositions synthétiques\n\n| Part | Source | État | Limites |\n|---|---|---|---|\n')
             h.write('Hors automatisation : '+', '.join(report['notQualified'])+'\n\n')
-            for o in report['shares']:h.write(f"| {o['isin']} | {o['provider']} | {o['status']} | {o.get('reason',' ; '.join(o.get('unavailable',[])))} |\n")
+            for o in report['shares']:h.write(f"| {o['isin']} | {o['provider']} | {o['status']} | {o.get('reason',' ; '.join(o.get('unavailable',[]) + [e['field']+': '+e['reason'] for e in o.get('collectionErrors',[])]))} |\n")
     # Every enabled connector belongs to active coverage. A transport/parser
     # failure must reach the workflow signal, including recently added sources.
     # Valid records were applied above; missing published fields are not failures.
-    if any(o['status']=='failed' for o in report['shares']):
+    if any(o['status']=='failed' or o.get('collectionErrors') for o in report['shares']):
         raise SystemExit(1)
 
 

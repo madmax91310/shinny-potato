@@ -8,8 +8,8 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 |---|---|---|
 | Historiques mensuels des simulateurs | 46/46 séries ; 44 nouveaux collecteurs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | ETF/ETC/ETP | 151/154 instruments, au moins un champ | 3 et 16 du mois |
-| Compositions d’indices | 32 indices | 3 et 16 du mois |
-| Rendements annuels d’indices | 44 indices | 3 et 16 du mois |
+| Compositions d’indices | 34 indices | 3 et 16 du mois |
+| Rendements annuels d’indices | 45 indices | 3 et 16 du mois |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -20,12 +20,16 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 WPEA (IE0002XZSHO1) et SPEA (IE000DQLYVB9) : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 151 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 151 accès réussis à chaque exécution.
 
-Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth publient des encours datés ; elles peuvent renvoyer HTTP 403 depuis GitHub. Les six pages ont été qualifiées en collecte réelle, avec ISIN, devise et date propres contrôlés. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. Les encours CoinShares utilisent désormais les widgets officiels liés à la page produit : ISIN et devise USD contrôlés, Rate Date de valorisation (jamais la date de cache). Les documents PDF restent la preuve des frais ; leurs rendements crypto de référence ne sont pas assimilés à ceux de la part. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié ; les erreurs temporaires sur un mois conduisent à essayer le mois précédent, dont la date et la fraîcheur sont vérifiées.
+Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth publient des encours datés ; elles peuvent renvoyer HTTP 403 depuis GitHub. Les six pages ont été qualifiées en collecte réelle, avec ISIN, devise et date propres contrôlés. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. Les encours CoinShares utilisent désormais les widgets officiels liés à la page produit : ISIN et devise USD contrôlés, Rate Date de valorisation (jamais la date de cache). Les documents PDF restent la preuve des frais ; leurs rendements crypto de référence ne sont pas assimilés à ceux de la part. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié, avec repli entre les deux adresses officielles Swiss Fund Data puis le mois précédent ; identité, devise et fraîcheur sont contrôlées. WisdomTree : une panne du PDF conserve les champs HTML validés indépendamment et reste signalée comme erreur de collecte.
 
 ## Extension du 6 octobre 2026
 
 Douze des quinze instruments auparavant hors collecte sont désormais raccordés : Bitwise Bitcoin, WisdomTree Copper/Defence/Quantum/Dividend Growth, CoinShares Bitcoin/Ethereum, UBS World, L&G Battery/AI/Clean Energy et Global X QYLD. Les calendriers complets WisdomTree Copper et Dividend Growth proviennent des fiches PDF officielles. L&G Cyber Security reçoit aussi les calendriers exacts de la part ; WisdomTree Gold reçoit un encours daté depuis sa page officielle. Les séries complètes Battery, AI et Cyber Security sont intégrées lorsque leur devise correspond à la simulation. Clean Energy conserve son proxy : lancement en 2020, année incomplète.
 MSCI EM IMI, MSCI EM Latin America et Selection 20/35 Capped : compositions et rendements nets USD issus des fiches MSCI actuelles. La fiche Selection conserve son titre historique ; son URL certifiée et son intitulé exact sont contrôlés. Nikkei 225 : composition officielle et rendement total JPY. STOXX 600 et EURO STOXX 50 : rendements prix EUR calculés sur les clôtures de décembre du tableau quotidien officiel. TOPIX : ligne indice total JPY de BlackRock. S&P Global/Euro Dividend Aristocrats : lignes indice nettes State Street ; 2020 Global est exclue à cause du changement d’indice en cours d’année. Les trois instruments BNP restent hors collecte : accès au composant Fundsheet HTTP 502 et découverte récurrente de la fiche actuelle non qualifiée. Les anciens PDF ne sont pas promus en source actuelle.
+
+## Avancement des priorités 1 et 2
+
+Fiabilité UBS et indépendance des champs WisdomTree renforcées. Deux compositions supplémentaires sont raccordées aux tableaux explicitement consacrés à l’indice des fiches mensuelles Amundi : TOPIX et Nasdaq-100. Le calendrier Nasdaq est automatisé depuis la fiche XNDX Total Return USD, conformément à la convention historique existante, distincte de la variante nette de la composition. La couverture passe de 32 à 34 compositions et de 44 à 45 séries annuelles. Les trois BNP, huit compositions et le calendrier S&P 500 Equal Weight restent bloqués par les sources décrites dans le rapport détaillé [source-reliability-index-coverage-2026-10-06.md](source-reliability-index-coverage-2026-10-06.md).
 
 ## Limites par champ ETF
 
@@ -214,11 +218,9 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 |---|---|
 | S&P 500 Equal Weight (sp500-equal-weight) | Composition / méthodologie, Rendements annuels |
 | Russell 2000 (russell-2000) | Composition / méthodologie |
-| TOPIX (topix) | Composition / méthodologie |
 | STOXX Europe 600 (stoxx600) | Composition / méthodologie |
 | EURO STOXX 50 (eurostoxx50) | Composition / méthodologie |
 | S&P 500 (sp500-pea) | Composition / méthodologie |
-| NASDAQ-100 Notional Net Total Return (nasdaq-pea) | Composition / méthodologie, Rendements annuels |
 | Russell 1000 (russell-1000) | Composition / méthodologie |
 | S&P Global Dividend Aristocrats (sp-global-dividend-aristocrats) | Composition / méthodologie |
 | S&P Euro Dividend Aristocrats (sp-euro-dividend-aristocrats) | Composition / méthodologie |
@@ -239,7 +241,7 @@ Russell 1000/2000 : rendements annuels automatisés ; les compositions restent �
 ## Priorités suivantes
 
 1. Lever les blocages des 3 instruments encore hors collecte (BNP) et fiabiliser la disponibilité des pages WisdomTree. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
-2. Suivre le renouvellement annuel désormais automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
+2. Qualifier les huit compositions restantes et le calendrier S&P 500 Equal Weight en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
 3. Raccorder les caractéristiques et cotations (domicile, réplication, distribution, PEA) avec une provenance et une date propres à chaque champ.
 4. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles ; maintenir une revue des règles fiscales et offres de courtiers.
 

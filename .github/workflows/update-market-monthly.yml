@@ -57,6 +57,7 @@ jobs:
         run: python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply
       - run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - run: npm run audit:index-facts
       - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:calculator-series

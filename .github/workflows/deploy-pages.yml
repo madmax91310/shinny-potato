@@ -51,6 +51,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
       - run: node scripts/test-annual-rollover.mjs
       - run: node scripts/test-automated-indices.mjs
