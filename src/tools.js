@@ -89,7 +89,7 @@ export const TOOLS = [
   },
   {
     to: '/performance-depuis', navLabel: 'Performance depuis', title: 'Performance depuis',
-    format: 'performance-depuis', bundle: '/tweet-midi', publicationDay: 'Jeudi midi · alternance',
+    format: 'performance-depuis', bundle: '/tweet-midi', publicationDay: 'Publication ponctuelle',
     icon: '🕐', accent: '#a78bfa',
     description: 'Les performances annuelles d’un actif sur la période choisie.', status: 'disponible',
   },
