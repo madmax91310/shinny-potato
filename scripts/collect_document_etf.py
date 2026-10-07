@@ -42,6 +42,20 @@ def parse(text,share,now):
             if len(sections)!=1:result['unavailable'].append(field+': no unique complete table');continue
             rows=[{'name':n.strip(),'weightPct':float(w)} for n,w in re.findall(r'^\s*([A-Za-z &]+?)\s+([\d.]+)\s*$',sections[0],re.M)]
             result[field]={'rows':validated_rows(rows),'asOf':stamp,'basis':'fund'}
+        try:
+            block = match(r'Top 10 holdings\s+Location\s+Sector\s+Weight \(%\)\s*\n([\s\S]*?)Top 10 holdings exclude', text)
+            rows = []
+            for line in block.splitlines():
+                cells = re.split(r' {2,}', line.strip())
+                if len(cells) != 4 or not re.fullmatch(r'\d+(?:\.\d+)?', cells[-1]):
+                    reject('Malformed HSBC top-ten fund table')
+                rows.append({'name': cells[0], 'weightPct': float(cells[-1])})
+            if len(rows) != 10:
+                reject('Incomplete HSBC top-ten fund table')
+            result['holdings'] = {'rows': validated_rows(rows, complete=False), 'asOf': stamp, 'basis': 'fund',
+                'method': 'Published fund top ten; cash, cash equivalents and money-market funds excluded'}
+        except (ValueError, TypeError) as error:
+            result.setdefault('collectionErrors', []).append({'field': 'holdings', 'reason': str(error)})
         result['unavailable'].append('performance: factsheet contains rolling returns, not calendar-year returns')
     elif kind=='lg':
         stamp=document_date(match(r'(\d+ [A-Za-z]+ 20\d{2}) Fact Sheet',text),now)
@@ -66,7 +80,7 @@ def parse(text,share,now):
 def collect_one(share,now):
     body=download(share['sourceUrl']);result=parse(pdf_text(body),share,now)
     result['sha256']=proof(body)
-    for field in ['aum','performance','sectors','countries']:
+    for field in ['aum','performance','sectors','countries','holdings']:
         if field in result:result[field].update(sourceUrl=share['sourceUrl'],sha256=proof(body))
     return result
 
@@ -136,6 +150,11 @@ def collect_legacy(share,now,fetch=None):
             document = collect_legacy_document(share, now)
             if 'performance' in document:
                 result['performance'] = document['performance']
+            for field in ('countries', 'sectors', 'holdings'):
+                if field in document:
+                    result[field] = document[field]
+            if document.get('collectionErrors'):
+                result.setdefault('collectionErrors', []).extend(document['collectionErrors'])
             result['unavailable'] = document['unavailable']
         except Exception as error:
             result['collectionErrors'] = [{'field': 'performance', 'reason': str(error)}]
@@ -157,6 +176,14 @@ def collect_legacy_document(share, now):
         if field not in result:
             continue
         result[field].update(sourceUrl=url, sha256=proof(body))
+    if share.get('collectTrackedExposure'):
+        from collect_tracked_exposure import collect_one as tracked_exposure
+        try:
+            benchmark = match(r'Indice de référence\s*:\s*([^\n]+)', pdf_text(body)).strip()
+            result.update(tracked_exposure(share, now, benchmark))
+            result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('exposures:')]
+        except (ValueError, KeyError, TypeError, urllib.error.URLError, TimeoutError) as error:
+            result.setdefault('collectionErrors', []).append({'field': 'exposures', 'reason': str(error)})
     return result
 
 

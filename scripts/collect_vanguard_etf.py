@@ -32,8 +32,11 @@ QUERY = '''query ExactShareRefresh($portIds: [String!]!) {
 
 
 def fetch_api(code):
-    payload = {'query': QUERY, 'variables': {'portIds': [str(code)]},
-               'operationName': 'ExactShareRefresh'}
+    return fetch_query(QUERY, {'portIds': [str(code)]}, 'ExactShareRefresh')
+
+
+def fetch_query(query, variables, operation):
+    payload = {'query': query, 'variables': variables, 'operationName': operation}
     request = urllib.request.Request(API, data=json.dumps(payload).encode(), headers={
         'Content-Type': 'application/json', 'Accept': 'application/json',
         'X-Consumer-ID': 'uk-pro', 'User-Agent': 'EpargnantLibre-Data/1.0'})
@@ -170,7 +173,7 @@ def parse_document(body,share,now):
     return result
 
 
-def collect_one(share,now,fetch=download,api_fetch=fetch_api):
+def collect_one(share,now,fetch=download,api_fetch=fetch_api,holdings_fetch=None):
     page=fetch(share['pageUrl']).decode('utf-8');parser=Links();parser.feed(page)
     links=[u for u in parser.links if urlsplit(u).hostname=='fund-docs.vanguard.com'and
            f"_{share['productCode']}_"in u and u.endswith('_UK_EN.pdf')]
@@ -182,4 +185,10 @@ def collect_one(share,now,fetch=download,api_fetch=fetch_api):
     extra = parse_api(api_fetch(share['productCode']), share, now)
     result['unavailable'] = extra.pop('unavailable')
     result.update(extra)
+    if share.get('collectBondHoldings'):
+        from collect_vanguard_holdings import collect_one as bond_holdings
+        try:
+            result['holdings'] = bond_holdings(share, now, fetch=holdings_fetch)
+        except (ValueError, KeyError, TypeError, urllib.error.URLError, TimeoutError) as error:
+            result.setdefault('collectionErrors', []).append({'field': 'holdings', 'url': API, 'reason': str(error)})
     return result
