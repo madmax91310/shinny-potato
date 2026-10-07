@@ -31,6 +31,12 @@ class EconomicDataTests(unittest.TestCase):
   body='<title>Livret A | Banque de France</title><p>Elle est de 1,7 % depuis le 1er août 2026</p>'.encode()
   self.assertEqual(c.parse_savings(body,'2026-10-07')['rate'],1.7)
   with self.assertRaises(ValueError): c.parse_savings(body,'2026-07-01')
+ def test_ministry_fallback_and_scope(self):
+  body='<h2>Le livret A</h2><p>Taux de rémunération : depuis le 1 er août 2026, le taux est fixé à 1,7 %.</p><h2>Le LEP</h2><p>Taux de rémunération : depuis le 1 er août 2026, le taux est fixé à 2,5 %.</p>'.encode()
+  self.assertEqual(c.parse_ministry_savings(body,'2026-10-07')['rate'],1.7)
+  with patch.object(c,'official_download',side_effect=ValueError('HTTP 403')), patch.object(c,'download',return_value=body):
+   self.assertEqual(c.collect_savings('2026-10-07')['sourceUrl'],c.SAVINGS_ALTERNATIVE)
+  with self.assertRaises(ValueError):c.parse_ministry_savings(body,'2026-07-01')
  def test_scpi_conventions(self):
   body='<p>Des SCPI : rendement global immobilier 2025 : +3,1 %. Taux de distribution et variation de la valeur de réalisation.</p>'.encode()
   self.assertEqual(c.parse_scpi(body,'url','2026-10-07')['value'],3.1)

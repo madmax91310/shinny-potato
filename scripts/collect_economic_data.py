@@ -31,6 +31,7 @@ SOURCES = {
     'transmissions': ('8960217', 'transmissions intergénérationnelles', r'^transmissions intergenerationnelles$'),
 }
 SAVINGS_URL = 'https://www.banque-france.fr/fr/a-votre-service/particuliers/connaitre-pratiques-bancaires-assurance/epargne/livret-a'
+SAVINGS_ALTERNATIVE = 'https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-les-produits-depargne'
 ASPIM_HOME = 'https://www.aspim.fr/actualites/'
 ASPIM_2025 = 'https://www.aspim.fr/actualites/collecte-et-performance-des-fonds-immobiliers-grand-public-au-premier-trimestre-2026-et-principaux-indicateurs-des-scpi-en-2025/'
 ACPR = 'https://acpr.banque-france.fr'
@@ -251,6 +252,33 @@ def parse_savings(body, today):
     return {'effectiveAt':date,'rate':number(rate),'checkedAt':today,'sourceUrl':SAVINGS_URL,'sha256':hashlib.sha256(body).hexdigest()}
 
 
+def parse_ministry_savings(body, today):
+    soup = BeautifulSoup(body, 'html.parser')
+    heading = unique([h for h in soup.find_all(['h2','h3']) if norm(h.get_text(' ',strip=True)) == 'le livret a'], 'Section Livret A absente/ambiguë')
+    parts = []
+    for node in heading.next_siblings:
+        if node.name in ('h2','h3'):
+            break
+        if hasattr(node, 'get_text'):
+            parts.append(node.get_text(' ',strip=True))
+    text = norm(' '.join(parts))
+    date_rate = unique(re.findall(r'taux de remuneration\s*:\s*depuis le (\d+)\s*(?:er)? (\w+) (20\d{2}), le taux est fixe a (\d+(?:[,.]\d+)?) %', text), 'Taux légal ministériel absent/ambigu')
+    day, month, year, rate = date_rate
+    date = dt.date(int(year), MONTHS[month], int(day)).isoformat()
+    require(date <= today and date.endswith('-01') and 0 <= number(rate) <= 20, 'Date/taux ministériel invalide')
+    return {'effectiveAt': date, 'rate': number(rate), 'checkedAt': today, 'sourceUrl': SAVINGS_ALTERNATIVE, 'sha256': hashlib.sha256(body).hexdigest()}
+
+
+def collect_savings(today):
+    try:
+        return parse_savings(official_download(SAVINGS_URL), today)
+    except Exception as first:
+        try:
+            return parse_ministry_savings(download(SAVINGS_ALTERNATIVE), today)
+        except Exception as second:
+            raise ValueError(f'Banque de France : {first}; ministère : {second}') from second
+
+
 def parse_funds_euros(body, source_url, today):
     text = norm(pdf_text(body))
     require('contrats individuels' in text and 'avant prelevements sociaux' in text and 'nets de prelevements sur encours' in text,
@@ -279,7 +307,7 @@ def official_download(url, max_bytes=8_000_000):
         raise ValueError(f'{url}: {error}') from error
 
 
-def discover_acpr():
+def discover_acpr_sitemap():
     ns = {'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
     index = ET.fromstring(official_download(ACPR+'/sitemap.xml'))
     maps = [x.text for x in index.findall('s:sitemap/s:loc',ns)]
@@ -297,6 +325,30 @@ def discover_acpr():
     pdfs = sorted({urllib.parse.urljoin(ACPR,a['href']) for a in page.find_all('a',href=True)
                    if re.search(r'AS\d+_revalorisation_'+str(year)+r'\.pdf$',a['href'],re.I)})
     return unique(pdfs,'PDF revalorisation ACPR ambigu/absent')
+
+
+def discover_acpr():
+    errors = []
+    catalogues = [ACPR+'/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses',
+                  ACPR+'/fr/publications-et-statistiques/etudes-et-recherche']
+    for catalogue in catalogues:
+        try:
+            soup = BeautifulSoup(official_download(catalogue), 'html.parser')
+            links = {urllib.parse.urljoin(ACPR, a['href']) for a in soup.find_all('a',href=True)}
+            matches = [(int(re.search(r'revalorisation-(20\d{2})',u)[1]),u) for u in links
+                       if u.startswith(ACPR+'/fr/') and re.search(r'revalorisation-(20\d{2})-des-contrats',u)]
+            require(bool(matches), 'Rapport annuel absent du catalogue ACPR')
+            year, url = max(matches)
+            page = BeautifulSoup(official_download(url), 'html.parser')
+            pdfs = sorted({urllib.parse.urljoin(ACPR,a['href']) for a in page.find_all('a',href=True)
+                           if re.search(r'AS\d+_revalorisation_'+str(year)+r'\.pdf$',a['href'],re.I)})
+            return unique(pdfs,'PDF ACPR ambigu/absent')
+        except Exception as error:
+            errors.append(str(error))
+    try:
+        return discover_acpr_sitemap()
+    except Exception as error:
+        raise ValueError('; '.join(errors+[str(error)])) from error
 
 
 def parse_scpi(body,url,today):
@@ -374,7 +426,7 @@ def main():
                 return 'households',parse_households(key,download(url),url,today)
             jobs.append(('insee-'+key,collect))
     if args.family in (None,'savings'):
-        jobs.append(('livret-a',lambda:('savings',{'livret_a':parse_savings(official_download(SAVINGS_URL),today)})))
+        jobs.append(('livret-a',lambda:('savings',{'livret_a':collect_savings(today)})))
     if args.family in (None,'fonds_euros'):
         def funds():
             url=discover_acpr();o=parse_funds_euros(official_download(url),url,today)
