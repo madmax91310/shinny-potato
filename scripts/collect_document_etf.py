@@ -128,7 +128,22 @@ def collect_legacy(share,now,fetch=None):
         result['sourceUrl'] = url
         result['aum'].update(sourceUrl=url, sha256=proof(text.encode()))
         result['characteristics'].update(asOf=now.date().isoformat(), sourceUrl=url, sha256=proof(text.encode()))
+        if not share.get('factsheetUrl'):
+            return result
+        # Calendar returns are only published in the monthly factsheet. Keep
+        # the independent live fields when that document is temporarily down.
+        try:
+            document = collect_legacy_document(share, now)
+            if 'performance' in document:
+                result['performance'] = document['performance']
+            result['unavailable'] = document['unavailable']
+        except Exception as error:
+            result['collectionErrors'] = [{'field': 'performance', 'reason': str(error)}]
         return result
+    return collect_legacy_document(share, now)
+
+
+def collect_legacy_document(share, now):
     url = share['factsheetUrl']
     parsed = urlparse(url)
     if (parsed.scheme != 'https' or parsed.hostname != 'www.blackrock.com'
@@ -138,7 +153,9 @@ def collect_legacy(share,now,fetch=None):
     body = download(url)
     result = parse_legacy_factsheet(pdf_text(body), pdf_text(body, crop=(380,215)), share, now)
     result['sourceUrl'] = url
-    for field in ('aum', 'characteristics'):
+    for field in ('aum', 'characteristics', 'performance'):
+        if field not in result:
+            continue
         result[field].update(sourceUrl=url, sha256=proof(body))
     return result
 
@@ -158,6 +175,23 @@ def parse_legacy_factsheet(text, facts, share, now):
     if not 0<=ter<=5:reject('Invalid iShares factsheet TER')
     amount,currency=match(r'Actif net de la Catégorie d[’\x27]actions \(M\)\s*:\s*([\d.,]+)\s*([A-Z]{3})',facts)
     if currency!=share['currency']:reject('Wrong iShares factsheet AUM currency')
-    return {**share,'characteristics':{'terPct':ter,'asOf':facts_stamp},
+    result = {**share,'characteristics':{'terPct':ter,'asOf':facts_stamp},
             'aum':{'amount':number(float(amount.replace('.','').replace(',','.'))*1e6),'currency':currency,'scope':'share-class','asOf':stamp},
             'unavailable':['performance: no complete 2020–2025 share history','exposures: swap basket is not the tracked-index composition','aum: monthly factsheet; newer active observations are preserved']}
+    if "PERFORMANCE DE L'ANNÉE CIVILE" in text:
+        block = text.split("PERFORMANCE DE L'ANNÉE CIVILE", 1)[1].split('CROISSANCE DE', 1)[0]
+        columns = re.findall(r'^[ \t]*(20\d{2}(?:[ \t]+20\d{2})+)[ \t]*$', block, re.M)
+        rows = re.findall(r'^\s*Classe d[’\x27]Actions\s+((?:-?\d+(?:,\d+)?|-)(?:\s+(?:-?\d+(?:,\d+)?|-))*)\s*$', block, re.M)
+        if len(columns) != 1 or len(rows) != 1:
+            reject('Missing or ambiguous iShares share calendar table')
+        years, values = columns[0].split(), rows[0].split()
+        if len(years) != len(values) or len(set(years)) != len(years) or any(int(y) >= now.year for y in years):
+            reject('Invalid iShares completed calendar columns')
+        history = {y: bounded_return(float(v.replace(',', '.'))) for y, v in zip(years, values) if v != '-'}
+        result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('performance:')]
+        if history:
+            result['performance'] = {'currency': share['currency'], 'basis': 'fund',
+                'method': 'calendar-year exact share NAV total return, net of fees', 'asOf': stamp, 'years': history}
+        else:
+            result['unavailable'].append('performance: no completed calendar year published for this share')
+    return result

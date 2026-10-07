@@ -3,7 +3,7 @@ import calendar
 import datetime as dt
 import re
 import urllib.error
-from issuer_documents import download, pdf_text, document_date, proof, validated_rows
+from issuer_documents import download, pdf_text, document_date, proof, validated_rows, bounded_return
 from data_automation import reject, number
 
 
@@ -35,7 +35,20 @@ def ubs(text,share,now,digest):
     if amount<=0:reject('Invalid UBS assets')
     result={**share,'productId':share['isin'],'characteristics':{'terPct':ter,'asOf':stamp,'sourceUrl':share['sourceUrl'],'sha256':digest},
             'aum':{'amount':amount,'currency':share['currency'],'scope':'fund','asOf':stamp,'sourceUrl':share['sourceUrl'],'sha256':digest},
-            'unavailable':['performance: published annual table does not cover all 2020–2025 years']}
+            'unavailable':[]}
+    # The published window is shorter than six years. Collect its exact fund
+    # calendars, excluding the adjacent benchmark and the YTD/rolling columns.
+    block = text.split('Performance in % (net of fees)', 1)[1].split('Index3', 1)[0]
+    columns = match(r'in %\s+((?:20\d{2}\s+)+)', block).split()
+    values = match(r'Fund \('+share['currency']+r'\)\s+([-\d. ]+)\n', block).split()
+    if (columns != sorted(set(columns)) or any(int(y)>now.year for y in columns) or len(values) != len(columns)+3
+            or int(columns[-1]) != now.year or 'YTD2' not in block or 'Ø p.a.' not in block):
+        reject('Invalid UBS calendar/YTD/rolling table layout')
+    history = {y: bounded_return(float(v)) for y,v in zip(columns,values) if int(y)<now.year}
+    if not history:reject('Missing UBS completed calendar years')
+    result['performance'] = {'currency':share['currency'],'basis':'fund',
+        'method':'calendar-year exact share NAV total return, net of fees','asOf':stamp,
+        'sourceUrl':share['sourceUrl'],'sha256':digest,'years':history}
     # Exposure tables are explicitly the index, not the fund portfolio.
     block=text.split('Index Market exposure (%)',1)[1].split('Index 10 largest equity positions',1)[0]
     countries=[];sectors=[]

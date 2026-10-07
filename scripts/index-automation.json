@@ -576,15 +576,20 @@
       "parser": "stoxx-price",
       "symbol": "SXXP",
       "isin": "EU0009658202",
-      "collectComposition": false,
+      "collectComposition": true,
       "returnSourceUrl": "https://stoxx.com/index/sxxp/",
       "returnCurrency": "EUR",
       "returnVariant": "PRICE",
       "performanceDetail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
       "requiredFields": [
-        "returns"
+        "returns",
+        "composition"
       ],
-      "enabled": true
+      "enabled": true,
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "LU0908500753",
+      "compositionIdentityPattern": "Indice de référence\\s+100% STOXX EUROPE 600",
+      "compositionReplication": "Physique"
     },
     {
       "id": "eurostoxx50",
@@ -592,15 +597,20 @@
       "parser": "stoxx-price",
       "symbol": "SX5E",
       "isin": "EU0009658145",
-      "collectComposition": false,
+      "collectComposition": true,
       "returnSourceUrl": "https://stoxx.com/index/sx5e/",
       "returnCurrency": "EUR",
       "returnVariant": "PRICE",
       "performanceDetail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
       "requiredFields": [
-        "returns"
+        "returns",
+        "composition"
       ],
-      "enabled": true
+      "enabled": true,
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "FR001400ZGP1",
+      "compositionIdentityPattern": "L.indice EURO STOXX 50 Net Return EUR",
+      "compositionReplication": "Physique"
     },
     {
       "id": "sp-global-dividend-aristocrats",
@@ -688,12 +698,15 @@
       "kind": "indice",
       "performanceDetail": "S&P 500 · USD · dividendes réinvestis",
       "parser": "monthly-derived",
-      "collectComposition": false,
+      "collectComposition": true,
       "requiredFields": [
-        "returns"
+        "returns",
+        "composition"
       ],
       "enabled": true,
-      "qualificationIssue": "Composition: Amundi current monthly document unavailable (404); default retail publication stale. Previous composition preserved."
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "LU0496786574",
+      "compositionIdentityPattern": "L.indice S&P 500 Net Total Return Index"
     },
     {
       "id": "bitcoin",
@@ -784,6 +797,20 @@
         "returns"
       ],
       "enabled": true
+    },
+    {
+      "id": "sp500-equal-weight",
+      "name": "S&P 500 Equal Weight",
+      "parser": "amundi-index-document",
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "LU2991918421",
+      "compositionIdentityPattern": "Indice de référence\\s+100% S&P 500 EQUAL WEIGHTED NR Close",
+      "collectComposition": true,
+      "requiredFields": [
+        "composition"
+      ],
+      "enabled": true,
+      "qualificationIssue": "Annual TOTAL USD returns remain unqualified; monthly Amundi performance is NET and is not substituted."
     }
   ]
 }

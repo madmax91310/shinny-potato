@@ -40,8 +40,9 @@ def rows(block):
 
 def parse_document(body,share,now):
     text=pdf_text(body);left=pdf_text(body,(0,300));right=pdf_text(body,(300,300))
-    if share['isin']not in text or 'Synthétique'not in text:
-        reject('Amundi exact synthetic-share identity/method missing')
+    replication = share.get('expectedReplication', 'Synthétique')
+    if replication not in ('Synthétique', 'Physique') or share['isin'] not in text or replication not in text:
+        reject('Amundi exact-share identity/replication missing')
     dates=re.findall(r'\b\d{2}/\d{2}/\d{4}\b',text)
     # Header date, independently checked against the URL requested by the collector.
     stamp=document_date(dates[0],now)

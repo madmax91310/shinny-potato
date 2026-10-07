@@ -24046,39 +24046,57 @@
   "IE0002XZSHO1": {
     "currency": "EUR",
     "productId": 335178,
-    "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+    "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
     "provider": "iShares",
     "aum": {
-      "amount": 2257729564.0,
+      "amount": 2295155249.0,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
-      "sha256": "8f1a2375054e4165b81e256efad0a96718aba5b853c1e27712e2b9a68f445273",
-      "checkedAt": "2026-10-06"
+      "sha256": "a7b812a2bbcb6057ef08341c8d0a2ff015a35e1c9bb50a9602628c7c029b765d",
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.2,
-      "checkedAt": "2026-10-06"
+      "asOf": "2026-10-07",
+      "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+      "sha256": "a7b812a2bbcb6057ef08341c8d0a2ff015a35e1c9bb50a9602628c7c029b765d",
+      "checkedAt": "2026-10-07"
+    },
+    "performance": {
+      "currency": "EUR",
+      "basis": "fund",
+      "method": "calendar-year exact share NAV total return, net of fees",
+      "asOf": "2026-08-31",
+      "years": {
+        "2025": 6.61
+      },
+      "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+      "sha256": "f8c7e08cf4859129e4e0b8f2347c60e1d18817188ce01c3fa1cad46acd18e654",
+      "checkedAt": "2026-10-07"
     }
   },
   "IE000DQLYVB9": {
     "currency": "EUR",
     "productId": 342916,
-    "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+    "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
     "provider": "iShares",
     "aum": {
-      "amount": 55110019.0,
+      "amount": 57579561.0,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-05",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
-      "sha256": "44e4697e9cc6c408dafa76d8dd1ef7e2af0de0b971f9f92eafdc0dc9e7d56570",
-      "checkedAt": "2026-10-06"
+      "sha256": "7d9e61fc302986104cdf933248000520d96c7cce32069b9ef513a1a382b53181",
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.1,
-      "checkedAt": "2026-10-06"
+      "asOf": "2026-10-07",
+      "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+      "sha256": "7d9e61fc302986104cdf933248000520d96c7cce32069b9ef513a1a382b53181",
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00BF0M2Z96": {
@@ -25500,6 +25518,54 @@
       "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
       "sha256": "bf68618d0bd470081b3d4542ee098a4d1ad4a3ff77478bbe995da4e1007fa42f",
       "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year exact share NAV total return, net of fees",
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
+      "sha256": "bf68618d0bd470081b3d4542ee098a4d1ad4a3ff77478bbe995da4e1007fa42f",
+      "years": {
+        "2022": -18.26,
+        "2023": 23.79,
+        "2024": 18.86,
+        "2025": 21.31
+      },
+      "checkedAt": "2026-10-07"
+    }
+  },
+  "FR0007056841": {
+    "currency": "EUR",
+    "productId": "FR0007056841",
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "provider": "Amundi",
+    "aum": {
+      "amount": 357111904.545,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-10-06",
+      "checkedAt": "2026-10-07"
+    },
+    "characteristics": {
+      "terPct": 0.5,
+      "index": "Dow Jones Industrial Average Net Total Return",
+      "distribution": "Capitalisation and/or distribution",
+      "checkedAt": "2026-10-07"
+    },
+    "performance": {
+      "currency": "EUR",
+      "basis": "fund",
+      "method": "calendar-year share total return, income reinvested, fund fees included",
+      "years": {
+        "2020": -0.01,
+        "2021": 29.46,
+        "2022": -1.31,
+        "2023": 11.66,
+        "2024": 22.07,
+        "2025": 0.7
+      },
+      "checkedAt": "2026-10-07"
     }
   }
 }

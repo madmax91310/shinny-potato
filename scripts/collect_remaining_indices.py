@@ -98,7 +98,7 @@ def collect_one(config, now, fetch=download):
             if body is not None: facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(), 'sha256': proof(body), 'label': 'Composition officielle automatisée · ' + config['name']}
             if body is not None: facts['provenance'] = 'Publication officielle Nikkei ; classification sectorielle propre à Nikkei.'
             result['facts'] = facts
-        except Exception as e: result['errors'].append({'field': 'composition', 'reason': str(e), 'url': config['sourceUrl']})
+        except Exception as e: result['errors'].append({'field': 'composition', 'reason': str(e), 'url': config.get('sourceUrl')})
     if config.get('returnSourceUrl'):
         try:
             body = fetch(config['returnSourceUrl'])
