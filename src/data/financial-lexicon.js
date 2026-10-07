@@ -1,3 +1,6 @@
+import { currentSavingsObservation } from './economic-data.js'
+const livretRate = currentSavingsObservation().rate.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+import { REGULATORY as R, regulatoryNumber as n, regulatoryMoney as money } from './regulatory-data.js'
 // Bibliothèque de termes du lexique financier — reprise telle quelle de la session
 // d'origine (fiches pré-rédigées à la main, vérifiées avec sources). Deux variantes :
 // A (enveloppe/produit) = Objectif / Pour qui / Mécanisme / Frais-Fiscalité / Avantage
@@ -18,13 +21,13 @@ export const TERMES = [
   objectif:`Investir en bourse sur des actions européennes tout en profitant d'une fiscalité allégée après 5 ans.`,
   pourQui:`Tu veux investir sur des actions ou ETF européens (ou mondiaux via des ETF synthétiques) sur le long terme, sans avoir besoin de retirer ton argent avant plusieurs années.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
-  mecanismeContenu:`✅ Actions de sociétés européennes\n✅ ETF actions européennes, et ETF monde via la réplication synthétique\n❌ Actions américaines ou asiatiques en direct\n❌ Obligations, SCPI, crypto\n✅ Plafond de versement : 150 000€ (PEA classique)`,
+  mecanismeContenu:`✅ Actions de sociétés européennes\n✅ ETF actions européennes, et ETF monde via la réplication synthétique\n❌ Actions américaines ou asiatiques en direct\n❌ Obligations, SCPI, crypto\n✅ Plafond de versement : ${n('peaCeiling')}€ (PEA classique)`,
   sectionsOptionnelles:[
-    {titre:`🔀 PEA classique ou PEA-PME ?`, contenu:`Le PEA-PME est une version dédiée aux petites et moyennes entreprises. Son plafond de 225 000€ est partagé avec le PEA classique : le total des versements cumulés sur les deux ne peut pas dépasser 225 000€, dont 150 000€ maximum sur le PEA classique.`}
+    {titre:`🔀 PEA classique ou PEA-PME ?`, contenu:`Le PEA-PME est une version dédiée aux petites et moyennes entreprises. Son plafond de ${n('peaCombinedCeiling')}€ est partagé avec le PEA classique : le total des versements cumulés sur les deux ne peut pas dépasser ${n('peaCombinedCeiling')}€, dont ${n('peaCeiling')}€ maximum sur le PEA classique.`}
   ],
   attention:`Un retrait avant 5 ans clôture en principe le PEA (sauf exceptions, notamment la création ou la reprise d'entreprise) ; les gains retirés sont alors imposés. Après 5 ans, un retrait partiel ne clôture plus le plan.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Avant 5 ans, les gains retirés relèvent en principe du PFU de 31,4% (option globale possible pour le barème). Après 5 ans, ils sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux : 18,6% au taux en vigueur à la sortie en 2026 pour les plans ouverts depuis 2018, avec des taux historiques possibles sur une partie des gains des anciens plans.`,
+  fraisContenu:`Avant 5 ans, les gains retirés relèvent en principe du PFU de ${n('peaTotal')}% (option globale possible pour le barème). Après 5 ans, ils sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux : ${n('peaSocial')}% au taux en vigueur au contrôle de la source officielle pour les plans ouverts depuis 2018, avec des taux historiques possibles sur une partie des gains des anciens plans.`,
   avantage:`Le compteur des cinq ans part du premier versement, qui fixe la date d’ouverture fiscale du plan. Un petit premier versement peut lancer l’ancienneté.`
 },
 
@@ -38,7 +41,7 @@ export const TERMES = [
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
   mecanismeContenu:`✅ Actions étrangères, ETF et obligations selon le courtier\n✅ Certains produits cotés liés aux cryptos, sans détenir directement les cryptos\n✅ Aucun plafond de versement`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`En règle générale, le PFU de 31,4% s'applique aux plus-values réalisées lors d'une vente et aux dividendes encaissés (option globale possible pour le barème). Une hausse de cours sans vente ne déclenche pas d'impôt sur la plus-value.`,
+  fraisContenu:`En règle générale, le PFU est de ${n('ctoTotal')}% sur les plus-values réalisées lors d'une vente et de ${n('dividendTotal')}% sur les dividendes encaissés (option globale possible pour le barème). Une hausse de cours sans vente ne déclenche pas d'impôt sur la plus-value.`,
   attention:`Attention aux frais de courtage et de tenue de compte, ils varient énormément selon le courtier`,
   avantage:`Tu y accèdes à davantage de marchés. Avant d’acheter un ETF déjà présent dans ton PEA, compare aussi la fiscalité de l’enveloppe.`
 },
@@ -57,7 +60,7 @@ export const TERMES = [
   ],
   attention:`Les frais sur versement et de gestion varient énormément d'un contrat à l'autre — un contrat en ligne coûte souvent bien moins cher qu'un contrat bancaire traditionnel.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Seule la part de gains comprise dans un rachat est imposable. Pour les primes versées depuis le 27 septembre 2017, le taux forfaitaire d'impôt sur le revenu est de 12,8% avant 8 ans, auquel s'ajoutent en principe 17,2% de prélèvements sociaux. Après 8 ans, un abattement annuel de 4 600€ (9 200€ pour un couple) s'applique aux gains de l'ensemble des contrats ; le taux d'impôt est de 7,5% ou 12,8% selon le montant des primes versées sur l'ensemble des contrats. Les primes plus anciennes suivent d'autres règles.`,
+  fraisContenu:`Seule la part de gains comprise dans un rachat est imposable. Pour les primes versées depuis le 27 septembre 2017, le taux forfaitaire d'impôt sur le revenu est de ${n('avBeforeEightIncome')}% avant 8 ans, auquel s'ajoutent en principe ${n('avSocial')}% de prélèvements sociaux. Après 8 ans, un abattement annuel de ${n('avSingleAllowance')}€ (${n('avCoupleAllowance')}€ pour un couple) s'applique aux gains de l'ensemble des contrats ; le taux d'impôt est de ${n('avLowerIncome')}% pour la part correspondant aux primes n'excédant pas ${n('avPremiumThreshold')}€, ou ${n('avHigherIncome')}% au-delà, en tenant compte de l'ensemble des contrats. Les primes plus anciennes suivent d'autres règles.`,
   avantage:`Regarde le contrat, pas seulement le nom de l’enveloppe : choix de supports, frais et conditions de rachat changent beaucoup le résultat.`
 },
 
@@ -87,8 +90,8 @@ export const TERMES = [
   objectif:`Mettre de côté une épargne de sécurité immédiatement disponible, sans aucun risque de perte.`,
   pourQui:`Tu constitues ton épargne de précaution (3 à 6 mois de dépenses) avant de penser à investir.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
-  mecanismeContenu:`✅ Uniquement des dépôts et retraits en euros\n✅ Plafond de dépôt : 22 950€\n✅ Disponible à tout moment, sans délai ni pénalité\n❌ Aucun placement en actions, ETF ou fonds`,
-  attention:`Le taux (1,70% depuis le 1er août 2026) est fixé par l'État et réévalué deux fois par an, au 1er février et au 1er août — il ne suit pas toujours l'inflation, donc ton épargne peut perdre du pouvoir d'achat certaines années.`,
+  mecanismeContenu:`✅ Uniquement des dépôts et retraits en euros\n✅ Plafond de dépôt : ${n('livretCeiling')}€\n✅ Disponible à tout moment, sans délai ni pénalité\n❌ Aucun placement en actions, ETF ou fonds`,
+  attention:`Le taux (${livretRate}% selon la dernière publication validée) est fixé par l'État et réévalué deux fois par an, au 1er février et au 1er août — il ne suit pas toujours l'inflation, donc ton épargne peut perdre du pouvoir d'achat certaines années.`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`Les intérêts sont totalement exonérés d'impôt sur le revenu et de prélèvements sociaux.`,
   avantage:`Pour l’argent dont tu peux avoir besoin bientôt, sa disponibilité compte souvent davantage que quelques dixièmes de rendement.`
@@ -102,7 +105,7 @@ export const TERMES = [
   objectif:`Compléter son épargne de précaution une fois le Livret A rempli, avec les mêmes garanties.`,
   pourQui:`Tu as déjà rempli ton Livret A et tu veux continuer à épargner sans risque, au même taux.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
-  mecanismeContenu:`✅ Dépôts et retraits en euros uniquement\n✅ Plafond de dépôt : 12 000€\n✅ Même taux et même disponibilité que le Livret A\n❌ Aucun placement en actions ou fonds`,
+  mecanismeContenu:`✅ Dépôts et retraits en euros uniquement\n✅ Plafond de dépôt : ${n('lddsCeiling')}€\n✅ Taux publié : ${n('lddsRate')}% ; épargne disponible\n❌ Aucun placement en actions ou fonds`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`Intérêts exonérés d'impôt sur le revenu et de prélèvements sociaux, comme le Livret A.`,
   avantage:`Quand le Livret A atteint son plafond, le LDDS permet de garder une autre somme disponible dans les mêmes conditions de taux.`
@@ -348,7 +351,7 @@ export const TERMES = [
   mecanismeContenu:`Si l'entreprise décide de distribuer un dividende, son montant dépend du nombre d'actions détenues. Par exemple, 3€ de dividende pour une action à 100€ correspondent à un rendement affiché de 3%. À la date du détachement, le cours est ajusté du montant du dividende, avant les autres variations du marché.`,
   attention:`Un dividende très élevé peut être un signal d'alerte plutôt qu'une bonne nouvelle — il indique parfois que le marché anticipe une baisse ou une suppression future du dividende.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Sur un CTO, les dividendes perçus relèvent en principe du PFU de 31,4% en 2026, sauf option globale pour le barème. Dans un PEA, les dividendes éligibles restent dans le plan et ne sont pas taxés à chaque versement ; les règles fiscales s'appliquent aux retraits. Dans une assurance-vie, ce sont les gains inclus dans un rachat qui sont imposables.`,
+  fraisContenu:`Sur un CTO, les dividendes perçus relèvent en principe du PFU de ${n('dividendTotal')}% en 2026, sauf option globale pour le barème. Dans un PEA, les dividendes éligibles restent dans le plan et ne sont pas taxés à chaque versement ; les règles fiscales s'appliquent aux retraits. Dans une assurance-vie, ce sont les gains inclus dans un rachat qui sont imposables.`,
   avantage:`Le versement d’un dividende fait sortir de l’argent de l’entreprise : regarde le rendement total, cours compris, avant de juger ton gain.`
 },
 
@@ -616,12 +619,12 @@ export const TERMES = [
   // https://www.impots.gouv.fr/particulier/questions/jai-realise-une-plus-value-mobiliere-comment-est-elle-imposee
   id:"flat-tax", categorie:"Fiscalité française", titre:"la Flat tax", variante:"B",
   intro:`Quand tu touches des revenus du capital, le PFU est souvent le mode d’imposition appliqué par défaut. Le barème reste une option à examiner.`,
-  definitionContenu:`Une plus-value de 1 000€ réalisée sur un CTO est taxée à 31,4%, soit 314€ d'impôt, quel que soit ton niveau de revenu par ailleurs.`,
+  definitionContenu:`Une plus-value de 1 000€ réalisée sur un CTO est taxée à ${n('ctoTotal')}%, soit ${money(1000 * R.ctoTotal / 100)}€ d'impôt, quel que soit ton niveau de revenu par ailleurs.`,
   calculTitre:`🧮 Comment ça s'applique ?`,
-  calculContenu:`Depuis le 1er janvier 2026, la flat tax standard est passée de 30% à 31,4% : elle se décompose en 12,8% d'impôt sur le revenu (inchangé) et 18,6% de prélèvements sociaux, contre 17,2% auparavant, suite à la hausse de la CSG sur les revenus du capital.`,
-  nuance:{titre:`🔀 Toutes les enveloppes ne sont pas concernées`, contenu:`Le PFU de 31,4% concerne notamment les dividendes et plus-values sur CTO. Les produits de l'assurance-vie soumis au taux de prélèvements sociaux de 17,2% suivent des règles spécifiques selon l'ancienneté du contrat et les primes versées. Les revenus immobiliers ne relèvent pas du PFU : ne leur applique pas un taux forfaitaire de 30%.`},
-  pourquoiImportant:`Elle simplifie la fiscalité par rapport à l'ancien système, mais elle s'applique par défaut : si tu es faiblement imposé, il peut être plus avantageux d'opter pour le barème progressif de l'impôt sur le revenu à la place (si ta tranche marginale est inférieure à 12,8%, cette option s'applique alors à tous tes revenus du capital de l'année).`,
-  erreurFrequente:`On pense parfois que la flat tax s'applique automatiquement au même taux dans toutes les enveloppes — en réalité, depuis 2026, le taux diffère déjà entre un CTO (31,4%) et une assurance-vie (30%), sans même parler des règles spécifiques du PEA après 5 ans.`,
+  calculContenu:`Pour les plus-values sur CTO, le PFU général est de ${n('ctoTotal')}% : ${n('ctoIncome')}% d'impôt sur le revenu et ${n('ctoSocial')}% de prélèvements sociaux. Ces paramètres suivent la publication officielle ; des exceptions peuvent s'appliquer.`,
+  nuance:{titre:`🔀 Toutes les enveloppes ne sont pas concernées`, contenu:`Le PFU général est de ${n('ctoTotal')}% sur les plus-values sur CTO et de ${n('dividendTotal')}% sur les dividendes. Les produits de l'assurance-vie soumis au taux de prélèvements sociaux de ${n('avSocial')}% suivent des règles spécifiques selon l'ancienneté du contrat et les primes versées. Les revenus immobiliers ne relèvent pas du PFU : ne leur applique pas un taux forfaitaire de 30%.`},
+  pourquoiImportant:`Elle simplifie la fiscalité par rapport à l'ancien système, mais elle s'applique par défaut : si tu es faiblement imposé, il peut être plus avantageux d'opter pour le barème progressif de l'impôt sur le revenu à la place (si ta tranche marginale est inférieure à ${n('ctoIncome')}%, cette option s'applique alors à tous tes revenus du capital de l'année).`,
+  erreurFrequente:`On pense parfois que la flat tax s'applique automatiquement au même taux dans toutes les enveloppes — en réalité, les règles diffèrent entre les plus-values sur CTO et les gains d’assurance-vie, sans même parler des règles spécifiques du PEA après 5 ans.`,
   aRetenir:`Compare le PFU et l’option pour le barème sur l’ensemble des revenus concernés. L’option ne se décide pas placement par placement.`
 },
 
@@ -630,7 +633,7 @@ export const TERMES = [
   // https://www.service-public.fr/particuliers/vosdroits/F2385
   id:"abattement-pea", categorie:"Fiscalité française", titre:"l'exonération du PEA après 5 ans", variante:"B",
   intro:`Après cinq ans de PEA, les gains peuvent être exonérés d’impôt sur le revenu. Les prélèvements sociaux, eux, restent à prendre en compte.`,
-  definitionContenu:`Après 5 ans, les gains retirés d'un PEA sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux. Pour un gain de 10 000€ entièrement soumis au taux de 18,6%, ceux-ci représenteraient 1 860€ ; le taux effectif peut dépendre de la date à laquelle les gains ont été acquis.`,
+  definitionContenu:`Après 5 ans, les gains retirés d'un PEA sont exonérés d'impôt sur le revenu, mais restent soumis aux prélèvements sociaux. Pour un gain de 10 000€ entièrement soumis au taux de ${n('peaSocial')}%, ceux-ci représenteraient ${money(10000 * R.peaSocial / 100)}€ ; le taux effectif peut dépendre de la date à laquelle les gains ont été acquis.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
   calculContenu:`La durée de 5 ans se compte à partir du premier versement sur le PEA, qui fixe sa date d'ouverture fiscale, pas à partir de chaque versement individuel — un versement fait à la 4e année profite déjà de l'avantage dès que le PEA lui-même dépasse 5 ans.`,
   pourquoiImportant:`Cet avantage rend le PEA particulièrement puissant pour un horizon d'investissement long : plus tu le gardes ouvert après 5 ans, plus chaque euro de gain supplémentaire profite de cette fiscalité allégée.`,
@@ -644,10 +647,10 @@ export const TERMES = [
   // https://www.service-public.fr/particuliers/vosdroits/F10864
   id:"prelevements-sociaux", categorie:"Fiscalité française", titre:"les Prélèvements sociaux", variante:"B",
   intro:`Un placement peut échapper à l’impôt sur le revenu tout en restant soumis aux prélèvements sociaux. Les deux calculs sont distincts.`,
-  definitionContenu:`Un gain de 5 000€ sur un CTO soumis au taux général de 18,6% supporte 930€ de prélèvements sociaux — contre 860€ au taux de 17,2% applicable aux produits des contrats d'assurance-vie ordinaires. Certains anciens PEA conservent des taux historiques sur une partie des gains.`,
+  definitionContenu:`Un gain de 5 000€ sur un CTO soumis au taux général de ${n('ctoSocial')}% supporte ${money(5000 * R.ctoSocial / 100)}€ de prélèvements sociaux — contre ${money(5000 * R.avSocial / 100)}€ au taux de ${n('avSocial')}% applicable aux produits des contrats d'assurance-vie ordinaires. Certains anciens PEA conservent des taux historiques sur une partie des gains.`,
   calculTitre:`🧮 Comment ça s'applique ?`,
   calculContenu:`Les prélèvements sociaux regroupent notamment la CSG, la CRDS et le prélèvement de solidarité. Leur mode de perception dépend du revenu et de l'enveloppe : certains sont prélevés par l'établissement financier, d'autres calculés lors de la déclaration.`,
-  nuance:{titre:`🔀 18,6% ou 17,2% selon le revenu`, contenu:`Depuis la hausse de la CSG au 1er janvier 2026, le taux général est passé de 17,2% à 18,6% pour plusieurs revenus financiers, notamment les gains de CTO. Les contrats d'assurance-vie ordinaires et les plus-values immobilières conservent le taux de 17,2%. La fiscalité des loyers dépend de leur catégorie (location nue ou meublée) ; certains anciens PEA conservent des taux historiques. Vérifie le produit et la date du gain.`},
+  nuance:{titre:`🔀 Des taux différents selon le revenu`, contenu:`Le taux général applicable aux gains de CTO est de ${n('ctoSocial')}%. Les produits d'assurance-vie ordinaires suivent le taux de ${n('avSocial')}%. Les plus-values immobilières suivent leur propre régime. La fiscalité des loyers dépend de leur catégorie (location nue ou meublée) ; certains anciens PEA conservent des taux historiques. Vérifie le produit et la date du gain.`},
   pourquoiImportant:`Contrairement à l'impôt sur le revenu, les prélèvements sociaux s'appliquent presque toujours, même dans les enveloppes les plus avantageuses fiscalement comme le PEA après 5 ans — c'est rarement ce taux qu'on peut réduire.`,
   erreurFrequente:`On présente parfois une enveloppe comme "totalement exonérée d'impôt" en oubliant les prélèvements sociaux, qui restent dus dans la quasi-totalité des cas — le Livret A fait figure d'exception.`,
   aRetenir:`Avant de calculer ton gain net, identifie l’enveloppe et la date concernées : le taux applicable peut différer selon le placement.`

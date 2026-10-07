@@ -1,3 +1,4 @@
+import { REGULATORY as R, regulatoryNumber as n, regulatoryMoney as money } from '../src/data/regulatory-data.js';
 import assert from 'node:assert/strict';
 import { TERMES } from '../src/data/financial-lexicon.js';
 import { FICHE_LEXIQUE_EDITORIAL } from '../src/pages/tweet-midi/data/ficheLexiqueEditorial.js';
@@ -22,18 +23,17 @@ for (const terme of TERMES) {
 
 // Le contenu doit expliquer l'assiette, les délais et les résultats nets.
 const pea = getFicheLexiqueText('pea');
-for (const rule of [/150 000 €/, /premier versement/, /31,4 %/, /12,8 %/, /18,6 %/, /930 €/, /14 070 €/, /retrait partiel/, /retrait total/i, /ne constitue pas un retrait/, /taux historiques/]) assert.match(pea, rule);
-assert.equal(5000 * .186, 930);
-assert.equal(15000 - 5000 * .186, 14070);
+for (const rule of [/premier versement/, /retrait partiel/, /retrait total/i, /ne constitue pas un retrait/, /taux historiques/]) assert.match(pea, rule);
+for (const value of [n('peaCeiling') + ' €', n('peaTotal') + ' %', n('peaIncome') + ' %', n('peaSocial') + ' %', money(5000 * R.peaSocial / 100) + ' €', money(15000 - 5000 * R.peaSocial / 100) + ' €']) assert(pea.includes(value));
 const cto = getFicheLexiqueText('cto');
-assert.match(cto, /94,20 €/);
-assert.match(cto, /1 205,80 €/);
-assert.equal(300 * .314, 94.2);
+assert(cto.includes(money(300 * R.ctoTotal / 100) + ' €'));
+assert(cto.includes(money(1300 - 300 * R.ctoTotal / 100) + ' €'));
 const av = getFicheLexiqueText('assurance-vie');
-for (const rule of [/4 600 €/, /9 200 €/, /17,2 %/, /7,5 %/, /12,8 %/, /500 € de gains/, /2 500 € de capital/, /déjà prélevés/]) assert.match(av, rule);
+for (const rule of [/500 € de gains/, /2 500 € de capital/, /déjà prélevés/]) assert.match(av, rule);
+for (const key of ['avSingleAllowance', 'avCoupleAllowance', 'avSocial', 'avLowerIncome', 'avHigherIncome']) assert(av.includes(n(key)));
 assert.equal(3000 * (2000 / 12000), 500);
 assert.match(getFicheLexiqueText('per'), /tranche à 30 %.*300 €/);
-assert.match(getFicheLexiqueText('ldds'), /12 000 €.*204 €/);
+assert(getFicheLexiqueText('ldds').includes(money(R.lddsCeiling * R.lddsRate / 100) + ' €'));
 assert.match(getFicheLexiqueText('ratio-sharpe'), /0,5.*0,25/s);
 assert.match(getFicheLexiqueText('lmnp'), /5 000 € de base imposable/);
 assert.match(getFicheLexiqueText('lmnp'), /ne peut pas créer de déficit/);

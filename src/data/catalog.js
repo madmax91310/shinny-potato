@@ -1,3 +1,5 @@
+import { REGULATORY_OBSERVATIONS, REGULATORY_LEXICON_SOURCES } from './regulatory-data.js';
+import { BROKER_TARIFFS, brokerTariffCopy } from './broker-tariffs.js';
 import { INDEX_DECISION_CASE_DEFINITIONS } from './index-decision-cases.js'
 import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
 import { AUTOMATED_ETF, HISTORICAL_AUTOMATED_PERFORMANCE as AUTOMATED_PERFORMANCE, AUTOMATED_PERFORMANCE as LIVE_PERFORMANCE } from './automated-etf.js';
@@ -150,7 +152,17 @@ export const DATA_CATALOG = Object.freeze([
     fields: Object.entries(history).map(([date, series]) => field(`Rendements · ${date}`, 'index-returns', series, series.metadata)),
   })),
   ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: 'Performance depuis', path: '/performance-depuis' }, ...(!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? [{ tool: 'Il y a X ans', path: '/il-y-a-x-ans' }] : []), ...(HISTORY_STATISTIC_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
-  ...TERMES.map((value) => ({ id: `lexicon:${value.id}`, type: 'lexicon', name: value.titre ?? value.nom ?? value.title ?? value.terme ?? value.id, aliases: [value.id], consumers: [{ tool: 'Fiche lexique', path: '/fiche-lexique' }], fields: [field('Définition', 'financial-lexicon', value, { ...SUPPORTING_EVIDENCE[`lexicon:${value.id}`], dateStatus: 'not-applicable', scope: value.id })] })),
+  ...Object.entries(BROKER_TARIFFS).map(([id, observation]) => ({
+    id: `broker:${id}`, type: 'broker', name: id === 'bourso' ? 'BoursoBank · Découverte' : 'Fortuneo · Starter', aliases: [id, 'courtage', 'tarifs'],
+    consumers: [{tool: 'Comparateur de courtiers', path: '/comparatif-courtiers'}],
+    fields: [field('Tarif courtage automatisé', 'broker-tariffs', {...observation.values, description: brokerTariffCopy(id).full}, observation)],
+  })),
+  ...TERMES.map((value) => ({ id: `lexicon:${value.id}`, type: 'lexicon', name: value.titre ?? value.nom ?? value.title ?? value.terme ?? value.id, aliases: [value.id], consumers: [{ tool: 'Fiche lexique', path: '/fiche-lexique' }], fields: [field('Définition', 'financial-lexicon', value, { ...SUPPORTING_EVIDENCE[`lexicon:${value.id}`], dateStatus: 'not-applicable', scope: value.id }),
+    ...(REGULATORY_LEXICON_SOURCES[value.id] ?? []).map(key => {
+      const o = REGULATORY_OBSERVATIONS[key];
+      return field(`Paramètres officiels · ${o.title}`, 'regulatory-data', o.values, {...o, asOf: o.publishedAt, note: 'Date de publication de la fiche officielle, distincte de la date d’effet juridique. Régime général ; exceptions décrites dans la définition.'});
+    }),
+  ] })),
 ]);
 const normalize = (value) => String(value).normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().trim();
 export function searchData(query = '', type = 'all') {

@@ -1,0 +1,95 @@
+name: Update official regulatory data
+on:
+  schedule:
+    - cron: '45 8 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-regulatory-data.yml'
+      - 'scripts/collect_regulatory_data.py'
+      - 'scripts/collect_broker_tariffs.py'
+  pull_request:
+    paths:
+      - '.github/workflows/update-regulatory-data.yml'
+      - 'scripts/*regulatory*'
+      - 'scripts/*broker_tariffs*'
+      - 'scripts/fixtures/regulatory/**'
+      - 'scripts/fixtures/broker-tariffs/**'
+      - 'src/data/*regulatory*'
+      - 'src/data/broker-tariffs.js'
+      - 'src/data/automated-broker-tariffs.json'
+permissions:
+  contents: read
+jobs:
+  refresh:
+    concurrency:
+      group: regulatory-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      cancel-in-progress: false
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.sha }}
+      failed: ${{ steps.fiscal.outcome == 'failure' || steps.brokers.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_regulatory*.py'
+      - run: node scripts/test-regulatory-consumers.mjs
+      - id: fiscal
+        continue-on-error: true
+        run: python scripts/collect_regulatory_data.py --apply --output "$RUNNER_TEMP/fiscal-observation.json"
+      - id: brokers
+        continue-on-error: true
+        run: python scripts/collect_broker_tariffs.py --apply --output "$RUNNER_TEMP/broker-observation.json"
+      - run: node scripts/test-regulatory-consumers.mjs
+      - run: npm run audit:data-catalog
+      - run: npm run audit:broker-evidence
+      - run: npm run build
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: regulatory-observations
+          path: ${{ runner.temp }}/*-observation.json
+          retention-days: 35
+      - id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/automated-regulatory.json src/data/automated-broker-tariffs.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh validated fiscal parameters and broker tariffs'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: refresh
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: ${{ always() && needs.refresh.outputs.failed == 'true' }}
+    runs-on: ubuntu-26.04
+    steps:
+      - run: |
+          echo 'Une collecte réglementaire a échoué. Les dernières valeurs validées restent disponibles. Consulter regulatory-observations.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

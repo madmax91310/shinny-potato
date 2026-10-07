@@ -26,3 +26,7 @@ export function householdSources(base) {
   return result
 }
 export { observations as ECONOMIC_OBSERVATIONS }
+
+export function currentSavingsObservation(snapshot = observations, today = new Date().toISOString().slice(0, 10)) {
+  return Object.values(snapshot.savings ?? {}).filter(o => o.effectiveAt <= today).sort((a,b) => b.effectiveAt.localeCompare(a.effectiveAt))[0]
+}

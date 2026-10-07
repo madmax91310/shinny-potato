@@ -1,3 +1,4 @@
+import { brokerTariffCopy, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
 // Registre éditorial : PDF officiels et pages publiées par les courtiers.
 // Dans les PDF, la première page porte le numéro 1.
 // « Non établi » ne signifie jamais « non proposé ».
@@ -242,3 +243,14 @@ export const EVIDENCE_FIELDS = [
   ['pea', 'PEA'], ['pme', 'PEA-PME'], ['jeune', 'PEA Jeune'], ['ifu', 'IFU'],
   ['cash', 'Liquidités rémunérées'], ['transfert', 'Transfert PEA'],
 ]
+
+for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
+  const document = `${id}AutomatedTariff`;
+  OFFICIAL_SOURCES[document] = {
+    title: `${id === 'bourso' ? 'BoursoBank · Découverte' : 'Fortuneo · Starter'} · Courtage Euronext`,
+    url: observation.sourceUrl, edition: `Tarifs applicables au ${observation.asOf}`,
+    checked: observation.checkedAt.split('-').reverse().join('/'), kind: 'pdf',
+  };
+  BROKER_EVIDENCE[id].frais = {status: 'confirmé', summary: brokerTariffCopy(id).full,
+    refs: [{document, page: observation.page}], automatedEvidence: observation};
+}

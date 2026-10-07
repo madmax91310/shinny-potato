@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "brokers": {
+    "bourso": {
+      "values": {
+        "minimum": 1.99,
+        "threshold": 500.0,
+        "rate": 0.6
+      },
+      "asOf": "2026-10-05",
+      "checkedAt": "2026-10-07",
+      "sourceUrl": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf",
+      "scope": "Découverte ; actions Euronext Paris, Amsterdam, Bruxelles ; ordre en ligne",
+      "page": 17,
+      "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
+      "sha256": "1bb6a4ef014f5033763e9310813f534c69f8811e8719958915ac2119d60a7086"
+    },
+    "fortuneo": {
+      "values": {
+        "freeFee": 0.0,
+        "threshold": 500.0,
+        "rate": 0.35
+      },
+      "asOf": "2026-08-06",
+      "checkedAt": "2026-10-07",
+      "sourceUrl": "https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf",
+      "scope": "Starter ; Euronext Paris, Bruxelles, Amsterdam ou Equiduct ; premier ordre mensuel sous le seuil ; anciens tarifs possibles",
+      "page": 10,
+      "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
+      "sha256": "444c633a8ef708f622e041e4a223292a89be790057f96f2b4765d5ea9cb5ec44"
+    }
+  }
+}

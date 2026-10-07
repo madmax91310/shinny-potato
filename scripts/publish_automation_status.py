@@ -10,6 +10,7 @@ import urllib.error
 import urllib.request
 
 WORKFLOWS = {
+    'update-regulatory-data.yml': 'Paramètres fiscaux, LDDS et tarifs de courtiers',
     'collect-etf-pilot.yml': 'ETF et compositions d’indices',
     'update-market-monthly.yml': 'Historiques mensuels des marchés',
     'update-bitcoin-monthly.yml': 'Historique du bitcoin',

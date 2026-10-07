@@ -1,3 +1,4 @@
+import { brokerTariffCopy } from '../../data/broker-tariffs.js';
 import { BROKER_EVIDENCE } from './evidence.js';
 import { buildBrokerTweet } from './lib.js';
 
@@ -190,7 +191,10 @@ export const BROKERS = [
       verdict: "Tu veux une plateforme avec courtage Euronext dès 2€",
     },
   },
-].map((broker) => ({ ...broker, transfertPea: { resume: BROKER_EVIDENCE[broker.id].transfert.summary } }));
+].map((broker) => {
+  const tariff = brokerTariffCopy(broker.id);
+  return { ...broker, ...(tariff ? { frais: {resume: tariff.resume, detail: tariff.detail}, post: {...broker.post, frais: [tariff.full]} } : {}), transfertPea: { resume: BROKER_EVIDENCE[broker.id].transfert.summary } };
+});
 
 export const ROWS = [
   { key: "frais", icon: "💰", label: "Frais (PEA)" },
