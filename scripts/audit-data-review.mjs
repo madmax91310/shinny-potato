@@ -44,7 +44,7 @@ const closure = JSON.parse(readFileSync(new URL('./source-snapshots/data-review-
 for (const observation of closure.records) {
   const record = DATA_CATALOG.find(x => x.id === (observation.isin ?? observation.id))
   const reviewed = REVIEWED_PERFORMANCE_META[observation.isin]
-  const historicalProxy = reviewed?.portfolioHistoryBasis === 'proxy'
+  const historicalProxy = reviewed?.portfolioHistoryBasis === 'proxy' && !AUTOMATED_PERFORMANCE[observation.isin]?.values.every(Number.isFinite)
   const field = record.fields.find(x => observation.type === 'index'
     ? x.value.asOf === observation.asOf
     : x.label === (observation.type === 'comparator' ? 'Rendements 2023–2025 du comparateur' : historicalProxy ? 'Historique de simulation 2020–2025' : 'Rendements 2020–2025'))

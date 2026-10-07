@@ -5,7 +5,7 @@ from pathlib import Path
 import unittest
 from unittest.mock import patch
 from collect_public_issuer import Page
-from collect_product_calendars import bitwise_calendar, hsbc_calendar, hsbc_chart, coinshares_calendar
+from collect_product_calendars import bitwise_calendar, hsbc_calendar, hsbc_chart, coinshares_calendar, abtc_calendar, issuer_json, collect_abtc_calendar
 from collect_document_etf import collect_one as document_collect
 from collect_remaining_documents import collect_one as remaining_collect
 from data_automation import UTC
@@ -16,6 +16,62 @@ NOW=dt.datetime(2026,10,7,tzinfo=UTC)
 def share(isin):return next(s for s in CONFIG['instruments'] if s['isin']==isin)
 
 class ProductCalendars(unittest.TestCase):
+    def abtc_payloads(self):
+        return [json.loads((FIX/('abtc-'+key+'.json')).read_text()) for key in
+                ('product_details','history','product_performance_metrics')]
+
+    def test_abtc_adjusted_exact_nav_complete_years(self):
+        r=abtc_calendar(*self.abtc_payloads(),share('CH0454664001'),NOW,'official-url')
+        self.assertEqual(r['years'],{'2020':277.89,'2021':65.02,'2022':-65.41,'2023':151.83,'2024':114.17,'2025':-4.71})
+        self.assertEqual(r['asOf'],'2026-10-06')
+        self.assertNotIn('2019',r['years']);self.assertNotIn('2026',r['years'])
+        for defect in ['wrong-isin','currency','row-currency','duplicate-date','nan','stale','future','missing-year-end',
+                       'missing-month','wrong-month','wrong-inception','latest-nav','unadjusted-split','double-adjusted-split','api-failure']:
+            p,h,m=self.abtc_payloads();row=h['data'][0]
+            if defect=='wrong-isin':p['data']['details']['isin']='CH0454664027'
+            if defect=='currency':p['data']['currency']['short_name']='EUR'
+            if defect=='row-currency':row['fiat_denominator']='EUR'
+            if defect=='duplicate-date':h['data'].append(copy.deepcopy(row))
+            if defect=='nan':row['nav_per_share']=float('nan')
+            if defect=='stale':h['lastUpdated']='2026-07-01T00:00:00Z'
+            if defect=='future':row['valuation_date']='2026-10-08'
+            if defect=='missing-year-end':h['data']=[r for r in h['data']if not r['valuation_date'].startswith('2024-12')]
+            if defect=='missing-month':del next(b['2025']for b in m['data']['performance_monthly']if '2025'in b)['january']
+            if defect=='wrong-month':next(b['2025']for b in m['data']['performance_monthly']if '2025'in b)['january']=.5
+            if defect=='wrong-inception':m['data']['performance_details']['since_inception_performance']=0
+            if defect=='latest-nav':p['data']['nav_per_unit']+=1
+            if defect in ('unadjusted-split','double-adjusted-split'):
+                next(r for r in h['data']if r['valuation_date']=='2021-04-09')['nav_per_share']*=14 if defect=='unadjusted-split'else 1/14
+            if defect=='api-failure':h['success']=False
+            with self.subTest(defect=defect),self.assertRaises(ValueError):abtc_calendar(p,h,m,share('CH0454664001'),NOW,'url')
+
+    def test_abtc_bounded_gzip_and_official_sources(self):
+        import gzip
+        self.assertEqual(issuer_json(gzip.compress(b'{"success":true}')),{'success':True})
+        with self.assertRaises(ValueError):issuer_json(gzip.compress(b' '*101),100)
+        with self.assertRaises(ValueError):collect_abtc_calendar({**share('CH0454664001'),'calendarApiBase':'https://example.com'},NOW)
+
+    def test_abtc_calendar_failure_preserves_factsheet(self):
+        s=share('CH0454664001');healthy={'aum':{'amount':123},'characteristics':{'terPct':1.49},'unavailable':['performance: unavailable']}
+        with patch('collect_document_etf.download',return_value=b'%PDF-test'),patch('collect_document_etf.pdf_text',return_value='text'),patch('collect_document_etf.parse',return_value=healthy),patch('collect_product_calendars.collect_abtc_calendar',side_effect=ValueError('unadjusted split')):
+            r=document_collect(s,NOW)
+        self.assertEqual(r['aum']['amount'],123);self.assertEqual(r['characteristics']['terPct'],1.49)
+        self.assertNotIn('performance',r);self.assertEqual(r['collectionErrors'][0]['field'],'performance')
+
+    def test_abtc_factsheet_failure_preserves_calendar(self):
+        s=share('CH0454664001')
+        calendar=abtc_calendar(*self.abtc_payloads(),s,NOW,'official-url')
+        with patch('collect_document_etf.download',side_effect=TimeoutError('factsheet timeout')),patch('collect_product_calendars.collect_abtc_calendar',return_value=calendar):
+            r=document_collect(s,NOW)
+        self.assertEqual(r['performance'],calendar);self.assertTrue(r['exposureOnly'])
+        self.assertEqual(r['collectionErrors'][0]['field'],'document')
+        from apply_etf_collection import merge_collection
+        existing={'currency':'USD','productId':s['isin'],'provider':'21Shares','sourceUrl':s['sourceUrl'],
+                  'characteristics':{'terPct':1.49,'checkedAt':'2026-10-06'},'aum':{'amount':123,'asOf':'2026-10-06'}}
+        merged=merge_collection({'checkedAt':NOW.isoformat(),'shares':[r]},{s['isin']:existing},{})[s['isin']]
+        self.assertEqual(merged['characteristics'],existing['characteristics']);self.assertEqual(merged['aum'],existing['aum'])
+        self.assertEqual(merged['performance']['years'],calendar['years'])
+
     def test_bitwise_exact_nav_and_exclude_ytd_launch(self):
         text=(FIX/'bitwise.html').read_text();s=share('DE000A27Z304')
         r=bitwise_calendar(Page(text),s,NOW,'hash')
