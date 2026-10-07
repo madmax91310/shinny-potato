@@ -2,6 +2,7 @@ import { COMPARISON_ETF_DETAILS } from '../../../data/comparison-etf-details.js'
 import { getComparisonPerformance } from '../../tweet-midi/comparisonPerformance.js'
 import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
 import { getComparisonPolicy, isComparisonEtc } from './comparisonPolicy.js'
+import { commodityAllocationLines } from '../../../data/commodity-allocation.js'
 
 export const comparisonPct = value => `${value > 0 ? '+' : value < 0 ? '−' : ''}${Math.abs(value).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
 const weight = value => `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
@@ -19,6 +20,8 @@ export function buildComparisonEtfDetails(etf, selectedYears) {
   // Chaque champ peut provenir d’un document différent : la collecte de secteurs
   // ne doit pas transformer des positions d’indice en positions détenues.
   const collected = AUTOMATED_ETF[etf.isin]
+  const commodities = commodityAllocationLines(etf.isin)
+  if (commodities.length) lines.push('', ...commodities)
   const holdingsExposure = collected?.holdings ? collected.holdings.basis === 'index' : details?.basis === 'tracked-index'
   const sectorsExposure = collected?.sectors ? collected.sectors.basis === 'index' : details?.basis === 'tracked-index'
   const holdingsDate = date(details?.holdingsAsOf ?? details?.asOf)

@@ -22543,6 +22543,59 @@
         "2018": -11.65
       },
       "checkedAt": "2026-10-06"
+    },
+    "commodityAllocation": {
+      "rows": [
+        {
+          "name": "Energy",
+          "label": "Énergie",
+          "weightPct": 35.5
+        },
+        {
+          "name": "Grains",
+          "label": "Céréales",
+          "weightPct": 22.6
+        },
+        {
+          "name": "Precious metals",
+          "label": "Métaux précieux",
+          "weightPct": 15.3
+        },
+        {
+          "name": "Industrial metals",
+          "label": "Métaux industriels",
+          "weightPct": 14.1
+        },
+        {
+          "name": "Softs",
+          "label": "Produits agricoles",
+          "weightPct": 8.3
+        },
+        {
+          "name": "Livestock",
+          "label": "Bétail",
+          "weightPct": 4.3
+        },
+        {
+          "name": "Others",
+          "label": "Autres",
+          "weightPct": -0.01
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "index": "Bloomberg Commodity Index",
+      "classification": "commodity-groups",
+      "sourceIsin": "IE00BD6FTQ80",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
+      "sha256": "26e165ef9aa8e65244c1e3046b2ea3205d81cbd1c74bd9138cadafeeccce00c1",
+      "scope": "Bloomberg Commodity Index · groupes de matières premières",
+      "method": "Published numerical index allocation, rounded issuer weights; not fund holdings, swap collateral or equity sectors",
+      "identitySourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
+      "sourceUrls": [
+        "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf"
+      ],
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00B3VVMM84": {
@@ -23671,6 +23724,60 @@
         "2025": 15.65
       },
       "checkedAt": "2026-10-06"
+    },
+    "commodityAllocation": {
+      "rows": [
+        {
+          "name": "Energy",
+          "label": "Énergie",
+          "weightPct": 35.5
+        },
+        {
+          "name": "Grains",
+          "label": "Céréales",
+          "weightPct": 22.6
+        },
+        {
+          "name": "Precious metals",
+          "label": "Métaux précieux",
+          "weightPct": 15.3
+        },
+        {
+          "name": "Industrial metals",
+          "label": "Métaux industriels",
+          "weightPct": 14.1
+        },
+        {
+          "name": "Softs",
+          "label": "Produits agricoles",
+          "weightPct": 8.3
+        },
+        {
+          "name": "Livestock",
+          "label": "Bétail",
+          "weightPct": 4.3
+        },
+        {
+          "name": "Others",
+          "label": "Autres",
+          "weightPct": -0.01
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "index": "Bloomberg Commodity Index",
+      "classification": "commodity-groups",
+      "sourceIsin": "IE00BD6FTQ80",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
+      "sha256": "26e165ef9aa8e65244c1e3046b2ea3205d81cbd1c74bd9138cadafeeccce00c1",
+      "scope": "Bloomberg Commodity Index · groupes de matières premières",
+      "method": "Published numerical index allocation, rounded issuer weights; not fund holdings, swap collateral or equity sectors",
+      "identitySourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=287254&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrls": [
+        "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
+        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=287254&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+      ],
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00BJ5JNZ06": {

@@ -29,4 +29,7 @@ def parse_document(body,share,now):
 
 
 def collect_one(share,now,fetch=download):
-    return parse_document(fetch(share['sourceUrl']),share,now)
+    body = fetch(share['sourceUrl'])
+    result = parse_document(body,share,now)
+    from collect_commodity_allocations import add_allocation
+    return add_allocation(result, share, now, fetch, body)

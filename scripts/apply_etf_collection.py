@@ -39,7 +39,7 @@ def merge_collection(report, current, baseline):
         if old and (old['currency'] != share['currency'] or old['productId'] != share['productId']):
             reject('Active automated share identity changed')
         record = {**old, 'currency': share['currency'], 'productId': share['productId'], 'sourceUrl': old.get('sourceUrl', share['sourceUrl']) if share.get('exposureOnly') else share['sourceUrl'], 'provider': share.get('provider', 'iShares')}
-        for field in ('aum', 'sectors', 'countries', 'holdings'):
+        for field in ('aum', 'sectors', 'countries', 'holdings', 'commodityAllocation'):
             if field not in share:
                 continue
             incoming = copy.deepcopy(share[field])

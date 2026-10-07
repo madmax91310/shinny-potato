@@ -323,7 +323,9 @@
       "benchmark": "Bloomberg Commodity",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "collectCommodityAllocation": true,
+      "commodityBenchmark": "Bloomberg Commodity"
     },
     {
       "isin": "FR0014017NX3",
@@ -802,7 +804,9 @@
       "requireFullHistory": false,
       "collectHoldings": false,
       "provider": "iShares",
-      "parser": "ishares"
+      "parser": "ishares",
+      "collectCommodityAllocation": true,
+      "commodityBenchmark": "Bloomberg Commodity Index Total Return (Official)"
     },
     {
       "isin": "IE00BJ5JNZ06",

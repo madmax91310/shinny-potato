@@ -98,3 +98,15 @@ for (const id of ['world-minvol','monde-toutes-tailles','world-avec-sans-usa','g
  assert(DEFAULT_THEMES.find(t => t.id === id).etfs.some(f => f.isin === 'IE0002XZSHO1'));
  assert(!DEFAULT_THEMES.find(t => t.id === id).etfs.some(f => f.isin === 'IE00B4L5Y983'));
 }
+
+// Commodity groups retain their own classification and signed published rounding.
+for (const isin of ['IE00BD6FTQ80','IE00BDFL4P12']) {
+ const allocation = AUTOMATED_ETF[isin].commodityAllocation;
+ assert.equal(allocation.basis, 'index');
+ assert.equal(allocation.classification, 'commodity-groups');
+ const text = buildComparisonEtfDetails({ isin, nom: 'ETF' }).join('\n');
+ assert.match(text, /Matières premières de l’indice suivi au 31\/08\/2026/);
+ assert.match(text, /Métaux précieux : 15,3 %/);
+ assert.match(text, /Autres : -0,01 %/);
+ assert.doesNotMatch(text, /🏭|🏢/);
+}

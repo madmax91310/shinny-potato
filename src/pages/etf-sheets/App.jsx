@@ -11,6 +11,7 @@ import { formatTweetPerformance, getAnnualPerformance } from './annualPerformanc
 import { accountLabel, buildText } from './lib'
 import { renderETFImage } from './canvasImage'
 import { INSTRUMENT_AUM_BY_ISIN } from '../../data/instrument-aum'
+import { commodityAllocationLines } from '../../data/commodity-allocation'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './etf-sheets.css'
@@ -50,6 +51,7 @@ function EtfCard({ etf: sourceEtf }) {
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const tickerStr = presentationTicker(etf)
   const annual = getAnnualPerformance(etf)
+  const commodities = commodityAllocationLines(etf.isin)
 
   return (
     <article className="es-card">
@@ -98,6 +100,11 @@ function EtfCard({ etf: sourceEtf }) {
           <span className="es-fv">{formatTweetPerformance(annual)}</span>
         </li>}
       </ul>
+
+      {commodities.length > 0 && <section className="es-block">
+        <h3 className="es-block-title">{commodities[0]}</h3>
+        {commodities.slice(1).map(line => <p key={line}>{line}</p>)}
+      </section>}
 
       <section className="es-block">
         <h3 className="es-block-title">🔍 Ce que tu achètes</h3>
