@@ -32,6 +32,7 @@ SOURCES = {
 }
 SAVINGS_URL = 'https://www.banque-france.fr/fr/a-votre-service/particuliers/connaitre-pratiques-bancaires-assurance/epargne/livret-a'
 SAVINGS_ALTERNATIVE = 'https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/tout-savoir-sur-les-produits-depargne'
+SAVINGS_PUBLIC = 'https://www.service-public.gouv.fr/particuliers/actualites/A18000'
 ASPIM_HOME = 'https://www.aspim.fr/actualites/'
 ASPIM_2025 = 'https://www.aspim.fr/actualites/collecte-et-performance-des-fonds-immobiliers-grand-public-au-premier-trimestre-2026-et-principaux-indicateurs-des-scpi-en-2025/'
 ACPR = 'https://acpr.banque-france.fr'
@@ -257,7 +258,7 @@ def parse_ministry_savings(body, today):
     heading = unique([h for h in soup.find_all(['h2','h3']) if norm(h.get_text(' ',strip=True)) == 'le livret a'], 'Section Livret A absente/ambiguë')
     parts = []
     for node in heading.next_siblings:
-        if node.name in ('h2','h3'):
+        if node.name == heading.name:
             break
         if hasattr(node, 'get_text'):
             parts.append(node.get_text(' ',strip=True))
@@ -269,14 +270,27 @@ def parse_ministry_savings(body, today):
     return {'effectiveAt': date, 'rate': number(rate), 'checkedAt': today, 'sourceUrl': SAVINGS_ALTERNATIVE, 'sha256': hashlib.sha256(body).hexdigest()}
 
 
+def parse_public_savings(body, today):
+    soup = BeautifulSoup(body,'html.parser')
+    require(soup.title and 'livret a' in norm(soup.title.get_text()), 'Page Service Public hors Livret A')
+    text = norm(soup.get_text(' ',strip=True))
+    found = unique(re.findall(r"a compter du (\d+)\s*(?:er)? (\w+) (20\d{2}), le taux d.interet annuel du livret a est fixe a (\d+(?:[,.]\d+)?) %",text), 'Taux Service Public absent/ambigu')
+    day,month,year,rate = found
+    date = dt.date(int(year),MONTHS[month],int(day)).isoformat()
+    require(date <= today and date.endswith('-01') and 0 <= number(rate) <= 20, 'Date/taux Service Public invalide')
+    return {'effectiveAt':date,'rate':number(rate),'checkedAt':today,'sourceUrl':SAVINGS_PUBLIC,'sha256':hashlib.sha256(body).hexdigest()}
+
+
 def collect_savings(today):
-    try:
-        return parse_savings(official_download(SAVINGS_URL), today)
-    except Exception as first:
+    errors=[]
+    for url,parse,fetch in [(SAVINGS_URL,parse_savings,official_download),
+                            (SAVINGS_ALTERNATIVE,parse_ministry_savings,official_download),
+                            (SAVINGS_PUBLIC,parse_public_savings,download)]:
         try:
-            return parse_ministry_savings(download(SAVINGS_ALTERNATIVE), today)
-        except Exception as second:
-            raise ValueError(f'Banque de France : {first}; ministère : {second}') from second
+            return parse(fetch(url),today)
+        except Exception as error:
+            errors.append(f'{url}: {error}')
+    raise ValueError('; '.join(errors))
 
 
 def parse_funds_euros(body, source_url, today):
