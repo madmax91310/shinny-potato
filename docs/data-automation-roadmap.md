@@ -1,3 +1,5 @@
+> Mise à jour des points 3–5 au 7 octobre 2026 : [résultats, sources bloquantes et reste à faire](remaining-automation-2026-10-07.md). La PR #353 reste un lot séparé.
+
 # Mise à jour automatique des données actives
 
 Depuis ce raccord, les données collectées et validées remplacent automatiquement les données actives de leur périmètre, puis sont déployées sur Pages. Aucune confirmation manuelle n'est nécessaire.

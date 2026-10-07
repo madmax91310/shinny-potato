@@ -116,6 +116,7 @@ jobs:
         env:
           COMPANY_QA_DIR: test-artifacts/company-analysis
       - run: node scripts/playwright-tools.mjs
+      - run: node scripts/test-regulatory-ui.mjs
       - run: node scripts/test-commodity-allocation-ui.mjs
       - run: node scripts/test-portfolio-metallic.mjs
       - run: node scripts/test-index-ribbon.mjs

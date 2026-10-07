@@ -1,3 +1,4 @@
+import { brokerTariffCopy } from '../../data/broker-tariffs.js';
 // Version courte du registre : les seuils et restrictions qui changent le choix restent visibles.
 // Les détails de procédure et références restent dans evidence.js.
 export const BROKER_EDITORIAL = {
@@ -33,7 +34,6 @@ export const BROKER_EDITORIAL = {
   },
   fortuneo: {
     frais: 'Starter sur Euronext/Equiduct : premier ordre du mois jusqu’à 500 € sans courtage, puis 0,35 %.',
-    offres: ['Starter : premier ordre mensuel jusqu’à 500 € sans courtage sur Euronext/Equiduct.'],
     dca: 'pas d’achats automatiques sur PEA selon les analyses consultées ❌',
     garde: 'aucun ✅',
     cash: 'non selon les analyses consultées ❌',
@@ -85,3 +85,9 @@ export const BROKER_EDITORIAL = {
     faible: 'Hors offres gratuites, le minimum de courtage pèse davantage sur les petits ordres, malgré le plafond légal.',
   },
 };
+
+for (const [id, copy] of Object.entries(BROKER_EDITORIAL)) {
+  const tariff = brokerTariffCopy(id);
+  if (tariff) copy.frais = tariff.full;
+  if (id === 'fortuneo' && tariff) copy.offres = [tariff.full];
+}

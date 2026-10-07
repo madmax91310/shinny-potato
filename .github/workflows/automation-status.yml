@@ -10,6 +10,7 @@ on:
       - Update all 18 investor 13F portfolios
       - Update company analysis
       - Update official economic data
+      - Update official regulatory data
     types: [completed]
   workflow_dispatch:
   push:

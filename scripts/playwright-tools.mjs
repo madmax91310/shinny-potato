@@ -1191,6 +1191,7 @@ try {
   if (process.argv.includes('--broker')) {
     await testBrokerComparator(page);
   } else {
+  if (!process.argv.includes('--review')) {
   await testAssetSelection(page);
   await testWorkspaceNavigation(page);
   await testCalculateur(page);
@@ -1209,19 +1210,24 @@ try {
   await testDataSearch(page);
   await testHouseholds(page);
   await testInvestorIntroductions(page);
+  }
+  // Exercise review filters with an active failure card as well as the review rows.
+  await page.route('**/automation-status/automation-status.json', route => route.fulfill({json: {schemaVersion: 1, workflows: {economic: {name: 'Données économiques', status: 'failure', completedAt: '2026-10-07T10:00:00Z', runUrl: 'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}));
+  // Automation failure cards also use .dr-item; only count the filtered review list.
   await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
-  const reviewChecks = { ibkr: (await page.locator('.dr-item').count()) === 4 };
+  await page.getByRole('region', { name: 'Échecs des mises à jour automatiques' }).getByRole('heading', {name: 'Données économiques', exact: true}).waitFor();
+  const reviewChecks = { alert: (await page.locator('.dr-automation .dr-item').count()) === 1, ibkr: (await page.locator('.data-review > .dr-list > .dr-item').count()) === 4 };
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil' }).fill('Interactive Brokers');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.dr-item').length === 4);
-  reviewChecks.search = (await page.locator('.dr-item').count()) === 4;
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 4);
+  reviewChecks.search = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 4;
   await page.reload({ waitUntil: 'networkidle' });
-  reviewChecks.reload = (await page.locator('.dr-item').count()) === 4;
+  reviewChecks.reload = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 4;
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil', exact: true }).fill('');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.dr-item').length === 11);
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 11);
   await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.dr-item').length === 3);
-  reviewChecks.deadlines = (await page.locator('.dr-item').count()) === 3;
-  reviewChecks.sources = (await page.getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 3);
+  reviewChecks.deadlines = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 3;
+  reviewChecks.sources = (await page.locator('.data-review > .dr-list').getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;
   await page.goto(`${BASE}/donnees-a-revoir?view=calendar&q=FR001400U5Q4`, { waitUntil: 'networkidle' });
   reviewChecks.maintenance = (await page.locator('.dr-item .maintenance-links a').filter({ hasText: 'Rechercher la nouvelle publication' }).count()) > 0;
   reviewChecks.historicalEvidence = (await page.locator('.dr-links a[href*="20260331"]').count()) > 0;

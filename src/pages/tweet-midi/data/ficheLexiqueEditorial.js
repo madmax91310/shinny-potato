@@ -1,3 +1,7 @@
+import { currentSavingsObservation } from '../../../data/economic-data.js'
+const livretRate = currentSavingsObservation().rate
+const rateLabel = value => value.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+import { REGULATORY as R, regulatoryNumber as n, regulatoryMoney as money } from '../../../data/regulatory-data.js'
 // Rédaction pédagogique de Tweet Midi, fondée sur le registre sourcé commun.
 // Les règles et calculs détaillés sont repris de financial-lexicon.js par le rendu.
 // Les exemples ci-dessous sont des situations pédagogiques, hors frais et fiscalité
@@ -15,15 +19,15 @@ export const FICHE_LEXIQUE_EDITORIAL = {
       },
       {
         "titre": "💰 Le plafond",
-        "contenu": "Tu peux verser jusqu’à 150 000 € sur un PEA classique. Ce plafond concerne les versements : avec les gains, ton portefeuille peut dépasser ce montant."
+        "contenu": `Tu peux verser jusqu’à ${n('peaCeiling')} € sur un PEA classique. Ce plafond concerne les versements : avec les gains, ton portefeuille peut dépasser ce montant.`
       },
       {
         "titre": "⏳ Pourquoi les cinq ans comptent",
-        "contenu": "Le délai commence au premier versement.\n\nAvant cinq ans, un retrait clôture généralement le PEA, sauf exceptions. Les gains sont taxés par défaut à 31,4 % en 2026 : 12,8 % d’impôt sur le revenu et 18,6 % de prélèvements sociaux. Une option globale pour le barème est possible.\n\nAprès cinq ans, les gains retirés sont exonérés d’impôt sur le revenu. Les prélèvements sociaux restent dus, au taux actuel de 18,6 %. Un retrait partiel ne ferme plus le plan : tu peux continuer à investir et à verser dans la limite du plafond. Un retrait total le clôture."
+        "contenu": `Le délai commence au premier versement.\n\nAvant cinq ans, un retrait clôture généralement le PEA, sauf exceptions. Les gains sont taxés par défaut à ${n('peaTotal')} % au taux général actuellement publié : ${n('peaIncome')} % d’impôt sur le revenu et ${n('peaSocial')} % de prélèvements sociaux. Une option globale pour le barème est possible.\n\nAprès cinq ans, les gains retirés sont exonérés d’impôt sur le revenu. Les prélèvements sociaux restent dus, au taux actuel de ${n('peaSocial')} %. Un retrait partiel ne ferme plus le plan : tu peux continuer à investir et à verser dans la limite du plafond. Un retrait total le clôture.`
       },
       {
         "titre": "🧮 Un exemple concret",
-        "contenu": "Tu as versé 10 000 € et ton PEA vaut 15 000 € après cinq ans. Tu retires tout : le gain est de 5 000 €. S'il est entièrement soumis au taux actuel de 18,6 %, tu paies 5 000 € × 18,6 % = 930 € de prélèvements sociaux. Tu récupères 14 070 € nets. Tes 10 000 € versés ne sont pas taxés."
+        "contenu": `Tu as versé 10 000 € et ton PEA vaut 15 000 € après cinq ans. Tu retires tout : le gain est de 5 000 €. S'il est entièrement soumis au taux actuel de ${n('peaSocial')} %, tu paies 5 000 € × ${n('peaSocial')} % = ${money(5000 * R.peaSocial / 100)} € de prélèvements sociaux. Tu récupères ${money(15000 - 5000 * R.peaSocial / 100)} € nets. Tes 10 000 € versés ne sont pas taxés.`
       },
       {
         "titre": "🔁 Et si tu vends sans retirer ?",
@@ -35,20 +39,20 @@ export const FICHE_LEXIQUE_EDITORIAL = {
       }
     ],
     ouverture: "Le PEA : comment fonctionne son avantage fiscal ?",
-    exemple: "Tu as versé 10 000 € et ton PEA vaut 15 000 € après cinq ans. Tu retires tout : le gain est de 5 000 €. S'il est entièrement soumis au taux actuel de 18,6 %, tu paies 5 000 € × 18,6 % = 930 € de prélèvements sociaux. Tu récupères 14 070 € nets. Tes 10 000 € versés ne sont pas taxés.",
+    exemple: `Tu as versé 10 000 € et ton PEA vaut 15 000 € après cinq ans. Tu retires tout : le gain est de 5 000 €. S'il est entièrement soumis au taux actuel de ${n('peaSocial')} %, tu paies 5 000 € × ${n('peaSocial')} % = ${money(5000 * R.peaSocial / 100)} € de prélèvements sociaux. Tu récupères ${money(15000 - 5000 * R.peaSocial / 100)} € nets. Tes 10 000 € versés ne sont pas taxés.`,
     definition: "Le PEA est une enveloppe pour investir en actions et en ETF éligibles, avec une fiscalité liée à son ancienneté.",
     limite: "Un retrait trop tôt clôture en principe le PEA, sauf exceptions. L'avantage fiscal ne protège pas des baisses de marché.",
     question: "Tu savais que vendre dans le PEA et retirer du PEA sont deux opérations différentes ?",
   },
   cto: {
     ouverture: "Le CTO donne accès à des placements absents du PEA. Voici ce que cette liberté change pour tes investissements.",
-    exemple: "Tu achètes pour 1 000 € de titres et les revends 1 300 €, sans autres plus-values ni moins-values à compenser. Le gain est de 300 €. Au PFU de 31,4 % applicable en 2026, l'impôt et les prélèvements sociaux représentent 94,20 €. Tu récupères 1 205,80 € nets, hors frais. Tant que tu n'as pas vendu, la hausse du cours ne déclenche pas cet impôt.",
+    exemple: `Tu achètes pour 1 000 € de titres et les revends 1 300 €, sans autres plus-values ni moins-values à compenser. Le gain est de 300 €. Au PFU de ${n('ctoTotal')} % actuellement publié, l'impôt et les prélèvements sociaux représentent ${money(300 * R.ctoTotal / 100)} €. Tu récupères ${money(1300 - 300 * R.ctoTotal / 100)} € nets, hors frais. Tant que tu n'as pas vendu, la hausse du cours ne déclenche pas cet impôt.`,
     definition: "Le compte-titres ordinaire permet de détenir des actions, ETF et obligations, selon les marchés proposés par ton courtier.",
     limite: "Cette liberté vient avec une fiscalité sur les revenus et les gains réalisés. Les frais dépendent aussi du courtier.",
   },
   "assurance-vie": {
     ouverture: "L'assurance-vie est une enveloppe, pas un placement unique. Deux contrats peuvent exposer ton argent à des risques très différents.",
-    exemple: "Tu as versé 10 000 € et le contrat vaut 12 000 €. Un rachat de 3 000 € contient 3 000 € × (2 000 € ÷ 12 000 €) = 500 € de gains et 2 500 € de capital. Après huit ans, si ton abattement annuel est encore disponible, ces 500 € échappent à l'impôt sur le revenu. Les prélèvements sociaux restent dus selon les supports et ceux déjà prélevés.",
+    exemple: `Tu as versé 10 000 € et le contrat vaut ${n('lddsCeiling')} €. Un rachat de 3 000 € contient 3 000 € × (2 000 € ÷ ${n('lddsCeiling')} €) = 500 € de gains et 2 500 € de capital. Après huit ans, si ton abattement annuel est encore disponible, ces 500 € échappent à l'impôt sur le revenu. Les prélèvements sociaux restent dus selon les supports et ceux déjà prélevés.`,
     definition: "L'assurance-vie est un contrat d'épargne qui peut proposer un fonds en euros et des unités de compte.",
     limite: "Les unités de compte peuvent baisser. La garantie du fonds en euros dépend du contrat, parfois hors frais de gestion.",
     question: "Tu as déjà regardé les supports et les frais de ton contrat ?",
@@ -61,13 +65,13 @@ export const FICHE_LEXIQUE_EDITORIAL = {
   },
   "livret-a": {
     ouverture: "Le Livret A sert à garder une épargne disponible et garantie. Voici pourquoi son rôle ne se résume pas à son taux.",
-    exemple: "Au taux de 1,70 % en vigueur depuis août 2026, 10 000 € rémunérés pendant une année entière produiraient 170 € d'intérêts nets, si le taux restait constant. En pratique, les intérêts sont calculés par quinzaines : les dates de dépôt et de retrait comptent. Les intérêts peuvent porter le solde au-delà du plafond de 22 950 €.",
+    exemple: `Au taux de ${rateLabel(livretRate)} % de la dernière publication validée, 10 000 € rémunérés pendant une année entière produiraient ${money(10000 * livretRate / 100)} € d'intérêts nets, si le taux restait constant. En pratique, les intérêts sont calculés par quinzaines : les dates de dépôt et de retrait comptent. Les intérêts peuvent porter le solde au-delà du plafond de ${n('livretCeiling')} €.`,
     definition: "Le Livret A permet de garder une épargne disponible, avec un capital garanti et des intérêts exonérés d'impôt et de prélèvements sociaux.",
     limite: "Son taux peut être inférieur à l'inflation : le capital reste là, mais son pouvoir d'achat peut reculer.",
   },
   ldds: {
     ouverture: "Le LDDS peut compléter ton Livret A pour garder de l'argent disponible. Voici ce que tu peux en attendre.",
-    exemple: "Tu as 22 950 € sur ton Livret A et verses 12 000 € sur ton LDDS : 34 950 € d'épargne disponible, hors intérêts. Au taux de 1,70 % depuis août 2026, 12 000 € rémunérés pendant une année entière produiraient 204 € nets si le taux restait constant. Il n'est pas nécessaire de remplir le Livret A pour ouvrir un LDDS. Les intérêts peuvent porter son solde au-delà du plafond.",
+    exemple: `Tu as ${n('livretCeiling')} € sur ton Livret A et verses ${n('lddsCeiling')} € sur ton LDDS : ${(R.livretCeiling + R.lddsCeiling).toLocaleString('fr-FR')} € d'épargne disponible, hors intérêts. Au taux de ${rateLabel(R.lddsRate)} % de la dernière publication validée, ${n('lddsCeiling')} € rémunérés pendant une année entière produiraient ${money(R.lddsCeiling * R.lddsRate / 100)} € nets si le taux restait constant. Il n'est pas nécessaire de remplir le Livret A pour ouvrir un LDDS. Les intérêts peuvent porter son solde au-delà du plafond.`,
     definition: "Le LDDS est un livret réglementé, disponible et sans risque de perte en capital, avec son propre plafond.",
     limite: "Il peut compléter ton épargne disponible, mais il n'assure pas de suivre l'inflation.",
   },
@@ -282,7 +286,7 @@ export const FICHE_LEXIQUE_EDITORIAL = {
   },
   "flat-tax": {
     ouverture: "La flat tax associe impôt sur le revenu et prélèvements sociaux. Son application par défaut ne signifie pas qu'elle est toujours la plus avantageuse.",
-    exemple: "Sur un gain imposable de 1 000 € soumis au PFU standard en 2026 : 1 000 € × 12,8 % = 128 € d'impôt sur le revenu, et 1 000 € × 18,6 % = 186 € de prélèvements sociaux. Total : 314 €. Il reste 686 € de gain net. L'option pour le barème porte sur l'ensemble des revenus et plus-values concernés de l'année.",
+    exemple: `Sur un gain imposable de 1 000 € soumis au PFU général actuellement publié : 1 000 € × ${n('ctoIncome')} % = ${money(1000 * R.ctoIncome / 100)} € d'impôt sur le revenu, et 1 000 € × ${n('ctoSocial')} % = ${money(1000 * R.ctoSocial / 100)} € de prélèvements sociaux. Total : ${money(1000 * R.ctoTotal / 100)} €. Il reste ${money(1000 - 1000 * R.ctoTotal / 100)} € de gain net. L'option pour le barème porte sur l'ensemble des revenus et plus-values concernés de l'année.`,
     definition: "Le prélèvement forfaitaire unique associe impôt sur le revenu et prélèvements sociaux pour certains revenus du capital.",
     limite: "Les règles diffèrent selon l'enveloppe et le type de revenu. Un même taux ne s'applique pas à toute ton épargne.",
   },
@@ -290,13 +294,13 @@ export const FICHE_LEXIQUE_EDITORIAL = {
     attention: "Il s'agit d'une exonération d'impôt sur le revenu, pas d'un abattement. Les prélèvements sociaux restent dus, avec des taux historiques possibles pour certains gains anciens.",
     titre: "l'exonération du PEA après cinq ans",
     ouverture: "L'exonération du PEA après cinq ans concerne l'impôt sur le revenu. Voici pourquoi elle ne supprime pas tous les prélèvements sur tes gains.",
-    exemple: "Ton PEA, ouvert par un premier versement il y a plus de cinq ans, contient 10 000 € de versements et 5 000 € de gains. Lors d'un retrait total, si tous les gains relèvent du taux actuel de 18,6 %, les prélèvements sociaux sont de 930 €, l'impôt sur le revenu de 0 € et le montant net récupéré de 14 070 €. Un nouveau versement ne relance pas le délai de cinq ans.",
+    exemple: `Ton PEA, ouvert par un premier versement il y a plus de cinq ans, contient 10 000 € de versements et 5 000 € de gains. Lors d'un retrait total, si tous les gains relèvent du taux actuel de ${n('ctoSocial')} %, les prélèvements sociaux sont de ${money(5000 * R.peaSocial / 100)} €, l'impôt sur le revenu de 0 € et le montant net récupéré de ${money(15000 - 5000 * R.peaSocial / 100)} €. Un nouveau versement ne relance pas le délai de cinq ans.`,
     definition: "Après cinq ans, les gains retirés du PEA sont exonérés d'impôt sur le revenu. Il s'agit d'une exonération, pas d'un abattement sur une partie du gain.",
     limite: "Les prélèvements sociaux restent dus sur les gains, avec un taux qui peut dépendre de leur date d'acquisition.",
   },
   "prelevements-sociaux": {
     ouverture: "Les prélèvements sociaux sont distincts de l'impôt sur le revenu. Un gain exonéré de l'un peut rester soumis aux autres.",
-    exemple: "Sur un gain de 5 000 € soumis au taux général de 18,6 %, les prélèvements sociaux représentent 930 €. Au taux de 17,2 % applicable aux contrats d'assurance-vie ordinaires, ils représentent 860 €. Ce calcul porte uniquement sur les prélèvements sociaux : un impôt sur le revenu peut s'ajouter selon l'enveloppe et les conditions du retrait.",
+    exemple: `Sur un gain de 5 000 € soumis au taux général de ${n('ctoSocial')} %, les prélèvements sociaux représentent ${money(5000 * R.ctoSocial / 100)} €. Au taux de ${n('avSocial')} % applicable aux contrats d'assurance-vie ordinaires, ils représentent ${money(5000 * R.avSocial / 100)} €. Ce calcul porte uniquement sur les prélèvements sociaux : un impôt sur le revenu peut s'ajouter selon l'enveloppe et les conditions du retrait.`,
     definition: "Les prélèvements sociaux regroupent notamment la CSG, la CRDS et le prélèvement de solidarité. Ils sont distincts de l'impôt sur le revenu.",
     limite: "Le taux et le mode de perception dépendent du revenu, de l'enveloppe et parfois de la date des gains.",
   },
