@@ -1,0 +1,24 @@
+name: Probe company sources (read only)
+on:
+  push:
+    branches: [codex/company-source-research]
+    paths:
+      - 'scripts/probe_company_sources.py'
+      - '.github/workflows/probe-company-sources.yml'
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python scripts/probe_company_sources.py
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: company-source-probe
+          path: /tmp/company-source-probe.json
+          retention-days: 14
