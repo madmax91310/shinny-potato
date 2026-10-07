@@ -46,7 +46,7 @@ const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
 assert.equal(calculatedRatios(computed,now).peTTM,20)
 assert.equal(calculatedRatios(computed,now).priceFCF,10)
 assert.equal(calculatedRatios(computed,now).payout,25)
-assert.match(buildTweetText(computed,now),/Pour 100 USD de ventes/)
+assert.match(buildTweetText(computed,now),/Pour 100 USD de chiffre d’affaires/)
 assert(metrics(computed,now).some(row => row.label.includes('opérationnelle') && row.value === '20,0 %'))
 computed.quote.price=200
 assert.equal(calculatedRatios(computed,now).peTTM,40)
@@ -81,7 +81,7 @@ console.log('Company analysis: raw-number changes, gains, losses, missing/stale 
 const period = (revenue, previousRevenue, netIncome, previousNetIncome) => ({revenue, previousRevenue, netIncome, previousNetIncome})
 for (const [values, expected] of [
   [[120,100,15,10], /bénéfices ont progressé plus vite/],
-  [[120,100,11,10], /ventes ont progressé plus vite/],
+  [[120,100,11,10], /revenus ont progressé plus vite/],
   [[80,100,9,10], /s’est améliorée/],
   [[80,100,5,10], /a diminué/],
   [[100,100,-2,-4], /s’est améliorée/],
@@ -98,7 +98,7 @@ for (const company of COMPANIES) {
   const tweet = buildTweetText(company, now)
   assert(!/Ce que je regarderais|avant d’investir|belle entreprise|bon marché|chère|croissance future compte/.test(tweet))
   assert(!tweet.includes(company.watch))
-  assert.match(tweet, /Ce que l’entreprise gagne/)
+  assert.match(tweet, /Et dans les comptes ?/)
 }
 const staleQuarter = {...base, quarter:{...base.annual,end:'2025-01-01'}}
 assert(!buildTweetText(staleQuarter,now).includes('derniers résultats'))
@@ -174,3 +174,25 @@ assert.equal(companyImageModel(european,now).peBasis,'Exercice 2025')
 console.log('European half-years, fiscal weeks, annual PER labeling, splits and forecast account freshness OK.')
 
 for(const price of [-10,0,NaN,Infinity]) assert.deepEqual(calculatedRatios({...european,quote:{...european.quote,price}},now),{})
+
+// Publication copy across the entire roster: distinct grounded hooks, no CTA,
+// no stale editorial direction after a refresh, and no manufactured segments.
+assert.equal(new Set(COMPANIES.map(c => c.editorialHook)).size, COMPANIES.length)
+for (const company of COMPANIES) {
+  const tweet = buildTweetText(company, now)
+  assert(tweet.startsWith(company.editorialHook))
+  assert(!/💬|Tu connaissais|Quand tu achètes|Tu préfères/.test(tweet))
+  assert(!tweet.includes('euro de revenu')) // reporting currency stays untouched
+  const paragraphs = tweet.split('\n\n')
+  assert(new Set(paragraphs).size === paragraphs.length)
+}
+const fallingProfit = {...base,annual:{...base.annual,revenue:120e9,netIncome:8e9}}
+assert.match(buildTweetText(fallingProfit,now), /chiffre d’affaires augmente, mais les bénéfices reculent/)
+const risingProfit = {...fallingProfit,annual:{...fallingProfit.annual,netIncome:15e9}}
+assert.match(buildTweetText(risingProfit,now), /davantage de bénéfice/)
+assert(!buildTweetText(risingProfit,now).includes('bénéfices reculent'))
+const equalMargins = {...base,annual:{...base.annual,netIncome:12e9}}
+assert.match(buildTweetText(equalMargins,now), /presque stable/)
+assert(!buildTweetText(equalMargins,now).includes('davantage de bénéfice'))
+assert(!buildTweetText(unknown,now).includes('marge nette'))
+console.log('Company editorial: 11 distinct hooks, no CTA, currency neutrality and refreshed factual readings OK.')
