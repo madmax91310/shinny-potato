@@ -21039,6 +21039,86 @@
         }
       ],
       "checkedAt": "2026-10-07"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "method": "Ten largest individual corporate bond securities by percent of fund NAV; cash and futures excluded, no renormalisation; published SEDOL, coupon and maturity retained",
+      "sha256": "b781e8eea17ff668b57e1d8f515520799b6459b5bad2e2f9c9ed6f9bea97c95e",
+      "rows": [
+        {
+          "name": "Anheuser-Busch InBev SA/NV · 2% · 2028-03-17 · BZ6D7P1",
+          "weightPct": 0.13969,
+          "sedol": "BZ6D7P1",
+          "couponPct": 2,
+          "maturityDate": "2028-03-17"
+        },
+        {
+          "name": "ING Groep NV · 4.5% · 2029-05-23 · BMXR669",
+          "weightPct": 0.11207,
+          "sedol": "BMXR669",
+          "couponPct": 4.5,
+          "maturityDate": "2029-05-23"
+        },
+        {
+          "name": "Sky Ltd · 2.75% · 2029-11-27 · BSBMN78",
+          "weightPct": 0.10804,
+          "sedol": "BSBMN78",
+          "couponPct": 2.75,
+          "maturityDate": "2029-11-27"
+        },
+        {
+          "name": "Enel SpA · 3.875% · 2033-05-26 · BNG0YQ8",
+          "weightPct": 0.10587,
+          "sedol": "BNG0YQ8",
+          "couponPct": 3.875,
+          "maturityDate": "2033-05-26"
+        },
+        {
+          "name": "JPMorgan Chase & Co · 1.963% · 2030-03-23 · BN4QDX8",
+          "weightPct": 0.10438,
+          "sedol": "BN4QDX8",
+          "couponPct": 1.963,
+          "maturityDate": "2030-03-23"
+        },
+        {
+          "name": "Eni SpA · 3.5% · 2031-05-26 · BRV3459",
+          "weightPct": 0.1027,
+          "sedol": "BRV3459",
+          "couponPct": 3.5,
+          "maturityDate": "2031-05-26"
+        },
+        {
+          "name": "Honda Motor Co Ltd · 3.501% · 2029-07-07 · BSBB2Y5",
+          "weightPct": 0.10156,
+          "sedol": "BSBB2Y5",
+          "couponPct": 3.501,
+          "maturityDate": "2029-07-07"
+        },
+        {
+          "name": "Anheuser-Busch InBev SA/NV · 2.75% · 2036-03-17 · BDCVX13",
+          "weightPct": 0.10134,
+          "sedol": "BDCVX13",
+          "couponPct": 2.75,
+          "maturityDate": "2036-03-17"
+        },
+        {
+          "name": "Nestle Finance International Ltd · 3% · 2031-01-23 · BQWR2P9",
+          "weightPct": 0.09963,
+          "sedol": "BQWR2P9",
+          "couponPct": 3,
+          "maturityDate": "2031-01-23"
+        },
+        {
+          "name": "BPCE SA · 3.375% · 2031-12-19 · BT67HS4",
+          "weightPct": 0.099,
+          "sedol": "BT67HS4",
+          "couponPct": 3.375,
+          "maturityDate": "2031-12-19"
+        }
+      ],
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00BYWQWR46": {
@@ -26403,27 +26483,77 @@
     "characteristics": {
       "terPct": 0.05,
       "checkedAt": "2026-10-06"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "ASML Holding NV",
+          "weightPct": 8.62
+        },
+        {
+          "name": "Siemens AG",
+          "weightPct": 4.66
+        },
+        {
+          "name": "SAP SE",
+          "weightPct": 4.3
+        },
+        {
+          "name": "Banco Santander SA",
+          "weightPct": 4.14
+        },
+        {
+          "name": "TotalEnergies SE",
+          "weightPct": 3.83
+        },
+        {
+          "name": "Allianz SE",
+          "weightPct": 3.82
+        },
+        {
+          "name": "Schneider Electric SE",
+          "weightPct": 3.78
+        },
+        {
+          "name": "Banco Bilbao Vizcaya Argentaria SA",
+          "weightPct": 3.14
+        },
+        {
+          "name": "UniCredit SpA",
+          "weightPct": 2.82
+        },
+        {
+          "name": "Iberdrola SA",
+          "weightPct": 2.81
+        }
+      ],
+      "asOf": "2026-08-31",
+      "basis": "fund",
+      "method": "Published fund top ten; cash, cash equivalents and money-market funds excluded",
+      "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet",
+      "sha256": "6f93e173333c31614abf5cfa4fae37e91ef1fb6bea6af071a04ed57a35c8f748",
+      "checkedAt": "2026-10-07"
     }
   },
   "IE0002XZSHO1": {
     "currency": "EUR",
     "productId": 335178,
-    "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+    "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
     "provider": "iShares",
     "aum": {
-      "amount": 2295155249.0,
+      "amount": 2306785517.0,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
-      "sha256": "a7b812a2bbcb6057ef08341c8d0a2ff015a35e1c9bb50a9602628c7c029b765d",
+      "sha256": "c309d6e612fa1fc49ed665ab3820c816fd4e9e8def65fef37a92c1b71b44cc68",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.2,
       "asOf": "2026-10-07",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
-      "sha256": "a7b812a2bbcb6057ef08341c8d0a2ff015a35e1c9bb50a9602628c7c029b765d",
+      "sha256": "c309d6e612fa1fc49ed665ab3820c816fd4e9e8def65fef37a92c1b71b44cc68",
       "checkedAt": "2026-10-07"
     },
     "performance": {
@@ -26437,27 +26567,317 @@
       "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
       "sha256": "f8c7e08cf4859129e4e0b8f2347c60e1d18817188ce01c3fa1cad46acd18e654",
       "checkedAt": "2026-10-07"
+    },
+    "sectors": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+      "sha256": "d959fcf93eb73b9e14603b9cbbaa2ccf3f79cc6d936fe409ea6e90fe0c965f57",
+      "index": "MSCI World",
+      "indexId": "world",
+      "method": "Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns",
+      "rows": [
+        {
+          "name": "Technology",
+          "weightPct": 31.78,
+          "label": "Technology"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 15.74,
+          "label": "Financials"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 10.8,
+          "label": "Industrials"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 9.2,
+          "label": "Health Care"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 8.36,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Telecommunications",
+          "weightPct": 8.31,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 4.77,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 4.03,
+          "label": "Energy"
+        },
+        {
+          "name": "Basic Materials",
+          "weightPct": 3.21,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.3,
+          "label": "Utilities"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.52,
+          "label": "Immobilier"
+        }
+      ],
+      "checkedAt": "2026-10-07"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+      "sha256": "d959fcf93eb73b9e14603b9cbbaa2ccf3f79cc6d936fe409ea6e90fe0c965f57",
+      "index": "MSCI World",
+      "indexId": "world",
+      "method": "Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 72.94
+        },
+        {
+          "name": "Japan",
+          "weightPct": 5.91
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 3.41
+        },
+        {
+          "name": "Canada",
+          "weightPct": 3.29
+        },
+        {
+          "name": "France",
+          "weightPct": 2.24
+        },
+        {
+          "name": "Other",
+          "weightPct": 12.21
+        }
+      ],
+      "checkedAt": "2026-10-07"
+    },
+    "holdings": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-world-index.pdf",
+      "sha256": "d959fcf93eb73b9e14603b9cbbaa2ccf3f79cc6d936fe409ea6e90fe0c965f57",
+      "index": "MSCI World",
+      "indexId": "world",
+      "method": "Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns",
+      "rows": [
+        {
+          "name": "NVIDIA",
+          "weightPct": 5.81
+        },
+        {
+          "name": "APPLE",
+          "weightPct": 5.41
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 4.0
+        },
+        {
+          "name": "AMAZON.COM",
+          "weightPct": 2.67
+        },
+        {
+          "name": "ALPHABET A",
+          "weightPct": 2.23
+        },
+        {
+          "name": "ALPHABET C",
+          "weightPct": 1.76
+        },
+        {
+          "name": "META PLATFORMS A",
+          "weightPct": 1.76
+        },
+        {
+          "name": "BROADCOM",
+          "weightPct": 1.76
+        },
+        {
+          "name": "MICRON TECHNOLOGY",
+          "weightPct": 1.33
+        },
+        {
+          "name": "TESLA",
+          "weightPct": 1.12
+        }
+      ],
+      "checkedAt": "2026-10-07"
     }
   },
   "IE000DQLYVB9": {
     "currency": "EUR",
     "productId": 342916,
-    "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+    "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
     "provider": "iShares",
     "aum": {
-      "amount": 57579561.0,
+      "amount": 57671666.0,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
-      "sha256": "7d9e61fc302986104cdf933248000520d96c7cce32069b9ef513a1a382b53181",
+      "sha256": "4df20e83c22ecfbabb96637f3e70376b7f5a491449fb0a7946459d7b49d32ae2",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.1,
       "asOf": "2026-10-07",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
-      "sha256": "7d9e61fc302986104cdf933248000520d96c7cce32069b9ef513a1a382b53181",
+      "sha256": "4df20e83c22ecfbabb96637f3e70376b7f5a491449fb0a7946459d7b49d32ae2",
+      "checkedAt": "2026-10-07"
+    },
+    "sectors": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "sha256": "a513b5b10713ed74d43e8d366c796c0b2d63aae493e3bf747a03c49e90fe9874",
+      "index": "S&P 500",
+      "indexId": "sp500-pea",
+      "method": "Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns",
+      "rows": [
+        {
+          "name": "Énergie",
+          "weightPct": 3.4,
+          "label": "Énergie"
+        },
+        {
+          "name": "Matériaux",
+          "weightPct": 1.84,
+          "label": "Matériaux"
+        },
+        {
+          "name": "Industrie",
+          "weightPct": 8.38,
+          "label": "Industrie"
+        },
+        {
+          "name": "Conso Cyclique",
+          "weightPct": 9.18,
+          "label": "Consommation cyclique"
+        },
+        {
+          "name": "Conso non Cyclique",
+          "weightPct": 4.5,
+          "label": "Consommation de base"
+        },
+        {
+          "name": "Santé",
+          "weightPct": 9.29,
+          "label": "Santé"
+        },
+        {
+          "name": "Finance",
+          "weightPct": 12.34,
+          "label": "Finance"
+        },
+        {
+          "name": "Technologies de l'info.",
+          "weightPct": 37.63,
+          "label": "Technologie"
+        },
+        {
+          "name": "Services de communication",
+          "weightPct": 9.62,
+          "label": "Communication"
+        },
+        {
+          "name": "Services publics",
+          "weightPct": 2.0,
+          "label": "Services publics"
+        },
+        {
+          "name": "Immobilier",
+          "weightPct": 1.81,
+          "label": "Immobilier"
+        }
+      ],
+      "checkedAt": "2026-10-07"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "sha256": "a513b5b10713ed74d43e8d366c796c0b2d63aae493e3bf747a03c49e90fe9874",
+      "index": "S&P 500",
+      "indexId": "sp500-pea",
+      "method": "Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns",
+      "rows": [
+        {
+          "name": "États-Unis",
+          "weightPct": 100.0
+        }
+      ],
+      "checkedAt": "2026-10-07"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "sha256": "a513b5b10713ed74d43e8d366c796c0b2d63aae493e3bf747a03c49e90fe9874",
+      "index": "S&P 500",
+      "indexId": "sp500-pea",
+      "method": "Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns",
+      "rows": [
+        {
+          "name": "NVIDIA CORP",
+          "weightPct": 7.94
+        },
+        {
+          "name": "APPLE INC",
+          "weightPct": 7.08
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 5.75
+        },
+        {
+          "name": "AMAZON.COM INC",
+          "weightPct": 3.93
+        },
+        {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 3.06
+        },
+        {
+          "name": "BROADCOM INC",
+          "weightPct": 2.63
+        },
+        {
+          "name": "ALPHABET INC CL C",
+          "weightPct": 2.44
+        },
+        {
+          "name": "META PLATFORMS INC-CLASS A",
+          "weightPct": 1.91
+        },
+        {
+          "name": "MICRON TECHNOLOGY INC",
+          "weightPct": 1.59
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 1.48
+        }
+      ],
       "checkedAt": "2026-10-07"
     }
   },
@@ -28232,6 +28652,22 @@
       "sourceLabel": "Fiche BNP Paribas Asset Management · copie hébergée par Analizy",
       "publisher": "BNP Paribas Asset Management",
       "documentHost": "Analizy",
+      "checkedAt": "2026-10-07"
+    },
+    "countries": {
+      "asOf": "2026-08-31",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+      "sha256": "a513b5b10713ed74d43e8d366c796c0b2d63aae493e3bf747a03c49e90fe9874",
+      "index": "S&P 500",
+      "indexId": "sp500-pea",
+      "method": "Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns",
+      "rows": [
+        {
+          "name": "États-Unis",
+          "weightPct": 100.0
+        }
+      ],
       "checkedAt": "2026-10-07"
     }
   },

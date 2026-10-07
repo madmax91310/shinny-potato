@@ -184,7 +184,8 @@
       "required": true,
       "enabled": true,
       "countryAllocationCode": "CNTRYATPCB",
-      "collectBondSectors": true
+      "collectBondSectors": true,
+      "collectBondHoldings": true
     },
     {
       "isin": "IE00BYWQWR46",
@@ -941,7 +942,8 @@
       "fallbackUrls": [
         "https://www.blackrock.com/fr/particuliers/products/335178/"
       ],
-      "factsheetUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
+      "factsheetUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+      "collectTrackedExposure": true
     },
     {
       "isin": "IE000DQLYVB9",
@@ -954,7 +956,8 @@
       "fallbackUrls": [
         "https://www.blackrock.com/fr/particuliers/products/342916/"
       ],
-      "factsheetUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
+      "factsheetUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+      "collectTrackedExposure": true
     },
     {
       "isin": "DE000A27Z304",
@@ -1063,7 +1066,8 @@
       "expectedIndex": "S&P 500 Composite (NR)",
       "mirrorCode": "E_SBNPEF002_C_EUR",
       "parser": "bnp-document-mirror",
-      "discoveryUrl": "https://www.analizy.pl/etf/FR0011550185/bnp-paribas-easy-s-p-500-ucits-etf-c-acc-eur"
+      "discoveryUrl": "https://www.analizy.pl/etf/FR0011550185/bnp-paribas-easy-s-p-500-ucits-etf-c-acc-eur",
+      "collectTrackedCountries": true
     },
     {
       "isin": "FR0011550193",

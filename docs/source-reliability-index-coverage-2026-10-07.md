@@ -97,3 +97,37 @@ Source : https://www.spglobal.com/spdji/en//documents/indexnews/announcements/20
 La découverte VanEck vérifie ISIN UCITS et ticker de composant UCT…, région UK/en, section portfolio du fonds, date et somme des poids. Les composants de la section index sont exclus. La classification Sector/SubIndustry reste conservée. BNP conserve basis=index sur ses tableaux français et basis=fund sur Nasdaq. Les calendriers néerlandais conservent explicitement leur convention fiscale de distributions brutes. Les positions obligataires ne fusionnent pas les émissions d’un même émetteur ; les rares pools sans ISIN publié conservent leur coupon/échéance.
 
 Les absences restantes incluent les pays BNP S&P 500 (aucun tableau pays), BNP Nasdaq (régions seulement), les positions Vanguard obligataire à qualifier, les calendriers non encore complets et les champs non applicables aux actifs à exposition unique. La composition des trois indices encore ouverts n’est pas modifiée par ce complément.
+
+## Poursuite des priorités 1–2 : neuf champs sur cinq instruments
+
+Cette passe raccorde les positions Vanguard et HSBC, les trois expositions WPEA/SPEA et les pays BNP S&P 500. Frais et encours restent à 155/155 ; calendriers 138, pays 139, secteurs 140 et positions 140. Les neuf champs utilisent les collecteurs récurrents existants les 3 et 16 du mois. Les erreurs du complément conservent les champs indépendants valides, sont transmises au workflow et ne suppriment pas les dernières observations.
+
+| Instrument | Publication et identité validées | Champs ajoutés |
+|---|---|---|
+| Vanguard EUR Corporate Bond IE00BZ163G84 | GPX public, portId 9659, EUR, ISIN vérifié à chaque page ; portefeuille au 31/08/2026 | Dix obligations individuelles ; trois pages, 3 598 lignes, poids totaux 99,99984 % |
+| HSBC EURO STOXX 50 IE00B4K6B022 | Fiche mensuelle émetteur, EUR, au 31/08/2026 | Dix positions du fonds, ASML 8,62 % ; liquidités exclues dans la publication |
+| WPEA IE0002XZSHO1 | Benchmark MSCI World Index vérifié dans la fiche BlackRock courante ; composition MSCI au 30/09/2026 | Pays, secteurs, dix constituants de l’indice suivi |
+| SPEA IE000DQLYVB9 | Benchmark S&P 500 Net TR Index vérifié dans la fiche BlackRock courante ; tables d’indice Amundi au 31/08/2026 | Pays, secteurs, dix constituants de l’indice suivi |
+| BNP S&P 500 FR0011550185 | Benchmark S&P 500 Composite (NR) vérifié dans le PDF BNP ; pays de l’indice exact dans la fiche Amundi au 31/08/2026 | Pays uniquement ; secteurs et positions BNP conservés |
+
+Sources relues à chaque collecte :
+- https://www.vanguard.co.uk/gpx/graphql — query FundsHoldingsQuery, borHoldings.holdings, pagination lastItemKey publiée par le widget. Les paniers de création brokerBasketData et les données de référence d’indice sont exclus. Chaque obligation principale conserve son SEDOL publié, son coupon et son échéance ; deux émissions d’un même émetteur ne sont pas fusionnées. Quatre petites obligations sans SEDOL restent contrôlées par leur description/coupon/échéance pour la complétude du portefeuille ; aucune des dix premières n’est sans SEDOL. Aucune renormalisation après exclusion du cash et des futures.
+- https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet — tableau Top 10 holdings du fonds. Les rendements glissants août/août restent exclus des calendriers annuels.
+- https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf
+- https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf
+- https://www.msci.com/documents/10199/255599/msci-world-index.pdf
+- https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831 — la configuration reste une URL mensuelle calculée, avec repli borné sur le mois précédent ; cette édition n’est pas épinglée.
+
+Les expositions de WPEA/SPEA sont celles de leur indice, explicitement basis=index, avec indexId et provenance distincts. Elles ne décrivent ni le portefeuille juridique ni le panier de swap. La variante de rendement et la devise n’altèrent pas les poids d’une même composition ; seul le bloc de composition est lu. Les calendriers de la part restent indépendants (WPEA EUR 2025 : 6,61 %, SPEA : aucune année complète publiée).
+
+### Blocages après nouvelle qualification
+
+- Russell 1000 : la fiche FTSE Russell courante au 30/09/2026 indique 1 022 constituants et les dix noms, mais aucun poids individuel. Son graphique sectoriel n’a pas de tableau numérique complet dans le PDF. Les publications Reg 871 et Market Maps ne fournissent pas une composition complète récente renouvelable. IWB/VONE ne deviennent pas une composition d’indice.
+- Les pages publiques S&P des deux Dividend Aristocrats sont désormais accessibles depuis cet environnement. Le service utilisé par ces pages, `/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot`, renvoie HTTP 400 pour les indexId 92388578 et 5475610, puis 403 lors de la relecture Global. Les tableaux de fonds State Street ne remplacent pas les poids de l’indice. Ces trois compositions restent hors collecte active ; les rendements d’indice existants continuent.
+- QYLD : la page courante indique l’objectif Cboe Nasdaq-100 BuyWrite v2 UCITS et un panier sans exposition économique résiduelle ; la performance affichée est USD Accumulating, pas la part distribuante IE00BM8R0J59, et les données discrete sont vides. La table des dix constituants de référence contient deux groupes de dix lignes ; aucun groupe ni poids du panier ne doit être sélectionné arbitrairement. Les expositions et calendriers de cette part restent à qualifier.
+- HSBC : la fiche mensuelle ne publie que des périodes glissantes. Le KID courant renvoie au Fund Centre pour les performances passées, sans URL de calendrier découverte et qualifiée dans cette passe.
+- 21Shares, Bitwise et les deux CoinShares : aucun calendrier exact de la part ajouté. Les prix crypto et coin entitlements ne sont pas, à eux seuls, une série NAV total return de la part ; les références crypto des fiches CoinShares restent exclues.
+- Onze parts récentes n’ont pas encore de calendrier complet qualifié dans le registre : FR0014017NX3, FR001400U5Q4, LU2970735911, LU3038520774, IE000C6ITGC8, IE0000N55FP4, IE000L6ZMMC4, IE0007Y8Y157, IE000DQLYVB9, IE0002Y8CX98, IE000W8WMSL2. Les collecteurs existants continueront à lire leurs publications ; l’année partielle de lancement et le YTD ne deviennent pas des années closes.
+- Les expositions actions sont non applicables aux produits métal, crypto et overnight. Les allocations matières premières des deux fonds diversifiés restent à qualifier sous leur classification propre. BNP Nasdaq publie des régions, qui ne peuvent pas être converties en pays.
+
+Validation : collecte réelle des cinq instruments sans erreur de complément, sept nouveaux tests de pagination/identité/dates/poids et distinction fonds/indice ; régressions des documents, BNP, champs, émetteurs et fusion ; audits des données et des consommateurs, build et tests navigateur des formats.

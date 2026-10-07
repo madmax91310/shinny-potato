@@ -173,4 +173,12 @@ def collect_one(share, now, fetch=download):
         result[field].update(sourceUrl=url, discoveryUrl=page, sha256=proof(body),
                              sourceLabel='Fiche BNP Paribas Asset Management · copie hébergée par Analizy',
                              publisher='BNP Paribas Asset Management', documentHost='Analizy')
+    if share.get('collectTrackedCountries'):
+        from collect_tracked_exposure import collect_one as tracked_exposure
+        try:
+            # parse() above independently checks the current BNP benchmark.
+            result['countries'] = tracked_exposure(share, now, share['expectedIndex'], fetch)['countries']
+            result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('countries:')]
+        except Exception as error:
+            result.setdefault('collectionErrors', []).append({'field': 'countries', 'reason': str(error)})
     return result

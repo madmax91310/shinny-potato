@@ -34,8 +34,14 @@ Quatre compositions supplémentaires sont raccordées : S&P 500, S&P 500 Equal W
 ## Complément des champs BNP, VanEck et obligations
 
 25 instruments reçoivent des champs supplémentaires. Les huit VanEck découvrent les widgets sectoriels de leur page UCITS exacte à chaque exécution ; seules les tables du fonds sont utilisées, avec dates et classification Sector/SubIndustry propres. Les calendriers de cinq parts supplémentaires (Real Estate, Dividend Leaders, Uranium, Space et Defense) sont raccordés ; les années incomplètes au lancement restent exclues. Les deux fonds néerlandais conservent leur convention publiée de distributions brutes de retenue néerlandaise, après frais du fonds.
-Douze ETF obligataires iShares reçoivent secteurs et dix positions obligataires individuelles, avec pays lorsque publiés ou issus du portefeuille complet. Les classifications obligataires (Treasury, Sovereign, Banking, titrisations…) restent distinctes des secteurs actions. Les positions sont distinguées par ISIN ; les rares pools hypothécaires sans ISIN publié conservent nom, coupon et échéance. Le SPDR Euro Corporate Bond raccorde pays, secteurs et positions depuis sa page et son XLSX daté. Vanguard Euro Corporate Bond raccorde les pays du widget GPX CNTRYATPCB et la répartition par type d’émetteur de la fiche ; ses positions restent à qualifier.
+Douze ETF obligataires iShares reçoivent secteurs et dix positions obligataires individuelles, avec pays lorsque publiés ou issus du portefeuille complet. Les classifications obligataires (Treasury, Sovereign, Banking, titrisations…) restent distinctes des secteurs actions. Les positions sont distinguées par ISIN ; les rares pools hypothécaires sans ISIN publié conservent nom, coupon et échéance. Le SPDR Euro Corporate Bond raccorde pays, secteurs et positions depuis sa page et son XLSX daté. Vanguard Euro Corporate Bond raccorde les pays du widget GPX CNTRYATPCB, la répartition par type d’émetteur de la fiche et les dix obligations principales du portefeuille GPX paginé ; SEDOL, coupon et échéance distinguent les émissions.
 Les compléments BNP et VanEck invalides conservent les données antérieures et signalent un échec, tout en laissant les frais/encours/calendriers valides être appliqués. Aucun poids résiduel n’est inventé et aucun tableau régional n’est converti en pays. Les parts récentes et les actifs crypto/métaux gardent leurs limites de publication ou d’applicabilité.
+
+## Poursuite : positions et expositions exactes
+
+Neuf champs supplémentaires sont raccordés sur cinq instruments : dix obligations Vanguard EUR Corporate Bond, dix positions HSBC EURO STOXX 50, pays/secteurs/positions WPEA et SPEA, pays BNP S&P 500. Vanguard vérifie toutes les pages (3 598 lignes au 31/08/2026, somme 99,99984 %) avant de classer les obligations individuelles ; liquidités et futures sont exclus des dix positions, sans renormaliser les poids. HSBC utilise le tableau explicitement consacré aux positions du fonds ; ses rendements glissants ne deviennent pas des calendriers annuels.
+WPEA et SPEA vérifient le benchmark de leur fiche courante puis relisent la composition officielle MSCI World ou les tableaux d’indice S&P 500 Amundi. BNP S&P 500 conserve ses tableaux BNP et reçoit uniquement les pays de cet indice exact. Ces champs portent basis=index, une source, une empreinte et une date distinctes. Le panier de swap est exclu ; les rendements d’indice ne remplacent pas ceux des parts. Une panne ou un changement d’identité conserve les champs indépendants valides et signale l’échec.
+Les trois compositions Russell 1000 et Dividend Aristocrats restent non qualifiées après la nouvelle vérification ; les performances annuelles déjà raccordées continuent leur collecte. Les 17 calendriers de parts restant absents incluent onze parts récentes sans année complète qualifiée et six produits sans calendrier exact raccordé (21Shares Bitcoin, Bitwise Bitcoin, deux CoinShares, HSBC EURO STOXX 50 et QYLD). Ils ne sont pas dix-sept collecteurs à simplement activer. Les expositions actions ne sont pas applicables aux métaux, crypto ou overnight ; les allocations matières premières des deux fonds diversifiés et les expositions QYLD restent à qualifier. BNP Nasdaq ne publie que des régions, pas des pays. Voir le détail des sources et blocages dans la qualification du 7 octobre.
 
 ## Limites par champ ETF
 
@@ -46,9 +52,9 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 | Frais annuels | 155 |
 | Encours daté | 155 |
 | Rendements calendaires de la part (au moins une année complète) | 138 |
-| Pays | 136 |
-| Secteurs ou sous-secteurs publiés | 138 |
-| Principales positions | 136 |
+| Pays | 139 |
+| Secteurs ou sous-secteurs publiés | 140 |
+| Principales positions | 140 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
@@ -88,7 +94,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR0010527275 | Amundi MSCI Water UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0010755611 | Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011440478 | Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| FR0011550185 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | Pays |
+| FR0011550185 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011550193 | BNP Paribas Easy STOXX Europe 600 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011869320 | Amundi PEA Inde (MSCI India) UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011871078 | Amundi PEA Chine (MSCI China) Screened UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -109,11 +115,11 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
 | GB00BLD4ZM24 | CoinShares Ethereum Staking ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE0000N55FP4 | iShares MSCI Europe Small Cap UCITS ETF | Rendements calendaires |
-| IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Pays, Secteurs, Principales positions |
+| IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Rendements calendaires |
 | IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Rendements calendaires |
 | IE000C6ITGC8 | iShares Quantum Computing UCITS ETF | Rendements calendaires |
-| IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Rendements calendaires, Pays, Secteurs, Principales positions |
+| IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Rendements calendaires |
 | IE000I8KRLL9 | iShares MSCI Global Semiconductors UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000L6ZMMC4 | Xtrackers FTSE All-World UCITS ETF 1C | Rendements calendaires |
 | IE000M7V94E1 | VanEck Uranium and Nuclear Technologies UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -140,7 +146,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B469F816 | SPDR MSCI Emerging Markets UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4JNQZ49 | iShares S&P 500 Financials Sector UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4K48X80 | iShares Core MSCI Europe UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00B4K6B022 | HSBC EURO STOXX 50 | Rendements calendaires, Principales positions |
+| IE00B4K6B022 | HSBC EURO STOXX 50 | Rendements calendaires |
 | IE00B4KBBD01 | iShares S&P 500 Utilities Sector UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4L5Y983 | iShares Core MSCI World UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4L5YX21 | iShares Core MSCI Japan IMI UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -198,7 +204,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BYXG2H39 | iShares Nasdaq US Biotechnology UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYYHSQ67 | iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYZK4552 | iShares Automation & Robotics UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BZ163G84 | Vanguard € Corp Bond UCITS ETF | Principales positions |
+| IE00BZ163G84 | Vanguard € Corp Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BZ56SW52 | WisdomTree Global Quality Dividend Growth UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | JE00B1VS3770 | WisdomTree Physical Gold | Pays, Secteurs, Principales positions |
 | LU0908500753 | Amundi Core STOXX Europe 600 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
