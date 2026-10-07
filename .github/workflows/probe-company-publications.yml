@@ -1,0 +1,14 @@
+name: Test official company publications
+on:
+  push:
+    branches: [codex/company-accounts-per]
+    paths: ['scripts/probe_company_publications.py', '.github/workflows/probe-company-publications.yml']
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: python scripts/probe_company_publications.py
