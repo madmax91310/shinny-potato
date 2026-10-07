@@ -1,3 +1,4 @@
+import { companyImageModel } from '../src/pages/company-analysis/image.js'
 import assert from 'node:assert/strict'
 import { searchData } from '../src/data/catalog.js'
 import { COMPANIES } from '../src/pages/company-analysis/data.js'
@@ -99,3 +100,21 @@ const loss = {...base,annual:{...base.annual,netIncome:-2e9,previousNetIncome:4e
 assert.match(buildTweetText(loss,now), /perte nette de .* pour 100 USD/)
 assert(!buildTweetText(loss,now).includes('conservé'))
 console.log('Company tweet: factual explanations, margin changes, losses, missing comparatives and neutral wording OK.')
+
+const imageBase = companyImageModel(computed, now)
+assert.equal(imageBase.pe, null) // negative trailing EPS is never a positive PER
+const imageCompany = {...computed, trailing:{...computed.trailing,dilutedEPS:5}}
+assert.equal(companyImageModel(imageCompany,now).pe, '40,0×')
+assert.equal(companyImageModel({...imageCompany,quote:{...imageCompany.quote,price:100}},now).pe, '20,0×')
+assert.equal(companyImageModel({...imageCompany,quote:{...imageCompany.quote,asOf:'2026-01-01'}},now).pe, null)
+assert.equal(companyImageModel(loss,now).columns[1].label, 'Perte nette')
+assert.match(companyImageModel(loss,now).columns[2].parts[0], /^-/)
+assert.equal(companyImageModel({...loss,annual:{...loss.annual,previousNetIncome:null}},now).columns[1].change, '')
+assert.throws(()=>companyImageModel(stale,now), /trop anciens/)
+for (const company of COMPANIES) {
+  const model = companyImageModel(company,now)
+  assert.equal(model.columns.length,3)
+  assert(model.annualDate.includes(company.annual.end.split('-').reverse().join('/')))
+  assert(!/NaN|undefined|Infinity/.test(JSON.stringify(model)))
+}
+console.log('Company image: live PER, missing/stale values, dated annual results and losses OK.')
