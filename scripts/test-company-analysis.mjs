@@ -40,7 +40,10 @@ for (const company of COMPANIES) {
   const observationNow = new Date(`${company.accountsObservedAt}T12:00:00Z`)
   assert(canPublish(company,observationNow),`${company.name}: valid initial accounts`)
   text = buildTweetText(company,observationNow)
-  assert(searchData(company.symbol,'company').some(record => record.id === `company:${company.id}`))
+  const record = searchData(company.symbol,'company').find(record => record.id === `company:${company.id}`)
+  assert(record)
+  assert.equal(record.fields.find(field => field.label === 'Activité').metadata.checkedAt, company.activityReviewedAt)
+  assert.equal(record.fields.find(field => field.label === 'Cours de clôture').metadata.checkedAt, company.quote.observedAt)
   assert(text.includes(company.activity)); assert(!/NaN|undefined|Infinity/.test(text))
   assert(company.accountsSourceUrl.startsWith('https://data.sec.gov/'))
 }

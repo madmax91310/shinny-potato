@@ -136,7 +136,7 @@ def parse_quote(body, profile, now):
     day, price = max(candidates)
     if (today-day).days > 10:
         raise ValueError('Stale price')
-    return {'price': price, 'asOf': day.isoformat(), 'currency': profile['currency']}
+    return {'price': price, 'asOf': day.isoformat(), 'observedAt': now.date().isoformat(), 'currency': profile['currency']}
 
 
 def parse_overview(body, profile, now):

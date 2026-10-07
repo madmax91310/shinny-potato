@@ -104,12 +104,12 @@ function index(id, history) {
 }
 function companyRecord(company) {
   const scope = `${company.name} · comptes consolidés · USD`;
-  const fields = [field('Activité', 'companies', company.activity, { url: company.sourceUrl, scope, dateStatus: 'not-applicable', method: 'Présentation éditoriale de l’activité ; revue distincte des résultats' })];
+  const fields = [field('Activité', 'companies', company.activity, { url: company.sourceUrl, checkedAt: company.activityReviewedAt, scope, dateStatus: 'not-applicable', method: 'Présentation éditoriale de l’activité ; revue distincte des résultats' })];
   for (const [key, label] of [['annual', 'Comptes annuels'], ['quarter', 'Comptes trimestriels']]) {
     const period = company[key];
     if (period) fields.push(field(label, 'companies', period, { url: company.accountsSourceUrl, asOf: period.end, checkedAt: company.accountsObservedAt, currency: company.currency, scope, periodStart: period.start, periodEnd: period.end, method: 'SEC companyfacts ; périodes exactes et comparatif annuel retraité ; FCF = flux d’exploitation moins investissements en immobilisations' }));
   }
-  if (company.quote) fields.push(field('Cours de clôture', 'companies', company.quote.price, { url: company.quote.sourceUrl, asOf: company.quote.asOf, currency: company.currency, scope: `${company.symbol} · action cotée`, method: 'Clôture brute de la dernière séance précédant la date locale de collecte ; aucune séance en cours' }));
+  if (company.quote) fields.push(field('Cours de clôture', 'companies', company.quote.price, { url: company.quote.sourceUrl, asOf: company.quote.asOf, checkedAt: company.quote.observedAt, currency: company.currency, scope: `${company.symbol} · action cotée`, method: 'Clôture brute de la dernière séance précédant la date locale de collecte ; aucune séance en cours' }));
   if (company.valuation) fields.push(field('Valorisation', 'companies', company.valuation, { url: company.valuation.sourceUrl, checkedAt: company.valuation.observedAt, currency: company.currency, scope, method: 'PER TTM et PER prévisionnel fournis par Alpha Vantage ; horizon prévisionnel non précisé', note: 'La date du relevé ne certifie pas une date de cours ; ratios omis de la publication après sept jours ou si les comptes sous-jacents sont dépassés.' }));
   return { id: `company:${company.id}`, type: 'company', name: company.name, aliases: [company.symbol, company.cik, company.id], consumers: [{ tool: 'Analyse d’entreprise', path: '/analyse-entreprise' }], fields };
 }
