@@ -87,6 +87,12 @@ def collect_one(share,now):
         from collect_coinshares_aum import collect as collect_aum
         result['aum']=collect_aum(share,now)
         result['unavailable']=[item for item in result['unavailable'] if not item.startswith('aum:')]
+        from collect_product_calendars import collect_coinshares_calendar
+        try:
+            result['performance'] = collect_coinshares_calendar(share, now)
+            result['unavailable'] = [item for item in result['unavailable'] if not item.startswith('performance:')]
+        except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError) as error:
+            result.setdefault('collectionErrors', []).append({'field':'performance','url':share['aumPageUrl'],'reason':str(error)})
         return result
     errors = []
     for url in ubs_urls(now):

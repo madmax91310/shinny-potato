@@ -41,7 +41,7 @@ Les compléments BNP et VanEck invalides conservent les données antérieures et
 
 Neuf champs supplémentaires sont raccordés sur cinq instruments : dix obligations Vanguard EUR Corporate Bond, dix positions HSBC EURO STOXX 50, pays/secteurs/positions WPEA et SPEA, pays BNP S&P 500. Vanguard vérifie toutes les pages (3 598 lignes au 31/08/2026, somme 99,99984 %) avant de classer les obligations individuelles ; liquidités et futures sont exclus des dix positions, sans renormaliser les poids. HSBC utilise le tableau explicitement consacré aux positions du fonds ; ses rendements glissants ne deviennent pas des calendriers annuels.
 WPEA et SPEA vérifient le benchmark de leur fiche courante puis relisent la composition officielle MSCI World ou les tableaux d’indice S&P 500 Amundi. BNP S&P 500 conserve ses tableaux BNP et reçoit uniquement les pays de cet indice exact. Ces champs portent basis=index, une source, une empreinte et une date distinctes. Le panier de swap est exclu ; les rendements d’indice ne remplacent pas ceux des parts. Une panne ou un changement d’identité conserve les champs indépendants valides et signale l’échec.
-Les trois compositions Russell 1000 et Dividend Aristocrats restent non qualifiées après la nouvelle vérification ; les performances annuelles déjà raccordées continuent leur collecte. Les 17 calendriers de parts restant absents incluent onze parts récentes sans année complète qualifiée et six produits sans calendrier exact raccordé (21Shares Bitcoin, Bitwise Bitcoin, deux CoinShares, HSBC EURO STOXX 50 et QYLD). Ils ne sont pas dix-sept collecteurs à simplement activer. Les expositions actions ne sont pas applicables aux métaux, crypto ou overnight ; les allocations matières premières des deux fonds diversifiés et les expositions QYLD restent à qualifier. BNP Nasdaq ne publie que des régions, pas des pays. Voir le détail des sources et blocages dans la qualification du 7 octobre.
+Les trois compositions Russell 1000 et Dividend Aristocrats restent non qualifiées après la nouvelle vérification ; les performances annuelles déjà raccordées continuent leur collecte. Les 13 calendriers de parts restant absents incluent onze parts récentes sans année complète qualifiée et deux produits sans calendrier exact raccordé (21Shares Bitcoin et QYLD). Ils ne sont pas treize collecteurs à simplement activer. HSBC EURO STOXX 50 : rendements EUR 2016–2025 du KIID, fonds distinct du benchmark, revenus réinvestis, précision publiée 0,1 %. Bitwise Bitcoin : calendrier NAV USD 2021–2025, année de lancement 2020 exclue. CoinShares Bitcoin et Ethereum : calendriers USD 2022–2025 calculés depuis la série produit normalisée officielle, frais et staking reflétés ; année de lancement 2021 exclue. Les niveaux publiés sont arrondis ; les rendements dérivés ne prétendent pas être plus précis. Voir [qualification des calendriers](product-calendars-2026-10-07.md). Les expositions actions ne sont pas applicables aux métaux, crypto ou overnight ; les allocations matières premières des deux fonds diversifiés et les expositions QYLD restent à qualifier. BNP Nasdaq ne publie que des régions, pas des pays. Voir le détail des sources et blocages dans la qualification du 7 octobre.
 
 ## Limites par champ ETF
 
@@ -51,7 +51,7 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 |---|---:|
 | Frais annuels | 155 |
 | Encours daté | 155 |
-| Rendements calendaires de la part (au moins une année complète) | 138 |
+| Rendements calendaires de la part (au moins une année complète) | 142 |
 | Pays | 139 |
 | Secteurs ou sous-secteurs publiés | 140 |
 | Principales positions | 140 |
@@ -88,7 +88,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B1FZS467 | iShares Global Infrastructure UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | CH0454664001 | 21Shares Bitcoin ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
 | DE000A0H08Q4 | iShares STOXX Europe 600 Technology UCITS ETF (DE) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| DE000A27Z304 | Bitwise Physical Bitcoin ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
+| DE000A27Z304 | Bitwise Physical Bitcoin ETP | Pays, Secteurs, Principales positions |
 | FR0010342592 | Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0010524777 | Amundi MSCI New Energy UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0010527275 | Amundi MSCI Water UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -112,8 +112,8 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Rendements calendaires |
 | GB00B15KXQ89 | WisdomTree Copper | Pays, Secteurs, Principales positions |
 | GB00BJYDH287 | WisdomTree Physical Bitcoin | Pays, Secteurs, Principales positions |
-| GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
-| GB00BLD4ZM24 | CoinShares Ethereum Staking ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
+| GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Pays, Secteurs, Principales positions |
+| GB00BLD4ZM24 | CoinShares Ethereum Staking ETP | Pays, Secteurs, Principales positions |
 | IE0000N55FP4 | iShares MSCI Europe Small Cap UCITS ETF | Rendements calendaires |
 | IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Rendements calendaires |
@@ -146,7 +146,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B469F816 | SPDR MSCI Emerging Markets UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4JNQZ49 | iShares S&P 500 Financials Sector UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4K48X80 | iShares Core MSCI Europe UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00B4K6B022 | HSBC EURO STOXX 50 | Rendements calendaires |
+| IE00B4K6B022 | HSBC EURO STOXX 50 | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4KBBD01 | iShares S&P 500 Utilities Sector UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4L5Y983 | iShares Core MSCI World UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4L5YX21 | iShares Core MSCI Japan IMI UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |

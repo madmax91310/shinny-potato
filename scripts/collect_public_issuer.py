@@ -131,8 +131,13 @@ def bitwise(text, share, now):
     amount,currency=money(only(re.findall(r'AUM market value \(USD\)\n([^\n]+)',block),'Bitwise AUM'))
     digest=proof(text.encode());result=base(share,stamp,digest);result['characteristics']['terPct']=ter
     result['aum']={'amount':amount,'currency':currency,'scope':'share-class','asOf':stamp,'sourceUrl':share['sourceUrl'],'sha256':digest}
-    # Launch in June 2020: its partial-year return cannot replace a full-year proxy.
-    result['unavailable'] += ['performance: 2020 is a partial launch year; full-year simulation proxy preserved','exposures: single crypto asset, no equity countries/sectors']
+    # The explicit NAV calendar is independent of fees/AUM and rolling returns.
+    from collect_product_calendars import bitwise_calendar
+    try:
+        result['performance'] = bitwise_calendar(page, share, now, digest)
+    except ValueError as error:
+        result['collectionErrors'] = [{'field':'performance','url':share['sourceUrl'],'reason':str(error)}]
+    result['unavailable'].append('exposures: single crypto asset, no equity countries/sectors')
     return result
 
 

@@ -51,7 +51,7 @@ def public_script(path):
         return ''  # Unrelated chunks can fail; the required widget configuration must still be found.
 
 
-def collect(share, now):
+def widget_url(share, names):
     page_url = share['aumPageUrl']
     parsed = urlparse(page_url)
     if parsed.scheme != 'https' or parsed.netloc != 'coinshares.com' or not parsed.path.startswith('/etp/'):
@@ -73,6 +73,10 @@ def collect(share, now):
         if len(keys) != 1 or PUBLIC_API.removesuffix('/Widgets') not in script:
             reject('CoinShares public widget configuration changed')
         key = keys.pop()
-        url = PUBLIC_API + '?ApiKey=' + key + '&names=ISIN_DYNKEYSTATISTICS_' + share['isin'] + ',ISIN_STATMETADATA_' + share['isin']
-        return parse(json.loads(download(url)), share, now, url)
+        return PUBLIC_API + '?ApiKey=' + key + '&names=' + names
     reject('CoinShares public product widget script unavailable')
+
+
+def collect(share, now):
+    url = widget_url(share, 'ISIN_DYNKEYSTATISTICS_' + share['isin'] + ',ISIN_STATMETADATA_' + share['isin'])
+    return parse(json.loads(download(url)), share, now, url)

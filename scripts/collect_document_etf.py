@@ -82,6 +82,13 @@ def collect_one(share,now):
     result['sha256']=proof(body)
     for field in ['aum','performance','sectors','countries','holdings']:
         if field in result:result[field].update(sourceUrl=share['sourceUrl'],sha256=proof(body))
+    if share.get('calendarUrl'):
+        from collect_product_calendars import hsbc_calendar
+        try:
+            result['performance'] = hsbc_calendar(download(share['calendarUrl']), share, now)
+            result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('performance:')]
+        except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError) as error:
+            result.setdefault('collectionErrors', []).append({'field':'performance','url':share['calendarUrl'],'reason':str(error)})
     return result
 
 
