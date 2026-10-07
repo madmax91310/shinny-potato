@@ -4,7 +4,7 @@
 export const TOOLS = [
   {
     to: '/analyse-entreprise', navLabel: 'Entreprises', title: 'Analyse d’entreprise',
-    publicationDay: 'Publication ponctuelle', icon: '🏭', accent: '#7bd8bd',
+    publicationDay: 'Mercredi midi', icon: '🏭', accent: '#7bd8bd',
     description: 'Activité, résultats publiés et valorisation disponible : texte et image actualisés automatiquement.', status: 'disponible',
   },
   {
@@ -214,11 +214,11 @@ export const TOOL_GROUPS = [
 export const WEEKLY_ORDER = [
   '/comparatif-etf', '/fiche-lexique', '/tweets-factsheets',
   '/france-100-menages', '/generateur-portefeuilles',
-  '/calculateur-investissement',
+  '/analyse-entreprise', '/calculateur-investissement',
   '/duels-portefeuilles', '/fiches-etf',
   '/comparateur-indices',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
-  '/analyse-entreprise', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat',
+  '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat',
   '/dilemme', '/vrai-faux', '/comparatif-courtiers', '/cas-concrets',
   '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]
