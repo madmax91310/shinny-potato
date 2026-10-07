@@ -35,7 +35,7 @@ try {
       const { renderETFImage } = await import('/shinny-potato/src/pages/etf-sheets/canvasImage.js')
       const { getAnnualPerformance, performanceEntries } = await import('/shinny-potato/src/pages/etf-sheets/annualPerformance.js')
       const etf = ETFS.find(e => e.id === id)
-      const labels = [], bounds = [], performanceText = [], identifiers = []
+      const labels = [], bounds = [], performanceText = [], identifiers = [], aumText = []
       const original = CanvasRenderingContext2D.prototype.fillText
       CanvasRenderingContext2D.prototype.fillText = function(value, x, y, ...rest) {
         const m = this.measureText(value)
@@ -43,6 +43,7 @@ try {
         if (box.l < 0 || box.r > this.canvas.width || box.t < 0 || box.b > this.canvas.height) throw new Error(`Clipped ${id}: ${value}`)
         for (const p of bounds) if (Math.min(box.r, p.r) - Math.max(box.l, p.l) > 1 && Math.min(box.b, p.b) - Math.max(box.t, p.t) > 1) throw new Error(`Overlap ${id}: ${p.text} / ${value}`)
         bounds.push(box); labels.push(String(value));
+        if (x >= 840 && y >= 1430 && y < 1550) aumText.push(String(value))
         if (String(value) === `ISIN ${etf.isin}` || value === etf.listing?.ticker) identifiers.push({ text: String(value), x, y });
         if (y >= 1600 && y < 1895) performanceText.push({ text: String(value), font: this.font, color: this.fillStyle })
         return original.call(this, value, x, y, ...rest)
@@ -61,7 +62,10 @@ try {
         if (identifiers.length !== (etf.listing ? 2 : 1) || identifiers.some(item => item.y > 850) || (etf.listing && identifiers[1].x <= identifiers[0].x)) throw new Error(`Misplaced identity ${id}`)
         if (canvas.width !== 1600 || canvas.height !== 2000) throw new Error('Incorrect X aspect ratio')
         const text = labels.join(' '), normalize = s => s.replace(/\s+/g, ' ').trim()
-        for (const value of [etf.name, etf.isin, etf.ter, etf.positions, etf.aum, etf.distribution, etf.listing?.ticker].filter(Boolean)) if (!normalize(text).includes(normalize(value))) throw new Error(`Lost fact ${id}: ${value}`)
+        for (const value of [etf.name, etf.isin, etf.ter, etf.positions, etf.distribution, etf.listing?.ticker].filter(Boolean)) if (!normalize(text).includes(normalize(value))) throw new Error(`Lost fact ${id}: ${value}`)
+        const amount = String(etf.aum).replace(/^(?:Part|Fonds)\s*:\s*/i, '').replace(/\s+(?:au\s+\d{2}\/\d{2}\/\d{4}|\(relevé le [^)]+\))\s*$/i, '').trim()
+        if (!labels.includes('Encours') || !normalize(aumText.join(' ')).includes(normalize(amount))) throw new Error(`Missing AUM amount ${id}: ${amount}`)
+        if (aumText.some(s => /^(?:Part|Fonds)\s*:|\d{2}\/\d{2}\/\d{4}|relevé le/i.test(s))) throw new Error(`AUM metadata returned ${id}`)
         if (labels.filter(s => s === 'ÉPARGNANT LIBRE').length !== 1 || !text.includes('Pas un conseil en investissement')) throw new Error('Signature/disclaimer missing')
         if (labels.filter(s => s === etf.ter).length !== 1 || /Nouveau|PRÉSENTATION/.test(text)) throw new Error('Clutter returned')
         if (labels.some(s => /\bPEA\b/.test(s)) !== (etf.pea === true || /\bPEA\b/.test(etf.name))) throw new Error(`Unverified PEA ${id}`)
