@@ -50,20 +50,22 @@ Le comparatif de courtiers compte encore neuf conclusions corroborées sans conf
 
 Le workflow `.github/workflows/deploy-pages.yml` publie la branche `master` sur GitHub Pages après réussite des contrôles. Une pull request exécute les vérifications sans publication.
 
-La revue hebdomadaire des données reste informative. Tous les 180 jours à partir du 27 septembre 2026, `.github/workflows/review-freshness.yml` ouvre une issue de rappel avec les priorités de vérification. Une issue par période est créée, même si le workflow tourne chaque lundi ; une erreur de rappel ne bloque jamais le déploiement. Les dates signalées ne prouvent pas qu'un chiffre est devenu faux.
+La revue hebdomadaire des données reste informative. Chaque lundi, `.github/workflows/review-freshness.yml` exécute `scripts/data-review-reminder.mjs`, qui consomme directement le calendrier de `buildReview` dans `src/pages/data-review/lib.js`, également utilisé par l’interface « Données à revoir ». Les rappels portent sur les échéances prévues dans les sept prochains jours ou déjà échues, selon le type de donnée, ainsi que sur les échéances des offres. Ils sont regroupés par date ; une même donnée et une même échéance ne déclenchent pas de nouveau rappel si une issue existe déjà, même fermée. Les réserves, archives et champs sans échéance exploitable restent consultables dans l’interface sans déclencher seuls un rappel. Une erreur de rappel ne bloque jamais le déploiement. Les dates signalées ne prouvent pas qu'un chiffre est devenu faux.
 
 Le générateur `/france-100-menages` propose 17 sujets et sept rendus PNG : Ivoire & noir, Bleu & blanc, Prune & sable, original, affiche typographique, éditorial clair et cartes contrastées. Le paramètre `design` conserve le rendu choisi dans l’URL. Les huit sujets supplémentaires portent sur le niveau de vie, les salaires et les différences selon l’âge ou la catégorie sociale. Les statistiques de personnes et de salariés sont identifiées explicitement, avec leur champ, leur période et le statut provisoire le cas échéant. Les salaires sont nets de cotisations avant impôt, en EQTP ; les nouveaux patrimoines par âge sont bruts.
 
 Trois nouvelles compositions sont disponibles dans La France en 100 : Ivoire & noir (par défaut), Bleu & blanc et Prune & sable. Elles couvrent les taux, les seuils en euros, les parts de patrimoine et les comparaisons. Les quatre rendus précédents restent accessibles, y compris via leurs liens partagés.
 
-Les 14 profils de Portefeuille d’investisseur disposent d’une présentation courte sourcée dans `src/data/investor-profiles.js`. La même phrase préremplit l’éditeur et le tweet ; elle est modifiable et réinitialisable. Les sources biographiques sont affichées dans l’application, séparées de celles des déclarations 13F.
+Les 18 profils de Portefeuille d’investisseur disposent d’une présentation courte sourcée dans `src/data/investor-profiles.js`. La même phrase préremplit l’éditeur et le tweet ; elle est modifiable et réinitialisable. Les sources biographiques sont affichées dans l’application, séparées de celles des déclarations 13F.
 
 ### Actualisation automatique des portefeuilles 13F
 
-Les huit profils Tracefour chargent la dernière photographie disponible à chaque ouverture
-ou changement d’investisseur, avec revalidation du cache. Li Lu, Gates Foundation Trust et
-Seth Klarman sont contrôlés chaque jour à 12 h 25 UTC par `update-investor-13f.yml`,
-sans clé API, depuis FolioFact. Les nouveaux fichiers sont commités puis le workflow
+Tous les profils définis dans `scripts/update-investor-13f.py` sont contrôlés chaque jour
+à 12 h 25 UTC par `.github/workflows/update-investor-13f.yml`, sans clé API, depuis
+l’API publique de FolioFact. Pour Bill Ackman, le collecteur compare aussi la déclaration
+disponible chez Tracefour et la retient si son trimestre est plus récent et validé.
+À chaque ouverture ou changement d’investisseur, l’application charge le fichier
+correspondant dans `public/data/investors/`, avec revalidation du cache. Les nouveaux fichiers sont commités puis le workflow
 réutilisable de déploiement construit, contrôle et publie ce commit sur GitHub Pages.
 L’appel explicite évite de dépendre d’un événement push émis par `GITHUB_TOKEN`, qui ne
 déclenche pas le déploiement habituel. Le déploiement est également retenté au contrôle
@@ -71,7 +73,8 @@ suivant si les données n’ont pas changé.
 
 Toutes les réponses sont validées avant écriture. Une erreur du fournisseur ou un retour
 à un trimestre plus ancien fait échouer le contrôle et conserve les fichiers précédents.
-Les corrections du trimestre courant restent acceptées. La fraîcheur dépend de la
+Les corrections du trimestre courant restent acceptées ; lors du passage au trimestre
+suivant, la photographie précédente est archivée. La fraîcheur dépend de la
 publication des déclarations et de leur intégration par les sources ; les dates de
 photographie affichées ne sont pas remplacées par la date du contrôle.
 
@@ -97,4 +100,4 @@ clôture ajustée ne correspond pas au prix effectivement coté à cette date.
 Capture et limites : scripts/source-snapshots/calculator-companies-2026-10-02.json.
 Ces séries sont figées au dernier contrôle ; leur ajout ne crée pas d’actualisation programmée.
 
-Le workflow 13F actualise quotidiennement les 14 profils à 12:25 UTC, dont Terry Smith (Fundsmith LLP), Mohnish Pabrai (Dalal Street LLC) et Christopher Hohn (TCI Fund Management Ltd). Il conserve les dernières données valides en cas d’échec, refuse tout retour à un trimestre antérieur et archive les snapshots lors du passage au trimestre suivant. Les portraits sont stockés localement avec leurs sources et crédits dans `public/asset-art/investors/sources.json`.
+Les portraits des investisseurs sont stockés localement avec leurs sources et crédits dans `public/asset-art/investors/sources.json`.
