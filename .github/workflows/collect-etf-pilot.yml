@@ -158,7 +158,7 @@ jobs:
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
-          name: active-etf-observation
+          name: active-etf-observation-${{ matrix.os }}
           path: |
             ${{ runner.temp }}/observation.json
             ${{ runner.temp }}/amundi-observation.json
