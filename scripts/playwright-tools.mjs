@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { buildText, presentationType } from '../src/pages/etf-sheets/lib.js';
@@ -502,56 +503,44 @@ async function testEtfSheets(page) {
 }
 
 async function testBrokerComparator(page) {
-  await page.goto(`${BASE}/comparatif-courtiers`, { waitUntil: "networkidle" });
-  await page.waitForTimeout(150);
-  await page.waitForFunction(() => {
-    const canvas = document.querySelector('.bc-versus-canvas');
-    return canvas?.width === 1600 && canvas?.height === 900;
-  });
-  const versusBefore = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
-  const [duelDownload] = await Promise.all([
+  await page.goto(`${BASE}/comparatif-courtiers`, { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelector('.bc-versus-canvas')?.width === 1600);
+  const [download] = await Promise.all([
     page.waitForEvent('download'),
     page.getByRole('button', { name: 'Télécharger l’image PNG' }).click(),
   ]);
-  const versusOk = versusBefore.startsWith('data:image/png;base64,') && versusBefore.length > 30000
-    && duelDownload.suggestedFilename() === 'duel-courtiers-tr-bourso.png';
-  // Le texte généré vit dans la value d'un <textarea> (bc-tweet-textarea) — jamais capturé par
-  // innerText(), qui n'expose pas le contenu des champs de formulaire.
-  const tweet = await page.locator(".bc-tweet-textarea").inputValue();
-  const ok = tweet.includes("🔄 Transfert du PEA") && tweet.includes("BoursoMarkets")
-    && tweet.includes("💰 Frais de courtage PEA") && tweet.includes("Direct Price")
-    && tweet.includes("💵 Liquidités rémunérées") && tweet.includes("Non : PEA/PEA-PME selon contrat")
-    && !/undefined|\bNaN\b|conversion|💱|à vérifier|aucune offre spécifique|preuve corroborée/i.test(tweet)
-    && (await page.locator('.bc-evidence-broker').count()) === 2
-    && (await page.locator('.bc-row-label').filter({ hasText: 'Liquidités rémunérées' }).count()) === 0;
-  await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
-  await page.waitForFunction(() => document.querySelector('.bc-tweet-textarea')?.value.includes('Saxo Bank'));
-  await page.waitForFunction((previous) => {
-    const canvas = document.querySelector('.bc-versus-canvas');
-    return canvas?.width === 1600 && canvas.toDataURL('image/png') !== previous;
-  }, versusBefore);
-  const fortuneoSaxo = await page.locator('.bc-tweet-textarea').inputValue();
-  let previousVersus = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
-  for (const duo of ['IBKR vs XTB', 'CA vs BD']) {
-    await page.locator('.bc-duel-chip').filter({ hasText: duo }).click();
-    await page.waitForFunction((previous) => document.querySelector('.bc-versus-canvas')?.toDataURL('image/png') !== previous, previousVersus);
-    previousVersus = await page.locator('.bc-versus-canvas').evaluate((canvas) => canvas.toDataURL('image/png'));
+  const image = await page.locator('.bc-versus-canvas').evaluate(canvas => canvas.toDataURL('image/png'));
+  let valid = download.suggestedFilename() === 'duel-courtiers-tr-bourso.png' && image.length > 30000;
+  for (const { a, b } of BROKER_DUELS) {
+    const code = id => COMPARISON_BROKERS.find(broker => broker.id === id).code;
+    await page.locator('.bc-duel-chip').filter({ hasText: `${code(a)} vs ${code(b)}` }).click();
+    const expected = buildBrokerPost([a, b]);
+    await page.waitForFunction(expected => document.querySelector('.bc-tweet-textarea')?.value === expected, expected);
+    valid &&= (await page.locator('.bc-evidence-broker').count()) === 2;
   }
-  await page.locator('.bc-duel-chip').filter({ hasText: 'FO vs SX' }).click();
-  await page.locator('.bc-evidence-broker').first().locator('summary').click();
-  const sourceOk = fortuneoSaxo.includes('💵 Liquidités rémunérées')
-    && fortuneoSaxo.includes('📅 Achats automatiques sur PEA')
-    && fortuneoSaxo.includes('Non : PEA/PEA-PME selon contrat')
-    && fortuneoSaxo.includes('PEA Jeune : Fortuneo ❌ · Saxo Bank ❌')
-    && fortuneoSaxo.includes('Plus de 150 ETF Amundi')
-    && (await page.locator('.bc-evidence-broker').count()) === 2
-    && (await page.locator('.bc-evidence').innerText()).includes('les conditions générales Fortuneo du 01/09/2025, art. 12 p. 35, excluent explicitement les intérêts')
-    && (await page.locator('.bc-evidence').innerText()).includes('source externe');
+  await page.locator('.bc-duel-chip').filter({ hasText: 'XTB vs SX' }).click();
+  const post = await page.locator('.bc-tweet-textarea').inputValue();
+  valid &&= post.startsWith('⚫ XTB ou ⚪ Saxo pour ton PEA ?')
+    && post.includes('💱 Si une conversion est nécessaire\n\nXTB : 0,50 %.\n\nSaxo : 0,25 %.')
+    && post.includes('PEA Jeune : aucun des deux ❌')
+    && post.includes('Fourni chez les deux ✅')
+    && post.includes('Pour quitter l’un ou l’autre : 15 € par ligne, maximum 150 €.');
+  await page.locator('.bc-evidence-broker').last().locator('summary').click();
+  valid &&= (await page.locator('.bc-evidence').innerText()).includes('VIP')
+    && (await page.locator('.bc-evidence').innerText()).includes('Conversion de devises');
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__brokerCopied = text; } },
+  }));
+  const edited = post.replace('pour ton PEA ?', 'pour mon PEA ?');
+  await page.locator('.bc-tweet-textarea').fill(edited);
+  await page.getByRole('button', { name: 'Copier le tweet', exact: true }).click();
+  valid &&= await page.evaluate(expected => window.__brokerCopied === expected, edited);
   await page.locator('.bc-duel-chip').filter({ hasText: 'TR vs IBKR' }).click();
-  const noOffers = await page.locator('.bc-tweet-textarea').inputValue();
-  const complete = !/🎁|conversion|💱|à vérifier|aucune offre spécifique|preuve corroborée|portée PEA non établie/i.test(noOffers)
-    && noOffers.includes('Transfert entrant et sortant possible') && noOffers.includes('IFU disponible pour le PEA');
-  record("Comparatif courtiers", ok && sourceOk && versusOk && complete, "rubriques complètes, logos officiels et image PNG du duel");
+  valid &&= (await page.locator('.bc-tweet-textarea').inputValue()) === buildBrokerPost(['tr', 'ibkr']);
+  await page.setViewportSize({ width: 390, height: 844 });
+  valid &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  record('Comparatif courtiers', valid, '28 duels : texte court, réserves, sources, copie après modification et image PNG');
 }
 
 async function testTweetMidi(page) {
@@ -1196,6 +1185,9 @@ try {
     : {});
   const page = await browser.newPage();
 
+  if (process.argv.includes('--broker')) {
+    await testBrokerComparator(page);
+  } else {
   await testAssetSelection(page);
   await testWorkspaceNavigation(page);
   await testCalculateur(page);
@@ -1215,14 +1207,14 @@ try {
   await testHouseholds(page);
   await testInvestorIntroductions(page);
   await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
-  const reviewChecks = { ibkr: (await page.locator('.dr-item').count()) === 3 };
+  const reviewChecks = { ibkr: (await page.locator('.dr-item').count()) === 4 };
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil' }).fill('Interactive Brokers');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.dr-item').length === 3);
-  reviewChecks.search = (await page.locator('.dr-item').count()) === 3;
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.dr-item').length === 4);
+  reviewChecks.search = (await page.locator('.dr-item').count()) === 4;
   await page.reload({ waitUntil: 'networkidle' });
-  reviewChecks.reload = (await page.locator('.dr-item').count()) === 3;
+  reviewChecks.reload = (await page.locator('.dr-item').count()) === 4;
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil', exact: true }).fill('');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.dr-item').length === 9);
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.dr-item').length === 11);
   await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
   await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.dr-item').length === 3);
   reviewChecks.deadlines = (await page.locator('.dr-item').count()) === 3;
@@ -1235,6 +1227,7 @@ try {
   await page.setViewportSize({ width: 1280, height: 720 });
   record('Données à revoir', Object.values(reviewChecks).every(Boolean), JSON.stringify(reviewChecks));
 
+  }
   await browser.close();
 } finally {
   if (server) {

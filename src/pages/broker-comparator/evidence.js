@@ -2,6 +2,11 @@
 // Dans les PDF, la première page porte le numéro 1.
 // « Non établi » ne signifie jamais « non proposé ».
 export const OFFICIAL_SOURCES = {
+  boursoFxTariff: { title: 'BoursoBank · Barème de change Bourse', edition: '05/10/2026, page 20', checked: '07/10/2026', url: 'https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf' },
+  fortuneoFxTariff: { title: 'Fortuneo · Barème de change Bourse', edition: '06/08/2026, page 13', checked: '07/10/2026', url: 'https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf' },
+  bdFxTariff: { title: 'Bourse Direct · Barème de change Bourse', edition: '06/01/2026, page 2', checked: '07/10/2026', url: 'https://www.boursedirect.fr/pdf/tarifs_bd.pdf' },
+  trDividendsFx: { title: 'Trade Republic · Conversion des dividendes', edition: 'page en ligne', checked: '07/10/2026', url: 'https://support.traderepublic.com/fr-fr/414', kind: 'page' },
+  ibkrFx: { title: 'IBKR · Conversions manuelles et automatiques', edition: 'page en ligne', checked: '07/10/2026', url: 'https://www.interactivebrokers.ie/fr/pricing/commissions-spot-currencies.php', kind: 'page' },
   boursoEtfNotice: { title: 'BoursoBank · Avis client sur la fin de l’exonération ETF', edition: 'capture fournie le 01/10/2026 ; effet le 05/10/2026', checked: '01/10/2026', url: 'broker-evidence/bourso-etf-notice-2026-10-01.jpg', kind: 'customer-notice' },
   fortuneoTransferConditions: {'title': 'Fortuneo · Justificatifs de remboursement du transfert', 'edition': 'page en ligne, publication non datée', 'checked': '01/10/2026', 'url': 'https://www.fortuneo.fr/faq/quelles-sont-les-conditions-de-remboursement-des-frais-de-transfert-de-compte-bourse-chez-fortuneo', 'kind': 'page'},
   fortuneoTransferOffer: {'title': 'Fortuneo · Remboursement du transfert entrant', 'edition': 'page en ligne, publication non datée', 'checked': '01/10/2026', 'url': 'https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse', 'kind': 'page'},
@@ -19,7 +24,7 @@ export const OFFICIAL_SOURCES = {
   trPea: { title: 'Trade Republic · PEA', edition: 'page en ligne', checked: '29/09/2026', url: 'https://traderepublic.com/fr-fr/pea', kind: 'page' },
   xtbInterest: { title: 'XTB · Intérêts sur fonds non investis', edition: 'taux variables', checked: '29/09/2026', url: 'https://www.xtb.com/fr/interets', kind: 'page' },
   xtbPea: { title: 'XTB · PEA, fonctionnement et FAQ', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.xtb.com/fr/pea', kind: 'page' },
-  saxoInterest: { title: 'Saxo · Intérêts sur les espèces', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/campaigns/interest-rates-cal', kind: 'page' },
+  saxoInterest: { title: 'Saxo · Intérêts sur les espèces', edition: 'page en ligne, clients VIP', checked: '07/10/2026', url: 'https://www.home.saxo/fr-fr/campaigns/interest-rates-cal', kind: 'page' },
   saxoAutoinvest: { title: 'Saxo · Plan Épargne Programmé', edition: 'page en ligne', checked: '29/09/2026', url: 'https://www.home.saxo/fr-fr/products/autoinvest', kind: 'page' },
   saxoPeaPromo: { title: 'Saxo · Conditions de l’offre PEA 70 actions sans courtage', edition: '23/02–31/12/2026', checked: '30/09/2026', reviewUntil: '2026-12-31', url: 'https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions', kind: 'page' },
   saxoAmundiPromo: { title: 'Saxo · Offre ETF Amundi', edition: 'jusqu’au 31/12/2026', checked: '30/09/2026', reviewUntil: '2026-12-31', url: 'https://www.home.saxo/fr-fr/campaigns/amundi-etf', kind: 'page' },
@@ -127,6 +132,7 @@ const unknown = (summary, checked = []) => ({ status: 'non établi', summary, ch
 // rémunère au moins un solde d'espèces non investi ; cela ne promet rien pour tous les comptes.
 export const BROKER_EVIDENCE = {
   tr: {
+    change: { ...proved('Les dividendes en devises sont automatiquement convertis en euros ; aucun pourcentage forfaitaire établi ici.', 'trDividendsFx'), post: 'dividendes en devises convertis en euros ; taux applicable.' },
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: { status: 'confirmé', summary: 'Les conditions PEA renvoient au barème d’ordres. Ordre ponctuel : 1 € de frais fixes de règlement ; 2 € si Direct Price est choisi. Plans programmés sans frais d’exécution ; spread, frais du produit et tiers éventuels en sus. Le tarif exact est présenté avant validation dans l’application.', refs: [{ document: 'trContract', page: 190 }, { document: 'trPricing' }, { document: 'trOrders' }] },
     dca: { status: 'confirmé', summary: 'Plans programmés prévus par contrat ; PEA sans frais sur les plans selon sa page de présentation ; titres éligibles dans l’application.', refs: [{ document: 'trContract', page: 91 }, { document: 'trPea' }] },
@@ -139,6 +145,7 @@ export const BROKER_EVIDENCE = {
     transfert: proved('Transfert entrant et sortant possible. À l’entrée, un PEA contenant des titres non cotés est refusé.', 'trContract', 189),
   },
   bourso: {
+    change: { ...proved('Hors zone euro : taux de change J+1 + 0,0025 points. Ce montant est exprimé en points, pas en pourcentage.', 'boursoFxTariff', 20), post: 'taux J+1 + 0,0025 point hors zone euro.' },
     boursomarkets: { status: 'confirmé', summary: 'À partir du 05/10/2026 : exonération des frais de courtage à l’achat sur les ETF Amundi proposés dans BoursoMarkets. L’avis client met fin à l’exonération pour l’ETF concerné ; tout achat non exécuté à la clôture du 02/10 et exécuté dès le 05/10 relève du forfait Bourse. La capture ne montre ni nom ni ISIN : elle ne permet pas de dresser la liste des ETF sortants, ni d’affirmer que tous les ETF Amundi sont inclus. Vérifier la pastille de chaque fiche et le tarif à la vente. La page publique BoursoMarkets documente l’offre historique ; le changement daté est documenté par la capture client fournie le 01/10/2026.', refs: [{ document: 'boursoEtfNotice' }, { document: 'boursoMarkets' }] },
     frais: proved('Découverte : 1,99 € jusqu’à 500 €, puis 0,60 % ; plafond PEA à 0,5 %.', 'boursoTariff', 20),
     dca: proved('Plan d’épargne : négociation gratuite, minimum 10 € par fonds et frais de gestion selon DIC.', 'boursoTariff', 20),
@@ -151,6 +158,7 @@ export const BROKER_EVIDENCE = {
     transfert: { status: 'confirmé', summary: 'Transfert entrant possible : pour un premier transfert total, frais remboursés au double, jusqu’à 3 000 € et sans dépasser la valeur du compte. Justificatif à envoyer dans les 3 mois suivant le transfert effectif. Sortie : 15 € par ligne, maximum 150 €.', refs: [{ document: 'boursoTransferOffer' }, { document: 'boursoTariff', page: 25 }] },
   },
   ibkr: {
+    change: { ...proved('Barème général : conversion automatique généralement 0,03 % à la discrétion d’IBKR ; conversion manuelle premier palier 0,20 point de base (0,002 %), minimum 2 USD. Portée PEA du service non confirmée.', 'ibkrFx'), status: 'partiel', post: 'barème général : généralement 0,03 % en automatique ; en manuel 0,002 %, minimum 2 USD. Disponibilité à confirmer sur PEA.' },
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: { status: 'confirmé', summary: 'PEA : à partir de 0,05 %. Pour les actions France, tarif dégressif 0,05 % et minimum 1,25 € ; tarif fixe SmartRouting 0,05 % et minimum 3 € ; routage direct 0,10 % et minimum 4 €. Frais de Bourse possibles au tarif dégressif ; autre marché ou fonds : autre barème.', refs: [{ document: 'ibkrPea' }, { document: 'ibkrFees' }] },
     dca: { status: 'corroboré', review: { checked: '02/10/2026', outcome: 'unresolved', followUp: 'Nouvelle recherche du 02/10/2026, voir docs/data-review-2026-10-02.md ; aucune confirmation officielle de portée complète récupérée.', documents: ["ibkrPea", "ibkrDca", "ibkrRecurringGuide", "ibkrRecurringFaq"], gap: "Disponibilité des achats récurrents sur le compte PEA, et non sur le compte ordinaire associé." }, summary: 'Disponibilité PEA contestée : Finance Héros (réponse du 19/08/2026) et MoneyRadar (test du 14/09/2026) disent oui sur des titres entiers ; une analyse du 04/09/2026 non retenue comme preuve, Finance Héros (juillet) et Le Monde (2025) disent non. La page officielle du service général IBKR décrit des achats récurrents utilisant les fractions ; elle ne confirme pas leur disponibilité sur PEA. La FAQ officielle publique 1112361625, récupérée le 30/09 via son moteur public, exige une permission de fractions activée et décrit une exécution en fractions, mais ne nomme pas le PEA : elle ne confirme pas l’affirmation externe d’un mode PEA en titres entiers. Le guide officiel des achats récurrents, daté du 09/04/2026 et relu le 30/09, décrit le parcours générique sans nommer le PEA. Le barème ProRealTime du 17/09 ne nomme pas expressément le PEA. Les sources récentes divergent ; aucun parcours PEA daté ni confirmation directe IBKR ne tranche. Analyse discordante et limites détaillées dans le document d’audit.', refs: [{ document: 'financeHerosForumDca' }, { document: 'radarIbkrDca' }, { document: 'prorealtimeDca2026', page: 29 }, { document: 'financeHerosPea' }, { document: 'mondeDca' }, { document: 'ibkrDca' }, { document: 'ibkrRecurringFaq' }] },
@@ -163,6 +171,7 @@ export const BROKER_EVIDENCE = {
     transfert: proved('Transfert du PEA possible. IBKR annonce 0 € de frais de transfert ; les frais facturés par l’établissement d’origine restent distincts.', 'ibkrPea'),
   },
   fortuneo: {
+    change: { ...proved('Autres opérations et services Bourse : taux de change J+1 + 0,12 %.', 'fortuneoFxTariff', 13), post: 'taux de change J+1 + 0,12 %.' },
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: proved('Starter : premier ordre mensuel ≤ 500 € gratuit sur Euronext/Equiduct, puis 0,35 %. Achat PEA/PEA-PME sur certaines autres places européennes : minimum 400 € hors courtage.', 'fortuneoTariff', 10),
     dca: { status: 'corroboré', review: { checked: '02/10/2026', outcome: 'unresolved', followUp: 'Nouvelle recherche du 02/10/2026, voir docs/data-review-2026-10-02.md ; aucune confirmation officielle de portée complète récupérée.', documents: ["fortuneoContract", "fortuneoSmartOrders"], gap: "Existence ou exclusion explicite d’achats récurrents automatiques sur PEA, distincts des préordres et ordres conditionnels." }, summary: 'Non pour les achats PEA automatisés : Investimieux (mise à jour du 26/09/2026, absence de fonction native explicitement décrite), Le Monde (09/2025), Starfinance (08/2026) et Épargnant 3.0 (2026) décrivent des ordres manuels. Le tableau MoneyRadar emploie « ordres programmés » sans documenter l’automatisation : ce terme ne suffit pas à établir un plan récurrent. Le contrat Fortuneo, art. 4.5 p. 32–33, et la page Ordres Intelligents décrivent des déclenchements conditionnels et des préordres transmis à l’initiative du client, sans exclusion explicite de tout service récurrent PEA.', refs: [{ document: 'investimieuxFortuneoDca' }, { document: 'mondeDca' }, { document: 'starFortuneoDca' }, { document: 'epargnant30FortuneoDca' }, { document: 'radarIbkrDca' }, { document: 'fortuneoContract', page: 32 }, { document: 'fortuneoContract', page: 33 }, { document: 'fortuneoSmartOrders' }] },
@@ -175,6 +184,7 @@ export const BROKER_EVIDENCE = {
     transfert: { status: 'confirmé', summary: 'Transfert entrant possible : premier transfert remboursé jusqu’à 100 € si l’encours est inférieur à 3 000 €, 150 € de 3 000 à moins de 5 000 €, et 2 000 € à partir de 5 000 €. Justificatif à envoyer dans les 3 mois suivant l’ouverture. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.', refs: [{ document: 'fortuneoTransferOffer' }, { document: 'fortuneoTransferConditions' }, { document: 'fortuneoTariff', page: 13 }] },
   },
   xtb: {
+    change: { ...proved('Des frais de conversion de 0,50 % peuvent s’appliquer au PEA.', 'xtbPea'), post: '0,50 %.' },
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: proved('0 % avant 100 000 € de volume mensuel ; 0,20 % ensuite ; minimum 10 € non appliqué au PEA.', 'xtbTariff', 4),
     dca: proved('XTB présente les plans programmés sur PEA comme une extension à venir ; disponibilité actuelle non annoncée.', 'xtbComparison'),
@@ -187,6 +197,7 @@ export const BROKER_EVIDENCE = {
     transfert: { status: 'confirmé', summary: 'Transfert entrant du PEA encore indisponible. Sortie : 15 € par ligne, maximum 150 €.', refs: [{ document: 'xtbPea' }, { document: 'xtbTariff', page: 6 }] },
   },
   caidf: {
+    change: { ...unknown('Aucun taux de conversion propre aux opérations PEA confirmé lors de cette revue ; ne pas appliquer une commission de change bancaire générale.', ['caTariff']), post: 'tarif à confirmer auprès de la caisse régionale.' },
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: proved('Île-de-France, ordre en ligne Euronext : Invest Store Initial 0,50 % ; Intégral PEA/PEA-PME 0,48 % jusqu’à 500 €, 0,18 % de 500 à 1 000 €, 0,12 % au-delà. Intégral coûte 96 €/an sous 12 ordres, gratuit dès 12 ordres ou de 18 à 30 ans. Frais de marché et TTF en sus.', 'caTariff', 28),
     dca: { status: 'confirmé', summary: 'Plan d’Épargne Boursière : investissements automatiques dès 45 €/mois sur 1 à 3 SICAV/FCP éligibles PEA/PEA-PME selon la page nationale ; mise en place gratuite dans le tarif Île-de-France. Frais propres aux fonds selon leur DIC.', refs: [{ document: 'caPeb' }, { document: 'caTariff', page: 27 }] },
@@ -199,6 +210,7 @@ export const BROKER_EVIDENCE = {
     transfert: { status: 'confirmé', summary: 'Transfert possible entre banques en conservant l’antériorité fiscale. Sortie vers un établissement hors Crédit Agricole : 15 € par ligne, maximum 150 € par PEA ; frais du correspondant possibles pour les titres étrangers.', refs: [{ document: 'caIdfPea' }, { document: 'caTariff', page: 31 }] },
   },
   bd: {
+    change: { ...proved('Taux appliqué à Bourse Direct + 0,08 % par opération, sauf autres marchés : taux appliqué à Bourse Direct.', 'bdFxTariff', 2), post: 'taux appliqué au courtier + 0,08 %, sauf autres marchés : taux appliqué au courtier.' },
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: proved('PEA ≤ 198 € : 0,5 % ; puis paliers à partir de 0,99 €.', 'bdTariff', 2),
     dca: proved('Plans automatiques PEA et CTO ; ETF éligibles sans courtage, actions aux frais habituels.', 'bdPlans', 1),
@@ -211,6 +223,7 @@ export const BROKER_EVIDENCE = {
     transfert: { status: 'confirmé', summary: 'Transfert entrant possible : frais remboursés jusqu’à 150 € pour le PEA, sur justificatif. Sortie : 15 € par ligne, maximum 150 €.', refs: [{ document: 'bdTariff', page: 4 }, { document: 'bdTariffPage' }, { document: 'bdSupport' }] },
   },
   saxo: {
+    change: { ...proved('Frais de conversion : 0,25 %.', 'saxoFx'), post: '0,25 %.' },
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: { status: 'confirmé', summary: 'Classic Euronext : 0,08 % avec minimum de 2 € (plafond réglementaire PEA). Jusqu’au 31/12/2026, achats et ventes sans courtage sur 70 actions européennes sélectionnées pour les PEA nouvellement ouverts ou transférés remplissant les conditions Saxo. Une sélection de plus de 150 ETF Amundi est sans courtage à l’achat jusqu’au 31/12/2026, sous conditions, avec blocage des positions achetées dans ce cadre pour transfert durant six mois. Conversion possible à 0,25 %.', refs: [{ document: 'saxoTariff', page: 5 }, { document: 'saxoPeaPromo' }, { document: 'saxoAmundiPromo' }, { document: 'saxoFx' }] },
     dca: proved('Plan Épargne Programmé sans commission d’achat ni frais mensuels ; actuellement indisponible dans le PEA.', 'saxoAutoinvest'),
@@ -219,13 +232,13 @@ export const BROKER_EVIDENCE = {
     pme: proved('PEA-PME couvert par le barème.', 'saxoTariff', 16),
     jeune: proved('Saxo Banque indique explicitement ne pas proposer de PEA Jeune.', 'saxoPeaHelp'),
     ifu: proved('IFU en ligne gratuit dans la brochure.', 'saxoTariff', 3),
-    cash: { status: 'confirmé', summary: 'Oui pour espèces éligibles en EUR/USD selon solde et niveau de compte ; taux variable. PEA exclu de cette offre.', refs: [{ document: 'saxoContract', page: 24 }, { document: 'saxoInterest' }] },
+    cash: { status: 'confirmé', summary: 'Oui pour les clients VIP : espèces éligibles en EUR/USD, sous conditions ; taux variable. PEA exclu de cette offre.', refs: [{ document: 'saxoContract', page: 24 }, { document: 'saxoInterest' }] },
     transfert: { status: 'confirmé', summary: 'Transfert entrant possible : pour un transfert total avant le 31 décembre 2026, frais remboursés jusqu’à 150 €, sous conditions ; justificatif à transmettre dans le mois suivant le débit. Sortie : 15 € par ligne, maximum 150 €.', refs: [{ document: 'saxoTariff', page: 16 }, { document: 'saxoPeaTransferOffer' }] },
   },
 }
 
 export const EVIDENCE_FIELDS = [
-  ['frais', 'Ordres PEA'], ['boursomarkets', 'BoursoMarkets'], ['dca', 'Investissement programmé'], ['garde', 'Frais de garde'],
+  ['frais', 'Ordres PEA'], ['change', 'Conversion de devises'], ['boursomarkets', 'BoursoMarkets'], ['dca', 'Investissement programmé'], ['garde', 'Frais de garde'],
   ['pea', 'PEA'], ['pme', 'PEA-PME'], ['jeune', 'PEA Jeune'], ['ifu', 'IFU'],
   ['cash', 'Liquidités rémunérées'], ['transfert', 'Transfert PEA'],
 ]
