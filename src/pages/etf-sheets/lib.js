@@ -35,20 +35,17 @@ export function buildText(sourceEtf) {
     '📍 ' + etf.location + '\n' +
     (annual ? '\n' + formatTweetPerformance(annual) + '\n' : '') +
     '\n' +
-    '🔍 C\'est quoi ?\n' +
+    '🔍 Ce que tu achètes\n' +
     etf.whatIs + '\n' +
     '\n' +
-    '✅ Ce que cet ' + presentationType(etf) + ' t’apporte\n' +
+    '✅ L’intérêt de cette exposition\n' +
     etf.whyInteresting + '\n' +
     '\n' +
-    '⚠️ Ce qu\'il faut savoir\n' +
+    '⚠️ Ce qu’il faut garder en tête\n' +
     etf.whatToKnow + '\n' +
     '\n' +
-    '🏆 À retenir\n' +
-    etf.verdict + '\n' +
-    '\n' +
-    '💬 ' + etf.question + ' 👇\n' +
-    '⚠️ Pas un conseil en investissement'
+    (etf.closing ? etf.closing + '\n\n' : '') +
+    '💬 ' + etf.question
   )
 }
 
@@ -60,7 +57,7 @@ export function buildFactRows(etf) {
     { icon: '🆔', text: 'ISIN : ' + etf.isin, mono: true },
     { icon: '💸', text: 'Frais : ' + etf.ter },
     { icon: '📦', text: etf.positions },
-    { icon: '💰', text: 'Encours : ' + etf.aum },
+    { icon: '💰', text: 'Encours : ' + getPresentationCopy(etf).aum },
     { icon: '🔄', text: etf.distribution },
     { icon: '🏦', text: accountLabel(etf, '   |   ') },
     { icon: '📍', text: etf.location },

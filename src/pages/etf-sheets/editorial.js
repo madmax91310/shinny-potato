@@ -114,7 +114,7 @@ const GOALS = {
 
 const OVERRIDES = {
   ia: {
-    hook: '🤖 Tu t’intéresses à l’IA, mais tu ne veux pas choisir les actions une par une ? Regardons ce que propose l’ETF L&G Artificial Intelligence 👇',
+    hook: '🤖 Tu t’intéresses à l’IA, mais tu ne veux pas choisir les actions une par une ?\n\nCet ETF permet de s’y exposer en une seule ligne 👇',
     whatIs: 'Cet ETF suit un indice qui sélectionne des entreprises liées à plusieurs activités de l’intelligence artificielle : infrastructures, logiciels et applications.\n\nIl ne se limite donc pas aux fabricants de puces ou aux entreprises qui développent des modèles d’IA.',
     whyInteresting: 'Une seule ligne pour investir dans plusieurs entreprises liées au thème, sans devoir choisir celle qui en profitera le plus.\n\nLa sélection dépend toutefois des règles de l’indice : toutes les entreprises associées à l’IA ne sont pas forcément présentes.',
     whatToKnow: 'Le développement de l’IA ne garantit pas la hausse des actions de ces entreprises.\n\nTu peux aussi détenir certaines de ces sociétés dans ton ETF World ou technologique. Ajouter ce fonds peut renforcer une exposition que tu as déjà.',
@@ -122,7 +122,7 @@ const OVERRIDES = {
     question: 'Tu voudrais investir dans toute la chaîne de l’IA ou privilégier une activité précise ?',
   },
   'msci-world': {
-    hook: '🌍 Tu veux investir dans plusieurs pays depuis ton PEA, sans choisir les actions une par une ? Regardons ce que propose Amundi PEA Monde 👇',
+    hook: '🌍 Tu veux investir dans plusieurs pays depuis ton PEA, sans choisir les actions une par une ?\n\nCet ETF éligible au PEA permet de s’y exposer en une seule ligne 👇',
     whatIs: 'Cet ETF suit le MSCI World : de grandes et moyennes entreprises de pays développés, dans plusieurs secteurs.\n\nLes entreprises ayant les plus grosses capitalisations occupent le plus de place. Les États-Unis et leurs grands groupes pèsent donc fortement dans cette exposition.',
     whyInteresting: 'Une seule ligne pour suivre cet ensemble d’entreprises, sans construire toi-même une sélection par pays et par secteur.\n\nLa réplication synthétique permet de rendre cette exposition accessible dans un PEA.',
     whatToKnow: 'Le MSCI World n’inclut ni les marchés émergents ni les petites capitalisations.\n\nDétenir beaucoup d’entreprises ne signifie pas que chaque pays a le même poids. Et cet ETF reste exposé aux baisses des marchés actions.',
@@ -131,12 +131,47 @@ const OVERRIDES = {
   },
 }
 
+// Explications propres aux expositions ; aucun chiffre de marché figé dans la copie.
+const EXPOSURE_COPY = {
+  'basic-resources-pea': {
+    hook: '⛏️ Investir dans les ressources naturelles, ça peut aussi passer par les entreprises qui les produisent.\n\nCet ETF éligible au PEA permet de s’y exposer en une seule ligne 👇',
+    whatIs: 'L’indice regroupe les entreprises du secteur des ressources de base présentes dans le STOXX Europe 600. Tu investis dans leurs actions : leur activité peut s’étendre bien au-delà de l’Europe.',
+    whyInteresting: 'Tu réunis ces entreprises dans une seule ligne de ton PEA, sans les sélectionner une par une.\n\nQuand le prix de leurs matières premières augmente, leurs revenus peuvent en profiter. Mais si leurs coûts d’énergie ou d’exploitation augmentent aussi, leurs bénéfices ne suivent pas forcément.',
+    whatToKnow: 'La sélection se concentre sur un seul secteur, sensible aux prix des matières premières et au cycle industriel.\n\nSi tu détiens déjà un ETF Europe large, certaines de ces entreprises peuvent être présentes dans ton portefeuille. Ajouter cet ETF revient alors à renforcer leur poids.',
+    closing: 'Tu investis donc dans des producteurs, avec leurs coûts et leurs marges. C’est une exposition différente d’un ETC qui suit le cours d’un métal.',
+    question: 'Tu as déjà un ETF sectoriel dans ton portefeuille ?',
+  },
+  semiconducteurs: {
+    hook: '💻 Les puces sont présentes dans les ordinateurs, les voitures et les centres de données.\n\nCet ETF permet de s’exposer aux entreprises des semi-conducteurs en une seule ligne 👇',
+    whyInteresting: 'Tu réunis plusieurs entreprises du secteur sans devoir sélectionner un seul fabricant.\n\nLeurs résultats dépendent aussi des commandes, des stocks et des investissements : une hausse de la demande ne profite pas forcément à toutes au même moment.',
+    whatToKnow: 'La sélection reste concentrée sur une industrie. Un ralentissement des commandes ou des restrictions commerciales peut peser sur plusieurs entreprises à la fois.\n\nSi tu détiens déjà un ETF World ou technologique, certaines de ces sociétés peuvent être présentes. Cette ligne renforce alors leur poids.',
+    question: 'Tu as une ligne dédiée aux semi-conducteurs ou tu les gardes dans tes ETF plus larges ?',
+  },
+  cybersecurite: {
+    hook: '🔐 Protéger les données et les réseaux, c’est aussi l’activité d’entreprises cotées.\n\nCet ETF permet de s’y exposer en une seule ligne 👇',
+    whyInteresting: 'Tu réunis plusieurs entreprises de sécurité numérique sans les choisir une par une.\n\nLe besoin de protéger les systèmes explique leur activité. Leurs profits dépendent aussi de la concurrence, des contrats remportés et du coût de développement de leurs produits.',
+    whatToKnow: 'La croissance des besoins de cybersécurité ne garantit pas la hausse de ces actions. Les attentes peuvent déjà être intégrées dans leurs cours.\n\nCertaines entreprises peuvent aussi être présentes dans tes ETF mondiaux ou technologiques : ajouter cette ligne augmente alors leur poids.',
+    question: 'Tu as déjà un ETF thématique dans ton portefeuille ?',
+  },
+}
+
 export function getPresentationCopy(etf) {
   const type = getInstrumentFacts(etf.isin).instrumentType
   const kind = type === 'ETC' || /\bETC\b/.test(etf.name) ? 'l’ETC' : type === 'ETN' || /\bETP\b/.test(etf.name) ? 'l’ETP' : 'l’ETF'
   const goal = GOALS[etf.id]
-  const hook = goal ? `Tu veux ${goal} ? Regardons ce que propose ${kind} ${etf.name} 👇` : etf.hook
-  return { ...etf, hook, ...OVERRIDES[etf.id] }
+  const access = etf.pea === true && kind === 'l’ETF' ? ' éligible au PEA' : ''
+  const support = kind === 'l’ETC' ? 'Cet ETC' : kind === 'l’ETP' ? 'Cet ETP' : 'Cet ETF'
+  const hook = goal ? `Tu veux ${goal} ?\n\n${support}${access} permet de s’y exposer en une seule ligne 👇` : etf.hook
+  const exposureId = etf.id === 'support-sect_cybersecurite' ? 'cybersecurite' : etf.id
+  const copy = { ...etf, hook, ...OVERRIDES[etf.id], ...EXPOSURE_COPY[exposureId] }
+  const question = copy.question.startsWith('Pour cette exposition, tu regardes')
+    ? ['Sectoriels classiques', 'Thématiques émergentes'].includes(copy.category)
+      ? 'Tu as déjà un ETF sectoriel ou thématique dans ton portefeuille ?'
+      : copy.category === 'Obligataires'
+        ? 'Dans tes ETF obligataires, tu regardes surtout la durée ou la qualité des emprunteurs ?'
+        : 'Tu détiens déjà cette exposition dans ton portefeuille ?'
+    : copy.question
+  return { ...copy, question, aum: copy.aum.replace(/^(?:Part|Fonds)\s*:\s*/, '') }
 }
 
 export function presentationTicker(etf) {

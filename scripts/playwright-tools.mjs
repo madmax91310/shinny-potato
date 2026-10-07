@@ -2,7 +2,7 @@
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
-import { buildText, presentationType } from '../src/pages/etf-sheets/lib.js';
+import { buildText } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { TOOLS, WEEKLY_ORDER } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
@@ -463,8 +463,8 @@ async function testEtfSheets(page) {
     const accounts = await page.locator('.es-facts li').filter({ hasText: 'CTO :' }).textContent();
     if (accounts.includes('PEA') !== (card.pea === true)) badCount++;
     if (card.listing && !text.includes(`Cotation : ${card.listing.exchange} · ${card.listing.currency}`)) badCount++;
-    const sectionLabels = ["🔍 C'est quoi ?", `✅ Ce que cet ${presentationType(card)} t’apporte`, "⚠️ Ce qu'il faut savoir", '🏆 À retenir'];
-    const explanations = [card.whatIs, card.whyInteresting, card.whatToKnow, card.verdict];
+    const sectionLabels = ['🔍 Ce que tu achètes', '✅ L’intérêt de cette exposition', '⚠️ Ce qu’il faut garder en tête'];
+    const explanations = [card.whatIs, card.whyInteresting, card.whatToKnow, ...(card.closing ? [card.closing] : [])];
     if (!explanations.every(value => value && text.includes(value))
       || !sectionLabels.every(label => text.includes(label))) badCount++;
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
@@ -475,8 +475,7 @@ async function testEtfSheets(page) {
       || (copied.includes('PEA') !== (card.pea === true))
       || !explanations.every(value => copied.includes(value))
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
-      || !copied.includes('💬 ' + card.question + ' 👇')
-      || !copied.endsWith('⚠️ Pas un conseil en investissement')
+      || !copied.endsWith('💬 ' + card.question)
       || /undefined|NaN/.test(copied)) badCount++;
     if (card.lastVerified === '01/10/2026') {
       for (const buttonName of ['🖼️ Image récapitulative']) {

@@ -8,7 +8,7 @@ import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
 import { formatTweetPerformance, getAnnualPerformance } from './annualPerformance'
-import { accountLabel, buildText, presentationType } from './lib'
+import { accountLabel, buildText } from './lib'
 import { renderETFImage } from './canvasImage'
 import { INSTRUMENT_AUM_BY_ISIN } from '../../data/instrument-aum'
 import PageHeader from '../../design-system/PageHeader'
@@ -100,25 +100,23 @@ function EtfCard({ etf: sourceEtf }) {
       </ul>
 
       <section className="es-block">
-        <h3 className="es-block-title">🔍 C'est quoi ?</h3>
+        <h3 className="es-block-title">🔍 Ce que tu achètes</h3>
         <p>{etf.whatIs}</p>
       </section>
       <section className="es-block">
-        <h3 className="es-block-title">✅ Ce que cet {presentationType(etf)} t’apporte</h3>
+        <h3 className="es-block-title">✅ L’intérêt de cette exposition</h3>
         <p>{etf.whyInteresting}</p>
       </section>
       <section className="es-block">
-        <h3 className="es-block-title">⚠️ Ce qu'il faut savoir</h3>
+        <h3 className="es-block-title">⚠️ Ce qu’il faut garder en tête</h3>
         <p>{etf.whatToKnow}</p>
       </section>
-      <section className="es-block">
-        <h3 className="es-block-title">🏆 À retenir</h3>
-        <p>{etf.verdict}</p>
-      </section>
+      {etf.closing && <section className="es-block">
+        <p>{etf.closing}</p>
+      </section>}
 
       <div className="es-foot">
-        <p className="es-engagement">💬 {etf.question} 👇</p>
-        <p className="es-disclaimer">⚠️ Pas un conseil en investissement</p>
+        <p className="es-engagement">💬 {etf.question}</p>
       </div>
     </article>
   )
