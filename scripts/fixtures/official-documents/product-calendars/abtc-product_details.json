@@ -1,0 +1,319 @@
+{
+  "success": true,
+  "data": {
+    "ticker": "ABTC",
+    "product_name": "21shares Bitcoin ETP",
+    "currency": {
+      "short_name": "USD",
+      "ticker": "$",
+      "long_name": "United States Dollar"
+    },
+    "unit_size": 10000,
+    "jurisdiction": "CH",
+    "product_category": [
+      "single asset"
+    ],
+    "total_units_outstanding": 24397500,
+    "total_nav": 691951736.877791,
+    "nav_per_creation_unit": 283604.25827971,
+    "nav_per_unit": 28.36042583,
+    "valuation_date": "2026-10-06",
+    "effective_date": "2026-10-07",
+    "settlement_date": "2026-10-08",
+    "inception_date": "2019-02-25",
+    "constituents": [
+      {
+        "name": "Bitcoin",
+        "ticker": "BTC",
+        "weight": 1,
+        "quantity": 0.0003289509,
+        "price": 86214.7615767523,
+        "market_value": 28.360425828,
+        "total_fiat": 0.0003289509,
+        "amount_per_creation_unit": 3.28950928,
+        "coin_entitlement_per_share": 0.000328950928,
+        "cusip": null
+      }
+    ],
+    "gccs": [
+      {
+        "underlying_ticker": "BTC",
+        "underlying_name": "Bitcoin",
+        "levels": {
+          "level1": [
+            {
+              "type": "Store of Value (SOV)",
+              "class": "stack"
+            }
+          ],
+          "level2": [
+            {
+              "class_a": "Store of Value (SOV)",
+              "type_a": "sector"
+            },
+            {
+              "class_b": "Commodities",
+              "type_b": "industry"
+            }
+          ],
+          "level3": [
+            {
+              "class": "Cryptocurrency",
+              "type": "class"
+            }
+          ]
+        }
+      }
+    ],
+    "exchanges": [
+      {
+        "exchange": "SIX Swiss Exchange",
+        "primary": true,
+        "countries": [
+          "CH"
+        ],
+        "local_tickers": [
+          {
+            "name": "ABTCCHF SE",
+            "currency": "CHF"
+          },
+          {
+            "name": "ABTCEUR SE",
+            "currency": "EUR"
+          },
+          {
+            "name": "ABTCGBP SE",
+            "currency": "GBP"
+          },
+          {
+            "name": "ABTCJPY SE",
+            "currency": "JPY"
+          },
+          {
+            "name": "ABTC SE",
+            "currency": "USD"
+          }
+        ]
+      },
+      {
+        "exchange": "Boerse Duesseldorf",
+        "primary": false,
+        "countries": [
+          "DE"
+        ],
+        "local_tickers": [
+          {
+            "name": "2BTC GD",
+            "currency": "EUR"
+          }
+        ]
+      },
+      {
+        "exchange": "Boerse Stuttgart",
+        "primary": false,
+        "countries": [
+          "DE"
+        ],
+        "local_tickers": [
+          {
+            "name": "2BTC GS",
+            "currency": "EUR"
+          }
+        ]
+      },
+      {
+        "exchange": "BX Swiss",
+        "primary": false,
+        "countries": [
+          "CH"
+        ],
+        "local_tickers": [
+          {
+            "name": "ABTCCHF BW",
+            "currency": "CHF"
+          }
+        ]
+      },
+      {
+        "exchange": "Deutsche Boerse Xetra",
+        "primary": false,
+        "countries": [
+          "DE"
+        ],
+        "local_tickers": [
+          {
+            "name": "2BTC GY",
+            "currency": "EUR"
+          },
+          {
+            "name": "2BTD GY",
+            "currency": "USD"
+          }
+        ]
+      },
+      {
+        "exchange": "Euronext Amsterdam",
+        "primary": false,
+        "countries": [
+          "NL"
+        ],
+        "local_tickers": [
+          {
+            "name": "ABTC NA",
+            "currency": "USD"
+          }
+        ]
+      },
+      {
+        "exchange": "Euronext Paris",
+        "primary": false,
+        "countries": [
+          "FR"
+        ],
+        "local_tickers": [
+          {
+            "name": "ABTC FP",
+            "currency": "EUR"
+          }
+        ]
+      },
+      {
+        "exchange": "Gettex",
+        "primary": false,
+        "countries": [
+          "DE"
+        ],
+        "local_tickers": [
+          {
+            "name": "2BTC GZ",
+            "currency": "EUR"
+          }
+        ]
+      },
+      {
+        "exchange": "London Stock Exchange",
+        "primary": false,
+        "countries": [
+          "GB"
+        ],
+        "local_tickers": [
+          {
+            "name": "ABTC LN",
+            "currency": "GBP"
+          },
+          {
+            "name": "BTCU LN",
+            "currency": "USD"
+          }
+        ]
+      },
+      {
+        "exchange": "Nasdaq Dubai",
+        "primary": false,
+        "countries": [
+          "AE"
+        ],
+        "local_tickers": [
+          {
+            "name": "ABTC DU",
+            "currency": "USD"
+          }
+        ]
+      },
+      {
+        "exchange": "NASDAQ OMX",
+        "primary": false,
+        "countries": [
+          "SE"
+        ],
+        "local_tickers": [
+          {
+            "name": "ABTC SS",
+            "currency": "SEK"
+          }
+        ]
+      },
+      {
+        "exchange": "Wiener Boerse",
+        "primary": false,
+        "countries": [
+          "AT"
+        ],
+        "local_tickers": [
+          {
+            "name": "ABTC AV",
+            "currency": "EUR"
+          }
+        ]
+      }
+    ],
+    "service_providers": {
+      "authorized_participants": [
+        "Bluefin Europe LLP",
+        "DRW Holdings",
+        "Flow Traders",
+        "GHCO",
+        "Jane Street",
+        "L&S",
+        "Nyenburgh",
+        "Virtu Financial Ireland Limited"
+      ],
+      "custodian_agents": [
+        "Coinbase Custody Trust Company, LLC",
+        "Zodia Custody Limited"
+      ],
+      "market_makers": [
+        "Flow Traders",
+        "Jane Street",
+        "Virtu Financial Ireland Limited"
+      ],
+      "collateral_agents": [
+        "The Law Debenture Trust Corporation PLC"
+      ],
+      "fund_advisor": null,
+      "marketing_agent": null,
+      "sales_services": null,
+      "transfer_agent": null,
+      "fund_distributor": null,
+      "sub_advisor": null,
+      "sub_sub_advisor": null
+    },
+    "details": {
+      "issuer": "21shares",
+      "isin": "CH0454664001",
+      "bloomberg_ticker": "ABTC SW",
+      "reuters_ticker": "ABTC.S",
+      "registered_countries": null,
+      "annual_fee": 0.0149,
+      "sedol": "BJQYSB5",
+      "wkn": "A2T64E",
+      "cusip": "H2247C179",
+      "valor": "45466400",
+      "inav": "DE000SLA7NG8",
+      "ucits_eligible": null,
+      "replication_method": null,
+      "lending_eligible": null,
+      "sharia_compliant": null,
+      "legal_structure": null,
+      "product_type": null,
+      "feeWaiverAmt": null,
+      "net_fee": 0.0149,
+      "distribution_policy": null
+    },
+    "index_details": {
+      "ticker": "ABTC",
+      "index_data_aggregator": null,
+      "rebalancing_frequency": null,
+      "rebalancing_strategy": null,
+      "index_provider": null,
+      "index_constituents": null
+    },
+    "median_30d_spread": null,
+    "daily_trading_volume": null,
+    "30day_trading_volume": null,
+    "num_of_holdings": null,
+    "benchmark_name": null,
+    "acq_fund_fee": null
+  },
+  "lastUpdated": "2026-10-07T17:00:25.959Z"
+}

@@ -77,7 +77,7 @@ def parse(text,share,now):
     return result
 
 
-def collect_one(share,now):
+def collect_pdf_fields(share,now):
     body=download(share['sourceUrl']);result=parse(pdf_text(body),share,now)
     result['sha256']=proof(body)
     for field in ['aum','performance','sectors','countries','holdings']:
@@ -89,6 +89,26 @@ def collect_one(share,now):
             result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('performance:')]
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError) as error:
             result.setdefault('collectionErrors', []).append({'field':'performance','url':share['calendarUrl'],'reason':str(error)})
+    return result
+
+
+def collect_one(share,now):
+    if not share.get('calendarApiBase'):
+        return collect_pdf_fields(share,now)
+    # The calendar API and factsheet are independent official publications.
+    # A failed document must not prevent a validated calendar from refreshing.
+    try:
+        result=collect_pdf_fields(share,now)
+    except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError, OSError) as error:
+        result={**share,'productId':share['isin'],'exposureOnly':True,'unavailable':[],
+                'collectionErrors':[{'field':'document','url':share['sourceUrl'],'reason':str(error)}]}
+    if share.get('calendarApiBase'):
+        from collect_product_calendars import collect_abtc_calendar
+        try:
+            result['performance'] = collect_abtc_calendar(share, now)
+            result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('performance:')]
+        except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError, OSError) as error:
+            result.setdefault('collectionErrors', []).append({'field':'performance','url':share['calendarApiBase'],'reason':str(error)})
     return result
 
 

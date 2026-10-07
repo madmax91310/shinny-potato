@@ -762,12 +762,11 @@ export const ASSETS = [
   {
     id: "bitcoin_21shares", name: getInstrumentName("CH0454664001", "portfolio"), cat: "crypto", emoji: "🟠",
     isin: "CH0454664001",
-    // Contrôle individuel du proxy le 24/09/2026 : cours spot BTC/USD, 2020-2025 ; les performances officielles de la part diffèrent. Confiance : proxy documenté, pas rendement du produit affiché.
-    // Sources : https://www.slickcharts.com/currency/BTC/returns et https://cdn.21shares.com/uploads/current-documents/past-performance/ABTC/CH0454664001_21SharesAG%28FR%29.pdf
-    // Jumeau strict de "bitcoin" — même source (cours BTC/USD, cf. commentaire ci-dessus).
-    // Référence produit (pas source de la série proxy BTC/USD) : https://www.21shares.com/fr-eu/product/abtc
+    // Calendrier NAV USD 2020–2025 officiel, net des frais, déjà ajusté du split 14:1.
+    // Source : https://api.primary.21shares.com/api/product_valuation_history/ABTC
+    // Identité et contrôles mensuels : scripts/collect_product_calendars.py.
     r: getInstrumentReturnValues('CH0454664001'),
-    confidenceNote: "Simulation sur les clôtures annuelles BTC/USD (Slickcharts), avant les frais de l'ETP 21Shares ; ce ne sont pas ses rendements et l'effet de change en euros n'est pas pris en compte.",
+    confidenceNote: "Rendements NAV de l'ETP en dollars, après frais et ajustement des fractionnements ; le résultat en euros dépend du change.",
     desc: [
       "la première et plus grande cryptomonnaie, souvent présentée comme un « or numérique ».",
       "extrêmement volatil : capable de tripler... comme de perdre les deux tiers de sa valeur.",

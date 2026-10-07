@@ -26251,6 +26251,27 @@
     "characteristics": {
       "terPct": 1.49,
       "checkedAt": "2026-10-06"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2020": 277.89,
+        "2021": 65.02,
+        "2022": -65.41,
+        "2023": 151.83,
+        "2024": 114.17,
+        "2025": -4.71
+      },
+      "asOf": "2026-10-06",
+      "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
+      "sha256": "6f6bd70c125c42b9bbd6b19d34489613a22286b42872bf76099963139e64a03c",
+      "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
+      "validationSources": [
+        "https://api.primary.21shares.com/api/product_details/ABTC",
+        "https://api.primary.21shares.com/api/product_performance_metrics/ABTC"
+      ],
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00BYPLS672": {

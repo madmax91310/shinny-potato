@@ -6,10 +6,11 @@ import { getInstrumentReturnValues } from '../src/data/instrument-returns.js';
 // une source primaire : seuls les fonds recoupés avec l'émetteur sont marqués « confirmé ».
 import { ASSETS } from '../src/data/portfolio-assets.js'
 import { VERIFIED_RETURNS } from '../src/data/verified-returns.js'
+import { HISTORICAL_AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
 
 const groups = {
-  'Fonds confirmé chez l’émetteur': `topix_pea_hedged basic_resources_pea argent monetaire_xeon oblig_0_1_ishares oblig_global_agg_eur_hedged actions_india_ishares infrastructure_ishares oblig_hy_ishares_acc oblig_em_local_ishares_acc world_minvol_ishares world_quality_ishares world_momentum_ishares msci_acwi_ishares immo_ishares_yield sect_cyber_lg sect_biotech_ishares sect_energy_spdr sect_tech_world_ishares sect_ai_lg sect_batteries_lg sect_water_amundi sect_luxury_amundi dividend_aristocrats_us_spdr msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
-  'Indice ou cours du sous-jacent': `bitcoin bitcoin_21shares ethereum msci_world_amundi_pea smallcap_europe`,
+  'Fonds confirmé chez l’émetteur': `bitcoin_21shares topix_pea_hedged basic_resources_pea argent monetaire_xeon oblig_0_1_ishares oblig_global_agg_eur_hedged actions_india_ishares infrastructure_ishares oblig_hy_ishares_acc oblig_em_local_ishares_acc world_minvol_ishares world_quality_ishares world_momentum_ishares msci_acwi_ishares immo_ishares_yield sect_cyber_lg sect_biotech_ishares sect_energy_spdr sect_tech_world_ishares sect_ai_lg sect_batteries_lg sect_water_amundi sect_luxury_amundi dividend_aristocrats_us_spdr msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
+  'Indice ou cours du sous-jacent': `bitcoin ethereum msci_world_amundi_pea smallcap_europe`,
   'Autre fonds ou historique mixte': `qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
@@ -50,6 +51,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+  bitcoin_21shares: HISTORICAL_AUTOMATED_PERFORMANCE.CH0454664001?.source,
   topix_pea_hedged: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF',
   basic_resources_pea: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF',
   argent: VERIFIED_RETURNS.IE00B4NCWG09.source,
@@ -157,7 +159,6 @@ world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.source,
   smallcap_europe: 'https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-europe-small-cap-ucits-etf-smc-fp',
   // Clôtures annuelles du fournisseur ; ces chiffres ne sont pas les NAV des ETP.
   bitcoin: 'https://www.slickcharts.com/currency/BTC/returns + https://coinshares.com/etp/physical-bitcoin/',
-  bitcoin_21shares: 'https://www.slickcharts.com/currency/BTC/returns + https://www.21shares.com/fr-eu/product/abtc',
   ethereum: 'https://www.slickcharts.com/currency/ETH/returns + https://coinshares.com/etp/physical-ethereum/',
 }
 // Garde les corrections chiffrées issues des tableaux annuels du fournisseur indiqué.
@@ -168,12 +169,12 @@ world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.values,
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
   smallcap_europe: [4.37, 23.72, -22.11, 12.86, 5.70, 16.62],
   bitcoin: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
-  bitcoin_21shares: [303.16, 59.67, -64.27, 155.42, 121.05, -6.34],
   ethereum: [469.25, 399.13, -67.50, 90.64, 46.07, -10.97],
 }))
 // Contrôle fermé des séries remplacées dans ce passage : rendements de la part exacte
 // publiés par l'émetteur, plus deux moyennes de marché dont la définition est documentée.
 const verifiedSeries = new Map(Object.entries({
+  bitcoin_21shares: HISTORICAL_AUTOMATED_PERFORMANCE.CH0454664001?.values,
   msci_europe: [-3.17, 25.46, -9.25, 16.14, 8.84, 19.72],
   msci_em: [18.35, -0.24, -19.79, 11.58, 7.21, 31.58],
   sect_energie: [-34.32, 53.81, 64.81, -1.97, 5.06, 7.99],
