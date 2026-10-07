@@ -5,64 +5,51 @@
       "annual": {
         "start": "2024-09-29",
         "end": "2025-09-27",
-        "filedAt": "2025-10-31",
-        "revenue": 416161000000.0,
-        "netIncome": 112010000000.0,
-        "margin": 26.91506412181824,
         "previousStart": "2023-10-01",
         "previousEnd": "2024-09-28",
+        "revenue": 416161000000.0,
         "previousRevenue": 391035000000.0,
+        "netIncome": 112010000000.0,
         "previousNetIncome": 93736000000.0,
-        "revenueGrowth": 6.425511782832749,
-        "incomeGrowth": 19.49517794657336,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared",
-          "freeCashFlow": [
-            "NetCashProvidedByUsedInOperatingActivities",
-            "PaymentsToAcquirePropertyPlantAndEquipment"
-          ]
-        },
-        "dilutedEPS": 7.46,
-        "previousDilutedEPS": 6.08,
         "operatingIncome": 133050000000.0,
         "previousOperatingIncome": 123216000000.0,
-        "dividendPerShare": 1.02,
-        "previousDividendPerShare": 0.98,
-        "freeCashFlow": 98767000000.0
+        "dilutedEPS": 7.46,
+        "previousDilutedEPS": 6.08,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
+        "freeCashFlow": 98767000000.0,
+        "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
       },
       "quarter": {
         "start": "2026-03-29",
         "end": "2026-06-27",
-        "filedAt": "2026-07-31",
-        "revenue": 109417000000.0,
-        "netIncome": 29789000000.0,
-        "margin": 27.22520266503377,
         "previousStart": "2025-03-30",
         "previousEnd": "2025-06-28",
+        "revenue": 109417000000.0,
         "previousRevenue": 94036000000.0,
+        "netIncome": 29789000000.0,
         "previousNetIncome": 23434000000.0,
-        "revenueGrowth": 16.356501765281383,
-        "incomeGrowth": 27.118716394981647,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-        },
-        "dilutedEPS": 2.02,
-        "previousDilutedEPS": 1.57,
         "operatingIncome": 35695000000.0,
         "previousOperatingIncome": 28202000000.0,
-        "dividendPerShare": 0.27,
-        "previousDividendPerShare": 0.26
+        "dilutedEPS": 2.02,
+        "previousDilutedEPS": 1.57,
+        "durationMonths": 3,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income"
+        },
+        "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf"
       },
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+      "accountsSourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf",
       "quote": {
         "price": 333.6300048828125,
         "asOf": "2026-10-06",
@@ -77,35 +64,80 @@
         "debt": 84344000000.0,
         "netDebt": 44800000000.0,
         "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent",
-            "CommercialPaper"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+        "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
+        "observedAt": "2026-10-07"
       },
       "shares": {
         "asOf": "2026-06-27",
         "outstanding": 14608963000.0,
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-      },
-      "trailing": {
-        "end": "2026-06-27",
-        "dilutedEPS": 8.719999999999999,
-        "revenue": 466823000000.0,
-        "sourceUrls": [
-          "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
-          "https://www.apple.com/newsroom/pdfs/fy2026q2/FY26_Q2_Consolidated_Financial_Statements.pdf",
-          "https://www.apple.com/newsroom/pdfs/fy2026-q1/FY26_Q1_Consolidated_Financial_Statements.pdf",
-          "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
         "observedAt": "2026-10-07"
+      },
+      "history": {
+        "years": [
+          {
+            "start": "2020-09-27",
+            "end": "2021-09-25",
+            "revenue": 365817000000.0,
+            "netIncome": 94680000000.0,
+            "margin": 25.88179335569424,
+            "filedAt": "2023-11-03",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+          },
+          {
+            "start": "2021-09-26",
+            "end": "2022-09-24",
+            "revenue": 394328000000.0,
+            "netIncome": 99803000000.0,
+            "margin": 25.309640705199733,
+            "filedAt": "2024-11-01",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+          },
+          {
+            "start": "2022-09-25",
+            "end": "2023-09-30",
+            "revenue": 383285000000.0,
+            "netIncome": 96995000000.0,
+            "margin": 25.30623426432028,
+            "filedAt": "2025-10-31",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+          },
+          {
+            "start": "2023-10-01",
+            "end": "2024-09-28",
+            "revenue": 391035000000.0,
+            "netIncome": 93736000000.0,
+            "margin": 23.971255769943866,
+            "filedAt": "2025-10-31",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+          },
+          {
+            "start": "2024-09-29",
+            "end": "2025-09-27",
+            "revenue": 416161000000.0,
+            "netIncome": 112010000000.0,
+            "margin": 26.91506412181824,
+            "filedAt": "2025-10-31",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+          }
+        ],
+        "observedAt": "2026-10-07",
+        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
+      },
+      "estimates": {
+        "forwardEPS": 9.61,
+        "growthEPS5Y": 12.73,
+        "reportedForwardPE": 35.06,
+        "reportedPEG": 2.75,
+        "providerPrice": 336.88,
+        "observedAt": "2026-10-07",
+        "sourceName": "Finviz",
+        "sourceUrl": "https://finviz.com/quote.ashx?t=AAPL",
+        "methodUrl": "https://finviz.com/help/screener",
+        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
+        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
+        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
+        "accountsEndAtCollection": "2026-06-27"
       },
       "quarters": [
         {
@@ -197,109 +229,48 @@
           "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
         }
       ],
-      "history": {
-        "years": [
-          {
-            "start": "2020-09-27",
-            "end": "2021-09-25",
-            "revenue": 365817000000.0,
-            "netIncome": 94680000000.0,
-            "margin": 25.88179335569424,
-            "filedAt": "2023-11-03",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-          },
-          {
-            "start": "2021-09-26",
-            "end": "2022-09-24",
-            "revenue": 394328000000.0,
-            "netIncome": 99803000000.0,
-            "margin": 25.309640705199733,
-            "filedAt": "2024-11-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-          },
-          {
-            "start": "2022-09-25",
-            "end": "2023-09-30",
-            "revenue": 383285000000.0,
-            "netIncome": 96995000000.0,
-            "margin": 25.30623426432028,
-            "filedAt": "2025-10-31",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-          },
-          {
-            "start": "2023-10-01",
-            "end": "2024-09-28",
-            "revenue": 391035000000.0,
-            "netIncome": 93736000000.0,
-            "margin": 23.971255769943866,
-            "filedAt": "2025-10-31",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-          },
-          {
-            "start": "2024-09-29",
-            "end": "2025-09-27",
-            "revenue": 416161000000.0,
-            "netIncome": 112010000000.0,
-            "margin": 26.91506412181824,
-            "filedAt": "2025-10-31",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-          }
+      "trailing": {
+        "end": "2026-06-27",
+        "dilutedEPS": 8.719999999999999,
+        "revenue": 466823000000.0,
+        "sourceUrls": [
+          "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
+          "https://www.apple.com/newsroom/pdfs/fy2026q2/FY26_Q2_Consolidated_Financial_Statements.pdf",
+          "https://www.apple.com/newsroom/pdfs/fy2026-q1/FY26_Q1_Consolidated_Financial_Statements.pdf",
+          "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
         ],
-        "observedAt": "2026-10-07",
-        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
-      },
-      "estimates": {
-        "forwardEPS": 9.61,
-        "growthEPS5Y": 12.73,
-        "reportedForwardPE": 34.88,
-        "reportedPEG": 2.74,
-        "providerPrice": 335.14,
-        "observedAt": "2026-10-07",
-        "sourceName": "Finviz",
-        "sourceUrl": "https://finviz.com/quote.ashx?t=AAPL",
-        "methodUrl": "https://finviz.com/help/screener",
-        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
-        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
-        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
-        "accountsEndAtCollection": "2026-06-27"
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
       }
     },
     "microsoft": {
       "annual": {
         "start": "2025-07-01",
         "end": "2026-06-30",
-        "filedAt": "2026-07-29",
-        "revenue": 331839000000.0,
-        "netIncome": 133749000000.0,
-        "margin": 40.30538905915218,
         "previousStart": "2024-07-01",
         "previousEnd": "2025-06-30",
+        "revenue": 331839000000.0,
         "previousRevenue": 281724000000.0,
+        "netIncome": 133749000000.0,
         "previousNetIncome": 101832000000.0,
-        "revenueGrowth": 17.788686799846666,
-        "incomeGrowth": 31.34279990572708,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared",
-          "freeCashFlow": [
-            "NetCashProvidedByUsedInOperatingActivities",
-            "PaymentsToAcquirePropertyPlantAndEquipment"
-          ]
-        },
-        "dilutedEPS": 17.95,
-        "previousDilutedEPS": 13.64,
         "operatingIncome": 155237000000.0,
         "previousOperatingIncome": 128528000000.0,
-        "dividendPerShare": 3.64,
-        "previousDividendPerShare": 3.32,
-        "freeCashFlow": 66987000000.0
+        "dilutedEPS": 17.95,
+        "previousDilutedEPS": 13.64,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
+        "freeCashFlow": 66987000000.0,
+        "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
       },
       "quarter": null,
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
+      "accountsSourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
       "quote": {
         "price": 529.2999877929688,
         "asOf": "2026-10-06",
@@ -314,34 +285,80 @@
         "debt": 40294000000.0,
         "netDebt": 19359000000.0,
         "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+        "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+        "observedAt": "2026-10-07"
       },
       "shares": {
         "asOf": "2026-06-30",
         "outstanding": 7427000000.0,
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-      },
-      "trailing": {
-        "end": "2026-06-30",
-        "dilutedEPS": 17.96,
-        "revenue": 331839000000.0,
-        "sourceUrls": [
-          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
-          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q3/press-release-webcast",
-          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q2/press-release-webcast",
-          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q1/press-release-webcast"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
         "observedAt": "2026-10-07"
+      },
+      "history": {
+        "years": [
+          {
+            "start": "2021-07-01",
+            "end": "2022-06-30",
+            "revenue": 198270000000.0,
+            "netIncome": 72738000000.0,
+            "margin": 36.68633681343622,
+            "filedAt": "2024-07-30",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+          },
+          {
+            "start": "2022-07-01",
+            "end": "2023-06-30",
+            "revenue": 211915000000.0,
+            "netIncome": 72361000000.0,
+            "margin": 34.14623787839464,
+            "filedAt": "2025-07-30",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+          },
+          {
+            "start": "2023-07-01",
+            "end": "2024-06-30",
+            "revenue": 245122000000.0,
+            "netIncome": 88136000000.0,
+            "margin": 35.955972944084984,
+            "filedAt": "2026-07-29",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+          },
+          {
+            "start": "2024-07-01",
+            "end": "2025-06-30",
+            "revenue": 281724000000.0,
+            "netIncome": 101832000000.0,
+            "margin": 36.146015248967075,
+            "filedAt": "2026-07-29",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+          },
+          {
+            "start": "2025-07-01",
+            "end": "2026-06-30",
+            "revenue": 331839000000.0,
+            "netIncome": 133749000000.0,
+            "margin": 40.30538905915218,
+            "filedAt": "2026-07-29",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+          }
+        ],
+        "observedAt": "2026-10-07",
+        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
+      },
+      "estimates": {
+        "forwardEPS": 23.5,
+        "growthEPS5Y": 18.54,
+        "reportedForwardPE": 22.47,
+        "reportedPEG": 1.21,
+        "providerPrice": 528.0,
+        "observedAt": "2026-10-07",
+        "sourceName": "Finviz",
+        "sourceUrl": "https://finviz.com/quote.ashx?t=MSFT",
+        "methodUrl": "https://finviz.com/help/screener",
+        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
+        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
+        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
+        "accountsEndAtCollection": "2026-06-30"
       },
       "quarters": [
         {
@@ -433,136 +450,70 @@
           "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q1/press-release-webcast"
         }
       ],
-      "history": {
-        "years": [
-          {
-            "start": "2021-07-01",
-            "end": "2022-06-30",
-            "revenue": 198270000000.0,
-            "netIncome": 72738000000.0,
-            "margin": 36.68633681343622,
-            "filedAt": "2024-07-30",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-          },
-          {
-            "start": "2022-07-01",
-            "end": "2023-06-30",
-            "revenue": 211915000000.0,
-            "netIncome": 72361000000.0,
-            "margin": 34.14623787839464,
-            "filedAt": "2025-07-30",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-          },
-          {
-            "start": "2023-07-01",
-            "end": "2024-06-30",
-            "revenue": 245122000000.0,
-            "netIncome": 88136000000.0,
-            "margin": 35.955972944084984,
-            "filedAt": "2026-07-29",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-          },
-          {
-            "start": "2024-07-01",
-            "end": "2025-06-30",
-            "revenue": 281724000000.0,
-            "netIncome": 101832000000.0,
-            "margin": 36.146015248967075,
-            "filedAt": "2026-07-29",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-          },
-          {
-            "start": "2025-07-01",
-            "end": "2026-06-30",
-            "revenue": 331839000000.0,
-            "netIncome": 133749000000.0,
-            "margin": 40.30538905915218,
-            "filedAt": "2026-07-29",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-          }
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 17.96,
+        "revenue": 331839000000.0,
+        "sourceUrls": [
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q3/press-release-webcast",
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q2/press-release-webcast",
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q1/press-release-webcast"
         ],
-        "observedAt": "2026-10-07",
-        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
-      },
-      "estimates": {
-        "forwardEPS": 23.5,
-        "growthEPS5Y": 18.54,
-        "reportedForwardPE": 22.38,
-        "reportedPEG": 1.21,
-        "providerPrice": 525.99,
-        "observedAt": "2026-10-07",
-        "sourceName": "Finviz",
-        "sourceUrl": "https://finviz.com/quote.ashx?t=MSFT",
-        "methodUrl": "https://finviz.com/help/screener",
-        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
-        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
-        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
-        "accountsEndAtCollection": "2026-06-30"
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
       }
     },
     "nvidia": {
       "annual": {
         "start": "2025-01-27",
         "end": "2026-01-25",
-        "filedAt": "2026-02-25",
-        "revenue": 215938000000.0,
-        "netIncome": 120067000000.0,
-        "margin": 55.60253406070261,
         "previousStart": "2024-01-29",
         "previousEnd": "2025-01-26",
+        "revenue": 215938000000.0,
         "previousRevenue": 130497000000.0,
+        "netIncome": 120067000000.0,
         "previousNetIncome": 72880000000.0,
-        "revenueGrowth": 65.47353579009479,
-        "incomeGrowth": 64.74615806805708,
-        "tags": {
-          "revenue": "Revenues",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-        },
-        "dilutedEPS": 4.9,
-        "previousDilutedEPS": 2.94,
         "operatingIncome": 130387000000.0,
         "previousOperatingIncome": 81453000000.0,
-        "dividendPerShare": 0.04,
-        "previousDividendPerShare": 0.034,
+        "dilutedEPS": 4.9,
+        "previousDilutedEPS": 2.94,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
         "freeCashFlow": 96676000000.0,
-        "additionalSourceUrls": [
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
-        ],
-        "freeCashFlowDefinition": "Flux d’exploitation moins acquisitions d’immobilisations et d’actifs incorporels"
+        "freeCashFlowDefinition": "Flux d’exploitation moins acquisitions d’immobilisations et d’actifs incorporels",
+        "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
       },
       "quarter": {
         "start": "2026-04-27",
         "end": "2026-07-26",
-        "filedAt": "2026-08-26",
-        "revenue": 96221000000.0,
-        "netIncome": 59688000000.0,
-        "margin": 62.03219671381507,
         "previousStart": "2025-04-28",
         "previousEnd": "2025-07-27",
+        "revenue": 96221000000.0,
         "previousRevenue": 46743000000.0,
+        "netIncome": 59688000000.0,
         "previousNetIncome": 26422000000.0,
-        "revenueGrowth": 105.85114348672526,
-        "incomeGrowth": 125.90265687684506,
-        "tags": {
-          "revenue": "Revenues",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-        },
-        "dilutedEPS": 2.46,
-        "previousDilutedEPS": 1.08,
         "operatingIncome": 63734000000.0,
         "previousOperatingIncome": 28440000000.0,
-        "dividendPerShare": 0.25,
-        "previousDividendPerShare": 0.01
+        "dilutedEPS": 2.46,
+        "previousDilutedEPS": 1.08,
+        "durationMonths": 3,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income"
+        },
+        "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027"
       },
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json",
+      "accountsSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
       "quote": {
         "price": 239.24000549316406,
         "asOf": "2026-10-06",
@@ -577,28 +528,74 @@
         "debt": 33366000000.0,
         "netDebt": 10923000000.0,
         "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-      },
-      "trailing": {
-        "end": "2026-07-26",
-        "dilutedEPS": 7.91,
-        "revenue": 302969000000.0,
-        "sourceUrls": [
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027",
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
         "observedAt": "2026-10-07"
+      },
+      "history": {
+        "years": [
+          {
+            "start": "2021-02-01",
+            "end": "2022-01-30",
+            "revenue": 26914000000.0,
+            "netIncome": 9752000000.0,
+            "margin": 36.23393029649996,
+            "filedAt": "2024-02-21",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
+          },
+          {
+            "start": "2022-01-31",
+            "end": "2023-01-29",
+            "revenue": 26974000000.0,
+            "netIncome": 4368000000.0,
+            "margin": 16.193371394676355,
+            "filedAt": "2025-02-26",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
+          },
+          {
+            "start": "2023-01-30",
+            "end": "2024-01-28",
+            "revenue": 60922000000.0,
+            "netIncome": 29760000000.0,
+            "margin": 48.84934834706674,
+            "filedAt": "2026-02-25",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
+          },
+          {
+            "start": "2024-01-29",
+            "end": "2025-01-26",
+            "revenue": 130497000000.0,
+            "netIncome": 72880000000.0,
+            "margin": 55.848027157712444,
+            "filedAt": "2026-02-25",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
+          },
+          {
+            "start": "2025-01-27",
+            "end": "2026-01-25",
+            "revenue": 215938000000.0,
+            "netIncome": 120067000000.0,
+            "margin": 55.60253406070261,
+            "filedAt": "2026-02-25",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
+          }
+        ],
+        "observedAt": "2026-10-07",
+        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
+      },
+      "estimates": {
+        "forwardEPS": 15.77,
+        "growthEPS5Y": 64.96,
+        "reportedForwardPE": 15.02,
+        "reportedPEG": 0.23,
+        "providerPrice": 236.94,
+        "observedAt": "2026-10-07",
+        "sourceName": "Finviz",
+        "sourceUrl": "https://finviz.com/quote.ashx?t=NVDA",
+        "methodUrl": "https://finviz.com/help/screener",
+        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
+        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
+        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
+        "accountsEndAtCollection": "2026-07-26"
       },
       "quarters": [
         {
@@ -690,135 +687,69 @@
           "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026"
         }
       ],
-      "history": {
-        "years": [
-          {
-            "start": "2021-02-01",
-            "end": "2022-01-30",
-            "revenue": 26914000000.0,
-            "netIncome": 9752000000.0,
-            "margin": 36.23393029649996,
-            "filedAt": "2024-02-21",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-          },
-          {
-            "start": "2022-01-31",
-            "end": "2023-01-29",
-            "revenue": 26974000000.0,
-            "netIncome": 4368000000.0,
-            "margin": 16.193371394676355,
-            "filedAt": "2025-02-26",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-          },
-          {
-            "start": "2023-01-30",
-            "end": "2024-01-28",
-            "revenue": 60922000000.0,
-            "netIncome": 29760000000.0,
-            "margin": 48.84934834706674,
-            "filedAt": "2026-02-25",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-          },
-          {
-            "start": "2024-01-29",
-            "end": "2025-01-26",
-            "revenue": 130497000000.0,
-            "netIncome": 72880000000.0,
-            "margin": 55.848027157712444,
-            "filedAt": "2026-02-25",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-          },
-          {
-            "start": "2025-01-27",
-            "end": "2026-01-25",
-            "revenue": 215938000000.0,
-            "netIncome": 120067000000.0,
-            "margin": 55.60253406070261,
-            "filedAt": "2026-02-25",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-          }
+      "trailing": {
+        "end": "2026-07-26",
+        "dilutedEPS": 7.91,
+        "revenue": 302969000000.0,
+        "sourceUrls": [
+          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026"
         ],
-        "observedAt": "2026-10-07",
-        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
-      },
-      "estimates": {
-        "forwardEPS": 15.77,
-        "growthEPS5Y": 64.96,
-        "reportedForwardPE": 15.13,
-        "reportedPEG": 0.23,
-        "providerPrice": 238.67,
-        "observedAt": "2026-10-07",
-        "sourceName": "Finviz",
-        "sourceUrl": "https://finviz.com/quote.ashx?t=NVDA",
-        "methodUrl": "https://finviz.com/help/screener",
-        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
-        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
-        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
-        "accountsEndAtCollection": "2026-07-26"
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
       }
     },
     "alphabet": {
       "annual": {
         "start": "2025-01-01",
         "end": "2025-12-31",
-        "filedAt": "2026-02-05",
-        "revenue": 402836000000.0,
-        "netIncome": 132170000000.0,
-        "margin": 32.80987796522654,
         "previousStart": "2024-01-01",
         "previousEnd": "2024-12-31",
+        "revenue": 402836000000.0,
         "previousRevenue": 350018000000.0,
+        "netIncome": 132170000000.0,
         "previousNetIncome": 100118000000.0,
-        "revenueGrowth": 15.090081081544371,
-        "incomeGrowth": 32.01422321660441,
-        "tags": {
-          "revenue": "Revenues",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared",
-          "freeCashFlow": [
-            "NetCashProvidedByUsedInOperatingActivities",
-            "PaymentsToAcquirePropertyPlantAndEquipment"
-          ]
-        },
-        "dilutedEPS": 10.81,
-        "previousDilutedEPS": 8.04,
         "operatingIncome": 129039000000.0,
         "previousOperatingIncome": 112390000000.0,
-        "dividendPerShare": 0.83,
-        "previousDividendPerShare": 0.6,
-        "freeCashFlow": 73266000000.0
+        "dilutedEPS": 10.81,
+        "previousDilutedEPS": 8.04,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
+        "freeCashFlow": 73266000000.0,
+        "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf"
       },
       "quarter": {
         "start": "2026-04-01",
         "end": "2026-06-30",
-        "filedAt": "2026-07-23",
-        "revenue": 119796000000.0,
-        "netIncome": 112193000000.0,
-        "margin": 93.65337740826071,
         "previousStart": "2025-04-01",
         "previousEnd": "2025-06-30",
+        "revenue": 119796000000.0,
         "previousRevenue": 96428000000.0,
+        "netIncome": 112193000000.0,
         "previousNetIncome": 28196000000.0,
-        "revenueGrowth": 24.23362508814868,
-        "incomeGrowth": 297.90395800822813,
-        "tags": {
-          "revenue": "Revenues",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-        },
-        "dilutedEPS": 9.11,
-        "previousDilutedEPS": 2.31,
         "operatingIncome": 40770000000.0,
         "previousOperatingIncome": 31271000000.0,
-        "dividendPerShare": 0.22,
-        "previousDividendPerShare": 0.21
+        "dilutedEPS": 9.11,
+        "previousDilutedEPS": 2.31,
+        "durationMonths": 3,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income"
+        },
+        "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf"
       },
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+      "accountsSourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf",
       "quote": {
         "price": 347.67999267578125,
         "asOf": "2026-10-06",
@@ -830,32 +761,74 @@
       "balance": {
         "asOf": "2026-06-30",
         "cash": 55911000000.0,
-        "debt": 100164000000.0,
-        "netDebt": 44253000000.0,
-        "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent",
-            "CommercialPaper"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-      },
-      "trailing": {
-        "end": "2026-06-30",
-        "dilutedEPS": 19.91,
-        "revenue": 445866000000.0,
-        "sourceUrls": [
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/2026q1-alphabet-earnings-release.pdf",
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf",
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/2025q3-alphabet-earnings-release.pdf"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
         "observedAt": "2026-10-07"
+      },
+      "history": {
+        "years": [
+          {
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "revenue": 257637000000.0,
+            "netIncome": 76033000000.0,
+            "margin": 29.511677282377917,
+            "filedAt": "2024-01-31",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
+          },
+          {
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "revenue": 282836000000.0,
+            "netIncome": 59972000000.0,
+            "margin": 21.203807153261963,
+            "filedAt": "2025-02-05",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
+          },
+          {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "revenue": 307394000000.0,
+            "netIncome": 73795000000.0,
+            "margin": 24.006649446638516,
+            "filedAt": "2026-02-05",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
+          },
+          {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "revenue": 350018000000.0,
+            "netIncome": 100118000000.0,
+            "margin": 28.603671811164,
+            "filedAt": "2026-02-05",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
+          },
+          {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "revenue": 402836000000.0,
+            "netIncome": 132170000000.0,
+            "margin": 32.80987796522654,
+            "filedAt": "2026-02-05",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
+          }
+        ],
+        "observedAt": "2026-10-07",
+        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
+      },
+      "estimates": {
+        "forwardEPS": 15.16,
+        "growthEPS5Y": 18.58,
+        "reportedForwardPE": 22.87,
+        "reportedPEG": 1.23,
+        "providerPrice": 346.58,
+        "observedAt": "2026-10-07",
+        "sourceName": "Finviz",
+        "sourceUrl": "https://finviz.com/quote.ashx?t=GOOGL",
+        "methodUrl": "https://finviz.com/help/screener",
+        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
+        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
+        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
+        "accountsEndAtCollection": "2026-06-30"
       },
       "quarters": [
         {
@@ -947,128 +920,69 @@
           "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/2025q3-alphabet-earnings-release.pdf"
         }
       ],
-      "history": {
-        "years": [
-          {
-            "start": "2021-01-01",
-            "end": "2021-12-31",
-            "revenue": 257637000000.0,
-            "netIncome": 76033000000.0,
-            "margin": 29.511677282377917,
-            "filedAt": "2024-01-31",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-          },
-          {
-            "start": "2022-01-01",
-            "end": "2022-12-31",
-            "revenue": 282836000000.0,
-            "netIncome": 59972000000.0,
-            "margin": 21.203807153261963,
-            "filedAt": "2025-02-05",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-          },
-          {
-            "start": "2023-01-01",
-            "end": "2023-12-31",
-            "revenue": 307394000000.0,
-            "netIncome": 73795000000.0,
-            "margin": 24.006649446638516,
-            "filedAt": "2026-02-05",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-          },
-          {
-            "start": "2024-01-01",
-            "end": "2024-12-31",
-            "revenue": 350018000000.0,
-            "netIncome": 100118000000.0,
-            "margin": 28.603671811164,
-            "filedAt": "2026-02-05",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-          },
-          {
-            "start": "2025-01-01",
-            "end": "2025-12-31",
-            "revenue": 402836000000.0,
-            "netIncome": 132170000000.0,
-            "margin": 32.80987796522654,
-            "filedAt": "2026-02-05",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-          }
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 19.91,
+        "revenue": 445866000000.0,
+        "sourceUrls": [
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/2026q1-alphabet-earnings-release.pdf",
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf",
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/2025q3-alphabet-earnings-release.pdf"
         ],
-        "observedAt": "2026-10-07",
-        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
-      },
-      "estimates": {
-        "forwardEPS": 15.16,
-        "growthEPS5Y": 18.58,
-        "reportedForwardPE": 22.88,
-        "reportedPEG": 1.23,
-        "providerPrice": 346.8,
-        "observedAt": "2026-10-07",
-        "sourceName": "Finviz",
-        "sourceUrl": "https://finviz.com/quote.ashx?t=GOOGL",
-        "methodUrl": "https://finviz.com/help/screener",
-        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
-        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
-        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
-        "accountsEndAtCollection": "2026-06-30"
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
       }
     },
     "amazon": {
       "annual": {
         "start": "2025-01-01",
         "end": "2025-12-31",
-        "filedAt": "2026-02-06",
-        "revenue": 716924000000.0,
-        "netIncome": 77670000000.0,
-        "margin": 10.83378433418326,
         "previousStart": "2024-01-01",
         "previousEnd": "2024-12-31",
+        "revenue": 716924000000.0,
         "previousRevenue": 637959000000.0,
+        "netIncome": 77670000000.0,
         "previousNetIncome": 59248000000.0,
-        "revenueGrowth": 12.377754683294695,
-        "incomeGrowth": 31.093032676208487,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss"
-        },
-        "dilutedEPS": 7.17,
-        "previousDilutedEPS": 5.53,
         "operatingIncome": 79975000000.0,
         "previousOperatingIncome": 68593000000.0,
+        "dilutedEPS": 7.17,
+        "previousDilutedEPS": 5.53,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
         "freeCashFlow": 7695000000.0,
-        "additionalSourceUrls": [
-          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
-        ]
+        "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
       },
       "quarter": {
         "start": "2026-04-01",
         "end": "2026-06-30",
-        "filedAt": "2026-07-31",
-        "revenue": 200606000000.0,
-        "netIncome": 62647000000.0,
-        "margin": 31.2288765041923,
         "previousStart": "2025-04-01",
         "previousEnd": "2025-06-30",
+        "revenue": 200606000000.0,
         "previousRevenue": 167702000000.0,
+        "netIncome": 62647000000.0,
         "previousNetIncome": 18164000000.0,
-        "revenueGrowth": 19.620517346245126,
-        "incomeGrowth": 244.89649856859722,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss"
-        },
+        "operatingIncome": 27461000000.0,
+        "previousOperatingIncome": 19171000000.0,
         "dilutedEPS": 5.75,
         "previousDilutedEPS": 1.68,
-        "operatingIncome": 27461000000.0,
-        "previousOperatingIncome": 19171000000.0
+        "durationMonths": 3,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income"
+        },
+        "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx"
       },
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+      "accountsSourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
       "quote": {
         "price": 256.2900085449219,
         "asOf": "2026-10-06",
@@ -1080,38 +994,80 @@
       "balance": {
         "asOf": "2026-06-30",
         "cash": 78213000000.0,
-        "debt": 132549000000.0,
-        "netDebt": 54336000000.0,
-        "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent",
-            "ShortTermBorrowings"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+        "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+        "observedAt": "2026-10-07"
       },
       "shares": {
         "asOf": "2026-06-30",
         "outstanding": 10783000000.0,
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-      },
-      "trailing": {
-        "end": "2026-06-30",
-        "dilutedEPS": 12.43,
-        "revenue": 775680000000.0,
-        "sourceUrls": [
-          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
-          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/default.aspx",
-          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
-          "https://ir.aboutamazon.com/news-release/news-release-details/2025/Amazon-com-Announces-Third-Quarter-Results/default.aspx"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
         "observedAt": "2026-10-07"
+      },
+      "history": {
+        "years": [
+          {
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "revenue": 469822000000.0,
+            "netIncome": 33364000000.0,
+            "margin": 7.101412875514557,
+            "filedAt": "2024-02-02",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+          },
+          {
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "revenue": 513983000000.0,
+            "netIncome": -2722000000.0,
+            "margin": -0.5295895000418301,
+            "filedAt": "2025-02-07",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+          },
+          {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "revenue": 574785000000.0,
+            "netIncome": 30425000000.0,
+            "margin": 5.293283575597832,
+            "filedAt": "2026-02-06",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+          },
+          {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "revenue": 637959000000.0,
+            "netIncome": 59248000000.0,
+            "margin": 9.287117197186653,
+            "filedAt": "2026-02-06",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+          },
+          {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "revenue": 716924000000.0,
+            "netIncome": 77670000000.0,
+            "margin": 10.83378433418326,
+            "filedAt": "2026-02-06",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+          }
+        ],
+        "observedAt": "2026-10-07",
+        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
+      },
+      "estimates": {
+        "forwardEPS": 10.64,
+        "growthEPS5Y": 25.45,
+        "reportedForwardPE": 23.85,
+        "reportedPEG": 0.94,
+        "providerPrice": 253.85,
+        "observedAt": "2026-10-07",
+        "sourceName": "Finviz",
+        "sourceUrl": "https://finviz.com/quote.ashx?t=AMZN",
+        "methodUrl": "https://finviz.com/help/screener",
+        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
+        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
+        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
+        "accountsEndAtCollection": "2026-06-30"
       },
       "quarters": [
         {
@@ -1203,71 +1159,18 @@
           "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2025/Amazon-com-Announces-Third-Quarter-Results/default.aspx"
         }
       ],
-      "history": {
-        "years": [
-          {
-            "start": "2021-01-01",
-            "end": "2021-12-31",
-            "revenue": 469822000000.0,
-            "netIncome": 33364000000.0,
-            "margin": 7.101412875514557,
-            "filedAt": "2024-02-02",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-          },
-          {
-            "start": "2022-01-01",
-            "end": "2022-12-31",
-            "revenue": 513983000000.0,
-            "netIncome": -2722000000.0,
-            "margin": -0.5295895000418301,
-            "filedAt": "2025-02-07",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-          },
-          {
-            "start": "2023-01-01",
-            "end": "2023-12-31",
-            "revenue": 574785000000.0,
-            "netIncome": 30425000000.0,
-            "margin": 5.293283575597832,
-            "filedAt": "2026-02-06",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-          },
-          {
-            "start": "2024-01-01",
-            "end": "2024-12-31",
-            "revenue": 637959000000.0,
-            "netIncome": 59248000000.0,
-            "margin": 9.287117197186653,
-            "filedAt": "2026-02-06",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-          },
-          {
-            "start": "2025-01-01",
-            "end": "2025-12-31",
-            "revenue": 716924000000.0,
-            "netIncome": 77670000000.0,
-            "margin": 10.83378433418326,
-            "filedAt": "2026-02-06",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-          }
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 12.43,
+        "revenue": 775680000000.0,
+        "sourceUrls": [
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/default.aspx",
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
+          "https://ir.aboutamazon.com/news-release/news-release-details/2025/Amazon-com-Announces-Third-Quarter-Results/default.aspx"
         ],
-        "observedAt": "2026-10-07",
-        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
-      },
-      "estimates": {
-        "forwardEPS": 10.63,
-        "growthEPS5Y": 24.66,
-        "reportedForwardPE": 24.06,
-        "reportedPEG": 0.98,
-        "providerPrice": 255.68,
-        "observedAt": "2026-10-07",
-        "sourceName": "Finviz",
-        "sourceUrl": "https://finviz.com/quote.ashx?t=AMZN",
-        "methodUrl": "https://finviz.com/help/screener",
-        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
-        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
-        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
-        "accountsEndAtCollection": "2026-06-30"
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
       }
     },
     "lvmh": {
@@ -1287,24 +1190,7 @@
         "sourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/aXjqHgIvOtkhB_8I_Financialdocuments-December31%2C2025.pdf"
       },
       "quarter": null,
-      "halfYear": {
-        "start": null,
-        "end": "2026-06-30",
-        "previousEnd": "2025-06-30",
-        "revenue": 38644000000.0,
-        "netIncome": 5697000000.0,
-        "durationMonths": 6,
-        "margin": 14.742262705724047,
-        "previousRevenue": 39810000000.0,
-        "previousNetIncome": 5698000000.0,
-        "dilutedEPS": 11.51,
-        "operatingIncome": 8714000000.0,
-        "incomeBasis": "Résultat net part du groupe (IFRS)",
-        "sourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/CmJbUDA5Jzsdufho_LVMH_2026Firsthalffinancialreport.pdf"
-      },
       "trailingUnavailableReason": "Quatre BPA trimestriels comparables non publiés par cet émetteur",
-      "trailing": null,
-      "quarters": [],
       "accountsObservedAt": "2026-10-07",
       "accountsSourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/aXjqHgIvOtkhB_8I_Financialdocuments-December31%2C2025.pdf",
       "history": {
@@ -1380,7 +1266,24 @@
         "currency": "EUR",
         "splits": [],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?range=2y&interval=1d&events=splits"
-      }
+      },
+      "halfYear": {
+        "start": null,
+        "end": "2026-06-30",
+        "previousEnd": "2025-06-30",
+        "revenue": 38644000000.0,
+        "netIncome": 5697000000.0,
+        "durationMonths": 6,
+        "margin": 14.742262705724047,
+        "previousRevenue": 39810000000.0,
+        "previousNetIncome": 5698000000.0,
+        "dilutedEPS": 11.51,
+        "operatingIncome": 8714000000.0,
+        "incomeBasis": "Résultat net part du groupe (IFRS)",
+        "sourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/CmJbUDA5Jzsdufho_LVMH_2026Firsthalffinancialreport.pdf"
+      },
+      "trailing": null,
+      "quarters": []
     },
     "air-liquide": {
       "annual": {
@@ -1395,29 +1298,12 @@
         "previousNetIncome": 3306100000.0,
         "operatingIncome": 5278700000.0,
         "incomeBasis": "Résultat net part du groupe (IFRS)",
-        "sourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-02/air-liquide-pr-fy-2025-with-record-performance-and-confident-in-its-transformation-dynamic-air-liquide-confirms-its-growth-outlook.pdf"
+        "sourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/02/20/cpr03_lesechos_16165_1389885_Air_Liquide_FY_2025__ENG__PR__Activity_Report_.pdf"
       },
       "quarter": null,
-      "halfYear": {
-        "start": null,
-        "end": "2026-06-30",
-        "previousEnd": "2025-06-30",
-        "revenue": 13827900000.0,
-        "netIncome": 1822600000.0,
-        "durationMonths": 6,
-        "margin": 13.18059864476891,
-        "previousRevenue": 13722200000.0,
-        "previousNetIncome": 1801100000.0,
-        "dilutedEPS": 2.86,
-        "operatingIncome": 2770400000.0,
-        "incomeBasis": "Résultat net part du groupe (IFRS)",
-        "sourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-07/air-liquide-first-half-2026-financial-report.pdf"
-      },
       "trailingUnavailableReason": "Quatre BPA trimestriels comparables non publiés par cet émetteur",
-      "trailing": null,
-      "quarters": [],
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-02/air-liquide-pr-fy-2025-with-record-performance-and-confident-in-its-transformation-dynamic-air-liquide-confirms-its-growth-outlook.pdf",
+      "accountsSourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/02/20/cpr03_lesechos_16165_1389885_Air_Liquide_FY_2025__ENG__PR__Activity_Report_.pdf",
       "history": {
         "years": [
           {
@@ -1474,7 +1360,7 @@
             "previousNetIncome": null,
             "operatingIncome": 4945600000.0,
             "incomeBasis": "Résultat net part du groupe (IFRS)",
-            "sourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-02/air-liquide-pr-fy-2025-with-record-performance-and-confident-in-its-transformation-dynamic-air-liquide-confirms-its-growth-outlook.pdf"
+            "sourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/02/20/cpr03_lesechos_16165_1389885_Air_Liquide_FY_2025__ENG__PR__Activity_Report_.pdf"
           },
           {
             "start": null,
@@ -1488,7 +1374,7 @@
             "previousNetIncome": 3306100000.0,
             "operatingIncome": 5278700000.0,
             "incomeBasis": "Résultat net part du groupe (IFRS)",
-            "sourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-02/air-liquide-pr-fy-2025-with-record-performance-and-confident-in-its-transformation-dynamic-air-liquide-confirms-its-growth-outlook.pdf"
+            "sourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/02/20/cpr03_lesechos_16165_1389885_Air_Liquide_FY_2025__ENG__PR__Activity_Report_.pdf"
           }
         ],
         "observedAt": "2026-10-07",
@@ -1503,7 +1389,23 @@
           "2026-06-08"
         ],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AI.PA?range=2y&interval=1d&events=splits"
-      }
+      },
+      "halfYear": {
+        "start": null,
+        "end": "2026-06-30",
+        "previousEnd": "2025-06-30",
+        "revenue": 13827900000.0,
+        "netIncome": 1822600000.0,
+        "durationMonths": 6,
+        "margin": 13.18059864476891,
+        "previousRevenue": 13722200000.0,
+        "previousNetIncome": 1801100000.0,
+        "operatingIncome": 2770400000.0,
+        "incomeBasis": "Résultat net part du groupe (IFRS)",
+        "sourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/07/28/cpr03_lesechos_16165_1424019_H1_2026__EN__PR__Activity_Report.pdf"
+      },
+      "trailing": null,
+      "quarters": []
     },
     "schneider": {
       "annual": {
@@ -1522,24 +1424,7 @@
         "sourceUrl": "https://www.se.com/ww/en/assets/564/document/528238/accounts-fy-results-2025.pdf"
       },
       "quarter": null,
-      "halfYear": {
-        "start": null,
-        "end": "2026-06-30",
-        "previousEnd": "2025-06-30",
-        "revenue": 21226000000.0,
-        "netIncome": 2488000000.0,
-        "durationMonths": 6,
-        "margin": 11.721473664373882,
-        "previousRevenue": 19336000000.0,
-        "previousNetIncome": 1913000000.0,
-        "dilutedEPS": 4.37,
-        "operatingIncome": 3613000000.0,
-        "incomeBasis": "Résultat net part du groupe (IFRS)",
-        "sourceUrl": "https://www.se.com/ww/en/assets/pdf/accounts-hy-results-2026"
-      },
       "trailingUnavailableReason": "Quatre BPA trimestriels comparables non publiés par cet émetteur",
-      "trailing": null,
-      "quarters": [],
       "accountsObservedAt": "2026-10-07",
       "accountsSourceUrl": "https://www.se.com/ww/en/assets/564/document/528238/accounts-fy-results-2025.pdf",
       "history": {
@@ -1630,7 +1515,24 @@
         "currency": "EUR",
         "splits": [],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SU.PA?range=2y&interval=1d&events=splits"
-      }
+      },
+      "halfYear": {
+        "start": null,
+        "end": "2026-06-30",
+        "previousEnd": "2025-06-30",
+        "revenue": 21226000000.0,
+        "netIncome": 2488000000.0,
+        "durationMonths": 6,
+        "margin": 11.721473664373882,
+        "previousRevenue": 19336000000.0,
+        "previousNetIncome": 1913000000.0,
+        "dilutedEPS": 4.37,
+        "operatingIncome": 3613000000.0,
+        "incomeBasis": "Résultat net part du groupe (IFRS)",
+        "sourceUrl": "https://www.se.com/ww/en/assets/pdf/accounts-hy-results-2026"
+      },
+      "trailing": null,
+      "quarters": []
     },
     "totalenergies": {
       "annual": {
@@ -1660,78 +1562,6 @@
         "dilutedEPS": 2.41,
         "incomeBasis": "Résultat net part du groupe (IFRS)",
         "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf"
-      },
-      "halfYear": null,
-      "quarters": [
-        {
-          "start": null,
-          "end": "2026-06-30",
-          "previousEnd": "2025-06-30",
-          "revenue": 57097000000.0,
-          "netIncome": 5438000000.0,
-          "durationMonths": 3,
-          "margin": 9.524143124857698,
-          "previousRevenue": 44676000000.0,
-          "previousNetIncome": 2687000000.0,
-          "dilutedEPS": 2.41,
-          "incomeBasis": "Résultat net part du groupe (IFRS)",
-          "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf"
-        },
-        {
-          "start": null,
-          "end": "2026-03-31",
-          "previousEnd": "2025-03-31",
-          "revenue": 49516000000.0,
-          "netIncome": 5810000000.0,
-          "durationMonths": 3,
-          "margin": 11.733581064706359,
-          "previousRevenue": 47899000000.0,
-          "previousNetIncome": 3851000000.0,
-          "dilutedEPS": 2.64,
-          "incomeBasis": "Résultat net part du groupe (IFRS)",
-          "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_1q26-consolidated-statement-of-income_2026.pdf"
-        },
-        {
-          "start": null,
-          "end": "2025-12-31",
-          "previousEnd": "2024-12-31",
-          "revenue": 45925000000.0,
-          "netIncome": 2906000000.0,
-          "durationMonths": 3,
-          "margin": 6.327708219923789,
-          "previousRevenue": 47115000000.0,
-          "previousNetIncome": 3956000000.0,
-          "dilutedEPS": 1.3,
-          "incomeBasis": "Résultat net part du groupe (IFRS)",
-          "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf"
-        },
-        {
-          "start": null,
-          "end": "2025-09-30",
-          "previousEnd": "2024-09-30",
-          "revenue": 43844000000.0,
-          "netIncome": 3683000000.0,
-          "durationMonths": 3,
-          "margin": 8.400237204634614,
-          "previousRevenue": 47429000000.0,
-          "previousNetIncome": 2294000000.0,
-          "dilutedEPS": 1.64,
-          "incomeBasis": "Résultat net part du groupe (IFRS)",
-          "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_3q25-accounts_2025_en.pdf"
-        }
-      ],
-      "trailing": {
-        "end": "2026-06-30",
-        "dilutedEPS": 7.99,
-        "revenue": 196382000000.0,
-        "sourceUrls": [
-          "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf",
-          "https://totalenergies.com/system/files/documents/totalenergies_1q26-consolidated-statement-of-income_2026.pdf",
-          "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf",
-          "https://totalenergies.com/system/files/documents/totalenergies_3q25-accounts_2025_en.pdf"
-        ],
-        "definition": "Somme de quatre BPA trimestriels IFRS publiés, part du groupe",
-        "observedAt": "2026-10-07"
       },
       "accountsObservedAt": "2026-10-07",
       "accountsSourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf",
@@ -1814,9 +1644,9 @@
       "estimates": {
         "forwardEPS": 10.7,
         "growthEPS5Y": 11.44,
-        "reportedForwardPE": 7.95,
-        "reportedPEG": 0.69,
-        "providerPrice": 85.0,
+        "reportedForwardPE": 7.97,
+        "reportedPEG": 0.7,
+        "providerPrice": 85.22,
         "observedAt": "2026-10-07",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=TTE",
@@ -1833,6 +1663,78 @@
         "currency": "USD",
         "splits": [],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TTE?range=2y&interval=1d&events=splits"
+      },
+      "halfYear": null,
+      "quarters": [
+        {
+          "start": null,
+          "end": "2026-06-30",
+          "previousEnd": "2025-06-30",
+          "revenue": 57097000000.0,
+          "netIncome": 5438000000.0,
+          "durationMonths": 3,
+          "margin": 9.524143124857698,
+          "previousRevenue": 44676000000.0,
+          "previousNetIncome": 2687000000.0,
+          "dilutedEPS": 2.41,
+          "incomeBasis": "Résultat net part du groupe (IFRS)",
+          "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf"
+        },
+        {
+          "start": null,
+          "end": "2026-03-31",
+          "previousEnd": "2025-03-31",
+          "revenue": 49516000000.0,
+          "netIncome": 5810000000.0,
+          "durationMonths": 3,
+          "margin": 11.733581064706359,
+          "previousRevenue": 47899000000.0,
+          "previousNetIncome": 3851000000.0,
+          "dilutedEPS": 2.64,
+          "incomeBasis": "Résultat net part du groupe (IFRS)",
+          "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_1q26-consolidated-statement-of-income_2026.pdf"
+        },
+        {
+          "start": null,
+          "end": "2025-12-31",
+          "previousEnd": "2024-12-31",
+          "revenue": 45925000000.0,
+          "netIncome": 2906000000.0,
+          "durationMonths": 3,
+          "margin": 6.327708219923789,
+          "previousRevenue": 47115000000.0,
+          "previousNetIncome": 3956000000.0,
+          "dilutedEPS": 1.3,
+          "incomeBasis": "Résultat net part du groupe (IFRS)",
+          "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf"
+        },
+        {
+          "start": null,
+          "end": "2025-09-30",
+          "previousEnd": "2024-09-30",
+          "revenue": 43844000000.0,
+          "netIncome": 3683000000.0,
+          "durationMonths": 3,
+          "margin": 8.400237204634614,
+          "previousRevenue": 47429000000.0,
+          "previousNetIncome": 2294000000.0,
+          "dilutedEPS": 1.64,
+          "incomeBasis": "Résultat net part du groupe (IFRS)",
+          "sourceUrl": "https://totalenergies.com/system/files/documents/totalenergies_3q25-accounts_2025_en.pdf"
+        }
+      ],
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 7.99,
+        "revenue": 196382000000.0,
+        "sourceUrls": [
+          "https://totalenergies.com/system/files/documents/totalenergies_accounts-results-2q26_2026_en.pdf",
+          "https://totalenergies.com/system/files/documents/totalenergies_1q26-consolidated-statement-of-income_2026.pdf",
+          "https://totalenergies.com/system/files/documents/totalenergies_accounts-q4-2025_2026_en.pdf",
+          "https://totalenergies.com/system/files/documents/totalenergies_3q25-accounts_2025_en.pdf"
+        ],
+        "definition": "Somme de quatre BPA trimestriels IFRS publiés, part du groupe",
+        "observedAt": "2026-10-07"
       }
     },
     "visa": {
@@ -1861,6 +1763,66 @@
         "previousNetIncome": 5272000000.0,
         "dilutedEPS": 2.97,
         "sourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2026/q3/Q3-2026-Earnings-Release_vF.pdf"
+      },
+      "accountsObservedAt": "2026-10-07",
+      "accountsSourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2025/q4/Q4-2025-Earnings-Release_vF.pdf",
+      "history": {
+        "years": [
+          {
+            "start": null,
+            "end": "2023-09-30",
+            "revenue": 32653000000.0,
+            "netIncome": 17273000000.0,
+            "sourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2024/q4/Q4-2024-Earnings-Release_vF.pdf",
+            "margin": 52.89866168499066
+          },
+          {
+            "start": null,
+            "end": "2024-09-30",
+            "revenue": 35926000000.0,
+            "netIncome": 19743000000.0,
+            "sourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2025/q4/Q4-2025-Earnings-Release_vF.pdf",
+            "margin": 54.954628959527916
+          },
+          {
+            "start": null,
+            "end": "2025-09-30",
+            "previousEnd": "2024-09-30",
+            "revenue": 40000000000.0,
+            "netIncome": 20058000000.0,
+            "durationMonths": 12,
+            "margin": 50.144999999999996,
+            "previousRevenue": 35926000000.0,
+            "previousNetIncome": 19743000000.0,
+            "dilutedEPS": 10.2,
+            "sourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2025/q4/Q4-2025-Earnings-Release_vF.pdf"
+          }
+        ],
+        "observedAt": "2026-10-07",
+        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
+      },
+      "estimates": {
+        "forwardEPS": 15.02,
+        "growthEPS5Y": 14.16,
+        "reportedForwardPE": 24.61,
+        "reportedPEG": 1.74,
+        "providerPrice": 369.69,
+        "observedAt": "2026-10-07",
+        "sourceName": "Finviz",
+        "sourceUrl": "https://finviz.com/quote.ashx?t=V",
+        "methodUrl": "https://finviz.com/help/screener",
+        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
+        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
+        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
+        "accountsEndAtCollection": "2026-06-30"
+      },
+      "quote": {
+        "price": 370.6400146484375,
+        "asOf": "2026-10-06",
+        "observedAt": "2026-10-07",
+        "currency": "USD",
+        "splits": [],
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/V?range=2y&interval=1d&events=splits"
       },
       "quarters": [
         {
@@ -1926,68 +1888,8 @@
           "https://s1.q4cdn.com/050606653/files/doc_financials/2026/q1/Q1-2026-Earnings-Release_vF.pdf",
           "https://s1.q4cdn.com/050606653/files/doc_financials/2025/q4/Q4-2025-Earnings-Release_vF.pdf"
         ],
-        "definition": "Somme de quatre BPA trimestriels GAAP publiés ; calendrier fiscal 12/16 semaines pour Costco",
+        "definition": "Somme de quatre BPA trimestriels GAAP publiés ; calendrier fiscal 12/16/17 semaines pour Costco",
         "observedAt": "2026-10-07"
-      },
-      "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2025/q4/Q4-2025-Earnings-Release_vF.pdf",
-      "history": {
-        "years": [
-          {
-            "start": null,
-            "end": "2023-09-30",
-            "revenue": 32653000000.0,
-            "netIncome": 17273000000.0,
-            "sourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2024/q4/Q4-2024-Earnings-Release_vF.pdf",
-            "margin": 52.89866168499066
-          },
-          {
-            "start": null,
-            "end": "2024-09-30",
-            "revenue": 35926000000.0,
-            "netIncome": 19743000000.0,
-            "sourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2025/q4/Q4-2025-Earnings-Release_vF.pdf",
-            "margin": 54.954628959527916
-          },
-          {
-            "start": null,
-            "end": "2025-09-30",
-            "previousEnd": "2024-09-30",
-            "revenue": 40000000000.0,
-            "netIncome": 20058000000.0,
-            "durationMonths": 12,
-            "margin": 50.144999999999996,
-            "previousRevenue": 35926000000.0,
-            "previousNetIncome": 19743000000.0,
-            "dilutedEPS": 10.2,
-            "sourceUrl": "https://s1.q4cdn.com/050606653/files/doc_financials/2025/q4/Q4-2025-Earnings-Release_vF.pdf"
-          }
-        ],
-        "observedAt": "2026-10-07",
-        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
-      },
-      "estimates": {
-        "forwardEPS": 15.02,
-        "growthEPS5Y": 14.16,
-        "reportedForwardPE": 24.58,
-        "reportedPEG": 1.74,
-        "providerPrice": 369.29,
-        "observedAt": "2026-10-07",
-        "sourceName": "Finviz",
-        "sourceUrl": "https://finviz.com/quote.ashx?t=V",
-        "methodUrl": "https://finviz.com/help/screener",
-        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
-        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
-        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
-        "accountsEndAtCollection": "2026-06-30"
-      },
-      "quote": {
-        "price": 370.6400146484375,
-        "asOf": "2026-10-06",
-        "observedAt": "2026-10-07",
-        "currency": "USD",
-        "splits": [],
-        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/V?range=2y&interval=1d&events=splits"
       }
     },
     "costco": {
@@ -2045,9 +1947,9 @@
       "estimates": {
         "forwardEPS": 24.95,
         "growthEPS5Y": 9.71,
-        "reportedForwardPE": 37.86,
-        "reportedPEG": 3.9,
-        "providerPrice": 944.56,
+        "reportedForwardPE": 37.94,
+        "reportedPEG": 3.91,
+        "providerPrice": 946.44,
         "observedAt": "2026-10-07",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=COST",
