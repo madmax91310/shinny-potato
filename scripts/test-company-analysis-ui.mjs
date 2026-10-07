@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { COMPANIES } from '../src/data/companies.js'
+import { buildTweetText, calculatedRatios, activeEstimates } from '../src/pages/company-analysis/lib.js'
 
 const server = spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4315','--strictPort'],{stdio:'ignore'})
 const base = 'http://127.0.0.1:4315/shinny-potato'
@@ -25,10 +26,14 @@ try {
     assert(text.includes('Ce que l’entreprise gagne'))
     assert(!text.includes('Ce que je regarderais'))
     assert(!text.includes(company.watch))
-    assert(text.includes('Ce ratio utilise les bénéfices déjà publiés.'))
+    const now = new Date()
+    assert.equal(text, buildTweetText(company, now))
+    if(calculatedRatios(company, now).peTTM) assert(text.includes('Ce ratio utilise les bénéfices déjà publiés.'))
+    if(company.halfYear) assert(text.includes('Semestre'))
     assert(text.includes(`Le recul sur ${company.history.years.length} exercices`))
-    assert(text.includes('prochain exercice fiscal'))
-    assert(text.includes('sur cinq ans'))
+    const forecast = activeEstimates(company, now)
+    assert.equal(text.includes('prochain exercice fiscal'), Boolean(forecast))
+    assert.equal(text.includes('sur cinq ans'), Boolean(forecast?.peg))
     assert.equal(await page.getByTestId('company-history').locator('tbody tr').count(), company.history.years.length)
     const lastRow = page.getByTestId('company-history').locator('tbody tr').last()
     assert((await lastRow.innerText()).includes(company.annual.end.split('-').reverse().join('/')))
@@ -83,6 +88,14 @@ try {
   await page.getByRole('button',{name:/Apple.*company:apple/}).click()
   assert((await page.locator('body').innerText()).includes('Estimations prévisionnelles'))
   assert((await page.locator('body').innerText()).includes('Historique annuel'))
+  for(const company of COMPANIES.filter(c => c.accountingStandard === 'IFRS')) {
+    await page.goto(`${base}/bibliotheque-donnees?q=${encodeURIComponent(company.symbol)}&type=company&id=company:${company.id}`,{waitUntil:'networkidle'})
+    const result = page.getByRole('button',{name:new RegExp(`${company.name}.*company:${company.id}`)})
+    await result.click()
+    const body = await page.locator('body').innerText()
+    assert(body.includes('Historique annuel'))
+    if(company.halfYear) assert(body.includes('Comptes semestriels'))
+  }
   assert.deepEqual(errors,[])
   console.log('Company UI: all companies, clipboard, image, PNG download, mobile without overflow and shared data search OK.')
 } finally { await browser?.close();server.kill('SIGTERM') }

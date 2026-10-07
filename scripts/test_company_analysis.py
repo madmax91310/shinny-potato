@@ -175,4 +175,101 @@ class HistoryAndForecastTests(unittest.TestCase):
         self.assertEqual(rows[1]['sourceUrl'],'https://issuer/recent')
         self.assertEqual(rows[0]['netIncome'],-2)
 
+class ExtendedIssuerTests(unittest.TestCase):
+    def setUp(self):
+        self.samples = json.loads((Path(__file__).parent/'source-snapshots/company-extended-publications-2026-10-07.json').read_text())
+
+    def sample(self, key, all_blocks=False):
+        item = self.samples[key]
+        return item['identity']+'\n'+'\n'.join(item['statements'] if all_blocks else item['statements'][:1])
+
+    def test_european_consolidated_profit_is_group_share(self):
+        from company_extended_publications import parse_europe
+        expected = [('lvmh',80807e6,10878e6),('air-liquide',26940.2e6,3517.9e6),('schneider',40152e6,4163e6),('totalenergies',182344e6,13127e6)]
+        for ident,revenue,income in expected:
+            key = 'total-fy' if ident=='totalenergies' else ident+'-fy'
+            with self.subTest(ident=ident):
+                r=parse_europe(self.sample(key,ident=='totalenergies'),ident,2025)[-1]
+                self.assertEqual(r['revenue'],revenue);self.assertEqual(r['netIncome'],income)
+                self.assertEqual(r['durationMonths'],12)
+                if ident=='air-liquide':self.assertNotIn('dilutedEPS',r)
+                if ident=='schneider':self.assertEqual(r['operatingIncome'],6699e6)
+
+    def test_lvmh_half_year_skips_middle_full_year_column(self):
+        from company_extended_publications import parse_europe
+        r=parse_europe(self.sample('lvmh-hy'),'lvmh',2026,True)[-1]
+        self.assertEqual(r['revenue'],38644e6);self.assertEqual(r['previousRevenue'],39810e6)
+        self.assertEqual(r['previousEnd'],'2025-06-30');self.assertEqual(r['durationMonths'],6)
+        for ident in ['air-liquide','schneider']:
+            r=parse_europe(self.sample(ident+'-hy'),ident,2026,True)[-1]
+            self.assertEqual(r['end'],'2026-06-30');self.assertEqual(r['durationMonths'],6)
+
+    def test_wrong_unit_identity_and_columns_fail_closed(self):
+        from company_extended_publications import parse_europe
+        source=self.sample('lvmh-fy')
+        for broken in [source.replace('LVMH','Wrong issuer'),source.replace('EUR millions','USD millions'),source.replace('80,807','80,807 999')]:
+            with self.subTest(broken=broken[:30]),self.assertRaises(ValueError):parse_europe(broken,'lvmh',2025)
+
+    def test_total_quarter_excludes_excise_and_previous_quarter(self):
+        from company_extended_publications import parse_total_quarter
+        r=parse_total_quarter(self.sample('total-q2'))
+        self.assertEqual(r['end'],'2026-06-30');self.assertEqual(r['revenue'],57097e6)
+        self.assertEqual(r['netIncome'],5438e6);self.assertEqual(r['dilutedEPS'],2.41)
+        self.assertEqual(r['previousRevenue'],44676e6)
+        for key,end,eps in [('total-q1','2026-03-31',2.64),('total-q3','2025-09-30',1.64),('total-fy','2025-12-31',1.30)]:
+            quarter=parse_total_quarter(self.sample(key))
+            self.assertEqual(quarter['end'],end)
+            self.assertEqual(quarter['dilutedEPS'],eps)
+
+    def test_visa_uses_class_a_diluted_eps_and_three_months(self):
+        import company_extended_publications as extended
+        with patch.object(extended,'pdf_text',return_value=self.sample('visa-q3')):
+            r=extended.parse_us(b'','visa')
+        self.assertIsNone(r['annual']);self.assertEqual(r['quarter']['revenue'],11633e6)
+        self.assertEqual(r['quarter']['dilutedEPS'],2.97)
+        with patch.object(extended,'pdf_text',return_value=self.sample('visa-q4')):
+            r=extended.parse_us(b'','visa')
+        self.assertEqual(r['annual']['dilutedEPS'],10.20)
+
+    def test_costco_includes_membership_and_preserves_sixteen_weeks(self):
+        import company_extended_publications as extended
+        with patch.object(extended,'sections',return_value=self.samples['costco-q4']['statements']):
+            r=extended.parse_us(b'','costco')
+        self.assertEqual(r['annual']['revenue'],303154e6)
+        self.assertEqual(r['quarter']['durationWeeks'],16)
+        self.assertEqual(r['quarter']['dilutedEPS'],6.75)
+        self.assertEqual(r['annual']['end'],'2026-08-30')
+        self.assertNotIn('durationMonths',r['quarter'])
+        for key,end,eps in [('costco-q2','2026-02-15',4.58),('costco-q3','2026-05-10',4.93)]:
+            with patch.object(extended,'sections',return_value=self.samples[key]['statements']):
+                parsed=extended.parse_us(b'','costco')
+            self.assertIsNone(parsed['annual'])
+            self.assertEqual(parsed['quarter']['durationWeeks'],12)
+            self.assertEqual(parsed['quarter']['end'],end)
+            self.assertEqual(parsed['quarter']['dilutedEPS'],eps)
+
+    def test_january_retains_previous_calendar_year_half_report(self):
+        import company_extended_publications as extended
+        urls=[]
+        def source(url):
+            urls.append(url)
+            if '2026-first-half' in url:return ['https://issuer/LVMH_2026Firsthalffinancialreport.pdf']
+            return []
+        with patch.object(extended,'links',side_effect=source):
+            documents=list(extended.europe_documents('lvmh',dt.date(2027,1,7)))
+        self.assertIn((2026,True,'https://issuer/LVMH_2026Firsthalffinancialreport.pdf'),documents)
+        self.assertFalse(any('2027-first-half' in url for url in urls))
+        with patch.object(extended,'links',return_value=[]):
+            documents=list(extended.europe_documents('schneider',dt.date(2027,1,7)))
+        self.assertEqual(documents[0][0:2],(2026,True))
+
+    def test_cached_history_retains_its_real_observation_date(self):
+        import company_extended_publications as extended
+        cached={'years':[{'end':f'{y}-12-31','revenue':100,'netIncome':10} for y in [2023,2024,2025]],'observedAt':'2026-09-15'}
+        parsed=[dict(cached['years'][-1])]
+        with patch.object(extended,'europe_documents',return_value=[(2025,False,'https://issuer/report')]),patch.object(extended,'load',return_value=b''),patch.object(extended,'pdf_text',return_value=''),patch.object(extended,'parse_europe',return_value=parsed):
+            r=extended.collect_europe({'id':'lvmh'},TODAY,{'history':cached})
+        self.assertEqual(r['historyObservedAt'],'2026-09-15')
+        self.assertIsNone(extended.cached_history({'history':cached},dt.date(2026,10,16)))
+
 if __name__ == '__main__': unittest.main()

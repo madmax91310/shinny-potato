@@ -20,7 +20,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-26.04
-    timeout-minutes: 25
+    timeout-minutes: 35
     concurrency:
       group: company-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
@@ -81,7 +81,7 @@ jobs:
           ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
         run: |
           if [ -z "$ALPHAVANTAGE_API_KEY" ]; then
-            echo 'Issuer publications and completed-session prices are collected without a key. PER is calculated from four published quarterly EPS. Finviz next-fiscal-year EPS and five-year annual EPS growth estimates are collected without a key; forward PER and PEG are recalculated at the same completed-session close. Annual GAAP history is collected from SEC with issuer-publication fallback.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Issuer publications and completed-session prices are collected without a key. Trailing PER uses four published quarterly EPS; eligible IFRS annual PER is separately labeled with its fiscal year. Finviz next-fiscal-year EPS and five-year annual EPS growth estimates are collected without a key; forward PER and PEG are recalculated at the same completed-session close. Three to five years of GAAP/IFRS consolidated history are collected from SEC or official publications. Euro listings have no forecast/PEG without verified estimates.' >> "$GITHUB_STEP_SUMMARY"
           fi
   deploy:
     needs: refresh

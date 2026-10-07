@@ -19,11 +19,11 @@ MONTHS = {m.lower():i for i,m in enumerate(calendar.month_name) if m}
 NUMBER = r'\(?-?\d[\d,]*(?:\.\d+)?\)?'
 
 
-def get(url):
+def get(url, max_bytes=10_000_000):
     req = urllib.request.Request(url, headers={'User-Agent':UA})
     with urllib.request.urlopen(req, timeout=20) as response:
-        raw = response.read(10_000_001)
-        if len(raw) > 10_000_000:
+        raw = response.read(max_bytes+1)
+        if len(raw) > max_bytes:
             raise ValueError('Publication too large')
         return raw
 

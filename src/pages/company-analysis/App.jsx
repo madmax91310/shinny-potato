@@ -43,9 +43,11 @@ export default function App() {
         <div className="company-evidence">
           <h2>Les données utilisées</h2>
           {company.annual && <p>Dernier exercice : {dateLabel(company.annual.end)}.</p>}
+          {company.quoteListing && <p>Cotation utilisée : {company.quoteListing}.</p>}
           {company.accountsObservedAt && <p>Comptes vérifiés le {dateLabel(company.accountsObservedAt)}.</p>}
-          <p><a href={company.accountsSourceUrl ?? `https://www.sec.gov/edgar/browse/?CIK=${company.cik}`} target="_blank" rel="noreferrer">Comptes officiels · SEC / EDGAR</a></p>
+          <p><a href={company.accountsSourceUrl ?? `https://www.sec.gov/edgar/browse/?CIK=${company.cik}`} target="_blank" rel="noreferrer">Comptes officiels</a></p>
           <p><a href={company.sourceUrl} target="_blank" rel="noreferrer">Activité de l’entreprise</a></p>
+          {company.halfYear && <p>Dernier semestre : <a href={company.halfYear.sourceUrl} target="_blank" rel="noreferrer">{dateLabel(company.halfYear.end)}</a>.</p>}
           {company.quote && <p><a href={`https://finance.yahoo.com/quote/${company.symbol}/`} target="_blank" rel="noreferrer">Cours de clôture · Yahoo Finance</a> · {dateLabel(company.quote.asOf)}</p>}
           {estimates && <p><a href={estimates.sourceUrl} target="_blank" rel="noreferrer">Estimations · Finviz</a> · relevé le {dateLabel(estimates.observedAt)}. PER prévisionnel : prochain exercice fiscal selon le fournisseur. PEG : croissance annuelle estimée sur cinq ans. <a href={estimates.methodUrl} target="_blank" rel="noreferrer">Définitions</a>. {estimates.earningsBasis}.</p>}
           {valuation ? <p><a href={valuation.sourceUrl} target="_blank" rel="noreferrer">Ratios · Alpha Vantage</a> · {dateLabel(valuation.observedAt)}. Le PER prévisionnel n’indique pas un horizon standardisé.</p>
@@ -56,7 +58,7 @@ export default function App() {
       <section className="tool-preview">
         {history.length > 0 && <div className="company-history">
           <h2>{history.length} exercices de résultats</h2>
-          <p>Comptes consolidés GAAP · {company.currency}. Marge nette = résultat net / chiffre d’affaires. Vérifiés le {dateLabel(company.history.observedAt)}.</p>
+          <p>Comptes consolidés {company.accountingStandard ?? 'GAAP'} · {company.currency}. Marge nette = résultat net {company.annual?.incomeBasis ? 'part du groupe ' : ''}/ chiffre d’affaires. Vérifiés le {dateLabel(company.history.observedAt)}.</p>
           <div className="company-history-scroll"><table data-testid="company-history">
             <thead><tr><th scope="col">Exercice clos le</th><th scope="col">Chiffre d’affaires</th><th scope="col">Résultat net</th><th scope="col">Marge nette</th></tr></thead>
             <tbody>{history.map(year => <tr key={year.end}><th scope="row"><a href={year.sourceUrl} target="_blank" rel="noreferrer">{dateLabel(year.end)}</a></th><td>{amount(year.revenue, company.currency)}</td><td>{amount(year.netIncome, company.currency)}</td><td>{year.margin.toLocaleString('fr-FR', {minimumFractionDigits: 1, maximumFractionDigits: 1})} %</td></tr>)}</tbody>
