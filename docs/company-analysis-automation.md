@@ -49,3 +49,10 @@ TotalEnergies utilise l’action ordinaire NYSE en dollars et les comptes en dol
 Air Liquide dispose d’une découverte complémentaire via ses archives officielles d’information réglementée et de documents. Si les pages de résultats sont indisponibles, les PDF officiels précédemment vérifiés sont téléchargés et analysés à nouveau. Les chiffres ne sont jamais recertifiés par simple lecture du cache, et les dates de vérification des anciens historiques restent inchangées.
 
 Lorsque le site d’Air Liquide refuse l’accès depuis GitHub Actions, les communiqués de l’émetteur distribués par Euronext sont découverts dans la liste publique de l’entreprise, puis leurs pièces jointes sont analysées avec les mêmes contrôles IFRS. Les périodes « H1 » sont des semestres. Le communiqué semestriel ne présentant qu’un BPA de base, aucun BPA dilué n’est déduit de ce chiffre.
+
+
+## Texte pédagogique sans CTA
+
+Les onze profils partagent le même moteur de texte, avec une accroche propre à leur activité documentée. Aucun chiffre ni constat de croissance n’est figé dans ces accroches. Le texte conserve les périodes annuelles, trimestrielles ou semestrielles et explique la marge nette à partir des comptes bruts. Les commentaires changent lorsque les revenus, les bénéfices ou les pertes évoluent ; ils sont omis lorsque les comparatifs manquent. La lecture des historiques compare leurs extrémités, sans supposer une progression régulière entre les exercices.
+
+La publication termine sur son dernier bloc disponible, sans question ni appel à l’interaction automatique. Les ratios restent datés, conditionnés par leur fraîcheur et distincts des bénéfices publiés. Le moteur n’invente ni cause économique, ni répartition sectorielle, ni jugement sur l’opportunité d’achat. Les détails de provenance et les métriques complètes restent consultables dans l’outil.
