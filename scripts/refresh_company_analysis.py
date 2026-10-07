@@ -95,6 +95,16 @@ def financial_period(body, form, minimum, maximum, today):
               'revenueGrowth': growth(latest['val'], prev['val']) if prev else None,
               'incomeGrowth': growth(net['val'], prev_net['val']) if prev_net else None,
               'tags': {'revenue': latest['tag'], 'netIncome': net['tag']}}
+    for field, tag, unit in [('dilutedEPS', 'EarningsPerShareDiluted', 'USD/shares'),
+                             ('operatingIncome', 'OperatingIncomeLoss', 'USD'),
+                             ('dividendPerShare', 'CommonStockDividendsPerShareDeclared', 'USD/shares')]:
+        rows = fact_rows(body, [tag], unit, form, minimum, maximum, today)
+        current, prior = aligned(rows, latest), aligned(rows, prev) if prev else None
+        if current:
+            result[field] = current['val']
+            result['tags'][field] = tag
+            if prior:
+                result['previous' + field[0].upper() + field[1:]] = prior['val']
     if form == '10-K':
         ocf = aligned(fact_rows(body, ['NetCashProvidedByUsedInOperatingActivities'], 'USD', form, minimum, maximum, today), latest)
         capex = aligned(fact_rows(body, ['PaymentsToAcquirePropertyPlantAndEquipment'], 'USD', form, minimum, maximum, today), latest)
@@ -113,7 +123,35 @@ def parse_accounts(body, profile, today):
     quarter = financial_period(body, '10-Q', 75, 105, today)
     if quarter and (quarter['end'] <= annual['end'] or (today - dt.date.fromisoformat(quarter['end'])).days > 200):
         quarter = None
-    return {'annual': annual, 'quarter': quarter}
+    result = {'annual': annual, 'quarter': quarter}
+    end = (quarter or annual)['end']
+    def instant(tags, unit='USD'):
+        # Contexts with dimensional breakdowns are not present in companyfacts.
+        for tag in tags:
+            rows = [r for r in body['facts'].get('us-gaap', {}).get(tag, {}).get('units', {}).get(unit, [])
+                    if r.get('end') == end and r.get('filed', '') <= today.isoformat()
+                    and r.get('form') in ('10-K', '10-Q', '10-K/A', '10-Q/A') and not r.get('start')]
+            if rows:
+                return numeric(max(rows, key=lambda r:r['filed'])['val']), tag
+        return None, None
+    cash, cash_tag = instant(['CashAndCashEquivalentsAtCarryingValue'])
+    current, current_tag = instant(['LongTermDebtCurrent'])
+    noncurrent, noncurrent_tag = instant(['LongTermDebtNoncurrent'])
+    if cash is not None and current is not None and noncurrent is not None:
+        debt = current + noncurrent
+        tags = [current_tag, noncurrent_tag]
+        for tag in ['CommercialPaper', 'ShortTermBorrowings']:
+            val, used = instant([tag])
+            if val is not None:
+                debt += val; tags.append(used)
+        if min(cash, debt) >= 0:
+            result['balance'] = {'asOf':end, 'cash':cash, 'debt':debt, 'netDebt':debt-cash,
+                                 'definition':'Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus',
+                                 'tags':{'cash':cash_tag, 'debt':tags}}
+    shares, _ = instant(['CommonStockSharesOutstanding'], 'shares')
+    if shares is not None and shares > 0 and profile['id'] != 'alphabet':
+        result['shares'] = {'asOf':end, 'outstanding':shares}
+    return result
 
 
 def parse_quote(body, profile, now):
@@ -136,7 +174,10 @@ def parse_quote(body, profile, now):
     day, price = max(candidates)
     if (today-day).days > 10:
         raise ValueError('Stale price')
-    return {'price': price, 'asOf': day.isoformat(), 'observedAt': now.date().isoformat(), 'currency': profile['currency']}
+    splits = [dt.datetime.fromtimestamp(int(s['date']), UTC).astimezone(zone).date().isoformat()
+              for s in data.get('events', {}).get('splits', {}).values()]
+    return {'price': price, 'asOf': day.isoformat(), 'observedAt': now.date().isoformat(),
+            'currency': profile['currency'], 'splits':sorted(s for s in splits if s <= day.isoformat())}
 
 
 def parse_overview(body, profile, now):
@@ -152,6 +193,8 @@ def parse_overview(body, profile, now):
         except (ValueError, TypeError):
             return None
     return {'peTTM': positive('PERatio'), 'forwardPE': positive('ForwardPE'),
+            'peg': positive('PEGRatio'), 'pegHorizon':'Croissance et horizon non précisés par le fournisseur',
+            'sourceName':'Alpha Vantage',
             'forwardHorizon': 'Horizon non précisé par le fournisseur',
             'accountsAsOf': latest.isoformat(), 'observedAt': now.date().isoformat(),
             'sourceUrl': 'https://www.alphavantage.co/documentation/#company-overview'}
@@ -162,6 +205,7 @@ def main():
     parser.add_argument('--apply', action='store_true')
     parser.add_argument('--output', default='/tmp/company-analysis-observation.json')
     parser.add_argument('--only', nargs='*')
+    parser.add_argument('--publications-only', action='store_true', help='Validate the issuer fallback even where SEC is accessible')
     args = parser.parse_args()
     profiles = json.loads((ROOT/'src/data/company-profiles.json').read_text())
     path = ROOT/'src/data/company-analysis.json'
@@ -176,16 +220,64 @@ def main():
         ident = profile['id']; old = data['companies'].get(ident, {})
         item = dict(old); status = {}
         url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json"
+        sec_accounts = None
         try:
-            accounts = parse_accounts(fetch_json(url), profile, now.date())
+            if args.publications_only:
+                raise ValueError('Issuer fallback requested')
+            sec_accounts = parse_accounts(fetch_json(url), profile, now.date())
+        except Exception as error:
+            status['sec'] = type(error).__name__
+        try:
+            from company_publications import collect
+            published = collect(profile, now.date(), old)
+            accounts = dict(sec_accounts or published)
+            if sec_accounts:
+                # Never mix disagreeing earnings periods into a trailing ratio.
+                latest = sec_accounts['quarter'] or sec_accounts['annual']
+                matching = published['quarter'] or published['annual']
+                if latest['end'] != matching['end'] or any(abs(latest[k]-matching[k]) > 1 for k in ['revenue','netIncome']):
+                    raise ValueError('Issuer/SEC results disagree')
+                for block in ['annual','quarter']:
+                    official = published.get(block)
+                    existing = accounts.get(block)
+                    if official and existing and official['end']==existing['end']:
+                        for field in ['freeCashFlow','freeCashFlowDefinition']:
+                            if field not in existing and field in official:
+                                existing[field]=official[field]
+                                existing.setdefault('additionalSourceUrls',[]).append(official['sourceUrl'])
+            accounts['trailing'] = published.get('trailing')
+            accounts['quarters'] = published['quarters']
+            status['publications'] = 'updated'
+            source = url if sec_accounts else published['annual']['sourceUrl']
+        except Exception as error:
+            status['publications'] = type(error).__name__
+            accounts = sec_accounts
+            source = url
+        try:
+            if not accounts:
+                raise ValueError('Neither SEC nor issuer accounts available')
             if old.get('annual', {}).get('end', '') > accounts['annual']['end']:
                 raise ValueError('Annual accounts regressed')
-            item.update(accounts, accountsObservedAt=now.date().isoformat(), accountsSourceUrl=url)
+            if old.get('quarter') and (accounts.get('quarter') or {}).get('end', accounts['annual']['end']) < old['quarter']['end']:
+                raise ValueError('Quarter accounts regressed')
+            # Replace account blocks, not arbitrary metadata from an older collection.
+            for block in ['trailing','quarters']:
+                item.pop(block, None)
+            item.update(accounts, accountsObservedAt=now.date().isoformat(), accountsSourceUrl=source)
+            for block in ['balance','shares']:
+                if block in accounts:
+                    item[block] = {**accounts[block], 'observedAt':now.date().isoformat(), 'sourceUrl':accounts[block].get('sourceUrl',source)}
+            if accounts.get('trailing'):
+                item['trailing']['observedAt'] = now.date().isoformat()
+                status['trailing'] = 'updated'
+            else:
+                status['trailing'] = 'unavailable'
+                failures.append(ident + ':trailing')
             status['accounts'] = 'updated'
         except Exception as error:
             status['accounts'] = type(error).__name__
             failures.append(ident + ':accounts')
-        quote_url = 'https://query2.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(profile['symbol']) + '?range=1mo&interval=1d'
+        quote_url = 'https://query2.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(profile['symbol']) + '?range=2y&interval=1d&events=splits'
         try:
             quote = parse_quote(fetch_json(quote_url), profile, now)
             if old.get('quote', {}).get('asOf', '') > quote['asOf']:
@@ -209,11 +301,11 @@ def main():
                 status['valuation'] = type(error).__name__
                 failures.append(ident + ':valuation')
         else:
-            status['valuation'] = 'not-configured'
+            status['valuation'] = 'published-accounts-only'
         if item:
             data['companies'][ident] = item
         report['companies'][ident] = status
-        print(ident, json.dumps(status))
+        print(ident, json.dumps(status), flush=True)
         time.sleep(.2)
     if args.apply:
         write_json_atomic(path, data)

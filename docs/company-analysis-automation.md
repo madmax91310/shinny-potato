@@ -1,30 +1,37 @@
 # Analyse d’entreprise
 
-Route `/analyse-entreprise`, format ponctuel, cinq entreprises américaines : Apple, Microsoft, Nvidia, Alphabet et Amazon.
+Route `/analyse-entreprise`, cinq entreprises : Apple, Microsoft, Nvidia, Alphabet et Amazon.
 
-## Ce qui est automatique
+## Collecte quotidienne sans configuration
 
-Le workflow `update-company-analysis.yml` s’exécute chaque jour à 06:35 UTC. Après fusion, il collecte et remplace les observations valides, vérifie le texte et le build, pousse les données puis appelle le déploiement Pages. Les pushs du bot ne déclenchant pas les workflows ordinaires, cet appel explicite est nécessaire.
+`update-company-analysis.yml` collecte chaque jour à 06:35 UTC (08:35 en France en été, 07:35 en hiver), remplace les blocs valides, vérifie le texte et le build, enregistre les données puis appelle le déploiement Pages. Les PR exécutent également une collecte réelle dans un espace temporaire, sans écrire dans la branche ni déployer la production.
 
-- Comptes annuels et dernier trimestre disponible : API officielle SEC `companyfacts`, sans clé. Les semestres et cumuls depuis le début de l’année ne sont pas présentés comme un trimestre. L’exercice est identifié par ses dates exactes, y compris pour les entreprises dont l’exercice est décalé. Comparaisons sur un an, avec les chiffres retraités des dépôts récents. Q4 n’est pas reconstruit à partir de l’exercice : après un nouveau rapport annuel, l’exercice est affiché et les trimestres antérieurs sont omis.
-- Chiffre d’affaires, bénéfice ou perte, marge nette, flux de trésorerie disponible annuel lorsque les deux composantes sont disponibles sur la même période.
-- Cours de clôture : adaptateur Yahoo chart, comme les historiques déjà présents dans le dépôt. Il exclut systématiquement la séance du jour local, évitant de présenter un cours intraday comme une clôture. Cette source peut échouer ou limiter les accès ; la précédente observation est conservée.
-- Ratios optionnels : Alpha Vantage `OVERVIEW`, cinq appels par jour. Ajouter une clé dans le secret GitHub **ALPHAVANTAGE_API_KEY**. L’absence de clé ne bloque pas les comptes et les cours, mais aucun PER n’est alors inventé. Vérifier les droits de diffusion publique applicables au compte fournisseur avant activation. Le plan gratuit ne garantit ni tous les symboles, ni tous les champs.
+Les comptes SEC `companyfacts` sont utilisés lorsqu’ils sont accessibles. Un refus SEC (notamment HTTP 403 depuis GitHub) déclenche le secours par les publications officielles : PDF Apple Newsroom, tableaux Microsoft Investor Relations, NVIDIA Newsroom, PDF Alphabet sur son CDN officiel et tableaux Amazon Investor Relations. Les emplacements des rapports sont calculés à partir des calendriers fiscaux, avec des variantes connues de publication. Aucun contournement d’accès, connexion, clé ou imitation de navigateur.
 
-Le PER fourni porte sur les douze derniers mois, distincts de l’exercice annuel affiché. Le PER prévisionnel est celui du fournisseur : son horizon n’étant pas précisé dans la réponse, cela est explicite dans le texte et le visuel. Il n’est jamais présenté comme le PER de l’exercice suivant et n’entraîne aucune phrase prédictive sur les bénéfices.
+Le parseur accepte uniquement les tableaux consolidés GAAP, avec unité, dates et ordre des colonnes contrôlés. Il distingue les trois mois des cumuls de six/neuf mois. Les colonnes récentes et comparatives sont inversées chez certains émetteurs : elles sont identifiées par leurs années. Les tableaux sectoriels, résumés et rapprochements non-GAAP ne deviennent pas des comptes. Une structure inconnue échoue ; elle ne remplace pas une observation validée. Les dates de début SEC sont conservées pour la même période ; une publication qui indique seulement la date de fin est présentée comme « clos le », sans inventer le début.
 
-## Cohérence éditoriale
+## Données et calculs
 
-Les phrases sont produites à partir des valeurs brutes actuelles, sans accroche chiffrée figée. Les variations du chiffre d’affaires et du résultat sont recalculées lors de la génération. Une perte réduite, une perte accrue, un retour au bénéfice et le passage en perte ont des formulations spécifiques ; pas de pourcentage de croissance calculé depuis une base négative. Une base comparative absente reste absente. Aucun seuil de PER ne déclenche une affirmation « bon marché » ou « sous-évaluée ».
+- CA, résultat net, BPA dilué, variations annuelles et marge opérationnelle : dernier exercice et dernier trimestre postérieur à l’exercice.
+- FCF annuel : flux d’exploitation moins achats d’immobilisations. NVIDIA inclut aussi les achats d’actifs incorporels. Amazon utilise les achats bruts, sans déduire les ventes et incitations : cela diffère du FCF ajusté annoncé par Amazon. Les paiements de locations ne sont pas retranchés.
+- PER sur 12 mois : dernière clôture / somme de **quatre BPA trimestriels publiés**. Aucun BPA trimestriel n’est obtenu par soustraction d’un BPA annuel et d’un BPA cumulé. L’arrondi à deux décimales dans les publications peut expliquer de légers écarts avec un fournisseur. Les quatre documents sont liés dans l’application. Une division d’actions intervenue pendant les quatre trimestres bloque ce calcul tant que la base par action n’est pas recertifiée.
+- P/FCF du dernier exercice : clôture × actions en circulation publiées / FCF annuel positif. Capitalisation indicative, avec date du nombre d’actions explicite. Alphabet est exclu du calcul avec un seul cours, en raison de ses différentes classes d’actions.
+- Dette nette : dette financière publiée, hors contrats de location, moins cash et équivalents. Les placements ne sont pas déduits. Si une composante de dette n’est pas séparée dans la publication, aucune dette n’est inventée à partir du seul montant à long terme. La trésorerie peut néanmoins être collectée seule.
+- Dividendes annuels déclarés, lorsqu’ils figurent dans les comptes SEC : montant par action / clôture ; distribution = dividende par action / BPA dilué positif du même exercice. Ce rendement historique ne promet pas le prochain dividende. Ces champs ne sont pas recertifiés par le seul accès à un communiqué.
+- PER prévisionnel et PEG : champs optionnels provenant d’estimations documentées. Alpha Vantage reste un adaptateur facultatif pour un compte déjà configuré, mais aucune configuration n’est demandée. Sans estimations vérifiées, ils sont omis. Les horizons non précisés du fournisseur sont signalés ; le PEG n’est jamais dérivé d’un seul taux de croissance annuel réalisé.
 
-La description de l’activité et les points à suivre sont éditoriaux et ne sont pas réécrits par la collecte. Ils décrivent l’activité et des questions à examiner, sans présumer une croissance positive ou une rentabilité actuelle.
+EV/EBITDA n’est pas calculé faute de définition uniforme documentée de l’EBITDA et de la valeur d’entreprise dans les sources initiales.
 
-## Fraîcheur et erreurs
+## Fraîcheur, texte et erreurs
 
-Chaque bloc garde sa période, sa source et sa date de collecte. Un échec conserve indépendamment le bloc précédent et apparaît dans l’artifact d’observation ; un job final signale la collecte partielle après publication des changements valides. Aucun message d’erreur de fournisseur ne peut devenir une donnée financière. La clé API et son URL d’appel ne sont jamais enregistrées ou affichées.
+Chaque bloc conserve son document, sa période et sa date d’observation. Une erreur ne rafraîchit pas artificiellement la date d’un bloc conservé. Les comptes annuels expirent après 550 jours ou 45 jours sans vérification. Les BPA sur 12 mois, bilans et actions en circulation doivent correspondre au dernier résultat et être vérifiés depuis moins de 45 jours ; les bilans et le dernier trimestre expirent après 200 jours. Les cours de plus de dix jours et les estimations relevées il y a plus de sept jours sont omis.
 
-Le texte bloque si les comptes annuels dépassent 550 jours ou n’ont pas été vérifiés depuis 45 jours. Les cours de plus de 10 jours et les ratios relevés il y a plus de 7 jours sont omis. Les estimations fondées sur des comptes antérieurs au dernier résultat SEC affiché sont également omises. Le périmètre initial est volontairement celui des émetteurs américains avec comptes US GAAP en USD ; une autre devise ou un autre émetteur doit avoir son propre adaptateur.
+Le cours provient de Yahoo chart, intervalle quotidien sur deux ans avec événements de division d’actions. La séance du jour local est toujours exclue. Les ratios calculés sont recalculés à l’affichage depuis les chiffres bruts et la clôture retenue, sans résultat figé.
 
-Registres communs `src/data/company-profiles.json` et `src/data/company-analysis.json`, réunis dans `companies.js`. La bibliothèque de données permet de rechercher l’entreprise par nom, ticker ou CIK et d’exporter ses sources/périodes.
+Les phrases suivent les chiffres bruts : hausse/baisse, perte réduite/accrue, retour au bénéfice ou à l’équilibre. Aucun taux de croissance ordinaire n’est calculé depuis une base négative. Un ratio ne déclenche pas une conclusion automatique « bon marché », « sous-évaluée » ou une prévision de hausse. Activité et points à surveiller restent éditoriaux.
 
-Validation : tests Python de collecte et de périodes, tests JavaScript de cohérence des phrases et d’omission des données périmées, build, audit des bundles et navigateur réel : choix des cinq entreprises, copie, aperçu image, téléchargement PNG, interface mobile et recherche dans la bibliothèque. Une première collecte réelle des cinq entreprises a réussi le 7 octobre 2026, sans clé Alpha Vantage. Les deux PER restent donc à activer avec une clé ; leur accès réel n’est pas validé par cette collecte.
+Les données sont dans `src/data/company-analysis.json`, les profils dans `company-profiles.json`, et leur provenance est accessible dans la bibliothèque de données. L’image adapte l’espacement au nombre de métriques disponibles.
+
+## Vérification
+
+Tests Python sur les comptes SEC et les extraits des publications officielles des cinq entreprises ; ordre des colonnes, années, BPA, FCF, nombres négatifs, absence de dette courante, rejet des tableaux incomplets/non-GAAP. Tests JavaScript de changement de cours, pertes, divisions d’actions, fraîcheur, P/FCF et texte. Tests navigateur : cinq entreprises, copie, image, PNG, mobile et recherche. La collecte réelle GitHub doit être verte avant fusion.
