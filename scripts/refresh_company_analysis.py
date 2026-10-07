@@ -308,6 +308,7 @@ def main():
             source = url if sec_accounts else published['annual']['sourceUrl']
         except Exception as error:
             status['publications'] = type(error).__name__
+            status['publicationsDetail'] = str(error)[:900]
             accounts = sec_accounts
             source = url
         try:

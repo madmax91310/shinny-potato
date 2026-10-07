@@ -188,6 +188,7 @@ def europe_documents(ident, today):
                         for doc in links(f'https://www.lvmh.com/en/financial-calendar/{year}-first-half-results'):
                             if 'financialreport' in doc.lower():yield year,True,doc
                     except Exception:pass
+
             else:
                 if year < today.year:
                     for prefix in ('', 'investors/'):
@@ -204,6 +205,22 @@ def europe_documents(ident, today):
                             if re.search(r'first-half-.*financial-report',doc,re.I):yield year,True,doc
                     except Exception:pass
 
+        if ident == 'air-liquide':
+            # The regulated-information archive is another official discovery
+            # surface, independent of individual annual-result landing pages.
+            for archive in ('https://www.airliquide.com/investors/regulated-information',
+                            'https://www.airliquide.com/investors/documents-presentations'):
+                try:
+                    for doc in links(archive):
+                        filename = urllib.parse.unquote(urllib.parse.urlparse(doc).path).rsplit('/',1)[-1]
+                        half = re.search(r'first-half-(20\d{2}).*financial-report\.pdf$', filename, re.I)
+                        annual = re.search(r'(?:pr-fy-(20\d{2})|(20\d{2})-annual-results).*\.pdf$', filename, re.I)
+                        if half:
+                            yield int(half[1]), True, doc
+                        elif annual and not re.search(r'presentation|pre-fy|communication',filename,re.I):
+                            yield int(annual[1] or annual[2]), False, doc
+                except Exception:
+                    continue
 
 def cached_history(old, today):
     history = (old or {}).get('history', {})
@@ -276,7 +293,20 @@ def collect_europe(profile, today, old=None):
     documents = europe_documents(profile['id'],today)
     # Calendar pages already enumerate newest first; keep them lazy so a valid
     # monthly cache avoids fetching every older archive page on each daily run.
-    if profile['id'] not in {'lvmh', 'air-liquide'}:
+    if profile['id'] == 'air-liquide':
+        # Investor landing pages can be unavailable while their public PDFs
+        # remain accessible. Re-read previously verified official document URLs
+        # after discovering new reports; never recertify numbers from the cache.
+        retained = {}
+        for row, half in [((old or {}).get('annual'), False), ((old or {}).get('halfYear'), True)] + [(row, False) for row in (old or {}).get('history', {}).get('years', [])]:
+            if row and row.get('sourceUrl'):
+                url = row['sourceUrl']
+                parsed_url = urllib.parse.urlparse(url)
+                if parsed_url.scheme == 'https' and parsed_url.netloc == 'www.airliquide.com' and parsed_url.path.startswith('/sites/airliquide.com/files/') and parsed_url.path.endswith('.pdf'):
+                    key = (url, half)
+                    retained[key] = max(retained.get(key, 0), int(row['end'][:4]))
+        documents = sorted(set(documents) | {(year, half, url) for (url, half), year in retained.items()}, reverse=True)
+    elif profile['id'] != 'lvmh':
         documents = sorted(set(documents), reverse=True)
     for year, half, url in documents:
         if len(rows)>=5 and not half:break
@@ -295,7 +325,7 @@ def collect_europe(profile, today, old=None):
                     history_observed=cached['observedAt']
                     break
         except Exception as error:
-            errors.append((url,type(error).__name__))
+            errors.append((url,type(error).__name__,str(error)[:180]))
     if len(rows)<3:
         raise ValueError('Insufficient official annual accounts: '+str(errors))
     years=sorted(rows.values(),key=lambda r:r['end'])[-5:]
