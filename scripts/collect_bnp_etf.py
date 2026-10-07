@@ -8,7 +8,60 @@ from html.parser import HTMLParser
 import re
 from urllib.parse import urlparse
 from data_automation import reject, number
-from issuer_documents import download, pdf_text, document_date, proof, bounded_return
+from issuer_documents import download, pdf_text, document_date, proof, bounded_return, validated_rows
+
+
+def exposures(text, share, stamp):
+    result = {}
+    def table(block, column=0, top=False, basis='fund'):
+        rows = []
+        for line in block.splitlines():
+            cells = re.split(r' {2,}', line.strip())
+            if top and basis == 'index' and len(cells) < 4: continue
+            if len(cells) > column + 1 and re.fullmatch(r'\d+\.\d+', cells[column + 1]):
+                name = cells[column]
+                if name in ('Total', 'Total (%)', 'No. of Holdings in Benchmark'): continue
+                rows.append({'name': name, 'weightPct': float(cells[column + 1])})
+        validated_rows(rows, complete=not top)
+        if top and len(rows) != 10: reject('Incomplete BNP top-ten exposure table')
+        return {'asOf': stamp, 'basis': basis, 'rows': rows}
+    if share['layout'] == 'easy-fr':
+        if text.count('HOLDINGS BENCHMARK:') != 1: reject('Ambiguous BNP benchmark exposure section')
+        block = text.split('HOLDINGS BENCHMARK:', 1)[1].split('Source of data:', 1)[0].split('\f', 1)[0]
+        if share['isin'] == 'FR0011550185':
+            result['holdings'] = table(block, top=True, basis='index')
+            # Two-column rows; the last three sector rows have no left column.
+            sectors = []
+            for line in block.splitlines():
+                cells = re.split(r' {2,}', line.strip())
+                if len(cells) == 4: cells = cells[2:]
+                elif len(cells) != 2 or cells[0] not in ('Other', 'Cash', 'Total'): continue
+                if cells[0] != 'Total' and re.fullmatch(r'\d+\.\d+', cells[1]):
+                    sectors.append({'name': cells[0], 'weightPct': float(cells[1])})
+            validated_rows(sectors)
+            result['sectors'] = {'asOf': stamp, 'basis': 'index', 'rows': sectors}
+        elif share['isin'] == 'FR0011550193':
+            main, sectors = block.split('by Sector (%)', 1)
+            result['holdings'] = table(main, top=True, basis='index')
+            countries = []
+            for line in main.splitlines():
+                cells = re.split(r' {2,}', line.strip())
+                if len(cells) >= 4 and re.fullmatch(r'\d+\.\d+', cells[3]) and cells[2] != 'Total':
+                    countries.append({'name': cells[2], 'weightPct': float(cells[3])})
+                elif len(cells) == 2 and cells[0] == 'Other':
+                    countries.append({'name': cells[0], 'weightPct': float(cells[1])})
+            validated_rows(countries)
+            result['countries'] = {'asOf': stamp, 'basis': 'index', 'rows': countries}
+            result['sectors'] = table(sectors, basis='index')
+    else:
+        block = text.split('Top 10 Holdings', 1)[1].split('Total (%)', 1)[0]
+        if not re.search(r'Portfolio\s+Benchmark\s+Relative', block): reject('BNP portfolio columns changed')
+        result['holdings'] = table(block, top=True)
+        block = text.split('Sector Breakdown (%)', 1)[1].split('Geographical Breakdown (%)', 1)[0]
+        if not re.search(r'Portfolio\s+Benchmark', block): reject('BNP sector columns changed')
+        result['sectors'] = table(block)
+        # Geographical Breakdown is a regional table, not a country table.
+    return result
 
 
 class Links(HTMLParser):
@@ -94,11 +147,18 @@ def parse(text, share, now, expected_date):
     if set(map(int, calendar)) != set(range(min(map(int, calendar)), now.year)):
         reject('Missing BNP complete calendar year within published history')
     if not 0 <= float(fee) <= 5: reject('Invalid BNP ongoing charges')
-    return {**share, 'productId': isin, 'characteristics': {'terPct': float(fee), 'asOf': stamp, 'feesAsOf': fees_as_of},
+    result = {**share, 'productId': isin, 'characteristics': {'terPct': float(fee), 'asOf': stamp, 'feesAsOf': fees_as_of},
             'aum': {'amount': number(round(aum, 2)), 'currency': currency, 'scope': 'fund', 'asOf': stamp},
             'performance': {'currency': currency, 'basis': 'fund', 'method': 'calendar-year exact-share NAV net total return, income reinvested, fund fees included',
                             'asOf': stamp, 'years': dict(sorted(calendar.items()))},
-            'unavailable': ['countries/sectors/holdings: document exposure tables not qualified by this connector']}
+            'unavailable': []}
+    try:
+        result.update(exposures(text, share, stamp))
+    except (ValueError, IndexError) as error:
+        result['collectionErrors'] = [{'field': 'exposures', 'reason': str(error)}]
+    if 'countries' not in result:
+        result['unavailable'].append('countries: no complete country table published; regional geography is not a country allocation')
+    return result
 
 
 def collect_one(share, now, fetch=download):
@@ -108,7 +168,8 @@ def collect_one(share, now, fetch=download):
     url, stamp = discover(fetch(page), share, now)
     body = fetch(url); result = parse(pdf_text(body), share, now, stamp)
     result['sourceUrl'] = url
-    for field in ('characteristics', 'aum', 'performance'):
+    for field in ('characteristics', 'aum', 'performance', 'countries', 'sectors', 'holdings'):
+        if field not in result: continue
         result[field].update(sourceUrl=url, discoveryUrl=page, sha256=proof(body),
                              sourceLabel='Fiche BNP Paribas Asset Management · copie hébergée par Analizy',
                              publisher='BNP Paribas Asset Management', documentHost='Analizy')

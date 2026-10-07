@@ -1,5 +1,6 @@
 """Official BlackRock product-page holdings; no search, keys or manual downloads."""
 import math
+import datetime as dt
 from urllib.parse import urlencode, urlsplit
 from data_automation import get_json, number, reject
 from collect_etf_pilot import source_date
@@ -32,12 +33,38 @@ def parse_holdings(body, share, now):
         reject('Invalid holdings weights')
     if not 99 <= sum(weights) <= 101:
         reject('Incomplete holdings portfolio')
-    equities = [{'name': n, 'weightPct': w, 'isin': i} for n, w, i, a in
-        zip(columns['issueName'], weights, columns['isin'], columns['assetClass']) if a == 'Equity' and w > 0]
-    if not equities:
-        reject('No equity holdings in equity fund')
-    if any(not row['name'] for row in equities):
-        reject('Missing equity identity')
+    asset_class = share.get('holdingsAssetClass', 'Equity')
+    if asset_class not in ('Equity', 'Fixed Income'):
+        reject('Unqualified holdings asset class')
+    selected = []
+    for name, weight, isin, kind in zip(columns['issueName'], weights, columns['isin'], columns['assetClass']):
+        if kind != asset_class or weight <= 0:
+            continue
+        if not name:
+            reject('Missing security identity')
+        # Several bonds of one issuer have the same published name. Keep the
+        # individual security identity visible, rather than merging issuers.
+        label = name + ' · ' + isin if asset_class == 'Fixed Income' and isin else name
+        selected.append({'name': label, 'weightPct': weight, 'isin': isin})
+    identified = [r['isin'] for r in selected if r['isin'] and r['isin'] != '-']
+    if not selected or len(set(identified)) != len(identified):
+        reject('Missing or duplicate securities in qualified asset class')
+    top = sorted(selected, key=lambda p: -p['weightPct'])[:10]
+    for row in top:
+        if row['isin'] and row['isin'] != '-': continue
+        if asset_class != 'Fixed Income': reject('Missing top holding security identity')
+        # Some mortgage pools have no published ISIN. Their reported name,
+        # coupon and maturity identify the position without inventing an ISIN.
+        index = next(i for i, (n, w) in enumerate(zip(columns['issueName'], weights))
+                     if n == row['name'] and w == row['weightPct'])
+        maturity = points['maturityDate']['value'][index]
+        coupon = points['couponRate']['value'][index]
+        maturity = dt.datetime.strptime(str(maturity), '%Y%m%d').date().isoformat()
+        if isinstance(coupon, bool) or not isinstance(coupon, (int, float)) or not math.isfinite(coupon) or not 0 <= coupon <= 100:
+            reject('Invalid bond coupon identity')
+        row.pop('isin'); row.update(maturityDate=maturity, couponPct=coupon)
+        row['name'] += f' · {coupon:g}% · {maturity}'
+    if len({r['name'] for r in top}) != len(top): reject('Ambiguous top holding identity')
     countries = {}
     for country, weight in zip(columns['countryOfRisk'], weights):
         key = country if country and country != '-' else 'Other'
@@ -45,7 +72,7 @@ def parse_holdings(body, share, now):
     # Preserve signed cash/derivatives explicitly; never normalise equity weights.
     geography = {'asOf': stamp, 'method': 'Country of risk, all published holdings including cash/derivatives, no renormalisation',
         'rows': [{'name': n, 'weightPct': round(w, 6)} for n, w in sorted(countries.items(), key=lambda p: -p[1])]}
-    return {'asOf': stamp, 'basis': 'fund', 'rows': sorted(equities, key=lambda p: -p['weightPct'])[:10]}, geography
+    return {'asOf': stamp, 'basis': 'fund', 'rows': top}, geography
 
 
 def collect_holdings(component, share, now, fetch=get_json):

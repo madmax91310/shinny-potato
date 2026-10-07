@@ -89,3 +89,11 @@ Les deux pages S&P renvoient HTTP 403 au collecteur. Leurs pages State Street ac
 
 S&P a annoncé le 06/10/2026 des changements de méthode et de nom : Global Quality Income à compter du 01/02/2027 et Euro High Yield à compter du 21/06/2027. Les identités actuelles restent contrôlées ; ne pas accepter un nouvel indice en simple alias sans revue des ruptures de méthode.
 Source : https://www.spglobal.com/spdji/en//documents/indexnews/announcements/20261006-1485435/1485435_sp-div-aristocrats-results-20261006.pdf
+
+## Complément des champs ETF demandé ensuite
+
+25 instruments complétés : huit VanEck (secteurs/sous-industries du fonds), trois BNP (secteurs et top dix, pays STOXX), douze obligations iShares (secteurs et positions), SPDR Euro Corporate Bond (pays/secteurs/positions), Vanguard Euro Corporate Bond (pays et types d’émetteurs). Cinq calendriers VanEck complets supplémentaires sont actifs. Totaux proposés : frais 155, encours 155, calendriers 138, pays 136, secteurs 138, positions 136 sur 155 instruments. Les calendriers des parts récentes n’écrasent pas une simulation nécessitant une période plus longue.
+
+La découverte VanEck vérifie ISIN UCITS et ticker de composant UCT…, région UK/en, section portfolio du fonds, date et somme des poids. Les composants de la section index sont exclus. La classification Sector/SubIndustry reste conservée. BNP conserve basis=index sur ses tableaux français et basis=fund sur Nasdaq. Les calendriers néerlandais conservent explicitement leur convention fiscale de distributions brutes. Les positions obligataires ne fusionnent pas les émissions d’un même émetteur ; les rares pools sans ISIN publié conservent leur coupon/échéance.
+
+Les absences restantes incluent les pays BNP S&P 500 (aucun tableau pays), BNP Nasdaq (régions seulement), les positions Vanguard obligataire à qualifier, les calendriers non encore complets et les champs non applicables aux actifs à exposition unique. La composition des trois indices encore ouverts n’est pas modifiée par ce complément.

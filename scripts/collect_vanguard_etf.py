@@ -92,10 +92,11 @@ def parse_api(body, share, now):
             'years': dict(sorted(years.items())), 'sourceUrl': API, 'sha256': digest}
     except (ValueError, KeyError, TypeError) as error:
         result['unavailable'].append('performance: ' + str(error))
-    if share.get('equity', True):
+    if share.get('equity', True) or share.get('countryAllocationCode'):
         try:
-            classification = profile['primaryMarketEquityClassification']
-            code = {'FTSE Country of Risk': 'FTCTYATPCS',
+            classification = ('Published bond market allocation (' + share['countryAllocationCode'] + ')'
+                              if share.get('countryAllocationCode') else profile['primaryMarketEquityClassification'])
+            code = share.get('countryAllocationCode') or {'FTSE Country of Risk': 'FTCTYATPCS',
                     'MSCI Country of Risk': 'MSCTYATPCS'}.get(classification)
             if not code:
                 reject('Unqualified Vanguard country classification')
@@ -156,6 +157,16 @@ def parse_document(body,share,now):
                     sectors.append({'name':cells[i],'weightPct':float(cells[i+1].rstrip('%'))})
         validated_rows(sectors)
         result['sectors']={'asOf':stamp,'basis':'fund','sourceUrl':share['sourceUrl'],'rows':sectors}
+    elif share.get('collectBondSectors'):
+        block=text.split('Distribution by issuer (% of fund)',1)[1].split('*The allocations',1)[0]
+        rows=[]
+        for line in block.splitlines():
+            cells=re.split(r' {2,}',line.strip())
+            if len(cells)==2 and re.fullmatch(r'\d+\.\d+%?',cells[1]):
+                rows.append({'name':cells[0],'weightPct':float(cells[1].rstrip('%'))})
+        validated_rows(rows)
+        result['sectors']={'asOf':stamp,'basis':'fund','sourceUrl':share['sourceUrl'],
+            'method':'Published distribution by issuer, percent of fund; no equity sector substitution','rows':rows}
     return result
 
 

@@ -8,6 +8,7 @@ on:
     paths:
       - '.github/workflows/collect-etf-pilot.yml'
       - 'scripts/collect_*etf*.py'
+      - 'scripts/*vaneck*.py'
       - 'scripts/apply_etf_collection.py'
       - 'scripts/*etf.json'
       - 'scripts/*index*.py'
@@ -34,6 +35,7 @@ on:
       - 'scripts/lib/data-review-observation.mjs'
       - 'scripts/test-data-review-observation.mjs'
       - 'scripts/*etf*'
+      - 'scripts/*vaneck*.py'
       - 'scripts/*amundi*'
       - 'scripts/test_issuer_refresh.py'
       - 'scripts/*index*.py'
@@ -92,6 +94,7 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
       - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'

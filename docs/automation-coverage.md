@@ -25,11 +25,17 @@ Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth pu
 ## Extension du 6 octobre 2026
 
 Douze des quinze instruments auparavant hors collecte sont désormais raccordés : Bitwise Bitcoin, WisdomTree Copper/Defence/Quantum/Dividend Growth, CoinShares Bitcoin/Ethereum, UBS World, L&G Battery/AI/Clean Energy et Global X QYLD. Les calendriers complets WisdomTree Copper et Dividend Growth proviennent des fiches PDF officielles. L&G Cyber Security reçoit aussi les calendriers exacts de la part ; WisdomTree Gold reçoit un encours daté depuis sa page officielle. Les séries complètes Battery, AI et Cyber Security sont intégrées lorsque leur devise correspond à la simulation. Clean Energy conserve son proxy : lancement en 2020, année incomplète.
-MSCI EM IMI, MSCI EM Latin America et Selection 20/35 Capped : compositions et rendements nets USD issus des fiches MSCI actuelles. La fiche Selection conserve son titre historique ; son URL certifiée et son intitulé exact sont contrôlés. Nikkei 225 : composition officielle et rendement total JPY. STOXX 600 et EURO STOXX 50 : rendements prix EUR calculés sur les clôtures de décembre du tableau quotidien officiel. TOPIX : ligne indice total JPY de BlackRock. S&P Global/Euro Dividend Aristocrats : lignes indice nettes State Street ; 2020 Global est exclue à cause du changement d’indice en cours d’année. Les trois BNP reçoivent les frais courants publiés, encours et rendements calendaires exacts depuis les fiches rédigées par BNP et republiées sur Analizy. Chaque page produit est relue pour découvrir la dernière édition ; ISIN, devise, indice, millésime et fraîcheur sont contrôlés. Le domaine BNP reste indisponible (composant HTTP 502). Le miroir est explicitement identifié dans la provenance ; aucune donnée calculée par Analizy ne remplace celle du PDF émetteur. Les répartitions de ces trois documents ne sont pas encore raccordées.
+MSCI EM IMI, MSCI EM Latin America et Selection 20/35 Capped : compositions et rendements nets USD issus des fiches MSCI actuelles. La fiche Selection conserve son titre historique ; son URL certifiée et son intitulé exact sont contrôlés. Nikkei 225 : composition officielle et rendement total JPY. STOXX 600 et EURO STOXX 50 : rendements prix EUR calculés sur les clôtures de décembre du tableau quotidien officiel. TOPIX : ligne indice total JPY de BlackRock. S&P Global/Euro Dividend Aristocrats : lignes indice nettes State Street ; 2020 Global est exclue à cause du changement d’indice en cours d’année. Les trois BNP reçoivent les frais courants publiés, encours et rendements calendaires exacts depuis les fiches rédigées par BNP et republiées sur Analizy. Chaque page produit est relue pour découvrir la dernière édition ; ISIN, devise, indice, millésime et fraîcheur sont contrôlés. Le domaine BNP reste indisponible (composant HTTP 502). Le miroir est explicitement identifié dans la provenance ; aucune donnée calculée par Analizy ne remplace celle du PDF émetteur. Les trois BNP raccordent maintenant les secteurs et dix positions : expositions de l’indice pour S&P 500/STOXX 600, portefeuille du fonds pour Nasdaq. STOXX 600 publie aussi une table complète de pays ; S&P 500 n’en publie pas et Nasdaq publie des régions, qui ne deviennent pas des pays.
 
 ## Avancement des priorités 1 et 2
 
 Quatre compositions supplémentaires sont raccordées : S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50. La couverture atteint 39 compositions avec le Russell 2000 ; 46 séries annuelles sont automatisées. Deux calendriers de parts sont ajoutés : WPEA EUR 2025 et UBS World USD 2022–2025. Le calendrier TOTAL USD S&P 500 Equal Weight est raccordé à la ligne indice SPXEWTR de la fiche trimestrielle Invesco. Les trois BNP sont raccordés pour frais, encours et calendriers ; les trois compositions restent à qualifier ; voir [la qualification du 7 octobre](source-reliability-index-coverage-2026-10-07.md).
+
+## Complément des champs BNP, VanEck et obligations
+
+25 instruments reçoivent des champs supplémentaires. Les huit VanEck découvrent les widgets sectoriels de leur page UCITS exacte à chaque exécution ; seules les tables du fonds sont utilisées, avec dates et classification Sector/SubIndustry propres. Les calendriers de cinq parts supplémentaires (Real Estate, Dividend Leaders, Uranium, Space et Defense) sont raccordés ; les années incomplètes au lancement restent exclues. Les deux fonds néerlandais conservent leur convention publiée de distributions brutes de retenue néerlandaise, après frais du fonds.
+Douze ETF obligataires iShares reçoivent secteurs et dix positions obligataires individuelles, avec pays lorsque publiés ou issus du portefeuille complet. Les classifications obligataires (Treasury, Sovereign, Banking, titrisations…) restent distinctes des secteurs actions. Les positions sont distinguées par ISIN ; les rares pools hypothécaires sans ISIN publié conservent nom, coupon et échéance. Le SPDR Euro Corporate Bond raccorde pays, secteurs et positions depuis sa page et son XLSX daté. Vanguard Euro Corporate Bond raccorde les pays du widget GPX CNTRYATPCB et la répartition par type d’émetteur de la fiche ; ses positions restent à qualifier.
+Les compléments BNP et VanEck invalides conservent les données antérieures et signalent un échec, tout en laissant les frais/encours/calendriers valides être appliqués. Aucun poids résiduel n’est inventé et aucun tableau régional n’est converti en pays. Les parts récentes et les actifs crypto/métaux gardent leurs limites de publication ou d’applicabilité.
 
 ## Limites par champ ETF
 
@@ -39,10 +45,10 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 |---|---:|
 | Frais annuels | 155 |
 | Encours daté | 155 |
-| Rendements calendaires de la part (au moins une année complète) | 133 |
-| Pays | 132 |
-| Secteurs ou sous-secteurs publiés | 113 |
-| Principales positions | 120 |
+| Rendements calendaires de la part (au moins une année complète) | 138 |
+| Pays | 136 |
+| Secteurs ou sous-secteurs publiés | 138 |
+| Principales positions | 136 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
@@ -60,18 +66,18 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | ISIN | Instrument | Champs courants hors collecte active |
 |---|---|---|
 | FR0007056841 | Amundi Dow Jones Industrial Average UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BYWQWR46 | VanEck Video Gaming and eSports UCITS ETF | Secteurs |
+| IE00BYWQWR46 | VanEck Video Gaming and eSports UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYZK4776 | iShares Healthcare Innovation UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3YLTY66 | State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BLNMYC90 | Xtrackers S&P 500 Equal Weight UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BJ38QD84 | State Street SPDR Russell 2000 U.S. Small Cap UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00B2NPKV68 | iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist) | Secteurs, Principales positions |
-| IE00B1FZS913 | iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist) | Secteurs, Principales positions |
+| IE00B2NPKV68 | iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00B1FZS913 | iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE0006WW1TQ4 | Xtrackers MSCI World ex USA UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0014017NX3 | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) | Rendements calendaires |
 | LU0290358497 | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C | Pays, Secteurs, Principales positions |
-| IE00B3FH7618 | iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist) | Secteurs, Principales positions |
-| IE00BDBRDM35 | iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc) | Secteurs, Principales positions |
+| IE00B3FH7618 | iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BDBRDM35 | iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BZCQB185 | iShares MSCI India UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B1FZS467 | iShares Global Infrastructure UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | CH0454664001 | 21Shares Bitcoin ETP | Rendements calendaires, Pays, Secteurs, Principales positions |
@@ -82,8 +88,8 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR0010527275 | Amundi MSCI Water UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0010755611 | Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011440478 | Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| FR0011550185 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | Pays, Secteurs, Principales positions |
-| FR0011550193 | BNP Paribas Easy STOXX Europe 600 UCITS ETF | Pays, Secteurs, Principales positions |
+| FR0011550185 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | Pays |
+| FR0011550193 | BNP Paribas Easy STOXX Europe 600 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011869320 | Amundi PEA Inde (MSCI India) UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011871078 | Amundi PEA Chine (MSCI China) Screened UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011871110 | Amundi PEA Nasdaq-100 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -105,26 +111,26 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE0000N55FP4 | iShares MSCI Europe Small Cap UCITS ETF | Rendements calendaires |
 | IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Pays, Secteurs, Principales positions |
 | IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Rendements calendaires |
-| IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Rendements calendaires, Secteurs |
+| IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Rendements calendaires |
 | IE000C6ITGC8 | iShares Quantum Computing UCITS ETF | Rendements calendaires |
 | IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE000I8KRLL9 | iShares MSCI Global Semiconductors UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000L6ZMMC4 | Xtrackers FTSE All-World UCITS ETF 1C | Rendements calendaires |
-| IE000M7V94E1 | VanEck Uranium and Nuclear Technologies UCITS ETF | Rendements calendaires, Secteurs |
-| IE000QDFFK00 | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | Pays, Secteurs, Principales positions |
+| IE000M7V94E1 | VanEck Uranium and Nuclear Technologies UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE000QDFFK00 | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | Pays |
 | IE000RDRMSD1 | iShares Blockchain Technology UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000W8WMSL2 | WisdomTree Quantum Computing UCITS ETF | Rendements calendaires |
 | IE000XZSV718 | SPDR S&P 500 UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE000YU9K6K2 | VanEck Space Innovators UCITS ETF | Rendements calendaires, Secteurs |
-| IE000YYE6WK5 | VanEck Defense UCITS ETF | Rendements calendaires, Secteurs |
+| IE000YU9K6K2 | VanEck Space Innovators UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE000YYE6WK5 | VanEck Defense UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B02KXK85 | iShares China Large Cap UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00B0M62X26 | iShares € Inflation Linked Govt Bond UCITS ETF | Secteurs, Principales positions |
+| IE00B0M62X26 | iShares € Inflation Linked Govt Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B0M63623 | iShares MSCI Taiwan UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00B14X4Q57 | iShares € Govt Bond 1-3yr UCITS ETF | Secteurs, Principales positions |
+| IE00B14X4Q57 | iShares € Govt Bond 1-3yr UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B1FZS350 | iShares Developed Markets Property Yield UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B1XNHC34 | iShares Global Clean Energy Transition UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00B3F81R35 | iShares Core € Corp Bond UCITS ETF (Dist) | Secteurs, Principales positions |
-| IE00B3T9LM79 | SPDR € Corp Bond UCITS ETF | Pays, Secteurs, Principales positions |
+| IE00B3F81R35 | iShares Core € Corp Bond UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00B3T9LM79 | SPDR € Corp Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3VVMM84 | Vanguard FTSE Emerging Markets UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3WJKG14 | iShares S&P 500 Information Technology Sector UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B40B8R38 | iShares S&P 500 Consumer Staples Sector UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -140,7 +146,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B4L5YX21 | iShares Core MSCI Japan IMI UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B4NCWG09 | iShares Physical Silver ETC | Pays, Secteurs, Principales positions |
 | IE00B4ND3602 | iShares Physical Gold ETC | Pays, Secteurs, Principales positions |
-| IE00B4WXJJ64 | iShares Core Euro Government Bond UCITS ETF (Dist) | Secteurs, Principales positions |
+| IE00B4WXJJ64 | iShares Core Euro Government Bond UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B52SFT06 | iShares MSCI USA UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B53L3W79 | iShares Core EURO STOXX 50 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B53SZB19 | iShares Nasdaq 100 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -148,7 +154,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B5BMR087 | iShares Core S&P 500 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B5M1WJ87 | SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B5W4TY14 | iShares MSCI Korea UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00B66F4759 | iShares Euro High Yield Corporate Bond UCITS ETF (Dist) | Secteurs, Principales positions |
+| IE00B66F4759 | iShares Euro High Yield Corporate Bond UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B6R52259 | iShares MSCI ACWI UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B6YX5D40 | SPDR S&P US Dividend Aristocrats UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B8FHGS14 | iShares Edge MSCI World Minimum Volatility UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -156,12 +162,12 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B9CQXS71 | SPDR S&P Global Dividend Aristocrats UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BD4TXV59 | UBS Core MSCI World UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BD6FTQ80 | Invesco Bloomberg Commodity UCITS ETF | Pays, Secteurs, Principales positions |
-| IE00BDFBTQ78 | VanEck S&P Global Mining UCITS ETF | Secteurs |
+| IE00BDFBTQ78 | VanEck S&P Global Mining UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BDFL4P12 | iShares Diversified Commodity Swap UCITS ETF | Pays, Secteurs, Principales positions |
 | IE00BF0M2Z96 | L&G Battery Value-Chain UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BF3N7094 | iShares € High Yield Corp Bond UCITS ETF (Acc) | Secteurs, Principales positions |
+| IE00BF3N7094 | iShares € High Yield Corp Bond UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BF4RFH31 | iShares MSCI World Small Cap UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BFZPF546 | iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc) | Secteurs, Principales positions |
+| IE00BFZPF546 | iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BG0J4C88 | iShares Digital Security UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BGV5VN51 | Xtrackers Artificial Intelligence and Big Data UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BJ5JNY98 | iShares MSCI World Information Technology Sector Advanced UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -173,7 +179,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BK5BQT80 | Vanguard FTSE All-World UCITS ETF (USD) Accumulating | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BR626 | Vanguard FTSE All-World High Dividend Yield UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BR733 | Vanguard FTSE Emerging Markets UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BK95B138 | iShares $ Treasury Bond UCITS ETF | Pays, Secteurs, Principales positions |
+| IE00BK95B138 | iShares $ Treasury Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BKM4GZ66 | iShares Core MSCI EM IMI UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BKPSFC54 | iShares MSCI World Quality Dividend Advanced UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BKPX3K41 | iShares MSCI AC Far East ex-Japan UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -192,7 +198,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BYXG2H39 | iShares Nasdaq US Biotechnology UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYYHSQ67 | iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYZK4552 | iShares Automation & Robotics UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BZ163G84 | Vanguard € Corp Bond UCITS ETF | Pays, Secteurs, Principales positions |
+| IE00BZ163G84 | Vanguard € Corp Bond UCITS ETF | Principales positions |
 | IE00BZ56SW52 | WisdomTree Global Quality Dividend Growth UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | JE00B1VS3770 | WisdomTree Physical Gold | Pays, Secteurs, Principales positions |
 | LU0908500753 | Amundi Core STOXX Europe 600 UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -212,8 +218,8 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | LU2196470426 | Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU2970735911 | Amundi Core EUR High Yield Bond UCITS ETF | Rendements calendaires |
 | LU3038520774 | Amundi STOXX Europe Defense UCITS ETF | Rendements calendaires |
-| NL0009690239 | VanEck Global Real Estate UCITS ETF | Rendements calendaires, Secteurs |
-| NL0011683594 | VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF | Rendements calendaires, Secteurs |
+| NL0009690239 | VanEck Global Real Estate UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| NL0011683594 | VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 
 « Hors collecte » peut aussi signifier non publié ou non applicable. Une part récente n’a pas six années complètes : ses performances YTD, depuis création et périodes glissantes restent manuelles lorsqu’elles existent. Les proxys de simulation ne sont pas remplacés par une série incomplète. Le monétaire overnight n’a pas de composition actions pertinente ; publier son panier de swap comme exposition économique serait incorrect.
 

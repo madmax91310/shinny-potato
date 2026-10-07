@@ -29,7 +29,7 @@ class BnpDocuments(unittest.TestCase):
                 self.assertEqual(r['performance']['years']['2025'], value)
                 self.assertNotIn('2026', r['performance']['years'])
                 self.assertEqual(r['aum']['scope'], 'fund')
-                self.assertNotIn('countries', r)
+                self.assertEqual('countries' in r, i == 1)
         r = parse(self.text(2), SHARES[2], NOW, '2026-08-31')
         self.assertEqual(list(r['performance']['years']), ['2023', '2024', '2025'])
 
