@@ -127,7 +127,6 @@ export function buildTweet(duel) {
   return [
     `⚔️ ${duel.hook}`, '',
     ...([...a.assets, ...b.assets].some(asset => SIMULATION_PROXIES[asset.isin] && asset.basis === 'proxy') ? ['Base historique : ' + [...new Set([...a.assets, ...b.assets].filter(asset => SIMULATION_PROXIES[asset.isin] && asset.basis === 'proxy').map(asset => SIMULATION_PROXIES[asset.isin].scope.replace('2020–2025', `${years[0]}–${years.at(-1)}`)))].join(' ; '), ''] : []),
-    `Deux portefeuilles, ${formatCapital(INITIAL, currency)} investis début ${years[0]}, sans versement supplémentaire jusqu’à fin ${years.at(-1)} 👇`, '',
     `🅰️ ${a.name}`, allocation(a), '', `🅱️ ${b.name}`, allocation(b), '',
     '🔎 Ce qui change :', `🅰️ ${duel.readings[0]}`, `🅱️ ${duel.readings[1]}`, '',
     `💰 Fin ${years.at(-1)} :`, `🅰️ ${formatCapital(a.final, currency)}`, `🅱️ ${formatCapital(b.final, currency)}`, gap, '',

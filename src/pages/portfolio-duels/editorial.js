@@ -37,26 +37,36 @@ export function duelEditorial(duel) {
  const gap=Math.abs(b.final-a.final)
  const same=Math.abs(b.final-a.final)<.5
  const topic=topics[duel.id]
- const allocation=s=>`${s.pct} % ${/^[aeiouéèêîôœ]/i.test(s.label) ? 'd’' : 'de '}${s.label}`
- const describe=p=>p.assets.map(allocation).join(' et ')
- const soloWorld=p=>p.assets.length===1 && p.assets[0].exposure==='world'
+ const hookLabels = {
+  smallcap: 'small caps des pays développés', 'us-small': 'small caps américaines',
+  minvol: 'World à faible volatilité', cash: 'monétaire en euros',
+  shortbond: 'obligations d’État à très courte échéance', longbond: 'obligations d’État à longue échéance',
+  globalbond: 'obligations mondiales couvertes en euros',
+  value: 'World Value', quality: 'World Quality', momentum: 'World Momentum',
+ }
+ const label=asset=>hookLabels[asset.exposure] ?? asset.label
+ const allocation=asset=>`${asset.pct} % ${/^[aeiouéèêîôœ]/i.test(label(asset)) ? 'd’' : 'de '}${label(asset)}`
+ const describe=portfolio=>portfolio.assets.map(allocation).join(' et ')
+ const soloWorld=portfolio=>portfolio.assets.length===1 && portfolio.assets[0].exposure==='world'
  const sameBase=a.assets[0].id===b.assets[0].id && a.assets[0].pct===b.assets[0].pct
- const extra=p=>p.assets.slice(1).map(allocation).join(' et ')
- const hookQuestion=duel.hookQuestion ?? (soloWorld(a) && b.assets.length>1 && b.assets[0].exposure==='world'
-  ? `Ajouter ${extra(b)} à un ETF World : bonne idée ?`
-  : soloWorld(b) && a.assets.length>1 && a.assets[0].exposure==='world'
-   ? `Ajouter ${extra(a)} à un ETF World : bonne idée ?`
-   : sameBase && a.assets.length>1 && b.assets.length>1
-    ? `Avec ${a.assets[0].pct} % de ${a.assets[0].label}, tu choisirais ${extra(a)} ou ${extra(b)} pour compléter ton portefeuille ?`
-    : `${describe(a)} ou ${describe(b)} : quel portefeuille aurais-tu choisi ?`)
- const winner=b.final>a.final ? b : a
- const winnerSide=b.final>a.final ? 'B' : 'A'
- const winnerName=soloWorld(winner) ? 'le portefeuille 100 % World'
-  : winner.name!==`Portefeuille ${winnerSide}` ? `le portefeuille « ${winner.name} »` : `le portefeuille ${winnerSide}`
- const result=same
-  ? `Avec 10 000 € investis début ${years[0]}, les deux portefeuilles terminent fin ${years.at(-1)} avec le même capital à l’euro près.`
-  : `Avec 10 000 € investis début ${years[0]}, ${winnerName} termine fin ${years.at(-1)} avec ${money(gap)} de plus.`
- const hook=`${hookQuestion}\n\n${result}\n\nVoici le détail du duel, année par année 👇`
+ const extra=portfolio=>portfolio.assets.slice(1).map(allocation).join(' et ')
+ const solo=soloWorld(a) ? a : soloWorld(b) ? b : null
+ const mixed=solo===a ? b : a
+ let hookQuestion
+ if (solo && mixed.assets.length>1 && mixed.assets[0].exposure==='world') {
+  // Le montant et la comparaison sont explicites avant de présenter les résultats.
+  const additions=mixed.assets.slice(1)
+  const pocket=additions.length===1 && additions[0].exposure==='smallcap'
+   ? `${additions[0].pct} % de small caps` : extra(mixed)
+  hookQuestion=`Avec 10 000 € investis, aurais-tu gagné davantage en ajoutant ${pocket} à un portefeuille 100 % MSCI World ?`
+ } else if (sameBase && a.assets.length>1 && b.assets.length>1) {
+  hookQuestion=`Avec 10 000 € investis et ${allocation(a.assets[0])} dans les deux cas, aurais-tu gagné davantage avec ${extra(a)} ou ${extra(b)} ?`
+ } else if (a.assets.length===1 && b.assets.length===1) {
+  hookQuestion=`Avec 10 000 € investis, quel ETF t’aurait rapporté le plus : ${label(a.assets[0])} ou ${label(b.assets[0])} ?`
+ } else {
+  hookQuestion=`Avec 10 000 € investis, lequel de ces portefeuilles t’aurait rapporté le plus : ${describe(a)} ou ${describe(b)} ?`
+ }
+ const hook=`${hookQuestion}\n\nVoici ce que ça aurait changé entre début ${years[0]} et fin ${years.at(-1)}, sans versement supplémentaire 👇`
  const year=years.reduce((best,y)=>Math.abs(a.annual[y]-b.annual[y])>Math.abs(a.annual[best]-b.annual[best])?y:best)
  const question=topic?.[1] ?? duel.closingQuestion ?? `Tu choisirais ${a.name} ou ${b.name}, et quelle différence d’exposition compte le plus pour toi ?`
  let conclusion=same ? 'Les deux portefeuilles terminent au même montant à l’euro près.' : gap<200 ? `Les capitaux finaux restent proches : ${money(gap)} d’écart sur cette période.` : `Le portefeuille ${b.final>a.final ? 'B' : 'A'} termine avec ${money(gap)} de plus sur cette période.`
