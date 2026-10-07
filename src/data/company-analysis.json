@@ -5,64 +5,51 @@
       "annual": {
         "start": "2024-09-29",
         "end": "2025-09-27",
-        "filedAt": "2025-10-31",
-        "revenue": 416161000000.0,
-        "netIncome": 112010000000.0,
-        "margin": 26.91506412181824,
         "previousStart": "2023-10-01",
         "previousEnd": "2024-09-28",
+        "revenue": 416161000000.0,
         "previousRevenue": 391035000000.0,
+        "netIncome": 112010000000.0,
         "previousNetIncome": 93736000000.0,
-        "revenueGrowth": 6.425511782832749,
-        "incomeGrowth": 19.49517794657336,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared",
-          "freeCashFlow": [
-            "NetCashProvidedByUsedInOperatingActivities",
-            "PaymentsToAcquirePropertyPlantAndEquipment"
-          ]
-        },
-        "dilutedEPS": 7.46,
-        "previousDilutedEPS": 6.08,
         "operatingIncome": 133050000000.0,
         "previousOperatingIncome": 123216000000.0,
-        "dividendPerShare": 1.02,
-        "previousDividendPerShare": 0.98,
-        "freeCashFlow": 98767000000.0
+        "dilutedEPS": 7.46,
+        "previousDilutedEPS": 6.08,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
+        "freeCashFlow": 98767000000.0,
+        "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
       },
       "quarter": {
         "start": "2026-03-29",
         "end": "2026-06-27",
-        "filedAt": "2026-07-31",
-        "revenue": 109417000000.0,
-        "netIncome": 29789000000.0,
-        "margin": 27.22520266503377,
         "previousStart": "2025-03-30",
         "previousEnd": "2025-06-28",
+        "revenue": 109417000000.0,
         "previousRevenue": 94036000000.0,
+        "netIncome": 29789000000.0,
         "previousNetIncome": 23434000000.0,
-        "revenueGrowth": 16.356501765281383,
-        "incomeGrowth": 27.118716394981647,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-        },
-        "dilutedEPS": 2.02,
-        "previousDilutedEPS": 1.57,
         "operatingIncome": 35695000000.0,
         "previousOperatingIncome": 28202000000.0,
-        "dividendPerShare": 0.27,
-        "previousDividendPerShare": 0.26
+        "dilutedEPS": 2.02,
+        "previousDilutedEPS": 1.57,
+        "durationMonths": 3,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income"
+        },
+        "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf"
       },
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+      "accountsSourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf",
       "quote": {
         "price": 333.6300048828125,
         "asOf": "2026-10-06",
@@ -77,34 +64,13 @@
         "debt": 84344000000.0,
         "netDebt": 44800000000.0,
         "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent",
-            "CommercialPaper"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+        "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
+        "observedAt": "2026-10-07"
       },
       "shares": {
         "asOf": "2026-06-27",
         "outstanding": 14608963000.0,
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-      },
-      "trailing": {
-        "end": "2026-06-27",
-        "dilutedEPS": 8.719999999999999,
-        "revenue": 466823000000.0,
-        "sourceUrls": [
-          "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
-          "https://www.apple.com/newsroom/pdfs/fy2026q2/FY26_Q2_Consolidated_Financial_Statements.pdf",
-          "https://www.apple.com/newsroom/pdfs/fy2026-q1/FY26_Q1_Consolidated_Financial_Statements.pdf",
-          "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
         "observedAt": "2026-10-07"
       },
       "quarters": [
@@ -196,44 +162,49 @@
           },
           "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
         }
-      ]
+      ],
+      "trailing": {
+        "end": "2026-06-27",
+        "dilutedEPS": 8.719999999999999,
+        "revenue": 466823000000.0,
+        "sourceUrls": [
+          "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf",
+          "https://www.apple.com/newsroom/pdfs/fy2026q2/FY26_Q2_Consolidated_Financial_Statements.pdf",
+          "https://www.apple.com/newsroom/pdfs/fy2026-q1/FY26_Q1_Consolidated_Financial_Statements.pdf",
+          "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
+        ],
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
+      }
     },
     "microsoft": {
       "annual": {
         "start": "2025-07-01",
         "end": "2026-06-30",
-        "filedAt": "2026-07-29",
-        "revenue": 331839000000.0,
-        "netIncome": 133749000000.0,
-        "margin": 40.30538905915218,
         "previousStart": "2024-07-01",
         "previousEnd": "2025-06-30",
+        "revenue": 331839000000.0,
         "previousRevenue": 281724000000.0,
+        "netIncome": 133749000000.0,
         "previousNetIncome": 101832000000.0,
-        "revenueGrowth": 17.788686799846666,
-        "incomeGrowth": 31.34279990572708,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared",
-          "freeCashFlow": [
-            "NetCashProvidedByUsedInOperatingActivities",
-            "PaymentsToAcquirePropertyPlantAndEquipment"
-          ]
-        },
-        "dilutedEPS": 17.95,
-        "previousDilutedEPS": 13.64,
         "operatingIncome": 155237000000.0,
         "previousOperatingIncome": 128528000000.0,
-        "dividendPerShare": 3.64,
-        "previousDividendPerShare": 3.32,
-        "freeCashFlow": 66987000000.0
+        "dilutedEPS": 17.95,
+        "previousDilutedEPS": 13.64,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
+        "freeCashFlow": 66987000000.0,
+        "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
       },
       "quarter": null,
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
+      "accountsSourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
       "quote": {
         "price": 529.2999877929688,
         "asOf": "2026-10-06",
@@ -248,33 +219,13 @@
         "debt": 40294000000.0,
         "netDebt": 19359000000.0,
         "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+        "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+        "observedAt": "2026-10-07"
       },
       "shares": {
         "asOf": "2026-06-30",
         "outstanding": 7427000000.0,
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-      },
-      "trailing": {
-        "end": "2026-06-30",
-        "dilutedEPS": 17.96,
-        "revenue": 331839000000.0,
-        "sourceUrls": [
-          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
-          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q3/press-release-webcast",
-          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q2/press-release-webcast",
-          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q1/press-release-webcast"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
         "observedAt": "2026-10-07"
       },
       "quarters": [
@@ -366,67 +317,71 @@
           },
           "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q1/press-release-webcast"
         }
-      ]
+      ],
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 17.96,
+        "revenue": 331839000000.0,
+        "sourceUrls": [
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q3/press-release-webcast",
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q2/press-release-webcast",
+          "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q1/press-release-webcast"
+        ],
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
+      }
     },
     "nvidia": {
       "annual": {
         "start": "2025-01-27",
         "end": "2026-01-25",
-        "filedAt": "2026-02-25",
-        "revenue": 215938000000.0,
-        "netIncome": 120067000000.0,
-        "margin": 55.60253406070261,
         "previousStart": "2024-01-29",
         "previousEnd": "2025-01-26",
+        "revenue": 215938000000.0,
         "previousRevenue": 130497000000.0,
+        "netIncome": 120067000000.0,
         "previousNetIncome": 72880000000.0,
-        "revenueGrowth": 65.47353579009479,
-        "incomeGrowth": 64.74615806805708,
-        "tags": {
-          "revenue": "Revenues",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-        },
-        "dilutedEPS": 4.9,
-        "previousDilutedEPS": 2.94,
         "operatingIncome": 130387000000.0,
         "previousOperatingIncome": 81453000000.0,
-        "dividendPerShare": 0.04,
-        "previousDividendPerShare": 0.034,
+        "dilutedEPS": 4.9,
+        "previousDilutedEPS": 2.94,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
         "freeCashFlow": 96676000000.0,
-        "freeCashFlowDefinition": "Flux d’exploitation moins acquisitions d’immobilisations et d’actifs incorporels"
+        "freeCashFlowDefinition": "Flux d’exploitation moins acquisitions d’immobilisations et d’actifs incorporels",
+        "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
       },
       "quarter": {
         "start": "2026-04-27",
         "end": "2026-07-26",
-        "filedAt": "2026-08-26",
-        "revenue": 96221000000.0,
-        "netIncome": 59688000000.0,
-        "margin": 62.03219671381507,
         "previousStart": "2025-04-28",
         "previousEnd": "2025-07-27",
+        "revenue": 96221000000.0,
         "previousRevenue": 46743000000.0,
+        "netIncome": 59688000000.0,
         "previousNetIncome": 26422000000.0,
-        "revenueGrowth": 105.85114348672526,
-        "incomeGrowth": 125.90265687684506,
-        "tags": {
-          "revenue": "Revenues",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-        },
-        "dilutedEPS": 2.46,
-        "previousDilutedEPS": 1.08,
         "operatingIncome": 63734000000.0,
         "previousOperatingIncome": 28440000000.0,
-        "dividendPerShare": 0.25,
-        "previousDividendPerShare": 0.01
+        "dilutedEPS": 2.46,
+        "previousDilutedEPS": 1.08,
+        "durationMonths": 3,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income"
+        },
+        "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027"
       },
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json",
+      "accountsSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
       "quote": {
         "price": 239.24000549316406,
         "asOf": "2026-10-06",
@@ -441,27 +396,7 @@
         "debt": 33366000000.0,
         "netDebt": 10923000000.0,
         "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-      },
-      "trailing": {
-        "end": "2026-07-26",
-        "dilutedEPS": 7.91,
-        "revenue": 302969000000.0,
-        "sourceUrls": [
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027",
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
-          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
         "observedAt": "2026-10-07"
       },
       "quarters": [
@@ -553,70 +488,70 @@
           },
           "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026"
         }
-      ]
+      ],
+      "trailing": {
+        "end": "2026-07-26",
+        "dilutedEPS": 7.91,
+        "revenue": 302969000000.0,
+        "sourceUrls": [
+          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
+          "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026"
+        ],
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
+      }
     },
     "alphabet": {
       "annual": {
         "start": "2025-01-01",
         "end": "2025-12-31",
-        "filedAt": "2026-02-05",
-        "revenue": 402836000000.0,
-        "netIncome": 132170000000.0,
-        "margin": 32.80987796522654,
         "previousStart": "2024-01-01",
         "previousEnd": "2024-12-31",
+        "revenue": 402836000000.0,
         "previousRevenue": 350018000000.0,
+        "netIncome": 132170000000.0,
         "previousNetIncome": 100118000000.0,
-        "revenueGrowth": 15.090081081544371,
-        "incomeGrowth": 32.01422321660441,
-        "tags": {
-          "revenue": "Revenues",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared",
-          "freeCashFlow": [
-            "NetCashProvidedByUsedInOperatingActivities",
-            "PaymentsToAcquirePropertyPlantAndEquipment"
-          ]
-        },
-        "dilutedEPS": 10.81,
-        "previousDilutedEPS": 8.04,
         "operatingIncome": 129039000000.0,
         "previousOperatingIncome": 112390000000.0,
-        "dividendPerShare": 0.83,
-        "previousDividendPerShare": 0.6,
-        "freeCashFlow": 73266000000.0
+        "dilutedEPS": 10.81,
+        "previousDilutedEPS": 8.04,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
+        "freeCashFlow": 73266000000.0,
+        "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf"
       },
       "quarter": {
         "start": "2026-04-01",
         "end": "2026-06-30",
-        "filedAt": "2026-07-23",
-        "revenue": 119796000000.0,
-        "netIncome": 112193000000.0,
-        "margin": 93.65337740826071,
         "previousStart": "2025-04-01",
         "previousEnd": "2025-06-30",
+        "revenue": 119796000000.0,
         "previousRevenue": 96428000000.0,
+        "netIncome": 112193000000.0,
         "previousNetIncome": 28196000000.0,
-        "revenueGrowth": 24.23362508814868,
-        "incomeGrowth": 297.90395800822813,
-        "tags": {
-          "revenue": "Revenues",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss",
-          "dividendPerShare": "CommonStockDividendsPerShareDeclared"
-        },
-        "dilutedEPS": 9.11,
-        "previousDilutedEPS": 2.31,
         "operatingIncome": 40770000000.0,
         "previousOperatingIncome": 31271000000.0,
-        "dividendPerShare": 0.22,
-        "previousDividendPerShare": 0.21
+        "dilutedEPS": 9.11,
+        "previousDilutedEPS": 2.31,
+        "durationMonths": 3,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income"
+        },
+        "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf"
       },
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+      "accountsSourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf",
       "quote": {
         "price": 347.67999267578125,
         "asOf": "2026-10-06",
@@ -628,31 +563,7 @@
       "balance": {
         "asOf": "2026-06-30",
         "cash": 55911000000.0,
-        "debt": 100164000000.0,
-        "netDebt": 44253000000.0,
-        "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent",
-            "CommercialPaper"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-      },
-      "trailing": {
-        "end": "2026-06-30",
-        "dilutedEPS": 19.91,
-        "revenue": 445866000000.0,
-        "sourceUrls": [
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/2026q1-alphabet-earnings-release.pdf",
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf",
-          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/2025q3-alphabet-earnings-release.pdf"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
         "observedAt": "2026-10-07"
       },
       "quarters": [
@@ -744,60 +655,70 @@
           },
           "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/2025q3-alphabet-earnings-release.pdf"
         }
-      ]
+      ],
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 19.91,
+        "revenue": 445866000000.0,
+        "sourceUrls": [
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/2026q1-alphabet-earnings-release.pdf",
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf",
+          "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/2025q3-alphabet-earnings-release.pdf"
+        ],
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
+      }
     },
     "amazon": {
       "annual": {
         "start": "2025-01-01",
         "end": "2025-12-31",
-        "filedAt": "2026-02-06",
-        "revenue": 716924000000.0,
-        "netIncome": 77670000000.0,
-        "margin": 10.83378433418326,
         "previousStart": "2024-01-01",
         "previousEnd": "2024-12-31",
+        "revenue": 716924000000.0,
         "previousRevenue": 637959000000.0,
+        "netIncome": 77670000000.0,
         "previousNetIncome": 59248000000.0,
-        "revenueGrowth": 12.377754683294695,
-        "incomeGrowth": 31.093032676208487,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss"
-        },
-        "dilutedEPS": 7.17,
-        "previousDilutedEPS": 5.53,
         "operatingIncome": 79975000000.0,
         "previousOperatingIncome": 68593000000.0,
-        "freeCashFlow": 7695000000.0
+        "dilutedEPS": 7.17,
+        "previousDilutedEPS": 5.53,
+        "durationMonths": 12,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income",
+          "freeCashFlow": "GAAP operating cash flow less cash purchases of property and equipment"
+        },
+        "freeCashFlow": 7695000000.0,
+        "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
       },
       "quarter": {
         "start": "2026-04-01",
         "end": "2026-06-30",
-        "filedAt": "2026-07-31",
-        "revenue": 200606000000.0,
-        "netIncome": 62647000000.0,
-        "margin": 31.2288765041923,
         "previousStart": "2025-04-01",
         "previousEnd": "2025-06-30",
+        "revenue": 200606000000.0,
         "previousRevenue": 167702000000.0,
+        "netIncome": 62647000000.0,
         "previousNetIncome": 18164000000.0,
-        "revenueGrowth": 19.620517346245126,
-        "incomeGrowth": 244.89649856859722,
-        "tags": {
-          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
-          "netIncome": "NetIncomeLoss",
-          "dilutedEPS": "EarningsPerShareDiluted",
-          "operatingIncome": "OperatingIncomeLoss"
-        },
+        "operatingIncome": 27461000000.0,
+        "previousOperatingIncome": 19171000000.0,
         "dilutedEPS": 5.75,
         "previousDilutedEPS": 1.68,
-        "operatingIncome": 27461000000.0,
-        "previousOperatingIncome": 19171000000.0
+        "durationMonths": 3,
+        "tags": {
+          "revenue": "Consolidated GAAP revenue",
+          "netIncome": "Consolidated GAAP net income",
+          "dilutedEPS": "Consolidated GAAP diluted EPS",
+          "operatingIncome": "Consolidated GAAP operating income"
+        },
+        "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx"
       },
       "accountsObservedAt": "2026-10-07",
-      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+      "accountsSourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
       "quote": {
         "price": 256.2900085449219,
         "asOf": "2026-10-06",
@@ -809,37 +730,13 @@
       "balance": {
         "asOf": "2026-06-30",
         "cash": 78213000000.0,
-        "debt": 132549000000.0,
-        "netDebt": 54336000000.0,
-        "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-        "tags": {
-          "cash": "CashAndCashEquivalentsAtCarryingValue",
-          "debt": [
-            "LongTermDebtCurrent",
-            "LongTermDebtNoncurrent",
-            "ShortTermBorrowings"
-          ]
-        },
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+        "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+        "observedAt": "2026-10-07"
       },
       "shares": {
         "asOf": "2026-06-30",
         "outstanding": 10783000000.0,
-        "observedAt": "2026-10-07",
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-      },
-      "trailing": {
-        "end": "2026-06-30",
-        "dilutedEPS": 12.43,
-        "revenue": 775680000000.0,
-        "sourceUrls": [
-          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
-          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/default.aspx",
-          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
-          "https://ir.aboutamazon.com/news-release/news-release-details/2025/Amazon-com-Announces-Third-Quarter-Results/default.aspx"
-        ],
-        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
         "observedAt": "2026-10-07"
       },
       "quarters": [
@@ -931,7 +828,20 @@
           },
           "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2025/Amazon-com-Announces-Third-Quarter-Results/default.aspx"
         }
-      ]
+      ],
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 12.43,
+        "revenue": 775680000000.0,
+        "sourceUrls": [
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx",
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/default.aspx",
+          "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
+          "https://ir.aboutamazon.com/news-release/news-release-details/2025/Amazon-com-Announces-Third-Quarter-Results/default.aspx"
+        ],
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-07"
+      }
     }
   }
 }
