@@ -318,20 +318,20 @@
     },
     "provider": "iShares",
     "countries": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.98483
-        },
-        {
-          "name": "Mexico",
-          "weightPct": 0.01343
+          "weightPct": 99.99703
         },
         {
           "name": "United Kingdom",
           "weightPct": 0.00166
+        },
+        {
+          "name": "Mexico",
+          "weightPct": 0.00104
         },
         {
           "name": "European Union",
@@ -343,65 +343,65 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "NVIDIA",
-          "weightPct": 8.6123,
+          "weightPct": 8.57444,
           "isin": "US67066G1040"
         },
         {
           "name": "APPLE",
-          "weightPct": 7.23771,
+          "weightPct": 7.21165,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT",
-          "weightPct": 5.80991,
+          "weightPct": 5.82147,
           "isin": "US5949181045"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 3.6758,
+          "weightPct": 3.72552,
           "isin": "US0231351067"
         },
         {
           "name": "ALPHABET CLASS A",
-          "weightPct": 3.02878,
+          "weightPct": 3.02169,
           "isin": "US02079K3059"
         },
         {
           "name": "BROADCOM INC",
-          "weightPct": 2.56932,
+          "weightPct": 2.64811,
           "isin": "US11135F1012"
         },
         {
-          "name": "META PLATFORMS CLASS A",
-          "weightPct": 2.43675,
-          "isin": "US30303M1027"
-        },
-        {
           "name": "ALPHABET CLASS C",
-          "weightPct": 2.43469,
+          "weightPct": 2.42589,
           "isin": "US02079K1079"
         },
         {
+          "name": "META PLATFORMS CLASS A",
+          "weightPct": 2.41273,
+          "isin": "US30303M1027"
+        },
+        {
           "name": "MICRON TECHNOLOGY",
-          "weightPct": 1.78975,
+          "weightPct": 1.74857,
           "isin": "US5951121038"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 1.58976,
+          "weightPct": 1.58866,
           "isin": "US88160R1014"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00BKM4GZ66": {
@@ -574,62 +574,62 @@
     },
     "provider": "iShares",
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
-          "weightPct": 13.95812,
+          "weightPct": 13.95714,
           "isin": "TW0002330008"
         },
         {
           "name": "SAMSUNG ELECTRONICS LTD",
-          "weightPct": 6.70729,
+          "weightPct": 6.59581,
           "isin": "KR7005930003"
         },
         {
           "name": "SK HYNIX",
-          "weightPct": 5.28363,
+          "weightPct": 5.07748,
           "isin": "KR7000660001"
         },
         {
           "name": "TENCENT HOLDINGS",
-          "weightPct": 2.31048,
+          "weightPct": 2.33261,
           "isin": "KYG875721634"
         },
         {
-          "name": "MEDIATEK",
-          "weightPct": 1.64584,
-          "isin": "TW0002454006"
-        },
-        {
           "name": "ALIBABA GROUP HOLDING",
-          "weightPct": 1.56945,
+          "weightPct": 1.60682,
           "isin": "KYG017191142"
         },
         {
+          "name": "MEDIATEK",
+          "weightPct": 1.56159,
+          "isin": "TW0002454006"
+        },
+        {
           "name": "DELTA ELECTRONICS",
-          "weightPct": 0.86098,
+          "weightPct": 0.87683,
           "isin": "TW0002308004"
         },
         {
           "name": "SAMSUNG ELECTRONICS NON VOTING PRE",
-          "weightPct": 0.83461,
+          "weightPct": 0.8212,
           "isin": "KR7005931001"
         },
         {
           "name": "CHINA CONSTRUCTION BANK CORP H",
-          "weightPct": 0.70963,
+          "weightPct": 0.71814,
           "isin": "CNE1000002H1"
         },
         {
           "name": "HON HAI PRECISION INDUSTRY",
-          "weightPct": 0.68808,
+          "weightPct": 0.69077,
           "isin": "TW0002317005"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00B4L5YX21": {
@@ -989,62 +989,62 @@
     },
     "provider": "iShares",
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "MODERNA",
-          "weightPct": 0.65152,
+          "weightPct": 0.59962,
           "isin": "US60770K1079"
         },
         {
-          "name": "GUARDANT HEALTH",
-          "weightPct": 0.22032,
-          "isin": "US40131M1099"
-        },
-        {
           "name": "MACOM TECHNOLOGY SOLUTIONS",
-          "weightPct": 0.21264,
+          "weightPct": 0.2266,
           "isin": "US55405Y1001"
         },
         {
           "name": "TENET HEALTHCARE CORP",
-          "weightPct": 0.21093,
+          "weightPct": 0.20962,
           "isin": "US88033G4073"
         },
         {
           "name": "US FOODS HOLDING",
-          "weightPct": 0.2002,
+          "weightPct": 0.20375,
           "isin": "US9120081099"
         },
         {
+          "name": "GUARDANT HEALTH",
+          "weightPct": 0.2004,
+          "isin": "US40131M1099"
+        },
+        {
           "name": "ROKU CLASS A",
-          "weightPct": 0.19448,
+          "weightPct": 0.19232,
           "isin": "US77543R1023"
         },
         {
-          "name": "VIATRIS",
-          "weightPct": 0.19261,
-          "isin": "US92556V1061"
-        },
-        {
           "name": "TD SYNNEX",
-          "weightPct": 0.19153,
+          "weightPct": 0.19185,
           "isin": "US87162W1009"
         },
         {
-          "name": "WOODWARD",
-          "weightPct": 0.18644,
-          "isin": "US9807451037"
+          "name": "VIATRIS",
+          "weightPct": 0.19129,
+          "isin": "US92556V1061"
+        },
+        {
+          "name": "RUBRIK CLASS A",
+          "weightPct": 0.18941,
+          "isin": "US7811541090"
         },
         {
           "name": "ROYAL GOLD",
-          "weightPct": 0.1864,
+          "weightPct": 0.18653,
           "isin": "US7802871084"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     }
   },
   "FR0014017NX3": {
@@ -7829,8 +7829,6 @@
           "weightPct": 0.53
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -7871,8 +7869,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -7934,7 +7930,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00BDBRDM35": {
     "currency": "EUR",
     "productId": 291770,
@@ -8011,8 +8006,6 @@
           "weightPct": 0.62
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -8251,63 +8244,61 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND10008WR28",
-          "weightPct": 0.95951,
+          "weightPct": 0.95989,
           "isin": "CND10008WR28"
         },
         {
           "name": "FHLMC 30YR UMBS SUPER · 2% · 2051-07-01",
-          "weightPct": 0.69618,
+          "weightPct": 0.69488,
           "maturityDate": "2051-07-01",
           "couponPct": 2.0
         },
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND10008QSP8",
-          "weightPct": 0.50629,
+          "weightPct": 0.50648,
           "isin": "CND10008QSP8"
         },
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND10008YMK6",
-          "weightPct": 0.43182,
+          "weightPct": 0.43199,
           "isin": "CND10008YMK6"
         },
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND100036Q75",
-          "weightPct": 0.36988,
+          "weightPct": 0.37003,
           "isin": "CND100036Q75"
         },
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND10007NT77",
-          "weightPct": 0.36848,
+          "weightPct": 0.36863,
           "isin": "CND10007NT77"
         },
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND10006VQZ5",
-          "weightPct": 0.31048,
+          "weightPct": 0.31061,
           "isin": "CND10006VQZ5"
         },
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND100069PK9",
-          "weightPct": 0.27641,
+          "weightPct": 0.27653,
           "isin": "CND100069PK9"
         },
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND100069PL7",
-          "weightPct": 0.2615,
+          "weightPct": 0.26161,
           "isin": "CND100069PL7"
         },
         {
           "name": "FNMA 30YR UMBS SUPER · 2% · 2052-04-01",
-          "weightPct": 0.25721,
+          "weightPct": 0.25684,
           "maturityDate": "2052-04-01",
           "couponPct": 2.0
         }
@@ -8316,7 +8307,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00BZCQB185": {
     "currency": "USD",
     "productId": 297617,
@@ -8617,62 +8607,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "UNION PACIFIC",
-          "weightPct": 5.29247,
+          "weightPct": 5.23051,
           "isin": "US9078181081"
         },
         {
           "name": "NEXTERA ENERGY",
-          "weightPct": 5.1256,
+          "weightPct": 5.18026,
           "isin": "US65339F1012"
         },
         {
           "name": "ENBRIDGE",
-          "weightPct": 3.30002,
+          "weightPct": 3.29777,
           "isin": "CA29250N1050"
         },
         {
           "name": "SOUTHERN",
-          "weightPct": 3.10584,
+          "weightPct": 3.13501,
           "isin": "US8425871071"
         },
         {
           "name": "DUKE ENERGY CORP",
-          "weightPct": 2.85477,
+          "weightPct": 2.87112,
           "isin": "US26441C2044"
         },
         {
-          "name": "CSX",
-          "weightPct": 2.83501,
-          "isin": "US1264081035"
-        },
-        {
           "name": "WILLIAMS",
-          "weightPct": 2.77888,
+          "weightPct": 2.81219,
           "isin": "US9694571004"
         },
         {
+          "name": "CSX",
+          "weightPct": 2.81052,
+          "isin": "US1264081035"
+        },
+        {
+          "name": "AMERICAN TOWER REIT",
+          "weightPct": 2.44696,
+          "isin": "US03027X1000"
+        },
+        {
           "name": "NATIONAL GRID PLC",
-          "weightPct": 2.45597,
+          "weightPct": 2.44677,
           "isin": "GB00BDR05C01"
         },
         {
           "name": "CANADIAN PACIFIC KANSAS CITY",
-          "weightPct": 2.45344,
+          "weightPct": 2.41074,
           "isin": "CA13646K1084"
-        },
-        {
-          "name": "AMERICAN TOWER REIT",
-          "weightPct": 2.43413,
-          "isin": "US03027X1000"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.65,
@@ -8766,62 +8756,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "ADVANCED MICRO DEVICES",
-          "weightPct": 8.85849,
+          "weightPct": 9.11826,
           "isin": "US0079031078"
         },
         {
           "name": "MICRON TECHNOLOGY",
-          "weightPct": 7.42579,
+          "weightPct": 7.30698,
           "isin": "US5951121038"
         },
         {
           "name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
-          "weightPct": 7.22473,
+          "weightPct": 7.25264,
           "isin": "TW0002330008"
         },
         {
           "name": "NVIDIA",
-          "weightPct": 7.1809,
+          "weightPct": 7.20059,
           "isin": "US67066G1040"
         },
         {
           "name": "BROADCOM INC",
-          "weightPct": 6.53787,
+          "weightPct": 6.78667,
           "isin": "US11135F1012"
         },
         {
           "name": "SK HYNIX",
-          "weightPct": 5.00558,
+          "weightPct": 4.8292,
           "isin": "KR7000660001"
         },
         {
           "name": "INTEL CORPORATION",
-          "weightPct": 4.91142,
+          "weightPct": 4.7617,
           "isin": "US4581401001"
         },
         {
           "name": "LAM RESEARCH",
-          "weightPct": 4.41546,
+          "weightPct": 4.269,
           "isin": "US5128073062"
         },
         {
           "name": "APPLIED MATERIAL INC",
-          "weightPct": 4.29171,
+          "weightPct": 4.20219,
           "isin": "US0382221051"
         },
         {
           "name": "ASML HOLDING",
-          "weightPct": 4.14939,
+          "weightPct": 4.12259,
           "isin": "NL0010273215"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.35,
@@ -8916,62 +8906,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "COINBASE GLOBAL INC CLASS A",
-          "weightPct": 12.78691,
+          "weightPct": 12.54786,
           "isin": "US19260Q1076"
         },
         {
           "name": "CIRCLE INTERNET GROUP INC CLASS A",
-          "weightPct": 10.09908,
+          "weightPct": 10.14267,
           "isin": "US1725731079"
         },
         {
           "name": "IREN",
-          "weightPct": 8.75134,
+          "weightPct": 8.87439,
           "isin": "AU0000185993"
         },
         {
           "name": "HUT  CORP",
-          "weightPct": 6.30725,
+          "weightPct": 6.47925,
           "isin": "US44812J1043"
         },
         {
           "name": "ADVANCED MICRO DEVICES",
-          "weightPct": 5.53341,
+          "weightPct": 5.65637,
           "isin": "US0079031078"
         },
         {
           "name": "NVIDIA",
-          "weightPct": 4.33804,
+          "weightPct": 4.31992,
           "isin": "US67066G1040"
         },
         {
-          "name": "RIOT PLATFORMS",
-          "weightPct": 4.2612,
-          "isin": "US7672921050"
-        },
-        {
           "name": "APPLIED DIGITAL",
-          "weightPct": 4.12188,
+          "weightPct": 4.20503,
           "isin": "US0381692070"
         },
         {
+          "name": "RIOT PLATFORMS",
+          "weightPct": 4.15183,
+          "isin": "US7672921050"
+        },
+        {
           "name": "MASTERCARD CLASS A",
-          "weightPct": 4.0776,
+          "weightPct": 4.06909,
           "isin": "US57636Q1040"
         },
         {
           "name": "TENCENT HOLDINGS",
-          "weightPct": 3.99387,
+          "weightPct": 4.02005,
           "isin": "KYG875721634"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.5,
@@ -9027,8 +9017,6 @@
           "weightPct": 0.03
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -9069,8 +9057,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -9132,7 +9118,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00B1FZS350": {
     "currency": "USD",
     "productId": 251801,
@@ -9435,8 +9420,6 @@
           "weightPct": 0.03
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -9572,8 +9555,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -9635,7 +9616,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00B43HR379": {
     "currency": "USD",
     "productId": 280507,
@@ -9905,12 +9885,12 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.99591
+          "weightPct": 99.99594
         },
         {
           "name": "United Kingdom",
@@ -9926,65 +9906,65 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "BERKSHIRE HATHAWAY INC CLASS B",
-          "weightPct": 12.36014,
+          "weightPct": 12.3635,
           "isin": "US0846707026"
         },
         {
           "name": "JPMORGAN CHASE & CO",
-          "weightPct": 11.6274,
+          "weightPct": 11.56272,
           "isin": "US46625H1005"
         },
         {
           "name": "VISA CLASS A",
-          "weightPct": 8.29189,
+          "weightPct": 8.29396,
           "isin": "US92826C8394"
         },
         {
           "name": "MASTERCARD CLASS A",
-          "weightPct": 6.00792,
+          "weightPct": 6.01547,
           "isin": "US57636Q1040"
         },
         {
           "name": "BANK OF AMERICA",
-          "weightPct": 4.62145,
+          "weightPct": 4.61869,
           "isin": "US0605051046"
         },
         {
           "name": "GOLDMAN SACHS GROUP",
-          "weightPct": 3.42337,
+          "weightPct": 3.42985,
           "isin": "US38141G1040"
         },
         {
           "name": "WELLS FARGO",
-          "weightPct": 3.24088,
+          "weightPct": 3.23634,
           "isin": "US9497461015"
         },
         {
           "name": "MORGAN STANLEY",
-          "weightPct": 2.98757,
+          "weightPct": 2.99383,
           "isin": "US6174464486"
         },
         {
           "name": "CITIGROUP",
-          "weightPct": 2.83762,
+          "weightPct": 2.83055,
           "isin": "US1729674242"
         },
         {
           "name": "AMERICAN EXPRESS",
-          "weightPct": 2.10732,
+          "weightPct": 2.10622,
           "isin": "US0258161092"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.15,
@@ -10079,8 +10059,6 @@
           "weightPct": 0.14
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -10121,8 +10099,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -10184,7 +10160,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00B53SZB19": {
     "currency": "USD",
     "productId": 253741,
@@ -10457,8 +10432,6 @@
           "weightPct": 1.1
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -10599,8 +10572,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -10662,7 +10633,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00B6R52259": {
     "currency": "USD",
     "productId": 251850,
@@ -10808,62 +10778,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "NVIDIA",
-          "weightPct": 5.27934,
+          "weightPct": 5.25595,
           "isin": "US67066G1040"
         },
         {
           "name": "APPLE",
-          "weightPct": 4.68582,
+          "weightPct": 4.66879,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT",
-          "weightPct": 3.53587,
+          "weightPct": 3.54278,
           "isin": "US5949181045"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 2.32438,
+          "weightPct": 2.35574,
           "isin": "US0231351067"
         },
         {
           "name": "ALPHABET CLASS A",
-          "weightPct": 1.94258,
+          "weightPct": 1.93797,
           "isin": "US02079K3059"
         },
         {
           "name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
-          "weightPct": 1.92039,
+          "weightPct": 1.91402,
           "isin": "TW0002330008"
         },
         {
           "name": "BROADCOM INC",
-          "weightPct": 1.56072,
+          "weightPct": 1.60853,
           "isin": "US11135F1012"
         },
         {
           "name": "META PLATFORMS CLASS A",
-          "weightPct": 1.55531,
+          "weightPct": 1.53993,
           "isin": "US30303M1027"
         },
         {
           "name": "ALPHABET CLASS C",
-          "weightPct": 1.54006,
+          "weightPct": 1.53445,
           "isin": "US02079K1079"
         },
         {
           "name": "ISHARES MSCI INDIA UCITS ETF",
-          "weightPct": 1.23739,
+          "weightPct": 1.24109,
           "isin": "IE00BZCQB185"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.2,
@@ -11027,62 +10997,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "EXXONMOBIL HOLDINGS CORP",
-          "weightPct": 1.48671,
+          "weightPct": 1.48126,
           "isin": "US30233Q1085"
         },
         {
+          "name": "CISCO SYSTEMS INC",
+          "weightPct": 1.47741,
+          "isin": "US17275R1023"
+        },
+        {
           "name": "MICROSOFT",
-          "weightPct": 1.4628,
+          "weightPct": 1.46458,
           "isin": "US5949181045"
         },
         {
           "name": "JOHNSON & JOHNSON",
-          "weightPct": 1.42784,
+          "weightPct": 1.42883,
           "isin": "US4781601046"
         },
         {
-          "name": "CISCO SYSTEMS INC",
-          "weightPct": 1.42262,
-          "isin": "US17275R1023"
-        },
-        {
           "name": "NVIDIA",
-          "weightPct": 1.41844,
+          "weightPct": 1.41112,
           "isin": "US67066G1040"
         },
         {
-          "name": "MOTOROLA SOLUTIONS INC",
-          "weightPct": 1.30908,
-          "isin": "US6200763075"
-        },
-        {
           "name": "DUKE ENERGY CORP",
-          "weightPct": 1.30514,
+          "weightPct": 1.31728,
           "isin": "US26441C2044"
         },
         {
-          "name": "BERKSHIRE HATHAWAY INC CLASS B",
-          "weightPct": 1.24055,
-          "isin": "US0846707026"
+          "name": "MOTOROLA SOLUTIONS INC",
+          "weightPct": 1.30307,
+          "isin": "US6200763075"
         },
         {
           "name": "SOUTHERN",
-          "weightPct": 1.22837,
+          "weightPct": 1.24433,
           "isin": "US8425871071"
         },
         {
+          "name": "BERKSHIRE HATHAWAY INC CLASS B",
+          "weightPct": 1.23553,
+          "isin": "US0846707026"
+        },
+        {
           "name": "AT&T",
-          "weightPct": 1.18237,
+          "weightPct": 1.18381,
           "isin": "US00206R1023"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.3,
@@ -11185,8 +11155,6 @@
           "weightPct": 1.1
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -11325,8 +11293,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -11388,7 +11354,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00BFZPF546": {
     "currency": "USD",
     "productId": 297676,
@@ -11481,8 +11446,6 @@
           "weightPct": 0.28
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -11525,8 +11488,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -11588,7 +11549,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00BJ5JNY98": {
     "currency": "USD",
     "productId": 308858,
@@ -11943,8 +11903,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=309947&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "countries": {
@@ -12034,7 +11992,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00BKPX3K41": {
     "currency": "USD",
     "productId": 313316,
@@ -12160,62 +12117,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
-          "weightPct": 20.0588,
+          "weightPct": 20.11684,
           "isin": "TW0002330008"
         },
         {
           "name": "SAMSUNG ELECTRONICS LTD",
-          "weightPct": 9.62996,
+          "weightPct": 9.50012,
           "isin": "KR7005930003"
         },
         {
           "name": "SK HYNIX",
-          "weightPct": 7.5855,
+          "weightPct": 7.31275,
           "isin": "KR7000660001"
         },
         {
           "name": "ISH MSCI CHINA A ETF USD ACC",
-          "weightPct": 4.09591,
+          "weightPct": 4.10045,
           "isin": "IE00BQT3WG13"
         },
         {
           "name": "TENCENT HOLDINGS",
-          "weightPct": 3.33242,
+          "weightPct": 3.37538,
           "isin": "KYG875721634"
         },
         {
-          "name": "MEDIATEK",
-          "weightPct": 2.36493,
-          "isin": "TW0002454006"
-        },
-        {
           "name": "ALIBABA GROUP HOLDING",
-          "weightPct": 2.26776,
+          "weightPct": 2.32974,
           "isin": "KYG017191142"
         },
         {
+          "name": "MEDIATEK",
+          "weightPct": 2.24439,
+          "isin": "TW0002454006"
+        },
+        {
           "name": "DBS GROUP HOLDINGS LTD",
-          "weightPct": 1.26377,
+          "weightPct": 1.27896,
           "isin": "SG1L01001701"
         },
         {
           "name": "DELTA ELECTRONICS",
-          "weightPct": 1.24049,
+          "weightPct": 1.26767,
           "isin": "TW0002308004"
         },
         {
           "name": "SAMSUNG ELECTRONICS NON VOTING PRE",
-          "weightPct": 1.20625,
+          "weightPct": 1.19114,
           "isin": "KR7005931001"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313316&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.74,
@@ -12521,62 +12478,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "ASML HOLDING",
-          "weightPct": 32.48832,
+          "weightPct": 31.79841,
           "isin": "NL0010273215"
         },
         {
           "name": "SAP",
-          "weightPct": 16.81996,
+          "weightPct": 16.98253,
           "isin": "DE0007164600"
         },
         {
           "name": "INFINEON TECHNOLOGIES AG",
-          "weightPct": 10.95452,
+          "weightPct": 11.0585,
           "isin": "DE0006231004"
         },
         {
           "name": "NOKIA",
-          "weightPct": 6.08796,
+          "weightPct": 6.31626,
           "isin": "FI0009000681"
         },
         {
-          "name": "ASM INTERNATIONAL NV",
-          "weightPct": 5.86997,
-          "isin": "NL0000334118"
-        },
-        {
           "name": "NEBIUS NV CLASS A",
-          "weightPct": 5.53875,
+          "weightPct": 5.86999,
           "isin": "NL0009805522"
         },
         {
+          "name": "ASM INTERNATIONAL NV",
+          "weightPct": 5.81238,
+          "isin": "NL0000334118"
+        },
+        {
           "name": "STMICROELECTRONICS",
-          "weightPct": 4.24899,
+          "weightPct": 4.30257,
           "isin": "NL0000226223"
         },
         {
           "name": "ERICSSON B",
-          "weightPct": 2.88241,
+          "weightPct": 2.88735,
           "isin": "SE0000108656"
         },
         {
           "name": "HEXAGON CLASS B",
-          "weightPct": 2.49353,
+          "weightPct": 2.50422,
           "isin": "SE0015961909"
         },
         {
           "name": "CAPGEMINI",
-          "weightPct": 2.19354,
+          "weightPct": 2.20401,
           "isin": "FR0000125338"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.18,
@@ -12950,62 +12907,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "MICRON TECHNOLOGY",
-          "weightPct": 5.44279,
+          "weightPct": 5.32517,
           "isin": "US5951121038"
         },
         {
           "name": "ADVANCED MICRO DEVICES",
-          "weightPct": 4.68939,
+          "weightPct": 4.79939,
           "isin": "US0079031078"
         },
         {
           "name": "INTEL CORPORATION",
-          "weightPct": 2.93846,
+          "weightPct": 2.83265,
           "isin": "US4581401001"
         },
         {
           "name": "ASML HOLDING",
-          "weightPct": 2.7155,
+          "weightPct": 2.68257,
           "isin": "NL0010273215"
         },
         {
           "name": "ALPHABET CLASS A",
-          "weightPct": 2.66913,
+          "weightPct": 2.6667,
           "isin": "US02079K3059"
         },
         {
           "name": "JOHNSON & JOHNSON",
-          "weightPct": 2.264,
+          "weightPct": 2.27055,
           "isin": "US4781601046"
         },
         {
           "name": "EXXONMOBIL HOLDINGS CORP",
-          "weightPct": 2.25345,
+          "weightPct": 2.25012,
           "isin": "US30233Q1085"
         },
         {
           "name": "ALPHABET CLASS C",
-          "weightPct": 2.12096,
+          "weightPct": 2.11632,
           "isin": "US02079K1079"
         },
         {
-          "name": "LAM RESEARCH",
-          "weightPct": 2.0839,
-          "isin": "US5128073062"
+          "name": "APPLIED MATERIAL INC",
+          "weightPct": 2.02875,
+          "isin": "US0382221051"
         },
         {
-          "name": "APPLIED MATERIAL INC",
-          "weightPct": 2.08385,
-          "isin": "US0382221051"
+          "name": "LAM RESEARCH",
+          "weightPct": 2.00329,
+          "isin": "US5128073062"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.25,
@@ -13535,62 +13492,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "ADVANTEST",
-          "weightPct": 4.02816,
+          "weightPct": 4.15309,
           "isin": "JP3122400009"
         },
         {
           "name": "SNOWFLAKE",
-          "weightPct": 3.67135,
+          "weightPct": 3.61498,
           "isin": "US8334451098"
         },
         {
           "name": "ADVANCED MICRO DEVICES",
-          "weightPct": 3.44834,
+          "weightPct": 3.52194,
           "isin": "US0079031078"
         },
         {
           "name": "SERVICENOW",
-          "weightPct": 3.30186,
+          "weightPct": 3.32614,
           "isin": "US81762P1021"
         },
         {
-          "name": "TERADYNE",
-          "weightPct": 3.12496,
-          "isin": "US8807701029"
-        },
-        {
           "name": "SAP",
-          "weightPct": 3.00982,
+          "weightPct": 3.06087,
           "isin": "DE0007164600"
         },
         {
+          "name": "TERADYNE",
+          "weightPct": 3.00557,
+          "isin": "US8807701029"
+        },
+        {
           "name": "NVIDIA",
-          "weightPct": 2.97847,
+          "weightPct": 2.96348,
           "isin": "US67066G1040"
         },
         {
+          "name": "ASTERA LABS",
+          "weightPct": 2.94176,
+          "isin": "US04626A1034"
+        },
+        {
           "name": "EMERSON ELECTRIC",
-          "weightPct": 2.95832,
+          "weightPct": 2.92241,
           "isin": "US2910111044"
         },
         {
           "name": "KEYENCE",
-          "weightPct": 2.87683,
+          "weightPct": 2.84967,
           "isin": "JP3236200006"
-        },
-        {
-          "name": "INTEL CORPORATION",
-          "weightPct": 2.79432,
-          "isin": "US4581401001"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.4,
@@ -13714,62 +13671,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "MODERNA",
-          "weightPct": 5.15761,
+          "weightPct": 4.86205,
           "isin": "US60770K1079"
         },
         {
           "name": "NATERA",
-          "weightPct": 2.31886,
+          "weightPct": 2.23051,
           "isin": "US6323071042"
         },
         {
           "name": "ILLUMINA INC",
-          "weightPct": 2.21949,
+          "weightPct": 2.11248,
           "isin": "US4523271090"
         },
         {
-          "name": "REVVITY",
-          "weightPct": 1.77417,
-          "isin": "US7140461093"
-        },
-        {
-          "name": "GUARDANT HEALTH",
-          "weightPct": 1.7411,
-          "isin": "US40131M1099"
-        },
-        {
           "name": "GENMAB",
-          "weightPct": 1.73334,
+          "weightPct": 1.85722,
           "isin": "DK0010272202"
         },
         {
+          "name": "REVVITY",
+          "weightPct": 1.76624,
+          "isin": "US7140461093"
+        },
+        {
           "name": "IQVIA HOLDINGS INC",
-          "weightPct": 1.72801,
+          "weightPct": 1.7253,
           "isin": "US46266C1053"
         },
         {
+          "name": "GUARDANT HEALTH",
+          "weightPct": 1.62213,
+          "isin": "US40131M1099"
+        },
+        {
           "name": "AGILENT TECHNOLOGIES INC",
-          "weightPct": 1.53222,
+          "weightPct": 1.54786,
           "isin": "US00846U1016"
         },
         {
-          "name": "CHARLES RIVER LABORATORIES INTERNA",
-          "weightPct": 1.50762,
-          "isin": "US1598641074"
+          "name": "ROIVANT SCIENCES LTD",
+          "weightPct": 1.5141,
+          "isin": "BMG762791017"
         },
         {
-          "name": "ROIVANT SCIENCES LTD",
-          "weightPct": 1.49208,
-          "isin": "BMG762791017"
+          "name": "CHARLES RIVER LABORATORIES INTERNA",
+          "weightPct": 1.51183,
+          "isin": "US1598641074"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.4,
@@ -13932,62 +13889,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "ASML HOLDING",
-          "weightPct": 5.31683,
+          "weightPct": 5.22864,
           "isin": "NL0010273215"
         },
         {
           "name": "HSBC HOLDINGS PLC",
-          "weightPct": 2.44587,
+          "weightPct": 2.45642,
           "isin": "GB0005405286"
         },
         {
           "name": "ROCHE PS PAR AG",
-          "weightPct": 2.17562,
+          "weightPct": 2.16237,
           "isin": "CH1499059983"
         },
         {
           "name": "SHELL",
-          "weightPct": 2.04975,
+          "weightPct": 2.05109,
           "isin": "GB00BP6MXD84"
         },
         {
           "name": "NOVARTIS AG",
-          "weightPct": 1.89331,
+          "weightPct": 1.88821,
           "isin": "CH0012005267"
         },
         {
           "name": "ASTRAZENECA PLC",
-          "weightPct": 1.73558,
+          "weightPct": 1.75593,
           "isin": "GB0009895292"
         },
         {
           "name": "NESTLE SA",
-          "weightPct": 1.70324,
+          "weightPct": 1.70483,
           "isin": "CH0038863350"
         },
         {
           "name": "SIEMENS N AG",
-          "weightPct": 1.64525,
+          "weightPct": 1.66135,
           "isin": "DE0007236101"
         },
         {
           "name": "SAP",
-          "weightPct": 1.55113,
+          "weightPct": 1.57356,
           "isin": "DE0007164600"
         },
         {
           "name": "BANCO SANTANDER",
-          "weightPct": 1.45679,
+          "weightPct": 1.47088,
           "isin": "ES0113900J37"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251861&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.12,
@@ -14947,62 +14904,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "IMI PLC",
-          "weightPct": 0.6453,
+          "weightPct": 0.64184,
           "isin": "GB00BGLP8L22"
         },
         {
           "name": "WEIR PLC",
-          "weightPct": 0.59001,
+          "weightPct": 0.60541,
           "isin": "GB0009465807"
         },
         {
           "name": "GAZTRANSPORT & TECHNIGAZ SA",
-          "weightPct": 0.57898,
+          "weightPct": 0.57678,
           "isin": "FR0011726835"
         },
         {
           "name": "ACCELLERON N AG",
-          "weightPct": 0.56377,
+          "weightPct": 0.55699,
           "isin": "CH1169360919"
         },
         {
           "name": "HISCOX LTD",
-          "weightPct": 0.52415,
+          "weightPct": 0.52139,
           "isin": "BMG4593F1389"
         },
         {
           "name": "PSP SWISS PROPERTY AG",
-          "weightPct": 0.51969,
+          "weightPct": 0.51517,
           "isin": "CH0018294154"
         },
         {
-          "name": "SUBSEA",
-          "weightPct": 0.51384,
-          "isin": "LU0075646355"
-        },
-        {
           "name": "STOREBRAND",
-          "weightPct": 0.51173,
+          "weightPct": 0.50736,
           "isin": "NO0003053605"
         },
         {
           "name": "THYSSENKRUPP AG",
-          "weightPct": 0.50023,
+          "weightPct": 0.50312,
           "isin": "DE0007500001"
         },
         {
           "name": "AL SYDBANK",
-          "weightPct": 0.49366,
+          "weightPct": 0.49811,
           "isin": "DK0010311471"
+        },
+        {
+          "name": "SUBSEA",
+          "weightPct": 0.49784,
+          "isin": "LU0075646355"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.25,
@@ -15858,7 +15815,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00B44Z5B48": {
     "currency": "USD",
     "productId": "IE00B44Z5B48",
@@ -17284,7 +17240,7 @@
       "scope": "fund",
       "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-      "sha256": "72831c7bdc16b221c0976458958d4464446b91a80761c7d5a7411fd871380a99",
+      "sha256": "41810462e60ddd702387fb5117c0b5c7b9e1925186966191390988124eaa1c47",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -17461,12 +17417,12 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 8135885335.08,
+      "amount": 8201042476.16,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-      "sha256": "01400323d06b7616def02e4a715cd908fd65a78960dd62be6ac83bbedd28b4fe",
+      "sha256": "f9b74144d9a35e7b552bc179afb30048471766305a1d08ff852b33c4afc34884",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -17474,7 +17430,7 @@
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "sha256": "03276d772b83e0e3e8555d4f4f0144800c1e0cf4013a86cc3507ae7edcee9703",
+      "sha256": "999c180d32a8071c690042006bb437ed62f95bf2e047bff1b4c9eee58fd0849c",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -17543,13 +17499,13 @@
           "label": "Non classé"
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "countries": {
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "sha256": "03276d772b83e0e3e8555d4f4f0144800c1e0cf4013a86cc3507ae7edcee9703",
+      "sha256": "999c180d32a8071c690042006bb437ed62f95bf2e047bff1b4c9eee58fd0849c",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -17557,16 +17513,16 @@
           "weightPct": 22.122756
         },
         {
-          "name": "Canada",
-          "weightPct": 11.832145
+          "name": "United Kingdom",
+          "weightPct": 11.946747
         },
         {
-          "name": "United Kingdom",
-          "weightPct": 10.38551
+          "name": "Canada",
+          "weightPct": 11.901997
         },
         {
           "name": "Switzerland",
-          "weightPct": 8.148545
+          "weightPct": 8.438526
         },
         {
           "name": "France",
@@ -17574,15 +17530,15 @@
         },
         {
           "name": "Germany",
-          "weightPct": 7.50194
+          "weightPct": 7.524886
         },
         {
           "name": "Netherlands",
-          "weightPct": 6.494267
+          "weightPct": 5.502726
         },
         {
           "name": "Australia",
-          "weightPct": 6.00286
+          "weightPct": 5.297667
         },
         {
           "name": "Spain",
@@ -17598,15 +17554,15 @@
         },
         {
           "name": "Singapore",
-          "weightPct": 1.72795
-        },
-        {
-          "name": "Hong Kong",
-          "weightPct": 1.40952
+          "weightPct": 1.580176
         },
         {
           "name": "Denmark",
           "weightPct": 1.341251
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 1.283871
         },
         {
           "name": "Israel",
@@ -17622,7 +17578,7 @@
         },
         {
           "name": "Ireland",
-          "weightPct": 0.539365
+          "weightPct": 0.658305
         },
         {
           "name": "Norway",
@@ -17661,12 +17617,12 @@
           "weightPct": 0.165878
         },
         {
-          "name": "Chile",
-          "weightPct": 0.141259
-        },
-        {
           "name": "Zambia",
           "weightPct": 0.080629
+        },
+        {
+          "name": "Chile",
+          "weightPct": 0.071407
         },
         {
           "name": "Jersey",
@@ -17675,19 +17631,15 @@
         {
           "name": "Macao",
           "weightPct": 0.046236
-        },
-        {
-          "name": "Korea, Republic of",
-          "weightPct": 0.022945
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "sha256": "03276d772b83e0e3e8555d4f4f0144800c1e0cf4013a86cc3507ae7edcee9703",
+      "sha256": "999c180d32a8071c690042006bb437ed62f95bf2e047bff1b4c9eee58fd0849c",
       "rows": [
         {
           "name": "ASML HOLDING",
@@ -17740,7 +17692,7 @@
           "weightPct": 0.91446331
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "performance": {
       "basis": "fund",
@@ -17782,12 +17734,12 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 24311231190.11,
+      "amount": 24322261154.72,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/historicaldata/download",
-      "sha256": "ed55e4192cde885757398c5ab865ee9888129c333dcc03b937d3cd136548d06e",
+      "sha256": "43a00f1ecd11b22e55d9625525a0ca1a17c7707b586ffa74871bf9ee37281bb2",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     }
@@ -17804,12 +17756,12 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 166254656.3,
+      "amount": 167254645.12,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-      "sha256": "058147ba528a994c0346e85d185720a9e8b9fc98f177f627e7a57db1bde9d4c5",
+      "sha256": "09b4d396d3571e6c22d1c14457096708c9895ede32218ddc945e9a21784ee515",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -17817,7 +17769,7 @@
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "sha256": "935614b3f1cfe03a0ee1cb162f7b0ee4cf580a70605fda3b924ef06e6b1cf47b",
+      "sha256": "46f8ae1c1b96a2b380763ae9152507ef0c18b12851e9107f72f30be952b8f860",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -17886,18 +17838,18 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "countries": {
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "sha256": "935614b3f1cfe03a0ee1cb162f7b0ee4cf580a70605fda3b924ef06e6b1cf47b",
+      "sha256": "46f8ae1c1b96a2b380763ae9152507ef0c18b12851e9107f72f30be952b8f860",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 61.923607
+          "weightPct": 61.401072
         },
         {
           "name": "Japan",
@@ -17908,8 +17860,12 @@
           "weightPct": 3.625635
         },
         {
+          "name": "United Kingdom",
+          "weightPct": 2.850474
+        },
+        {
           "name": "Canada",
-          "weightPct": 2.764657
+          "weightPct": 2.78312
         },
         {
           "name": "China",
@@ -17917,15 +17873,11 @@
         },
         {
           "name": "Korea, Republic of",
-          "weightPct": 2.645576
-        },
-        {
-          "name": "United Kingdom",
-          "weightPct": 2.49611
+          "weightPct": 2.635498
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.919742
+          "weightPct": 2.094483
         },
         {
           "name": "France",
@@ -17933,19 +17885,23 @@
         },
         {
           "name": "Germany",
-          "weightPct": 1.731631
-        },
-        {
-          "name": "Australia",
-          "weightPct": 1.561196
-        },
-        {
-          "name": "Netherlands",
-          "weightPct": 1.559486
+          "weightPct": 1.741708
         },
         {
           "name": "Non classé",
           "weightPct": 1.450375
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.402962
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 1.331379
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.877549
         },
         {
           "name": "Spain",
@@ -17964,20 +17920,16 @@
           "weightPct": 0.67638
         },
         {
-          "name": "Ireland",
-          "weightPct": 0.437054
-        },
-        {
-          "name": "Singapore",
-          "weightPct": 0.38157
-        },
-        {
           "name": "Hong Kong",
-          "weightPct": 0.379368
+          "weightPct": 0.351707
         },
         {
           "name": "South Africa",
           "weightPct": 0.350522
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.348507
         },
         {
           "name": "Denmark",
@@ -18036,12 +17988,12 @@
           "weightPct": 0.08888
         },
         {
-          "name": "Chile",
-          "weightPct": 0.084807
-        },
-        {
           "name": "Qatar",
           "weightPct": 0.081728
+        },
+        {
+          "name": "Chile",
+          "weightPct": 0.066345
         },
         {
           "name": "Greece",
@@ -18116,13 +18068,13 @@
           "weightPct": 0.006423
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "sha256": "935614b3f1cfe03a0ee1cb162f7b0ee4cf580a70605fda3b924ef06e6b1cf47b",
+      "sha256": "46f8ae1c1b96a2b380763ae9152507ef0c18b12851e9107f72f30be952b8f860",
       "rows": [
         {
           "name": "NVIDIA",
@@ -18175,7 +18127,7 @@
           "weightPct": 1.45037457
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00BGV5VN51": {
@@ -18204,12 +18156,12 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 9604734141.56,
+      "amount": 9696105787.55,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/historicaldata/download",
-      "sha256": "e6c7a0a5e10839c4b56d94659762fe2557acdadcf0403fd062ffd010d4c3693c",
+      "sha256": "71de12d3725117d0155fe7d38b2f7beefb867e7d0159e9cc605cad4ec13b38b9",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -18398,12 +18350,12 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 4000330427.36,
+      "amount": 3973451243.04,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-      "sha256": "6acb41f25f0f45aa09f9b7a0c2fe075b7d58e8eac411fe27bce1b3a885ae1ebb",
+      "sha256": "6cd0629161f8842ffc04c841f1ad837a3673cfc96df4bbc955b73e96bc5da4fa",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -18411,7 +18363,7 @@
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "sha256": "1027947a0b4fa35f680b5c3ecda9c94da1b4e149b7ce09e08a9de36d97c6f876",
+      "sha256": "84cf45171788953d659b78d5f45758e0c041893622a60eb0641647bfca83db08",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -18430,18 +18382,18 @@
           "label": "Non classé"
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "countries": {
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "sha256": "1027947a0b4fa35f680b5c3ecda9c94da1b4e149b7ce09e08a9de36d97c6f876",
+      "sha256": "84cf45171788953d659b78d5f45758e0c041893622a60eb0641647bfca83db08",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 74.97181
+          "weightPct": 73.603615
         },
         {
           "name": "Switzerland",
@@ -18466,6 +18418,10 @@
         {
           "name": "Germany",
           "weightPct": 1.43902
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 1.371999
         },
         {
           "name": "Netherlands",
@@ -18508,21 +18464,17 @@
           "weightPct": 0.059393
         },
         {
-          "name": "Ireland",
-          "weightPct": 0.003804
-        },
-        {
           "name": "United Arab Emirates",
           "weightPct": 0.0
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "sha256": "1027947a0b4fa35f680b5c3ecda9c94da1b4e149b7ce09e08a9de36d97c6f876",
+      "sha256": "84cf45171788953d659b78d5f45758e0c041893622a60eb0641647bfca83db08",
       "rows": [
         {
           "name": "ELI LILLY",
@@ -18575,7 +18527,7 @@
           "weightPct": 2.64267776
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     }
   },
   "IE00BM67HS53": {
@@ -18613,7 +18565,7 @@
       "scope": "fund",
       "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-      "sha256": "dde71a32908ebd2d8b2d6cb5cf5f8aa9731ab867b3446d5a8823f40cccacec96",
+      "sha256": "ff8b4b03efa0f80ea4a4a7ecff7f7006568a20c493ea5a08ed5d41e8d4ed3898",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -18833,12 +18785,12 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 15387059691.11,
+      "amount": 15413687639.15,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/historicaldata/download",
-      "sha256": "af812c9c1cb75f98b33d0a4e218ac206098e6362733b22114e5a164bcab77f9c",
+      "sha256": "54a7ab7f7937711cc5b4bac41b18eda07a23609e2a088819ea5320bb89b88ca3",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -18846,7 +18798,7 @@
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "sha256": "fcc57b438bc020c2cea74770086633990996f80eca278957502dbaa37271eafe",
+      "sha256": "7d68a2ac67c9016ea2c2095e1e0b719d62f4145220a5a8131997532115139ffa",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -18915,13 +18867,13 @@
           "label": "Non classé"
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "countries": {
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "sha256": "fcc57b438bc020c2cea74770086633990996f80eca278957502dbaa37271eafe",
+      "sha256": "7d68a2ac67c9016ea2c2095e1e0b719d62f4145220a5a8131997532115139ffa",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
@@ -19069,13 +19021,13 @@
           "weightPct": 1e-06
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
       "asOf": "2026-10-05",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "sha256": "fcc57b438bc020c2cea74770086633990996f80eca278957502dbaa37271eafe",
+      "sha256": "7d68a2ac67c9016ea2c2095e1e0b719d62f4145220a5a8131997532115139ffa",
       "rows": [
         {
           "name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
@@ -19128,7 +19080,7 @@
           "weightPct": 0.78012415
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     }
   },
   "LU1875395870": {
@@ -19158,12 +19110,12 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 2937468458.88833,
+      "amount": 2962068497.1438,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/historicaldata/download",
-      "sha256": "22650d855e42cd61ce43f35d45a461d0d4fe06b6ab0a023e5d75ec1af55581c3",
+      "sha256": "6bd21f86a48f4616cae1dae7b134e50a988e7739b9a6ed6c413314b9857c39ee",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -19332,12 +19284,12 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 520091108258.377,
+      "amount": 527057435014.702,
       "currency": "JPY",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download",
-      "sha256": "f288cf221b31c2f3a38c35ae3aa9332ad44d311ab1dbc024e05bd2177a90b233",
+      "sha256": "9ef65d52c74cfd77f30258ce56804fd0a58c78a0eea872bd273ae9f1b8f52843",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-07"
     },
@@ -21089,7 +21041,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00BYWQWR46": {
     "currency": "USD",
     "productId": "IE00BYWQWR46",
@@ -21238,7 +21189,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE0007Y8Y157": {
     "currency": "USD",
     "productId": "IE0007Y8Y157",
@@ -21431,7 +21381,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE000M7V94E1": {
     "currency": "USD",
     "productId": "IE000M7V94E1",
@@ -21576,7 +21525,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE000YU9K6K2": {
     "currency": "USD",
     "productId": "IE000YU9K6K2",
@@ -21722,7 +21670,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE000YYE6WK5": {
     "currency": "USD",
     "productId": "IE000YYE6WK5",
@@ -21870,7 +21817,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00BDFBTQ78": {
     "currency": "USD",
     "productId": "IE00BDFBTQ78",
@@ -22023,7 +21969,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "NL0009690239": {
     "currency": "EUR",
     "productId": "NL0009690239",
@@ -22236,7 +22181,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "NL0011683594": {
     "currency": "EUR",
     "productId": "NL0011683594",
@@ -22431,7 +22375,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00B579F325": {
     "currency": "USD",
     "productId": "IE00B579F325",
@@ -22843,20 +22786,20 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "China",
-          "weightPct": 99.57717
+          "weightPct": 99.58236
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.37806
+          "weightPct": 0.3744
         },
         {
           "name": "United States",
-          "weightPct": 0.04405
+          "weightPct": 0.0425
         },
         {
           "name": "European Union",
@@ -22872,65 +22815,65 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
-          "name": "TENCENT HOLDINGS",
-          "weightPct": 9.13856,
-          "isin": "KYG875721634"
-        },
-        {
           "name": "ALIBABA GROUP HOLDING",
-          "weightPct": 9.07417,
+          "weightPct": 9.22396,
           "isin": "KYG017191142"
         },
         {
+          "name": "TENCENT HOLDINGS",
+          "weightPct": 9.16025,
+          "isin": "KYG875721634"
+        },
+        {
           "name": "CHINA CONSTRUCTION BANK CORP H",
-          "weightPct": 9.02712,
+          "weightPct": 9.07025,
           "isin": "CNE1000002H1"
         },
         {
           "name": "INDUSTRIAL AND COMMERCIAL BANK OF",
-          "weightPct": 6.34498,
+          "weightPct": 6.38816,
           "isin": "CNE1000003G1"
         },
         {
           "name": "BANK OF CHINA LTD H",
-          "weightPct": 4.50094,
+          "weightPct": 4.52836,
           "isin": "CNE1000001Z5"
         },
         {
           "name": "XIAOMI",
-          "weightPct": 4.37878,
+          "weightPct": 4.40487,
           "isin": "KYG9830T1067"
         },
         {
           "name": "MEITUAN",
-          "weightPct": 4.35206,
+          "weightPct": 4.31857,
           "isin": "KYG596691041"
         },
         {
           "name": "NETEASE",
-          "weightPct": 3.86956,
+          "weightPct": 3.83164,
           "isin": "KYG6427A1022"
         },
         {
           "name": "PING AN INSURANCE (GROUP) CO OF CH",
-          "weightPct": 3.58516,
+          "weightPct": 3.53631,
           "isin": "CNE1000003X6"
         },
         {
           "name": "BYD H",
-          "weightPct": 3.14981,
+          "weightPct": 3.15683,
           "isin": "CNE100000296"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.74,
@@ -23284,20 +23227,20 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.97136
+          "weightPct": 99.9717
         },
         {
           "name": "Ireland",
-          "weightPct": 0.0253
+          "weightPct": 0.02515
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.00311
+          "weightPct": 0.0031
         },
         {
           "name": "European Union",
@@ -23313,65 +23256,65 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "NVIDIA",
-          "weightPct": 8.18246,
+          "weightPct": 8.14526,
           "isin": "US67066G1040"
         },
         {
           "name": "APPLE",
-          "weightPct": 7.28718,
+          "weightPct": 7.25984,
           "isin": "US0378331005"
         },
         {
           "name": "MICROSOFT",
-          "weightPct": 5.51972,
+          "weightPct": 5.52986,
           "isin": "US5949181045"
         },
         {
           "name": "AMAZON.COM INC",
-          "weightPct": 3.62721,
+          "weightPct": 3.67572,
           "isin": "US0231351067"
         },
         {
           "name": "ALPHABET CLASS A",
-          "weightPct": 3.02518,
+          "weightPct": 3.01765,
           "isin": "US02079K3059"
         },
         {
           "name": "BROADCOM INC",
-          "weightPct": 2.43815,
+          "weightPct": 2.51253,
           "isin": "US11135F1012"
         },
         {
           "name": "META PLATFORMS CLASS A",
-          "weightPct": 2.42356,
+          "weightPct": 2.39931,
           "isin": "US30303M1027"
         },
         {
           "name": "ALPHABET CLASS C",
-          "weightPct": 2.39182,
+          "weightPct": 2.38281,
           "isin": "US02079K1079"
         },
         {
           "name": "MICRON TECHNOLOGY",
-          "weightPct": 1.7927,
+          "weightPct": 1.7512,
           "isin": "US5951121038"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 1.61239,
+          "weightPct": 1.61103,
           "isin": "US88160R1014"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.03,
@@ -23510,62 +23453,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "ASML HOLDING",
-          "weightPct": 11.25257,
+          "weightPct": 11.06477,
           "isin": "NL0010273215"
         },
         {
           "name": "SIEMENS N AG",
-          "weightPct": 4.5186,
+          "weightPct": 4.56235,
           "isin": "DE0007236101"
         },
         {
           "name": "SAP",
-          "weightPct": 4.16884,
+          "weightPct": 4.22869,
           "isin": "DE0007164600"
         },
         {
           "name": "BANCO SANTANDER",
-          "weightPct": 4.15125,
+          "weightPct": 4.19094,
           "isin": "ES0113900J37"
         },
         {
           "name": "TOTALENERGIES",
-          "weightPct": 3.87171,
+          "weightPct": 3.84909,
           "isin": "FR0000120271"
         },
         {
           "name": "ALLIANZ",
-          "weightPct": 3.56999,
+          "weightPct": 3.56559,
           "isin": "DE0008404005"
         },
         {
           "name": "SCHNEIDER ELECTRIC",
-          "weightPct": 3.53354,
+          "weightPct": 3.35805,
           "isin": "FR0000121972"
         },
         {
           "name": "BANCO BILBAO VIZCAYA ARGENTARIA SA",
-          "weightPct": 2.99863,
+          "weightPct": 3.01908,
           "isin": "ES0113211835"
         },
         {
           "name": "IBERDROLA",
-          "weightPct": 2.91534,
+          "weightPct": 2.89999,
           "isin": "ES0144580Y14"
         },
         {
-          "name": "SAFRAN SA",
-          "weightPct": 2.72666,
-          "isin": "FR0000073272"
+          "name": "UNICREDIT",
+          "weightPct": 2.72496,
+          "isin": "IT0005239360"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253712&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.1,
@@ -23702,62 +23645,62 @@
       "checkedAt": "2026-10-06"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "ELI LILLY",
-          "weightPct": 10.72654,
+          "weightPct": 10.83003,
           "isin": "US5324571083"
         },
         {
           "name": "JOHNSON & JOHNSON",
-          "weightPct": 5.96108,
+          "weightPct": 5.98735,
           "isin": "US4781601046"
         },
         {
           "name": "ABBVIE",
-          "weightPct": 5.84916,
+          "weightPct": 5.85269,
           "isin": "US00287Y1091"
         },
         {
           "name": "NOVARTIS AG",
-          "weightPct": 4.96994,
+          "weightPct": 4.98657,
           "isin": "CH0012005267"
         },
         {
-          "name": "UNITEDHEALTH GROUP",
-          "weightPct": 3.69923,
-          "isin": "US91324P1021"
-        },
-        {
           "name": "MERCK & CO INC",
-          "weightPct": 3.64187,
+          "weightPct": 3.69382,
           "isin": "US58933Y1055"
         },
         {
+          "name": "UNITEDHEALTH GROUP",
+          "weightPct": 3.66654,
+          "isin": "US91324P1021"
+        },
+        {
           "name": "ROCHE PS PAR AG",
-          "weightPct": 3.60847,
+          "weightPct": 3.6082,
           "isin": "CH1499059983"
         },
         {
           "name": "ASTRAZENECA PLC",
-          "weightPct": 2.71305,
+          "weightPct": 2.76148,
           "isin": "GB0009895292"
         },
         {
           "name": "GILEAD SCIENCES",
-          "weightPct": 2.58268,
+          "weightPct": 2.5681,
           "isin": "US3755581036"
         },
         {
           "name": "AMGEN INC",
-          "weightPct": 2.28441,
+          "weightPct": 2.27567,
           "isin": "US0311621009"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.18,
@@ -23859,20 +23802,20 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "China",
-          "weightPct": 99.73911
+          "weightPct": 99.73853
         },
         {
           "name": "Hong Kong",
-          "weightPct": 0.22231
+          "weightPct": 0.21517
         },
         {
           "name": "United States",
-          "weightPct": 0.03805
+          "weightPct": 0.04583
         },
         {
           "name": "European Union",
@@ -23888,65 +23831,65 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308751&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "TENCENT HOLDINGS",
-          "weightPct": 13.75006,
+          "weightPct": 13.78058,
           "isin": "KYG875721634"
         },
         {
           "name": "ALIBABA GROUP HOLDING",
-          "weightPct": 9.37247,
+          "weightPct": 9.52571,
           "isin": "KYG017191142"
         },
         {
           "name": "CHINA CONSTRUCTION BANK CORP H",
-          "weightPct": 4.23845,
+          "weightPct": 4.25804,
           "isin": "CNE1000002H1"
         },
         {
           "name": "INDUSTRIAL AND COMMERCIAL BANK OF",
-          "weightPct": 2.57439,
+          "weightPct": 2.59151,
           "isin": "CNE1000003G1"
         },
         {
           "name": "XIAOMI",
-          "weightPct": 2.16061,
+          "weightPct": 2.17315,
           "isin": "KYG9830T1067"
         },
         {
           "name": "BANK OF CHINA LTD H",
-          "weightPct": 2.10092,
+          "weightPct": 2.11339,
           "isin": "CNE1000001Z5"
         },
         {
           "name": "MEITUAN",
-          "weightPct": 1.88296,
+          "weightPct": 1.86818,
           "isin": "KYG596691041"
         },
         {
           "name": "NETEASE",
-          "weightPct": 1.73355,
+          "weightPct": 1.7163,
           "isin": "KYG6427A1022"
         },
         {
-          "name": "PING AN INSURANCE (GROUP) CO OF CH",
-          "weightPct": 1.6868,
-          "isin": "CNE1000003X6"
+          "name": "PDD HOLDINGS ADS",
+          "weightPct": 1.66525,
+          "isin": "US7223041028"
         },
         {
-          "name": "PDD HOLDINGS ADS",
-          "weightPct": 1.67113,
-          "isin": "US7223041028"
+          "name": "PING AN INSURANCE (GROUP) CO OF CH",
+          "weightPct": 1.66356,
+          "isin": "CNE1000003X6"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308751&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.28,
@@ -24676,8 +24619,6 @@
           "weightPct": 0.07
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -24728,8 +24669,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -24791,7 +24730,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00B1FZS913": {
     "currency": "EUR",
     "productId": 251735,
@@ -24832,8 +24770,6 @@
           "weightPct": 0.08
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -24874,8 +24810,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -24937,7 +24871,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "DE000A0H08Q4": {
     "currency": "EUR",
     "productId": 251961,
@@ -25141,8 +25074,6 @@
           "weightPct": 0.02
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -25183,8 +25114,6 @@
           "label": "Cash and/or Derivatives"
         }
       ],
-      "basis": "fund",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-07"
     },
     "holdings": {
@@ -25246,7 +25175,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE00B3WJKG14": {
     "currency": "USD",
     "productId": 280510,
@@ -25520,24 +25448,24 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.96094
+          "weightPct": 99.96132
         },
         {
           "name": "Ireland",
-          "weightPct": 0.03257
+          "weightPct": 0.03226
         },
         {
           "name": "European Union",
-          "weightPct": 0.00339
+          "weightPct": 0.00338
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.00309
+          "weightPct": 0.00307
         },
         {
           "name": "Other",
@@ -25545,65 +25473,65 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=287102&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "WALMART",
-          "weightPct": 15.87404,
+          "weightPct": 16.04134,
           "isin": "US9311421039"
         },
         {
           "name": "COSTCO WHOLESALE CORP",
-          "weightPct": 13.88453,
+          "weightPct": 13.93315,
           "isin": "US22160K1051"
         },
         {
           "name": "PROCTER & GAMBLE",
-          "weightPct": 11.50016,
+          "weightPct": 11.58324,
           "isin": "US7427181091"
         },
         {
           "name": "COCA-COLA",
-          "weightPct": 11.35657,
+          "weightPct": 11.20403,
           "isin": "US1912161007"
         },
         {
           "name": "PHILIP MORRIS INTERNATIONAL",
-          "weightPct": 10.01449,
+          "weightPct": 9.96449,
           "isin": "US7181721090"
         },
         {
           "name": "PEPSICO",
-          "weightPct": 5.81397,
+          "weightPct": 5.76126,
           "isin": "US7134481081"
         },
         {
           "name": "ALTRIA GROUP INC",
-          "weightPct": 3.84241,
+          "weightPct": 3.84333,
           "isin": "US02209S1033"
         },
         {
           "name": "MONDELEZ INTERNATIONAL CLASS A",
-          "weightPct": 2.53075,
+          "weightPct": 2.55503,
           "isin": "US6092071058"
         },
         {
           "name": "TARGET CORP",
-          "weightPct": 2.35566,
+          "weightPct": 2.35363,
           "isin": "US87612E1064"
         },
         {
           "name": "COLGATE-PALMOLIVE",
-          "weightPct": 2.32928,
+          "weightPct": 2.33543,
           "isin": "US1941621039"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=287102&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.15,
@@ -25677,16 +25605,16 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.99604
+          "weightPct": 99.99602
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.00276
+          "weightPct": 0.00277
         },
         {
           "name": "European Union",
@@ -25698,65 +25626,65 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "EXXONMOBIL HOLDINGS CORP",
-          "weightPct": 29.17561,
+          "weightPct": 29.13611,
           "isin": "US30233Q1085"
         },
         {
           "name": "CHEVRON",
-          "weightPct": 17.64528,
+          "weightPct": 17.66441,
           "isin": "US1667641005"
         },
         {
           "name": "CONOCOPHILLIPS",
-          "weightPct": 6.67385,
+          "weightPct": 6.69453,
           "isin": "US20825C1045"
         },
         {
           "name": "MARATHON PETROLEUM",
-          "weightPct": 5.26736,
+          "weightPct": 5.23145,
           "isin": "US56585A1025"
         },
         {
           "name": "VALERO ENERGY CORP",
-          "weightPct": 5.22409,
+          "weightPct": 5.20042,
           "isin": "US91913Y1001"
         },
         {
           "name": "PHILLIPS 66",
-          "weightPct": 4.66094,
+          "weightPct": 4.64225,
           "isin": "US7185461040"
         },
         {
           "name": "WILLIAMS",
-          "weightPct": 3.7472,
+          "weightPct": 3.81445,
           "isin": "US9694571004"
         },
         {
           "name": "EOG RESOURCES",
-          "weightPct": 3.26984,
+          "weightPct": 3.2604,
           "isin": "US26875P1012"
         },
         {
           "name": "SLB",
-          "weightPct": 3.22856,
+          "weightPct": 3.19687,
           "isin": "AN8068571086"
         },
         {
-          "name": "TARGA RESOURCES",
-          "weightPct": 2.66627,
-          "isin": "US87612G1013"
+          "name": "KINDER MORGAN",
+          "weightPct": 2.71486,
+          "isin": "US49456B1017"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.15,
@@ -25832,24 +25760,24 @@
       "checkedAt": "2026-10-06"
     },
     "countries": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 99.97111
+          "weightPct": 99.97426
         },
         {
           "name": "Ireland",
-          "weightPct": 0.02037
+          "weightPct": 0.01814
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.00803
+          "weightPct": 0.00718
         },
         {
           "name": "European Union",
-          "weightPct": 0.00047
+          "weightPct": 0.00042
         },
         {
           "name": "Other",
@@ -25857,65 +25785,65 @@
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=287115&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "holdings": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-06",
       "basis": "fund",
       "rows": [
         {
           "name": "NEXTERA ENERGY",
-          "weightPct": 12.64345,
+          "weightPct": 12.56348,
           "isin": "US65339F1012"
         },
         {
+          "name": "CONSTELLATION ENERGY CORP",
+          "weightPct": 7.65466,
+          "isin": "US21037T1097"
+        },
+        {
           "name": "SOUTHERN",
-          "weightPct": 7.65879,
+          "weightPct": 7.60115,
           "isin": "US8425871071"
         },
         {
           "name": "DUKE ENERGY CORP",
-          "weightPct": 7.05298,
+          "weightPct": 6.97428,
           "isin": "US26441C2044"
         },
         {
-          "name": "CONSTELLATION ENERGY CORP",
-          "weightPct": 7.00715,
-          "isin": "US21037T1097"
-        },
-        {
           "name": "AMERICAN ELECTRIC POWER INC",
-          "weightPct": 5.17919,
+          "weightPct": 5.12268,
           "isin": "US0255371017"
         },
         {
           "name": "DOMINION ENERGY",
-          "weightPct": 4.26413,
+          "weightPct": 4.21724,
           "isin": "US25746U1097"
         },
         {
           "name": "SEMPRA",
-          "weightPct": 4.06088,
+          "weightPct": 4.04418,
           "isin": "US8168511090"
         },
         {
-          "name": "ENTERGY CORP",
-          "weightPct": 3.73804,
-          "isin": "US29364G1031"
-        },
-        {
           "name": "VISTRA",
-          "weightPct": 3.63195,
+          "weightPct": 3.9159,
           "isin": "US92840M1027"
         },
         {
+          "name": "ENTERGY CORP",
+          "weightPct": 3.72621,
+          "isin": "US29364G1031"
+        },
+        {
           "name": "XCEL ENERGY INC",
-          "weightPct": 3.54777,
+          "weightPct": 3.51318,
           "isin": "US98389B1008"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=287115&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "terPct": 0.15,
@@ -27056,13 +26984,13 @@
       "scope": "share-class",
       "asOf": "2026-10-07",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "535c491dc44e044ffd93bfd314a7324d7ae05f134daa415d8c27aa514ca30927",
+      "sha256": "754100e8d8a1d4ce60703653a109c96abad702dd322d18181844ed2ceff5c3ac",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "asOf": "2026-10-07",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "535c491dc44e044ffd93bfd314a7324d7ae05f134daa415d8c27aa514ca30927",
+      "sha256": "754100e8d8a1d4ce60703653a109c96abad702dd322d18181844ed2ceff5c3ac",
       "terPct": 2.0,
       "checkedAt": "2026-10-07"
     }
@@ -27715,7 +27643,7 @@
       "scope": "fund",
       "asOf": "2026-10-06",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "ac54198551cd353a7b44124e790670f7618199187695ae02cfb85558c9157827",
+      "sha256": "626a7682736773a24fe6ce39c7aa8757ad36d7bbb04ff1829b0780a289e75142",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
@@ -27744,7 +27672,7 @@
       "scope": "share-class",
       "asOf": "2026-10-06",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_DYNKEYSTATISTICS_GB00BLD4ZL17,ISIN_STATMETADATA_GB00BLD4ZL17",
-      "sha256": "a90717c58566b4a8a3c04d5c584dd31cfd5da6eb44a51700825ec3d7c7c97c8e",
+      "sha256": "bfecd1955d06a55aed741fe396d8db6622ee92a17fb1a50d62c91c813b344edf",
       "checkedAt": "2026-10-07"
     }
   },
@@ -27766,7 +27694,7 @@
       "scope": "share-class",
       "asOf": "2026-10-06",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_DYNKEYSTATISTICS_GB00BLD4ZM24,ISIN_STATMETADATA_GB00BLD4ZM24",
-      "sha256": "a257f02a7494e995139692838aab1ccc28809561f6dfe06c3abc1a99d8b774d2",
+      "sha256": "0af58cd8d2eb0a52b8b473f222edfda6e9fee15d8ccafcbffe9da68b6d99b3e9",
       "checkedAt": "2026-10-07"
     }
   },
@@ -28307,7 +28235,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "FR0011550193": {
     "currency": "EUR",
     "productId": "FR0011550193",
@@ -28542,7 +28469,6 @@
       "checkedAt": "2026-10-07"
     }
   },
-
   "IE000QDFFK00": {
     "currency": "USD",
     "productId": "IE000QDFFK00",

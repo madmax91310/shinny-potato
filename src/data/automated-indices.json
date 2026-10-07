@@ -9045,41 +9045,37 @@
   "ftse-em": {
     "facts": {
       "index": "FTSE EM",
-      "asOf": "2026-08-31",
-      "constituents": 2290,
+      "asOf": "2026-09-30",
+      "constituents": 2300,
       "sectorMethod": "ICB Supersector Breakdown",
       "countries": [
         [
           "🇧🇷 Brésil",
-          4.22
+          4.49
         ],
         [
           "🇨🇱 Chili",
-          0.68
+          0.65
         ],
         [
           "🇨🇳 Chine",
-          27.18
+          26.75
         ],
         [
           "🇨🇴 Colombie",
-          0.25
+          0.28
         ],
         [
           "Czech Rep.",
-          0.15
+          0.14
         ],
         [
           "Egypt",
           0.08
         ],
         [
-          "Greece",
-          0.9
-        ],
-        [
           "Hungary",
-          0.45
+          0.42
         ],
         [
           "Iceland",
@@ -9087,11 +9083,11 @@
         ],
         [
           "🇮🇳 Inde",
-          15.69
+          15.0
         ],
         [
           "Indonesia",
-          0.7
+          0.66
         ],
         [
           "Kuwait",
@@ -9099,142 +9095,146 @@
         ],
         [
           "Malaysia",
-          1.56
+          1.5
         ],
         [
           "🇲🇽 Mexique",
-          2.2
+          2.07
         ],
         [
           "Philippines",
-          0.4
+          0.38
         ],
         [
           "Qatar",
-          0.6
+          0.58
         ],
         [
           "Romania",
-          0.14
+          0.13
         ],
         [
           "Saudi Arabia",
-          3.22
+          3.09
         ],
         [
           "South Africa",
-          3.95
+          3.65
         ],
         [
           "🇹🇼 Taïwan",
-          32.8
+          35.37
         ],
         [
           "Thailand",
-          1.52
+          1.46
         ],
         [
           "Turkiye",
-          1
+          0.79
         ],
         [
           "UAE",
-          1.59
+          1.73
+        ],
+        [
+          "Vietnam",
+          0.03
         ]
       ],
       "sectors": [
         [
           "💻 Technologie",
-          35.07
+          37.17
         ],
         [
           "📡 Communication",
-          3.79
+          3.69
         ],
         [
           "🏥 Santé",
-          3.4
+          3.45
         ],
         [
           "🏦 Finance",
-          21.47
+          20.8
         ],
         [
           "🏠 Immobilier",
-          1.65
+          1.7
         ],
         [
           "🛍️ Consommation cyclique",
-          8.95
+          8.4
         ],
         [
           "🛒 Consommation de base",
-          3.26
+          3.17
         ],
         [
           "🏭 Industrie",
-          8.05
+          7.9
         ],
         [
           "🪨 Matériaux",
-          7.02
+          6.57
         ],
         [
           "⚡ Énergie",
-          4.56
+          4.47
         ],
         [
           "💡 Services publics",
-          2.78
+          2.69
         ]
       ],
       "holdings": [
         [
           "Taiwan Semiconductor Manufacturing",
-          17.04
+          17.86
         ],
         [
           "Tencent Holdings (P Chip)",
-          3.34
+          3.24
         ],
         [
           "Alibaba Group Holding (P Chip)",
-          2.55
+          2.43
         ],
         [
           "MediaTek",
-          1.68
+          2.14
         ],
         [
           "Delta Electronics",
-          1.03
+          1.08
         ],
         [
           "China Construction Bank (H)",
-          0.99
+          1.04
         ],
         [
           "Hon Hai Precision Industry",
-          0.89
-        ],
-        [
-          "Reliance Industries",
-          0.83
+          0.91
         ],
         [
           "HDFC Bank",
+          0.8
+        ],
+        [
+          "Reliance Industries",
           0.79
         ],
         [
-          "ICICI Bank",
-          0.75
+          "Industrial and Commercial Bank of China (H)",
+          0.74
         ]
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
-        "checkedAt": "2026-10-06",
+        "checkedAt": "2026-10-07",
         "label": "Composition officielle automatisée · FTSE EM",
-        "sha256": "1fba83c57c35df71411367ef04bf1513bc13d0054d72bc8546f462ef34603f19"
+        "sha256": "a02e8982b3cd5c58fcc80c7ed6b39207e60c21d17fee6f64eb8888fa7503892d"
       },
       "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
     },
@@ -9433,16 +9433,211 @@
           "sha256": "1fba83c57c35df71411367ef04bf1513bc13d0054d72bc8546f462ef34603f19"
         },
         "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "2026-09-30": {
+        "index": "FTSE EM",
+        "asOf": "2026-09-30",
+        "constituents": 2300,
+        "sectorMethod": "ICB Supersector Breakdown",
+        "countries": [
+          [
+            "🇧🇷 Brésil",
+            4.49
+          ],
+          [
+            "🇨🇱 Chili",
+            0.65
+          ],
+          [
+            "🇨🇳 Chine",
+            26.75
+          ],
+          [
+            "🇨🇴 Colombie",
+            0.28
+          ],
+          [
+            "Czech Rep.",
+            0.14
+          ],
+          [
+            "Egypt",
+            0.08
+          ],
+          [
+            "Hungary",
+            0.42
+          ],
+          [
+            "Iceland",
+            0.07
+          ],
+          [
+            "🇮🇳 Inde",
+            15.0
+          ],
+          [
+            "Indonesia",
+            0.66
+          ],
+          [
+            "Kuwait",
+            0.66
+          ],
+          [
+            "Malaysia",
+            1.5
+          ],
+          [
+            "🇲🇽 Mexique",
+            2.07
+          ],
+          [
+            "Philippines",
+            0.38
+          ],
+          [
+            "Qatar",
+            0.58
+          ],
+          [
+            "Romania",
+            0.13
+          ],
+          [
+            "Saudi Arabia",
+            3.09
+          ],
+          [
+            "South Africa",
+            3.65
+          ],
+          [
+            "🇹🇼 Taïwan",
+            35.37
+          ],
+          [
+            "Thailand",
+            1.46
+          ],
+          [
+            "Turkiye",
+            0.79
+          ],
+          [
+            "UAE",
+            1.73
+          ],
+          [
+            "Vietnam",
+            0.03
+          ]
+        ],
+        "sectors": [
+          [
+            "💻 Technologie",
+            37.17
+          ],
+          [
+            "📡 Communication",
+            3.69
+          ],
+          [
+            "🏥 Santé",
+            3.45
+          ],
+          [
+            "🏦 Finance",
+            20.8
+          ],
+          [
+            "🏠 Immobilier",
+            1.7
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            8.4
+          ],
+          [
+            "🛒 Consommation de base",
+            3.17
+          ],
+          [
+            "🏭 Industrie",
+            7.9
+          ],
+          [
+            "🪨 Matériaux",
+            6.57
+          ],
+          [
+            "⚡ Énergie",
+            4.47
+          ],
+          [
+            "💡 Services publics",
+            2.69
+          ]
+        ],
+        "holdings": [
+          [
+            "Taiwan Semiconductor Manufacturing",
+            17.86
+          ],
+          [
+            "Tencent Holdings (P Chip)",
+            3.24
+          ],
+          [
+            "Alibaba Group Holding (P Chip)",
+            2.43
+          ],
+          [
+            "MediaTek",
+            2.14
+          ],
+          [
+            "Delta Electronics",
+            1.08
+          ],
+          [
+            "China Construction Bank (H)",
+            1.04
+          ],
+          [
+            "Hon Hai Precision Industry",
+            0.91
+          ],
+          [
+            "HDFC Bank",
+            0.8
+          ],
+          [
+            "Reliance Industries",
+            0.79
+          ],
+          [
+            "Industrial and Commercial Bank of China (H)",
+            0.74
+          ]
+        ],
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
+          "checkedAt": "2026-10-07",
+          "label": "Composition officielle automatisée · FTSE EM",
+          "sha256": "a02e8982b3cd5c58fcc80c7ed6b39207e60c21d17fee6f64eb8888fa7503892d"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
       }
     },
     "returns": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "currency": "USD",
       "variant": "NET",
       "values": [
         [
           2025,
-          26
+          26.0
         ],
         [
           2024,
@@ -9469,14 +9664,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
-        "checkedAt": "2026-10-05",
-        "sha256": "1fba83c57c35df71411367ef04bf1513bc13d0054d72bc8546f462ef34603f19",
+        "checkedAt": "2026-10-07",
+        "sha256": "a02e8982b3cd5c58fcc80c7ed6b39207e60c21d17fee6f64eb8888fa7503892d",
         "label": "Rendements calendaires officiels automatisés · FTSE EM"
       },
       "performance": {
         "kind": "indice",
         "detail": "FTSE Emerging · USD · dividendes nets réinvestis",
-        "date": "2026-08-31"
+        "date": "2026-09-30"
       }
     },
     "returnsHistory": {
@@ -9522,6 +9717,50 @@
           "kind": "indice",
           "detail": "FTSE Emerging · USD · dividendes nets réinvestis",
           "date": "2026-08-31"
+        }
+      },
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            26.0
+          ],
+          [
+            2024,
+            12.4
+          ],
+          [
+            2023,
+            8.6
+          ],
+          [
+            2022,
+            -17.3
+          ],
+          [
+            2021,
+            -0.2
+          ],
+          [
+            2020,
+            15.1
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
+          "checkedAt": "2026-10-07",
+          "sha256": "a02e8982b3cd5c58fcc80c7ed6b39207e60c21d17fee6f64eb8888fa7503892d",
+          "label": "Rendements calendaires officiels automatisés · FTSE EM"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "FTSE Emerging · USD · dividendes nets réinvestis",
+          "date": "2026-09-30"
         }
       }
     }
@@ -12594,7 +12833,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-10-07",
-        "sha256": "4d78b835aa1fc202eb3857947426d6eca1c9967f3dc99e212ae26487e89824a1",
+        "sha256": "62599e4da5cb9d044e1e610fd868743b7dc6764962bafa1ce123b4d9852459d7",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -12719,7 +12958,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-10-07",
-        "sha256": "5f6aad77ad547cfedd5ee672e52402987ee8b7fc39d76f8a3d33eb3becd2c49a",
+        "sha256": "a2a74a18adf7c0a06f3138ddda9edc3a585bdfcff8143c22cdca474357603a26",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -13199,7 +13438,7 @@
   },
   "eurostoxx50": {
     "returns": {
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-07",
       "currency": "EUR",
       "variant": "PRICE",
       "values": [
@@ -13233,13 +13472,13 @@
       "source": {
         "url": "https://stoxx.com/index/sx5e/",
         "checkedAt": "2026-10-07",
-        "sha256": "1c008ec3e399c811f6f234491ea19751cbc44a44891fdc58cd387835e3200649",
+        "sha256": "8625789e27fcc3941b42ca9d0490e253420b8970afc798e341577e8c013d7e04",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
         "kind": "indice",
         "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
-        "date": "2026-10-06"
+        "date": "2026-10-07"
       }
     },
     "returnsHistory": {
@@ -13329,6 +13568,50 @@
           "kind": "indice",
           "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
           "date": "2026-10-06"
+        }
+      },
+      "2026-10-07": {
+        "asOf": "2026-10-07",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            18.29
+          ],
+          [
+            2024,
+            8.28
+          ],
+          [
+            2023,
+            19.19
+          ],
+          [
+            2022,
+            -11.74
+          ],
+          [
+            2021,
+            20.99
+          ],
+          [
+            2020,
+            -5.14
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5e/",
+          "checkedAt": "2026-10-07",
+          "sha256": "8625789e27fcc3941b42ca9d0490e253420b8970afc798e341577e8c013d7e04",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-07"
         }
       }
     },
@@ -13619,7 +13902,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-10-07",
-        "sha256": "ff297f1ee7b6e3c9a5c48e4904bdd8515905df52e39816bc0f76f1eba928a635",
+        "sha256": "27c0693062b1fd2744c1e45463ba8a287f0e3c240e4045ee5c0572647fb499bb",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -13707,7 +13990,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
         "checkedAt": "2026-10-07",
-        "sha256": "665fad9624ff78297d333645a1dc6335320bbca548ad2e23aae78befb27d8290",
+        "sha256": "665f0fee4d685f6c4e9b9bc8f1dbd2fd320a6f32509b46edf51ef657d4f7206d",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -13795,7 +14078,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-10-07",
-        "sha256": "47786c98e02fadb9f65f2b3b4fedc9791d537cc14dedf92fadb7e0d3bea615ef",
+        "sha256": "d5aead669c268196967aa0dd767732ff34a5f66deebed954ab9ae09fa9cfda22",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
