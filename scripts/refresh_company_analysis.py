@@ -1,4 +1,4 @@
-"""Daily SEC accounts + completed-session prices; optional Alpha Vantage enrichment."""
+"""Daily official accounts/history, completed-session prices and public estimates."""
 import argparse
 import datetime as dt
 import json
@@ -154,6 +154,43 @@ def parse_accounts(body, profile, today):
     return result
 
 
+def parse_history(body, profile, today):
+    if str(body.get('cik', '')).zfill(10) != profile['cik']:
+        raise ValueError('Wrong SEC history identity')
+    revenues = fact_rows(body, REVENUE, 'USD', '10-K', 330, 400, today)
+    incomes = fact_rows(body, ['NetIncomeLoss'], 'USD', '10-K', 330, 400, today)
+    result = []
+    for revenue in sorted(revenues, key=lambda r: r['end'], reverse=True):
+        net = aligned(incomes, revenue)
+        if not net or revenue['val'] <= 0:
+            continue
+        if any(r['end'] == revenue['end'] for r in result):
+            raise ValueError('Ambiguous annual history duration')
+        result.append({'start': revenue['start'], 'end': revenue['end'],
+                       'revenue': revenue['val'], 'netIncome': net['val'],
+                       'margin': net['val'] / revenue['val'] * 100,
+                       'filedAt': max(revenue['filed'], net['filed']),
+                       'sourceUrl': f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json"})
+        if len(result) == 5:
+            break
+    return validate_history(result, today)
+
+
+def validate_history(rows, today):
+    rows = sorted(rows, key=lambda r: r['end'])
+    if not 3 <= len(rows) <= 5:
+        raise ValueError('At least three annual observations required')
+    for row in rows:
+        end = dt.date.fromisoformat(row['end'])
+        revenue, income = numeric(row['revenue']), numeric(row['netIncome'])
+        if end > today or revenue <= 0:
+            raise ValueError('Invalid annual history')
+        row['margin'] = income / revenue * 100
+    if any(not 330 <= (dt.date.fromisoformat(b['end']) - dt.date.fromisoformat(a['end'])).days <= 400 for a,b in zip(rows, rows[1:])):
+        raise ValueError('Missing or duplicate fiscal year')
+    return rows
+
+
 def parse_quote(body, profile, now):
     chart = body['chart']
     if chart.get('error') or len(chart.get('result') or []) != 1:
@@ -221,10 +258,12 @@ def main():
         item = dict(old); status = {}
         url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json"
         sec_accounts = None
+        sec_body = None
         try:
             if args.publications_only:
                 raise ValueError('Issuer fallback requested')
-            sec_accounts = parse_accounts(fetch_json(url), profile, now.date())
+            sec_body = fetch_json(url)
+            sec_accounts = parse_accounts(sec_body, profile, now.date())
         except Exception as error:
             status['sec'] = type(error).__name__
         try:
@@ -277,6 +316,38 @@ def main():
         except Exception as error:
             status['accounts'] = type(error).__name__
             failures.append(ident + ':accounts')
+        try:
+            if sec_body is not None:
+                history = parse_history(sec_body, profile, now.date())
+            else:
+                from company_publications import collect_history
+                cached = old.get('history', {})
+                checked = dt.date.fromisoformat(cached['observedAt']) if cached.get('observedAt') else None
+                if (checked and 0 <= (now.date()-checked).days <= 30
+                    and 3 <= len(cached.get('years', [])) <= 5
+                    and cached['years'][-1]['end'] == item['annual']['end']):
+                    history = None
+                else:
+                    history = validate_history(collect_history(profile, now.date()), now.date())
+            if history is not None:
+                annual = item['annual']
+                if history[-1]['end'] != annual['end'] or any(abs(history[-1][k]-annual[k]) > 1 for k in ['revenue','netIncome']):
+                    raise ValueError('History does not match latest official annual accounts')
+                item['history'] = {'years': history, 'observedAt': now.date().isoformat(),
+                                   'definition': 'Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires'}
+            status['history'] = 'updated' if history is not None else 'cached'
+        except Exception as error:
+            status['history'] = type(error).__name__
+            failures.append(ident + ':history')
+        try:
+            from company_forecasts import collect as collect_forecasts
+            estimates = collect_forecasts(profile, now.date())
+            estimates['accountsEndAtCollection'] = (item.get('quarter') or item['annual'])['end']
+            item['estimates'] = estimates
+            status['estimates'] = 'updated'
+        except Exception as error:
+            status['estimates'] = type(error).__name__
+            failures.append(ident + ':estimates')
         quote_url = 'https://query2.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(profile['symbol']) + '?range=2y&interval=1d&events=splits'
         try:
             quote = parse_quote(fetch_json(quote_url), profile, now)
@@ -301,7 +372,7 @@ def main():
                 status['valuation'] = type(error).__name__
                 failures.append(ident + ':valuation')
         else:
-            status['valuation'] = 'published-accounts-only'
+            status['valuation'] = 'public-finviz-estimates' if status.get('estimates') == 'updated' else 'published-accounts-only'
         if item:
             data['companies'][ident] = item
         report['companies'][ident] = status

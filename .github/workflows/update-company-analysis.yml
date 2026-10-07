@@ -13,14 +13,14 @@ on:
     branches: [master]
     paths:
       - '.github/workflows/update-company-analysis.yml'
-      - 'scripts/refresh_company_analysis.py'
+      - 'scripts/*company*'
       - 'src/data/company-profiles.json'
 permissions:
   contents: read
 jobs:
   refresh:
     runs-on: ubuntu-26.04
-    timeout-minutes: 15
+    timeout-minutes: 25
     concurrency:
       group: company-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
@@ -50,6 +50,11 @@ jobs:
         run: python scripts/refresh_company_analysis.py --apply --output "$RUNNER_TEMP/company-observation.json"
       - run: node scripts/test-company-analysis.mjs
       - run: npm run build
+      - name: Verify company UI in Chromium
+        if: github.event_name == 'pull_request'
+        run: |
+          npx playwright install --with-deps chromium
+          node scripts/test-company-analysis-ui.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -76,7 +81,7 @@ jobs:
           ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
         run: |
           if [ -z "$ALPHAVANTAGE_API_KEY" ]; then
-            echo 'Issuer publications and completed-session prices are collected without a key. PER is calculated from four published quarterly EPS. Forward PER and PEG are omitted without documented estimates.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Issuer publications and completed-session prices are collected without a key. PER is calculated from four published quarterly EPS. Finviz next-fiscal-year EPS and five-year annual EPS growth estimates are collected without a key; forward PER and PEG are recalculated at the same completed-session close. Annual GAAP history is collected from SEC with issuer-publication fallback.' >> "$GITHUB_STEP_SUMMARY"
           fi
   deploy:
     needs: refresh

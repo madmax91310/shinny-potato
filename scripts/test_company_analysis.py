@@ -4,8 +4,9 @@ import unittest
 import json
 from pathlib import Path
 from unittest.mock import patch
-from refresh_company_analysis import parse_accounts, parse_quote, parse_overview
+from refresh_company_analysis import parse_accounts, parse_quote, parse_overview, parse_history, validate_history
 import company_publications as publications
+import company_forecasts as forecasts
 
 TODAY = dt.date(2026, 10, 7)
 PROFILE = {'cik':'0000000001', 'symbol':'TEST', 'currency':'USD'}
@@ -107,5 +108,71 @@ class CompanyAnalysisTests(unittest.TestCase):
             b=publications.balance(b'','alphabet','2026-06-30')
             self.assertEqual(b['cash'],55911e6)
             self.assertNotIn('netDebt',b)
+
+
+class HistoryAndForecastTests(unittest.TestCase):
+    def history(self):
+        body = accounts()
+        for tag, value in [('Revenues', 90), ('NetIncomeLoss', -2)]:
+            body['facts']['us-gaap'][tag]['units']['USD'].append(row('2023-01-01', '2023-12-31', value))
+        return body
+
+    def test_history_preserves_losses_and_latest_restatements(self):
+        body = self.history()
+        body['facts']['us-gaap']['NetIncomeLoss']['units']['USD'].append(row('2024-01-01', '2024-12-31', 12, '2026-03-01'))
+        rows = parse_history(body, PROFILE, TODAY)
+        self.assertEqual([r['end'] for r in rows], ['2023-12-31','2024-12-31','2025-12-31'])
+        self.assertLess(rows[0]['margin'], 0)
+        self.assertEqual(rows[1]['netIncome'], 12)
+        self.assertEqual(rows[1]['margin'], 12)
+
+    def test_short_and_gapped_history_rejected(self):
+        with self.assertRaises(ValueError): parse_history(accounts(), PROFILE, TODAY)
+        rows = parse_history(self.history(), PROFILE, TODAY)
+        rows[0]['end'] = '2022-12-31'
+        with self.assertRaises(ValueError): validate_history(rows, TODAY)
+        body = self.history(); body['cik'] = 99
+        with self.assertRaises(ValueError): parse_history(body, PROFILE, TODAY)
+
+    def fixture(self):
+        return (Path(__file__).parent/'source-snapshots/company-finviz-2026-10-07.html').read_text()
+
+    def test_real_forecasts_use_eps_estimate_not_same_label_growth(self):
+        value = forecasts.parse(self.fixture(), {'symbol':'AAPL','currency':'USD'}, TODAY)
+        self.assertEqual(value['forwardEPS'], 9.61)
+        self.assertEqual(value['growthEPS5Y'], 12.73)
+        self.assertEqual(value['reportedPEG'], 2.74)
+        self.assertIn('prochain', value['forwardHorizon'].lower())
+
+    def test_changed_definition_identity_and_inconsistent_ratios_rejected(self):
+        for raw in [self.fixture().replace('data-ticker="AAPL"','data-ticker="MSFT"'),
+                    self.fixture().replace('EPS estimate for next year','EPS growth next year'),
+                    self.fixture().replace('>2.74<','>8.74<'),
+                    self.fixture().replace('>9.61<','>NaN<')]:
+            with self.subTest(raw=raw[:30]), self.assertRaises(ValueError):
+                forecasts.parse(raw, {'symbol':'AAPL','currency':'USD'}, TODAY)
+
+    def test_missing_estimates_are_not_invented(self):
+        raw = self.fixture().replace('>12.73%<','>-<').replace('>2.74<','>-<')
+        value = forecasts.parse(raw, {'symbol':'AAPL','currency':'USD'}, TODAY)
+        self.assertIsNone(value['growthEPS5Y'])
+        self.assertIsNone(value['reportedPEG'])
+
+    def test_older_alphabet_wrapped_eps_and_summary_not_a_statement(self):
+        fixtures = json.loads((Path(__file__).parent/'source-snapshots/company-alphabet-history.json').read_text())
+        for year, revenue in [('2022',282836e6),('2023',307394e6)]:
+            sections = ['Highlights: quarter ended; in millions; statements of income referenced below'] + fixtures[year]
+            with patch.object(publications, 'sections', return_value=sections):
+                result, _ = publications.statement(b'', 'alphabet')
+            self.assertEqual(result['annual']['revenue'], revenue)
+
+    def test_issuer_history_uses_newer_comparatives(self):
+        recent = {'annual': {'end':'2025-12-31','previousEnd':'2024-12-31', 'revenue':120, 'previousRevenue':110,'netIncome':8,'previousNetIncome':12}}
+        older = {'annual': {'end':'2024-12-31','previousEnd':'2023-12-31', 'revenue':100, 'previousRevenue':90,'netIncome':10,'previousNetIncome':-2}}
+        with patch.object(publications, 'candidates', return_value=[['https://issuer/recent'], ['https://issuer/older']]), patch.object(publications, 'get', return_value=b''), patch.object(publications, 'statement', side_effect=[(recent,''),(older,'')]):
+            rows = publications.collect_history({'id':'amazon'}, TODAY)
+        self.assertEqual(rows[1]['netIncome'],12)
+        self.assertEqual(rows[1]['sourceUrl'],'https://issuer/recent')
+        self.assertEqual(rows[0]['netIncome'],-2)
 
 if __name__ == '__main__': unittest.main()

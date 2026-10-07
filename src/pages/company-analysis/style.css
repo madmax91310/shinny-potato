@@ -3,3 +3,11 @@
 .company-evidence h2 { font-size: 1.1rem; }
 .company-evidence a { text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 640px) { .company-tweet { padding: 18px; } }
+
+.company-history { margin-bottom: 24px; }
+.company-history h2 { font-size: 1.15rem; }
+.company-history p { font-size: .9rem; line-height: 1.6; }
+.company-history-scroll { overflow-x: auto; }
+.company-history table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.company-history th, .company-history td { padding: 12px; text-align: right; border-bottom: 1px solid var(--border, #dfe4e8); white-space: nowrap; }
+.company-history th:first-child { text-align: left; }

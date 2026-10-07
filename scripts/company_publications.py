@@ -80,18 +80,19 @@ def statement(raw, ident):
         if ident == 'microsoft':
             valid = 'total revenue' in normalized and 'weighted average shares outstanding' in normalized
         else:
-            valid = ('statements of income' in normalized or 'statements of operations' in normalized)
+            valid = bool(re.search(r'^\s*(?:AMAZON\.COM,\s*INC\.\s+)?(?:CONDENSED )?CONSOLIDATED STATEMENTS OF (?:INCOME|OPERATIONS)\b', text, re.M | re.I))
         if valid:
             choices.append(text)
     if len(choices) != 1:
         raise ValueError('Missing or ambiguous consolidated income statement')
     text = choices[0]
+    text = re.sub(r'Diluted earnings per share of Class A, Class B, and\s+(?:Class\s+)?C stock', 'Diluted earnings per share', text, flags=re.I)
     revenue = row(text,[r'Total net sales(?:\s*\(1\))?',r'Total revenue',r'Revenues',r'Revenue',r'Total net sales'])
     if not revenue or len(revenue) not in (2,4):
         raise ValueError('Missing revenue/column structure')
     count = len(revenue)
-    net = row(text,[r'Net income'],count)
-    operating = row(text,[r'Operating income',r'Income from operations'],count)
+    net = row(text,[r'Net income(?: \(loss\))?'],count)
+    operating = row(text,[r'Operating income(?: \(loss\))?',r'Income \(loss\) from operations',r'Income from operations'],count)
     eps = row(text,[r'Diluted net income per share',r'Diluted earnings per share',r'Diluted'],count)
     if not net or not operating or not eps or min(revenue) <= 0:
         raise ValueError('Incomplete consolidated statement')
@@ -183,12 +184,14 @@ def shares(raw, ident, end):
     return {'asOf':end, 'outstanding':val} if val and val > 0 else None
 
 
-def candidates(ident, today):
+def candidates(ident, today, annual_only=False):
     # Published report locations, bounded by completed fiscal-quarter end months.
     periods = []
     end_months = (1,4,7,10) if ident=='nvidia' else (3,6,9,12)
-    for year in (today.year,today.year-1):
+    for year in range(today.year, today.year - (7 if annual_only else 2), -1):
         for month in end_months:
+            if annual_only and month != {'apple':9,'microsoft':6,'alphabet':12,'amazon':12,'nvidia':1}[ident]:
+                continue
             date = dt.date(year,month,calendar.monthrange(year,month)[1])
             if date <= today:
                 periods.append((date,year,month))
@@ -263,3 +266,36 @@ def collect(profile, today, old=None):
                             'sourceUrls':[p['sourceUrl'] for p in quarters[:4]],
                             'definition':'Somme de quatre trimestres GAAP publiés, sur la même base par action'}
     return result
+
+
+def collect_history(profile, today):
+    # Newer reports' comparative figures take precedence over older originals.
+    years = {}
+    for urls in candidates(profile['id'], today, annual_only=True):
+        for url in urls:
+            try:
+                raw = get(url)
+                if profile['id'] == 'apple':
+                    soup = BeautifulSoup(raw, 'html.parser')
+                    links = [a['href'] for a in soup.find_all('a', href=True) if re.search(r'Consolidated_Financial_Statements\.pdf$', a['href'], re.I)]
+                    if len(links) != 1:
+                        raise ValueError('Missing official statements PDF')
+                    url = urllib.parse.urljoin(url, links[0]); raw = get(url)
+                parsed, _ = statement(raw, profile['id'])
+                annual = parsed['annual']
+                if not annual or dt.date.fromisoformat(annual['end']) > today:
+                    raise ValueError('Not a completed annual report')
+                for comparative in (False, True):
+                    prefix = 'previous' if comparative else ''
+                    def value(key):
+                        return annual[prefix + key[0].upper() + key[1:] if prefix else key]
+                    end = value('end')
+                    years.setdefault(end, {'start': None, 'end': end,
+                                          'revenue': value('revenue'), 'netIncome': value('netIncome'),
+                                          'sourceUrl': url})
+                break
+            except (ValueError, urllib.error.URLError, TimeoutError):
+                continue
+        if len(years) >= 5:
+            break
+    return sorted(years.values(), key=lambda r: r['end'])[-5:]
