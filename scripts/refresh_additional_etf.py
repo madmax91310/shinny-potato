@@ -37,7 +37,9 @@ def collect_one(share,now):
         return document(share,now)
     if share['parser']=='ishares':
         from collect_etf_pilot import collect
-        return collect({'instruments':[share]}, {share['isin']:{}}, now)['shares'][0]
+        report=collect({'instruments':[share]}, {share['isin']:{}}, now)
+        if report.get('failures'):raise ValueError(report['failures'][0]['reason'])
+        return report['shares'][0]
     if share['parser']=='ssga':
         from collect_ssga_etf import collect
         return collect({'instruments':[share]},now)['shares'][0]
@@ -57,7 +59,8 @@ def refresh(config,current,baseline,now=None,collect=collect_one):
             merged=merge_collection({'checkedAt':now.isoformat(),'shares':[result]},current,baseline)
             return {'isin':share['isin'],'provider':share['provider'],'status':'validated','record':merged[share['isin']],
                     'unavailable':result.get('unavailable',[]),'sourceUrl':result.get('sourceUrl'),
-                    'collectionErrors':result.get('collectionErrors',[])}
+                    'collectionErrors':result.get('collectionErrors',[]),
+                    'sourceAttempts':result.get('sourceAttempts',[])}
         except Exception as error:
             return {'isin':share['isin'],'provider':share['provider'],'status':'failed','reason':str(error),
                     'sourceUrl':share.get('sourceUrl',share.get('pageUrl'))}
@@ -76,6 +79,8 @@ def main():
     if args.apply and merged!=json.loads(path.read_text()):write_json_atomic(path,merged)
     print(f"ETF extension: {sum(o['status']=='validated'for o in report['shares'])}/{len(report['shares'])} shares validated; all exceptions recorded.")
     for observation in report['shares']:
+        if observation.get('sourceAttempts'):
+            print(f"Source recovered: {observation['isin']} — {observation['sourceUrl']}")
         if observation['status'] == 'failed':
             print(f"Source failed: {observation['isin']} — {observation['reason']}")
         for error in observation.get('collectionErrors', []):
@@ -84,7 +89,11 @@ def main():
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a')as h:
             h.write('\n## Extensions ETF et expositions synthétiques\n\n| Part | Source | État | Limites |\n|---|---|---|---|\n')
             h.write('Hors automatisation : '+', '.join(report['notQualified'])+'\n\n')
-            for o in report['shares']:h.write(f"| {o['isin']} | {o['provider']} | {o['status']} | {o.get('reason',' ; '.join(o.get('unavailable',[]) + [e['field']+': '+e['reason'] for e in o.get('collectionErrors',[])]))} |\n")
+            for o in report['shares']:
+                h.write(f"| {o['isin']} | {o['provider']} | {o['status']} | {o.get('reason',' ; '.join(o.get('unavailable',[]) + [e['field']+': '+e['reason'] for e in o.get('collectionErrors',[])]))} |\n")
+            for o in report['shares']:
+                if o.get('sourceAttempts'):
+                    h.write(f"\nSource de secours utilisée pour {o['isin']} : {o['sourceUrl']}. Tentatives : " + ' ; '.join(a['url'] + ': ' + a.get('reason', a.get('status', '')) for a in o['sourceAttempts']) + '\n\n')
     # Every enabled connector belongs to active coverage. A transport/parser
     # failure must reach the workflow signal, including recently added sources.
     # Valid records were applied above; missing published fields are not failures.

@@ -6,7 +6,7 @@ import urllib.request
 import http.cookiejar
 from urllib.parse import urlparse
 from html.parser import HTMLParser
-from data_automation import number, reject
+from data_automation import number, reject, ResponseFormatError
 from issuer_documents import download, pdf_text, document_date, proof, bounded_return, validated_rows
 
 
@@ -123,6 +123,7 @@ def collect_legacy(share,now,fetch=None):
         def fetch(url, content_types, max_bytes):
             return get_text(url, content_types, max_bytes, opener=open_page)
     urls = [share['sourceUrl'], *share.get('fallbackUrls', [])]
+    attempts = []
     # Only transport failures qualify for an alternate official page. A response
     # with the wrong ISIN, currency or stale date must still fail validation.
     for position, url in enumerate(urls):
@@ -132,13 +133,15 @@ def collect_legacy(share,now,fetch=None):
             reject('Unexpected legacy iShares official source')
         try:
             text = fetch(url, ('text/html',), 6_000_000)
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
+            attempts.append({'url': url, 'reason': str(error)})
             if position == len(urls) - 1:
                 if not share.get('factsheetUrl'):
                     raise
                 break
             continue
         result = parse_legacy(text, share, now)
+        if attempts: result['sourceAttempts'] = [*attempts, {'url': url, 'status': 'validated'}]
         result['sourceUrl'] = url
         result['aum'].update(sourceUrl=url, sha256=proof(text.encode()))
         result['characteristics'].update(asOf=now.date().isoformat(), sourceUrl=url, sha256=proof(text.encode()))
@@ -159,7 +162,9 @@ def collect_legacy(share,now,fetch=None):
         except Exception as error:
             result['collectionErrors'] = [{'field': 'performance', 'reason': str(error)}]
         return result
-    return collect_legacy_document(share, now)
+    result = collect_legacy_document(share, now)
+    result['sourceAttempts'] = [*attempts, {'url': share['factsheetUrl'], 'status': 'validated'}]
+    return result
 
 
 def collect_legacy_document(share, now):

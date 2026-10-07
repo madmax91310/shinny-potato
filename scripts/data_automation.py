@@ -11,6 +11,24 @@ import urllib.request
 UTC = dt.timezone.utc
 
 
+class ResponseFormatError(ValueError):
+    """Transport returned a landing/consent page instead of the requested format."""
+
+
+def retry_delay(error, attempt, now=None):
+    """Respect issuer throttling without letting a runner wait indefinitely."""
+    from email.utils import parsedate_to_datetime
+    value = (getattr(error, 'headers', None) or {}).get('Retry-After')
+    try:
+        seconds = float(value)
+    except (TypeError, ValueError):
+        try:
+            seconds = (parsedate_to_datetime(value) - (now or dt.datetime.now(UTC))).total_seconds()
+        except (TypeError, ValueError, OverflowError):
+            seconds = 0
+    return min(30, max(2 ** attempt, seconds if math.isfinite(seconds) else 0))
+
+
 def get_text(url, content_types, max_bytes=2_000_000, opener=urllib.request.urlopen, sleep=time.sleep):
     """Bounded, typed downloads for SDMX XML and issuer HTML with embedded JSON."""
     request = urllib.request.Request(url, headers={
@@ -20,7 +38,7 @@ def get_text(url, content_types, max_bytes=2_000_000, opener=urllib.request.urlo
         try:
             with opener(request, timeout=20) as response:
                 if response.headers.get_content_type() not in content_types:
-                    reject('Unexpected response content type')
+                    raise ResponseFormatError('Unexpected response content type')
                 body = response.read(max_bytes + 1)
                 if len(body) > max_bytes:
                     reject('Response exceeds the size limit')
@@ -28,10 +46,12 @@ def get_text(url, content_types, max_bytes=2_000_000, opener=urllib.request.urlo
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                 raise
+            delay = retry_delay(error, attempt)
         except (urllib.error.URLError, TimeoutError):
             if attempt == 2:
                 raise
-        sleep(2 ** attempt)
+            delay = 2 ** attempt
+        sleep(delay)
 
 
 def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep):
@@ -52,10 +72,12 @@ def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep):
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                 raise
+            delay = retry_delay(error, attempt)
         except (urllib.error.URLError, TimeoutError):
             if attempt == 2:
                 raise
-        sleep(2 ** attempt)
+            delay = 2 ** attempt
+        sleep(delay)
     raise RuntimeError('Retries exhausted')
 
 

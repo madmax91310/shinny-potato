@@ -5,8 +5,8 @@ import urllib.request
 import http.cookiejar
 import datetime as dt
 from html.parser import HTMLParser
-from data_automation import reject, number, get_text
-from issuer_documents import download, document_date, proof, validated_rows
+from data_automation import reject, number, get_text, ResponseFormatError
+from issuer_documents import download, document_date, proof, validated_rows, public_page
 
 
 class Page(HTMLParser):
@@ -104,7 +104,8 @@ def wisdomtree(text, share, now):
 
 def globalx(text, share, now):
     page=Page(text); tokens=page.tokens
-    start=tokens.index('Key Information'); end=tokens.index('Distributions',start)
+    starts=[i for i,t in enumerate(tokens[:-1]) if t=='Key Information' and tokens[i+1].startswith('As of ')]
+    start=only(starts,'Global X dated key-information block'); end=tokens.index('Distributions',start)
     block='\n'.join(tokens[start:end])
     if only(re.findall(r'Primary ISIN\n([A-Z0-9]{12})',block),'Global X ISIN') != share['isin']:
         reject('Wrong Global X exact share')
@@ -115,7 +116,7 @@ def globalx(text, share, now):
     if share['currency']!='USD' or currency!='USD':reject('Wrong Global X USD share convention')
     digest=proof(text.encode());result=base(share,stamp,digest);result['characteristics']['terPct']=ter
     result['aum']={'amount':amount,'currency':currency,'scope':'fund','asOf':stamp,'sourceUrl':share['sourceUrl'],'sha256':digest}
-    result['unavailable'] += ['performance: no full 2020–2025 history','exposures: reference index and substitution basket require separate validation']
+    result['unavailable'] += ['performance: no qualified calendar for USD Distributing IE00BM8R0J59; accumulating-share and rolling returns excluded','exposures: reference index and substitution basket require separate validation']
     return result
 
 
@@ -145,9 +146,30 @@ def collect_one(share, now):
             return opener.open(request, **kwargs)
         try:
             text=get_text(share['sourceUrl'],('text/html',),12_000_000,opener=open_page)
-        except (urllib.error.URLError,TimeoutError):
+        except (urllib.error.URLError,TimeoutError,ResponseFormatError) as error:
             body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
-            return wisdomtree_factsheet(body,share,now)
+            result=wisdomtree_factsheet(body,share,now)
+            result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(error)},
+                                      {'url':share['factsheetUrl'],'status':'validated'}]
+            return result
+    elif share['parser']=='globalx-html':
+        from urllib.parse import urlparse
+        urls=[share['sourceUrl'],*share.get('fallbackUrls',[])]
+        attempts=[]
+        for url in urls:
+            parsed=urlparse(url)
+            if parsed.scheme!='https' or parsed.netloc!='globalxetfs.eu' or parsed.path.rstrip('/')!='/funds/qyld':
+                reject('Unexpected Global X UCITS official source')
+            try:
+                text=public_page(url)
+            except (urllib.error.URLError,TimeoutError,ResponseFormatError) as error:
+                attempts.append({'url':url,'reason':str(error)})
+                if url==urls[-1]:raise
+                continue
+            # A wrong identity, stale date or changed layout never selects another route.
+            result=globalx(text,{**share,'sourceUrl':url},now)
+            if attempts:result['sourceAttempts']=[*attempts,{'url':url,'status':'validated'}]
+            return result
     else:
         text=download(share['sourceUrl'], max_bytes=12_000_000).decode('utf-8')
     result = {'wisdomtree-html':wisdomtree,'globalx-html':globalx,'bitwise-html':bitwise}[share['parser']](text,share,now)
