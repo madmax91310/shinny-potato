@@ -22,6 +22,10 @@ try {
     await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
     const text=await page.getByTestId('company-tweet').innerText()
     assert(text.includes(company.name));assert(text.includes(company.activity))
+    assert(text.includes('Ce que l’entreprise gagne'))
+    assert(!text.includes('Ce que je regarderais'))
+    assert(!text.includes(company.watch))
+    assert(text.includes('Ce ratio utilise les bénéfices déjà publiés.'))
     assert(!/NaN|undefined|Infinity/.test(text))
   }
   await chooser.getByRole('button',{name:'Apple · AAPL'}).click()
