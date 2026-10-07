@@ -86,11 +86,11 @@ jobs:
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
       queue: max
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-24.04, ubuntu-26.04]
-    runs-on: ${{ matrix.os }}
+    # Temporary pin: full Ubuntu 26.04 qualification is blocked by CoinShares
+    # performance payloads rejected for GB00BLD4ZL17 and GB00BLD4ZM24.
+    # Reproduced on 24.04 too; no runner-image incompatibility was identified.
+    # See PR #346 for both full-run logs. Move to 26.04 after a fully green run.
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
       contents: write
@@ -158,7 +158,7 @@ jobs:
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
-          name: active-etf-observation-${{ matrix.os }}
+          name: active-etf-observation
           path: |
             ${{ runner.temp }}/observation.json
             ${{ runner.temp }}/amundi-observation.json
@@ -193,7 +193,7 @@ jobs:
   report-failures:
     needs: [refresh, deploy]
     if: always() && needs.refresh.outputs.collection_failed == 'true'
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     steps:
       - run: |
           echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> "$GITHUB_STEP_SUMMARY"
