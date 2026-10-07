@@ -38,12 +38,16 @@ def collect_one(config, now, fetch=download):
     result = {'id': config['id'], 'name': config['name'], 'errors': [], 'unavailable': []}
     if config.get('collectComposition', True):
         try:
-            text, digest = load(config['sourceUrl'])
-            parser = msci_composition if config['parser'] == 'msci' else ftse_composition
-            facts = parser(text, config, now)
-            facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(),
-                               'label': 'Composition officielle automatisée · ' + config['name'], 'sha256': digest}
-            facts['provenance'] = config.get('identityNote', 'Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF.')
+            if config.get('compositionParser') == 'amundi-index-document':
+                from collect_index_extensions import collect_amundi_composition
+                facts = collect_amundi_composition(config, now, fetch)
+            else:
+                text, digest = load(config['sourceUrl'])
+                parser = msci_composition if config['parser'] == 'msci' else ftse_composition
+                facts = parser(text, config, now)
+                facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(),
+                                   'label': 'Composition officielle automatisée · ' + config['name'], 'sha256': digest}
+                facts['provenance'] = config.get('identityNote', 'Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF.')
             if config.get('identitySourceUrl'):
                 facts['source'].update(sourceUrls=[config['sourceUrl'],config['identitySourceUrl']], identityCheckedAt=config['identityCheckedAt'])
             result['facts'] = facts

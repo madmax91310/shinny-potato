@@ -10464,6 +10464,220 @@
           "date": "2026-08-31"
         }
       }
+    },
+    "facts": {
+      "index": "Russell 2000",
+      "asOf": "2026-08-31",
+      "constituents": 1953,
+      "countries": [
+        [
+          "États-Unis",
+          100
+        ]
+      ],
+      "sectors": [
+        [
+          "Santé",
+          20.67
+        ],
+        [
+          "Finance",
+          19.38
+        ],
+        [
+          "Industrie",
+          13.88
+        ],
+        [
+          "Technologies de l'info.",
+          12.82
+        ],
+        [
+          "Conso Cyclique",
+          9.23
+        ],
+        [
+          "Énergie",
+          6.66
+        ],
+        [
+          "Immobilier",
+          5.75
+        ],
+        [
+          "Matériaux",
+          4.35
+        ],
+        [
+          "Services publics",
+          2.74
+        ],
+        [
+          "Services de communication",
+          2.39
+        ],
+        [
+          "Conso non Cyclique",
+          1.98
+        ]
+      ],
+      "holdings": [
+        [
+          "JFROG LTD",
+          0.34
+        ],
+        [
+          "MOOG INC-CL A",
+          0.34
+        ],
+        [
+          "UMB FINANCIAL CORP",
+          0.34
+        ],
+        [
+          "GLAUKOS CORP",
+          0.33
+        ],
+        [
+          "BRINKER INTERNATIONAL INC",
+          0.32
+        ],
+        [
+          "BRIGHTSPRING HEALTH SERVICES",
+          0.31
+        ],
+        [
+          "CYTOKINETICS INC",
+          0.3
+        ],
+        [
+          "TWIST BIOSCIENCE CORP",
+          0.29
+        ],
+        [
+          "KRYSTAL BIOTECH INC",
+          0.29
+        ],
+        [
+          "OLD NATIONAL BANCORP",
+          0.29
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+        "checkedAt": "2026-10-07",
+        "sha256": "c68c356dfc4bd1e3cc7229aa3710df56f0044a8735771a96acbd3403a56136cc",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "factsHistory": {
+      "2026-08-31": {
+        "index": "Russell 2000",
+        "asOf": "2026-08-31",
+        "constituents": 1953,
+        "countries": [
+          [
+            "États-Unis",
+            100
+          ]
+        ],
+        "sectors": [
+          [
+            "Santé",
+            20.67
+          ],
+          [
+            "Finance",
+            19.38
+          ],
+          [
+            "Industrie",
+            13.88
+          ],
+          [
+            "Technologies de l'info.",
+            12.82
+          ],
+          [
+            "Conso Cyclique",
+            9.23
+          ],
+          [
+            "Énergie",
+            6.66
+          ],
+          [
+            "Immobilier",
+            5.75
+          ],
+          [
+            "Matériaux",
+            4.35
+          ],
+          [
+            "Services publics",
+            2.74
+          ],
+          [
+            "Services de communication",
+            2.39
+          ],
+          [
+            "Conso non Cyclique",
+            1.98
+          ]
+        ],
+        "holdings": [
+          [
+            "JFROG LTD",
+            0.34
+          ],
+          [
+            "MOOG INC-CL A",
+            0.34
+          ],
+          [
+            "UMB FINANCIAL CORP",
+            0.34
+          ],
+          [
+            "GLAUKOS CORP",
+            0.33
+          ],
+          [
+            "BRINKER INTERNATIONAL INC",
+            0.32
+          ],
+          [
+            "BRIGHTSPRING HEALTH SERVICES",
+            0.31
+          ],
+          [
+            "CYTOKINETICS INC",
+            0.3
+          ],
+          [
+            "TWIST BIOSCIENCE CORP",
+            0.29
+          ],
+          [
+            "KRYSTAL BIOTECH INC",
+            0.29
+          ],
+          [
+            "OLD NATIONAL BANCORP",
+            0.29
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+          "checkedAt": "2026-10-07",
+          "sha256": "c68c356dfc4bd1e3cc7229aa3710df56f0044a8735771a96acbd3403a56136cc",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
     }
   },
   "russell-1000": {
