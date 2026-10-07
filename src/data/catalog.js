@@ -31,6 +31,7 @@ import { ASSETS as HISTORY, SPARSE_MONTHLY_DATA_IDS } from './market-history.js'
 import { FAMILIES } from './index-comparisons.js';
 import { SHEETS } from './index-factsheets.js';
 import { HOUSEHOLD_STATISTICS } from './household-statistics.js';
+import { COMPANIES } from './companies.js';
 import { normalizeEvidence } from './evidence.js';
 
 // Consommateurs dérivés des catalogues réellement utilisés, jamais une copie de leurs valeurs.
@@ -101,7 +102,19 @@ function index(id, history) {
     aliases: [id, ...FAMILIES.flatMap((f) => f.indices.filter((x) => values.includes(x.indexFacts)).map((x) => x.name))], consumers,
     fields: [...Object.entries(history).sort(([a], [b]) => /^\d{4}/.test(a) !== /^\d{4}/.test(b) ? (/^\d{4}/.test(a) ? -1 : 1) : b.localeCompare(a)).map(([key, facts]) => field(`Photographie · ${facts.snapshot}`, 'index-facts', facts, { ...facts.metadata, note: `${facts.provenance} Clé : ${key}` })), ...Object.entries(INDEX_RETURNS[id] ?? {}).map(([date, series]) => field(`Rendements d’indice · ${date}`, 'index-returns', series, series.metadata))] };
 }
+function companyRecord(company) {
+  const scope = `${company.name} · comptes consolidés · USD`;
+  const fields = [field('Activité', 'companies', company.activity, { url: company.sourceUrl, checkedAt: company.activityReviewedAt, scope, dateStatus: 'not-applicable', method: 'Présentation éditoriale de l’activité ; revue distincte des résultats' })];
+  for (const [key, label] of [['annual', 'Comptes annuels'], ['quarter', 'Comptes trimestriels']]) {
+    const period = company[key];
+    if (period) fields.push(field(label, 'companies', period, { url: company.accountsSourceUrl, asOf: period.end, checkedAt: company.accountsObservedAt, currency: company.currency, scope, periodStart: period.start, periodEnd: period.end, method: 'SEC companyfacts ; périodes exactes et comparatif annuel retraité ; FCF = flux d’exploitation moins investissements en immobilisations' }));
+  }
+  if (company.quote) fields.push(field('Cours de clôture', 'companies', company.quote.price, { url: company.quote.sourceUrl, asOf: company.quote.asOf, checkedAt: company.quote.observedAt, currency: company.currency, scope: `${company.symbol} · action cotée`, method: 'Clôture brute de la dernière séance précédant la date locale de collecte ; aucune séance en cours' }));
+  if (company.valuation) fields.push(field('Valorisation', 'companies', company.valuation, { url: company.valuation.sourceUrl, checkedAt: company.valuation.observedAt, currency: company.currency, scope, method: 'PER TTM et PER prévisionnel fournis par Alpha Vantage ; horizon prévisionnel non précisé', note: 'La date du relevé ne certifie pas une date de cours ; ratios omis de la publication après sept jours ou si les comptes sous-jacents sont dépassés.' }));
+  return { id: `company:${company.id}`, type: 'company', name: company.name, aliases: [company.symbol, company.cik, company.id], consumers: [{ tool: 'Analyse d’entreprise', path: '/analyse-entreprise' }], fields };
+}
 export const DATA_CATALOG = Object.freeze([
+  ...COMPANIES.map(companyRecord),
   ...HOUSEHOLD_STATISTICS.map((value) => ({ id: `household:${value.id}`, type: 'household', name: value.title,
     aliases: [value.id, value.category, value.headline, 'Insee', 'ménages'], consumers: [{ tool: 'La France en 100 ménages', path: `/france-100-menages` }],
     fields: [field('Statistique de ménages', 'household-statistics', value, value.metadata)] })),

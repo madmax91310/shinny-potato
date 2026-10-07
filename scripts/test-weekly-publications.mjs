@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { mkdir } from 'node:fs/promises'
 import { chromium } from 'playwright'
+import { TOOLS } from '../src/tools.js'
 
 const base = 'http://127.0.0.1:4324/shinny-potato'
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4324', '--strictPort'], { stdio: 'ignore' })
@@ -26,7 +27,7 @@ try {
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
-  assert.equal(await page.locator('.workspace-tool-card').count(), 22)
+  assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.length)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
   for (const [path, day] of [
     ['/comparatif-etf', 'Lundi midi · alternance'], ['/fiche-lexique', 'Lundi midi · alternance'],
@@ -39,6 +40,7 @@ try {
     ['/il-y-a-x-ans', 'Publication ponctuelle'], ['/performance-depuis', 'Publication ponctuelle'],
     ['/pouvoir-achat', 'Publication ponctuelle'], ['/dilemme', 'Publication ponctuelle'],
     ['/vrai-faux', 'Publication ponctuelle'], ['/comparatif-courtiers', 'Publication ponctuelle'],
+    ['/analyse-entreprise', 'Publication ponctuelle'],
     ['/cas-concrets', 'Publication ponctuelle'], ['/impact-frais', 'Publication ponctuelle'],
   ]) assert.equal(await page.locator(`.workspace-tool-card[href$="${path}"] .workspace-publication-day`).innerText(), day)
   for (const width of [320, 390]) {

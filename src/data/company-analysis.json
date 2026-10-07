@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "companies": {
+    "apple": {
+      "annual": {
+        "start": "2024-09-29",
+        "end": "2025-09-27",
+        "filedAt": "2025-10-31",
+        "revenue": 416161000000.0,
+        "netIncome": 112010000000.0,
+        "margin": 26.91506412181824,
+        "previousStart": "2023-10-01",
+        "previousEnd": "2024-09-28",
+        "previousRevenue": 391035000000.0,
+        "previousNetIncome": 93736000000.0,
+        "revenueGrowth": 6.425511782832749,
+        "incomeGrowth": 19.49517794657336,
+        "tags": {
+          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "netIncome": "NetIncomeLoss",
+          "freeCashFlow": [
+            "NetCashProvidedByUsedInOperatingActivities",
+            "PaymentsToAcquirePropertyPlantAndEquipment"
+          ]
+        },
+        "freeCashFlow": 98767000000.0
+      },
+      "quarter": {
+        "start": "2026-03-29",
+        "end": "2026-06-27",
+        "filedAt": "2026-07-31",
+        "revenue": 109417000000.0,
+        "netIncome": 29789000000.0,
+        "margin": 27.22520266503377,
+        "previousStart": "2025-03-30",
+        "previousEnd": "2025-06-28",
+        "previousRevenue": 94036000000.0,
+        "previousNetIncome": 23434000000.0,
+        "revenueGrowth": 16.356501765281383,
+        "incomeGrowth": 27.118716394981647,
+        "tags": {
+          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "netIncome": "NetIncomeLoss"
+        }
+      },
+      "accountsObservedAt": "2026-10-07",
+      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+      "quote": {
+        "price": 333.6300048828125,
+        "asOf": "2026-10-06",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AAPL?range=1mo&interval=1d",
+        "observedAt": "2026-10-07"
+      }
+    },
+    "microsoft": {
+      "annual": {
+        "start": "2025-07-01",
+        "end": "2026-06-30",
+        "filedAt": "2026-07-29",
+        "revenue": 331839000000.0,
+        "netIncome": 133749000000.0,
+        "margin": 40.30538905915218,
+        "previousStart": "2024-07-01",
+        "previousEnd": "2025-06-30",
+        "previousRevenue": 281724000000.0,
+        "previousNetIncome": 101832000000.0,
+        "revenueGrowth": 17.788686799846666,
+        "incomeGrowth": 31.34279990572708,
+        "tags": {
+          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "netIncome": "NetIncomeLoss",
+          "freeCashFlow": [
+            "NetCashProvidedByUsedInOperatingActivities",
+            "PaymentsToAcquirePropertyPlantAndEquipment"
+          ]
+        },
+        "freeCashFlow": 66987000000.0
+      },
+      "quarter": null,
+      "accountsObservedAt": "2026-10-07",
+      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
+      "quote": {
+        "price": 529.2999877929688,
+        "asOf": "2026-10-06",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MSFT?range=1mo&interval=1d",
+        "observedAt": "2026-10-07"
+      }
+    },
+    "nvidia": {
+      "annual": {
+        "start": "2025-01-27",
+        "end": "2026-01-25",
+        "filedAt": "2026-02-25",
+        "revenue": 215938000000.0,
+        "netIncome": 120067000000.0,
+        "margin": 55.60253406070261,
+        "previousStart": "2024-01-29",
+        "previousEnd": "2025-01-26",
+        "previousRevenue": 130497000000.0,
+        "previousNetIncome": 72880000000.0,
+        "revenueGrowth": 65.47353579009479,
+        "incomeGrowth": 64.74615806805708,
+        "tags": {
+          "revenue": "Revenues",
+          "netIncome": "NetIncomeLoss"
+        }
+      },
+      "quarter": {
+        "start": "2026-04-27",
+        "end": "2026-07-26",
+        "filedAt": "2026-08-26",
+        "revenue": 96221000000.0,
+        "netIncome": 59688000000.0,
+        "margin": 62.03219671381507,
+        "previousStart": "2025-04-28",
+        "previousEnd": "2025-07-27",
+        "previousRevenue": 46743000000.0,
+        "previousNetIncome": 26422000000.0,
+        "revenueGrowth": 105.85114348672526,
+        "incomeGrowth": 125.90265687684506,
+        "tags": {
+          "revenue": "Revenues",
+          "netIncome": "NetIncomeLoss"
+        }
+      },
+      "accountsObservedAt": "2026-10-07",
+      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json",
+      "quote": {
+        "price": 239.24000549316406,
+        "asOf": "2026-10-06",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NVDA?range=1mo&interval=1d",
+        "observedAt": "2026-10-07"
+      }
+    },
+    "alphabet": {
+      "annual": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "filedAt": "2026-02-05",
+        "revenue": 402836000000.0,
+        "netIncome": 132170000000.0,
+        "margin": 32.80987796522654,
+        "previousStart": "2024-01-01",
+        "previousEnd": "2024-12-31",
+        "previousRevenue": 350018000000.0,
+        "previousNetIncome": 100118000000.0,
+        "revenueGrowth": 15.090081081544371,
+        "incomeGrowth": 32.01422321660441,
+        "tags": {
+          "revenue": "Revenues",
+          "netIncome": "NetIncomeLoss",
+          "freeCashFlow": [
+            "NetCashProvidedByUsedInOperatingActivities",
+            "PaymentsToAcquirePropertyPlantAndEquipment"
+          ]
+        },
+        "freeCashFlow": 73266000000.0
+      },
+      "quarter": {
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "filedAt": "2026-07-23",
+        "revenue": 119796000000.0,
+        "netIncome": 112193000000.0,
+        "margin": 93.65337740826071,
+        "previousStart": "2025-04-01",
+        "previousEnd": "2025-06-30",
+        "previousRevenue": 96428000000.0,
+        "previousNetIncome": 28196000000.0,
+        "revenueGrowth": 24.23362508814868,
+        "incomeGrowth": 297.90395800822813,
+        "tags": {
+          "revenue": "Revenues",
+          "netIncome": "NetIncomeLoss"
+        }
+      },
+      "accountsObservedAt": "2026-10-07",
+      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+      "quote": {
+        "price": 347.67999267578125,
+        "asOf": "2026-10-06",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/GOOGL?range=1mo&interval=1d",
+        "observedAt": "2026-10-07"
+      }
+    },
+    "amazon": {
+      "annual": {
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "filedAt": "2026-02-06",
+        "revenue": 716924000000.0,
+        "netIncome": 77670000000.0,
+        "margin": 10.83378433418326,
+        "previousStart": "2024-01-01",
+        "previousEnd": "2024-12-31",
+        "previousRevenue": 637959000000.0,
+        "previousNetIncome": 59248000000.0,
+        "revenueGrowth": 12.377754683294695,
+        "incomeGrowth": 31.093032676208487,
+        "tags": {
+          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "netIncome": "NetIncomeLoss"
+        }
+      },
+      "quarter": {
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "filedAt": "2026-07-31",
+        "revenue": 200606000000.0,
+        "netIncome": 62647000000.0,
+        "margin": 31.2288765041923,
+        "previousStart": "2025-04-01",
+        "previousEnd": "2025-06-30",
+        "previousRevenue": 167702000000.0,
+        "previousNetIncome": 18164000000.0,
+        "revenueGrowth": 19.620517346245126,
+        "incomeGrowth": 244.89649856859722,
+        "tags": {
+          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "netIncome": "NetIncomeLoss"
+        }
+      },
+      "accountsObservedAt": "2026-10-07",
+      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+      "quote": {
+        "price": 256.2900085449219,
+        "asOf": "2026-10-06",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AMZN?range=1mo&interval=1d",
+        "observedAt": "2026-10-07"
+      }
+    }
+  }
+}
