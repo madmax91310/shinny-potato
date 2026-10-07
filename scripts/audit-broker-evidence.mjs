@@ -97,38 +97,47 @@ for (const broker of BROKERS) {
   }
   if (evidence.pme.status === 'corroboré') assert.equal(broker.pea.pme, false, `${broker.id}: PEA-PME selon source externe`)
 }
+// Toutes les combinaisons et les deux sens : les rubriques communes restent compactes.
+const headings = ['💰 Frais de courtage PEA', '💱 Si une conversion est nécessaire', '📅 Achats automatiques sur PEA', '🗂️ Frais de garde', '🌱 Enveloppes proposées', '🧾 IFU', '💵 Liquidités rémunérées', '🔄 Transfert du PEA', '⚠️ Le point faible à retenir'];
+const section = (post, heading) => post.split(heading + '\n\n')[1]?.split(/\n\n(?=🌱|💱|🎁|📅|🗂️|🧾|💵|🔄|⚠️|💬|🤝)/u)[0];
 for (let i = 0; i < BROKERS.length; i++) {
   for (let j = i + 1; j < BROKERS.length; j++) {
-    const ids = [BROKERS[i].id, BROKERS[j].id]
-    const post = buildTweet(ids)
-    assert(!/undefined|\bNaN\b|PEA-PME \?|PEA Jeune \?|à vérifier|non vérifié|non établie|aucune offre spécifique|preuve corroborée|détails dans le registre|conversion|💱/i.test(post), `${ids}: lacune dans le post`)
-    for (const label of ['💰 Frais de courtage PEA', '📅 Achats automatiques sur PEA', '🗂️ Frais de garde', '🌱 Enveloppes proposées', '🧾 IFU fourni', '💵 Liquidités rémunérées', '🔄 Transfert du PEA', '⚠️ Le point faible à retenir']) {
-      assert(post.includes(label), `${ids}: critère ${label} absent du duel`)
-    }
-    for (const broker of [BROKERS[i], BROKERS[j]]) {
-      if (BROKER_EVIDENCE[broker.id].cash.status === 'corroboré')
-        assert(post.includes(`${broker.nom} : ${broker.cash.post}`), `${ids}: cash externe présenté sans réserve`)
-      if (BROKER_EVIDENCE[broker.id].dca.status === 'corroboré')
-        assert(post.includes('📅 Achats automatiques sur PEA') && /analyses|divergent/i.test(broker.post.dca.join(' ')), `${ids}: DCA externe présenté sans réserve`)
-    }
-    const hasOffers = ids.some(id => ['bourso', 'fortuneo', 'bd', 'saxo'].includes(id))
-    assert.equal(post.includes('🎁 Les offres'), hasOffers, `${ids}: bloc offres vide ou absent`)
-    for (const label of ['💰 Frais de courtage PEA', '📅 Achats automatiques sur PEA', '🗂️ Frais de garde', '🧾 IFU fourni', '💵 Liquidités rémunérées', '🔄 Transfert du PEA', '⚠️ Le point faible à retenir']) {
-      const section = post.split(label + '\n\n')[1]?.split(/\n\n(?=🌱|🎁|📅|🗂️|🧾|💵|🔄|⚠️|💬|🤝)/u)[0]
-      for (const broker of [BROKERS[i], BROKERS[j]]) {
-        assert(section?.includes(`${broker.nom} : `), `${ids}: ${label} sans réponse pour ${broker.nom}`)
-        const answer = section.split(`${broker.nom} : `)[1]?.split('\n')[0]
-        assert(answer && answer.trim().length > 0 && !/^(?:[-—?]|N\/A)$/.test(answer.trim()), `${ids}: réponse vide ${label} ${broker.nom}`)
+    for (const ids of [[BROKERS[i].id, BROKERS[j].id], [BROKERS[j].id, BROKERS[i].id]]) {
+      const post = buildTweet(ids);
+      assert(!/undefined|\bNaN\b|PEA-PME \?|PEA Jeune \?|aucune offre spécifique|preuve corroborée|détails dans le registre/i.test(post), `${ids}: lacune dans le post`);
+      assert(!/\n{3,}/.test(post), `${ids}: sauts de ligne superflus`);
+      for (const heading of headings) assert(section(post, heading)?.trim(), `${ids}: rubrique ${heading} vide`);
+      assert(post.includes('Fourni chez les deux ✅') && post.includes('PEA : les deux ✅'), `${ids}: informations communes`);
+      assert(post.includes('⚠️ Pas un conseil financier'), `${ids}: mention finale`);
+      assert.equal(post.includes('je suis affilié à XTB'), ids.includes('xtb'), `${ids}: transparence affiliation`);
+      assert.equal(post.includes('🎁 Les offres'), ids.some(id => ['bourso', 'fortuneo', 'bd', 'saxo'].includes(id)), `${ids}: offres`);
+      for (const id of ids) {
+        const broker = BROKERS.find(b => b.id === id);
+        const name = id === 'saxo' ? 'Saxo' : broker.nom;
+        for (const heading of [headings[0], headings[1], headings[2], headings[8]]) assert(section(post, heading).includes(`${name} : `), `${ids}: réponse ${heading} ${name}`);
+        assert(section(post, headings[7]).includes(`Vers ${name} : `), `${ids}: transfert entrant ${name}`);
+        assert.equal(BROKER_EVIDENCE[id].transfert.status, 'confirmé');
+        assert.equal(BROKER_EVIDENCE[id].ifu.status, 'confirmé');
+        assert(section(post, headings[1]).includes(BROKER_EVIDENCE[id].change.post), `${ids}: change raccordé au registre`);
+        if (BROKER_EVIDENCE[id].cash.status === 'corroboré') assert(section(post, headings[6]).includes('selon les analyses consultées'), `${ids}: réserve cash`);
+        if (BROKER_EVIDENCE[id].dca.status === 'corroboré') assert(/analyses|divergent/.test(section(post, headings[2])), `${ids}: réserve DCA`);
       }
+      if (ids.includes('saxo')) {
+        assert(section(post, headings[6]).includes('VIP'), `${ids}: restriction intérêts Saxo`);
+        assert(section(post, headings[7]).includes('six mois'), `${ids}: restriction transfert ETF`);
+        assert(post.includes('31 décembre 2026') && post.includes('La vente reste payante'), `${ids}: conditions offres Saxo`);
+      }
+      if (ids.includes('xtb')) assert(post.includes('100 000 €') && post.includes('250 000 €') && post.includes('0,02 %') && post.includes('pas encore disponible'), `${ids}: seuils XTB`);
+      if (ids.includes('ibkr')) assert(post.includes('10 000 €') && post.includes('Disponibilité à confirmer sur PEA'), `${ids}: portée IBKR`);
+      if (ids.includes('fortuneo')) assert(post.includes('moins de 5 000 €') && post.includes('2 000 €') && post.includes('hors Euroclear'), `${ids}: remboursement et sortie Fortuneo`);
+      if (ids.includes('bourso')) assert(post.includes('au double') && post.includes('valeur du compte') && post.includes('ISIN'), `${ids}: conditions BoursoBank`);
+      if (ids.includes('bd')) assert(post.includes('0,036 %'), `${ids}: garde Bourse Direct`);
     }
-    for (const id of ids) {
-      assert.equal(BROKER_EVIDENCE[id].transfert.status, 'confirmé', `${id}: transfert non documenté`)
-      assert.equal(BROKER_EVIDENCE[id].ifu.status, 'confirmé', `${id}: IFU non documenté`)
-      assert(post.includes(BROKER_EVIDENCE[id].transfert.summary), `${id}: transfert non raccordé au registre`)
-    }
-    assert.equal(post.includes('je suis affilié à XTB'), ids.includes('xtb'), `${ids}: transparence affiliation`)
   }
 }
+assert.equal(buildTweet([]), '');
+assert.equal(buildTweet(['tr']), '');
+assert(buildTweet(['tr', 'xtb', 'bd']).includes('2 courtiers'));
 console.log(`Registre : ${BROKERS.length} courtiers, ${EVIDENCE_FIELDS.length} champs chacun, ${Object.keys(OFFICIAL_SOURCES).length} sources officielles et ${Object.keys(SECONDARY_SOURCES).length} externes.`)
 
 const counts = Object.values(BROKER_EVIDENCE).flatMap(fields => Object.values(fields)).reduce((result, item) => {
@@ -136,4 +145,4 @@ const counts = Object.values(BROKER_EVIDENCE).flatMap(fields => Object.values(fi
   result[key] = (result[key] ?? 0) + 1
   return result
 }, {})
-console.log(`État des 80 cellules : ${JSON.stringify(counts)} ; réserves encore ouvertes : ${reservations.filter(([b, f]) => BROKER_EVIDENCE[b][f].review.outcome === 'unresolved').length}.`)
+console.log(`État des ${BROKERS.length * EVIDENCE_FIELDS.length} cellules : ${JSON.stringify(counts)} ; réserves encore ouvertes : ${reservations.filter(([b, f]) => BROKER_EVIDENCE[b][f].review.outcome === 'unresolved').length}.`)
