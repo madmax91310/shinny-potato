@@ -145,7 +145,7 @@ export const TOOLS = [
     to: '/cas-concrets',
     navLabel: 'Cas concrets',
     title: 'Cas concrets pour investir',
-    publicationDay: 'Dimanche soir',
+    publicationDay: 'Publication ponctuelle',
     icon: '🧩',
     accent: '#fb7185',
     description: 'Des situations pour comprendre ce que change réellement un choix de placement, avec sources et texte prêt à copier.',
