@@ -41,13 +41,18 @@ assert.match(buildFactsheetTweet(property),/31\/08\/2026.*2 %.*contrairement aux
 assert.match(buildFactsheetTweet(infra),/65 %.*55 %/)
 assert.match(buildFactsheetTweet(infra),/variante 50\/50/)
 const family = FAMILIES.find(f=>f.id==='immobilier-infrastructures'), rows = getIndexComparisonPerformance(family)
-assert.deepEqual(family.indices.map(i=>i.indexFacts.asOf),dates)
+// Current consumers follow refreshed observations; the archived dates above stay fixed.
+assert.deepEqual(family.indices.map(i=>i.indexFacts),ids.map(id=>getCurrentIndexFacts(id)))
 assert.deepEqual(rows.map(r=>r.key),ids)
 assert(rows.every(r=>r.kind==='indice' && r.currency==='USD' && r.method===rows[0].method))
 assert.deepEqual(family.etfGroups.map(g=>g.funds[0].isin),['IE00B1FZS350','IE00B1FZS467'])
 assert.equal(family.etfGroups[1].pea,undefined,'Statut PEA inconnu ne devient pas false')
 assert.equal(family.perfFunds.length,0)
 const tweet = buildTweetText(family)
-assert.match(tweet,/31\/08\/2026.*30\/09\/2026/s); assert.match(tweet,/classifications diffèrent|classifications/i)
+for (const index of family.indices) {
+ const displayDate = index.indexFacts.asOf.split('-').reverse().join('/')
+ assert(tweet.includes(displayDate),`Date courante absente du tweet : ${index.id}`)
+}
+assert.match(tweet,/classifications diffèrent|classifications/i)
 assert.equal(tweet,buildTweetText({...family,perfFunds:[{key:'fake',y2025:999}]}),'Rendements indépendants de ceux des ETF')
-console.log('Immobilier / infrastructures : indices exacts, dates distinctes, TR USD, relevés PDF, règles divergentes explicites, ETF existants et périmètre ciblé vérifiés.')
+console.log('Immobilier / infrastructures : indices exacts, dates propres, TR USD, relevés PDF, règles divergentes explicites, ETF existants et périmètre ciblé vérifiés.')
