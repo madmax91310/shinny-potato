@@ -22,7 +22,7 @@ export function activeValuation(company, now = new Date()) {
 }
 export function calculatedRatios(company, now = new Date()) {
   const a = company.annual, q = company.quote, t = company.trailing
-  if (!canPublish(company, now) || !q || !fresh(q.asOf, 10, now)) return {}
+  if (!canPublish(company, now) || !q || !Array.isArray(q.splits) || !fresh(q.asOf, 10, now)) return {}
   const splitAfter = end => (q.splits ?? []).some(date => date > end && date <= q.asOf)
   const result = {}
   if (t && fresh(t.observedAt, 45, now) && fresh(t.end, 200, now)
@@ -105,6 +105,7 @@ export function metrics(company, now = new Date()) {
   if (finite(calculated.priceFCF)) rows.push({ label: 'Prix / FCF du dernier exercice', value: `${fr(calculated.priceFCF)}×` })
   const b = activeBalance(company, now)
   if (finite(b?.netDebt)) rows.push({ label: `${b.netDebt < 0 ? 'Trésorerie' : 'Dette'} nette · ${dateLabel(b.asOf)}`, value: amount(Math.abs(b.netDebt), company.currency) })
+  if (b && !finite(b.netDebt) && finite(b.cash)) rows.push({ label: `Trésorerie · ${dateLabel(b.asOf)}`, value: amount(b.cash, company.currency) })
   if (finite(calculated.dividendYield)) rows.push({ label: 'Rendement · dividendes annuels déclarés', value: `${fr(calculated.dividendYield, 2)} %` })
   return rows
 }
@@ -129,6 +130,7 @@ export function buildTweetText(company, now = new Date()) {
   if (ratios.length) lines.push(`📊 Valorisation\n${ratios.join('\n')}`)
   const b = activeBalance(company, now)
   if (finite(b?.netDebt)) lines.push(`🏦 Dette et trésorerie · au ${dateLabel(b.asOf)}\nLa dette financière publiée s’élève à ${amount(b.debt, company.currency)}, pour ${amount(b.cash, company.currency)} de trésorerie et équivalents. Cela donne ${amount(Math.abs(b.netDebt), company.currency)} de ${b.netDebt < 0 ? 'trésorerie nette' : 'dette nette'}, hors contrats de location et placements.`)
+  else if (b && finite(b.cash)) lines.push(`🏦 Trésorerie · au ${dateLabel(b.asOf)}\nL’entreprise publie ${amount(b.cash, company.currency)} de trésorerie et équivalents. Ce chiffre exclut les placements.`)
   lines.push(`👀 Ce que je regarderais\n${company.watch}`, '💬 Tu connaissais toutes ses activités ?')
   return lines.join('\n\n')
 }
