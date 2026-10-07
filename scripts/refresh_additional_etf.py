@@ -17,6 +17,9 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 
 def collect_one(share,now):
+    if share['parser'] == 'bnp-document-mirror':
+        from collect_bnp_etf import collect_one as bnp
+        return bnp(share, now)
     if share['parser'] in ('coinshares-document', 'ubs-document'):
         from collect_remaining_documents import collect_one as remaining_document
         return remaining_document(share, now)

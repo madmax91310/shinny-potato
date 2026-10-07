@@ -128,7 +128,7 @@ def collect(config, baseline, now=None, fetch=get_text):
         # This public endpoint is published in the official product-page components.
         # Fetch the latest structured snapshot directly, without the HTML consent page.
         url = product_data_url(share)
-        body = json.loads(fetch(url, ('application/json',), 6_000_000),
+        body = json.loads(fetch(url, ('application/json',), 20_000_000 if share.get('holdingsAssetClass') == 'Fixed Income' else 6_000_000),
                           parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
         result = parse_share(body, share, now)
         if share.get('collectHoldings'):

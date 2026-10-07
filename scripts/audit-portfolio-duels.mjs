@@ -41,9 +41,24 @@ const full = buildDuel(original)
 assert.equal(full.b.assets.length, 1)
 assert.equal(full.b.assets[0].pct, 100)
 assert.equal(full.years[0], 2020)
-const limited = buildDuel(DUELS.find((duel) => duel.id === 'world-stoxx-ou-acwi'))
-assert.deepEqual(limited.years, [2023, 2024, 2025])
-assert.ok(!/2020 :|2021 :|2022 :/.test(buildTweet(limited)))
+const stoxxDefinition = DUELS.find((duel) => duel.id === 'world-stoxx-ou-acwi')
+const limited = buildDuel(stoxxDefinition)
+const selected = [...stoxxDefinition.left, ...stoxxDefinition.right].map(line => CATALOG.find(asset => asset.id === line.id))
+const common = Object.keys(selected[0].calendarReturns).map(Number)
+  .filter(year => selected.every(asset => Number.isFinite(euroReturn(asset, year))))
+  .sort((a, b) => a - b).slice(-6)
+assert.deepEqual(limited.years, common, 'Le duel utilise toute la dernière période commune publiée')
+// A short controlled history still exercises the three-year fallback even
+// after an issuer publishes more years for the active part.
+const stoxx = selected.find(asset => asset.isin === 'FR0011550193')
+const completeCalendar = stoxx.calendarReturns
+try {
+  const shortYears = common.slice(-3)
+  stoxx.calendarReturns = Object.fromEntries(shortYears.map(year => [year, completeCalendar[year]]))
+  const short = buildDuel(stoxxDefinition)
+  assert.deepEqual(short.years, shortYears)
+  for (const year of common.slice(0, -3)) assert.ok(!buildTweet(short).includes(`${year} :`))
+} finally { stoxx.calendarReturns = completeCalendar }
 const usd = CATALOG.find((item) => item.id === 'msci_world_ishares')
 const converted = ((1 + usd.values[0] / 100) * EUR_USD[2019] / EUR_USD[2020] - 1) * 100
 assert.ok(Math.abs(euroReturn(usd, 2020) - converted) < 1e-9)
@@ -91,7 +106,7 @@ const factorsDuel=buildDuel(DUELS.find(d=>d.id==='world-value-ou-world-quality')
 assert.match(factorsDuel.hook,/2020.*2025.*116 €/)
 assert.match(buildTweet(factorsDuel),/peu chère peut le rester longtemps/)
 assert.doesNotMatch(buildTweet(buildDuel(DUELS.find(d=>d.id==='em-bond-local-usd'))),/coupons émergents|sensibilité des obligations longues/)
-assert.match(limited.hook,/2023.*2025/)
+assert.ok(limited.hook.includes(String(limited.years[0])) && limited.hook.includes(String(limited.years.at(-1))))
 for (const definition of DUELS) {
  const duel=buildDuel(definition)
  assert.doesNotMatch(duel.hook,/Tu gardes 100 % de World|vous|votre|Qu’a changé cette répartition|comparons ces deux choix|performances annuelles à comparer/)

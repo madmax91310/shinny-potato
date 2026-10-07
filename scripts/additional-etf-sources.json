@@ -182,7 +182,9 @@
       "benchmark": "Bloomberg Euro Corporate Bond",
       "name": "Vanguard € Corp Bond UCITS ETF",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "countryAllocationCode": "CNTRYATPCB",
+      "collectBondSectors": true
     },
     {
       "isin": "IE00BYWQWR46",
@@ -197,7 +199,10 @@
       "fallbackUrls": [
         "https://www.vaneck.com/nl/en/library/fact-sheets/espo-fact-sheet.pdf",
         "https://www.vaneck.com/uk/en/library/fact-sheets/espo-fact-sheet.pdf"
-      ]
+      ],
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/esports-etf/",
+      "ticker": "ESPO",
+      "apiTicker": "UCTESPO"
     },
     {
       "isin": "IE0007Y8Y157",
@@ -208,7 +213,10 @@
       "benchmark": "MarketVector Global Quantum Leaders",
       "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/quantum-computing-etf/",
+      "ticker": "QNTM",
+      "apiTicker": "UCTQNTM"
     },
     {
       "isin": "IE000M7V94E1",
@@ -219,7 +227,10 @@
       "benchmark": "MarketVector Global Uranium and Nuclear Energy Infrastructure",
       "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
+      "ticker": "NUCL",
+      "apiTicker": "UCTNUCL"
     },
     {
       "isin": "IE000YU9K6K2",
@@ -230,7 +241,10 @@
       "benchmark": "MarketVector Global Space Industry Screened",
       "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
+      "ticker": "JEDI",
+      "apiTicker": "UCTJEDI"
     },
     {
       "isin": "IE000YYE6WK5",
@@ -241,7 +255,10 @@
       "benchmark": "MarketVector Global Defense Industry",
       "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/defense-etf/",
+      "ticker": "DFNS",
+      "apiTicker": "UCTDFNS"
     },
     {
       "isin": "IE00BDFBTQ78",
@@ -252,7 +269,10 @@
       "benchmark": "S&P Global Mining",
       "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/mining-etf/",
+      "ticker": "GDIG",
+      "apiTicker": "UCTGDIG"
     },
     {
       "isin": "NL0009690239",
@@ -263,7 +283,10 @@
       "benchmark": "GPR Global 100",
       "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/real-estate-etf/",
+      "ticker": "TRET",
+      "apiTicker": "TRET"
     },
     {
       "isin": "NL0011683594",
@@ -274,7 +297,10 @@
       "benchmark": "Morningstar Developed Markets Large Cap Dividend Leaders Screened Select",
       "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
       "required": true,
-      "enabled": true
+      "enabled": true,
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/dividend-etf/",
+      "ticker": "TDIV",
+      "apiTicker": "TDIV"
     },
     {
       "isin": "IE00B579F325",
@@ -591,10 +617,11 @@
       "currency": "USD",
       "distribution": "Distributing",
       "requireFullHistory": false,
-      "collectHoldings": false,
+      "collectHoldings": true,
       "provider": "iShares",
       "parser": "ishares",
-      "collectSectors": false
+      "collectSectors": true,
+      "holdingsAssetClass": "Fixed Income"
     },
     {
       "isin": "IE00B1FZS913",
@@ -603,10 +630,11 @@
       "currency": "EUR",
       "distribution": "Distributing",
       "requireFullHistory": false,
-      "collectHoldings": false,
+      "collectHoldings": true,
       "provider": "iShares",
       "parser": "ishares",
-      "collectSectors": false
+      "collectSectors": true,
+      "holdingsAssetClass": "Fixed Income"
     },
     {
       "isin": "DE000A0H08Q4",
@@ -648,10 +676,11 @@
       "currency": "EUR",
       "distribution": "Distributing",
       "requireFullHistory": false,
-      "collectHoldings": false,
+      "collectHoldings": true,
       "provider": "iShares",
       "parser": "ishares",
-      "collectSectors": false
+      "collectSectors": true,
+      "holdingsAssetClass": "Fixed Income"
     },
     {
       "isin": "IE00B3WJKG14",
@@ -1027,22 +1056,40 @@
       "isin": "FR0011550185",
       "name": "BNP Paribas Easy S&P 500",
       "provider": "BNP Paribas",
-      "enabled": false,
-      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+      "enabled": true,
+      "currency": "EUR",
+      "layout": "easy-fr",
+      "documentName": "BNP PARIBAS EASY S&P 500 UCITS ETF",
+      "expectedIndex": "S&P 500 Composite (NR)",
+      "mirrorCode": "E_SBNPEF002_C_EUR",
+      "parser": "bnp-document-mirror",
+      "discoveryUrl": "https://www.analizy.pl/etf/FR0011550185/bnp-paribas-easy-s-p-500-ucits-etf-c-acc-eur"
     },
     {
       "isin": "FR0011550193",
       "name": "BNP Paribas Easy STOXX Europe 600",
       "provider": "BNP Paribas",
-      "enabled": false,
-      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+      "enabled": true,
+      "currency": "EUR",
+      "layout": "easy-fr",
+      "documentName": "BNP PARIBAS EASY STOXX EUROPE 600 UCITS ETF",
+      "expectedIndex": "STOXX Europe 600 NR",
+      "mirrorCode": "E_SBNPEF003_A_EUR",
+      "parser": "bnp-document-mirror",
+      "discoveryUrl": "https://www.analizy.pl/etf/FR0011550193/bnp-paribas-easy-stoxx-europe-600-ucits-etf-acc-eur"
     },
     {
       "isin": "IE000QDFFK00",
       "name": "BNP Paribas Easy II Nasdaq 100",
       "provider": "BNP Paribas",
-      "enabled": false,
-      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+      "enabled": true,
+      "currency": "USD",
+      "layout": "easy-ii",
+      "documentName": "BNP PARIBAS EASY II Nasdaq 100 UCITS ETF USD",
+      "expectedIndex": "NASDAQ-100 Notional Net Total Return Index",
+      "mirrorCode": "E_AXAIC001_A_USD",
+      "parser": "bnp-document-mirror",
+      "discoveryUrl": "https://www.analizy.pl/etf/IE000QDFFK00/bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc"
     },
     {
       "isin": "FR0007056841",
