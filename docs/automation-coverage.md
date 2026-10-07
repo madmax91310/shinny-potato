@@ -9,7 +9,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Historiques mensuels des simulateurs | 46/46 séries ; 44 nouveaux collecteurs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | ETF/ETC/ETP | 152/155 instruments, au moins un champ | 3 et 16 du mois |
 | Compositions d’indices | 38 indices | 3 et 16 du mois |
-| Rendements annuels d’indices | 45 indices | 3 et 16 du mois |
+| Rendements annuels d’indices | 46 indices | 3 et 16 du mois |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -29,7 +29,7 @@ MSCI EM IMI, MSCI EM Latin America et Selection 20/35 Capped : compositions et r
 
 ## Avancement des priorités 1 et 2
 
-Quatre compositions supplémentaires sont raccordées : S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50. La couverture passe de 34 à 38 compositions ; 45 séries annuelles restent automatisées. Deux calendriers de parts sont ajoutés : WPEA EUR 2025 et UBS World USD 2022–2025. Les trois BNP, quatre compositions et le calendrier TOTAL USD S&P 500 Equal Weight restent à qualifier ; voir [la qualification du 7 octobre](source-reliability-index-coverage-2026-10-07.md).
+Quatre compositions supplémentaires sont raccordées : S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50. La couverture passe de 34 à 38 compositions ; 46 séries annuelles sont automatisées. Deux calendriers de parts sont ajoutés : WPEA EUR 2025 et UBS World USD 2022–2025. Le calendrier TOTAL USD S&P 500 Equal Weight est raccordé à la ligne indice SPXEWTR de la fiche trimestrielle Invesco. Les trois BNP et quatre compositions restent à qualifier ; voir [la qualification du 7 octobre](source-reliability-index-coverage-2026-10-07.md).
 
 ## Limites par champ ETF
 
@@ -219,7 +219,6 @@ S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50 : les compositi
 
 | Indice | Bloc hors collecte active |
 |---|---|
-| S&P 500 Equal Weight (sp500-equal-weight) | Rendements annuels |
 | Russell 2000 (russell-2000) | Composition / méthodologie |
 | Russell 1000 (russell-1000) | Composition / méthodologie |
 | S&P Global Dividend Aristocrats (sp-global-dividend-aristocrats) | Composition / méthodologie |
@@ -241,7 +240,7 @@ Russell 1000/2000 : rendements annuels automatisés ; les compositions restent �
 ## Priorités suivantes
 
 1. Lever les blocages des 3 instruments encore hors collecte (BNP) et fiabiliser la disponibilité des pages WisdomTree. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
-2. Qualifier les quatre compositions restantes (Russell 1000/2000 et les deux Dividend Aristocrats) et le calendrier S&P 500 Equal Weight en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
+2. Qualifier les quatre compositions restantes (Russell 1000/2000 et les deux Dividend Aristocrats) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
 3. Raccorder les caractéristiques et cotations (domicile, réplication, distribution, PEA) avec une provenance et une date propres à chaque champ.
 4. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles ; maintenir une revue des règles fiscales et offres de courtiers.
 
