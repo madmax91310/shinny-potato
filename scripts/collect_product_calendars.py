@@ -120,13 +120,21 @@ def coinshares_calendar(payload, share, now, url):
     import math
     if (len(dates)!=len(values) or not dates or dates!=sorted(set(dates)) or
             any(not math.isfinite(v) or v<=0 for v in values) or dates[0]!=launch or values[0]!=100 or
-            dates[-1].isoformat()!=stamp):reject('CoinShares product series incomplete or malformed')
+            dates[-1]>now.date()):reject('CoinShares product series incomplete or malformed')
+    # The graph and overview are cached independently by the issuer. During a
+    # daily refresh the graph may already include the next overview snapshot.
+    # Qualify the exact overview date, without comparing different dates.
+    snapshot=dt.date.fromisoformat(stamp)
+    if snapshot not in dates or not 0 <= (dates[-1]-snapshot).days <= 1:
+        reject('CoinShares graph/overview dates cannot be aligned')
+    snapshot_index=dates.index(snapshot)
     # The issuer graph is normalized to 100; cross-check with its product return,
     # never with the factsheet's unadjusted BTC/ETH price table.
     inception=float(overview['sinceInceptionPerformance'].rstrip('%'))
-    if abs(values[-1]-100-inception)>.02:reject('CoinShares normalized product convention mismatch')
+    if not math.isfinite(inception) or abs(values[snapshot_index]-100-inception)>.02:
+        reject('CoinShares normalized product convention mismatch')
     endpoints={}
-    for date,value in zip(dates,values):
+    for date,value in zip(dates[:snapshot_index+1],values[:snapshot_index+1]):
         if date.month==12 and date.day>=24:endpoints[date.year]=(date,value)
     years={}
     for y in range(launch.year+1,now.year):

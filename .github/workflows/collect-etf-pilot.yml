@@ -86,10 +86,10 @@ jobs:
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
       queue: max
-    # Temporary pin: full Ubuntu 26.04 qualification is blocked by CoinShares
-    # performance payloads rejected for GB00BLD4ZL17 and GB00BLD4ZM24.
-    # Reproduced on 24.04 too; no runner-image incompatibility was identified.
-    # See PR #346 for both full-run logs. Move to 26.04 after a fully green run.
+    # Temporary pin: the full 26.04 run is blocked by VanEck document redirects
+    # to its US landing page (PR #349). CoinShares calendars now validate.
+    # No runner-image incompatibility was identified. Move to 26.04 only after
+    # the complete collection, including VanEck, is green.
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
