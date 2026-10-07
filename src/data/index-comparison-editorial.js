@@ -427,7 +427,7 @@ INDEX_COMPARISON_EDITORIAL['immobilier-infrastructures'] = {
   'Dividend+ sélectionne des sociétés immobilières et des REIT des pays développés hors Grèce, avec un filtre de rendement des dividendes.',
   'Core Infrastructure sélectionne les revenus liés aux réseaux et au transport dans les pays développés et émergents. Ce n’est pas la variante 50/50.',
  ],
- insight: 'Les classifications diffèrent : sous-secteurs immobiliers EPRA et sous-secteurs ICB. Les photographies datent du 31/08/2026 et du 30/09/2026.',
+ insight: 'Les classifications diffèrent : sous-secteurs immobiliers EPRA et sous-secteurs ICB.',
  takeaway: 'Les deux paniers peuvent se recouper, notamment via des REIT. Ils restent exposés aux marchés actions, aux taux et à la réglementation.',
  question: 'Tu choisirais l’immobilier coté, les infrastructures, ou une combinaison des deux ?',
  visualPoints: [['Immobilier développé','Filtre de dividendes'],['Développés et émergents','Revenus Core ≥ 65 % à l’entrée']],
