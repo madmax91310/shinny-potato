@@ -96,22 +96,24 @@ for (let i = 0; i < 500; i++) {
 }
 console.log(`${DUELS.length} duels préparés, ${CATALOG.length} ETF, 500 générations : rôles, mono-ETF, historique commun, change, capitaux et textes vérifiés.`)
 
-// Accroches validées : chiffres issus des résultats, période commune et absence de méthode dans le tweet.
+// Accroches : enjeu financier explicite, période commune, sans révéler le gagnant.
 const cashDuel=buildDuel(DUELS.find(d=>d.id==='world-avec-monetaire_xeon'))
-assert.match(cashDuel.hook,/40 %.*\?[\s\S]*2020[\s\S]*2025[\s\S]*3\s903 € de plus/)
+assert.match(cashDuel.hook,/10 000 €.*40 % de monétaire en euros.*\?[\s\S]*2020[\s\S]*2025/)
 const maturityDuel=buildDuel(DUELS.find(d=>d.id==='oblig-courtes-longues'))
-assert.match(maturityDuel.hook,/\?[\s\S]*10 000 €[\s\S]*de plus/)
+assert.match(maturityDuel.hook,/10 000 €.*courte échéance.*longue échéance.*\?/)
 assert.match(buildTweet(maturityDuel),/cours peuvent beaucoup baisser lorsque les taux montent/)
 const factorsDuel=buildDuel(DUELS.find(d=>d.id==='world-value-ou-world-quality'))
-assert.match(factorsDuel.hook,/2020.*2025.*116 €/)
+assert.match(factorsDuel.hook,/10 000 €.*World Value.*World Quality.*\?[\s\S]*2020.*2025/)
 assert.match(buildTweet(factorsDuel),/peu chère peut le rester longtemps/)
 assert.doesNotMatch(buildTweet(buildDuel(DUELS.find(d=>d.id==='em-bond-local-usd'))),/coupons émergents|sensibilité des obligations longues/)
 assert.ok(limited.hook.includes(String(limited.years[0])) && limited.hook.includes(String(limited.years.at(-1))))
 for (const definition of DUELS) {
  const duel=buildDuel(definition)
  assert.doesNotMatch(duel.hook,/Tu gardes 100 % de World|vous|votre|Qu’a changé cette répartition|comparons ces deux choix|performances annuelles à comparer/)
- assert.match(duel.hook,/\?\n\nAvec 10 000 € investis début \d{4},/)
- assert.ok(duel.hook.endsWith('Voici le détail du duel, année par année 👇'))
+ assert.match(duel.hook,/^Avec 10 000 € investis.*\?\n\nVoici ce que ça aurait changé entre début \d{4} et fin \d{4}/)
+ assert.ok(duel.hook.endsWith('sans versement supplémentaire 👇'))
+ assert.doesNotMatch(duel.hook,/de plus|termine|bonne idée|quel résultat/i)
+ assert.equal((buildTweet(duel).match(/👇/g) ?? []).length,1)
  assert.doesNotMatch(buildTweet(duel),/Simulation en euros|Hors courtage/)
 }
 // La conclusion doit suivre les résultats, même si A/B est inversé ou si les capitaux sont égaux.
