@@ -111,11 +111,12 @@ export async function renderETFImage(etf) {
   fact(ctx, 'Domicile', domicile, right, 1200, col, 122)
   rule(ctx, 1360)
   fact(ctx, 'Cotation', etf.listing ? `${etf.listing.exchange} · ${etf.listing.currency}` : 'Non documentée', PAD, 1380, col, 112)
-  const datedAum = etf.aum.match(/^(.*?)\s+(\(relevé le .*\))$/)
-  if (datedAum) {
-    fact(ctx, 'Encours', datedAum[1], right, 1380, col, 70)
-    block(ctx, datedAum[2], right, 1500, col, 42, { size: 30, min: 26, color: MUTED })
-  } else fact(ctx, 'Encours', etf.aum, right, 1380, col, 112)
+  // The image shows only the amount; evidence dates and scope stay in the source data.
+  const aumAmount = String(etf.aum)
+    .replace(/^(?:Part|Fonds)\s*:\s*/i, '')
+    .replace(/\s+(?:au\s+\d{2}\/\d{2}\/\d{4}|\(relevé le [^)]+\))\s*$/i, '')
+    .trim()
+  fact(ctx, 'Encours', aumAmount, right, 1380, col, 112)
   const annual = getAnnualPerformance(etf)
   if (annual) {
     rule(ctx, 1550)
