@@ -38,7 +38,7 @@ import { getIndexComparisonEditorial } from "../src/data/index-comparison-editor
 import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js';
 import { getIndexComparisonComposition } from '../src/data/index-comparison-composition.js';
 import { fmtPct } from "../src/pages/index-comparator/lib.js";
-import { buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
+import { buildCustomDuel, buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
@@ -421,8 +421,12 @@ async function testPortfolioDuels(page) {
   valid &&= /cybersécurité/i.test(await page.locator('#pd-tweet').inputValue());
   await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), 'stoxx600_bnp');
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('80');
-  valid &&= (await page.locator('.pd-table tbody tr').count()) === 3;
-  valid &&= /début 2023/.test(await page.locator('#pd-tweet').inputValue());
+  const customExpected = buildCustomDuel({
+    left: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'stoxx600_bnp', pct: 10 }, { id: 'sect_cyber_lg', pct: 10 }],
+    right: [{ id: 'msci_acwi_ishares', pct: 100 }],
+  });
+  valid &&= (await page.locator('.pd-table tbody tr').count()) === customExpected.years.length;
+  valid &&= (await page.locator('#pd-tweet').inputValue()) === buildTweet(customExpected);
   const [manualImage] = await Promise.all([
     page.waitForEvent('download'),
     page.getByRole('button', { name: /Télécharger l’image PNG/i }).click(),
