@@ -15,24 +15,56 @@ export function canPublish(company, now = new Date()) {
   const a = company.annual
   return Boolean(a && finite(a.revenue) && a.revenue > 0 && finite(a.netIncome) && fresh(a.end, 550, now) && fresh(company.accountsObservedAt, 45, now))
 }
+export const latestAccountsEnd = company => [company.annual?.end, company.quarter?.end, company.halfYear?.end].filter(Boolean).sort().at(-1)
 export function activeValuation(company, now = new Date()) {
   const v = company.valuation
-  const latest = company.quarter?.end ?? company.annual?.end
+  const latest = latestAccountsEnd(company)
   return v && fresh(v.observedAt, 7, now) && fresh(v.accountsAsOf, 200, now) && v.accountsAsOf >= latest ? v : null
+}
+export function activeEstimates(company, now = new Date()) {
+  const e = company.estimates, q = company.quote
+  const latest = latestAccountsEnd(company)
+  if (!canPublish(company, now) || !e || !q || !finite(q.price) || q.price <= 0
+    || !fresh(q.asOf, 10, now) || !fresh(e.observedAt, 7, now)
+    || e.accountsEndAtCollection !== latest || !Array.isArray(q.splits)
+    || q.splits.some(date => date >= e.observedAt && date <= q.asOf)
+    || !finite(e.forwardEPS) || e.forwardEPS <= 0) return null
+  const forwardPE = q.price / e.forwardEPS
+  return {...e, forwardPE, peg: finite(e.growthEPS5Y) && e.growthEPS5Y > 0 ? forwardPE / e.growthEPS5Y : null}
+}
+export function activeHistory(company, now = new Date()) {
+  const h = company.history
+  if (!canPublish(company, now) || !h || !fresh(h.observedAt, 45, now)
+    || !Array.isArray(h.years) || h.years.length < 3 || h.years.length > 5) return []
+  const years = h.years
+  if (years.at(-1).end !== company.annual.end
+    || years.at(-1).revenue !== company.annual.revenue || years.at(-1).netIncome !== company.annual.netIncome) return []
+  if (years.some((y, i) => !fresh(y.end, 2500, now) || !finite(y.revenue) || y.revenue <= 0 || !finite(y.netIncome)
+    || (i && ((Date.parse(y.end) - Date.parse(years[i-1].end)) / 86400000 < 330
+      || (Date.parse(y.end) - Date.parse(years[i-1].end)) / 86400000 > 400)))) return []
+  return years.map(y => ({...y, margin: y.netIncome / y.revenue * 100}))
+}
+function historyText(company, now) {
+  const years = activeHistory(company, now)
+  if (!years.length) return ''
+  const first = years[0], last = years.at(-1)
+  const change = growth(last.revenue, first.revenue)
+  return `📊 Le recul sur ${years.length} exercices\nEntre les exercices clos le ${dateLabel(first.end)} et le ${dateLabel(last.end)}, le chiffre d’affaires est passé de ${amount(first.revenue, company.currency)} à ${amount(last.revenue, company.currency)}${finite(change) ? `, soit ${change >= 0 ? '+' : '−'}${fr(Math.abs(change))} % sur l’ensemble de la période` : ''}.\nLe résultat net est passé de ${amount(first.netIncome, company.currency)} à ${amount(last.netIncome, company.currency)}, et la marge nette de ${fr(first.margin)} % à ${fr(last.margin)} %.`
 }
 export function calculatedRatios(company, now = new Date()) {
   const a = company.annual, q = company.quote, t = company.trailing
-  if (!canPublish(company, now) || !q || !Array.isArray(q.splits) || !fresh(q.asOf, 10, now)) return {}
+  if (!canPublish(company, now) || !q || !finite(q.price) || q.price <= 0 || !Array.isArray(q.splits) || !fresh(q.asOf, 10, now)) return {}
   const splitAfter = end => (q.splits ?? []).some(date => date > end && date <= q.asOf)
   const result = {}
   if (t && fresh(t.observedAt, 45, now) && fresh(t.end, 200, now)
-    && t.end >= (company.quarter?.end ?? a.end) && finite(t.dilutedEPS) && t.dilutedEPS > 0
+    && t.end >= (latestAccountsEnd(company)) && finite(t.dilutedEPS) && t.dilutedEPS > 0
     && company.quarters?.length === 4 && !splitAfter(company.quarters[3].end)) {
     result.peTTM = q.price / t.dilutedEPS
   }
+  if (!result.peTTM && company.accountingStandard === 'IFRS' && finite(a.dilutedEPS) && a.dilutedEPS > 0 && !splitAfter(a.end)) result.peAnnual = q.price / a.dilutedEPS
   const shares = company.shares
   if (shares && fresh(shares.observedAt, 45, now) && fresh(shares.asOf, 200, now)
-    && shares.asOf >= (company.quarter?.end ?? a.end) && !splitAfter(shares.asOf)
+    && shares.asOf >= (latestAccountsEnd(company)) && !splitAfter(shares.asOf)
     && finite(shares.outstanding) && shares.outstanding > 0 && finite(a.freeCashFlow) && a.freeCashFlow > 0) {
     result.priceFCF = q.price * shares.outstanding / a.freeCashFlow
   }
@@ -45,7 +77,7 @@ export function calculatedRatios(company, now = new Date()) {
 export function activeBalance(company, now = new Date()) {
   const b = company.balance
   return b && fresh(b.asOf, 200, now) && fresh(b.observedAt, 45, now)
-    && b.asOf >= (company.quarter?.end ?? company.annual?.end) ? b : null
+    && b.asOf >= (latestAccountsEnd(company)) ? b : null
 }
 function growth(current, previous) {
   return finite(current) && finite(previous) && previous > 0 && current >= 0 ? (current / previous - 1) * 100 : null
@@ -91,11 +123,12 @@ export function marginExplanation(period) {
   }
   return `La marge nette ${improved ? 's’est améliorée' : 'a diminué'}, passant de ${fr(previous)} % à ${fr(current)} % sur un an.`
 }
-function periodText(period, company, quarterly = false) {
+function periodText(period, company, quarterly = false, halfYear = false) {
   const dates = period.start ? `du ${dateLabel(period.start)} au ${dateLabel(period.end)}` : `clos le ${dateLabel(period.end)}`
-  const lines = [quarterly ? `📈 Et les derniers résultats ?\nTrimestre ${dates}` : `💰 Ce que l’entreprise gagne\nExercice ${dates}`,
+  const lines = [quarterly ? `📈 Et les derniers résultats ?\n${halfYear ? 'Semestre' : period.durationWeeks ? `Trimestre de ${period.durationWeeks} semaines` : 'Trimestre'} ${dates}` : `💰 Ce que l’entreprise gagne\nExercice ${dates}`,
     `Son chiffre d’affaires atteint ${amount(period.revenue, company.currency)}${changePhrase(growth(period.revenue, period.previousRevenue))}.`,
     incomePhrase(period, company.currency)]
+  if (period.incomeBasis && !quarterly) lines.push('Le résultat net présenté correspond à la part du groupe, hors intérêts minoritaires.')
   if (finite(period.revenue) && period.revenue > 0 && finite(period.netIncome)) {
     const margin = period.netIncome / period.revenue * 100
     if (!quarterly) {
@@ -117,10 +150,14 @@ export function metrics(company, now = new Date()) {
   if (finite(a.freeCashFlow)) rows.push({ label: 'Flux de trésorerie disponible annuel', value: amount(a.freeCashFlow, company.currency) })
   const v = activeValuation(company, now)
   const calculated = calculatedRatios(company, now)
+  const estimates = activeEstimates(company, now)
   const pe = calculated.peTTM ?? v?.peTTM
   if (finite(pe) && pe > 0) rows.push({ label: 'PER · bénéfices sur 12 mois', value: `${fr(pe)}×` })
-  if (finite(v?.forwardPE) && v.forwardPE > 0) rows.push({ label: 'PER prévisionnel · horizon fournisseur', value: `${fr(v.forwardPE)}×` })
-  if (finite(v?.peg) && v.peg > 0) rows.push({ label: 'PEG · méthode fournisseur', value: `${fr(v.peg)}×` })
+  else if (finite(calculated.peAnnual)) rows.push({ label: 'PER · dernier exercice publié', value: `${fr(calculated.peAnnual)}×` })
+  if (estimates) rows.push({ label: 'PER prévisionnel · prochain exercice', value: `${fr(estimates.forwardPE)}×` })
+  if (finite(estimates?.peg)) rows.push({ label: 'PEG · croissance estimée sur 5 ans', value: `${fr(estimates.peg, 2)}×` })
+  if (!estimates && finite(v?.forwardPE) && v.forwardPE > 0) rows.push({ label: 'PER prévisionnel · horizon fournisseur', value: `${fr(v.forwardPE)}×` })
+  if (!estimates && finite(v?.peg) && v.peg > 0) rows.push({ label: 'PEG · méthode fournisseur', value: `${fr(v.peg)}×` })
   if (finite(calculated.priceFCF)) rows.push({ label: 'Prix / FCF du dernier exercice', value: `${fr(calculated.priceFCF)}×` })
   const b = activeBalance(company, now)
   if (finite(b?.netDebt)) rows.push({ label: `${b.netDebt < 0 ? 'Trésorerie' : 'Dette'} nette · ${dateLabel(b.asOf)}`, value: amount(Math.abs(b.netDebt), company.currency) })
@@ -132,20 +169,29 @@ export function buildTweetText(company, now = new Date()) {
   if (!canPublish(company, now)) return ''
   const lines = [`🔎 Quand tu achètes une action ${company.name}, qu’est-ce que tu achètes vraiment ? 👇`,
     `🏭 Son activité\n${company.activity}`, periodText(company.annual, company)]
+  const history = historyText(company, now)
+  if (history) lines.push(history)
   const quarter = company.quarter
   if (quarter && fresh(quarter.end, 200, now) && finite(quarter.revenue) && quarter.revenue > 0 && finite(quarter.netIncome)) {
     lines.push(periodText(quarter, company, true))
   }
+  const half = company.halfYear
+  if (half && fresh(half.end, 250, now) && finite(half.revenue) && half.revenue > 0 && finite(half.netIncome)) lines.push(periodText(half, company, true, true))
   const v = activeValuation(company, now)
   const calculated = calculatedRatios(company, now)
+  const estimates = activeEstimates(company, now)
   const pe = calculated.peTTM ?? v?.peTTM
   const valuation = []
   if (company.quote && finite(company.quote.price) && company.quote.price > 0 && fresh(company.quote.asOf, 10, now)) {
     valuation.push(`À la clôture du ${dateLabel(company.quote.asOf)}, l’action valait ${fr(company.quote.price, 2)} ${company.currency}${finite(pe) && pe > 0 ? ` pour un PER de ${fr(pe)}` : ''}.`)
   } else if (finite(pe) && pe > 0) valuation.push(`Le PER est de ${fr(pe)}.`)
+  if (!finite(pe) && finite(calculated.peAnnual)) valuation.push(`Le cours représente ${fr(calculated.peAnnual)} fois le BPA dilué du dernier exercice publié, clos le ${dateLabel(company.annual.end)}. Ce PER annuel utilise cet exercice précis.`)
+  if (company.quoteListing && company.id === 'totalenergies') valuation.push('Le cours utilisé est celui de l’action ordinaire cotée à New York en USD, la devise des comptes présentés.')
   if (finite(pe) && pe > 0) valuation.push(`Autrement dit, le cours représente environ ${fr(pe)} fois le bénéfice par action des douze derniers mois.\nCe ratio utilise les bénéfices déjà publiés. Il ne mesure pas leur croissance future.`)
-  if (finite(v?.forwardPE) && v.forwardPE > 0) valuation.push(`Le PER prévisionnel fourni est de ${fr(v.forwardPE)}. Il utilise des bénéfices estimés, avec un horizon non précisé par ${v.sourceName ?? 'Alpha Vantage'}.`)
-  if (finite(v?.peg) && v.peg > 0) valuation.push(`Le PEG fourni est de ${fr(v.peg)}. Il rapporte le PER à un taux de croissance des bénéfices ; la croissance retenue et son horizon ne sont pas précisés par ${v.sourceName ?? 'Alpha Vantage'}.`)
+  if (estimates) valuation.push(`Avec le BPA estimé du prochain exercice fiscal (${fr(estimates.forwardEPS, 2)} ${company.currency}, relevé sur Finviz le ${dateLabel(estimates.observedAt)}), le PER prévisionnel recalculé à cette clôture est de ${fr(estimates.forwardPE)}. Il repose sur une estimation, qui peut être révisée.`)
+  if (finite(estimates?.peg)) valuation.push(`Le PEG est de ${fr(estimates.peg, 2)} : ce PER prévisionnel est divisé par la croissance annuelle du BPA estimée sur cinq ans (${fr(estimates.growthEPS5Y, 2)} % selon Finviz). Cette croissance est une prévision du fournisseur.`)
+  if (!estimates && finite(v?.forwardPE) && v.forwardPE > 0) valuation.push(`Le PER prévisionnel fourni est de ${fr(v.forwardPE)}. Il utilise des bénéfices estimés, avec un horizon non précisé par ${v.sourceName ?? 'Alpha Vantage'}.`)
+  if (!estimates && finite(v?.peg) && v.peg > 0) valuation.push(`Le PEG fourni est de ${fr(v.peg)}. Il rapporte le PER à un taux de croissance des bénéfices ; la croissance retenue et son horizon ne sont pas précisés par ${v.sourceName ?? 'Alpha Vantage'}.`)
   if (valuation.length) lines.push(`🏷️ Et le prix de l’action ?\n${valuation.join('\n\n')}`)
   lines.push('💬 Tu connaissais toutes ses activités ?')
   return lines.join('\n\n')

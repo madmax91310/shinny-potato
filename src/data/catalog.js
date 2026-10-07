@@ -104,19 +104,21 @@ function index(id, history) {
     fields: [...(current ? [field(`Composition courante · ${current.snapshot}`, 'index-facts', current, current.metadata)] : []), ...Object.entries(history).sort(([a], [b]) => /^\d{4}/.test(a) !== /^\d{4}/.test(b) ? (/^\d{4}/.test(a) ? -1 : 1) : b.localeCompare(a)).map(([key, facts]) => field(`Photographie · ${facts.snapshot}`, 'index-facts', facts, { ...facts.metadata, note: `${facts.provenance} Clé : ${key}` })), ...Object.entries(INDEX_RETURNS[id] ?? {}).map(([date, series]) => field(`Rendements d’indice · ${date}`, 'index-returns', series, series.metadata))] };
 }
 function companyRecord(company) {
-  const scope = `${company.name} · comptes consolidés · USD`;
+  const scope = `${company.name} · comptes consolidés · ${company.currency}`;
   const fields = [field('Activité', 'companies', company.activity, { url: company.sourceUrl, checkedAt: company.activityReviewedAt, scope, dateStatus: 'not-applicable', method: 'Présentation éditoriale de l’activité ; revue distincte des résultats' })];
-  for (const [key, label] of [['annual', 'Comptes annuels'], ['quarter', 'Comptes trimestriels']]) {
+  for (const [key, label] of [['annual', 'Comptes annuels'], ['quarter', 'Comptes trimestriels'], ['halfYear', 'Comptes semestriels']]) {
     const period = company[key];
-    if (period) fields.push(field(label, 'companies', period, { url: period.sourceUrl ?? company.accountsSourceUrl, asOf: period.end, checkedAt: company.accountsObservedAt, currency: company.currency, scope, periodStart: period.start, periodEnd: period.end, method: 'Comptes consolidés GAAP SEC ou publication officielle ; période annuelle ou trimestrielle, jamais un cumul présenté comme un trimestre ; FCF = flux d’exploitation moins acquisitions d’immobilisations (et incorporels pour Nvidia)' }));
+    if (period) fields.push(field(label, 'companies', period, { url: period.sourceUrl ?? company.accountsSourceUrl, asOf: period.end, checkedAt: company.accountsObservedAt, currency: company.currency, scope, periodStart: period.start, periodEnd: period.end, method: 'Comptes consolidés GAAP/IFRS SEC ou publication officielle ; période annuelle, semestrielle ou trimestrielle, jamais un cumul présenté comme un trimestre ; FCF = flux d’exploitation moins acquisitions d’immobilisations (et incorporels pour Nvidia)' }));
   }
   if (company.quote) fields.push(field('Cours de clôture', 'companies', company.quote.price, { url: company.quote.sourceUrl, asOf: company.quote.asOf, checkedAt: company.quote.observedAt, currency: company.currency, scope: `${company.symbol} · action cotée`, method: 'Clôture brute de la dernière séance précédant la date locale de collecte ; aucune séance en cours' }));
   for (const [key, label] of [['trailing', 'BPA sur douze mois'], ['balance', 'Dette et trésorerie'], ['shares', 'Actions en circulation']]) {
     const value = company[key];
     if (value) fields.push(field(label, 'companies', value, { url: value.sourceUrl ?? value.sourceUrls?.[0] ?? company.accountsSourceUrl, asOf: value.asOf ?? value.end, checkedAt: value.observedAt, currency: company.currency, scope, method: value.definition ?? (key === 'balance' ? 'Trésorerie et équivalents du bilan officiel ; dette nette omise si une composante manque' : 'Nombre d’actions à la date du bilan ; capitalisation indicative au cours de clôture') }));
   }
+  if (company.history) for (const year of company.history.years) fields.push(field(`Historique annuel · ${year.end}`, 'companies', year, { url: year.sourceUrl, asOf: year.end, checkedAt: company.history.observedAt, currency: company.currency, scope, periodStart: year.start, periodEnd: year.end, method: company.history.definition }));
+  if (company.estimates) fields.push(field('Estimations prévisionnelles', 'companies', company.estimates, { url: company.estimates.sourceUrl, checkedAt: company.estimates.observedAt, currency: company.currency, scope, method: 'PER prévisionnel = clôture Yahoo / BPA estimé du prochain exercice fiscal Finviz ; PEG = ce PER / croissance annuelle estimée du BPA sur cinq ans (en points de pourcentage)', note: company.estimates.earningsBasis }));
   if (company.valuation) fields.push(field('Valorisation', 'companies', company.valuation, { url: company.valuation.sourceUrl, checkedAt: company.valuation.observedAt, currency: company.currency, scope, method: 'Ratios fournis par Alpha Vantage ; horizons prévisionnels et méthode PEG non précisés', note: 'La date du relevé ne certifie pas une date de cours ; ratios omis de la publication après sept jours ou si les comptes sous-jacents sont dépassés.' }));
-  return { id: `company:${company.id}`, type: 'company', name: company.name, aliases: [company.symbol, company.cik, company.id], consumers: [{ tool: 'Analyse d’entreprise', path: '/analyse-entreprise' }], fields };
+  return { id: `company:${company.id}`, type: 'company', name: company.name, aliases: [company.symbol, company.cik, company.id].filter(Boolean), consumers: [{ tool: 'Analyse d’entreprise', path: '/analyse-entreprise' }], fields };
 }
 export const DATA_CATALOG = Object.freeze([
   ...COMPANIES.map(companyRecord),

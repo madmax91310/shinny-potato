@@ -8,7 +8,8 @@
     "activity": "Apple vend des iPhone, des Mac et des accessoires. Elle gagne aussi de l’argent avec ses services, comme l’App Store, iCloud et ses abonnements.",
     "watch": "La demande pour l’iPhone et la place des services dans ses revenus sont deux points à suivre.",
     "sourceUrl": "https://www.apple.com/business/",
-    "activityReviewedAt": "2026-10-07"
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "iPhone, Mac et services"
   },
   {
     "id": "microsoft",
@@ -19,7 +20,8 @@
     "activity": "Microsoft vend des logiciels et des abonnements, comme Windows et Microsoft 365. Avec Azure, elle loue aussi aux entreprises la puissance informatique dont elles ont besoin.",
     "watch": "Pour le cloud et l’IA, il faut regarder si la croissance des revenus suit le rythme des investissements.",
     "sourceUrl": "https://www.microsoft.com/en-us/Investor/",
-    "activityReviewedAt": "2026-10-07"
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Logiciels et cloud Azure"
   },
   {
     "id": "nvidia",
@@ -30,7 +32,8 @@
     "activity": "Nvidia conçoit des puces et des logiciels. Ses produits servent notamment à entraîner et à utiliser des modèles d’intelligence artificielle dans les centres de données, ainsi qu’à faire tourner les jeux vidéo.",
     "watch": "Les dépenses de ses grands clients et les restrictions à l’exportation peuvent peser sur son activité.",
     "sourceUrl": "https://investor.nvidia.com/",
-    "activityReviewedAt": "2026-10-07"
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Puces, centres de données et IA"
   },
   {
     "id": "alphabet",
@@ -41,7 +44,8 @@
     "activity": "Alphabet est la maison mère de Google. Elle gagne notamment de l’argent avec les publicités sur Google et YouTube, mais aussi avec ses services cloud et ses abonnements.",
     "watch": "La place de la publicité et l’évolution des usages de recherche avec l’IA sont à surveiller.",
     "sourceUrl": "https://abc.xyz/investor/",
-    "activityReviewedAt": "2026-10-07"
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Google, YouTube et cloud"
   },
   {
     "id": "amazon",
@@ -52,6 +56,85 @@
     "activity": "Amazon vend des produits en ligne et facture des services aux vendeurs de sa marketplace. Elle gagne aussi de l’argent avec la publicité, les abonnements Prime et son cloud AWS.",
     "watch": "La rentabilité du commerce et celle d’AWS méritent d’être regardées séparément : elles ne racontent pas la même chose.",
     "sourceUrl": "https://ir.aboutamazon.com/",
-    "activityReviewedAt": "2026-10-07"
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Commerce en ligne et cloud AWS"
+  },
+  {
+    "id": "lvmh",
+    "symbol": "MC.PA",
+    "name": "LVMH",
+    "currency": "EUR",
+    "cik": null,
+    "activity": "LVMH vend des produits de luxe à travers des maisons comme Louis Vuitton et Dior. Le groupe est aussi présent dans les vins et spiritueux, les parfums, les montres et la distribution, notamment avec Sephora.",
+    "sourceUrl": "https://www.lvmh.com/en/investors/",
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Luxe et distribution",
+    "accountingStandard": "IFRS",
+    "quoteListing": "Euronext Paris · EUR"
+  },
+  {
+    "id": "air-liquide",
+    "symbol": "AI.PA",
+    "name": "Air Liquide",
+    "currency": "EUR",
+    "cik": null,
+    "activity": "Air Liquide produit et fournit des gaz à l’industrie et à la santé, comme l’oxygène, l’azote et l’hydrogène. Ses clients les utilisent notamment dans leurs usines, leurs procédés de fabrication et les soins médicaux.",
+    "sourceUrl": "https://www.airliquide.com/investors",
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Gaz industriels et médicaux",
+    "accountingStandard": "IFRS",
+    "quoteListing": "Euronext Paris · EUR"
+  },
+  {
+    "id": "schneider",
+    "symbol": "SU.PA",
+    "name": "Schneider Electric",
+    "currency": "EUR",
+    "cik": null,
+    "activity": "Schneider Electric vend des équipements et des logiciels pour distribuer l’électricité, suivre les consommations et automatiser les installations. Ses produits équipent notamment les bâtiments, les usines et les centres de données.",
+    "sourceUrl": "https://www.se.com/ww/en/about-us/investor-relations/",
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Énergie et automatisation",
+    "accountingStandard": "IFRS",
+    "quoteListing": "Euronext Paris · EUR"
+  },
+  {
+    "id": "totalenergies",
+    "symbol": "TTE",
+    "name": "TotalEnergies",
+    "currency": "USD",
+    "cik": null,
+    "activity": "TotalEnergies produit et commercialise du pétrole, du gaz et de l’électricité. Le groupe exploite aussi des raffineries, vend des carburants et développe des capacités de production d’électricité renouvelable.",
+    "sourceUrl": "https://totalenergies.com/investors",
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Pétrole, gaz et électricité",
+    "accountingStandard": "IFRS",
+    "quoteListing": "NYSE · action ordinaire · USD"
+  },
+  {
+    "id": "visa",
+    "symbol": "V",
+    "name": "Visa",
+    "currency": "USD",
+    "cik": "0001403161",
+    "activity": "Visa exploite un réseau qui permet de faire circuler les paiements entre les commerçants et les banques. Elle facture notamment des services de traitement des transactions et des paiements internationaux.",
+    "sourceUrl": "https://investor.visa.com/",
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Réseau de paiements",
+    "accountingStandard": "GAAP",
+    "quoteListing": "Action américaine · USD"
+  },
+  {
+    "id": "costco",
+    "symbol": "COST",
+    "name": "Costco",
+    "currency": "USD",
+    "cik": "0000909832",
+    "activity": "Costco exploite des magasins-entrepôts où ses membres achètent des produits alimentaires et d’autres biens. L’entreprise gagne de l’argent avec les ventes, mais aussi avec les cotisations de ses abonnés.",
+    "sourceUrl": "https://investor.costco.com/",
+    "activityReviewedAt": "2026-10-07",
+    "imageSubtitle": "Magasins-entrepôts et abonnements",
+    "accountingStandard": "GAAP",
+    "quoteListing": "Action américaine · USD"
   }
 ]

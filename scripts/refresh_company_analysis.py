@@ -1,4 +1,4 @@
-"""Daily SEC accounts + completed-session prices; optional Alpha Vantage enrichment."""
+"""Daily official accounts/history, completed-session prices and public estimates."""
 import argparse
 import datetime as dt
 import json
@@ -31,6 +31,10 @@ def fetch_json(url):
                 if len(raw) > 12_000_000:
                     raise ValueError('Response too large')
                 return json.loads(raw, parse_constant=lambda _: (_ for _ in ()).throw(ValueError('Nonfinite JSON')))
+        except urllib.error.HTTPError as error:
+            if error.code in (400, 401, 403, 404) or attempt == 2:
+                raise
+            time.sleep(2 ** attempt)
         except (urllib.error.URLError, TimeoutError):
             if attempt == 2:
                 raise
@@ -149,9 +153,46 @@ def parse_accounts(body, profile, today):
                                  'definition':'Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus',
                                  'tags':{'cash':cash_tag, 'debt':tags}}
     shares, _ = instant(['CommonStockSharesOutstanding'], 'shares')
-    if shares is not None and shares > 0 and profile['id'] != 'alphabet':
+    if shares is not None and shares > 0 and profile['id'] not in ('alphabet','visa'):
         result['shares'] = {'asOf':end, 'outstanding':shares}
     return result
+
+
+def parse_history(body, profile, today):
+    if str(body.get('cik', '')).zfill(10) != profile['cik']:
+        raise ValueError('Wrong SEC history identity')
+    revenues = fact_rows(body, REVENUE, 'USD', '10-K', 330, 400, today)
+    incomes = fact_rows(body, ['NetIncomeLoss'], 'USD', '10-K', 330, 400, today)
+    result = []
+    for revenue in sorted(revenues, key=lambda r: r['end'], reverse=True):
+        net = aligned(incomes, revenue)
+        if not net or revenue['val'] <= 0:
+            continue
+        if any(r['end'] == revenue['end'] for r in result):
+            raise ValueError('Ambiguous annual history duration')
+        result.append({'start': revenue['start'], 'end': revenue['end'],
+                       'revenue': revenue['val'], 'netIncome': net['val'],
+                       'margin': net['val'] / revenue['val'] * 100,
+                       'filedAt': max(revenue['filed'], net['filed']),
+                       'sourceUrl': f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json"})
+        if len(result) == 5:
+            break
+    return validate_history(result, today)
+
+
+def validate_history(rows, today):
+    rows = sorted(rows, key=lambda r: r['end'])
+    if not 3 <= len(rows) <= 5:
+        raise ValueError('At least three annual observations required')
+    for row in rows:
+        end = dt.date.fromisoformat(row['end'])
+        revenue, income = numeric(row['revenue']), numeric(row['netIncome'])
+        if end > today or revenue <= 0:
+            raise ValueError('Invalid annual history')
+        row['margin'] = income / revenue * 100
+    if any(not 330 <= (dt.date.fromisoformat(b['end']) - dt.date.fromisoformat(a['end'])).days <= 400 for a,b in zip(rows, rows[1:])):
+        raise ValueError('Missing or duplicate fiscal year')
+    return rows
 
 
 def parse_quote(body, profile, now):
@@ -219,23 +260,38 @@ def main():
             continue
         ident = profile['id']; old = data['companies'].get(ident, {})
         item = dict(old); status = {}
-        url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json"
+        published = None
+        collected_history = None
+        from company_extended_publications import EXTENDED, EUROPE
+        extended = ident in EXTENDED
+        url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json" if profile.get('cik') else profile['sourceUrl']
         sec_accounts = None
+        sec_body = None
         try:
+            if ident in EUROPE:
+                raise ValueError('IFRS issuer adapter required')
             if args.publications_only:
                 raise ValueError('Issuer fallback requested')
-            sec_accounts = parse_accounts(fetch_json(url), profile, now.date())
+            sec_body = fetch_json(url)
+            sec_accounts = parse_accounts(sec_body, profile, now.date())
         except Exception as error:
-            status['sec'] = type(error).__name__
+            status['sec'] = 'not-applicable-ifrs' if ident in EUROPE else type(error).__name__
         try:
-            from company_publications import collect
+            if extended:
+                from company_extended_publications import collect
+            else:
+                from company_publications import collect
             published = collect(profile, now.date(), old)
             accounts = dict(sec_accounts or published)
             if sec_accounts:
                 # Never mix disagreeing earnings periods into a trailing ratio.
                 latest = sec_accounts['quarter'] or sec_accounts['annual']
                 matching = published['quarter'] or published['annual']
-                if latest['end'] != matching['end'] or any(abs(latest[k]-matching[k]) > 1 for k in ['revenue','netIncome']):
+                if latest['end'] < matching['end']:
+                    # A press release can precede the SEC 10-K/10-Q filing.
+                    sec_accounts = None
+                    accounts = dict(published)
+                elif latest['end'] != matching['end'] or any(abs(latest[k]-matching[k]) > 1 for k in ['revenue','netIncome']):
                     raise ValueError('Issuer/SEC results disagree')
                 for block in ['annual','quarter']:
                     official = published.get(block)
@@ -245,12 +301,14 @@ def main():
                             if field not in existing and field in official:
                                 existing[field]=official[field]
                                 existing.setdefault('additionalSourceUrls',[]).append(official['sourceUrl'])
+            collected_history = published.get('historyYears')
             accounts['trailing'] = published.get('trailing')
-            accounts['quarters'] = published['quarters']
+            accounts['quarters'] = published.get('quarters', [])
             status['publications'] = 'updated'
             source = url if sec_accounts else published['annual']['sourceUrl']
         except Exception as error:
             status['publications'] = type(error).__name__
+            status['publicationsDetail'] = str(error)[:900]
             accounts = sec_accounts
             source = url
         try:
@@ -260,9 +318,13 @@ def main():
                 raise ValueError('Annual accounts regressed')
             if old.get('quarter') and (accounts.get('quarter') or {}).get('end', accounts['annual']['end']) < old['quarter']['end']:
                 raise ValueError('Quarter accounts regressed')
+            if old.get('halfYear') and (accounts.get('halfYear') or {}).get('end', accounts['annual']['end']) < old['halfYear']['end']:
+                raise ValueError('Half-year accounts regressed')
             # Replace account blocks, not arbitrary metadata from an older collection.
-            for block in ['trailing','quarters']:
+            for block in ['trailing','quarters','halfYear']:
                 item.pop(block, None)
+            accounts.pop('historyYears', None)
+            accounts.pop('historyObservedAt', None)
             item.update(accounts, accountsObservedAt=now.date().isoformat(), accountsSourceUrl=source)
             for block in ['balance','shares']:
                 if block in accounts:
@@ -272,11 +334,53 @@ def main():
                 status['trailing'] = 'updated'
             else:
                 status['trailing'] = 'unavailable'
-                failures.append(ident + ':trailing')
+                if ident not in EUROPE or ident == 'totalenergies':
+                    failures.append(ident + ':trailing')
+                else:
+                    status['trailing'] = 'not-reported'
             status['accounts'] = 'updated'
         except Exception as error:
             status['accounts'] = type(error).__name__
             failures.append(ident + ':accounts')
+        try:
+            if extended and collected_history:
+                history = validate_history(collected_history, now.date())
+            elif sec_body is not None:
+                history = parse_history(sec_body, profile, now.date())
+            else:
+                from company_publications import collect_history
+                cached = old.get('history', {})
+                checked = dt.date.fromisoformat(cached['observedAt']) if cached.get('observedAt') else None
+                if (checked and 0 <= (now.date()-checked).days <= 30
+                    and 3 <= len(cached.get('years', [])) <= 5
+                    and cached['years'][-1]['end'] == item['annual']['end']):
+                    history = None
+                else:
+                    history = validate_history(collect_history(profile, now.date()), now.date())
+            if history is not None:
+                annual = item['annual']
+                if history[-1]['end'] != annual['end'] or any(abs(history[-1][k]-annual[k]) > 1 for k in ['revenue','netIncome']):
+                    raise ValueError('History does not match latest official annual accounts')
+                item['history'] = {'years': history, 'observedAt': published.get('historyObservedAt', now.date().isoformat()) if extended and published else now.date().isoformat(),
+                                   'definition': ('Comptes annuels consolidés IFRS ; résultat net part du groupe / chiffre d’affaires' if ident in EUROPE else 'Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires')}
+            status['history'] = 'updated' if history is not None else 'cached'
+        except Exception as error:
+            status['history'] = type(error).__name__
+            failures.append(ident + ':history')
+        try:
+            if profile['currency'] != 'USD':
+                raise NotImplementedError('No verified estimates for this euro listing')
+            from company_forecasts import collect as collect_forecasts
+            estimates = collect_forecasts(profile, now.date())
+            estimates['accountsEndAtCollection'] = (item.get('quarter') or item.get('halfYear') or item['annual'])['end']
+            item['estimates'] = estimates
+            status['estimates'] = 'updated'
+        except Exception as error:
+            status['estimates'] = type(error).__name__
+            if profile['currency'] == 'USD':
+                failures.append(ident + ':estimates')
+            else:
+                status['estimates'] = 'unavailable-for-euro-listing'
         quote_url = 'https://query2.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(profile['symbol']) + '?range=2y&interval=1d&events=splits'
         try:
             quote = parse_quote(fetch_json(quote_url), profile, now)
@@ -287,12 +391,12 @@ def main():
         except Exception as error:
             status['quote'] = type(error).__name__
             failures.append(ident + ':quote')
-        if key:
-            # Five symbols = five calls per daily run; never store URLs containing the key.
+        if key and profile['currency'] == 'USD':
+            # Never store URLs containing the optional provider key.
             try:
                 endpoint = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'function':'OVERVIEW', 'symbol':profile['symbol'], 'apikey':key})
                 valuation = parse_overview(fetch_json(endpoint), profile, now)
-                newest_period = max(item.get('annual', {}).get('end', ''), (item.get('quarter') or {}).get('end', ''))
+                newest_period = max(item.get('annual', {}).get('end', ''), (item.get('quarter') or {}).get('end', ''), (item.get('halfYear') or {}).get('end', ''))
                 if valuation['accountsAsOf'] < newest_period:
                     raise ValueError('Valuation lags published accounts')
                 item['valuation'] = valuation
@@ -301,7 +405,7 @@ def main():
                 status['valuation'] = type(error).__name__
                 failures.append(ident + ':valuation')
         else:
-            status['valuation'] = 'published-accounts-only'
+            status['valuation'] = 'public-finviz-estimates' if status.get('estimates') == 'updated' else 'published-accounts-only'
         if item:
             data['companies'][ident] = item
         report['companies'][ident] = status

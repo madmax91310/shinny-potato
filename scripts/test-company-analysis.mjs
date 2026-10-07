@@ -2,7 +2,7 @@ import { companyImageModel } from '../src/pages/company-analysis/image.js'
 import assert from 'node:assert/strict'
 import { searchData } from '../src/data/catalog.js'
 import { COMPANIES } from '../src/pages/company-analysis/data.js'
-import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics, marginExplanation } from '../src/pages/company-analysis/lib.js'
+import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics, marginExplanation, activeEstimates, activeHistory } from '../src/pages/company-analysis/lib.js'
 
 const now = new Date('2026-10-07T07:00:00Z')
 const base = { ...COMPANIES[0], accountsObservedAt: '2026-10-07', annual: {
@@ -61,9 +61,15 @@ assert.equal(activeBalance(computed,now),null)
 for (const company of COMPANIES) {
   const observationNow = new Date(`${company.accountsObservedAt}T12:00:00Z`)
   assert(canPublish(company,observationNow),`${company.name}: valid initial accounts`)
+  if(company.currency === 'USD') {
+    assert.equal(company.quarters?.length,4,`${company.name}: four published quarters`)
+    assert.equal(company.trailing?.end,company.quarters[0].end)
+    assert(Math.abs(company.trailing.dilutedEPS - company.quarters.reduce((sum,q)=>sum+q.dilutedEPS,0)) < 1e-9)
+  }
   text = buildTweetText(company,observationNow)
   const record = searchData(company.symbol,'company').find(record => record.id === `company:${company.id}`)
   assert(record)
+  assert.equal(record.fields.find(field => field.label === 'Comptes annuels').metadata.currency,company.currency)
   assert.equal(record.fields.find(field => field.label === 'Activité').metadata.checkedAt, company.activityReviewedAt)
   assert.equal(record.fields.find(field => field.label === 'Cours de clôture').metadata.checkedAt, company.quote.observedAt)
   assert(text.includes(company.activity)); assert(!/NaN|undefined|Infinity/.test(text))
@@ -118,3 +124,53 @@ for (const company of COMPANIES) {
   assert(!/NaN|undefined|Infinity/.test(JSON.stringify(model)))
 }
 console.log('Company image: live PER, missing/stale values, dated annual results and losses OK.')
+
+const forecasted = {...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
+  estimates:{forwardEPS:5,growthEPS5Y:10,observedAt:'2026-10-07',accountsEndAtCollection:'2025-12-31'}}
+assert.equal(activeEstimates(forecasted,now).forwardPE,20)
+assert.equal(activeEstimates(forecasted,now).peg,2)
+assert.match(buildTweetText(forecasted,now), /prochain exercice fiscal/)
+assert.match(buildTweetText(forecasted,now), /sur cinq ans/)
+assert.equal(activeEstimates({...forecasted,quote:{...forecasted.quote,price:200}},now).peg,4)
+for (const estimates of [{...forecasted.estimates,observedAt:'2026-09-01'},
+  {...forecasted.estimates,forwardEPS:-5}, {...forecasted.estimates,forwardEPS:null},
+  {...forecasted.estimates,accountsEndAtCollection:'2024-12-31'}]) {
+  assert.equal(activeEstimates({...forecasted,estimates},now),null)
+}
+assert.equal(activeEstimates({...forecasted,quote:{...forecasted.quote,asOf:'2026-01-01'}},now),null)
+assert.equal(activeEstimates({...forecasted,estimates:{...forecasted.estimates,observedAt:'2026-10-05'},quote:{...forecasted.quote,splits:['2026-10-06']}},now),null)
+for (const growthEPS5Y of [-10,0,null]) {
+  const company = {...forecasted,estimates:{...forecasted.estimates,growthEPS5Y}}
+  assert.equal(activeEstimates(company,now).peg,null)
+  assert(!buildTweetText(company,now).includes('Le PEG est'))
+}
+const historic = {...base, history:{observedAt:'2026-10-07',years:[
+  {end:'2023-12-31',revenue:100e9,netIncome:-2e9,margin:999},
+  {end:'2024-12-31',revenue:110e9,netIncome:5e9},
+  {end:'2025-12-31',revenue:120e9,netIncome:8e9},
+]}}
+assert.equal(activeHistory(historic,now)[0].margin,-2)
+assert.match(buildTweetText(historic,now), /sur 3 exercices/)
+assert.match(buildTweetText(historic,now), /sur l’ensemble de la période/)
+assert(!buildTweetText(historic,now).includes('−500'))
+assert.deepEqual(activeHistory({...historic,history:{...historic.history,observedAt:'2026-08-01'}},now),[])
+const mismatch = structuredClone(historic); mismatch.history.years.at(-1).revenue=121e9
+assert.deepEqual(activeHistory(mismatch,now),[])
+const gap = structuredClone(historic);gap.history.years[0].end='2022-12-31'
+assert.deepEqual(activeHistory(gap,now),[])
+console.log('Forward PER/PEG: common close, missing/negative growth, splits, freshness and new results; annual history: losses, periods, recalculated margins and matching accounts OK.')
+
+const european = {...base, currency:'EUR', accountingStandard:'IFRS', halfYear:{...base.annual,end:'2026-06-30',durationMonths:6}, annual:{...base.annual,dilutedEPS:5}, quote:{price:100,asOf:'2026-10-06',splits:[]}, estimates:null}
+assert.equal(calculatedRatios(european,now).peAnnual,20)
+assert.equal(calculatedRatios(european,now).peTTM,undefined)
+assert.match(buildTweetText(european,now),/Semestre/)
+assert.match(buildTweetText(european,now),/Ce PER annuel utilise cet exercice précis/)
+assert(!buildTweetText(european,now).includes('prochain exercice fiscal'))
+assert.equal(calculatedRatios({...european,quote:{...european.quote,splits:['2026-06-01']}},now).peAnnual,undefined)
+const weeks = {...base,quarter:{...base.annual,end:'2026-08-30',durationWeeks:16}}
+assert.match(buildTweetText(weeks,now),/Trimestre de 16 semaines/)
+assert.equal(activeEstimates({...european,estimates:{...forecasted.estimates,accountsEndAtCollection:'2025-12-31'}},now),null)
+assert.equal(companyImageModel(european,now).peBasis,'Exercice 2025')
+console.log('European half-years, fiscal weeks, annual PER labeling, splits and forecast account freshness OK.')
+
+for(const price of [-10,0,NaN,Infinity]) assert.deepEqual(calculatedRatios({...european,quote:{...european.quote,price}},now),{})

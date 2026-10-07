@@ -1,17 +1,10 @@
 import { amount, canPublish, dateLabel, calculatedRatios, activeValuation, fresh } from './lib.js'
 
-const ART = {
-  apple: 'iPhone, Mac et services',
-  microsoft: 'Logiciels et cloud Azure',
-  nvidia: 'Puces, centres de données et IA',
-  alphabet: 'Google, YouTube et cloud',
-  amazon: 'Commerce en ligne et cloud AWS',
-}
 const finite = value => typeof value === 'number' && Number.isFinite(value)
 const fr = value => new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(value)
 const images = new Map()
-function loadArt(id) {
-  if (!ART[id]) return Promise.resolve(null)
+function loadArt(id, subtitle) {
+  if (!subtitle) return Promise.resolve(null)
   if (!images.has(id)) {
     const promise = new Promise((resolve, reject) => {
       const image = new Image()
@@ -38,7 +31,9 @@ function change(current, previous, income = false) {
 export function companyImageModel(company, now = new Date()) {
   if (!canPublish(company, now)) throw new Error('Les comptes sont indisponibles ou trop anciens pour générer une image.')
   const a = company.annual
-  const ratio = calculatedRatios(company, now).peTTM ?? activeValuation(company, now)?.peTTM
+  const ratios = calculatedRatios(company, now)
+  const historicalPER = ratios.peTTM ?? activeValuation(company, now)?.peTTM
+  const ratio = historicalPER ?? ratios.peAnnual
   const pe = finite(ratio) && ratio > 0 ? ratio : null
   const quoteDate = company.quote && finite(company.quote.price) && company.quote.price > 0 && fresh(company.quote.asOf, 10, now) ? company.quote.asOf : null
   const amountParts = value => {
@@ -48,7 +43,8 @@ export function companyImageModel(company, now = new Date()) {
   }
   return {
     name: company.name,
-    subtitle: ART[company.id] ?? company.symbol,
+    subtitle: company.imageSubtitle ?? company.symbol,
+    peBasis: historicalPER ? 'Bénéfices sur 12 mois' : ratios.peAnnual ? `Exercice ${a.end.slice(0,4)}` : '',
     annualDate: `Exercice clos le ${dateLabel(a.end)}`,
     columns: [
       { label: 'Chiffre d’affaires', parts: amountParts(a.revenue), change: change(a.revenue, a.previousRevenue) },
@@ -69,7 +65,7 @@ function text(ctx, value, x, y, size, color, maxWidth, weight = 400, family = 'A
 }
 export async function renderCompanyImage(company, now = new Date()) {
   const model = companyImageModel(company, now)
-  const art = await loadArt(company.id)
+  const art = await loadArt(company.id, company.imageSubtitle)
   const canvas = document.createElement('canvas')
   canvas.width = 1200; canvas.height = 1200
   const ctx = canvas.getContext('2d')
@@ -95,7 +91,7 @@ export async function renderCompanyImage(company, now = new Date()) {
   text(ctx, model.valuationDate, 921, 351, 21, '#475365', 205)
   text(ctx, 'PER', 921, 401, 29, '#14171c', 205, 600)
   text(ctx, model.pe ?? 'Non disponible', 919, 487, model.pe ? 77 : 27, model.pe ? '#0063c9' : '#657080', 210, model.pe ? 800 : 400)
-  if (model.pe) text(ctx, 'Bénéfices sur 12 mois', 921, 530, 22, '#475365', 205)
+  if (model.pe) text(ctx, model.peBasis, 921, 530, 22, '#475365', 205)
   ctx.fillStyle = '#f8f9fb';ctx.fillRect(0, 1140, 1200, 60)
   ctx.textAlign = 'center';text(ctx, 'Épargnant Libre', 600, 1180, 30, '#111317', 450, 400, 'Georgia, serif')
   return canvas
