@@ -71,6 +71,9 @@ Sources : [code yfinance](https://github.com/ranaroussi/yfinance/blob/main/yfina
   de collecte ne doit pas être présentée comme la date de révision du consensus.
   Le test de ces prévisions depuis GitHub est disponible dans
   [le second workflow](https://github.com/madmax91310/shinny-potato/actions/runs/37580853841).
+  Résultat confirmé : TimeoutError pour les cinq symboles depuis le runner.
+  Le workflow vert signifie que le diagnostic s'est terminé et a conservé
+  son rapport ; il ne signifie pas que Nasdaq était accessible.
 
 La recherche trouve donc une source anonyme de ratios datés, mais ne valide pas
 encore une chaîne complète, fiable et fraîche pour la publication automatique.
