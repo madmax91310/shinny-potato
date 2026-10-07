@@ -3,7 +3,8 @@ import { formatCapital, formatPercent } from './lib.js'
 import { loadEditorialFont, loadArtImage } from '../tweet-midi/anniversaryArt.js'
 import { loadDuelArt, drawDuelArt } from './visualIdentity.js'
 
-const W = 1600, H = 1380, GOLD = '#e5c48b', INK = '#fff2d7', MUTED = '#ccd0cb'
+const HEADER_SPACE = 80
+const W = 1600, H = 1380 + HEADER_SPACE, GOLD = '#e5c48b', INK = '#fff2d7', MUTED = '#ccd0cb'
 const CARD_W = 530, CARD_Y = 100, CARD_H = 800
 function text(ctx, value, x, y, size, color = INK, editorial = false, align = 'left') {
   ctx.font = editorial ? `500 ${size}px Georgia, serif` : `600 ${size}px Arial, sans-serif`
@@ -70,10 +71,12 @@ export async function renderDuelImage(duel) {
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
   const ctx = canvas.getContext('2d')
   ctx.fillStyle='#071018'; ctx.fillRect(0,0,W,H)
-  ctx.drawImage(studio,0,0,W,1067)
+  ctx.drawImage(studio,0,HEADER_SPACE,W,1067)
   const symbol = duel.currency === 'USD' ? '$' : '€'
   text(ctx, `Début ${years[0]} → Fin ${years.at(-1)}`, W / 2, 30, 39, INK, true, 'center')
   text(ctx, `10 000 ${symbol} au départ · Sans versement supplémentaire`, W / 2, 85, 27, MUTED, false, 'center')
+  // Keep the studio plates below the two header lines, including their shadows.
+  ctx.save(); ctx.translate(0, HEADER_SPACE)
   portfolio(ctx, duel.a, aImages, 'A', 180, duel.currency, '#9dd9bb', false)
   portfolio(ctx, duel.b, bImages, 'B', 890, duel.currency, GOLD, true)
   text(ctx, 'VS', W / 2, 525, 44, GOLD, true, 'center')
@@ -93,5 +96,6 @@ export async function renderDuelImage(duel) {
   text(ctx, `En ${duel.currency} · Revenus réinvestis · Rééquilibrage annuel · Hors courtage et fiscalité`, W / 2, 1279, 22, MUTED, false, 'center')
   text(ctx, 'Les performances passées ne préjugent pas des performances futures.', W / 2, 1312, 20, MUTED, false, 'center')
   text(ctx, 'Épargnant Libre', W / 2, 1346, 23, GOLD, true, 'center')
+  ctx.restore()
   return canvas.toDataURL('image/png')
 }
