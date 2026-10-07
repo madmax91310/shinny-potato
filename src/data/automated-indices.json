@@ -7810,13 +7810,13 @@
   "ftse-epra-nareit-developed-dividend-plus": {
     "facts": {
       "index": "FTSE EPRA Nareit Developed Dividend+",
-      "asOf": "2026-08-31",
-      "constituents": 313,
+      "asOf": "2026-09-30",
+      "constituents": 320,
       "sectorMethod": "Property Sector Breakdown",
       "countries": [
         [
           "🇦🇺 Australie",
-          3.84
+          3.86
         ],
         [
           "Austria",
@@ -7824,11 +7824,11 @@
         ],
         [
           "Belgium",
-          1.1
+          1.08
         ],
         [
           "🇨🇦 Canada",
-          2.23
+          2.25
         ],
         [
           "Finland",
@@ -7836,23 +7836,27 @@
         ],
         [
           "🇫🇷 France",
-          2.09
+          1.96
         ],
         [
           "🇩🇪 Allemagne",
-          1.59
+          1.45
+        ],
+        [
+          "Greece                                    -                       -          -",
+          0.03
         ],
         [
           "Hong Kong",
-          3.58
+          3.66
         ],
         [
           "Ireland",
-          0.04
+          0.05
         ],
         [
           "Israel",
-          0.59
+          0.6
         ],
         [
           "Italy",
@@ -7860,11 +7864,11 @@
         ],
         [
           "🇯🇵 Japon",
-          7.04
+          7.35
         ],
         [
           "🇰🇷 Corée du Sud",
-          0.12
+          0.13
         ],
         [
           "Netherlands",
@@ -7872,7 +7876,7 @@
         ],
         [
           "New Zealand",
-          0.23
+          0.25
         ],
         [
           "Norway",
@@ -7880,122 +7884,122 @@
         ],
         [
           "Singapore",
-          3.37
+          3.44
         ],
         [
           "Spain",
-          0.53
+          0.49
         ],
         [
           "Sweden",
-          1.06
+          0.95
         ],
         [
           "🇨🇭 Suisse",
-          1.69
+          1.67
         ],
         [
           "🇬🇧 Royaume-Uni",
-          4.2
+          4.12
         ],
         [
           "🇺🇸 États-Unis",
-          66.37
+          66.38
         ]
       ],
       "sectors": [
         [
           "Data Centers",
-          12.13
+          12.46
         ],
         [
           "Diversified",
-          16.81
+          16.74
         ],
         [
           "HealthCare",
-          8.01
+          8.23
         ],
         [
           "Industrial",
-          14.62
+          14.54
         ],
         [
           "Industrial/Office Mixed",
-          1.3
+          1.24
         ],
         [
           "Lodging/Resorts",
-          2.71
+          2.83
         ],
         [
           "Office",
-          5.11
+          5.05
         ],
         [
           "Residential",
-          12.42
+          12.21
         ],
         [
           "Retail",
-          18.72
+          18.39
         ],
         [
           "Self Storage",
-          5.52
+          5.51
         ],
         [
           "Speciality",
-          2.67
+          2.8
         ]
       ],
       "holdings": [
         [
           "Prologis",
-          7.68
+          7.53
         ],
         [
           "Equinix Inc",
-          5.97
+          6.1
+        ],
+        [
+          "Digital Realty Trust",
+          3.98
         ],
         [
           "Simon Property Group",
           3.93
         ],
         [
-          "Digital Realty Trust",
-          3.89
-        ],
-        [
           "Realty Income",
-          3.31
+          3.1
         ],
         [
           "Public Storage",
-          2.99
+          2.91
         ],
         [
           "Vivmark Residential",
-          2.87
+          2.83
         ],
         [
           "Ventas Inc",
-          2.56
+          2.66
         ],
         [
           "Iron Mountain",
-          1.97
+          2.01
         ],
         [
           "Extra Space Storage",
-          1.71
+          1.69
         ]
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
-        "checkedAt": "2026-10-05",
+        "checkedAt": "2026-10-07",
         "label": "Composition officielle automatisée · FTSE EPRA Nareit Developed Dividend+",
-        "sha256": "96387284b9195f4624f285a5942b113e9e13fe0b4ab26f4cbd5dfcb79131e867"
+        "sha256": "78261e94afa62a59639723ba959713a60ac8c1e608cf0da82d437a651adb0134"
       },
       "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
     },
@@ -8190,10 +8194,205 @@
           "sha256": "96387284b9195f4624f285a5942b113e9e13fe0b4ab26f4cbd5dfcb79131e867"
         },
         "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      },
+      "2026-09-30": {
+        "index": "FTSE EPRA Nareit Developed Dividend+",
+        "asOf": "2026-09-30",
+        "constituents": 320,
+        "sectorMethod": "Property Sector Breakdown",
+        "countries": [
+          [
+            "🇦🇺 Australie",
+            3.86
+          ],
+          [
+            "Austria",
+            0.04
+          ],
+          [
+            "Belgium",
+            1.08
+          ],
+          [
+            "🇨🇦 Canada",
+            2.25
+          ],
+          [
+            "Finland",
+            0.09
+          ],
+          [
+            "🇫🇷 France",
+            1.96
+          ],
+          [
+            "🇩🇪 Allemagne",
+            1.45
+          ],
+          [
+            "Greece                                    -                       -          -",
+            0.03
+          ],
+          [
+            "Hong Kong",
+            3.66
+          ],
+          [
+            "Ireland",
+            0.05
+          ],
+          [
+            "Israel",
+            0.6
+          ],
+          [
+            "Italy",
+            0.01
+          ],
+          [
+            "🇯🇵 Japon",
+            7.35
+          ],
+          [
+            "🇰🇷 Corée du Sud",
+            0.13
+          ],
+          [
+            "Netherlands",
+            0.14
+          ],
+          [
+            "New Zealand",
+            0.25
+          ],
+          [
+            "Norway",
+            0.05
+          ],
+          [
+            "Singapore",
+            3.44
+          ],
+          [
+            "Spain",
+            0.49
+          ],
+          [
+            "Sweden",
+            0.95
+          ],
+          [
+            "🇨🇭 Suisse",
+            1.67
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            4.12
+          ],
+          [
+            "🇺🇸 États-Unis",
+            66.38
+          ]
+        ],
+        "sectors": [
+          [
+            "Data Centers",
+            12.46
+          ],
+          [
+            "Diversified",
+            16.74
+          ],
+          [
+            "HealthCare",
+            8.23
+          ],
+          [
+            "Industrial",
+            14.54
+          ],
+          [
+            "Industrial/Office Mixed",
+            1.24
+          ],
+          [
+            "Lodging/Resorts",
+            2.83
+          ],
+          [
+            "Office",
+            5.05
+          ],
+          [
+            "Residential",
+            12.21
+          ],
+          [
+            "Retail",
+            18.39
+          ],
+          [
+            "Self Storage",
+            5.51
+          ],
+          [
+            "Speciality",
+            2.8
+          ]
+        ],
+        "holdings": [
+          [
+            "Prologis",
+            7.53
+          ],
+          [
+            "Equinix Inc",
+            6.1
+          ],
+          [
+            "Digital Realty Trust",
+            3.98
+          ],
+          [
+            "Simon Property Group",
+            3.93
+          ],
+          [
+            "Realty Income",
+            3.1
+          ],
+          [
+            "Public Storage",
+            2.91
+          ],
+          [
+            "Vivmark Residential",
+            2.83
+          ],
+          [
+            "Ventas Inc",
+            2.66
+          ],
+          [
+            "Iron Mountain",
+            2.01
+          ],
+          [
+            "Extra Space Storage",
+            1.69
+          ]
+        ],
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+          "checkedAt": "2026-10-07",
+          "label": "Composition officielle automatisée · FTSE EPRA Nareit Developed Dividend+",
+          "sha256": "78261e94afa62a59639723ba959713a60ac8c1e608cf0da82d437a651adb0134"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
       }
     },
     "returns": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "currency": "USD",
       "variant": "TOTAL",
       "values": [
@@ -8226,14 +8425,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
-        "checkedAt": "2026-10-05",
-        "sha256": "96387284b9195f4624f285a5942b113e9e13fe0b4ab26f4cbd5dfcb79131e867",
+        "checkedAt": "2026-10-07",
+        "sha256": "78261e94afa62a59639723ba959713a60ac8c1e608cf0da82d437a651adb0134",
         "label": "Rendements calendaires officiels automatisés · FTSE EPRA Nareit Developed Dividend+"
       },
       "performance": {
         "kind": "indice",
         "detail": "FTSE EPRA Nareit Developed Dividend+ · USD, dividendes réinvestis (Total Return FTSE), hors frais ETF",
-        "date": "2026-08-31"
+        "date": "2026-09-30"
       }
     },
     "returnsHistory": {
@@ -8279,6 +8478,50 @@
           "kind": "indice",
           "detail": "FTSE EPRA Nareit Developed Dividend+ · USD, dividendes réinvestis (Total Return FTSE), hors frais ETF",
           "date": "2026-08-31"
+        }
+      },
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            9.5
+          ],
+          [
+            2024,
+            2.2
+          ],
+          [
+            2023,
+            10.1
+          ],
+          [
+            2022,
+            -23.4
+          ],
+          [
+            2021,
+            26.5
+          ],
+          [
+            2020,
+            -8.7
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=ENGD",
+          "checkedAt": "2026-10-07",
+          "sha256": "78261e94afa62a59639723ba959713a60ac8c1e608cf0da82d437a651adb0134",
+          "label": "Rendements calendaires officiels automatisés · FTSE EPRA Nareit Developed Dividend+"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "FTSE EPRA Nareit Developed Dividend+ · USD, dividendes réinvestis (Total Return FTSE), hors frais ETF",
+          "date": "2026-09-30"
         }
       }
     }
@@ -12351,7 +12594,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-10-07",
-        "sha256": "3da7e6a31932038e18ae1189ded5cefe82fc162bbc980041ea7a18ec6c0e44eb",
+        "sha256": "4d78b835aa1fc202eb3857947426d6eca1c9967f3dc99e212ae26487e89824a1",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -12476,7 +12719,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-10-07",
-        "sha256": "3551411e484829902f90816a2d7397b7c47534eecade4b9b8c03cd87cf8ec5ee",
+        "sha256": "5f6aad77ad547cfedd5ee672e52402987ee8b7fc39d76f8a3d33eb3becd2c49a",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -13376,7 +13619,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
         "checkedAt": "2026-10-07",
-        "sha256": "7ecddf6de6d4a2b2e7a1936f853b68fd949e25faa7cb8df333994f2d21dd2314",
+        "sha256": "ff297f1ee7b6e3c9a5c48e4904bdd8515905df52e39816bc0f76f1eba928a635",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -13464,7 +13707,7 @@
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
         "checkedAt": "2026-10-07",
-        "sha256": "b835961f721e9bf8c6659e78683a583567c1566f85b425da176f8f856bbea623",
+        "sha256": "665fad9624ff78297d333645a1dc6335320bbca548ad2e23aae78befb27d8290",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -13552,7 +13795,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-10-07",
-        "sha256": "e1afae0ef55a8c121e2ab7c7d3e301c23125bfca6c9e132fe4a4d72482f7ff96",
+        "sha256": "47786c98e02fadb9f65f2b3b4fedc9791d537cc14dedf92fadb7e0d3bea615ef",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
