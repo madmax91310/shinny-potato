@@ -1043,6 +1043,19 @@
       "provider": "BNP Paribas",
       "enabled": false,
       "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+    },
+    {
+      "isin": "FR0007056841",
+      "name": "Amundi Dow Jones Industrial Average UCITS ETF",
+      "currency": "EUR",
+      "replication": "Indirect(Swap Based)",
+      "collectComposition": true,
+      "provider": "Amundi",
+      "parser": "amundi-index",
+      "exposureOnly": true,
+      "required": true,
+      "enabled": true,
+      "expectedIndex": "Dow Jones Industrial Average Net Total Return"
     }
   ]
 }

@@ -13,6 +13,7 @@ from collect_index_documents import msci_composition, msci_returns, ftse_composi
 from refresh_index_sources import merge_records
 from refresh_additional_etf import refresh
 from collect_amundi_index_exposure import parse_product as amundi_index
+from apply_etf_collection import merge_collection
 from collect_vanguard_etf import parse_api as vanguard_api
 from collect_dws_etf import parse_aum_workbook, parse_holdings as dws_holdings
 
@@ -130,6 +131,27 @@ class CompletedIssuerCoverage(unittest.TestCase):
             if defect == 'truncated': bad['breakDowns'][1]['breakDownData'] = bad['breakDowns'][1]['breakDownData'][:1]
             with self.subTest(defect=defect), self.assertRaises((ValueError, KeyError)):
                 amundi_index(bad, s, self.now)
+
+    def test_dow_index_exposure_preserves_share_characteristics(self):
+        p = self.fixture('amundi-dow-index-share.json')
+        share = self.share('FR0007056841')
+        result = amundi_index(p, share, self.now)
+        self.assertEqual(result['countries']['rows'], [{'name': 'United States', 'weightPct': 100.0}])
+        self.assertEqual(len(result['holdings']['rows']), 10)
+        self.assertEqual(result['sectors']['basis'], 'index')
+        self.assertEqual(result['sectors']['asOf'], '2026-10-02')
+        previous = json.loads((ROOT/'src/data/automated-etf.json').read_text())
+        before = previous[share['isin']]
+        merged = merge_collection({'checkedAt': self.now.isoformat(), 'shares': [result]}, previous, {})[share['isin']]
+        for field in ['characteristics', 'fees', 'aum', 'performance', 'sourceUrl', 'productId']:
+            if field in before:
+                self.assertEqual(merged[field], before[field])
+        for field in ['countries', 'sectors', 'holdings']:
+            self.assertEqual(merged[field]['basis'], 'index')
+        bad = copy.deepcopy(p)
+        bad['characteristics']['BENCHMARK_NAME'] = 'Dow Jones Industrial Average Price Return'
+        with self.assertRaises(ValueError):
+            amundi_index(bad, share, self.now)
 
     def test_vanguard_calendar_years_exclude_rolling_periods_and_use_fund_countries(self):
         p = self.fixture('vanguard-exact-share.json'); s = self.share('IE00B3VVMM84')

@@ -38,11 +38,11 @@ Quatre compositions supplémentaires sont raccordées : S&P 500, S&P 500 Equal W
 | Frais annuels | 152 |
 | Encours daté | 152 |
 | Rendements calendaires de la part (au moins une année complète) | 130 |
-| Pays | 131 |
-| Secteurs ou sous-secteurs publiés | 112 |
-| Principales positions | 119 |
+| Pays | 132 |
+| Secteurs ou sous-secteurs publiés | 113 |
+| Principales positions | 120 |
 
-Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 22 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 22 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
+Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
 ## Instruments entièrement hors collecte active
 
@@ -58,7 +58,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 
 | ISIN | Instrument | Champs courants hors collecte active |
 |---|---|---|
-| FR0007056841 | Amundi Dow Jones Industrial Average UCITS ETF Dist | Pays, Secteurs, Principales positions |
+| FR0007056841 | Amundi Dow Jones Industrial Average UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYWQWR46 | VanEck Video Gaming and eSports UCITS ETF | Secteurs |
 | IE00BYZK4776 | iShares Healthcare Innovation UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3YLTY66 | State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -238,7 +238,7 @@ Russell 2000 : composition automatisée depuis les tables explicitement consacr�
 
 ## Priorités suivantes
 
-1. Lever les blocages des 3 instruments encore hors collecte (BNP) et fiabiliser la disponibilité des pages WisdomTree. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
+1. Lever les blocages des 3 instruments encore hors collecte (BNP) et fiabiliser la disponibilité des pages WisdomTree. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
 2. Qualifier les trois compositions restantes (Russell 1000 et les deux Dividend Aristocrats) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
 3. Raccorder les caractéristiques et cotations (domicile, réplication, distribution, PEA) avec une provenance et une date propres à chaque champ.
 4. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles ; maintenir une revue des règles fiscales et offres de courtiers.

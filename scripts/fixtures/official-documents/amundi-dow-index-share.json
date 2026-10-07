@@ -1,0 +1,216 @@
+{
+  "productId": "FR0007056841",
+  "characteristics": {
+    "ISIN": "FR0007056841",
+    "BENCHMARK_NAME": "Dow Jones Industrial Average Net Total Return",
+    "FUND_REPLICATION_METHODOLOGY": "Indirect(Swap Based)",
+    "INDEX_BREAKDOWNS_AS_OF_DATE": "2026-10-02"
+  },
+  "breakDowns": [
+    {
+      "aggregationField": "INDEX_TOP10",
+      "breakDownData": [
+        {
+          "aggregationName": "GOLDMAN SACHS GROUP INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.10482171212032,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "GS UN",
+            "currency": "USD",
+            "sector": "Financials",
+            "isin": "US38141G1040",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "CATERPILLAR INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.09818556936798,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "CAT UN",
+            "currency": "USD",
+            "sector": "Industrials",
+            "isin": "US1491231015",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "MICROSOFT CORP",
+          "weight": 0.0,
+          "adjustedWeight": 0.06010501106304,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "MSFT UW",
+            "currency": "USD",
+            "sector": "Information Technology",
+            "isin": "US5949181045",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "AMGEN INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.04680834725856,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "AMGN UW",
+            "currency": "USD",
+            "sector": "Health Care",
+            "isin": "US0311621009",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "UNITEDHEALTH GROUP INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.04319180189741,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "UNH UN",
+            "currency": "USD",
+            "sector": "Health Care",
+            "isin": "US91324P1021",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "VISA INC-CLASS A SHARES",
+          "weight": 0.0,
+          "adjustedWeight": 0.0418864117438,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "V UN",
+            "currency": "USD",
+            "sector": "Financials",
+            "isin": "US92826C8394",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "TRAVELERS COMPANIES INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.04185388995939,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "TRV UN",
+            "currency": "USD",
+            "sector": "Financials",
+            "isin": "US89417E1091",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "ALPHABET INC CL A",
+          "weight": 0.0,
+          "adjustedWeight": 0.03989347828517,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "GOOGL UW",
+            "currency": "USD",
+            "sector": "Communication Services",
+            "isin": "US02079K3059",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "APPLE INC",
+          "weight": 0.0,
+          "adjustedWeight": 0.03875416157361,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "AAPL UW",
+            "currency": "USD",
+            "sector": "Information Technology",
+            "isin": "US0378331005",
+            "countryOfRisk": "United States"
+          }
+        },
+        {
+          "aggregationName": "JPMORGAN CHASE & CO",
+          "weight": 0.0,
+          "adjustedWeight": 0.03860202071733,
+          "additionalProperties": {
+            "quantity": 0.0,
+            "bbg": "JPM UN",
+            "currency": "USD",
+            "sector": "Financials",
+            "isin": "US46625H1005",
+            "countryOfRisk": "United States"
+          }
+        }
+      ]
+    },
+    {
+      "aggregationField": "INDEX_SECTORS",
+      "breakDownData": [
+        {
+          "aggregationName": "Financials",
+          "weight": 0.26232836481011,
+          "adjustedWeight": 0.26232836481011,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Information Technology",
+          "weight": 0.1921739081597,
+          "adjustedWeight": 0.1921739081597,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Industrials",
+          "weight": 0.16431931646086,
+          "adjustedWeight": 0.16431931646086,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Health Care",
+          "weight": 0.13649376339999,
+          "adjustedWeight": 0.13649376339999,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Consumer Discretionary",
+          "weight": 0.09292567411926,
+          "adjustedWeight": 0.09292567411926,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Communication Services",
+          "weight": 0.05176164319847,
+          "adjustedWeight": 0.05176164319847,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Consumer Staples",
+          "weight": 0.03888539889464,
+          "adjustedWeight": 0.03888539889464,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Materials",
+          "weight": 0.037107322486,
+          "adjustedWeight": 0.037107322486,
+          "additionalProperties": null
+        },
+        {
+          "aggregationName": "Energy",
+          "weight": 0.02400460847096,
+          "adjustedWeight": 0.02400460847096,
+          "additionalProperties": null
+        }
+      ]
+    },
+    {
+      "aggregationField": "INDEX_COUNTRIES",
+      "breakDownData": [
+        {
+          "aggregationName": "United States",
+          "weight": 1.0,
+          "adjustedWeight": 1.0,
+          "additionalProperties": null
+        }
+      ]
+    }
+  ]
+}
