@@ -18,6 +18,16 @@ CONFIG = json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['i
 
 
 class FieldCompletion(unittest.TestCase):
+    def test_existing_equity_listing_rows_may_share_an_isin(self):
+        columns={'asOfDate':20261006,'issueName':['APPLE NASDAQ','APPLE XETRA','USD CASH'],
+            'holdingPercent':[60,39.9,0.1],'isin':['US0378331005','US0378331005',''],
+            'countryOfRisk':['United States','United States','-'],'assetClass':['Equity','Equity','Cash']}
+        body={'productId':1,'currencyCode':'USD','componentsByNameMap':{'holdings':{
+            'containersByNameMap':{'all':{'dataPointsByNameMap':{k:{'value':v}for k,v in columns.items()}}}}}}
+        holdings,_=parse_holdings(body,{'productId':1,'currency':'USD'},NOW)
+        self.assertEqual(len(holdings['rows']),2)
+        self.assertEqual(holdings['rows'][0]['weightPct'],60)
+
     def test_bnp_portfolio_and_benchmark_remain_distinct(self):
         for isin, filename, basis, first in [
             ('FR0011550185','bnp-easy-sp500','index',8.09),

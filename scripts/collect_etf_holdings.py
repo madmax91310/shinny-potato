@@ -47,7 +47,7 @@ def parse_holdings(body, share, now):
         label = name + ' · ' + isin if asset_class == 'Fixed Income' and isin else name
         selected.append({'name': label, 'weightPct': weight, 'isin': isin})
     identified = [r['isin'] for r in selected if r['isin'] and r['isin'] != '-']
-    if not selected or len(set(identified)) != len(identified):
+    if not selected or (asset_class == 'Fixed Income' and len(set(identified)) != len(identified)):
         reject('Missing or duplicate securities in qualified asset class')
     top = sorted(selected, key=lambda p: -p['weightPct'])[:10]
     for row in top:
