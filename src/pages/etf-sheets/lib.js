@@ -2,6 +2,7 @@ import { getPresentationCopy, presentationTicker } from './editorial.js'
 import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance, formatTweetPerformance } from './annualPerformance.js'
 import { getInstrumentFacts } from '../../data/instrument-facts.js'
+import { commodityAllocationLines } from '../../data/commodity-allocation.js'
 
 export function presentationType(etf) {
   const type = getInstrumentFacts(etf.isin).instrumentType
@@ -21,6 +22,7 @@ export function buildText(sourceEtf) {
   const tickerStr = presentationTicker(etf)
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
+  const commodities = commodityAllocationLines(etf.isin)
   return (
     etf.hook + '\n\n' +
     dot + ' ' + etf.name + (tickerStr ? ' (' + tickerStr + ')' : '') + '\n' +
@@ -34,6 +36,7 @@ export function buildText(sourceEtf) {
     '🏦 ' + accountLabel(etf) + '\n' +
     '📍 ' + etf.location + '\n' +
     (annual ? '\n' + formatTweetPerformance(annual) + '\n' : '') +
+    (commodities.length ? '\n' + commodities.join('\n') + '\n' : '') +
     '\n' +
     '🔍 Ce que tu achètes\n' +
     etf.whatIs + '\n' +

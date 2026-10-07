@@ -39,7 +39,9 @@ def collect_one(share,now):
         from collect_etf_pilot import collect
         report=collect({'instruments':[share]}, {share['isin']:{}}, now)
         if report.get('failures'):raise ValueError(report['failures'][0]['reason'])
-        return report['shares'][0]
+        result = report['shares'][0]
+        from collect_commodity_allocations import add_allocation
+        return add_allocation(result, share, now)
     if share['parser']=='ssga':
         from collect_ssga_etf import collect
         return collect({'instruments':[share]},now)['shares'][0]
