@@ -55,7 +55,30 @@
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37669792354",
       "failures": [],
       "dataFailures": {}
+    },
+    "update-economic-data.yml": {
+      "name": "Taux d’épargne, ménages, SCPI et fonds euros",
+      "runId": 37678754666,
+      "attempt": 1,
+      "completedAt": "2026-10-07T20:12:45Z",
+      "status": "failure",
+      "lastSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37678754666",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une collecte officielle a échoué. Les dernières observations validées sont conservées. Voir les rapports economic-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "fonds-euros": {
+          "name": "Moyenne des fonds euros",
+          "completedAt": "2026-10-07T20:12:45Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37678754666",
+          "cause": "https://acpr.banque-france.fr/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses: HTTP Error 403: Forbidden; https://acpr.banque-france.fr/fr/publications-et-statistiques/etudes-et-recherche: HTTP Error 403: Forbidden; https://acpr.banque-france.fr/sitemap.xml: HTTP Error 403: Forbidden"
+        }
+      }
     }
   },
-  "updatedAt": "2026-10-07T19:15:22Z"
+  "updatedAt": "2026-10-07T20:12:45Z"
 }
