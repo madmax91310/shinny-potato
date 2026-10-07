@@ -154,12 +154,14 @@ def collect_one(share, now):
     if share['parser'] == 'wisdomtree-html':
         try:
             body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
-        except (urllib.error.URLError, TimeoutError) as error:
+            document=wisdomtree_factsheet(body,share,now)
+        except (urllib.error.URLError, TimeoutError, ValueError) as error:
             # Independently dated HTML AUM/fees remain valid even when the
             # calendar PDF is temporarily unavailable. Keep the failure visible.
             result['collectionErrors'] = [{'field':'performance', 'url':share['factsheetUrl'], 'reason':str(error)}]
             return result
-        document=wisdomtree_factsheet(body,share,now)
+        if document.get('collectionErrors'):
+            result.setdefault('collectionErrors', []).extend(document['collectionErrors'])
         if document.get('performance'):
             result['performance']=document['performance']
             result['unavailable']=[item for item in result['unavailable'] if not item.startswith('performance:')]
@@ -202,8 +204,14 @@ def wisdomtree_factsheet(body, share, now):
     if 'performance'in result:result['performance'].update(asOf=stamp,sourceUrl=url,sha256=digest)
     if share['documentType'] == 'wisdomtree-ucits':
         from collect_wisdomtree_allocations import allocations
-        result.update(allocations(body, stamp, url, digest))
-        if 'countries' not in result:
+        # Identity, date, currency, fee and calendar have already been validated.
+        # A changed allocation layout must not discard those independent fields.
+        try:
+            result.update(allocations(body, stamp, url, digest))
+        except ValueError as error:
+            result.setdefault('collectionErrors', []).append(
+                {'field':'allocations', 'url':url, 'reason':str(error)})
+        if 'countries' not in result and not result.get('collectionErrors'):
             result['unavailable'].append('countries: PDF publishes only ten countries; complete previous allocation preserved')
     result['unavailable'].append('HTML unavailable: current official PDF used; AUM not published, previous dated value preserved')
     return result

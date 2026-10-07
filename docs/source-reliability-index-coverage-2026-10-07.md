@@ -30,3 +30,15 @@ Les pages iShares accessibles fournissent toujours leurs frais et encours indép
 Les expositions actions de produits crypto, métaux ou monétaire sont non applicables ; les performances de référence crypto des fiches CoinShares ne sont pas celles des parts après frais ou staking. Les autres champs encore hors collecte restent listés dans [le rapport de couverture](automation-coverage.md).
 
 Validation : collecte réelle des quatre indices, WPEA, SPEA, UBS et Dow Jones ; 128 tests Python ; audits des compositions et rendements, consommateurs courants et archives, et build de production.
+
+## Nouvelle vérification après la PR 326
+
+Les priorités 1 et 2 restent ouvertes ; cette passe n'ajoute pas de couverture annoncée.
+
+- BNP : la page produit officielle en anglais Luxembourg est accessible, mais son HTML ne contient que la configuration de Fundsheet. Le composant JavaScript publié par cette page renvoie toujours HTTP 502, avec et sans le paramètre de version. Les données d'un extrait de moteur de recherche ne constituent pas une source récurrente pour le collecteur.
+- S&P 500 Equal Weight TOTAL USD : la page officielle Invesco RSP publie l'identifiant de benchmark SPXEWTR et un lien de fiche courant. Cependant, ce lien ainsi que les endpoints historiques `us-rest/contentdetail` et `static/us/contentdetail` renvoient du HTML plutôt qu'un PDF depuis l'environnement de collecte. L'API publique de performance testée renvoie une chaîne vide. Aucun rendement du fonds ou benchmark NET n'est substitué.
+- Russell 2000 : nouvelle récupération du PDF récurrent `US2000USD`, édition du 31 août 2026. Les dix noms de constituants sont publiés sans poids numériques ; le graphique sectoriel ne fournit pas de table numérique dans le texte extrait. Il ne permet donc pas de remplacer la composition pondérée actuelle. Les compositions Russell 1000 et Dividend Aristocrats restent non qualifiées.
+
+Le correctif WisdomTree conserve désormais les frais, encours et répartitions HTML validés lorsqu'un PDF est rejeté (identité, date, contenu ou disposition). Un défaut des tableaux de répartition PDF conserve les frais et calendriers PDF déjà validés ; les répartitions rejetées ne sont jamais appliquées. Les erreurs de champ restent transmises au rapport de collecte et au statut d'échec du workflow. Une mauvaise identité HTML ou PDF, lorsqu'il n'existe aucune source indépendante valide, continue de faire échouer la collecte.
+
+Validation du correctif : 139 tests Python, dont les rejets de PDF erroné et de répartition incomplète ; audits des indices, performances ETF, revue et catalogue des données ; build de production.
