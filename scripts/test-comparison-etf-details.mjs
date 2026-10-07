@@ -90,7 +90,9 @@ console.log('Comparatif : parts exactes, aucune substitution, compositions daté
 const usa = DEFAULT_THEMES.find(t => t.id === 'usa');
 assert.deepEqual(usa.etfs.map(f => f.isin), ['FR0011871128', 'FR0011871110', 'FR0007056841']);
 assert.equal(getComparisonPerformance('FR0007056841').referenceIsin, 'FR0007056841');
-assert.deepEqual(getComparisonPerformance('FR0007056841').calendarReturns, {2023:11.66,2024:22.07,2025:.70});
+const dowCalendars = getComparisonPerformance('FR0007056841').calendarReturns;
+assert.deepEqual(Object.fromEntries(Object.entries(dowCalendars).filter(([year]) => Number(year) >= 2023 && Number(year) <= 2025)), {2023:11.66,2024:22.07,2025:.70});
+assert.deepEqual(Object.fromEntries(Object.entries(dowCalendars).filter(([year]) => Number(year) < 2023)), {2020:-.01,2021:29.46,2022:-1.31});
 assert.match(buildTweetText(usa), /Dow Jones/);
 for (const id of ['world-minvol','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde']) {
  assert(DEFAULT_THEMES.find(t => t.id === id).etfs.some(f => f.isin === 'IE0002XZSHO1'));

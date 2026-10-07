@@ -11638,6 +11638,220 @@
           "date": "2026-09-30"
         }
       }
+    },
+    "facts": {
+      "index": "S&P 500",
+      "asOf": "2026-08-31",
+      "constituents": 503,
+      "countries": [
+        [
+          "États-Unis",
+          100.0
+        ]
+      ],
+      "sectors": [
+        [
+          "Énergie",
+          3.4
+        ],
+        [
+          "Matériaux",
+          1.84
+        ],
+        [
+          "Industrie",
+          8.38
+        ],
+        [
+          "Conso Cyclique",
+          9.18
+        ],
+        [
+          "Conso non Cyclique",
+          4.5
+        ],
+        [
+          "Santé",
+          9.29
+        ],
+        [
+          "Finance",
+          12.34
+        ],
+        [
+          "Technologies de l'info.",
+          37.63
+        ],
+        [
+          "Services de communication",
+          9.62
+        ],
+        [
+          "Services publics",
+          2.0
+        ],
+        [
+          "Immobilier",
+          1.81
+        ]
+      ],
+      "holdings": [
+        [
+          "NVIDIA CORP",
+          7.94
+        ],
+        [
+          "APPLE INC",
+          7.08
+        ],
+        [
+          "MICROSOFT CORP",
+          5.75
+        ],
+        [
+          "AMAZON.COM INC",
+          3.93
+        ],
+        [
+          "ALPHABET INC CL A",
+          3.06
+        ],
+        [
+          "BROADCOM INC",
+          2.63
+        ],
+        [
+          "ALPHABET INC CL C",
+          2.44
+        ],
+        [
+          "META PLATFORMS INC-CLASS A",
+          1.91
+        ],
+        [
+          "MICRON TECHNOLOGY INC",
+          1.59
+        ],
+        [
+          "TESLA INC",
+          1.48
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+        "checkedAt": "2026-10-07",
+        "sha256": "a513b5b10713ed74d43e8d366c796c0b2d63aae493e3bf747a03c49e90fe9874",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "factsHistory": {
+      "2026-08-31": {
+        "index": "S&P 500",
+        "asOf": "2026-08-31",
+        "constituents": 503,
+        "countries": [
+          [
+            "États-Unis",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Énergie",
+            3.4
+          ],
+          [
+            "Matériaux",
+            1.84
+          ],
+          [
+            "Industrie",
+            8.38
+          ],
+          [
+            "Conso Cyclique",
+            9.18
+          ],
+          [
+            "Conso non Cyclique",
+            4.5
+          ],
+          [
+            "Santé",
+            9.29
+          ],
+          [
+            "Finance",
+            12.34
+          ],
+          [
+            "Technologies de l'info.",
+            37.63
+          ],
+          [
+            "Services de communication",
+            9.62
+          ],
+          [
+            "Services publics",
+            2.0
+          ],
+          [
+            "Immobilier",
+            1.81
+          ]
+        ],
+        "holdings": [
+          [
+            "NVIDIA CORP",
+            7.94
+          ],
+          [
+            "APPLE INC",
+            7.08
+          ],
+          [
+            "MICROSOFT CORP",
+            5.75
+          ],
+          [
+            "AMAZON.COM INC",
+            3.93
+          ],
+          [
+            "ALPHABET INC CL A",
+            3.06
+          ],
+          [
+            "BROADCOM INC",
+            2.63
+          ],
+          [
+            "ALPHABET INC CL C",
+            2.44
+          ],
+          [
+            "META PLATFORMS INC-CLASS A",
+            1.91
+          ],
+          [
+            "MICRON TECHNOLOGY INC",
+            1.59
+          ],
+          [
+            "TESLA INC",
+            1.48
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+          "checkedAt": "2026-10-07",
+          "sha256": "a513b5b10713ed74d43e8d366c796c0b2d63aae493e3bf747a03c49e90fe9874",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
     }
   },
   "bitcoin": {
@@ -12135,8 +12349,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://stoxx.com/index/sxxp/",
-        "checkedAt": "2026-10-06",
-        "sha256": "ff7795694c0e24cdc53edfb18390ce6c2b5e13f7c22cf13eacb25bf859db832d",
+        "checkedAt": "2026-10-07",
+        "sha256": "e2fb35bb88687c552ac7cf26a99b274fb849bbaea34df93c8021f46f7ef9fcc3",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
@@ -12190,6 +12404,340 @@
           "date": "2026-10-06"
         }
       }
+    },
+    "facts": {
+      "index": "STOXX Europe 600",
+      "asOf": "2026-08-31",
+      "constituents": 600,
+      "countries": [
+        [
+          "Royaume-Uni",
+          22.73
+        ],
+        [
+          "France",
+          15.07
+        ],
+        [
+          "Suisse",
+          13.77
+        ],
+        [
+          "Allemagne",
+          13.43
+        ],
+        [
+          "Pays-Bas",
+          7.96
+        ],
+        [
+          "Espagne",
+          6.0
+        ],
+        [
+          "Italie",
+          5.71
+        ],
+        [
+          "Suède",
+          4.89
+        ],
+        [
+          "Danemark",
+          2.69
+        ],
+        [
+          "Finlande",
+          1.95
+        ],
+        [
+          "Belgique",
+          1.87
+        ],
+        [
+          "Norvège",
+          1.32
+        ],
+        [
+          "Pologne",
+          0.96
+        ],
+        [
+          "Irlande",
+          0.69
+        ],
+        [
+          "Autriche",
+          0.66
+        ],
+        [
+          "Autres pays",
+          0.3
+        ]
+      ],
+      "sectors": [
+        [
+          "Finance",
+          26.16
+        ],
+        [
+          "Industrie",
+          19.23
+        ],
+        [
+          "Santé",
+          12.15
+        ],
+        [
+          "Technologies de l'info.",
+          8.61
+        ],
+        [
+          "Conso non Cyclique",
+          7.72
+        ],
+        [
+          "Conso Cyclique",
+          6.72
+        ],
+        [
+          "Matériaux",
+          5.69
+        ],
+        [
+          "Énergie",
+          5.3
+        ],
+        [
+          "Services publics",
+          4.58
+        ],
+        [
+          "Services de communication",
+          2.78
+        ],
+        [
+          "Immobilier",
+          1.06
+        ]
+      ],
+      "holdings": [
+        [
+          "ASML HOLDING NV",
+          4.28
+        ],
+        [
+          "HSBC HOLDING PLC GBP",
+          2.26
+        ],
+        [
+          "ROCHE HLDG AG-GENUSS CHF",
+          1.98
+        ],
+        [
+          "NOVARTIS AG-REG",
+          1.85
+        ],
+        [
+          "SHELL PLC EUR",
+          1.62
+        ],
+        [
+          "ASTRAZENECA GBP",
+          1.6
+        ],
+        [
+          "NESTLE SA-REG",
+          1.59
+        ],
+        [
+          "SIEMENS AG-REG",
+          1.57
+        ],
+        [
+          "SAP SE / XETRA",
+          1.43
+        ],
+        [
+          "BANCO SANTANDER SA MADRID",
+          1.38
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+        "checkedAt": "2026-10-07",
+        "sha256": "e5875edf002f0faa57d526fc96cf1de4072be7f36dbf92a393cb6264d039248e",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "factsHistory": {
+      "2026-08-31": {
+        "index": "STOXX Europe 600",
+        "asOf": "2026-08-31",
+        "constituents": 600,
+        "countries": [
+          [
+            "Royaume-Uni",
+            22.73
+          ],
+          [
+            "France",
+            15.07
+          ],
+          [
+            "Suisse",
+            13.77
+          ],
+          [
+            "Allemagne",
+            13.43
+          ],
+          [
+            "Pays-Bas",
+            7.96
+          ],
+          [
+            "Espagne",
+            6.0
+          ],
+          [
+            "Italie",
+            5.71
+          ],
+          [
+            "Suède",
+            4.89
+          ],
+          [
+            "Danemark",
+            2.69
+          ],
+          [
+            "Finlande",
+            1.95
+          ],
+          [
+            "Belgique",
+            1.87
+          ],
+          [
+            "Norvège",
+            1.32
+          ],
+          [
+            "Pologne",
+            0.96
+          ],
+          [
+            "Irlande",
+            0.69
+          ],
+          [
+            "Autriche",
+            0.66
+          ],
+          [
+            "Autres pays",
+            0.3
+          ]
+        ],
+        "sectors": [
+          [
+            "Finance",
+            26.16
+          ],
+          [
+            "Industrie",
+            19.23
+          ],
+          [
+            "Santé",
+            12.15
+          ],
+          [
+            "Technologies de l'info.",
+            8.61
+          ],
+          [
+            "Conso non Cyclique",
+            7.72
+          ],
+          [
+            "Conso Cyclique",
+            6.72
+          ],
+          [
+            "Matériaux",
+            5.69
+          ],
+          [
+            "Énergie",
+            5.3
+          ],
+          [
+            "Services publics",
+            4.58
+          ],
+          [
+            "Services de communication",
+            2.78
+          ],
+          [
+            "Immobilier",
+            1.06
+          ]
+        ],
+        "holdings": [
+          [
+            "ASML HOLDING NV",
+            4.28
+          ],
+          [
+            "HSBC HOLDING PLC GBP",
+            2.26
+          ],
+          [
+            "ROCHE HLDG AG-GENUSS CHF",
+            1.98
+          ],
+          [
+            "NOVARTIS AG-REG",
+            1.85
+          ],
+          [
+            "SHELL PLC EUR",
+            1.62
+          ],
+          [
+            "ASTRAZENECA GBP",
+            1.6
+          ],
+          [
+            "NESTLE SA-REG",
+            1.59
+          ],
+          [
+            "SIEMENS AG-REG",
+            1.57
+          ],
+          [
+            "SAP SE / XETRA",
+            1.43
+          ],
+          [
+            "BANCO SANTANDER SA MADRID",
+            1.38
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+          "checkedAt": "2026-10-07",
+          "sha256": "e5875edf002f0faa57d526fc96cf1de4072be7f36dbf92a393cb6264d039248e",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
     }
   },
   "eurostoxx50": {
@@ -12227,8 +12775,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://stoxx.com/index/sx5e/",
-        "checkedAt": "2026-10-06",
-        "sha256": "11389be05a8e892fd80cecbf4fe6385d763470ef5f049d1d718ab8f79337b479",
+        "checkedAt": "2026-10-07",
+        "sha256": "1c008ec3e399c811f6f234491ea19751cbc44a44891fdc58cd387835e3200649",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
@@ -12325,6 +12873,260 @@
           "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
           "date": "2026-10-06"
         }
+      }
+    },
+    "facts": {
+      "index": "EURO STOXX 50",
+      "asOf": "2026-09-30",
+      "constituents": 50,
+      "countries": [
+        [
+          "France",
+          31.25
+        ],
+        [
+          "Allemagne",
+          28.5
+        ],
+        [
+          "Pays-Bas",
+          15.05
+        ],
+        [
+          "Espagne",
+          11.41
+        ],
+        [
+          "Italie",
+          8.68
+        ],
+        [
+          "Belgique",
+          2.68
+        ],
+        [
+          "Finlande",
+          2.43
+        ]
+      ],
+      "sectors": [
+        [
+          "Finance",
+          27.84
+        ],
+        [
+          "Industrie",
+          20.53
+        ],
+        [
+          "Technologies de l'info.",
+          17.72
+        ],
+        [
+          "Conso Cyclique",
+          8.11
+        ],
+        [
+          "Services publics",
+          5.33
+        ],
+        [
+          "Énergie",
+          5.04
+        ],
+        [
+          "Santé",
+          5.02
+        ],
+        [
+          "Conso non Cyclique",
+          4.99
+        ],
+        [
+          "Matériaux",
+          3.38
+        ],
+        [
+          "Services de communication",
+          2.03
+        ]
+      ],
+      "holdings": [
+        [
+          "ASML HOLDING NV",
+          10.77
+        ],
+        [
+          "SIEMENS AG-REG",
+          4.59
+        ],
+        [
+          "BANCO SANTANDER SA MADRID",
+          4.17
+        ],
+        [
+          "SAP SE / XETRA",
+          4.13
+        ],
+        [
+          "TOTALENERGIES SE PARIS",
+          3.95
+        ],
+        [
+          "SCHNEIDER ELECT SE",
+          3.8
+        ],
+        [
+          "ALLIANZ SE-REG",
+          3.57
+        ],
+        [
+          "BANCO BILBAO VIZCAYA ARGENTA",
+          3.12
+        ],
+        [
+          "IBERDROLA SA",
+          2.82
+        ],
+        [
+          "UNICREDIT SPA",
+          2.8
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+        "checkedAt": "2026-10-07",
+        "sha256": "e85df5419497a48f148259c081c9a8edacb7584e2684343726a1dfcb232ed679",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "EURO STOXX 50",
+        "asOf": "2026-09-30",
+        "constituents": 50,
+        "countries": [
+          [
+            "France",
+            31.25
+          ],
+          [
+            "Allemagne",
+            28.5
+          ],
+          [
+            "Pays-Bas",
+            15.05
+          ],
+          [
+            "Espagne",
+            11.41
+          ],
+          [
+            "Italie",
+            8.68
+          ],
+          [
+            "Belgique",
+            2.68
+          ],
+          [
+            "Finlande",
+            2.43
+          ]
+        ],
+        "sectors": [
+          [
+            "Finance",
+            27.84
+          ],
+          [
+            "Industrie",
+            20.53
+          ],
+          [
+            "Technologies de l'info.",
+            17.72
+          ],
+          [
+            "Conso Cyclique",
+            8.11
+          ],
+          [
+            "Services publics",
+            5.33
+          ],
+          [
+            "Énergie",
+            5.04
+          ],
+          [
+            "Santé",
+            5.02
+          ],
+          [
+            "Conso non Cyclique",
+            4.99
+          ],
+          [
+            "Matériaux",
+            3.38
+          ],
+          [
+            "Services de communication",
+            2.03
+          ]
+        ],
+        "holdings": [
+          [
+            "ASML HOLDING NV",
+            10.77
+          ],
+          [
+            "SIEMENS AG-REG",
+            4.59
+          ],
+          [
+            "BANCO SANTANDER SA MADRID",
+            4.17
+          ],
+          [
+            "SAP SE / XETRA",
+            4.13
+          ],
+          [
+            "TOTALENERGIES SE PARIS",
+            3.95
+          ],
+          [
+            "SCHNEIDER ELECT SE",
+            3.8
+          ],
+          [
+            "ALLIANZ SE-REG",
+            3.57
+          ],
+          [
+            "BANCO BILBAO VIZCAYA ARGENTA",
+            3.12
+          ],
+          [
+            "IBERDROLA SA",
+            2.82
+          ],
+          [
+            "UNICREDIT SPA",
+            2.8
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+          "checkedAt": "2026-10-07",
+          "sha256": "e85df5419497a48f148259c081c9a8edacb7584e2684343726a1dfcb232ed679",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
       }
     }
   },
@@ -13661,6 +14463,222 @@
           "detail": "Nasdaq-100 · USD · dividendes réinvestis (XNDX Total Return, distinct du Notional Net Total Return)",
           "date": "2026-09-30"
         }
+      }
+    }
+  },
+  "sp500-equal-weight": {
+    "facts": {
+      "index": "S&P 500 Equal Weight",
+      "asOf": "2026-08-31",
+      "constituents": 503,
+      "countries": [
+        [
+          "États-Unis",
+          100.0
+        ]
+      ],
+      "sectors": [
+        [
+          "Industrie",
+          16.12
+        ],
+        [
+          "Finance",
+          15.98
+        ],
+        [
+          "Technologies de l'info.",
+          14.56
+        ],
+        [
+          "Santé",
+          13.05
+        ],
+        [
+          "Conso Cyclique",
+          9.24
+        ],
+        [
+          "Conso non Cyclique",
+          6.55
+        ],
+        [
+          "Services publics",
+          5.64
+        ],
+        [
+          "Immobilier",
+          5.5
+        ],
+        [
+          "Matériaux",
+          5.13
+        ],
+        [
+          "Énergie",
+          4.26
+        ],
+        [
+          "Services de communication",
+          3.96
+        ]
+      ],
+      "holdings": [
+        [
+          "MODERNA INC",
+          0.56
+        ],
+        [
+          "VEEVA SYSTEMS INC",
+          0.32
+        ],
+        [
+          "ZEBRA TECHNOLOGIES",
+          0.31
+        ],
+        [
+          "DOORDASH INC - A",
+          0.29
+        ],
+        [
+          "CHARLES RIV LAB INT",
+          0.29
+        ],
+        [
+          "EXPEDIA GROUP INC",
+          0.28
+        ],
+        [
+          "SALESFORCE COM",
+          0.28
+        ],
+        [
+          "WORKDAY INC",
+          0.28
+        ],
+        [
+          "GLOBAL PAYMENTS INC",
+          0.28
+        ],
+        [
+          "AIRBNB INC-CLASS A",
+          0.28
+        ]
+      ],
+      "source": {
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+        "checkedAt": "2026-10-07",
+        "sha256": "66c8b43f31838c97516c5719f20a4dece62fd2e3f44dbaf98a63ed2297fd52f4",
+        "label": "Composition de l’indice publiée par Amundi"
+      },
+      "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+    },
+    "factsHistory": {
+      "2026-08-31": {
+        "index": "S&P 500 Equal Weight",
+        "asOf": "2026-08-31",
+        "constituents": 503,
+        "countries": [
+          [
+            "États-Unis",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrie",
+            16.12
+          ],
+          [
+            "Finance",
+            15.98
+          ],
+          [
+            "Technologies de l'info.",
+            14.56
+          ],
+          [
+            "Santé",
+            13.05
+          ],
+          [
+            "Conso Cyclique",
+            9.24
+          ],
+          [
+            "Conso non Cyclique",
+            6.55
+          ],
+          [
+            "Services publics",
+            5.64
+          ],
+          [
+            "Immobilier",
+            5.5
+          ],
+          [
+            "Matériaux",
+            5.13
+          ],
+          [
+            "Énergie",
+            4.26
+          ],
+          [
+            "Services de communication",
+            3.96
+          ]
+        ],
+        "holdings": [
+          [
+            "MODERNA INC",
+            0.56
+          ],
+          [
+            "VEEVA SYSTEMS INC",
+            0.32
+          ],
+          [
+            "ZEBRA TECHNOLOGIES",
+            0.31
+          ],
+          [
+            "DOORDASH INC - A",
+            0.29
+          ],
+          [
+            "CHARLES RIV LAB INT",
+            0.29
+          ],
+          [
+            "EXPEDIA GROUP INC",
+            0.28
+          ],
+          [
+            "SALESFORCE COM",
+            0.28
+          ],
+          [
+            "WORKDAY INC",
+            0.28
+          ],
+          [
+            "GLOBAL PAYMENTS INC",
+            0.28
+          ],
+          [
+            "AIRBNB INC-CLASS A",
+            0.28
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
+          "checkedAt": "2026-10-07",
+          "sha256": "66c8b43f31838c97516c5719f20a4dece62fd2e3f44dbaf98a63ed2297fd52f4",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
       }
     }
   }

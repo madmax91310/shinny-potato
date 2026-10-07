@@ -40,7 +40,8 @@ def amundi_composition(body, config, now, url):
     if len(counts) != 1: reject('Missing index constituent count')
     count = int(counts[0].replace(' ', ''))
     if not 1 <= count <= 10000: reject('Invalid index constituent count')
-    share = {'isin': config['compositionIsin'], 'sourceUrl': url}
+    share = {'isin': config['compositionIsin'], 'sourceUrl': url,
+             'expectedReplication': config.get('compositionReplication', 'Synthétique')}
     allocation = parse_document(body, share, now)
     if len(allocation['holdings']['rows']) != 10: reject('Incomplete top-ten index holdings')
     stamp = allocation['countries']['asOf']

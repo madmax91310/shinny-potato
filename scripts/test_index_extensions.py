@@ -1,6 +1,7 @@
 import copy
 import datetime as dt
 import json
+import re
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -8,6 +9,7 @@ import urllib.error
 from collect_index_extensions import nasdaq_returns, amundi_composition, collect_amundi_composition
 from collect_remaining_documents import collect_one as ubs_collect
 from refresh_index_sources import merge_records
+from refresh_index_sources import collect_one as refresh_index
 from data_automation import UTC
 F=Path(__file__).parent/'fixtures/official-documents/index-extensions'
 CONFIG=json.loads((Path(__file__).parent/'index-automation.json').read_text())['indices']
@@ -23,7 +25,7 @@ class IndexExtensions(unittest.TestCase):
             with self.assertRaises(ValueError):nasdaq_returns(t.replace(a,b),c,NOW)
         with self.assertRaises(ValueError):nasdaq_returns(t,{**c,'returnVariant':'NET'},NOW)
     def test_amundi_explicit_index_exposures_and_counts(self):
-        for id,count in [('nasdaq-pea',102),('topix',1636)]:
+        for id,count in [('nasdaq-pea',102),('topix',1636),('sp500-pea',503),('sp500-equal-weight',503),('stoxx600',600),('eurostoxx50',50)]:
             c=cfg(id);f=json.loads((F/(id+'.json')).read_text())
             def extract(body,crop=None):return f['left'] if crop==(0,300) else f['right'] if crop==(300,300) else f['full']
             with patch('collect_index_extensions.pdf_text',side_effect=extract),patch('collect_amundi_index_exposure.pdf_text',side_effect=extract):
@@ -31,7 +33,11 @@ class IndexExtensions(unittest.TestCase):
                 self.assertEqual(r['constituents'],count);self.assertEqual(len(r['holdings']),10)
                 self.assertAlmostEqual(sum(v for _,v in r['countries']),100,delta=.2)
                 self.assertAlmostEqual(sum(v for _,v in r['sectors']),100,delta=.2)
-                for key,a,b in [('full',c['compositionIsin'],'FR001OTHER01'),('full','Synthétique','Physique'),('full',c['compositionIdentityPattern'].replace('\\',''),'Wrong index'),('full','31/08/2026','31/01/2026'),('left','États-Unis','')]:
+                original = f['full']
+                f['full'] = re.sub(c['compositionIdentityPattern'], 'Wrong index', original)
+                with self.assertRaises(ValueError):amundi_composition(b'%PDF-proof',c,NOW,'https://example.org/source')
+                f['full'] = original
+                for key,a,b in [('full',c['compositionIsin'],'FR001OTHER01'),('full',c.get('compositionReplication','Synthétique'),'Wrong method'),('full',c['compositionIdentityPattern'].replace('\\',''),'Wrong index'),('full','31/08/2026','31/01/2026'),('left','États-Unis','')]:
                     if a not in f[key]:continue
                     previous=f[key];f[key]=previous.replace(a,b)
                     with self.assertRaises((ValueError,IndexError)):amundi_composition(b'%PDF-proof',c,NOW,'https://example.org/source')
@@ -49,6 +55,15 @@ class IndexExtensions(unittest.TestCase):
     def test_invalid_observation_does_not_replace_good_composition(self):
         previous={'topix':{'facts':{'asOf':'2026-08-31','constituents':1636}}}
         self.assertEqual(merge_records(previous,[{'id':'topix','errors':[{'field':'composition'}]}]),previous)
+    def test_derived_returns_and_composition_fail_independently(self):
+        c=cfg('sp500-pea')
+        with patch('derive_index_returns.collect_one',return_value={'id':c['id'],'errors':[{'field':'returns'}]}),patch('collect_index_extensions.collect_amundi_composition',return_value={'asOf':'2026-08-31'}) as composition:
+            r=refresh_index(c,NOW)
+            self.assertIn('facts',r)
+            self.assertEqual(r['errors'],[{'field':'returns'}])
+            composition.reset_mock()
+            refresh_index({**c,'collectComposition':False},NOW)
+            composition.assert_not_called()
     def test_ubs_canonical_host_fallback_keeps_source_and_failures_visible(self):
         c={'isin':'IE00BD4TXV59','parser':'ubs-document','currency':'USD'}
         def fetch(url,**kwargs):

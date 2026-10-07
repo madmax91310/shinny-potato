@@ -762,11 +762,15 @@ export function buildAutomatedIndexSnapshot(facts, baseline) {
       ...(baseline.targetConstituents != null ? { targetConstituents: baseline.targetConstituents } : {}),
       ...(baseline.approximateConstituents ? { approximateConstituents: Math.round(facts.constituents / 100) * 100 } : {}),
       methodologySources: baseline.methodologySources,
+      sectorClassification: facts.sectorClassification ?? baseline.sectorClassification,
+      methodologyNote: facts.methodologyNote ?? baseline.methodologyNote,
+      topWeight: facts.topWeight ?? facts.holdings?.reduce((sum, [, weight]) => sum + weight, 0),
     };
 }
 
 // Add newly dated observations; a named historical snapshot remains immutable.
 export const CURRENT_INDEX_KEYS = {};
+export const CURRENT_INDEX_SNAPSHOTS = {};
 for (const [id, record] of Object.entries(automatedIndices)) {
   const history = INDEX_FACTS[id];
   if (!history || !record.facts) continue;
@@ -777,7 +781,12 @@ for (const [id, record] of Object.entries(automatedIndices)) {
     if (!baseline) continue;
     history[facts.asOf] = buildAutomatedIndexSnapshot(facts, baseline);
   }
-  if (history[record.facts.asOf]) CURRENT_INDEX_KEYS[id] = record.facts.asOf;
+  if (history[record.facts.asOf]) {
+    CURRENT_INDEX_KEYS[id] = record.facts.asOf;
+    // A new source can certify the same date as an immutable archive. Current
+    // consumers must still receive its validated weights and provenance.
+    CURRENT_INDEX_SNAPSHOTS[id] = buildAutomatedIndexSnapshot(record.facts, history[record.facts.asOf]);
+  }
 }
 
 function deepFreeze(value) {
@@ -794,6 +803,11 @@ for (const history of Object.values(INDEX_FACTS)) {
   }
 }
 deepFreeze(INDEX_FACTS);
+for (const facts of Object.values(CURRENT_INDEX_SNAPSHOTS)) {
+  facts.metadata = normalizeEvidence({ ...facts.source, asOf: facts.asOf, dateStatus: 'dated',
+    scope: facts.index, method: 'Composition d’indice', note: facts.provenance });
+}
+deepFreeze(CURRENT_INDEX_SNAPSHOTS);
 
 export function getIndexFacts(id, asOf) {
   const facts = INDEX_FACTS[id]?.[asOf];
@@ -814,9 +828,12 @@ export function formatIndexConstituents(id, asOf) {
 
 export function formatIndexFact(id, asOf, field = 'constituents') {
   const facts = getIndexFacts(id, asOf);
+  return formatFact(facts, field);
+}
+function formatFact(facts, field) {
   const value = field === 'rangeMin' ? facts.constituentRange?.[0]
     : field === 'rangeMax' ? facts.constituentRange?.[1] : facts[field];
-  if (value == null) throw new Error(`Fait d’indice absent : ${id}/${asOf}/${field}`);
+  if (value == null) throw new Error(`Fait d’indice absent : ${facts.index}/${facts.asOf}/${field}`);
   return typeof value === 'number' ? value.toLocaleString('fr-FR').replaceAll('\u202f', ' ') : value;
 }
 export function getIndexDescription(id, asOf, variant) {
@@ -828,7 +845,8 @@ export function getIndexDescription(id, asOf, variant) {
 // Current consumers opt in explicitly; the exact-date API continues to read archives.
 export function getCurrentIndexFacts(id, fallback) {
   const key = CURRENT_INDEX_KEYS[id];
-  return getIndexFacts(id, key && (!/^\d{4}-\d{2}-\d{2}$/.test(fallback) || key >= fallback) ? key : fallback);
+  return key && (!/^\d{4}-\d{2}-\d{2}$/.test(fallback) || key >= fallback)
+    ? CURRENT_INDEX_SNAPSHOTS[id] : getIndexFacts(id, fallback);
 }
 export function getCurrentIndexComposition(id, fallback) {
   const facts = getCurrentIndexFacts(id, fallback);
@@ -836,14 +854,16 @@ export function getCurrentIndexComposition(id, fallback) {
   return { indexFacts: facts, constituents, markets, marketCap, countries, sectors, holdings, topWeight };
 }
 export function formatCurrentIndexFact(id, fallback, field = 'constituents') {
-  return formatIndexFact(id, getCurrentIndexFacts(id, fallback).asOf ?? fallback, field);
+  return formatFact(getCurrentIndexFacts(id, fallback), field);
 }
 export function formatCurrentIndexConstituents(id, fallback) {
   return formatCurrentIndexFact(id, fallback);
 }
 export function getCurrentIndexDescription(id, fallback, variant) {
   const facts = getCurrentIndexFacts(id, fallback);
-  return getIndexDescription(id, facts.asOf ?? fallback, variant);
+  const template = facts.descriptionTemplates?.[variant];
+  if (!template) throw new Error(`Description d’indice absente : ${id}/${facts.asOf}/${variant}`);
+  return template.replace(/\{\{(\w+)\}\}/g, (_, field) => formatFact(facts, field));
 }
 
 export function formatCurrentIndexDate(id, fallback) {

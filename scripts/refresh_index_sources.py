@@ -14,12 +14,19 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
 def collect_one(config, now, fetch=download):
-    if config['parser'] == 'nasdaq-factsheet':
+    if config['parser'] in ('nasdaq-factsheet', 'amundi-index-document'):
         from collect_remaining_indices import collect_one as remaining
         return remaining(config, now, fetch)
     if config['parser'] == 'monthly-derived':
         from derive_index_returns import collect_one as derived
-        return derived(config, now)
+        result = derived(config, now)
+        if config.get('collectComposition', False):
+            from collect_index_extensions import collect_amundi_composition
+            try:
+                result['facts'] = collect_amundi_composition(config, now, fetch)
+            except Exception as error:
+                result['errors'].append({'field':'composition','reason':str(error)})
+        return result
     if config['parser'] in ('nikkei', 'stoxx-price', 'ssga-index', 'blackrock-index', 'metal-benchmark'):
         from collect_remaining_indices import collect_one as remaining
         return remaining(config, now, fetch)
@@ -92,7 +99,10 @@ def merge_records(current, observations):
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--apply',action='store_true');p.add_argument('--only-derived',action='store_true');args=p.parse_args()
     config=json.loads((ROOT/'scripts/index-automation.json').read_text());now=dt.datetime.now(UTC)
-    with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(lambda c:collect_one(c,now),[c for c in config['indices'] if c.get('enabled', True) and (not args.only_derived or c['parser']=='monthly-derived')]))
+    active = [c for c in config['indices'] if c.get('enabled', True) and (not args.only_derived or c['parser']=='monthly-derived')]
+    if args.only_derived:
+        active = [{**c, 'collectComposition': False} for c in active]
+    with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(lambda c:collect_one(c,now),active))
     report={'checkedAt':now.isoformat(),'indices':observations,'status':'validated','notQualified':[c['id'] for c in config['indices'] if not c.get('enabled', True)]}
     write_json_atomic(args.output,report)
     if args.apply:

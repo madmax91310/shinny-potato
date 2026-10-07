@@ -1,6 +1,7 @@
 import datetime as dt
 import unittest
 import urllib.error
+from unittest.mock import patch
 from collect_document_etf import parse, parse_legacy, collect_legacy, parse_legacy_factsheet
 from apply_etf_collection import merge_collection
 from data_automation import UTC
@@ -54,6 +55,14 @@ class Documents(unittest.TestCase):
         self.assertEqual(result['sourceUrl'],backup)
         self.assertEqual(result['aum']['sourceUrl'],backup)
         self.assertEqual(len(result['aum']['sha256']),64)
+        with patch('collect_document_etf.collect_legacy_document',return_value={'performance':{'years':{'2025':6.61}},'unavailable':[]}):
+            annual=collect_legacy({**share,'factsheetUrl':'https://www.blackrock.com/fr/particuliers/literature/fact-sheet/test.pdf'},NOW,fetch)
+            self.assertEqual(annual['performance']['years'],{'2025':6.61})
+            self.assertEqual(annual['aum'],result['aum'])
+        with patch('collect_document_etf.collect_legacy_document',side_effect=TimeoutError('document unavailable')):
+            partial=collect_legacy({**share,'factsheetUrl':'https://www.blackrock.com/fr/particuliers/literature/fact-sheet/test.pdf'},NOW,fetch)
+            self.assertEqual(partial['aum'],result['aum'])
+            self.assertEqual(partial['collectionErrors'][0]['field'],'performance')
         def unavailable(url,*args):raise urllib.error.HTTPError(url,403,'Forbidden',{},None)
         with self.assertRaises(urllib.error.HTTPError):collect_legacy(share,NOW,unavailable)
         # Successful but invalid data never silently falls back to another page.
@@ -75,6 +84,14 @@ class Documents(unittest.TestCase):
         self.assertEqual(result['aum']['amount'],2070790000)
         self.assertEqual(result['aum']['asOf'],'2026-08-31')
         self.assertEqual(result['characteristics']['asOf'],'2026-09-07')
+        calendar = "\nPERFORMANCE DE L'ANNÉE CIVILE\n2021 2022 2023 2024 2025\nClasse d’Actions - - - - 6,61\nIndice de référence - - - - 6,77\nCROISSANCE DE 10 000\n"
+        annual=parse_legacy_factsheet(text+calendar,facts,share,NOW)
+        self.assertEqual(annual['performance']['years'],{'2025':6.61})
+        for old,new in [('2025','2026'),('2024','2025'),('6,61','6,61 8,2'),('Classe d’Actions','Indice')]:
+            with self.assertRaises(ValueError):parse_legacy_factsheet(text+calendar.replace(old,new),facts,share,NOW)
+        unpublished=parse_legacy_factsheet(text+calendar.replace('6,61','-'),facts,share,NOW)
+        self.assertNotIn('performance',unpublished)
+        self.assertIn('performance: no completed calendar year published for this share',unpublished['unavailable'])
         for old,new in [('IE00TEST0001','IE00OTHER001'),('EUR','USD'),('Capitalisation','Distribution')]:
             with self.assertRaises(ValueError):parse_legacy_factsheet(text,facts.replace(old,new),share,NOW)
         with self.assertRaises(ValueError):parse_legacy_factsheet(text.replace('31-août','31-mai'),facts,share,NOW)

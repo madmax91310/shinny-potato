@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { INDEX_FACTS, getIndexFacts, getIndexDescription, formatIndexConstituents } from '../src/data/index-facts.js';
+import { INDEX_FACTS, CURRENT_INDEX_SNAPSHOTS, getIndexFacts, getCurrentIndexFacts, getCurrentIndexDescription, formatIndexConstituents } from '../src/data/index-facts.js';
 import { SHEETS } from '../src/data/index-factsheets.js';
 import { FAMILIES } from '../src/data/index-comparisons.js';
 
@@ -15,11 +15,11 @@ function auditFamily(family) {
   for (const index of family.indices) {
     if (!index.indexFacts) continue;
     const facts = index.indexFacts;
-    assert(Object.values(INDEX_FACTS).some((history) => Object.values(history).includes(facts)), `${index.name}: référence non canonique`);
+    assert(Object.values(CURRENT_INDEX_SNAPSHOTS).includes(facts) || Object.values(INDEX_FACTS).some((history) => Object.values(history).includes(facts)), `${index.name}: référence non canonique`);
     // Toutes les descriptions d’indices proviennent de la photographie et de sa variante.
-    const [id, history] = Object.entries(INDEX_FACTS).find(([, h]) => Object.values(h).includes(facts));
-    const key = Object.keys(history).find((key) => history[key] === facts);
-    assert.equal(index.desc, getIndexDescription(id, key, family.id), `${index.name}: description divergente`);
+    const id = Object.entries(CURRENT_INDEX_SNAPSHOTS).find(([, f]) => f === facts)?.[0]
+      ?? Object.entries(INDEX_FACTS).find(([, h]) => Object.values(h).includes(facts))[0];
+    assert.equal(index.desc, getCurrentIndexDescription(id, facts.asOf ?? 'methodology', family.id), `${index.name}: description divergente`);
   }
   const aliases = { 'World': 'MSCI World', 'World ex USA': 'MSCI World ex USA', 'World Small Cap': 'MSCI World Small Cap', 'Dividend Aristocrats mondial': 'Dividend Aristocrats', 'Euro Dividend Aristocrats': 'Euro Dividend Aristocrats (PEA)', 'PAEEM': 'Émergents global (indice ESG)', 'PAASI': 'Asie émergente' };
   for (const text of family.diversification.chain) {
@@ -43,6 +43,13 @@ for (const [id, history] of Object.entries(INDEX_FACTS)) {
     assert(['legacy-undated', 'methodology'].includes(date) ? facts.asOf === null : date === facts.asOf && /^\d{4}-\d{2}-\d{2}$/.test(date), `${id}: date incohérente`);
     assert(Object.isFrozen(facts), `${id}: photographie modifiable`);
   }
+}
+for (const [id, facts] of Object.entries(CURRENT_INDEX_SNAPSHOTS)) {
+  const active = JSON.parse(readFileSync('src/data/automated-indices.json'))[id].facts;
+  assert.equal(getCurrentIndexFacts(id, facts.asOf), facts, `${id}: observation courante ignorée à date identique`);
+  assert.notEqual(facts, getIndexFacts(id, facts.asOf), `${id}: archive modifiée par la façade courante`);
+  assert.deepEqual(facts.holdings, active.holdings, `${id}: positions courantes divergentes`);
+  assert.equal(facts.source.url, active.source.url, `${id}: provenance courante divergente`);
 }
 SHEETS.forEach(auditSheet);
 FAMILIES.forEach(auditFamily);

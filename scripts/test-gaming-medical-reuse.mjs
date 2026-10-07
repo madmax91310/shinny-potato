@@ -12,7 +12,7 @@ import { buildDuel } from '../src/pages/portfolio-duels/lib.js'
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
 import { CATALOG, euroReturn, EUR_USD } from '../src/data/duel-assets.js'
 import { INDEX_DECISION_CASES } from '../src/data/index-decision-cases.js'
-import { getIndexFacts } from '../src/data/index-facts.js'
+import { getCurrentIndexFacts as getIndexFacts } from '../src/data/index-facts.js'
 import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 const capture = JSON.parse(readFileSync(new URL('./source-snapshots/gaming-medical-2026-10-05.json', import.meta.url)))

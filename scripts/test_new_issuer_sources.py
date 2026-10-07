@@ -110,6 +110,10 @@ class IssuerSources(unittest.TestCase):
         self.assertEqual(r['aum']['amount'],17446660000)
         self.assertEqual(len(r['holdings']['rows']),10)
         self.assertEqual(r['holdings']['basis'],'index')
+        self.assertEqual(r['performance']['years'],{'2022':-18.26,'2023':23.79,'2024':18.86,'2025':21.31})
+        self.assertEqual(r['performance']['currency'],'USD')
+        for a,b in [('Fund (USD)','Fund (EUR)'),('2022      2023','2022      2022'),('YTD2','Annual'),('Ø p.a.','Rolling')]:
+            with self.assertRaises(ValueError):ubs(text.replace(a,b),s,NOW,'h')
         urls=list(ubs_urls(NOW));self.assertIn('20260930',urls[0]);self.assertIn('20260831',urls[1])
         def fetch(url, **kwargs):
             if url.replace('https://www.swissfunddata.ch/', 'https://swissfunddata.ch/')==urls[0]:raise ValueError('Expected official PDF; received Dokument nicht gefunden | Swiss Fund Data at '+url)
