@@ -63,6 +63,30 @@ class ProductCalendars(unittest.TestCase):
                 if defect=='currency':config['currency']='EUR'
                 with self.subTest(isin=isin,defect=defect),self.assertRaises(ValueError):coinshares_calendar(bad,config,NOW,'url')
 
+    def test_coinshares_independent_cache_dates(self):
+        for isin in ['GB00BLD4ZL17','GB00BLD4ZM24']:
+            p=json.loads((FIX/(isin+'.json')).read_text());s=share(isin)
+            expected=coinshares_calendar(p,s,NOW,'url')
+            series=p[0]['sections'][0]['graph']['series'][0]
+            # New graph point, while overview still describes the previous day.
+            series['dataX'].append('2026/10/07');series['dataY'].append('123.45')
+            series['updated']='2026-10-07T16:55:00Z'
+            actual=coinshares_calendar(p,s,NOW,'url')
+            self.assertEqual(actual['years'],expected['years'])
+            self.assertEqual(actual['asOf'],'2026-10-06')
+            for defect in ['too-far-ahead','future','missing-snapshot','overview-ahead','mismatched-return','nan-return']:
+                bad=copy.deepcopy(p);graph=bad[0]['sections'][0]['graph']['series'][0]
+                overview=next(section for section in bad[1]['sections']if section['key']==isin+'_OVERVIEW')
+                if defect=='too-far-ahead':graph['dataX'][-1]='2026/10/08'
+                if defect=='future':graph['dataX'][-1]='2026/10/09'
+                if defect=='missing-snapshot':graph['dataX'][-2]='2026/10/05'
+                if defect=='overview-ahead':
+                    next(row for row in overview['meta']if row['key']=='rateDate')['value']='2026-10-08'
+                if defect in ['mismatched-return','nan-return']:
+                    next(row for row in overview['meta']if row['key']=='sinceInceptionPerformance')['value']='999%'if defect=='mismatched-return'else'NaN%'
+                with self.subTest(isin=isin,defect=defect),self.assertRaises(ValueError):
+                    coinshares_calendar(bad,s,dt.datetime(2026,10,8,tzinfo=UTC),'url')
+
     def test_calendar_outage_preserves_independent_fields(self):
         s=share('IE00B4K6B022');healthy={'productId':s['isin'],'characteristics':{'terPct':.05},'aum':{'amount':1},'unavailable':[]}
         with patch('collect_document_etf.download',side_effect=[b'%PDF-test',TimeoutError('calendar timeout')]),patch('collect_document_etf.pdf_text',return_value='text'),patch('collect_document_etf.parse',return_value=copy.deepcopy(healthy)):
