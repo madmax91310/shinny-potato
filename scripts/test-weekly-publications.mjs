@@ -33,14 +33,13 @@ try {
     ['/comparatif-etf', 'Lundi midi · alternance'], ['/fiche-lexique', 'Lundi midi · alternance'],
     ['/tweets-factsheets', 'Lundi soir'],
     ['/france-100-menages', 'Mardi midi'], ['/generateur-portefeuilles', 'Mardi soir'],
-    ['/calculateur-investissement', 'Mercredi soir'],
+    ['/analyse-entreprise', 'Mercredi midi'], ['/calculateur-investissement', 'Mercredi soir'],
     ['/duels-portefeuilles', 'Jeudi midi'], ['/fiches-etf', 'Jeudi soir'],
     ['/comparateur-indices', 'Vendredi midi'],
     ['/portefeuilles-investisseurs', 'Dimanche midi'], ['/faits-marquants-marches', 'Dimanche soir'],
     ['/il-y-a-x-ans', 'Publication ponctuelle'], ['/performance-depuis', 'Publication ponctuelle'],
     ['/pouvoir-achat', 'Publication ponctuelle'], ['/dilemme', 'Publication ponctuelle'],
     ['/vrai-faux', 'Publication ponctuelle'], ['/comparatif-courtiers', 'Publication ponctuelle'],
-    ['/analyse-entreprise', 'Publication ponctuelle'],
     ['/cas-concrets', 'Publication ponctuelle'], ['/impact-frais', 'Publication ponctuelle'],
   ]) assert.equal(await page.locator(`.workspace-tool-card[href$="${path}"] .workspace-publication-day`).innerText(), day)
   for (const width of [320, 390]) {
