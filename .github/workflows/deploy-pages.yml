@@ -54,6 +54,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+      - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'
       - run: node scripts/test-company-analysis.mjs
       - run: node scripts/test-annual-rollover.mjs
@@ -104,7 +105,10 @@ jobs:
       - run: npm run stress-test:portfolios
       - run: npm run build
       - run: npx playwright install --with-deps chromium
+      - run: mkdir -p test-artifacts/company-analysis
       - run: node scripts/test-company-analysis-ui.mjs
+        env:
+          COMPANY_QA_DIR: test-artifacts/company-analysis
       - run: node scripts/playwright-tools.mjs
       - run: node scripts/test-portfolio-metallic.mjs
       - run: node scripts/test-index-ribbon.mjs
