@@ -2,6 +2,7 @@ import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { getInstrumentName } from './instruments.js';
 import { getInstrumentCalendarReturns, getInstrumentReturnValues } from './instrument-returns.js';
+import { economicCalendar } from './economic-data.js';
 // Bibliothèque d'actifs — rendements calendaires 2020-2025 : supports exacts quand
 // l'émetteur publie la série, et proxies ou historiques mixtes explicitement signalés sinon.
 // Les séries USD et EUR ne sont pas converties dans une devise commune.
@@ -531,7 +532,7 @@ export const ASSETS = [
     // 2022 : 2,1 % ASPIM, 2023 : -5,78 %, 2024 : -1,1 %, 2025 : +3,1 % RGI.
     // La PGA 2025 (+1,5 %) dépend du prix de part et n'est PAS le RGI.
     r: [5.30, 5.85, 2.1, -5.78, -1.1, 3.1],
-    confidenceNote: "Moyenne du marché SCPI : rendement global immobilier ASPIM (loyers + variation de la valeur du patrimoine) de 2021 à 2025. L'année 2020 suit l'ancienne méthode ; ces chiffres ne sont ni le revenu distribué ni le résultat d'une vente de parts, et les frais d'achat varient.",
+    confidenceNote: "Moyenne du marché SCPI : rendement global immobilier ASPIM (loyers + variation de la valeur du patrimoine) à partir de 2021. L'année 2020 suit l'ancienne méthode ; ces chiffres ne sont ni le revenu distribué ni le résultat d'une vente de parts, et les frais d'achat varient.",
     desc: [
       "de l'immobilier locatif mutualisé (bureaux, commerces...), avec un rendement historiquement régulier.",
       "a traversé une période difficile en 2023-2024 avec la baisse de valorisation du parc immobilier.",
@@ -1478,7 +1479,7 @@ export const ASSETS = [
   },
 ];
 
-for (const asset of ASSETS) asset.calendarReturns = asset.isin ? getInstrumentCalendarReturns(asset.isin, asset.r) : Object.fromEntries(YEARS.map((year, i) => [year, asset.r[i]]));
+for (const asset of ASSETS) asset.calendarReturns = asset.isin ? getInstrumentCalendarReturns(asset.isin, asset.r) : economicCalendar(asset.id, asset.r);
 
 export function getAsset(id) {
   return ASSETS.find((a) => a.id === id);

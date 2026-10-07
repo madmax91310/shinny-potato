@@ -3,3 +3,6 @@
 .dr-current{background:var(--ui-accent-soft);color:var(--ui-accent)}.dr-soon,.dr-ending{background:#eff1fc;color:var(--ui-accent)}
 
 .dr-reminders{margin:1.5rem 0}.dr-reminders>h2{color:var(--ui-ink);font-size:1.1rem;font-weight:600}.dr-cadences{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem}.dr-cadence{display:flex;flex-direction:column;gap:.5rem;text-align:left;background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:.8rem;padding:1rem;color:var(--ui-muted);cursor:pointer;min-width:0;font:inherit;font-size:.8rem;line-height:1.5;overflow-wrap:anywhere}.dr-cadence strong{font-size:1rem;color:var(--ui-ink)}.dr-cadence-types{color:var(--ui-muted);flex:1}.dr-cadence-link{color:var(--ui-accent)}.dr-cadence-due{color:#e5c07b}.dr-cadence[aria-pressed=true]{border-color:var(--ui-accent);background:var(--ui-accent-soft)}.dr-cadence:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}@media(max-width:600px){.dr-cadences{grid-template-columns:1fr}}
+
+.dr-automation { margin: 1.5rem 0; }
+.dr-automation h3 { margin: .7rem 0; font-size: 1rem; }

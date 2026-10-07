@@ -1,0 +1,130 @@
+name: Update official economic data
+on:
+  schedule:
+    - cron: '20 8 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-economic-data.yml'
+      - 'scripts/collect_economic_data.py'
+      - 'scripts/economic-requirements.txt'
+      - 'scripts/test_economic_data.py'
+  pull_request:
+    paths:
+      - '.github/workflows/update-economic-data.yml'
+      - 'scripts/collect_economic_data.py'
+      - 'scripts/test_economic_data.py'
+      - 'scripts/economic-requirements.txt'
+      - 'scripts/fixtures/economic/**'
+      - 'scripts/test-economic-consumers.mjs'
+      - 'scripts/test_automation_status.py'
+      - 'scripts/publish_automation_status.py'
+      - '.github/workflows/automation-status.yml'
+      - 'src/pages/data-review/automation.js'
+      - 'src/pages/data-review/AutomationFailures.jsx'
+      - 'src/data/economic-data.js'
+      - 'src/data/automated-economic.json'
+permissions:
+  contents: read
+jobs:
+  refresh:
+    concurrency:
+      group: economic-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      cancel-in-progress: false
+      queue: max
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      collection_failed: ${{ steps.savings.outcome == 'failure' || steps.households.outcome == 'failure' || steps.scpi.outcome == 'failure' || steps.funds.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: pip install -r scripts/economic-requirements.txt
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_economic_data.py'
+      - run: python -m unittest discover -s scripts -p 'test_automation_status.py'
+      - run: node scripts/test-economic-consumers.mjs
+      - id: cadence
+        name: Determine publication cadence
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          day=$(date -u +%d)
+          if [ "$EVENT_NAME" != 'schedule' ] || [ "$day" = '01' ] || [ "$day" = '16' ]; then
+            echo 'full=true' >> "$GITHUB_OUTPUT"
+          fi
+      - id: savings
+        name: Collect legal Livret A rate
+        continue-on-error: true
+        run: python scripts/collect_economic_data.py --family savings --apply --output "$RUNNER_TEMP/savings-observation.json"
+      - id: households
+        name: Collect INSEE household indicators
+        if: steps.cadence.outputs.full == 'true'
+        continue-on-error: true
+        run: python scripts/collect_economic_data.py --family households --apply --output "$RUNNER_TEMP/households-observation.json"
+      - id: scpi
+        name: Collect ASPIM annual real estate return
+        if: steps.cadence.outputs.full == 'true'
+        continue-on-error: true
+        run: python scripts/collect_economic_data.py --family scpi --apply --output "$RUNNER_TEMP/scpi-observation.json"
+      - id: funds
+        name: Collect ACPR annual euro fund average
+        if: steps.cadence.outputs.full == 'true'
+        continue-on-error: true
+        run: python scripts/collect_economic_data.py --family fonds_euros --apply --output "$RUNNER_TEMP/funds-observation.json"
+      - run: npm run audit:household-statistics
+      - run: npm run audit:portfolio-provenance
+      - run: npm run audit:data-catalog
+      - run: node scripts/test-economic-consumers.mjs
+      - run: npm run build
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: economic-observations
+          path: ${{ runner.temp }}/*-observation.json
+          retention-days: 35
+          overwrite: true
+          if-no-files-found: ignore
+      - name: Commit validated official economic data
+        id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/automated-economic.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh validated official economic observations'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: refresh
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    runs-on: ubuntu-26.04
+    steps:
+      - run: |
+          echo 'Une collecte officielle a échoué. Les dernières observations validées sont conservées. Voir les rapports economic-observations.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

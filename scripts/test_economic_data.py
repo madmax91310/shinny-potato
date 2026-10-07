@@ -1,0 +1,46 @@
+import copy
+import pathlib
+import unittest
+from unittest.mock import patch
+import collect_economic_data as c
+
+FIXTURES=pathlib.Path(__file__).parent/'fixtures/economic'
+class EconomicDataTests(unittest.TestCase):
+ def test_official_household_snapshots(self):
+  records={}
+  for key in c.SOURCES:
+   records.update(c.parse_households(key,(FIXTURES/f'{key}.html').read_bytes(),f'https://www.insee.fr/fr/statistiques/{c.SOURCES[key][0]}','2026-10-07'))
+  self.assertEqual(len(records),29)
+  for id_,expected in {'wealth-share':7,'wealth-top10':750400,'wealth-median':148100,'homeowners':57.2,'debt':45.6,'salary-top10':4334,'salary-median':2190,'young-wealth':26100,'inheritance':41,'donation':20}.items():
+   self.assertEqual(records[id_]['value'],expected,id_)
+  self.assertEqual(records['livret-assurance']['secondValue'],41.7)
+  self.assertEqual(records['unexpected-expense']['referencePeriod'],'Début 2025')
+ def test_period_rollover_and_provisional_flag(self):
+  body=(FIXTURES/'living.html').read_bytes().replace(b'2025',b'2026').replace('provisoires'.encode(),b'definitives')
+  result=c.parse_households('living',body,'https://www.insee.fr/fr/statistiques/1','2027-01-01')
+  self.assertEqual(result['heating']['referencePeriod'],'Début 2026')
+  self.assertFalse(result['heating']['provisional'])
+ def test_missing_or_ambiguous_table_fails(self):
+  body=(FIXTURES/'wealth.html').read_bytes()
+  with self.assertRaises(ValueError): c.parse_households('wealth',body.replace(b'Figure 1',b'Other figure'),'url','2026-10-07')
+  with self.assertRaises(ValueError): c.parse_households('wealth',body+body,'url','2026-10-07')
+ def test_changed_table_scope_is_rejected(self):
+  body=(FIXTURES/'living.html').read_bytes().replace('France métropolitaine'.encode(),b'France hors Mayotte')
+  with self.assertRaises(ValueError):c.parse_households('living',body,'url','2026-10-07')
+ def test_legal_rate_date_and_future_guard(self):
+  body='<title>Livret A | Banque de France</title><p>Elle est de 1,7 % depuis le 1er août 2026</p>'.encode()
+  self.assertEqual(c.parse_savings(body,'2026-10-07')['rate'],1.7)
+  with self.assertRaises(ValueError): c.parse_savings(body,'2026-07-01')
+ def test_scpi_conventions(self):
+  body='<p>Des SCPI : rendement global immobilier 2025 : +3,1 %. Taux de distribution et variation de la valeur de réalisation.</p>'.encode()
+  self.assertEqual(c.parse_scpi(body,'url','2026-10-07')['value'],3.1)
+  with self.assertRaises(ValueError):c.parse_scpi(body.replace(b'global immobilier',b'global immobilier trimestriel'),'url','2026-10-07')
+ def test_funds_population(self):
+  text='Contrats individuels : nets de prélèvements sur encours, avant prélèvements sociaux. Taux de revalorisation en 2025 : 2,63 %. Contrats collectifs : taux de revalorisation en 2025 : 2,64 %.'
+  with patch.object(c,'pdf_text',return_value=text): self.assertEqual(c.parse_funds_euros(b'pdf','url','2026-10-07')['value'],2.63)
+ def test_merge_is_atomic_and_rejects_regression(self):
+  state={'households':{'one':{'year':2025,'value':10}}};before=copy.deepcopy(state)
+  with self.assertRaises(ValueError): c.merge(state,'households',{'two':{'year':2025,'value':20},'one':{'year':2024,'value':5}})
+  self.assertEqual(state,before)
+  self.assertEqual(c.merge(state,'households',{'one':{'year':2026,'value':11}})['households']['one']['value'],11)
+if __name__=='__main__':unittest.main()
