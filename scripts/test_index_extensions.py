@@ -25,7 +25,7 @@ class IndexExtensions(unittest.TestCase):
             with self.assertRaises(ValueError):nasdaq_returns(t.replace(a,b),c,NOW)
         with self.assertRaises(ValueError):nasdaq_returns(t,{**c,'returnVariant':'NET'},NOW)
     def test_amundi_explicit_index_exposures_and_counts(self):
-        for id,count in [('nasdaq-pea',102),('topix',1636),('sp500-pea',503),('sp500-equal-weight',503),('stoxx600',600),('eurostoxx50',50)]:
+        for id,count in [('nasdaq-pea',102),('topix',1636),('sp500-pea',503),('sp500-equal-weight',503),('stoxx600',600),('eurostoxx50',50),('russell-2000',1953)]:
             c=cfg(id);f=json.loads((F/(id+'.json')).read_text())
             def extract(body,crop=None):return f['left'] if crop==(0,300) else f['right'] if crop==(300,300) else f['full']
             with patch('collect_index_extensions.pdf_text',side_effect=extract),patch('collect_amundi_index_exposure.pdf_text',side_effect=extract):
@@ -55,6 +55,21 @@ class IndexExtensions(unittest.TestCase):
     def test_invalid_observation_does_not_replace_good_composition(self):
         previous={'topix':{'facts':{'asOf':'2026-08-31','constituents':1636}}}
         self.assertEqual(merge_records(previous,[{'id':'topix','errors':[{'field':'composition'}]}]),previous)
+    def test_ftse_returns_keep_their_source_when_amundi_composition_fails(self):
+        c=cfg('russell-2000')
+        returns='Data as at: 31 August 2026'
+        with patch('collect_index_extensions.collect_amundi_composition',side_effect=ValueError('wrong index')),patch('refresh_index_sources.pdf_text',return_value=returns),patch('refresh_index_sources.ftse_returns',return_value=[[2025,12.81]]):
+            r=refresh_index(c,NOW,lambda url:b'%PDF-proof')
+        self.assertNotIn('facts',r)
+        self.assertEqual(r['errors'][0]['field'],'composition')
+        self.assertEqual(r['returns']['currency'],'USD')
+        self.assertEqual(r['returns']['variant'],'TOTAL')
+        self.assertEqual(r['returns']['source']['url'],c['returnSourceUrl'])
+        with patch('collect_index_extensions.collect_amundi_composition',return_value={'asOf':'2026-08-31'}),patch('refresh_index_sources.pdf_text',side_effect=ValueError('bad return document')):
+            r=refresh_index(c,NOW,lambda url:b'%PDF-proof')
+        self.assertIn('facts',r)
+        self.assertNotIn('returns',r)
+        self.assertEqual(r['errors'][0]['field'],'returns')
     def test_derived_returns_and_composition_fail_independently(self):
         c=cfg('sp500-pea')
         with patch('derive_index_returns.collect_one',return_value={'id':c['id'],'errors':[{'field':'returns'}]}),patch('collect_index_extensions.collect_amundi_composition',return_value={'asOf':'2026-08-31'}) as composition:

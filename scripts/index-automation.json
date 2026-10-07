@@ -27,13 +27,16 @@
       "returnCurrency": "USD",
       "performanceDetail": "Russell 2000, rendement total USD, dividendes réinvestis, hors frais ETF",
       "requiredFields": [
+        "composition",
         "returns"
       ],
       "enabled": true,
       "returnDocumentName": "Russell 2000 Equal Weight",
       "returnRowName": "Russell 2000",
-      "collectComposition": false,
-      "qualificationIssue": "Composition: current primary factsheet publishes sector chart without extractable numerical weights and holdings without weights; previous composition preserved."
+      "collectComposition": true,
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "LU1681038672",
+      "compositionIdentityPattern": "Indice Russell 2000(?:\\s|\\.)[\\s\\S]+?\\(RU20N30U\\)"
     },
     {
       "id": "msci-world-momentum",

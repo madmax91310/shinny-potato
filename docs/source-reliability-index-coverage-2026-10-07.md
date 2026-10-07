@@ -41,3 +41,15 @@ Cette passe raccorde les annuels S&P 500 Equal Weight TOTAL USD : 46 séries ann
 Le correctif WisdomTree conserve désormais les frais, encours et répartitions HTML validés lorsqu'un PDF est rejeté (identité, date, contenu ou disposition). Un défaut des tableaux de répartition PDF conserve les frais et calendriers PDF déjà validés ; les répartitions rejetées ne sont jamais appliquées. Les erreurs de champ restent transmises au rapport de collecte et au statut d'échec du workflow. Une mauvaise identité HTML ou PDF, lorsqu'il n'existe aucune source indépendante valide, continue de faire échouer la collecte.
 
 Validation de cette passe : collecte réelle Invesco et WisdomTree ; 140 tests Python, dont les rejets de PDF erroné et de répartition incomplète ; audits des indices, performances ETF, revue et catalogue des données ; build de production.
+
+## Poursuite après la PR 330 — Russell 2000
+
+La composition exacte Russell 2000 est raccordée à la fiche mensuelle Amundi LU1681038672, explicitement intitulée « Données de l’indice ». La collecte réelle du 7 octobre valide l’édition du 31 août 2026 : 1 953 titres, pays complets, onze secteurs totalisant 99,85 % et dix positions pondérées (3,15 % après arrondis individuels ; total publié 3,16 %). La publication de septembre renvoie HTTP 404 ; le repli contrôlé vers août conserve sa date réelle. Chaque exécution demande la dernière fin de mois, puis la précédente.
+
+Source validée : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831
+
+L’ISIN, la réplication synthétique, la mention Russell 2000 et le symbole RU20N30U sont vérifiés. Seuls les tableaux d’indice sont lus. La convention NET de cette fiche ne remplace pas les rendements TOTAL USD FTSE Russell déjà collectés. Composition et rendements échouent indépendamment, et chaque champ conserve sa provenance. La couverture passe à 39 compositions ; restent trois BNP et trois compositions (Russell 1000 et deux Dividend Aristocrats).
+
+La nouvelle récupération du composant Fundsheet BNP renvoie encore HTTP 502. La page S&P Euro High Yield Dividend Aristocrats est accessible mais ses poids sont chargés par un composant séparé ; l’endpoint public utilisé par cette page renvoie HTTP 400, puis HTTP 403 lors du réessai de cette vérification. Le Global doit être la variante Quality Income exacte, jamais Screened ni Blend. Ces sources restent hors collecte tant que les publications complètes, datées et renouvelables ne sont pas qualifiées.
+
+Validation de la poursuite : collecte réelle Russell 2000 sans exception ; 35 tests Python ciblés (extensions et documents d’indices, fusion des observations et rafraîchissement émetteurs), audits index-facts/index-completeness/data-review/data-catalog et build de production réussis.
