@@ -762,6 +762,9 @@ export function buildAutomatedIndexSnapshot(facts, baseline) {
       ...(baseline.targetConstituents != null ? { targetConstituents: baseline.targetConstituents } : {}),
       ...(baseline.approximateConstituents ? { approximateConstituents: Math.round(facts.constituents / 100) * 100 } : {}),
       methodologySources: baseline.methodologySources,
+      sectorClassification: facts.sectorClassification ?? baseline.sectorClassification,
+      methodologyNote: facts.methodologyNote ?? baseline.methodologyNote,
+      topWeight: facts.topWeight ?? facts.holdings?.reduce((sum, [, weight]) => sum + weight, 0),
     };
 }
 

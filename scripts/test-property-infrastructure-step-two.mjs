@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { getIndexFacts } from '../src/data/index-facts.js'
+import { getIndexFacts, getCurrentIndexFacts } from '../src/data/index-facts.js'
 import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js'
 import { FAMILIES } from '../src/data/index-comparisons.js'
 import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js'
@@ -18,7 +18,7 @@ for (const [i,id] of ids.entries()) {
  for (const key of ['index','constituents','countries','sectors','holdings','topWeight','source','sectorClassification']) assert.deepEqual(facts[key],captured[key],`${id}/${key}: écart au relevé officiel`)
  assert(Object.isFrozen(facts)); assert.equal(facts.metadata.asOf,date)
  const sheet = SHEETS.find(s=>s.id===id), series = INDEX_RETURNS[id]['2025-12-31']
- assert.equal(sheet.indexFacts,facts); assert.deepEqual(sheet.returns,getCurrentIndexReturnSeries(id,'2025-12-31').values)
+ assert.equal(sheet.indexFacts,getCurrentIndexFacts(id,date)); assert.deepEqual(sheet.returns,getCurrentIndexReturnSeries(id,'2025-12-31').values)
  assert.deepEqual(series.values,proof.returns[id]['2025-12-31'].values)
  assert.equal(series.currency,'USD'); assert.equal(series.method,'dividendes réinvestis (Total Return FTSE)')
  const text = buildFactsheetTweet(sheet)
