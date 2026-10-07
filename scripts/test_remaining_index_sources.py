@@ -4,7 +4,7 @@ import datetime as dt
 import json
 from pathlib import Path
 import unittest
-from collect_remaining_indices import nikkei_composition,nikkei_returns,stoxx_returns,benchmark_page_returns,metal_benchmark_returns,collect_one
+from collect_remaining_indices import nikkei_composition,nikkei_returns,stoxx_returns,benchmark_page_returns,metal_benchmark_returns,collect_one,invesco_us_index_returns
 from collect_index_documents import msci_composition
 from derive_index_returns import derive
 from refresh_index_sources import merge_records
@@ -14,6 +14,23 @@ CONFIG=json.loads((Path(__file__).parent/'index-automation.json').read_text())['
 NOW=dt.datetime(2026,10,6,tzinfo=UTC)
 def cfg(id):return next(c for c in CONFIG if c['id']==id)
 class RemainingIndexSources(unittest.TestCase):
+    def test_invesco_underlying_index_is_not_fund_or_cap_weighted_benchmark(self):
+        text=(F/'invesco-rsp-index.txt').read_text();c=cfg('sp500-equal-weight')
+        stamp,values=invesco_us_index_returns(text,c,NOW)
+        self.assertEqual(stamp,'2026-06-30')
+        self.assertEqual(dict(values)[2025],11.43)
+        self.assertEqual(dict(values)[2020],12.83)
+        self.assertEqual(dict(values)[2022],-11.45)
+        self.assertNotIn(2026,dict(values))
+        for a,b in [('SPXEWTR','SPXEW'),('46137V357','46137V358'),
+                    ('Underlying index                11.43','ETF - NAV                       11.43'),
+                    ('2025         2024','2026         2024'),
+                    ('June 30, 2026','March 31, 2026'),('S&P 500 Index (USD)','S&P 500 Index (EUR)')]:
+            with self.subTest(change=a),self.assertRaises(ValueError):
+                invesco_us_index_returns(text.replace(a,b),c,NOW)
+        for field,value in [('returnCurrency','EUR'),('returnVariant','NET')]:
+            with self.assertRaises(ValueError):invesco_us_index_returns(text,{**c,field:value},NOW)
+
     def test_nikkei_exact_tables(self):
         c=cfg('nikkei225');t=(F/'nikkei.txt').read_text();p=(F/'nikkeiprice.txt').read_text()
         stamp,values=nikkei_returns(t,c,NOW)
