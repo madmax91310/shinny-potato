@@ -78,14 +78,14 @@ jobs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
       collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           # Queued runs and old-run retries must collect against current data.
           ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
@@ -130,7 +130,7 @@ jobs:
       - run: npm run audit:calculator-series
       - run: node scripts/test-comparison-etf-details.mjs
       - run: npm run build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: active-etf-observation

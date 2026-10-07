@@ -25,22 +25,23 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Explicitly validate the next ubuntu-latest image before its rollout.
+    runs-on: ubuntu-26.04
     outputs:
       commit_sha: ${{ steps.snapshot.outputs.commit_sha }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ inputs.ref || github.sha }}
       - name: Record the exact built snapshot
         id: snapshot
         run: echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
           cache: npm
       - run: npm ci
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p 'test_data*.py'
@@ -116,28 +117,28 @@ jobs:
       - run: node scripts/test-investment-emerald.mjs
       - run: node scripts/test-duel-titanium.mjs
       - run: node scripts/test-investor-screenprint.mjs
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: investor-visual-checks
           path: test-artifacts/investor-screenprint
           if-no-files-found: ignore
           retention-days: 7
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: duel-visual-checks
           path: test-artifacts/duel-titanium
           if-no-files-found: ignore
           retention-days: 7
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: investment-visual-checks
           path: test-artifacts/investment-emerald
           if-no-files-found: ignore
           retention-days: 7
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: tool-visual-checks
@@ -147,9 +148,9 @@ jobs:
       - run: node scripts/test-weekly-publications.mjs
       - run: node scripts/test-route-loading.mjs
       - run: node scripts/test-data-review-calendar.mjs
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         with:
           path: dist
@@ -157,7 +158,8 @@ jobs:
   deploy:
     needs: build
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
+    # Explicitly validate the next ubuntu-latest image before its rollout.
+    runs-on: ubuntu-26.04
     # Serialize actual publications, without interrupting an active publication
     # or replacing a waiting 13F deployment with an unrelated/older run.
     concurrency:
@@ -168,7 +170,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ needs.build.outputs.commit_sha }}
       - name: Skip superseded production snapshots
@@ -176,4 +178,4 @@ jobs:
         run: bash scripts/check-pages-head.sh
       - id: deployment
         if: steps.current.outputs.current == 'true'
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5.0.1

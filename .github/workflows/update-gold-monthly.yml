@@ -29,16 +29,16 @@ jobs:
       changed: ${{ steps.commit.outputs.changed }}
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.event_name == 'pull_request' && github.sha || 'master' }}
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
       - run: pip install -r scripts/requirements-gold.txt
       - run: python -m unittest discover -s scripts -p 'test_gold_monthly.py'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
       - name: Collect official monthly workbook
