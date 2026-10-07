@@ -53,6 +53,13 @@ for symbol, cik in SYMBOLS.items():
                     'ageDays': (NOW.date() - dt.date.fromisoformat(latest['asOfDate'])).days}
     else:
         item['yahoo'] = body
+    nasdaq = get(f'https://api.nasdaq.com/api/analyst/{symbol}/earnings-forecast')
+    if isinstance(nasdaq.get('data'), dict):
+        source = nasdaq['data']
+        item['nasdaq'] = {'symbol': source.get('symbol'),
+            'annual': source.get('yearlyForecast'), 'quarterly': source.get('quarterlyForecast')}
+    else:
+        item['nasdaq'] = nasdaq
     report['companies'][symbol] = item
     print(symbol, json.dumps(item), flush=True)
     time.sleep(1)
