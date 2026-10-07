@@ -5,6 +5,7 @@ const PATHS = {
   '/impact-frais': 'M5 3h14v18H5zM8 7h8M8 11h1m6 0h1M8 15h1m6 0h1',
   '/generateur-portefeuilles': 'M3 8h18v12H3zM8 8V4h8v4M3 12h18m-9 0v3',
   '/duels-portefeuilles': 'M4 4l16 16M15 20l5-5M20 4L4 20M4 15l5 5M4 4v5m0-5h5m11 0v5m0-5h-5',
+  '/analyse-entreprise': 'M3 21V9l6 3V6l6 4V3h6v18H3m4-4h2m4 0h2m4 0h1',
   '/portefeuilles-investisseurs': 'M8 7a4 4 0 1 0 8 0 4 4 0 1 0-8 0M4 21v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3',
   '/fiche-lexique': 'M4 4h7v16H4zM11 4h9v16h-9M7 8h1m6 0h3m-3 4h3',
   '/comparatif-etf': 'M4 19V9m8 10V4m8 15v-7M2 21h20',

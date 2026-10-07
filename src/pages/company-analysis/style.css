@@ -1,0 +1,5 @@
+.company-tweet { white-space: pre-wrap; line-height: 1.75; padding: 26px; border: 1px solid var(--border, #dfe4e8); border-radius: 18px; overflow-wrap: anywhere; }
+.company-evidence { margin-top: 24px; line-height: 1.65; font-size: .92rem; }
+.company-evidence h2 { font-size: 1.1rem; }
+.company-evidence a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 640px) { .company-tweet { padding: 18px; } }

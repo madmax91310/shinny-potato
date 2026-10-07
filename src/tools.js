@@ -3,6 +3,11 @@
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
   {
+    to: '/analyse-entreprise', navLabel: 'Entreprises', title: 'Analyse d’entreprise',
+    publicationDay: 'Publication ponctuelle', icon: '🏭', accent: '#7bd8bd',
+    description: 'Activité, résultats publiés et valorisation disponible : texte et image actualisés automatiquement.', status: 'disponible',
+  },
+  {
     to: '/portefeuilles-investisseurs', navLabel: 'Investisseurs', title: "Portefeuille d’investisseur",
     publicationDay: 'Dimanche midi', icon: '👤', accent: '#d5ad65',
     description: 'Positions 13F de fonds connus : tweet, répartition et export PNG actualisés depuis Tracefour.', status: 'disponible',
@@ -172,6 +177,7 @@ export const TOOLS = [
 ]
 
 const TOOL_SUMMARIES = {
+  '/analyse-entreprise': 'Son activité, ses résultats et sa valorisation disponible.',
   '/comparateur-indices': 'Expositions, diversification et performances des indices.',
   '/comparatif-courtiers': 'Frais, PEA et services des courtiers en face à face.',
   '/calculateur-investissement': 'Ce que serait devenu ton investissement au fil du temps.',
@@ -200,7 +206,7 @@ const TOOL_SUMMARIES = {
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/comparateur-indices', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
-  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/vrai-faux', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/cas-concrets', '/france-100-menages', '/banque-tweets'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/vrai-faux', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/cas-concrets', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })) }))
 
@@ -212,7 +218,7 @@ export const WEEKLY_ORDER = [
   '/duels-portefeuilles', '/fiches-etf',
   '/comparateur-indices',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
-  '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat',
+  '/analyse-entreprise', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat',
   '/dilemme', '/vrai-faux', '/comparatif-courtiers', '/cas-concrets',
   '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]

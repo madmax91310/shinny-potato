@@ -1,0 +1,98 @@
+name: Update company analysis
+on:
+  schedule:
+    - cron: '35 6 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/update-company-analysis.yml'
+      - 'scripts/*company*'
+      - 'src/data/company-*.json'
+      - 'src/pages/company-analysis/**'
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-company-analysis.yml'
+      - 'scripts/refresh_company_analysis.py'
+      - 'src/data/company-profiles.json'
+permissions:
+  contents: read
+jobs:
+  refresh:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    concurrency:
+      group: company-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'
+      - id: collect
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        env:
+          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+        run: python scripts/refresh_company_analysis.py --apply --output "$RUNNER_TEMP/company-observation.json"
+      - run: node scripts/test-company-analysis.mjs
+      - run: npm run build
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.event_name != 'pull_request'
+        with:
+          name: company-analysis-observation
+          path: ${{ runner.temp }}/company-observation.json
+          if-no-files-found: ignore
+          retention-days: 35
+      - name: Commit validated observations
+        id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/company-analysis.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh company accounts and valuation observations'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Report optional valuation access
+        if: github.event_name != 'pull_request'
+        env:
+          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+        run: |
+          if [ -z "$ALPHAVANTAGE_API_KEY" ]; then
+            echo 'SEC accounts and completed-session prices are automated. PER and forward PER require the ALPHAVANTAGE_API_KEY secret; missing ratios are omitted.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+  deploy:
+    needs: refresh
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    runs-on: ubuntu-26.04
+    steps:
+      - run: |
+          echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

@@ -46,3 +46,8 @@
   .workspace--home .workspace-tool-card h2 { font-size: 14px; line-height: 19px; }
   .workspace--home .workspace-publication-day { font-size: 11px; }
 }
+/* Twelve mobile rows must still fit the regular 844px home viewport. */
+@media (min-width: 361px) and (max-width: 699px) {
+  .workspace--home .workspace-tool-card { padding-block: 5px; }
+  .workspace--home .workspace-tool-card h2 { line-height: 16px; }
+}
