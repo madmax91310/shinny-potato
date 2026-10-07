@@ -26533,6 +26533,27 @@
       "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet",
       "sha256": "6f93e173333c31614abf5cfa4fae37e91ef1fb6bea6af071a04ed57a35c8f748",
       "checkedAt": "2026-10-07"
+    },
+    "performance": {
+      "currency": "EUR",
+      "basis": "fund",
+      "years": {
+        "2016": 3.6,
+        "2017": 9.6,
+        "2018": -11.9,
+        "2019": 29.7,
+        "2020": -2.8,
+        "2021": 24.1,
+        "2022": -9.0,
+        "2023": 22.8,
+        "2024": 11.6,
+        "2025": 21.8
+      },
+      "asOf": "2026-03-03",
+      "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/kiid",
+      "sha256": "cf14f97a3df490aa1deb7948859b191e88551b763dc3f86e2c7100b0d3b42695",
+      "method": "calendar-year exact-share NAV total return, income reinvested, net of ongoing charges (KIID precision 0.1%)",
+      "checkedAt": "2026-10-07"
     }
   },
   "IE0002XZSHO1": {
@@ -27404,14 +27425,30 @@
       "scope": "share-class",
       "asOf": "2026-10-07",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "e0f1d78462fc7b19ee9e3b608e3beb5a80d2375fac46e64d508b9e0eb1f53232",
+      "sha256": "9cdae086ac52a92294c82837a0bfb30bcb0fc27bcb7b35b44df51201278e045b",
       "checkedAt": "2026-10-07"
     },
     "characteristics": {
       "asOf": "2026-10-07",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "e0f1d78462fc7b19ee9e3b608e3beb5a80d2375fac46e64d508b9e0eb1f53232",
+      "sha256": "9cdae086ac52a92294c82837a0bfb30bcb0fc27bcb7b35b44df51201278e045b",
       "terPct": 2.0,
+      "checkedAt": "2026-10-07"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2025": -9.68,
+        "2024": 120.73,
+        "2023": 150.42,
+        "2022": -64.67,
+        "2021": 55.46
+      },
+      "asOf": "2026-10-07",
+      "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
+      "sha256": "9cdae086ac52a92294c82837a0bfb30bcb0fc27bcb7b35b44df51201278e045b",
+      "method": "calendar-year exact ETP NAV total return, net of fees",
       "checkedAt": "2026-10-07"
     }
   },
@@ -28094,6 +28131,21 @@
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_DYNKEYSTATISTICS_GB00BLD4ZL17,ISIN_STATMETADATA_GB00BLD4ZL17",
       "sha256": "bfecd1955d06a55aed741fe396d8db6622ee92a17fb1a50d62c91c813b344edf",
       "checkedAt": "2026-10-07"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2022": -66.03,
+        "2023": 156.18,
+        "2024": 122.51,
+        "2025": -7.99
+      },
+      "asOf": "2026-10-06",
+      "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
+      "sha256": "3018a7f35f77ca6604766a195790f5c23a168ac1f044f05339cd046d387a917d",
+      "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
+      "checkedAt": "2026-10-07"
     }
   },
   "GB00BLD4ZM24": {
@@ -28115,6 +28167,21 @@
       "asOf": "2026-10-06",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_DYNKEYSTATISTICS_GB00BLD4ZM24,ISIN_STATMETADATA_GB00BLD4ZM24",
       "sha256": "0af58cd8d2eb0a52b8b473f222edfda6e9fee15d8ccafcbffe9da68b6d99b3e9",
+      "checkedAt": "2026-10-07"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "years": {
+        "2022": -68.7,
+        "2023": 97.03,
+        "2024": 46.75,
+        "2025": -11.7
+      },
+      "asOf": "2026-10-06",
+      "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
+      "sha256": "7567bc869613522cc042f1ec7e83f44510e483cc904ce3fbe740bab37600411b",
+      "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-07"
     }
   },

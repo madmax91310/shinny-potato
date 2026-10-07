@@ -8,7 +8,9 @@ import { DATA_CATALOG } from '../src/data/catalog.js';
 const capture = JSON.parse(readFileSync(new URL('./source-snapshots/etf-completeness-2026-10-04.json', import.meta.url)));
 const today = new Date().toISOString().slice(0, 10);
 const unpublished = new Set(capture.unpublished);
-const sourceConflicts = new Set(capture.sourceConflicts);
+// A newly qualified exact-share calendar resolves the archived absence/conflict.
+// Its values, currency, URL and verification date are checked against the active record below.
+const sourceConflicts = new Set(capture.sourceConflicts.filter(isin => !AUTOMATED_ETF[isin]?.performance));
 let annual = 0, other = 0;
 for (const etf of ETFS) {
   assert(etf.listing?.ticker && etf.listing.exchange && etf.listing.currency, `${etf.isin}: cotation manquante`);
