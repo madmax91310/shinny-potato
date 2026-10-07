@@ -9,7 +9,23 @@ import pathlib
 import urllib.error
 from urllib.parse import urlencode
 
-from data_automation import UTC, get_text, number, reject, write_json_atomic
+from data_automation import UTC, get_text, number, reject, write_json_atomic, ResponseFormatError
+
+
+def fetch_product(share, fetch):
+    """The current official HTML is a transport fallback to the embedded API."""
+    url = product_data_url(share)
+    limit = 20_000_000 if share.get('holdingsAssetClass') == 'Fixed Income' else 6_000_000
+    try:
+        body = json.loads(fetch(url, ('application/json',), limit),
+                          parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
+        return body, url, []
+    except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
+        from issuer_documents import public_page
+        page_url = f'https://www.ishares.com/uk/individual/en/products/{share["productId"]}/?siteEntryPassthrough=true&switchLocale=y'
+        text = public_page(page_url, ('text/html',), 6_000_000)
+        return text, page_url, [{'url': url, 'reason': str(error)},
+                                {'url': page_url, 'status': 'validated'}]
 
 
 class Components(HTMLParser):
@@ -127,16 +143,21 @@ def collect(config, baseline, now=None, fetch=get_text):
     def collect_one(share):
         # This public endpoint is published in the official product-page components.
         # Fetch the latest structured snapshot directly, without the HTML consent page.
-        url = product_data_url(share)
-        body = json.loads(fetch(url, ('application/json',), 20_000_000 if share.get('holdingsAssetClass') == 'Fixed Income' else 6_000_000),
-                          parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
+        body, url, attempts = fetch_product(share, fetch)
         result = parse_share(body, share, now)
+        if attempts: result['sourceAttempts'] = attempts
         if share.get('collectHoldings'):
-            from collect_etf_holdings import parse_holdings
-            result['holdings'], holdings_countries = parse_holdings(body, share, now)
-            result['holdings']['sourceUrl'] = holdings_countries['sourceUrl'] = url
-            if not result['countries'].get('rows'):
-                result['countries'] = holdings_countries
+            from collect_etf_holdings import parse_holdings, collect_holdings
+            try:
+                if isinstance(body, dict):
+                    result['holdings'], holdings_countries = parse_holdings(body, share, now)
+                    result['holdings']['sourceUrl'] = holdings_countries['sourceUrl'] = url
+                else:
+                    result['holdings'], holdings_countries = collect_holdings(result['rawComponents']['holdings'], share, now)
+                if not result['countries'].get('rows'):
+                    result['countries'] = holdings_countries
+            except (ValueError, KeyError, TypeError, urllib.error.URLError, TimeoutError) as error:
+                result['collectionErrors'] = [{'field': 'holdings', 'url': url, 'reason': str(error)}]
         active = baseline[share['isin']]
         if active.get('currency') and active['currency'] != share['currency']:
             reject('Active baseline has a different currency')
@@ -147,10 +168,17 @@ def collect(config, baseline, now=None, fetch=get_text):
              'differencePp': round(result['performance']['years'][str(year)] - active['values'][year - 2020], 4) if (active.get('values') or [None]*6)[year - 2020] is not None else None}
             for year in range(2020, 2026) if str(year) in result.get('performance', {}).get('years', {})]
         return result
+    def observed(share):
+        try:
+            return {'share': collect_one(share)}
+        except Exception as error:
+            return {'failure': {'isin': share['isin'], 'sourceUrl': product_data_url(share), 'reason': str(error)}}
     with ThreadPoolExecutor(max_workers=4) as pool:
-        shares = list(pool.map(collect_one, config['instruments']))
+        observations = list(pool.map(observed, config['instruments']))
+    shares = [o['share'] for o in observations if 'share' in o]
+    failures = [o['failure'] for o in observations if 'failure' in o]
     return {'schemaVersion': 1, 'status': 'observation-only', 'checkedAt': now.isoformat(),
-            'automaticConnectionAllowed': False, 'shares': shares}
+            'automaticConnectionAllowed': False, 'shares': shares, 'failures': failures}
 
 
 def product_data_url(share):
@@ -159,6 +187,25 @@ def product_data_url(share):
         'component': 'keyFundFacts,performance,exposureBreakdowns' + (',holdings.all' if share.get('collectHoldings') else ''),
         'locale': 'en_GB', 'portfolioId': share['productId'], 'targetSite': 'ishares-uk',
         'userType': 'individual', 'excludeContent': 'true', 'includeConfig': 'true'})
+
+
+def apply_valid_shares(report, destination, baseline):
+    """Validate each merge independently, then commit the healthy lot atomically."""
+    from apply_etf_collection import merge_collection
+    current = json.loads(destination.read_text()) if destination.exists() else {}
+    merged = current
+    valid = []
+    for share in report['shares']:
+        try:
+            merged = merge_collection({**report, 'shares': [share]}, merged, baseline)
+            valid.append(share)
+        except (ValueError, KeyError, TypeError) as error:
+            report.setdefault('failures', []).append({'isin': share['isin'],
+                'sourceUrl': share['sourceUrl'], 'reason': str(error)})
+    report['shares'] = valid
+    if merged != current:
+        write_json_atomic(destination, merged)
+    return merged != current
 
 
 def main():
@@ -172,11 +219,17 @@ def main():
     report = collect(config, baseline)
     write_json_atomic(args.output, report)
     if args.apply:
-        from apply_etf_collection import apply
-        changed = apply(report, pathlib.Path(__file__).resolve().parents[1] / 'src/data/automated-etf.json', baseline)
+        changed = apply_valid_shares(report, pathlib.Path(__file__).resolve().parents[1] / 'src/data/automated-etf.json', baseline)
         report.update(status='applied' if changed else 'unchanged', automaticConnectionAllowed=True)
     write_json_atomic(args.output, report)
     print(str(len(report['shares'])) + ' shares validated: exact ISIN, share AUM, published allocations and annual NAV total returns. Application mode: ' + report['status'] + '.')
+    for failure in report['failures']:
+        print(f"Source failed: {failure['isin']} — {failure['reason']}")
+    for share in report['shares']:
+        if share.get('sourceAttempts'):
+            print(f"Source recovered: {share['isin']} — {share['sourceUrl']}")
+        for error in share.get('collectionErrors', []):
+            print(f"Source field failed: {share['isin']} {error['field']} — {error['reason']}")
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         rows = ['## Actualisation iShares du catalogue', '',
                 '| ISIN | Encours daté | Géographie | Écart maximal 2020–2025 (points) |',
@@ -185,9 +238,18 @@ def main():
             delta = max((abs(row['differencePp']) for row in share['comparison'] if row['differencePp'] is not None), default=0)
             geography = 'Collectée' if share['countries']['rows'] else 'Non publiée sur cette page'
             rows.append(f"| {share['isin']} | {share['aum']['asOf']} | {geography} | {delta:.4f} |")
+        for failure in report['failures']:
+            rows.append(f"| {failure['isin']} | Échec : {failure['reason']} | Conservée | — |")
+        for share in report['shares']:
+            if share.get('sourceAttempts'):
+                rows.append(f"\nSource de secours utilisée pour {share['isin']} : {share['sourceUrl']}")
+            for error in share.get('collectionErrors', []):
+                rows.append(f"\nÉchec partiel {share['isin']} {error['field']} : {error['reason']}")
         rows += ['', f"Mode : {report['status']}. Devise de chaque part, part exacte, NAV total return ; aucune performance d’indice substituée."]
         with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as handle:
             handle.write('\n'.join(rows) + '\n')
+    if report['failures'] or any(s.get('collectionErrors') for s in report['shares']):
+        raise SystemExit(1)
 
 
 if __name__ == '__main__':

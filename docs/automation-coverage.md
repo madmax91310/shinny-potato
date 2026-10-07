@@ -262,3 +262,7 @@ Les lacunes ne se traitent pas toutes de la même manière : une donnée non app
 4. Connecter les taux d’épargne réglementée, statistiques de ménages et rendements SCPI/fonds euros à des séries officielles ; maintenir une revue des règles fiscales et offres de courtiers.
 
 Régénération : `npm run report:automation`. Ce rapport décrit une couverture, pas une garantie de disponibilité permanente des émetteurs.
+
+## Fiabilité des accès émetteurs
+
+Les collectes QYLD, WisdomTree et iShares disposent de reprises bornées tenant compte de `Retry-After`, de secours officiels validés et de rapports de récupération. Les erreurs iShares sont isolées par instrument et par complément de positions ; les observations valides sont appliquées sans effacer les précédentes en cas de panne. QYLD garde seulement frais et encours automatiques, son calendrier distribuante et ses expositions restant non qualifiés. Voir [la qualification des accès et des limites](issuer-collection-reliability-2026-10-07.md).

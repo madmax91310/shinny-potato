@@ -1022,7 +1022,10 @@
       "provider": "Global X",
       "parser": "globalx-html",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "enabled": true
+      "enabled": true,
+      "fallbackUrls": [
+        "https://globalxetfs.eu/funds/qyld"
+      ]
     },
     {
       "isin": "GB00BLD4ZL17",

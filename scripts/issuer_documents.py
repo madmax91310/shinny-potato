@@ -10,7 +10,7 @@ import time
 import urllib.error
 import urllib.request
 import urllib.parse
-from data_automation import UTC, reject
+from data_automation import UTC, reject, retry_delay, ResponseFormatError
 
 
 def download(url, max_bytes=8_000_000, headers=None):
@@ -31,15 +31,28 @@ def download(url, max_bytes=8_000_000, headers=None):
                         continue
                     title = re.search(br'<title[^>]*>(.*?)</title>', body, re.I | re.S)
                     label = title[1].decode('utf-8', errors='replace').strip()[:100] if title else 'non-PDF response'
-                    reject(f'Expected official PDF at {url}; received {label} at {response.geturl()}')
+                    raise ResponseFormatError(f'Expected official PDF at {url}; received {label} at {response.geturl()}')
                 return body
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                 raise
+            delay = retry_delay(error, attempt)
         except (urllib.error.URLError, TimeoutError):
             if attempt == 2:
                 raise
-        time.sleep(2 ** attempt)
+            delay = 2 ** attempt
+        time.sleep(delay)
+
+
+def public_page(url, content_types=('text/html',), max_bytes=12_000_000):
+    """Normal public-page headers and a private cookie jar per collection."""
+    from data_automation import get_text
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+    def open_page(request, **kwargs):
+        request.add_header('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36')
+        request.add_header('Accept-Language', 'en-GB,en;q=0.9,fr;q=0.8')
+        return opener.open(request, **kwargs)
+    return get_text(url, content_types, max_bytes, opener=open_page)
 
 
 def pdf_text(body, crop=None):
