@@ -251,7 +251,7 @@ class ExtendedIssuerTests(unittest.TestCase):
     def test_air_liquide_reloads_official_pdfs_when_landing_pages_fail(self):
         import company_extended_publications as extended
         old=json.loads((Path(__file__).parents[1]/'src/data/company-analysis.json').read_text())['companies']['air-liquide']
-        def extract(raw):return self.sample('air-liquide-hy' if b'first-half' in raw else 'air-liquide-fy')
+        def extract(raw):return self.sample('air-liquide-hy' if b'first-half' in raw or b'H1_' in raw else 'air-liquide-fy')
         with patch.object(extended,'europe_documents',return_value=[]),patch.object(extended,'load',side_effect=lambda url:url.encode()) as fetch,patch.object(extended,'pdf_text',side_effect=extract):
             r=extended.collect_europe({'id':'air-liquide'},TODAY,old)
         self.assertEqual(r['annual']['revenue'],26940.2e6)
@@ -265,9 +265,25 @@ class ExtendedIssuerTests(unittest.TestCase):
     def test_air_archive_discovers_new_reports_without_cached_urls(self):
         import company_extended_publications as extended
         url='https://www.airliquide.com/sites/airliquide.com/files/2028-02/air-liquide-pr-fy-2027-results.pdf'
-        with patch.object(extended,'links',side_effect=lambda page:[url] if page.endswith('regulated-information') else []):
+        with patch.object(extended,'links',side_effect=lambda page:[url] if page.endswith('regulated-information') else []),patch.object(extended,'air_euronext_documents',return_value=[]):
             reports=list(extended.europe_documents('air-liquide',dt.date(2028,3,1)))
         self.assertIn((2027,False,url),reports)
+
+    def test_euronext_half_year_reversed_columns_and_basic_eps_are_respected(self):
+        import company_extended_publications as extended
+        r=extended.parse_europe(self.sample('air-liquide-euronext-hy'),'air-liquide',2026,True)[-1]
+        self.assertEqual(r['revenue'],13827.9e6);self.assertEqual(r['previousRevenue'],13722.2e6)
+        self.assertEqual(r['netIncome'],1822.6e6);self.assertEqual(r['previousNetIncome'],1801.1e6)
+        self.assertEqual(r['durationMonths'],6);self.assertNotIn('dilutedEPS',r)
+
+    def test_euronext_public_news_discovery_rejects_untrusted_attachments(self):
+        import company_extended_publications as extended
+        raw=b'<a data-node-nid="12901234">H1 2026 Results: Air Liquide</a><a data-node-nid="bad">2025: Results</a>'
+        url='https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/07/28/official.pdf'
+        with patch.object(extended,'load',side_effect=[raw,b'']),patch.object(extended,'links',return_value=[url,'https://unverified.example/result.pdf']) as sources:
+            docs=list(extended.air_euronext_documents(TODAY))
+        self.assertEqual(docs,[(2026,True,url)])
+        sources.assert_called_once_with('https://live.euronext.com/ajax/node/company-press-release/12901234')
 
     def test_january_retains_previous_calendar_year_half_report(self):
         import company_extended_publications as extended

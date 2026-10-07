@@ -104,7 +104,7 @@ def parse_europe(text, ident, year, half=False):
         if not re.search(r'(?:EUR millions|millions of euros)', header, re.I):
             raise ValueError('Wrong euro statement unit')
         years = [int(y) for y in re.findall(r'\b20\d{2}\b', header)]
-        if half and ident != 'lvmh' and not re.search(r'(?:half|six.month)', header, re.I):
+        if half and ident != 'lvmh' and not re.search(r'(?:half|six.month|\bH1\b)', header, re.I):
             raise ValueError('Not an explicit half-year statement')
         if not half and re.search(r'half', header, re.I):
             raise ValueError('Half-year cannot become annual accounts')
@@ -127,7 +127,7 @@ def parse_europe(text, ident, year, half=False):
     count = len(years)
     revenue = value(block, revenue_label, count, notes=True)
     income = value(block, income_label, count, notes=True)
-    eps = value(block, eps_label, count, notes=True, optional=ident=='air-liquide' and not half)
+    eps = value(block, eps_label, count, notes=True, optional=ident=='air-liquide')
     operating = value(block, r'Operating (?:income|profit)', count, notes=True, optional=True)
     if selected_columns is not None:
         operating = [operating[i] for i in selected_columns] if operating else None
@@ -221,6 +221,45 @@ def europe_documents(ident, today):
                             yield int(annual[1] or annual[2]), False, doc
                 except Exception:
                     continue
+            yield from air_euronext_documents(today)
+
+
+def air_euronext_documents(today):
+    annual_years = set()
+    for page in range(6):
+        query = urllib.parse.urlencode({'field_company_pr_pub_datetime_start':f'{today.year-1}-01-01',
+                                       'field_company_pr_pub_datetime_end':today.isoformat(), 'page':page})
+        url = 'https://live.euronext.com/en/listview/company-press-release/015007?'+query
+        try:
+            soup = BeautifulSoup(load(url), 'html.parser')
+        except Exception:
+            continue
+        entries = soup.find_all('a', attrs={'data-node-nid':True})
+        if not entries:
+            break
+        for a in entries:
+            title = a.get_text(' ', strip=True)
+            half = re.match(r'H1\s+(20\d{2})\s+Results', title, re.I)
+            annual = re.match(r'(20\d{2})\s*:', title)
+            node = a.get('data-node-nid','')
+            if not (half or annual) or not re.fullmatch(r'\d+',node):
+                continue
+            year = int((half or annual)[1])
+            if year > today.year or year < today.year-6:
+                continue
+            # This is the public GET used by Euronext's company-news modal.
+            endpoint = 'https://live.euronext.com/ajax/node/company-press-release/'+node
+            try:
+                for doc in links(endpoint):
+                    parsed = urllib.parse.urlparse(doc)
+                    if parsed.netloc == 'live.euronext.com' and parsed.path.startswith('/sites/default/files/company_press_releases/attachments/') and parsed.path.lower().endswith('.pdf'):
+                        yield year, bool(half), doc
+                        if annual:
+                            annual_years.add(year)
+            except Exception:
+                continue
+        if len(annual_years) >= 2:
+            break
 
 def cached_history(old, today):
     history = (old or {}).get('history', {})
@@ -302,7 +341,8 @@ def collect_europe(profile, today, old=None):
             if row and row.get('sourceUrl'):
                 url = row['sourceUrl']
                 parsed_url = urllib.parse.urlparse(url)
-                if parsed_url.scheme == 'https' and parsed_url.netloc == 'www.airliquide.com' and parsed_url.path.startswith('/sites/airliquide.com/files/') and parsed_url.path.endswith('.pdf'):
+                trusted = (parsed_url.netloc == 'www.airliquide.com' and parsed_url.path.startswith('/sites/airliquide.com/files/')) or (parsed_url.netloc == 'live.euronext.com' and parsed_url.path.startswith('/sites/default/files/company_press_releases/attachments/'))
+                if parsed_url.scheme == 'https' and trusted and parsed_url.path.endswith('.pdf'):
                     key = (url, half)
                     retained[key] = max(retained.get(key, 0), int(row['end'][:4]))
         documents = sorted(set(documents) | {(year, half, url) for (url, half), year in retained.items()}, reverse=True)
