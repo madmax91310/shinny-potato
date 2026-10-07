@@ -1027,22 +1027,40 @@
       "isin": "FR0011550185",
       "name": "BNP Paribas Easy S&P 500",
       "provider": "BNP Paribas",
-      "enabled": false,
-      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+      "enabled": true,
+      "currency": "EUR",
+      "layout": "easy-fr",
+      "documentName": "BNP PARIBAS EASY S&P 500 UCITS ETF",
+      "expectedIndex": "S&P 500 Composite (NR)",
+      "mirrorCode": "E_SBNPEF002_C_EUR",
+      "parser": "bnp-document-mirror",
+      "discoveryUrl": "https://www.analizy.pl/etf/FR0011550185/bnp-paribas-easy-s-p-500-ucits-etf-c-acc-eur"
     },
     {
       "isin": "FR0011550193",
       "name": "BNP Paribas Easy STOXX Europe 600",
       "provider": "BNP Paribas",
-      "enabled": false,
-      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+      "enabled": true,
+      "currency": "EUR",
+      "layout": "easy-fr",
+      "documentName": "BNP PARIBAS EASY STOXX EUROPE 600 UCITS ETF",
+      "expectedIndex": "STOXX Europe 600 NR",
+      "mirrorCode": "E_SBNPEF003_A_EUR",
+      "parser": "bnp-document-mirror",
+      "discoveryUrl": "https://www.analizy.pl/etf/FR0011550193/bnp-paribas-easy-stoxx-europe-600-ucits-etf-acc-eur"
     },
     {
       "isin": "IE000QDFFK00",
       "name": "BNP Paribas Easy II Nasdaq 100",
       "provider": "BNP Paribas",
-      "enabled": false,
-      "qualificationIssue": "Découverte de la fiche officielle actuelle non qualifiée : composant Fundsheet HTTP 502 ; anciens liens PDF non utilisables pour une mise à jour récurrente."
+      "enabled": true,
+      "currency": "USD",
+      "layout": "easy-ii",
+      "documentName": "BNP PARIBAS EASY II Nasdaq 100 UCITS ETF USD",
+      "expectedIndex": "NASDAQ-100 Notional Net Total Return Index",
+      "mirrorCode": "E_AXAIC001_A_USD",
+      "parser": "bnp-document-mirror",
+      "discoveryUrl": "https://www.analizy.pl/etf/IE000QDFFK00/bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc"
     },
     {
       "isin": "FR0007056841",

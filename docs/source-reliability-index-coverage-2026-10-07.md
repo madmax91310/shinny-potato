@@ -59,3 +59,33 @@ Validation de la poursuite : collecte réelle Russell 2000 sans exception ; 35 t
 Le 07/10/2026, la collecte API Amundi du produit exact FR0007056841 fournit INDEX_COUNTRIES, INDEX_SECTORS et INDEX_TOP10, datés indépendamment du 02/10/2026. Le benchmark doit rester « Dow Jones Industrial Average Net Total Return » et la réplication « Indirect(Swap Based) ». Le collecteur ajoute ces expositions d’indice à la fiche ETF tout en conservant les frais, encours et performances déjà collectés de la part. Couverture : 132 pays, 113 secteurs, 120 listes de positions ; 152 instruments raccordés sur 155.
 
 La découverte publique BNP a été revérifiée : page française produit HTTP 502, racine docfinder sans catalogue exploitable. La page VanEck ESPO publie des composants de graphiques séparés pour le fonds et l’indice, mais son bundle de données renvoie HTTP 403 ; aucune allocation sectorielle ne peut être déduite du thème du fonds. Les compositions Russell 1000, Global Dividend Aristocrats Quality Income et Euro High Yield Dividend Aristocrats restent à qualifier ; les variantes Growth, Screened et les allocations ETF ne les remplacent pas.
+
+## Nouvelle passe : les trois BNP raccordés via leurs documents republiés
+
+Le composant officiel Fundsheet reste en HTTP 502 ; les pages produit française et luxembourgeoise ne livrent que sa configuration. La racine docfinder ne publie pas de catalogue exploitable. Une autre voie a été validée : les pages Analizy de chaque ISIN référencent les dernières fiches rédigées par BNP Paribas Asset Management. Le collecteur relit cette page à chaque exécution et suit uniquement le lien de fiche mensuelle KA du code exact. Il ne conserve aucun UUID trouvé par recherche ni une date fixe dans la configuration.
+
+| Part | Page de découverte | Fiche validée | Champs raccordés |
+|---|---|---|---|
+| FR0011550185 EUR C | https://www.analizy.pl/etf/FR0011550185/bnp-paribas-easy-s-p-500-ucits-etf-c-acc-eur | https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-08-31 | Frais, encours du fonds EUR, années civiles de la part 2016–2025 |
+| FR0011550193 EUR C | https://www.analizy.pl/etf/FR0011550193/bnp-paribas-easy-stoxx-europe-600-ucits-etf-acc-eur | https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-08-31 | Frais, encours du fonds EUR, années civiles de la part 2016–2025 |
+| IE000QDFFK00 USD Acc | https://www.analizy.pl/etf/IE000QDFFK00/bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc | https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-08-31 | Frais, encours du fonds USD, années civiles de la part 2023–2025 |
+
+Ce sont des copies de documents BNP hébergées par un tiers, pas un accès direct à BNP. Auteur, hébergeur, URL du PDF, page de découverte, date et empreinte sont enregistrés séparément dans chaque champ. Les données de la page Analizy ne sont pas utilisées. Les trois téléchargements et extractions réels ont réussi. Le renouvellement futur reste soumis à la publication par le miroir ; un lien annoncé dont le PDF est erroné n’est jamais remplacé silencieusement par un PDF plus ancien.
+
+Le contrôle rejette une autre part, devise, distribution, benchmark, date future/périmée ou différente du lien annoncé, ainsi qu’un tableau annuel ambigu ou incomplet. Les lignes FUND / Portfolio sont distinctes des lignes BENCHMARK, périodes glissantes et YTD. Le Nasdaq garde trois années complètes ; son changement de benchmark au 03/02/2025 ne transforme pas ses performances passées en historique du nouvel indice. Les frais des deux fonds français sont les charges courantes réelles de l’exercice 31/12/2025, et non les seuls frais maximaux de gestion. Aucune allocation de pays, secteurs ou positions n’est activée par ce connecteur.
+
+### Priorité 2 : nouveaux contrôles, compositions toujours non qualifiées
+
+La fiche Russell 1000 a été renouvelée au 30/09/2026. Elle publie dix noms sans poids, et le graphique ICB sans table numérique complète dans le texte. Les variantes Growth et Value et les portefeuilles IWB/VONE restent des objets différents : ils ne remplacent pas sa composition exacte.
+
+Sources vérifiées :
+- https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=US1000USD&openfile=open
+- https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-global-dividend-aristocrats-quality-income-index/
+- https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-euro-high-yield-dividend-aristocrats/
+- https://www.ssga.com/at/en_gb/intermediary/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy
+- https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy
+
+Les deux pages S&P renvoient HTTP 403 au collecteur. Leurs pages State Street accessibles renvoient vers ces mêmes pages et publient les poids du **fonds** dans leurs composants de composition. Aucun flux exact, complet, daté et renouvelable n’a été qualifié pour ces trois indices ; leurs rendements annuels déjà automatisés continuent indépendamment.
+
+S&P a annoncé le 06/10/2026 des changements de méthode et de nom : Global Quality Income à compter du 01/02/2027 et Euro High Yield à compter du 21/06/2027. Les identités actuelles restent contrôlées ; ne pas accepter un nouvel indice en simple alias sans revue des ruptures de méthode.
+Source : https://www.spglobal.com/spdji/en//documents/indexnews/announcements/20261006-1485435/1485435_sp-div-aristocrats-results-20261006.pdf
