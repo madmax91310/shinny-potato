@@ -1,5 +1,6 @@
 // Valeurs publiées, jamais estimées à partir de moyennes. « Début 2024 » n'est pas une date au jour près.
-export const HOUSEHOLD_SOURCES = Object.freeze({
+import { householdObservation, householdSources } from './economic-data.js'
+export const HOUSEHOLD_SOURCES = Object.freeze(householdSources({
   wealth: { title: 'Les montants de patrimoine détenus par les ménages en 2024', url: 'https://www.insee.fr/fr/statistiques/8672665', publishedAt: '2025-12-09' },
   holdings: { title: 'La détention de patrimoine des ménages en 2024', url: 'https://www.insee.fr/fr/statistiques/8569009', publishedAt: '2025-05-14', correctedAt: '2025-12-10' },
   living: { title: 'La privation matérielle et sociale en 2025', url: 'https://www.insee.fr/fr/statistiques/8967255', publishedAt: '2026-04-15' },
@@ -7,15 +8,15 @@ export const HOUSEHOLD_SOURCES = Object.freeze({
   ageWealth: { title: 'Patrimoine selon l’âge en 2024', url: 'https://www.insee.fr/fr/statistiques/8894780', publishedAt: '2026-04-07' },
   ageHoldings: { title: 'Détention de patrimoine selon l’âge et la catégorie sociale', url: 'https://www.insee.fr/fr/statistiques/2412784', publishedAt: '2026-04-07' },
   transmissions: { title: 'Transmissions intergénérationnelles en 2024', url: 'https://www.insee.fr/fr/statistiques/8960217', publishedAt: '2026-04-07' },
-})
+}))
 export const HOUSEHOLD_SCOPE = 'France hors Mayotte, ménages vivant dans un logement ordinaire.'
 export const HOUSEHOLD_STATISTICS = Object.freeze([
   { id: 'wealth-share', title: 'Qui possède le patrimoine ?', category: 'Patrimoine', kind: 'share', source: 'wealth', table: 'Le patrimoine est très inégalement réparti', value: 7, unit: '%', populationPercent: 50,
-    headline: '50 ménages se partagent 7 % du patrimoine', metricLabel: 'du patrimoine brut pour la moitié la moins dotée',
+    headline: '50 ménages se partagent {value} % du patrimoine', metricLabel: 'du patrimoine brut pour la moitié la moins dotée',
     note: 'Patrimoine brut : immobilier, financier, professionnel et résiduel, avant déduction des emprunts. Les deux moitiés sont classées par patrimoine brut.',
     question: "💬 Tu imaginais une répartition aussi déséquilibrée ?",
     intro: "🇫🇷 La moitié des ménages possède {value} % du patrimoine brut. L’autre moitié, {complement} %.",
-    body: "Imagine la France réduite à 100 ménages 👇\n\nDébut 2024, les 50 les moins dotés possèdent 7 % du total, les 50 autres 93 %.\n\n🏠 Immobilier, placements et biens professionnels sont inclus, avant déduction des dettes. Ce patrimoine n’est pas une somme disponible sur un compte." },
+    body: "Imagine la France réduite à 100 ménages 👇\n\n{period}, les 50 les moins dotés possèdent {value} % du total, les 50 autres {complement} %.\n\n🏠 Immobilier, placements et biens professionnels sont inclus, avant déduction des dettes. Ce patrimoine n’est pas une somme disponible sur un compte." },
   { id: 'wealth-top10', title: 'Le seuil des 10 %', category: 'Patrimoine', kind: 'threshold', source: 'wealth', table: 'Figure 1 : patrimoine net, D9', value: 750400, unit: 'EUR', populationPercent: 10,
     headline: 'Le seuil pour entrer dans les 10 %', metricLabel: 'de patrimoine net, dettes déduites',
     note: 'Seuil du neuvième décile de patrimoine net. Le classement net est distinct du classement brut. Les biens immobiliers et les autres actifs sont inclus.',
@@ -44,7 +45,7 @@ export const HOUSEHOLD_STATISTICS = Object.freeze([
     intro: "🏠 En France, environ {rounded} ménages sur 100 sont propriétaires de leur résidence principale.",
     body: "Début 2024, le taux atteint {value} %, usufruitiers inclus.\n\nToutes les générations sont réunies. Ce chiffre ne décrit donc pas à lui seul les possibilités d’achat des jeunes ménages." },
   { id: 'debt', title: 'Qui rembourse un crédit ?', category: 'Crédit', kind: 'rate', source: 'holdings', table: 'Figure 1a : endettement, 2024, corrigé le 10 décembre 2025', value: 45.6, unit: '%',
-    headline: 'Presque un ménage sur deux a un crédit', metricLabel: 'des ménages ont un emprunt en cours', note: 'Endettement privé ou professionnel. Valeur corrigée par l’Insee le 10 décembre 2025. Le taux ne mesure pas le surendettement.',
+    headline: 'Combien de ménages ont un crédit ?', metricLabel: 'des ménages ont un emprunt en cours', note: 'Endettement privé ou professionnel. Le taux ne mesure pas le surendettement.',
     question: "💬 Quand tu compares deux patrimoines, regardes-tu ce qu’il reste après les dettes ?",
     intro: "💳 Environ {rounded} ménages sur 100 ont un emprunt en cours en France.",
     body: "Début 2024, cela représente {value} % des ménages.\n\n🏠 Crédit immobilier, consommation ou activité professionnelle : les situations sont très différentes.\n\nAvoir un emprunt ne signifie pas être surendetté. Et posséder un bien ne dit pas combien il reste à rembourser." },
@@ -134,15 +135,21 @@ export const HOUSEHOLD_STATISTICS = Object.freeze([
   {"id": "bills-on-time", "title": "Payer les factures à temps", "category": "Niveau de vie", "kind": "rate", "source": "living", "table": "Figure 3 : Payer à temps les loyers, intérêts, factures", "value": 9.9, "unit": "%", "headline": "Quand les échéances deviennent un obstacle", "metricLabel": "ne peuvent pas payer leurs échéances à temps", "note": "Impossibilité déclarée pour des raisons financières. Données provisoires. Personnes, et non ménages.", intro: "📅 Environ {rounded} personnes sur 100 ne peuvent pas payer leurs échéances à temps pour des raisons financières.", body: "Début 2025, {value} % des personnes en France métropolitaine déclarent cette difficulté pour les loyers, intérêts ou factures.\n\nIl s’agit d’une difficulté financière déclarée, pas d’un simple oubli de paiement. Données provisoires.", question: "💬 Qu’est-ce qui t’aide à garder de la marge quand plusieurs factures tombent ensemble ?", "checkedAt": "2026-10-03", "referencePeriod": "Début 2025", "population": "personnes", "provisional": true, "scope": "France métropolitaine, personnes vivant dans un logement ordinaire.", "visualNote": "Personnes en logement ordinaire. Difficulté financière déclarée. Données provisoires."},
   {"id": "personal-spending", "title": "Une petite dépense pour soi", "category": "Niveau de vie", "kind": "rate", "source": "living", "table": "Figure 3 : Dépenser une petite somme librement", "value": 12.1, "unit": "%", "headline": "Une petite dépense reste hors de portée", "metricLabel": "ne peuvent pas dépenser une petite somme librement", "note": "Impossibilité déclarée pour des raisons financières. Données provisoires. Personnes, et non ménages.", intro: "🎟️ Environ {rounded} personnes sur 100 ne peuvent pas dépenser librement une petite somme chaque semaine.", body: "Début 2025, {value} % des personnes en France métropolitaine déclarent cette difficulté pour des raisons financières.\n\nMême une petite dépense pour soi peut être hors de portée. Données provisoires.", question: "💬 Quelle petite dépense représente pour toi cette liberté au quotidien ?", "checkedAt": "2026-10-03", "referencePeriod": "Début 2025", "population": "personnes", "provisional": true, "scope": "France métropolitaine, personnes vivant dans un logement ordinaire.", "visualNote": "Personnes en logement ordinaire. Difficulté financière déclarée. Données provisoires."},
   {"id": "protein-meals", "title": "Des repas réguliers avec des protéines", "category": "Niveau de vie", "kind": "rate", "source": "living", "table": "Figure 3 : Manger de la viande, du poisson ou un équivalent végétarien tous les deux jours", "value": 11.2, "unit": "%", "headline": "Le budget touche aussi l’assiette", "metricLabel": "ne peuvent pas s’offrir un repas avec viande, poisson ou équivalent végétarien tous les deux jours", "note": "Impossibilité déclarée pour des raisons financières. Données provisoires. Personnes, et non ménages.", intro: "🍽️ Environ {rounded} personnes sur 100 ne peuvent pas s’offrir un repas avec viande, poisson ou équivalent végétarien tous les deux jours.", body: "Début 2025, {value} % des personnes en France métropolitaine déclarent cette difficulté pour des raisons financières.\n\nCe chiffre décrit la possibilité de financer ces repas ; il ne mesure pas les quantités de protéines consommées. Données provisoires.", question: "💬 Le budget alimentaire a-t-il changé ta façon de composer tes repas ?", "checkedAt": "2026-10-03", "referencePeriod": "Début 2025", "population": "personnes", "provisional": true, "scope": "France métropolitaine, personnes vivant dans un logement ordinaire.", "visualNote": "Personnes en logement ordinaire. Difficulté financière déclarée. Données provisoires."},
-].map((record) => Object.freeze({ ...record, population: record.population ?? 'ménages', referencePeriod: record.referencePeriod ?? 'Début 2024', metadata: Object.freeze({
-  sourceUrls: [HOUSEHOLD_SOURCES[record.source].url], checkedAt: record.checkedAt ?? '2026-09-30', asOf: null, dateStatus: 'not-published',
+].map(record => householdObservation(record)).map((record) => {
+  const period = record.referencePeriod ?? 'Début 2024'
+  const fillPeriod = text => text?.replace(/Début 202[45]/g, '{period}').replace(/début 202[45]/g, '{periodLower}').replace(/En 2024/g, 'En {period}').replace(/en 2024/g, 'en {period}')
+  const provision = text => record.provisional ? text : text?.replace(/Données provisoires\.?\s*/g, '').replace(/données provisoires\.?\s*/g, '')
+  return Object.freeze({ ...record, headline: record.headline.replace('{value}', formatHouseholdNumber(record.value)),
+    intro: fillPeriod(record.intro), body: provision(fillPeriod(record.body)), note: provision(record.note), visualNote: provision(record.visualNote),
+    population: record.population ?? 'ménages', referencePeriod: period, metadata: Object.freeze({
+  sourceUrls: [record.automatedEvidence?.sourceUrl ?? HOUSEHOLD_SOURCES[record.source].url], checkedAt: record.checkedAt ?? '2026-09-30', asOf: null, dateStatus: 'not-published',
   scope: record.scope ?? HOUSEHOLD_SCOPE, currency: record.unit === 'EUR' ? 'EUR' : null,
-  method: `${record.source === 'living' ? 'Enquête Statistiques sur les ressources et conditions de vie.' : record.source === 'salaries' ? 'Base Tous salariés, salaires en équivalent temps plein.' : 'Enquête Histoire de vie et Patrimoine 2023-2024.'} Repère : ${record.table}.`,
-  note: `Référence publiée : ${record.referencePeriod ?? 'Début 2024'}, sans jour exact. ${record.note}`,
-}) })))
-export const formatHouseholdNumber = (value) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(value)
+  method: `${record.source === 'living' ? 'Enquête Statistiques sur les ressources et conditions de vie.' : record.source === 'salaries' ? 'Base Tous salariés, salaires en équivalent temps plein.' : 'Enquête Histoire de vie et Patrimoine.'} Repère : ${record.table}.`,
+  note: `Référence publiée : ${period}, sans jour exact. ${provision(record.note)}`,
+}) }) }))
+export function formatHouseholdNumber(value) { return new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(value) }
 export function buildHouseholdTweet(record) {
-  const replacements = { value: formatHouseholdNumber(record.value), complement: formatHouseholdNumber(100 - record.value), rounded: Math.round(record.value), secondValue: formatHouseholdNumber(record.secondValue ?? 0), secondRounded: Math.round(record.secondValue ?? 0) }
+  const replacements = { period: record.referencePeriod, periodLower: record.referencePeriod.toLocaleLowerCase('fr-FR'), value: formatHouseholdNumber(record.value), complement: formatHouseholdNumber(100 - record.value), rounded: Math.round(record.value), secondValue: formatHouseholdNumber(record.secondValue ?? 0), secondRounded: Math.round(record.secondValue ?? 0) }
   const fill = (text) => text.replace(/\{(\w+)\}/g, (_, key) => replacements[key])
   return `${fill(record.intro)}\n\n${fill(record.body)}\n\n${record.question}`
 }

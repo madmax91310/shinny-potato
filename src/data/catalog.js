@@ -33,6 +33,8 @@ import { SHEETS } from './index-factsheets.js';
 import { HOUSEHOLD_STATISTICS } from './household-statistics.js';
 import { COMPANIES } from './companies.js';
 import { normalizeEvidence } from './evidence.js';
+import { ECONOMIC_OBSERVATIONS, economicCalendar } from './economic-data.js';
+import { LIVRET_A } from './market-history.js';
 
 // Consommateurs dérivés des catalogues réellement utilisés, jamais une copie de leurs valeurs.
 const uses = new Map();
@@ -123,6 +125,18 @@ function companyRecord(company) {
   return { id: `company:${company.id}`, type: 'company', name: company.name, aliases: [company.symbol, company.cik, company.id].filter(Boolean), consumers: [{ tool: 'Analyse d’entreprise', path: '/analyse-entreprise' }], fields };
 }
 export const DATA_CATALOG = Object.freeze([
+  ...['fonds_euros', 'scpi'].map(id => {
+    const asset = ASSETS.find(a => a.id === id)
+    const current = Object.entries(ECONOMIC_OBSERVATIONS.benchmarks ?? {}).filter(([key]) => key.startsWith(`${id}:`)).map(([,o]) => o).sort((a,b) => b.year-a.year)
+    return { id: `economic:${id}`, type: 'series', name: asset.name, aliases: [id, 'rendement annuel', id === 'scpi' ? 'ASPIM RGI' : 'ACPR'],
+      consumers: [{tool: 'Générateur de portefeuilles', path: '/generateur-portefeuilles'}],
+      fields: current.map(o => field(`Rendement annuel · ${o.year}`, 'economic-data', economicCalendar(id,asset.r)[o.year],
+        {sourceUrl:o.sourceUrl,checkedAt:o.checkedAt,periodStart:`${o.year}-01-01`,periodEnd:`${o.year}-12-31`,dateStatus:'not-applicable',currency:'EUR',scope:asset.name,method:o.method,note:asset.confidenceNote})) }
+  }),
+  { id: 'economic:livret-a', type: 'series', name: 'Taux légal du Livret A', aliases: ['Livret A','taux réglementé'],
+    consumers: [{tool:'Calculateur',path:'/calculateur-investissement'},{tool:'Performance depuis',path:'/performance-depuis'}],
+    fields: Object.values(ECONOMIC_OBSERVATIONS.savings ?? {}).map(o => field(`Taux applicable · ${o.effectiveAt}`, 'economic-data', LIVRET_A[o.effectiveAt.slice(0,7)],
+      {sourceUrl:o.sourceUrl,checkedAt:o.checkedAt,asOf:o.effectiveAt,scope:'Taux légal annuel du Livret A',currency:'EUR',method:'Taux réglementé publié par la Banque de France, date d’effet conservée ; historique antérieur documenté dans market-history.js'})) },
   ...COMPANIES.map(companyRecord),
   ...HOUSEHOLD_STATISTICS.map((value) => ({ id: `household:${value.id}`, type: 'household', name: value.title,
     aliases: [value.id, value.category, value.headline, 'Insee', 'ménages'], consumers: [{ tool: 'La France en 100 ménages', path: `/france-100-menages` }],

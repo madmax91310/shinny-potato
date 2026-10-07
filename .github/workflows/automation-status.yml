@@ -1,0 +1,51 @@
+name: Publish automation failures
+on:
+  workflow_run:
+    workflows:
+      - Update active ETF issuer data
+      - Update active monthly market histories
+      - Update active Bitcoin Yahoo data
+      - Update World Bank monthly gold data
+      - Update INSEE monthly inflation
+      - Update all 18 investor 13F portfolios
+      - Update company analysis
+      - Update official economic data
+    types: [completed]
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/automation-status.yml'
+      - 'scripts/publish_automation_status.py'
+permissions:
+  contents: read
+concurrency:
+  group: automation-failure-status
+  cancel-in-progress: false
+  queue: max
+jobs:
+  publish:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request')
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: master
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s scripts -p 'test_automation_status.py'
+      - name: Record completed automation
+        if: github.event_name == 'workflow_run'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/publish_automation_status.py --event "$GITHUB_EVENT_PATH"
+      - name: Initialise current statuses
+        if: github.event_name != 'workflow_run'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/publish_automation_status.py --backfill

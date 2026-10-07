@@ -1,4 +1,5 @@
 import { applyMonthlyAutomation } from './monthly-automation.js'
+import { savingsRates } from './economic-data.js'
 import BITCOIN_MONTHLY from './bitcoin-yahoo-monthly.json' with { type: 'json' }
 import { DIVERSIFICATION_HISTORY } from './diversification-history.js'
 import GOLD_MONTHLY from './worldbank-gold-monthly.json' with { type: 'json' }
@@ -640,11 +641,11 @@ export const REDUCED_CONFIDENCE_LAST_POINT = {}
 // 2025–2026 : https://www.banque-france.fr/fr/publications-et-statistiques/publications/rapport-sur-lepargne-reglementee-2025
 // Règles d’intérêt : https://www.banque-france.fr/fr/a-votre-service/particuliers/connaitre-pratiques-bancaires-assurance/epargne/livret-a
 // Ces taux remplacent les anciennes moyennes annuelles arrondies.
-export const LIVRET_A = {
+export const LIVRET_A = savingsRates({
   '2015-01': 1, '2015-08': 0.75, '2020-02': 0.5,
   '2022-02': 1, '2022-08': 2, '2023-02': 3,
   '2025-02': 2.4, '2025-08': 1.7, '2026-02': 1.5, '2026-08': 1.7,
-}
+})
 // 2010-2014 ajoutés le 05/09/2026, à la demande du Simulateur de pouvoir d'achat (purchasing-power)
 // qui a besoin d'un historique remontant à 2010 : réutilisé ici (plutôt que dupliqué dans le nouvel
 // outil) puisque c'est déjà la source d'inflation générale partagée par l'app. Source : communiqués
