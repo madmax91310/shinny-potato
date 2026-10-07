@@ -23,17 +23,17 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
       - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
       - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.1
         with:
           name: insee-inflation-pr-observation
           path: ${{ runner.temp }}/inflation-observation.json
@@ -49,17 +49,17 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
       - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
       - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.1
         with:
           name: insee-inflation-observation
           path: ${{ runner.temp }}/inflation-observation.json

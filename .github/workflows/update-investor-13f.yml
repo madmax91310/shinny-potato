@@ -23,8 +23,8 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
@@ -38,10 +38,10 @@ jobs:
       changed: ${{ steps.commit.outputs.changed }}
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
         with:
           ref: master
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
