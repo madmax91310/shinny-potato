@@ -1,3 +1,4 @@
+import { ECONOMIC_OBSERVATIONS } from '../src/data/economic-data.js';
 import { AUTOMATED_INDICES } from '../src/data/automated-indices.js';
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js';
 import assert from 'node:assert/strict';
@@ -93,6 +94,30 @@ for (const [isin, observation] of Object.entries(OFFICIAL_AUM_OBSERVATIONS)) {
 }
 for (const series of DATA_CATALOG.filter(r => r.type === 'series')) {
   const f = series.fields[0];
+  if (f.registry === 'src/data/economic-data.js') {
+    const observations = series.id === 'economic:livret-a'
+      ? Object.values(ECONOMIC_OBSERVATIONS.savings)
+      : Object.entries(ECONOMIC_OBSERVATIONS.benchmarks).filter(([key]) => key.startsWith(series.id.slice('economic:'.length) + ':')).map(([,value]) => value).sort((a,b) => b.year-a.year);
+    assert.equal(series.fields.length, observations.length);
+    series.fields.forEach((field, i) => {
+      const o = observations[i];
+      assert.equal(field.value, o.rate ?? o.value);
+      assert.deepEqual(field.metadata.sourceUrls, [o.sourceUrl]);
+      assert.equal(field.metadata.checkedAt, o.checkedAt);
+      assert.match(o.sha256, /^[a-f0-9]{64}$/);
+      if (o.effectiveAt) {
+        assert.equal(field.metadata.asOf, o.effectiveAt);
+        assert.equal(field.metadata.dateStatus, 'dated');
+      } else {
+        assert.equal(field.metadata.periodStart, `${o.year}-01-01`);
+        assert.equal(field.metadata.periodEnd, `${o.year}-12-31`);
+        assert.equal(field.metadata.dateStatus, 'not-applicable');
+        assert.equal(field.metadata.asOf, null);
+        assert.equal(field.metadata.method, o.method);
+      }
+    });
+    continue;
+  }
   if (f.registry === 'src/data/index-returns.js') {
     assert.equal(f.metadata.periodStart, `${Math.min(...f.value.values.map(([year]) => year))}-01-01`);
     assert.equal(f.metadata.periodEnd, `${Math.max(...f.value.values.map(([year]) => year))}-12-31`);

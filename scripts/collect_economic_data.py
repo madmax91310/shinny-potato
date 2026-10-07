@@ -266,13 +266,26 @@ def parse_funds_euros(body, source_url, today):
     return {'year':year,'value':value,'checkedAt':today,'sourceUrl':source_url,'method':'ACPR contrats individuels, net de prélèvements sur encours, avant prélèvements sociaux','sha256':hashlib.sha256(body).hexdigest()}
 
 
+def official_download(url, max_bytes=8_000_000):
+    # Use standard public-page negotiation on Banque de France / ACPR Drupal.
+    # Other collectors retain their existing document request conventions.
+    try:
+        return download(url, max_bytes=max_bytes, headers={
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+            'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf,*/*;q=0.8',
+        })
+    except Exception as error:
+        raise ValueError(f'{url}: {error}') from error
+
+
 def discover_acpr():
     ns = {'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
-    index = ET.fromstring(download(ACPR+'/sitemap.xml'))
+    index = ET.fromstring(official_download(ACPR+'/sitemap.xml'))
     maps = [x.text for x in index.findall('s:sitemap/s:loc',ns)]
     require(0 < len(maps) <= 20 and all(u.startswith(ACPR+'/sitemaps/') for u in maps), 'Plan ACPR incompatible')
     def entries(url):
-        tree = ET.fromstring(download(url,max_bytes=4_000_000))
+        tree = ET.fromstring(official_download(url,max_bytes=4_000_000))
         return [x.text for x in tree.findall('s:url/s:loc',ns)]
     with ThreadPoolExecutor(max_workers=4) as pool:
         urls = [u for group in pool.map(entries,maps) for u in group]
@@ -280,7 +293,7 @@ def discover_acpr():
                if u.startswith(ACPR+'/fr/') and re.search(r'revalorisation-(20\d{2})-des-contrats',u)]
     require(bool(matches),'Rapport annuel ACPR introuvable')
     year,url = max(matches)
-    page = BeautifulSoup(download(url),'html.parser')
+    page = BeautifulSoup(official_download(url),'html.parser')
     pdfs = sorted({urllib.parse.urljoin(ACPR,a['href']) for a in page.find_all('a',href=True)
                    if re.search(r'AS\d+_revalorisation_'+str(year)+r'\.pdf$',a['href'],re.I)})
     return unique(pdfs,'PDF revalorisation ACPR ambigu/absent')
@@ -361,10 +374,10 @@ def main():
                 return 'households',parse_households(key,download(url),url,today)
             jobs.append(('insee-'+key,collect))
     if args.family in (None,'savings'):
-        jobs.append(('livret-a',lambda:('savings',{'livret_a':parse_savings(download(SAVINGS_URL),today)})))
+        jobs.append(('livret-a',lambda:('savings',{'livret_a':parse_savings(official_download(SAVINGS_URL),today)})))
     if args.family in (None,'fonds_euros'):
         def funds():
-            url=discover_acpr();o=parse_funds_euros(download(url),url,today)
+            url=discover_acpr();o=parse_funds_euros(official_download(url),url,today)
             return 'benchmarks',{'fonds_euros:'+str(o['year']):o}
         jobs.append(('fonds-euros',funds))
     if args.family in (None,'scpi'):
