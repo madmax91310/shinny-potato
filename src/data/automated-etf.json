@@ -25566,6 +25566,129 @@
         "2025": 0.7
       },
       "checkedAt": "2026-10-07"
+    },
+    "sectors": {
+      "asOf": "2026-10-02",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "Financials",
+          "weightPct": 26.232836,
+          "label": "Financials"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 19.217391,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 16.431932,
+          "label": "Industrials"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 13.649376,
+          "label": "Health Care"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 9.292567,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 5.176164,
+          "label": "Communication"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 3.88854,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 3.710732,
+          "label": "Materials"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 2.400461,
+          "label": "Energy"
+        }
+      ],
+      "checkedAt": "2026-10-07"
+    },
+    "countries": {
+      "asOf": "2026-10-02",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 100.0
+        }
+      ],
+      "checkedAt": "2026-10-07"
+    },
+    "holdings": {
+      "asOf": "2026-10-02",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "GOLDMAN SACHS GROUP INC",
+          "weightPct": 10.482171,
+          "isin": "US38141G1040"
+        },
+        {
+          "name": "CATERPILLAR INC",
+          "weightPct": 9.818557,
+          "isin": "US1491231015"
+        },
+        {
+          "name": "MICROSOFT CORP",
+          "weightPct": 6.010501,
+          "isin": "US5949181045"
+        },
+        {
+          "name": "AMGEN INC",
+          "weightPct": 4.680835,
+          "isin": "US0311621009"
+        },
+        {
+          "name": "UNITEDHEALTH GROUP INC",
+          "weightPct": 4.31918,
+          "isin": "US91324P1021"
+        },
+        {
+          "name": "VISA INC-CLASS A SHARES",
+          "weightPct": 4.188641,
+          "isin": "US92826C8394"
+        },
+        {
+          "name": "TRAVELERS COMPANIES INC",
+          "weightPct": 4.185389,
+          "isin": "US89417E1091"
+        },
+        {
+          "name": "ALPHABET INC CL A",
+          "weightPct": 3.989348,
+          "isin": "US02079K3059"
+        },
+        {
+          "name": "APPLE INC",
+          "weightPct": 3.875416,
+          "isin": "US0378331005"
+        },
+        {
+          "name": "JPMORGAN CHASE & CO",
+          "weightPct": 3.860202,
+          "isin": "US46625H1005"
+        }
+      ],
+      "checkedAt": "2026-10-07"
     }
   }
 }
