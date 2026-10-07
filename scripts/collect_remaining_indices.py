@@ -107,6 +107,7 @@ def collect_one(config, now, fetch=download):
                 stamp, values = nasdaq_returns(pdf_text(body), config, now)
             elif config['parser'] == 'nikkei': stamp, values = nikkei_returns(pdf_text(body), config, now)
             elif config['parser'] == 'metal-benchmark': stamp, values = metal_benchmark_returns(pdf_text(body), config, now)
+            elif config.get('returnParser') == 'invesco-us-index': stamp, values = invesco_us_index_returns(pdf_text(body), config, now)
             elif config['parser'] in ('ssga-index', 'blackrock-index'): stamp, values = benchmark_page_returns(body, config, now)
             else: stamp, values = stoxx_returns(body, config, now)
             result['returns'] = {'asOf': stamp, 'currency': config['returnCurrency'], 'variant': config['returnVariant'], 'values': values,
@@ -115,6 +116,40 @@ def collect_one(config, now, fetch=download):
                 'performance': {'kind': config.get('kind','indice'), 'detail': config['performanceDetail'], 'date': stamp}}
         except Exception as e: result['errors'].append({'field': 'returns', 'reason': str(e), 'url': config['returnSourceUrl']})
     return result
+
+
+def invesco_us_index_returns(text, config, now):
+    # RSP's underlying index is SPXEWTR. Never read ETF NAV, market price,
+    # the cap-weighted Benchmark1, rolling periods or the current year.
+    if config['returnCurrency'] != 'USD' or config['returnVariant'] != 'TOTAL':
+        reject('Unsupported Invesco underlying-index convention')
+    if not re.search(r'Invesco S&P 500[®]? Equal Weight ETF\s+RSP\b', text) or not re.search(r'CUSIP\s+46137V357\b', text):
+        reject('Wrong Invesco RSP factsheet identity')
+    if not re.search(r'Bloomberg index ticker\s+SPXEWTR\b', text) or 'S&P 500 Index (USD)' not in text:
+        reject('Wrong Invesco exact USD total-return index')
+    dates = re.findall(r'(?:As of|Performance as at)\s+(\w+ \d{1,2}, 20\d{2})', text)
+    if not dates or len(set(dates)) != 1:
+        reject('Missing or inconsistent Invesco publication date')
+    # This source is a quarterly publication. Keep its actual date; permit one
+    # quarter plus publication lag, rather than redating it as monthly data.
+    stamp = document_date(dates[0], now, max_age=130)
+    if dt.date.fromisoformat(stamp).month not in (3,6,9,12):
+        reject('Unexpected Invesco quarterly publication month')
+    if text.count('Calendar year performance (%)') != 1:
+        reject('Ambiguous Invesco index calendar table')
+    block = text.split('Calendar year performance (%)',1)[1].split('Returns less than one year',1)[0]
+    headers = [re.findall(r'20\d{2}', line) for line in block.splitlines() if len(re.findall(r'20\d{2}',line)) >= 5]
+    if len(headers) != 1: reject('Missing Invesco calendar header')
+    years = headers[0]
+    rows = re.findall(r'^\s*Underlying index\s+(.+)$', block, re.M)
+    if len(rows) != 1: reject('Missing exact Invesco underlying-index calendar row')
+    values = re.findall(r'-?\d+\.\d+', rows[0])
+    if len(values) != len(years) or len(set(years)) != len(years) or any(int(y)>=now.year for y in years):
+        reject('Invalid Invesco completed calendar columns')
+    result = [[int(y),bounded_return(float(v))] for y,v in zip(years,values) if int(y)>=2020]
+    if not all(y in dict(result) for y in range(max(2020,now.year-6),now.year)):
+        reject('Incomplete Invesco index calendar history')
+    return stamp, sorted(result,reverse=True)
 
 
 def benchmark_page_returns(body, config, now):

@@ -105,6 +105,31 @@ class IssuerSources(unittest.TestCase):
         self.assertEqual(result['collectionErrors'][0]['field'],'performance')
         self.assertNotIn('performance',result)
 
+    def test_wisdomtree_rejected_pdf_preserves_html_without_applying_pdf_fields(self):
+        text=(FIX/'wisdomtree.html').read_text();s=share('IE00BZ56SW52')
+        for reason in ['Wrong WisdomTree UCITS exact share/currency',
+                       'Official document date is missing, future or stale',
+                       'Expected official PDF, received another document']:
+            with self.subTest(reason=reason), patch('collect_public_issuer.get_text',return_value=text), \
+                 patch('collect_public_issuer.download',return_value=b'invalid'), \
+                 patch('collect_public_issuer.wisdomtree_factsheet',side_effect=ValueError(reason)):
+                result=public_collect(s,NOW)
+            self.assertEqual(result['aum']['amount'],1645809873)
+            self.assertEqual(result['characteristics']['terPct'],.38)
+            self.assertNotIn('performance',result)
+            self.assertEqual(result['collectionErrors'][0]['reason'],reason)
+
+    def test_wisdomtree_invalid_allocations_preserve_valid_pdf_calendars(self):
+        text=(FIX/'wisdomtree-calendar.txt').read_text();s=share('IE00BZ56SW52')
+        with patch('issuer_documents.pdf_text',return_value=text), \
+             patch('collect_wisdomtree_allocations.allocations',side_effect=ValueError('Truncated official composition')):
+            result=wisdomtree_factsheet(b'%PDF-body',s,NOW)
+        self.assertEqual(result['performance']['years']['2025'],16.33)
+        self.assertEqual(result['characteristics']['terPct'],.38)
+        self.assertNotIn('sectors',result)
+        self.assertNotIn('holdings',result)
+        self.assertEqual(result['collectionErrors'][0]['field'],'allocations')
+
     def test_ubs_exact_index_scope_and_month_discovery(self):
         text=(FIX/'ubs.txt').read_text();s=share('IE00BD4TXV59');r=ubs(text,s,NOW,'h')
         self.assertEqual(r['aum']['amount'],17446660000)

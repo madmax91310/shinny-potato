@@ -807,10 +807,15 @@
       "compositionIdentityPattern": "Indice de référence\\s+100% S&P 500 EQUAL WEIGHTED NR Close",
       "collectComposition": true,
       "requiredFields": [
-        "composition"
+        "composition",
+        "returns"
       ],
       "enabled": true,
-      "qualificationIssue": "Annual TOTAL USD returns remain unqualified; monthly Amundi performance is NET and is not substituted."
+      "returnParser": "invesco-us-index",
+      "returnSourceUrl": "https://www.invesco.com/content/dam/invesco/us/en/product-documents/etf/fact-sheet/rsp-invesco-s-p-500-equal-weight-etf-fact-sheet.pdf.coredownload.inline.pdf",
+      "returnCurrency": "USD",
+      "returnVariant": "TOTAL",
+      "performanceDetail": "S&P 500 Equal Weight · USD · dividendes réinvestis (SPXEWTR, ligne indice Invesco ; publication trimestrielle)"
     }
   ]
 }
