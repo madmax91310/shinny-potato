@@ -1,7 +1,8 @@
+import { companyImageModel } from '../src/pages/company-analysis/image.js'
 import assert from 'node:assert/strict'
 import { searchData } from '../src/data/catalog.js'
 import { COMPANIES } from '../src/pages/company-analysis/data.js'
-import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics } from '../src/pages/company-analysis/lib.js'
+import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics, marginExplanation } from '../src/pages/company-analysis/lib.js'
 
 const now = new Date('2026-10-07T07:00:00Z')
 const base = { ...COMPANIES[0], accountsObservedAt: '2026-10-07', annual: {
@@ -11,7 +12,7 @@ const base = { ...COMPANIES[0], accountsObservedAt: '2026-10-07', annual: {
 let text = buildTweetText(base, now)
 assert.match(text, /hausse de 20,0 %/)
 assert.match(text, /baisse de 20,0 %/)
-assert.match(text, /disponible est négatif/)
+assert.match(text, /marge nette a diminué/)
 assert(!text.includes('PER'))
 // Changing the raw figures must change the prose, even if old derived metadata survives.
 const altered = structuredClone(base)
@@ -45,8 +46,8 @@ const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
 assert.equal(calculatedRatios(computed,now).peTTM,20)
 assert.equal(calculatedRatios(computed,now).priceFCF,10)
 assert.equal(calculatedRatios(computed,now).payout,25)
-assert.match(buildTweetText(computed,now),/trésorerie nette/)
-assert.match(buildTweetText(computed,now),/marge opérationnelle atteint 20,0 %/)
+assert.match(buildTweetText(computed,now),/Pour 100 USD de ventes/)
+assert(metrics(computed,now).some(row => row.label.includes('opérationnelle') && row.value === '20,0 %'))
 computed.quote.price=200
 assert.equal(calculatedRatios(computed,now).peTTM,40)
 computed.quote.splits=['2026-06-01']
@@ -69,3 +70,51 @@ for (const company of COMPANIES) {
   assert(company.accountsSourceUrl.startsWith('https://'))
 }
 console.log('Company analysis: raw-number changes, gains, losses, missing/stale estimates and all initial companies OK.')
+
+// Editorial decisions follow raw margins, including falling sales and losses.
+const period = (revenue, previousRevenue, netIncome, previousNetIncome) => ({revenue, previousRevenue, netIncome, previousNetIncome})
+for (const [values, expected] of [
+  [[120,100,15,10], /bénéfices ont progressé plus vite/],
+  [[120,100,11,10], /ventes ont progressé plus vite/],
+  [[80,100,9,10], /s’est améliorée/],
+  [[80,100,5,10], /a diminué/],
+  [[100,100,-2,-4], /s’est améliorée/],
+  [[100,100,-4,-2], /a diminué/],
+  [[100,100,2,-2], /s’est améliorée/],
+  [[100,100,-2,2], /a diminué/],
+  [[120,100,12,10], /presque stable/],
+  [[100,100,10.01,10], /presque stable/],
+]) assert.match(marginExplanation(period(...values)), expected)
+for (const values of [[100,null,10,5], [100,0,10,5], [0,100,10,5], [100,100,10,null]]) {
+  assert.equal(marginExplanation(period(...values)), '')
+}
+for (const company of COMPANIES) {
+  const tweet = buildTweetText(company, now)
+  assert(!/Ce que je regarderais|avant d’investir|belle entreprise|bon marché|chère|croissance future compte/.test(tweet))
+  assert(!tweet.includes(company.watch))
+  assert.match(tweet, /Ce que l’entreprise gagne/)
+}
+const staleQuarter = {...base, quarter:{...base.annual,end:'2025-01-01'}}
+assert(!buildTweetText(staleQuarter,now).includes('derniers résultats'))
+const loss = {...base,annual:{...base.annual,netIncome:-2e9,previousNetIncome:4e9}}
+assert.match(buildTweetText(loss,now), /perte nette de .* pour 100 USD/)
+assert(!buildTweetText(loss,now).includes('conservé'))
+console.log('Company tweet: factual explanations, margin changes, losses, missing comparatives and neutral wording OK.')
+
+const imageBase = companyImageModel(computed, now)
+assert.equal(imageBase.pe, null) // negative trailing EPS is never a positive PER
+const imageCompany = {...computed, trailing:{...computed.trailing,dilutedEPS:5}}
+assert.equal(companyImageModel(imageCompany,now).pe, '40,0×')
+assert.equal(companyImageModel({...imageCompany,quote:{...imageCompany.quote,price:100}},now).pe, '20,0×')
+assert.equal(companyImageModel({...imageCompany,quote:{...imageCompany.quote,asOf:'2026-01-01'}},now).pe, null)
+assert.equal(companyImageModel(loss,now).columns[1].label, 'Perte nette')
+assert.match(companyImageModel(loss,now).columns[2].parts[0], /^-/)
+assert.equal(companyImageModel({...loss,annual:{...loss.annual,previousNetIncome:null}},now).columns[1].change, '')
+assert.throws(()=>companyImageModel(stale,now), /trop anciens/)
+for (const company of COMPANIES) {
+  const model = companyImageModel(company,now)
+  assert.equal(model.columns.length,3)
+  assert(model.annualDate.includes(company.annual.end.split('-').reverse().join('/')))
+  assert(!/NaN|undefined|Infinity/.test(JSON.stringify(model)))
+}
+console.log('Company image: live PER, missing/stale values, dated annual results and losses OK.')

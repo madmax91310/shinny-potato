@@ -22,8 +22,29 @@ try {
     await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
     const text=await page.getByTestId('company-tweet').innerText()
     assert(text.includes(company.name));assert(text.includes(company.activity))
+    assert(text.includes('Ce que l’entreprise gagne'))
+    assert(!text.includes('Ce que je regarderais'))
+    assert(!text.includes(company.watch))
+    assert(text.includes('Ce ratio utilise les bénéfices déjà publiés.'))
     assert(!/NaN|undefined|Infinity/.test(text))
   }
+  await page.getByRole('tab',{name:'Image',exact:true}).click()
+  let previousImage = ''
+  for (const company of COMPANIES) {
+    await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
+    const rendered = page.getByRole('img',{name:`Les chiffres de ${company.name}`})
+    await rendered.waitFor()
+    await page.waitForFunction(previous => {
+      const img = document.querySelector('.publication-image-stage img')
+      return img && img.complete && img.naturalWidth === 1200 && img.src !== previous
+    }, previousImage)
+    previousImage = await rendered.getAttribute('src')
+    if(process.env.COMPANY_QA_DIR) {
+      const {writeFile} = await import('node:fs/promises')
+      await writeFile(`${process.env.COMPANY_QA_DIR}/${company.id}.png`,Buffer.from(previousImage.split(',')[1],'base64'))
+    }
+  }
+  await page.getByRole('tab',{name:'Texte',exact:true}).click()
   await chooser.getByRole('button',{name:'Apple · AAPL'}).click()
   await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
   const copied=await page.evaluate(()=>navigator.clipboard.readText())

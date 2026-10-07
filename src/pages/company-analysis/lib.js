@@ -72,20 +72,39 @@ export function incomePhrase(period, currency) {
   if (finite(previous) && previous < 0) return `${base}. Elle est revenue au bénéfice après une perte un an plus tôt.`
   return `${base}${changePhrase(growth(current, previous))}.`
 }
-function periodText(period, company, label) {
+// Explain only what the published figures establish; recompute after every refresh.
+export function marginExplanation(period) {
+  const { revenue, netIncome, previousRevenue, previousNetIncome } = period
+  if (!finite(revenue) || revenue <= 0 || !finite(netIncome)
+    || !finite(previousRevenue) || previousRevenue <= 0 || !finite(previousNetIncome)) return ''
+  const current = netIncome / revenue * 100
+  const previous = previousNetIncome / previousRevenue * 100
+  // Compare the displayed precision to avoid describing an invisible change.
+  if (current.toFixed(1) === previous.toFixed(1)) return 'La marge nette est presque stable sur un an.'
+  const improved = current > previous
+  const revenueGrowth = growth(revenue, previousRevenue)
+  const profitGrowth = growth(netIncome, previousNetIncome)
+  if (netIncome > 0 && previousNetIncome > 0 && revenueGrowth > .05 && profitGrowth > .05) {
+    return improved
+      ? 'Les bénéfices ont progressé plus vite que les ventes : la marge nette s’est améliorée.'
+      : 'Les ventes ont progressé plus vite que les bénéfices : la marge nette a diminué.'
+  }
+  return `La marge nette ${improved ? 's’est améliorée' : 'a diminué'}, passant de ${fr(previous)} % à ${fr(current)} % sur un an.`
+}
+function periodText(period, company, quarterly = false) {
   const dates = period.start ? `du ${dateLabel(period.start)} au ${dateLabel(period.end)}` : `clos le ${dateLabel(period.end)}`
-  const lines = [`${label} · ${dates}`,
+  const lines = [quarterly ? `📈 Et les derniers résultats ?\nTrimestre ${dates}` : `💰 Ce que l’entreprise gagne\nExercice ${dates}`,
     `Son chiffre d’affaires atteint ${amount(period.revenue, company.currency)}${changePhrase(growth(period.revenue, period.previousRevenue))}.`,
     incomePhrase(period, company.currency)]
-  // Compute the prose from raw figures; never trust a stored editorial assessment.
-  const margin = period.netIncome / period.revenue * 100
-  if (period.netIncome > 0) lines.push(`Cela représente une marge nette de ${fr(margin)} %.`)
-  else if (period.netIncome < 0) lines.push(`La marge nette est de ${fr(margin)} %.`)
-  if (finite(period.dilutedEPS)) lines.push(`Le bénéfice dilué par action ${period.dilutedEPS < 0 ? 'est négatif et ' : ''}ressort à ${fr(period.dilutedEPS, 2)} ${company.currency}${changePhrase(growth(period.dilutedEPS, period.previousDilutedEPS))}.`)
-  if (finite(period.operatingIncome)) lines.push(`La marge opérationnelle atteint ${fr(period.operatingIncome / period.revenue * 100)} %.`)
-  if (finite(period.freeCashFlow)) lines.push(period.freeCashFlow >= 0
-    ? `Après ses investissements en immobilisations, son flux de trésorerie disponible ressort à ${amount(period.freeCashFlow, company.currency)}.`
-    : `Après ses investissements en immobilisations, son flux de trésorerie disponible est négatif : ${amount(period.freeCashFlow, company.currency)}.`)
+  if (finite(period.revenue) && period.revenue > 0 && finite(period.netIncome)) {
+    const margin = period.netIncome / period.revenue * 100
+    if (!quarterly) {
+      if (period.netIncome > 0) lines.push(`Pour 100 ${company.currency} de ventes, elle a donc conservé environ ${fr(margin)} ${company.currency} de bénéfice net.`)
+      else if (period.netIncome < 0) lines.push(`Cela représente une perte nette de ${fr(-margin)} ${company.currency} pour 100 ${company.currency} de ventes.`)
+    }
+    const explanation = marginExplanation(period)
+    if (explanation) lines.push(explanation)
+  }
   return lines.join('\n')
 }
 export function metrics(company, now = new Date()) {
@@ -111,26 +130,23 @@ export function metrics(company, now = new Date()) {
 }
 export function buildTweetText(company, now = new Date()) {
   if (!canPublish(company, now)) return ''
-  const lines = [`🔎 Tu connais ${company.name}. Mais comment cette entreprise gagne-t-elle son argent ? 👇`,
-    `🏭 Son activité\n${company.activity}`, periodText(company.annual, company, '💰 Le dernier exercice publié')]
-  if (company.quarter && fresh(company.quarter.end, 200, now)) lines.push(periodText(company.quarter, company, '📈 Le dernier trimestre publié'))
-  if (company.quote && fresh(company.quote.asOf, 10, now)) lines.push(`🏷️ L’action cotait ${fr(company.quote.price, 2)} ${company.currency} à la clôture du ${dateLabel(company.quote.asOf)}.`)
+  const lines = [`🔎 Quand tu achètes une action ${company.name}, qu’est-ce que tu achètes vraiment ? 👇`,
+    `🏭 Son activité\n${company.activity}`, periodText(company.annual, company)]
+  const quarter = company.quarter
+  if (quarter && fresh(quarter.end, 200, now) && finite(quarter.revenue) && quarter.revenue > 0 && finite(quarter.netIncome)) {
+    lines.push(periodText(quarter, company, true))
+  }
   const v = activeValuation(company, now)
   const calculated = calculatedRatios(company, now)
-  const ratios = []
   const pe = calculated.peTTM ?? v?.peTTM
-  if (finite(pe) && pe > 0) ratios.push(`Le PER est de ${fr(pe)} : le marché valorise l’action à environ ${fr(pe)} fois ses bénéfices par action sur les douze derniers mois.`)
-  if (finite(v?.forwardPE) && v.forwardPE > 0) ratios.push(`Le PER prévisionnel fourni est de ${fr(v.forwardPE)}. Il repose sur des bénéfices estimés, avec un horizon non précisé par ${v.sourceName ?? 'Alpha Vantage'}.`)
-  if (finite(v?.peg) && v.peg > 0) ratios.push(`Le PEG fourni est de ${fr(v.peg)}. La croissance retenue et son horizon ne sont pas précisés par ${v.sourceName ?? 'Alpha Vantage'}.`)
-  if (finite(calculated.priceFCF)) ratios.push(`La capitalisation indicative représente ${fr(calculated.priceFCF)} fois le flux de trésorerie disponible du dernier exercice, avec le nombre d’actions publié au ${dateLabel(company.shares.asOf)}.`)
-  if (finite(calculated.dividendYield)) {
-    ratios.push(`Les dividendes déclarés pendant le dernier exercice représentent ${fr(calculated.dividendYield, 2)} % du cours de clôture utilisé.`)
-    if (finite(calculated.payout)) ratios.push(`Ils représentent ${fr(calculated.payout)} % du bénéfice dilué par action de cet exercice.`)
-  }
-  if (ratios.length) lines.push(`📊 Valorisation\n${ratios.join('\n')}`)
-  const b = activeBalance(company, now)
-  if (finite(b?.netDebt)) lines.push(`🏦 Dette et trésorerie · au ${dateLabel(b.asOf)}\nLa dette financière publiée s’élève à ${amount(b.debt, company.currency)}, pour ${amount(b.cash, company.currency)} de trésorerie et équivalents. Cela donne ${amount(Math.abs(b.netDebt), company.currency)} de ${b.netDebt < 0 ? 'trésorerie nette' : 'dette nette'}, hors contrats de location et placements.`)
-  else if (b && finite(b.cash)) lines.push(`🏦 Trésorerie · au ${dateLabel(b.asOf)}\nL’entreprise publie ${amount(b.cash, company.currency)} de trésorerie et équivalents. Ce chiffre exclut les placements.`)
-  lines.push(`👀 Ce que je regarderais\n${company.watch}`, '💬 Tu connaissais toutes ses activités ?')
+  const valuation = []
+  if (company.quote && finite(company.quote.price) && company.quote.price > 0 && fresh(company.quote.asOf, 10, now)) {
+    valuation.push(`À la clôture du ${dateLabel(company.quote.asOf)}, l’action valait ${fr(company.quote.price, 2)} ${company.currency}${finite(pe) && pe > 0 ? ` pour un PER de ${fr(pe)}` : ''}.`)
+  } else if (finite(pe) && pe > 0) valuation.push(`Le PER est de ${fr(pe)}.`)
+  if (finite(pe) && pe > 0) valuation.push(`Autrement dit, le cours représente environ ${fr(pe)} fois le bénéfice par action des douze derniers mois.\nCe ratio utilise les bénéfices déjà publiés. Il ne mesure pas leur croissance future.`)
+  if (finite(v?.forwardPE) && v.forwardPE > 0) valuation.push(`Le PER prévisionnel fourni est de ${fr(v.forwardPE)}. Il utilise des bénéfices estimés, avec un horizon non précisé par ${v.sourceName ?? 'Alpha Vantage'}.`)
+  if (finite(v?.peg) && v.peg > 0) valuation.push(`Le PEG fourni est de ${fr(v.peg)}. Il rapporte le PER à un taux de croissance des bénéfices ; la croissance retenue et son horizon ne sont pas précisés par ${v.sourceName ?? 'Alpha Vantage'}.`)
+  if (valuation.length) lines.push(`🏷️ Et le prix de l’action ?\n${valuation.join('\n\n')}`)
+  lines.push('💬 Tu connaissais toutes ses activités ?')
   return lines.join('\n\n')
 }
