@@ -70,17 +70,12 @@
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
       "runId": 37772536308,
-      "attempt": 1,
-      "completedAt": "2026-10-08T11:56:05Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-07T20:56:27Z",
+      "attempt": 2,
+      "completedAt": "2026-10-08T12:06:10Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-08T12:06:10Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37772536308",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/test-household-sculpture.mjs"
-        }
-      ],
+      "failures": [],
       "dataFailures": {}
     },
     "update-scpi.yml": {
@@ -95,5 +90,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-08T12:00:13Z"
+  "updatedAt": "2026-10-08T12:06:10Z"
 }
