@@ -81,16 +81,16 @@
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 37765092601,
+      "runId": 37772536308,
       "attempt": 1,
-      "completedAt": "2026-10-08T10:55:19Z",
+      "completedAt": "2026-10-08T11:56:05Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-07T20:56:27Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37765092601",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37772536308",
       "failures": [
         {
-          "job": "report-failures",
-          "step": "Run echo 'Une collecte réglementaire a échoué. Les dernières valeurs validées restent disponibles. Consulter regulatory-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+          "job": "deploy / build",
+          "step": "Run node scripts/test-household-sculpture.mjs"
         }
       ],
       "dataFailures": {}
@@ -107,5 +107,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-08T11:50:42Z"
+  "updatedAt": "2026-10-08T11:56:05Z"
 }
