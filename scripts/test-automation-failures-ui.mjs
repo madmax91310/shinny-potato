@@ -18,6 +18,12 @@ try {
  await page.screenshot({path:'test-artifacts/automation-failure-mobile.png',fullPage:true})
  status={schemaVersion:1,workflows:{economic:{status:'success',name:'Données économiques'}}}
  await page.reload({waitUntil:'networkidle'});assert.equal(await section.count(),0)
+ status={schemaVersion:1,workflows:{etf:{name:'Update active ETF issuer data',status:'failure',completedAt:'2026-10-08T13:28:34Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/37784356798'}}}
+ await page.reload({waitUntil:'networkidle'})
+ assert.equal(await section.locator('.dr-item').count(),1)
+ assert.equal(await section.getByRole('link',{name:'Voir la cause et le suivi ↗'}).getAttribute('href'),status.workflows.etf.runUrl)
+ status={schemaVersion:1,workflows:{etf:{name:'Update active ETF issuer data',status:'success'}}}
+ await page.reload({waitUntil:'networkidle'});assert.equal(await section.count(),0)
  await page.unroute('**/automation-status/automation-status.json')
  await page.route('**/automation-status/automation-status.json',route=>route.fulfill({status:503,body:'unavailable'}))
  await page.reload({waitUntil:'networkidle'})
