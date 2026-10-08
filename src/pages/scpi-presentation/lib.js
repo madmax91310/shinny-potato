@@ -17,9 +17,13 @@ export function buildTweet(record) {
   const priceHistory = price.previousValue != null && price.previousValue !== price.value
     ? `Prix de la part : ${format(price.previousValue)} € au ${dateLabel(price.previousAsOf)} → ${format(price.value)} € au ${dateLabel(price.asOf)}.`
     : `Prix de la part : ${format(price.value)} € au ${dateLabel(price.asOf)}.`
+  const uk = snapshot.countries.find(row => row.label === 'Royaume-Uni')
+  const france = snapshot.countries.find(row => row.label === 'France')
   const reading = id === 'iroko-zen'
     ? `Les ${sector.label.toLowerCase()} arrivent en tête (${format(sector.value)} %). La diversification géographique ne fait donc pas disparaître le poids de ce secteur : les loyers dépendent aussi de la santé des entreprises locataires.`
-    : `Le Royaume-Uni représente ${format(snapshot.countries.find(row => row.label === 'Royaume-Uni')?.value ?? country.value)} % du patrimoine. Le pays pèse davantage que la France : les loyers et la valeur des biens restent exposés au marché britannique, ainsi qu’à la livre sterling.`
+    : uk && france && uk.value > france.value
+      ? `Le Royaume-Uni représente ${format(uk.value)} % du patrimoine. Le pays pèse davantage que la France : les loyers et la valeur des biens restent exposés au marché britannique, ainsi qu’à la livre sterling.`
+      : `${country.label} représente ${format(country.value)} % du patrimoine : c’est la première exposition géographique. Investir dans plusieurs pays ne répartit donc pas les risques à parts égales ; ce marché pèse plus lourd dans le résultat.`
   return [hook,
     `🏢 ${name} détient des biens loués à des entreprises.\n🌍 ${allocation(snapshot.countries)}\n🏭 ${allocation(snapshot.sectors)}\n${snapshotDate}.`,
     `💶 La part coûte ${format(price.value)} €. Souscription initiale dès ${format(c.minimum)} €.\nRevenus potentiels ${c.frequency}. ${c.enjoyment}`,

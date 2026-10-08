@@ -21,4 +21,8 @@ for (const record of SCPI) {
 assert(buildTweet(SCPI[0]).includes('14,4 % TTC'))
 assert(buildTweet(SCPI[0]).includes('date des graphiques non précisée'))
 assert(allocation([{label:'A',value:20},{label:'B',value:30},{label:'C',value:40},{label:'D',value:10}]).endsWith('autres 10 %'))
+const changed = structuredClone(SCPI.find(row => row.id === 'remake-live'))
+changed.snapshot.countries = [{ label: 'France', value: 60 }, { label: 'Allemagne', value: 40 }]
+assert(buildTweet(changed).includes('France représente 60 %'))
+assert(!buildTweet(changed).includes('marché britannique'))
 console.log('SCPI: shared observations, differentiated tweets, fees, dates and catalogue OK.')
