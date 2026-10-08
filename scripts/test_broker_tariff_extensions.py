@@ -24,6 +24,10 @@ class BrokerTariffTests(unittest.TestCase):
   for name,path,old,new in [('ibkr','ibkr.html','France','Allemagne'),('xtb','xtb.txt',"La commission minimale pour les transactions sur OMI n'est pas facturée pour le PEA",'Exemption supprimée'),('caidf','caidf.txt','0,99€','colonne supprimée')]:
    with self.subTest(broker=name),self.assertRaises((ValueError,IndexError)):
     parse(name,fixture(path).replace(old,new),TODAY)
+ def test_reject_reordered_tariff_columns(self):
+  with self.assertRaises(ValueError):parse('saxo',fixture('saxo.txt').replace('Classic','TEMP').replace('VIP','Classic').replace('TEMP','VIP'),TODAY)
+  text=fixture('ibkr.html').replace('Fixe - IB SmartRouting','TEMP').replace('Fixe - Routage direct','Fixe - IB SmartRouting').replace('TEMP','Fixe - Routage direct')
+  with self.assertRaises(ValueError):parse('ibkr',text,TODAY)
  def test_dates_future_and_regression(self):
   s=fixture('xtb.txt')
   with self.assertRaises(ValueError):parse('xtb',s,'2026-09-01')

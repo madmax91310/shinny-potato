@@ -34,7 +34,10 @@ def parse(name,s,today,previous=None):
   if not h:raise ValueError('Table France absente')
   section=h.find_parent('section');table=section.find('table');text=table.get_text(' ',strip=True).replace('\xa0',' ')
   require(text,'Dégressive','Fixe - IB SmartRouting','Fixe - Routage direct','Minimum par ordre (actions)')
-  rows=table.find_all('tr'); first=rows[1].find_all('td');rates=[get(r'([\d,]+)\s*%',x.get_text(' ',strip=True)) for x in first[1:4]]
+  rows=table.find_all('tr');header=rows[0].get_text(' ',strip=True)
+  positions=[header.find(label) for label in ['Dégressive','Fixe - IB SmartRouting','Fixe - Routage direct']]
+  if positions!=sorted(positions) or min(positions)<0:raise ValueError('Ordre des colonnes IBKR modifié')
+  first=rows[1].find_all('td');rates=[get(r'([\d,]+)\s*%',x.get_text(' ',strip=True)) for x in first[1:4]]
   mins=next(r for r in rows if r.find(['td','th']).get_text(' ',strip=True)=='Minimum par ordre (actions)').find_all('td')
   minimums=[get(r'([\d,]+)\s*EUR',x.get_text(' ',strip=True)) for x in mins[1:4]]
   v=dict(rate=rates[0],fixedRate=rates[1],directRate=rates[2],minimum=minimums[0],fixedMinimum=minimums[1],directMinimum=minimums[2])
@@ -55,6 +58,7 @@ def parse(name,s,today,previous=None):
   day,month,year=re.search(r'du (\d{1,2}) (\w+) (\d{4})',s).groups();months={'mai':5,'avril':4,'janvier':1,'septembre':9,'octobre':10,'juin':6,'juillet':7,'août':8,'février':2,'mars':3,'novembre':11,'décembre':12}
   date=dt.date(int(year),months[month],int(day)).isoformat()
   block=s.split('Euronext (1) :')[1].split('Service de Règlement Différé')[0]; require(block,'Classic','Platinum','VIP','Paris','Amsterdam')
+  if not re.search(r'Classic\s+Platinum\s+VIP',block):raise ValueError('Ordre des colonnes Saxo modifié')
   m=re.search(r'([\d,]+)%\s*\(min\.\s*([\d,]+)€\)',block)
   if not m:raise ValueError('Tarif Classic absent')
   v={'rate':num(m[1]),'minimum':num(m[2])};full=f"{fmt(v['rate'])} % sur Euronext en formule Classic, minimum {fmt(v['minimum'])} €, dans la limite du plafond légal de 0,50 % pour les ordres en ligne."
