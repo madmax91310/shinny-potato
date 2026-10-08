@@ -57,7 +57,12 @@ def parse(name, content, today, previous=None):
   'method':'Tableau de courtage de la brochure officielle ; forfait et marché exacts', 'sha256':hashlib.sha256(content.encode()).hexdigest()}
 def fetch_content(url):
  raw=download(url)
- return pdf_text(raw) if raw.startswith(b'%PDF') else raw.decode('utf-8')
+ # Isolate the English column of the bilingual France contract. This avoids
+ # interleaving French clauses when Poppler's line wrapping differs by platform.
+ # The normal 2 MB extraction limit still applies.
+ if raw.startswith(b'%PDF'):
+  return pdf_text(raw,crop=(0,300)) if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2] else pdf_text(raw)
+ return raw.decode('utf-8')
 def collect(baseline,today,fetcher=fetch_content):
  failures={};validated=[];documents={}
  def fetch_once(url):
@@ -88,6 +93,9 @@ def collect(baseline,today,fetcher=fetch_content):
   try:
    _,_,observation=parse_supplement(key,fetch_once(url),today)
    if broker not in baseline['brokers']:raise ValueError('Barème principal non qualifié')
+   previous=baseline['brokers'][broker].get('fields',{}).get(field,{})
+   if observation.get('publicationMonth') and previous.get('publicationMonth') and observation['publicationMonth']<previous['publicationMonth']:
+    raise ValueError('Régression du mois de publication du contrat')
    baseline['brokers'][broker].setdefault('fields',{})[field]=observation
   except Exception as exc:failures[key]=str(exc)
  return baseline,failures,validated

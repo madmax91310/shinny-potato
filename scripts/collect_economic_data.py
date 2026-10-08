@@ -322,10 +322,25 @@ def collect_funds_euros(today, previous):
                 f'Découverte ACPR obligatoire pour un nouveau millésime : {error}')
         url=latest['sourceUrl']
         parsed=urllib.parse.urlparse(url)
-        require(parsed.scheme=='https' and parsed.hostname=='acpr.banque-france.fr'
+        require(parsed.scheme=='https' and parsed.hostname in ('acpr.banque-france.fr','www.banque-france.fr')
                 and parsed.path.startswith('/system/files/'), 'URL de rapport ACPR non qualifiée')
         discovery_error=str(error)
-    observation=parse_funds_euros(official_download(url),url,today)
+    # Banque de France publishes the same ACPR report on its own official host.
+    # Keep the exact path and record the host that actually served the document.
+    parsed=urllib.parse.urlparse(url)
+    candidates=[url]
+    if parsed.scheme=='https' and parsed.netloc=='acpr.banque-france.fr' and parsed.path.startswith('/system/files/'):
+        candidates.append(urllib.parse.urlunparse(parsed._replace(netloc='www.banque-france.fr')))
+    errors=[]
+    for candidate in candidates:
+        try:
+            body=official_download(candidate)
+            break
+        except Exception as error:
+            errors.append(f'{candidate}: {error}')
+    else:
+        raise ValueError('; '.join(errors))
+    observation=parse_funds_euros(body,candidate,today)
     if discovery_error:
         require(observation['year']==int(today[:4])-1,'Rapport de secours ACPR hors dernier millésime complet')
         observation['discoveryStatus']='latest-complete-year-revalidated'
@@ -339,9 +354,9 @@ def official_download(url, max_bytes=8_000_000):
     # Other collectors retain their existing document request conventions.
     try:
         return download(url, max_bytes=max_bytes, headers={
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0',
             'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf,*/*;q=0.8',
+            'Accept': 'application/pdf,text/html,*/*',
         })
     except Exception as error:
         raise ValueError(f'{url}: {error}') from error

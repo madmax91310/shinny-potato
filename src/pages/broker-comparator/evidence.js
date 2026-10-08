@@ -137,7 +137,7 @@ export const BROKER_EVIDENCE = {
     boursomarkets: unknown('Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.'),
     frais: { status: 'confirmé', summary: 'Les conditions PEA renvoient au barème d’ordres. Ordre ponctuel : 1 € de frais fixes de règlement ; 2 € si Direct Price est choisi. Plans programmés sans frais d’exécution ; spread, frais du produit et tiers éventuels en sus. Le tarif exact est présenté avant validation dans l’application.', refs: [{ document: 'trContract', page: 190 }, { document: 'trPricing' }, { document: 'trOrders' }] },
     dca: { status: 'confirmé', summary: 'Plans programmés prévus par contrat ; PEA sans frais sur les plans selon sa page de présentation ; titres éligibles dans l’application.', refs: [{ document: 'trContract', page: 91 }, { document: 'trPea' }] },
-    garde: { status: 'confirmé', summary: 'Trade Republic indique qu’aucun frais n’est facturé pour l’administration et la conservation des titres. Son contrat décrit le compte de titres PEA détenu chez Trade Republic ; aucune exception PEA n’est annoncée dans l’aide consultée.', refs: [{ document: 'trCustody' }, { document: 'trContract', page: 189 }] },
+    garde: { status: 'partiel', summary: 'La page publique confirme l’absence de frais de garde sur le compte-titres. Les frais propres au PEA restent à confirmer dans sa grille tarifaire ; la clause du contrat France renvoie au barème sans les chiffrer.', refs: [{ document: 'trFees' }, { document: 'trContract', page: 190 }] },
     pea: proved('PEA prévu par les conditions France.', 'trContract', 189),
     pme: { status: 'corroboré', review: { checked: '02/10/2026', outcome: 'unresolved', followUp: 'Nouvelle recherche du 02/10/2026, voir docs/data-review-2026-10-02.md ; aucune confirmation officielle de portée complète récupérée.', documents: ["trContract"], gap: "Exclusion explicite du PEA-PME distinct ou preuve datée de sa disponibilité chez Trade Republic." }, summary: 'PEA-PME non proposé selon MoneyVox, Café de la Bourse et Place au Rendement (27/09/2026) ; le contrat Trade Republic ne formule pas cette exclusion.', refs: [{ document: 'placeTrPme' }, { document: 'moneyvoxPea2026' }, { document: 'cafePeaPme' }, { document: 'trContract', page: 189 }] },
     jeune: proved('PEA ouvert sous conditions aux jeunes rattachés au foyer fiscal.', 'trContract', 190),
@@ -249,7 +249,7 @@ const fieldDocument = (id,key) => id === 'saxo' && key === 'entrant' ? 'saxoPeaT
 for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
   const document = `${id}AutomatedTariff`;
   const source = o => ({title: `${brokerNames[id]} · ${o.scope}`,url:o.sourceUrl,
-    edition:o.asOf ? `Tarifs applicables au ${o.asOf}` : 'Page publique non datée',
+    edition:o.asOf ? `Tarifs applicables au ${o.asOf}` : o.publicationMonth ? `Contrat · ${o.publicationMonth}` : 'Page publique non datée',
     checked:o.checkedAt.split('-').reverse().join('/'),kind:o.page ? 'pdf' : 'page',...(o.until ? {reviewUntil:o.until} : {})});
   OFFICIAL_SOURCES[document] = source(observation);
   BROKER_EVIDENCE[id].frais = {status:'confirmé',summary:brokerTariffCopy(id).full,

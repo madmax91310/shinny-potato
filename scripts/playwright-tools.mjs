@@ -1228,7 +1228,8 @@ try {
   await page.reload({ waitUntil: 'networkidle' });
   reviewChecks.reload = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 4;
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil', exact: true }).fill('');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 11);
+  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 12);
+  reviewChecks.peaCustody = (await page.locator('.data-review > .dr-list > .dr-item').filter({hasText: 'Trade Republic'}).filter({hasText: 'frais propres au PEA'}).count()) === 1;
   await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
   await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 3);
   reviewChecks.deadlines = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 3;

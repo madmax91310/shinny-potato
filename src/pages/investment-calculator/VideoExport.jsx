@@ -6,7 +6,7 @@ import {
   renderResultVideo,
   renderComparativeVideo,
   getComparativeAssetIssue,
-} from './videoExport'
+} from './videoExport.js'
 import { pct } from './lib'
 import { computeComparison, buildComparisonTweet } from './comparison.js'
 import Button from '../../design-system/Button'

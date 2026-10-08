@@ -5,7 +5,7 @@ export const BROKER_EDITORIAL = {
   tr: {
     frais: '1 € par ordre ponctuel, ou 2 € avec Direct Price ; plans programmés sans frais d’exécution. Spread et coûts tiers possibles.',
     dca: 'oui ✅ Plans programmés sans frais d’exécution sur les titres éligibles.',
-    garde: 'aucun ✅',
+    garde: 'à confirmer sur PEA ; aucun frais annoncé sur le compte-titres.',
     cash: 'oui ✅ Sous conditions, après activation, hors PEA.',
     cashDisponible: true, cashPrecision: 'après activation.',
     entrant: 'possible ✅ Sauf PEA contenant des titres non cotés.',

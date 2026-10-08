@@ -33,7 +33,7 @@ jobs:
       group: economic-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
       queue: max
-    runs-on: ubuntu-26.04
+    runs-on: macos-15
     timeout-minutes: 20
     permissions:
       contents: write
@@ -50,7 +50,7 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
-      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: brew install poppler
       - run: pip install -r scripts/economic-requirements.txt
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_economic_data.py'

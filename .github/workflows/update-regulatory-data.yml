@@ -29,7 +29,7 @@ jobs:
     concurrency:
       group: regulatory-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
-    runs-on: ubuntu-26.04
+    runs-on: macos-15
     timeout-minutes: 20
     permissions:
       contents: write
@@ -46,7 +46,7 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
-      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: brew install poppler
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
