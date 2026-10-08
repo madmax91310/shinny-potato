@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
+import { BROKER_EVIDENCE } from '../src/pages/broker-comparator/evidence.js';
+import { BROKER_EDITORIAL } from '../src/pages/broker-comparator/editorial.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { buildText } from '../src/pages/etf-sheets/lib.js';
@@ -523,11 +525,14 @@ async function testBrokerComparator(page) {
   }
   await page.locator('.bc-duel-chip').filter({ hasText: 'XTB vs SX' }).click();
   const post = await page.locator('.bc-tweet-textarea').inputValue();
+  const outgoing = BROKER_EDITORIAL.xtb.sortant === BROKER_EDITORIAL.saxo.sortant
+    ? `Pour quitter l’un ou l’autre : ${BROKER_EDITORIAL.xtb.sortant}`
+    : `Pour quitter XTB : ${BROKER_EDITORIAL.xtb.sortant}\n\nPour quitter Saxo : ${BROKER_EDITORIAL.saxo.sortant}`;
   valid &&= post.startsWith('⚫ XTB ou ⚪ Saxo pour ton PEA ?')
-    && post.includes('💱 Si une conversion est nécessaire\n\nXTB : 0,50 %.\n\nSaxo : 0,25 %.')
+    && post.includes(`💱 Si une conversion est nécessaire\n\nXTB : ${BROKER_EVIDENCE.xtb.change.post}\n\nSaxo : ${BROKER_EVIDENCE.saxo.change.post}`)
     && post.includes('PEA Jeune : aucun des deux ❌')
     && post.includes('Fourni chez les deux ✅')
-    && post.includes('Pour quitter l’un ou l’autre : 15 € par ligne, maximum 150 €.');
+    && post.includes(outgoing);
   await page.locator('.bc-evidence-broker').last().locator('summary').click();
   valid &&= (await page.locator('.bc-evidence').innerText()).includes('VIP')
     && (await page.locator('.bc-evidence').innerText()).includes('Conversion de devises');
