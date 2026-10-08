@@ -953,11 +953,11 @@ async function testDataSearch(page) {
   checks.certifiedSeries = !soxxText.includes('Archive non vérifiable') && soxxText.includes(soxxReview.checkedAt) && soxxText.includes(soxxReview.method)
     && soxxText.includes(`${soxxReview.periodStart} à ${soxxReview.periodEnd}`);
   await choose(page.getByLabel('Type de donnée'), 'all');
-  await page.getByRole('searchbox').fill('zzzintrouvablezzz');
+  await search.fill('zzzintrouvablezzz');
   await page.locator('.ds-detail').filter({ hasText: 'Aucune donnée' }).waitFor();
   checks.empty = (await page.getByRole('status').innerText()).includes('0 résultat');
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.getByRole('searchbox').fill('MSCI USA');
+  await search.fill('MSCI USA');
   await page.locator('.ds-detail').filter({ hasText: 'MSCI USA' }).waitFor();
   checks.filterSurvivesTyping = new URLSearchParams(page.url().split('?')[1]).get('type') === 'all';
   if (process.env.DATA_SEARCH_SCREENSHOT) await page.screenshot({ path: process.env.DATA_SEARCH_SCREENSHOT, fullPage: true });
