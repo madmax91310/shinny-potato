@@ -115,7 +115,27 @@
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37788601032",
       "failures": [],
       "dataFailures": {}
+    },
+    "update-publication-observations.yml": {
+      "name": "Pouvoir d’achat et niveaux des anniversaires",
+      "runId": 37823394346,
+      "attempt": 1,
+      "completedAt": "2026-10-08T18:19:47Z",
+      "status": "failure",
+      "lastSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37823394346",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Run python -m unittest discover -s scripts -p 'test_publication*.py'"
+        },
+        {
+          "job": "refresh",
+          "step": "Run actions/upload-artifact@v7.0.1"
+        }
+      ],
+      "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-08T17:31:07Z"
+  "updatedAt": "2026-10-08T18:19:47Z"
 }
