@@ -87,6 +87,58 @@ def parse_annual_allocations(pages):
     return countries,sectors
 
 
+def parse_annual_portfolio(text, year, url):
+    page=next((p for p in text.split('\f') if 'LE PROFIL' in p and 'nombre de locataires' in p),None)
+    if not page:raise ValueError('Missing annual property summary')
+    compact=re.sub(r'\s+',' ',page);date=f'{year}-12-31'
+    def observation(value,label,basis=None):
+        return {'value':value,'label':label,'asOf':date,'sourceUrl':url,**({'basis':basis} if basis else {})}
+    buildings=int(required(r'(\d+) nombre d.immeubles',compact)[1])
+    tenants=int(required(r'(\d+) nombre de locataires',compact)[1])
+    occupancy=number(required(r'Taux d.occupation.{0,180}?([\d,.]+)\s*%',compact)[1])
+    required(r'y compris les locaux sous franchise de loyer',compact)
+    return {'buildings':observation(buildings,'Immeubles'),'tenants':observation(tenants,'Locataires'),
+            'occupancy':observation(occupancy,'Taux d’occupation financier','Inclut les locaux sous franchise de loyer ; distinct de l’occupation physique.')}
+
+
+def parse_annual_price_history(text, today, url):
+    block=required(r'Évolution du prix de la part\s+(.*?)Dividende brut',text)[1]
+    years=[int(y) for y in required(r'^((?:20\d{2}\s+){4}20\d{2})',block.strip())[1].split()]
+    if years[0]!=today.year-1:raise ValueError('Annual price period changed')
+    values=re.findall(r'([\d,. ]+)\s*€',required(r'Prix de souscription au 31/12([^\n]+)',block)[1])
+    if len(values)!=len(years):raise ValueError('Price columns do not match')
+    return {'years':sorted([{'asOf':f'{y}-12-31','value':number(v)} for y,v in zip(years,values)],key=lambda r:r['asOf']), 'sourceUrl':url}
+
+
+def parse_eurion_quarterly(text,pages,url,today):
+    from collect_extended_scpi import allocation,counter,metric
+    required(r'CORUM Eurion',text)
+    stamp=required(r'DONNÉES AU (\d+) (\w+) (\d{4})',text)
+    date=dt.date(int(stamp[3]),MONTHS[stamp[2].lower()],int(stamp[1])).isoformat()
+    if dt.date.fromisoformat(date)>today:raise ValueError('Future quarterly publication')
+    page=next(p for p in pages if any(w['text']=='typologique' for w in p['words']) and any(w['text']=='géographique' for w in p['words']))
+    words=page['words']
+    sector_labels={'Bureau*':'Bureaux','Hôtellerie':'Hôtellerie','Industriel':'Industriel et logistique','Commerce':'Commerces','Éducation':'Éducation et loisirs'}
+    sectors=allocation(words,list(sector_labels),lambda w:280<w['y']<330,True,25)
+    for r in sectors:r['label']=sector_labels[r['label']]
+    countries=[]
+    for label in [w for w in words if w['text'] in COUNTRIES and w['x']<100 and 380<w['y']<620]:
+        found=[]
+        for pct in words:
+            if pct['text']!='%' or pct['x']>300 or abs(pct['y']-label['y'])>2:continue
+            values=[v for v in words if re.fullmatch(r'[\d,.]+',v['text']) and abs(v['y']-pct['y'])<5 and 0<pct['x']-v['right']<15]
+            if values:found.append(number(max(values,key=lambda v:v['right'])['text']))
+        if len(found)!=1:raise ValueError('Ambiguous quarterly country weight: '+label['text'])
+        countries.append({'label':label['text'],'value':found[0]})
+    if abs(sum(r['value'] for r in countries)-100)>.15 or abs(sum(r['value'] for r in sectors)-100)>.15:raise ValueError('Incomplete quarterly allocation')
+    compact=re.sub(r'\s+',' ',text)
+    occupancy=number(required(r'FINANCIER \(TOF\).{0,600}?([\d,.]+)\s*%',compact)[1])
+    portfolio={'buildings':metric(counter(words,'Nombre d’immeubles',lambda w:w['y']<210),date,url,'Immeubles'),
+               'tenants':metric(counter(words,'Nombre de locataires',lambda w:w['y']<210),date,url,'Locataires'),
+               'occupancy':metric(occupancy,date,url,'Taux d’occupation financier','Inclut les locaux sous franchise de loyer ; distinct du taux physique.')}
+    return {'asOf':date,'countries':countries,'sectors':sectors,'sourceUrls':[url],'dateNote':'Répartitions extraites du dernier bulletin trimestriel officiel.'},portfolio
+
+
 def parse_conditions(text, id_, fee_page):
     compact=re.sub(r'\s+',' ',text)
     required(r'au moins une \(1\) part sociale',compact)
@@ -112,7 +164,8 @@ def parse_conditions(text, id_, fee_page):
 
 def collect(id_,today):
     name,slug=PRODUCTS[id_];base='https://www.corum.fr/nos-scpi/'+slug
-    annual_url,note_url=documents(fetch(base+'/documents').decode(),name,today)
+    documents_html=fetch(base+'/documents').decode()
+    annual_url,note_url=documents(documents_html,name,today)
     annual_data=fetch(annual_url);annual=pdf_text(annual_data);note=pdf_text(fetch(note_url))
     required(re.escape(name),annual);required(re.escape(name),note)
     fees=BeautifulSoup(fetch(base+'/frais'),'html.parser').get_text(' ',strip=True)
@@ -122,8 +175,14 @@ def collect(id_,today):
     product=BeautifulSoup(fetch(base),'html.parser').get_text(' ',strip=True)
     advertised=number(required(r'Prix de la part\s+([\d ]+)\s*€',product).group(1))
     if advertised != price['value']: raise ValueError('Product price differs from official note')
+    portfolio=parse_annual_portfolio(annual,today.year-1,annual_url)
+    snapshot={'asOf':as_of,'dateNote':'Répartition du dernier rapport annuel complet ; les bulletins trimestriels ne sont pas utilisés pour ces tableaux.', 'countries':countries,'sectors':sectors,'sourceUrls':[annual_url]}
+    if id_=='corum-eurion':
+        from collect_extended_scpi import document_links, latest
+        url=latest(document_links(documents_html,base),r'CORUM Eurion.*?(?P<year>\d{4})-T(?P<quarter>[1-4])\.pdf',today)
+        data=fetch(url)
+        snapshot,portfolio=parse_eurion_quarterly(pdf_text(data),bbox_pages(data),url,today)
     return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),
-            'snapshot':{'asOf':as_of,'dateNote':'Répartition du dernier rapport annuel complet ; les bulletins trimestriels ne sont pas utilisés pour ces tableaux.',
-                        'countries':countries,'sectors':sectors,'sourceUrls':[annual_url]},
+            'snapshot':snapshot, 'portfolio':portfolio, 'priceHistory':parse_annual_price_history(annual,today,annual_url),
             'annual':{'years':parse_annual(annual,today),'sourceUrl':annual_url},
             'price':{**price,'sourceUrl':note_url},'conditions':{**conditions,'sourceUrl':note_url}}

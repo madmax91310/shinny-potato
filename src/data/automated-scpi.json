@@ -104,6 +104,128 @@
         "value": 96.88,
         "asOf": "2026-06-30",
         "sourceUrl": "https://www.iroko.eu/scpi/zen"
+      },
+      "portfolio": {
+        "buildings": {
+          "value": 183,
+          "asOf": "2026-06-30",
+          "label": "Actifs immobiliers",
+          "sourceUrl": "https://www.iroko.eu/scpi/zen"
+        },
+        "tenants": {
+          "value": 471,
+          "asOf": "2026-06-30",
+          "label": "Locataires",
+          "sourceUrl": "https://www.iroko.eu/scpi/zen"
+        },
+        "occupancy": {
+          "value": 96.88,
+          "asOf": "2026-06-30",
+          "label": "Taux d’occupation financier",
+          "sourceUrl": "https://www.iroko.eu/scpi/zen"
+        }
+      },
+      "priceHistory": {
+        "years": [
+          {
+            "asOf": "2020-12-31",
+            "value": 200
+          },
+          {
+            "asOf": "2021-03-31",
+            "value": 200
+          },
+          {
+            "asOf": "2021-06-30",
+            "value": 200
+          },
+          {
+            "asOf": "2021-09-30",
+            "value": 200
+          },
+          {
+            "asOf": "2021-12-31",
+            "value": 200
+          },
+          {
+            "asOf": "2022-03-31",
+            "value": 200
+          },
+          {
+            "asOf": "2022-06-30",
+            "value": 200
+          },
+          {
+            "asOf": "2022-09-30",
+            "value": 200
+          },
+          {
+            "asOf": "2022-12-31",
+            "value": 200
+          },
+          {
+            "asOf": "2023-03-31",
+            "value": 200
+          },
+          {
+            "asOf": "2023-06-30",
+            "value": 200
+          },
+          {
+            "asOf": "2023-09-30",
+            "value": 200
+          },
+          {
+            "asOf": "2023-12-31",
+            "value": 200
+          },
+          {
+            "asOf": "2024-03-31",
+            "value": 200
+          },
+          {
+            "asOf": "2024-06-30",
+            "value": 200
+          },
+          {
+            "asOf": "2024-09-30",
+            "value": 202
+          },
+          {
+            "asOf": "2024-12-31",
+            "value": 202
+          },
+          {
+            "asOf": "2025-03-31",
+            "value": 202
+          },
+          {
+            "asOf": "2025-06-30",
+            "value": 202
+          },
+          {
+            "asOf": "2025-08-01",
+            "value": 204
+          },
+          {
+            "asOf": "2025-09-30",
+            "value": 204
+          },
+          {
+            "asOf": "2025-12-31",
+            "value": 204
+          },
+          {
+            "asOf": "2026-08-01",
+            "value": 205
+          },
+          {
+            "asOf": "2026-10-01",
+            "value": 205
+          }
+        ],
+        "sourceUrl": "https://www.iroko.eu/scpi/zen",
+        "dateNote": "Prix publiés dans les observations datées de l’émetteur."
       }
     },
     {
@@ -234,6 +356,21 @@
         "exit": "5 % TTC du montant remboursé avant 5 ans, sauf exceptions prévues dans la note.",
         "otherFees": "5 % TTC du prix net vendeur pour les acquisitions et 5 % TTC du montant TTC des travaux.",
         "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/remake-live-bulletin-information-30-07-2026.pdf"
+      },
+      "portfolio": {
+        "buildings": {
+          "value": 77,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/remake-live-bulletin-information-30-07-2026.pdf",
+          "label": "Immeubles"
+        },
+        "occupancy": {
+          "value": 98.93,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/remake-live-bulletin-information-30-07-2026.pdf",
+          "label": "Taux d’occupation financier",
+          "basis": "Inclut les locaux sous franchise de loyer ; distinct du taux physique. Le nombre de baux n’est pas un nombre de locataires."
+        }
       }
     },
     {
@@ -331,6 +468,52 @@
         "sourceUrls": [
           "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Origin%202025_0.pdf"
         ]
+      },
+      "portfolio": {
+        "buildings": {
+          "value": 167,
+          "label": "Immeubles",
+          "asOf": "2025-12-31",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Origin%202025_0.pdf"
+        },
+        "tenants": {
+          "value": 412,
+          "label": "Locataires",
+          "asOf": "2025-12-31",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Origin%202025_0.pdf"
+        },
+        "occupancy": {
+          "value": 96.2,
+          "label": "Taux d’occupation financier",
+          "asOf": "2025-12-31",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Origin%202025_0.pdf",
+          "basis": "Inclut les locaux sous franchise de loyer ; distinct de l’occupation physique."
+        }
+      },
+      "priceHistory": {
+        "years": [
+          {
+            "asOf": "2021-12-31",
+            "value": 1090.0
+          },
+          {
+            "asOf": "2022-12-31",
+            "value": 1135.0
+          },
+          {
+            "asOf": "2023-12-31",
+            "value": 1135.0
+          },
+          {
+            "asOf": "2024-12-31",
+            "value": 1135.0
+          },
+          {
+            "asOf": "2025-12-31",
+            "value": 1135.0
+          }
+        ],
+        "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Origin%202025_0.pdf"
       },
       "annual": {
         "years": [
@@ -455,6 +638,52 @@
           "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf"
         ]
       },
+      "portfolio": {
+        "buildings": {
+          "value": 89,
+          "label": "Immeubles",
+          "asOf": "2025-12-31",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf"
+        },
+        "tenants": {
+          "value": 230,
+          "label": "Locataires",
+          "asOf": "2025-12-31",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf"
+        },
+        "occupancy": {
+          "value": 95.0,
+          "label": "Taux d’occupation financier",
+          "asOf": "2025-12-31",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf",
+          "basis": "Inclut les locaux sous franchise de loyer ; distinct de l’occupation physique."
+        }
+      },
+      "priceHistory": {
+        "years": [
+          {
+            "asOf": "2021-12-31",
+            "value": 189.0
+          },
+          {
+            "asOf": "2022-12-31",
+            "value": 195.0
+          },
+          {
+            "asOf": "2023-12-31",
+            "value": 195.0
+          },
+          {
+            "asOf": "2024-12-31",
+            "value": 195.0
+          },
+          {
+            "asOf": "2025-12-31",
+            "value": 195.0
+          }
+        ],
+        "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf"
+      },
       "annual": {
         "years": [
           {
@@ -500,20 +729,19 @@
       "sourceUrl": "https://www.corum.fr/nos-scpi/eurion",
       "checkedAt": "2026-10-08",
       "snapshot": {
-        "asOf": "2025-12-31",
-        "dateNote": "Répartition du dernier rapport annuel complet ; les bulletins trimestriels ne sont pas utilisés pour ces tableaux.",
+        "asOf": "2026-06-30",
         "countries": [
           {
             "label": "Pays-Bas",
-            "value": 23.0
+            "value": 27.0
           },
           {
             "label": "Irlande",
-            "value": 22.0
+            "value": 19.0
           },
           {
             "label": "France",
-            "value": 18.0
+            "value": 19.0
           },
           {
             "label": "Italie",
@@ -521,11 +749,11 @@
           },
           {
             "label": "Portugal",
-            "value": 9.0
+            "value": 8.0
           },
           {
             "label": "Espagne",
-            "value": 7.0
+            "value": 6.0
           },
           {
             "label": "Finlande",
@@ -539,11 +767,11 @@
         "sectors": [
           {
             "label": "Bureaux",
-            "value": 74.0
+            "value": 73.0
           },
           {
             "label": "Hôtellerie",
-            "value": 10.0
+            "value": 11.0
           },
           {
             "label": "Industriel et logistique",
@@ -551,16 +779,63 @@
           },
           {
             "label": "Commerces",
-            "value": 6.0
+            "value": 7.0
           },
           {
             "label": "Éducation et loisirs",
-            "value": 2.0
+            "value": 1.0
           }
         ],
         "sourceUrls": [
-          "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Eurion%202025.pdf"
-        ]
+          "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2.pdf"
+        ],
+        "dateNote": "Répartitions extraites du dernier bulletin trimestriel officiel."
+      },
+      "portfolio": {
+        "buildings": {
+          "value": 54,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2.pdf",
+          "label": "Immeubles"
+        },
+        "tenants": {
+          "value": 129,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2.pdf",
+          "label": "Locataires"
+        },
+        "occupancy": {
+          "value": 99.92,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2.pdf",
+          "label": "Taux d’occupation financier",
+          "basis": "Inclut les locaux sous franchise de loyer ; distinct du taux physique."
+        }
+      },
+      "priceHistory": {
+        "years": [
+          {
+            "asOf": "2021-12-31",
+            "value": 204.0
+          },
+          {
+            "asOf": "2022-12-31",
+            "value": 215.0
+          },
+          {
+            "asOf": "2023-12-31",
+            "value": 215.0
+          },
+          {
+            "asOf": "2024-12-31",
+            "value": 215.0
+          },
+          {
+            "asOf": "2025-12-31",
+            "value": 215.0
+          }
+        ],
+        "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Eurion%202025.pdf"
       },
       "annual": {
         "years": [
@@ -595,6 +870,307 @@
         "exit": "Prix de retrait égal au prix de souscription diminué de la commission de souscription ; rachat non garanti.",
         "otherFees": "Commissions possibles lors de la vente des immeubles ; conditions détaillées dans la note d’information.",
         "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/Corum%20Eurion%20%20Note%20d%20information%202026%20clean.pdf"
+      }
+    },
+    {
+      "id": "transitions-europe",
+      "name": "Transitions Europe",
+      "sourceUrl": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
+      "checkedAt": "2026-10-08",
+      "snapshot": {
+        "asOf": "2026-06-30",
+        "countries": [
+          {
+            "label": "Espagne",
+            "value": 31.0
+          },
+          {
+            "label": "Allemagne",
+            "value": 24.0
+          },
+          {
+            "label": "Pays-Bas",
+            "value": 13.0
+          },
+          {
+            "label": "Irlande",
+            "value": 12.0
+          },
+          {
+            "label": "Italie",
+            "value": 11.0
+          },
+          {
+            "label": "Pologne",
+            "value": 6.0
+          },
+          {
+            "label": "Belgique",
+            "value": 3.0
+          }
+        ],
+        "sectors": [
+          {
+            "label": "Bureaux",
+            "value": 38.0
+          },
+          {
+            "label": "Commerce",
+            "value": 25.0
+          },
+          {
+            "label": "Logistique",
+            "value": 14.0
+          },
+          {
+            "label": "Life Science",
+            "value": 10.0
+          },
+          {
+            "label": "Hospitalité",
+            "value": 5.0
+          },
+          {
+            "label": "Activité",
+            "value": 5.0
+          },
+          {
+            "label": "Éducation",
+            "value": 3.0
+          }
+        ],
+        "sourceUrls": [
+          "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf"
+        ]
+      },
+      "annual": {
+        "years": [
+          {
+            "year": 2023,
+            "distribution": 8.16
+          },
+          {
+            "year": 2024,
+            "distribution": 8.25
+          },
+          {
+            "year": 2025,
+            "distribution": 7.6
+          }
+        ],
+        "sourceUrl": "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf"
+      },
+      "price": {
+        "value": 202.0,
+        "asOf": "2026-06-30",
+        "sourceUrl": "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf"
+      },
+      "priceHistory": {
+        "years": [
+          {
+            "asOf": "2023-12-31",
+            "value": 200.0
+          },
+          {
+            "asOf": "2024-12-31",
+            "value": 200.0
+          },
+          {
+            "asOf": "2025-12-31",
+            "value": 202.0
+          }
+        ],
+        "sourceUrl": "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf"
+      },
+      "portfolio": {
+        "buildings": {
+          "value": 59,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf",
+          "label": "Actifs immobiliers"
+        },
+        "tenants": {
+          "value": 358,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf",
+          "label": "Locataires"
+        },
+        "occupancy": {
+          "value": 99.0,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf",
+          "label": "Taux d’occupation financier",
+          "basis": "Inclut les garanties locatives de certaines surfaces vacantes ; distinct du taux physique."
+        }
+      },
+      "conditions": {
+        "minimum": 1010.0,
+        "enjoyment": "Premier jour du 6e mois suivant la souscription.",
+        "frequency": "trimestriels",
+        "subscriptionFee": 10.0,
+        "subscriptionTax": "HT",
+        "subscriptionFeeMax": true,
+        "managementFee": 10.0,
+        "managementTax": "HT",
+        "managementFeeMax": true,
+        "managementBasis": "produits locatifs exigibles et encaissés HT hors charges refacturées et produits financiers nets",
+        "exit": "Prix de retrait minoré de la commission de souscription HT ; rachat soumis aux conditions de liquidité.",
+        "otherFees": "Commissions possibles sur les travaux et cessions ; détail dans la note d’information.",
+        "sourceUrl": "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf",
+        "sourceUrls": [
+          "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf",
+          "https://www.arkea-reim.com/upload/docs/application/pdf/2022-12/scpi_transitions_europe_-_note_d_information.pdf"
+        ]
+      }
+    },
+    {
+      "id": "activimmo",
+      "name": "ActivImmo",
+      "sourceUrl": "https://alderan.fr/scpi-activimmo/",
+      "checkedAt": "2026-10-08",
+      "snapshot": {
+        "asOf": "2026-06-30",
+        "countries": [
+          {
+            "label": "Allemagne",
+            "value": 3.3
+          },
+          {
+            "label": "Espagne",
+            "value": 12.9
+          },
+          {
+            "label": "France",
+            "value": 74.8
+          },
+          {
+            "label": "Irlande",
+            "value": 1.5
+          },
+          {
+            "label": "Italie",
+            "value": 3.9
+          },
+          {
+            "label": "Pays-Bas",
+            "value": 2.7
+          },
+          {
+            "label": "Portugal",
+            "value": 0.9
+          }
+        ],
+        "sectors": [
+          {
+            "label": "Entrepôt logistique",
+            "value": 54.4
+          },
+          {
+            "label": "Locaux d’activités",
+            "value": 30.2
+          },
+          {
+            "label": "Logistique urbaine",
+            "value": 8.1
+          },
+          {
+            "label": "Transport",
+            "value": 6.6
+          },
+          {
+            "label": "Autres",
+            "value": 0.7
+          }
+        ],
+        "sourceUrls": [
+          "https://alderan.fr/wp-content/uploads/2026/08/20260807-BTI-T2-2026-ActivImmo.pdf"
+        ]
+      },
+      "annual": {
+        "years": [
+          {
+            "year": 2023,
+            "distribution": 5.52
+          },
+          {
+            "year": 2024,
+            "distribution": 5.5
+          },
+          {
+            "year": 2025,
+            "distribution": 5.49
+          }
+        ],
+        "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/04/20250410-Rapport-annuel-2025-ActivImmo.pdf"
+      },
+      "price": {
+        "value": 613.5,
+        "asOf": "2026-07-01",
+        "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/07/2026-07-01-Annexe-Note-dinformation-SCPI-ActivImmo-Modification-des-prix-de-part.pdf"
+      },
+      "priceHistory": {
+        "years": [
+          {
+            "asOf": "2023-01-01",
+            "value": 610.0
+          },
+          {
+            "asOf": "2024-01-01",
+            "value": 610.0
+          },
+          {
+            "asOf": "2025-01-01",
+            "value": 610.0
+          },
+          {
+            "asOf": "2026-07-01",
+            "value": 613.5
+          }
+        ],
+        "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/04/20250410-Rapport-annuel-2025-ActivImmo.pdf",
+        "sourceUrls": [
+          "https://alderan.fr/wp-content/uploads/2026/04/20250410-Rapport-annuel-2025-ActivImmo.pdf",
+          "https://alderan.fr/wp-content/uploads/2026/07/2026-07-01-Annexe-Note-dinformation-SCPI-ActivImmo-Modification-des-prix-de-part.pdf"
+        ],
+        "dateNote": "Rapport : prix au 1er janvier de chaque année ; dernière valeur issue de l’annexe tarifaire."
+      },
+      "portfolio": {
+        "occupancy": {
+          "value": 93.3,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/08/20260807-BTI-T2-2026-ActivImmo.pdf",
+          "label": "Taux d’occupation financier",
+          "basis": "Hors développements ; inclut une indemnité de résiliation anticipée. Ce taux n’est pas un taux physique."
+        },
+        "tenants": {
+          "value": 369,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/08/20260807-BTI-T2-2026-ActivImmo.pdf",
+          "label": "Locataires"
+        },
+        "buildings": {
+          "value": 179,
+          "asOf": "2025-12-31",
+          "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/04/20250410-Rapport-annuel-2025-ActivImmo.pdf",
+          "label": "Actifs immobiliers"
+        }
+      },
+      "conditions": {
+        "minimum": 613.5,
+        "enjoyment": "Premier jour du 6e mois suivant la souscription et son règlement.",
+        "frequency": "mensuels",
+        "subscriptionFee": 10.6,
+        "subscriptionTax": "HT",
+        "managementFee": 10.0,
+        "managementTax": "HT",
+        "managementBasis": "recettes locatives HT et produits financiers nets",
+        "exit": "Prix de retrait égal au prix de souscription moins la commission de souscription HT ; revente non garantie.",
+        "otherFees": "Commissions complémentaires possibles ; TVA récupérée par la SCPI selon la note d’information.",
+        "sourceUrl": "https://alderan.fr/wp-content/uploads/2026/06/20260427-Note-dinformation-SCPI-ActivImmo-1.pdf",
+        "sourceUrls": [
+          "https://alderan.fr/wp-content/uploads/2026/06/20260427-Note-dinformation-SCPI-ActivImmo-1.pdf",
+          "https://alderan.fr/wp-content/uploads/2026/07/2026-07-01-Annexe-Note-dinformation-SCPI-ActivImmo-Modification-des-prix-de-part.pdf"
+        ]
       }
     }
   ]

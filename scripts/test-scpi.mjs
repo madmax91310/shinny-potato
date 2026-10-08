@@ -3,7 +3,7 @@ import { SCPI } from '../src/data/scpi.js'
 import { DATA_CATALOG, searchData } from '../src/data/catalog.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 import { buildTweet, allocation } from '../src/pages/scpi-presentation/lib.js'
-assert.equal(SCPI.length, 5)
+assert.equal(SCPI.length, 7)
 assert.equal(HOME_TOOLS.filter(row => row.to === '/presentation-scpi').length, 1)
 assert(TOOLS.find(row => row.to === '/presentation-scpi'))
 for (const record of SCPI) {
@@ -16,7 +16,7 @@ for (const record of SCPI) {
   assert.equal(record.annual.years.length, 3)
   assert(text.includes('2025'))
   assert(searchData(record.name).some(row => row.id === `scpi:${record.id}`))
-  assert(DATA_CATALOG.find(row => row.id === `scpi:${record.id}`).fields.length === 4)
+  assert(DATA_CATALOG.find(row => row.id === `scpi:${record.id}`).fields.length >= 4)
 }
 assert(buildTweet(SCPI[0]).includes('14,4 % TTC'))
 assert(buildTweet(SCPI[0]).includes('date des graphiques non précisée'))
@@ -29,3 +29,17 @@ console.log('SCPI: shared observations, differentiated tweets, fees, dates and c
 
 const corumXl = SCPI.find(row => row.id === 'corum-xl')
 assert(buildTweet(corumXl).includes('12,4 % TTC en zone euro et 15,9 % TTC hors zone euro'))
+
+for (const record of SCPI) {
+  assert(record.portfolio?.buildings && record.portfolio?.occupancy)
+  assert(buildTweet(record).includes('Taux d’occupation financier'))
+  const changed=structuredClone(record)
+  changed.portfolio.buildings.value=321
+  changed.portfolio.occupancy.value=91.25
+  assert(buildTweet(changed).includes('321 au') && buildTweet(changed).includes('91,25 %'))
+}
+const activimmo=SCPI.find(row => row.id === 'activimmo')
+assert.equal(activimmo.price.asOf,'2026-07-01')
+assert(buildTweet(activimmo).includes('613,5 €') && buildTweet(activimmo).includes('10,6 % HT'))
+assert(buildTweet(activimmo).includes('2025') && buildTweet(activimmo).includes('2026'))
+assert.equal(SCPI.find(row => row.id === 'corum-eurion').snapshot.asOf,'2026-06-30')
