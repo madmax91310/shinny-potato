@@ -51,8 +51,9 @@ try {
     const { renderFactsheetImage } = await module('pages/factsheet-tweets/canvasImage.js')
     for (const sheet of SHEETS) await check(`facts-${sheet.id}`, () => renderFactsheetImage(sheet))
     const { FAMILIES } = await module('data/index-comparisons.js')
+    const { getIndexComparisonPairs } = await module('data/index-comparison-pairs.js')
     const { renderIndexImage } = await module('pages/index-comparator/imageExport.js')
-    for (const family of FAMILIES) await check(`indices-${family.id}`, () => renderIndexImage(family), (words) => {
+    for (const family of FAMILIES.flatMap(getIndexComparisonPairs)) await check(`indices-${family.pairId}`, () => renderIndexImage(family), (words) => {
       const dates = family.indices.map(index => index.indexFacts?.asOf)
       return !dates.every(date => date && date === dates[0]) || words.filter(word => word.includes(dates[0].split('-').reverse().join('/'))).length === 1
     })

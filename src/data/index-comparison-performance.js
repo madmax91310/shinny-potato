@@ -27,7 +27,8 @@ const existingLabels = { 'acwi-imi': 'MSCI ACWI IMI', world: 'MSCI World', acwi:
 const currencyNames = { USD: 'dollars', EUR: 'euros', JPY: 'yens', HKD: 'dollars de Hong Kong' }
 
 export function getIndexComparisonPerformance(family) {
-  const selected = selections[family.id]
+  const selection = selections[family.id]
+  const selected = family.pairPositions ? family.pairPositions.map(position => selection?.[position]) : selection
   if (!selected || selected.length !== family.indices.length) throw new Error(`Séries de comparaison absentes : ${family.id}`)
   const rows = selected.map(selection => {
     const [id, asOf] = Array.isArray(selection) ? selection : [selection, PERIOD_END]
@@ -48,7 +49,7 @@ export function getIndexComparisonPerformanceHeading(family, rows = getIndexComp
   const sameBasis = rows.every(row => row.currency === rows[0].currency && row.method === rows[0].method)
   if (!sameBasis) return `📈 Les performances des ${subject}, avec la devise et la méthode de chaque série :`
   const basis = asset ? `en ${currencyNames[rows[0].currency]}` : `en ${currencyNames[rows[0].currency]} et ${rows[0].method}`
-  return `📈 Les performances des ${family.id === 'monde' ? 'trois ' : ''}${subject}, ${basis} :`
+  return `📈 Les performances des ${rows.length === 2 ? 'deux ' : ''}${subject}, ${basis} :`
 }
 export function getIndexComparisonPerformanceLabel(row, rows) {
   const sameBasis = rows.every(item => item.currency === rows[0].currency && item.method === rows[0].method)

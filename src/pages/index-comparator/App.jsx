@@ -1,4 +1,5 @@
 import { getIndexComparisonPerformance } from '../../data/index-comparison-performance.js'
+import { getIndexComparisonPairs } from '../../data/index-comparison-pairs.js'
 import { completeIndexAllocation } from '../../data/index-comparison-composition.js'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
@@ -14,12 +15,14 @@ import { buildTweetText, fmtPct } from './lib.js'
 
 export default function IndexComparator() {
   const [familyId, setFamilyId] = useState(FAMILIES[0].id)
+  const [pairId, setPairId] = useState(null)
   const [perfValues, setPerfValues] = useState({})
   const [copyState, setCopyState] = useState('idle')
   const [imageState, setImageState] = useState('idle')
   const textareaRef = useRef(null)
 
-  const family = useMemo(() => FAMILIES.find((f) => f.id === familyId) ?? FAMILIES[0], [familyId])
+  const pairs = useMemo(() => getIndexComparisonPairs(FAMILIES.find((f) => f.id === familyId) ?? FAMILIES[0]), [familyId])
+  const family = pairs.find(pair => pair.pairId === pairId) ?? pairs[0]
   const performanceRows = useMemo(() => getIndexComparisonPerformance(family), [family])
   const text = useMemo(() => buildTweetText(family, perfValues), [family, perfValues])
 
@@ -83,7 +86,15 @@ export default function IndexComparator() {
             <div className="xc-select-wrap">
               <AssetPicker className="xc-control" label="Choisir une famille d’indices" value={familyId}
                 items={FAMILIES.map(f => ({ id: f.id, label: f.label, group: exposureGroup({ label: f.label }) }))}
-                onChange={value => { setFamilyId(value); setPerfValues({}) }} />
+                onChange={value => { setFamilyId(value); setPairId(null); setPerfValues({}) }} />
+            </div>
+            <p className="xc-hint">Deux indices par tweet et par image. Choisis le duel à publier.</p>
+            <div role="group" aria-label="Choisir un duel d’indices" className="asset-picker-options">
+              {pairs.map(pair => <button type="button" key={pair.pairId} className="asset-option"
+                aria-pressed={family.pairId === pair.pairId}
+                onClick={() => { setPairId(pair.pairId); setPerfValues({}) }}>
+                <span className="asset-option-copy"><strong>{pair.label}</strong></span>
+              </button>)}
             </div>
           </div>
 
