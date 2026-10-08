@@ -32,7 +32,8 @@ for (const source of Object.values({ ...OFFICIAL_SOURCES, ...SECONDARY_SOURCES }
   if (source.reviewUntil) assert.notEqual(dayNumber(source.reviewUntil), null, 'Échéance enregistrée invalide')
 }
 const current = buildReview('2026-10-02')
-assert.equal(current.items.filter(x => x.category === 'reserve').length, 11)
+assert.equal(current.items.filter(x => x.category === 'reserve').length, 12)
+assert(current.items.some(x => x.id === 'broker:tr:garde' && x.category === 'reserve'), 'La gratuité du CTO ne clôture pas la réserve de garde PEA')
 assert.equal(current.items.filter(x => x.until).length, 3, 'Les offres réutilisées dans plusieurs cellules sont dédoublonnées')
 assert.equal(current.archives, 16)
 assert.equal(new Set(current.items.map(x => x.id)).size, current.items.length)
@@ -56,10 +57,10 @@ for (const observation of closure.records) {
 }
 const remaining = buildReview(closure.checkedAt)
 assert.equal(remaining.items.filter(x => x.category === 'undated').length, 4, 'Les quatre contrôles non résolus doivent rester visibles')
-assert.equal(remaining.items.filter(x => x.category === 'reserve').length, 11, 'Neuf réserves conservées et deux limites de change ajoutées')
+assert.equal(remaining.items.filter(x => x.category === 'reserve').length, 12, 'Neuf réserves conservées, deux limites de change et la garde PEA Trade Republic')
 assert.equal(remaining.archives, 16, 'La recherche ne doit pas masquer un reliquat en archive')
-console.log(`Revue au ${current.today} : ${current.items.length} éléments, 11 réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
-console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, 4 contrôles non datés et 11 réserves conservés.`)
+console.log(`Revue au ${current.today} : ${current.items.length} éléments, 12 réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
+console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, 4 contrôles non datés et 12 réserves conservés.`)
 
 assert.equal(addMonths('2026-01-31', 1), '2026-02-28')
 assert.equal(addMonths('2027-11-30', 3), '2028-02-29')

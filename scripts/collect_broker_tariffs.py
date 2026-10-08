@@ -57,10 +57,11 @@ def parse(name, content, today, previous=None):
   'method':'Tableau de courtage de la brochure officielle ; forfait et marché exacts', 'sha256':hashlib.sha256(content.encode()).hexdigest()}
 def fetch_content(url):
  raw=download(url)
- # The 231-page bilingual France contract extracts to 2.6 MB. Keep the
- # normal bound for brochures and allow 4 MB only for this exact official URL.
+ # Isolate the English column of the bilingual France contract. This avoids
+ # interleaving French clauses when Poppler's line wrapping differs by platform.
+ # The normal 2 MB extraction limit still applies.
  if raw.startswith(b'%PDF'):
-  return pdf_text(raw,max_text_bytes=4_000_000 if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2] else 2_000_000)
+  return pdf_text(raw,crop=(0,300)) if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2] else pdf_text(raw)
  return raw.decode('utf-8')
 def collect(baseline,today,fetcher=fetch_content):
  failures={};validated=[];documents={}
