@@ -196,7 +196,9 @@ def parse_supplement(key,s,today):
   if month>today[:7]:raise ValueError('Contrat France futur')
   match=re.search(r'A\s*\.\s*PEA Account Opening; Transfer(.*?)B\s*\.\s*PEA Deposits and Investments',text)
   if not match:raise ValueError('Périmètre transfert PEA du contrat modifié')
-  require(match[1],'The Customer may request the transfer of their PEA','Account from a different regulated financial institution to','Trade Republic will','reject a transfer request for this PEA Account containing the','unlisted securities.','The Customer may request transferring their PEA','Account with Trade Republic to a different regulated financial','institution.')
+  labels=('The Customer may request the transfer of their PEA','Account from a different regulated financial institution to','Trade Republic will','reject a transfer request for this PEA Account containing the','unlisted securities.','The Customer may request transferring their PEA','Account with Trade Republic to a different regulated financial','institution.')
+  missing=[label for label in labels if label not in match[1]]
+  if missing:raise ValueError(f'Clauses PEA manquantes : {missing} ; extrait officiel : {match[1][-2800:]}')
   full='possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause.' if field=='entrant' else 'Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas.'
   meta=metadata(s,url,today);meta['page']=page
   meta['publicationMonth']=month
