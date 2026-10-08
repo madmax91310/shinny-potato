@@ -11,3 +11,9 @@
 .scpi-presentation label { display: block; margin-bottom: 12px; font-size: 14px; }
 .scpi-presentation .scpi-draft { width: 100%; min-height: 850px; padding: 18px; border: 1px solid var(--ui-line); border-radius: 14px; background: var(--ui-surface); color: var(--ui-ink); font: inherit; font-size: 14px; line-height: 1.65; resize: vertical; }
 .scpi-presentation .scpi-length { color: var(--ui-muted); }
+
+.insurance-rate-tiers table { table-layout: fixed; }
+.insurance-rate-tiers th, .insurance-rate-tiers td { padding: 7px 4px; white-space: normal; overflow-wrap: anywhere; text-align: left; }
+.insurance-return-history { table-layout: fixed; }
+.insurance-return-history th:first-child { width: 24%; }
+.insurance-return-history td { white-space: normal; overflow-wrap: anywhere; }

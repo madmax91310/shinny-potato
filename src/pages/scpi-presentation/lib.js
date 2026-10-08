@@ -32,7 +32,7 @@ export function buildTweet(record) {
     ? `${format(c.managementZones.euro)} % TTC en zone euro et ${format(c.managementZones.outside)} % TTC hors zone euro`
     : `${id === 'iroko-zen' || c.managementFeeMax ? 'jusqu’à ' : ''}${format(c.managementFee)} % ${c.managementTax ?? 'TTC'}`
   return [hook,
-    `🏢 ${name} détient des biens loués à des entreprises.\n🌍 ${allocation(snapshot.countries)}\n🏭 ${allocation(snapshot.sectors)}\n${snapshotDate}.`,
+    `🏢 ${name} détient des biens loués à des entreprises.\n🌍 ${allocation(snapshot.countries)}\n🏭 ${allocation(snapshot.sectors)}\n${snapshotDate}.${snapshot.regions ? `\n📍 En France : ${allocation(snapshot.regions)}.` : ''}`,
     `💶 La part coûte ${format(price.value)} €. Souscription initiale dès ${format(c.minimum)} €.\nRevenus potentiels ${c.frequency}. ${c.enjoyment}`,
     `📊 Taux de distribution : ${annual.years.map(row => `${row.year} : ${format(row.distribution)} %`).join(' · ')}.\nTaux bruts de fiscalité étrangère, pas les montants nets reçus.\n${priceHistory}`,
     `💸 Souscription : ${c.subscriptionFeeMax ? 'jusqu’à ' : ''}${format(c.subscriptionFee)} %${c.subscriptionTax ? ` ${c.subscriptionTax}` : ''}. Gestion : ${management} des ${c.managementBasis}.\nRetrait : ${c.exit}`,
@@ -51,6 +51,7 @@ export function portfolioText(record) {
 export function historyText(record) {
   const rows=record.priceHistory?.years
   if (!rows?.length) return ''
+  if (record.priceHistory.corporateActions?.length) return `📊 ${record.priceHistory.corporateActions.map(row => row.description).join(' ')} Ce prix ne garantit pas le montant ni le délai de revente.`
   const first=rows[0],last=rows.at(-1)
   return `📈 Prix de souscription publié : ${format(first.value)} € au ${dateLabel(first.asOf)} → ${format(last.value)} € au ${dateLabel(last.asOf)}. Ce prix ne garantit pas le montant ni le délai de revente.`
 }

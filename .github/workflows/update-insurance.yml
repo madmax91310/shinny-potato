@@ -4,10 +4,10 @@ on:
     - cron: '25 7 * * *'
   workflow_dispatch:
   pull_request:
-    paths: ['.github/workflows/update-insurance.yml', 'scripts/*insurance*', 'scripts/fixtures/insurance/**', 'src/data/*insurance*', 'src/pages/insurance-presentation/**']
+    paths: ['.github/workflows/update-insurance.yml', 'scripts/*insurance*', 'scripts/fixtures/insurance/**', 'scripts/test_presentation_expansion.py', 'scripts/fixtures/presentation-expansion/**', 'src/data/*insurance*', 'src/pages/insurance-presentation/**']
   push:
     branches: [master]
-    paths: ['.github/workflows/update-insurance.yml', 'scripts/collect_insurance.py']
+    paths: ['.github/workflows/update-insurance.yml', 'scripts/collect_insurance.py', 'scripts/collect_other_insurance.py', 'scripts/insurance_literal.py']
 permissions:
   contents: read
 jobs:
@@ -36,6 +36,7 @@ jobs:
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_insurance.py'
+      - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
       - id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_insurance.py --apply --output "$RUNNER_TEMP/insurance-observation.json"
