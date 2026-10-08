@@ -1,10 +1,8 @@
 import { anniversaryResult, anniversaryClosing } from './anniversaryEditorial.js';
-import { VRAI_FAUX } from "./data/vraiFaux.js";
-import { VRAI_FAUX_QUESTIONS } from "./data/vraiFauxQuestions.js";
 import { DILEMMES, SITUATIONS } from "./data/dilemmes.js";
 import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from "./data/ficheLexique.js";
 import { COMPARATIF_ETF_SUBJECTS, getComparatifEtfText } from "./data/comparatifEtf.js";
-import { TERMES, CATEGORY_ORDER } from "../../data/financial-lexicon.js";
+import { TERMES } from "../../data/financial-lexicon.js";
 import { MONTHS_FULL } from '../../data/market-history.js';
 import { fmtEUR, fmtPct } from "../investment-calculator/lib.js";
 import {
@@ -22,7 +20,6 @@ import {
 import { buildTweetText as buildPouvoirAchatTweetText } from "../purchasing-power/lib.js";
 
 export const FORMATS = {
-  VRAI_FAUX: "vrai-faux",
   DILEMME: "dilemme",
   FICHE_LEXIQUE: "fiche-lexique",
   COMPARATIF_ETF: "comparatif-etf",
@@ -42,7 +39,6 @@ export const MODES = {
 };
 
 export const FORMAT_LABELS = {
-  [FORMATS.VRAI_FAUX]: "Vrai ou Faux",
   [FORMATS.DILEMME]: "Dilemme",
   [FORMATS.FICHE_LEXIQUE]: "Fiche lexique",
   [FORMATS.COMPARATIF_ETF]: "Comparatif ETF",
@@ -68,7 +64,6 @@ export const SUBJECT_ALEATOIRE = "aleatoire";
 // "Comparatif ETF" ne dupliquent aucune donnée : ce sont de simples enveloppes autour des ids
 // déjà définis dans le Lexique financier et le Générateur de tweets ETF, résolues à l'affichage
 // via getFicheLexiqueText / getComparatifEtfText.
-const POOL_VRAI_FAUX = VRAI_FAUX.map((item) => ({ ...item, format: FORMATS.VRAI_FAUX }));
 const POOL_DILEMME = DILEMMES.map((item) => ({ ...item, format: FORMATS.DILEMME }));
 const POOL_FICHE_LEXIQUE = TERMES.map((t) => ({ id: `fiche:${t.id}`, format: FORMATS.FICHE_LEXIQUE, termeId: t.id }));
 const POOL_COMPARATIF_ETF = COMPARATIF_ETF_SUBJECTS.map((t) => ({
@@ -179,14 +174,13 @@ for (const amount of PA_AMOUNT_PRESETS) {
 }
 
 export const ALL_ITEMS = [
-  ...POOL_VRAI_FAUX, ...POOL_DILEMME, ...POOL_FICHE_LEXIQUE, ...POOL_COMPARATIF_ETF,
+  ...POOL_DILEMME, ...POOL_FICHE_LEXIQUE, ...POOL_COMPARATIF_ETF,
   ...POOL_ANNIVERSAIRE, ...POOL_PERFORMANCE_DEPUIS,
   ...POOL_ANNIVERSAIRE_COMPARATIF, ...POOL_PERFORMANCE_DEPUIS_COMPARATIF,
   ...POOL_POUVOIR_ACHAT,
 ];
 
 export function poolForFormat(format, mode = MODES.SIMPLE) {
-  if (format === FORMATS.VRAI_FAUX) return POOL_VRAI_FAUX;
   if (format === FORMATS.DILEMME) return POOL_DILEMME;
   if (format === FORMATS.FICHE_LEXIQUE) return POOL_FICHE_LEXIQUE;
   if (format === FORMATS.COMPARATIF_ETF) return POOL_COMPARATIF_ETF;
@@ -200,15 +194,6 @@ export function poolForFormat(format, mode = MODES.SIMPLE) {
 // Toujours la même forme : un tableau de groupes {categorie, items:[{id,label}]}. `categorie`
 // vaut null pour les formats sans regroupement (Dilemme, Comparatif ETF) — l'UI affiche alors
 // une liste plate plutôt que des <optgroup>.
-const coveredTermIds = new Set(VRAI_FAUX.map((v) => v.sourceTermeId));
-export const VRAI_FAUX_SUBJECTS = CATEGORY_ORDER.map((categorie) => ({
-  categorie,
-  items: TERMES.filter((t) => t.categorie === categorie && coveredTermIds.has(t.id)).map((t) => ({
-    id: t.id,
-    label: t.titre,
-  })),
-})).filter((g) => g.items.length > 0);
-
 const DILEMME_SUBJECTS = [{ categorie: null, items: SITUATIONS.map((s) => ({ id: s.id, label: s.label })) }];
 const COMPARATIF_ETF_SUBJECTS_FLAT = [{ categorie: null, items: COMPARATIF_ETF_SUBJECTS }];
 // Anniversaire n'utilise que les actifs à prix réellement comparable à une source externe (cf.
@@ -222,7 +207,6 @@ const PERFORMANCE_DEPUIS_SUBJECTS_FLAT = [
 ];
 
 export function getSubjectsForFormat(format) {
-  if (format === FORMATS.VRAI_FAUX) return VRAI_FAUX_SUBJECTS;
   if (format === FORMATS.DILEMME) return DILEMME_SUBJECTS;
   if (format === FORMATS.FICHE_LEXIQUE) return FICHE_LEXIQUE_SUBJECTS;
   if (format === FORMATS.COMPARATIF_ETF) return COMPARATIF_ETF_SUBJECTS_FLAT;
@@ -252,7 +236,6 @@ export function getSecondaryOptionsForFormat(format, mode, subjectId, subjectIdB
 }
 
 function matchesSubject(item, subjectId) {
-  if (item.format === FORMATS.VRAI_FAUX) return item.sourceTermeId === subjectId;
   if (item.format === FORMATS.DILEMME) return item.situationId === subjectId;
   if (item.format === FORMATS.FICHE_LEXIQUE) return item.termeId === subjectId;
   if (item.format === FORMATS.COMPARATIF_ETF) return item.themeId === subjectId;
@@ -293,17 +276,8 @@ function pickFromPoolWithHistory(pool, history) {
   return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
-// Les 9 "paniers" du mode Aléatoire (tous formats), un par (format, mode) distinct — jamais un
-// tirage à plat dans ALL_ITEMS, qui écraserait le résultat : les deux pools combinatoires
-// Comparatif (paires d'actifs × années) représentent à eux seuls 1506 entrées sur 2031 (74%),
-// contre 16 pour Comparatif ETF (0,8%) — mesuré lors de l'audit du 29/08/2026, confirmé par un
-// tirage réel de 25 générations "Aléatoire" n'ayant produit QUE des variantes de ces deux formats.
-// Avec un panier tiré en premier (poids égal, 1/9 chacun depuis l'ajout de Pouvoir d'achat) puis un
-// item dans son pool, la taille du pool ne joue plus sur la probabilité qu'un format soit choisi —
-// Pouvoir d'achat (256 entrées) garde donc le même poids que Comparatif ETF (16 entrées) malgré
-// l'écart de taille, exactement ce que demande le brief ("poids égal aux autres formats").
+// Un panier par format et mode : leur taille ne change pas leur poids au tirage.
 const ALEATOIRE_BUCKETS = [
-  POOL_VRAI_FAUX,
   POOL_DILEMME,
   POOL_FICHE_LEXIQUE,
   POOL_COMPARATIF_ETF,
@@ -415,18 +389,6 @@ function comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, yearsBack)
   const trailing = pctA > pctB ? assetB : assetA;
   const result = pctA < 0 && pctB < 0 ? `${leading.label} a moins baissé que ${trailing.label}` : `${leading.label} termine avec une meilleure variation que ${trailing.label}`;
   return `Sur ${yearsPhrase(yearsBack)}, ${result}.\n\n💬 À l’époque, tu aurais choisi ${assetA.label}, ${assetB.label}, ou les deux ?`;
-}
-
-export function buildVraiFauxText(item) {
-  const lines = [];
-  lines.push("🤔 Vrai ou faux ?");
-  lines.push("");
-  lines.push(item.affirmation);
-  lines.push("");
-  lines.push(`${item.reponse ? "✅ Vrai" : "❌ Faux"}. ${item.explication}`);
-  lines.push("");
-  lines.push(VRAI_FAUX_QUESTIONS[item.id]);
-  return lines.join("\n");
 }
 
 export function buildDilemmeText(item) {
@@ -602,7 +564,6 @@ export function buildPouvoirAchatText(item) {
 
 export function buildTweetText(item, extra = {}) {
   const { niveauActuel, niveauActuelB } = extra;
-  if (item.format === FORMATS.VRAI_FAUX) return buildVraiFauxText(item);
   if (item.format === FORMATS.DILEMME) return buildDilemmeText(item);
   if (item.format === FORMATS.FICHE_LEXIQUE) return getFicheLexiqueText(item.termeId);
   if (item.format === FORMATS.COMPARATIF_ETF) return getComparatifEtfText(item.themeId);

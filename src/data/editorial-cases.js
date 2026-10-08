@@ -1,6 +1,6 @@
-import { INDEX_DECISION_CASES } from '../../data/index-decision-cases.js'
-import { BOND_EXPOSURE_CASES } from '../../data/bond-exposure-cases.js';
-import { ALLOCATION_CASES } from '../../data/allocation-cases.js'
+import { INDEX_DECISION_CASES } from './index-decision-cases.js'
+import { BOND_EXPOSURE_CASES } from './bond-exposure-cases.js';
+import { ALLOCATION_CASES } from './allocation-cases.js'
 // Revue éditoriale du 04/10/2026 : situations racontées et conséquences concrètes.
 // Les nouveaux chiffres sont des exemples arithmétiques fictifs, hors taux réglementés.
 // Posts éditoriaux relus individuellement. Cette bibliothèque n'invente ni performance ni
@@ -120,4 +120,4 @@ const editorialCases = [
   },
 ]
 
-export const CASES = [...editorialCases, ...ALLOCATION_CASES, ...INDEX_DECISION_CASES, ...BOND_EXPOSURE_CASES]
+export const EDITORIAL_CASES = [...editorialCases, ...ALLOCATION_CASES, ...INDEX_DECISION_CASES, ...BOND_EXPOSURE_CASES]

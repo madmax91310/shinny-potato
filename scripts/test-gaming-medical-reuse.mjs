@@ -48,7 +48,7 @@ for (const id of ['msci-world-sector-neutral-quality','msci-world-enhanced-value
  assert.doesNotMatch(text,/performances de l’ETF|undefined|NaN/)
  assert.equal(sheet.source.length,2,'Composition et rendements gardent leurs références distinctes')
  const record=DATA_CATALOG.find(x=>x.type==='index' && x.id===id)
- if(id!=='msci-world-enhanced-value') assert(record.consumers.some(c=>c.path==='/cas-concrets'))
+ if(id!=='msci-world-enhanced-value') assert(record.consumers.some(c=>c.path==='/banque-tweets'))
 }
 for (const item of INDEX_DECISION_CASES) assert.doesNotMatch(item.text,/undefined|NaN/)
 assert.match(INDEX_DECISION_CASES[0].text,/petites capitalisations/)

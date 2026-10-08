@@ -13,7 +13,6 @@ const formats = [
   ['/performance-depuis', 'Performance depuis', 'Performance depuis'],
   ['/pouvoir-achat', 'Pouvoir d’achat', "Pouvoir d'achat"],
   ['/dilemme', 'Dilemme', 'Dilemme'],
-  ['/vrai-faux', 'Vrai ou faux', 'Vrai ou Faux'],
 ]
 let browser
 try {
@@ -28,6 +27,7 @@ try {
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
   assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.length)
+  assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
   for (const [path, day] of [
     ['/comparatif-etf', 'Lundi midi · alternance'], ['/fiche-lexique', 'Lundi midi · alternance'],
@@ -39,8 +39,7 @@ try {
     ['/portefeuilles-investisseurs', 'Dimanche midi'], ['/faits-marquants-marches', 'Dimanche soir'],
     ['/il-y-a-x-ans', 'Publication ponctuelle'], ['/performance-depuis', 'Publication ponctuelle'],
     ['/pouvoir-achat', 'Publication ponctuelle'], ['/dilemme', 'Publication ponctuelle'],
-    ['/vrai-faux', 'Publication ponctuelle'], ['/comparatif-courtiers', 'Publication ponctuelle'],
-    ['/cas-concrets', 'Publication ponctuelle'], ['/impact-frais', 'Publication ponctuelle'],
+    ['/comparatif-courtiers', 'Publication ponctuelle'], ['/impact-frais', 'Publication ponctuelle'],
   ]) assert.equal(await page.locator(`.workspace-tool-card[href$="${path}"] .workspace-publication-day`).innerText(), day)
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 844 })
@@ -96,7 +95,7 @@ try {
   await page.getByRole('heading', { name: 'Tweet Midi', exact: true, level: 1 }).waitFor()
   assert.equal(await page.getByText('Étape 1 — Format', { exact: true }).count(), 1)
   assert.deepEqual(errors, [])
-  console.log('Weekly publications: mobile layout, schedule, seven direct formats, generation, reload, shared-route switching and legacy URL OK.')
+  console.log('Weekly publications: mobile layout, schedule, six direct formats, generation, reload, shared-route switching and legacy URL OK.')
 } finally {
   await browser?.close()
   server.kill('SIGTERM')

@@ -48,7 +48,7 @@ import { SHEETS } from "../src/data/index-factsheets.js";
 import { ASSETS as HISTORY } from '../src/data/market-history.js';
 import { fmtEUR as fmtHistoryPrice, fmtPct as fmtHistoryPct } from '../src/pages/investment-calculator/lib.js';
 import { TWEETS } from '../src/pages/tweet-bank/data.js';
-import { CASES } from "../src/pages/concrete-cases/data.js";
+import { EDITORIAL_CASES as CASES } from "../src/data/editorial-cases.js";
 
 const PORT = 4310;
 const BASE = `http://localhost:${PORT}/shinny-potato`;
@@ -554,7 +554,7 @@ async function testBrokerComparator(page) {
 
 async function testTweetMidi(page) {
   await page.goto(`${BASE}/tweet-midi`, { waitUntil: "networkidle" });
-  const formats = ["Vrai ou Faux", "Dilemme", "Fiche lexique", "Comparatif ETF", "Il y a X ans", "Performance depuis", "Pouvoir d'achat"];
+  const formats = ["Dilemme", "Fiche lexique", "Comparatif ETF", "Il y a X ans", "Performance depuis", "Pouvoir d'achat"];
   let failed = [];
   for (const label of formats) {
     await page.getByRole("button", { name: label, exact: true }).click();
@@ -647,44 +647,6 @@ async function testTweetMidi(page) {
     if (!(await download.path())) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : PNG`);
   }
   record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
-}
-
-async function testConcreteCases(page) {
-  await page.goto(`${BASE}/cas-concrets`, { waitUntil: "networkidle" });
-  const choices = page.locator(".cc-choice");
-  const count = await choices.count();
-  let allRendered = count === CASES.length;
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
-    configurable: true, value: { writeText: async text => { window.__concreteCopied = text; } },
-  }));
-  for (let i = 0; i < count; i++) {
-    await choices.nth(i).click();
-    const body = await page.locator('.cc-text').innerText();
-    allRendered &&= body.replace(/\s+/g, ' ').trim() === CASES[i].text.replace(/\s+/g, ' ').trim()
-      && (await page.locator('.cc-sources a').count()) === CASES[i].sources.length
-      && !/undefined|NaN|https?:\/\/|Source\s*:/.test(body)
-      && body.split('\n').at(-1).startsWith('💬');
-    await page.getByRole('button', { name: /Copier le texte|Copié/ }).click();
-    allRendered &&= (await page.evaluate(() => window.__concreteCopied)) === CASES[i].text;
-  }
-  await choices.nth(1).click();
-  const title = await choices.nth(1).locator("strong").innerText();
-  const selected = await choices.nth(1).getAttribute("aria-current");
-  const preview = await page.locator(".cc-preview").innerText();
-  const switched = selected === "true" && preview.includes(title);
-
-  // Force les deux mécanismes de copie à échouer pour vérifier le dernier recours visible.
-  await page.evaluate(() => {
-    Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: () => Promise.reject(new Error("denied")) } });
-    document.execCommand = () => false;
-  });
-  await page.getByRole("button", { name: /Copier le texte/i }).click();
-  const manual = page.getByRole("textbox", { name: /Texte du cas concret à copier manuellement/i });
-  const visible = await manual.isVisible();
-  const sameText = (await manual.inputValue()) === (await page.locator(".cc-text").innerText());
-  const selection = await manual.evaluate((el) => el.selectionStart === 0 && el.selectionEnd === el.value.length);
-  record("Cas concrets", allRendered && switched && visible && sameText && selection,
-    `${count} cas : rendu, sources et copie fidèle sans URL ${allRendered}, sélection ${switched}, repli de copie ${visible && sameText && selection}`);
 }
 
 async function testIndexComparator(page) {
@@ -836,8 +798,25 @@ async function testTweetBank(page) {
   await page.waitForTimeout(150);
   const cooldownCount = (await page.locator(".tb-summary-num").allInnerTexts())[1];
   const badge = await page.locator(".tb-pub-badge.cooldown").first().count();
-  const ok = Number(totalBefore) === TWEETS.length && cooldownCount === "1" && badge === 1;
-  record("Banque de tweets", ok, `total: ${totalBefore}, en repos après marquage: ${cooldownCount}, badge cooldown affiché: ${badge === 1}`);
+  let ok = Number(totalBefore) === TWEETS.length && cooldownCount === "1" && badge === 1;
+  await page.getByRole('button', {name:'Pédagogie',exact:true}).click();
+  const cards = page.locator('.tb-tweet');
+  ok &&= (await cards.count()) === CASES.length;
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable:true, value:{writeText:async text => {window.__pedagogyCopied=text;}},
+  }));
+  for (let i=0; i<CASES.length; i++) {
+    const card=cards.nth(i);
+    const actual=await card.locator('.tb-tweet-text').inputValue();
+    const item=CASES.find(item=>item.text===actual);
+    ok &&= Boolean(item) && (await card.locator('.tb-sources a').count()) === item.sources.length;
+    await card.locator('.tb-tweet-actions button').first().click();
+    ok &&= (await page.evaluate(()=>window.__pedagogyCopied)) === actual;
+  }
+  await page.setViewportSize({width:390,height:844});
+  ok &&= await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth);
+  await page.setViewportSize({width:1280,height:720});
+  record("Banque de tweets", ok, `total: ${totalBefore}, cooldown et ${CASES.length} textes pédagogiques avec sources, copie fidèle et mobile`);
 }
 
 async function testFactsheetTweets(page) {
@@ -1104,9 +1083,9 @@ async function testDataReuse(page) {
   ok &&= (await page.locator('.mf-fact-text').innerText()).includes('L’argent en attente n’est pas rémunéré');
   await page.goto(`${BASE}/bibliotheque-donnees?id=IE00B4JNQZ49&q=IE00B4JNQZ49`, { waitUntil: 'networkidle' });
   ok &&= (await page.locator('.ds-detail').innerText()).includes('Duels de portefeuilles');
-  await page.goto(`${BASE}/cas-concrets`, { waitUntil: 'networkidle' });
-  await page.getByRole('button', { name: /World \+ Europe : ce que change une ligne/ }).click();
-  ok &&= (await page.locator('.cc-text').innerText()) === CASES.find(item => item.id === 'world-europe-chiffre').text;
+  await page.goto(`${BASE}/banque-tweets`, { waitUntil: 'networkidle' });
+  await page.getByRole('button', {name:'Pédagogie',exact:true}).click();
+  ok &&= (await page.locator('.tb-tweet-text').allTextContents()).includes(CASES.find(item => item.id === 'world-europe-chiffre').text);
   record('Réutilisation des données', ok, 'ETF et copie frais, mobile, nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
 }
 
@@ -1206,7 +1185,6 @@ try {
   await testEtfSheets(page);
   await testBrokerComparator(page);
   await testTweetMidi(page);
-  await testConcreteCases(page);
   await testIndexComparator(page);
   await testFeeImpact(page);
   await testDataReuse(page);

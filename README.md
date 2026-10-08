@@ -10,12 +10,11 @@ Application React + Vite pour préparer des contenus pédagogiques sur l'investi
 | Générateur de portefeuilles | Construire des allocations illustratives selon un profil et un risque. |
 | Fiches ETF | Préparer une fiche, un texte et une image. |
 | Comparatif courtiers | Préparer une carte et un post comparant deux ou trois courtiers. |
-| Tweet Midi | Générer sept formats de publications intemporelles. |
+| Tweet Midi | Générer six formats de publications intemporelles. |
 | Comparateur d'indices | Comparer les expositions et ETF d'une famille d'indices. |
 | Impact des frais | Illustrer l'effet hypothétique de deux TER. |
 | Faits marquants des marchés | Préparer des statistiques historiques sourcées. |
-| Cas concrets | Expliquer les conséquences de choix de placement. |
-| Banque de tweets | Retrouver des publications et suivre leur période de repos. |
+| Banque de tweets | Retrouver des publications et des explications pédagogiques sourcées, puis suivre leur période de repos. |
 
 Le registre de navigation et les routes disponibles sont définis dans `src/tools.js`. Les données de chaque outil se trouvent dans `src/pages/<outil>/data.js` ou les fichiers de son dossier.
 

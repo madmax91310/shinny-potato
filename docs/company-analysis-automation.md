@@ -56,3 +56,7 @@ Lorsque le site d’Air Liquide refuse l’accès depuis GitHub Actions, les com
 Les onze profils partagent le même moteur de texte, avec une accroche propre à leur activité documentée. Aucun chiffre ni constat de croissance n’est figé dans ces accroches. Le texte conserve les périodes annuelles, trimestrielles ou semestrielles et explique la marge nette à partir des comptes bruts. Les commentaires changent lorsque les revenus, les bénéfices ou les pertes évoluent ; ils sont omis lorsque les comparatifs manquent. La lecture des historiques compare leurs extrémités, sans supposer une progression régulière entre les exercices.
 
 La publication termine sur son dernier bloc disponible, sans question ni appel à l’interaction automatique. Les ratios restent datés, conditionnés par leur fraîcheur et distincts des bénéfices publiés. Le moteur n’invente ni cause économique, ni répartition sectorielle, ni jugement sur l’opportunité d’achat. Les détails de provenance et les métriques complètes restent consultables dans l’outil.
+
+## Horloge des tests après collecte
+
+Les scénarios synthétiques conservent une date fixe. Les contrôles du catalogue réel évaluent chaque entreprise à sa date d’observation des comptes, afin qu’une collecte ultérieure au 7 octobre 2026 ne soit pas rejetée comme future par le test. Les protections applicatives contre les observations futures et périmées restent vérifiées séparément et inchangées.

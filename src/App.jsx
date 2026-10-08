@@ -15,7 +15,6 @@ const TweetMidi = lazy(() => import('./pages/tweet-midi/App'))
 const IndexComparator = lazy(() => import('./pages/index-comparator/App'))
 const FeeImpact = lazy(() => import('./pages/fee-impact/App'))
 const MarketFacts = lazy(() => import('./pages/market-facts/App'))
-const ConcreteCases = lazy(() => import('./pages/concrete-cases/App'))
 const TweetBank = lazy(() => import('./pages/tweet-bank/App'))
 const FactsheetTweets = lazy(() => import('./pages/factsheet-tweets/App'))
 const DataSearch = lazy(() => import('./pages/data-search/App'))
@@ -43,7 +42,6 @@ const TOOL_ELEMENTS = {
   '/comparateur-indices': <IndexComparator />,
   '/impact-frais': <FeeImpact />,
   '/faits-marquants-marches': <MarketFacts />,
-  '/cas-concrets': <ConcreteCases />,
   '/banque-tweets': <TweetBank />,
   '/tweets-factsheets': <FactsheetTweets />,
   '/portefeuilles-investisseurs': <InvestorPortfolio />,

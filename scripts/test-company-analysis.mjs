@@ -4,7 +4,9 @@ import { searchData } from '../src/data/catalog.js'
 import { COMPANIES } from '../src/pages/company-analysis/data.js'
 import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics, marginExplanation, activeEstimates, activeHistory } from '../src/pages/company-analysis/lib.js'
 
+// Synthetic scenarios use a fixed clock; live roster checks use each observation date.
 const now = new Date('2026-10-07T07:00:00Z')
+const observationDate = company => new Date(`${company.accountsObservedAt}T12:00:00Z`)
 const base = { ...COMPANIES[0], accountsObservedAt: '2026-10-07', annual: {
   start: '2025-01-01', end: '2025-12-31', revenue: 120e9, previousRevenue: 100e9,
   netIncome: 8e9, previousNetIncome: 10e9, freeCashFlow: -1e9,
@@ -37,6 +39,13 @@ assert.equal(activeValuation(valued,now),null)
 const stale = {...base,accountsObservedAt:'2026-01-01'}
 assert.equal(canPublish(stale,now),false);assert.equal(buildTweetText(stale,now),'')
 assert.deepEqual(metrics(stale,now),[])
+// A refresh after the fixture date must remain publishable on its observation day.
+const refreshed = {...base, accountsObservedAt:'2026-10-08'}
+assert.equal(canPublish(refreshed, now), false)
+assert.equal(buildTweetText(refreshed, now), '')
+assert.match(buildTweetText(refreshed, observationDate(refreshed)), /Et dans les comptes ?/)
+assert.equal(canPublish(refreshed, new Date('2026-11-23T12:00:00Z')), false)
+
 const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
   trailing:{end:'2026-06-30',dilutedEPS:5,observedAt:'2026-10-07'},
   quarters:[{end:'2026-06-30'},{end:'2026-03-31'},{end:'2025-12-31'},{end:'2025-09-30'}],
@@ -59,7 +68,7 @@ assert.equal(calculatedRatios(computed,now).priceFCF,undefined)
 computed.balance.observedAt='2026-07-01'
 assert.equal(activeBalance(computed,now),null)
 for (const company of COMPANIES) {
-  const observationNow = new Date(`${company.accountsObservedAt}T12:00:00Z`)
+  const observationNow = observationDate(company)
   assert(canPublish(company,observationNow),`${company.name}: valid initial accounts`)
   if(company.currency === 'USD') {
     assert.equal(company.quarters?.length,4,`${company.name}: four published quarters`)
@@ -95,7 +104,7 @@ for (const values of [[100,null,10,5], [100,0,10,5], [0,100,10,5], [100,100,10,n
   assert.equal(marginExplanation(period(...values)), '')
 }
 for (const company of COMPANIES) {
-  const tweet = buildTweetText(company, now)
+  const tweet = buildTweetText(company, observationDate(company))
   assert(!/Ce que je regarderais|avant d’investir|belle entreprise|bon marché|chère|croissance future compte/.test(tweet))
   assert(!tweet.includes(company.watch))
   assert.match(tweet, /Et dans les comptes ?/)
@@ -118,7 +127,7 @@ assert.match(companyImageModel(loss,now).columns[2].parts[0], /^-/)
 assert.equal(companyImageModel({...loss,annual:{...loss.annual,previousNetIncome:null}},now).columns[1].change, '')
 assert.throws(()=>companyImageModel(stale,now), /trop anciens/)
 for (const company of COMPANIES) {
-  const model = companyImageModel(company,now)
+  const model = companyImageModel(company,observationDate(company))
   assert.equal(model.columns.length,3)
   assert(model.annualDate.includes(company.annual.end.split('-').reverse().join('/')))
   assert(!/NaN|undefined|Infinity/.test(JSON.stringify(model)))
@@ -179,7 +188,7 @@ for(const price of [-10,0,NaN,Infinity]) assert.deepEqual(calculatedRatios({...e
 // no stale editorial direction after a refresh, and no manufactured segments.
 assert.equal(new Set(COMPANIES.map(c => c.editorialHook)).size, COMPANIES.length)
 for (const company of COMPANIES) {
-  const tweet = buildTweetText(company, now)
+  const tweet = buildTweetText(company, observationDate(company))
   assert(tweet.startsWith(company.editorialHook))
   assert(!/💬|Tu connaissais|Quand tu achètes|Tu préfères/.test(tweet))
   assert(!tweet.includes('euro de revenu')) // reporting currency stays untouched

@@ -6,7 +6,6 @@ const COMPACT_LABELS = {
   '/impact-frais': 'Impact des frais',
   '/tweets-factsheets': 'Coulisses des indices',
   '/faits-marquants-marches': 'Faits marquants',
-  '/cas-concrets': 'Cas concrets',
   '/banque-tweets': 'Banque de tweets',
 }
 
