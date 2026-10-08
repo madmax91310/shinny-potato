@@ -139,10 +139,26 @@ def parse(name,s,today,previous=None):
   rates=re.findall(r'([\d,]+)\s*%',rows[4])
   if len(rates)!=2 or rates[0]!=rates[1]:raise ValueError('Taux PEA ambigu')
   rate=num(rates[1]);v={'rate':rate,**{f'fee{i}':fee for i,fee in enumerate(fees)}}
-  full='Euronext : plafond légal PEA de 0,50 % ; '+', '.join(f'{fmt(fee)} € jusqu’à {limit} €' for limit,fee in zip(thresholds,fees))+f', puis {fmt(rate)} % sur la totalité de l’ordre.'
+  full='Euronext : plafond légal PEA de 0,50 % ; '+', '.join(f'{fmt(fee)} € jusqu’à {fmt(limit)} €' for limit,fee in zip(thresholds,fees))+f', puis {fmt(rate)} % sur la totalité de l’ordre.'
   scope='Bourse Direct ; Internet Euronext ; colonne PEA/PEA-PME/Jeunes';meta=metadata(s,url,today,date,previous,'MONTANT DE L’ORDRE')
+  # The live brochure, not a synthetic table, is required for these complements.
+  if 'BOURSES ETRANGÈRES' in s and 'VIREMENTS ET TRANSFERTS' in s:
+   foreign=s.split('BOURSES ETRANGÈRES')[1].split('SERVICE DE RÈGLEMENT DIFFÉRÉ')[0]
+   require(foreign,'sauf autres marchés : taux appliqué à Bourse Direct','Facturée trimestriellement','hors Union européenne et Espace économique européen')
+   fx=get(r'Commission de change : taux appliqué à Bourse Direct \+ ([\d,]+)% par opération',foreign)
+   custody=get(r'Droits de garde / Conservation\d* : ([\d,]+)% annuel',foreign)
+   fields['change']=item({'rate':fx},f'Taux appliqué à Bourse Direct + {fmt(fx)} % par opération ; autres marchés : taux appliqué à Bourse Direct.',meta,'Bourse Direct ; change boursier ; exception autres marchés conservée')
+   fields['garde']=item({'fee':0,'foreignAnnualRate':custody},f'0 € hors Bourses étrangères ; conservation étrangère {fmt(custody)} % par an, facturée trimestriellement.',meta,'Bourse Direct ; droits de garde et conservation étrangère')
+   transfer=s.split('VIREMENTS ET TRANSFERTS')[1].split('AUTRES OPERATIONS')[0]
+   require(transfer,'Transfert sortant de titres cotés à l’étranger – PEA, PEA-PME, PEA JEUNES')
+   listed=get(r'Transfert sortant de titres cotés en France\s+([\d,]+) € / ligne',transfer)
+   abroad=get(r'Transfert sortant de titres cotés à l’étranger – PEA, PEA-PME, PEA JEUNES\s+([\d,]+) € / ligne',transfer)
+   unlisted=get(r'Transfert sortant de titres non cotés\s+([\d,]+) € / ligne',transfer)
+   maximum=get(r'plafonné à ([\d,]+) € pour les comptes de type PEA',transfer)
+   if listed!=abroad:raise ValueError('Tarifs de transfert PEA France/étranger divergents')
+   fields['sortant']=item({'perLine':listed,'unlistedPerLine':unlisted,'maximum':maximum},f'{fmt(listed)} € par ligne cotée, {fmt(unlisted)} € par ligne non cotée, maximum {fmt(maximum)} € pour le PEA.',meta,'Bourse Direct ; transfert sortant PEA ; colonne CTO étrangère exclue')
  else:raise ValueError('Courtier non pris en charge')
- anchors={'saxo':{'garde':'0€ Droits de garde*','change':'Commission de change sur les devises','sortant':'Transfert sortant de PEA/PEA-PME'},'xtb':{'change':'Toutes les conversions de devises liées','garde':'Frais de garde8)','sortant':'Frais de sortie OMI du PEA'},'caidf':{'garde':'Droits de garde sur compte-titres et sur PEA','sortant':'Frais de transfert total ou partiel hors Crédit Agricole'}}
+ anchors={'saxo':{'garde':'0€ Droits de garde*','change':'Commission de change sur les devises','sortant':'Transfert sortant de PEA/PEA-PME'},'xtb':{'change':'Toutes les conversions de devises liées','garde':'Frais de garde8)','sortant':'Frais de sortie OMI du PEA'},'caidf':{'garde':'Droits de garde sur compte-titres et sur PEA','sortant':'Frais de transfert total ou partiel hors Crédit Agricole'},'bd':{'garde':'Droits de garde / Conservation','change':'Commission de change : taux appliqué à Bourse Direct','sortant':'VIREMENTS ET TRANSFERTS'}}
  for key,o in fields.items():
   anchor=anchors[name][key];o['page']=next(i for i,p in enumerate(s.split('\f'),1) if anchor in p and (name!='caidf' or key!='garde' or 'Les droits de garde sont prélevés' in p))
  result=item(v,full,meta,scope);result['fields']=fields
@@ -151,6 +167,9 @@ def parse(name,s,today,previous=None):
  return result
 
 SUPPLEMENT_SOURCES={
+ 'caidf_pea_transfer':('caidf','entrant','https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html'),
+ 'tr_pea_transfer':('tr','entrant','https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf'),
+ 'tr_pea_transfer_out':('tr','sortant','https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf'),
  'xtb_pea_transfer':('xtb','entrant','https://www.xtb.com/fr/pea'),
  'tr_direct':('tr','directPrice','https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c'),
  'saxo_transfer':('saxo','entrant','https://www.home.saxo/fr-fr/accounts/pea'),
@@ -165,9 +184,32 @@ SUPPLEMENT_SOURCES={
  'saxo_amundi':('saxo','offerAmundi','https://www.home.saxo/fr-fr/campaigns/amundi-etf'),
 }
 def parse_supplement(key,s,today):
+ if key in ('tr_pea_transfer','tr_pea_transfer_out'):
+  broker,field,url=SUPPLEMENT_SOURCES[key]
+  pages=[re.sub(r'\s+',' ',p.replace('\u200b',' ')) for p in s.split('\f')]
+  eligible=[(i,p) for i,p in enumerate(pages,1) if 'Country Conditions France' in p and "Plan d'Epargne en Actions" in p and 'PEA Account Opening; Transfer' in p]
+  if len(eligible)!=1:raise ValueError('Annexe France et section de transfert PEA absentes ou ambiguës')
+  page,text=eligible[0]
+  published=re.search(r'(\d{1,2})/(\d{4})\s*$',text)
+  if not published or not 1<=int(published[1])<=12:raise ValueError('Mois du contrat France absent')
+  month=f'{published[2]}-{int(published[1]):02d}'
+  if month>today[:7]:raise ValueError('Contrat France futur')
+  match=re.search(r'A\s*\.\s*PEA Account Opening; Transfer(.*?)B\s*\.\s*PEA Deposits and Investments',text)
+  if not match:raise ValueError('Périmètre transfert PEA du contrat modifié')
+  require(match[1],'The Customer may request the transfer of their PEA','Account from a different regulated financial institution to','Trade Republic will','reject a transfer request for this PEA Account containing the','unlisted securities.','The Customer may request transferring their PEA','Account with Trade Republic to a different regulated financial','institution.')
+  full='possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause.' if field=='entrant' else 'Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas.'
+  meta=metadata(s,url,today);meta['page']=page
+  meta['publicationMonth']=month
+  meta['note']=f'Contrat daté {month} ; aucun jour de publication fourni. Clause de disponibilité, sans barème de frais PEA.'
+  meta['method']='Contrat France, clause de transfert PEA ; disponibilité et exclusion explicites, sans qualification de frais'
+  return broker,field,item({'available':1,'unlistedAccepted':0} if field=='entrant' else {'available':1},full,meta,'Trade Republic France ; transfert PEA ; frais non qualifiés')
  broker,field,url=SUPPLEMENT_SOURCES[key];s=BeautifulSoup(s,'html.parser').get_text(' ',strip=True).replace('\xa0',' ')
  meta=metadata(s,url,today);v={};end=None;start=None
- if key=='xtb_pea_transfer':
+ if key=='caidf_pea_transfer':
+  require(s,'Plan d’Épargne en Actions','Le transfert du portefeuille est possible d’une banque à une autre et n’entraine pas la perte des 5 ans acquis ou en cours d’acquisition.')
+  v={'available':1,'taxAgePreserved':1}
+  full='possible ✅ Transfert du PEA entre banques avec conservation de l’antériorité fiscale. Frais entrants et remboursement éventuel à confirmer auprès de la caisse Île-de-France.'
+ elif key=='xtb_pea_transfer':
   # Scope to the exact question, never a generic securities-transfer article.
   match=re.search(r'Peut-on transférer son PEA vers XTB\s*\?\s*(.*?)\s*Une personne majeure',s)
   if not match:raise ValueError('Question transfert PEA XTB absente ou structure modifiée')

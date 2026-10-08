@@ -11,7 +11,7 @@ import {
 } from '../../data/market-history.js'
 import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride, currencySymbol } from './lib'
 import Sparkline from './Sparkline'
-import VideoExport from './VideoExport'
+import VideoExport from './VideoExport.jsx'
 import { renderInvestmentImage } from './imageExport'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'

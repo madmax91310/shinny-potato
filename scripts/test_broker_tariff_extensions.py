@@ -34,12 +34,24 @@ class BrokerTariffTests(unittest.TestCase):
   with self.assertRaises(ValueError):parse('xtb',s,TODAY,{'asOf':'2026-10-01'})
   self.assertIsNone(parse('ibkr',fixture('ibkr.html'),TODAY)['asOf'])
   self.assertEqual(parse('tr',fixture('tr_fee.txt'),TODAY)['dateStatus'],'not-published')
+ def test_live_bourse_direct_pea_and_foreign_exceptions(self):
+  o=parse('bd',fixture('bd.txt'),TODAY)
+  self.assertEqual(o['asOf'],'2026-01-06')
+  self.assertEqual(o['fields']['change']['values'],{'rate':.08})
+  self.assertEqual(o['fields']['garde']['values'],{'fee':0,'foreignAnnualRate':.036})
+  self.assertEqual(o['fields']['sortant']['values'],{'perLine':15,'unlistedPerLine':50,'maximum':150})
+  self.assertEqual(o['fields']['sortant']['page'],4)
+  self.assertIn('autres marchés',o['fields']['change']['copy']['full'])
+  self.assertNotIn('500.0',o['copy']['full'])
+  with self.assertRaises(ValueError):parse('bd',fixture('bd.txt').replace('PEA, PEA-PME, PEA JEUNES','Compte titres ordinaire'),TODAY)
+  changed=fixture('bd.txt').replace('0,08% par opération','0,10% par opération')
+  self.assertEqual(parse('bd',changed,TODAY)['fields']['change']['values']['rate'],.1)
  def test_changed_rate_propagates_to_copy(self):
   s=fixture('saxo.txt').replace('0,08%','0,09%')
   o=parse('saxo',s,TODAY)
   self.assertEqual(o['values']['rate'],.09);self.assertIn('0,09 %',o['copy']['full'])
  def test_supplement_scope_and_period(self):
-  results={key:parse_supplement(key,fixture('ibkr_pea.txt' if key.startswith('ibkr_pea_') else key+'.txt'),TODAY)[2] for key in SUPPLEMENT_SOURCES}
+  results={key:parse_supplement(key,fixture('ibkr_pea.txt' if key.startswith('ibkr_pea_') else 'tr_pea_contract.txt' if key.startswith('tr_pea_transfer') else key+'.txt'),TODAY)[2] for key in SUPPLEMENT_SOURCES}
   self.assertEqual(results['ibkr_pea_garde']['values'],{'fee':0})
   self.assertEqual(results['ibkr_pea_transfer']['values'],{'fee':0})
   with self.assertRaises(ValueError):parse_supplement('ibkr_pea_garde',fixture('ibkr_pea.txt').replace('Pas de droits de garde','Droits de garde payants'),TODAY)
@@ -73,6 +85,27 @@ class BrokerTariffTests(unittest.TestCase):
   self.assertEqual(validated,['saxo']);self.assertEqual(result['brokers']['saxo']['fields']['offerPea'],original['brokers']['saxo']['fields']['offerPea'])
   self.assertEqual(result['brokers']['saxo']['fields']['change']['values']['rate'],.25)
   self.assertIn('saxo_offer',failures)
+ def test_pea_transfer_clauses_never_infer_fees(self):
+  for key in ('tr_pea_transfer','tr_pea_transfer_out'):
+   o=parse_supplement(key,fixture('tr_pea_contract.txt'),TODAY)[2]
+   self.assertEqual(o['page'],189);self.assertEqual(o['values']['available'],1)
+   self.assertEqual(o['publicationMonth'],'2026-09')
+   with self.assertRaises(ValueError):parse_supplement(key,fixture('tr_pea_contract.txt'),'2026-08-01')
+   self.assertNotIn('fee',o['values']);self.assertIn('Frais' if key=='tr_pea_transfer' else 'frais',o['copy']['full'])
+   with self.assertRaises(ValueError):parse_supplement(key,fixture('tr_pea_contract.txt').replace('reject','accept'),TODAY)
+   with self.assertRaises(ValueError):parse_supplement(key,fixture('tr_pea_contract.txt').replace('Country Conditions France','Country Conditions Germany'),TODAY)
+  o=parse_supplement('caidf_pea_transfer',fixture('caidf_pea_transfer.txt'),TODAY)[2]
+  self.assertEqual(o['values'],{'available':1,'taxAgePreserved':1})
+  self.assertNotIn('fee',o['values']);self.assertIn('à confirmer',o['copy']['full'])
+  with self.assertRaises(ValueError):parse_supplement('caidf_pea_transfer',fixture('caidf_pea_transfer.txt').replace('n’entraine pas','entraine'),TODAY)
+  previous={'publicationMonth':'2026-10','copy':{'full':'Previously validated contract'}}
+  baseline={'brokers':{'tr':{'fields':{'entrant':copy.deepcopy(previous)}}}}
+  def fetch(url):
+   if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2]:return fixture('tr_pea_contract.txt')
+   raise ValueError('unavailable')
+  state,failures,_=collect(baseline,TODAY,fetch)
+  self.assertEqual(state['brokers']['tr']['fields']['entrant'],previous)
+  self.assertIn('tr_pea_transfer',failures)
  def test_official_alternative_requires_valid_pea_table(self):
   alternate=SOURCE_ALTERNATIVES['bd'][0]
   def fetch(url):

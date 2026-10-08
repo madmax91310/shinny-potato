@@ -23,6 +23,9 @@ assert.doesNotMatch(brokerFieldCopies('saxo',BROKER_TARIFFS,'2027-01-01').entran
 assert.match(brokerFieldCopies('saxo',BROKER_TARIFFS,'2027-01-01').entrant,/expirée/)
 assert.equal(brokerFieldCopies('saxo',BROKER_TARIFFS,'2025-01-05').entrant,undefined)
 assert.equal(BROKER_EVIDENCE.ibkr.change.status,'partiel')
+assert.equal(BROKER_EVIDENCE.tr.garde.status,'partiel')
+assert.match(BROKERS.find(b=>b.id==='tr').garde.resume,/confirmer.*PEA/)
+assert.doesNotMatch(BROKER_EDITORIAL.tr.garde,/aucun ✅/)
 for(const id of ['xtb','caidf','saxo']) assert(BROKER_EVIDENCE[id].transfert.summary.includes(BROKER_EDITORIAL[id].entrant.split('✅').at(-1).split('❌')[0].trim().slice(0,8)) || BROKER_EVIDENCE[id].transfert.summary.includes('Transfert entrant') || BROKER_EVIDENCE[id].transfert.summary.includes('antériorité'))
 const changed=structuredClone(BROKER_TARIFFS)
 changed.saxo.fields.change.copy.full='0,30 %.'

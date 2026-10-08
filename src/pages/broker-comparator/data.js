@@ -23,7 +23,7 @@ export const BROKERS = [
     frais: { resume: "1 € hors plan", detail: "Ordre ponctuel · 2 € avec Direct Price · autres coûts possibles" },
     boursomarkets: { resume: "Sans objet" },
     dca: { resume: "Plans programmés", detail: "PEA sans frais sur plans · titres dans l’application" },
-    garde: { resume: "0 €", detail: "Administration et conservation des titres" },
+    garde: { resume: "À confirmer sur PEA", detail: "Absence de frais annoncée sur le compte-titres" },
     pea: { pea: true, pme: false, jeune: true },
     ifu: { rank: 1, resume: "Oui après migration FR" },
     // Contrat TR 09/2026, annexe 3 IV et annexe 12 B.V : intérêts possibles après activation
@@ -34,7 +34,7 @@ export const BROKERS = [
     post: {
       frais: ["PEA : 1 € de règlement par ordre ponctuel, ou 2 € avec Direct Price ; plans programmés sans frais d’exécution. Spread et coûts tiers possibles."],
       dca: ["Plans programmés ; page PEA annonce l’absence de frais sur les plans. Titres éligibles dans l’application."],
-      garde: ["0 € pour l’administration et la conservation des titres selon l’aide Trade Republic France."],
+      garde: ["Frais de garde PEA à confirmer ; la gratuité annoncée sur le compte-titres ne qualifie pas le PEA."],
       pea: "PEA ✅ / PEA-PME ❌* / PEA Jeune ✅",
       ifu: ["✅ Oui pour l’offre française, dont le PEA. Les anciens comptes étrangers relèvent d’un régime distinct."],
       faibles: ["PEA-PME non proposé selon analyses externes"],

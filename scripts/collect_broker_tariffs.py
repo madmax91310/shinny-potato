@@ -88,6 +88,9 @@ def collect(baseline,today,fetcher=fetch_content):
   try:
    _,_,observation=parse_supplement(key,fetch_once(url),today)
    if broker not in baseline['brokers']:raise ValueError('Barème principal non qualifié')
+   previous=baseline['brokers'][broker].get('fields',{}).get(field,{})
+   if observation.get('publicationMonth') and previous.get('publicationMonth') and observation['publicationMonth']<previous['publicationMonth']:
+    raise ValueError('Régression du mois de publication du contrat')
    baseline['brokers'][broker].setdefault('fields',{})[field]=observation
   except Exception as exc:failures[key]=str(exc)
  return baseline,failures,validated

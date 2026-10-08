@@ -446,6 +446,24 @@
             "resume": "15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.",
             "full": "15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers."
           }
+        },
+        "entrant": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
+          "sha256": "8edb9d62b8cbc403478ed6cda8f2f709b7b32581ca4ae5decb0ed10290b7f1ea",
+          "page": null,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "not-published",
+          "scope": "caidf ; entrant ; conditions explicites de la page officielle",
+          "values": {
+            "available": 1,
+            "taxAgePreserved": 1
+          },
+          "copy": {
+            "resume": "possible ✅ Transfert du PEA entre banques avec conservation de l’antériorité fiscale. Frais entrants et remboursement éventuel à confirmer auprès de la caisse Île-de-France.",
+            "full": "possible ✅ Transfert du PEA entre banques avec conservation de l’antériorité fiscale. Frais entrants et remboursement éventuel à confirmer auprès de la caisse Île-de-France."
+          }
         }
       }
     },
@@ -596,6 +614,123 @@
           "copy": {
             "resume": "Direct Price : 2 € par transaction, dont 1 € de règlement et 1 € de place. Spread, conversion et autres coûts possibles.",
             "full": "Direct Price : 2 € par transaction, dont 1 € de règlement et 1 € de place. Spread, conversion et autres coûts possibles."
+          }
+        },
+        "entrant": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+          "sha256": "0c58152c1f88b82d974aa6b49d552f73e1631dafd9547a2f4ec428fb3bc44889",
+          "page": 189,
+          "method": "Contrat France, clause de transfert PEA ; disponibilité et exclusion explicites, sans qualification de frais",
+          "dateStatus": "not-published",
+          "publicationMonth": "2026-09",
+          "note": "Contrat daté 2026-09 ; aucun jour de publication fourni. Clause de disponibilité, sans barème de frais PEA.",
+          "scope": "Trade Republic France ; transfert PEA ; frais non qualifiés",
+          "values": {
+            "available": 1,
+            "unlistedAccepted": 0
+          },
+          "copy": {
+            "resume": "possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause.",
+            "full": "possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause."
+          }
+        },
+        "sortant": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+          "sha256": "0c58152c1f88b82d974aa6b49d552f73e1631dafd9547a2f4ec428fb3bc44889",
+          "page": 189,
+          "method": "Contrat France, clause de transfert PEA ; disponibilité et exclusion explicites, sans qualification de frais",
+          "dateStatus": "not-published",
+          "publicationMonth": "2026-09",
+          "note": "Contrat daté 2026-09 ; aucun jour de publication fourni. Clause de disponibilité, sans barème de frais PEA.",
+          "scope": "Trade Republic France ; transfert PEA ; frais non qualifiés",
+          "values": {
+            "available": 1
+          },
+          "copy": {
+            "resume": "Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas.",
+            "full": "Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas."
+          }
+        }
+      }
+    },
+    "bd": {
+      "asOf": "2026-01-06",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.boursedirect.fr/pdf/tarifs_bd.pdf",
+      "sha256": "23f223e1c5f5c4161bb4459c1f5492e826cfabee62e8eee38fc3fae9b3346a9a",
+      "page": 2,
+      "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+      "dateStatus": "dated",
+      "scope": "Bourse Direct ; Internet Euronext ; colonne PEA/PEA-PME/Jeunes",
+      "values": {
+        "rate": 0.09,
+        "fee0": 0.99,
+        "fee1": 1.9,
+        "fee2": 2.9,
+        "fee3": 3.8
+      },
+      "copy": {
+        "resume": "Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.",
+        "full": "Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre.",
+        "detail": "Bourse Direct ; Internet Euronext ; colonne PEA/PEA-PME/Jeunes"
+      },
+      "fields": {
+        "change": {
+          "asOf": "2026-01-06",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.boursedirect.fr/pdf/tarifs_bd.pdf",
+          "sha256": "23f223e1c5f5c4161bb4459c1f5492e826cfabee62e8eee38fc3fae9b3346a9a",
+          "page": 2,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Bourse Direct ; change boursier ; exception autres marchés conservée",
+          "values": {
+            "rate": 0.08
+          },
+          "copy": {
+            "resume": "Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct.",
+            "full": "Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct."
+          }
+        },
+        "garde": {
+          "asOf": "2026-01-06",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.boursedirect.fr/pdf/tarifs_bd.pdf",
+          "sha256": "23f223e1c5f5c4161bb4459c1f5492e826cfabee62e8eee38fc3fae9b3346a9a",
+          "page": 2,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Bourse Direct ; droits de garde et conservation étrangère",
+          "values": {
+            "fee": 0,
+            "foreignAnnualRate": 0.036
+          },
+          "copy": {
+            "resume": "0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement.",
+            "full": "0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement."
+          }
+        },
+        "sortant": {
+          "asOf": "2026-01-06",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.boursedirect.fr/pdf/tarifs_bd.pdf",
+          "sha256": "23f223e1c5f5c4161bb4459c1f5492e826cfabee62e8eee38fc3fae9b3346a9a",
+          "page": 4,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Bourse Direct ; transfert sortant PEA ; colonne CTO étrangère exclue",
+          "values": {
+            "perLine": 15.0,
+            "unlistedPerLine": 50.0,
+            "maximum": 150.0
+          },
+          "copy": {
+            "resume": "15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.",
+            "full": "15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA."
           }
         }
       }
