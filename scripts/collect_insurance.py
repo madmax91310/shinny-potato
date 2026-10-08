@@ -6,6 +6,7 @@ import math
 import pathlib
 import re
 from bs4 import BeautifulSoup
+from publication_periods import completed_year, annual_status
 from collect_scpi import fetch, number, required
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -84,8 +85,7 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
                 row = {'year': year, 'returnMin': number(match[1]), 'returnMax': number(match[2]), 'condition': match[4]}
             if year in values and values[year] != row: raise ValueError('Conflicting historical rates')
             values[year] = row
-    if today.year - 1 not in values:
-        raise ValueError('Missing latest completed annual fund return')
+    completed_year(sorted(values)[-3:],today)
     years = [values[year] for year in sorted(values)[-3:]]
     max_allocation = number(required(r'Accessible à ([\d,.]+)\s*%', card).group(1)) if 'Accessible à' in card else None
     valid_until = None
@@ -173,8 +173,10 @@ def validate(record, today):
         raise ValueError('Incomplete contract')
     for fund in record['euroFunds']:
         years = fund['years']
-        if not years or years[-1]['year'] != today.year-1 or len({y['year'] for y in years}) != len(years):
-            raise ValueError('Incomplete annual history')
+        year = completed_year([y['year'] for y in years],today)
+        if years != sorted(years,key=lambda y:y['year']) or fund['asOf'] != f'{year}-12-31':
+            raise ValueError('Annual fund date/columns disagree')
+        fund['publication'] = annual_status(year,today)
         if any(not finite(y.get('return', y.get('returnMin')), -10, 15) or ('returnMax' in y and (not finite(y['returnMax'], y['returnMin'], 15) or not y.get('condition'))) for y in years) or (fund['guarantee'] is not None and not finite(fund['guarantee'], 90, 100)) or (fund['maxAllocation'] is not None and not finite(fund['maxAllocation'], 0, 100)) or not finite(fund['managementFeeMax'], 0, 5):
             raise ValueError('Invalid fund data')
         for year in years:

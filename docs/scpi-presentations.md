@@ -14,7 +14,7 @@ Les dates propres aux indicateurs, les conditions et fourchettes des fonds euros
 
 - Iroko : graphiques et API publics de l’émetteur (identifiant public de lecture découvert depuis son script officiel), page produit pour le ticket d’entrée, note d’information pour les frais et la jouissance.
 - Remake : JSON officiel des graphiques et calendriers, bulletin courant découvert depuis la page produit pour les conditions et leur date.
-- CORUM : rapports annuels pour les distributions et l’historique des prix au 31 décembre ; notes d’information pour les tarifs. Origin et XL conservent leurs répartitions annuelles datées : les tableaux des derniers bulletins ne sont pas extractibles de façon fiable. Eurion utilise son dernier bulletin trimestriel extractible pour les répartitions, les immeubles, les locataires et le TOF. Les commissions de gestion de CORUM XL distinguent la zone euro et le reste du portefeuille.
+- CORUM : rapports annuels pour les distributions et l’historique des prix au 31 décembre ; notes d’information pour les tarifs. Origin et XL conservent leurs répartitions annuelles datées : les tableaux des derniers bulletins ne sont pas extractibles de façon fiable. Eurion utilise son dernier bulletin trimestriel extractible pour les répartitions, les immeubles, les locataires et le TOF. Le TOF de CORUM Origin est complété depuis son bloc explicitement daté sur la page Patrimoine (95,77 % au 30/06/2026 au relevé du 08/10/2026) ; les nombres d’immeubles et de locataires non datés de cette page ne remplacent pas les observations annuelles. Les commissions de gestion de CORUM XL distinguent la zone euro et le reste du portefeuille.
 - Transitions Europe : dernier bulletin trimestriel ou semestriel terminé, découvert sur la page officielle ; note d’information pour les conditions. Le taux de distribution est distinct de la performance globale annuelle et de l’objectif.
 - ActivImmo : bulletin trimestriel pour les répartitions, locataires et TOF ; rapport annuel pour les actifs et les distributions ; dernière annexe tarifaire pour le prix actuel et sa date d’effet. Les dates restent distinctes et les dividendes mensuels sont confirmés par le rapport annuel.
 - Épargne Pierre : bulletin trimestriel terminé pour les régions françaises, secteurs, actifs, locataires et TOF ; rapport annuel pour les distributions et prix historiques. La division du prix de 208 € à 20,80 € au 1er juillet 2026 multiplie le nombre de parts par dix et ne représente pas une perte de valeur. Le minimum est de 100 parts, soit 2 080 €. La jouissance exceptionnelle de 2026 et le passage aux distributions mensuelles en janvier 2027 suivent leurs dates publiées.
@@ -47,3 +47,11 @@ node scripts/test-presentation-images.mjs
 ```
 
 Pour ajouter une SCPI, qualifier ses sources et son adaptateur avant d’ajouter une fiche. Les assurances-vie disposent de leur outil distinct ; les placements forestiers restent à qualifier.
+
+## Transition des exercices annuels
+
+La découverte sélectionne le dernier rapport annuel terminé réellement lié sur le site officiel. Le millésime des colonnes doit correspondre au lien ; les dates du patrimoine et des prix restent celles de cet exercice. Aucun millésime n’est déplacé lors du changement d’année.
+
+Du 1er janvier au 30 juin, l’exercice N−2 reste admissible si N−1 n’est pas encore publié : le texte, les réglages et l’image affichent explicitement le millésime attendu. Dès qu’il paraît, les trois années affichées se déplacent automatiquement. À compter du 1er juillet, l’absence de N−1 devient un échec suivi dans Données à revoir, avec conservation de la dernière fiche validée. Une publication découverte mais inaccessible ou invalide reste un échec même pendant cette période d’attente.
+
+Les colonnes doivent être consécutives et ne peuvent pas régresser. La division des parts d’Épargne Pierre garde sa date du 01/07/2026 ; le passage annoncé aux distributions mensuelles intervient le 01/01/2027, et la jouissance temporaire de 2026 cesse selon sa date publiée. Tests : `python -m unittest discover -s scripts -p test_publication_periods.py`.

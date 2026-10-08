@@ -1,5 +1,8 @@
 export const format = value => value.toLocaleString('fr-FR', { maximumFractionDigits: 3 })
 export const dateLabel = value => value ? value.split('-').reverse().join('/') : null
+export const annualPublicationNote = publication => publication?.awaitingPublication
+  ? `Dernier exercice publié : ${publication.latestPublishedYear}. Les chiffres ${publication.expectedYear} restent en attente de publication.`
+  : ''
 export function allocation(rows, limit = 3) {
   const sorted = [...rows].sort((a, b) => b.value - a.value)
   const head = sorted.slice(0, limit).map(row => `${row.label} ${format(row.value)} %`)
@@ -34,7 +37,7 @@ export function buildTweet(record) {
   return [hook,
     `🏢 ${name} détient des biens loués à des entreprises.\n🌍 ${allocation(snapshot.countries)}\n🏭 ${allocation(snapshot.sectors)}\n${snapshotDate}.${snapshot.regions ? `\n📍 En France : ${allocation(snapshot.regions)}.` : ''}`,
     `💶 La part coûte ${format(price.value)} €. Souscription initiale dès ${format(c.minimum)} €.\nRevenus potentiels ${c.frequency}. ${c.enjoyment}`,
-    `📊 Taux de distribution : ${annual.years.map(row => `${row.year} : ${format(row.distribution)} %`).join(' · ')}.\nTaux bruts de fiscalité étrangère, pas les montants nets reçus.\n${priceHistory}`,
+    `📊 Taux de distribution : ${annual.years.map(row => `${row.year} : ${format(row.distribution)} %`).join(' · ')}.\nTaux bruts de fiscalité étrangère, pas les montants nets reçus.${annualPublicationNote(annual.publication) ? `\n${annualPublicationNote(annual.publication)}` : ''}\n${priceHistory}`,
     `💸 Souscription : ${c.subscriptionFeeMax ? 'jusqu’à ' : ''}${format(c.subscriptionFee)} %${c.subscriptionTax ? ` ${c.subscriptionTax}` : ''}. Gestion : ${management} des ${c.managementBasis}.\nRetrait : ${c.exit}`,
     portfolioText(record),
     historyText(record),

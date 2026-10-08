@@ -2,6 +2,7 @@
 import datetime as dt
 import re
 from bs4 import BeautifulSoup
+from publication_periods import completed_year, latest_annual
 from collect_scpi import fetch, pdf_text, required, number
 from collect_corum import bbox_pages
 from collect_extended_scpi import document_links, latest, metric, counter, phrase, percentages, allocation
@@ -58,13 +59,15 @@ def parse_epargne(text,pages,annual,url,annual_url,today,product_html):
     tof=number(required(r'taux d.occupation financier s.établit à ([\d,.]+)\s*%',compact)[1])
     block=required(r'Évolution du prix de la part\s+(.*?)❯ Taux de distribution\(1\)([^\n]+)',annual)
     periods=[int(y) for y in required(r'(20\d{2}\s+20\d{2}\s+20\d{2}\s+20\d{2}\s+20\d{2})',block[1])[1].split()]
-    if periods!=list(range(today.year-1,today.year-6,-1)):raise ValueError('Changed annual periods')
+    completed_year(periods,today,count=5)
+    if periods!=sorted(periods,reverse=True):raise ValueError('Changed annual columns')
     rates=[number(v) for v in re.findall(r'([\d,.]+)\s*%',block[2])]
     prices=[number(v) for v in required(r'Prix de souscription \(si augmentation de capital\)([^\n]+)',block[1])[1].split()]
     if len(rates)!=5 or len(prices)!=5 or any(v != (old if y < year else price) for y,v in zip(periods,prices)):raise ValueError('Annual columns or split basis changed')
     history=[{'asOf':f'{y}-12-31','value':v} for y,v in zip(periods,prices)]
     history=sorted(history,key=lambda r:r['asOf'])[-3:]
-    history=sorted(history+[{'asOf':effective,'value':price}],key=lambda r:r['asOf'])
+    if effective not in {r['asOf'] for r in history}:history.append({'asOf':effective,'value':price})
+    history=sorted(history,key=lambda r:r['asOf'])
     action={'asOf':effective,'ratio':10,'oldPrice':old,'newPrice':price,'sourceUrl':url,
             'description':f'Division du prix de part par dix le 01/07/{year}, avec multiplication par dix des parts détenues : le passage de {old:g} € à {str(f'{price:g}').replace('.',',')} € ne représente pas une baisse de valeur du placement.'}
     return {'snapshot':{'asOf':as_of,'countries':[{'label':'France','value':100}],'regions':regions,'sectors':sectors,'sourceUrls':[url],
@@ -83,6 +86,9 @@ def parse_epargne(text,pages,annual,url,annual_url,today,product_html):
 def collect(id_,today):
     name,base=PRODUCTS[id_];html=fetch(base).decode();links=document_links(html,base)
     url=latest(links,r'BPI(?P<quarter>[1-4])T(?P<year>\d{4})-EP-',today)
-    annual_url=next(u for u in links if re.search(r'RA_Epargne_Pierre_'+str(today.year-1)+r'_',u))
+    annual_url,_=latest_annual(links,r'RA_Epargne_Pierre_(?P<year>20\d{2})_',today)
     data=fetch(url)
-    return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),**parse_epargne(pdf_text(data),bbox_pages(data),pdf_text(fetch(annual_url)),url,annual_url,today,html)}
+    result=parse_epargne(pdf_text(data),bbox_pages(data),pdf_text(fetch(annual_url)),url,annual_url,today,html)
+    linked_year=int(required(r'RA_Epargne_Pierre_(20\d{2})_',annual_url)[1])
+    if result['annual']['years'][-1]['year']!=linked_year:raise ValueError('Annual URL and published columns disagree')
+    return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),**result}

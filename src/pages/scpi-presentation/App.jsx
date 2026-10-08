@@ -6,7 +6,7 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import { SCPI } from '../../data/scpi.js'
-import { buildTweet, dateLabel, format } from './lib.js'
+import { buildTweet, dateLabel, format, annualPublicationNote } from './lib.js'
 import './style.css'
 
 export default function App() {
@@ -67,6 +67,7 @@ export default function App() {
             </>}
           </details>
           <details><summary>Comprendre les chiffres</summary>
+            {annualPublicationNote(record.annual.publication) && <p>{annualPublicationNote(record.annual.publication)}</p>}
             <p>Les taux de distribution sont ceux des années civiles terminées, bruts de fiscalité étrangère et nets des frais de gestion de la SCPI. Ils ne mesurent pas la performance totale et ne décrivent pas le revenu personnel après impôts.</p>
             <p>La commission de gestion porte sur les revenus indiqués, pas sur le capital investi. Les commissions d’acquisition et de travaux restent distinctes : {record.conditions.otherFees}</p>
             <p>Les conditions concernent la détention en direct, en pleine propriété. Un contrat d’assurance-vie peut avoir ses propres frais et conditions.</p>

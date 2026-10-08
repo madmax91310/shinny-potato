@@ -51,3 +51,9 @@ assert(buildTweet(epargne).includes('📍 En France'))
 const remake=SCPI.find(row => row.id === 'remake-live')
 assert(remake.priceHistory.years.some(row => row.asOf === '2024-12-31'))
 assert(!remake.priceHistory.years.some(row => row.asOf === '2025-12-31'))
+
+const waiting = structuredClone(SCPI[0])
+waiting.annual.publication = {latestPublishedYear:2025,expectedYear:2026,awaitingPublication:true}
+assert(buildTweet(waiting).includes('Dernier exercice publié : 2025'))
+assert(buildTweet(waiting).includes('Les chiffres 2026 restent en attente'))
+assert(!buildTweet(waiting).includes('2026 :'))

@@ -1,7 +1,12 @@
-import { format } from '../scpi-presentation/lib.js'
+import { format, annualPublicationNote } from '../scpi-presentation/lib.js'
 export const fundReturn = row => row.return != null ? `${format(row.return)} %` : `${format(row.returnMin)} à ${format(row.returnMax)} % (${row.condition})`
-export const fundGuarantee = fund => fund.guarantee != null ? `Garantie annuelle : ${format(fund.guarantee)} % du capital, nette des frais de gestion.` : 'La garantie nette annuelle n’est pas chiffrée dans les pages collectées ; voir les conditions du fonds.'
-export const fundAllocation = fund => fund.maxAllocation == null
+export const fundGuarantee = fund => fund.guarantee != null ? `Garantie annuelle : ${format(fund.guarantee)} % du capital, nette des frais de gestion.${fund.guaranteeBasis ? ` ${fund.guaranteeBasis}` : ''}` : 'La garantie nette annuelle n’est pas chiffrée dans les pages collectées ; voir les conditions du fonds.'
+const accessExpired = (fund, today) => fund.accessValidUntil && fund.accessValidUntil < today
+const todayIso = () => new Date().toISOString().slice(0, 10)
+export const fundOperations = (fund, today = todayIso()) => accessExpired(fund, today) ? '' : fund.operations
+export const fundAllocation = (fund, today = todayIso()) => accessExpired(fund, today)
+  ? `Conditions d’accès échues le ${fund.accessValidUntil.split('-').reverse().join('/')} ; les nouvelles conditions restent à confirmer.`
+  : fund.maxAllocation == null
   ? 'La quote-part maximale actuelle n’est pas chiffrée dans les sources collectées.'
   : Math.abs(fund.maxAllocation - 100 / 3) < 0.001
     ? 'Au plus un tiers du versement sur ce fonds ; au moins deux fois ce montant en unités de compte non garanties.'
@@ -14,9 +19,10 @@ export function buildTweet(record) {
   const fundLines = euroFunds.map(fund => [
     `🛡️ ${fund.name}`,
     fund.years.map(row => `${row.year} : ${fundReturn(row)}`).join(' · '),
+    annualPublicationNote(fund.publication),
     fundAllocation(fund),
     fundGuarantee(fund),
-    `Frais de gestion du fonds : ${format(fund.managementFeeMax)} % maximum/an. ${fund.operations}`,
+    `Frais de gestion du fonds : ${format(fund.managementFeeMax)} % maximum/an. ${fundOperations(fund)}`,
     fund.notes ?? '',
   ].filter(Boolean).join('\n')).join('\n\n')
   return [hook,

@@ -4,6 +4,7 @@ import datetime as dt
 import re
 import urllib.parse
 from bs4 import BeautifulSoup
+from publication_periods import completed_year, latest_annual
 from collect_scpi import fetch, pdf_text, required, number
 from collect_corum import bbox_pages
 PRODUCTS={'transitions-europe':('Transitions Europe','https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe'), 'activimmo':('ActivImmo','https://alderan.fr/scpi-activimmo/')}
@@ -84,7 +85,8 @@ def parse_transitions(text,pages,note,url,today):
     line=required(r'([\d.]+)\s*%\s+([\d.]+)\s*%\s+([\d.]+)\s*%\s+Taux de distribution',perf)
     years_line=required(r'\b(20\d{2})\s+(20\d{2})\s+(20\d{2})\s+À retenir',perf)
     years=[int(years_line[i]) for i in range(1,4)]
-    if years!=list(range(today.year-3,today.year)):raise ValueError('Incomplete annual distribution periods')
+    completed_year(years,today,count=3)
+    if years!=sorted(years):raise ValueError('Annual distribution columns changed')
     annual=[{'year':y,'distribution':number(line[i+1])} for i,y in enumerate(years)]
     portfolio={}
     label=phrase([w for w in words if w['x']<width*.65], 'Nombre d’actifs')[0]
@@ -118,17 +120,19 @@ def parse_activimmo(text,pages,annual,note,price_note,url,annual_url,note_url,pr
     required(r'premier jour du sixième mois',n)
     required(r'versement d’un dividende mensuel',annual)
     a=re.sub(r'\s+',' ',annual)
-    periods=list(range(today.year-5,today.year))
+    periods = [int(y) for y in required(r'((?:20\d{2}\s+){4}20\d{2})',a)[1].split()]
+    completed_year(periods,today,count=5)
+    if periods != sorted(periods):raise ValueError('Annual columns changed')
     header=r'\s+'.join(map(str,periods))
     block=required('('+header+r'.*?)Report à nouveau cumulé par part',a)[1]
     values=required(r'Taux de distribution sur valeur de marché\s+([\d,.]+)%\s+([\d,.]+)%\s+([\d,.]+)%\s+([\d,.]+)%\s+([\d,.]+)%',block)
     years=[{'year':y,'distribution':number(values[i+1])} for i,y in enumerate(periods)][-3:]
-    if years[-1]['year']!=today.year-1:raise ValueError('Annual report period changed')
+    annual_year=completed_year([r['year'] for r in years],today,count=3)
     occ=number(required(r'([\d,.]+)% TOF',text)[1]);required(r'hors développements',text);required(r'indemnité de résiliation anticipée',text)
     activity=next(p for p in pages if any(w['text']=='LOCATIF' for w in p['words']))
     portfolio={'occupancy':metric(occ,date,url,'Taux d’occupation financier','Hors développements ; inclut une indemnité de résiliation anticipée. Ce taux n’est pas un taux physique.'), 'tenants':metric(counter(activity['words'],'locataires',lambda w:w['x']>page['width']*.55 and w['y']<400),date,url,'Locataires')}
     assets=int(required(r'constitué un portefeuille de (\d+) actifs',a)[1])
-    portfolio['buildings']=metric(assets,f'{today.year-1}-12-31',annual_url,'Actifs immobiliers')
+    portfolio['buildings']=metric(assets,f'{annual_year}-12-31',annual_url,'Actifs immobiliers')
     price_values=required(r'Prix de souscription au 1er janvier.*?([\d,.]+)€\s+([\d,.]+)€\s+([\d,.]+)€\s+([\d,.]+)€\s+([\d,.]+)€',block)
     history={'years':[{'asOf':f'{y}-01-01','value':number(price_values[i+1])} for i,y in enumerate(periods)][-3:]+[{'asOf':price_date,'value':price}],'sourceUrl':annual_url,'sourceUrls':[annual_url,price_url],'dateNote':'Rapport : prix au 1er janvier de chaque année ; dernière valeur issue de l’annexe tarifaire.'}
     return {'snapshot':{'asOf':date,'countries':countries,'sectors':sectors,'sourceUrls':[url]},'annual':{'years':years,'sourceUrl':annual_url},'price':{'value':price,'asOf':price_date,'sourceUrl':price_url},'priceHistory':history,'portfolio':portfolio,
@@ -161,8 +165,10 @@ def collect(id_,today):
         result['conditions']['sourceUrls'].append(note_url)
     else:
         url=latest(links,r'BTI-T(?P<quarter>\d)-(?P<year>\d{4})-ActivImmo',today)
-        annual_url=next(u for u in links if re.search(r'Rapport-annuel-'+str(today.year-1)+'-ActivImmo',u,re.I))
+        annual_url,_=latest_annual(links,r'Rapport-annuel-(?P<year>20\d{2})-ActivImmo',today)
         note_url=next(u for u in links if 'Note-dinformation-SCPI-ActivImmo-1' in u)
         price_url=max((u for u in links if 'Modification-des-prix-de-part' in u),key=lambda u:u.rsplit('/',1)[-1])
         pdf=fetch(url);result=parse_activimmo(pdf_text(pdf),bbox_pages(pdf),pdf_text(fetch(annual_url)),pdf_text(fetch(note_url)),pdf_text(fetch(price_url)),url,annual_url,note_url,price_url,today)
+        linked_year=int(required(r'Rapport-annuel-(20\d{2})-ActivImmo',annual_url)[1])
+        if result['annual']['years'][-1]['year']!=linked_year:raise ValueError('Annual URL and published columns disagree')
     return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),**result}

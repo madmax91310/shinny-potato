@@ -3,6 +3,7 @@ import datetime as dt
 import re
 import urllib.parse
 from bs4 import BeautifulSoup
+from publication_periods import completed_year
 from collect_scpi import fetch, pdf_text, number, required
 from insurance_literal import nuxt_returns
 
@@ -54,7 +55,7 @@ def parse_lucya(html, notice, fees_text, notice_url, fees_url, today):
         # The hero rate's year is not adjacent to a rate; only the historical strip is parsed.
         if len(years)!=len({r['year'] for r in years}): raise ValueError('Conflicting Lucya annual strip')
         years=sorted(years,key=lambda r:r['year'])[-3:]
-        if not years or years[-1]['year']!=today.year-1: raise ValueError('Missing Lucya completed year')
+        completed_year([r['year'] for r in years],today)
         management=number(required(fee_pattern,card)[1]);guarantee=number(required(guarantee_pattern,text)[1])
         if abs(guarantee-(100-management))>.001: raise ValueError('Conflicting net guarantee and maximum fees')
         private=name=='Euro Private Strategies'
@@ -107,21 +108,38 @@ def parse_placement(html,notice,fees_text,notice_url,fees_url,today):
         rates=[r['return'] for r in tiers]
         years.append({'year':item['year'],'returnMin':min(rates),'returnMax':max(rates),'condition':'selon la part d’unités de compte et l’encours du contrat','tiers':tiers})
     years=sorted(years,key=lambda r:r['year'])[-3:]
-    if len(years)!=3 or years[-1]['year']!=today.year-1:raise ValueError('Missing completed Placement-direct annual strip')
-    advertised=number(required(r'Rendement net en '+str(today.year-1)+r' Jusqu’à ([\d,.]+)\s*%',text)[1])
+    published_year=completed_year([r['year'] for r in years],today,count=3)
+    advertised=number(required(r'Rendement net en '+str(published_year)+r' Jusqu’à ([\d,.]+)\s*%',text)[1])
     if advertised!=years[-1]['returnMax']:raise ValueError('Advertised maximum differs from published tiers')
     required(r'SwissLife.*limiter temporairement et sans préavis les possibi-? ?lités de sortie du fonds en euros',notice)
     share_trade=number(required(r'sur les actions en direct supporte des frais de ([\d,.]+)\s*%',text)[1])
+    guarantee, options = placement_notice_conditions(notice, management)
+
     record.update(fees={'subscription':subscription,'arbitrage':arbitrage,'units':units,'etfTrade':etf,'sourceUrl':fees_url,'sourceUrls':[fees_url,notice_url,url],
-                       'notes':f'Gestion des actions en direct : {str(f'{shares:g}').replace('.',',')} %/an ; achat/vente des actions : {str(f'{share_trade:g}').replace('.',',')} % par opération. Hors options et frais propres aux supports.',
-                       'scope':'Allocation libre ; hors options et frais des supports.'},
+                       'notes':f'Gestion des actions en direct : {str(f'{shares:g}').replace('.',',')} %/an ; achat/vente des actions : {str(f'{share_trade:g}').replace('.',',')} % par opération. Les frais propres aux supports s’ajoutent.',
+                       'options':options, 'scope':'Allocation libre ; options de gestion indiquées séparément, hors frais des supports.'},
                   access={'initial':initial,'free':free,'monthly':monthly,'sourceUrl':url},
                   supports={'minimumCount':count,'categories':['fonds d’investissement','ETF','actions en direct'],'sourceUrl':url},
-                  euroFunds=[{'name':'Actif général SwissLife','years':years,'asOf':f'{years[-1]["year"]}-12-31','guarantee':None,'managementFeeMax':management,
+                  euroFunds=[{'name':'Actif général SwissLife','years':years,'asOf':f'{years[-1]["year"]}-12-31','guarantee':guarantee,'guaranteeBasis':'Hors coût éventuel de la garantie optionnelle plancher décès ; la garantie se réduit chaque année des frais de gestion.', 'managementFeeMax':management,
                               'maxAllocation':None,'ceiling':None,'operations':'Allocation libre.',
                               'notes':'Le taux dépend de la part d’unités de compte et de l’encours : le maximum ne s’applique pas à tous les contrats. SwissLife peut limiter temporairement les arbitrages sortants du fonds euros en cas de forte variation des marchés, selon la clause de sauvegarde.',
                               'sourceUrl':url,'sourceUrls':[url,notice_url,fees_url]}])
+    record['fees']['notes'] += ' ' + ' '.join(o['description'] for o in options)
     return record
+
+
+def placement_notice_conditions(notice, management):
+    notice=re.sub(r'\s+',' ',notice).replace('\x07','')
+    required(r'Les droits exprimés en euros comportent une garantie en capital égale aux sommes versées, nettes des prélèvements effectués au titre des frais de souscription et de gestion',notice)
+    required(r'sur le fonds en euros : ([\d,.]+)\s*% de l’épargne sur base annuelle',notice)
+    notice_fee=number(required(r'sur le fonds en euros : ([\d,.]+)\s*% de l’épargne sur base annuelle',notice)[1])
+    if notice_fee!=management:raise ValueError('Notice and fee sheet disagree on euro fund charges')
+    required(r'garantie.*?plancher décès',notice)
+    options=[]
+    for label in ['allocation déléguée','allocation opportunités 100 % Trackers']:
+        fee=number(required(r'option « '+re.escape(label)+r' », les frais sont majorés de ([\d,.]+)\s*% sur base annuelle de l’épargne en unités de compte concernée par l’option',notice)[1])
+        options.append({'name':label,'additionalFee':fee,'basis':'épargne en unités de compte concernée par l’option','description':f'Option {label} : +{str(f"{fee:g}").replace(".",",")} %/an sur les unités de compte concernées.'})
+    return 100-management,options
 
 
 def collect(id_,today):

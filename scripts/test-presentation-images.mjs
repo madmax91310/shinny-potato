@@ -74,6 +74,16 @@ try {
     await page.setViewportSize({width:1440,height:1000})
     await page.screenshot({path:`${output}/${kind}-desktop.png`,fullPage:true})
   }
+  const awaiting=structuredClone(INSURANCE.at(-1))
+  awaiting.euroFunds[0].publication={latestPublishedYear:2025,expectedYear:2026,awaitingPublication:true}
+  const waitingNotes=presentationImageModel(awaiting,'insurance').sections.flatMap(s=>s.notes ?? []).join(' ')
+  assert(waitingNotes.includes('Dernier exercice publié : 2025') && waitingNotes.includes('chiffres 2026 restent en attente'))
+  const expired=structuredClone(INSURANCE.find(r=>r.id==='linxea-vie'))
+  const netissima=expired.euroFunds.find(f=>f.name==='Netissima')
+  netissima.accessValidUntil='2000-12-31'
+  const expiredNotes=presentationImageModel(expired,'insurance').sections.find(s=>s.title==='Netissima').notes.join(' ')
+  assert(expiredNotes.includes('Conditions d’accès échues'))
+  assert(!expiredNotes.includes('Jusqu’à 100 %') && !expiredNotes.includes('sans quota'))
   // A modified observation must alter the exported facts rather than decorative artwork.
   const changed=structuredClone(SCPI[0]);changed.price.value=1234
   assert(presentationImageModel(changed,'scpi').sections.flatMap(s=>s.columns ?? []).flatMap(c=>c.rows).some(r=>r.value.includes('1 234')))
