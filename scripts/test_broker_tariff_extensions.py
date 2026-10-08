@@ -3,7 +3,7 @@ import copy
 import json
 import pathlib
 import unittest
-from collect_broker_tariffs import collect, SOURCES
+from collect_broker_tariffs import collect, SOURCES, SOURCE_ALTERNATIVES
 from broker_tariff_extensions import parse, parse_supplement, SUPPLEMENT_SOURCES
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/broker-tariffs'
 TODAY='2026-10-08'
@@ -54,6 +54,9 @@ class BrokerTariffTests(unittest.TestCase):
   self.assertEqual(results['saxo_transfer']['until'],'2026-12-31')
   self.assertEqual(results['tr_garde_cto']['values']['fee'],0)
   self.assertEqual(results['tr_direct']['values'],{'fee':2,'standardFee':1,'venueFee':1})
+  self.assertEqual(results['xtb_pea_transfer']['values'],{'available':0})
+  self.assertIn('Pas encore disponible',results['xtb_pea_transfer']['copy']['full'])
+  with self.assertRaises(ValueError):parse_supplement('xtb_pea_transfer',fixture('xtb_pea_transfer.txt').replace('ne propose pas encore','propose désormais'),TODAY)
   with self.assertRaises(ValueError):parse_supplement('tr_direct',fixture('tr_direct.txt').replace('2 €','3 €'),TODAY)
   self.assertIn('ne qualifie pas',results['tr_transfer_cto']['copy']['full'])
   with self.assertRaises(ValueError):parse_supplement('saxo_transfer',fixture('saxo_transfer.txt').replace('facturation','inconnu'),TODAY)
@@ -70,4 +73,19 @@ class BrokerTariffTests(unittest.TestCase):
   self.assertEqual(validated,['saxo']);self.assertEqual(result['brokers']['saxo']['fields']['offerPea'],original['brokers']['saxo']['fields']['offerPea'])
   self.assertEqual(result['brokers']['saxo']['fields']['change']['values']['rate'],.25)
   self.assertIn('saxo_offer',failures)
+ def test_official_alternative_requires_valid_pea_table(self):
+  alternate=SOURCE_ALTERNATIVES['bd'][0]
+  def fetch(url):
+   if url==alternate:return fixture('bd-synthetic.txt')
+   raise ValueError('HTTP 502')
+  state,failures,validated=collect({'schemaVersion':1,'brokers':{}},TODAY,fetch)
+  self.assertEqual(validated,['bd']);self.assertNotIn('bd',failures)
+  self.assertEqual(state['brokers']['bd']['sourceUrl'],alternate)
+  previous=copy.deepcopy(state)
+  def invalid(url):
+   if url==alternate:return fixture('bd-synthetic.txt').replace('PEA','CTO')
+   raise ValueError('HTTP 502')
+  state,failures,validated=collect(state,TODAY,invalid)
+  self.assertEqual(state,previous);self.assertEqual(validated,[])
+  self.assertIn(SOURCES['bd'],failures['bd']);self.assertIn(alternate,failures['bd'])
 if __name__=='__main__':unittest.main()

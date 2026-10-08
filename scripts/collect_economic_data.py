@@ -344,6 +344,7 @@ def discover_acpr_sitemap():
 def discover_acpr():
     errors = []
     catalogues = [ACPR+'/fr/publications-et-statistiques/etudes-et-recherche',
+                  ACPR+'/fr/publications-et-statistiques/etudes-et-recherche?page=0',
                   ACPR+'/fr/publications-acpr',
                   ACPR+'/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses']
     for catalogue in catalogues:

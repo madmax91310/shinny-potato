@@ -65,4 +65,16 @@ class EconomicDataTests(unittest.TestCase):
   with self.assertRaises(ValueError): c.merge(state,'households',{'two':{'year':2025,'value':20},'one':{'year':2024,'value':5}})
   self.assertEqual(state,before)
   self.assertEqual(c.merge(state,'households',{'one':{'year':2026,'value':11}})['households']['one']['value'],11)
+ def test_acpr_pagination_route_survives_catalogue_403(self):
+  landing=c.ACPR+'/fr/publications-et-statistiques/publications/ndeg-180-revalorisation-2025-des-contrats-dassurance-vie-et-de-capitalisation'
+  pdf=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
+  def fetch(url):
+   if url.endswith('etudes-et-recherche'):raise ValueError('HTTP 403')
+   if url.endswith('etudes-et-recherche?page=0'):return f'<a href="{landing}">Rapport annuel</a>'.encode()
+   if url==landing:return f'<a href="{pdf}">Rapport PDF</a>'.encode()
+   raise AssertionError(url)
+  with patch.object(c,'official_download',side_effect=fetch):self.assertEqual(c.discover_acpr(),pdf)
+  # An unrelated official report or a third-party PDF cannot recertify this series.
+  with patch.object(c,'official_download',return_value=b'<a href="https://example.com/AS180_revalorisation_2025.pdf">PDF</a>'):
+   with self.assertRaises(ValueError):c.discover_acpr()
 if __name__=='__main__':unittest.main()

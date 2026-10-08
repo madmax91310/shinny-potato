@@ -151,6 +151,7 @@ def parse(name,s,today,previous=None):
  return result
 
 SUPPLEMENT_SOURCES={
+ 'xtb_pea_transfer':('xtb','entrant','https://www.xtb.com/fr/pea'),
  'tr_direct':('tr','directPrice','https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c'),
  'saxo_transfer':('saxo','entrant','https://www.home.saxo/fr-fr/accounts/pea'),
  'tr_garde_cto':('tr','gardeCto','https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account'),
@@ -166,7 +167,14 @@ SUPPLEMENT_SOURCES={
 def parse_supplement(key,s,today):
  broker,field,url=SUPPLEMENT_SOURCES[key];s=BeautifulSoup(s,'html.parser').get_text(' ',strip=True).replace('\xa0',' ')
  meta=metadata(s,url,today);v={};end=None;start=None
- if key=='tr_direct':
+ if key=='xtb_pea_transfer':
+  # Scope to the exact question, never a generic securities-transfer article.
+  match=re.search(r'Peut-on transférer son PEA vers XTB\s*\?\s*(.*?)\s*Une personne majeure',s)
+  if not match:raise ValueError('Question transfert PEA XTB absente ou structure modifiée')
+  answer=match[1]
+  require(answer,'XTB ne propose pas encore cette fonctionnalité','disponible prochainement')
+  v={'available':0};full='Pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir.'
+ elif key=='tr_direct':
   require(s,'Direct Price','Disponible pour les actions et les ETF','frais de règlement standard','frais de place')
   total=get(r'Chaque transaction coûte ([\d,]+) €',s)
   standard=get(r'frais de règlement standard de ([\d,]+) €',s)
@@ -228,6 +236,7 @@ def parse_supplement(key,s,today):
   end=dt.date(int(d[3]),MONTHS[d[2]],int(d[1])).isoformat();v={'transferLockMonths':6,'priorAccountMonths':12}
   full='Une sélection d’ETF Amundi sans courtage à l’achat, dont certains sont éligibles au PEA. La vente reste payante selon le tarif applicable. Sous conditions : comptes de même nature sur les 12 derniers mois exclus ; transfert des positions concernées bloqué six mois.'
  result=item(v,full,meta,f'{broker} ; {field} ; conditions explicites de la page officielle')
+ if key=='xtb_pea_transfer':result['method']='Question officielle sur le transfert entrant PEA ; disponibilité explicite, sans qualification de frais'
  if end:
   if start and start>end:raise ValueError('Période offre inversée')
   result.update(until=end,start=start)
