@@ -9,6 +9,7 @@ import json
 import pathlib
 import re
 from bs4 import BeautifulSoup
+from broker_profile_qualification import qualify
 
 SOURCES = json.loads(pathlib.Path(__file__).with_name('broker_profile_sources.json').read_text())
 FIELDS = ('dca', 'pea', 'pme', 'jeune', 'ifu', 'cash', 'boursomarkets')
@@ -44,6 +45,9 @@ def statement(broker, field, texts):
     None denotes an explicit unresolved scope; it never becomes False in UI.
     Every positive/negative assertion must carry a bounded matching statement.
     """
+    qualified = qualify(broker, field, {key: texts[key] for key in DOCUMENTS[broker][field]})
+    if qualified is not None:
+        return qualified
     source = DOCUMENTS[broker][field][0]
     text = texts[source]
     def proved(pattern, available, copy, status='confirmé', document=source):
@@ -153,7 +157,7 @@ def parse(broker,field,raws,today):
         supporting['caTariff'] = find(r"Mise en place d.un Plan d.Epargne Boursier \(PEB\) Nous consulter", texts['caTariff'])[0]
     if broker == 'xtb' and field == 'cash':
         supporting['xtbPea'] = find(r'(?:espèces|fonds|argent).{0,120}?(?:ne.{0,25}?intérêts|pas.{0,25}?intérêts|non rémun)', texts['xtbPea'])[0]
-    if broker == 'tr' and field == 'garde':
+    if broker == 'tr' and field == 'garde' and available is None:
         supporting['trFees'] = find(r'Il n.y a pas de frais de garde', texts['trFees'])[0]
     if broker == 'ibkr' and field == 'entrant':
         supporting['ibkrPea'] = find(r'Pas de frais d.ouverture du PEA, ni de frais de tenue de compte ou de frais de transfert', texts['ibkrPea'])[0]
@@ -189,6 +193,9 @@ def collect_profiles(baseline,today,fetcher):
                     if isinstance(raw,Exception):raise raw
                 observation=parse(broker,field,raws,today)
                 if broker not in baseline['brokers']:raise ValueError('Barème principal non qualifié')
+                previous=baseline['brokers'][broker].get('profile',{}).get(field,{})
+                if previous.get('status')=='confirmé' and observation['status']!='confirmé':
+                    raise ValueError('Clause précédemment confirmée absente : dernière preuve conservée')
                 baseline['brokers'][broker].setdefault('profile',{})[field]=observation;count+=1
             except Exception as error:
                 failures[f'{broker}:profile:{field}']=str(error)
