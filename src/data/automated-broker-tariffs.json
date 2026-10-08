@@ -1844,34 +1844,48 @@
           ]
         },
         "entrant": {
-          "available": null,
-          "status": "non établi",
+          "available": true,
+          "status": "confirmé",
           "copy": {
-            "resume": "Transfert entrant PEA : conditions et remboursement éventuel à confirmer dans les sources publiques.",
-            "full": "Transfert entrant PEA : conditions et remboursement éventuel à confirmer dans les sources publiques."
+            "resume": "Transfert entrant PEA possible via le Portail Client ; aucun frais de transfert annoncé par IBKR. Les frais du courtier de départ restent distincts.",
+            "full": "Transfert entrant PEA possible via le Portail Client ; aucun frais de transfert annoncé par IBKR. Les frais du courtier de départ restent distincts."
           },
           "checkedAt": "2026-10-08",
-          "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
+          "sourceUrl": "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
           "refs": [
+            {
+              "document": "ibkrTransfer",
+              "sourceUrl": "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
+              "discoveryUrl": null,
+              "page": 1,
+              "sha256": "bf95d2ec235b4de4394b423f826d3a8253c8b59f3dde706282aa7dce72e4411a",
+              "kind": "page",
+              "statement": "You can transfer PEA accounts held with other brokers (delivering broker/ceding broker) into your account"
+            },
             {
               "document": "ibkrPea",
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "page": null,
-              "sha256": "eeb8b2e4eb693cab34c6f2705db2e9ab5a1c16d7bc5468fecd1a0c85fe4dad75",
+              "discoveryUrl": null,
+              "page": 1,
+              "sha256": "b998c44d95dfea1a86230b23808d3299801aef9c6b4163d6dd6df45134a75db4",
               "kind": "page",
-              "statement": "PEA"
+              "statement": "Pas de frais d'ouverture du PEA, ni de frais de tenue de compte ou de frais de transfert"
             }
           ],
           "scope": "ibkr ; entrant ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "eeb8b2e4eb693cab34c6f2705db2e9ab5a1c16d7bc5468fecd1a0c85fe4dad75",
+          "sha256": "4dccbf1af9835106d4284e257a88cad1dff3935b6ba1b6dbc08ff61449d7bbd9",
           "values": {},
-          "decisiveDocument": "ibkrPea",
-          "statement": "PEA",
+          "decisiveDocument": "ibkrTransfer",
+          "statement": "You can transfer PEA accounts held with other brokers (delivering broker/ceding broker) into your account",
           "checkedSources": [
             {
+              "sourceUrl": "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
+              "sha256": "bf95d2ec235b4de4394b423f826d3a8253c8b59f3dde706282aa7dce72e4411a"
+            },
+            {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "eeb8b2e4eb693cab34c6f2705db2e9ab5a1c16d7bc5468fecd1a0c85fe4dad75"
+              "sha256": "b998c44d95dfea1a86230b23808d3299801aef9c6b4163d6dd6df45134a75db4"
             }
           ]
         }
@@ -1990,38 +2004,35 @@
       },
       "profile": {
         "dca": {
-          "available": null,
-          "status": "non établi",
+          "available": true,
+          "status": "confirmé",
           "copy": {
-            "resume": "Plans programmés : gratuité annoncée sur le compte-titres ; conditions propres au PEA à confirmer dans les documents publics.",
-            "full": "Plans programmés : gratuité annoncée sur le compte-titres ; conditions propres au PEA à confirmer dans les documents publics."
+            "resume": "Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles.",
+            "full": "Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles."
           },
           "checkedAt": "2026-10-08",
-          "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+          "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
           "refs": [
             {
-              "document": "trContract",
-              "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
-              "page": 3,
-              "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
-              "kind": "pdf",
-              "statement": "PEA"
+              "document": "trPeaHelp",
+              "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+              "discoveryUrl": null,
+              "page": 1,
+              "sha256": "d496f6fd79587534e2690490610e66ad207e082999d3373703f814833d9b6e8a",
+              "kind": "page",
+              "statement": "Trade Republic propose le premier PEA sans frais de France grâce aux plans d’épargne"
             }
           ],
           "scope": "tr ; dca ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "6b32aff927456a9cfcb221988b10014945eaea598b164ac5961d33122632849d",
+          "sha256": "d496f6fd79587534e2690490610e66ad207e082999d3373703f814833d9b6e8a",
           "values": {},
-          "decisiveDocument": "trContract",
-          "statement": "PEA",
+          "decisiveDocument": "trPeaHelp",
+          "statement": "Trade Republic propose le premier PEA sans frais de France grâce aux plans d’épargne",
           "checkedSources": [
             {
-              "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
-              "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
-            },
-            {
-              "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account",
-              "sha256": "8194741a6d119a73d8217012041f0bea542d01f05d06ca1b9ee2be57d71e0747"
+              "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+              "sha256": "d496f6fd79587534e2690490610e66ad207e082999d3373703f814833d9b6e8a"
             }
           ]
         },

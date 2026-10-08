@@ -13,6 +13,7 @@ on:
       - 'scripts/broker_tariff_extensions.py'
       - 'scripts/broker_profiles.py'
       - 'scripts/broker_profile_sources.json'
+      - 'scripts/broker_document_sources.py'
   pull_request:
     paths:
       - '.github/workflows/update-regulatory-data.yml'
@@ -20,6 +21,7 @@ on:
       - 'scripts/*broker_tariffs*'
       - 'scripts/*broker_tariff*'
       - 'scripts/broker_profile*'
+      - 'scripts/broker_document_sources.py'
       - 'scripts/fixtures/regulatory/**'
       - 'scripts/fixtures/broker-tariffs/**'
       - 'scripts/fixtures/broker-profiles/**'
