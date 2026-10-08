@@ -3,7 +3,7 @@ import { SCPI } from '../src/data/scpi.js'
 import { DATA_CATALOG, searchData } from '../src/data/catalog.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 import { buildTweet, allocation } from '../src/pages/scpi-presentation/lib.js'
-assert.equal(SCPI.length, 2)
+assert.equal(SCPI.length, 5)
 assert.equal(HOME_TOOLS.filter(row => row.to === '/presentation-scpi').length, 1)
 assert(TOOLS.find(row => row.to === '/presentation-scpi'))
 for (const record of SCPI) {
@@ -26,3 +26,6 @@ changed.snapshot.countries = [{ label: 'France', value: 60 }, { label: 'Allemagn
 assert(buildTweet(changed).includes('France représente 60 %'))
 assert(!buildTweet(changed).includes('marché britannique'))
 console.log('SCPI: shared observations, differentiated tweets, fees, dates and catalogue OK.')
+
+const corumXl = SCPI.find(row => row.id === 'corum-xl')
+assert(buildTweet(corumXl).includes('12,4 % TTC en zone euro et 15,9 % TTC hors zone euro'))

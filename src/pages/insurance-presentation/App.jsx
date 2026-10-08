@@ -1,0 +1,61 @@
+import { useState } from 'react'
+import PageHeader from '../../design-system/PageHeader'
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
+import ToolWorkspace from '../../design-system/ToolWorkspace'
+import Button from '../../design-system/Button'
+import { INSURANCE } from '../../data/insurance.js'
+import { dateLabel, format } from '../scpi-presentation/lib.js'
+import { buildTweet } from './lib.js'
+import '../scpi-presentation/style.css'
+
+export default function App() {
+  const [id, setId] = useState(INSURANCE[0]?.id)
+  const [draft, setDraft] = useState(null)
+  const [message, setMessage] = useState('')
+  const record = INSURANCE.find(row => row.id === id)
+  const text = draft ?? (record ? buildTweet(record) : '')
+  async function copy() {
+    try { await navigator.clipboard.writeText(text); setMessage('Texte copié.') }
+    catch { setMessage('Sélectionne le texte dans l’aperçu pour le copier.'); document.querySelector('#insurance-draft')?.select() }
+  }
+  if (!record) return <p role="alert">Aucun contrat vérifié n’est disponible pour le moment.</p>
+  return <div className="scpi-presentation insurance-presentation">
+    <PageHeader title="Présentation d’assurance-vie" subtitle="Les supports du contrat, leurs conditions et les frais." />
+    <ToolWorkspace actions={<>
+      <Button onClick={copy}>Copier le texte</Button>
+      <Button variant="secondary" onClick={() => { setDraft(null); setMessage('Texte d’origine rétabli.') }}>Rétablir le texte</Button>
+      <span role="status">{message}</span>
+    </>}>
+      <section className="tool-settings">
+        <ChoicePicker aria-label="Choisir une assurance-vie" value={id} onChange={event => { setId(event.target.value); setDraft(null); setMessage('') }}>
+          {INSURANCE.map(row => <option key={row.id} value={row.id}>{row.name}</option>)}
+        </ChoicePicker>
+        <div className="scpi-evidence">
+          <h2>Les données utilisées</h2>
+          <p>Sources officielles vérifiées le {dateLabel(record.checkedAt)}. Les frais et conditions sont ceux observés sur ces pages ; leur date d’effet n’y est pas toujours précisée.</p>
+          <p><a href={record.sourceUrl} target="_blank" rel="noreferrer">Présentation officielle du contrat</a></p>
+          <details><summary>Les fonds euros et leurs conditions</summary>
+            {record.euroFunds.map(fund => <section key={fund.name}>
+              <h3>{fund.name}</h3>
+              <table><thead><tr><th>Année</th><th>Rendement net de gestion</th></tr></thead><tbody>{fund.years.map(row => <tr key={row.year}><th scope="row">{row.year}</th><td>{format(row.return)} %</td></tr>)}</tbody></table>
+              <p>Avant prélèvements sociaux et fiscaux ; historique publié disponible, sans bonus commercial.</p>
+              <p>Garantie annuelle nette de gestion : {format(fund.guarantee)} %. Frais de gestion : {format(fund.managementFeeMax)} % maximum/an.</p>
+              <p>Jusqu’à {format(fund.maxAllocation)} % du versement{fund.ceiling ? `, plafond de ${format(fund.ceiling)} € par contrat` : ''}. {fund.operations}</p>
+              <a href={fund.sourceUrl} target="_blank" rel="noreferrer">Source et conditions du fonds</a>
+            </section>)}
+          </details>
+          <details><summary>Comprendre les frais</summary>
+            <p>La gestion des unités de compte porte sur leur valeur, et les frais internes des supports s’ajoutent. Les frais de transaction ETF s’appliquent aux opérations concernées.</p>
+            <p>Les rendements des fonds euros sont déjà nets de leurs frais de gestion : ces frais ne doivent pas être soustraits une seconde fois.</p>
+            <p>Cette fiche concerne la gestion libre. Les mandats de gestion, garanties optionnelles et supports immobiliers peuvent prévoir des conditions supplémentaires.</p>
+          </details>
+        </div>
+      </section>
+      <section className="tool-preview">
+        <label htmlFor="insurance-draft">Ton texte, modifiable avant publication</label>
+        <textarea id="insurance-draft" className="scpi-draft" value={text} onChange={event => setDraft(event.target.value)} spellCheck="true" />
+        <p className="scpi-length">{text.length.toLocaleString('fr-FR')} caractères · publication longue sur X</p>
+      </section>
+    </ToolWorkspace>
+  </div>
+}

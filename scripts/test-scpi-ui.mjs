@@ -30,7 +30,7 @@ try {
     assert.equal(await page.locator('#scpi-draft').inputValue(),buildTweet(record))
   }
   await page.getByText('Toute la répartition',{exact:true}).click()
-  assert.equal(await page.locator('.scpi-evidence tbody tr').count(),SCPI[1].snapshot.countries.length+SCPI[1].snapshot.sectors.length)
+  assert.equal(await page.locator('.scpi-evidence tbody tr').count(),SCPI.at(-1).snapshot.countries.length+SCPI.at(-1).snapshot.sectors.length)
   await mkdir('test-artifacts/scpi',{recursive:true})
   await page.screenshot({path:'test-artifacts/scpi/desktop.png',fullPage:true})
   for(const width of [320,390]) {

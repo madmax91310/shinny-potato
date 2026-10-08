@@ -22,12 +22,14 @@ const DataSearch = lazy(() => import('./pages/data-search/App'))
 const HouseholdApp = lazy(() => import('./pages/france-100-menages/App'))
 const DataReview = lazy(() => import('./pages/data-review/App'))
 const CompanyAnalysis = lazy(() => import('./pages/company-analysis/App'))
+const InsurancePresentation = lazy(() => import('./pages/insurance-presentation/App'))
 const ScpiPresentation = lazy(() => import('./pages/scpi-presentation/App'))
 const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 
 // Individual publication routes reuse one lazy engine and its existing data.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
+  '/presentation-assurance-vie': <InsurancePresentation />,
   '/presentation-scpi': <ScpiPresentation />,
   '/analyse-entreprise': <CompanyAnalysis />,
   '/france-100-menages': <HouseholdApp />,

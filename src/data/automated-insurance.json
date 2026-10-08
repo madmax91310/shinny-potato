@@ -1,0 +1,159 @@
+{
+  "records": [
+    {
+      "id": "linxea-spirit-2",
+      "name": "Linxea Spirit 2",
+      "insurer": "Spirica",
+      "distributor": "Linxea",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-spirit-2/",
+      "fees": {
+        "subscription": 0.0,
+        "arbitrage": 0.0,
+        "units": 0.5,
+        "etfTrade": 0.06,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-spirit-2/",
+        "scope": "Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles."
+      },
+      "access": {
+        "initial": 500.0,
+        "free": 100.0,
+        "monthly": 100.0,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-spirit-2/"
+      },
+      "supports": {
+        "minimumCount": 1100,
+        "categories": [
+          "ETF",
+          "SCPI",
+          "private equity",
+          "actions en direct"
+        ],
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-spirit-2/"
+      },
+      "euroFunds": [
+        {
+          "name": "Euro Nouvelle Génération",
+          "years": [
+            {
+              "year": 2023,
+              "return": 3.13
+            },
+            {
+              "year": 2024,
+              "return": 3.13
+            },
+            {
+              "year": 2025,
+              "return": 3.08
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 98.0,
+          "managementFeeMax": 2.0,
+          "maxAllocation": 100.0,
+          "ceiling": 5000000.0,
+          "operations": "Versements et arbitrages ; sans quota d’unités de compte.",
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-spirit-2/supports-disponibles-sur-linxea-spirit-2/fonds-euro/"
+        },
+        {
+          "name": "Euro Objectif Climat",
+          "years": [
+            {
+              "year": 2025,
+              "return": 3.26
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 98.0,
+          "managementFeeMax": 2.0,
+          "maxAllocation": 100,
+          "ceiling": 5000000.0,
+          "operations": "Gestion libre ; versement initial, versements complémentaires et programmés.",
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-spirit-2/supports-disponibles-sur-linxea-spirit-2/fonds-euro-linxea-spirit-2-euro-objectif-climat/"
+        }
+      ]
+    },
+    {
+      "id": "linxea-avenir-2",
+      "name": "Linxea Avenir 2",
+      "insurer": "Suravenir",
+      "distributor": "Linxea",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/",
+      "fees": {
+        "subscription": 0.0,
+        "arbitrage": 0.0,
+        "units": 0.6,
+        "etfTrade": 0.1,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/",
+        "scope": "Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles."
+      },
+      "access": {
+        "initial": 100.0,
+        "free": 100.0,
+        "monthly": 25.0,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/"
+      },
+      "supports": {
+        "minimumCount": 600,
+        "categories": [
+          "ETF",
+          "SCPI",
+          "private equity"
+        ],
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/"
+      },
+      "euroFunds": [
+        {
+          "name": "Suravenir Opportunités 2",
+          "years": [
+            {
+              "year": 2023,
+              "return": 2.5
+            },
+            {
+              "year": 2024,
+              "return": 2.5
+            },
+            {
+              "year": 2025,
+              "return": 3.0
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 97.0,
+          "managementFeeMax": 3.0,
+          "maxAllocation": 100.0,
+          "ceiling": null,
+          "operations": "Versements uniquement à l’entrée ; arbitrages sortants possibles.",
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/"
+        },
+        {
+          "name": "Suravenir Rendement 2",
+          "years": [
+            {
+              "year": 2023,
+              "return": 2.2
+            },
+            {
+              "year": 2024,
+              "return": 2.2
+            },
+            {
+              "year": 2025,
+              "return": 2.1
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 99.4,
+          "managementFeeMax": 0.6,
+          "maxAllocation": 70.0,
+          "ceiling": null,
+          "operations": "Au moins 30 % en unités de compte non garanties ; arbitrages possibles.",
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/"
+        }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import urllib.error
 import urllib.request
 
 WORKFLOWS = {
+    'update-insurance.yml': 'Présentations d’assurance-vie',
     'update-scpi.yml': 'Présentations de SCPI',
     'update-regulatory-data.yml': 'Paramètres fiscaux, LDDS et tarifs de courtiers',
     'collect-etf-pilot.yml': 'ETF et compositions d’indices',

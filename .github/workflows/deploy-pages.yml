@@ -66,6 +66,9 @@ jobs:
       - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: node scripts/test-scpi.mjs
+      - run: python -m unittest discover -s scripts -p 'test_corum.py'
+      - run: python -m unittest discover -s scripts -p 'test_insurance.py'
+      - run: node scripts/test-insurance.mjs
       - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'
       - run: node scripts/test-company-analysis.mjs
       - run: node scripts/test-annual-rollover.mjs
@@ -118,6 +121,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: mkdir -p test-artifacts/company-analysis
       - run: node scripts/test-scpi-ui.mjs
+      - run: node scripts/test-insurance-ui.mjs
       - run: node scripts/test-company-analysis-ui.mjs
         env:
           COMPANY_QA_DIR: test-artifacts/company-analysis
