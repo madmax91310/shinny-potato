@@ -58,12 +58,12 @@
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
-      "runId": 37741352329,
+      "runId": 37765092371,
       "attempt": 1,
-      "completedAt": "2026-10-08T07:14:58Z",
+      "completedAt": "2026-10-08T10:51:17Z",
       "status": "failure",
       "lastSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37741352329",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37765092371",
       "failures": [
         {
           "job": "report-failures",
@@ -73,9 +73,9 @@
       "dataFailures": {
         "fonds-euros": {
           "name": "Moyenne des fonds euros",
-          "completedAt": "2026-10-08T07:14:58Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37741352329",
-          "cause": "https://acpr.banque-france.fr/fr/publications-et-statistiques/etudes-et-recherche: HTTP Error 403: Forbidden; https://acpr.banque-france.fr/fr/publications-acpr: HTTP Error 403: Forbidden; https://acpr.banque-france.fr/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses: HTTP Error 403: Forbidden; https://acpr.banque-france.fr/sitemap.xml: HTTP Error 403: Forbidden"
+          "completedAt": "2026-10-08T10:51:17Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37765092371",
+          "cause": "https://acpr.banque-france.fr/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf: HTTP Error 403: Forbidden"
         }
       }
     },
@@ -96,5 +96,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-08T07:18:56Z"
+  "updatedAt": "2026-10-08T10:51:17Z"
 }
