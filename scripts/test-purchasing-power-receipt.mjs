@@ -44,7 +44,7 @@ try {
         const canvas = await renderPurchasingPowerImage(item), story = purchasingPowerStory(item), text = buildTweetText(item)
         if (!labels.includes(fmtEUR(story.endAmount)) || !text.includes(fmtEUR(story.endAmount))) throw new Error('PNG and tweet disagree')
         if (!labels.includes(story.observation)) throw new Error('Observation date missing')
-        if (!labels.includes(`${story.period} · ${fmtPct(story.erosion ? story.equivalentPct : story.pricePct)}`)) throw new Error('Percentage disagrees')
+        if (!labels.includes(`${story.period}${story.provisional ? " · provisoire" : ""} · ${fmtPct(story.erosion ? story.equivalentPct : story.pricePct)}`)) throw new Error('Percentage disagrees')
         if (labels.filter(t => /epargnantlibre/.test(t)).length !== 1) throw new Error('Signature missing or duplicated')
         if (labels.some(t => /POUVOIR D’ACHAT,|COMBIEN EN PLUS|Exemple fictif/.test(t))) throw new Error('Old heading or mockup data returned')
         if (canvas.width !== 1200 || canvas.height !== 1500) throw new Error('Wrong export dimensions')
