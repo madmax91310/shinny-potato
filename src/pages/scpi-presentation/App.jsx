@@ -37,7 +37,7 @@ export default function App() {
           <p><a href={record.sourceUrl} target="_blank" rel="noreferrer">Présentation officielle</a></p>
           <p><a href={record.conditions.sourceUrl} target="_blank" rel="noreferrer">Frais et conditions de souscription</a></p>
           <details><summary>Toute la répartition</summary>
-            {['countries', 'sectors'].map(key => <div key={key}><h3>{key === 'countries' ? 'Pays' : 'Secteurs'}</h3><table><thead><tr><th scope="col">Exposition</th><th scope="col">Poids</th></tr></thead><tbody>{[...record.snapshot[key]].sort((a, b) => b.value - a.value).map(row => <tr key={row.label}><th scope="row">{row.label}</th><td>{format(row.value)} %</td></tr>)}</tbody></table></div>)}
+            {['countries', 'sectors', ...(record.snapshot.regions ? ['regions'] : [])].map(key => <div key={key}><h3>{key === 'countries' ? 'Pays' : key === 'regions' ? 'Régions françaises' : 'Secteurs'}</h3><table><thead><tr><th scope="col">Exposition</th><th scope="col">Poids</th></tr></thead><tbody>{[...record.snapshot[key]].sort((a, b) => b.value - a.value).map(row => <tr key={row.label}><th scope="row">{row.label}</th><td>{format(row.value)} %</td></tr>)}</tbody></table></div>)}
             {record.snapshot.sourceUrls.map(url => <p key={url}><a href={url} target="_blank" rel="noreferrer">Source de la répartition</a></p>)}
           </details>
           <details><summary>Patrimoine, occupation et prix de part</summary>
@@ -49,6 +49,7 @@ export default function App() {
             <p>Le nombre d’actifs n’est pas toujours un nombre d’immeubles ; le nombre de baux ne représente pas un nombre de locataires. Le taux financier peut inclure des franchises ou garanties locatives.</p>
             {record.priceHistory && <>
               <h3>Historique du prix de souscription</h3>
+              {record.priceHistory.corporateActions?.map(row => <p key={row.asOf}>{row.description}</p>)}
               <table><thead><tr><th>Date publiée</th><th>Prix de la part</th></tr></thead><tbody>{record.priceHistory.years.map(row => <tr key={row.asOf}><th scope="row">{dateLabel(row.asOf)}</th><td>{format(row.value)} €</td></tr>)}</tbody></table>
               {record.priceHistory.dateNote && <p>{record.priceHistory.dateNote}</p>}
               {(record.priceHistory.sourceUrls ?? [record.priceHistory.sourceUrl]).map(url => <p key={url}><a href={url} target="_blank" rel="noreferrer">Source de l’historique du prix</a></p>)}
