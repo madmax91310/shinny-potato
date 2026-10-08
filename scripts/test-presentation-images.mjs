@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 import { SCPI } from '../src/data/scpi.js'
 import { INSURANCE } from '../src/data/insurance.js'
-import { presentationImageModel } from '../src/pages/presentation-shared/imageExport.js'
+import { presentationImageModel, presentationCardModel } from '../src/pages/presentation-shared/imageExport.js'
 
 const base='http://127.0.0.1:4334/shinny-potato'
 const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4334','--strictPort'],{stdio:'ignore'})
@@ -32,14 +32,16 @@ try {
       for(const c of result.calls)assert(c.left>=55 && c.right<=1545 && c.top>=45 && c.bottom<result.height-45,`${record.id}: overflowing text ${c.value}`)
       const copy=result.calls.map(c=>c.value).join(' ').replace(/\s+/g,' ')
       assert.equal(copy.split('Épargnant Libre').length-1,1)
-      const model=presentationImageModel(record,kind)
-      for(const section of model.sections) {
-        for(const note of section.notes ?? [])assert(copy.includes(note.replace(/\s+/g,' ')),`${record.id}: missing condition ${note}`)
-        for(const a of section.annual ?? [])assert(copy.includes(a.value),`${record.id}: missing annual return`)
+      assert.equal(result.height,1600)
+      const model=presentationCardModel(record,kind)
+      assert.equal(model.cards.length,3)
+      for(const card of model.cards) {
+        assert(copy.includes(card.title))
+        for(const r of card.rows)assert(copy.includes(r.value.replace(/\s+/g,' ')),`${record.id}: missing summary fact ${r.value}`)
+        assert(copy.includes(card.note.replace(/\s+/g,' ')),`${record.id}: missing summary condition`)
       }
-      if(record.id==='iroko-zen')assert(copy.includes('Maximum 14,4 %'))
-      if(record.id==='epargne-pierre')assert(/division|divisée|divis|fractionn/i.test(copy))
-      if(record.id==='placement-direct-vie') {assert(copy.includes('1,9 à 3,45 %'));assert.equal(result.calls.filter(c=>c.value.startsWith('Encours ')).length,7)}
+      if(record.id==='iroko-zen')assert(copy.includes('≤ 14,4 %'))
+      if(record.id==='placement-direct-vie')assert(copy.includes('1,9 à 3,45 %') && copy.includes('selon la part'))
       await writeFile(`${output}/${record.id}.png`,Buffer.from(result.url.split(',')[1],'base64'))
       console.log(`${record.id}: ${result.width}×${result.height}, conditions and bounds OK`)
     }
@@ -98,5 +100,5 @@ try {
   await failurePage.getByRole('button',{name:'Télécharger l’image',exact:true}).click()
   await retry
   assert.deepEqual(errors,[])
-  console.log('Presentation images: all source facts, text bounds, identical preview/download, selection, mobile and asset retry OK.')
+  console.log('Presentation images: summary facts and conditions, text bounds, identical preview/download, selection, mobile and asset retry OK.')
 } finally {await browser?.close();server.kill('SIGTERM')}

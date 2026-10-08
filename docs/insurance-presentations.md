@@ -50,3 +50,7 @@ Les taux restent attachés aux années effectivement publiées. Du 1er janvier a
 La date de rendement doit correspondre à la dernière ligne annuelle ; les années doivent être consécutives, et toute régression du millésime ou source invalidée échoue. Cette tolérance de calendrier ne dispense pas de redécouvrir et relire les sources. Elle ne prolonge aucune offre commerciale : l’accès Netissima expiré déclenche toujours un échec tant qu’une nouvelle condition officielle n’est pas qualifiée, et les consommateurs masquent le quota et les opérations échus même si la dernière fiche est conservée.
 
 Tests : `python -m unittest discover -s scripts -p test_publication_periods.py` et les tests des textes/PNG.
+
+### Correction de la composition minérale
+
+L’export est une carte carrée de 1600 × 1600 pixels : grand titre, illustration dominante et trois panneaux de chiffres essentiels, conformément à la proposition 1. Le texte conserve le détail des conditions et des sources. Les taux de distribution restent identifiés comme bruts de fiscalité étrangère ; les fonds euros gardent leurs fourchettes et conditions lorsqu’elles s’appliquent.

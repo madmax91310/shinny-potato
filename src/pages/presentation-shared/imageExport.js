@@ -55,60 +55,85 @@ function wrap(ctx,text,width) {
   return result
 }
 function text(ctx,value,x,y,width,size=29,color=INK,weight=400,family=SANS){font(ctx,size,weight,family);ctx.fillStyle=color;const lines=wrap(ctx,value,width);lines.forEach((line,i)=>ctx.fillText(line,x,y+i*size*1.35));return y+lines.length*size*1.35}
-function rows(ctx,items,x,y,width){for(const r of items){y=text(ctx,r.label,x,y,width,24,MUTED);y=text(ctx,r.value,x,y+7,width,31,INK,600)+24}return y}
-function section(ctx,s,y) {
-  y=text(ctx,s.title,116,y,1368,37,INK,600,SERIF)+30
-  if(s.columns){const bottom=s.columns.map((c,i)=>{let cy=text(ctx,c.title,116+i*704,y,664,27,MUTED,600)+22;return rows(ctx,c.rows,116+i*704,cy,664)});y=Math.max(...bottom)}
-  if(s.rows)y=rows(ctx,s.rows,116,y,1368)
-  if(s.annual){const width=1368/s.annual.length;const bottom=s.annual.map((a,i)=>{const x=116+i*width;let cy=text(ctx,String(a.year),x,y,width-35,26,MUTED);return text(ctx,a.value,x,cy+12,width-35,42,INK,600,SERIF)+25});y=Math.max(...bottom)}
-  if(s.table){
-    const widths=[480,590,220],xs=[116,626,1246]
-    const headers=['Encours du contrat','Part d’unités de compte','Rendement']
-    y=Math.max(...headers.map((h,i)=>text(ctx,h,xs[i],y,widths[i],25,MUTED,600)))+24
-    for(const t of s.table){y=Math.max(...[t.encours,t.condition,pct(t.return)].map((v,i)=>text(ctx,v,xs[i],y,widths[i],27,INK)))+24}
-  }
-  for(const note of s.notes ?? []) y=text(ctx,note,116,y+12,1368,25,MUTED)+8
-  return y+58
-}
 const assets=new Map()
 function loadArt(kind) {
   if(!assets.has(kind))assets.set(kind,new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>{assets.delete(kind);reject(new Error('Illustration indisponible. Réessaie l’export.'))};img.src=`${import.meta.env.BASE_URL}asset-art/mineral-${kind}.webp`}))
   return assets.get(kind)
 }
+// The approved reference is a square editorial card, with three summary panels.
+// Full product conditions remain in the adjacent text publication.
+export function presentationCardModel(record, kind) {
+  const model=presentationImageModel(record,kind)
+  if(kind==='scpi') {
+    const c=record.conditions
+    const top=[...record.snapshot.sectors].sort((a,b)=>b.value-a.value)[0]
+    const management=c.managementZones
+      ? `${pct(c.managementZones.euro)} / ${pct(c.managementZones.outside)} TTC`
+      : `${c.managementFeeMax || record.id==='iroko-zen'?'≤ ':''}${pct(c.managementFee)} ${c.managementTax ?? 'TTC'}`
+    model.cards=[
+      {title:'Patrimoine',icon:'buildings',rows:[row('Prix de la part',euro(record.price.value)),row('Minimum initial',euro(c.minimum)),...(top?[row(top.label,pct(top.value))]:[])],note:`Prix au ${dateLabel(record.price.asOf)}`},
+      {title:'Distributions',icon:'coins',rows:record.annual.years.slice(-3).map(r=>row(String(r.year),pct(r.distribution))),note:'Taux de distribution bruts de fiscalité étrangère.'},
+      {title:'Frais',icon:'document',rows:[row('Souscription',`${c.subscriptionFeeMax?'≤ ':''}${pct(c.subscriptionFee)} ${c.subscriptionTax ?? ''}`.trim()),row('Gestion',management)],note:c.managementZones?'Zone euro / hors zone euro. '+c.managementBasis:c.managementBasis},
+    ]
+    model.compactFooter='Capital et revenus non garantis · Revente non immédiate'
+  } else {
+    model.cards=[
+      {title:'Supports',icon:'leaf',rows:[row('Supports annoncés',`Plus de ${format(record.supports.minimumCount)}`),row('Ouverture',euro(record.access.initial)),row('Versement programmé',`${euro(record.access.monthly)}/mois`)],note:'Gestion libre · '+record.insurer},
+      {title:'Fonds euros',icon:'coins',rows:record.euroFunds.map(f=>{const r=f.years.at(-1);return row(`${f.name} · ${r.year}`,r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`)}),note:record.euroFunds.map(f=>f.years.at(-1).condition).filter(Boolean).join('; ') || 'Nets de gestion, avant prélèvements sociaux et fiscaux. Hors bonus.'},
+      {title:'Frais',icon:'document',rows:[row('Versement',pct(record.fees.subscription)),row('Gestion des UC',`${pct(record.fees.units)}/an`),row('Transactions ETF',pct(record.fees.etfTrade))],note:'Hors frais des supports et options. Transactions : par opération.'},
+    ]
+    model.compactFooter='UC non garanties · Rendements passés non garantis à l’avenir'
+  }
+  return model
+}
+function panelIcon(ctx,kind,x,y) {
+  ctx.save();ctx.translate(x,y);ctx.strokeStyle='#69765c';ctx.fillStyle='#d9d1bc';ctx.lineWidth=4;ctx.lineJoin='round'
+  if(kind==='buildings') {for(const [px,h] of [[-40,42],[-12,70],[16,55]]){ctx.fillRect(px,30-h,25,h);ctx.strokeRect(px,30-h,25,h)}ctx.beginPath();ctx.moveTo(-48,34);ctx.lineTo(48,34);ctx.stroke()}
+  else if(kind==='coins') {for(const [px,py] of [[-21,12],[20,-9]])for(let i=2;i>=0;i--){ctx.beginPath();ctx.ellipse(px,py+i*12,25,10,0,0,Math.PI*2);ctx.fill();ctx.stroke()}}
+  else if(kind==='document') {ctx.beginPath();ctx.moveTo(-26,-35);ctx.lineTo(13,-35);ctx.lineTo(30,-18);ctx.lineTo(30,37);ctx.lineTo(-26,37);ctx.closePath();ctx.stroke();for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(-13,-7+i*14);ctx.lineTo(17,-7+i*14);ctx.stroke()}}
+  else {ctx.beginPath();ctx.ellipse(0,0,18,42,Math.PI/4,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(-30,40);ctx.lineTo(23,-28);ctx.stroke()}
+  ctx.restore()
+}
 export async function renderPresentationImage(record,kind) {
   await document.fonts.ready
-  const model=presentationImageModel(record,kind),art=await loadArt(kind)
-  const measure=document.createElement('canvas').getContext('2d');measure.textBaseline='top'
-  let titleSize=78
-  while(titleSize>46){font(measure,titleSize,600,SERIF);if(measure.measureText(model.title).width<=1368)break;titleSize-=2}
-  font(measure,titleSize,600,SERIF)
-  const titleHeight=wrap(measure,model.title,1368).length*titleSize*1.35
-  const start=130+titleHeight+440
-  let end=start
-  for(const s of model.sections)end=section(measure,s,end)
-  end=text(measure,model.footer,116,end,1368,25,MUTED)+20
-  end=text(measure,model.sources,116,end,1368,23,MUTED)+115
-  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=Math.ceil(end+80)
+  const model=presentationCardModel(record,kind),art=await loadArt(kind)
+  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1600
   const ctx=canvas.getContext('2d');ctx.textBaseline='top'
-  const bg=ctx.createLinearGradient(0,0,1600,canvas.height);bg.addColorStop(0,'#fffaf1');bg.addColorStop(1,'#ece4d7');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,canvas.height)
+  const bg=ctx.createLinearGradient(0,0,1600,1600);bg.addColorStop(0,'#fffaf1');bg.addColorStop(1,'#ece4d7');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1600)
   let seed=37
-  for(let i=0;i<canvas.width*canvas.height/95;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const x=seed%1600;seed=(Math.imul(seed,1664525)+1013904223)>>>0;ctx.fillStyle=i%2?'#705f4410':'#ffffff66';ctx.fillRect(x,seed%canvas.height,1,1)}
-  ctx.fillStyle='#fffaf166';ctx.strokeStyle='#d8cdbb';ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(55,45,1490,canvas.height-90,32);ctx.fill();ctx.stroke()
-  ctx.textAlign='center'
-  let y=text(ctx,model.title,800,104,1368,titleSize,INK,600,SERIF)
-  text(ctx,model.subtitle,800,y+12,1368,32,MUTED,400,SERIF)
-  ctx.textAlign='left'
-  const scale=Math.min(1200/art.width,340/art.height);const w=art.width*scale,h=art.height*scale
-  ctx.drawImage(art,(1600-w)/2,y+78+(340-h)/2,w,h)
-  y=start
-  for(const s of model.sections){
-    const bottom=section(measure,s,y)
-    ctx.fillStyle='#fffcf580';ctx.strokeStyle='#d8cdbb';ctx.lineWidth=1.5
-    ctx.beginPath();ctx.roundRect(84,y-25,1432,bottom-y-15,20);ctx.fill();ctx.stroke()
-    y=section(ctx,s,y)
+  for(let i=0;i<27000;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const x=seed%1600;seed=(Math.imul(seed,1664525)+1013904223)>>>0;ctx.fillStyle=i%2?'#705f4410':'#ffffff66';ctx.fillRect(x,seed%1600,1,1)}
+  ctx.strokeStyle='#d8cdbb';ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(45,35,1510,1530,32);ctx.stroke()
+  let size=116
+  while(size>48){font(ctx,size,600,SERIF);if(ctx.measureText(model.title).width<=1400)break;size-=2}
+  ctx.textAlign='center';text(ctx,model.title,800,100,1400,size,INK,600,SERIF)
+  text(ctx,model.subtitle,800,245,1400,42,MUTED,400,SERIF)
+  ctx.strokeStyle='#858475';ctx.lineWidth=2
+  for(const [a,b] of [[220,375],[1225,1380]]){ctx.beginPath();ctx.moveTo(a,274);ctx.lineTo(b,274);ctx.stroke()}
+  // The artwork occupies the same dominant position as the approved mock-up.
+  const scale=Math.min(1480/art.width,660/art.height),w=art.width*scale,h=art.height*scale
+  ctx.drawImage(art,(1600-w)/2,325+(660-h)/2,w,h)
+  for(let i=0;i<3;i++) {
+    const card=model.cards[i],x=82+i*486,width=464
+    ctx.fillStyle='#fffcf57a';ctx.strokeStyle='#d8cdbb';ctx.lineWidth=2
+    ctx.beginPath();ctx.roundRect(x,1000,width,408,28);ctx.fill();ctx.stroke()
+    panelIcon(ctx,card.icon,x+width/2,1065)
+    ctx.textAlign='center';text(ctx,card.title,x+width/2,1120,width-48,43,INK,400,SERIF)
+    ctx.textAlign='left'
+    // Fit whole phrases in the three panels without removing conditions.
+    let bodySize=29
+    const draw=(paint)=>{
+      const target=paint?ctx:document.createElement('canvas').getContext('2d');target.textBaseline='top'
+      let y=1181
+      for(const r of card.rows){y=text(target,r.label,x+28,y,width-56,bodySize-5,MUTED);y=text(target,r.value,x+28,y+3,width-56,bodySize+7,INK,600,SERIF)+12}
+      return text(target,card.note,x+28,y+2,width-56,bodySize-6,MUTED)
+    }
+    while(bodySize>18 && draw(false)>1386)bodySize--
+    draw(true)
   }
-  y=text(ctx,model.footer,116,y,1368,25,MUTED)+20
-  y=text(ctx,model.sources,116,y,1368,23,MUTED)+50
-  font(ctx,31,400,SERIF);ctx.fillStyle=INK;ctx.textAlign='center';ctx.fillText('Épargnant Libre',800,y);ctx.textAlign='left'
+  ctx.textAlign='center'
+  text(ctx,model.compactFooter,800,1430,1400,25,MUTED)
+  text(ctx,`Relevé le ${dateLabel(record.checkedAt)} · Conditions détaillées dans le texte`,800,1470,1400,23,MUTED)
+  text(ctx,'Épargnant Libre',800,1515,1400,32,INK,400,SERIF)
+  ctx.textAlign='left'
   return canvas
 }

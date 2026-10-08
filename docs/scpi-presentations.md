@@ -55,3 +55,7 @@ La découverte sélectionne le dernier rapport annuel terminé réellement lié 
 Du 1er janvier au 30 juin, l’exercice N−2 reste admissible si N−1 n’est pas encore publié : le texte, les réglages et l’image affichent explicitement le millésime attendu. Dès qu’il paraît, les trois années affichées se déplacent automatiquement. À compter du 1er juillet, l’absence de N−1 devient un échec suivi dans Données à revoir, avec conservation de la dernière fiche validée. Une publication découverte mais inaccessible ou invalide reste un échec même pendant cette période d’attente.
 
 Les colonnes doivent être consécutives et ne peuvent pas régresser. La division des parts d’Épargne Pierre garde sa date du 01/07/2026 ; le passage annoncé aux distributions mensuelles intervient le 01/01/2027, et la jouissance temporaire de 2026 cesse selon sa date publiée. Tests : `python -m unittest discover -s scripts -p test_publication_periods.py`.
+
+### Correction de la composition minérale
+
+L’export est une carte carrée de 1600 × 1600 pixels : grand titre, illustration dominante et trois panneaux de chiffres essentiels, conformément à la proposition 1. Le texte conserve le détail des conditions et des sources. Les taux de distribution restent identifiés comme bruts de fiscalité étrangère ; les fonds euros gardent leurs fourchettes et conditions lorsqu’elles s’appliquent.
