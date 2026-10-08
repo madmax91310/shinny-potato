@@ -153,9 +153,9 @@ export const DATA_CATALOG = Object.freeze([
   })),
   ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: 'Performance depuis', path: '/performance-depuis' }, ...(!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? [{ tool: 'Il y a X ans', path: '/il-y-a-x-ans' }] : []), ...(HISTORY_STATISTIC_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
   ...Object.entries(BROKER_TARIFFS).map(([id, observation]) => ({
-    id: `broker:${id}`, type: 'broker', name: id === 'bourso' ? 'BoursoBank · Découverte' : 'Fortuneo · Starter', aliases: [id, 'courtage', 'tarifs'],
+    id: `broker:${id}`, type: 'broker', name: {bourso:'BoursoBank · Découverte',fortuneo:'Fortuneo · Starter',xtb:'XTB',saxo:'Saxo · Classic',caidf:'Crédit Agricole Île-de-France',ibkr:'Interactive Brokers · France',tr:'Trade Republic',bd:'Bourse Direct'}[id], aliases: [id, 'courtage', 'tarifs'],
     consumers: [{tool: 'Comparateur de courtiers', path: '/comparatif-courtiers'}],
-    fields: [field('Tarif courtage automatisé', 'broker-tariffs', {...observation.values, description: brokerTariffCopy(id).full}, observation)],
+    fields: [field('Tarif courtage automatisé', 'broker-tariffs', {...observation.values, description: brokerTariffCopy(id).full}, observation), ...Object.entries(observation.fields ?? {}).map(([key,o]) => field(`Paramètre automatisé · ${key}`, 'broker-tariffs', {...o.values,description:o.copy.full},o))],
   })),
   ...TERMES.map((value) => ({ id: `lexicon:${value.id}`, type: 'lexicon', name: value.titre ?? value.nom ?? value.title ?? value.terme ?? value.id, aliases: [value.id], consumers: [{ tool: 'Fiche lexique', path: '/fiche-lexique' }], fields: [field('Définition', 'financial-lexicon', value, { ...SUPPORTING_EVIDENCE[`lexicon:${value.id}`], dateStatus: 'not-applicable', scope: value.id }),
     ...(REGULATORY_LEXICON_SOURCES[value.id] ?? []).map(key => {

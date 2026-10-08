@@ -13,8 +13,11 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEST = ROOT/'src/data/automated-broker-tariffs.json'
 SOURCES = {'bourso': 'https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf',
  'fortuneo':'https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf'}
+from broker_tariff_extensions import SOURCES as EXTENDED_SOURCES, SUPPLEMENT_SOURCES, parse as parse_extended, parse_supplement, base_supplements
+SOURCES.update(EXTENDED_SOURCES)
 MONTHS = {'janvier':1,'février':2,'mars':3,'avril':4,'mai':5,'juin':6,'juillet':7,'août':8,'septembre':9,'octobre':10,'novembre':11,'décembre':12}
 def parse(name, content, today, previous=None):
+ if name in EXTENDED_SOURCES: return parse_extended(name,content,today,previous)
  # Preserve column alignment. Only the labelled tariff table is eligible.
  if name == 'bourso':
   date = re.search(r'Tarifs applicables au (\d{1,2}) (\w+) (\d{4})',content)
@@ -51,16 +54,41 @@ def parse(name, content, today, previous=None):
  return {'values':values,'asOf':published,'checkedAt':today,'sourceUrl':SOURCES[name], 'scope':scope,
   'page': next(i for i,p in enumerate(content.split('\f'),1) if ('Courtage Actions Euronext' if name == 'bourso' else 'TARIFS DE COURTAGE BOURSE') in p),
   'method':'Tableau de courtage de la brochure officielle ; forfait et marché exacts', 'sha256':hashlib.sha256(content.encode()).hexdigest()}
+def fetch_content(url):
+ raw=download(url)
+ return pdf_text(raw) if raw.startswith(b'%PDF') else raw.decode('utf-8')
+def collect(baseline,today,fetcher=fetch_content):
+ failures={};validated=[];documents={}
+ def fetch_once(url):
+  if url not in documents:
+   try:documents[url]=fetcher(url)
+   except Exception as exc:documents[url]=exc
+  if isinstance(documents[url],Exception):raise documents[url]
+  return documents[url]
+ for name,url in SOURCES.items():
+  try:
+   content=fetch_once(url);observation=parse(name,content,today,baseline['brokers'].get(name))
+   previous_fields=baseline['brokers'].get(name,{}).get('fields',{})
+   observation['fields']={**previous_fields,**observation.get('fields',{})}
+   if name in ('bourso','fortuneo'):
+    try:observation['fields'].update(base_supplements(name,content,observation))
+    except Exception as exc:failures[name+':extras']=str(exc)
+   baseline['brokers'][name]=observation;validated.append(name)
+  except Exception as exc:failures[name]=str(exc)
+ for key,(broker,field,url) in SUPPLEMENT_SOURCES.items():
+  try:
+   _,_,observation=parse_supplement(key,fetch_once(url),today)
+   if broker not in baseline['brokers']:raise ValueError('Barème principal non qualifié')
+   baseline['brokers'][broker].setdefault('fields',{})[field]=observation
+  except Exception as exc:failures[key]=str(exc)
+ return baseline,failures,validated
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--apply',action='store_true');parser.add_argument('--output',type=pathlib.Path,required=True);args=parser.parse_args()
  baseline=json.loads(DEST.read_text()) if DEST.exists() else {'schemaVersion':1,'brokers':{}}
- failures={};today=dt.datetime.now(dt.timezone.utc).date().isoformat()
- for name,url in SOURCES.items():
-  try:
-   raw=download(url);content=pdf_text(raw);baseline['brokers'][name]=parse(name,content,today,baseline['brokers'].get(name))
-  except Exception as exc:failures[name]=str(exc)
+ today=dt.datetime.now(dt.timezone.utc).date().isoformat()
+ baseline,failures,validated=collect(baseline,today)
  args.output.write_text(json.dumps({'observations':baseline,'failures':failures},ensure_ascii=False,indent=2)+'\n')
  if args.apply:
   tmp=DEST.with_suffix('.tmp');tmp.write_text(json.dumps(baseline,ensure_ascii=False,indent=2)+'\n');tmp.replace(DEST)
- print(json.dumps({'validated':len(baseline['brokers']),'failures':failures},ensure_ascii=False));return bool(failures)
+ print(json.dumps({'validated':len(validated),'brokers':validated,'retained':len(baseline['brokers'])-len(validated),'failures':failures},ensure_ascii=False));return bool(failures)
 if __name__=='__main__':raise SystemExit(main())

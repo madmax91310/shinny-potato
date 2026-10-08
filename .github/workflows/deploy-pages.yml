@@ -44,6 +44,9 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
+      - run: node scripts/test-broker-automation.mjs
       - run: python -m unittest discover -s scripts -p 'test_data*.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
