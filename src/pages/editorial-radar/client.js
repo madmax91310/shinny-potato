@@ -1,7 +1,11 @@
 export const RADAR_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/radar-data/feed.json'
 export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques' }
 const READ_KEY = 'epargnantlibre-radar-read-v1'
+const SIGNALS_KEY = 'epargnantlibre-radar-signals-v1'
 const UPDATE_EVENT = 'editorial-radar-read'
+export function cachedSignalIds() {
+  try { const value = JSON.parse(localStorage.getItem(SIGNALS_KEY) ?? '[]'); return Array.isArray(value) ? value.filter(id => typeof id === 'string') : [] } catch { return [] }
+}
 export function readIds() {
   try { const value = JSON.parse(localStorage.getItem(READ_KEY) ?? '[]'); return Array.isArray(value) ? value.filter(id => typeof id === 'string') : [] } catch { return [] }
 }
@@ -21,7 +25,9 @@ export function validateFeed(feed) {
 export async function fetchRadar(signal) {
   const response = await fetch(RADAR_URL, { cache: 'no-store', signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(15000)]) : AbortSignal.timeout(15000) })
   if (!response.ok) throw new Error(response.status === 404 ? 'Le premier relevé du radar est en préparation.' : 'Le radar est momentanément indisponible.')
-  return validateFeed(await response.json())
+  const feed = validateFeed(await response.json())
+  try { localStorage.setItem(SIGNALS_KEY, JSON.stringify(feed.events.map(event => event.id))); window.dispatchEvent(new Event(UPDATE_EVENT)) } catch { /* The radar remains usable without local storage. */ }
+  return feed
 }
 export const READ_EVENT = UPDATE_EVENT
 export function staleFeed(feed, now = Date.now()) { return !feed || now - Date.parse(feed.checkedAt) > 36 * 3600000 }

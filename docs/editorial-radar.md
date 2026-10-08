@@ -32,7 +32,7 @@ Une donnée absente, périmée, non finie, sans source/date ou plus ancienne ne 
 
 Un historique existant illisible n’est jamais réinitialisé. La création initiale de la branche et les deux fichiers sont publiés ensemble. Une mise à jour concurrente empêche le remplacement du pointeur : aucun push forcé. Les échecs du workflow sont raccordés à « Données à revoir ». Les données conservées ne deviennent pas artificiellement fraîches.
 
-Dans l’appli : compteur des signaux non lus dans la navigation, filtres, recherche, statut lu mémorisé sur l’appareil, brouillon modifiable et copie. Le radar affiche sa date de contrôle ; après 36 h il ne prétend plus confirmer l’absence de nouveautés. Une erreur de chargement laisse les signaux précédemment chargés affichés.
+Dans l’appli : compteur des signaux non lus du dernier flux consulté dans la navigation (sans requête réseau depuis les autres outils), filtres, recherche, statut lu mémorisé sur l’appareil, brouillon modifiable et copie. Le radar affiche sa date de contrôle ; après 36 h il ne prétend plus confirmer l’absence de nouveautés. Une erreur de chargement laisse les signaux précédemment chargés affichés.
 
 La notification hors de l’appli est un contrôle conditionnel ChatGPT du flux GitHub, créé séparément : seuls de nouveaux identifiants de signaux donnent lieu à une notification ; un contrôle sans nouveauté reste silencieux. Ce contrôle n’est pas une notification push native de GitHub Pages. Les autorisations de notification du téléphone et de ChatGPT déterminent l’affichage sur l’appareil.
 
