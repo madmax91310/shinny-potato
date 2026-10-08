@@ -12,6 +12,7 @@ on:
       - 'scripts/collect_broker_tariffs.py'
       - 'scripts/broker_tariff_extensions.py'
       - 'scripts/broker_profiles.py'
+      - 'scripts/broker_profile_qualification.py'
       - 'scripts/broker_profile_sources.json'
       - 'scripts/broker_document_sources.py'
   pull_request:
