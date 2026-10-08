@@ -1,0 +1,107 @@
+name: Update publication observations
+on:
+  schedule:
+    - cron: '40 7 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-publication-observations.yml'
+      - 'scripts/refresh_purchasing_power.py'
+      - 'scripts/refresh_anniversary_levels.py'
+  pull_request:
+    paths:
+      - '.github/workflows/update-publication-observations.yml'
+      - 'scripts/*publication*'
+      - 'scripts/fixtures/publication/**'
+      - 'scripts/test-purchasing-power*'
+      - 'scripts/test-household-benchmarks.mjs'
+      - 'scripts/refresh_purchasing_power.py'
+      - 'scripts/refresh_anniversary_levels.py'
+      - 'src/data/purchasing-power*'
+      - 'src/data/anniversary-levels*'
+      - 'src/pages/purchasing-power/**'
+      - 'src/pages/tweet-midi/**'
+permissions:
+  contents: read
+jobs:
+  refresh:
+    concurrency:
+      group: publication-observations-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      cancel-in-progress: false
+      queue: max
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      changed: ${{ steps.commit.outputs.changed }}
+      collection_failed: ${{ steps.prices.outcome == 'failure' || steps.levels.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_publication*.py'
+      - run: node scripts/test-publication-consumers.mjs
+      - id: prices
+        name: Collect INSEE price levels, IRL and SMIC
+        continue-on-error: true
+        run: python scripts/refresh_purchasing_power.py --apply --output "$RUNNER_TEMP/purchasing-observation.json"
+      - id: levels
+        name: Collect completed anniversary levels
+        continue-on-error: true
+        run: python scripts/refresh_anniversary_levels.py --apply --output "$RUNNER_TEMP/anniversary-observation.json"
+      - run: node scripts/test-publication-consumers.mjs
+      - run: node scripts/test-household-benchmarks.mjs
+      - run: node scripts/test-purchasing-power-editorial.mjs
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-publication.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: publication-observations
+          path: ${{ runner.temp }}/*-observation.json
+          retention-days: 35
+          overwrite: true
+          if-no-files-found: error
+      - name: Commit validated observations
+        id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/purchasing-power-observations.json src/data/anniversary-levels.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh dated publication observations'
+            git pull --rebase origin master
+            git push origin HEAD:master
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: refresh
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && needs.refresh.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: ${{ always() && needs.refresh.outputs.collection_failed == 'true' }}
+    runs-on: ubuntu-26.04
+    steps:
+      - run: |
+          echo 'Collecte partielle : dernières observations validées conservées. Voir publication-observations.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

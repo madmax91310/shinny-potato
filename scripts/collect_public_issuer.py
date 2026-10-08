@@ -116,7 +116,7 @@ def globalx(text, share, now):
     if share['currency']!='USD' or currency!='USD':reject('Wrong Global X USD share convention')
     digest=proof(text.encode());result=base(share,stamp,digest);result['characteristics']['terPct']=ter
     result['aum']={'amount':amount,'currency':currency,'scope':'fund','asOf':stamp,'sourceUrl':share['sourceUrl'],'sha256':digest}
-    result['unavailable'] += ['performance: no qualified calendar for USD Distributing IE00BM8R0J59; accumulating-share and rolling returns excluded','exposures: reference index and substitution basket require separate validation']
+    result['unavailable'] += ['performance: no qualified calendar for USD Distributing IE00BM8R0J59; accumulating-share and rolling returns excluded','exposures: dated reference-index section contains contradictory duplicate top-ten tables; sector weights conflict with Nasdaq equity exposure; substitution basket excluded pending qualified primary source']
     return result
 
 

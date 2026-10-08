@@ -6,8 +6,8 @@ import { computeBrut, purchasingPowerStory, buildTweetText } from '../src/pages/
 import { POSTES } from '../src/data/purchasing-power.js'
 
 const d = purchasingPowerStory({ mode: 'erosion', amount: 1000, startYear: 2025 })
-assert.ok(Math.abs(d.endAmount - 1000 / 1.0335) < 1e-9)
-assert.ok(Math.abs(d.equivalentPct - (1 / 1.0335 - 1) * 100) < 1e-9)
+assert.ok(Math.abs(d.endAmount - 1000 / computeBrut(1000, 2025).factor) < 1e-9)
+assert.ok(Math.abs(d.equivalentPct - (1 / computeBrut(1000, 2025).factor - 1) * 100) < 1e-9)
 assert.notEqual(Math.abs(d.equivalentPct), computeBrut(1000, 2025).inflationCumPct)
 assert.equal(POSTES.carburant.label, 'Énergie')
 assert.doesNotMatch(buildTweetText({ mode: 'par-poste', posteId: 'carburant', amount: 100, startYear: 2020 }), /à la pompe \?/)

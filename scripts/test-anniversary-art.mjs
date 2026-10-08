@@ -30,7 +30,7 @@ try {
   await choose(page.locator('#subject-select'), 'sp500')
   await page.getByRole('button', {name:'🔄 Générer', exact:true}).click()
   await page.locator('#niveau-actuel').fill('15000')
-  assert.ok(await page.getByText('S&P 500 : saisir le niveau Total Return', {exact:false}).isVisible(), 'Index variant missing in input')
+  assert.ok(await page.getByText('S&P 500 : Total Return', {exact:false}).isVisible(), 'Index variant missing in input')
   const records=await page.evaluate(async()=>{
     const { renderAnniversaryImage }=await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js')
     const { ANNIVERSARY_ART }=await import('/shinny-potato/src/pages/tweet-midi/anniversaryArt.js')
@@ -74,7 +74,7 @@ try {
       if(canvas.width!==2400||canvas.height!==1500)throw new Error('Incorrect comparative aspect ratio')
       records.push({name:`${a}-${b}`,png:canvas.toDataURL(),labels:[...labels]})
     }
-    for(const current of ['', 'no', '0', '-1', 'Infinity']){
+    for(const current of ['no', '0', '-1', 'Infinity']){
       let rejected=false;try{await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:3},current)}catch{rejected=true}
       if(!rejected)throw new Error(`Invalid current accepted: ${current}`)
     }

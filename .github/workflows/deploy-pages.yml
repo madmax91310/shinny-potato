@@ -51,6 +51,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_data*.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
+      - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
       - run: python -m unittest discover -s scripts -p 'test_bnp_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
@@ -92,6 +93,8 @@ jobs:
       - run: node scripts/test-gold-consumers.mjs
       - run: node scripts/test-monthly-consumers.mjs
       - run: node scripts/test-investment-conclusions.mjs
+      - run: python -m unittest discover -s scripts -p 'test_publication*.py'
+      - run: node scripts/test-publication-consumers.mjs
       - run: node scripts/test-household-benchmarks.mjs
       - run: npm run audit:publishable-content
       - run: npm run audit:source-inventory
@@ -140,6 +143,7 @@ jobs:
       - run: node scripts/test-purchasing-power-receipt.mjs
       - run: node scripts/test-export-copy.mjs
       - run: node scripts/test-publication-studio.mjs
+      - run: node scripts/playwright-publication.mjs
       - run: node scripts/test-anniversary-art.mjs
       - run: node scripts/test-etf-art.mjs
       - run: node scripts/test-stylized-formats.mjs

@@ -37,7 +37,7 @@ try {
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   if(format==='Il y a X ans') {
    await page.getByRole('tab',{name:'Image',exact:true}).click()
-   await page.getByRole('status').filter({hasText:'Complète les réglages'}).waitFor()
+   // Observations automatiques fraîches ou saisie vérifiée si indisponibles.
    await page.getByRole('tab',{name:'Texte',exact:true}).click()
    for(const input of await page.locator('[id^=niveau-actuel]').all()) await input.fill('10000')
   }

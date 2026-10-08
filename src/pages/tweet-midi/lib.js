@@ -1,3 +1,4 @@
+import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js';
 import { anniversaryResult, anniversaryClosing } from './anniversaryEditorial.js';
 import { DILEMMES, SITUATIONS } from "./data/dilemmes.js";
 import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from "./data/ficheLexique.js";
@@ -51,7 +52,7 @@ export const FORMAT_LABELS = {
 // Ancrée une seule fois au chargement du module (donc à chaque ouverture/rechargement de page,
 // jamais codée en dur) : sert à déterminer quels décalages "il y a X ans" restent dans la plage
 // réellement couverte par chaque actif. Le prix "actuel" du Format A, lui, n'est jamais dérivé de
-// cette date — il est saisi manuellement à chaque génération (cf. buildAnniversaireText).
+// cette date — dernière observation datée qualifiée, avec correction manuelle facultative.
 export const TODAY = new Date();
 
 // Sentinelle pour "pas de sujet précis choisi à l'étape 2" — ne collisionne avec aucun id réel
@@ -425,17 +426,16 @@ function fmtAnniversaryLevel(asset, value) {
   return asset.priceUnit === 'points' ? `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} points` : fmtEUR(value, asset.currency);
 }
 
-// Le "niveau actuel" (rawNiveauActuel) n'est jamais dérivé ni deviné : tant qu'il n'est pas
-// renseigné, la performance et le niveau actuel restent en placeholder plutôt que d'inventer une
-// valeur — cf. contrainte du brief ("jamais deviné ni estimé automatiquement").
+// Latest qualified observation by default; explicit manual override remains available.
 export function buildAnniversaireText(item, rawNiveauActuel) {
   const asset = findAsset(item.assetId);
   const ym = ymForYearsBack(item.yearsBack, TODAY);
   const historicalPrice = getHistoricalPrice(item.assetId, ym);
   const dateLabel = fmtYm(ym, { monthLabels: MONTHS_FULL });
 
-  const niveauActuel = Number(rawNiveauActuel);
-  const hasCurrent = rawNiveauActuel !== "" && rawNiveauActuel !== null && rawNiveauActuel !== undefined && Number.isFinite(niveauActuel) && niveauActuel > 0;
+  const observation = resolveAnniversaryLevel(item.assetId, rawNiveauActuel);
+  const niveauActuel = observation?.value;
+  const hasCurrent = !!observation;
   const gainPct = hasCurrent ? ((niveauActuel - historicalPrice) / historicalPrice) * 100 : null;
 
   const phrase = yearsPhrase(item.yearsBack);
@@ -446,7 +446,7 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
   lines.push(`${asset.icon} ${asset.label}`);
   if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant);
   lines.push(`${asset.priceUnit === 'points' ? 'Niveau' : 'Prix'} en ${dateLabel} : ${fmtAnniversaryLevel(asset, historicalPrice)}`);
-  lines.push(`Niveau actuel : ${hasCurrent ? fmtAnniversaryLevel(asset, niveauActuel) : "[à saisir]"}`);
+  lines.push(`${observation?.label ?? "Niveau actuel"} : ${hasCurrent ? fmtAnniversaryLevel(asset, niveauActuel) : "[à saisir]"}`);
   lines.push(`Performance : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
   lines.push("");
   lines.push(anniversaryClosing(asset, gainPct, ym.slice(0, 4)));
@@ -488,10 +488,7 @@ export function buildPerformanceDepuisText(item) {
   return buildPerformanceBlock(findAsset(item.assetId), item.year, getAnnualReturns(item.assetId, item.year));
 }
 
-// Mode Comparatif, Format A : deux champs de saisie manuelle distincts (un par actif), avec la
-// même règle que le mode Simple — jamais devinés, jamais mémorisés. Le tri "plus performant en
-// premier" ne s'applique qu'une fois les deux niveaux connus ; tant qu'un des deux manque, l'ordre
-// de tirage est conservé plutôt que de trier sur une donnée absente.
+// Both observations retain their own date and convention.
 export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNiveauActuelB) {
   const assetA = findAsset(item.assetIdA);
   const assetB = findAsset(item.assetIdB);
@@ -500,28 +497,28 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   const histA = getHistoricalPrice(item.assetIdA, ym);
   const histB = getHistoricalPrice(item.assetIdB, ym);
 
-  const curA = Number(rawNiveauActuelA);
-  const curB = Number(rawNiveauActuelB);
-  const hasA = rawNiveauActuelA !== "" && rawNiveauActuelA !== null && rawNiveauActuelA !== undefined && Number.isFinite(curA) && curA > 0;
-  const hasB = rawNiveauActuelB !== "" && rawNiveauActuelB !== null && rawNiveauActuelB !== undefined && Number.isFinite(curB) && curB > 0;
+  const obsA = resolveAnniversaryLevel(item.assetIdA, rawNiveauActuelA);
+  const obsB = resolveAnniversaryLevel(item.assetIdB, rawNiveauActuelB);
+  const curA = obsA?.value, curB = obsB?.value;
+  const hasA = !!obsA, hasB = !!obsB;
   const pctA = hasA ? ((curA - histA) / histA) * 100 : null;
   const pctB = hasB ? ((curB - histB) / histB) * 100 : null;
   const bothKnown = hasA && hasB;
 
   const rows = [
-    { asset: assetA, hist: histA, cur: curA, hasCur: hasA, gain: pctA },
-    { asset: assetB, hist: histB, cur: curB, hasCur: hasB, gain: pctB },
+    { asset: assetA, observation: obsA, hist: histA, cur: curA, hasCur: hasA, gain: pctA },
+    { asset: assetB, observation: obsB, hist: histB, cur: curB, hasCur: hasB, gain: pctB },
   ];
   const ordered = bothKnown && pctB > pctA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
   lines.push(`⚖️ ${assetA.label} ou ${assetB.label} : quelle différence après ${yearsPhrase(item.yearsBack)}, depuis ${dateLabel} ? 👇`);
   lines.push("");
-  ordered.forEach(({ asset, hist, cur, hasCur, gain }, i) => {
+  ordered.forEach(({ asset, observation, hist, cur, hasCur, gain }, i) => {
     lines.push(`${asset.icon} ${asset.label}`);
     if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant);
     lines.push(`${asset.priceUnit === 'points' ? 'Niveau' : 'Prix'} en ${dateLabel} : ${fmtAnniversaryLevel(asset, hist)}`);
-    lines.push(`Niveau actuel : ${hasCur ? fmtAnniversaryLevel(asset, cur) : "[à saisir]"}`);
+    lines.push(`${observation?.label ?? "Niveau actuel"} : ${hasCur ? fmtAnniversaryLevel(asset, cur) : "[à saisir]"}`);
     lines.push(`Performance : ${hasCur ? fmtPct(gain) : "—"}`);
     if (i === 0) lines.push("");
   });

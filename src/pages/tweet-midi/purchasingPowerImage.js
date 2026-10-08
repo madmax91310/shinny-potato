@@ -65,7 +65,7 @@ export async function renderPurchasingPowerImage(item) {
     ctx.fillText(value, x, 1240 + (rowHeight - heights[i]) / 2 + ctx.measureText(value).actualBoundingBoxAscent); x += widths[i]
   }
   fitted(ctx, d.metricLabel, W / 2, 1370, 35, 1080, C.cream, false)
-  fitted(ctx, `${d.period} · ${fmtPct(d.erosion ? d.equivalentPct : d.pricePct)}`, W / 2, 1422, 28, 1080, C.cream, false)
+  fitted(ctx, `${d.period}${d.provisional ? " · provisoire" : ""} · ${fmtPct(d.erosion ? d.equivalentPct : d.pricePct)}`, W / 2, 1422, 28, 1080, C.cream, false)
   fitted(ctx, '@epargnantlibre', W / 2, 1470, 24, 1080, C.gold, false)
   return canvas
 }

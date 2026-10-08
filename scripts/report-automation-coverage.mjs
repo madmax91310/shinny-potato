@@ -11,7 +11,7 @@ const expected=['Frais','Encours','Rendements calendaires','Pays','Secteurs','Pr
 function fields(r={}) { return [r.characteristics?.terPct !== undefined,r.aum,r.performance,r.countries,r.sectors,r.holdings].map((v,i)=>v?expected[i]:null).filter(Boolean); }
 const count=field=>Object.values(etf).filter(r=>field==='ter'?r.characteristics?.terPct!==undefined:r[field]).length;
 const rows=[
- '# Automatisation des données — état du 7 octobre 2026','',
+ '# Automatisation des données — état du 8 octobre 2026','',
  'Rapport fondé sur les collecteurs configurés et les données actives, pas sur les seuls rappels de fraîcheur. Une source inaccessible conserve ses valeurs précédentes et fait échouer le signal de collecte ; les autres données validées peuvent être publiées. Les publications restent conditionnées aux audits et au déploiement.','',
  '## Ce qui fonctionne sans assistant ni saisie manuelle','',
  '| Domaine | Couverture active | Fréquence |','|---|---|---|',
@@ -19,6 +19,8 @@ const rows=[
  `| ETF/ETC/ETP | ${Object.keys(etf).length}/${instruments.length} instruments, au moins un champ | 3 et 16 du mois |`,
  `| Compositions d’indices | ${Object.values(indices).filter(r=>r.facts).length} indices | 3 et 16 du mois |`,
  `| Rendements annuels d’indices | ${Object.values(indices).filter(r=>r.returns).length} indices | 3 et 16 du mois |`,
+ `| Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |`,
+ `| Anniversaires | ${Object.keys(read('src/data/anniversary-levels.json')).length} niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |`,
  '| Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |',
  '| Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |',
  '| Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |','',
@@ -72,7 +74,7 @@ const rows=[
  '## Priorités suivantes','',
  'Les lacunes ne se traitent pas toutes de la même manière : une donnée non applicable (pays actions d’un ETC or) doit rester absente ; un calendrier non encore publié attend sa première année complète ; une source exploitable mais non raccordée nécessite un connecteur.','',
  `1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. ${uncovered.length} instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.`,
- '2. Qualifier les trois compositions restantes (Russell 1000 et les deux Dividend Aristocrats) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.',
+ '2. Qualifier la composition Russell 1000 restante ; les deux Dividend Aristocrats utilisent désormais leurs fiches S&P exactes (tables natives et lecture concordante des légendes sectorielles à deux résolutions) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.',
  '3. Rechercher des sources renouvelables pour les taux d’épargne, statistiques de ménages et rendements SCPI/fonds euros. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.',
  '4. Raccorder les séries qualifiées de ces trois familles, en distinguant taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.',
  '', 'Régénération : `npm run report:automation`. Ce rapport décrit une couverture, pas une garantie de disponibilité permanente des émetteurs.',''

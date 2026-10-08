@@ -9,7 +9,10 @@ import tempfile
 import urllib.error
 import urllib.request
 
+REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation'}
+
 WORKFLOWS = {
+    'update-publication-observations.yml': 'Pouvoir d’achat et niveaux des anniversaires',
     'update-insurance.yml': 'Présentations d’assurance-vie',
     'update-scpi.yml': 'Présentations de SCPI',
     'update-regulatory-data.yml': 'Paramètres fiscaux, LDDS et tarifs de courtiers',
@@ -26,10 +29,37 @@ BRANCH = 'automation-status'
 PATH = 'automation-status.json'
 
 
-DATA_LABELS = {'livret-a': 'Taux du Livret A', 'fonds-euros': 'Moyenne des fonds euros', 'scpi': 'Rendement global des SCPI',
+DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alimentation': 'Prix alimentaires', 'purchasing-energie': 'Prix de l’énergie', 'purchasing-irl': 'Indice des loyers', 'purchasing-smic': 'SMIC','livret-a': 'Taux du Livret A', 'fonds-euros': 'Moyenne des fonds euros', 'scpi': 'Rendement global des SCPI',
               'insee-wealth': 'Patrimoine des ménages', 'insee-holdings': 'Détention des placements et crédits',
               'insee-living': 'Privations matérielles', 'insee-salaries': 'Salaires', 'insee-ageWealth': 'Patrimoine selon l’âge',
               'insee-ageHoldings': 'Détention selon l’âge et la catégorie sociale', 'insee-transmissions': 'Héritages et donations'}
+
+def normalize_report(report):
+    """Adapt issuer/index reports without turning preserved values into recovered sources."""
+    if 'indices' in report:
+        successes, errors = [], []
+        for item in report['indices']:
+            for field in ['composition', 'returns']:
+                id_ = 'index-' + item['id'] + '-' + field
+                failed = [e for e in item.get('errors', []) if e['field'] == field]
+                errors.extend({'id': id_, 'name': item.get('name', item['id']) + ' · ' + field, 'error': e['reason']} for e in failed)
+                if not failed and item.get('facts' if field == 'composition' else 'returns'):
+                    successes.append({'id': id_})
+        return {'successes': successes, 'errors': errors}
+    if 'shares' in report:
+        successes, errors = [], []
+        for item in report['shares']:
+            id_ = 'etf-' + report.get('_collector', 'issuer') + '-' + item['isin']
+            causes = ([item.get('reason', 'Collecte échouée')] if item.get('status') == 'failed' else [])
+            causes += [e.get('reason', 'Champ non validé') for e in item.get('collectionErrors', [])]
+            if causes:
+                errors.append({'id': id_, 'name': 'ETF ' + item['isin'], 'error': ' ; '.join(causes)})
+            else:
+                successes.append({'id': id_})
+        errors += [{'id': 'etf-' + report.get('_collector', 'issuer') + '-' + e['isin'], 'name': 'ETF ' + e['isin'], 'error': e['reason']} for e in report.get('failures', [])]
+        return {'successes': successes, 'errors': errors}
+    return report
+
 
 def update_status(state, run, jobs, reports=None):
     result = json.loads(json.dumps(state))
@@ -44,12 +74,13 @@ def update_status(state, run, jobs, reports=None):
         return result
     failed = run['conclusion'] in ('failure', 'timed_out', 'startup_failure', 'action_required')
     data_failures = previous.get('dataFailures', {}).copy()
-    for report in reports or []:
+    for raw_report in reports or []:
+        report = normalize_report(raw_report)
         for success in report.get('successes', []):
             data_failures.pop(success['id'], None)
         for error in report.get('errors', []):
             id_ = error['id']
-            data_failures[id_] = {'name': DATA_LABELS.get(id_, id_), 'completedAt': run['updated_at'],
+            data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': run['updated_at'],
                 'runUrl': run['html_url'], 'cause': str(error['error'])[:500]}
     failures = []
     for job in jobs:
@@ -101,7 +132,7 @@ def main():
                     continue
                 raise
             candidates = [r for r in candidates if r['event'] in ('push', 'schedule', 'workflow_dispatch') and r['conclusion'] not in ('cancelled', 'skipped', 'neutral')]
-            if candidates and workflow == 'update-economic-data.yml':
+            if candidates and workflow in REPORT_ARTIFACTS:
                 runs.extend(candidates)
                 continue
             if candidates:
@@ -123,18 +154,21 @@ def main():
                 break
             page += 1
         reports = []
-        if run['path'].split('/')[-1] == 'update-economic-data.yml':
+        if run['path'].split('/')[-1] in REPORT_ARTIFACTS:
+            artifact_name = REPORT_ARTIFACTS[run['path'].split('/')[-1]]
             artifacts = api(f'/actions/runs/{run["id"]}/artifacts?per_page=100')['artifacts']
-            available = [a for a in artifacts if a['name'] == 'economic-observations' and not a['expired']]
+            available = [a for a in artifacts if a['name'] == artifact_name and not a['expired']]
             if available:
                 with tempfile.TemporaryDirectory() as directory:
                     subprocess.run(['gh', 'run', 'download', str(run['id']), '--repo', repo,
-                                    '--name', 'economic-observations', '--dir', directory],
+                                    '--name', artifact_name, '--dir', directory],
                                    check=True, capture_output=True, timeout=90)
-                    for path in pathlib.Path(directory).glob('*-observation.json'):
-                        if path.stat().st_size > 1_000_000:
-                            raise ValueError('Rapport économique trop volumineux')
-                        reports.append(json.loads(path.read_text()))
+                    for path in pathlib.Path(directory).glob('*observation.json'):
+                        if path.stat().st_size > 8_000_000:
+                            raise ValueError('Rapport de collecte trop volumineux')
+                        report = json.loads(path.read_text())
+                        report['_collector'] = path.stem
+                        reports.append(report)
         state = update_status(state, run, jobs, reports)
     if sha is None:
         try:
