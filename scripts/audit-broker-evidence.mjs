@@ -15,7 +15,7 @@ for (const [id, logo] of Object.entries(BROKER_LOGOS)) {
 const officialHosts = new Set([
   'assets.traderepublic.com', 'www.boursorama.com', 'www.boursobank.com', 'www.fortuneo.fr',
   'www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com', 'ca-paris.credit-agricole.fr',
-  'www.boursedirect.fr', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo', 'www.help.saxo',
+  'www.boursedirect.fr', 'www.boursedirect.com', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo', 'www.help.saxo',
   'www.interactivebrokers.ie', 'www.ibkrguides.com', 'www.credit-agricole.fr', 'www.ca-sicavetfcp.fr', 'traderepublic.com', 'support.traderepublic.com',
 ])
 for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
