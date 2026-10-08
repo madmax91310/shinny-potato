@@ -532,7 +532,7 @@ async function testBrokerComparator(page) {
   valid &&= post.startsWith('⚫ XTB ou ⚪ Saxo pour ton PEA ?')
     && post.includes(`💱 Si une conversion est nécessaire\n\nXTB : ${BROKER_EVIDENCE.xtb.change.post}\n\nSaxo : ${BROKER_EVIDENCE.saxo.change.post}`)
     && post.includes('PEA Jeune : aucun des deux ❌')
-    && post.includes(BROKER_EVIDENCE.xtb.ifu.post) && post.includes(BROKER_EVIDENCE.saxo.ifu.post)
+    && post.includes(BROKER_EVIDENCE.xtb.ifu.summary) && post.includes(BROKER_EVIDENCE.saxo.ifu.summary)
     && post.includes(outgoing);
   await page.locator('.bc-evidence-broker').last().locator('summary').click();
   valid &&= (await page.locator('.bc-evidence').innerText()).includes('VIP')
