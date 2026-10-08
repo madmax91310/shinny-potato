@@ -15,7 +15,19 @@ Le lecteur contrôle identité exacte, devise, dates d'effet de chaque ligne, co
 classification GICS et totaux. Les rendements NET restent issus de leur source distincte.
 Le JSON devient la source primaire de composition ; aucune lecture OCR n'est nécessaire.
 Une réponse ambiguë ou inaccessible conserve le dernier relevé selon le collecteur existant.
-Un workflow de PR vérifie séparément les téléchargements réels depuis Ubuntu GitHub.
+Le workflow dédié teste les téléchargements réels sur GitHub Ubuntu 26.04 et macOS 15.
+Verdict du run 37828387974 : les tests du lecteur passent sur les deux systèmes,
+mais le téléchargement reste en HTTP 403 sur les deux runners, même avec les
+headers de navigateur et le Referer officiel. Changer simplement de système ne
+résout donc pas le problème. Le lecteur ne constitue pas à lui seul une correction
+opérationnelle du 403 ; aucune photographie active n'a été publiée par cette PR.
+
+Deux chemins opérationnels restent possibles : importer ponctuellement une réponse
+publique téléchargée dans un environnement autorisé, avec les mêmes contrôles et
+une date de photographie explicite ; ou exécuter la collecte sur un environnement
+dont l'accès S&P est confirmé, puis faire valider ses observations par la CI GitHub.
+Pour une automatisation durable, obtenir un accès API documenté auprès de S&P
+permettrait de ne pas dépendre de cet endpoint public et de ses restrictions.
 
 ## QYLD IE00BM8R0J59
 
@@ -53,3 +65,10 @@ avec contrôle à deux résolutions. Une lecture OCR des seuls nombres ne suffit
 Une composition d'ETF peut être proposée comme proxy clairement identifié, mais ne
 doit jamais être stockée comme une composition exacte de l'indice.
 La pondération des dix premières valeurs reste à trouver dans une publication numérique.
+
+La fiche Vanguard `https://fund-docs.vanguard.com/F3348.pdf` téléchargée le 8 octobre
+est datée du 30 juin 2026. Le comptage comporte une colonne Russell 1000 Index,
+mais les secteurs et dix premières positions décrivent le fonds VONE : ce PDF
+ne résout pas les poids exacts actuels de l'indice. La page Vanguard Advisors
+propose des colonnes Fund/Benchmark à vérifier sur sa source numérique ; elle
+reste une piste, pas une source qualifiée par cette PR.
