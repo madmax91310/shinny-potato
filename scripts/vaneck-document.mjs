@@ -3,7 +3,7 @@ export function officialDocument(value, filename) {
   const url = new URL(value);
   if (url.protocol !== 'https:' || url.hostname !== 'www.vaneck.com' || url.port || url.username || url.password
       || !/^\/(?:ucits|[a-z]{2}\/en)\/library\/fact-sheets\/[a-z0-9]+-fact-sheet\.pdf$/.test(url.pathname)
-      || url.search || url.hash || (filename && url.pathname.split('/').pop() !== filename)) {
+      || (url.search && url.search !== '?cken=true') || url.hash || (filename && url.pathname.split('/').pop() !== filename)) {
     throw new Error(`Unsupported official VanEck document URL: ${url.href}`);
   }
   return url;
@@ -21,7 +21,7 @@ export function regionalGate(value, requested) {
   // The gate's script prefixes the region to absolute return URLs. A root-relative
   // target avoids /nl/en/https%3A... without guessing a replacement document.
   url.search = '';
-  url.searchParams.set('returnUrl', document.pathname);
+  url.searchParams.set('returnUrl', document.pathname + document.search);
   return { landing: url.href, document: document.href };
 }
 export async function requestDocument(request, value, requested, headers) {

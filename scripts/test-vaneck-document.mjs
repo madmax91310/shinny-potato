@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { officialDocument, regionalGate, requestDocument } from './vaneck-document.mjs';
 const original = officialDocument('https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf');
 const regional = 'https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf';
+assert.equal(officialDocument(regional+'?cken=true', 'gdig-fact-sheet.pdf').search, '?cken=true');
+for (const query of ['?cken=false','?cken=true&redirect=https://evil.test','?returnUrl=https://evil.test']) assert.throws(()=>officialDocument(regional+query));
 for (const target of [regional, encodeURIComponent(regional), '/nl/en/library/fact-sheets/gdig-fact-sheet.pdf']) {
   const gate = regionalGate(`https://www.vaneck.com/nl/en/?returnUrl=${encodeURIComponent(target)}`, original);
   assert.equal(gate.document, regional);
@@ -22,6 +24,9 @@ assert.equal(request.calls[1].url,regional);
 assert(request.calls.every(c=>c.options.maxRedirects===0));
 request=mock([response(302,null,`/nl/en/?returnUrl=${encodeURIComponent(encodeURIComponent(regional))}`)]);
 assert.equal((await requestDocument(request,original.href,original,{})).gate.document,regional);
+request=mock([response(302,null,regional+'?cken=true'),response(302,null,`/nl/en/?returnUrl=${encodeURIComponent(encodeURIComponent(regional))}`)]);
+assert.equal((await requestDocument(request,original.href,original,{})).gate.document,regional);
+assert.equal(request.calls[1].url, regional+'?cken=true');
 for(const status of [404,403,503]) {
   request=mock([response(status),response(status)]);
   await assert.rejects(requestDocument(request,original.href,original,{}), new RegExp(String(status)));
