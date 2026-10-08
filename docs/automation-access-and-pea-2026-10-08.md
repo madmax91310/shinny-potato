@@ -19,6 +19,6 @@ La couverture passe à huit courtiers et 31 champs complémentaires.
 
 ## Vérifications et reste à faire
 
-16 tests économiques et 10 tests courtiers couvrent le miroir officiel, la conservation après panne, les dates, les colonnes PEA/CTO et les clauses de transfert. Les consommateurs, le catalogue, la provenance et le build sont vérifiés. Les workflows exécutent également des collectes réelles avant de publier leurs observations.
+16 tests économiques et 11 tests courtiers couvrent le miroir officiel, la conservation après panne, les dates, les colonnes PEA/CTO et les clauses de transfert. Le contrat France de 231 pages extrait 2,6 Mo de texte : sa seule URL officielle bénéficie d’une limite de 4 Mo ; les brochures conservent la limite de 2 Mo. Les dépassements sont rejetés et testés. Les consommateurs, le catalogue, la provenance et le build sont vérifiés. Les workflows exécutent également des collectes réelles avant de publier leurs observations.
 
 Restent non qualifiés : découverte annuelle ACPR depuis les catalogues GitHub ; frais de garde et de transfert propres au PEA Trade Republic ; change boursier et conditions financières d'entrée CA Île-de-France. Les caractéristiques peu variables des instruments restent hors des priorités.

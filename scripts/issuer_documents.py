@@ -55,7 +55,7 @@ def public_page(url, content_types=('text/html',), max_bytes=12_000_000):
     return get_text(url, content_types, max_bytes, opener=open_page)
 
 
-def pdf_text(body, crop=None):
+def pdf_text(body, crop=None, max_text_bytes=2_000_000):
     if not body.startswith(b'%PDF-'):
         reject('Expected official PDF, received another document')
     with tempfile.TemporaryDirectory() as folder:
@@ -64,7 +64,7 @@ def pdf_text(body, crop=None):
         options = [] if crop is None else ['-x', str(crop[0]), '-y', '0', '-W', str(crop[1]), '-H', '2000']
         output = subprocess.run(['pdftotext', '-layout', *options, str(path), '-'],
                                 capture_output=True, timeout=20, check=True)
-    if len(output.stdout) > 2_000_000:
+    if len(output.stdout) > max_text_bytes:
         reject('PDF extraction exceeds size limit')
     text = output.stdout.decode('utf-8')
     if not text.strip():

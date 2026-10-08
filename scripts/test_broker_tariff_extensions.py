@@ -3,12 +3,21 @@ import copy
 import json
 import pathlib
 import unittest
+from unittest.mock import patch
+from types import SimpleNamespace
 from collect_broker_tariffs import collect, SOURCES, SOURCE_ALTERNATIVES
 from broker_tariff_extensions import parse, parse_supplement, SUPPLEMENT_SOURCES
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/broker-tariffs'
 TODAY='2026-10-08'
 def fixture(name):return (FIXTURES/name).read_text()
 class BrokerTariffTests(unittest.TestCase):
+ def test_long_contract_extraction_keeps_bounded_default(self):
+  from issuer_documents import pdf_text
+  with patch('issuer_documents.subprocess.run',return_value=SimpleNamespace(stdout=b'x'*2_000_001)):
+   with self.assertRaises(ValueError):pdf_text(b'%PDF-')
+   self.assertEqual(len(pdf_text(b'%PDF-',max_text_bytes=4_000_000)),2_000_001)
+  with patch('issuer_documents.subprocess.run',return_value=SimpleNamespace(stdout=b'x'*4_000_001)):
+   with self.assertRaises(ValueError):pdf_text(b'%PDF-',max_text_bytes=4_000_000)
  def test_exact_markets_and_account_columns(self):
   expected={'saxo':{'rate':.08,'minimum':2},'xtb':{'threshold':100000,'rate':.2},'caidf':{'initial':.5,'small':.48,'middle':.18,'large':.12,'annual':96,'orders':12},'ibkr':{'rate':.05,'minimum':1.25,'fixedMinimum':3,'directRate':.10},'tr':{'minimum':1},'bd':{'fee0':.99,'fee1':1.9,'fee2':2.9,'fee3':3.8,'rate':.09}}
   for name,values in expected.items():
