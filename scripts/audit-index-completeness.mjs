@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict'
 import { FAMILIES } from '../src/data/index-comparisons.js'
+import { getIndexComparisonPairs } from '../src/data/index-comparison-pairs.js'
 import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js'
 import { completeIndexAllocation, getIndexComparisonComposition, summarizeIndexAllocation } from '../src/data/index-comparison-composition.js'
 import { buildTweetText } from '../src/pages/index-comparator/lib.js'
 const seen = new Set()
-for (const family of FAMILIES) {
+for (const family of FAMILIES.flatMap(getIndexComparisonPairs)) {
   const rows = getIndexComparisonPerformance(family), tweet = buildTweetText(family)
   for (const [i, index] of family.indices.entries()) {
     const perf = rows[i]
