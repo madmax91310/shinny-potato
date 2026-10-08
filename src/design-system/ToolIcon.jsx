@@ -1,4 +1,5 @@
 const PATHS = {
+  '/presentation-scpi': 'M4 21V3h12v18M16 10h4v11M8 7h4M8 11h4M8 15h4M9 21v-3h2v3M2 21h20',
   '/comparateur-indices': 'M4 19V9m8 10V4m8 15v-7M2 21h20',
   '/comparatif-courtiers': 'M12 3v18M4 7h16M6 7l-4 8h8L6 7m12 0-4 8h8l-4-8M8 21h8',
   '/calculateur-investissement': 'M3 17l6-6 4 3 8-10m-6 0h6v6M3 21h18',

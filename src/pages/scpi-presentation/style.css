@@ -1,0 +1,13 @@
+.scpi-presentation .scpi-evidence { padding: 18px; border: 1px solid var(--ui-line); border-radius: 14px; margin-top: 18px; }
+.scpi-presentation h2 { font-size: 16px; margin-bottom: 12px; }
+.scpi-presentation h3 { font-size: 14px; margin: 14px 0 8px; }
+.scpi-presentation p { font-size: 13px; line-height: 1.6; margin: 10px 0; overflow-wrap: anywhere; }
+.scpi-presentation a { text-decoration: underline; }
+.scpi-presentation details { margin-top: 16px; }
+.scpi-presentation summary { cursor: pointer; font-size: 14px; }
+.scpi-presentation table { width: 100%; font-size: 12px; border-collapse: collapse; }
+.scpi-presentation th, .scpi-presentation td { padding: 7px 0; text-align: left; border-bottom: 1px solid var(--ui-line); }
+.scpi-presentation td { text-align: right; white-space: nowrap; }
+.scpi-presentation label { display: block; margin-bottom: 12px; font-size: 14px; }
+.scpi-presentation .scpi-draft { width: 100%; min-height: 850px; padding: 18px; border: 1px solid var(--ui-line); border-radius: 14px; background: var(--ui-surface); color: var(--ui-ink); font: inherit; font-size: 14px; line-height: 1.65; resize: vertical; }
+.scpi-presentation .scpi-length { color: var(--ui-muted); }
