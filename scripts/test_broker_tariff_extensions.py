@@ -109,6 +109,16 @@ class BrokerTariffTests(unittest.TestCase):
   state,failures,_=collect(baseline,TODAY,fetch)
   self.assertEqual(state['brokers']['tr']['fields']['entrant'],previous)
   self.assertIn('tr_pea_transfer',failures)
+ def test_successful_tariff_refresh_retains_failed_service_observations(self):
+  previous={'available':True,'checkedAt':'2026-10-01','copy':{'full':'Dernière observation officielle'}}
+  baseline={'schemaVersion':1,'brokers':{'bd':{'profile':{'ifu':copy.deepcopy(previous)}}}}
+  def fetch(url):
+   if url==SOURCES['bd']:return fixture('bd-synthetic.txt')
+   raise ValueError('HTTP 503')
+  state,failures,validated=collect(baseline,TODAY,fetch)
+  self.assertIn('bd',validated)
+  self.assertEqual(state['brokers']['bd']['profile']['ifu'],previous)
+  self.assertIn('bd:profile:ifu',failures)
  def test_official_alternative_requires_valid_pea_table(self):
   alternate=SOURCE_ALTERNATIVES['bd'][0]
   def fetch(url):

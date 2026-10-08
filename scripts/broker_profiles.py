@@ -77,7 +77,7 @@ def statement(broker, field, texts):
           'fortuneo':r'Vous pourrez alors télécharger votre IFU', 'ibkr':r'Un IFU disponible pour votre PEA',
           'xtb':r"XTB a l.obligation de vous fournir un imprimé fiscal unique \(IFU\)",
           'caidf':r'(?:Réédition|réédition).{0,120}?(?:IFU|Fiscal Unique)',
-          'bd':r'(?:imprimé fiscal unique|IFU).{0,450}?(?:fiscale|administration)',
+          'bd':r'Bourse Direct éditera chaque année.{0,500}?fiscalité française un Imprimé Fiscal Unique \(IFU\)',
           'saxo':r'fiscaux en ligne \(IFU\)'}
         return proved(patterns[broker],True,{'tr':'IFU pour l’offre française après migration ; anciens comptes étrangers distincts.', 'ibkr':'IFU disponible pour le PEA ✅'}.get(broker,'IFU fourni selon les opérations à déclarer ; modalités dans la source officielle.'))
     if field=='dca':
