@@ -117,12 +117,6 @@ export const TOOLS = [
     description: 'Deux choix de placement pour ouvrir la discussion.', status: 'disponible',
   },
   {
-    to: '/vrai-faux', navLabel: 'Vrai ou faux', title: 'Vrai ou faux',
-    format: 'vrai-faux', bundle: '/tweet-midi', publicationDay: 'Publication ponctuelle',
-    icon: '🕐', accent: '#a78bfa',
-    description: 'Des affirmations financières à expliquer et vérifier.', status: 'disponible',
-  },
-  {
     to: '/comparateur-indices',
     navLabel: 'Comparateur indices',
     title: "Comparateur d'indices",
@@ -150,16 +144,6 @@ export const TOOLS = [
     icon: '📚',
     accent: '#34d399',
     description: "Statistiques historiques sourcées sur les indices et calculs de baisse, récupération et versements sur huit actions sur les chocs, corrections et séquences des marchés, prêtes à publier en format \"le saviez-vous\".",
-    status: 'disponible',
-  },
-  {
-    to: '/cas-concrets',
-    navLabel: 'Cas concrets',
-    title: 'Cas concrets pour investir',
-    publicationDay: 'Publication ponctuelle',
-    icon: '🧩',
-    accent: '#fb7185',
-    description: 'Des situations pour comprendre ce que change réellement un choix de placement, avec sources et texte prêt à copier.',
     status: 'disponible',
   },
   {
@@ -199,11 +183,9 @@ const TOOL_SUMMARIES = {
   '/performance-depuis': 'Les performances annuelles d’un actif sur la période choisie.',
   '/pouvoir-achat': 'Mesure l’évolution du pouvoir d’achat sur la période choisie.',
   '/dilemme': 'Deux choix de placement pour ouvrir la discussion.',
-  '/vrai-faux': 'Des affirmations financières à expliquer et vérifier.',
   '/fiches-etf': 'Un ETF expliqué, avec son texte et ses visuels.',
   '/tweets-factsheets': 'Décrypte la composition et les caractéristiques des indices.',
   '/faits-marquants-marches': 'Des faits historiques pour raconter les marchés.',
-  '/cas-concrets': 'Des situations concrètes pour comprendre un choix de placement.',
   '/france-100-menages': 'Le patrimoine et les revenus en chiffres et en images.',
   '/banque-tweets': 'Retrouve tes publications et prépare leur réutilisation.',
   '/bibliotheque-donnees': 'Recherche un actif, ses chiffres et ses sources.',
@@ -214,7 +196,7 @@ const TOOL_SUMMARIES = {
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/comparateur-indices', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
-  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/presentation-assurance-vie', '/presentation-scpi', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/vrai-faux', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/cas-concrets', '/france-100-menages', '/banque-tweets'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/presentation-assurance-vie', '/presentation-scpi', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })) }))
 
@@ -227,7 +209,7 @@ export const WEEKLY_ORDER = [
   '/comparateur-indices',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
   '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat',
-  '/dilemme', '/vrai-faux', '/comparatif-courtiers', '/cas-concrets', '/presentation-scpi', '/presentation-assurance-vie',
+  '/dilemme', '/comparatif-courtiers', '/presentation-scpi', '/presentation-assurance-vie',
   '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]
 export const HOME_TOOLS = TOOL_GROUPS.flatMap(group => group.tools.map(tool => ({ ...tool, group: group.id })))

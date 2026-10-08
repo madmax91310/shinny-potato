@@ -60,7 +60,7 @@ Les performances et encours gardent leur propre part, devise, méthode, date et 
 les données de l'outil : un rendement d'indice ne remplace pas celui d'un fonds.
 
 Quand un outil a besoin d'une donnée qu'un autre outil possède déjà et a déjà vérifiée, il
-l'importe directement plutôt que de la recopier. Exemples : 3 des 7 formats de Tweet Midi
+l'importe directement plutôt que de la recopier. Exemples : 3 des 6 formats de Tweet Midi
 (Fiche lexique, Comparatif ETF, Pouvoir d'achat) sont des façades qui appellent directement les
 `data.js`/`lib.js` de lexique-financier, etf-tweets et purchasing-power ; purchasing-power
 réutilise la série d'inflation générale de investment-calculator plutôt que de la redéfinir.

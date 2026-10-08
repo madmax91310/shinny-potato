@@ -131,7 +131,7 @@ function TweetCard({ tweet, lastPublished, onMarkToday, onSetDate, onClearDate }
   return (
     <article className={`tb-tweet${badge?.status === 'cooldown' ? ' cooldown' : ''}`}>
       <div className="tb-tweet-meta">
-        <span className="tb-tag-month">{tweet.month} 2026</span>
+        <span className="tb-tag-month">{tweet.month}{tweet.month === 'Intemporel' ? '' : ' 2026'}</span>
         <span className={`tb-tag-cat${GOLD_CATEGORIES.includes(tweet.category) ? ' gold' : ''}`}>{tweet.category}</span>
         {(tweet.formats || []).map((f) => (
           <span key={f} className="tb-tag-format">
@@ -142,6 +142,12 @@ function TweetCard({ tweet, lastPublished, onMarkToday, onSetDate, onClearDate }
       </div>
 
       <TweetText ref={textareaRef} text={tweet.text} />
+      {tweet.sources?.length > 0 && <details className="tb-sources">
+        <summary>Sources de ce texte</summary>
+        <ul>{tweet.sources.map(source => <li key={source.url}>
+          <a href={source.url} target="_blank" rel="noreferrer">{source.label} ↗</a>
+        </li>)}</ul>
+      </details>}
 
       <div className="tb-tweet-actions">
         <Button type="button" onClick={handleCopy}>
@@ -223,7 +229,7 @@ export default function App() {
     <div className="tb-scope">
       <PageHeader
         title="Banque de tweets à recycler"
-        subtitle={`${TWEETS.length} tweets déjà écrits — recycle-les avec un repos de ${COOLDOWN_DAYS} jours entre deux publications.`}
+        subtitle={`${TWEETS.length} textes à relire — recycle-les avec un repos de ${COOLDOWN_DAYS} jours entre deux publications.`}
       />
 
       <div className="tb-summary">

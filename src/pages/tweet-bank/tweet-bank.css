@@ -110,3 +110,7 @@
 }
 
 .tb-empty { text-align: center; padding: 40px 10px; color: var(--tb-ink-faint); font-size: 14px; }
+
+.tb-sources { margin: 12px 0; color: var(--tb-ink-dim); font-size: 13px; overflow-wrap: anywhere; }
+.tb-sources summary { cursor: pointer; }
+.tb-sources a { color: var(--tb-accent-bright); }

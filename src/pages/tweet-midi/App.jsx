@@ -21,7 +21,6 @@ import Button from "../../design-system/Button";
 import Card from "../../design-system/Card";
 
 const FORMAT_BADGE_STYLES = {
-  [FORMATS.VRAI_FAUX]: "border-teal-500/30 bg-teal-500/10 text-teal-300",
   [FORMATS.DILEMME]: "border-amber-500/30 bg-amber-500/10 text-amber-300",
   [FORMATS.FICHE_LEXIQUE]: "border-violet-500/30 bg-violet-500/10 text-violet-300",
   [FORMATS.COMPARATIF_ETF]: "border-sky-500/30 bg-sky-500/10 text-sky-300",
@@ -41,7 +40,7 @@ const LENGTH_STATUS_STYLES = {
 };
 
 const SELECTOR_OPTIONS = [
-  FORMATS.VRAI_FAUX, FORMATS.DILEMME, FORMATS.FICHE_LEXIQUE, FORMATS.COMPARATIF_ETF,
+  FORMATS.DILEMME, FORMATS.FICHE_LEXIQUE, FORMATS.COMPARATIF_ETF,
   FORMATS.ANNIVERSAIRE, FORMATS.PERFORMANCE_DEPUIS, FORMATS.POUVOIR_ACHAT, FORMATS.ALEATOIRE,
 ];
 

@@ -1,3 +1,5 @@
+import { EDITORIAL_CASES } from '../../data/editorial-cases.js'
+
 // Banque de tweets à recycler — contenu initial repris tel quel du prototype HTML fourni le
 // 23/09/2026 (banque-tweets.html, ~42 tweets réels déjà catégorisés), migré ici sans régénération.
 // Tweet 21 actualisé le 24/09/2026 : Royaume-Uni/Suisse dans MSCI Europe, années
@@ -12,7 +14,7 @@
 // https://www.impots.gouv.fr/particulier/questions/jai-un-plan-depargne-en-actions-pea-les-retraits-sont-ils-imposables
 // Pas de logique ici — cf. lib.js pour les fonctions pures (filtre/tri/cooldown).
 
-export const MONTHS = ["Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre"]
+export const MONTHS = ["Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Intemporel"]
 export const CATEGORIES = [
   "Storytelling",
   "Simulation & chiffres",
@@ -20,8 +22,9 @@ export const CATEGORIES = [
   "Bilan patrimoine",
   "Engagement & débat",
   "Actu & humour",
+  "Pédagogie",
 ]
-export const FORMATS = ["Preuve vendredi soir", "Bilan de la semaine"]
+export const FORMATS = ["Preuve vendredi soir", "Bilan de la semaine", "Explication pédagogique"]
 
 // Sous-ensemble de CATEGORIES mis en avant visuellement (couleur "or" plutôt que "vert" dans le
 // prototype d'origine) — repris tel quel, aucune règle nouvelle inventée ici.
@@ -30,7 +33,7 @@ export const GOLD_CATEGORIES = ["Guide ETF", "Actu & humour"]
 // Un tweet est de nouveau disponible 45 jours après sa dernière publication.
 export const COOLDOWN_DAYS = 45
 
-export const TWEETS = [
+const ARCHIVED_TWEETS = [
   { id: 1, month: "Avril", category: "Storytelling", formats: ["Bilan de la semaine"], text: "Il y a 10 ans, je fumais clope sur clope, je sortais tous les week-ends et j'avais à peine 5 000 € sur mes comptes bancaires.\n\nPuis un jour, j'en ai eu marre. J'ai arrêté les conneries et j'ai appris à investir et à penser à long terme.\n\nAujourd'hui, j'ai dépassé les 70 000 €.\n\nMais le plus beau ? Ce n'est pas l'argent. C'est d'avoir repris le contrôle de ma vie. D'avoir prouvé que la discipline finit toujours par payer.\n\nRoad to 100k.\n\nEt toi, où en es-tu dans ton chemin ? Dis-le-moi en commentaire" },
   { id: 2, month: "Avril", category: "Engagement & débat", text: "Ton épargne ne dit pas, à elle seule, si tu es riche ou pauvre.\n\nAvec la même somme de côté, ta situation peut être très différente selon ton revenu, tes charges, tes dettes et les personnes qui dépendent de toi.\n\nAvant de te comparer aux autres, regarde combien de mois de dépenses tu pourrais couvrir en cas d'imprévu.\n\n💬 Tu raisonnes en euros sur ton compte ou en mois de dépenses couverts ?" },
   { id: 3, month: "Avril", category: "Storytelling", formats: ["Bilan de la semaine"], text: "J'ai commencé à placer mon argent sur mon assurance vie en 2017. Puis, j'ai acheté du BTC en 2024 et ouvert mon PEA en 2025. Tout ça au prix d'effort sur mon train de vie.\n\nOn ne vit qu'une fois, d'accord, mais autant essayer de vivre correctement le plus longtemps possible.\n\nLe système des retraites ne tient plus, c'est indéniable. Qui sait quelle retraite nous attend dans 30 ans ?\n\nAujourd'hui, je dors sur mes deux oreilles. Peu importe les krachs, j'ai acheté des actifs auxquels je crois.\n\nDemain, je ferai partie de ceux à qui on dit \"tu as eu de la chance\". De la chance ? Non, j'ai pris conscience de l'urgence de la situation et j'ai pris des risques. Ceux qui ne jouent pas ne gagnent pas.\n\nEt toi, tu seras qui dans 20 ans ? Celui qui a joué ou celui qui dira aux autres qu'ils ont eu de la chance ?" },
@@ -177,6 +180,12 @@ Et toi, tu te souviens du montant de ton premier investissement ? 👇
 
 ⚠️ Pas un conseil financier.` },
 ]
+
+// Stable ids retain publication tracking when the catalogue order changes.
+export const TWEETS = [...ARCHIVED_TWEETS, ...EDITORIAL_CASES.map(item => ({
+  ...item, id: `pedagogy:${item.id}`, month: 'Intemporel', category: 'Pédagogie',
+  formats: ['Explication pédagogique'],
+}))]
 
 export function getTweet(id) {
   return TWEETS.find((t) => t.id === id)

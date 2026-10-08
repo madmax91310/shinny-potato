@@ -5,17 +5,13 @@
 //
 // Usage : node scripts/verify-tweet-midi.mjs   (ou npm run verify:tweet-midi)
 //
-// Ce que ça vérifie, sur les ~2000 entrées de ALL_ITEMS (7 formats confondus) :
+// Ce que ça vérifie, sur les ~2000 entrées de ALL_ITEMS (6 formats confondus) :
 //   1. buildTweetText() ne lève jamais d'exception et ne renvoie jamais une chaîne vide/trop
 //      courte pour être un vrai tweet.
 //   2. Aucun placeholder de gabarit non résolu ne fuit dans le texte final (ex. "{yearsPhrase}",
 //      "{pct}" laissés tels quels) — le bug exact corrigé lors de l'audit "pools de punchlines"
 //      du 29/08/2026, ici transformé en vérification permanente plutôt qu'en correctif ponctuel.
-//   3. Vrai/Faux : chaque sourceTermeId pointe vers un terme qui existe RÉELLEMENT dans le
-//      Lexique financier (traçabilité, cf. commentaire de tweet-midi/data/vraiFaux.js) — si le
-//      Lexique perd un terme un jour, ce script le détecte immédiatement plutôt que de laisser
-//      un tweet Vrai/Faux orphelin.
-//   4. Fiche lexique / Comparatif ETF (formats "façade", zéro donnée dupliquée) : le texte généré
+//   3. Fiche lexique / Comparatif ETF (formats "façade", zéro donnée dupliquée) : le texte généré
 //      n'est jamais vide — verrait immédiatement si l'appel à getFicheLexiqueText/
 //      getComparatifEtfText casse silencieusement (ex. après un renommage d'id en amont).
 //
@@ -27,7 +23,6 @@
 // risque le plus direct d'un futur renommage/déplacement de données en amont.
 
 import { ALL_ITEMS, FORMATS, FORMAT_LABELS, MODES, buildTweetText } from "../src/pages/tweet-midi/lib.js";
-import { TERMES } from "../src/data/financial-lexicon.js";
 import { getAnnualReturns } from "../src/pages/tweet-midi/data/marketHistory.js";
 
 import assert from 'node:assert/strict';
@@ -75,7 +70,6 @@ assert.equal((world.match(/^🏦 PEA ou CTO/gmu) ?? []).length, 2);
 const unknownStatus = buildEtfTweet({ nom: 'Test', etfs: [{ nom: 'Sans statut', isin: 'IE00BD4TXV59', frais: '0,20' }] });
 assert.doesNotMatch(unknownStatus, /🏦 PEA|🏦 CTO/u);
 
-const termeIds = new Set(TERMES.map((t) => t.id));
 
 // Extras génériques passés à toutes les générations : ignorés par les formats qui n'en ont pas
 // besoin (cf. buildTweetText, destructuring avec valeurs par défaut) — une seule valeur de test
@@ -114,9 +108,6 @@ for (const item of ALL_ITEMS) {
     if (!text || text.trim().length < 15) problems.push(`texte vide ou trop court (${text.length} caractères)`);
     const leak = text.match(LEAKED_PLACEHOLDER_RE);
     if (leak) problems.push(`placeholder non résolu dans le texte : "${leak[0]}"`);
-  }
-  if (item.format === FORMATS.VRAI_FAUX && item.sourceTermeId && !termeIds.has(item.sourceTermeId)) {
-    problems.push(`sourceTermeId "${item.sourceTermeId}" introuvable dans le Lexique financier`);
   }
   if (!error && item.format === FORMATS.PERFORMANCE_DEPUIS && item.mode === MODES.COMPARATIF) {
     const a = getAnnualReturns(item.assetIdA, item.year);

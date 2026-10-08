@@ -52,7 +52,7 @@ export function filterAndSortTweets(tweets, lastPub, filters) {
     list = list.slice().sort((a, b) => {
       const pa = lastPub[a.id]
       const pb = lastPub[b.id]
-      if (!pa && !pb) return a.id - b.id
+      if (!pa && !pb) return String(a.id).localeCompare(String(b.id), 'fr', {numeric:true})
       if (!pa) return -1
       if (!pb) return 1
       return new Date(pa) - new Date(pb)
