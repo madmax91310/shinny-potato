@@ -1,0 +1,42 @@
+.wealth-simulator { color: var(--text-primary, #e3ece7); max-width: 1600px; margin: auto; }
+.wealth-toolbar, .wealth-tabs, .wealth-row, .wealth-legend { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.wealth-toolbar { margin-bottom: 12px; }
+.wealth-tabs { margin: 12px 0; }
+.wealth-tabs button, .wealth-import, .wealth-remove, .wealth-event > button { padding: 10px 14px; border: 1px solid var(--border-color, #344b42); border-radius: 10px; background: var(--surface, #182820); color: inherit; cursor: pointer; }
+.wealth-tabs button[aria-pressed=true] { background: #244b3d; border-color: #65d5b0; color: #9be6c9; }
+.wealth-import input { display: block; max-width: 180px; font-size: 12px; }
+.wealth-panel { padding: 18px; margin-bottom: 14px; border: 1px solid var(--border-color, #344b42); border-radius: 16px; background: var(--surface, #15261e); }
+.wealth-panel h2, .wealth-preview h2 { font-size: 18px; margin: 0 0 14px; }
+.wealth-row { justify-content: space-between; }
+.wealth-row h2 { margin: 0; }
+.wealth-fields, .wealth-rates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
+.wealth-rates { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.wealth-field { display: flex; flex-direction: column; gap: 6px; font-size: 13px; min-width: 0; }
+.wealth-field input, .wealth-preview textarea { width: 100%; padding: 10px 12px; color: inherit; background: #101d17; border: 1px solid #405447; border-radius: 9px; min-width: 0; }
+.wealth-field input { min-height: 44px; }
+.wealth-note { font-size: 13px; color: var(--text-muted, #a8bdb0); line-height: 1.6; }
+.wealth-warning { padding: 12px; border-left: 3px solid #e8af60; background: #342c1b; font-size: 13px; }
+.wealth-simulator a { color: #85dbba; text-decoration: underline; }
+.wealth-simulator summary { cursor: pointer; padding: 10px 0; font-size: 14px; }
+.wealth-event { padding: 12px 0; border-bottom: 1px solid #344b42; }
+.wealth-preview { min-width: 0; padding: 18px; }
+.wealth-chart svg { width: 100%; height: auto; }
+.wealth-chart svg text { fill: #a8bdb0; font-size: 13px; }
+.wealth-legend { font-size: 12px; margin-bottom: 18px; }
+.wealth-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+.wealth-metrics > div { border: 1px solid #344b42; border-radius: 12px; padding: 16px; }
+.wealth-metrics small { display: block; color: #a8bdb0; font-size: 12px; }
+.wealth-metrics strong { display: block; font-size: 24px; color: #85dbba; margin-top: 8px; }
+.wealth-table-wrap { overflow: auto; max-width: 100%; margin: 12px 0; }
+.wealth-simulator table { border-collapse: collapse; width: 100%; font-size: 13px; white-space: nowrap; }
+.wealth-simulator th, .wealth-simulator td { text-align: left; padding: 10px; border-bottom: 1px solid #344b42; }
+.wealth-preview textarea { resize: vertical; font-family: inherit; font-size: 14px; line-height: 1.65; }
+.wealth-settings, .wealth-preview { min-width: 0; }
+.wealth-simulator button:disabled { opacity: .45; cursor: default; }
+@media (max-width: 650px) {
+  .wealth-rates, .wealth-fields { grid-template-columns: 1fr; }
+  .wealth-toolbar .workspace-button { flex: 1; }
+  .wealth-metrics strong { font-size: 20px; }
+  .wealth-preview { padding: 10px; }
+  .wealth-panel { padding: 14px; }
+}

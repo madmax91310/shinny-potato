@@ -76,6 +76,7 @@ jobs:
       - run: node scripts/test-insurance.mjs
       - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'
       - run: node scripts/test-company-analysis.mjs
+      - run: node scripts/test-wealth-simulator.mjs
       - run: node scripts/test-annual-rollover.mjs
       - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:portfolio-provenance
@@ -134,6 +135,7 @@ jobs:
         env:
           COMPANY_QA_DIR: test-artifacts/company-analysis
       - run: node scripts/playwright-tools.mjs
+      - run: node scripts/playwright-wealth.mjs
       - run: node scripts/test-regulatory-ui.mjs
       - run: node scripts/test-commodity-allocation-ui.mjs
       - run: node scripts/test-portfolio-metallic.mjs
