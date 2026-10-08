@@ -86,6 +86,23 @@ class EconomicDataTests(unittest.TestCase):
    self.assertEqual(o['discoveryStatus'],'latest-complete-year-revalidated')
    with self.assertRaises(ValueError):c.collect_funds_euros('2027-01-01',baseline)
    with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',{})
+ def test_acpr_official_mirror_records_actual_source(self):
+  url=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
+  mirror=url.replace(c.ACPR,'https://www.banque-france.fr')
+  text='Contrats individuels : nets de prélèvements sur encours, avant prélèvements sociaux. Taux de revalorisation en 2025 : 2,63 %.'
+  with patch.object(c,'discover_acpr',return_value=url),patch.object(c,'official_download',side_effect=[ValueError('HTTP 403'),b'fresh pdf']) as fetch,patch.object(c,'pdf_text',return_value=text):
+   o=c.collect_funds_euros('2026-10-08',{})
+   self.assertEqual(o['sourceUrl'],mirror);self.assertEqual(o['value'],2.63)
+   self.assertEqual([call.args[0] for call in fetch.call_args_list],[url,mirror])
+  with patch.object(c,'discover_acpr',side_effect=ValueError('HTTP 403')),patch.object(c,'official_download',return_value=b'fresh pdf'),patch.object(c,'pdf_text',return_value=text):
+   o=c.collect_funds_euros('2026-10-08',{'fonds_euros:2025':o})
+   self.assertEqual(o['sourceUrl'],mirror)
+   with self.assertRaises(ValueError):c.collect_funds_euros('2027-01-01',{'fonds_euros:2025':o})
+ def test_acpr_mirror_does_not_hide_invalid_download(self):
+  url=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
+  with patch.object(c,'discover_acpr',return_value=url),patch.object(c,'official_download',return_value=b'bad report') as fetch,patch.object(c,'pdf_text',side_effect=ValueError('wrong report')):
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',{})
+   fetch.assert_called_once_with(url)
  def test_funds_fallback_does_not_mask_download_failure_or_new_report_failure(self):
   url=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
   baseline={'fonds_euros:2025':{'year':2025,'sourceUrl':url}}
