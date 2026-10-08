@@ -113,8 +113,8 @@ class DocumentResolver:
                 target = official_link(html, config, self.today)
                 try:
                     text = self.fetch(target)
-                    self.report[canonical] = {'sourceUrl': target, 'discoveryUrl': config['page'], 'mode': 'catalogue'}
-                    return SourceDocument(text, target, config['page'])
+                    self.report[canonical] = {'sourceUrl': getattr(text,'source_url',target), 'discoveryUrl': config['page'], 'mode': 'catalogue'}
+                    return SourceDocument(text, getattr(text,'source_url',target), config['page'])
                 except Exception as error:
                     # A current brochure was found but cannot be downloaded.
                     # Keep last qualified data; an older URL could hide changes.
@@ -129,8 +129,8 @@ class DocumentResolver:
         for candidate in dict.fromkeys((*([previous] if previous else []), url, *ALTERNATIVES.get(canonical, ()))):
             try:
                 text = self.fetch(candidate)
-                self.report[canonical] = {'sourceUrl': candidate, 'mode': 'fallback' if errors or candidate != url else 'direct', 'catalogueErrors': errors}
-                return SourceDocument(text, candidate)
+                self.report[canonical] = {'sourceUrl': getattr(text,'source_url',candidate), 'mode': 'fallback' if errors or candidate != url else 'direct', 'catalogueErrors': errors}
+                return SourceDocument(text, getattr(text,'source_url',candidate))
             except Exception as error:
                 errors.append(candidate + ': ' + str(error))
         raise ValueError('; '.join(errors))
