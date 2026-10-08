@@ -1,5 +1,5 @@
-import { dateLabel, format } from '../scpi-presentation/lib.js'
-import { fundAllocation, fundGuarantee } from '../insurance-presentation/lib.js'
+import { dateLabel, format, annualPublicationNote } from '../scpi-presentation/lib.js'
+import { fundAllocation, fundGuarantee, fundOperations } from '../insurance-presentation/lib.js'
 
 const INK = '#162b25', MUTED = '#61675f', SERIF = 'Georgia, serif', SANS = 'Arial, sans-serif'
 const pct = value => `${format(value)} %`
@@ -20,7 +20,7 @@ export function presentationImageModel(record, kind) {
     sections.push({title:'Patrimoine',columns:[{title:'Pays',rows:split(snapshot.countries)},{title:'Secteurs',rows:split(snapshot.sectors)}],notes:[snapshot.asOf ? `Répartition au ${dateLabel(snapshot.asOf)}.` : 'Date des graphiques non publiée.',snapshot.dateNote].filter(Boolean)})
     const metrics = Object.entries(record.portfolio ?? {}).map(([key,r]) => row(r.label,`${format(r.value)}${key==='occupancy'?' %':''} · ${dateLabel(r.asOf)}`))
     if (metrics.length) sections.push({title:'Actifs et occupation',rows:metrics,notes:['Le taux financier ne mesure pas l’occupation physique.',record.portfolio?.occupancy?.basis].filter(Boolean)})
-    sections.push({title:'Distributions',annual:annual.years.map(r=>({year:r.year,value:pct(r.distribution)})),notes:['Taux de distribution, bruts de fiscalité étrangère ; distincts de la performance totale.']})
+    sections.push({title:'Distributions',annual:annual.years.map(r=>({year:r.year,value:pct(r.distribution)})),notes:['Taux de distribution, bruts de fiscalité étrangère ; distincts de la performance totale.',annualPublicationNote(annual.publication)].filter(Boolean)})
     const management=c.managementZones ? `${pct(c.managementZones.euro)} TTC en zone euro ; ${pct(c.managementZones.outside)} TTC hors zone euro` : `${c.managementFeeMax || record.id==='iroko-zen'?'Maximum ':''}${pct(c.managementFee)} ${c.managementTax ?? 'TTC'}`
     sections.push({title:'Accès et frais',columns:[{title:'Souscription',rows:[row('Prix de la part',`${euro(price.value)} · ${dateLabel(price.asOf)}`),row('Minimum initial',euro(c.minimum)),row('Revenus potentiels',c.frequency)]},{title:'Commissions',rows:[row('Souscription',`${c.subscriptionFeeMax?'Maximum ':''}${pct(c.subscriptionFee)} ${c.subscriptionTax ?? ''}`.trim()),row('Gestion',management),row('Assiette de gestion',c.managementBasis)]}],notes:[c.enjoyment,...(record.priceHistory?.corporateActions ?? []).map(a=>a.description)]})
     footer='Capital et revenus non garantis. Revente non immédiate. Distributions passées non garanties à l’avenir.'
@@ -29,7 +29,7 @@ export function presentationImageModel(record, kind) {
     sections.push({title:'Supports et accès',columns:[{title:'Versements minimums',rows:[row('Ouverture',euro(access.initial)),row('Versement libre',euro(access.free)),row('Programmé',`${euro(access.monthly)}/mois`)]},{title:'Supports annoncés',rows:[row('Nombre',`Plus de ${format(supports.minimumCount)}`),row('Catégories',supports.categories.join(', '))]}],notes:[`Assureur : ${record.insurer}. Gestion libre.`]})
     sections.push({title:'Frais du contrat',columns:[{title:'Opérations',rows:[row('Versement',pct(fees.subscription)),row('Arbitrage en ligne',pct(fees.arbitrage))]},{title:'Gestion et transactions',rows:[row('Unités de compte',`${pct(fees.units)}/an`),row('Transactions ETF',`${pct(fees.etfTrade)} par opération`)]}],notes:[fees.notes,'Les frais propres aux supports et aux options s’ajoutent.'].filter(Boolean)})
     for (const fund of euroFunds) {
-      sections.push({title:fund.name,annual:fund.years.map(r=>({year:r.year,value:r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`})),notes:[...fund.years.filter(r=>r.condition).map(r=>`${r.year} : ${r.condition}.`),`Gestion du fonds : ${pct(fund.managementFeeMax)} maximum/an.`,fundGuarantee(fund),fundAllocation(fund),fund.operations,fund.notes].filter(Boolean)})
+      sections.push({title:fund.name,annual:fund.years.map(r=>({year:r.year,value:r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`})),notes:[...fund.years.filter(r=>r.condition).map(r=>`${r.year} : ${r.condition}.`),`Gestion du fonds : ${pct(fund.managementFeeMax)} maximum/an.`,annualPublicationNote(fund.publication),fundGuarantee(fund),fundAllocation(fund),fundOperations(fund),fund.notes].filter(Boolean)})
       const latest=fund.years.at(-1)
       if(latest.tiers) sections.push({title:`Barème ${latest.year} · ${fund.name}`,table:latest.tiers,notes:['Ce barème dépend de l’encours et de la part d’unités de compte.']})
     }

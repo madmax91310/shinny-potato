@@ -23,7 +23,7 @@ La date de vérification des pages n’est pas présentée comme une date d’ef
 - Eurossima : le plafond annuel est fixé par l’assureur dans une plage de 0 à 50 000 € la première année, puis de 0 à 25 000 € ; ce n’est pas un plafond universel de versement du contrat.
 
 - Lucya Cardif : Fonds général et Euro Private Strategies sont distincts, notamment leurs frais et garanties nettes. L’allocation Euro Private Strategies exige au moins deux euros d’unités de compte pour un euro sur le fonds. La quote-part maximale actuelle du Fonds général reste non renseignée ; la clause conditionnelle liée au TME est affichée, sans supposer la valeur actuelle de cet indice. Adhésion UFEP et conditions particulières des supports immobiliers sont visibles.
-- Placement-direct Vie : un seul fonds euros qualifié, Actif général SwissLife. Chaque année conserve les six taux du barème officiel (deux encours × trois parts d’UC), avec la fourchette et les conditions affichées. Le maximum commercial n’est pas converti en rendement universel. Garantie nette et quote-part maximale restent non renseignées faute de valeur explicite dans les documents collectés ; les frais particuliers des actions sont affichés.
+- Placement-direct Vie : un seul fonds euros qualifié, Actif général SwissLife. Chaque année conserve les six taux du barème officiel (deux encours × trois parts d’UC), avec la fourchette et les conditions affichées. Le maximum commercial n’est pas converti en rendement universel. La garantie annuelle minimale hors option plancher décès est calculée à 99,4 % depuis la clause de garantie minorée des frais et les frais annuels de 0,60 %, contrôlés entre notice et fiche tarifaire. Cette proportion diminue chaque année avec les frais ; le coût éventuel de la garantie décès est distinct. La quote-part maximale reste non renseignée faute de valeur explicite. La notice alimente aussi les majorations d’allocation déléguée (+0,40 %/an) et d’allocation opportunités 100 % Trackers (+0,70 %/an), uniquement sur les UC concernées. Les frais particuliers des actions sont affichés.
 - Le lecteur Nuxt accepte uniquement les littéraux et alias sérialisés, sans exécuter le JavaScript du distributeur. Toute modification du catalogue des fonds ou incohérence du barème exige une nouvelle qualification.
 
 ## Actualisation
@@ -42,3 +42,11 @@ node scripts/test-presentation-images.mjs
 ```
 
 Les sources supplémentaires doivent être qualifiées avant d’étendre les produits. Aucun envoi automatique sur X.
+
+## Transition annuelle et échéances
+
+Les taux restent attachés aux années effectivement publiées. Du 1er janvier au 30 juin, les taux N−2 sont acceptés si N−1 n’est pas publié ; un état explicite « en attente de publication » apparaît dans le texte, les réglages et le PNG. Les historiques glissent dès la publication suivante. Au 1er juillet, un exercice manquant devient un échec avec conservation de la dernière fiche. Les fourchettes, leurs conditions et les six taux SwissLife restent attachés à leur propre millésime.
+
+La date de rendement doit correspondre à la dernière ligne annuelle ; les années doivent être consécutives, et toute régression du millésime ou source invalidée échoue. Cette tolérance de calendrier ne dispense pas de redécouvrir et relire les sources. Elle ne prolonge aucune offre commerciale : l’accès Netissima expiré déclenche toujours un échec tant qu’une nouvelle condition officielle n’est pas qualifiée, et les consommateurs masquent le quota et les opérations échus même si la dernière fiche est conservée.
+
+Tests : `python -m unittest discover -s scripts -p test_publication_periods.py` et les tests des textes/PNG.

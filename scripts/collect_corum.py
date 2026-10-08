@@ -7,6 +7,7 @@ import tempfile
 import urllib.parse
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
+from publication_periods import completed_year, latest_annual
 from collect_scpi import fetch, pdf_text, number, required
 
 PRODUCTS = {'corum-origin': ('CORUM Origin','corum-origin'), 'corum-xl': ('CORUM XL','corum-xl'), 'corum-eurion': ('CORUM Eurion','eurion')}
@@ -26,7 +27,7 @@ def documents(html, name, today):
             if stamp<=today:valid.append((stamp,url))
         if not valid:raise ValueError('Missing current official document')
         return max(valid,key=lambda r:r[0])[1]
-    annual = latest([u for u in links if re.search(r'rapport annuel\s+'+re.escape(name.lower())+r'\s+'+str(today.year-1),decoded(u))])
+    annual, _ = latest_annual(links, r'rapport annuel\s+'+re.escape(name)+r'\s+(?P<year>20\d{2})', today)
     note = latest([u for u in links if name.lower() in decoded(u) and 'note d information' in decoded(u)])
     return annual,note
 
@@ -34,7 +35,8 @@ def documents(html, name, today):
 def parse_annual(text, today):
     block = required(r'Évolution du prix de la part\s+(.*?)Variation du prix de la part',text).group(1)
     years = [int(v) for v in required(r'^((?:20\d{2}\s+){4}20\d{2})',block.strip()).group(1).split()]
-    if years[:3] != [today.year-1,today.year-2,today.year-3]:raise ValueError('Annual distribution periods changed')
+    completed_year(years, today, count=5)
+    if years != sorted(years, reverse=True):raise ValueError('Annual distribution columns changed')
     line = required(r'Taux de distribution\[\d+\]\s*([^\n]+)',block).group(1)
     rates = [number(v) for v in re.findall(r'([\d,.]+)\s*%',line)]
     if len(rates)!=len(years):raise ValueError('Annual rates do not match columns')
@@ -104,7 +106,8 @@ def parse_annual_portfolio(text, year, url):
 def parse_annual_price_history(text, today, url):
     block=required(r'Évolution du prix de la part\s+(.*?)Dividende brut',text)[1]
     years=[int(y) for y in required(r'^((?:20\d{2}\s+){4}20\d{2})',block.strip())[1].split()]
-    if years[0]!=today.year-1:raise ValueError('Annual price period changed')
+    completed_year(years, today, count=5)
+    if years != sorted(years, reverse=True):raise ValueError('Annual price columns changed')
     values=re.findall(r'([\d,. ]+)\s*€',required(r'Prix de souscription au 31/12([^\n]+)',block)[1])
     if len(values)!=len(years):raise ValueError('Price columns do not match')
     return {'years':sorted([{'asOf':f'{y}-12-31','value':number(v)} for y,v in zip(years,values)],key=lambda r:r['asOf']), 'sourceUrl':url}
@@ -139,6 +142,26 @@ def parse_eurion_quarterly(text,pages,url,today):
     return {'asOf':date,'countries':countries,'sectors':sectors,'sourceUrls':[url],'dateNote':'Répartitions extraites du dernier bulletin trimestriel officiel.'},portfolio
 
 
+def origin_occupancy(html, today, url):
+    """Use only the dated TOF block; nearby undated counts keep their annual source."""
+    soup=BeautifulSoup(html,'html.parser')
+    matches=[]
+    for title in soup.select('.assets-title'):
+        heading=title.get_text(' ',strip=True)
+        match=re.fullmatch(r'Des immeubles loués à ([\d,.]+)\s*%',heading,re.I)
+        if not match:continue
+        block=title.find_parent(class_='row').parent
+        text=block.get_text(' ',strip=True)
+        required(r'Taux d.Occupation Financier',text)
+        stamp=required(r'au (\d{2})/(\d{2})/(\d{4})',text)
+        date=dt.date(int(stamp[3]),int(stamp[2]),int(stamp[1]))
+        if date>today:raise ValueError('Future CORUM occupancy date')
+        matches.append({'value':number(match[1]),'asOf':date.isoformat(),'sourceUrl':url,'label':'Taux d’occupation financier',
+                        'basis':'Loyers facturés rapportés aux loyers théoriques si tous les immeubles étaient loués ; méthode de la page officielle, distincte de l’occupation physique.'})
+    if len(matches)!=1:raise ValueError('Missing/ambiguous dated CORUM Origin TOF')
+    return matches[0]
+
+
 def parse_conditions(text, id_, fee_page):
     compact=re.sub(r'\s+',' ',text)
     required(r'au moins une \(1\) part sociale',compact)
@@ -170,13 +193,20 @@ def collect(id_,today):
     required(re.escape(name),annual);required(re.escape(name),note)
     fees=BeautifulSoup(fetch(base+'/frais'),'html.parser').get_text(' ',strip=True)
     countries,sectors=parse_annual_allocations(bbox_pages(annual_data))
-    as_of=f'{today.year-1}-12-31'
+    annual_year = max(r['year'] for r in parse_annual(annual,today))
+    linked_year=int(required(r'rapport annuel\s+'+re.escape(name)+r'\s+(20\d{2})',urllib.parse.unquote(annual_url))[1])
+    if annual_year!=linked_year:raise ValueError('Annual URL and published columns disagree')
+    as_of=f'{annual_year}-12-31'
     price,conditions=parse_conditions(note,id_,fees)
     product=BeautifulSoup(fetch(base),'html.parser').get_text(' ',strip=True)
     advertised=number(required(r'Prix de la part\s+([\d ]+)\s*€',product).group(1))
     if advertised != price['value']: raise ValueError('Product price differs from official note')
-    portfolio=parse_annual_portfolio(annual,today.year-1,annual_url)
+    portfolio=parse_annual_portfolio(annual,annual_year,annual_url)
     snapshot={'asOf':as_of,'dateNote':'Répartition du dernier rapport annuel complet ; les bulletins trimestriels ne sont pas utilisés pour ces tableaux.', 'countries':countries,'sectors':sectors,'sourceUrls':[annual_url]}
+    if id_=='corum-origin':
+        url=base+'/patrimoine'
+        observation=origin_occupancy(fetch(url).decode(),today,url)
+        if observation['asOf']>=portfolio['occupancy']['asOf']:portfolio['occupancy']=observation
     if id_=='corum-eurion':
         from collect_extended_scpi import document_links, latest
         url=latest(document_links(documents_html,base),r'CORUM Eurion.*?(?P<year>\d{4})-T(?P<quarter>[1-4])\.pdf',today)

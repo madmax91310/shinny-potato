@@ -6,8 +6,8 @@ import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import { INSURANCE } from '../../data/insurance.js'
-import { dateLabel, format } from '../scpi-presentation/lib.js'
-import { buildTweet, fundReturn, fundGuarantee, fundAllocation } from './lib.js'
+import { dateLabel, format, annualPublicationNote } from '../scpi-presentation/lib.js'
+import { buildTweet, fundReturn, fundGuarantee, fundAllocation, fundOperations } from './lib.js'
 import '../scpi-presentation/style.css'
 
 export default function App() {
@@ -52,9 +52,10 @@ export default function App() {
               {fund.years.filter(row => row.tiers).map(row => <details key={row.year} className="insurance-rate-tiers"><summary>Barème de rendement {row.year}</summary>
                 <table><thead><tr><th>Encours du contrat</th><th>Part d’unités de compte</th><th>Rendement</th></tr></thead><tbody>{row.tiers.map((tier, index) => <tr key={index}><td>{tier.encours}</td><td>{tier.condition}</td><td>{format(tier.return)} %</td></tr>)}</tbody></table>
               </details>)}
+              {annualPublicationNote(fund.publication) && <p>{annualPublicationNote(fund.publication)}</p>}
               <p>Avant prélèvements sociaux et fiscaux ; historique publié disponible, sans bonus commercial.</p>
               <p>{fundGuarantee(fund)} Frais de gestion : {format(fund.managementFeeMax)} % maximum/an.</p>
-              <p>{fundAllocation(fund)} {fund.operations}</p>
+              <p>{fundAllocation(fund)} {fundOperations(fund)}</p>
               {fund.notes && <p>{fund.notes}</p>}
               {(fund.sourceUrls ?? [fund.sourceUrl]).map(url => <p key={url}><a href={url} target="_blank" rel="noreferrer">Source et conditions du fonds</a></p>)}
             </section>)}

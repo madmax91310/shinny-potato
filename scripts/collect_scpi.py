@@ -11,6 +11,7 @@ import tempfile
 import urllib.parse
 import urllib.request
 from bs4 import BeautifulSoup
+from publication_periods import completed_year, annual_status
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'src/data/automated-scpi.json'
@@ -217,8 +218,8 @@ def validate(record, today):
         if abs(sum(r['value'] for r in rows) - 100) > 0.15:
             raise ValueError('Allocation does not sum to 100%')
     years = record['annual']['years']
-    if len(years) != 3 or len({r['year'] for r in years}) != 3 or max(r['year'] for r in years) != today.year - 1:
-        raise ValueError('Three completed annual distributions required')
+    year = completed_year([r['year'] for r in years], today, count=3)
+    record['annual']['publication'] = annual_status(year, today)
     if any(not isinstance(r['distribution'], (int, float)) or not 0 <= r['distribution'] <= 30 for r in years):
         raise ValueError('Invalid distribution rate')
     if not 0 < record['price']['value'] < 10000 or not 0 < record['conditions']['minimum'] < 100000:
@@ -255,6 +256,8 @@ def refresh(previous, adapters, today):
                 if old and old[field]['asOf'] and record[field]['asOf'] and record[field]['asOf'] < old[field]['asOf']:
                     raise ValueError('Source publication regressed')
             if old:
+                if max(r['year'] for r in record['annual']['years']) < max(r['year'] for r in old['annual']['years']):
+                    raise ValueError('Annual distribution publication regressed')
                 for key,observation in old.get('portfolio',{}).items():
                     new=record.get('portfolio',{}).get(key)
                     if not new or new['asOf']<observation['asOf']:raise ValueError('Portfolio evidence disappeared or regressed: '+key)

@@ -90,11 +90,12 @@ N 0 900
         return '<h1>Placement-direct Vie</h1><p>SwissLife Assurance et Patrimoine Versement initial 500€ Versements libres 50€ Versements programmés 50€/mois plus de 1300 supports d’investissement 300 actions en direct moins de 250 000€ plus de 250 000€ Rendement net en 2025 Jusqu’à 3,45 % Le désinvestissement sur les ETF supporte des frais de 0,10 % Une opération sur les actions en direct supporte des frais de 0,45 %</p><script>window.__NUXT__=(function(a){x.rendement='+pub+';return x}(null));</script>'
     def placement(self,html=None):
         fees='Placement-direct Vie Frais sur versement 0 % Frais d’arbitrage libre Proportionnels ou forfaitaires 0 % Support unités de compte 0,8 % pour les titres vifs / 0,5 % Sinon Support fonds en Euros 0,6 %'
-        return parse_placement(html or self.placement_html(),'Placement-direct Vie SwissLife peut limiter temporairement et sans préavis les possibilités de sortie du fonds en euros',fees,URL,URL,TODAY)
+        return parse_placement(html or self.placement_html(),'Placement-direct Vie SwissLife peut limiter temporairement et sans préavis les possibilités de sortie du fonds en euros. Les droits exprimés en euros comportent une garantie en capital égale aux sommes versées, nettes des prélèvements effectués au titre des frais de souscription et de gestion ; sur le fonds en euros : 0,60 % de l’épargne sur base annuelle. Garantie plancher décès ; option « allocation déléguée », les frais sont majorés de 0,40 % sur base annuelle de l’épargne en unités de compte concernée par l’option ; option « allocation opportunités 100 % Trackers », les frais sont majorés de 0,70 % sur base annuelle de l’épargne en unités de compte concernée par l’option.',fees,URL,URL,TODAY)
     def test_one_fund_and_conditional_rates(self):
         r=validate_insurance(self.placement(),TODAY);f=r['euroFunds'][0]
         self.assertEqual(len(r['euroFunds']),1)
-        self.assertIsNone(f['guarantee']);self.assertIsNone(f['maxAllocation'])
+        self.assertEqual(f['guarantee'],99.4);self.assertIsNone(f['maxAllocation'])
+        self.assertEqual([o['additionalFee'] for o in r['fees']['options']],[.4,.7])
         self.assertEqual((f['years'][-1]['returnMin'],f['years'][-1]['returnMax']),(1.9,3.45))
         self.assertEqual(len(f['years'][-1]['tiers']),6)
         self.assertIn('0,8 %/an',r['fees']['notes'])
