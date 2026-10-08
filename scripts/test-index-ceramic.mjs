@@ -12,6 +12,8 @@ try {
   await page.exposeFunction('saveCeramic', async ({ id, png }) => writeFile(`test-artifacts/index-ceramic/${id}.png`, Buffer.from(png.split(',')[1], 'base64')))
   const count = await page.evaluate(async () => {
     const { FAMILIES } = await import('/shinny-potato/src/data/index-comparisons.js')
+    const { getIndexComparisonPairs } = await import('/shinny-potato/src/data/index-comparison-pairs.js')
+    const pairs = FAMILIES.flatMap(getIndexComparisonPairs)
     const { renderIndexImage, getIndexImageFacts } = await import('/shinny-potato/src/pages/index-comparator/imageExport.js')
     const { buildTweetText } = await import('/shinny-potato/src/pages/index-comparator/lib.js')
     const original = CanvasRenderingContext2D.prototype.fillText
@@ -23,9 +25,9 @@ try {
       boxes.push(b); labels.push(String(value)); return original.call(this, value, x, y, ...rest)
     }
     try {
-      for (const family of FAMILIES) {
+      for (const family of pairs) {
         const before = JSON.stringify(family), tweet = buildTweetText(family, {})
-        boxes = []; labels = []; current = family.id
+        boxes = []; labels = []; current = family.pairId
         const image = await renderIndexImage(family), all = labels.join(' ')
         if (before !== JSON.stringify(family) || tweet !== buildTweetText(family, {})) throw Error('Data or tweet changed')
         if (labels.filter(v => v === 'Épargnant Libre').length !== 1 || /ISIN|…/.test(all)) throw Error('Signature or truncated content')
@@ -39,16 +41,27 @@ try {
           }
           if (facts?.asOf && !all.includes(facts.asOf.split('-').reverse().join('/'))) throw Error('Lost snapshot date')
         }
-        if (family.id === 'monde' && !all.includes('Le World exclut les émergents. ACWI et All-World les incluent.')) throw Error('Lost comparison takeaway')
-        await window.saveCeramic({ id: family.id, png: image.toDataURL() })
+        await window.saveCeramic({ id: family.pairId, png: image.toDataURL() })
       }
       const absent = { ...FAMILIES.find(f => f.id === 'monde'), indices: FAMILIES.find(f => f.id === 'monde').indices.map(i => ({ ...i, indexFacts: { ...i.indexFacts, metadata: { sourceStatus: 'archive-unverifiable' } } })) }
       labels = []; boxes = []; current = 'undocumented'
       await renderIndexImage(absent)
       if (labels.includes('titres') || labels.includes('SECTEURS') || labels.includes('PRINCIPAUX PAYS')) throw Error('Undocumented facts exposed')
     } finally { CanvasRenderingContext2D.prototype.fillText = original }
-    return FAMILIES.length
+    return pairs.length
   })
+  await page.goto(`${base}comparateur-indices`)
+  await page.getByRole('group', { name: 'Choisir une famille d’indices', exact: true }).locator('[data-value="monde"]').click()
+  const duels = page.getByRole('group', { name: 'Choisir un duel d’indices', exact: true })
+  if (await duels.getByRole('button').count() !== 3) throw Error('World must offer A/B, A/C and B/C')
+  for (const [label, omitted] of [['MSCI World / MSCI ACWI', 'FTSE All-World'], ['MSCI World / FTSE All-World', 'MSCI ACWI'], ['MSCI ACWI / FTSE All-World', 'MSCI World']]) {
+    await duels.getByRole('button', { name: label, exact: true }).click()
+    const tweet = await page.locator('.xc-preview-text').innerText()
+    if ((tweet.match(/^🔹 /gm) ?? []).length !== 2 || tweet.includes(omitted)) throw Error(`Wrong pair: ${label}`)
+    if (await page.locator('.xc-fund-block').count() !== 2) throw Error('Performance form leaked a third index')
+  }
+  await page.getByRole('group', { name: 'Choisir une famille d’indices', exact: true }).locator('[data-value="usa"]').click()
+  if (await duels.getByRole('button').count() !== 6 || await duels.getByRole('button', { pressed: true }).innerText() !== 'S&P 500 / Nasdaq 100') throw Error('Family change did not reset the pair')
   await page.setViewportSize({ width: 390, height: 844 }); await page.goto(`${base}comparateur-indices`)
   await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
   await page.getByRole('tab', { name: 'Image', exact: true }).click()

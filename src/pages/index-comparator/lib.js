@@ -2,6 +2,7 @@ import { getIndexComparisonComposition, cleanExposureLabel, exposurePercent } fr
 import { getIndexComparisonPerformance, getIndexComparisonPerformanceHeading, getIndexComparisonPerformanceLabel } from '../../data/index-comparison-performance.js'
 import { getIndexComparisonEditorial } from '../../data/index-comparison-editorial.js'
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
+import { asIndexComparisonPair } from '../../data/index-comparison-pairs.js'
 
 export function fmtPct(raw) {
   if (raw === '' || raw === null || raw === undefined || !String(raw).trim()) return null
@@ -21,6 +22,7 @@ function renderFundGroup(group) {
   })].join('\n\n')
 }
 export function buildTweetText(family, perfValues = {}) {
+  family = asIndexComparisonPair(family)
   const editorial = getIndexComparisonEditorial(family)
   const rows = getIndexComparisonPerformance(family)
   const detailedLabels = ['emergents-pea', 'style', 'dividendes-cto', 'dividendes-pea'].includes(family.id)

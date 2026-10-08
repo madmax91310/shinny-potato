@@ -39,6 +39,7 @@ import { spawn } from "node:child_process";
 import { stat, readFile, mkdir, writeFile } from "node:fs/promises";
 import { DATA_CATALOG } from '../src/data/catalog.js';
 import { FAMILIES } from "../src/data/index-comparisons.js";
+import { getIndexComparisonPairs } from "../src/data/index-comparison-pairs.js";
 import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
 import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js';
 import { getIndexComparisonComposition } from '../src/data/index-comparison-composition.js';
@@ -667,7 +668,8 @@ async function testIndexComparator(page) {
   const select = page.locator('[data-selector]').first();
   const count = await select.locator('[data-option]').count();
   let ok = 0, images = 0;
-  for (const family of FAMILIES) {
+  for (const baseFamily of FAMILIES) {
+    const family = getIndexComparisonPairs(baseFamily)[0];
     console.log(`    Comparateur : ${family.id}`);
     await choose(select, family.id);
     const text = await page.locator('.xc-preview-text').innerText();
@@ -698,13 +700,13 @@ async function testIndexComparator(page) {
       return (!facts.constituents || (drawn.includes(facts.constituents.toLocaleString('fr-FR')) && drawn.includes('titres')))
         && [...getIndexComparisonComposition(index).countries, ...getIndexComparisonComposition(index).sectors].every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
     });
-    if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.id}.png`
+    if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.pairId}.png`
       && png.readUInt32BE(16) === 1800 && png.readUInt32BE(20) > 400
       && png.readUInt32BE(20) < 3600 && png.length > 10000) images++;
   }
   await choose(select, 'monde');
   const worldText = await page.locator('.xc-preview-text').innerText();
-  const sharedCountsOk = FAMILIES.find(f => f.id === 'monde').indices.every(index =>
+  const sharedCountsOk = getIndexComparisonPairs(FAMILIES.find(f => f.id === 'monde'))[0].indices.every(index =>
     worldText.replaceAll('\u202f', ' ').includes(String(index.indexFacts.constituents.toLocaleString('fr-FR')).replaceAll('\u202f', ' ')));
   await choose(select, 'europe');
   await page.getByRole('checkbox', { name: 'Inclure le YTD' }).first().check();

@@ -4,6 +4,7 @@ import { fmtPct } from './lib.js'
 // Reference 2: ivory ceramic, sculpted counts and aligned composition tables.
 // All copy and figures stay dynamic; decorative reliefs encode no financial data.
 import { getIndexComparisonEditorial } from '../../data/index-comparison-editorial.js'
+import { asIndexComparisonPair } from '../../data/index-comparison-pairs.js'
 const BG = '#f4eee3', INK = '#17212b', MUTED = '#62645e'
 const COLORS = ['#22614e', '#234e79', '#a64b21', '#6b527d', '#7d6333']
 const FONT = 'Arial, "Helvetica Neue", sans-serif', SERIF = 'Georgia, serif'
@@ -81,9 +82,10 @@ function ceramicNumber(ctx, text, x, y, width, color) {
   ctx.fillStyle = glaze; ctx.fillText(text, x, y); ctx.restore()
 }
 export async function renderIndexImage(family) {
+  family = asIndexComparisonPair(family)
   await document.fonts.ready
   const editorial = getIndexComparisonEditorial(family)
-  const columns = family.indices.length === 4 ? 2 : Math.min(3, family.indices.length), W = 1800, PAD = 62, GAP = 42
+  const columns = 2, W = 1800, PAD = 62, GAP = 42
   const WIDTH = (W - PAD * 2 - GAP * (columns - 1)) / columns, INNER = WIDTH - 40
   const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
   if (!ctx) throw new Error('Impossible de générer le visuel.')
@@ -118,12 +120,12 @@ export async function renderIndexImage(family) {
     })
     rows.push({ nameHeight, countOffset, pointOffset, pointHeight, hasStamp, sections, height: sectionOffset + 24 })
   }
-  const heading = family.id === 'monde' ? 'World, ACWI, All-World : quelles différences ?' : editorial.imageTitle
+  const heading = editorial.imageTitle
   font(ctx, 60, 700, SERIF); const title = lines(ctx, heading, W - PAD * 2)
   const stamps = [...new Set(cards.map(card => card.stamp).filter(Boolean))]
   const commonStamp = stamps.length === 1 && cards.every(card => card.stamp) ? stamps[0] : null
   const HEADER = 45 + title.length * 74 + (commonStamp ? 68 : 24)
-  const takeaway = family.id === 'monde' ? 'Le World exclut les émergents. ACWI et All-World les incluent.' : editorial.insight
+  const takeaway = editorial.insight
   font(ctx, 30, 700, SERIF); const takeawayLines = lines(ctx, takeaway, W - PAD * 2 - 100)
   const sources = [...new Set([...cards.map(c => c.source), ...performanceRows.map(p => sourceProvider(p.source))].filter(Boolean))]
   const sourcesText = sources.length ? `Sources : ${sources.join(' · ')}${cards.some(c => c.allocations.some(a => a.label === 'SECTEURS')) ? ' · Classifications sectorielles propres à chaque fournisseur' : ''}` : null
@@ -182,7 +184,7 @@ export async function downloadIndexImage(family) {
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('Impossible de générer le PNG')
   const url = URL.createObjectURL(blob), link = document.createElement('a')
-  link.href = url; link.download = `comparateur-indices-${family.id}.png`
+  link.href = url; link.download = `comparateur-indices-${asIndexComparisonPair(family).pairId}.png`
   document.body.append(link); link.click(); link.remove()
   window.setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

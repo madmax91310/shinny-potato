@@ -480,6 +480,20 @@ export const INDEX_COMPARISON_EDITORIAL = {
 
 export function getIndexComparisonEditorial(family) {
   const editorial = INDEX_COMPARISON_EDITORIAL[family.id]
+  if (family.pairPositions && editorial?.exposures.length > 2) {
+    const names = family.indices.map(index => index.indexFacts?.index ?? index.name)
+    return { ...editorial,
+      hook: `${names[0]} ou ${names[1]} : qu’est-ce que ça change dans ton portefeuille ?`,
+      intro: 'Voici ce que chacun contient, les ETF disponibles et leurs performances 👇',
+      exposures: family.pairPositions.map(position => editorial.exposures[position]),
+      visualPoints: family.pairPositions.map(position => editorial.visualPoints[position]),
+      insight: 'Compare aussi les pays et les secteurs : davantage de titres ne signifie pas forcément une exposition très différente.',
+      takeaway: 'Le choix dépend de l’exposition que tu recherches et de ce que tu détiens déjà dans ton portefeuille.',
+      question: 'Entre ces deux indices, lequel correspond le mieux à ton portefeuille ?',
+      imageTitle: names.join(' ou '),
+      fundTransition: 'Les ETF disponibles pour ces deux indices 👇',
+    }
+  }
   if (!editorial || editorial.exposures.length !== family.indices.length || editorial.visualPoints.length !== family.indices.length) throw new Error(`Éditorial incomplet : ${family.id}`)
   return editorial
 }
