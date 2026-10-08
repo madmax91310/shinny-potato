@@ -15,8 +15,7 @@ SOURCES = {'bourso': 'https://www.boursobank.com/content/brochure_tarifaire/bour
  'fortuneo':'https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf'}
 from broker_tariff_extensions import SOURCES as EXTENDED_SOURCES, SUPPLEMENT_SOURCES, parse as parse_extended, parse_supplement, base_supplements
 SOURCES.update(EXTENDED_SOURCES)
-SOURCE_ALTERNATIVES = {'bd': ('https://www.boursedirect.com/pdf/tarifs_bd.pdf',
-                            'https://www.bourse-direct.fr/pdf/tarifs_bd.pdf')}
+SOURCE_ALTERNATIVES = {'bd': ('https://www.boursedirect.com/pdf/tarifs_bd.pdf',)}
 MONTHS = {'janvier':1,'février':2,'mars':3,'avril':4,'mai':5,'juin':6,'juillet':7,'août':8,'septembre':9,'octobre':10,'novembre':11,'décembre':12}
 def parse(name, content, today, previous=None):
  if name in EXTENDED_SOURCES: return parse_extended(name,content,today,previous)

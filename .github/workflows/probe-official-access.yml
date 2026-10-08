@@ -9,29 +9,34 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04-arm, macos-15, windows-2025]
+        os: [ubuntu-26.04, macos-15]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      - name: Install document extraction
+        if: runner.os == 'macOS'
+        run: brew install poppler
       - shell: python
         run: |
-          import urllib.request, concurrent.futures, hashlib
+          import urllib.request, concurrent.futures, hashlib, subprocess, tempfile, pathlib, shutil
           urls = [
             'https://acpr.banque-france.fr/fr/publications-et-statistiques/etudes-et-recherche?page=0',
             'https://www.banque-france.fr/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf',
             'https://www.boursedirect.fr/pdf/tarifs_bd.pdf',
-            'https://www.bourse-direct.fr/pdf/tarifs_bd.pdf',
           ]
           def fetch(url):
               try:
                   req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Accept-Language':'fr-FR,fr;q=0.9','Accept':'application/pdf,text/html,*/*'})
                   with urllib.request.urlopen(req,timeout=20) as r:
                       body=r.read(8_000_001)
-                      return {'url':url,'status':r.status,'pdf':body.startswith(b'%PDF-'),'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()}
+                      print({'url':url,'status':r.status,'pdf':body.startswith(b'%PDF-'),'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()},flush=True)
+                  if 'boursedirect' in url and body.startswith(b'%PDF-') and shutil.which('pdftotext'):
+                      with tempfile.TemporaryDirectory() as folder:
+                          p=pathlib.Path(folder)/'source.pdf';p.write_bytes(body)
+                          print('BEGIN_BD_TEXT\n'+subprocess.check_output(['pdftotext','-layout',str(p),'-']).decode()+'\nEND_BD_TEXT',flush=True)
               except Exception as e:
-                  return {'url':url,'error':str(e)}
-          for result in concurrent.futures.ThreadPoolExecutor(max_workers=4).map(fetch,urls):
-              print(result,flush=True)
+                  print({'url':url,'error':str(e)},flush=True)
+          list(concurrent.futures.ThreadPoolExecutor(max_workers=3).map(fetch,urls))

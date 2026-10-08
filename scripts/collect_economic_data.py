@@ -354,9 +354,9 @@ def official_download(url, max_bytes=8_000_000):
     # Other collectors retain their existing document request conventions.
     try:
         return download(url, max_bytes=max_bytes, headers={
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0',
             'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf,*/*;q=0.8',
+            'Accept': 'application/pdf,text/html,*/*',
         })
     except Exception as error:
         raise ValueError(f'{url}: {error}') from error
