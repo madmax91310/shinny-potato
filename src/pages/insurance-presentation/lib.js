@@ -1,0 +1,24 @@
+import { format } from '../scpi-presentation/lib.js'
+export function buildTweet(record) {
+  const { name, insurer, fees, access, supports, euroFunds } = record
+  const hook = record.id === 'linxea-spirit-2'
+    ? `Fonds euros, ETF ou immobilier dans une assurance-vie : qu’est-ce que Linxea Spirit 2 permet de détenir, et à quel coût ? 👇`
+    : `Une assurance-vie accessible dès ${format(access.initial)} € : voici les supports et les frais de Linxea Avenir 2 👇`
+  const fundLines = euroFunds.map(fund => [
+    `🛡️ ${fund.name}`,
+    fund.years.map(row => `${row.year} : ${format(row.return)} %`).join(' · '),
+    `Jusqu’à ${format(fund.maxAllocation)} % du versement${fund.ceiling ? `, dans la limite de ${format(fund.ceiling)} € par contrat` : ''}.`,
+    `Garantie annuelle : ${format(fund.guarantee)} % du capital, nette des frais de gestion.`,
+    `Frais de gestion du fonds : ${format(fund.managementFeeMax)} % maximum/an. ${fund.operations}`,
+  ].join('\n')).join('\n\n')
+  return [hook,
+    `📄 ${name}\nAssureur : ${insurer} · Distributeur : ${record.distributor}\nPrésentation en gestion libre.`,
+    `💶 Ouverture dès ${format(access.initial)} €. Versements libres dès ${format(access.free)} €, programmés dès ${format(access.monthly)} €/mois.`,
+    `📦 Plus de ${format(supports.minimumCount)} supports annoncés, dont ${supports.categories.join(', ')}. Leur disponibilité et leurs conditions dépendent du contrat.`,
+    `💸 Versement : ${format(fees.subscription)} % · Arbitrage en ligne : ${format(fees.arbitrage)} %.\nGestion des unités de compte : ${format(fees.units)} %/an. Transactions ETF : ${format(fees.etfTrade)} % par opération.\nLes frais propres aux supports s’ajoutent ; la gestion pilotée et certaines options ont leurs propres frais.`,
+    `📊 Rendements des fonds euros publiés, nets de frais de gestion, avant prélèvements sociaux et fiscaux. Les offres de bonus ne sont pas intégrées.\n\n${fundLines}`,
+    `🔎 Un contrat peut proposer plusieurs fonds euros avec des conditions différentes. Leurs rendements ne représentent pas la performance de toute l’assurance-vie : elle dépend des supports choisis.`,
+    `Les unités de compte présentent un risque de perte en capital. Les rendements passés ne garantissent pas les suivants.`,
+    `💬 Tu utilises surtout ton assurance-vie pour le fonds euros ou pour d’autres supports ?`,
+  ].join('\n\n')
+}

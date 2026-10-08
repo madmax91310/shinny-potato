@@ -1,6 +1,6 @@
 # Présentations de SCPI
 
-Route `/presentation-scpi` : Iroko Zen et Remake Live. La publication est un texte long, modifiable avant copie, avec hook, principaux pays/secteurs, accès, distributions, frais, lecture de l’exposition et CTA. Les répartitions complètes et les documents sont consultables dans les réglages.
+Route `/presentation-scpi` : Iroko Zen, Remake Live, CORUM Origin, CORUM XL et CORUM Eurion. La publication est un texte long, modifiable avant copie, avec hook, principaux pays/secteurs, accès, distributions, frais, lecture de l’exposition et CTA. Les répartitions complètes et les documents sont consultables dans les réglages.
 
 ## Source unique
 
@@ -8,6 +8,7 @@ Route `/presentation-scpi` : Iroko Zen et Remake Live. La publication est un tex
 
 - Iroko : graphiques et API publics de l’émetteur (identifiant public de lecture découvert depuis son script officiel), page produit pour le ticket d’entrée, note d’information pour les frais et la jouissance.
 - Remake : JSON officiel des graphiques et calendriers, bulletin courant découvert depuis la page produit pour les conditions et leur date.
+- CORUM : dernier rapport annuel complet découvert sur la page officielle des documents pour les répartitions et distributions ; dernière note d’information pour le prix, sa date d’effet et les commissions. Les répartitions affichées sont datées du 31 décembre 2025 ; les bulletins trimestriels ne sont pas utilisés pour ces tableaux. Les commissions de gestion de CORUM XL distinguent la zone euro et le reste du portefeuille.
 - Les trois distributions annuelles terminées sont distinctes des objectifs, TRI et performances globales. Les taux sont bruts de fiscalité étrangère ; les commissions sur les loyers ne sont pas des frais sur le capital.
 
 ## Actualisation
@@ -20,10 +21,11 @@ Commandes :
 
 ```sh
 python -m unittest discover -s scripts -p test_scpi.py
+python -m unittest discover -s scripts -p test_corum.py
 python scripts/collect_scpi.py --apply --output scpi-observation.json
 node scripts/test-scpi.mjs
 npm run build
 node scripts/test-scpi-ui.mjs
 ```
 
-Pour ajouter une SCPI, qualifier ses sources et son adaptateur avant d’ajouter une fiche. CORUM, assurance-vie et placements forestiers ne font pas partie de ce premier lot.
+Pour ajouter une SCPI, qualifier ses sources et son adaptateur avant d’ajouter une fiche. Les assurances-vie disposent de leur outil distinct ; les placements forestiers restent à qualifier.

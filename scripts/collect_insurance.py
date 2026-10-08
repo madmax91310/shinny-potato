@@ -1,0 +1,174 @@
+"""Collect named life-insurance contracts from public distributor publications."""
+import argparse
+import datetime as dt
+import json
+import math
+import pathlib
+import re
+from bs4 import BeautifulSoup
+from collect_scpi import fetch, number, required
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+OUTPUT = ROOT / 'src/data/automated-insurance.json'
+BASE = 'https://www.linxea.com/assurance-vie/'
+PRODUCTS = {
+    'linxea-spirit-2': {'name': 'Linxea Spirit 2', 'insurer': 'Spirica', 'funds': [
+        ('Euro Nouvelle Génération', 'Nouvelle Génération', 'fonds-euro/'),
+        ('Euro Objectif Climat', 'Objectif Climat', 'fonds-euro-linxea-spirit-2-euro-objectif-climat/')]},
+    'linxea-avenir-2': {'name': 'Linxea Avenir 2', 'insurer': 'Suravenir', 'funds': [
+        ('Suravenir Opportunités 2', 'Suravenir Opportunités 2', 'fonds-euro/'),
+        ('Suravenir Rendement 2', 'Suravenir Rendement 2', 'fonds-euro/')]},
+}
+
+
+def plain(html):
+    return re.sub(r'\s+', ' ', BeautifulSoup(html, 'html.parser').get_text(' ', strip=True))
+
+
+def parse_contract(html, id_, today):
+    config = PRODUCTS[id_]
+    soup = BeautifulSoup(html, 'html.parser')
+    if soup.select_one('h1').get_text(' ', strip=True) != config['name']:
+        raise ValueError('Wrong contract identity')
+    text = plain(html)
+    if not any(config['insurer'].lower() in str(tag).lower() for tag in soup.select('img')):
+        raise ValueError('Missing insurer identity')
+    # Use only the contract column of the first tariff table, never market averages or simulations.
+    table = soup.select_one('table')
+    rows = {}
+    for tr in table.select('tr'):
+        cells = tr.select('td,th')
+        if len(cells) >= 2:
+            rows[plain(str(cells[0]))] = plain(str(cells[1]))
+    def tariff(label):
+        values = [v for k, v in rows.items() if re.fullmatch(label, k, re.I)]
+        if len(values) != 1:
+            raise ValueError('Missing/ambiguous contract tariff: ' + label)
+        return number(required(r'^([\d,.]+)\s*%', values[0]).group(1))
+    fees = {'subscription': tariff('Versement'), 'arbitrage': tariff('Arbitrage en ligne'),
+            'units': tariff('Gestion des unités de compte / an'), 'etfTrade': tariff('Transactions ETF(?: / ETC)?')}
+    # Parse the explicit eligibility block, not the 20-year illustrative simulation.
+    initial = number(required(r'Accessible dès ([\d ]+)€ de versement initial', text).group(1))
+    free = number(required(r'Versement libre dès ([\d ]+)€', text).group(1))
+    monthly = number(required(r'Versement programmé dès ([\d ]+)€/mois', text).group(1))
+    heading = next((h for h in soup.select('h2') if 'supports disponibles' in h.get_text()), None)
+    if not heading:
+        raise ValueError('Missing support count')
+    count = int(required(r'Plus de ([\d ]+) supports disponibles', plain(str(heading))).group(1).replace(' ', ''))
+    hero = soup.select_one('h1').find_parent('section').get_text(' ', strip=True)
+    required(r'ETF', hero); required(r'Private Equity', hero); required(r'SCPI', hero)
+    supports = ['ETF', 'SCPI', 'private equity']
+    if re.search(r'\bActions\b', hero):
+        supports.append('actions en direct')
+    return {'id': id_, 'name': config['name'], 'insurer': config['insurer'], 'distributor': 'Linxea',
+            'checkedAt': today.isoformat(), 'sourceUrl': BASE + id_ + '/',
+            'fees': {**fees, 'sourceUrl': BASE + id_ + '/', 'scope': 'Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles.'},
+            'access': {'initial': initial, 'free': free, 'monthly': monthly, 'sourceUrl': BASE + id_ + '/'},
+            'supports': {'minimumCount': count, 'categories': supports, 'sourceUrl': BASE + id_ + '/'}, 'euroFunds': []}
+
+
+def parse_fund(html, id_, name, label, url, today):
+    text = plain(html)
+    # Restrict return parsing to the named fund card before its risk/method notes.
+    card = required(r'LE FONDS EUROS ' + re.escape(label) + r' (.*?)(?:Les rendements passés|\(1\) Net de frais|\* Taux de)', text).group(1)
+    values = {}
+    for match in re.finditer(r'([\d,.]+)\s*%\s*(?:Net\s*(?:\*|\(\d+\))?|net)\s*en\s*(\d{4})', card, re.I):
+        year = int(match.group(2))
+        if year < today.year:
+            rate = number(match.group(1))
+            if year in values and values[year] != rate:
+                raise ValueError('Conflicting historical rates')
+            values[year] = rate
+    if today.year - 1 not in values:
+        raise ValueError('Missing latest completed annual fund return')
+    years = [{'year': year, 'return': values[year]} for year in sorted(values)[-3:]]
+    max_allocation = number(required(r'Accessible à ([\d,.]+)\s*%', card).group(1)) if 'Accessible à' in card else None
+    if id_ == 'linxea-spirit-2':
+        guarantee = number(required(r'garantie (?:nette de frais de gestion |en capital annuelle )de ([\d,.]+)\s*%', text).group(1))
+        management = number(required(r'frais de gestion de ([\d,.]+)\s*%', text).group(1))
+        if name == 'Euro Objectif Climat':
+            required(r'Gestion libre UNIQUEMENT', text)
+            ceiling = number(required(r'Plafond d.investissement par contrat\s*:\s*([\d,.]+)M€', text).group(1)) * 1_000_000
+            max_allocation = 100
+            operations = 'Gestion libre ; versement initial, versements complémentaires et programmés.'
+        else:
+            required(r'sans conditions d’unités de compte', text)
+            ceiling = number(required(r'jusqu’à ([\d,.]+) millions d’euros', text).group(1)) * 1_000_000
+            operations = 'Versements et arbitrages ; sans quota d’unités de compte.'
+    else:
+        body = required(r'Fonctionnement des Fonds euros de Linxea Avenir 2(.*)', text).group(1)
+        body = body.split(label, 1)[1]
+        if label == 'Suravenir Opportunités 2':
+            body = body.split('Suravenir Rendement 2', 1)[0]
+        guarantee = number(required(r'Garantie en capital à hauteur de ([\d,.]+)\s*%', body).group(1)) if label == 'Suravenir Opportunités 2' else 100 - number(required(r'([\d,.]+)\s*% par an de frais de gestion', body).group(1))
+        management = number(required(r'([\d,.]+)\s*% maximum par an de frais de gestion', body).group(1)) if label == 'Suravenir Opportunités 2' else number(required(r'([\d,.]+)\s*% par an de frais de gestion', body).group(1))
+        if label == 'Suravenir Opportunités 2':
+            required(r'arbitrage sortant', body)
+            operations = 'Versements uniquement à l’entrée ; arbitrages sortants possibles.'
+        else:
+            quota = number(required(r'minimum de ([\d,.]+)\s*% en unités de compte', body).group(1))
+            if quota != 100 - max_allocation: raise ValueError('Conflicting allocation conditions')
+            operations = f'Au moins {100-max_allocation:g} % en unités de compte non garanties ; arbitrages possibles.'
+        ceiling = None
+    return {'name': name, 'years': years, 'asOf': f'{max(values)}-12-31', 'guarantee': guarantee,
+            'managementFeeMax': management, 'maxAllocation': max_allocation, 'ceiling': ceiling,
+            'operations': operations, 'sourceUrl': url}
+
+
+def validate(record, today):
+    def finite(value, low, high):
+        return isinstance(value, (int,float)) and math.isfinite(value) and low <= value <= high
+    if not all(finite(v, 0, 5) for k,v in record['fees'].items() if k in ('subscription','arbitrage','units','etfTrade')):
+        raise ValueError('Invalid insurance fee')
+    if not all(finite(v, 1, 1_000_000) for k,v in record['access'].items() if k != 'sourceUrl'):
+        raise ValueError('Invalid access amount')
+    if not finite(record['supports']['minimumCount'], 1, 10000) or len(record['euroFunds']) != 2:
+        raise ValueError('Incomplete contract')
+    for fund in record['euroFunds']:
+        years = fund['years']
+        if not years or years[-1]['year'] != today.year-1 or len({y['year'] for y in years}) != len(years):
+            raise ValueError('Incomplete annual history')
+        if any(not finite(y['return'], -10, 15) for y in years) or not finite(fund['guarantee'], 90, 100) or not finite(fund['maxAllocation'], 0, 100) or not finite(fund['managementFeeMax'], 0, 5):
+            raise ValueError('Invalid fund data')
+        if dt.date.fromisoformat(fund['asOf']) > today:
+            raise ValueError('Future fund year')
+    return record
+
+
+def collect(id_, today):
+    record = parse_contract(fetch(BASE+id_+'/').decode(), id_, today)
+    cache = {}
+    for name,label,suffix in PRODUCTS[id_]['funds']:
+        url = BASE+id_+'/supports-disponibles-sur-'+id_+'/'+suffix
+        if url not in cache:
+            cache[url] = fetch(url).decode()
+        record['euroFunds'].append(parse_fund(cache[url],id_,name,label,url,today))
+    return validate(record,today)
+
+
+def refresh(previous, adapters, today):
+    records = {r['id']:r for r in previous.get('records',[])}
+    observations=[]
+    for id_, adapter in adapters.items():
+        try:
+            record=validate(adapter(today),today)
+            old=records.get(id_)
+            if old and any(f['asOf'] < next((o['asOf'] for o in old['euroFunds'] if o['name']==f['name']),f['asOf']) for f in record['euroFunds']):
+                raise ValueError('Source year regressed')
+            records[id_]=record;observations.append({'id':id_,'status':'success'})
+        except Exception as error:
+            observations.append({'id':id_,'status':'failure','reason':str(error)[:250]})
+    return {'records':list(records.values())},observations
+
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--apply',action='store_true');parser.add_argument('--output',type=pathlib.Path)
+    args=parser.parse_args();today=dt.date.today()
+    previous=json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {'records':[]}
+    result,observations=refresh(previous,{id_:lambda day,key=id_:collect(key,day) for id_ in PRODUCTS},today)
+    if args.apply:OUTPUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+    report={'observations':observations}
+    if args.output:args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    print(json.dumps(report,ensure_ascii=False));return int(any(o['status']=='failure' for o in observations))
+
+if __name__=='__main__':raise SystemExit(main())

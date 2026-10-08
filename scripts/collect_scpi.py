@@ -197,7 +197,10 @@ def main():
     parser.add_argument('--output', type=pathlib.Path)
     args = parser.parse_args()
     previous = json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {'records': []}
-    result, observations = refresh(previous, {'iroko-zen': collect_iroko, 'remake-live': collect_remake}, dt.date.today())
+    from collect_corum import PRODUCTS, collect
+    adapters = {'iroko-zen': collect_iroko, 'remake-live': collect_remake}
+    adapters.update({id_: lambda day, key=id_: collect(key, day) for id_ in PRODUCTS})
+    result, observations = refresh(previous, adapters, dt.date.today())
     if args.apply:
         OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     report = {'observations': observations}

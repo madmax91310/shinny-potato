@@ -7,13 +7,13 @@
   padding-bottom: max(14px, env(safe-area-inset-bottom));
 }
 .workspace--home .workspace-tool-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px;
-  grid-auto-rows: minmax(min-content, clamp(60px, calc((100svh - max(14px, env(safe-area-inset-top)) - max(14px, env(safe-area-inset-bottom)) - (var(--home-rows) - 1) * 7px) / var(--home-rows)), 95px));
+  grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px;
+  grid-auto-rows: minmax(min-content, clamp(56px, calc((100svh - max(14px, env(safe-area-inset-top)) - max(14px, env(safe-area-inset-bottom)) - (var(--home-rows) - 1) * 5px) / var(--home-rows)), 95px));
 }
 .workspace--home .workspace-tool-card {
   display: grid; grid-template-columns: 19px minmax(0, 1fr);
-  min-height: 60px; height: auto; column-gap: 8px; row-gap: 3px; align-content: center; align-items: start;
-  padding: 6px 11px; border: 1px solid #2c3b41; border-radius: 13px;
+  min-height: 56px; height: auto; column-gap: 8px; row-gap: 2px; align-content: center; align-items: start;
+  padding: 5px 11px; border: 1px solid #2c3b41; border-radius: 13px;
   background: linear-gradient(135deg, #1b2a31, #142127); color: #eff4ef;
   text-decoration: none;
 }
@@ -34,7 +34,7 @@
 }
 .workspace--home .workspace-tool-card:hover { border-color: #608477; background: #20372f; }
 @media (max-width: 360px), (max-height: 700px) {
-  .workspace--home .workspace-tool-card { padding: 6px 8px; column-gap: 6px; }
+  .workspace--home .workspace-tool-card { padding: 5px 8px; column-gap: 6px; }
   .workspace--home .workspace-tool-card h2 { font-size: 11.5px; line-height: 14px; }
   .workspace--home .workspace-tool-icon { width: 17px; }
   .workspace--home .workspace-tool-icon svg { width: 17px; height: 17px; }
@@ -46,8 +46,8 @@
   .workspace--home .workspace-tool-card h2 { font-size: 14px; line-height: 19px; }
   .workspace--home .workspace-publication-day { font-size: 11px; }
 }
-/* Twelve mobile rows must still fit the regular 844px home viewport. */
+/* Thirteen mobile rows must still fit the regular 844px home viewport. */
 @media (min-width: 361px) and (max-width: 699px) {
   .workspace--home .workspace-tool-card { padding-block: 5px; }
-  .workspace--home .workspace-tool-card h2 { line-height: 16px; }
+  .workspace--home .workspace-tool-card h2 { line-height: 14px; }
 }

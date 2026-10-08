@@ -1,13 +1,13 @@
-name: Update SCPI presentations
+name: Update insurance presentations
 on:
   schedule:
-    - cron: '20 7 * * *'
+    - cron: '25 7 * * *'
   workflow_dispatch:
   pull_request:
-    paths: ['.github/workflows/update-scpi.yml', 'scripts/*scpi*', 'scripts/*corum*', 'scripts/fixtures/scpi/**', 'scripts/fixtures/corum/**', 'src/data/*scpi*', 'src/pages/scpi-presentation/**']
+    paths: ['.github/workflows/update-insurance.yml', 'scripts/*insurance*', 'scripts/fixtures/insurance/**', 'src/data/*insurance*', 'src/pages/insurance-presentation/**']
   push:
     branches: [master]
-    paths: ['.github/workflows/update-scpi.yml', 'scripts/collect_scpi.py', 'scripts/collect_corum.py']
+    paths: ['.github/workflows/update-insurance.yml', 'scripts/collect_insurance.py']
 permissions:
   contents: read
 jobs:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 20
     concurrency:
-      group: scpi-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      group: insurance-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
     permissions:
       contents: write
@@ -35,28 +35,27 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
-      - run: python -m unittest discover -s scripts -p 'test_scpi.py'
-      - run: python -m unittest discover -s scripts -p 'test_corum.py'
+      - run: python -m unittest discover -s scripts -p 'test_insurance.py'
       - id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
-        run: python scripts/collect_scpi.py --apply --output "$RUNNER_TEMP/scpi-observation.json"
-      - run: node scripts/test-scpi.mjs
+        run: python scripts/collect_insurance.py --apply --output "$RUNNER_TEMP/insurance-observation.json"
+      - run: node scripts/test-insurance.mjs
       - run: npm run audit:data-catalog
       - run: npm run build
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
-          name: scpi-observations
-          path: ${{ runner.temp }}/scpi-observation.json
+          name: insurance-observations
+          path: ${{ runner.temp }}/insurance-observation.json
           retention-days: 35
       - id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-scpi.json
+          git add src/data/automated-insurance.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Refresh validated official SCPI presentations'
+            git commit -m 'Refresh validated official insurance presentations'
             git pull --rebase origin master
             git push origin HEAD:master
           fi
@@ -77,5 +76,5 @@ jobs:
     runs-on: ubuntu-26.04
     steps:
       - run: |
-          echo 'Collecte SCPI partielle : les dernières fiches validées sont conservées. Voir scpi-observations.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Collecte assurance-vie partielle : les dernières fiches validées sont conservées. Voir insurance-observations.' >> "$GITHUB_STEP_SUMMARY"
           exit 1

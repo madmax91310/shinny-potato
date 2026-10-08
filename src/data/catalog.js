@@ -33,6 +33,7 @@ import { ASSETS as HISTORY, SPARSE_MONTHLY_DATA_IDS } from './market-history.js'
 import { FAMILIES } from './index-comparisons.js';
 import { SHEETS } from './index-factsheets.js';
 import { HOUSEHOLD_STATISTICS } from './household-statistics.js';
+import { INSURANCE } from './insurance.js';
 import { SCPI } from './scpi.js';
 import { COMPANIES } from './companies.js';
 import { normalizeEvidence } from './evidence.js';
@@ -140,6 +141,10 @@ export const DATA_CATALOG = Object.freeze([
     consumers: [{tool:'Calculateur',path:'/calculateur-investissement'},{tool:'Performance depuis',path:'/performance-depuis'}],
     fields: Object.values(ECONOMIC_OBSERVATIONS.savings ?? {}).map(o => field(`Taux applicable · ${o.effectiveAt}`, 'economic-data', LIVRET_A[o.effectiveAt.slice(0,7)],
       {sourceUrl:o.sourceUrl,checkedAt:o.checkedAt,asOf:o.effectiveAt,scope:'Taux légal annuel du Livret A',currency:'EUR',method:'Taux réglementé publié par la Banque de France, date d’effet conservée ; historique antérieur documenté dans market-history.js'})) },
+  ...INSURANCE.map(record => ({id: `insurance:${record.id}`, type: 'insurance', name: record.name, aliases: [record.id, record.insurer, 'assurance-vie', 'fonds euros'],
+    consumers: [{tool: 'Présentation d’assurance-vie', path: '/presentation-assurance-vie'}],
+    fields: ['fees', 'access', 'supports', 'euroFunds'].map(key => field({fees:'Frais du contrat', access:'Versements minimums', supports:'Supports proposés', euroFunds:'Fonds euros, rendements et conditions'}[key], 'insurance', record[key],
+      {sourceUrls: key === 'euroFunds' ? record.euroFunds.map(fund => fund.sourceUrl) : [record[key].sourceUrl], checkedAt: record.checkedAt, asOf: null, scope: `${record.name} · gestion libre`, currency: 'EUR', method: 'Publication officielle du distributeur ; rendements des fonds euros par année, nets de gestion et avant prélèvements sociaux et fiscaux ; collecte distincte de la date des données.'}))})),
   ...SCPI.map(record => ({ id: `scpi:${record.id}`, type: 'scpi', name: record.name, aliases: [record.id, 'immobilier', 'SCPI'],
     consumers: [{ tool: 'Présentation de SCPI', path: '/presentation-scpi' }],
     fields: ['snapshot', 'annual', 'price', 'conditions'].map(key => field({snapshot: 'Pays et secteurs', annual: 'Taux de distribution annuels', price: 'Prix de souscription', conditions: 'Frais et conditions'}[key], 'scpi', record[key],
