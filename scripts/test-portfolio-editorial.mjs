@@ -220,7 +220,8 @@ for (const asset of ASSETS) {
   const p = manual([{id:asset.id,pct:100}]);
   assert.ok(p.selection[0].shortRole.split(/\s+/).length <= 45, asset.id);
   assert.ok(p.hook.length <= 200, asset.id);
-  assert.match(renderTweetText(p), /pas un conseil en investissement/);
+  assert.match(renderTweetText(p), /portefeuille illustratif/);
+  assert.doesNotMatch(renderTweetText(p), /pas un conseil|ISIN|Simulation avec/);
 }
 // Saved portfolios from the previous generator also receive compact export copy.
 assert.doesNotMatch(renderTweetText({...example, hook:'🧩 Portefeuille Généraliste\nLongue accroche', selection:example.selection.map(s=>({id:s.id,isin:s.isin,name:s.name,pct:s.pct,emoji:s.emoji,cat:s.cat}))}), /Longue accroche|La logique/);
@@ -255,7 +256,7 @@ for (const [rows, hook, logic, question] of [
  assert.doesNotMatch(text,/\nPour /);
  assert.deepEqual(p.perf,computeYearlyPerf(p.selection));
  const stale=renderTweetText({...p,hook:'🧩 Exemple de portefeuille : ancien texte',cta:'💬 Ancienne question',hookId:'ancien-0'});
- assert.match(stale,hook);assert.doesNotMatch(stale,/ancien texte|Ancienne question/);
+ assert.equal(stale,text);assert.doesNotMatch(stale,/ancien texte|Ancienne question/);
 }
 const moneyOnly=manual([{id:'monetaire_xeon',pct:80},{id:'msci_world',pct:20}]);
 assert.match(moneyOnly.hook,/80 % en monétaire/);
@@ -264,9 +265,9 @@ const cryptoOnly=manual([{id:'bitcoin',pct:60},{id:'ethereum',pct:40}]);
 assert.match(cryptoOnly.hook,/100 % en crypto/);
 assert.doesNotMatch(renderTweetText(cryptoOnly),/fonds euros|hors crypto/);
 console.log('OK : accroches chiffrées, agrégats, questions adaptées et anciens portefeuilles reconstruits.');
-assert.match(renderTweetText(optionsIncome), /obligations financent l’État américain/);
+assert.match(renderTweetText(optionsIncome), /actions à dividendes.*vente d’options.*obligations/);
 assert.match(renderTweetText(optionsIncome), /options.*hausse.*primes/s);
-assert.match(renderTweetText(indexMix), /échéances courtes pour limiter/);
+assert.match(renderTweetText(indexMix), /déjà présents dans la base mondiale/);
 for (const asset of ASSETS) assert.doesNotMatch(manual([{id:asset.id,pct:100}]).selection[0].shortRole,/ et limiter|ligne réunit.*une seule ligne/);
 
 // Le tweet reprend exactement les rendements de la composition, comme l’image.
@@ -291,9 +292,38 @@ const unordered = manual([{id:'msci_world_amundi_pea',pct:21},{id:'bitcoin_wisdo
 const savedOrder = unordered.selection.map(s=>s.id);
 const rows = renderTweetText(unordered).split('\n').filter(line => /^\S+ \d+% /.test(line));
 assert.deepEqual(rows.map(line=>Number(line.match(/ (\d+)% /)[1])), [28,28,21,10,7,6]);
-assert.match(rows[0], /World Value/);
+assert.match(rows[0], /Value/);
 assert.match(rows[1], /Vanguard/);
 assert.deepEqual(unordered.selection.map(s=>s.id), savedOrder);
 assert.deepEqual(unordered.perf, computeYearlyPerf(unordered.selection));
 assert.deepEqual(renderTweetText({...unordered, hook:'Ancienne accroche'}).split('\n').filter(line => /^\S+ \d+% /.test(line)), rows);
 console.log('OK : tri décroissant stable sans modifier les slots ni les performances.');
+
+
+// Public post contract: choice-based hooks, compact holdings, unchanged performance,
+// a thesis based on the actual composition and a single fixed closing question.
+const validatedExample = manual([{id:'msci_world_ishares',pct:50},{id:'msci_em',pct:20},{id:'smallcap_monde',pct:15},{id:'or_ishares',pct:15}]);
+const validatedText = renderTweetText(validatedExample);
+assert.match(validatedText,/^Ton ETF World est déjà bien diversifié/);
+assert.match(validatedText,/ont chacun une ligne dédiée/);
+assert.match(validatedText,/85 % d’actions/);
+assert.match(validatedText,/iShares Core MSCI World/);
+assert.doesNotMatch(validatedText,/ISIN|pas un conseil|Simulation avec|en dollars/);
+const imiSmall = manual([{id:'acwi_imi_spdr',pct:60},{id:'smallcap_monde',pct:40}]);
+assert.match(renderTweetText(imiSmall),/déjà présents dans la base mondiale/);
+assert.doesNotMatch(renderTweetText(imiSmall),/petites entreprises.*absentes/s);
+const mixedIncome = manual([{id:'high_dividend_dist',pct:40},{id:'foncieres_etf_dist',pct:25},{id:'scpi',pct:20},{id:'oblig_hy',pct:15}]);
+assert.match(renderTweetText(mixedIncome),/immobilier représente 45 %/);
+const postCases = [validatedExample, imiSmall, mixedIncome, metalsCrypto, leverage, majority, newExposures, themeMoney];
+for(const p of postCases) {
+ const text=renderTweetText(p);
+ assert(text.indexOf('La répartition')<text.indexOf('Performances annuelles'));
+ assert(text.indexOf('Performances annuelles')<text.indexOf('📌'));
+ assert(text.endsWith('💬 Que penses-tu de ce portefeuille ?'));
+ assert.equal(text.split('Que penses-tu de ce portefeuille ?').length,2);
+ assert.deepEqual(p.perf,computeYearlyPerf(p.selection));
+ assert.equal(renderTweetText({...p,hook:'Obsolète',cta:'Ancien CTA'}),text);
+}
+const zeroPost=renderTweetText(manual([{id:'msci_world',pct:100},{id:'bitcoin',pct:0}]));
+assert.doesNotMatch(zeroPost,/Bitcoin|crypto/);
+console.log('OK : modèle public validé, noms sans ISIN, thèse après les performances, CTA et historiques reconstruits.');
