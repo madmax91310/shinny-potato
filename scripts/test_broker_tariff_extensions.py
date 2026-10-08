@@ -55,7 +55,7 @@ class BrokerTariffTests(unittest.TestCase):
   self.assertEqual(results['tr_garde_cto']['values']['fee'],0)
   self.assertEqual(results['tr_direct']['values'],{'fee':2,'standardFee':1,'venueFee':1})
   self.assertEqual(results['xtb_pea_transfer']['values'],{'available':0})
-  self.assertIn('Pas encore disponible',results['xtb_pea_transfer']['copy']['full'])
+  self.assertIn('pas encore disponible',results['xtb_pea_transfer']['copy']['full'])
   with self.assertRaises(ValueError):parse_supplement('xtb_pea_transfer',fixture('xtb_pea_transfer.txt').replace('ne propose pas encore','propose désormais'),TODAY)
   with self.assertRaises(ValueError):parse_supplement('tr_direct',fixture('tr_direct.txt').replace('2 €','3 €'),TODAY)
   self.assertIn('ne qualifie pas',results['tr_transfer_cto']['copy']['full'])

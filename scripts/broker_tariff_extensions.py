@@ -173,7 +173,7 @@ def parse_supplement(key,s,today):
   if not match:raise ValueError('Question transfert PEA XTB absente ou structure modifiée')
   answer=match[1]
   require(answer,'XTB ne propose pas encore cette fonctionnalité','disponible prochainement')
-  v={'available':0};full='Pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir.'
+  v={'available':0};full='pas encore disponible ❌ XTB annonce le transfert entrant de PEA comme une fonctionnalité à venir.'
  elif key=='tr_direct':
   require(s,'Direct Price','Disponible pour les actions et les ETF','frais de règlement standard','frais de place')
   total=get(r'Chaque transaction coûte ([\d,]+) €',s)
