@@ -4,10 +4,10 @@ on:
     - cron: '20 7 * * *'
   workflow_dispatch:
   pull_request:
-    paths: ['.github/workflows/update-scpi.yml', 'scripts/*scpi*', 'scripts/*corum*', 'scripts/fixtures/scpi/**', 'scripts/fixtures/corum/**', 'scripts/fixtures/extended-scpi/**', 'src/data/*scpi*', 'src/pages/scpi-presentation/**']
+    paths: ['.github/workflows/update-scpi.yml', 'scripts/*scpi*', 'scripts/*corum*', 'scripts/fixtures/scpi/**', 'scripts/fixtures/corum/**', 'scripts/fixtures/extended-scpi/**', 'scripts/test_presentation_expansion.py', 'scripts/fixtures/presentation-expansion/**', 'src/data/*scpi*', 'src/pages/scpi-presentation/**']
   push:
     branches: [master]
-    paths: ['.github/workflows/update-scpi.yml', 'scripts/collect_scpi.py', 'scripts/collect_corum.py', 'scripts/collect_extended_scpi.py']
+    paths: ['.github/workflows/update-scpi.yml', 'scripts/collect_scpi.py', 'scripts/collect_corum.py', 'scripts/collect_extended_scpi.py', 'scripts/collect_atland_scpi.py']
 permissions:
   contents: read
 jobs:
@@ -38,6 +38,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_corum.py'
       - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
+      - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
       - id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_scpi.py --apply --output "$RUNNER_TEMP/scpi-observation.json"

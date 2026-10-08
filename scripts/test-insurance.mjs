@@ -3,7 +3,7 @@ import { HOME_TOOLS, WEEKLY_ORDER } from '../src/tools.js'
 import { INSURANCE } from '../src/data/insurance.js'
 import { buildTweet } from '../src/pages/insurance-presentation/lib.js'
 import { searchData } from '../src/data/catalog.js'
-assert.equal(INSURANCE.length, 4)
+assert.equal(INSURANCE.length, 6)
 assert(HOME_TOOLS.some(tool => tool.to === '/presentation-assurance-vie'))
 assert(WEEKLY_ORDER.includes('/presentation-assurance-vie'))
 for (const record of INSURANCE) {
@@ -33,3 +33,12 @@ assert(buildTweet(vie).includes('31/12/2026') && buildTweet(vie).includes('25000
 assert(buildTweet(vie).includes('La garantie nette annuelle n’est pas chiffrée'))
 const zen=INSURANCE.find(row => row.id === 'linxea-zen')
 assert(buildTweet(zen).includes('2 % de pénalité') && buildTweet(zen).includes('rachat total'))
+
+const lucya=INSURANCE.find(row => row.id === 'lucya-cardif')
+assert(buildTweet(lucya).includes('Au plus un tiers'))
+assert(buildTweet(lucya).includes('quote-part maximale actuelle n’est pas chiffrée'))
+assert(buildTweet(lucya).includes('Adhésion UFEP : 10 €'))
+const placement=INSURANCE.find(row => row.id === 'placement-direct-vie')
+assert(buildTweet(placement).includes('1,9 à 3,45 %'))
+assert(buildTweet(placement).includes('selon la part d’unités de compte et l’encours'))
+assert(buildTweet(placement).includes('0,8 %/an'))

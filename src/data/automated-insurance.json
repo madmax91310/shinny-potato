@@ -352,6 +352,278 @@
           "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/"
         }
       ]
+    },
+    {
+      "id": "lucya-cardif",
+      "name": "Lucya Cardif",
+      "insurer": "Cardif Assurance Vie",
+      "distributor": "Lucya",
+      "sourceUrl": "https://lucya.com/assurance-vie/lucya-cardif/",
+      "checkedAt": "2026-10-08",
+      "fees": {
+        "subscription": 0.0,
+        "arbitrage": 0.0,
+        "units": 0.5,
+        "etfTrade": 0.1,
+        "sourceUrl": "https://lucya.com/app/uploads/2026/02/frais-lucya-cardif.pdf",
+        "sourceUrls": [
+          "https://lucya.com/app/uploads/2026/02/frais-lucya-cardif.pdf",
+          "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
+          "https://lucya.com/assurance-vie/lucya-cardif/"
+        ],
+        "notes": "Adhésion UFEP : 10 € à l’ouverture. Les supports immobiliers ont leurs propres frais ; jusqu’à 3 % de sortie/arbitrage sur certaines SCPI détenues moins de trois ans selon la notice.",
+        "membership": 10.0,
+        "scope": "Gestion libre ; hors frais des supports, garanties optionnelles et gestion déléguée."
+      },
+      "access": {
+        "initial": 500.0,
+        "free": 500.0,
+        "monthly": 50.0,
+        "sourceUrl": "https://lucya.com/assurance-vie/lucya-cardif/"
+      },
+      "supports": {
+        "minimumCount": 2300,
+        "categories": [
+          "OPCVM",
+          "ETF",
+          "actions en direct",
+          "immobilier"
+        ],
+        "sourceUrl": "https://lucya.com/assurance-vie/lucya-cardif/"
+      },
+      "euroFunds": [
+        {
+          "name": "Fonds général",
+          "years": [
+            {
+              "year": 2023,
+              "return": 3.0
+            },
+            {
+              "year": 2024,
+              "return": 2.75
+            },
+            {
+              "year": 2025,
+              "return": 2.75
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 99.3,
+          "managementFeeMax": 0.7,
+          "maxAllocation": null,
+          "ceiling": null,
+          "operations": "Versements initial, libres et programmés ; arbitrages possibles.",
+          "notes": "Cardif peut limiter l’ensemble des fonds euros à 30 % du versement si le TME publié est inférieur à 0,7 % ; voir la notice et les conditions applicables à l’opération.",
+          "sourceUrl": "https://lucya.com/assurance-vie/lucya-cardif/",
+          "sourceUrls": [
+            "https://lucya.com/assurance-vie/lucya-cardif/",
+            "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
+            "https://lucya.com/app/uploads/2026/02/frais-lucya-cardif.pdf"
+          ]
+        },
+        {
+          "name": "Euro Private Strategies",
+          "years": [
+            {
+              "year": 2023,
+              "return": 3.0
+            },
+            {
+              "year": 2024,
+              "return": 3.0
+            },
+            {
+              "year": 2025,
+              "return": 2.75
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 97.0,
+          "managementFeeMax": 3.0,
+          "maxAllocation": 33.333333333333336,
+          "ceiling": null,
+          "operations": "Versements initial et libres : au moins 2 € en unités de compte non garanties pour 1 € sur ce fonds.",
+          "notes": "Cardif peut limiter l’ensemble des fonds euros à 30 % du versement si le TME publié est inférieur à 0,7 % ; voir la notice et les conditions applicables à l’opération.",
+          "sourceUrl": "https://lucya.com/assurance-vie/lucya-cardif/",
+          "sourceUrls": [
+            "https://lucya.com/assurance-vie/lucya-cardif/",
+            "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
+            "https://lucya.com/app/uploads/2026/02/frais-lucya-cardif.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "placement-direct-vie",
+      "name": "Placement-direct Vie",
+      "insurer": "SwissLife Assurance et Patrimoine",
+      "distributor": "Placement-direct.fr",
+      "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+      "checkedAt": "2026-10-08",
+      "fees": {
+        "subscription": 0.0,
+        "arbitrage": 0.0,
+        "units": 0.5,
+        "etfTrade": 0.1,
+        "sourceUrl": "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf",
+        "sourceUrls": [
+          "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf",
+          "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+          "https://www.placement-direct.fr/assurance-vie/placement-direct-vie"
+        ],
+        "notes": "Gestion des actions en direct : 0,8 %/an ; achat/vente des actions : 0,45 % par opération. Hors options et frais propres aux supports.",
+        "scope": "Allocation libre ; hors options et frais des supports."
+      },
+      "access": {
+        "initial": 500.0,
+        "free": 50.0,
+        "monthly": 50.0,
+        "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie"
+      },
+      "supports": {
+        "minimumCount": 1300,
+        "categories": [
+          "fonds d’investissement",
+          "ETF",
+          "actions en direct"
+        ],
+        "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie"
+      },
+      "euroFunds": [
+        {
+          "name": "Actif général SwissLife",
+          "years": [
+            {
+              "year": 2023,
+              "returnMin": 1.7,
+              "returnMax": 4,
+              "condition": "selon la part d’unités de compte et l’encours du contrat",
+              "tiers": [
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC supérieure ou égale à 60%",
+                  "return": 3.8
+                },
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC comprise entre 40% et 60%",
+                  "return": 2.8
+                },
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC inférieure à 40%",
+                  "return": 1.7
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC supérieure ou égale à 60%",
+                  "return": 4
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC comprise entre 40% et 60%",
+                  "return": 3
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC inférieure à 40%",
+                  "return": 1.9
+                }
+              ]
+            },
+            {
+              "year": 2024,
+              "returnMin": 1.9,
+              "returnMax": 3.45,
+              "condition": "selon la part d’unités de compte et l’encours du contrat",
+              "tiers": [
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC supérieure ou égale à 60%",
+                  "return": 3.25
+                },
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC comprise entre 40% et 60%",
+                  "return": 2.4
+                },
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC inférieure à 40%",
+                  "return": 1.9
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC supérieure ou égale à 60%",
+                  "return": 3.45
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC comprise entre 40% et 60%",
+                  "return": 2.6
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC inférieure à 40%",
+                  "return": 2.1
+                }
+              ]
+            },
+            {
+              "year": 2025,
+              "returnMin": 1.9,
+              "returnMax": 3.45,
+              "condition": "selon la part d’unités de compte et l’encours du contrat",
+              "tiers": [
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC supérieure ou égale à 60%",
+                  "return": 3.25
+                },
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC comprise entre 40% et 60%",
+                  "return": 2.4
+                },
+                {
+                  "encours": "Encours inférieur à 250 000 €",
+                  "condition": "Part d’UC inférieure à 40%",
+                  "return": 1.9
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC supérieure ou égale à 60%",
+                  "return": 3.45
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC comprise entre 40% et 60%",
+                  "return": 2.6
+                },
+                {
+                  "encours": "Encours supérieur à 250 000 €",
+                  "condition": "Part d’UC inférieure à 40%",
+                  "return": 2.1
+                }
+              ]
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": null,
+          "managementFeeMax": 0.6,
+          "maxAllocation": null,
+          "ceiling": null,
+          "operations": "Allocation libre.",
+          "notes": "Le taux dépend de la part d’unités de compte et de l’encours : le maximum ne s’applique pas à tous les contrats. SwissLife peut limiter temporairement les arbitrages sortants du fonds euros en cas de forte variation des marchés, selon la clause de sauvegarde.",
+          "sourceUrl": "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+          "sourceUrls": [
+            "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
+            "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+            "https://static.placement-direct.fr/documents/fiche-synthetique-des-frais-placement-direct-vie.pdf"
+          ]
+        }
+      ]
     }
   ]
 }

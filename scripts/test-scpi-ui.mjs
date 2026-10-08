@@ -30,12 +30,13 @@ try {
     assert.equal(await page.locator('#scpi-draft').inputValue(),buildTweet(record))
   }
   await page.getByText('Toute la répartition',{exact:true}).click()
-  assert.equal(await page.locator('details').filter({has:page.getByText('Toute la répartition',{exact:true})}).locator('tbody tr').count(),SCPI.at(-1).snapshot.countries.length+SCPI.at(-1).snapshot.sectors.length)
+  assert.equal(await page.locator('details').filter({has:page.getByText('Toute la répartition',{exact:true})}).locator('tbody tr').count(),SCPI.at(-1).snapshot.countries.length+SCPI.at(-1).snapshot.sectors.length+(SCPI.at(-1).snapshot.regions?.length ?? 0))
   await page.getByText('Patrimoine, occupation et prix de part',{exact:true}).click()
   const portfolio=page.locator('details').filter({has:page.getByText('Patrimoine, occupation et prix de part',{exact:true})})
   assert.equal(await portfolio.locator('tbody tr').count(),SCPI.at(-1).priceHistory.years.length)
   assert((await portfolio.innerText()).includes(dateLabel(SCPI.at(-1).portfolio.buildings.asOf)))
   assert((await portfolio.innerText()).includes(dateLabel(SCPI.at(-1).portfolio.occupancy.asOf)))
+  assert((await portfolio.innerText()).includes('ne représente pas une baisse'))
   await mkdir('test-artifacts/scpi',{recursive:true})
   await page.screenshot({path:'test-artifacts/scpi/desktop.png',fullPage:true})
   for(const width of [320,390]) {

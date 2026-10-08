@@ -371,6 +371,31 @@
           "label": "Taux d’occupation financier",
           "basis": "Inclut les locaux sous franchise de loyer ; distinct du taux physique. Le nombre de baux n’est pas un nombre de locataires."
         }
+      },
+      "priceHistory": {
+        "years": [
+          {
+            "asOf": "2022-12-31",
+            "value": 200.0
+          },
+          {
+            "asOf": "2023-12-31",
+            "value": 204.0
+          },
+          {
+            "asOf": "2024-12-31",
+            "value": 204.0
+          },
+          {
+            "asOf": "2026-06-30",
+            "value": 204.0
+          }
+        ],
+        "sourceUrls": [
+          "https://www.remake.fr/wp-content/uploads/2026/08/rapport-annuel.pdf",
+          "https://www.remake.fr/wp-content/uploads/2026/08/remake-live-bulletin-information-30-07-2026.pdf"
+        ],
+        "dateNote": "Prix au 31 décembre du rapport actuellement lié sur la page officielle (exercice 2024), puis prix du bulletin courant. Aucune année intermédiaire non publiée n’est ajoutée."
       }
     },
     {
@@ -1170,6 +1195,172 @@
         "sourceUrls": [
           "https://alderan.fr/wp-content/uploads/2026/06/20260427-Note-dinformation-SCPI-ActivImmo-1.pdf",
           "https://alderan.fr/wp-content/uploads/2026/07/2026-07-01-Annexe-Note-dinformation-SCPI-ActivImmo-Modification-des-prix-de-part.pdf"
+        ]
+      }
+    },
+    {
+      "id": "epargne-pierre",
+      "name": "Épargne Pierre",
+      "sourceUrl": "https://atland-voisin.com/scpi/epargne-pierre/",
+      "checkedAt": "2026-10-08",
+      "snapshot": {
+        "asOf": "2026-06-30",
+        "countries": [
+          {
+            "label": "France",
+            "value": 100
+          }
+        ],
+        "regions": [
+          {
+            "label": "Paris et Île-de-France",
+            "value": 27.11
+          },
+          {
+            "label": "Nord",
+            "value": 12.71
+          },
+          {
+            "label": "Nord-Ouest",
+            "value": 17.42
+          },
+          {
+            "label": "Nord-Est",
+            "value": 13.64
+          },
+          {
+            "label": "Sud-Ouest",
+            "value": 16.15
+          },
+          {
+            "label": "Sud-Est",
+            "value": 12.97
+          }
+        ],
+        "sectors": [
+          {
+            "label": "Bureaux",
+            "value": 47.05
+          },
+          {
+            "label": "Commerces",
+            "value": 28.71
+          },
+          {
+            "label": "Tourisme / Hôtel",
+            "value": 10.16
+          },
+          {
+            "label": "Activités / Entrepôts",
+            "value": 8.3
+          },
+          {
+            "label": "Santé / Education",
+            "value": 5.54
+          },
+          {
+            "label": "Résidentiel / Alternatif",
+            "value": 0.24
+          }
+        ],
+        "sourceUrls": [
+          "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf"
+        ],
+        "dateNote": "Valeurs vénales hors VEFA non livrées ; exposition française détaillée par régions dans le bulletin."
+      },
+      "portfolio": {
+        "buildings": {
+          "value": 411,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
+          "label": "Actifs immobiliers"
+        },
+        "tenants": {
+          "value": 760,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
+          "label": "Locataires"
+        },
+        "occupancy": {
+          "value": 94.14,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
+          "label": "Taux d’occupation financier",
+          "basis": "Inclut des locaux sous franchise et des locaux non disponibles à la location selon la méthode du bulletin."
+        }
+      },
+      "annual": {
+        "years": [
+          {
+            "year": 2023,
+            "distribution": 5.28
+          },
+          {
+            "year": 2024,
+            "distribution": 5.28
+          },
+          {
+            "year": 2025,
+            "distribution": 5.28
+          }
+        ],
+        "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/05/ATLAND_RA_Epargne_Pierre_2025_OPTI_compresse.pdf"
+      },
+      "price": {
+        "value": 20.8,
+        "asOf": "2026-07-01",
+        "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf"
+      },
+      "priceHistory": {
+        "years": [
+          {
+            "asOf": "2023-12-31",
+            "value": 208.0
+          },
+          {
+            "asOf": "2024-12-31",
+            "value": 208.0
+          },
+          {
+            "asOf": "2025-12-31",
+            "value": 208.0
+          },
+          {
+            "asOf": "2026-07-01",
+            "value": 20.8
+          }
+        ],
+        "corporateActions": [
+          {
+            "asOf": "2026-07-01",
+            "ratio": 10,
+            "oldPrice": 208.0,
+            "newPrice": 20.8,
+            "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
+            "description": "Division du prix de part par dix le 01/07/2026, avec multiplication par dix des parts détenues : le passage de 208 € à 20,8 € ne représente pas une baisse de valeur du placement."
+          }
+        ],
+        "sourceUrls": [
+          "https://atland-voisin.com/wp-content/uploads/2026/05/ATLAND_RA_Epargne_Pierre_2025_OPTI_compresse.pdf",
+          "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf"
+        ],
+        "dateNote": "Division du prix de part par dix le 01/07/2026, avec multiplication par dix des parts détenues : le passage de 208 € à 20,8 € ne représente pas une baisse de valeur du placement. Les prix antérieurs sont ceux publiés avant cette division."
+      },
+      "conditions": {
+        "minimum": 2080.0,
+        "enjoyment": "Premier jour du mois suivant la souscription et son règlement, pour les souscriptions du 01/02/2026 au 31/12/2026 ; règle habituelle : premier jour du 6e mois.",
+        "frequency": "trimestriels",
+        "subscriptionFee": 12.0,
+        "subscriptionTax": "TTC",
+        "managementFee": 12.0,
+        "managementTax": "TTC",
+        "managementBasis": "recettes brutes encaissées",
+        "exit": "Prix de retrait diminué de la commission de souscription HT ; contrepartie nécessaire et délai de revente non garanti.",
+        "otherFees": "Commissions de cession et de travaux distinctes ; distributions mensuelles annoncées à compter de janvier 2027.",
+        "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
+        "sourceUrls": [
+          "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
+          "https://atland-voisin.com/scpi/epargne-pierre/"
         ]
       }
     }

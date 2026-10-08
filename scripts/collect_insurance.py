@@ -169,14 +169,19 @@ def validate(record, today):
         raise ValueError('Invalid insurance fee')
     if not all(finite(v, 1, 1_000_000) for k,v in record['access'].items() if k != 'sourceUrl'):
         raise ValueError('Invalid access amount')
-    if not finite(record['supports']['minimumCount'], 1, 10000) or len(record['euroFunds']) != 2:
+    if not finite(record['supports']['minimumCount'], 1, 10000) or not 1 <= len(record['euroFunds']) <= 5 or len({f['name'] for f in record['euroFunds']}) != len(record['euroFunds']):
         raise ValueError('Incomplete contract')
     for fund in record['euroFunds']:
         years = fund['years']
         if not years or years[-1]['year'] != today.year-1 or len({y['year'] for y in years}) != len(years):
             raise ValueError('Incomplete annual history')
-        if any(not finite(y.get('return', y.get('returnMin')), -10, 15) or ('returnMax' in y and (not finite(y['returnMax'], y['returnMin'], 15) or not y.get('condition'))) for y in years) or (fund['guarantee'] is not None and not finite(fund['guarantee'], 90, 100)) or not finite(fund['maxAllocation'], 0, 100) or not finite(fund['managementFeeMax'], 0, 5):
+        if any(not finite(y.get('return', y.get('returnMin')), -10, 15) or ('returnMax' in y and (not finite(y['returnMax'], y['returnMin'], 15) or not y.get('condition'))) for y in years) or (fund['guarantee'] is not None and not finite(fund['guarantee'], 90, 100)) or (fund['maxAllocation'] is not None and not finite(fund['maxAllocation'], 0, 100)) or not finite(fund['managementFeeMax'], 0, 5):
             raise ValueError('Invalid fund data')
+        for year in years:
+            if year.get('tiers'):
+                tiers=year['tiers']
+                if any(not finite(r['return'],-10,15) or not r.get('condition') or not r.get('encours') for r in tiers) or min(r['return'] for r in tiers)!=year['returnMin'] or max(r['return'] for r in tiers)!=year['returnMax']:
+                    raise ValueError('Unqualified or inconsistent return tiers')
         if dt.date.fromisoformat(fund['asOf']) > today:
             raise ValueError('Future fund year')
     return record
@@ -201,6 +206,8 @@ def refresh(previous, adapters, today):
         try:
             record=validate(adapter(today),today)
             old=records.get(id_)
+            if old and {f['name'] for f in old['euroFunds']} != {f['name'] for f in record['euroFunds']}:
+                raise ValueError('Published fund catalogue changed; qualification required')
             if old and any(f['asOf'] < next((o['asOf'] for o in old['euroFunds'] if o['name']==f['name']),f['asOf']) for f in record['euroFunds']):
                 raise ValueError('Source year regressed')
             records[id_]=record;observations.append({'id':id_,'status':'success'})
@@ -213,7 +220,10 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--apply',action='store_true');parser.add_argument('--output',type=pathlib.Path)
     args=parser.parse_args();today=dt.date.today()
     previous=json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {'records':[]}
-    result,observations=refresh(previous,{id_:lambda day,key=id_:collect(key,day) for id_ in PRODUCTS},today)
+    from collect_other_insurance import PRODUCTS as OTHER_PRODUCTS, collect as collect_other
+    adapters={id_:lambda day,key=id_:collect(key,day) for id_ in PRODUCTS}
+    adapters.update({id_:lambda day,key=id_:collect_other(key,day) for id_ in OTHER_PRODUCTS})
+    result,observations=refresh(previous,adapters,today)
     if args.apply:OUTPUT.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     report={'observations':observations}
     if args.output:args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

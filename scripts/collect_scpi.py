@@ -25,13 +25,13 @@ def fetch(url, headers=None):
         return response.read()
 
 
-def pdf_text(data):
+def pdf_text(data, layout=True):
     if not data.startswith(b'%PDF'):
         raise ValueError('Expected an official PDF')
     with tempfile.TemporaryDirectory() as directory:
         path = pathlib.Path(directory) / 'source.pdf'
         path.write_bytes(data)
-        return subprocess.check_output(['pdftotext', '-layout', str(path), '-'], text=True, timeout=60)
+        return subprocess.check_output(['pdftotext', *(['-layout'] if layout else []), str(path), '-'], text=True, timeout=60)
 
 
 def number(value):
@@ -180,11 +180,35 @@ def collect_remake(today):
     text = pdf_text(data)
     record = parse_remake(html,text,url,today)
     record['portfolio'] = remake_portfolio(text,record['snapshot']['asOf'],url,bbox_pages(data))
+    documents=BeautifulSoup(fetch('https://www.remake.fr/documentation/').decode(),'html.parser')
+    section=next((s for s in documents.select('section') if s.find('h2') and s.find('h2').get_text(' ',strip=True)=='Live'),None)
+    annual_links=[] if section is None else [urllib.parse.urljoin(REMAKE,a['href']) for a in section.select('a[href]') if a.get_text(' ',strip=True)=='Rapport annuel']
+    if len(set(annual_links))!=1:raise ValueError('Missing/ambiguous Remake Live annual report')
+    annual_url=annual_links[0]
+    record['priceHistory']=remake_price_history(pdf_text(fetch(annual_url)),annual_url,record['price'],today)
     return record
 
 
+def remake_price_history(annual,url,current_price,today):
+    required(r'Remake Live',annual)
+    year=int(required(r'^\s*31\.12\.(20\d{2})',annual)[1])
+    if year>=today.year:raise ValueError('Incomplete Remake annual report')
+    block=required(r'Évolution du capital\s+(.*?)Évolution des conditions de cession ou de retrait',annual)[1]
+    observations=[]
+    for label,row in re.findall(r'^[ \t]*(N(?:-[1-4])?)[ \t]+([^\n]+)$',block,re.M):
+        if not re.search(r'\d',row):continue
+        period=year-(int(label[2:]) if '-' in label else 0)
+        value=number(required(r'([\d,.]+)\s*$',row)[1])
+        observations.append({'asOf':f'{period}-12-31','value':value})
+    observations=sorted(observations,key=lambda r:r['asOf'])[-3:]
+    if len(observations)!=3 or len({r['asOf'] for r in observations})!=3 or observations[-1]['asOf']!=f'{year}-12-31':raise ValueError('Missing Remake year-end prices')
+    if current_price['asOf']>observations[-1]['asOf']:observations.append({'asOf':current_price['asOf'],'value':current_price['value']})
+    return {'years':observations,'sourceUrls':[url,current_price['sourceUrl']],
+            'dateNote':f'Prix au 31 décembre du rapport actuellement lié sur la page officielle (exercice {year}), puis prix du bulletin courant. Aucune année intermédiaire non publiée n’est ajoutée.'}
+
+
 def validate(record, today):
-    for key in ['countries', 'sectors']:
+    for key in ['countries', 'sectors'] + (['regions'] if 'regions' in record['snapshot'] else []):
         rows = record['snapshot'][key]
         if not rows or len({r['label'] for r in rows}) != len(rows):
             raise ValueError('Missing/duplicate allocation labels')
@@ -213,6 +237,9 @@ def validate(record, today):
         history=record['priceHistory']['years']
         if not history or len({r['asOf'] for r in history})!=len(history) or history!=sorted(history,key=lambda r:r['asOf']):raise ValueError('Invalid dated price history')
         if any(not isinstance(r['value'],(int,float)) or not math.isfinite(r['value']) or not 0<r['value']<10000 or dt.date.fromisoformat(r['asOf'])>today for r in history):raise ValueError('Invalid historical price')
+        for action in record['priceHistory'].get('corporateActions',[]):
+            if not action.get('description') or not action.get('sourceUrl') or dt.date.fromisoformat(action['asOf'])>today or not all(isinstance(action[k],(int,float)) and math.isfinite(action[k]) and action[k]>0 for k in ['ratio','oldPrice','newPrice']) or abs(action['oldPrice']/action['ratio']-action['newPrice'])>.001:
+                raise ValueError('Invalid share split evidence')
     return record
 
 
@@ -232,6 +259,8 @@ def refresh(previous, adapters, today):
                     new=record.get('portfolio',{}).get(key)
                     if not new or new['asOf']<observation['asOf']:raise ValueError('Portfolio evidence disappeared or regressed: '+key)
                 if old.get('priceHistory') and (not record.get('priceHistory') or record['priceHistory']['years'][-1]['asOf']<old['priceHistory']['years'][-1]['asOf']):raise ValueError('Price history disappeared or regressed')
+                for action in old.get('priceHistory',{}).get('corporateActions',[]):
+                    if not any(all(new[k]==action[k] for k in ['asOf','ratio','oldPrice','newPrice']) for new in record.get('priceHistory',{}).get('corporateActions',[])):raise ValueError('Share split evidence disappeared or changed')
             records[id] = record
             observations.append({'id': id, 'status': 'success'})
         except Exception as error:
@@ -247,9 +276,11 @@ def main():
     previous = json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {'records': []}
     from collect_corum import PRODUCTS, collect
     from collect_extended_scpi import PRODUCTS as EXTRA_PRODUCTS, collect as collect_extra
+    from collect_atland_scpi import PRODUCTS as ATLAND_PRODUCTS, collect as collect_atland
     adapters = {'iroko-zen': collect_iroko, 'remake-live': collect_remake}
     adapters.update({id_: lambda day, key=id_: collect(key, day) for id_ in PRODUCTS})
     adapters.update({id_:lambda day,key=id_:collect_extra(key,day) for id_ in EXTRA_PRODUCTS})
+    adapters.update({id_:lambda day,key=id_:collect_atland(key,day) for id_ in ATLAND_PRODUCTS})
     result, observations = refresh(previous, adapters, dt.date.today())
     if args.apply:
         OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
