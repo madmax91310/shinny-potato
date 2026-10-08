@@ -9,11 +9,13 @@ on:
       - '.github/workflows/update-regulatory-data.yml'
       - 'scripts/collect_regulatory_data.py'
       - 'scripts/collect_broker_tariffs.py'
+      - 'scripts/broker_tariff_extensions.py'
   pull_request:
     paths:
       - '.github/workflows/update-regulatory-data.yml'
       - 'scripts/*regulatory*'
       - 'scripts/*broker_tariffs*'
+      - 'scripts/*broker_tariff*'
       - 'scripts/fixtures/regulatory/**'
       - 'scripts/fixtures/broker-tariffs/**'
       - 'src/data/*regulatory*'
@@ -44,8 +46,11 @@ jobs:
         with:
           node-version: 20
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
       - run: python -m unittest discover -s scripts -p 'test_regulatory*.py'
+      - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-regulatory-consumers.mjs
       - id: fiscal
         continue-on-error: true
@@ -53,6 +58,15 @@ jobs:
       - id: brokers
         continue-on-error: true
         run: python scripts/collect_broker_tariffs.py --apply --output "$RUNNER_TEMP/broker-observation.json"
+      - name: Report live source availability
+        if: always()
+        env:
+          COLLECTION_FAILED: ${{ steps.fiscal.outcome == 'failure' || steps.brokers.outcome == 'failure' }}
+        run: |
+          if [ "$COLLECTION_FAILED" = 'true' ]; then
+            echo 'Collecte partielle : les dernières observations qualifiées sont conservées. Voir les sources en échec dans regulatory-observations.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-regulatory-consumers.mjs
       - run: npm run audit:data-catalog
       - run: npm run audit:broker-evidence
@@ -87,7 +101,7 @@ jobs:
       ref: ${{ needs.refresh.outputs.commit_sha }}
   report-failures:
     needs: [refresh, deploy]
-    if: ${{ always() && needs.refresh.outputs.failed == 'true' }}
+    if: ${{ always() && github.event_name != 'pull_request' && needs.refresh.outputs.failed == 'true' }}
     runs-on: ubuntu-26.04
     steps:
       - run: |

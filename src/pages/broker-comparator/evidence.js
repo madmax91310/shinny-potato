@@ -244,13 +244,26 @@ export const EVIDENCE_FIELDS = [
   ['cash', 'Liquidités rémunérées'], ['transfert', 'Transfert PEA'],
 ]
 
+const brokerNames = {bourso:'BoursoBank · Découverte',fortuneo:'Fortuneo · Starter',xtb:'XTB',saxo:'Saxo · Classic',caidf:'Crédit Agricole Île-de-France',ibkr:'Interactive Brokers · France',tr:'Trade Republic',bd:'Bourse Direct'};
 for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
   const document = `${id}AutomatedTariff`;
-  OFFICIAL_SOURCES[document] = {
-    title: `${id === 'bourso' ? 'BoursoBank · Découverte' : 'Fortuneo · Starter'} · Courtage Euronext`,
-    url: observation.sourceUrl, edition: `Tarifs applicables au ${observation.asOf}`,
-    checked: observation.checkedAt.split('-').reverse().join('/'), kind: 'pdf',
-  };
-  BROKER_EVIDENCE[id].frais = {status: 'confirmé', summary: brokerTariffCopy(id).full,
-    refs: [{document, page: observation.page}], automatedEvidence: observation};
+  const source = o => ({title: `${brokerNames[id]} · ${o.scope}`,url:o.sourceUrl,
+    edition:o.asOf ? `Tarifs applicables au ${o.asOf}` : 'Page publique non datée',
+    checked:o.checkedAt.split('-').reverse().join('/'),kind:o.page ? 'pdf' : 'page',...(o.until ? {reviewUntil:o.until} : {})});
+  OFFICIAL_SOURCES[document] = source(observation);
+  BROKER_EVIDENCE[id].frais = {status:'confirmé',summary:brokerTariffCopy(id).full,
+    refs:[{document,...(observation.page ? {page:observation.page} : {})}],automatedEvidence:observation};
+  for (const [key,o] of Object.entries(observation.fields ?? {})) {
+    const doc = `${id}Automated${key}`; OFFICIAL_SOURCES[doc] = source(o);
+    if (key.startsWith('offer')) BROKER_EVIDENCE[id].frais.refs.push({document:doc});
+    if (['garde','change'].includes(key)) BROKER_EVIDENCE[id][key] = {
+      status:id === 'ibkr' && key === 'change' ? 'partiel' : 'confirmé',summary:o.copy.full,
+      ...(key === 'change' ? {post:o.copy.full} : {}),
+      refs:[{document:doc,...(o.page ? {page:o.page} : {})}],automatedEvidence:o};
+  }
+  // A transfer tariff does not recertify incoming eligibility or reimbursements.
+  const transferFields = ['entrant','sortant'].filter(key => observation.fields?.[key]);
+  if (transferFields.length) BROKER_EVIDENCE[id].transfert = {...BROKER_EVIDENCE[id].transfert,
+    summary:(!transferFields.includes('entrant') ? BROKER_EVIDENCE[id].transfert.summary.split(/Sortie\s*:/)[0].trim()+' ' : '')+transferFields.map(key => `${key === 'entrant' ? 'Entrée' : 'Sortie'} : ${observation.fields[key].copy.full}`).join(' '),
+    refs:[...BROKER_EVIDENCE[id].transfert.refs,...transferFields.map(key => ({document:`${id}Automated${key}`,...(observation.fields[key].page ? {page:observation.fields[key].page} : {})}))]};
 }

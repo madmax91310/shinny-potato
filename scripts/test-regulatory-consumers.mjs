@@ -7,7 +7,7 @@ import {getFicheLexiqueText} from '../src/pages/tweet-midi/data/ficheLexique.js'
 import {BROKERS} from '../src/pages/broker-comparator/data.js'
 import {buildBrokerTweet} from '../src/pages/broker-comparator/lib.js'
 import {BROKER_EVIDENCE} from '../src/pages/broker-comparator/evidence.js'
-import {brokerTariffCopy} from '../src/data/broker-tariffs.js'
+import {brokerTariffCopy, BROKER_TARIFFS} from '../src/data/broker-tariffs.js'
 import {DATA_CATALOG} from '../src/data/catalog.js'
 const terms=Object.fromEntries(TERMES.map(t=>[t.id,t]))
 assert(terms.pea.mecanismeContenu.includes(n('peaCeiling')))
@@ -17,11 +17,11 @@ assert(getFicheLexiqueText('cto').includes(money(1300-300*R.ctoTotal/100)))
 assert(getFicheLexiqueText('flat-tax').includes(money(1000-1000*R.ctoTotal/100)))
 assert(getFicheLexiqueText('prelevements-sociaux').includes(money(5000*R.avSocial/100)))
 assert(getFicheLexiqueText('ldds').includes(money(R.lddsCeiling*R.lddsRate/100)))
-for (const id of ['bourso','fortuneo']) {
+for (const id of Object.keys(BROKER_TARIFFS)) {
  const broker=BROKERS.find(b=>b.id===id), copy=brokerTariffCopy(id)
  assert.equal(broker.frais.resume,copy.resume);assert.equal(broker.post.frais[0],copy.full)
  assert.equal(BROKER_EVIDENCE[id].frais.summary,copy.full)
- assert(buildBrokerTweet([broker,BROKERS.find(b=>b.id==='tr')]).includes(copy.full))
+ assert(buildBrokerTweet([broker,BROKERS.find(b=>b.id===(id==='tr'?'xtb':'tr'))]).includes(copy.full))
  const record=DATA_CATALOG.find(r=>r.id===`broker:${id}`)
  assert.equal(record.fields[0].value.description,copy.full)
 }

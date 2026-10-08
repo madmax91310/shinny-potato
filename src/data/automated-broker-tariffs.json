@@ -8,12 +8,66 @@
         "rate": 0.6
       },
       "asOf": "2026-10-05",
-      "checkedAt": "2026-10-07",
+      "checkedAt": "2026-10-08",
       "sourceUrl": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf",
       "scope": "Découverte ; actions Euronext Paris, Amsterdam, Bruxelles ; ordre en ligne",
       "page": 17,
       "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
-      "sha256": "318725fb4858fd95de1ec76436b653b4713cf0a461e4d31475b38a352112df0d"
+      "sha256": "1bb6a4ef014f5033763e9310813f534c69f8811e8719958915ac2119d60a7086",
+      "fields": {
+        "change": {
+          "asOf": "2026-10-05",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf",
+          "sha256": "1bb6a4ef014f5033763e9310813f534c69f8811e8719958915ac2119d60a7086",
+          "page": 20,
+          "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
+          "scope": "Bourse hors zone euro ; point de cours, pas pourcentage",
+          "values": {
+            "fxPoints": 0.0025
+          },
+          "copy": {
+            "resume": "Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe.",
+            "full": "Taux J+1 majoré de 0,0025 point de cours ; ce n’est pas un pourcentage fixe."
+          }
+        },
+        "sortant": {
+          "asOf": "2026-10-05",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf",
+          "sha256": "1bb6a4ef014f5033763e9310813f534c69f8811e8719958915ac2119d60a7086",
+          "page": 25,
+          "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
+          "scope": "Transfert sortant PEA ; distinct du CTO",
+          "values": {
+            "perLine": 15.0,
+            "maximum": 150.0
+          },
+          "copy": {
+            "resume": "15 € par ligne, maximum 150 €.",
+            "full": "15 € par ligne, maximum 150 €."
+          }
+        },
+        "entrant": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.boursobank.com/aide-en-ligne/bourse/mobilite-bourse/question/proposez-vous-une-offre-en-cas-de-transfert-de-compte-bourse-53103659",
+          "sha256": "8bfbbee6461dbc321b87d8a1648b0fc08882611b071e02bd70e44c1dab765be1",
+          "page": null,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "not-published",
+          "scope": "bourso ; entrant ; conditions explicites de la page officielle",
+          "values": {
+            "maximum": 3000.0,
+            "requestMonths": 3.0,
+            "multiplier": 2
+          },
+          "copy": {
+            "resume": "Possible ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 €, sans dépasser la valeur du compte, sous conditions. Justificatif à envoyer dans les 3 mois ; compte toujours ouvert au remboursement.",
+            "full": "Possible ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 €, sans dépasser la valeur du compte, sous conditions. Justificatif à envoyer dans les 3 mois ; compte toujours ouvert au remboursement."
+          }
+        }
+      }
     },
     "fortuneo": {
       "values": {
@@ -22,12 +76,402 @@
         "rate": 0.35
       },
       "asOf": "2026-08-06",
-      "checkedAt": "2026-10-07",
+      "checkedAt": "2026-10-08",
       "sourceUrl": "https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf",
       "scope": "Starter ; Euronext Paris, Bruxelles, Amsterdam ou Equiduct ; premier ordre mensuel sous le seuil ; anciens tarifs possibles",
       "page": 10,
       "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
-      "sha256": "13681360462c8bbe78dc80e30c7232fb761fcf2877c9b8da5c8f9aa790bcc07c"
+      "sha256": "444c633a8ef708f622e041e4a223292a89be790057f96f2b4765d5ea9cb5ec44",
+      "fields": {
+        "change": {
+          "asOf": "2026-08-06",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf",
+          "sha256": "444c633a8ef708f622e041e4a223292a89be790057f96f2b4765d5ea9cb5ec44",
+          "page": 13,
+          "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
+          "scope": "Conversions Bourse ; frais intermédiaire conservés",
+          "values": {
+            "rate": 0.12
+          },
+          "copy": {
+            "resume": "Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %.",
+            "full": "Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %."
+          }
+        },
+        "sortant": {
+          "asOf": "2026-08-06",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf",
+          "sha256": "444c633a8ef708f622e041e4a223292a89be790057f96f2b4765d5ea9cb5ec44",
+          "page": 13,
+          "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
+          "scope": "Transfert sortant PEA ; distinction coté/non coté",
+          "values": {
+            "perLine": 15.0,
+            "nonListed": 50.0,
+            "maximum": 150.0
+          },
+          "copy": {
+            "resume": "15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.",
+            "full": "15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €."
+          }
+        },
+        "garde": {
+          "asOf": "2026-08-06",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf",
+          "sha256": "444c633a8ef708f622e041e4a223292a89be790057f96f2b4765d5ea9cb5ec44",
+          "page": 10,
+          "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
+          "scope": "Garde Bourse Fortuneo",
+          "values": {
+            "fee": 0
+          },
+          "copy": {
+            "resume": "Aucun ✅",
+            "full": "Aucun ✅"
+          }
+        },
+        "entrant": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse",
+          "sha256": "886291929cf9ed9130d65cf0e1e57c25b7ae178f96a4906a8091fe003da51a6d",
+          "page": null,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "not-published",
+          "scope": "fortuneo ; entrant ; conditions explicites de la page officielle",
+          "values": {
+            "maximum": 2000.0,
+            "high": 5000.0,
+            "middle": 150.0,
+            "lower": 3000.0,
+            "small": 100.0,
+            "requestMonths": 3.0
+          },
+          "copy": {
+            "resume": "Possible ✅ Premier transfert remboursé jusqu’à 100 € si l’encours est inférieur à 3 000 €, 150 € de 3 000 à moins de 5 000 €, ou 2 000 € à partir de 5 000 €, sous conditions. Justificatif dans les 3 mois suivant l’ouverture.",
+            "full": "Possible ✅ Premier transfert remboursé jusqu’à 100 € si l’encours est inférieur à 3 000 €, 150 € de 3 000 à moins de 5 000 €, ou 2 000 € à partir de 5 000 €, sous conditions. Justificatif dans les 3 mois suivant l’ouverture."
+          }
+        }
+      }
+    },
+    "xtb": {
+      "asOf": "2026-09-30",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf",
+      "sha256": "d1d59339a7a952b7c5aa123c056ae191c696cb064f2f5bac0b28d50b1a9ab020",
+      "page": 4,
+      "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+      "dateStatus": "dated",
+      "scope": "XTB ; actions/ETF OMI ; turnover mensuel cumulé tous comptes ; exemption minimum PEA",
+      "values": {
+        "threshold": 100000.0,
+        "rate": 0.2
+      },
+      "copy": {
+        "resume": "0 % jusqu’à 100 000 €/mois",
+        "full": "0 % jusqu’à 100 000 € de transactions mensuelles cumulées sur tes comptes, puis 0,2 %.",
+        "detail": "XTB ; actions/ETF OMI ; turnover mensuel cumulé tous comptes ; exemption minimum PEA"
+      },
+      "fields": {
+        "change": {
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf",
+          "sha256": "d1d59339a7a952b7c5aa123c056ae191c696cb064f2f5bac0b28d50b1a9ab020",
+          "page": 4,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Conversions OMI, transactions et opérations sur titres",
+          "values": {
+            "rate": 0.5
+          },
+          "copy": {
+            "resume": "0,5 %.",
+            "full": "0,5 %."
+          }
+        },
+        "garde": {
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf",
+          "sha256": "d1d59339a7a952b7c5aa123c056ae191c696cb064f2f5bac0b28d50b1a9ab020",
+          "page": 6,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Excédent valeur quotidienne moyenne du portefeuille ; prélèvement mensuel",
+          "values": {
+            "rate": 0.02,
+            "threshold": 250000.0
+          },
+          "copy": {
+            "resume": "Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.",
+            "full": "Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent."
+          }
+        },
+        "sortant": {
+          "asOf": "2026-09-30",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf",
+          "sha256": "d1d59339a7a952b7c5aa123c056ae191c696cb064f2f5bac0b28d50b1a9ab020",
+          "page": 6,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Transfert sortant PEA ; tarif CTO non substitué",
+          "values": {
+            "perLine": 15.0,
+            "maximum": 150.0
+          },
+          "copy": {
+            "resume": "15 € par ligne, maximum 150 €.",
+            "full": "15 € par ligne, maximum 150 €."
+          }
+        }
+      }
+    },
+    "saxo": {
+      "asOf": "2026-05-05",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf",
+      "sha256": "af163a76c9432ec5f1b4fb786e6dba7ead11001f12acb927044d94ec94a34080",
+      "page": 5,
+      "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+      "dateStatus": "dated",
+      "scope": "Saxo France ; actions/ETF Euronext ; Classic",
+      "values": {
+        "rate": 0.08,
+        "minimum": 2.0
+      },
+      "copy": {
+        "resume": "0,08 % · min 2 €",
+        "full": "0,08 % sur Euronext en formule Classic, minimum 2 €, dans la limite du plafond légal de 0,50 % pour les ordres en ligne.",
+        "detail": "Saxo France ; actions/ETF Euronext ; Classic"
+      },
+      "fields": {
+        "garde": {
+          "asOf": "2026-05-05",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf",
+          "sha256": "af163a76c9432ec5f1b4fb786e6dba7ead11001f12acb927044d94ec94a34080",
+          "page": 3,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Titres cotés ; non cotés exclus",
+          "values": {
+            "fee": 0.0
+          },
+          "copy": {
+            "resume": "0 € sur les titres cotés ; exception pour les titres non cotés en PEA.",
+            "full": "0 € sur les titres cotés ; exception pour les titres non cotés en PEA."
+          }
+        },
+        "change": {
+          "asOf": "2026-05-05",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf",
+          "sha256": "af163a76c9432ec5f1b4fb786e6dba7ead11001f12acb927044d94ec94a34080",
+          "page": 16,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Conversion de devises Saxo France",
+          "values": {
+            "rate": 0.25
+          },
+          "copy": {
+            "resume": "0,25 %.",
+            "full": "0,25 %."
+          }
+        },
+        "sortant": {
+          "asOf": "2026-05-05",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf",
+          "sha256": "af163a76c9432ec5f1b4fb786e6dba7ead11001f12acb927044d94ec94a34080",
+          "page": 16,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "Transfert sortant PEA/PEA-PME",
+          "values": {
+            "perLine": 15.0,
+            "maximum": 150.0
+          },
+          "copy": {
+            "resume": "15 € par ligne, maximum 150 €.",
+            "full": "15 € par ligne, maximum 150 €."
+          }
+        },
+        "offerPea": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions",
+          "sha256": "5a72da6c807cf46e4aa3e2bab44a6be0c8b699f16c2df1b6221e189eb6683956",
+          "page": null,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "not-published",
+          "scope": "saxo ; offerPea ; conditions explicites de la page officielle",
+          "values": {
+            "count": 70.0
+          },
+          "copy": {
+            "resume": "70 actions européennes sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Les commissions de change restent dues.",
+            "full": "70 actions européennes sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Les commissions de change restent dues."
+          },
+          "until": "2026-12-31",
+          "start": "2026-02-23"
+        },
+        "offerAmundi": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.home.saxo/fr-fr/campaigns/amundi-etf",
+          "sha256": "bf82c3b74702a0c3edfa132728ccd4692bfcb4759aa5386157375cae598acd29",
+          "page": null,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "not-published",
+          "scope": "saxo ; offerAmundi ; conditions explicites de la page officielle",
+          "values": {
+            "transferLockMonths": 6,
+            "priorAccountMonths": 12
+          },
+          "copy": {
+            "resume": "Une sélection d’ETF Amundi sans courtage à l’achat, dont certains sont éligibles au PEA. La vente reste payante selon le tarif applicable. Sous conditions : comptes de même nature sur les 12 derniers mois exclus ; transfert des positions concernées bloqué six mois.",
+            "full": "Une sélection d’ETF Amundi sans courtage à l’achat, dont certains sont éligibles au PEA. La vente reste payante selon le tarif applicable. Sous conditions : comptes de même nature sur les 12 derniers mois exclus ; transfert des positions concernées bloqué six mois."
+          },
+          "until": "2026-12-31",
+          "start": null
+        }
+      }
+    },
+    "caidf": {
+      "asOf": "2026-04-01",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
+      "sha256": "6e58b8efd2e84bc41399c784b7d9bfdc6686af332cb4aa73fa9573994efcb28b",
+      "page": 28,
+      "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+      "dateStatus": "dated",
+      "scope": "Crédit Agricole Île-de-France seulement ; colonne PEA/PEA-PME ; Internet Initial/Integral",
+      "values": {
+        "initial": 0.5,
+        "small": 0.48,
+        "middle": 0.18,
+        "large": 0.12,
+        "threshold": 500.0,
+        "upperThreshold": 1000.0,
+        "annual": 96.0,
+        "orders": 12.0,
+        "ageStart": 18,
+        "ageEnd": 30
+      },
+      "copy": {
+        "resume": "Initial 0,5 % / Integral dès 0,12 %",
+        "full": "Invest Store : Initial 0,5 % ; Integral 0,48 % jusqu’à 500 €, 0,18 % jusqu’à 1 000 €, puis 0,12 %. Integral : 96 €/an sous 12 ordres, gratuit dès 12 ordres ou pour les 18–30 ans.",
+        "detail": "Crédit Agricole Île-de-France seulement ; colonne PEA/PEA-PME ; Internet Initial/Integral"
+      },
+      "fields": {
+        "garde": {
+          "asOf": "2026-04-01",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
+          "sha256": "6e58b8efd2e84bc41399c784b7d9bfdc6686af332cb4aa73fa9573994efcb28b",
+          "page": 29,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "CA IDF ; exemptions et droits fixes conservés",
+          "values": {
+            "rate": 0.2,
+            "maximum": 250.0,
+            "fixed": 2.5,
+            "specialLine": 12.5
+          },
+          "copy": {
+            "resume": "Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional.",
+            "full": "Exonérés avec Integral, gestion conseillée ou mandat. Sinon : 2,5 €/semestre/compte, 12,5 €/semestre sur certaines lignes et 0,2 %/semestre de valorisation, plafonnés à 250 €/semestre. Autres exemptions et cas particuliers au barème régional."
+          }
+        },
+        "sortant": {
+          "asOf": "2026-04-01",
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
+          "sha256": "6e58b8efd2e84bc41399c784b7d9bfdc6686af332cb4aa73fa9573994efcb28b",
+          "page": 31,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "dated",
+          "scope": "CA IDF ; sortie hors Crédit Agricole",
+          "values": {
+            "perLine": 15.0,
+            "maximum": 150.0
+          },
+          "copy": {
+            "resume": "15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.",
+            "full": "15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers."
+          }
+        }
+      }
+    },
+    "ibkr": {
+      "asOf": null,
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php",
+      "sha256": "b540903fdec671ff419dd5ec569c8f58e9556e512002d89bf7cebbaf06adfbb6",
+      "page": null,
+      "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+      "dateStatus": "not-published",
+      "scope": "IBKR direct ; actions entières France ; premier palier dégressif, fixe SmartRouting et routage direct",
+      "values": {
+        "rate": 0.05,
+        "fixedRate": 0.05,
+        "directRate": 0.1,
+        "minimum": 1.25,
+        "fixedMinimum": 3.0,
+        "directMinimum": 4.0
+      },
+      "copy": {
+        "resume": "Dès 0,05 % · min 1,25 €",
+        "full": "Actions France : 0,05 %, minimum 1,25 € en dégressif, plus frais de Bourse possibles. En fixe SmartRouting : 0,05 %, minimum 3 € ; routage direct 0,1 %, minimum 4 €. Autres places : barèmes distincts, sous le plafond légal PEA.",
+        "detail": "IBKR direct ; actions entières France ; premier palier dégressif, fixe SmartRouting et routage direct"
+      },
+      "fields": {
+        "change": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.interactivebrokers.ie/fr/pricing/commissions-spot-currencies.php",
+          "sha256": "f6ec29dcc1976f5c808530e0ff2ff776cdd98ba2c993de1fc1c5a85907ca26f4",
+          "page": null,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "not-published",
+          "scope": "ibkr ; change ; conditions explicites de la page officielle",
+          "values": {
+            "manualRate": 0.002,
+            "minimumUsd": 2.0,
+            "automaticRate": 0.03
+          },
+          "copy": {
+            "resume": "Barème général : généralement 0,03 % en automatique ; en manuel 0,002 %, minimum 2 USD. Disponibilité à confirmer sur PEA.",
+            "full": "Barème général : généralement 0,03 % en automatique ; en manuel 0,002 %, minimum 2 USD. Disponibilité à confirmer sur PEA."
+          }
+        }
+      }
+    },
+    "tr": {
+      "asOf": null,
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution",
+      "sha256": "572a52af6f18ac22c9967fce4863b596a66f59c4c21e4982b084fde37c09e7eb",
+      "page": null,
+      "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+      "dateStatus": "not-published",
+      "scope": "Trade Republic France ; frais externes des transactions ponctuelles hors plans ; Direct Price non recertifié",
+      "values": {
+        "minimum": 1.0
+      },
+      "copy": {
+        "resume": "1 € hors plans",
+        "full": "1 € de règlement externe par transaction ponctuelle hors plans d’épargne. Tarif Direct Price distinct ; spread et coûts tiers possibles.",
+        "detail": "Trade Republic France ; frais externes des transactions ponctuelles hors plans ; Direct Price non recertifié"
+      },
+      "fields": {}
     }
   }
 }

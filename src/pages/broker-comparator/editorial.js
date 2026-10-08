@@ -1,4 +1,4 @@
-import { brokerTariffCopy } from '../../data/broker-tariffs.js';
+import { brokerTariffCopy, brokerFieldCopies, brokerOffers, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
 // Version courte du registre : les seuils et restrictions qui changent le choix restent visibles.
 // Les détails de procédure et références restent dans evidence.js.
 export const BROKER_EDITORIAL = {
@@ -89,5 +89,14 @@ export const BROKER_EDITORIAL = {
 for (const [id, copy] of Object.entries(BROKER_EDITORIAL)) {
   const tariff = brokerTariffCopy(id);
   if (tariff) copy.frais = tariff.full;
+  const fields = brokerFieldCopies(id);
+  for (const key of ['garde', 'entrant', 'sortant']) if (fields[key]) copy[key] = fields[key];
+  if (id === 'saxo' && BROKER_TARIFFS[id]?.fields?.offerPea) {
+    copy.offres = brokerOffers(id).map(full => { const o = Object.values(BROKER_TARIFFS[id].fields).find(o => o.copy.full === full); return `Jusqu’au ${new Intl.DateTimeFormat('fr-FR',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(o.until+'T00:00:00Z'))} : ${full}`; });
+    copy.offreDate = null;
+    // Each offer carries its own dates and conditions, including its transfer restriction.
+    copy.restriction = BROKER_TARIFFS[id].fields.offerAmundi ? `Attention : les positions achetées dans le cadre de l’offre ETF Amundi sont soumises à une restriction de transfert de six mois.` : copy.restriction;
+  }
+  if (id === 'caidf' && tariff) copy.faible = `Sans Integral, les droits de garde s’ajoutent au courtage. ${tariff.full}`;
   if (id === 'fortuneo' && tariff) copy.offres = [tariff.full];
 }
