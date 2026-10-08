@@ -115,6 +115,9 @@ def main():
         if old!=merged:write_json_atomic(path,merged)
     failures=sum(len(o['errors'])for o in observations)
     print(f"Indices: {sum('facts'in o for o in observations)} compositions, {sum('returns'in o for o in observations)} calendar histories; {failures} explicit exceptions.")
+    for observation in observations:
+        for error in observation['errors']:
+            print(f"Index source failed: {observation['id']} {error['field']} — {error['reason']}")
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a')as h:
             h.write('\n## Sources d’indices\n\n| Indice | Composition | Performances | Exceptions |\n|---|---|---|---|\n')
