@@ -9,6 +9,7 @@ import pathlib
 import re
 import subprocess
 import tempfile
+import urllib.error
 from data_automation import reject
 from issuer_documents import download, pdf_text, proof, document_date, validated_rows
 from collect_index_documents import COUNTRY_LABELS, SECTOR_LABELS
@@ -68,7 +69,17 @@ def parse_composition(text, legend_a, legend_b, config, now):
             'holdings':[], 'provenance':'Publication officielle de l’indice exact ; pays de domiciliation et comptage extraits des tables. Secteurs : légende imprimée lue à deux résolutions concordantes, total contrôlé. Poids individuels des principales lignes non publiés ; aucune substitution par le portefeuille ETF. Rendements conservés dans leur registre séparé.'}
 
 def collect(config, now, fetch=download):
-    body=fetch(config['sourceUrl']); text=pdf_text(body)
+    try:
+        body=fetch(config['sourceUrl'])
+    except urllib.error.HTTPError as error:
+        if error.code != 403 or fetch is not download:
+            raise
+        # Same public PDF, using normal public-document headers as in public_page.
+        # This never accepts a regional page or skips identity/date validation.
+        body=download(config['sourceUrl'], headers={
+            'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+            'Accept':'application/pdf', 'Accept-Language':'en-GB,en;q=0.9'})
+    text=pdf_text(body)
     pages=text.split('\f')
     matches=[i+1 for i,p in enumerate(pages)if 'Sector* Breakdown' in p]
     if len(matches)!=1:reject('S&P sector page missing/ambiguous')

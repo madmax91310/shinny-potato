@@ -24,6 +24,8 @@ Les rapports ETF/indices alimentent maintenant le suivi des erreurs au niveau de
 
 - **QYLD IE00BM8R0J59** : le calendrier affiché concerne la part capitalisante IE00BM8R0H36 et des périodes glissantes. La section « Reference Index » contient deux tableaux top dix contradictoires et des secteurs incompatibles avec l’exposition Nasdaq attendue. Les données du panier de substitution ne sont pas l’exposition économique du fonds. Les frais et encours restent automatisés ; les calendriers et expositions attendent une source exacte cohérente.
 - **Russell 1000** : la fiche officielle publie un graphique sectoriel raster, des principales lignes sans poids et un comptage daté. L’association fiable des poids aux secteurs n’est pas qualifiée ; la composition précédente reste datée. Les rendements annuels sont déjà automatisés.
+- Les fiches S&P sont lisibles dans la collecte locale mais peuvent renvoyer HTTP 403 depuis GitHub. La requête du même document avec des en-têtes publics usuels est aussi essayée ; une interdiction persistante conserve les dernières données vérifiées et remonte dans les alertes.
+- VanEck : certaines fiches sont redirigées vers la page d’accueil américaine depuis les runners GitHub ; ce problème préexistant reste signalé.
 - Les connecteurs réessaient les sources indisponibles et signalent les erreurs. Un changement de schéma demande toujours une réparation du code.
 
 Validation : fixtures issues des publications du 30 septembre 2026 et des observations INSEE collectées le 8 octobre, tests de calcul, d’identité, de fraîcheur, d’échec partiel et de récupération ; contrôles Chromium pour saisie, dates, PNG et affichage mobile.
