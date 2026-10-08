@@ -5,6 +5,9 @@ resolutions must yield identical named weights. Ambiguous OCR rejects the entire
 composition and preserves the prior dated snapshot. Calendar returns remain separate.
 """
 import datetime as dt
+import gzip
+import json
+import math
 import pathlib
 import re
 import subprocess
@@ -16,6 +19,54 @@ from collect_index_documents import COUNTRY_LABELS, SECTOR_LABELS
 
 SECTORS = ['Financials','Industrials','Utilities','Materials','Health Care','Communication Services',
            'Energy','Consumer Staples','Real Estate','Information Technology','Consumer Discretionary']
+
+def parse_public_data(body, config, now):
+    """The public page's numerical data, with effective dates rather than fetch dates."""
+    if body[:2] == b'\x1f\x8b': body = gzip.decompress(body)
+    if len(body) > 4_000_000: reject('S&P JSON exceeds size limit')
+    data = json.loads(body)
+    detail = data['indexDetailHolder']['indexDetail']
+    index_id = config['compositionIndexId']
+    if data.get('status') is not True or data['indexDetailHolder'].get('status') is not True:
+        reject('S&P data service unavailable')
+    if detail['indexId'] != index_id or detail['indexName'] != config['compositionDataName'] or detail['currencyCode'] != config['returnCurrency']:
+        reject('Wrong S&P exact composition identity')
+    characteristics = data['indexCharacteristics']
+    if characteristics['indexId'] != index_id: reject('S&P characteristics identity mismatch')
+    count = characteristics['constituentsCount']
+    if isinstance(count, bool) or not isinstance(count, int) or count <= 0: reject('Invalid S&P count')
+    def effective(value):
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value): reject('Invalid S&P effective date')
+        # S&P serializes US Eastern midnight; UTC retains the same calendar day.
+        return document_date(dt.datetime.fromtimestamp(value / 1000, dt.timezone.utc).date().isoformat(), now)
+    stamp = effective(characteristics['effectiveDate'])
+    if document_date(characteristics['formattedFetchedDate'], now) != stamp: reject('S&P effective date mismatch')
+    def rows(holder, key):
+        block = data[holder]
+        if block.get('status') is not True or not block.get(key): reject('S&P composition block unavailable')
+        if any(effective(row['effectiveDate']) != stamp for row in block[key]): reject('S&P mixed snapshot dates')
+        return block[key]
+    def weight(value, factor=1):
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value): reject('Invalid S&P weight')
+        return value * factor
+    country_data = rows('idsIndexCountryBreakdownHolder', 'indexCountryBreakdown')
+    if any(r['indexId'] != index_id or isinstance(r['stockCount'], bool) or not isinstance(r['stockCount'], int) or r['stockCount'] < 0 for r in country_data): reject('S&P country identity/count mismatch')
+    if sum(r['stockCount'] for r in country_data) != count: reject('S&P country counts disagree')
+    countries = validated_rows([{'name':r['countryName'], 'weightPct':weight(r['indexWeight'])} for r in country_data])
+    sector_data = rows('indexSectorBreakdownHolder', 'indexSectorBreakdown')
+    if any(r['sectorDescription'] not in SECTORS or r['gicsTypeID'] != 1 for r in sector_data): reject('S&P sector classification changed')
+    sectors = validated_rows([{'name':r['sectorDescription'], 'weightPct':weight(r['marketCapitalPercentage'],100)} for r in sector_data])
+    holding_data = rows('constituentHolder', 'constituents')
+    if len(holding_data) != 10: reject('S&P top-ten incomplete')
+    holdings = validated_rows([{'name':r['instrumentName'], 'weightPct':weight(r['indexWeight'],100)} for r in holding_data], complete=False)
+    top = weight(characteristics['topNConstituentWeight'])
+    if abs(sum(r['weightPct'] for r in holdings)-top) > 0.02: reject('S&P top-ten total mismatch')
+    return {'index':config['name'], 'asOf':stamp, 'constituents':count, 'sectorClassification':'GICS', 'topWeight':top,
+            'countries':[[COUNTRY_LABELS.get(r['name'],r['name']),round(r['weightPct'],4)] for r in countries],
+            'sectors':[[SECTOR_LABELS.get(r['name'],r['name']),round(r['weightPct'],4)] for r in sectors],
+            'holdings':[[r['name'],round(r['weightPct'],4)] for r in holdings],
+            'source':{'url':config['compositionDataUrl'],'checkedAt':now.date().isoformat(),'sha256':proof(body),'label':'Données publiques numériques S&P DJI'},
+            'provenance':'Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément.'}
 
 def parse_legend(text):
     found=[]
@@ -69,6 +120,14 @@ def parse_composition(text, legend_a, legend_b, config, now):
             'holdings':[], 'provenance':'Publication officielle de l’indice exact ; pays de domiciliation et comptage extraits des tables. Secteurs : légende imprimée lue à deux résolutions concordantes, total contrôlé. Poids individuels des principales lignes non publiés ; aucune substitution par le portefeuille ETF. Rendements conservés dans leur registre séparé.'}
 
 def collect(config, now, fetch=download):
+    if config.get('compositionDataUrl'):
+        if fetch is download:
+            body = download(config['compositionDataUrl'], headers={
+                'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+                'Accept':'application/json', 'Accept-Language':'en-GB,en;q=0.9',
+                'Referer':config['compositionPageUrl']})
+        else: body = fetch(config['compositionDataUrl'])
+        return parse_public_data(body, config, now)
     try:
         body=fetch(config['sourceUrl'])
     except urllib.error.HTTPError as error:

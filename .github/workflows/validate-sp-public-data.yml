@@ -1,0 +1,39 @@
+name: Validate S&P public composition data
+on:
+  pull_request:
+    paths:
+      - 'scripts/collect_sp_composition.py'
+      - 'scripts/test_sp_composition.py'
+      - 'scripts/fixtures/sp-composition/**'
+      - 'scripts/index-automation.json'
+      - '.github/workflows/validate-sp-public-data.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-26.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
+      - name: Validate both live public S&P numerical compositions
+        run: |
+          python - <<'PY'
+          import datetime as dt, json, pathlib, sys
+          sys.path.insert(0, 'scripts')
+          from collect_sp_composition import collect
+          from data_automation import UTC
+          configurations = json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']
+          for config in configurations:
+              if not config.get('compositionDataUrl'): continue
+              facts = collect(config, dt.datetime.now(UTC))
+              print(config['id'], facts['asOf'], facts['constituents'], 'top ten:', len(facts['holdings']))
+          PY
