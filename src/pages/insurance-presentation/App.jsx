@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
+import { renderPresentationImage } from '../presentation-shared/imageExport.js'
+import { downloadImage } from '../../design-system/downloadImage.js'
 import PageHeader from '../../design-system/PageHeader'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -14,6 +16,14 @@ export default function App() {
   const [message, setMessage] = useState('')
   const record = INSURANCE.find(row => row.id === id)
   const text = draft ?? (record ? buildTweet(record) : '')
+  const [exporting, setExporting] = useState(false)
+  const renderImage = useCallback(() => renderPresentationImage(record, 'insurance'), [record])
+  async function exportImage() {
+    setExporting(true)
+    try { downloadImage(await renderImage(), `${record.id}-epargnant-libre.png`); setMessage('Image téléchargée.') }
+    catch (error) { setMessage(error.message || 'Impossible de télécharger l’image.') }
+    finally { setExporting(false) }
+  }
   async function copy() {
     try { await navigator.clipboard.writeText(text); setMessage('Texte copié.') }
     catch { setMessage('Sélectionne le texte dans l’aperçu pour le copier.'); document.querySelector('#insurance-draft')?.select() }
@@ -21,8 +31,9 @@ export default function App() {
   if (!record) return <p role="alert">Aucun contrat vérifié n’est disponible pour le moment.</p>
   return <div className="scpi-presentation insurance-presentation">
     <PageHeader title="Présentation d’assurance-vie" subtitle="Les supports du contrat, leurs conditions et les frais." />
-    <ToolWorkspace actions={<>
+    <ToolWorkspace renderImage={renderImage} imageAlt={`Visuel de ${record.name}`} actions={<>
       <Button onClick={copy}>Copier le texte</Button>
+      <Button onClick={exportImage} disabled={exporting}>{exporting ? 'Préparation…' : 'Télécharger l’image'}</Button>
       <Button variant="secondary" onClick={() => { setDraft(null); setMessage('Texte d’origine rétabli.') }}>Rétablir le texte</Button>
       <span role="status">{message}</span>
     </>}>
