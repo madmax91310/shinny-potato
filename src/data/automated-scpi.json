@@ -1,0 +1,240 @@
+{
+  "records": [
+    {
+      "id": "iroko-zen",
+      "name": "Iroko Zen",
+      "sourceUrl": "https://www.iroko.eu/scpi/zen",
+      "checkedAt": "2026-10-08",
+      "snapshot": {
+        "asOf": null,
+        "dateNote": "La date des graphiques n’est pas publiée ; date du relevé conservée séparément.",
+        "countries": [
+          {
+            "label": "France",
+            "value": 28.7
+          },
+          {
+            "label": "Royaume-Uni",
+            "value": 27.2
+          },
+          {
+            "label": "Espagne",
+            "value": 14.4
+          },
+          {
+            "label": "Pays-Bas",
+            "value": 12
+          },
+          {
+            "label": "Irlande",
+            "value": 9.8
+          },
+          {
+            "label": "Allemagne",
+            "value": 7
+          },
+          {
+            "label": "Italie",
+            "value": 0.9
+          }
+        ],
+        "sectors": [
+          {
+            "label": "Commerces",
+            "value": 36.9
+          },
+          {
+            "label": "Bureaux",
+            "value": 26.2
+          },
+          {
+            "label": "Locaux d'activités",
+            "value": 13.6
+          },
+          {
+            "label": "Santé, hôtellerie, autre",
+            "value": 12
+          },
+          {
+            "label": "Entrepôts",
+            "value": 11.3
+          }
+        ],
+        "sourceUrls": [
+          "https://opendata.iroko.com/embed/charts/geo-rep-value-zen",
+          "https://opendata.iroko.com/embed/charts/type-rep-value-zen"
+        ]
+      },
+      "annual": {
+        "years": [
+          {
+            "year": 2023,
+            "distribution": 7.12
+          },
+          {
+            "year": 2024,
+            "distribution": 7.32
+          },
+          {
+            "year": 2025,
+            "distribution": 7.14
+          }
+        ],
+        "sourceUrl": "https://opendata.iroko.com/api/figure-embed.js"
+      },
+      "price": {
+        "value": 205,
+        "asOf": "2026-10-01",
+        "previousValue": 200,
+        "previousAsOf": "2020-12-31",
+        "sourceUrl": "https://www.iroko.eu/scpi/zen"
+      },
+      "conditions": {
+        "minimum": 5000.0,
+        "enjoyment": "Premier jour du 4e mois suivant l’enregistrement de la souscription.",
+        "frequency": "mensuels",
+        "subscriptionFee": 0,
+        "managementFee": 14.4,
+        "managementBasis": "loyers HT et autres produits HT encaissés",
+        "exit": "Jusqu’à 6 % TTC du montant remboursé avant 6 ans ; avant 3 ans pour les parts souscrites avant le 01/09/2026.",
+        "otherFees": "Commissions possibles sur les acquisitions, travaux et arbitrages ; détail dans la note d’information.",
+        "sourceUrl": "https://iroko-documents.s3.eu-west-3.amazonaws.com/Iroko_Zen_note_information.pdf"
+      },
+      "occupancy": {
+        "value": 96.88,
+        "asOf": "2026-06-30",
+        "sourceUrl": "https://www.iroko.eu/scpi/zen"
+      }
+    },
+    {
+      "id": "remake-live",
+      "name": "Remake Live",
+      "sourceUrl": "https://www.remake.fr/remake-live",
+      "checkedAt": "2026-10-08",
+      "snapshot": {
+        "asOf": "2026-06-30",
+        "countries": [
+          {
+            "label": "Royaume-Uni",
+            "value": 31.08,
+            "color": "#585681"
+          },
+          {
+            "label": "France",
+            "value": 21.69,
+            "color": "#787887"
+          },
+          {
+            "label": "Pays-Bas",
+            "value": 10.59,
+            "color": "#C867B6"
+          },
+          {
+            "label": "Espagne",
+            "value": 9.71,
+            "color": "#4A8BD5"
+          },
+          {
+            "label": "Pologne",
+            "value": 9.04,
+            "color": "#FFF48B"
+          },
+          {
+            "label": "Irlande",
+            "value": 8.78,
+            "color": "#DFA7D4"
+          },
+          {
+            "label": "Allemagne",
+            "value": 4.94,
+            "color": "#FFE700"
+          },
+          {
+            "label": "Italie",
+            "value": 3.39,
+            "color": "#ACCAEC"
+          },
+          {
+            "label": "Portugal",
+            "value": 0.78,
+            "color": "#9292ae"
+          }
+        ],
+        "sectors": [
+          {
+            "label": "Bureaux",
+            "value": 38.97,
+            "color": "#585681"
+          },
+          {
+            "label": "Santé & éducation",
+            "value": 18.16,
+            "color": "#787887"
+          },
+          {
+            "label": "Logistique et locaux d’activité",
+            "value": 17.92,
+            "color": "#C867B6"
+          },
+          {
+            "label": "Commerces",
+            "value": 12.13,
+            "color": "#4A8BD5"
+          },
+          {
+            "label": "Hôtels, tourisme & loisirs",
+            "value": 8.45,
+            "color": "#FFF48B"
+          },
+          {
+            "label": "Résidentiel",
+            "value": 3.1,
+            "color": "#DFA7D4"
+          },
+          {
+            "label": "Alternatifs",
+            "value": 1.28,
+            "color": "#FFE700"
+          }
+        ],
+        "sourceUrls": [
+          "https://www.remake.fr/remake-live",
+          "https://www.remake.fr/wp-content/uploads/2026/08/remake-live-bulletin-information-30-07-2026.pdf"
+        ]
+      },
+      "annual": {
+        "years": [
+          {
+            "year": 2023,
+            "distribution": 7.79
+          },
+          {
+            "year": 2024,
+            "distribution": 7.5
+          },
+          {
+            "year": 2025,
+            "distribution": 7.05
+          }
+        ],
+        "sourceUrl": "https://www.remake.fr/remake-live"
+      },
+      "price": {
+        "value": 204.0,
+        "asOf": "2026-06-30",
+        "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/remake-live-bulletin-information-30-07-2026.pdf"
+      },
+      "conditions": {
+        "minimum": 204.0,
+        "enjoyment": "Premier jour du 4e mois suivant celui de la souscription.",
+        "frequency": "mensuels",
+        "subscriptionFee": 0,
+        "managementFee": 18.0,
+        "managementBasis": "produits locatifs HT et autres produits encaissés",
+        "exit": "5 % TTC du montant remboursé avant 5 ans, sauf exceptions prévues dans la note.",
+        "otherFees": "5 % TTC du prix net vendeur pour les acquisitions et 5 % TTC du montant TTC des travaux.",
+        "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/08/remake-live-bulletin-information-30-07-2026.pdf"
+      }
+    }
+  ]
+}

@@ -33,6 +33,7 @@ import { ASSETS as HISTORY, SPARSE_MONTHLY_DATA_IDS } from './market-history.js'
 import { FAMILIES } from './index-comparisons.js';
 import { SHEETS } from './index-factsheets.js';
 import { HOUSEHOLD_STATISTICS } from './household-statistics.js';
+import { SCPI } from './scpi.js';
 import { COMPANIES } from './companies.js';
 import { normalizeEvidence } from './evidence.js';
 import { ECONOMIC_OBSERVATIONS, economicCalendar } from './economic-data.js';
@@ -139,6 +140,10 @@ export const DATA_CATALOG = Object.freeze([
     consumers: [{tool:'Calculateur',path:'/calculateur-investissement'},{tool:'Performance depuis',path:'/performance-depuis'}],
     fields: Object.values(ECONOMIC_OBSERVATIONS.savings ?? {}).map(o => field(`Taux applicable · ${o.effectiveAt}`, 'economic-data', LIVRET_A[o.effectiveAt.slice(0,7)],
       {sourceUrl:o.sourceUrl,checkedAt:o.checkedAt,asOf:o.effectiveAt,scope:'Taux légal annuel du Livret A',currency:'EUR',method:'Taux réglementé publié par la Banque de France, date d’effet conservée ; historique antérieur documenté dans market-history.js'})) },
+  ...SCPI.map(record => ({ id: `scpi:${record.id}`, type: 'scpi', name: record.name, aliases: [record.id, 'immobilier', 'SCPI'],
+    consumers: [{ tool: 'Présentation de SCPI', path: '/presentation-scpi' }],
+    fields: ['snapshot', 'annual', 'price', 'conditions'].map(key => field({snapshot: 'Pays et secteurs', annual: 'Taux de distribution annuels', price: 'Prix de souscription', conditions: 'Frais et conditions'}[key], 'scpi', record[key],
+      { sourceUrls: record[key].sourceUrls ?? [record[key].sourceUrl], asOf: record[key].asOf ?? null, checkedAt: record.checkedAt, scope: `${record.name} · détention directe en pleine propriété`, currency: 'EUR', method: 'Publication officielle de la société de gestion ; distributions distinctes de la performance totale ; date du relevé distincte de la date des données.' })) })),
   ...COMPANIES.map(companyRecord),
   ...HOUSEHOLD_STATISTICS.map((value) => ({ id: `household:${value.id}`, type: 'household', name: value.title,
     aliases: [value.id, value.category, value.headline, 'Insee', 'ménages'], consumers: [{ tool: 'La France en 100 ménages', path: `/france-100-menages` }],
