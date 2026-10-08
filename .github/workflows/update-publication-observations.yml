@@ -48,6 +48,7 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
+      - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
       - run: node scripts/test-publication-consumers.mjs
