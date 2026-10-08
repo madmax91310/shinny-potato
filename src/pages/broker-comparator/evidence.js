@@ -1,4 +1,4 @@
-import { brokerTariffCopy, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
+import { brokerTariffCopy, brokerFieldCopies, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
 // Registre éditorial : PDF officiels et pages publiées par les courtiers.
 // Dans les PDF, la première page porte le numéro 1.
 // « Non établi » ne signifie jamais « non proposé ».
@@ -245,6 +245,7 @@ export const EVIDENCE_FIELDS = [
 ]
 
 const brokerNames = {bourso:'BoursoBank · Découverte',fortuneo:'Fortuneo · Starter',xtb:'XTB',saxo:'Saxo · Classic',caidf:'Crédit Agricole Île-de-France',ibkr:'Interactive Brokers · France',tr:'Trade Republic',bd:'Bourse Direct'};
+const fieldDocument = (id,key) => id === 'saxo' && key === 'entrant' ? 'saxoPeaTransferOffer' : `${id}Automated${key}`;
 for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
   const document = `${id}AutomatedTariff`;
   const source = o => ({title: `${brokerNames[id]} · ${o.scope}`,url:o.sourceUrl,
@@ -254,16 +255,22 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
   BROKER_EVIDENCE[id].frais = {status:'confirmé',summary:brokerTariffCopy(id).full,
     refs:[{document,...(observation.page ? {page:observation.page} : {})}],automatedEvidence:observation};
   for (const [key,o] of Object.entries(observation.fields ?? {})) {
-    const doc = `${id}Automated${key}`; OFFICIAL_SOURCES[doc] = source(o);
-    if (key.startsWith('offer')) BROKER_EVIDENCE[id].frais.refs.push({document:doc});
+    const doc = fieldDocument(id,key); OFFICIAL_SOURCES[doc] = source(o);
+    if (key.startsWith('offer') || key==='directPrice') BROKER_EVIDENCE[id].frais.refs.push({document:doc});
     if (['garde','change'].includes(key)) BROKER_EVIDENCE[id][key] = {
       status:id === 'ibkr' && key === 'change' ? 'partiel' : 'confirmé',summary:o.copy.full,
       ...(key === 'change' ? {post:o.copy.full} : {}),
       refs:[{document:doc,...(o.page ? {page:o.page} : {})}],automatedEvidence:o};
+    if (['gardeCto','sortantCto'].includes(key)) {
+      const field = key === 'gardeCto' ? 'garde' : 'transfert';
+      BROKER_EVIDENCE[id][field] = {...BROKER_EVIDENCE[id][field],
+        summary: BROKER_EVIDENCE[id][field].summary + ' ' + o.copy.full,
+        refs:[...BROKER_EVIDENCE[id][field].refs,{document:doc}]};
+    }
   }
   // A transfer tariff does not recertify incoming eligibility or reimbursements.
   const transferFields = ['entrant','sortant'].filter(key => observation.fields?.[key]);
   if (transferFields.length) BROKER_EVIDENCE[id].transfert = {...BROKER_EVIDENCE[id].transfert,
-    summary:(!transferFields.includes('entrant') ? BROKER_EVIDENCE[id].transfert.summary.split(/Sortie\s*:/)[0].trim()+' ' : '')+transferFields.map(key => `${key === 'entrant' ? 'Entrée' : 'Sortie'} : ${observation.fields[key].copy.full}`).join(' '),
-    refs:[...BROKER_EVIDENCE[id].transfert.refs,...transferFields.map(key => ({document:`${id}Automated${key}`,...(observation.fields[key].page ? {page:observation.fields[key].page} : {})}))]};
+    summary:(!transferFields.includes('entrant') ? BROKER_EVIDENCE[id].transfert.summary.split(/Sortie\s*:/)[0].trim()+' ' : '')+transferFields.map(key => `${key === 'entrant' ? 'Entrée' : 'Sortie'} : ${brokerFieldCopies(id)[key] ?? 'Conditions non actives à cette date.'}`).join(' '),
+    refs:[...BROKER_EVIDENCE[id].transfert.refs,...transferFields.map(key => ({document:fieldDocument(id,key),...(observation.fields[key].page ? {page:observation.fields[key].page} : {})}))]};
 }

@@ -13,6 +13,7 @@ import pathlib
 import re
 import urllib.request
 import xml.etree.ElementTree as ET
+from regulatory_extensions import SOURCES as EXTRA_SOURCES, extra_values
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEST = ROOT / 'src/data/automated-regulatory.json'
@@ -42,6 +43,7 @@ SOURCES = {
   'dividendIncome': r"Le prélèvement forfaitaire unique est constitué de l'impôt sur le revenu \(([\d,]+) %\) et des prélèvements sociaux",
   'dividendSocial': r'Le taux des prélèvements sociaux sur les revenus de placements passe à ([\d,]+) %'}),
 }
+SOURCES.update(EXTRA_SOURCES)
 
 def text(node):
  return ' '.join(''.join(node.itertext()).split())
@@ -70,6 +72,7 @@ def parse(name, raw, today, previous=None):
  # Paragraph scope avoids selecting numbers from navigation or related-page labels.
  paragraphs = '\n'.join(text(p) for p in root.iter('Paragraphe'))
  values = {key: unique(pattern, paragraphs) for key, pattern in patterns.items()}
+ values.update(extra_values(name, root, today, text, unique))
  if name == 'av':
   parents = {child: parent for parent in root.iter() for child in parent}
   cases = []
@@ -121,7 +124,9 @@ def parse(name, raw, today, previous=None):
  if name == 'cto' and abs(values['ctoIncome']+values['ctoSocial']-values['ctoTotal']) > .001:
   raise ValueError('Somme PFU incohérente')
  for key,value in values.items():
-  if not 0 < value <= (1_000_000 if ('Ceiling' in key or 'Allowance' in key or 'Threshold' in key) else 100):
+  limit = 1_000_000 if any(x in key for x in ('Ceiling','Threshold','Maximum','Minimum')) or key in ('avSingleAllowance','avCoupleAllowance') else 100
+  if key.endswith('Year'): limit = int(today[:4])
+  if not 0 < value <= limit:
    raise ValueError(f'Valeur invalide : {key}')
  return {'values': values, 'publishedAt': published, 'checkedAt': today,
   'sourceUrl': root.get('spUrl'), 'downloadUrl': BASE+identity+'.xml',

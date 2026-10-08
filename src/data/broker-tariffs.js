@@ -4,6 +4,12 @@ export const BROKER_TARIFFS = snapshot.brokers
 export function brokerTariffCopy(id, observations = snapshot.brokers) {
   const o = observations[id]
   if (!o) return null
+  if (id === 'tr' && o.fields?.directPrice) {
+    const v = o.fields.directPrice.values;
+    return {resume:`${number(o.values.minimum)} € ponctuel / ${number(v.fee)} € Direct Price`,
+      detail:'Barème des transactions ponctuelles ; tarifs des plans distincts',
+      full:`${number(o.values.minimum)} € de règlement externe par transaction ponctuelle hors plans d’épargne ; ${number(v.fee)} € avec Direct Price. Spread, conversion et coûts tiers possibles. Les plafonds légaux PEA s’appliquent.`};
+  }
   if (o.copy) return o.copy
   const v = o.values
   return id === 'bourso' ? {
@@ -18,7 +24,11 @@ export function brokerTariffCopy(id, observations = snapshot.brokers) {
 }
 
 export function brokerFieldCopies(id, observations = snapshot.brokers, today = new Intl.DateTimeFormat('en-CA', {timeZone: 'Europe/Paris'}).format(new Date())) {
-  return Object.fromEntries(Object.entries(observations[id]?.fields ?? {}).filter(([,o]) => !o.until || ((!o.start || o.start <= today) && o.until >= today)).map(([key,o]) => [key,o.copy.full]));
+  return Object.fromEntries(Object.entries(observations[id]?.fields ?? {}).flatMap(([key,o]) => {
+    if (o.start && o.start > today) return [];
+    if (o.until && o.until < today) return o.after ? [[key,o.after]] : [];
+    return [[key,o.copy.full]];
+  }));
 }
 export function brokerOffers(id, today, observations = snapshot.brokers) {
   const copies = brokerFieldCopies(id, observations, today);

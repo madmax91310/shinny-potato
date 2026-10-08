@@ -19,7 +19,7 @@ try {
  browser=await chromium.launch(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})
  const page=await browser.newPage()
  await page.goto(base+'/fiche-lexique')
- for(const id of ['pea','cto','ldds','assurance-vie','flat-tax']) {
+ for(const id of ['pea','cto','ldds','assurance-vie','flat-tax','per','pee-perco','lmnp','rendement-locatif','plus-value-immobiliere']) {
   await page.locator(`#subject-select [data-value="${id}"]`).click()
   await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
   const expected=getFicheLexiqueText(id)
@@ -35,5 +35,5 @@ try {
  }
  await page.setViewportSize({width:390,height:844})
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
- console.log('Browser: five fiscal sheets, recalculated examples, seven broker tables/tweets and mobile OK')
+ console.log('Browser: ten fiscal sheets, recalculated examples, seven broker tables/tweets and mobile OK')
 } finally {await browser?.close();server.kill()}

@@ -17,6 +17,13 @@ assert(getFicheLexiqueText('cto').includes(money(1300-300*R.ctoTotal/100)))
 assert(getFicheLexiqueText('flat-tax').includes(money(1000-1000*R.ctoTotal/100)))
 assert(getFicheLexiqueText('prelevements-sociaux').includes(money(5000*R.avSocial/100)))
 assert(getFicheLexiqueText('ldds').includes(money(R.lddsCeiling*R.lddsRate/100)))
+assert(getFicheLexiqueText('per').includes(n('perMinimum')))
+assert(getFicheLexiqueText('per').includes(n('perMaximum')))
+assert(getFicheLexiqueText('per').includes(n('perTotal')))
+assert(getFicheLexiqueText('pee-perco').includes(n('peeCeiling')))
+assert(getFicheLexiqueText('lmnp').includes(n('lmnpCeiling')))
+assert(getFicheLexiqueText('plus-value-immobiliere').includes(n('propertySocial')))
+assert(getFicheLexiqueText('rendement-locatif').includes(n('rentCeiling')))
 for (const id of Object.keys(BROKER_TARIFFS)) {
  const broker=BROKERS.find(b=>b.id===id), copy=brokerTariffCopy(id)
  assert.equal(broker.frais.resume,copy.resume);assert.equal(broker.post.frais[0],copy.full)
@@ -25,7 +32,7 @@ for (const id of Object.keys(BROKER_TARIFFS)) {
  const record=DATA_CATALOG.find(r=>r.id===`broker:${id}`)
  assert.equal(record.fields[0].value.description,copy.full)
 }
-for (const id of ['pea','cto','livret-a','ldds','assurance-vie']) {
+for (const id of ['pea','cto','livret-a','ldds','assurance-vie','per','pee-perco','lmnp','rendement-locatif','plus-value-immobiliere']) {
  assert(DATA_CATALOG.find(r=>r.id===`lexicon:${id}`).fields.some(f=>f.registry==='src/data/regulatory-data.js'))
  assert(!/undefined|NaN/.test(getFicheLexiqueText(id)))
 }
@@ -38,7 +45,13 @@ if (!process.argv.includes('--child')) {
   Object.assign(regulatory.sources.social.values,{peaSocial:20})
   Object.assign(regulatory.sources.av.values,{avSocial:19})
   Object.assign(regulatory.sources.ldds.values,{lddsCeiling:13000,lddsRate:4})
+  Object.assign(regulatory.sources.per.values,{perMinimum:5000,perMaximum:40000,perTotal:33})
+  Object.assign(regulatory.sources.pee.values,{peeCeiling:4200,peeMultiplier:4})
+  Object.assign(regulatory.sources.lmnp.values,{lmnpCeiling:85000,lmnpAllowance:45})
+  Object.assign(regulatory.sources.property.values,{propertySocial:19})
+  Object.assign(regulatory.sources.rent.values,{rentCeiling:16000})
   Object.assign(tariffs.brokers.fortuneo.values,{threshold:700,rate:.45})
+  Object.assign(tariffs.brokers.tr.fields.directPrice.values,{fee:3,venueFee:2})
   paths.forEach((p,i)=>writeFileSync(p,JSON.stringify(i?tariffs:regulatory)))
   const test=spawnSync(process.execPath,[process.argv[1],'--child'],{encoding:'utf8'})
   assert.equal(test.status,0,test.stdout+test.stderr)

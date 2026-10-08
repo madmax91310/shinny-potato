@@ -115,6 +115,87 @@
       "sha256": "b7e238b1118bab50f99b83fed1a9088c8388b77f76da06cf8347effc78f8b635",
       "scope": "Résident fiscal français ; régime général, hors exceptions historiques",
       "method": "Champ ou tableau identifié dans la publication XML DILA ; date de publication distincte de la date d’effet juridique"
+    },
+    "pee": {
+      "values": {
+        "peeCeiling": 3844.8,
+        "peeMultiplier": 3.0
+      },
+      "publishedAt": "2026-01-01",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2142",
+      "downloadUrl": "https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/F2142.xml",
+      "title": "Plan d'épargne entreprise (PEE)",
+      "sha256": "c1c0b2957a595eb0772ef7fe16237bfe146922c014413dcf103bbd832f743a8c",
+      "scope": "Résident fiscal français ; régime général, hors exceptions historiques",
+      "method": "Champ ou tableau identifié dans la publication XML DILA ; date de publication distincte de la date d’effet juridique"
+    },
+    "per": {
+      "values": {
+        "perDeductionRate": 10.0,
+        "perRevenueYear": 2025,
+        "perDeductionYear": 2026,
+        "perMaximum": 37680.0,
+        "perMinimum": 4710.0,
+        "perTaxYear": 2026,
+        "perTotal": 31.4,
+        "perIncome": 12.8,
+        "perSocial": 18.6
+      },
+      "publishedAt": "2026-06-18",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F34982",
+      "downloadUrl": "https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/F34982.xml",
+      "title": "Plan d'épargne retraite (PER)",
+      "sha256": "98f73b5281d231dede2df8c9cd3b6ab6f273a3b99e7441647cdbf1bafba13f07",
+      "scope": "Résident fiscal français ; régime général, hors exceptions historiques",
+      "method": "Champ ou tableau identifié dans la publication XML DILA ; date de publication distincte de la date d’effet juridique"
+    },
+    "property": {
+      "values": {
+        "propertyIncome": 19.0,
+        "propertySocial": 17.2,
+        "propertyIncomeYears": 22.0,
+        "propertySocialYears": 30.0
+      },
+      "publishedAt": "2026-04-15",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F10864",
+      "downloadUrl": "https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/F10864.xml",
+      "title": "Impôt sur le revenu - Plus-value immobilière",
+      "sha256": "c1f9648b123482494fd0f4d190138bc20b650f56b4250210687838764081cc84",
+      "scope": "Résident fiscal français ; régime général, hors exceptions historiques",
+      "method": "Champ ou tableau identifié dans la publication XML DILA ; date de publication distincte de la date d’effet juridique"
+    },
+    "rent": {
+      "values": {
+        "rentCeiling": 15000.0,
+        "rentAllowance": 30.0,
+        "rentSocial": 17.2
+      },
+      "publishedAt": "2026-04-15",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F1991",
+      "downloadUrl": "https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/F1991.xml",
+      "title": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
+      "sha256": "c73161de04fda4a64b578885aaba2e9e33bfcf699caeb63e1195b96f214a7a69",
+      "scope": "Résident fiscal français ; régime général, hors exceptions historiques",
+      "method": "Champ ou tableau identifié dans la publication XML DILA ; date de publication distincte de la date d’effet juridique"
+    },
+    "lmnp": {
+      "values": {
+        "lmnpRevenueYear": 2026,
+        "lmnpCeiling": 83600.0,
+        "lmnpAllowance": 50.0
+      },
+      "publishedAt": "2026-04-15",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F32744",
+      "downloadUrl": "https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/F32744.xml",
+      "title": "Impôt sur le revenu - Revenus d'une location meublée",
+      "sha256": "feaede3a764b9048beb98b24b2a14cf90aea99ee069ab28857456dad9c3900da",
+      "scope": "Résident fiscal français ; régime général, hors exceptions historiques",
+      "method": "Champ ou tableau identifié dans la publication XML DILA ; date de publication distincte de la date d’effet juridique"
     }
   }
 }
