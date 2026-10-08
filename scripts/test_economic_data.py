@@ -65,4 +65,37 @@ class EconomicDataTests(unittest.TestCase):
   with self.assertRaises(ValueError): c.merge(state,'households',{'two':{'year':2025,'value':20},'one':{'year':2024,'value':5}})
   self.assertEqual(state,before)
   self.assertEqual(c.merge(state,'households',{'one':{'year':2026,'value':11}})['households']['one']['value'],11)
+ def test_acpr_pagination_route_survives_catalogue_403(self):
+  landing=c.ACPR+'/fr/publications-et-statistiques/publications/ndeg-180-revalorisation-2025-des-contrats-dassurance-vie-et-de-capitalisation'
+  pdf=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
+  def fetch(url):
+   if url.endswith('etudes-et-recherche'):raise ValueError('HTTP 403')
+   if url.endswith('etudes-et-recherche?page=0'):return f'<a href="{landing}">Rapport annuel</a>'.encode()
+   if url==landing:return f'<a href="{pdf}">Rapport PDF</a>'.encode()
+   raise AssertionError(url)
+  with patch.object(c,'official_download',side_effect=fetch):self.assertEqual(c.discover_acpr(),pdf)
+  # An unrelated official report or a third-party PDF cannot recertify this series.
+  with patch.object(c,'official_download',return_value=b'<a href="https://example.com/AS180_revalorisation_2025.pdf">PDF</a>'):
+   with self.assertRaises(ValueError):c.discover_acpr()
+ def test_latest_complete_year_download_can_survive_discovery_failure(self):
+  url=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
+  baseline={'fonds_euros:2025':{'year':2025,'value':2.63,'sourceUrl':url}}
+  with patch.object(c,'discover_acpr',side_effect=ValueError('HTTP 403')),patch.object(c,'official_download',return_value=b'new pdf') as fetch,patch.object(c,'pdf_text',return_value='Contrats individuels : nets de prélèvements sur encours, avant prélèvements sociaux. Taux de revalorisation en 2025 : 2,7 %.'):
+   o=c.collect_funds_euros('2026-10-08',baseline)
+   fetch.assert_called_once_with(url);self.assertEqual(o['value'],2.7)
+   self.assertEqual(o['discoveryStatus'],'latest-complete-year-revalidated')
+   with self.assertRaises(ValueError):c.collect_funds_euros('2027-01-01',baseline)
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',{})
+ def test_funds_fallback_does_not_mask_download_failure_or_new_report_failure(self):
+  url=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
+  baseline={'fonds_euros:2025':{'year':2025,'sourceUrl':url}}
+  with patch.object(c,'discover_acpr',side_effect=ValueError('HTTP 403')),patch.object(c,'official_download',side_effect=ValueError('PDF blocked')):
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',baseline)
+  with patch.object(c,'discover_acpr',return_value='new official report'),patch.object(c,'official_download',side_effect=ValueError('PDF blocked')) as fetch:
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',baseline)
+   fetch.assert_called_once_with('new official report')
+  baseline['fonds_euros:2025']['sourceUrl']='https://example.com/report.pdf'
+  with patch.object(c,'discover_acpr',side_effect=ValueError('HTTP 403')),patch.object(c,'official_download') as fetch:
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',baseline)
+   fetch.assert_not_called()
 if __name__=='__main__':unittest.main()

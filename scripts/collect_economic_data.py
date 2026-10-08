@@ -308,6 +308,32 @@ def parse_funds_euros(body, source_url, today):
     return {'year':year,'value':value,'checkedAt':today,'sourceUrl':source_url,'method':'ACPR contrats individuels, net de prélèvements sur encours, avant prélèvements sociaux','sha256':hashlib.sha256(body).hexdigest()}
 
 
+def collect_funds_euros(today, previous):
+    discovery_error=None
+    try:
+        url=discover_acpr()
+    except Exception as error:
+        # A known report can cover the latest possible complete calendar year.
+        # Re-download it rather than interpreting inaccessible catalogues as a
+        # failed data download. Once its year is older, discovery is mandatory.
+        observations=[o for key,o in previous.items() if key.startswith('fonds_euros:')]
+        latest=max(observations,key=lambda o:o['year'],default=None)
+        require(latest is not None and latest['year']==int(today[:4])-1,
+                f'Découverte ACPR obligatoire pour un nouveau millésime : {error}')
+        url=latest['sourceUrl']
+        parsed=urllib.parse.urlparse(url)
+        require(parsed.scheme=='https' and parsed.hostname=='acpr.banque-france.fr'
+                and parsed.path.startswith('/system/files/'), 'URL de rapport ACPR non qualifiée')
+        discovery_error=str(error)
+    observation=parse_funds_euros(official_download(url),url,today)
+    if discovery_error:
+        require(observation['year']==int(today[:4])-1,'Rapport de secours ACPR hors dernier millésime complet')
+        observation['discoveryStatus']='latest-complete-year-revalidated'
+        observation['discoveryNote']='Catalogue indisponible ; dernier millésime annuel complet téléchargé et revalidé sur son URL officielle.'
+        print('ACPR : catalogue indisponible ; PDF officiel du dernier millésime annuel complet revalidé.',flush=True)
+    return observation
+
+
 def official_download(url, max_bytes=8_000_000):
     # Use standard public-page negotiation on Banque de France / ACPR Drupal.
     # Other collectors retain their existing document request conventions.
@@ -344,6 +370,7 @@ def discover_acpr_sitemap():
 def discover_acpr():
     errors = []
     catalogues = [ACPR+'/fr/publications-et-statistiques/etudes-et-recherche',
+                  ACPR+'/fr/publications-et-statistiques/etudes-et-recherche?page=0',
                   ACPR+'/fr/publications-acpr',
                   ACPR+'/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses']
     for catalogue in catalogues:
@@ -445,7 +472,7 @@ def main():
         jobs.append(('livret-a',lambda:('savings',{'livret_a':collect_savings(today)})))
     if args.family in (None,'fonds_euros'):
         def funds():
-            url=discover_acpr();o=parse_funds_euros(official_download(url),url,today)
+            o=collect_funds_euros(today,state.get('benchmarks',{}))
             return 'benchmarks',{'fonds_euros:'+str(o['year']):o}
         jobs.append(('fonds-euros',funds))
     if args.family in (None,'scpi'):
