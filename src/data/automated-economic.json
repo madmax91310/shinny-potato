@@ -417,7 +417,7 @@
       "rate": 1.7,
       "checkedAt": "2026-10-08",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A18000",
-      "sha256": "a204435c19e74e0a30ee10eb4af5ca130a0bc910a6096d83f305fd834b996e0b"
+      "sha256": "48f52dba0df14f1ea585599f591690eeb5f816db0d09686cf79d9561d0b6907e"
     }
   },
   "benchmarks": {
@@ -427,7 +427,9 @@
       "checkedAt": "2026-10-08",
       "sourceUrl": "https://acpr.banque-france.fr/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf",
       "method": "ACPR contrats individuels, net de prélèvements sur encours, avant prélèvements sociaux",
-      "sha256": "753776e04ee3401c67b52f5bd55fb7a9ad05135fe473eb8693e711391cb3158d"
+      "sha256": "753776e04ee3401c67b52f5bd55fb7a9ad05135fe473eb8693e711391cb3158d",
+      "discoveryStatus": "latest-complete-year-revalidated",
+      "discoveryNote": "Catalogue indisponible ; dernier millésime annuel complet téléchargé et revalidé sur son URL officielle."
     },
     "scpi:2025": {
       "year": 2025,
