@@ -5,7 +5,7 @@ import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import { INSURANCE } from '../../data/insurance.js'
 import { dateLabel, format } from '../scpi-presentation/lib.js'
-import { buildTweet } from './lib.js'
+import { buildTweet, fundReturn, fundGuarantee } from './lib.js'
 import '../scpi-presentation/style.css'
 
 export default function App() {
@@ -37,10 +37,11 @@ export default function App() {
           <details><summary>Les fonds euros et leurs conditions</summary>
             {record.euroFunds.map(fund => <section key={fund.name}>
               <h3>{fund.name}</h3>
-              <table><thead><tr><th>Année</th><th>Rendement net de gestion</th></tr></thead><tbody>{fund.years.map(row => <tr key={row.year}><th scope="row">{row.year}</th><td>{format(row.return)} %</td></tr>)}</tbody></table>
+              <table><thead><tr><th>Année</th><th>Rendement net de gestion</th></tr></thead><tbody>{fund.years.map(row => <tr key={row.year}><th scope="row">{row.year}</th><td>{fundReturn(row)}</td></tr>)}</tbody></table>
               <p>Avant prélèvements sociaux et fiscaux ; historique publié disponible, sans bonus commercial.</p>
-              <p>Garantie annuelle nette de gestion : {format(fund.guarantee)} %. Frais de gestion : {format(fund.managementFeeMax)} % maximum/an.</p>
+              <p>{fundGuarantee(fund)} Frais de gestion : {format(fund.managementFeeMax)} % maximum/an.</p>
               <p>Jusqu’à {format(fund.maxAllocation)} % du versement{fund.ceiling ? `, plafond de ${format(fund.ceiling)} € par contrat` : ''}. {fund.operations}</p>
+              {fund.notes && <p>{fund.notes}</p>}
               <a href={fund.sourceUrl} target="_blank" rel="noreferrer">Source et conditions du fonds</a>
             </section>)}
           </details>

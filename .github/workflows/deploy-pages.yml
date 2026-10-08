@@ -68,6 +68,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: node scripts/test-scpi.mjs
       - run: python -m unittest discover -s scripts -p 'test_corum.py'
+      - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_insurance.py'
       - run: node scripts/test-insurance.mjs
       - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'

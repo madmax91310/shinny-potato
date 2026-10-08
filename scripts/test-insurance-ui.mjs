@@ -30,7 +30,7 @@ try {
     assert.equal(await page.locator('#insurance-draft').inputValue(),buildTweet(record))
   }
   await page.getByText('Les fonds euros et leurs conditions',{exact:true}).click()
-  assert.equal(await page.locator('.scpi-evidence tbody tr').count(),INSURANCE.at(-1).euroFunds.reduce((sum,fund)=>sum+fund.years.length,0))
+  assert.equal(await page.locator('.scpi-evidence tbody tr').count(),INSURANCE.find(row => row.id === 'linxea-vie').euroFunds.reduce((sum,fund)=>sum+fund.years.length,0))
   await mkdir('test-artifacts/insurance',{recursive:true})
   await page.screenshot({path:'test-artifacts/insurance/desktop.png',fullPage:true})
   for(const width of [320,390]) {
@@ -39,7 +39,7 @@ try {
     await page.getByRole('button',{name:'Linxea Avenir 2',exact:true}).click()
     await page.getByRole('button',{name:'Aperçu',exact:true}).click()
     assert(await page.locator('#insurance-draft').isVisible())
-    assert.equal(await page.locator('#insurance-draft').inputValue(),buildTweet(INSURANCE[1]))
+    assert.equal(await page.locator('#insurance-draft').inputValue(),buildTweet(INSURANCE.find(row => row.id === 'linxea-avenir-2')))
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
     await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
     await page.getByRole('status').filter({hasText:'Texte copié.'}).waitFor()

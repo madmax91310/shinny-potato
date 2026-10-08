@@ -54,6 +54,11 @@
           "maxAllocation": 100.0,
           "ceiling": 5000000.0,
           "operations": "Versements et arbitrages ; sans quota d’unités de compte.",
+          "notes": null,
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-spirit-2/supports-disponibles-sur-linxea-spirit-2/fonds-euro/"
+          ],
           "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-spirit-2/supports-disponibles-sur-linxea-spirit-2/fonds-euro/"
         },
         {
@@ -70,6 +75,11 @@
           "maxAllocation": 100,
           "ceiling": 5000000.0,
           "operations": "Gestion libre ; versement initial, versements complémentaires et programmés.",
+          "notes": null,
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-spirit-2/supports-disponibles-sur-linxea-spirit-2/fonds-euro-linxea-spirit-2-euro-objectif-climat/"
+          ],
           "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-spirit-2/supports-disponibles-sur-linxea-spirit-2/fonds-euro-linxea-spirit-2-euro-objectif-climat/"
         }
       ]
@@ -127,6 +137,11 @@
           "maxAllocation": 100.0,
           "ceiling": null,
           "operations": "Versements uniquement à l’entrée ; arbitrages sortants possibles.",
+          "notes": null,
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/"
+          ],
           "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/"
         },
         {
@@ -151,7 +166,190 @@
           "maxAllocation": 70.0,
           "ceiling": null,
           "operations": "Au moins 30 % en unités de compte non garanties ; arbitrages possibles.",
+          "notes": null,
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/"
+          ],
           "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/"
+        }
+      ]
+    },
+    {
+      "id": "linxea-zen",
+      "name": "Linxea Zen",
+      "insurer": "Apicil",
+      "distributor": "Linxea",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/",
+      "fees": {
+        "subscription": 0.0,
+        "arbitrage": 0.0,
+        "units": 0.6,
+        "etfTrade": 0.15,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/",
+        "scope": "Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles."
+      },
+      "access": {
+        "initial": 500.0,
+        "free": 300.0,
+        "monthly": 50.0,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/"
+      },
+      "supports": {
+        "minimumCount": 300,
+        "categories": [
+          "ETF",
+          "SCPI",
+          "private equity"
+        ],
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/"
+      },
+      "euroFunds": [
+        {
+          "name": "Apicil Euroflex",
+          "years": [
+            {
+              "year": 2024,
+              "return": 1.0
+            },
+            {
+              "year": 2025,
+              "return": 3.25
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 98.4,
+          "managementFeeMax": 1.6,
+          "maxAllocation": 100.0,
+          "ceiling": null,
+          "operations": "Versements et arbitrages sans quota d’unités de compte ; 2 % de pénalité pour un arbitrage vers Apicil Euro Garanti.",
+          "notes": "Un rachat total en cours d’année fait perdre la participation aux bénéfices de fin d’année. Le rendement 2025 inclut le complément versé à tous les clients, distinct des offres sous conditions de versement.",
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/"
+          ],
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/"
+        },
+        {
+          "name": "Apicil Euro Garanti",
+          "years": [
+            {
+              "year": 2024,
+              "return": 2.5
+            },
+            {
+              "year": 2025,
+              "return": 2.5
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 99.4,
+          "managementFeeMax": 0.6,
+          "maxAllocation": 100.0,
+          "ceiling": null,
+          "operations": "Versements et arbitrages sans quota d’unités de compte.",
+          "notes": "Pour les contrats souscrits après le 26/10/2020, un rachat en cours d’année fait perdre la participation aux bénéfices sur la quote-part rachetée.",
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/"
+          ],
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/"
+        }
+      ]
+    },
+    {
+      "id": "linxea-vie",
+      "name": "Linxea Vie",
+      "insurer": "Generali",
+      "distributor": "Linxea",
+      "checkedAt": "2026-10-08",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/",
+      "fees": {
+        "subscription": 0.0,
+        "arbitrage": 0.0,
+        "units": 0.6,
+        "etfTrade": 0.0,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/",
+        "scope": "Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles."
+      },
+      "access": {
+        "initial": 300.0,
+        "free": 300.0,
+        "monthly": 50.0,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/"
+      },
+      "supports": {
+        "minimumCount": 700,
+        "categories": [
+          "ETF",
+          "SCPI",
+          "private equity",
+          "actions en direct"
+        ],
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/"
+      },
+      "euroFunds": [
+        {
+          "name": "Netissima",
+          "years": [
+            {
+              "year": 2023,
+              "returnMin": 3.1,
+              "returnMax": 4.12,
+              "condition": "selon la part UC détenue"
+            },
+            {
+              "year": 2024,
+              "return": 3.0
+            },
+            {
+              "year": 2025,
+              "return": 3.0
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 99.25,
+          "managementFeeMax": 0.75,
+          "maxAllocation": 100.0,
+          "ceiling": null,
+          "operations": "Versements sans quota d’unités de compte jusqu’au 31/12/2026 ; arbitrages éligibles.",
+          "notes": "Nouveaux contrats : frais applicables aux ouvertures après 2017. En cas de rachat total en cours d’année, le taux appliqué est le Taux Minimum Garanti.",
+          "accessValidUntil": "2026-12-31",
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+            "https://www.linxea.com/assurance-vie/linxea-vie/"
+          ],
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/"
+        },
+        {
+          "name": "Eurossima",
+          "years": [
+            {
+              "year": 2023,
+              "return": 2.0
+            },
+            {
+              "year": 2024,
+              "return": 1.7
+            },
+            {
+              "year": 2025,
+              "return": 1.67
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": null,
+          "managementFeeMax": 0.75,
+          "maxAllocation": 100.0,
+          "ceiling": null,
+          "operations": "Plafond annuel fixé par l’assureur, au plus 50000 € l’année de souscription et 25000 € les années suivantes ; versements et arbitrages éligibles.",
+          "notes": "Nouveaux contrats : frais applicables aux ouvertures après 2017. En cas de rachat total en cours d’année, le taux appliqué est le Taux Minimum Garanti.",
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/"
+          ],
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/"
         }
       ]
     }

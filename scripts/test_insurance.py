@@ -30,6 +30,25 @@ class InsuranceTests(unittest.TestCase):
         r=parse_fund(html,'linxea-spirit-2','Euro Nouvelle Génération','Nouvelle Génération','https://www.linxea.com',TODAY)
         self.assertEqual(r['years'],[{'year':2023,'return':3.13},{'year':2024,'return':3.13},{'year':2025,'return':3.08}])
         with self.assertRaises(ValueError):parse_fund(html.replace('en 2025','en 2022'),'linxea-spirit-2','Euro Nouvelle Génération','Nouvelle Génération','https://www.linxea.com',TODAY)
+    def test_conditional_range_is_not_presented_as_one_return(self):
+        html="""LE FONDS EUROS Netissima Accessible à 100 % 3 % Net en 2025 3 % net en 2024 3,10 % à 4,12 % net en 2023 selon la part UC détenue (1) Net de frais
+        Fonctionnement des Fonds euros de Linxea Vie Netissima Stratégie d’investissement
+        sans conditions d’unités de compte jusqu’au 31/12/2026. 0,75 % par an de frais de gestion pour les contrats ouverts après 2017.
+        Rachat total : Taux Minimum Garanti Arbitrages Documents applicables"""
+        r=parse_fund(html,'linxea-vie','Netissima','Netissima','https://www.linxea.com',TODAY,'capital est garanti à hauteur de 99,25 %')
+        self.assertEqual(r['years'][0],{'year':2023,'returnMin':3.1,'returnMax':4.12,'condition':'selon la part UC détenue'})
+        self.assertEqual(r['accessValidUntil'],'2026-12-31')
+        with self.assertRaises(ValueError):parse_fund(html.replace('31/12/2026','31/12/2025'),'linxea-vie','Netissima','Netissima','https://www.linxea.com',TODAY,'capital est garanti à hauteur de 99,25 %')
+    def test_zen_penalty_and_available_history(self):
+        html="""LE FONDS EUROS Euroflex 100 % en fonds € 3,25 % Net en 2025 1 % en 2024 Les performances passées
+        Fonctionnement des Fonds euros de Linxea Zen Apicil Euroflex Stratégie d’investissement
+        sans limite de montant et sans conditions d’unités de compte. 1,6 % de frais de gestion annuel Garantie en capital à hauteur de 98,4 %
+        2 % de pénalité en cas d’arbitrage. Un rachat total en cours d’année entraîne la perte de tout droit Arbitrages Documents applicables"""
+        r=parse_fund(html,'linxea-zen','Apicil Euroflex','Euroflex','https://www.linxea.com',TODAY)
+        self.assertEqual([v['year'] for v in r['years']],[2024,2025])
+        self.assertIn('2 % de pénalité',r['operations'])
+        self.assertIn('rachat total',r['notes'])
+
     def test_failed_contract_preserved_other_updated(self):
         previous=self.previous();updated=copy.deepcopy(previous['records'][1]);updated['fees']['units']=.7
         def failed(day):raise ValueError('Source changed')

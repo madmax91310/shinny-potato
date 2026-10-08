@@ -79,12 +79,39 @@ def parse_iroko_conditions(text, page):
             'otherFees': 'Commissions possibles sur les acquisitions, travaux et arbitrages ; détail dans la note d’information.'}
 
 
+def iroko_portfolio(rows,today):
+    result={}
+    for key,name,label in [('buildings','asset_count','Actifs immobiliers'),('tenants','tenant_count','Locataires'),('occupancy','financial_occupancy_rate','Taux d’occupation financier')]:
+        valid=sorted([r for r in rows if r['name']==name and r['value'] is not None and r['update_date']<=today.isoformat()],key=lambda r:r['update_date'])
+        if not valid:raise ValueError('Missing Iroko portfolio metric: '+name)
+        r=valid[-1];result[key]={'value':r['value'],'asOf':r['update_date'],'label':label,'sourceUrl':IROKO}
+    return result
+
+
+def remake_portfolio(text,date,url,pages):
+    compact=re.sub(r'\s+',' ',text)
+    buildings=int(required(r'pour la diversification : (\d+) immeubles',compact)[1])
+    values=[]
+    for page in pages:
+        for label in page['words']:
+            if label['text']!='financier':continue
+            headings=[w for w in page['words'] if w['text']=='Taux' and abs(w['x']-label['x'])<20 and 0<label['y']-w['y']<20]
+            for heading in headings:
+                candidates=[w for w in page['words'] if re.fullmatch(r'[\d,.]+',w['text']) and abs(w['x']-heading['x'])<25 and 0<heading['y']-w['y']<35]
+                if candidates:values.append(number(min(candidates,key=lambda w:heading['y']-w['y'])['text']))
+    if not values or len(set(values))!=1:raise ValueError('Missing/ambiguous Remake financial occupancy')
+    occupancy=values[0]
+    required(r'Locaux occupés sous franchise',text)
+    return {'buildings':{'value':buildings,'asOf':date,'sourceUrl':url,'label':'Immeubles'},
+            'occupancy':{'value':occupancy,'asOf':date,'sourceUrl':url,'label':'Taux d’occupation financier','basis':'Inclut les locaux sous franchise de loyer ; distinct du taux physique. Le nombre de baux n’est pas un nombre de locataires.'}}
+
+
 def collect_iroko(today):
     script = fetch('https://opendata.iroko.com/api/figure-embed.js').decode()
     host = required(r"SUPABASE_URL\s*=\s*'([^']+)'", script).group(1)
     key = required(r"SUPABASE_ANON_KEY\s*=\s*'([^']+)'", script).group(1)
     # The public read-only credential is discovered from the issuer's embed, never configured by the user.
-    names = ['distribution_yield', 'share_unit_price', 'financial_occupancy_rate']
+    names = ['distribution_yield', 'share_unit_price', 'financial_occupancy_rate', 'asset_count', 'tenant_count']
     query = urllib.parse.urlencode({'fund': 'eq.zen', 'select': 'name,period,unit,value,update_date',
                                   'name': 'in.(' + ','.join(names) + ')', 'order': 'update_date.desc', 'limit': '1000'})
     api = host + '/rest/v1/key_figures?' + query
@@ -105,6 +132,8 @@ def collect_iroko(today):
               'conditions': {**parse_iroko_conditions(pdf_text(note), BeautifulSoup(page, 'html.parser').get_text(' ', strip=True)), 'sourceUrl': IROKO_NOTE}}
     if occupancy:
         record['occupancy'] = {'value': occupancy['value'], 'asOf': occupancy['update_date'], 'sourceUrl': IROKO}
+    record['portfolio'] = iroko_portfolio(rows,today)
+    record['priceHistory'] = {'years':[{'asOf':r['update_date'],'value':r['value']} for r in prices], 'sourceUrl':IROKO, 'dateNote':'Prix publiés dans les observations datées de l’émetteur.'}
     return record
 
 
@@ -146,7 +175,12 @@ def collect_remake(today):
     if not links:
         raise ValueError('Missing current official bulletin')
     url = max(links, key=publication_date)
-    return parse_remake(html, pdf_text(fetch(url)), url, today)
+    from collect_corum import bbox_pages
+    data = fetch(url)
+    text = pdf_text(data)
+    record = parse_remake(html,text,url,today)
+    record['portfolio'] = remake_portfolio(text,record['snapshot']['asOf'],url,bbox_pages(data))
+    return record
 
 
 def validate(record, today):
@@ -170,6 +204,15 @@ def validate(record, today):
     for date in [record['price']['asOf'], record['snapshot']['asOf']]:
         if date is not None and dt.date.fromisoformat(date) > today:
             raise ValueError('Future source date')
+    for key,observation in record.get('portfolio',{}).items():
+        value=observation['value']
+        if not isinstance(value,(int,float)) or not math.isfinite(value) or value<0 or (key=='occupancy' and value>100) or (key!='occupancy' and (value!=int(value) or value<=0)):
+            raise ValueError('Invalid portfolio metric: '+key)
+        if not observation.get('sourceUrl') or dt.date.fromisoformat(observation['asOf'])>today:raise ValueError('Invalid portfolio evidence')
+    if 'priceHistory' in record:
+        history=record['priceHistory']['years']
+        if not history or len({r['asOf'] for r in history})!=len(history) or history!=sorted(history,key=lambda r:r['asOf']):raise ValueError('Invalid dated price history')
+        if any(not isinstance(r['value'],(int,float)) or not math.isfinite(r['value']) or not 0<r['value']<10000 or dt.date.fromisoformat(r['asOf'])>today for r in history):raise ValueError('Invalid historical price')
     return record
 
 
@@ -184,6 +227,11 @@ def refresh(previous, adapters, today):
             for field in ['snapshot', 'price']:
                 if old and old[field]['asOf'] and record[field]['asOf'] and record[field]['asOf'] < old[field]['asOf']:
                     raise ValueError('Source publication regressed')
+            if old:
+                for key,observation in old.get('portfolio',{}).items():
+                    new=record.get('portfolio',{}).get(key)
+                    if not new or new['asOf']<observation['asOf']:raise ValueError('Portfolio evidence disappeared or regressed: '+key)
+                if old.get('priceHistory') and (not record.get('priceHistory') or record['priceHistory']['years'][-1]['asOf']<old['priceHistory']['years'][-1]['asOf']):raise ValueError('Price history disappeared or regressed')
             records[id] = record
             observations.append({'id': id, 'status': 'success'})
         except Exception as error:
@@ -198,8 +246,10 @@ def main():
     args = parser.parse_args()
     previous = json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {'records': []}
     from collect_corum import PRODUCTS, collect
+    from collect_extended_scpi import PRODUCTS as EXTRA_PRODUCTS, collect as collect_extra
     adapters = {'iroko-zen': collect_iroko, 'remake-live': collect_remake}
     adapters.update({id_: lambda day, key=id_: collect(key, day) for id_ in PRODUCTS})
+    adapters.update({id_:lambda day,key=id_:collect_extra(key,day) for id_ in EXTRA_PRODUCTS})
     result, observations = refresh(previous, adapters, dt.date.today())
     if args.apply:
         OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')

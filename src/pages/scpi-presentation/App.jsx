@@ -40,11 +40,24 @@ export default function App() {
             {['countries', 'sectors'].map(key => <div key={key}><h3>{key === 'countries' ? 'Pays' : 'Secteurs'}</h3><table><thead><tr><th scope="col">Exposition</th><th scope="col">Poids</th></tr></thead><tbody>{[...record.snapshot[key]].sort((a, b) => b.value - a.value).map(row => <tr key={row.label}><th scope="row">{row.label}</th><td>{format(row.value)} %</td></tr>)}</tbody></table></div>)}
             {record.snapshot.sourceUrls.map(url => <p key={url}><a href={url} target="_blank" rel="noreferrer">Source de la répartition</a></p>)}
           </details>
+          <details><summary>Patrimoine, occupation et prix de part</summary>
+            {['buildings','tenants','occupancy'].map(key => {
+              const row = record.portfolio?.[key]
+              return row ? <p key={key}><strong>{row.label} : {format(row.value)}{key === 'occupancy' ? ' %' : ''}</strong> au {dateLabel(row.asOf)}. {row.basis} <a href={row.sourceUrl} target="_blank" rel="noreferrer">Source</a></p>
+                : <p key={key}>{key === 'buildings' ? 'Immeubles ou actifs' : key === 'tenants' ? 'Locataires' : 'Occupation financière'} : donnée non publiée ou non qualifiée dans les sources collectées.</p>
+            })}
+            <p>Le nombre d’actifs n’est pas toujours un nombre d’immeubles ; le nombre de baux ne représente pas un nombre de locataires. Le taux financier peut inclure des franchises ou garanties locatives.</p>
+            {record.priceHistory && <>
+              <h3>Historique du prix de souscription</h3>
+              <table><thead><tr><th>Date publiée</th><th>Prix de la part</th></tr></thead><tbody>{record.priceHistory.years.map(row => <tr key={row.asOf}><th scope="row">{dateLabel(row.asOf)}</th><td>{format(row.value)} €</td></tr>)}</tbody></table>
+              {record.priceHistory.dateNote && <p>{record.priceHistory.dateNote}</p>}
+              {(record.priceHistory.sourceUrls ?? [record.priceHistory.sourceUrl]).map(url => <p key={url}><a href={url} target="_blank" rel="noreferrer">Source de l’historique du prix</a></p>)}
+            </>}
+          </details>
           <details><summary>Comprendre les chiffres</summary>
             <p>Les taux de distribution sont ceux des années civiles terminées, bruts de fiscalité étrangère et nets des frais de gestion de la SCPI. Ils ne mesurent pas la performance totale et ne décrivent pas le revenu personnel après impôts.</p>
             <p>La commission de gestion porte sur les revenus indiqués, pas sur le capital investi. Les commissions d’acquisition et de travaux restent distinctes : {record.conditions.otherFees}</p>
             <p>Les conditions concernent la détention en direct, en pleine propriété. Un contrat d’assurance-vie peut avoir ses propres frais et conditions.</p>
-            {record.occupancy && <p>Taux d’occupation financier : {format(record.occupancy.value)} % au {dateLabel(record.occupancy.asOf)}.</p>}
           </details>
         </div>
       </section>

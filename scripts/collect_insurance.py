@@ -12,6 +12,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'src/data/automated-insurance.json'
 BASE = 'https://www.linxea.com/assurance-vie/'
 PRODUCTS = {
+    'linxea-zen': {'name': 'Linxea Zen', 'insurer': 'Apicil', 'funds': [('Apicil Euroflex', 'Euroflex', 'fonds-euro/'), ('Apicil Euro Garanti', 'Apicil Euro Garanti', 'fonds-euro/')]},
+    'linxea-vie': {'name': 'Linxea Vie', 'insurer': 'Generali', 'funds': [('Netissima', 'Netissima', 'fonds-euro/'), ('Eurossima', 'Eurossima', 'fonds-euro/')]},
     'linxea-spirit-2': {'name': 'Linxea Spirit 2', 'insurer': 'Spirica', 'funds': [
         ('Euro Nouvelle Génération', 'Nouvelle Génération', 'fonds-euro/'),
         ('Euro Objectif Climat', 'Objectif Climat', 'fonds-euro-linxea-spirit-2-euro-objectif-climat/')]},
@@ -67,23 +69,68 @@ def parse_contract(html, id_, today):
             'supports': {'minimumCount': count, 'categories': supports, 'sourceUrl': BASE + id_ + '/'}, 'euroFunds': []}
 
 
-def parse_fund(html, id_, name, label, url, today):
+def parse_fund(html, id_, name, label, url, today, contract_html=None):
     text = plain(html)
     # Restrict return parsing to the named fund card before its risk/method notes.
-    card = required(r'LE FONDS EUROS ' + re.escape(label) + r' (.*?)(?:Les rendements passés|\(1\) Net de frais|\* Taux de)', text).group(1)
+    card = required(r'LE FONDS EUROS ' + re.escape(label) + r' (.*?)(?:Les rendements passés|Les performances passées|\(1\) Net de frais|\* Taux de)', text).group(1)
     values = {}
-    for match in re.finditer(r'([\d,.]+)\s*%\s*(?:Net\s*(?:\*|\(\d+\))?|net)\s*en\s*(\d{4})', card, re.I):
-        year = int(match.group(2))
+    pattern = r'([\d,.]+)\s*%\s*(?:à\s*([\d,.]+)\s*%\s*)?(?:Net\s*(?:\*|\(\d+\))?\s*)?en\s*(\d{4})(?:\s*(selon la part UC détenue))?'
+    for match in re.finditer(pattern, card, re.I):
+        year = int(match[3])
         if year < today.year:
-            rate = number(match.group(1))
-            if year in values and values[year] != rate:
-                raise ValueError('Conflicting historical rates')
-            values[year] = rate
+            row = {'year': year, 'return': number(match[1])}
+            if match[2]:
+                if not match[4]: raise ValueError('Unqualified return range')
+                row = {'year': year, 'returnMin': number(match[1]), 'returnMax': number(match[2]), 'condition': match[4]}
+            if year in values and values[year] != row: raise ValueError('Conflicting historical rates')
+            values[year] = row
     if today.year - 1 not in values:
         raise ValueError('Missing latest completed annual fund return')
-    years = [{'year': year, 'return': values[year]} for year in sorted(values)[-3:]]
+    years = [values[year] for year in sorted(values)[-3:]]
     max_allocation = number(required(r'Accessible à ([\d,.]+)\s*%', card).group(1)) if 'Accessible à' in card else None
-    if id_ == 'linxea-spirit-2':
+    valid_until = None
+    notes = None
+    if id_ in ('linxea-zen', 'linxea-vie'):
+        body = required(r'Fonctionnement des Fonds euros de ' + re.escape(PRODUCTS[id_]['name']) + r'(.*)', text).group(1)
+        body_label = name if id_ == 'linxea-zen' else label
+        body = required(re.escape(body_label) + r' Stratégie d’investissement (.*?)(?:Documents applicables|Besoin de conseils)', body).group(1)
+        required(r'Arbitrages', body)
+        ceiling = None
+        if id_ == 'linxea-zen':
+            max_allocation = number(required(r'^([\d,.]+)\s*% en fonds', card).group(1))
+            required(r'sans limite de montant et sans conditions d’unités de compte', body)
+            if label == 'Euroflex':
+                management = number(required(r'([\d,.]+)\s*% de frais de gestion annuel', body).group(1))
+                guarantee = number(required(r'Garantie en capital à hauteur de ([\d,.]+)\s*%', body).group(1))
+                penalty = number(required(r'([\d,.]+)\s*% de pénalité en cas d’arbitrage', body).group(1))
+                required(r'rachat total en cours d’année entraîne la perte de tout droit', body)
+                operations = f'Versements et arbitrages sans quota d’unités de compte ; {penalty:g} % de pénalité pour un arbitrage vers Apicil Euro Garanti.'
+                notes = 'Un rachat total en cours d’année fait perdre la participation aux bénéfices de fin d’année. Le rendement 2025 inclut le complément versé à tous les clients, distinct des offres sous conditions de versement.'
+            else:
+                management = number(required(r'([\d,.]+)\s*% par an de frais de gestion', body).group(1))
+                required(r'Garantie en capital brute de frais de gestion', body)
+                guarantee = 100 - management
+                required(r'après le 26/10/2020.*?rachat partiel ou total.*?perte de tout droit', body)
+                operations = 'Versements et arbitrages sans quota d’unités de compte.'
+                notes = 'Pour les contrats souscrits après le 26/10/2020, un rachat en cours d’année fait perdre la participation aux bénéfices sur la quote-part rachetée.'
+        else:
+            management = number(required(r'([\d,.]+)\s*% par an de frais de gestion pour les contrats ouverts après 2017', body).group(1))
+            max_allocation = number(required(r'Accessible à ([\d,.]+)\s*%', card).group(1)) if label == 'Netissima' else number(required(r'représenter ([\d,.]+)\s*% de vos investissements', body).group(1))
+            guarantee = None
+            if label == 'Netissima':
+                guarantee = number(required(r'capital est garanti à hauteur de ([\d,.]+)\s*%', plain(contract_html or '')).group(1))
+                stamp = required(r'sans conditions d’unités de compte jusqu’au (\d{2})/(\d{2})/(\d{4})', body)
+                valid_until = '-'.join([stamp[3],stamp[2],stamp[1]])
+                if dt.date.fromisoformat(valid_until) < today: raise ValueError('Expired fund access conditions')
+                operations = f'Versements sans quota d’unités de compte jusqu’au {stamp[0].split("jusqu’au ")[1]} ; arbitrages éligibles.'
+            else:
+                opening = number(required(r'entre 0 et ([\d ]+) euros l’année civile de votre souscription', card).group(1))
+                following = number(required(r'entre 0 et ([\d ]+) euros par année civile les années suivantes', card).group(1))
+                required(r'Assureur communiquera.*?montant maximum', card)
+                operations = f'Plafond annuel fixé par l’assureur, au plus {opening:g} € l’année de souscription et {following:g} € les années suivantes ; versements et arbitrages éligibles.'
+            required(r'rachat total.*?Taux Minimum Garanti', body)
+            notes = 'Nouveaux contrats : frais applicables aux ouvertures après 2017. En cas de rachat total en cours d’année, le taux appliqué est le Taux Minimum Garanti.'
+    elif id_ == 'linxea-spirit-2':
         guarantee = number(required(r'garantie (?:nette de frais de gestion |en capital annuelle )de ([\d,.]+)\s*%', text).group(1))
         management = number(required(r'frais de gestion de ([\d,.]+)\s*%', text).group(1))
         if name == 'Euro Objectif Climat':
@@ -112,7 +159,7 @@ def parse_fund(html, id_, name, label, url, today):
         ceiling = None
     return {'name': name, 'years': years, 'asOf': f'{max(values)}-12-31', 'guarantee': guarantee,
             'managementFeeMax': management, 'maxAllocation': max_allocation, 'ceiling': ceiling,
-            'operations': operations, 'sourceUrl': url}
+            'operations': operations, 'notes': notes, 'accessValidUntil': valid_until, 'sourceUrls': [url] + ([BASE+id_+'/'] if id_ == 'linxea-vie' and label == 'Netissima' else []), 'sourceUrl': url}
 
 
 def validate(record, today):
@@ -128,7 +175,7 @@ def validate(record, today):
         years = fund['years']
         if not years or years[-1]['year'] != today.year-1 or len({y['year'] for y in years}) != len(years):
             raise ValueError('Incomplete annual history')
-        if any(not finite(y['return'], -10, 15) for y in years) or not finite(fund['guarantee'], 90, 100) or not finite(fund['maxAllocation'], 0, 100) or not finite(fund['managementFeeMax'], 0, 5):
+        if any(not finite(y.get('return', y.get('returnMin')), -10, 15) or ('returnMax' in y and (not finite(y['returnMax'], y['returnMin'], 15) or not y.get('condition'))) for y in years) or (fund['guarantee'] is not None and not finite(fund['guarantee'], 90, 100)) or not finite(fund['maxAllocation'], 0, 100) or not finite(fund['managementFeeMax'], 0, 5):
             raise ValueError('Invalid fund data')
         if dt.date.fromisoformat(fund['asOf']) > today:
             raise ValueError('Future fund year')
@@ -136,13 +183,14 @@ def validate(record, today):
 
 
 def collect(id_, today):
-    record = parse_contract(fetch(BASE+id_+'/').decode(), id_, today)
+    contract_html = fetch(BASE+id_+'/').decode()
+    record = parse_contract(contract_html, id_, today)
     cache = {}
     for name,label,suffix in PRODUCTS[id_]['funds']:
         url = BASE+id_+'/supports-disponibles-sur-'+id_+'/'+suffix
         if url not in cache:
             cache[url] = fetch(url).decode()
-        record['euroFunds'].append(parse_fund(cache[url],id_,name,label,url,today))
+        record['euroFunds'].append(parse_fund(cache[url],id_,name,label,url,today,contract_html))
     return validate(record,today)
 
 

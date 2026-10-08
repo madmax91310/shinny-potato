@@ -1,16 +1,19 @@
 import { format } from '../scpi-presentation/lib.js'
+export const fundReturn = row => row.return != null ? `${format(row.return)} %` : `${format(row.returnMin)} à ${format(row.returnMax)} % (${row.condition})`
+export const fundGuarantee = fund => fund.guarantee != null ? `Garantie annuelle : ${format(fund.guarantee)} % du capital, nette des frais de gestion.` : 'La garantie nette annuelle n’est pas chiffrée dans les pages collectées ; voir les conditions du fonds.'
 export function buildTweet(record) {
   const { name, insurer, fees, access, supports, euroFunds } = record
   const hook = record.id === 'linxea-spirit-2'
     ? `Fonds euros, ETF ou immobilier dans une assurance-vie : qu’est-ce que Linxea Spirit 2 permet de détenir, et à quel coût ? 👇`
-    : `Une assurance-vie accessible dès ${format(access.initial)} € : voici les supports et les frais de Linxea Avenir 2 👇`
+    : `Une assurance-vie accessible dès ${format(access.initial)} € : voici les supports et les frais de ${name} 👇`
   const fundLines = euroFunds.map(fund => [
     `🛡️ ${fund.name}`,
-    fund.years.map(row => `${row.year} : ${format(row.return)} %`).join(' · '),
+    fund.years.map(row => `${row.year} : ${fundReturn(row)}`).join(' · '),
     `Jusqu’à ${format(fund.maxAllocation)} % du versement${fund.ceiling ? `, dans la limite de ${format(fund.ceiling)} € par contrat` : ''}.`,
-    `Garantie annuelle : ${format(fund.guarantee)} % du capital, nette des frais de gestion.`,
+    fundGuarantee(fund),
     `Frais de gestion du fonds : ${format(fund.managementFeeMax)} % maximum/an. ${fund.operations}`,
-  ].join('\n')).join('\n\n')
+    fund.notes ?? '',
+  ].filter(Boolean).join('\n')).join('\n\n')
   return [hook,
     `📄 ${name}\nAssureur : ${insurer} · Distributeur : ${record.distributor}\nPrésentation en gestion libre.`,
     `💶 Ouverture dès ${format(access.initial)} €. Versements libres dès ${format(access.free)} €, programmés dès ${format(access.monthly)} €/mois.`,
