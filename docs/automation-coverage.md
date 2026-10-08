@@ -1,4 +1,4 @@
-# Automatisation des données — état du 7 octobre 2026
+# Automatisation des données — état du 8 octobre 2026
 
 Rapport fondé sur les collecteurs configurés et les données actives, pas sur les seuls rappels de fraîcheur. Une source inaccessible conserve ses valeurs précédentes et fait échouer le signal de collecte ; les autres données validées peuvent être publiées. Les publications restent conditionnées aux audits et au déploiement.
 
@@ -8,8 +8,10 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 |---|---|---|
 | Historiques mensuels des simulateurs | 46/46 séries ; 44 nouveaux collecteurs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | ETF/ETC/ETP | 155/155 instruments, au moins un champ | 3 et 16 du mois |
-| Compositions d’indices | 39 indices | 3 et 16 du mois |
+| Compositions d’indices | 41 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 46 indices | 3 et 16 du mois |
+| Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
+| Anniversaires | 21 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -240,18 +242,16 @@ S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50 : les compositi
 | Indice | Bloc hors collecte active |
 |---|---|
 | Russell 1000 (russell-1000) | Composition / méthodologie |
-| S&P Global Dividend Aristocrats (sp-global-dividend-aristocrats) | Composition / méthodologie |
-| S&P Euro Dividend Aristocrats (sp-euro-dividend-aristocrats) | Composition / méthodologie |
 
 Russell 2000 : composition automatisée depuis les tables explicitement consacrées à l’indice de la fiche mensuelle Amundi LU1681038672 (pays, secteurs, dix positions pondérées et nombre de titres). Sa convention de rendement TOTAL USD reste issue de FTSE Russell, distincte du NET de la fiche Amundi. Russell 1000 : composition encore à qualifier dans une publication exploitable avec poids numériques. Les photographies archivées ne changent pas de date. Les quatre séries annuelles de sous-jacents sont automatisées : or/argent depuis les lignes Benchmark USD des fiches BlackRock (cours du métal, jamais rendement ETC), Bitcoin/Ethereum depuis les clôtures décembre/décembre de leurs séries spot USD validées. S&P 500 utilise également sa série exacte ^SP500TR USD, dividendes réinvestis. Les mises à jour mensuelles recalculent ces annuels avant leurs audits et publications. Les moyennes mensuelles Banque mondiale pour l’or et les contrats SI=F pour l’argent ne servent pas de substitut aux références métal annuelles.
 
 ## Autres données de l’application encore manuelles
 
-- Courtiers : tarifs, offres commerciales, conditions, disponibilité des produits et échéances promotionnelles.
-- Épargne réglementée : taux Livret A et autres hypothèses/règles de simulation. L’inflation INSEE est automatisée ; elle ne met pas ces règles à jour.
-- Fiscalité, plafonds et règles PEA/CTO/assurance-vie ; lexique financier et chiffres réglementaires.
-- Les 29 statistiques de ménages : patrimoine, revenus, profils et benchmarks. Pas de connecteur INSEE/Banque de France pour leur révision.
-- Rendements et hypothèses de fonds euros et SCPI ; historiques mixtes/proxys, hypothèses de frais et autres scénarios éditoriaux.
+- Courtiers : offres commerciales, disponibilité détaillée des produits et conditions hors des profils de tarifs déjà raccordés aux preuves officielles.
+- Épargne réglementée : nouvelles règles et hypothèses de simulation hors des paramètres qualifiés. Le taux Livret A et les paramètres réglementaires raccordés sont déjà collectés séparément.
+- Fiscalité : nouvelles interprétations et cas particuliers ; lexique et scénarios éditoriaux. Les paramètres structurés qualifiés sont déjà actualisés par la collecte réglementaire.
+- Statistiques de ménages : choix des comparaisons et hypothèses hors des publications raccordées. Les collecteurs INSEE actualisent déjà les séries qualifiées de patrimoine, détention, privations, salaires, profils par âge et transmissions.
+- Fonds euros et SCPI : rendements de chaque produit et hypothèses éditoriales hors des sources qualifiées. Les moyennes annuelles ACPR et ASPIM sont collectées ; elles ne remplacent pas le rendement d’un produit individuel.
 - Profils et biographies des investisseurs : seule la déclaration 13F est collectée. Les actifs hors périmètre 13F ne sont pas ajoutés automatiquement.
 - Ajout de nouveaux instruments, choix des sources, compatibilité de nouvelles devises/méthodes et remplacement de sources devenues incompatibles.
 - Réparation des connecteurs si un émetteur change son schéma, bloque l’accès ou retire une publication : les tâches réessaient et signalent l’échec, mais ne réécrivent pas seules le code.
@@ -261,8 +261,8 @@ Russell 2000 : composition automatisée depuis les tables explicitement consacr�
 Les lacunes ne se traitent pas toutes de la même manière : une donnée non applicable (pays actions d’un ETC or) doit rester absente ; un calendrier non encore publié attend sa première année complète ; une source exploitable mais non raccordée nécessite un connecteur.
 
 1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 0 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
-2. Qualifier les trois compositions restantes (Russell 1000 et les deux Dividend Aristocrats) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
-3. Rechercher des sources renouvelables pour les taux d’épargne, statistiques de ménages et rendements SCPI/fonds euros. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.
-4. Raccorder les séries qualifiées de ces trois familles, en distinguant taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.
+2. Qualifier la composition Russell 1000 restante ; les deux Dividend Aristocrats utilisent désormais leurs fiches S&P exactes (tables natives et lecture concordante des légendes sectorielles à deux résolutions) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
+3. Étendre les sources renouvelables aux produits et paramètres encore hors des collectes économiques et réglementaires déjà qualifiées. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.
+4. Fiabiliser la disponibilité des collecteurs ; conserver la distinction entre taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.
 
 Régénération : `npm run report:automation`. Ce rapport décrit une couverture, pas une garantie de disponibilité permanente des émetteurs.

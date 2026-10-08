@@ -63,7 +63,9 @@ Quand un outil a besoin d'une donnée qu'un autre outil possède déjà et a dé
 l'importe directement plutôt que de la recopier. Exemples : 3 des 6 formats de Tweet Midi
 (Fiche lexique, Comparatif ETF, Pouvoir d'achat) sont des façades qui appellent directement les
 `data.js`/`lib.js` de lexique-financier, etf-tweets et purchasing-power ; purchasing-power
-réutilise la série d'inflation générale de investment-calculator plutôt que de la redéfinir.
+importe les niveaux mensuels INSEE automatisés pour comparer une moyenne annuelle et une
+observation datée dans la même base. Le calculateur conserve ses variations mensuelles,
+qui répondent à une autre convention.
 Une correction en amont se propage alors automatiquement — mais ça crée aussi un angle mort :
 penser à revérifier les outils qui dépendent d'un fichier qu'on modifie.
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { computeBrut, computePoste, fmtEUR as fmtPowerEUR } from '../src/pages/purchasing-power/lib.js';
+import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
 import { buildReview } from '../src/pages/data-review/lib.js';
 import { BROKER_EVIDENCE } from '../src/pages/broker-comparator/evidence.js';
@@ -632,14 +634,14 @@ async function testTweetMidi(page) {
   await page.getByRole('button', { name: "Pouvoir d'achat", exact: true }).click();
   await choose(page.locator('[data-selector]'), '2025');
   await page.getByRole('button', { name: '1000 €', exact: true }).click();
-  for (const [poste, expected] of [[null, '1\u202f034'], ['Alimentation', '1\u202f017'], ['Énergie', '1\u202f156']]) {
+  for (const [poste, expected] of [[null, fmtPowerEUR(computeBrut(1000, 2025).newAmount)], ['Alimentation', fmtPowerEUR(computePoste(1000, 2025, 'alimentation').newAmount)], ['Énergie', fmtPowerEUR(computePoste(1000, 2025, 'carburant').newAmount)]]) {
     if (poste) {
       await page.getByRole('button', { name: 'Par poste', exact: true }).click();
       await page.getByRole('button', { name: new RegExp(poste) }).click();
     } else await page.getByRole('button', { name: "Revenu nécessaire", exact: true }).click();
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     const post = await page.locator('pre').innerText();
-    if (!post.includes(expected) || !post.includes('août 2026') || /provisoire|12 mois glissants|NaN|undefined/.test(post)) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : observation datée`);
+    if (!post.includes(expected) || !post.includes(PRICE_OBSERVATION.label) || post.includes('provisoire') !== PRICE_OBSERVATION.provisional || /12 mois glissants|NaN|undefined/.test(post)) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : observation datée`);
     const [download] = await Promise.all([
       page.waitForEvent('download'),
       page.getByRole('button', { name: /Télécharger.*image|Télécharger.*PNG/i }).click(),

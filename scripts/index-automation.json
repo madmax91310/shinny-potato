@@ -622,15 +622,19 @@
       "isin": "IE00B9CQXS71",
       "parser": "ssga-index",
       "returnSourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
-      "collectComposition": false,
+      "collectComposition": true,
       "returnCurrency": "USD",
       "returnVariant": "NET",
       "firstYear": 2021,
       "performanceDetail": "S&P Global Dividend Aristocrats Quality Income · USD · dividendes nets réinvestis",
       "requiredFields": [
+        "composition",
         "returns"
       ],
-      "enabled": true
+      "enabled": true,
+      "compositionParser": "sp-printed-composition",
+      "compositionTitle": "S&P GLOBAL DIVIDEND ARISTOCRATS QUALITY INCOME INDEX",
+      "sourceUrl": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=92388578"
     },
     {
       "id": "sp-euro-dividend-aristocrats",
@@ -639,15 +643,19 @@
       "isin": "IE00B5M1WJ87",
       "parser": "ssga-index",
       "returnSourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
-      "collectComposition": false,
+      "collectComposition": true,
       "returnCurrency": "EUR",
       "returnVariant": "NET",
       "firstYear": 2020,
       "performanceDetail": "S&P Euro High Yield Dividend Aristocrats · EUR · dividendes nets réinvestis",
       "requiredFields": [
+        "composition",
         "returns"
       ],
-      "enabled": true
+      "enabled": true,
+      "compositionParser": "sp-printed-composition",
+      "compositionTitle": "S&P EURO HIGH YIELD DIVIDEND ARISTOCRATS",
+      "sourceUrl": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=5475610"
     },
     {
       "id": "topix",

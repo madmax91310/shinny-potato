@@ -1,3 +1,4 @@
+import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js';
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS, ANNIVERSAIRE_EXCLUDED_ASSETS } from './data/marketHistory.js';
 import WorkspaceActions from '../../design-system/WorkspaceActions'
@@ -15,7 +16,7 @@ import { downloadComparatifEtfImage, renderComparatifEtfImage } from "./comparat
 import { downloadPerformanceImage, renderPerformanceImage } from "./performanceImage.js";
 import { downloadAnniversaryImage, renderAnniversaryImage } from "./anniversaryImage.js";
 import { downloadPurchasingPowerImage, renderPurchasingPowerImage } from "./purchasingPowerImage.js";
-import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER, PRICE_OBSERVATION } from "../../data/purchasing-power.js";
+import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER, PRICE_OBSERVATION, RENT_OBSERVATION } from "../../data/purchasing-power.js";
 import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
 import Card from "../../design-system/Card";
@@ -52,10 +53,6 @@ const SECONDARY_LABELS = {
 };
 function secondaryOptionLabel(format, value) {
   return format === FORMATS.ANNIVERSAIRE ? `${value} an${value > 1 ? "s" : ""}` : String(value);
-}
-function isValidLevel(raw) {
-  const n = Number(raw);
-  return raw !== "" && raw !== null && raw !== undefined && Number.isFinite(n) && n > 0;
 }
 
 export default function App({ initialFormat = FORMATS.ALEATOIRE, title, description }) {
@@ -182,8 +179,10 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
   // déroulants (cf. bug du 29/08/2026 : niveau saisi pour le bon actif affiché sous le mauvais).
   const currentAssetA = isComparatifCurrent ? getMarketAsset(current.assetIdA) : null;
   const currentAssetB = isComparatifCurrent ? getMarketAsset(current.assetIdB) : null;
-  const niveauActuelValide = isValidLevel(niveauActuel);
-  const niveauActuelBValide = isValidLevel(niveauActuelB);
+  const observationA = resolveAnniversaryLevel(isComparatifCurrent ? current.assetIdA : current.assetId, niveauActuel);
+  const observationB = resolveAnniversaryLevel(current.assetIdB, niveauActuelB);
+  const niveauActuelValide = !!observationA;
+  const niveauActuelBValide = !!observationB;
   const copyDisabled =
     (isAnniversaire && !isComparatifCurrent && !niveauActuelValide) ||
     (isAnniversaire && isComparatifCurrent && !(niveauActuelValide && niveauActuelBValide));
@@ -260,7 +259,7 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
     <div>
       <PageHeader
         title={title ?? "Tweet Midi"}
-        subtitle={description ?? "Vrai ou Faux, Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."}
+        subtitle={description ?? "Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."}
       />
 
       <ToolWorkspace renderImage={current.format === FORMATS.PERFORMANCE_DEPUIS ? () => renderPerformanceImage(current)
@@ -393,7 +392,7 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
                       </option>
                     ))}
                   </ChoicePicker>
-                  <p className="mt-1.5 text-[11px] text-slate-500">Comparé aux observations INSEE : prix {PRICE_OBSERVATION.label}, IRL T2 2026.</p>
+                  <p className="mt-1.5 text-[11px] text-slate-500">Comparé aux observations INSEE : prix {PRICE_OBSERVATION.label}, IRL {RENT_OBSERVATION.label}.{PRICE_OBSERVATION.provisional ? " Prix mensuels provisoires." : ""}</p>
                 </div>
 
                 <div>
@@ -552,14 +551,14 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
 
             {isAnniversaire && (
               <p className="text-sm font-semibold text-rose-200">
-                {[isComparatifCurrent ? currentAssetA : getMarketAsset(current.assetId), ...(isComparatifCurrent ? [currentAssetB] : [])].filter(a => a?.anniversaryVariant).map(a => `${a.label} : saisir le niveau ${a.anniversaryVariant}, en points.`).join(' ')}
+                {[isComparatifCurrent ? currentAssetA : getMarketAsset(current.assetId), ...(isComparatifCurrent ? [currentAssetB] : [])].filter(a => a?.anniversaryVariant).map(a => `${a.label} : ${a.anniversaryVariant}, en points.`).join(' ')}
               </p>
             )}
 
             {isAnniversaire && !isComparatifCurrent && (
               <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4">
                 <label className="mb-1.5 block text-xs font-semibold tracking-widest text-rose-300 uppercase" htmlFor="niveau-actuel">
-                  Niveau actuel de l'actif (obligatoire)
+                  Niveau de comparaison (modifiable)
                 </label>
                 <input
                   id="niveau-actuel"
@@ -569,13 +568,13 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
                   inputMode="decimal"
                   placeholder="Ex. 64267"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-400"
-                  value={niveauActuel}
+                  value={niveauActuel || observationA?.value || ""}
                   onChange={(e) => setNiveauActuel(e.target.value)}
-                  title="Vérifie ce chiffre sur une source fiable (Yahoo Finance, CoinMarketCap...) avant de le saisir — jamais deviné automatiquement."
+                  title="Dernière observation datée disponible. Toute modification est identifiée comme une saisie manuelle."
                 />
                 <p className="mt-1.5 text-[11px] text-rose-300/80">
-                  ⓘ Vérifie ce chiffre sur une source fiable (Yahoo Finance, CoinMarketCap...) avant de le saisir — jamais deviné
-                  automatiquement, et jamais mémorisé d'une génération à l'autre.
+                  {observationA?.label ?? 'Observation automatique indisponible ou trop ancienne : saisir un niveau vérifié.'}
+                  {observationA?.sourceUrl && <> · <a href={observationA.sourceUrl} target="_blank" rel="noreferrer" className="underline">Source</a></>}
                 </p>
               </div>
             )}
@@ -583,12 +582,11 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
             {isAnniversaire && isComparatifCurrent && (
               <div className="flex flex-col gap-3 rounded-xl border border-rose-500/30 bg-rose-500/10 p-4">
                 <p className="text-[11px] text-rose-300/80">
-                  ⓘ Vérifie ces deux chiffres sur une source fiable (Yahoo Finance, CoinMarketCap...) avant de les saisir — jamais
-                  devinés automatiquement, et jamais mémorisés d'une génération à l'autre.
+                  Les observations gardent leur date propre. Toute modification est identifiée comme une saisie manuelle.
                 </p>
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold tracking-widest text-rose-300 uppercase" htmlFor="niveau-actuel-a">
-                    Niveau actuel — {currentAssetA?.icon} {currentAssetA?.label} (obligatoire)
+                    Niveau actuel — {currentAssetA?.icon} {currentAssetA?.label} (modifiable)
                   </label>
                   <input
                     id="niveau-actuel-a"
@@ -597,13 +595,14 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
                     step="any"
                     inputMode="decimal"
                     className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-400"
-                    value={niveauActuel}
+                    value={niveauActuel || observationA?.value || ""}
                     onChange={(e) => setNiveauActuel(e.target.value)}
                   />
+                  <p className="mt-1 text-xs">{observationA?.label ?? 'Observation automatique indisponible : saisir un niveau vérifié.'}</p>
                 </div>
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold tracking-widest text-rose-300 uppercase" htmlFor="niveau-actuel-b">
-                    Niveau actuel — {currentAssetB?.icon} {currentAssetB?.label} (obligatoire)
+                    Niveau actuel — {currentAssetB?.icon} {currentAssetB?.label} (modifiable)
                   </label>
                   <input
                     id="niveau-actuel-b"
@@ -612,9 +611,10 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
                     step="any"
                     inputMode="decimal"
                     className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-400"
-                    value={niveauActuelB}
+                    value={niveauActuelB || observationB?.value || ""}
                     onChange={(e) => setNiveauActuelB(e.target.value)}
                   />
+                  <p className="mt-1 text-xs">{observationB?.label ?? 'Observation automatique indisponible : saisir un niveau vérifié.'}</p>
                 </div>
               </div>
             )}

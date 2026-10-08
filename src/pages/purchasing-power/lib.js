@@ -1,24 +1,12 @@
-import { GENERAL_INFLATION, YEAR_MAX, POSTES, SMIC, PRICE_OBSERVATION } from '../../data/purchasing-power.js'
+import { GENERAL_PRICE_LEVELS, YEAR_MAX, POSTES, SMIC, PRICE_OBSERVATION, RENT_OBSERVATION, SMIC_OBSERVATION } from '../../data/purchasing-power.js'
 
-export const CURRENT_YEAR = 2026
+export const CURRENT_YEAR = Number(PRICE_OBSERVATION.asOf.slice(0, 4))
 
-// Moyenne de l’année de départ -> moyenne 2025 -> observation mensuelle datée.
-export function cumulateRate(rateTable, startYear, latestFactor = PRICE_OBSERVATION.general / 100) {
-  let factor = 1
-  for (let y = startYear + 1; y <= PRICE_OBSERVATION.baseYear; y++) {
-    const rate = rateTable[y]
-    if (rate === undefined) throw new Error(`Inflation annuelle absente pour ${y}`)
-    factor *= 1 + rate / 100
-  }
-  return factor * latestFactor
-}
-
-// Ratio simple entre deux points d'une série de NIVEAUX (IRL, SMIC).
-export function cumulateLevel(levelTable, startYear) {
-  const a = levelTable[startYear]
-  const b = levelTable[CURRENT_YEAR]
-  if (!a || !b) return 1
-  return b / a
+// Ratio de niveaux comparables : pas de composition de taux arrondis.
+export function cumulateLevel(levelTable, startYear, latestValue) {
+  const start = levelTable[startYear]
+  if (!Number.isFinite(start) || start <= 0 || !Number.isFinite(latestValue) || latestValue <= 0) throw new Error('Niveau officiel absent')
+  return latestValue / start
 }
 
 export function fmtEUR(n) {
@@ -35,22 +23,22 @@ export function fmtPct(n) {
 }
 
 // Mode "brut" : combien vaut, en pouvoir d'achat réel, un montant fixé à startYear, exprimé en euros
-// d'aujourd'hui — à partir de l'inflation générale INSEE (réutilisée depuis investment-calculator).
+// de la dernière période publiée — ratio des niveaux mensuels INSEE dans une même base.
 export function computeBrut(amount, startYear) {
-  const factor = cumulateRate(GENERAL_INFLATION, startYear)
+  const factor = cumulateLevel(GENERAL_PRICE_LEVELS, startYear, PRICE_OBSERVATION.general)
   const newAmount = amount * factor
   const inflationCumPct = Math.round((factor - 1) * 1e10) / 1e8
   return { amount, startYear, newAmount, inflationCumPct, factor }
 }
 
 // Mode "comparaison par poste" : combien il faut aujourd'hui pour ce que `amount` payait à
-// startYear pour un poste donné (loyer = ratio de niveaux IRL, alimentation/carburant = taux composés).
+// startYear pour un poste donné (loyer = niveaux IRL ; alimentation/énergie = niveaux IPC).
 export function computePoste(amount, startYear, posteId) {
   const poste = POSTES[posteId]
-  const factor = poste.seriesType === 'level' ? cumulateLevel(poste.series, startYear) : cumulateRate(poste.series, startYear, poste.latestFactor)
+  const factor = cumulateLevel(poste.series, startYear, poste.latestValue)
   const newAmount = amount * factor
   const posteCumPct = Math.round((factor - 1) * 1e10) / 1e8
-  const generalFactor = cumulateRate(GENERAL_INFLATION, startYear)
+  const generalFactor = cumulateLevel(GENERAL_PRICE_LEVELS, startYear, PRICE_OBSERVATION.general)
   const generalCumPct = Math.round((generalFactor - 1) * 1e10) / 1e8
   return { amount, startYear, posteId, newAmount, posteCumPct, generalCumPct, factor }
 }
@@ -58,7 +46,7 @@ export function computePoste(amount, startYear, posteId) {
 // Évolution du SMIC sur la même période, pour le bloc de contexte du mode "brut" (a-t-on suivi
 // l'inflation ou pas ?).
 export function computeSmicEvolution(startYear) {
-  const factor = cumulateLevel(SMIC, startYear)
+  const factor = cumulateLevel(SMIC, startYear, SMIC_OBSERVATION.value)
   return Math.round((factor - 1) * 1e10) / 1e8
 }
 
@@ -81,7 +69,7 @@ export function purchasingPowerStory(state) {
   if (!Number.isFinite(growthPct) || growthPct <= -100) throw new Error('Variation testée invalide')
   const testedAmount = state.amount * (1 + growthPct / 100)
   const generalAmount = state.amount * (general ? result.factor : 1 + result.generalCumPct / 100)
-  const observation = rent ? 'T2 2026' : PRICE_OBSERVATION.label
+  const observation = rent ? RENT_OBSERVATION.label : PRICE_OBSERVATION.label
   const startLabel = rent ? `T1 ${state.startYear}` : String(state.startYear)
   const headline = erosion
     ? ['MÊME BUDGET.', change <= 0 ? 'MOINS DE POUVOIR D’ACHAT.' : 'PLUS DE POUVOIR D’ACHAT.']
@@ -90,7 +78,7 @@ export function purchasingPowerStory(state) {
         : [energy ? 'TON BUDGET ÉNERGIE.' : 'LE MÊME PANIER.', `${fmtEUR(Math.abs(change))} DE ${change >= 0 ? 'PLUS' : 'MOINS'}.`]
   return {
     ...result, endAmount, change, pricePct, equivalentPct, erosion, general, rent, energy, growthPct, testedAmount, generalAmount,
-    observation, startLabel, headline,
+    observation, startLabel, headline, provisional: !rent && PRICE_OBSERVATION.provisional,
     scene: general ? 'revenu' : rent ? 'loyer' : energy ? 'energie' : 'courses',
     metricLabel: erosion ? `Pouvoir d’achat en euros de ${state.startYear}` : general ? `Revenu testé : ${fmtEUR(testedAmount)} · seuil pour suivre les prix` : rent ? 'Estimation si le loyer suivait l’IRL' : energy ? 'Estimation selon l’indice Énergie' : `Budget testé : ${fmtEUR(testedAmount)} · seuil pour les mêmes courses`,
     period: `${startLabel} → ${observation}`,
@@ -101,6 +89,7 @@ export function buildTweetText(state) {
   const d = purchasingPowerStory(state)
   const base = fmtEUR(state.amount), end = fmtEUR(d.endAmount), tested = fmtEUR(d.testedAmount)
   const growth = fmtPct(d.growthPct), prices = fmtPct(d.pricePct)
+  const quality = PRICE_OBSERVATION.provisional ? `${d.rent ? "Prix en général : " : ""}Donnée mensuelle provisoire de l’INSEE.` : null
   const direction = d.testedAmount - d.endAmount
   const equal = Math.abs(direction) < 0.005
   const verdict = equal ? 'autant' : direction > 0 ? 'davantage' : 'moins'
@@ -109,6 +98,7 @@ export function buildTweetText(state) {
     `Entre ${state.startYear} et ${d.observation}, les prix ont évolué de ${prices}.`,
     `Tes ${base} équivalent désormais à environ ${end} en euros de ${state.startYear} : ${fmtPct(d.equivalentPct)} de pouvoir d’achat.`,
     `Pour acheter l’équivalent de ce que ce budget permettait au départ, il faudrait environ ${fmtEUR(d.newAmount)} par mois.`,
+    ...(quality ? [quality] : []),
     `💬 Tu as ajusté ton budget, changé tes achats ou réduit les quantités ?`,
   ].join('\n\n')
   if (d.general) return [
@@ -117,12 +107,14 @@ export function buildTweetText(state) {
     `📈 Ton salaire : ${growth}\n🛒 Les prix entre ${state.startYear} et ${d.observation} : ${prices}`,
     `Pour conserver le pouvoir d’achat de tes ${base} de départ, il faudrait environ ${end} par mois.`,
     equal ? `Avec ${tested}, ton salaire suit exactement les prix.` : `Avec ${tested}, tu peux acheter ${verdict} : ton revenu a ${direction > 0 ? 'davantage' : 'moins'} progressé que les prix.`,
+    ...(quality ? [quality] : []),
     `💬 Tes dernières augmentations t’ont permis de vivre mieux, ou surtout de suivre les dépenses ?`,
   ].join('\n\n')
   if (d.rent) return [
     `🏠 ${base} de loyer au ${d.startLabel} : que donnerait une révision suivant l’IRL jusqu’au ${d.observation} ?`,
     `Un loyer révisé selon cet indice atteindrait environ ${end} par mois, soit ${fmtEUR(Math.abs(d.change))} ${d.change >= 0 ? 'de plus' : 'de moins'}.`,
     `📍 IRL : ${prices} entre ${d.startLabel} et ${d.observation}. Pour les prix en général : ${fmtPct(d.generalCumPct)} entre ${state.startYear} et ${PRICE_OBSERVATION.label}.`,
+    ...(quality ? [quality] : []),
     `💬 Ton loyer a-t-il suivi cette évolution, ou est-il resté stable ?`,
   ].join('\n\n')
   if (d.energy) {
@@ -132,7 +124,8 @@ export function buildTweetText(state) {
       `Voilà l’écart entre ${state.startYear} et ${d.observation} 👇`,
       `Pour l’équivalent d’un budget énergie de ${base} par mois au départ :\n• en suivant les prix en général : ${fmtEUR(d.generalAmount)}\n• en suivant les prix de l’énergie : ${end}`,
       `Soit ${fmtEUR(Math.abs(gap))} ${gap >= 0 ? 'de plus' : 'de moins'} par mois que si l’énergie avait suivi l’inflation générale.`,
-      `💬 Tu as changé de contrat, réduit ta consommation ou absorbé la différence ?`,
+      ...(quality ? [quality] : []),
+    `💬 Tu as changé de contrat, réduit ta consommation ou absorbé la différence ?`,
     ].join('\n\n')
   }
   return [
@@ -140,6 +133,7 @@ export function buildTweetText(state) {
     `Entre ${state.startYear} et ${d.observation} :\n🥦 Alimentation : ${prices}\n🛒 Prix en général : ${fmtPct(d.generalCumPct)}`,
     `Les courses qui coûtaient ${base} au départ demanderaient environ ${end} pour acheter l’équivalent.`,
     `Avec la variation testée, ton budget passe à ${tested}. Il permet d’acheter ${verdict} qu’au départ.`,
+    ...(quality ? [quality] : []),
     `💬 Tu as augmenté ton budget courses, ou changé les produits et les quantités ?`,
   ].join('\n\n')
 }

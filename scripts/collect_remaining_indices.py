@@ -89,7 +89,11 @@ def collect_one(config, now, fetch=download):
     result = {'id': config['id'], 'name': config['name'], 'errors': [], 'unavailable': []}
     if config.get('collectComposition'):
         try:
-            if config.get('compositionParser') == 'amundi-index-document':
+            if config.get('compositionParser') == 'sp-printed-composition':
+                from collect_sp_composition import collect as sp_composition
+                facts = sp_composition(config, now, fetch)
+                body = None
+            elif config.get('compositionParser') == 'amundi-index-document':
                 from collect_index_extensions import collect_amundi_composition
                 facts = collect_amundi_composition(config, now, fetch)
                 body = None

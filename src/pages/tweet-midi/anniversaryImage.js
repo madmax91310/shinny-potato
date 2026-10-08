@@ -1,3 +1,4 @@
+import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
 import { MONTHS_FULL } from '../../data/market-history.js'
 import { getHistoricalPrice, ymForYearsBack, fmtYm } from './data/marketHistory.js'
 import { getMarketAsset, MODES, TODAY } from './lib.js'
@@ -5,7 +6,6 @@ import { ANNIVERSARY_ART, loadArtImage, loadEditorialFont, drawTitaniumMark } fr
 
 const W = 1600, H = 2000
 const INK = '#191916', MUTED = '#47473f'
-const valid = raw => raw !== '' && raw !== null && raw !== undefined && Number.isFinite(Number(raw)) && Number(raw) > 0
 const number = n => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 }).format(n)
 const percentage = n => `${n >= 0 ? '+' : '−'}${new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(Math.abs(n))} %`
 const font = (size, serif, weight) => `${weight} ${size}px ${serif ? 'Georgia, serif' : 'Arial, sans-serif'}`
@@ -28,11 +28,12 @@ function rule(ctx, x1, y1, x2, y2) {
   ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke()
 }
 function snapshot(item, raw, assetId) {
-  if (!valid(raw)) throw new Error('Saisir un niveau actuel valide avant de télécharger l’image')
+  const observation = resolveAnniversaryLevel(assetId, raw)
+  if (!observation) throw new Error('Saisir un niveau actuel valide avant de télécharger l’image')
   const asset = getMarketAsset(assetId), art = ANNIVERSARY_ART[assetId]
   if (!asset || !art) throw new Error('Actif sans visuel vérifié')
   const date = ymForYearsBack(item.yearsBack, TODAY)
-  return { asset, art, past: getHistoricalPrice(assetId, date), current: Number(raw), dateLabel: fmtYm(date, { monthLabels: MONTHS_FULL }) }
+  return { asset, art, past: getHistoricalPrice(assetId, date), current: observation.value, currentLabel: observation.label, dateLabel: fmtYm(date, { monthLabels: MONTHS_FULL }) }
 }
 const level = (value, snap) => `${number(value)} ${snap.art.unit || (snap.asset.currency === 'USD' ? '$' : '€')}`
 
@@ -63,7 +64,7 @@ function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack }
   if (period) text(ctx,`EN ${yearsBack} AN${yearsBack > 1 ? 'S' : ''}`,W/2,1590,52,{ spacing:5 })
   rule(ctx,100,1660,1500,1660); rule(ctx,800,1710,800,1860)
   text(ctx,dateLabel.toUpperCase(),440,1700,44,{ width:650,spacing:1.5 })
-  text(ctx,'AUJOURD’HUI',1160,1700,44,{ width:650,spacing:1.5 })
+  text(ctx,snap.currentLabel.toUpperCase(),1160,1700,44,{ width:650,spacing:1.5 })
   text(ctx,level(past,snap),440,1765,112,{ width:650 })
   text(ctx,level(current,snap),1160,1765,112,{ width:650 })
   ctx.restore()

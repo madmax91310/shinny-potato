@@ -13,6 +13,9 @@ on:
       - 'scripts/*etf.json'
       - 'scripts/*index*.py'
       - 'scripts/index-automation.json'
+      - 'scripts/collect_sp_composition.py'
+      - 'scripts/test_sp_composition.py'
+      - 'scripts/fixtures/sp-composition/**'
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
       - 'scripts/data_automation.py'
@@ -50,6 +53,9 @@ on:
       - 'scripts/test_issuer_refresh.py'
       - 'scripts/*index*.py'
       - 'scripts/index-automation.json'
+      - 'scripts/collect_sp_composition.py'
+      - 'scripts/test_sp_composition.py'
+      - 'scripts/fixtures/sp-composition/**'
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
       - 'scripts/data_automation.py'
@@ -114,7 +120,8 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
-      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
       - run: npm ci
       - run: node scripts/test-vaneck-document.mjs
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'

@@ -6,8 +6,8 @@ import { computeBrut, purchasingPowerStory, buildTweetText } from '../src/pages/
 import { POSTES } from '../src/data/purchasing-power.js'
 
 const d = purchasingPowerStory({ mode: 'erosion', amount: 1000, startYear: 2025 })
-assert.ok(Math.abs(d.endAmount - 1000 / 1.0335) < 1e-9)
-assert.ok(Math.abs(d.equivalentPct - (1 / 1.0335 - 1) * 100) < 1e-9)
+assert.ok(Math.abs(d.endAmount - 1000 / computeBrut(1000, 2025).factor) < 1e-9)
+assert.ok(Math.abs(d.equivalentPct - (1 / computeBrut(1000, 2025).factor - 1) * 100) < 1e-9)
 assert.notEqual(Math.abs(d.equivalentPct), computeBrut(1000, 2025).inflationCumPct)
 assert.equal(POSTES.carburant.label, 'Énergie')
 assert.doesNotMatch(buildTweetText({ mode: 'par-poste', posteId: 'carburant', amount: 100, startYear: 2020 }), /à la pompe \?/)
@@ -44,7 +44,7 @@ try {
         const canvas = await renderPurchasingPowerImage(item), story = purchasingPowerStory(item), text = buildTweetText(item)
         if (!labels.includes(fmtEUR(story.endAmount)) || !text.includes(fmtEUR(story.endAmount))) throw new Error('PNG and tweet disagree')
         if (!labels.includes(story.observation)) throw new Error('Observation date missing')
-        if (!labels.includes(`${story.period} · ${fmtPct(story.erosion ? story.equivalentPct : story.pricePct)}`)) throw new Error('Percentage disagrees')
+        if (!labels.includes(`${story.period}${story.provisional ? " · provisoire" : ""} · ${fmtPct(story.erosion ? story.equivalentPct : story.pricePct)}`)) throw new Error('Percentage disagrees')
         if (labels.filter(t => /epargnantlibre/.test(t)).length !== 1) throw new Error('Signature missing or duplicated')
         if (labels.some(t => /POUVOIR D’ACHAT,|COMBIEN EN PLUS|Exemple fictif/.test(t))) throw new Error('Old heading or mockup data returned')
         if (canvas.width !== 1200 || canvas.height !== 1500) throw new Error('Wrong export dimensions')

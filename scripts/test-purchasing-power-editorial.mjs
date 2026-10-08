@@ -26,9 +26,10 @@ for (let startYear = 2010; startYear <= 2025; startYear++) {
 }
 for (const growthPct of [NaN, Infinity, -100, -101]) assert.throws(() => purchasingPowerStory({ amount: 100, startYear: 2020, mode: 'brut', growthPct }))
 const salary = buildTweetText({ amount: 2000, startYear: 2020, mode: 'brut' })
-assert.ok(salary.includes(fmtEUR(2200)) && salary.includes(fmtEUR(2385)))
+assert.ok(salary.includes(fmtEUR(2200)) && salary.includes(fmtEUR(computeBrut(2000, 2020).newAmount)))
 const food = buildTweetText({ amount: 300, startYear: 2020, mode: 'par-poste', posteId: 'alimentation' })
-assert.ok(food.includes(fmtEUR(360)) && food.includes(fmtEUR(376)))
+assert.ok(food.includes(fmtEUR(360)) && food.includes(fmtEUR(computePoste(300, 2020, 'alimentation').newAmount)))
 const energy = buildTweetText({ amount: 150, startYear: 2020, mode: 'par-poste', posteId: 'carburant' })
-assert.ok(energy.includes(fmtEUR(179)) && energy.includes(fmtEUR(241)) && energy.includes(fmtEUR(62)))
+const energyResult = computePoste(150, 2020, 'carburant');
+assert.ok(energy.includes(fmtEUR(energyResult.newAmount)) && energy.includes(fmtEUR(energyResult.newAmount - computeBrut(150, 2020).newAmount)))
 console.log(`${count} scénarios éditoriaux : données conservées, comparaisons et conclusions vérifiées.`)

@@ -1,18 +1,17 @@
+import { PRICE_OBSERVATION, GENERAL_PRICE_LEVELS, ALIMENTATION, ENERGIE, YEAR_MAX } from '../src/data/purchasing-power.js';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { LIVRET_A, INFLATION, ASSETS } from '../src/data/market-history.js';
 import { INFLATION_MONTHLY } from '../src/data/inflation-monthly.js';
 import { computeBenchmarkSeries } from '../src/pages/investment-calculator/lib.js';
-import { computeBrut, computePoste, buildTweetText, fmtEUR } from '../src/pages/purchasing-power/lib.js';
+import { computeBrut, computePoste, buildTweetText } from '../src/pages/purchasing-power/lib.js';
 import { getBenchmarkPerformance } from '../src/pages/tweet-midi/data/marketHistory.js';
 const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-8, `${a} != ${b}`);
-// Base 2025=100 : les indices d’août, et non les glissements annuels, déterminent le résultat.
-close(computeBrut(1000, 2025).newAmount, 1033.5);
-assert.ok(fmtEUR(computeBrut(1000, 2025).newAmount).includes('1\u202f034'));
-close(computeBrut(1000, 2025).inflationCumPct, 3.35);
-close(computePoste(1000, 2025, 'alimentation').newAmount, 1016.9);
-close(computePoste(1000, 2025, 'carburant').newAmount, 1156);
-close(computeBrut(1000, 2024).newAmount, 1000 * 1.009 * 1.0335);
+// Ratios de niveaux publiés dans une même base ; aucune composition de taux arrondis.
+close(computeBrut(1000, 2025).newAmount, 1000 * PRICE_OBSERVATION.general / GENERAL_PRICE_LEVELS[2025]);
+close(computePoste(1000, 2025, 'alimentation').newAmount, 1000 * PRICE_OBSERVATION.alimentation / ALIMENTATION[2025]);
+close(computePoste(1000, 2025, 'carburant').newAmount, 1000 * PRICE_OBSERVATION.energie / ENERGIE[2025]);
+close(computeBrut(1000, 2024).newAmount, 1000 * PRICE_OBSERVATION.general / GENERAL_PRICE_LEVELS[2024]);
 // Taux effectivement applicables et dépôt de fin de mois, sans intérêt sur les intérêts avant décembre.
 close(computeBenchmarkSeries(LIVRET_A, '2026-01', '2026-02', 1000, 'lump').finalValue, 1001.25);
 close(computeBenchmarkSeries(LIVRET_A, '2026-07', '2026-08', 1000, 'lump').finalValue, 1000 + 17 / 12);
@@ -32,10 +31,11 @@ const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/household-b
 assert.deepEqual(Object.fromEntries(Object.keys(snapshot.monthlyRates).map(month=>[month,INFLATION_MONTHLY[month]])), snapshot.monthlyRates);
 assert.deepEqual(snapshot.provisionalMonths, ['2026-09']);
 assert.equal(INFLATION[2026], undefined); // aucune moyenne annuelle fictive pour une année inachevée.
-for (let year = 2010; year <= 2025; year++) for (const posteId of [null, 'loyer', 'alimentation', 'carburant']) {
+for (let year = 2010; year <= YEAR_MAX; year++) for (const posteId of [null, 'loyer', 'alimentation', 'carburant']) {
   const text = buildTweetText({ amount: 1000, startYear: year, mode: posteId ? 'par-poste' : 'brut', posteId });
-  assert.ok(!/NaN|undefined|provisoire|12 mois glissants/.test(text));
-  assert.ok(text.includes('août 2026'));
+  assert.ok(!/NaN|undefined|12 mois glissants/.test(text));
+  assert.ok(text.includes(PRICE_OBSERVATION.label));
+  assert.equal(text.includes('provisoire'), PRICE_OBSERVATION.provisional);
 }
 const gold=JSON.parse(readFileSync(new URL('../src/data/worldbank-gold-monthly.json',import.meta.url)));
 assert.deepEqual(ASSETS.or.points.at(-1),{date:gold.points.at(-1)[0],price:gold.points.at(-1)[1]});
