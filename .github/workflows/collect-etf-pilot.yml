@@ -1,7 +1,7 @@
 name: Update active ETF issuer data
 on:
   schedule:
-    - cron: '10 7 3,16 * *'
+    - cron: '10 7 * * *'
   workflow_dispatch:
   push:
     branches: [master]

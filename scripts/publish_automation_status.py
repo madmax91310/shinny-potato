@@ -12,6 +12,7 @@ import urllib.request
 REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation'}
 
 WORKFLOWS = {
+    'update-editorial-radar.yml': 'Radar éditorial quotidien',
     'update-publication-observations.yml': 'Pouvoir d’achat et niveaux des anniversaires',
     'update-insurance.yml': 'Présentations d’assurance-vie',
     'update-scpi.yml': 'Présentations de SCPI',
@@ -64,7 +65,7 @@ def normalize_report(report):
 def update_status(state, run, jobs, reports=None):
     result = json.loads(json.dumps(state))
     workflow = run['path'].split('/')[-1]
-    if workflow not in WORKFLOWS or run.get('head_branch') != 'master' or run.get('event') not in ('push', 'schedule', 'workflow_dispatch') or run.get('status') != 'completed':
+    if workflow not in WORKFLOWS or run.get('head_branch') != 'master' or run.get('event') not in ('push', 'schedule', 'workflow_dispatch', 'workflow_run') or run.get('status') != 'completed':
         return result
     entries = result.get('workflows', {})
     previous = entries.get(workflow, {})
@@ -131,7 +132,7 @@ def main():
                 if e.code == 404:
                     continue
                 raise
-            candidates = [r for r in candidates if r['event'] in ('push', 'schedule', 'workflow_dispatch') and r['conclusion'] not in ('cancelled', 'skipped', 'neutral')]
+            candidates = [r for r in candidates if r['event'] in ('push', 'schedule', 'workflow_dispatch', 'workflow_run') and r['conclusion'] not in ('cancelled', 'skipped', 'neutral')]
             if candidates and workflow in REPORT_ARTIFACTS:
                 runs.extend(candidates)
                 continue

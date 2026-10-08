@@ -2,6 +2,7 @@ name: Publish automation failures
 on:
   workflow_run:
     workflows:
+      - Update editorial radar
       - Update active ETF issuer data
       - Update active monthly market histories
       - Update active Bitcoin Yahoo data
