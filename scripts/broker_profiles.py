@@ -39,13 +39,13 @@ def find(pattern, text):
 def amount(value): return float(value.replace(' ','').replace(',','.'))
 def fmt(value): return f'{value:g}'.replace('.',',')
 
-def statement(broker, field, texts):
+def statement(broker, field, texts, qualification_texts=None, today=None):
     """Return (availability, status, copy, decisive document, matched clause).
 
     None denotes an explicit unresolved scope; it never becomes False in UI.
     Every positive/negative assertion must carry a bounded matching statement.
     """
-    qualified = qualify(broker, field, {key: texts[key] for key in DOCUMENTS[broker][field]})
+    qualified = qualify(broker, field, qualification_texts or texts, today=today)
     if qualified is not None:
         return qualified
     source = DOCUMENTS[broker][field][0]
@@ -149,9 +149,10 @@ def statement(broker, field, texts):
         return True,'confirmé',f'Transfert entrant PEA possible ; remboursement jusqu’à {fmt(v)} €, sous conditions et sur justificatif.',source,m[0]
     raise ValueError('Champ non pris en charge')
 
-def parse(broker,field,raws,today):
+def parse(broker,field,raws,today,sources=None):
+    sources = sources or SOURCES
     texts={key:clean(raw) for key,raw in raws.items()}
-    available,status,summary,decisive,quote=statement(broker,field,texts)
+    available,status,summary,decisive,quote=statement(broker,field,texts,raws,today)
     supporting = {}
     if broker == 'caidf' and field == 'dca':
         supporting['caTariff'] = find(r"Mise en place d.un Plan d.Epargne Boursier \(PEB\) Nous consulter", texts['caTariff'])[0]
@@ -165,16 +166,16 @@ def parse(broker,field,raws,today):
     for key,raw in raws.items():
         if key!=decisive and key not in supporting: continue
         reference_quote = quote if key == decisive else supporting[key]
-        info=SOURCES[key]
+        info=sources[key]
         page=next((i for i,p in enumerate(raw.split('\f'),1) if clean(reference_quote) in clean(p)),None) if '<html' not in raw.lower() else None
         kind='pdf' if '\f' in raw or re.search(r'\.pdf(?:$|\?)',info['url']) else 'page'
         if kind=='pdf' and not page: raise ValueError('Page de la clause officielle non localisée')
         refs.append({'document':key,'sourceUrl':getattr(raw,'source_url',info['url']),'discoveryUrl':getattr(raw,'discovery_url',None),'page':page,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
     return {'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
-      'sourceUrl':getattr(raws[decisive],'source_url',SOURCES[decisive]['url']),'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
+      'sourceUrl':getattr(raws[decisive],'source_url',sources[decisive]['url']),'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
       'method':'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue',
       'sha256':hashlib.sha256('\n'.join(raws.values()).encode()).hexdigest(),'values':{},'decisiveDocument':decisive,'statement':quote,
-      'checkedSources':[{'sourceUrl':getattr(raw,'source_url',SOURCES[key]['url']),'sha256':hashlib.sha256(raw.encode()).hexdigest()} for key,raw in raws.items()]}
+      'checkedSources':[{'sourceUrl':getattr(raw,'source_url',sources[key]['url']),'sha256':hashlib.sha256(raw.encode()).hexdigest()} for key,raw in raws.items()]}
 
 def collect_profiles(baseline,today,fetcher):
     urls={SOURCES[key]['url'] for fields in DOCUMENTS.values() for keys in fields.values() for key in keys}
@@ -184,6 +185,9 @@ def collect_profiles(baseline,today,fetcher):
         except Exception as error: return url,error
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         cache.update(pool.map(fetch,sorted(urls)))
+    from broker_profile_discovery import discover
+    extra,catalog,discovery_report,discovery_failures=discover(fetcher,SOURCES,DOCUMENTS,cache)
+    baseline['profileDiscovery']={'checkedAt':today,'fields':discovery_report}
     failures={};count=0
     for broker,fields in DOCUMENTS.items():
         for field,keys in fields.items():
@@ -191,7 +195,10 @@ def collect_profiles(baseline,today,fetcher):
                 raws={key:cache[SOURCES[key]['url']] for key in keys}
                 for raw in raws.values():
                     if isinstance(raw,Exception):raise raw
-                observation=parse(broker,field,raws,today)
+                discovery_error=discovery_failures.get(f'{broker}:profile:{field}:discovery')
+                if discovery_error:raise ValueError('Découverte incomplète : '+discovery_error)
+                raws.update(extra.get((broker,field),{}))
+                observation=parse(broker,field,raws,today,catalog)
                 if broker not in baseline['brokers']:raise ValueError('Barème principal non qualifié')
                 previous=baseline['brokers'][broker].get('profile',{}).get(field,{})
                 if previous.get('status')=='confirmé' and observation['status']!='confirmé':

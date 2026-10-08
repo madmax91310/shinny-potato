@@ -13,13 +13,22 @@ import urllib.parse
 from data_automation import UTC, reject, retry_delay, ResponseFormatError
 
 
-def download(url, max_bytes=8_000_000, headers=None):
+def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_source=False):
     # Issuer region redirects set cookies; keep them within this download chain.
-    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+    class OfficialRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, req, fp, code, msg, response_headers, newurl):
+            if url_validator and not url_validator(newurl):
+                raise ResponseFormatError('Redirect outside official broker scope: '+newurl)
+            return super().redirect_request(req,fp,code,msg,response_headers,newurl)
+    if url_validator and not url_validator(url):
+        raise ResponseFormatError('URL outside official broker scope: '+url)
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()),OfficialRedirect())
     request = urllib.request.Request(url, headers={'User-Agent': 'EpargnantLibre-Data/1.0', 'Accept-Language': 'en', **(headers or {})})
     for attempt in range(3):
         try:
             with opener.open(request, timeout=25) as response:
+                if url_validator and not url_validator(response.geturl()):
+                    raise ResponseFormatError('Final URL outside official broker scope: '+response.geturl())
                 body = response.read(max_bytes + 1)
                 if len(body) > max_bytes:
                     reject('Official document exceeds size limit')
@@ -32,7 +41,7 @@ def download(url, max_bytes=8_000_000, headers=None):
                     title = re.search(br'<title[^>]*>(.*?)</title>', body, re.I | re.S)
                     label = title[1].decode('utf-8', errors='replace').strip()[:100] if title else 'non-PDF response'
                     raise ResponseFormatError(f'Expected official PDF at {url}; received {label} at {response.geturl()}')
-                return body
+                return (body,response.geturl()) if return_source else body
         except urllib.error.HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                 raise

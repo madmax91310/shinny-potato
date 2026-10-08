@@ -58,7 +58,11 @@ def parse(name, content, today, previous=None):
   'page': next(i for i,p in enumerate(content.split('\f'),1) if ('Courtage Actions Euronext' if name == 'bourso' else 'TARIFS DE COURTAGE BOURSE') in p),
   'method':'Tableau de courtage de la brochure officielle ; forfait et marché exacts', 'sha256':hashlib.sha256(content.encode()).hexdigest()}
 def fetch_content(url):
- raw=download(url)
+ from broker_profile_discovery import POLICIES,allowed
+ from broker_document_sources import SourceDocument
+ owners=[broker for broker in POLICIES if allowed(broker,url)]
+ validator=(lambda target:any(allowed(broker,target) for broker in owners)) if owners else None
+ raw,actual_url=download(url,url_validator=validator,return_source=True)
  # WordPress download pages expose a rotating, public link to the real PDF.
  if 'groupe.boursedirect.fr/download/' in url and not raw.startswith(b'%PDF'):
   soup=BeautifulSoup(raw.decode('utf-8'),'html.parser')
@@ -67,14 +71,15 @@ def fetch_content(url):
   if len(links)!=1:raise ValueError('Lien du communiqué Bourse Direct absent ou ambigu')
   target=links.pop()
   if urllib.parse.urlparse(target).netloc!='groupe.boursedirect.fr':raise ValueError('Hôte du communiqué non officiel')
-  raw=download(target)
+  raw,actual_url=download(target,return_source=True)
   if not raw.startswith(b'%PDF'):raise ValueError('Communiqué Bourse Direct non PDF')
  # Isolate the English column of the bilingual France contract. This avoids
  # interleaving French clauses when Poppler's line wrapping differs by platform.
  # The normal 2 MB extraction limit still applies.
  if raw.startswith(b'%PDF'):
-  return pdf_text(raw,crop=(0,300)) if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2] else pdf_text(raw)
- return raw.decode('utf-8')
+  text=pdf_text(raw,crop=(0,300)) if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2] else pdf_text(raw)
+ else:text=raw.decode('utf-8')
+ return SourceDocument(text,actual_url)
 def collect(baseline,today,fetcher=fetch_content):
  failures={};validated=[];documents={}
  previous_sources={SOURCES[name]:o['sourceUrl'] for name,o in baseline['brokers'].items() if name in SOURCES and o.get('sourceUrl')}
