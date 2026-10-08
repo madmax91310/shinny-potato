@@ -4,7 +4,7 @@ export function officialDocument(value, filename) {
   if (url.protocol !== 'https:' || url.hostname !== 'www.vaneck.com' || url.port || url.username || url.password
       || !/^\/(?:ucits|[a-z]{2}\/en)\/library\/fact-sheets\/[a-z0-9]+-fact-sheet\.pdf$/.test(url.pathname)
       || url.search || url.hash || (filename && url.pathname.split('/').pop() !== filename)) {
-    throw new Error('Unsupported official VanEck document URL');
+    throw new Error(`Unsupported official VanEck document URL: ${url.href}`);
   }
   return url;
 }
