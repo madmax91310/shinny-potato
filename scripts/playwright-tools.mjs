@@ -913,7 +913,7 @@ async function testFactsheetTweets(page) {
 async function testDataSearch(page) {
   await page.goto(`${BASE}/bibliotheque-donnees`, { waitUntil: 'networkidle' });
   const checks = {};
-  const search = page.getByRole('searchbox');
+  const search = page.getByRole('searchbox', { name: 'ISIN, ticker, nom ou identifiant', exact: true });
   await search.fill('DCAM');
   // Le changement de paramètres est une navigation React ; attendre la fiche correspondante.
   await page.locator('.ds-detail').filter({ hasText: 'FR001400U5Q4' }).waitFor();

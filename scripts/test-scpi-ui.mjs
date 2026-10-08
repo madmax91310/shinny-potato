@@ -45,6 +45,12 @@ try {
     await page.getByRole('status').filter({hasText:'Texte copié.'}).waitFor()
   }
   await page.screenshot({path:'test-artifacts/scpi/mobile.png',fullPage:true})
+  await page.goto(`${base}/bibliotheque-donnees?type=scpi&q=Remake%20Live`,{waitUntil:'networkidle'})
+  await page.getByRole('heading',{name:'Remake Live',exact:true}).waitFor()
+  const dataSearch=page.getByRole('searchbox',{name:'ISIN, ticker, nom ou identifiant',exact:true})
+  await dataSearch.fill('Iroko Zen')
+  await page.getByRole('heading',{name:'Iroko Zen',exact:true}).waitFor()
+  assert((await page.locator('.ds-detail').innerText()).includes('Présentation de SCPI'))
   assert.deepEqual(errors,[])
   console.log('SCPI UI: selection, edition, reset, clipboard, full allocation and mobile preview OK.')
 } finally { await browser?.close(); server.kill('SIGTERM') }
