@@ -72,13 +72,13 @@ export const TERMES = [
   objectif:`Préparer sa retraite en réduisant son revenu imposable pendant la vie active.`,
   pourQui:`Tu peux immobiliser une partie de ton épargne jusqu'à la retraite et comparer l'économie d'impôt à l'entrée à la fiscalité attendue à la sortie.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
-  mecanismeContenu:`✅ ETF, actions, fonds euros, SCPI selon le contrat\n✅ Versements déductibles du revenu imposable, dans une limite annuelle (environ 10% des revenus professionnels)\n❌ Argent bloqué jusqu'à la retraite, sauf déblocage anticipé (achat résidence principale, accidents de la vie)`,
+  mecanismeContenu:`✅ ETF, actions, fonds euros, SCPI selon le contrat\n✅ Versements déductibles du revenu imposable, dans la limite du plafond disponible ; pour un salarié, le plafond ${R.perDeductionYear} suit ${n('perDeductionRate')}% des revenus professionnels ${R.perRevenueYear}, avec un minimum de ${n('perMinimum')}€ et un maximum de ${n('perMaximum')}€ avant ajustements individuels\n❌ Argent bloqué jusqu'à la retraite, sauf déblocage anticipé (achat résidence principale, accidents de la vie)`,
   sectionsOptionnelles:[
     {titre:`🔀 Gestion pilotée ou libre ?`, contenu:`Par défaut, le PER est en gestion pilotée : les investissements se sécurisent automatiquement à l'approche de la retraite. Tu peux aussi choisir la gestion libre pour piloter toi-même la répartition.`}
   ],
   attention:`L'avantage fiscal à l'entrée se paie à la sortie : les sommes déduites sont réintégrées à l'impôt sur le revenu au moment du retrait.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`Les versements volontaires peuvent être déduits du revenu imposable dans la limite du plafond disponible ; tu peux aussi renoncer à cette déduction. En cas de sortie en capital, la part des versements déduits est imposée au barème, sans prélèvements sociaux, et les gains suivent le prélèvement forfaitaire applicable. Les règles diffèrent pour une sortie en rente ou des versements non déduits.`,
+  fraisContenu:`Les versements volontaires peuvent être déduits du revenu imposable dans la limite du plafond disponible ; tu peux aussi renoncer à cette déduction. En cas de sortie en capital, la part des versements déduits est imposée au barème, sans prélèvements sociaux, et les gains suivent le PFU de ${n('perTotal')}% pour les intérêts perçus à partir de ${R.perTaxYear} (option globale possible pour le barème). Les règles diffèrent pour une sortie en rente ou des versements non déduits.`,
   avantage:`La déduction aujourd’hui s’accompagne d’une fiscalité à la sortie. Compare ta situation fiscale à l’entrée et celle que tu anticipes à la retraite.`
 },
 
@@ -119,7 +119,7 @@ export const TERMES = [
   objectif:`Épargner via ton entreprise en profitant d'un abondement (de l'argent gratuit versé par l'employeur) et d'une fiscalité avantageuse.`,
   pourQui:`Ton employeur propose un plan d'épargne entreprise, en particulier s'il abonde tes versements.`,
   mecanismeTitre:`💼 Qu'est-ce qu'on met dedans ?`,
-  mecanismeContenu:`✅ Fonds communs de placement d'entreprise (FCPE), souvent diversifiés en actions et obligations\n✅ Abondement de l'employeur, jusqu'à 300% de ton versement selon les accords, plafonné à 3 844,80€ par an sur un PEE en 2026\n❌ Argent bloqué 5 ans pour le PEE, jusqu'à la retraite pour le PERCO (sauf déblocage anticipé)`,
+  mecanismeContenu:`✅ Fonds communs de placement d'entreprise (FCPE), souvent diversifiés en actions et obligations\n✅ Abondement de l'employeur, jusqu'à ${(R.peeMultiplier * 100).toLocaleString('fr-FR')}% de ton versement selon les accords, plafonné à ${n('peeCeiling')}€ par an sur un PEE (hors plafonds spécifiques aux actions de l'entreprise)\n❌ Argent bloqué 5 ans pour le PEE, jusqu'à la retraite pour le PERCO (sauf déblocage anticipé)`,
   attention:`Un nouveau Perco ne peut plus être mis en place depuis octobre 2020, mais les plans existants peuvent continuer à recevoir des versements. Avant de profiter de l'abondement, vérifie ses conditions, les supports proposés et la durée de blocage.`,
   fraisTitre:`💰 Fiscalité`,
   fraisContenu:`L'intéressement et la participation placés dans le plan, ainsi que l'abondement dans les limites légales, bénéficient en principe d'une exonération d'impôt sur le revenu. Les versements volontaires du salarié ne sont pas déductibles. À la sortie, les gains sont exonérés d'impôt sur le revenu, mais soumis aux prélèvements sociaux au taux applicable ; certains gains issus de versements antérieurs à 2018 gardent des taux historiques.`,
@@ -441,7 +441,7 @@ export const TERMES = [
   ],
   attention:`Un rendement affiché élevé cache parfois un bien dans une zone à faible demande locative ou à fort risque de vacance — le rendement ne dit rien du risque associé.`,
   fraisTitre:`💰 Fiscalité`,
-  fraisContenu:`La fiscalité dépend du type de location et de ton régime : les revenus d'une location nue relèvent en principe des revenus fonciers, ceux d'une location meublée des BIC. Le rendement net avant impôt ne reflète donc pas toujours ce qui te reste après fiscalité.`,
+  fraisContenu:`La fiscalité dépend du type de location et de ton régime : les revenus d'une location nue relèvent en principe des revenus fonciers, ceux d'une location meublée des BIC. En location nue, le micro-foncier prévoit un abattement de ${n('rentAllowance')}% jusqu’à ${n('rentCeiling')}€ de revenus annuels, sous conditions ; les prélèvements sociaux sont de ${n('rentSocial')}%. Le rendement net avant impôt ne reflète donc pas toujours ce qui te reste après fiscalité.`,
   avantage:`Fais ensuite le calcul avec charges, travaux, vacance et impôts. Le rendement brut sert à trier les biens, pas à estimer ce qui restera sur ton compte.`
 },
 
@@ -470,7 +470,7 @@ export const TERMES = [
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Sous le régime réel du LMNP, tu peux déduire de tes loyers imposables non seulement tes charges, mais aussi l'amortissement du bien et du mobilier — une dépréciation comptable qui ne correspond à aucune sortie d'argent réelle. Concrètement, cela permet souvent de ramener l'impôt sur les loyers perçus proche de zéro pendant de nombreuses années.`,
   sectionsOptionnelles:[
-    {titre:`🔀 Régime micro-BIC ou réel ?`, contenu:`Pour une location meublée classique, le micro-BIC applique en principe un abattement forfaitaire de 50% ; le régime réel permet de déduire les charges et certains amortissements, sous conditions. Les meublés de tourisme non classés suivent un autre seuil et un autre taux d'abattement.`}
+    {titre:`🔀 Régime micro-BIC ou réel ?`, contenu:`Pour une location meublée de longue durée, le micro-BIC applique en principe un abattement forfaitaire de ${n('lmnpAllowance')}%, avec un seuil de recettes de ${n('lmnpCeiling')}€ pour les revenus ${R.lmnpRevenueYear} ; le régime réel permet de déduire les charges et certains amortissements, sous conditions. Les meublés de tourisme non classés suivent un autre seuil et un autre taux d'abattement.`}
   ],
   attention:`Pour les ventes depuis le 15 février 2025, les amortissements immobiliers fiscalement déduits diminuent en principe le prix d'acquisition retenu pour calculer la plus-value. Certaines résidences de services sont exclues de cette réintégration : vérifie le type de résidence et les amortissements concernés avant de chiffrer une vente.`,
   fraisTitre:`💰 Fiscalité`,
@@ -676,10 +676,10 @@ export const TERMES = [
   intro:`À la vente d’un bien immobilier, le gain éventuel suit des règles fiscales différentes selon le bien et sa durée de détention.`,
   definitionContenu:`Un bien acheté 200 000€ et revendu 280 000€ dix ans plus tard dégage une plus-value brute de 80 000€, avant application des abattements liés à la durée de détention.`,
   calculTitre:`🧮 Comment ça se calcule ?`,
-  calculContenu:`Hors exonération, le taux de base est de 19% d'impôt sur le revenu et 17,2% de prélèvements sociaux. Des abattements distincts s'appliquent à la plus-value imposable selon la durée de détention : exonération d'impôt sur le revenu après 22 ans et de prélèvements sociaux après 30 ans. Une surtaxe peut aussi concerner certaines plus-values élevées.`,
+  calculContenu:`Hors exonération, le taux de base est de ${n('propertyIncome')}% d'impôt sur le revenu et ${n('propertySocial')}% de prélèvements sociaux. Des abattements distincts s'appliquent à la plus-value imposable selon la durée de détention : exonération d'impôt sur le revenu après ${n('propertyIncomeYears')} ans et de prélèvements sociaux après ${n('propertySocialYears')} ans. Une surtaxe peut aussi concerner certaines plus-values élevées.`,
   nuance:{titre:`🔀 Résidence principale`, contenu:`La résidence principale bénéficie d'une exonération totale de plus-value immobilière, quelle que soit la durée de détention, contrairement à un investissement locatif ou une résidence secondaire.`},
   pourquoiImportant:`La durée de détention change radicalement la fiscalité d'une revente immobilière — revendre un an trop tôt ou trop tard peut représenter plusieurs milliers d'euros de différence.`,
-  erreurFrequente:`On oublie souvent que les abattements pour durée de détention ne suivent pas le même rythme pour l'impôt sur le revenu (exonéré après 22 ans) que pour les prélèvements sociaux (exonérés après 30 ans) — les deux se calculent séparément.`,
+  erreurFrequente:`On oublie souvent que les abattements pour durée de détention ne suivent pas le même rythme pour l'impôt sur le revenu (exonéré après ${n('propertyIncomeYears')} ans) que pour les prélèvements sociaux (exonérés après ${n('propertySocialYears')} ans) — les deux se calculent séparément.`,
   aRetenir:`Commence par vérifier si la vente bénéficie d’une exonération, notamment pour la résidence principale, avant de calculer les abattements de durée.`
 },
 

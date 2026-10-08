@@ -343,8 +343,9 @@ def discover_acpr_sitemap():
 
 def discover_acpr():
     errors = []
-    catalogues = [ACPR+'/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses',
-                  ACPR+'/fr/publications-et-statistiques/etudes-et-recherche']
+    catalogues = [ACPR+'/fr/publications-et-statistiques/etudes-et-recherche',
+                  ACPR+'/fr/publications-acpr',
+                  ACPR+'/fr/publications-acpr/etudes-et-recherches/analyses-et-syntheses']
     for catalogue in catalogues:
         try:
             soup = BeautifulSoup(official_download(catalogue), 'html.parser')
@@ -355,7 +356,8 @@ def discover_acpr():
             year, url = max(matches)
             page = BeautifulSoup(official_download(url), 'html.parser')
             pdfs = sorted({urllib.parse.urljoin(ACPR,a['href']) for a in page.find_all('a',href=True)
-                           if re.search(r'AS\d+_revalorisation_'+str(year)+r'\.pdf$',a['href'],re.I)})
+                           if urllib.parse.urljoin(ACPR,a['href']).startswith(ACPR+'/system/files/')
+                           and re.search(r'AS\d+_revalorisation_'+str(year)+r'\.pdf$',a['href'],re.I)})
             return unique(pdfs,'PDF ACPR ambigu/absent')
         except Exception as error:
             errors.append(str(error))

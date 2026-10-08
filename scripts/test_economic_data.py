@@ -49,6 +49,17 @@ class EconomicDataTests(unittest.TestCase):
  def test_funds_population(self):
   text='Contrats individuels : nets de prélèvements sur encours, avant prélèvements sociaux. Taux de revalorisation en 2025 : 2,63 %. Contrats collectifs : taux de revalorisation en 2025 : 2,64 %.'
   with patch.object(c,'pdf_text',return_value=text): self.assertEqual(c.parse_funds_euros(b'pdf','url','2026-10-07')['value'],2.63)
+ def test_acpr_publication_catalogue_fallback(self):
+  landing=c.ACPR+'/fr/publications-et-statistiques/publications/ndeg-182-revalorisation-2026-des-contrats-dassurance-vie'
+  pdf=c.ACPR+'/system/files/2027-06/20270630_AS182_revalorisation_2026.pdf'
+  def fetch(url):
+   if url.endswith('/fr/publications-et-statistiques/etudes-et-recherche'):raise ValueError('catalogue inaccessible')
+   if url.endswith('/fr/publications-acpr'):return f'<a href="{landing}">Rapport</a>'.encode()
+   if url==landing:return f'<a href="{pdf}">PDF</a>'.encode()
+   raise AssertionError(url)
+  with patch.object(c,'official_download',side_effect=fetch):self.assertEqual(c.discover_acpr(),pdf)
+  with patch.object(c,'pdf_text',return_value='Contrats individuels : nets de prélèvements sur encours, avant prélèvements sociaux. Taux de revalorisation en 2026 : 2,7 %.'):
+   with self.assertRaises(ValueError):c.parse_funds_euros(b'pdf',pdf,'2026-10-08')
  def test_merge_is_atomic_and_rejects_regression(self):
   state={'households':{'one':{'year':2025,'value':10}}};before=copy.deepcopy(state)
   with self.assertRaises(ValueError): c.merge(state,'households',{'two':{'year':2025,'value':20},'one':{'year':2024,'value':5}})

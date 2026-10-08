@@ -6,7 +6,7 @@ Ce lot est séparé de la PR #353, sur laquelle il repose pour le taux du Livret
 |---|---|---|
 | 3 — QYLD UCITS distribuant IE00BM8R0J59 | Sources officielles retestées ; calendrier annuel et expositions économiques encore non qualifiés | Obtenir une publication attribuant explicitement les données à cette part et à son exposition économique |
 | 4 — Russell 1000, Global Dividend Aristocrats Quality Income, Euro High Yield Dividend Aristocrats | Trois compositions exactes encore non automatisées | Une source officielle exploitable doit publier les pondérations numériques du benchmark exact |
-| 5 — paramètres fiscaux et plafonds utilisés | Huit publications DILA raccordées ; exemples recalculés ; taux LDDS automatisé et Livret A de #353 utilisé dans le lexique | Paramètres restants : PEE/PER et fiscalité immobilière ; les durées et autres conditions juridiques restent éditoriales |
+| 5 — paramètres fiscaux et plafonds utilisés | Huit publications DILA raccordées ; exemples recalculés ; taux LDDS automatisé et Livret A de #353 utilisé dans le lexique | PEE, PER et paramètres immobiliers raccordés par la seconde passe du 8 octobre ; règles qualitatives et exceptions encore éditoriales |
 | 5 — courtiers | Sept barèmes qualifiés, compléments de change/garde/transfert et deux offres Saxo ; voir [bilan du 8 octobre](broker-automation-2026-10-08.md) | Bourse Direct inaccessible ; champs et conditions restant à qualifier détaillés dans le bilan |
 | 5 — SCPI et fonds euros individuels | Aucun contrat ou SCPI nommé utilisé dans les séries actives de ce périmètre | Les moyennes ASPIM/ACPR relèvent de #353 ; les exemples fictifs restent des hypothèses pédagogiques |
 

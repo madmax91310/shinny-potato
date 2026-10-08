@@ -151,6 +151,10 @@ def parse(name,s,today,previous=None):
  return result
 
 SUPPLEMENT_SOURCES={
+ 'tr_direct':('tr','directPrice','https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c'),
+ 'saxo_transfer':('saxo','entrant','https://www.home.saxo/fr-fr/accounts/pea'),
+ 'tr_garde_cto':('tr','gardeCto','https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account'),
+ 'tr_transfer_cto':('tr','sortantCto','https://support.traderepublic.com/fr-fr/825-How-long-does-a-securities-account-transfer-from-Trade-Republic-to-a-third_party-custody-account-take'),
  'ibkr_pea_garde':('ibkr','garde','https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php'),
  'ibkr_pea_transfer':('ibkr','sortant','https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php'),
  'ibkr_fx':('ibkr','change','https://www.interactivebrokers.ie/fr/pricing/commissions-spot-currencies.php'),
@@ -162,7 +166,30 @@ SUPPLEMENT_SOURCES={
 def parse_supplement(key,s,today):
  broker,field,url=SUPPLEMENT_SOURCES[key];s=BeautifulSoup(s,'html.parser').get_text(' ',strip=True).replace('\xa0',' ')
  meta=metadata(s,url,today);v={};end=None;start=None
- if key in ('ibkr_pea_garde','ibkr_pea_transfer'):
+ if key=='tr_direct':
+  require(s,'Direct Price','Disponible pour les actions et les ETF','frais de règlement standard','frais de place')
+  total=get(r'Chaque transaction coûte ([\d,]+) €',s)
+  standard=get(r'frais de règlement standard de ([\d,]+) €',s)
+  venue=get(r'frais de place de ([\d,]+) €',s)
+  if abs(total-standard-venue)>.001:raise ValueError('Somme des frais Direct Price incohérente')
+  v={'fee':total,'standardFee':standard,'venueFee':venue}
+  full=f'Direct Price : {fmt(total)} € par transaction, dont {fmt(standard)} € de règlement et {fmt(venue)} € de place. Spread, conversion et autres coûts possibles.'
+ elif key=='saxo_transfer':
+  require(s,'transfert total de PEA','uniquement pour un transfert de PEA','preuve de facturation','dans le mois suivant le débit','résidant fiscalement en France')
+  cap=get(r'rembourse 100% des frais de transfert dans la limite de ([\d]+)€',s)
+  d=re.search(r'promotion s’étend du (\d+) (\w+) (\d{4}) au (\d+) (\w+) (\d{4}) inclus',s)
+  if not d:raise ValueError('Période remboursement Saxo absente')
+  start=dt.date(int(d[3]),MONTHS[d[2]],int(d[1])).isoformat();end=dt.date(int(d[6]),MONTHS[d[5]],int(d[4])).isoformat()
+  days=get(r'au plus tard dans les ([\d]+) jours à compter de la date de réception',s)
+  v={'maximum':cap,'paymentDays':days,'requestMonths':1}
+  full=f"Possible ✅ Transfert total de PEA : frais remboursés jusqu’à {fmt(cap)} € jusqu’au {int(d[4])} {d[5]} {d[6]}, sous conditions. Dossier finalisé avant l’échéance ; justificatif dans le mois suivant le débit, remboursement sous {fmt(days)} jours après réception."
+ elif key=='tr_garde_cto':
+  require(s,'L’ouverture d’un compte-titres est totalement gratuite','Il n’y a pas de frais de garde')
+  v={'fee':0};full='Compte-titres : aucun frais de garde annoncé. Cette page ne qualifie pas les frais du PEA.'
+ elif key=='tr_transfer_cto':
+  require(s,'transfert de compte titres','Trade Republic ne vous facturera pas de frais pour le transfert',"des frais de tiers peuvent s'appliquer")
+  v={'fee':0};full='Compte-titres : aucun frais de transfert facturé par Trade Republic ; frais de tiers possibles. Cette page ne qualifie pas le transfert PEA.'
+ elif key in ('ibkr_pea_garde','ibkr_pea_transfer'):
   require(s,"Pas de frais d'ouverture du PEA, ni de frais de tenue de compte ou de frais de transfert.",'Pas de droits de garde','Pas de frais de transfert','Pas de frais de tenue de compte')
   v={'fee':0}
   full='Aucun droit de garde ni frais de tenue de compte PEA annoncés.' if field=='garde' else '0 € annoncé par IBKR.'
@@ -204,6 +231,7 @@ def parse_supplement(key,s,today):
  if end:
   if start and start>end:raise ValueError('Période offre inversée')
   result.update(until=end,start=start)
+  if key=='saxo_transfer':result['after']='Transfert PEA possible ✅ Offre de remboursement expirée ; aucun remboursement en cours confirmé.'
  return broker,field,result
 
 def base_supplements(name,s,observation):

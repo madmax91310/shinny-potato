@@ -31,9 +31,11 @@ Tests des consommateurs pour les sept courtiers, tous les compléments et l’ex
 
 ## Reste à faire
 
+Actualisation : la [seconde passe du 8 octobre](automation-brokers-fiscal-2026-10-08.md) raccorde Direct Price, l'offre de transfert Saxo et deux preuves CTO Trade Republic. La couverture passe à 24 compléments ; les limites PEA des preuves CTO restent explicites.
+
 - Rétablir un téléchargement officiel exploitable de Bourse Direct et qualifier réellement son connecteur avant d’ajouter une observation automatisée.
-- Qualifier Direct Price, garde et transferts Trade Republic ; change boursier Crédit Agricole Île-de-France.
-- Étendre la collecte aux conditions de transfert entrant Saxo/XTB/Crédit Agricole et aux autres offres, avec leur portée et leurs justificatifs.
+- Qualifier la garde et les transferts PEA Trade Republic au-delà des preuves CTO ; change boursier Crédit Agricole Île-de-France.
+- Étendre la collecte aux conditions de transfert entrant XTB/Crédit Agricole et aux autres offres, avec leur portée et leurs justificatifs.
 - Les conditions PEA/PEA-PME/Jeune, IFU, cash et disponibilité des investissements programmés restent suivies dans les preuves éditoriales. Elles ne sont pas recertifiées par une brochure de frais.
 
-Les autres chantiers de la roadmap générale restent distincts : ACPR, PEE/PER et fiscalité immobilière, QYLD distribuant, compositions exactes de trois indices et historiques des parts récentes.
+Les autres chantiers de la roadmap générale restent distincts : règles fiscales qualitatives et exceptions, QYLD distribuant, compositions exactes de trois indices et historiques des parts récentes.

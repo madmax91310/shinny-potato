@@ -50,6 +50,13 @@ class BrokerTariffTests(unittest.TestCase):
   self.assertEqual(results['saxo_offer']['until'],'2026-12-31')
   self.assertEqual(results['saxo_offer']['start'],'2026-02-23')
   self.assertEqual(results['saxo_amundi']['values']['transferLockMonths'],6)
+  self.assertEqual(results['saxo_transfer']['values']['maximum'],150)
+  self.assertEqual(results['saxo_transfer']['until'],'2026-12-31')
+  self.assertEqual(results['tr_garde_cto']['values']['fee'],0)
+  self.assertEqual(results['tr_direct']['values'],{'fee':2,'standardFee':1,'venueFee':1})
+  with self.assertRaises(ValueError):parse_supplement('tr_direct',fixture('tr_direct.txt').replace('2 €','3 €'),TODAY)
+  self.assertIn('ne qualifie pas',results['tr_transfer_cto']['copy']['full'])
+  with self.assertRaises(ValueError):parse_supplement('saxo_transfer',fixture('saxo_transfer.txt').replace('facturation','inconnu'),TODAY)
  def test_source_failure_retains_independent_fields_and_recovers(self):
   baseline={'schemaVersion':1,'brokers':{'saxo':{'asOf':'2026-05-05','checkedAt':'2026-10-01','fields':{'offerPea':{'copy':{'full':'previous qualified offer'}}}}}}
   original=copy.deepcopy(baseline)

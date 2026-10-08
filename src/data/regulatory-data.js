@@ -15,4 +15,6 @@ export const REGULATORY_LEXICON_SOURCES = {
   'assurance-vie': ['av'], 'livret-a': ['livret'], ldds: ['ldds'],
   dividende: ['dividends'], 'flat-tax': ['cto', 'dividends', 'av'],
   'abattement-pea': ['social'], 'prelevements-sociaux': ['cto', 'av'],
+  per: ['per'], 'pee-perco': ['pee'], lmnp: ['lmnp', 'property'],
+  'rendement-locatif': ['rent'], 'plus-value-immobiliere': ['property'],
 }
