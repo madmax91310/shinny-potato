@@ -1,8 +1,6 @@
 import copy
 import pathlib
 import unittest
-import urllib.error
-import types
 from unittest.mock import patch
 import collect_economic_data as c
 
@@ -79,23 +77,25 @@ class EconomicDataTests(unittest.TestCase):
   # An unrelated official report or a third-party PDF cannot recertify this series.
   with patch.object(c,'official_download',return_value=b'<a href="https://example.com/AS180_revalorisation_2025.pdf">PDF</a>'):
    with self.assertRaises(ValueError):c.discover_acpr()
- def test_public_403_uses_bounded_system_client(self):
-  url=c.ACPR+'/fr/publications-et-statistiques/etudes-et-recherche'
-  def client(args,**kwargs):
-   self.assertIn('--fail',args);self.assertIn('--max-filesize',args)
-   self.assertEqual(args[args.index('--proto-redir')+1],'=https')
-   self.assertNotIn('--insecure',args);self.assertEqual(args[-1],url)
-   pathlib.Path(args[args.index('--output')+1]).write_bytes(b'<html>Official catalogue</html>')
-   return types.SimpleNamespace(returncode=0,stderr=b'')
-  with patch.object(c,'download',side_effect=urllib.error.HTTPError(url,403,'Forbidden',{},None)),patch.object(c.subprocess,'run',side_effect=client):
-   self.assertEqual(c.official_download(url),b'<html>Official catalogue</html>')
-  with patch.object(c,'download',side_effect=urllib.error.HTTPError(url,403,'Forbidden',{},None)),patch.object(c.subprocess,'run',side_effect=client):
-   with self.assertRaises(ValueError):c.official_download(url,max_bytes=1)
- def test_system_client_failure_and_other_domains_remain_failures(self):
-  url=c.ACPR+'/sitemap.xml'
-  with patch.object(c,'download',side_effect=urllib.error.HTTPError(url,403,'Forbidden',{},None)),patch.object(c.subprocess,'run',return_value=types.SimpleNamespace(returncode=22,stderr=b'HTTP 403')):
-   with self.assertRaises(ValueError):c.official_download(url)
-  with patch.object(c,'download',side_effect=urllib.error.HTTPError(url,403,'Forbidden',{},None)),patch.object(c.subprocess,'run') as client:
-   with self.assertRaises(ValueError):c.official_download('https://example.com/catalogue')
-   client.assert_not_called()
+ def test_latest_complete_year_download_can_survive_discovery_failure(self):
+  url=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
+  baseline={'fonds_euros:2025':{'year':2025,'value':2.63,'sourceUrl':url}}
+  with patch.object(c,'discover_acpr',side_effect=ValueError('HTTP 403')),patch.object(c,'official_download',return_value=b'new pdf') as fetch,patch.object(c,'pdf_text',return_value='Contrats individuels : nets de prélèvements sur encours, avant prélèvements sociaux. Taux de revalorisation en 2025 : 2,7 %.'):
+   o=c.collect_funds_euros('2026-10-08',baseline)
+   fetch.assert_called_once_with(url);self.assertEqual(o['value'],2.7)
+   self.assertEqual(o['discoveryStatus'],'latest-complete-year-revalidated')
+   with self.assertRaises(ValueError):c.collect_funds_euros('2027-01-01',baseline)
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',{})
+ def test_funds_fallback_does_not_mask_download_failure_or_new_report_failure(self):
+  url=c.ACPR+'/system/files/2026-06/20260630_AS180_revalorisation_2025.pdf'
+  baseline={'fonds_euros:2025':{'year':2025,'sourceUrl':url}}
+  with patch.object(c,'discover_acpr',side_effect=ValueError('HTTP 403')),patch.object(c,'official_download',side_effect=ValueError('PDF blocked')):
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',baseline)
+  with patch.object(c,'discover_acpr',return_value='new official report'),patch.object(c,'official_download',side_effect=ValueError('PDF blocked')) as fetch:
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',baseline)
+   fetch.assert_called_once_with('new official report')
+  baseline['fonds_euros:2025']['sourceUrl']='https://example.com/report.pdf'
+  with patch.object(c,'discover_acpr',side_effect=ValueError('HTTP 403')),patch.object(c,'official_download') as fetch:
+   with self.assertRaises(ValueError):c.collect_funds_euros('2026-10-08',baseline)
+   fetch.assert_not_called()
 if __name__=='__main__':unittest.main()

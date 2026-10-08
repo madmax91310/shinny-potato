@@ -10,10 +10,7 @@ import hashlib
 import json
 import pathlib
 import re
-import subprocess
-import tempfile
 import unicodedata
-import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -311,6 +308,32 @@ def parse_funds_euros(body, source_url, today):
     return {'year':year,'value':value,'checkedAt':today,'sourceUrl':source_url,'method':'ACPR contrats individuels, net de prélèvements sur encours, avant prélèvements sociaux','sha256':hashlib.sha256(body).hexdigest()}
 
 
+def collect_funds_euros(today, previous):
+    discovery_error=None
+    try:
+        url=discover_acpr()
+    except Exception as error:
+        # A known report can cover the latest possible complete calendar year.
+        # Re-download it rather than interpreting inaccessible catalogues as a
+        # failed data download. Once its year is older, discovery is mandatory.
+        observations=[o for key,o in previous.items() if key.startswith('fonds_euros:')]
+        latest=max(observations,key=lambda o:o['year'],default=None)
+        require(latest is not None and latest['year']==int(today[:4])-1,
+                f'Découverte ACPR obligatoire pour un nouveau millésime : {error}')
+        url=latest['sourceUrl']
+        parsed=urllib.parse.urlparse(url)
+        require(parsed.scheme=='https' and parsed.hostname=='acpr.banque-france.fr'
+                and parsed.path.startswith('/system/files/'), 'URL de rapport ACPR non qualifiée')
+        discovery_error=str(error)
+    observation=parse_funds_euros(official_download(url),url,today)
+    if discovery_error:
+        require(observation['year']==int(today[:4])-1,'Rapport de secours ACPR hors dernier millésime complet')
+        observation['discoveryStatus']='latest-complete-year-revalidated'
+        observation['discoveryNote']='Catalogue indisponible ; dernier millésime annuel complet téléchargé et revalidé sur son URL officielle.'
+        print('ACPR : catalogue indisponible ; PDF officiel du dernier millésime annuel complet revalidé.',flush=True)
+    return observation
+
+
 def official_download(url, max_bytes=8_000_000):
     # Use standard public-page negotiation on Banque de France / ACPR Drupal.
     # Other collectors retain their existing document request conventions.
@@ -320,25 +343,6 @@ def official_download(url, max_bytes=8_000_000):
             'Accept-Language': 'fr-FR,fr;q=0.9,en;q=0.8',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf,*/*;q=0.8',
         })
-    except urllib.error.HTTPError as error:
-        # Some public Drupal documents reject urllib's TLS/request stack on
-        # hosted runners. Try the same HTTPS URL with the system HTTP client.
-        # No authentication, proxy service, or disabled certificate verification.
-        if error.code != 403 or urllib.parse.urlparse(url).hostname not in ('acpr.banque-france.fr','www.banque-france.fr'):
-            raise ValueError(f'{url}: {error}') from error
-        try:
-            with tempfile.TemporaryDirectory() as folder:
-                path=pathlib.Path(folder)/'official-document'
-                result=subprocess.run(['curl','--fail','--silent','--show-error','--location',
-                    '--proto','=https','--proto-redir','=https','--max-redirs','5','--max-time','25',
-                    '--max-filesize',str(max_bytes),'--user-agent','Mozilla/5.0',
-                    '--header','Accept-Language: fr-FR,fr;q=0.9,en;q=0.8',
-                    '--output',str(path),url],capture_output=True,timeout=30)
-                require(result.returncode==0,'Client HTTP système : '+result.stderr.decode('utf-8',errors='replace')[:300])
-                require(path.stat().st_size<=max_bytes,'Document officiel trop volumineux')
-                return path.read_bytes()
-        except Exception as fallback_error:
-            raise ValueError(f'{url}: {error}; {fallback_error}') from fallback_error
     except Exception as error:
         raise ValueError(f'{url}: {error}') from error
 
@@ -468,7 +472,7 @@ def main():
         jobs.append(('livret-a',lambda:('savings',{'livret_a':collect_savings(today)})))
     if args.family in (None,'fonds_euros'):
         def funds():
-            url=discover_acpr();o=parse_funds_euros(official_download(url),url,today)
+            o=collect_funds_euros(today,state.get('benchmarks',{}))
             return 'benchmarks',{'fonds_euros:'+str(o['year']):o}
         jobs.append(('fonds-euros',funds))
     if args.family in (None,'scpi'):
