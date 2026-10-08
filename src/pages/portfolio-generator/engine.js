@@ -1,12 +1,11 @@
 import { benchmarkKey } from '../../data/asset-selection.js';
-import { compactRole, portfolioAssetLabel, compactHooks } from "./compact.js";
+import { portfolioPostEditorial, portfolioPostName } from './postEditorial.js';
 import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
 import { computeYearlyPerf, performanceExcerpt, performanceYears, assetReturn } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
 } from "./theses.js";
-import { DISCLAIMER } from "./copy.js";
 import { exposureVector, exposureSignature, exposureDistance } from "./exposures.js";
 import { getRecipes, withinRecipe } from "./recipes.js";
 import { buildEditorial } from "./editorial.js";
@@ -395,14 +394,14 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
 export function renderTweetText(p) {
   // Rebuild from the actual holdings as saved history can contain the old copy.
   const index = Number(p.hookId?.match(/-(\d+)$/)?.[1] ?? 0) % 3;
-  const blocks = [compactHooks(p.selection)[index], '💼 La répartition'];
+  const editorial = portfolioPostEditorial(p.selection);
+  const blocks = [editorial.hooks[index], '💼 La répartition'];
   // Sort a copy: recipe slots and replacements still rely on the stored order.
   const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
-  blocks.push(ordered.map(s => `${s.emoji} ${s.pct}% ${portfolioAssetLabel(s)}\n${compactRole(s, p.selection)}`).join("\n\n"));
-  if (p.selection.some(s => ["lqq", "cl2"].includes(s.id))) blocks.push("Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.");
+  blocks.push(ordered.map(s => `${s.emoji} ${s.pct}% ${portfolioPostName(s)}`).join("\n"));
   blocks.push(performanceExcerpt(p.perf));
+  blocks.push(`📌 ${editorial.thesis}`);
   blocks.push('💬 Que penses-tu de ce portefeuille ?');
-  blocks.push(DISCLAIMER);
   return blocks.join("\n\n");
 }
 
@@ -445,3 +444,4 @@ export function replacePortfolioAsset(portfolio, assetId, replacementId, history
     context: boostedYearLine(selection, perf) || msciComparisonLine(selection, perf) || '',
     contextFallbackPick: null, ...buildEditorial(selection, history, portfolio.profileId, portfolio.riskId) };
 }
+

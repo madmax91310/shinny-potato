@@ -36,8 +36,9 @@ export function performanceExcerpt(perf) {
   const annualized = annualizedReturn(perf)
   return [
     '📈 Performances annuelles simulées',
-    ...YEARS.map(year => `${year} : ${formatPerformance(perf?.[year])}`),
+    ...YEARS.map(year => `${Number.isFinite(perf?.[year]) ? perf[year] >= 0 ? '🟢 ' : '🔴 ' : ''}${year} : ${formatPerformance(perf?.[year])}`),
     '',
     `📊 Performance annualisée (${YEARS[0]} à ${YEARS.at(-1)}) : ${formatPerformance(annualized)}${annualized === null ? '' : ' par an'}`,
   ].join('\n')
 }
+
