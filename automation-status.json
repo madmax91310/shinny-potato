@@ -81,15 +81,20 @@
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 37683769729,
+      "runId": 37732390142,
       "attempt": 1,
-      "completedAt": "2026-10-07T20:56:27Z",
-      "status": "success",
+      "completedAt": "2026-10-08T05:37:54Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-07T20:56:27Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37683769729",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37732390142",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une collecte réglementaire a échoué. Les dernières valeurs validées restent disponibles. Consulter regulatory-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-07T20:56:27Z"
+  "updatedAt": "2026-10-08T05:37:54Z"
 }
