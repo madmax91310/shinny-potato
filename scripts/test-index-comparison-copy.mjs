@@ -5,12 +5,12 @@ import { getIndexComparisonPerformance } from '../src/data/index-comparison-perf
 import { buildTweetText, fmtPct } from '../src/pages/index-comparator/lib.js'
 const world = FAMILIES.find(f => f.id === 'monde')
 const text = buildTweetText(world)
-assert(text.startsWith('🌍 Quand tu as un ETF « World », tu as l’impression de couvrir toute la planète.'))
-assert(text.includes('On décrypte les trois 👇'))
+assert(text.startsWith('Tu veux investir dans le monde entier. Tu prends un ETF World… mais une partie des marchés reste dehors.'))
+assert(text.includes('MSCI World, ACWI ou FTSE All-World : qu’est-ce que tu achètes en plus avec les deux autres ?'))
 for (const index of world.indices) assert(text.includes(`${index.name} : ${index.indexFacts.constituents.toLocaleString('fr-FR').replaceAll('\u202f', ' ')} valeurs`))
 assert(text.includes('📈 Les performances des trois indices, en dollars et dividendes réinvestis :'))
 assert(text.includes('🔵 MSCI ACWI\n2023 : +22,81 % · 2024 : +18,02 % · 2025 : +22,87 %'))
-assert(text.endsWith('💬 Tu as une préférence entre ces indices ?'))
+assert(text.endsWith('💬 Tu as choisi lequel pour ton portefeuille ?'))
 assert(!/GPEA, lancé|Fonds trop récent|performances en euros|frais du fonds inclus|parts ou actifs/.test(text))
 // Le changement d’un rendement de part ne doit jamais changer celui de l’indice.
 assert.equal(buildTweetText({ ...world, perfFunds: [{ key: 'fake', label: 'FAUX ETF', y2023: 999 }] }), text)
@@ -34,8 +34,8 @@ for (const family of FAMILIES) {
   assert(buildTweetText(family, { [key]: { ytdEnabled: true, ytd: 0 } }).includes('YTD saisi : +0,00 %'))
 }
 const segments = buildTweetText(FAMILIES.find(f => f.id === 'monde-segments'))
-assert(segments.startsWith('🌍 Avec un ETF World, tu investis dans plus de 1 200 entreprises.'))
-assert(segments.includes('Regardons ce qu’ils changent dans ton portefeuille 👇'))
+assert(segments.startsWith('Tu as déjà un ETF World. Tu veux moins d’États-Unis ou davantage de petites entreprises ?'))
+assert(segments.includes('World, World ex USA et World Small Cap : voici ce que chaque ligne change, avec les ETF disponibles et leurs performances 👇'))
 assert.equal((segments.match(/CTO · Non éligible au PEA/g) ?? []).length, 2)
 // Version prix EUR explicite, sans écraser la version nette utilisée par les fiches.
 assert.equal(INDEX_RETURNS.mscieurope['2026-08-31'].values.find(([year]) => year === 2025)[1], 19.39)
