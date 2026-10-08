@@ -19,6 +19,7 @@ on:
       - 'scripts/test_issuer_reliability.py'
       - 'scripts/collect_document_etf.py'
       - 'scripts/download-vaneck-document.mjs'
+      - 'scripts/*vaneck*.mjs'
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/collect_public_issuer.py'
       - 'scripts/collect_tracked_exposure.py'
@@ -54,6 +55,7 @@ on:
       - 'scripts/data_automation.py'
       - 'scripts/test_issuer_reliability.py'
       - 'scripts/download-vaneck-document.mjs'
+      - 'scripts/*vaneck*.mjs'
       - 'scripts/test_source_documents.py'
       - 'scripts/test_document_etf.py'
       - 'scripts/collect_document_etf.py'
@@ -114,6 +116,7 @@ jobs:
           node-version: 20
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
+      - run: node scripts/test-vaneck-document.mjs
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_bnp_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_field_completion.py'

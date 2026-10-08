@@ -1,24 +1,20 @@
 // Public issuer documents occasionally require JavaScript to initialise regional cookies.
 import { chromium } from 'playwright';
 import { existsSync } from 'node:fs';
-const url = new URL(process.argv[2]);
-if (url.protocol !== 'https:' || url.hostname !== 'www.vaneck.com'
-    || !/^\/(?:ucits|[a-z]{2}\/en)\/library\/fact-sheets\/[a-z0-9]+-fact-sheet\.pdf$/.test(url.pathname)) {
-  throw new Error('Unsupported official VanEck document URL');
-}
-const executablePath = ['/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
-const browser = await chromium.launch(executablePath ? { executablePath } : {});
+import { officialDocument, requestDocument } from './vaneck-document.mjs';
+const url = officialDocument(process.argv[2]);
+const executablePath = [process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH, '/usr/bin/google-chrome', '/usr/bin/chromium'].filter(Boolean).find(existsSync);
+const browser = await chromium.launch({ ...(executablePath ? { executablePath } : {}),
+  ...(process.env.HTTPS_PROXY ? { proxy: { server: process.env.HTTPS_PROXY } } : {}) });
 try {
   const context = await browser.newContext();
   const page = await context.newPage();
   const userAgent = await page.evaluate(() => navigator.userAgent);
-  let response = await context.request.get(url.href, { timeout: 15000, headers: { 'User-Agent': userAgent } });
-  let body = await response.body();
-  if (!body.subarray(0, 5).equals(Buffer.from('%PDF-'))) {
-    const landing = new URL(response.url());
-    if (landing.hostname !== url.hostname || landing.protocol !== 'https:') throw new Error('Unexpected issuer redirect');
-    await page.goto(landing.href, { waitUntil: 'domcontentloaded', timeout: 15000 });
-    await page.waitForTimeout(1500);
+  const headers = { 'User-Agent': userAgent };
+  let result = await requestDocument(context.request, url.href, url, headers);
+  if (result.gate) {
+    const gate = result.gate;
+    await page.goto(gate.landing, { waitUntil: 'domcontentloaded', timeout: 15000 });
     const continuation = page.getByRole('button', { name: 'Accept & Continue', exact: true });
     // The regional gate can render after DOMContentLoaded; isVisible() does not wait.
     const gateReady = await continuation.waitFor({ state: 'visible', timeout: 10000 }).then(() => true, () => false);
@@ -30,18 +26,10 @@ try {
       await continuation.click({ timeout: 5000, noWaitAfter: true });
       await page.waitForTimeout(500);
     }
-    response = await context.request.get(url.href, { timeout: 15000, headers: { 'User-Agent': userAgent } });
-    body = await response.body();
+    result = await requestDocument(context.request, gate.document, url, headers);
   }
-  if (!response.ok() || body.length > 8_000_000 || !body.subarray(0, 5).equals(Buffer.from('%PDF-'))) {
-    const state = await page.evaluate(() => ({
-      text: document.body.innerText.slice(0, 1000),
-      buttons: [...document.querySelectorAll('button, input[type="button"], input[type="submit"]')].map(b => b.innerText || b.value).filter(Boolean).slice(0, 35),
-      fields: [...document.querySelectorAll('input, select')].map(e => ({name:e.name, type:e.type, id:e.id})).filter(e => e.id || e.name).slice(0, 20),
-    }));
-    throw new Error(`Public region state: ${JSON.stringify(state)}; Official VanEck document still unavailable after browser initialisation: ${response.status()} ${response.url()}`);
-  }
-  process.stdout.write(body);
+  if (!result.body) throw new Error('Official VanEck regional gate still active');
+  process.stdout.write(result.body);
 } finally {
   await browser.close();
 }

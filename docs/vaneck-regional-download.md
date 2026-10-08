@@ -1,0 +1,11 @@
+# VanEck regional factsheets
+
+On 8 October 2026, ETF run 123 (37784356798) reached a Netherlands regional gate with a doubly encoded absolute `returnUrl`. The issuer subsequently prefixed `/nl/en/` to the encoded absolute URL and returned HTTP 404. This is a reproducible URL-handling defect once that gate is encountered, even when the preceding run succeeds or the same document can be downloaded directly.
+
+The browser downloader follows HTTP redirects manually, checks every document/gate URL against the official HTTPS host and the original factsheet filename, decodes the gate target with a bounded number of passes, and sends a root-relative return path. After cookie initialisation it requests the validated regional document directly, rather than restarting the generic regional redirect. The official `?cken=true` cookie-check redirect observed on GitHub is allowed explicitly; other document query parameters are rejected. Redirect loops, foreign hosts, different factsheets and non-PDF responses fail closed. Transient network errors and 429/502/503/504 responses receive one immediate retry; a persistent 404 remains an error.
+
+The official English Netherlands GDIG factsheet was downloaded and parsed on 8 October 2026: ISIN IE00BDFBTQ78, USD base currency, document date 30 September 2026, SHA-256 `6d6743fe212609a473bdf40de4808fb6587d944f8b6e5fad9a9bb016d61c3486`. It is configured as a transport fallback because the generic `/ucits/` URL can instead select `/fr/fr/` in another region. Incompatible document content does not trigger a fallback. No third-party data source is used.
+
+A failed refresh leaves the last validated observation and its dates intact. Other validated products can still update. `report-failures` reports the partial failure; the production automation status appears in **Données à revoir** and clears after a successful production run. PR runs are deliberately excluded from the production alert feed.
+
+Regression checks: `node scripts/test-vaneck-document.mjs`, `python -m unittest discover -s scripts -p test_source_documents.py`, active/issuer refresh tests, `npm run audit:data-review`, and `scripts/test-automation-failures-ui.mjs` (real Chromium, failure and recovery).

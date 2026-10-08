@@ -96,10 +96,19 @@ def collect_one(share,now,fetch=download):
         return complement(parse_document(body,{**share,'sourceUrl':url},now),share,now,fetch)
     if fetch is not download:raise last_error
     script=pathlib.Path(__file__).with_name('download-vaneck-document.mjs')
-    result=subprocess.run(['node',str(script),share['sourceUrl']],capture_output=True,timeout=65)
-    if result.returncode:
-        reject(str(last_error)+'; browser initialisation failed: '+result.stderr.decode('utf-8',errors='replace')[-5000:])
-    return complement(parse_document(result.stdout,share,now),share,now,fetch)
+    for url in urls:
+        try:
+            result=subprocess.run(['node',str(script),url],capture_output=True,timeout=120)
+        except subprocess.TimeoutExpired as error:
+            last_error=error;continue
+        if result.returncode:
+            last_error=ValueError(str(last_error)+'; browser initialisation failed: '+result.stderr.decode('utf-8',errors='replace')[-5000:])
+            continue
+        # Identity/date/content validation remains fatal; never seek another PDF
+        # after a successful transport returned an incompatible document.
+        return complement(parse_document(result.stdout,{**share,'sourceUrl':url},now),share,now,fetch)
+    reject(str(last_error))
+
 
 
 def complement(result, share, now, fetch):

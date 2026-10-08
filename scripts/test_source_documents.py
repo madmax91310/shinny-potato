@@ -249,4 +249,45 @@ class VanEckRegionalSources(unittest.TestCase):
         self.assertEqual(calls,[share['sourceUrl']])
         with self.assertRaises(ValueError):collect_one({**share,'fallbackUrls':['https://example.com/espo-fact-sheet.pdf']},NOW,fetch)
 
+    def test_browser_retries_only_official_regional_transport(self):
+        from collect_vaneck_etf import collect_one
+        from types import SimpleNamespace
+        primary = 'https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf'
+        regional = 'https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf'
+        share = {'sourceUrl': primary, 'fallbackUrls': [regional]}
+        results = [SimpleNamespace(returncode=1, stderr=b'404'), SimpleNamespace(returncode=0, stdout=b'%PDF-valid')]
+        with patch('collect_vaneck_etf.download', side_effect=ValueError('Expected official PDF')), \
+             patch('collect_vaneck_etf.subprocess.run', side_effect=results) as browser, \
+             patch('collect_vaneck_etf.parse_document', side_effect=lambda b,s,n:s):
+            # Pass the patched default downloader explicitly to enter the browser path.
+            import collect_vaneck_etf as module
+            self.assertEqual(collect_one(share, NOW, module.download)['sourceUrl'], regional)
+            self.assertEqual([c.args[0][-1] for c in browser.call_args_list], [primary, regional])
+        with patch('collect_vaneck_etf.download', side_effect=ValueError('Expected official PDF')), \
+             patch('collect_vaneck_etf.subprocess.run', return_value=results[1]) as browser, \
+             patch('collect_vaneck_etf.parse_document', side_effect=ValueError('Wrong identity')):
+            with self.assertRaisesRegex(ValueError, 'Wrong identity'):
+                collect_one(share, NOW, module.download)
+            self.assertEqual(browser.call_count, 1)
+
+    def test_gdig_outage_preserves_last_validated_record_then_recovers(self):
+        from refresh_additional_etf import refresh
+        import copy
+        isin = 'IE00BDFBTQ78'
+        share = {'isin': isin, 'provider': 'VanEck', 'sourceUrl': 'https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf'}
+        previous = {isin: {'checkedAt': '2026-10-01', 'aum': {'amount': 123, 'asOf': '2026-09-30'}}}
+        expected = copy.deepcopy(previous)
+        for reason in ('HTTP 404', 'timeout', 'Wrong VanEck UCITS share identity'):
+            def fail(*args): raise ValueError(reason)
+            kept, report = refresh({'instruments': [share]}, previous, {}, NOW, fail)
+            self.assertEqual(kept, expected)
+            self.assertEqual(previous, expected)
+            self.assertEqual(report['shares'][0]['status'], 'failed')
+            self.assertIn(reason, report['shares'][0]['reason'])
+        with patch('refresh_additional_etf.merge_collection', return_value={isin: {'checkedAt': NOW.isoformat(), 'aum': {'amount': 456}}}):
+            updated, report = refresh({'instruments': [share]}, previous, {}, NOW, lambda *args: share)
+        self.assertEqual(updated[isin]['aum']['amount'], 456)
+        self.assertEqual(report['shares'][0]['status'], 'validated')
+        self.assertNotIn('reason', report['shares'][0])
+
 if __name__=='__main__':unittest.main()
