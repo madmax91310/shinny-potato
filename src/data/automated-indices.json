@@ -9232,9 +9232,9 @@
       ],
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
-        "checkedAt": "2026-10-07",
+        "checkedAt": "2026-10-08",
         "label": "Composition officielle automatisée · FTSE EM",
-        "sha256": "a02e8982b3cd5c58fcc80c7ed6b39207e60c21d17fee6f64eb8888fa7503892d"
+        "sha256": "82e222c8cffcc4b5dd327d6f49da33f90b4234569f655e028fc12b686ddc8fa6"
       },
       "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
     },
@@ -9664,8 +9664,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=False&issueName=AWALLE&openfile=open",
-        "checkedAt": "2026-10-07",
-        "sha256": "a02e8982b3cd5c58fcc80c7ed6b39207e60c21d17fee6f64eb8888fa7503892d",
+        "checkedAt": "2026-10-08",
+        "sha256": "82e222c8cffcc4b5dd327d6f49da33f90b4234569f655e028fc12b686ddc8fa6",
         "label": "Rendements calendaires officiels automatisés · FTSE EM"
       },
       "performance": {
@@ -10858,7 +10858,7 @@
   },
   "russell-2000": {
     "returns": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "currency": "USD",
       "variant": "TOTAL",
       "values": [
@@ -10884,21 +10884,21 @@
         ],
         [
           2020,
-          20
+          20.0
         ]
       ],
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=D41432&isManual=False",
-        "checkedAt": "2026-10-06",
-        "sha256": "9303df3bb0bb97a8dcdee6c648ed78c47c69120e54f193801ea2ed2d00cacdb1",
+        "checkedAt": "2026-10-08",
+        "sha256": "9e2d3a0e6ae8e9ce377e1edb99ae3fdf22a0930775ea91b873d998c06946320a",
         "label": "Rendements calendaires officiels automatisés · Russell 2000"
       },
       "performance": {
         "kind": "indice",
         "detail": "Russell 2000, rendement total USD, dividendes réinvestis, hors frais ETF",
-        "date": "2026-08-31"
+        "date": "2026-09-30"
       }
     },
     "returnsHistory": {
@@ -10944,6 +10944,50 @@
           "kind": "indice",
           "detail": "Russell 2000, rendement total USD, dividendes réinvestis, hors frais ETF",
           "date": "2026-08-31"
+        }
+      },
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "TOTAL",
+        "values": [
+          [
+            2025,
+            12.8
+          ],
+          [
+            2024,
+            11.5
+          ],
+          [
+            2023,
+            16.9
+          ],
+          [
+            2022,
+            -20.4
+          ],
+          [
+            2021,
+            14.8
+          ],
+          [
+            2020,
+            20.0
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?issueName=D41432&isManual=False",
+          "checkedAt": "2026-10-08",
+          "sha256": "9e2d3a0e6ae8e9ce377e1edb99ae3fdf22a0930775ea91b873d998c06946320a",
+          "label": "Rendements calendaires officiels automatisés · Russell 2000"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "Russell 2000, rendement total USD, dividendes réinvestis, hors frais ETF",
+          "date": "2026-09-30"
         }
       }
     },
@@ -12337,106 +12381,106 @@
     },
     "facts": {
       "index": "S&P 500",
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "constituents": 503,
       "countries": [
         [
           "États-Unis",
-          100
+          100.0
         ]
       ],
       "sectors": [
         [
           "Énergie",
-          3.4
+          3.39
         ],
         [
           "Matériaux",
-          1.84
+          1.71
         ],
         [
           "Industrie",
-          8.38
+          8.13
         ],
         [
           "Conso Cyclique",
-          9.18
+          8.57
         ],
         [
           "Conso non Cyclique",
-          4.5
+          4.43
         ],
         [
           "Santé",
-          9.29
+          9.36
         ],
         [
           "Finance",
-          12.34
+          11.51
         ],
         [
           "Technologies de l'info.",
-          37.63
+          39.37
         ],
         [
           "Services de communication",
-          9.62
+          9.93
         ],
         [
           "Services publics",
-          2
+          1.89
         ],
         [
           "Immobilier",
-          1.81
+          1.71
         ]
       ],
       "holdings": [
         [
           "NVIDIA CORP",
-          7.94
+          8.32
         ],
         [
           "APPLE INC",
-          7.08
+          7.27
         ],
         [
           "MICROSOFT CORP",
-          5.75
+          5.72
         ],
         [
           "AMAZON.COM INC",
-          3.93
+          3.66
         ],
         [
           "ALPHABET INC CL A",
-          3.06
+          3.03
         ],
         [
           "BROADCOM INC",
-          2.63
-        ],
-        [
-          "ALPHABET INC CL C",
-          2.44
+          2.56
         ],
         [
           "META PLATFORMS INC-CLASS A",
-          1.91
+          2.46
+        ],
+        [
+          "ALPHABET INC CL C",
+          2.43
         ],
         [
           "MICRON TECHNOLOGY INC",
-          1.59
+          1.82
         ],
         [
           "TESLA INC",
-          1.48
+          1.5
         ]
       ],
       "source": {
-        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
-        "checkedAt": "2026-10-07",
-        "sha256": "a513b5b10713ed74d43e8d366c796c0b2d63aae493e3bf747a03c49e90fe9874",
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+        "checkedAt": "2026-10-08",
+        "sha256": "9636cbe2af8f000bf3a9453d42908d894a80c21905c99d9c25ac80faffe4b456",
         "label": "Composition de l’indice publiée par Amundi"
       },
       "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
@@ -12544,6 +12588,112 @@
           "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
           "checkedAt": "2026-10-07",
           "sha256": "a513b5b10713ed74d43e8d366c796c0b2d63aae493e3bf747a03c49e90fe9874",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      },
+      "2026-09-30": {
+        "index": "S&P 500",
+        "asOf": "2026-09-30",
+        "constituents": 503,
+        "countries": [
+          [
+            "États-Unis",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Énergie",
+            3.39
+          ],
+          [
+            "Matériaux",
+            1.71
+          ],
+          [
+            "Industrie",
+            8.13
+          ],
+          [
+            "Conso Cyclique",
+            8.57
+          ],
+          [
+            "Conso non Cyclique",
+            4.43
+          ],
+          [
+            "Santé",
+            9.36
+          ],
+          [
+            "Finance",
+            11.51
+          ],
+          [
+            "Technologies de l'info.",
+            39.37
+          ],
+          [
+            "Services de communication",
+            9.93
+          ],
+          [
+            "Services publics",
+            1.89
+          ],
+          [
+            "Immobilier",
+            1.71
+          ]
+        ],
+        "holdings": [
+          [
+            "NVIDIA CORP",
+            8.32
+          ],
+          [
+            "APPLE INC",
+            7.27
+          ],
+          [
+            "MICROSOFT CORP",
+            5.72
+          ],
+          [
+            "AMAZON.COM INC",
+            3.66
+          ],
+          [
+            "ALPHABET INC CL A",
+            3.03
+          ],
+          [
+            "BROADCOM INC",
+            2.56
+          ],
+          [
+            "META PLATFORMS INC-CLASS A",
+            2.46
+          ],
+          [
+            "ALPHABET INC CL C",
+            2.43
+          ],
+          [
+            "MICRON TECHNOLOGY INC",
+            1.82
+          ],
+          [
+            "TESLA INC",
+            1.5
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+          "checkedAt": "2026-10-08",
+          "sha256": "9636cbe2af8f000bf3a9453d42908d894a80c21905c99d9c25ac80faffe4b456",
           "label": "Composition de l’indice publiée par Amundi"
         },
         "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
@@ -12832,8 +12982,8 @@
       ],
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
-        "checkedAt": "2026-10-07",
-        "sha256": "be5ea9fd6a38159c52d3a107dff458d91eedcbd6e0ec59cc7a119d054b95822b",
+        "checkedAt": "2026-10-08",
+        "sha256": "5a42d6912f48e9ade3ddebf7bd6b20e917a5fbb8aa193b27ac837d6a2c53b0ad",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -12957,8 +13107,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
-        "checkedAt": "2026-10-07",
-        "sha256": "82755b0fb044ecf15be6cc451cd6068b79e03709ec515f42e6fc7c91cb777bad",
+        "checkedAt": "2026-10-08",
+        "sha256": "b91f6e01dfde73bd3094e3eaa405a186a8dc5ceb30d5f904d12effd289402155",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -13012,7 +13162,7 @@
   },
   "stoxx600": {
     "returns": {
-      "asOf": "2026-10-07",
+      "asOf": "2026-10-08",
       "currency": "EUR",
       "variant": "PRICE",
       "values": [
@@ -13045,14 +13195,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://stoxx.com/index/sxxp/",
-        "checkedAt": "2026-10-07",
-        "sha256": "7dbf430f3476f4c90cdce92e92ba5a6b606153b1bad6280293ec0aae4db981cb",
+        "checkedAt": "2026-10-08",
+        "sha256": "a9eb9daca87d6e6edc2bdb12bed431a0f926d3390cf0e3bd02ec1e64c2e03b86",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
         "kind": "indice",
         "detail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
-        "date": "2026-10-07"
+        "date": "2026-10-08"
       }
     },
     "returnsHistory": {
@@ -13142,6 +13292,50 @@
           "kind": "indice",
           "detail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
           "date": "2026-10-07"
+        }
+      },
+      "2026-10-08": {
+        "asOf": "2026-10-08",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            16.66
+          ],
+          [
+            2024,
+            5.98
+          ],
+          [
+            2023,
+            12.73
+          ],
+          [
+            2022,
+            -12.9
+          ],
+          [
+            2021,
+            22.25
+          ],
+          [
+            2020,
+            -4.04
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sxxp/",
+          "checkedAt": "2026-10-08",
+          "sha256": "a9eb9daca87d6e6edc2bdb12bed431a0f926d3390cf0e3bd02ec1e64c2e03b86",
+          "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-08"
         }
       }
     },
@@ -13482,7 +13676,7 @@
   },
   "eurostoxx50": {
     "returns": {
-      "asOf": "2026-10-07",
+      "asOf": "2026-10-08",
       "currency": "EUR",
       "variant": "PRICE",
       "values": [
@@ -13515,14 +13709,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://stoxx.com/index/sx5e/",
-        "checkedAt": "2026-10-07",
-        "sha256": "c9df6f96e8b850413abffdc60aade4819d648fcbd4b340997c231d02a7f53a68",
+        "checkedAt": "2026-10-08",
+        "sha256": "bd1b30fa4fa7b64c0394c7a609c32e3f85f5fc70b07892db7b5c562400a7733c",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
         "kind": "indice",
         "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
-        "date": "2026-10-07"
+        "date": "2026-10-08"
       }
     },
     "returnsHistory": {
@@ -13656,6 +13850,50 @@
           "kind": "indice",
           "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
           "date": "2026-10-07"
+        }
+      },
+      "2026-10-08": {
+        "asOf": "2026-10-08",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            18.29
+          ],
+          [
+            2024,
+            8.28
+          ],
+          [
+            2023,
+            19.19
+          ],
+          [
+            2022,
+            -11.74
+          ],
+          [
+            2021,
+            20.99
+          ],
+          [
+            2020,
+            -5.14
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5e/",
+          "checkedAt": "2026-10-08",
+          "sha256": "bd1b30fa4fa7b64c0394c7a609c32e3f85f5fc70b07892db7b5c562400a7733c",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-08"
         }
       }
     },
@@ -13945,8 +14183,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-global-dividend-aristocrats-ucits-etf-dist-zprg-gy",
-        "checkedAt": "2026-10-07",
-        "sha256": "27c0693062b1fd2744c1e45463ba8a287f0e3c240e4045ee5c0572647fb499bb",
+        "checkedAt": "2026-10-08",
+        "sha256": "540ef433401d8a519f27c319db3d82d20560ffdbc7aab678dfb49ed76e79407b",
         "label": "Rendements calendaires officiels automatisés · S&P Global Dividend Aristocrats Quality Income"
       },
       "performance": {
@@ -14033,8 +14271,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
-        "checkedAt": "2026-10-07",
-        "sha256": "665f0fee4d685f6c4e9b9bc8f1dbd2fd320a6f32509b46edf51ef657d4f7206d",
+        "checkedAt": "2026-10-08",
+        "sha256": "7a7ecc266644071f9eef3a751a20d69b32bcf9ad621cb8ceca69b5d65e7a43ed",
         "label": "Rendements calendaires officiels automatisés · S&P Euro High Yield Dividend Aristocrats"
       },
       "performance": {
@@ -14121,8 +14359,8 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
-        "checkedAt": "2026-10-07",
-        "sha256": "434defb7ada736b7ca26e5540fbc831b2430f7689553b1eb61b1a4828b317c3c",
+        "checkedAt": "2026-10-08",
+        "sha256": "f50299a32afc773a8bf4ac9580021a4bfe4f6854efca43c90f2782618397544f",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {
@@ -14730,13 +14968,13 @@
   },
   "gold-physical": {
     "returns": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "currency": "USD",
       "variant": "PRICE",
       "values": [
         [
           2025,
-          65
+          65.0
         ],
         [
           2024,
@@ -14763,14 +15001,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ishares.com/gls-download/literature/fact-sheet/sgln-ishares-physical-gold-etc-fund-fact-sheet-en-gb.pdf",
-        "checkedAt": "2026-10-06",
-        "sha256": "3e07a5dcb9d1cc0aad38289b124041ebbab9861afdc9e37268cff837b314755f",
+        "checkedAt": "2026-10-08",
+        "sha256": "77178dcd2deb92635e9c06f71821a38d2c5ee39b26970092a411811e46cbb3a0",
         "label": "Rendements calendaires officiels automatisés · Or physique"
       },
       "performance": {
         "kind": "actif",
         "detail": "Or physique · USD · cours de référence du métal",
-        "date": "2026-08-31"
+        "date": "2026-09-30"
       }
     },
     "returnsHistory": {
@@ -14817,12 +15055,56 @@
           "detail": "Or physique · USD · cours de référence du métal",
           "date": "2026-08-31"
         }
+      },
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            65.0
+          ],
+          [
+            2024,
+            26.59
+          ],
+          [
+            2023,
+            13.8
+          ],
+          [
+            2022,
+            -0.43
+          ],
+          [
+            2021,
+            -3.75
+          ],
+          [
+            2020,
+            24.17
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ishares.com/gls-download/literature/fact-sheet/sgln-ishares-physical-gold-etc-fund-fact-sheet-en-gb.pdf",
+          "checkedAt": "2026-10-08",
+          "sha256": "77178dcd2deb92635e9c06f71821a38d2c5ee39b26970092a411811e46cbb3a0",
+          "label": "Rendements calendaires officiels automatisés · Or physique"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Or physique · USD · cours de référence du métal",
+          "date": "2026-09-30"
+        }
       }
     }
   },
   "silver-physical": {
     "returns": {
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "currency": "USD",
       "variant": "PRICE",
       "values": [
@@ -14855,14 +15137,14 @@
       "periodEnd": "2025-12-31",
       "source": {
         "url": "https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf",
-        "checkedAt": "2026-10-06",
-        "sha256": "59537673893bba96bca183a3e3bb555a3f815b9cd7669ebaba75a2a0e5ea4a6b",
+        "checkedAt": "2026-10-08",
+        "sha256": "b88e210e6ee437999519ef05109f82af8665afb828eef406ef60297f42f071cd",
         "label": "Rendements calendaires officiels automatisés · Argent physique"
       },
       "performance": {
         "kind": "actif",
         "detail": "Argent physique · USD · cours de référence du métal",
-        "date": "2026-08-31"
+        "date": "2026-09-30"
       }
     },
     "returnsHistory": {
@@ -14909,128 +15191,172 @@
           "detail": "Argent physique · USD · cours de référence du métal",
           "date": "2026-08-31"
         }
+      },
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            149.06
+          ],
+          [
+            2024,
+            21.5
+          ],
+          [
+            2023,
+            -0.65
+          ],
+          [
+            2022,
+            3.73
+          ],
+          [
+            2021,
+            -12.84
+          ],
+          [
+            2020,
+            46.77
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf",
+          "checkedAt": "2026-10-08",
+          "sha256": "b88e210e6ee437999519ef05109f82af8665afb828eef406ef60297f42f071cd",
+          "label": "Rendements calendaires officiels automatisés · Argent physique"
+        },
+        "performance": {
+          "kind": "actif",
+          "detail": "Argent physique · USD · cours de référence du métal",
+          "date": "2026-09-30"
+        }
       }
     }
   },
   "nasdaq-pea": {
     "facts": {
       "index": "NASDAQ-100 Notional Net Total Return",
-      "asOf": "2026-08-31",
-      "constituents": 102,
+      "asOf": "2026-09-30",
+      "constituents": 101,
       "countries": [
         [
           "États-Unis",
-          94.78
+          94.81
         ],
         [
           "Irlande",
-          1.82
+          1.79
         ],
         [
           "Pays-Bas",
-          1.32
+          1.38
         ],
         [
           "Canada",
-          1
+          0.91
         ],
         [
           "Royaume-Uni",
-          0.66
+          0.73
         ],
         [
           "Autres pays",
-          0.42
+          0.39
         ]
       ],
       "sectors": [
         [
           "Technologies de l'info.",
-          58.27
+          59.65
         ],
         [
           "Services de communication",
-          13.89
+          15.08
         ],
         [
           "Conso Cyclique",
-          11.13
+          10.03
         ],
         [
           "Conso non Cyclique",
-          6.22
+          5.67
         ],
         [
           "Santé",
-          4.01
+          3.83
         ],
         [
           "Industrie",
-          3.62
+          3.16
         ],
         [
           "Services publics",
-          1.14
+          1.03
         ],
         [
           "Matériaux",
-          1
+          0.92
         ],
         [
           "Énergie",
-          0.52
+          0.45
         ],
         [
           "Finance",
-          0.21
+          0.19
         ]
       ],
       "holdings": [
         [
           "NVIDIA CORP",
-          8.41
+          8.34
         ],
         [
           "APPLE INC",
-          7.5
+          7.32
         ],
         [
           "MICROSOFT CORP",
-          6.09
+          5.75
         ],
         [
           "MICRON TECHNOLOGY INC",
-          4.64
-        ],
-        [
-          "AMAZON.COM INC",
-          4.58
+          5.05
         ],
         [
           "ADVANCED MICRO DEVICES",
-          3.35
+          4.17
+        ],
+        [
+          "AMAZON.COM INC",
+          4.05
+        ],
+        [
+          "META PLATFORMS INC-CLASS A",
+          3.34
         ],
         [
           "ALPHABET INC CL A",
-          3.22
+          3.05
         ],
         [
           "ALPHABET INC CL C",
-          2.99
-        ],
-        [
-          "BROADCOM INC",
-          2.79
+          2.84
         ],
         [
           "TESLA INC",
-          2.78
+          2.82
         ]
       ],
       "source": {
-        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
-        "checkedAt": "2026-10-06",
-        "sha256": "ba0d8b379f3433cd39250dd8222e25446d65fd9313d408450a42d58194bbe6dd",
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+        "checkedAt": "2026-10-08",
+        "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
         "label": "Composition de l’indice publiée par Amundi"
       },
       "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
@@ -15157,6 +15483,128 @@
           "label": "Composition de l’indice publiée par Amundi"
         },
         "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      },
+      "2026-09-30": {
+        "index": "NASDAQ-100 Notional Net Total Return",
+        "asOf": "2026-09-30",
+        "constituents": 101,
+        "countries": [
+          [
+            "États-Unis",
+            94.81
+          ],
+          [
+            "Irlande",
+            1.79
+          ],
+          [
+            "Pays-Bas",
+            1.38
+          ],
+          [
+            "Canada",
+            0.91
+          ],
+          [
+            "Royaume-Uni",
+            0.73
+          ],
+          [
+            "Autres pays",
+            0.39
+          ]
+        ],
+        "sectors": [
+          [
+            "Technologies de l'info.",
+            59.65
+          ],
+          [
+            "Services de communication",
+            15.08
+          ],
+          [
+            "Conso Cyclique",
+            10.03
+          ],
+          [
+            "Conso non Cyclique",
+            5.67
+          ],
+          [
+            "Santé",
+            3.83
+          ],
+          [
+            "Industrie",
+            3.16
+          ],
+          [
+            "Services publics",
+            1.03
+          ],
+          [
+            "Matériaux",
+            0.92
+          ],
+          [
+            "Énergie",
+            0.45
+          ],
+          [
+            "Finance",
+            0.19
+          ]
+        ],
+        "holdings": [
+          [
+            "NVIDIA CORP",
+            8.34
+          ],
+          [
+            "APPLE INC",
+            7.32
+          ],
+          [
+            "MICROSOFT CORP",
+            5.75
+          ],
+          [
+            "MICRON TECHNOLOGY INC",
+            5.05
+          ],
+          [
+            "ADVANCED MICRO DEVICES",
+            4.17
+          ],
+          [
+            "AMAZON.COM INC",
+            4.05
+          ],
+          [
+            "META PLATFORMS INC-CLASS A",
+            3.34
+          ],
+          [
+            "ALPHABET INC CL A",
+            3.05
+          ],
+          [
+            "ALPHABET INC CL C",
+            2.84
+          ],
+          [
+            "TESLA INC",
+            2.82
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+          "checkedAt": "2026-10-08",
+          "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
       }
     },
     "returns": {
@@ -15253,106 +15701,106 @@
   "sp500-equal-weight": {
     "facts": {
       "index": "S&P 500 Equal Weight",
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "constituents": 503,
       "countries": [
         [
           "États-Unis",
-          100
+          100.0
         ]
       ],
       "sectors": [
         [
           "Industrie",
-          16.12
-        ],
-        [
-          "Finance",
-          15.98
+          16.67
         ],
         [
           "Technologies de l'info.",
-          14.56
+          15.49
+        ],
+        [
+          "Finance",
+          14.7
         ],
         [
           "Santé",
-          13.05
+          12.64
         ],
         [
           "Conso Cyclique",
-          9.24
+          9.35
         ],
         [
           "Conso non Cyclique",
-          6.55
+          6.57
         ],
         [
           "Services publics",
-          5.64
+          5.92
         ],
         [
           "Immobilier",
-          5.5
+          5.84
         ],
         [
           "Matériaux",
-          5.13
-        ],
-        [
-          "Énergie",
-          4.26
+          4.87
         ],
         [
           "Services de communication",
-          3.96
+          3.98
+        ],
+        [
+          "Énergie",
+          3.97
         ]
       ],
       "holdings": [
         [
           "MODERNA INC",
-          0.56
-        ],
-        [
-          "VEEVA SYSTEMS INC",
-          0.32
-        ],
-        [
-          "ZEBRA TECHNOLOGIES",
           0.31
         ],
         [
-          "DOORDASH INC - A",
-          0.29
+          "EVERPURE INC-A",
+          0.27
         ],
         [
-          "CHARLES RIV LAB INT",
-          0.29
+          "ILLUMINA INC",
+          0.27
         ],
         [
-          "EXPEDIA GROUP INC",
-          0.28
+          "CROWDSTRIKE HOLDINGS INC - A",
+          0.26
         ],
         [
-          "SALESFORCE COM",
-          0.28
+          "REVVITY INC",
+          0.25
         ],
         [
-          "WORKDAY INC",
-          0.28
+          "AGILENT TECHNOLOGIES INC",
+          0.25
         ],
         [
-          "GLOBAL PAYMENTS INC",
-          0.28
+          "DATADOG INC - CLASS A",
+          0.24
         ],
         [
-          "AIRBNB INC-CLASS A",
-          0.28
+          "METTLER-TOLEDO INTERNATIONAL",
+          0.24
+        ],
+        [
+          "INTUITIVE SURGICAL INC",
+          0.24
+        ],
+        [
+          "ADVANCED MICRO DEVICES",
+          0.24
         ]
       ],
       "source": {
-        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
-        "checkedAt": "2026-10-07",
-        "sha256": "66c8b43f31838c97516c5719f20a4dece62fd2e3f44dbaf98a63ed2297fd52f4",
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+        "checkedAt": "2026-10-08",
+        "sha256": "5d504724ad0fc3ad1d2904751cf76807a92b98b1c7cac9cacc646234b8e05b36",
         "label": "Composition de l’indice publiée par Amundi"
       },
       "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
@@ -15460,6 +15908,112 @@
           "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
           "checkedAt": "2026-10-07",
           "sha256": "66c8b43f31838c97516c5719f20a4dece62fd2e3f44dbaf98a63ed2297fd52f4",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      },
+      "2026-09-30": {
+        "index": "S&P 500 Equal Weight",
+        "asOf": "2026-09-30",
+        "constituents": 503,
+        "countries": [
+          [
+            "États-Unis",
+            100.0
+          ]
+        ],
+        "sectors": [
+          [
+            "Industrie",
+            16.67
+          ],
+          [
+            "Technologies de l'info.",
+            15.49
+          ],
+          [
+            "Finance",
+            14.7
+          ],
+          [
+            "Santé",
+            12.64
+          ],
+          [
+            "Conso Cyclique",
+            9.35
+          ],
+          [
+            "Conso non Cyclique",
+            6.57
+          ],
+          [
+            "Services publics",
+            5.92
+          ],
+          [
+            "Immobilier",
+            5.84
+          ],
+          [
+            "Matériaux",
+            4.87
+          ],
+          [
+            "Services de communication",
+            3.98
+          ],
+          [
+            "Énergie",
+            3.97
+          ]
+        ],
+        "holdings": [
+          [
+            "MODERNA INC",
+            0.31
+          ],
+          [
+            "EVERPURE INC-A",
+            0.27
+          ],
+          [
+            "ILLUMINA INC",
+            0.27
+          ],
+          [
+            "CROWDSTRIKE HOLDINGS INC - A",
+            0.26
+          ],
+          [
+            "REVVITY INC",
+            0.25
+          ],
+          [
+            "AGILENT TECHNOLOGIES INC",
+            0.25
+          ],
+          [
+            "DATADOG INC - CLASS A",
+            0.24
+          ],
+          [
+            "METTLER-TOLEDO INTERNATIONAL",
+            0.24
+          ],
+          [
+            "INTUITIVE SURGICAL INC",
+            0.24
+          ],
+          [
+            "ADVANCED MICRO DEVICES",
+            0.24
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+          "checkedAt": "2026-10-08",
+          "sha256": "5d504724ad0fc3ad1d2904751cf76807a92b98b1c7cac9cacc646234b8e05b36",
           "label": "Composition de l’indice publiée par Amundi"
         },
         "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
