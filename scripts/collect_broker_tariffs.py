@@ -7,6 +7,8 @@ import hashlib
 import json
 import pathlib
 import re
+import urllib.parse
+from bs4 import BeautifulSoup
 from issuer_documents import download, pdf_text
 from collect_regulatory_data import unique
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -57,6 +59,16 @@ def parse(name, content, today, previous=None):
   'method':'Tableau de courtage de la brochure officielle ; forfait et marché exacts', 'sha256':hashlib.sha256(content.encode()).hexdigest()}
 def fetch_content(url):
  raw=download(url)
+ # WordPress download pages expose a rotating, public link to the real PDF.
+ if 'groupe.boursedirect.fr/download/' in url and not raw.startswith(b'%PDF'):
+  soup=BeautifulSoup(raw.decode('utf-8'),'html.parser')
+  links={urllib.parse.urljoin(url,a['href']) for a in soup.find_all('a',href=True)
+   if 'wpdmdl=' in a['href'] and '2026_BD_CP_Plan-Investissement.pdf' in a['href']}
+  if len(links)!=1:raise ValueError('Lien du communiqué Bourse Direct absent ou ambigu')
+  target=links.pop()
+  if urllib.parse.urlparse(target).netloc!='groupe.boursedirect.fr':raise ValueError('Hôte du communiqué non officiel')
+  raw=download(target)
+  if not raw.startswith(b'%PDF'):raise ValueError('Communiqué Bourse Direct non PDF')
  # Isolate the English column of the bilingual France contract. This avoids
  # interleaving French clauses when Poppler's line wrapping differs by platform.
  # The normal 2 MB extraction limit still applies.
@@ -84,6 +96,7 @@ def collect(baseline,today,fetcher=fetch_content):
    else:raise ValueError('; '.join(errors))
    previous_fields=baseline['brokers'].get(name,{}).get('fields',{})
    observation['fields']={**previous_fields,**observation.get('fields',{})}
+   observation['profile']=baseline['brokers'].get(name,{}).get('profile',{})
    if name in ('bourso','fortuneo'):
     try:observation['fields'].update(base_supplements(name,content,observation))
     except Exception as exc:failures[name+':extras']=str(exc)
@@ -98,6 +111,10 @@ def collect(baseline,today,fetcher=fetch_content):
     raise ValueError('Régression du mois de publication du contrat')
    baseline['brokers'][broker].setdefault('fields',{})[field]=observation
   except Exception as exc:failures[key]=str(exc)
+ from broker_profiles import collect_profiles
+ profile_failures,profile_count=collect_profiles(baseline,today,fetch_once)
+ failures.update(profile_failures)
+ baseline['profileCollection']={'checkedAt':today,'validated':profile_count,'failures':profile_failures}
  return baseline,failures,validated
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--apply',action='store_true');parser.add_argument('--output',type=pathlib.Path,required=True);args=parser.parse_args()

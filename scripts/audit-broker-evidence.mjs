@@ -50,7 +50,7 @@ for (const [broker, field] of reservations) {
   for (const document of review.documents) assert(OFFICIAL_SOURCES[document], `${broker}.${field}: document relu inconnu`)
   assert(['unresolved', 'resolved'].includes(review.outcome), `${broker}.${field}: conclusion de revue invalide`)
   if (review.outcome === 'unresolved') {
-    assert.equal(item.status, 'corroboré', `${broker}.${field}: réserve ouverte promue en confirmation`)
+    assert(['corroboré','partiel','non établi'].includes(item.status), `${broker}.${field}: réserve ouverte promue en confirmation`)
   } else {
     assert.equal(item.status, 'confirmé', `${broker}.${field}: résolution sans confirmation`)
     assert(review.explicitStatement && review.scope && review.decisiveRefs?.length, `${broker}.${field}: preuve explicite de portée complète requise`)
@@ -70,6 +70,7 @@ for (const broker of BROKERS) {
   const cashProof = evidence.cash
   if (cashProof.status === 'non établi') assert.equal(broker.cash.resume, 'À vérifier', `${broker.id}: cash présenté comme prouvé`)
   else if (cashProof.status === 'corroboré') assert.equal(broker.cash.resume, 'Non*', `${broker.id}: source secondaire non signalée`)
+  else if (cashProof.automatedEvidence?.available == null) assert.equal(broker.cash.resume, 'À vérifier', `${broker.id}: cash de portée inconnue`);
   else assert.equal(broker.cash.resume, 'Oui', `${broker.id}: offre de rémunération non annoncée`)
   for (const [field, item] of Object.entries(evidence)) {
     assert(item.summary && ['confirmé', 'corroboré', 'partiel', 'non établi'].includes(item.status), `${broker.id}.${field}: état invalide`)
@@ -107,7 +108,8 @@ for (let i = 0; i < BROKERS.length; i++) {
       assert(!/undefined|\bNaN\b|PEA-PME \?|PEA Jeune \?|aucune offre spécifique|preuve corroborée|détails dans le registre/i.test(post), `${ids}: lacune dans le post`);
       assert(!/\n{3,}/.test(post), `${ids}: sauts de ligne superflus`);
       for (const heading of headings) assert(section(post, heading)?.trim(), `${ids}: rubrique ${heading} vide`);
-      assert(post.includes('Fourni chez les deux ✅') && post.includes('PEA : les deux ✅'), `${ids}: informations communes`);
+      assert(post.includes('PEA : les deux ✅'), `${ids}: PEA commun confirmé`);
+      for (const id of ids) assert(section(post, headings[5]).includes(BROKER_EVIDENCE[id].ifu.summary), `${ids}: IFU raccordé à la preuve officielle`);
       assert(post.includes('⚠️ Pas un conseil financier'), `${ids}: mention finale`);
       assert.equal(post.includes('je suis affilié à XTB'), ids.includes('xtb'), `${ids}: transparence affiliation`);
       assert.equal(post.includes('🎁 Les offres'), ids.some(id => ['bourso', 'fortuneo', 'bd', 'saxo'].includes(id)), `${ids}: offres`);
@@ -116,7 +118,7 @@ for (let i = 0; i < BROKERS.length; i++) {
         const name = id === 'saxo' ? 'Saxo' : broker.nom;
         for (const heading of [headings[0], headings[1], headings[2], headings[8]]) assert(section(post, heading).includes(`${name} : `), `${ids}: réponse ${heading} ${name}`);
         assert(section(post, headings[7]).includes(`Vers ${name} : `), `${ids}: transfert entrant ${name}`);
-        assert.equal(BROKER_EVIDENCE[id].transfert.status, 'confirmé');
+        assert.equal(BROKER_EVIDENCE[id].transfert.status, id === 'ibkr' ? 'partiel' : 'confirmé');
         assert.equal(BROKER_EVIDENCE[id].ifu.status, 'confirmé');
         assert(section(post, headings[1]).includes(BROKER_EVIDENCE[id].change.post), `${ids}: change raccordé au registre`);
         if (BROKER_EVIDENCE[id].cash.status === 'corroboré') assert(section(post, headings[6]).includes('selon les analyses consultées'), `${ids}: réserve cash`);

@@ -10,9 +10,9 @@ export function buildBrokerTweet(brokers) {
     ? `${label}\n\n${shared(describe(brokers[0]))}`
     : pair(label, describe);
   const envelope = (field, label) => {
-    const answer = b => `${b.pea[field] ? '✅' : '❌'}${BROKER_EVIDENCE[b.id][field].status === 'corroboré' ? ' selon les analyses consultées' : ''}`;
+    const answer = b => b.pea[field] == null ? 'À confirmer' : `${b.pea[field] ? '✅' : '❌'}${BROKER_EVIDENCE[b.id][field].status === 'corroboré' ? ' selon les analyses consultées' : ''}`;
     const [a, b] = brokers.map(answer);
-    return `${label} : ${a === b ? `${brokers[0].pea[field] ? 'les deux' : 'aucun des deux'} ${a}` : brokers.map(x => `${name(x)} ${answer(x)}`).join(' · ')}`;
+    return `${label} : ${a === b && brokers[0].pea[field] != null ? `${brokers[0].pea[field] ? 'les deux' : 'aucun des deux'} ${a}` : brokers.map(x => `${name(x)} ${answer(x)}`).join(' · ')}`;
   };
   const activeOffers = brokers.filter(b => copy(b).offres?.length);
   const offers = activeOffers.length
@@ -22,10 +22,7 @@ export function buildBrokerTweet(brokers) {
   const outgoing = copy(a).sortant && copy(a).sortant === copy(b).sortant
     ? `Pour quitter l’un ou l’autre : ${copy(a).sortant}`
     : brokers.filter(x => copy(x).sortant).map(x => `Pour quitter ${name(x)} : ${copy(x).sortant}`).join('\n\n');
-  const bothCash = brokers.every(x => copy(x).cashDisponible);
-  const cash = bothCash
-    ? `💵 Liquidités rémunérées\n\nOui chez les deux ✅ Selon les conditions de chaque offre, hors PEA.${brokers.filter(x => copy(x).cashPrecision).map(x => ` Chez ${name(x)}, ${copy(x).cashPrecision}`).join('')}`
-    : common('💵 Liquidités rémunérées', x => copy(x).cash, () => 'Non chez les deux selon les analyses consultées ❌');
+  const cash = common('💵 Liquidités rémunérées', x => copy(x).cash, text => `${text}`);
   // Aucune gratuité de sortie inventée si le registre ne donne pas de tarif (Trade Republic).
   const transfers = ['🔄 Transfert du PEA', brokers.map(x => `Vers ${name(x)} : ${copy(x).entrant}`).join('\n\n'), outgoing, ...brokers.map(x => copy(x).restriction)].filter(Boolean).join('\n\n');
   return [
@@ -35,9 +32,9 @@ export function buildBrokerTweet(brokers) {
     pair('💱 Si une conversion est nécessaire', x => BROKER_EVIDENCE[x.id].change.post),
     offers,
     pair('📅 Achats automatiques sur PEA', x => copy(x).dca),
-    common('🗂️ Frais de garde', x => copy(x).garde, () => 'Aucun chez les deux ✅'),
+    common('🗂️ Frais de garde', x => copy(x).garde, text => text),
     `🌱 Enveloppes proposées\n\n${['pea', 'pme', 'jeune'].map((f, i) => envelope(f, ['PEA', 'PEA-PME', 'PEA Jeune'][i])).join('\n')}`,
-    '🧾 IFU\n\nFourni chez les deux ✅',
+    common('🧾 IFU',x => copy(x).ifu ?? BROKER_EVIDENCE[x.id].ifu.summary,text => text),
     cash,
     transfers,
     pair('⚠️ Le point faible à retenir', x => copy(x).faible),

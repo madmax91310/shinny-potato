@@ -1,4 +1,4 @@
-import { brokerTariffCopy, brokerFieldCopies, brokerOffers, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
+import { brokerTariffCopy, brokerFieldCopies, brokerOffers, brokerProfile, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
 // Version courte du registre : les seuils et restrictions qui changent le choix restent visibles.
 // Les détails de procédure et références restent dans evidence.js.
 export const BROKER_EDITORIAL = {
@@ -99,4 +99,14 @@ for (const [id, copy] of Object.entries(BROKER_EDITORIAL)) {
   }
   if (id === 'caidf' && tariff) copy.faible = `Sans Integral, les droits de garde s’ajoutent au courtage. ${tariff.full}`;
   if (id === 'fortuneo' && tariff) copy.offres = [tariff.full];
+  const profile=brokerProfile(id);
+  for (const key of ['dca','ifu','cash','garde','entrant']) if (profile[key]) copy[key]=profile[key].copy.full;
+  if (profile.cash) {copy.cashDisponible=profile.cash.available===true;copy.cashPrecision=null;}
+  if (profile.boursomarkets) copy.offres=[profile.boursomarkets.copy.full];
+  // No fixed fees or obsolete service availability in the concluding sentence.
+  if (profile.dca?.available===false) copy.faible=profile.dca.copy.full;
+  else if (profile.dca?.available===null) copy.faible='La disponibilité des achats automatiques sur PEA reste à confirmer auprès du courtier.';
+  else if (id==='caidf' && tariff) copy.faible=`Les droits de garde hors Integral s’ajoutent au courtage. ${fields.garde ?? ''}`;
+  else if (id==='bourso' && profile.dca) copy.faible='Le plan porte sur des fonds avec leurs propres frais ; vérifier leur DIC.';
+  else if (id==='tr' && profile.pme?.available===null) copy.faible='L’offre PEA-PME et certains frais propres au PEA restent à confirmer dans les documents publics.';
 }

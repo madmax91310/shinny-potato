@@ -11,14 +11,18 @@ on:
       - 'scripts/regulatory_extensions.py'
       - 'scripts/collect_broker_tariffs.py'
       - 'scripts/broker_tariff_extensions.py'
+      - 'scripts/broker_profiles.py'
+      - 'scripts/broker_profile_sources.json'
   pull_request:
     paths:
       - '.github/workflows/update-regulatory-data.yml'
       - 'scripts/*regulatory*'
       - 'scripts/*broker_tariffs*'
       - 'scripts/*broker_tariff*'
+      - 'scripts/broker_profile*'
       - 'scripts/fixtures/regulatory/**'
       - 'scripts/fixtures/broker-tariffs/**'
+      - 'scripts/fixtures/broker-profiles/**'
       - 'src/data/*regulatory*'
       - 'src/data/broker-tariffs.js'
       - 'src/data/automated-broker-tariffs.json'
@@ -51,6 +55,7 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
       - run: python -m unittest discover -s scripts -p 'test_regulatory*.py'
+      - run: python scripts/audit_broker_coverage.py
       - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-regulatory-consumers.mjs
       - id: fiscal
@@ -67,6 +72,7 @@ jobs:
           if [ "$COLLECTION_FAILED" = 'true' ]; then
             echo 'Collecte partielle : les dernières observations qualifiées sont conservées. Voir les sources en échec dans regulatory-observations.' >> "$GITHUB_STEP_SUMMARY"
           fi
+      - run: python scripts/audit_broker_coverage.py
       - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-regulatory-consumers.mjs
       - run: npm run audit:data-catalog

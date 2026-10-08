@@ -271,6 +271,34 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
   // A transfer tariff does not recertify incoming eligibility or reimbursements.
   const transferFields = ['entrant','sortant'].filter(key => observation.fields?.[key]);
   if (transferFields.length) BROKER_EVIDENCE[id].transfert = {...BROKER_EVIDENCE[id].transfert,
+    automatedEvidence:observation.fields.entrant ?? observation.fields.sortant,
     summary:(!transferFields.includes('entrant') ? BROKER_EVIDENCE[id].transfert.summary.split(/Sortie\s*:/)[0].trim()+' ' : '')+transferFields.map(key => `${key === 'entrant' ? 'Entrée' : 'Sortie'} : ${brokerFieldCopies(id)[key] ?? 'Conditions non actives à cette date.'}`).join(' '),
     refs:[...BROKER_EVIDENCE[id].transfert.refs,...transferFields.map(key => ({document:fieldDocument(id,key),...(observation.fields[key].page ? {page:observation.fields[key].page} : {})}))]};
+}
+
+// Every product claim follows its separately revalidated official profile.
+for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
+  for (const [field,o] of Object.entries(observation.profile ?? {})) {
+    if (['entrant','sortant'].includes(field)) continue;
+    const refs=o.refs.map((ref,index) => {
+      const document=`${id}AutomatedProfile${field}${index}`;
+      OFFICIAL_SOURCES[document]={title:`${brokerNames[id]} · ${field}`,url:ref.sourceUrl,
+        checked:o.checkedAt.split('-').reverse().join('/'),edition:'Document public ; contrôle automatique de la clause',kind:ref.kind};
+      return {document,...(ref.kind==='pdf' ? {page:ref.page} : {})};
+    });
+    const prior=BROKER_EVIDENCE[id][field];
+    BROKER_EVIDENCE[id][field]={status:o.status,summary:o.copy.full,refs,automatedEvidence:o,
+      ...(field==='change' ? {post:o.copy.full} : {}),
+      ...(prior.review && o.status!=='confirmé' ? {review:{...prior.review,checked:o.checkedAt.split('-').reverse().join('/'),outcome:'unresolved'}} : {})};
+  }
+  const incoming=observation.profile?.entrant;
+  if (incoming) {
+    const doc=`${id}AutomatedProfileentrant`;
+    OFFICIAL_SOURCES[doc]={title:`${brokerNames[id]} · transfert entrant`,url:incoming.sourceUrl,
+      checked:incoming.checkedAt.split('-').reverse().join('/'),edition:'Page publique ; contrôle automatique',kind:'page'};
+    BROKER_EVIDENCE[id].transfert={...BROKER_EVIDENCE[id].transfert,
+      status:incoming.status === 'confirmé' ? BROKER_EVIDENCE[id].transfert.status : 'partiel',
+      summary:`Entrée : ${incoming.copy.full} Sortie : ${brokerFieldCopies(id).sortant ?? 'Tarif à confirmer.'}`,
+      refs:[{document:doc},...BROKER_EVIDENCE[id].transfert.refs],automatedEvidence:incoming};
+  }
 }

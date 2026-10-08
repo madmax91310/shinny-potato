@@ -1,6 +1,25 @@
 import snapshot from './automated-broker-tariffs.json' with { type: 'json' }
 const number = value => value.toLocaleString('fr-FR', {maximumFractionDigits: 2}).replace(/\u202f/g, ' ')
 export const BROKER_TARIFFS = snapshot.brokers
+export const BROKER_PROFILE_FIELDS = ['dca','pea','pme','jeune','ifu','cash','boursomarkets'];
+export function brokerProfile(id, observations = snapshot.brokers) { return observations[id]?.profile ?? {}; }
+export function applyBrokerProfile(broker, observations = snapshot.brokers) {
+  const profile = brokerProfile(broker.id, observations);
+  const result = {...broker, post:{...broker.post}, pea:{...broker.pea}};
+  for (const key of ['dca','ifu','garde','boursomarkets']) {
+    const o = profile[key]; if (!o) continue;
+    const text=o.copy.full;
+    const resume=o.available === null ? 'À vérifier' : key==='dca' ? (o.available ? 'Oui · sous conditions' : 'Non actuellement sur PEA') : key==='ifu' ? (o.available ? 'Oui · selon les opérations' : 'Non') : text;
+    result[key]={resume, detail:text};
+    result.post[key]=[text];
+  }
+  for (const key of ['pea','pme','jeune']) if (profile[key]) result.pea[key]=profile[key].available;
+  if (profile.cash) {
+    const o=profile.cash;
+    result.cash={resume:o.available === null ? 'À vérifier' : o.available ? 'Oui' : 'Non',detail:o.copy.full,post:o.copy.full};
+  }
+  return result;
+}
 export function brokerTariffCopy(id, observations = snapshot.brokers) {
   const o = observations[id]
   if (!o) return null

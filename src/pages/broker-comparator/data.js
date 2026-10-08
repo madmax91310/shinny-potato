@@ -1,4 +1,4 @@
-import { brokerTariffCopy, brokerFieldCopies } from '../../data/broker-tariffs.js';
+import { brokerTariffCopy, brokerFieldCopies, applyBrokerProfile } from '../../data/broker-tariffs.js';
 import { BROKER_EVIDENCE } from './evidence.js';
 import { buildBrokerTweet } from './lib.js';
 
@@ -194,7 +194,7 @@ export const BROKERS = [
 ].map((broker) => {
   const tariff = brokerTariffCopy(broker.id);
   const fields = brokerFieldCopies(broker.id);
-  return { ...broker, ...(fields.garde ? {garde: {resume: fields.garde}} : {}), ...(tariff ? { frais: {resume: tariff.resume, detail: tariff.detail}, post: {...broker.post, frais: [tariff.full], ...(fields.garde ? {garde: [fields.garde]} : {})} } : {}), transfertPea: { resume: BROKER_EVIDENCE[broker.id].transfert.summary } };
+  return applyBrokerProfile({ ...broker, ...(fields.garde ? {garde: {resume: fields.garde}} : {}), ...(tariff ? { frais: {resume: tariff.resume, detail: tariff.detail}, post: {...broker.post, frais: [tariff.full], ...(fields.garde ? {garde: [fields.garde]} : {})} } : {}), transfertPea: { resume: BROKER_EVIDENCE[broker.id].transfert.summary } });
 });
 
 export const ROWS = [

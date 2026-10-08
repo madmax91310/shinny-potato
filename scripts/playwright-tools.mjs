@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
+import { buildReview } from '../src/pages/data-review/lib.js';
 import { BROKER_EVIDENCE } from '../src/pages/broker-comparator/evidence.js';
 import { BROKER_EDITORIAL } from '../src/pages/broker-comparator/editorial.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
@@ -531,7 +532,7 @@ async function testBrokerComparator(page) {
   valid &&= post.startsWith('⚫ XTB ou ⚪ Saxo pour ton PEA ?')
     && post.includes(`💱 Si une conversion est nécessaire\n\nXTB : ${BROKER_EVIDENCE.xtb.change.post}\n\nSaxo : ${BROKER_EVIDENCE.saxo.change.post}`)
     && post.includes('PEA Jeune : aucun des deux ❌')
-    && post.includes('Fourni chez les deux ✅')
+    && post.includes(BROKER_EVIDENCE.xtb.ifu.summary) && post.includes(BROKER_EVIDENCE.saxo.ifu.summary)
     && post.includes(outgoing);
   await page.locator('.bc-evidence-broker').last().locator('summary').click();
   valid &&= (await page.locator('.bc-evidence').innerText()).includes('VIP')
@@ -1221,15 +1222,17 @@ try {
   // Automation failure cards also use .dr-item; only count the filtered review list.
   await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
   await page.getByRole('region', { name: 'Échecs des mises à jour automatiques' }).getByRole('heading', {name: 'Données économiques', exact: true}).waitFor();
-  const reviewChecks = { alert: (await page.locator('.dr-automation .dr-item').count()) === 1, ibkr: (await page.locator('.data-review > .dr-list > .dr-item').count()) === 4 };
+  const ibkrCount = buildReview().items.filter(item => item.category === 'reserve' && item.id.startsWith('broker:ibkr:')).length;
+  const reviewChecks = { alert: (await page.locator('.dr-automation .dr-item').count()) === 1, ibkr: (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount };
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil' }).fill('Interactive Brokers');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 4);
-  reviewChecks.search = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 4;
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, ibkrCount);
+  reviewChecks.search = (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount;
   await page.reload({ waitUntil: 'networkidle' });
-  reviewChecks.reload = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 4;
+  reviewChecks.reload = (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount;
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil', exact: true }).fill('');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 12);
-  reviewChecks.peaCustody = (await page.locator('.data-review > .dr-list > .dr-item').filter({hasText: 'Trade Republic'}).filter({hasText: 'frais propres au PEA'}).count()) === 1;
+  const reserveCount = buildReview().items.filter(item => item.category === 'reserve').length;
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, reserveCount);
+  reviewChecks.peaCustody = (await page.locator('.data-review > .dr-list > .dr-item').filter({hasText: 'Trade Republic'}).filter({hasText: 'garde'}).count()) === 1;
   await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
   await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 3);
   reviewChecks.deadlines = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 3;
