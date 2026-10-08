@@ -36,18 +36,13 @@
     },
     "update-company-analysis.yml": {
       "name": "Analyses d’entreprises",
-      "runId": 37787786229,
+      "runId": 37808558758,
       "attempt": 1,
-      "completedAt": "2026-10-08T13:54:51Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-07T16:00:29Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37787786229",
-      "failures": [
-        {
-          "job": "refresh",
-          "step": "Run node scripts/test-company-analysis.mjs"
-        }
-      ],
+      "completedAt": "2026-10-08T16:42:28Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-08T16:42:28Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37808558758",
+      "failures": [],
       "dataFailures": {}
     },
     "collect-etf-pilot.yml": {
@@ -122,5 +117,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-08T16:12:46Z"
+  "updatedAt": "2026-10-08T16:42:28Z"
 }
