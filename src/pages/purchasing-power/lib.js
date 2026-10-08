@@ -89,7 +89,7 @@ export function buildTweetText(state) {
   const d = purchasingPowerStory(state)
   const base = fmtEUR(state.amount), end = fmtEUR(d.endAmount), tested = fmtEUR(d.testedAmount)
   const growth = fmtPct(d.growthPct), prices = fmtPct(d.pricePct)
-  const quality = d.provisional ? "Donnée mensuelle provisoire de l’INSEE." : null
+  const quality = PRICE_OBSERVATION.provisional ? `${d.rent ? "Prix en général : " : ""}Donnée mensuelle provisoire de l’INSEE.` : null
   const direction = d.testedAmount - d.endAmount
   const equal = Math.abs(direction) < 0.005
   const verdict = equal ? 'autant' : direction > 0 ? 'davantage' : 'moins'

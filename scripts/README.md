@@ -398,3 +398,19 @@ Les nouvelles fiches Coulisses utilisent une présentation de méthodologie : au
 Berkshire classe B (BRK-B, USD) et ASML Amsterdam (ASML.AS, EUR) disposent de 141 mois continus, janvier 2015 à septembre 2026. La capture `companies-additions-2026-10-03.json` conserve les exportations mensuelles et les dernières séances quotidiennes. `audit:calculator-series` recoupe les clôtures brutes et les clôtures ajustées. Le fuseau de chaque place sert à identifier le mois Yahoo. Calculateur et Performance depuis utilisent les clôtures ajustées ; Il y a X ans utilise les clôtures brutes conservées dans `anniversaryPoints`, afin de comparer des cours cohérents avec une saisie actuelle. Les deux granularités viennent du même fournisseur, sans recoupement indépendant.
 
 Les audits existants couvrent les six supports, les nouvelles recettes et les duels. Playwright parcourt toutes les fiches ETF et Coulisses, exporte aussi les deux nouveaux PNG, et vérifie les deux nouvelles entreprises dans Performance depuis et Il y a X ans.
+
+## Observations des publications
+
+`refresh_purchasing_power.py` collecte les cinq séries INSEE de niveaux, IRL et SMIC.
+`refresh_anniversary_levels.py` réutilise les configurations des historiques pour fournir
+les niveaux datés du format anniversaire ; l’or conserve sa moyenne mensuelle Banque mondiale.
+Le workflow quotidien valide ces fichiers et l’affichage Chromium avant de publier.
+
+`collect_sp_composition.py` complète les compositions Euro Dividend Aristocrats et Global
+Dividend Aristocrats Quality Income via leurs fiches S&P exactes. Poppler et Tesseract sont
+nécessaires : les lectures des légendes à 250 et 300 dpi doivent concorder.
+Les tests `test_sp_composition.py` utilisent les extractions capturées des publications
+du 30 septembre 2026 ; toute modification de données actives reste soumise aux audits.
+
+Les rapports sont raccordés au suivi des automatisations avec récupération par source.
+Voir `docs/publication-automation.md` pour les conventions, contrôles et limites QYLD/Russell 1000.

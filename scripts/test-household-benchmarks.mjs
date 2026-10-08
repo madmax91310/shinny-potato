@@ -35,7 +35,7 @@ for (let year = 2010; year <= YEAR_MAX; year++) for (const posteId of [null, 'lo
   const text = buildTweetText({ amount: 1000, startYear: year, mode: posteId ? 'par-poste' : 'brut', posteId });
   assert.ok(!/NaN|undefined|12 mois glissants/.test(text));
   assert.ok(text.includes(PRICE_OBSERVATION.label));
-  assert.equal(text.includes('provisoire'), posteId !== 'loyer' && PRICE_OBSERVATION.provisional);
+  assert.equal(text.includes('provisoire'), PRICE_OBSERVATION.provisional);
 }
 const gold=JSON.parse(readFileSync(new URL('../src/data/worldbank-gold-monthly.json',import.meta.url)));
 assert.deepEqual(ASSETS.or.points.at(-1),{date:gold.points.at(-1)[0],price:gold.points.at(-1)[1]});

@@ -81,11 +81,12 @@ def refresh(current, now, collect=collect_one):
     # Gold retains its World Bank monthly average convention, never gold futures/spot.
     try:
         gold=json.loads((ROOT/'src/data/worldbank-gold-monthly.json').read_text());period,value=gold['points'][-1]
+        if gold.get('unit') != 'USD per troy ounce' or gold.get('column') != 'Gold' or not gold.get('url', '').startswith('https://thedocs.worldbank.org/'): reject('Identité ou unité de la moyenne d’or modifiée')
         if (now.date()-dt.date.fromisoformat(period+'-01')).days>75:reject('Moyenne mensuelle de l’or trop ancienne')
         if period >= now.strftime('%Y-%m'): reject('Moyenne mensuelle d’or inachevée')
         if merged.get('or', {}).get('asOf', '') > period: reject('Régression de la période de l’or')
         merged['or']={'value':number(value),'asOf':period,'currency':'USD','method':'Moyenne mensuelle Banque mondiale, USD par once',
-                      'sourceUrl':gold.get('sourceUrl','https://thedocs.worldbank.org/en/doc/5d903e848db1d1b83e0ec8f744e55570-0350012021/related/CMO-Historical-Data-Monthly.xlsx'),
+                      'sourceUrl':gold['url'], 'sha256':gold['workbookSha256'],
                       'maxAgeDays':75}
         successes.append({'id':'anniversary-or'})
     except Exception as e:errors.append({'id':'anniversary-or','error':str(e)})
