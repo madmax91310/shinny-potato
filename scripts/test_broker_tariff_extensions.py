@@ -90,6 +90,8 @@ class BrokerTariffTests(unittest.TestCase):
    o=parse_supplement(key,fixture('tr_pea_contract.txt'),TODAY)[2]
    self.assertEqual(o['page'],189);self.assertEqual(o['values']['available'],1)
    self.assertEqual(o['publicationMonth'],'2026-09')
+   mac=parse_supplement(key,fixture('tr_pea_contract.txt').replace('institution','i nstitution'),TODAY)[2]
+   self.assertEqual(mac['values'],o['values']);self.assertEqual(mac['page'],189)
    with self.assertRaises(ValueError):parse_supplement(key,fixture('tr_pea_contract.txt'),'2026-08-01')
    self.assertNotIn('fee',o['values']);self.assertIn('Frais' if key=='tr_pea_transfer' else 'frais',o['copy']['full'])
    with self.assertRaises(ValueError):parse_supplement(key,fixture('tr_pea_contract.txt').replace('reject','accept'),TODAY)

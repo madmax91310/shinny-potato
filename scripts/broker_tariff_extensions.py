@@ -186,7 +186,9 @@ SUPPLEMENT_SOURCES={
 def parse_supplement(key,s,today):
  if key in ('tr_pea_transfer','tr_pea_transfer_out'):
   broker,field,url=SUPPLEMENT_SOURCES[key]
-  pages=[re.sub(r'\s+',' ',p.replace('\u200b',' ')) for p in s.split('\f')]
+  # macOS Poppler separates the initial glyph in "i nstitution". Repair this
+  # exact word only; no negation or transfer condition is removed or inferred.
+  pages=[re.sub(r'\bi\s+nstitution\b','institution',re.sub(r'\s+',' ',p.replace('\u200b',' '))) for p in s.split('\f')]
   eligible=[(i,p) for i,p in enumerate(pages,1) if 'Country Conditions France' in p and "Plan d'Epargne en Actions" in p and 'PEA Account Opening; Transfer' in p]
   if len(eligible)!=1:raise ValueError('Annexe France et section de transfert PEA absentes ou ambiguës')
   page,text=eligible[0]
@@ -198,7 +200,7 @@ def parse_supplement(key,s,today):
   if not match:raise ValueError('Périmètre transfert PEA du contrat modifié')
   labels=('The Customer may request the transfer of their PEA','Account from a different regulated financial institution to','Trade Republic will','reject a transfer request for this PEA Account containing the','unlisted securities.','The Customer may request transferring their PEA','Account with Trade Republic to a different regulated financial','institution.')
   missing=[label for label in labels if label not in match[1]]
-  if missing:raise ValueError(f'Clauses PEA manquantes : {missing} ; extrait officiel : {match[1][-2800:]}')
+  if missing:raise ValueError(f'Clauses PEA manquantes : {missing}')
   full='possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause.' if field=='entrant' else 'Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas.'
   meta=metadata(s,url,today);meta['page']=page
   meta['publicationMonth']=month
