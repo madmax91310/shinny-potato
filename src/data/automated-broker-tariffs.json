@@ -451,6 +451,40 @@
             "resume": "Barème général : généralement 0,03 % en automatique ; en manuel 0,002 %, minimum 2 USD. Disponibilité à confirmer sur PEA.",
             "full": "Barème général : généralement 0,03 % en automatique ; en manuel 0,002 %, minimum 2 USD. Disponibilité à confirmer sur PEA."
           }
+        },
+        "garde": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
+          "sha256": "f2a75568d27ed4d77a60ddd816a9106071ca8daebb3aa6b13abc1905e7fa522a",
+          "page": null,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "not-published",
+          "scope": "ibkr ; garde ; conditions explicites de la page officielle",
+          "values": {
+            "fee": 0
+          },
+          "copy": {
+            "resume": "Aucun droit de garde ni frais de tenue de compte PEA annoncés.",
+            "full": "Aucun droit de garde ni frais de tenue de compte PEA annoncés."
+          }
+        },
+        "sortant": {
+          "asOf": null,
+          "checkedAt": "2026-10-08",
+          "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
+          "sha256": "f2a75568d27ed4d77a60ddd816a9106071ca8daebb3aa6b13abc1905e7fa522a",
+          "page": null,
+          "method": "Barème officiel, marché et forfait exacts ; date de contrôle distincte de la publication",
+          "dateStatus": "not-published",
+          "scope": "ibkr ; sortant ; conditions explicites de la page officielle",
+          "values": {
+            "fee": 0
+          },
+          "copy": {
+            "resume": "0 € annoncé par IBKR.",
+            "full": "0 € annoncé par IBKR."
+          }
         }
       }
     },

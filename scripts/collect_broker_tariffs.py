@@ -58,10 +58,16 @@ def fetch_content(url):
  raw=download(url)
  return pdf_text(raw) if raw.startswith(b'%PDF') else raw.decode('utf-8')
 def collect(baseline,today,fetcher=fetch_content):
- failures={};validated=[]
+ failures={};validated=[];documents={}
+ def fetch_once(url):
+  if url not in documents:
+   try:documents[url]=fetcher(url)
+   except Exception as exc:documents[url]=exc
+  if isinstance(documents[url],Exception):raise documents[url]
+  return documents[url]
  for name,url in SOURCES.items():
   try:
-   content=fetcher(url);observation=parse(name,content,today,baseline['brokers'].get(name))
+   content=fetch_once(url);observation=parse(name,content,today,baseline['brokers'].get(name))
    previous_fields=baseline['brokers'].get(name,{}).get('fields',{})
    observation['fields']={**previous_fields,**observation.get('fields',{})}
    if name in ('bourso','fortuneo'):
@@ -71,7 +77,7 @@ def collect(baseline,today,fetcher=fetch_content):
   except Exception as exc:failures[name]=str(exc)
  for key,(broker,field,url) in SUPPLEMENT_SOURCES.items():
   try:
-   _,_,observation=parse_supplement(key,fetcher(url),today)
+   _,_,observation=parse_supplement(key,fetch_once(url),today)
    if broker not in baseline['brokers']:raise ValueError('Barème principal non qualifié')
    baseline['brokers'][broker].setdefault('fields',{})[field]=observation
   except Exception as exc:failures[key]=str(exc)

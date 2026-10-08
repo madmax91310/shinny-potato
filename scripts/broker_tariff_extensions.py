@@ -147,6 +147,8 @@ def parse(name,s,today,previous=None):
  return result
 
 SUPPLEMENT_SOURCES={
+ 'ibkr_pea_garde':('ibkr','garde','https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php'),
+ 'ibkr_pea_transfer':('ibkr','sortant','https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php'),
  'ibkr_fx':('ibkr','change','https://www.interactivebrokers.ie/fr/pricing/commissions-spot-currencies.php'),
  'bourso_transfer':('bourso','entrant','https://www.boursobank.com/aide-en-ligne/bourse/mobilite-bourse/question/proposez-vous-une-offre-en-cas-de-transfert-de-compte-bourse-53103659'),
  'fortuneo_transfer':('fortuneo','entrant','https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse'),
@@ -156,7 +158,11 @@ SUPPLEMENT_SOURCES={
 def parse_supplement(key,s,today):
  broker,field,url=SUPPLEMENT_SOURCES[key];s=BeautifulSoup(s,'html.parser').get_text(' ',strip=True).replace('\xa0',' ')
  meta=metadata(s,url,today);v={};end=None;start=None
- if key=='ibkr_fx':
+ if key in ('ibkr_pea_garde','ibkr_pea_transfer'):
+  require(s,"Pas de frais d'ouverture du PEA, ni de frais de tenue de compte ou de frais de transfert.",'Pas de droits de garde','Pas de frais de transfert','Pas de frais de tenue de compte')
+  v={'fee':0}
+  full='Aucun droit de garde ni frais de tenue de compte PEA annoncés.' if field=='garde' else '0 € annoncé par IBKR.'
+ elif key=='ibkr_fx':
   require(s,'point de base','conversion de devise automatique','discrétion')
   manual=get(r'1 000 000 000\s+([\d,]+) point de base',s)
   minimum=get(r'Minimum par ordre\s+2 Palier I - ([\d,]+) USD',s)

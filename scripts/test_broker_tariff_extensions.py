@@ -35,7 +35,10 @@ class BrokerTariffTests(unittest.TestCase):
   o=parse('saxo',s,TODAY)
   self.assertEqual(o['values']['rate'],.09);self.assertIn('0,09 %',o['copy']['full'])
  def test_supplement_scope_and_period(self):
-  results={key:parse_supplement(key,fixture(key+'.txt'),TODAY)[2] for key in SUPPLEMENT_SOURCES}
+  results={key:parse_supplement(key,fixture('ibkr_pea.txt' if key.startswith('ibkr_pea_') else key+'.txt'),TODAY)[2] for key in SUPPLEMENT_SOURCES}
+  self.assertEqual(results['ibkr_pea_garde']['values'],{'fee':0})
+  self.assertEqual(results['ibkr_pea_transfer']['values'],{'fee':0})
+  with self.assertRaises(ValueError):parse_supplement('ibkr_pea_garde',fixture('ibkr_pea.txt').replace('Pas de droits de garde','Droits de garde payants'),TODAY)
   self.assertEqual(results['ibkr_fx']['values'],{'manualRate':.002,'minimumUsd':2,'automaticRate':.03})
   self.assertIn('Disponibilité à confirmer sur PEA',results['ibkr_fx']['copy']['full'])
   self.assertEqual(results['bourso_transfer']['values']['maximum'],3000)
