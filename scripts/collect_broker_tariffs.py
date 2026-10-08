@@ -11,13 +11,13 @@ import urllib.parse
 from bs4 import BeautifulSoup
 from issuer_documents import download, pdf_text
 from collect_regulatory_data import unique
+from broker_document_sources import DocumentResolver
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEST = ROOT/'src/data/automated-broker-tariffs.json'
 SOURCES = {'bourso': 'https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf',
  'fortuneo':'https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf'}
 from broker_tariff_extensions import SOURCES as EXTENDED_SOURCES, SUPPLEMENT_SOURCES, parse as parse_extended, parse_supplement, base_supplements
 SOURCES.update(EXTENDED_SOURCES)
-SOURCE_ALTERNATIVES = {'bd': ('https://www.boursedirect.com/pdf/tarifs_bd.pdf',)}
 MONTHS = {'janvier':1,'février':2,'mars':3,'avril':4,'mai':5,'juin':6,'juillet':7,'août':8,'septembre':9,'octobre':10,'novembre':11,'décembre':12}
 def parse(name, content, today, previous=None):
  if name in EXTENDED_SOURCES: return parse_extended(name,content,today,previous)
@@ -77,23 +77,28 @@ def fetch_content(url):
  return raw.decode('utf-8')
 def collect(baseline,today,fetcher=fetch_content):
  failures={};validated=[];documents={}
+ previous_sources={SOURCES[name]:o['sourceUrl'] for name,o in baseline['brokers'].items() if name in SOURCES and o.get('sourceUrl')}
+ from broker_profiles import SOURCES as PROFILE_SOURCES
+ for broker in baseline['brokers'].values():
+  for profile in broker.get('profile',{}).values():
+   for ref in profile.get('refs',[]):
+    if ref.get('document') in PROFILE_SOURCES and ref.get('sourceUrl'):
+     previous_sources[PROFILE_SOURCES[ref['document']]['url'].split('?')[0]]=ref['sourceUrl']
+ resolver=DocumentResolver(fetcher,today,previous_sources)
  def fetch_once(url):
   if url not in documents:
-   try:documents[url]=fetcher(url)
+   try:documents[url]=resolver(url)
    except Exception as exc:documents[url]=exc
   if isinstance(documents[url],Exception):raise documents[url]
   return documents[url]
  for name,url in SOURCES.items():
   try:
-   errors=[]
-   for candidate in (url,*SOURCE_ALTERNATIVES.get(name,())):
-    try:
-     content=fetch_once(candidate);observation=parse(name,content,today,baseline['brokers'].get(name))
-     observation['sourceUrl']=candidate
-     for field in observation.get('fields',{}).values():field['sourceUrl']=candidate
-     break
-    except Exception as exc:errors.append(f'{candidate}: {exc}')
-   else:raise ValueError('; '.join(errors))
+   content=fetch_once(url);observation=parse(name,content,today,baseline['brokers'].get(name))
+   observation['sourceUrl']=content.source_url
+   observation['discoveryUrl']=content.discovery_url
+   for field in observation.get('fields',{}).values():
+    field['sourceUrl']=content.source_url
+    field['discoveryUrl']=content.discovery_url
    previous_fields=baseline['brokers'].get(name,{}).get('fields',{})
    observation['fields']={**previous_fields,**observation.get('fields',{})}
    observation['profile']=baseline['brokers'].get(name,{}).get('profile',{})
@@ -101,10 +106,15 @@ def collect(baseline,today,fetcher=fetch_content):
     try:observation['fields'].update(base_supplements(name,content,observation))
     except Exception as exc:failures[name+':extras']=str(exc)
    baseline['brokers'][name]=observation;validated.append(name)
-  except Exception as exc:failures[name]=str(exc)
+  except Exception as exc:
+   selected=getattr(documents.get(url),'source_url',url)
+   failures[name]=f'{selected}: {exc}'
  for key,(broker,field,url) in SUPPLEMENT_SOURCES.items():
   try:
-   _,_,observation=parse_supplement(key,fetch_once(url),today)
+   content=fetch_once(url)
+   _,_,observation=parse_supplement(key,content,today)
+   observation['sourceUrl']=content.source_url
+   observation['discoveryUrl']=content.discovery_url
    if broker not in baseline['brokers']:raise ValueError('Barème principal non qualifié')
    previous=baseline['brokers'][broker].get('fields',{}).get(field,{})
    if observation.get('publicationMonth') and previous.get('publicationMonth') and observation['publicationMonth']<previous['publicationMonth']:
@@ -115,6 +125,7 @@ def collect(baseline,today,fetcher=fetch_content):
  profile_failures,profile_count=collect_profiles(baseline,today,fetch_once)
  failures.update(profile_failures)
  baseline['profileCollection']={'checkedAt':today,'validated':profile_count,'failures':profile_failures}
+ baseline['sourceResolution']={'checkedAt':today,'documents':resolver.report}
  return baseline,failures,validated
 def main():
  parser=argparse.ArgumentParser();parser.add_argument('--apply',action='store_true');parser.add_argument('--output',type=pathlib.Path,required=True);args=parser.parse_args()

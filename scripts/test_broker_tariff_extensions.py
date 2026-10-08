@@ -3,7 +3,8 @@ import copy
 import json
 import pathlib
 import unittest
-from collect_broker_tariffs import collect, SOURCES, SOURCE_ALTERNATIVES
+from collect_broker_tariffs import collect, SOURCES
+from broker_document_sources import ALTERNATIVES
 from broker_tariff_extensions import parse, parse_supplement, SUPPLEMENT_SOURCES
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/broker-tariffs'
 TODAY='2026-10-08'
@@ -120,7 +121,7 @@ class BrokerTariffTests(unittest.TestCase):
   self.assertEqual(state['brokers']['bd']['profile']['ifu'],previous)
   self.assertIn('bd:profile:ifu',failures)
  def test_official_alternative_requires_valid_pea_table(self):
-  alternate=SOURCE_ALTERNATIVES['bd'][0]
+  alternate=ALTERNATIVES[SOURCES['bd']][0]
   def fetch(url):
    if url==alternate:return fixture('bd-synthetic.txt')
    raise ValueError('HTTP 502')
@@ -132,6 +133,6 @@ class BrokerTariffTests(unittest.TestCase):
    if url==alternate:return fixture('bd-synthetic.txt').replace('PEA','CTO')
    raise ValueError('HTTP 502')
   state,failures,validated=collect(state,TODAY,invalid)
-  self.assertEqual(state,previous);self.assertEqual(validated,[])
-  self.assertIn(SOURCES['bd'],failures['bd']);self.assertIn(alternate,failures['bd'])
+  self.assertEqual(state['brokers'],previous['brokers']);self.assertEqual(validated,[])
+  self.assertIn(alternate,failures['bd'])
 if __name__=='__main__':unittest.main()

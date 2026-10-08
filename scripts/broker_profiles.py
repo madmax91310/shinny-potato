@@ -13,10 +13,10 @@ from bs4 import BeautifulSoup
 SOURCES = json.loads(pathlib.Path(__file__).with_name('broker_profile_sources.json').read_text())
 FIELDS = ('dca', 'pea', 'pme', 'jeune', 'ifu', 'cash', 'boursomarkets')
 DOCUMENTS = {
- 'tr': {'dca':['trContract','trFees'], 'pea':['trContract'], 'pme':['trContract'], 'jeune':['trContract'], 'ifu':['trContract'], 'cash':['trContract'], 'change':['trDividendsFx'], 'garde':['trContract','trFees']},
+ 'tr': {'dca':['trPeaHelp'], 'pea':['trContract'], 'pme':['trContract'], 'jeune':['trContract'], 'ifu':['trContract'], 'cash':['trContract'], 'change':['trDividendsFx'], 'garde':['trContract','trFees']},
  'bourso': {'dca':['boursoTariff'], 'pea':['boursoTariff'], 'pme':['boursoTariff'], 'jeune':['boursoTariff'], 'ifu':['boursoIfu'], 'cash':['boursoContract'], 'boursomarkets':['boursoMarkets'], 'garde':['boursoTariff']},
  'fortuneo': {'dca':['fortuneoSmartOrders','fortuneoContract'], 'pea':['fortuneoTariff'], 'pme':['fortuneoTariff'], 'jeune':['fortuneoContract'], 'ifu':['fortuneoIfu'], 'cash':['fortuneoContract']},
- 'ibkr': {'dca':['ibkrPea','ibkrDca'], 'pea':['ibkrPea'], 'pme':['ibkrPea'], 'jeune':['ibkrPea'], 'ifu':['ibkrPea'], 'cash':['ibkrInterest'], 'entrant':['ibkrPea']},
+ 'ibkr': {'dca':['ibkrPea','ibkrDca'], 'pea':['ibkrPea'], 'pme':['ibkrPea'], 'jeune':['ibkrPea'], 'ifu':['ibkrPea'], 'cash':['ibkrInterest'], 'entrant':['ibkrTransfer','ibkrPea']},
  'xtb': {'dca':['xtbComparison'], 'pea':['xtbPea'], 'pme':['xtbComparison'], 'jeune':['xtbPea'], 'ifu':['xtbIfu'], 'cash':['xtbInterest','xtbPea']},
  'caidf': {'dca':['caPeb','caTariff'], 'pea':['caTariff'], 'pme':['caTariff'], 'jeune':['caIdfPea'], 'ifu':['caTariff','caInvest'], 'cash':['caIdfPeaPme','caIdfContract'], 'change':['caTariff']},
  'bd': {'dca':['bdPlans'], 'pea':['bdTariff'], 'pme':['bdTariff'], 'jeune':['bdTariff'], 'ifu':['bdContract'], 'cash':['bdPea','bdCto'], 'entrant':['bdTariffPage']},
@@ -90,7 +90,7 @@ def statement(broker, field, texts):
             find(r"Mise en place d.un Plan d.Epargne Boursier \(PEB\) Nous consulter",texts['caTariff'])
             return proved(r'1 à 3 fonds',True,f'Plan d’Épargne Boursière sur 1 à 3 fonds, dès {fmt(v)} €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.')
         if broker=='tr':
-            return unknown('Plans programmés : gratuité annoncée sur le compte-titres ; conditions propres au PEA à confirmer dans les documents publics.')
+            return proved(r'Trade Republic propose le premier PEA sans frais de France grâce aux plans d.épargne',True,'Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles.')
         if broker=='saxo': return proved(r"Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA",False,'Plan Épargne Programmé actuellement hors PEA ❌')
         if broker=='xtb': return proved(r"XTB prévoit d'élargir son offre avec des plans d'investissement programmés et un volet PEA-PME à venir",False,'Plans programmés PEA annoncés à venir ; pas encore disponibles ❌')
         if broker=='bd':
@@ -136,7 +136,10 @@ def statement(broker, field, texts):
         if broker=='caidf': return unknown('Change boursier : tarif non confirmé dans le barème régional ; commission bancaire générale exclue.')
         return proved(r'Si des dividendes.{0,220}?nous convertissons directement pour vous cette devise en euro',None,'Conversion des dividendes selon les conditions Trade Republic ; taux ou commission PEA non chiffrés dans cette page.','partiel')
     if field=='entrant':
-        if broker == 'ibkr': return unknown('Transfert entrant PEA : conditions et remboursement éventuel à confirmer dans les sources publiques.')
+        if broker == 'ibkr':
+            find(r'You can transfer PEA accounts held with other brokers.{0,80}?into your account', text)
+            find(r'Pas de frais d.ouverture du PEA, ni de frais de tenue de compte ou de frais de transfert', texts['ibkrPea'])
+            return proved(r'You can transfer PEA accounts held with other brokers.{0,80}?into your account',True,'Transfert entrant PEA possible via le Portail Client ; aucun frais de transfert annoncé par IBKR. Les frais du courtier de départ restent distincts.')
         m=find(r'(?:rembours.{0,150}?([\d ]+)\s*€.{0,120}?PEA|PEA.{0,150}?rembours.{0,120}?([\d ]+)\s*€)',text)
         v=amount(m[1] or m[2])
         return True,'confirmé',f'Transfert entrant PEA possible ; remboursement jusqu’à {fmt(v)} €, sous conditions et sur justificatif.',source,m[0]
@@ -152,6 +155,8 @@ def parse(broker,field,raws,today):
         supporting['xtbPea'] = find(r'(?:espèces|fonds|argent).{0,120}?(?:ne.{0,25}?intérêts|pas.{0,25}?intérêts|non rémun)', texts['xtbPea'])[0]
     if broker == 'tr' and field == 'garde':
         supporting['trFees'] = find(r'Il n.y a pas de frais de garde', texts['trFees'])[0]
+    if broker == 'ibkr' and field == 'entrant':
+        supporting['ibkrPea'] = find(r'Pas de frais d.ouverture du PEA, ni de frais de tenue de compte ou de frais de transfert', texts['ibkrPea'])[0]
     refs=[]
     for key,raw in raws.items():
         if key!=decisive and key not in supporting: continue
@@ -160,12 +165,12 @@ def parse(broker,field,raws,today):
         page=next((i for i,p in enumerate(raw.split('\f'),1) if clean(reference_quote) in clean(p)),None) if '<html' not in raw.lower() else None
         kind='pdf' if '\f' in raw or re.search(r'\.pdf(?:$|\?)',info['url']) else 'page'
         if kind=='pdf' and not page: raise ValueError('Page de la clause officielle non localisée')
-        refs.append({'document':key,'sourceUrl':info['url'],'page':page,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
+        refs.append({'document':key,'sourceUrl':getattr(raw,'source_url',info['url']),'discoveryUrl':getattr(raw,'discovery_url',None),'page':page,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
     return {'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
-      'sourceUrl':SOURCES[decisive]['url'],'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
+      'sourceUrl':getattr(raws[decisive],'source_url',SOURCES[decisive]['url']),'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
       'method':'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue',
       'sha256':hashlib.sha256('\n'.join(raws.values()).encode()).hexdigest(),'values':{},'decisiveDocument':decisive,'statement':quote,
-      'checkedSources':[{'sourceUrl':SOURCES[key]['url'],'sha256':hashlib.sha256(raw.encode()).hexdigest()} for key,raw in raws.items()]}
+      'checkedSources':[{'sourceUrl':getattr(raw,'source_url',SOURCES[key]['url']),'sha256':hashlib.sha256(raw.encode()).hexdigest()} for key,raw in raws.items()]}
 
 def collect_profiles(baseline,today,fetcher):
     urls={SOURCES[key]['url'] for fields in DOCUMENTS.values() for keys in fields.values() for key in keys}

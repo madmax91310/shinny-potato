@@ -118,7 +118,7 @@ for (let i = 0; i < BROKERS.length; i++) {
         const name = id === 'saxo' ? 'Saxo' : broker.nom;
         for (const heading of [headings[0], headings[1], headings[2], headings[8]]) assert(section(post, heading).includes(`${name} : `), `${ids}: réponse ${heading} ${name}`);
         assert(section(post, headings[7]).includes(`Vers ${name} : `), `${ids}: transfert entrant ${name}`);
-        assert.equal(BROKER_EVIDENCE[id].transfert.status, id === 'ibkr' ? 'partiel' : 'confirmé');
+        assert.equal(BROKER_EVIDENCE[id].transfert.status, 'confirmé');
         assert.equal(BROKER_EVIDENCE[id].ifu.status, 'confirmé');
         assert(section(post, headings[1]).includes(BROKER_EVIDENCE[id].change.post), `${ids}: change raccordé au registre`);
         if (BROKER_EVIDENCE[id].cash.status === 'corroboré') assert(section(post, headings[6]).includes('selon les analyses consultées'), `${ids}: réserve cash`);

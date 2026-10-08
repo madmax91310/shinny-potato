@@ -49,6 +49,19 @@ class BrokerProfilesTests(unittest.TestCase):
         result=parse('xtb','cash',raw,TODAY)['copy']['full']
         self.assertIn('60 jours',result);self.assertIn('120000 €',result)
 
+    def test_new_explicit_pea_sources_and_changed_clauses(self):
+        for broker,field,key,old,new in [
+            ('tr','dca','trPeaHelp','sans frais de France grâce aux plans','avec frais de France grâce aux plans'),
+            ('ibkr','entrant','ibkrTransfer','You can transfer PEA accounts','You cannot transfer PEA accounts')]:
+            raw=raws(broker,field)
+            o=parse(broker,field,raw,TODAY)
+            self.assertTrue(o['available']);self.assertEqual(o['status'],'confirmé')
+            raw[key]=raw[key].replace(old,new)
+            with self.assertRaises(ValueError):parse(broker,field,raw,TODAY)
+        o=parse('ibkr','entrant',raws('ibkr','entrant'),TODAY)
+        self.assertEqual(len(o['refs']),2)
+        self.assertIn('courtier de départ',o['copy']['full'])
+
     def test_caidf_setup_fee_not_inferred_from_national_page(self):
         o=parse('caidf','dca',raws('caidf','dca'),TODAY)
         self.assertIn('consulter la caisse',o['copy']['full']);self.assertNotIn('gratuite',o['copy']['full'])

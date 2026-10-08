@@ -4,7 +4,7 @@
     "bourso": {
       "values": {
         "minimum": 1.99,
-        "threshold": 500.0,
+        "threshold": 500,
         "rate": 0.6
       },
       "asOf": "2026-10-05",
@@ -40,8 +40,8 @@
           "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
           "scope": "Transfert sortant PEA ; distinct du CTO",
           "values": {
-            "perLine": 15.0,
-            "maximum": 150.0
+            "perLine": 15,
+            "maximum": 150
           },
           "copy": {
             "resume": "15 € par ligne, maximum 150 €.",
@@ -58,8 +58,8 @@
           "dateStatus": "not-published",
           "scope": "bourso ; entrant ; conditions explicites de la page officielle",
           "values": {
-            "maximum": 3000.0,
-            "requestMonths": 3.0,
+            "maximum": 3000,
+            "requestMonths": 3,
             "multiplier": 2
           },
           "copy": {
@@ -329,8 +329,8 @@
     },
     "fortuneo": {
       "values": {
-        "freeFee": 0.0,
-        "threshold": 500.0,
+        "freeFee": 0,
+        "threshold": 500,
         "rate": 0.35
       },
       "asOf": "2026-08-06",
@@ -366,9 +366,9 @@
           "method": "Tableau de courtage de la brochure officielle ; forfait et marché exacts",
           "scope": "Transfert sortant PEA ; distinction coté/non coté",
           "values": {
-            "perLine": 15.0,
-            "nonListed": 50.0,
-            "maximum": 150.0
+            "perLine": 15,
+            "nonListed": 50,
+            "maximum": 150
           },
           "copy": {
             "resume": "15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €.",
@@ -401,12 +401,12 @@
           "dateStatus": "not-published",
           "scope": "fortuneo ; entrant ; conditions explicites de la page officielle",
           "values": {
-            "maximum": 2000.0,
-            "high": 5000.0,
-            "middle": 150.0,
-            "lower": 3000.0,
-            "small": 100.0,
-            "requestMonths": 3.0
+            "maximum": 2000,
+            "high": 5000,
+            "middle": 150,
+            "lower": 3000,
+            "small": 100,
+            "requestMonths": 3
           },
           "copy": {
             "resume": "Possible ✅ Premier transfert remboursé jusqu’à 100 € si l’encours est inférieur à 3 000 €, 150 € de 3 000 à moins de 5 000 €, ou 2 000 € à partir de 5 000 €, sous conditions. Justificatif dans les 3 mois suivant l’ouverture.",
@@ -623,7 +623,7 @@
       "dateStatus": "dated",
       "scope": "XTB ; actions/ETF OMI ; turnover mensuel cumulé tous comptes ; exemption minimum PEA",
       "values": {
-        "threshold": 100000.0,
+        "threshold": 100000,
         "rate": 0.2
       },
       "copy": {
@@ -660,7 +660,7 @@
           "scope": "Excédent valeur quotidienne moyenne du portefeuille ; prélèvement mensuel",
           "values": {
             "rate": 0.02,
-            "threshold": 250000.0
+            "threshold": 250000
           },
           "copy": {
             "resume": "Gratuits jusqu’à 250 000 € de portefeuille, puis 0,02 % par an sur l’excédent.",
@@ -677,8 +677,8 @@
           "dateStatus": "dated",
           "scope": "Transfert sortant PEA ; tarif CTO non substitué",
           "values": {
-            "perLine": 15.0,
-            "maximum": 150.0
+            "perLine": 15,
+            "maximum": 150
           },
           "copy": {
             "resume": "15 € par ligne, maximum 150 €.",
@@ -921,7 +921,7 @@
       "scope": "Saxo France ; actions/ETF Euronext ; Classic",
       "values": {
         "rate": 0.08,
-        "minimum": 2.0
+        "minimum": 2
       },
       "copy": {
         "resume": "0,08 % · min 2 €",
@@ -939,7 +939,7 @@
           "dateStatus": "dated",
           "scope": "Titres cotés ; non cotés exclus",
           "values": {
-            "fee": 0.0
+            "fee": 0
           },
           "copy": {
             "resume": "0 € sur les titres cotés ; exception pour les titres non cotés en PEA.",
@@ -973,8 +973,8 @@
           "dateStatus": "dated",
           "scope": "Transfert sortant PEA/PEA-PME",
           "values": {
-            "perLine": 15.0,
-            "maximum": 150.0
+            "perLine": 15,
+            "maximum": 150
           },
           "copy": {
             "resume": "15 € par ligne, maximum 150 €.",
@@ -991,7 +991,7 @@
           "dateStatus": "not-published",
           "scope": "saxo ; offerPea ; conditions explicites de la page officielle",
           "values": {
-            "count": 70.0
+            "count": 70
           },
           "copy": {
             "resume": "70 actions européennes sans courtage à l’achat et à la vente pour les nouveaux PEA éligibles, ouverts ou transférés. Les commissions de change restent dues.",
@@ -1030,8 +1030,8 @@
           "dateStatus": "not-published",
           "scope": "saxo ; entrant ; conditions explicites de la page officielle",
           "values": {
-            "maximum": 150.0,
-            "paymentDays": 30.0,
+            "maximum": 150,
+            "paymentDays": 30,
             "requestMonths": 1
           },
           "copy": {
@@ -1252,10 +1252,10 @@
         "small": 0.48,
         "middle": 0.18,
         "large": 0.12,
-        "threshold": 500.0,
-        "upperThreshold": 1000.0,
-        "annual": 96.0,
-        "orders": 12.0,
+        "threshold": 500,
+        "upperThreshold": 1000,
+        "annual": 96,
+        "orders": 12,
         "ageStart": 18,
         "ageEnd": 30
       },
@@ -1276,7 +1276,7 @@
           "scope": "CA IDF ; exemptions et droits fixes conservés",
           "values": {
             "rate": 0.2,
-            "maximum": 250.0,
+            "maximum": 250,
             "fixed": 2.5,
             "specialLine": 12.5
           },
@@ -1295,8 +1295,8 @@
           "dateStatus": "dated",
           "scope": "CA IDF ; sortie hors Crédit Agricole",
           "values": {
-            "perLine": 15.0,
-            "maximum": 150.0
+            "perLine": 15,
+            "maximum": 150
           },
           "copy": {
             "resume": "15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers.",
@@ -1583,8 +1583,8 @@
         "fixedRate": 0.05,
         "directRate": 0.1,
         "minimum": 1.25,
-        "fixedMinimum": 3.0,
-        "directMinimum": 4.0
+        "fixedMinimum": 3,
+        "directMinimum": 4
       },
       "copy": {
         "resume": "Dès 0,05 % · min 1,25 €",
@@ -1603,7 +1603,7 @@
           "scope": "ibkr ; change ; conditions explicites de la page officielle",
           "values": {
             "manualRate": 0.002,
-            "minimumUsd": 2.0,
+            "minimumUsd": 2,
             "automaticRate": 0.03
           },
           "copy": {
@@ -1844,34 +1844,48 @@
           ]
         },
         "entrant": {
-          "available": null,
-          "status": "non établi",
+          "available": true,
+          "status": "confirmé",
           "copy": {
-            "resume": "Transfert entrant PEA : conditions et remboursement éventuel à confirmer dans les sources publiques.",
-            "full": "Transfert entrant PEA : conditions et remboursement éventuel à confirmer dans les sources publiques."
+            "resume": "Transfert entrant PEA possible via le Portail Client ; aucun frais de transfert annoncé par IBKR. Les frais du courtier de départ restent distincts.",
+            "full": "Transfert entrant PEA possible via le Portail Client ; aucun frais de transfert annoncé par IBKR. Les frais du courtier de départ restent distincts."
           },
           "checkedAt": "2026-10-08",
-          "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
+          "sourceUrl": "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
           "refs": [
+            {
+              "document": "ibkrTransfer",
+              "sourceUrl": "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
+              "discoveryUrl": null,
+              "page": 1,
+              "sha256": "bf95d2ec235b4de4394b423f826d3a8253c8b59f3dde706282aa7dce72e4411a",
+              "kind": "page",
+              "statement": "You can transfer PEA accounts held with other brokers (delivering broker/ceding broker) into your account"
+            },
             {
               "document": "ibkrPea",
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "page": null,
-              "sha256": "e05cc2cf6c445b8ef71206c2cf7900615e7ea08fd1b4098c0e0c02ca91b3cfaf",
+              "discoveryUrl": null,
+              "page": 1,
+              "sha256": "b998c44d95dfea1a86230b23808d3299801aef9c6b4163d6dd6df45134a75db4",
               "kind": "page",
-              "statement": "PEA"
+              "statement": "Pas de frais d'ouverture du PEA, ni de frais de tenue de compte ou de frais de transfert"
             }
           ],
           "scope": "ibkr ; entrant ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "e05cc2cf6c445b8ef71206c2cf7900615e7ea08fd1b4098c0e0c02ca91b3cfaf",
+          "sha256": "4dccbf1af9835106d4284e257a88cad1dff3935b6ba1b6dbc08ff61449d7bbd9",
           "values": {},
-          "decisiveDocument": "ibkrPea",
-          "statement": "PEA",
+          "decisiveDocument": "ibkrTransfer",
+          "statement": "You can transfer PEA accounts held with other brokers (delivering broker/ceding broker) into your account",
           "checkedSources": [
             {
+              "sourceUrl": "https://www.ibkrguides.com/clientportal/pea-transfer.htm",
+              "sha256": "bf95d2ec235b4de4394b423f826d3a8253c8b59f3dde706282aa7dce72e4411a"
+            },
+            {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "e05cc2cf6c445b8ef71206c2cf7900615e7ea08fd1b4098c0e0c02ca91b3cfaf"
+              "sha256": "b998c44d95dfea1a86230b23808d3299801aef9c6b4163d6dd6df45134a75db4"
             }
           ]
         }
@@ -1887,7 +1901,7 @@
       "dateStatus": "not-published",
       "scope": "Trade Republic France ; frais externes des transactions ponctuelles hors plans ; Direct Price non recertifié",
       "values": {
-        "minimum": 1.0
+        "minimum": 1
       },
       "copy": {
         "resume": "1 € hors plans",
@@ -1939,9 +1953,9 @@
           "dateStatus": "not-published",
           "scope": "tr ; directPrice ; conditions explicites de la page officielle",
           "values": {
-            "fee": 2.0,
-            "standardFee": 1.0,
-            "venueFee": 1.0
+            "fee": 2,
+            "standardFee": 1,
+            "venueFee": 1
           },
           "copy": {
             "resume": "Direct Price : 2 € par transaction, dont 1 € de règlement et 1 € de place. Spread, conversion et autres coûts possibles.",
@@ -1990,38 +2004,35 @@
       },
       "profile": {
         "dca": {
-          "available": null,
-          "status": "non établi",
+          "available": true,
+          "status": "confirmé",
           "copy": {
-            "resume": "Plans programmés : gratuité annoncée sur le compte-titres ; conditions propres au PEA à confirmer dans les documents publics.",
-            "full": "Plans programmés : gratuité annoncée sur le compte-titres ; conditions propres au PEA à confirmer dans les documents publics."
+            "resume": "Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles.",
+            "full": "Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles."
           },
           "checkedAt": "2026-10-08",
-          "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+          "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
           "refs": [
             {
-              "document": "trContract",
-              "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
-              "page": 3,
-              "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375",
-              "kind": "pdf",
-              "statement": "PEA"
+              "document": "trPeaHelp",
+              "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+              "discoveryUrl": null,
+              "page": 1,
+              "sha256": "d496f6fd79587534e2690490610e66ad207e082999d3373703f814833d9b6e8a",
+              "kind": "page",
+              "statement": "Trade Republic propose le premier PEA sans frais de France grâce aux plans d’épargne"
             }
           ],
           "scope": "tr ; dca ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "6b32aff927456a9cfcb221988b10014945eaea598b164ac5961d33122632849d",
+          "sha256": "d496f6fd79587534e2690490610e66ad207e082999d3373703f814833d9b6e8a",
           "values": {},
-          "decisiveDocument": "trContract",
-          "statement": "PEA",
+          "decisiveDocument": "trPeaHelp",
+          "statement": "Trade Republic propose le premier PEA sans frais de France grâce aux plans d’épargne",
           "checkedSources": [
             {
-              "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
-              "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
-            },
-            {
-              "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account",
-              "sha256": "8194741a6d119a73d8217012041f0bea542d01f05d06ca1b9ee2be57d71e0747"
+              "sourceUrl": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+              "sha256": "d496f6fd79587534e2690490610e66ad207e082999d3373703f814833d9b6e8a"
             }
           ]
         },
@@ -2330,9 +2341,9 @@
           "dateStatus": "dated",
           "scope": "Bourse Direct ; transfert sortant PEA ; colonne CTO étrangère exclue",
           "values": {
-            "perLine": 15.0,
-            "unlistedPerLine": 50.0,
-            "maximum": 150.0
+            "perLine": 15,
+            "unlistedPerLine": 50,
+            "maximum": 150
           },
           "copy": {
             "resume": "15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA.",

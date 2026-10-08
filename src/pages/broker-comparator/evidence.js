@@ -297,7 +297,7 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
     OFFICIAL_SOURCES[doc]={title:`${brokerNames[id]} · transfert entrant`,url:incoming.sourceUrl,
       checked:incoming.checkedAt.split('-').reverse().join('/'),edition:'Page publique ; contrôle automatique',kind:'page'};
     BROKER_EVIDENCE[id].transfert={...BROKER_EVIDENCE[id].transfert,
-      status:incoming.status === 'confirmé' ? BROKER_EVIDENCE[id].transfert.status : 'partiel',
+      status:incoming.status === 'confirmé' && observation.fields?.sortant ? 'confirmé' : 'partiel',
       summary:`Entrée : ${incoming.copy.full} Sortie : ${brokerFieldCopies(id).sortant ?? 'Tarif à confirmer.'}`,
       refs:[{document:doc},...BROKER_EVIDENCE[id].transfert.refs],automatedEvidence:incoming};
   }
