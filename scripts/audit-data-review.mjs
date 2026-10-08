@@ -5,7 +5,7 @@ import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-re
 import { HISTORICAL_AUTOMATED_PERFORMANCE as AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview, reviewCalendar, summarizeCadences } from '../src/pages/data-review/lib.js'
-import { OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
+import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 
 assert.equal(dayNumber('2026-02-30'), null)
 assert.equal(dayNumber('date absente'), null)
@@ -32,7 +32,11 @@ for (const source of Object.values({ ...OFFICIAL_SOURCES, ...SECONDARY_SOURCES }
   if (source.reviewUntil) assert.notEqual(dayNumber(source.reviewUntil), null, 'Échéance enregistrée invalide')
 }
 const current = buildReview('2026-10-02')
-assert.equal(current.items.filter(x => x.category === 'reserve').length, 12)
+const expectedReserves = Object.entries(BROKER_EVIDENCE).flatMap(([id, fields]) => EVIDENCE_FIELDS.flatMap(([key]) => {
+  const item = fields[key]
+  return item && !(item.status === 'non établi' && /sans objet/i.test(item.summary)) && (item.status !== 'confirmé' || item.review?.outcome === 'unresolved') ? [`broker:${id}:${key}`] : []
+})).sort()
+assert.deepEqual(current.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves)
 assert(current.items.some(x => x.id === 'broker:tr:garde' && x.category === 'reserve'), 'La gratuité du CTO ne clôture pas la réserve de garde PEA')
 assert.equal(current.items.filter(x => x.until).length, 3, 'Les offres réutilisées dans plusieurs cellules sont dédoublonnées')
 assert.equal(current.archives, 16)
@@ -57,10 +61,10 @@ for (const observation of closure.records) {
 }
 const remaining = buildReview(closure.checkedAt)
 assert.equal(remaining.items.filter(x => x.category === 'undated').length, 4, 'Les quatre contrôles non résolus doivent rester visibles')
-assert.equal(remaining.items.filter(x => x.category === 'reserve').length, 12, 'Neuf réserves conservées, deux limites de change et la garde PEA Trade Republic')
+assert.deepEqual(remaining.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves, 'Toutes les preuves non résolues restent visibles')
 assert.equal(remaining.archives, 16, 'La recherche ne doit pas masquer un reliquat en archive')
-console.log(`Revue au ${current.today} : ${current.items.length} éléments, 12 réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
-console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, 4 contrôles non datés et 12 réserves conservés.`)
+console.log(`Revue au ${current.today} : ${current.items.length} éléments, ${expectedReserves.length} réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
+console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, 4 contrôles non datés et ${expectedReserves.length} réserves conservés.`)
 
 assert.equal(addMonths('2026-01-31', 1), '2026-02-28')
 assert.equal(addMonths('2027-11-30', 3), '2028-02-29')

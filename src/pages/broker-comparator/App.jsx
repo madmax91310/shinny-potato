@@ -83,7 +83,7 @@ function EvidencePanel({ selected }) {
   return (
     <section className="bc-panel bc-evidence" aria-labelledby="bc-evidence-title">
       <h2 id="bc-evidence-title">Registre des preuves</h2>
-      <p className="bc-hint">État au 01/10/2026. Les sources officielles et les analyses externes sont identifiées séparément. L’astérisque (*) signifie « selon une analyse externe », sans confirmation directe du courtier. Le cash concerne uniquement les espèces non investies, hors livrets et fonds. Les taux variables doivent être contrôlés avant publication.</p>
+      <p className="bc-hint">La date de vérification figure dans chaque source. Une disponibilité non confirmée reste « à vérifier ». Le cash concerne uniquement les espèces non investies, hors livrets et fonds ; les conditions du PEA et du CTO sont distinguées.</p>
       {selected.map((id) => {
         const broker = byId(id)
         return (

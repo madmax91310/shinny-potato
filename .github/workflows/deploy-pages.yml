@@ -46,6 +46,7 @@ jobs:
           python-version: '3.12'
       - run: pip install beautifulsoup4==4.15.0
       - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
+      - run: python scripts/audit_broker_coverage.py
       - run: node scripts/test-broker-automation.mjs
       - run: python -m unittest discover -s scripts -p 'test_data*.py'
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'

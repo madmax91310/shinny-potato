@@ -77,7 +77,8 @@ class BrokerTariffTests(unittest.TestCase):
   original=copy.deepcopy(baseline)
   def fail(url):raise RuntimeError('Source unavailable')
   result,failures,validated=collect(baseline,TODAY,fail)
-  self.assertEqual(result,original);self.assertEqual(validated,[]);self.assertIn('saxo',failures)
+  self.assertEqual(result['brokers'],original['brokers']);self.assertEqual(validated,[]);self.assertIn('saxo',failures)
+  self.assertEqual(result['profileCollection']['validated'],0)
   def partly(url):
    if url==SOURCES['saxo']:return fixture('saxo.txt')
    raise RuntimeError('Source unavailable')
