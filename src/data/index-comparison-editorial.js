@@ -461,7 +461,7 @@ export const INDEX_COMPARISON_EDITORIAL = {
       "Core Infrastructure sélectionne les revenus liés aux réseaux et au transport dans les pays développés et émergents. Ce n’est pas la variante 50/50."
     ],
     "insight": "Dividend+ sélectionne des sociétés immobilières et des REIT, avec un filtre de rendement des dividendes. Core Infrastructure retient des entreprises dont une part importante des revenus vient notamment des réseaux et du transport.",
-    "takeaway": "Tu achètes leurs actions, pas directement les immeubles ou les réseaux. Les paniers peuvent se recouper, notamment via des REIT, et restent sensibles aux marchés actions, aux taux et à la réglementation.",
+    "takeaway": "Tu achètes leurs actions, pas directement les immeubles ou les réseaux. Les paniers peuvent se recouper, notamment via des REIT, et restent sensibles aux marchés actions, aux taux et à la réglementation. Les secteurs utilisent des classifications différentes : EPRA pour l’immobilier, ICB pour les infrastructures.",
     "question": "Dans ton portefeuille, tu as de l’immobilier coté, des infrastructures ou les deux ?",
     "visualPoints": [
       [
