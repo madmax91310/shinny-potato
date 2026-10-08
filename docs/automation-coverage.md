@@ -247,11 +247,11 @@ Russell 2000 : composition automatisée depuis les tables explicitement consacr�
 
 ## Autres données de l’application encore manuelles
 
-- Courtiers : tarifs, offres commerciales, conditions, disponibilité des produits et échéances promotionnelles.
-- Épargne réglementée : taux Livret A et autres hypothèses/règles de simulation. L’inflation INSEE est automatisée ; elle ne met pas ces règles à jour.
-- Fiscalité, plafonds et règles PEA/CTO/assurance-vie ; lexique financier et chiffres réglementaires.
-- Les 29 statistiques de ménages : patrimoine, revenus, profils et benchmarks. Pas de connecteur INSEE/Banque de France pour leur révision.
-- Rendements et hypothèses de fonds euros et SCPI ; historiques mixtes/proxys, hypothèses de frais et autres scénarios éditoriaux.
+- Courtiers : offres commerciales, disponibilité détaillée des produits et conditions hors des profils de tarifs déjà raccordés aux preuves officielles.
+- Épargne réglementée : nouvelles règles et hypothèses de simulation hors des paramètres qualifiés. Le taux Livret A et les paramètres réglementaires raccordés sont déjà collectés séparément.
+- Fiscalité : nouvelles interprétations et cas particuliers ; lexique et scénarios éditoriaux. Les paramètres structurés qualifiés sont déjà actualisés par la collecte réglementaire.
+- Statistiques de ménages : choix des comparaisons et hypothèses hors des publications raccordées. Les collecteurs INSEE actualisent déjà les séries qualifiées de patrimoine, détention, privations, salaires, profils par âge et transmissions.
+- Fonds euros et SCPI : rendements de chaque produit et hypothèses éditoriales hors des sources qualifiées. Les moyennes annuelles ACPR et ASPIM sont collectées ; elles ne remplacent pas le rendement d’un produit individuel.
 - Profils et biographies des investisseurs : seule la déclaration 13F est collectée. Les actifs hors périmètre 13F ne sont pas ajoutés automatiquement.
 - Ajout de nouveaux instruments, choix des sources, compatibilité de nouvelles devises/méthodes et remplacement de sources devenues incompatibles.
 - Réparation des connecteurs si un émetteur change son schéma, bloque l’accès ou retire une publication : les tâches réessaient et signalent l’échec, mais ne réécrivent pas seules le code.
@@ -262,7 +262,7 @@ Les lacunes ne se traitent pas toutes de la même manière : une donnée non app
 
 1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 0 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
 2. Qualifier la composition Russell 1000 restante ; les deux Dividend Aristocrats utilisent désormais leurs fiches S&P exactes (tables natives et lecture concordante des légendes sectorielles à deux résolutions) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
-3. Rechercher des sources renouvelables pour les taux d’épargne, statistiques de ménages et rendements SCPI/fonds euros. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.
-4. Raccorder les séries qualifiées de ces trois familles, en distinguant taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.
+3. Étendre les sources renouvelables aux produits et paramètres encore hors des collectes économiques et réglementaires déjà qualifiées. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.
+4. Fiabiliser la disponibilité des collecteurs ; conserver la distinction entre taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.
 
 Régénération : `npm run report:automation`. Ce rapport décrit une couverture, pas une garantie de disponibilité permanente des émetteurs.
