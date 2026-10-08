@@ -1,6 +1,12 @@
 # Présentations d’assurance-vie
 
-Route `/presentation-assurance-vie` : Linxea Spirit 2 (Spirica), Linxea Avenir 2 (Suravenir), Linxea Zen (Apicil) Linxea Vie (Generali), Lucya Cardif (Cardif Assurance Vie) et Placement-direct Vie (SwissLife Assurance et Patrimoine). Sélection d’un contrat, texte long modifiable, copie et rétablissement ; consultation des rendements et conditions des fonds euros dans les réglages. Les mêmes observations alimentent la bibliothèque de données.
+Route `/presentation-assurance-vie` : Linxea Spirit 2 (Spirica), Linxea Avenir 2 (Suravenir), Linxea Zen (Apicil), Linxea Vie (Generali), Lucya Cardif (Cardif Assurance Vie) et Placement-direct Vie (SwissLife Assurance et Patrimoine). Sélection d’un contrat, texte long modifiable, copie et rétablissement ; consultation des rendements et conditions des fonds euros dans les réglages. Les mêmes observations alimentent la bibliothèque de données.
+
+## Visuel minéral clair
+
+Les onglets Texte et Image partagent les mêmes observations. Le visuel utilise une illustration décorative, des teintes ivoire et sauge et des titres sérif ; les chiffres, dates et conditions sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG, à 1 600 pixels de large, avec une hauteur adaptée au contenu. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
+
+Les dates propres aux indicateurs, les conditions et fourchettes des fonds euros, les frais HT et maxima contractuels restent explicites. Les sources et la date du relevé figurent au pied du visuel. Un chargement d’illustration en échec interrompt l’export et permet de réessayer.
 
 ## Données et sources
 
@@ -32,6 +38,7 @@ node scripts/test-insurance.mjs
 npm run audit:data-catalog
 npm run build
 node scripts/test-insurance-ui.mjs
+node scripts/test-presentation-images.mjs
 ```
 
-Les sources supplémentaires doivent être qualifiées avant d’étendre les produits. Aucun envoi automatique sur X et aucun export image dans ce lot.
+Les sources supplémentaires doivent être qualifiées avant d’étendre les produits. Aucun envoi automatique sur X.

@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
+import { renderPresentationImage } from '../presentation-shared/imageExport.js'
+import { downloadImage } from '../../design-system/downloadImage.js'
 import PageHeader from '../../design-system/PageHeader'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -13,6 +15,14 @@ export default function App() {
   const [message, setMessage] = useState('')
   const record = SCPI.find(row => row.id === id)
   const text = draft ?? (record ? buildTweet(record) : '')
+  const [exporting, setExporting] = useState(false)
+  const renderImage = useCallback(() => renderPresentationImage(record, 'scpi'), [record])
+  async function exportImage() {
+    setExporting(true)
+    try { downloadImage(await renderImage(), `${record.id}-epargnant-libre.png`); setMessage('Image téléchargée.') }
+    catch (error) { setMessage(error.message || 'Impossible de télécharger l’image.') }
+    finally { setExporting(false) }
+  }
   async function copy() {
     try { await navigator.clipboard.writeText(text); setMessage('Texte copié.') }
     catch { setMessage('Sélectionne le texte dans l’aperçu pour le copier.'); document.querySelector('.scpi-draft')?.focus(); document.querySelector('.scpi-draft')?.select() }
@@ -20,8 +30,9 @@ export default function App() {
   if (!record) return <p role="alert">Aucune fiche vérifiée n’est disponible pour le moment.</p>
   return <div className="scpi-presentation">
     <PageHeader title="Présentation de SCPI" subtitle="Ce qu’elle détient, ce qu’elle verse et ce qu’elle coûte." />
-    <ToolWorkspace actions={<>
+    <ToolWorkspace renderImage={renderImage} imageAlt={`Visuel de ${record.name}`} actions={<>
       <Button onClick={copy}>Copier le texte</Button>
+      <Button onClick={exportImage} disabled={exporting}>{exporting ? 'Préparation…' : 'Télécharger l’image'}</Button>
       <Button variant="secondary" onClick={() => { setDraft(null); setMessage('Texte d’origine rétabli.') }}>Rétablir le texte</Button>
       <span role="status">{message}</span>
     </>}>

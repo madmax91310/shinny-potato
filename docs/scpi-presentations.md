@@ -1,6 +1,12 @@
 # Présentations de SCPI
 
-Route `/presentation-scpi` : Iroko Zen, Remake Live, CORUM Origin, CORUM XL, CORUM Eurion, Transitions Europe (Arkéa REIM) et ActivImmo (Alderan) et Épargne Pierre (ATLAND Voisin). La publication est un texte long, modifiable avant copie, avec hook, principaux pays/secteurs, accès, distributions, frais, lecture de l’exposition et CTA. Les répartitions complètes et les documents sont consultables dans les réglages.
+Route `/presentation-scpi` : Iroko Zen, Remake Live, CORUM Origin, CORUM XL, CORUM Eurion, Transitions Europe (Arkéa REIM) ActivImmo (Alderan) et Épargne Pierre (ATLAND Voisin). La publication est un texte long, modifiable avant copie, avec hook, principaux pays/secteurs, accès, distributions, frais, lecture de l’exposition et CTA. Les répartitions complètes et les documents sont consultables dans les réglages.
+
+## Visuel minéral clair
+
+Les onglets Texte et Image partagent les mêmes observations. Le visuel utilise une illustration décorative, des teintes ivoire et sauge et des titres sérif ; les chiffres, dates et conditions sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG, à 1 600 pixels de large, avec une hauteur adaptée au contenu. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
+
+Les dates propres aux indicateurs, les conditions et fourchettes des fonds euros, les frais HT et maxima contractuels restent explicites. Les sources et la date du relevé figurent au pied du visuel. Un chargement d’illustration en échec interrompt l’export et permet de réessayer.
 
 ## Source unique
 
@@ -37,6 +43,7 @@ python scripts/collect_scpi.py --apply --output scpi-observation.json
 node scripts/test-scpi.mjs
 npm run build
 node scripts/test-scpi-ui.mjs
+node scripts/test-presentation-images.mjs
 ```
 
 Pour ajouter une SCPI, qualifier ses sources et son adaptateur avant d’ajouter une fiche. Les assurances-vie disposent de leur outil distinct ; les placements forestiers restent à qualifier.

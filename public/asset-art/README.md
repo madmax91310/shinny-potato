@@ -55,3 +55,7 @@ is retained. The comparative layout keeps one common signature and period.
 The CI renders and checks every eligible asset and four mixed comparisons, invalid
 and long inputs, signatures, units, ratios, local requests, and missing-logo retry.
 Its PNGs are saved under the existing `tool-visual-checks` workflow artifact.
+
+## Présentations SCPI et assurance-vie
+
+`mineral-scpi.webp` et `mineral-insurance.webp` : illustrations décoratives générées pour le style minéral clair choisi le 8 octobre 2026. Elles ne contiennent aucune donnée produit ; tous les noms, chiffres et conditions sont composés par `src/pages/presentation-shared/imageExport.js`. Le WebP conserve la transparence du PNG source.
