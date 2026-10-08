@@ -28,7 +28,9 @@ for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   }
   const url = new URL(document.url)
   assert(officialHosts.has(url.hostname), `${id}: hébergeur non officiel`)
-  assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || id === 'bdPlans', `${id}: PDF attendu`)
+  const namedDownload = url.hostname === 'groupe.boursedirect.fr' && url.pathname.startsWith('/download/')
+    && /\.pdf$/i.test(url.searchParams.get('filename') ?? '')
+  assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || namedDownload, `${id}: PDF attendu`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
 }
 const secondaryHosts = new Set(['www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'www.epargnant30.fr', 'moneyradar.org', 'finance-heros.fr', 'forum.finance-heros.fr', 'trading.prorealtime.com', 'www.prorealtime.com', 'pea.fr', 'sinvestir.fr', 'placements-boursiers.fr', 'www.detective-banque.fr', 'www.placeaurendement.com', 'investimieux.com'])
