@@ -276,7 +276,7 @@ async function testPortfolioGenerator(page) {
   const { annualizedReturn, formatPerformance } = await import('../src/pages/portfolio-generator/performance.js');
   const autoPerformanceOk = portfolioYears.every(year => new RegExp(`${year} : [＋+−-]?[0-9]+,[0-9] %`).test(autoTweet))
     && /Performance annualisée \(2020 à 2025\) : [＋+−-]?[0-9]+,[0-9] % par an/.test(autoTweet);
-  const autoEditorialOk = autoPerformanceOk && dataLabelsOk && /portefeuille illustratif/i.test(autoTweet) && !/La logique de l’ensemble|💡/.test(autoTweet);
+  const autoEditorialOk = autoPerformanceOk && dataLabelsOk && /portefeuille illustratif|exemple illustratif/i.test(autoTweet) && !/La logique de l’ensemble|💡/.test(autoTweet);
   // Un profil/palier fixé doit faire tourner toutes les constructions disponibles.
   await page.getByRole('group', { name: "Choisir un profil d'investisseur" }).getByRole('button', { name: 'Le Généraliste', exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un niveau de risque cible' }).getByRole('button', { name: 'Équilibré', exact: true }).click();
