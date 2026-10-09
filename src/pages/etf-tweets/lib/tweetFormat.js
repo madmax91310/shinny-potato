@@ -1,43 +1,58 @@
-import { getComparisonYears, getComparisonPerformance } from '../../tweet-midi/comparisonPerformance.js'
-import { buildComparisonEtfDetails } from './comparisonDetails.js'
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
-import { COMPARISON_EDITORIAL, FUND_EXPOSURES } from './editorial.js'
-import { getComparisonReplication, isComparisonEtc } from './comparisonPolicy.js'
+import { getPreferredInstrumentListing } from '../../../data/instrument-listings.js'
+import { isComparisonEtc } from './comparisonPolicy.js'
 
 export function buildTweetText(theme) {
   const isEtc = theme.etfs.length > 0 && theme.etfs.every(isComparisonEtc)
   const single = theme.etfs.length === 1
   const kind = isEtc ? 'ETC' : 'ETF'
-  const editorial = COMPARISON_EDITORIAL[theme.id]
-  const hook = theme.hook?.trim() || editorial?.hook || `${theme.emoji || '📊'} Tu cherches ${single ? 'un' : 'des'} ${kind} sur ${theme.nom}. ${single ? 'Que détient ce fonds ?' : 'Qu’est-ce qui distingue ces fonds ?'}`
-  const count = ['zéro', 'un', 'deux', 'trois', 'quatre'][theme.etfs.length] ?? theme.etfs.length
+  if (theme.peaOnly && theme.etfs.some(etf => getInstrumentPeaStatus(etf.isin) !== true)) {
+    throw new Error(`Comparatif PEA : part non éligible ou non vérifiée dans ${theme.id}`)
+  }
+  const question = QUESTIONS[theme.id] || `Quels ${kind} choisir pour ${theme.nom} ?`
+  const hook = theme.hook?.trim() || `${theme.emoji || '📊'} ${question}`
+  const count = ['zéro', 'un', 'deux', 'trois', 'quatre', 'cinq'][theme.etfs.length] ?? theme.etfs.length
   const lines = [hook, '']
-  if (editorial) lines.push(`Voici ${count} ${kind} ${single ? 'à regarder' : 'à comparer'} : ${editorial.focus} 👇`, '')
-  else if (theme.transition?.trim()) lines.push(theme.transition.trim(), '')
-  const years = getComparisonYears(theme.etfs.map(fund => fund.isin))
+  lines.push(`Voici ${count} ${kind}${theme.peaOnly ? ' éligibles au PEA' : ''} ${single ? 'à découvrir' : 'à comparer'} 👇`, '')
 
   theme.etfs.forEach((etf, index) => {
     const pea = getInstrumentPeaStatus(etf.isin)
-    lines.push(`${['🟢', '🟡', '🔵', '🟣'][index % 4]} ${etf.nom || '…'}`)
-    const exposure = FUND_EXPOSURES[etf.isin] || etf.differenciateur?.trim()
-    if (exposure) lines.push(exposure)
-    lines.push('', `💰 ${etf.isCopperEtc ? 'Frais de gestion' : 'Frais annuels'} : ${etf.frais ? `${etf.frais} %` : 'non renseignés'}`)
-    if (pea === true) lines.push('🏦 PEA ou CTO')
-    else if (isEtc || pea === false || /\bCTO\b/.test(etf.differenciateur || '')) lines.push('🏦 CTO')
+    const ticker = getPreferredInstrumentListing(etf.isin)?.ticker
+    lines.push(`${['🟢', '🔵', '🟣', '🟠', '🟡'][index % 5]} ${etf.nom || '…'}${ticker ? ` (${ticker})` : ''}`)
     lines.push(`🆔 ISIN : ${etf.isin || '…'}`)
-    const replication = getComparisonReplication(etf)
-    if (replication) lines.push(`⚙️ Réplication ${replication}`)
-    lines.push('', ...buildComparisonEtfDetails(etf, years), '')
+    lines.push(`💸 ${etf.isCopperEtc ? 'Frais de gestion' : 'Frais annuels'} : ${etf.frais ? `${etf.frais.replace(/\s*%$/, '')} %` : 'non renseignés'}`)
+    if (!theme.peaOnly) {
+      if (pea === true) lines.push('🏦 PEA : ✅ | CTO : ✅')
+      else if (isEtc || pea === false) lines.push('🏦 CTO')
+    }
+    // Le taux de swap du cuivre n'est pas compris dans les frais de gestion.
+    if (etf.isCopperEtc) lines.push('💸 Taux de swap annuel : 0,45 % en supplément')
+    lines.push('')
   })
-  const conclusion = editorial?.conclusion || theme.cloture?.trim()
-  if (conclusion) {
-    lines.push(single ? '📌 À retenir' : '📌 Ce qui change pour toi', '', conclusion, '')
-  }
-  const currencies = new Set(theme.etfs.map(fund => getComparisonPerformance(fund.isin, years)?.currency).filter(Boolean))
-  if (currencies.size > 1) lines.push('Les performances sont exprimées dans des devises différentes : elles ne constituent pas un classement à monnaie égale.', '')
+  if (theme.comparisonNote?.trim()) lines.push(`👀 ${theme.comparisonNote.trim()}`, '')
   // La question personnalisée clôt le texte, sans appel au partage générique.
   if (theme.ctaEngagement?.trim()) lines.push(`💬 ${theme.ctaEngagement.trim().replace(/^💬\s*/, '')}`)
   return lines.join('\n')
+}
+
+// Des accroches courtes : les chiffres de composition restent dans l'image.
+const QUESTIONS = {
+  monde: 'Quels ETF permettent de s’exposer aux marchés mondiaux ?',
+  usa: 'Quels ETF permettent de s’exposer aux actions américaines ?',
+  europe: 'Quels ETF permettent d’investir sur les actions européennes ?',
+  'tech-europe': 'Quels ETF permettent de s’exposer à la technologie européenne ?',
+  emergents: 'Quels ETF permettent de s’exposer aux marchés émergents ?',
+  luxe: 'Quels ETF permettent de s’exposer au luxe ?',
+  'ia-robotique': 'Quels ETF permettent de s’exposer à l’IA et à la robotique ?',
+  sante: 'Quels ETF permettent d’investir dans la santé ?',
+  renouvelables: 'Quels ETF permettent de s’exposer aux énergies propres ?',
+  dividendes: 'Quels ETF permettent d’investir sur les dividendes ?',
+  japon: 'Quels ETF permettent de s’exposer au Japon ?',
+  defense: 'Quels ETF permettent de s’exposer à la défense ?',
+  quantique: 'Quels ETF permettent de s’exposer à l’informatique quantique ?',
+  spatial: 'Quel ETF permet de s’exposer à l’industrie spatiale ?',
+  'ressources-naturelles': 'Quels ETF permettent d’investir dans les ressources naturelles ?',
+  'etc-metaux': 'Quels ETC permettent de s’exposer aux métaux précieux et au cuivre ?',
 }
 
 export function getLengthStatus(length) {

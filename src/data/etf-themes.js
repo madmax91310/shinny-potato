@@ -787,8 +787,28 @@ const COMPARISON_THEMES = [...existingThemes,
     'Tu recherches les entreprises du secteur ou la cryptomonnaie elle-même ?'),
 ]
 
+const PEA_COMPARISONS = [
+  ['world-pea', 'World et ACWI · PEA', '🌍', 'Quels ETF permettent de s’exposer au monde sur PEA ?',
+    [['IE0002XZSHO1', 'MSCI World'], ['FR001400U5Q4', 'MSCI World'], ['LU1681043599', 'MSCI World'], ['FR0014017NX3', 'MSCI ACWI']],
+    'Les trois ETF World couvrent les pays développés. L’ACWI ajoute les marchés émergents.', 'Tu utilises lequel dans ton PEA ?'],
+  ['usa-pea', 'USA · PEA', '🇺🇸', 'Quels ETF permettent de s’exposer aux États-Unis sur PEA ?',
+    [['FR0011871128', 'S&P 500'], ['IE000DQLYVB9', 'S&P 500'], ['FR0011871110', 'Nasdaq-100']],
+    'Deux ETF suivent le S&P 500. Le Nasdaq-100 exclut les financières et concentre davantage la technologie.', 'Tu as choisi lequel pour ton PEA ?'],
+  ['emergents-pea', 'Marchés émergents · PEA', '🌏', 'Quels ETF permettent de s’exposer aux marchés émergents sur PEA ?',
+    [['FR0013412020', 'Marchés émergents, filtre ESG'], ['FR001400ZGO4', 'Marchés émergents, filtre ESG · part S'],
+     ['FR0013412012', 'Asie émergente'], ['FR0013412004', 'Amérique latine'], ['FR0011440478', 'Europe émergente, Moyen-Orient et Afrique']],
+    'PAEEM et PEMS sont deux parts du même fonds. Les trois autres ETF ciblent chacun une région.',
+    'Tu privilégies les émergents dans leur ensemble ou une région en particulier ?'],
+  ['europe-pea', 'Europe · PEA', '🇪🇺', 'Quels ETF permettent de s’exposer à l’Europe sur PEA ?',
+    [['FR0013412038', 'MSCI Europe'], ['FR0011550193', 'STOXX Europe 600'], ['LU1681047236', 'EURO STOXX 50']],
+    'Le MSCI Europe et le STOXX Europe 600 couvrent plusieurs marchés européens. L’EURO STOXX 50 se limite à la zone euro.', 'Tu préfères toute l’Europe ou la zone euro ?'],
+].map(([id, nom, emoji, question, funds, comparisonNote, cta]) => ({
+  ...reusedTheme(id, nom, emoji, question, funds, comparisonNote, cta),
+  hook: `${emoji} ${question}`, peaOnly: true, comparisonNote,
+}))
+
 // PEA en premier, sans changer l’exposition des autres produits du comparatif.
 // Le tri est stable : les différences d’indice, de zone ou de couverture restent visibles.
-export const DEFAULT_THEMES = COMPARISON_THEMES.map(theme => ({ ...theme,
+export const DEFAULT_THEMES = [...COMPARISON_THEMES, ...PEA_COMPARISONS].map(theme => ({ ...theme,
   etfs: [...theme.etfs].sort((a, b) => Number(getInstrumentPeaStatus(b.isin) === true) - Number(getInstrumentPeaStatus(a.isin) === true)),
 }));

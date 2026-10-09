@@ -3,6 +3,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+  FR001400ZGO4: [{"ticker": "PEMS", "exchange": "Euronext Paris", "mic": "XPAR", "currency": "EUR", "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF/20260831", "checkedAt": "2026-10-09", "evidenceId": "FR001400ZGO4-XPAR-PEMS-EUR"}],
 ...{
   "LU1834983550": [
     {

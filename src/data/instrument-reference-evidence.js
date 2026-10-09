@@ -1,6 +1,7 @@
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Profils individuels consultés le 30/09/2026. Les preuves chiffrées sont figées dans scripts/source-snapshots/instrument-profiles-2026-09-30.json.
 export const INSTRUMENT_REFERENCE_EVIDENCE = {
+  FR001400ZGO4: {sourceUrls: ['https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF/20260831'], checkedAt: '2026-10-09', dateStatus: 'not-applicable', scope: 'Part FR001400ZGO4', method: 'Fiche officielle Amundi de la part exacte', note: 'Part S du fonds PAEEM ; historique propre, sans substitution de performances.'},
   FR0007056841: {sourceUrls: ['https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831'], checkedAt: '2026-10-06', dateStatus: 'not-applicable', scope: 'Part FR0007056841', method: 'Fiche officielle Amundi de la part exacte', note: 'Devise de la part EUR ; indice de référence USD.'},
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, { sourceUrls: [r.source], checkedAt: r.checkedAt ?? '2026-10-03', dateStatus: 'not-applicable', scope: `Part ${r.isin}`, method: 'Identification par ISIN dans la publication émetteur', note: 'Devise de cotation distincte de celle de rendement.' }])),
   "LU0290358497": {
