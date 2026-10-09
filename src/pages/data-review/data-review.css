@@ -6,3 +6,4 @@
 
 .dr-automation { margin: 1.5rem 0; }
 .dr-automation h3 { margin: .7rem 0; font-size: 1rem; }
+.dr-automation-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}.dr-automation-filters button{border:1px solid var(--ui-line);border-radius:.6rem;padding:.6rem .8rem;background:var(--ui-surface);color:var(--ui-ink);font:inherit;font-size:.85rem;cursor:pointer}.dr-automation-filters button[aria-pressed=true]{border-color:var(--ui-accent);background:var(--ui-accent-soft)}.dr-automation-filters button:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}

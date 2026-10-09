@@ -194,6 +194,8 @@ jobs:
       - run: node scripts/test-weekly-publications.mjs
       - run: node scripts/test-route-loading.mjs
       - run: node scripts/test-data-review-calendar.mjs
+      - run: node scripts/test-automation-overview.mjs
+      - run: node scripts/test-automation-failures-ui.mjs
       - uses: actions/configure-pages@v6.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v5.0.0
