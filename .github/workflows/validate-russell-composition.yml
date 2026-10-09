@@ -13,7 +13,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-26.04
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-python@v7.0.0
@@ -35,3 +35,12 @@ jobs:
           assert facts['holdings'] == []
           print(facts['asOf'], facts['constituents'], facts['sectors'])
           PY
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-index-ceramic.mjs
+      - run: node scripts/test-index-ribbon.mjs
