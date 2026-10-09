@@ -60,7 +60,7 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 | Frais annuels | 155 |
 | Encours daté | 155 |
 | Rendements calendaires de la part (au moins une année complète) | 143 |
-| Pays | 139 |
+| Pays | 140 |
 | Secteurs ou sous-secteurs publiés | 140 |
 | Principales positions | 140 |
 
@@ -131,7 +131,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE000I8KRLL9 | iShares MSCI Global Semiconductors UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000L6ZMMC4 | Xtrackers FTSE All-World UCITS ETF 1C | Rendements calendaires |
 | IE000M7V94E1 | VanEck Uranium and Nuclear Technologies UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE000QDFFK00 | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | Pays |
+| IE000QDFFK00 | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000RDRMSD1 | iShares Blockchain Technology UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000W8WMSL2 | WisdomTree Quantum Computing UCITS ETF | Rendements calendaires |
 | IE000XZSV718 | SPDR S&P 500 UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |

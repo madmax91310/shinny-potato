@@ -1,4 +1,4 @@
-"""Exact-index economic exposures for qualified synthetic shares, with separate provenance."""
+"""Exact tracked-index exposures with provenance distinct from fund holdings."""
 import json
 import pathlib
 from data_automation import reject
@@ -11,13 +11,14 @@ QUALIFIED = {
     'IE0002XZSHO1': ('world', 'MSCI World Index'),
     'IE000DQLYVB9': ('sp500-pea', 'S&P 500 Net TR Index'),
     'FR0011550185': ('sp500-pea', 'S&P 500 Composite (NR)'),
+    'IE000QDFFK00': ('nasdaq-pea', 'NASDAQ-100 Notional Net Total Return Index'),
 }
 
 
 def collect_one(share, now, benchmark, fetch=download):
     identity = QUALIFIED.get(share['isin'])
     if not identity or benchmark != identity[1]:
-        reject('Unqualified or changed synthetic-share benchmark')
+        reject('Unqualified or changed exact-share benchmark')
     config = next(c for c in json.loads(CONFIG.read_text())['indices'] if c['id'] == identity[0])
     if config['id'] == 'world':
         body = fetch(config['sourceUrl'])
@@ -38,6 +39,8 @@ def collect_one(share, now, benchmark, fetch=download):
         result[field] = {'asOf': facts['asOf'], 'basis': 'index',
             'sourceUrl': source['url'], 'sha256': source['sha256'],
             'index': config['name'], 'indexId': config['id'],
-            'method': 'Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns',
+            'method': ('Published composition of the exact tracked index; benchmark equity exposure, not fund holdings; index returns are not used as share returns'
+                       if share['isin'] == 'IE000QDFFK00' else
+                       'Published composition of the exact tracked index; economic equity exposure, not the fund swap basket; index returns are not used as share returns'),
             'rows': validated_rows(rows, complete=field != 'holdings')}
     return result

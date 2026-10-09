@@ -73,6 +73,44 @@ class BnpDocuments(unittest.TestCase):
             self.assertEqual(len(r[field]['sha256']),64)
             self.assertTrue(r[field]['sourceUrl'].startswith('https://dokumenty.analizy.pl/'))
 
+    def test_nasdaq_country_complement_keeps_fund_and_index_provenance_separate(self):
+        from unittest.mock import patch
+        fixture = json.loads((ROOT / 'scripts/fixtures/official-documents/index-extensions/nasdaq-pea.json').read_text())
+        share = SHARES[2]
+        def fetch(url):
+            return self.page(share) if url == share['discoveryUrl'] else b'%PDF-proof'
+        def extract(body, crop=None):
+            return fixture['left'] if crop == (0, 300) else fixture['right'] if crop == (300, 300) else fixture['full']
+        with patch('collect_bnp_etf.pdf_text', return_value=self.text(2)), \
+                patch('collect_index_extensions.pdf_text', side_effect=extract), \
+                patch('collect_amundi_index_exposure.pdf_text', side_effect=extract):
+            r = collect_one(share, NOW.replace(month=9), fetch)
+        self.assertEqual(r['countries']['basis'], 'index')
+        self.assertEqual(r['countries']['indexId'], 'nasdaq-pea')
+        self.assertAlmostEqual(sum(row['weightPct'] for row in r['countries']['rows']), 100, delta=.2)
+        self.assertIn('amundietf.fr', r['countries']['sourceUrl'])
+        self.assertNotIn('documentHost', r['countries'])
+        for field in ['holdings', 'sectors', 'performance']:
+            self.assertEqual(r[field]['basis'], 'fund')
+            self.assertEqual(r[field]['documentHost'], 'Analizy')
+        self.assertEqual(r['performance']['years']['2025'], 20.72)
+        self.assertFalse(any(item.startswith('countries:') for item in r['unavailable']))
+
+    def test_failed_nasdaq_complement_preserves_previous_country_date(self):
+        from unittest.mock import patch
+        share = SHARES[2]
+        def fetch(url):
+            if 'amundietf.fr' in url: raise TimeoutError('official document unavailable')
+            return self.page(share) if url == share['discoveryUrl'] else b'%PDF-proof'
+        with patch('collect_bnp_etf.pdf_text', return_value=self.text(2)):
+            incoming = collect_one(share, NOW, fetch)
+        self.assertNotIn('countries', incoming)
+        self.assertEqual(incoming['collectionErrors'][0]['field'], 'countries')
+        old = {share['isin']: {'currency': 'USD', 'productId': share['isin'], 'countries':
+            {'asOf': '2026-07-31', 'checkedAt': '2026-08-01', 'basis': 'index', 'rows': [{'name': 'US', 'weightPct': 100}]}}}
+        merged = merge_collection({'checkedAt': NOW.isoformat(), 'shares': [incoming]}, old, {})
+        self.assertEqual(merged[share['isin']]['countries'], old[share['isin']]['countries'])
+
     def test_invalid_collection_preserves_previous_and_newer_aum(self):
         from refresh_additional_etf import refresh
         old={'FR0011550185':{'currency':'EUR','productId':'FR0011550185','sourceUrl':'old','aum':{'asOf':'2026-09-30','amount':42}}}

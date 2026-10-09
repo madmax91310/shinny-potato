@@ -8,7 +8,7 @@ export function classifyInstrumentGap(id,field) {
   if(['countries','sectors','holdings'].includes(field) && nonEquity.has(id)) return {status:'not-applicable',reason:'Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.'};
   if(field==='performance' && recent.has(id)) return {status:'waiting-publication',reason:'Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part.'};
   if(id==='IE00BM8R0J59') return {status:'source-conflict',reason:'Part QYLD distribuante : composition contradictoire et calendrier exact non qualifié. Fiche indisponible et historique de distributions tronqué ; voir qualification du 9 octobre.'};
-  if(id==='IE000QDFFK00' && field==='countries') return {status:'not-published',reason:'La fiche BNP Nasdaq publie des régions, pas une table numérique complète de pays. Les régions ne sont pas converties en pays.'};
+  if(id==='IE000QDFFK00' && field==='countries') return {status:'unqualified',reason:'Pays de l’indice exact raccordés via la fiche Amundi ; le portefeuille BNP publie seulement des régions. Une absence indique que le complément d’indice reste à valider.'};
   return {status:'unqualified',reason:'Champ absent des observations actives ; source ou connecteur à qualifier.'};
 }
 export function buildGapInventory({etf=read('src/data/automated-etf.json'),indices=read('src/data/automated-indices.json'),now=new Date().toISOString().slice(0,10)}={}) {
