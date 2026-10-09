@@ -46,8 +46,15 @@ for (const id of recent) {
 assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2027-01-01').length,8);
 assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2028-01-01').length,3);
 assert.deepEqual(calendarEligibility('unknown','2026-10-09'),{});
-assert(r.insuranceGaps.some(g=>g.id==='lucya-cardif'&&g.field==='maxAllocation'&&g.status==='not-published'));
-assert(r.insuranceGaps.some(g=>g.id==='placement-direct-vie'&&g.field==='ceiling'));
-assert(!r.insuranceGaps.some(g=>g.id==='linxea-spirit-2'));
+// Live collection may complete these fields. Test missing conditions on explicit fixtures.
+const incompleteInsurance = [
+  { id:'lucya-cardif', name:'Lucya Cardif', checkedAt:'2026-10-09', euroFunds:[{ name:'Fonds général', maxAllocation:null, ceiling:null, allocationEvidence:{ status:'not-published' } }] },
+  { id:'placement-direct-vie', name:'Placement Direct Vie', checkedAt:'2026-10-09', euroFunds:[{ name:'SwissLife', maxAllocation:100, ceiling:null }] },
+  { id:'linxea-spirit-2', name:'Linxea Spirit 2', checkedAt:'2026-10-09', euroFunds:[{ name:'Fonds euros', maxAllocation:100, ceiling:1000000 }] },
+];
+const insuranceGaps = buildGapInventory({insurance:incompleteInsurance}).insuranceGaps;
+assert(insuranceGaps.some(g=>g.id==='lucya-cardif'&&g.field==='maxAllocation'&&g.status==='not-published'));
+assert(insuranceGaps.some(g=>g.id==='placement-direct-vie'&&g.field==='ceiling'));
+assert(!insuranceGaps.some(g=>g.id==='linxea-spirit-2'));
 const completeInsurance=[{id:'test',name:'Test',checkedAt:'2026-10-09',euroFunds:[{name:'Fonds',maxAllocation:100,ceiling:1000000}]}];
 assert.deepEqual(buildGapInventory({insurance:completeInsurance}).insuranceGaps,[]);
