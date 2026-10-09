@@ -8,7 +8,7 @@ import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import { INSURANCE } from '../../data/insurance.js'
 import { dateLabel, format, annualPublicationNote } from '../scpi-presentation/lib.js'
-import { buildTweet, fundReturn, fundGuarantee, fundAllocation, fundOperations } from './lib.js'
+import { buildTweet, fundReturn, fundGuarantee, fundAllocation, fundOperations, fundCeiling } from './lib.js'
 import '../scpi-presentation/style.css'
 
 export default function App({ embedded = false }) {
@@ -56,6 +56,7 @@ export default function App({ embedded = false }) {
               <p>Avant prélèvements sociaux et fiscaux ; historique publié disponible, sans bonus commercial.</p>
               <p>{fundGuarantee(fund)} Frais de gestion : {format(fund.managementFeeMax)} % maximum/an.</p>
               <p>{fundAllocation(fund)} {fundOperations(fund)}</p>
+              {fundCeiling(fund) && <p>{fundCeiling(fund)}</p>}
               {fund.notes && <p>{fund.notes}</p>}
               {(fund.sourceUrls ?? [fund.sourceUrl]).map(url => <p key={url}><a href={url} target="_blank" rel="noreferrer">Source et conditions du fonds</a></p>)}
             </section>)}

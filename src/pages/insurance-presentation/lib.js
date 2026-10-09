@@ -4,6 +4,7 @@ export const fundGuarantee = fund => fund.guarantee != null ? `Garantie annuelle
 const accessExpired = (fund, today) => fund.accessValidUntil && fund.accessValidUntil < today
 const todayIso = () => new Date().toISOString().slice(0, 10)
 export const fundOperations = (fund, today = todayIso()) => accessExpired(fund, today) ? '' : fund.operations
+export const fundCeiling = (fund, today = todayIso()) => accessExpired(fund, today) || fund.ceiling != null ? '' : 'Le plafond en euros applicable à l’opération reste à confirmer auprès du distributeur.'
 export const fundAllocation = (fund, today = todayIso()) => accessExpired(fund, today)
   ? `Conditions d’accès échues le ${fund.accessValidUntil.split('-').reverse().join('/')} ; les nouvelles conditions restent à confirmer.`
   : fund.maxAllocation == null
@@ -23,6 +24,7 @@ export function buildTweet(record) {
     fund.years.map(row => `${row.year} : ${fundReturn(row)}`).join(' · '),
     annualPublicationNote(fund.publication),
     `Pour y placer ton argent : ${fundAllocation(fund)}`,
+    fundCeiling(fund),
     fundGuarantee(fund),
     `Frais de gestion du fonds : ${format(fund.managementFeeMax)} % maximum/an. ${fundOperations(fund)}`,
     fund.notes ?? '',
