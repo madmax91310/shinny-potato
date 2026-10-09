@@ -11,3 +11,6 @@
 .company-history table { width: 100%; border-collapse: collapse; font-size: .9rem; }
 .company-history th, .company-history td { padding: 12px; text-align: right; border-bottom: 1px solid var(--border, #dfe4e8); white-space: nowrap; }
 .company-history th:first-child { text-align: left; }
+.company-editor { display: grid; gap: 10px; }
+.company-editor textarea { width: 100%; box-sizing: border-box; resize: vertical; padding: 18px; border: 1px solid var(--border, #dfe4e8); border-radius: 18px; background: var(--surface, #fff); color: inherit; font: inherit; line-height: 1.65; }
+.company-edit-note { margin-top: 12px; font-size: .9rem; }
