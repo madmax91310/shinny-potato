@@ -217,7 +217,11 @@
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/quantum-computing-etf/",
       "ticker": "QNTM",
-      "apiTicker": "UCTQNTM"
+      "apiTicker": "UCTQNTM",
+      "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/qntm-fact-sheet.pdf",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf"
+      ]
     },
     {
       "isin": "IE000M7V94E1",
@@ -231,7 +235,11 @@
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/nuclear-etf/",
       "ticker": "NUCL",
-      "apiTicker": "UCTNUCL"
+      "apiTicker": "UCTNUCL",
+      "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/nucl-fact-sheet.pdf"
+      ]
     },
     {
       "isin": "IE000YU9K6K2",
@@ -245,7 +253,11 @@
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/space-etf/",
       "ticker": "JEDI",
-      "apiTicker": "UCTJEDI"
+      "apiTicker": "UCTJEDI",
+      "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/jedi-fact-sheet.pdf",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/jedi-fact-sheet.pdf"
+      ]
     },
     {
       "isin": "IE000YYE6WK5",
@@ -259,7 +271,11 @@
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/defense-etf/",
       "ticker": "DFNS",
-      "apiTicker": "UCTDFNS"
+      "apiTicker": "UCTDFNS",
+      "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/dfns-fact-sheet.pdf",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf"
+      ]
     },
     {
       "isin": "IE00BDFBTQ78",
@@ -269,7 +285,10 @@
       "currency": "USD",
       "benchmark": "S&P Global Mining",
       "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
-      "fallbackUrls": ["https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf"],
+      "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/gdig-fact-sheet.pdf",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf"
+      ],
       "required": true,
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/mining-etf/",
@@ -288,7 +307,11 @@
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/real-estate-etf/",
       "ticker": "TRET",
-      "apiTicker": "TRET"
+      "apiTicker": "TRET",
+      "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/tret-fact-sheet.pdf",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf"
+      ]
     },
     {
       "isin": "NL0011683594",
@@ -302,7 +325,11 @@
       "enabled": true,
       "pageUrl": "https://www.vaneck.com/uk/en/investments/dividend-etf/",
       "ticker": "TDIV",
-      "apiTicker": "TDIV"
+      "apiTicker": "TDIV",
+      "fallbackUrls": [
+        "https://www.vaneck.com/nl/en/library/fact-sheets/tdiv-fact-sheet.pdf",
+        "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf"
+      ]
     },
     {
       "isin": "IE00B579F325",

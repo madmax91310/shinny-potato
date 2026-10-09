@@ -31,7 +31,7 @@ def parse_holdings(body, share, now):
     weights = columns['holdingPercent']
     # Signed cash, margins and derivatives can exceed -1% during settlement.
     # Equity and bond security weights still cannot be negative.
-    signed_classes = {'Cash', 'Cash Collateral and Margins', 'FX', 'Futures'}
+    signed_classes = {'Cash', 'Cash Collateral and Margins', 'FX', 'Futures', 'Forwards'}
     if any(isinstance(w, bool) or not isinstance(w, (int, float)) or
            not math.isfinite(w) or not -100 <= w <= 100 or
            (w < 0 and kind not in signed_classes)

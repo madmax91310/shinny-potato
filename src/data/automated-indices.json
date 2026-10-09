@@ -14480,139 +14480,180 @@
       "asOf": "2026-09-30",
       "constituents": 90,
       "sectorClassification": "GICS",
-      "topWeight": 17.6,
+      "topWeight": 17.62,
       "countries": [
         [
           "🇺🇸 États-Unis",
-          53.5
+          53.4572
         ],
         [
           "🇨🇦 Canada",
-          8.4
+          8.4185
         ],
         [
           "🇬🇧 Royaume-Uni",
-          5.8
+          5.7895
         ],
         [
           "🇨🇳 Chine",
-          4
+          3.9678
         ],
         [
           "🇫🇷 France",
-          3.4
+          3.356
         ],
         [
           "Italy",
-          3.2
+          3.176
         ],
         [
           "🇰🇷 Corée du Sud",
-          2.8
+          2.8255
         ],
         [
           "🇯🇵 Japon",
-          2.7
+          2.6753
         ],
         [
           "🇨🇭 Suisse",
-          2.5
+          2.5248
         ],
         [
           "Hong Kong SAR, China",
-          2.5
+          2.467
         ],
         [
           "Finland",
-          2.2
+          2.1598
         ],
         [
           "🇦🇺 Australie",
-          1.6
+          1.6138
         ],
         [
           "🇹🇼 Taïwan",
-          1.2
+          1.238
         ],
         [
           "Portugal",
-          1.2
+          1.2019
         ],
         [
           "Norway",
-          1.2
+          1.1566
         ],
         [
           "United Arab Emirates",
-          1.1
+          1.0586
         ],
         [
           "Saudi Arabia",
-          1
+          1.0263
         ],
         [
           "🇲🇽 Mexique",
-          0.9
+          0.9439
         ],
         [
           "Belgium",
-          0.9
+          0.9436
         ]
       ],
       "sectors": [
         [
           "🏦 Finance",
-          25.7
+          25.7409
         ],
         [
           "💡 Services publics",
-          16.2
+          16.1586
         ],
         [
           "🏠 Immobilier",
-          12.4
+          12.395
         ],
         [
           "🏭 Industrie",
-          11
+          10.979
         ],
         [
           "📡 Communication",
-          8.6
+          8.6386
         ],
         [
           "🛒 Consommation de base",
-          8.4
+          8.3806
         ],
         [
           "⚡ Énergie",
-          7.6
+          7.625
         ],
         [
           "🏥 Santé",
-          4
+          3.9896
         ],
         [
           "🪨 Matériaux",
-          3.7
-        ],
-        [
-          "🛍️ Consommation cyclique",
-          1.2
+          3.7036
         ],
         [
           "💻 Technologie",
-          1.2
+          1.238
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          1.151
         ]
       ],
-      "holdings": [],
-      "provenance": "Publication officielle de l’indice exact ; pays de domiciliation et comptage extraits des tables. Secteurs : légende imprimée lue à deux résolutions concordantes, total contrôlé. Poids individuels des principales lignes non publiés ; aucune substitution par le portefeuille ETF. Rendements conservés dans leur registre séparé.",
+      "holdings": [
+        [
+          "Highwoods Properties",
+          1.9934
+        ],
+        [
+          "Verizon Communications Inc",
+          1.9016
+        ],
+        [
+          "GS Holdings Corp",
+          1.8926
+        ],
+        [
+          "Pfizer Inc",
+          1.8267
+        ],
+        [
+          "LTC Properties",
+          1.8036
+        ],
+        [
+          "John Wiley & Sons Inc. A",
+          1.6874
+        ],
+        [
+          "Target Corp",
+          1.6548
+        ],
+        [
+          "Teleperformance",
+          1.6273
+        ],
+        [
+          "Getty Realty Corp",
+          1.6234
+        ],
+        [
+          "APA Group",
+          1.6138
+        ]
+      ],
       "source": {
-        "url": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=92388578",
-        "checkedAt": "2026-10-08",
-        "sha256": "a4ff0da04a1f1af20e84d32b42509ec380bb8d3339e32eb85c7fac2c35f8e42d",
-        "label": "Composition officielle S&P DJI automatisée"
-      }
+        "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=1",
+        "checkedAt": "2026-10-09",
+        "sha256": "9d06f2065e94811514b988c221128a7c5d4f63d1dec2a40ce5d3a5756cab7114",
+        "label": "Données publiques numériques S&P DJI"
+      },
+      "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
     },
     "factsHistory": {
       "2026-09-30": {
@@ -14852,95 +14893,136 @@
       "asOf": "2026-09-30",
       "constituents": 40,
       "sectorClassification": "GICS",
-      "topWeight": 37.1,
+      "topWeight": 37.14,
       "countries": [
         [
           "🇩🇪 Allemagne",
-          21
+          20.9589
         ],
         [
           "Italy",
-          19.6
+          19.6179
         ],
         [
           "Finland",
-          17.2
+          17.2209
         ],
         [
           "🇫🇷 France",
-          12.3
+          12.2946
         ],
         [
           "Netherlands",
-          11.7
+          11.7448
         ],
         [
           "Belgium",
-          6.1
+          6.0877
         ],
         [
           "Austria",
-          5.5
+          5.548
         ],
         [
           "Spain",
-          3.5
+          3.4798
         ],
         [
           "Portugal",
-          3
+          3.0473
         ]
       ],
       "sectors": [
         [
           "🏦 Finance",
-          29
+          28.9807
         ],
         [
           "🏭 Industrie",
-          21.4
+          21.4322
         ],
         [
           "💡 Services publics",
-          15.5
+          15.4772
         ],
         [
           "🪨 Matériaux",
-          9.6
+          9.6045
         ],
         [
           "🏥 Santé",
-          6.6
+          6.6416
         ],
         [
           "📡 Communication",
-          5.4
+          5.3725
         ],
         [
           "⚡ Énergie",
-          5.2
+          5.2361
         ],
         [
           "🛒 Consommation de base",
-          3.6
+          3.5991
         ],
         [
           "🏠 Immobilier",
-          2.2
+          2.2332
         ],
         [
           "💻 Technologie",
-          1.4
+          1.4229
         ]
       ],
-      "holdings": [],
-      "provenance": "Publication officielle de l’indice exact ; pays de domiciliation et comptage extraits des tables. Secteurs : légende imprimée lue à deux résolutions concordantes, total contrôlé. Poids individuels des principales lignes non publiés ; aucune substitution par le portefeuille ETF. Rendements conservés dans leur registre séparé.",
+      "holdings": [
+        [
+          "Teleperformance",
+          5.1854
+        ],
+        [
+          "AGEAS",
+          3.8545
+        ],
+        [
+          "OMV AG",
+          3.7312
+        ],
+        [
+          "Unipol Gruppo Finanziario SpA Ord",
+          3.6854
+        ],
+        [
+          "UPM-Kymmene Oyj",
+          3.6276
+        ],
+        [
+          "Hannover Ruck SE",
+          3.5519
+        ],
+        [
+          "NN Group N.V.",
+          3.5489
+        ],
+        [
+          "Munich Re AG",
+          3.4973
+        ],
+        [
+          "Valmet",
+          3.2583
+        ],
+        [
+          "Sanofi-Aventis",
+          3.1988
+        ]
+      ],
       "source": {
-        "url": "https://www.spglobal.com/spdji/en/idsenhancedfactsheet/file.pdf?calcFrequency=M&force_download=true&hostIdentifier=48190c8c-42c4-46af-8d1a-0cd5db894797&languageId=1&indexId=5475610",
-        "checkedAt": "2026-10-08",
-        "sha256": "8421e9bff2f1d704206f882ce93e90c87432d049c4d1236a127d8131a5b2f253",
-        "label": "Composition officielle S&P DJI automatisée"
-      }
+        "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1",
+        "checkedAt": "2026-10-09",
+        "sha256": "6b23651cdfc6b6bb1a7fd5d767a35debb625eddf77d0146804173e7196a21254",
+        "label": "Données publiques numériques S&P DJI"
+      },
+      "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
     },
     "factsHistory": {
       "2026-09-30": {

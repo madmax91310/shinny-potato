@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'scripts/collect_sp_composition.py'
+      - 'scripts/sp_public_feed.py'
+      - 'scripts/test_sp_public_feed.py'
+      - 'scripts/observations/sp-public-feed.json'
       - 'scripts/test_sp_composition.py'
       - 'scripts/fixtures/sp-composition/**'
       - 'scripts/index-automation.json'
@@ -24,16 +27,20 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
+      - run: python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
       - name: Validate both live public S&P numerical compositions
         run: |
           python - <<'PY'
           import datetime as dt, json, pathlib, sys
           sys.path.insert(0, 'scripts')
           from collect_sp_composition import collect
+          from sp_public_feed import read_response
           from data_automation import UTC
           configurations = json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']
           for config in configurations:
               if not config.get('compositionDataUrl'): continue
+              handoff = read_response(config, dt.datetime.now(UTC))
               facts = collect(config, dt.datetime.now(UTC))
+              assert len(handoff['holdings']) == 10
               print(config['id'], facts['asOf'], facts['constituents'], 'top ten:', len(facts['holdings']))
           PY

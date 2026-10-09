@@ -74,19 +74,25 @@ def parse_document(body,share,now):
     return result
 
 
+def official_transport_url(value):
+    parsed = urlparse(value)
+    return (parsed.scheme == 'https' and parsed.netloc == 'www.vaneck.com'
+            and not parsed.username and not parsed.password)
+
+
 def collect_one(share,now,fetch=download):
     urls=[share['sourceUrl'], *share.get('fallbackUrls',[])]
     document=pathlib.PurePosixPath(urlparse(share['sourceUrl']).path).name
     for url in urls:
         parsed=urlparse(url)
-        if (parsed.scheme!='https' or parsed.hostname!='www.vaneck.com'
+        if (parsed.scheme!='https' or parsed.netloc!='www.vaneck.com' or parsed.query or parsed.fragment
                 or not re.fullmatch(r'/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf',parsed.path)
                 or pathlib.PurePosixPath(parsed.path).name!=document):
             reject('Unexpected VanEck regional document URL')
     last_error=None
     for url in urls:
         try:
-            body=fetch(url)
+            body=download(url, url_validator=official_transport_url) if fetch is download else fetch(url)
         except (urllib.error.URLError, TimeoutError) as error:
             last_error=error;continue
         except ValueError as error:
