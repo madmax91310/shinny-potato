@@ -85,6 +85,11 @@ async function testWorkspaceNavigation(page) {
   await page.setViewportSize({ width: 390, height: 844 });
   checks.allAccessibleOnPhone = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.every(card => card.getBoundingClientRect().width > 0 && card.getBoundingClientRect().height >= 44));
   checks.noBrand = await page.locator('.workspace-brand').count() === 0;
+  await mkdir('test-artifacts/weekly-home', { recursive: true });
+  await page.screenshot({ path: 'test-artifacts/weekly-home/mobile.png', fullPage: true });
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.screenshot({ path: 'test-artifacts/weekly-home/desktop.png', fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('.workspace-tool-card[href$="/impact-frais"]').click();
   await page.getByRole('heading', { name: "Calculateur d'impact des frais", exact: true }).waitFor();
   await page.locator('.workspace-mobile-menu summary').click();
