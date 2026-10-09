@@ -55,7 +55,7 @@ try {
   assert.deepEqual(await page.locator('.home-day-band h2').allTextContents(), ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'])
   for (const tool of TOOLS.filter(tool => /^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? ''))) {
     const row = page.locator('.home-day').filter({ has: page.locator(`.workspace-tool-card[href$="${tool.to}"]`) })
-    assert.equal(await row.locator('.home-day-band h2').innerText(), tool.publicationDay.split(' ')[0])
+    assert.equal(await row.locator('.home-day-band h2').textContent(), tool.publicationDay.split(' ')[0])
   }
   assert.equal(new Set(await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => card.getAttribute('href')))).size, TOOLS.length)
   // Short screens and enlarged text must grow cards instead of overlapping labels.
@@ -74,6 +74,9 @@ try {
   await page.setViewportSize({ width: 390, height: 844 })
   await mkdir('test-artifacts/weekly-publications', { recursive: true })
   await page.screenshot({ path: 'test-artifacts/weekly-publications/home-mobile.png', fullPage: true })
+  await page.setViewportSize({ width: 1280, height: 900 })
+  await page.screenshot({ path: 'test-artifacts/weekly-publications/home-desktop.png', fullPage: true })
+  await page.setViewportSize({ width: 390, height: 844 })
   for (const [path, title, badge] of formats) {
     await page.goto(`${base}/`, { waitUntil: 'networkidle' })
     await page.locator(`.workspace-tool-card[href$="${path}"]`).click()
