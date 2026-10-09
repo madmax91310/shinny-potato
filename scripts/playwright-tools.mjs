@@ -1130,7 +1130,7 @@ try {
   await page.goto(`${BASE}/donnees-a-revoir?view=reserve&q=IBKR`, { waitUntil: 'networkidle' });
   await page.getByRole('region', { name: 'Échecs des mises à jour automatiques' }).getByRole('heading', {name: 'Données économiques', exact: true}).waitFor();
   const ibkrCount = buildReview().items.filter(item => item.category === 'reserve' && item.id.startsWith('broker:ibkr:')).length;
-  const reviewChecks = { alert: (await page.locator('.dr-automation .dr-item').count()) === 1, ibkr: (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount };
+  const reviewChecks = { alert: (await page.getByRole('region', { name: 'Échecs des mises à jour automatiques', exact: true }).locator('.dr-item').count()) === 1, ibkr: (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount };
   await page.getByRole('searchbox', { name: 'Rechercher une donnée ou un outil' }).fill('Interactive Brokers');
   await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === 'Interactive Brokers' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, ibkrCount);
   reviewChecks.search = (await page.locator('.data-review > .dr-list > .dr-item').count()) === ibkrCount;
