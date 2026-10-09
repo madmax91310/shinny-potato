@@ -60,11 +60,11 @@ for (const observation of closure.records) {
   })
 }
 const remaining = buildReview(closure.checkedAt)
-assert.equal(remaining.items.filter(x => x.category === 'undated').length, 4, 'Les quatre contrôles non résolus doivent rester visibles')
+assert.deepEqual(remaining.items.filter(x => x.category === 'undated').map(x => x.maintenanceRecord.id).sort(), ['acwi', 'topix', 'world'], 'Les contrôles non datés des outils actifs restent visibles ; les données du comparateur retiré restent consultables au catalogue')
 assert.deepEqual(remaining.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves, 'Toutes les preuves non résolues restent visibles')
 assert.equal(remaining.archives, 16, 'La recherche ne doit pas masquer un reliquat en archive')
 console.log(`Revue au ${current.today} : ${current.items.length} éléments, ${expectedReserves.length} réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
-console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, 4 contrôles non datés et ${expectedReserves.length} réserves conservés.`)
+console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, 3 contrôles non datés et ${expectedReserves.length} réserves conservés.`)
 
 assert.equal(addMonths('2026-01-31', 1), '2026-02-28')
 assert.equal(addMonths('2027-11-30', 3), '2028-02-29')
