@@ -1,4 +1,5 @@
-import { performanceYears } from './performance.js'
+import { dataLabels } from './compact.js'
+import { performanceYears, computeYearlyPerf } from './performance.js'
 import { annualizedReturn, formatPerformance as percent } from './performance.js'
 export { annualizedReturn } from './performance.js'
 
@@ -99,7 +100,8 @@ export function renderPortfolioImage(portfolio) {
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
   const nameWidth = 645, nameSize = 28
-  const rows = selection.map(asset => ({ asset, lines: wrap(ctx, asset.name, nameWidth, nameSize) }))
+  const isIndicative = asset => dataLabels(asset).includes('Historique reconstitué') || ['fonds_euros', 'scpi'].includes(asset.id)
+  const rows = selection.map(asset => ({ asset, lines: wrap(ctx, asset.name + (isIndicative(asset) ? ' *' : ''), nameWidth, nameSize) }))
   rows.forEach(row => { row.height = Math.max(106, row.lines.length * 34 + 40) })
   const legendHeight = rows.reduce((sum, row) => sum + row.height, 0)
   const upperHeight = Math.max(540, legendHeight + 100)
@@ -142,16 +144,17 @@ export function renderPortfolioImage(portfolio) {
   })
 
   rule(ctx, 48, upperHeight, 1504)
-  label(ctx, 'PERFORMANCES ANNUELLES', 54, upperHeight + 55, 21, '#dbbf87')
+  label(ctx, 'PERFORMANCES ANNUELLES · EUR', 54, upperHeight + 55, 21, '#dbbf87')
   const plotLeft = 70, plotWidth = 1168, plotTop = upperHeight + 112
   const halfHeight = 135, baseline = plotTop + halfHeight
-  const YEARS = performanceYears(portfolio.perf)
-  const finite = YEARS.map(year => portfolio.perf[year]).filter(Number.isFinite)
+  const perf = computeYearlyPerf(selection)
+  const YEARS = performanceYears(perf)
+  const finite = YEARS.map(year => perf[year]).filter(Number.isFinite)
   const maxAbs = Math.max(1, ...finite.map(Math.abs))
   rule(ctx, plotLeft, baseline, plotWidth)
   YEARS.forEach((year, index) => {
     const center = plotLeft + plotWidth * (index + .5) / YEARS.length
-    const value = portfolio.perf[year]
+    const value = perf[year]
     const positive = value >= 0
     const color = !Number.isFinite(value) || value === 0 ? MUTED : positive ? '#80dfb3' : '#efa28b'
     if (Number.isFinite(value) && value !== 0) {
@@ -174,14 +177,14 @@ export function renderPortfolioImage(portfolio) {
   })
   rule(ctx, 1266, upperHeight + 84, 1)
   ctx.fillStyle = '#75654e'; ctx.fillRect(1266, upperHeight + 84, 1, 330)
-  const annualized = annualizedReturn(portfolio.perf)
+  const annualized = annualizedReturn(perf)
   const result = annualized === null ? 'n.d.' : percent(annualized)
   const resultColor = annualized === null ? MUTED : annualized < 0 ? '#efa28b' : '#dfbd7b'
   label(ctx, result, 1408, upperHeight + 241, fitSize(ctx, result, 245, 62), metal(ctx, 1280, upperHeight + 185, 255, 80, resultColor), 'center')
   label(ctx, 'Annualisé', 1408, upperHeight + 292, 26, WHITE, 'center', false)
   label(ctx, `${YEARS[0]}–${YEARS.at(-1)}`, 1408, upperHeight + 330, 22, MUTED, 'center', false)
   rule(ctx, 48, height - 47, 1504)
-  label(ctx, 'Simulation historique', 54, height - 23, 16, MUTED, 'left', false)
+  label(ctx, `EUR · change BCE · rééquilibrage annuel${selection.some(isIndicative) ? ' · * historique indicatif' : ''}`, 54, height - 23, 16, MUTED, 'left', false)
   label(ctx, 'Épargnant Libre', 1546, height - 23, 18, '#dfc390', 'right', false)
   return canvas
 }

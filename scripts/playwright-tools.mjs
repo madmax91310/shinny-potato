@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import annualFx from '../src/data/annual-fx.json' with { type: 'json' };
 import { computeBrut, computePoste, fmtEUR as fmtPowerEUR } from '../src/pages/purchasing-power/lib.js';
 import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
@@ -376,7 +377,11 @@ async function testPortfolioGenerator(page) {
     await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
     const labels = await page.locator('.pg-data-label').allInnerTexts();
     manualEditorialOk &&= labels.length === 1 && labels[0] === 'Données en USD';
-    if (id === 'argent') manualEditorialOk &&= (await page.locator('.pg-bar-value').last().innerText()).includes('148,6');
+    if (id === 'argent') {
+      const expected = ((1 + asset.r[5] / 100) * annualFx.years[2024].value / annualFx.years[2025].value - 1) * 100;
+      const displayed = parseFloat((await page.locator('.pg-bar-value').last().innerText()).replace(',', '.'));
+      manualEditorialOk &&= Math.abs(displayed - expected) < .051;
+    }
   }
   await page.setViewportSize({ width: 390, height: 844 });
   manualEditorialOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
@@ -724,11 +729,29 @@ async function testMarketFacts(page) {
 async function testTweetBank(page) {
   await page.goto(`${BASE}/banque-tweets`, { waitUntil: "networkidle" });
   const totalBefore = await page.locator(".tb-summary-num").first().innerText();
-  await page.locator(".tb-tweet-actions button", { hasText: "Marquer publié aujourd" }).first().click();
+  await page.locator(".tb-tweet-actions button:not(:disabled)", { hasText: "Marquer publié aujourd" }).first().click();
   await page.waitForTimeout(150);
   const cooldownCount = (await page.locator(".tb-summary-num").allInnerTexts())[1];
   const badge = await page.locator(".tb-pub-badge.cooldown").first().count();
   let ok = Number(totalBefore) === TWEETS.length && cooldownCount === "1" && badge === 1;
+  const datedCard = page.locator('[data-tweet-id="43"]');
+  const copyButton = datedCard.getByRole('button', {name:'📋 Copier', exact:true});
+  ok &&= await copyButton.isDisabled();
+  const referenceDate = await page.evaluate(() => new Intl.DateTimeFormat('en-CA', { timeZone:'Europe/Paris', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date()));
+  await datedCard.locator('.tb-tweet-text').fill('Mon bilan actualisé : 79 000 € de patrimoine.');
+  await datedCard.locator('.tb-review input[type="date"]').fill(referenceDate);
+  await datedCard.locator('.tb-review input[type="checkbox"]').check();
+  ok &&= await copyButton.isEnabled();
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable:true, value:{writeText:async text => {window.__bankCopied=text;}} }));
+  await copyButton.click();
+  ok &&= (await page.evaluate(()=>window.__bankCopied)) === `Mon bilan actualisé : 79 000 € de patrimoine.\n\n📅 Bilan personnel arrêté au ${referenceDate}.`;
+  await page.reload({waitUntil:'networkidle'});
+  const savedCard = page.locator('[data-tweet-id="43"]');
+  ok &&= (await savedCard.locator('.tb-tweet-text').inputValue()) === 'Mon bilan actualisé : 79 000 € de patrimoine.';
+  ok &&= await savedCard.getByRole('button', {name:'📋 Copier',exact:true}).isEnabled();
+  await savedCard.locator('.tb-tweet-text').fill('Mon bilan modifié après vérification.');
+  ok &&= await savedCard.getByRole('button', {name:'📋 Copier',exact:true}).isDisabled();
+  await savedCard.getByRole('button', {name:'Revenir au texte archivé'}).click();
   await page.getByRole('button', {name:'Pédagogie',exact:true}).click();
   const cards = page.locator('.tb-tweet');
   ok &&= (await cards.count()) === CASES.length;

@@ -1,6 +1,6 @@
 import { allocationAngle } from '../src/pages/portfolio-generator/allocationEditorial.js';
 import assert from "node:assert/strict";
-import { ASSETS, YEARS } from "../src/data/portfolio-assets.js";
+import { ASSETS, YEARS, getAsset } from "../src/data/portfolio-assets.js";
 import { buildManualPortfolio, generatePortfolio, renderTweetText, PROFILES } from "../src/pages/portfolio-generator/engine.js";
 import { ASSET_EDITORIAL, assetEditorial } from "../src/pages/portfolio-generator/asset-editorial.js";
 import { buildEditorial } from "../src/pages/portfolio-generator/editorial.js";
@@ -280,7 +280,7 @@ for (const p of [example, ...PROFILES.map(profile => manual(base, profile.id))])
 const alternating = Object.fromEntries(YEARS.map((year, index) => [year, index % 2 ? -10 : 10]));
 assert(Math.abs(annualizedReturn(alternating) - (Math.sqrt(.99) - 1) * 100) < 1e-10, 'Capitalisation géométrique, pas moyenne arithmétique');
 const incomplete = { ...alternating, 2021: null, 2020: 0 };
-const incompleteTweet = renderTweetText({ ...example, perf: incomplete });
+const incompleteTweet = renderTweetText({ ...example, selection: [{ ...getAsset('fonds_euros'), pct: 100, calendarReturns: incomplete }] });
 assert(incompleteTweet.includes('2020 : +0,0 %'));
 assert(incompleteTweet.includes('2021 : non disponible'));
 assert(incompleteTweet.includes('Performance annualisée (2020 à 2025) : non disponible'));

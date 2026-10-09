@@ -114,3 +114,9 @@
 .tb-sources { margin: 12px 0; color: var(--tb-ink-dim); font-size: 13px; overflow-wrap: anywhere; }
 .tb-sources summary { cursor: pointer; }
 .tb-sources a { color: var(--tb-accent-bright); }
+
+.tb-validity { color: #a96618; font-size: .85rem; margin: 12px 0; }
+.tb-validity.ready { color: var(--positive, #208055); }
+.tb-review { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--border, #ccc); border-radius: 12px; margin-bottom: 16px; }
+.tb-review label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.tb-review small { line-height: 1.5; }

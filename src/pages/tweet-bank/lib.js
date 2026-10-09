@@ -1,20 +1,14 @@
+import { contentValidity, bankToday } from './validity.js'
 // Logique pure de la Banque de tweets — filtre/tri/cooldown, testable sans React. La persistance
 // (localStorage) vit dans App.jsx, pas ici : lire/écrire le navigateur n'est pas une fonction pure.
-import { COOLDOWN_DAYS } from "./data"
+import { COOLDOWN_DAYS } from "./data.js"
 
 export function daysSince(dateStr) {
-  const then = new Date(dateStr + "T00:00:00")
-  const now = new Date()
-  const ms = now.setHours(0, 0, 0, 0) - then.setHours(0, 0, 0, 0)
-  return Math.round(ms / 86400000)
+  return Math.round((Date.parse(bankToday()) - Date.parse(dateStr)) / 86400000)
 }
 
 export function todayStr() {
-  const d = new Date()
-  const y = d.getFullYear()
-  const m = String(d.getMonth() + 1).padStart(2, "0")
-  const day = String(d.getDate()).padStart(2, "0")
-  return `${y}-${m}-${day}`
+  return bankToday()
 }
 
 export function isInCooldown(lastPublished) {
@@ -29,7 +23,7 @@ export function publicationBadge(lastPublished) {
   if (days < COOLDOWN_DAYS) {
     return { status: "cooldown", label: `Publié il y a ${days} j · encore ${COOLDOWN_DAYS - days} j de repos` }
   }
-  return { status: "available", label: `Publié il y a ${days} j · disponible` }
+  return { status: "available", label: `Publié il y a ${days} j · repos terminé` }
 }
 
 // filters: { month, category, format, search, hideCooldown, sortByAge }, tous optionnels ("Tous"/
@@ -61,6 +55,6 @@ export function filterAndSortTweets(tweets, lastPub, filters) {
   return list
 }
 
-export function countAvailable(tweets, lastPub) {
-  return tweets.filter((t) => !isInCooldown(lastPub[t.id])).length
+export function countAvailable(tweets, lastPub, drafts = {}) {
+  return tweets.filter((t) => !isInCooldown(lastPub[t.id]) && contentValidity(t, drafts[t.id]).ready).length
 }
