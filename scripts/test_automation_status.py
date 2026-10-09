@@ -1,9 +1,19 @@
 import unittest
-from publish_automation_status import update_status
+from unittest.mock import Mock
+from publish_automation_status import update_status, read_report
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 class StatusTests(unittest.TestCase):
+ def test_large_issuer_report_is_bounded_and_projected(self):
+  path=Mock();path.name='additional-observation.json';path.stem='additional-observation'
+  path.stat.return_value.st_size=12_000_000
+  path.read_text.return_value='{"shares":[{"isin":"test","status":"validated","rawComponents":{"holdings":"unused raw publication"}}]}'
+  report=read_report(path,'collect-etf-pilot.yml')
+  self.assertEqual(report,{'successes':[{'id':'etf-additional-observation-test'}],'errors':[]})
+  with self.assertRaises(ValueError):read_report(path,'update-scpi.yml')
+  path.stat.return_value.st_size=128_000_001
+  with self.assertRaises(ValueError):read_report(path,'collect-etf-pilot.yml')
  def test_presentation_report_alerts_only_failed_records_and_recovers(self):
   for workflow in ('update-scpi.yml','update-insurance.yml'):
    failed=update_status({},run(workflow=workflow),[],[{'observations':[{'id':'one','status':'failure','reason':'PDF changed'},{'id':'two','status':'success'}]}])
