@@ -25,3 +25,16 @@ export function anniversaryClosing(asset, gainPct, year) {
     : `Ces deux ${noun} ne montrent pas les hausses et les baisses traversées pendant la période.`
   return `${context}\n\n💬 ${anniversaryQuestion(asset, year)}`
 }
+
+// A percentage gap is meaningful only with the same currency, endpoint and income convention.
+export function anniversaryComparisonNote(assetA, assetB, obsA, obsB) {
+  const notes = [];
+  if (assetA.currency !== assetB.currency) notes.push('Devises différentes, sans conversion de change.');
+  if (!(obsA?.manual && obsB?.manual) && (obsA?.manual || obsB?.manual || obsA?.asOf !== obsB?.asOf)) {
+    notes.push('Dates de valorisation différentes.');
+  }
+  const basis = asset => /nets réinvestis/.test(asset.anniversaryVariant ?? '') ? 'net'
+    : /bruts réinvestis/.test(asset.anniversaryVariant ?? '') ? 'gross' : 'price';
+  if (basis(assetA) !== basis(assetB)) notes.push('Traitement des dividendes différent.');
+  return notes.join(' ');
+}

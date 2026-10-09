@@ -70,6 +70,9 @@ try {
         const rows = getAnnualReturns(id, year)
         if (words.some(word => /PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(word))) throw new Error('Generic series heading returned')
         if (!words.includes('Rendements annuels')) throw new Error('Annual observations must remain discrete')
+        const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
+        const currency = (await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency
+        if (!words.includes(performanceBasis(id).replace(`${currency} · `, '').replace(` · ${currency}`, ''))) throw new Error('Missing return convention')
         if (!words.includes(`Fin ${rows[0].year - 1} → Fin ${rows.at(-1).year}`) || !words.includes(`EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
         for (const row of rows) {
           const annual = `${row.pct >= 0 ? '+' : '−'}${Math.abs(row.pct).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`

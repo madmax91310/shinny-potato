@@ -603,7 +603,7 @@ async function testTweetMidi(page) {
   await choose(page.locator('#secondary-select'), '2016');
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   const performance = await page.locator('pre').innerText();
-  const minimal = /^📈 Performance du S&P 500 depuis 2016 👇\n\n/u.test(performance)
+  const minimal = /^📈 Performance du S&P 500 depuis 2016 👇\nTotal Return · USD · dividendes bruts réinvestis\n\n/u.test(performance)
     && performance.split('\n').at(-1).startsWith('Cumulé sur la période : ')
     && !/💬|Livret A|Cours en dollars/u.test(performance)
     && (await page.getByRole('checkbox').count()) === 0;
