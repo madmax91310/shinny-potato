@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import annualFx from '../src/data/annual-fx.json' with { type: 'json' };
 import { computeBrut, computePoste, fmtEUR as fmtPowerEUR } from '../src/pages/purchasing-power/lib.js';
 import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
@@ -376,7 +377,11 @@ async function testPortfolioGenerator(page) {
     await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
     const labels = await page.locator('.pg-data-label').allInnerTexts();
     manualEditorialOk &&= labels.length === 1 && labels[0] === 'Données en USD';
-    if (id === 'argent') manualEditorialOk &&= (await page.locator('.pg-bar-value').last().innerText()).includes('148,6');
+    if (id === 'argent') {
+      const expected = ((1 + asset.r[5] / 100) * annualFx.years[2024].value / annualFx.years[2025].value - 1) * 100;
+      const displayed = parseFloat((await page.locator('.pg-bar-value').last().innerText()).replace(',', '.'));
+      manualEditorialOk &&= Math.abs(displayed - expected) < .051;
+    }
   }
   await page.setViewportSize({ width: 390, height: 844 });
   manualEditorialOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
