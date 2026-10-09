@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './design-system/Layout'
 import Home from './pages/Home'
 import ComingSoon from './pages/ComingSoon'
@@ -22,8 +22,7 @@ const DataSearch = lazy(() => import('./pages/data-search/App'))
 const HouseholdApp = lazy(() => import('./pages/france-100-menages/App'))
 const DataReview = lazy(() => import('./pages/data-review/App'))
 const CompanyAnalysis = lazy(() => import('./pages/company-analysis/App'))
-const InsurancePresentation = lazy(() => import('./pages/insurance-presentation/App'))
-const ScpiPresentation = lazy(() => import('./pages/scpi-presentation/App'))
+const Presentations = lazy(() => import('./pages/presentations/App'))
 const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 
 // Individual publication routes reuse one lazy engine and its existing data.
@@ -31,8 +30,7 @@ const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 const TOOL_ELEMENTS = {
   '/radar-editorial': <EditorialRadar />,
   '/simulateur-patrimoine': <WealthSimulator />,
-  '/presentation-assurance-vie': <InsurancePresentation />,
-  '/presentation-scpi': <ScpiPresentation />,
+  '/presentations': <Presentations />,
   '/analyse-entreprise': <CompanyAnalysis />,
   '/france-100-menages': <HouseholdApp />,
   '/donnees-a-revoir': <DataReview />,
@@ -61,6 +59,8 @@ export default function App() {
             element={tool.format ? <TweetMidi key={tool.to} initialFormat={tool.format} title={tool.title} description={tool.description} /> : TOOL_ELEMENTS[tool.to] ?? <ComingSoon title={tool.title} description={tool.description} />}
           />
         ))}
+        <Route path="presentation-assurance-vie" element={<Navigate to="/presentations?famille=insurance" replace />} />
+        <Route path="presentation-scpi" element={<Navigate to="/presentations?famille=scpi" replace />} />
         <Route path="tweet-midi" element={<TweetMidi />} />
         <Route path="*" element={<Home />} />
       </Route>

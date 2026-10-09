@@ -4,8 +4,8 @@ import { DATA_CATALOG, searchData } from '../src/data/catalog.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 import { buildTweet, allocation } from '../src/pages/scpi-presentation/lib.js'
 assert.equal(SCPI.length, 8)
-assert.equal(HOME_TOOLS.filter(row => row.to === '/presentation-scpi').length, 1)
-assert(TOOLS.find(row => row.to === '/presentation-scpi'))
+assert.equal(HOME_TOOLS.filter(row => row.to === '/presentations').length, 1)
+assert(TOOLS.find(row => row.to === '/presentations'))
 for (const record of SCPI) {
   const text = buildTweet(record)
   assert(text.includes(record.name))

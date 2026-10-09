@@ -8,12 +8,9 @@ export const TOOLS = [
   { to: '/simulateur-patrimoine', navLabel: 'Patrimoine', title: 'Simulateur de patrimoine',
     publicationDay: 'Publication ponctuelle', icon: '📊', accent: '#65d5b0',
     description: 'Projette ton patrimoine par enveloppe et exporte des comparaisons pour X.', status: 'disponible' },
-  { to: '/presentation-assurance-vie', navLabel: 'Assurance-vie', title: 'Présentation d’assurance-vie',
+  { to: '/presentations', navLabel: 'Présentations', title: 'Présentations',
     publicationDay: 'Vendredi midi · alternance', icon: '🛡️', accent: '#65d5b0',
-    description: 'Supports, fonds euros et frais des contrats : sources officielles et texte modifiable.', status: 'disponible' },
-  { to: '/presentation-scpi', navLabel: 'SCPI', title: 'Présentation de SCPI',
-    publicationDay: 'Vendredi midi · alternance', icon: '🏢', accent: '#65d5b0',
-    description: 'Patrimoine, distributions et frais des SCPI : sources officielles et texte modifiable.', status: 'disponible' },
+    description: 'Assurance-vie, SCPI et acteurs du non coté ou des actifs réels : texte et visuel personnalisés.', status: 'disponible' },
   {
     to: '/analyse-entreprise', navLabel: 'Entreprises', title: 'Analyse d’entreprise',
     publicationDay: 'Mercredi midi', icon: '🏭', accent: '#7bd8bd',
@@ -165,8 +162,7 @@ export const TOOLS = [
 const TOOL_SUMMARIES = {
   '/radar-editorial': 'Les changements sourcés qui peuvent devenir tes prochains posts.',
   '/simulateur-patrimoine': 'Ton patrimoine aujourd’hui et demain, avec des comparaisons pour X.',
-  '/presentation-assurance-vie': 'Les supports, les fonds euros et les frais du contrat.',
-  '/presentation-scpi': 'Ce qu’elle détient, ce qu’elle verse et ce qu’elle coûte.',
+  '/presentations': 'Un acteur, son offre et ce que tu détiens réellement.',
   '/analyse-entreprise': 'Son activité, ses résultats et sa valorisation disponible.',
   '/comparatif-courtiers': 'Frais, PEA et services des courtiers en face à face.',
   '/calculateur-investissement': 'Ce que serait devenu ton investissement au fil du temps.',
@@ -193,7 +189,7 @@ const TOOL_SUMMARIES = {
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
-  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/radar-editorial', '/presentation-assurance-vie', '/presentation-scpi', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/radar-editorial', '/presentations', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })) }))
 
@@ -204,7 +200,7 @@ export const WEEKLY_ORDER = [
   '/france-100-menages', '/generateur-portefeuilles',
   '/analyse-entreprise', '/calculateur-investissement',
   '/duels-portefeuilles', '/fiches-etf',
-  '/presentation-scpi', '/presentation-assurance-vie',
+  '/presentations',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
   '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat',
   '/dilemme', '/comparatif-courtiers',
