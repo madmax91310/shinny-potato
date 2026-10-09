@@ -48,10 +48,16 @@ try {
       const title = card.querySelector('h2').getBoundingClientRect()
       const day = card.querySelector('.workspace-publication-day')?.getBoundingClientRect()
       const box = card.getBoundingClientRect()
-      return box.bottom > innerHeight || (day && title.bottom > day.top) ? [card.textContent] : []
+      return title.bottom > box.bottom || (day && (title.bottom > day.top || day.bottom > box.bottom)) ? [card.textContent] : []
     }))
     assert.deepEqual(problems, [], `${width}: cards cropped or title/day overlap`)
   }
+  assert.deepEqual(await page.locator('.home-day-band h2').allTextContents(), ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'])
+  for (const tool of TOOLS.filter(tool => /^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? ''))) {
+    const row = page.locator('.home-day').filter({ has: page.locator(`.workspace-tool-card[href$="${tool.to}"]`) })
+    assert.equal(await row.locator('.home-day-band h2').innerText(), tool.publicationDay.split(' ')[0])
+  }
+  assert.equal(new Set(await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => card.getAttribute('href')))).size, TOOLS.length)
   // Short screens and enlarged text must grow cards instead of overlapping labels.
   for (const [width, height, enlarged] of [[320, 568, false], [360, 640, false], [390, 700, false], [390, 844, true]]) {
     await page.setViewportSize({ width, height })
@@ -67,7 +73,7 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 844 })
   await mkdir('test-artifacts/weekly-publications', { recursive: true })
-  await page.screenshot({ path: 'test-artifacts/weekly-publications/home-mobile.png' })
+  await page.screenshot({ path: 'test-artifacts/weekly-publications/home-mobile.png', fullPage: true })
   for (const [path, title, badge] of formats) {
     await page.goto(`${base}/`, { waitUntil: 'networkidle' })
     await page.locator(`.workspace-tool-card[href$="${path}"]`).click()
