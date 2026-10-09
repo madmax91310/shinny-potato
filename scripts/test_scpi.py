@@ -3,12 +3,30 @@ import datetime as dt
 import json
 import pathlib
 import unittest
-from collect_scpi import parse_remake, parse_iroko_conditions, split_chart, annual_iroko, refresh, validate
+import io
+import urllib.error
+from unittest.mock import patch
+from collect_scpi import fetch, parse_remake, parse_iroko_conditions, split_chart, annual_iroko, refresh, validate
 
 FIXTURES = pathlib.Path(__file__).parent / 'fixtures/scpi'
 TODAY = dt.date(2026, 10, 8)
 
 class ScpiTests(unittest.TestCase):
+    def test_temporary_network_failure_retries_then_recovers(self):
+        for error in [TimeoutError('timeout'), urllib.error.URLError('reset'), urllib.error.HTTPError('https://official.test',503,'Unavailable',{},None)]:
+            with patch('collect_scpi.urllib.request.urlopen',side_effect=[error,io.BytesIO(b'%PDF-verified')]) as request, patch('collect_scpi.time.sleep'):
+                self.assertEqual(fetch('https://official.test'),b'%PDF-verified')
+                self.assertEqual(request.call_count,2)
+
+    def test_retry_is_bounded_and_404_or_empty_is_not_retried(self):
+        for error,count in [(TimeoutError('timeout'),3),(urllib.error.HTTPError('https://official.test',404,'Missing',{},None),1)]:
+            with patch('collect_scpi.urllib.request.urlopen',side_effect=error) as request, patch('collect_scpi.time.sleep'):
+                with self.assertRaises(type(error)):fetch('https://official.test')
+                self.assertEqual(request.call_count,count)
+        with patch('collect_scpi.urllib.request.urlopen',return_value=io.BytesIO(b'')) as request:
+            with self.assertRaises(ValueError):fetch('https://official.test')
+            self.assertEqual(request.call_count,1)
+
     def remake(self):
         return parse_remake((FIXTURES/'remake.html').read_text(), (FIXTURES/'remake-conditions.txt').read_text(), 'https://www.remake.fr/bulletin.pdf', TODAY)
 

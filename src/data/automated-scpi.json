@@ -412,117 +412,117 @@
       "id": "corum-origin",
       "name": "CORUM Origin",
       "sourceUrl": "https://www.corum.fr/nos-scpi/corum-origin",
-      "checkedAt": "2026-10-08",
+      "checkedAt": "2026-10-09",
       "snapshot": {
-        "asOf": "2025-12-31",
-        "dateNote": "Répartition du dernier rapport annuel complet ; les bulletins trimestriels ne sont pas utilisés pour ces tableaux.",
+        "asOf": "2026-06-30",
         "countries": [
           {
             "label": "Pays-Bas",
-            "value": 27.0
+            "value": 27
           },
           {
             "label": "Italie",
-            "value": 15.0
+            "value": 16
           },
           {
             "label": "Irlande",
-            "value": 13.0
+            "value": 12
           },
           {
             "label": "Espagne",
-            "value": 9.0
+            "value": 9
           },
           {
             "label": "Finlande",
-            "value": 9.0
+            "value": 9
           },
           {
             "label": "Belgique",
-            "value": 8.0
-          },
-          {
-            "label": "Allemagne",
-            "value": 3.0
-          },
-          {
-            "label": "Lituanie",
-            "value": 3.0
-          },
-          {
-            "label": "Slovénie",
-            "value": 2.0
-          },
-          {
-            "label": "Portugal",
-            "value": 2.0
-          },
-          {
-            "label": "Estonie",
-            "value": 1.0
-          },
-          {
-            "label": "Lettonie",
-            "value": 1.0
+            "value": 7
           },
           {
             "label": "France",
-            "value": 7.0
+            "value": 7
+          },
+          {
+            "label": "Allemagne",
+            "value": 5
+          },
+          {
+            "label": "Lituanie",
+            "value": 2
+          },
+          {
+            "label": "Slovénie",
+            "value": 2
+          },
+          {
+            "label": "Portugal",
+            "value": 2
+          },
+          {
+            "label": "Estonie",
+            "value": 1
+          },
+          {
+            "label": "Lettonie",
+            "value": 1
           }
         ],
         "sectors": [
           {
             "label": "Bureaux",
-            "value": 58.0
+            "value": 60
           },
           {
             "label": "Commerces",
-            "value": 26.0
+            "value": 24
           },
           {
             "label": "Hôtellerie",
-            "value": 8.0
+            "value": 8
           },
           {
             "label": "Logistique",
-            "value": 4.0
+            "value": 4
           },
           {
             "label": "Activités",
-            "value": 2.0
+            "value": 2
           },
           {
             "label": "Santé",
-            "value": 1.0
+            "value": 1
           },
           {
             "label": "Éducation et loisirs",
-            "value": 1.0
+            "value": 1
           }
         ],
         "sourceUrls": [
-          "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Origin%202025_0.pdf"
-        ]
+          "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T2_V5-web%201_0.pdf"
+        ],
+        "dateNote": "Bulletin trimestriel officiel sans texte extractible, page 4 vérifiée visuellement ; empreinte du PDF contrôlée à chaque collecte."
       },
       "portfolio": {
         "buildings": {
-          "value": 167,
-          "label": "Immeubles",
-          "asOf": "2025-12-31",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Origin%202025_0.pdf"
+          "value": 170,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T2_V5-web%201_0.pdf",
+          "label": "Immeubles"
         },
         "tenants": {
-          "value": 412,
-          "label": "Locataires",
-          "asOf": "2025-12-31",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20Origin%202025_0.pdf"
+          "value": 434,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T2_V5-web%201_0.pdf",
+          "label": "Locataires"
         },
         "occupancy": {
           "value": 95.77,
           "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/nos-scpi/corum-origin/patrimoine",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T2_V5-web%201_0.pdf",
           "label": "Taux d’occupation financier",
-          "basis": "Loyers facturés rapportés aux loyers théoriques si tous les immeubles étaient loués ; méthode de la page officielle, distincte de l’occupation physique."
+          "basis": "Inclut les loyers facturés et facturables et les locaux sous franchise de loyer ; distinct du taux physique."
         }
       },
       "priceHistory": {
@@ -594,109 +594,109 @@
       "id": "corum-xl",
       "name": "CORUM XL",
       "sourceUrl": "https://www.corum.fr/nos-scpi/corum-xl",
-      "checkedAt": "2026-10-08",
+      "checkedAt": "2026-10-09",
       "snapshot": {
-        "asOf": "2025-12-31",
-        "dateNote": "Répartition du dernier rapport annuel complet ; les bulletins trimestriels ne sont pas utilisés pour ces tableaux.",
+        "asOf": "2026-06-30",
         "countries": [
           {
             "label": "Royaume-Uni",
-            "value": 54.0
+            "value": 54
           },
           {
             "label": "Pologne",
-            "value": 20.0
+            "value": 21
           },
           {
             "label": "Pays-Bas",
-            "value": 9.0
+            "value": 9
           },
           {
             "label": "Irlande",
-            "value": 4.0
+            "value": 4
           },
           {
             "label": "Espagne",
-            "value": 4.0
+            "value": 3
           },
           {
             "label": "Italie",
-            "value": 3.0
+            "value": 3
           },
           {
             "label": "Norvège",
-            "value": 2.0
+            "value": 2
           },
           {
             "label": "Belgique",
-            "value": 1.0
+            "value": 1
           },
           {
             "label": "Canada",
-            "value": 1.0
+            "value": 1
           },
           {
             "label": "Portugal",
-            "value": 1.0
+            "value": 1
           },
           {
             "label": "Allemagne",
-            "value": 1.0
+            "value": 1
           }
         ],
         "sectors": [
           {
-            "label": "Hôtellerie",
-            "value": 13.0
-          },
-          {
-            "label": "Industriel et logistique",
-            "value": 5.0
-          },
-          {
             "label": "Bureaux",
-            "value": 59.0
+            "value": 55
           },
           {
             "label": "Commerces",
-            "value": 16.0
+            "value": 18
+          },
+          {
+            "label": "Hôtellerie",
+            "value": 14
+          },
+          {
+            "label": "Industriel et logistique",
+            "value": 6
           },
           {
             "label": "Santé",
-            "value": 4.0
+            "value": 4
           },
           {
             "label": "Éducation et loisirs",
-            "value": 2.0
+            "value": 2
           },
           {
             "label": "Parkings",
-            "value": 1.0
+            "value": 1
           }
         ],
         "sourceUrls": [
-          "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf"
-        ]
+          "https://www.corum.fr/sites/default/files/2026-07/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2%202%20%281%29_0.pdf"
+        ],
+        "dateNote": "Bulletin trimestriel officiel sans texte extractible, page 4 vérifiée visuellement ; empreinte du PDF contrôlée à chaque collecte."
       },
       "portfolio": {
         "buildings": {
-          "value": 89,
-          "label": "Immeubles",
-          "asOf": "2025-12-31",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf"
+          "value": 96,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2%202%20%281%29_0.pdf",
+          "label": "Immeubles"
         },
         "tenants": {
-          "value": 230,
-          "label": "Locataires",
-          "asOf": "2025-12-31",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf"
+          "value": 239,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2%202%20%281%29_0.pdf",
+          "label": "Locataires"
         },
         "occupancy": {
-          "value": 95.0,
+          "value": 95.6,
+          "asOf": "2026-06-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2%202%20%281%29_0.pdf",
           "label": "Taux d’occupation financier",
-          "asOf": "2025-12-31",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-04/Rapport%20annuel%20CORUM%20XL%202025.pdf",
-          "basis": "Inclut les locaux sous franchise de loyer ; distinct de l’occupation physique."
+          "basis": "Inclut les loyers facturés et facturables et les locaux sous franchise de loyer ; distinct du taux physique."
         }
       },
       "priceHistory": {

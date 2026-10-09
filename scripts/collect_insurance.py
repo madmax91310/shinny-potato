@@ -7,7 +7,7 @@ import pathlib
 import re
 from bs4 import BeautifulSoup
 from publication_periods import completed_year, annual_status
-from collect_scpi import fetch, number, required
+from collect_scpi import fetch, pdf_text, number, required
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'src/data/automated-insurance.json'
@@ -198,7 +198,44 @@ def collect(id_, today):
         if url not in cache:
             cache[url] = fetch(url).decode()
         record['euroFunds'].append(parse_fund(cache[url],id_,name,label,url,today,contract_html))
+    if id_ == 'linxea-vie':
+        url = vie_notice_url(contract_html)
+        qualify_vie_guarantees(record, pdf_text(fetch(url), layout=False), url)
     return validate(record,today)
+
+
+def vie_notice_url(html):
+    links = {a['href'] for a in BeautifulSoup(html, 'html.parser').select('a[href]')
+             if re.fullmatch(r'conditions générales du contrat', a.get_text(' ', strip=True), re.I)}
+    if len(links) != 1:
+        raise ValueError('Missing/ambiguous Linxea Vie contract notice')
+    import urllib.parse
+    url = urllib.parse.urljoin(BASE, links.pop())
+    if urllib.parse.urlparse(url).scheme != 'https' or urllib.parse.urlparse(url).hostname != 'www.linxea.com':
+        raise ValueError('Unexpected Linxea Vie notice host')
+    return url
+
+
+def qualify_vie_guarantees(record, notice, url):
+    # Scope the evidence to the essential contract provisions, not the UC or
+    # growth-fund guarantees, nor the illustrative redemption tables.
+    text = re.sub(r'\s+', ' ', notice.replace('\x07', ''))
+    block = required(r'Dispositions essentielles du contrat(.*?)Sommaire', text)[1]
+    required(r'Linxea Vie est un contrat.*?Generali Vie', text)
+    required(r'Pour la partie des droits exprimés en euros\s*:\s*le contrat comporte une garantie en capital qui est au moins égale aux sommes versées, nettes de frais', block)
+    fees = required(r'Frais de gestion sur le\(s\) fonds en euros\s*:(.*?)Frais de gestion sur le fonds croissance', block)[1]
+    for fund in record['euroFunds']:
+        match = required(r'([\d ,]+)\s*% maximum par an de la provision mathématique du contrat libellée en euros sur le fonds en euros ' + re.escape(fund['name']), fees)
+        management = number(match[1])
+        if abs(management - fund['managementFeeMax']) > .001:
+            raise ValueError('Notice and distributor fund fees disagree')
+        guarantee = round(100 - management, 4)
+        if fund['guarantee'] is not None and abs(fund['guarantee'] - guarantee) > .001:
+            raise ValueError('Notice and distributor fund guarantees disagree')
+        fund['guarantee'] = guarantee
+        fee_label = f'{management:g}'.replace('.', ',')
+        fund['guaranteeBasis'] = f'Minimum annuel calculé à partir de la garantie contractuelle brute et de {fee_label} % de frais maximaux ; hors garantie optionnelle décès. Le capital garanti se réduit chaque année des frais.'
+        fund['sourceUrls'] = list(dict.fromkeys([*fund['sourceUrls'], url]))
 
 
 def refresh(previous, adapters, today):
@@ -212,9 +249,15 @@ def refresh(previous, adapters, today):
                 raise ValueError('Published fund catalogue changed; qualification required')
             if old and any(f['asOf'] < next((o['asOf'] for o in old['euroFunds'] if o['name']==f['name']),f['asOf']) for f in record['euroFunds']):
                 raise ValueError('Source year regressed')
-            records[id_]=record;observations.append({'id':id_,'status':'success'})
+            if old:
+                for fund in record['euroFunds']:
+                    before = next(o for o in old['euroFunds'] if o['name'] == fund['name'])
+                    for field in ('guarantee', 'maxAllocation', 'ceiling', 'accessValidUntil'):
+                        if before.get(field) is not None and fund.get(field) is None:
+                            raise ValueError('Qualified fund condition disappeared: ' + fund['name'] + ' / ' + field)
+            records[id_]=record;observations.append({'id':id_,'name':record['name'],'status':'success'})
         except Exception as error:
-            observations.append({'id':id_,'status':'failure','reason':str(error)[:250]})
+            observations.append({'id':id_,'name':records.get(id_,{}).get('name',id_),'status':'failure','reason':str(error)[:250]})
     return {'records':list(records.values())},observations
 
 

@@ -2,11 +2,28 @@ import datetime as dt
 import json
 import pathlib
 import unittest
-from collect_corum import parse_annual_allocations, parse_annual, parse_conditions, documents
+import copy
+import hashlib
+from unittest.mock import patch
+from collect_corum import parse_annual_allocations, parse_annual, parse_conditions, documents, qualified_vector_quarterly
 TODAY=dt.date(2026,10,8)
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/corum'
 
 class CorumTests(unittest.TestCase):
+    def test_vector_bulletin_requires_exact_qualified_bytes_and_period(self):
+        registry=json.loads((FIXTURES.parent.parent/'corum-quarterly-qualified.json').read_text())
+        data=b'%PDF-test-vector-document'
+        for id_ in ('corum-origin','corum-xl'):
+            test_registry=copy.deepcopy(registry);test_registry[id_]['sha256']=hashlib.sha256(data).hexdigest()
+            with patch('collect_corum.json.loads',return_value=test_registry):
+                snapshot,portfolio=qualified_vector_quarterly(data,id_,registry[id_]['sourceUrl'],TODAY)
+                self.assertEqual(sum(r['value'] for r in snapshot['countries']),100)
+                self.assertEqual(sum(r['value'] for r in snapshot['sectors']),100)
+                self.assertEqual(snapshot['asOf'],'2026-06-30')
+                self.assertEqual(portfolio['occupancy']['asOf'],'2026-06-30')
+                for bad_data,url,day in [(data+b'changed',registry[id_]['sourceUrl'],TODAY),(data,registry[id_]['sourceUrl'].replace('2026-T2','2026-T3'),TODAY),(data,registry[id_]['sourceUrl'],dt.date(2026,5,1))]:
+                    with self.assertRaises(ValueError):qualified_vector_quarterly(bad_data,id_,url,day)
+
     def test_columns_and_allocation_totals(self):
         for k in ('origin','xl','eurion'):
             c,s=parse_annual_allocations(json.loads((FIXTURES/(k+'-allocation.json')).read_text()))

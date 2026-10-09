@@ -3,11 +3,30 @@ import datetime as dt
 import json
 import pathlib
 import unittest
-from collect_insurance import parse_contract, parse_fund, refresh, validate
+from collect_insurance import parse_contract, parse_fund, refresh, validate, qualify_vie_guarantees, vie_notice_url
 TODAY=dt.date(2026,10,8)
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 class InsuranceTests(unittest.TestCase):
+    def test_vie_notice_net_guarantee_and_conflicting_fees(self):
+        notice=(ROOT/'scripts/fixtures/linxea-vie-essential.txt').read_text()
+        record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-vie'))
+        qualify_vie_guarantees(record,notice,'https://www.linxea.com/document/conditions-generales-linxea-vie/')
+        self.assertEqual([f['guarantee'] for f in record['euroFunds']],[99.25,99.25])
+        self.assertIn('calculé',record['euroFunds'][1]['guaranteeBasis'])
+        for altered in [notice.replace('0 ,75','0 ,80'),notice.replace('nettes\nde frais','brutes\nde frais'),notice.replace('Eurossima','Autre fonds')]:
+            with self.assertRaises(ValueError):qualify_vie_guarantees(record,altered,'https://www.linxea.com/document/notice/')
+
+    def test_notice_discovery_and_missing_qualified_condition(self):
+        self.assertEqual(vie_notice_url('<a href="/document/notice/">Conditions générales du contrat</a>'),'https://www.linxea.com/document/notice/')
+        for html in ['', '<a href="https://other.test/notice">Conditions générales du contrat</a>']:
+            with self.assertRaises(ValueError):vie_notice_url(html)
+        previous=self.previous()
+        for field in ('guarantee','maxAllocation','ceiling'):
+            bad=copy.deepcopy(previous['records'][0]);bad['euroFunds'][0][field]=None
+            result,obs=refresh(previous,{bad['id']:lambda day:bad},TODAY)
+            self.assertEqual(result,previous);self.assertEqual(obs[0]['status'],'failure')
+
     def contract(self):
         return '''<section><h1>Linxea Spirit 2</h1><img alt="Spirica">ETF SCPI Private Equity Actions</section>
         <h2>Plus de 1100 supports disponibles</h2>Accessible dès 500€ de versement initial

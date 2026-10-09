@@ -84,3 +84,7 @@ Le run #37362488393 a échoué à la première observation concernée : **LU1931
 La PR #302 avait déjà raccordé l’audit à la publication automatisée. Ce lot renforce ce raccord : égalité stricte des valeurs, présence de la source exacte, validité de la date, égalité avec la date réellement publiée et absence de régression par rapport à la revue. Des cas négatifs vérifient qu’une valeur modifiée, une source absente, une date arbitrairement avancée, invalide ou plus ancienne déclenchent toujours un échec.
 
 Validation locale : 66 tests Python (collecteurs, refresh et documents) ; 39 contrôles Node, dont les trois assertions historiques adaptées aux publications actuelles ; compilation et budgets de bundles réussis. Lint sans erreur, avec un avertissement préexistant. Les collectes réelles ont validé 44 connexions sur 48 et 27 compositions / 26 tables annuelles. Le téléchargement local de Chromium échoue ; les tests navigateur du workflow Pages doivent être exécutés sur GitHub avant fusion.
+
+## Présentations — priorités 1–2 et élargissement du 9 octobre 2026
+
+Voir la [roadmap Présentations](presentations-roadmap.md) : données complémentaires SCPI/assurance vie, fiabilité des collectes, puis regroupement en un outil unique et qualification de Fundora/private equity, bovins, vignobles et forêts. Les limites restantes et les critères de livraison y sont explicites.

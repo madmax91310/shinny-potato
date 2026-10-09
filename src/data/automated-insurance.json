@@ -293,7 +293,7 @@
       "name": "Linxea Vie",
       "insurer": "Generali",
       "distributor": "Linxea",
-      "checkedAt": "2026-10-08",
+      "checkedAt": "2026-10-09",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/",
       "fees": {
         "subscription": 0.0,
@@ -348,9 +348,11 @@
           "accessValidUntil": "2026-12-31",
           "sourceUrls": [
             "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
-            "https://www.linxea.com/assurance-vie/linxea-vie/"
+            "https://www.linxea.com/assurance-vie/linxea-vie/",
+            "https://www.linxea.com/document/conditions-generales-linxea-vie/"
           ],
           "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+          "guaranteeBasis": "Minimum annuel calculé à partir de la garantie contractuelle brute et de 0,75 % de frais maximaux ; hors garantie optionnelle décès. Le capital garanti se réduit chaque année des frais.",
           "publication": {
             "latestPublishedYear": 2025,
             "expectedYear": 2025,
@@ -374,7 +376,7 @@
             }
           ],
           "asOf": "2025-12-31",
-          "guarantee": null,
+          "guarantee": 99.25,
           "managementFeeMax": 0.75,
           "maxAllocation": 100.0,
           "ceiling": null,
@@ -382,9 +384,11 @@
           "notes": "Nouveaux contrats : frais applicables aux ouvertures après 2017. En cas de rachat total en cours d’année, le taux appliqué est le Taux Minimum Garanti.",
           "accessValidUntil": null,
           "sourceUrls": [
-            "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/"
+            "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+            "https://www.linxea.com/document/conditions-generales-linxea-vie/"
           ],
           "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+          "guaranteeBasis": "Minimum annuel calculé à partir de la garantie contractuelle brute et de 0,75 % de frais maximaux ; hors garantie optionnelle décès. Le capital garanti se réduit chaque année des frais.",
           "publication": {
             "latestPublishedYear": 2025,
             "expectedYear": 2025,
