@@ -16,6 +16,7 @@ try {
   for(const record of PRESENTATION_ACTORS){
     await families.getByRole('button',{name:ACTOR_FAMILIES.find(row=>row.id===record.family).label,exact:true}).click()
     await page.getByRole('group',{name:'Choisir un acteur',exact:true}).getByRole('button',{name:record.name,exact:true}).click()
+    await page.getByRole('tab',{name:'Texte',exact:true}).click()
     assert.equal(await page.locator('#actor-draft').inputValue(),buildActorTweet(record))
     await page.locator('#actor-draft').fill(`Retouche ${record.id}`)
     await page.getByRole('button',{name:'Copier le texte',exact:true}).click()

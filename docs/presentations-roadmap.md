@@ -14,7 +14,7 @@ Champs encore non qualifiés : allocation maximale actuelle du Fonds général L
 
 ## Lot livré : un outil unique
 
-**« Présentations »** est créé avec un choix de famille, puis d’entité ou de produit, recherche et filtres. Regrouper les deux outils existants en réutilisant leurs composants et leurs registres. Conserver les anciennes adresses par redirection et adapter le menu, la page d’accueil et les tests de navigation.
+**« Présentations »** propose un choix de famille, puis d’entité ou de produit. Les deux outils existants réutilisent leurs composants et leurs registres dans ce parcours. Les anciennes adresses sont conservées par redirection ; le menu, la page d’accueil et les tests de navigation sont adaptés.
 
 Le parcours reste commun : sélectionner → examiner les données datées → générer et modifier le texte → prévisualiser et télécharger le visuel personnalisé. Conserver les logos officiels en relief et les couleurs propres à chaque marque. Afficher uniquement les familles disposant de fiches qualifiées ; les projets futurs restent dans cette roadmap.
 
