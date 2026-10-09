@@ -200,8 +200,9 @@
       "enabled": true,
       "returnDocumentName": "Russell 1000 Equal Weight",
       "returnRowName": "Russell 1000",
-      "collectComposition": false,
-      "qualificationIssue": "Composition: current primary factsheet publishes sector chart without extractable numerical weights and holdings without weights; previous composition preserved."
+      "collectComposition": true,
+      "qualificationIssue": "Printed sectors and native count qualified independently; top-ten individual weights not published.",
+      "compositionParser": "russell-printed-composition"
     },
     {
       "id": "msci-em-asia-screened",
