@@ -43,7 +43,7 @@ def parse_document(body,share,now):
         years=[];values=[]
         for line in block.splitlines():
             cells=re.split(r' {2,}',line.strip())
-            header=re.search(r'(?:^| {2,})((?:20\d{2}\s+){4,}20\d{2})\s*$',line.strip())
+            header=re.search(r'(?:^| {2,})(20\d{2}(?:\s+20\d{2})*)\s*$',line.strip())
             if header: years=re.findall(r'20\d{2}',header[1])
             if 'VanEck ' in line and 'Benchmark' not in line:
                 # Numeric columns are separated from the ETF label by two or
@@ -53,7 +53,7 @@ def parse_document(body,share,now):
                 if numeric and any(not re.fullmatch(r'-?\d+(?:\.\d+)?',c) for c in numeric):
                     reject('Invalid VanEck numerical calendar row')
                 if numeric: values=numeric
-        header=re.search(r'Fund Data\s+((?:20\d{2}\s+){4,}20\d{2})',block)
+        header=re.search(r'Fund Data\s+(20\d{2}(?:\s+20\d{2})*)',block)
         if header: years=re.findall(r'20\d{2}',header[1])
         if years and values and len(values)<=len(years):
             import datetime as dt

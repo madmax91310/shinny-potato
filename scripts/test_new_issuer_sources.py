@@ -130,6 +130,15 @@ class IssuerSources(unittest.TestCase):
         self.assertNotIn('holdings',result)
         self.assertEqual(result['collectionErrors'][0]['field'],'allocations')
 
+    def test_wisdomtree_first_single_full_year_is_accepted(self):
+        s=share('IE0002Y8CX98');now=NOW.replace(year=2027)
+        text="Document Date: 30/09/2027\nISIN IE0002Y8CX98\nBase Currency EUR\nTotal Expense Ratio 0.40%\nInception Date 04/03/2025\n"+s['documentName']+"\nCalendar Year Performance (Net of fees)\nName 2026\n\n"+s['documentName']+" 12.34%\n\nRolling 12-month"
+        with patch('issuer_documents.pdf_text',return_value=text),patch('collect_wisdomtree_allocations.allocations',return_value={}):
+            r=wisdomtree_factsheet(b'test-first-calendar',s,now)
+        self.assertEqual(r['performance']['years'],{'2026':12.34})
+        with patch('issuer_documents.pdf_text',return_value=text.replace('Name 2026','Name 2027')),self.assertRaises(ValueError):
+            wisdomtree_factsheet(b'test-incomplete-calendar',s,now)
+
     def test_ubs_exact_index_scope_and_month_discovery(self):
         text=(FIX/'ubs.txt').read_text();s=share('IE00BD4TXV59');r=ubs(text,s,NOW,'h')
         self.assertEqual(r['aum']['amount'],17446660000)

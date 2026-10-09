@@ -18,7 +18,7 @@ const rows=[
  '## Ce qui fonctionne sans assistant ni saisie manuelle','',
  '| Domaine | Couverture active | Fréquence |','|---|---|---|',
  `| Historiques mensuels des simulateurs | ${Object.keys(ASSETS).length}/${Object.keys(ASSETS).length} séries ; ${Object.keys(monthly).length} nouveaux collecteurs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |`,
- `| ETF/ETC/ETP | ${Object.keys(etf).length}/${instruments.length} instruments, au moins un champ | 3 et 16 du mois |`,
+ `| ETF/ETC/ETP | ${Object.keys(etf).length}/${instruments.length} instruments, au moins un champ | Quotidienne |`,
  `| Compositions d’indices | ${Object.values(indices).filter(r=>r.facts).length} indices | 3 et 16 du mois |`,
  `| Rendements annuels d’indices | ${Object.values(indices).filter(r=>r.returns).length} indices | 3 et 16 du mois |`,
  `| Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |`,

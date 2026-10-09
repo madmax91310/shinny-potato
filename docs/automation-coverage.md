@@ -9,7 +9,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
 | Historiques mensuels des simulateurs | 46/46 séries ; 44 nouveaux collecteurs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| ETF/ETC/ETP | 155/155 instruments, au moins un champ | 3 et 16 du mois |
+| ETF/ETC/ETP | 155/155 instruments, au moins un champ | Quotidienne |
 | Compositions d’indices | 42 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 46 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |

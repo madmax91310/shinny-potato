@@ -49,7 +49,7 @@ def parse_product(body, share, now):
     facts = {}
     for item in items(sections['keyFacts']):
         key = re.sub('<[^>]+>', '', item['key'])
-        if key in ['ISIN', 'Share class currency', 'Income treatment', 'Fund all-in fee (TER)', 'Investment methodology']:
+        if key in ['ISIN', 'Share class currency', 'Income treatment', 'Fund all-in fee (TER)', 'Investment methodology', 'Share class launch date']:
             if key in facts:
                 reject('Duplicate DWS characteristic')
             facts[key] = item['value']
@@ -82,11 +82,13 @@ def parse_product(body, share, now):
     if len(rows) != 1:
         reject('DWS exact-share total-return row missing')
     years = {}
+    launch = facts.get('Share class launch date')
+    inception = dt.datetime.strptime(launch, '%d/%m/%Y').date() if launch else None
     for key, year in columns.items():
         if int(year) >= now.year:
             reject('Incomplete DWS current year')
         point = rows[0][key]
-        if point['type'] == 'empty':
+        if point['type'] == 'empty' or (inception and inception > dt.date(int(year), 1, 1)):
             continue
         years[year] = bounded_return(point['sortValue'])
     if years:

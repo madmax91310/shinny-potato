@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { buildGapInventory, classifyInstrumentGap } from './automation-gap-inventory.mjs';
+import { buildGapInventory, classifyInstrumentGap, recent } from './automation-gap-inventory.mjs';
 const r=buildGapInventory();
 assert.equal(classifyInstrumentGap('new-instrument','performance').status,'unqualified');
 assert.equal(classifyInstrumentGap('IE00BM8R0J59','performance').status,'source-conflict');
@@ -23,3 +23,14 @@ const missing=buildGapInventory({indices});
 assert(missing.gaps.some(g=>g.id==='sp-global-dividend-aristocrats'&&g.field==='holdings'&&g.status==='access-blocked'));
 assert(missing.gaps.some(g=>g.id==='sp-euro-dividend-aristocrats'&&g.field==='holdings'&&g.status==='access-blocked'));
 console.log('Missing-field inventory: unknown products, exact-share conflicts, non-applicable fields and newly qualified calendars checked.');
+
+assert.equal(r.recentCalendars.length,11);
+assert(r.recentCalendars.every(s=>s.configured));
+for(const id of recent) {
+  const pending=buildGapInventory({etf:{},now:'2028-02-01'});
+  assert.equal(pending.recentCalendars.find(s=>s.id===id).status,'waiting-publication');
+  const active=buildGapInventory({etf:{[id]:{performance:{years:{2027:6.61},sourceUrl:'https://issuer.test/exact-share'}}},now:'2028-02-01'});
+  assert.equal(active.recentCalendars.find(s=>s.id===id).firstYear,2027);
+  assert.equal(active.recentCalendars.find(s=>s.id===id).status,'integrated');
+  assert(!active.gaps.some(g=>g.id===id&&g.field==='performance'));
+}

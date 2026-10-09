@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { DATA_CATALOG } from '../src/data/catalog.js';
 const read = path => JSON.parse(readFileSync(new URL('../'+path, import.meta.url)));
-const recent = new Set(['FR0014017NX3','FR001400U5Q4','IE0000N55FP4','IE0002Y8CX98','IE0007Y8Y157','IE000C6ITGC8','IE000DQLYVB9','IE000L6ZMMC4','IE000W8WMSL2','LU2970735911','LU3038520774']);
+export const recent = new Set(['FR0014017NX3','FR001400U5Q4','IE0000N55FP4','IE0002Y8CX98','IE0007Y8Y157','IE000C6ITGC8','IE000DQLYVB9','IE000L6ZMMC4','IE000W8WMSL2','LU2970735911','LU3038520774']);
 const nonEquity = new Set(['LU0290358497','CH0454664001','DE000A27Z304','FR0013416716','GB00B15KXQ89','GB00BJYDH287','GB00BLD4ZL17','GB00BLD4ZM24','IE00B4NCWG09','IE00B4ND3602','IE00B579F325','IE00BD6FTQ80','IE00BDFL4P12','JE00B1VS3770']);
 export function classifyInstrumentGap(id,field) {
   if(['countries','sectors','holdings'].includes(field) && nonEquity.has(id)) return {status:'not-applicable',reason:'Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.'};
@@ -35,11 +35,16 @@ export function buildGapInventory({etf=read('src/data/automated-etf.json'),indic
     }
   }
   const summary={};for(const gap of gaps)summary[`${gap.type}:${gap.status}`]=(summary[`${gap.type}:${gap.status}`]??0)+1;
-  return {checkedAt:now,method:'Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.',instruments:rows.length,covered:counts,summary,gaps};
+  const recentCalendars=[...recent].map(id=>{
+    const data=etf[id]??{};const source=configured.get(id);
+    const years=Object.keys(data.performance?.years??{}).map(Number).filter(y=>Number.isInteger(y)&&y<Number(now.slice(0,4))).sort((a,b)=>a-b);
+    return {id,name:rows.find(r=>r.id===id)?.name??id,configured:!!source,status:years.length?'integrated':'waiting-publication',firstYear:years[0]??null,years,sourceUrl:data.performance?.sourceUrl??source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null};
+  });
+  return {recentCalendars,checkedAt:now,method:'Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.',instruments:rows.length,covered:counts,summary,gaps};
 }
 export function writeGapInventory(report=buildGapInventory()) {
   const names={'not-applicable':'Non applicable','waiting-publication':'Attente de publication','source-conflict':'Source contradictoire','not-published':'Non publié','unqualified':'À qualifier','access-blocked':'Accès bloqué'};
-  const lines=[`# Champs restant à automatiser — ${report.checkedAt}`,'',report.method,'','| Champ ETF/ETP | Couverture |','|---|---:|',...Object.entries(report.covered).map(([k,v])=>`| ${k} | ${v}/${report.instruments} |`),'','Les caractéristiques statiques et cotations sont exclues de ce chantier conformément au périmètre demandé.','', '| Type | Instrument / indice | Champ absent | Motif | Action |','|---|---|---|---|---|',...report.gaps.map(g=>`| ${g.type} | ${g.name} (${g.id}) | ${g.label} | ${names[g.status]} | ${g.reason} |`),'','Couverture : une donnée active peut être conservée malgré un accès désormais en échec. Les alertes opérationnelles restent suivies dans « Données à revoir ».',''];
+  const lines=[`# Champs restant à automatiser — ${report.checkedAt}`,'',report.method,'','| Champ ETF/ETP | Couverture |','|---|---:|',...Object.entries(report.covered).map(([k,v])=>`| ${k} | ${v}/${report.instruments} |`),'','## Premiers calendriers des 11 parts récentes','', 'Contrôle quotidien par le workflow existant. Une première année complète validée est intégrée au registre actif ; le proxy de simulation reste soumis à sa propre fenêtre minimale. Une erreur de transport ou de validation conserve les observations précédentes et déclenche le signal de collecte.','', '| Part | Collecteur configuré | État | Première année intégrée |','|---|---|---|---|', ...report.recentCalendars.map(r=>`| ${r.name} (${r.id}) | ${r.configured?'Oui':'Non'} | ${r.status==='integrated'?'Intégré':'Attente de publication'} | ${r.firstYear??'—'} |`),'', 'Les caractéristiques statiques et cotations sont exclues de ce chantier conformément au périmètre demandé.','', '| Type | Instrument / indice | Champ absent | Motif | Action |','|---|---|---|---|---|',...report.gaps.map(g=>`| ${g.type} | ${g.name} (${g.id}) | ${g.label} | ${names[g.status]} | ${g.reason} |`),'','Couverture : une donnée active peut être conservée malgré un accès désormais en échec. Les alertes opérationnelles restent suivies dans « Données à revoir ».',''];
   writeFileSync(new URL('../docs/automation-gaps.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
   writeFileSync(new URL('../docs/automation-gaps.md',import.meta.url),lines.join('\n'));
   return report;

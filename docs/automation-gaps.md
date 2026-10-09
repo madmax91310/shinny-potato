@@ -11,6 +11,24 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 | sectors | 140/155 |
 | holdings | 140/155 |
 
+## Premiers calendriers des 11 parts récentes
+
+Contrôle quotidien par le workflow existant. Une première année complète validée est intégrée au registre actif ; le proxy de simulation reste soumis à sa propre fenêtre minimale. Une erreur de transport ou de validation conserve les observations précédentes et déclenche le signal de collecte.
+
+| Part | Collecteur configuré | État | Première année intégrée |
+|---|---|---|---|
+| Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Oui | Attente de publication | — |
+| Amundi PEA Monde (MSCI World) UCITS ETF (FR001400U5Q4) | Oui | Attente de publication | — |
+| iShares MSCI Europe Small Cap UCITS ETF (IE0000N55FP4) | Oui | Attente de publication | — |
+| WisdomTree Europe Defence UCITS ETF (IE0002Y8CX98) | Oui | Attente de publication | — |
+| VanEck Quantum Computing UCITS ETF A (IE0007Y8Y157) | Oui | Attente de publication | — |
+| iShares Quantum Computing UCITS ETF (IE000C6ITGC8) | Oui | Attente de publication | — |
+| iShares S&P 500 Swap PEA UCITS ETF (IE000DQLYVB9) | Oui | Attente de publication | — |
+| Xtrackers FTSE All-World UCITS ETF 1C (IE000L6ZMMC4) | Oui | Attente de publication | — |
+| WisdomTree Quantum Computing UCITS ETF (IE000W8WMSL2) | Oui | Attente de publication | — |
+| Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Oui | Attente de publication | — |
+| Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Oui | Attente de publication | — |
+
 Les caractéristiques statiques et cotations sont exclues de ce chantier conformément au périmètre demandé.
 
 | Type | Instrument / indice | Champ absent | Motif | Action |

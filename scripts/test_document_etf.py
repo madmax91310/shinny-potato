@@ -36,6 +36,17 @@ class Documents(unittest.TestCase):
         with self.assertRaises(ValueError):parse_legacy(text.replace('IE00TEST0001','IE00OTHER001'),share,NOW)
         with self.assertRaises(ValueError):parse_legacy(text.replace('30/sept./2026','30/janv./2026'),share,NOW)
 
+    def test_first_single_calendar_year_excludes_partial_share_launch(self):
+        share={'isin':'IE00TEST0001','currency':'EUR'}
+        text="Informations sur l'actif net au 31-août-2026. Toutes les autres statistiques\nsont en date du 07-sept.-2026.\nPERFORMANCE DE L'ANNÉE CIVILE\n2025\nClasse d’Actions 6,61\nIndice de référence 9,9\nCROISSANCE DE 10 000"
+        facts="ISIN : IE00TEST0001\nDevise de la Classe d'Actions : EUR\nRatio des charges totales : 0,20%\nUtilisation des gains : Capitalisation\nActif net de la Catégorie d’actions (M) : 1,00 EUR\nDate de lancement de la Catégorie d'Actions : 29-mai-2024"
+        result=parse_legacy_factsheet(text,facts,share,NOW)
+        self.assertEqual(result['performance']['years'],{'2025':6.61})
+        partial=parse_legacy_factsheet(text,facts.replace('2024','2025'),share,NOW)
+        self.assertNotIn('performance',partial)
+        for bad in (text.replace('2025','2026'),text.replace('6,61','NaN'),text.replace('Classe d’Actions','Indice')):
+            with self.assertRaises(ValueError):parse_legacy_factsheet(bad,facts,share,NOW)
+
     def test_legacy_transport_fallback_preserves_exact_source(self):
         primary='https://www.ishares.com/ch/professionals/en/products/123/'
         backup='https://www.blackrock.com/fr/particuliers/products/123/'
