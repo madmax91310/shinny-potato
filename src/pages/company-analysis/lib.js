@@ -120,10 +120,10 @@ export function marginExplanation(period) {
   const profitGrowth = growth(netIncome, previousNetIncome)
   if (netIncome > 0 && previousNetIncome > 0 && revenueGrowth > .05 && profitGrowth > .05) {
     return improved
-      ? 'Les bénéfices ont progressé plus vite que le chiffre d’affaires : la marge nette s’est améliorée. L’entreprise dégage davantage de bénéfice à chiffre d’affaires comparable.'
-      : 'Les revenus ont progressé plus vite que les bénéfices : la marge nette a diminué. L’entreprise dégage moins de bénéfice à chiffre d’affaires comparable.'
+      ? 'Les bénéfices ont progressé plus vite que le chiffre d’affaires : la marge nette s’est améliorée.'
+      : 'Les revenus ont progressé plus vite que les bénéfices : la marge nette a diminué.'
   }
-  if (netIncome > 0 && previousNetIncome > 0 && revenueGrowth > .05 && profitGrowth < -.05) return `Le chiffre d’affaires augmente, mais les bénéfices reculent. La marge nette a diminué, passant de ${fr(previous)} % à ${fr(current)} % : l’entreprise dégage moins de bénéfice à chiffre d’affaires comparable.`
+  if (netIncome > 0 && previousNetIncome > 0 && revenueGrowth > .05 && profitGrowth < -.05) return `Le chiffre d’affaires augmente, mais les bénéfices reculent : la marge nette a diminué de ${fr(previous)} % à ${fr(current)} %.`
   return `La marge nette ${improved ? 's’est améliorée' : 'a diminué'}, passant de ${fr(previous)} % à ${fr(current)} % sur un an.`
 }
 function periodText(period, company, quarterly = false, halfYear = false) {
@@ -190,9 +190,10 @@ export function buildTweetText(company, now = new Date()) {
   }
   if (!finite(pe) && finite(calculated.peAnnual)) valuation.push(`Le cours représente ${fr(calculated.peAnnual)} fois le BPA dilué du dernier exercice publié, clos le ${dateLabel(company.annual.end)}. Ce PER annuel utilise cet exercice précis.`)
   if (company.quoteListing && company.id === 'totalenergies') valuation.push('Le cours utilisé est celui de l’action ordinaire cotée à New York en USD, la devise des comptes présentés.')
-  if (finite(pe) && pe > 0) valuation.push(`Le PER est de ${fr(pe)} : le cours représente environ ${fr(pe)} fois le bénéfice par action des douze derniers mois.\nCe ratio utilise les bénéfices déjà publiés.`)
-  if (estimates) valuation.push(`Le PER prévisionnel est de ${fr(estimates.forwardPE)}, avec les bénéfices estimés pour le prochain exercice fiscal. Ces prévisions peuvent être révisées.`)
-  if (finite(estimates?.peg)) valuation.push(`Le PEG est de ${fr(estimates.peg, 2)}. Il rapporte ce PER prévisionnel à la croissance annuelle des bénéfices estimée sur cinq ans (${fr(estimates.growthEPS5Y, 2)} %).`)
+  if (finite(pe) && pe > 0) valuation.push(`PER : ${fr(pe)}× le bénéfice par action sur douze mois. Ce ratio utilise les bénéfices déjà publiés.`)
+  if (estimates) valuation.push(`PER prévisionnel : ${fr(estimates.forwardPE)}× les bénéfices estimés pour le prochain exercice fiscal, susceptibles d’être révisés.`)
+  if (finite(estimates?.peg)) valuation.push(`PEG : ${fr(estimates.peg, 2)}, pour une croissance annuelle des bénéfices estimée à ${fr(estimates.growthEPS5Y, 2)} % sur cinq ans.`)
+  if (finite(pe) || finite(calculated.peAnnual) || estimates || finite(v?.forwardPE)) valuation.push('Ces multiples dépendent aussi de la croissance et des risques de l’entreprise.')
   if (!estimates && finite(v?.forwardPE) && v.forwardPE > 0) valuation.push(`Le PER prévisionnel fourni est de ${fr(v.forwardPE)}. Il utilise des bénéfices estimés, avec un horizon non précisé par ${v.sourceName ?? 'Alpha Vantage'}.`)
   if (!estimates && finite(v?.peg) && v.peg > 0) valuation.push(`Le PEG fourni est de ${fr(v.peg)}. Il rapporte le PER à un taux de croissance des bénéfices ; la croissance retenue et son horizon ne sont pas précisés par ${v.sourceName ?? 'Alpha Vantage'}.`)
   if (valuation.length) lines.push(`🏷️ Ce que représente le prix de l’action\n${valuation.join('\n\n')}`)

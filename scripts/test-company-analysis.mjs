@@ -28,7 +28,7 @@ for (const [current,previous,expected] of [[-2e9,-4e9,/perte s’est réduite/],
 const unknown = structuredClone(base); unknown.annual.previousRevenue = null; unknown.annual.previousNetIncome = null
 assert(!buildTweetText(unknown,now).includes('sur un an'))
 const valued = {...base, valuation:{peTTM:30,forwardPE:20,accountsAsOf:'2026-06-30',observedAt:'2026-10-07'}}
-assert.match(buildTweetText(valued,now),/PER est de 30,0/)
+assert.match(buildTweetText(valued,now),/PER : 30,0×/)
 assert.match(buildTweetText(valued,now),/horizon non précisé/)
 assert(!/bon marché|sous-évalu|va augmenter/.test(buildTweetText(valued,now)))
 valued.valuation.observedAt = '2026-09-01'
@@ -198,7 +198,7 @@ for (const company of COMPANIES) {
 const fallingProfit = {...base,annual:{...base.annual,revenue:120e9,netIncome:8e9}}
 assert.match(buildTweetText(fallingProfit,now), /chiffre d’affaires augmente, mais les bénéfices reculent/)
 const risingProfit = {...fallingProfit,annual:{...fallingProfit.annual,netIncome:15e9}}
-assert.match(buildTweetText(risingProfit,now), /davantage de bénéfice/)
+assert.match(buildTweetText(risingProfit,now), /bénéfices ont progressé plus vite/)
 assert(!buildTweetText(risingProfit,now).includes('bénéfices reculent'))
 const equalMargins = {...base,annual:{...base.annual,netIncome:12e9}}
 assert.match(buildTweetText(equalMargins,now), /presque stable/)

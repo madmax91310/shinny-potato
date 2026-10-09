@@ -11,8 +11,11 @@ import './style.css'
 export default function App() {
   const [id, setId] = useState(COMPANIES[0].id)
   const [message, setMessage] = useState('')
+  const [drafts, setDrafts] = useState({})
+  const [editing, setEditing] = useState(false)
   const company = COMPANIES.find(item => item.id === id)
-  const text = buildTweetText(company)
+  const generatedText = buildTweetText(company)
+  const text = drafts[id] ?? generatedText
   const ready = canPublish(company)
   const valuation = activeValuation(company)
   const estimates = activeEstimates(company)
@@ -33,6 +36,7 @@ export default function App() {
     <PageHeader title="Analyse d’entreprise" subtitle="Son activité, ses résultats et les chiffres expliqués." />
     <ToolWorkspace renderImage={() => renderCompanyImage(company)} imageDisabled={!ready} imageAlt={`Les chiffres de ${company.name}`} actions={<>
       <Button onClick={copy} disabled={!ready}>Copier le texte</Button>
+      <Button variant="secondary" onClick={() => setEditing(value => !value)} disabled={!ready}>{editing ? 'Voir le texte' : 'Modifier le texte'}</Button>
       <Button variant="secondary" onClick={download} disabled={!ready}>Télécharger le PNG</Button>
       <span role="status">{message}</span>
     </>}>
@@ -65,7 +69,15 @@ export default function App() {
           </table></div>
         </div>}
 
-        {ready ? <article className="company-tweet" data-testid="company-tweet">{text}</article>
+        {ready ? <>
+          {editing ? <label className="company-editor">Texte de la publication
+            <textarea value={text} onChange={event => { setDrafts(previous => ({...previous, [id]: event.target.value})); setMessage('') }} rows={22} />
+          </label> : <article className="company-tweet" data-testid="company-tweet">{text}</article>}
+          {drafts[id] !== undefined && <div className="company-edit-note">
+            <p>Le texte est modifié. L’image conserve les chiffres des données sources.</p>
+            <Button variant="secondary" onClick={() => { setDrafts(previous => { const next = {...previous}; delete next[id]; return next }); setMessage('Texte d’origine rétabli.') }}>Rétablir le texte d’origine</Button>
+          </div>}
+        </>
           : <p role="alert">Les comptes de cette entreprise sont indisponibles ou trop anciens pour générer une publication.</p>}
       </section>
     </ToolWorkspace>
