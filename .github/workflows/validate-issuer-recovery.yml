@@ -1,0 +1,62 @@
+name: Validate issuer holdings recovery
+on:
+  pull_request:
+    paths:
+      - 'scripts/collect_etf_holdings.py'
+      - 'scripts/collect_amundi_index_exposure.py'
+      - 'scripts/test_issuer_refresh.py'
+      - 'scripts/test_index_extensions.py'
+      - 'scripts/fixtures/official-documents/index-extensions/**'
+      - '.github/workflows/validate-issuer-recovery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+      - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
+      - name: Validate actual official Japan holdings and Russell 2000 composition
+        run: |
+          python - <<'PY'
+          import datetime as dt, json, pathlib, sys
+          sys.path.insert(0, 'scripts')
+          from data_automation import get_text
+          from collect_etf_pilot import fetch_product, parse_share
+          from collect_etf_holdings import parse_holdings, collect_holdings
+          from collect_index_extensions import collect_amundi_composition
+          now = dt.datetime.now(dt.timezone.utc)
+          share = next(s for s in json.loads(pathlib.Path('scripts/etf-pilot.json').read_text())['instruments'] if s['isin'] == 'IE00B4L5YX21')
+          body, url, attempts = fetch_product(share, get_text)
+          result = parse_share(body, share, now)
+          holdings, countries = parse_holdings(body, share, now) if isinstance(body, dict) else collect_holdings(result['rawComponents']['holdings'], share, now)
+          assert len(holdings['rows']) == 10
+          assert 99 <= sum(r['weightPct'] for r in countries['rows']) <= 101
+          print('Japan', holdings['asOf'], holdings['rows'])
+          config = next(c for c in json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices'] if c['id'] == 'russell-2000')
+          facts = collect_amundi_composition(config, now)
+          assert len(facts['holdings']) == 10
+          print('Russell 2000', facts['asOf'], facts['constituents'], facts['holdings'])
+          PY
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run audit:index-facts
+      - run: npm run audit:index-completeness
+      - run: node scripts/test-comparison-etf-details.mjs
+      - run: node scripts/test-automated-indices.mjs
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-etf-art.mjs
+      - run: node scripts/test-stylized-formats.mjs
+      - run: node scripts/test-index-ribbon.mjs

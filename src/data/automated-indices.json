@@ -10993,8 +10993,8 @@
     },
     "facts": {
       "index": "Russell 2000",
-      "asOf": "2026-08-31",
-      "constituents": 1953,
+      "asOf": "2026-09-30",
+      "constituents": 1976,
       "countries": [
         [
           "États-Unis",
@@ -11004,68 +11004,72 @@
       "sectors": [
         [
           "Santé",
-          20.67
+          20.6
         ],
         [
           "Finance",
-          19.38
+          19.18
         ],
         [
           "Industrie",
-          13.88
+          13.98
         ],
         [
           "Technologies de l'info.",
-          12.82
+          13.57
         ],
         [
           "Conso Cyclique",
-          9.23
+          8.89
         ],
         [
           "Énergie",
-          6.66
+          6.65
         ],
         [
           "Immobilier",
-          5.75
+          5.7
         ],
         [
           "Matériaux",
-          4.35
+          4.17
         ],
         [
           "Services publics",
-          2.74
+          2.71
         ],
         [
           "Services de communication",
-          2.39
+          2.46
         ],
         [
           "Conso non Cyclique",
-          1.98
+          1.95
         ]
       ],
       "holdings": [
         [
-          "JFROG LTD",
-          0.34
+          "TWIST BIOSCIENCE CORP",
+          0.41
         ],
         [
           "MOOG INC-CL A",
-          0.34
+          0.37
         ],
         [
-          "UMB FINANCIAL CORP",
-          0.34
+          "10X GENOMICS INC-CLASS A",
+          0.35
         ],
         [
-          "GLAUKOS CORP",
+          "JFROG LTD",
           0.33
         ],
         [
-          "BRINKER INTERNATIONAL INC",
+          "UMB FINANCIAL CORP",
+          0.33
+        ],
+        [
+          "HUT 8 CORP",
           0.32
         ],
         [
@@ -11073,26 +11077,22 @@
           0.31
         ],
         [
-          "CYTOKINETICS INC",
+          "GLAUKOS CORP",
+          0.31
+        ],
+        [
+          "CARETRUST REIT INC",
           0.3
         ],
         [
-          "TWIST BIOSCIENCE CORP",
-          0.29
-        ],
-        [
-          "KRYSTAL BIOTECH INC",
-          0.29
-        ],
-        [
-          "OLD NATIONAL BANCORP",
-          0.29
+          "VIASAT INC",
+          0.3
         ]
       ],
       "source": {
-        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
-        "checkedAt": "2026-10-07",
-        "sha256": "c68c356dfc4bd1e3cc7229aa3710df56f0044a8735771a96acbd3403a56136cc",
+        "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+        "checkedAt": "2026-10-09",
+        "sha256": "d27257330fe47ebe4a4e16cc6128b1df963f179277ecf7512c0ec154ebe9ef3f",
         "label": "Composition de l’indice publiée par Amundi"
       },
       "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
@@ -11200,6 +11200,112 @@
           "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831",
           "checkedAt": "2026-10-07",
           "sha256": "c68c356dfc4bd1e3cc7229aa3710df56f0044a8735771a96acbd3403a56136cc",
+          "label": "Composition de l’indice publiée par Amundi"
+        },
+        "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      },
+      "2026-09-30": {
+        "index": "Russell 2000",
+        "asOf": "2026-09-30",
+        "constituents": 1976,
+        "countries": [
+          [
+            "États-Unis",
+            100
+          ]
+        ],
+        "sectors": [
+          [
+            "Santé",
+            20.6
+          ],
+          [
+            "Finance",
+            19.18
+          ],
+          [
+            "Industrie",
+            13.98
+          ],
+          [
+            "Technologies de l'info.",
+            13.57
+          ],
+          [
+            "Conso Cyclique",
+            8.89
+          ],
+          [
+            "Énergie",
+            6.65
+          ],
+          [
+            "Immobilier",
+            5.7
+          ],
+          [
+            "Matériaux",
+            4.17
+          ],
+          [
+            "Services publics",
+            2.71
+          ],
+          [
+            "Services de communication",
+            2.46
+          ],
+          [
+            "Conso non Cyclique",
+            1.95
+          ]
+        ],
+        "holdings": [
+          [
+            "TWIST BIOSCIENCE CORP",
+            0.41
+          ],
+          [
+            "MOOG INC-CL A",
+            0.37
+          ],
+          [
+            "10X GENOMICS INC-CLASS A",
+            0.35
+          ],
+          [
+            "JFROG LTD",
+            0.33
+          ],
+          [
+            "UMB FINANCIAL CORP",
+            0.33
+          ],
+          [
+            "HUT 8 CORP",
+            0.32
+          ],
+          [
+            "BRIGHTSPRING HEALTH SERVICES",
+            0.31
+          ],
+          [
+            "GLAUKOS CORP",
+            0.31
+          ],
+          [
+            "CARETRUST REIT INC",
+            0.3
+          ],
+          [
+            "VIASAT INC",
+            0.3
+          ]
+        ],
+        "source": {
+          "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+          "checkedAt": "2026-10-09",
+          "sha256": "d27257330fe47ebe4a4e16cc6128b1df963f179277ecf7512c0ec154ebe9ef3f",
           "label": "Composition de l’indice publiée par Amundi"
         },
         "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."

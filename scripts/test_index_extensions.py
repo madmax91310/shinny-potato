@@ -42,6 +42,19 @@ class IndexExtensions(unittest.TestCase):
                     previous=f[key];f[key]=previous.replace(a,b)
                     with self.assertRaises((ValueError,IndexError)):amundi_composition(b'%PDF-proof',c,NOW,'https://example.org/source')
                     f[key]=previous
+    def test_current_russell_names_with_digits_retain_all_ten_positions(self):
+        c=cfg('russell-2000');f=json.loads((F/'russell-2000-2026-09.json').read_text())
+        def extract(body,crop=None):return f['left'] if crop==(0,300) else f['right'] if crop==(300,300) else f['full']
+        with patch('collect_index_extensions.pdf_text',side_effect=extract),patch('collect_amundi_index_exposure.pdf_text',side_effect=extract):
+            r=amundi_composition(b'%PDF-fixture',c,NOW,'https://www.amundietf.fr/source')
+            self.assertEqual(r['asOf'],'2026-09-30');self.assertEqual(r['constituents'],1976)
+            self.assertEqual(len(r['holdings']),10)
+            self.assertIn(['10X GENOMICS INC-CLASS A',.35],r['holdings'])
+            self.assertIn(['HUT 8 CORP',.32],r['holdings'])
+            self.assertAlmostEqual(sum(w for _,w in r['holdings']),3.33)
+            f['right']=f['right'].replace('10X GENOMICS INC-CLASS A','').replace('HUT 8 CORP','')
+            with self.assertRaises(ValueError):amundi_composition(b'%PDF-fixture',c,NOW,'https://www.amundietf.fr/source')
+
     def test_month_fallback_and_never_relabel_old_document(self):
         c=cfg('topix')
         def fetch(url):
