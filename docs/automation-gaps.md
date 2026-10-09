@@ -74,8 +74,6 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
 | instrument | Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
 | index | Russell 1000 (russell-1000) | holdings | Non publié | La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué. |
-| index | S&P Global Dividend Aristocrats Quality Income (sp-global-dividend-aristocrats) | holdings | Accès bloqué | Le JSON S&P publie les poids individuels, mais les accès GitHub testés renvoient 403 ; dernier relevé conservé. |
-| index | S&P Euro High Yield Dividend Aristocrats (sp-euro-dividend-aristocrats) | holdings | Accès bloqué | Le JSON S&P publie les poids individuels, mais les accès GitHub testés renvoient 403 ; dernier relevé conservé. |
 | index | Bitcoin (bitcoin) | constituents | Non applicable | Sous-jacent sans composition actions. |
 | index | Bitcoin (bitcoin) | countries | Non applicable | Sous-jacent sans composition actions. |
 | index | Bitcoin (bitcoin) | sectors | Non applicable | Sous-jacent sans composition actions. |

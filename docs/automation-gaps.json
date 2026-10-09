@@ -16,7 +16,6 @@
     "instrument:not-published": 1,
     "instrument:source-conflict": 4,
     "index:not-published": 1,
-    "index:access-blocked": 2,
     "index:not-applicable": 16
   },
   "gaps": [
@@ -668,28 +667,6 @@
       "reason": "La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué.",
       "configured": true,
       "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
-    },
-    {
-      "type": "index",
-      "id": "sp-global-dividend-aristocrats",
-      "name": "S&P Global Dividend Aristocrats Quality Income",
-      "field": "holdings",
-      "label": "holdings",
-      "status": "access-blocked",
-      "reason": "Le JSON S&P publie les poids individuels, mais les accès GitHub testés renvoient 403 ; dernier relevé conservé.",
-      "configured": true,
-      "sourceUrl": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=92388578&language_id=1"
-    },
-    {
-      "type": "index",
-      "id": "sp-euro-dividend-aristocrats",
-      "name": "S&P Euro High Yield Dividend Aristocrats",
-      "field": "holdings",
-      "label": "holdings",
-      "status": "access-blocked",
-      "reason": "Le JSON S&P publie les poids individuels, mais les accès GitHub testés renvoient 403 ; dernier relevé conservé.",
-      "configured": true,
-      "sourceUrl": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1"
     },
     {
       "type": "index",
