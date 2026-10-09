@@ -105,7 +105,7 @@
         },
         {
           "name": "Germany",
-          "weightPct": 2.0
+          "weightPct": 2
         },
         {
           "name": "Australia",
@@ -334,7 +334,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -475,7 +475,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0,
+          "weightPct": 0,
           "label": "Autres"
         }
       ],
@@ -730,20 +730,20 @@
     },
     "provider": "iShares",
     "countries": {
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-07",
       "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "Japan",
-          "weightPct": 100.13991
+          "weightPct": 101.36352
         },
         {
           "name": "United Kingdom",
-          "weightPct": 0.00204
+          "weightPct": 0.00208
         },
         {
           "name": "European Union",
-          "weightPct": 0.0009
+          "weightPct": 0.00091
         },
         {
           "name": "Mexico",
@@ -751,73 +751,73 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         },
         {
           "name": "United States",
-          "weightPct": -0.14287
+          "weightPct": -1.36675
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-07"
+      "checkedAt": "2026-10-09"
     },
     "holdings": {
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-07",
       "basis": "fund",
       "rows": [
         {
           "name": "MITSUBISHI UFJ FINANCIAL GROUP",
-          "weightPct": 3.61243,
+          "weightPct": 3.59127,
           "isin": "JP3902900004"
         },
         {
           "name": "ADVANTEST",
-          "weightPct": 2.8244,
+          "weightPct": 2.8075,
           "isin": "JP3122400009"
         },
         {
           "name": "TOKYO ELECTRON",
-          "weightPct": 2.62498,
+          "weightPct": 2.58206,
           "isin": "JP3571400005"
         },
         {
           "name": "TOYOTA MOTOR",
-          "weightPct": 2.55902,
+          "weightPct": 2.5521,
           "isin": "JP3633400001"
         },
         {
           "name": "HITACHI",
-          "weightPct": 2.30277,
+          "weightPct": 2.31566,
           "isin": "JP3788600009"
         },
         {
           "name": "SUMITOMO MITSUI FINANCIAL GROUP",
-          "weightPct": 2.29712,
+          "weightPct": 2.27616,
           "isin": "JP3890350006"
         },
         {
           "name": "SOFTBANK GROUP CORP",
-          "weightPct": 2.15303,
+          "weightPct": 2.1747,
           "isin": "JP3436100006"
         },
         {
           "name": "RECRUIT HOLDINGS LTD",
-          "weightPct": 2.06681,
+          "weightPct": 2.08593,
           "isin": "JP3970300004"
         },
         {
           "name": "SONY GROUP",
-          "weightPct": 2.03005,
+          "weightPct": 2.03183,
           "isin": "JP3435000009"
         },
         {
           "name": "KIOXIA HOLDINGS",
-          "weightPct": 1.9878,
+          "weightPct": 1.91408,
           "isin": "JP3236330001"
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-07"
+      "checkedAt": "2026-10-09"
     }
   },
   "IE00BF4RFH31": {
@@ -2010,7 +2010,7 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-09"
@@ -2368,7 +2368,7 @@
       "rows": [
         {
           "name": "India",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-09"
@@ -2529,7 +2529,7 @@
       "rows": [
         {
           "name": "China",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-09"
@@ -2799,7 +2799,7 @@
       "years": {
         "2020": 8.55,
         "2021": 38.23,
-        "2022": -13.0,
+        "2022": -13,
         "2023": 21.68,
         "2024": 32.85,
         "2025": 3.45
@@ -2871,7 +2871,7 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-09"
@@ -3197,7 +3197,7 @@
       "rows": [
         {
           "name": "Japan",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-09"
@@ -3358,7 +3358,7 @@
       "rows": [
         {
           "name": "Japan",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-09"
@@ -4827,7 +4827,7 @@
         },
         {
           "name": "UAE",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "checkedAt": "2026-10-09"
@@ -6546,7 +6546,7 @@
         "2021": 25.41,
         "2022": -6.27,
         "2023": 8.16,
-        "2024": 4.0,
+        "2024": 4,
         "2025": 6.38
       },
       "checkedAt": "2026-10-05"
@@ -7265,7 +7265,7 @@
       "rows": [
         {
           "name": "Japan",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-09"
@@ -7787,7 +7787,7 @@
         },
         {
           "name": "Netherlands",
-          "weightPct": 3.0
+          "weightPct": 3
         },
         {
           "name": "Belgium",
@@ -8200,22 +8200,22 @@
         },
         {
           "name": "ABS Other",
-          "weightPct": 0.0,
+          "weightPct": 0,
           "label": "ABS Other"
         },
         {
           "name": "Auto Backed",
-          "weightPct": 0.0,
+          "weightPct": 0,
           "label": "Auto Backed"
         },
         {
           "name": "Credit Card",
-          "weightPct": 0.0,
+          "weightPct": 0,
           "label": "Credit Card"
         },
         {
           "name": "Residential Mortgage",
-          "weightPct": 0.0,
+          "weightPct": 0,
           "label": "Residential Mortgage"
         },
         {
@@ -8244,7 +8244,7 @@
           "name": "FHLMC 30YR UMBS SUPER · 2% · 2051-07-01",
           "weightPct": 0.69361,
           "maturityDate": "2051-07-01",
-          "couponPct": 2.0
+          "couponPct": 2
         },
         {
           "name": "CHINA PEOPLES REPUBLIC OF (GOVERNM · CND10008QSP8",
@@ -8285,7 +8285,7 @@
           "name": "FNMA 30YR UMBS SUPER · 2% · 2052-04-01",
           "weightPct": 0.25634,
           "maturityDate": "2052-04-01",
-          "couponPct": 2.0
+          "couponPct": 2
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -8384,7 +8384,7 @@
         },
         {
           "name": "European Union",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -8507,7 +8507,7 @@
         },
         {
           "name": "Communication",
-          "weightPct": 2.0,
+          "weightPct": 2,
           "label": "Communication"
         },
         {
@@ -8527,7 +8527,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0,
+          "weightPct": 0,
           "label": "Autres"
         }
       ],
@@ -9307,7 +9307,7 @@
         "2021": 25.18,
         "2022": -24.33,
         "2023": 8.92,
-        "2024": 1.0,
+        "2024": 1,
         "2025": 8.24
       },
       "checkedAt": "2026-10-05"
@@ -9688,7 +9688,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -9883,7 +9883,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -10248,7 +10248,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -10725,7 +10725,7 @@
         },
         {
           "name": "Ireland",
-          "weightPct": 2.0
+          "weightPct": 2
         },
         {
           "name": "China",
@@ -11740,7 +11740,7 @@
         },
         {
           "name": "Singapore",
-          "weightPct": 2.0
+          "weightPct": 2
         },
         {
           "name": "Netherlands",
@@ -13287,7 +13287,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -13973,7 +13973,7 @@
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 37.0,
+          "weightPct": 37,
           "label": "Information Technology"
         },
         {
@@ -14465,7 +14465,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -14652,7 +14652,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 4.0
+          "weightPct": 4
         },
         {
           "name": "Cash and/or Derivatives",
@@ -14739,7 +14739,7 @@
         "2022": -5.61,
         "2023": -20.53,
         "2024": -26.07,
-        "2025": 46.0
+        "2025": 46
       },
       "checkedAt": "2026-10-05"
     }
@@ -14811,7 +14811,7 @@
         },
         {
           "name": "Utilities",
-          "weightPct": 2.0,
+          "weightPct": 2,
           "label": "Utilities"
         },
         {
@@ -16406,7 +16406,7 @@
         "2017": 36.69,
         "2018": -14.74,
         "2019": 17.92,
-        "2020": 18.0,
+        "2020": 18,
         "2021": -2.5,
         "2022": -20.39,
         "2023": 9.8,
@@ -16777,7 +16777,7 @@
         "2021": 24.74,
         "2022": -0.99,
         "2023": 2.02,
-        "2024": 8.0,
+        "2024": 8,
         "2025": 7.73
       },
       "checkedAt": "2026-10-05"
@@ -18458,7 +18458,7 @@
         },
         {
           "name": "United Arab Emirates",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "checkedAt": "2026-10-08"
@@ -18586,7 +18586,7 @@
         },
         {
           "name": "Energy",
-          "weightPct": 1.7e-05,
+          "weightPct": 0.000017,
           "label": "Energy"
         }
       ],
@@ -19011,7 +19011,7 @@
         },
         {
           "name": "Russian Federation",
-          "weightPct": 1e-06
+          "weightPct": 0.000001
         }
       ],
       "checkedAt": "2026-10-08"
@@ -19458,7 +19458,7 @@
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
     "provider": "Vanguard",
     "aum": {
-      "amount": 58049000000.0,
+      "amount": 58049000000,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-08-31",
@@ -19501,7 +19501,7 @@
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 11.0,
+          "weightPct": 11,
           "label": "Consumer Discretionary"
         },
         {
@@ -19511,7 +19511,7 @@
         },
         {
           "name": "Health Care",
-          "weightPct": 8.0,
+          "weightPct": 8,
           "label": "Health Care"
         },
         {
@@ -19566,11 +19566,11 @@
         },
         {
           "name": "Micron Technology Inc.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "Tesla Inc.",
-          "weightPct": 1.0
+          "weightPct": 1
         }
       ],
       "checkedAt": "2026-10-06"
@@ -19782,7 +19782,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 2e-05
+          "weightPct": 0.00002
         },
         {
           "name": "Russia",
@@ -19814,7 +19814,7 @@
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Accumulating_9677_EU_INT_UK_EN.pdf",
     "provider": "Vanguard",
     "aum": {
-      "amount": 3426000000.0,
+      "amount": 3426000000,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-08-31",
@@ -19867,7 +19867,7 @@
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 8.0,
+          "weightPct": 8,
           "label": "Consumer Staples"
         },
         {
@@ -19902,11 +19902,11 @@
         },
         {
           "name": "AbbVie Inc.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "Cisco Systems Inc.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "Bank of America Corp.",
@@ -20170,7 +20170,7 @@
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
     "provider": "Vanguard",
     "aum": {
-      "amount": 11409000000.0,
+      "amount": 11409000000,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-08-31",
@@ -20223,7 +20223,7 @@
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 8.0,
+          "weightPct": 8,
           "label": "Consumer Staples"
         },
         {
@@ -20258,11 +20258,11 @@
         },
         {
           "name": "AbbVie Inc.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "Cisco Systems Inc.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "Bank of America Corp.",
@@ -20526,7 +20526,7 @@
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Accumulating_9678_EU_INT_UK_EN.pdf",
     "provider": "Vanguard",
     "aum": {
-      "amount": 2385000000.0,
+      "amount": 2385000000,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-08-31",
@@ -20602,7 +20602,7 @@
       "rows": [
         {
           "name": "Taiwan Semiconductor Manufacturing Co. Ltd.",
-          "weightPct": 17.0
+          "weightPct": 17
         },
         {
           "name": "Tencent Holdings Ltd.",
@@ -20618,11 +20618,11 @@
         },
         {
           "name": "Delta Electronics Inc.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "China Construction Bank Corp.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "Hon Hai Precision Industry Co. Ltd.",
@@ -20786,7 +20786,7 @@
     "sourceUrl": "https://fund-docs.vanguard.com/EUR_Corporate_Bond_UCITS_ETF_EUR_Distributing_9659_EU_INT_UK_EN.pdf",
     "provider": "Vanguard",
     "aum": {
-      "amount": 3324000000.0,
+      "amount": 3324000000,
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-08-31",
@@ -21120,7 +21120,7 @@
     "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
-      "amount": 612500000.0,
+      "amount": 612500000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -21250,7 +21250,7 @@
         },
         {
           "name": "Information Technology",
-          "weightPct": 9.0,
+          "weightPct": 9,
           "label": "Information Technology"
         },
         {
@@ -21268,7 +21268,7 @@
     "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
-      "amount": 898400000.0,
+      "amount": 898400000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -21407,7 +21407,7 @@
         },
         {
           "name": "Diversified Banks",
-          "weightPct": 7.0,
+          "weightPct": 7,
           "label": "Diversified Banks"
         },
         {
@@ -21460,7 +21460,7 @@
     "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
-      "amount": 2094900000.0,
+      "amount": 2094900000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -21517,7 +21517,7 @@
         },
         {
           "name": "NEXGEN ENERGY LTD",
-          "weightPct": 7.0
+          "weightPct": 7
         },
         {
           "name": "OKLO INC",
@@ -21566,7 +21566,7 @@
       "rows": [
         {
           "name": "Energy",
-          "weightPct": 47.0,
+          "weightPct": 47,
           "label": "Energy"
         },
         {
@@ -21576,7 +21576,7 @@
         },
         {
           "name": "Utilities",
-          "weightPct": 6.0,
+          "weightPct": 6,
           "label": "Utilities"
         },
         {
@@ -21604,7 +21604,7 @@
     "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
-      "amount": 1726600000.0,
+      "amount": 1726600000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -21738,7 +21738,7 @@
       "years": {
         "2023": 11.7,
         "2024": 42.3,
-        "2025": 96.0
+        "2025": 96
       },
       "checkedAt": "2026-10-07"
     }
@@ -21749,7 +21749,7 @@
     "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
-      "amount": 6854800000.0,
+      "amount": 6854800000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -21873,7 +21873,7 @@
         },
         {
           "name": "Other/Cash",
-          "weightPct": 0.0,
+          "weightPct": 0,
           "label": "Other/Cash"
         }
       ],
@@ -21896,7 +21896,7 @@
     "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
-      "amount": 2349400000.0,
+      "amount": 2349400000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -22005,13 +22005,13 @@
       "basis": "fund",
       "method": "calendar-year NAV total return, net income reinvested, net of fees",
       "years": {
+        "2019": 27.4,
         "2020": 29.5,
         "2021": 9.9,
-        "2022": 2.0,
+        "2022": 2,
         "2023": 4.8,
         "2024": -8.5,
-        "2025": 90.5,
-        "2019": 27.4
+        "2025": 90.5
       },
       "checkedAt": "2026-10-07"
     },
@@ -22048,7 +22048,7 @@
     "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
-      "amount": 433300000.0,
+      "amount": 433300000,
       "currency": "EUR",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -22133,7 +22133,7 @@
         },
         {
           "name": "MITSUBISHI ESTATE CO LTD",
-          "weightPct": 2.0
+          "weightPct": 2
         }
       ],
       "checkedAt": "2026-10-06"
@@ -22184,7 +22184,7 @@
         },
         {
           "name": "Real Estate Operating Companies",
-          "weightPct": 6.0,
+          "weightPct": 6,
           "label": "Real Estate Operating Companies"
         },
         {
@@ -22247,7 +22247,7 @@
         "2020": -14.8,
         "2021": 39.2,
         "2022": -21.1,
-        "2023": 9.0,
+        "2023": 9,
         "2024": 9.4,
         "2025": -0.2
       },
@@ -22260,7 +22260,7 @@
     "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
     "provider": "VanEck",
     "aum": {
-      "amount": 9763600000.0,
+      "amount": 9763600000,
       "currency": "EUR",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -22442,7 +22442,7 @@
         "2021": 26.9,
         "2022": 15.8,
         "2023": 11.8,
-        "2024": 16.0,
+        "2024": 16,
         "2025": 23.8
       },
       "checkedAt": "2026-10-07"
@@ -22454,7 +22454,7 @@
     "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
     "provider": "Invesco",
     "aum": {
-      "amount": 31209310000.0,
+      "amount": 31209310000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-08-31",
@@ -22471,16 +22471,16 @@
       "currency": "USD",
       "method": "calendar-year NAV total return, net income reinvested, net of ongoing charges",
       "years": {
-        "2025": 64.8,
-        "2024": 26.44,
-        "2023": 13.66,
-        "2022": -0.54,
-        "2021": -3.9,
-        "2020": 23.95,
-        "2019": 18.55,
-        "2018": -1.43,
+        "2016": 8.8,
         "2017": 11.53,
-        "2016": 8.8
+        "2018": -1.43,
+        "2019": 18.55,
+        "2020": 23.95,
+        "2021": -3.9,
+        "2022": -0.54,
+        "2023": 13.66,
+        "2024": 26.44,
+        "2025": 64.8
       },
       "checkedAt": "2026-10-06"
     }
@@ -22491,7 +22491,7 @@
     "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
     "provider": "Invesco",
     "aum": {
-      "amount": 4463160000.0,
+      "amount": 4463160000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-08-31",
@@ -22508,14 +22508,14 @@
       "currency": "USD",
       "method": "calendar-year NAV total return, net income reinvested, net of ongoing charges",
       "years": {
-        "2025": 15.39,
-        "2024": 5.02,
-        "2023": -8.47,
-        "2022": 14.9,
-        "2021": 26.7,
-        "2020": -3.13,
+        "2018": -11.65,
         "2019": 7.49,
-        "2018": -11.65
+        "2020": -3.13,
+        "2021": 26.7,
+        "2022": 14.9,
+        "2023": -8.47,
+        "2024": 5.02,
+        "2025": 15.39
       },
       "checkedAt": "2026-10-06"
     },
@@ -22579,7 +22579,7 @@
     "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Distributing_9507_EU_INT_UK_EN.pdf",
     "provider": "Vanguard",
     "aum": {
-      "amount": 3696000000.0,
+      "amount": 3696000000,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-08-31",
@@ -22769,7 +22769,7 @@
       "rows": [
         {
           "name": "Taiwan Semiconductor Manufacturing Co. Ltd.",
-          "weightPct": 17.0
+          "weightPct": 17
         },
         {
           "name": "Tencent Holdings Ltd.",
@@ -22785,11 +22785,11 @@
         },
         {
           "name": "Delta Electronics Inc.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "China Construction Bank Corp.",
-          "weightPct": 1.0
+          "weightPct": 1
         },
         {
           "name": "Hon Hai Precision Industry Co. Ltd.",
@@ -22937,7 +22937,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -23107,11 +23107,11 @@
         },
         {
           "name": "United Kingdom",
-          "weightPct": 1e-05
+          "weightPct": 0.00001
         },
         {
           "name": "European Union",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251878&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -23374,11 +23374,11 @@
         },
         {
           "name": "Canada",
-          "weightPct": 1e-05
+          "weightPct": 0.00001
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -23519,7 +23519,7 @@
         },
         {
           "name": "Energy",
-          "weightPct": 5.0,
+          "weightPct": 5,
           "label": "Energy"
         },
         {
@@ -24003,11 +24003,11 @@
         },
         {
           "name": "United Kingdom",
-          "weightPct": 4e-05
+          "weightPct": 0.00004
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308751&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -24109,7 +24109,7 @@
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 37.0,
+          "weightPct": 37,
           "label": "Information Technology"
         },
         {
@@ -24490,7 +24490,7 @@
         "2022": -26.2,
         "2023": -13.76,
         "2024": 11.27,
-        "2025": 26.0
+        "2025": 26
       },
       "checkedAt": "2026-10-06"
     }
@@ -25460,7 +25460,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280510&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -25644,7 +25644,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=287102&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -25797,7 +25797,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280503&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -25903,7 +25903,7 @@
       "rows": [
         {
           "name": "Electric Utilities",
-          "weightPct": 65.0,
+          "weightPct": 65,
           "label": "Electric Utilities"
         },
         {
@@ -25956,7 +25956,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=287115&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -26130,15 +26130,15 @@
         },
         {
           "name": "United Kingdom",
-          "weightPct": 2e-05
+          "weightPct": 0.00002
         },
         {
           "name": "European Union",
-          "weightPct": 0.0
+          "weightPct": 0
         },
         {
           "name": "Other",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253733&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -26258,7 +26258,7 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 6939206140.0,
+      "amount": 6939206140,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-05",
@@ -26294,7 +26294,7 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 1675239497.0,
+      "amount": 1675239497,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-05",
@@ -26463,12 +26463,12 @@
       "currency": "USD",
       "basis": "fund",
       "years": {
-        "2025": 7.77,
-        "2024": 17.72,
-        "2023": 39.77,
-        "2022": -31.7,
+        "2020": 42.01,
         "2021": 7.28,
-        "2020": 42.01
+        "2022": -31.7,
+        "2023": 39.77,
+        "2024": 17.72,
+        "2025": 7.77
       },
       "asOf": "2026-08-31",
       "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
@@ -26483,7 +26483,7 @@
     "sourceUrl": "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet",
     "provider": "HSBC",
     "aum": {
-      "amount": 2555904547.0,
+      "amount": 2555904547,
       "currency": "EUR",
       "scope": "fund",
       "asOf": "2026-08-31",
@@ -26660,7 +26660,7 @@
         "2019": 29.7,
         "2020": -2.8,
         "2021": 24.1,
-        "2022": -9.0,
+        "2022": -9,
         "2023": 22.8,
         "2024": 11.6,
         "2025": 21.8
@@ -26678,7 +26678,7 @@
     "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
     "provider": "iShares",
     "aum": {
-      "amount": 2306785517.0,
+      "amount": 2306785517,
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-10-06",
@@ -26827,7 +26827,7 @@
         },
         {
           "name": "MICROSOFT CORP",
-          "weightPct": 4.0
+          "weightPct": 4
         },
         {
           "name": "AMAZON.COM",
@@ -26867,7 +26867,7 @@
     "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
     "provider": "iShares",
     "aum": {
-      "amount": 57671666.0,
+      "amount": 57671666,
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-10-06",
@@ -26960,7 +26960,7 @@
       "rows": [
         {
           "name": "États-Unis",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-08"
@@ -27130,7 +27130,7 @@
         },
         {
           "name": "Zijin Mining Group",
-          "weightPct": 3.0
+          "weightPct": 3
         },
         {
           "name": "Rio Tinto",
@@ -27170,12 +27170,12 @@
       "currency": "USD",
       "basis": "fund",
       "years": {
-        "2025": 72.17,
-        "2024": -1.14,
-        "2023": 8.11,
-        "2022": -14.01,
+        "2020": 79.49,
         "2021": 15.95,
-        "2020": 79.49
+        "2022": -14.01,
+        "2023": 8.11,
+        "2024": -1.14,
+        "2025": 72.17
       },
       "asOf": "2026-08-31",
       "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
@@ -27277,7 +27277,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 1.0
+          "weightPct": 1
         }
       ],
       "asOf": "2026-08-31",
@@ -27346,12 +27346,12 @@
       "currency": "USD",
       "basis": "fund",
       "years": {
-        "2025": 30.7,
-        "2024": 18.67,
-        "2023": 56.51,
-        "2022": -39.38,
+        "2020": 67.43,
         "2021": 9.53,
-        "2020": 67.43
+        "2022": -39.38,
+        "2023": 56.51,
+        "2024": 18.67,
+        "2025": 30.7
       },
       "asOf": "2026-08-31",
       "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
@@ -27489,15 +27489,15 @@
         },
         {
           "name": "RENOVA",
-          "weightPct": 2.0
+          "weightPct": 2
         },
         {
           "name": "Schneider Electric",
-          "weightPct": 2.0
+          "weightPct": 2
         },
         {
           "name": "Andritz Ag",
-          "weightPct": 2.0
+          "weightPct": 2
         }
       ],
       "asOf": "2026-08-31",
@@ -27517,11 +27517,11 @@
       "currency": "USD",
       "basis": "fund",
       "years": {
-        "2025": 52.01,
-        "2024": -14.5,
-        "2023": -8.57,
+        "2021": -6.32,
         "2022": -9.4,
-        "2021": -6.32
+        "2023": -8.57,
+        "2024": -14.5,
+        "2025": 52.01
       },
       "asOf": "2026-08-31",
       "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
@@ -27548,18 +27548,18 @@
       "asOf": "2026-10-09",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
       "sha256": "ffda84c2fd943ad574e89f3ee58d463bd043f587beb5d4d76c8d956dcc0d6740",
-      "terPct": 2.0,
+      "terPct": 2,
       "checkedAt": "2026-10-09"
     },
     "performance": {
       "currency": "USD",
       "basis": "fund",
       "years": {
-        "2025": -9.68,
-        "2024": 120.73,
-        "2023": 150.42,
+        "2021": 55.46,
         "2022": -64.67,
-        "2021": 55.46
+        "2023": 150.42,
+        "2024": 120.73,
+        "2025": -9.68
       },
       "asOf": "2026-10-09",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
@@ -27574,7 +27574,7 @@
     "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 1998160479.0,
+      "amount": 1998160479,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-05",
@@ -27618,7 +27618,7 @@
     "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 4924897713.0,
+      "amount": 4924897713,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-05",
@@ -27662,7 +27662,7 @@
         },
         {
           "name": "Germany",
-          "weightPct": 17.0
+          "weightPct": 17
         },
         {
           "name": "Sweden",
@@ -27778,7 +27778,7 @@
     "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 364645070.0,
+      "amount": 364645070,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-05",
@@ -27939,7 +27939,7 @@
     "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 1645809873.0,
+      "amount": 1645809873,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-10-05",
@@ -28240,7 +28240,7 @@
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 1744566773.0,
+      "amount": 1744566773,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-08",
@@ -28270,14 +28270,14 @@
     "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
     "provider": "CoinShares",
     "characteristics": {
-      "terPct": 0.0,
+      "terPct": 0,
       "asOf": "2026-08-31",
       "sourceUrl": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
       "sha256": "28d07b0893b3eae50c56e46ad06686ec434d1953b88931ca12cf9cfdbb65bf71",
       "checkedAt": "2026-10-06"
     },
     "aum": {
-      "amount": 418106780.0,
+      "amount": 418106780,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-08",
@@ -28307,7 +28307,7 @@
     "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
     "provider": "UBS",
     "aum": {
-      "amount": 17446660000.0,
+      "amount": 17446660000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-08-31",
@@ -28592,7 +28592,7 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-09"
@@ -28662,7 +28662,7 @@
     "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
     "provider": "BNP Paribas",
     "aum": {
-      "amount": 8624450000.0,
+      "amount": 8624450000,
       "currency": "EUR",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -28843,7 +28843,7 @@
       "rows": [
         {
           "name": "États-Unis",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-08"
@@ -29157,7 +29157,7 @@
         },
         {
           "name": "Health Care",
-          "weightPct": 4.0,
+          "weightPct": 4,
           "label": "Health Care"
         },
         {

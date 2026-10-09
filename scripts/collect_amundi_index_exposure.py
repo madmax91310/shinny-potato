@@ -32,7 +32,8 @@ def parse_product(product, share, now):
 def rows(block):
     result=[]
     for line in block.splitlines():
-        m=re.match(r'\s*([^\d%\n]+?)\s{2,}([\d,]+(?:\.\d+)?)\s*%\s*$',line)
+        # Security names can contain digits (10X GENOMICS, HUT 8, etc.).
+        m=re.fullmatch(r'\s*([^%\n]+?)\s{2,}(\d+(?:[,.]\d+)?)\s*%\s*',line)
         if m and m[1].strip() not in ('Total','Sous-total'):
             result.append({'name':m[1].strip(),'weightPct':float(m[2].replace(',','.'))})
     return result

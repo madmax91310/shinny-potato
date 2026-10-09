@@ -110,6 +110,28 @@ class IssuerRefreshTests(unittest.TestCase):
             if bad=='columns':b['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']['isin']['value'].pop()
             with self.subTest(defect=bad),self.assertRaises(ValueError):parse_holdings(b,share,NOW)
 
+    def test_signed_settlement_cash_does_not_hide_equity_holdings(self):
+        columns={'asOfDate':20261002,'issueName':['APPLE','TSMC','JPY CASH','USD CASH'],
+            'holdingPercent':[60,39.07187,2.29492,-1.36679],
+            'isin':['US0378331005','US8740391003','',''],
+            'countryOfRisk':['United States','Taiwan','Japan','-'],
+            'assetClass':['Equity','Equity','Cash','Cash']}
+        points={k:{'value':v}for k,v in columns.items()}
+        body={'productId':1,'currencyCode':'USD','componentsByNameMap':{'holdings':{
+            'containersByNameMap':{'all':{'dataPointsByNameMap':points}}}}}
+        share={'productId':1,'currency':'USD'}
+        h,g=parse_holdings(body,share,NOW)
+        self.assertEqual([r['weightPct']for r in h['rows']],[60,39.07187])
+        self.assertAlmostEqual(sum(r['weightPct']for r in g['rows']),100)
+        self.assertIn({'name':'Other','weightPct':-1.36679},g['rows'])
+        for kind in ['Equity','Fixed Income','Unknown']:
+            points['assetClass']['value'][-1]=kind
+            with self.subTest(kind=kind),self.assertRaises(ValueError):parse_holdings(body,share,NOW)
+        points['assetClass']['value'][-1]='Cash'
+        for weight in [True,float('nan'),float('inf'),-101]:
+            points['holdingPercent']['value'][-1]=weight
+            with self.subTest(weight=weight),self.assertRaises(ValueError):parse_holdings(body,share,NOW)
+
     def test_request_excludes_current_year_and_bounds_aum_download(self):
         p,s=amundi();payload=request_payload([s],NOW)
         self.assertNotIn('2026',[m['period']for m in payload['metrics']])

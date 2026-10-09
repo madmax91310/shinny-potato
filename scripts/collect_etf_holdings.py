@@ -29,7 +29,13 @@ def parse_holdings(body, share, now):
     if not size or any(not isinstance(c, list) or len(c) != size for c in columns.values()):
         reject('Truncated holdings columns')
     weights = columns['holdingPercent']
-    if any(isinstance(w, bool) or not isinstance(w, (int, float)) or not math.isfinite(w) or w < -1 or w > 100 for w in weights):
+    # Signed cash, margins and derivatives can exceed -1% during settlement.
+    # Equity and bond security weights still cannot be negative.
+    signed_classes = {'Cash', 'Cash Collateral and Margins', 'FX', 'Futures'}
+    if any(isinstance(w, bool) or not isinstance(w, (int, float)) or
+           not math.isfinite(w) or not -100 <= w <= 100 or
+           (w < 0 and kind not in signed_classes)
+           for w, kind in zip(weights, columns['assetClass'])):
         reject('Invalid holdings weights')
     if not 99 <= sum(weights) <= 101:
         reject('Incomplete holdings portfolio')
