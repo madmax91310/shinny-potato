@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'scripts/collect_etf_holdings.py'
+      - 'scripts/collect_vaneck_etf.py'
+      - 'scripts/additional-etf-sources.json'
       - 'scripts/collect_amundi_index_exposure.py'
       - 'scripts/test_issuer_refresh.py'
       - 'scripts/test_index_extensions.py'
@@ -34,13 +36,13 @@ jobs:
           from collect_etf_holdings import parse_holdings, collect_holdings
           from collect_index_extensions import collect_amundi_composition
           now = dt.datetime.now(dt.timezone.utc)
-          share = next(s for s in json.loads(pathlib.Path('scripts/etf-pilot.json').read_text())['instruments'] if s['isin'] == 'IE00B4L5YX21')
+          share = next(s for s in json.loads(pathlib.Path('scripts/etf-pilot.json').read_text())['instruments'] if s['isin'] == 'IE00BFZPF546')
           body, url, attempts = fetch_product(share, get_text)
           result = parse_share(body, share, now)
           holdings, countries = parse_holdings(body, share, now) if isinstance(body, dict) else collect_holdings(result['rawComponents']['holdings'], share, now)
           assert len(holdings['rows']) == 10
           assert 99 <= sum(r['weightPct'] for r in countries['rows']) <= 101
-          print('Japan', holdings['asOf'], holdings['rows'])
+          print('EM local bonds', holdings['asOf'], holdings['rows'])
           config = next(c for c in json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices'] if c['id'] == 'russell-2000')
           facts = collect_amundi_composition(config, now)
           assert len(facts['holdings']) == 10
@@ -51,6 +53,20 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Validate all live official VanEck documents
+        run: |
+          python - <<'PY'
+          import datetime as dt, json, pathlib, sys
+          sys.path.insert(0, 'scripts')
+          from collect_vaneck_etf import collect_one
+          for share in json.loads(pathlib.Path('scripts/additional-etf-sources.json').read_text())['instruments']:
+              if share.get('provider') != 'VanEck': continue
+              result = collect_one(share, dt.datetime.now(dt.timezone.utc))
+              assert len(result['holdings']['rows']) == 10
+              assert not result.get('collectionErrors'), result.get('collectionErrors')
+              print(share['isin'], result['aum']['asOf'], flush=True)
+          PY
       - run: npm run audit:index-facts
       - run: npm run audit:index-completeness
       - run: node scripts/test-comparison-etf-details.mjs

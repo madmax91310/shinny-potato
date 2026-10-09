@@ -132,6 +132,28 @@ class IssuerRefreshTests(unittest.TestCase):
             points['holdingPercent']['value'][-1]=weight
             with self.subTest(weight=weight),self.assertRaises(ValueError):parse_holdings(body,share,NOW)
 
+    def test_signed_currency_forwards_in_bond_fund(self):
+        columns={'asOfDate':20261002,'issueName':['GOVERNMENT BOND','CNY/USD','IDR/USD'],
+            'holdingPercent':[100.00050,-0.00023,-0.00027],
+            'isin':['XS1234567890','',''], 'countryOfRisk':['China','-','-'],
+            'assetClass':['Fixed Income','Forwards','Forwards']}
+        # Use real fund totals while keeping the largest security within bounds.
+        columns['issueName'].insert(1,'SECOND BOND')
+        columns['holdingPercent']=[60,40.00050,-0.00023,-0.00027]
+        columns['isin'].insert(1,'XS1234567891')
+        columns['countryOfRisk'].insert(1,'Indonesia')
+        columns['assetClass'].insert(1,'Fixed Income')
+        points={k:{'value':v}for k,v in columns.items()}
+        body={'productId':297676,'currencyCode':'USD','componentsByNameMap':{'holdings':{
+            'containersByNameMap':{'all':{'dataPointsByNameMap':points}}}}}
+        share={'productId':297676,'currency':'USD','holdingsAssetClass':'Fixed Income'}
+        h,g=parse_holdings(body,share,NOW)
+        self.assertEqual(len(h['rows']),2)
+        self.assertAlmostEqual(sum(r['weightPct']for r in g['rows']),100)
+        for kind in ['Fixed Income','Unqualified derivative']:
+            points['assetClass']['value'][-1]=kind
+            with self.assertRaises(ValueError):parse_holdings(body,share,NOW)
+
     def test_request_excludes_current_year_and_bounds_aum_download(self):
         p,s=amundi();payload=request_payload([s],NOW)
         self.assertNotIn('2026',[m['period']for m in payload['metrics']])

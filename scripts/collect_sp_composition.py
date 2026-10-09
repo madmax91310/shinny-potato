@@ -122,10 +122,17 @@ def parse_composition(text, legend_a, legend_b, config, now):
 def collect(config, now, fetch=download):
     if config.get('compositionDataUrl'):
         if fetch is download:
-            body = download(config['compositionDataUrl'], headers={
-                'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-                'Accept':'application/json', 'Accept-Language':'en-GB,en;q=0.9',
-                'Referer':config['compositionPageUrl']})
+            try:
+                body = download(config['compositionDataUrl'], headers={
+                    'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
+                    'Accept':'application/json', 'Accept-Language':'en-GB,en;q=0.9',
+                    'Referer':config['compositionPageUrl']})
+            except (urllib.error.URLError, TimeoutError) as error:
+                from sp_public_feed import read_response
+                try:
+                    return read_response(config, now)
+                except Exception as feed_error:
+                    reject(f'S&P direct download failed: {error}; official handoff failed: {feed_error}')
         else: body = fetch(config['compositionDataUrl'])
         return parse_public_data(body, config, now)
     try:

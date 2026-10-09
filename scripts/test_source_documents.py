@@ -247,7 +247,11 @@ class VanEckRegionalSources(unittest.TestCase):
         with patch('collect_vaneck_etf.parse_document',side_effect=ValueError('Wrong identity')):
             with self.assertRaises(ValueError):collect_one(share,NOW,lambda u:calls.append(u) or b'%PDF-wrong')
         self.assertEqual(calls,[share['sourceUrl']])
-        with self.assertRaises(ValueError):collect_one({**share,'fallbackUrls':['https://example.com/espo-fact-sheet.pdf']},NOW,fetch)
+        for invalid in ['https://example.com/espo-fact-sheet.pdf',
+                        'https://www.vaneck.com:444/nl/en/library/fact-sheets/espo-fact-sheet.pdf',
+                        'https://www.vaneck.com/nl/en/library/fact-sheets/espo-fact-sheet.pdf?redirect=evil']:
+            with self.subTest(url=invalid), self.assertRaises(ValueError):
+                collect_one({**share,'fallbackUrls':[invalid]},NOW,fetch)
 
     def test_browser_retries_only_official_regional_transport(self):
         from collect_vaneck_etf import collect_one
