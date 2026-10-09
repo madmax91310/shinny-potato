@@ -12,6 +12,7 @@ Les rendements Livret A / LDDS sont préremplis depuis `currentSavingsObservatio
 - Rendement déclaré net : aucun frais supplémentaire. Rendement déclaré brut : facteur annuel net `(1 + rendement_brut) × (1 - frais_annuels)`.
 - Rendement mensuel, puis retrait éventuel, puis versement en fin de mois. Les revenus restent investis.
 - La hausse annuelle du versement prend effet aux mois 13, 25, etc. Un changement programmé remplace le versement au mois indiqué. La dernière modification saisie prime en cas de doublon au même mois.
+- Le bouton « Ajouter un retrait » ouvre directement un retrait par enveloppe avec un montant et un délai en années (5 ans = mois 60, fin de cinquième année). Le stockage interne reste mensuel pour conserver les sauvegardes existantes.
 - Une pause suspend les versements pendant toute la plage, bornes incluses. Un retrait ne peut dépasser le capital disponible ; le manque est enregistré et signalé.
 - Les versements refusés par les plafonds de livrets sont affectés à des espèces non rémunérées. Ils restent inclus dans le patrimoine et les versements cumulés. Les plafonds sont partagés entre les poches du même livret ; les intérêts peuvent dépasser le plafond.
 - Gains/pertes = capital restant + retraits cumulés − capital initial − versements cumulés.

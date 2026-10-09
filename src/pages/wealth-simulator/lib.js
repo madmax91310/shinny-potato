@@ -107,7 +107,7 @@ export function buildTweet(plan, results) {
     lines.push(`${key === 'a' ? '🅰️' : '🅱️'} ${p.name}`, ...assumptions(p, plan.scenario), '', `💰 Capital projeté : ${money(r.capital)}`, `💵 Capital initial + versements : ${money(r.paid)}`, `📈 Gains/pertes simulés : ${money(r.gains)}`, `🛒 Pouvoir d’achat estimé : ${money(r.real)} avec ${percent(plan.inflation)} d’inflation/an`)
     if (r.withdrawn) lines.push(`🏠 Retraits cumulés : ${money(r.withdrawn)}`)
     if (r.cash) lines.push(`Dont ${money(r.cash)} en espèces non rémunérées (plafonds des livrets).`)
-    if (p.events.length) lines.push('📅 Événements :', ...p.events.map(e => { const name = p.pockets.find(x=>x.id===e.pocketId)?.name; return e.type === 'pause' ? `${name} : pause des versements du mois ${e.month} au mois ${e.endMonth}` : `${name} : ${e.type === 'withdrawal' ? 'retrait' : 'nouveau versement mensuel'} de ${money(e.amount)} au mois ${e.month}` }))
+    if (p.events.length) lines.push('📅 Événements :', ...p.events.map(e => { const name = p.pockets.find(x=>x.id===e.pocketId)?.name; return e.type === 'pause' ? `${name} : pause des versements du mois ${e.month} au mois ${e.endMonth}` : `${name} : ${e.type === 'withdrawal' ? 'retrait' : 'nouveau versement mensuel'} de ${money(e.amount)} ${e.type === 'withdrawal' && e.month % 12 === 0 ? `après ${e.month / 12} an${e.month === 12 ? '' : 's'}` : `au mois ${e.month}`}` }))
     lines.push('')
   }
   if (compare) lines.push(`↔️ Écart de capital simulé : ${money(Math.abs(results.a.final.capital - results.b.final.capital))}.`, 'Les capitaux, versements et hypothèses de chaque scénario sont indiqués ci-dessus.', '')
