@@ -4,7 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 import { SCPI } from '../src/data/scpi.js'
 import { INSURANCE } from '../src/data/insurance.js'
-import { presentationImageModel, presentationCardModel } from '../src/pages/presentation-shared/imageExport.js'
+import { presentationImageModel, presentationReliefModel } from '../src/pages/presentation-shared/imageExport.js'
 
 const base='http://127.0.0.1:4334/shinny-potato'
 const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4334','--strictPort'],{stdio:'ignore'})
@@ -23,7 +23,7 @@ try {
         const {renderPresentationImage}=await import('/shinny-potato/src/pages/presentation-shared/imageExport.js')
         const original=CanvasRenderingContext2D.prototype.fillText,calls=[]
         CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...rest){
-          if(this.canvas.width===1600){const m=this.measureText(value);let left=x;if(this.textAlign==='center')left-=m.width/2;calls.push({value,font:this.font,left,right:left+m.width,top:y,bottom:y+m.actualBoundingBoxDescent})}
+          if(this.canvas.width===1600){const m=this.measureText(value);let left=x;if(this.textAlign==='center')left-=m.width/2;else if(this.textAlign==='right')left-=m.width;calls.push({value,font:this.font,left,right:left+m.width,top:y,bottom:y+m.actualBoundingBoxDescent})}
           return original.call(this,value,x,y,...rest)
         }
         try {const canvas=await renderPresentationImage(record,kind);return {width:canvas.width,height:canvas.height,calls,url:canvas.toDataURL('image/png')}} finally {CanvasRenderingContext2D.prototype.fillText=original}
@@ -34,15 +34,14 @@ try {
       const copy=result.calls.map(c=>c.value).join(' ').replace(/\s+/g,' ')
       assert.equal(copy.split('Épargnant Libre').length-1,1)
       assert(!copy.includes('Détail dans le texte'))
-      assert.equal(result.height,1600)
-      const model=presentationCardModel(record,kind)
-      assert.equal(model.cards.length,3)
-      for(const card of model.cards) {
-        assert(copy.includes(card.title))
-        for(const r of card.rows)assert(copy.includes(r.value.replace(/\s+/g,' ')),`${record.id}: missing summary fact ${r.value}`)
-        assert(copy.includes(card.note.replace(/\s+/g,' ')),`${record.id}: missing summary condition`)
+      assert.equal(result.height,1000)
+      const model=presentationReliefModel(record,kind)
+      assert.equal(model.highlights.length,3)
+      for(const r of model.highlights) {
+        assert(copy.includes(r.label.replace(/\s+/g,' ')))
+        assert(copy.includes(r.value.replace(/\s+/g,' ')),`${record.id}: missing key figure ${r.value}`)
       }
-      if(record.id==='iroko-zen')assert(copy.includes('≤ 14,4 %'))
+      assert(copy.includes(model.qualifier.replace(/\s+/g,' ')),`${record.id}: missing conditions`)
       if(record.id==='placement-direct-vie')assert(copy.includes('1,9 à 3,45 %') && copy.includes('selon la part'))
       await writeFile(`${output}/${record.id}.png`,Buffer.from(result.url.split(',')[1],'base64'))
       console.log(`${record.id}: ${result.width}×${result.height}, conditions and bounds OK`)
@@ -91,6 +90,10 @@ try {
   // A modified observation must alter the exported facts rather than decorative artwork.
   const changed=structuredClone(SCPI[0]);changed.price.value=1234
   assert(presentationImageModel(changed,'scpi').sections.flatMap(s=>s.columns ?? []).flatMap(c=>c.rows).some(r=>r.value.includes('1 234')))
+  const originalModel=presentationReliefModel(SCPI[0],'scpi')
+  const changedModel=presentationReliefModel(changed,'scpi')
+  assert.notEqual(originalModel.highlights[1].value,changedModel.highlights[1].value)
+  assert.equal(new Set([...SCPI,...INSURANCE].map(r=>presentationReliefModel(r,SCPI.includes(r)?'scpi':'insurance').brand.color)).size,14)
   // Asset failure must give a visible error and a later export must be able to retry.
   const failurePage=await browser.newPage()
   await failurePage.route('**/asset-art/presentation-logos/iroko-zen.svg',route=>route.abort())

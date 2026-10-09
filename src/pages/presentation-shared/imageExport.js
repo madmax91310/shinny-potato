@@ -1,7 +1,7 @@
 import { dateLabel, format, annualPublicationNote } from '../scpi-presentation/lib.js'
 import { fundAllocation, fundGuarantee, fundOperations } from '../insurance-presentation/lib.js'
 
-const INK = '#162b25', MUTED = '#61675f', SERIF = 'Georgia, serif', SANS = 'Arial, sans-serif'
+const INK = '#162b25', SERIF = 'Georgia, serif', SANS = 'Arial, sans-serif'
 const pct = value => `${format(value)} %`
 const euro = value => `${format(value)} €`
 const row = (label, value) => ({ label, value: String(value) })
@@ -74,23 +74,6 @@ function loadLogo(file) {
   }))
   return assets.get(file)
 }
-// Preserve the official mark's contours; material and relief are rendered locally.
-function reliefLogo(ctx,img,x,y,width,height) {
-  const layer=document.createElement('canvas');layer.width=Math.ceil(width);layer.height=Math.ceil(height)
-  const lc=layer.getContext('2d');lc.drawImage(img,0,0,width,height)
-  // Some official PNGs have a white background: convert that paper to transparency.
-  const pixels=lc.getImageData(0,0,layer.width,layer.height)
-  for(let i=0;i<pixels.data.length;i+=4){
-    const light=Math.min(pixels.data[i],pixels.data[i+1],pixels.data[i+2])
-    pixels.data[i+3]*=1-Math.max(0,(light-215)/40)
-  }
-  lc.putImageData(pixels,0,0)
-  lc.globalCompositeOperation='source-in'
-  const tint=lc.createLinearGradient(0,0,width,height);tint.addColorStop(0,'#617966');tint.addColorStop(.55,'#213d31');tint.addColorStop(1,'#92a487')
-  lc.fillStyle=tint;lc.fillRect(0,0,width,height)
-  ctx.save();ctx.shadowColor='#30402c48';ctx.shadowBlur=14;ctx.shadowOffsetX=6;ctx.shadowOffsetY=10
-  ctx.drawImage(layer,x,y);ctx.restore()
-}
 // The approved reference is a square editorial card, with three summary panels.
 // Full product conditions remain in the adjacent text publication.
 export function presentationCardModel(record, kind) {
@@ -117,63 +100,141 @@ export function presentationCardModel(record, kind) {
   }
   return model
 }
-function panelIcon(ctx,kind,x,y) {
-  ctx.save();ctx.translate(x,y);ctx.strokeStyle='#69765c';ctx.fillStyle='#d9d1bc';ctx.lineWidth=4;ctx.lineJoin='round'
-  if(kind==='buildings') {for(const [px,h] of [[-40,42],[-12,70],[16,55]]){ctx.fillRect(px,30-h,25,h);ctx.strokeRect(px,30-h,25,h)}ctx.beginPath();ctx.moveTo(-48,34);ctx.lineTo(48,34);ctx.stroke()}
-  else if(kind==='coins') {for(const [px,py] of [[-21,12],[20,-9]])for(let i=2;i>=0;i--){ctx.beginPath();ctx.ellipse(px,py+i*12,25,10,0,0,Math.PI*2);ctx.fill();ctx.stroke()}}
-  else if(kind==='document') {ctx.beginPath();ctx.moveTo(-26,-35);ctx.lineTo(13,-35);ctx.lineTo(30,-18);ctx.lineTo(30,37);ctx.lineTo(-26,37);ctx.closePath();ctx.stroke();for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(-13,-7+i*14);ctx.lineTo(17,-7+i*14);ctx.stroke()}}
-  else {ctx.beginPath();ctx.ellipse(0,0,18,42,Math.PI/4,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(-30,40);ctx.lineTo(23,-28);ctx.stroke()}
+// One identity per product, including separate identities for contracts from one distributor.
+export const presentationBrands = {
+  'iroko-zen': { color:'#1688db', light:'#a6e5ff', dark:'#073361' },
+  'remake-live': { color:'#e4518c', light:'#ffd0df', dark:'#681d42' },
+  'corum-origin': { color:'#c59b54', light:'#ffe9b8', dark:'#6d4622' },
+  'corum-xl': { color:'#cb695b', light:'#ffd8bf', dark:'#6c2928' },
+  'corum-eurion': { color:'#56aa92', light:'#c0f4df', dark:'#245e50' },
+  'transitions-europe': { color:'#ce536b', light:'#ffced7', dark:'#6a2439' },
+  'activimmo': { color:'#5599bd', light:'#c4edff', dark:'#1b455f' },
+  'epargne-pierre': { color:'#dc934a', light:'#ffe3b9', dark:'#704323' },
+  'linxea-spirit-2': { color:'#aa73d5', light:'#ebd4ff', dark:'#4d2c71' },
+  'linxea-avenir-2': { color:'#4da3e1', light:'#c9eeff', dark:'#1a4976' },
+  'linxea-zen': { color:'#68b4a6', light:'#d2fff0', dark:'#285b52' },
+  'linxea-vie': { color:'#d86b93', light:'#ffd5e5', dark:'#6d304e' },
+  'lucya-cardif': { color:'#59b9a4', light:'#d0fff0', dark:'#18594f' },
+  'placement-direct-vie': { color:'#e49642', light:'#ffe5b4', dark:'#71431c' },
+}
+export function presentationReliefModel(record,kind) {
+  const model=presentationCardModel(record,kind)
+  if(kind==='scpi') {
+    const latest=record.annual.years.at(-1)
+    model.highlights=[
+      row(`Distribution ${latest.year}`,pct(latest.distribution)),
+      row('Prix de la part',euro(record.price.value)),
+      row('Minimum initial',euro(record.conditions.minimum)),
+    ]
+    model.qualifier='Taux de distribution brut de fiscalité étrangère · Prix au '+dateLabel(record.price.asOf)
+  } else {
+    model.highlights=record.euroFunds.slice(0,2).map(f=>{
+      const r=f.years.at(-1)
+      return row(`${f.name} · ${r.year}`,r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`)
+    })
+    if(model.highlights.length===1)model.highlights.push(row('Ouverture',euro(record.access.initial)))
+    model.highlights.push(row('Gestion des UC',`${pct(record.fees.units)}/an`))
+    const conditions=record.euroFunds.slice(0,2).map(f=>f.years.at(-1).condition).filter(Boolean)
+    model.qualifier=['Fonds euros : nets de gestion, avant prélèvements sociaux et fiscaux. Hors bonus.',...conditions.map(c=>c+'.'),
+      'Gestion des UC : hors frais des supports et options.'].join(' ')
+  }
+  model.brand=presentationBrands[record.id]
+  if(!model.brand)throw new Error('Identité visuelle de ce placement non référencée.')
+  return model
+}
+function loadBackdrop(kind) {
+  const file=`relief-${kind}.webp`
+  if(!assets.has(file))assets.set(file,new Promise((resolve,reject)=>{
+    const img=new Image()
+    img.onload=()=>resolve(img)
+    img.onerror=()=>{assets.delete(file);reject(new Error('Décor indisponible. Réessaie l’export.'))}
+    img.src=`${import.meta.env.BASE_URL}asset-art/presentation-relief/${file}`
+  }))
+  return assets.get(file)
+}
+function logoMask(img,width,height) {
+  const layer=document.createElement('canvas');layer.width=Math.ceil(width);layer.height=Math.ceil(height)
+  const ctx=layer.getContext('2d');ctx.drawImage(img,0,0,width,height)
+  const pixels=ctx.getImageData(0,0,layer.width,layer.height)
+  // Only flatten white paper on opaque PNGs; preserve official white SVG marks.
+  if(img.src.endsWith('.png'))for(let i=0;i<pixels.data.length;i+=4){
+    const light=Math.min(pixels.data[i],pixels.data[i+1],pixels.data[i+2])
+    pixels.data[i+3]*=1-Math.max(0,(light-215)/40)
+  }
+  if(/linxea-/.test(img.src))for(let i=0;i<pixels.data.length;i+=4){
+    const light=Math.max(pixels.data[i],pixels.data[i+1],pixels.data[i+2])
+    pixels.data[i+3]*=Math.max(0,(light-160)/95)
+  }
+  ctx.putImageData(pixels,0,0)
+  return layer
+}
+function tintMask(mask,colors) {
+  const layer=document.createElement('canvas');layer.width=mask.width;layer.height=mask.height
+  const ctx=layer.getContext('2d');ctx.drawImage(mask,0,0);ctx.globalCompositeOperation='source-in'
+  const gradient=ctx.createLinearGradient(0,0,layer.width,layer.height)
+  colors.forEach((color,i)=>gradient.addColorStop(i/(colors.length-1),color))
+  ctx.fillStyle=gradient;ctx.fillRect(0,0,layer.width,layer.height)
+  return layer
+}
+function sculpture(ctx,img,x,y,width,height,brand) {
+  const mask=logoMask(img,width,height)
+  const edge=tintMask(mask,[brand.dark,brand.color,brand.dark])
+  const face=tintMask(mask,[brand.light,brand.color,brand.dark,brand.color,brand.light])
+  ctx.save();ctx.shadowColor=brand.color;ctx.shadowBlur=35
+  ctx.globalAlpha=.45;ctx.drawImage(face,x,y);ctx.globalAlpha=1;ctx.shadowBlur=0
+  // Actual extrusion of the official contour rather than a generic initial.
+  for(let depth=20;depth>0;depth--)ctx.drawImage(edge,x+depth*.8,y+depth)
+  ctx.drawImage(tintMask(mask,[brand.light,brand.light]),x-1.5,y-2)
+  ctx.drawImage(face,x,y)
+  ctx.save();ctx.translate(x,y+height*2+32);ctx.scale(1,-1);ctx.globalAlpha=.12;ctx.drawImage(face,0,0);ctx.restore()
   ctx.restore()
+}
+function fittedText(ctx,value,x,y,width,size,min,color,weight=400,family=SANS,maxLines=1) {
+  while(size>min){font(ctx,size,weight,family);if(wrap(ctx,value,width).length<=maxLines)break;size-=2}
+  font(ctx,size,weight,family)
+  if(wrap(ctx,value,width).length>maxLines)throw new Error('Texte trop long pour le visuel de ce placement.')
+  return text(ctx,value,x,y,width,size,color,weight,family)
 }
 export async function renderPresentationImage(record,kind) {
   await document.fonts.ready
-  const model=presentationCardModel(record,kind)
-  const files=brandAssets[record.id]
+  const model=presentationReliefModel(record,kind),files=brandAssets[record.id]
   if(!files)throw new Error('Logo de ce placement non référencé.')
-  const logos=await Promise.all(files.map(loadLogo))
-  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1600
+  const [logos,backdrop]=await Promise.all([Promise.all(files.map(loadLogo)),loadBackdrop(kind)])
+  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1000
   const ctx=canvas.getContext('2d');ctx.textBaseline='top'
-  const bg=ctx.createLinearGradient(0,0,1600,1600);bg.addColorStop(0,'#fffaf1');bg.addColorStop(1,'#ece4d7');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1600)
-  let seed=37
-  for(let i=0;i<27000;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const x=seed%1600;seed=(Math.imul(seed,1664525)+1013904223)>>>0;ctx.fillStyle=i%2?'#705f4410':'#ffffff66';ctx.fillRect(x,seed%1600,1,1)}
-  ctx.strokeStyle='#d8cdbb';ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(45,35,1510,1530,32);ctx.stroke()
-  let titleSize=100
-  while(titleSize>48){font(ctx,titleSize,600,SERIF);if(ctx.measureText(model.title).width<=1400)break;titleSize-=2}
-  ctx.textAlign='center';text(ctx,model.title,800,100,1400,titleSize,INK,600,SERIF)
-  text(ctx,model.subtitle,800,225,1400,38,MUTED,400,SERIF)
-  // A compact mineral plaque replaces the generic building / abstract sculpture.
-  ctx.save();ctx.shadowColor='#5a4c3428';ctx.shadowBlur=32;ctx.shadowOffsetY=15
-  const stone=ctx.createLinearGradient(220,320,1380,610);stone.addColorStop(0,'#fffdf5');stone.addColorStop(1,'#dfd6c3')
-  ctx.fillStyle=stone;ctx.beginPath();ctx.roundRect(200,300,1200,255,42);ctx.fill();ctx.restore()
+  ctx.drawImage(backdrop,0,0,1600,1000)
+  ctx.save();ctx.globalCompositeOperation='color';ctx.globalAlpha=.45
+  ctx.fillStyle=model.brand.color;ctx.fillRect(0,0,1600,1000);ctx.restore()
+  const glow=ctx.createRadialGradient(850,430,10,850,430,640)
+  glow.addColorStop(0,model.brand.color+'40');glow.addColorStop(1,model.brand.color+'00')
+  ctx.fillStyle=glow;ctx.fillRect(0,0,1600,700)
+  const shade=ctx.createLinearGradient(0,590,0,1000)
+  shade.addColorStop(0,'#04102000');shade.addColorStop(.3,'#041020e8');shade.addColorStop(1,'#040b15')
+  fittedText(ctx,model.title,80,70,1420,82,48,'#ffffff',500,SERIF)
+  text(ctx,kind==='scpi'?'SCPI':'Assurance-vie',84,171,1300,30,model.brand.light)
+  // Every official logo gets its own slot, including the Lucya / Cardif pair.
   for(let i=0;i<logos.length;i++) {
-    const img=logos[i],slot=1080/logos.length
-    const scale=Math.min((slot-70)/img.width,(managerMarks.has(record.id)?135:190)/img.height)
+    const img=logos[i],slot=1260/logos.length
+    const scale=Math.min((slot-60)/img.width,240/img.height)
     const w=img.width*scale,h=img.height*scale
-    reliefLogo(ctx,img,260+i*slot+(slot-w)/2,managerMarks.has(record.id)?325:300+(255-h)/2,w,h)
+    sculpture(ctx,img,170+i*slot+(slot-w)/2,420-h/2,w,h,model.brand)
   }
-  if(managerMarks.has(record.id))text(ctx,record.name,800,505,1040,36,INK,600,SERIF)
-  for(let i=0;i<3;i++) {
-    const card=model.cards[i],x=82+i*486,width=464
-    ctx.fillStyle='#fffcf5d9';ctx.strokeStyle='#d8cdbb';ctx.lineWidth=2
-    ctx.beginPath();ctx.roundRect(x,610,width,770,28);ctx.fill();ctx.stroke()
-    panelIcon(ctx,card.icon,x+width/2,676)
-    ctx.textAlign='center';text(ctx,card.title,x+width/2,730,width-48,46,INK,400,SERIF)
+  if(managerMarks.has(record.id)) {
+    ctx.textAlign='center'
+    fittedText(ctx,record.name,800,570,1280,36,28,model.brand.light,500,SERIF)
+  }
+  ctx.fillStyle=shade;ctx.fillRect(0,590,1600,410)
+  const metricWidth=450
+  for(let i=0;i<model.highlights.length;i++) {
+    const r=model.highlights[i],x=80+i*500
     ctx.textAlign='left'
-    let labelSize=34,valueSize=60,noteSize=28
-    const draw=(paint)=>{
-      const target=paint?ctx:document.createElement('canvas').getContext('2d');target.textBaseline='top'
-      let y=815
-      for(const r of card.rows){y=text(target,r.label,x+28,y,width-56,labelSize,MUTED);y=text(target,r.value,x+28,y+8,width-56,valueSize,INK,600,SERIF)+12}
-      return text(target,card.note,x+28,y+12,width-56,noteSize,MUTED)
-    }
-    // Keep the figures large even for conditional fund ranges and fee bases.
-    while(draw(false)>1350 && labelSize>30){labelSize--;valueSize--;noteSize--}
-    if(draw(false)>1350)throw new Error('Les conditions dépassent la carte ; adapte sa composition.')
-    draw(true)
+    fittedText(ctx,r.value,x,688,metricWidth,90,56,'#ffffff',600,SERIF)
+    fittedText(ctx,r.label,x,797,metricWidth,30,26,'#dbe9ef',400,SANS,2)
+    if(i<2){ctx.fillStyle=model.brand.light+'60';ctx.fillRect(x+470,706,1,105)}
   }
-  ctx.textAlign='center'
-  text(ctx,model.compactFooter,800,1415,1400,30,MUTED)
-  text(ctx,`Relevé le ${dateLabel(record.checkedAt)}`,800,1465,1400,28,MUTED)
-  text(ctx,'Épargnant Libre',800,1515,1400,32,INK,400,SERIF)
+  ctx.textAlign='left'
+  fittedText(ctx,model.qualifier,80,870,1440,24,22,'#bed0dc',400,SANS,2)
+  text(ctx,model.compactFooter,80,928,1180,23,'#bed0dc')
+  ctx.textAlign='right';font(ctx,24,400,SERIF);ctx.fillStyle='#e1edf3';ctx.fillText('Épargnant Libre',1520,928)
   return canvas
 }
