@@ -29251,6 +29251,42 @@
       "publisher": "BNP Paribas Asset Management",
       "documentHost": "Analizy",
       "checkedAt": "2026-10-07"
+    },
+    "countries": {
+      "asOf": "2026-09-30",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+      "index": "NASDAQ-100 Notional Net Total Return",
+      "indexId": "nasdaq-pea",
+      "method": "Published composition of the exact tracked index; benchmark equity exposure, not fund holdings or a swap basket; index returns are not used as share returns",
+      "rows": [
+        {
+          "name": "États-Unis",
+          "weightPct": 94.81
+        },
+        {
+          "name": "Irlande",
+          "weightPct": 1.79
+        },
+        {
+          "name": "Pays-Bas",
+          "weightPct": 1.38
+        },
+        {
+          "name": "Canada",
+          "weightPct": 0.91
+        },
+        {
+          "name": "Royaume-Uni",
+          "weightPct": 0.73
+        },
+        {
+          "name": "Autres pays",
+          "weightPct": 0.39
+        }
+      ],
+      "checkedAt": "2026-10-09"
     }
   }
 }

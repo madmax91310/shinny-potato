@@ -88,3 +88,11 @@ Validation locale : 66 tests Python (collecteurs, refresh et documents) ; 39 con
 ## Présentations — priorités 1–2 et élargissement du 9 octobre 2026
 
 Voir la [roadmap Présentations](presentations-roadmap.md) : données complémentaires SCPI/assurance vie, fiabilité des collectes, puis regroupement en un outil unique et qualification de Fundora/private equity, bovins, vignobles et forêts. Les limites restantes et les critères de livraison y sont explicites.
+
+## ETF — reprise des priorités 1–2 le 9 octobre 2026
+
+Les pays de l'indice exact suivi par BNP Nasdaq sont raccordés automatiquement, avec
+leur propre périmètre et preuve Amundi. Les positions, secteurs et rendements du
+fonds BNP conservent leurs sources. Les quatre champs QYLD et les poids du top dix
+Russell 1000 restent bloqués : les nouveaux documents accessibles ne qualifient pas
+ces champs. Voir la [vérification détaillée des sources](remaining-etf-sources-2026-10-09.md).

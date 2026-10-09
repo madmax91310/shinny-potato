@@ -19,7 +19,11 @@ for (const [isin, record] of Object.entries(AUTOMATED_ETF)) {
  if (record.performance) assert.equal(AUTOMATED_PERFORMANCE[isin].source, record.performance.sourceUrl ?? record.sourceUrl)
  const details = refreshFundDetails(isin)
  if (record.performance) assert.equal(details.performance.source, AUTOMATED_PERFORMANCE[isin].source)
- if (record.countries) assert.equal(details.countriesAsOf, record.countries.asOf)
+ if (record.countries) {
+  assert.equal(details.countriesAsOf, record.countries.asOf)
+  assert.equal(details.countriesSource, record.countries.sourceUrl ?? record.sourceUrl)
+  assert.equal(details.countriesBasis, record.countries.basis === 'index' ? 'tracked-index' : (record.countries.basis ?? 'fund'))
+ }
 }
 const text = buildTweetText(emerging)
 for (const isin of ['IE00BTJRMP35', 'FR0013412020']) assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance(isin).rows.find(r => r.year === 2025).pct)}`))

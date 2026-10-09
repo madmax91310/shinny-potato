@@ -7,7 +7,7 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 | ter | 155/155 |
 | aum | 155/155 |
 | performance | 143/155 |
-| countries | 139/155 |
+| countries | 140/155 |
 | sectors | 140/155 |
 | holdings | 140/155 |
 
@@ -47,7 +47,6 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | iShares Quantum Computing UCITS ETF (IE000C6ITGC8) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
 | instrument | iShares S&P 500 Swap PEA UCITS ETF (IE000DQLYVB9) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
 | instrument | Xtrackers FTSE All-World UCITS ETF 1C (IE000L6ZMMC4) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
-| instrument | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) (IE000QDFFK00) | Pays | Non publié | La fiche BNP Nasdaq publie des régions, pas une table numérique complète de pays. Les régions ne sont pas converties en pays. |
 | instrument | WisdomTree Quantum Computing UCITS ETF (IE000W8WMSL2) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
 | instrument | iShares Physical Silver ETC (IE00B4NCWG09) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Silver ETC (IE00B4NCWG09) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |

@@ -24,7 +24,8 @@ export function refreshFundDetails(isin, previous = {}) {
     ...(r.holdings ? { holdings: r.holdings.rows.map(p => [p.name, p.weightPct]), holdingsAsOf: r.holdings.asOf, holdingsSource: r.holdings.sourceUrl ?? r.sourceUrl, holdingsCheckedAt: r.holdings.checkedAt, basis: r.holdings.basis === 'index' ? 'tracked-index' : (r.holdings.basis ?? 'fund') } : {}),
     ...(r.sectors ? { sectors: r.sectors.rows.map(p => [p.label, p.weightPct]), sectorsAsOf: r.sectors.asOf,
       sectorsSource: r.sectors.sourceUrl ?? r.sourceUrl, sectorsCheckedAt: r.sectors.checkedAt, basis: r.sectors.basis === 'index' ? 'tracked-index' : (r.sectors.basis ?? 'fund') } : {}),
-    ...(r.countries ? { countries: r.countries.rows.map(p => [p.name, p.weightPct]), countriesAsOf: r.countries.asOf, countriesSource: r.countries.sourceUrl ?? r.sourceUrl } : {}),
+    ...(r.countries ? { countries: r.countries.rows.map(p => [p.name, p.weightPct]), countriesAsOf: r.countries.asOf, countriesSource: r.countries.sourceUrl ?? r.sourceUrl,
+      countriesBasis: r.countries.basis === 'index' ? 'tracked-index' : (r.countries.basis ?? 'fund'), countriesIndex: r.countries.index } : {}),
     ...(AUTOMATED_PERFORMANCE[isin] ? { performance: AUTOMATED_PERFORMANCE[isin] } : {}),
   };
 }

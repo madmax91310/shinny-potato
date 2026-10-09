@@ -4,7 +4,7 @@ import { buildGapInventory, classifyInstrumentGap } from './automation-gap-inven
 const r=buildGapInventory();
 assert.equal(classifyInstrumentGap('new-instrument','performance').status,'unqualified');
 assert.equal(classifyInstrumentGap('IE00BM8R0J59','performance').status,'source-conflict');
-assert.equal(classifyInstrumentGap('IE000QDFFK00','countries').status,'not-published');
+assert.equal(classifyInstrumentGap('IE000QDFFK00','countries').status,'unqualified');
 assert.equal(classifyInstrumentGap('IE00B4ND3602','sectors').status,'not-applicable');
 assert.equal(classifyInstrumentGap('IE00B4ND3602','ter').status,'unqualified');
 assert.equal(classifyInstrumentGap('IE00B4ND3602','aum').status,'unqualified');

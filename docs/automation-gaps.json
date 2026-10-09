@@ -6,14 +6,13 @@
     "ter": 155,
     "aum": 155,
     "performance": 143,
-    "countries": 139,
+    "countries": 140,
     "sectors": 140,
     "holdings": 140
   },
   "summary": {
     "instrument:waiting-publication": 11,
     "instrument:not-applicable": 42,
-    "instrument:not-published": 1,
     "instrument:source-conflict": 4,
     "index:not-published": 1,
     "index:not-applicable": 16
@@ -370,17 +369,6 @@
       "status": "waiting-publication",
       "reason": "Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part.",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium"
-    },
-    {
-      "type": "instrument",
-      "id": "IE000QDFFK00",
-      "name": "BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)",
-      "field": "countries",
-      "label": "Pays",
-      "configured": true,
-      "status": "not-published",
-      "reason": "La fiche BNP Nasdaq publie des régions, pas une table numérique complète de pays. Les régions ne sont pas converties en pays.",
-      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-08-31"
     },
     {
       "type": "instrument",
