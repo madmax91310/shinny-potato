@@ -1,3 +1,4 @@
+import { familyLabel } from '../../data/presentation-actors.js'
 import { dateLabel, format, annualPublicationNote } from '../scpi-presentation/lib.js'
 import { fundAllocation, fundGuarantee, fundOperations } from '../insurance-presentation/lib.js'
 
@@ -13,6 +14,9 @@ const split = (rows, limit = 3) => {
   return result
 }
 export function presentationImageModel(record, kind) {
+  if (kind === 'actor') return { title: record.name, subtitle: familyLabel(record.family), kind, sections: [],
+    footer: 'Capital et revenus non garantis. Liquidité limitée.',
+    sources: `Sources officielles : ${sourceHosts(record.sources.map(row => row.url))}. Vérifié manuellement le ${dateLabel(record.checkedAt)}.` }
   const sections = []
   let footer
   if (kind === 'scpi') {
@@ -56,6 +60,9 @@ function wrap(ctx,text,width) {
 }
 function text(ctx,value,x,y,width,size=29,color=INK,weight=400,family=SANS){font(ctx,size,weight,family);ctx.fillStyle=color;const lines=wrap(ctx,value,width);lines.forEach((line,i)=>ctx.fillText(line,x,y+i*size*1.35));return y+lines.length*size*1.35}
 const brandAssets = {
+  fundora:['fundora.svg'], anaxago:['anaxago.svg'], mymarguerit:['mymarguerit.png'],
+  bacchus:['bacchus.png'], 'france-valley':['france-valley.svg'], enerfip:['enerfip.svg'],
+  hectarea:['hectarea.svg'], bricks:['bricks.svg'], matis:['matis.svg'],
   'iroko-zen':['iroko-zen.svg'], 'remake-live':['remake-live.png'],
   'corum-origin':['corum.svg'], 'corum-xl':['corum.svg'], 'corum-eurion':['corum.svg'],
   'transitions-europe':['arkea.png'], 'activimmo':['activimmo.png'], 'epargne-pierre':['epargne-pierre.svg'],
@@ -78,6 +85,7 @@ function loadLogo(file) {
 // Full product conditions remain in the adjacent text publication.
 export function presentationCardModel(record, kind) {
   const model=presentationImageModel(record,kind)
+  if(kind==='actor') return { ...model, cards: [], compactFooter: 'Capital et revenus non garantis · Liquidité limitée' }
   if(kind==='scpi') {
     const c=record.conditions
     const top=[...record.snapshot.sectors].sort((a,b)=>b.value-a.value)[0]
@@ -102,6 +110,15 @@ export function presentationCardModel(record, kind) {
 }
 // One identity per product, including separate identities for contracts from one distributor.
 export const presentationBrands = {
+  fundora: { color:'#9e83cb', light:'#ecdaff', dark:'#493066' },
+  anaxago: { color:'#d4b26b', light:'#fff0c3', dark:'#66502b' },
+  mymarguerit: { color:'#63aa76', light:'#d5ffdb', dark:'#295739' },
+  bacchus: { color:'#ad627e', light:'#ffd4e7', dark:'#642f46' },
+  'france-valley': { color:'#a8b964', light:'#f0ffbf', dark:'#4e6029' },
+  enerfip: { color:'#d0ab44', light:'#fff2b2', dark:'#6d5016' },
+  hectarea: { color:'#95ae61', light:'#edffc4', dark:'#445f29' },
+  bricks: { color:'#c87859', light:'#ffdfc8', dark:'#6b3328' },
+  matis: { color:'#7996c6', light:'#dceaff', dark:'#2c446e' },
   'iroko-zen': { color:'#1688db', light:'#a6e5ff', dark:'#073361' },
   'remake-live': { color:'#e4518c', light:'#ffd0df', dark:'#681d42' },
   'corum-origin': { color:'#c59b54', light:'#ffe9b8', dark:'#6d4622' },
@@ -119,6 +136,9 @@ export const presentationBrands = {
 }
 export function presentationReliefModel(record,kind) {
   const model=presentationCardModel(record,kind)
+  if(kind==='actor') return { ...model, highlights: record.highlights.map(([label,value]) => row(label,value)),
+    qualifier: record.id==='matis' ? 'Accès et horizon annoncés · Revente cible non garantie · Conditions propres à chaque offre' : 'Fonctionnement général de l’acteur · Conditions propres à chaque offre · Vérifié le '+dateLabel(record.checkedAt),
+    brand: presentationBrands[record.id] }
   if(kind==='scpi') {
     const latest=record.annual.years.at(-1)
     model.highlights=[
@@ -199,7 +219,7 @@ export async function renderPresentationImage(record,kind) {
   await document.fonts.ready
   const model=presentationReliefModel(record,kind),files=brandAssets[record.id]
   if(!files)throw new Error('Logo de ce placement non référencé.')
-  const [logos,backdrop]=await Promise.all([Promise.all(files.map(loadLogo)),loadBackdrop(kind)])
+  const [logos,backdrop]=await Promise.all([Promise.all(files.map(loadLogo)),loadBackdrop(kind==='actor' ? (['immobilier','vignobles'].includes(record.family)?'scpi':'insurance') : kind)])
   const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1000
   const ctx=canvas.getContext('2d');ctx.textBaseline='top'
   ctx.drawImage(backdrop,0,0,1600,1000)
@@ -211,7 +231,7 @@ export async function renderPresentationImage(record,kind) {
   const shade=ctx.createLinearGradient(0,590,0,1000)
   shade.addColorStop(0,'#04102000');shade.addColorStop(.3,'#041020e8');shade.addColorStop(1,'#040b15')
   fittedText(ctx,model.title,80,70,1420,82,48,'#ffffff',500,SERIF)
-  text(ctx,kind==='scpi'?'SCPI':'Assurance-vie',84,171,1300,30,model.brand.light)
+  text(ctx,model.subtitle,84,171,1300,30,model.brand.light)
   // Every official logo gets its own slot, including the Lucya / Cardif pair.
   for(let i=0;i<logos.length;i++) {
     const img=logos[i],slot=1260/logos.length

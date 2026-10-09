@@ -22,7 +22,7 @@ for (const file of readdirSync(new URL('../src/data/', import.meta.url)).filter(
 for (const record of DATA_CATALOG) {
   assert(!ids.has(record.id), `Identifiant dupliqué : ${record.id}`); ids.add(record.id);
   assert(record.name && record.fields.length, `${record.id}: fiche incomplète`);
-  for (const consumer of record.consumers) assert(TOOLS.some((t) => t.to === consumer.path), `${record.id}: consommateur orphelin`);
+  for (const consumer of record.consumers) assert(TOOLS.some((t) => t.to === consumer.path.split('?')[0]), `${record.id}: consommateur orphelin`);
   for (const field of record.fields) {
     assert.equal(typeof describeDataField(field), 'string', `${record.id}: résumé impossible à afficher`);
     assert(existsSync(new URL(`../${field.registry}`, import.meta.url)), `${record.id}: registre absent`);

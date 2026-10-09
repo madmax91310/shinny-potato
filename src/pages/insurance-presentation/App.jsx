@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { usePresentationDraft } from '../presentation-shared/drafts.jsx'
 import { renderPresentationImage } from '../presentation-shared/imageExport.js'
 import { downloadImage } from '../../design-system/downloadImage.js'
 import PageHeader from '../../design-system/PageHeader'
@@ -10,9 +11,8 @@ import { dateLabel, format, annualPublicationNote } from '../scpi-presentation/l
 import { buildTweet, fundReturn, fundGuarantee, fundAllocation, fundOperations } from './lib.js'
 import '../scpi-presentation/style.css'
 
-export default function App() {
-  const [id, setId] = useState(INSURANCE[0]?.id)
-  const [draft, setDraft] = useState(null)
+export default function App({ embedded = false }) {
+  const [id, setId, draft, setDraft] = usePresentationDraft('insurance', INSURANCE[0]?.id)
   const [message, setMessage] = useState('')
   const record = INSURANCE.find(row => row.id === id)
   const text = draft ?? (record ? buildTweet(record) : '')
@@ -30,7 +30,7 @@ export default function App() {
   }
   if (!record) return <p role="alert">Aucun contrat vérifié n’est disponible pour le moment.</p>
   return <div className="scpi-presentation insurance-presentation">
-    <PageHeader title="Présentation d’assurance-vie" subtitle="Les supports du contrat, leurs conditions et les frais." />
+    {!embedded && <PageHeader title="Présentation d’assurance-vie" subtitle="Les supports du contrat, leurs conditions et les frais." />}
     <ToolWorkspace renderImage={renderImage} imageAlt={`Visuel de ${record.name}`} actions={<>
       <Button onClick={copy}>Copier le texte</Button>
       <Button onClick={exportImage} disabled={exporting}>{exporting ? 'Préparation…' : 'Télécharger l’image'}</Button>
@@ -38,7 +38,7 @@ export default function App() {
       <span role="status">{message}</span>
     </>}>
       <section className="tool-settings">
-        <ChoicePicker aria-label="Choisir une assurance-vie" value={id} onChange={event => { setId(event.target.value); setDraft(null); setMessage('') }}>
+        <ChoicePicker aria-label="Choisir une assurance-vie" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
           {INSURANCE.map(row => <option key={row.id} value={row.id}>{row.name}</option>)}
         </ChoicePicker>
         <div className="scpi-evidence">

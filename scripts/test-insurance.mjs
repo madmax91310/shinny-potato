@@ -4,8 +4,8 @@ import { INSURANCE } from '../src/data/insurance.js'
 import { buildTweet } from '../src/pages/insurance-presentation/lib.js'
 import { searchData } from '../src/data/catalog.js'
 assert.equal(INSURANCE.length, 6)
-assert(HOME_TOOLS.some(tool => tool.to === '/presentation-assurance-vie'))
-assert(WEEKLY_ORDER.includes('/presentation-assurance-vie'))
+assert(HOME_TOOLS.some(tool => tool.to === '/presentations'))
+assert(WEEKLY_ORDER.includes('/presentations'))
 for (const record of INSURANCE) {
   const text = buildTweet(record)
   assert(!/undefined|NaN|Infinity/.test(text))

@@ -134,6 +134,8 @@ jobs:
       - run: mkdir -p test-artifacts/company-analysis
       - run: node scripts/test-scpi-ui.mjs
       - run: node scripts/test-insurance-ui.mjs
+      - run: node scripts/test-presentations.mjs
+      - run: node scripts/test-presentations-ui.mjs
       - run: node scripts/test-presentation-images.mjs
       - run: node scripts/test-company-analysis-ui.mjs
         env:

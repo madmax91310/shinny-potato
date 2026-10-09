@@ -66,7 +66,7 @@ export async function collectObservations(root = ROOT) {
   }
   const scpi = await load('src/data/automated-scpi.json')
   for (const r of scpi?.records ?? []) {
-    const base = { family: 'scpi', entity: r.id, label: r.name, sourceUrl: r.sourceUrl, checkedAt: r.checkedAt, scope: `SCPI ${r.name}`, tool: '/presentation-scpi' }
+    const base = { family: 'scpi', entity: r.id, label: r.name, sourceUrl: r.sourceUrl, checkedAt: r.checkedAt, scope: `SCPI ${r.name}`, tool: '/presentations?famille=scpi' }
     if (r.price) add(base, 'price', 'Prix de souscription', r.price.value, r.price, { unit: '€', priority: 'high', discovery: true, angle: 'Que change ce prix pour les associés et les nouveaux souscripteurs ?' })
     if (r.occupancy) add(base, 'occupancy', 'Taux d’occupation financier', r.occupancy.value, r.occupancy, { threshold: 2, unit: '%' })
     for (const year of (r.annual?.years ?? []).slice().sort((a, b) => a.year - b.year).slice(-1)) add(base, 'distribution', 'Taux de distribution annuel', year.distribution, r.annual, { unit: '%', period: `${year.year}`, rule: 'publication', scope: `${r.name} · taux de distribution annuel` })
@@ -74,7 +74,7 @@ export async function collectObservations(root = ROOT) {
   }
   const insurance = await load('src/data/automated-insurance.json')
   for (const r of insurance?.records ?? []) {
-    const base = { family: 'assurance', entity: r.id, label: r.name, sourceUrl: r.sourceUrl, checkedAt: r.checkedAt, scope: `${r.name} · gestion libre`, tool: '/presentation-assurance-vie' }
+    const base = { family: 'assurance', entity: r.id, label: r.name, sourceUrl: r.sourceUrl, checkedAt: r.checkedAt, scope: `${r.name} · gestion libre`, tool: '/presentations?famille=insurance' }
     for (const [field, label] of Object.entries({ subscription: 'Frais de versement', arbitrage: 'Frais d’arbitrage', units: 'Frais de gestion des unités de compte', etfTrade: 'Frais d’opération ETF' })) add(base, `fees:${field}`, label, r.fees?.[field], r.fees ?? {}, { unit: '%', priority: 'high', discovery: field === 'units' })
     for (const fund of r.euroFunds ?? []) {
       const year = (fund.years ?? []).slice().sort((a, b) => a.year - b.year).at(-1)

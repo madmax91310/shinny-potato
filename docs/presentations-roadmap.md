@@ -12,9 +12,9 @@ Demande retenue : traiter les priorités 1–2 (données manquantes et fiabilit�
 
 Champs encore non qualifiés : allocation maximale actuelle du Fonds général Lucya Cardif et de l’Actif général SwissLife de Placement-direct Vie. Une valeur absente ne signifie pas « accessible à 100 % ». Prévoir une nouvelle vérification des conditions et avenants officiels ; le contrat, le support et le mode de gestion doivent correspondre. La lecture automatisée des futurs bulletins CORUM dessinés reste un chantier distinct.
 
-## Prochain lot : un outil unique
+## Lot livré : un outil unique
 
-Créer **« Présentations »** avec un choix de famille, puis d’entité ou de produit, recherche et filtres. Regrouper les deux outils existants en réutilisant leurs composants et leurs registres. Conserver les anciennes adresses par redirection et adapter le menu, la page d’accueil et les tests de navigation.
+**« Présentations »** propose un choix de famille, puis d’entité ou de produit. Les deux outils existants réutilisent leurs composants et leurs registres dans ce parcours. Les anciennes adresses sont conservées par redirection ; le menu, la page d’accueil et les tests de navigation sont adaptés.
 
 Le parcours reste commun : sélectionner → examiner les données datées → générer et modifier le texte → prévisualiser et télécharger le visuel personnalisé. Conserver les logos officiels en relief et les couleurs propres à chaque marque. Afficher uniquement les familles disposant de fiches qualifiées ; les projets futurs restent dans cette roadmap.
 
@@ -26,7 +26,7 @@ Séparer **entité / plateforme**, **produit / véhicule** et **exposition** : F
 |---|---|---|---|
 | 1 | Assurance vie et SCPI | Réutiliser les 6 contrats et 8 SCPI existants, puis compléter le catalogue | Frais et garanties par support ; prix, distributions, jouissance et patrimoine des SCPI |
 | 2 | Private equity | Fundora en premier, puis autres plateformes et fonds documentés | Stratégie, véhicule, gestionnaire, ticket, durée, appels de fonds, liquidité, frais, risques ; TRI et multiple réalisés distincts des objectifs |
-| 3 | Bovins / cheptel | Identifier puis qualifier une entité proposant réellement cette exposition ; GESTEL est un candidat documentaire, pas une fiche validée | Propriété ou véhicule, opérateur et éleveur, revenus contractuels, renouvellement du cheptel, frais, assurance, risques sanitaires et modalités de sortie |
+| 3 | Bovins / cheptel | MyMarguerit : propriété de bovins loués à des éleveurs ; fiche du fonctionnement public | Propriété ou véhicule, opérateur et éleveur, revenus contractuels, renouvellement du cheptel, frais, assurance, risques sanitaires et modalités de sortie |
 | 4 | Vignobles | GFV/GFA et offres viticoles ; Bacchus Conseil est un candidat documentaire | Domaine, appellation, terres réellement détenues, bail, exploitant, ticket, revenus en argent ou en nature, frais, liquidité et risques |
 | 5 | Forêts et autres actifs réels | Conserver le chantier forestier déjà envisagé ; extensions selon sources disponibles | Actifs détenus, gestion, revenus, frais, durée, liquidité, risques propres et forme juridique |
 
@@ -41,7 +41,17 @@ Automatiser les champs accessibles avec leurs dates réelles, préserver les der
 Sources de repérage, consultées le 9 octobre 2026 :
 
 - Fundora : https://www.fundora.fr/ et https://www.fundora.fr/questions
-- Bovins, candidat à qualifier : https://www.gestelsa.com/
+- Bovins, candidat à qualifier : https://www.mymarguerit.com/
 - GFV/GFA, candidat à qualifier : https://bacchusconseil.com/investir/ et https://bacchusconseil.com/gfv-gfa/
 
 Critères de livraison du futur outil : un seul accès dans le menu, anciennes routes fonctionnelles, toutes les fiches actuelles reprises, texte éditable conservé, exports adaptés à chaque famille, sources visibles, navigation mobile et aucune catégorie vide présentée comme disponible.
+
+## Extension livrée le 9 octobre 2026
+
+Un seul accès `/presentations`, dix familles et 23 fiches (6 assurances vie, 8 SCPI, 9 acteurs). Les anciennes routes redirigent vers la famille correspondante. Les brouillons et sélections sont conservés pendant le changement de famille ou de fiche dans l’outil. Les sources du catalogue et du radar pointent vers le nouveau parcours.
+
+Acteurs ajoutés : Fundora et Anaxago (private equity), MyMarguerit (bovins), Bacchus Conseil (GFV/GFA), France Valley (forêts et autres actifs naturels), Enerfip (transition énergétique), Hectarea (obligations foncières), Bricks (obligations immobilières) et Matis (obligations convertibles liées à une œuvre). Logos officiels locaux avec provenance, contours en relief et couleurs par marque ; les trois faits du visuel varient selon l’offre.
+
+Ces neuf fiches présentent **l’acteur et son mécanisme général**, vérifiés manuellement le 9 octobre. Elles n’établissent pas la disponibilité de souscriptions individuelles, ne qualifient pas les frais détaillés ou performances réalisées et ne prétendent pas être collectées automatiquement. Les tickets affichés sont ceux annoncés sur la page officielle avec leur périmètre ; le délai Matis est un horizon cible de revente, non une échéance garantie. France Valley n’hérite pas de la performance d’un indice forestier. Les textes, aperçus et exports gardent ces distinctions.
+
+Prochain approfondissement : qualifier une offre ou un véhicule précis par acteur (documentation, frais complets, émetteur, conditions, échéance et sortie), puis automatiser uniquement les champs accessibles et datés avec conservation après échec et alertes. Ne pas activer une fiche de souscription à partir du seul contenu commercial de la plateforme.

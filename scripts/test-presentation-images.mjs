@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
+import { PRESENTATION_ACTORS } from '../src/data/presentation-actors.js'
 import { SCPI } from '../src/data/scpi.js'
 import { INSURANCE } from '../src/data/insurance.js'
 import { presentationImageModel, presentationReliefModel } from '../src/pages/presentation-shared/imageExport.js'
@@ -17,7 +18,7 @@ try {
   const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true})
   const errors=[];page.on('pageerror',e=>errors.push(e.message))
   await page.goto(`${base}/presentation-scpi`,{waitUntil:'networkidle'})
-  for(const [kind,records] of [['scpi',SCPI],['insurance',INSURANCE]]) {
+  for(const [kind,records] of [['scpi',SCPI],['insurance',INSURANCE],['actor',PRESENTATION_ACTORS]]) {
     for(const record of records) {
       const result=await page.evaluate(async({record,kind})=>{
         const {renderPresentationImage}=await import('/shinny-potato/src/pages/presentation-shared/imageExport.js')
@@ -46,6 +47,7 @@ try {
       await writeFile(`${output}/${record.id}.png`,Buffer.from(result.url.split(',')[1],'base64'))
       console.log(`${record.id}: ${result.width}×${result.height}, conditions and bounds OK`)
     }
+    if(kind==='actor')continue
     const route=kind==='scpi'?'presentation-scpi':'presentation-assurance-vie'
     const draft=kind==='scpi'?'#scpi-draft':'#insurance-draft'
     await page.goto(`${base}/${route}`,{waitUntil:'networkidle'})

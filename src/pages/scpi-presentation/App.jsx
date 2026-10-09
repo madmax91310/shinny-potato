@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import { usePresentationDraft } from '../presentation-shared/drafts.jsx'
 import { renderPresentationImage } from '../presentation-shared/imageExport.js'
 import { downloadImage } from '../../design-system/downloadImage.js'
 import PageHeader from '../../design-system/PageHeader'
@@ -9,9 +10,8 @@ import { SCPI } from '../../data/scpi.js'
 import { buildTweet, dateLabel, format, annualPublicationNote } from './lib.js'
 import './style.css'
 
-export default function App() {
-  const [id, setId] = useState(SCPI[0]?.id)
-  const [draft, setDraft] = useState(null)
+export default function App({ embedded = false }) {
+  const [id, setId, draft, setDraft] = usePresentationDraft('scpi', SCPI[0]?.id)
   const [message, setMessage] = useState('')
   const record = SCPI.find(row => row.id === id)
   const text = draft ?? (record ? buildTweet(record) : '')
@@ -29,7 +29,7 @@ export default function App() {
   }
   if (!record) return <p role="alert">Aucune fiche vérifiée n’est disponible pour le moment.</p>
   return <div className="scpi-presentation">
-    <PageHeader title="Présentation de SCPI" subtitle="Ce qu’elle détient, ce qu’elle verse et ce qu’elle coûte." />
+    {!embedded && <PageHeader title="Présentation de SCPI" subtitle="Ce qu’elle détient, ce qu’elle verse et ce qu’elle coûte." />}
     <ToolWorkspace renderImage={renderImage} imageAlt={`Visuel de ${record.name}`} actions={<>
       <Button onClick={copy}>Copier le texte</Button>
       <Button onClick={exportImage} disabled={exporting}>{exporting ? 'Préparation…' : 'Télécharger l’image'}</Button>
@@ -37,7 +37,7 @@ export default function App() {
       <span role="status">{message}</span>
     </>}>
       <section className="tool-settings">
-        <ChoicePicker aria-label="Choisir une SCPI" value={id} onChange={event => { setId(event.target.value); setDraft(null); setMessage('') }}>
+        <ChoicePicker aria-label="Choisir une SCPI" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
           {SCPI.map(row => <option key={row.id} value={row.id}>{row.name}</option>)}
         </ChoicePicker>
         <div className="scpi-evidence">
