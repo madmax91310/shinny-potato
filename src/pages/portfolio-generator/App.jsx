@@ -1,4 +1,4 @@
-import { performanceYears } from './performance.js'
+import { performanceYears, performanceNotes, formatPerformance } from './performance.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { dataLabels } from './compact.js'
 import { instrumentOption, normalizeSearch } from '../../data/asset-selection.js'
@@ -43,7 +43,7 @@ const PROFILE_CHIPS = [
 function RiskSelector({ selectedRisk, selectedProfile, onSelect }) {
   return (
     <div className="pg-panel">
-      <div className="pg-panel-title">1. Niveau de risque</div>
+      <div className="pg-panel-title">1. Profil de construction</div>
       <div className="pg-tier-chips" role="group" aria-label="Choisir un niveau de risque cible">
         {RISK_CHIPS.map((r) => {
           const disabled =
@@ -64,8 +64,8 @@ function RiskSelector({ selectedRisk, selectedProfile, onSelect }) {
       </div>
       <p className="pg-tier-hint">
         {selectedRisk === 'auto'
-          ? 'Le risque est déterminé par le tirage aléatoire du profil et du combo.'
-          : 'Chaque génération est recalculée pour rester dans ce niveau de risque.'}
+          ? 'Le tirage choisit une construction et un seuil historique, pas une perte maximale future.'
+          : 'La pire année civile observée doit respecter ce seuil historique. Une baisse en cours d’année peut être plus forte.'}
       </p>
     </div>
   )
@@ -107,15 +107,15 @@ function RiskGauge({ riskId, riskLabel, profileName, worst, bound }) {
   return (
     <div className="pg-riskgauge">
       <div className="pg-riskgauge-row">
-        <span className="pg-riskgauge-label">Palier de risque</span>
+        <span className="pg-riskgauge-label">Construction historique</span>
         <span className="pg-riskgauge-value">{riskLabel}</span>
       </div>
       <div className="pg-riskgauge-track">
         <div className="pg-riskgauge-marker" style={{ left: `${pct}%` }} />
       </div>
       <p className="pg-riskgauge-detail">
-        Pire année simulée : <b className={worst.value >= 0 ? 'pos' : 'neg'}>{fmtPct(worst.value)}</b> en {worst.year}
-        <span className="pg-riskgauge-bound"> · objectif {bound.text}</span>
+        Pire année simulée : <b className={worst.value >= 0 ? 'pos' : 'neg'}>{formatPerformance(worst.value)}</b> {worst.year ? `en ${worst.year}` : ''}
+        <span className="pg-riskgauge-bound"> · seuil historique : {bound.text}</span>
       </p>
       <p className="pg-riskgauge-profile">
         Profil : <b>{profileName}</b>
@@ -133,11 +133,11 @@ function ManualRiskInfo({ worst, closestRiskLabel, closestBound }) {
       <div className="pg-riskgauge-row">
         <span className="pg-riskgauge-label">Pire année simulée</span>
         <span className={`pg-riskgauge-value ${worst.value >= 0 ? 'pos' : 'neg'}`}>
-          {fmtPct(worst.value)} en {worst.year}
+          {formatPerformance(worst.value)} {worst.year ? `en ${worst.year}` : ''}
         </span>
       </div>
       <p className="pg-riskgauge-detail">
-        Composition libre — aucun plancher de perte imposé.
+        Composition libre. La pire année civile n’est pas une perte maximale ; une baisse en cours d’année peut être plus forte.
         {closestBound && (
           <span className="pg-riskgauge-bound">
             {' '}
@@ -618,9 +618,7 @@ export default function App() {
             <PerfChart perf={current.perf} />
           </div>
 
-          {current.selection.some(asset => dataLabels(asset).includes('Données en USD')) && (
-            <p className="pg-method-summary">Simulation à partir des devises publiées, sans conversion : ce résultat ne représente pas une performance en euros.</p>
-          )}
+          <p className="pg-method-summary">{performanceNotes(current.selection)}</p>
           {current.selection.some((asset) => asset.confidenceNote) && (
             <details className="pg-panel pg-panel-muted">
               <summary>Sources et méthode</summary>
@@ -636,9 +634,8 @@ export default function App() {
             <p className="pg-fine-print">
               Rendements sur les années complètes affichées : données historiques approximatives par actif, à titre pédagogique et
               éditables manuellement. Chaque année additionne les rendements des lignes selon des poids
-              affichés, sans simuler les versements ni un capital cumulé ; des devises différentes peuvent
-              coexister sans conversion. Chaque combinaison est validée pour respecter la borne de pire année
-              de son palier de risque avant d'être affichée.
+              affichés, sans simuler les versements ni un capital cumulé ; les rendements USD sont convertis en euros avec les taux BCE de fin d’année. Chaque combinaison est validée pour respecter la borne de pire année
+              de son profil de construction avant d'être affichée.
             </p>
           </div>
         </section>

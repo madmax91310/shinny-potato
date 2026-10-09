@@ -120,7 +120,8 @@ for (const [risk, w] of Object.entries({defensif:[55,10,20,15],equilibre:[25,15,
 }
 for (const [risk, w] of Object.entries({defensif:[35,30,25,10],equilibre:[35,35,15,15],dynamique:[55,20,10,15],offensif:[70,15,5,10]})) {
   const [theme,world,bond,gold] = w;
-  const themes = risk === 'defensif' ? THEME_OPTIONS_CALM : risk === 'equilibre' ? THEME_OPTIONS_FULL : THEME_OPTIONS_AGGRESSIVE;
+  // The energy slot breaches −10% in EUR in these two recipes (2020); keep it in other constructions.
+  const themes = risk === 'defensif' ? THEME_OPTIONS_CALM.filter(id => id !== 'sect_energie') : risk === 'equilibre' ? THEME_OPTIONS_FULL : THEME_OPTIONS_AGGRESSIVE;
   additions.thematique[risk] = [
     R('theme-stabilisateurs', 'Thème, obligations et or', 'La conviction sectorielle garde une place centrale, avec un socle mondial, des supports courts et de l’or.', 'Une conviction forte : que doit faire le reste du portefeuille ?', A([themes,theme],[WORLD,world],[SHORT,bond],[GOLD,gold])),
     R('theme-geographies', 'Thème et diversification géographique', 'La conviction sectorielle est entourée de marchés développés et émergents, avec une poche d’or.', 'Un thème mondial suffit-il à diversifier les pays du portefeuille ?', A([themes,theme],[WORLD,risk === 'equilibre' ? world-10 : world],[EM,risk === 'defensif' ? 10 : bond],...(risk === 'defensif' ? [[SHORT,bond-10]] : []),[GOLD,risk === 'equilibre' ? gold+10 : gold])),

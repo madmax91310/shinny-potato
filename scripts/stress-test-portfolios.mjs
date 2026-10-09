@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { computeYearlyPerf } from '../src/pages/portfolio-generator/performance.js';
 // Stress-test du Générateur de portefeuilles (src/pages/portfolio-generator/).
 //
 // Committé le 14/09/2026 (retour utilisateur, audit "outils") : jusqu'ici, chaque vérification de
@@ -152,17 +153,10 @@ function cartesian(...arrays) {
 }
 
 function worstYearFor(lines) {
-  let worst = Infinity;
-  let worstYear = null;
-  YEARS.forEach((y, idx) => {
-    // Même règle que computeYearlyPerf : une année manquante pour une ligne
-    // rend le résultat du portefeuille indisponible, et non égal à zéro.
-    if (lines.some((l) => !Number.isFinite(getAsset(l.id).r[idx]))) return;
-    let perf = 0;
-    lines.forEach((l) => { perf += (getAsset(l.id).r[idx] * l.pct) / 100; });
-    if (perf < worst) { worst = perf; worstYear = y; }
-  });
-  return { worst, worstYear };
+  const perf = computeYearlyPerf(lines.map(line => ({ ...getAsset(line.id), pct: line.pct })))
+  const years = Object.keys(perf).filter(year => Number.isFinite(perf[year]))
+  const worstYear = years.reduce((worst, year) => perf[year] < perf[worst] ? year : worst, years[0])
+  return { worst: perf[worstYear], worstYear }
 }
 
 function runCombo() {

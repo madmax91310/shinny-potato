@@ -25,7 +25,7 @@ try {
   assert.equal(map[2027], undefined);
   assert.deepEqual(getInstrumentReturnValues(isin), archive, 'Archived examples keep their original calendar');
   assert.deepEqual(latestCommonYears([map]), [2021, 2022, 2023, 2024, 2025, 2026]);
-  const selection = [{ r: archive, calendarReturns: map, pct: 100 }];
+  const selection = [{ r: archive, calendarReturns: map, pct: 100, returnCurrency: 'EUR' }];
   const perf = computeYearlyPerf(selection);
   assert.deepEqual(Object.keys(perf), ['2021', '2022', '2023', '2024', '2025', '2026']);
   assert.equal(perf[2026], 10);

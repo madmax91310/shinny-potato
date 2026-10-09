@@ -18,15 +18,15 @@ export const RISK_LABELS = {
   offensif: "Offensif",
 };
 
-// bound = pire année plancher pour le niveau de risque. min = perte maximale acceptable
+// bound = pire année plancher pour le niveau de risque. min = rendement minimal de la pire année civile observée
 // (en points de %, négatif), null = pas de plancher. Pas de plafond : un portefeuille plus
 // prudent que nécessaire reste valide pour son niveau.
 export const RISK_BOUNDS = {
-  prudent: { min: -5, max: null, text: "perte max acceptable < 5 %" },
-  defensif: { min: -10, max: null, text: "perte max acceptable < 10 %" },
-  equilibre: { min: -20, max: null, text: "perte max acceptable < 20 %" },
-  dynamique: { min: -30, max: null, text: "perte max acceptable < 30 %" },
-  offensif: { min: null, max: null, text: "pas de plancher — la performance prime" },
+  prudent: { min: -5, max: null, text: "pire année civile ≥ −5 %" },
+  defensif: { min: -10, max: null, text: "pire année civile ≥ −10 %" },
+  equilibre: { min: -20, max: null, text: "pire année civile ≥ −20 %" },
+  dynamique: { min: -30, max: null, text: "pire année civile ≥ −30 %" },
+  offensif: { min: null, max: null, text: "aucun seuil de pire année civile" },
 };
 
 // Rétro-compatibilité de nommage avec engine.js (mêmes clés, nouveau sens : uniquement l'axe

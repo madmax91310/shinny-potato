@@ -131,6 +131,7 @@ jobs:
       - run: node scripts/test-portfolio-editorial.mjs
       - run: node scripts/test-asset-selection.mjs
       - run: node scripts/test-portfolio-recipes.mjs
+      - run: node scripts/test-publication-reliability.mjs
       - run: npm run stress-test:portfolios
       - run: npm run build
       - run: npx playwright install --with-deps chromium

@@ -12,6 +12,7 @@ try {
   const result = await page.evaluate(async () => {
     const { ASSETS, YEARS } = await import('/shinny-potato/src/data/portfolio-assets.js')
     const { buildManualPortfolio, generatePortfolio } = await import('/shinny-potato/src/pages/portfolio-generator/engine.js')
+    const { computeYearlyPerf } = await import('/shinny-potato/src/pages/portfolio-generator/performance.js')
     const { renderPortfolioImage } = await import('/shinny-potato/src/pages/portfolio-generator/canvasImage.js')
     const original = CanvasRenderingContext2D.prototype.fillText
     const originalRect = CanvasRenderingContext2D.prototype.fillRect
@@ -30,6 +31,7 @@ try {
     const fmt = v => `${v >= 0 ? '+' : '−'}${Math.abs(v).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
     const check = (name, portfolio, keep = false) => {
       current = name; labels = []; boxes = []; rects = []
+      const perf = computeYearlyPerf(portfolio.selection)
       const canvas = renderPortfolioImage(portfolio)
       const words = labels.join(' ')
       if (/devises non converties|ÉQUILIBRÉ|EXEMPLE DE PORTEFEUILLE|Le Généraliste|…/i.test(words)) throw new Error(`Forbidden heading/footer ${name}`)
@@ -37,8 +39,8 @@ try {
       for (const asset of portfolio.selection.filter(a => a.pct > 0)) {
         if (!words.includes(asset.name) || !labels.includes(`${asset.pct.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`)) throw new Error(`Lost holding ${asset.name}`)
       }
-      for (const year of YEARS) if (!labels.includes(String(year)) || !labels.includes(Number.isFinite(portfolio.perf[year]) ? fmt(portfolio.perf[year]) : 'n.d.')) throw new Error(`Lost annual return ${name}/${year}`)
-      const available = YEARS.map(year => portfolio.perf[year])
+      for (const year of YEARS) if (!labels.includes(String(year)) || !labels.includes(Number.isFinite(perf[year]) ? fmt(perf[year]) : 'n.d.')) throw new Error(`Lost annual return ${name}/${year}`)
+      const available = YEARS.map(year => perf[year])
       if (available.every(Number.isFinite)) {
         const growth = available.reduce((product,v) => product * (1 + v/100),1)
         const annual = growth > 0 ? (growth ** (1 / YEARS.length) - 1) * 100 : null
@@ -66,15 +68,16 @@ try {
       const many = buildManualPortfolio(ASSETS.slice(0,12).map((a,i)=>({id:a.id,pct:i===11?12:8})), 'generaliste', [])
       check('twelve-holdings',many,true)
       check('all-holdings',{...example,selection:ASSETS.map(a=>({...a,pct:100/ASSETS.length}))})
-      check('negative',{...example,perf:Object.fromEntries(YEARS.map((y,i)=>[y,-(i+1)*5]))},true)
-      check('zero',{...example,perf:Object.fromEntries(YEARS.map(y=>[y,0]))})
-      check('missing',{...example,perf:{...example.perf,2021:undefined}})
+      const synthetic = perf => ({ ...example, selection: [{ ...ASSETS.find(a => a.id === 'fonds_euros'), pct: 100, calendarReturns: perf }], perf })
+      check('negative',synthetic(Object.fromEntries(YEARS.map((y,i)=>[y,-(i+1)*5]))),true)
+      check('zero',synthetic(Object.fromEntries(YEARS.map(y=>[y,0]))))
+      check('missing',synthetic({...example.perf,2021:undefined}))
     } finally { CanvasRenderingContext2D.prototype.fillText = original; CanvasRenderingContext2D.prototype.fillRect=originalRect }
     return {count,samples}
   })
   await mkdir('test-artifacts/portfolio-metallic', { recursive: true })
   for (const sample of result.samples) await writeFile(`test-artifacts/portfolio-metallic/${sample.name}.png`, Buffer.from(sample.png.split(',')[1], 'base64'))
-  console.log(`${result.count} exports verified: names, weights, annual and annualized returns, shared bar scale, zero/missing/negative values, no headings, no currency footer, no clipping or overlap.`)
+  console.log(`${result.count} exports verified: names, weights, annual and annualized returns, shared bar scale, zero/missing/negative values, no headings, EUR currency and source footer, no clipping or overlap.`)
   // Check the real application on mobile, image replacement, and downloaded bytes.
   await page.setViewportSize({width:390,height:844})
   await page.goto(`${base}generateur-portefeuilles`)

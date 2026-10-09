@@ -1,7 +1,7 @@
 import { benchmarkKey } from '../../data/asset-selection.js';
 import { portfolioPostEditorial, portfolioPostName } from './postEditorial.js';
 import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
-import { computeYearlyPerf, performanceExcerpt, performanceYears, assetReturn } from './performance.js';
+import { computeYearlyPerf, performanceExcerpt, performanceYears, assetReturn, performanceNotes } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
@@ -399,7 +399,9 @@ export function renderTweetText(p) {
   // Sort a copy: recipe slots and replacements still rely on the stored order.
   const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
   blocks.push(ordered.map(s => `${s.emoji} ${s.pct}% ${portfolioPostName(s)}`).join("\n"));
-  blocks.push(performanceExcerpt(p.perf));
+  blocks.push(performanceExcerpt(computeYearlyPerf(p.selection)));
+  blocks.push(performanceNotes(p.selection));
+  blocks.push('La pire année civile observée n’est pas une perte maximale : une baisse en cours d’année peut être plus forte.');
   blocks.push(`📌 ${editorial.thesis}`);
   blocks.push('💬 Que penses-tu de ce portefeuille ?');
   return blocks.join("\n\n");
