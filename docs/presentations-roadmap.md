@@ -77,3 +77,24 @@ Les textes SCPI et assurance-vie conservent leur format humain validé. Les neuf
 2. Approfondir le catalogue existant : qualifier d’autres offres précises des acteurs déjà présents, avec leurs propres frais, durées et sorties. Bovins, vignobles et forêts sont déjà disponibles, ce ne sont plus des catégories à créer.
 3. Renforcer la personnalisation des accroches et des questions selon l’offre, en conservant la structure avec emojis validée.
 4. Relier les changements significatifs de conditions collectées au radar éditorial, après vérification de sa couverture des acteurs ; un changement de date de collecte seul ne justifie pas un signal.
+
+
+## Lot conditions et nouvelles offres — 9 octobre 2026
+
+Les neuf acteurs disposent de treize offres/formules, contre dix auparavant. La structure avec emojis, les brouillons par offre et les exports sont conservés.
+
+- **Bricks** : tarif officiel complété (deux retraits gratuits sur une année glissante, puis 1,20 € TTC par retrait du solde). Les honoraires de 5 à 10 % HT facturés au porteur de projet sont distingués des frais directs de l’investisseur. Un retrait de solde ne liquide pas une obligation.
+- **AxClimat I** : le barème public remplace l’article général. Part E : ticket de 20 000 €, entrée 3 %, gestion 1,90 %/an sans dégressivité. Nouvelle part B : ticket de 100 000 €, entrée 3 %, gestion 1,70 %/an de N à N+5, puis dégressivité annoncée de 0,1 point/an dès la sixième année. Le calendrier 20 % puis 10 % par semestre est réservé au périmètre publié dès 100 000 €. Durée de vie 10 ans, prorogeable deux fois un an ; distributions à partir de la sixième année présentées comme estimation. Les bases des frais, coûts sous-jacents et clauses contractuelles restent à obtenir. La liste officielle annonce une clôture le 4 février 2026 : statut visible dans le texte, l’interface et le visuel ; aucune souscription actuelle présumée. Un changement de statut exige une nouvelle qualification.
+- **France Valley Patrimoine** : le DIC officiel daté du 20 avril 2026 précise les sorties. Un retrait compensé par une nouvelle souscription n’entraîne pas de frais de sortie facturés par le GFI ou France Valley ; une cession sur le marché secondaire peut être rémunérée. Aucune garantie de délai ou de prix. Les estimations de coûts du DIC ne remplacent pas les commissions maximales de la page produit.
+- **France Valley Forêts** : gamme française ajoutée, minimum affiché 10 000 €, horizon recommandé d’au moins 10 ans, souscription maximale 12 % TTC et gestion 0,9 % TTC/an. Le véhicule précis de la gamme, ses statuts et son DIC doivent correspondre à la souscription. Le forfait du dépositaire de 10 200 € TTC appartient au véhicule, pas à chaque souscripteur.
+- **France Valley Foncière Europe** : offre SAS ajoutée, minimum affiché 107 090 €, horizon recommandé d’au moins 10 ans, détention minimale ELTIF 12 mois. Le texte présente des actions de SAS, distinctes des parts de GFI. Les frais publiés incluent le droit d’entrée maximal de 2 % sans TVA, la souscription maximale de 12 % TTC et la gestion de 0,6 % TTC/an ; les bases restent distinctes. La période minimale ne garantit pas une sortie.
+- **Lucya Cardif / Fonds général** : accès standard à 100 % sans condition d’UC qualifié depuis le palmarès officiel du courtier, limité à la carte BNP Paribas Cardif dans la section correspondante. Les bonus ne sont pas intégrés et la clause conditionnelle de la notice reste visible. Le supplément de source est relu lors de chaque collecte ; son absence préserve la fiche précédente et produit une erreur.
+
+Les nouveaux champs et offres alimentent la collecte quotidienne existante. Les frais, durées, statuts et identités de véhicules sont contrôlés ; un échec conserve la fiche précédente entière. Le texte et les trois chiffres du visuel suivent l’offre choisie.
+
+### Ce qui reste à faire
+
+1. **Placement-direct Vie / Actif général SwissLife** : maximum actuel toujours non publié dans les documents qualifiés. Ne pas réutiliser les conditions du contrat distinct Placement-direct Euro+.
+2. **Documentation privée** : dossiers des stratégies Fundora, minimum d’UC et coûts de régie MyMarguerit, dossier GFV, statuts/DIC des véhicules effectivement souscrits, FICI des projets Enerfip/Bricks/Hectarea/Matis, bases des frais et cessions d’AxClimat. Les champs non accessibles restent explicitement absents.
+3. Personnaliser davantage les accroches selon l’offre en conservant les rubriques validées.
+4. Relier les changements significatifs de conditions au radar sans signaler les seules dates de collecte.

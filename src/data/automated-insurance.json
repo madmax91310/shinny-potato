@@ -455,25 +455,24 @@
           "asOf": "2025-12-31",
           "guarantee": 99.3,
           "managementFeeMax": 0.7,
-          "maxAllocation": null,
+          "maxAllocation": 100,
           "ceiling": null,
           "allocationEvidence": {
-            "status": "not-published",
+            "status": "published",
             "checkedAt": "2026-10-09",
             "sourceUrls": [
-              "https://lucya.com/assurance-vie/lucya-cardif/",
-              "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
-              "https://lucya.com/app/uploads/2026/02/frais-lucya-cardif.pdf"
+              "https://lucya.com/rendement-des-fonds-euros-2025/"
             ],
-            "reason": "La notice prévoit une affectation euros et/ou unités de compte avec une limitation conditionnelle ; elle ne chiffre pas un maximum actuel inconditionnel propre au Fonds général."
+            "reason": "Le courtier classe le Fonds général BNP Paribas Cardif dans les fonds accessibles à 100 % sans condition d’UC. Accès standard hors bonus ; la clause de limitation conditionnelle de la notice reste applicable."
           },
-          "operations": "Versements initial, libres et programmés ; arbitrages possibles.",
+          "operations": "Accès standard présenté par le courtier sans condition d’unités de compte ; hors bonus commerciaux et sous réserve de la limitation conditionnelle prévue dans la notice.",
           "notes": "Cardif peut limiter l’ensemble des fonds euros à 30 % du versement si le TME publié est inférieur à 0,7 % ; voir la notice et les conditions applicables à l’opération.",
           "sourceUrl": "https://lucya.com/assurance-vie/lucya-cardif/",
           "sourceUrls": [
             "https://lucya.com/assurance-vie/lucya-cardif/",
             "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
-            "https://lucya.com/app/uploads/2026/02/frais-lucya-cardif.pdf"
+            "https://lucya.com/app/uploads/2026/02/frais-lucya-cardif.pdf",
+            "https://lucya.com/rendement-des-fonds-euros-2025/"
           ],
           "publication": {
             "latestPublishedYear": 2025,

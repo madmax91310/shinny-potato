@@ -31,6 +31,34 @@ class ActorTermsTests(unittest.TestCase):
    with self.assertRaises(ValueError,msg=id_):parse(id_,docs,TODAY)
   with self.assertRaises(ValueError):parse('matis',['<h1>Autre placement</h1>','Matis'],TODAY)
   with self.assertRaises(ValueError):parse('hectarea',fixtures['hectarea'][:1],TODAY)
+ def test_offer_specific_fees_ownership_and_closed_status(self):
+  docs=self.fixtures()
+  anaxago=parse('anaxago',docs['anaxago'],TODAY)
+  e,b=anaxago['offers']
+  self.assertEqual(e['id'],'axclimat-i')
+  self.assertIn('1,9 %/an',e['fields']['fees']['value'])
+  self.assertNotIn('20 % à la souscription',e['fields']['access']['value'])
+  self.assertIn('1,7 %/an',b['fields']['fees']['value'])
+  self.assertIn('20 % à la souscription',b['fields']['access']['value'])
+  self.assertEqual(e['availability']['asOf'],'2026-02-04')
+  for changed in [docs['anaxago'][0].replace('Part E : 1,90%','Part E : inconnu'),docs['anaxago'][0].replace('part E qui','part A qui'),docs['anaxago'][0].replace('SLP','AUTRE')]:
+   with self.assertRaises(ValueError):parse('anaxago',[changed,docs['anaxago'][1]],TODAY)
+  with self.assertRaises(ValueError):parse('anaxago',[docs['anaxago'][0],docs['anaxago'][1].replace('Souscriptions terminées','Ouvert')],TODAY)
+  with self.assertRaises(ValueError):parse('anaxago',[docs['anaxago'][0],docs['anaxago'][1].replace('04/02/2026','04/02/2027')],TODAY)
+  valley=parse('france-valley',docs['france-valley'],TODAY)
+  p,f,s=valley['offers']
+  self.assertEqual([o['id'] for o in valley['offers']],['gfi-patrimoine','gfi-forets','fonciere-europe'])
+  self.assertIn('10200 € TTC',f['fields']['fees']['value'])
+  self.assertIn('6000 € TTC/an',s['fields']['fees']['value'])
+  self.assertIn('Actions de la SAS',s['presentation']['vehicle'])
+  self.assertIn('0,6 % TTC/an',s['fields']['fees']['value'])
+  self.assertEqual(p['fields']['exit']['effectiveAt'],'2026-04-20')
+  self.assertTrue(p['fields']['exit']['sourceUrl'].endswith('.pdf'))
+  with self.assertRaises(ValueError):parse('france-valley',[docs['france-valley'][0],docs['france-valley'][2],docs['france-valley'][1],docs['france-valley'][3]],TODAY)
+  bricks=parse('bricks',docs['bricks'],TODAY)['offers'][0]
+  self.assertIn('1,2 € TTC',bricks['fields']['fees']['value'])
+  self.assertIn('année glissante',bricks['fields']['fees']['value'])
+  with self.assertRaises(ValueError):parse('bricks',[docs['bricks'][0],docs['bricks'][1].replace('offrons 2 retraits','offrons 3 retraits')],TODAY)
  def test_atomic_preservation_and_independent_recovery(self):
   previous=json.loads(PATH.read_text());one=copy.deepcopy(previous['fundora']);one['offers'].pop()
   def failure(day):raise ValueError('Page indisponible')

@@ -132,7 +132,7 @@ export function applyActorOffer(record, offerId = record.offers?.[0]?.id) {
   if (!selected || record.selectedOffer?.id === offerId) return record
   const cached = offerCache.get(record)?.get(offerId)
   if (cached) return cached
-  const result = { ...record, selectedOffer: selected, offer: selected.name, access: selected.fields.access.value,
+  const result = { ...record, ...selected.presentation, selectedOffer: selected, offer: selected.name, access: selected.fields.access.value,
     income: selected.fields.income.value, liquidity: selected.fields.exit.value,
     highlights: selected.highlights, checkedAt: observations[record.id]?.checkedAt ?? record.checkedAt,
     verification: 'public-terms',
@@ -161,6 +161,7 @@ export function buildActorTweet(record) {
   return [
     `${record.intro}\n\nVoici les détails 👇`,
     `📄 L’offre présentée : ${record.offer}.\n${record.name} — ${record.role}.`,
+    ...(record.selectedOffer?.availability?.status === 'closed' ? [`📌 Souscriptions clôturées le ${record.selectedOffer.availability.asOf.split('-').reverse().join('/')}. Cette présentation décrit l’offre publiée ; elle ne permet pas de souscrire aujourd’hui.`] : []),
     `⚙️ Comment ça fonctionne ?\n${record.mechanism}`,
     `📦 Ce que tu détiens\n${record.vehicle}.\n${record.distinction}`,
     `💶 Pour commencer\n${record.access}`,
@@ -175,7 +176,7 @@ export function buildActorTweet(record) {
       ...record.selectedOffer.warnings.map(warning => `🔎 Point à confirmer\n${warning}`),
     ] : []),
     `⚠️ Les risques à comprendre\n${record.risks}\nLe capital et les revenus ne sont pas garantis.`,
-    `📌 Ces informations concernent l’offre présentée. Vérifie qu’elle est ouverte à la souscription et demande ses documents contractuels. Les coûts non publiés et les performances réalisées ne sont pas qualifiés dans cette fiche.`,
+    `📌 Ces informations concernent l’offre présentée. ${record.selectedOffer?.availability?.status === 'closed' ? 'Les souscriptions sont clôturées ; consulte ses documents pour comprendre les conditions présentées.' : 'Vérifie qu’elle est ouverte à la souscription et demande ses documents contractuels.'} Les coûts non publiés et les performances réalisées ne sont pas qualifiés dans cette fiche.`,
     `📚 Sources officielles consultées le ${record.checkedAt.split('-').reverse().join('/')} :\n${record.sources.map(row => row.url).join('\n')}`,
     `💬 ${actorQuestions[record.family] ?? 'Tu connaissais ce type de placement ?'}`,
   ].join('\n\n')

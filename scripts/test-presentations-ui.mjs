@@ -44,6 +44,22 @@ try {
   assert.equal(await page.locator('#actor-draft').inputValue(),'Retouche anaxago')
   await page.getByRole('button',{name:'Rétablir le texte',exact:true}).click()
   assert.equal(await page.locator('#actor-draft').inputValue(),buildActorTweet(PRESENTATION_ACTORS.find(r=>r.id==='anaxago')))
+  for (const [actorId,offerId] of [['anaxago','axclimat-i-b'],['france-valley','gfi-forets'],['france-valley','fonciere-europe']]) {
+    const actor=PRESENTATION_ACTORS.find(row=>row.id===actorId), record=applyActorOffer(actor,offerId)
+    await families.getByRole('button',{name:ACTOR_FAMILIES.find(row=>row.id===actor.family).label,exact:true}).click()
+    await page.getByRole('group',{name:'Choisir un acteur',exact:true}).getByRole('button',{name:actor.name,exact:true}).click()
+    await page.getByRole('group',{name:'Choisir une offre',exact:true}).getByRole('button',{name:record.offer,exact:true}).click()
+    await page.getByRole('tab',{name:'Texte',exact:true}).click()
+    assert.equal(await page.locator('#actor-draft').inputValue(),buildActorTweet(record))
+    if (actorId==='anaxago') await page.getByText('Souscriptions clôturées le 04/02/2026.',{exact:false}).first().waitFor()
+    await page.getByRole('tab',{name:'Image',exact:true}).click()
+    const img=page.getByRole('img',{name:`Visuel de ${actor.name}`,exact:true});await img.waitFor()
+    const url=await img.getAttribute('src')
+    const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()
+    const download=await pending
+    assert.equal(download.suggestedFilename(),`${actorId}-${offerId}-epargnant-libre.png`)
+    assert.deepEqual(await readFile(await download.path()),Buffer.from(url.split(',')[1],'base64'))
+  }
   await families.getByRole('button',{name:'Assurance-vie',exact:true}).click()
   await page.locator('#insurance-draft').fill('Assurance conservée')
   await families.getByRole('button',{name:'SCPI',exact:true}).click()

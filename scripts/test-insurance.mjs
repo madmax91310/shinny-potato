@@ -40,7 +40,8 @@ assert(buildTweet(zen).includes('2 % de pénalité') && buildTweet(zen).includes
 
 const lucya=INSURANCE.find(row => row.id === 'lucya-cardif')
 assert(buildTweet(lucya).includes('Au plus un tiers'))
-assert(buildTweet(lucya).includes('quote-part maximale actuelle n’est pas chiffrée'))
+assert(buildTweet(lucya).includes('Jusqu’à 100 %') && buildTweet(lucya).includes('limitation conditionnelle'))
+assert.equal(lucya.euroFunds[0].allocationEvidence.status,'published')
 assert(buildTweet(lucya).includes('Adhésion UFEP : 10 €'))
 const placement=INSURANCE.find(row => row.id === 'placement-direct-vie')
 assert(buildTweet(placement).includes('1,9 à 3,45 %'))

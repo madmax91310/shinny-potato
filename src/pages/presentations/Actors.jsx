@@ -43,6 +43,7 @@ export default function Actors({ family }) {
         <div className="scpi-evidence">
           <h2>{record.name}</h2><p>{record.role}</p>
           <h3>L’offre présentée</h3><p>{record.offer}</p><p>{record.selectedOffer?.scope}</p>
+          {record.selectedOffer?.availability?.status === 'closed' && <p className="data-warning">Souscriptions clôturées le {dateLabel(record.selectedOffer.availability.asOf)}. <a href={record.selectedOffer.availability.sourceUrl} target="_blank" rel="noreferrer">Statut publié par l’acteur</a></p>}
           <h3>Ce que tu détiens</h3><p>{record.vehicle}</p><p>{record.distinction}</p>
           <h3>Fonctionnement</h3><p>{record.mechanism}</p>
           <h3>Accès, revenus et sortie</h3><p>{record.access}</p><p>{record.income}</p><p>{record.liquidity}</p>
@@ -54,7 +55,7 @@ export default function Actors({ family }) {
           </>}
           <h3>Risques propres à l’exposition</h3><p>{record.risks}</p>
           <details><summary>Sources et périmètre de la fiche</summary>
-            <p>Conditions publiques de l’offre collectées le {dateLabel(record.checkedAt)}. Le fonctionnement général de l’acteur reste une explication éditoriale vérifiée manuellement le {dateLabel(record.editorialCheckedAt)}. La disponibilité d’une souscription n’est pas établie par cette fiche.</p>
+            <p>Conditions publiques de l’offre collectées le {dateLabel(record.checkedAt)}. Le fonctionnement général de l’acteur reste une explication éditoriale vérifiée manuellement le {dateLabel(record.editorialCheckedAt)}. {record.selectedOffer?.availability?.status === 'closed' ? 'La clôture des souscriptions est publiée par l’acteur et signalée ci-dessus.' : 'La disponibilité d’une souscription n’est pas établie par cette fiche.'}</p>
             <p>Collecte quotidienne des conditions publiques accessibles ; les données précédentes sont conservées si la source échoue. Les informations manquantes, la fiscalité et les performances réalisées restent à qualifier dans les documents du véhicule choisi.</p>
             {record.sources.map(source => <p key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a></p>)}
           </details>

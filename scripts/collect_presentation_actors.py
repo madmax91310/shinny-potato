@@ -8,17 +8,17 @@ import json
 import pathlib
 import re
 from bs4 import BeautifulSoup
-from collect_scpi import fetch, number, required
+from collect_scpi import fetch, pdf_text, number, required
 
 SOURCES = {
  'fundora': ['https://www.fundora.fr/questions'],
  'mymarguerit': ['https://www.mymarguerit.com/'],
  'bacchus': ['https://bacchusconseil.com/fonctionnement/','https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/'],
- 'france-valley': ['https://www.france-valley.com/gfi-france-valley-patrimoine'],
+ 'france-valley': ['https://www.france-valley.com/gfi-france-valley-patrimoine','https://www.france-valley.com/gfi-france-valley-forets','https://www.france-valley.com/fonciere-europe','https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf'],
  'enerfip': ['https://www.enerfip.eu/fr/legal/convention-investisseur'],
  'hectarea': ['https://www.hectarea.io/aide/fonctionnement','https://www.hectarea.io/aide/portefeuille','https://www.hectarea.io/aide/investir'],
- 'bricks': ['https://www.bricks.co/fonctionnement'],
- 'anaxago': ['https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe'],
+ 'bricks': ['https://www.bricks.co/fonctionnement','https://www.bricks.co/frais'],
+ 'anaxago': ['https://www.anaxago.com/axclimat','https://www.anaxago.com/operations-financees'],
  'matis': ['https://www.matis.club/comment-investir/schema-investissement','https://www.matis.club/comment-investir'],
 }
 PATH=pathlib.Path(__file__).resolve().parents[1]/'src/data/automated-presentation-actors.json'
@@ -86,6 +86,50 @@ def parse(id_, documents, today):
   required(r'75%.*?1 200€ TTC',fees)
   required(r'récupère donc les 20% de TVA.*?impact économique net est donc bien en HT',fees)
   offers=[offer('gfi-patrimoine','GFI France Valley Patrimoine','Parts du GFI Patrimoine, hors autres produits France Valley ; communication publicitaire, DIC sur demande.',{'access':f'Minimum annoncé dans les caractéristiques : {fmt(ticket)} €. La page conserve ailleurs un ancien montant : retenir la rubrique du produit et confirmer avant souscription.','fees':f'Souscription : {fmt(entry)} % TTC maximum. Gestion du GFI : {fmt(management)} % TTC/an maximum sur la valeur des actifs. Dépositaire : 4 200 € TTC + 0,048 % jusqu’à 50 M€, 0,03 % entre 50 et 200 M€, 0,018 % au-delà. Acquisition : expertise environ 12–120 € TTC/ha, transaction {fmt(transaction)} % TTC, notaire/mutation environ {fmt(notary)} %. Donation/succession : procédure forfaitaire 1 200 € TTC. Frais du véhicule, bases distinctes ; TVA récupérée par le GFI, impact économique HT selon la page.','duration':f'Placement recommandé : au moins {fmt(horizon)} ans ; détention minimale ELTIF : {fmt(minimum)} mois. Ni le minimum de détention ni la recommandation ne garantissent une sortie.','income':'Exploitation forestière et évolution du prix des parts ; excédent d’exploitation réinvesti dans le fonds, revenus non garantis.','exit':'Revente dépendante des souscriptions ou acquisitions enregistrées ; pas de garantie de délai ni de prix.'},['DIC et conditions de souscription actualisées à obtenir'],[['Minimum annoncé',f'{fmt(ticket)} €'],['Souscription max.',f'{fmt(entry)} % TTC'],['Gestion max. / an',f'{fmt(management)} % TTC']])]
+  dic=texts[3]
+  required(r'Nom du produit : GFI FRANCE VALLEY PATRIMOINE',dic)
+  stamp=required(r'Date de production du document d’informations clés : (\d{2})/(\d{2})/(20\d{2})',dic)
+  dic_date=f'{stamp[3]}-{stamp[2]}-{stamp[1]}'
+  if dt.date.fromisoformat(dic_date)>today:raise ValueError('Future GFI key information document')
+  required(r'France Valley ne facture pas de coût de sortie sur ce produit',dic)
+  required(r'FRANCE VALLEY perçoit une rémunération pour les transactions sur le marché secondaire',dic)
+  required(r'rachat demandé soit compensé par une souscription permettant d’en couvrir le coût',dic)
+  offers[0]['fields']['exit']=field('exit','Retrait compensé par une nouvelle souscription : pas de frais de sortie facturés par le GFI ou France Valley. Valeur de retrait définie dans la note d’information ; l’absence de frais de sortie ne garantit pas la récupération du montant investi. Sans souscription en face, une cession sur le marché secondaire peut être rémunérée. Prix et délai non garantis.',3)
+  offers[0]['fields']['exit']['effectiveAt']=dic_date
+  offers[0]['missing']=['Note d’information et bulletin de souscription actualisés ; conditions du marché secondaire']
+  offers[0]['presentation']={'intro':'Acheter une forêt entière demande un budget conséquent. Le GFI France Valley Patrimoine permet de détenir des parts d’un patrimoine forestier géré pour toi.', 'vehicle':'Parts du GFI France Valley Patrimoine', 'mechanism':'Le GFI acquiert et gère des forêts. Ton placement évolue avec la valeur de ce patrimoine et son exploitation ; tu ne choisis pas une parcelle à utiliser personnellement.'}
+  for index,key,name in [(1,'gfi-forets','GFI France Valley Forêts'),(2,'fonciere-europe','France Valley Foncière Europe')]:
+   page=texts[index];is_sas=index==2
+   required('SAS France Valley Foncière Europe' if is_sas else 'GFI France Valley Forêts',page)
+   minimum=val(r'Montant minimum d’investissement ([\d ]+) €',page)
+   horizon=val(r'Horizon de placement Min\. (\d+) ans',page)
+   costs=required(r'La transparence sur les frais(?: du GFI)? (.*?)Vous donner toutes les clés',page)[1]
+   entry=val(r'Commission de souscription\(2\) : [\d,.]+% HT \(([\d,.]+)% TTC\)' if is_sas else r'Commission de souscription\(2\) : ([\d,.]+)% TTC',costs)
+   management=val(r'Commission de gestion\(3\) : [\d,.]+% HT \(([\d,.]+)% TTC\)/an' if is_sas else r'Commission de gestion\(3\) : ([\d,.]+)% TTC/an',costs)
+   for amount in (entry,management):bounded(amount,0,100,'forest fund fee')
+   required(r'aucune garantie ne peut être donnée quant au délai de revente',page)
+   required(r'l’impact économique net est donc bien en HT',costs.replace("l'impact",'l’impact'))
+   if is_sas:
+    hold=val(r'période de détention minimale de (\d+) mois',page)
+    extra=val(r'Droit d’entrée maximum : ([\d,.]+)%',costs)
+    fixed=number(required(r'dépositaire.*?\(([\d. ]+) € TTC\)',costs)[1].replace('.',''))
+    variable=val(r'dépositaire.*?\(([\d,.]+)% TTC\)',costs)
+    required(r'l[’\']éventuel excédent est réinvesti dans le fonds',page)
+    fee_text=f'Droit d’entrée : {fmt(extra)} % maximum, sans TVA ; souscription : {fmt(entry)} % TTC maximum. Gestion : {fmt(management)} % TTC/an. Dépositaire : {fmt(fixed)} € TTC/an + {fmt(variable)} % de l’actif jusqu’à 50 M€. Autres tranches non chiffrées sur cette page.'
+    duration=f'Horizon conseillé : au moins {fmt(horizon)} ans ; détention minimale ELTIF : {fmt(hold)} mois. Le minimum ne garantit pas un remboursement.'
+   else:
+    fixed=number(required(r'dépositaire.*?([\d.]+) € TTC \+ commission variable',costs)[1].replace('.',''))
+    required(r'0,048% TTC.*?0,03% TTC.*?0,018% TTC',costs)
+    required(r'ces derniers soient capitalisés dans la valeur de votre investissement',page)
+    fee_text=f'Souscription : {fmt(entry)} % TTC maximum. Gestion : {fmt(management)} % TTC/an sur la valeur des actifs du GFI. Dépositaire : {fmt(fixed)} € TTC + 0,048 % jusqu’à 50 M€, 0,03 % de 50 à 200 M€, 0,018 % au-delà.'
+    duration=f'Horizon conseillé : au moins {fmt(horizon)} ans. Les contraintes fiscales de conservation sont à vérifier pour le GFI choisi ; elles ne garantissent pas une sortie.'
+   transaction=val(r'Commission de transaction : [\d,.]+% HT \(([\d,.]+)% TTC\)' if is_sas else r'Commission de transaction : ([\d,.]+)% TTC',costs)
+   notary=val(r'Frais de notaire/droits de mutation : ([\d,.]+)% environ',costs)
+   fee_text+=f' Acquisition des forêts : transaction {fmt(transaction)} % TTC, notaire/mutation environ {fmt(notary)} %, expertise 12–120 € TTC/ha. Charges d’exploitation et administratives supplémentaires. TVA récupérée par le véhicule selon la page ; bases de frais distinctes.'
+   o=offer(key,name,'Produit forestier distinct du GFI Patrimoine ; documentation publique, souscription à confirmer.' if is_sas else 'Gamme de GFI forestiers français ; le nom et les documents du GFI ouvert sont à confirmer.',{'access':f'Minimum affiché : {fmt(minimum)} €.','fees':fee_text,'duration':duration,'income':'Les coupes de bois participent au résultat ; les excédents peuvent être capitalisés. Aucun revenu annuel ni rendement minimum garanti.','exit':'Sortie dépendante des demandes de souscription ou d’acquisition ; aucun délai ou prix de revente garanti.'},['DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges'],[['Minimum annoncé',f'{fmt(minimum)} €'],['Horizon conseillé',f'≥ {fmt(horizon)} ans'],['Gestion / an',f'{fmt(management)} % TTC']])
+   for f in o['fields'].values():f['sourceUrl']=urls[index]
+   o['presentation']={'intro':'Investir dans des forêts européennes sans gérer les arbres toi-même, ça te parle ? France Valley Foncière Europe détient et exploite un patrimoine forestier.' if is_sas else 'Tu aimerais investir dans des forêts françaises ? La gamme France Valley Forêts permet d’en détenir des parts, avec une gestion déléguée.', 'vehicle':'Actions de la SAS France Valley Foncière Europe' if is_sas else 'Parts du GFI de la gamme France Valley Forêts choisi à la souscription', 'mechanism':'La SAS acquiert et exploite des forêts européennes. Tu détiens des actions de la société, dont la valeur dépend notamment du patrimoine et du bois.' if is_sas else 'Le GFI acquiert et gère des forêts françaises. Chaque véhicule de la gamme a son propre patrimoine et ferme aux nouveaux investisseurs une fois sa collecte atteinte.'}
+   offers.append(o)
  elif id_=='enerfip':
   ticket=val(r'ne peut être inférieur à dix euros \(([\d ]+) €\)')
   required(r'Aucun frais direct n’est facturé.*?Cependant, des frais indirects',t)
@@ -109,11 +153,40 @@ def parse(id_, documents, today):
  elif id_=='bricks':
   ticket=val(r'à partir de ([\d ]+) euros')
   required(r'pas de frais d’entrée, ni frais de gestion',t);free=val(r'retraits \((\d+) gratuits par an\)')
-  offers=[offer('obligations-immobilieres','Obligations immobilières Bricks','Conditions générales présentées par la plateforme ; aucun projet individuel présumé ouvert.',{'access':f'Dès {fmt(ticket)} € annoncés pour les projets présentés.','fees':f'Pas de frais d’entrée ni de gestion annoncés ; {fmt(free)} retraits gratuits par an, tarif des suivants à confirmer. Les coûts supportés par l’émetteur restent à examiner dans sa fiche.','duration':'Durée cible propre à chaque projet ; aucun délai commun qualifié.','income':'Intérêts selon le titre ; la plage commerciale de taux ne constitue pas une performance réalisée.','exit':'Pas de retrait immédiat du capital investi ; échéance et éventuelle cession dépendent du projet.'},['Projet précis : FICI, émetteur, coupon, échéance, tarif de retraits'],[['Accès annoncé',f'{fmt(ticket)} €'],['Instrument','Obligations'],['Solde : retraits gratuits',f'{fmt(free)} / an']])]
+  tariff=texts[1];required('Bricks',tariff)
+  amount=val(r'frais de retrait de ([\d,.]+)€ TTC par virement bancaire externe',tariff)
+  annual=val(r'offrons (\d+) retraits gratuits par année glissante',tariff)
+  low,high=map(number,required(r'honoraires de ([\d,.]+) à ([\d,.]+)% HT du montant total collecté par projet',tariff).groups())
+  if annual!=free or not 0<=low<=high<=100:raise ValueError('Conflicting Bricks fee terms')
+  offers=[offer('obligations-immobilieres','Obligations immobilières Bricks','Règles de la plateforme ; l’émetteur, le coupon et l’échéance dépendent du projet.',{'access':f'Dès {fmt(ticket)} € annoncés.','fees':f'Pas de frais d’entrée ni de gestion pour l’investisseur. Retraits bancaires du solde : {fmt(free)} gratuits par année glissante, puis {fmt(amount)} € TTC chacun. Honoraires facturés au porteur de projet : {fmt(low)} à {fmt(high)} % HT du montant collecté ; ils ne sont pas une retenue directe sur ton versement.','duration':'Durée du titre propre au projet ; aucun délai commun qualifié.','income':'Intérêts selon le titre ; un taux annoncé n’est pas une performance réalisée.','exit':'Retirer le solde disponible ne permet pas de récupérer le capital encore investi dans une obligation. Remboursement et éventuelle cession dépendent du titre.'},['Projet précis : FICI, émetteur, coupon et échéance'],[['Accès annoncé',f'{fmt(ticket)} €'],['Retraits gratuits',f'{fmt(free)} / 12 mois'],['Retraits suivants',f'{fmt(amount)} € TTC']])]
+  offers[0]['fields']['fees']['sourceUrl']=urls[1]
  elif id_=='anaxago':
-  ticket=val(r'ticket minimum de ([\d ]+) euros');calls=val(r'versés progressivement sur (\d+) ans')
-  required(r'fonds AxClimat I\. Il s’agit d’un fonds de fonds',t)
-  offers=[offer('axclimat-i','AxClimat I','Fonds de fonds dédié à la décarbonation ; conditions annoncées dans un article officiel, disponibilité actuelle non établie.',{'access':f'Ticket annoncé : {fmt(ticket)} €, versés progressivement sur {fmt(calls)} ans.','fees':'Barème complet des frais non publié dans l’article ; les économies du co-investissement ne signifient pas zéro frais pour le fonds.','duration':f'Appels de fonds sur {fmt(calls)} ans annoncés ; cette période n’est pas la durée de détention ni la date de remboursement.','income':'Distributions et cessions des fonds ; TRI commercial cible distinct des performances réalisées, non qualifiées ici.','exit':'Durée de vie, extensions et règles de cession à vérifier dans la documentation du fonds ; liquidité non garantie.'},['DIC : frais complets, durée, extensions, conditions et ouverture actuelle'],[['Ticket annoncé',f'{fmt(ticket)} €'],['Appels de fonds',f'{fmt(calls)} ans'],['Véhicule','Fonds de fonds']])]
+  required(r'Format : Société de Libre Partenariat \(SLP\)',t)
+  duration,extensions,years=map(int,required(r'Durée de vie du fonds\* : (\d+) ans \(prorogeable (\d+)x (\d+) an\)',t).groups())
+  entry=val(r'Part B et E : ([\d,.]+)%',t)
+  required(r'part E qui n’est pas dégressive',t.replace("n'est",'n’est'))
+  required(r'dégressivité de 0,1 point/an à partir de la 6',t)
+  required(r'Calendrier prévisionnel des flux pour toute souscription supérieure ou égale à 100.000€',t)
+  initial=val(r'1er appel : ([\d,.]+)% à la souscription',t)
+  semester=val(r'Puis ([\d,.]+)% par semestre',t)
+  soup=BeautifulSoup(documents[1],'html.parser')
+  card=soup.select_one('#campaign-widget-axclimat-i')
+  if not card or card.get('data-campaign-state')!='Souscriptions terminées':raise ValueError('AxClimat subscription status changed; qualify new offer status')
+  stamp=required(r'Cloturé le (\d{2})/(\d{2})/(20\d{2})',card.get_text(' ',strip=True))
+  closed=f'{stamp[3]}-{stamp[2]}-{stamp[1]}'
+  if dt.date.fromisoformat(closed)>today:raise ValueError('Future AxClimat closure')
+  for key,part in [('axclimat-i','E'),('axclimat-i-b','B')]:
+   ticket=val(r'Part '+part+r' : ([\d ]+)€',required(r'Souscription minimum : (.*?)Frais d’entrée',t.replace("d'entrée",'d’entrée'))[1])
+   management=val(r'Part '+part+r' : ([\d,.]+)% / an',required(r'Frais de gestion récurrents : (.*?)Estimation des distributions',t)[1])
+   access=f'Part {part} : minimum annoncé {fmt(ticket)} €.'
+   access+=f' Calendrier publié dès 100000 € : {fmt(initial)} % à la souscription, puis {fmt(semester)} % par semestre.' if part=='B' else ' Échéancier de versement propre à cette part à confirmer ; le calendrier publié dès 100000 € n’est pas appliqué au ticket de 20000 €.'
+   fee=f'Entrée : {fmt(entry)} %. Gestion récurrente : {fmt(management)} %/an'
+   fee+=', sans dégressivité pour la part E.' if part=='E' else ' de N à N+5, puis baisse de 0,1 point/an annoncée à partir de la sixième année.'
+   fee+=' Bases de calcul, frais sous-jacents et éventuelle commission de performance à vérifier dans les documents de cette part.'
+   o=offer(key,'AxClimat I — part '+part,'SLP de private equity européen ; souscriptions clôturées, présentation informative.',{'access':access,'fees':fee,'duration':f'Durée de vie : {duration} ans, prorogeable {extensions} fois {years} an ; aucune date de remboursement garantie.','income':'Distributions annoncées à partir de la sixième année : estimation, pas un calendrier garanti. Le TRI cible n’est pas une performance réalisée.','exit':'Cessions et liquidations selon les documents du fonds ; revente rapide non garantie.'},['DIC et règlement de la part : bases des frais, coûts sous-jacents, cession'+(' et échéancier de versement' if part=='E' else '')],[['Ticket de la part',f'{fmt(ticket)} €'],['Gestion annoncée',f'{fmt(management)} %/an'],['Souscriptions','Clôturées']])
+   o['availability']={'status':'closed','asOf':closed,'checkedAt':today.isoformat(),'sourceUrl':urls[1]}
+   o['presentation']={'intro':'Investir dans la décarbonation peut aussi passer par des entreprises non cotées. AxClimat I, présenté par Anaxago, sélectionne des fonds européens dans ce domaine.', 'vehicle':'Parts '+part+' de la Société de Libre Partenariat AxClimat I', 'mechanism':'Le fonds investit dans des fonds de private equity et prévoit une poche de co-investissements et d’infrastructures. La part choisie détermine notamment ton ticket et tes frais.', 'distinction':'Tu détiens la part '+part+' d’AxClimat I. Les chiffres des opérations immobilières d’Anaxago ne représentent pas la performance de ce fonds.'}
+   offers.append(o)
  elif id_=='matis':
   ticket=val(r'accessibles à partir de ([\d ]+)€',texts[1])
   target=val(r'Horizon d’investissement cible (\d+) mois',t.replace("d'investissement",'d’investissement'))
@@ -132,7 +205,12 @@ def parse(id_, documents, today):
    if effective:f['effectiveAt']=effective
  return {'id':id_,'checkedAt':today.isoformat(),'verification':'public-terms','sources':[{'url':u,'sha256':hashlib.sha256(doc.encode()).hexdigest()} for u,doc in zip(urls,documents)],'offers':offers}
 
-def collect(id_,today):return parse(id_,[fetch(u).decode() for u in SOURCES[id_]],today)
+def collect(id_,today):
+ raw=[fetch(u) for u in SOURCES[id_]]
+ documents=[pdf_text(data) if u.endswith('.pdf') else data.decode() for u,data in zip(SOURCES[id_],raw)]
+ record=parse(id_,documents,today)
+ for source,data in zip(record['sources'],raw):source['sha256']=hashlib.sha256(data).hexdigest()
+ return record
 
 def refresh(previous,adapters,today):
  result=copy.deepcopy(previous);observations=[]
@@ -140,6 +218,7 @@ def refresh(previous,adapters,today):
   try:
    record=adapter(today)
    if record['id']!=id_ or record['checkedAt']!=today.isoformat() or not record['offers']:raise ValueError('Wrong actor or collection date')
+   if len(record['offers'])!=len({o['id'] for o in record['offers']}):raise ValueError('Duplicate offer identities')
    old=previous.get(id_,{})
    if record['checkedAt']<old.get('checkedAt',''):raise ValueError('Regressing collection date')
    old_offers={o['id']:o for o in old.get('offers',[])};new={o['id']:o for o in record['offers']}
