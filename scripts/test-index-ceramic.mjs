@@ -50,23 +50,5 @@ try {
     } finally { CanvasRenderingContext2D.prototype.fillText = original }
     return pairs.length
   })
-  await page.goto(`${base}comparateur-indices`)
-  await page.getByRole('group', { name: 'Choisir une famille d’indices', exact: true }).locator('[data-value="monde"]').click()
-  const duels = page.getByRole('group', { name: 'Choisir un duel d’indices', exact: true })
-  if (await duels.getByRole('button').count() !== 3) throw Error('World must offer A/B, A/C and B/C')
-  for (const [label, omitted] of [['MSCI World / MSCI ACWI', 'FTSE All-World'], ['MSCI World / FTSE All-World', 'MSCI ACWI'], ['MSCI ACWI / FTSE All-World', 'MSCI World']]) {
-    await duels.getByRole('button', { name: label, exact: true }).click()
-    const tweet = await page.locator('.xc-preview-text').innerText()
-    if ((tweet.match(/^🔹 /gm) ?? []).length !== 2 || tweet.includes(omitted)) throw Error(`Wrong pair: ${label}`)
-    if (await page.locator('.xc-fund-block').count() !== 2) throw Error('Performance form leaked a third index')
-  }
-  await page.getByRole('group', { name: 'Choisir une famille d’indices', exact: true }).locator('[data-value="usa"]').click()
-  if (await duels.getByRole('button').count() !== 6 || await duels.getByRole('button', { pressed: true }).innerText() !== 'S&P 500 / Nasdaq 100') throw Error('Family change did not reset the pair')
-  await page.setViewportSize({ width: 390, height: 844 }); await page.goto(`${base}comparateur-indices`)
-  await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
-  await page.getByRole('tab', { name: 'Image', exact: true }).click()
-  await page.locator('.xc-scope img').first().evaluate(i => i.decode())
-  const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Télécharger l’image PNG', exact: true }).click()])
-  if (!download.suggestedFilename().startsWith('comparateur-indices-')) throw Error('Wrong download')
-  console.log(`${count} ceramic comparisons: all names, documented counts, compositions and dates; no overlap/clipping, no data/tweet changes; mobile preview/download.`)
+  console.log(`${count} archived comparison renders: documented facts and no overlap/clipping.`)
 } finally { await browser?.close(); server.kill('SIGTERM') }

@@ -12,7 +12,7 @@ try {
  const page=await browser.newPage({viewport:{width:390,height:844}})
  const errors=[];page.on('pageerror', e=>errors.push(e.message))
  await mkdir('test-artifacts/studio',{recursive:true})
- for(const route of ['fiches-etf','generateur-portefeuilles','duels-portefeuilles','portefeuilles-investisseurs','france-100-menages','comparateur-indices','impact-frais','calculateur-investissement','tweets-factsheets','comparatif-courtiers']) {
+ for(const route of ['fiches-etf','generateur-portefeuilles','duels-portefeuilles','portefeuilles-investisseurs','france-100-menages','impact-frais','calculateur-investissement','tweets-factsheets','comparatif-courtiers']) {
   await page.goto(`${base}/${route}`,{waitUntil:'networkidle'})
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByRole('tab',{name:'Image',exact:true}).click()

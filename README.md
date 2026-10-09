@@ -11,7 +11,6 @@ Application React + Vite pour préparer des contenus pédagogiques sur l'investi
 | Fiches ETF | Préparer une fiche, un texte et une image. |
 | Comparatif courtiers | Préparer une carte et un post comparant deux ou trois courtiers. |
 | Tweet Midi | Générer six formats de publications intemporelles. |
-| Comparateur d'indices | Comparer les expositions et ETF d'une famille d'indices. |
 | Impact des frais | Illustrer l'effet hypothétique de deux TER. |
 | Faits marquants des marchés | Préparer des statistiques historiques sourcées. |
 | Banque de tweets | Retrouver des publications et des explications pédagogiques sourcées, puis suivre leur période de repos. |
@@ -100,3 +99,5 @@ Capture et limites : scripts/source-snapshots/calculator-companies-2026-10-02.js
 Ces séries sont figées au dernier contrôle ; leur ajout ne crée pas d’actualisation programmée.
 
 Les portraits des investisseurs sont stockés localement avec leurs sources et crédits dans `public/asset-art/investors/sources.json`.
+
+Le vendredi midi est consacré aux présentations de placements, en alternance SCPI et assurance-vie. Le comparatif ETF conserve son créneau du lundi midi en alternance avec le lexique.

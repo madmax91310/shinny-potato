@@ -27,7 +27,7 @@ try {
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
   assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.length)
-  assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets/}).count(), 0)
+  assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
   for (const [path, day] of [
     ['/comparatif-etf', 'Lundi midi · alternance'], ['/fiche-lexique', 'Lundi midi · alternance'],
@@ -35,7 +35,7 @@ try {
     ['/france-100-menages', 'Mardi midi'], ['/generateur-portefeuilles', 'Mardi soir'],
     ['/analyse-entreprise', 'Mercredi midi'], ['/calculateur-investissement', 'Mercredi soir'],
     ['/duels-portefeuilles', 'Jeudi midi'], ['/fiches-etf', 'Jeudi soir'],
-    ['/comparateur-indices', 'Vendredi midi'],
+    ['/presentation-scpi', 'Vendredi midi · alternance'], ['/presentation-assurance-vie', 'Vendredi midi · alternance'],
     ['/portefeuilles-investisseurs', 'Dimanche midi'], ['/faits-marquants-marches', 'Dimanche soir'],
     ['/il-y-a-x-ans', 'Publication ponctuelle'], ['/performance-depuis', 'Publication ponctuelle'],
     ['/pouvoir-achat', 'Publication ponctuelle'], ['/dilemme', 'Publication ponctuelle'],

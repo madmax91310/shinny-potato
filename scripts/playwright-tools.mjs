@@ -38,12 +38,6 @@ import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { stat, readFile, mkdir, writeFile } from "node:fs/promises";
 import { DATA_CATALOG } from '../src/data/catalog.js';
-import { FAMILIES } from "../src/data/index-comparisons.js";
-import { getIndexComparisonPairs } from "../src/data/index-comparison-pairs.js";
-import { getIndexComparisonEditorial } from "../src/data/index-comparison-editorial.js";
-import { getIndexComparisonPerformance } from '../src/data/index-comparison-performance.js';
-import { getIndexComparisonComposition } from '../src/data/index-comparison-composition.js';
-import { fmtPct } from "../src/pages/index-comparator/lib.js";
 import { buildCustomDuel, buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
@@ -652,74 +646,6 @@ async function testTweetMidi(page) {
   record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
 }
 
-async function testIndexComparator(page) {
-  await page.goto(`${BASE}/comparateur-indices`, { waitUntil: 'networkidle' });
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
-    configurable: true, value: { writeText: async text => { window.__indexCopiedText = text; } },
-  }));
-  await page.evaluate(() => {
-    const original = CanvasRenderingContext2D.prototype.fillText;
-    window.__indexImageText = [];
-    CanvasRenderingContext2D.prototype.fillText = function(text, ...args) {
-      window.__indexImageText.push(String(text));
-      return original.call(this, text, ...args);
-    };
-  });
-  const select = page.locator('[data-selector]').first();
-  const count = await select.locator('[data-option]').count();
-  let ok = 0, images = 0;
-  for (const baseFamily of FAMILIES) {
-    const family = getIndexComparisonPairs(baseFamily)[0];
-    console.log(`    Comparateur : ${family.id}`);
-    await choose(select, family.id);
-    const text = await page.locator('.xc-preview-text').innerText();
-    const editorial = getIndexComparisonEditorial(family);
-    const refs = family.etfGroups.flatMap(group => group.funds);
-    const silverOk = family.id !== 'or-argent' || (/149,06/.test(text) && text.includes('en dollars'));
-    const dataOk = silverOk && refs.every(fund => text.includes(fund.isin) && text.includes(fund.ter))
-      && getIndexComparisonPerformance(family).every(row =>
-        [2023, 2024, 2025].every(year => text.includes(`${year} : ${fmtPct(row[`y${year}`]) ?? 'Non disponible'}`)));
-    await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié !/ }).click();
-    const copied = await page.evaluate(() => window.__indexCopiedText);
-    if (dataOk && copied === text && text.startsWith(editorial.hook)
-      && text.endsWith(editorial.question) && editorial.exposures.every(p => text.includes(p))
-      && !/L'EXPOSITION|LE VERDICT|DIVERSIFICATION|undefined|NaN|à compléter/.test(text)) ok++;
-    // Espacer la série de PNG pour éviter le blocage des téléchargements en rafale.
-    await page.waitForTimeout(250);
-    await page.evaluate(() => { window.__indexImageText = []; });
-    const [download] = await Promise.all([Promise.race([page.waitForEvent('download'),
-      page.getByRole('button', { name: 'Réessayer le téléchargement PNG' }).waitFor().then(() => { throw new Error(`Export PNG impossible : ${family.id}`); })]),
-      page.getByRole('button', { name: 'Télécharger l’image PNG' }).click()]);
-    const png = await readFile(await download.path());
-    const drawn = await page.evaluate(() => window.__indexImageText.join('\n'));
-    const indicesOnly = refs.every(fund => !drawn.includes(fund.isin) && !drawn.includes(fund.name))
-      && !/ETF CITÉS|ETP CITÉS|ETC CITÉS|Éligible au PEA|éligible au PEA|PEA :|\/ an/.test(drawn);
-    const composition = family.indices.every(index => {
-      const facts = index.indexFacts;
-      if (facts?.metadata?.sourceStatus !== 'documented') return true;
-      return (!facts.constituents || (drawn.includes(facts.constituents.toLocaleString('fr-FR')) && drawn.includes('titres')))
-        && [...getIndexComparisonComposition(index).countries, ...getIndexComparisonComposition(index).sectors].every(([, value]) => drawn.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`));
-    });
-    if (indicesOnly && composition && download.suggestedFilename() === `comparateur-indices-${family.pairId}.png`
-      && png.readUInt32BE(16) === 1800 && png.readUInt32BE(20) > 400
-      && png.readUInt32BE(20) < 3600 && png.length > 10000) images++;
-  }
-  await choose(select, 'monde');
-  const worldText = await page.locator('.xc-preview-text').innerText();
-  const sharedCountsOk = getIndexComparisonPairs(FAMILIES.find(f => f.id === 'monde'))[0].indices.every(index =>
-    worldText.replaceAll('\u202f', ' ').includes(String(index.indexFacts.constituents.toLocaleString('fr-FR')).replaceAll('\u202f', ' ')));
-  await choose(select, 'europe');
-  await page.getByRole('checkbox', { name: 'Inclure le YTD' }).first().check();
-  let ytdOk = !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
-  await page.getByPlaceholder('YTD %').fill('0');
-  ytdOk &&= (await page.locator('.xc-preview-text').innerText()).includes('YTD saisi : +0,00 %');
-  await choose(select, 'monde');
-  ytdOk &&= !(await page.locator('.xc-preview-text').innerText()).includes('YTD saisi');
-  const distinctionOk = /performances des indices ou actifs comparés/.test(await page.locator('.xc-control-col').innerText());
-  record("Comparateur d'indices", ok === count && count === FAMILIES.length && images === count && distinctionOk && sharedCountsOk && ytdOk,
-    `${ok}/${count} tweets personnalisés copiés, ${images} images comparatives, repères partagés et YTD vide/zéro/réinitialisé`);
-}
-
 async function testFeeImpact(page) {
   await page.goto(`${BASE}/impact-frais`, { waitUntil: "networkidle" });
   const preview = page.locator('.fi-preview-text');
@@ -1189,7 +1115,6 @@ try {
   await testEtfSheets(page);
   await testBrokerComparator(page);
   await testTweetMidi(page);
-  await testIndexComparator(page);
   await testFeeImpact(page);
   await testDataReuse(page);
   await testMarketFacts(page);
