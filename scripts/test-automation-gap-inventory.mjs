@@ -46,7 +46,9 @@ for (const id of recent) {
 assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2027-01-01').length,8);
 assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2028-01-01').length,3);
 assert.deepEqual(calendarEligibility('unknown','2026-10-09'),{});
-assert(r.insuranceGaps.some(g=>g.id==='lucya-cardif'&&g.field==='maxAllocation'&&g.status==='not-published'));
+assert(!r.insuranceGaps.some(g=>g.id==='lucya-cardif'&&g.field==='maxAllocation'));
+const missingAllocation=[{id:'test-missing',name:'Test',checkedAt:'2026-10-09',euroFunds:[{name:'Fonds',maxAllocation:null,ceiling:1000000,allocationEvidence:{status:'not-published',reason:'Maximum absent de la source'}}]}];
+assert.deepEqual(buildGapInventory({insurance:missingAllocation}).insuranceGaps.map(({field,status})=>({field,status})),[{field:'maxAllocation',status:'not-published'}]);
 assert(r.insuranceGaps.some(g=>g.id==='placement-direct-vie'&&g.field==='ceiling'));
 assert(!r.insuranceGaps.some(g=>g.id==='linxea-spirit-2'));
 const completeInsurance=[{id:'test',name:'Test',checkedAt:'2026-10-09',euroFunds:[{name:'Fonds',maxAllocation:100,ceiling:1000000}]}];
