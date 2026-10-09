@@ -10,6 +10,8 @@ on:
       - 'scripts/*editorial-radar.mjs'
       - 'scripts/lib/editorial-radar.mjs'
       - 'scripts/lib/radar-news.mjs'
+      - 'scripts/lib/radar-notifications.mjs'
+      - 'scripts/test-radar-notifications.mjs'
       - 'src/data/automated-*.json'
       - 'src/data/purchasing-power-observations.json'
       - 'public/data/investors/*.json'
@@ -19,6 +21,8 @@ on:
       - 'scripts/*editorial-radar.mjs'
       - 'scripts/lib/editorial-radar.mjs'
       - 'scripts/lib/radar-news.mjs'
+      - 'scripts/lib/radar-notifications.mjs'
+      - 'scripts/test-radar-notifications.mjs'
       - 'src/pages/editorial-radar/**'
   workflow_run:
     workflows:
@@ -47,6 +51,7 @@ jobs:
         with:
           node-version: 20
       - run: node scripts/test-editorial-radar.mjs
+      - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/update-editorial-radar.mjs --output "$RUNNER_TEMP/editorial-radar"
   update:
     if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
@@ -54,6 +59,7 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: write
+      issues: write
     steps:
       # Execute only trusted master code, never code from a triggering PR.
       - uses: actions/checkout@v7.0.1
@@ -63,6 +69,7 @@ jobs:
         with:
           node-version: 20
       - run: node scripts/test-editorial-radar.mjs
+      - run: node scripts/test-radar-notifications.mjs
       - name: Publish comparable observations and new signals
         env:
           GH_TOKEN: ${{ github.token }}

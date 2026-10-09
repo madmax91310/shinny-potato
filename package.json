@@ -39,7 +39,7 @@
     "report:automation": "node scripts/report-automation-coverage.mjs",
     "test:wealth": "node scripts/test-wealth-simulator.mjs",
     "test:wealth:browser": "node scripts/playwright-wealth.mjs",
-    "test:radar": "node scripts/test-editorial-radar.mjs",
+    "test:radar": "node scripts/test-editorial-radar.mjs && node scripts/test-radar-notifications.mjs",
     "test:radar:browser": "node scripts/playwright-radar.mjs"
   },
   "dependencies": {
