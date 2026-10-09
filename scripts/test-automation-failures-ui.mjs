@@ -16,8 +16,17 @@ try {
  assert.equal(await section.getByRole('link',{name:'Voir la cause et le suivi ↗'}).getAttribute('href'),status.workflows.economic.runUrl)
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
  await page.screenshot({path:'test-artifacts/automation-failure-mobile.png',fullPage:true})
- status={schemaVersion:1,workflows:{economic:{status:'success',name:'Données économiques'}}}
+ status={schemaVersion:1,workflows:{economic:{status:'success',name:'Données économiques',completedAt:'2026-10-09T10:00:00Z',lastSuccessAt:'2026-10-09T10:00:00Z'},pending:{status:'unknown',name:'Collecte non documentée'}}}
  await page.reload({waitUntil:'networkidle'});assert.equal(await section.count(),0)
+ const overview=page.getByRole('region',{name:'Bilan des collectes automatiques'})
+ assert.equal(await overview.locator('.dr-item').count(),2)
+ await overview.getByRole('button',{name:'Réussies · 1',exact:true}).click()
+ assert.equal(await overview.locator('.dr-item').count(),1)
+ assert.match(await overview.textContent(),/09\/10\/2026/)
+ await overview.getByRole('button',{name:'État non documenté · 1',exact:true}).click()
+ assert.equal(await overview.locator('.dr-item').count(),1)
+ await overview.getByRole('button',{name:'En échec · 0',exact:true}).click()
+ await overview.getByText('Aucune collecte pour cette sélection.').waitFor()
  status={schemaVersion:1,workflows:{etf:{name:'Update active ETF issuer data',status:'failure',completedAt:'2026-10-08T13:28:34Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/37784356798'}}}
  await page.reload({waitUntil:'networkidle'})
  assert.equal(await section.locator('.dr-item').count(),1)
@@ -29,5 +38,5 @@ try {
  await page.reload({waitUntil:'networkidle'})
  await page.getByRole('status').filter({hasText:'Le suivi des automatisations'}).waitFor()
  assert.deepEqual(errors,[])
- console.log('Automation alerts UI: failure, recovery, unavailable status, link and mobile layout OK')
+ console.log('Automation overview UI: success, unknown, filters, dates, failures, recovery, unavailable status, links and mobile layout OK')
 }finally{await browser?.close();server.kill()}
