@@ -15,7 +15,7 @@ class StatusTests(unittest.TestCase):
   path.stat.return_value.st_size=128_000_001
   with self.assertRaises(ValueError):read_report(path,'collect-etf-pilot.yml')
  def test_presentation_report_alerts_only_failed_records_and_recovers(self):
-  for workflow in ('update-scpi.yml','update-insurance.yml'):
+  for workflow in ('update-scpi.yml','update-insurance.yml','update-presentation-actors.yml'):
    failed=update_status({},run(workflow=workflow),[],[{'observations':[{'id':'one','status':'failure','reason':'PDF changed'},{'id':'two','status':'success'}]}])
    self.assertEqual(set(failed['workflows'][workflow]['dataFailures']),{'one'})
    self.assertEqual(failed['workflows'][workflow]['dataFailures']['one']['cause'],'PDF changed')

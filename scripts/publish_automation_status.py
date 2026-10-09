@@ -9,13 +9,14 @@ import tempfile
 import urllib.error
 import urllib.request
 
-REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation', 'update-scpi.yml':'scpi-observations', 'update-insurance.yml':'insurance-observations'}
+REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation', 'update-scpi.yml':'scpi-observations', 'update-insurance.yml':'insurance-observations', 'update-presentation-actors.yml':'actor-observations'}
 
 WORKFLOWS = {
     'update-editorial-radar.yml': 'Radar éditorial quotidien',
     'update-publication-observations.yml': 'Pouvoir d’achat et niveaux des anniversaires',
     'update-insurance.yml': 'Présentations d’assurance-vie',
     'update-scpi.yml': 'Présentations de SCPI',
+    'update-presentation-actors.yml': 'Présentations des acteurs et offres',
     'update-regulatory-data.yml': 'Paramètres fiscaux, LDDS et tarifs de courtiers',
     'collect-etf-pilot.yml': 'ETF et compositions d’indices',
     'update-market-monthly.yml': 'Historiques mensuels des marchés',

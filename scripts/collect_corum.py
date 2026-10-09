@@ -1,8 +1,6 @@
 """CORUM documents: discover current annual report and note on official product pages."""
 import datetime as dt
 import calendar
-import copy
-import hashlib
 import json
 import pathlib
 import re
@@ -18,32 +16,6 @@ PRODUCTS = {'corum-origin': ('CORUM Origin','corum-origin'), 'corum-xl': ('CORUM
 COUNTRIES = ['Pays-Bas','Italie','Irlande','Espagne','Finlande','Belgique','France','Allemagne','Lituanie','Slovénie','Portugal','Estonie','Lettonie','Royaume-Uni','Pologne','Canada','Suède','Norvège','Danemark','États-Unis','Autriche']
 SECTORS = {'Industriel':'Industriel et logistique','Parking':'Parkings','Bureau':'Bureaux','Commerce':'Commerces','Hôtellerie':'Hôtellerie','Logistique':'Logistique','Activité':'Activités','Santé':'Santé','Éducation':'Éducation et loisirs','Education':'Éducation et loisirs'}
 MONTHS = {'janvier':1,'février':2,'mars':3,'avril':4,'mai':5,'juin':6,'juillet':7,'août':8,'septembre':9,'octobre':10,'novembre':11,'décembre':12}
-
-
-def qualified_vector_quarterly(data, id_, url, today):
-    """Known vector-only bulletins are visually qualified by exact PDF bytes.
-
-    No OCR guess or annual fallback may silently become a current quarter.
-    A different publication requires a new qualification and triggers the
-    existing per-record failure alert while preserving the previous fiche.
-    """
-    registry = json.loads((pathlib.Path(__file__).parent / 'corum-quarterly-qualified.json').read_text())
-    evidence = registry[id_]
-    stamp = required(r'(?P<year>20\d{2})-T(?P<quarter>[1-4])', urllib.parse.unquote(url))
-    year, month = int(stamp['year']), int(stamp['quarter']) * 3
-    date = dt.date(year, month, calendar.monthrange(year, month)[1])
-    if date > today or date.isoformat() != evidence['asOf']:
-        raise ValueError('Vector CORUM bulletin period requires qualification')
-    if not data.startswith(b'%PDF') or hashlib.sha256(data).hexdigest() != evidence['sha256']:
-        raise ValueError('Vector CORUM bulletin changed; visual qualification required')
-    snapshot = {'asOf':evidence['asOf'], 'countries':copy.deepcopy(evidence['countries']),
-                'sectors':copy.deepcopy(evidence['sectors']), 'sourceUrls':[url],
-                'dateNote':'Bulletin trimestriel officiel sans texte extractible, page 4 vérifiée visuellement ; empreinte du PDF contrôlée à chaque collecte.'}
-    portfolio = {key:{'value':value,'asOf':evidence['asOf'],'sourceUrl':url,
-                     'label':{'buildings':'Immeubles','tenants':'Locataires','occupancy':'Taux d’occupation financier'}[key],
-                     **({'basis':'Inclut les loyers facturés et facturables et les locaux sous franchise de loyer ; distinct du taux physique.'} if key=='occupancy' else {})}
-                 for key,value in evidence['portfolio'].items()}
-    return snapshot, portfolio
 
 
 def documents(html, name, today):
@@ -240,7 +212,8 @@ def collect(id_,today):
         if id_=='corum-eurion':
             snapshot,portfolio=parse_eurion_quarterly(pdf_text(data),bbox_pages(data),url,today)
         else:
-            snapshot,portfolio=qualified_vector_quarterly(data,id_,url,today)
+            from corum_vector_ocr import extract
+            snapshot,portfolio=extract(data,id_,url,today)
     return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),
             'snapshot':snapshot, 'portfolio':portfolio, 'priceHistory':parse_annual_price_history(annual,today,annual_url),
             'annual':{'years':parse_annual(annual,today),'sourceUrl':annual_url},

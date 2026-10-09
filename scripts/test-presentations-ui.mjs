@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
-import { PRESENTATION_ACTORS, ACTOR_FAMILIES, buildActorTweet } from '../src/data/presentation-actors.js'
+import { PRESENTATION_ACTORS, ACTOR_FAMILIES, applyActorOffer, buildActorTweet } from '../src/data/presentation-actors.js'
 const base='http://127.0.0.1:4345/shinny-potato'
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4345','--strictPort'],{stdio:'ignore'})
 let browser
@@ -32,6 +32,14 @@ try {
   await families.getByRole('button',{name:'Private equity',exact:true}).click()
   await page.getByRole('button',{name:'Fundora',exact:true}).click()
   assert.equal(await page.locator('#actor-draft').inputValue(),'Retouche fundora')
+  await page.getByRole('group',{name:'Choisir une offre',exact:true}).getByRole('button',{name:'Fundora — Horizon',exact:true}).click()
+  await page.getByRole('tab',{name:'Texte',exact:true}).click()
+  assert.equal(await page.locator('#actor-draft').inputValue(),buildActorTweet(applyActorOffer(PRESENTATION_ACTORS.find(r=>r.id==='fundora'),'horizon')))
+  await page.locator('#actor-draft').fill('Brouillon Horizon')
+  await page.getByRole('group',{name:'Choisir une offre',exact:true}).getByRole('button',{name:'Fundora — Classique',exact:true}).click()
+  assert.equal(await page.locator('#actor-draft').inputValue(),'Retouche fundora')
+  await page.getByRole('group',{name:'Choisir une offre',exact:true}).getByRole('button',{name:'Fundora — Horizon',exact:true}).click()
+  assert.equal(await page.locator('#actor-draft').inputValue(),'Brouillon Horizon')
   await page.getByRole('button',{name:'Anaxago',exact:true}).click()
   assert.equal(await page.locator('#actor-draft').inputValue(),'Retouche anaxago')
   await page.getByRole('button',{name:'Rétablir le texte',exact:true}).click()

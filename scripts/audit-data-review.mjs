@@ -35,7 +35,7 @@ const current = buildReview('2026-10-02')
 const expectedReserves = Object.entries(BROKER_EVIDENCE).flatMap(([id, fields]) => EVIDENCE_FIELDS.flatMap(([key]) => {
   const item = fields[key]
   return item && !(item.status === 'non établi' && /sans objet/i.test(item.summary)) && (item.status !== 'confirmé' || item.review?.outcome === 'unresolved') ? [`broker:${id}:${key}`] : []
-})).sort()
+})).concat(DATA_CATALOG.flatMap(record=>record.fields.flatMap((field,index)=>field.qualificationMissing ? [`qualification:${record.id}:${index}`] : []))).sort()
 assert.deepEqual(current.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves)
 assert(current.items.some(x => x.id === 'broker:tr:garde' && x.category === 'reserve'), 'La gratuité du CTO ne clôture pas la réserve de garde PEA')
 assert.equal(current.items.filter(x => x.until).length, 3, 'Les offres réutilisées dans plusieurs cellules sont dédoublonnées')

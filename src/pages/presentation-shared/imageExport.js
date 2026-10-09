@@ -137,7 +137,7 @@ export const presentationBrands = {
 export function presentationReliefModel(record,kind) {
   const model=presentationCardModel(record,kind)
   if(kind==='actor') return { ...model, highlights: record.highlights.map(([label,value]) => row(label,value)),
-    qualifier: record.id==='matis' ? 'Accès et horizon annoncés · Revente cible non garantie · Conditions propres à chaque offre' : 'Fonctionnement général de l’acteur · Conditions propres à chaque offre · Vérifié le '+dateLabel(record.checkedAt),
+    qualifier: (record.selectedOffer?.warnings.length ? 'Durées officielles divergentes · Confirmer les conditions du titre' : (record.selectedOffer?.name ?? 'Fonctionnement général de l’acteur')+' · Conditions publiques')+' · Vérifié le '+dateLabel(record.checkedAt),
     brand: presentationBrands[record.id] }
   if(kind==='scpi') {
     const latest=record.annual.years.at(-1)

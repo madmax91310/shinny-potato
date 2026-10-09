@@ -1,3 +1,4 @@
+import observations from './automated-presentation-actors.json' with { type: 'json' }
 // Qualitative actor presentations, manually checked against public official pages.
 // These are not project subscriptions or automatically refreshed performance records.
 export const ACTOR_FAMILIES = [
@@ -5,8 +6,8 @@ export const ACTOR_FAMILIES = [
   ['forets', 'Forêts et actifs naturels'], ['energie', 'Énergies renouvelables'],
   ['terres', 'Terres agricoles'], ['immobilier', 'Financement immobilier'], ['art', 'Art'],
 ].map(([id, label]) => ({ id, label }))
-const actor = (id, name, family, data) => ({ id, name, family, checkedAt: '2026-10-09', verification: 'manual', ...data })
-export const PRESENTATION_ACTORS = [
+const actor = (id, name, family, data) => ({ id, name, family, checkedAt: '2026-10-09', editorialCheckedAt: '2026-10-09', verification: 'manual', ...data })
+const MANUAL_ACTORS = [
   actor('fundora', 'Fundora', 'private-equity', {
     role: 'Plateforme d’accès au non coté', offer: 'Stratégies de private equity sous mandat',
     exposure: 'Entreprises non cotées, via des fonds professionnels', vehicle: 'Mandat de gestion avec Kyoseil AM ; accès indirect aux fonds',
@@ -125,16 +126,41 @@ export const PRESENTATION_ACTORS = [
     sources: [{ label: 'Offre française, titres, ticket et horizon cible', url: 'https://www.matis.club/comment-investir' }],
   }),
 ]
+const offerCache = new WeakMap()
+export function applyActorOffer(record, offerId = record.offers?.[0]?.id) {
+  const selected = record.offers?.find(row => row.id === offerId)
+  if (!selected || record.selectedOffer?.id === offerId) return record
+  const cached = offerCache.get(record)?.get(offerId)
+  if (cached) return cached
+  const result = { ...record, selectedOffer: selected, offer: selected.name, access: selected.fields.access.value,
+    income: selected.fields.income.value, liquidity: selected.fields.exit.value,
+    highlights: selected.highlights, checkedAt: observations[record.id]?.checkedAt ?? record.checkedAt,
+    verification: 'public-terms',
+    sources: [...new Map([...record.sources, ...Object.values(selected.fields).flatMap(field => (field.sourceUrls ?? [field.sourceUrl]).map(url => ({ label: 'Conditions publiques de l’offre', url })))].map(source => [source.url, source])).values()] }
+  const cache = offerCache.get(record) ?? new Map()
+  cache.set(offerId, result); offerCache.set(record, cache)
+  return result
+}
+export const PRESENTATION_ACTORS = MANUAL_ACTORS.map(record => applyActorOffer({ ...record,
+  // Editorial explanation remains manual; only offer terms are collected.
+  intro: record.intro.replace(/ La page française annonce.*$/, '').replace(/ Le ticket annoncé commence.*$/, '').replace(/ à partir de 100 € annoncés/, '').replace(/ dès 10 € annoncés/, ''),
+  offers: observations[record.id]?.offers ?? [],
+}))
 export const familyLabel = id => ACTOR_FAMILIES.find(row => row.id === id)?.label ?? id
 export function buildActorTweet(record) {
   return [
-    `${record.name} — ${familyLabel(record.family)}\n\n${record.intro}`,
+    `${record.name} — ${familyLabel(record.family)}\n${record.offer}\n\n${record.intro}`,
     `Comment ça fonctionne ?\n${record.mechanism}`,
     `Ce que tu détiens\n${record.vehicle}.\n${record.distinction}`,
     `D’où peut venir le revenu ?\n${record.income}`,
     `L’accès et la sortie\n${record.access}\n${record.liquidity}`,
+    ...(record.selectedOffer ? [
+      `Frais et durée de l’offre\n${record.selectedOffer.fields.fees.value}\n${record.selectedOffer.fields.duration.value}`,
+      `Périmètre\n${record.selectedOffer.scope}\nÀ compléter : ${record.selectedOffer.missing.join(' ; ')}.`,
+      ...record.selectedOffer.warnings.map(warning => `Point à confirmer\n${warning}`),
+    ] : []),
     `Les points à regarder\n${record.risks}`,
-    `Cette fiche présente le fonctionnement de l’acteur. Les offres disponibles et leurs conditions peuvent évoluer. Frais détaillés et performances réalisées ne sont pas qualifiés dans cette fiche. Le capital et les revenus ne sont pas garantis.`,
-    `Sources officielles consultées le 09/10/2026 :\n${record.sources.map(row => row.url).join('\n')}`,
+    `Cette fiche présente les conditions publiques de l’offre et le fonctionnement de l’acteur. La disponibilité d’une souscription reste à vérifier. Les coûts non publiés et les performances réalisées ne sont pas qualifiés dans cette fiche. Le capital et les revenus ne sont pas garantis.`,
+    `Sources officielles consultées le ${record.checkedAt} :\n${record.sources.map(row => row.url).join('\n')}`,
   ].join('\n\n')
 }

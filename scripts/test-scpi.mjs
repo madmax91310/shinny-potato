@@ -48,7 +48,7 @@ for (const [id, count] of [['corum-origin',170],['corum-xl',96]]) {
   assert.equal(record.snapshot.asOf,'2026-06-30')
   assert.equal(record.portfolio.buildings.value,count)
   assert(buildTweet(record).includes(`${count} au 30/06/2026`))
-  assert(record.snapshot.dateNote.includes('vérifiée visuellement'))
+  assert(record.snapshot.dateNote.includes('deux résolutions concordantes'))
 }
 
 const epargne=SCPI.find(row => row.id === 'epargne-pierre')
