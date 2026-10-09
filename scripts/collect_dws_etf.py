@@ -83,7 +83,14 @@ def parse_product(body, share, now):
         reject('DWS exact-share total-return row missing')
     years = {}
     launch = facts.get('Share class launch date')
-    inception = dt.datetime.strptime(launch, '%d/%m/%Y').date() if launch else None
+    inception = None
+    if launch:
+        # Some exact-share dates carry a merger explanation and an HTML footnote.
+        # Use the leading share-class date, never a second date in that note.
+        date = re.match(r'^(\d{2}/\d{2}/\d{4})(?:\s|<|$)', launch)
+        if not date:
+            reject('Invalid DWS share launch date')
+        inception = dt.datetime.strptime(date[1], '%d/%m/%Y').date()
     for key, year in columns.items():
         if int(year) >= now.year:
             reject('Incomplete DWS current year')

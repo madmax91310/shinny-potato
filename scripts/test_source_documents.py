@@ -183,6 +183,14 @@ class CompletedIssuerCoverage(unittest.TestCase):
         r = vanguard_api(p, s, self.now)
         self.assertNotIn('countries', r); self.assertIn('performance', r)
 
+    def test_dws_share_launch_date_with_merger_footnote(self):
+        p=self.fixture('dws-exact-share.json');s=self.share('IE00BLNMYC90')
+        r=dws_product(p,s,self.now)
+        self.assertEqual(r['performance']['years']['2025'],10.95)
+        for item in dws_items(p['pdpResult']['pageSections']['keyFacts']):
+            if item['key']=='Share class launch date':item['value']='Unknown 10/06/2014'
+        with self.assertRaises(ValueError):dws_product(p,s,self.now)
+
     def test_dws_first_full_calendar_excludes_launch_stub(self):
         p=self.fixture('dws-exact-share.json');s=self.share('IE00BLNMYC90')
         facts=p['pdpResult']['pageSections']['keyFacts']
