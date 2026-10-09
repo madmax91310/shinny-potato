@@ -23,6 +23,8 @@
 .wealth-chart svg { width: 100%; height: auto; }
 .wealth-chart svg text { fill: #a8bdb0; font-size: 13px; }
 .wealth-legend { font-size: 12px; margin-bottom: 18px; }
+.wealth-legend span { display: inline-flex; gap: 6px; align-items: center; }
+.wealth-legend svg { width: 45px; height: 12px; }
 .wealth-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
 .wealth-metrics > div { border: 1px solid #344b42; border-radius: 12px; padding: 16px; }
 .wealth-metrics small { display: block; color: #a8bdb0; font-size: 12px; }

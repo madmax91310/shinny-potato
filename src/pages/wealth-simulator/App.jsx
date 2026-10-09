@@ -16,16 +16,16 @@ function NumberField({ label, value, onChange, min = 0, max = 1e9, step = 1 }) {
 }
 function Chart({ curves, years }) {
   const all = curves.flatMap(c=>c.points)
-  const max = Math.max(1,...all.map(p=>Math.max(p.capital,p.netPaid))) * 1.08
-  const min = Math.min(0,...all.map(p=>p.netPaid))
+  const max = Math.max(1,...all.map(p=>p.capital)) * 1.08
+  const min = 0
   const x = year => 105 + year / years * 675, y = value => 300 - (value - min) / (max - min) * 260
   const path = (points, field) => points.map((p,i)=>`${i?'L':'M'}${x(p.year)},${y(p[field])}`).join(' ')
-  return <div className="wealth-chart"><svg viewBox="0 0 810 350" role="img" aria-label="Projection du capital et des apports nets au fil des années">
+  return <div className="wealth-chart"><svg viewBox="0 0 810 350" role="img" aria-label="Projection du capital pour les trois scénarios au fil des années">
     {[0,1,2,3,4].map(i=>{const v=min+(max-min)*i/4;return <g key={i}><line x1="105" x2="780" y1={y(v)} y2={y(v)} stroke="#31423e"/><text x="95" y={y(v)+5} textAnchor="end">{money(v)}</text></g>})}
-    {curves.map(c=><path key={c.label} d={path(c.points,'capital')} stroke={c.color} fill="none" strokeWidth="3" />)}
-    {curves.map(c=><path key={`${c.label}-paid`} d={path(c.points,'netPaid')} stroke={c.color} opacity=".5" fill="none" strokeWidth="2" strokeDasharray="6 5" />)}
+    {curves.map(c=><path key={c.label} d={path(c.points,'capital')} stroke={c.color} fill="none" strokeWidth="3.5" strokeDasharray={c.dash.join(" ")} strokeLinecap="round" />)}
+
     <text x="105" y="335">Aujourd’hui</text><text x="780" y="335" textAnchor="end">{years} ans</text>
-  </svg><div className="wealth-legend">{curves.map(c=><span key={c.label} style={{color:c.color}}>● {c.label}</span>)}<span>Pointillés : apports nets des retraits</span></div></div>
+  </svg><div className="wealth-legend">{curves.map(c=><span key={c.label} style={{color:c.color}}><svg viewBox="0 0 45 12" aria-hidden="true"><line x1="1" y1="6" x2="44" y2="6" stroke={c.color} strokeWidth="3" strokeDasharray={c.dash.map(v=>v/2).join(" ")} strokeLinecap="round" /></svg>{c.label}</span>)}</div></div>
 }
 export default function App() {
   const [plan,setPlan] = useState(emptyPlan)
@@ -41,7 +41,7 @@ export default function App() {
     } catch(error) {return {error:error.message}}
   },[plan,portfolio])
   const text = computation.results ? draft ?? buildTweet(plan,computation.results) : ''
-  const renderImage = useCallback(()=>renderProjectionImage(plan,computation.results),[plan,computation.results])
+  const renderImage = useCallback(()=>renderProjectionImage(plan,computation.scenarios),[plan,computation.scenarios])
   const patchPocket = (id,field,value) => change(next=>{next.portfolios[next.active].pockets.find(p=>p.id===id)[field]=value})
   const patchEvent = (index,field,value) => change(next=>{const e=next.portfolios[next.active].events[index];e[field]=value;if(field==='month')e.endMonth=Math.max(e.endMonth,value)})
   function saveFile(content,name,type) {const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
@@ -51,7 +51,7 @@ export default function App() {
   }
   function restore() {try {const raw=localStorage.getItem(STORAGE);if(!raw)throw new Error('Aucune sauvegarde locale.');setPlan(validatePlan(JSON.parse(raw)));setDraft(null);setMessage('Sauvegarde chargée.')}catch(error){setMessage(error.message)}}
   const result=computation.results?.[plan.active]
-  const curves=plan.mode==='compare' && computation.results ? ['a','b'].map((k,i)=>({label:plan.portfolios[k].name,color:i?'#9bafff':'#65d5b0',points:computation.results[k].points})) : computation.scenarios?.map(s=>({...s,label:s.label})) ?? []
+  const curves=computation.scenarios ?? []
   return <div className="wealth-simulator">
     <PageHeader title="Simulateur de patrimoine" subtitle="Projette ton patrimoine par enveloppe et prépare des comparaisons pour X." />
     <div className="wealth-toolbar">
@@ -64,7 +64,7 @@ export default function App() {
     </div>
     <p className="wealth-note">Les montants restent dans ton navigateur. La sauvegarde est volontaire ; les exports contiennent les données affichées.</p>
     <div role="group" aria-label="Mode du simulateur" className="wealth-tabs">{[['personal','Mon patrimoine'],['compare','Comparaison pour X']].map(([id,label])=><button key={id} aria-pressed={plan.mode===id} onClick={()=>change(p=>{p.mode=id})}>{label}</button>)}</div>
-    <ToolWorkspace renderImage={computation.error ? undefined : renderImage} imageAlt="Projection de patrimoine avec hypothèses" imageDisabled={!!computation.error} actions={<>
+    <ToolWorkspace renderImage={computation.error ? undefined : renderImage} imageAlt="Graphique du patrimoine : scénarios prudent, central et favorable" imageDisabled={!!computation.error} actions={<>
       <Button disabled={!!computation.error} onClick={async()=>{try{await navigator.clipboard.writeText(text);setMessage('Texte copié.')}catch{setMessage('Copie indisponible : sélectionne le texte du brouillon.')}}}>Copier le texte</Button>
       <Button disabled={!!computation.error} onClick={()=>{try{downloadImage(renderImage(),'projection-patrimoine.png');setMessage('Image téléchargée.')}catch(e){setMessage(e.message)}}}>Télécharger l’image</Button>
       <Button disabled={!!computation.error} variant="secondary" onClick={()=>{
@@ -112,6 +112,7 @@ export default function App() {
         {computation.error ? <p role="alert">{computation.error}</p> : <>
           <div role="group" aria-label="Résultats du simulateur" className="wealth-tabs">{[['projection','Projection'],['analysis','Répartition par enveloppe'],['post','Publication X']].map(([id,label])=><button key={id} aria-pressed={tab===id} onClick={()=>setTab(id)}>{label}</button>)}</div>
           {tab==='projection' && <>
+            {plan.mode==='compare' && <p className="wealth-note">Trois scénarios pour {portfolio.name}. Sélectionne A ou B dans les réglages pour afficher l’autre patrimoine.</p>}
             <Chart curves={curves} years={plan.years}/>
             <div className="wealth-metrics"><div><small>Capital projeté · {portfolio.name}</small><strong>{money(result.final.capital)}</strong></div><div><small>Capital initial + versements</small><strong>{money(result.final.paid)}</strong></div><div><small>Gains / pertes simulés</small><strong>{money(result.final.gains)}</strong></div><div><small>Pouvoir d’achat estimé</small><strong>{money(result.final.real)}</strong></div></div>
             {plan.mode==='compare' && <div className="wealth-panel"><p>A : {money(computation.results.a.final.capital)} · B : {money(computation.results.b.final.capital)}</p><strong>Écart simulé : {money(Math.abs(computation.results.a.final.capital-computation.results.b.final.capital))}</strong></div>}

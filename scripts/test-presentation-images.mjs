@@ -23,15 +23,17 @@ try {
         const {renderPresentationImage}=await import('/shinny-potato/src/pages/presentation-shared/imageExport.js')
         const original=CanvasRenderingContext2D.prototype.fillText,calls=[]
         CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...rest){
-          if(this.canvas.width===1600){const m=this.measureText(value);let left=x;if(this.textAlign==='center')left-=m.width/2;calls.push({value,left,right:left+m.width,top:y,bottom:y+m.actualBoundingBoxDescent})}
+          if(this.canvas.width===1600){const m=this.measureText(value);let left=x;if(this.textAlign==='center')left-=m.width/2;calls.push({value,font:this.font,left,right:left+m.width,top:y,bottom:y+m.actualBoundingBoxDescent})}
           return original.call(this,value,x,y,...rest)
         }
         try {const canvas=await renderPresentationImage(record,kind);return {width:canvas.width,height:canvas.height,calls,url:canvas.toDataURL('image/png')}} finally {CanvasRenderingContext2D.prototype.fillText=original}
       },{record,kind})
       assert.equal(result.width,1600)
       for(const c of result.calls)assert(c.left>=55 && c.right<=1545 && c.top>=45 && c.bottom<result.height-45,`${record.id}: overflowing text ${c.value}`)
+      for(const c of result.calls.filter(c=>/^[≤>]?[ \d ,]+(?:%|€)/.test(c.value)))assert(parseFloat(c.font.match(/([\d.]+)px/)[1])>=56,`${record.id}: figures too small ${c.value}`)
       const copy=result.calls.map(c=>c.value).join(' ').replace(/\s+/g,' ')
       assert.equal(copy.split('Épargnant Libre').length-1,1)
+      assert(!copy.includes('Détail dans le texte'))
       assert.equal(result.height,1600)
       const model=presentationCardModel(record,kind)
       assert.equal(model.cards.length,3)
@@ -91,11 +93,11 @@ try {
   assert(presentationImageModel(changed,'scpi').sections.flatMap(s=>s.columns ?? []).flatMap(c=>c.rows).some(r=>r.value.includes('1 234')))
   // Asset failure must give a visible error and a later export must be able to retry.
   const failurePage=await browser.newPage()
-  await failurePage.route('**/asset-art/mineral-scpi.webp',route=>route.abort())
+  await failurePage.route('**/asset-art/presentation-logos/iroko-zen.svg',route=>route.abort())
   await failurePage.goto(`${base}/presentation-scpi`,{waitUntil:'networkidle'})
   await failurePage.getByRole('tab',{name:'Image',exact:true}).click()
-  await failurePage.getByRole('alert').filter({hasText:'Illustration indisponible'}).waitFor()
-  await failurePage.unroute('**/asset-art/mineral-scpi.webp')
+  await failurePage.getByRole('alert').filter({hasText:'Logo indisponible'}).waitFor()
+  await failurePage.unroute('**/asset-art/presentation-logos/iroko-zen.svg')
   const retry=failurePage.waitForEvent('download')
   await failurePage.getByRole('button',{name:'Télécharger l’image',exact:true}).click()
   await retry

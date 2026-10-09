@@ -55,10 +55,41 @@ function wrap(ctx,text,width) {
   return result
 }
 function text(ctx,value,x,y,width,size=29,color=INK,weight=400,family=SANS){font(ctx,size,weight,family);ctx.fillStyle=color;const lines=wrap(ctx,value,width);lines.forEach((line,i)=>ctx.fillText(line,x,y+i*size*1.35));return y+lines.length*size*1.35}
+const brandAssets = {
+  'iroko-zen':['iroko-zen.svg'], 'remake-live':['remake-live.png'],
+  'corum-origin':['corum.svg'], 'corum-xl':['corum.svg'], 'corum-eurion':['corum.svg'],
+  'transitions-europe':['arkea.png'], 'activimmo':['activimmo.png'], 'epargne-pierre':['epargne-pierre.svg'],
+  'linxea-spirit-2':['linxea-spirit-2.svg'], 'linxea-avenir-2':['linxea-avenir-2.svg'],
+  'linxea-vie':['linxea-vie.svg'], 'linxea-zen':['linxea-zen.svg'],
+  'lucya-cardif':['lucya.png','cardif.png'], 'placement-direct-vie':['placement-direct-vie.svg'],
+}
+const managerMarks = new Set(['corum-origin','corum-xl','corum-eurion','transitions-europe','activimmo','placement-direct-vie'])
 const assets=new Map()
-function loadArt(kind) {
-  if(!assets.has(kind))assets.set(kind,new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>{assets.delete(kind);reject(new Error('Illustration indisponible. Réessaie l’export.'))};img.src=`${import.meta.env.BASE_URL}asset-art/mineral-${kind}.webp`}))
-  return assets.get(kind)
+function loadLogo(file) {
+  if(!assets.has(file))assets.set(file,new Promise((resolve,reject)=>{
+    const img=new Image()
+    img.onload=()=>resolve(img)
+    img.onerror=()=>{assets.delete(file);reject(new Error('Logo indisponible. Réessaie l’export.'))}
+    img.src=`${import.meta.env.BASE_URL}asset-art/presentation-logos/${file}`
+  }))
+  return assets.get(file)
+}
+// Preserve the official mark's contours; material and relief are rendered locally.
+function reliefLogo(ctx,img,x,y,width,height) {
+  const layer=document.createElement('canvas');layer.width=Math.ceil(width);layer.height=Math.ceil(height)
+  const lc=layer.getContext('2d');lc.drawImage(img,0,0,width,height)
+  // Some official PNGs have a white background: convert that paper to transparency.
+  const pixels=lc.getImageData(0,0,layer.width,layer.height)
+  for(let i=0;i<pixels.data.length;i+=4){
+    const light=Math.min(pixels.data[i],pixels.data[i+1],pixels.data[i+2])
+    pixels.data[i+3]*=1-Math.max(0,(light-215)/40)
+  }
+  lc.putImageData(pixels,0,0)
+  lc.globalCompositeOperation='source-in'
+  const tint=lc.createLinearGradient(0,0,width,height);tint.addColorStop(0,'#617966');tint.addColorStop(.55,'#213d31');tint.addColorStop(1,'#92a487')
+  lc.fillStyle=tint;lc.fillRect(0,0,width,height)
+  ctx.save();ctx.shadowColor='#30402c48';ctx.shadowBlur=14;ctx.shadowOffsetX=6;ctx.shadowOffsetY=10
+  ctx.drawImage(layer,x,y);ctx.restore()
 }
 // The approved reference is a square editorial card, with three summary panels.
 // Full product conditions remain in the adjacent text publication.
@@ -78,7 +109,7 @@ export function presentationCardModel(record, kind) {
     model.compactFooter='Capital et revenus non garantis · Revente non immédiate'
   } else {
     model.cards=[
-      {title:'Supports',icon:'leaf',rows:[row('Supports annoncés',`Plus de ${format(record.supports.minimumCount)}`),row('Ouverture',euro(record.access.initial)),row('Versement programmé',`${euro(record.access.monthly)}/mois`)],note:'Gestion libre · '+record.insurer},
+      {title:'Supports',icon:'leaf',rows:[row('Supports annoncés',`> ${format(record.supports.minimumCount)}`),row('Ouverture',euro(record.access.initial)),row('Versement programmé',`${euro(record.access.monthly)}/mois`)],note:'Gestion libre · '+record.insurer},
       {title:'Fonds euros',icon:'coins',rows:record.euroFunds.map(f=>{const r=f.years.at(-1);return row(`${f.name} · ${r.year}`,r.return!=null?pct(r.return):`${format(r.returnMin)} à ${pct(r.returnMax)}`)}),note:record.euroFunds.map(f=>f.years.at(-1).condition).filter(Boolean).join('; ') || 'Nets de gestion, avant prélèvements sociaux et fiscaux. Hors bonus.'},
       {title:'Frais',icon:'document',rows:[row('Versement',pct(record.fees.subscription)),row('Gestion des UC',`${pct(record.fees.units)}/an`),row('Transactions ETF',pct(record.fees.etfTrade))],note:'Hors frais des supports et options. Transactions : par opération.'},
     ]
@@ -96,44 +127,53 @@ function panelIcon(ctx,kind,x,y) {
 }
 export async function renderPresentationImage(record,kind) {
   await document.fonts.ready
-  const model=presentationCardModel(record,kind),art=await loadArt(kind)
+  const model=presentationCardModel(record,kind)
+  const files=brandAssets[record.id]
+  if(!files)throw new Error('Logo de ce placement non référencé.')
+  const logos=await Promise.all(files.map(loadLogo))
   const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1600
   const ctx=canvas.getContext('2d');ctx.textBaseline='top'
   const bg=ctx.createLinearGradient(0,0,1600,1600);bg.addColorStop(0,'#fffaf1');bg.addColorStop(1,'#ece4d7');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1600)
   let seed=37
   for(let i=0;i<27000;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;const x=seed%1600;seed=(Math.imul(seed,1664525)+1013904223)>>>0;ctx.fillStyle=i%2?'#705f4410':'#ffffff66';ctx.fillRect(x,seed%1600,1,1)}
   ctx.strokeStyle='#d8cdbb';ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(45,35,1510,1530,32);ctx.stroke()
-  let size=116
-  while(size>48){font(ctx,size,600,SERIF);if(ctx.measureText(model.title).width<=1400)break;size-=2}
-  ctx.textAlign='center';text(ctx,model.title,800,100,1400,size,INK,600,SERIF)
-  text(ctx,model.subtitle,800,245,1400,42,MUTED,400,SERIF)
-  ctx.strokeStyle='#858475';ctx.lineWidth=2
-  for(const [a,b] of [[220,375],[1225,1380]]){ctx.beginPath();ctx.moveTo(a,274);ctx.lineTo(b,274);ctx.stroke()}
-  // The artwork occupies the same dominant position as the approved mock-up.
-  const scale=Math.min(1480/art.width,660/art.height),w=art.width*scale,h=art.height*scale
-  ctx.drawImage(art,(1600-w)/2,325+(660-h)/2,w,h)
+  let titleSize=100
+  while(titleSize>48){font(ctx,titleSize,600,SERIF);if(ctx.measureText(model.title).width<=1400)break;titleSize-=2}
+  ctx.textAlign='center';text(ctx,model.title,800,100,1400,titleSize,INK,600,SERIF)
+  text(ctx,model.subtitle,800,225,1400,38,MUTED,400,SERIF)
+  // A compact mineral plaque replaces the generic building / abstract sculpture.
+  ctx.save();ctx.shadowColor='#5a4c3428';ctx.shadowBlur=32;ctx.shadowOffsetY=15
+  const stone=ctx.createLinearGradient(220,320,1380,610);stone.addColorStop(0,'#fffdf5');stone.addColorStop(1,'#dfd6c3')
+  ctx.fillStyle=stone;ctx.beginPath();ctx.roundRect(200,300,1200,255,42);ctx.fill();ctx.restore()
+  for(let i=0;i<logos.length;i++) {
+    const img=logos[i],slot=1080/logos.length
+    const scale=Math.min((slot-70)/img.width,(managerMarks.has(record.id)?135:190)/img.height)
+    const w=img.width*scale,h=img.height*scale
+    reliefLogo(ctx,img,260+i*slot+(slot-w)/2,managerMarks.has(record.id)?325:300+(255-h)/2,w,h)
+  }
+  if(managerMarks.has(record.id))text(ctx,record.name,800,505,1040,36,INK,600,SERIF)
   for(let i=0;i<3;i++) {
     const card=model.cards[i],x=82+i*486,width=464
-    ctx.fillStyle='#fffcf57a';ctx.strokeStyle='#d8cdbb';ctx.lineWidth=2
-    ctx.beginPath();ctx.roundRect(x,1000,width,408,28);ctx.fill();ctx.stroke()
-    panelIcon(ctx,card.icon,x+width/2,1065)
-    ctx.textAlign='center';text(ctx,card.title,x+width/2,1120,width-48,43,INK,400,SERIF)
+    ctx.fillStyle='#fffcf5d9';ctx.strokeStyle='#d8cdbb';ctx.lineWidth=2
+    ctx.beginPath();ctx.roundRect(x,610,width,770,28);ctx.fill();ctx.stroke()
+    panelIcon(ctx,card.icon,x+width/2,676)
+    ctx.textAlign='center';text(ctx,card.title,x+width/2,730,width-48,46,INK,400,SERIF)
     ctx.textAlign='left'
-    // Fit whole phrases in the three panels without removing conditions.
-    let bodySize=29
+    let labelSize=34,valueSize=60,noteSize=28
     const draw=(paint)=>{
       const target=paint?ctx:document.createElement('canvas').getContext('2d');target.textBaseline='top'
-      let y=1181
-      for(const r of card.rows){y=text(target,r.label,x+28,y,width-56,bodySize-5,MUTED);y=text(target,r.value,x+28,y+3,width-56,bodySize+7,INK,600,SERIF)+12}
-      return text(target,card.note,x+28,y+2,width-56,bodySize-6,MUTED)
+      let y=815
+      for(const r of card.rows){y=text(target,r.label,x+28,y,width-56,labelSize,MUTED);y=text(target,r.value,x+28,y+8,width-56,valueSize,INK,600,SERIF)+12}
+      return text(target,card.note,x+28,y+12,width-56,noteSize,MUTED)
     }
-    while(bodySize>18 && draw(false)>1386)bodySize--
+    // Keep the figures large even for conditional fund ranges and fee bases.
+    while(draw(false)>1350 && labelSize>30){labelSize--;valueSize--;noteSize--}
+    if(draw(false)>1350)throw new Error('Les conditions dépassent la carte ; adapte sa composition.')
     draw(true)
   }
   ctx.textAlign='center'
-  text(ctx,model.compactFooter,800,1430,1400,25,MUTED)
-  text(ctx,`Relevé le ${dateLabel(record.checkedAt)} · Conditions détaillées dans le texte`,800,1470,1400,23,MUTED)
+  text(ctx,model.compactFooter,800,1415,1400,30,MUTED)
+  text(ctx,`Relevé le ${dateLabel(record.checkedAt)}`,800,1465,1400,28,MUTED)
   text(ctx,'Épargnant Libre',800,1515,1400,32,INK,400,SERIF)
-  ctx.textAlign='left'
   return canvas
 }
