@@ -17243,7 +17243,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-      "sha256": "16a8e9029c0f6d6d49027f8bdaef2f3a0d046869cb68628cf223564e99e85297",
+      "sha256": "30727ebbedf1d5feed2a8db2e6598318490101bd10200c49dfbe4907614ee2ad",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-09"
     },
@@ -17425,7 +17425,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-      "sha256": "9fdd1bd4c47256b39d3f41307b81b5d8d8e6d5c0bd53694f74ce0a8c3ccdf449",
+      "sha256": "5108c71f09c2a0e6a6d2d2bc9f2d49a7e594ca238792fd9418075c8a8d409cb9",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-09"
     },
@@ -17768,7 +17768,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-      "sha256": "f16f4bc819c0539d6d1ca8868c7910504794d8342e5603098da6a867141744ce",
+      "sha256": "035b4da9573705c48a7e3575916182b9a79d9c1292d8950d2031692eb2c16a25",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-09"
     },
@@ -18576,7 +18576,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-      "sha256": "8de0420228ef32bd4c0689c004cd22ef4b266b6ec87327f955265a71f49ede31",
+      "sha256": "bd09ff679df76a14e58e2b72498c76dd17ad6f025393687eae98652b9fcab577",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-09"
     },
@@ -19126,7 +19126,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/historicaldata/download",
-      "sha256": "9f82c4f1e1e11b6622bcea1c41fbda4416812557bafb4c4884e31ff0576bee28",
+      "sha256": "6838e02ea15bff362b25460408d6e0f74bb8de385a700fc56f749b88fc4825c5",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-09"
     },
@@ -27559,13 +27559,13 @@
       "scope": "share-class",
       "asOf": "2026-10-09",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "4097928dd6c8e38cf2282f3b2ec1c9e5849395e8e8327cecc6f5129821d9f2ef",
+      "sha256": "343d0c2e6799abcf2fd2a79b62a4c37f6aaa56a3ddcbf5894ac55be629c6cd5d",
       "checkedAt": "2026-10-09"
     },
     "characteristics": {
       "asOf": "2026-10-09",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "4097928dd6c8e38cf2282f3b2ec1c9e5849395e8e8327cecc6f5129821d9f2ef",
+      "sha256": "343d0c2e6799abcf2fd2a79b62a4c37f6aaa56a3ddcbf5894ac55be629c6cd5d",
       "terPct": 2.0,
       "checkedAt": "2026-10-09"
     },
@@ -27581,7 +27581,7 @@
       },
       "asOf": "2026-10-09",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "4097928dd6c8e38cf2282f3b2ec1c9e5849395e8e8327cecc6f5129821d9f2ef",
+      "sha256": "343d0c2e6799abcf2fd2a79b62a4c37f6aaa56a3ddcbf5894ac55be629c6cd5d",
       "method": "calendar-year exact ETP NAV total return, net of fees",
       "checkedAt": "2026-10-09"
     }
@@ -28234,7 +28234,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "9daa0529bfd53ab2c31017eafca2785b440b0843378eb57731f75d6a716fe9bd",
+      "sha256": "8247279e50b3ae9fe88af0e416575ebb3ff690d482af2f6d2214f519abf44101",
       "checkedAt": "2026-10-09"
     },
     "characteristics": {
@@ -29302,6 +29302,241 @@
         {
           "name": "Autres pays",
           "weightPct": 0.39
+        }
+      ],
+      "checkedAt": "2026-10-09"
+    }
+  },
+  "FR001400ZGO4": {
+    "currency": "EUR",
+    "productId": "FR001400ZGO4",
+    "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "provider": "Amundi",
+    "aum": {
+      "amount": 21995473.390300002,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-10-08",
+      "checkedAt": "2026-10-09"
+    },
+    "characteristics": {
+      "terPct": 0.3,
+      "index": "MSCI EM ex-Egypt ESG Broad CTB Select Index",
+      "distribution": "Capitalisation",
+      "checkedAt": "2026-10-09"
+    },
+    "sectors": {
+      "asOf": "2026-10-07",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 44.387208,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 19.532206,
+          "label": "Financials"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 7.228335,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 6.240991,
+          "label": "Industrials"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 5.823615,
+          "label": "Communication"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 5.14816,
+          "label": "Materials"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 3.160887,
+          "label": "Energy"
+        },
+        {
+          "name": "Others",
+          "weightPct": 3.01475,
+          "label": "Autres"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 2.790403,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 2.673446,
+          "label": "Health Care"
+        }
+      ],
+      "checkedAt": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-07",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "Taiwan",
+          "weightPct": 29.821086
+        },
+        {
+          "name": "South Korea",
+          "weightPct": 21.18618
+        },
+        {
+          "name": "China",
+          "weightPct": 19.357799
+        },
+        {
+          "name": "India",
+          "weightPct": 10.324783
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 4.680327
+        },
+        {
+          "name": "South Africa",
+          "weightPct": 2.879188
+        },
+        {
+          "name": "Saudi Arabia",
+          "weightPct": 2.320979
+        },
+        {
+          "name": "Mexico",
+          "weightPct": 1.600883
+        },
+        {
+          "name": "UAE",
+          "weightPct": 1.183756
+        },
+        {
+          "name": "Poland",
+          "weightPct": 1.135346
+        },
+        {
+          "name": "Malaysia",
+          "weightPct": 0.925418
+        },
+        {
+          "name": "Thailand",
+          "weightPct": 0.853851
+        },
+        {
+          "name": "Greece",
+          "weightPct": 0.529472
+        },
+        {
+          "name": "Peru",
+          "weightPct": 0.442482
+        },
+        {
+          "name": "Kuwait",
+          "weightPct": 0.439254
+        },
+        {
+          "name": "Indonesia",
+          "weightPct": 0.391329
+        },
+        {
+          "name": "Chile",
+          "weightPct": 0.389456
+        },
+        {
+          "name": "Qatar",
+          "weightPct": 0.384479
+        },
+        {
+          "name": "Turkey",
+          "weightPct": 0.364357
+        },
+        {
+          "name": "Hungary",
+          "weightPct": 0.260492
+        },
+        {
+          "name": "Colombia",
+          "weightPct": 0.221678
+        },
+        {
+          "name": "Philippines",
+          "weightPct": 0.216406
+        },
+        {
+          "name": "Czech Republic",
+          "weightPct": 0.090998
+        }
+      ],
+      "checkedAt": "2026-10-09"
+    },
+    "holdings": {
+      "asOf": "2026-10-07",
+      "basis": "index",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "rows": [
+        {
+          "name": "TAIWAN SEMICONDUCTOR MANUFAC",
+          "weightPct": 16.160722,
+          "isin": "TW0002330008"
+        },
+        {
+          "name": "SAMSUNG ELECTRONIC CO LTD",
+          "weightPct": 7.496454,
+          "isin": "KR7005930003"
+        },
+        {
+          "name": "SK HYNIX INC",
+          "weightPct": 5.748709,
+          "isin": "KR7000660001"
+        },
+        {
+          "name": "TENCENT HOLDINGS LTD",
+          "weightPct": 2.610405,
+          "isin": "KYG875721634"
+        },
+        {
+          "name": "ALIBABA GROUP HOLDING LTD",
+          "weightPct": 1.798726,
+          "isin": "KYG017191142"
+        },
+        {
+          "name": "MEDIATEK INC",
+          "weightPct": 1.753211,
+          "isin": "TW0002454006"
+        },
+        {
+          "name": "SAMSUNG ELECTRONICS - PFD NV",
+          "weightPct": 1.050684,
+          "isin": "KR7005931001"
+        },
+        {
+          "name": "DELTA ELECTRONICS INC",
+          "weightPct": 1.017134,
+          "isin": "TW0002308004"
+        },
+        {
+          "name": "CHINA CONSTRUCTION BANK HK",
+          "weightPct": 0.921682,
+          "isin": "CNE1000002H1"
+        },
+        {
+          "name": "HON HAI PRECISION INDUSTRY",
+          "weightPct": 0.740337,
+          "isin": "TW0002317005"
         }
       ],
       "checkedAt": "2026-10-09"

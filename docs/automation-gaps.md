@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 155/155 |
-| aum | 155/155 |
-| performance | 143/155 |
-| countries | 140/155 |
-| sectors | 140/155 |
-| holdings | 140/155 |
+| ter | 156/156 |
+| aum | 156/156 |
+| performance | 143/156 |
+| countries | 141/156 |
+| sectors | 141/156 |
+| holdings | 141/156 |
 
 ## Premiers calendriers des 11 parts récentes
 
@@ -35,6 +35,7 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
+| instrument | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2027. Publication possible à partir du 2028-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |

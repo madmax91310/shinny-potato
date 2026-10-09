@@ -291,16 +291,17 @@
   ],
   "checkedAt": "2026-10-09",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 155,
+  "instruments": 156,
   "covered": {
-    "ter": 155,
-    "aum": 155,
+    "ter": 156,
+    "aum": 156,
     "performance": 143,
-    "countries": 140,
-    "sectors": 140,
-    "holdings": 140
+    "countries": 141,
+    "sectors": 141,
+    "holdings": 141
   },
   "summary": {
+    "instrument:unqualified": 1,
     "instrument:waiting-first-year": 11,
     "instrument:not-applicable": 42,
     "instrument:source-conflict": 4,
@@ -308,6 +309,17 @@
     "index:not-applicable": 16
   },
   "gaps": [
+    {
+      "type": "instrument",
+      "id": "FR001400ZGO4",
+      "name": "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
     {
       "type": "instrument",
       "id": "FR0014017NX3",
