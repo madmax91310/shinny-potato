@@ -80,6 +80,7 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
       const review = scheduledReview({ ...base, id: `data:${record.id}:${index}` }, field, today)
       schedule.push(review)
       if (review.category !== 'current') items.push(review)
+      if (field.qualificationMissing) items.push({ ...base, id: `qualification:${record.id}:${index}`, category: 'reserve', reason: field.qualificationMissing })
       if (!field.metadata.sourceUrls.length) items.push({ ...base, id: `source:${record.id}:${index}`, category: 'reserve', reason: 'Source individuelle non renseignée pour une donnée utilisée.' })
     }
   }

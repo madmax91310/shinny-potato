@@ -70,7 +70,10 @@ jobs:
       - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: node scripts/test-scpi.mjs
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra
       - run: python -m unittest discover -s scripts -p 'test_corum.py'
+      - run: python -m unittest discover -s scripts -p 'test_corum_vector.py'
+      - run: python -m unittest discover -s scripts -p 'test_presentation_actors.py'
       - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_insurance.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'

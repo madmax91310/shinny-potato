@@ -1,0 +1,711 @@
+{
+  "fundora": {
+    "id": "fundora",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.fundora.fr/questions",
+        "sha256": "289c76c87a9af8d174874e84a5c192b68d64257cfae3b8640eea2a489b18d4d7"
+      }
+    ],
+    "offers": [
+      {
+        "id": "classique",
+        "name": "Fundora — Classique",
+        "scope": "Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Grand public dès 100 € ; Fundora Plus dès 30000 € (offre distincte, appels progressifs).",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Entrée : 2 à 3 %. Gestion annuelle : 1 à 1,5 %. Barème selon le montant ; vérifier les frais des fonds sous-jacents et le mandat.",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Durée générale des fonds : 6 à 10 ans, extensions possibles ; durée propre à la stratégie.",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Gains éventuels lors des distributions et cessions des fonds ; aucune performance réalisée du mandat n’est qualifiée.",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Pas de rachat garanti ni de liquidité organisée ; cession à un acquéreur possible, sans garantie de prix ou de délai.",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "Frais complets des fonds sous-jacents et stratégie sélectionnée"
+        ],
+        "highlights": [
+          [
+            "Accès annoncé",
+            "100 €"
+          ],
+          [
+            "Entrée",
+            "2–3 %"
+          ],
+          [
+            "Gestion / an",
+            "1–1,5 %"
+          ]
+        ],
+        "warnings": []
+      },
+      {
+        "id": "horizon",
+        "name": "Fundora — Horizon",
+        "scope": "Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Grand public dès 100 € ; Fundora Plus dès 30000 € (offre distincte, appels progressifs).",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Entrée : 4 à 10 %. Gestion annuelle : 0,3 à 0,5 %. Barème selon le montant ; vérifier les frais des fonds sous-jacents et le mandat.",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Durée générale des fonds : 6 à 10 ans, extensions possibles ; durée propre à la stratégie.",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Gains éventuels lors des distributions et cessions des fonds ; aucune performance réalisée du mandat n’est qualifiée.",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Pas de rachat garanti ni de liquidité organisée ; cession à un acquéreur possible, sans garantie de prix ou de délai.",
+            "sourceUrl": "https://www.fundora.fr/questions",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "Frais complets des fonds sous-jacents et stratégie sélectionnée"
+        ],
+        "highlights": [
+          [
+            "Accès annoncé",
+            "100 €"
+          ],
+          [
+            "Entrée",
+            "4–10 %"
+          ],
+          [
+            "Gestion / an",
+            "0,3–0,5 %"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "mymarguerit": {
+    "id": "mymarguerit",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.mymarguerit.com/",
+        "sha256": "4c2eeb58244e563345113b3f639346dc3833b5f867eec5f66d8823b6bb24c1d3"
+      }
+    ],
+    "offers": [
+      {
+        "id": "cheptel",
+        "name": "Cheptel MyMarguerit",
+        "scope": "Conditions publiques du placement bovin ; l’UC décrite ici n’est pas un support d’assurance vie.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Valeur annoncée par UC : 2145 € ; coût de souscription annoncé : 2316 €/UC, arrondi et frais inclus. Minimum contractuel d’UC à confirmer.",
+            "sourceUrl": "https://www.mymarguerit.com/",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-01-01"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Souscription : 8 % sur la valeur de l’UC ; cession : 8 % sur sa valeur au moment de la vente. Autres coûts de régie et d’assurance à vérifier au contrat.",
+            "sourceUrl": "https://www.mymarguerit.com/",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-01-01"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Capitalisation pendant les trois premières années ; à partir de la quatrième, capitalisation ou produit annuel. Cela ne constitue pas une garantie de remboursement.",
+            "sourceUrl": "https://www.mymarguerit.com/",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-01-01"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Produit annuel ou capitalisation selon le contrat et le choix autorisé à partir de la quatrième année ; revenus non garantis.",
+            "sourceUrl": "https://www.mymarguerit.com/",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-01-01"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "La page annonce une sortie à tout moment selon le contrat ; délai, prix et engagement de rachat à vérifier. Des frais de cession s’appliquent.",
+            "sourceUrl": "https://www.mymarguerit.com/",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-01-01"
+          }
+        },
+        "missing": [
+          "Minimum contractuel d’UC, coûts complets de régie/assurance, délai et prix de sortie"
+        ],
+        "highlights": [
+          [
+            "Coût / UC annoncé",
+            "2316 €"
+          ],
+          [
+            "Frais de souscription",
+            "8 %"
+          ],
+          [
+            "Frais de cession",
+            "8 %"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "bacchus": {
+    "id": "bacchus",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://bacchusconseil.com/fonctionnement/",
+        "sha256": "a25a0013494537298c9a0128fb199597181093ab4e3eb4bbf059e6df23f3a478"
+      },
+      {
+        "url": "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+        "sha256": "269aed2a4b12e119b86a4f024c9a541e0639fe5eec7b5985dbe4443537c13ca8"
+      }
+    ],
+    "offers": [
+      {
+        "id": "cave-de-tain",
+        "name": "GFV Cave de Tain — Crozes-Hermitage",
+        "scope": "Groupement nommé sur la page du domaine ; modalités du modèle Bacchus à confirmer dans son dossier.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Parts du GFV Cave de Tain Crozes-Hermitage ; prix par part et minimum de souscription non publiés dans la page du domaine.",
+            "sourceUrl": "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Le modèle met 4/5 des impôts fonciers à la charge du fermier. Frais de souscription, de gestion et de cession propres au groupement non chiffrés dans ces pages.",
+            "sourceUrl": "https://bacchusconseil.com/fonctionnement/",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Bail du modèle : 18 ans, renouvelable par périodes de 9 ans. La durée du bail n’est pas une durée de blocage de l’investisseur.",
+            "sourceUrl": "https://bacchusconseil.com/fonctionnement/",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Fermage versé en argent et/ou en nature ; dotation en bouteilles fixée dans le bail. Montant propre au domaine non publié.",
+            "sourceUrl": "https://bacchusconseil.com/fonctionnement/",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Cession soumise aux statuts et à un acquéreur ; prix de cession du modèle fixé en assemblée tous les trois ans. Aucun délai de revente garanti.",
+            "sourceUrl": "https://bacchusconseil.com/fonctionnement/",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "Dossier du GFV : ticket, frais chiffrés, bail et dotation exacte"
+        ],
+        "highlights": [
+          [
+            "Véhicule",
+            "GFV"
+          ],
+          [
+            "Domaine",
+            "Cave de Tain"
+          ],
+          [
+            "Appellation",
+            "Crozes-Herm."
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "france-valley": {
+    "id": "france-valley",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+        "sha256": "28c3f9d10cbbaf2e5081609aa30dea325b2175545b7657fb0983faf73d863f96"
+      }
+    ],
+    "offers": [
+      {
+        "id": "gfi-patrimoine",
+        "name": "GFI France Valley Patrimoine",
+        "scope": "Parts du GFI Patrimoine, hors autres produits France Valley ; communication publicitaire, DIC sur demande.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Minimum annoncé dans les caractéristiques : 37125 €. La page conserve ailleurs un ancien montant : retenir la rubrique du produit et confirmer avant souscription.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Souscription : 12 % TTC maximum. Gestion du GFI : 0,9 % TTC/an maximum sur la valeur des actifs. Dépositaire : 4 200 € TTC + 0,048 % jusqu’à 50 M€, 0,03 % entre 50 et 200 M€, 0,018 % au-delà. Acquisition : expertise environ 12–120 € TTC/ha, transaction 6 % TTC, notaire/mutation environ 7,5 %. Donation/succession : procédure forfaitaire 1 200 € TTC. Frais du véhicule, bases distinctes ; TVA récupérée par le GFI, impact économique HT selon la page.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Placement recommandé : au moins 10 ans ; détention minimale ELTIF : 12 mois. Ni le minimum de détention ni la recommandation ne garantissent une sortie.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Exploitation forestière et évolution du prix des parts ; excédent d’exploitation réinvesti dans le fonds, revenus non garantis.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Revente dépendante des souscriptions ou acquisitions enregistrées ; pas de garantie de délai ni de prix.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "DIC et conditions de souscription actualisées à obtenir"
+        ],
+        "highlights": [
+          [
+            "Minimum annoncé",
+            "37125 €"
+          ],
+          [
+            "Souscription max.",
+            "12 % TTC"
+          ],
+          [
+            "Gestion max. / an",
+            "0,9 % TTC"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "enerfip": {
+    "id": "enerfip",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.enerfip.eu/fr/legal/convention-investisseur",
+        "sha256": "e1015b22fffd53e3bc092aa3da40ad4af419a139f92f0843d1e7460c1f761826"
+      }
+    ],
+    "offers": [
+      {
+        "id": "projets",
+        "name": "Projets Enerfip — convention investisseur",
+        "scope": "Règles de la plateforme ; taux, émetteur et échéance restent propres à chaque opération.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Minimum fixé par chaque levée, plancher de 10 € dans la convention.",
+            "sourceUrl": "https://www.enerfip.eu/fr/legal/convention-investisseur",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-05-22"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Pas de frais directs ordinaires annoncés, avec exceptions contractuelles : 1 € possible par virement entrant inférieur à 100 € ; 1 € possible pour un bulletin signé d’au moins 2 500 € non libéré en fin de levée. Frais indirects possibles si une société interposée les supporte ; détail sur demande.",
+            "sourceUrl": "https://www.enerfip.eu/fr/legal/convention-investisseur",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-05-22"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Échéance du titre indiquée dans les termes et conditions de la levée ; aucune durée commune qualifiée.",
+            "sourceUrl": "https://www.enerfip.eu/fr/legal/convention-investisseur",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-05-22"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Intérêts ou résultat des titres souscrits ; taux et échéancier à lire dans la fiche de l’opération.",
+            "sourceUrl": "https://www.enerfip.eu/fr/legal/convention-investisseur",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-05-22"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Remboursement dépendant de l’émetteur ; présence d’Enerdeal ne garantit ni acquéreur ni prix de revente.",
+            "sourceUrl": "https://www.enerfip.eu/fr/legal/convention-investisseur",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-05-22"
+          }
+        },
+        "missing": [
+          "Projet précis : FICI, émetteur, taux, échéance et frais indirects"
+        ],
+        "highlights": [
+          [
+            "Plancher plateforme",
+            "10 €"
+          ],
+          [
+            "Instrument",
+            "Selon projet"
+          ],
+          [
+            "Durée",
+            "Selon titre"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "bricks": {
+    "id": "bricks",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.bricks.co/fonctionnement",
+        "sha256": "649e63ad97e05174e67753015c2baf75d2f16c7af855a111ac6a4979a996397e"
+      }
+    ],
+    "offers": [
+      {
+        "id": "obligations-immobilieres",
+        "name": "Obligations immobilières Bricks",
+        "scope": "Conditions générales présentées par la plateforme ; aucun projet individuel présumé ouvert.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Dès 10 € annoncés pour les projets présentés.",
+            "sourceUrl": "https://www.bricks.co/fonctionnement",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Pas de frais d’entrée ni de gestion annoncés ; 2 retraits gratuits par an, tarif des suivants à confirmer. Les coûts supportés par l’émetteur restent à examiner dans sa fiche.",
+            "sourceUrl": "https://www.bricks.co/fonctionnement",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Durée cible propre à chaque projet ; aucun délai commun qualifié.",
+            "sourceUrl": "https://www.bricks.co/fonctionnement",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Intérêts selon le titre ; la plage commerciale de taux ne constitue pas une performance réalisée.",
+            "sourceUrl": "https://www.bricks.co/fonctionnement",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Pas de retrait immédiat du capital investi ; échéance et éventuelle cession dépendent du projet.",
+            "sourceUrl": "https://www.bricks.co/fonctionnement",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "Projet précis : FICI, émetteur, coupon, échéance, tarif de retraits"
+        ],
+        "highlights": [
+          [
+            "Accès annoncé",
+            "10 €"
+          ],
+          [
+            "Instrument",
+            "Obligations"
+          ],
+          [
+            "Solde : retraits gratuits",
+            "2 / an"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "matis": {
+    "id": "matis",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.matis.club/comment-investir/schema-investissement",
+        "sha256": "be8e1b69384a8bf5bc4be1fbe02bbfe8ac590a0f71896e0a2ba18204063ca62d"
+      },
+      {
+        "url": "https://www.matis.club/comment-investir",
+        "sha256": "c211776392d9cb3f3628f908f4e9ee7321a53427611d5b9f98fa4171b9afc9ad"
+      }
+    ],
+    "offers": [
+      {
+        "id": "oca-oeuvre",
+        "name": "Matis — société projet par œuvre",
+        "scope": "OCA d’une SAS ; modalités générales, œuvre et émetteur à sélectionner séparément.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "À partir de 20000 € par société annoncé sur la page française.",
+            "sourceUrl": "https://www.matis.club/comment-investir",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Réception/transmission d’ordres : 5 %. Placement : 5 %. Carried interest : 20 % de la plus-value au bénéfice de Matis Holding. L’émission inclut aussi taxes/droits, transport, conseil et fonctionnement de la société ; bases et montants propres à l’offre, pas de coût total déduit de ces seuls pourcentages.",
+            "sourceUrl": "https://www.matis.club/comment-investir/schema-investissement",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Schéma : horizon cible 60 mois, revente anticipée possible. Présentation : cible 24 mois. La cible n’est pas une échéance de remboursement garantie ; durée du titre à confirmer.",
+            "sourceUrl": "https://www.matis.club/comment-investir/schema-investissement",
+            "sourceUrls": [
+              "https://www.matis.club/comment-investir/schema-investissement",
+              "https://www.matis.club/comment-investir"
+            ],
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Produit de revente de l’œuvre après les charges et les conditions du titre ; plus-value non garantie.",
+            "sourceUrl": "https://www.matis.club/comment-investir/schema-investissement",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Sortie liée à la revente et au titre ; aucune disponibilité personnelle de l’œuvre, pas de remboursement anticipé garanti.",
+            "sourceUrl": "https://www.matis.club/comment-investir/schema-investissement",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "Œuvre et FICI : durée du titre, bases des commissions, autres coûts"
+        ],
+        "highlights": [
+          [
+            "Accès annoncé",
+            "20000 €"
+          ],
+          [
+            "Instrument",
+            "Oblig. conv."
+          ],
+          [
+            "Durée",
+            "À confirmer"
+          ]
+        ],
+        "warnings": [
+          "Pages officielles divergentes : présentation 24 mois, schéma 60 mois. Confirmer la durée dans les conditions de l’offre choisie."
+        ]
+      }
+    ]
+  },
+  "hectarea": {
+    "id": "hectarea",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.hectarea.io/aide/fonctionnement",
+        "sha256": "7d94baae6586fa86f26ddb33eb8b8a1ac2686787670a643fd561734df298b643"
+      },
+      {
+        "url": "https://www.hectarea.io/aide/portefeuille",
+        "sha256": "92bca6ba7f3476f42f0af9a7d025bbcadafc319ec0e5d95eab37568182589908"
+      },
+      {
+        "url": "https://www.hectarea.io/aide/investir",
+        "sha256": "30a03860d34ff61d0e68df97cc1d70d2c744364c24ce2903f42b724c43eab323"
+      }
+    ],
+    "offers": [
+      {
+        "id": "obligations-foncieres",
+        "name": "Obligations foncières Hectarea",
+        "scope": "Offre obligataire dès 100 € ; exclut l’achat direct de terres dès 100 K€.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Obligations dès 100 € annoncés ; émission et conditions propres au terrain.",
+            "sourceUrl": "https://www.hectarea.io/aide/fonctionnement",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-07-22"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Structuration initiale : 8 à 10 %. Commissions de 8 à 12 % sur les fermages et la plus-value de rachat. Pas de frais sur les montants sous gestion annoncés. Retraits du portefeuille inférieurs à 50 € : frais possibles, montant non chiffré sur la page.",
+            "sourceUrl": "https://www.hectarea.io/aide/fonctionnement",
+            "sourceUrls": [
+              "https://www.hectarea.io/aide/fonctionnement",
+              "https://www.hectarea.io/aide/portefeuille",
+              "https://www.hectarea.io/aide/investir"
+            ],
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-07-22"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Durée de l’obligation et calendrier de rachat propres au projet ; l’exemple de calcul de TRI ne fixe pas une durée commune.",
+            "sourceUrl": "https://www.hectarea.io/aide/fonctionnement",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-07-22"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Fermages versés mensuellement sur le portefeuille ; démarrage parfois différé après le financement. Plus-value de rachat éventuelle, non garantie.",
+            "sourceUrl": "https://www.hectarea.io/aide/portefeuille",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-07-22"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Le retrait des sommes disponibles du portefeuille ne constitue pas une revente des obligations ; conditions de sortie propres au titre.",
+            "sourceUrl": "https://www.hectarea.io/aide/fonctionnement",
+            "checkedAt": "2026-10-09",
+            "effectiveAt": "2026-07-22"
+          }
+        },
+        "missing": [
+          "Projet précis : échéance, émetteur, coupon et tarif de petit retrait"
+        ],
+        "highlights": [
+          [
+            "Accès annoncé",
+            "100 €"
+          ],
+          [
+            "Structuration",
+            "8–10 %"
+          ],
+          [
+            "Frais loyers / gain",
+            "8–12 %"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "anaxago": {
+    "id": "anaxago",
+    "checkedAt": "2026-10-09",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+        "sha256": "bb8a72dcdbd34b2d1036773237292cee32c9fea1429537e876fcc50492e042f1"
+      }
+    ],
+    "offers": [
+      {
+        "id": "axclimat-i",
+        "name": "AxClimat I",
+        "scope": "Fonds de fonds dédié à la décarbonation ; conditions annoncées dans un article officiel, disponibilité actuelle non établie.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Ticket annoncé : 100000 €, versés progressivement sur 5 ans.",
+            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Barème complet des frais non publié dans l’article ; les économies du co-investissement ne signifient pas zéro frais pour le fonds.",
+            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Appels de fonds sur 5 ans annoncés ; cette période n’est pas la durée de détention ni la date de remboursement.",
+            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Distributions et cessions des fonds ; TRI commercial cible distinct des performances réalisées, non qualifiées ici.",
+            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Durée de vie, extensions et règles de cession à vérifier dans la documentation du fonds ; liquidité non garantie.",
+            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "DIC : frais complets, durée, extensions, conditions et ouverture actuelle"
+        ],
+        "highlights": [
+          [
+            "Ticket annoncé",
+            "100000 €"
+          ],
+          [
+            "Appels de fonds",
+            "5 ans"
+          ],
+          [
+            "Véhicule",
+            "Fonds de fonds"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  }
+}

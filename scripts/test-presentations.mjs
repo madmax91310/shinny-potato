@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { access } from 'node:fs/promises'
-import { PRESENTATION_ACTORS, ACTOR_FAMILIES, buildActorTweet } from '../src/data/presentation-actors.js'
+import { PRESENTATION_ACTORS, ACTOR_FAMILIES, applyActorOffer, buildActorTweet } from '../src/data/presentation-actors.js'
 import { presentationReliefModel } from '../src/pages/presentation-shared/imageExport.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
 assert.equal(TOOLS.filter(row=>row.to==='/presentations').length,1)
@@ -13,7 +13,9 @@ for(const record of PRESENTATION_ACTORS) {
   const text=buildActorTweet(record)
   assert(text.includes(record.vehicle) && text.includes(record.distinction))
   assert(text.includes('pas garantis') && text.includes('pas qualifiés'))
-  assert.equal(record.verification,'manual')
+  assert.equal(record.verification,'public-terms')
+  assert(record.selectedOffer && record.selectedOffer.missing.length)
+  assert.equal(Object.keys(record.selectedOffer.fields).length,5)
   assert(record.sources.every(row=>new URL(row.url).protocol==='https:'))
   const model=presentationReliefModel(record,'actor')
   assert.equal(model.highlights.length,3)
@@ -27,3 +29,20 @@ assert(buildActorTweet(byId('hectarea')).includes('pas directement une parcelle'
 assert(buildActorTweet(byId('matis')).includes('pas une échéance de remboursement garantie'))
 assert(buildActorTweet(byId('france-valley')).includes('ne représente pas le rendement'))
 console.log('Unified presentations: one route, nine actors, source scope and ownership distinctions OK.')
+
+const classique=byId('fundora'),horizon=applyActorOffer(classique,'horizon')
+assert(buildActorTweet(classique).includes('2 à 3 %'))
+assert(buildActorTweet(horizon).includes('4 à 10 %'))
+assert.notDeepEqual(classique.highlights,horizon.highlights)
+assert(buildActorTweet(byId('matis')).includes('60 mois'))
+assert(buildActorTweet(byId('matis')).includes('24 mois'))
+assert(buildActorTweet(byId('mymarguerit')).includes('8 %'))
+assert(buildActorTweet(byId('enerfip')).includes('non libéré'))
+assert(buildActorTweet(byId('hectarea')).includes('ne constitue pas une revente'))
+
+const {DATA_CATALOG}=await import('../src/data/catalog.js')
+const {buildReview}=await import('../src/pages/data-review/lib.js')
+const review=buildReview('2026-10-09')
+assert.equal(DATA_CATALOG.filter(record=>record.type==='actor').length,9)
+assert.equal(review.items.filter(item=>item.id.startsWith('qualification:actor:')).length,10)
+assert.equal(review.items.filter(item=>item.id.startsWith('qualification:insurance:')).length,2)

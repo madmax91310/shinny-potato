@@ -7,7 +7,7 @@ on:
     paths: ['.github/workflows/update-scpi.yml', 'scripts/*scpi*', 'scripts/*corum*', 'scripts/fixtures/scpi/**', 'scripts/fixtures/corum/**', 'scripts/fixtures/extended-scpi/**', 'scripts/publication_periods.py', 'scripts/test_publication_periods.py', 'scripts/test_presentation_expansion.py', 'scripts/fixtures/presentation-expansion/**', 'src/data/*scpi*', 'src/pages/scpi-presentation/**']
   push:
     branches: [master]
-    paths: ['scripts/publication_periods.py', 'scripts/test_publication_periods.py', '.github/workflows/update-scpi.yml', 'scripts/collect_scpi.py', 'scripts/collect_corum.py', 'scripts/corum-quarterly-qualified.json', 'scripts/collect_extended_scpi.py', 'scripts/collect_atland_scpi.py']
+    paths: ['scripts/publication_periods.py', 'scripts/test_publication_periods.py', '.github/workflows/update-scpi.yml', 'scripts/collect_scpi.py', 'scripts/collect_corum.py', 'scripts/corum_vector_ocr.py', 'scripts/fixtures/corum/vector-labels.json', 'scripts/corum-quarterly-qualified.json', 'scripts/collect_extended_scpi.py', 'scripts/collect_atland_scpi.py']
 permissions:
   contents: read
 jobs:
@@ -32,11 +32,12 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
-      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
-      - run: pip install beautifulsoup4==4.15.0
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra
+      - run: pip install beautifulsoup4==4.15.0 Pillow==12.3.0
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_corum.py'
+      - run: python -m unittest discover -s scripts -p 'test_corum_vector.py'
       - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'

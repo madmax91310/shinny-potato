@@ -7,7 +7,7 @@ export const fundOperations = (fund, today = todayIso()) => accessExpired(fund, 
 export const fundAllocation = (fund, today = todayIso()) => accessExpired(fund, today)
   ? `Conditions d’accès échues le ${fund.accessValidUntil.split('-').reverse().join('/')} ; les nouvelles conditions restent à confirmer.`
   : fund.maxAllocation == null
-  ? 'La quote-part maximale actuelle n’est pas chiffrée dans les sources collectées.'
+  ? 'La quote-part maximale actuelle n’est pas chiffrée dans les sources collectées.' + (fund.allocationEvidence?.reason ? ' '+fund.allocationEvidence.reason : '')
   : Math.abs(fund.maxAllocation - 100 / 3) < 0.001
     ? 'Au plus un tiers du versement sur ce fonds ; au moins deux fois ce montant en unités de compte non garanties.'
     : `Jusqu’à ${format(fund.maxAllocation)} % du versement${fund.ceiling ? `, dans la limite de ${format(fund.ceiling)} € par contrat` : ''}.`

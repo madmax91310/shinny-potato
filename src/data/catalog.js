@@ -35,6 +35,7 @@ import { SHEETS } from './index-factsheets.js';
 import { HOUSEHOLD_STATISTICS } from './household-statistics.js';
 import { INSURANCE } from './insurance.js';
 import { SCPI } from './scpi.js';
+import { PRESENTATION_ACTORS } from './presentation-actors.js';
 import { COMPANIES } from './companies.js';
 import { normalizeEvidence } from './evidence.js';
 import { ECONOMIC_OBSERVATIONS, economicCalendar } from './economic-data.js';
@@ -141,8 +142,18 @@ export const DATA_CATALOG = Object.freeze([
       {sourceUrl:o.sourceUrl,checkedAt:o.checkedAt,asOf:o.effectiveAt,scope:'Taux légal annuel du Livret A',currency:'EUR',method:'Taux réglementé publié par la Banque de France, date d’effet conservée ; historique antérieur documenté dans market-history.js'})) },
   ...INSURANCE.map(record => ({id: `insurance:${record.id}`, type: 'insurance', name: record.name, aliases: [record.id, record.insurer, 'assurance-vie', 'fonds euros'],
     consumers: [{tool: 'Présentation d’assurance-vie', path: '/presentations?famille=insurance'}],
-    fields: ['fees', 'access', 'supports', 'euroFunds'].map(key => field({fees:'Frais du contrat', access:'Versements minimums', supports:'Supports proposés', euroFunds:'Fonds euros, rendements et conditions'}[key], 'insurance', record[key],
-      {sourceUrls: key === 'euroFunds' ? record.euroFunds.flatMap(fund => fund.sourceUrls ?? [fund.sourceUrl]) : (record[key].sourceUrls ?? [record[key].sourceUrl]), checkedAt: record.checkedAt, asOf: null, scope: `${record.name} · gestion libre`, currency: 'EUR', method: 'Publication officielle du distributeur ; rendements des fonds euros par année, nets de gestion et avant prélèvements sociaux et fiscaux ; collecte distincte de la date des données.'}))})),
+    fields: [...['fees', 'access', 'supports', 'euroFunds'].map(key => field({fees:'Frais du contrat', access:'Versements minimums', supports:'Supports proposés', euroFunds:'Fonds euros, rendements et conditions'}[key], 'insurance', record[key],
+      {sourceUrls: key === 'euroFunds' ? record.euroFunds.flatMap(fund => fund.sourceUrls ?? [fund.sourceUrl]) : (record[key].sourceUrls ?? [record[key].sourceUrl]), checkedAt: record.checkedAt, asOf: null, scope: `${record.name} · gestion libre`, currency: 'EUR', method: 'Publication officielle du distributeur ; rendements des fonds euros par année, nets de gestion et avant prélèvements sociaux et fiscaux ; collecte distincte de la date des données.'})), ...record.euroFunds.filter(fund=>fund.allocationEvidence?.status==='not-published').map(fund=>({
+        ...field(`${fund.name} · Allocation maximale à confirmer`, 'insurance', fund.allocationEvidence.reason, {sourceUrls:fund.allocationEvidence.sourceUrls,checkedAt:fund.allocationEvidence.checkedAt,scope:`${record.name} · ${fund.name} · gestion libre`,method:'Vérification de la notice et des sources publiques ; maximum explicite non publié.'}),
+        qualificationMissing:fund.allocationEvidence.reason,
+      }))]})),
+  ...PRESENTATION_ACTORS.map(record => ({ id: `actor:${record.id}`, type: 'actor', name: record.name, aliases: [record.family, record.id, ...record.offers.map(offer=>offer.name)],
+    consumers: [{ tool: 'Présentations', path: `/presentations?famille=${record.family}` }],
+    fields: record.offers.flatMap(offer => [
+      ...Object.values(offer.fields).map(term => field(`${offer.name} · ${term.label}`, 'presentation-actors', term.value,
+        {sourceUrls: term.sourceUrls ?? [term.sourceUrl], asOf: term.effectiveAt ?? null, checkedAt:term.checkedAt, scope:offer.scope, method:'Conditions publiques collectées ; explication de l’acteur éditoriale. Disponibilité de souscription non établie.', note:offer.warnings.join(' ')})),
+      {...field(`${offer.name} · À compléter`, 'presentation-actors', offer.missing.join(' ; '), {sourceUrls:record.sources.map(source=>source.url),checkedAt:record.checkedAt,scope:offer.scope,method:'Informations non qualifiées, à obtenir dans la documentation du véhicule.'}), qualificationMissing:offer.missing.join(' ; ')},
+    ]) })),
   ...SCPI.map(record => ({ id: `scpi:${record.id}`, type: 'scpi', name: record.name, aliases: [record.id, 'immobilier', 'SCPI'],
     consumers: [{ tool: 'Présentation de SCPI', path: '/presentations?famille=scpi' }],
     fields: [...['snapshot', 'annual', 'price', 'conditions', ...(record.priceHistory ? ['priceHistory'] : [])].map(key => field({snapshot: 'Pays et secteurs', annual: 'Taux de distribution annuels', price: 'Prix de souscription', conditions: 'Frais et conditions', priceHistory:'Historique daté du prix de souscription'}[key], 'scpi', record[key],

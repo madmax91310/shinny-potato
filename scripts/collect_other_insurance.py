@@ -61,6 +61,8 @@ def parse_lucya(html, notice, fees_text, notice_url, fees_url, today):
         private=name=='Euro Private Strategies'
         euro.append({'name':name,'years':years,'asOf':f'{years[-1]["year"]}-12-31','guarantee':guarantee,'managementFeeMax':management,
                      'maxAllocation':100/(1+ratio) if private else None,'ceiling':None,
+                     **({} if private else {'allocationEvidence':{'status':'not-published','checkedAt':today.isoformat(),'sourceUrls':[url,notice_url,fees_url],
+                         'reason':'La notice prévoit une affectation euros et/ou unités de compte avec une limitation conditionnelle ; elle ne chiffre pas un maximum actuel inconditionnel propre au Fonds général.'}}),
                      'operations':f'Versements initial et libres : au moins {ratio:g} € en unités de compte non garanties pour 1 € sur ce fonds.' if private else 'Versements initial, libres et programmés ; arbitrages possibles.',
                      'notes':note,'sourceUrl':url,'sourceUrls':[url,notice_url,fees_url]})
     record.update(fees={'subscription':subscription,'arbitrage':arbitrage,'units':units,'etfTrade':etf,'sourceUrl':fees_url,'sourceUrls':[fees_url,notice_url,url],
@@ -122,6 +124,8 @@ def parse_placement(html,notice,fees_text,notice_url,fees_url,today):
                   supports={'minimumCount':count,'categories':['fonds d’investissement','ETF','actions en direct'],'sourceUrl':url},
                   euroFunds=[{'name':'Actif général SwissLife','years':years,'asOf':f'{years[-1]["year"]}-12-31','guarantee':guarantee,'guaranteeBasis':'Hors coût éventuel de la garantie optionnelle plancher décès ; la garantie se réduit chaque année des frais de gestion.', 'managementFeeMax':management,
                               'maxAllocation':None,'ceiling':None,'operations':'Allocation libre.',
+                              'allocationEvidence':{'status':'not-published','checkedAt':today.isoformat(),'sourceUrls':[url,notice_url,fees_url],
+                                  'reason':'La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas.'},
                               'notes':'Le taux dépend de la part d’unités de compte et de l’encours : le maximum ne s’applique pas à tous les contrats. SwissLife peut limiter temporairement les arbitrages sortants du fonds euros en cas de forte variation des marchés, selon la clause de sauvegarde.',
                               'sourceUrl':url,'sourceUrls':[url,notice_url,fees_url]}])
     record['fees']['notes'] += ' ' + ' '.join(o['description'] for o in options)
