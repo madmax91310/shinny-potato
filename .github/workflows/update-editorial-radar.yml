@@ -1,0 +1,78 @@
+name: Update editorial radar
+on:
+  schedule:
+    - cron: '15 14 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-editorial-radar.yml'
+      - 'scripts/*editorial-radar.mjs'
+      - 'scripts/lib/editorial-radar.mjs'
+      - 'scripts/lib/radar-news.mjs'
+      - 'src/data/automated-*.json'
+      - 'src/data/purchasing-power-observations.json'
+      - 'public/data/investors/*.json'
+  pull_request:
+    paths:
+      - '.github/workflows/update-editorial-radar.yml'
+      - 'scripts/*editorial-radar.mjs'
+      - 'scripts/lib/editorial-radar.mjs'
+      - 'scripts/lib/radar-news.mjs'
+      - 'src/pages/editorial-radar/**'
+  workflow_run:
+    workflows:
+      - Update active ETF issuer data
+      - Update all 18 investor 13F portfolios
+      - Update insurance presentations
+      - Update SCPI presentations
+      - Update official economic data
+      - Update official regulatory data
+      - Update publication observations
+    types: [completed]
+permissions:
+  contents: read
+concurrency:
+  group: editorial-radar-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  cancel-in-progress: false
+  queue: max
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: node scripts/test-editorial-radar.mjs
+      - run: node scripts/update-editorial-radar.mjs --output "$RUNNER_TEMP/editorial-radar"
+  update:
+    if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      # Execute only trusted master code, never code from a triggering PR.
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: master
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: node scripts/test-editorial-radar.mjs
+      - name: Publish comparable observations and new signals
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          export RADAR_SOURCE_SHA=$(git rev-parse HEAD)
+          node scripts/publish-editorial-radar.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: editorial-radar-observations
+          path: ${{ runner.temp }}/editorial-radar/feed.json
+          retention-days: 35
+          if-no-files-found: ignore
