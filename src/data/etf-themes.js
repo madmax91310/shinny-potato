@@ -788,7 +788,7 @@ const COMPARISON_THEMES = [...existingThemes,
 ]
 
 const PEA_COMPARISONS = [
-  ['world-pea', 'World et ACWI · PEA', '🌍', 'Quels ETF permettent de s’exposer au monde sur PEA ?',
+  ['world-pea', 'World et ACWI · PEA', '🌍', 'World ou ACWI : quels ETF choisir pour ton PEA ?',
     [['IE0002XZSHO1', 'MSCI World'], ['FR001400U5Q4', 'MSCI World'], ['LU1681043599', 'MSCI World'], ['FR0014017NX3', 'MSCI ACWI']],
     'Les trois ETF World couvrent les pays développés. L’ACWI ajoute les marchés émergents.', 'Tu utilises lequel dans ton PEA ?'],
   ['usa-pea', 'USA · PEA', '🇺🇸', 'Quels ETF permettent de s’exposer aux États-Unis sur PEA ?',

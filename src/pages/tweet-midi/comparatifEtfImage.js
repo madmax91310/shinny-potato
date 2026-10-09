@@ -61,7 +61,7 @@ function composition(ctx, fund, field, x, y, width) {
 }
 
 const COMPOSITION_LABELS = {
-  'Information Technology': 'Technologie', Financials: 'Finance', 'Consumer Discretionary': 'Conso. cyclique',
+  'Information Technology': 'Technologie', Technology: 'Technologie', Financials: 'Finance', 'Consumer Discretionary': 'Conso. cyclique',
   'Consumer Staples': 'Conso. de base', 'Communication Services': 'Communication', Industrials: 'Industrie',
   'Health Care': 'Santé', Healthcare: 'Santé', Materials: 'Matériaux', Utilities: 'Services publics',
   Energy: 'Énergie', 'Real Estate': 'Immobilier', Other: 'Autres',
@@ -98,10 +98,17 @@ function scene(ctx, image, themeId, fund, x, y, w, h) {
   ctx.drawImage(image, sx, sy, sw, sh, x + (w - side) / 2, y, side, side)
   ctx.restore()
 }
+export function comparisonLayout(count) {
+  const columns = count <= 3 ? count : Math.min(3, Math.ceil(count / 2))
+  const rows = Math.ceil(count / columns)
+  return { columns, rows, compact: count >= 4, height: count <= 3 ? H : 260 + rows * 850 + 40 }
+}
 function card(ctx, fund, performance, years, i, count, scaleMax, image, themeId) {
-  const gap = 24, x0 = 68, cardW = (W - 136 - gap * (count - 1)) / count
-  const x = x0 + i * (cardW + gap), y = 260, h = 1660
-  const accent = '#ffffff'
+  const layout = comparisonLayout(count), gap = 24, x0 = 68
+  const row = Math.floor(i / layout.columns), col = i % layout.columns
+  const rowCount = Math.min(layout.columns, count - row * layout.columns)
+  const cardW = (W - 136 - gap * (rowCount - 1)) / rowCount
+  const x = x0 + col * (cardW + gap), y = 260 + row * 850, h = layout.compact ? 824 : 1660
   const surface = ctx.createLinearGradient(x, y, x + cardW, y + h)
   const colors = [['#075ac5','#063f94'],['#08794f','#055437'],['#ce4b00','#963600'],['#7240ae','#4f297e']][i % 4]
   surface.addColorStop(0, colors[0]); surface.addColorStop(1, colors[1])
@@ -109,48 +116,61 @@ function card(ctx, fund, performance, years, i, count, scaleMax, image, themeId)
   ctx.fillStyle = surface; roundedRect(ctx, x, y, cardW, h, 26); ctx.fill()
   ctx.restore()
   const name = fund.nom.replace(/ UCITS ETF S.*$/i, ' · S').replace(/ UCITS ETF.*$/i, '').replace(/ ETF$/i, '')
-  lines(ctx, name, x + cardW / 2, y + 40, cardW - 54, 3, count > 3 ? 34 : 39, { color: INK, align: 'center', serif: true })
-  scene(ctx, image, themeId, fund, x + 27, y + 210, cardW - 54, 310)
-  ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.fillRect(x + 27, y + 547, cardW - 54, 2)
-  text(ctx, performance ? `PERFORMANCES · ${performance.currency}` : 'EXPOSITION', x + 27, y + 574, 22, { width: cardW - 54, color: accent, weight: 700 })
+  const ticker = getPreferredInstrumentListing(fund.isin)?.ticker
+  if (layout.compact) {
+    lines(ctx, name, x + 27, y + 25, cardW - 54, 3, cardW < 700 ? 30 : 39, { serif: true })
+    if (ticker) text(ctx, ticker, x + 27, y + 151, 30, { width: 105 })
+    text(ctx, fund.isin, x + (ticker ? 142 : 27), y + 154, 26, { width: cardW - (ticker ? 169 : 54), weight: 400 })
+    text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, x + cardW - 27, y + 200, 40, { align: 'right', width: 160 })
+    text(ctx, 'FRAIS / AN', x + cardW - 27, y + 245, 20, { align: 'right' })
+    lines(ctx, detail(fund), x + 27, y + 207, cardW - 240, 2, 26, { weight: 400 })
+    const artSide = cardW < 700 ? 205 : 265
+    scene(ctx, image, themeId, fund, x + 27, y + 285, artSide, artSide)
+    const perfX = x + artSide + 55, perfW = cardW - artSide - 82
+    text(ctx, performance ? `PERFORMANCES · ${performance.currency}` : 'HISTORIQUE', perfX, y + 288, 23, { width: perfW })
+    if (performance && years.length) {
+      years.forEach((year, j) => {
+        const observation = performance.rows.find(value => value.year === year)
+        text(ctx, String(year), perfX, y + 338 + j * 62, 25, { weight: 400 })
+        text(ctx, observation ? pct(observation.pct) : 'N/D', x + cardW - 27, y + 334 + j * 62, 33, { align: 'right', width: perfW - 76, color: observation?.pct < 0 ? RED : GREEN })
+      })
+    } else lines(ctx, 'Historique annuel non disponible', perfX, y + 347, perfW, 3, 29)
+    const compW = (cardW - 81) / 2
+    composition(ctx, fund, 'sectors', x + 27, y + 568, compW)
+    composition(ctx, fund, 'countries', x + 54 + compW, y + 568, compW)
+    return
+  }
+  lines(ctx, name, x + cardW / 2, y + 40, cardW - 54, 3, 39, { align: 'center', serif: true })
+  text(ctx, 'FRAIS / AN', x + 27, y + 182, 23, { weight: 400 })
+  text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, x + cardW - 27, y + 173, 38, { align: 'right', width: cardW - 195 })
+  if (ticker) text(ctx, ticker, x + 27, y + 233, 26, { width: 100 })
+  text(ctx, fund.isin, x + (ticker ? 142 : 27), y + 235, 25, { width: cardW - (ticker ? 169 : 54), weight: 400 })
+  scene(ctx, image, themeId, fund, x + 27, y + 300, cardW - 54, 245)
+  ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.fillRect(x + 27, y + 574, cardW - 54, 2)
+  text(ctx, performance ? `PERFORMANCES · ${performance.currency}` : 'HISTORIQUE', x + 27, y + 604, 24, { width: cardW - 54 })
   if (performance && years.length) {
     years.forEach((year, j) => {
-      const row = performance.rows.find(value => value.year === year)
-      const yy = y + 631 + j * 80
-      text(ctx, String(year), x + 27, yy, 26, { color: MUTED, weight: 400 })
-      if (row) text(ctx, pct(row.pct), x + cardW - 27, yy - 6, count > 3 ? 36 : 42, { align: 'right', width: cardW - 130, color: row.pct < 0 ? RED : GREEN })
-      else text(ctx, 'N/D', x + cardW - 27, yy - 6, 30, { align: 'right', color: MUTED })
+      const observation = performance.rows.find(value => value.year === year), yy = y + 664 + j * 80
+      text(ctx, String(year), x + 27, yy, 26, { weight: 400 })
+      text(ctx, observation ? pct(observation.pct) : 'N/D', x + cardW - 27, yy - 6, 42, { align: 'right', width: cardW - 130, color: observation?.pct < 0 ? RED : GREEN })
       ctx.fillStyle = 'rgba(255,255,255,.2)'; roundedRect(ctx, x + 27, yy + 46, cardW - 54, 9, 4); ctx.fill()
-      if (row) {
-        ctx.fillStyle = row.pct < 0 ? RED : accent
-        roundedRect(ctx, x + 27, yy + 46, Math.max(6, (cardW - 54) * Math.abs(row.pct) / scaleMax), 9, 4); ctx.fill()
-      }
+      if (observation) { ctx.fillStyle = '#fff'; roundedRect(ctx, x + 27, yy + 46, Math.max(6, (cardW - 54) * Math.abs(observation.pct) / scaleMax), 9, 4); ctx.fill() }
     })
-    lines(ctx, detail(fund), x + 27, y + 893, cardW - 54, 2, 24, { color: MUTED, weight: 400 })
-  } else {
-    lines(ctx, detail(fund) || 'Données de performance non disponibles', x + 27, y + 644, cardW - 54, 5, 27, { color: MUTED, weight: 400 })
-  }
-  composition(ctx, fund, 'sectors', x + 27, y + 978, cardW - 54)
-  composition(ctx, fund, 'countries', x + 27, y + 1223, cardW - 54)
-  ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.fillRect(x + 27, y + 1477, cardW - 54, 2)
-  text(ctx, 'FRAIS / AN', x + 27, y + 1504, 23, { color: MUTED, weight: 400 })
-  text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, x + cardW - 27, y + 1493, 38, { align: 'right', width: cardW - 195, color: accent })
-  const ticker = getPreferredInstrumentListing(fund.isin)?.ticker
-  if (ticker) {
-    text(ctx, ticker, x + 27, y + 1570, 24, { width: 88 })
-    text(ctx, fund.isin, x + 125, y + 1570, 24, { width: cardW - 152, color: MUTED, weight: 400 })
-  } else text(ctx, fund.isin, x + 27, y + 1570, 24, { width: cardW - 54, color: MUTED, weight: 400 })
+  } else lines(ctx, 'Historique annuel non disponible', x + 27, y + 684, cardW - 54, 3, 30)
+  lines(ctx, detail(fund), x + 27, y + 935, cardW - 54, 2, 24, { weight: 400 })
+  composition(ctx, fund, 'sectors', x + 27, y + 1060, cardW - 54)
+  composition(ctx, fund, 'countries', x + 27, y + 1330, cardW - 54)
 }
 
 export async function renderComparatifEtfImage(theme) {
   await loadEditorialFont()
   const years = getComparisonYears(theme.etfs.map(fund => fund.isin))
   const series = theme.etfs.map(fund => getComparisonPerformance(fund.isin, years))
-  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H
+  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = comparisonLayout(theme.etfs.length).height
   const ctx = canvas.getContext('2d')
-  const background = ctx.createLinearGradient(0, 0, W, H)
+  const background = ctx.createLinearGradient(0, 0, W, canvas.height)
   background.addColorStop(0, '#fffdf8'); background.addColorStop(1, '#f3ede3')
-  ctx.fillStyle = background; ctx.fillRect(0, 0, W, H)
+  ctx.fillStyle = background; ctx.fillRect(0, 0, W, canvas.height)
   const art = await Promise.all(theme.etfs.map(fund => loadArtImage(comparisonArt(theme.id, fund.isin))))
   text(ctx, 'ÉPARGNANT LIBRE', W / 2, 48, 30, { color: '#171717', weight: 700, align: 'center' })
   text(ctx, theme.nom, W / 2, 113, 82, { color: '#171717', width: W - 136, serif: true, align: 'center' })

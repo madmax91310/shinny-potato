@@ -2,7 +2,7 @@ import { AUTOMATED_ETF, AUTOMATED_AUM, AUTOMATED_PERFORMANCE, refreshFundDetails
 import { comparisonPct } from '../src/pages/etf-tweets/lib/comparisonDetails.js'
 import assert from 'node:assert/strict'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
-import { getComparisonImageComposition } from '../src/pages/tweet-midi/comparatifEtfImage.js'
+import { comparisonLayout, getComparisonImageComposition } from '../src/pages/tweet-midi/comparatifEtfImage.js'
 import { getInstrumentPeaStatus } from '../src/data/instruments.js'
 import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
@@ -95,7 +95,7 @@ for (const isin of ['IE00BD4TXV59','IE000XZSV718','IE000DQLYVB9','FR001400U5Q4']
 }
 const image=readFileSync('src/pages/tweet-midi/comparatifEtfImage.js','utf8')
 assert.ok(!image.includes("'#ffd286'"))
-assert.match(image,/color: row.pct < 0 \? RED : GREEN/)
+assert.match(image,/color: observation\?\.pct < 0 \? RED : GREEN/)
 console.log('Comparatif : parts exactes, aucune substitution, compositions datées et distinctes, secteurs complets, cohérence texte/image et couleurs vérifiés.')
 
 const usa = DEFAULT_THEMES.find(t => t.id === 'usa');
@@ -144,3 +144,10 @@ for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) for (const fi
 assert.equal(getComparisonImageComposition('FR001400ZGO4', 'countries').isIndex, true)
 assert.match(buildTweetText(DEFAULT_THEMES.find(theme => theme.id === 'etc-metaux')), /Taux de swap annuel : 0,45 % en supplément/)
 console.log('Texte compact, quatre sélections PEA, compositions réservées aux images et historique propre de PEMS vérifiés.')
+
+for (const count of [1,2,3,4,5,6,7,10]) {
+ const layout = comparisonLayout(count)
+ assert(layout.columns * layout.rows >= count)
+ assert.equal(layout.compact, count >= 4)
+ if (count === 4 || count === 5) assert.equal(layout.rows, 2)
+}
