@@ -65,6 +65,19 @@ def normalize_report(report):
     return report
 
 
+def read_report(path, workflow):
+    # Issuer observations retain raw official components and full holdings.
+    # Give that existing artifact a bounded larger envelope, then immediately
+    # discard the payload by projecting only failure/recovery observations.
+    limit = 128_000_000 if workflow == 'collect-etf-pilot.yml' else 8_000_000
+    size = path.stat().st_size
+    if size > limit:
+        raise ValueError(f'Rapport de collecte trop volumineux : {path.name} ({size} > {limit})')
+    report = json.loads(path.read_text())
+    report['_collector'] = path.stem
+    return normalize_report(report)
+
+
 def update_status(state, run, jobs, reports=None):
     result = json.loads(json.dumps(state))
     workflow = run['path'].split('/')[-1]
@@ -168,11 +181,7 @@ def main():
                                     '--name', artifact_name, '--dir', directory],
                                    check=True, capture_output=True, timeout=90)
                     for path in pathlib.Path(directory).glob('*observation.json'):
-                        if path.stat().st_size > 8_000_000:
-                            raise ValueError('Rapport de collecte trop volumineux')
-                        report = json.loads(path.read_text())
-                        report['_collector'] = path.stem
-                        reports.append(report)
+                        reports.append(read_report(path, run['path'].split('/')[-1]))
         state = update_status(state, run, jobs, reports)
     if sha is None:
         try:
