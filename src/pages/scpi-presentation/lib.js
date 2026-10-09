@@ -14,10 +14,10 @@ export function buildTweet(record) {
   const sector = [...snapshot.sectors].sort((a, b) => b.value - a.value)[0]
   const country = [...snapshot.countries].sort((a, b) => b.value - a.value)[0]
   const hook = id.startsWith('corum-')
-    ? `Toucher une part des loyers d’entreprises sans acheter un immeuble entier ? Voici ce que détient ${name}, et les frais à connaître 👇`
+    ? `Tu aimerais percevoir des loyers, mais acheter et gérer un bien te freine ? ${name} permet d’investir dans de l’immobilier d’entreprise à plusieurs. Regardons ce qu’il y a derrière 👇`
     : id === 'iroko-zen'
-    ? `Toucher des loyers sans acheter un appartement ni gérer les locataires ? Iroko Zen achète de l’immobilier d’entreprise en Europe.`
-    : `${format(price.value)} € pour acheter une part d’immobilier, plutôt qu’un bien entier. Mais qu’est-ce qu’on détient vraiment avec ${name} ?`
+    ? `Investir dans l’immobilier sans chercher un appartement ni gérer les locataires, ça te parle ? Avec Iroko Zen, tu achètes des parts d’un patrimoine loué à des entreprises 👇`
+    : `Tu n’as pas besoin d’acheter un bien entier pour investir dans l’immobilier. Avec ${name}, tu peux devenir associé dès ${format(c.minimum)} €. Regardons où va cet argent 👇`
   const snapshotDate = snapshot.asOf ? `Au ${dateLabel(snapshot.asOf)}` : `Répartition relevée le ${dateLabel(record.checkedAt)} ; date des graphiques non précisée`
   const priceHistory = price.previousValue != null && price.previousValue !== price.value
     ? `Prix de la part : ${format(price.previousValue)} € au ${dateLabel(price.previousAsOf)} → ${format(price.value)} € au ${dateLabel(price.asOf)}.`
@@ -25,31 +25,31 @@ export function buildTweet(record) {
   const uk = snapshot.countries.find(row => row.label === 'Royaume-Uni')
   const france = snapshot.countries.find(row => row.label === 'France')
   const reading = id.startsWith('corum-') || !['iroko-zen','remake-live'].includes(id)
-    ? `Les ${sector.label.toLowerCase()} représentent ${format(sector.value)} % du patrimoine. ${country.label} arrive en tête des pays (${format(country.value)} %). La diversification laisse donc une place importante à ces deux expositions.`
+    ? `Si tu regardes cette SCPI pour diversifier ton épargne, garde ces deux poids en tête : ${format(sector.value)} % en ${sector.label.toLowerCase()} et ${format(country.value)} % en ${country.label}. Une difficulté sur ces marchés aurait davantage de poids sur le patrimoine.`
     : id === 'iroko-zen'
-    ? `Les ${sector.label.toLowerCase()} arrivent en tête (${format(sector.value)} %). La diversification géographique ne fait donc pas disparaître le poids de ce secteur : les loyers dépendent aussi de la santé des entreprises locataires.`
+    ? `Ce que je regarderais aussi : la place des ${sector.label.toLowerCase()} (${format(sector.value)} %). Même avec des biens dans plusieurs pays, les loyers dépendent de la santé des entreprises qui les occupent.`
     : uk && france && uk.value > france.value
-      ? `Le Royaume-Uni représente ${format(uk.value)} % du patrimoine. Le pays pèse davantage que la France : les loyers et la valeur des biens restent exposés au marché britannique, ainsi qu’à la livre sterling.`
-      : `${country.label} représente ${format(country.value)} % du patrimoine : c’est la première exposition géographique. Investir dans plusieurs pays ne répartit donc pas les risques à parts égales ; ce marché pèse plus lourd dans le résultat.`
+      ? `Si tu pensais surtout investir dans l’immobilier français, regarde la répartition : le Royaume-Uni représente ${format(uk.value)} % du patrimoine, davantage que la France. Le marché britannique et la livre sterling ont donc leur place dans les risques à comprendre.`
+      : `${country.label} représente ${format(country.value)} % du patrimoine. C’est le pays que je regarderais en premier pour comprendre à quels marchés immobiliers ton argent est exposé.`
   const management = c.managementZones
     ? `${format(c.managementZones.euro)} % TTC en zone euro et ${format(c.managementZones.outside)} % TTC hors zone euro`
     : `${id === 'iroko-zen' || c.managementFeeMax ? 'jusqu’à ' : ''}${format(c.managementFee)} % ${c.managementTax ?? 'TTC'}`
   return [hook,
-    `🏢 ${name} détient des biens loués à des entreprises.\n🌍 ${allocation(snapshot.countries)}\n🏭 ${allocation(snapshot.sectors)}\n${snapshotDate}.${snapshot.regions ? `\n📍 En France : ${allocation(snapshot.regions)}.` : ''}`,
-    `💶 La part coûte ${format(price.value)} €. Souscription initiale dès ${format(c.minimum)} €.\nRevenus potentiels ${c.frequency}. ${c.enjoyment}`,
-    `📊 Taux de distribution : ${annual.years.map(row => `${row.year} : ${format(row.distribution)} %`).join(' · ')}.\nTaux bruts de fiscalité étrangère, pas les montants nets reçus.${annualPublicationNote(annual.publication) ? `\n${annualPublicationNote(annual.publication)}` : ''}\n${priceHistory}`,
-    `💸 Souscription : ${c.subscriptionFeeMax ? 'jusqu’à ' : ''}${format(c.subscriptionFee)} %${c.subscriptionTax ? ` ${c.subscriptionTax}` : ''}. Gestion : ${management} des ${c.managementBasis}.\nRetrait : ${c.exit}`,
+    `🏢 Ton argent rejoint un patrimoine de biens loués à des entreprises. Voici où ${name} investit :\n🌍 ${allocation(snapshot.countries)}\n🏭 ${allocation(snapshot.sectors)}\n${snapshotDate}.${snapshot.regions ? `\n📍 En France : ${allocation(snapshot.regions)}.` : ''}`,
+    `💶 Pour commencer, il faut au moins ${format(c.minimum)} €, avec une part à ${format(price.value)} €.\nTu peux ensuite percevoir des revenus ${c.frequency}, sans montant garanti. Ils ne démarrent pas dès ton versement : ${c.enjoyment}`,
+    `📊 Et côté revenus, qu’a-t-elle distribué ?\nTaux de distribution : ${annual.years.map(row => `${row.year} : ${format(row.distribution)} %`).join(' · ')}.\nCes taux sont bruts de fiscalité étrangère : ils ne correspondent pas aux montants nets que tu reçois, ni à la performance totale de tes parts.${annualPublicationNote(annual.publication) ? `\n${annualPublicationNote(annual.publication)}` : ''}${historyText(record) ? '' : `\n${priceHistory}`}`,
+    `💸 Avant de souscrire, regarde aussi ce qui est prélevé.\nSouscription : ${c.subscriptionFeeMax ? 'jusqu’à ' : ''}${format(c.subscriptionFee)} %${c.subscriptionTax ? ` ${c.subscriptionTax}` : ''}. La gestion représente ${management} des ${c.managementBasis}.\nSi tu veux revendre : ${c.exit}${c.otherFees ? `\n${c.otherFees}` : ''}`,
     portfolioText(record),
     historyText(record),
     `🔎 ${reading}`,
-    `Les revenus et le capital ne sont pas garantis. Revendre les parts peut prendre du temps. Les distributions passées ne garantissent pas les suivantes.`,
+    `⚠️ Tu dois pouvoir laisser cet argent investi : revendre les parts peut prendre du temps. Les revenus et le capital ne sont pas garantis, et les distributions passées ne garantissent pas les suivantes.`,
     `💬 Tu détiens déjà des SCPI ? Lesquelles ?`,
   ].filter(Boolean).join('\n\n')
 }
 
 export function portfolioText(record) {
   const rows = Object.entries(record.portfolio ?? {}).map(([key, row]) => `${row.label} : ${format(row.value)}${key === 'occupancy' ? ' %' : ''} au ${dateLabel(row.asOf)}.${row.basis ? ` ${row.basis}` : ''}`)
-  return rows.length ? `🏗️ Le patrimoine et les loyers\n${rows.join('\n')}\nLe taux d’occupation financier mesure les loyers facturés ou facturables ; il ne signifie pas que la même part des surfaces est occupée.` : ''
+  return rows.length ? `🏗️ Pour voir comment ce patrimoine est loué, voici quelques repères :\n${rows.join('\n')}\nLe taux d’occupation financier te renseigne sur les loyers facturés ou facturables, pas sur la proportion de surfaces occupées.` : ''
 }
 export function historyText(record) {
   const rows=record.priceHistory?.years
