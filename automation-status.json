@@ -96,13 +96,18 @@
     },
     "update-insurance.yml": {
       "name": "Présentations d’assurance-vie",
-      "runId": 37944217628,
+      "runId": 37965177630,
       "attempt": 1,
-      "completedAt": "2026-10-09T14:39:24Z",
-      "status": "success",
+      "completedAt": "2026-10-09T17:18:57Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-09T14:39:24Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37944217628",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37965177630",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run node scripts/test-automation-gap-inventory.mjs"
+        }
+      ],
       "dataFailures": {}
     },
     "update-bitcoin-monthly.yml": {
@@ -155,5 +160,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-09T17:18:36Z"
+  "updatedAt": "2026-10-09T17:18:57Z"
 }
