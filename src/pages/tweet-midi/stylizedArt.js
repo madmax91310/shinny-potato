@@ -1,7 +1,7 @@
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 
 const paperGroups = {
-  world: ['world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde'], america: ['usa'], europe: ['europe'], emerging: ['emergents','emergents-avec-sans-chine'], property: ['immobilier-infrastructures'],
+  world: ['world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea'], america: ['usa','usa-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
   gaming: ['jeux-video'], luxury: ['luxe'], robotics: ['ia-robotique'], health: ['sante','innovation-medicale'], renewables: ['renouvelables'],
   dividends: ['dividendes'], japan: ['japon'], defense: ['defense'], quantum: ['quantique'],
   space: ['spatial'], resources: ['ressources-naturelles'], finance: ['financieres'],
@@ -9,6 +9,8 @@ const paperGroups = {
 }
 export const PAPER_THEME_ART = Object.freeze(Object.fromEntries(Object.entries(paperGroups).flatMap(([scene, ids]) => ids.map(id => [id, scene]))))
 export function getPaperArt(themeId, isin) {
+  // L'illustration asiatique ne représente pas l'Amérique latine ou l'EMEA.
+  if (themeId === 'emergents-pea') return isin === 'FR0013412012' ? 'emerging' : 'world'
   if (themeId === 'etc-metaux') return isin === 'IE00B4NCWG09' ? 'silver' : isin === 'GB00B15KXQ89' ? 'copper' : 'gold'
   const scene = PAPER_THEME_ART[themeId]
   if (!scene) throw new Error(`Illustration de comparatif absente : ${themeId}`)

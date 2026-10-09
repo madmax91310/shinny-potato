@@ -6,6 +6,7 @@ import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.j
 // pas une nouvelle vérification chez l'émetteur. Mettre à jour ici puis contrôler
 // les mentions de frais dans les textes éditoriaux lors d'une modification.
 export const ETF_TER_BY_ISIN = Object.freeze({
+  FR001400ZGO4: '0,30',
   // Fiche officielle Amundi 31/08/2026 : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831
   FR0007056841: '0,50',
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, r.ter])),
@@ -188,6 +189,7 @@ export function formatEtfTer(isin, format = 'tweet') {
 
 // Les frais sont ceux observés au contrôle ; leur date d’entrée en vigueur n’est pas publiée.
 const primaryTerSources = {
+  FR001400ZGO4: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF/20260831',
   FR0007056841: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831',
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, r.source])),
   IE00B4JNQZ49: 'https://www.ishares.com/uk/individual/en/products/280523/ishares-sp-500-financials-sector-ucits-etf',

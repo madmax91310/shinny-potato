@@ -58,11 +58,11 @@ try {
     }
     try {
       for (const theme of DEFAULT_THEMES) {
-        const words = await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), ['monde', 'usa', 'etc-metaux', 'semiconducteurs-tech', 'quantique'].includes(theme.id))
+        const words = await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), ['monde', 'usa', 'etc-metaux', 'semiconducteurs-tech', 'quantique', 'emergents-pea', 'world-pea'].includes(theme.id))
         for (const fund of theme.etfs) if (!words.includes(fund.isin) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
         const peaInNames = theme.etfs.reduce((count, fund) => count + (fund.nom.match(/\bPEA\b/g)?.length ?? 0), 0)
         const peaOnImage = words.join(' ').match(/\bPEA\b/g)?.length ?? 0
-        if (peaOnImage !== peaInNames || words.includes('CTO')) throw new Error('Envelope badge returned outside the official product names')
+        if (peaOnImage !== peaInNames + (theme.nom.match(/\bPEA\b/g)?.length ?? 0) || words.includes('CTO')) throw new Error('Envelope badge returned outside the official product names')
       }
       for (const id of ASSET_ORDER) {
         const years = getAnnualReturnStartYears(id), year = years[0]

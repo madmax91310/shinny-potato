@@ -2,6 +2,9 @@ import { AUTOMATED_ETF, AUTOMATED_AUM, AUTOMATED_PERFORMANCE, refreshFundDetails
 import { comparisonPct } from '../src/pages/etf-tweets/lib/comparisonDetails.js'
 import assert from 'node:assert/strict'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
+import { getComparisonImageComposition } from '../src/pages/tweet-midi/comparatifEtfImage.js'
+import { getInstrumentPeaStatus } from '../src/data/instruments.js'
+import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
 import { buildTweetText } from '../src/pages/etf-tweets/lib/tweetFormat.js'
 import { COMPARISON_ETF_DETAILS } from '../src/data/comparison-etf-details.js'
@@ -25,7 +28,7 @@ for (const [isin, record] of Object.entries(AUTOMATED_ETF)) {
   assert.equal(details.countriesBasis, record.countries.basis === 'index' ? 'tracked-index' : (record.countries.basis ?? 'fund'))
  }
 }
-const text = buildTweetText(emerging)
+const text = emerging.etfs.flatMap(fund => buildComparisonEtfDetails(fund)).join('\n')
 for (const isin of ['IE00BTJRMP35', 'FR0013412020']) assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance(isin).rows.find(r => r.year === 2025).pct)}`))
 assert.ok(text.includes(`2025 : ${comparisonPct(getComparisonPerformance('IE00BKM4GZ66').rows.find(r => r.year === 2025).pct)}`))
 assert.equal((text.match(/🏭 /g)||[]).length,3)
@@ -49,8 +52,15 @@ for (const theme of DEFAULT_THEMES) {
  const tweet = buildTweetText(theme)
  assert.ok(tweet.length<=25000)
  assert.doesNotMatch(tweet, /Répartition sectorielle : non disponible|Principales positions : non disponibles/)
- const years = new Set(theme.etfs.map(fund => getComparisonPerformance(fund.isin)?.currency).filter(Boolean))
- assert.equal(tweet.includes('classement à monnaie égale'), years.size > 1)
+ assert.doesNotMatch(tweet, /🏭|🏢|📊 Performances|⚙️ Réplication|Répartition sectorielle|classement à monnaie égale|Ce qui change pour toi|—/)
+ assert.equal((tweet.match(/🆔 ISIN : /g) ?? []).length, theme.etfs.length)
+ if (theme.peaOnly) assert(theme.etfs.every(fund => getInstrumentPeaStatus(fund.isin) === true))
+ for (const fund of theme.etfs) {
+  assert(tweet.includes(fund.isin))
+  assert(tweet.includes(`${fund.frais} %`))
+  const listing = getPreferredInstrumentListing(fund.isin)
+  if (listing) assert(tweet.includes(`(${listing.ticker})`))
+ }
  for (const fund of theme.etfs) {
   const p=getComparisonPerformance(fund.isin)
   if(p) {assert.equal(p.label,'ETF');assert.equal(p.referenceIsin,fund.isin)}
@@ -63,14 +73,11 @@ for (const id of ['tech-europe', 'sante', 'ressources-naturelles', 'financieres'
  assert.doesNotMatch(buildTweetText(DEFAULT_THEMES.find(t => t.id === id)), /🏭/, `${id}: activités et entreprises, sans bloc sectoriel redondant`)
 }
 for (const id of ['monde', 'emergents', 'ia-robotique', 'renouvelables']) {
- assert.match(buildTweetText(DEFAULT_THEMES.find(t => t.id === id)), /🏭/, `${id}: les secteurs restent utiles pour un panier multisectoriel`)
+ assert.doesNotMatch(buildTweetText(DEFAULT_THEMES.find(t => t.id === id)), /🏭/, `${id}: les secteurs restent sur l’image`)
 }
 const resources = buildTweetText(DEFAULT_THEMES.find(t => t.id === 'ressources-naturelles'))
-assert.equal((resources.match(/⚙️ Réplication physique/g) ?? []).length, 2)
-assert.equal((resources.match(/⚙️ Réplication synthétique/g) ?? []).length, 2)
-assert.match(resources, /Xtrackers couvre les matériaux des pays développés/)
-assert.match(resources, /chimie et les gaz industriels/)
-assert.doesNotMatch(resources, /Ces ETF détiennent des actions/)
+assert.doesNotMatch(resources, /⚙️|chimie et les gaz industriels|📊 Performances/)
+assert.match(resources, /💸 Frais annuels/)
 const synthetic = buildComparisonEtfDetails({ isin: 'LU1834983634', nom: 'ETF' }).join('\n')
 assert.match(synthetic, /Principales entreprises de l’indice suivi/)
 assert.doesNotMatch(synthetic, /Principales positions du fonds/)
@@ -114,3 +121,26 @@ for (const isin of ['IE00BD6FTQ80','IE00BDFL4P12']) {
  assert.match(text, /Autres : -0,01 %/);
  assert.doesNotMatch(text, /🏭|🏢/);
 }
+
+// Le texte court et l'image détaillée conservent les mêmes parts exactes.
+const pea = DEFAULT_THEMES.filter(theme => theme.peaOnly)
+assert.equal(pea.length, 4)
+assert.deepEqual(pea.map(theme => theme.id), ['world-pea', 'usa-pea', 'emergents-pea', 'europe-pea'])
+assert(pea.find(theme => theme.id === 'world-pea').etfs.some(fund => fund.isin === 'FR0014017NX3'))
+assert(pea.find(theme => theme.id === 'usa-pea').etfs.some(fund => fund.isin === 'FR0011871110'))
+assert.equal(pea.find(theme => theme.id === 'europe-pea').etfs.length, 3)
+assert(!DEFAULT_THEMES.some(theme => ['japon-pea', 'sp500-pea'].includes(theme.id)))
+const peaEmerging = pea.find(theme => theme.id === 'emergents-pea')
+assert.deepEqual(peaEmerging.etfs.map(fund => fund.isin), ['FR0013412020', 'FR001400ZGO4', 'FR0013412012', 'FR0013412004', 'FR0011440478'])
+assert.match(buildTweetText(peaEmerging), /PAEEM et PEMS sont deux parts du même fonds/)
+assert.equal(getComparisonPerformance('FR001400ZGO4'), null, 'Pas de performance PAEEM copiée sur PEMS')
+assert.throws(() => buildTweetText({ ...peaEmerging, etfs: [emerging.etfs.find(fund => fund.isin === 'IE00BKM4GZ66')] }), /part non éligible ou non vérifiée/)
+for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) for (const field of ['sectors', 'countries']) {
+ const image = getComparisonImageComposition(fund.isin, field)
+ const expected = [...(COMPARISON_ETF_DETAILS[fund.isin]?.[field] ?? [])].filter(([,value]) => Number.isFinite(value) && value > 0).sort((a,b) => b[1]-a[1]).slice(0,3)
+ assert.deepEqual(image.rows, expected)
+ assert.equal(image.asOf, COMPARISON_ETF_DETAILS[fund.isin]?.[`${field}AsOf`] ?? COMPARISON_ETF_DETAILS[fund.isin]?.asOf)
+}
+assert.equal(getComparisonImageComposition('FR001400ZGO4', 'countries').isIndex, true)
+assert.match(buildTweetText(DEFAULT_THEMES.find(theme => theme.id === 'etc-metaux')), /Taux de swap annuel : 0,45 % en supplément/)
+console.log('Texte compact, quatre sélections PEA, compositions réservées aux images et historique propre de PEMS vérifiés.')

@@ -6,6 +6,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
+  FR001400ZGO4: Object.freeze({name: "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc"}),
   FR0007056841: Object.freeze({name: "Amundi Dow Jones Industrial Average UCITS ETF Dist"}),
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, Object.freeze({ name: r.name })])),
   "LU0290358497": Object.freeze({name: "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C"}),

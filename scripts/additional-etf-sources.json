@@ -1145,6 +1145,19 @@
       "required": true,
       "enabled": true,
       "expectedIndex": "Dow Jones Industrial Average Net Total Return"
+    },
+    {
+      "isin": "FR001400ZGO4",
+      "name": "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc",
+      "currency": "EUR",
+      "replication": "Indirect(Swap Based)",
+      "collectComposition": true,
+      "provider": "Amundi",
+      "parser": "amundi-index",
+      "exposureOnly": true,
+      "required": true,
+      "enabled": true,
+      "expectedIndex": "MSCI EM ex-Egypt ESG Broad CTB Select Index"
     }
   ]
 }
