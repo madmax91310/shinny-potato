@@ -22,7 +22,7 @@ try {
   // Alerts remain visible independently of calendar filters.
   await page.route('**/automation-status/automation-status.json', route => route.fulfill({json: {schemaVersion: 1, workflows: {economic: {name: 'Données économiques', status: 'failure', completedAt: '2026-10-07T10:00:00Z', runUrl: 'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}))
   await page.goto(`${base}/donnees-a-revoir?view=calendar&tool=Calculateur`, { waitUntil: 'networkidle' })
-  assert.equal(await page.locator('.dr-automation .dr-item').count(), 1)
+  assert.equal(await page.getByRole('region', { name: 'Échecs des mises à jour automatiques', exact: true }).locator('.dr-item').count(), 1)
   assert.equal(await page.locator('.data-review > .dr-list > .dr-item').count(), calculatorCount)
   assert.equal(await page.getByText('Prochaine vérification', { exact: true }).count(), calculatorCount)
   await page.reload({ waitUntil: 'networkidle' })
