@@ -9,9 +9,9 @@ export const ENVELOPES = [
   { id: 'pel', name: 'PEL' }, { id: 'other', name: 'Autre placement' },
 ]
 export const SCENARIOS = [
-  { id: 'low', label: 'Prudent', color: '#e8af60' },
-  { id: 'central', label: 'Central', color: '#65d5b0' },
-  { id: 'high', label: 'Favorable', color: '#9bafff' },
+  { id: 'low', label: 'Prudent', color: '#ffb454', dash: [24, 14] },
+  { id: 'central', label: 'Central', color: '#42e2ba', dash: [] },
+  { id: 'high', label: 'Favorable', color: '#a69bff', dash: [2, 14] },
 ]
 export const HORIZONS = [5, 10, 15, 20, 30]
 export function newPocket(envelope = 'pea', id = crypto.randomUUID()) {
