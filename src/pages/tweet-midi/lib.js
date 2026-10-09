@@ -1,5 +1,5 @@
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js';
-import { anniversaryResult, anniversaryClosing } from './anniversaryEditorial.js';
+import { anniversaryResult, anniversaryClosing, anniversaryComparisonNote } from './anniversaryEditorial.js';
 import { DILEMMES, SITUATIONS } from "./data/dilemmes.js";
 import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from "./data/ficheLexique.js";
 import { COMPARATIF_ETF_SUBJECTS, getComparatifEtfText } from "./data/comparatifEtf.js";
@@ -9,7 +9,7 @@ import { fmtEUR, fmtPct } from "../investment-calculator/lib.js";
 import {
   MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions,
   getHistoricalPrice, ymForYearsBack, fmtYm,
-  getAnnualReturnStartYears, getAnnualReturns,
+  getAnnualReturnStartYears, getAnnualReturns, performanceBasis,
 } from "./data/marketHistory.js";
 // Format "Pouvoir d'achat" : aucune donnée ni logique de calcul propre — réutilise entièrement le
 // simulateur "Pouvoir d'achat" (montants, années, séries INSEE, calcul, punchlines) ; cette couche
@@ -477,6 +477,7 @@ function cumulatePct(returns) {
 function buildPerformanceBlock(asset, year, returns) {
   return [
     `📈 Performance ${dePhrase(asset.tweetPhrase)} depuis ${year} 👇`,
+    performanceBasis(asset.id),
     "",
     ...returns.map(({ year: annualYear, pct }) => `${pct >= 0 ? "🟢" : "🔴"} ${annualYear} : ${fmtPct(pct)}`),
     "",
@@ -485,7 +486,8 @@ function buildPerformanceBlock(asset, year, returns) {
 }
 
 export function buildPerformanceDepuisText(item) {
-  return buildPerformanceBlock(findAsset(item.assetId), item.year, getAnnualReturns(item.assetId, item.year));
+  const [{ asset, returns }] = getPerformanceEntries(item);
+  return buildPerformanceBlock(asset, item.year, returns);
 }
 
 // Both observations retain their own date and convention.
@@ -504,12 +506,13 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   const pctA = hasA ? ((curA - histA) / histA) * 100 : null;
   const pctB = hasB ? ((curB - histB) / histB) * 100 : null;
   const bothKnown = hasA && hasB;
+  const comparisonNote = bothKnown ? anniversaryComparisonNote(assetA, assetB, obsA, obsB) : '';
 
   const rows = [
     { asset: assetA, observation: obsA, hist: histA, cur: curA, hasCur: hasA, gain: pctA },
     { asset: assetB, observation: obsB, hist: histB, cur: curB, hasCur: hasB, gain: pctB },
   ];
-  const ordered = bothKnown && pctB > pctA ? [rows[1], rows[0]] : rows;
+  const ordered = bothKnown && !comparisonNote && pctB > pctA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
   lines.push(`⚖️ ${assetA.label} ou ${assetB.label} : quelle différence après ${yearsPhrase(item.yearsBack)}, depuis ${dateLabel} ? 👇`);
@@ -523,35 +526,31 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
     if (i === 0) lines.push("");
   });
   lines.push("");
-  if (bothKnown) lines.push(fmtEcart(pctA, pctB));
-  lines.push(comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, item.yearsBack));
-  const credit = assetA.sourceCredit || assetB.sourceCredit;
-  if (credit) lines.push("", credit);
+  if (comparisonNote) lines.push(`📌 ${comparisonNote}`, '', `💬 À l’époque, tu aurais choisi ${assetA.label}, ${assetB.label}, ou les deux ?`);
+  else {
+    if (bothKnown) lines.push(fmtEcart(pctA, pctB));
+    lines.push(comparativeAnniversaryConclusion(assetA, assetB, pctA, pctB, item.yearsBack));
+  }
+  for (const credit of new Set([assetA.sourceCredit, assetB.sourceCredit].filter(Boolean))) lines.push('', credit);
   return lines.join("\n");
 }
 
 // Comparatif : même bloc par actif, années communes et meilleur cumul en premier.
 // Le texte peut dépasser 280 caractères ; le badge de longueur de l’app le signale.
+export function getPerformanceEntries(item) {
+  const ids = item.mode === MODES.COMPARATIF ? [item.assetIdA, item.assetIdB] : [item.assetId];
+  const entries = ids.map(id => ({ asset: findAsset(id), returns: getAnnualReturns(id, item.year) }));
+  if (entries.some(entry => !entry.asset || !entry.returns.length)) throw new Error('Actif ou performances annuelles absents');
+  const sharedLastYear = Math.min(...entries.map(entry => entry.returns.at(-1).year));
+  entries.forEach(entry => { entry.returns = entry.returns.filter(row => row.year <= sharedLastYear); });
+  if (entries.every(entry => entry.asset.currency === entries[0].asset.currency)) {
+    entries.sort((a, b) => cumulatePct(b.returns) - cumulatePct(a.returns));
+  }
+  return entries;
+}
+
 export function buildPerformanceDepuisComparatifText(item) {
-  const assetA = findAsset(item.assetIdA);
-  const assetB = findAsset(item.assetIdB);
-  const availableA = getAnnualReturns(item.assetIdA, item.year);
-  const availableB = getAnnualReturns(item.assetIdB, item.year);
-  // Un actif peut s'arrêter plus tôt (SAP : décembre 2024). Les deux cumuls
-  // doivent alors porter sur les mêmes années, jamais comparer 2024 à 2025.
-  const sharedLastYear = Math.min(availableA.at(-1).year, availableB.at(-1).year);
-  const returnsA = availableA.filter((r) => r.year <= sharedLastYear);
-  const returnsB = availableB.filter((r) => r.year <= sharedLastYear);
-  const cumA = cumulatePct(returnsA);
-  const cumB = cumulatePct(returnsB);
-
-  const rows = [
-    { asset: assetA, returns: returnsA, cum: cumA },
-    { asset: assetB, returns: returnsB, cum: cumB },
-  ];
-  const ordered = cumB > cumA ? [rows[1], rows[0]] : rows;
-
-  return ordered.map(({ asset, returns }) => buildPerformanceBlock(asset, item.year, returns)).join("\n\n");
+  return getPerformanceEntries(item).map(({ asset, returns }) => buildPerformanceBlock(asset, item.year, returns)).join("\n\n");
 }
 
 export function buildPouvoirAchatText(item) {

@@ -1,5 +1,5 @@
-import { getAnnualReturns } from './data/marketHistory.js'
-import { getMarketAsset, MODES } from './lib.js'
+import { performanceBasis } from './data/marketHistory.js'
+import { getPerformanceEntries, MODES } from './lib.js'
 import { loadPerformanceArt, drawPerformanceArt } from './performanceArt.js'
 
 import { loadArtImage } from './anniversaryArt.js'
@@ -55,6 +55,7 @@ function panel(ctx, entry, image, studio, goldStudio, y) {
   text(ctx, assetTitle(asset), 670, 120, 98, { width: 830, color: GOLD, serif: true })
   text(ctx, `Fin ${returns[0].year - 1} → Fin ${returns.at(-1).year}`, 670, 252, 48, { width: 825, serif: true })
   text(ctx, `EN ${asset.currency}`, 675, 327, 27, { color: MUTED })
+  text(ctx, performanceBasis(asset.id).replace(`${asset.currency} · `, '').replace(` · ${asset.currency}`, ''), 1500, 329, 23, { width: 600, align: 'right', color: MUTED, weight: 400 })
   ctx.save(); ctx.shadowColor = total < 0 ? '#b02d38' : '#2f9fe6'; ctx.shadowBlur = 14
   text(ctx, percentage(total), 1080, 385, 151, { width: 825, align: 'center', color: total < 0 ? RED : GREEN, serif: true })
   ctx.restore()
@@ -73,15 +74,8 @@ function panel(ctx, entry, image, studio, goldStudio, y) {
   ctx.restore()
 }
 export async function renderPerformanceImage(item) {
-  const comparative = item.mode === MODES.COMPARATIF
-  const ids = comparative ? [item.assetIdA, item.assetIdB] : [item.assetId]
-  const entries = ids.map(id => ({ asset: getMarketAsset(id), returns: getAnnualReturns(id, item.year) }))
-  if (entries.some(entry => !entry.asset || !entry.returns.length)) throw new Error('Actif ou performances annuelles absents')
-  if (comparative) {
-    const commonYears = entries[0].returns.map(row => row.year).filter(year => entries[1].returns.some(row => row.year === year))
-    entries.forEach(entry => { entry.returns = entry.returns.filter(row => commonYears.includes(row.year)) })
-    if (!commonYears.length) throw new Error('Aucune année commune aux deux actifs')
-  }
+  const entries = getPerformanceEntries(item)
+  const ids = entries.map(entry => entry.asset.id)
   const [images, studio, goldStudio] = await Promise.all([
     Promise.all(ids.map(loadPerformanceArt)), loadArtImage('approved/investor-glass.webp'), loadArtImage('approved/performance-gold-glass.webp'),
   ]); await document.fonts.ready

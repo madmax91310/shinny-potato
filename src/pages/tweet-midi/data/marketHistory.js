@@ -93,8 +93,13 @@ export function getLastRealPointOfYear(assetId, year) {
 // elle n'a qu'un point partiel, jamais une vraie clôture annuelle.
 export function getAnnualReturnStartYears(assetId) {
   return getAssetAvailableYears(assetId).filter(
-    (year) => year < LATEST_YEAR && getLastRealPointOfYear(assetId, year - 1) !== null,
+    (year) => year < LATEST_YEAR && annualClose(assetId, year - 1) && annualClose(assetId, year),
   );
+}
+
+function annualClose(assetId, year) {
+  const point = getLastRealPointOfYear(assetId, year);
+  return point?.date === `${year}-12` && Number.isFinite(point.price) && point.price > 0 ? point : null;
 }
 
 // Détail annuel réel depuis `startYear` (inclus) jusqu'à la dernière année civile complète —
@@ -104,9 +109,10 @@ export function getAnnualReturnStartYears(assetId) {
 export function getAnnualReturns(assetId, startYear) {
   const out = [];
   for (let year = startYear; year <= LATEST_YEAR - 1; year++) {
-    const prev = getLastRealPointOfYear(assetId, year - 1);
-    const cur = getLastRealPointOfYear(assetId, year);
-    if (!prev || !cur) continue;
+    const prev = annualClose(assetId, year - 1);
+    const cur = annualClose(assetId, year);
+    // A cumulative return must never silently skip an unavailable year.
+    if (!prev || !cur) break;
     out.push({ year, pct: ((cur.price - prev.price) / prev.price) * 100, startDate: prev.date, endDate: cur.date });
   }
   return out;
@@ -173,6 +179,16 @@ export const ANNIVERSARY_INDEX_VARIANTS = {
   msciEmerging: 'Gross Return · USD · dividendes bruts réinvestis',
   msciWorldSmallCap: 'Gross Return · USD · dividendes bruts réinvestis',
 };
+
+export function performanceBasis(assetId) {
+  const asset = ASSETS[assetId];
+  if (ANNIVERSARY_INDEX_VARIANTS[assetId]) return ANNIVERSARY_INDEX_VARIANTS[assetId];
+  if (asset.priceMethod === 'adjusted') return `${asset.currency} · revenus réinvestis`;
+  if (assetId === 'or') return `${asset.currency} · moyennes mensuelles du prix de l’or`;
+  if (assetId === 'silver') return `${asset.currency} · futures COMEX, hors frais et roulement`;
+  if (assetId === 'nasdaq100' || assetId === 'soxx') return `${asset.currency} · hors dividendes`;
+  return `${asset.currency} · variation du prix`;
+}
 const REBASED_INDEX_IDS = new Set(ASSET_ORDER.filter(id => ASSETS[id].priceUnit === 'points'));
 
 // Les séries éparses sont exclues des anniversaires : interpoler entre deux clôtures
