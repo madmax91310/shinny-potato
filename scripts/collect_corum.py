@@ -1,5 +1,9 @@
 """CORUM documents: discover current annual report and note on official product pages."""
 import datetime as dt
+import calendar
+import copy
+import hashlib
+import json
 import pathlib
 import re
 import subprocess
@@ -14,6 +18,32 @@ PRODUCTS = {'corum-origin': ('CORUM Origin','corum-origin'), 'corum-xl': ('CORUM
 COUNTRIES = ['Pays-Bas','Italie','Irlande','Espagne','Finlande','Belgique','France','Allemagne','Lituanie','Slovénie','Portugal','Estonie','Lettonie','Royaume-Uni','Pologne','Canada','Suède','Norvège','Danemark','États-Unis','Autriche']
 SECTORS = {'Industriel':'Industriel et logistique','Parking':'Parkings','Bureau':'Bureaux','Commerce':'Commerces','Hôtellerie':'Hôtellerie','Logistique':'Logistique','Activité':'Activités','Santé':'Santé','Éducation':'Éducation et loisirs','Education':'Éducation et loisirs'}
 MONTHS = {'janvier':1,'février':2,'mars':3,'avril':4,'mai':5,'juin':6,'juillet':7,'août':8,'septembre':9,'octobre':10,'novembre':11,'décembre':12}
+
+
+def qualified_vector_quarterly(data, id_, url, today):
+    """Known vector-only bulletins are visually qualified by exact PDF bytes.
+
+    No OCR guess or annual fallback may silently become a current quarter.
+    A different publication requires a new qualification and triggers the
+    existing per-record failure alert while preserving the previous fiche.
+    """
+    registry = json.loads((pathlib.Path(__file__).parent / 'corum-quarterly-qualified.json').read_text())
+    evidence = registry[id_]
+    stamp = required(r'(?P<year>20\d{2})-T(?P<quarter>[1-4])', urllib.parse.unquote(url))
+    year, month = int(stamp['year']), int(stamp['quarter']) * 3
+    date = dt.date(year, month, calendar.monthrange(year, month)[1])
+    if date > today or date.isoformat() != evidence['asOf']:
+        raise ValueError('Vector CORUM bulletin period requires qualification')
+    if not data.startswith(b'%PDF') or hashlib.sha256(data).hexdigest() != evidence['sha256']:
+        raise ValueError('Vector CORUM bulletin changed; visual qualification required')
+    snapshot = {'asOf':evidence['asOf'], 'countries':copy.deepcopy(evidence['countries']),
+                'sectors':copy.deepcopy(evidence['sectors']), 'sourceUrls':[url],
+                'dateNote':'Bulletin trimestriel officiel sans texte extractible, page 4 vérifiée visuellement ; empreinte du PDF contrôlée à chaque collecte.'}
+    portfolio = {key:{'value':value,'asOf':evidence['asOf'],'sourceUrl':url,
+                     'label':{'buildings':'Immeubles','tenants':'Locataires','occupancy':'Taux d’occupation financier'}[key],
+                     **({'basis':'Inclut les loyers facturés et facturables et les locaux sous franchise de loyer ; distinct du taux physique.'} if key=='occupancy' else {})}
+                 for key,value in evidence['portfolio'].items()}
+    return snapshot, portfolio
 
 
 def documents(html, name, today):
@@ -203,15 +233,14 @@ def collect(id_,today):
     if advertised != price['value']: raise ValueError('Product price differs from official note')
     portfolio=parse_annual_portfolio(annual,annual_year,annual_url)
     snapshot={'asOf':as_of,'dateNote':'Répartition du dernier rapport annuel complet ; les bulletins trimestriels ne sont pas utilisés pour ces tableaux.', 'countries':countries,'sectors':sectors,'sourceUrls':[annual_url]}
-    if id_=='corum-origin':
-        url=base+'/patrimoine'
-        observation=origin_occupancy(fetch(url).decode(),today,url)
-        if observation['asOf']>=portfolio['occupancy']['asOf']:portfolio['occupancy']=observation
-    if id_=='corum-eurion':
+    if id_ in PRODUCTS:
         from collect_extended_scpi import document_links, latest
-        url=latest(document_links(documents_html,base),r'CORUM Eurion.*?(?P<year>\d{4})-T(?P<quarter>[1-4])\.pdf',today)
+        url=latest(document_links(documents_html,base),re.escape(name)+r'.*?(?P<year>\d{4})-T(?P<quarter>[1-4])[^/]*\.pdf',today)
         data=fetch(url)
-        snapshot,portfolio=parse_eurion_quarterly(pdf_text(data),bbox_pages(data),url,today)
+        if id_=='corum-eurion':
+            snapshot,portfolio=parse_eurion_quarterly(pdf_text(data),bbox_pages(data),url,today)
+        else:
+            snapshot,portfolio=qualified_vector_quarterly(data,id_,url,today)
     return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),
             'snapshot':snapshot, 'portfolio':portfolio, 'priceHistory':parse_annual_price_history(annual,today,annual_url),
             'annual':{'years':parse_annual(annual,today),'sourceUrl':annual_url},

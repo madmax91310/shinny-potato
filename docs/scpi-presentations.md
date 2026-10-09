@@ -2,11 +2,11 @@
 
 Route `/presentation-scpi` : Iroko Zen, Remake Live, CORUM Origin, CORUM XL, CORUM Eurion, Transitions Europe (Arkéa REIM) ActivImmo (Alderan) et Épargne Pierre (ATLAND Voisin). La publication est un texte long, modifiable avant copie, avec hook, principaux pays/secteurs, accès, distributions, frais, lecture de l’exposition et CTA. Les répartitions complètes et les documents sont consultables dans les réglages.
 
-## Visuel minéral clair
+## Visuel personnalisé en relief
 
-Les onglets Texte et Image partagent les mêmes observations. Le visuel utilise une illustration décorative, des teintes ivoire et sauge et des titres sérif ; les chiffres, dates et conditions sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG, à 1 600 pixels de large, avec une hauteur adaptée au contenu. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
+Les onglets Texte et Image partagent les mêmes observations. Le visuel associe un logo officiel en relief, une couleur propre à chaque marque et trois chiffres clés adaptés au contrat ou à la SCPI. Le décor est distinct pour l’immobilier et l’assurance vie ; les chiffres et leurs qualifications sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG de 1 600 × 1 000 pixels. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
 
-Les dates propres aux indicateurs, les conditions et fourchettes des fonds euros, les frais HT et maxima contractuels restent explicites. Les sources et la date du relevé figurent au pied du visuel. Un chargement d’illustration en échec interrompt l’export et permet de réessayer.
+Les conditions des taux et les dates restent explicites ; le texte et les réglages conservent les données détaillées et les sources. Un chargement du logo ou du décor en échec interrompt l’export et permet de réessayer.
 
 ## Source unique
 
@@ -14,7 +14,7 @@ Les dates propres aux indicateurs, les conditions et fourchettes des fonds euros
 
 - Iroko : graphiques et API publics de l’émetteur (identifiant public de lecture découvert depuis son script officiel), page produit pour le ticket d’entrée, note d’information pour les frais et la jouissance.
 - Remake : JSON officiel des graphiques et calendriers, bulletin courant découvert depuis la page produit pour les conditions et leur date.
-- CORUM : rapports annuels pour les distributions et l’historique des prix au 31 décembre ; notes d’information pour les tarifs. Origin et XL conservent leurs répartitions annuelles datées : les tableaux des derniers bulletins ne sont pas extractibles de façon fiable. Eurion utilise son dernier bulletin trimestriel extractible pour les répartitions, les immeubles, les locataires et le TOF. Le TOF de CORUM Origin est complété depuis son bloc explicitement daté sur la page Patrimoine (95,77 % au 30/06/2026 au relevé du 08/10/2026) ; les nombres d’immeubles et de locataires non datés de cette page ne remplacent pas les observations annuelles. Les commissions de gestion de CORUM XL distinguent la zone euro et le reste du portefeuille.
+- CORUM : rapports annuels pour les distributions et l’historique des prix au 31 décembre ; notes d’information pour les tarifs. Origin et XL utilisent les répartitions, immeubles, locataires et TOF du bulletin T2 2026, au 30 juin 2026, qualifié visuellement et vérifié par empreinte du PDF ; un nouveau bulletin dessiné exige une qualification. Eurion utilise son dernier bulletin trimestriel extractible. Les commissions de gestion de CORUM XL distinguent la zone euro et le reste du portefeuille.
 - Transitions Europe : dernier bulletin trimestriel ou semestriel terminé, découvert sur la page officielle ; note d’information pour les conditions. Le taux de distribution est distinct de la performance globale annuelle et de l’objectif.
 - ActivImmo : bulletin trimestriel pour les répartitions, locataires et TOF ; rapport annuel pour les actifs et les distributions ; dernière annexe tarifaire pour le prix actuel et sa date d’effet. Les dates restent distinctes et les dividendes mensuels sont confirmés par le rapport annuel.
 - Épargne Pierre : bulletin trimestriel terminé pour les régions françaises, secteurs, actifs, locataires et TOF ; rapport annuel pour les distributions et prix historiques. La division du prix de 208 € à 20,80 € au 1er juillet 2026 multiplie le nombre de parts par dix et ne représente pas une perte de valeur. Le minimum est de 100 parts, soit 2 080 €. La jouissance exceptionnelle de 2026 et le passage aux distributions mensuelles en janvier 2027 suivent leurs dates publiées.
@@ -59,3 +59,7 @@ Les colonnes doivent être consécutives et ne peuvent pas régresser. La divisi
 ### Correction de la composition minérale
 
 L’export est une carte carrée de 1600 × 1600 pixels : grand titre, illustration dominante et trois panneaux de chiffres essentiels, conformément à la proposition 1. Le texte conserve le détail des conditions et des sources. Les taux de distribution restent identifiés comme bruts de fiscalité étrangère ; les fonds euros gardent leurs fourchettes et conditions lorsqu’elles s’appliquent.
+
+## Complément du 9 octobre 2026
+
+Voir la [qualification des sources et les limites des bulletins dessinés](presentation-source-reliability.md) et la [roadmap de l’outil unique Présentations](presentations-roadmap.md). Les exports actuels utilisent des logos officiels en relief, des couleurs propres à chaque marque et un format 1600 × 1000.

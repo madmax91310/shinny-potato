@@ -9,7 +9,7 @@ import tempfile
 import urllib.error
 import urllib.request
 
-REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation'}
+REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation', 'update-scpi.yml':'scpi-observations', 'update-insurance.yml':'insurance-observations'}
 
 WORKFLOWS = {
     'update-editorial-radar.yml': 'Radar éditorial quotidien',
@@ -37,6 +37,9 @@ DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alim
 
 def normalize_report(report):
     """Adapt issuer/index reports without turning preserved values into recovered sources."""
+    if 'observations' in report and 'indices' not in report and 'shares' not in report:
+        return {'successes':[{'id':o['id']} for o in report['observations'] if o['status']=='success'],
+                'errors':[{'id':o['id'],'name':o.get('name',o['id']),'error':o.get('reason','Collecte échouée')} for o in report['observations'] if o['status']=='failure']}
     if 'indices' in report:
         successes, errors = [], []
         for item in report['indices']:

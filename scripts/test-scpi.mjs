@@ -43,6 +43,13 @@ assert.equal(activimmo.price.asOf,'2026-07-01')
 assert(buildTweet(activimmo).includes('613,5 €') && buildTweet(activimmo).includes('10,6 % HT'))
 assert(buildTweet(activimmo).includes('2025') && buildTweet(activimmo).includes('2026'))
 assert.equal(SCPI.find(row => row.id === 'corum-eurion').snapshot.asOf,'2026-06-30')
+for (const [id, count] of [['corum-origin',170],['corum-xl',96]]) {
+  const record = SCPI.find(row => row.id === id)
+  assert.equal(record.snapshot.asOf,'2026-06-30')
+  assert.equal(record.portfolio.buildings.value,count)
+  assert(buildTweet(record).includes(`${count} au 30/06/2026`))
+  assert(record.snapshot.dateNote.includes('vérifiée visuellement'))
+}
 
 const epargne=SCPI.find(row => row.id === 'epargne-pierre')
 assert(buildTweet(epargne).includes('ne représente pas une baisse de valeur'))

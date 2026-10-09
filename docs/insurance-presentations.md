@@ -2,11 +2,11 @@
 
 Route `/presentation-assurance-vie` : Linxea Spirit 2 (Spirica), Linxea Avenir 2 (Suravenir), Linxea Zen (Apicil), Linxea Vie (Generali), Lucya Cardif (Cardif Assurance Vie) et Placement-direct Vie (SwissLife Assurance et Patrimoine). Sélection d’un contrat, texte long modifiable, copie et rétablissement ; consultation des rendements et conditions des fonds euros dans les réglages. Les mêmes observations alimentent la bibliothèque de données.
 
-## Visuel minéral clair
+## Visuel personnalisé en relief
 
-Les onglets Texte et Image partagent les mêmes observations. Le visuel utilise une illustration décorative, des teintes ivoire et sauge et des titres sérif ; les chiffres, dates et conditions sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG, à 1 600 pixels de large, avec une hauteur adaptée au contenu. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
+Les onglets Texte et Image partagent les mêmes observations. Le visuel associe un logo officiel en relief, une couleur propre à chaque marque et trois chiffres clés adaptés au contrat ou à la SCPI. Le décor est distinct pour l’immobilier et l’assurance vie ; les chiffres et leurs qualifications sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG de 1 600 × 1 000 pixels. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
 
-Les dates propres aux indicateurs, les conditions et fourchettes des fonds euros, les frais HT et maxima contractuels restent explicites. Les sources et la date du relevé figurent au pied du visuel. Un chargement d’illustration en échec interrompt l’export et permet de réessayer.
+Les conditions des taux et les dates restent explicites ; le texte et les réglages conservent les données détaillées et les sources. Un chargement du logo ou du décor en échec interrompt l’export et permet de réessayer.
 
 ## Données et sources
 
@@ -19,7 +19,7 @@ La date de vérification des pages n’est pas présentée comme une date d’ef
 ## Conditions propres aux nouveaux contrats
 
 - Zen : pénalité de 2 % sur les arbitrages d’Euroflex vers Euro Garanti ; retrait total et participation annuelle explicités. Le complément de rendement 2025 appliqué à tous les clients est distingué des bonus commerciaux conditionnels.
-- Vie : accès à Netissima sans quota d’unités de compte qualifié jusqu’au 31 décembre 2026 ; au-delà, le parseur exige une nouvelle condition officielle. La garantie nette de Netissima est confirmée par la page du contrat. Celle d’Eurossima reste non renseignée faute de valeur nette explicite dans les sources collectées.
+- Vie : accès à Netissima sans quota d’unités de compte qualifié jusqu’au 31 décembre 2026 ; au-delà, le parseur exige une nouvelle condition officielle. La garantie nette de Netissima est confirmée par la page du contrat. La notice contractuelle liée sur cette page complète Eurossima : minimum annuel de 99,25 %, calculé à partir de la garantie contractuelle et des 0,75 % de frais maximaux, hors garantie optionnelle décès. La méthode et la source sont affichées ; les frais et la garantie de Netissima sont recoupés avec la notice.
 - Eurossima : le plafond annuel est fixé par l’assureur dans une plage de 0 à 50 000 € la première année, puis de 0 à 25 000 € ; ce n’est pas un plafond universel de versement du contrat.
 
 - Lucya Cardif : Fonds général et Euro Private Strategies sont distincts, notamment leurs frais et garanties nettes. L’allocation Euro Private Strategies exige au moins deux euros d’unités de compte pour un euro sur le fonds. La quote-part maximale actuelle du Fonds général reste non renseignée ; la clause conditionnelle liée au TME est affichée, sans supposer la valeur actuelle de cet indice. Adhésion UFEP et conditions particulières des supports immobiliers sont visibles.
@@ -54,3 +54,7 @@ Tests : `python -m unittest discover -s scripts -p test_publication_periods.py` 
 ### Correction de la composition minérale
 
 L’export est une carte carrée de 1600 × 1600 pixels : grand titre, illustration dominante et trois panneaux de chiffres essentiels, conformément à la proposition 1. Le texte conserve le détail des conditions et des sources. Les taux de distribution restent identifiés comme bruts de fiscalité étrangère ; les fonds euros gardent leurs fourchettes et conditions lorsqu’elles s’appliquent.
+
+## Complément du 9 octobre 2026
+
+Voir la [qualification des sources et les limites des bulletins dessinés](presentation-source-reliability.md) et la [roadmap de l’outil unique Présentations](presentations-roadmap.md). Les exports actuels utilisent des logos officiels en relief, des couleurs propres à chaque marque et un format 1600 × 1000.

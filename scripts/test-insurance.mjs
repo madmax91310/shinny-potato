@@ -30,7 +30,11 @@ console.log('Insurance: shared records, changed fees/returns/conditions and cont
 const vie=INSURANCE.find(row => row.id === 'linxea-vie')
 assert(buildTweet(vie).includes('3,1 à 4,12 % (selon la part UC détenue)'))
 assert(buildTweet(vie).includes('31/12/2026') && buildTweet(vie).includes('25000 €'))
-assert(buildTweet(vie).includes('La garantie nette annuelle n’est pas chiffrée'))
+assert.equal(vie.euroFunds.find(fund => fund.name === 'Eurossima').guarantee, 99.25)
+assert(buildTweet(vie).includes('Minimum annuel calculé'))
+const missingGuarantee = structuredClone(vie)
+missingGuarantee.euroFunds.find(fund => fund.name === 'Eurossima').guarantee = null
+assert(buildTweet(missingGuarantee).includes('La garantie nette annuelle n’est pas chiffrée'))
 const zen=INSURANCE.find(row => row.id === 'linxea-zen')
 assert(buildTweet(zen).includes('2 % de pénalité') && buildTweet(zen).includes('rachat total'))
 

@@ -8,6 +8,8 @@ import pathlib
 import re
 import subprocess
 import tempfile
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from bs4 import BeautifulSoup
@@ -22,8 +24,22 @@ IROKO_NOTE = 'https://iroko-documents.s3.eu-west-3.amazonaws.com/Iroko_Zen_note_
 
 def fetch(url, headers=None):
     request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (official-publication-reader)', **(headers or {})})
-    with urllib.request.urlopen(request, timeout=60) as response:
-        return response.read()
+    # Retry transport failures only. A changed page or a persistent missing PDF
+    # must still reach refresh(), which preserves the last validated record.
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                data = response.read()
+            if not data:
+                raise ValueError('Empty official publication: ' + url)
+            return data
+        except urllib.error.HTTPError as error:
+            if error.code not in (408, 429, 500, 502, 503, 504) or attempt == 2:
+                raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            if attempt == 2:
+                raise
+        time.sleep(attempt + 1)
 
 
 def pdf_text(data, layout=True):
@@ -265,9 +281,9 @@ def refresh(previous, adapters, today):
                 for action in old.get('priceHistory',{}).get('corporateActions',[]):
                     if not any(all(new[k]==action[k] for k in ['asOf','ratio','oldPrice','newPrice']) for new in record.get('priceHistory',{}).get('corporateActions',[])):raise ValueError('Share split evidence disappeared or changed')
             records[id] = record
-            observations.append({'id': id, 'status': 'success'})
+            observations.append({'id': id, 'name':record['name'], 'status': 'success'})
         except Exception as error:
-            observations.append({'id': id, 'status': 'failure', 'reason': str(error)[:250]})
+            observations.append({'id': id, 'name':records.get(id,{}).get('name',id), 'status': 'failure', 'reason': str(error)[:250]})
     return {'records': list(records.values())}, observations
 
 

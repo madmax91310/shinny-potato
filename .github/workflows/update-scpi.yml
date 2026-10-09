@@ -7,7 +7,7 @@ on:
     paths: ['.github/workflows/update-scpi.yml', 'scripts/*scpi*', 'scripts/*corum*', 'scripts/fixtures/scpi/**', 'scripts/fixtures/corum/**', 'scripts/fixtures/extended-scpi/**', 'scripts/publication_periods.py', 'scripts/test_publication_periods.py', 'scripts/test_presentation_expansion.py', 'scripts/fixtures/presentation-expansion/**', 'src/data/*scpi*', 'src/pages/scpi-presentation/**']
   push:
     branches: [master]
-    paths: ['scripts/publication_periods.py', 'scripts/test_publication_periods.py', '.github/workflows/update-scpi.yml', 'scripts/collect_scpi.py', 'scripts/collect_corum.py', 'scripts/collect_extended_scpi.py', 'scripts/collect_atland_scpi.py']
+    paths: ['scripts/publication_periods.py', 'scripts/test_publication_periods.py', '.github/workflows/update-scpi.yml', 'scripts/collect_scpi.py', 'scripts/collect_corum.py', 'scripts/corum-quarterly-qualified.json', 'scripts/collect_extended_scpi.py', 'scripts/collect_atland_scpi.py']
 permissions:
   contents: read
 jobs:
