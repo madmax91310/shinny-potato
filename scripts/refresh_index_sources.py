@@ -38,7 +38,11 @@ def collect_one(config, now, fetch=download):
     result = {'id': config['id'], 'name': config['name'], 'errors': [], 'unavailable': []}
     if config.get('collectComposition', True):
         try:
-            if config.get('compositionParser') == 'amundi-index-document':
+            if config.get('compositionParser') == 'russell-printed-composition':
+                from collect_russell_composition import collect as russell_composition
+                facts = russell_composition(config, now, fetch)
+                result['unavailable'].append('holdings: Russell 1000 top-ten individual weights not published; no ETF substitution')
+            elif config.get('compositionParser') == 'amundi-index-document':
                 from collect_index_extensions import collect_amundi_composition
                 facts = collect_amundi_composition(config, now, fetch)
             else:

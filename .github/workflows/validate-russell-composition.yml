@@ -1,0 +1,46 @@
+name: Validate Russell 1000 printed composition
+on:
+  pull_request:
+    paths:
+      - 'scripts/collect_russell_composition.py'
+      - 'scripts/test_russell_composition.py'
+      - 'scripts/fixtures/russell-composition/**'
+      - 'scripts/refresh_index_sources.py'
+      - '.github/workflows/validate-russell-composition.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==12.3.0
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
+      - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
+      - name: Validate live official Russell 1000 count and printed sectors
+        run: |
+          python - <<'PY'
+          import datetime as dt, json, pathlib, sys
+          sys.path.insert(0, 'scripts')
+          from collect_russell_composition import collect
+          configurations = json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']
+          config = next(c for c in configurations if c['id'] == 'russell-1000')
+          facts = collect(config, dt.datetime.now(dt.timezone.utc))
+          assert len(facts['sectors']) == 11
+          assert facts['holdings'] == []
+          print(facts['asOf'], facts['constituents'], facts['sectors'])
+          PY
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-index-ceramic.mjs
+      - run: node scripts/test-index-ribbon.mjs

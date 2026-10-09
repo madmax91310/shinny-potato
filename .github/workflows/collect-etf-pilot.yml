@@ -15,6 +15,11 @@ on:
       - 'scripts/index-automation.json'
       - 'scripts/collect_sp_composition.py'
       - 'scripts/test_sp_composition.py'
+      - 'scripts/collect_russell_composition.py'
+      - 'scripts/test_russell_composition.py'
+      - 'scripts/automation-gap-inventory.mjs'
+      - 'scripts/test-automation-gap-inventory.mjs'
+      - 'scripts/fixtures/russell-composition/**'
       - 'scripts/fixtures/sp-composition/**'
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
@@ -55,6 +60,11 @@ on:
       - 'scripts/index-automation.json'
       - 'scripts/collect_sp_composition.py'
       - 'scripts/test_sp_composition.py'
+      - 'scripts/collect_russell_composition.py'
+      - 'scripts/test_russell_composition.py'
+      - 'scripts/automation-gap-inventory.mjs'
+      - 'scripts/test-automation-gap-inventory.mjs'
+      - 'scripts/fixtures/russell-composition/**'
       - 'scripts/fixtures/sp-composition/**'
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
@@ -120,6 +130,8 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
+      - run: pip install Pillow==12.3.0
+      - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
       - run: npm ci
@@ -160,6 +172,7 @@ jobs:
         continue-on-error: true
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
       - run: node scripts/report-automation-coverage.mjs --write
+      - run: node scripts/test-automation-gap-inventory.mjs
       - run: npm run audit:data-review
       - run: npm run audit:index-facts
       - run: npm run audit:index-completeness
@@ -188,7 +201,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md
+          git add src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated active ETF issuer data'
             git pull --rebase origin master
