@@ -34,11 +34,29 @@ Un historique existant illisible n’est jamais réinitialisé. La création ini
 
 Dans l’appli : compteur des signaux non lus du dernier flux consulté dans la navigation (sans requête réseau depuis les autres outils), filtres, recherche, statut lu mémorisé sur l’appareil, brouillon modifiable et copie. Le radar affiche sa date de contrôle ; après 36 h il ne prétend plus confirmer l’absence de nouveautés. Une erreur de chargement laisse les signaux précédemment chargés affichés.
 
-La notification hors de l’appli est un contrôle conditionnel ChatGPT du flux GitHub, créé séparément : seuls de nouveaux identifiants de signaux donnent lieu à une notification ; un contrôle sans nouveauté reste silencieux. Ce contrôle n’est pas une notification push native de GitHub Pages. Les autorisations de notification du téléphone et de ChatGPT déterminent l’affichage sur l’appareil.
+### Notifications GitHub automatiques
+
+Après publication du flux, le même workflow regroupe les signaux validés non encore notifiés dans une issue attribuée à `madmax91310` et le mentionne explicitement. Chaque signal conserve ses valeurs avant/après, ses périodes de référence, la date de détection et de vérification, les sources ancienne/actuelle, le périmètre, le seuil appliqué, l’outil concerné et un angle éditorial. Les valeurs structurées sont également fournies intégralement. Une exécution sans changement significatif ne crée ni issue, ni commentaire, ni mention. Un lot exceptionnel dépassant la limite du corps d’une issue est découpé en plusieurs issues.
+
+`notifications.json`, sur `radar-data`, garde les identifiants acquittés indépendamment du flux public limité à 500 événements. Au premier déploiement du mécanisme, tous les événements déjà présents dans l’historique sont acquittés silencieusement (notamment l’ancien signal Russell 1000). L’initialisation des observations, les nouvelles références de périmètre et les nouveaux champs sur un produit déjà suivi restent silencieux. Les nouvelles données réellement détectées par les règles existantes après cette référence sont notifiables ; elles ne sont pas présentées comme des lancements.
+
+Le registre initial est publié avec les observations avant l’envoi. Une panne d’Issues n’empêche donc pas la publication quotidienne du radar : le workflow signale l’échec et reprend les événements non acquittés au prochain passage, même si ce passage ne détecte aucune nouvelle variation. Avant chaque envoi, il recherche les marqueurs individuels dans toutes les issues créées par `github-actions[bot]`, ouvertes **et fermées**, avec pagination. Cela évite une deuxième issue après un arrêt entre création de l’issue et enregistrement du registre. Une attribution manquante est réparée sur l’issue existante. Aucune réouverture automatique ni relance sur un événement acquitté. La concurrence de production reste sérialisée, sans annulation et sans push forcé.
+
+Prérequis techniques : les issues du dépôt doivent être activées, `madmax91310` doit être un destinataire attribuable et le job de production dispose de `contents: write` et `issues: write` via `GITHUB_TOKEN`. Les droits sont limités au job exécutant le code de `master` ; la validation de PR reste en lecture seule et ne crée aucune notification. Le script contrôle l’accès aux issues et l’éligibilité de l’attribution lorsqu’il existe un signal à envoyer. Aucun PAT ni service de notification externe n’est nécessaire.
+
+Pour recevoir les alertes :
+
+1. Dans [les paramètres GitHub de notification](https://github.com/settings/notifications), activer **On GitHub** pour les conversations auxquelles le compte participe ; activer **Email** si souhaité et vérifier l’adresse de réception. L’attribution et la mention rendent le compte participant. Il n’est pas nécessaire de suivre toutes les activités du dépôt.
+2. Ne pas ignorer le dépôt ni se désabonner des issues radar dont on souhaite les mises à jour.
+3. Dans GitHub Mobile (Android : Profil → Paramètres → Configure Notifications), activer les push **Assignments** et **Direct mentions**, autoriser les notifications de l’application dans Android et vérifier les horaires de réception.
+
+Références officielles : [configuration des notifications et de GitHub Mobile](https://docs.github.com/en/subscriptions-and-notifications/get-started/configuring-notifications), [raisons d’abonnement](https://docs.github.com/en/subscriptions-and-notifications/concepts/about-notifications), [attribution via l’API](https://docs.github.com/en/rest/issues/assignees). Les préférences personnelles et la réception effective sur le téléphone ne sont pas vérifiables par le token du dépôt ; la réussite du workflow prouve la création/attribution de l’issue, pas la livraison du push. Le contrôle conditionnel ChatGPT précédemment créé est indépendant : ce changement ne modifie pas ses paramètres.
 
 ## Vérifications
 
 `npm run test:radar` : initialisation silencieuse, déduplication, seuils cumulés, scopes, dates, non-régression, conservation après disparition/invalidité, nouvelles années, nouvelles entités et sécurité des liens. Extraction des observations réelles de chaque famille ; parseur de communiqués, anciennes archives, lien étranger, format changé et panne réseau.
+
+La même commande exécute aussi `scripts/test-radar-notifications.mjs` : migration silencieuse, regroupement, attribution/mention, preuves et valeurs complètes, doublons internes et entre exécutions, issues fermées, pagination, reprise après échec ou création sans acquittement, réparation de l’attribution, accès refusé, absence d’issues, sécurité du contenu et découpage des lots volumineux. Aucune notification de test n’est envoyée à GitHub.
 
 `npm run test:radar:browser` : chargement de signaux, filtres, mémorisation de lecture, édition/copie, échec conservant le contenu, contrôle périmé, absence de débordement mobile et état initial vide. Les réponses de flux simulées sont isolées au test navigateur et ne sont jamais enregistrées en production.
 
