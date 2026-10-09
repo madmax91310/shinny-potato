@@ -9,10 +9,10 @@ export const TOOLS = [
     publicationDay: 'Publication ponctuelle', icon: '📊', accent: '#65d5b0',
     description: 'Projette ton patrimoine par enveloppe et exporte des comparaisons pour X.', status: 'disponible' },
   { to: '/presentation-assurance-vie', navLabel: 'Assurance-vie', title: 'Présentation d’assurance-vie',
-    publicationDay: 'Publication ponctuelle', icon: '🛡️', accent: '#65d5b0',
+    publicationDay: 'Vendredi midi · alternance', icon: '🛡️', accent: '#65d5b0',
     description: 'Supports, fonds euros et frais des contrats : sources officielles et texte modifiable.', status: 'disponible' },
   { to: '/presentation-scpi', navLabel: 'SCPI', title: 'Présentation de SCPI',
-    publicationDay: 'Publication ponctuelle', icon: '🏢', accent: '#65d5b0',
+    publicationDay: 'Vendredi midi · alternance', icon: '🏢', accent: '#65d5b0',
     description: 'Patrimoine, distributions et frais des SCPI : sources officielles et texte modifiable.', status: 'disponible' },
   {
     to: '/analyse-entreprise', navLabel: 'Entreprises', title: 'Analyse d’entreprise',
@@ -123,16 +123,6 @@ export const TOOLS = [
     description: 'Deux choix de placement pour ouvrir la discussion.', status: 'disponible',
   },
   {
-    to: '/comparateur-indices',
-    navLabel: 'Comparateur indices',
-    title: "Comparateur d'indices",
-    publicationDay: 'Vendredi midi',
-    icon: '📐',
-    accent: '#38bdf8',
-    description: "Compare les indices concurrents d'une même famille : exposition, ETF PEA/CTO, diversification, performance.",
-    status: 'disponible',
-  },
-  {
     to: '/impact-frais',
     navLabel: 'Impact des frais',
     title: "Calculateur d'impact des frais",
@@ -178,7 +168,6 @@ const TOOL_SUMMARIES = {
   '/presentation-assurance-vie': 'Les supports, les fonds euros et les frais du contrat.',
   '/presentation-scpi': 'Ce qu’elle détient, ce qu’elle verse et ce qu’elle coûte.',
   '/analyse-entreprise': 'Son activité, ses résultats et sa valorisation disponible.',
-  '/comparateur-indices': 'Expositions, diversification et performances des indices.',
   '/comparatif-courtiers': 'Frais, PEA et services des courtiers en face à face.',
   '/calculateur-investissement': 'Ce que serait devenu ton investissement au fil du temps.',
   '/impact-frais': 'Mesure ce que les frais changent à ton capital final.',
@@ -202,7 +191,7 @@ const TOOL_SUMMARIES = {
 
 // Les mêmes groupes alimentent l’accueil et la navigation.
 export const TOOL_GROUPS = [
-  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/simulateur-patrimoine', '/comparateur-indices', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
+  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
   { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/radar-editorial', '/presentation-assurance-vie', '/presentation-scpi', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
@@ -215,10 +204,10 @@ export const WEEKLY_ORDER = [
   '/france-100-menages', '/generateur-portefeuilles',
   '/analyse-entreprise', '/calculateur-investissement',
   '/duels-portefeuilles', '/fiches-etf',
-  '/comparateur-indices',
+  '/presentation-scpi', '/presentation-assurance-vie',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
   '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat',
-  '/dilemme', '/comparatif-courtiers', '/presentation-scpi', '/presentation-assurance-vie',
+  '/dilemme', '/comparatif-courtiers',
   '/simulateur-patrimoine', '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]
 export const HOME_TOOLS = TOOL_GROUPS.flatMap(group => group.tools.map(tool => ({ ...tool, group: group.id })))

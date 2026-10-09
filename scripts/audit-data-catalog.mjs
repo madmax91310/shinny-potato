@@ -10,7 +10,6 @@ import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js'
 import { INDEX_FACTS, CURRENT_INDEX_SNAPSHOTS } from '../src/data/index-facts.js';
 import { INDEX_COMPARISON_RETURN_ADDITIONS } from '../src/data/index-comparison-return-additions.js';
 import { INDEX_RETURNS } from '../src/data/index-returns.js';
-import { FAMILIES } from '../src/data/index-comparisons.js';
 import { SHEETS } from '../src/data/index-factsheets.js';
 import { describeDataField } from '../src/pages/data-search/lib.js';
 import { getRestoredRoute } from '../src/restore-route.js';
@@ -40,8 +39,6 @@ for (const [id, facts] of Object.entries(CURRENT_INDEX_SNAPSHOTS)) {
   const record = DATA_CATALOG.find(r => r.id === id);
   assert(record.fields.some(f => f.value === facts), `${id}: composition courante absente du catalogue`);
   assert(record.fields.some(f => f.value === INDEX_FACTS[id][facts.asOf]), `${id}: archive de même date absente du catalogue`);
-  if (FAMILIES.some(f => f.indices.some(i => i.indexFacts === facts)))
-    assert(record.consumers.some(c => c.path === '/comparateur-indices'), `${id}: comparateur courant absent`);
   if (SHEETS.some(s => s.indexFacts === facts))
     assert(record.consumers.some(c => c.path === '/tweets-factsheets'), `${id}: fiche courante absente`);
 }

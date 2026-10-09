@@ -56,7 +56,6 @@ ASSETS.forEach((x) => {
 DUEL_ASSETS.forEach(x => use(x.isin, 'Duels de portefeuilles', '/duels-portefeuilles'));
 FEE_COMPARISON_ASSETS.forEach(x => use(x.isin, 'Impact des frais', '/impact-frais'));
 DEFAULT_THEMES.forEach((t) => t.etfs.forEach((x) => use(x.isin, 'Comparatif ETF', '/comparatif-etf')));
-FAMILIES.forEach((f) => f.etfGroups.forEach((g) => g.funds.forEach((x) => use(x.isin, 'Comparateur d’indices', '/comparateur-indices'))));
 SHEETS.forEach((x) => use(x.isin, 'Coulisses des indices', '/tweets-factsheets'));
 ['IE00B1FZS913','IE00B2NPKV68'].forEach(isin => use(isin, 'Banque de tweets', '/banque-tweets'));
 function field(label, registry, value, evidence) {
@@ -105,7 +104,6 @@ function index(id, history) {
   const values = [...Object.values(history), ...(current ? [current] : [])];
   const consumers = [];
   if (SHEETS.some((s) => values.includes(s.indexFacts))) consumers.push({ tool: 'Coulisses des indices', path: '/tweets-factsheets' });
-  if (FAMILIES.some((f) => f.indices.some((s) => values.includes(s.indexFacts)))) consumers.push({ tool: 'Comparateur d’indices', path: '/comparateur-indices' });
   if ([...ALLOCATION_CASE_DEFINITIONS, ...INDEX_DECISION_CASE_DEFINITIONS].some(x => x.left === id || x.right === id)) consumers.push({ tool: 'Banque de tweets', path: '/banque-tweets' });
   return { id, type: 'index', name: values[0].index,
     aliases: [id, ...FAMILIES.flatMap((f) => f.indices.filter((x) => values.includes(x.indexFacts)).map((x) => x.name))], consumers,
@@ -158,7 +156,7 @@ export const DATA_CATALOG = Object.freeze([
   ...Object.entries(INDEX_RETURNS).filter(([id]) => !INDEX_FACTS[id]).map(([id, history]) => ({
     id, type: Object.values(history)[0].performance.kind === 'actif' ? 'series' : 'index',
     name: Object.values(history)[0].performance.detail.split(' · ')[0], aliases: [id],
-    consumers: [{ tool: 'Comparateur d’indices', path: '/comparateur-indices' }],
+    consumers: [],
     fields: Object.entries(history).map(([date, series]) => field(`Rendements · ${date}`, 'index-returns', series, series.metadata)),
   })),
   ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: 'Performance depuis', path: '/performance-depuis' }, ...(!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? [{ tool: 'Il y a X ans', path: '/il-y-a-x-ans' }] : []), ...(HISTORY_STATISTIC_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),

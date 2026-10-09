@@ -14,7 +14,6 @@ const BrokerComparator = lazy(() => import('./pages/broker-comparator/App'))
 const InvestmentCalculator = lazy(() => import('./pages/investment-calculator/App'))
 const EtfSheets = lazy(() => import('./pages/etf-sheets/App'))
 const TweetMidi = lazy(() => import('./pages/tweet-midi/App'))
-const IndexComparator = lazy(() => import('./pages/index-comparator/App'))
 const FeeImpact = lazy(() => import('./pages/fee-impact/App'))
 const MarketFacts = lazy(() => import('./pages/market-facts/App'))
 const TweetBank = lazy(() => import('./pages/tweet-bank/App'))
@@ -43,7 +42,6 @@ const TOOL_ELEMENTS = {
   '/comparatif-courtiers': <BrokerComparator />,
   '/calculateur-investissement': <InvestmentCalculator />,
   '/fiches-etf': <EtfSheets />,
-  '/comparateur-indices': <IndexComparator />,
   '/impact-frais': <FeeImpact />,
   '/faits-marquants-marches': <MarketFacts />,
   '/banque-tweets': <TweetBank />,

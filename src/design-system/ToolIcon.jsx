@@ -2,7 +2,6 @@ const PATHS = {
   '/radar-editorial': 'M12 3a9 9 0 1 0 9 9M12 7a5 5 0 1 0 5 5M12 12l8-8m-8 8v.01',
   '/presentation-assurance-vie': 'M12 3l8 3v6c0 5-4 8-8 10-4-2-8-5-8-10V6l8-3M8 12l3 3 5-6',
   '/presentation-scpi': 'M4 21V3h12v18M16 10h4v11M8 7h4M8 11h4M8 15h4M9 21v-3h2v3M2 21h20',
-  '/comparateur-indices': 'M4 19V9m8 10V4m8 15v-7M2 21h20',
   '/comparatif-courtiers': 'M12 3v18M4 7h16M6 7l-4 8h8L6 7m12 0-4 8h8l-4-8M8 21h8',
   '/calculateur-investissement': 'M3 17l6-6 4 3 8-10m-6 0h6v6M3 21h18',
   '/impact-frais': 'M5 3h14v18H5zM8 7h8M8 11h1m6 0h1M8 15h1m6 0h1',
