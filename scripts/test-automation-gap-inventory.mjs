@@ -6,6 +6,8 @@ assert.equal(classifyInstrumentGap('new-instrument','performance').status,'unqua
 assert.equal(classifyInstrumentGap('IE00BM8R0J59','performance').status,'source-conflict');
 assert.equal(classifyInstrumentGap('IE000QDFFK00','countries').status,'not-published');
 assert.equal(classifyInstrumentGap('IE00B4ND3602','sectors').status,'not-applicable');
+assert.equal(classifyInstrumentGap('IE00B4ND3602','ter').status,'unqualified');
+assert.equal(classifyInstrumentGap('IE00B4ND3602','aum').status,'unqualified');
 assert.equal(classifyInstrumentGap('FR0014017NX3','performance').status,'waiting-publication');
 for(const [field,count]of Object.entries(r.covered))assert.equal(count+r.gaps.filter(g=>g.type==='instrument'&&g.field===field).length,r.instruments);
 const data=JSON.parse(readFileSync('src/data/automated-etf.json'));
