@@ -10,7 +10,7 @@ import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { buildText } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
-import { TOOLS, WEEKLY_ORDER } from '../src/tools.js';
+import { TOOLS, HOME_TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { instrumentOption } from '../src/data/asset-selection.js';
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
@@ -77,14 +77,19 @@ async function testWorkspaceNavigation(page) {
   const checks = { allTools: await page.locator('.workspace-tool-card').count() === TOOLS.length };
   checks.publicationDays = (await page.locator('.workspace-publication-day').allTextContents()).sort().join('|') === TOOLS.filter(tool => tool.publicationDay).map(tool => tool.publicationDay).sort().join('|');
   checks.onlyTools = await page.locator('.workspace-search,.workspace-filters,.workspace-brand').count() === 0;
-  checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === WEEKLY_ORDER.map(path => path.slice(1)).join('|');
+  checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === [...HOME_TOOLS.filter(tool => /^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? '')), ...HOME_TOOLS.filter(tool => tool.publicationDay === 'Publication ponctuelle'), ...HOME_TOOLS.filter(tool => !/^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? '') && tool.publicationDay !== 'Publication ponctuelle')].map(tool => tool.to.slice(1)).join('|');
   for (const width of [320, 390, 768, 1280]) {
     await page.setViewportSize({ width, height: 844 });
     checks[`overflow${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   }
   await page.setViewportSize({ width: 390, height: 844 });
-  checks.allVisibleOnPhone = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.every(card => card.getBoundingClientRect().bottom <= innerHeight));
+  checks.allAccessibleOnPhone = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.every(card => card.getBoundingClientRect().width > 0 && card.getBoundingClientRect().height >= 44));
   checks.noBrand = await page.locator('.workspace-brand').count() === 0;
+  await mkdir('test-artifacts/weekly-home', { recursive: true });
+  await page.screenshot({ path: 'test-artifacts/weekly-home/mobile.png', fullPage: true });
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.screenshot({ path: 'test-artifacts/weekly-home/desktop.png', fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('.workspace-tool-card[href$="/impact-frais"]').click();
   await page.getByRole('heading', { name: "Calculateur d'impact des frais", exact: true }).waitFor();
   await page.locator('.workspace-mobile-menu summary').click();

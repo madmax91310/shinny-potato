@@ -137,6 +137,14 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: mkdir -p test-artifacts/company-analysis
+      - run: node scripts/test-weekly-publications.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: weekly-home-visual-checks
+          path: test-artifacts/weekly-publications
+          if-no-files-found: ignore
+          retention-days: 7
       - run: node scripts/test-automation-overview.mjs
       - run: node scripts/test-automation-failures-ui.mjs
       - run: node scripts/test-data-review-calendar.mjs
@@ -196,7 +204,6 @@ jobs:
           path: test-artifacts
           if-no-files-found: ignore
           retention-days: 7
-      - run: node scripts/test-weekly-publications.mjs
       - run: node scripts/test-route-loading.mjs
       - uses: actions/configure-pages@v6.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
