@@ -96,3 +96,25 @@ leur propre périmètre et preuve Amundi. Les positions, secteurs et rendements 
 fonds BNP conservent leurs sources. Les quatre champs QYLD et les poids du top dix
 Russell 1000 restent bloqués : les nouveaux documents accessibles ne qualifient pas
 ces champs. Voir la [vérification détaillée des sources](remaining-etf-sources-2026-10-09.md).
+
+## ETF — premiers calendriers des 11 parts récentes
+
+Le workflow quotidien suit les 11 parts configurées et intègre leur première
+année civile complète dès que la source officielle la publie et que les contrôles
+de part, devise, date et convention de rendement sont satisfaits. Le rapport
+[des lacunes](automation-gaps.md) distingue désormais les parts en attente et
+les premiers calendriers intégrés, avec leur année et leur source dans le JSON.
+
+Les lecteurs iShares et VanEck acceptent une table d'une seule année complète.
+L'année partielle de lancement de la part est exclue des fiches iShares et DWS ;
+les contrôles existants iShares API, WisdomTree et VanEck restent actifs. Les
+rendements d'indice, rendements glissants et valeurs de l'année en cours ne sont
+pas utilisés comme calendrier du fonds. Les historiques précédents restent
+conservés si la source devient indisponible ou invalide. Le premier calendrier
+ne remplace pas automatiquement un proxy de simulation demandant six années.
+
+Vérification du 9 octobre 2026 : les quatre calendriers Amundi renvoient des
+valeurs nulles pour 2020–2025 ; les sources des sept autres parts sont accessibles
+et ne qualifient pas encore une année complète. iShares Europe Small Cap
+(25 mars 2026) et Xtrackers World ex USA (8 avril 2026) devront notamment
+achever 2027 avant de disposer d'une première année civile complète.

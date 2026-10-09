@@ -1,4 +1,105 @@
 {
+  "recentCalendars": [
+    {
+      "id": "FR0014017NX3",
+      "name": "Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc)",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "FR001400U5Q4",
+      "name": "Amundi PEA Monde (MSCI World) UCITS ETF",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "IE0000N55FP4",
+      "name": "iShares MSCI Europe Small Cap UCITS ETF",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    },
+    {
+      "id": "IE0002Y8CX98",
+      "name": "WisdomTree Europe Defence UCITS ETF",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98"
+    },
+    {
+      "id": "IE0007Y8Y157",
+      "name": "VanEck Quantum Computing UCITS ETF A",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf"
+    },
+    {
+      "id": "IE000C6ITGC8",
+      "name": "iShares Quantum Computing UCITS ETF",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=345953&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+    },
+    {
+      "id": "IE000DQLYVB9",
+      "name": "iShares S&P 500 Swap PEA UCITS ETF",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf"
+    },
+    {
+      "id": "IE000L6ZMMC4",
+      "name": "Xtrackers FTSE All-World UCITS ETF 1C",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium"
+    },
+    {
+      "id": "IE000W8WMSL2",
+      "name": "WisdomTree Quantum Computing UCITS ETF",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2"
+    },
+    {
+      "id": "LU2970735911",
+      "name": "Amundi Core EUR High Yield Bond UCITS ETF",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "LU3038520774",
+      "name": "Amundi STOXX Europe Defense UCITS ETF",
+      "configured": true,
+      "status": "waiting-publication",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    }
+  ],
   "checkedAt": "2026-10-09",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
   "instruments": 155,

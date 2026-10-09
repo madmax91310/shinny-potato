@@ -15,7 +15,7 @@ from refresh_additional_etf import refresh
 from collect_amundi_index_exposure import parse_product as amundi_index
 from apply_etf_collection import merge_collection
 from collect_vanguard_etf import parse_api as vanguard_api
-from collect_dws_etf import parse_aum_workbook, parse_holdings as dws_holdings
+from collect_dws_etf import parse_product as dws_product, items as dws_items, parse_aum_workbook, parse_holdings as dws_holdings
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 NOW=dt.datetime(2026,10,5,tzinfo=UTC)
@@ -182,6 +182,25 @@ class CompletedIssuerCoverage(unittest.TestCase):
         for row in p['data']['funds'][0]['marketAllocation']: row['date'] = '2020-01-01'
         r = vanguard_api(p, s, self.now)
         self.assertNotIn('countries', r); self.assertIn('performance', r)
+
+    def test_dws_share_launch_date_with_merger_footnote(self):
+        p=self.fixture('dws-exact-share.json');s=self.share('IE00BLNMYC90')
+        r=dws_product(p,s,self.now)
+        self.assertEqual(r['performance']['years']['2025'],10.95)
+        for item in dws_items(p['pdpResult']['pageSections']['keyFacts']):
+            if item['key']=='Share class launch date':item['value']='Unknown 10/06/2014'
+        with self.assertRaises(ValueError):dws_product(p,s,self.now)
+
+    def test_dws_first_full_calendar_excludes_launch_stub(self):
+        p=self.fixture('dws-exact-share.json');s=self.share('IE00BLNMYC90')
+        facts=p['pdpResult']['pageSections']['keyFacts']
+        for item in dws_items(facts):
+            if item['key']=='Share class launch date':item['value']='08/04/2024'
+        r=dws_product(p,s,self.now)
+        self.assertEqual(set(r['performance']['years']),{'2025'})
+        for item in dws_items(facts):
+            if item['key']=='Share class launch date':item['value']='08/04/2025'
+        self.assertNotIn('performance',dws_product(p,s,self.now))
 
     def test_dws_workbook_uses_actual_value_date_currency_and_fund_scope(self):
         body = (self.folder/'dws-history.xlsx').read_bytes()

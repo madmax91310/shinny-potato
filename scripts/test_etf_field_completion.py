@@ -107,6 +107,19 @@ class FieldCompletion(unittest.TestCase):
             self.assertIn('gross of Dutch withholding tax',result['performance']['method'])
             if code=='tdiv':self.assertNotIn('2016',result['performance']['years'])
 
+    def test_vaneck_accepts_first_single_completed_calendar(self):
+        share=next(s for s in CONFIG if s['isin']=='IE0007Y8Y157')
+        now=NOW.replace(year=2027)
+        text='30 September 2027\n'+share['isin']+'\nBase Currency USD\nNet Assets USD 10M\nTotal Expense Ratio 0.55%\nInception Date 21 May 2025\nTop 10 Holdings\n'
+        text+=''.join(f'Company {chr(65+i)}  5.00%\n' for i in range(10))
+        text+='SUBTOTAL\nPast Performance as of 31 December 2026\nFund Data  2026\nVanEck Quantum Computing UCITS ETF  12\nPast performance does not'
+        with patch('collect_vaneck_etf.pdf_text',return_value=text):
+            r=parse_document(b'test-first-calendar',share,now)
+        self.assertEqual(r['performance']['years'],{'2026':12})
+        for bad in (text.replace('Fund Data  2026','Fund Data  2027'),text.replace('ETF  12','ETF  NaN')):
+            with patch('collect_vaneck_etf.pdf_text',return_value=bad),self.assertRaises(ValueError):
+                parse_document(b'test-invalid-calendar',share,now)
+
     def test_failed_vaneck_complement_does_not_discard_pdf_fields(self):
         share=next(s for s in CONFIG if s.get('ticker') == 'TDIV')
         def fail(url):raise TimeoutError('unavailable')

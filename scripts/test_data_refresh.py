@@ -41,6 +41,17 @@ class RefreshTests(unittest.TestCase):
         self.assertNotIn('2020', report['performance']['years'])
         self.assertIn('2021', report['performance']['years'])
 
+    def test_recent_share_integrates_first_single_nav_calendar(self):
+        facts=self.components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        facts['inceptionDate']={'value':20240529}
+        calendar=self.components['performance']['containersByNameMap']['returns']['subContainersByNameMap']['calendar']['dataPointsByNameMap']
+        for key,point in calendar.items():
+            if key.endswith('Year'):point['active']=key=='oneYear'
+        r=parse_share(markup(self.components),{**SHARE,'requireFullHistory':False},NOW)
+        self.assertEqual(r['performance']['years'],{'2025':21.16})
+        facts['inceptionDate']={'value':20250529}
+        self.assertEqual(parse_share(markup(self.components),{**SHARE,'requireFullHistory':False},NOW)['performance']['years'],{})
+
     def test_reordered_performance_columns_still_selects_nav(self):
         calendar = self.components['performance']['containersByNameMap']['returns']['subContainersByNameMap']['calendar']['dataPointsByNameMap']
         calendar['returnTypes']['value'].reverse()

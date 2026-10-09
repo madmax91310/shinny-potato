@@ -239,14 +239,22 @@ def parse_legacy_factsheet(text, facts, share, now):
             'unavailable':['performance: no complete 2020–2025 share history','exposures: swap basket is not the tracked-index composition','aum: monthly factsheet; newer active observations are preserved']}
     if "PERFORMANCE DE L'ANNÉE CIVILE" in text:
         block = text.split("PERFORMANCE DE L'ANNÉE CIVILE", 1)[1].split('CROISSANCE DE', 1)[0]
-        columns = re.findall(r'^[ \t]*(20\d{2}(?:[ \t]+20\d{2})+)[ \t]*$', block, re.M)
+        columns = re.findall(r'^[ \t]*(20\d{2}(?:[ \t]+20\d{2})*)[ \t]*$', block, re.M)
         rows = re.findall(r'^\s*Classe d[’\x27]Actions\s+((?:-?\d+(?:,\d+)?|-)(?:\s+(?:-?\d+(?:,\d+)?|-))*)\s*$', block, re.M)
         if len(columns) != 1 or len(rows) != 1:
             reject('Missing or ambiguous iShares share calendar table')
         years, values = columns[0].split(), rows[0].split()
         if len(years) != len(values) or len(set(years)) != len(years) or any(int(y) >= now.year for y in years):
             reject('Invalid iShares completed calendar columns')
-        history = {y: bounded_return(float(v.replace(',', '.'))) for y, v in zip(years, values) if v != '-'}
+        launch = re.findall(r"Date de lancement de la Catégorie d[’\x27]Actions\s*:\s*(\d{2}-[a-zéû.]+-20\d{2})", facts)
+        if len(launch) > 1:
+            reject('Ambiguous iShares share launch date')
+        inception = None
+        if launch:
+            day, month, year = launch[0].split('-')
+            inception = dt.date(int(year), months[month], int(day))
+        history = {y: bounded_return(float(v.replace(',', '.'))) for y, v in zip(years, values)
+                   if v != '-' and (inception is None or inception <= dt.date(int(y), 1, 1))}
         result['unavailable'] = [s for s in result['unavailable'] if not s.startswith('performance:')]
         if history:
             result['performance'] = {'currency': share['currency'], 'basis': 'fund',

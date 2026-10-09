@@ -66,6 +66,32 @@ class IssuerRefreshTests(unittest.TestCase):
         self.assertNotIn('2020',result['TESTSHARE']['performance']['years'])
         self.assertEqual(result['TESTSHARE']['performance']['years']['2025'],10)
 
+    def test_first_calendar_is_promoted_for_all_eleven_recent_shares(self):
+        ids=['FR0014017NX3','FR001400U5Q4','IE0000N55FP4','IE0002Y8CX98','IE0007Y8Y157','IE000C6ITGC8','IE000DQLYVB9','IE000L6ZMMC4','IE000W8WMSL2','LU2970735911','LU3038520774']
+        for isin in ids:
+            with self.subTest(isin=isin):
+                share={'isin':isin,'currency':'EUR','productId':isin,'sourceUrl':'https://issuer.test/exact-share','characteristics':{'terPct':.2}}
+                baseline={isin:{'currency':'EUR','values':[1,2,3,4,5,6],'proxy':'UNCHANGED'}}
+                report={'checkedAt':'2028-02-01','shares':[share]}
+                pending=merge_collection(report,{},baseline)
+                self.assertNotIn('performance',pending[isin])
+                share['performance']={'currency':'EUR','basis':'fund','method':'calendar-year exact-share NAV total return','years':{'2027':6.61}}
+                active=merge_collection(report,pending,baseline)
+                self.assertEqual(active[isin]['performance']['years'],{'2027':6.61})
+                share.pop('performance')
+                report['checkedAt']='2028-02-02'
+                self.assertEqual(merge_collection(report,active,baseline)[isin]['performance'],active[isin]['performance'])
+                share['performance']={'currency':'EUR','basis':'fund','method':'calendar-year exact-share NAV total return','years':{'2028':7}}
+                with self.assertRaises(ValueError):merge_collection(report,active,baseline)
+                self.assertEqual(baseline[isin]['proxy'],'UNCHANGED')
+
+    def test_amundi_accepts_one_completed_year_and_requests_next_year(self):
+        p,s=amundi();p['metrics']=[{'indicator':'shareCalendarPerformance','period':'2025','value':.12}]
+        self.assertEqual(parse_product(p,s,NOW)['performance']['years'],{'2025':12})
+        next_year=NOW.replace(year=2027)
+        self.assertIn('2026',[m['period']for m in request_payload([s],next_year)['metrics']])
+        self.assertNotIn('2027',[m['period']for m in request_payload([s],next_year)['metrics']])
+
     def test_amundi_rejects_identity_method_dates_truncation(self):
         p,s=amundi()
         for defect in ('isin','currency','replication','date','truncated','incomplete-year'):
