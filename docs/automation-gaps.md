@@ -124,7 +124,6 @@ Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les con
 | Linxea Zen | Apicil Euro Garanti | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Linxea Vie | Netissima | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Linxea Vie | Eurossima | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Lucya Cardif | Fonds général | Quote-part maximale | 2026-10-09 | La notice prévoit une affectation euros et/ou unités de compte avec une limitation conditionnelle ; elle ne chiffre pas un maximum actuel inconditionnel propre au Fonds général. |
 | Lucya Cardif | Fonds général | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-09 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
