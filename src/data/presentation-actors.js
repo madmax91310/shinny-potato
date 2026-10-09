@@ -147,20 +147,36 @@ export const PRESENTATION_ACTORS = MANUAL_ACTORS.map(record => applyActorOffer({
   offers: observations[record.id]?.offers ?? [],
 }))
 export const familyLabel = id => ACTOR_FAMILIES.find(row => row.id === id)?.label ?? id
+const actorQuestions = {
+  'private-equity': 'Tu envisagerais d’investir dans le non coté, ou tu préfères rester en Bourse ?',
+  bovins: 'Tu savais qu’on pouvait investir dans des bovins ?',
+  vignobles: 'Tu envisagerais de détenir des parts d’un vignoble ?',
+  forets: 'Les forêts ont-elles une place dans ton épargne ?',
+  energie: 'Tu as déjà financé un projet d’énergie renouvelable ?',
+  terres: 'Tu envisagerais de financer des terres agricoles ?',
+  immobilier: 'Tu as déjà prêté de l’argent pour financer un projet immobilier ?',
+  art: 'Tu envisagerais d’investir dans une œuvre d’art ?',
+}
 export function buildActorTweet(record) {
   return [
-    `${record.name} — ${familyLabel(record.family)}\n${record.offer}\n\n${record.intro}`,
-    `Comment ça fonctionne ?\n${record.mechanism}`,
-    `Ce que tu détiens\n${record.vehicle}.\n${record.distinction}`,
-    `D’où peut venir le revenu ?\n${record.income}`,
-    `L’accès et la sortie\n${record.access}\n${record.liquidity}`,
+    `${record.intro}\n\nVoici les détails 👇`,
+    `📄 L’offre présentée : ${record.offer}.\n${record.name} — ${record.role}.`,
+    `⚙️ Comment ça fonctionne ?\n${record.mechanism}`,
+    `📦 Ce que tu détiens\n${record.vehicle}.\n${record.distinction}`,
+    `💶 Pour commencer\n${record.access}`,
+    `💰 D’où peuvent venir les revenus ?\n${record.income}`,
     ...(record.selectedOffer ? [
-      `Frais et durée de l’offre\n${record.selectedOffer.fields.fees.value}\n${record.selectedOffer.fields.duration.value}`,
-      `Périmètre\n${record.selectedOffer.scope}\nÀ compléter : ${record.selectedOffer.missing.join(' ; ')}.`,
-      ...record.selectedOffer.warnings.map(warning => `Point à confirmer\n${warning}`),
+      `💸 Ce que l’offre coûte\n${record.selectedOffer.fields.fees.value}`,
+      `⏳ Combien de temps prévoir ?\n${record.selectedOffer.fields.duration.value}`,
     ] : []),
-    `Les points à regarder\n${record.risks}`,
-    `Cette fiche présente les conditions publiques de l’offre et le fonctionnement de l’acteur. La disponibilité d’une souscription reste à vérifier. Les coûts non publiés et les performances réalisées ne sont pas qualifiés dans cette fiche. Le capital et les revenus ne sont pas garantis.`,
-    `Sources officielles consultées le ${record.checkedAt} :\n${record.sources.map(row => row.url).join('\n')}`,
+    `🚪 Si tu veux récupérer ton argent\n${record.liquidity}`,
+    ...(record.selectedOffer ? [
+      `🔎 Avant d’investir, voici ce qu’il reste à vérifier\n${record.selectedOffer.scope}\nÀ compléter : ${record.selectedOffer.missing.join(' ; ')}.`,
+      ...record.selectedOffer.warnings.map(warning => `🔎 Point à confirmer\n${warning}`),
+    ] : []),
+    `⚠️ Les risques à comprendre\n${record.risks}\nLe capital et les revenus ne sont pas garantis.`,
+    `📌 Ces informations concernent l’offre présentée. Vérifie qu’elle est ouverte à la souscription et demande ses documents contractuels. Les coûts non publiés et les performances réalisées ne sont pas qualifiés dans cette fiche.`,
+    `📚 Sources officielles consultées le ${record.checkedAt.split('-').reverse().join('/')} :\n${record.sources.map(row => row.url).join('\n')}`,
+    `💬 ${actorQuestions[record.family] ?? 'Tu connaissais ce type de placement ?'}`,
   ].join('\n\n')
 }

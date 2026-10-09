@@ -65,3 +65,15 @@ CORUM Origin/XL : le lecteur du bulletin dessiné contrôle le nom imprimé du p
 **Limites documentaires restantes** : les sources publiques ne suffisent pas à qualifier tous les frais contractuels, durées et clauses de sortie des offres individuelles. Chaque fiche liste ses manques : dossiers des stratégies Fundora et d’AxClimat I, minimum d’UC/coûts de régie MyMarguerit, dossier du GFV, DIC du GFI, FICI des projets Enerfip/Bricks/Hectarea et de l’œuvre Matis. Ne pas transformer un montant absent en zéro ni un objectif commercial en performance réalisée.
 
 **Deux allocations AV restent non chiffrées** après vérification des pages, notices et liste des supports officielles : Fonds général Lucya Cardif et Actif général SwissLife de Placement-direct Vie. La notice Cardif prévoit une limitation conditionnelle de 30 % si le TME est inférieur à 0,70 % ; cela n’établit pas un maximum actuel inconditionnel. Les annonces « 100 % euros » de Placement-direct Euro+ concernent un contrat distinct. Les motifs et sources sont enregistrés et apparaissent comme deux réserves dans « Données à revoir ». La qualification nécessite une condition actuelle explicite propre au support et à l’opération ; aucune valeur de 100 % n’est inventée.
+
+
+## Correction du format éditorial — 9 octobre 2026
+
+Les textes SCPI et assurance-vie conservent leur format humain validé. Les neuf acteurs ajoutés avaient un générateur distinct, sans emojis, commençant par le nom et la catégorie. Ils reprennent désormais une accroche explicative, « Voici les détails 👇 », des rubriques avec emojis et une question finale adaptée à l’exposition. Accès, revenus, frais, durée et sortie restent séparés ; les réserves documentaires et les sources sont conservées. Les brouillons modifiés par l’utilisateur ne sont pas écrasés ; « Rétablir le texte » régénère le format corrigé.
+
+### Prochaines priorités
+
+1. Compléter les conditions encore absentes lorsqu’un document officiel accessible le permet : les deux allocations AV et les clauses des dix offres ; conserver les réserves explicites sinon.
+2. Approfondir le catalogue existant : qualifier d’autres offres précises des acteurs déjà présents, avec leurs propres frais, durées et sorties. Bovins, vignobles et forêts sont déjà disponibles, ce ne sont plus des catégories à créer.
+3. Renforcer la personnalisation des accroches et des questions selon l’offre, en conservant la structure avec emojis validée.
+4. Relier les changements significatifs de conditions collectées au radar éditorial, après vérification de sa couverture des acteurs ; un changement de date de collecte seul ne justifie pas un signal.
