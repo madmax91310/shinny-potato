@@ -2,11 +2,11 @@
 
 Route `/presentation-assurance-vie` : Linxea Spirit 2 (Spirica), Linxea Avenir 2 (Suravenir), Linxea Zen (Apicil), Linxea Vie (Generali), Lucya Cardif (Cardif Assurance Vie) et Placement-direct Vie (SwissLife Assurance et Patrimoine). Sélection d’un contrat, texte long modifiable, copie et rétablissement ; consultation des rendements et conditions des fonds euros dans les réglages. Les mêmes observations alimentent la bibliothèque de données.
 
-## Visuel minéral clair
+## Visuel personnalisé en relief
 
-Les onglets Texte et Image partagent les mêmes observations. Le visuel utilise une illustration décorative, des teintes ivoire et sauge et des titres sérif ; les chiffres, dates et conditions sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG, à 1 600 pixels de large, avec une hauteur adaptée au contenu. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
+Les onglets Texte et Image partagent les mêmes observations. Le visuel associe un logo officiel en relief, une couleur propre à chaque marque et trois chiffres clés adaptés au contrat ou à la SCPI. Le décor est distinct pour l’immobilier et l’assurance vie ; les chiffres et leurs qualifications sont dessinés par le code. « Télécharger l’image » exporte exactement cet aperçu en PNG de 1 600 × 1 000 pixels. Le texte retouché reste conservé au changement d’onglet ; les retouches du texte ne modifient pas les faits du visuel.
 
-Les dates propres aux indicateurs, les conditions et fourchettes des fonds euros, les frais HT et maxima contractuels restent explicites. Les sources et la date du relevé figurent au pied du visuel. Un chargement d’illustration en échec interrompt l’export et permet de réessayer.
+Les conditions des taux et les dates restent explicites ; le texte et les réglages conservent les données détaillées et les sources. Un chargement du logo ou du décor en échec interrompt l’export et permet de réessayer.
 
 ## Données et sources
 
