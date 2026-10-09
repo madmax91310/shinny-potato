@@ -2,6 +2,7 @@ import { Suspense, useEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { TOOL_GROUPS } from '../tools'
 import ToolIcon from './ToolIcon'
+import RadarCount from './RadarCount'
 
 function Navigation() {
   return <nav aria-label="Outils">
@@ -9,7 +10,7 @@ function Navigation() {
     {TOOL_GROUPS.map(group => <section className="workspace-nav-group" key={group.id}>
       <h2>{group.title}</h2>
       {group.tools.map(tool => <NavLink key={tool.to} to={tool.to} className={({ isActive }) => `workspace-nav-link ${isActive ? 'is-active' : ''}`}>
-        <span aria-hidden="true"><ToolIcon to={tool.to} /></span><span>{tool.navLabel ?? tool.title}</span>
+        <span aria-hidden="true"><ToolIcon to={tool.to} /></span><span>{tool.navLabel ?? tool.title}</span>{tool.to === '/radar-editorial' && <RadarCount />}
       </NavLink>)}
     </section>)}
   </nav>
