@@ -21,7 +21,7 @@ Les rendements Livret A / LDDS sont préremplis depuis `currentSavingsObservatio
 
 ## Publications et données personnelles
 
-Le mode comparaison garde deux patrimoines indépendants, avec un même horizon, une même inflation et un même scénario. Leurs budgets et rendements peuvent différer ; les hypothèses sont affichées dans le texte et le PNG. Le mode personnel affiche les trois trajectoires dans le graphique ; le PNG et le texte utilisent le scénario sélectionné.
+Le mode comparaison garde deux patrimoines indépendants, avec un même horizon, une même inflation et un même scénario. Leurs budgets et rendements peuvent différer ; les hypothèses sont affichées dans le texte. Le graphique et le PNG affichent uniquement les trois trajectoires du patrimoine actif (A ou B), avec des couleurs et des tracés distincts. Le PNG est un graphique de 1600 × 1000 pixels, sans titre, bilan, hypothèses ou mentions autour du graphique ; seuls les graduations et les trois libellés de légende restent. Le texte et les totaux utilisent le scénario sélectionné.
 
 Le brouillon de tweet est modifiable. Les exports PNG, CSV annuel et JSON sont locaux. Aucun envoi vers X n'est effectué. La sauvegarde locale se fait sur action explicite, avec chargement et effacement. L'import JSON valide les champs, les plages numériques, les identifiants et les événements avant de remplacer la saisie. Le fichier JSON inclut les deux patrimoines.
 
