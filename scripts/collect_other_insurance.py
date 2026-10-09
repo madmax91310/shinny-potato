@@ -11,6 +11,30 @@ PRODUCTS = {
     'lucya-cardif': ('Lucya Cardif','Cardif Assurance Vie','Lucya','https://lucya.com/assurance-vie/lucya-cardif/'),
     'placement-direct-vie': ('Placement-direct Vie','SwissLife Assurance et Patrimoine','Placement-direct.fr','https://www.placement-direct.fr/assurance-vie/placement-direct-vie'),
 }
+LUCYA_ALLOCATION_URL = 'https://lucya.com/rendement-des-fonds-euros-2025/'
+
+
+def qualify_lucya_general_allocation(record, html, today):
+    """Only use the Cardif card inside the explicit no-UC allocation section."""
+    if record['id'] != 'lucya-cardif':
+        raise ValueError('Wrong contract for Cardif allocation evidence')
+    soup = BeautifulSoup(html, 'html.parser')
+    headings = [h for h in soup.select('h2, h3') if re.search(r'100\s*% euros.*sans condition d[’\']UC', h.get_text(' ', strip=True))]
+    if len(headings) != 1:
+        raise ValueError('Explicit 100% no-UC fund section absent or ambiguous')
+    cards = [card for card in headings[0].parent.select('.wp-block-column')
+             if re.search(r'Fonds général', card.get_text(' ', strip=True), re.I)
+             and 'BNP Paribas Cardif' in card.get_text(' ', strip=True)]
+    if len(cards) != 1 or re.search(r'\bPER\b|Private Strategies', cards[0].get_text(' ', strip=True)):
+        raise ValueError('Cardif general fund identity absent or ambiguous')
+    general = next(fund for fund in record['euroFunds'] if fund['name'] == 'Fonds général')
+    general['maxAllocation'] = 100
+    general['allocationEvidence'] = {
+        'status': 'published', 'checkedAt': today.isoformat(), 'sourceUrls': [LUCYA_ALLOCATION_URL],
+        'reason': 'Le courtier classe le Fonds général BNP Paribas Cardif dans les fonds accessibles à 100 % sans condition d’UC. Accès standard hors bonus ; la clause de limitation conditionnelle de la notice reste applicable.'}
+    general['sourceUrls'] = list(dict.fromkeys([*general['sourceUrls'], LUCYA_ALLOCATION_URL]))
+    general['operations'] = 'Accès standard présenté par le courtier sans condition d’unités de compte ; hors bonus commerciaux et sous réserve de la limitation conditionnelle prévue dans la notice.'
+    return record
 
 
 def plain(html):
@@ -153,4 +177,7 @@ def collect(id_,today):
     fees_url=next(u for u in links if ('frais-lucya-cardif' in u if id_=='lucya-cardif' else 'fiche-synthetique-des-frais-placement-direct-vie' in u))
     notice=pdf_text(fetch(notice_url),layout=False);fees_text=pdf_text(fetch(fees_url))
     parser=parse_lucya if id_=='lucya-cardif' else parse_placement
-    return parser(html,notice,fees_text,notice_url,fees_url,today)
+    record = parser(html,notice,fees_text,notice_url,fees_url,today)
+    if id_ == 'lucya-cardif':
+        return qualify_lucya_general_allocation(record, fetch(LUCYA_ALLOCATION_URL).decode(), today)
+    return record

@@ -275,6 +275,18 @@
       {
         "url": "https://www.france-valley.com/gfi-france-valley-patrimoine",
         "sha256": "28c3f9d10cbbaf2e5081609aa30dea325b2175545b7657fb0983faf73d863f96"
+      },
+      {
+        "url": "https://www.france-valley.com/gfi-france-valley-forets",
+        "sha256": "13d984e643fe0d027a430d6aba8f5ccf72fac709db79f270e75e5ad1a31241e7"
+      },
+      {
+        "url": "https://www.france-valley.com/fonciere-europe",
+        "sha256": "9aeeec9ba135fc76d4b7e4461a713c505f328b1e29a62f59353c624c845b30b5"
+      },
+      {
+        "url": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+        "sha256": "ae458a92888eb6a80408544ca00b687adffa70b1c219b0b08b931feba5aaac43"
       }
     ],
     "offers": [
@@ -309,13 +321,14 @@
           },
           "exit": {
             "label": "Sortie",
-            "value": "Revente dépendante des souscriptions ou acquisitions enregistrées ; pas de garantie de délai ni de prix.",
-            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-patrimoine",
+            "value": "Retrait compensé par une nouvelle souscription : pas de frais de sortie facturés par le GFI ou France Valley. Valeur de retrait définie dans la note d’information ; l’absence de frais de sortie ne garantit pas la récupération du montant investi. Sans souscription en face, une cession sur le marché secondaire peut être rémunérée. Prix et délai non garantis.",
+            "sourceUrl": "https://www.france-valley.com/hubfs/DIC%20-%20GFI%20FRANCE%20VALLEY%20PATRIMOINE.pdf",
+            "effectiveAt": "2026-04-20",
             "checkedAt": "2026-10-09"
           }
         },
         "missing": [
-          "DIC et conditions de souscription actualisées à obtenir"
+          "Note d’information et bulletin de souscription actualisés ; conditions du marché secondaire"
         ],
         "highlights": [
           [
@@ -331,7 +344,132 @@
             "0,9 % TTC"
           ]
         ],
-        "warnings": []
+        "warnings": [],
+        "presentation": {
+          "intro": "Acheter une forêt entière demande un budget conséquent. Le GFI France Valley Patrimoine permet de détenir des parts d’un patrimoine forestier géré pour toi.",
+          "vehicle": "Parts du GFI France Valley Patrimoine",
+          "mechanism": "Le GFI acquiert et gère des forêts. Ton placement évolue avec la valeur de ce patrimoine et son exploitation ; tu ne choisis pas une parcelle à utiliser personnellement."
+        }
+      },
+      {
+        "id": "gfi-forets",
+        "name": "GFI France Valley Forêts",
+        "scope": "Gamme de GFI forestiers français ; le nom et les documents du GFI ouvert sont à confirmer.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Minimum affiché : 10000 €.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-forets",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Souscription : 12 % TTC maximum. Gestion : 0,9 % TTC/an sur la valeur des actifs du GFI. Dépositaire : 10200 € TTC + 0,048 % jusqu’à 50 M€, 0,03 % de 50 à 200 M€, 0,018 % au-delà. Acquisition des forêts : transaction 6 % TTC, notaire/mutation environ 7,5 %, expertise 12–120 € TTC/ha. Charges d’exploitation et administratives supplémentaires. TVA récupérée par le véhicule selon la page ; bases de frais distinctes.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-forets",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Horizon conseillé : au moins 10 ans. Les contraintes fiscales de conservation sont à vérifier pour le GFI choisi ; elles ne garantissent pas une sortie.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-forets",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Les coupes de bois participent au résultat ; les excédents peuvent être capitalisés. Aucun revenu annuel ni rendement minimum garanti.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-forets",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Sortie dépendante des demandes de souscription ou d’acquisition ; aucun délai ou prix de revente garanti.",
+            "sourceUrl": "https://www.france-valley.com/gfi-france-valley-forets",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges"
+        ],
+        "highlights": [
+          [
+            "Minimum annoncé",
+            "10000 €"
+          ],
+          [
+            "Horizon conseillé",
+            "≥ 10 ans"
+          ],
+          [
+            "Gestion / an",
+            "0,9 % TTC"
+          ]
+        ],
+        "warnings": [],
+        "presentation": {
+          "intro": "Tu aimerais investir dans des forêts françaises ? La gamme France Valley Forêts permet d’en détenir des parts, avec une gestion déléguée.",
+          "vehicle": "Parts du GFI de la gamme France Valley Forêts choisi à la souscription",
+          "mechanism": "Le GFI acquiert et gère des forêts françaises. Chaque véhicule de la gamme a son propre patrimoine et ferme aux nouveaux investisseurs une fois sa collecte atteinte."
+        }
+      },
+      {
+        "id": "fonciere-europe",
+        "name": "France Valley Foncière Europe",
+        "scope": "Produit forestier distinct du GFI Patrimoine ; documentation publique, souscription à confirmer.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Minimum affiché : 107090 €.",
+            "sourceUrl": "https://www.france-valley.com/fonciere-europe",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Droit d’entrée : 2 % maximum, sans TVA ; souscription : 12 % TTC maximum. Gestion : 0,6 % TTC/an. Dépositaire : 6000 € TTC/an + 0,06 % de l’actif jusqu’à 50 M€. Autres tranches non chiffrées sur cette page. Acquisition des forêts : transaction 6 % TTC, notaire/mutation environ 7,5 %, expertise 12–120 € TTC/ha. Charges d’exploitation et administratives supplémentaires. TVA récupérée par le véhicule selon la page ; bases de frais distinctes.",
+            "sourceUrl": "https://www.france-valley.com/fonciere-europe",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Horizon conseillé : au moins 10 ans ; détention minimale ELTIF : 12 mois. Le minimum ne garantit pas un remboursement.",
+            "sourceUrl": "https://www.france-valley.com/fonciere-europe",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Les coupes de bois participent au résultat ; les excédents peuvent être capitalisés. Aucun revenu annuel ni rendement minimum garanti.",
+            "sourceUrl": "https://www.france-valley.com/fonciere-europe",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Sortie dépendante des demandes de souscription ou d’acquisition ; aucun délai ou prix de revente garanti.",
+            "sourceUrl": "https://www.france-valley.com/fonciere-europe",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "DIC, statuts et bulletin du véhicule effectivement souscrit ; détail des charges"
+        ],
+        "highlights": [
+          [
+            "Minimum annoncé",
+            "107090 €"
+          ],
+          [
+            "Horizon conseillé",
+            "≥ 10 ans"
+          ],
+          [
+            "Gestion / an",
+            "0,6 % TTC"
+          ]
+        ],
+        "warnings": [],
+        "presentation": {
+          "intro": "Investir dans des forêts européennes sans gérer les arbres toi-même, ça te parle ? France Valley Foncière Europe détient et exploite un patrimoine forestier.",
+          "vehicle": "Actions de la SAS France Valley Foncière Europe",
+          "mechanism": "La SAS acquiert et exploite des forêts européennes. Tu détiens des actions de la société, dont la valeur dépend notamment du patrimoine et du bois."
+        }
       }
     ]
   },
@@ -416,47 +554,51 @@
       {
         "url": "https://www.bricks.co/fonctionnement",
         "sha256": "649e63ad97e05174e67753015c2baf75d2f16c7af855a111ac6a4979a996397e"
+      },
+      {
+        "url": "https://www.bricks.co/frais",
+        "sha256": "9e1ae2bbe0a2d68043844d6c5ea5ccad224836ac4dd33fd22f5ed7af35b609e8"
       }
     ],
     "offers": [
       {
         "id": "obligations-immobilieres",
         "name": "Obligations immobilières Bricks",
-        "scope": "Conditions générales présentées par la plateforme ; aucun projet individuel présumé ouvert.",
+        "scope": "Règles de la plateforme ; l’émetteur, le coupon et l’échéance dépendent du projet.",
         "fields": {
           "access": {
             "label": "Accès",
-            "value": "Dès 10 € annoncés pour les projets présentés.",
+            "value": "Dès 10 € annoncés.",
             "sourceUrl": "https://www.bricks.co/fonctionnement",
             "checkedAt": "2026-10-09"
           },
           "fees": {
             "label": "Frais publiés",
-            "value": "Pas de frais d’entrée ni de gestion annoncés ; 2 retraits gratuits par an, tarif des suivants à confirmer. Les coûts supportés par l’émetteur restent à examiner dans sa fiche.",
-            "sourceUrl": "https://www.bricks.co/fonctionnement",
+            "value": "Pas de frais d’entrée ni de gestion pour l’investisseur. Retraits bancaires du solde : 2 gratuits par année glissante, puis 1,2 € TTC chacun. Honoraires facturés au porteur de projet : 5 à 10 % HT du montant collecté ; ils ne sont pas une retenue directe sur ton versement.",
+            "sourceUrl": "https://www.bricks.co/frais",
             "checkedAt": "2026-10-09"
           },
           "duration": {
             "label": "Durée",
-            "value": "Durée cible propre à chaque projet ; aucun délai commun qualifié.",
+            "value": "Durée du titre propre au projet ; aucun délai commun qualifié.",
             "sourceUrl": "https://www.bricks.co/fonctionnement",
             "checkedAt": "2026-10-09"
           },
           "income": {
             "label": "Revenus",
-            "value": "Intérêts selon le titre ; la plage commerciale de taux ne constitue pas une performance réalisée.",
+            "value": "Intérêts selon le titre ; un taux annoncé n’est pas une performance réalisée.",
             "sourceUrl": "https://www.bricks.co/fonctionnement",
             "checkedAt": "2026-10-09"
           },
           "exit": {
             "label": "Sortie",
-            "value": "Pas de retrait immédiat du capital investi ; échéance et éventuelle cession dépendent du projet.",
+            "value": "Retirer le solde disponible ne permet pas de récupérer le capital encore investi dans une obligation. Remboursement et éventuelle cession dépendent du titre.",
             "sourceUrl": "https://www.bricks.co/fonctionnement",
             "checkedAt": "2026-10-09"
           }
         },
         "missing": [
-          "Projet précis : FICI, émetteur, coupon, échéance, tarif de retraits"
+          "Projet précis : FICI, émetteur, coupon et échéance"
         ],
         "highlights": [
           [
@@ -464,12 +606,12 @@
             "10 €"
           ],
           [
-            "Instrument",
-            "Obligations"
+            "Retraits gratuits",
+            "2 / 12 mois"
           ],
           [
-            "Solde : retraits gratuits",
-            "2 / an"
+            "Retraits suivants",
+            "1,2 € TTC"
           ]
         ],
         "warnings": []
@@ -646,65 +788,148 @@
     "verification": "public-terms",
     "sources": [
       {
-        "url": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
-        "sha256": "bb8a72dcdbd34b2d1036773237292cee32c9fea1429537e876fcc50492e042f1"
+        "url": "https://www.anaxago.com/axclimat",
+        "sha256": "b8648fd8f60d18f96ad3a282e5d5ea111856485853edb0535cac26634a487daf"
+      },
+      {
+        "url": "https://www.anaxago.com/operations-financees",
+        "sha256": "3a964ccc0215aad6579698978c9c9cfaa95a9ec224655649a4beb36f377840d2"
       }
     ],
     "offers": [
       {
         "id": "axclimat-i",
-        "name": "AxClimat I",
-        "scope": "Fonds de fonds dédié à la décarbonation ; conditions annoncées dans un article officiel, disponibilité actuelle non établie.",
+        "name": "AxClimat I — part E",
+        "scope": "SLP de private equity européen ; souscriptions clôturées, présentation informative.",
         "fields": {
           "access": {
             "label": "Accès",
-            "value": "Ticket annoncé : 100000 €, versés progressivement sur 5 ans.",
-            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "value": "Part E : minimum annoncé 20000 €. Échéancier de versement propre à cette part à confirmer ; le calendrier publié dès 100000 € n’est pas appliqué au ticket de 20000 €.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
             "checkedAt": "2026-10-09"
           },
           "fees": {
             "label": "Frais publiés",
-            "value": "Barème complet des frais non publié dans l’article ; les économies du co-investissement ne signifient pas zéro frais pour le fonds.",
-            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "value": "Entrée : 3 %. Gestion récurrente : 1,9 %/an, sans dégressivité pour la part E. Bases de calcul, frais sous-jacents et éventuelle commission de performance à vérifier dans les documents de cette part.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
             "checkedAt": "2026-10-09"
           },
           "duration": {
             "label": "Durée",
-            "value": "Appels de fonds sur 5 ans annoncés ; cette période n’est pas la durée de détention ni la date de remboursement.",
-            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "value": "Durée de vie : 10 ans, prorogeable 2 fois 1 an ; aucune date de remboursement garantie.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
             "checkedAt": "2026-10-09"
           },
           "income": {
             "label": "Revenus",
-            "value": "Distributions et cessions des fonds ; TRI commercial cible distinct des performances réalisées, non qualifiées ici.",
-            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "value": "Distributions annoncées à partir de la sixième année : estimation, pas un calendrier garanti. Le TRI cible n’est pas une performance réalisée.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
             "checkedAt": "2026-10-09"
           },
           "exit": {
             "label": "Sortie",
-            "value": "Durée de vie, extensions et règles de cession à vérifier dans la documentation du fonds ; liquidité non garantie.",
-            "sourceUrl": "https://www.anaxago.com/blog/entrepreneurs/private-equity-decarbonation-revolution-industrielle-europe",
+            "value": "Cessions et liquidations selon les documents du fonds ; revente rapide non garantie.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
             "checkedAt": "2026-10-09"
           }
         },
         "missing": [
-          "DIC : frais complets, durée, extensions, conditions et ouverture actuelle"
+          "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession et échéancier de versement"
         ],
         "highlights": [
           [
-            "Ticket annoncé",
+            "Ticket de la part",
+            "20000 €"
+          ],
+          [
+            "Gestion annoncée",
+            "1,9 %/an"
+          ],
+          [
+            "Souscriptions",
+            "Clôturées"
+          ]
+        ],
+        "warnings": [],
+        "availability": {
+          "status": "closed",
+          "asOf": "2026-02-04",
+          "checkedAt": "2026-10-09",
+          "sourceUrl": "https://www.anaxago.com/operations-financees"
+        },
+        "presentation": {
+          "intro": "Investir dans la décarbonation peut aussi passer par des entreprises non cotées. AxClimat I, présenté par Anaxago, sélectionne des fonds européens dans ce domaine.",
+          "vehicle": "Parts E de la Société de Libre Partenariat AxClimat I",
+          "mechanism": "Le fonds investit dans des fonds de private equity et prévoit une poche de co-investissements et d’infrastructures. La part choisie détermine notamment ton ticket et tes frais.",
+          "distinction": "Tu détiens la part E d’AxClimat I. Les chiffres des opérations immobilières d’Anaxago ne représentent pas la performance de ce fonds."
+        }
+      },
+      {
+        "id": "axclimat-i-b",
+        "name": "AxClimat I — part B",
+        "scope": "SLP de private equity européen ; souscriptions clôturées, présentation informative.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Part B : minimum annoncé 100000 €. Calendrier publié dès 100000 € : 20 % à la souscription, puis 10 % par semestre.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
+            "checkedAt": "2026-10-09"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Entrée : 3 %. Gestion récurrente : 1,7 %/an de N à N+5, puis baisse de 0,1 point/an annoncée à partir de la sixième année. Bases de calcul, frais sous-jacents et éventuelle commission de performance à vérifier dans les documents de cette part.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
+            "checkedAt": "2026-10-09"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Durée de vie : 10 ans, prorogeable 2 fois 1 an ; aucune date de remboursement garantie.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
+            "checkedAt": "2026-10-09"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Distributions annoncées à partir de la sixième année : estimation, pas un calendrier garanti. Le TRI cible n’est pas une performance réalisée.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
+            "checkedAt": "2026-10-09"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Cessions et liquidations selon les documents du fonds ; revente rapide non garantie.",
+            "sourceUrl": "https://www.anaxago.com/axclimat",
+            "checkedAt": "2026-10-09"
+          }
+        },
+        "missing": [
+          "DIC et règlement de la part : bases des frais, coûts sous-jacents, cession"
+        ],
+        "highlights": [
+          [
+            "Ticket de la part",
             "100000 €"
           ],
           [
-            "Appels de fonds",
-            "5 ans"
+            "Gestion annoncée",
+            "1,7 %/an"
           ],
           [
-            "Véhicule",
-            "Fonds de fonds"
+            "Souscriptions",
+            "Clôturées"
           ]
         ],
-        "warnings": []
+        "warnings": [],
+        "availability": {
+          "status": "closed",
+          "asOf": "2026-02-04",
+          "checkedAt": "2026-10-09",
+          "sourceUrl": "https://www.anaxago.com/operations-financees"
+        },
+        "presentation": {
+          "intro": "Investir dans la décarbonation peut aussi passer par des entreprises non cotées. AxClimat I, présenté par Anaxago, sélectionne des fonds européens dans ce domaine.",
+          "vehicle": "Parts B de la Société de Libre Partenariat AxClimat I",
+          "mechanism": "Le fonds investit dans des fonds de private equity et prévoit une poche de co-investissements et d’infrastructures. La part choisie détermine notamment ton ticket et tes frais.",
+          "distinction": "Tu détiens la part B d’AxClimat I. Les chiffres des opérations immobilières d’Anaxago ne représentent pas la performance de ce fonds."
+        }
       }
     ]
   }

@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import unittest
 from collect_atland_scpi import parse_epargne
-from collect_other_insurance import parse_lucya, parse_placement
+from collect_other_insurance import parse_lucya, parse_placement, qualify_lucya_general_allocation
 from collect_scpi import remake_price_history, validate as validate_scpi, refresh as refresh_scpi
 from collect_insurance import validate as validate_insurance, refresh as refresh_insurance
 from insurance_literal import LiteralReader, nuxt_returns
@@ -128,6 +128,19 @@ Autres supports. (2) Le Fonds Général : garantie annuelle du capital est de 99
         self.assertEqual(r['fees']['membership'],10)
         self.assertIsNone(r['euroFunds'][0]['maxAllocation'])
         self.assertIn('30 %',r['euroFunds'][0]['notes'])
+    def test_scoped_lucya_allocation_and_lost_evidence_preserve_record(self):
+        html='<section><h2>Palmarès des fonds “100 % euros”, sans condition d’UC</h2><div class="wp-block-column"><p>Fonds général</p><p>BNP Paribas Cardif</p></div></section>'
+        r=qualify_lucya_general_allocation(self.lucya(),html,TODAY)
+        self.assertEqual(r['euroFunds'][0]['maxAllocation'],100)
+        self.assertAlmostEqual(r['euroFunds'][1]['maxAllocation'],100/3)
+        self.assertIn('limitation conditionnelle',r['euroFunds'][0]['operations'])
+        for bad in [html.replace('BNP Paribas Cardif','AXA'),html.replace('100 % euros','50 % euros'),html.replace('Fonds général','Fonds Euro Private Strategies'),html.replace('</section>','<div class="wp-block-column">Fonds général BNP Paribas Cardif</div></section>')]:
+            with self.assertRaises(ValueError):qualify_lucya_general_allocation(self.lucya(),bad,TODAY)
+        previous={'records':[r]}
+        result,observations=refresh_insurance(previous,{'lucya-cardif':lambda day:self.lucya()},TODAY)
+        self.assertEqual(result,previous)
+        self.assertEqual(observations[0]['status'],'failure')
+
     def test_wrong_lucya_identity_rejected(self):
         html='<h1>Lucya Cardif</h1><p>Autre assureur</p>'
         with self.assertRaises(ValueError):self.lucya(html)
@@ -136,7 +149,7 @@ Autres supports. (2) Le Fonds Général : garantie annuelle du capital est de 99
         r=validate_insurance(stored('insurance','lucya-cardif'),TODAY);general,private=r['euroFunds']
         self.assertEqual((general['guarantee'],private['guarantee']),(99.3,97))
         self.assertEqual((general['managementFeeMax'],private['managementFeeMax']),(.7,3))
-        self.assertIsNone(general['maxAllocation']);self.assertAlmostEqual(private['maxAllocation'],100/3)
+        self.assertEqual(general['maxAllocation'],100);self.assertAlmostEqual(private['maxAllocation'],100/3)
         self.assertEqual(r['fees']['membership'],10)
         self.assertIn('0,7 %',general['notes'])
 
