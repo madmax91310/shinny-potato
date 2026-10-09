@@ -16,7 +16,7 @@ export function buildTweet(record) {
   const hook = record.id === 'linxea-spirit-2'
     ? `Tu voudrais réunir un fonds euros et des ETF dans ton assurance-vie ? Linxea Spirit 2 permet de choisir ces supports dans un même contrat. Regardons comment ça fonctionne 👇`
     : access.monthly < 50
-    ? `Tu veux alimenter une assurance-vie petit à petit ? ${name} permet de programmer des versements dès ${format(access.monthly)} €/mois. Voici ce que tu peux y mettre 👇`
+    ? `Tu veux alimenter une assurance-vie petit à petit ? ${name} permet de programmer des versements dès ${format(access.monthly)} €/mois. Voici les détails 👇`
     : `Avant d’ouvrir une assurance-vie, je regarderais ce qu’on peut y mettre et ce qu’elle coûte dans la durée. Prenons ${name} pour voir ça concrètement 👇`
   const fundLines = euroFunds.map(fund => [
     `🛡️ Avec ${fund.name}, voici les rendements publiés :`,
