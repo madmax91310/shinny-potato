@@ -15,25 +15,27 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 Contrôle quotidien par le workflow existant. Une première année complète validée est intégrée au registre actif ; le proxy de simulation reste soumis à sa propre fenêtre minimale. Une erreur de transport ou de validation conserve les observations précédentes et déclenche le signal de collecte.
 
-| Part | Collecteur configuré | État | Première année intégrée |
-|---|---|---|---|
-| Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Oui | Attente de publication | — |
-| Amundi PEA Monde (MSCI World) UCITS ETF (FR001400U5Q4) | Oui | Attente de publication | — |
-| iShares MSCI Europe Small Cap UCITS ETF (IE0000N55FP4) | Oui | Attente de publication | — |
-| WisdomTree Europe Defence UCITS ETF (IE0002Y8CX98) | Oui | Attente de publication | — |
-| VanEck Quantum Computing UCITS ETF A (IE0007Y8Y157) | Oui | Attente de publication | — |
-| iShares Quantum Computing UCITS ETF (IE000C6ITGC8) | Oui | Attente de publication | — |
-| iShares S&P 500 Swap PEA UCITS ETF (IE000DQLYVB9) | Oui | Attente de publication | — |
-| Xtrackers FTSE All-World UCITS ETF 1C (IE000L6ZMMC4) | Oui | Attente de publication | — |
-| WisdomTree Quantum Computing UCITS ETF (IE000W8WMSL2) | Oui | Attente de publication | — |
-| Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Oui | Attente de publication | — |
-| Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Oui | Attente de publication | — |
+Les échéances ci-dessous sont des dates minimales de disponibilité, pas des promesses de publication. Les dates de lancement qualifient ce suivi opérationnel ; elles ne sont pas ajoutées aux caractéristiques statiques des produits.
+
+| Part | Collecteur configuré | État | Première année complète | Publication au plus tôt | Première année intégrée |
+|---|---|---|---|---|---|
+| Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Oui | Première année complète en cours ou à venir | 2027 | 2028-01-01 | — |
+| Amundi PEA Monde (MSCI World) UCITS ETF (FR001400U5Q4) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| iShares MSCI Europe Small Cap UCITS ETF (IE0000N55FP4) | Oui | Première année complète en cours ou à venir | 2027 | 2028-01-01 | — |
+| WisdomTree Europe Defence UCITS ETF (IE0002Y8CX98) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| VanEck Quantum Computing UCITS ETF A (IE0007Y8Y157) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| iShares Quantum Computing UCITS ETF (IE000C6ITGC8) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| iShares S&P 500 Swap PEA UCITS ETF (IE000DQLYVB9) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| Xtrackers FTSE All-World UCITS ETF 1C (IE000L6ZMMC4) | Oui | Première année complète en cours ou à venir | 2027 | 2028-01-01 | — |
+| WisdomTree Quantum Computing UCITS ETF (IE000W8WMSL2) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 
 Les caractéristiques statiques et cotations sont exclues de ce chantier conformément au périmètre demandé.
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
-| instrument | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
+| instrument | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2027. Publication possible à partir du 2028-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
@@ -46,7 +48,7 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | Amundi Physical Gold ETC (FR0013416716) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Amundi Physical Gold ETC (FR0013416716) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Amundi Physical Gold ETC (FR0013416716) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
-| instrument | Amundi PEA Monde (MSCI World) UCITS ETF (FR001400U5Q4) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
+| instrument | Amundi PEA Monde (MSCI World) UCITS ETF (FR001400U5Q4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | WisdomTree Copper (GB00B15KXQ89) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Copper (GB00B15KXQ89) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Copper (GB00B15KXQ89) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
@@ -59,13 +61,13 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | CoinShares Ethereum Staking ETP (GB00BLD4ZM24) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | CoinShares Ethereum Staking ETP (GB00BLD4ZM24) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | CoinShares Ethereum Staking ETP (GB00BLD4ZM24) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
-| instrument | iShares MSCI Europe Small Cap UCITS ETF (IE0000N55FP4) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
-| instrument | WisdomTree Europe Defence UCITS ETF (IE0002Y8CX98) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
-| instrument | VanEck Quantum Computing UCITS ETF A (IE0007Y8Y157) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
-| instrument | iShares Quantum Computing UCITS ETF (IE000C6ITGC8) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
-| instrument | iShares S&P 500 Swap PEA UCITS ETF (IE000DQLYVB9) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
-| instrument | Xtrackers FTSE All-World UCITS ETF 1C (IE000L6ZMMC4) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
-| instrument | WisdomTree Quantum Computing UCITS ETF (IE000W8WMSL2) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
+| instrument | iShares MSCI Europe Small Cap UCITS ETF (IE0000N55FP4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2027. Publication possible à partir du 2028-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
+| instrument | WisdomTree Europe Defence UCITS ETF (IE0002Y8CX98) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
+| instrument | VanEck Quantum Computing UCITS ETF A (IE0007Y8Y157) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
+| instrument | iShares Quantum Computing UCITS ETF (IE000C6ITGC8) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
+| instrument | iShares S&P 500 Swap PEA UCITS ETF (IE000DQLYVB9) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
+| instrument | Xtrackers FTSE All-World UCITS ETF 1C (IE000L6ZMMC4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2027. Publication possible à partir du 2028-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
+| instrument | WisdomTree Quantum Computing UCITS ETF (IE000W8WMSL2) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | iShares Physical Silver ETC (IE00B4NCWG09) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Silver ETC (IE00B4NCWG09) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Silver ETC (IE00B4NCWG09) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
@@ -88,8 +90,8 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
-| instrument | Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
-| instrument | Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Calendrier annuel | Attente de publication | Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part. |
+| instrument | Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
+| instrument | Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | index | Russell 1000 (russell-1000) | holdings | Non publié | La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué. |
 | index | Bitcoin (bitcoin) | constituents | Non applicable | Sous-jacent sans composition actions. |
 | index | Bitcoin (bitcoin) | countries | Non applicable | Sous-jacent sans composition actions. |
@@ -109,3 +111,21 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | index | Argent physique (silver-physical) | holdings | Non applicable | Sous-jacent sans composition actions. |
 
 Couverture : une donnée active peut être conservée malgré un accès désormais en échec. Les alertes opérationnelles restent suivies dans « Données à revoir ».
+
+## Conditions AV restant à qualifier
+
+Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les conditions d’un autre contrat et les conditions propres à un client ne comblent pas ces champs. Les bornes publiées et clauses conditionnelles existantes sont conservées dans la présentation.
+
+| Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |
+|---|---|---|---|---|
+| Linxea Avenir 2 | Suravenir Opportunités 2 | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Linxea Avenir 2 | Suravenir Rendement 2 | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Linxea Zen | Apicil Euroflex | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Linxea Zen | Apicil Euro Garanti | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Linxea Vie | Netissima | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Linxea Vie | Eurossima | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Fonds général | Quote-part maximale | 2026-10-09 | La notice prévoit une affectation euros et/ou unités de compte avec une limitation conditionnelle ; elle ne chiffre pas un maximum actuel inconditionnel propre au Fonds général. |
+| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-09 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
+| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-09 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |

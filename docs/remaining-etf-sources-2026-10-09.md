@@ -61,3 +61,38 @@ Russell 1000. Les services `analytics/portfolio-statistics` et
 Ces poids ETF ne sont pas publiés dans le registre de l'indice. Les dernières
 compositions et performances qualifiées restent intactes. La résolution demande
 une publication des dix poids explicitement attribués au Russell 1000 exact.
+
+## Vérification complémentaire des trois groupes en attente
+
+Les pages anglaise, française et italienne Global X présentent toujours des
+tables contradictoires et des performances de la part capitalisante. La résolution
+de QYLD demande un calendrier USD de la part distribuante IE00BM8R0J59, avec
+réinvestissement des distributions explicite, ainsi qu’une composition économique
+datée et cohérente. Une fiche sans calendrier ou le panier de substitution ne
+constitue pas une résolution.
+
+La fiche réglementaire LSEG suivante publie seulement le poids du plus gros titre
+au 30 décembre 2025, pas les dix poids :
+https://www.lseg.com/content/dam/ftse-russell/en_us/documents/policy-documents/russell-1000-reg-871-factsheet.pdf
+La page de reconstitution 2026 publie une concentration agrégée des dix premières
+valeurs, sans leurs poids individuels :
+https://www.lseg.com/en/about-us/new-at-lseg/more-key-facts-ahead-of-the-2026-russell-us-indexes-reconstitution
+Ces deux nouvelles pistes ne comblent pas le champ manquant.
+
+Les onze parts récentes sont lancées en 2025 (huit) ou en 2026 (trois), selon les
+émetteurs. Leur première année civile complète est respectivement 2026 ou 2027.
+Le calendrier ne peut être publié avant janvier 2027 ou janvier 2028. Les preuves
+de lancement sont conservées dans `scripts/recent-calendar-evidence.json` ; le
+suivi généré distingue désormais l’année encore incomplète de l’attente de
+publication après sa clôture. Les collecteurs existants restent actifs et
+intègrent automatiquement une première année complète qualifiée.
+
+Pour les AV, une offre bonus Lucya Cardif n’est pas un plafond général du contrat :
+https://lucya.com/assurance-vie/lucya-cardif/offre-bonus-lucya-cardif/
+Les conditions de Placement-direct Euro+ ne sont pas celles de Placement-direct
+Vie. Les quotes-parts absentes et plafonds non qualifiés sont maintenant recensés
+séparément dans l’inventaire, avec les sources et leur dernier contrôle, et les
+présentations signalent explicitement qu’un plafond absent reste à confirmer.
+Les clauses déjà documentées (limitation conditionnelle Cardif, ratios UC,
+bornes contractuelles et sauvegarde SwissLife) sont conservées. Aucune demande
+au distributeur ni accès à un espace client n’a été effectué.

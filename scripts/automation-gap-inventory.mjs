@@ -4,14 +4,25 @@ import { DATA_CATALOG } from '../src/data/catalog.js';
 const read = path => JSON.parse(readFileSync(new URL('../'+path, import.meta.url)));
 export const recent = new Set(['FR0014017NX3','FR001400U5Q4','IE0000N55FP4','IE0002Y8CX98','IE0007Y8Y157','IE000C6ITGC8','IE000DQLYVB9','IE000L6ZMMC4','IE000W8WMSL2','LU2970735911','LU3038520774']);
 const nonEquity = new Set(['LU0290358497','CH0454664001','DE000A27Z304','FR0013416716','GB00B15KXQ89','GB00BJYDH287','GB00BLD4ZL17','GB00BLD4ZM24','IE00B4NCWG09','IE00B4ND3602','IE00B579F325','IE00BD6FTQ80','IE00BDFL4P12','JE00B1VS3770']);
-export function classifyInstrumentGap(id,field) {
+const calendarEvidence = read('scripts/recent-calendar-evidence.json');
+export function calendarEligibility(id, now) {
+  const evidence = calendarEvidence.shares[id];
+  if (!evidence) return {};
+  const firstCompleteYear = Number(evidence.launchDate.slice(0,4)) + (evidence.launchDate.endsWith('-01-01') ? 0 : 1);
+  const earliestPublicationDate = `${firstCompleteYear+1}-01-01`;
+  return {launchDate:evidence.launchDate,launchSourceUrl:evidence.sourceUrl,evidenceCheckedAt:calendarEvidence.checkedAt,firstCompleteYear,earliestPublicationDate,status:now<earliestPublicationDate?'waiting-first-year':'waiting-publication'};
+}
+export function classifyInstrumentGap(id,field,now=new Date().toISOString().slice(0,10)) {
   if(['countries','sectors','holdings'].includes(field) && nonEquity.has(id)) return {status:'not-applicable',reason:'Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.'};
-  if(field==='performance' && recent.has(id)) return {status:'waiting-publication',reason:'Part récente : aucun calendrier annuel complet qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part.'};
+  if(field==='performance' && recent.has(id)) {
+    const eligibility=calendarEligibility(id,now);
+    return {...eligibility,reason:eligibility.status==='waiting-first-year'?`Première année civile complète : ${eligibility.firstCompleteYear}. Publication possible à partir du ${eligibility.earliestPublicationDate}, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté.`:'Première année complète clôturée, mais aucun calendrier annuel qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part.'};
+  }
   if(id==='IE00BM8R0J59') return {status:'source-conflict',reason:'Part QYLD distribuante : composition contradictoire et calendrier exact non qualifié. Fiche indisponible et historique de distributions tronqué ; voir qualification du 9 octobre.'};
   if(id==='IE000QDFFK00' && field==='countries') return {status:'unqualified',reason:'Pays de l’indice exact raccordés via la fiche Amundi ; le portefeuille BNP publie seulement des régions. Une absence indique que le complément d’indice reste à valider.'};
   return {status:'unqualified',reason:'Champ absent des observations actives ; source ou connecteur à qualifier.'};
 }
-export function buildGapInventory({etf=read('src/data/automated-etf.json'),indices=read('src/data/automated-indices.json'),now=new Date().toISOString().slice(0,10)}={}) {
+export function buildGapInventory({etf=read('src/data/automated-etf.json'),indices=read('src/data/automated-indices.json'),insurance=read('src/data/automated-insurance.json').records,now=new Date().toISOString().slice(0,10)}={}) {
   const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json'].flatMap(f=>read('scripts/'+f).instruments);
   const configured=new Map(sources.filter(s=>s.enabled!==false).map(s=>[s.isin,s]));
   const names={ter:'Frais',aum:'Encours',performance:'Calendrier annuel',countries:'Pays',sectors:'Secteurs',holdings:'Positions pondérées'};
@@ -21,7 +32,7 @@ export function buildGapInventory({etf=read('src/data/automated-etf.json'),indic
     for(const field of Object.keys(names)) {
       const present=field==='ter'?Number.isFinite(data.characteristics?.terPct):field==='aum'?Number.isFinite(data.aum?.amount):field==='performance'?Object.keys(data.performance?.years??{}).length>0:(data[field]?.rows?.length??0)>0;
       if(present){counts[field]++;continue;}
-      gaps.push({type:'instrument',id:row.id,name:row.name,field,label:names[field],configured:!!source,...classifyInstrumentGap(row.id,field),sourceUrl:source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null});
+      gaps.push({type:'instrument',id:row.id,name:row.name,field,label:names[field],configured:!!source,...classifyInstrumentGap(row.id,field,now),sourceUrl:source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null});
     }
   }
   const configs=read('scripts/index-automation.json').indices.filter(c=>c.enabled!==false);
@@ -38,14 +49,17 @@ export function buildGapInventory({etf=read('src/data/automated-etf.json'),indic
   const recentCalendars=[...recent].map(id=>{
     const data=etf[id]??{};const source=configured.get(id);
     const years=Object.keys(data.performance?.years??{}).map(Number).filter(y=>Number.isInteger(y)&&y<Number(now.slice(0,4))).sort((a,b)=>a-b);
-    return {id,name:rows.find(r=>r.id===id)?.name??id,configured:!!source,status:years.length?'integrated':'waiting-publication',firstYear:years[0]??null,years,sourceUrl:data.performance?.sourceUrl??source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null};
+    const eligibility=calendarEligibility(id,now);
+    return {id,name:rows.find(r=>r.id===id)?.name??id,configured:!!source,...eligibility,status:years.length?'integrated':eligibility.status,firstYear:years[0]??null,years,sourceUrl:data.performance?.sourceUrl??source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null};
   });
-  return {recentCalendars,checkedAt:now,method:'Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.',instruments:rows.length,covered:counts,summary,gaps};
+  const insuranceGaps=insurance.flatMap(record=>record.euroFunds.flatMap(fund=>['maxAllocation','ceiling'].filter(field=>fund[field]==null).map(field=>({id:record.id,name:record.name,fund:fund.name,field,status:field==='maxAllocation'?(fund.allocationEvidence?.status??'unqualified'):'unqualified',checkedAt:record.checkedAt,sourceUrls:fund.sourceUrls??[fund.sourceUrl],reason:field==='maxAllocation'?(fund.allocationEvidence?.reason??'Quote-part maximale absente des observations actives.'):'Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds.'}))));
+  return {recentCalendars,insuranceGaps,checkedAt:now,method:'Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.',instruments:rows.length,covered:counts,summary,gaps};
 }
 export function writeGapInventory(report=buildGapInventory()) {
-  const names={'not-applicable':'Non applicable','waiting-publication':'Attente de publication','source-conflict':'Source contradictoire','not-published':'Non publié','unqualified':'À qualifier','access-blocked':'Accès bloqué'};
-  const lines=[`# Champs restant à automatiser — ${report.checkedAt}`,'',report.method,'','| Champ ETF/ETP | Couverture |','|---|---:|',...Object.entries(report.covered).map(([k,v])=>`| ${k} | ${v}/${report.instruments} |`),'','## Premiers calendriers des 11 parts récentes','', 'Contrôle quotidien par le workflow existant. Une première année complète validée est intégrée au registre actif ; le proxy de simulation reste soumis à sa propre fenêtre minimale. Une erreur de transport ou de validation conserve les observations précédentes et déclenche le signal de collecte.','', '| Part | Collecteur configuré | État | Première année intégrée |','|---|---|---|---|', ...report.recentCalendars.map(r=>`| ${r.name} (${r.id}) | ${r.configured?'Oui':'Non'} | ${r.status==='integrated'?'Intégré':'Attente de publication'} | ${r.firstYear??'—'} |`),'', 'Les caractéristiques statiques et cotations sont exclues de ce chantier conformément au périmètre demandé.','', '| Type | Instrument / indice | Champ absent | Motif | Action |','|---|---|---|---|---|',...report.gaps.map(g=>`| ${g.type} | ${g.name} (${g.id}) | ${g.label} | ${names[g.status]} | ${g.reason} |`),'','Couverture : une donnée active peut être conservée malgré un accès désormais en échec. Les alertes opérationnelles restent suivies dans « Données à revoir ».',''];
+  const names={'not-applicable':'Non applicable','waiting-first-year':'Première année complète en cours ou à venir','waiting-publication':'Attente de publication','source-conflict':'Source contradictoire','not-published':'Non publié','unqualified':'À qualifier','access-blocked':'Accès bloqué'};
+  const lines=[`# Champs restant à automatiser — ${report.checkedAt}`,'',report.method,'','| Champ ETF/ETP | Couverture |','|---|---:|',...Object.entries(report.covered).map(([k,v])=>`| ${k} | ${v}/${report.instruments} |`),'','## Premiers calendriers des 11 parts récentes','', 'Contrôle quotidien par le workflow existant. Une première année complète validée est intégrée au registre actif ; le proxy de simulation reste soumis à sa propre fenêtre minimale. Une erreur de transport ou de validation conserve les observations précédentes et déclenche le signal de collecte.','', 'Les échéances ci-dessous sont des dates minimales de disponibilité, pas des promesses de publication. Les dates de lancement qualifient ce suivi opérationnel ; elles ne sont pas ajoutées aux caractéristiques statiques des produits.','', '| Part | Collecteur configuré | État | Première année complète | Publication au plus tôt | Première année intégrée |','|---|---|---|---|---|---|', ...report.recentCalendars.map(r=>`| ${r.name} (${r.id}) | ${r.configured?'Oui':'Non'} | ${r.status==='integrated'?'Intégré':names[r.status]} | ${r.firstCompleteYear} | ${r.earliestPublicationDate} | ${r.firstYear??'—'} |`),'', 'Les caractéristiques statiques et cotations sont exclues de ce chantier conformément au périmètre demandé.','', '| Type | Instrument / indice | Champ absent | Motif | Action |','|---|---|---|---|---|',...report.gaps.map(g=>`| ${g.type} | ${g.name} (${g.id}) | ${g.label} | ${names[g.status]} | ${g.reason} |`),'','Couverture : une donnée active peut être conservée malgré un accès désormais en échec. Les alertes opérationnelles restent suivies dans « Données à revoir ».',''];
   writeFileSync(new URL('../docs/automation-gaps.json',import.meta.url),JSON.stringify(report,null,2)+'\n');
+  lines.push('## Conditions AV restant à qualifier','', 'Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les conditions d’un autre contrat et les conditions propres à un client ne comblent pas ces champs. Les bornes publiées et clauses conditionnelles existantes sont conservées dans la présentation.','', '| Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |','|---|---|---|---|---|',...report.insuranceGaps.map(g=>`| ${g.name} | ${g.fund} | ${g.field==='ceiling'?'Plafond en euros':'Quote-part maximale'} | ${g.checkedAt} | ${g.reason} |`),'');
   writeFileSync(new URL('../docs/automation-gaps.md',import.meta.url),lines.join('\n'));
   return report;
 }
