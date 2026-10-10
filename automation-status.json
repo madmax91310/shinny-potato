@@ -10,7 +10,8 @@
       "lastSuccessAt": "2026-10-10T13:45:44Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38056933146",
       "failures": [],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "not-run"
     },
     "update-investor-13f.yml": {
       "name": "Portefeuilles des investisseurs",
@@ -21,7 +22,9 @@
       "lastSuccessAt": "2026-10-09T18:44:33Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37973112597",
       "failures": [],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "success",
+      "lastPublicationSuccessAt": "2026-10-09T18:44:30Z"
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
@@ -32,7 +35,9 @@
       "lastSuccessAt": "2026-10-09T20:02:23Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37982762920",
       "failures": [],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "success",
+      "lastPublicationSuccessAt": "2026-10-09T20:02:20Z"
     },
     "update-company-analysis.yml": {
       "name": "Analyses d’entreprises",
@@ -43,7 +48,9 @@
       "lastSuccessAt": "2026-10-10T13:11:17Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38053636399",
       "failures": [],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "not-run",
+      "lastPublicationSuccessAt": "2026-10-10T07:18:24Z"
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
@@ -53,9 +60,9 @@
       "status": "success",
       "lastSuccessAt": "2026-10-10T16:25:55Z",
       "collectionStatus": "success",
-      "publicationStatus": "success",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-10T16:25:55Z",
-      "lastPublicationSuccessAt": "2026-10-10T16:25:54Z",
+      "lastPublicationSuccessAt": "2026-10-10T15:53:11Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38066460711",
       "failures": [],
       "dataFailures": {}
@@ -69,7 +76,9 @@
       "lastSuccessAt": "2026-10-10T14:45:19Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38059950196",
       "failures": [],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "success",
+      "lastPublicationSuccessAt": "2026-10-10T14:45:16Z"
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -79,11 +88,12 @@
       "status": "success",
       "lastSuccessAt": "2026-10-10T15:33:05Z",
       "collectionStatus": "success",
-      "publicationStatus": "success",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-10T15:33:05Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38063055206",
       "failures": [],
-      "dataFailures": {}
+      "dataFailures": {},
+      "lastPublicationSuccessAt": "2026-10-09T15:48:19Z"
     },
     "update-scpi.yml": {
       "name": "Présentations de SCPI",
@@ -106,7 +116,9 @@
           "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38057247546",
           "cause": "Missing Remake year-end prices"
         }
-      }
+      },
+      "publicationStatus": "not-run",
+      "lastPublicationSuccessAt": "2026-10-08T14:45:35Z"
     },
     "update-insurance.yml": {
       "name": "Présentations d’assurance-vie",
@@ -122,7 +134,9 @@
           "step": "Run npm run test:radar"
         }
       ],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "failure",
+      "lastPublicationSuccessAt": "2026-10-09T11:51:33Z"
     },
     "update-bitcoin-monthly.yml": {
       "name": "Historique du bitcoin",
@@ -133,7 +147,9 @@
       "lastSuccessAt": "2026-10-08T14:09:35Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37788601032",
       "failures": [],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "success",
+      "lastPublicationSuccessAt": "2026-10-08T14:09:31Z"
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -149,7 +165,9 @@
           "step": "Run python -m unittest discover -s scripts -p 'test_presentation_actors.py'"
         }
       ],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "failure",
+      "lastPublicationSuccessAt": "2026-10-09T14:51:00Z"
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
@@ -180,7 +198,8 @@
           "step": "Run python -m unittest discover -s scripts -p 'test_presentation_actors.py'"
         }
       ],
-      "dataFailures": {}
+      "dataFailures": {},
+      "publicationStatus": "failure"
     }
   },
   "updatedAt": "2026-10-10T16:26:21Z"
