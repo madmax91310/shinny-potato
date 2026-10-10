@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-10T15:12:08.499Z",
-  "sourceRevision": "1e74cf4b7b9e77a5461d4089bad7b098b4eb8993",
+  "checkedAt": "2026-10-10T15:18:26.240Z",
+  "sourceRevision": "9620e400b0a76d2d1f1e54227e8e3fcd499c0f01",
   "observationCount": 4767,
   "coverage": {
     "etf": 158,
@@ -14,9 +14,36 @@
     "investisseurs": 18,
     "economie": 32
   },
-  "newSignalCount": 0,
+  "newSignalCount": 1,
   "errors": [],
   "events": [
+    {
+      "id": "ba6236f7ccd0626f68cbb9d9",
+      "family": "etf",
+      "entity": "IE00BD4TXV59",
+      "label": "UBS Core MSCI World UCITS ETF",
+      "field": "sectors:Information Technology",
+      "fieldLabel": "Poids du secteur Information Technology",
+      "title": "UBS Core MSCI World UCITS ETF : poids du secteur information technology en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-10T15:18:26.240Z",
+      "before": 29.8,
+      "after": 31.8,
+      "beforeText": "29,8 %",
+      "afterText": "31,8 %",
+      "beforePeriod": "2026-08-31",
+      "period": "2026-09-30",
+      "scope": "IE00BD4TXV59 · index · sectors",
+      "unit": "%",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+      "previousSourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
+      "checkedAt": "2026-10-10",
+      "tool": "/fiches-etf",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "draft": "Poids du secteur Information Technology : 29,8 % → 31,8 %.\n\nUBS Core MSCI World UCITS ETF · IE00BD4TXV59\nPérimètre : IE00BD4TXV59 · index · sectors\nAncienne observation : 2026-08-31\nObservation actuelle : 2026-09-30\n\nCette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
     {
       "id": "64a1268bd97d4c4cf3e0ade5",
       "family": "etf",
