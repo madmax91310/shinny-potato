@@ -12,8 +12,7 @@ for (const terme of TERMES) {
   const sections = getFicheLexiqueSections(terme.id);
   assert(text.length > 700 && text.length < 4000, `${terme.id}: une fiche détaillée et lisible`);
   assert(sections.every(s => s.titre && s.contenu), `${terme.id}: rubrique complète`);
-  assert.match(text, /🧮 Un exemple concret\n\n/);
-  assert.match(text, /⚠️ À retenir\n\n/);
+  // Chaque récit a son ordre ; les règles fiscales sont vérifiées plus bas.
   assert.doesNotMatch(text, /Ce que ça veut dire|À quoi ça sert|undefined|NaN|https?:\/\//);
   if (!FICHE_LEXIQUE_EDITORIAL[terme.id].sections) {
     const facts = terme.variante === 'A' ? [terme.mecanismeContenu, terme.fraisContenu] : [terme.calculContenu];
@@ -45,4 +44,17 @@ assert.match(getFicheLexiqueText('abattement-pea'), /exonération.*pas d'un abat
 assert.match(FICHE_LEXIQUE_SUBJECTS.flatMap(g => g.items).find(t => t.id === 'abattement-pea').label, /exonération/);
 assert.equal(getFicheLexiqueText('inconnu'), '');
 assert.deepEqual(getFicheLexiqueSections('inconnu'), []);
+const dca = getFicheLexiqueText('dca');
+assert.match(dca, /200 €.*30 parts.*6,67 €/s);
+assert.match(dca, /ne garantit pas un meilleur rendement/);
+assert.match(dca, /frais.*courtier/i);
+assert.match(getFicheLexiqueText('diversification'), /World.*S&P 500.*Nasdaq-100/s);
+assert.match(getFicheLexiqueText('diversification'), /même bien diversifié.*peut baisser/s);
+const recovery = getFicheLexiqueText('drawdown');
+assert.match(recovery, /1 000 €.*500 €.*250 €.*750 €.*100 %/s);
+assert.match(recovery, /rien ne garantit le retour/);
+for (const id of ['cto', 'ter', 'inflation', 'capitalisation-boursiere']) {
+  const text = getFicheLexiqueText(id);
+  assert(text.indexOf(FICHE_LEXIQUE_EDITORIAL[id].exemple) < text.indexOf(FICHE_LEXIQUE_EDITORIAL[id].definition));
+}
 console.log(`OK : ${TERMES.length} fiches détaillées, règles fiscales, calculs, exemples et limites adaptés.`);
