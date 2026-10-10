@@ -259,10 +259,25 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--baseline',required=True,type=pathlib.Path);p.add_argument('--output',required=True,type=pathlib.Path)
-    p.add_argument('--apply',action='store_true');args=p.parse_args()
+    p.add_argument('--apply',action='store_true')
+    scope=p.add_mutually_exclusive_group()
+    scope.add_argument('--only',nargs='+',help='Exact configured series IDs to refresh')
+    scope.add_argument('--retry-failed',action='store_true',help='Retry only failed sources from the last observation')
+    args=p.parse_args()
     path=ROOT/'src/data/automated-monthly.json'; current=json.loads(path.read_text())
-    merged,report=refresh(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),current,json.loads(args.baseline.read_text()))
+    status_path=ROOT/'scripts/source-snapshots/monthly-collection-status.json'
+    status=json.loads(status_path.read_text()) if status_path.exists() else {'series':{}}
+    config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed)
+    merged,report=refresh(config,current,json.loads(args.baseline.read_text()))
     write_json_atomic(args.output,report)
+    if args.apply and report['series']:
+        for observation in report['series']:
+            status['series'][observation['id']]={
+                'status':observation['status'],'checkedAt':report['checkedAt'],
+                **({'reason':observation['reason']} if observation['status']=='failed' else {
+                    'periodEnd':observation['record']['periodEnd'],
+                    'responseSha256':observation['evidence']['responseSha256']})}
+        write_json_atomic(status_path,status)
     if args.apply and merged!=current:write_json_atomic(path,merged)
     evidence_path=ROOT/'scripts/source-snapshots/monthly-automated.json'
     evidence=json.loads(evidence_path.read_text()) if evidence_path.exists() else {}
@@ -282,6 +297,18 @@ def main():
             f.write('\n## Historiques mensuels\n\n| Série | État | Dernier mois / erreur |\n|---|---|---|\n')
             for s in report['series']:f.write(f"| {s['id']} | {s['status']} | {s.get('record',{}).get('periodEnd',s.get('reason'))} |\n")
     if failed:raise SystemExit(1)
+
+
+def select_series(config,status,only=None,retry_failed=False):
+    ids={s['id'] for s in config['series']}
+    if only is not None and (not only or set(only)-ids):
+        reject('Unknown or empty monthly series selection')
+    if retry_failed:
+        # Bootstrap the observation once; later daily checks only contact failures.
+        selected={key for key,value in status.get('series',{}).items() if value['status']=='failed'} if status.get('series') else ids
+    else:
+        selected=set(only) if only is not None else ids
+    return {**config,'series':[s for s in config['series'] if s['id'] in selected]}
 
 
 if __name__=='__main__':main()

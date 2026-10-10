@@ -4,7 +4,7 @@ import datetime as dt
 import unittest
 import urllib.error
 from urllib.parse import urlparse, parse_qs
-from refresh_monthly_history import yahoo_chart, collect_yahoo, collect_msci, msci_rows, collect_stoxx, refresh, UTC
+from refresh_monthly_history import yahoo_chart, collect_yahoo, collect_msci, msci_rows, collect_stoxx, refresh, select_series, UTC
 
 NOW=dt.datetime(2026,2,6,tzinfo=UTC)
 CONFIG={'id':'test','parser':'yahoo','symbol':'TEST','currency':'USD','field':'adjclose','precision':6,'periodStart':'2026-01','method':'adjusted'}
@@ -15,6 +15,17 @@ def chart(interval='1d',close=12,adjusted=10):
         'timestamp':[int(date.timestamp())],'indicators':{'quote':[{'close':[close]}],'adjclose':[{'adjclose':[adjusted]}]}}]}}
 
 class Monthly(unittest.TestCase):
+    def test_recovery_contacts_only_failed_sources_then_stops(self):
+        config={'series':[dict(CONFIG,id='ok'),dict(CONFIG,id='bad')]}
+        status={'series':{'ok':{'status':'validated'},'bad':{'status':'failed'}}}
+        self.assertEqual([s['id'] for s in select_series(config,status,retry_failed=True)['series']],['bad'])
+        status['series']['bad']['status']='validated'
+        self.assertEqual(select_series(config,status,retry_failed=True)['series'],[])
+        self.assertEqual(select_series(config,{},retry_failed=True),config)
+        self.assertEqual([s['id'] for s in select_series(config,status,['bad'])['series']],['bad'])
+        for only in [[],['typo']]:
+            with self.assertRaises(ValueError):select_series(config,status,only)
+
     def test_adjusted_daily_not_monthly_adjusted(self):
         def fetch(url):return chart('1mo' if 'interval=1mo' in url else '1d',adjusted=999 if 'interval=1mo' in url else 10)
         result=collect_yahoo(CONFIG,NOW,fetch)
