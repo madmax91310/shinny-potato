@@ -135,13 +135,18 @@
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 37945521218,
+      "runId": 38057695990,
       "attempt": 1,
-      "completedAt": "2026-10-09T14:51:04Z",
-      "status": "success",
+      "completedAt": "2026-10-10T13:59:07Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-09T14:51:04Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37945521218",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38057695990",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run python -m unittest discover -s scripts -p 'test_presentation_actors.py'"
+        }
+      ],
       "dataFailures": {}
     },
     "update-editorial-radar.yml": {
@@ -177,5 +182,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-10T13:57:59Z"
+  "updatedAt": "2026-10-10T13:59:07Z"
 }
