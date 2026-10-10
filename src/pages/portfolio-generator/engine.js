@@ -400,7 +400,8 @@ export function renderTweetText(p) {
   const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
   blocks.push(ordered.map(s => `${s.emoji} ${s.pct}% ${portfolioPostName(s)}`).join("\n"));
   blocks.push(performanceExcerpt(computeYearlyPerf(p.selection)));
-  blocks.push(performanceNotes(p.selection));
+  const notes = performanceNotes(p.selection, { includeMethod: false });
+  if (notes) blocks.push(notes);
   blocks.push('La pire année civile observée n’est pas une perte maximale : une baisse en cours d’année peut être plus forte.');
   blocks.push(`📌 ${editorial.thesis}`);
   blocks.push('💬 Que penses-tu de ce portefeuille ?');
