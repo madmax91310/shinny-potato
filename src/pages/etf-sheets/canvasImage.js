@@ -32,8 +32,8 @@ function rule(ctx, y) {
   ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke()
 }
 function fact(ctx, label, value, x, y, width, height = 112) {
-  block(ctx, label, x, y, width, 40, { size: 30, min: 28, color: MUTED, weight: 400 })
-  block(ctx, value, x, y + 50, width, height, { size: 48, min: 28, editorial: true, weight: 600 })
+  block(ctx, label, x, y, width, 50, { size: 40, min: 36, color: MUTED, weight: 400 })
+  block(ctx, value, x, y + 58, width, height, { size: 60, min: 28, weight: 600 })
 }
 export async function renderETFImage(etf) {
   const art = getETFArt(etf.id)
@@ -88,52 +88,53 @@ export async function renderETFImage(etf) {
   const name = issuer ? `${issuer[1]}\n${etf.name.slice(issuer[0].length)}` : etf.name
   const legal = name.match(/\s+(UCITS ETF.*)$/)
   const title = legal ? name.slice(0, legal.index) : name
-  const titleHeight = block(ctx, title, PAD, 230, 890, 430, { size: 112, min: 54, editorial: true })
-  if (legal) block(ctx, legal[1], PAD, Math.min(680, 250 + titleHeight), 900, 70, { size: 32, min: 26, color: MUTED })
-  if (etf.listing) block(ctx, etf.listing.ticker, PAD, 770, 650, 50, { size: 44, color: GOLD, weight: 600 })
+  const titleHeight = block(ctx, title, PAD, 185, 890, 340, { size: 112, min: 60, editorial: true })
+  if (legal) block(ctx, legal[1], PAD, Math.min(540, 200 + titleHeight), 900, 70, { size: 32, min: 26, color: MUTED })
+  if (etf.listing) block(ctx, etf.listing.ticker, PAD, 620, 650, 64, { size: 56, color: GOLD, weight: 600 })
   ctx.textAlign = 'right'
-  block(ctx, `ISIN ${etf.isin}`, W - PAD, 778, 650, 50, { size: 34, color: GOLD })
+  block(ctx, `ISIN ${etf.isin}`, W - PAD, 630, 650, 60, { size: 42, color: GOLD })
   ctx.textAlign = 'left'
-  rule(ctx, 850)
-  block(ctx, 'Frais annuels', PAD, 880, 540, 40, { size: 30, color: MUTED, weight: 600 })
-  block(ctx, etf.ter, PAD, 925, 500, 72, { size: 64, weight: 600, editorial: true, color: GOLD })
+  rule(ctx, 700)
+  block(ctx, 'Frais annuels', PAD, 725, 540, 55, { size: 40, color: MUTED, weight: 600 })
+  block(ctx, etf.ter, PAD, 780, 500, 100, { size: 88, weight: 600, editorial: true, color: GOLD })
   const accounts = [etf.pea === true ? 'PEA' : null, etf.cto ? 'CTO' : 'CTO indisponible'].filter(Boolean).join(' · ')
-  ctx.textAlign = 'right'; block(ctx, accounts, W - PAD, 925, 700, 72, { size: 48, weight: 600, color: GOLD }); ctx.textAlign = 'left'
-  rule(ctx, 1000)
+  ctx.textAlign = 'right'; block(ctx, accounts, W - PAD, 795, 700, 90, { size: 64, weight: 600, color: GOLD }); ctx.textAlign = 'left'
+  rule(ctx, 910)
   const right = 840, col = 660
-  fact(ctx, 'Positions', etf.positions, PAD, 1030, col, 108)
-  fact(ctx, 'Distribution', etf.distribution, right, 1030, col, 108)
-  rule(ctx, 1180)
+  fact(ctx, String(etf.positions).startsWith('Exposition suivie') ? 'Exposition' : 'Positions', String(etf.positions).replace(/^Exposition suivie\s*:\s*/, ''), PAD, 940, col, 130)
+  fact(ctx, 'Distribution', etf.distribution, right, 940, col, 130)
+  rule(ctx, 1130)
   const comma = etf.location.indexOf(',')
   const domicile = comma < 0 ? etf.location : etf.location.slice(0, comma)
   const replication = comma < 0 ? 'Non documentée' : etf.location.slice(comma + 1).trim().replace(/^réplication\s+/i, '')
-  fact(ctx, 'Réplication / adossement', replication, PAD, 1200, col, 122)
-  fact(ctx, 'Domicile', domicile, right, 1200, col, 122)
-  rule(ctx, 1360)
-  fact(ctx, 'Cotation', etf.listing ? `${etf.listing.exchange} · ${etf.listing.currency}` : 'Non documentée', PAD, 1380, col, 112)
+  fact(ctx, 'Réplication / adossement', replication, PAD, 1160, col, 130)
+  fact(ctx, 'Domicile', domicile, right, 1160, col, 130)
+  rule(ctx, 1350)
+  fact(ctx, 'Cotation', etf.listing ? `${etf.listing.exchange} · ${etf.listing.currency}` : 'Non documentée', PAD, 1380, col, 102)
   // The image shows only the amount; evidence dates and scope stay in the source data.
   const aumAmount = String(etf.aum)
     .replace(/^(?:Part|Fonds)\s*:\s*/i, '')
     .replace(/\s+(?:au\s+\d{2}\/\d{2}\/\d{4}|\(relevé le [^)]+\))\s*$/i, '')
     .trim()
-  fact(ctx, 'Encours', aumAmount, right, 1380, col, 112)
+    .replace(/\d[\d \u00a0\u202f]*,\d+/g, amount => Number(amount.replace(/[ \u00a0\u202f]/g, '').replace(',', '.')).toLocaleString('fr-FR', { maximumFractionDigits: 0 }))
+  fact(ctx, 'Encours', aumAmount, right, 1380, col, 102)
   const annual = getAnnualPerformance(etf)
   if (annual) {
-    rule(ctx, 1550)
-    block(ctx, performanceImageHeading(annual), PAD, 1570, 1400, 42, { size: 30, weight: 600 })
+    rule(ctx, 1540)
+    block(ctx, performanceImageHeading(annual), PAD, 1565, 1400, 54, { size: 40, weight: 600 })
     const entries = performanceEntries(annual)
-    const gap = 20, cellWidth = (1400 - 2 * gap) / 3, cellHeight = 130
+    const gap = 20, cellWidth = (1400 - 2 * gap) / 3, cellHeight = 120
     entries.forEach(({ label, value }, index) => {
-      const x = PAD + (index % 3) * (cellWidth + gap), y = 1620 + Math.floor(index / 3) * (cellHeight + 10)
+      const x = PAD + (index % 3) * (cellWidth + gap), y = 1625 + Math.floor(index / 3) * (cellHeight + 10)
       const surface = ctx.createLinearGradient(x, y, x, y + cellHeight)
       surface.addColorStop(0, value < 0 ? '#29303a' : '#123044'); surface.addColorStop(1, '#071925')
       ctx.fillStyle = surface
       ctx.beginPath(); ctx.roundRect(x, y, cellWidth, cellHeight, 14); ctx.fill()
       ctx.strokeStyle = value < 0 ? '#a27d6c' : '#426880'; ctx.lineWidth = 1.5; ctx.stroke()
       ctx.textAlign = 'center'
-      block(ctx, label, x + cellWidth / 2, y + 14, cellWidth - 44, 38, { size: 30, weight: 600, color: MUTED })
+      block(ctx, label, x + cellWidth / 2, y + 8, cellWidth - 44, 48, { size: 40, weight: 600, color: MUTED })
       const performance = `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
-      block(ctx, performance, x + cellWidth / 2, y + 52, cellWidth - 44, 78, { size: 64, min: 58, weight: 700, color: value > 0 ? '#9bebb4' : value < 0 ? '#ff998b' : INK })
+      block(ctx, performance, x + cellWidth / 2, y + 50, cellWidth - 44, 78, { size: 68, min: 58, weight: 700, color: value > 0 ? '#9bebb4' : value < 0 ? '#ff998b' : INK })
       ctx.textAlign = 'left'
     })
     if (!annual.values.some(Number.isFinite)) {
@@ -142,6 +143,6 @@ export async function renderETFImage(etf) {
   }
   rule(ctx, 1895)
   ctx.textAlign = 'center'
-  block(ctx, 'Pas un conseil en investissement', W / 2, 1920, 1400, 40, { size: 30, color: MUTED })
+  block(ctx, 'Pas un conseil financier', W / 2, 1920, 1400, 40, { size: 30, color: MUTED })
   return canvas
 }
