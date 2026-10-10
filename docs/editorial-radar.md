@@ -61,3 +61,63 @@ La même commande exécute aussi `scripts/test-radar-notifications.mjs` : migrat
 `npm run test:radar:browser` : chargement de signaux, filtres, mémorisation de lecture, édition/copie, échec conservant le contenu, contrôle périmé, absence de débordement mobile et état initial vide. Les réponses de flux simulées sont isolées au test navigateur et ne sont jamais enregistrées en production.
 
 Les deux suites sont raccordées à la validation GitHub Pages. Le radar reste automatique en fonctionnement normal ; une panne durable ou un changement de format du fournisseur peut nécessiter une réparation, comme pour les autres collecteurs.
+
+
+## Instantanés ETF contradictoires — correction du 10 octobre 2026
+
+Pour les pays, secteurs, top dix et encours ETF, une date de référence décrit
+un instantané. Deux valeurs différentes à cette même date ne sont pas deux
+évolutions temporelles. Le radar conserve `current` et `anchors`, archive la
+proposition avec sa source et son empreinte dans `state.conflicts`, et affiche
+une réserve sans événement ni notification. Les répétitions d'une même
+proposition sont dédupliquées, même si la date de contrôle change. Un retour à
+la valeur acceptée ne blanchit pas automatiquement le conflit. Une observation
+sur une période ultérieure reprend le calcul contre l'ancre conservée : les
+petites variations continuent à s'accumuler et un retour réel reste détectable.
+Le conflit précédent est alors marqué résolu, sans perdre ses propositions.
+Une correction officielle à date identique reste une donnée à vérifier ; elle
+n'est pas assimilée à une évolution de marché. Il n'y a pas d'acceptation
+automatique après plusieurs collectes. Les frais et les publications des autres
+familles conservent leurs règles de révision existantes.
+
+Les événements ETF historiques avant/après à période identique sont conservés
+dans `state.events` avec `status: source-conflict`, exclus du flux public et des
+notifications en attente. Les issues déjà envoyées restent des traces historiques
+et ne sont pas effacées ; leurs identifiants acquittés demeurent inchangés.
+
+### Diagnostic Xtrackers IE00BLNMYC90
+
+Les issues #401 et #406 reprennent les deux versions du même instantané du
+7 octobre. Les commits suivants contiennent les observations collectées :
+
+| Commit | États-Unis | Empreinte JSON DWS (préfixe) |
+|---|---:|---|
+| db126df (9 octobre 14:21 UTC) | 98,558208 % | ca77018da14d |
+| 9679e06 (9 octobre 17:14 UTC) | 95,791703 % | c77da8932d93 |
+| a9b4ca0 (9 octobre 18:07 UTC) | 98,558208 % | ca77018da14d |
+
+Le parseur DWS n'a pas changé entre ces collectes. Les pays de la version
+intermédiaire incluent Suisse, Royaume-Uni, Bermudes, Canada et Singapour ;
+les secteurs changent légèrement et plusieurs noms de titres sont reformulés.
+Les dix ISIN et leurs poids sont strictement identiques. Les empreintes sont
+calculées sur le JSON officiel, avant agrégation : la variation provient donc
+de réponses différentes du fournisseur, pas de l'identifiant de notification.
+La lecture directe du point d'accès officiel le 10 octobre reproduit la date,
+les poids et l'empreinte ca77018da14d. Ce faisceau d'indices indique une variation
+de classification/enrichissement des titres dans la réponse DWS. Il ne prouve
+pas quel mécanisme interne du fournisseur (cache, référentiel, etc.) l'a causée,
+ni quelle nomenclature géographique est la bonne. Les réponses JSON historiques
+complètes ne figurent pas dans le registre Git : les comparaisons historiques
+portent sur les agrégats, le top dix et les empreintes conservés.
+
+La PR #429 cible des anomalies de collecte plus importantes : le déplacement
+ici est inférieur à son seuil de 25 points et ne suffit pas à le déclencher.
+Le garde-fou de la PR #435 détectait le retour après un événement mais laissait
+passer la première variation à date identique. Cette correction bloque aussi
+cette première variation, y compris sous le seuil éditorial.
+
+La fixture `scripts/fixtures/radar-xtrackers-2026-10-07.json` conserve les trois
+observations issues de Git avec leurs SHA complets. `npm run test:radar`
+reproduit l'aller-retour, les tentatives répétées, la conservation de l'ancre,
+les lots mixtes, la migration de l'historique, la déduplication des envois et
+les évolutions légitimes sur une autre date.

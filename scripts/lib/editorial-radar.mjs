@@ -19,6 +19,9 @@ export function validObservation(o, now) {
   return finite(o.value)
 }
 export const observationKey = o => `${o.family}:${o.entity}:${o.field}:${digest(o.scope)}`
+// Valuation/exposure dates describe a snapshot, not the time of collection.
+// A revision of that snapshot is evidence to review, never a market movement.
+export const datedEtfSnapshot = o => o.family === 'etf' && (o.field === 'aum' || o.field === 'top10' || /^(countries|sectors):/.test(o.field))
 export function meaningful(before, after) {
   if (same(before.value, after.value)) return after.rule === 'publication' && before.period !== after.period
   if (typeof before.value !== typeof after.value) return false
@@ -61,6 +64,10 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   if (previous && (previous.schemaVersion !== 1 || !previous.current || !previous.anchors || !Array.isArray(previous.events))) throw new Error('Historique radar invalide : conservation du fichier précédent.')
   const stamp = now.toISOString(), state = previous ? structuredClone(previous) : { schemaVersion: 1, initializedAt: stamp, current: {}, anchors: {}, events: [] }
   const issues = [...errors], newEvents = [], seen = new Set(state.events.map(event => event.id))
+  state.conflicts ??= {}
+  // Keep old alerts for audit, but remove same-snapshot changes from the public
+  // feed and from notification retries, including alerts predating this guard.
+  for (const event of state.events) if (datedEtfSnapshot(event) && event.beforePeriod === event.period && event.kind === 'change') event.status = 'source-conflict'
   const entities = new Set(Object.values(state.current).map(o => `${o.family}:${o.entity}`))
   const valid = observations.filter(o => {
     if (validObservation(o, now)) return true
@@ -76,6 +83,15 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     const latest = state.current[key]
     if (latest && (after.period < latest.period || after.period === latest.period && Date.parse(after.checkedAt) < Date.parse(latest.checkedAt))) {
       issues.push({ family: after.family, entity: after.entity, reason: `Observation plus ancienne ignorée : ${after.fieldLabel}.` })
+      continue
+    }
+    if (latest && datedEtfSnapshot(after) && after.period === latest.period && !same(latest.value, after.value)) {
+      const conflictKey = `${key}:${after.period}`
+      const conflict = state.conflicts[conflictKey] ??= { accepted: latest, period: after.period, firstSeenAt: stamp, proposals: [] }
+      const proposalId = digest({ value: after.value, sourceUrl: after.sourceUrl, sourceHash: after.sourceHash ?? null })
+      const existing = conflict.proposals.find(p => p.id === proposalId)
+      if (existing) existing.lastSeenAt = stamp
+      else conflict.proposals.push({ id: proposalId, observation: after, firstSeenAt: stamp, lastSeenAt: stamp })
       continue
     }
     // A return to an already superseded value for the same publication period
@@ -105,11 +121,16 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     if (!seen.has(event.id)) { seen.add(event.id); newEvents.push(event) }
   }
   state.events = [...newEvents, ...state.events].sort((a, b) => b.detectedAt.localeCompare(a.detectedAt) || a.id.localeCompare(b.id))
+  for (const [conflictKey, conflict] of Object.entries(state.conflicts)) {
+    const latest = state.current[observationKey(conflict.accepted)]
+    if (latest?.period > conflict.period) conflict.resolvedAt ??= stamp
+    if (!conflict.resolvedAt) issues.push({ family: conflict.accepted.family, entity: conflict.accepted.entity, reason: `Valeur contradictoire pour la même période (${conflict.period}) : ${conflict.accepted.fieldLabel}. Dernière observation conservée ; propositions archivées (${conflictKey}).` })
+  }
   state.lastCheckedAt = stamp
   state.sourceRevision = sourceRevision
   state.lastErrorCount = issues.length
   const counts = Object.fromEntries(Object.keys(FAMILIES).map(family => [family, new Set(valid.filter(o => o.family === family).map(o => o.entity)).size]))
   // All history stays in the state branch. The public feed is bounded.
-  const feed = { schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: newEvents.length, errors: issues, events: state.events.slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
+  const feed = { schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: newEvents.length, errors: issues, events: state.events.filter(event => event.status !== 'source-conflict').slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
   return { state, feed, newEvents }
 }

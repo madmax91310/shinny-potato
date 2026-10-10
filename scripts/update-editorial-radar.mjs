@@ -14,7 +14,7 @@ export async function collectObservations(root = ROOT) {
   }
   const add = (base, field, fieldLabel, value, evidence = {}, extra = {}) => {
     if (value === null || value === undefined) return
-    observations.push({ ...base, field, fieldLabel, value, sourceUrl: evidence.sourceUrl ?? evidence.source?.url ?? base.sourceUrl, period: evidence.asOf ?? evidence.effectiveAt ?? evidence.referencePeriod ?? evidence.year?.toString() ?? base.period ?? evidence.checkedAt ?? base.checkedAt, checkedAt: evidence.checkedAt ?? evidence.source?.checkedAt ?? base.checkedAt, scope: evidence.scope ?? base.scope, ...extra })
+    observations.push({ ...base, field, fieldLabel, value, ...(evidence.sha256 ? { sourceHash: evidence.sha256 } : {}), sourceUrl: evidence.sourceUrl ?? evidence.source?.url ?? base.sourceUrl, period: evidence.asOf ?? evidence.effectiveAt ?? evidence.referencePeriod ?? evidence.year?.toString() ?? base.period ?? evidence.checkedAt ?? base.checkedAt, checkedAt: evidence.checkedAt ?? evidence.source?.checkedAt ?? base.checkedAt, scope: evidence.scope ?? base.scope, ...extra })
   }
   const etfs = await load('src/data/automated-etf.json')
   for (const [isin, r] of Object.entries(etfs ?? {})) {
