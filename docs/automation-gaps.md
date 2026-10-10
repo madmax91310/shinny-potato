@@ -19,7 +19,6 @@ Les échéances ci-dessous sont des dates minimales de disponibilité, pas des p
 
 | Part | Collecteur configuré | État | Première année complète | Publication au plus tôt | Première année intégrée |
 |---|---|---|---|---|---|
-| Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Oui | Première année complète en cours ou à venir | 2027 | 2028-01-01 | — |
 | Amundi PEA Monde (MSCI World) UCITS ETF (FR001400U5Q4) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 | iShares MSCI Europe Small Cap UCITS ETF (IE0000N55FP4) | Oui | Première année complète en cours ou à venir | 2027 | 2028-01-01 | — |
@@ -31,6 +30,7 @@ Les échéances ci-dessous sont des dates minimales de disponibilité, pas des p
 | WisdomTree Quantum Computing UCITS ETF (IE000W8WMSL2) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 | Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 | Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 
 Les caractéristiques statiques et cotations sont exclues de ce chantier conformément au périmètre demandé.
 
