@@ -45,7 +45,7 @@ function displayLabel(name) {
   return plainLabel(name)
     .replace(/Technologies de l.info\.?/i,'Technologie')
     .replace(/Services de communication/i,'Communication')
-    .replace(/Consommation discrétionnaire/i,'Conso discrétionnaire')
+    .replace(/Consommation discrétionnaire|Consommation cyclique/i,'Conso cyclique')
     .replace(/Consommation de base/i,'Conso de base')
     .replace(/Services financiers/i,'Finance')
 }
