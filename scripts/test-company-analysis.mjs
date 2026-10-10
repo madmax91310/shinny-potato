@@ -231,7 +231,7 @@ for (const key of ['revenue','netIncome','previousNetIncome']) {
 }
 assert.equal(activeAnnualContext({...apple,annual:{...apple.annual,end:'2026-09-26'}},appleNow),null)
 assert.equal(activeAnnualContext(apple,new Date('2026-10-09T12:00:00Z')),null)
-assert.equal(calculatedRatios(apple,appleNow).peTTM,apple.quote.price / apple.quarters.reduce((sum,q)=>sum+q.dilutedEPS,0))
+assert(Math.abs(calculatedRatios(apple,appleNow).peTTM - apple.quote.price / apple.quarters.reduce((sum,q)=>sum+q.dilutedEPS,0)) < 1e-9)
 for (const c of COMPANIES) {
  const tweet=buildTweetText(c,observationDate(c))
  assert(tweet.includes(c.editorialQuestion))
