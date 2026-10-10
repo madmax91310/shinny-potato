@@ -59,8 +59,8 @@ entries.forEach((e) => {
 });
 
 // Toute ligne publiée doit pointer vers le registre et toute entrée du registre
-// doit être utilisée, sauf les deux parts retirées des sélections le 06/10/2026
-// et conservées pour la collecte. Un nouvel ETF ne passe jamais avec des frais implicites.
+// doit être utilisée, sauf les deux parts retirées le 06/10/2026 et PEMS,
+// retirée du comparatif d’exposition le 10/10/2026 ; elles restent collectées. Un nouvel ETF ne passe jamais avec des frais implicites.
 const usedIsins = new Set(entries.map(e => e.isin));
 for (const entry of entries) {
   if (entry.terNum === null || ETF_TER_BY_ISIN[entry.isin] !== entry.terNum.toFixed(2).replace('.', ',')) {
@@ -69,7 +69,7 @@ for (const entry of entries) {
   }
 }
 for (const isin of Object.keys(ETF_TER_BY_ISIN)) {
-  if (!usedIsins.has(isin) && !['IE000XZSV718', 'IE00BD4TXV59'].includes(isin)) {
+  if (!usedIsins.has(isin) && !['IE000XZSV718', 'IE00BD4TXV59', 'FR001400ZGO4'].includes(isin)) {
     console.error(`ISIN inutilisé dans le registre des frais : ${isin}`);
     process.exitCode = 1;
   }

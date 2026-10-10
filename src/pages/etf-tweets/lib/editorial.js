@@ -27,7 +27,7 @@ export const COMPARISON_EDITORIAL = {
     focus: 'activités couvertes, zone et accès au PEA',
     conclusion: 'VanEck cible les minières et inclut les marchés émergents. Xtrackers couvre les matériaux des pays développés.\n\nLes deux Amundi ciblent l’Europe et permettent d’investir via le PEA. Basic Materials élargit l’exposition à des activités comme la chimie et les gaz industriels.\n\nCes quatre ETF donnent une exposition aux actions d’entreprises. Leur performance dépend aussi des coûts de production, des marges et de la gestion de ces sociétés, pas seulement du prix des métaux.',
   },
-  'etc-metaux': { hook: '🥇 Tu veux acheter de l’or, de l’argent ou du cuivre en Bourse. Ces quatre ETC ne suivent pas tous le métal de la même façon.', focus: 'métal suivi, structure et coûts' },
+  'etc-metaux': { hook: '🥇 Tu veux acheter de l’or, de l’argent ou du cuivre en Bourse. Ces trois ETC ne suivent pas tous le métal de la même façon.', focus: 'métal suivi, structure et coûts' },
   financieres: { hook: '🏦 Tu veux ajouter un ETF sur les financières. Seulement les entreprises américaines ou celles de plusieurs pays développés ?', focus: 'activités couvertes, zone et versement des revenus' },
   'semiconducteurs-tech': { hook: '💻 Tu hésites entre un ETF sur les semi-conducteurs et un ETF technologique plus large. Qu’est-ce que tu changes dans ton portefeuille ?', focus: 'industrie ou secteur couvert et frais' },
   blockchain: { hook: '🔗 Tu veux un ETF blockchain. Mais ce fonds achète des actions d’entreprises, pas directement du Bitcoin : voici ce que tu détiens.', focus: 'exposition réelle et frais' },

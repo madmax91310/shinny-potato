@@ -51,7 +51,7 @@ assert.equal(new Set(DEFAULT_THEMES.map(theme => getComparatifEtfText(theme.id).
 const unknown = buildEtfTweet({ nom: 'Test', etfs: [{ nom: 'Part sans fiche', isin: 'IE00BD4TXV59', frais: '0,20' }] });
 assert.doesNotMatch(unknown, /Éligible au PEA|Dividendes|Réplication|Création/u);
 const metals = getComparatifEtfText('etc-metaux');
-assert.match(metals, /Voici quatre ETC à comparer/u);
+assert.match(metals, /Voici trois ETC à comparer/u);
 assert.doesNotMatch(metals, /🏦 PEA/u);
 assert.doesNotMatch(metals, /💶 Dividendes/u);
 assert.match(metals, /Frais de gestion : 0,49 %/u);

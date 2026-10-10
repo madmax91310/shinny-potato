@@ -619,12 +619,6 @@ const BASE_THEMES = [
         differenciateur: 'adossé à de l’or physique',
       }),
       createEtf({
-        nom: getInstrumentName("FR0013416716", "tweet"),
-        isin: 'FR0013416716',
-        frais: formatEtfTer('FR0013416716'),
-        differenciateur: 'adossé à de l’or physique ; émetteur de droit irlandais',
-      }),
-      createEtf({
         nom: getInstrumentName("IE00B4NCWG09", "tweet"),
         isin: 'IE00B4NCWG09',
         frais: formatEtfTer('IE00B4NCWG09'),
@@ -639,7 +633,7 @@ const BASE_THEMES = [
       }),
     ],
     cloture:
-      'Les trois premiers ETC sont adossés à du métal physique. Le produit cuivre présenté suit des contrats à terme via un swap : regarde la structure et les coûts avant de comparer.',
+      'Les produits or et argent sont adossés à du métal physique. Le produit cuivre présenté suit des contrats à terme via un swap : regarde la structure et les coûts avant de comparer.',
     eligibilite: 'Non éligible PEA (ETC hors périmètre)',
   }),
 ]
@@ -647,13 +641,13 @@ const BASE_THEMES = [
 // Texte propre à chaque famille ; caractéristiques et frais restent dans les registres partagés.
 const EDITORIAL = {
   "monde": {
-    transition: "Quatre ETF pour les marchés mondiaux, avec ou sans pays émergents.",
-    cloture: "Le MSCI World couvre les marchés développés. Les indices ACWI et FTSE All-World incluent aussi les émergents. Parmi ces quatre produits, Amundi PEA Monde est éligible au PEA.",
+    transition: "Trois ETF pour les marchés mondiaux, avec ou sans pays émergents.",
+    cloture: "Le MSCI World couvre les marchés développés. Les indices ACWI et FTSE All-World incluent aussi les émergents. WPEA et Amundi PEA Global sont éligibles au PEA ; Vanguard All-World reste en CTO.",
     ctaEngagement: "Ton ETF mondial inclut les émergents ou tu les ajoutes séparément ?",
   },
   "usa": {
-    transition: "Quatre ETF sur les actions américaines : S&P 500 ou Nasdaq-100.",
-    cloture: () => `Trois ETF suivent le S&P 500 ; le quatrième suit le Nasdaq-100. Sur le S&P 500 en PEA, iShares affiche ${formatEtfTer('IE000DQLYVB9')} % de frais annuels, contre ${formatEtfTer('FR0011871128')} % pour Amundi.`,
+    transition: "Trois ETF sur les actions américaines : S&P 500, Nasdaq-100 ou Dow Jones.",
+    cloture: 'Le S&P 500, le Nasdaq-100 et le Dow Jones suivent des univers et des pondérations différents. Les deux premiers ETF sont éligibles au PEA ; le Dow Jones présenté reste en CTO.',
     ctaEngagement: "Pour les actions américaines, tu détiens un S&P 500 ou un Nasdaq-100 ?",
   },
   "europe": {
@@ -722,8 +716,8 @@ const EDITORIAL = {
     ctaEngagement: "Tu préfères cibler les minières ou investir plus largement dans les matériaux ?",
   },
   "etc-metaux": {
-    transition: "Quatre ETC pour une exposition à l’or, à l’argent ou au cuivre.",
-    cloture: "Les deux produits or et le produit argent sont adossés à du métal physique. WisdomTree Copper suit des contrats à terme via swap : ses 0,49 % de frais de gestion s’accompagnent d’un taux de swap annuel de 0,45 %. Ces produits sont des ETC, non éligibles au PEA.",
+    transition: "Trois ETC pour comparer l’or, l’argent et le cuivre.",
+    cloture: "Les produits or et argent sont adossés à du métal physique. WisdomTree Copper suit des contrats à terme via swap : ses 0,49 % de frais de gestion s’accompagnent d’un taux de swap annuel de 0,45 %. Ces produits sont des ETC, non éligibles au PEA.",
     ctaEngagement: "Tu recherches une exposition à l’or, à l’argent ou au cuivre ?",
   },
 }
@@ -789,15 +783,15 @@ const COMPARISON_THEMES = [...existingThemes,
 
 const PEA_COMPARISONS = [
   ['world-pea', 'World et ACWI · PEA', '🌍', 'World ou ACWI : quels ETF choisir pour ton PEA ?',
-    [['IE0002XZSHO1', 'MSCI World'], ['FR001400U5Q4', 'MSCI World'], ['LU1681043599', 'MSCI World'], ['FR0014017NX3', 'MSCI ACWI']],
-    'Les trois ETF World couvrent les pays développés. L’ACWI ajoute les marchés émergents.', 'Tu utilises lequel dans ton PEA ?'],
+    [['IE0002XZSHO1', 'MSCI World : pays développés'], ['FR0014017NX3', 'MSCI ACWI : pays développés et émergents']],
+    'Le MSCI World couvre les pays développés. Le MSCI ACWI ajoute les marchés émergents.', 'Tu utilises lequel dans ton PEA ?'],
   ['usa-pea', 'USA · PEA', '🇺🇸', 'Quels ETF permettent de s’exposer aux États-Unis sur PEA ?',
-    [['FR0011871128', 'S&P 500'], ['IE000DQLYVB9', 'S&P 500'], ['FR0011871110', 'Nasdaq-100']],
-    'Deux ETF suivent le S&P 500. Le Nasdaq-100 exclut les financières et concentre davantage la technologie.', 'Tu as choisi lequel pour ton PEA ?'],
+    [['FR0011871128', 'S&P 500'], ['FR0011871110', 'Nasdaq-100']],
+    'Le S&P 500 couvre les grandes entreprises américaines. Le Nasdaq-100 exclut les financières et concentre davantage la technologie.', 'Tu as choisi lequel pour ton PEA ?'],
   ['emergents-pea', 'Marchés émergents · PEA', '🌏', 'Quels ETF permettent de s’exposer aux marchés émergents sur PEA ?',
-    [['FR0013412020', 'Marchés émergents, filtre ESG'], ['FR001400ZGO4', 'Marchés émergents, filtre ESG · part S'],
+    [['FR0013412020', 'Marchés émergents, filtre ESG'],
      ['FR0013412012', 'Asie émergente'], ['FR0013412004', 'Amérique latine'], ['FR0011440478', 'Europe émergente, Moyen-Orient et Afrique']],
-    'PAEEM et PEMS sont deux parts du même fonds. Les trois autres ETF ciblent chacun une région.',
+    'PAEEM couvre plusieurs marchés émergents avec des filtres ESG. Les trois autres ETF ciblent chacun une région.',
     'Tu privilégies les émergents dans leur ensemble ou une région en particulier ?'],
   ['europe-pea', 'Europe · PEA', '🇪🇺', 'Quels ETF permettent de s’exposer à l’Europe sur PEA ?',
     [['FR0013412038', 'MSCI Europe'], ['FR0011550193', 'STOXX Europe 600'], ['LU1681047236', 'EURO STOXX 50']],

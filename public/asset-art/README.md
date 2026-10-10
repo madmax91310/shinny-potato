@@ -59,3 +59,12 @@ Its PNGs are saved under the existing `tool-visual-checks` workflow artifact.
 ## Présentations SCPI et assurance-vie
 
 `mineral-scpi.webp` et `mineral-insurance.webp` : illustrations décoratives générées pour le style minéral clair choisi le 8 octobre 2026. Elles ne contiennent aucune donnée produit ; tous les noms, chiffres et conditions sont composés par `src/pages/presentation-shared/imageExport.js`. Le WebP conserve la transparence du PNG source.
+
+## Carte du comparatif World / ACWI
+
+`comparison-world-map.svg` : silhouette géographique issue des terres Natural Earth
+à l’échelle 1:110 millions (domaine public), récupérée le 10 octobre 2026 :
+https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_land.geojson
+L’Antarctique est omis. La carte est décorative ; elle ne représente ni les poids
+ni les pays effectivement détenus par les fonds. Les chiffres restent calculés
+à partir des données du comparatif, sans texte incorporé dans l’image.
