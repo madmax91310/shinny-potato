@@ -1,5 +1,6 @@
 import { HISTORY_FACTS } from '../../data/history-statistics.js';
 import { EDITORIAL, NEWTON_STORY } from './editorial.js';
+import { selectMonthlyMarketStories } from '../../data/market-story-selection.js';
 // Bibliothèque de faits marquants et statistiques historiques sur les grands indices boursiers,
 // racontés dans des publications au ton humain. Contrairement au reste de l'app (qui calcule
 // depuis des séries de prix brutes, cf. investment-calculator/portfolio-generator), CHAQUE fait ici
@@ -20,7 +21,6 @@ import { EDITORIAL, NEWTON_STORY } from './editorial.js';
 
 export const FAMILIES = [
   { id: 'histoires', label: '📚 Histoires de marché', emoji: '📚' },
-  { id: 'indices-historiques', label: '📈 Historiques des indices', emoji: '📈' },
   { id: 'obligations-historiques', label: '📊 Historiques obligataires', emoji: '📊' },
   { id: 'actions-historiques', label: '📉 Historiques des actions', emoji: '📉' },
   { id: "chocs", label: "⚡ Chocs et corrections", emoji: "⚡" },
@@ -39,15 +39,6 @@ const RAW_FACTS = [
     // sans dénominateur vérifiable : retirées le 24/09/2026, pas recalculées à l'aveugle.
     fact: "Selon le décompte de Hartford Funds, le S&P 500 a connu 27 bear markets (baisses de 20 % ou plus) depuis 1928.",
     source: "Hartford Funds, « 10 Things You Should Know About Bear Markets »",
-    note: null,
-  },
-  {
-    id: "corrections-ampleur-moyenne",
-    family: "chocs",
-    category: "Fréquence des corrections",
-    indices: ["S&P 500"],
-    fact: "La baisse moyenne d'un bear market du S&P 500 est de -33,5% depuis 1929. La pire baisse jamais enregistrée reste celle du 16 septembre 1929 au 1er juin 1932 : -86,2%.",
-    source: "Dow Jones Market Data",
     note: null,
   },
   {
@@ -79,15 +70,6 @@ const RAW_FACTS = [
     note: null,
   },
   {
-    id: "records-1933-meilleures-seances-sp500",
-    family: "chocs",
-    category: "Records de séance",
-    indices: ["S&P 500"],
-    fact: "Les trois meilleures séances de l'histoire du S&P 500 : +16,61% (15 mars 1933), +12,53% (30 octobre 1929) et +11,58% (13 octobre 2008 — le meilleur jour de l'ère boursière moderne).",
-    source: "Compilation historique (Wikipedia), point du 13 octobre 2008 confirmé indépendamment par CNBC",
-    note: null,
-  },
-  {
     id: "records-2001-nasdaq",
     family: "chocs",
     category: "Records de séance",
@@ -97,39 +79,12 @@ const RAW_FACTS = [
     note: null,
   },
   {
-    id: "duree-bull-bear-moyenne",
-    family: "chocs",
-    category: "Durée bull vs bear markets",
-    indices: ["S&P 500"],
-    fact: "Un bull market du S&P 500 dure en moyenne 988 jours (2,7 ans) pour un gain moyen de +112%. Un bear market dure en moyenne 289 jours (9,6 mois) pour une perte moyenne de -35%.",
-    source: "Ned Davis Research, cité par Hartford Funds (« 10 Things You Should Know About Bear Markets »)",
-    note: null,
-  },
-  {
-    id: "duree-frequence-bear-markets",
-    family: "chocs",
-    category: "Durée bull vs bear markets",
-    indices: ["S&P 500"],
-    fact: "Un bear market survient en moyenne tous les 3,5 ans sur le S&P 500.",
-    source: "Ned Davis Research / Hartford Funds",
-    note: null,
-  },
-  {
     id: "crash-1929",
     family: "chocs",
     category: "Crash historique",
     indices: ["Dow Jones"],
     fact: "Le krach de 1929 : le Dow Jones perd 25% en 4 séances (24 au 29 octobre), puis continue de chuter jusqu'à l'été 1932 (-89% depuis le pic, plus bas niveau du XXe siècle à 41,22 points). Il ne retrouve son niveau d'avant-crash qu'en novembre 1954 — 25 ans plus tard.",
     source: "Federal Reserve History",
-    note: null,
-  },
-  {
-    id: "crash-1987",
-    family: "chocs",
-    category: "Crash historique",
-    indices: ["Dow Jones", "S&P 500"],
-    fact: "Le « Black Monday » du 19 octobre 1987 s'est accompagné d'un volume record de 604,33 millions de titres échangés, 3 fois la moyenne quotidienne. Le marché a retrouvé son niveau d'avant-krach en environ 21 mois, vers juillet 1989.",
-    source: "Federal Reserve History, corroboré par Goldman Sachs",
     note: null,
   },
   {
@@ -181,33 +136,6 @@ const RAW_FACTS = [
     note: null,
   },
   {
-    id: "annees-extremes",
-    family: "continuite",
-    category: "Meilleures/pires années civiles",
-    indices: ["S&P 500"],
-    fact: "La pire année civile de l'indice reste 1931 (-43,8%) ; la meilleure est 1933 (+54%).",
-    source: "Yardeni Research (« S&P 500 Historical Monthly & Annual Returns »)",
-    note: "Indice élargi pré-1957 (convention standard pour prolonger la série historique) — le S&P 500 à 500 valeurs actuel ne démarre qu'en 1957.",
-  },
-  {
-    id: "annees-part-positives",
-    family: "continuite",
-    category: "Meilleures/pires années civiles",
-    indices: ["S&P 500"],
-    fact: "Sur environ 154 ans de données annuelles du marché actions américain, environ 73 à 74% des années civiles ont été positives.",
-    source: "Dimensional Fund Advisors (« The Uncommon Average: Long-Term Context on Annual Returns »)",
-    note: null,
-  },
-  {
-    id: "fenetres-20-ans",
-    family: "continuite",
-    category: "Performance sur fenêtres glissantes",
-    indices: ["S&P 500"],
-    fact: "Sur toute période glissante de 20 ans depuis 1950, le rendement annualisé des actions américaines n'a jamais été négatif.",
-    source: "J.P. Morgan Asset Management, « Guide to the Markets », corroboré par Crestmont Research",
-    note: "Les bornes exactes de la fourchette de rendement varient légèrement d'une édition à l'autre du Guide selon la date d'arrêt des données.",
-  },
-  {
     id: "cac40-record-21-ans",
     family: "cac40",
     category: "Repère historique",
@@ -227,6 +155,9 @@ const RAW_FACTS = [
   },
 ];
 
+// T1 : retirer les statistiques sans récit et le doublon du lundi noir.
+// Les calculs mensuels restent dans leur registre partagé, mais seuls six angles
+// distincts sont proposés ici. Une simulation d'achats n'est pas une histoire.
 const publishedFacts = RAW_FACTS.map((fact) => ({ ...fact, ...EDITORIAL[fact.id] }));
 
 export function getFact(id) {
@@ -238,5 +169,5 @@ export const FACTS = [
   publishedFacts.find(fact => fact.id === 'records-1987-pire-seance'),
   NEWTON_STORY,
   ...publishedFacts.filter(fact => fact.id !== 'records-1987-pire-seance'),
-  ...HISTORY_FACTS,
+  ...selectMonthlyMarketStories(HISTORY_FACTS),
 ];
