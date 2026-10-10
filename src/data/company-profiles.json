@@ -10,7 +10,26 @@
     "sourceUrl": "https://www.apple.com/business/",
     "activityReviewedAt": "2026-10-07",
     "imageSubtitle": "iPhone, Mac et services",
-    "editorialHook": "📱 Tu connais Apple pour l’iPhone. Mais ses revenus viennent aussi des services que tu utilises autour de ses appareils 👇"
+    "editorialHook": "📱 Ton iPhone, tu le paies une fois. Ton stockage iCloud, tu peux le payer pendant des années.",
+    "editorialQuestion": "Les services peuvent-ils continuer à tirer la croissance d’Apple, alors que l’iPhone reste un pilier de ses revenus ?",
+    "annualContext": {
+      "end": "2025-09-27",
+      "previousEnd": "2024-09-28",
+      "revenue": 416161000000,
+      "previousRevenue": 391035000000,
+      "netIncome": 112010000000,
+      "previousNetIncome": 93736000000,
+      "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf",
+      "reviewedAt": "2026-10-10",
+      "segments": {
+        "services": 109158000000,
+        "previousServices": 96169000000,
+        "products": 307003000000,
+        "previousProducts": 294866000000,
+        "iphone": 209586000000
+      },
+      "previousTaxCharge": 10246000000
+    }
   },
   {
     "id": "microsoft",
@@ -23,7 +42,8 @@
     "sourceUrl": "https://www.microsoft.com/en-us/Investor/",
     "activityReviewedAt": "2026-10-07",
     "imageSubtitle": "Logiciels et cloud Azure",
-    "editorialHook": "💻 Tu connais Microsoft pour Windows ou Excel. Mais elle fournit aussi l’infrastructure informatique utilisée par les entreprises 👇"
+    "editorialHook": "💻 Un abonnement Microsoft 365 pour travailler. Des serveurs Azure pour faire tourner une entreprise. Microsoft est présente des deux côtés.",
+    "editorialQuestion": "Jusqu’où le cloud et les abonnements peuvent-ils faire progresser les bénéfices de Microsoft ?"
   },
   {
     "id": "nvidia",
@@ -36,7 +56,8 @@
     "sourceUrl": "https://investor.nvidia.com/",
     "activityReviewedAt": "2026-10-07",
     "imageSubtitle": "Puces, centres de données et IA",
-    "editorialHook": "🔎 Derrière les modèles d’intelligence artificielle, il faut des puces pour les faire fonctionner. C’est notamment ce que conçoit Nvidia 👇"
+    "editorialHook": "🧠 Pour faire fonctionner une intelligence artificielle, il faut aussi du matériel. Nvidia conçoit une partie des puces qui rendent cela possible.",
+    "editorialQuestion": "La demande de puces pour l’IA peut-elle continuer à soutenir les bénéfices de Nvidia face à la concurrence ?"
   },
   {
     "id": "alphabet",
@@ -49,7 +70,8 @@
     "sourceUrl": "https://abc.xyz/investor/",
     "activityReviewedAt": "2026-10-07",
     "imageSubtitle": "Google, YouTube et cloud",
-    "editorialHook": "🔎 Une recherche sur Google ou une vidéo sur YouTube peut aussi être un espace publicitaire. C’est l’une des sources de revenus d’Alphabet 👇"
+    "editorialHook": "🔎 Tu utilises Google sans payer chaque recherche. Les annonceurs, eux, paient pour y être visibles.",
+    "editorialQuestion": "Comment Alphabet peut-elle faire évoluer son moteur de recherche sans fragiliser les revenus publicitaires qui l’accompagnent ?"
   },
   {
     "id": "amazon",
@@ -62,7 +84,8 @@
     "sourceUrl": "https://ir.aboutamazon.com/",
     "activityReviewedAt": "2026-10-07",
     "imageSubtitle": "Commerce en ligne et cloud AWS",
-    "editorialHook": "📦 Tu connais Amazon pour les commandes livrées chez toi. Mais son activité comprend aussi le cloud utilisé par les entreprises 👇"
+    "editorialHook": "📦 Ton colis Amazon ne raconte qu’une partie de l’histoire. Le groupe vend aussi de la puissance informatique aux entreprises avec AWS.",
+    "editorialQuestion": "Comment le commerce en ligne, la publicité et AWS peuvent-ils contribuer aux prochains bénéfices d’Amazon ?"
   },
   {
     "id": "lvmh",
@@ -76,7 +99,8 @@
     "imageSubtitle": "Luxe et distribution",
     "accountingStandard": "IFRS",
     "quoteListing": "Euronext Paris · EUR",
-    "editorialHook": "🔎 Louis Vuitton, Dior ou Sephora : ces noms appartiennent au même groupe, LVMH. Que retrouve-t-on derrière ses comptes ? 👇"
+    "editorialHook": "👜 Un sac Louis Vuitton, un parfum Dior, un achat chez Sephora… Derrière ces marques, tu retrouves le même groupe : LVMH.",
+    "editorialQuestion": "Les clients continueront-ils à acheter les produits des maisons de LVMH lorsque leurs budgets se resserrent ?"
   },
   {
     "id": "air-liquide",
@@ -90,7 +114,8 @@
     "imageSubtitle": "Gaz industriels et médicaux",
     "accountingStandard": "IFRS",
     "quoteListing": "Euronext Paris · EUR",
-    "editorialHook": "🔎 Les gaz utilisés dans les usines et les soins médicaux sont aussi une activité économique. Air Liquide les produit et les fournit à ses clients 👇"
+    "editorialHook": "🏭 Une usine ou un hôpital a besoin de gaz pour fonctionner. Air Liquide en a fait son métier.",
+    "editorialQuestion": "Comment Air Liquide peut-elle développer ses activités tout en finançant les installations nécessaires pour fournir ses clients ?"
   },
   {
     "id": "schneider",
@@ -104,7 +129,8 @@
     "imageSubtitle": "Énergie et automatisation",
     "accountingStandard": "IFRS",
     "quoteListing": "Euronext Paris · EUR",
-    "editorialHook": "⚡ Distribuer l’électricité dans un bâtiment ou une usine demande des équipements. C’est notamment ce que vend Schneider Electric 👇"
+    "editorialHook": "⚡ Construire un centre de données ne suffit pas. Il faut aussi l’alimenter en électricité et gérer sa distribution. Schneider Electric fournit ces équipements.",
+    "editorialQuestion": "Les besoins en électricité des usines, des bâtiments et des centres de données peuvent-ils soutenir durablement Schneider Electric ?"
   },
   {
     "id": "totalenergies",
@@ -118,7 +144,8 @@
     "imageSubtitle": "Pétrole, gaz et électricité",
     "accountingStandard": "IFRS",
     "quoteListing": "NYSE · action ordinaire · USD",
-    "editorialHook": "⛽ Tu connais TotalEnergies pour ses stations-service. Mais ses activités remontent aussi à la production de pétrole, de gaz et d’électricité 👇"
+    "editorialHook": "⛽ Tu vois TotalEnergies quand tu fais le plein. Ses activités commencent bien avant la pompe, avec la production de pétrole et de gaz.",
+    "editorialQuestion": "Comment TotalEnergies peut-elle faire évoluer ses activités tout en restant exposée aux variations du pétrole et du gaz ?"
   },
   {
     "id": "visa",
@@ -132,7 +159,8 @@
     "imageSubtitle": "Réseau de paiements",
     "accountingStandard": "GAAP",
     "quoteListing": "Action américaine · USD",
-    "editorialHook": "💳 Quand tu paies avec une carte Visa, son réseau permet de faire circuler le paiement entre le commerçant et les banques. Comment cette activité se retrouve-t-elle dans ses comptes ? 👇"
+    "editorialHook": "💳 Quand tu paies avec une carte Visa, tu utilises son réseau. C’est ce passage entre les banques et les commerçants que l’entreprise facture.",
+    "editorialQuestion": "La progression des paiements électroniques peut-elle continuer à soutenir Visa face aux autres réseaux et moyens de paiement ?"
   },
   {
     "id": "costco",
@@ -146,6 +174,7 @@
     "imageSubtitle": "Magasins-entrepôts et abonnements",
     "accountingStandard": "GAAP",
     "quoteListing": "Action américaine · USD",
-    "editorialHook": "🛒 Chez Costco, les clients paient leurs achats et une cotisation pour devenir membres. Ces deux sources de revenus se retrouvent dans ses comptes 👇"
+    "editorialHook": "🛒 Chez Costco, tu paies pour faire tes courses… et tu paies une cotisation pour pouvoir les faire.",
+    "editorialQuestion": "Costco peut-elle continuer à attirer et fidéliser ses membres tout en gardant des prix attractifs ?"
   }
 ]
