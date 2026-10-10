@@ -6,7 +6,7 @@ import { instrumentOption, normalizeSearch } from '../../data/asset-selection.js
 import ReplacementPanel from './ReplacementPanel'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import SettingsDetails from '../../design-system/SettingsDetails'
-import { useMemo, useState, useRef, useCallback } from 'react'
+import { useMemo, useState, useRef, useCallback, useEffect } from 'react'
 import {
   generatePortfolio,
   replacePortfolioAsset,
@@ -20,6 +20,7 @@ import {
 } from './engine.js'
 import { CATEGORIES, ASSETS, getAsset } from '../../data/portfolio-assets.js'
 import { renderPortfolioImage } from './canvasImage.js'
+import { loadPortfolioBackground } from './background.js'
 import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -425,7 +426,22 @@ export default function App() {
   const [manualEditing, setManualEditing] = useState(true)
 
   const current = history[history.length - 1]
-  const imageDataUrl = useMemo(() => renderPortfolioImage(current).toDataURL('image/png'), [current])
+  const [background, setBackground] = useState(null)
+  const [imageError, setImageError] = useState('')
+  const [imageAttempt, setImageAttempt] = useState(0)
+  useEffect(() => {
+    let active = true
+    setImageError('')
+    loadPortfolioBackground().then(image => { if (active) setBackground(image) })
+      .catch(error => { if (active) setImageError(error.message) })
+    return () => { active = false }
+  }, [imageAttempt])
+  const imageDataUrl = useMemo(() => background ? renderPortfolioImage(current, background).toDataURL('image/png') : '', [current, background])
+  const prepareImage = useMemo(() => {
+    // A retry creates a fresh preview request as well as reloading the download.
+    void imageAttempt
+    return async () => imageDataUrl || renderPortfolioImage(current, await loadPortfolioBackground()).toDataURL('image/png')
+  }, [current, imageDataUrl, imageAttempt])
 
   const handleGenerate = useCallback(
     (riskOverride, profileOverride) => {
@@ -504,13 +520,15 @@ export default function App() {
         </span>
       </div>
 
-      <ToolWorkspace renderImage={() => imageDataUrl} imageAlt={`Répartition ${current.title}`} className="pg-main" actions={<>
+      <ToolWorkspace renderImage={prepareImage} imageAlt={`Répartition ${current.title}`} className="pg-main" actions={<>
           <div className="pg-tweet-actions">
             <Button type="button" variant="secondary" className="w-full" onClick={handleCopy}>
               {copyState === 'done' ? '✅ Copié !' : copyState === 'error' ? '⚠️ Copie manuelle requise' : '📋 Copier le texte'}
             </Button>
           </div>
-            <a className="pg-image-download" href={imageDataUrl} download="repartition-portefeuille.png">⬇️ Télécharger l’image PNG</a>
+            {imageDataUrl ? <a className="pg-image-download" href={imageDataUrl} download="repartition-portefeuille.png">⬇️ Télécharger l’image PNG</a>
+              : imageError ? <div><p role="alert">{imageError}</p><Button type="button" onClick={() => setImageAttempt(attempt => attempt + 1)}>Réessayer le visuel</Button></div>
+                : <p role="status">Préparation du visuel…</p>}
         </>}>
         <section className="pg-tweet-col tool-preview">
           <TweetCard portfolio={current} />
