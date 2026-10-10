@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { COMPANIES } from '../src/data/companies.js'
-import { buildTweetText, calculatedRatios, activeEstimates } from '../src/pages/company-analysis/lib.js'
+import { buildTweetText, calculatedRatios } from '../src/pages/company-analysis/lib.js'
 
 const server = spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4315','--strictPort'],{stdio:'ignore'})
 const base = 'http://127.0.0.1:4315/shinny-potato'
@@ -23,19 +23,18 @@ try {
     await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
     const text=await page.getByTestId('company-tweet').innerText()
     assert(text.includes(company.name));assert(text.includes(company.activity))
-    assert(text.includes('Et dans les comptes ?'))
+    assert(text.includes('💰 Sur son exercice clos'))
     assert(!text.includes('Ce que je regarderais'))
     assert(text.startsWith(company.editorialHook))
     assert(!text.includes('💬'))
     assert(!text.includes(company.watch))
     const now = new Date()
     assert.equal(text, buildTweetText(company, now))
-    if(calculatedRatios(company, now).peTTM) assert(text.includes('Ce ratio utilise les bénéfices déjà publiés.'))
-    if(company.halfYear) assert(text.includes('Semestre'))
-    assert(text.includes(`Le recul sur ${company.history.years.length} exercices`))
-    const forecast = activeEstimates(company, now)
-    assert.equal(text.includes('prochain exercice fiscal'), Boolean(forecast))
-    assert.equal(text.includes('sur cinq ans'), Boolean(forecast?.peg))
+    if(calculatedRatios(company, now).peTTM) assert(text.includes('bénéfice par action sur les douze derniers mois.'))
+    assert(text.includes(company.editorialQuestion))
+    assert(!text.includes('Le recul sur'))
+    assert(!text.includes('PER prévisionnel'))
+    assert(!text.includes('PEG :'))
     assert.equal(await page.getByTestId('company-history').locator('tbody tr').count(), company.history.years.length)
     const lastRow = page.getByTestId('company-history').locator('tbody tr').last()
     assert((await lastRow.innerText()).includes(company.annual.end.split('-').reverse().join('/')))
