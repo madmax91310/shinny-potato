@@ -138,6 +138,8 @@ class ScannerTests(unittest.TestCase):
             self.assertFalse(audit(folder, NOW))
             path = pathlib.Path(folder) / (s['isin'] + '.json')
             previous = path.read_bytes()
+            import hashlib
+            self.assertEqual(manifest['instruments'][s['isin']]['fileSha256'], hashlib.sha256(previous).hexdigest())
             later = NOW + dt.timedelta(days=1)
             manifest, failures = refresh({'checkedAt': later.isoformat(), 'shares': []}, POLICY, source, {}, folder, later)
             self.assertEqual(len(failures), 1)
@@ -156,6 +158,15 @@ class ScannerTests(unittest.TestCase):
             body = json.loads(path.read_text()); body['rows'][0]['weightPct'] = 42
             path.write_text(json.dumps(body))
             with self.assertRaisesRegex(ValueError, 'hash mismatch'): audit(folder, NOW)
+
+    def test_file_bytes_integrity_includes_metadata_and_format(self):
+        s = share()
+        source = {'instruments': [{**{k: s[k] for k in ('isin', 'name', 'productId', 'currency')}, 'collectHoldings': True}]}
+        with tempfile.TemporaryDirectory() as folder:
+            refresh({'checkedAt': NOW.isoformat(), 'shares': [s]}, POLICY, source, {}, folder, NOW)
+            path = pathlib.Path(folder) / (s['isin'] + '.json')
+            path.write_bytes(path.read_bytes() + b'\n')
+            with self.assertRaisesRegex(ValueError, 'file hash mismatch'): audit(folder, NOW)
 
     def test_old_or_naive_source_report_rejected(self):
         for stamp in ('2026-10-08T12:00:00+00:00', '2026-10-10T12:00:00'):

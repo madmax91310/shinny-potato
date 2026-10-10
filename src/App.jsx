@@ -6,6 +6,7 @@ import ComingSoon from './pages/ComingSoon'
 import { TOOLS } from './tools'
 
 // Each tool and its data are fetched only when its route is opened.
+const EtfScanner = lazy(() => import('./pages/etf-scanner/App'))
 const EditorialRadar = lazy(() => import('./pages/editorial-radar/App'))
 const WealthSimulator = lazy(() => import('./pages/wealth-simulator/App'))
 const PortfolioGenerator = lazy(() => import('./pages/portfolio-generator/App'))
@@ -28,6 +29,7 @@ const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 // Individual publication routes reuse one lazy engine and its existing data.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
+  '/scanner-etf': <EtfScanner />,
   '/radar-editorial': <EditorialRadar />,
   '/simulateur-patrimoine': <WealthSimulator />,
   '/presentations': <Presentations />,

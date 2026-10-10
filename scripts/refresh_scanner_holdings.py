@@ -5,6 +5,7 @@ into a route's JavaScript bundle. Known missing PEA sources are coverage gaps,
 whereas a failed qualified physical source makes the collection fail visibly.
 """
 import argparse
+import hashlib
 import datetime as dt
 import json
 import os
@@ -56,7 +57,8 @@ def refresh(report, config, source_config, automated, destination, now=None):
                           'equityPositionCount', 'uniqueEquityIsinCount',
                           'unidentifiedEquityPositionCount', 'unidentifiedEquityWeightPct',
                           'equityWeightPct', 'portfolioWeightPct')})
-            entry.update(freshness=state, available=state['fresh'], file=isin + '.json',
+            entry.update(fileSha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+                         freshness=state, available=state['fresh'], file=isin + '.json',
                          status=('retained-after-failure' if error else 'ready') if state['fresh'] else 'stale')
         entries[isin] = entry
     pea = {isin: observed_coverage(automated.get(isin), now, config) for isin in config['peaWatch']}
@@ -86,10 +88,11 @@ def audit(destination, now=None):
             reject('Unexpected scanner snapshot path')
         snapshot = json.loads((destination / entry['file']).read_text())
         digest_payload = {k: v for k, v in snapshot.items() if k not in ('sha256', 'checkedAt', 'modifiedAt')}
-        import hashlib
         digest = hashlib.sha256(json.dumps(digest_payload, sort_keys=True, allow_nan=False).encode()).hexdigest()
         if snapshot['isin'] != isin or digest != snapshot['sha256'] or digest != entry['sha256']:
             reject('Scanner snapshot identity/hash mismatch: ' + isin)
+        if entry.get('fileSha256') and hashlib.sha256((destination / entry['file']).read_bytes()).hexdigest() != entry['fileSha256']:
+            reject('Scanner file hash mismatch: ' + isin)
         if not freshness(snapshot, now, manifest['policy'])['fresh']:
             issues.append(isin + ': stale scanner evidence')
     return issues
