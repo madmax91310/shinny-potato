@@ -4,7 +4,19 @@
 import { readFileSync } from 'node:fs';
 import { ASSETS, LATEST_YM, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS } from '../src/data/market-history.js';
 import { MONTHLY_HISTORY_ADDITIONS } from '../src/data/monthly-history-additions.js';
-import './audit-monthly-history-additions.mjs';
+// Direct runs must replay the same immutable snapshot as the public audit entry.
+// The live graph is validated separately by audit-automated-monthly.mjs.
+if (process.env.MONTHLY_ARCHIVE_AUDIT !== '1') {
+  const { spawnSync } = await import('node:child_process');
+  const { fileURLToPath } = await import('node:url');
+  const bitcoin = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-monthly-2026-10-02.json', import.meta.url))).records.bitcoin.points;
+  const or = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-worldbank-gold-2026-10-03.json', import.meta.url))).points;
+  const child = spawnSync(process.execPath, [fileURLToPath(import.meta.url)], { stdio: 'inherit', env: {
+    ...process.env, MONTHLY_ARCHIVE_AUDIT: '1', MONTHLY_ARCHIVE_SERIES: JSON.stringify({ bitcoin, or }),
+  } });
+  process.exit(child.status ?? 1);
+}
+await import('./audit-monthly-history-additions.mjs');
 
 const snapshot = JSON.parse(readFileSync(new URL('./source-snapshots/calculator-yahoo-2026-09-29.json', import.meta.url)));
 const gold = { ...JSON.parse(readFileSync(new URL('../src/data/worldbank-gold-monthly.json', import.meta.url))), ...JSON.parse(readFileSync(new URL('./source-snapshots/calculator-worldbank-gold-2026-10-03.json', import.meta.url))) };

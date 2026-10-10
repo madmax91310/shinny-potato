@@ -35,8 +35,9 @@ export default function AutomationFailures() {
     {overview && <>
       <div className="dr-automation-filters" aria-label="Filtrer les collectes">{[['all', 'Toutes'], ['success', 'Réussies'], ['failure', 'En échec'], ['unknown', 'État non documenté']].map(([value, label]) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label} · {overview.filter(row => value === 'all' || row.state === value).length}</button>)}</div>
       <div className="dr-list">{rows.map(row => <article className="dr-item" key={row.id}>
-        <span className={`dr-badge ${row.state === 'success' ? 'dr-current' : row.state === 'failure' ? 'dr-expired' : 'dr-undated'}`}>{row.state === 'success' ? 'Collecte réussie' : row.state === 'failure' ? 'Collecte en échec' : 'État non documenté'}</span>
+        <span className={`dr-badge ${row.state === 'success' ? 'dr-current' : row.state === 'failure' ? 'dr-expired' : 'dr-undated'}`}>{row.state === 'success' ? 'Collecte réussie' : row.state === 'failure' ? row.collectionStatus === 'success' && row.publicationStatus === 'failure' ? 'Publication en échec' : 'Collecte en échec' : 'État non documenté'}</span>
         <h3>{row.name}</h3>
+        {row.publicationStatus === 'failure' && <p>La publication de l’application a échoué.{row.collectionStatus === 'success' && ' La collecte a réussi ; son déploiement reste à reprendre.'}</p>}
         {row.state === 'failure' && <p>Les dernières données validées sont conservées.{row.failureCount > 0 && ` ${row.failureCount} donnée(s) en échec documentée(s).`}</p>}
         <dl><dt>Dernière exécution</dt><dd>{date(row.completedAt)}</dd><dt>Dernier succès complet</dt><dd>{date(row.lastSuccessAt)}</dd></dl>
         {row.runUrl && <div className="dr-links"><a href={row.runUrl} target="_blank" rel="noreferrer">Voir l’exécution ↗</a></div>}
@@ -47,7 +48,7 @@ export default function AutomationFailures() {
       <div className="dr-list">{alerts.map(alert => <article className="dr-item" key={alert.id}>
         <span className="dr-badge dr-expired">Mise à jour échouée</span>
         <h3>{alert.name}</h3>
-        <p>La dernière mise à jour automatique a échoué. Les dernières données validées restent disponibles.</p>
+        <p>{alert.collectionStatus === 'success' && alert.publicationStatus === 'failure' ? 'Les données ont été collectées, mais leur publication dans l’application a échoué.' : 'La dernière mise à jour automatique a échoué. Les dernières données validées restent disponibles.'}</p>
         {alert.cause && <p>Cause relevée : {alert.cause}</p>}
         <dl><dt>Dernier succès</dt><dd>{date(alert.lastSuccessAt)}</dd><dt>Échec constaté</dt><dd>{date(alert.completedAt)}</dd></dl>
         <div className="dr-links"><a href={alert.runUrl} target="_blank" rel="noreferrer">Voir la cause et le suivi ↗</a></div>

@@ -2,6 +2,7 @@
 import copy
 import datetime as dt
 import html
+import http.client
 import json
 import pathlib
 import tempfile
@@ -38,6 +39,21 @@ def payload(c=None):
 
 
 class Reliability(unittest.TestCase):
+    def test_truncated_download_retries_whole_document_and_never_returns_partial_bytes(self):
+        from unittest.mock import MagicMock
+        response=MagicMock();response.__enter__.return_value=response
+        response.geturl.return_value='https://issuer.test/file.pdf'
+        response.read.side_effect=[http.client.IncompleteRead(b'partial'),b'%PDF-complete']
+        with patch('issuer_documents.urllib.request.build_opener') as builder,patch('issuer_documents.time.sleep') as sleep:
+            builder.return_value.open.return_value=response
+            self.assertEqual(download('https://issuer.test/file.pdf'),b'%PDF-complete')
+            self.assertEqual(builder.return_value.open.call_count,2)
+            sleep.assert_called_once_with(1)
+        response.read.side_effect=http.client.IncompleteRead(b'partial')
+        with patch('issuer_documents.urllib.request.build_opener') as builder,patch('issuer_documents.time.sleep'):
+            builder.return_value.open.return_value=response
+            with self.assertRaises(http.client.IncompleteRead):download('https://issuer.test/file.pdf')
+            self.assertEqual(builder.return_value.open.call_count,3)
     def test_retry_after_seconds_date_cap_invalid_and_terminal_errors(self):
         def e(value):
             return urllib.error.HTTPError('https://issuer.test', 429, 'limited', {'Retry-After': value}, None)

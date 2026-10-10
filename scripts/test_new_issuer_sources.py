@@ -155,6 +155,7 @@ class IssuerSources(unittest.TestCase):
         with patch('collect_remaining_documents.download',side_effect=fetch),patch('collect_remaining_documents.pdf_text',return_value=text):
             r=collect_one(s,NOW)
             self.assertEqual(r['sourceUrl'],urls[1])
+
         def timeout(url, **kwargs):
             if url.replace('https://www.swissfunddata.ch/', 'https://swissfunddata.ch/')==urls[0]:raise TimeoutError('latest month timed out')
             return b'%PDF-body'
@@ -171,5 +172,19 @@ class IssuerSources(unittest.TestCase):
         self.assertNotIn('2020',merged[s['isin']]['performance']['years'])
         self.assertIn('2025',merged[s['isin']]['performance']['years'])
         self.assertIn('aum',merged[s['isin']])
+
+    def test_ubs_september_pdf_content_order_avoids_overlapping_calendar_headers(self):
+        layout=(FIX/'ubs-september-layout.txt').read_text()
+        raw=(FIX/'ubs-september-raw.txt').read_text()
+        s=share('IE00BD4TXV59')
+        with self.assertRaises(ValueError):ubs(layout,s,NOW,'h')
+        r=ubs(layout,s,NOW,'h',performance_text=raw)
+        self.assertEqual(r['performance']['asOf'],'2026-09-30')
+        self.assertEqual(r['performance']['years'],{'2022':-18.26,'2023':23.79,'2024':18.86,'2025':21.31})
+        self.assertNotIn('2026',r['performance']['years'])
+        self.assertEqual(r['holdings']['basis'],'index')
+        self.assertEqual(len(r['holdings']['rows']),10)
+        for before,after in [('Fund (USD)','Fund (EUR)'),('in % 2022 2023','in % 2022 2022'),('YTD2','Annual')]:
+            with self.assertRaises(ValueError):ubs(layout,s,NOW,'h',performance_text=raw.replace(before,after))
 
 if __name__=='__main__':unittest.main()

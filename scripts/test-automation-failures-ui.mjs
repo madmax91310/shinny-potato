@@ -33,6 +33,10 @@ try {
  assert.equal(await section.getByRole('link',{name:'Voir la cause et le suivi ↗'}).getAttribute('href'),status.workflows.etf.runUrl)
  status={schemaVersion:1,workflows:{etf:{name:'Update active ETF issuer data',status:'success'}}}
  await page.reload({waitUntil:'networkidle'});assert.equal(await section.count(),0)
+ status={schemaVersion:1,workflows:{insurance:{name:'Assurance-vie',status:'failure',collectionStatus:'success',publicationStatus:'failure',runUrl:'https://github.com/test/repo/actions/runs/2'}}}
+ await page.reload({waitUntil:'networkidle'})
+ assert.match(await section.textContent(),/Les données ont été collectées, mais leur publication dans l’application a échoué/)
+ assert.match(await overview.textContent(),/La collecte a réussi ; son déploiement reste à reprendre/)
  await page.unroute('**/automation-status/automation-status.json')
  await page.route('**/automation-status/automation-status.json',route=>route.fulfill({status:503,body:'unavailable'}))
  await page.reload({waitUntil:'networkidle'})

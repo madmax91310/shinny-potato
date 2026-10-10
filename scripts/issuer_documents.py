@@ -1,6 +1,7 @@
 """Bounded official-document downloads and deterministic text extraction (no AI)."""
 import datetime as dt
 import hashlib
+import http.client
 import http.cookiejar
 import pathlib
 import re
@@ -46,7 +47,7 @@ def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                 raise
             delay = retry_delay(error, attempt)
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead, ConnectionError):
             if attempt == 2:
                 raise
             delay = 2 ** attempt
@@ -64,14 +65,14 @@ def public_page(url, content_types=('text/html',), max_bytes=12_000_000):
     return get_text(url, content_types, max_bytes, opener=open_page)
 
 
-def pdf_text(body, crop=None):
+def pdf_text(body, crop=None, raw=False):
     if not body.startswith(b'%PDF-'):
         reject('Expected official PDF, received another document')
     with tempfile.TemporaryDirectory() as folder:
         path = pathlib.Path(folder) / 'source.pdf'
         path.write_bytes(body)
         options = [] if crop is None else ['-x', str(crop[0]), '-y', '0', '-W', str(crop[1]), '-H', '2000']
-        output = subprocess.run(['pdftotext', '-layout', *options, str(path), '-'],
+        output = subprocess.run(['pdftotext', '-raw' if raw else '-layout', *options, str(path), '-'],
                                 capture_output=True, timeout=20, check=True)
     if len(output.stdout) > 2_000_000:
         reject('PDF extraction exceeds size limit')

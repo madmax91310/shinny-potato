@@ -45,6 +45,15 @@ SOURCES = {
 }
 SOURCES.update(EXTRA_SOURCES)
 
+# DILA's current wording keeps the same fields but describes the fraction of
+# gains, rather than repeating the former premium-threshold bullet points.
+AV_CURRENT_PATTERNS = {
+ 'avLowerIncome': r'le taux de ([\d,]+) % applicable après 8 ans dépend du montant global des primes',
+ 'avHigherIncome': r'La fraction des gains qui ne bénéficie pas du taux de [\d,]+ % est imposée à ([\d,]+) %',
+ 'avPremiumThreshold': r'apprécié au regard du seuil de ([\d ]+) €',
+ 'avSocial': r"Les gains tirés d'un contrat d'assurance-vie sont toujours soumis aux prélèvements sociaux \(CSG, CRDS\)\. En principe, le taux appliqué est de ([\d,]+) %",
+}
+
 def text(node):
  return ' '.join(''.join(node.itertext()).split())
 
@@ -71,7 +80,9 @@ def parse(name, raw, today, previous=None):
  if previous and published < previous['publishedAt']: raise ValueError('Publication antérieure')
  # Paragraph scope avoids selecting numbers from navigation or related-page labels.
  paragraphs = '\n'.join(text(p) for p in root.iter('Paragraphe'))
- values = {key: unique(pattern, paragraphs) for key, pattern in patterns.items()}
+ values = {key: unique(AV_CURRENT_PATTERNS[key] if name == 'av' and key in AV_CURRENT_PATTERNS
+                       and not re.findall(pattern, paragraphs, re.M) else pattern, paragraphs)
+           for key, pattern in patterns.items()}
  values.update(extra_values(name, root, today, text, unique))
  if name == 'av':
   parents = {child: parent for parent in root.iter() for child in parent}

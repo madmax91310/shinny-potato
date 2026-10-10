@@ -97,7 +97,7 @@ class IndexExtensions(unittest.TestCase):
         def fetch(url,**kwargs):
             if 'https://swissfunddata.ch/' in url:raise TimeoutError('host unavailable')
             return b'%PDF-proof'
-        with patch('collect_remaining_documents.download',side_effect=fetch),patch('collect_remaining_documents.pdf_text',return_value='text'),patch('collect_remaining_documents.ubs',side_effect=lambda t,s,n,h:s):
+        with patch('collect_remaining_documents.download',side_effect=fetch),patch('collect_remaining_documents.pdf_text',return_value='text'),patch('collect_remaining_documents.ubs',side_effect=lambda t,s,n,h,**kwargs:s):
             r=ubs_collect(c,NOW);self.assertIn('www.swissfunddata.ch',r['sourceUrl'])
         with patch('collect_remaining_documents.download',side_effect=TimeoutError('host unavailable')):
             with self.assertRaisesRegex(ValueError,'host unavailable'):ubs_collect(c,NOW)
