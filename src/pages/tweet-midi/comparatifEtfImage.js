@@ -6,8 +6,8 @@ import { COMPARISON_ETF_DETAILS } from '../../data/comparison-etf-details.js'
 import { AUTOMATED_ETF } from '../../data/automated-etf.js'
 import { getPreferredInstrumentListing } from '../../data/instrument-listings.js'
 
-const W = 2000, H = 2000
-const INK = '#10263c', GREEN = '#126047', RED = '#ad3924'
+const W = 2000, H = 2000, PAD = 76
+const INK = '#10263c', GREEN = '#126047', RED = '#ad3924', MUTED = '#54605f'
 const pct = value => `${value > 0 ? '+' : value < 0 ? '−' : ''}${Math.abs(value).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
 function text(ctx, value, x, y, size, { width = W, color = INK, align = 'left', serif = false, weight = 700 } = {}) {
   ctx.textBaseline = 'top'; ctx.textAlign = align; ctx.fillStyle = color
@@ -16,7 +16,7 @@ function text(ctx, value, x, y, size, { width = W, color = INK, align = 'left', 
   ctx.fillText(value, x, y)
 }
 function wrap(ctx, value, width, size) {
-  ctx.font = `700 ${size}px Arial, sans-serif`
+  ctx.font = `700 ${size}px Georgia, serif`
   const rows = []; let row = ''
   for (const word of value.split(/\s+/)) {
     const next = row ? `${row} ${word}` : word
@@ -28,39 +28,24 @@ function wrap(ctx, value, width, size) {
 function lines(ctx, value, x, y, width, maxRows, startSize, options = {}) {
   let size = startSize, rows
   do { rows = wrap(ctx, value, width, size); if (rows.length <= maxRows) break; size-- } while (size > 16)
-  rows.forEach((row, i) => text(ctx, row, x, y + i * (size + 6), size, { width, ...options }))
+  rows.forEach((row, i) => text(ctx, row, x, y + i * (size + 7), size, { width, serif: true, ...options }))
+}
+function rule(ctx, x, y, width) {
+  ctx.fillStyle = '#bac0b8'; ctx.fillRect(x, y, width, 1.5)
 }
 function detail(fund) {
   return fund.differenciateur.replace(/(?:non[ -]éligible\s+|éligible\s+|hors\s+|en\s+)?\bPEA\b(?: selon [^,;]+)?|\bCTO\b/gi, '').replace(/\s+([,;])/g, '$1').replace(/[,;]\s*[,;]/g, ',').replace(/^[\s·,;:|–—-]+|[\s·,;:|–—-]+$/g, '').trim()
 }
-
 export function getComparisonImageComposition(isin, field) {
   const details = COMPARISON_ETF_DETAILS[isin]
   const observation = AUTOMATED_ETF[isin]?.[field]
   const basis = observation?.basis ?? (field === 'countries' ? details?.countriesBasis : details?.basis)
   return {
-    rows: [...(details?.[field] ?? [])].filter(([, value]) => Number.isFinite(value) && value > 0).sort((a, b) => b[1] - a[1]).slice(0, 3),
+    rows: [...(details?.[field] ?? [])].filter(([label, value]) => Number.isFinite(value) && value > 0 && !/^(other|others|autres)$/i.test(label)).sort((a, b) => b[1] - a[1]).slice(0, 3),
     asOf: details?.[`${field}AsOf`] ?? details?.asOf,
     isIndex: basis === 'index' || basis === 'tracked-index',
   }
 }
-
-function composition(ctx, fund, field, x, y, width) {
-  const { rows, asOf, isIndex } = getComparisonImageComposition(fund.isin, field)
-  const kind = field === 'sectors' ? 'Principaux secteurs' : 'Principaux pays'
-  text(ctx, kind, x, y, 24, { width, weight: 700, color: '#fffaf0' })
-  if (!rows.length) {
-    text(ctx, 'Non disponible', x, y + 42, 22, { width, weight: 400, color: '#fffaf0' })
-    return
-  }
-  text(ctx, `${isIndex ? 'Indice' : 'Fonds'}${asOf ? ` · ${asOf.split('-').reverse().join('/')}` : ''}`, x, y + 35, 21, { width, weight: 400, color: '#fffaf0' })
-  rows.forEach(([label, value], i) => {
-    const yy = y + 76 + i * 46
-    text(ctx, COMPOSITION_LABELS[label] ?? label, x, yy, 23, { width: width - 86, weight: 400, color: '#fffaf0' })
-    text(ctx, `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`, x + width, yy, 23, { align: 'right', width: 80, color: '#fffaf0' })
-  })
-}
-
 const COMPOSITION_LABELS = {
   'Information Technology': 'Technologie', Technology: 'Technologie', Financials: 'Finance', 'Consumer Discretionary': 'Conso. cyclique',
   'Consumer Staples': 'Conso. de base', 'Communication Services': 'Communication', Industrials: 'Industrie',
@@ -71,135 +56,99 @@ const COMPOSITION_LABELS = {
   'United Arab Emirates': 'Émirats arabes unis', 'United States': 'États-Unis', 'United Kingdom': 'Royaume-Uni',
   Japan: 'Japon', Germany: 'Allemagne', Switzerland: 'Suisse', Netherlands: 'Pays-Bas', India: 'Inde',
 }
-
-// Approved paper-cut direction: textured cream, torn paper and integrated artwork.
+function composition(ctx, fund, field, x, y, width, compact) {
+  const { rows, asOf, isIndex } = getComparisonImageComposition(fund.isin, field)
+  const size = compact ? 28 : 34, gap = compact ? 48 : 65
+  text(ctx, field === 'sectors' ? 'Principaux secteurs' : 'Principaux pays', x, y, size + 2, { width })
+  if (!rows.length) { text(ctx, 'Non disponible', x, y + 63, size, { width, weight: 400, color: MUTED }); return }
+  // Each field retains its own observation date; never date returns with a composition date.
+  text(ctx, `${isIndex ? 'Indice' : 'Fonds'}${asOf ? ` · ${asOf.split('-').reverse().join('/')}` : ''}`, x, y + 44, compact ? 24 : 28, { width, weight: 400, color: MUTED })
+  rows.forEach(([label, value], i) => {
+    const yy = y + 96 + i * gap, valueW = compact ? 118 : 150
+    text(ctx, COMPOSITION_LABELS[label] ?? label, x, yy, size, { width: width - valueW - 12, weight: 400 })
+    text(ctx, `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`, x + width, yy, size, { align: 'right', width: valueW })
+  })
+}
+// One relevant illustration in the header. World map is illustrative, never a holdings map.
 export function comparisonArt(themeId, isin) {
   const exposure = getPaperArt(themeId, isin)
-  if (['world', 'america', 'chip'].includes(exposure)) return 'graphic/comparison-paper-cut.webp'
-  // Keep a relevant 3D subject for every theme, including custom themes.
+  if (exposure === 'world') return 'comparison-world-map.svg'
+  if (['america', 'chip'].includes(exposure)) return 'graphic/comparison-paper-cut.webp'
   if (['europe','emerging','luxury','gold','silver','dividends','quantum','blockchain','copper','japan','robotics','health','renewables','defense','space','resources','finance'].includes(exposure)) return `paper/${exposure}.webp`
-  const studio = {}
-  return `etf-night/${studio[exposure] || exposure}.webp`
-}
-// Deterministic torn edges keep exports stable and never affect data placement.
-function tornPaper(ctx, x, y, w, h, color, seed = 0) {
-  ctx.beginPath()
-  const edge = (step, phase) => Math.sin(step * 2.31 + phase + seed) * 4 + Math.sin(step * 5.7 + seed) * 2
-  ctx.moveTo(x, y)
-  for (let j = 1; j <= 32; j++) ctx.lineTo(x + w * j / 32, y + edge(j, 0))
-  ctx.lineTo(x + w, y + h)
-  for (let j = 31; j >= 0; j--) ctx.lineTo(x + w * j / 32, y + h + edge(j, 2))
-  ctx.closePath()
-  ctx.fillStyle = color; ctx.fill()
-}
-function scene(ctx, image, themeId, fund, x, y, w, h) {
-  const exposure = getPaperArt(themeId, fund.isin)
-  const panel = /nasdaq/i.test(`${fund.nom} ${fund.differenciateur}`) ? 2 : exposure === 'world' ? 0 : 1
-  const atlas = comparisonArt(themeId, fund.isin) === 'graphic/comparison-paper-cut.webp'
-  const sw = atlas ? image.width / 3 : image.width, sh = image.height
-  ctx.save()
-  tornPaper(ctx, x, y, w, h, '#f7f0df', panel); ctx.clip()
-  // Cover the art area without stretching the source artwork.
-  const sourceRatio = sw / sh, targetRatio = w / h
-  const cropW = targetRatio < sourceRatio ? sh * targetRatio : sw
-  const cropH = targetRatio < sourceRatio ? sh : sw / targetRatio
-  ctx.drawImage(image, (atlas ? panel * sw : 0) + (sw - cropW) / 2, (sh - cropH) / 2, cropW, cropH, x, y, w, h)
-  ctx.restore()
-}
-function paperTexture(ctx, height) {
-  // Fine seeded flecks suggest paper fibres without an external texture file.
-  let seed = 7411
-  ctx.fillStyle = 'rgba(103,77,41,.055)'
-  for (let i = 0; i < 18000; i++) {
-    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
-    const x = seed / 4294967296 * W
-    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
-    ctx.fillRect(x, seed / 4294967296 * height, 1.2, 1.2)
-  }
+  return `etf-night/${exposure}.webp`
 }
 export function comparisonLayout(count) {
-  const columns = count <= 3 ? count : Math.min(3, Math.ceil(count / 2))
+  const columns = count <= 3 ? Math.max(1, count) : 2
   const rows = Math.ceil(count / columns)
-  return { columns, rows, compact: count >= 4, height: count <= 3 ? H : 260 + rows * 850 + 40 }
+  return { columns, rows, compact: count >= 4, height: count <= 3 ? H : 360 + rows * 1150 + 110 }
 }
-function card(ctx, fund, performance, years, i, count, image, themeId) {
-  const layout = comparisonLayout(count), gap = 24, x0 = 68
+function card(ctx, fund, performance, years, i, count) {
+  const layout = comparisonLayout(count), gap = 60
   const row = Math.floor(i / layout.columns), col = i % layout.columns
-  const rowCount = Math.min(layout.columns, count - row * layout.columns)
-  const cardW = (W - 136 - gap * (rowCount - 1)) / rowCount
-  const x = x0 + col * (cardW + gap), y = 260 + row * 850, h = layout.compact ? 824 : 1660
-  const accent = ['#173b5b', '#18553f', '#a94723', '#65513e'][i % 4]
-  ctx.save(); ctx.shadowColor = 'rgba(54,39,19,.12)'; ctx.shadowBlur = 12; ctx.shadowOffsetY = 5
-  tornPaper(ctx, x, y, cardW, h, '#fbf5e8', i)
-  ctx.restore()
+  const cardW = (W - 2 * PAD - gap * (layout.columns - 1)) / layout.columns
+  const x = PAD + col * (cardW + gap), y = 350 + row * 1150
+  const compact = layout.compact, narrow = cardW < 700
+  const accent = /ACWI/.test(fund.differenciateur) ? '#b64920' : GREEN
   const name = fund.nom.replace(/ UCITS ETF S.*$/i, ' · S').replace(/ UCITS ETF.*$/i, '').replace(/ ETF$/i, '')
+  lines(ctx, name, x, y, cardW, 3, narrow ? 43 : 58)
   const ticker = getPreferredInstrumentListing(fund.isin)?.ticker
-  if (layout.compact) {
-    tornPaper(ctx, x, y, cardW, 136, accent, i)
-    tornPaper(ctx, x, y + 547, cardW, h - 547, accent, i + 2)
-    lines(ctx, name, x + 27, y + 25, cardW - 54, 3, cardW < 700 ? 30 : 39, { serif: true, color: '#fffaf0' })
-    if (ticker) text(ctx, ticker, x + 27, y + 151, 30, { width: 105 })
-    text(ctx, fund.isin, x + (ticker ? 142 : 27), y + 154, 26, { width: cardW - (ticker ? 169 : 54), weight: 400 })
-    text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, x + cardW - 27, y + 200, 52, { align: 'right', width: 180, color: accent })
-    text(ctx, 'FRAIS / AN', x + cardW - 27, y + 263, 20, { align: 'right' })
-    lines(ctx, detail(fund), x + 27, y + 207, cardW - 240, 2, 26, { weight: 400 })
-    const artSide = cardW < 700 ? 205 : 265
-    scene(ctx, image, themeId, fund, x + 27, y + 285, artSide, artSide)
-    const perfX = x + artSide + 55, perfW = cardW - artSide - 82
-    text(ctx, performance ? `PERFORMANCES · ${performance.currency}` : 'HISTORIQUE', perfX, y + 288, 23, { width: perfW })
-    if (performance && years.length) {
-      years.forEach((year, j) => {
-        const observation = performance.rows.find(value => value.year === year)
-        text(ctx, String(year), perfX, y + 338 + j * 62, 25, { weight: 400 })
-        text(ctx, observation ? pct(observation.pct) : 'N/D', x + cardW - 27, y + 334 + j * 62, 33, { align: 'right', width: perfW - 76, color: observation?.pct < 0 ? RED : GREEN })
-      })
-    } else lines(ctx, 'Historique annuel non disponible', perfX, y + 347, perfW, 3, 29)
-    const compW = (cardW - 81) / 2
-    composition(ctx, fund, 'sectors', x + 27, y + 568, compW)
-    composition(ctx, fund, 'countries', x + 54 + compW, y + 568, compW)
-    return
+  const identityY = y + 200, tickerW = narrow ? 113 : 145
+  if (ticker) {
+    ctx.fillStyle = accent; ctx.beginPath(); ctx.roundRect(x, identityY - 7, tickerW, 62, 7); ctx.fill()
+    text(ctx, ticker, x + tickerW / 2, identityY + 2, narrow ? 29 : 36, { align: 'center', width: tickerW - 12, color: '#fffdf6' })
   }
-  scene(ctx, image, themeId, fund, x, y, cardW, 400)
-  tornPaper(ctx, x, y + 345, cardW, 155, accent, i)
-  lines(ctx, name, x + cardW / 2, y + 370, cardW - 54, 3, 39, { align: 'center', serif: true, color: '#fffaf0' })
-  ctx.save(); ctx.shadowColor = 'rgba(54,39,19,.15)'; ctx.shadowBlur = 10; ctx.shadowOffsetY = 4
-  tornPaper(ctx, x + 15, y + 510, cardW - 30, 64, '#fff9ec', i + 1)
-  ctx.restore()
-  if (ticker) text(ctx, ticker, x + 27, y + 530, 29, { width: 105, color: accent })
-  text(ctx, fund.isin, x + (ticker ? 142 : 27), y + 533, 26, { width: cardW - (ticker ? 169 : 54), weight: 400 })
-  text(ctx, 'Frais / an', x + 27, y + 603, 26, { weight: 700 })
-  text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, x + cardW / 2, y + 640, 105, { align: 'center', width: cardW - 54, color: accent, serif: true })
-  text(ctx, performance ? `Performances · ${performance.currency}` : 'Historique', x + 27, y + 780, 26, { width: cardW - 54 })
+  text(ctx, fund.isin, x + (ticker ? tickerW + 22 : 0), identityY + 8, narrow ? 27 : 32, { width: cardW - (ticker ? tickerW + 22 : 0), weight: 400 })
+  lines(ctx, detail(fund), x, y + 282, cardW, 3, narrow ? 28 : 33, { weight: 400, color: MUTED, serif: false })
+  const feeY = y + 408
+  text(ctx, fund.isCopperEtc ? 'Frais de gestion' : 'Frais annuels', x, feeY, narrow ? 30 : 36, { width: cardW })
+  text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, x + cardW, feeY + 52, narrow ? 80 : 100, { align: 'right', width: cardW, color: accent, serif: true })
+  const perfY = y + 578
+  text(ctx, performance ? `Performances annuelles · ${performance.currency}` : 'Historique', x, perfY, narrow ? 29 : 34, { width: cardW })
   if (performance && years.length) {
     years.forEach((year, j) => {
-      const observation = performance.rows.find(value => value.year === year), yy = y + 838 + j * 80
-      text(ctx, String(year), x + 27, yy, 28, { weight: 400 })
-      text(ctx, observation ? pct(observation.pct) : 'N/D', x + cardW - 27, yy - 6, 46, { align: 'right', width: cardW - 130, color: observation?.pct < 0 ? RED : GREEN })
-      ctx.fillStyle = 'rgba(16,38,60,.18)'; ctx.fillRect(x + 27, yy + 52, cardW - 54, 1)
+      const observation = performance.rows.find(value => value.year === year), yy = perfY + 58 + j * 66
+      text(ctx, String(year), x, yy + 7, narrow ? 30 : 34, { width: 100, weight: 400 })
+      text(ctx, observation ? pct(observation.pct) : 'N/D', x + cardW, yy, narrow ? 46 : 55, { align: 'right', width: cardW - 120, color: observation?.pct < 0 ? RED : GREEN })
     })
-  } else lines(ctx, 'Historique annuel non disponible', x + 27, y + 863, cardW - 54, 3, 32, { color: accent })
-  lines(ctx, detail(fund), x + 27, y + 1080, cardW - 54, 2, 24, { weight: 400 })
-  tornPaper(ctx, x, y + 1140, cardW, h - 1140, accent, i + 2)
-  composition(ctx, fund, 'sectors', x + 27, y + 1172, cardW - 54)
-  ctx.fillStyle = 'rgba(255,250,240,.35)'; ctx.fillRect(x + 27, y + 1405, cardW - 54, 1)
-  composition(ctx, fund, 'countries', x + 27, y + 1430, cardW - 54)
-
+  } else lines(ctx, 'Historique annuel non disponible', x, perfY + 71, cardW, 2, narrow ? 31 : 38, { weight: 400, serif: false })
+  const compY = y + 872
+  rule(ctx, x, compY - 25, cardW)
+  if (compact) {
+    const compW = (cardW - 35) / 2
+    composition(ctx, fund, 'sectors', x, compY, compW, true)
+    composition(ctx, fund, 'countries', x + compW + 35, compY, compW, true)
+  } else {
+    composition(ctx, fund, 'sectors', x, compY, cardW, false)
+    rule(ctx, x, compY + 268, cardW)
+    composition(ctx, fund, 'countries', x, compY + 308, cardW, false)
+  }
+  if (col < layout.columns - 1) { ctx.fillStyle = '#bac0b8'; ctx.fillRect(x + cardW + gap / 2, y, 1.5, compact ? 1100 : 1500) }
+  if (row > 0) rule(ctx, x, y - 32, cardW)
 }
-
 export async function renderComparatifEtfImage(theme) {
+  if (!theme?.etfs?.length) throw new Error('Sélection ETF vide')
   await loadEditorialFont()
   const years = getComparisonYears(theme.etfs.map(fund => fund.isin))
   const series = theme.etfs.map(fund => getComparisonPerformance(fund.isin, years))
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = comparisonLayout(theme.etfs.length).height
   const ctx = canvas.getContext('2d')
-  const background = ctx.createLinearGradient(0, 0, W, canvas.height)
-  background.addColorStop(0, '#fcf7ec'); background.addColorStop(1, '#f0e5d2')
-  ctx.fillStyle = background; ctx.fillRect(0, 0, W, canvas.height)
-  paperTexture(ctx, canvas.height)
-  const art = await Promise.all(theme.etfs.map(fund => loadArtImage(comparisonArt(theme.id, fund.isin))))
-  text(ctx, 'ÉPARGNANT LIBRE', W / 2, 48, 30, { color: '#171717', weight: 700, align: 'center' })
-  text(ctx, theme.nom, W / 2, 113, 82, { color: '#171717', width: W - 136, serif: true, align: 'center' })
-  theme.etfs.forEach((fund, i) => card(ctx, fund, series[i], years, i, theme.etfs.length, art[i], theme.id))
+  ctx.fillStyle = '#faf6ec'; ctx.fillRect(0, 0, W, canvas.height)
+  text(ctx, 'ÉPARGNANT LIBRE', W / 2, 55, 36, { color: INK, align: 'center' })
+  const artPath = comparisonArt(theme.id, theme.etfs[0].isin), art = await loadArtImage(artPath)
+  // Compact shared art; content remains sourced text drawn dynamically above the background.
+  if (artPath.endsWith('.svg')) ctx.drawImage(art, W - PAD - 330, 135, 330, 148)
+  else {
+    const atlas = artPath === 'graphic/comparison-paper-cut.webp', sw = atlas ? art.width / 3 : art.width
+    const sx = atlas ? sw : 0
+    ctx.save(); ctx.globalAlpha = .8
+    ctx.drawImage(art, sx, 0, sw, art.height, W - PAD - 240, 120, 240, 180)
+    ctx.restore()
+  }
+  lines(ctx, theme.nom, PAD, 144, W - 2 * PAD - 370, 2, 87)
+  rule(ctx, PAD, 315, W - 2 * PAD)
+  theme.etfs.forEach((fund, i) => card(ctx, fund, series[i], years, i, theme.etfs.length))
+  rule(ctx, PAD, canvas.height - 100, W - 2 * PAD)
+  text(ctx, 'Pas un conseil financier', W / 2, canvas.height - 66, 28, { color: MUTED, align: 'center', weight: 400 })
   return canvas
 }
 export async function downloadComparatifEtfImage(theme) {
