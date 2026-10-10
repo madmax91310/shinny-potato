@@ -103,7 +103,10 @@ def merge_records(current, observations):
             comparable.get('source', {}).pop('checkedAt', None)
             previous = copy.deepcopy(old) if old else None
             if previous: previous.get('source', {}).pop('checkedAt', None)
-            if comparable == previous: continue
+            if comparable == previous:
+                if field == 'holdings':
+                    record[field]['source']['checkedAt'] = incoming['source']['checkedAt']
+                continue
             record[field]=incoming
             record.setdefault(field+'History', {}).setdefault(incoming['asOf'], copy.deepcopy(incoming))
         if not record:merged.pop(observation['id'],None)

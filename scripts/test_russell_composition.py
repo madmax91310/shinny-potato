@@ -30,6 +30,11 @@ class RussellTests(unittest.TestCase):
   updated=merge_records(prior,[{'id':'russell-1000','holdings':result}])
   self.assertEqual(updated['russell-1000']['facts'],prior['russell-1000']['facts'])
   self.assertEqual(updated['russell-1000']['holdingsHistory']['2026-06-30'],result)
+  rechecked=copy.deepcopy(result);rechecked['source']['checkedAt']='2026-10-11'
+  again=merge_records(updated,[{'id':'russell-1000','holdings':rechecked}])
+  self.assertEqual(again['russell-1000']['holdings']['source']['checkedAt'],'2026-10-11')
+  self.assertEqual(again['russell-1000']['holdings']['asOf'],'2026-06-30')
+  self.assertEqual(again['russell-1000']['holdingsHistory'],updated['russell-1000']['holdingsHistory'])
   self.assertEqual(merge_records(updated,[{'id':'russell-1000','errors':[{'field':'holdings','reason':'offline'}]}]),updated)
   older=copy.deepcopy(result);older['asOf']='2026-03-31'
   self.assertEqual(merge_records(updated,[{'id':'russell-1000','holdings':older}]),updated)
