@@ -10,7 +10,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 |---|---|---|
 | Historiques mensuels des simulateurs | 46/46 séries ; 44 nouveaux collecteurs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | ETF/ETC/ETP | 156/156 instruments, au moins un champ | Quotidienne |
-| Comparatif ETF | 70/70 parts raccordées dans 31 blocs ; 61 calendriers actifs, 9 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| Comparatif ETF | 65/65 parts raccordées dans 31 blocs ; 59 calendriers actifs, 6 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 42 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 46 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
