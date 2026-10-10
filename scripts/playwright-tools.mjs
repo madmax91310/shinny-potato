@@ -1094,8 +1094,9 @@ async function testDataReuse(page) {
   await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: 'networkidle' });
   await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-paypal');
   ok &&= (await page.locator('.mf-fact-text').innerText()).includes('clôtures mensuelles ajustées');
-  await choose(page.getByLabel('Choisir un fait'), 'monthly-dca-costco');
-  ok &&= (await page.locator('.mf-fact-text').innerText()).includes('l’argent qui attend d’être investi ne rapporte rien');
+  ok &&= (await page.getByLabel('Choisir un fait').locator('[data-option][data-value="monthly-dca-costco"]').count()) === 0;
+  await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-nvidia');
+  ok &&= (await page.locator('.mf-fact-text').innerText()) === buildMarketStory(MARKET_FACTS.find(fact => fact.id === 'monthly-drawdown-nvidia'));
   await page.goto(`${BASE}/bibliotheque-donnees?id=IE00B4JNQZ49&q=IE00B4JNQZ49`, { waitUntil: 'networkidle' });
   ok &&= (await page.locator('.ds-detail').innerText()).includes('Duels de portefeuilles');
   await page.goto(`${BASE}/banque-tweets`, { waitUntil: 'networkidle' });
