@@ -24,7 +24,7 @@ assert(missing.gaps.some(g=>g.id==='sp-global-dividend-aristocrats'&&g.field==='
 assert(missing.gaps.some(g=>g.id==='sp-euro-dividend-aristocrats'&&g.field==='holdings'&&g.status==='access-blocked'));
 console.log('Missing-field inventory: unknown products, exact-share conflicts, non-applicable fields and newly qualified calendars checked.');
 
-assert.equal(r.recentCalendars.length,11);
+assert.equal(r.recentCalendars.length,12);
 assert(r.recentCalendars.every(s=>s.configured));
 for(const id of recent) {
   const pending=buildGapInventory({etf:{},now:'2028-02-01'});
@@ -43,7 +43,7 @@ for (const id of recent) {
   assert.equal(calendarEligibility(id,eligibility.earliestPublicationDate).status,'waiting-publication');
   assert.equal(buildGapInventory({etf:{},now:eligibility.earliestPublicationDate}).recentCalendars.find(s=>s.id===id).firstYear,null);
 }
-assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2027-01-01').length,8);
+assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2027-01-01').length,9);
 assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2028-01-01').length,3);
 assert.deepEqual(calendarEligibility('unknown','2026-10-09'),{});
 assert(!r.insuranceGaps.some(g=>g.id==='lucya-cardif'&&g.field==='maxAllocation'));
@@ -53,3 +53,6 @@ assert(r.insuranceGaps.some(g=>g.id==='placement-direct-vie'&&g.field==='ceiling
 assert(!r.insuranceGaps.some(g=>g.id==='linxea-spirit-2'));
 const completeInsurance=[{id:'test',name:'Test',checkedAt:'2026-10-09',euroFunds:[{name:'Fonds',maxAllocation:100,ceiling:1000000}]}];
 assert.deepEqual(buildGapInventory({insurance:completeInsurance}).insuranceGaps,[]);
+
+assert.equal(calendarEligibility('FR001400ZGO4','2026-10-10').firstCompleteYear,2026);
+assert.equal(classifyInstrumentGap('FR001400ZGO4','performance','2026-10-10').status,'waiting-first-year');

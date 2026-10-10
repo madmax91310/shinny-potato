@@ -11,7 +11,7 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 | sectors | 141/156 |
 | holdings | 141/156 |
 
-## Premiers calendriers des 11 parts récentes
+## Premiers calendriers des 12 parts récentes
 
 Contrôle quotidien par le workflow existant. Une première année complète validée est intégrée au registre actif ; le proxy de simulation reste soumis à sa propre fenêtre minimale. Une erreur de transport ou de validation conserve les observations précédentes et déclenche le signal de collecte.
 
@@ -19,6 +19,7 @@ Les échéances ci-dessous sont des dates minimales de disponibilité, pas des p
 
 | Part | Collecteur configuré | État | Première année complète | Publication au plus tôt | Première année intégrée |
 |---|---|---|---|---|---|
+| Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Oui | Première année complète en cours ou à venir | 2027 | 2028-01-01 | — |
 | Amundi PEA Monde (MSCI World) UCITS ETF (FR001400U5Q4) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 | iShares MSCI Europe Small Cap UCITS ETF (IE0000N55FP4) | Oui | Première année complète en cours ou à venir | 2027 | 2028-01-01 | — |
@@ -35,7 +36,7 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
-| instrument | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2027. Publication possible à partir du 2028-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
