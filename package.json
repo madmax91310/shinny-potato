@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/build-performance-links.mjs",
+    "prebuild": "node scripts/build-performance-links.mjs",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs",
     "lint": "oxlint",

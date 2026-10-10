@@ -135,7 +135,9 @@ jobs:
       - run: node scripts/test-historical-publications.mjs
       - run: npm run stress-test:portfolios
       - run: npm run build
+      - run: node scripts/test-performance-links.mjs
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-performance-links.mjs
       - run: mkdir -p test-artifacts/company-analysis
       - run: node scripts/test-route-loading.mjs
       - run: node scripts/test-weekly-publications.mjs

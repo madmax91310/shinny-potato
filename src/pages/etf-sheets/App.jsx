@@ -1,4 +1,6 @@
 import { getPresentationCopy, presentationTicker } from './editorial.js'
+import { Link } from 'react-router-dom'
+import { getPerformanceHref } from '../../data/performance-links.js'
 import ActionMenu from '../../design-system/ActionMenu'
 import { downloadImage } from '../../design-system/downloadImage'
 import AssetPicker from '../../design-system/AssetPicker'
@@ -214,6 +216,7 @@ export default function App() {
   const seenThisSession = useRef([currentId])
 
   const currentEtf = byId[currentId]
+  const performanceHref = getPerformanceHref(currentEtf.isin)
 
   const options = useMemo(() => ETFS.map(instrumentOption), [])
 
@@ -289,6 +292,7 @@ export default function App() {
               <AssetPicker id="es-etf-select" className="es-select" label="Choisir un ETF" items={options} value={currentId} onChange={selectETF} selectOnGroupChange />
             </div>
             <Button type="button" variant="secondary" onClick={pickRandom}>🔄 ETF aléatoire</Button>
+            {performanceHref && <Button as={Link} to={performanceHref} variant="secondary">Voir sa performance</Button>}
           </div>
           <p className="es-disclaimer" style={{ marginTop: 16 }}>Choisis un ETF, puis ouvre l’aperçu pour relire ta publication. Les boutons ci-dessous créent les visuels.</p>
           <SupportAlternatives key={currentId} etf={currentEtf} onSelect={selectETF} />

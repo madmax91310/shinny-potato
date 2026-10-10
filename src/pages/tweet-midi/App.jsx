@@ -6,6 +6,8 @@ import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
+import { getPerformanceAssetId } from '../../data/performance-links.js';
 import {
   FORMATS, FORMAT_LABELS, MODES, SUBJECT_ALEATOIRE, pickForSelection, pickNext, getSubjectsForFormat,
   getSecondaryOptionsForFormat, buildTweetText, getMarketAsset,
@@ -56,13 +58,25 @@ function secondaryOptionLabel(format, value) {
 }
 
 export default function App({ initialFormat = FORMATS.ALEATOIRE, title, description }) {
+  const { search } = useLocation();
+  // A new link to the same tool must also update its controls and preview.
+  return <TweetMidiWorkspace key={search} search={search} initialFormat={initialFormat} title={title} description={description} />;
+}
+
+function TweetMidiWorkspace({ search, initialFormat, title, description }) {
+  const requestedAsset = initialFormat === FORMATS.PERFORMANCE_DEPUIS
+    ? getPerformanceAssetId(new URLSearchParams(search).get('isin')) : null;
+  // Recheck against the actual pool: a removed/unusable history cannot trigger
+  // pickForSelection's fallback to an unrelated asset.
+  const initialSubject = requestedAsset && getSecondaryOptionsForFormat(initialFormat, MODES.SIMPLE, requestedAsset).length
+    ? requestedAsset : SUBJECT_ALEATOIRE;
   const [format, setFormat] = useState(initialFormat);
   const [mode, setMode] = useState(MODES.SIMPLE);
-  const [subject, setSubject] = useState(SUBJECT_ALEATOIRE);
+  const [subject, setSubject] = useState(initialSubject);
   const [subjectB, setSubjectB] = useState(SUBJECT_ALEATOIRE);
   const [secondary, setSecondary] = useState(SUBJECT_ALEATOIRE);
   const [current, setCurrent] = useState(() => pickForSelection({
-    format: initialFormat, history: [],
+    format: initialFormat, subjectId: initialSubject, history: [],
     pouvoirAchat: { amount: 1000, startYear: 2015, paMode: 'brut', posteId: 'loyer' },
   }).item);
   const [history, setHistory] = useState(() => [current.id]);
