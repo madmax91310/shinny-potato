@@ -53,6 +53,7 @@ try {
   await page.getByRole('alert').filter({ hasText: /110/ }).waitFor()
   assert.equal(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled(), true)
   await page.getByRole('spinbutton', { name: 'Poids ETF 1' }).fill('80')
+  await page.getByRole('button', { name: 'Analyse', exact: true }).click()
   await page.locator('.scanner-metrics').waitFor()
   await page.getByRole('button', { name: 'Retirer iShares Core S&P 500 UCITS ETF', exact: true }).click()
   await page.locator('.scanner-settings').getByText('Ajouter un ETF', { exact: true }).click()
