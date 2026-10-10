@@ -48,20 +48,15 @@
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
       "runId": 38063055223,
-      "attempt": 1,
-      "completedAt": "2026-10-10T15:31:16Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-09T18:30:16Z",
+      "attempt": 2,
+      "completedAt": "2026-10-10T15:53:15Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-10T15:53:15Z",
       "collectionStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-10T15:31:16Z",
+      "publicationStatus": "success",
+      "lastCollectionSuccessAt": "2026-10-10T15:53:15Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38063055223",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/test-household-sculpture.mjs"
-        }
-      ],
+      "failures": [],
       "dataFailures": {}
     },
     "update-economic-data.yml": {
@@ -186,5 +181,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-10T15:33:26Z"
+  "updatedAt": "2026-10-10T15:53:15Z"
 }
