@@ -4,6 +4,7 @@ on:
     workflows:
       - Update editorial radar
       - Update active ETF issuer data
+      - Check scanner holdings freshness
       - Update active monthly market histories
       - Update active Bitcoin Yahoo data
       - Update World Bank monthly gold data

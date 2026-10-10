@@ -12,6 +12,7 @@ on:
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
       - 'scripts/monthly-automation.json'
+      - 'scripts/data_automation.py'
   pull_request:
     paths:
       - '.github/workflows/update-market-monthly.yml'
@@ -19,6 +20,8 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/*monthly*'
+      - 'scripts/data_automation.py'
+      - 'scripts/test_data_automation.py'
       - 'src/data/*monthly*'
       - 'src/data/market-history*'
       - 'src/data/history-statistics.js'
@@ -51,6 +54,7 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
       - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
       - id: collect
         continue-on-error: true
