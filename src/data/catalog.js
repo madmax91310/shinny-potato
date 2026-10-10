@@ -23,6 +23,7 @@ import { COMPARATOR_RETURNS_BY_ISIN } from './instrument-comparator-returns.js';
 import { COMPARATOR_RETURN_EVIDENCE } from './comparator-return-evidence.js';
 import { INDEX_RETURNS } from './index-returns.js';
 import { INDEX_FACTS, CURRENT_INDEX_SNAPSHOTS } from './index-facts.js';
+import { AUTOMATED_INDICES } from './automated-indices.js';
 import { ASSETS } from './portfolio-assets.js';
 import { ETFS } from './etf-cards.js';
 import { DEFAULT_THEMES } from './etf-themes.js';
@@ -102,13 +103,18 @@ function instrument(isin, identity) {
 }
 function index(id, history) {
   const current = CURRENT_INDEX_SNAPSHOTS[id];
+  const quarterly = AUTOMATED_INDICES[id]?.holdings;
+  const quarterlyFields = quarterly ? [field(`Positions trimestrielles · ${quarterly.asOf}`, 'automated-indices', quarterly, {
+    ...quarterly.source, asOf: quarterly.asOf, scope: `Indice exact ${id} ; dix principales lignes trimestrielles`,
+    method: quarterly.method, note: 'La date de ces positions est indépendante de celle des pays, secteurs et effectifs mensuels.'
+  })] : [];
   const values = [...Object.values(history), ...(current ? [current] : [])];
   const consumers = [];
   if (SHEETS.some((s) => values.includes(s.indexFacts))) consumers.push({ tool: 'Coulisses des indices', path: '/tweets-factsheets' });
   if ([...ALLOCATION_CASE_DEFINITIONS, ...INDEX_DECISION_CASE_DEFINITIONS].some(x => x.left === id || x.right === id)) consumers.push({ tool: 'Banque de tweets', path: '/banque-tweets' });
   return { id, type: 'index', name: values[0].index,
     aliases: [id, ...FAMILIES.flatMap((f) => f.indices.filter((x) => values.includes(x.indexFacts)).map((x) => x.name))], consumers,
-    fields: [...(current ? [field(`Composition courante · ${current.snapshot}`, 'index-facts', current, current.metadata)] : []), ...Object.entries(history).sort(([a], [b]) => /^\d{4}/.test(a) !== /^\d{4}/.test(b) ? (/^\d{4}/.test(a) ? -1 : 1) : b.localeCompare(a)).map(([key, facts]) => field(`Photographie · ${facts.snapshot}`, 'index-facts', facts, { ...facts.metadata, note: `${facts.provenance} Clé : ${key}` })), ...Object.entries(INDEX_RETURNS[id] ?? {}).map(([date, series]) => field(`Rendements d’indice · ${date}`, 'index-returns', series, series.metadata))] };
+    fields: [...quarterlyFields, ...(current ? [field(`Composition courante · ${current.snapshot}`, 'index-facts', current, current.metadata)] : []), ...Object.entries(history).sort(([a], [b]) => /^\d{4}/.test(a) !== /^\d{4}/.test(b) ? (/^\d{4}/.test(a) ? -1 : 1) : b.localeCompare(a)).map(([key, facts]) => field(`Photographie · ${facts.snapshot}`, 'index-facts', facts, { ...facts.metadata, note: `${facts.provenance} Clé : ${key}` })), ...Object.entries(INDEX_RETURNS[id] ?? {}).map(([date, series]) => field(`Rendements d’indice · ${date}`, 'index-returns', series, series.metadata))] };
 }
 function companyRecord(company) {
   const scope = `${company.name} · comptes consolidés · ${company.currency}`;

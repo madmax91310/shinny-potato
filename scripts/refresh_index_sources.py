@@ -36,12 +36,18 @@ def collect_one(config, now, fetch=download):
             body = fetch(url); cache[url] = (pdf_text(body), proof(body))
         return cache[url]
     result = {'id': config['id'], 'name': config['name'], 'errors': [], 'unavailable': []}
+    if config.get('holdingsSourceUrl'):
+        try:
+            from collect_russell_composition import collect_quarterly_holdings
+            result['holdings'] = collect_quarterly_holdings(config, now, fetch)
+        except Exception as error:
+            result['errors'].append({'field':'holdings','reason':str(error),'url':config['holdingsSourceUrl']})
     if config.get('collectComposition', True):
         try:
             if config.get('compositionParser') == 'russell-printed-composition':
                 from collect_russell_composition import collect as russell_composition
                 facts = russell_composition(config, now, fetch)
-                result['unavailable'].append('holdings: Russell 1000 top-ten individual weights not published; no ETF substitution')
+                result['unavailable'].append('monthly holdings: individual weights absent from monthly factsheet; quarterly membership weights collected separately with their own date')
             elif config.get('compositionParser') == 'amundi-index-document':
                 from collect_index_extensions import collect_amundi_composition
                 facts = collect_amundi_composition(config, now, fetch)
@@ -86,7 +92,7 @@ def merge_records(current, observations):
     merged=copy.deepcopy(current)
     for observation in observations:
         record=merged.setdefault(observation['id'],{})
-        for field in ['facts','returns']:
+        for field in ['facts','returns','holdings']:
             incoming=observation.get(field)
             if not incoming:continue
             old=record.get(field)
@@ -97,7 +103,10 @@ def merge_records(current, observations):
             comparable.get('source', {}).pop('checkedAt', None)
             previous = copy.deepcopy(old) if old else None
             if previous: previous.get('source', {}).pop('checkedAt', None)
-            if comparable == previous: continue
+            if comparable == previous:
+                if field == 'holdings':
+                    record[field]['source']['checkedAt'] = incoming['source']['checkedAt']
+                continue
             record[field]=incoming
             record.setdefault(field+'History', {}).setdefault(incoming['asOf'], copy.deepcopy(incoming))
         if not record:merged.pop(observation['id'],None)
