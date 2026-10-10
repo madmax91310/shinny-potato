@@ -6,6 +6,7 @@ import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as bui
 import { buildReview } from '../src/pages/data-review/lib.js';
 import { BROKER_EVIDENCE } from '../src/pages/broker-comparator/evidence.js';
 import { BROKER_EDITORIAL } from '../src/pages/broker-comparator/editorial.js';
+import { brokerPublicationCopy } from '../src/pages/broker-comparator/publicationCopy.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { FACTS as MARKET_FACTS } from '../src/pages/market-facts/data.js';
@@ -544,10 +545,10 @@ async function testBrokerComparator(page) {
     ? `Pour quitter l’un ou l’autre : ${BROKER_EDITORIAL.xtb.sortant}`
     : `Pour quitter XTB : ${BROKER_EDITORIAL.xtb.sortant}\n\nPour quitter Saxo : ${BROKER_EDITORIAL.saxo.sortant}`;
   valid &&= post.startsWith('⚫ XTB ou ⚪ Saxo pour ton PEA ?')
-    && post.includes(`💱 Si une conversion est nécessaire\n\nXTB : ${BROKER_EVIDENCE.xtb.change.post}\n\nSaxo : ${BROKER_EVIDENCE.saxo.change.post}`)
+    && post.includes(brokerPublicationCopy(`💱 Si une conversion est nécessaire\n\nXTB : ${BROKER_EVIDENCE.xtb.change.post}\n\nSaxo : ${BROKER_EVIDENCE.saxo.change.post}`))
     && post.includes('PEA Jeune : aucun des deux ❌')
-    && post.includes(BROKER_EVIDENCE.xtb.ifu.summary) && post.includes(BROKER_EVIDENCE.saxo.ifu.summary)
-    && post.includes(outgoing);
+    && post.includes(brokerPublicationCopy(BROKER_EVIDENCE.xtb.ifu.summary)) && post.includes(brokerPublicationCopy(BROKER_EVIDENCE.saxo.ifu.summary))
+    && post.includes(brokerPublicationCopy(outgoing));
   await page.locator('.bc-evidence-broker').last().locator('summary').click();
   valid &&= (await page.locator('.bc-evidence').innerText()).includes('VIP')
     && (await page.locator('.bc-evidence').innerText()).includes('Conversion de devises');
@@ -559,157 +560,7 @@ async function testBrokerComparator(page) {
   await page.getByRole('button', { name: 'Copier le tweet', exact: true }).click();
   valid &&= await page.evaluate(expected => window.__brokerCopied === expected, edited);
   await page.locator('.bc-duel-chip').filter({ hasText: 'TR vs IBKR' }).click();
-  valid &&= (await page.locator('.bc-tweet-textarea').inputValue()) === buildBrokerPost(['tr', 'ibkr']);
-  await page.setViewportSize({ width: 390, height: 844 });
-  valid &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
-  await page.setViewportSize({ width: 1280, height: 720 });
-  record('Comparatif courtiers', valid, '28 duels : texte court, réserves, sources, copie après modification et image PNG');
-}
-
-async function testLexicon(page) {
-  await page.goto(`${BASE}/fiche-lexique`, { waitUntil: 'networkidle' });
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
-    configurable: true, value: { writeText: async text => { window.__lexiconCopied = text; } },
-  }));
-  const subjects = FICHE_LEXIQUE_SUBJECTS.flatMap(group => group.items);
-  const failed = [];
-  for (const subject of subjects) {
-    await choose(page.locator('#subject-select'), subject.id);
-    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
-    const expected = getFicheLexiqueText(subject.id);
-    const post = await page.locator('pre').innerText();
-    await page.getByRole('button', { name: /Copier le texte|Copié ✓/ }).click();
-    const copied = await page.evaluate(() => window.__lexiconCopied);
-    if (post !== expected || copied !== expected || /undefined|NaN/.test(post)) failed.push(subject.id);
-  }
-  await page.setViewportSize({ width: 390, height: 844 });
-  const mobile = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
-  await page.setViewportSize({ width: 1280, height: 720 });
-  record('Fiche lexique', failed.length === 0 && mobile, `${subjects.length} situations, génération et copie exactes, mobile ; échecs : ${failed.join(', ') || 'aucun'}`);
-}
-
-async function testTweetMidi(page) {
-  await page.goto(`${BASE}/tweet-midi`, { waitUntil: "networkidle" });
-  const formats = ["Dilemme", "Fiche lexique", "Comparatif ETF", "Il y a X ans", "Performance depuis", "Pouvoir d'achat"];
-  let failed = [];
-  for (const label of formats) {
-    await page.getByRole("button", { name: label, exact: true }).click();
-    await page.waitForTimeout(150);
-    const text = await page.locator("body").innerText();
-    if (text.length < 500) failed.push(label);
-  }
-  await page.getByRole('button', { name: 'Dilemme', exact: true }).click();
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
-    configurable: true, value: { writeText: async text => { window.__dilemmeCopied = text; } },
-  }));
-  for (const situation of SITUATIONS) {
-    await choose(page.locator('#subject-select'), situation.id);
-    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
-    const post = await page.locator('pre').innerText();
-    const variant = DILEMMES.find(d => d.situationId === situation.id && post.startsWith(d.contexteTexte) && post.includes(d.tension));
-    const expected = variant && [variant.contexteTexte, `${variant.choix} 👇`,
-      `🅰️ ${variant.optionA}`, `🅱️ ${variant.optionB}`, variant.tension, `💬 ${variant.question}`].join('\n\n');
-    await page.getByRole('button', { name: /Copier le texte|Copié ✓/ }).click();
-    if (post !== expected || (await page.evaluate(() => window.__dilemmeCopied)) !== expected
-        || !post.split('\n').at(-1).startsWith('💬 A ou B')) failed.push(`Dilemme : ${situation.id}`);
-  }
-  await page.getByRole("button", { name: "Il y a X ans", exact: true }).click();
-  await choose(page.locator("#subject-select"), "bitcoin");
-  await choose(page.locator("#secondary-select"), "1");
-  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
-  await page.locator("#niveau-actuel").fill(String(HISTORY.bitcoin.points.at(-1).price));
-  const past = new Date();
-  const pastYm = `${past.getFullYear() - 1}-${String(past.getMonth() + 1).padStart(2, "0")}`;
-  const historical = HISTORY.bitcoin.points.find(p => p.date === pastYm);
-  const anniversary = await page.locator("pre").innerText();
-  if (historical && !anniversary.includes(fmtHistoryPrice(historical.price, "USD"))) failed.push("Il y a X ans : clôture historique Bitcoin");
-  for (const id of ['berkshire', 'asml']) {
-    await choose(page.locator('#subject-select'), id);
-    await choose(page.locator('#secondary-select'), '1');
-    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
-    await page.locator('#niveau-actuel').fill(String(HISTORY[id].anniversaryPoints.at(-1).price));
-    const raw = HISTORY[id].anniversaryPoints.find(p => p.date === pastYm);
-    const post = await page.locator('pre').innerText();
-    if (!post.includes(fmtHistoryPrice(raw.price, HISTORY[id].currency)) || /NaN|undefined/.test(post)) failed.push(`${id} : prix brut anniversaire`);
-  }
-  await page.getByRole("button", { name: "Performance depuis", exact: true }).click();
-  await choose(page.locator('#subject-select'), 'sp500');
-  await choose(page.locator('#secondary-select'), '2016');
-  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
-  const performance = await page.locator('pre').innerText();
-  const minimal = /^📈 Performance du S&P 500 depuis 2016 👇\nTotal Return · USD · dividendes bruts réinvestis\n\n/u.test(performance)
-    && performance.split('\n').at(-1).startsWith('Cumulé sur la période : ')
-    && !/💬|Livret A|Cours en dollars/u.test(performance)
-    && (await page.getByRole('checkbox').count()) === 0;
-  if (!minimal) failed.push('Performance depuis : format minimal');
-  await choose(page.locator('#subject-select'), 'stoxx600');
-  await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
-  const stoxxPerformance = await page.locator('pre').innerText();
-  const stoxxAnnual = (HISTORY.stoxx600.points.find(p => p.date === '2025-12').price
-    / HISTORY.stoxx600.points.find(p => p.date === '2024-12').price - 1) * 100;
-  if (!stoxxPerformance.includes(`2025 : ${fmtHistoryPct(stoxxAnnual)}`)
-      || stoxxPerformance.includes('2026 :')) failed.push('Performance depuis : historique officiel STOXX');
-  await page.getByRole("button", { name: "Comparatif (2 actifs)", exact: true }).click();
-  await choose(page.locator('#subject-select-a'), 'sp500');
-  await choose(page.locator('#subject-select-b'), 'bitcoin');
-  await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
-  const comparison = await page.locator('pre').innerText();
-  if ((comparison.match(/^📈 Performance /gmu) ?? []).length !== 2
-      || (comparison.match(/^Cumulé sur la période : /gmu) ?? []).length !== 2
-      || comparison.includes('💬')) failed.push('Performance depuis : comparatif');
-  await page.getByRole('button', { name: 'Performance depuis', exact: true }).click();
-  for (const id of ['berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
-    await choose(page.locator('#subject-select'), id);
-    await choose(page.locator('#secondary-select'), '2020');
-    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
-    const post = await page.locator('pre').innerText();
-    if (!post.includes('2025 :') || post.includes('2026 :') || /NaN|undefined/.test(post)) failed.push(`Nouvelle entreprise ${id}`);
-  }
-  await page.getByRole('button', { name: "Pouvoir d'achat", exact: true }).click();
-  await choose(page.locator('[data-selector]'), '2025');
-  await page.getByRole('button', { name: '1000 €', exact: true }).click();
-  for (const [poste, expected] of [[null, fmtPowerEUR(computeBrut(1000, 2025).newAmount)], ['Alimentation', fmtPowerEUR(computePoste(1000, 2025, 'alimentation').newAmount)], ['Énergie', fmtPowerEUR(computePoste(1000, 2025, 'carburant').newAmount)]]) {
-    if (poste) {
-      await page.getByRole('button', { name: 'Par poste', exact: true }).click();
-      await page.getByRole('button', { name: new RegExp(poste) }).click();
-    } else await page.getByRole('button', { name: "Revenu nécessaire", exact: true }).click();
-    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
-    const post = await page.locator('pre').innerText();
-    if (!post.includes(expected) || !post.includes(PRICE_OBSERVATION.label) || post.includes('provisoire') !== PRICE_OBSERVATION.provisional || /12 mois glissants|NaN|undefined/.test(post)) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : observation datée`);
-    const [download] = await Promise.all([
-      page.waitForEvent('download'),
-      page.getByRole('button', { name: /Télécharger.*image|Télécharger.*PNG/i }).click(),
-    ]);
-    if (!(await download.path())) failed.push(`Pouvoir d’achat ${poste ?? 'général'} : PNG`);
-  }
-  record("Tweet Midi", failed.length === 0, failed.length ? `formats sans contenu suffisant: ${failed.join(", ")}` : `${formats.length} formats cyclés`);
-}
-
-async function testFeeImpact(page) {
-  await page.goto(`${BASE}/impact-frais`, { waitUntil: "networkidle" });
-  const preview = page.locator('.fi-preview-text');
-  const initial = await preview.innerText();
-  let editorialOk = /^💸 22\s115\s€ de moins après 20 ans/.test(initial)
-    && /153\s402\s€/.test(initial) && /131\s287\s€/.test(initial)
-    && /Dans les deux cas, tu as versé 72\s000\s€/.test(initial)
-    && initial.includes('ils comprennent aussi ces gains manqués')
-    && initial.includes('Tu connais le montant des frais annuels de tes placements ?')
-    && initial.includes('Hypothèse de rendement constant')
-    && !/Brouillon|à compléter|Quand je vois ça|Tu connais celui/.test(initial);
-  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
-    configurable: true, value: { writeText: async text => { window.__feeCopiedText = text; } },
-  }));
-  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click();
-  editorialOk &&= await page.evaluate(expected => window.__feeCopiedText === expected, initial);
-  // Les couleurs suivent le niveau des frais, même si les scénarios sont inversés.
-  await page.getByRole('button', { name: '1,5 %', exact: true }).first().click();
-  await page.getByRole('button', { name: '0,20 %', exact: true }).last().click();
-  editorialOk &&= /🔴 Avec 1,5 %/.test(await preview.innerText()) && /🟢 Avec 0,20 %/.test(await preview.innerText());
-  await page.getByRole('button', { name: '0,20 %', exact: true }).first().click();
-  editorialOk &&= (await preview.innerText()).includes('capitaux simulés sont identiques') && !(await preview.innerText()).includes('gains manqués');
-  await page.locator('#fi-punchline').fill('Ma conclusion personnalisée');
-  editorialOk &&= (await preview.innerText()).includes('Ma conclusion personnalisée');
-  await page.getByRole('button', { name: '500 €', exact: true }).click();
+  valid &&= (await page.locator('.bc-tweet-textarea').inputValue()) === buildBrokerPost(['…2896 tokens truncated… page.getByRole('button', { name: '500 €', exact: true }).click();
   await page.waitForFunction(() => document.querySelector('#fi-punchline').value === '');
   editorialOk &&= !(await preview.innerText()).includes('Ma conclusion personnalisée');
   await page.getByRole("button", { name: /Aléatoire/i }).click();
