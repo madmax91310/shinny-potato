@@ -1,45 +1,74 @@
 import { percent, compare } from './lib.js'
 import { displayLabel } from './data.js'
+
+// Fixed editorial grid: long names and all twelve allocations keep their own space.
 export function renderScannerImage(a, b, lines, label) {
   const result = b ?? a, canvas = document.createElement('canvas')
   canvas.width = 1600; canvas.height = 1200
   const c = canvas.getContext('2d')
-  const ink = '#20392f', green = '#317a58', cream = '#f7f2e8', accent = '#d9b769'
-  c.fillStyle = cream; c.fillRect(0, 0, 1600, 1200)
-  const text = (s, x, y, size = 28, color = ink, bold = false, max = 1430) => {
-    c.fillStyle = color; c.font = `${bold ? 'bold ' : ''}${size}px Arial`
-    while (c.measureText(s).width > max && size > 16) { size--; c.font = `${bold ? 'bold ' : ''}${size}px Arial` }
+  const ink = '#173c32', muted = '#64776f', green = '#26785a', paper = '#f4f7f4', rule = '#dce6df'
+  c.fillStyle = paper; c.fillRect(0, 0, 1600, 1200)
+  function text(value, x, y, size = 26, color = ink, bold = false, width = 1472) {
+    c.fillStyle = color; c.font = `${bold ? '600' : '400'} ${size}px Arial`
+    const source = String(value); let s = source
+    while (c.measureText(s).width > width && s.length) s = s.slice(0, -1)
+    if (s !== source) {
+      while (c.measureText(s + '…').width > width && s.length) s = s.slice(0, -1)
+      s += '…'
+    }
     c.fillText(s, x, y)
   }
-  text('Ce que tes ETF ont en commun', 75, 85, 54, ink, true)
-  text(lines.map(l => `${percent(l.weight)} ${label(l.isin)}`).join('  ·  '), 75, 140, 26)
-  const metrics = [ ['Titres actions identifiés', result.positions.length.toLocaleString('fr-FR')], ['Poids des 10 premières lignes', percent(result.top10)], ['Titres présents dans plusieurs ETF', percent(result.sharedWeight)] ]
+  function card(x, y, w, h, color = '#ffffff') {
+    c.fillStyle = color; c.beginPath(); c.roundRect(x, y, w, h, 22); c.fill()
+  }
+  function line(x, y, w) { c.strokeStyle = rule; c.lineWidth = 1; c.beginPath(); c.moveTo(x, y); c.lineTo(x + w, y); c.stroke() }
+  text('ÉPARGNANT LIBRE', 64, 60, 22, green, true)
+  text(b ? 'ALLOCATION APRÈS' : 'SCANNER ETF', 1210, 60, 20, muted, true, 326)
+  text('Ton portefeuille, en clair', 64, 132, 62, ink, true)
+  text(result.complete ? 'Les compositions complètes de tes ETF, réunies par titre.' : `Analyse partielle · ${percent(result.analyzedWeight)} du portefeuille couvert`, 64, 180, 27, muted)
+  const metrics = [['Titres actions identifiés', result.positions.length.toLocaleString('fr-FR')], ['Poids des 10 premières lignes', percent(result.top10)], ['Poids des titres communs', percent(result.sharedWeight)]]
   metrics.forEach(([name, value], i) => {
-    const x = 75 + i * 495
-    c.fillStyle = i === 1 ? green : '#e9e2d2'; c.fillRect(x, 180, 465, 155)
-    text(name, x + 24, 225, 23, i === 1 ? '#ffffff' : ink, false, 420)
-    text(value, x + 24, 295, 55, i === 1 ? '#ffffff' : ink, true)
+    const x = 64 + i * 498, dark = i === 1
+    card(x, 214, 476, 138, dark ? ink : '#ffffff')
+    text(name, x + 26, 251, 22, dark ? '#c8ded4' : muted, false, 424)
+    text(value, x + 26, 324, 58, dark ? '#ffffff' : ink, true, 424)
   })
-  text('Principales positions', 75, 405, 34, ink, true)
-  result.positions.slice(0, 7).forEach((r, i) => {
-    const y = 465 + i * 65
-    text(r.name, 75, y, 26, ink, false, 620)
-    c.fillStyle = '#e9e2d2'; c.fillRect(735, y - 24, 240, 24)
-    c.fillStyle = green; c.fillRect(735, y - 24, 240 * r.weight / Math.max(1, result.positions[0].weight), 24)
-    text(percent(r.weight), 1000, y, 27, ink, true)
+  card(64, 382, 922, 414); card(1010, 382, 526, 414)
+  text('Les 5 premières positions', 92, 429, 29, ink, true, 860)
+  text('Poids dans le portefeuille', 92, 466, 21, muted)
+  const top = result.positions.slice(0, 5), maxWeight = Math.max(1, top[0]?.weight ?? 0)
+  top.forEach((r, i) => {
+    const y = 516 + i * 53
+    text(String(i + 1).padStart(2, '0'), 92, y, 20, muted)
+    text(r.name, 140, y, 25, ink, i === 0, 480)
+    c.fillStyle = rule; c.beginPath(); c.roundRect(648, y - 15, 180, 8, 4); c.fill()
+    c.fillStyle = green; c.beginPath(); c.roundRect(648, y - 15, 180 * r.weight / maxWeight, 8, 4); c.fill()
+    text(percent(r.weight), 854, y, 25, ink, true, 110)
+    if (i < top.length - 1) line(140, y + 18, 818)
   })
-  text('Pays', 1170, 405, 32, ink, true, 350)
-  result.countries.slice(0, 4).forEach((r, i) => { text(displayLabel(r.name), 1170, 461 + i * 58, 24, ink, false, 350); text(percent(r.weight), 1170, 487 + i * 58, 22, green, true) })
-  text('Premier secteur', 1170, 755, 27, ink, true, 350)
-  text(displayLabel(result.sectors[0].name), 1170, 800, 23, ink, false, 350)
-  text(percent(result.sectors[0].weight), 1170, 835, 32, green, true)
+  text('Principaux pays', 1040, 429, 29, ink, true, 466)
+  result.countries.slice(0, 4).forEach((r, i) => {
+    const y = 484 + i * 52
+    text(displayLabel(r.name), 1040, y, 25, ink, false, 330)
+    text(percent(r.weight), 1392, y, 24, green, true, 120)
+  })
+  line(1040, 676, 466)
+  const sector = result.sectors[0]
+  text('Premier secteur', 1040, 715, 21, muted)
+  text(sector ? `${displayLabel(sector.name)} · ${percent(sector.weight)}` : 'Non renseigné', 1040, 758, 27, ink, true, 466)
+  text(b ? 'Ta répartition après' : 'Ta répartition', 64, 843, 27, ink, true)
+  lines.forEach((l, i) => {
+    const rows = Math.ceil(lines.length / 3), col = Math.floor(i / rows), row = i % rows
+    const x = 64 + col * 498, y = 880 + row * 46
+    text(percent(l.weight), x, y, 24, green, true, 95)
+    text(label(l.isin), x + 100, y, 22, ink, false, 366)
+    text(l.isin, x + 100, y + 19, 15, muted, false, 366)
+  })
   const delta = b && compare(a, b)
-  c.fillStyle = accent; c.fillRect(75, 930, 1450, 70)
-  text(delta ? `10 premières lignes : ${percent(a.top10)} avant → ${percent(b.top10)} après` : `Compositions couvertes : ${percent(result.analyzedWeight)} du portefeuille`, 100, 975, 29, ink, true, 1400)
+  line(64, 1060, 1472)
+  text(delta ? `Concentration des 10 premières lignes : ${percent(a.top10)} avant → ${percent(b.top10)} après` : `${result.sharedCount.toLocaleString('fr-FR')} titres présents dans plusieurs ETF · Actions identifiées : ${percent(result.identifiedWeight)}`, 64, 1098, 24, ink, true)
   const dates = [...new Set(result.sources.map(s => s.asOf))].sort().join(' / ')
-  text(`Compositions des fonds : ${dates} · Source : iShares / BlackRock`, 75, 1048, 24)
-  text(`Rapprochement par ISIN · Actions identifiées : ${percent(result.identifiedWeight)} du portefeuille`, 75, 1090, 23)
-  text(`${result.complete ? '' : 'Analyse partielle · '}Liquidités et dérivés hors doublons · Pas un conseil financier`, 75, 1130, 23)
-  text('Épargnant Libre', 1255, 1174, 23, green, true, 270)
+  text(`Compositions au ${dates} · Sources des fonds dans l’export JSON`, 64, 1143, 20, muted)
+  text('Rapprochement par ISIN · Classes d’actions distinctes · Liquidités et dérivés hors doublons', 64, 1174, 20, muted)
   return canvas
 }

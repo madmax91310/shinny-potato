@@ -35,3 +35,7 @@
 .scanner-draft textarea{width:100%;margin:12px 0;padding:16px;border:1px solid #cad1c1;border-radius:14px;color:#20392f;background:white;line-height:1.6;resize:vertical}
 .scanner-app button:focus-visible,.scanner-app input:focus-visible,.scanner-app summary:focus-visible{outline:3px solid #317a58;outline-offset:3px}
 @media(max-width:700px){.scanner-metrics{grid-template-columns:1fr}.scanner-metrics>div{display:flex;align-items:center;justify-content:space-between;gap:12px}.scanner-metrics strong{margin:0;white-space:nowrap}.scanner-breakdowns{grid-template-columns:1fr}.scanner-panel{padding:16px}.scanner-toolbar .workspace-button{flex:1 1 160px}.scanner-line label{display:block}.scanner-line input{display:block;margin-top:6px}.scanner-table-wrap table{min-width:460px}}
+.scanner-selection{margin-top:18px;padding-top:16px;border-top:1px solid #dce6df}
+.scanner-filter{display:flex;gap:10px;align-items:center;margin:18px 0;line-height:1.5}
+.scanner-filter input{width:20px;height:20px;accent-color:#26785a;flex:none}
+.scanner-line>button{margin-top:10px;font-size:.85rem}

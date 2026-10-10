@@ -10,6 +10,7 @@ import { analyze, buildTweet, compare, percent, readiness, validateAllocation } 
 import { loadManifest, loadSnapshot } from './loader.js'
 import { EXAMPLES, newPlan, displayLabel } from './data.js'
 import { renderScannerImage } from './image.js'
+import { benchmarkChoices, selectionItems } from './selection.js'
 import './style.css'
 const STORAGE = 'epargnant-libre-scanner-v1'
 const label = isin => { try { return getInstrumentName(isin) } catch { return isin } }
@@ -36,6 +37,7 @@ function Result({ result }) {
 export default function App() {
   const [plan, setPlan] = useState(newPlan), [active, setActive] = useState('a'), [manifest, setManifest] = useState(null)
   const [snapshots, setSnapshots] = useState({}), [loading, setLoading] = useState(true), [error, setError] = useState(''), [loadErrors, setLoadErrors] = useState({})
+  const [selectionMode, setSelectionMode] = useState('etf'), [chosenIndex, setChosenIndex] = useState(''), [editTarget, setEditTarget] = useState(null), [completeOnly, setCompleteOnly] = useState(false)
   const [reload, setReload] = useState(0), [clock, setClock] = useState(new Date()), [draft, setDraft] = useState(null), [chosen, setChosen] = useState('IE00B4L5Y983'), [tab, setTab] = useState('analysis')
   useEffect(() => { const id = setInterval(() => setClock(new Date()), 60000); return () => clearInterval(id) }, [])
   useEffect(() => {
@@ -72,15 +74,26 @@ export default function App() {
   function change(fn) { setPlan(p => { const next = structuredClone(p); fn(next); return next }); setDraft(null) }
   function saveFile(content, name, type) { const url = URL.createObjectURL(new Blob([content], { type })); const link = document.createElement('a'); link.href = url; link.download = name; startPublicationDownload(link); setTimeout(() => URL.revokeObjectURL(url), 1000) }
   const renderImage = () => renderScannerImage(results.a, results.b, plan.comparison ? plan.b : plan.a, label)
-  function restore() { try { const saved = JSON.parse(localStorage.getItem(STORAGE)); if (saved?.version !== 1 || typeof saved.comparison !== 'boolean') throw new Error(); validateAllocation(saved.a); validateAllocation(saved.b); setPlan(saved); setActive('a'); setDraft(null); notifyPublication('Répartition chargée.') } catch { notifyPublication('Aucune sauvegarde valide sur cet appareil.', 'error') } }
-  const items = manifest ? [...Object.entries(manifest.instruments), ...Object.entries(manifest.peaCoverage ?? {})].map(([isin, e]) => {
-    const reason = readiness(e, manifest.policy, clock)
-    let pea = false; try { pea = getInstrumentPeaStatus(isin) === true } catch { /* Registry remains authoritative. */ }
-    return { id: isin, isin, label: label(isin), search: e.index ?? '', group: pea ? 'PEA' : 'Compositions de fonds', badges: [...(pea ? ['PEA'] : []), reason ? 'Indisponible' : 'Complète'], detail: reason ?? `Composition du ${e.asOf} · ${e.positionCount} positions publiées` }
-  }) : []
+  function restore() { try { const saved = JSON.parse(localStorage.getItem(STORAGE)); if (saved?.version !== 1 || typeof saved.comparison !== 'boolean') throw new Error(); validateAllocation(saved.a); validateAllocation(saved.b); setPlan(saved); setActive('a'); setEditTarget(null); setDraft(null); notifyPublication('Répartition chargée.') } catch { notifyPublication('Aucune sauvegarde valide sur cet appareil.', 'error') } }
+  const items = manifest ? selectionItems(manifest, clock, label, isin => { try { return getInstrumentPeaStatus(isin) } catch { return null } }) : []
+  const benchmarks = benchmarkChoices(items)
+  const visibleItems = items.filter(item => (!completeOnly || item.complete) && (selectionMode !== 'index' || item.index === chosenIndex))
+  function chooseMode(mode) {
+    setSelectionMode(mode)
+    if (mode === 'index') {
+      const index = benchmarks.find(b => b.funds.some(f => f.id === chosen)) ?? benchmarks[0]
+      setChosenIndex(index?.id ?? '')
+      if (index && !index.funds.some(f => f.id === chosen)) setChosen(index.funds[0].id)
+    }
+  }
+  function chooseIndex(index) {
+    setChosenIndex(index)
+    const group = benchmarks.find(b => b.id === index)
+    if (group) setChosen(group.funds[0].id)
+  }
   const current = plan[plan.comparison ? active : 'a']
   const delta = results?.b && compare(results.a, results.b)
-  return <div className="scanner-app"><PageHeader title="Scanner ETF" subtitle="Regarde les positions communes, les concentrations et l’effet d’un changement d’allocation, à partir des compositions complètes publiées par les fonds."/>
+  return <div className="scanner-app"><PageHeader title="Scanner ETF" subtitle="Choisis tes ETF ou recherche leur indice. Analyse les titres communs et les concentrations à partir des compositions complètes disponibles."/>
     <div className="scanner-toolbar"><Button variant="secondary" onClick={() => { setReload(x => x + 1); setDraft(null) }}>Actualiser les données</Button><Button variant="secondary" onClick={() => { try { localStorage.setItem(STORAGE, JSON.stringify(plan)); notifyPublication('Répartition sauvegardée sur cet appareil.') } catch { notifyPublication('Sauvegarde indisponible.', 'error') } }}>Sauvegarder ma répartition</Button><Button variant="secondary" onClick={restore}>Charger ma sauvegarde</Button></div>
     <p className="scanner-note">Les allocations restent dans ton navigateur. Les compositions sont contrôlées quotidiennement ; les données trop anciennes sont exclues automatiquement.</p>
     {error && <p role="alert">{error}</p>}
@@ -94,12 +107,23 @@ export default function App() {
         saveFile('\ufeff' + rows.join('\n'), 'scanner-etf.csv', 'text/csv;charset=utf-8')
       }}>Exporter CSV</Button>
     </>}>
-      <section className="tool-settings scanner-settings"><section className="scanner-panel"><h2>Ma répartition</h2><div className="scanner-tabs"><button aria-pressed={!plan.comparison} onClick={() => { change(p => { p.comparison = false }); setActive('a') }}>Analyser</button><button aria-pressed={plan.comparison} onClick={() => change(p => { p.comparison = true })}>Comparer avant / après</button></div>
-        {plan.comparison && <div className="scanner-tabs" role="group" aria-label="Répartition à modifier">{[['a', 'Avant'], ['b', 'Après']].map(([id, name]) => <button key={id} aria-pressed={active === id} onClick={() => setActive(id)}>{name}</button>)}<button onClick={() => change(p => { p.b = structuredClone(p.a) })}>Copier avant vers après</button></div>}
-        <div className="scanner-examples">{EXAMPLES.map(e => <button key={e.label} onClick={() => change(p => { p[active] = structuredClone(e.lines) })}>{e.label}</button>)}</div>
-        {current.map((line, index) => <article key={line.isin} className="scanner-line"><strong>{label(line.isin)}</strong><small>{line.isin}</small><div><label>Poids (%)<input aria-label={`Poids ETF ${index + 1}`} type="number" min="0" max="100" step="0.1" value={line.weight} onChange={e => change(p => { p[active][index].weight = e.target.value === '' ? 0 : Number(e.target.value) })}/></label><button aria-label={`Retirer ${label(line.isin)}`} onClick={() => change(p => { p[active].splice(index, 1) })}>Retirer</button></div>{manifest && readiness(manifest.instruments[line.isin], manifest.policy, clock) && <p className="scanner-warning">Composition complète indisponible ou trop ancienne. Cette ligne sera hors calcul.</p>}</article>)}
+      <section className="tool-settings scanner-settings"><section className="scanner-panel"><h2>Ma répartition</h2><div className="scanner-tabs"><button aria-pressed={!plan.comparison} onClick={() => { change(p => { p.comparison = false }); setActive('a'); setEditTarget(null) }}>Analyser</button><button aria-pressed={plan.comparison} onClick={() => { change(p => { p.comparison = true }); setEditTarget(null) }}>Comparer avant / après</button></div>
+        {plan.comparison && <div className="scanner-tabs" role="group" aria-label="Répartition à modifier">{[['a', 'Avant'], ['b', 'Après']].map(([id, name]) => <button key={id} aria-pressed={active === id} onClick={() => { setActive(id); setEditTarget(null) }}>{name}</button>)}<button onClick={() => change(p => { p.b = structuredClone(p.a) })}>Copier avant vers après</button></div>}
+        <div className="scanner-examples">{EXAMPLES.map(e => <button key={e.label} onClick={() => { change(p => { p[active] = structuredClone(e.lines) }); setEditTarget(null) }}>{e.label}</button>)}</div>
+        {current.map((line, index) => <article key={line.isin} className="scanner-line"><strong>{label(line.isin)}</strong><small>{line.isin}</small><button onClick={() => { setEditTarget(index); setChosen(line.isin); setSelectionMode('etf') }}>Modifier le support {index + 1}</button><div><label>Poids (%)<input aria-label={`Poids ETF ${index + 1}`} type="number" min="0" max="100" step="0.1" value={line.weight} onChange={e => change(p => { p[active][index].weight = e.target.value === '' ? 0 : Number(e.target.value) })}/></label><button aria-label={`Retirer ${label(line.isin)}`} onClick={() => { change(p => { p[active].splice(index, 1) }); setEditTarget(null) }}>Retirer</button></div>{manifest && readiness(manifest.instruments[line.isin], manifest.policy, clock) && <p className="scanner-warning">Composition complète indisponible ou trop ancienne. Cette ligne sera hors calcul.</p>}</article>)}
         <p className="scanner-total">Total : {percent(current.reduce((s, l) => s + l.weight, 0))}</p>
-        {manifest && <details><summary>Ajouter un ETF</summary><AssetPicker label="ETF à ajouter" items={items} value={chosen} onChange={setChosen}/><Button variant="secondary" disabled={current.some(l => l.isin === chosen) || current.length >= 12} onClick={() => change(p => { p[active].push({ isin: chosen, weight: Math.max(0, 100 - current.reduce((s, l) => s + l.weight, 0)) }) })}>Ajouter à la répartition</Button></details>}
+        {manifest && <details open={editTarget !== null} className="scanner-selection"><summary onClick={() => setEditTarget(null)}>Ajouter un ETF</summary>
+          <h3>{editTarget === null ? 'Choisir un support' : `Remplacer le support ${editTarget + 1}`}</h3>
+          <div className="scanner-tabs" role="group" aria-label="Mode de sélection"><button aria-pressed={selectionMode === 'etf'} onClick={() => chooseMode('etf')}>Par ETF</button><button aria-pressed={selectionMode === 'index'} onClick={() => chooseMode('index')}>Par indice suivi</button></div>
+          <label className="scanner-filter"><input type="checkbox" checked={completeOnly} onChange={e => setCompleteOnly(e.target.checked)}/> Compositions complètes seulement</label>
+          {selectionMode === 'index' && <><p className="scanner-note">Choisis un indice, puis l’ETF dont la composition sera utilisée. Les poids sont ceux du fonds sélectionné ; ils peuvent différer de ceux de l’indice.</p><AssetPicker label="Indice suivi" items={benchmarks} value={chosenIndex} onChange={chooseIndex}/>{!benchmarks.length && <p>Aucun indice suivi par un fonds avec une composition complète et récente.</p>}</>}
+          <AssetPicker key={selectionMode + chosenIndex} label="ETF à ajouter" items={visibleItems} value={chosen} onChange={setChosen}/>
+          <Button variant="secondary" disabled={!visibleItems.some(i => i.id === chosen) || current.some((l, i) => l.isin === chosen && i !== editTarget) || (editTarget === null && current.length >= 12)} onClick={() => {
+            change(p => { if (editTarget !== null) p[active][editTarget].isin = chosen; else p[active].push({ isin: chosen, weight: Math.max(0, 100 - current.reduce((s, l) => s + l.weight, 0)) }) }); setEditTarget(null)
+          }}>{editTarget === null ? 'Ajouter à la répartition' : 'Remplacer ce support'}</Button>
+          {editTarget !== null && <button onClick={() => setEditTarget(null)}>Annuler le remplacement</button>}
+        </details>}
+
       </section>
       {manifest && <details className="scanner-panel"><summary>Couverture des ETF PEA</summary><p>Les produits ci-dessous restent suivis chaque jour. Les dix principales lignes ou un panier de substitution ne suffisent pas pour calculer leurs doublons.</p>{Object.entries(manifest.peaCoverage ?? {}).map(([isin, e]) => <p key={isin}><strong>{label(isin)}</strong><small>{isin} · Composition complète non qualifiée · dernier contrôle {e.checkedAt ?? 'inconnu'}</small></p>)}</details>}
       </section>
