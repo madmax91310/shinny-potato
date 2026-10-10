@@ -28,7 +28,7 @@ try{
    if(labels.some(t=>/COULISSES|ISIN|…/.test(t)))throw new Error('Series heading or truncation')
    for(const [year,value]of sheet.returns)if(!labels.includes(String(year))||!labels.includes(fmt(value)))throw new Error('Changed return')
    for(const heading of ['PRINCIPAUX PAYS','PRINCIPAUX SECTEURS','PRINCIPALES ENTREPRISES'])if(!labels.includes(heading))throw new Error('Missing composition block')
-   for(const [name,value]of sortedRows(sheet.holdings).slice(0,4))if(!labels.join(' ').includes(companyLabel(name))||!labels.includes(fmt(value).replace(/^\\+/,'')))throw new Error('Changed company or weight')
+   for(const [name,value]of sortedRows(sheet.holdings).slice(0,4))if(!labels.join(' ').includes(companyLabel(name))||!labels.includes(fmt(value).replace('+','')))throw new Error('Changed company or weight')
    if(canvas.width!==2400||canvas.height!==1680)throw new Error('Wrong PNG dimensions')
    if(['world','acwi','ftse-all-world','world-ex-usa','world-small-cap','mscieurope'].includes(sheet.id)&&getIndexArt(sheet).scene!=='world')throw new Error('Wrong numeric scene')
    results.push({id:sheet.id,png:canvas.toDataURL(),labels})
