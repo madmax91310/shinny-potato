@@ -1,30 +1,30 @@
 // Revue du 10/10/2026 : un angle propre à chaque indice, sans vécu personnel inventé.
 // Les chiffres et les constats de concentration sont dérivés de la fiche reçue.
 export const INDEX_HOOKS = {
-  world: 'Un ETF « monde », ça veut dire que ton argent est réparti un peu partout ? 🌍',
-  acwi: 'Ajouter les émergents à un indice mondial change-t-il vraiment la répartition de ton argent ? 🌍',
-  'ftse-all-world': 'Avec un ETF All-World, tu couvres de nombreux marchés. Mais lesquels prennent le plus de place ? 🌍',
-  'acwi-imi': 'Des grandes entreprises aux plus petites, que contient un indice qui veut couvrir presque tout le marché mondial ? 🌍',
-  'world-small-cap': 'Tu ajoutes des petites entreprises à ton portefeuille. Mais de quels pays viennent-elles ? 👀',
-  'world-ex-usa': 'Si tu retires les États-Unis du World, où se retrouve ton argent ? 🌍',
-  'em-standard': 'Quand tu lis « marchés émergents », quels pays te viennent en tête ? 🌏',
-  'em-esg': 'Un ETF émergent avec un filtre ESG, qu’est-ce que ça change dans les entreprises que tu détiens ? 🌏',
-  'msci-em-ex-china': 'Retirer la Chine des marchés émergents, est-ce que ça répartit davantage ton argent entre les autres pays ? 🌏',
-  stoxx600: 'Investir en Europe, c’est forcément investir surtout dans la zone euro ? 🇪🇺',
-  mscieurope: 'Un ETF européen contient-il les mêmes types d’entreprises qu’un ETF mondial ? 🇪🇺',
-  eurostoxx50: 'Cinquante grandes entreprises de la zone euro : comment ton argent est-il réparti entre elles ? 🇪🇺',
-  topix: 'Tu veux investir au Japon. Mais derrière le nom d’un indice, quelles entreprises prennent le plus de place ? 🇯🇵',
-  nikkei225: 'Les 225 entreprises du Nikkei ont-elles toutes la même importance dans ton placement ? 🇯🇵',
-  'sp500-pea': 'Avec le S&P 500, tu achètes de grandes entreprises américaines. Mais chacune ne reçoit pas la même part de ton argent 👀',
-  'nasdaq-pea': 'Le Nasdaq-100, c’est une centaine de lignes. Mais combien pèsent vraiment les premières ? 👀',
-  'sp500-equal-weight': 'Tu gardes les entreprises du S&P 500, mais tu changes leur poids. Est-ce encore la même exposition ? 🇺🇸',
-  'russell-2000': 'Les petites entreprises américaines ont-elles la même répartition que les grandes ? 🇺🇸',
-  'msci-world-momentum': 'Et si ton indice donnait davantage de place aux entreprises dont les cours ont récemment le mieux progressé ? 👀',
-  'msci-world-minimum-volatility-usd': 'Chercher moins de volatilité, est-ce simplement acheter les actions qui bougent le moins ? 👀',
-  'msci-world-sector-neutral-quality': 'Un indice « Quality » retient des entreprises selon leurs fondamentaux. Mais que regarde-t-il exactement ? 🔎',
-  'msci-world-enhanced-value': 'Acheter des entreprises jugées peu chères, ça paraît séduisant. Mais peu chères par rapport à quoi ? 🔎',
-  'ftse-epra-nareit-developed-dividend-plus': 'Avec un ETF immobilier, tu achètes des actions de sociétés immobilières. Où sont-elles et comment sont-elles sélectionnées ? 🏠',
-  'ftse-global-core-infrastructure': 'Réseaux, transport, énergie : derrière un ETF infrastructures, quelles entreprises retrouves-tu vraiment ? 🏗️',
+  "world": "Un ETF World contient plus que quelques noms connus. Mais toutes les entreprises n’y prennent pas la même place 🌍",
+  "acwi": "Avec un ETF ACWI, tu investis dans les pays développés et les marchés émergents 🌍",
+  "ftse-all-world": "Un ETF All-World couvre les pays développés et les marchés émergents. Pourtant, ton argent n’est pas réparti à parts égales entre les pays 🌍",
+  "acwi-imi": "Le MSCI ACWI IMI inclut aussi les petites entreprises des pays développés et émergents 🌍",
+  "world-small-cap": "Les petites entreprises ont aussi leur indice mondial. Mais « petites » ne veut pas dire qu’elles viennent toutes de pays différents 👀",
+  "world-ex-usa": "Le MSCI World ex USA retire les entreprises américaines du World. Le Japon, la France ou le Royaume-Uni prennent alors davantage de place 🌍",
+  "em-standard": "Chine, Inde, Taïwan, Corée du Sud… Les marchés émergents regroupent des économies très différentes 🌏",
+  "em-esg": "Un ETF émergent avec un filtre ESG ne contient pas exactement les mêmes entreprises qu’un indice émergent classique 🌏",
+  "msci-em-ex-china": "Un ETF émergents sans la Chine donne davantage de poids aux autres pays. Sa composition peut donc beaucoup changer 🌏",
+  "stoxx600": "Un ETF Europe peut aussi contenir des entreprises britanniques et suisses 🇪🇺\n\nC’est le cas du STOXX Europe 600.",
+  "mscieurope": "Le MSCI Europe dépasse les frontières de la zone euro. Le Royaume-Uni et la Suisse en font aussi partie 🇪🇺",
+  "eurostoxx50": "L’EURO STOXX 50 regroupe 50 grandes entreprises de la zone euro. Mais chacune n’y occupe pas la même place 🇪🇺",
+  "topix": "Pour investir au Japon, il n’y a pas que le Nikkei. Le TOPIX donne accès à un ensemble plus large d’entreprises 🇯🇵",
+  "nikkei225": "Dans le Nikkei 225, le prix d’une action compte dans son poids. La plus grosse entreprise en Bourse n’est donc pas forcément la première de l’indice 🇯🇵",
+  "sp500-pea": "Le S&P 500 regroupe de grandes entreprises américaines. Mais ton argent n’est pas partagé également entre elles 🇺🇸",
+  "nasdaq-pea": "Le Nasdaq-100 contient une centaine d’entreprises. Quelques grands noms y prennent pourtant beaucoup de place 👀",
+  "sp500-equal-weight": "Les mêmes entreprises que le S&P 500, mais avec un poids égal à chaque rééquilibrage : c’est le principe de l’Equal Weight 🇺🇸",
+  "russell-2000": "Le Russell 2000 permet d’investir dans les petites entreprises américaines. Sa composition est bien différente de celle du S&P 500 🇺🇸",
+  "msci-world-momentum": "Le World Momentum privilégie les actions dont les cours ont récemment le mieux progressé, en tenant compte du risque 👀",
+  "msci-world-minimum-volatility-usd": "Un indice qui cherche à moins bouger ne se contente pas de choisir les actions les plus stables 👀",
+  "msci-world-sector-neutral-quality": "Rentabilité, dette, stabilité des bénéfices : le World Quality choisit ses entreprises à partir de critères précis 🔎",
+  "msci-world-enhanced-value": "Une entreprise peut paraître peu chère en Bourse. Encore faut-il savoir à quoi on compare son prix 🔎",
+  "ftse-epra-nareit-developed-dividend-plus": "Avec un ETF immobilier, tu achètes des actions de sociétés immobilières. Mais lesquelles, et dans quels pays ? 🏠",
+  "ftse-global-core-infrastructure": "Réseaux d’énergie, transport… Un ETF infrastructures investit dans les entreprises qui exploitent ces équipements 🏗️"
 }
 
 const numericRows = rows => (rows ?? []).filter(([, value]) => Number.isFinite(value) && value >= 0)
@@ -37,52 +37,72 @@ export function companyLabel(name) {
     [/^NVIDIA/i, 'Nvidia'], [/^APPLE/i, 'Apple'], [/^MICROSOFT/i, 'Microsoft'], [/^AMAZON/i, 'Amazon'],
     [/^ALPHABET.*(?: A|CLASS A)$/i, 'Alphabet (classe A)'], [/^ALPHABET.*(?: C|CLASS C)$/i, 'Alphabet (classe C)'],
     [/^META PLATFORMS/i, 'Meta'], [/^TAIWAN SEMICONDUCTOR/i, 'TSMC'], [/^SAMSUNG ELECTRONICS/i, 'Samsung Electronics'],
+    [/^SIEMENS/i, 'Siemens'], [/^BANCO SANTANDER/i, 'Banco Santander'], [/^SAP\b/i, 'SAP'],
+    [/^TOTALENERGIES/i, 'TotalEnergies'], [/^SCHNEIDER/i, 'Schneider Electric'], [/^ALLIANZ/i, 'Allianz'],
     [/^ASML/i, 'ASML'], [/^MICRON/i, 'Micron'], [/^BROADCOM/i, 'Broadcom'],
   ]
   return labels.find(([pattern]) => pattern.test(name))?.[1] ?? name
 }
 
-const joinNames = names => names.length < 2 ? names[0] ?? '' : `${names.slice(0, -1).join(', ')} et ${names.at(-1)}`
+// Les accroches chiffrées suivent la composition reçue, y compris après actualisation.
+export function indexHook(sheet) {
+  let hook = INDEX_HOOKS[sheet.id] ?? sheet.intro
+  if (sheet.id === 'acwi') {
+    const usa = sortedRows(sheet.countries).find(([name]) => /États-Unis|United States/i.test(name))?.[1]
+    if (usa > 50) {
+      const share = usa >= 63 && usa <= 68 ? 'près des deux tiers' : `${Math.round(usa)} %`
+      hook += `\n\nMais les États-Unis représentent encore ${share} de ton placement.`
+    }
+  }
+  if (sheet.id === 'eurostoxx50') {
+    const first = sortedRows(sheet.holdings)[0]
+    if (first?.[1] >= 10) {
+      hook = `Dans l’EURO STOXX 50, ${companyLabel(first[0])} représente à elle seule ${first[1] > 10 ? 'plus de' : ''} 10 % de l’indice.`.replace('  ', ' ')
+    }
+  }
+  const transition = {
+    acwi: 'On décrypte le MSCI ACWI 👇',
+    eurostoxx50: 'On décrypte l’EURO STOXX 50, ses principales entreprises et leur poids 👇',
+    stoxx600: 'On décrypte l’indice, ses principaux pays et ses entreprises 👇',
+    'world-ex-usa': 'Je t’explique ce que contient cet indice 👇',
+  }[sheet.id] ?? `On décrypte ${sheet.index}, ses principales entreprises et leur poids 👇`
+  return `${hook}\n\n${transition}\n\n🔖 Sauvegarde ce tweet`
+}
 
 export function indexObservation(sheet) {
   const top = sortedRows(sheet.holdings).slice(0, 4)
-  const total = sumRows(top)
-  const countries = sortedRows(sheet.countries).filter(([name]) => !/autres|others/i.test(name))
+  const countries = sortedRows(sheet.countries)
   const usa = countries.find(([name]) => /États-Unis|United States/i.test(name))?.[1] ?? 0
   const asia = countries.filter(([name]) => /Taïwan|Taiwan|Corée|Korea/i.test(name))
-  const [sector] = sortedRows(sheet.sectors)
-  const names = joinNames(top.slice(0, 2).map(([name]) => companyLabel(name)))
-  const concentration = total >= 15
-    ? 'Je trouve ce poids utile à garder en tête : un grand nombre de titres ne donne pas forcément une petite place aux premières lignes.'
-    : top.length ? 'Ce qui m’intéresse ici, c’est la place assez réduite des premières lignes. Regarder seulement leurs noms donnerait une idée incomplète du reste du panier.' : ''
+  const concentration = top.length
+    ? 'Je regarde aussi le poids de ces entreprises : leurs variations ne comptent pas toutes autant dans la performance de l’indice.'
+    : 'Je regarde les pays et les secteurs pour comprendre comment cet indice répartit l’investissement.'
   switch (sheet.id) {
-    case 'world': return total >= 15
-      ? `Ce qui me frappe, c’est qu’on peut détenir ${sheet.constituents > 1000 ? 'plus d’un millier de titres' : 'autant de titres'} et rester très exposé à quelques grandes entreprises. Le World répartit bien ton investissement, mais chaque entreprise est loin d’avoir le même poids.`
-      : 'Pour comprendre cette répartition, je regarderais les poids autant que le nombre de titres. Toutes les entreprises ne prennent pas la même place dans le World.'
+    case 'world': return concentration
     case 'acwi': case 'ftse-all-world': case 'acwi-imi': return usa > 50
-      ? 'Ce qui m’intéresse, c’est que l’univers s’élargit sans faire disparaître la majorité américaine. Ajouter des marchés ou des entreprises ne leur donne pas automatiquement autant de place qu’aux plus grandes lignes.'
-      : 'Je trouve utile de distinguer les marchés couverts de leur poids réel. Un univers mondial ne veut pas dire que chaque pays ou entreprise reçoit la même part.'
-    case 'world-small-cap': return 'Ce qui m’intéresse dans ce panier, c’est qu’il change la taille des entreprises auxquelles on s’expose. Je regarderais aussi les pays : ajouter des small caps ne veut pas forcément dire réduire le poids américain.'
-    case 'world-ex-usa': return 'Je trouve cette répartition plus parlante que le seul nom « ex-USA ». Retirer un pays donne davantage de place aux autres, mais ne les rend pas égaux et ne supprime pas le risque actions.'
+      ? 'C’est ce que je regarde derrière le nom « tous pays » : les émergents sont bien inclus, mais les grandes entreprises américaines gardent beaucoup de poids. Couvrir davantage de pays ne veut pas dire répartir ton argent à parts égales entre eux.'
+      : 'Je regarde aussi la place de chaque pays : cet indice couvre les marchés développés et émergents, mais ne répartit pas l’investissement à parts égales entre eux.'
+    case 'world-small-cap': return 'Je vois cet indice comme un complément au World : il ajoute les petites entreprises que le World classique laisse de côté. Il contient aussi des entreprises américaines.'
+    case 'world-ex-usa': return 'Je retiens surtout que cet indice retire les États-Unis sans ajouter les marchés émergents. Il donne davantage de place aux autres pays développés déjà présents dans le World.'
     case 'em-standard': case 'em-esg': case 'msci-em-ex-china': return asia.length === 2 && sumRows(asia) > 40
-      ? 'Ce qui me frappe, c’est la place cumulée de Taïwan et de la Corée du Sud. Le mot « émergents » couvre de nombreux marchés, mais ces deux pays prennent beaucoup de place dans cette photographie.'
-      : 'Pour comprendre cette exposition, je regarderais la place de chaque pays et des principales entreprises. L’étiquette « émergents » ne suffit pas à décrire la répartition.'
-    case 'stoxx600': return 'Ce qui m’intéresse ici, c’est le périmètre européen au-delà de la zone euro. Choisir cet indice, ce n’est pas simplement choisir davantage d’entreprises dans les mêmes pays que l’EURO STOXX 50.'
-    case 'mscieurope': return sector
-      ? `C’est la place du secteur ${plainLabel(sector[0]).toLowerCase()} qui retient mon attention. Le nom « Europe » décrit une zone ; les poids sectoriels montrent les activités auxquelles on s’expose.`
-      : 'Je regarderais les secteurs autant que les pays pour comprendre ce qu’apporte ce panier européen.'
-    case 'eurostoxx50': return `${concentration} Avec cinquante entreprises de la zone euro, je regarderais donc autant la taille des premières lignes que la longueur de la liste.`
-    case 'topix': return 'Pour comparer deux indices japonais, je ne m’arrêterais pas au pays. Le nombre de titres et la règle de pondération peuvent donner une place très différente aux mêmes entreprises.'
-    case 'nikkei225': return `${concentration} Ce qui m’intéresse aussi, c’est sa pondération liée aux prix ajustés des actions : elle ne donne pas simplement plus de poids aux plus grandes entreprises en capitalisation.`
-    case 'sp500-pea': case 'nasdaq-pea': return `${concentration} ${names ? `Des noms comme ${names} sont familiers, mais c’est leur poids cumulé qui permet de mesurer leur place dans le placement.` : ''}`
-    case 'sp500-equal-weight': return 'C’est ce changement de poids que je trouve intéressant : on garde le même univers d’entreprises, mais on modifie la place de chacune. L’égalité est rétablie au rééquilibrage ; les cours font ensuite évoluer les poids.'
-    case 'russell-2000': return `${concentration} Je regarderais ce panier comme une exposition à un segment précis des États-Unis, plutôt que comme une version miniature de tout le marché mondial.`
-    case 'msci-world-momentum': return 'Ce qui m’intéresse dans le Momentum, c’est que la sélection suit les tendances récentes. Je regarderais donc la composition du moment avant d’imaginer y retrouver les mêmes entreprises et les mêmes poids que dans le World classique.'
-    case 'msci-world-minimum-volatility-usd': return 'Je trouve important de regarder comment le panier est construit : il tient compte des corrélations entre les titres, pas seulement de chaque action prise séparément. Chercher moins de volatilité ne rend pas le placement garanti.'
-    case 'msci-world-sector-neutral-quality': return 'Ce qui m’intéresse ici, c’est que « Quality » correspond à des critères de sélection précis. Je ne le lirais pas comme un label qui promet de meilleures performances ou empêche les pertes.'
-    case 'msci-world-enhanced-value': return 'Je comprends l’intérêt de regarder le prix par rapport aux fondamentaux. Mais une entreprise sélectionnée comme peu chère peut le rester : le filtre ne donne ni une date de rebond ni une garantie de gain.'
-    case 'ftse-epra-nareit-developed-dividend-plus': return 'Ce qui m’intéresse, c’est qu’on reste propriétaire d’actions de sociétés immobilières, avec leurs risques de financement et de marché. Le revenu distribué ne raconte pas à lui seul ce que devient la valeur des parts.'
-    case 'ftse-global-core-infrastructure': return 'Je trouve les activités de ces entreprises plus parlantes que l’étiquette « infrastructures ». Elles restent cotées en Bourse : leur rôle dans les réseaux ou le transport ne protège pas leur cours des baisses.'
-    default: return concentration || 'Je regarderais les règles de sélection et les poids avant de résumer ce panier à son nom.'
+      ? 'Je retiens surtout la place de Taïwan et de la Corée du Sud. À eux deux, ils représentent une grande partie de l’indice, même si les émergents couvrent bien d’autres pays.'
+      : 'Je regarde les pays et les entreprises derrière le mot « émergents ». Selon l’indice choisi, leur place peut être très différente.'
+    case 'stoxx600': return 'Je retiens surtout que cet indice dépasse la zone euro. Le Royaume-Uni et la Suisse en font partie, contrairement à l’EURO STOXX 50.'
+    case 'mscieurope': return 'Je regarde aussi les secteurs : acheter des entreprises européennes, c’est investir dans des activités qui n’ont pas toutes le même poids dans cet indice.'
+    case 'eurostoxx50': return top[0]?.[1] >= 10
+      ? `Quand je regarde cette composition, je garde surtout le poids de ${companyLabel(top[0][0])} en tête. Avec ${top[0][1] > 10 ? 'plus de' : ''} 10 % de l’indice, ses variations comptent bien davantage que celles d’une entreprise qui n’en représente que 1 %.`.replace('  ', ' ')
+      : concentration
+    case 'topix': return 'Je regarde aussi la construction de l’indice. Le TOPIX donne davantage de poids aux entreprises selon leur valeur en Bourse et les actions disponibles à l’échange ; le Nikkei utilise les prix ajustés des actions.'
+    case 'nikkei225': return 'Je retiens surtout sa règle de calcul : les prix ajustés des actions déterminent leur poids. Une entreprise peut donc peser lourd sans être la plus importante en valeur boursière.'
+    case 'sp500-pea': case 'nasdaq-pea': return concentration
+    case 'sp500-equal-weight': return 'Je trouve ce changement intéressant : on garde les entreprises du S&P 500, mais on leur redonne le même poids à chaque rééquilibrage. Entre deux rééquilibrages, les cours font évoluer ces poids.'
+    case 'russell-2000': return 'Je vois cet indice comme un investissement dans les petites entreprises américaines. Il ne remplace pas une exposition aux grandes entreprises ou aux autres pays.'
+    case 'msci-world-momentum': return 'Je regarde la composition du moment : la sélection suit les tendances récentes des cours. Les entreprises retenues et leur poids peuvent donc changer au fil des rééquilibrages.'
+    case 'msci-world-minimum-volatility-usd': return 'Je regarde surtout comment les actions se comportent ensemble. L’indice cherche à réduire les variations de l’ensemble, pas seulement celles de chaque action. Il peut tout de même baisser.'
+    case 'msci-world-sector-neutral-quality': return 'Je retiens que « Quality » décrit une méthode de sélection : rentabilité, dette et stabilité des bénéfices. Cela ne promet ni de meilleures performances ni une protection contre les baisses.'
+    case 'msci-world-enhanced-value': return 'Je garde en tête qu’une entreprise jugée peu chère peut le rester longtemps. Le filtre compare son prix à ses données financières, sans prédire quand le cours remontera.'
+    case 'ftse-epra-nareit-developed-dividend-plus': return 'Je regarde la valeur des actions autant que les dividendes reçus. Ces sociétés possèdent de l’immobilier, mais leur cours reste sensible à leur financement et aux marchés.'
+    case 'ftse-global-core-infrastructure': return 'Je regarde les activités derrière le nom « infrastructures ». Ces entreprises exploitent des équipements utiles, mais leurs actions peuvent baisser comme celles des autres sociétés cotées.'
+    default: return concentration
   }
 }
