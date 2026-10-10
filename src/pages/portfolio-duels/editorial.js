@@ -38,7 +38,8 @@ export function duelEditorial(duel) {
  const same=Math.abs(b.final-a.final)<.5
  const topic=topics[duel.id]
  const hookLabels = {
-  smallcap: 'small caps des pays développés', 'us-small': 'small caps américaines',
+  world: 'World',
+  smallcap: 'petites entreprises des pays développés', 'us-small': 'petites entreprises américaines',
   minvol: 'World à faible volatilité', cash: 'monétaire en euros',
   shortbond: 'obligations d’État à très courte échéance', longbond: 'obligations d’État à longue échéance',
   globalbond: 'obligations mondiales couvertes en euros',
@@ -55,10 +56,7 @@ export function duelEditorial(duel) {
  let hookQuestion
  if (solo && mixed.assets.length>1 && mixed.assets[0].exposure==='world') {
   // Le montant et la comparaison sont explicites avant de présenter les résultats.
-  const additions=mixed.assets.slice(1)
-  const pocket=additions.length===1 && additions[0].exposure==='smallcap'
-   ? `${additions[0].pct} % de small caps` : extra(mixed)
-  hookQuestion=`Avec 10 000 € investis, aurais-tu gagné davantage en ajoutant ${pocket} à un portefeuille 100 % MSCI World ?`
+  hookQuestion=`Avec 10 000 € investis, aurais-tu gagné davantage avec un ETF World seul ou avec ${describe(mixed)} ?`
  } else if (sameBase && a.assets.length>1 && b.assets.length>1) {
   hookQuestion=`Avec 10 000 € investis et ${allocation(a.assets[0])} dans les deux cas, aurais-tu gagné davantage avec ${extra(a)} ou ${extra(b)} ?`
  } else if (a.assets.length===1 && b.assets.length===1) {
@@ -66,10 +64,34 @@ export function duelEditorial(duel) {
  } else {
   hookQuestion=`Avec 10 000 € investis, lequel de ces portefeuilles t’aurait rapporté le plus : ${describe(a)} ou ${describe(b)} ?`
  }
- const hook=`${hookQuestion}\n\nVoici ce que ça aurait changé entre début ${years[0]} et fin ${years.at(-1)}, sans versement supplémentaire 👇`
+ const hook=`${hookQuestion}\n\nVoici la comparaison entre début ${years[0]} et fin ${years.at(-1)}, sans versement supplémentaire 👇`
  const year=years.reduce((best,y)=>Math.abs(a.annual[y]-b.annual[y])>Math.abs(a.annual[best]-b.annual[best])?y:best)
  const question=topic?.[1] ?? duel.closingQuestion ?? `Tu choisirais ${a.name} ou ${b.name}, et quelle différence d’exposition compte le plus pour toi ?`
- let conclusion=same ? 'Les deux portefeuilles terminent au même montant à l’euro près.' : gap<200 ? `Les capitaux finaux restent proches : ${money(gap)} d’écart sur cette période.` : `Le portefeuille ${b.final>a.final ? 'B' : 'A'} termine avec ${money(gap)} de plus sur cette période.`
- if (!years.every(y=>Math.abs(a.annual[y]-b.annual[y])<.001)) conclusion+=` En ${year}, l’écart annuel est le plus marqué : A ${move(a.annual[year])}, B ${move(b.annual[year])}.`
+ const equalAnnual=years.every(y=>Math.abs(a.annual[y]-b.annual[y])<.001)
+ let conclusion
+ if (same) {
+  conclusion='Les deux portefeuilles terminent au même montant à l’euro près.'
+  if (!equalAnnual) conclusion+=' Leurs parcours annuels diffèrent pourtant. Je regarderais aussi ces variations avant de choisir.'
+ } else if (gap<200) {
+  conclusion=`Sur cette période, les deux portefeuilles terminent avec des capitaux proches. Avec seulement ${money(gap)} d’écart, je regarderais plutôt leurs frais et leur composition pour les départager.`
+ } else if (solo && mixed.assets.length===2 && mixed.assets[0].exposure==='world' && ['smallcap','us-small'].includes(mixed.assets[1].exposure)) {
+  const small=mixed.assets[1].exposure==='us-small' ? 'Les petites entreprises américaines' : 'Les petites entreprises des pays développés'
+  const count=({3:'trois',4:'quatre',5:'cinq',6:'six'})[years.length] ?? years.length
+  const wins=mixed.final>solo.final
+  conclusion=`${small} sont absentes du MSCI World, donc je comprends l’envie de leur faire une place.\n\n${wins ? 'Sur' : 'Mais sur'} ces ${count} années, le portefeuille qui en contient termine avec ${money(gap)} de ${wins ? 'plus' : 'moins'}.`
+  const first=years[0]
+  if (mixed.annual[first]>solo.annual[first]+.001 && years.slice(1).every(y=>mixed.annual[y]<solo.annual[y]-.001)) {
+   conclusion+=` Il fait ${mixed.annual[first]-solo.annual[first]<1 ? 'légèrement ' : ''}mieux en ${first}, puis moins bien que le World seul chaque année suivante.`
+  } else if (years.every(y=>mixed.annual[y]<solo.annual[y]-.001)) {
+   conclusion+=' Il fait moins bien que le World seul chacune des années comparées.'
+  } else if (years.every(y=>mixed.annual[y]>solo.annual[y]+.001)) {
+   conclusion+=' Il fait mieux que le World seul chacune des années comparées.'
+  }
+ } else if (solo && mixed.assets.length===2 && mixed.assets[0].exposure==='world' && mixed.assets[1].exposure==='nasdaq' && mixed.final>solo.final && mixed.worst<solo.worst && mixed.worst<0 && solo.worst<0 && mixed.worstYear===solo.worstYear) {
+  conclusion=`La poche Nasdaq permet de terminer avec ${money(gap)} de plus sur cette période, mais elle accentue aussi la baisse en ${mixed.worstYear} : ${move(mixed.worst).replace('perd','le portefeuille perd')}, contre ${percent(solo.worst)} pour le World seul. Je regarderais aussi cette baisse avant de renforcer des entreprises déjà présentes dans le World.`
+ } else {
+  conclusion=`Sur cette période, le portefeuille ${b.final>a.final ? 'B' : 'A'} termine avec ${money(gap)} de plus.`
+  if (!equalAnnual) conclusion+=` En ${year}, A ${move(a.annual[year])}, tandis que B ${move(b.annual[year])}.`
+ }
  return {hook,question,conclusion}
 }

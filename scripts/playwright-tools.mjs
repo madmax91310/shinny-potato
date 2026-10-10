@@ -1206,6 +1206,8 @@ try {
     await testHouseholds(page);
   } else if (process.argv.includes('--portfolios')) {
     await testPortfolioGenerator(page);
+  } else if (process.argv.includes('--duels')) {
+    await testPortfolioDuels(page);
   } else if (process.argv.includes('--broker')) {
     await testBrokerComparator(page);
   } else {
