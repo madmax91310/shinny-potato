@@ -113,6 +113,18 @@ const GOALS = {
 }
 
 const OVERRIDES = {
+  'msci-em': {
+    hook: 'Un ETF World couvre beaucoup de pays, mais les marchés émergents n’en font pas partie. Cet ETF permet de leur faire une place dans ton portefeuille 👇',
+    whyInteresting: 'Tu ajoutes des entreprises de pays absents du MSCI World, avec aussi des petites capitalisations.\n\nCe que je trouve intéressant ici, c’est de pouvoir choisir la place des émergents dans le portefeuille. Cela élargit l’exposition, mais les risques politiques et les variations des monnaies restent à prendre en compte.',
+  },
+  'covered-call': {
+    hook: 'Recevoir de l’argent chaque mois avec un ETF, ça peut donner envie. Avec ce fonds, ces distributions viennent d’une stratégie qui limite aussi une partie de la hausse du Nasdaq-100 👇',
+    whyInteresting: 'Cette stratégie vise des versements réguliers, ce qui peut intéresser quelqu’un qui cherche des revenus.\n\nPour ma part, je regarde aussi ce que devient la valeur des parts. Les sommes reçues comptent, mais c’est en les ajoutant à cette évolution qu’on peut comparer le résultat à celui d’un ETF Nasdaq-100 classique.',
+  },
+  'monetaire-eur': {
+    hook: 'Tu as peut-être déjà croisé XEON en cherchant où placer des euros sur ton compte-titres. Son rendement suit les taux au jour le jour : voici comment cet ETF fonctionne 👇',
+    whyInteresting: 'Le rendement vient des taux courts en euros. Les revenus restent investis dans le fonds, puisque cette part est capitalisante.\n\nC’est surtout ce lien avec les taux que je retiens : si ceux-ci baissent, le rendement du placement baisse aussi.',
+  },
   ia: {
     hook: '🤖 Quand on parle d’investissement dans l’IA, on pense souvent aux fabricants de puces. Cet ETF va aussi chercher du côté des logiciels et des applications 👇',
     whatIs: 'Cet ETF suit un indice qui sélectionne des entreprises liées à plusieurs activités de l’intelligence artificielle : infrastructures, logiciels et applications.\n\nIl ne se limite donc pas aux fabricants de puces ou aux entreprises qui développent des modèles d’IA.',
