@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
+import { analyze } from '../src/pages/etf-scanner/lib.js'
+import { LABELS } from '../src/pages/etf-scanner/data.js'
 import { mkdir, readFile } from 'node:fs/promises'
 const dir = 'test-artifacts/scanner'
 await mkdir(dir, { recursive: true })
@@ -61,11 +63,13 @@ try {
   await json.saveAs(`${dir}/scanner-etf.json`)
   const report = JSON.parse(await readFile(`${dir}/scanner-etf.json`, 'utf8'))
   const imageCode = (await readFile('src/pages/etf-scanner/image.js', 'utf8')).replace(/^import .*\n/gm, '').replace('export function renderScannerImage', 'window.renderScannerImage = function')
-  await page.addScriptTag({ content: `const percent = value => value.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) + ' %'; const displayLabel = name => name;\n${imageCode}` })
-  const longImage = await page.evaluate(({ result, fundNames }) => {
-    const lines = Object.keys(fundNames).slice(0, 12).map(isin => ({ isin, weight: 100 / 12 }))
+  await page.addScriptTag({ content: `const percent = value => value.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) + ' %'; const displayLabel = name => (${JSON.stringify(LABELS)})[name] ?? name;\n${imageCode}` })
+  const twelveLines = Object.keys(manifest.instruments).slice(0, 12).map(isin => ({ isin, weight: 100 / 12 }))
+  const twelveSnapshots = Object.fromEntries(await Promise.all(twelveLines.map(async l => [l.isin, JSON.parse(await readFile('public/data/scanner-holdings/' + l.isin + '.json', 'utf8'))])))
+  const twelveResult = analyze(twelveLines, twelveSnapshots, manifest, observation)
+  const longImage = await page.evaluate(({ result, lines, fundNames }) => {
     return window.renderScannerImage(result, null, lines, isin => fundNames[isin]).toDataURL('image/png').split(',')[1]
-  }, { result: report.results.b, fundNames: Object.fromEntries(Object.entries(manifest.instruments).map(([isin, e]) => [isin, e.name])) })
+  }, { result: twelveResult, lines: twelveLines, fundNames: Object.fromEntries(Object.entries(manifest.instruments).map(([isin, e]) => [isin, e.name])) })
   const { writeFile } = await import('node:fs/promises')
   await writeFile(`${dir}/scanner-12-supports.png`, Buffer.from(longImage, 'base64'))
   assert.equal(report.text, 'Mon texte scanner'); assert.equal(report.results.b.sharedCount, 0); assert.ok(report.results.b.top10 < report.results.a.top10)

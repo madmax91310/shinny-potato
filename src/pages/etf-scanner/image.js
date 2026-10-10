@@ -4,10 +4,11 @@ import { displayLabel } from './data.js'
 // Fixed editorial grid: long names and all twelve allocations keep their own space.
 export function renderScannerImage(a, b, lines, label) {
   const result = b ?? a, canvas = document.createElement('canvas')
-  canvas.width = 1600; canvas.height = 1200
+  const allocationRows = Math.ceil(lines.length / 3), footerY = 922 + Math.max(0, allocationRows - 1) * 46
+  canvas.width = 1600; canvas.height = footerY + 140
   const c = canvas.getContext('2d')
   const ink = '#173c32', muted = '#64776f', green = '#26785a', paper = '#f4f7f4', rule = '#dce6df'
-  c.fillStyle = paper; c.fillRect(0, 0, 1600, 1200)
+  c.fillStyle = paper; c.fillRect(0, 0, canvas.width, canvas.height)
   function text(value, x, y, size = 26, color = ink, bold = false, width = 1472) {
     c.fillStyle = color; c.font = `${bold ? '600' : '400'} ${size}px Arial`
     const source = String(value); let s = source
@@ -61,14 +62,14 @@ export function renderScannerImage(a, b, lines, label) {
     const rows = Math.ceil(lines.length / 3), col = Math.floor(i / rows), row = i % rows
     const x = 64 + col * 498, y = 880 + row * 46
     text(percent(l.weight), x, y, 24, green, true, 95)
-    text(label(l.isin), x + 100, y, 22, ink, false, 366)
+    text(label(l.isin).replace(/^iShares (?:Core )?/, '').replace(/\bUCITS ETF\b/g, '').replace(/\s+/g, ' ').trim(), x + 100, y, 22, ink, false, 366)
     text(l.isin, x + 100, y + 19, 15, muted, false, 366)
   })
   const delta = b && compare(a, b)
-  line(64, 1060, 1472)
-  text(delta ? `Concentration des 10 premières lignes : ${percent(a.top10)} avant → ${percent(b.top10)} après` : `${result.sharedCount.toLocaleString('fr-FR')} titres présents dans plusieurs ETF · Actions identifiées : ${percent(result.identifiedWeight)}`, 64, 1098, 24, ink, true)
+  line(64, footerY, 1472)
+  text(delta ? `Concentration des 10 premières lignes : ${percent(a.top10)} avant → ${percent(b.top10)} après` : `${result.sharedCount.toLocaleString('fr-FR')} titres présents dans plusieurs ETF · Actions identifiées : ${percent(result.identifiedWeight)}`, 64, footerY + 38, 24, ink, true)
   const dates = [...new Set(result.sources.map(s => s.asOf))].sort().join(' / ')
-  text(`Compositions au ${dates} · Sources des fonds dans l’export JSON`, 64, 1143, 20, muted)
-  text('Rapprochement par ISIN · Classes d’actions distinctes · Liquidités et dérivés hors doublons', 64, 1174, 20, muted)
+  text(`Compositions au ${dates} · Sources des fonds dans l’export JSON`, 64, footerY + 83, 20, muted)
+  text('Rapprochement par ISIN · Classes d’actions distinctes · Liquidités et dérivés hors doublons', 64, footerY + 114, 20, muted)
   return canvas
 }
