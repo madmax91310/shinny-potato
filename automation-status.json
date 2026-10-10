@@ -97,14 +97,26 @@
     },
     "update-scpi.yml": {
       "name": "Présentations de SCPI",
-      "runId": 37944149048,
+      "runId": 38057247546,
       "attempt": 1,
-      "completedAt": "2026-10-09T14:46:08Z",
-      "status": "success",
+      "completedAt": "2026-10-10T14:03:18Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-09T14:46:08Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37944149048",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38057247546",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Collecte SCPI partielle : les dernières fiches validées sont conservées. Voir scpi-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "remake-live": {
+          "name": "Remake Live",
+          "completedAt": "2026-10-10T14:03:18Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38057247546",
+          "cause": "Missing Remake year-end prices"
+        }
+      }
     },
     "update-insurance.yml": {
       "name": "Présentations d’assurance-vie",
@@ -182,5 +194,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-10T13:59:25Z"
+  "updatedAt": "2026-10-10T14:03:18Z"
 }
