@@ -114,16 +114,23 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 
 Couverture : une donnée active peut être conservée malgré un accès désormais en échec. Les alertes opérationnelles restent suivies dans « Données à revoir ».
 
+## Plafonds AV qualifiés
+
+| Contrat | Fonds | Règle publiée | Périmètre | Échéance |
+|---|---|---|---|---|
+| Linxea Avenir 2 | Suravenir Opportunités 2 | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
+| Linxea Avenir 2 | Suravenir Rendement 2 | Sans limite de montant, minimum 30 % UC | Souscriptions, versements complémentaires et programmés | Non publiée |
+| Linxea Zen | Apicil Euroflex | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
+| Linxea Zen | Apicil Euro Garanti | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
+| Linxea Vie | Netissima | Sans limite de montant | Souscriptions, versements libres et programmés | 2026-12-31 |
+| Linxea Vie | Eurossima | Fixé par l’assureur, entre 0 et 50000 € l’année de souscription puis entre 0 et 25000 €/an | Versements initiaux, libres et programmés ; année civile | Non publiée |
+
 ## Conditions AV restant à qualifier
 
 Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les conditions d’un autre contrat et les conditions propres à un client ne comblent pas ces champs. Les bornes publiées et clauses conditionnelles existantes sont conservées dans la présentation.
 
 | Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |
 |---|---|---|---|---|
-| Linxea Avenir 2 | Suravenir Opportunités 2 | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Linxea Avenir 2 | Suravenir Rendement 2 | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Linxea Vie | Netissima | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Linxea Vie | Eurossima | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Lucya Cardif | Fonds général | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-10 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |

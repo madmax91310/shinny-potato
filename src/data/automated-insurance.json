@@ -157,6 +157,14 @@
             "latestPublishedYear": 2025,
             "expectedYear": 2025,
             "awaitingPublication": false
+          },
+          "ceilingEvidence": {
+            "status": "unlimited",
+            "checkedAt": "2026-10-10",
+            "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+            "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
+            "scope": "Souscriptions, versements complémentaires et programmés",
+            "sha256": "1ca726825d219be9bec41bcca14c3477037fed0c6e3ff66139f4203933096347"
           }
         },
         {
@@ -191,6 +199,15 @@
             "latestPublishedYear": 2025,
             "expectedYear": 2025,
             "awaitingPublication": false
+          },
+          "ceilingEvidence": {
+            "status": "unlimited",
+            "checkedAt": "2026-10-10",
+            "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+            "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
+            "scope": "Souscriptions, versements complémentaires et programmés",
+            "minimumUnits": 30.0,
+            "sha256": "1ca726825d219be9bec41bcca14c3477037fed0c6e3ff66139f4203933096347"
           }
         }
       ]
@@ -373,6 +390,15 @@
             "latestPublishedYear": 2025,
             "expectedYear": 2025,
             "awaitingPublication": false
+          },
+          "ceilingEvidence": {
+            "status": "unlimited",
+            "checkedAt": "2026-10-10",
+            "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+            "statement": "ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026",
+            "validUntil": "2026-12-31",
+            "scope": "Souscriptions, versements libres et programmés",
+            "sha256": "8c9fd0be343be48f5fefa811b2f86cb8813525ace16f49ec70a74c4ca6f547c2"
           }
         },
         {
@@ -409,6 +435,16 @@
             "latestPublishedYear": 2025,
             "expectedYear": 2025,
             "awaitingPublication": false
+          },
+          "ceilingEvidence": {
+            "status": "insurer-defined",
+            "checkedAt": "2026-10-10",
+            "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+            "statement": "Le montant que vous pourrez investir à 100 % sur le fonds en euros Eurossima s’élèvera entre 0 et 50 000 euros l’année civile de votre souscription puis entre 0 et 25 000 euros par année civile les années suivantes, quel que soit le type d’investissement réalisé (versement initial, versement libre ou versement libre programmé). L’Assureur communiquera par tout moyen ce montant maximum d’investissement annuel sur le fonds en euros Eurossima.",
+            "scope": "Versements initiaux, libres et programmés ; année civile",
+            "openingYearUpperBound": 50000.0,
+            "followingYearUpperBound": 25000.0,
+            "sha256": "8c9fd0be343be48f5fefa811b2f86cb8813525ace16f49ec70a74c4ca6f547c2"
           }
         }
       ]

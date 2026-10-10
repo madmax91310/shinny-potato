@@ -1,0 +1,227 @@
+{
+  "checkedAt": "2026-10-10",
+  "qualifiedInsuranceCeilings": [
+    {
+      "id": "linxea-avenir-2",
+      "name": "Linxea Avenir 2",
+      "fund": "Suravenir Opportunités 2",
+      "status": "unlimited",
+      "checkedAt": "2026-10-10",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+      "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
+      "scope": "Souscriptions, versements complémentaires et programmés",
+      "sha256": "1ca726825d219be9bec41bcca14c3477037fed0c6e3ff66139f4203933096347",
+      "active": true
+    },
+    {
+      "id": "linxea-avenir-2",
+      "name": "Linxea Avenir 2",
+      "fund": "Suravenir Rendement 2",
+      "status": "unlimited",
+      "checkedAt": "2026-10-10",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+      "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
+      "scope": "Souscriptions, versements complémentaires et programmés",
+      "minimumUnits": 30,
+      "sha256": "1ca726825d219be9bec41bcca14c3477037fed0c6e3ff66139f4203933096347",
+      "active": true
+    },
+    {
+      "id": "linxea-zen",
+      "name": "Linxea Zen",
+      "fund": "Apicil Euroflex",
+      "status": "unlimited",
+      "checkedAt": "2026-10-10",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
+      "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
+      "scope": "Souscriptions, versements complémentaires et programmés",
+      "sha256": "e091ddb8506d0a55b072cfc1bc2fd1cd33b0a4e01363e7052307bcad663cad63",
+      "active": true
+    },
+    {
+      "id": "linxea-zen",
+      "name": "Linxea Zen",
+      "fund": "Apicil Euro Garanti",
+      "status": "unlimited",
+      "checkedAt": "2026-10-10",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
+      "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
+      "scope": "Souscriptions, versements complémentaires et programmés",
+      "sha256": "e091ddb8506d0a55b072cfc1bc2fd1cd33b0a4e01363e7052307bcad663cad63",
+      "active": true
+    },
+    {
+      "id": "linxea-vie",
+      "name": "Linxea Vie",
+      "fund": "Netissima",
+      "status": "unlimited",
+      "checkedAt": "2026-10-10",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+      "statement": "ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026",
+      "validUntil": "2026-12-31",
+      "scope": "Souscriptions, versements libres et programmés",
+      "sha256": "8c9fd0be343be48f5fefa811b2f86cb8813525ace16f49ec70a74c4ca6f547c2",
+      "active": true
+    },
+    {
+      "id": "linxea-vie",
+      "name": "Linxea Vie",
+      "fund": "Eurossima",
+      "status": "insurer-defined",
+      "checkedAt": "2026-10-10",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+      "statement": "Le montant que vous pourrez investir à 100 % sur le fonds en euros Eurossima s’élèvera entre 0 et 50 000 euros l’année civile de votre souscription puis entre 0 et 25 000 euros par année civile les années suivantes, quel que soit le type d’investissement réalisé (versement initial, versement libre ou versement libre programmé). L’Assureur communiquera par tout moyen ce montant maximum d’investissement annuel sur le fonds en euros Eurossima.",
+      "scope": "Versements initiaux, libres et programmés ; année civile",
+      "openingYearUpperBound": 50000,
+      "followingYearUpperBound": 25000,
+      "sha256": "8c9fd0be343be48f5fefa811b2f86cb8813525ace16f49ec70a74c4ca6f547c2",
+      "active": true
+    }
+  ],
+  "sources": [
+    {
+      "id": "trContract",
+      "url": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+      "bytes": 3809860,
+      "sha256": "310cf0276d224b02c2e6949957c2d021235a8ace4d3c8d3e2842884d59861d32"
+    },
+    {
+      "id": "trFees",
+      "url": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account",
+      "bytes": 29394,
+      "sha256": "8194741a6d119a73d8217012041f0bea542d01f05d06ca1b9ee2be57d71e0747"
+    },
+    {
+      "id": "boursoContract",
+      "url": "https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf",
+      "bytes": 2098253,
+      "sha256": "d4d688ea53b1b5e16fe6c25c55408fe167687089ccf3f594752c50f129527076"
+    },
+    {
+      "id": "fortuneoContract",
+      "url": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
+      "bytes": 650736,
+      "sha256": "38af50ddaffdc61cb72a40113489c71b515e85e412033c9cf335bac4dec38248"
+    },
+    {
+      "id": "ibkrPea",
+      "url": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
+      "bytes": 119516,
+      "sha256": "9143070b979e8f6531e31ff193ad18dc7c158563d576f7e89e8b8b7a91a49dd7"
+    },
+    {
+      "id": "ibkrDca",
+      "url": "https://www.interactivebrokers.ie/fr/trading/recurring-investments.php",
+      "bytes": 96431,
+      "sha256": "77d31ad3e0d3ec8077480b53fb103ec28c9dad0420545f37941131381a4ec0c9"
+    },
+    {
+      "id": "caTariff",
+      "url": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
+      "bytes": 1774492,
+      "sha256": "8c03b70cd66a31e6c968865ab67bcee584b53b237bc35e7666787c370c537020"
+    },
+    {
+      "id": "caIdfContract",
+      "url": "https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/relation-banque-client/CGL_CPT_FUSIONNE_PART_PDF(002).pdf",
+      "bytes": 392627,
+      "sha256": "34ce0c0e8991d64183abefb0d5322e1cc2911bc3f066c3ed5c20e54deb0d8a3f"
+    },
+    {
+      "id": "bdTariff",
+      "url": "https://www.boursedirect.fr/pdf/tarifs_bd.pdf",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "id": "bdContract",
+      "url": "https://www.boursedirect.fr/pdf/CGBDMARS24.pdf",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "id": "bdCto",
+      "url": "https://www.boursedirect.fr/fr/bourse/compte-titres",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "id": "trPeaHelp",
+      "url": "https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f",
+      "bytes": 30063,
+      "sha256": "beb56b41b97627d13277cc1c8d340e002d8644a2eaeaecf0fce0be967fd3a7a7"
+    },
+    {
+      "id": "avenir",
+      "url": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+      "bytes": 261722,
+      "sha256": "1ca726825d219be9bec41bcca14c3477037fed0c6e3ff66139f4203933096347"
+    },
+    {
+      "id": "vie",
+      "url": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
+      "bytes": 255730,
+      "sha256": "8c9fd0be343be48f5fefa811b2f86cb8813525ace16f49ec70a74c4ca6f547c2"
+    },
+    {
+      "id": "lucya",
+      "url": "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
+      "bytes": 1209518,
+      "sha256": "5c8573d140972a3bf019170472ebc6937274c3c422b02ae5edbc0bc2c240c90c"
+    },
+    {
+      "id": "placement",
+      "url": "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
+      "bytes": 887147,
+      "sha256": "5e21755d0d11094e1ae1d3324440bc03d9cf8ae07ae0fb1541838b81a76eb529"
+    },
+    {
+      "id": "qyld",
+      "url": "https://globalxetfs.eu/funds/qyld/",
+      "bytes": 422756,
+      "sha256": "c30d001a3ef48273dc62f18f53c9800f8659b58d8dce59b572e108e2fde08f6e"
+    }
+  ],
+  "additionalAccessChecks": [
+    {
+      "url": "https://www.boursedirect.fr/pdf/tarifs_bd.pdf?cache=20261010",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://boursedirect.fr/pdf/tarifs_bd.pdf",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://www.boursedirect.com/fr/formulaires-en-ligne",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://www.boursedirect.fr/fr/bourse/tarifs",
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://expressapi.fundassist.com/v1/api//Files/153edc92-3c5d-ee11-a868-005056a103bb/1",
+      "error": "HTTP Error 500: Internal Server Error"
+    },
+    {
+      "url": "https://expressapi.fundassist.com/v1/api//Files/163edc92-3c5d-ee11-a868-005056a103bb/1",
+      "error": "HTTP Error 500: Internal Server Error"
+    },
+    {
+      "url": "https://expressapi.fundassist.com/v1/api//Files/2152e942-df8d-ed11-a85a-005056a103bb/1",
+      "error": "HTTP Error 500: Internal Server Error"
+    },
+    {
+      "url": "https://expressapi.fundassist.com/v1/api//Files/3f78109f-af7d-eb11-a83e-005056a103bb/1",
+      "error": "HTTP Error 500: Internal Server Error"
+    }
+  ],
+  "remaining": {
+    "insuranceFields": 4,
+    "brokerScopes": 12,
+    "qyldFields": 4,
+    "reasons": {
+      "lucya": "La notice décrit une restriction conditionnelle de quote-part, pas un plafond en euros pour chacun des deux fonds.",
+      "placement": "La notice de Placement-direct Vie ne chiffre pas de quote-part maximale actuelle ni de plafond en euros.",
+      "brokers": "Les clauses PEA et les offres génériques ne qualifient pas les périmètres CTO/PEA distincts.",
+      "qyld": "La section performance officielle est USD Accumulating ; le calendrier discret reste vide et les tables de référence divergent."
+    }
+  }
+}

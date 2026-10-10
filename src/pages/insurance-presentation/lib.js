@@ -30,7 +30,9 @@ function presentationReading(record) {
 export const fundOperations = (fund, today = todayIso()) => accessExpired(fund, today) ? '' : fund.operations
 export const fundCeiling = (fund, today = todayIso()) => accessExpired(fund, today) || fund.ceiling != null ? ''
   : fund.ceilingEvidence?.status === 'unlimited'
-    ? 'Sans limite de montant pour les souscriptions, versements complémentaires et programmés.'
+    ? `Sans limite de montant pour les ${fund.ceilingEvidence.scope?.toLowerCase() ?? 'souscriptions, versements complémentaires et programmés'}${fund.ceilingEvidence.minimumUnits != null ? ` ; au moins ${format(fund.ceilingEvidence.minimumUnits)} % en unités de compte non garanties` : ''}${fund.ceilingEvidence.validUntil ? `, jusqu’au ${fund.ceilingEvidence.validUntil.split('-').reverse().join('/')}` : ''}.`
+    : fund.ceilingEvidence?.status === 'insurer-defined'
+      ? `Plafond annuel communiqué par l’assureur, entre 0 et ${format(fund.ceilingEvidence.openingYearUpperBound)} € l’année de souscription, puis entre 0 et ${format(fund.ceilingEvidence.followingYearUpperBound)} € par année civile. Le montant applicable à ton contrat reste à confirmer.`
     : 'Le plafond en euros applicable à l’opération reste à confirmer auprès du distributeur.'
 export const fundAllocation = (fund, today = todayIso()) => accessExpired(fund, today)
   ? `Conditions d’accès échues le ${fund.accessValidUntil.split('-').reverse().join('/')} ; les nouvelles conditions restent à confirmer.`
