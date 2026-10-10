@@ -128,11 +128,22 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
                 stamp = required(r'sans conditions d’unités de compte jusqu’au (\d{2})/(\d{2})/(\d{4})', body)
                 valid_until = '-'.join([stamp[3],stamp[2],stamp[1]])
                 if dt.date.fromisoformat(valid_until) < today: raise ValueError('Expired fund access conditions')
+                clause = required(r'ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au \d{2}/\d{2}/\d{4}', body).group(0)
+                ceiling_evidence = {'status':'unlimited', 'checkedAt':today.isoformat(),
+                    'sourceUrl':url, 'statement':clause, 'validUntil':valid_until,
+                    'scope':'Souscriptions, versements libres et programmés',
+                    'sha256':hashlib.sha256(html.encode()).hexdigest()}
                 operations = f'Versements sans quota d’unités de compte jusqu’au {stamp[0].split("jusqu’au ")[1]} ; arbitrages éligibles.'
             else:
                 opening = number(required(r'entre 0 et ([\d ]+) euros l’année civile de votre souscription', card).group(1))
                 following = number(required(r'entre 0 et ([\d ]+) euros par année civile les années suivantes', card).group(1))
                 required(r'Assureur communiquera.*?montant maximum', card)
+                clause = required(r'Le montant que vous pourrez investir.*?L’Assureur communiquera.*?Eurossima\.', card).group(0)
+                ceiling_evidence = {'status':'insurer-defined', 'checkedAt':today.isoformat(),
+                    'sourceUrl':url, 'statement':clause,
+                    'scope':'Versements initiaux, libres et programmés ; année civile',
+                    'openingYearUpperBound':opening, 'followingYearUpperBound':following,
+                    'sha256':hashlib.sha256(html.encode()).hexdigest()}
                 operations = f'Plafond annuel fixé par l’assureur, au plus {opening:g} € l’année de souscription et {following:g} € les années suivantes ; versements et arbitrages éligibles.'
             required(r'rachat total.*?Taux Minimum Garanti', body)
             notes = 'Nouveaux contrats : frais applicables aux ouvertures après 2017. En cas de rachat total en cours d’année, le taux appliqué est le Taux Minimum Garanti.'
@@ -163,6 +174,13 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
             if quota != 100 - max_allocation: raise ValueError('Conflicting allocation conditions')
             operations = f'Au moins {100-max_allocation:g} % en unités de compte non garanties ; arbitrages possibles.'
         ceiling = None
+        condition = r'et sans conditions d’unités de compte' if label == 'Suravenir Opportunités 2' else r'avec un minimum de [\d,.]+ % en unités de compte qui présentent un risque de perte en capital'
+        clause = required(r'Ce fonds en euros est accessible sans limite de montant ' + condition, body).group(0)
+        ceiling_evidence = {'status':'unlimited', 'checkedAt':today.isoformat(),
+            'sourceUrl':url, 'statement':clause,
+            'scope':'Souscriptions, versements complémentaires et programmés',
+            **({'minimumUnits':quota} if label == 'Suravenir Rendement 2' else {}),
+            'sha256':hashlib.sha256(html.encode()).hexdigest()}
     return {'name': name, 'years': years, 'asOf': f'{max(values)}-12-31', 'guarantee': guarantee,
             'managementFeeMax': management, 'maxAllocation': max_allocation, 'ceiling': ceiling,
             **({'ceilingEvidence':ceiling_evidence} if ceiling_evidence else {}),
@@ -180,12 +198,19 @@ def validate(record, today):
         raise ValueError('Incomplete contract')
     for fund in record['euroFunds']:
         evidence = fund.get('ceilingEvidence')
-        if evidence and (evidence.get('status') != 'unlimited' or fund.get('ceiling') is not None
+        if evidence and (evidence.get('status') not in ('unlimited', 'insurer-defined') or fund.get('ceiling') is not None
                 or not evidence.get('statement') or not evidence.get('scope')
                 or evidence.get('sourceUrl') not in fund.get('sourceUrls', [])
                 or dt.date.fromisoformat(evidence.get('checkedAt', '')) > today
                 or not re.fullmatch(r'[a-f0-9]{64}', evidence.get('sha256', ''))):
             raise ValueError('Invalid unlimited ceiling evidence')
+        if evidence:
+            if evidence.get('validUntil') and (evidence['status'] != 'unlimited' or evidence['validUntil'] != fund.get('accessValidUntil')):
+                raise ValueError('Ceiling and access expiry disagree')
+            if evidence.get('minimumUnits') is not None and (not finite(evidence['minimumUnits'],0,100) or evidence['minimumUnits'] != 100-fund['maxAllocation']):
+                raise ValueError('Ceiling and unit allocation disagree')
+            if evidence['status'] == 'insurer-defined' and not all(finite(evidence.get(key),0,1_000_000_000) for key in ('openingYearUpperBound','followingYearUpperBound')):
+                raise ValueError('Invalid conditional ceiling bounds')
         years = fund['years']
         year = completed_year([y['year'] for y in years],today)
         if years != sorted(years,key=lambda y:y['year']) or fund['asOf'] != f'{year}-12-31':
@@ -266,7 +291,7 @@ def refresh(previous, adapters, today):
             if old:
                 for fund in record['euroFunds']:
                     before = next(o for o in old['euroFunds'] if o['name'] == fund['name'])
-                    if before.get('ceilingEvidence', {}).get('status') == 'unlimited' and not fund.get('ceilingEvidence') and fund.get('ceiling') is None:
+                    if before.get('ceilingEvidence') and not fund.get('ceilingEvidence') and fund.get('ceiling') is None:
                         raise ValueError('Qualified unlimited ceiling disappeared: ' + fund['name'])
                     for field in ('guarantee', 'maxAllocation', 'ceiling', 'accessValidUntil'):
                         if before.get(field) is not None and fund.get(field) is None:

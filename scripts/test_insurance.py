@@ -4,10 +4,37 @@ import json
 import pathlib
 import unittest
 from collect_insurance import parse_contract, parse_fund, refresh, validate, qualify_vie_guarantees, vie_notice_url
-TODAY=dt.date(2026,10,8)
+TODAY=dt.date(2026,10,10)
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 class InsuranceTests(unittest.TestCase):
+    def test_conditional_ceiling_bounds_and_allocation_must_agree(self):
+        record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-vie'))
+        fund=next(f for f in record['euroFunds'] if f['name']=='Eurossima')
+        self.assertIsNone(fund['ceiling'])
+        self.assertEqual(fund['ceilingEvidence']['openingYearUpperBound'],50000)
+        self.assertEqual(fund['ceilingEvidence']['followingYearUpperBound'],25000)
+        fund['ceilingEvidence']['openingYearUpperBound']=-1
+        with self.assertRaises(ValueError):validate(record,TODAY)
+        record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-avenir-2'))
+        fund=next(f for f in record['euroFunds'] if f['name']=='Suravenir Rendement 2')
+        self.assertEqual(fund['ceilingEvidence']['minimumUnits'],30)
+        fund['maxAllocation']=100
+        with self.assertRaises(ValueError):validate(record,TODAY)
+
+    def test_temporary_ceiling_expiry_and_lost_conditional_proof(self):
+        previous=self.previous()
+        record=copy.deepcopy(next(r for r in previous['records'] if r['id']=='linxea-vie'))
+        fund=next(f for f in record['euroFunds'] if f['name']=='Netissima')
+        self.assertEqual(fund['ceilingEvidence']['validUntil'],'2026-12-31')
+        fund['ceilingEvidence']['validUntil']='2027-12-31'
+        with self.assertRaises(ValueError):validate(record,TODAY)
+        record=copy.deepcopy(next(r for r in previous['records'] if r['id']=='linxea-vie'))
+        next(f for f in record['euroFunds'] if f['name']=='Eurossima').pop('ceilingEvidence')
+        retained,observations=refresh(previous,{'linxea-vie':lambda day:record},TODAY)
+        self.assertEqual(retained,previous)
+        self.assertEqual(observations[0]['status'],'failure')
+
     def test_ceiling_evidence_date_survives_rollover_but_not_future(self):
         record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-zen'))
         validate(copy.deepcopy(record),dt.date(2027,1,1))
@@ -79,7 +106,7 @@ class InsuranceTests(unittest.TestCase):
     def test_conditional_range_is_not_presented_as_one_return(self):
         html="""LE FONDS EUROS Netissima Accessible à 100 % 3 % Net en 2025 3 % net en 2024 3,10 % à 4,12 % net en 2023 selon la part UC détenue (1) Net de frais
         Fonctionnement des Fonds euros de Linxea Vie Netissima Stratégie d’investissement
-        sans conditions d’unités de compte jusqu’au 31/12/2026. 0,75 % par an de frais de gestion pour les contrats ouverts après 2017.
+        ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026. 0,75 % par an de frais de gestion pour les contrats ouverts après 2017.
         Rachat total : Taux Minimum Garanti Arbitrages Documents applicables"""
         r=parse_fund(html,'linxea-vie','Netissima','Netissima','https://www.linxea.com',TODAY,'capital est garanti à hauteur de 99,25 %')
         self.assertEqual(r['years'][0],{'year':2023,'returnMin':3.1,'returnMax':4.12,'condition':'selon la part UC détenue'})

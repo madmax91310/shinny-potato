@@ -77,3 +77,6 @@ for (const id of recent) {
   assert(incomplete.gaps.some(g=>g.id===id&&g.field==='performance'));
 }
 assert.deepEqual([...recent].sort(),Object.keys(JSON.parse(readFileSync('scripts/recent-calendar-evidence.json')).shares).sort());
+assert(!r.insuranceGaps.some(g=>['linxea-avenir-2','linxea-vie'].includes(g.id)))
+assert(buildGapInventory({now:'2027-01-01'}).insuranceGaps.some(g=>g.fund==='Netissima'&&g.field==='ceiling'))
+assert(!buildGapInventory({now:'2027-01-01'}).insuranceGaps.some(g=>g.fund==='Eurossima'&&g.field==='ceiling'))

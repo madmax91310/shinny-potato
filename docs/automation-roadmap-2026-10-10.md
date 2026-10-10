@@ -67,3 +67,19 @@ QYLD IE00BM8R0J59 reste bloqué : le nouvel examen du HTML officiel et de ses do
 Contrôle courtiers complet : sept barèmes sur huit et 49 champs de profil recontrôlés ; aucun des douze périmètres non établis/partiels n’a gagné de preuve. Bourse Direct : HTTP 502 sur la brochure principale, le catalogue officiel et le domaine bourse-direct.fr ; l’ancien chemin bundles/prospect ne répond pas dans le délai. Les douze périmètres courtiers restent à qualifier ; aucune absence de mention ne devient une réponse négative. Les reprises automatiques et les dernières données qualifiées sont conservées.
 
 Validation ciblée : neuf tests Python assurance-vie, tests des tweets et de l’inventaire des lacunes, audits de provenance et des preuves courtiers, build et lint réussis. Le parcours navigateur assurance-vie a réussi avec Chromium headless : sélection, édition, copie, réinitialisation, allocations et aperçu mobile. La CI GitHub complète reste requise avant fusion.
+
+
+## Traitement des derniers points — complément du 10 octobre
+
+Quatre plafonds AV supplémentaires ont une règle officielle structurée et revalidée automatiquement :
+
+- Avenir 2 / Suravenir Opportunités 2 : sans limite de montant pour les souscriptions et versements complémentaires/programmés ; arbitrages entrants exclus.
+- Avenir 2 / Suravenir Rendement 2 : sans limite de montant pour les mêmes versements, avec au moins 30 % d’unités de compte non garanties.
+- Linxea Vie / Netissima : sans limite de montant pour les souscriptions et versements libres/programmés, jusqu’au 31 décembre 2026. Après cette date, la présentation cesse d’afficher cette condition et l’inventaire rouvre le champ.
+- Linxea Vie / Eurossima : plafond annuel déterminé et communiqué par l’assureur, entre 0 et 50 000 € l’année de souscription puis entre 0 et 25 000 € par année civile. Ces bornes ne deviennent pas un plafond personnel certain.
+
+L’inventaire conserve un tableau des règles qualifiées et de leurs périmètres ; les champs AV réellement sans preuve passent de huit à quatre. Deux concernent les plafonds Lucya Cardif, deux concernent la quote-part et le plafond de Placement-direct Vie. La disparition d’une règle déjà qualifiée conserve la dernière observation et déclenche un échec de collecte. Les dates de rendement restent inchangées.
+
+Les documents officiels courtiers, Lucya et SwissLife ont été relus. Le contrôle complet des courtiers conserve les douze périmètres ouverts en l’absence d’une preuve de portée suffisante. Pour Bourse Direct, la brochure, les domaines officiels alternatifs et la page tarifaire restent en HTTP 502, y compris avec rafraîchissement du cache. Un contournement n’est pas certifié. QYLD conserve son statut de conflit : page officielle accessible, performance affichée pour USD Accumulating, pas de calendrier annuel discret et téléchargements FundAssist en HTTP 500. Les anciennes données qualifiées et les reprises quotidiennes existantes restent actives.
+
+Preuves de téléchargement et empreintes : `scripts/source-snapshots/remaining-sources-2026-10-10.json`. Tests ciblés : douze tests Python AV, huit tests de périodes de publication, tweets et inventaire des lacunes. Build et audit de provenance réussis.
