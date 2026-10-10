@@ -131,13 +131,13 @@ assert(pea.find(theme => theme.id === 'usa-pea').etfs.some(fund => fund.isin ===
 assert.equal(pea.find(theme => theme.id === 'europe-pea').etfs.length, 3)
 assert(!DEFAULT_THEMES.some(theme => ['japon-pea', 'sp500-pea'].includes(theme.id)))
 const peaEmerging = pea.find(theme => theme.id === 'emergents-pea')
-assert.deepEqual(peaEmerging.etfs.map(fund => fund.isin), ['FR0013412020', 'FR001400ZGO4', 'FR0013412012', 'FR0013412004', 'FR0011440478'])
-assert.match(buildTweetText(peaEmerging), /PAEEM et PEMS sont deux parts du même fonds/)
+assert.deepEqual(peaEmerging.etfs.map(fund => fund.isin), ['FR0013412020', 'FR0013412012', 'FR0013412004', 'FR0011440478'])
+assert.match(buildTweetText(peaEmerging), /PAEEM couvre plusieurs marchés émergents/)
 assert.equal(getComparisonPerformance('FR001400ZGO4'), null, 'Pas de performance PAEEM copiée sur PEMS')
 assert.throws(() => buildTweetText({ ...peaEmerging, etfs: [emerging.etfs.find(fund => fund.isin === 'IE00BKM4GZ66')] }), /part non éligible ou non vérifiée/)
 for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) for (const field of ['sectors', 'countries']) {
  const image = getComparisonImageComposition(fund.isin, field)
- const expected = [...(COMPARISON_ETF_DETAILS[fund.isin]?.[field] ?? [])].filter(([,value]) => Number.isFinite(value) && value > 0).sort((a,b) => b[1]-a[1]).slice(0,3)
+ const expected = [...(COMPARISON_ETF_DETAILS[fund.isin]?.[field] ?? [])].filter(([label,value]) => Number.isFinite(value) && value > 0 && !/^(other|others|autres)$/i.test(label)).sort((a,b) => b[1]-a[1]).slice(0,3)
  assert.deepEqual(image.rows, expected)
  assert.equal(image.asOf, COMPARISON_ETF_DETAILS[fund.isin]?.[`${field}AsOf`] ?? COMPARISON_ETF_DETAILS[fund.isin]?.asOf)
 }
@@ -149,5 +149,27 @@ for (const count of [1,2,3,4,5,6,7,10]) {
  const layout = comparisonLayout(count)
  assert(layout.columns * layout.rows >= count)
  assert.equal(layout.compact, count >= 4)
- if (count === 4 || count === 5) assert.equal(layout.rows, 2)
+ if (count === 4) assert.equal(layout.rows, 2)
+ if (count === 5) assert.equal(layout.rows, 3)
 }
+
+// Exposure comparisons have one representative for each deliberate choice.
+for (const [id, isins] of Object.entries({
+ 'world-pea': ['IE0002XZSHO1', 'FR0014017NX3'],
+ 'usa-pea': ['FR0011871128', 'FR0011871110'],
+ 'emergents-pea': ['FR0013412020', 'FR0013412012', 'FR0013412004', 'FR0011440478'],
+ 'etc-metaux': ['IE00B4ND3602', 'IE00B4NCWG09', 'GB00B15KXQ89'],
+})) assert.deepEqual(DEFAULT_THEMES.find(theme => theme.id === id).etfs.map(fund => fund.isin), isins)
+for (const theme of DEFAULT_THEMES) {
+ assert.equal(new Set(theme.etfs.map(fund => fund.isin)).size, theme.etfs.length)
+ const tweet = buildTweetText(theme)
+ if (theme.etfs.length === 1) assert.match(tweet, /à découvrir/)
+ else assert.match(tweet, /à comparer/)
+}
+assert.match(buildTweetText(pea.find(theme => theme.id === 'world-pea')), /Le MSCI World couvre les pays développés/)
+assert.doesNotMatch(buildTweetText(pea.find(theme => theme.id === 'world-pea')), /trois ETF World/)
+assert.doesNotMatch(buildTweetText(peaEmerging), /PEMS/)
+assert.equal(DEFAULT_THEMES.find(theme => theme.id === 'tech-europe').etfs.length, 2, 'Two products following one index remain a deliberate product comparison')
+console.log('Comparaisons d’exposition équilibrées, comparaison de produits et découvertes unitaires distinguées.')
+
+assert.ok(getComparisonImageComposition('IE0002XZSHO1', 'countries').rows.every(([label]) => !/^(other|others|autres)$/i.test(label)), 'Une catégorie résiduelle ne constitue pas un pays parmi les principaux pays')

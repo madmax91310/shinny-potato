@@ -240,8 +240,9 @@ if ((comparatorSeriesSource.match(/\.\.\.getInstrumentComparatorReturns\(/g) ?? 
 }
 for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
   // Parts retirées des sélections éditoriales le 06/10/2026 ; leurs données
-  // et collecteurs restent disponibles dans le catalogue partagé.
-  if (!seen.has(isin) && !['IE000XZSV718', 'IE00BD4TXV59'].includes(isin)) {
+  // et collecteurs restent disponibles dans le catalogue partagé. PEMS est également
+  // conservée après le retrait du doublon de part dans Émergents PEA (10/10/2026).
+  if (!seen.has(isin) && !['IE000XZSV718', 'IE00BD4TXV59', 'FR001400ZGO4'].includes(isin)) {
     console.error(`Catalogue : ISIN inutilisé ${isin}`);
     errors++;
   }
