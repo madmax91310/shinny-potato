@@ -8,6 +8,12 @@ TODAY=dt.date(2026,10,8)
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 class InsuranceTests(unittest.TestCase):
+    def test_ceiling_evidence_date_survives_rollover_but_not_future(self):
+        record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-zen'))
+        validate(copy.deepcopy(record),dt.date(2027,1,1))
+        with self.assertRaises(ValueError):
+            validate(copy.deepcopy(record),dt.date(2026,10,9))
+
     def test_unlimited_ceiling_is_scoped_and_revalidated(self):
         html='''LE FONDS EUROS Euroflex 100 % en fonds € 3,25 % Net en 2025 1 % Net en 2024 Les performances passées
         Fonctionnement des Fonds euros de Linxea Zen Apicil Euroflex Stratégie d’investissement
