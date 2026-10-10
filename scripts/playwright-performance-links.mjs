@@ -5,6 +5,7 @@ import { ETFS } from '../src/data/etf-cards.js'
 import { getPerformanceHref, getPerformanceAssetId } from '../src/data/performance-links.js'
 import { FORMATS, MODES, getSecondaryOptionsForFormat, pickForSelection, buildTweetText, SUBJECT_ALEATOIRE } from '../src/pages/tweet-midi/lib.js'
 import { choose } from './card-selection.mjs'
+import { ASSETS } from '../src/data/market-history.js'
 
 const base = 'http://localhost:4321/shinny-potato'
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--port', '4321'], { stdio: 'ignore' })
@@ -50,10 +51,32 @@ try {
     await page.waitForFunction(() => document.querySelector('#subject-select')?.dataset.value === 'euroHighYieldBond')
     await page.goto(`${base}/performance-depuis?isin=unknown`, { waitUntil: 'networkidle' })
     assert.equal(await page.locator('#subject-select').getAttribute('data-value'), SUBJECT_ALEATOIRE)
+    for (const assetId of ['bitcoin', 'apple', 'lvmh', 'euroHighYieldBond']) {
+      await page.goto(`${base}/performance-depuis?asset=${assetId}`, { waitUntil: 'networkidle' })
+      assert.equal(await page.locator('#subject-select').getAttribute('data-value'), assetId)
+      scripts.length = 0
+      await page.getByRole('link', { name: 'Simuler un investissement sur cet actif', exact: true }).click()
+      assert(new URL(page.url()).searchParams.get('asset') === assetId)
+      await page.getByRole('heading', { name: ASSETS[assetId].label, exact: true }).waitFor()
+      assert(await page.getByRole('button', { name: /Copier/ }).first().isEnabled(), 'Simulation must use a valid default date')
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'No horizontal overflow')
+      await page.getByRole('link', { name: 'Voir les performances annuelles de cet actif', exact: true }).click()
+      assert.equal(await page.locator('#subject-select').getAttribute('data-value'), assetId)
+      await page.goBack({ waitUntil: 'networkidle' })
+      await page.getByRole('heading', { name: ASSETS[assetId].label, exact: true }).waitFor()
+    }
+    await page.goto(`${base}/calculateur-investissement?asset=unknown`, { waitUntil: 'networkidle' })
+    await page.getByRole('heading', { name: 'Bitcoin', exact: true }).waitFor()
+    // Same mounted route, new identity: reset its form and result together.
+    await page.evaluate(() => {
+      history.pushState({}, '', '?asset=apple')
+      dispatchEvent(new PopStateEvent('popstate'))
+    })
+    await page.getByRole('heading', { name: 'Apple', exact: true }).waitFor()
     assert.deepEqual(errors, [])
     await page.close()
   }
-  console.log('ETF performance shortcuts: mobile/desktop, 7 shares, initial preview, years, back navigation and changed/unknown ISIN verified.')
+  console.log('History shortcuts: mobile/desktop, 7 ETF shares, annual/simulation round trips, valid dates, back navigation, changed/unknown IDs and no overflow verified.')
 } finally {
   await browser?.close()
   server.kill()
