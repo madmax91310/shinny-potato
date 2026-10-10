@@ -1,4 +1,4 @@
-import { ANNIVERSARY_INDEX_VARIANTS } from './data/marketHistory.js'
+import { ANNIVERSARY_INDEX_VARIANTS } from './data/indexVariants.js'
 // Explicit identities: an issuer logo is never substituted for an index or fund.
 // Sources and visual review: public/asset-art/README.md.
 export const ANNIVERSARY_ART = Object.freeze({
