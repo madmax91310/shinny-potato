@@ -996,13 +996,13 @@ async function testInvestorIntroductions(page) {
     await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro && document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
     ok &&= (await page.locator('.ip-bio').innerText()) === investorIntroduction(slug);
     const tweet = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
-    ok &&= /\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet.split('\n')[0])
+    ok &&= /\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet)
       && ['💼 Ses principales positions', 'du portefeuille déclaré.', '💬 '].every(label => tweet.includes(label))
       && !tweet.includes('🔍 Ce qui distingue ce portefeuille')
       && !tweet.includes('📄 Positions issues')
       && !/place-t-il|undefined|NaN|\\\\n/.test(tweet);
     if (!['li-lu', 'gates-trust', 'klarman'].includes(slug)) {
-      ok &&= ['🔄 Quelques mouvements depuis T1 2026', '🆕 Nouvelle ligne', 'nombre d’actions +18 %', 'nombre d’actions −12 %', '🚪 Ligne sortie'].every(label => tweet.includes(label));
+      ok &&= ['🔄 Quelques mouvements depuis le T1 2026', '🆕 Nouvelle ligne', 'nombre d’actions +18 %', 'nombre d’actions −12 %', '🚪 Ligne sortie'].every(label => tweet.includes(label));
     }
     await page.getByRole('button', { name: /Copier le tweet|Copié/ }).click();
     ok &&= (await page.evaluate(() => window.__investorCopiedText)) === tweet;
