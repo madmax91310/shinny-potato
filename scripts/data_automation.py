@@ -56,12 +56,14 @@ def get_text(url, content_types, max_bytes=2_000_000, opener=urllib.request.urlo
         sleep(delay)
 
 
-def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep):
+def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep, max_attempts=3):
     """Bounded retries; a successful HTML page is never treated as market data."""
+    if type(max_attempts) is not int or not 1 <= max_attempts <= 5:
+        reject('JSON attempts must be an integer between 1 and 5')
     request = urllib.request.Request(url, headers={
         'Accept': 'application/json', 'User-Agent': 'EpargnantLibre-DataPilot/1.0',
     })
-    for attempt in range(3):
+    for attempt in range(max_attempts):
         try:
             with opener(request, timeout=20) as response:
                 body = response.read(2_000_001)
@@ -81,11 +83,11 @@ def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep):
                 return json.loads(body.decode('utf-8'),
                                   parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
         except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == max_attempts - 1:
                 raise
             delay = retry_delay(error, attempt)
         except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead, ConnectionError):
-            if attempt == 2:
+            if attempt == max_attempts - 1:
                 raise
             delay = 2 ** attempt
         sleep(delay)

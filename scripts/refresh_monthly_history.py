@@ -130,7 +130,11 @@ def msci_rows(body, config):
     return rows
 
 
-def collect_msci(config, now, fetch=get_json):
+def get_msci_json(url):
+    return get_json(url, max_attempts=5)
+
+
+def collect_msci(config, now, fetch=get_msci_json):
     end = dt.datetime(now.year, now.month, 1, tzinfo=UTC)
     start = dt.datetime.strptime(config['periodStart'], '%Y-%m').replace(tzinfo=UTC)
     raw, urls, attempts = {}, [], []
