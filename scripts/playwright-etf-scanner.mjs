@@ -15,7 +15,7 @@ try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } }), errors = [], requests = []
   await page.clock.setFixedTime(observation)
   page.on('pageerror', e => errors.push(e.message)); page.on('request', r => requests.push(r.url()))
-  await page.goto(base, { waitUntil: 'networkidle' })
+  await page.goto(`${base}/`, { waitUntil: 'networkidle' })
   assert.equal(requests.filter(u => u.includes('scanner-holdings')).length, 0, 'Home loaded scanner data')
   await page.getByRole('link', { name: /Scanner ETF/ }).last().click()
   await page.locator('.scanner-metrics').waitFor()
