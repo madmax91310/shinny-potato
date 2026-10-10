@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-10T17:50:26.047Z",
-  "sourceRevision": "017acc776a3f257dab904daebfc5a6d00d68607c",
-  "observationCount": 4770,
+  "checkedAt": "2026-10-10T18:17:08.951Z",
+  "sourceRevision": "67880abeb9147adfb0eb7a006c3295f9c5197768",
+  "observationCount": 4768,
   "coverage": {
-    "etf": 161,
+    "etf": 159,
     "indices": 42,
     "courtiers": 8,
     "epargne": 16,
@@ -15,7 +15,13 @@
     "economie": 32
   },
   "newSignalCount": 0,
-  "errors": [],
+  "errors": [
+    {
+      "family": "etf",
+      "entity": "Communiqués Vanguard",
+      "reason": "La page de communiqués Vanguard a changé de format."
+    }
+  ],
   "events": [
     {
       "id": "ba6236f7ccd0626f68cbb9d9",
