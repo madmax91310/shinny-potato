@@ -43,7 +43,8 @@ export function buildGapInventory({etf=read('src/data/automated-etf.json'),indic
   for(const config of configs) {
     const data=indices[config.id]??{};
     for(const field of ['constituents','countries','sectors','holdings','returns']) {
-      const present=field==='returns'?data.returns?.values?.length>0:field==='constituents'?Number.isInteger(data.facts?.constituents):data.facts?.[field]?.length>0;
+      const quarterlyCurrent=field==='holdings' && data.holdings?.rows?.length>0 && data.holdings.asOf>=data.facts?.asOf;
+      const present=quarterlyCurrent || (field==='returns'?data.returns?.values?.length>0:field==='constituents'?Number.isInteger(data.facts?.constituents):data.facts?.[field]?.length>0);
       if(present)continue;
       const nonStock=['bitcoin','ethereum','gold-physical','silver-physical'].includes(config.id)&&field!=='returns';
       if (field==='holdings' && data.holdings?.rows?.length && data.holdings.asOf < data.facts?.asOf) {
