@@ -54,6 +54,10 @@ on:
       - 'scripts/test-annual-rollover.mjs'
       - 'src/data/annual-*'
       - 'scripts/test_new_issuer_sources.py'
+      - 'scripts/scanner_holdings.py'
+      - 'scripts/refresh_scanner_holdings.py'
+      - 'scripts/scanner-holdings.json'
+      - 'scripts/test_scanner_holdings.py'
   pull_request:
     paths:
       - 'src/data/etf-themes.js'
@@ -112,6 +116,11 @@ on:
       - 'scripts/update_bitcoin_monthly.py'
       - 'scripts/test_active_refresh.py'
       - 'src/data/automated-etf*'
+      - 'scripts/scanner_holdings.py'
+      - 'scripts/refresh_scanner_holdings.py'
+      - 'scripts/scanner-holdings.json'
+      - 'scripts/test_scanner_holdings.py'
+      - 'public/data/scanner-holdings/**'
       - 'src/data/bitcoin-yahoo-monthly.json'
 permissions:
   contents: read
@@ -132,7 +141,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' }}
+      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' || steps.scanner.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -169,6 +178,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+      - run: python -m unittest discover -s scripts -p 'test_scanner_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
       - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
       - run: node scripts/audit-comparison-automation.mjs
@@ -190,6 +200,10 @@ jobs:
       - id: indices
         continue-on-error: true
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
+      - name: Publish complete scanner compositions and PEA coverage
+        id: scanner
+        continue-on-error: true
+        run: python scripts/refresh_scanner_holdings.py --report "$RUNNER_TEMP/observation.json" --output "$RUNNER_TEMP/scanner-observation.json"
       - run: node scripts/report-automation-coverage.mjs --write
       - run: node scripts/test-automation-gap-inventory.mjs
       - run: npm run audit:data-review
@@ -212,6 +226,7 @@ jobs:
             ${{ runner.temp }}/ssga-observation.json
             ${{ runner.temp }}/additional-observation.json
             ${{ runner.temp }}/index-observation.json
+            ${{ runner.temp }}/scanner-observation.json
           if-no-files-found: ignore
           retention-days: 35
       - name: Commit validated active data
@@ -220,7 +235,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json
+          git add src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json public/data/scanner-holdings
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated active ETF issuer data'
             git pull --rebase origin master

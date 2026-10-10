@@ -19,6 +19,7 @@ WORKFLOWS = {
     'update-presentation-actors.yml': 'Présentations des acteurs et offres',
     'update-regulatory-data.yml': 'Paramètres fiscaux, LDDS et tarifs de courtiers',
     'collect-etf-pilot.yml': 'ETF et compositions d’indices',
+    'scanner-holdings-health.yml': 'Fraîcheur des compositions complètes du scanner',
     'update-market-monthly.yml': 'Historiques mensuels des marchés',
     'update-bitcoin-monthly.yml': 'Historique du bitcoin',
     'update-gold-monthly.yml': 'Historique de l’or',
