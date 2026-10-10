@@ -11,12 +11,13 @@ try{
  const samples=await page.evaluate(async()=>{
   const {SHEETS}=await import('/shinny-potato/src/data/index-factsheets.js')
   const {renderFactsheetImage}=await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')
+  const {companyLabel,sortedRows}=await import('/shinny-potato/src/pages/factsheet-tweets/editorial.js')
   const {getIndexArt,INDEX_RIBBON_ART}=await import('/shinny-potato/src/pages/factsheet-tweets/visualIdentity.js')
   if(JSON.stringify(Object.keys(INDEX_RIBBON_ART).sort())!==JSON.stringify(SHEETS.map(s=>s.id).sort()))throw new Error('Incomplete identities')
   let labels=[],boxes=[],current;const original=CanvasRenderingContext2D.prototype.fillText
   CanvasRenderingContext2D.prototype.fillText=function(t,x,y,...args){
    const m=this.measureText(t),box={t:String(t),l:x-m.actualBoundingBoxLeft,r:x+m.actualBoundingBoxRight,top:y-m.actualBoundingBoxAscent,bottom:y+m.actualBoundingBoxDescent}
-   if(box.l<0||box.r>1600||box.top<0||box.bottom>1080)throw new Error(`Clipped ${current}: ${t}`)
+   if(box.l<0||box.r>1600||box.top<0||box.bottom>1120)throw new Error(`Clipped ${current}: ${t}`)
    for(const p of boxes)if(Math.min(p.r,box.r)-Math.max(p.l,box.l)>1&&Math.min(p.bottom,box.bottom)-Math.max(p.top,box.top)>1)throw new Error(`Overlap ${current}: ${p.t} / ${t}`)
    boxes.push(box);labels.push(String(t));return original.call(this,t,x,y,...args)
   }
@@ -26,8 +27,9 @@ try{
    if(labels.filter(t=>t==='Épargnant Libre').length!==1)throw new Error('Signature')
    if(labels.some(t=>/COULISSES|ISIN|…/.test(t)))throw new Error('Series heading or truncation')
    for(const [year,value]of sheet.returns)if(!labels.includes(String(year))||!labels.includes(fmt(value)))throw new Error('Changed return')
-   if(sheet.methodologyPanels){for(const [title]of sheet.methodologyPanels)if(!labels.includes(title))throw new Error('Missing methodology');if(labels.includes('PRINCIPALES POSITIONS'))throw new Error('Invented holdings')}
-   else for(const [name]of sheet.holdings.slice(0,3))if(!labels.includes(name))throw new Error('Changed company')
+   for(const heading of ['PRINCIPAUX PAYS','PRINCIPAUX SECTEURS','PRINCIPALES ENTREPRISES'])if(!labels.includes(heading))throw new Error('Missing composition block')
+   for(const [name,value]of sortedRows(sheet.holdings).slice(0,4))if(!labels.join(' ').includes(companyLabel(name))||!labels.includes(fmt(value).replace(/^\\+/,'')))throw new Error('Changed company or weight')
+   if(canvas.width!==2400||canvas.height!==1680)throw new Error('Wrong PNG dimensions')
    if(['world','acwi','ftse-all-world','world-ex-usa','world-small-cap','mscieurope'].includes(sheet.id)&&getIndexArt(sheet).scene!=='world')throw new Error('Wrong numeric scene')
    results.push({id:sheet.id,png:canvas.toDataURL(),labels})
   }}finally{CanvasRenderingContext2D.prototype.fillText=original}
