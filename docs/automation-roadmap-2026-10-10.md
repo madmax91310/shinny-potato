@@ -50,3 +50,7 @@ La page européenne actuelle identifie la part distribuante IE00BM8R0J59, mais s
 Linxea Zen, Vie, Spirit 2, Avenir 2, Lucya Cardif et Placement-direct Vie ont tous réussi la collecte réelle sans modifier les observations actives. Les plafonds propres aux supports et la quote-part SwissLife restent ouverts lorsque la documentation ne les chiffre pas. Les offres Euro+ et les annonces génériques d’absence de plafond légal de l’assurance-vie ne qualifient pas les conditions contractuelles de ces fonds.
 
 Ces réserves concernent des données non publiées ou non qualifiables, pas des branchements désactivés. Elles restent visibles dans l’inventaire et soumises aux contrôles quotidiens existants.
+
+### Courtiers : contrôle réel terminé
+
+Sept barèmes sur huit ont réussi ; Bourse Direct reste en HTTP 502 sur les domaines .fr/.com et les pages CTO/tarifs. Ses dernières valeurs sont conservées. Les douze champs partiels ou non établis gardent le même statut : cash CTO BoursoBank/Fortuneo/Crédit Agricole/Bourse Direct ; achats programmés PEA Fortuneo/IBKR ; PEA-PME IBKR/Trade Republic ; PEA Jeune IBKR ; frais de change régionaux Crédit Agricole ; portée PEA du change et de la garde Trade Republic. Aucune nouvelle clause officielle ne permet leur certification intégrale. Les résultats de collecte et périmètres exacts sont ajoutés à l’instantané de contrôle.

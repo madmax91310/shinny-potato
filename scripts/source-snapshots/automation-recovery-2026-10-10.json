@@ -99,5 +99,126 @@
     "holdings": "contradictory duplicate reference-index rows; substitution basket excluded",
     "productProfile": "does not publish a completed distributing-share calendar",
     "launchPresentationDate": "2022-11-22"
+  },
+  "brokers": {
+    "validatedTariffs": [
+      "bourso",
+      "fortuneo",
+      "xtb",
+      "saxo",
+      "caidf",
+      "ibkr",
+      "tr"
+    ],
+    "retainedAfterError": [
+      "bd"
+    ],
+    "failures": {
+      "bd": "https://www.boursedirect.fr/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway; https://www.boursedirect.fr/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway; https://www.boursedirect.com/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway",
+      "bd:profile:pea": "HTTP Error 502: Bad Gateway; https://www.boursedirect.fr/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway; https://www.boursedirect.com/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway",
+      "bd:profile:pme": "HTTP Error 502: Bad Gateway; https://www.boursedirect.fr/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway; https://www.boursedirect.com/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway",
+      "bd:profile:jeune": "HTTP Error 502: Bad Gateway; https://www.boursedirect.fr/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway; https://www.boursedirect.com/pdf/tarifs_bd.pdf: HTTP Error 502: Bad Gateway",
+      "bd:profile:ifu": "HTTP Error 502: Bad Gateway; https://www.boursedirect.fr/pdf/CGBDMARS24.pdf: HTTP Error 502: Bad Gateway; https://www.boursedirect.com/pdf/CGBDMARS24.pdf: HTTP Error 502: Bad Gateway",
+      "bd:profile:cash": "https://www.boursedirect.fr/fr/bourse/compte-titres: HTTP Error 502: Bad Gateway",
+      "bd:profile:entrant": "https://www.boursedirect.fr/fr/bourse/tarifs: HTTP Error 502: Bad Gateway"
+    },
+    "unresolvedFields": [
+      {
+        "broker": "bourso",
+        "field": "cash",
+        "status": "partiel",
+        "sourceUrl": "https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf",
+        "sha256": "b4b1928fc8381b49b9d8fd526e39931c7e1a164c51d9ec44626cb1a0dbf88462",
+        "scope": "bourso ; cash ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "fortuneo",
+        "field": "dca",
+        "status": "non établi",
+        "sourceUrl": "https://www.fortuneo.fr/bourse/ordres-intelligents",
+        "sha256": "ce0ff05d72cc0c90f07a970a687d403eccbb8e6f0de0d2bc68a813dd12e6280a",
+        "scope": "fortuneo ; dca ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "fortuneo",
+        "field": "cash",
+        "status": "partiel",
+        "sourceUrl": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
+        "sha256": "b95ff4d80d021927992aa0767fb06ce1131117ff94a489ea6a173d635e8ee82c",
+        "scope": "fortuneo ; cash ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "caidf",
+        "field": "cash",
+        "status": "partiel",
+        "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
+        "sha256": "7e83c3c7c9cddefe923e692a8b186dc954e5f48bcfa5ff729b0da70cbfe7f7ee",
+        "scope": "caidf ; cash ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "caidf",
+        "field": "change",
+        "status": "non établi",
+        "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
+        "sha256": "904fa9764cce3f1d63f5760b7598a9bfa1fdb9247a63fc17b258f61fcdeb801b",
+        "scope": "caidf ; change ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "ibkr",
+        "field": "dca",
+        "status": "non établi",
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
+        "sha256": "702f4bc75128793a4a660c08b3482cade5a0f04219c1a02c3f36a3e6776ef8a2",
+        "scope": "ibkr ; dca ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "ibkr",
+        "field": "pme",
+        "status": "non établi",
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
+        "sha256": "eebc155f30cd6396df87e3a6a84c6d5fa8cf083c75897a2d4a52e46bda12e84c",
+        "scope": "ibkr ; pme ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "ibkr",
+        "field": "jeune",
+        "status": "non établi",
+        "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
+        "sha256": "eebc155f30cd6396df87e3a6a84c6d5fa8cf083c75897a2d4a52e46bda12e84c",
+        "scope": "ibkr ; jeune ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "tr",
+        "field": "pme",
+        "status": "non établi",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "sha256": "69e21be4bec52e7710b0df571ed3c94666b76af5e683a69ac4a100dd41028e41",
+        "scope": "tr ; pme ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "tr",
+        "field": "change",
+        "status": "partiel",
+        "sourceUrl": "https://support.traderepublic.com/fr-fr/414",
+        "sha256": "6876744f7ac1f7bdf9380a26818fbb675f9c4b358650e40331f48edc1b927c73",
+        "scope": "tr ; change ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "tr",
+        "field": "garde",
+        "status": "partiel",
+        "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
+        "sha256": "5e5a8c760378efa28ece5e61edfc8d41c011ea4fb4a6abee8b80b69d7d430a51",
+        "scope": "tr ; garde ; portée exacte des sources publiques"
+      },
+      {
+        "broker": "bd",
+        "field": "cash",
+        "status": "partiel",
+        "sourceUrl": "https://epargne.boursedirect.fr/epargne/placements-epargne/compte-titres-dont-pea-et-pea-pme/le-pea-plan-d-epargne-en-actions",
+        "sha256": "42d166177a2f41978ab41d566811f4d83056cc4da9161989346df933b9be1eb1",
+        "scope": "bd ; cash ; portée exacte des sources publiques"
+      }
+    ]
   }
 }
