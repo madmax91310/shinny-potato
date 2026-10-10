@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
+import { analyze } from '../src/pages/etf-scanner/lib.js'
+import { LABELS } from '../src/pages/etf-scanner/data.js'
 import { mkdir, readFile } from 'node:fs/promises'
 const dir = 'test-artifacts/scanner'
 await mkdir(dir, { recursive: true })
@@ -22,6 +24,28 @@ try {
   assert.equal(requests.filter(u => /scanner-holdings\/IE.*json/.test(u)).length, 2, 'Only selected compositions should load')
   assert.equal(await page.getByRole('alert').count(), 0)
   await page.screenshot({ path: `${dir}/desktop.png`, fullPage: true })
+  await page.getByRole('button', { name: 'Modifier le support 1', exact: true }).click()
+  await page.getByRole('button', { name: 'Par indice suivi', exact: true }).click()
+  const indexPicker = page.getByRole('group', { name: 'Indice suivi', exact: true })
+  assert.ok(await indexPicker.locator('[data-option]').count() > 10)
+  await page.getByRole('searchbox', { name: 'Rechercher : Indice suivi' }).fill(manifest.instruments['IE00BKM4GZ66'].index)
+  await indexPicker.locator('[data-option]').first().click()
+  await page.getByRole('button', { name: 'Remplacer ce support', exact: true }).click()
+  await page.locator('.scanner-metrics').waitFor()
+  assert.equal(await page.getByRole('spinbutton', { name: 'Poids ETF 1' }).inputValue(), '80')
+  assert.match(await page.locator('.scanner-line').first().innerText(), /IE00BKM4GZ66/)
+  await page.getByRole('button', { name: 'Modifier le support 1', exact: true }).click()
+  await page.getByRole('checkbox', { name: 'Compositions complètes seulement' }).check()
+  await page.getByRole('searchbox', { name: 'Rechercher : ETF à ajouter' }).fill('FR001400U5Q4')
+  assert.equal(await page.getByRole('group', { name: 'ETF à ajouter', exact: true }).locator('[data-option]').count(), 0)
+  await page.getByRole('searchbox', { name: 'Rechercher : ETF à ajouter' }).fill('IE00B4L5Y983')
+  await page.getByRole('group', { name: 'ETF à ajouter', exact: true }).locator('[data-option]').click()
+  await page.getByRole('button', { name: 'Remplacer ce support', exact: true }).click()
+  await page.locator('.scanner-metrics').waitFor()
+  assert.match(await page.locator('.scanner-line').first().innerText(), /IE00B4L5Y983/)
+  await page.locator('.scanner-settings').getByText('Ajouter un ETF', { exact: true }).click()
+  await page.getByRole('checkbox', { name: 'Compositions complètes seulement' }).uncheck()
+  await page.locator('.scanner-settings').getByText('Ajouter un ETF', { exact: true }).click()
   await page.getByRole('button', { name: 'Comparer avant / après', exact: true }).click()
   await page.getByRole('heading', { name: 'Avant → après', exact: true }).waitFor()
   await page.locator('.scanner-preview').getByText(/Poids des 10 premières lignes :/).waitFor()
@@ -38,6 +62,16 @@ try {
   const [json] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exporter JSON', exact: true }).click()])
   await json.saveAs(`${dir}/scanner-etf.json`)
   const report = JSON.parse(await readFile(`${dir}/scanner-etf.json`, 'utf8'))
+  const imageCode = (await readFile('src/pages/etf-scanner/image.js', 'utf8')).replace(/^import .*\n/gm, '').replace('export function renderScannerImage', 'window.renderScannerImage = function')
+  await page.addScriptTag({ content: `const percent = value => value.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) + ' %'; const displayLabel = name => (${JSON.stringify(LABELS)})[name] ?? name;\n${imageCode}` })
+  const twelveLines = Object.keys(manifest.instruments).slice(0, 12).map(isin => ({ isin, weight: 100 / 12 }))
+  const twelveSnapshots = Object.fromEntries(await Promise.all(twelveLines.map(async l => [l.isin, JSON.parse(await readFile('public/data/scanner-holdings/' + l.isin + '.json', 'utf8'))])))
+  const twelveResult = analyze(twelveLines, twelveSnapshots, manifest, observation)
+  const longImage = await page.evaluate(({ result, lines, fundNames }) => {
+    return window.renderScannerImage(result, null, lines, isin => fundNames[isin]).toDataURL('image/png').split(',')[1]
+  }, { result: twelveResult, lines: twelveLines, fundNames: Object.fromEntries(Object.entries(manifest.instruments).map(([isin, e]) => [isin, e.name])) })
+  const { writeFile } = await import('node:fs/promises')
+  await writeFile(`${dir}/scanner-12-supports.png`, Buffer.from(longImage, 'base64'))
   assert.equal(report.text, 'Mon texte scanner'); assert.equal(report.results.b.sharedCount, 0); assert.ok(report.results.b.top10 < report.results.a.top10)
   const [csv] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exporter CSV', exact: true }).click()])
   await csv.saveAs(`${dir}/scanner-etf.csv`)
