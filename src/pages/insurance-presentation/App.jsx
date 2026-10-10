@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import { useCallback, useState } from 'react'
 import { usePresentationDraft } from '../presentation-shared/drafts.jsx'
 import { renderPresentationImage } from '../presentation-shared/imageExport.js'
@@ -20,12 +21,12 @@ export default function App({ embedded = false }) {
   const renderImage = useCallback(() => renderPresentationImage(record, 'insurance'), [record])
   async function exportImage() {
     setExporting(true)
-    try { downloadImage(await renderImage(), `${record.id}-epargnant-libre.png`); setMessage('Image téléchargée.') }
-    catch (error) { setMessage(error.message || 'Impossible de télécharger l’image.') }
+    try { downloadImage(await renderImage(), `${record.id}-epargnant-libre.png`); setMessage('Téléchargement lancé.') }
+    catch (error) { setMessage(error.message || 'Impossible de télécharger l’image.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
     finally { setExporting(false) }
   }
   async function copy() {
-    try { await navigator.clipboard.writeText(text); setMessage('Texte copié.') }
+    try { await copyPublicationText(text); setMessage('Texte copié.') }
     catch { setMessage('Sélectionne le texte dans l’aperçu pour le copier.'); document.querySelector('#insurance-draft')?.select() }
   }
   if (!record) return <p role="alert">Aucun contrat vérifié n’est disponible pour le moment.</p>
@@ -34,8 +35,8 @@ export default function App({ embedded = false }) {
     <ToolWorkspace renderImage={renderImage} imageAlt={`Visuel de ${record.name}`} actions={<>
       <Button onClick={copy}>Copier le texte</Button>
       <Button onClick={exportImage} disabled={exporting}>{exporting ? 'Préparation…' : 'Télécharger l’image'}</Button>
-      <Button variant="secondary" onClick={() => { setDraft(null); setMessage('Texte d’origine rétabli.') }}>Rétablir le texte</Button>
-      <span role="status">{message}</span>
+      <Button variant="secondary" onClick={() => { setDraft(null); setMessage('Texte d’origine rétabli.'); notifyPublication('Texte d’origine rétabli.') }}>Rétablir le texte</Button>
+      <span>{message}</span>
     </>}>
       <section className="tool-settings">
         <ChoicePicker aria-label="Choisir une assurance-vie" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>

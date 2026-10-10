@@ -1,3 +1,4 @@
+import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
 import { MONTHS_FULL } from '../../data/market-history.js'
 import { getHistoricalPrice, ymForYearsBack, fmtYm } from './data/marketHistory.js'
@@ -102,6 +103,6 @@ export async function downloadAnniversaryImage(item, currentRaw, currentRawB) {
   const url = URL.createObjectURL(blob), link = document.createElement('a')
   link.href = url
   link.download = `il-y-a-${item.yearsBack}-ans-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`
-  document.body.appendChild(link); link.click(); link.remove()
+  document.body.appendChild(link); startPublicationDownload(link); link.remove()
   setTimeout(() => URL.revokeObjectURL(url),1000)
 }

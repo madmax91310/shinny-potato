@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
@@ -9,7 +10,7 @@ const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.Dat
 function Signal({ event, read, onRead }) {
   const [draft, setDraft] = useState(event.draft), [message, setMessage] = useState('')
   async function copy() {
-    try { await navigator.clipboard.writeText(draft); setMessage('Brouillon copié.') } catch { setMessage('Copie indisponible : sélectionne le texte du brouillon.') }
+    try { await copyPublicationText(draft); setMessage('Brouillon copié.') } catch { setMessage('Copie indisponible : sélectionne le texte du brouillon.') }
   }
   return <article className={`radar-card ${read ? 'radar-card--read' : ''}`}>
     <div className="radar-card-top"><span className="radar-label">{FAMILIES[event.family]}</span>{!read && <span className="radar-unread">Non lu</span>}<time dateTime={event.detectedAt}>{date(event.detectedAt)}</time></div>
@@ -20,7 +21,7 @@ function Signal({ event, read, onRead }) {
     <p>{event.reason}</p>
     <div className="radar-angle"><strong>Une piste pour ton post</strong><p>{event.angle}</p></div>
     <div className="radar-actions"><a href={event.sourceUrl} target="_blank" rel="noreferrer">Voir la source ↗</a>{event.previousSourceUrl && event.previousSourceUrl !== event.sourceUrl && <a href={event.previousSourceUrl} target="_blank" rel="noreferrer">Source précédente ↗</a>}<Link to={event.tool}>Ouvrir l’outil</Link><Button onClick={() => onRead(event.id)} disabled={read}>{read ? 'Lu' : 'Marquer comme lu'}</Button></div>
-    <details className="radar-draft"><summary>Préparer une publication</summary><label>Brouillon de publication<textarea aria-label={`Brouillon ${event.id}`} value={draft} onChange={e => setDraft(e.target.value)} rows={8} /></label><div className="radar-actions"><Button onClick={copy}>Copier le brouillon</Button><Button onClick={() => setDraft(event.draft)}>Rétablir le texte</Button></div><p role="status">{message}</p></details>
+    <details className="radar-draft"><summary>Préparer une publication</summary><label>Brouillon de publication<textarea aria-label={`Brouillon ${event.id}`} value={draft} onChange={e => setDraft(e.target.value)} rows={8} /></label><div className="radar-actions"><Button onClick={copy}>Copier le brouillon</Button><Button onClick={() => { setDraft(event.draft); notifyPublication('Texte d’origine rétabli.') }}>Rétablir le texte</Button></div><p>{message}</p></details>
   </article>
 }
 export default function App() {

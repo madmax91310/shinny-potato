@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import ActionMenu from '../../design-system/ActionMenu'
 import { downloadImage } from '../../design-system/downloadImage'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
@@ -22,10 +23,11 @@ export default function App() {
 
   async function copy() {
     try {
-      await navigator.clipboard.writeText(text)
+      await copyPublicationText(text)
       setCopied(true)
       setTimeout(() => setCopied(false), 1800)
     } catch {
+      setCopied(false)
       document.getElementById('factsheet-draft')?.select()
     }
   }
@@ -53,7 +55,7 @@ export default function App() {
     <div className="fs-panel fs-editor tool-preview">
       <div className="fs-editor-top"><label className="fs-label" htmlFor="factsheet-draft">Publication modifiable</label><span>{text.length.toLocaleString('fr-FR')} caractères</span></div>
       <textarea id="factsheet-draft" spellCheck="true" value={text} onChange={(event) => { setDrafts((current) => ({ ...current, [selected]: event.target.value })); setCopied(false) }} />
-      <WorkspaceActions><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={async () => downloadImage(await renderFactsheetImage(sheet), `${sheet.id}-dans-les-coulisses.png`)}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => setDrafts((current) => { const next = { ...current }; delete next[selected]; return next })}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
+      <WorkspaceActions><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={async () => { try { downloadImage(await renderFactsheetImage(sheet), `${sheet.id}-dans-les-coulisses.png`) } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') } }}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => { setDrafts((current) => { const next = { ...current }; delete next[selected]; return next }); notifyPublication('Texte d’origine rétabli.') }}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
     </div>
     </ToolWorkspace>
     {image && <div className="fs-image-overlay" role="presentation" onClick={() => setImage(null)}>

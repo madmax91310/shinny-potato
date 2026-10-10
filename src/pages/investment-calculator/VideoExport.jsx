@@ -1,3 +1,4 @@
+import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ASSET_ORDER, ASSETS, SPARSE_MONTHLY_DATA_IDS } from '../../data/market-history.js'
@@ -16,7 +17,7 @@ function triggerAnchorDownload(url, filename) {
   a.href = url
   a.download = filename
   document.body.appendChild(a)
-  a.click()
+  startPublicationDownload(a)
   document.body.removeChild(a)
 }
 
@@ -125,7 +126,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
 
   async function copyComparison() {
     try {
-      await navigator.clipboard.writeText(comparisonText)
+      await copyPublicationText(comparisonText)
       setCopied('done')
     } catch {
       setCopied('error')

@@ -1,3 +1,4 @@
+import { notifyPublication, startPublicationDownload } from '../../design-system/publicationActions.js'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import { useEffect, useRef, useState } from 'react'
 import Button from '../../design-system/Button'
@@ -28,12 +29,12 @@ export default function BrokerVersusCard({ selected }) {
     const canvas = canvasRef.current
     if (!canvas || error || !ready) return
     canvas.toBlob((blob) => {
-      if (!blob) { setError('Impossible de préparer le PNG.'); return }
+      if (!blob) { setError('Impossible de préparer le PNG.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error'); return }
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
       link.download = `duel-courtiers-${left}-${right}.png`
-      link.click()
+      startPublicationDownload(link)
       setTimeout(() => URL.revokeObjectURL(url), 1000)
     }, 'image/png')
   }

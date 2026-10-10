@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -24,13 +25,13 @@ function Editor({ record, onSelect, design, onDesign }) {
   }, [imagePromise, imageKey])
   const source = HOUSEHOLD_SOURCES[record.source]
   async function copy() {
-    try { await navigator.clipboard.writeText(tweet); setMessage('Tweet copié.') }
+    try { await copyPublicationText(tweet); setMessage('Tweet copié.') }
     catch { setError('La copie automatique est indisponible. Sélectionne le texte du tweet pour le copier.'); return }
     setError('')
   }
   function exportJson() {
     const url = URL.createObjectURL(new Blob([JSON.stringify({ schemaVersion: 1, ...record, source: HOUSEHOLD_SOURCES[record.source], tweet }, null, 2)], { type: 'application/json' }))
-    const link = document.createElement('a'); link.href = url; link.download = `france-100-menages-${record.id}.json`; link.click()
+    const link = document.createElement('a'); link.href = url; link.download = `france-100-menages-${record.id}.json`; startPublicationDownload(link)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
   return <ToolWorkspace renderImage={() => imagePromise} imageAlt={`La France en 100 ménages : ${record.headline}`} actions={<><Button onClick={copy}>Copier le tweet</Button>{image.url && <Button as="a" variant="secondary" href={image.url} download={`france-100-menages-${record.id}-${design}.png`}>Télécharger le PNG</Button>}</>}>
@@ -47,8 +48,8 @@ function Editor({ record, onSelect, design, onDesign }) {
         <div className="hh-panel-head"><h2>Tweet</h2><span>{Array.from(tweet).length} caractères</span></div>
         <label className="hh-tweet-label">Texte modifiable<textarea value={tweet} onChange={(e) => { setTweet(e.target.value); setMessage('') }} /></label>
         <p className="hh-note">Le compteur indique les caractères du texte. La limite X dépend du compte et du calcul des liens.</p>
-        <div className="hh-actions"><button onClick={() => { setTweet(buildHouseholdTweet(record)); setMessage('Texte réinitialisé.'); setError('') }}>Réinitialiser le texte</button><button onClick={exportJson}>Exporter le JSON</button></div>
-        <p className="hh-message" role="status">{message}</p>{error && <p role="alert">{error}</p>}
+        <div className="hh-actions"><button onClick={() => { setTweet(buildHouseholdTweet(record)); setMessage('Texte réinitialisé.'); notifyPublication('Texte d’origine rétabli.'); setError('') }}>Réinitialiser le texte</button><button onClick={exportJson}>Exporter le JSON</button></div>
+        <p className="hh-message">{message}</p>{error && <p role="alert">{error}</p>}
         <div className="hh-source"><h3>Source officielle</h3><a href={source.url} target="_blank" rel="noreferrer">Insee : {source.title} ↗</a><dl><dt>Données</dt><dd>{record.referencePeriod}{record.provisional ? ' — provisoires' : ''}</dd><dt>Publication</dt><dd>{source.publishedAt}</dd><dt>Consultation</dt><dd>{record.metadata.checkedAt}</dd><dt>Tableau / passage</dt><dd>{record.table}</dd><dt>Population</dt><dd>{record.metadata.scope}</dd></dl><p>{record.note}</p><Link to={`/bibliotheque-donnees?type=household&id=household:${record.id}`}>Voir la fiche dans la bibliothèque de données →</Link></div>
       </section>
     </div>

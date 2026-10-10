@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -42,9 +43,9 @@ export default function InvestorPortfolio() {
 
   async function copy() {
     try {
-      await navigator.clipboard.writeText(draft)
+      await copyPublicationText(draft)
       setCopied(true)
-    } catch { setError('Copie impossible : sélectionne le texte ci-dessous.') }
+    } catch { setCopied(false); setError('Copie impossible : sélectionne le texte ci-dessous.') }
   }
 
   async function download() {
@@ -53,8 +54,8 @@ export default function InvestorPortfolio() {
       const link = document.createElement('a')
       link.href = await renderPortfolioImage(portfolio)
       link.download = `portefeuille-${slug}-${portfolio.snapshot.periodEnd}.png`
-      link.click()
-    } catch (problem) { setError(problem.message) }
+      startPublicationDownload(link)
+    } catch (problem) { setError(problem.message); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
     finally { setExporting(false) }
   }
 
@@ -87,7 +88,7 @@ export default function InvestorPortfolio() {
           <div className="ip-editor">
             <label htmlFor="ip-intro">Présentation de l’investisseur (modifiable)</label>
             <textarea id="ip-intro" value={intro} onChange={(event) => updateIntro(event.target.value)} rows="3" />
-            <Button type="button" variant="secondary" onClick={() => updateIntro(investorIntroduction(slug))}>Rétablir la présentation</Button>
+            <Button type="button" variant="secondary" onClick={() => { updateIntro(investorIntroduction(slug)); notifyPublication('Présentation d’origine rétablie.') }}>Rétablir la présentation</Button>
             <p className="ip-note">Source de la présentation proposée : {INVESTOR_PROFILES[slug]?.sourceUrls.map((url, i) => <span key={url}>{i > 0 && ' · '}<a href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} ↗</a></span>)}</p>
             <label htmlFor="ip-draft">Tweet modifiable</label>
             <textarea id="ip-draft" value={draft} onChange={(event) => setDraft(event.target.value)} rows="16" />

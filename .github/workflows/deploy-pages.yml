@@ -161,6 +161,7 @@ jobs:
         env:
           COMPANY_QA_DIR: test-artifacts/company-analysis
       - run: node scripts/playwright-tools.mjs
+      - run: node scripts/playwright-publication-actions.mjs
       - run: npm run test:radar:browser
       - run: node scripts/playwright-wealth.mjs
       - run: node scripts/test-regulatory-ui.mjs

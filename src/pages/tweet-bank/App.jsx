@@ -1,3 +1,4 @@
+import { notifyPublication } from '../../design-system/publicationActions.js'
 import { contentValidity, renderBankCopy, bankToday, reviewPolicy } from './validity.js'
 import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { TWEETS, MONTHS, CATEGORIES, FORMATS, GOLD_CATEGORIES, COOLDOWN_DAYS } from './data'
@@ -131,9 +132,11 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
     }
     if (!copied) copied = fallbackCopy(copyText)
     if (copied) {
+      notifyPublication('Texte copié.')
       setCopyLabel('✅ Copié')
       setTimeout(() => setCopyLabel('📋 Copier'), 1500)
     } else {
+      notifyPublication('Copie indisponible. Sélectionne le texte pour le copier.', 'error')
       setManualCopy(copyText)
       setCopyLabel('Copie manuelle disponible')
       setTimeout(() => setCopyLabel('📋 Copier'), 2200)

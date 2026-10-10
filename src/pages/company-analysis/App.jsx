@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { useState } from 'react'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import PageHeader from '../../design-system/PageHeader'
@@ -22,7 +23,7 @@ export default function App() {
   const history = activeHistory(company)
   const annualContext = activeAnnualContext(company)
   async function copy() {
-    try { await navigator.clipboard.writeText(text); setMessage('Texte copié.') }
+    try { await copyPublicationText(text); setMessage('Texte copié.') }
     catch { setMessage('La copie a échoué. Tu peux sélectionner le texte dans l’aperçu.') }
   }
   async function download() {
@@ -30,8 +31,8 @@ export default function App() {
       const link = document.createElement('a')
       link.href = (await renderCompanyImage(company)).toDataURL('image/png')
       link.download = `analyse-${company.id}-${company.annual.end}.png`
-      link.click(); setMessage('Image téléchargée.')
-    } catch { setMessage('Impossible de préparer l’image.') }
+      startPublicationDownload(link); setMessage('Téléchargement lancé.')
+    } catch { setMessage('Impossible de préparer l’image.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
   }
   return <div className="company-analysis">
     <PageHeader title="Analyse d’entreprise" subtitle="Son activité, ses résultats et les chiffres expliqués." />
@@ -39,7 +40,7 @@ export default function App() {
       <Button onClick={copy} disabled={!ready}>Copier le texte</Button>
       <Button variant="secondary" onClick={() => setEditing(value => !value)} disabled={!ready}>{editing ? 'Voir le texte' : 'Modifier le texte'}</Button>
       <Button variant="secondary" onClick={download} disabled={!ready}>Télécharger le PNG</Button>
-      <span role="status">{message}</span>
+      <span>{message}</span>
     </>}>
       <section className="tool-settings">
         <ChoicePicker aria-label="Choisir une entreprise" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
@@ -78,7 +79,7 @@ export default function App() {
           </label> : <article className="company-tweet" data-testid="company-tweet">{text}</article>}
           {drafts[id] !== undefined && <div className="company-edit-note">
             <p>Le texte est modifié. L’image conserve les chiffres des données sources.</p>
-            <Button variant="secondary" onClick={() => { setDrafts(previous => { const next = {...previous}; delete next[id]; return next }); setMessage('Texte d’origine rétabli.') }}>Rétablir le texte d’origine</Button>
+            <Button variant="secondary" onClick={() => { setDrafts(previous => { const next = {...previous}; delete next[id]; return next }); setMessage('Texte d’origine rétabli.'); notifyPublication('Texte d’origine rétabli.') }}>Rétablir le texte d’origine</Button>
           </div>}
         </>
           : <p role="alert">Les comptes de cette entreprise sont indisponibles ou trop anciens pour générer une publication.</p>}

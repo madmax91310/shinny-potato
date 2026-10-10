@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { useCallback, useMemo, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -44,7 +45,7 @@ export default function App() {
   const renderImage = useCallback(()=>renderProjectionImage(plan,computation.scenarios),[plan,computation.scenarios])
   const patchPocket = (id,field,value) => change(next=>{next.portfolios[next.active].pockets.find(p=>p.id===id)[field]=value})
   const patchEvent = (index,field,value) => change(next=>{const e=next.portfolios[next.active].events[index];e[field]=value;if(field==='month')e.endMonth=Math.max(e.endMonth,value)})
-  function saveFile(content,name,type) {const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+  function saveFile(content,name,type) {const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=name;startPublicationDownload(a);setTimeout(()=>URL.revokeObjectURL(url),1000)}
   async function importFile(event) {
     const file=event.target.files?.[0];if(!file)return
     try {if(file.size>1e6)throw new Error('Fichier trop volumineux (1 Mo maximum).');const next=validatePlan(JSON.parse(await file.text()));setPlan(next);setDraft(null);setMessage('Simulation importée.')}catch(error){setMessage(error.message)}finally{event.target.value=''}
@@ -65,8 +66,8 @@ export default function App() {
     <p className="wealth-note">Les montants restent dans ton navigateur. La sauvegarde est volontaire ; les exports contiennent les données affichées.</p>
     <div role="group" aria-label="Mode du simulateur" className="wealth-tabs">{[['personal','Mon patrimoine'],['compare','Comparaison pour X']].map(([id,label])=><button key={id} aria-pressed={plan.mode===id} onClick={()=>change(p=>{p.mode=id})}>{label}</button>)}</div>
     <ToolWorkspace renderImage={computation.error ? undefined : renderImage} imageAlt="Graphique du patrimoine : scénarios prudent, central et favorable" imageDisabled={!!computation.error} actions={<>
-      <Button disabled={!!computation.error} onClick={async()=>{try{await navigator.clipboard.writeText(text);setMessage('Texte copié.')}catch{setMessage('Copie indisponible : sélectionne le texte du brouillon.')}}}>Copier le texte</Button>
-      <Button disabled={!!computation.error} onClick={()=>{try{downloadImage(renderImage(),'projection-patrimoine.png');setMessage('Image téléchargée.')}catch(e){setMessage(e.message)}}}>Télécharger l’image</Button>
+      <Button disabled={!!computation.error} onClick={async()=>{try{await copyPublicationText(text);setMessage('')}catch{setMessage('')}}}>Copier le texte</Button>
+      <Button disabled={!!computation.error} onClick={()=>{try{downloadImage(renderImage(),'projection-patrimoine.png');setMessage('')}catch{setMessage('');notifyPublication('Impossible de préparer l’image. Réessaie.', 'error')}}}>Télécharger l’image</Button>
       <Button disabled={!!computation.error} variant="secondary" onClick={()=>{
         const keys=plan.mode==='compare'?['a','b']:[plan.active]
         const rows=['patrimoine;annee;capital;capital_reel;versements_cumules;retraits;gains;especes;capital_apres_taxe_hypothetique',...keys.flatMap(k=>computation.results[k].points.map(p=>[k,p.year,p.capital,p.real,p.paid,p.withdrawn,p.gains,p.cash,p.afterTax].map(v=>typeof v==='number'?v.toFixed(2).replace('.',','):v).join(';')))]
@@ -128,7 +129,7 @@ export default function App() {
             {computation.allocation.map(row=><div className="wealth-panel" key={row.envelope}><h3>{ENVELOPES.find(e=>e.id===row.envelope)?.name}</h3><div className="wealth-metrics"><div><small>Aujourd’hui · {percent(row.currentWeight)}</small><strong>{money(row.initial)}</strong></div><div><small>Dans {plan.years} ans · {percent(row.futureWeight)}</small><strong>{money(row.future)}</strong></div></div><p>Versement mensuel initial : {money(row.monthly)}</p></div>)}
             {result.final.cash>0 && <p>Espèces issues des plafonds de livrets : {money(result.final.cash)} · {percent(result.final.cash/result.final.capital*100)} du patrimoine futur.</p>}
           </>}
-          {tab==='post' && <><h2>Brouillon pour X</h2><p>Les hypothèses et les changements programmés sont inclus. Vérifie les noms et montants que tu souhaites partager.</p><textarea aria-label="Brouillon de publication" value={text} onChange={e=>setDraft(e.target.value)} rows={24}/><p>{text.length.toLocaleString('fr-FR')} caractères · texte long, à adapter à ton format de publication.</p><Button variant="secondary" onClick={()=>setDraft(null)}>Rétablir le texte</Button></>}
+          {tab==='post' && <><h2>Brouillon pour X</h2><p>Les hypothèses et les changements programmés sont inclus. Vérifie les noms et montants que tu souhaites partager.</p><textarea aria-label="Brouillon de publication" value={text} onChange={e=>setDraft(e.target.value)} rows={24}/><p>{text.length.toLocaleString('fr-FR')} caractères · texte long, à adapter à ton format de publication.</p><Button variant="secondary" onClick={()=>{setDraft(null);notifyPublication('Texte d’origine rétabli.')}}>Rétablir le texte</Button></>}
         </>}
       </section>
     </ToolWorkspace>

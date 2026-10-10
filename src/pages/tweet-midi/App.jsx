@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js';
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS, ANNIVERSAIRE_EXCLUDED_ASSETS } from './data/marketHistory.js';
@@ -136,6 +137,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description }) {
   const hasPreciseSelection =
     subject !== SUBJECT_ALEATOIRE || subjectB !== SUBJECT_ALEATOIRE || secondary !== SUBJECT_ALEATOIRE;
   function handleResetSelection() {
+    notifyPublication('Sélection réinitialisée.');
     setSubject(SUBJECT_ALEATOIRE);
     setSubjectB(SUBJECT_ALEATOIRE);
     setSecondary(SUBJECT_ALEATOIRE);
@@ -229,7 +231,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description }) {
 
   async function handleCopy() {
     try {
-      await navigator.clipboard.writeText(text);
+      await copyPublicationText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     } catch {
@@ -253,7 +255,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description }) {
       }
       setImageState('idle');
     } catch {
-      setImageState('error');
+      setImageState('error'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error');
     }
   }
 

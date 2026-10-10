@@ -1,3 +1,4 @@
+import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState, useEffect, useRef, Fragment } from 'react'
 import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet, documentedForAll } from './data'
@@ -223,9 +224,10 @@ export default function App() {
 
   async function copyTweet() {
     try {
-      await navigator.clipboard.writeText(tweet)
+      await copyPublicationText(tweet)
     } catch {
-      // clipboard indisponible : l'utilisateur peut copier le texte à la main
+      setCopied(false)
+      return
     }
     setCopied(true)
     setTimeout(() => setCopied(false), 1600)
