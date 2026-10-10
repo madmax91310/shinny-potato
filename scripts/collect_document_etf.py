@@ -178,6 +178,8 @@ def collect_legacy(share,now,fetch=None):
         # the independent live fields when that document is temporarily down.
         try:
             document = collect_legacy_document(share, now)
+            if document.get('characteristics', {}).get('index'):
+                result['characteristics'].update(index=document['characteristics']['index'], distribution=document['characteristics']['distribution'], detailsSource={'url':document['characteristics']['sourceUrl'],'checkedAt':now.date().isoformat()})
             if 'performance' in document:
                 result['performance'] = document['performance']
             for field in ('countries', 'sectors', 'holdings'):
@@ -234,7 +236,7 @@ def parse_legacy_factsheet(text, facts, share, now):
     if not 0<=ter<=5:reject('Invalid iShares factsheet TER')
     amount,currency=match(r'Actif net de la Catégorie d[’\x27]actions \(M\)\s*:\s*([\d.,]+)\s*([A-Z]{3})',facts)
     if currency!=share['currency']:reject('Wrong iShares factsheet AUM currency')
-    result = {**share,'characteristics':{'terPct':ter,'asOf':facts_stamp},
+    result = {**share,'characteristics':{'terPct':ter,'asOf':facts_stamp,**({'index':match(r'Indice de référence\s*:\s*([^\n]+)',facts).strip()} if 'Indice de référence' in facts else {}),'distribution':'Capitalisation'},
             'aum':{'amount':number(float(amount.replace('.','').replace(',','.'))*1e6),'currency':currency,'scope':'share-class','asOf':stamp},
             'unavailable':['performance: no complete 2020–2025 share history','exposures: swap basket is not the tracked-index composition','aum: monthly factsheet; newer active observations are preserved']}
     if "PERFORMANCE DE L'ANNÉE CIVILE" in text:

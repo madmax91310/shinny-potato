@@ -25,6 +25,8 @@ class BnpDocuments(unittest.TestCase):
             with self.subTest(isin=SHARES[i]['isin']):
                 r = parse(self.text(i), SHARES[i], NOW, '2026-08-31')
                 self.assertEqual(r['characteristics']['terPct'], fee)
+                self.assertEqual(r['characteristics']['index'],SHARES[i]['expectedIndex'])
+                self.assertEqual(r['characteristics']['distribution'],'Capitalisation')
                 self.assertAlmostEqual(r['aum']['amount'], aum, places=3)
                 self.assertEqual(r['performance']['years']['2025'], value)
                 self.assertNotIn('2026', r['performance']['years'])
