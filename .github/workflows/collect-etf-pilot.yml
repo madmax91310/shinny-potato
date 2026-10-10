@@ -12,6 +12,8 @@ on:
       - 'scripts/collect_*etf*.py'
       - 'scripts/*vaneck*.py'
       - 'scripts/apply_etf_collection.py'
+      - 'scripts/etf_anomalies.py'
+      - 'scripts/test_etf_resilience.py'
       - 'scripts/*etf.json'
       - 'scripts/*index*.py'
       - 'scripts/index-automation.json'
@@ -166,6 +168,7 @@ jobs:
       - run: node scripts/test-annual-rollover.mjs
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
       - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
       - run: node scripts/audit-comparison-automation.mjs

@@ -190,22 +190,8 @@ def product_data_url(share):
 
 
 def apply_valid_shares(report, destination, baseline):
-    """Validate each merge independently, then commit the healthy lot atomically."""
-    from apply_etf_collection import merge_collection
-    current = json.loads(destination.read_text()) if destination.exists() else {}
-    merged = current
-    valid = []
-    for share in report['shares']:
-        try:
-            merged = merge_collection({**report, 'shares': [share]}, merged, baseline)
-            valid.append(share)
-        except (ValueError, KeyError, TypeError) as error:
-            report.setdefault('failures', []).append({'isin': share['isin'],
-                'sourceUrl': share['sourceUrl'], 'reason': str(error)})
-    report['shares'] = valid
-    if merged != current:
-        write_json_atomic(destination, merged)
-    return merged != current
+    from apply_etf_collection import apply_valid_shares as apply
+    return apply(report, destination, baseline)
 
 
 def main():

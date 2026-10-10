@@ -38,6 +38,10 @@ def merge_collection(report, current, baseline):
         old = next_records.get(isin, {})
         if old and (old['currency'] != share['currency'] or old['productId'] != share['productId']):
             reject('Active automated share identity changed')
+        from etf_anomalies import anomalies
+        issues = anomalies(old, share)
+        if issues:
+            reject('Suspicious ETF change; previous record preserved: ' + ' ; '.join(issues))
         record = {**old, 'currency': share['currency'], 'productId': share['productId'], 'sourceUrl': old.get('sourceUrl', share['sourceUrl']) if share.get('exposureOnly') else share['sourceUrl'], 'provider': share.get('provider', 'iShares')}
         for field in ('aum', 'sectors', 'countries', 'holdings', 'commodityAllocation'):
             if field not in share:
@@ -97,6 +101,23 @@ def merge_collection(report, current, baseline):
 def apply(report, destination, baseline):
     current = json.loads(destination.read_text()) if destination.exists() else {}
     merged = merge_collection(report, current, baseline)
+    if merged != current:
+        write_json_atomic(destination, merged)
+    return merged != current
+
+
+def apply_valid_shares(report, destination, baseline):
+    """Keep failures and proposed observations in the report, publish healthy shares atomically."""
+    current = json.loads(destination.read_text()) if destination.exists() else {}
+    merged, valid = current, []
+    for share in report['shares']:
+        try:
+            merged = merge_collection({**report, 'shares': [share]}, merged, baseline)
+            valid.append(share)
+        except (ValueError, KeyError, TypeError) as error:
+            report.setdefault('failures', []).append({'isin': share['isin'],
+                'sourceUrl': share.get('sourceUrl'), 'reason': str(error), 'proposedObservation': share})
+    report['shares'] = valid
     if merged != current:
         write_json_atomic(destination, merged)
     return merged != current

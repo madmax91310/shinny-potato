@@ -8,7 +8,7 @@ import time
 import urllib.error
 import urllib.request
 from data_automation import UTC, number, reject, write_json_atomic
-from apply_etf_collection import apply
+from apply_etf_collection import apply_valid_shares as apply
 from collect_etf_pilot import source_date
 
 API = 'https://www.amundietf.fr/mapi/ProductAPI/getProductsData'
@@ -138,15 +138,31 @@ def parse_product(product, share, now):
 def collect(config, now=None, fetch=fetch_api):
     now = now or dt.datetime.now(UTC)
     payload = request_payload(config['instruments'], now)
-    body = fetch(payload)
-    products = body['products']
+    shares, failures = [], []
+    try:
+        body = fetch(payload)
+        products = body['products']
+        if not isinstance(products, list):
+            reject('Invalid Amundi products envelope')
+    except Exception as error:
+        return {'schemaVersion': 1, 'checkedAt': now.isoformat(), 'sourceUrl': API,
+            'shares': [], 'failures': [{'isin': s['isin'], 'sourceUrl': API, 'reason': str(error)}
+                for s in config['instruments']], 'status': 'partial'}
     expected = {s['isin'] for s in config['instruments']}
-    if len(products) != len(expected) or {p['productId'] for p in products} != expected:
-        reject('Missing, duplicate or unexpected Amundi product')
-    by_isin = {p['productId']: p for p in products}
-    shares = [parse_product(by_isin[s['isin']], s, now) for s in config['instruments']]
+    for product in products:
+        if not isinstance(product, dict) or product.get('productId') not in expected:
+            failures.append({'isin': 'unexpected-product', 'sourceUrl': API,
+                'reason': 'Unexpected Amundi product in response'})
+    for share in config['instruments']:
+        try:
+            matches = [p for p in products if isinstance(p, dict) and p.get('productId') == share['isin']]
+            if len(matches) != 1:
+                reject('Missing or duplicate Amundi product')
+            shares.append(parse_product(matches[0], share, now))
+        except Exception as error:
+            failures.append({'isin': share['isin'], 'sourceUrl': API, 'reason': str(error)})
     return {'schemaVersion': 1, 'checkedAt': now.isoformat(), 'sourceUrl': API, 'request': payload,
-        'shares': shares, 'status': 'validated', 'rawResponse': body}
+        'shares': shares, 'failures': failures, 'status': 'partial' if failures else 'validated', 'rawResponse': body}
 
 
 def main():
@@ -164,9 +180,15 @@ def main():
     write_json_atomic(args.output, report)
     message = f"{len(report['shares'])} parts Amundi validées ; mode {report['status']}. Positions/compositions : fonds physiques uniquement ; expositions des synthétiques conservées."
     print(message)
+    for failure in report.get('failures', []):
+        print(f"Source failed: {failure['isin']} — {failure['reason']}")
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as handle:
             handle.write('## Amundi\n\n'+message+'\n')
+            for failure in report.get('failures', []):
+                handle.write(f"\n{failure['isin']} : {failure['reason']}\n")
+    if report.get('failures'):
+        raise SystemExit(1)
 
 
 if __name__ == '__main__':
