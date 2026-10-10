@@ -1,3 +1,5 @@
+import { INDEX_HOOKS, indexObservation, sortedRows, sumRows, plainLabel, companyLabel } from './editorial.js'
+
 const number = (value, digits = 2) => value.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits })
 const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digits)} %`
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
@@ -20,7 +22,7 @@ const questions = {
   'ftse-all-world': 'Tu pensais que les États-Unis pesaient autant dans le FTSE All-World ?',
   'world-small-cap': 'Tu ajouterais ces petites capitalisations à un ETF World classique ?',
   'world-ex-usa': 'Tu envisagerais un indice World sans les États-Unis ?',
-  world: 'Quelle partie de cette répartition te surprend le plus ?',
+  world: 'Cette répartition te convient comme base de portefeuille ou tu préfères donner davantage de place aux autres marchés ?',
   stoxx600: 'Tu connaissais cette répartition du STOXX Europe 600 ?',
   eurostoxx50: 'Tu pensais que l’EURO STOXX 50 était aussi concentré ?',
   mscieurope: 'Tu imaginais que la finance prenait autant de place dans le MSCI Europe ?',
@@ -30,36 +32,100 @@ const questions = {
 }
 
 export function buildFactsheetTweet(sheet) {
-  const lines = [
-    sheet.intro,
-    '',
-    `📊 ${sheet.index} en chiffres`,
-    '',
-    `📊 ${(sheet.constituents ?? sheet.indexFacts.targetConstituents).toLocaleString('fr-FR') + (sheet.constituents === null ? ' sociétés visées' : ' valeurs')}`,
-    `🌍 ${sheet.markets}`,
+  const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
+  const countText = Number.isFinite(count) ? `${count.toLocaleString('fr-FR')} ${sheet.constituents === null ? 'sociétés visées' : 'titres'}` : 'les titres de son univers'
+  const lines = [INDEX_HOOKS[sheet.id] ?? sheet.intro, '',
+    sheet.id === 'world'
+      ? `Avec le MSCI World, tu investis dans ${countText} de ${sheet.markets}. Mais pour comprendre ton exposition, je trouve les poids beaucoup plus parlants que le nombre de titres.`
+      : `L’indice ${sheet.index} regroupe ${countText}. Son univers : ${sheet.markets}.`,
   ]
-  if (sheet.marketCap) lines.push(`💰 ${sheet.marketCap}`)
-  if (sheet.isin) lines.push(`📍 ETF cité : ${sheet.isin}`)
-  lines.push('', '🌍 La répartition géographique de l’indice :')
-  for (const [name, value] of sheet.countries) lines.push(`${name} → ${weight(value)}`)
-  if (sheet.id === 'world') lines.push('', `Sur 100 € investis dans un ETF qui suit cet indice, environ ${Math.round(sheet.countries[0][1])} € correspondent donc aux entreprises américaines.`)
-  else lines.push('', sheet.insight.replace(' au 31 août 2026', ''))
-  lines.push('', sheet.sectors.length === 0 ? '⚖️ La pondération :' : sheet.sectors.reduce((sum, [, value]) => sum + value, 0) < 99 ? '🧩 Les principaux secteurs :' : '🧩 Les secteurs :')
-  for (const [name, value] of sheet.sectors) lines.push(`${name} → ${weight(value)}`)
-  if (!sheet.methodologyPanels) lines.push('', '🏢 Les principales entreprises de l’indice :')
-  for (const [title, text] of sheet.methodologyPanels ?? []) lines.push('', title + ' :', text)
-  if (sheet.methodologyPanels && sheet.holdings.length) lines.push('', '🏢 Les principales entreprises de l’indice :')
-  for (const [name, value] of sheet.holdings) lines.push(`• ${name} : ${weight(value)}`)
-  if (sheet.id === 'world') {
-    const topWeight = sheet.holdings.reduce((sum, [, value]) => sum + value, 0)
-    lines.push('', `Ces dix lignes représentent ensemble ${weight(topWeight)} de l’indice. Alphabet apparaît deux fois, avec deux catégories d’actions.`)
+
+  const countries = sortedRows(sheet.countries)
+  const named = countries.filter(([name]) => !/autres|others/i.test(name))
+  const shownCountries = named.slice(0, 5)
+  const rest = sumRows(countries) - sumRows(shownCountries)
+  const lead = shownCountries[0]
+  if (lead) {
+    lines.push('', countrySentence(lead))
+    if (sheet.id === 'world' && /États-Unis|United States/i.test(lead[0])) {
+      lines.push('', `Sur 100 € investis dans un ETF qui suit cet indice, environ ${Math.round(lead[1])} € correspondent donc aux entreprises américaines.`)
+    }
+    if (shownCountries.length > 1) {
+      lines.push('', 'Derrière, on retrouve :')
+      for (const [name, value] of shownCountries.slice(1)) lines.push(`${countryLabel(name)} : ${weight(value)}`)
+      if (rest > 0.005) lines.push(`🌍 Autres pays publiés : ${weight(rest)}`)
+    }
   }
+
+  const sectors = sortedRows(sheet.sectors).slice(0, 3)
+  if (sectors.length) {
+    const [first, ...following] = sectors
+    const behind = following.map(([name, value]) => `${sectorLabel(name)} à ${weight(value)}`)
+    const subject = sectorLabel(first[0])
+    lines.push('', `🧩 ${subject.charAt(0).toUpperCase() + subject.slice(1)} arrive en tête avec ${weight(first[1])}${behind.length ? `, devant ${joinList(behind)}` : ''}.`)
+    if (sheet.indexFacts?.sectorMethod) lines.push(`La classification utilisée est celle de la fiche : ${sheet.indexFacts.sectorMethod}.`)
+  }
+  for (const [title, text] of sheet.methodologyPanels ?? []) lines.push('', `🔎 ${title.charAt(0) + title.slice(1).toLowerCase()}`, text)
+
+  const holdings = sortedRows(sheet.holdings).slice(0, 4)
+  if (holdings.length) {
+    lines.push('', 'On retrouve cette répartition dans les premières lignes :')
+    for (const [i, [name, value]] of holdings.entries()) lines.push(`${['🥇', '🥈', '🥉', '📍'][i]} ${companyLabel(name)} : ${weight(value)}`)
+    // Catégories d’actions : on parle de lignes pour ne pas compter deux fois une entreprise.
+    const names = holdings.map(([name]) => companyLabel(name).replace(/ \(classe [AC]\)$/, ''))
+    const noun = new Set(names).size === holdings.length ? 'entreprises' : 'lignes'
+    const words = ['zéro', 'une', 'deux', 'trois', 'quatre'][holdings.length]
+    lines.push('', holdings.length === 1
+      ? `Cette première ligne représente ${weight(sumRows(holdings))} de l’indice.`
+      : `À elles seules, ces ${words} ${noun} représentent ${weight(sumRows(holdings))} de l’indice.`)
+  }
+  lines.push('', indexObservation(sheet))
+  // Conserver les réserves spécifiques ; les anciennes phrases de top 10 sont remplacées
+  // par la somme des lignes réellement présentées ci-dessus.
+  if (sheet.takeaway && !/Les principales lignes publiées représentent/.test(sheet.takeaway)) lines.push('', sheet.takeaway)
+
   lines.push('', `📈 Les performances ${sheet.performance.kind === 'ETF' ? `de l’ETF ${sheet.isin}` : `de l’indice ${sheet.index}`} :`)
-  lines.push(`${sheet.performance.detail}.`)
+  lines.push(`${sheet.performance.detail.replace(/\.$/, '')}.`)
   for (const [year, value] of sheet.returns ?? []) lines.push(`${value >= 0 ? '📈' : '📉'} ${year} : ${pct(value)}`)
   if (sheet.performance.tenYear != null) lines.push(`Sur dix ans : ${pct(sheet.performance.tenYear)} par an pour l’indice.`)
   if (sheet.performance.annualizedFiveYear != null) lines.push(`Sur cinq ans : ${pct(sheet.performance.annualizedFiveYear)} par an pour l’indice.`)
   if (sheet.performance.historyNote) lines.push('', `⚠️ ${sheet.performance.historyNote.replace('Les poids sont ceux de l’indice au 31 août 2026 ; les rendements', 'Les rendements')}`)
-  lines.push('', '📌 Ce que ça signifie pour ton placement', sheet.takeaway, '', `💬 ${questions[sheet.id]}`, '', '⚠️ Pas un conseil financier.')
+  if (sheet.performance.kind === 'indice') {
+    const priceReturn = /hors dividendes|Price Return/i.test(sheet.performance.detail)
+    const dollars = /USD|dollars/i.test(sheet.performance.detail)
+    lines.push('', priceReturn
+      ? 'Ces chiffres suivent un indice de prix : ils ne comptent pas les dividendes. Ils ne représentent donc pas tout ce qu’un placement avec revenus réinvestis aurait rapporté.'
+      : dollars
+        ? 'Un ETF acheté en euros peut afficher un résultat différent, notamment avec le change et ses frais.'
+        : 'Ce sont les résultats de l’indice. Les frais et les conditions de suivi d’un ETF peuvent donner un résultat différent.')
+  }
+  const question = ['em-standard', 'em-esg', 'msci-em-ex-china'].includes(sheet.id)
+    ? 'Cette répartition correspond à ce que tu recherches dans les marchés émergents ?'
+    : questions[sheet.id] ?? 'Quel détail de cette composition retient ton attention ?'
+  lines.push('', `💬 ${question}`)
   return lines.join('\n')
+}
+
+const joinList = values => values.length < 2 ? values[0] ?? '' : `${values.slice(0, -1).join(', ')} et ${values.at(-1)}`
+function countryLabel(name) {
+  if (/^[^\p{L}\p{N}]/u.test(name)) return name
+  const flags = { 'États-Unis': '🇺🇸', Japon: '🇯🇵', 'Royaume-Uni': '🇬🇧', France: '🇫🇷', Suisse: '🇨🇭', Allemagne: '🇩🇪', 'Pays-Bas': '🇳🇱', Espagne: '🇪🇸', Italie: '🇮🇹', Canada: '🇨🇦' }
+  return flags[name] ? `${flags[name]} ${name}` : name
+}
+
+function countrySentence([name, value]) {
+  const label = plainLabel(name)
+  const plural = /États-Unis|United States|Pays-Bas|Netherlands/i.test(label)
+  const articles = { Japon: 'Le', Japan: 'Le', 'Royaume-Uni': 'Le', Canada: 'Le', France: 'La', Suisse: 'La', Allemagne: 'L’', Chine: 'La', Inde: 'L’', 'Corée du Sud': 'La', Brésil: 'Le', Australie: 'L’' }
+  const prefix = plural ? 'Les ' : articles[label] ? `${articles[label]}${articles[label] === 'L’' ? '' : ' '}` : ''
+  return `🌍 ${prefix}${label} ${plural ? 'représentent' : 'représente'} ${weight(value)} de l’indice.`
+}
+
+function sectorLabel(name) {
+  const label = plainLabel(name)
+  if (/technolog/i.test(label)) return 'la technologie'
+  if (/^financ/i.test(label)) return 'la finance'
+  if (/^industr/i.test(label)) return 'l’industrie'
+  if (/santé|^health/i.test(label)) return 'la santé'
+  return `le secteur « ${label} »`
 }

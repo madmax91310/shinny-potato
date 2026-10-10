@@ -12,6 +12,7 @@ import { FACTS as MARKET_FACTS } from '../src/pages/market-facts/data.js';
 import { buildTweetText as buildMarketStory } from '../src/pages/market-facts/lib.js';
 import { buildText } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
+import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
 import { TOOLS, HOME_TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { instrumentOption } from '../src/data/asset-selection.js';
@@ -819,10 +820,10 @@ async function testFactsheetTweets(page) {
     const checks = {
       constituents: tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR')),
       annualReturns: tweet.includes('2025'),
-      sectors: /Les (principaux )?secteurs|La pondération/.test(tweet),
+      sectors: SHEETS[index].sectors.length === 0 || tweet.includes('arrive en tête avec'),
       validText: !/undefined|NaN/.test(tweet),
       sources: (await page.locator('.fs-sources a').count()) >= 1,
-      sections: ['🌍 La répartition', '📈 Les performances', '📌 Ce que ça signifie'].every(label => tweet.includes(label)),
+      exactStory: tweet === buildFactsheetTweet(SHEETS[index]),
       noOldDateInTweet: !tweet.includes('31 août 2026'),
       currentSnapshot: (await page.locator('.fs-meta').innerText()).includes(SHEETS[index].snapshot),
     };
@@ -1166,6 +1167,8 @@ try {
     await testMarketFacts(page);
   } else if (process.argv.includes('--lexicon')) {
     await testLexicon(page);
+  } else if (process.argv.includes('--index-stories')) {
+    await testFactsheetTweets(page);
   } else if (process.argv.includes('--broker')) {
     await testBrokerComparator(page);
   } else {
