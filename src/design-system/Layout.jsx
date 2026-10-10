@@ -1,4 +1,6 @@
-import { Suspense, useEffect } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
+import PublicationFeedback from './PublicationFeedback'
+import usePublicationViewport from './usePublicationViewport'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { TOOL_GROUPS } from '../tools'
 import ToolIcon from './ToolIcon'
@@ -17,10 +19,13 @@ function Navigation() {
 }
 
 export default function Layout() {
+  const container = useRef(null)
+  usePublicationViewport(container)
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
   const family = TOOL_GROUPS.find(group => group.tools.some(tool => tool.to === pathname))?.id ?? 'publish'
-  return <div data-family={family} className={`workspace ${pathname === '/' ? 'workspace--home' : 'workspace--tool'}`}>
+  return <div ref={container} data-family={family} className={`workspace ${pathname === '/' ? 'workspace--home' : 'workspace--tool'}`}>
+    <PublicationFeedback />
     <a className="workspace-skip" href="#workspace-main">Aller au contenu</a>
     <header className="workspace-masthead">
       <Link to="/" className="workspace-identity">Épargnant Libre</Link>

@@ -1,3 +1,4 @@
+import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { performanceBasis } from './data/marketHistory.js'
 import { getPerformanceEntries, MODES } from './lib.js'
 import { loadPerformanceArt, drawPerformanceArt } from './performanceArt.js'
@@ -99,5 +100,5 @@ export async function downloadPerformanceImage(item) {
   if (!blob) throw new Error('Export PNG impossible')
   const url = URL.createObjectURL(blob), link = document.createElement('a')
   link.href = url; link.download = `performance-depuis-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`
-  document.body.appendChild(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000)
+  document.body.appendChild(link); startPublicationDownload(link); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

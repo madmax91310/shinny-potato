@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { getPresentationCopy, presentationTicker } from './editorial.js'
 import { Link } from 'react-router-dom'
 import { getPerformanceHref } from '../../data/performance-links.js'
@@ -20,31 +21,14 @@ import './etf-sheets.css'
 
 const byId = Object.fromEntries(ETFS.map((e) => [e.id, e]))
 
-function fallbackCopy(text) {
-  const ta = document.createElement('textarea')
-  ta.value = text
-  ta.style.position = 'fixed'
-  ta.style.opacity = '0'
-  ta.style.left = '-9999px'
-  document.body.appendChild(ta)
-  ta.focus()
-  ta.select()
-  let ok = false
-  try {
-    ok = document.execCommand('copy')
-  } catch {
-    ok = false
-  }
-  document.body.removeChild(ta)
-  return ok
-}
+
 
 function triggerAnchorDownload(dataUrl, filename) {
   const a = document.createElement('a')
   a.href = dataUrl
   a.download = filename
   document.body.appendChild(a)
-  a.click()
+  startPublicationDownload(a)
   document.body.removeChild(a)
 }
 
@@ -239,21 +223,11 @@ export default function App() {
   }
 
   async function copyCurrent() {
-    const text = buildText(currentEtf)
-    let ok = true
-    if (navigator.clipboard?.writeText) {
-      try {
-        await navigator.clipboard.writeText(text)
-      } catch {
-        ok = fallbackCopy(text)
-      }
-    } else {
-      ok = fallbackCopy(text)
-    }
-    if (ok) {
+    try {
+      await copyPublicationText(buildText(currentEtf))
       setCopied(true)
       setTimeout(() => setCopied(false), 1800)
-    }
+    } catch { setCopied(false) }
   }
 
   async function generateSummaryImage(directDownload = false) {
@@ -265,7 +239,7 @@ export default function App() {
       if (directDownload) downloadImage(canvas, `${currentEtf.id}-fiche-etf.png`)
       else setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-fiche-etf.png', title: currentEtf.name })
     } catch (error) {
-      setImageError(error.message || 'L’image n’a pas pu être créée. Réessaie.')
+      setImageError(error.message || 'L’image n’a pas pu être créée. Réessaie.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error')
     } finally {
       setImageBusy(false)
     }

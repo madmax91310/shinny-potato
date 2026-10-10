@@ -78,3 +78,16 @@
 .workspace [class~="bg-teal-500"], .workspace [class~="bg-teal-400"] { color: #fffefa; }
 .workspace [class~="text-sky-300"] { color: #27638a; }
 .workspace [class~="text-emerald-300"] { color: #23664e; }
+
+/* Keep publication controls inside the visual viewport above a software keyboard. */
+.workspace.workspace--tool .workspace-actions { bottom: calc(var(--keyboard-inset, 0px) + 12px); }
+.workspace .workspace-tool-view { scroll-margin-bottom: calc(var(--keyboard-inset, 0px) + var(--action-height, 100px)); }
+.workspace :is(textarea,input) { scroll-margin-bottom: calc(var(--action-height, 100px) + 16px); }
+.publication-feedback { position: fixed; top: calc(var(--visible-top, 0px) + 12px); left: 50%; transform: translateX(-50%); z-index: 80; display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 24px); padding: 10px 12px; border: 1px solid var(--ui-accent); border-radius: 12px; background: var(--ui-surface); color: var(--ui-ink); box-shadow: 0 8px 28px #15263024; font-size: 14px; }
+.publication-feedback.is-error { border-color: #a52d46; }
+.publication-feedback button { flex: 0 0 36px; width: 36px; min-height: 36px; border: 0; border-radius: 8px; background: var(--ui-soft); color: var(--ui-ink); font-size: 22px; cursor: pointer; }
+@media (max-width:900px) {
+ .workspace.workspace--tool .workspace-actions { bottom: calc(var(--keyboard-inset, 0px) + max(8px,env(safe-area-inset-bottom))); max-height: calc(var(--visible-height, 100dvh) * .45); overflow-y: auto; backdrop-filter: none; }
+ .workspace.workspace--tool .workspace-actions > :is(button,a), .workspace.workspace--tool .workspace-actions .pg-tweet-actions { flex-basis: 100px; }
+ .workspace .workspace-action-popover { position: fixed; right: 12px; bottom: calc(var(--keyboard-inset, 0px) + var(--action-height, 100px)); max-height: max(44px,calc(var(--visible-height, 100dvh) - var(--action-height, 100px) - 48px)); overflow-y: auto; }
+}

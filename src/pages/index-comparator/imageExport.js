@@ -1,3 +1,4 @@
+import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { getIndexComparisonComposition } from '../../data/index-comparison-composition.js'
 import { getIndexComparisonPerformance } from '../../data/index-comparison-performance.js'
 import { fmtPct } from './lib.js'
@@ -185,6 +186,6 @@ export async function downloadIndexImage(family) {
   if (!blob) throw new Error('Impossible de générer le PNG')
   const url = URL.createObjectURL(blob), link = document.createElement('a')
   link.href = url; link.download = `comparateur-indices-${asIndexComparisonPair(family).pairId}.png`
-  document.body.append(link); link.click(); link.remove()
+  document.body.append(link); startPublicationDownload(link); link.remove()
   window.setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

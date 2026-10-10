@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -46,18 +47,7 @@ function AllocationEditor({ label, lines, onChange }) {
   </section>
 }
 
-function fallbackCopy(value) {
-  const area = document.createElement('textarea')
-  area.value = value
-  area.style.position = 'fixed'
-  area.style.left = '-9999px'
-  document.body.append(area)
-  area.select()
-  let copied = false
-  try { copied = document.execCommand('copy') } catch { /* La sélection manuelle reste disponible. */ }
-  area.remove()
-  return copied
-}
+
 
 export default function App() {
   const [index, setIndex] = useState(0)
@@ -94,12 +84,8 @@ export default function App() {
   }
 
   async function copyTweet() {
-    let ok = false
-    if (navigator.clipboard?.writeText) {
-      try { await navigator.clipboard.writeText(tweet); ok = true } catch { /* Repli ci-dessous. */ }
-    }
-    if (!ok) ok = fallbackCopy(tweet)
-    setCopyStatus(ok ? 'Copié !' : 'Sélectionne et copie le texte ci-dessous.')
+    try { await copyPublicationText(tweet); setCopyStatus('Copié !') }
+    catch { setCopyStatus('Sélectionne et copie le texte ci-dessous.') }
   }
 
   async function downloadImage() {
@@ -110,8 +96,8 @@ export default function App() {
       const link = document.createElement('a')
       link.href = url
       link.download = `duel-${duel.id}.png`
-      document.body.append(link); link.click(); link.remove()
-    } catch (problem) { setImageError(problem.message || 'Impossible de préparer le visuel. Réessaie.') }
+      document.body.append(link); startPublicationDownload(link); link.remove()
+    } catch (problem) { setImageError(problem.message || 'Impossible de préparer le visuel. Réessaie.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
     finally { setImageStatus('') }
   }
 

@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import Button from '../../design-system/Button'
 import AssetPicker from '../../design-system/AssetPicker'
 import { instrumentOption } from '../../data/asset-selection.js'
@@ -45,12 +46,12 @@ export default function App() {
 
   function handleDownloadImage() {
     imageRef.current?.toBlob((blob) => {
-      if (!blob) return
+      if (!blob) { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error'); return }
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
       link.download = 'epargnant-libre-impact-des-frais.png'
-      link.click()
+      startPublicationDownload(link)
       setTimeout(() => URL.revokeObjectURL(url), 1000)
     }, 'image/png')
   }
@@ -98,7 +99,7 @@ export default function App() {
 
   async function handleCopy() {
     try {
-      await navigator.clipboard.writeText(text)
+      await copyPublicationText(text)
       setCopied(true)
       setTimeout(() => setCopied(false), 1600)
     } catch {

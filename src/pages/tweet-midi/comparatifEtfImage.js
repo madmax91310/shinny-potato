@@ -1,3 +1,4 @@
+import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { loadArtImage, loadEditorialFont } from './anniversaryArt.js'
 import { getPaperArt } from './stylizedArt.js'
 import { getComparisonPerformance, getComparisonYears } from './comparisonPerformance.js'
@@ -207,5 +208,5 @@ export async function downloadComparatifEtfImage(theme) {
   if (!blob) throw new Error('Échec de la génération du PNG')
   const url = URL.createObjectURL(blob), link = document.createElement('a')
   link.href = url; link.download = `comparatif-etf-${theme.id}.png`
-  document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000)
+  document.body.append(link); startPublicationDownload(link); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

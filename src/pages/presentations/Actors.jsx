@@ -1,3 +1,4 @@
+import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import { useState } from 'react'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
@@ -17,20 +18,20 @@ export default function Actors({ family }) {
   const [exporting, setExporting] = useState(false)
   const renderImage = () => renderPresentationImage(record, 'actor')
   async function copy() {
-    try { await navigator.clipboard.writeText(text); setMessage('Texte copié.') }
+    try { await copyPublicationText(text); setMessage('Texte copié.') }
     catch { document.querySelector('#actor-draft')?.select(); setMessage('Sélectionne le texte pour le copier.') }
   }
   async function download() {
     setExporting(true)
-    try { downloadImage(await renderImage(), `${record.id}${record.selectedOffer.id === actor.offers[0].id ? '' : '-'+record.selectedOffer.id}-epargnant-libre.png`); setMessage('Image téléchargée.') }
-    catch (error) { setMessage(error.message || 'Impossible de télécharger l’image.') }
+    try { downloadImage(await renderImage(), `${record.id}${record.selectedOffer.id === actor.offers[0].id ? '' : '-'+record.selectedOffer.id}-epargnant-libre.png`); setMessage('Téléchargement lancé.') }
+    catch (error) { setMessage(error.message || 'Impossible de télécharger l’image.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
     finally { setExporting(false) }
   }
   return <div className="scpi-presentation actor-presentation">
     <ToolWorkspace renderImage={renderImage} imageAlt={`Visuel de ${record.name}`} actions={<>
       <Button onClick={copy}>Copier le texte</Button>
       <Button onClick={download} disabled={exporting}>{exporting ? 'Préparation…' : 'Télécharger l’image'}</Button>
-      <Button variant="secondary" onClick={() => { setDraft(null); setMessage('Texte d’origine rétabli.') }}>Rétablir le texte</Button>
+      <Button variant="secondary" onClick={() => { setDraft(null); setMessage('Texte d’origine rétabli.'); notifyPublication('Texte d’origine rétabli.') }}>Rétablir le texte</Button>
       <span role="status">{message}</span>
     </>}>
       <section className="tool-settings">

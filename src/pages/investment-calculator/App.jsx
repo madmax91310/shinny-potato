@@ -1,3 +1,4 @@
+import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
@@ -317,7 +318,7 @@ function InvestmentWorkspace({ search }) {
   async function handleCopy() {
     const text = buildTweetText(state, d)
     try {
-      await navigator.clipboard.writeText(text)
+      await copyPublicationText(text)
       setCopied('done')
     } catch {
       setCopied('error')

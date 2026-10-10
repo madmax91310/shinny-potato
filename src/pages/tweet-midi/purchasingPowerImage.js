@@ -1,3 +1,4 @@
+import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { CURRENT_YEAR, fmtEUR, fmtPct, purchasingPowerStory } from '../purchasing-power/lib.js'
 import { loadArtImage } from './anniversaryArt.js'
 
@@ -77,6 +78,6 @@ export async function downloadPurchasingPowerImage(item) {
   const url = URL.createObjectURL(blob), link = document.createElement('a')
   link.href = url
   link.download = `pouvoir-achat-${item.startYear}-${CURRENT_YEAR}-${item.mode === 'par-poste' ? item.posteId : item.mode}.png`
-  document.body.appendChild(link); link.click(); link.remove()
+  document.body.appendChild(link); startPublicationDownload(link); link.remove()
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

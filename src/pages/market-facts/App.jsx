@@ -1,3 +1,4 @@
+import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useMemo, useRef, useState } from 'react'
@@ -9,24 +10,7 @@ import './market-facts.css'
 
 const byId = Object.fromEntries(FACTS.map((f) => [f.id, f]))
 
-function fallbackCopy(text) {
-  const ta = document.createElement('textarea')
-  ta.value = text
-  ta.style.position = 'fixed'
-  ta.style.opacity = '0'
-  ta.style.left = '-9999px'
-  document.body.appendChild(ta)
-  ta.focus()
-  ta.select()
-  let ok = false
-  try {
-    ok = document.execCommand('copy')
-  } catch {
-    ok = false
-  }
-  document.body.removeChild(ta)
-  return ok
-}
+
 
 function FactCard({ fact }) {
   const family = FAMILIES.find((f) => f.id === fact.family)
@@ -77,21 +61,11 @@ export default function App() {
   }
 
   async function copyCurrent() {
-    const text = buildTweetText(currentFact)
-    let ok = true
-    if (navigator.clipboard?.writeText) {
-      try {
-        await navigator.clipboard.writeText(text)
-      } catch {
-        ok = fallbackCopy(text)
-      }
-    } else {
-      ok = fallbackCopy(text)
-    }
-    if (ok) {
+    try {
+      await copyPublicationText(buildTweetText(currentFact))
       setCopied(true)
       setTimeout(() => setCopied(false), 1800)
-    }
+    } catch { setCopied(false) }
   }
 
   return (

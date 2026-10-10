@@ -1,3 +1,4 @@
+import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
@@ -29,13 +30,13 @@ export default function DataSearch() {
   function download() {
     const url = URL.createObjectURL(new Blob([exportDataRecord(selected)], { type: 'application/json' }))
     const link = document.createElement('a')
-    link.href = url; link.download = `donnees-${selected.id.replaceAll(':', '-')}.json`; link.click()
+    link.href = url; link.download = `donnees-${selected.id.replaceAll(':', '-')}.json`; startPublicationDownload(link)
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
   async function share() {
     try {
       const url = new URL(window.location.href); url.searchParams.set('id', selected.id)
-      await navigator.clipboard.writeText(url.href); setMessage('Lien de la fiche copié.')
+      await copyPublicationText(url.href); setMessage('Lien de la fiche copié.')
     } catch { setMessage('Copie indisponible : tu peux partager l’adresse affichée après avoir sélectionné la fiche.') }
   }
   return <div className="data-search">

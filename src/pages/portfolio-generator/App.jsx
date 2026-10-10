@@ -1,3 +1,4 @@
+import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { performanceYears, performanceNotes, formatPerformance } from './performance.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { dataLabels } from './compact.js'
@@ -476,24 +477,17 @@ export default function App() {
   const handleCopy = useCallback(async () => {
     const text = renderTweetText(current)
     try {
-      await navigator.clipboard.writeText(text)
+      await copyPublicationText(text)
       setCopyState('done')
     } catch {
       const ta = textareaRef.current
       if (ta) {
         ta.value = text
         ta.style.display = 'block'
+        ta.focus()
         ta.select()
-        try {
-          document.execCommand('copy')
-          setCopyState('done')
-        } catch {
-          setCopyState('error')
-        }
-        ta.style.display = 'none'
-      } else {
-        setCopyState('error')
       }
+      setCopyState('error')
     }
     window.setTimeout(() => setCopyState('idle'), 2200)
   }, [current])
