@@ -44,15 +44,6 @@ export function activeHistory(company, now = new Date()) {
       || (Date.parse(y.end) - Date.parse(years[i-1].end)) / 86400000 > 400)))) return []
   return years.map(y => ({...y, margin: y.netIncome / y.revenue * 100}))
 }
-function historyText(company, now) {
-  const years = activeHistory(company, now)
-  if (!years.length) return ''
-  const first = years[0], last = years.at(-1)
-  const change = growth(last.revenue, first.revenue)
-  const reading = first.netIncome > 0 && last.netIncome > 0 && fr(first.margin) !== fr(last.margin)
-    ? `À chiffre d’affaires comparable, l’entreprise dégage ${last.margin > first.margin ? 'davantage' : 'moins'} de bénéfice qu’au début de cette période.` : ''
-  return `📊 Le recul sur ${years.length} exercices\nEntre les exercices clos le ${dateLabel(first.end)} et le ${dateLabel(last.end)}, le chiffre d’affaires est passé de ${amount(first.revenue, company.currency)} à ${amount(last.revenue, company.currency)}${finite(change) ? `, soit ${change >= 0 ? '+' : '−'}${fr(Math.abs(change))} % sur l’ensemble de la période` : ''}.\nLe résultat net est passé de ${amount(first.netIncome, company.currency)} à ${amount(last.netIncome, company.currency)}, et la marge nette de ${fr(first.margin)} % à ${fr(last.margin)} %.${reading ? `\n${reading}` : ''}`
-}
 export function calculatedRatios(company, now = new Date()) {
   const a = company.annual, q = company.quote, t = company.trailing
   if (!canPublish(company, now) || !q || !finite(q.price) || q.price <= 0 || !Array.isArray(q.splits) || !fresh(q.asOf, 10, now)) return {}
@@ -126,22 +117,43 @@ export function marginExplanation(period) {
   if (netIncome > 0 && previousNetIncome > 0 && revenueGrowth > .05 && profitGrowth < -.05) return `Le chiffre d’affaires augmente, mais les bénéfices reculent : la marge nette a diminué de ${fr(previous)} % à ${fr(current)} %.`
   return `La marge nette ${improved ? 's’est améliorée' : 'a diminué'}, passant de ${fr(previous)} % à ${fr(current)} % sur un an.`
 }
-function periodText(period, company, quarterly = false, halfYear = false) {
-  const dates = period.start ? `du ${dateLabel(period.start)} au ${dateLabel(period.end)}` : `clos le ${dateLabel(period.end)}`
-  const lines = [quarterly ? `📈 Et les derniers résultats ?\n${halfYear ? 'Semestre' : period.durationWeeks ? `Trimestre de ${period.durationWeeks} semaines` : 'Trimestre'} ${dates}` : `💰 Et dans les comptes ?\nExercice ${dates}`,
-    `Son chiffre d’affaires atteint ${amount(period.revenue, company.currency)}${changePhrase(growth(period.revenue, period.previousRevenue))}.`,
-    incomePhrase(period, company.currency)]
-  if (period.incomeBasis && !quarterly) lines.push('Le résultat net présenté correspond à la part du groupe, hors intérêts minoritaires.')
-  if (finite(period.revenue) && period.revenue > 0 && finite(period.netIncome)) {
-    const margin = period.netIncome / period.revenue * 100
-    if (!quarterly) {
-      if (period.netIncome > 0) lines.push(`Pour 100 ${company.currency} de chiffre d’affaires, cela représente environ ${fr(margin)} ${company.currency} de bénéfice net.`)
-      else if (period.netIncome < 0) lines.push(`Cela représente une perte nette de ${fr(-margin)} ${company.currency} pour 100 ${company.currency} de chiffre d’affaires.`)
-    }
-    const explanation = marginExplanation(period)
+const currencyWord = currency => ({USD: 'dollars', EUR: 'euros'}[currency] ?? currency)
+function storyAmount(value, currency) {
+  const unit = Math.abs(value) >= 1e9 ? 1e9 : 1e6
+  return `${fr(value / unit, 0)} ${unit === 1e9 ? 'milliards' : 'millions'} de ${currencyWord(currency)}`
+}
+// Editorial evidence belongs to one exact annual comparison, never to later accounts.
+export function activeAnnualContext(company, now = new Date()) {
+  const context = company.annualContext, annual = company.annual
+  if (!canPublish(company, now) || !context || !/^https:\/\//.test(context.sourceUrl ?? '')
+    || !fresh(context.reviewedAt, 550, now)
+    || ['end', 'previousEnd', 'revenue', 'previousRevenue', 'netIncome', 'previousNetIncome']
+      .some(key => context[key] !== annual[key])) return null
+  return context
+}
+function annualStory(company, context) {
+  const a = company.annual
+  const year = a.end.slice(0, 4)
+  const lines = [`💰 Sur son exercice clos en ${year}, ${company.name} a réalisé ${storyAmount(a.revenue, company.currency)} de chiffre d’affaires${changePhrase(growth(a.revenue, a.previousRevenue))}. ${incomePhrase(a, company.currency).replace(amount(Math.abs(a.netIncome), company.currency), storyAmount(Math.abs(a.netIncome), company.currency))}`]
+  if (a.netIncome > 0) lines.push(`Pour 100 ${currencyWord(company.currency)} de ventes, il lui reste près de ${fr(a.netIncome / a.revenue * 100, 0)} ${currencyWord(company.currency)} de bénéfice net.`)
+  else if (a.netIncome < 0) lines.push(`Cela représente une perte nette de ${fr(-a.netIncome / a.revenue * 100)} ${company.currency} pour 100 ${company.currency} de ventes.`)
+  if (a.incomeBasis) lines.push('Le bénéfice présenté est celui qui revient au groupe, hors intérêts minoritaires.')
+  if (finite(context?.previousTaxCharge) && context.previousTaxCharge > 0 && a.previousNetIncome > 0 && a.netIncome > 0) {
+    lines.push(`La variation du bénéfice mérite une précision. Une charge fiscale exceptionnelle de ${storyAmount(context.previousTaxCharge, company.currency)} avait pénalisé l’exercice précédent.`)
+    lines.push(`En neutralisant cette charge dans la comparaison, la progression du bénéfice est d’environ ${fr(growth(a.netIncome, a.previousNetIncome + context.previousTaxCharge))} %.`)
+  } else {
+    const explanation = marginExplanation(a)
     if (explanation) lines.push(explanation)
   }
-  return lines.join('\n')
+  return lines.join('\n\n')
+}
+function businessStory(company, context) {
+  const s = context?.segments
+  if (!s || !['services', 'previousServices', 'products', 'previousProducts', 'iphone'].every(key => finite(s[key]) && s[key] > 0)
+    || s.services + s.products !== company.annual.revenue || s.previousServices + s.previousProducts !== company.annual.previousRevenue
+    || s.iphone > s.products) return ''
+  const a = company.annual
+  return `En ${a.end.slice(0,4)}, les services ont généré ${storyAmount(s.services, company.currency)}, soit ${fr(s.services / a.revenue * 100)} % des revenus du groupe. Leur chiffre d’affaires a progressé de ${fr(growth(s.services, s.previousServices))} %, contre ${fr(growth(s.products, s.previousProducts))} % pour le matériel. 📈\n\nL’iPhone reste un pilier d’Apple : il représente ${fr(s.iphone / a.revenue * 100)} % de ses ventes.`
 }
 export function metrics(company, now = new Date()) {
   if (!canPublish(company, now)) return []
@@ -158,9 +170,7 @@ export function metrics(company, now = new Date()) {
   if (finite(pe) && pe > 0) rows.push({ label: 'PER · bénéfices sur 12 mois', value: `${fr(pe)}×` })
   else if (finite(calculated.peAnnual)) rows.push({ label: 'PER · dernier exercice publié', value: `${fr(calculated.peAnnual)}×` })
   if (estimates) rows.push({ label: 'PER prévisionnel · prochain exercice', value: `${fr(estimates.forwardPE)}×` })
-  if (finite(estimates?.peg)) rows.push({ label: 'PEG · croissance estimée sur 5 ans', value: `${fr(estimates.peg, 2)}×` })
-  if (!estimates && finite(v?.forwardPE) && v.forwardPE > 0) rows.push({ label: 'PER prévisionnel · horizon fournisseur', value: `${fr(v.forwardPE)}×` })
-  if (!estimates && finite(v?.peg) && v.peg > 0) rows.push({ label: 'PEG · méthode fournisseur', value: `${fr(v.peg)}×` })
+  if (finite(estimates?.peg)) rows.push({ label: 'PEG prévisionnel · croissance sur 5 ans', value: `${fr(estimates.peg, 2)}×` })
   if (finite(calculated.priceFCF)) rows.push({ label: 'Prix / FCF du dernier exercice', value: `${fr(calculated.priceFCF)}×` })
   const b = activeBalance(company, now)
   if (finite(b?.netDebt)) rows.push({ label: `${b.netDebt < 0 ? 'Trésorerie' : 'Dette'} nette · ${dateLabel(b.asOf)}`, value: amount(Math.abs(b.netDebt), company.currency) })
@@ -170,32 +180,26 @@ export function metrics(company, now = new Date()) {
 }
 export function buildTweetText(company, now = new Date()) {
   if (!canPublish(company, now)) return ''
-  const lines = [company.editorialHook ?? `🔎 Que fait concrètement ${company.name}, et que montrent ses comptes ? 👇`,
-    `🏭 Ce qu’elle fait concrètement\n${company.activity}`, periodText(company.annual, company)]
-  const history = historyText(company, now)
-  if (history) lines.push(history)
-  const quarter = company.quarter
-  if (quarter && fresh(quarter.end, 200, now) && finite(quarter.revenue) && quarter.revenue > 0 && finite(quarter.netIncome)) {
-    lines.push(periodText(quarter, company, true))
-  }
-  const half = company.halfYear
-  if (half && fresh(half.end, 250, now) && finite(half.revenue) && half.revenue > 0 && finite(half.netIncome)) lines.push(periodText(half, company, true, true))
-  const v = activeValuation(company, now)
+  const context = activeAnnualContext(company, now)
+  const lines = [company.editorialHook ?? `🔎 Comment ${company.name} gagne-t-elle son argent ?`, company.activity]
+  const business = businessStory(company, context)
+  if (business) lines.push(business)
+  lines.push(annualStory(company, context))
+  // The copy uses a reproducible dated PER. Forecasts and full history stay in the tool.
   const calculated = calculatedRatios(company, now)
-  const estimates = activeEstimates(company, now)
-  const pe = calculated.peTTM ?? v?.peTTM
-  const valuation = []
-  if (company.quote && finite(company.quote.price) && company.quote.price > 0 && fresh(company.quote.asOf, 10, now)) {
-    valuation.push(`À la clôture du ${dateLabel(company.quote.asOf)}, l’action valait ${fr(company.quote.price, 2)} ${company.currency}.`)
+  const q = company.quote
+  const pe = calculated.peTTM ?? calculated.peAnnual
+  if (q && finite(q.price) && q.price > 0 && fresh(q.asOf, 10, now)) {
+    let price = `🏷️ À la clôture du ${dateLabel(q.asOf)}, l’action valait ${fr(q.price, 2)} ${currencyWord(company.currency)}`
+    if (finite(pe) && pe > 0) {
+      price += calculated.peTTM
+        ? `, soit environ ${fr(pe)} fois son bénéfice par action sur les douze derniers mois.`
+        : `, soit environ ${fr(pe)} fois son bénéfice dilué par action de l’exercice clos le ${dateLabel(company.annual.end)}.`
+    } else price += '.'
+    lines.push(price)
+    if (company.id === 'totalenergies') lines.push('Le cours retenu est celui de l’action ordinaire cotée à New York en USD, la devise des comptes présentés.')
   }
-  if (!finite(pe) && finite(calculated.peAnnual)) valuation.push(`Le cours représente ${fr(calculated.peAnnual)} fois le BPA dilué du dernier exercice publié, clos le ${dateLabel(company.annual.end)}. Ce PER annuel utilise cet exercice précis.`)
-  if (company.quoteListing && company.id === 'totalenergies') valuation.push('Le cours utilisé est celui de l’action ordinaire cotée à New York en USD, la devise des comptes présentés.')
-  if (finite(pe) && pe > 0) valuation.push(`PER : ${fr(pe)}× le bénéfice par action sur douze mois. Ce ratio utilise les bénéfices déjà publiés.`)
-  if (estimates) valuation.push(`PER prévisionnel : ${fr(estimates.forwardPE)}× les bénéfices estimés pour le prochain exercice fiscal, susceptibles d’être révisés.`)
-  if (finite(estimates?.peg)) valuation.push(`PEG : ${fr(estimates.peg, 2)}, pour une croissance annuelle des bénéfices estimée à ${fr(estimates.growthEPS5Y, 2)} % sur cinq ans.`)
-  if (finite(pe) || finite(calculated.peAnnual) || estimates || finite(v?.forwardPE)) valuation.push('Ces multiples dépendent aussi de la croissance et des risques de l’entreprise.')
-  if (!estimates && finite(v?.forwardPE) && v.forwardPE > 0) valuation.push(`Le PER prévisionnel fourni est de ${fr(v.forwardPE)}. Il utilise des bénéfices estimés, avec un horizon non précisé par ${v.sourceName ?? 'Alpha Vantage'}.`)
-  if (!estimates && finite(v?.peg) && v.peg > 0) valuation.push(`Le PEG fourni est de ${fr(v.peg)}. Il rapporte le PER à un taux de croissance des bénéfices ; la croissance retenue et son horizon ne sont pas précisés par ${v.sourceName ?? 'Alpha Vantage'}.`)
-  if (valuation.length) lines.push(`🏷️ Ce que représente le prix de l’action\n${valuation.join('\n\n')}`)
+  if (company.editorialQuestion) lines.push(`${company.editorialQuestion} 🤔`)
+  lines.push('Chiffres issus des comptes publiés de l’entreprise.' + (finite(pe) && pe > 0 ? ' PER recalculé à partir des bénéfices publiés et du cours daté.' : ''))
   return lines.join('\n\n')
 }
