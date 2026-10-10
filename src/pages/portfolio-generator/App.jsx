@@ -4,6 +4,7 @@ import { dataLabels } from './compact.js'
 import { instrumentOption, normalizeSearch } from '../../data/asset-selection.js'
 import ReplacementPanel from './ReplacementPanel'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
+import SettingsDetails from '../../design-system/SettingsDetails'
 import { useMemo, useState, useRef, useCallback } from 'react'
 import {
   generatePortfolio,
@@ -545,12 +546,11 @@ export default function App() {
 
           {mode === 'auto' ? (
             <>
+              <RiskSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectRisk} />
+              <ProfileSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectProfile} />
               <Button type="button" className="w-full text-base" onClick={() => handleGenerate()}>
                 🔄 Générer un nouveau portefeuille
               </Button>
-
-              <RiskSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectRisk} />
-              <ProfileSelector selectedRisk={selectedRisk} selectedProfile={selectedProfile} onSelect={handleSelectProfile} />
             </>
           ) : manualEditing ? (
             <ManualComposer
@@ -614,9 +614,9 @@ export default function App() {
             <p role="status">{replacementNotice}</p>
           </div>
 
-          <div className="pg-panel">
+          <SettingsDetails title="Détail des performances annuelles">
             <PerfChart perf={current.perf} />
-          </div>
+          </SettingsDetails>
 
           <p className="pg-method-summary">{performanceNotes(current.selection)}</p>
           {current.selection.some((asset) => asset.confidenceNote) && (
@@ -630,14 +630,14 @@ export default function App() {
             </details>
           )}
 
-          <div className="pg-panel pg-panel-muted">
+          <SettingsDetails title="Comprendre le calcul">
             <p className="pg-fine-print">
               Rendements sur les années complètes affichées : données historiques approximatives par actif, à titre pédagogique et
               éditables manuellement. Chaque année additionne les rendements des lignes selon des poids
               affichés, sans simuler les versements ni un capital cumulé ; les rendements USD sont convertis en euros avec les taux BCE de fin d’année. Chaque combinaison est validée pour respecter la borne de pire année
               de son profil de construction avant d'être affichée.
             </p>
-          </div>
+          </SettingsDetails>
         </section>
       </ToolWorkspace>
     </div>

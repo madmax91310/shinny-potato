@@ -27,9 +27,13 @@ export default function ChoicePicker({ children, value, onChange, className = ''
   }, [id])
   const name = props['aria-label'] || label
   const filtered = items.filter(item => normalizeSearch(text(item.children)).includes(normalizeSearch(query)))
+  const current = items.find(item => String(value) === String(item.value))
   return <div {...props} id={id ?? uniqueId} ref={ref} role="group" aria-label={name}
-    data-selector data-value={String(value ?? '')} className={`choice-picker ${className}`}>
-    {items.length > 8 && <input type="search" aria-label={`Rechercher : ${name}`} placeholder="Rechercher…" value={query} onChange={event => setQuery(event.target.value)} />}
+    data-selector data-long-list={items.length > 8} data-value={String(value ?? '')} className={`choice-picker ${className}`}>
+    {items.length > 8 && <>
+      {current && <p className="picker-selection"><span aria-hidden="true">✓</span><span><small>Sélection actuelle</small><strong>{current.children}</strong></span></p>}
+      <input type="search" disabled={disabled} aria-label={`Rechercher : ${name}`} placeholder="Rechercher…" value={query} onChange={event => setQuery(event.target.value)} />
+    </>}
     <div className="choice-picker-grid">
       {filtered.map(item => <button type="button" key={item.value} data-option data-value={String(item.value)}
         aria-pressed={String(value) === String(item.value)} disabled={disabled || item.disabled}
@@ -38,5 +42,6 @@ export default function ChoicePicker({ children, value, onChange, className = ''
       </button>)}
       {!filtered.length && <p role="status">Aucun résultat.</p>}
     </div>
+    {query && <div className="asset-picker-results"><span aria-live="polite">{filtered.length} résultat{filtered.length > 1 ? 's' : ''}</span><button type="button" onClick={() => setQuery('')}>Effacer la recherche</button></div>}
   </div>
 }

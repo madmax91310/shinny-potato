@@ -2,6 +2,7 @@ import Button from '../../design-system/Button'
 import AssetPicker from '../../design-system/AssetPicker'
 import { instrumentOption } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
+import SettingsDetails from '../../design-system/SettingsDetails'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
@@ -162,6 +163,7 @@ export default function App() {
 
           <div className="fi-panel">
             <p className="fi-eyebrow">Frais annuels — scénario 1</p>
+            <SettingsDetails title="Utiliser les frais d’un ETF" summary="Facultatif · deux scénarios">
             {[1, 2].map(side => {
               const isin = side === 1 ? isin1 : isin2
               const asset = FEE_COMPARISON_ASSETS.find(item => item.isin === isin)
@@ -172,6 +174,7 @@ export default function App() {
                 {asset && <small>{asset.isin} · Frais contrôlés le {asset.evidence.checkedAt ?? 'date non documentée'} · <a href={asset.evidence.sourceUrls[0]} target="_blank" rel="noreferrer">Source</a></small>}
               </div>
             })}
+            </SettingsDetails>
             <p className="fi-hint">Les frais des ETF sont ceux du registre commun. Le rendement brut reste une même hypothèse pour les deux scénarios : ce calcul ne compare pas leurs performances réelles.</p>
             <div className="fi-chip-row">
               {FEE_LEVELS.map((f) => (

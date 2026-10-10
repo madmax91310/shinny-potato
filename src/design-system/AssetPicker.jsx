@@ -18,6 +18,7 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
     normalizeSearch(`${item.label} ${item.search ?? ''} ${item.detail ?? ''} ${item.isin ?? ''}`).includes(normalizeSearch(query)))
   return <div className="asset-picker">
     {label && <span className="asset-picker-label">{label}</span>}
+    {(current || (emptyOption && String(value) === String(emptyOption.id))) && <p className="picker-selection"><span aria-hidden="true">✓</span><span><small>Sélection actuelle</small><strong>{current?.label ?? emptyOption.label}</strong></span></p>}
     <input type="search" value={query} onChange={event => setQuery(event.target.value)}
       aria-label={`Rechercher : ${label ?? 'actif'}`} placeholder="Nom, indice, ticker ou ISIN…" />
     <div className="asset-picker-groups" role="group" aria-label={`Expositions : ${label ?? 'actif'}`}>

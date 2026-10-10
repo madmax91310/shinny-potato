@@ -40,13 +40,13 @@ try {
     assert(await page.getByRole('heading', { name: 'Mes outils de la semaine' }).isVisible())
     assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.length, 'Previous home stays usable during loading')
   } finally { release() }
-  await page.getByLabel('ETF du scénario 1', { exact: true }).waitFor()
+  await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
   await page.unroute('**/assets/*.js')
   assert(requested.size > initialFiles.size, 'Navigation did not fetch deferred code')
   await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).click()
   await page.getByRole('heading', { name: 'Mes outils de la semaine' }).waitFor()
   await page.goBack()
-  await page.getByLabel('ETF du scénario 1', { exact: true }).waitFor()
+  await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
 
   const slow = await browser.newPage()
   let releaseSlow
@@ -59,7 +59,7 @@ try {
     await slow.getByRole('status').filter({ hasText: 'Chargement de l’outil' }).waitFor()
     assert(await slow.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).isVisible())
   } finally { releaseSlow() }
-  await slow.getByLabel('ETF du scénario 1', { exact: true }).waitFor()
+  await slow.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
   await slow.close()
 
   // Emulate Pages' actual 404 instead of Vite preview's SPA fallback.

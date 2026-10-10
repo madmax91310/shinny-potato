@@ -1,6 +1,7 @@
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
+import SettingsDetails from '../../design-system/SettingsDetails'
 import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -29,7 +30,7 @@ function AllocationEditor({ label, lines, onChange }) {
     <h3>Portefeuille {label} <span className={total === 100 ? 'pd-total-ok' : 'pd-total-bad'}>{total} % / 100 %</span></h3>
     {Object.entries(ROLES).map(([role, title]) => {
       const line = lines.find((entry) => CATALOG.find((item) => item.id === entry.id)?.role === role)
-      return <div className="pd-editor-line" key={role}>
+      const fields = <div className="pd-editor-line">
         <label><span>{title}{role !== 'base' ? ' (facultatif)' : ' (obligatoire)'}</span>
           <ChoicePicker aria-label={`${title} du portefeuille ${label}`} value={line?.id ?? ''} onChange={(event) => setRole(role, event.target.value)}>
             {role !== 'base' && <option value="">Aucun</option>}
@@ -38,6 +39,9 @@ function AllocationEditor({ label, lines, onChange }) {
         </label>
         <label className="pd-weight"><span>Poids (%)</span><input aria-label={`Poids ${title.toLowerCase()} du portefeuille ${label}`} type="number" min="1" max="100" step="1" disabled={!line} value={line?.pct ?? ''} onChange={(event) => setWeight(line.id, event.target.value)} /></label>
       </div>
+      return role === 'base' ? <div key={role}>{fields}</div> : <SettingsDetails key={role}
+        title={`${title} du portefeuille ${label}`} defaultOpen={Boolean(line)}
+        summary={line ? `${CATALOG.find(item => item.id === line.id)?.label} · ${line.pct} %` : 'Aucun · facultatif'}>{fields}</SettingsDetails>
     })}
   </section>
 }
