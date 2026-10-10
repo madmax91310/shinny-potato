@@ -47,26 +47,22 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38061478114,
+      "runId": 38063055223,
       "attempt": 1,
-      "completedAt": "2026-10-10T15:11:52Z",
+      "completedAt": "2026-10-10T15:31:16Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-09T18:30:16Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38061478114",
+      "collectionStatus": "success",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-10T15:31:16Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38063055223",
       "failures": [
         {
-          "job": "report-failures",
-          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
+          "job": "deploy / build",
+          "step": "Run node scripts/test-household-sculpture.mjs"
         }
       ],
-      "dataFailures": {
-        "etf-additional-observation-IE00BD4TXV59": {
-          "name": "ETF IE00BD4TXV59",
-          "completedAt": "2026-10-10T15:11:52Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38061478114",
-          "cause": "Invalid UBS calendar/YTD/rolling table layout"
-        }
-      }
+      "dataFailures": {}
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -192,5 +188,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-10T15:18:35Z"
+  "updatedAt": "2026-10-10T15:31:16Z"
 }
