@@ -104,9 +104,11 @@ class IssuerRefreshTests(unittest.TestCase):
             if defect=='incomplete-year':bad['metrics'][0]['period']='2026'
             with self.subTest(defect=defect), self.assertRaises(ValueError):parse_product(bad,s,NOW)
 
-    def test_duplicate_products_block_entire_collection(self):
+    def test_duplicate_product_is_reported_without_publishing_it(self):
         p,s=amundi()
-        with self.assertRaises(ValueError):collect({'instruments':[s]},NOW,lambda _: {'products':[p,p]})
+        report=collect({'instruments':[s]},NOW,lambda _: {'products':[p,p]})
+        self.assertEqual(report['shares'],[])
+        self.assertEqual(report['failures'][0]['isin'],s['isin'])
 
     def test_holdings_absent_or_older_does_not_redate(self):
         p,s=amundi();r=parse_product(p,s,NOW);report={'checkedAt':NOW.isoformat(),'shares':[r]};base={'TESTSHARE':{'currency':'EUR'}}

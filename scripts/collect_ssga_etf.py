@@ -12,7 +12,7 @@ from urllib.parse import urljoin, urlsplit
 import zipfile
 import xml.etree.ElementTree as ET
 from data_automation import UTC, get_text, number, reject, write_json_atomic
-from apply_etf_collection import apply
+from apply_etf_collection import apply_valid_shares as apply
 from collect_etf_pilot import source_date
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -136,15 +136,22 @@ def parse_holdings(body, share, now):
 
 def collect(config,now=None,fetch=get_text,download=get_xlsx):
     now=now or dt.datetime.now(UTC)
-    def one(share):
+    def parse_one(share):
         result,path=parse_page(fetch(share['sourceUrl'],('text/html',),6_000_000),share,now)
         if share.get('collectComposition'):
             if not path:reject('Missing State Street holdings download')
             url=urljoin(share['sourceUrl'],path)
             result['holdings']=parse_holdings(download(url),share,now);result['holdings']['sourceUrl']=url
         return result
-    with ThreadPoolExecutor(max_workers=3)as pool:shares=list(pool.map(one,config['instruments']))
-    return {'schemaVersion':1,'checkedAt':now.isoformat(),'shares':shares,'status':'validated'}
+    def one(share):
+        try:
+            return {'share': parse_one(share)}
+        except Exception as error:
+            return {'failure': {'isin': share['isin'], 'sourceUrl': share['sourceUrl'], 'reason': str(error)}}
+    with ThreadPoolExecutor(max_workers=3)as pool:observations=list(pool.map(one,config['instruments']))
+    shares=[o['share'] for o in observations if 'share' in o]
+    failures=[o['failure'] for o in observations if 'failure' in o]
+    return {'schemaVersion':1,'checkedAt':now.isoformat(),'shares':shares,'failures':failures,'status':'partial' if failures else 'validated'}
 
 
 def main():
@@ -153,6 +160,13 @@ def main():
     if args.apply:report['status']='applied'if apply(report,ROOT/'src/data/automated-etf.json',json.loads(args.baseline.read_text()))else'unchanged'
     write_json_atomic(args.output,report);message=f"{len(report['shares'])} parts State Street validées : {report['status']}."
     print(message)
+    for failure in report.get('failures', []):
+        print(f"Source failed: {failure['isin']} — {failure['reason']}")
     if os.environ.get('GITHUB_STEP_SUMMARY'):
-        with open(os.environ['GITHUB_STEP_SUMMARY'],'a')as h:h.write('\n## State Street\n\n'+message+'\n')
+        with open(os.environ['GITHUB_STEP_SUMMARY'],'a')as h:
+            h.write('\n## State Street\n\n'+message+'\n')
+            for failure in report.get('failures', []):
+                h.write(f"\n{failure['isin']} : {failure['reason']}\n")
+    if report.get('failures'):
+        raise SystemExit(1)
 if __name__=='__main__':main()

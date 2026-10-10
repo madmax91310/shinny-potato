@@ -53,6 +53,7 @@ def collect_one(share,now):
 def refresh(config,current,baseline,now=None,collect=collect_one):
     now=now or dt.datetime.now(UTC)
     def one(share):
+        result = None
         try:
             result=collect(share,now)
             if result.get('performance')and baseline.get(share['isin'],{}).get('currency')not in (None,result['performance']['currency']):
@@ -65,7 +66,8 @@ def refresh(config,current,baseline,now=None,collect=collect_one):
                     'sourceAttempts':result.get('sourceAttempts',[])}
         except Exception as error:
             return {'isin':share['isin'],'provider':share['provider'],'status':'failed','reason':str(error),
-                    'sourceUrl':share.get('sourceUrl',share.get('pageUrl'))}
+                    'sourceUrl':share.get('sourceUrl',share.get('pageUrl')),
+                    **({'proposedObservation': result} if result is not None else {})}
     with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(one,[s for s in config['instruments'] if s.get('enabled', True)]))
     merged=dict(current)
     for o in observations:

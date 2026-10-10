@@ -55,11 +55,16 @@ class RemainingAumTests(unittest.TestCase):
     def test_rollover_keeps_years_and_rejects_changed_method(self):
         old = {'TEST': {'currency': 'EUR', 'productId': 'TEST', 'sourceUrl': 'https://issuer.example/', 'characteristics': {'terPct': 0.1},
             'performance': {'basis': 'fund', 'currency': 'EUR', 'method': 'NAV total', 'years': {str(y): 1 for y in range(2020, 2026)}, 'checkedAt': '2026-10-05'}}}
-        share = {**old['TEST'], 'isin': 'TEST', 'performance': {'basis': 'fund', 'currency': 'EUR', 'method': 'NAV total', 'years': {str(y): 2 for y in range(2021, 2027)}}}
+        share = {**old['TEST'], 'isin': 'TEST', 'performance': {'basis': 'fund', 'currency': 'EUR', 'method': 'NAV total', 'years': {**{str(y): 1 for y in range(2021, 2026)}, '2026': 2}}}
         report = {'checkedAt': '2027-02-16', 'shares': [share]}
         result = merge_collection(report, old, {'TEST': {'currency': 'EUR'}})
         self.assertEqual(result['TEST']['performance']['years']['2026'], 2)
         self.assertEqual(result['TEST']['performance']['years']['2020'], 1)
+        self.assertTrue(all(result['TEST']['performance']['years'][str(y)] == 1 for y in range(2020, 2026)))
+        correction = copy.deepcopy(report)
+        correction['shares'][0]['performance']['years']['2025'] = 2
+        with self.assertRaisesRegex(ValueError, 'Suspicious ETF change'):
+            merge_collection(correction, old, {'TEST': {'currency': 'EUR'}})
         for defect in ['method', 'currency', 'unfinished-year']:
             bad = copy.deepcopy(report)
             performance = bad['shares'][0]['performance']
