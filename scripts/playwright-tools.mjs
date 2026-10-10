@@ -1139,6 +1139,8 @@ try {
 
   if (process.argv.includes('--investors')) {
     await testInvestorIntroductions(page);
+  } else if (process.argv.includes('--market-facts')) {
+    await testMarketFacts(page);
   } else if (process.argv.includes('--broker')) {
     await testBrokerComparator(page);
   } else {
