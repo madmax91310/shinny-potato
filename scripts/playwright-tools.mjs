@@ -996,8 +996,10 @@ async function testInvestorIntroductions(page) {
     await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro && document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
     ok &&= (await page.locator('.ip-bio').innerText()) === investorIntroduction(slug);
     const tweet = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
-    ok &&= tweet.startsWith('📊 ') && tweet.split('\n')[0].includes('%')
-      && ['💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '💬 '].every(label => tweet.includes(label))
+    ok &&= /\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet.split('\n')[0])
+      && ['💼 Ses principales positions', 'du portefeuille déclaré.', '💬 '].every(label => tweet.includes(label))
+      && !tweet.includes('🔍 Ce qui distingue ce portefeuille')
+      && !tweet.includes('📄 Positions issues')
       && !/place-t-il|undefined|NaN|\\\\n/.test(tweet);
     if (!['li-lu', 'gates-trust', 'klarman'].includes(slug)) {
       ok &&= ['🔄 Quelques mouvements depuis T1 2026', '🆕 Nouvelle ligne', 'nombre d’actions +18 %', 'nombre d’actions −12 %', '🚪 Ligne sortie'].every(label => tweet.includes(label));
@@ -1135,7 +1137,9 @@ try {
     : {});
   const page = await browser.newPage();
 
-  if (process.argv.includes('--broker')) {
+  if (process.argv.includes('--investors')) {
+    await testInvestorIntroductions(page);
+  } else if (process.argv.includes('--broker')) {
     await testBrokerComparator(page);
   } else {
   if (!process.argv.includes('--review')) {
