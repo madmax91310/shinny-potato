@@ -66,14 +66,14 @@ export default function App() {
     <p className="wealth-note">Les montants restent dans ton navigateur. La sauvegarde est volontaire ; les exports contiennent les données affichées.</p>
     <div role="group" aria-label="Mode du simulateur" className="wealth-tabs">{[['personal','Mon patrimoine'],['compare','Comparaison pour X']].map(([id,label])=><button key={id} aria-pressed={plan.mode===id} onClick={()=>change(p=>{p.mode=id})}>{label}</button>)}</div>
     <ToolWorkspace renderImage={computation.error ? undefined : renderImage} imageAlt="Graphique du patrimoine : scénarios prudent, central et favorable" imageDisabled={!!computation.error} actions={<>
-      <Button disabled={!!computation.error} onClick={async()=>{try{await copyPublicationText(text);setMessage('Texte copié.')}catch{setMessage('Copie indisponible : sélectionne le texte du brouillon.')}}}>Copier le texte</Button>
-      <Button disabled={!!computation.error} onClick={()=>{try{downloadImage(renderImage(),'projection-patrimoine.png');setMessage('Téléchargement lancé.')}catch(e){setMessage(e.message)}}}>Télécharger l’image</Button>
+      <Button disabled={!!computation.error} onClick={async()=>{try{await copyPublicationText(text);setMessage('')}catch{setMessage('')}}}>Copier le texte</Button>
+      <Button disabled={!!computation.error} onClick={()=>{try{downloadImage(renderImage(),'projection-patrimoine.png');setMessage('')}catch{setMessage('');notifyPublication('Impossible de préparer l’image. Réessaie.', 'error')}}}>Télécharger l’image</Button>
       <Button disabled={!!computation.error} variant="secondary" onClick={()=>{
         const keys=plan.mode==='compare'?['a','b']:[plan.active]
         const rows=['patrimoine;annee;capital;capital_reel;versements_cumules;retraits;gains;especes;capital_apres_taxe_hypothetique',...keys.flatMap(k=>computation.results[k].points.map(p=>[k,p.year,p.capital,p.real,p.paid,p.withdrawn,p.gains,p.cash,p.afterTax].map(v=>typeof v==='number'?v.toFixed(2).replace('.',','):v).join(';')))]
         saveFile(rows.join('\n'),'projection-patrimoine.csv','text/csv;charset=utf-8')
       }}>Exporter les projections CSV</Button>
-      <span>{message}</span>
+      <span role="status">{message}</span>
     </>}>
       <section className="tool-settings wealth-settings">
         <div className="wealth-panel"><h2>Horizon et hypothèses communes</h2>
