@@ -1,6 +1,7 @@
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import Button from '../../design-system/Button'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
+import SettingsDetails from '../../design-system/SettingsDetails'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
@@ -36,7 +37,9 @@ function Editor({ record, onSelect, design, onDesign }) {
     <div className="hh-controls tool-settings">
       {image.error && <p role="alert">{image.error}</p>}
       <label>Sujet<ChoicePicker aria-label="Sujet" value={record.id} onChange={(e) => onSelect(e.target.value)}>{HOUSEHOLD_STATISTICS.map((item, i) => <option key={item.id} value={item.id}>{i + 1}. {item.title}</option>)}</ChoicePicker></label>
-      <label>Design<ChoicePicker aria-label="Design" value={design} onChange={(e) => onDesign(e.target.value)}>{HOUSEHOLD_DESIGNS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</ChoicePicker></label>
+      <SettingsDetails title="Style du visuel" summary={HOUSEHOLD_DESIGNS.find(item => item.id === design)?.label}>
+        <ChoicePicker aria-label="Design" value={design} onChange={(e) => onDesign(e.target.value)}>{HOUSEHOLD_DESIGNS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</ChoicePicker>
+      </SettingsDetails>
       <button onClick={() => { const pool = HOUSEHOLD_STATISTICS.filter((item) => item.id !== record.id); onSelect(pool[Math.floor(Math.random() * pool.length)].id) }}>Autre sujet au hasard</button>
     </div>
     <div className="hh-layout tool-preview">

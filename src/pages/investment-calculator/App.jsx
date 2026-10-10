@@ -3,6 +3,7 @@ import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
+import SettingsDetails from '../../design-system/SettingsDetails'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { getSimulationAssetId, getAnnualPerformanceHref } from '../../data/simulation-links.js'
@@ -364,7 +365,7 @@ function InvestmentWorkspace({ search }) {
                   {REDUCED_CONFIDENCE_LAST_POINT[state.assetId] && (
                     <p className="ic-field-warning">⚠️ {REDUCED_CONFIDENCE_LAST_POINT[state.assetId]}</p>
                   )}
-                  <div style={{ marginTop: 6 }}>
+                  <SettingsDetails title="Actualiser le prix" summary={state.overridePriceRaw ? `Prix saisi : ${state.overridePriceRaw}` : 'Facultatif'}>
                     <input
                       className="ic-control"
                       type="number"
@@ -381,7 +382,7 @@ function InvestmentWorkspace({ search }) {
                         Le prix saisi revalorise les parts acquises ; les versements restent arrêtés au dernier mois documenté ({lastPointLabel}). Vérifie ce prix avant publication.
                       </p>
                     )}
-                  </div>
+                  </SettingsDetails>
                 </>
               )}
               {isCustom && (
@@ -427,6 +428,7 @@ function InvestmentWorkspace({ search }) {
             <div className="ic-row2">
               <div className="ic-select-wrap">
                 <ChoicePicker
+                  aria-label="Mois de départ"
                   className="ic-control"
                   value={state.startMonth}
                   onChange={(e) => set({ startMonth: parseInt(e.target.value, 10) })}
@@ -441,6 +443,7 @@ function InvestmentWorkspace({ search }) {
               </div>
               <div className="ic-select-wrap">
                 <ChoicePicker
+                  aria-label="Année de départ"
                   className="ic-control"
                   value={state.startYear}
                   onChange={(e) => set({ startYear: parseInt(e.target.value, 10) })}

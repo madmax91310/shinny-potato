@@ -387,6 +387,7 @@ async function testPortfolioGenerator(page) {
     const labels = await page.locator('.pg-data-label').allInnerTexts();
     manualEditorialOk &&= labels.length === 1 && labels[0] === 'Données en USD';
     if (id === 'argent') {
+      await page.getByText('Détail des performances annuelles', { exact: true }).click();
       const expected = ((1 + asset.r[5] / 100) * annualFx.years[2024].value / annualFx.years[2025].value - 1) * 100;
       const displayed = parseFloat((await page.locator('.pg-bar-value').last().innerText()).replace(',', '.'));
       manualEditorialOk &&= Math.abs(displayed - expected) < .051;
@@ -430,6 +431,7 @@ async function testPortfolioDuels(page) {
   await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), '');
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('100');
   valid &&= (await page.locator('.pd-card').first().locator('p').count()) === 1;
+  await page.locator('summary').filter({ hasText: 'Thématique du portefeuille A' }).click();
   await choose(page.getByRole('group', { name: 'Thématique du portefeuille A', exact: true }), 'sect_cyber_lg');
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('90');
   valid &&= /cybersécurité/i.test(await page.locator('#pd-tweet').inputValue());
@@ -958,11 +960,15 @@ async function testHouseholds(page) {
       && (await page.locator('.hh-source').innerText()).includes(referencePeriod);
   }
   for (const { id: design } of (await import('../src/pages/france-100-menages/image.js')).HOUSEHOLD_DESIGNS) {
+    const styles = page.locator('.settings-details').filter({ has: page.getByLabel('Design', { exact: true }) });
+    if (!(await styles.getAttribute('open') !== null)) await styles.locator('summary').click();
     await choose(page.getByLabel('Design', { exact: true }), design);
     await waitImage(await page.getByLabel('Sujet', { exact: true }).getAttribute('data-value'), design);
     ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async (link, design) => { const img = new Image(); img.src = link.href; await img.decode(); return design === 'illustrated' ? img.naturalWidth === 2400 && img.naturalHeight === 1350 : design === 'sculptural' ? img.naturalWidth === 2400 && img.naturalHeight === 1620 : img.naturalWidth === 1080 && img.naturalHeight === 1440; }, design);
   }
   for (const design of ['ivory', 'blue', 'plum']) {
+    const styles = page.locator('.settings-details').filter({ has: page.getByLabel('Design', { exact: true }) });
+    if (!(await styles.getAttribute('open') !== null)) await styles.locator('summary').click();
     await choose(page.getByLabel('Design', { exact: true }), design);
     for (const id of ['wealth-top10', 'wealth-share', 'unexpected-expense', 'salary-median', 'donation']) {
       await choose(page.getByLabel('Sujet', { exact: true }), id);
@@ -1058,6 +1064,7 @@ async function testInvestorIntroductions(page) {
 
 async function testDataReuse(page) {
   await page.goto(`${BASE}/impact-frais`, { waitUntil: 'networkidle' });
+  await page.getByText('Utiliser les frais d’un ETF', { exact: true }).click();
   await choose(page.getByLabel('ETF du scénario 1', { exact: true }), 'FR001400U5Q4');
   await choose(page.getByLabel('ETF du scénario 2', { exact: true }), 'IE00BP3QZ601');
   let ok = (await page.locator('.fi-preview-text').innerText()).includes('FR001400U5Q4')
@@ -1112,6 +1119,7 @@ async function testAssetSelection(page) {
   ok &&= peaValues.length > 0 && peaValues.every(id => ETFS.map(instrumentOption).find(item => item.id === id)?.badges.includes('PEA'));
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
   await choose(choices, worldCard.id);
+  await page.getByText('Comparer les supports du même indice', { exact: true }).click();
   await page.locator('.support-alternative input[type=checkbox]').first().check();
   await page.getByRole('button', { name: 'Comparer ces supports', exact: true }).click();
   ok &&= await page.locator('.support-comparison table').isVisible();
@@ -1181,6 +1189,8 @@ try {
     await testFactsheetTweets(page);
   } else if (process.argv.includes('--households')) {
     await testHouseholds(page);
+  } else if (process.argv.includes('--portfolios')) {
+    await testPortfolioGenerator(page);
   } else if (process.argv.includes('--broker')) {
     await testBrokerComparator(page);
   } else {

@@ -5,6 +5,7 @@ import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
 import { ETF_TER_BY_ISIN } from '../../data/etf-ter.js'
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
 import Button from '../../design-system/Button'
+import SettingsDetails from '../../design-system/SettingsDetails'
 
 export default function SupportAlternatives({ etf, onSelect }) {
   const alternatives = sameBenchmarkSupports(etf.isin)
@@ -12,7 +13,8 @@ export default function SupportAlternatives({ etf, onSelect }) {
   const [compare, setCompare] = useState(false)
   const funds = [instrumentOption(etf), ...alternatives.filter(item => selected.includes(item.isin))]
   if (!alternatives.length) return null
-  return <section className="support-alternatives" aria-label="Autres supports du même indice">
+  return <SettingsDetails title="Comparer les supports du même indice" summary={`${alternatives.length} alternative${alternatives.length > 1 ? 's' : ''} · facultatif`}>
+  <section className="support-alternatives" aria-label="Autres supports du même indice">
     <h3>Même indice, autres supports</h3>
     <p>Caractéristiques des parts référencées dans la banque. Sélectionne les supports à comparer.</p>
     {alternatives.map(item => <div className="support-alternative" key={item.isin}>
@@ -38,5 +40,5 @@ export default function SupportAlternatives({ etf, onSelect }) {
         ].map(([label, getValue]) => <tr key={label}><th>{label}</th>{funds.map(fund => <td key={fund.isin}>{getValue(fund) ?? 'Non documenté'}</td>)}</tr>)}</tbody>
       </table>
     </div>}
-  </section>
+  </section></SettingsDetails>
 }

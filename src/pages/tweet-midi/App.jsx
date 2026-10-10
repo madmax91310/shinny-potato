@@ -549,7 +549,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description }) {
 
         <div className="tool-preview">
           <div className="flex flex-col gap-3 lg:sticky lg:top-4 lg:h-fit">
-            <div className="flex items-center justify-between">
+            <div className="publication-text-heading flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <h2 className="text-xs font-semibold tracking-widest text-slate-500 uppercase">Aperçu du tweet</h2>
                 <span
