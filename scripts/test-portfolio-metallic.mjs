@@ -98,7 +98,7 @@ try {
   if(download.suggestedFilename()!=='repartition-portefeuille.png') throw new Error('Download')
   console.log('Mobile image updates and PNG download verified.')
   // A missing backdrop must not expose a downloadable fallback; retry restores it.
-  const retryPage = await browser.newPage()
+  const retryPage = await browser.newPage({ viewport: { width: 390, height: 844 } })
   let failBackdrop = true
   await retryPage.route('**/portfolio-donut-studio.webp', route => failBackdrop ? route.abort() : route.continue())
   await retryPage.goto(`${base}generateur-portefeuilles`)
