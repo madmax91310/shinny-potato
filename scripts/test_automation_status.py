@@ -5,6 +5,30 @@ from publish_automation_status import update_status, read_report
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 class StatusTests(unittest.TestCase):
+ def test_regulatory_reports_keep_retained_failure_and_clear_only_checked_sources(self):
+  report={'_collector':'fiscal-observation','observations':{'sources':{'av':{'title':'Assurance-vie'},'pea':{}}},'failures':{'av':'Wording changed'}}
+  failed=update_status({},run(workflow='update-regulatory-data.yml'),[],[report])
+  self.assertEqual(failed['workflows']['update-regulatory-data.yml']['dataFailures']['fiscal-observation:av']['cause'],'Wording changed')
+  report['failures']={}
+  recovered=update_status(failed,run(2,'success',workflow='update-regulatory-data.yml'),[],[report])
+  self.assertEqual(recovered['workflows']['update-regulatory-data.yml']['dataFailures'],{})
+  broker={'_collector':'broker-observation','observations':{'brokers':{'one':{}}},'failures':{'one:profile:pea':'PDF absent'},'successfulSources':['one']}
+  failed=update_status({},run(workflow='update-regulatory-data.yml'),[],[broker])
+  broker['failures']={}
+  still=update_status(failed,run(2,'success',workflow='update-regulatory-data.yml'),[],[broker])
+  self.assertIn('broker-observation:one:profile:pea',still['workflows']['update-regulatory-data.yml']['dataFailures'])
+  broker['successfulSources'].append('one:profile:pea')
+  fixed=update_status(still,run(3,'success',workflow='update-regulatory-data.yml'),[],[broker])
+  self.assertEqual(fixed['workflows']['update-regulatory-data.yml']['dataFailures'],{})
+
+ def test_collection_success_is_distinct_from_failed_publication(self):
+  jobs=[{'name':'refresh','conclusion':'success'},{'name':'deploy / build','conclusion':'failure','steps':[{'name':'audit','conclusion':'failure'}]}]
+  result=update_status({},run(),jobs)['workflows']['update-economic-data.yml']
+  self.assertEqual(result['status'],'failure')
+  self.assertEqual(result['collectionStatus'],'success')
+  self.assertEqual(result['publicationStatus'],'failure')
+  self.assertIsNone(result['lastSuccessAt'])
+  self.assertEqual(result['lastCollectionSuccessAt'],'2026-10-01T10:00:00Z')
  def test_large_issuer_report_is_bounded_and_projected(self):
   path=Mock();path.name='additional-observation.json';path.stem='additional-observation'
   path.stat.return_value.st_size=12_000_000

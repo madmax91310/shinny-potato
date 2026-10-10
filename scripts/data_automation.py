@@ -1,5 +1,6 @@
 """Small standard-library primitives for free, unattended data collectors."""
 import datetime as dt
+import http.client
 import json
 import math
 import os
@@ -47,7 +48,7 @@ def get_text(url, content_types, max_bytes=2_000_000, opener=urllib.request.urlo
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                 raise
             delay = retry_delay(error, attempt)
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead, ConnectionError):
             if attempt == 2:
                 raise
             delay = 2 ** attempt
@@ -73,7 +74,7 @@ def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep):
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                 raise
             delay = retry_delay(error, attempt)
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead, ConnectionError):
             if attempt == 2:
                 raise
             delay = 2 ** attempt

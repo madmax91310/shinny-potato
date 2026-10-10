@@ -7,6 +7,15 @@ from publish_automation_status import update_status
 FIX = pathlib.Path(__file__).parent/'fixtures'
 TODAY='2026-10-07'
 class RegulatoryTests(unittest.TestCase):
+ def test_current_av_wording_keeps_general_scope_and_rejects_missing_or_ambiguous_rates(self):
+  raw=(FIX/'regulatory'/'av-2026-10-10.xml').read_bytes()
+  values=parse('av',raw,'2026-10-10')['values']
+  self.assertEqual(values,{'avLowerIncome':7.5,'avHigherIncome':12.8,'avSocial':17.2,'avSingleAllowance':4600,'avCoupleAllowance':9200,'avPremiumThreshold':150000,'avBeforeEightIncome':12.8})
+  for before,after in [(b'7,5',b'inconnu'),(b'12,8',b'inconnu')]:
+   with self.assertRaises(ValueError):parse('av',raw.replace(before,after),'2026-10-10')
+  # The special 18.6% rate must not be mistaken for the general contract rate.
+  changed=raw.replace(b'17,2',b'16,2')
+  self.assertEqual(parse('av',changed,'2026-10-10')['values']['avSocial'],16.2)
  def raw(self,name):return (FIX/'regulatory'/f'{name}.xml').read_bytes()
  def test_real_documents_and_exact_envelopes(self):
   observations={name:parse(name,self.raw(name),TODAY) for name in SOURCES}

@@ -67,7 +67,7 @@ for (const [isin, facts] of Object.entries(INSTRUMENT_FACTS_BY_ISIN)) {
     console.error(`Caractéristiques : valeur structurelle manquante pour ${isin}`);
     errors++;
   }
-  if (facts.incomePolicy === 'accumulating' !== facts.distribution.startsWith('Capitalisant')) {
+  if ((facts.incomePolicy === 'accumulating') !== facts.distribution.startsWith('Capitalisant')) {
     console.error(`Caractéristiques : contradiction de distribution pour ${isin}`);
     errors++;
   }

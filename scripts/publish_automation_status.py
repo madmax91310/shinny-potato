@@ -9,7 +9,7 @@ import tempfile
 import urllib.error
 import urllib.request
 
-REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation', 'update-scpi.yml':'scpi-observations', 'update-insurance.yml':'insurance-observations', 'update-presentation-actors.yml':'actor-observations'}
+REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation', 'update-scpi.yml':'scpi-observations', 'update-insurance.yml':'insurance-observations', 'update-presentation-actors.yml':'actor-observations', 'update-regulatory-data.yml':'regulatory-observations'}
 
 WORKFLOWS = {
     'update-editorial-radar.yml': 'Radar éditorial quotidien',
@@ -38,6 +38,20 @@ DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alim
 
 def normalize_report(report):
     """Adapt issuer/index reports without turning preserved values into recovered sources."""
+    if isinstance(report.get('observations'), dict) and isinstance(report.get('failures'), dict):
+        # Regulatory and tariff reports include retained records. A failed source
+        # must never clear its alert merely because its previous value is present.
+        records = report['observations'].get('sources', report['observations'].get('brokers', {}))
+        prefix = report.get('_collector', 'regulatory') + ':'
+        failures = report['failures']
+        # Tariff supplements/profile errors have their own keys. They are only
+        # recovered when their fields were checked during this exact collection.
+        # Record-key failures are recoverable from this report. Supplement keys
+        # remain open unless their own successful observation is supplied.
+        recovered = set(report.get('successfulSources', records)) - set(failures)
+        return {'successes':[{'id':prefix + key} for key in recovered if key not in failures],
+                'errors':[{'id':prefix + key,'name':records.get(key, {}).get('title', key),'error':cause}
+                          for key,cause in failures.items()]}
     if 'observations' in report and 'indices' not in report and 'shares' not in report:
         return {'successes':[{'id':o['id']} for o in report['observations'] if o['status']=='success'],
                 'errors':[{'id':o['id'],'name':o.get('name',o['id']),'error':o.get('reason','Collecte échouée')} for o in report['observations'] if o['status']=='failure']}
@@ -107,10 +121,16 @@ def update_status(state, run, jobs, reports=None):
         for step in job.get('steps', []):
             if step.get('conclusion') in ('failure', 'timed_out'):
                 failures.append({'job': job['name'], 'step': step['name']})
+    refresh_jobs = [job for job in jobs if job['name'] == 'refresh']
+    deploy_jobs = [job for job in jobs if job['name'].startswith('deploy /') or job['name'] == 'deploy']
+    collection_status = 'failure' if data_failures or any(j.get('conclusion') in ('failure','timed_out') for j in refresh_jobs) else 'success' if reports or any(j.get('conclusion') == 'success' for j in refresh_jobs) else 'unknown'
+    publication_status = 'failure' if any(j.get('conclusion') in ('failure','timed_out') for j in deploy_jobs) else 'success' if any(j.get('conclusion') == 'success' and j['name'].endswith('deploy') for j in deploy_jobs) else 'not-run'
     result['workflows'] = entries
     entries[workflow] = {'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
         'completedAt': run['updated_at'], 'status': 'failure' if failed or data_failures else 'success',
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
+        'collectionStatus': collection_status, 'publicationStatus': publication_status,
+        'lastCollectionSuccessAt': run['updated_at'] if collection_status == 'success' else previous.get('lastCollectionSuccessAt'),
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures}
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']

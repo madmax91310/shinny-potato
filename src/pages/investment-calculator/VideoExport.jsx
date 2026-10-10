@@ -115,7 +115,11 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   const comparisonText = comparison ? buildComparisonTweet(comparison) : ''
 
   useEffect(() => {
-    resetVideo()
+    // URL cleanup is owned by the effect above. Avoid depending on videoUrl:
+    // completing an export must not immediately clear the newly created video.
+    setVideoUrl(null)
+    setStatus('idle')
+    setProgress(0)
     setCopied('idle')
   }, [videoParams, comparisonText])
 

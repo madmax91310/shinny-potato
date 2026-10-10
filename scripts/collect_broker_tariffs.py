@@ -137,7 +137,13 @@ def main():
  baseline=json.loads(DEST.read_text()) if DEST.exists() else {'schemaVersion':1,'brokers':{}}
  today=dt.datetime.now(dt.timezone.utc).date().isoformat()
  baseline,failures,validated=collect(baseline,today)
- args.output.write_text(json.dumps({'observations':baseline,'failures':failures},ensure_ascii=False,indent=2)+'\n')
+ successes=set(validated)
+ successes.update(name+':extras' for name in validated if name+':extras' not in failures)
+ successes.update(key for key in SUPPLEMENT_SOURCES if key not in failures)
+ for broker,record in baseline['brokers'].items():
+  successes.update(f'{broker}:profile:{field}' for field,value in record.get('profile',{}).items()
+                   if value.get('checkedAt')==today and f'{broker}:profile:{field}' not in failures)
+ args.output.write_text(json.dumps({'observations':baseline,'failures':failures,'successfulSources':sorted(successes)},ensure_ascii=False,indent=2)+'\n')
  if args.apply:
   tmp=DEST.with_suffix('.tmp');tmp.write_text(json.dumps(baseline,ensure_ascii=False,indent=2)+'\n');tmp.replace(DEST)
  print(json.dumps({'validated':len(validated),'brokers':validated,'retained':len(baseline['brokers'])-len(validated),'failures':failures},ensure_ascii=False));return bool(failures)

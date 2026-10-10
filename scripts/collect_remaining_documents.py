@@ -23,7 +23,7 @@ def coinshares(text,share,now,digest):
             'unavailable':['aum: not published in this factsheet','performance: calendar table is crypto price performance, excludes product fees','exposures: single crypto asset, no equity countries/sectors']}
 
 
-def ubs(text,share,now,digest):
+def ubs(text,share,now,digest,performance_text=None):
     if match(r'ISIN\s+([A-Z0-9]{12})',text)!=share['isin'] or match(r'Currency of fund / share\s+([A-Z]{3}/[A-Z]{3})',text)!=share['currency']+'/'+share['currency']:
         reject('Wrong UBS exact share/currency')
     month,year=match(r'Data as at end-([A-Za-z]+) (20\d{2})',text)
@@ -38,7 +38,9 @@ def ubs(text,share,now,digest):
             'unavailable':[]}
     # The published window is shorter than six years. Collect its exact fund
     # calendars, excluding the adjacent benchmark and the YTD/rolling columns.
-    block = text.split('Performance in % (net of fees)', 1)[1].split('Index3', 1)[0]
+    # UBS positions its YTD label between calendar headers in the PDF's visual
+    # layout. Read this table in content order; retain layout for exposures.
+    block = (performance_text or text).split('Performance in % (net of fees)', 1)[1].split('Index3', 1)[0]
     columns = match(r'in %\s+((?:20\d{2}\s+)+)', block).split()
     values = match(r'Fund \('+share['currency']+r'\)\s+([-\d. ]+)\n', block).split()
     if (columns != sorted(set(columns)) or any(int(y)>now.year for y in columns) or len(values) != len(columns)+3
@@ -113,5 +115,5 @@ def collect_one(share,now):
                 errors.append(f'{candidate}: non-PDF response')
                 continue
             # Bad identity, currency or stale documents fail closed.
-            return ubs(pdf_text(body), {**share,'sourceUrl':candidate}, now, proof(body))
+            return ubs(pdf_text(body), {**share,'sourceUrl':candidate}, now, proof(body), performance_text=pdf_text(body, raw=True))
     reject('No current UBS exact-share factsheet published: ' + ' ; '.join(errors))
