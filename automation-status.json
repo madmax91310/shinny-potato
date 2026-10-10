@@ -47,12 +47,12 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38055077500,
+      "runId": 38056190152,
       "attempt": 1,
-      "completedAt": "2026-10-10T13:33:58Z",
+      "completedAt": "2026-10-10T13:47:25Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-09T18:30:16Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38055077500",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38056190152",
       "failures": [
         {
           "job": "report-failures",
@@ -62,8 +62,8 @@
       "dataFailures": {
         "etf-additional-observation-IE00BD4TXV59": {
           "name": "ETF IE00BD4TXV59",
-          "completedAt": "2026-10-10T13:33:58Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38055077500",
+          "completedAt": "2026-10-10T13:47:25Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38056190152",
           "cause": "Invalid UBS calendar/YTD/rolling table layout"
         }
       }
@@ -172,5 +172,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-10T13:45:44Z"
+  "updatedAt": "2026-10-10T13:47:25Z"
 }
