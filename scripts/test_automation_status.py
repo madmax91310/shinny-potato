@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock
-from publish_automation_status import update_status, read_report
+from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
@@ -30,7 +30,7 @@ class StatusTests(unittest.TestCase):
   self.assertIsNone(result['lastSuccessAt'])
   self.assertEqual(result['lastCollectionSuccessAt'],'2026-10-01T10:00:00Z')
  def test_publication_date_survives_collection_failure(self):
-  jobs=[{'name':'refresh','conclusion':'success'},{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z'}]
+  jobs=[{'name':'refresh','conclusion':'success'},{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success'}]}]
   first=update_status({},run(1,'success'),jobs)
   row=first['workflows']['update-economic-data.yml']
   self.assertEqual(row['lastPublicationSuccessAt'],'2026-10-01T09:59:00Z')
@@ -38,6 +38,30 @@ class StatusTests(unittest.TestCase):
   self.assertEqual(failed['lastPublicationSuccessAt'],row['lastPublicationSuccessAt'])
   self.assertEqual(failed['lastCollectionSuccessAt'],row['lastCollectionSuccessAt'])
   self.assertEqual(failed['publicationStatus'],'not-run')
+
+ def test_successful_job_with_skipped_pages_is_not_publication(self):
+  published=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success'}]}]
+  previous=update_status({},run(1,'success'),published)
+  skipped=[{'name':'refresh','conclusion':'success'},{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-02T09:59:00Z','steps':[{'name':'Skip superseded production snapshots','conclusion':'success'},{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'skipped'}]}]
+  result=update_status(previous,run(2,'success'),skipped)['workflows']['update-economic-data.yml']
+  self.assertEqual(result['publicationStatus'],'not-run')
+  self.assertEqual(result['lastPublicationSuccessAt'],'2026-10-01T09:59:00Z')
+  self.assertEqual(result['collectionStatus'],'success')
+  self.assertEqual(publication_summary(run(2,'success'),[{'name':'deploy / deploy','conclusion':'success'}]),('not-run',None))
+
+ def test_backfill_repairs_false_publication_without_replaying_data(self):
+  published=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success','completed_at':'2026-10-01T09:58:00Z'}]}]
+  skipped=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-02T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'skipped'}]}]
+  state=update_status({},run(2,'success'),skipped)
+  row=state['workflows']['update-economic-data.yml'];row['publicationStatus']='success';row['lastPublicationSuccessAt']='2026-10-02T09:59:00Z';row['dataFailures']={'retained':{'cause':'Still unresolved'}}
+  fixed=repair_publication_history(state,[(run(1,'success'),published),(run(2,'success'),skipped)])
+  after=fixed['workflows']['update-economic-data.yml']
+  self.assertEqual(after['publicationStatus'],'not-run')
+  self.assertEqual(after['lastPublicationSuccessAt'],'2026-10-01T09:58:00Z')
+  self.assertEqual(after['dataFailures'],row['dataFailures'])
+  self.assertEqual(after['lastCollectionSuccessAt'],row['lastCollectionSuccessAt'])
+  self.assertEqual(row['lastPublicationSuccessAt'],'2026-10-02T09:59:00Z','Input is preserved')
+  self.assertEqual(repair_publication_history(fixed,[]),fixed,'No evidence does not erase history')
 
  def test_large_issuer_report_is_bounded_and_projected(self):
   path=Mock();path.name='additional-observation.json';path.stem='additional-observation'

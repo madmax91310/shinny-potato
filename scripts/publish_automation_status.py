@@ -93,6 +93,39 @@ def read_report(path, workflow):
     return normalize_report(report)
 
 
+def publication_summary(run, jobs):
+    deploy_jobs = [job for job in jobs if job['name'].startswith('deploy /') or job['name'] == 'deploy']
+    published = [step.get('completed_at') or job.get('completed_at') or run['updated_at']
+                 for job in deploy_jobs for step in job.get('steps', [])
+                 if 'actions/deploy-pages@' in step.get('name', '') and step.get('conclusion') == 'success']
+    status = 'success' if published else 'failure' if any(job.get('conclusion') in ('failure', 'timed_out') for job in deploy_jobs) else 'not-run'
+    return status, max(published, default=None)
+
+
+def repair_publication_history(state, history):
+    """Backfill verified publication dates, including already-recorded runs.
+
+    Do not replay data failures or change collection dates. A legacy timestamp
+    is cleared only when its exact job is proven to have skipped publication.
+    """
+    result = json.loads(json.dumps(state))
+    for workflow, row in result.get('workflows', {}).items():
+        relevant = [(run, jobs) for run, jobs in history if run['path'].split('/')[-1] == workflow]
+        dates = [date for run, jobs in relevant if (date := publication_summary(run, jobs)[1])]
+        for run, jobs in relevant:
+            if (run['id'], run.get('run_attempt', 1)) != (row.get('runId'), row.get('attempt', 1)):
+                continue
+            row['publicationStatus'], actual = publication_summary(run, jobs)
+            skipped_dates = {job.get('completed_at') or run['updated_at'] for job in jobs
+                             if job['name'].endswith('deploy') and job.get('conclusion') == 'success'
+                             and not publication_summary(run, [job])[1]}
+            if not actual and row.get('lastPublicationSuccessAt') in skipped_dates:
+                row['lastPublicationSuccessAt'] = None
+        if dates:
+            row['lastPublicationSuccessAt'] = max([*dates, row.get('lastPublicationSuccessAt') or ''])
+    return result
+
+
 def update_status(state, run, jobs, reports=None):
     result = json.loads(json.dumps(state))
     workflow = run['path'].split('/')[-1]
@@ -122,16 +155,15 @@ def update_status(state, run, jobs, reports=None):
             if step.get('conclusion') in ('failure', 'timed_out'):
                 failures.append({'job': job['name'], 'step': step['name']})
     refresh_jobs = [job for job in jobs if job['name'] == 'refresh']
-    deploy_jobs = [job for job in jobs if job['name'].startswith('deploy /') or job['name'] == 'deploy']
     collection_status = 'failure' if data_failures or any(j.get('conclusion') in ('failure','timed_out') for j in refresh_jobs) else 'success' if reports or any(j.get('conclusion') == 'success' for j in refresh_jobs) else 'unknown'
-    publication_status = 'failure' if any(j.get('conclusion') in ('failure','timed_out') for j in deploy_jobs) else 'success' if any(j.get('conclusion') == 'success' and j['name'].endswith('deploy') for j in deploy_jobs) else 'not-run'
+    publication_status, published_at = publication_summary(run, jobs)
     result['workflows'] = entries
     entries[workflow] = {'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
         'completedAt': run['updated_at'], 'status': 'failure' if failed or data_failures else 'success',
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
         'collectionStatus': collection_status, 'publicationStatus': publication_status,
         'lastCollectionSuccessAt': run['updated_at'] if collection_status == 'success' else previous.get('lastCollectionSuccessAt'),
-        'lastPublicationSuccessAt': max((j.get('completed_at') or run['updated_at'] for j in deploy_jobs if j.get('conclusion') == 'success' and j['name'].endswith('deploy')), default=None) if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
+        'lastPublicationSuccessAt': published_at if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures}
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
@@ -183,6 +215,7 @@ def main():
     else:
         require_event = json.loads(args.event.read_text())
         runs = [require_event['workflow_run']]
+    publication_history = []
     for run in sorted(runs, key=lambda r: (r['updated_at'], r['id'])):
         jobs = []
         page = 1
@@ -205,6 +238,9 @@ def main():
                     for path in pathlib.Path(directory).glob('*observation.json'):
                         reports.append(read_report(path, run['path'].split('/')[-1]))
         state = update_status(state, run, jobs, reports)
+        publication_history.append((run, jobs))
+    if args.backfill:
+        state = repair_publication_history(state, publication_history)
     if sha is None:
         try:
             api(f'/git/ref/heads/{BRANCH}')

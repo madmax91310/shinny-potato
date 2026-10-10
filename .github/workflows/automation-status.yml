@@ -18,6 +18,11 @@ on:
       - Update official regulatory data
     types: [completed]
   workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/automation-status.yml"
+      - "scripts/publish_automation_status.py"
+      - "scripts/test_automation_status.py"
   push:
     branches: [master]
     paths:
@@ -30,8 +35,17 @@ concurrency:
   cancel-in-progress: false
   queue: max
 jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s scripts -p 'test_automation_status.py'
   publish:
-    if: github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request')
+    if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
     runs-on: ubuntu-26.04
     timeout-minutes: 20
     permissions:
