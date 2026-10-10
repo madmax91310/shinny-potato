@@ -5,9 +5,10 @@ import PageHeader from '../../design-system/PageHeader'
 import MaintenanceLinks from '../../design-system/MaintenanceLinks'
 import AutomationFailures from './AutomationFailures.jsx'
 import { buildReview, parisToday, REVIEW_CADENCES, reviewCalendar, summarizeCadences } from './lib.js'
+import { describeEvidenceDate } from '../data-search/lib.js'
 import './data-review.css'
 
-const LABELS = { expired: 'Offre expirée', 'future-date': 'Date à examiner', reserve: 'Réserve ouverte', stale: 'À revoir / en retard', current: 'À jour', undated: 'Contrôle non daté', ending: 'Échéance proche', soon: 'Revue prochaine', scheduled: 'Échéance à venir' }
+const LABELS = { expired: 'Offre expirée', 'future-date': 'Date à examiner', reserve: 'Réserve ouverte', stale: 'À revoir / en retard', current: 'Contrôle à jour', undated: 'Contrôle non daté', ending: 'Échéance proche', soon: 'Revue prochaine', scheduled: 'Échéance à venir' }
 const ACTIONABLE = ['expired', 'future-date', 'reserve', 'stale', 'undated']
 const VIEWS = { action: 'À traiter', calendar: 'Calendrier des vérifications', soon: 'Dans les 30 prochains jours', deadlines: 'Échéances des offres', reserve: 'Réserves', dates: 'Contrôles des sources', all: 'Tout afficher' }
 const dateLabel = value => value ? (/^\d{4}-\d{2}-\d{2}$/.test(value) ? value.split('-').reverse().join('/') : value) : 'Non documenté'
@@ -80,7 +81,7 @@ export default function DataReview() {
       <span className={`dr-badge dr-${item.category}`}>{LABELS[item.category]}</span>
       <h2>{item.name} · {item.field}</h2>
       <p>{item.reason}</p>
-      <dl>{item.cadence && <><dt>Temporalité</dt><dd>{REVIEW_CADENCES[item.cadence]}</dd></>}{item.dataType && <><dt>Type de données</dt><dd>{item.dataType}</dd></>}<dt>Dernière vérification</dt><dd>{dateLabel(item.checkedAt)}</dd>{!item.until && item.category !== 'reserve' && <><dt>Prochaine vérification</dt><dd>{dateLabel(item.nextReviewAt)}</dd></>}{item.until && <><dt>Fin de l’offre</dt><dd>{dateLabel(item.until)}</dd></>}<dt>Outils concernés</dt><dd>{item.tools.join(' · ')}</dd></dl>
+      <dl>{item.cadence && <><dt>Temporalité</dt><dd>{REVIEW_CADENCES[item.cadence]}</dd></>}{item.dataType && <><dt>Type de données</dt><dd>{item.dataType}</dd></>}<dt>Date de la donnée</dt><dd>{item.metadata ? describeEvidenceDate(item.metadata) : 'Non documentée'}</dd><dt>Dernier contrôle réussi de la source</dt><dd>{dateLabel(item.checkedAt)}</dd><dt>Dernière modification de la donnée</dt><dd>{dateLabel(item.modifiedAt)}</dd>{!item.until && item.category !== 'reserve' && <><dt>Prochaine vérification</dt><dd>{dateLabel(item.nextReviewAt)}</dd></>}{item.until && <><dt>Fin de l’offre</dt><dd>{dateLabel(item.until)}</dd></>}<dt>Outils concernés</dt><dd>{item.tools.join(' · ')}</dd></dl>
       {item.detail && <details><summary>Lire la réserve</summary><p>{item.detail}</p></details>}
       {item.maintenanceRecord && <MaintenanceLinks record={item.maintenanceRecord} field={item.maintenanceField} />}
       <div className="dr-links"><Link to={item.to}>Ouvrir {item.to.startsWith('/bibliotheque') ? 'la fiche de données' : item.to === '/comparatif-courtiers' ? 'le comparatif courtiers' : 'le portefeuille investisseur'}</Link>{item.urls.map((url, index) => <a href={url} key={url} target="_blank" rel="noreferrer">Source{item.urls.length > 1 ? ` ${index + 1}` : ''} ↗</a>)}</div>

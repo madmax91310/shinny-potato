@@ -30,6 +30,17 @@ SECTORS = {
 }
 
 
+AUDIT_DATES = {'checkedAt', 'modifiedAt'}
+
+def checked_observation(incoming, previous, checked):
+    """Keep value-change dates separate from successful source checks."""
+    values = {k: v for k, v in incoming.items() if k not in AUDIT_DATES}
+    old_values = {k: v for k, v in previous.items() if k not in AUDIT_DATES}
+    if values == old_values:
+        return {**previous, 'checkedAt': max(checked, previous.get('checkedAt', ''))}
+    return {**values, 'checkedAt': checked, 'modifiedAt': checked}
+
+
 def merge_collection(report, current, baseline):
     next_records = copy.deepcopy(current)
     checked = report['checkedAt'][:10]
@@ -57,18 +68,17 @@ def merge_collection(report, current, baseline):
                     if row['name'] not in SECTORS:
                         reject('Unknown issuer sector: ' + row['name'])
                     row['label'] = SECTORS[row['name']]
-            previous = {k: v for k, v in old.get(field, {}).items() if k != 'checkedAt'}
-            record[field] = old[field] if previous == incoming else {**incoming, 'checkedAt': checked}
+            record[field] = checked_observation(incoming, old.get(field, {}), checked)
         if not share.get('exposureOnly'):
-            characteristics = {k:v for k,v in old.get('characteristics',{}).items() if k != 'checkedAt'}
+            characteristics = {k:v for k,v in old.get('characteristics',{}).items() if k not in AUDIT_DATES}
             characteristics.update(share.get('characteristics') or {'terPct': share['terPct'], 'index': share['index'], 'distribution': share['distribution']})
-            previous = {k: v for k, v in old.get('characteristics', {}).items() if k != 'checkedAt'}
             # Monthly document facts must not overwrite more recent page facts.
             facts_date = share.get('characteristics', {}).get('asOf')
             active_facts_date = max(old.get('characteristics', {}).get('asOf', ''), old.get('characteristics', {}).get('checkedAt', ''))
             if (checked >= old.get('characteristics', {}).get('checkedAt', '')
-                    and (not facts_date or not active_facts_date or facts_date >= active_facts_date)):
-                record['characteristics'] = old['characteristics'] if previous == characteristics else {**characteristics, 'checkedAt': checked}
+                    and (not facts_date or not active_facts_date or facts_date >= active_facts_date
+                         or characteristics == {k: v for k, v in old.get('characteristics', {}).items() if k not in AUDIT_DATES})):
+                record['characteristics'] = checked_observation(characteristics, old.get('characteristics', {}), checked)
         performance = share.get('performance')
         if not performance:
             next_records[isin] = record
@@ -92,8 +102,7 @@ def merge_collection(report, current, baseline):
             reject('Annual performance convention changed')
         performance = {**performance, 'years': {**previous_performance.get('years', {}), **years}}
         if checked >= (old.get('performance', {}).get('checkedAt') or baseline.get(isin, {}).get('performanceCheckedAt') or ''):
-            previous = {k: v for k, v in old.get('performance', {}).items() if k != 'checkedAt'}
-            record['performance'] = old['performance'] if previous == performance else {**performance, 'checkedAt': checked}
+            record['performance'] = checked_observation(performance, old.get('performance', {}), checked)
         next_records[isin] = record
     return next_records
 

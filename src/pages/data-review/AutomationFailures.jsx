@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from './automation.js'
 
+const publicationLabel = value => ({ success: 'Réussie', failure: 'En échec', 'not-run': 'Non exécutée' }[value] ?? 'Non documentée')
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', {dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris'}).format(new Date(value)) : 'Non documenté'
 export default function AutomationFailures() {
   const [alerts, setAlerts] = useState([])
@@ -30,7 +31,7 @@ export default function AutomationFailures() {
   const rows = overview?.filter(row => filter === 'all' || row.state === filter) ?? []
   return <section className="dr-automation" aria-label="Bilan des collectes automatiques">
     <h2>Bilan des collectes automatiques</h2>
-    <p className="dr-note">Les dates ci-dessous suivent les exécutions des collecteurs. Une collecte réussie peut conserver une valeur inchangée ; elle ne garantit pas que tous les champs sont publiés. Les champs indisponibles figurent dans les réserves de cette page.</p>
+    <p className="dr-note">Les dates ci-dessous suivent les exécutions des collecteurs. Une collecte réussie peut conserver une valeur inchangée ; elle ne change pas la date de la donnée. La publication de l’application est suivie séparément. Les champs indisponibles figurent dans les réserves de cette page.</p>
     {!overview && !unavailable && <p role="status" className="dr-note">Chargement du bilan des collectes…</p>}
     {overview && <>
       <div className="dr-automation-filters" aria-label="Filtrer les collectes">{[['all', 'Toutes'], ['success', 'Réussies'], ['failure', 'En échec'], ['unknown', 'État non documenté']].map(([value, label]) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>{label} · {overview.filter(row => value === 'all' || row.state === value).length}</button>)}</div>
@@ -39,7 +40,7 @@ export default function AutomationFailures() {
         <h3>{row.name}</h3>
         {row.publicationStatus === 'failure' && <p>La publication de l’application a échoué.{row.collectionStatus === 'success' && ' La collecte a réussi ; son déploiement reste à reprendre.'}</p>}
         {row.state === 'failure' && <p>Les dernières données validées sont conservées.{row.failureCount > 0 && ` ${row.failureCount} donnée(s) en échec documentée(s).`}</p>}
-        <dl><dt>Dernière exécution</dt><dd>{date(row.completedAt)}</dd><dt>Dernier succès complet</dt><dd>{date(row.lastSuccessAt)}</dd></dl>
+        <dl><dt>Dernière exécution</dt><dd>{date(row.completedAt)}</dd><dt>Dernier contrôle de collecte réussi</dt><dd>{date(row.lastCollectionSuccessAt)}</dd><dt>Publication de cette exécution</dt><dd>{publicationLabel(row.publicationStatus)}</dd><dt>Dernière publication réussie</dt><dd>{date(row.lastPublicationSuccessAt)}</dd><dt>Dernier succès complet</dt><dd>{date(row.lastSuccessAt)}</dd></dl>
         {row.runUrl && <div className="dr-links"><a href={row.runUrl} target="_blank" rel="noreferrer">Voir l’exécution ↗</a></div>}
       </article>)}</div>
       {!rows.length && <p className="dr-note">Aucune collecte pour cette sélection.</p>}

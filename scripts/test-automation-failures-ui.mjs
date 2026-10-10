@@ -33,10 +33,15 @@ try {
  assert.equal(await section.getByRole('link',{name:'Voir la cause et le suivi ↗'}).getAttribute('href'),status.workflows.etf.runUrl)
  status={schemaVersion:1,workflows:{etf:{name:'Update active ETF issuer data',status:'success'}}}
  await page.reload({waitUntil:'networkidle'});assert.equal(await section.count(),0)
- status={schemaVersion:1,workflows:{insurance:{name:'Assurance-vie',status:'failure',collectionStatus:'success',publicationStatus:'failure',runUrl:'https://github.com/test/repo/actions/runs/2'}}}
+ status={schemaVersion:1,workflows:{insurance:{name:'Assurance-vie',status:'failure',collectionStatus:'success',publicationStatus:'failure',lastCollectionSuccessAt:'2026-10-10T10:00:00Z',lastPublicationSuccessAt:'2026-10-09T09:00:00Z',runUrl:'https://github.com/test/repo/actions/runs/2'}}}
  await page.reload({waitUntil:'networkidle'})
  assert.match(await section.textContent(),/Les données ont été collectées, mais leur publication dans l’application a échoué/)
  assert.match(await overview.textContent(),/La collecte a réussi ; son déploiement reste à reprendre/)
+ assert.equal(await overview.getByText('Dernier contrôle de collecte réussi',{exact:true}).count(),1)
+ assert.equal(await overview.getByText('Dernière publication réussie',{exact:true}).count(),1)
+ assert.match(await overview.textContent(),/10\/10\/2026/)
+ assert.match(await overview.textContent(),/09\/10\/2026/)
+
  await page.unroute('**/automation-status/automation-status.json')
  await page.route('**/automation-status/automation-status.json',route=>route.fulfill({status:503,body:'unavailable'}))
  await page.reload({waitUntil:'networkidle'})

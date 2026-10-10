@@ -29,6 +29,16 @@ class StatusTests(unittest.TestCase):
   self.assertEqual(result['publicationStatus'],'failure')
   self.assertIsNone(result['lastSuccessAt'])
   self.assertEqual(result['lastCollectionSuccessAt'],'2026-10-01T10:00:00Z')
+ def test_publication_date_survives_collection_failure(self):
+  jobs=[{'name':'refresh','conclusion':'success'},{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z'}]
+  first=update_status({},run(1,'success'),jobs)
+  row=first['workflows']['update-economic-data.yml']
+  self.assertEqual(row['lastPublicationSuccessAt'],'2026-10-01T09:59:00Z')
+  failed=update_status(first,run(2),[{'name':'refresh','conclusion':'failure'}])['workflows']['update-economic-data.yml']
+  self.assertEqual(failed['lastPublicationSuccessAt'],row['lastPublicationSuccessAt'])
+  self.assertEqual(failed['lastCollectionSuccessAt'],row['lastCollectionSuccessAt'])
+  self.assertEqual(failed['publicationStatus'],'not-run')
+
  def test_large_issuer_report_is_bounded_and_projected(self):
   path=Mock();path.name='additional-observation.json';path.stem='additional-observation'
   path.stat.return_value.st_size=12_000_000

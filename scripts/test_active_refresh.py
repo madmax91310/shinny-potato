@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import refresh_additional_etf
-from apply_etf_collection import apply, merge_collection
+from apply_etf_collection import apply, merge_collection, checked_observation
 from data_automation import UTC
 from update_bitcoin_monthly import collect, apply as apply_bitcoin
 
@@ -113,10 +113,26 @@ class ActiveRefreshTests(unittest.TestCase):
                 apply(self.report, destination, self.baseline)
             self.assertEqual(destination.read_text(), '{}\n')
 
-    def test_no_commit_for_check_timestamp_only(self):
+    def test_successful_check_preserves_value_date_and_modification(self):
         first = merge_collection(self.report, {}, self.baseline)
         self.report['checkedAt'] = '2026-10-06T00:00:00+00:00'
-        self.assertEqual(merge_collection(self.report, first, self.baseline), first)
+        updated = merge_collection(self.report, first, self.baseline)
+        isin = self.report['shares'][0]['isin']
+        for field in ('aum', 'sectors', 'performance'):
+            self.assertEqual(updated[isin][field]['checkedAt'], '2026-10-06')
+            self.assertEqual(updated[isin][field]['modifiedAt'], first[isin][field]['modifiedAt'])
+            self.assertEqual(updated[isin][field].get('asOf'), first[isin][field].get('asOf'))
+        self.assertEqual(merge_collection(self.report, updated, self.baseline), updated)
+
+
+    def test_legacy_value_has_no_invented_modification_date(self):
+        previous = {'amount': 10, 'asOf': '2026-09-30', 'checkedAt': '2026-10-01'}
+        same = checked_observation({'amount': 10, 'asOf': '2026-09-30'}, previous, '2026-10-10')
+        self.assertEqual(same['checkedAt'], '2026-10-10')
+        self.assertNotIn('modifiedAt', same)
+        changed = checked_observation({'amount': 11, 'asOf': '2026-09-30'}, same, '2026-10-11')
+        self.assertEqual(changed['modifiedAt'], '2026-10-11')
+        self.assertEqual(changed['asOf'], previous['asOf'])
 
     def bitcoin_response(self, interval, now):
         end = dt.datetime(now.year, now.month, 1, tzinfo=UTC)

@@ -1,7 +1,7 @@
 import { writeFile, mkdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { collectObservations } from './update-editorial-radar.mjs'
-import { advanceRadar } from './lib/editorial-radar.mjs'
+import { advanceRadar, shouldRefreshRadar } from './lib/editorial-radar.mjs'
 import { collectRadarNews } from './lib/radar-news.mjs'
 import { notificationState, notifyRadar } from './lib/radar-notifications.mjs'
 
@@ -22,12 +22,18 @@ const branch = 'radar-data'
 let ref = await api(`git/ref/heads/${branch}`, 'GET', undefined, true)
 let previous = null
 let ledger = null
+let previousFeed = null
 if (ref) {
   const files = await api(`git/trees/${ref.object.sha}`)
   const stateFile = files.tree.find(file => file.path === 'state.json')
   if (!stateFile) throw new Error('La branche radar existe sans historique : initialisation silencieuse refusée.')
   const blob = await api(`git/blobs/${stateFile.sha}`)
   previous = JSON.parse(Buffer.from(blob.content, 'base64').toString('utf8'))
+  const feedFile = files.tree.find(file => file.path === 'feed.json')
+  if (feedFile) {
+    const feedBlob = await api(`git/blobs/${feedFile.sha}`)
+    previousFeed = JSON.parse(Buffer.from(feedBlob.content, 'base64').toString('utf8'))
+  }
   const notificationFile = files.tree.find(file => file.path === 'notifications.json')
   if (notificationFile) {
     const notificationBlob = await api(`git/blobs/${notificationFile.sha}`)
@@ -35,28 +41,39 @@ if (ref) {
   }
 }
 ledger = notificationState(previous, ledger)
-const { observations, errors } = await collectObservations()
-if (!observations.length || errors.some(error => error.family === 'radar')) throw new Error('Sources locales incomplètes ; historique conservé.')
-const news = await collectRadarNews()
-observations.push(...news.observations); errors.push(...news.errors)
-const result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors })
+const refresh = !previousFeed || shouldRefreshRadar(previous, { eventName: process.env.GITHUB_EVENT_NAME, sourceRevision: process.env.RADAR_SOURCE_SHA })
+let result, nextTree, nextCommit
+if (refresh) {
+  const { observations, errors } = await collectObservations()
+  if (!observations.length || errors.some(error => error.family === 'radar')) throw new Error('Sources locales incomplètes ; historique conservé.')
+  const news = await collectRadarNews()
+  observations.push(...news.observations); errors.push(...news.errors)
+  result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors })
+  // Create only after successful extraction and validation.
+  const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
+  const commit = await api(`git/commits/${parent}`)
+  const tree = []
+  for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['notifications.json', ledger]]) {
+    const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(content, null, 2)}\n`, encoding: 'utf-8' })
+    tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha })
+  }
+  nextTree = await api('git/trees', 'POST', { base_tree: commit.tree.sha, tree })
+  nextCommit = await api('git/commits', 'POST', { message: `Radar: ${result.newEvents.length} new signals, validated daily observations`, tree: nextTree.sha, parents: [parent] })
+  if (ref) await api(`git/refs/heads/${branch}`, 'PATCH', { sha: nextCommit.sha, force: false })
+  else await api('git/refs', 'POST', { ref: `refs/heads/${branch}`, sha: nextCommit.sha })
+  console.log(`Radar publié : ${result.feed.observationCount} observations, ${result.newEvents.length} nouveautés, ${result.feed.errors.length} réserves.`)
+  if (process.env.GITHUB_STEP_SUMMARY) await writeFile(process.env.GITHUB_STEP_SUMMARY, `## Radar éditorial\n\n${result.feed.observationCount} observations analysées ; ${result.newEvents.length} nouveaux signaux ; ${result.feed.errors.length} observations non exploitables.\n\nLe premier relevé est silencieux. Les signaux suivants conservent leurs deux observations et leurs sources.\n`)
+
+} else {
+  result = { state: previous, feed: previousFeed, newEvents: [] }
+  nextCommit = { sha: ref.object.sha }
+  nextTree = { sha: (await api(`git/commits/${ref.object.sha}`)).tree.sha }
+  console.log('Contrôle identique récent : collecte évitée ; notifications en attente retentées.')
+  if (process.env.GITHUB_STEP_SUMMARY) await writeFile(process.env.GITHUB_STEP_SUMMARY, 'Contrôle identique récent : collecte évitée ; notifications en attente retentées.\n')
+}
 const output = resolve(process.env.RUNNER_TEMP ?? '/tmp', 'editorial-radar')
 await mkdir(output, { recursive: true })
 await writeFile(resolve(output, 'feed.json'), `${JSON.stringify(result.feed, null, 2)}\n`)
-// Create only after successful extraction and validation.
-const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
-const commit = await api(`git/commits/${parent}`)
-const tree = []
-for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['notifications.json', ledger]]) {
-  const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(content, null, 2)}\n`, encoding: 'utf-8' })
-  tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha })
-}
-const nextTree = await api('git/trees', 'POST', { base_tree: commit.tree.sha, tree })
-const nextCommit = await api('git/commits', 'POST', { message: `Radar: ${result.newEvents.length} new signals, validated daily observations`, tree: nextTree.sha, parents: [parent] })
-if (ref) await api(`git/refs/heads/${branch}`, 'PATCH', { sha: nextCommit.sha, force: false })
-else await api('git/refs', 'POST', { ref: `refs/heads/${branch}`, sha: nextCommit.sha })
-console.log(`Radar publié : ${result.feed.observationCount} observations, ${result.newEvents.length} nouveautés, ${result.feed.errors.length} réserves.`)
-if (process.env.GITHUB_STEP_SUMMARY) await writeFile(process.env.GITHUB_STEP_SUMMARY, `## Radar éditorial\n\n${result.feed.observationCount} observations analysées ; ${result.newEvents.length} nouveaux signaux ; ${result.feed.errors.length} observations non exploitables.\n\nLe premier relevé est silencieux. Les signaux suivants conservent leurs deux observations et leurs sources.\n`)
 
 // Data has already been committed. A notification failure leaves the daily
 // feed working and the unacknowledged events available for tomorrow's retry.
