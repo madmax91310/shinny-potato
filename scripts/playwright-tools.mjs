@@ -8,6 +8,8 @@ import { BROKER_EVIDENCE } from '../src/pages/broker-comparator/evidence.js';
 import { BROKER_EDITORIAL } from '../src/pages/broker-comparator/editorial.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
+import { FACTS as MARKET_FACTS } from '../src/pages/market-facts/data.js';
+import { buildTweetText as buildMarketStory } from '../src/pages/market-facts/lib.js';
 import { buildText } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { TOOLS, HOME_TOOLS } from '../src/tools.js';
@@ -724,11 +726,13 @@ async function testMarketFacts(page) {
     const evidence = await page.locator('.mf-details').innerText();
     await page.getByRole('button', { name: /Copier le texte|Copié/ }).click();
     const copied = await page.evaluate(() => window.__marketFactsCopied);
+    const id = await select.locator('[data-option]').nth(i).getAttribute('data-value');
+    const expected = buildMarketStory(MARKET_FACTS.find(fact => fact.id === id));
     if (/undefined|NaN/.test(text) || !/Source :/.test(evidence)
       || /Source\s*:|https?:\/\//i.test(tweet) || copied !== tweet
-      || !/\d/.test(tweet.split('\n')[0]) || !tweet.split('\n').at(-1).startsWith('💬')) badCount++;
+      || tweet !== expected || /^💬/m.test(tweet)) badCount++;
   }
-  record("Faits marquants des marchés", badCount === 0, `${count} faits : accroches chiffrées, copie sans source, sources consultables et question finale ; ${badCount} échec(s)`);
+  record("Faits marquants des marchés", badCount === 0, `${count} récits : textes attendus, copie sans source, sources consultables et aucune question finale imposée ; ${badCount} échec(s)`);
 }
 
 async function testTweetBank(page) {
@@ -1038,7 +1042,7 @@ async function testDataReuse(page) {
   await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-paypal');
   ok &&= (await page.locator('.mf-fact-text').innerText()).includes('clôtures mensuelles ajustées');
   await choose(page.getByLabel('Choisir un fait'), 'monthly-dca-costco');
-  ok &&= (await page.locator('.mf-fact-text').innerText()).includes('L’argent en attente n’est pas rémunéré');
+  ok &&= (await page.locator('.mf-fact-text').innerText()).includes('l’argent qui attend d’être investi ne rapporte rien');
   await page.goto(`${BASE}/bibliotheque-donnees?id=IE00B4JNQZ49&q=IE00B4JNQZ49`, { waitUntil: 'networkidle' });
   ok &&= (await page.locator('.ds-detail').innerText()).includes('Duels de portefeuilles');
   await page.goto(`${BASE}/banque-tweets`, { waitUntil: 'networkidle' });

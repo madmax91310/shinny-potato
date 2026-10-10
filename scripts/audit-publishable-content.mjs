@@ -30,7 +30,8 @@ uniqueIds('Faits', FACTS)
 uniqueIds('Thèmes ETF', DEFAULT_THEMES)
 uniqueIds('Fiches ETF', ETFS)
 uniqueIds('Cas concrets', CASES)
-for (const fact of FACTS) requireFields(`Fait ${fact.id}`, fact, ['hook', 'context', 'source', 'question'])
+// Les histoires peuvent se terminer sans question : elle n'est pas une condition de publication.
+for (const fact of FACTS) requireFields(`Fait ${fact.id}`, fact, ['hook', 'context', 'source'])
 for (const etf of ETFS) requireFields(`Fiche ETF ${etf.id}`, etf, ['isin', 'ter', 'hook', 'whatIs', 'whyInteresting', 'whatToKnow', 'verdict', 'question'])
 if (new Set(ETFS.map(etf => etf.hook)).size !== ETFS.length) {
   failures.push('Fiches ETF : chaque produit doit avoir une accroche propre à son exposition')
