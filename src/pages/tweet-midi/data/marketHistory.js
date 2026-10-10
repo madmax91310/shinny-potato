@@ -1,3 +1,5 @@
+import { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
+export { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
 // Formats "Anniversaire" et "Performance depuis" (Tweet Midi) — aucune donnée de prix dupliquée
 // ici : tout vient directement de la bibliothèque déjà vérifiée du Calculateur d'investissement
 // (src/data/market-history.js), via les mêmes fonctions d'interpolation que le
@@ -168,17 +170,7 @@ export function getBenchmarkPerformance(startYm, endYm) {
 
 // Les indices disposent de niveaux officiels ; leur variante doit rester explicite
 // dans le sélecteur, la saisie, le tweet et l’image pour ne jamais mélanger Price/TR.
-export const ANNIVERSARY_INDEX_VARIANTS = {
-  msciAcwiImi: 'Net Return · USD · dividendes nets réinvestis',
-  msciAcwi: 'Net Return · USD · dividendes nets réinvestis',
-  msciWorldExUsa: 'Net Return · USD · dividendes nets réinvestis',
-  cac40: 'Prix · EUR · hors dividendes',
-  sp500: 'Total Return · USD · dividendes bruts réinvestis',
-  stoxx600: 'Net Return · EUR · dividendes nets réinvestis',
-  msciWorld: 'Gross Return · USD · dividendes bruts réinvestis',
-  msciEmerging: 'Gross Return · USD · dividendes bruts réinvestis',
-  msciWorldSmallCap: 'Gross Return · USD · dividendes bruts réinvestis',
-};
+
 
 export function performanceBasis(assetId) {
   const asset = ASSETS[assetId];
