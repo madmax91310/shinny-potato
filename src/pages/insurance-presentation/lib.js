@@ -3,6 +3,30 @@ export const fundReturn = row => row.return != null ? `${format(row.return)} %` 
 export const fundGuarantee = fund => fund.guarantee != null ? `Garantie annuelle : ${format(fund.guarantee)} % du capital, nette des frais de gestion.${fund.guaranteeBasis ? ` ${fund.guaranteeBasis}` : ''}` : 'La garantie nette annuelle n’est pas chiffrée dans les pages collectées ; voir les conditions du fonds.'
 const accessExpired = (fund, today) => fund.accessValidUntil && fund.accessValidUntil < today
 const todayIso = () => new Date().toISOString().slice(0, 10)
+function presentationHook(record) {
+  const { id, name, access } = record
+  if (id === 'linxea-spirit-2') return `Tu voudrais réunir un fonds euros et des ETF dans ton assurance-vie ? Voici ce que propose Linxea Spirit 2, avec ses frais et ses conditions d’accès 👇`
+  if (id === 'linxea-avenir-2') return access.monthly < 50
+    ? `Commencer une assurance-vie avec des versements réguliers ne demande pas forcément une grosse somme. ${name} permet d’en programmer dès ${format(access.monthly)} €/mois 👇`
+    : `${name} permet d’alimenter une assurance-vie à ton rythme. Voici ses supports, ses frais et les conditions à regarder avant de choisir 👇`
+  if (id === 'linxea-zen') return `Deux fonds euros d’un même contrat peuvent avoir des conditions différentes. Avec ${name}, regardons ce que tu peux choisir et ce que cela coûte 👇`
+  if (id === 'linxea-vie') return `Une assurance-vie peut réunir un fonds euros et d’autres placements. Voici les possibilités de ${name}, avec les frais et les conditions qui vont avec 👇`
+  if (id === 'lucya-cardif') return `Avoir beaucoup de supports dans une assurance-vie peut être utile, à condition d’y retrouver ceux qui t’intéressent. Regardons ce que propose ${name} 👇`
+  if (id === 'placement-direct-vie') return `Choisir soi-même ses supports ou utiliser une option de gestion peut changer le coût d’une assurance-vie. Voici comment se présente ${name} 👇`
+  return `Voici ce que propose ${name} pour placer ton épargne, avec ses supports et ses conditions 👇`
+}
+function presentationReading(record) {
+  const common = 'Le rendement publié du fonds euros concerne ce fonds uniquement. Si tu choisis d’autres supports, le résultat de ton assurance-vie dépendra aussi de leur évolution. Et deux fonds euros d’un même contrat peuvent avoir des conditions différentes.'
+  const observations = {
+    'linxea-spirit-2': record.fees.units > 0 ? 'Pour les ETF, je retiens surtout que les frais du contrat s’ajoutent à ceux des fonds. Avoir accès à un ETF peu coûteux ne suffit donc pas à connaître le coût total.' : 'Pour les ETF, je distingue les frais des fonds et les éventuels frais de transaction du contrat.',
+    'linxea-avenir-2': 'Je regarderais les conditions du fonds euros qui m’intéresse avant de choisir la répartition. Le rendement affiché ne suffit pas à savoir quelle part de mon versement pourra y être placée.',
+    'linxea-zen': record.euroFunds.length > 1 ? 'Pour moi, avoir plusieurs fonds euros invite surtout à comparer leurs garanties et leurs conditions d’accès. Leurs noms ne permettent pas, à eux seuls, de choisir entre eux.' : 'Pour le fonds euros, je regarderais sa garantie et ses conditions d’accès en même temps que son rendement.',
+    'linxea-vie': 'Pour les ETF, je regarderais le coût total sur la durée. Les frais du contrat, ceux des supports et les éventuels frais de transaction interviennent à des moments différents.',
+    'lucya-cardif': 'Ce que je regarde dans un catalogue de supports, c’est d’abord si les placements qui m’intéressent sont disponibles, avec quelles conditions et quels frais. Un grand choix n’oblige pas à multiplier les lignes.',
+    'placement-direct-vie': record.fees.options?.length ? 'Je distingue les frais de la gestion libre de ceux des options proposées. Le coût à retenir dépend du mode choisi et des supports réellement détenus.' : 'Je regarderais les frais correspondant aux supports et au mode de gestion choisis, pour comprendre ce qui sera prélevé dans la durée.',
+  }
+  return [observations[record.id], common].filter(Boolean).join('\n\n')
+}
 export const fundOperations = (fund, today = todayIso()) => accessExpired(fund, today) ? '' : fund.operations
 export const fundCeiling = (fund, today = todayIso()) => accessExpired(fund, today) || fund.ceiling != null ? '' : 'Le plafond en euros applicable à l’opération reste à confirmer auprès du distributeur.'
 export const fundAllocation = (fund, today = todayIso()) => accessExpired(fund, today)
@@ -14,11 +38,7 @@ export const fundAllocation = (fund, today = todayIso()) => accessExpired(fund, 
     : `Jusqu’à ${format(fund.maxAllocation)} % du versement${fund.ceiling ? `, dans la limite de ${format(fund.ceiling)} € par contrat` : ''}.`
 export function buildTweet(record) {
   const { name, insurer, fees, access, supports, euroFunds } = record
-  const hook = record.id === 'linxea-spirit-2'
-    ? `Tu voudrais réunir un fonds euros et des ETF dans ton assurance-vie ? Voici ce que propose Linxea Spirit 2, avec ses frais et ses conditions d’accès 👇`
-    : access.monthly < 50
-    ? `Tu veux alimenter une assurance-vie petit à petit ? ${name} permet de programmer des versements dès ${format(access.monthly)} €/mois. Voici les détails 👇`
-    : `Avant d’ouvrir une assurance-vie, je regarderais ce qu’on peut y mettre et ce qu’elle coûte dans la durée. Prenons ${name} pour voir ça concrètement 👇`
+  const hook = presentationHook(record)
   const fundLines = euroFunds.map(fund => [
     `🛡️ Avec ${fund.name}, voici les rendements publiés :`,
     fund.years.map(row => `${row.year} : ${fundReturn(row)}`).join(' · '),
@@ -35,9 +55,7 @@ export function buildTweet(record) {
     `📦 Tu as accès à des fonds euros et à plus de ${format(supports.minimumCount)} supports annoncés, dont ${supports.categories.join(', ')}. À toi de choisir ceux qui correspondent à ton projet, en vérifiant leurs conditions d’accès.`,
     `💸 Les frais comptent aussi pendant les années où tu gardes le contrat.\nVersement : ${format(fees.subscription)} % · Arbitrage en ligne : ${format(fees.arbitrage)} %.\nPour les unités de compte, le contrat prélève ${format(fees.units)} %/an, auxquels s’ajoutent les frais des supports choisis. Pour les transactions ETF : ${format(fees.etfTrade)} % par opération.${fees.notes ? `\n${fees.notes}` : ''}\nLa gestion pilotée et certaines options ont leurs propres frais.`,
     `📊 Si tu t’intéresses surtout au fonds euros, regarde aussi ses conditions d’accès et sa garantie.\nLes rendements ci-dessous sont nets de frais de gestion, avant prélèvements sociaux et fiscaux. Les offres de bonus ne sont pas intégrées.\n\n${fundLines}`,
-    record.id === 'linxea-spirit-2'
-      ? `🔎 ${fees.units > 0 ? 'Pour les ETF, je retiens surtout que les frais du contrat s’ajoutent à ceux des fonds. Avoir accès à un ETF peu coûteux ne suffit donc pas à connaître le coût total.' : 'Pour les ETF, je distingue les frais des fonds et les éventuels frais de transaction du contrat.'}\n\nLe rendement publié du fonds euros concerne ce fonds uniquement. Si tu choisis d’autres supports, le résultat de ton assurance-vie dépendra aussi de leur évolution. Et deux fonds euros d’un même contrat peuvent avoir des conditions différentes.`
-      : `🔎 Le chiffre à retenir dépend de ce que tu choisis : le rendement d’un fonds euros ne sera pas celui de toute ton assurance-vie si tu y ajoutes d’autres supports. Et deux fonds euros d’un même contrat peuvent avoir des conditions différentes.`,
+    `🔎 ${presentationReading(record)}`,
     `⚠️ Sur les unités de compte, tu peux perdre une partie de ton argent : elles présentent un risque de perte en capital. Les rendements passés ne garantissent pas les suivants.`,
     `💬 Tu utilises surtout ton assurance-vie pour le fonds euros ou pour d’autres supports ?`,
   ].join('\n\n')
