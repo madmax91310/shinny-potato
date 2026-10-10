@@ -44,7 +44,7 @@ try {
     const { buildText } = await module('pages/etf-sheets/lib.js')
     for (const etf of ETFS) {
       if (/🆕|Nouveau/.test(buildText(etf))) throw new Error(`New label in tweet: ${etf.id}`)
-      await check(`etf-${etf.id}`, () => renderETFImage(etf), (_, text) => !/PRÉSENTATION|Nouveau/.test(text) && text.includes('Pas un conseil en investissement'))
+      await check(`etf-${etf.id}`, () => renderETFImage(etf), (_, text) => !/PRÉSENTATION|Nouveau/.test(text) && text.includes('Pas un conseil financier'))
 
     }
     const { SHEETS } = await module('data/index-factsheets.js')
