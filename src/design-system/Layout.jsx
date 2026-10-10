@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { TOOL_GROUPS } from '../tools'
 import ToolIcon from './ToolIcon'
 import RadarCount from './RadarCount'
@@ -22,6 +22,10 @@ export default function Layout() {
   const family = TOOL_GROUPS.find(group => group.tools.some(tool => tool.to === pathname))?.id ?? 'publish'
   return <div data-family={family} className={`workspace ${pathname === '/' ? 'workspace--home' : 'workspace--tool'}`}>
     <a className="workspace-skip" href="#workspace-main">Aller au contenu</a>
+    <header className="workspace-masthead">
+      <Link to="/" className="workspace-identity">Épargnant Libre</Link>
+      {pathname !== '/' && <Link to="/" className="workspace-home-link">← Accueil</Link>}
+    </header>
     <div className="workspace-body">
       <aside className="workspace-sidebar"><Navigation /></aside>
       <details className="workspace-mobile-menu" key={pathname}>

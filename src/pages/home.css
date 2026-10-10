@@ -8,7 +8,7 @@
 }
 .home-heading { margin-bottom: 24px; }
 .home-heading p { margin: 0 0 5px; color: #597269; font-size: 14px; font-weight: 650; }
-.home-heading h1 { margin: 0; color: #152630; font-size: clamp(22px, 4vw, 30px); line-height: 1.2; letter-spacing: -.7px; }
+.home-heading h1 { margin: 0; color: #152630; font-size: clamp(22px, 4vw, 30px); font-weight: 750; line-height: 1.2; letter-spacing: -.7px; }
 .home-week { display: grid; gap: 10px; }
 .home-day { display: grid; grid-template-columns: 168px minmax(0, 1fr); border: 1px solid #deded4; border-radius: 16px; overflow: hidden; background: #fcfbf7; }
 .home-day-band { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 10px; padding: 22px; background: var(--day-color); }
@@ -50,7 +50,7 @@
   .workspace--home .workspace-tool-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .workspace--home .workspace-tool-card { grid-template-columns: 24px minmax(0, 1fr); gap: 8px; padding: 11px 22px 11px 9px; min-height: 70px; border-radius: 10px; }
   .workspace--home .workspace-tool-icon { width: 24px; font-size: 21px; }
-  .workspace--home .workspace-tool-card h2 { font-size: 13px; }
+  .workspace--home .workspace-tool-card h2 { font-size: 14px; }
   .workspace--home .workspace-publication-day { font-size: 10.5px; }
   .workspace--home .workspace-tool-card::after { right: 8px; font-size: 20px; }
   .home-day-note { font-size: 12px; padding: 7px; }

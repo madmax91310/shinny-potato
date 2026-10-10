@@ -1,0 +1,85 @@
+/* Application UI only: canvas renderers and exported images own their palettes. */
+.workspace {
+  --ui-accent: #23664e; --ui-accent-soft: #e7eee0;
+  --surface: var(--ui-surface); --border: var(--ui-line);
+  --text-primary: var(--ui-ink); --text-muted: var(--ui-muted);
+  --border-color: var(--ui-line);
+  background: var(--ui-bg);
+}
+.workspace[data-family] { --ui-accent: #23664e; --ui-accent-soft: #e7eee0; }
+.workspace-masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 1120px; margin: auto; padding: 16px 28px; min-height: 64px; border-bottom: 1px solid var(--ui-line); }
+.workspace-identity { color: var(--ui-ink); font-size: 17px; font-weight: 750; letter-spacing: -.4px; text-decoration: none; }
+.workspace-home-link { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; border-radius: 10px; color: var(--ui-accent); font-size: 13px; font-weight: 600; text-decoration: none; }
+.workspace-home-link:hover { background: var(--ui-accent-soft); }
+.workspace .workspace-body { max-width: 1120px; }
+.workspace .workspace-main { padding-top: 24px; }
+.workspace .workspace-page-header { padding: 16px; border: 1px solid var(--ui-line); border-radius: 14px; background: var(--ui-surface); }
+.workspace .workspace-page-title h1 { display: flex; align-items: center; gap: 10px; min-width: 0; font-weight: 750; }
+.workspace-page-emoji { flex: none; font-size: 23px; }
+.workspace .workspace-back { width: 44px; height: 44px; background: var(--ui-bg); color: var(--ui-accent); }
+.workspace-page-schedule { display: table; margin: 10px 0 0 56px; padding: 6px 10px; border-radius: 7px; background: var(--day-color,var(--ui-soft)); color: var(--ui-ink); font-size: 12px; font-weight: 650; line-height: 1.5; }
+[data-publication-day="0"] { --day-color: #d1dfc7; }
+[data-publication-day="1"] { --day-color: #c7dff3; }
+[data-publication-day="2"] { --day-color: #d9cef2; }
+[data-publication-day="3"] { --day-color: #f7dfa4; }
+[data-publication-day="4"] { --day-color: #f3c8bf; }
+[data-publication-day="5"] { --day-color: #bfe2db; }
+[data-publication-day="6"] { --day-color: #eadcc0; }
+.workspace .workspace-page-help { margin-left: 56px; line-height: 1.6; }
+.workspace .workspace-page-help summary { min-height: 44px; display: flex; align-items: center; }
+.workspace .workspace-button--primary { background: var(--ui-accent); color: #fffefa; }
+.workspace .workspace-button--primary:hover { filter: brightness(.92); }
+.workspace .workspace-button--secondary { background: var(--ui-surface); }
+.workspace .workspace-button, .workspace .publication-tabs button { min-height: 48px; }
+.workspace .publication-tabs { background: var(--ui-bg); width: 100%; }
+.workspace .publication-tabs button { flex: 1; font-weight: 650; }
+.workspace .publication-tabs button[aria-selected="true"] { background: var(--ui-accent); color: #fffefa; }
+.workspace .workspace-view-switch { background: var(--ui-soft); }
+.workspace .workspace-view-switch button[aria-pressed="true"] { background: var(--ui-surface); color: var(--ui-accent); box-shadow: 0 1px 4px #1526300d; }
+.workspace .workspace-action-menu summary { width: 48px; height: 48px; }
+.workspace .workspace-actions { box-shadow: 0 5px 20px #15263014; }
+@media (min-width:901px) {
+  .workspace .workspace-actions { left: max(246px,calc((100vw - 1120px)/2 + 246px)); right: max(28px,calc((100vw - 1120px)/2 + 28px)); }
+}
+.workspace .workspace-actions > span:empty { display: none; }
+.workspace .workspace-actions > span { flex-basis: 100%; overflow-wrap: anywhere; }
+.workspace .workspace-nav-link { min-height: 44px; font-size: 13px; }
+.workspace .asset-picker-eligibility button { min-height: 44px; }
+.workspace .asset-picker-more, .workspace .asset-picker-results button, .workspace .asset-picker-details summary { min-height: 44px; }
+.workspace :is(.asset-picker-groups,.choice-picker-grid) { gap: 8px; }
+.workspace :is(.tool-settings,.tool-preview) { min-width: 0; }
+.workspace .company-evidence { padding: 16px; margin-top: 16px; border: 1px solid var(--ui-line); border-radius: 14px; background: var(--ui-surface); }
+.workspace .company-evidence a { color: var(--ui-accent); }
+.workspace .wealth-panel { background: var(--ui-surface); border-color: var(--ui-line); }
+.workspace :is(.wealth-tabs button,.wealth-import,.wealth-remove,.wealth-event > button) { background: var(--ui-surface); border-color: var(--ui-line); min-height: 44px; }
+.workspace .wealth-tabs button[aria-pressed="true"] { background: var(--ui-accent-soft); border-color: var(--ui-accent); color: var(--ui-accent); }
+.workspace .wealth-warning { background: #fbf0d8; color: #694c14; }
+.workspace .wealth-simulator a, .workspace .wealth-metrics strong { color: var(--ui-accent); }
+.workspace .wealth-metrics small { color: var(--ui-muted); }
+.workspace :is(.wealth-metrics > div,.wealth-event,.wealth-simulator th,.wealth-simulator td) { border-color: var(--ui-line); }
+.workspace .wealth-chart svg text { fill: var(--ui-muted); }
+.workspace .radar-card { background: var(--ui-surface); border-color: var(--ui-line); border-left-color: var(--ui-accent); }
+@media (max-width:900px) {
+  .workspace-masthead { padding: 10px 16px; }
+  .workspace .workspace-main { padding: 16px 12px 24px; }
+  .workspace .workspace-mobile-menu { margin: 0 12px; }
+  .workspace .workspace-mobile-menu > summary { min-height: 48px; font-size: 13px; color: var(--ui-accent); }
+  .workspace .workspace-page-header { padding: 12px; margin-bottom: 16px; }
+  .workspace .workspace-page-title { gap: 8px; }
+  .workspace .workspace-page-title h1 { font-size: 21px; gap: 8px; overflow-wrap: anywhere; }
+  .workspace .workspace-page-help, .workspace-page-schedule { margin-left: 52px; }
+  .workspace .workspace-view-switch { top: 8px; margin-bottom: 16px; }
+  .workspace .workspace-view-switch button { min-height: 48px; font-weight: 650; }
+  .workspace .workspace-actions { left: 8px; right: 8px; bottom: max(8px,env(safe-area-inset-bottom)); gap: 8px; padding: 10px; background: #fffefaf5; }
+  .workspace .workspace-actions > :is(button,a), .workspace .workspace-actions .workspace-button { flex-basis: 120px; font-size: 13px; }
+  .workspace .publication-image-stage { padding: 8px; min-height: 160px; }
+  .workspace .asset-picker-groups { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .workspace .choice-picker-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .workspace .asset-picker-eligibility { flex-wrap: wrap; }
+  .workspace .asset-picker-eligibility button { flex: 1 1 120px; }
+}
+@media (max-width:360px) {
+  .workspace .workspace-page-title h1 { font-size: 19px; }
+  .workspace-page-emoji { font-size: 20px; }
+  .workspace .workspace-actions > :is(button,a), .workspace .workspace-actions .workspace-button { flex-basis: 105px; font-size: 12px; }
+}

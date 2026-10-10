@@ -68,8 +68,8 @@ try {
  await page.keyboard.press('Escape')
  assert.equal(await page.locator('.workspace-action-menu').getAttribute('open'),null)
  await page.setViewportSize({width:1440,height:900})
- assert.equal(await page.locator('.es-preparation').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(20, 28, 41)')
+ assert.equal(await page.locator('.es-preparation').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(255, 254, 250)')
  await page.screenshot({path:'test-artifacts/studio/etf-desktop.png',fullPage:true})
  assert.deepEqual(errors,[])
- console.log('Studio: 14 image formats, direct PNG download, secondary menu, dark panels, mobile overflow, persistent actions, keyboard tabs, preserved drafts and refreshed images OK.')
+ console.log('Studio: 14 image formats, direct PNG download, secondary menu, cream panels, mobile overflow, persistent actions, keyboard tabs, preserved drafts and refreshed images OK.')
 } finally {await browser?.close();server.kill('SIGTERM')}

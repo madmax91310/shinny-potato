@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import './design-system/studio.css'
+import './design-system/cream.css'
 import App from './App.jsx'
 import { getRestoredRoute } from './restore-route.js'
 
