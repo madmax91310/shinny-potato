@@ -203,8 +203,11 @@ async function testCalculateur(page) {
   await spDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const spTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= spTweet.includes('septembre 2026') && spTweet.includes('hors frais')
-    && (await page.locator('.ic-current-level').innerText()).includes('points');
+  septemberOk &&= spTweet.includes('septembre 2026')
+    && !spTweet.includes('Indice théorique dividendes réinvestis')
+    && (await page.locator('.ic-current-level').innerText()).includes('points')
+    && (await page.locator('.ic-method-note').innerText()).includes('S&P 500 Total Return')
+    && (await page.locator('.ic-method-note').innerText()).includes('hors frais');
   await choose(page.locator('[data-selector].ic-control').first(), 'stoxx600');
   const stoxxDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   septemberOk &&= await stoxxDca.isEnabled();
