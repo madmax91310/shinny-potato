@@ -46,7 +46,14 @@ for (const [id, record] of Object.entries(records)) {
     assert(Math.abs(d.result.finalValue-expected)<1e-6, `${id} ${mode} calculator`);
     assert(Math.abs(computeComparativeSeries(id,'2020-01',record.periodEnd,100,mode).finalValue-expected)<1e-6);
   }
-  if (HISTORY_STATISTIC_IDS.includes(id)) assert(HISTORY_FACTS.filter(f=>f.id.endsWith(`-${id}`)).every(f=>f.hook.includes(record.periodEnd)));
+  if (HISTORY_STATISTIC_IDS.includes(id)) {
+      // La période reste vérifiée dans les précisions et dans le récit, sans imposer
+      // une date technique à l'accroche éditoriale.
+      const facts=HISTORY_FACTS.filter(f=>f.id.endsWith(`-${id}`));
+      const endLabel=new Date(`${record.periodEnd}-01T00:00:00Z`).toLocaleDateString('fr-FR',{month:'long',year:'numeric',timeZone:'UTC'});
+      assert.equal(facts.length,2);
+      assert(facts.every(f=>f.fact.includes(record.periodEnd) && f.context.includes(endLabel)));
+    }
 }
 assert(Object.keys(records).length >= 44, 'Coverage must not regress');
 console.log(`${Object.keys(records).length} active automated histories: proofs, exact conventions and shared consumers validated.`);
