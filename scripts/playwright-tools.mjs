@@ -934,16 +934,24 @@ async function testDataSearch(page) {
 
 async function testHouseholds(page) {
   await page.goto(`${BASE}/france-100-menages`, { waitUntil: 'networkidle' });
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__householdCopied = text; } },
+  }));
+  const { HOUSEHOLD_STATISTICS, buildHouseholdTweet } = await import('../src/data/household-statistics.js');
   const waitImage = async (id, design) => {
     await page.waitForFunction(({id, design}) => document.querySelector(`.hh-scope a[download="france-100-menages-${id}-${design}.png"]`)?.href.startsWith('data:image/png'), {id, design});
   };
   let ok = await page.getByLabel('Design', { exact: true }).getAttribute('data-value') === 'illustrated';
-  for (const { id, referencePeriod, source } of (await import('../src/data/household-statistics.js')).HOUSEHOLD_STATISTICS) {
+  for (const record of HOUSEHOLD_STATISTICS) {
+    const { id, referencePeriod, source } = record;
     await choose(page.getByLabel('Sujet', { exact: true }), id);
     await page.waitForURL(`**sujet=${id}`);
     await waitImage(id, 'illustrated');
     ok &&= await page.getByRole('link', { name: 'Télécharger le PNG' }).evaluate(async link => { const img = new Image(); img.src = link.href; await img.decode(); return img.naturalWidth === 2400 && img.naturalHeight === 1350; });
     const text = await page.getByLabel('Texte modifiable').inputValue();
+    ok &&= text === buildHouseholdTweet(record);
+    await page.getByRole('button', { name: 'Copier le tweet', exact: true }).click();
+    ok &&= await page.evaluate(() => window.__householdCopied) === text;
     const sourceURL = (await import('../src/data/household-statistics.js')).HOUSEHOLD_SOURCES[source].url;
     ok &&= !/https?:\/\/|Source\s*:/i.test(text)
       && (await page.locator('.hh-source a[target="_blank"]').getAttribute('href')) === sourceURL
@@ -968,6 +976,8 @@ async function testHouseholds(page) {
   await waitImage('donation', 'plum');
   const editor = page.getByLabel('Texte modifiable');
   await editor.fill('Mon texte personnalisé');
+  await page.getByRole('button', { name: 'Copier le tweet', exact: true }).click();
+  ok &&= await page.evaluate(() => window.__householdCopied) === 'Mon texte personnalisé';
   await page.getByRole('button', { name: 'Réinitialiser le texte' }).click();
   ok &&= (await editor.inputValue()).includes('donation déclarée');
   ok &&= await page.getByLabel('Inclure le lien de la source').count() === 0;
@@ -1169,6 +1179,8 @@ try {
     await testLexicon(page);
   } else if (process.argv.includes('--index-stories')) {
     await testFactsheetTweets(page);
+  } else if (process.argv.includes('--households')) {
+    await testHouseholds(page);
   } else if (process.argv.includes('--broker')) {
     await testBrokerComparator(page);
   } else {
