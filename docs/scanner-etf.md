@@ -3,7 +3,7 @@
 Route : `/scanner-etf`, accessible depuis l’accueil et la navigation.
 
 Le scanner charge le manifeste à son ouverture puis uniquement les compositions
-sélectionnées. Il vérifie les SHA-256 des fichiers et recalcule leurs âges côté
+sélectionnées. Il vérifie les SHA-256 des fichiers (`fileSha256`, distinct de l’empreinte économique `sha256`) et recalcule leurs âges côté
 client. Une source échouée ou périmée est exclue sans redistribuer son poids.
 Le chargement peut être relancé ; les pondérations seules ne retéléchargent pas
 les compositions. Un contrôle de dates chaque minute bloque une donnée devenue
@@ -52,7 +52,7 @@ comme terminée. Aucun chiffre incomplet n’est présenté comme exhaustif.
 
 ## Vérification
 
-`npm run test:scanner` : invariants de calcul, frais de couverture, poids négatifs
+`npm run test:scanner` : invariants de calcul, couverture partielle, poids négatifs
 hors actions, dates invalides, sources partielles, et les 32 portefeuilles réels.
 `npm run test:scanner:browser` : parcours desktop et mobile 320/390 px,
 chargement différé, comparaison, brouillon, sauvegarde, données périmées et

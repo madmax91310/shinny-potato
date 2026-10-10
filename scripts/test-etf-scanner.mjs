@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { analyze, pairOverlap, readiness, validateSnapshot, validateAllocation, compare, buildTweet } from '../src/pages/etf-scanner/lib.js'
@@ -40,7 +41,11 @@ const negativeCash = snapshot(a, [stock('US0378331005', 99), { name: 'Cash', isi
 validateSnapshot(negativeCash, a, entry(negativeCash))
 const root = 'public/data/scanner-holdings/'
 const live = JSON.parse(readFileSync(root + 'manifest.json'))
-const real = Object.fromEntries(Object.entries(live.instruments).map(([isin, e]) => [isin, validateSnapshot(JSON.parse(readFileSync(root + e.file)), isin, e)]))
+const real = Object.fromEntries(Object.entries(live.instruments).map(([isin, e]) => {
+ const raw = readFileSync(root + e.file)
+ assert.equal(createHash('sha256').update(raw).digest('hex'), e.fileSha256, 'Published file digest must match its bytes')
+ return [isin, validateSnapshot(JSON.parse(raw), isin, e)]
+}))
 // Use the last check date: this regression remains useful when the real data age.
 const observation = new Date(Math.max(...Object.values(live.instruments).map(e => Date.parse(e.checkedAt))) + 12 * 3600000)
 for (const isin of Object.keys(real)) {

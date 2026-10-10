@@ -18,7 +18,7 @@ try {
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
   assert.equal(requests.filter(u => u.includes('scanner-holdings')).length, 0, 'Home loaded scanner data')
   await page.getByRole('link', { name: /Scanner ETF/ }).last().click()
-  await page.locator('.scanner-metrics').waitFor()
+  await page.locator('.scanner-metrics').waitFor().catch(async e => { console.log('Scanner state:', await page.locator('main').innerText(), errors); await page.screenshot({ path: `${dir}/failure.png`, fullPage: true }); throw e })
   assert.equal(requests.filter(u => /scanner-holdings\/IE.*json/.test(u)).length, 2, 'Only selected compositions should load')
   assert.equal(await page.getByRole('alert').count(), 0)
   await page.screenshot({ path: `${dir}/desktop.png`, fullPage: true })

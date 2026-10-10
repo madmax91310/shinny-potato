@@ -23,7 +23,7 @@ export function validateAllocation(lines) {
   if (Math.abs(total - 100) > 0.000001) throw new Error(`La répartition fait ${percent(total)}. Ajuste les poids pour arriver à 100 %.`)
 }
 export function validateSnapshot(snapshot, isin, entry) {
-  if (snapshot?.schemaVersion !== 1 || snapshot.isin !== isin || snapshot.complete !== true || snapshot.basis !== 'fund' || snapshot.scope !== 'all-published-positions' || snapshot.asOf !== entry.asOf || !Array.isArray(snapshot.rows) || !snapshot.rows.length || snapshot.rows.length !== entry.positionCount) throw new Error('Composition incohérente avec le manifeste.')
+  if (snapshot?.schemaVersion !== 1 || snapshot.isin !== isin || snapshot.complete !== true || snapshot.basis !== 'fund' || snapshot.scope !== 'all-published-positions' || snapshot.asOf !== entry.asOf || (entry.sha256 && snapshot.sha256 !== entry.sha256) || !Array.isArray(snapshot.rows) || !snapshot.rows.length || snapshot.rows.length !== entry.positionCount) throw new Error('Composition incohérente avec le manifeste.')
   if (snapshot.rows.some(r => typeof r.name !== 'string' || !Number.isFinite(r.weightPct) || Math.abs(r.weightPct) > 100 || (r.assetClass === 'Equity' && r.weightPct < 0) || typeof r.assetClass !== 'string')) throw new Error('Une position contient un poids ou une identité invalide.')
   const sum = snapshot.rows.reduce((s, r) => s + r.weightPct, 0)
   if (Math.abs(sum - snapshot.portfolioWeightPct) > 0.0001 || Math.abs(sum - 100) > 1) throw new Error('La somme des poids publiés est incohérente.')
@@ -56,7 +56,7 @@ export function analyze(lines, snapshots, manifest, now = new Date()) {
     if (reason || !snapshots[line.isin]) { excluded.push({ ...line, reason: reason ?? 'Échec du chargement de la composition' }); continue }
     const snapshot = validateSnapshot(snapshots[line.isin], line.isin, entry)
     analyzedWeight += line.weight
-    sources.push({ isin: line.isin, name: entry.name, asOf: entry.asOf, checkedAt: entry.checkedAt, sourceUrl: snapshot.sourceUrl, hash: entry.sha256 })
+    sources.push({ isin: line.isin, name: entry.name, asOf: entry.asOf, checkedAt: entry.checkedAt, sourceUrl: snapshot.sourceUrl, hash: entry.sha256, fileHash: entry.fileSha256 })
     for (const row of snapshot.rows) {
       const weight = line.weight / 100 * row.weightPct
       if (row.assetClass !== 'Equity') { nonEquityWeight += weight; continue }
