@@ -1,4 +1,4 @@
-import { INDEX_HOOKS, indexObservation, sortedRows, sumRows, plainLabel, companyLabel } from './editorial.js'
+import { indexHook, indexObservation, sortedRows, sumRows, plainLabel, companyLabel } from './editorial.js'
 
 const number = (value, digits = 2) => value.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits })
 const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digits)} %`
@@ -18,13 +18,13 @@ const questions = {
   'em-standard': 'Tu imaginais Taïwan et la Corée aussi présents dans les émergents ?',
   topix: 'Pour le Japon, tu choisirais le TOPIX ou le Nikkei 225 ?',
   nikkei225: 'Tu connaissais le poids des trois premières valeurs du Nikkei 225 ?',
-  acwi: 'Tu connaissais la place des États-Unis dans le MSCI ACWI ?',
+  acwi: 'Tu imaginais les États-Unis aussi présents dans un indice qui inclut les émergents ?',
   'ftse-all-world': 'Tu pensais que les États-Unis pesaient autant dans le FTSE All-World ?',
   'world-small-cap': 'Tu ajouterais ces petites capitalisations à un ETF World classique ?',
   'world-ex-usa': 'Tu envisagerais un indice World sans les États-Unis ?',
   world: 'Cette répartition te convient comme base de portefeuille ou tu préfères donner davantage de place aux autres marchés ?',
   stoxx600: 'Tu connaissais cette répartition du STOXX Europe 600 ?',
-  eurostoxx50: 'Tu pensais que l’EURO STOXX 50 était aussi concentré ?',
+  eurostoxx50: 'Tu connaissais le poids des premières entreprises de l’EURO STOXX 50 ?',
   mscieurope: 'Tu imaginais que la finance prenait autant de place dans le MSCI Europe ?',
   'em-esg': 'Tu connaissais la concentration de cet indice émergent ESG ?',
   'sp500-pea': 'Tu connaissais le poids de la technologie dans le S&P 500 ?',
@@ -34,42 +34,62 @@ const questions = {
 export function buildFactsheetTweet(sheet) {
   const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
   const countText = Number.isFinite(count) ? `${count.toLocaleString('fr-FR')} ${sheet.constituents === null ? 'sociétés visées' : 'titres'}` : 'les titres de son univers'
-  const lines = [INDEX_HOOKS[sheet.id] ?? sheet.intro, '',
-    sheet.id === 'world'
-      ? `Avec le MSCI World, tu investis dans ${countText} de ${sheet.markets}. Mais pour comprendre ton exposition, je trouve les poids beaucoup plus parlants que le nombre de titres.`
-      : `L’indice ${sheet.index} regroupe ${countText}. Son univers : ${sheet.markets}.`,
-  ]
+  const scopes = {
+    world: 'Il couvre les grandes et moyennes entreprises des pays développés.',
+    acwi: 'Il couvre 23 pays développés et 24 marchés émergents.',
+    'ftse-all-world': 'Il couvre les grandes et moyennes entreprises des pays développés et émergents.',
+    'acwi-imi': 'Il couvre les grandes, moyennes et petites entreprises des pays développés et émergents.',
+    'world-small-cap': 'Il couvre les petites entreprises des pays développés.',
+    'world-ex-usa': 'Il couvre les grandes et moyennes entreprises des pays développés, hors États-Unis.',
+    'em-standard': 'Il couvre les grandes et moyennes entreprises des marchés émergents.',
+    'em-esg': 'Il couvre les marchés émergents hors Égypte, avec des filtres ESG et climatiques.',
+    'msci-em-ex-china': 'Il couvre les grandes et moyennes entreprises des marchés émergents, hors Chine.',
+    stoxx600: 'Il couvre les grandes, moyennes et petites entreprises de plusieurs pays européens.',
+    mscieurope: 'Il couvre les grandes et moyennes entreprises des pays développés européens.',
+    topix: 'Il couvre un large ensemble d’entreprises japonaises.',
+    nikkei225: 'Il couvre une sélection d’entreprises cotées à Tokyo.',
+    'sp500-pea': 'Il couvre de grandes entreprises américaines.',
+    'nasdaq-pea': 'Il couvre de grandes entreprises non financières cotées au Nasdaq.',
+    'sp500-equal-weight': 'Il reprend les entreprises du S&P 500, avec un poids égal à chaque rééquilibrage.',
+    'russell-2000': 'Il couvre les petites entreprises américaines.',
+    'msci-world-momentum': 'Il sélectionne des entreprises du World selon les tendances récentes de leurs cours.',
+    'msci-world-minimum-volatility-usd': 'Il sélectionne des entreprises du World pour chercher à réduire les variations de l’ensemble.',
+    'msci-world-sector-neutral-quality': 'Il sélectionne des entreprises du World selon leur rentabilité, leur dette et la stabilité de leurs bénéfices.',
+    'msci-world-enhanced-value': 'Il sélectionne des entreprises du World selon leur prix rapporté à leurs données financières.',
+    'ftse-epra-nareit-developed-dividend-plus': 'Il sélectionne des sociétés immobilières des pays développés hors Grèce, avec un critère de dividendes.',
+    'ftse-global-core-infrastructure': 'Il sélectionne des entreprises d’infrastructures des pays développés et émergents.',
+  }
+  const universe = sheet.id === 'eurostoxx50'
+    ? 'Cet indice regroupe 50 grandes entreprises de la zone euro. Le Royaume-Uni et la Suisse n’en font donc pas partie.'
+    : `Le ${sheet.index} regroupe ${countText}. ${scopes[sheet.id] ?? ''} Voici sa répartition 👇`
+  const lines = [indexHook(sheet), '', universe]
+
 
   const countries = sortedRows(sheet.countries)
   const named = countries.filter(([name]) => !/autres|others/i.test(name))
   const shownCountries = named.slice(0, 5)
   const rest = sumRows(countries) - sumRows(shownCountries)
-  const lead = shownCountries[0]
-  if (lead) {
-    lines.push('', countrySentence(lead))
-    if (sheet.id === 'world' && /États-Unis|United States/i.test(lead[0])) {
-      lines.push('', `Sur 100 € investis dans un ETF qui suit cet indice, environ ${Math.round(lead[1])} € correspondent donc aux entreprises américaines.`)
-    }
-    if (shownCountries.length > 1) {
-      lines.push('', 'Derrière, on retrouve :')
-      for (const [name, value] of shownCountries.slice(1)) lines.push(`${countryLabel(name)} : ${weight(value)}`)
-      if (rest > 0.005) lines.push(`🌍 Autres pays publiés : ${weight(rest)}`)
+  if (shownCountries.length) {
+    lines.push('', '🌍 Les principaux pays')
+    for (const [name, value] of shownCountries) lines.push(`${countryLabel(name)} : ${weight(value)}`)
+    if (rest > 0.005) lines.push(`🌍 Autres pays : ${weight(rest)}`)
+    if (sheet.id === 'eurostoxx50') {
+      const franceGermany = named.filter(([name]) => /France|Allemagne|Germany/i.test(name))
+      if (franceGermany.length === 2) lines.push('', `La France et l’Allemagne représentent ensemble ${weight(sumRows(franceGermany))} de l’indice.`)
     }
   }
 
   const sectors = sortedRows(sheet.sectors).slice(0, 3)
   if (sectors.length) {
-    const [first, ...following] = sectors
-    const behind = following.map(([name, value]) => `${sectorLabel(name)} à ${weight(value)}`)
-    const subject = sectorLabel(first[0])
-    lines.push('', `🧩 ${subject.charAt(0).toUpperCase() + subject.slice(1)} arrive en tête avec ${weight(first[1])}${behind.length ? `, devant ${joinList(behind)}` : ''}.`)
+    lines.push('', '🧩 Les principaux secteurs')
+    for (const [name, value] of sectors) lines.push(`${plainLabel(name)} : ${weight(value)}`)
     if (sheet.indexFacts?.sectorMethod) lines.push(`La classification utilisée est celle de la fiche : ${sheet.indexFacts.sectorMethod}.`)
   }
   for (const [title, text] of sheet.methodologyPanels ?? []) lines.push('', `🔎 ${title.charAt(0) + title.slice(1).toLowerCase()}`, text)
 
   const holdings = sortedRows(sheet.holdings).slice(0, 4)
   if (holdings.length) {
-    lines.push('', 'On retrouve cette répartition dans les premières lignes :')
+    lines.push('', 'Voici les entreprises qui pèsent le plus :')
     for (const [i, [name, value]] of holdings.entries()) lines.push(`${['🥇', '🥈', '🥉', '📍'][i]} ${companyLabel(name)} : ${weight(value)}`)
     // Catégories d’actions : on parle de lignes pour ne pas compter deux fois une entreprise.
     const names = holdings.map(([name]) => companyLabel(name).replace(/ \(classe [AC]\)$/, ''))
@@ -94,38 +114,23 @@ export function buildFactsheetTweet(sheet) {
     const priceReturn = /hors dividendes|Price Return/i.test(sheet.performance.detail)
     const dollars = /USD|dollars/i.test(sheet.performance.detail)
     lines.push('', priceReturn
-      ? 'Ces chiffres suivent un indice de prix : ils ne comptent pas les dividendes. Ils ne représentent donc pas tout ce qu’un placement avec revenus réinvestis aurait rapporté.'
+      ? 'Les dividendes ne sont pas comptés dans ces chiffres : leur réinvestissement aurait donné un résultat différent.'
       : dollars
-        ? 'Un ETF acheté en euros peut afficher un résultat différent, notamment avec le change et ses frais.'
-        : 'Ce sont les résultats de l’indice. Les frais et les conditions de suivi d’un ETF peuvent donner un résultat différent.')
+        ? 'Pour un ETF en euros, le change et les frais peuvent modifier ces résultats.'
+        : 'Les frais et le suivi de l’indice peuvent modifier le résultat d’un ETF.')
   }
   const question = ['em-standard', 'em-esg', 'msci-em-ex-china'].includes(sheet.id)
     ? 'Cette répartition correspond à ce que tu recherches dans les marchés émergents ?'
     : questions[sheet.id] ?? 'Quel détail de cette composition retient ton attention ?'
-  lines.push('', `💬 ${question}`)
+  const firstHolding = sortedRows(sheet.holdings)[0]
+  const closing = sheet.id === 'eurostoxx50' && firstHolding?.[1] >= 10
+    ? `Tu savais que ${companyLabel(firstHolding[0])} prenait autant de place dans l’EURO STOXX 50 ?` : question
+  lines.push('', `💬 ${closing}`)
   return lines.join('\n')
 }
 
-const joinList = values => values.length < 2 ? values[0] ?? '' : `${values.slice(0, -1).join(', ')} et ${values.at(-1)}`
 function countryLabel(name) {
   if (/^[^\p{L}\p{N}]/u.test(name)) return name
   const flags = { 'États-Unis': '🇺🇸', Japon: '🇯🇵', 'Royaume-Uni': '🇬🇧', France: '🇫🇷', Suisse: '🇨🇭', Allemagne: '🇩🇪', 'Pays-Bas': '🇳🇱', Espagne: '🇪🇸', Italie: '🇮🇹', Canada: '🇨🇦' }
   return flags[name] ? `${flags[name]} ${name}` : name
-}
-
-function countrySentence([name, value]) {
-  const label = plainLabel(name)
-  const plural = /États-Unis|United States|Pays-Bas|Netherlands/i.test(label)
-  const articles = { Japon: 'Le', Japan: 'Le', 'Royaume-Uni': 'Le', Canada: 'Le', France: 'La', Suisse: 'La', Allemagne: 'L’', Chine: 'La', Inde: 'L’', 'Corée du Sud': 'La', Brésil: 'Le', Australie: 'L’' }
-  const prefix = plural ? 'Les ' : articles[label] ? `${articles[label]}${articles[label] === 'L’' ? '' : ' '}` : ''
-  return `🌍 ${prefix}${label} ${plural ? 'représentent' : 'représente'} ${weight(value)} de l’indice.`
-}
-
-function sectorLabel(name) {
-  const label = plainLabel(name)
-  if (/technolog/i.test(label)) return 'la technologie'
-  if (/^financ/i.test(label)) return 'la finance'
-  if (/^industr/i.test(label)) return 'l’industrie'
-  if (/santé|^health/i.test(label)) return 'la santé'
-  return `le secteur « ${label} »`
 }
