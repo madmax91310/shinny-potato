@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict'
 import { HOUSEHOLD_STATISTICS as records, HOUSEHOLD_SOURCES as sources, buildHouseholdTweet, getHouseholdVisual } from '../src/data/household-statistics.js'
 import { DATA_CATALOG, searchData } from '../src/data/catalog.js'
+import { HOUSEHOLD_EDITORIAL } from '../src/data/household-editorial.js'
 assert.equal(records.length, 29)
 assert.equal(new Set(records.map(r => r.id)).size, records.length)
+assert.deepEqual(Object.keys(HOUSEHOLD_EDITORIAL).sort(), records.map(r => r.id).sort())
 for (const record of records) {
   assert(record.table && record.note && record.question)
   assert.equal(new URL(sources[record.source].url).hostname, 'www.insee.fr')
@@ -16,6 +18,14 @@ for (const record of records) {
   assert(!/\{\w+\}/.test(tweet), 'Variable non remplacée')
   assert(!/https?:\/\/|Source\s*:/i.test(tweet), 'La source reste dans l’application, pas dans le tweet')
   assert(tweet.endsWith(record.question), 'Question finale conservée')
+  assert.match(tweet, /\bje\b|\bj’ai\b|\bmoi\b/i, `${record.id} : regard personnel`)
+  assert(tweet.includes(record.referencePeriod), `${record.id} : période conservée`)
+  assert(tweet.includes(record.value.toLocaleString('fr-FR')), `${record.id} : valeur exacte conservée`)
+  if (record.population === 'personnes') {
+    assert.match(tweet, /personnes, pas de ménages/)
+    assert.match(tweet, /France métropolitaine/)
+    assert.equal(tweet.includes('données provisoires') || tweet.includes('Données provisoires'), record.provisional)
+  }
   assert(record.metadata.sourceUrls.includes(sources[record.source].url))
   assert(record.metadata.note.includes(record.referencePeriod))
   assert(!buildHouseholdTweet(record, { includeUrl: false }).includes('https://'))
@@ -25,6 +35,22 @@ for (const record of records) {
   assert(searchData(record.title, 'household').some(r => r === entry))
 }
 const byId = Object.fromEntries(records.map(r => [r.id, r]))
+// Une mise à jour Insee doit se refléter dans le texte sans figer les exemples approuvés.
+const updatedPea = buildHouseholdTweet({ ...byId.pea, value: 12.3, referencePeriod: 'Début 2027' })
+assert.match(updatedPea, /environ 12 détiennent/)
+assert.match(updatedPea, /12,3 %/)
+assert.match(updatedPea, /Début 2027/)
+assert(!updatedPea.includes('9,8') && !updatedPea.includes('2024'))
+const updatedExpense = buildHouseholdTweet({ ...byId['unexpected-expense'], value: 24.6, referencePeriod: 'Début 2027', provisional: false })
+assert.match(updatedExpense, /25 personnes/)
+assert.match(updatedExpense, /24,6 %/)
+assert.match(updatedExpense, /Début 2027/)
+assert(!updatedExpense.includes('provisoires') && !updatedExpense.includes('28,1'))
+for (const id of ['wealth-share', 'livret-assurance', 'securities-workers', 'debt-types']) {
+  const changed = buildHouseholdTweet({ ...byId[id], value: 33.3, secondValue: 22.2 })
+  assert.match(changed, /33,3/)
+  assert(changed.includes(id === 'wealth-share' ? '66,7' : '22,2'))
+}
 // Éviter de confondre part du patrimoine (7) avec part des ménages (50).
 assert.equal(getHouseholdVisual(byId['wealth-share'])[0].count, 50)
 assert.equal(getHouseholdVisual(byId['wealth-share'])[0].exact, `${byId['wealth-share'].value.toLocaleString('fr-FR')} % du patrimoine brut`)
