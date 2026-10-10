@@ -203,7 +203,7 @@ async function testCalculateur(page) {
   await spDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const spTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= spTweet.includes('septembre 2026') && spTweet.includes('hors frais')
+  septemberOk &&= spTweet.includes('septembre 2026') && !spTweet.includes('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
     && (await page.locator('.ic-current-level').innerText()).includes('points');
   await choose(page.locator('[data-selector].ic-control').first(), 'stoxx600');
   const stoxxDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
