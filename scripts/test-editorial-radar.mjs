@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
-import { advanceRadar, observationKey, meaningful, displayValue } from './lib/editorial-radar.mjs'
+import { advanceRadar, shouldRefreshRadar, observationKey, meaningful, displayValue } from './lib/editorial-radar.mjs'
 import { collectObservations } from './update-editorial-radar.mjs'
 import { validateFeed, staleFeed } from '../src/pages/editorial-radar/client.js'
-import { parseVanguardNews, collectRadarNews } from './lib/radar-news.mjs'
+import { parseVanguardNews, parseGlobalXNews, GLOBALX_NEWS_URL, collectRadarNews } from './lib/radar-news.mjs'
 
 const now = new Date('2026-10-08T15:00:00Z')
 const rate = overrides => ({ family: 'etf', entity: 'FR001400U5Q4', label: 'Amundi PEA Monde', field: 'ter', fieldLabel: 'Frais annuels', value: .2, sourceUrl: 'https://www.amundietf.fr/product', scope: 'Part exacte FR001400U5Q4', checkedAt: '2026-10-08', period: '2026-10-07', tool: '/fiches-etf', priority: 'high', discovery: true, ...overrides })
@@ -76,5 +76,49 @@ assert.equal(advance(initial.state, news).newEvents.length, 1)
 assert.equal(advance(initial.state, parseVanguardNews(newsroom('Vanguard launches a new ETF').replace('7 October 2026', '7 October 2025'), now)).newEvents.length, 0, 'Une archive ajoutée ne déclenche pas une alerte')
 assert.throws(() => parseVanguardNews('<html>Consent</html>', now))
 assert.throws(() => parseVanguardNews(newsroom('Vanguard launches a new ETF').replace('/content/dam/', 'https://evil.invalid/content/dam/'), now))
-assert.equal((await collectRadarNews(now, async () => { throw new Error('HTTP 403') })).errors.length, 1)
+assert.equal((await collectRadarNews(now, async () => { throw new Error('HTTP 403') })).errors.length, 2)
 console.log(`Radar : seuils cumulés, périmètres, dates, bootstrap, publications, déduplication, conservation et ${real.feed.observationCount} observations vérifiés.`)
+
+{
+  const row = rate({period:'2026-10-08'})
+  const start = advance(null,[row])
+  const correction = advance(start.state,[{...row,value:.15}])
+  const reverted = advance(correction.state,[row])
+  assert.equal(reverted.newEvents.length,0)
+  assert.equal(reverted.state.current[observationKey(row)].value,.15)
+  assert.match(reverted.feed.errors[0].reason,/contradictoire/)
+  assert.equal(advance(correction.state,[{...row,period:'2026-10-09'}],{now:new Date('2026-10-09T15:00:00Z')}).newEvents.length,1,'Un retour sur une nouvelle période est légitime')
+  const stale = advance(correction.state,[{...row,checkedAt:'2026-10-07'}])
+  assert.equal(stale.newEvents.length,0)
+  assert.equal(stale.state.current[observationKey(row)].value,.15)
+}
+{
+  const state = {...initial.state,sourceRevision:'abc'}
+  const opts={eventName:'workflow_run',sourceRevision:'abc',now:new Date(now.getTime()+60000)}
+  assert.equal(shouldRefreshRadar(state,opts),false)
+  for(const eventName of ['schedule','workflow_dispatch','pull_request']) assert.equal(shouldRefreshRadar(state,{...opts,eventName}),true)
+  assert.equal(shouldRefreshRadar(state,{...opts,sourceRevision:'def'}),true)
+  assert.equal(shouldRefreshRadar({...state,lastErrorCount:1},opts),true)
+  assert.equal(shouldRefreshRadar({...state,lastErrorCount:undefined},opts),true)
+  assert.equal(shouldRefreshRadar(state,{...opts,now:new Date(now.getTime()+15*60000)}),true)
+  assert.equal(shouldRefreshRadar(null,opts),true)
+}
+
+{
+  const listing = `<h1>News</h1><div>Recent News</div><a href="https://issuer.test/document.pdf"><li><p>07 Oct 2026</p><h3>Global X launches a UCITS ETF</h3></li></a>`
+  const rows = parseGlobalXNews(listing,now)
+  assert.equal(rows[0].period,'2026-10-07')
+  assert.equal(rows[0].sourceUrl,GLOBALX_NEWS_URL)
+  const detected=advance(initial.state,rows)
+  assert.equal(detected.newEvents.length,1)
+  assert.equal(advance(detected.state,rows).newEvents.length,0)
+  assert.equal(advance(initial.state,parseGlobalXNews(listing.replace('2026','2025'),now)).newEvents.length,0)
+  assert.throws(()=>parseGlobalXNews(listing.replace('07 Oct','32 Oct'),now),/invalide/)
+  assert.throws(()=>parseGlobalXNews('<html>Consent</html>',now),/format/)
+  const partial=await collectRadarNews(now,async url=>{
+    if(url===GLOBALX_NEWS_URL)throw new Error('HTTP 500')
+    return {ok:true,headers:new Headers({'content-type':'text/html'}),text:async()=>newsroom('Vanguard launches a new ETF')}
+  })
+  assert.equal(partial.errors.length,1)
+  assert.equal(partial.observations.length,1,'Une newsroom en panne ne masque pas l’autre')
+}

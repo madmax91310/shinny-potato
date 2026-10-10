@@ -2,9 +2,13 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { DATA_CATALOG } from '../src/data/catalog.js';
 const read = path => JSON.parse(readFileSync(new URL('../'+path, import.meta.url)));
-export const recent = new Set(['FR001400ZGO4','FR0014017NX3','FR001400U5Q4','IE0000N55FP4','IE0002Y8CX98','IE0007Y8Y157','IE000C6ITGC8','IE000DQLYVB9','IE000L6ZMMC4','IE000W8WMSL2','LU2970735911','LU3038520774']);
 const nonEquity = new Set(['LU0290358497','CH0454664001','DE000A27Z304','FR0013416716','GB00B15KXQ89','GB00BJYDH287','GB00BLD4ZL17','GB00BLD4ZM24','IE00B4NCWG09','IE00B4ND3602','IE00B579F325','IE00BD6FTQ80','IE00BDFL4P12','JE00B1VS3770']);
 const calendarEvidence = read('scripts/recent-calendar-evidence.json');
+export const recent = new Set(Object.keys(calendarEvidence.shares));
+export function completeCalendarYears(id, years, now) {
+  const {firstCompleteYear = 0} = calendarEligibility(id, now);
+  return Object.entries(years??{}).filter(([year,value])=>/^20\d{2}$/.test(year) && Number.isFinite(value) && Number(year)>=firstCompleteYear && Number(year)<Number(now.slice(0,4))).map(([year])=>Number(year)).sort((a,b)=>a-b);
+}
 export function calendarEligibility(id, now) {
   const evidence = calendarEvidence.shares[id];
   if (!evidence) return {};
@@ -30,7 +34,7 @@ export function buildGapInventory({etf=read('src/data/automated-etf.json'),indic
   for(const row of rows) {
     const data=etf[row.id]??{};const source=configured.get(row.id);
     for(const field of Object.keys(names)) {
-      const present=field==='ter'?Number.isFinite(data.characteristics?.terPct):field==='aum'?Number.isFinite(data.aum?.amount):field==='performance'?Object.keys(data.performance?.years??{}).length>0:(data[field]?.rows?.length??0)>0;
+      const present=field==='ter'?Number.isFinite(data.characteristics?.terPct):field==='aum'?Number.isFinite(data.aum?.amount):field==='performance'?completeCalendarYears(row.id,data.performance?.years,now).length>0:(data[field]?.rows?.length??0)>0;
       if(present){counts[field]++;continue;}
       gaps.push({type:'instrument',id:row.id,name:row.name,field,label:names[field],configured:!!source,...classifyInstrumentGap(row.id,field,now),sourceUrl:source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null});
     }
@@ -48,7 +52,7 @@ export function buildGapInventory({etf=read('src/data/automated-etf.json'),indic
   const summary={};for(const gap of gaps)summary[`${gap.type}:${gap.status}`]=(summary[`${gap.type}:${gap.status}`]??0)+1;
   const recentCalendars=[...recent].map(id=>{
     const data=etf[id]??{};const source=configured.get(id);
-    const years=Object.keys(data.performance?.years??{}).map(Number).filter(y=>Number.isInteger(y)&&y<Number(now.slice(0,4))).sort((a,b)=>a-b);
+    const years=completeCalendarYears(id,data.performance?.years,now);
     const eligibility=calendarEligibility(id,now);
     return {id,name:rows.find(r=>r.id===id)?.name??id,configured:!!source,...eligibility,status:years.length?'integrated':eligibility.status,firstYear:years[0]??null,years,sourceUrl:data.performance?.sourceUrl??source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null};
   });

@@ -50,6 +50,13 @@ function makeEvent(before, after, detectedAt, kind = 'change') {
 
 // The reference advances only after an emitted signal, so small daily changes
 // accumulate. Missing/invalid values never delete the last good observation.
+export function shouldRefreshRadar(previous, { eventName, sourceRevision, now = new Date() } = {}) {
+  // A daily/manual run always visits external newsrooms. A failed extraction
+  // must also be retried, even when local source data has not changed.
+  if (!previous || previous.schemaVersion !== 1 || !previous.current || !previous.anchors || !Array.isArray(previous.events) || !['push', 'workflow_run'].includes(eventName) || !sourceRevision || previous.sourceRevision !== sourceRevision || previous.lastErrorCount !== 0) return true
+  const elapsed = now.getTime() - Date.parse(previous.lastCheckedAt)
+  return !Number.isFinite(elapsed) || elapsed < 0 || elapsed >= 15 * 60000
+}
 export function advanceRadar(previous, observations, { now = new Date(), sourceRevision = '', errors = [] } = {}) {
   if (previous && (previous.schemaVersion !== 1 || !previous.current || !previous.anchors || !Array.isArray(previous.events))) throw new Error('Historique radar invalide : conservation du fichier précédent.')
   const stamp = now.toISOString(), state = previous ? structuredClone(previous) : { schemaVersion: 1, initializedAt: stamp, current: {}, anchors: {}, events: [] }
@@ -67,8 +74,16 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     keys.add(key)
     const before = state.anchors[key]
     const latest = state.current[key]
-    if (latest && after.period < latest.period) {
+    if (latest && (after.period < latest.period || after.period === latest.period && Date.parse(after.checkedAt) < Date.parse(latest.checkedAt))) {
       issues.push({ family: after.family, entity: after.entity, reason: `Observation plus ancienne ignorée : ${after.fieldLabel}.` })
+      continue
+    }
+    // A return to an already superseded value for the same publication period
+    // is conflicting evidence. Keep the last accepted observation for review.
+    const roundTrip = latest && !same(latest.value, after.value) && state.events.some(event =>
+      observationKey(event) === key && event.beforePeriod === after.period && event.period === after.period && same(event.before, after.value))
+    if (roundTrip) {
+      issues.push({ family: after.family, entity: after.entity, reason: `Valeur contradictoire pour la même période : ${after.fieldLabel}. Dernière observation conservée.` })
       continue
     }
     state.current[key] = after
@@ -92,6 +107,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   state.events = [...newEvents, ...state.events].sort((a, b) => b.detectedAt.localeCompare(a.detectedAt) || a.id.localeCompare(b.id))
   state.lastCheckedAt = stamp
   state.sourceRevision = sourceRevision
+  state.lastErrorCount = issues.length
   const counts = Object.fromEntries(Object.keys(FAMILIES).map(family => [family, new Set(valid.filter(o => o.family === family).map(o => o.entity)).size]))
   // All history stays in the state branch. The public feed is bounded.
   const feed = { schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: newEvents.length, errors: issues, events: state.events.slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }

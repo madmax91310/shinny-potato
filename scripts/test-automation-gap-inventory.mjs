@@ -56,3 +56,11 @@ assert.deepEqual(buildGapInventory({insurance:completeInsurance}).insuranceGaps,
 
 assert.equal(calendarEligibility('FR001400ZGO4','2026-10-10').firstCompleteYear,2026);
 assert.equal(classifyInstrumentGap('FR001400ZGO4','performance','2026-10-10').status,'waiting-first-year');
+
+for (const id of recent) {
+  const eligibility=calendarEligibility(id,'2028-02-01');
+  const incomplete=buildGapInventory({etf:{[id]:{performance:{years:{[eligibility.firstCompleteYear-1]:12,2028:7,2027:null}}}},now:'2028-02-01'});
+  assert.equal(incomplete.recentCalendars.find(s=>s.id===id).status,'waiting-publication');
+  assert(incomplete.gaps.some(g=>g.id===id&&g.field==='performance'));
+}
+assert.deepEqual([...recent].sort(),Object.keys(JSON.parse(readFileSync('scripts/recent-calendar-evidence.json')).shares).sort());
