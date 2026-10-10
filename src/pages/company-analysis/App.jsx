@@ -40,7 +40,7 @@ export default function App() {
       <Button onClick={copy} disabled={!ready}>Copier le texte</Button>
       <Button variant="secondary" onClick={() => setEditing(value => !value)} disabled={!ready}>{editing ? 'Voir le texte' : 'Modifier le texte'}</Button>
       <Button variant="secondary" onClick={download} disabled={!ready}>Télécharger le PNG</Button>
-      <span role="status">{message}</span>
+      <span>{message}</span>
     </>}>
       <section className="tool-settings">
         <ChoicePicker aria-label="Choisir une entreprise" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>

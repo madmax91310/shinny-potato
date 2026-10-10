@@ -73,7 +73,7 @@ export default function App() {
         const rows=['patrimoine;annee;capital;capital_reel;versements_cumules;retraits;gains;especes;capital_apres_taxe_hypothetique',...keys.flatMap(k=>computation.results[k].points.map(p=>[k,p.year,p.capital,p.real,p.paid,p.withdrawn,p.gains,p.cash,p.afterTax].map(v=>typeof v==='number'?v.toFixed(2).replace('.',','):v).join(';')))]
         saveFile(rows.join('\n'),'projection-patrimoine.csv','text/csv;charset=utf-8')
       }}>Exporter les projections CSV</Button>
-      <span role="status">{message}</span>
+      <span>{message}</span>
     </>}>
       <section className="tool-settings wealth-settings">
         <div className="wealth-panel"><h2>Horizon et hypothèses communes</h2>

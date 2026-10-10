@@ -156,7 +156,7 @@ export default function App() {
         <Button type="button" onClick={copyTweet}>📋 Copier le texte</Button>
         <Button type="button" variant="secondary" onClick={downloadImage} disabled={imageStatus === 'loading'}>{imageStatus === 'loading' ? 'Préparation de l’image…' : '🖼️ Télécharger l’image PNG'}</Button>
         {imageError && <span role="alert">{imageError}</span>}
-        {copyStatus && <span role="status">{copyStatus}</span>}
+        {copyStatus && <span>{copyStatus}</span>}
       </WorkspaceActions>
       <label className="pd-text-label" htmlFor="pd-tweet">Texte prêt à publier</label>
       <textarea id="pd-tweet" readOnly value={tweet} rows={18} onFocus={(event) => event.target.select()} />

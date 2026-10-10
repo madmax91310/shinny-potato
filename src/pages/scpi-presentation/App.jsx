@@ -35,7 +35,7 @@ export default function App({ embedded = false }) {
       <Button onClick={copy}>Copier le texte</Button>
       <Button onClick={exportImage} disabled={exporting}>{exporting ? 'Préparation…' : 'Télécharger l’image'}</Button>
       <Button variant="secondary" onClick={() => { setDraft(null); setMessage('Texte d’origine rétabli.'); notifyPublication('Texte d’origine rétabli.') }}>Rétablir le texte</Button>
-      <span role="status">{message}</span>
+      <span>{message}</span>
     </>}>
       <section className="tool-settings">
         <ChoicePicker aria-label="Choisir une SCPI" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
