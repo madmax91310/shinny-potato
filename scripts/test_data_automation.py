@@ -128,6 +128,27 @@ class AutomationTests(unittest.TestCase):
             get_json(BASE, opener, lambda delay: None)
         self.assertEqual(len(attempts), 3)
 
+    def test_upstream_503_page_with_200_json_retries_then_recovers(self):
+        calls, waits = [], []
+        def opener(request, timeout):
+            calls.append(request.full_url)
+            return JsonResponse(b'<html><head><title>503 Service Temporarily Unavailable</title></head></html>' if len(calls) < 3 else b'{"ok": true}')
+        self.assertEqual(get_json(BASE, opener, waits.append), {'ok': True})
+        self.assertEqual(waits, [1, 2])
+        self.assertEqual(len(calls), 3)
+
+    def test_upstream_error_exhausts_retries_but_bad_json_is_not_retried(self):
+        for body, attempts in [(b'<html><title>502 Bad Gateway</title></html>', 3),
+                               (b'<html>sign in</html>', 1), (b'{broken', 1),
+                               (b'{"price": NaN}', 1)]:
+            calls = []
+            def opener(request, timeout):
+                calls.append(1)
+                return JsonResponse(body)
+            with self.assertRaises((ValueError, urllib.error.HTTPError)):
+                get_json(BASE, opener, lambda _: None)
+            self.assertEqual(len(calls), attempts)
+
     def test_invalid_json_never_truncates_existing_report(self):
         with tempfile.TemporaryDirectory() as directory:
             destination = pathlib.Path(directory) / 'report.json'

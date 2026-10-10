@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-10-10T17:56:37.588529+00:00",
+  "series": {
+    "msciAcwiImi": {
+      "id": "msciAcwiImi",
+      "label": "Indice MSCI ACWI IMI",
+      "currency": "USD",
+      "periodStart": "2015-01",
+      "method": "MSCI ACWI IMI 664204 NETR USD, dernière séance de chaque mois",
+      "parser": "msci",
+      "indexCode": "664204",
+      "variant": "NETR",
+      "precision": 6,
+      "sourceUrls": [
+        "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=NETR&start_date=20141231&end_date=20260930&data_frequency=DAILY&index_codes=664204",
+        "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=NETR&start_date=20141231&end_date=20260930&data_frequency=END_OF_MONTH&index_codes=664204"
+      ],
+      "checkedAt": "2026-10-10",
+      "periodEnd": "2026-09",
+      "responseSha256": "d9aac69f84f9e5a8eceac656d15bdc1e4d6dac34ce2c7e464ac69619dca6e354",
+      "count": 141,
+      "matchesActivePoints": true
+    },
+    "msciWorldExUsa": {
+      "id": "msciWorldExUsa",
+      "label": "Indice MSCI World ex USA",
+      "currency": "USD",
+      "periodStart": "2015-01",
+      "method": "MSCI World ex USA 991000 NETR USD, dernière séance de chaque mois",
+      "parser": "msci",
+      "indexCode": "991000",
+      "variant": "NETR",
+      "precision": 6,
+      "sourceUrls": [
+        "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=NETR&start_date=20141231&end_date=20260930&data_frequency=DAILY&index_codes=991000",
+        "https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?currency_symbol=USD&index_variant=NETR&start_date=20141231&end_date=20260930&data_frequency=END_OF_MONTH&index_codes=991000"
+      ],
+      "checkedAt": "2026-10-10",
+      "periodEnd": "2026-09",
+      "responseSha256": "5a86ceab0d74448963c3f8580af9673cf59cac63d5e0a1d0446cc25b454a8cd3",
+      "count": 141,
+      "matchesActivePoints": true
+    }
+  },
+  "insurance": {
+    "observations": [
+      {
+        "id": "linxea-zen",
+        "name": "Linxea Zen",
+        "status": "success"
+      },
+      {
+        "id": "linxea-vie",
+        "name": "Linxea Vie",
+        "status": "success"
+      },
+      {
+        "id": "linxea-spirit-2",
+        "name": "Linxea Spirit 2",
+        "status": "success"
+      },
+      {
+        "id": "linxea-avenir-2",
+        "name": "Linxea Avenir 2",
+        "status": "success"
+      },
+      {
+        "id": "lucya-cardif",
+        "name": "Lucya Cardif",
+        "status": "success"
+      },
+      {
+        "id": "placement-direct-vie",
+        "name": "Placement-direct Vie",
+        "status": "success"
+      }
+    ]
+  },
+  "qyld": {
+    "isin": "IE00BM8R0J59",
+    "status": "unqualified",
+    "factsheetAttempts": [
+      {
+        "url": "https://globalxetfs.eu/content/files/QYLD_UCITS-factsheet.pdf",
+        "httpStatus": 404
+      },
+      {
+        "url": "https://expressapi.fundassist.com/v1/api//Files/2152e942-df8d-ed11-a85a-005056a103bb/1",
+        "httpStatus": 500
+      },
+      {
+        "url": "https://expressapi.fundassist.com/v1/api/Files/2152e942-df8d-ed11-a85a-005056a103bb/1",
+        "httpStatus": 500
+      }
+    ],
+    "pageSha256": "4b537067b032993bcfc5b5b6c8312314d4817819fa7da8ec2f17058c1e37d6e5",
+    "performanceShare": "USD Accumulating IE00BM8R0H36",
+    "discreteCalendar": "empty",
+    "holdings": "contradictory duplicate reference-index rows; substitution basket excluded",
+    "productProfile": "does not publish a completed distributing-share calendar",
+    "launchPresentationDate": "2022-11-22"
+  }
+}
