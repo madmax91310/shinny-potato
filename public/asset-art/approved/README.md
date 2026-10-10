@@ -13,3 +13,7 @@ These WebP files are generated decorative artwork edited from the approved origi
 Names, declaring entities, snapshots, weights, capitals and performances are drawn from the existing data by Canvas. Investor photographs and their source credits are retained independently in `../investors/sources.json`. Anniversary Apple retains its verified source SVG mapping; other logos use the existing verified silhouettes and the same titanium renderer. Other index exposures retain the individually reviewed ribbon artwork, with the approved stacked composition.
 
 Art files: `anniversary-apple.webp`, `comparison-world.webp`, `comparison-america.webp`, `duel-studio.webp`, `index-sp500.webp`, `investor-glass.webp`.
+
+## Portfolio generator, 10 October 2026
+
+`portfolio-donut-studio.webp` is the approved navy studio backdrop with gold corner details. It contains no data, charts or financial text. The donut, allocation names (49px), weights, yearly bars and annualized return are drawn dynamically on Canvas. More holdings and long names expand the export. Portfolio duel artwork and rendering are unchanged.

@@ -14,6 +14,8 @@ try {
     const { buildManualPortfolio, generatePortfolio } = await import('/shinny-potato/src/pages/portfolio-generator/engine.js')
     const { computeYearlyPerf } = await import('/shinny-potato/src/pages/portfolio-generator/performance.js')
     const { renderPortfolioImage } = await import('/shinny-potato/src/pages/portfolio-generator/canvasImage.js')
+    const { loadPortfolioBackground } = await import('/shinny-potato/src/pages/portfolio-generator/background.js')
+    const background = await loadPortfolioBackground()
     const original = CanvasRenderingContext2D.prototype.fillText
     const originalRect = CanvasRenderingContext2D.prototype.fillRect
     let labels = [], boxes = [], rects = [], current
@@ -32,7 +34,7 @@ try {
     const check = (name, portfolio, keep = false) => {
       current = name; labels = []; boxes = []; rects = []
       const perf = computeYearlyPerf(portfolio.selection)
-      const canvas = renderPortfolioImage(portfolio)
+      const canvas = renderPortfolioImage(portfolio, background)
       const words = labels.join(' ')
       if (/devises non converties|ÉQUILIBRÉ|EXEMPLE DE PORTEFEUILLE|Le Généraliste|…/i.test(words)) throw new Error(`Forbidden heading/footer ${name}`)
       if (labels.filter(label => label === 'Épargnant Libre').length !== 1) throw new Error('Signature')
@@ -48,8 +50,8 @@ try {
       } else if (!labels.includes('n.d.')) throw new Error('Missing value invented')
       // All nonzero bars must use one common absolute scale, and share the correct
       // side of zero; material highlights cannot alter their quantitative height.
-      const baseline = rects.find(rect => rect.w === 1168 && rect.h === 1)?.y
-      const bars = rects.filter(rect => rect.w === 102 && rect.h > 0)
+      const baseline = rects.find(rect => rect.w === 1240 && rect.h === 1)?.y
+      const bars = rects.filter(rect => rect.w === 96 && rect.h > 0)
       const plotted = available.filter(v => Number.isFinite(v) && v !== 0)
       if (bars.length !== plotted.length) throw new Error('Wrong bar count')
       const scale = bars[0]?.h / Math.abs(plotted[0])
@@ -95,4 +97,19 @@ try {
   const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('link',{name:/Télécharger l’image PNG/}).click()])
   if(download.suggestedFilename()!=='repartition-portefeuille.png') throw new Error('Download')
   console.log('Mobile image updates and PNG download verified.')
+  // A missing backdrop must not expose a downloadable fallback; retry restores it.
+  const retryPage = await browser.newPage({ viewport: { width: 390, height: 844 } })
+  let failBackdrop = true
+  await retryPage.route('**/portfolio-donut-studio.webp', route => failBackdrop ? route.abort() : route.continue())
+  await retryPage.goto(`${base}generateur-portefeuilles`)
+  await retryPage.getByRole('button', { name: 'Aperçu', exact: true }).click()
+  await retryPage.getByRole('button', { name: 'Réessayer le visuel', exact: true }).waitFor()
+  if (await retryPage.getByRole('link', { name: /Télécharger l’image PNG/ }).count()) throw new Error('Download offered before backdrop loaded')
+  failBackdrop = false
+  await retryPage.getByRole('button', { name: 'Réessayer le visuel', exact: true }).click()
+  await retryPage.getByRole('link', { name: /Télécharger l’image PNG/ }).waitFor()
+  await retryPage.getByRole('tab', { name: 'Image', exact: true }).click()
+  await retryPage.locator('.pg-main img').first().evaluate(img => img.decode())
+  await retryPage.close()
+  console.log('Backdrop failure and retry verified; no incomplete PNG download.')
 } finally { await browser?.close(); server.kill('SIGTERM') }
