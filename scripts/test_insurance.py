@@ -38,8 +38,9 @@ class InsuranceTests(unittest.TestCase):
     def test_ceiling_evidence_date_survives_rollover_but_not_future(self):
         record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-zen'))
         validate(copy.deepcopy(record),dt.date(2027,1,1))
+        record['euroFunds'][0]['ceilingEvidence']['checkedAt']=(TODAY+dt.timedelta(days=1)).isoformat()
         with self.assertRaises(ValueError):
-            validate(copy.deepcopy(record),dt.date(2026,10,9))
+            validate(copy.deepcopy(record),TODAY)
 
     def test_unlimited_ceiling_is_scoped_and_revalidated(self):
         html='''LE FONDS EUROS Euroflex 100 % en fonds € 3,25 % Net en 2025 1 % Net en 2024 Les performances passées
@@ -91,7 +92,13 @@ class InsuranceTests(unittest.TestCase):
         <tr><td>Transactions ETF</td><td>0,06 %</td></tr></table>
         Simulation 20 ans : versement initial 10000€ Bonus 5 %'''
     def previous(self):
-        return json.loads((ROOT/'src/data/automated-insurance.json').read_text())
+        data=json.loads((ROOT/'src/data/automated-insurance.json').read_text())
+        # Keep the fixed-date fixtures independent of daily proof refreshes.
+        for record in data['records']:
+            for fund in record['euroFunds']:
+                if fund.get('ceilingEvidence'):
+                    fund['ceilingEvidence']['checkedAt']=TODAY.isoformat()
+        return data
     def test_contract_column_not_simulation_or_average(self):
         r=parse_contract(self.contract(),'linxea-spirit-2',TODAY)
         self.assertEqual(r['fees']['subscription'],0)
