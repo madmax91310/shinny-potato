@@ -6,6 +6,8 @@ on:
   push:
     branches: [master]
     paths:
+      - 'src/data/etf-themes.js'
+      - 'scripts/*comparison-automation.mjs'
       - '.github/workflows/collect-etf-pilot.yml'
       - 'scripts/collect_*etf*.py'
       - 'scripts/*vaneck*.py'
@@ -52,6 +54,8 @@ on:
       - 'scripts/test_new_issuer_sources.py'
   pull_request:
     paths:
+      - 'src/data/etf-themes.js'
+      - 'scripts/*comparison-automation.mjs'
       - '.github/workflows/collect-etf-pilot.yml'
       - 'scripts/audit-data-review.mjs'
       - 'scripts/lib/data-review-observation.mjs'
@@ -144,6 +148,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_sp_public_feed.py'
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr
       - run: npm ci
+      - run: node scripts/test-comparison-automation.mjs
       - run: node scripts/test-vaneck-document.mjs
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
       - run: python -m unittest discover -s scripts -p 'test_bnp_etf.py'
@@ -163,6 +168,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_issuer_refresh.py'
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
       - run: node scripts/export-etf-pilot-baseline.mjs > "$RUNNER_TEMP/baseline.json"
+      - run: node scripts/audit-comparison-automation.mjs
       - id: ishares
         continue-on-error: true
         run: python scripts/collect_etf_pilot.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/observation.json" --apply
