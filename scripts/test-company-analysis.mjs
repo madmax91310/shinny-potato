@@ -2,7 +2,7 @@ import { companyImageModel } from '../src/pages/company-analysis/image.js'
 import assert from 'node:assert/strict'
 import { searchData } from '../src/data/catalog.js'
 import { COMPANIES } from '../src/pages/company-analysis/data.js'
-import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics, marginExplanation, activeEstimates, activeHistory } from '../src/pages/company-analysis/lib.js'
+import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics, marginExplanation, activeEstimates, activeHistory, activeAnnualContext } from '../src/pages/company-analysis/lib.js'
 
 // Synthetic scenarios use a fixed clock; live roster checks use each observation date.
 const now = new Date('2026-10-07T07:00:00Z')
@@ -28,8 +28,8 @@ for (const [current,previous,expected] of [[-2e9,-4e9,/perte s’est réduite/],
 const unknown = structuredClone(base); unknown.annual.previousRevenue = null; unknown.annual.previousNetIncome = null
 assert(!buildTweetText(unknown,now).includes('sur un an'))
 const valued = {...base, valuation:{peTTM:30,forwardPE:20,accountsAsOf:'2026-06-30',observedAt:'2026-10-07'}}
-assert.match(buildTweetText(valued,now),/PER : 30,0×/)
-assert.match(buildTweetText(valued,now),/horizon non précisé/)
+assert(!buildTweetText(valued,now).includes("30,0"))
+assert(!buildTweetText(valued,now).includes("horizon non précisé"))
 assert(!/bon marché|sous-évalu|va augmenter/.test(buildTweetText(valued,now)))
 valued.valuation.observedAt = '2026-09-01'
 assert.equal(activeValuation(valued,now),null)
@@ -43,7 +43,7 @@ assert.deepEqual(metrics(stale,now),[])
 const refreshed = {...base, accountsObservedAt:'2026-10-08'}
 assert.equal(canPublish(refreshed, now), false)
 assert.equal(buildTweetText(refreshed, now), '')
-assert.match(buildTweetText(refreshed, observationDate(refreshed)), /Et dans les comptes ?/)
+assert.match(buildTweetText(refreshed, observationDate(refreshed)), /💰 Sur son exercice clos/)
 assert.equal(canPublish(refreshed, new Date('2026-11-23T12:00:00Z')), false)
 
 const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
@@ -55,7 +55,7 @@ const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
 assert.equal(calculatedRatios(computed,now).peTTM,20)
 assert.equal(calculatedRatios(computed,now).priceFCF,10)
 assert.equal(calculatedRatios(computed,now).payout,25)
-assert.match(buildTweetText(computed,now),/Pour 100 USD de chiffre d’affaires/)
+assert.match(buildTweetText(computed,now),/Pour 100 dollars de ventes/)
 assert(metrics(computed,now).some(row => row.label.includes('opérationnelle') && row.value === '20,0 %'))
 computed.quote.price=200
 assert.equal(calculatedRatios(computed,now).peTTM,40)
@@ -107,7 +107,7 @@ for (const company of COMPANIES) {
   const tweet = buildTweetText(company, observationDate(company))
   assert(!/Ce que je regarderais|avant d’investir|belle entreprise|bon marché|chère|croissance future compte/.test(tweet))
   assert(!tweet.includes(company.watch))
-  assert.match(tweet, /Et dans les comptes ?/)
+  assert.match(tweet, /💰 Sur son exercice clos/)
 }
 const staleQuarter = {...base, quarter:{...base.annual,end:'2025-01-01'}}
 assert(!buildTweetText(staleQuarter,now).includes('derniers résultats'))
@@ -138,8 +138,8 @@ const forecasted = {...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
   estimates:{forwardEPS:5,growthEPS5Y:10,observedAt:'2026-10-07',accountsEndAtCollection:'2025-12-31'}}
 assert.equal(activeEstimates(forecasted,now).forwardPE,20)
 assert.equal(activeEstimates(forecasted,now).peg,2)
-assert.match(buildTweetText(forecasted,now), /prochain exercice fiscal/)
-assert.match(buildTweetText(forecasted,now), /sur cinq ans/)
+assert(!buildTweetText(forecasted,now).includes("PER prévisionnel"))
+assert(!buildTweetText(forecasted,now).includes("PEG"))
 assert.equal(activeEstimates({...forecasted,quote:{...forecasted.quote,price:200}},now).peg,4)
 for (const estimates of [{...forecasted.estimates,observedAt:'2026-09-01'},
   {...forecasted.estimates,forwardEPS:-5}, {...forecasted.estimates,forwardEPS:null},
@@ -159,8 +159,8 @@ const historic = {...base, history:{observedAt:'2026-10-07',years:[
   {end:'2025-12-31',revenue:120e9,netIncome:8e9},
 ]}}
 assert.equal(activeHistory(historic,now)[0].margin,-2)
-assert.match(buildTweetText(historic,now), /sur 3 exercices/)
-assert.match(buildTweetText(historic,now), /sur l’ensemble de la période/)
+assert.equal(activeHistory(historic,now).length,3)
+assert(!buildTweetText(historic,now).includes("Le recul sur"))
 assert(!buildTweetText(historic,now).includes('−500'))
 assert.deepEqual(activeHistory({...historic,history:{...historic.history,observedAt:'2026-08-01'}},now),[])
 const mismatch = structuredClone(historic); mismatch.history.years.at(-1).revenue=121e9
@@ -172,12 +172,12 @@ console.log('Forward PER/PEG: common close, missing/negative growth, splits, fre
 const european = {...base, currency:'EUR', accountingStandard:'IFRS', halfYear:{...base.annual,end:'2026-06-30',durationMonths:6}, annual:{...base.annual,dilutedEPS:5}, quote:{price:100,asOf:'2026-10-06',splits:[]}, estimates:null}
 assert.equal(calculatedRatios(european,now).peAnnual,20)
 assert.equal(calculatedRatios(european,now).peTTM,undefined)
-assert.match(buildTweetText(european,now),/Semestre/)
-assert.match(buildTweetText(european,now),/Ce PER annuel utilise cet exercice précis/)
+assert(!buildTweetText(european,now).includes("Semestre"))
+assert.match(buildTweetText(european,now),/bénéfice dilué par action de l’exercice clos/)
 assert(!buildTweetText(european,now).includes('prochain exercice fiscal'))
 assert.equal(calculatedRatios({...european,quote:{...european.quote,splits:['2026-06-01']}},now).peAnnual,undefined)
 const weeks = {...base,quarter:{...base.annual,end:'2026-08-30',durationWeeks:16}}
-assert.match(buildTweetText(weeks,now),/Trimestre de 16 semaines/)
+assert(!buildTweetText(weeks,now).includes("Trimestre"))
 assert.equal(activeEstimates({...european,estimates:{...forecasted.estimates,accountsEndAtCollection:'2025-12-31'}},now),null)
 assert.equal(companyImageModel(european,now).peBasis,'Exercice 2025')
 console.log('European half-years, fiscal weeks, annual PER labeling, splits and forecast account freshness OK.')
@@ -205,3 +205,38 @@ assert.match(buildTweetText(equalMargins,now), /presque stable/)
 assert(!buildTweetText(equalMargins,now).includes('davantage de bénéfice'))
 assert(!buildTweetText(unknown,now).includes('marge nette'))
 console.log('Company editorial: 11 distinct hooks, no CTA, currency neutrality and refreshed factual readings OK.')
+
+// Business context is tied to exact source accounts, survives quote changes, and expires on restatement.
+const appleProfile = COMPANIES.find(c => c.id === 'apple')
+// Freeze the reviewed 2025 source scenario; daily collection must not invalidate this fixture.
+const apple = {...appleProfile, accountsObservedAt:'2026-10-10',
+ annual:{...appleProfile.annual,...appleProfile.annualContext}, quarter:null, halfYear:null,
+ quote:{price:340.42,asOf:'2026-10-08',splits:[]},
+ trailing:{end:'2026-06-27',dilutedEPS:8.72,observedAt:'2026-10-10'},
+ quarters:[{end:'2026-06-27',dilutedEPS:2.02},{end:'2026-03-28',dilutedEPS:2.01},
+   {end:'2025-12-27',dilutedEPS:2.84},{end:'2025-09-27',dilutedEPS:1.85}]}
+
+const appleNow = new Date('2026-10-10T12:00:00Z')
+const appleText = buildTweetText(apple,appleNow)
+assert.match(appleText,/13,5 %/)
+assert.match(appleText,/4,1 %/)
+assert.match(appleText,/7,7 %/)
+assert(appleText.includes(`${calculatedRatios(apple,appleNow).peTTM.toLocaleString('fr-FR', {minimumFractionDigits:1,maximumFractionDigits:1})} fois`))
+assert(!/PER prévisionnel|PEG|Le recul sur|Et dans les comptes|Ce qu’elle fait concrètement/.test(appleText))
+assert(appleText.includes(apple.editorialQuestion))
+for (const key of ['revenue','netIncome','previousNetIncome']) {
+  const changed = {...apple,annual:{...apple.annual,[key]:apple.annual[key]+1}}
+  assert.equal(activeAnnualContext(changed,appleNow),null)
+  assert(!buildTweetText(changed,appleNow).includes('charge fiscale exceptionnelle'))
+}
+assert.equal(activeAnnualContext({...apple,annual:{...apple.annual,end:'2026-09-26'}},appleNow),null)
+assert.equal(activeAnnualContext(apple,new Date('2026-10-09T12:00:00Z')),null)
+assert(Math.abs(calculatedRatios(apple,appleNow).peTTM - apple.quote.price / apple.quarters.reduce((sum,q)=>sum+q.dilutedEPS,0)) < 1e-9)
+for (const c of COMPANIES) {
+ const tweet=buildTweetText(c,observationDate(c))
+ assert(tweet.includes(c.editorialQuestion))
+ assert(!tweet.includes('PER prévisionnel'))
+ assert(!tweet.includes('PEG :'))
+ assert(!tweet.includes('Le recul sur'))
+}
+console.log('Human stories: period-bound Apple context, revised accounts, forward observation guards, reproducible PER and distinct business questions OK.')

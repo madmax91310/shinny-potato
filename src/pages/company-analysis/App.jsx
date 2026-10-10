@@ -4,7 +4,7 @@ import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import { COMPANIES } from './data.js'
-import { buildTweetText, canPublish, activeValuation, activeEstimates, activeHistory, amount, dateLabel } from './lib.js'
+import { buildTweetText, canPublish, activeValuation, activeEstimates, activeHistory, activeAnnualContext, amount, dateLabel } from './lib.js'
 import { renderCompanyImage } from './image.js'
 import './style.css'
 
@@ -20,6 +20,7 @@ export default function App() {
   const valuation = activeValuation(company)
   const estimates = activeEstimates(company)
   const history = activeHistory(company)
+  const annualContext = activeAnnualContext(company)
   async function copy() {
     try { await navigator.clipboard.writeText(text); setMessage('Texte copié.') }
     catch { setMessage('La copie a échoué. Tu peux sélectionner le texte dans l’aperçu.') }
@@ -51,11 +52,13 @@ export default function App() {
           {company.accountsObservedAt && <p>Comptes vérifiés le {dateLabel(company.accountsObservedAt)}.</p>}
           <p><a href={company.accountsSourceUrl ?? `https://www.sec.gov/edgar/browse/?CIK=${company.cik}`} target="_blank" rel="noreferrer">Comptes officiels</a></p>
           <p><a href={company.sourceUrl} target="_blank" rel="noreferrer">Activité de l’entreprise</a></p>
+          {annualContext && <p><a href={annualContext.sourceUrl} target="_blank" rel="noreferrer">Contexte annuel : services, matériel et charge fiscale</a> · exercice clos le {dateLabel(annualContext.end)} · vérifié le {dateLabel(annualContext.reviewedAt)}. Ce contexte est retiré si les comptes changent.</p>}
+          {company.quarter && <p>Dernière période trimestrielle : <a href={company.quarter.sourceUrl} target="_blank" rel="noreferrer">{dateLabel(company.quarter.end)}</a>{company.quarter.durationWeeks ? ` · ${company.quarter.durationWeeks} semaines` : ''} · revenus : {amount(company.quarter.revenue, company.currency)} · résultat net : {amount(company.quarter.netIncome, company.currency)}.</p>}
           {company.halfYear && <p>Dernier semestre : <a href={company.halfYear.sourceUrl} target="_blank" rel="noreferrer">{dateLabel(company.halfYear.end)}</a>.</p>}
           {company.quote && <p><a href={`https://finance.yahoo.com/quote/${company.symbol}/`} target="_blank" rel="noreferrer">Cours de clôture · Yahoo Finance</a> · {dateLabel(company.quote.asOf)}</p>}
-          {estimates && <p><a href={estimates.sourceUrl} target="_blank" rel="noreferrer">Estimations · Finviz</a> · relevé le {dateLabel(estimates.observedAt)}. PER prévisionnel = cours de clôture / BPA attendu du prochain exercice fiscal ({estimates.forwardEPS.toLocaleString('fr-FR', {maximumFractionDigits: 2})} {company.currency}). PEG = ce PER / croissance annuelle du BPA estimée sur cinq ans ({estimates.growthEPS5Y?.toLocaleString('fr-FR', {maximumFractionDigits: 2}) ?? 'indisponible'} %). <a href={estimates.methodUrl} target="_blank" rel="noreferrer">Définitions</a>. {estimates.earningsBasis}.</p>}
+          {estimates && <p><a href={estimates.sourceUrl} target="_blank" rel="noreferrer">Estimations · Finviz</a> · relevé le {dateLabel(estimates.observedAt)}. PER prévisionnel = cours de clôture / BPA attendu du prochain exercice fiscal ({estimates.forwardEPS.toLocaleString('fr-FR', {maximumFractionDigits: 2})} {company.currency}). PEG prévisionnel = ce PER prévisionnel / croissance annuelle du BPA estimée sur cinq ans ({estimates.growthEPS5Y?.toLocaleString('fr-FR', {maximumFractionDigits: 2}) ?? 'indisponible'} %). <a href={estimates.methodUrl} target="_blank" rel="noreferrer">Définitions</a>. {estimates.earningsBasis}.</p>}
           {valuation ? <p><a href={valuation.sourceUrl} target="_blank" rel="noreferrer">Ratios · Alpha Vantage</a> · {dateLabel(valuation.observedAt)}. Le PER prévisionnel n’indique pas un horizon standardisé.</p>
-            : !estimates && <p>Les estimations récentes sont indisponibles. Le PER prévisionnel et le PEG sont omis de la publication.</p>}
+            : !estimates && <p>Les estimations récentes sont indisponibles. Le PER prévisionnel et le PEG ne sont pas affichés sans estimations vérifiées.</p>}
           <p>Le flux de trésorerie disponible correspond aux flux d’exploitation moins les investissements en immobilisations.</p>
         </div>
       </section>

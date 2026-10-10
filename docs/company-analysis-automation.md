@@ -51,11 +51,13 @@ Air Liquide dispose d’une découverte complémentaire via ses archives officie
 Lorsque le site d’Air Liquide refuse l’accès depuis GitHub Actions, les communiqués de l’émetteur distribués par Euronext sont découverts dans la liste publique de l’entreprise, puis leurs pièces jointes sont analysées avec les mêmes contrôles IFRS. Les périodes « H1 » sont des semestres. Le communiqué semestriel ne présentant qu’un BPA de base, aucun BPA dilué n’est déduit de ce chiffre.
 
 
-## Texte pédagogique sans CTA
+## Publications conversationnelles
 
-Les onze profils partagent le même moteur de texte, avec une accroche propre à leur activité documentée. Aucun chiffre ni constat de croissance n’est figé dans ces accroches. Le texte conserve les périodes annuelles, trimestrielles ou semestrielles et explique la marge nette à partir des comptes bruts. Les commentaires changent lorsque les revenus, les bénéfices ou les pertes évoluent ; ils sont omis lorsque les comparatifs manquent. La lecture des historiques compare leurs extrémités, sans supposer une progression régulière entre les exercices.
+Les onze entreprises disposent d’une accroche et d’une question liées à leur activité. Le texte raconte le modèle économique, intègre les résultats annuels dans des phrases, explique la rentabilité et termine par une question métier. Il n’applique aucun jugement automatique « cher » ou « bon marché » à un PER. Le tableau historique, les derniers résultats et les estimations détaillées restent dans l’outil ; ils ne sont plus empilés dans la publication.
 
-La publication termine sur son dernier bloc disponible, sans question ni appel à l’interaction automatique. Les ratios restent datés, conditionnés par leur fraîcheur et distincts des bénéfices publiés. Le moteur n’invente ni cause économique, ni répartition sectorielle, ni jugement sur l’opportunité d’achat. Les détails de provenance et les métriques complètes restent consultables dans l’outil.
+Le PER de la publication utilise uniquement le calcul reproductible depuis les comptes et le cours daté. Le PER du dernier exercice IFRS reste explicitement distinct du PER sur douze mois. Les prévisions Finviz restent dans les métriques et les sources ; le PEG est nommé comme le PER prévisionnel divisé par la croissance estimée sur cinq ans. Les ratios Alpha Vantage dont la méthode prévisionnelle est inconnue ne sont pas repris dans les métriques.
+
+Le contexte Apple est documenté dans `annualContext` du profil : services, matériel, iPhone et charge fiscale exceptionnelle de 2024. Les parts, croissances et comparaison ajustée sont recalculées. Le contexte correspond exactement à l’exercice et aux valeurs de comparaison du PDF officiel ; toute nouvelle période ou révision des valeurs le retire. Une future revue peut fournir un nouveau contexte sourcé ; la collecte de comptes ne recertifie pas automatiquement ces éléments éditoriaux. Sans contexte valide, le moteur revient aux résultats bruts sans inventer de cause. Les accroches et questions ne contiennent aucun chiffre figé.
 
 ## Horloge des tests après collecte
 
