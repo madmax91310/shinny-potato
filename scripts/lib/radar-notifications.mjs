@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { datedEtfSnapshot } from './editorial-radar.mjs'
 
 const EVENT_ID = /^[a-f0-9]{24}$/
 const marker = id => `<!-- editorial-radar-event:${id} -->`
@@ -20,6 +21,7 @@ export function pendingNotifications(events, ledger) {
   const seen = new Set(ledger.acknowledged)
   return events.filter(event => {
     if (!EVENT_ID.test(event.id)) throw new Error('Identifiant de signal invalide.')
+    if (event.status === 'source-conflict' || datedEtfSnapshot(event) && event.kind === 'change' && event.beforePeriod === event.period) return false
     if (seen.has(event.id)) return false
     seen.add(event.id)
     return true

@@ -26,6 +26,14 @@ function mock({ issues = [], failPost = false, assigned = true, hasIssues = true
   return { api, calls, created }
 }
 const send = (events, state, server) => notifyRadar({ events, ledger: state, api: server.api, repo })
+{
+  const conflicting = { ...event, family: 'etf', field: 'countries:United States', beforePeriod: event.period }
+  const server = mock()
+  assert.equal((await send([conflicting], ledger, server)).sent, 0, 'Ancienne alerte à période identique jamais retentée')
+  assert.equal(server.calls.length, 0)
+  assert.equal((await send([{ ...event, status: 'source-conflict' }], ledger, server)).sent, 0)
+  assert.equal((await send([conflicting, event, event], ledger, server)).sent, 1, 'Signal valide dédupliqué et conservé dans un lot mixte')
+}
 
 // Bootstrap and harmless revalidation cannot even contact GitHub Issues.
 for (const events of [initial.newEvents, advanceRadar(initial.state, [{ ...row, checkedAt: '2026-10-09', period: '2026-10-09' }], { now }).newEvents, advanceRadar(initial.state, [{ ...row, value: 31.9 }], { now }).newEvents]) {
