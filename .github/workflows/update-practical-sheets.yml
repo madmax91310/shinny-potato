@@ -1,0 +1,99 @@
+name: Update practical sheet references
+on:
+  schedule:
+    - cron: '15 9 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-practical-sheets.yml'
+      - 'scripts/collect_practical_sheets.py'
+      - 'scripts/practical-sheet-sources.json'
+  pull_request:
+    paths:
+      - '.github/workflows/update-practical-sheets.yml'
+      - 'scripts/*practical*'
+      - 'src/pages/practical-sheets/**'
+      - 'src/data/*practical*'
+permissions:
+  contents: read
+jobs:
+  refresh:
+    concurrency:
+      group: practical-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      cancel-in-progress: false
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.sha }}
+      failed: ${{ steps.collect.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: pip install beautifulsoup4==4.15.0
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p test_practical_sheets.py
+      - run: node scripts/test-practical-sheets.mjs
+      - id: collect
+        continue-on-error: true
+        run: python scripts/collect_practical_sheets.py --apply --output "$RUNNER_TEMP/practical-observation.json"
+      - name: Report source changes and failures
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          p=pathlib.Path(os.environ['RUNNER_TEMP'])/'practical-observation.json'
+          if p.exists():
+              report=json.loads(p.read_text())
+              with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
+                  out.write('Sources en échec : '+(', '.join(report['failed']) or 'aucune')+'\n\n')
+                  out.write('Documents à relire : '+(', '.join(report['changed']) or 'aucun')+'\n\n')
+                  out.write('Les échecs conservent la dernière observation qualifiée. Les changements bloquent les exports concernés jusqu’à revue éditoriale.\n')
+          PY
+      - run: npm run audit:data-catalog
+      - run: npm run build
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: practical-observations
+          path: ${{ runner.temp }}/practical-observation.json
+          retention-days: 35
+      - id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/automated-practical-sheets.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh official practical sheet references'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: refresh
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: ${{ always() && github.event_name != 'pull_request' && needs.refresh.outputs.failed == 'true' }}
+    runs-on: ubuntu-26.04
+    steps:
+      - run: |
+          echo 'Documents modifiés ou collecte partielle. Consulter practical-observations et Données à revoir.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

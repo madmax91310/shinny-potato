@@ -95,6 +95,9 @@ class Documents(unittest.TestCase):
         self.assertEqual(result['aum']['amount'],2070790000)
         self.assertEqual(result['aum']['asOf'],'2026-08-31')
         self.assertEqual(result['characteristics']['asOf'],'2026-09-07')
+        policy=parse_legacy_factsheet(text,facts+'\nIndice de référence : MSCI World Index',share,NOW)['characteristics']
+        self.assertEqual(policy['index'],'MSCI World Index')
+        self.assertEqual(policy['distribution'],'Capitalisation')
         calendar = "\nPERFORMANCE DE L'ANNÉE CIVILE\n2021 2022 2023 2024 2025\nClasse d’Actions - - - - 6,61\nIndice de référence - - - - 6,77\nCROISSANCE DE 10 000\n"
         annual=parse_legacy_factsheet(text+calendar,facts,share,NOW)
         self.assertEqual(annual['performance']['years'],{'2025':6.61})
