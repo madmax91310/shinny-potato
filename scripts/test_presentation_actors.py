@@ -60,7 +60,7 @@ class ActorTermsTests(unittest.TestCase):
   self.assertIn('année glissante',bricks['fields']['fees']['value'])
   with self.assertRaises(ValueError):parse('bricks',[docs['bricks'][0],docs['bricks'][1].replace('offrons 2 retraits','offrons 3 retraits')],TODAY)
  def test_atomic_preservation_and_independent_recovery(self):
-  # This recovery scenario must not depend on the date of live automated data.
+  # Stable fixture dates: production observations advance on each automatic refresh.
   previous={id_:parse(id_,docs,TODAY) for id_,docs in self.fixtures().items()}
   one=copy.deepcopy(previous['fundora']);one['offers'].pop()
   def failure(day):raise ValueError('Page indisponible')
