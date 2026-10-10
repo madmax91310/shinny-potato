@@ -8,6 +8,33 @@ TODAY=dt.date(2026,10,8)
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 class InsuranceTests(unittest.TestCase):
+    def test_ceiling_evidence_date_survives_rollover_but_not_future(self):
+        record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-zen'))
+        validate(copy.deepcopy(record),dt.date(2027,1,1))
+        with self.assertRaises(ValueError):
+            validate(copy.deepcopy(record),dt.date(2026,10,9))
+
+    def test_unlimited_ceiling_is_scoped_and_revalidated(self):
+        html='''LE FONDS EUROS Euroflex 100 % en fonds € 3,25 % Net en 2025 1 % Net en 2024 Les performances passées
+        Fonctionnement des Fonds euros de Linxea Zen Apicil Euroflex Stratégie d’investissement
+        Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte.
+        1,6 % de frais de gestion annuel Garantie en capital à hauteur de 98,4 %
+        Arbitrages 2 % de pénalité en cas d’arbitrage rachat total en cours d’année entraîne la perte de tout droit Documents applicables'''
+        url='https://www.linxea.com/assurance-vie/linxea-zen/fonds-euro/'
+        fund=parse_fund(html,'linxea-zen','Apicil Euroflex','Euroflex',url,TODAY)
+        self.assertIsNone(fund['ceiling'])
+        self.assertEqual(fund['ceilingEvidence']['status'],'unlimited')
+        self.assertEqual(fund['ceilingEvidence']['sourceUrl'],url)
+        self.assertEqual(len(fund['ceilingEvidence']['sha256']),64)
+        with self.assertRaises(ValueError):
+            parse_fund(html.replace('Ce fonds en euros est accessible sans limite de montant','Ce fonds en euros est accessible dans la limite de 100 000 euros'),'linxea-zen','Apicil Euroflex','Euroflex',url,TODAY)
+        previous=self.previous()
+        record=copy.deepcopy(next(r for r in previous['records'] if r['id']=='linxea-zen'))
+        for f in record['euroFunds']: f.pop('ceilingEvidence',None)
+        retained,observations=refresh(previous,{'linxea-zen':lambda day:record},TODAY)
+        self.assertEqual(retained,previous)
+        self.assertEqual(observations[0]['status'],'failure')
+
     def test_vie_notice_net_guarantee_and_conflicting_fees(self):
         notice=(ROOT/'scripts/fixtures/linxea-vie-essential.txt').read_text()
         record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-vie'))
@@ -61,7 +88,7 @@ class InsuranceTests(unittest.TestCase):
     def test_zen_penalty_and_available_history(self):
         html="""LE FONDS EUROS Euroflex 100 % en fonds € 3,25 % Net en 2025 1 % en 2024 Les performances passées
         Fonctionnement des Fonds euros de Linxea Zen Apicil Euroflex Stratégie d’investissement
-        sans limite de montant et sans conditions d’unités de compte. 1,6 % de frais de gestion annuel Garantie en capital à hauteur de 98,4 %
+        Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte. 1,6 % de frais de gestion annuel Garantie en capital à hauteur de 98,4 %
         2 % de pénalité en cas d’arbitrage. Un rachat total en cours d’année entraîne la perte de tout droit Arbitrages Documents applicables"""
         r=parse_fund(html,'linxea-zen','Apicil Euroflex','Euroflex','https://www.linxea.com',TODAY)
         self.assertEqual([v['year'] for v in r['years']],[2024,2025])
