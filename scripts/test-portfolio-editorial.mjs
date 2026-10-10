@@ -304,7 +304,7 @@ console.log('OK : tri décroissant stable sans modifier les slots ni les perform
 // a thesis based on the actual composition and a single fixed closing question.
 const validatedExample = manual([{id:'msci_world_ishares',pct:50},{id:'msci_em',pct:20},{id:'smallcap_monde',pct:15},{id:'or_ishares',pct:15}]);
 const validatedText = renderTweetText(validatedExample);
-assert.match(validatedText,/^Ton ETF World est déjà bien diversifié/);
+assert.match(validatedText,/^Quand j’ajoute un ETF à un portefeuille/);
 assert.match(validatedText,/ont chacun une ligne dédiée/);
 assert.match(validatedText,/85 % d’actions/);
 assert.match(validatedText,/iShares Core MSCI World/);
@@ -327,3 +327,16 @@ for(const p of postCases) {
 const zeroPost=renderTweetText(manual([{id:'msci_world',pct:100},{id:'bitcoin',pct:0}]));
 assert.doesNotMatch(zeroPost,/Bitcoin|crypto/);
 console.log('OK : modèle public validé, noms sans ISIN, thèse après les performances, CTA et historiques reconstruits.');
+
+// Personal voice keeps the performance blocks and follows actual holdings.
+const personalFour = manual([{id:'msci_world_ishares',pct:50},{id:'msci_em',pct:15},{id:'smallcap_monde',pct:15},{id:'oblig_global_agg_eur_hedged',pct:20}]);
+const personalText = renderTweetText(personalFour);
+assert.match(personalText, /80 % d’actions/);
+assert.match(personalText, /obligations représentent 20 %/);
+assert.doesNotMatch(personalText, /pondérations rétablies chaque année|hors courtage et fiscalité/);
+for (const year of YEARS) assert(personalText.includes(`${year} : ${formatPerformance(personalFour.perf[year])}`));
+assert(personalText.indexOf('Performance annualisée') < personalText.indexOf('📌'));
+const { performanceNotes } = await import('../src/pages/portfolio-generator/performance.js');
+assert.match(performanceNotes(personalFour.selection), /pondérations rétablies chaque année/);
+assert.match(personalText, /taux BCE de fin d’année/);
+console.log('OK : voix personnelle, performances conservées et méthode retirée uniquement du tweet.');

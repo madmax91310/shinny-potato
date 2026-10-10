@@ -24,8 +24,8 @@ export function assetReturn(asset, year) {
   return start > 0 && end > 0 ? ((1 + original / 100) * start / end - 1) * 100 : null
 }
 
-export function performanceNotes(selection) {
-  const notes = ['En euros · pondérations rétablies chaque année · hors courtage et fiscalité.']
+export function performanceNotes(selection, { includeMethod = true } = {}) {
+  const notes = includeMethod ? ['En euros · pondérations rétablies chaque année · hors courtage et fiscalité.'] : []
   if (selection.some(asset => returnCurrency(asset) === 'USD')) notes.push('Rendements USD convertis en EUR avec les taux BCE de fin d’année.')
   const proxies = selection.filter(asset => dataLabels(asset).includes('Historique reconstitué') || ['fonds_euros', 'scpi'].includes(asset.id))
   if (proxies.length) notes.push('Historiques indicatifs : ' + proxies.map(asset => `${asset.name} — ${asset.confidenceNote ?? 'historique reconstitué'}`).join(' ; '))
