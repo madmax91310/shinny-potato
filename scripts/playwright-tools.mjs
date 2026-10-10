@@ -13,6 +13,7 @@ import { buildTweetText as buildMarketStory } from '../src/pages/market-facts/li
 import { buildText } from '../src/pages/etf-sheets/lib.js';
 import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
+import { sortedRows, plainLabel } from '../src/pages/factsheet-tweets/editorial.js';
 import { TOOLS, HOME_TOOLS } from '../src/tools.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { instrumentOption } from '../src/data/asset-selection.js';
@@ -832,7 +833,7 @@ async function testFactsheetTweets(page) {
     const checks = {
       constituents: tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR')),
       annualReturns: tweet.includes('2025'),
-      sectors: SHEETS[index].sectors.length === 0 || tweet.includes('arrive en tête avec'),
+      sectors: SHEETS[index].sectors.length === 0 || (tweet.includes('🧩 Les principaux secteurs') && sortedRows(SHEETS[index].sectors).slice(0, 3).every(([name, value]) => tweet.includes(`${plainLabel(name)} : ${value.toLocaleString('fr-FR', { minimumFractionDigits: value % 1 === 0 ? 0 : 2, maximumFractionDigits: value % 1 === 0 ? 0 : 2 })} %`))),
       validText: !/undefined|NaN/.test(tweet),
       sources: (await page.locator('.fs-sources a').count()) >= 1,
       exactStory: tweet === buildFactsheetTweet(SHEETS[index]),
