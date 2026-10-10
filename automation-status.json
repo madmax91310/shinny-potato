@@ -108,16 +108,16 @@
     },
     "update-insurance.yml": {
       "name": "Présentations d’assurance-vie",
-      "runId": 37965177630,
+      "runId": 38057362247,
       "attempt": 1,
-      "completedAt": "2026-10-09T17:18:57Z",
+      "completedAt": "2026-10-10T13:53:45Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-09T14:39:24Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37965177630",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38057362247",
       "failures": [
         {
           "job": "deploy / build",
-          "step": "Run node scripts/test-automation-gap-inventory.mjs"
+          "step": "Run npm run test:radar"
         }
       ],
       "dataFailures": {}
@@ -172,5 +172,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-10T13:47:51Z"
+  "updatedAt": "2026-10-10T13:53:45Z"
 }
