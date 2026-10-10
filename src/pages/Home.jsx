@@ -14,7 +14,7 @@ export default function Home() {
   const occasional = HOME_TOOLS.filter(tool => tool.publicationDay === 'Publication ponctuelle')
   const shortcuts = HOME_TOOLS.filter(tool => !scheduled.includes(tool) && !occasional.includes(tool))
   return <div className="workspace-home">
-    <header className="home-heading"><p>Épargnant Libre</p><h1>Mes outils de la semaine</h1></header>
+    <header className="home-heading"><h1>Mes outils de la semaine</h1></header>
     <div className="home-week">
       {DAYS.map((day, index) => {
         const tools = scheduled.filter(tool => tool.publicationDay.startsWith(day))
