@@ -18,6 +18,7 @@ import { instrumentOption } from '../src/data/asset-selection.js';
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
 import { portfolioPostName as portfolioAssetLabel } from '../src/pages/portfolio-generator/postEditorial.js';
 import { DILEMMES, SITUATIONS } from '../src/pages/tweet-midi/data/dilemmes.js';
+import { FICHE_LEXIQUE_SUBJECTS, getFicheLexiqueText } from '../src/pages/tweet-midi/data/ficheLexique.js';
 // Tests Playwright par outil — navigateur réel (Chromium), un "write→look once" formalisé en
 // script réutilisable plutôt que refait à la main à chaque changement. Committé le 14/09/2026
 // (audit "outils", documenté comme "à committer" dans scripts/README.md).
@@ -559,6 +560,28 @@ async function testBrokerComparator(page) {
   valid &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
   record('Comparatif courtiers', valid, '28 duels : texte court, réserves, sources, copie après modification et image PNG');
+}
+
+async function testLexicon(page) {
+  await page.goto(`${BASE}/fiche-lexique`, { waitUntil: 'networkidle' });
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+    configurable: true, value: { writeText: async text => { window.__lexiconCopied = text; } },
+  }));
+  const subjects = FICHE_LEXIQUE_SUBJECTS.flatMap(group => group.items);
+  const failed = [];
+  for (const subject of subjects) {
+    await choose(page.locator('#subject-select'), subject.id);
+    await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
+    const expected = getFicheLexiqueText(subject.id);
+    const post = await page.locator('pre').innerText();
+    await page.getByRole('button', { name: /Copier le texte|Copié ✓/ }).click();
+    const copied = await page.evaluate(() => window.__lexiconCopied);
+    if (post !== expected || copied !== expected || /undefined|NaN/.test(post)) failed.push(subject.id);
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobile = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  await page.setViewportSize({ width: 1280, height: 720 });
+  record('Fiche lexique', failed.length === 0 && mobile, `${subjects.length} situations, génération et copie exactes, mobile ; échecs : ${failed.join(', ') || 'aucun'}`);
 }
 
 async function testTweetMidi(page) {
@@ -1141,6 +1164,8 @@ try {
     await testInvestorIntroductions(page);
   } else if (process.argv.includes('--market-facts')) {
     await testMarketFacts(page);
+  } else if (process.argv.includes('--lexicon')) {
+    await testLexicon(page);
   } else if (process.argv.includes('--broker')) {
     await testBrokerComparator(page);
   } else {
@@ -1153,6 +1178,7 @@ try {
   await testEtfSheets(page);
   await testBrokerComparator(page);
   await testTweetMidi(page);
+  await testLexicon(page);
   await testFeeImpact(page);
   await testDataReuse(page);
   await testMarketFacts(page);
