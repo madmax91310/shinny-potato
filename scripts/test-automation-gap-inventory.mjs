@@ -60,6 +60,12 @@ assert(r.insuranceGaps.some(g=>g.id==='placement-direct-vie'&&g.field==='ceiling
 assert(!r.insuranceGaps.some(g=>g.id==='linxea-spirit-2'));
 const completeInsurance=[{id:'test',name:'Test',checkedAt:'2026-10-09',euroFunds:[{name:'Fonds',maxAllocation:100,ceiling:1000000}]}];
 assert.deepEqual(buildGapInventory({insurance:completeInsurance}).insuranceGaps,[]);
+const noCeiling=structuredClone(completeInsurance);
+noCeiling[0].euroFunds[0].ceiling=null;
+assert.equal(buildGapInventory({insurance:noCeiling}).insuranceGaps.length,1);
+noCeiling[0].euroFunds[0].ceilingEvidence={status:'unlimited'};
+assert.deepEqual(buildGapInventory({insurance:noCeiling}).insuranceGaps,[]);
+assert(!r.insuranceGaps.some(g=>g.id==='linxea-zen'));
 
 assert.equal(calendarEligibility('FR001400ZGO4','2026-10-10').firstCompleteYear,2026);
 assert.equal(classifyInstrumentGap('FR001400ZGO4','performance','2026-10-10').status,'waiting-first-year');

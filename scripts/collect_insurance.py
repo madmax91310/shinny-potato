@@ -1,5 +1,6 @@
 """Collect named life-insurance contracts from public distributor publications."""
 import argparse
+import hashlib
 import datetime as dt
 import json
 import math
@@ -90,6 +91,7 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
     max_allocation = number(required(r'Accessible à ([\d,.]+)\s*%', card).group(1)) if 'Accessible à' in card else None
     valid_until = None
     notes = None
+    ceiling_evidence = None
     if id_ in ('linxea-zen', 'linxea-vie'):
         body = required(r'Fonctionnement des Fonds euros de ' + re.escape(PRODUCTS[id_]['name']) + r'(.*)', text).group(1)
         body_label = name if id_ == 'linxea-zen' else label
@@ -98,7 +100,11 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
         ceiling = None
         if id_ == 'linxea-zen':
             max_allocation = number(required(r'^([\d,.]+)\s*% en fonds', card).group(1))
-            required(r'sans limite de montant et sans conditions d’unités de compte', body)
+            clause = required(r'Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte', body).group(0)
+            ceiling_evidence = {'status':'unlimited', 'checkedAt':today.isoformat(),
+                'sourceUrl':url, 'statement':clause,
+                'scope':'Souscriptions, versements complémentaires et programmés',
+                'sha256':hashlib.sha256(html.encode()).hexdigest()}
             if label == 'Euroflex':
                 management = number(required(r'([\d,.]+)\s*% de frais de gestion annuel', body).group(1))
                 guarantee = number(required(r'Garantie en capital à hauteur de ([\d,.]+)\s*%', body).group(1))
@@ -159,6 +165,7 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
         ceiling = None
     return {'name': name, 'years': years, 'asOf': f'{max(values)}-12-31', 'guarantee': guarantee,
             'managementFeeMax': management, 'maxAllocation': max_allocation, 'ceiling': ceiling,
+            **({'ceilingEvidence':ceiling_evidence} if ceiling_evidence else {}),
             'operations': operations, 'notes': notes, 'accessValidUntil': valid_until, 'sourceUrls': [url] + ([BASE+id_+'/'] if id_ == 'linxea-vie' and label == 'Netissima' else []), 'sourceUrl': url}
 
 
@@ -172,6 +179,13 @@ def validate(record, today):
     if not finite(record['supports']['minimumCount'], 1, 10000) or not 1 <= len(record['euroFunds']) <= 5 or len({f['name'] for f in record['euroFunds']}) != len(record['euroFunds']):
         raise ValueError('Incomplete contract')
     for fund in record['euroFunds']:
+        evidence = fund.get('ceilingEvidence')
+        if evidence and (evidence.get('status') != 'unlimited' or fund.get('ceiling') is not None
+                or not evidence.get('statement') or not evidence.get('scope')
+                or evidence.get('sourceUrl') not in fund.get('sourceUrls', [])
+                or evidence.get('checkedAt') != today.isoformat()
+                or not re.fullmatch(r'[a-f0-9]{64}', evidence.get('sha256', ''))):
+            raise ValueError('Invalid unlimited ceiling evidence')
         years = fund['years']
         year = completed_year([y['year'] for y in years],today)
         if years != sorted(years,key=lambda y:y['year']) or fund['asOf'] != f'{year}-12-31':
@@ -252,6 +266,8 @@ def refresh(previous, adapters, today):
             if old:
                 for fund in record['euroFunds']:
                     before = next(o for o in old['euroFunds'] if o['name'] == fund['name'])
+                    if before.get('ceilingEvidence', {}).get('status') == 'unlimited' and not fund.get('ceilingEvidence') and fund.get('ceiling') is None:
+                        raise ValueError('Qualified unlimited ceiling disappeared: ' + fund['name'])
                     for field in ('guarantee', 'maxAllocation', 'ceiling', 'accessValidUntil'):
                         if before.get(field) is not None and fund.get(field) is None:
                             raise ValueError('Qualified fund condition disappeared: ' + fund['name'] + ' / ' + field)

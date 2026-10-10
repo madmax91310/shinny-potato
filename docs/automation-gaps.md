@@ -122,8 +122,6 @@ Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les con
 |---|---|---|---|---|
 | Linxea Avenir 2 | Suravenir Opportunités 2 | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Linxea Avenir 2 | Suravenir Rendement 2 | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Linxea Zen | Apicil Euroflex | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Linxea Zen | Apicil Euro Garanti | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Linxea Vie | Netissima | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Linxea Vie | Eurossima | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
 | Lucya Cardif | Fonds général | Plafond en euros | 2026-10-10 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |

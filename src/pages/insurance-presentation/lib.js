@@ -28,7 +28,10 @@ function presentationReading(record) {
   return [observations[record.id], common].filter(Boolean).join('\n\n')
 }
 export const fundOperations = (fund, today = todayIso()) => accessExpired(fund, today) ? '' : fund.operations
-export const fundCeiling = (fund, today = todayIso()) => accessExpired(fund, today) || fund.ceiling != null ? '' : 'Le plafond en euros applicable à l’opération reste à confirmer auprès du distributeur.'
+export const fundCeiling = (fund, today = todayIso()) => accessExpired(fund, today) || fund.ceiling != null ? ''
+  : fund.ceilingEvidence?.status === 'unlimited'
+    ? 'Sans limite de montant pour les souscriptions, versements complémentaires et programmés.'
+    : 'Le plafond en euros applicable à l’opération reste à confirmer auprès du distributeur.'
 export const fundAllocation = (fund, today = todayIso()) => accessExpired(fund, today)
   ? `Conditions d’accès échues le ${fund.accessValidUntil.split('-').reverse().join('/')} ; les nouvelles conditions restent à confirmer.`
   : fund.maxAllocation == null
