@@ -3,6 +3,21 @@ import { readFileSync } from 'node:fs'
 import { BROKERS, buildTweet } from '../src/pages/broker-comparator/data.js'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 import { BROKER_LOGOS } from '../src/pages/broker-comparator/versus-image.js'
+import { brokerPublicationCopy, brokerWeakPoint } from '../src/pages/broker-comparator/publicationCopy.js'
+import { BROKER_EDITORIAL } from '../src/pages/broker-comparator/editorial.js'
+
+// La reformulation conserve tous les nombres et laisse passer les prochaines
+// publications, même si le collecteur change de vocabulaire ou de disponibilité.
+const numbers = text => text.match(/\d+(?:[ .,]\d+)*\s*(?:%|€|USD)?/g) ?? [];
+for (const copy of Object.values(BROKER_EDITORIAL)) {
+  for (const value of Object.values(copy)) {
+    for (const text of typeof value === 'string' ? [value] : Array.isArray(value) ? value : []) {
+      assert.deepEqual(numbers(brokerPublicationCopy(text)), numbers(text));
+    }
+  }
+}
+assert.equal(brokerPublicationCopy('Nouveau tarif : 0,17 %. Service suspendu depuis le 12/10/2026.'), 'Nouveau tarif : 0,17 %. Service suspendu depuis le 12/10/2026.');
+assert.equal(brokerWeakPoint({dca: 'Disponibilité à confirmer.', faible: 'Disponibilité à confirmer.'}), 'Disponibilité à confirmer.');
 
 assert.deepEqual(Object.keys(BROKER_LOGOS).sort(), BROKERS.map((b) => b.id).sort(), 'un logo officiel par courtier')
 for (const [id, logo] of Object.entries(BROKER_LOGOS)) {
@@ -111,7 +126,7 @@ for (let i = 0; i < BROKERS.length; i++) {
       assert(!/\n{3,}/.test(post), `${ids}: sauts de ligne superflus`);
       for (const heading of headings) assert(section(post, heading)?.trim(), `${ids}: rubrique ${heading} vide`);
       assert(post.includes('PEA : les deux ✅'), `${ids}: PEA commun confirmé`);
-      for (const id of ids) assert(section(post, headings[5]).includes(BROKER_EVIDENCE[id].ifu.summary), `${ids}: IFU raccordé à la preuve officielle`);
+      for (const id of ids) assert(section(post, headings[5]).includes(brokerPublicationCopy(BROKER_EVIDENCE[id].ifu.summary)), `${ids}: IFU raccordé à la preuve officielle`);
       assert(post.includes('⚠️ Pas un conseil financier'), `${ids}: mention finale`);
       assert.equal(post.includes('je suis affilié à XTB'), ids.includes('xtb'), `${ids}: transparence affiliation`);
       assert.equal(post.includes('🎁 Les offres'), ids.some(id => ['bourso', 'fortuneo', 'bd', 'saxo'].includes(id)), `${ids}: offres`);
@@ -122,7 +137,7 @@ for (let i = 0; i < BROKERS.length; i++) {
         assert(section(post, headings[7]).includes(`Vers ${name} : `), `${ids}: transfert entrant ${name}`);
         assert.equal(BROKER_EVIDENCE[id].transfert.status, 'confirmé');
         assert.equal(BROKER_EVIDENCE[id].ifu.status, 'confirmé');
-        assert(section(post, headings[1]).includes(BROKER_EVIDENCE[id].change.post), `${ids}: change raccordé au registre`);
+        assert(section(post, headings[1]).includes(brokerPublicationCopy(BROKER_EVIDENCE[id].change.post)), `${ids}: change raccordé au registre`);
         if (BROKER_EVIDENCE[id].cash.status === 'corroboré') assert(section(post, headings[6]).includes('selon les analyses consultées'), `${ids}: réserve cash`);
         if (BROKER_EVIDENCE[id].dca.status === 'corroboré') assert(/analyses|divergent/.test(section(post, headings[2])), `${ids}: réserve DCA`);
       }
