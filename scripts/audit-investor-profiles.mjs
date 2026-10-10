@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { INVESTOR_PROFILES, investorIntroduction } from '../src/data/investor-profiles.js'
-import { INVESTORS, buildTweet, normalizePortfolio, portfolioCompanies, portfolioEditorial, movementExcerpt } from '../src/pages/investor-portfolio/data.js'
+import { INVESTORS, buildTweet, normalizePortfolio, portfolioCompanies, portfolioEditorial, movementExcerpt, dateFR, percentage } from '../src/pages/investor-portfolio/data.js'
 assert.deepEqual(Object.keys(INVESTOR_PROFILES).sort(), INVESTORS.map(([id]) => id).sort())
 for (const [slug, displayName] of INVESTORS) {
   const profile = INVESTOR_PROFILES[slug]
@@ -14,8 +14,8 @@ for (const [slug, displayName] of INVESTORS) {
   assert(tweet.includes(investorIntroduction(slug)))
   assert(tweet.includes('💼 Ses principales positions au 30 juin 2026'))
   assert(tweet.includes('Cette ligne représente') && !tweet.includes('Ces cinq lignes'))
-  assert(tweet.startsWith('📊 ') && tweet.split('\n')[0].includes('42,0 %'))
-  for (const label of ['💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '💬 ']) assert(tweet.includes(label))
+  assert(/\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet.split('\n')[0]), 'Une accroche personnelle')
+  for (const label of ['💼 Ses principales positions', '💬 ']) assert(tweet.includes(label))
   assert(!/undefined|NaN|\\\\n/.test(tweet))
   assert(!tweet.includes('place-t-il'))
   assert(buildTweet(portfolio, 'Ma présentation.').includes('Ma présentation.'))
@@ -45,7 +45,7 @@ assert.equal(portfolioCompanies([{ issuerName: 'Alphabet Inc.', ticker: 'GOOGL',
 const identity = { slug: 'tepper', displayName: 'David Tepper', entityName: 'Déclarant de test' }
 const make = holdings => ({ identity, snapshot: { periodEnd: '2026-06-30' }, holdings })
 const liLu = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/li-lu.json', import.meta.url), 'utf8')))
-assert.equal(portfolioEditorial(liLu).hook, '📊 Près de 95 % sur seulement 4 entreprises : voici le portefeuille déclaré de Li Lu 👇')
+assert(portfolioEditorial(liLu).explanation.includes('85,1 %'))
 assert(buildTweet(make(splitClasses)).includes('52,0 %'))
 const balanced = Array.from({ length: 10 }, (_, i) => ({ issuerName: 'Société ' + i, ticker: 'T' + i, weight: .1 }))
 assert(!portfolioEditorial(make(balanced)).hook.includes('seulement'))
@@ -76,16 +76,16 @@ assert.equal(movementExcerpt({ holdings: movements.holdings }), '')
 assert.equal(movementExcerpt({ ...movements, holdings: [], quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [] } }), '')
 const withMoves = buildTweet({ ...make(movements.holdings), snapshot: movements })
 assert(withMoves.indexOf('🔄 Quelques mouvements') > withMoves.indexOf('💼 Ses principales positions'))
-assert(withMoves.indexOf('🔄 Quelques mouvements') < withMoves.indexOf('🔍 Ce qui distingue'))
+assert(withMoves.indexOf('🔄 Quelques mouvements') < withMoves.indexOf('À elles seules'))
 console.log('Encart mouvements : quatre lignes, quantités, classes distinctes, options exclues et comparaison manquante validés.')
 
 const baker = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/baker-bros.json', import.meta.url), 'utf8')))
 const renaissance = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/renaissance.json', import.meta.url), 'utf8')))
-assert(buildTweet(baker).includes('👥 Qui sont-ils ?'))
-assert(buildTweet(baker).includes('portefeuille déclaré des frères Baker'))
-assert(buildTweet(renaissance).includes('🏛️ Qui est-ce ?'))
+assert(buildTweet(baker).includes('Felix et Julian Baker'))
+assert(buildTweet(baker).includes('positions des frères Baker'))
+assert(buildTweet(renaissance).includes('société de gestion quantitative'))
 assert(buildTweet(renaissance).includes('décédé en 2024'))
-assert(buildTweet(renaissance).includes('portefeuille déclaré de Renaissance Technologies'))
+assert(buildTweet(renaissance).includes('Chez Renaissance Technologies'))
 assert(!buildTweet(renaissance).includes('portefeuille déclaré de Jim Simons'))
 console.log('Baker Bros et Renaissance : identités collectives et fondateur historique correctement distingués.')
 
@@ -99,39 +99,45 @@ for (const review of reviews) {
 }
 console.log('Calendrier : métadonnées synchronisées pour tous les investisseurs, sans charger leurs positions.')
 
-// Editorial endings must follow the current holdings, even after a quarterly refresh.
+// All named observations must follow the current holdings after a refresh.
 const readPortfolio = slug => normalizePortfolio(JSON.parse(readFileSync(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8')))
-const ackmanEditorial = portfolioEditorial(make([
-  { issuerName: 'Uber', ticker: 'UBER', weight: .127 },
-  { issuerName: 'Brookfield Corp', ticker: 'BN', weight: .126 },
-  { issuerName: 'Autre', ticker: 'OTHER', weight: .12 },
-]))
-assert(ackmanEditorial.explanation.includes('presque à égalité'))
-assert(ackmanEditorial.question.includes('Uber ou Brookfield'))
-const thielEditorial = portfolioEditorial(make([.282, .181, .141, .101, .096, .08, .07, .049].map((weight, i) => ({ issuerName: i === 0 ? 'Amazon' : 'Entreprise ' + i, ticker: i === 0 ? 'AMZN' : 'T' + i, weight }))))
-assert(thielEditorial.explanation.includes('3 positions hors du top 5'))
-assert(thielEditorial.question.includes('plus d’un quart de ton portefeuille sur Amazon'))
-const nearLeaders = [ .28, .277, .09, .08, .07, .06, .06, .06, .023 ].map((weight, i) => ({ issuerName: 'Société ' + i, ticker: 'S' + i, weight }))
-const nearEditorial = portfolioEditorial(make(nearLeaders))
-assert(nearEditorial.hook.includes('4 entreprises'))
-assert(nearEditorial.explanation.includes('5 premières entreprises représentent 79,7 %'))
-assert(nearEditorial.explanation.includes('4 autres entreprises se partagent les 20,3 %'))
-const singleRest = portfolioEditorial(make([.18, .177, .17, .16, .16, .153].map((weight, i) => ({ issuerName: 'Société ' + i, ticker: 'S' + i, weight }))))
-assert(singleRest.explanation.includes('L’autre entreprise représente les 15,3 %'))
-const dominant = portfolioEditorial(make([{ issuerName: 'Leader', ticker: 'LEAD', weight: .65 }, { issuerName: 'Autre', ticker: 'OTHER', weight: .35 }]))
-assert(dominant.explanation.includes('65,0 % contre 35,0 %'))
-assert(dominant.question.includes('Leader à 65,0 %'))
-const fundEnding = portfolioEditorial(make([fund]))
-assert(fundEnding.question.includes('une seule ligne'))
-assert(!fundEnding.question.includes('entreprise'))
-const nearlyAll = portfolioEditorial(make([.4332, .3053, .2611, .0004].map((weight, i) => ({ issuerName: 'Entreprise ' + i, ticker: 'E' + i, weight }))))
-assert(nearlyAll.question.includes('près de 100 % sur 3 entreprises'))
-const questions = new Set()
+const fallbackRows = [
+  { issuerName: 'Leader nouveau', ticker: 'NEW', weight: .65 },
+  { issuerName: 'Autre nouvelle entreprise', ticker: 'OTHER', weight: .35 },
+]
+const oldNames = /Micron|TSMC|Sandisk|Howard Hughes|Microsoft|Brookfield|Vista Energy|Warrior Met Coal|Transocean|Moody’s|Incyte|Lam Research|Alphabet/
+const hooks = new Set(), observations = new Set()
 for (const [slug] of INVESTORS) {
-  const portfolio = readPortfolio(slug), before = JSON.stringify(portfolio), ending = portfolioEditorial(portfolio)
+  const portfolio = readPortfolio(slug), before = JSON.stringify(portfolio)
+  const editorial = portfolioEditorial(portfolio), tweet = buildTweet(portfolio)
   assert.equal(JSON.stringify(portfolio), before, 'La rédaction ne modifie pas les données')
-  assert(!ending.question.includes('Quelle position ou quelle répartition'))
-  assert(ending.question.endsWith('?'))
-  questions.add(ending.question)
+  assert(!/undefined|NaN|\\n/.test(tweet))
+  assert(!tweet.includes('📄 Positions issues') && !tweet.includes('🔍 Ce qui distingue'))
+  assert(tweet.includes(dateFR(portfolio.snapshot.periodEnd)))
+  for (const row of editorial.top) assert(tweet.includes(percentage(row.weight)))
+  assert(editorial.question.endsWith('?'))
+  hooks.add(editorial.hook); observations.add(editorial.explanation)
+  const refreshed = { ...portfolio, holdings: fallbackRows }
+  const changed = portfolioEditorial(refreshed)
+  assert(!oldNames.test(changed.explanation), `${slug}: anciennes positions retirées du commentaire`)
+  assert(changed.explanation.includes('100,0 %'), `${slug}: nouvelle concentration prise en compte`)
+  assert(buildTweet(refreshed).includes('65,0 %'))
 }
-console.log(`${questions.size} conclusions et questions personnalisées : concentration, égalité, complément du top 5 et arrondi vérifiés.`)
+assert.equal(hooks.size, INVESTORS.length)
+assert.equal(observations.size, INVESTORS.length)
+const ackman = readPortfolio('ackman')
+assert(buildTweet(ackman).includes('Microsoft et Amazon aux côtés'))
+assert(buildTweet(ackman).includes('57,9 %'))
+const refreshedAckman = { ...ackman, holdings: ackman.holdings.filter(row => row.ticker !== 'BN') }
+assert(!portfolioEditorial(refreshedAckman).explanation.includes('Brookfield'))
+const renaissanceEditorial = portfolioEditorial(readPortfolio('renaissance'))
+assert(renaissanceEditorial.explanation.includes('2\u202f970 positions'))
+assert(renaissanceEditorial.explanation.includes('8,1 %'))
+const concentrated = portfolioEditorial(make(fallbackRows))
+assert(concentrated.explanation.includes('65,0 % contre 35,0 %'))
+const near = portfolioEditorial(make([{ issuerName: 'A', ticker: 'A', weight: .28 }, { issuerName: 'B', ticker: 'B', weight: .277 }, { issuerName: 'C', ticker: 'C', weight: .1 }]))
+assert(near.explanation.includes('presque à égalité'))
+const memory = readPortfolio('aschenbrenner')
+const reducedMemory = { ...memory, holdings: memory.holdings.map(row => ['MU', 'SNDK'].includes(row.ticker) ? { ...row, weight: .005 } : row).sort((a,b) => b.weight - a.weight) }
+assert(!portfolioEditorial(reducedMemory).explanation.includes('stockage et la mémoire'))
+console.log(`${hooks.size} accroches et commentaires personnels : données courantes, disparition des anciennes lignes et changements de poids vérifiés.`)
