@@ -157,6 +157,16 @@ const actorQuestions = {
   immobilier: 'Tu as déjà prêté de l’argent pour financer un projet immobilier ?',
   art: 'Tu envisagerais d’investir dans une œuvre d’art ?',
 }
+// Keep collected terms intact; simplify only known wording in the published text.
+const actorPublicationCopy = text => text
+  .replace('Gains éventuels lors des distributions et cessions des fonds ; aucune performance réalisée du mandat n’est qualifiée.', 'Les gains éventuels viennent des sommes distribuées et de la vente des investissements par les fonds.')
+  .replace('Échéance du titre indiquée dans les termes et conditions de la levée ; aucune durée commune qualifiée.', 'La date de remboursement est indiquée dans les conditions de chaque collecte. Elle varie selon le projet.')
+  .replace('Durée du titre propre au projet ; aucun délai commun qualifié.', 'La durée de l’obligation dépend du projet : vérifie sa date de remboursement dans les documents de l’offre.')
+  .replace('Formule tarifaire grand public sous mandat ; stratégie et fonds à choisir séparément.', 'Ces tarifs concernent la formule grand public sous mandat. Il reste à choisir la stratégie et les fonds.')
+  .replace('OCA d’une SAS ; modalités générales, œuvre et émetteur à sélectionner séparément.', 'Ces conditions générales concernent des obligations convertibles en actions (OCA) d’une SAS. Il reste à choisir l’œuvre et la société qui émet les titres.')
+  .replace('SLP de private equity européen ; souscriptions clôturées, présentation informative.', 'Ce fonds de private equity européen prend la forme d’une société de libre partenariat (SLP). Les souscriptions sont clôturées.')
+  .replace('l’émetteur, le coupon et l’échéance dépendent du projet.', 'la société qui emprunte, les intérêts et la date de remboursement dépendent du projet.')
+
 export function buildActorTweet(record) {
   return [
     `${record.intro}\n\nVoici les détails 👇`,
@@ -172,12 +182,11 @@ export function buildActorTweet(record) {
     ] : []),
     `🚪 Si tu veux récupérer ton argent\n${record.liquidity}`,
     ...(record.selectedOffer ? [
-      `🔎 Avant d’investir, voici ce qu’il reste à vérifier\n${record.selectedOffer.scope}\nÀ compléter : ${record.selectedOffer.missing.join(' ; ')}.`,
-      ...record.selectedOffer.warnings.map(warning => `🔎 Point à confirmer\n${warning}`),
+      `🔎 Avant d’investir, voici ce qu’il reste à vérifier\n${record.selectedOffer.scope}\nÀ demander ou à confirmer : ${record.selectedOffer.missing.join(' ; ')}.${record.selectedOffer.warnings.length ? `\n${record.selectedOffer.warnings.join('\n')}` : ''}`,
     ] : []),
     `⚠️ Les risques à comprendre\n${record.risks}\nLe capital et les revenus ne sont pas garantis.`,
-    `📌 Ces informations concernent l’offre présentée. ${record.selectedOffer?.availability?.status === 'closed' ? 'Les souscriptions sont clôturées ; consulte ses documents pour comprendre les conditions présentées.' : 'Vérifie qu’elle est ouverte à la souscription et demande ses documents contractuels.'} Les coûts non publiés et les performances réalisées ne sont pas qualifiés dans cette fiche.`,
+    `📌 Ces informations concernent l’offre présentée. ${record.selectedOffer?.availability?.status === 'closed' ? 'Les souscriptions sont clôturées ; consulte ses documents pour comprendre les conditions présentées.' : 'Vérifie qu’elle est ouverte à la souscription et demande ses documents contractuels.'} Cette fiche ne fournit pas de bilan des rendements effectivement obtenus. Les frais absents des documents publics restent à vérifier.`,
     `📚 Sources officielles consultées le ${record.checkedAt.split('-').reverse().join('/')} :\n${record.sources.map(row => row.url).join('\n')}`,
     `💬 ${actorQuestions[record.family] ?? 'Tu connaissais ce type de placement ?'}`,
-  ].join('\n\n')
+  ].map(actorPublicationCopy).join('\n\n')
 }
