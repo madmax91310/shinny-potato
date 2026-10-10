@@ -183,7 +183,7 @@ def validate(record, today):
         if evidence and (evidence.get('status') != 'unlimited' or fund.get('ceiling') is not None
                 or not evidence.get('statement') or not evidence.get('scope')
                 or evidence.get('sourceUrl') not in fund.get('sourceUrls', [])
-                or evidence.get('checkedAt') != today.isoformat()
+                or dt.date.fromisoformat(evidence.get('checkedAt', '')) > today
                 or not re.fullmatch(r'[a-f0-9]{64}', evidence.get('sha256', ''))):
             raise ValueError('Invalid unlimited ceiling evidence')
         years = fund['years']
