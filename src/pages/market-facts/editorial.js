@@ -10,11 +10,6 @@ export const EDITORIAL = {
     context: 'Pourtant, ce genre de baisse revient régulièrement dans l’histoire des marchés. Hartford Funds a recensé 27 épisodes de ce type sur le S&P 500 depuis 1928.\n\nOn les appelle des « bear markets » : l’indice perd au moins 20 % entre un sommet et le creux qui suit.',
     twist: 'Ce qui me frappe, c’est qu’on peut savoir que ces baisses font partie de l’histoire de la Bourse et quand même avoir du mal à les accepter. Avec ses propres économies investies, le chiffre devient beaucoup moins abstrait.\n\nJe ne suis pas sûr que me rappeler les épisodes précédents suffirait à me rassurer pendant le suivant.',
   },
-  'corrections-ampleur-moyenne': {
-    hook: 'Quand je lis « baisse moyenne de 33,5 % », je pense surtout à ce que ça représente pour quelqu’un qui a mis des années à épargner 🫠',
-    context: 'C’est la baisse moyenne des bear markets du S&P 500 depuis 1929 dans la série de Dow Jones Market Data.\n\nMais certains épisodes ont été beaucoup plus violents. Entre 1929 et 1932, la chute atteint 86,2 % dans cette même série.',
-    twist: 'Le mot « moyenne » peut donner l’impression qu’on sait à quoi s’attendre. Pourtant, pendant la chute, impossible de savoir si elle s’arrêtera avant ou si elle ira beaucoup plus loin. C’est cette incertitude que je trouverais la plus difficile à gérer.\n\nAvant 1957, cette histoire repose sur les indices prédécesseurs du S&P 500 actuel.',
-  },
   'corrections-48-depuis-guerre': {
     hook: 'À moins 10 %, je me demanderais probablement si c’est une correction passagère ou le début d’une baisse beaucoup plus forte.',
     context: 'Depuis la Seconde Guerre mondiale, Carson Group a recensé 48 corrections de cette ampleur sur le S&P 500. Douze ont fini par atteindre une baisse d’au moins 20 %.\n\nLes autres se sont donc arrêtées avant ce seuil, même si, sur le moment, les investisseurs ne pouvaient pas connaître la suite.',
@@ -30,35 +25,15 @@ export const EDITORIAL = {
     context: 'En pleine crise bancaire, Roosevelt a fait fermer temporairement les banques du pays. Elles commencent ensuite à rouvrir.\n\nLe 15 mars, le Dow Jones gagne 15,34 % en une séance, sa plus forte hausse historique.',
     twist: 'Je trouve ce contraste assez fou : la meilleure journée du Dow Jones arrive dans une période où les gens viennent de perdre temporairement l’accès à leur argent.\n\nEn regardant seulement la hausse, j’aurais du mal à imaginer ce qui se passe dans le pays à ce moment-là.',
   },
-  'records-1933-meilleures-seances-sp500': {
-    hook: 'Les journées où la Bourse remonte le plus fort ne sont pas forcément celles où tout va bien.',
-    context: 'Dans la série historique prolongée du S&P 500, on retrouve une hausse de 16,61 % le 15 mars 1933, de 12,53 % le 30 octobre 1929 et de 11,58 % le 13 octobre 2008.\n\nTrois séances au milieu de crises qui ont laissé de très mauvais souvenirs aux investisseurs.',
-    twist: 'Je comprends la tentation de voir dans une hausse pareille le signe que le pire est passé. Mais replacées dans leur histoire, ces journées me rappellent qu’un gros rebond ne suffit pas à dire qu’une crise est terminée.\n\nLes chiffres de 1929 et 1933 concernent les indices prédécesseurs : le S&P 500 à 500 valeurs n’existait pas encore.',
-  },
   'records-2001-nasdaq': {
     hook: 'Le 3 janvier 2001, les investisseurs du Nasdaq voient leur indice remonter de 14,2 % en une journée 😳',
     context: 'La bulle internet a pourtant déjà éclaté et les valeurs technologiques traversent une période difficile. Mais ce jour-là, la Fed annonce une baisse surprise de ses taux et le marché rebondit brutalement.',
     twist: 'Après une hausse de 14,2 %, j’aurais probablement eu envie de croire que le marché avait enfin trouvé son point bas. Pourtant, la baisse du Nasdaq se poursuivra jusqu’en 2002.\n\nC’est ce décalage qui m’intéresse : une journée peut donner beaucoup d’espoir sans annoncer la fin des difficultés.',
   },
-  'duree-bull-bear-moyenne': {
-    hook: 'Quelques mois de baisse peuvent sembler beaucoup plus longs que plusieurs années de hausse 🫠',
-    context: 'Dans l’étude de Ned Davis Research sur le S&P 500, les phases haussières durent en moyenne 988 jours, contre 289 jours pour les bear markets, ces baisses d’au moins 20 % depuis un sommet.\n\nLes hausses prennent donc davantage de temps dans ce décompte.',
-    twist: 'Ce que je trouve difficile à imaginer, c’est de traverser ces mois de baisse sans savoir combien il en reste. Avec une date de fin, l’attente serait probablement plus facile. Mais une moyenne historique ne te donne pas cette réponse.',
-  },
-  'duree-frequence-bear-markets': {
-    hook: 'On peut avoir le temps de s’habituer à la hausse avant que la prochaine grosse baisse arrive.',
-    context: 'Dans le décompte de Ned Davis Research, le S&P 500 connaît un bear market tous les 3,5 ans en moyenne. Il s’agit d’une baisse d’au moins 20 % depuis un sommet.\n\nMais les épisodes ne sont pas espacés régulièrement : cette moyenne rassemble des histoires très différentes.',
-    twist: 'Je comprends l’envie d’attendre la prochaine grosse baisse pour investir. Mais avec un chiffre comme celui-là, je ferais attention à ne pas me fabriquer un calendrier : on peut attendre longtemps une chute, puis être surpris lorsqu’elle arrive enfin.',
-  },
   'crash-1929': {
     hook: 'Après le krach de 1929, il a fallu attendre 1954 pour revoir le Dow Jones à son ancien sommet.',
     context: 'Au départ, l’indice perd 25 % en quatre séances, entre le 24 et le 29 octobre. Mais la baisse ne s’arrête pas là : elle se poursuit jusqu’à l’été 1932 et atteint près de 89 % depuis le pic.\n\nLe retour au sommet n’arrive qu’en novembre 1954, vingt-cinq ans après.',
     twist: 'Quand je lis « vingt-cinq ans », je pense aux projets qu’on peut avoir pour cet argent. On peut accepter d’investir longtemps sans pour autant pouvoir repousser tous ses projets aussi longtemps.\n\nCe chiffre concerne toutefois le niveau nominal de l’indice, sans les dividendes reçus ni l’inflation. Ce n’est pas le bilan complet d’un investisseur.',
-  },
-  'crash-1987': {
-    hook: 'Le 19 octobre 1987, environ 604 millions de titres changent de mains, soit trois fois le volume quotidien habituel.',
-    context: 'C’est le lundi noir. Le Dow Jones perd 22,6 % et les ordres de vente s’accumulent. Le volume échangé donne une idée de l’agitation qui accompagne cette chute.',
-    twist: 'Ce qui m’intéresse derrière ces millions de titres échangés, c’est qu’il y a quelqu’un de chaque côté de la transaction. Pendant que certains veulent sortir au plus vite, d’autres acceptent d’acheter.\n\nLe retour au niveau d’avant-krach prendra ensuite environ 21 mois dans le repère de marché cité. Je trouve ça court sur un graphique, mais beaucoup moins quand j’imagine attendre avec mon argent investi.',
   },
   'crash-2000-2002': {
     hook: 'Internet allait changer le monde. Ça n’a pas empêché le Nasdaq de perdre 78 % après son sommet de mars 2000.',
@@ -84,21 +59,6 @@ export const EDITORIAL = {
     hook: 'Entre 1995 et 1999, le S&P 500 gagne au moins 20 % chaque année, dividendes réinvestis 😳',
     context: 'Cinq années de suite à ce rythme, c’est un enchaînement exceptionnel dans la série étudiée depuis 1929 par Carson Group.\n\nQuand tes placements montent autant pendant aussi longtemps, j’imagine qu’il devient tentant de trouver ça normal.',
     twist: 'La suite sera beaucoup moins agréable : la bulle internet éclate en 2000.\n\nJe me demande quelle idée de la Bourse je me serais faite en commençant au milieu de ces années de hausse. Après plusieurs années à gagner autant, ça doit devenir difficile de ne pas revoir ses attentes à la hausse.',
-  },
-  'annees-extremes': {
-    hook: 'Dans les années 1930, les investisseurs ont connu des variations assez difficiles à imaginer aujourd’hui.',
-    context: 'La série historique prolongée du S&P 500 affiche une perte de 43,8 % en 1931 et une hausse de 54 % en 1933.\n\nEntre les deux, il y a aussi l’année 1932 : ce ne sont pas deux performances qui se suivent immédiatement.',
-    twist: 'Ce qui me gêne quand on met ces deux chiffres côte à côte, c’est qu’une hausse de 54 % peut donner l’impression d’effacer facilement une perte de 43,8 %. Pourtant, elle s’applique à un capital déjà réduit, et il faut aussi tenir compte de ce qui s’est passé en 1932.\n\nCes chiffres concernent les indices prédécesseurs du S&P 500, créé dans sa forme actuelle en 1957.',
-  },
-  'annees-part-positives': {
-    hook: 'En regardant l’histoire des actions américaines, on trouve bien plus d’années positives que négatives.',
-    context: 'Dans l’étude de Dimensional portant sur environ 154 ans, près de 73 à 74 % des années civiles ont terminé dans le vert. Le périmètre est celui du marché américain, pas uniquement du S&P 500.',
-    twist: 'Je trouve cette proportion encourageante pour comprendre l’histoire du marché. Mais j’aurais du mal à m’en contenter pour décider combien investir : les années négatives existent aussi, et mon argent peut y être exposé au moment où j’en ai besoin.\n\nUne majorité d’années positives dans le passé ne promet pas que la prochaine en fera partie.',
-  },
-  'fenetres-20-ans': {
-    hook: 'Vingt ans en Bourse, ça paraît simple quand on les regarde d’un seul coup sur un graphique.',
-    context: 'Dans la série de J.P. Morgan sur les actions américaines depuis 1950, aucune période glissante de vingt ans n’affiche un rendement annualisé négatif. L’étude compare des périodes qui commencent à des dates différentes.',
-    twist: 'Ce résultat m’intéresse, mais vingt ans restent vingt ans. Je peux avoir un horizon lointain et quand même traverser des moments où mes projets changent ou où une baisse me fait douter.\n\nSur le graphique, on connaît déjà l’arrivée. Quand on investit, il faut encore vivre tout le chemin.\n\nCe résultat concerne le marché et la méthode de l’édition étudiée. Il ne garantit pas les vingt prochaines années ni le même résultat ailleurs.',
   },
   'cac40-record-21-ans': {
     hook: 'Le CAC 40 a attendu vingt et un ans pour dépasser son record de septembre 2000.',

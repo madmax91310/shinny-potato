@@ -16,7 +16,7 @@ export function buildTweet(record) {
   const hook = id.startsWith('corum-')
     ? `Tu aimerais percevoir des loyers, mais acheter et gérer un bien te freine ? ${name} permet d’investir dans de l’immobilier d’entreprise à plusieurs. Regardons ce qu’il y a derrière 👇`
     : id === 'iroko-zen'
-    ? `Investir dans l’immobilier sans chercher un appartement ni gérer les locataires, ça te parle ? Avec Iroko Zen, tu achètes des parts d’un patrimoine loué à des entreprises 👇`
+    ? `Avec Iroko Zen, tu investis dans des biens loués à des entreprises, sans gérer toi-même les locataires. Voici où va l’argent et ce que coûte cette SCPI 👇`
     : `Tu n’as pas besoin d’acheter un bien entier pour investir dans l’immobilier. Avec ${name}, tu peux devenir associé dès ${format(c.minimum)} €. Regardons où va cet argent 👇`
   const snapshotDate = snapshot.asOf ? `Au ${dateLabel(snapshot.asOf)}` : `Répartition relevée le ${dateLabel(record.checkedAt)} ; date des graphiques non précisée`
   const priceHistory = price.previousValue != null && price.previousValue !== price.value
@@ -27,7 +27,7 @@ export function buildTweet(record) {
   const reading = id.startsWith('corum-') || !['iroko-zen','remake-live'].includes(id)
     ? `Si tu regardes cette SCPI pour diversifier ton épargne, garde ces deux poids en tête : ${format(sector.value)} % en ${sector.label.toLowerCase()} et ${format(country.value)} % en ${country.label}. Une difficulté sur ces marchés aurait davantage de poids sur le patrimoine.`
     : id === 'iroko-zen'
-    ? `Ce que je regarderais aussi : la place des ${sector.label.toLowerCase()} (${format(sector.value)} %). Même avec des biens dans plusieurs pays, les loyers dépendent de la santé des entreprises qui les occupent.`
+    ? `${['Commerces', 'Bureaux', 'Entrepôts', "Locaux d’activités", "Locaux d'activités"].includes(sector.label) ? `Les ${sector.label.toLowerCase()} représentent` : `Le secteur « ${sector.label.toLowerCase()} » représente`} ${format(sector.value)} % du patrimoine dans la répartition présentée. ${sector.value >= 25 ? 'C’est une part importante, que je garde en tête en regardant les revenus distribués.' : 'C’est une exposition que je garde en tête en regardant les revenus distribués.'}\n\nLes biens sont répartis dans plusieurs pays, mais les loyers restent liés à la capacité des locataires à payer.`
     : uk && france && uk.value > france.value
       ? `Si tu pensais surtout investir dans l’immobilier français, regarde la répartition : le Royaume-Uni représente ${format(uk.value)} % du patrimoine, davantage que la France. Le marché britannique et la livre sterling ont donc leur place dans les risques à comprendre.`
       : `${country.label} représente ${format(country.value)} % du patrimoine. C’est le pays que je regarderais en premier pour comprendre à quels marchés immobiliers ton argent est exposé.`

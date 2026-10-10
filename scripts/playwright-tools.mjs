@@ -732,6 +732,7 @@ async function testMarketFacts(page) {
   const select = page.locator("[data-selector]").first();
   const count = await select.locator("[data-option]").count();
   let badCount = 0;
+  if (count !== MARKET_FACTS.length || count === 0) badCount++;
   // La source est repliée dans un <details> ("Voir le fait complet et ses précisions") depuis la
   // réécriture du 23/09/2026 — innerText() ne voit pas le contenu d'un <details> fermé (masqué au
   // rendu), donc il faut l'ouvrir avant de vérifier, sous peine de faux échec sur les 21 faits.
@@ -758,7 +759,16 @@ async function testMarketFacts(page) {
       || /Source\s*:|https?:\/\//i.test(tweet) || copied !== tweet
       || tweet !== expected || /^💬/m.test(tweet)) badCount++;
   }
-  record("Faits marquants des marchés", badCount === 0, `${count} récits : textes attendus, copie sans source, sources consultables et aucune question finale imposée ; ${badCount} échec(s)`);
+  // Un cycle aléatoire complet ne doit proposer ni fiche retirée ni répétition.
+  const seen = new Set([await select.getAttribute('data-value')]);
+  // La lecture exhaustive ci-dessus a épuisé la session : le premier tirage ouvre un nouveau cycle.
+  for (let i = 0; i < count - 1; i++) {
+    await page.getByRole('button', { name: '🔄 Fait aléatoire' }).click();
+    const id = await select.getAttribute('data-value');
+    if (seen.has(id) || !MARKET_FACTS.some(fact => fact.id === id)) badCount++;
+    seen.add(id);
+  }
+  record("Faits marquants des marchés", badCount === 0, `${count} récits : sélection, cycle aléatoire, textes, copie et sources ; ${badCount} échec(s)`);
 }
 
 async function testTweetBank(page) {
@@ -1183,6 +1193,10 @@ try {
     await testInvestorIntroductions(page);
   } else if (process.argv.includes('--market-facts')) {
     await testMarketFacts(page);
+  } else if (process.argv.includes('--etfs')) {
+    await testEtfSheets(page);
+  } else if (process.argv.includes('--data-search')) {
+    await testDataSearch(page);
   } else if (process.argv.includes('--lexicon')) {
     await testLexicon(page);
   } else if (process.argv.includes('--index-stories')) {
