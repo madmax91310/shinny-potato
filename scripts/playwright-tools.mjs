@@ -6,6 +6,7 @@ import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as bui
 import { buildReview } from '../src/pages/data-review/lib.js';
 import { BROKER_EVIDENCE } from '../src/pages/broker-comparator/evidence.js';
 import { BROKER_EDITORIAL } from '../src/pages/broker-comparator/editorial.js';
+import { brokerPublicationCopy } from '../src/pages/broker-comparator/publicationCopy.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { FACTS as MARKET_FACTS } from '../src/pages/market-facts/data.js';
@@ -544,10 +545,10 @@ async function testBrokerComparator(page) {
     ? `Pour quitter l’un ou l’autre : ${BROKER_EDITORIAL.xtb.sortant}`
     : `Pour quitter XTB : ${BROKER_EDITORIAL.xtb.sortant}\n\nPour quitter Saxo : ${BROKER_EDITORIAL.saxo.sortant}`;
   valid &&= post.startsWith('⚫ XTB ou ⚪ Saxo pour ton PEA ?')
-    && post.includes(`💱 Si une conversion est nécessaire\n\nXTB : ${BROKER_EVIDENCE.xtb.change.post}\n\nSaxo : ${BROKER_EVIDENCE.saxo.change.post}`)
+    && post.includes(brokerPublicationCopy(`💱 Si une conversion est nécessaire\n\nXTB : ${BROKER_EVIDENCE.xtb.change.post}\n\nSaxo : ${BROKER_EVIDENCE.saxo.change.post}`))
     && post.includes('PEA Jeune : aucun des deux ❌')
-    && post.includes(BROKER_EVIDENCE.xtb.ifu.summary) && post.includes(BROKER_EVIDENCE.saxo.ifu.summary)
-    && post.includes(outgoing);
+    && post.includes(brokerPublicationCopy(BROKER_EVIDENCE.xtb.ifu.summary)) && post.includes(brokerPublicationCopy(BROKER_EVIDENCE.saxo.ifu.summary))
+    && post.includes(brokerPublicationCopy(outgoing));
   await page.locator('.bc-evidence-broker').last().locator('summary').click();
   valid &&= (await page.locator('.bc-evidence').innerText()).includes('VIP')
     && (await page.locator('.bc-evidence').innerText()).includes('Conversion de devises');

@@ -1,5 +1,6 @@
 import { BROKER_EVIDENCE } from './evidence.js';
 import { BROKER_EDITORIAL } from './editorial.js';
+import { brokerPublicationCopy, brokerWeakPoint } from './publicationCopy.js';
 
 export function buildBrokerTweet(brokers) {
   if (brokers.length !== 2 || brokers.some(b => !b)) return '';
@@ -37,9 +38,9 @@ export function buildBrokerTweet(brokers) {
     common('🧾 IFU',x => copy(x).ifu ?? BROKER_EVIDENCE[x.id].ifu.summary,text => text),
     cash,
     transfers,
-    pair('⚠️ Le point faible à retenir', x => copy(x).faible),
+    pair('⚠️ Le point faible à retenir', x => brokerWeakPoint(copy(x))),
     '💬 Tu es chez quel courtier, et qu’est-ce qui a fait la différence dans ton choix ?',
     '⚠️ Pas un conseil financier',
     brokers.some(x => x.id === 'xtb') && '🤝 Par souci de transparence : je suis affilié à XTB, mais ce comparatif est réalisé de ma propre initiative, sans rémunération pour cette publication ni lien affilié.',
-  ].filter(Boolean).join('\n\n');
+  ].filter(Boolean).map(brokerPublicationCopy).join('\n\n');
 }
