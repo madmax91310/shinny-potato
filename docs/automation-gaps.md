@@ -94,7 +94,7 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
-| index | Russell 1000 (russell-1000) | holdings | Non publié | La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué. |
+| index | Russell 1000 (russell-1000) | holdings · photographie mensuelle | Attente de publication | Poids trimestriels officiels intégrés au 2026-06-30, avec leur propre date. Poids individuels absents de la fiche mensuelle au 2026-09-30 ; les deux photographies restent séparées. |
 | index | Bitcoin (bitcoin) | constituents | Non applicable | Sous-jacent sans composition actions. |
 | index | Bitcoin (bitcoin) | countries | Non applicable | Sous-jacent sans composition actions. |
 | index | Bitcoin (bitcoin) | sectors | Non applicable | Sous-jacent sans composition actions. |

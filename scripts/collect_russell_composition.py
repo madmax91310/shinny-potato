@@ -13,6 +13,53 @@ from issuer_documents import download, pdf_text, proof, document_date, validated
 from collect_index_documents import ICB_INDUSTRIES, SECTOR_LABELS
 
 NAMES = set(ICB_INDUSTRIES.values())
+WEIGHTS_URL = 'https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000'
+
+def quarterly_holdings(text, now):
+    """Read the exact-index quarterly membership report, not an ETF basket."""
+    dates = re.findall(r'^(\w+ \d{1,2}, 20\d{2}) Page \d+ of \d+\s*$', text, re.M)
+    if not dates or len(set(dates)) != 1:
+        reject('Russell quarterly membership date ambiguous')
+    stamp = document_date(dates[0], now, max_age=180)
+    date = dt.date.fromisoformat(stamp)
+    if (date.month, date.day) not in ((3,31), (6,30), (9,30), (12,31)):
+        reject('Russell membership report is not quarter-end')
+    rows = []
+    for page in text.split('\f'):
+        if 'Weight(%)' not in page:
+            continue
+        headings = re.findall(r'^([^\n]+) Weight\(%\) Country\s*$', page, re.M)
+        if not headings or any(h.strip() != 'Russell 1000®' for h in headings):
+            reject('Wrong Russell quarterly index identity')
+        if 'ESMA Compliance Quarterly Membership Weights' not in page:
+            reject('Russell membership report heading missing')
+        matches = re.findall(r'^([^\n]+)\n(\d+\.\d{3}) ([A-Za-z ]+)\s*$', page, re.M)
+        weight_lines = re.findall(r'^\d+\.\d+[^\n]*$', page, re.M)
+        if len(matches) != len(weight_lines):
+            reject('Russell membership row truncated or changed')
+        for name, weight, country in matches:
+            if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9 .!&/()\'-]+', name.strip()) or not country.strip():
+                reject('Russell membership name/country changed')
+            rows.append({'name': name.strip(), 'weightPct': float(weight)})
+    # Some smaller share classes have identical issuer labels in this report.
+    # Never aggregate them; require unambiguous names for every returned top row.
+    if any(not 0 <= r['weightPct'] <= 100 for r in rows) or not 900 <= len(rows) <= 1200 or abs(sum(r['weightPct'] for r in rows)-100) > .1:
+        reject('Russell quarterly membership incomplete')
+    top = sorted(rows, key=lambda r: (-r['weightPct'], r['name']))[:10]
+    validated_rows(top, complete=False)
+    return {'asOf': stamp, 'rows': [[r['name'], r['weightPct']] for r in top],
+            'membershipCount': len(rows), 'basis': 'index',
+            'method': 'Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.'}
+
+def collect_quarterly_holdings(config, now, fetch=download):
+    url = config.get('holdingsSourceUrl')
+    if config['id'] != 'russell-1000' or url != WEIGHTS_URL:
+        reject('Unexpected Russell membership source')
+    body = fetch(url)
+    result = quarterly_holdings(pdf_text(body, raw=True), now)
+    result['source'] = {'url': url, 'checkedAt': now.date().isoformat(), 'sha256': proof(body),
+                        'label': 'FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000'}
+    return result
 
 def ocr(image, directory, name):
     path = pathlib.Path(directory) / (name + '.png'); image.save(path)

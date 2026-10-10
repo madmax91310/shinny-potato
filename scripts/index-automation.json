@@ -201,7 +201,8 @@
       "returnDocumentName": "Russell 1000 Equal Weight",
       "returnRowName": "Russell 1000",
       "collectComposition": true,
-      "qualificationIssue": "Printed sectors and native count qualified independently; top-ten individual weights not published.",
+      "qualificationIssue": "Monthly printed sectors and native count qualified independently; quarterly membership weights retain their own date.",
+      "holdingsSourceUrl": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
       "compositionParser": "russell-printed-composition"
     },
     {

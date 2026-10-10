@@ -11536,6 +11536,116 @@
         },
         "provenance": "Indice Russell 1000 exact. Comptage natif ; secteurs imprimés lus à deux résolutions, associés aux couleurs de légende et contrôlés géométriquement. Les poids ne sont jamais déduits des surfaces. États-Unis : univers des sociétés américaines de l’indice, pas domicile juridique individuel. Poids du top dix absents de la publication ; aucune substitution ETF."
       }
+    },
+    "holdings": {
+      "asOf": "2026-06-30",
+      "rows": [
+        [
+          "Nvidia Corp",
+          6.732
+        ],
+        [
+          "Apple Inc",
+          6.034
+        ],
+        [
+          "Microsoft Corp",
+          3.997
+        ],
+        [
+          "Amazon Com Inc",
+          3.335
+        ],
+        [
+          "Alphabet Inc Cl A",
+          3.003
+        ],
+        [
+          "Broadcom Inc",
+          2.535
+        ],
+        [
+          "Alphabet Inc Cl C",
+          2.423
+        ],
+        [
+          "Micron Technology Inc",
+          1.877
+        ],
+        [
+          "Meta Platforms Inc",
+          1.786
+        ],
+        [
+          "Tesla Inc",
+          1.772
+        ]
+      ],
+      "membershipCount": 1023,
+      "basis": "index",
+      "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
+      "source": {
+        "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
+        "checkedAt": "2026-10-10",
+        "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
+        "label": "FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000"
+      }
+    },
+    "holdingsHistory": {
+      "2026-06-30": {
+        "asOf": "2026-06-30",
+        "rows": [
+          [
+            "Nvidia Corp",
+            6.732
+          ],
+          [
+            "Apple Inc",
+            6.034
+          ],
+          [
+            "Microsoft Corp",
+            3.997
+          ],
+          [
+            "Amazon Com Inc",
+            3.335
+          ],
+          [
+            "Alphabet Inc Cl A",
+            3.003
+          ],
+          [
+            "Broadcom Inc",
+            2.535
+          ],
+          [
+            "Alphabet Inc Cl C",
+            2.423
+          ],
+          [
+            "Micron Technology Inc",
+            1.877
+          ],
+          [
+            "Meta Platforms Inc",
+            1.786
+          ],
+          [
+            "Tesla Inc",
+            1.772
+          ]
+        ],
+        "membershipCount": 1023,
+        "basis": "index",
+        "method": "Poids officiels trimestriels du Russell 1000 exact ; top dix des lignes, classes d’actions séparées. Photographie indépendante des secteurs mensuels.",
+        "source": {
+          "url": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000",
+          "checkedAt": "2026-10-10",
+          "sha256": "5da48894939e99dbe2b9c3c3295c53cb6b8bf28b157b289aa34662c95c5e9f29",
+          "label": "FTSE Russell · ESMA Quarterly Membership Weights · Russell 1000"
+        }
+      }
     }
   },
   "msci-china": {

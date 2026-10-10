@@ -16,6 +16,11 @@ import { getRestoredRoute } from '../src/restore-route.js';
 import { maintenanceLinks } from '../src/data/maintenance-links.js';
 import { TOOLS } from '../src/tools.js';
 const ids = new Set();
+const russellQuarterly=DATA_CATALOG.find(r=>r.id==='russell-1000').fields.find(f=>f.label.startsWith('Positions trimestrielles'));
+assert.equal(russellQuarterly.metadata.asOf,russellQuarterly.value.asOf);
+assert.equal(russellQuarterly.value.rows.length,10);
+assert(describeDataField(russellQuarterly).includes(`${russellQuarterly.value.rows[0][0]} : ${russellQuarterly.value.rows[0][1].toLocaleString('fr-FR')} %`));
+assert(russellQuarterly.metadata.sourceUrls.some(url=>url.endsWith('indexdetails=US1000')));
 for (const file of readdirSync(new URL('../src/data/', import.meta.url)).filter((name) => name.endsWith('.js'))) {
   assert(!/from ['"].*pages\//.test(readFileSync(new URL(`../src/data/${file}`, import.meta.url), 'utf8')), `${file}: dépendance aux pages réintroduite`);
 }

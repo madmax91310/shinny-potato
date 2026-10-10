@@ -8,6 +8,7 @@ export function describeDataField(field) {
   if (field.label === 'Encours') return value.sheet ?? value.index ?? ''
   if (field.label === 'Encours daté publié par l’émetteur') return `${number(value.amountMillions)} millions ${value.currency}`
   if (value?.ticker) return `${value.ticker} · ${value.exchange} · ${value.currency}`
+  if (field.label.startsWith('Positions trimestrielles')) return value.rows.map(([name, weight]) => `${name} : ${number(weight)} %`).join(' · ')
   if (field.label.startsWith('Photographie')) return [
     value.constituents != null && `${number(value.constituents)} titres`,
     value.targetConstituents != null && `Objectif de méthode : ${number(value.targetConstituents)} sociétés`,

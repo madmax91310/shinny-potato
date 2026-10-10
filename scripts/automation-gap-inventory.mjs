@@ -46,6 +46,10 @@ export function buildGapInventory({etf=read('src/data/automated-etf.json'),indic
       const present=field==='returns'?data.returns?.values?.length>0:field==='constituents'?Number.isInteger(data.facts?.constituents):data.facts?.[field]?.length>0;
       if(present)continue;
       const nonStock=['bitcoin','ethereum','gold-physical','silver-physical'].includes(config.id)&&field!=='returns';
+      if (field==='holdings' && data.holdings?.rows?.length && data.holdings.asOf < data.facts?.asOf) {
+        gaps.push({type:'index',id:config.id,name:config.name,field,label:'holdings · photographie mensuelle',status:'waiting-publication',reason:`Poids trimestriels officiels intégrés au ${data.holdings.asOf}, avec leur propre date. Poids individuels absents de la fiche mensuelle au ${data.facts.asOf} ; les deux photographies restent séparées.`,configured:true,sourceUrl:config.holdingsSourceUrl});
+        continue;
+      }
       gaps.push({type:'index',id:config.id,name:config.name,field,label:field,status:nonStock?'not-applicable':field==='holdings'&&config.id==='russell-1000'?'not-published':field==='holdings'&&config.compositionDataUrl?'access-blocked':'unqualified',reason:nonStock?'Sous-jacent sans composition actions.':field==='holdings'&&config.compositionDataUrl?'Le JSON S&P publie les poids individuels, mais les accès GitHub testés renvoient 403 ; dernier relevé conservé.':field==='holdings'?'La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué.':'Bloc absent des observations actives.',configured:true,sourceUrl:config.compositionDataUrl??config.sourceUrl??config.returnSourceUrl??null});
     }
   }

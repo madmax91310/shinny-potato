@@ -14,6 +14,11 @@ const data=JSON.parse(readFileSync('src/data/automated-etf.json'));
 data['IE00BM8R0J59'].performance={years:{2024:22}};
 assert(!buildGapInventory({etf:data}).gaps.some(g=>g.id==='IE00BM8R0J59'&&g.field==='performance'));
 const indices=JSON.parse(readFileSync('src/data/automated-indices.json'));
+const quarterlyCase=structuredClone(indices);
+quarterlyCase['russell-1000'].facts.asOf='2026-09-30';
+quarterlyCase['russell-1000'].facts.holdings=[];
+quarterlyCase['russell-1000'].holdings={asOf:'2026-06-30',rows:[['Dated official position',1]]};
+assert(buildGapInventory({indices:quarterlyCase}).gaps.some(g=>g.id==='russell-1000'&&g.field==='holdings'&&g.status==='waiting-publication'&&g.reason.includes('2026-06-30')));
 for(const id of ['sp-global-dividend-aristocrats','sp-euro-dividend-aristocrats']) {
   assert.equal(indices[id].facts.holdings.length,10);
   assert(!r.gaps.some(g=>g.id===id&&g.field==='holdings'));

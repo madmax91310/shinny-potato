@@ -318,7 +318,7 @@
     "instrument:waiting-first-year": 12,
     "instrument:not-applicable": 42,
     "instrument:source-conflict": 4,
-    "index:not-published": 1,
+    "index:waiting-publication": 1,
     "index:not-applicable": 16
   },
   "gaps": [
@@ -1025,11 +1025,11 @@
       "id": "russell-1000",
       "name": "Russell 1000",
       "field": "holdings",
-      "label": "holdings",
-      "status": "not-published",
-      "reason": "La fiche Russell ne publie pas les poids individuels ; aucun portefeuille ETF substitué.",
+      "label": "holdings · photographie mensuelle",
+      "status": "waiting-publication",
+      "reason": "Poids trimestriels officiels intégrés au 2026-06-30, avec leur propre date. Poids individuels absents de la fiche mensuelle au 2026-09-30 ; les deux photographies restent séparées.",
       "configured": true,
-      "sourceUrl": "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US1000USD&openfile=open"
+      "sourceUrl": "https://research.ftserussell.com/analytics/factsheets/Home/DownloadConstituentsWeights/?indexdetails=US1000"
     },
     {
       "type": "index",
