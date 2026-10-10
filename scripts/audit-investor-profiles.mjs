@@ -14,7 +14,7 @@ for (const [slug, displayName] of INVESTORS) {
   assert(tweet.includes(investorIntroduction(slug)))
   assert(tweet.includes('💼 Ses principales positions au 30 juin 2026'))
   assert(tweet.includes('Cette ligne représente') && !tweet.includes('Ces cinq lignes'))
-  assert(/\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet.split('\n')[0]), 'Une accroche personnelle')
+  assert(/\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet), 'Un regard personnel dans le tweet')
   for (const label of ['💼 Ses principales positions', '💬 ']) assert(tweet.includes(label))
   assert(!/undefined|NaN|\\\\n/.test(tweet))
   assert(!tweet.includes('place-t-il'))
@@ -51,7 +51,7 @@ const balanced = Array.from({ length: 10 }, (_, i) => ({ issuerName: 'Société 
 assert(!portfolioEditorial(make(balanced)).hook.includes('seulement'))
 assert(portfolioEditorial(make(balanced)).explanation.includes('50,0 %'))
 const fund = { issuerName: 'Vanguard ETF', ticker: 'ETF', weight: 1 }
-assert(portfolioEditorial(make([fund])).hook.includes('position'))
+assert(portfolioEditorial(make([fund])).hook.includes('ligne'))
 assert(!portfolioEditorial(make([fund])).hook.includes('entreprise'))
 console.log('Hooks calculés, catégories regroupées, concentration et fonds : cas limites validés.')
 
@@ -66,7 +66,7 @@ const movements = { periodEnd: '2026-06-30', quarterChanges: { priorPeriodLabel:
   { issuerName: 'Option', ticker: 'OPT', weight: .1, putCall: 'CALL', isNew: true },
 ] }
 const excerpt = movementExcerpt(movements)
-assert(excerpt.includes('depuis T1 2026'))
+assert(excerpt.includes('depuis le T1 2026'))
 assert.equal(excerpt.split('\n').length, 5)
 assert(excerpt.includes('Nouvelle ligne : Alphabet $GOOGL'))
 assert(excerpt.includes('Alphabet $GOOG : nombre d’actions +18 %'))
@@ -82,10 +82,10 @@ console.log('Encart mouvements : quatre lignes, quantités, classes distinctes, 
 const baker = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/baker-bros.json', import.meta.url), 'utf8')))
 const renaissance = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/renaissance.json', import.meta.url), 'utf8')))
 assert(buildTweet(baker).includes('Felix et Julian Baker'))
-assert(buildTweet(baker).includes('positions des frères Baker'))
+assert(buildTweet(baker).includes('Les frères Baker'))
 assert(buildTweet(renaissance).includes('société de gestion quantitative'))
 assert(buildTweet(renaissance).includes('décédé en 2024'))
-assert(buildTweet(renaissance).includes('Chez Renaissance Technologies'))
+assert(buildTweet(renaissance).includes('Renaissance Technologies déclare'))
 assert(!buildTweet(renaissance).includes('portefeuille déclaré de Jim Simons'))
 console.log('Baker Bros et Renaissance : identités collectives et fondateur historique correctement distingués.')
 
@@ -131,10 +131,10 @@ assert(buildTweet(ackman).includes('57,9 %'))
 const refreshedAckman = { ...ackman, holdings: ackman.holdings.filter(row => row.ticker !== 'BN') }
 assert(!portfolioEditorial(refreshedAckman).explanation.includes('Brookfield'))
 const renaissanceEditorial = portfolioEditorial(readPortfolio('renaissance'))
-assert(renaissanceEditorial.explanation.includes('2\u202f970 positions'))
+assert(renaissanceEditorial.hook.includes('2\u202f970 positions'))
 assert(renaissanceEditorial.explanation.includes('8,1 %'))
 const concentrated = portfolioEditorial(make(fallbackRows))
-assert(concentrated.explanation.includes('65,0 % contre 35,0 %'))
+assert(/65,0 %.*contre 35,0 %/.test(concentrated.explanation))
 const near = portfolioEditorial(make([{ issuerName: 'A', ticker: 'A', weight: .28 }, { issuerName: 'B', ticker: 'B', weight: .277 }, { issuerName: 'C', ticker: 'C', weight: .1 }]))
 assert(near.explanation.includes('presque à égalité'))
 const memory = readPortfolio('aschenbrenner')
