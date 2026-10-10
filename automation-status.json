@@ -28,16 +28,23 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 37982762920,
+      "runId": 38071157109,
       "attempt": 1,
-      "completedAt": "2026-10-09T20:02:23Z",
-      "status": "success",
+      "completedAt": "2026-10-10T17:34:00Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-09T20:02:23Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/37982762920",
-      "failures": [],
-      "dataFailures": {},
-      "publicationStatus": "success",
-      "lastPublicationSuccessAt": "2026-10-09T20:02:20Z"
+      "collectionStatus": "success",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-10T17:34:00Z",
+      "lastPublicationSuccessAt": "2026-10-09T20:02:20Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38071157109",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {}
     },
     "update-company-analysis.yml": {
       "name": "Analyses d’entreprises",
@@ -202,5 +209,5 @@
       "publicationStatus": "failure"
     }
   },
-  "updatedAt": "2026-10-10T17:18:13Z"
+  "updatedAt": "2026-10-10T17:34:00Z"
 }
