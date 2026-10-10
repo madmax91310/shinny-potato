@@ -101,87 +101,118 @@ export function portfolioEditorial(portfolio) {
     const labels = rows.map(holdingName)
     return labels.length < 2 ? labels[0] : labels.slice(0, -1).join(', ') + ' et ' + labels.at(-1)
   }
+  const number = value => ['zéro', 'une', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit'][value] || value.toLocaleString('fr-FR')
   const de = name => (/^[aeiouyhàâéèêëîïôùûü]/i.test(name) ? 'd’' : 'de ') + name
   const almostAll = value => value < 1 && value >= .9995 ? 'près de 100 %' : percentage(value)
-  const summary = top.length === 1
+  let summary = top.length === 1
     ? 'Cette ligne représente ' + percentage(topSum) + ' du portefeuille déclaré.'
-    : 'À elles seules, ces ' + top.length + ' positions représentent ' + almostAll(topSum) + ' du portefeuille déclaré.'
+    : 'À elles seules, ces ' + number(top.length) + ' positions représentent ' + almostAll(topSum) + ' du portefeuille déclaré.'
   let observation = second && lead.weight - second.weight <= .005 + 1e-9
-    ? 'Ce qui me frappe, c’est la proximité de ' + leadName + ' et ' + holdingName(second) + ' : leurs poids sont presque à égalité en tête de ce relevé.'
-    : 'Je retiens surtout la place ' + de(leadName) + ' dans cette répartition' + (second ? ' : son poids dépasse celui de ' + holdingName(second) + ' de ' + percentage(lead.weight - second.weight).replace(' %', ' points') : ', avec une seule position présentée') + '.'
-  let question = top.length > 1 ? 'Parmi ces ' + top.length + ' positions, laquelle t’intéresse le plus ?' : 'Qu’est-ce qui t’intéresse dans cette position ?'
+    ? 'Ce qui me frappe, c’est le peu d’écart entre ' + leadName + ' et ' + holdingName(second) + '. Les deux premières lignes sont presque à égalité, même si ' + leadName + ' arrive en tête.'
+    : 'Je m’arrête d’abord sur ' + leadName + ', qui pèse ' + percentage(lead.weight) + ' des positions déclarées' + (second ? ', devant ' + holdingName(second) + ' à ' + percentage(second.weight) : '') + '.'
+  let question = top.length > 1 ? 'Parmi ces ' + number(top.length) + ' positions, laquelle t’intéresse le plus ?' : 'Qu’est-ce qui t’intéresse dans cette position ?'
   if (lead.weight > total / 2 && companies.length > 1) {
-    observation = 'Ce qui me frappe, c’est le poids de ' + leadName + ' : cette ligne pèse davantage que toutes les autres positions présentées réunies, soit ' + percentage(lead.weight) + ' contre ' + percentage(total - lead.weight) + '. Je regarderais donc cette entreprise de près pour comprendre cette répartition.'
+    observation = 'Ce qui me frappe, c’est qu’une seule ligne pèse plus lourd que toutes les autres réunies : ' + percentage(lead.weight) + ' pour ' + leadName + ', contre ' + percentage(total - lead.weight) + ' pour le reste. C’est donc l’entreprise que j’aurais envie de creuser en premier.'
     question = 'Qu’est-ce que tu voudrais vérifier avant de donner autant de poids à ' + leadName + ' ?'
   }
   const hooks = {
-    tepper: leadName + ' arrive en tête chez David Tepper, et je trouve intéressant de regarder les positions qui suivent 👀',
+    tepper: 'Chez David Tepper, je m’arrête sur ' + leadName + ', la première ligne du portefeuille déclaré 👀',
     ackman: leadName + ' est la première position du portefeuille déclaré de Bill Ackman, et je trouve intéressant de regarder ce qu’il y a autour 👀',
-    berkshire: 'Je te propose de regarder les principales actions déclarées par Berkshire Hathaway, avec ' + leadName + ' en tête 👀',
-    'cathie-wood': 'Chez Cathie Wood, je m’arrête sur la place de ' + leadName + ' parmi les positions déclarées par ARK 👀',
-    thiel: 'Le portefeuille déclaré de Peter Thiel mérite qu’on s’y attarde : je te propose de regarder ce qui accompagne ' + leadName + ' 👀',
-    druckenmiller: 'Chez Stanley Druckenmiller, le poids ' + de(leadName) + ' retient mon attention 👀',
-    loeb: 'Je te propose de regarder les principales positions de Daniel Loeb, en commençant par ' + leadName + ' 👀',
-    aschenbrenner: 'Ce qui m’intéresse dans le portefeuille déclaré de Leopold Aschenbrenner, c’est le poids de ses premières lignes 👀',
-    'li-lu': 'Quand je regarde le portefeuille déclaré de Li Lu, je m’arrête d’abord sur sa concentration 👀',
-    'gates-trust': 'Je trouve intéressant de regarder les entreprises qui composent le portefeuille déclaré du Gates Foundation Trust 👀',
-    klarman: 'Je te propose de regarder les choix déclarés par Seth Klarman chez Baupost, avec ' + leadName + ' en première position 👀',
-    'terry-smith': 'Chez Terry Smith, je trouve intéressant de regarder comment les poids se répartissent entre les premières lignes 👀',
-    pabrai: 'Le portefeuille déclaré de Mohnish Pabrai compte ' + companies.length + ' positions, et leur répartition retient mon attention 👀',
-    hohn: 'Chez Christopher Hohn, je m’arrête sur la place ' + de(leadName) + ' dans les positions déclarées par TCI 👀',
-    'baker-bros': 'Je te propose de regarder les principales positions des frères Baker, spécialisés dans les biotechnologies 🧬',
+    berkshire: leadName + ' arrive en tête des actions déclarées par Berkshire Hathaway, mais je m’intéresse aussi aux entreprises qui suivent 👀',
+    'cathie-wood': leadName + ' arrive en tête chez Cathie Wood, et je trouve son poids intéressant à comparer aux autres lignes 👀',
+    thiel: 'Le portefeuille déclaré de Peter Thiel via Thiel Macro mérite qu’on s’y attarde, avec ' + leadName + ' en tête 👀',
+    druckenmiller: 'Chez Stanley Druckenmiller, c’est le poids ' + de(leadName) + ' qui me frappe 👀',
+    loeb: 'Chez Daniel Loeb, je m’arrête sur ' + leadName + ', qui arrive en tête des positions déclarées 👀',
+    aschenbrenner: 'Chez Leopold Aschenbrenner, ce qui me frappe, c’est le poids donné à quelques entreprises 👀',
+    'li-lu': 'Chez Li Lu, je m’arrête sur la place ' + de(leadName) + ' dans le portefeuille déclaré 👀',
+    'gates-trust': 'Je m’intéresse aux entreprises choisies par le Gates Foundation Trust pour gérer sa dotation 👀',
+    klarman: 'Chez Seth Klarman, je m’arrête sur ' + leadName + ', la première position déclarée par Baupost 👀',
+    'terry-smith': 'Chez Terry Smith, je trouve intéressant de voir le poids donné à ' + leadName + ' et aux lignes qui suivent 👀',
+    pabrai: 'Le portefeuille déclaré de Mohnish Pabrai compte ' + number(companies.length) + (companies.length === 1 ? ' position' : ' positions') + ', et je trouve leur répartition intéressante à regarder 👀',
+    hohn: 'Chez Christopher Hohn, je remarque d’abord la place ' + de(leadName) + ' dans le portefeuille déclaré par TCI 👀',
+    'baker-bros': 'Les frères Baker investissent dans les biotechnologies, et je m’intéresse aux entreprises auxquelles ils donnent le plus de poids 🧬',
     icahn: 'Chez Carl Icahn, le poids ' + de(leadName) + ' est le premier élément qui me frappe 👀',
-    laffont: 'Je trouve intéressant de regarder ce qui relie les grandes positions déclarées par Philippe Laffont 👀',
-    renaissance: 'Chez Renaissance Technologies, je m’intéresse autant au nombre de positions qu’aux premières lignes 👀',
+    laffont: 'Chez Philippe Laffont, je m’intéresse à ce que les premières lignes ont en commun 👀',
+    renaissance: 'Chez Renaissance Technologies, le nombre de positions me frappe autant que les noms en tête du classement 👀',
   }
   const slug = identity.slug
   if (slug === 'tepper') {
     const chips = inTop(['MU', 'TSM'])
-    if (chips.length === 2) observation = 'Ce qui retient mon attention, c’est la place de Micron et TSMC : ensemble, ces deux entreprises des semi-conducteurs pèsent ' + percentage(weight(chips)) + ' du relevé. Deux lignes distinctes exposent donc à une même industrie, ce que je garderais en tête pour lire cette répartition.'
+    if (chips.length === 2) {
+      hooks[slug] = 'Amazon arrive en tête chez David Tepper, mais ce sont Micron et TSMC qui retiennent mon attention 👀'
+      if (lead.ticker !== 'AMZN') hooks[slug] = leadName + ' arrive en tête chez David Tepper, et je m’arrête aussi sur Micron et TSMC 👀'
+      observation = 'Micron et TSMC représentent ensemble ' + percentage(weight(chips)) + ' des positions déclarées. Ce qui m’intéresse, c’est qu’elles travaillent toutes les deux dans les semi-conducteurs, même si elles n’y occupent pas la même place. Deux entreprises différentes peuvent donc exposer à une même industrie.'
+    }
   } else if (slug === 'ackman') {
-    if (inTop(['MSFT', 'AMZN', 'BN', 'HHH']).length === 4) observation = 'Ce qui me frappe, c’est de retrouver Microsoft et Amazon aux côtés d’entreprises comme Brookfield, présente dans la gestion d’actifs, et Howard Hughes, dans l’immobilier 🏘️\n\n' + (lead.ticker === 'UBER' ? 'Avec Uber en tête, on pourrait s’attendre à un portefeuille très orienté technologie, mais ces premières lignes montrent une répartition plus variée.' : 'Ces premières lignes donnent un aperçu d’activités très différentes au sein du même relevé.')
+    if (inTop(['MSFT', 'AMZN', 'BN', 'HHH']).length === 4) observation = 'Ce qui me frappe, c’est de retrouver Microsoft et Amazon aux côtés d’entreprises comme Brookfield, présente dans la gestion d’actifs, et Howard Hughes, dans l’immobilier 🏘️\n\n' + (lead.ticker === 'UBER' ? 'Avec Uber en tête, on pourrait s’attendre à un portefeuille très orienté technologie, mais ces premières lignes montrent une répartition plus variée.' : 'Je trouve ce mélange intéressant, avec des entreprises aux activités très différentes parmi les premières lignes.')
   } else if (slug === 'berkshire') {
     const familiar = inTop(['AAPL', 'AXP', 'KO'])
-    if (familiar.length >= 2) observation = 'Ce qui m’intéresse ici, c’est la place ' + de(names(familiar)) + ', qui représentent ensemble ' + percentage(weight(familiar)) + ' du relevé. Ces actions donnent un aperçu de Berkshire, qui possède aussi directement des entreprises en dehors de ce portefeuille déclaré.'
+    if (familiar.length >= 2) {
+      hooks[slug] = names(familiar) + ' : je trouve intéressant de voir le poids de ces noms familiers chez Berkshire Hathaway 👀'
+      observation = 'Ce qui me frappe, c’est que ' + names(familiar) + ' représentent ensemble ' + percentage(weight(familiar)) + ' des actions déclarées. Et Berkshire possède aussi directement des entreprises : cette liste d’actions ne raconte donc qu’une partie de ses activités.'
+    }
   } else if (slug === 'cathie-wood' && companies.length > top.length && topSum < .5) {
-    observation = 'Je trouve intéressant de rapprocher ces premières lignes des ' + companies.length + ' positions présentes dans le relevé. Même dans une société de gestion centrée sur l’innovation, les cinq premiers noms ne suffisent pas à raconter toute la répartition.'
+    hooks[slug] = leadName + ' arrive en tête chez Cathie Wood avec ' + percentage(lead.weight) + ' des positions déclarées 👀'
+    summary = ''
+    observation = 'Je trouve intéressant que les ' + number(top.length) + ' premières lignes ne représentent que ' + percentage(topSum) + ' des positions déclarées. Le relevé en compte ' + number(companies.length) + ' au total, donc une grande partie de la répartition se joue aussi dans les entreprises qui suivent. '
   } else if (slug === 'thiel') {
+    if (topSum >= .7) hooks[slug] = 'Le portefeuille déclaré de Peter Thiel via Thiel Macro mérite qu’on s’y attarde car il est très concentré 👀'
     const energy = group(['VIST', 'VST', 'AEP', 'DTE', 'FE', 'CMS', 'XE'])
-    if (energy.length >= 3 && weight(energy) >= .3) observation = 'Ce qui me frappe, c’est la place des entreprises liées à l’énergie, comme ' + names(energy.slice(0, 2)) + '. Les ' + energy.length + ' lignes de ce groupe totalisent ' + percentage(weight(energy)) + ' du relevé. Le parcours de Peter Thiel dans la technologie rend cette présence intéressante à regarder.'
+    if (energy.length >= 3 && weight(energy) >= .3) observation = 'Ce qui me frappe, c’est la place des entreprises liées à l’énergie, comme ' + names(energy.slice(0, 2)) + '. Les ' + number(energy.length) + ' lignes de ce groupe totalisent ' + percentage(weight(energy)) + ' du relevé.\n\nAvec son parcours dans la technologie, je trouve cette place donnée à l’énergie assez surprenante.'
   } else if (slug === 'druckenmiller' && second && lead.weight > second.weight * 2) {
-    observation = 'Ce qui retient mon attention, c’est l’écart entre ' + leadName + ' et ' + holdingName(second) + ' : la première ligne pèse plus de deux fois la suivante. Je regarderais donc ce qui distingue cette entreprise pour mieux comprendre sa place dans le relevé.'
+    observation = leadName + ' pèse plus de deux fois autant que ' + holdingName(second) + ', la deuxième ligne. C’est donc l’entreprise que j’aurais envie de creuser en premier.'
+    question = 'Tu connaissais déjà ' + leadName + ' ?'
   } else if (slug === 'loeb' && top.length >= 3) {
-    observation = 'Je m’arrête sur le trio ' + names(top.slice(0, 3)) + ', qui représente ' + percentage(weight(top.slice(0, 3))) + ' du relevé. Avec ' + companies.length + ' positions déclarées au total, ce trio donne un premier aperçu des choix de Third Point.'
+    const newLeader = portfolio.snapshot.holdings?.some(row => row.ticker === lead.ticker && row.isNew === true)
+    if (newLeader) {
+      hooks[slug] = leadName + ' apparaît comme une nouvelle ligne chez Daniel Loeb, et elle arrive directement en tête du relevé 👀'
+      observation = 'Je trouve cette entrée frappante : ' + leadName + ' représente déjà ' + percentage(lead.weight) + ' des positions déclarées, devant ' + names(top.slice(1, 3)) + '. C’est cette nouvelle ligne que j’aurais envie de découvrir en premier.'
+    } else observation = 'Ce qui m’intéresse, c’est le trio ' + names(top.slice(0, 3)) + ', qui représente ' + percentage(weight(top.slice(0, 3))) + ' des positions déclarées. Je commencerais par ces trois entreprises pour regarder les choix de Third Point, avant de passer aux autres lignes.'
   } else if (slug === 'aschenbrenner') {
     const memory = inTop(['SNDK', 'MU'])
-    if (memory.length === 2) observation = 'Ce qui me frappe, c’est la place de Sandisk et Micron, deux entreprises présentes dans le stockage et la mémoire. Ensemble, elles représentent ' + percentage(weight(memory)) + ' du relevé. Dans un portefeuille centré sur l’intelligence artificielle, je trouve intéressant de voir le poids donné à ces équipements.'
+    if (memory.length === 2) {
+      hooks[slug] = 'Chez Leopold Aschenbrenner, Sandisk et Micron représentent ensemble ' + percentage(weight(memory)) + ' des positions déclarées, et c’est ce qui me frappe 👀'
+      observation = 'Sandisk et Micron sont présentes dans le stockage et la mémoire. Je trouve ça intéressant dans un portefeuille centré sur l’intelligence artificielle : une place importante est donnée aux entreprises qui fournissent ces équipements.'
+    }
   } else if (slug === 'li-lu' && top.length >= 3 && weight(top.slice(0, 3)) >= .7) {
-    observation = 'Je retiens surtout le poids de ces trois entreprises : ' + names(top.slice(0, 3)) + ' représentent ensemble ' + percentage(weight(top.slice(0, 3))) + ' du relevé. Sur les ' + companies.length + ' positions déclarées, une grande partie du poids repose donc sur ces trois entreprises.'
+    hooks[slug] = leadName + ' représente ' + percentage(lead.weight) + ' du portefeuille déclaré de Li Lu, et ce poids me frappe 👀'
+    observation = 'Avec ' + names(top.slice(0, 3)) + ', on arrive à ' + percentage(weight(top.slice(0, 3))) + ' des positions déclarées. Je trouve cette concentration frappante : ces trois entreprises portent l’essentiel du poids, même si le relevé compte ' + number(companies.length) + ' positions.'
     question = 'Parmi ces trois entreprises, laquelle aurais-tu envie de regarder de plus près ?'
   } else if (slug === 'gates-trust') {
     const operating = inTop(['CAT', 'CNI', 'WM', 'DE'])
-    if (operating.length >= 2) observation = 'Ce qui retient mon attention, c’est la place ' + de(names(operating)) + '. Ces entreprises représentent ensemble ' + percentage(weight(operating)) + ' du relevé. Je trouve intéressant de regarder ces choix dans le contexte d’une dotation qui finance les activités de la fondation.'
+    if (operating.length === 4) observation = 'Ce qui me frappe, c’est de retrouver ' + names(operating) + ' avec autant de poids : ensemble, ces entreprises représentent ' + percentage(weight(operating)) + ' des positions déclarées. Je trouve ça intéressant de voir la place donnée à ces activités concrètes, comme les engins de chantier, le transport ferroviaire, les déchets ou les machines agricoles.'
   } else if (slug === 'klarman' && top.length > 1) {
-    observation = 'Je trouve intéressant de retrouver ' + names(top.slice(0, 2)) + ' en tête chez un gestionnaire qui recherche la valeur à long terme. Le relevé montre leur poids actuel, mais il ne permet pas de connaître le prix payé ni ce que Klarman attend de ces entreprises.'
+    observation = 'Je trouve intéressant de retrouver ' + names(top.slice(0, 2)) + ' en tête chez un gestionnaire qui recherche la valeur à long terme. Ça me donne surtout envie de regarder leur valorisation : avoir les mêmes entreprises en portefeuille ne veut pas dire les avoir achetées au même prix.'
   } else if (slug === 'terry-smith' && topSum < .5 && companies.length > top.length) {
-    observation = 'Ce qui m’intéresse ici, c’est la répartition au-delà du top 5 : les ' + (companies.length - top.length) + ' autres positions déclarées représentent ' + percentage(Math.max(0, total - topSum)) + ' du relevé. Pour regarder les choix de Terry Smith, je garderais donc aussi un œil sur les lignes qui suivent.'
+    hooks[slug] = 'Chez Terry Smith, les ' + number(top.length) + ' premières lignes pèsent ' + percentage(topSum) + ' des positions déclarées, et ça retient mon attention 👀'
+    summary = ''
+    observation = 'Les ' + number(companies.length - top.length) + ' autres positions représentent ' + percentage(Math.max(0, total - topSum)) + ' du relevé. Je trouve ça assez parlant : les noms en tête du classement ne suffisent pas à montrer comment ce portefeuille déclaré est réparti.'
   } else if (slug === 'pabrai') {
     const energy = inTop(['HCC', 'RIG', 'AMR'])
-    if (energy.length === 3 && weight(energy) >= .8) observation = 'Ce qui me frappe, c’est que Warrior Met Coal, Transocean et Alpha Metallurgical Resources totalisent ' + almostAll(weight(energy)) + ' du relevé. Ces trois entreprises liées au charbon ou au forage pétrolier donnent un aperçu très marqué des positions déclarées par Pabrai.'
+    if (energy.length === 3 && weight(energy) >= .8) {
+      hooks[slug] = 'Chez Mohnish Pabrai, trois entreprises représentent ' + almostAll(weight(energy)) + ' des positions déclarées, et leur concentration me frappe 👀'
+      summary = ''
+      observation = 'Warrior Met Coal, Transocean et Alpha Metallurgical Resources sont liées au charbon ou au forage pétrolier. Je trouve cette sélection frappante : presque tout le poids du portefeuille déclaré repose sur ces trois entreprises, avec des activités liées à l’énergie.'
+    }
   } else if (slug === 'hohn') {
     const services = inTop(['V', 'MCO', 'SPGI'])
-    if (services.length >= 2) observation = 'Je m’arrête aussi sur ' + names(services) + ', qui représentent ensemble ' + percentage(weight(services)) + ' du relevé. Ces entreprises actives dans les paiements, la notation ou les données financières occupent une place importante aux côtés de ' + leadName + '.'
+    if (services.length >= 2) observation = 'Après ' + leadName + ', je m’arrête sur ' + names(services) + ', qui représentent ensemble ' + percentage(weight(services)) + ' des positions déclarées. Entre les paiements, la notation et les données financières, je trouve intéressant de voir la place donnée à ces services.'
   } else if (slug === 'baker-bros' && top.length > 1) {
-    observation = 'Dans ce fonds spécialisé dans les biotechnologies, je regarderais de près le poids ' + de(leadName) + ' et ' + de(holdingName(second)) + '. Ces deux premières lignes représentent ensemble ' + percentage(lead.weight + second.weight) + ' du relevé, sur ' + companies.length + ' positions déclarées.'
-    question = 'Quelle entreprise de cette sélection aurais-tu envie de découvrir ?'
+    observation = 'Je commencerais par ' + leadName + ' et ' + holdingName(second) + ', qui représentent ensemble ' + percentage(lead.weight + second.weight) + ' des positions déclarées. Dans ce fonds spécialisé dans les biotechnologies, ça me donne envie de découvrir ce que font ces deux entreprises avant de regarder les ' + number(companies.length - 2) + ' autres lignes.'
+    question = 'Tu suis déjà certaines de ces entreprises ?'
   } else if (slug === 'icahn' && lead.ticker === 'IEP' && lead.weight > total / 2) {
-    observation = 'Ce qui me frappe, c’est que la première ligne est Icahn Enterprises, l’entreprise qui porte son nom. Elle représente à elle seule ' + percentage(lead.weight) + ' du relevé et pèse davantage que toutes les autres positions présentées réunies.'
-    question = 'Qu’est-ce que tu regarderais en premier pour comprendre la place d’Icahn Enterprises dans ce portefeuille ?'
+    observation = 'La première ligne est Icahn Enterprises, l’entreprise qui porte son nom. Avec ' + percentage(lead.weight) + ' des positions déclarées, elle pèse plus lourd que toutes les autres réunies. Je trouve ce poids frappant pour une seule entreprise.'
+    question = 'Tu connaissais Icahn Enterprises, ou surtout Carl Icahn lui-même ?'
   } else if (slug === 'laffont') {
     const chips = inTop(['TSM', 'LRCX', 'MU', 'AMAT', 'AVGO', 'NVDA'])
-    if (chips.length >= 2) observation = 'Ce qui retient mon attention, c’est la présence de ' + names(chips) + ' parmi les premières lignes. Ces entreprises des semi-conducteurs ou de leurs équipements représentent ensemble ' + percentage(weight(chips)) + ' du relevé. Plusieurs lignes exposent donc à une même industrie, et je trouve leur poids cumulé plus parlant pour lire cette partie du portefeuille de Coatue.'
+    if (chips.length >= 2) {
+      hooks[slug] = 'Chez Philippe Laffont, plusieurs premières lignes sont liées aux puces, et leur poids cumulé retient mon attention 👀'
+      observation = names(chips) + ' représentent ensemble ' + percentage(weight(chips)) + ' des positions déclarées. Ces entreprises sont liées aux semi-conducteurs ou à leurs équipements, même si elles n’y occupent pas toutes la même place. Je trouve ce point intéressant : plusieurs noms différents peuvent exposer à une même industrie.'
+    }
   } else if (slug === 'renaissance' && companies.length > 100 && topSum < .2) {
-    observation = 'Ce qui me frappe, c’est l’ampleur du relevé : ' + companies.length.toLocaleString('fr-FR') + ' positions au total. Pour cette société de gestion quantitative, les premières lignes donnent donc un aperçu très partiel de la répartition.'
+    hooks[slug] = 'Renaissance Technologies déclare ' + number(companies.length) + ' positions, et ce nombre me frappe 👀'
+    summary = ''
+    observation = 'Même ' + leadName + ', en première position, ne pèse que ' + percentage(lead.weight) + ' du relevé. Les ' + number(top.length) + ' premières lignes représentent ensemble ' + percentage(topSum) + ' des positions déclarées. Je trouve l’écart frappant entre les noms qu’on remarque en tête et la quantité de lignes qu’il reste derrière.'
     question = 'Parmi ces premières lignes, laquelle t’intéresse le plus ?'
   }
   // Questions invite a discussion about the actual selection, without assuming an intent to buy.
@@ -190,18 +221,18 @@ export function portfolioEditorial(portfolio) {
     berkshire: 'Quelle position de Berkshire aurais-tu envie de creuser ?',
     'cathie-wood': 'Parmi ces positions d’ARK, laquelle te semble la plus intéressante à suivre ?',
     thiel: 'Quelle position du relevé de Peter Thiel te surprend le plus ?',
-    druckenmiller: 'Qu’aimerais-tu savoir sur ' + leadName + ' pour comprendre son poids dans ce relevé ?',
-    loeb: 'Quelle entreprise parmi les premières lignes de Third Point retient ton attention ?',
+    druckenmiller: second && lead.weight > second.weight * 2 ? 'Tu connaissais déjà ' + leadName + ' ?' : 'Quelle entreprise de cette sélection aurais-tu envie de creuser ?',
+    loeb: 'Tu suis déjà ' + leadName + ' ?',
     aschenbrenner: 'Quelle position aurais-tu envie de creuser dans ce portefeuille centré sur l’IA ?',
     'gates-trust': 'Quelle entreprise de cette sélection te paraît intéressante pour le long terme ?',
     klarman: 'Sur laquelle de ces entreprises aimerais-tu regarder la valorisation ?',
     'terry-smith': 'Quelle position de Fundsmith aimerais-tu regarder de plus près ?',
-    pabrai: 'Quelle entreprise de ce relevé voudrais-tu mieux comprendre ?',
+    pabrai: 'Tu connaissais déjà ces entreprises ?',
     hohn: 'Quel dossier parmi ces premières lignes de TCI suis-tu déjà ?',
     laffont: 'Quelle entreprise de cette sélection de Coatue retient le plus ton attention ?',
   }
   question = questions[slug] || question
-  return { hook: hooks[slug] || 'Je te propose de regarder le portefeuille déclaré ' + owner + ', avec ' + leadName + ' en tête 👀', top, explanation: summary + '\n\n' + observation, question }
+  return { hook: hooks[slug] || 'Je te propose de regarder le portefeuille déclaré ' + owner + ', avec ' + leadName + ' en tête 👀', top, explanation: [summary, observation].filter(Boolean).join('\n\n'), question }
 }
 
 // Compare reported security lines, before company/class grouping. Weight changes
@@ -229,7 +260,7 @@ export function movementExcerpt(snapshot) {
   }
   if (!selected.length) return ''
   const period = String(prior).replace(/^Q([1-4]) /, 'T$1 ')
-  return '🔄 Quelques mouvements depuis ' + period + '\n' + selected.join('\n')
+  return '🔄 Quelques mouvements depuis le ' + period + '\n' + selected.join('\n')
 }
 
 export function buildTweet(portfolio, intro = '') {
