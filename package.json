@@ -42,7 +42,9 @@
     "test:wealth": "node scripts/test-wealth-simulator.mjs",
     "test:wealth:browser": "node scripts/playwright-wealth.mjs",
     "test:radar": "node scripts/test-editorial-radar.mjs && node scripts/test-radar-notifications.mjs",
-    "test:radar:browser": "node scripts/playwright-radar.mjs"
+    "test:radar:browser": "node scripts/playwright-radar.mjs",
+    "test:scanner": "node scripts/test-etf-scanner.mjs",
+    "test:scanner:browser": "node scripts/playwright-etf-scanner.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

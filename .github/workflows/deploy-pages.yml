@@ -84,6 +84,7 @@ jobs:
       - run: node scripts/test-company-analysis.mjs
       - run: npm run test:radar
       - run: node scripts/test-wealth-simulator.mjs
+      - run: node scripts/test-etf-scanner.mjs
       - run: node scripts/test-annual-rollover.mjs
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
@@ -164,6 +165,7 @@ jobs:
       - run: node scripts/playwright-publication-actions.mjs
       - run: npm run test:radar:browser
       - run: node scripts/playwright-wealth.mjs
+      - run: node scripts/playwright-etf-scanner.mjs
       - run: node scripts/test-regulatory-ui.mjs
       - run: node scripts/test-commodity-allocation-ui.mjs
       - run: node scripts/test-portfolio-metallic.mjs
