@@ -110,7 +110,7 @@ assert.ok(limited.hook.includes(String(limited.years[0])) && limited.hook.includ
 for (const definition of DUELS) {
  const duel=buildDuel(definition)
  assert.doesNotMatch(duel.hook,/Tu gardes 100 % de World|vous|votre|Qu’a changé cette répartition|comparons ces deux choix|performances annuelles à comparer/)
- assert.match(duel.hook,/^Avec 10 000 € investis.*\?\n\nVoici ce que ça aurait changé entre début \d{4} et fin \d{4}/)
+ assert.match(duel.hook,/^Avec 10 000 € investis.*\?\n\nVoici la comparaison entre début \d{4} et fin \d{4}/)
  assert.ok(duel.hook.endsWith('sans versement supplémentaire 👇'))
  assert.doesNotMatch(duel.hook,/de plus|termine|bonne idée|quel résultat/i)
  assert.equal((buildTweet(duel).match(/👇/g) ?? []).length,1)
@@ -123,3 +123,27 @@ const flat={...identical,a:{...identical.a,annual:Object.fromEntries(identical.y
 assert.doesNotMatch(resultReading(flat),/écart annuel|gagne|perd/)
 assert.doesNotMatch(buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:[{id:'msci_world_ishares',pct:100}]}).hook, /Ajouter  à/)
 console.log('Accroches de tous les duels, périodes courtes et conclusions inversées/égales vérifiées.')
+
+// La lecture des petites entreprises suit les données, pas la position A/B ni un scénario figé.
+const smallDuel=buildDuel(DUELS.find(d=>d.id==='world-small-us'))
+assert.match(smallDuel.hook,/ETF World seul ou avec 80 % de World et 20 % de petites entreprises américaines/)
+assert.match(resultReading(smallDuel),/six années[\s\S]*de moins[\s\S]*légèrement mieux en 2020, puis moins bien/)
+assert.equal(resultReading({...smallDuel,a:smallDuel.b,b:smallDuel.a}),resultReading(smallDuel))
+const strongerSmall={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final+1000,annual:Object.fromEntries(smallDuel.years.map(y=>[y,smallDuel.a.annual[y]+1]))}}
+assert.match(resultReading(strongerSmall),/de plus[\s\S]*mieux que le World seul chacune/)
+assert.doesNotMatch(resultReading(strongerSmall),/de moins|moins bien|mieux en 2020/)
+const closeSmall={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final+27}}
+assert.match(resultReading(closeSmall),/27.*frais et leur composition/)
+const tieDifferentPath={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final}}
+assert.match(resultReading(tieDifferentPath),/même montant[\s\S]*parcours annuels diffèrent/)
+assert.doesNotMatch(resultReading(tieDifferentPath),/de plus|de moins/)
+console.log('Petites entreprises : formulation validée, ordre inversé, gagnant modifié, résultats proches et égalité vérifiés.')
+const nasdaqDuel=buildDuel(DUELS.find(d=>d.id==='world-nasdaq'))
+assert.match(resultReading(nasdaqDuel),/poche Nasdaq[\s\S]*baisse en 2022[\s\S]*perd 16,0 %[\s\S]*13,0 %/)
+assert.equal(resultReading({...nasdaqDuel,a:nasdaqDuel.b,b:nasdaqDuel.a}),resultReading(nasdaqDuel))
+const losingNasdaq={...nasdaqDuel,b:{...nasdaqDuel.b,final:nasdaqDuel.a.final-1000}}
+assert.match(resultReading(losingNasdaq),/portefeuille A termine/)
+assert.doesNotMatch(resultReading(losingNasdaq),/poche Nasdaq permet/)
+const differentWorstYears={...nasdaqDuel,b:{...nasdaqDuel.b,worstYear:2023}}
+assert.doesNotMatch(resultReading(differentWorstYears),/accentue aussi la baisse/)
+console.log('Nasdaq : comparaison des baisses, ordre inversé et conditions de repli vérifiés.')

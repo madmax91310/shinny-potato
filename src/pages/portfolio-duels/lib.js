@@ -29,8 +29,11 @@ function exposureReading(portfolio) {
   const base = portfolio.assets.find((asset) => asset.role === 'base')
   const complement = portfolio.assets.find((asset) => asset.role === 'complement')
   const theme = portfolio.assets.find((asset) => asset.role === 'theme')
+  if (base.exposure === 'world' && complement?.exposure === 'us-small' && !theme) {
+    return 'Une partie du World est remplacée par des petites entreprises américaines. Tu ajoutes un segment absent du World, plus sensible aux conditions économiques et de financement.'
+  }
   const parts = []
-  if (base.exposure === 'world') parts.push('Le World couvre les pays développés.')
+  if (base.exposure === 'world') parts.push('Le MSCI World suit les grandes et moyennes entreprises des pays développés.')
   else if (['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)) parts.push(`Le ${base.exposure.startsWith('acwi') ? 'MSCI ACWI' : 'FTSE All-World'} inclut les pays développés et émergents.`)
   else if (base.exposure === 'equalweight') parts.push('Les entreprises du S&P 500 partent du même poids à chaque rééquilibrage trimestriel.');
   else parts.push('Le S&P 500 constitue une base d’actions américaines.')
