@@ -48,7 +48,7 @@ export default function App() {
       <div className="fs-sources"><strong>Fiches officielles</strong>
         {sheet.source.map((src) => <a key={src.url} target="_blank" rel="noopener noreferrer" href={src.url}>{src.label} ↗</a>)}
       </div>
-      <p className="fs-warning">Données figées : relisez les pourcentages et les dates sur les fiches avant chaque publication. La composition décrit l’indice sous-jacent, pas les titres détenus par un ETF synthétique.</p>
+      <p className="fs-warning">Les compositions et performances correspondent aux dates affichées. Un contrôle récent de la source ne change pas la date de la composition ; relisez ces dates avant publication. La composition décrit l’indice sous-jacent, pas les titres détenus par un ETF synthétique.</p>
     </div>
     <div className="fs-panel fs-editor tool-preview">
       <div className="fs-editor-top"><label className="fs-label" htmlFor="factsheet-draft">Publication modifiable</label><span>{text.length.toLocaleString('fr-FR')} caractères</span></div>

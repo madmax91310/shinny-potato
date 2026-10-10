@@ -25,6 +25,10 @@ try {
   assert.equal(await page.getByRole('region', { name: 'Échecs des mises à jour automatiques', exact: true }).locator('.dr-item').count(), 1)
   assert.equal(await page.locator('.data-review > .dr-list > .dr-item').count(), calculatorCount)
   assert.equal(await page.getByText('Prochaine vérification', { exact: true }).count(), calculatorCount)
+  assert.equal(await page.getByText('Date de la donnée', { exact: true }).count(), calculatorCount)
+  assert.equal(await page.getByText('Dernier contrôle réussi de la source', { exact: true }).count(), calculatorCount)
+  assert.equal(await page.getByText('Dernière modification de la donnée', { exact: true }).count(), calculatorCount)
+
   await page.reload({ waitUntil: 'networkidle' })
   assert.equal(await page.getByLabel('Outil', { exact: true }).getAttribute('data-value'), 'Calculateur')
   assert.equal(await page.locator('.data-review > .dr-list > .dr-item').count(), calculatorCount)

@@ -76,7 +76,7 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
     for (const [index, field] of record.fields.entries()) {
       if (field.metadata.sourceStatus === 'archive-unverifiable') { archives++; continue }
       if (!record.consumers.length) continue
-      const base = { maintenanceRecord: record, maintenanceField: field, name: record.name, aliases: [record.id, ...record.aliases ?? []], field: field.label, checkedAt: field.metadata.checkedAt, urls: field.metadata.sourceUrls, to: `/bibliotheque-donnees?id=${encodeURIComponent(record.id)}`, tools: record.consumers.map(c => c.tool), registry: field.registry }
+      const base = { maintenanceRecord: record, maintenanceField: field, name: record.name, aliases: [record.id, ...record.aliases ?? []], field: field.label, checkedAt: field.metadata.checkedAt, metadata: field.metadata, modifiedAt: field.metadata.modifiedAt, urls: field.metadata.sourceUrls, to: `/bibliotheque-donnees?id=${encodeURIComponent(record.id)}`, tools: record.consumers.map(c => c.tool), registry: field.registry }
       const review = scheduledReview({ ...base, id: `data:${record.id}:${index}` }, field, today)
       schedule.push(review)
       if (review.category !== 'current') items.push(review)
@@ -119,7 +119,7 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
     date.setUTCDate(date.getUTCDate() + 45)
     const nextReviewAt = date.toISOString().slice(0, 10)
     const remaining = dayNumber(nextReviewAt) - dayNumber(today)
-    const row = { id: `investor:${payload.data.identity.slug}`, name: payload.data.identity.displayName, aliases: [payload.data.identity.slug], field: `Portefeuille au ${snapshot.periodEnd}`, checkedAt: payload.as_of?.slice(0, 10), nextReviewAt, category: remaining <= 0 ? 'stale' : remaining <= SOON_DAYS ? 'soon' : 'current', cadence: 'quarterly', dataType: 'Portefeuilles trimestriels', tools: ['Présentation investisseur'], registry: 'public/data/investors', to: '/portefeuilles-investisseurs', urls: [payload.data.sourceUrl || 'https://www.sec.gov/edgar/search/'], reason: 'Contrôler le trimestre suivant 45 jours après sa clôture. La collecte et le déploiement sont automatiques ; une date de récupération récente ne prouve pas la présence du nouveau trimestre.' }
+    const row = { id: `investor:${payload.data.identity.slug}`, name: payload.data.identity.displayName, aliases: [payload.data.identity.slug], field: `Portefeuille au ${snapshot.periodEnd}`, metadata: { asOf: snapshot.periodEnd }, checkedAt: payload.as_of?.slice(0, 10), nextReviewAt, category: remaining <= 0 ? 'stale' : remaining <= SOON_DAYS ? 'soon' : 'current', cadence: 'quarterly', dataType: 'Portefeuilles trimestriels', tools: ['Présentation investisseur'], registry: 'public/data/investors', to: '/portefeuilles-investisseurs', urls: [payload.data.sourceUrl || 'https://www.sec.gov/edgar/search/'], reason: 'Contrôler le trimestre suivant 45 jours après sa clôture. La collecte et le déploiement sont automatiques ; une date de récupération récente ne prouve pas la présence du nouveau trimestre.' }
     schedule.push(row)
     if (row.category !== 'current') items.push(row)
   }

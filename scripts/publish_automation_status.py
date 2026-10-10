@@ -131,6 +131,7 @@ def update_status(state, run, jobs, reports=None):
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
         'collectionStatus': collection_status, 'publicationStatus': publication_status,
         'lastCollectionSuccessAt': run['updated_at'] if collection_status == 'success' else previous.get('lastCollectionSuccessAt'),
+        'lastPublicationSuccessAt': max((j.get('completed_at') or run['updated_at'] for j in deploy_jobs if j.get('conclusion') == 'success' and j['name'].endswith('deploy')), default=None) if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures}
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
