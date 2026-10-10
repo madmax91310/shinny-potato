@@ -3,7 +3,7 @@ import datetime as dt
 import json
 import pathlib
 import unittest
-from collect_presentation_actors import parse,refresh,SOURCES,PATH
+from collect_presentation_actors import parse,refresh,SOURCES
 ROOT=pathlib.Path(__file__).parent
 TODAY=dt.date(2026,10,9)
 class ActorTermsTests(unittest.TestCase):
@@ -60,7 +60,9 @@ class ActorTermsTests(unittest.TestCase):
   self.assertIn('année glissante',bricks['fields']['fees']['value'])
   with self.assertRaises(ValueError):parse('bricks',[docs['bricks'][0],docs['bricks'][1].replace('offrons 2 retraits','offrons 3 retraits')],TODAY)
  def test_atomic_preservation_and_independent_recovery(self):
-  previous=json.loads(PATH.read_text());one=copy.deepcopy(previous['fundora']);one['offers'].pop()
+  # Stable fixture dates: production observations advance on each automatic refresh.
+  previous={id_:parse(id_,docs,TODAY) for id_,docs in self.fixtures().items()}
+  one=copy.deepcopy(previous['fundora']);one['offers'].pop()
   def failure(day):raise ValueError('Page indisponible')
   data,report=refresh(previous,{'fundora':lambda day:one,'matis':failure,'bricks':lambda day:copy.deepcopy(previous['bricks'])},TODAY)
   self.assertEqual(data,previous)
