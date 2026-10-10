@@ -6,8 +6,9 @@ import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getPerformanceAssetId } from '../../data/performance-links.js';
+import { getSimulationAssetId, getSimulationHref } from '../../data/simulation-links.js';
 import {
   FORMATS, FORMAT_LABELS, MODES, SUBJECT_ALEATOIRE, pickForSelection, pickNext, getSubjectsForFormat,
   getSecondaryOptionsForFormat, buildTweetText, getMarketAsset,
@@ -64,8 +65,10 @@ export default function App({ initialFormat = FORMATS.ALEATOIRE, title, descript
 }
 
 function TweetMidiWorkspace({ search, initialFormat, title, description }) {
+  const params = new URLSearchParams(search);
   const requestedAsset = initialFormat === FORMATS.PERFORMANCE_DEPUIS
-    ? getPerformanceAssetId(new URLSearchParams(search).get('isin')) : null;
+    ? (params.has('isin') ? getPerformanceAssetId(params.get('isin'))
+      : getSimulationAssetId(params.get('asset'))) : null;
   // Recheck against the actual pool: a removed/unusable history cannot trigger
   // pickForSelection's fallback to an unrelated asset.
   const initialSubject = requestedAsset && getSecondaryOptionsForFormat(initialFormat, MODES.SIMPLE, requestedAsset).length
@@ -562,6 +565,12 @@ function TweetMidiWorkspace({ search, initialFormat, title, description }) {
                 {displayStatus.label}
               </span>
             </div>
+
+            {current.format === FORMATS.PERFORMANCE_DEPUIS && getSimulationHref(current.assetId) && (
+              <Link className="text-sm text-emerald-300 underline underline-offset-4" to={getSimulationHref(current.assetId)}>
+                Simuler un investissement sur cet actif
+              </Link>
+            )}
 
             {isAnniversaire && (
               <p className="text-sm font-semibold text-rose-200">

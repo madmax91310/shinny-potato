@@ -4,6 +4,8 @@ import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { getSimulationAssetId, getAnnualPerformanceHref } from '../../data/simulation-links.js'
 import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
   getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS,
@@ -101,6 +103,14 @@ function ResultCard({ state, d, copied, onCopy }) {
         </div>
         <span className="ic-mode-pill">{d.effectiveMode === 'dca' ? 'DCA mensuel' : 'Versement unique'}</span>
       </div>
+
+      {!d.isCustom && state.overridePriceRaw === '' && getAnnualPerformanceHref(state.assetId) && (
+        <p className="text-sm my-3">
+          <Link className="text-emerald-300 underline underline-offset-4" to={getAnnualPerformanceHref(state.assetId)}>
+            Voir les performances annuelles de cet actif
+          </Link>
+        </p>
+      )}
 
       <div className="ic-hero">
         <p className="ic-hero-label">
@@ -224,7 +234,22 @@ function ResultCard({ state, d, copied, onCopy }) {
 }
 
 export default function App() {
-  const [state, setState] = useState(INITIAL_STATE)
+  const { search } = useLocation()
+  return <InvestmentWorkspace key={search} search={search} />
+}
+
+function InvestmentWorkspace({ search }) {
+  const [state, setState] = useState(() => {
+    const assetId = getSimulationAssetId(new URLSearchParams(search).get('asset'))
+    if (!assetId) return INITIAL_STATE
+    const minDate = getAssetMinDate(assetId)
+    const maxDate = ASSETS[assetId].points.at(-1).date
+    // Carry identity only. Defaults must remain within this exact history;
+    // the annual tool's December-to-December period is not a monthly start date.
+    const preferredDate = minDate > '2020-01' ? minDate : '2020-01'
+    const date = preferredDate > maxDate ? maxDate : preferredDate
+    return { ...INITIAL_STATE, assetId, startYear: Number(date.slice(0, 4)), startMonth: Number(date.slice(5)) }
+  })
   const [copied, setCopied] = useState('idle')
 
   const isCustom = state.assetId === 'custom'
