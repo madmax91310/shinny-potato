@@ -48,6 +48,13 @@
 .workspace .asset-picker-more, .workspace .asset-picker-results button, .workspace .asset-picker-details summary { min-height: 44px; }
 .workspace :is(.asset-picker-groups,.choice-picker-grid) { gap: 8px; }
 .workspace :is(.tool-settings,.tool-preview) { min-width: 0; }
+.workspace .tool-settings :is(button,input,textarea,summary) { scroll-margin-block: 80px 180px; }
+/* Allocation editors live inside the settings column: stack them even on desktop. */
+.workspace .pd-editors { grid-template-columns: minmax(0,1fr); }
+.workspace .pd-editor-line { display: grid; grid-template-columns: minmax(0,1fr); align-items: start; gap: 10px; }
+.workspace .pd-editor-line > label { width: 100%; }
+.workspace .pd-editor-line .pd-weight { max-width: 110px; }
+.workspace .pd-editor-side .choice-picker-grid { grid-template-columns: minmax(0,1fr); }
 .workspace .company-evidence { padding: 16px; margin-top: 16px; border: 1px solid var(--ui-line); border-radius: 14px; background: var(--ui-surface); }
 .workspace .company-evidence a { color: var(--ui-accent); }
 .workspace .wealth-panel { background: var(--ui-surface); border-color: var(--ui-line); }
