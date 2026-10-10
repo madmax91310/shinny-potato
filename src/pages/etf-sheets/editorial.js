@@ -114,17 +114,17 @@ const GOALS = {
 
 const OVERRIDES = {
   ia: {
-    hook: '🤖 Tu t’intéresses à l’IA, mais tu ne veux pas choisir les actions une par une ?\n\nCet ETF permet de s’y exposer en une seule ligne 👇',
+    hook: '🤖 Quand on parle d’investissement dans l’IA, on pense souvent aux fabricants de puces. Cet ETF va aussi chercher du côté des logiciels et des applications 👇',
     whatIs: 'Cet ETF suit un indice qui sélectionne des entreprises liées à plusieurs activités de l’intelligence artificielle : infrastructures, logiciels et applications.\n\nIl ne se limite donc pas aux fabricants de puces ou aux entreprises qui développent des modèles d’IA.',
-    whyInteresting: 'Une seule ligne pour investir dans plusieurs entreprises liées au thème, sans devoir choisir celle qui en profitera le plus.\n\nLa sélection dépend toutefois des règles de l’indice : toutes les entreprises associées à l’IA ne sont pas forcément présentes.',
+    whyInteresting: 'Tu réunis plusieurs activités liées à l’IA dans une seule ligne.\n\nC’est ce qui m’intéresse ici : comprendre quelles entreprises le fonds retient derrière ce thème très large. Deux ETF portant « IA » dans leur nom ne proposent pas forcément la même exposition.\n\nLa sélection dépend des règles de l’indice : toutes les entreprises associées à l’IA ne sont pas forcément présentes.',
     whatToKnow: 'Le développement de l’IA ne garantit pas la hausse des actions de ces entreprises.\n\nTu peux aussi détenir certaines de ces sociétés dans ton ETF World ou technologique. Ajouter ce fonds peut renforcer une exposition que tu as déjà.',
     verdict: 'L&G Artificial Intelligence rassemble plusieurs métiers liés à l’IA. Pour comprendre ce que tu achètes, regarde les entreprises détenues et leur poids, au-delà du nom du thème.',
     question: 'Tu voudrais investir dans toute la chaîne de l’IA ou privilégier une activité précise ?',
   },
   'msci-world': {
-    hook: '🌍 Tu veux investir dans plusieurs pays depuis ton PEA, sans choisir les actions une par une ?\n\nCet ETF éligible au PEA permet de s’y exposer en une seule ligne 👇',
+    hook: '🌍 Investir dans plusieurs pays avec une seule ligne dans ton PEA, c’est ce que permet cet ETF World 👇',
     whatIs: 'Cet ETF suit le MSCI World : de grandes et moyennes entreprises de pays développés, dans plusieurs secteurs.\n\nLes entreprises ayant les plus grosses capitalisations occupent le plus de place. Les États-Unis et leurs grands groupes pèsent donc fortement dans cette exposition.',
-    whyInteresting: 'Une seule ligne pour suivre cet ensemble d’entreprises, sans construire toi-même une sélection par pays et par secteur.\n\nLa réplication synthétique permet de rendre cette exposition accessible dans un PEA.',
+    whyInteresting: 'Tu suis de grandes et moyennes entreprises de pays développés, sans sélectionner les actions une par une.\n\nCe que j’apprécie dans cette approche, c’est de ne pas avoir à deviner quelles entreprises feront les meilleures performances. En revanche, les émergents et les petites capitalisations restent en dehors.\n\nLa réplication synthétique permet de rendre cette exposition accessible dans un PEA.',
     whatToKnow: 'Le MSCI World n’inclut ni les marchés émergents ni les petites capitalisations.\n\nDétenir beaucoup d’entreprises ne signifie pas que chaque pays a le même poids. Et cet ETF reste exposé aux baisses des marchés actions.',
     verdict: 'Amundi PEA Monde permet de suivre le MSCI World dans ton PEA. Si tu veux aussi des émergents ou des petites capitalisations, ces expositions sont à chercher ailleurs.',
     question: 'Dans ton PEA, tu gardes un World seul ou tu ajoutes d’autres expositions à côté ?',

@@ -32,7 +32,8 @@ console.log('52 fiches ajoutées : profils ISIN rejoués, TER et caractéristiqu
 
 for (const card of ETFS) {
   const copy = getPresentationCopy(card);
-  assert(copy.hook.includes('en une seule ligne 👇'), card.id);
+  // L'accroche peut varier selon l'exposition ; l'identité du fonds doit rester explicite.
+  assert(buildText(card).includes(card.isin), card.id);
   assert(buildText(card).startsWith(copy.hook + '\n\n'));
 }
 assert(!buildText(ETFS.find(card => card.isin === 'FR001400U5Q4')).includes('DCAM'));

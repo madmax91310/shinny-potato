@@ -98,7 +98,7 @@ export default function App() {
     <div className="mf-scope">
       <PageHeader
         title="Faits marquants des marchés"
-        subtitle={`${FACTS.length} récits et parcours de marché, avec leurs sources et leurs précisions.`}
+        subtitle={`${FACTS.length} histoires sélectionnées, avec leurs sources et leurs précisions.`}
       />
 
       <ToolWorkspace actions={<>

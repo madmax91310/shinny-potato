@@ -7,7 +7,7 @@ import { VERIFIED_RETURNS } from './verified-returns.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { CATALOG as DUEL_ASSETS } from './duel-assets.js';
 import { FEE_COMPARISON_ASSETS } from './fee-comparison-assets.js';
-import { HISTORY_STATISTIC_IDS } from './history-statistics.js';
+import { MONTHLY_MARKET_STORY_IDS } from './market-story-selection.js';
 import { ALLOCATION_CASE_DEFINITIONS } from './allocation-cases.js';
 import { INSTRUMENTS_BY_ISIN } from './instruments.js';
 import { ETF_TER_BY_ISIN } from './etf-ter.js';
@@ -170,7 +170,7 @@ export const DATA_CATALOG = Object.freeze([
     consumers: [],
     fields: Object.entries(history).map(([date, series]) => field(`Rendements · ${date}`, 'index-returns', series, series.metadata)),
   })),
-  ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: 'Performance depuis', path: '/performance-depuis' }, ...(!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? [{ tool: 'Il y a X ans', path: '/il-y-a-x-ans' }] : []), ...(HISTORY_STATISTIC_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
+  ...Object.entries(HISTORY).map(([id, value]) => ({ id: `history:${id}`, type: 'series', name: value.name ?? value.label ?? id, aliases: [id], consumers: [{ tool: 'Calculateur', path: '/calculateur-investissement' }, { tool: 'Performance depuis', path: '/performance-depuis' }, ...(!SPARSE_MONTHLY_DATA_IDS.has(id) && (value.priceMethod !== 'adjusted' || value.anniversaryPoints) && value.priceUnit !== 'points' ? [{ tool: 'Il y a X ans', path: '/il-y-a-x-ans' }] : []), ...(MONTHLY_MARKET_STORY_IDS.includes(id) ? [{ tool: 'Faits marquants', path: '/faits-marquants-marches' }] : [])], fields: [field('Série historique', 'market-history', value, { ...SUPPORTING_EVIDENCE[`history:${id}`], scope: id, currency: value.currency })] })),
   ...Object.entries(BROKER_TARIFFS).map(([id, observation]) => ({
     id: `broker:${id}`, type: 'broker', name: {bourso:'BoursoBank · Découverte',fortuneo:'Fortuneo · Starter',xtb:'XTB',saxo:'Saxo · Classic',caidf:'Crédit Agricole Île-de-France',ibkr:'Interactive Brokers · France',tr:'Trade Republic',bd:'Bourse Direct'}[id], aliases: [id, 'courtage', 'tarifs'],
     consumers: [{tool: 'Comparateur de courtiers', path: '/comparatif-courtiers'}],
