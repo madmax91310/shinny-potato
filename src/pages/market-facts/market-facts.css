@@ -29,6 +29,8 @@
 }
 .mf-select:hover { border-color: var(--mf-accent); }
 .mf-select optgroup { font-weight: 700; color: var(--mf-accent-bright); background: var(--mf-surface); }
+/* Les intitulés longs gardent leur hauteur dans la liste défilante. */
+.mf-scope .choice-picker-grid { grid-auto-rows: max-content; align-content: start; }
 
 .mf-card {
   background: var(--mf-surface); border: 1px solid var(--mf-border); border-radius: 16px;
@@ -41,7 +43,7 @@
   border-bottom: 1px solid var(--mf-border-soft);
 }
 
-.mf-details { font-size: 13px; color: var(--mf-text-dim); line-height: 1.55; }
+.mf-details { font-size: 13px; color: var(--mf-text-dim); line-height: 1.55; overflow-wrap: anywhere; }
 .mf-details summary { cursor: pointer; color: var(--mf-accent-bright); }
 .mf-details p { margin: 12px 0 0; }
 
