@@ -13,11 +13,17 @@ export function buildTweet(record) {
   const { name, id, snapshot, conditions: c, annual, price } = record
   const sector = [...snapshot.sectors].sort((a, b) => b.value - a.value)[0]
   const country = [...snapshot.countries].sort((a, b) => b.value - a.value)[0]
-  const hook = id.startsWith('corum-')
-    ? `Tu aimerais percevoir des loyers, mais acheter et gérer un bien te freine ? ${name} permet d’investir dans de l’immobilier d’entreprise à plusieurs. Regardons ce qu’il y a derrière 👇`
-    : id === 'iroko-zen'
-    ? `Avec Iroko Zen, tu investis dans des biens loués à des entreprises, sans gérer toi-même les locataires. Voici où va l’argent et ce que coûte cette SCPI 👇`
-    : `Tu n’as pas besoin d’acheter un bien entier pour investir dans l’immobilier. Avec ${name}, tu peux devenir associé dès ${format(c.minimum)} €. Regardons où va cet argent 👇`
+  const hooks = {
+    'iroko-zen': `Avec Iroko Zen, tu investis dans des biens loués à des entreprises, sans gérer toi-même les locataires. Voici où va l’argent et ce que coûte cette SCPI 👇`,
+    'remake-live': `Avec ${name}, tu peux investir dans un patrimoine immobilier dès ${format(c.minimum)} €. Voici où se trouvent les biens et les conditions pour percevoir des revenus 👇`,
+    'corum-origin': `Une SCPI peut détenir des biens dans plusieurs pays sans répartir son argent également entre eux. Regardons le patrimoine de ${name} et les revenus qu’elle a distribués 👇`,
+    'corum-xl': `Derrière les revenus d’une SCPI, il y a des biens, des locataires et des marchés immobiliers. Voici ceux auxquels ${name} donne accès 👇`,
+    'corum-eurion': `Deux SCPI peuvent afficher des revenus proches avec des patrimoines très différents. Voici comment ${name} répartit ses investissements 👇`,
+    'transitions-europe': `Tu peux devenir associé de ${name} dès ${format(c.minimum)} €. Avant de regarder ses distributions, voici où va l’argent investi 👇`,
+    activimmo: `Avec ${format(c.minimum)} €, tu peux accéder au patrimoine immobilier d’${name}. Regardons les biens détenus et ce qui compte derrière les loyers 👇`,
+    'epargne-pierre': `Investir avec ${name} commence à ${format(c.minimum)} €. Voici la répartition de son patrimoine, ses revenus publiés et les frais à comprendre 👇`,
+  }
+  const hook = hooks[id] ?? `Avec ${name}, tu peux devenir associé dès ${format(c.minimum)} €. Voici le patrimoine et les conditions de cette SCPI 👇`
   const snapshotDate = snapshot.asOf ? `Au ${dateLabel(snapshot.asOf)}` : `Répartition relevée le ${dateLabel(record.checkedAt)} ; date des graphiques non précisée`
   const priceHistory = price.previousValue != null && price.previousValue !== price.value
     ? `Prix de la part : ${format(price.previousValue)} € au ${dateLabel(price.previousAsOf)} → ${format(price.value)} € au ${dateLabel(price.asOf)}.`
@@ -25,11 +31,11 @@ export function buildTweet(record) {
   const uk = snapshot.countries.find(row => row.label === 'Royaume-Uni')
   const france = snapshot.countries.find(row => row.label === 'France')
   const reading = id.startsWith('corum-') || !['iroko-zen','remake-live'].includes(id)
-    ? `Si tu regardes cette SCPI pour diversifier ton épargne, garde ces deux poids en tête : ${format(sector.value)} % en ${sector.label.toLowerCase()} et ${format(country.value)} % en ${country.label}. Une difficulté sur ces marchés aurait davantage de poids sur le patrimoine.`
+    ? `${format(sector.value)} % du patrimoine est en ${sector.label.toLowerCase()}, et ${format(country.value)} % en ${country.label}. ${id === 'corum-origin' ? 'Je regarde ces poids ensemble : investir dans plusieurs pays ne suffit pas à savoir comment le patrimoine est réparti entre les activités.' : id === 'corum-xl' ? 'Ce que je retiens, c’est la place réelle de ces expositions dans le patrimoine. Elles aident à comprendre quels marchés et quelles activités influencent les loyers.' : id === 'corum-eurion' ? 'Je garde cette répartition en tête pour comparer les revenus à ceux d’autres SCPI. Un taux proche ne signifie pas que les biens ou les locataires sont les mêmes.' : id === 'activimmo' ? 'Je regarderais aussi comment ces biens sont loués. Le taux de distribution ne dit pas, à lui seul, si les locataires paient et dans quelles conditions.' : id === 'epargne-pierre' ? 'Pour moi, cette répartition compte autant que les distributions pour comprendre où se trouve le risque immobilier.' : 'Ce qui m’intéresse ici, c’est de relier les revenus distribués aux biens détenus. Une difficulté sur ces marchés aurait davantage de poids sur le patrimoine.'}`
     : id === 'iroko-zen'
     ? `${['Commerces', 'Bureaux', 'Entrepôts', "Locaux d’activités", "Locaux d'activités"].includes(sector.label) ? `Les ${sector.label.toLowerCase()} représentent` : `Le secteur « ${sector.label.toLowerCase()} » représente`} ${format(sector.value)} % du patrimoine dans la répartition présentée. ${sector.value >= 25 ? 'C’est une part importante, que je garde en tête en regardant les revenus distribués.' : 'C’est une exposition que je garde en tête en regardant les revenus distribués.'}\n\nLes biens sont répartis dans plusieurs pays, mais les loyers restent liés à la capacité des locataires à payer.`
     : uk && france && uk.value > france.value
-      ? `Si tu pensais surtout investir dans l’immobilier français, regarde la répartition : le Royaume-Uni représente ${format(uk.value)} % du patrimoine, davantage que la France. Le marché britannique et la livre sterling ont donc leur place dans les risques à comprendre.`
+      ? `Le Royaume-Uni représente ${format(uk.value)} % du patrimoine, davantage que la France. C’est ce que je retiens si l’objectif était surtout d’investir dans l’immobilier français : le marché britannique et la livre sterling ont aussi leur place dans les risques à comprendre.`
       : `${country.label} représente ${format(country.value)} % du patrimoine. C’est le pays que je regarderais en premier pour comprendre à quels marchés immobiliers ton argent est exposé.`
   const management = c.managementZones
     ? `${format(c.managementZones.euro)} % TTC en zone euro et ${format(c.managementZones.outside)} % TTC hors zone euro`
