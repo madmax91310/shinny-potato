@@ -207,7 +207,15 @@ assert(!buildTweetText(unknown,now).includes('marge nette'))
 console.log('Company editorial: 11 distinct hooks, no CTA, currency neutrality and refreshed factual readings OK.')
 
 // Business context is tied to exact source accounts, survives quote changes, and expires on restatement.
-const apple = COMPANIES.find(c => c.id === 'apple')
+const appleProfile = COMPANIES.find(c => c.id === 'apple')
+// Freeze the reviewed 2025 source scenario; daily collection must not invalidate this fixture.
+const apple = {...appleProfile, accountsObservedAt:'2026-10-10',
+ annual:{...appleProfile.annual,...appleProfile.annualContext}, quarter:null, halfYear:null,
+ quote:{price:340.42,asOf:'2026-10-08',splits:[]},
+ trailing:{end:'2026-06-27',dilutedEPS:8.72,observedAt:'2026-10-10'},
+ quarters:[{end:'2026-06-27',dilutedEPS:2.02},{end:'2026-03-28',dilutedEPS:2.01},
+   {end:'2025-12-27',dilutedEPS:2.84},{end:'2025-09-27',dilutedEPS:1.85}]}
+
 const appleNow = new Date('2026-10-10T12:00:00Z')
 const appleText = buildTweetText(apple,appleNow)
 assert.match(appleText,/13,5 %/)
