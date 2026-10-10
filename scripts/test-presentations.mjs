@@ -12,7 +12,7 @@ for(const family of ACTOR_FAMILIES)assert(PRESENTATION_ACTORS.some(row=>row.fami
 for(const record of PRESENTATION_ACTORS) {
   const text=buildActorTweet(record)
   assert(text.includes(record.vehicle) && text.includes(record.distinction))
-  assert(text.includes('pas garantis') && text.includes('pas qualifiés'))
+  assert(text.includes('pas garantis') && text.includes('rendements effectivement obtenus'))
   assert.equal(record.verification,'public-terms')
   assert(record.selectedOffer && record.selectedOffer.missing.length)
   assert.equal(Object.keys(record.selectedOffer.fields).length,5)
@@ -67,5 +67,11 @@ for (const actor of PRESENTATION_ACTORS) for (const offer of actor.offers) {
   const record=applyActorOffer(actor,offer.id),text=buildActorTweet(record)
   assert(text.includes('Voici les détails 👇') && text.includes('💸'))
   assert(text.split('\n\n').at(-1).startsWith('💬 '))
-  assert(!/undefined|NaN/.test(text))
+  assert(!/undefined|NaN|qualifié|qualifiée/.test(text))
+  assert.equal((text.match(/🔎 /g) ?? []).length,1)
+  // Publication edits must preserve all figures from the collected offer terms.
+  for (const field of Object.values(offer.fields)) for (const figure of field.value.match(/\d+(?:[.,]\d+)?/g) ?? []) {
+    assert(text.includes(figure), `${actor.id}/${offer.id}: missing ${figure}`)
+  }
+  for (const warning of offer.warnings) assert(text.includes(warning))
 }
