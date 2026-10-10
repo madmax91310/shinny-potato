@@ -2,7 +2,9 @@
 import copy
 import datetime as dt
 import unittest
-from refresh_monthly_history import yahoo_chart, collect_yahoo, msci_rows, collect_stoxx, refresh, UTC
+import urllib.error
+from urllib.parse import urlparse, parse_qs
+from refresh_monthly_history import yahoo_chart, collect_yahoo, collect_msci, msci_rows, collect_stoxx, refresh, UTC
 
 NOW=dt.datetime(2026,2,6,tzinfo=UTC)
 CONFIG={'id':'test','parser':'yahoo','symbol':'TEST','currency':'USD','field':'adjclose','precision':6,'periodStart':'2026-01','method':'adjusted'}
@@ -35,6 +37,40 @@ class Monthly(unittest.TestCase):
         config={'indexCode':'123','currency':'USD','variant':'NETR'}
         raw={'msci_index_code':'123','ISO_currency_symbol':'USD','index_variant_type':'GRTR','indexes':{'INDEX_LEVELS':[{'calc_date':20260130,'level_eod':12}]}}
         with self.assertRaises(ValueError):msci_rows(raw,config)
+
+    def test_msci_year_windows_recover_same_exact_series(self):
+        config={'indexCode':'123','currency':'USD','variant':'NETR','periodStart':'2025-01','precision':6}
+        calls=[]
+        def fetch(url):
+            q={k:v[0] for k,v in parse_qs(urlparse(url).query).items()};calls.append(q)
+            if q['start_date']=='20241231':
+                raise urllib.error.HTTPError(url,500,'upstream',{},None)
+            rows=[]
+            for year in [2025,2026]:
+                for month in range(1,13):
+                    boundary=dt.date(year+int(month==12),month%12+1,1)
+                    date=boundary-dt.timedelta(days=1)
+                    if q['start_date']<=date.strftime('%Y%m%d')<=q['end_date']:
+                        rows.append({'calc_date':date.strftime('%Y%m%d'),'level_eod':100+len(rows)})
+            return {'msci_index_code':'123','ISO_currency_symbol':'USD','index_variant_type':'NETR','indexes':{'INDEX_LEVELS':rows}}
+        result=collect_msci(config,NOW,fetch)
+        self.assertEqual(len(result['points']),13)
+        self.assertEqual(len(result['sourceAttempts']),2)
+        self.assertEqual(len(result['sourceUrls']),4)
+        self.assertTrue(all(q['index_codes']=='123' and q['index_variant']=='NETR' and q['currency_symbol']=='USD' for q in calls))
+        # A chunk from a wrong share/variant is rejected, never substituted.
+        def wrong(url):
+            result=fetch(url);result['index_variant_type']='GRTR';return result
+        with self.assertRaises(ValueError):collect_msci(config,NOW,wrong)
+
+    def test_msci_invalid_payload_or_permanent_http_has_no_window_fallback(self):
+        config={'indexCode':'123','currency':'USD','variant':'NETR','periodStart':'2026-01','precision':6}
+        for error in [ValueError('bad JSON'),urllib.error.HTTPError('https://msci',403,'blocked',{},None)]:
+            calls=[]
+            def fetch(url):
+                calls.append(url);raise error
+            with self.assertRaises(type(error)):collect_msci(config,NOW,fetch)
+            self.assertEqual(len(calls),1)
     def test_failure_keeps_history_other_source_updates(self):
         sources=[{**CONFIG,'id':'ok'},{**CONFIG,'id':'bad'}];current={'bad':{'points':[['2026-01',5]],'checkedAt':'2026-02-01'}}
         baseline={s['id']:{'currency':'USD','points':[{'date':'2026-01','price':8}]} for s in sources}

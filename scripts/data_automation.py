@@ -5,6 +5,7 @@ import json
 import math
 import os
 import pathlib
+import re
 import time
 import urllib.error
 import urllib.request
@@ -55,27 +56,38 @@ def get_text(url, content_types, max_bytes=2_000_000, opener=urllib.request.urlo
         sleep(delay)
 
 
-def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep):
+def get_json(url, opener=urllib.request.urlopen, sleep=time.sleep, max_attempts=3):
     """Bounded retries; a successful HTML page is never treated as market data."""
+    if type(max_attempts) is not int or not 1 <= max_attempts <= 5:
+        reject('JSON attempts must be an integer between 1 and 5')
     request = urllib.request.Request(url, headers={
         'Accept': 'application/json', 'User-Agent': 'EpargnantLibre-DataPilot/1.0',
     })
-    for attempt in range(3):
+    for attempt in range(max_attempts):
         try:
             with opener(request, timeout=20) as response:
-                if response.headers.get_content_type() != 'application/json':
-                    raise ValueError('Expected a JSON response')
                 body = response.read(2_000_001)
                 if len(body) > 2_000_000:
                     reject('JSON response exceeds the size limit')
+                # MSCI's upstream proxy sometimes returns its error document with
+                # HTTP 200 and application/json. Only explicit transient error
+                # pages qualify for transport retries, never market/schema errors.
+                error_page = re.search(
+                    rb'<title>\s*(500 Internal Server Error|502 Bad Gateway|503 Service Temporarily Unavailable|503 Service Unavailable|504 Gateway Time-out)\s*</title>',
+                    body, re.I)
+                if body.lstrip().lower().startswith((b'<html', b'<!doctype html')) and error_page:
+                    code = int(error_page[1][:3])
+                    raise urllib.error.HTTPError(url, code, 'Upstream error page returned as HTTP 200', response.headers, None)
+                if response.headers.get_content_type() != 'application/json':
+                    raise ValueError('Expected a JSON response')
                 return json.loads(body.decode('utf-8'),
                                   parse_constant=lambda value: reject(f'Invalid JSON number: {value}'))
         except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == max_attempts - 1:
                 raise
             delay = retry_delay(error, attempt)
         except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead, ConnectionError):
-            if attempt == 2:
+            if attempt == max_attempts - 1:
                 raise
             delay = 2 ** attempt
         sleep(delay)

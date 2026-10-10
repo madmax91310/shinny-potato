@@ -11,6 +11,7 @@ import pathlib
 import re
 import gzip
 from urllib.parse import urlencode, quote
+import urllib.error
 from zoneinfo import ZoneInfo
 from issuer_documents import download
 from data_automation import UTC, get_json, get_text, month_shift, number, reject, write_json_atomic
@@ -129,17 +130,46 @@ def msci_rows(body, config):
     return rows
 
 
-def collect_msci(config, now, fetch=get_json):
+def get_msci_json(url):
+    return get_json(url, max_attempts=5)
+
+
+def collect_msci(config, now, fetch=get_msci_json):
     end = dt.datetime(now.year, now.month, 1, tzinfo=UTC)
     start = dt.datetime.strptime(config['periodStart'], '%Y-%m').replace(tzinfo=UTC)
-    raw, urls = {}, {}
+    raw, urls, attempts = {}, [], []
     for frequency in ['DAILY', 'END_OF_MONTH']:
-        urls[frequency] = 'https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?' + urlencode({
+        def source_url(first, last):
+            return 'https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?' + urlencode({
             'currency_symbol': config['currency'], 'index_variant': config['variant'],
-            'start_date': (start-dt.timedelta(days=1)).strftime('%Y%m%d'),
-            'end_date': (end-dt.timedelta(days=1)).strftime('%Y%m%d'),
+            'start_date': first.strftime('%Y%m%d'), 'end_date': last.strftime('%Y%m%d'),
             'data_frequency': frequency, 'index_codes': config['indexCode']})
-        raw[frequency] = fetch(urls[frequency])
+        first, last = (start-dt.timedelta(days=1)).date(), (end-dt.timedelta(days=1)).date()
+        url = source_url(first, last)
+        try:
+            raw[frequency] = fetch(url)
+            urls.append(url)
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+            if isinstance(error, urllib.error.HTTPError) and error.code not in (429, 500, 502, 503, 504):
+                raise
+            # Smaller requests to the same exact MSCI series, never a proxy.
+            # No fallback on identity, schema, return-convention or numeric errors.
+            attempts.append({'url':url, 'reason':str(error), 'recovery':'calendar-year windows'})
+            chunks, levels = [], []
+            cursor = start.date()
+            while cursor <= last:
+                boundary = min(dt.date(cursor.year, 12, 31), last)
+                chunk_url = source_url(cursor, boundary)
+                body = fetch(chunk_url)
+                rows = msci_rows(body, config)
+                if any(not cursor <= day <= boundary for day, _ in rows):
+                    reject('MSCI recovery observations outside requested window')
+                chunks.append({'url':chunk_url, 'response':body})
+                urls.append(chunk_url)
+                levels.extend(body['indexes']['INDEX_LEVELS'])
+                cursor = boundary + dt.timedelta(days=1)
+            raw[frequency] = {**chunks[0]['response'], 'indexes':{'INDEX_LEVELS':levels}}
+            raw[frequency+'Recovery'] = chunks
     daily = msci_rows(raw['DAILY'], config); monthly = msci_rows(raw['END_OF_MONTH'], config)
     final, buckets = {}, {}
     for day, value in daily:
@@ -159,7 +189,8 @@ def collect_msci(config, now, fetch=get_json):
             reject('MSCI monthly/daily final session disagrees')
         points.append([key, rounded(value, config['precision'])])
         proof_rows.append({'date':day.isoformat(), 'value':value, 'monthlyValue':published})
-    return {'points':points, 'sourceUrls':list(urls.values()), 'proofRows':proof_rows, 'rawResponse':raw}
+    return {'points':points, 'sourceUrls':urls, 'proofRows':proof_rows, 'rawResponse':raw,
+            **({'sourceAttempts':attempts} if attempts else {})}
 
 
 def collect_one(config, now):

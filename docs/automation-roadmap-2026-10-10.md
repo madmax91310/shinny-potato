@@ -32,3 +32,25 @@ Tests des dates et du statut de publication ; audits de provenance, catalogue et
 Contrôle courtiers du 10 octobre : onze périmètres relus, toujours partiels ou non établis ; source compte-titres Bourse Direct en HTTP 502. Aucun des douze champs ouverts n’a été promu sans preuve.
 
 Complément A4 : les six collecteurs de contrats AV ont réussi un nouveau contrôle sans écriture des données. Le rapport annuel officiel Global X publié pour l’exercice clos au 30 juin 2025 et le supplément QYLD ne qualifient ni un calendrier civil de la part distribuante ni son exposition économique actuelle. Les descriptions génériques de rémunération, droits de garde ou achats récurrents des courtiers ne suffisent pas à certifier une portée PEA/CTO différente. Les conditions d’Euro+ ne qualifient pas Placement-direct Vie.
+
+## Reprise des points restants — contrôles réels du 10 octobre
+
+### Historiques mensuels MSCI rétablis
+
+ACWI IMI `664204 NETR USD` et World ex USA `991000 NETR USD` ont chacun été recollectés et validés sur 141 mois de janvier 2015 à septembre 2026. Les deux fréquences officielles, DAILY et END_OF_MONTH, concordent pour chaque dernière séance. Les points correspondent exactement aux historiques actifs : aucun rendement, proxy ni date de modification n’est remplacé artificiellement. La preuve de ce nouveau contrôle figure dans `scripts/source-snapshots/automation-recovery-2026-10-10.json`.
+
+Le défaut observé est une page HTML `503 Service Temporarily Unavailable` livrée avec HTTP 200 et `application/json`. Le transport reconnaît seulement les pages explicites d’erreur temporaire et les retente au maximum trois fois pour les collecteurs génériques, cinq fois pour MSCI, avec attente progressive bornée. Une erreur persistante de transport MSCI déclenche une reprise par années civiles sur le même endpoint, le même indice, la même devise et la même variante. Chaque fenêtre et la série réunie sont contrôlées ; toute fenêtre manquante, identité erronée ou discordance quotidienne/mensuelle bloque le remplacement et conserve l’historique actif. Une erreur de validation ou un HTTP 403 ne déclenche pas cette reprise. Le workflow programme ces contrôles et les tests de transport.
+
+### QYLD : vérification faite, quatre champs toujours bloqués
+
+La page européenne actuelle identifie la part distribuante IE00BM8R0J59, mais sa section Performance History est intitulée USD Accumulating et son calendrier discret est vide. Les tables Reference Index restent contradictoires. La fiche historique renvoie HTTP 404 ; l’URL FundAssist redécouverte et sa variante avec un seul slash renvoient HTTP 500 après réessais. Le profil pédagogique officiel et la présentation de lancement du 22 novembre 2022 sont accessibles, mais aucun ne publie les années civiles complètes de la part distribuante. Le panier de substitution et l’exposition Nasdaq autonome ne sont pas certifiés comme composition économique exacte du fonds.
+
+### Assurance-vie : six collecteurs contrôlés avec succès
+
+Linxea Zen, Vie, Spirit 2, Avenir 2, Lucya Cardif et Placement-direct Vie ont tous réussi la collecte réelle sans modifier les observations actives. Les plafonds propres aux supports et la quote-part SwissLife restent ouverts lorsque la documentation ne les chiffre pas. Les offres Euro+ et les annonces génériques d’absence de plafond légal de l’assurance-vie ne qualifient pas les conditions contractuelles de ces fonds.
+
+Ces réserves concernent des données non publiées ou non qualifiables, pas des branchements désactivés. Elles restent visibles dans l’inventaire et soumises aux contrôles quotidiens existants.
+
+### Courtiers : contrôle réel terminé
+
+Sept barèmes sur huit ont réussi ; Bourse Direct reste en HTTP 502 sur les domaines .fr/.com et les pages CTO/tarifs. Ses dernières valeurs sont conservées. Les douze champs partiels ou non établis gardent le même statut : cash CTO BoursoBank/Fortuneo/Crédit Agricole/Bourse Direct ; achats programmés PEA Fortuneo/IBKR ; PEA-PME IBKR/Trade Republic ; PEA Jeune IBKR ; frais de change régionaux Crédit Agricole ; portée PEA du change et de la garde Trade Republic. Aucune nouvelle clause officielle ne permet leur certification intégrale. Les résultats de collecte et périmètres exacts sont ajoutés à l’instantané de contrôle.

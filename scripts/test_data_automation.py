@@ -128,6 +128,42 @@ class AutomationTests(unittest.TestCase):
             get_json(BASE, opener, lambda delay: None)
         self.assertEqual(len(attempts), 3)
 
+    def test_upstream_503_page_with_200_json_retries_then_recovers(self):
+        calls, waits = [], []
+        def opener(request, timeout):
+            calls.append(request.full_url)
+            return JsonResponse(b'<html><head><title>503 Service Temporarily Unavailable</title></head></html>' if len(calls) < 3 else b'{"ok": true}')
+        self.assertEqual(get_json(BASE, opener, waits.append), {'ok': True})
+        self.assertEqual(waits, [1, 2])
+        self.assertEqual(len(calls), 3)
+
+    def test_upstream_error_exhausts_retries_but_bad_json_is_not_retried(self):
+        for body, attempts in [(b'<html><title>502 Bad Gateway</title></html>', 3),
+                               (b'<html>sign in</html>', 1), (b'{broken', 1),
+                               (b'{"price": NaN}', 1)]:
+            calls = []
+            def opener(request, timeout):
+                calls.append(1)
+                return JsonResponse(body)
+            with self.assertRaises((ValueError, urllib.error.HTTPError)):
+                get_json(BASE, opener, lambda _: None)
+            self.assertEqual(len(calls), attempts)
+
+    def test_msci_retry_budget_is_bounded_and_other_sources_keep_three(self):
+        for budget, expected in [(3,3),(5,5)]:
+            calls, waits = [], []
+            def opener(request, timeout):
+                calls.append(1)
+                if len(calls)<5:raise urllib.error.HTTPError(BASE,503,'unavailable',{},None)
+                return JsonResponse(b'{"ok":true}')
+            if budget==3:
+                with self.assertRaises(urllib.error.HTTPError):get_json(BASE,opener,waits.append)
+            else:self.assertEqual(get_json(BASE,opener,waits.append,max_attempts=budget),{'ok':True})
+            self.assertEqual(len(calls),expected)
+            self.assertEqual(waits,[1,2] if budget==3 else [1,2,4,8])
+        for budget in [0,6,True,3.5]:
+            with self.assertRaises(ValueError):get_json(BASE,max_attempts=budget)
+
     def test_invalid_json_never_truncates_existing_report(self):
         with tempfile.TemporaryDirectory() as directory:
             destination = pathlib.Path(directory) / 'report.json'
