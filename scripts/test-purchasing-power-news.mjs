@@ -23,6 +23,8 @@ assert.equal(classifyStatus('PTZ : un plafond de 100 000 euros', '').status, 'À
 assert.equal(classifyStatus('Projet de loi de finances', 'Le texte a été adopté par le Sénat.').status, 'Vote indiqué · étape à vérifier')
 assert.equal(classifyStatus('Le taux du Livret A entrera en vigueur le 1er août', '').status, 'Application annoncée')
 assert.equal(classifyStatus('PTZ : pas encore adopté', '').status, 'À préciser')
+assert.equal(classifyStatus("Le texte n’a pas été adopté", '').status, 'À préciser')
+assert.equal(classifyStatus('Un taux prévu par la réglementation', '').status, 'À préciser')
 assert.equal(classifyStatus('Le montant pourrait augmenter', '').status, 'À préciser')
 assert.equal(classifyStatus('Une loi promulguée', '').status, 'Promulgation indiquée')
 assert.equal(classifyStatus('Le nouveau taux entre en vigueur', '').status, 'Application indiquée')

@@ -47,14 +47,14 @@ export function classifyStatus(title, summary) {
   let fallback
   for (const clause of clauses) {
     const s = normalize(clause)
-    if (/ne .*pas.*(?:adopt|vot|promulgu|vigueur)|pas encore|pourrait|serait|devrait/.test(s)) continue
+    if (/(?:ne |n ).*pas.*(?:adopt|vot|promulgu|vigueur|applicable)|pas encore|pourrait|serait|devrait/.test(s)) continue
     let status
     if (/entre(?:e|nt|ra|ront)? en vigueur|applicable|s applique|sont appliqu|est applique/.test(s)) {
       status = /entrera|entreront|sera applicable|seront applicables|s appliquera/.test(s) ? 'Application annoncée' : 'Application indiquée'
     } else if (/promulgu/.test(s)) status = 'Promulgation indiquée'
     else if (/(?:adopte|vote|approuve)(?:e|es|s)?\b/.test(s)) status = 'Vote indiqué · étape à vérifier'
     else if (/projet de loi|proposition de loi|amendement|propose|en debat/.test(s)) status = 'Proposition / en discussion'
-    else if (/annonce|prevoit|prevu|prevision/.test(s)) status = 'Annonce'
+    else if (/annonce/.test(s)) status = 'Annonce'
     if (status) {
       const result = { status, evidence: clause.slice(0, 450) }
       if (status === 'Proposition / en discussion' || status === 'Annonce') fallback ??= result
