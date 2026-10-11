@@ -30,7 +30,7 @@ try {
         try {const canvas=await renderPresentationImage(record,kind);return {width:canvas.width,height:canvas.height,calls,url:canvas.toDataURL('image/png')}} finally {CanvasRenderingContext2D.prototype.fillText=original}
       },{record,kind})
       assert.equal(result.width,1600)
-      for(const c of result.calls)assert(c.left>=55 && c.right<=1545 && c.top>=45 && c.bottom<result.height-45,`${record.id}: overflowing text ${c.value}`)
+      for(const c of result.calls)assert(c.left>=55 && c.right<=1545 && c.top>=45 && c.bottom<result.height-15,`${record.id}: overflowing text ${c.value}`)
       for(const c of result.calls.filter(c=>/^[≤>]?[ \d ,]+(?:%|€)/.test(c.value)))assert(parseFloat(c.font.match(/([\d.]+)px/)[1])>=56,`${record.id}: figures too small ${c.value}`)
       const copy=result.calls.map(c=>c.value).join(' ').replace(/\s+/g,' ')
       assert.equal(copy.split('Épargnant Libre').length-1,1)

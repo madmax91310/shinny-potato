@@ -35,8 +35,8 @@ export async function renderPortfolioImage(portfolio) {
 
   text(ctx,portrait.person,650,174,875,74,GOLD,true)
   // Person and declaring entity are independently named, including Gates Trust.
-  text(ctx,identity.entityName || identity.displayName,650,226,875,43,CYAN,true)
-  text(ctx,`Positions au ${dateFR(snapshot.periodEnd)}`,650,258,875,25,INK)
+  text(ctx,identity.entityName || identity.displayName,650,220,875,43,CYAN,true)
+  text(ctx,`Positions au ${dateFR(snapshot.periodEnd)}`,650,258,875,34,INK)
   const top=holdings.slice(0,5)
   const rows=[...top.map(row=>[holdingName(row),percentage(row.weight)]),['Autres positions',percentage(Math.max(0,1-top.reduce((sum,row)=>sum+row.weight,0)))]]
   rows.forEach(([name,weight],i)=>{
@@ -46,7 +46,7 @@ export async function renderPortfolioImage(portfolio) {
     text(ctx,name,650,y+62,645,47,INK,true)
     ctx.textAlign='right'; text(ctx,weight,1504,y+62,170,46,CYAN,true); ctx.textAlign='left'
   })
-  text(ctx,`${holdings.length} lignes · poids hors options`,650,932,900,24,CYAN)
+  text(ctx,`${holdings.length} lignes · poids hors options`,650,938,900,34,CYAN)
   ctx.fillStyle='rgba(2,10,25,.78)';ctx.fillRect(0,1008,W,H-1008)
   text(ctx,portrait.person,40,1035,490,26,GOLD,true)
   ctx.textAlign='right'; text(ctx,'Épargnant Libre',1530,1035,700,27,GOLD,true); ctx.textAlign='left'

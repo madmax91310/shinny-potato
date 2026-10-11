@@ -253,8 +253,8 @@ export async function renderPresentationImage(record,kind) {
     if(i<2){ctx.fillStyle=model.brand.light+'60';ctx.fillRect(x+470,706,1,105)}
   }
   ctx.textAlign='left'
-  fittedText(ctx,model.qualifier,80,870,1440,24,22,'#bed0dc',400,SANS,2)
-  text(ctx,model.compactFooter,80,928,1180,23,'#bed0dc')
-  ctx.textAlign='right';font(ctx,24,400,SERIF);ctx.fillStyle='#e1edf3';ctx.fillText('Épargnant Libre',1520,928)
+  fittedText(ctx,model.qualifier,80,855,1440,30,28,'#bed0dc',400,SANS,2)
+  text(ctx,model.compactFooter,80,952,1180,28,'#bed0dc')
+  ctx.textAlign='right';font(ctx,24,400,SERIF);ctx.fillStyle='#e1edf3';ctx.fillText('Épargnant Libre',1520,952)
   return canvas
 }
