@@ -1,3 +1,4 @@
+import { buildAutomatedIndexSheets } from './automated-index-sheets.js';
 import { refreshIndexSheet } from './automated-indices.js';
 import { INDEX_RETURNS, getIndexReturns } from './index-returns.js'
 import { getIndexComposition, getIndexFacts } from './index-facts.js'
@@ -212,10 +213,10 @@ const ARCHIVE_SHEETS = [
   },
 ]
 
-export const SHEETS = ARCHIVE_SHEETS.map(sheet => {
+export const SHEETS = [...ARCHIVE_SHEETS.map(sheet => {
   const current = refreshIndexSheet(sheet);
   if (current.performance.kind !== 'indice' || !/dividendes.*réinvestis/.test(current.performance.detail)) {
     throw new Error(`La fiche exige un indice dividendes réinvestis : ${sheet.id}`);
   }
   return sheet.id === 'msci-india' ? { ...current, index: 'MSCI India' } : current;
-});
+}), ...buildAutomatedIndexSheets()];

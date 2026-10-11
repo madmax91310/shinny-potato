@@ -1,5 +1,9 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'msci-em-imi': ['emerging', 'Marchés émergents · grandes, moyennes et petites capitalisations'],
+  'ftse-all-world-high-dividend-yield': ['world', 'Développés et émergents · dividendes élevés'],
+  'sp-global-dividend-aristocrats': ['world', 'Dividendes mondiaux · sélection Quality Income'],
+  'msci-world-growth': ['world', 'Pays développés · filtre Growth'],
   'msci-usa': ['sp500', 'Grandes et moyennes entreprises américaines'],
   'msci-india': ['emerging', 'Grandes et moyennes entreprises indiennes'],
   'ftse-epra-nareit-developed-dividend-plus': ['property','Immobilier coté · pays développés · Dividend+'],

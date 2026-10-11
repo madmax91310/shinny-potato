@@ -5,6 +5,10 @@ const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digit
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
 
 const questions = {
+  'msci-em-imi': 'Tu inclurais les petites entreprises dans ton exposition aux émergents ?',
+  'ftse-all-world-high-dividend-yield': 'Tu choisirais cette sélection à dividendes ou un All-World classique ?',
+  'sp-global-dividend-aristocrats': 'Tu regardes aussi les critères de sélection quand tu choisis un ETF à dividendes ?',
+  'msci-world-growth': 'Tu choisirais le filtre Growth ou le World classique ?',
   'ftse-epra-nareit-developed-dividend-plus': 'Tu préfèrerais l’immobilier coté ou une exposition plus large aux infrastructures ?',
   'ftse-global-core-infrastructure': 'Tu connaissais la place des réseaux d’énergie et du transport dans cet indice ?',
   'msci-world-momentum': 'Tu choisirais les tendances récentes ou le World classique ?',
@@ -35,6 +39,10 @@ export function buildFactsheetTweet(sheet) {
   const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
   const countText = Number.isFinite(count) ? `${count.toLocaleString('fr-FR')} ${sheet.constituents === null ? 'sociétés visées' : 'titres'}` : 'les titres de son univers'
   const scopes = {
+    'msci-em-imi': 'Il couvre les grandes, moyennes et petites entreprises des marchés émergents.',
+    'ftse-all-world-high-dividend-yield': 'Il sélectionne des entreprises des pays développés et émergents selon leur rendement en dividendes anticipé.',
+    'sp-global-dividend-aristocrats': 'Il sélectionne des entreprises à dividendes avec des critères de régularité et de qualité financière.',
+    'msci-world-growth': 'Il sélectionne des grandes et moyennes entreprises des pays développés selon leurs caractéristiques de croissance.',
     'msci-usa': 'Il couvre les grandes et moyennes entreprises américaines.',
     'msci-india': 'Il couvre les grandes et moyennes entreprises indiennes.',
     world: 'Il couvre les grandes et moyennes entreprises des pays développés.',

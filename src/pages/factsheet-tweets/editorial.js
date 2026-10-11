@@ -1,6 +1,10 @@
 // Revue du 10/10/2026 : un angle propre à chaque indice, sans vécu personnel inventé.
 // Les chiffres et les constats de concentration sont dérivés de la fiche reçue.
 export const INDEX_HOOKS = {
+  'msci-em-imi': 'Les émergents ne se limitent pas aux grandes entreprises. Le MSCI Emerging Markets IMI inclut aussi les petites capitalisations 🌏',
+  'ftse-all-world-high-dividend-yield': 'Un ETF mondial à dividendes élevés peut avoir une composition très différente d’un ETF All-World classique 💰',
+  'sp-global-dividend-aristocrats': 'Derrière le mot « Aristocrats », il y a des règles de sélection. Un dividende élevé ne suffit pas à entrer dans cet indice 💰',
+  'msci-world-growth': 'Un ETF World Growth ne reprend pas tout le World. Il sélectionne les entreprises selon leurs caractéristiques de croissance 🔎',
   'msci-usa': 'Il n’y a pas que le S&P 500 pour suivre les entreprises américaines. Le MSCI USA couvre aussi les grandes et moyennes capitalisations 🇺🇸',
   'msci-india': 'Un ETF Inde donne accès à plusieurs entreprises, mais ton argent reste investi sur un seul pays 🇮🇳',
   "world": "Un ETF World contient plus que quelques noms connus. Mais toutes les entreprises n’y prennent pas la même place 🌍",
