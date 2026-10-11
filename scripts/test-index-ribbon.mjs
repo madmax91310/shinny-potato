@@ -21,6 +21,7 @@ try{
    for(const p of boxes)if(Math.min(p.r,box.r)-Math.max(p.l,box.l)>1&&Math.min(p.bottom,box.bottom)-Math.max(p.top,box.top)>1)throw new Error(`Overlap ${current}: ${p.t} / ${t}`)
    boxes.push(box);labels.push(String(t));return original.call(this,t,x,y,...args)
   }
+  const ctxPixel=canvas=>canvas.getContext('2d').getImageData(0,0,1,1).data
   const results=[],fmt=n=>`${n>0?'+':n<0?'−':''}${Math.abs(n).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})} %`
   try{for(const sheet of SHEETS){
    labels=[];boxes=[];current=sheet.id;const canvas=await renderFactsheetImage(sheet)
@@ -28,6 +29,8 @@ try{
    if(labels.some(t=>/COULISSES|ISIN|…/.test(t)))throw new Error('Series heading or truncation')
    for(const [year,value]of sheet.returns)if(!labels.includes(String(year))||!labels.includes(fmt(value)))throw new Error('Changed return')
    for(const heading of ['PRINCIPAUX PAYS','PRINCIPAUX SECTEURS','PRINCIPALES ENTREPRISES'])if(!labels.includes(heading))throw new Error('Missing composition block')
+   const background=ctxPixel(canvas)
+   if(background[0]<240||background[1]<240||background[2]<235)throw new Error('Missing light editorial background')
    for(const [name,value]of sortedRows(sheet.holdings).slice(0,4))if(!labels.join(' ').includes(companyLabel(name))||!labels.includes(fmt(value).replace('+','')))throw new Error('Changed company or weight')
    if(canvas.width!==2400||canvas.height!==1680)throw new Error('Wrong PNG dimensions')
    if(['world','acwi','ftse-all-world','world-ex-usa','world-small-cap','mscieurope'].includes(sheet.id)&&getIndexArt(sheet).scene!=='world')throw new Error('Wrong numeric scene')
@@ -42,5 +45,5 @@ try{
  await page.locator('.fs-scope img').first().evaluate(i=>i.decode())
  const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()])
  if(!download.suggestedFilename().endsWith('-dans-les-coulisses.png'))throw new Error('Download')
- console.log(`${samples.length} index cards: illustrations, methodology, real companies, annual returns, no overlap or clipping; mobile download OK.`)
+ console.log(`${samples.length} index cards: light editorial design, real companies, annual returns, no overlap or clipping; mobile download OK.`)
 }finally{await browser?.close();server.kill('SIGTERM')}

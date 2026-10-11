@@ -1,16 +1,25 @@
-import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
-import { getIndexArt, loadIndexArt } from './visualIdentity.js'
+import { getIndexArt } from './visualIdentity.js'
 import { companyLabel, plainLabel, sortedRows, sumRows } from './editorial.js'
 
 const W = 1600, H = 1120
-const C = { ink: '#F0F2EB', muted: '#A6B9AE', accent: '#E5C386', negative: '#FA9293', rule: '#2D423B' }
+const C = { ink: '#111820', muted: '#627087', accent: '#0646CE', negative: '#C73241', rule: '#A9BCE9' }
+let globePromise
+function loadGlobe() {
+  if (!globePromise) globePromise = (async () => {
+    const image = new Image()
+    image.src = `${import.meta.env.BASE_URL}asset-art/index-editorial-globe.webp`
+    await image.decode()
+    return image
+  })().catch(error => { globePromise = null; throw error })
+  return globePromise
+}
 function write(ctx, text, x, y, size=28, color=C.ink, weight=400, align='left') {
-  ctx.font=`${weight} ${size}px Arial, sans-serif`; ctx.textBaseline='top'; ctx.textAlign=align
+  ctx.font=`${weight} ${size}px Georgia, 'Times New Roman', serif`; ctx.textBaseline='top'; ctx.textAlign=align
   ctx.fillStyle=color; ctx.fillText(String(text),x,y); ctx.textAlign='left'
 }
 // Wrap names instead of reducing them to tiny type. The last line is bounded.
 function paragraph(ctx, text, x, y, width, size=28, color=C.ink, weight=400, maxLines=2) {
-  ctx.font=`${weight} ${size}px Arial, sans-serif`
+  ctx.font=`${weight} ${size}px Georgia, 'Times New Roman', serif`
   const words=String(text).split(/\s+/), lines=[]
   let line=''
   for (const word of words) {
@@ -36,11 +45,7 @@ function percent(n,signed=false) {
   return `${signed&&n>0?'+':n<0?'−':''}${Math.abs(n).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})} %`
 }
 function rule(ctx,x,y,width) {ctx.fillStyle=C.rule;ctx.fillRect(x,y,width,1)}
-function card(ctx,x,y,width,height) {
-  ctx.fillStyle='#142623';ctx.beginPath();ctx.roundRect(x,y,width,height,18);ctx.fill()
-  ctx.strokeStyle=C.rule;ctx.lineWidth=1;ctx.stroke()
-}
-function heading(ctx,text,x,y) {write(ctx,text,x,y,24,C.muted,700)}
+function heading(ctx,text,x,y) {write(ctx,text,x,y,24,C.accent,700)}
 function displayLabel(name) {
   return plainLabel(name)
     .replace(/Technologies de l.info\.?/i,'Technologie')
@@ -54,8 +59,6 @@ function ranking(ctx,rows,x,y,width) {
     const top=y+i*66
     paragraph(ctx,displayLabel(name),x,top,width-138,28,C.ink,400,1)
     write(ctx,percent(value),x+width,top,29,C.accent,700,'right')
-    ctx.fillStyle='#253D33';ctx.fillRect(x,top+41,width,5)
-    ctx.fillStyle='#BD9C62';ctx.fillRect(x,top+41,width*Math.min(value,100)/100,5)
   })
 }
 function performanceNote(sheet) {
@@ -94,55 +97,50 @@ function hero(sheet) {
 }
 export async function renderFactsheetImage(sheet) {
   const identity=getIndexArt(sheet)
-  const art=await (identity.scene==='sp500'?loadArtImage('approved/index-sp500.webp'):loadIndexArt(sheet))
+  const art=await loadGlobe()
   const canvas=document.createElement('canvas');canvas.width=W*1.5;canvas.height=H*1.5
   const ctx=canvas.getContext('2d');ctx.scale(1.5,1.5)
-  const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#10231D');bg.addColorStop(1,'#080F12')
-  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H)
-  const layer=document.createElement('canvas');layer.width=740;layer.height=430
-  const l=layer.getContext('2d'), ah=740*art.height/art.width
-  l.drawImage(art,0,-60,740,ah);l.globalCompositeOperation='destination-in'
-  const fade=l.createLinearGradient(0,0,740,0)
-  fade.addColorStop(0,'transparent');fade.addColorStop(.15,'white');fade.addColorStop(.85,'white');fade.addColorStop(1,'transparent')
-  l.fillStyle=fade;l.fillRect(0,0,740,430)
-  const bottom=l.createLinearGradient(0,0,0,430)
-  bottom.addColorStop(0,'transparent');bottom.addColorStop(.15,'white');bottom.addColorStop(.75,'white');bottom.addColorStop(1,'transparent')
-  l.fillStyle=bottom;l.fillRect(0,0,740,430)
-  ctx.save();ctx.globalAlpha=.8;ctx.drawImage(layer,790,20);ctx.restore()
-  ctx.fillStyle='#C7A86D';ctx.fillRect(60,57,5,45)
-  paragraph(ctx,sheet.index??sheet.title,88,48,800,56,C.ink,700,2)
-  paragraph(ctx,identity.description,64,186,850,28,C.muted,400,1)
+  ctx.fillStyle='#FAFAF7';ctx.fillRect(0,0,W,H)
+  // The globe is decorative: the figures and rankings remain live application data.
+  ctx.drawImage(art,1082,25,470,470)
+  const title=sheet.index??sheet.title
+  ctx.font="700 100px Georgia, 'Times New Roman', serif"
+  const titleSize=ctx.measureText(title).width<=1010?100:58
+  paragraph(ctx,title,60,30,1010,titleSize,C.ink,700,2)
+  paragraph(ctx,identity.description,64,177,1000,30,C.ink,700,1)
   const date=sheet.indexFacts?.asOf
   write(ctx,`Composition au ${date?date.split('-').reverse().join('/'):sheet.snapshot}`,64,224,24,C.muted)
   const [value,caption]=hero(sheet)
-  write(ctx,percent(value),62,263,92,C.accent,700)
-  paragraph(ctx,caption,68,365,820,26,C.muted,700,1)
+  write(ctx,percent(value),62,255,110,C.accent,700)
+  paragraph(ctx,caption,68,392,980,26,C.ink,700,1)
   const count=sheet.constituents??sheet.indexFacts?.targetConstituents
   const countText=count==null?'Nombre de titres non publié':`${count.toLocaleString('fr-FR')} ${sheet.constituents==null?'sociétés visées':'titres dans l’indice'}`
   const top=sheet.topWeight??sumRows(sortedRows(sheet.holdings).slice(0,10))
-  write(ctx,countText,68,405,28)
-  write(ctx,`10 premières lignes : ${percent(top)}`,900,405,26,C.muted)
-  card(ctx,60,462,462,332);heading(ctx,'PRINCIPAUX PAYS',84,486)
-  ranking(ctx,sortedRows(sheet.countries).filter(([n])=>!/autres|others/i.test(n)),84,533,414)
-  card(ctx,542,462,462,332);heading(ctx,'PRINCIPAUX SECTEURS',566,486)
-  ranking(ctx,sortedRows(sheet.sectors).slice(0,3),566,533,414)
-  write(ctx,'Poids dans l’indice',566,753,24,C.muted)
-  card(ctx,1024,462,516,332);heading(ctx,'PRINCIPALES ENTREPRISES',1048,486)
+  rule(ctx,60,438,990)
+  write(ctx,countText,68,459,28,C.accent,700)
+  write(ctx,`10 premières lignes : ${percent(top)}`,1050,459,26,C.accent,700,'right')
+  heading(ctx,'PRINCIPAUX PAYS',64,539);rule(ctx,64,575,432)
+  ranking(ctx,sortedRows(sheet.countries).filter(([n])=>!/autres|others/i.test(n)),64,601,432)
+  heading(ctx,'PRINCIPAUX SECTEURS',558,539);rule(ctx,558,575,432)
+  ranking(ctx,sortedRows(sheet.sectors).slice(0,3),558,601,432)
+  write(ctx,'Poids dans l’indice',558,799,24,C.muted)
+  heading(ctx,'PRINCIPALES ENTREPRISES',1050,539);rule(ctx,1050,575,490)
+  ctx.fillStyle=C.rule;ctx.fillRect(523,539,1,288);ctx.fillRect(1017,539,1,288)
   sortedRows(sheet.holdings).slice(0,4).forEach(([name,v],i)=>{
-    const y=533+i*62
+    const y=601+i*60
     write(ctx,String(i+1).padStart(2,'0'),1048,y+3,24,C.muted)
-    paragraph(ctx,companyLabel(name),1092,y,292,26,C.ink,400,2)
+    paragraph(ctx,companyLabel(name),1092,y,285,26,C.ink,400,2)
     write(ctx,percent(v),1516,y,29,C.accent,700,'right')
   })
-  rule(ctx,60,823,1480);heading(ctx,'PERFORMANCES ANNUELLES',60,845)
+  heading(ctx,'PERFORMANCES ANNUELLES',60,852);rule(ctx,510,869,1030)
   const returns=sheet.returns.slice().sort((a,b)=>a[0]-b[0]),step=1480/returns.length
   returns.forEach(([year,v],i)=>{
-    const x=60+i*step;write(ctx,year,x,886,28,C.muted)
-    write(ctx,percent(v,true),x,928,44,v<0?C.negative:C.accent,700)
+    const x=60+i*step;write(ctx,year,x,900,28,C.muted)
+    write(ctx,percent(v,true),x,941,44,v<0?C.negative:C.accent,700)
   })
-  rule(ctx,60,989,1480)
+  rule(ctx,60,1000,1480)
   const note=performanceNote(sheet)
-  paragraph(ctx,`${note.detail} · ${sheet.performance.date}`,60,1005,1480,24,C.muted,400,2)
+  paragraph(ctx,`${note.detail} · ${sheet.performance.date}`,60,1016,1480,24,C.muted,400,2)
   if(note.history) paragraph(ctx,note.history,60,1084,1190,24,C.muted,400,1)
   else write(ctx,'Pas un conseil financier',60,1084,24,C.muted)
   write(ctx,'Épargnant Libre',1540,1084,24,C.muted,700,'right')
