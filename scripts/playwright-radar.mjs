@@ -60,17 +60,17 @@ try{
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
  await mobile.getByRole('heading',{name:'Le radar est en veille',exact:true}).waitFor()
  // New category remains useful on the silent first run and after source errors.
- const official = parsePurchasingFeed(`<rss><channel><item><title>PTZ : un nouveau plafond proposé</title><description>Le Gouvernement propose un nouveau plafond pour les foyers.</description><link>https://www.service-public.gouv.fr/particuliers/actualites/A12345</link><pubDate>${day}</pubDate></item></channel></rss>`,PURCHASING_SOURCES[0],now).observations
+ const official = parsePurchasingFeed(`<rss><channel><item><title>PTZ : nouveau plafond applicable</title><description>Le plafond applicable est de 100 000 euros pour certains foyers.</description><link>https://www.service-public.gouv.fr/particuliers/actualites/A12345</link><pubDate>${day}</pubDate></item></channel></rss>`,PURCHASING_SOURCES[0],now).observations
  feed=advanceRadar(initial.state,official,{now,purchasingSources:[{id:'service-public',name:'Service Public',url:PURCHASING_SOURCES[0].url,checkedAt:now.toISOString(),status:'ok',articles:1,relevant:1}]}).feed
  await mobile.getByRole('button',{name:'Actualiser',exact:true}).click()
  await mobile.getByRole('button',{name:'Pouvoir d’achat',exact:true}).click()
  await mobile.getByRole('heading',{name:'Les informations récupérées',exact:true}).waitFor()
- await mobile.getByRole('heading',{name:'PTZ : un nouveau plafond proposé',exact:true}).waitFor()
+ await mobile.getByRole('heading',{name:'PTZ : nouveau plafond applicable',exact:true}).waitFor()
  await mobile.getByText('Proposition / en discussion',{exact:true}).waitFor()
  await mobile.getByRole('button',{name:'Dépenses courantes',exact:true}).click()
  await mobile.getByText('Aucune information pour ce thème et cette recherche.',{exact:true}).waitFor()
  await mobile.getByRole('button',{name:'Logement',exact:true}).click()
- await mobile.getByRole('heading',{name:'PTZ : un nouveau plafond proposé',exact:true}).waitFor()
+ await mobile.getByRole('heading',{name:'PTZ : nouveau plafond applicable',exact:true}).waitFor()
  await mobile.screenshot({path:'test-artifacts/radar/purchasing-power-mobile.png',fullPage:true})
  assert.ok(await mobile.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'Veille mobile sans débordement')
  assert.deepEqual(errors,[])
