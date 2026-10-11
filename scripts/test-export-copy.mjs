@@ -59,6 +59,15 @@ try {
     })
     const { DEFAULT_THEMES: THEMES } = await module('data/etf-themes.js')
     const { renderComparatifEtfImage } = await module('pages/tweet-midi/comparatifEtfImage.js')
+    const { TERMES } = await module('data/financial-lexicon.js')
+    const { renderFicheLexiqueImage, getLexiqueVisual, LEXIQUE_VISUALS } = await module('pages/tweet-midi/ficheLexiqueImage.js')
+    if (Object.keys(LEXIQUE_VISUALS).length !== TERMES.length) throw new Error('Incomplete lexicon artwork')
+    for (const terme of TERMES) {
+      const visual = getLexiqueVisual(terme.id)
+      await check(`lexique-${terme.id}`, () => renderFicheLexiqueImage({ termeId: terme.id }), (words, text) =>
+        terme.id === 'dca' || (words.includes(visual.title) && words.includes(visual.subtitle) &&
+          words.filter(word => word === 'Pas un conseil financier').length === 1 && !/FICHE LEXIQUE|Exemple fictif|undefined/.test(text)))
+    }
     for (const theme of THEMES) await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), (words, text) => !text.includes('COMPARATIF') && !/, CTO/.test(text) )
     const { DUELS } = await module('pages/portfolio-duels/data.js')
     const { buildDuel } = await module('pages/portfolio-duels/lib.js')

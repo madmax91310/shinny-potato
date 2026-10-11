@@ -20,6 +20,7 @@ import { downloadComparatifEtfImage, renderComparatifEtfImage } from "./comparat
 import { downloadPerformanceImage, renderPerformanceImage } from "./performanceImage.js";
 import { downloadAnniversaryImage, renderAnniversaryImage } from "./anniversaryImage.js";
 import { downloadPurchasingPowerImage, renderPurchasingPowerImage } from "./purchasingPowerImage.js";
+import { downloadFicheLexiqueImage, renderFicheLexiqueImage } from "./ficheLexiqueImage.js";
 import { AMOUNT_PRESETS as PA_AMOUNT_PRESETS, YEAR_PRESETS as PA_YEAR_PRESETS, YEAR_MIN as PA_YEAR_MIN, YEAR_MAX as PA_YEAR_MAX, POSTES as PA_POSTES, POSTE_ORDER as PA_POSTE_ORDER, PRICE_OBSERVATION, RENT_OBSERVATION } from "../../data/purchasing-power.js";
 import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
@@ -248,6 +249,8 @@ function TweetMidiWorkspace({ search, initialFormat, title, description }) {
         await downloadAnniversaryImage(current, niveauActuel, niveauActuelB);
       } else if (current.format === FORMATS.POUVOIR_ACHAT) {
         await downloadPurchasingPowerImage(current);
+      } else if (current.format === FORMATS.FICHE_LEXIQUE) {
+        await downloadFicheLexiqueImage(current);
       } else {
         const theme = getComparatifEtfTheme(current.themeId);
         if (!theme) throw new Error('Thématique absente');
@@ -284,6 +287,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description }) {
       <ToolWorkspace renderImage={current.format === FORMATS.PERFORMANCE_DEPUIS ? () => renderPerformanceImage(current)
         : isAnniversaire ? () => renderAnniversaryImage(current, niveauActuel, niveauActuelB)
         : current.format === FORMATS.POUVOIR_ACHAT ? () => renderPurchasingPowerImage(current)
+        : current.format === FORMATS.FICHE_LEXIQUE ? () => renderFicheLexiqueImage(current)
         : current.format === FORMATS.COMPARATIF_ETF ? () => renderComparatifEtfImage(getComparatifEtfTheme(current.themeId))
         : undefined} imageDisabled={copyDisabled} imageAlt={`Visuel ${title ?? "Tweet Midi"}`}>
         <div className="tool-settings">
@@ -652,7 +656,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description }) {
             <Button type="button" onClick={handleCopy} disabled={copyDisabled} className="self-start">
               {copied ? "Copié ✓" : copyDisabled ? "Renseigne le(s) niveau(x) actuel(s) pour copier" : "Copier le texte"}
             </Button>
-            {(current.format === FORMATS.COMPARATIF_ETF || current.format === FORMATS.PERFORMANCE_DEPUIS || isAnniversaire || current.format === FORMATS.POUVOIR_ACHAT) && (
+            {(current.format === FORMATS.FICHE_LEXIQUE || current.format === FORMATS.COMPARATIF_ETF || current.format === FORMATS.PERFORMANCE_DEPUIS || isAnniversaire || current.format === FORMATS.POUVOIR_ACHAT) && (
               <Button type="button" variant="secondary" onClick={handleImageDownload} disabled={imageState === 'loading' || copyDisabled} className="self-start">
                 {copyDisabled ? 'Renseigne le(s) niveau(x) actuel(s) pour télécharger' : imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le PNG' : 'Télécharger l’image PNG'}
               </Button>
