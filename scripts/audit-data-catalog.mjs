@@ -9,7 +9,7 @@ import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js';
 import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js';
 import { INDEX_FACTS, CURRENT_INDEX_SNAPSHOTS } from '../src/data/index-facts.js';
 import { INDEX_COMPARISON_RETURN_ADDITIONS } from '../src/data/index-comparison-return-additions.js';
-import { INDEX_RETURNS } from '../src/data/index-returns.js';
+import { INDEX_RETURNS, STOXX_NET_RETURN_BASELINES } from '../src/data/index-returns.js';
 import { SHEETS } from '../src/data/index-factsheets.js';
 import { describeDataField } from '../src/pages/data-search/lib.js';
 import { getRestoredRoute } from '../src/restore-route.js';
@@ -67,11 +67,18 @@ assert.throws(() => normalizeEvidence({ url: 'invented-source' }), /invalide/);
 for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [date, series] of Object.entries(history)) {
   const factorSeries = WORLD_FACTOR_RETURNS[id]?.[date];
   const propertyInfraSeries = PROPERTY_INFRA_RETURNS[id]?.[date];
-  const independent = INDEX_COMPARISON_RETURN_ADDITIONS[id]?.[date] ?? factorSeries ?? propertyInfraSeries;
+  const stoxxNetSeries = STOXX_NET_RETURN_BASELINES[id]?.[date];
+  if (stoxxNetSeries) {
+    assert.equal(stoxxNetSeries.variant, 'NET');
+    assert.equal(stoxxNetSeries.currency, 'EUR');
+    assert.equal(stoxxNetSeries.source.url, 'https://stoxx.com/index/sxxr/');
+    assert.match(stoxxNetSeries.source.sha256, /^[a-f0-9]{64}$/);
+  }
+  const independent = INDEX_COMPARISON_RETURN_ADDITIONS[id]?.[date] ?? factorSeries ?? propertyInfraSeries ?? stoxxNetSeries;
   assert(INDEX_FACTS[id]?.[date] || independent === series, `${id}: série sans photographie ni preuve indépendante`);
   if (independent) {
     assert.equal(series.metadata.periodEnd, '2025-12-31');
-    assert.equal(series.metadata.periodStart, factorSeries || propertyInfraSeries ? '2021-01-01' : '2023-01-01');
+    assert.equal(series.metadata.periodStart, factorSeries || propertyInfraSeries || stoxxNetSeries ? '2021-01-01' : '2023-01-01');
     assert(series.metadata.sourceUrls.length && series.metadata.checkedAt, `${id}: source indépendante non datée`);
     assert(DATA_CATALOG.some(record => record.fields.some(field => field.value === series)), `${id}: série absente du catalogue`);
   }
