@@ -108,7 +108,7 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
             return proved(r'les frais de courtage sont gratuits pour les ETF.{0,130}?tarif habituel du client',True,'Plans programmés sur PEA et CTO ; ETF de la sélection sans courtage, actions au tarif habituel.')
         if broker=='ibkr':
             find(r'Recurring Investment is available to any client that has fractional share trading enabled',texts['ibkrRecurringEligibilityFaq'])
-            return proved(r'Fractional share trading is not allowed in a PEA Account',False,'PEA ❌ : les investissements récurrents nécessitent les fractions de titres, exclues du PEA. Hors PEA : service récurrent disponible sous conditions.',document='ibkrFractionalFaq')
+            return proved(r'Fractional share trading is not allowed in a PEA Account',None,'Les investissements récurrents nécessitent une permission de fractions ; les fractions sont exclues du PEA. Ces clauses ne précisent pas si un mode en titres entiers est disponible sur PEA. DCA PEA : disponibilité non confirmée.','partiel',document='ibkrFractionalFaq')
         # Generic recurring/conditional orders never qualify a PEA-specific service.
         return unknown('Achats automatiques sur PEA : disponibilité non confirmée par les sources officielles du service.',r'PEA|Fortuneo')
     if field=='cash':
@@ -204,7 +204,7 @@ def parse(broker,field,raws,today,sources=None):
         refs.append({'document':key,'sourceUrl':getattr(raw,'source_url',info['url']),'discoveryUrl':getattr(raw,'discovery_url',None),'page':page,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
     return {**({'programmed':programmed} if programmed else {}),**({'conversion':conversion} if conversion else {}),'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
       'sourceUrl':getattr(raws[decisive],'source_url',sources[decisive]['url']),'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
-      'method':('Déduction déterministe de deux clauses officielles : service récurrent soumis aux fractions et fractions exclues du PEA' if broker == 'ibkr' and field == 'dca' and decisive == 'ibkrFractionalFaq' else 'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue'),
+      'method':('Rapprochement de deux clauses officielles : permission de fractions requise pour le service et fractions exclues du PEA ; disponibilité d’un mode PEA en titres entiers non établie' if broker == 'ibkr' and field == 'dca' and decisive == 'ibkrFractionalFaq' else 'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue'),
       'sha256':hashlib.sha256('\n'.join(raws.values()).encode()).hexdigest(),'values':{},'decisiveDocument':decisive,'statement':quote,
       'checkedSources':[{'sourceUrl':getattr(raw,'source_url',sources[key]['url']),'sha256':hashlib.sha256(raw.encode()).hexdigest()} for key,raw in raws.items()]}
 

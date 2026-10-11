@@ -1805,11 +1805,11 @@
       "discoveryUrl": null,
       "profile": {
         "dca": {
-          "available": false,
-          "status": "confirmé",
+          "available": null,
+          "status": "partiel",
           "copy": {
-            "resume": "PEA ❌ : les investissements récurrents nécessitent les fractions de titres, exclues du PEA. Hors PEA : service récurrent disponible sous conditions.",
-            "full": "PEA ❌ : les investissements récurrents nécessitent les fractions de titres, exclues du PEA. Hors PEA : service récurrent disponible sous conditions."
+            "resume": "Les investissements récurrents nécessitent une permission de fractions ; les fractions sont exclues du PEA. Ces clauses ne précisent pas si un mode en titres entiers est disponible sur PEA. DCA PEA : disponibilité non confirmée.",
+            "full": "Les investissements récurrents nécessitent une permission de fractions ; les fractions sont exclues du PEA. Ces clauses ne précisent pas si un mode en titres entiers est disponible sur PEA. DCA PEA : disponibilité non confirmée."
           },
           "checkedAt": "2026-10-11",
           "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475",
@@ -1834,7 +1834,7 @@
             }
           ],
           "scope": "ibkr ; dca ; portée exacte des sources publiques",
-          "method": "Déduction déterministe de deux clauses officielles : service récurrent soumis aux fractions et fractions exclues du PEA",
+          "method": "Rapprochement de deux clauses officielles : permission de fractions requise pour le service et fractions exclues du PEA ; disponibilité d’un mode PEA en titres entiers non établie",
           "sha256": "3c9d8201e22b9770b02a003ce791d9b6bd4c88951e689a745f74903f7c18e5b9",
           "values": {},
           "decisiveDocument": "ibkrFractionalFaq",
