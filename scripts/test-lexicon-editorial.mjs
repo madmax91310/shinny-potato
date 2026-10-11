@@ -12,7 +12,11 @@ for (const terme of TERMES) {
   const sections = getFicheLexiqueSections(terme.id);
   assert(text.length > 700 && text.length < 4000, `${terme.id}: une fiche détaillée et lisible`);
   assert(sections.every(s => s.titre && s.contenu), `${terme.id}: rubrique complète`);
-  // Chaque récit a son ordre ; les règles fiscales sont vérifiées plus bas.
+  assert.equal(sections[0].titre, '🔎 La définition', `${terme.id}: définition en premier`);
+  assert.equal(sections.at(-1).titre, '⚠️ À retenir', `${terme.id}: vigilance en dernier`);
+  const exampleIndex = sections.findIndex(s => /exemple/i.test(s.titre));
+  assert(exampleIndex > 1, `${terme.id}: exemple après le fonctionnement ou le calcul`);
+  assert(text.startsWith(`📖 ${FICHE_LEXIQUE_EDITORIAL[terme.id].ouverture}`), `${terme.id}: notion annoncée dans le hook`);
   assert.doesNotMatch(text, /Ce que ça veut dire|À quoi ça sert|undefined|NaN|https?:\/\//);
   if (!FICHE_LEXIQUE_EDITORIAL[terme.id].sections) {
     const facts = terme.variante === 'A' ? [terme.mecanismeContenu, terme.fraisContenu] : [terme.calculContenu];
@@ -47,14 +51,14 @@ assert.deepEqual(getFicheLexiqueSections('inconnu'), []);
 const dca = getFicheLexiqueText('dca');
 assert.match(dca, /200 €.*30 parts.*6,67 €/s);
 assert.match(dca, /ne garantit pas un meilleur rendement/);
-assert.match(dca, /frais.*courtier/i);
+assert.match(dca, /hors frais/i);
 assert.match(getFicheLexiqueText('diversification'), /World.*S&P 500.*Nasdaq-100/s);
-assert.match(getFicheLexiqueText('diversification'), /même bien diversifié.*peut baisser/s);
+assert.match(getFicheLexiqueText('diversification'), /plusieurs placements peuvent baisser en même temps/s);
 const recovery = getFicheLexiqueText('drawdown');
 assert.match(recovery, /1 000 €.*500 €.*250 €.*750 €.*100 %/s);
 assert.match(recovery, /rien ne garantit le retour/);
 for (const id of ['cto', 'ter', 'inflation', 'capitalisation-boursiere']) {
   const text = getFicheLexiqueText(id);
-  assert(text.indexOf(FICHE_LEXIQUE_EDITORIAL[id].exemple) < text.indexOf(FICHE_LEXIQUE_EDITORIAL[id].definition));
+  assert(text.indexOf(FICHE_LEXIQUE_EDITORIAL[id].definition) < text.indexOf(FICHE_LEXIQUE_EDITORIAL[id].exemple));
 }
 console.log(`OK : ${TERMES.length} fiches détaillées, règles fiscales, calculs, exemples et limites adaptés.`);

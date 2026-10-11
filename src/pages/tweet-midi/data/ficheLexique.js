@@ -18,12 +18,10 @@ export function getFicheLexiqueSections(termeId) {
   if (!terme) return [];
   const texte = FICHE_LEXIQUE_EDITORIAL[termeId];
   if (!texte) throw new Error(`Rédaction Tweet Midi manquante pour le terme ${termeId}`);
-  // Une situation, puis l’exemple et la notion : les détails sourcés viennent ensuite.
-  // Une fiche peut définir son propre déroulement quand le sujet le demande.
+  // Une fiche définit d’abord le terme ; l’exemple illustre ensuite les règles.
   if (texte.sections) return texte.sections;
   const sections = [
-    { titre: "🧮 Prenons un exemple", contenu: texte.exemple },
-    { titre: "🔎 Comment l’expliquer ?", contenu: texte.definition },
+    { titre: "🔎 La définition", contenu: texte.definition },
   ];
   if (terme.variante === "A") {
     sections.push({ titre: terme.mecanismeTitre, contenu: terme.mecanismeContenu });
@@ -33,6 +31,7 @@ export function getFicheLexiqueSections(termeId) {
     sections.push({ titre: terme.calculTitre, contenu: terme.calculContenu });
     if (terme.nuance) sections.push(terme.nuance);
   }
+  sections.push({ titre: "🧮 Un exemple", contenu: texte.exemple });
   if (texte.application) sections.push({ titre: "💡 Ce que ça change", contenu: texte.application });
   sections.push({ titre: "⚠️ À retenir", contenu: texte.attention ?? terme.attention ?? texte.limite });
   return sections;
@@ -43,10 +42,9 @@ export function getFicheLexiqueText(termeId) {
   const texte = FICHE_LEXIQUE_EDITORIAL[termeId];
   const sections = getFicheLexiqueSections(termeId);
   const lines = [
-    `${texte.emojiDefinition ?? "📖"} ${texte.ouverture}`,
+    `📖 ${texte.ouverture}`,
     ...sections.map(({ titre, contenu }) => `${titre}\n\n${contenu}`),
   ];
-  if (texte.question) lines.push(`💬 ${texte.question}`);
   return lines.join("\n\n").replace(/(\d)([%€])/gu, "$1 $2");
 }
 
