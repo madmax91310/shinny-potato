@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs'
 import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js'
 import { HISTORICAL_AUTOMATED_PERFORMANCE as AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
+import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js'
 import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview, reviewCalendar, summarizeCadences } from '../src/pages/data-review/lib.js'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
 
@@ -61,11 +62,34 @@ for (const observation of closure.records) {
   })
 }
 const remaining = buildReview(closure.checkedAt)
-assert.deepEqual(remaining.items.filter(x => x.category === 'undated').map(x => x.maintenanceRecord.id).sort(), ['acwi', 'topix', 'world'], 'Les contrôles non datés des outils actifs restent visibles ; les données du comparateur retiré restent consultables au catalogue')
+// Validate every undated field, rather than freezing the pre-migration list of
+// index IDs. A new return convention must not hide an older undated control.
+const expectedUndated = DATA_CATALOG.flatMap(record => record.consumers.length
+  ? record.fields.flatMap((field, index) => field.metadata.sourceStatus !== 'archive-unverifiable' && dayNumber(field.metadata.checkedAt) === null ? [`data:${record.id}:${index}`] : [])
+  : []).sort()
+assert.deepEqual(remaining.items.filter(x => x.category === 'undated').map(x => x.id).sort(), expectedUndated, 'Chaque champ actif sans contrôle daté reste visible, quelle que soit sa convention de rendement')
+for (const id of ['acwi', 'topix', 'world']) assert(remaining.items.some(x => x.category === 'undated' && x.maintenanceRecord.id === id), `Ancien contrôle non daté masqué : ${id}`)
+for (const id of ['stoxx600', 'eurostoxx50']) {
+  const price = INDEX_RETURNS[id]['2026-08-31']
+  const net = INDEX_RETURNS[id]['2026-10-09']
+  assert.match(price.metadata.method, /hors dividendes/)
+  assert.equal(net.variant, 'NET')
+  assert.match(net.metadata.method, /dividendes nets réinvestis/)
+  assert.notDeepEqual(price.values, net.values, 'Les observations Price et NET restent distinctes')
+  assert.notEqual(price.metadata.checkedAt, net.metadata.checkedAt, 'La migration NET ne redâte pas le contrôle Price')
+  assert.notDeepEqual(getCurrentIndexReturnSeries(id, '2026-08-31').values, getCurrentIndexReturnSeries(id, '2026-10-09').values, 'Aucune substitution entre conventions Price et NET')
+  const record = structuredClone(DATA_CATALOG.find(x => x.id === id))
+  record.fields = record.fields.filter(x => x.registry.endsWith('/index-returns.js'))
+  const old = record.fields.find(x => /hors dividendes/.test(x.metadata.method))
+  old.metadata.checkedAt = null
+  const migrated = buildReview('2026-10-11', [record], [], {}, {})
+  assert.deepEqual(migrated.items.filter(x => x.category === 'undated').map(x => x.field), [old.label], 'Une preuve NET datée ne clôture pas un ancien contrôle Price non daté')
+  assert.equal(migrated.schedule.find(x => x.metadata.method === net.metadata.method).category, 'current')
+}
 assert.deepEqual(remaining.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves, 'Toutes les preuves non résolues restent visibles')
 assert.equal(remaining.archives, 16, 'La recherche ne doit pas masquer un reliquat en archive')
 console.log(`Revue au ${current.today} : ${current.items.length} éléments, ${expectedReserves.length} réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
-console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, 3 contrôles non datés et ${expectedReserves.length} réserves conservés.`)
+console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, ${expectedUndated.length} contrôles non datés et ${expectedReserves.length} réserves conservés ; conventions Price/NET séparées.`)
 
 assert.equal(addMonths('2026-01-31', 1), '2026-02-28')
 assert.equal(addMonths('2027-11-30', 3), '2028-02-29')

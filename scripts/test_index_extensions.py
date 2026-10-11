@@ -58,13 +58,56 @@ class IndexExtensions(unittest.TestCase):
     def test_month_fallback_and_never_relabel_old_document(self):
         c=cfg('topix')
         def fetch(url):
-            if '20260930' in url:raise urllib.error.HTTPError(url,404,'not published',{},None)
+            if not url.endswith('20260831'):raise urllib.error.HTTPError(url,404,'not published',{},None)
             return b'%PDF'
         with patch('collect_index_extensions.amundi_composition',return_value={'asOf':'2026-08-31'}) as parse:
             self.assertEqual(collect_amundi_composition(c,NOW,fetch)['asOf'],'2026-08-31')
             self.assertIn('20260831',parse.call_args.args[-1])
         with patch('collect_index_extensions.amundi_composition',return_value={'asOf':'2026-07-31'}):
             with self.assertRaises(ValueError):collect_amundi_composition(c,NOW,fetch)
+    def test_live_official_edition_uses_published_date_and_provenance(self):
+        from collect_amundi_index_exposure import collect_one as exposure
+        c=cfg('topix')
+        for stamp in ['2026-09-30','2026-08-31']:
+            calls=[]
+            def fetch(url):
+                calls.append(url)
+                return b'%PDF-proof'
+            def parse(body, config, now, url):
+                return {'asOf':stamp,'source':{'url':url}}
+            with patch('collect_index_extensions.amundi_composition',side_effect=parse):
+                result=collect_amundi_composition(c,NOW,fetch)
+            self.assertEqual(result['asOf'],stamp)
+            self.assertEqual(len(calls),1)
+            self.assertTrue(calls[0].endswith('/INSTITUTIONNEL/ETF'))
+            self.assertEqual(result['source']['url'],calls[0])
+            with patch('collect_amundi_index_exposure.parse_document',return_value={'holdings':{'asOf':stamp}}):
+                self.assertEqual(exposure({'isin':c['compositionIsin']},NOW,fetch)['holdings']['asOf'],stamp)
+    def test_live_invalid_content_fails_closed_without_dated_rescue(self):
+        for stamp in ['2026-07-31','2026-10-01','2026-10-31','2027-09-30']:
+            calls=[]
+            def fetch(url):
+                calls.append(url)
+                return b'%PDF-proof'
+            with patch('collect_index_extensions.amundi_composition',return_value={'asOf':stamp}):
+                with self.assertRaises(ValueError):collect_amundi_composition(cfg('topix'),NOW,fetch)
+            self.assertEqual(len(calls),1)
+        with patch('collect_index_extensions.amundi_composition',side_effect=ValueError('wrong index')):
+            with self.assertRaisesRegex(ValueError,'wrong index'):
+                collect_amundi_composition(cfg('topix'),NOW,lambda url:b'%PDF-proof')
+    def test_all_missing_editions_preserve_last_validated_observation(self):
+        c=cfg('topix');calls=[]
+        def fetch(url):
+            calls.append(url)
+            raise urllib.error.HTTPError(url,404,'not published',{},None)
+        result=refresh_index(c,NOW,fetch)
+        self.assertEqual(len([url for url in calls if 'amundietf.fr' in url]),3)
+        self.assertNotIn('facts',result)
+        self.assertIn('404',next(e['reason'] for e in result['errors'] if e['field']=='composition'))
+        previous={'topix':{'facts':{'asOf':'2026-08-31','constituents':1636},'factsHistory':{'2026-08-31':{'asOf':'2026-08-31'}}}}
+        before=copy.deepcopy(previous)
+        self.assertEqual(merge_records(previous,[result]),before)
+        self.assertEqual(previous,before)
     def test_invalid_observation_does_not_replace_good_composition(self):
         previous={'topix':{'facts':{'asOf':'2026-08-31','constituents':1636}}}
         self.assertEqual(merge_records(previous,[{'id':'topix','errors':[{'field':'composition'}]}]),previous)
