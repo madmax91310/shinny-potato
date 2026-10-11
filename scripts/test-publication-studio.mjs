@@ -45,7 +45,7 @@ try {
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
   assert(await panel.isVisible())
  }
- for (const format of ['Comparatif ETF','Il y a X ans','Performance depuis',"Pouvoir d'achat"]) {
+ for (const format of ['Fiche lexique','Comparatif ETF','Il y a X ans','Performance depuis',"Pouvoir d'achat"]) {
   await page.goto(`${base}/tweet-midi`,{waitUntil:'networkidle'})
   await page.getByRole('button',{name:format,exact:true}).click()
   await page.getByRole('button',{name:/Générer/,exact:false}).click()
