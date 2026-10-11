@@ -274,7 +274,7 @@ async function testCalculateur(page) {
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
     companiesOk &&= !post.includes('Cours ajustés') && post.includes('Capital final :') && post.includes('septembre 2026') && !/NaN|undefined/.test(post);
-    if (id === 'airliquide') companiesOk &&= post.includes('Prime de fidélité exclue');
+    if (id === 'airliquide') companiesOk &&= (await page.locator('.ic-method-note').innerText()).includes('Prime de fidélité exclue');
     companiesOk &&= !(await page.locator('body').innerText()).includes('DCA non disponible pour');
   }
   const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-cac40-lump.png';
