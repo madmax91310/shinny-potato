@@ -69,6 +69,13 @@ try {
       for (let i=0;i<30;i++) check(`auto-${i}`, generatePortfolio([], 'auto', 'auto'), i===0)
       const many = buildManualPortfolio(ASSETS.slice(0,12).map((a,i)=>({id:a.id,pct:i===11?12:8})), 'generaliste', [])
       check('twelve-holdings',many,true)
+      const nameMeasure = document.createElement('canvas').getContext('2d')
+      nameMeasure.font = '700 49px Arial, sans-serif'
+      const longestNames = ASSETS.slice().sort((a, b) => nameMeasure.measureText(b.name).width - nameMeasure.measureText(a.name).width).slice(0, 5)
+      check('five-long-names', { ...example, selection: longestNames.map((asset, index) => ({ ...asset, pct: [35, 25, 20, 15, 5][index] })) }, true)
+      for (let index = 0; index < ASSETS.length; index += 5) {
+        check(`five-holdings-${index}`, { ...example, selection: Array.from({ length: 5 }, (_, offset) => ({ ...ASSETS[(index + offset) % ASSETS.length], pct: [35, 25, 20, 15, 5][offset] })) })
+      }
       check('all-holdings',{...example,selection:ASSETS.map(a=>({...a,pct:100/ASSETS.length}))})
       const synthetic = perf => ({ ...example, selection: [{ ...ASSETS.find(a => a.id === 'fonds_euros'), pct: 100, calendarReturns: perf }], perf })
       check('negative',synthetic(Object.fromEntries(YEARS.map((y,i)=>[y,-(i+1)*5]))),true)
