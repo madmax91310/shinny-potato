@@ -220,7 +220,8 @@ for (const asset of ASSETS) {
   const p = manual([{id:asset.id,pct:100}]);
   assert.ok(p.selection[0].shortRole.split(/\s+/).length <= 45, asset.id);
   assert.ok(p.hook.length <= 200, asset.id);
-  assert.match(renderTweetText(p), /portefeuille illustratif/);
+  assert.match(renderTweetText(p), /^📈 /);
+  assert.match(renderTweetText(p), /performances simulées/);
   assert.doesNotMatch(renderTweetText(p), /pas un conseil|ISIN|Simulation avec/);
 }
 // Saved portfolios from the previous generator also receive compact export copy.
@@ -285,6 +286,14 @@ assert(incompleteTweet.includes('2020 : +0,0 %'));
 assert(incompleteTweet.includes('2021 : non disponible'));
 assert(incompleteTweet.includes('Performance annualisée (2020 à 2025) : non disponible'));
 assert(!/NaN|undefined/.test(incompleteTweet));
+assert.equal(incompleteTweet.split('\n')[0], '📈 Quelles performances pour ce portefeuille ? 👀');
+for (const p of [example, worldEmerging, cryptoOnly]) {
+  const text = renderTweetText({ ...p, perf: { 2020: 999 }, hook: 'ancienne accroche' });
+  const actual = computeYearlyPerf(p.selection);
+  const years = Object.keys(actual).sort();
+  assert(text.startsWith(`📈 ${formatPerformance(annualizedReturn(actual))} par an sur la période ${years[0]}–${years.at(-1)} : `));
+  assert.doesNotMatch(text, /ancienne accroche|999/);
+}
 console.log('OK : performances annuelles et annualisée dans le tweet, capitalisation géométrique, zéro et historique incomplet.');
 
 // Export order follows weights, with stable ties, including saved history.
@@ -300,11 +309,11 @@ assert.deepEqual(renderTweetText({...unordered, hook:'Ancienne accroche'}).split
 console.log('OK : tri décroissant stable sans modifier les slots ni les performances.');
 
 
-// Public post contract: choice-based hooks, compact holdings, unchanged performance,
+// Public post contract: performance-based hooks, compact holdings, unchanged performance,
 // a thesis based on the actual composition and a single fixed closing question.
 const validatedExample = manual([{id:'msci_world_ishares',pct:50},{id:'msci_em',pct:20},{id:'smallcap_monde',pct:15},{id:'or_ishares',pct:15}]);
 const validatedText = renderTweetText(validatedExample);
-assert.match(validatedText,/^Quand j’ajoute un ETF à un portefeuille/);
+assert.match(validatedText,/^📈 .* par an sur la période 2020–2025 : quels ETF composent ce portefeuille/);
 assert.match(validatedText,/ont chacun une ligne dédiée/);
 assert.match(validatedText,/85 % d’actions/);
 assert.match(validatedText,/iShares Core MSCI World/);

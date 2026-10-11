@@ -1,7 +1,7 @@
 import { benchmarkKey } from '../../data/asset-selection.js';
 import { portfolioPostEditorial, portfolioPostName } from './postEditorial.js';
 import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
-import { computeYearlyPerf, performanceExcerpt, performanceYears, assetReturn, performanceNotes } from './performance.js';
+import { computeYearlyPerf, annualizedReturn, formatPerformance, performanceExcerpt, performanceYears, assetReturn, performanceNotes } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
@@ -393,13 +393,24 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
 
 export function renderTweetText(p) {
   // Rebuild from the actual holdings as saved history can contain the old copy.
-  const index = Number(p.hookId?.match(/-(\d+)$/)?.[1] ?? 0) % 3;
+  const perf = computeYearlyPerf(p.selection);
+  const years = performanceYears(perf);
+  const annualized = annualizedReturn(perf);
   const editorial = portfolioPostEditorial(p.selection);
-  const blocks = [editorial.hooks[index], '💼 La répartition'];
+  const holdings = p.selection.filter(s => s.pct > 0);
+  const question = holdings.length === 1
+    ? 'quel placement compose ce portefeuille ?'
+    : holdings.every(s => s.isin)
+      ? 'quels ETF composent ce portefeuille ?'
+      : 'quels placements composent ce portefeuille ?';
+  const hook = annualized === null
+    ? '📈 Quelles performances pour ce portefeuille ? 👀'
+    : `📈 ${formatPerformance(annualized)} par an sur la période ${years[0]}–${years.at(-1)} : ${question} 👀`;
+  const blocks = [`${hook}\n\nVoici sa répartition et le détail des performances simulées 👇`, '💼 La répartition'];
   // Sort a copy: recipe slots and replacements still rely on the stored order.
   const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
   blocks.push(ordered.map(s => `${s.emoji} ${s.pct}% ${portfolioPostName(s)}`).join("\n"));
-  blocks.push(performanceExcerpt(computeYearlyPerf(p.selection)));
+  blocks.push(performanceExcerpt(perf));
   const notes = performanceNotes(p.selection, { includeMethod: false });
   if (notes) blocks.push(notes);
   blocks.push('La pire année civile observée n’est pas une perte maximale : une baisse en cours d’année peut être plus forte.');
