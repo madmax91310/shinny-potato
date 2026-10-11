@@ -95,7 +95,8 @@ function calendar(c,x,y) {
   circle(c,x,y+18,28);coins(c,x+115,y+145,3,.85)
 }
 function illustration(c,scene) {
-  c.save();c.translate(W/2,620)
+  // La pile haute du levier doit rester sous le sous-titre.
+  c.save();c.translate(W/2,scene === 'lever' ? 685 : 620)
   c.shadowColor='rgba(0,0,0,.22)';c.shadowBlur=24;c.shadowOffsetY=20
   switch(scene) {
     case 'calendar': [-450,0,450].forEach(x=>calendar(c,x,0));break
