@@ -90,18 +90,30 @@
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 38150340178,
+      "runId": 38152984809,
       "attempt": 1,
-      "completedAt": "2026-10-11T15:31:03Z",
-      "status": "success",
+      "completedAt": "2026-10-11T16:08:58Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-11T15:31:03Z",
-      "collectionStatus": "success",
-      "publicationStatus": "not-run",
+      "collectionStatus": "failure",
+      "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-11T15:31:03Z",
-      "lastPublicationSuccessAt": "2026-10-11T13:51:16Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38150340178",
-      "failures": [],
-      "dataFailures": {}
+      "lastPublicationSuccessAt": "2026-10-11T16:08:48Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38152984809",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une collecte réglementaire a échoué. Les dernières valeurs validées restent disponibles. Consulter regulatory-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "broker-observation:caidf:profile:change": {
+          "name": "caidf:profile:change",
+          "completedAt": "2026-10-11T16:08:58Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38152984809",
+          "cause": "Clause officielle absente ou modifiée : Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l.opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents"
+        }
+      }
     },
     "update-scpi.yml": {
       "name": "Présentations de SCPI",
@@ -192,5 +204,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-11T15:51:08Z"
+  "updatedAt": "2026-10-11T16:08:58Z"
 }
