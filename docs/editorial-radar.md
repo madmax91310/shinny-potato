@@ -165,3 +165,31 @@ publier automatiquement sur X. Le workflow de PR teste les quatre flux en
 direct ; les tests déterministes couvrent bootstrap, filtres, statuts, dates,
 déduplication, mise à jour, panne et reprise. Commandes : `npm run test:radar`,
 `node scripts/test-purchasing-power-news.mjs --live`, `npm run test:radar:browser`.
+
+### Sources supplémentaires : particuliers et étapes parlementaires
+
+La collecte de quatre heures intègre les publications parlementaires de
+l’Assemblée nationale, les textes et communiqués du Sénat, la liste des
+« Crédits aux particuliers » de la Banque de France (catégorie officielle),
+et les communiqués de la CRE concernant les prix repères, tarifs réglementés
+ou factures des consommateurs. Les dates de publication sont celles des
+éditeurs, pas les dates des périodes statistiques ou d’application.
+
+Le filtre parlementaire exige un sujet lié au budget des particuliers : PTZ,
+crédit, épargne, fiscalité personnelle, factures, rémunération ou prestations.
+Un budget général, une élection ou une politique industrielle ne suffit pas.
+Les dépôts, adoptions en commission ou en chambre, rejets et retraits restent
+séparés. Une adoption parlementaire n’est pas une entrée en vigueur.
+
+Les dossiers Sénat repérés sont conservés dans `state.current` avec leur
+`dossierFeedUrl`. Leurs flux Atom sont suivis lors des collectes suivantes,
+même après disparition du texte dans la liste récente (20 dossiers maximum
+par collecte). Les documents et étapes restent sourcés et dédupliqués.
+Les flux parlementaires ne couvrent pas tous les amendements : un amendement
+absent de ces publications peut échapper au radar. Le suivi de dossiers
+persistant concerne le Sénat ; l’Assemblée est suivie via ses publications.
+
+Les flux ISO-8859-15 du Sénat et leurs anciens liens HTTP sont normalisés
+vers UTF-8 et HTTPS sur les domaines officiels autorisés. Les sources HTML
+ont des contrôles de format et de dates, une reprise après panne, et un état
+visible dans le radar. La dernière information validée reste conservée.
