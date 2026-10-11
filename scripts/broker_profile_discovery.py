@@ -17,8 +17,8 @@ HUBS = {
     ('fortuneo','dca'): ['fortuneoBourseFaq'],
     ('fortuneo','cash'): ['fortuneoBourseFaq'],
     ('bourso','cash'): ['boursoCto'],
-    ('caidf','cash'): ['caIdfPea'],
-    ('caidf','change'): ['caIdfPea', 'caIdfPeaPme'],
+    ('caidf','cash'): ['caIdfPea', 'caSavingsDocs'],
+    ('caidf','change'): ['caIdfPea', 'caIdfPeaPme', 'caSavingsDocs'],
     ('bd','cash'): ['bdTariffPage', 'bdContract'],
 }
 POLICIES = {

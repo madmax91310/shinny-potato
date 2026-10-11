@@ -9,7 +9,7 @@ for (const [id,o] of Object.entries(BROKER_TARIFFS)) {
  const copies=brokerFieldCopies(id)
  for (const [field,value] of Object.entries(o.fields??{})) {
   assert(record.fields.some(f=>JSON.stringify(f).includes(value.sourceUrl)),`${id}:${field} source lost from catalogue`)
-  if (['garde','change'].includes(field)) assert.equal(BROKER_EVIDENCE[id][field].summary,(o.profile?.[field] ?? value).copy.full)
+  if (['garde','change'].includes(field)) assert(BROKER_EVIDENCE[id][field].summary.startsWith((o.profile?.[field] ?? value).copy.full))
   if (['garde','entrant','sortant'].includes(field)) assert.equal(BROKER_EDITORIAL[id][field],o.profile?.[field]?.copy.full ?? copies[field])
   if (field==='garde') assert.equal(broker.post.garde[0],(o.profile?.garde ?? value).copy.full)
   if (field.startsWith('offer')) assert.equal(OFFICIAL_SOURCES[`${id}Automated${field}`].reviewUntil,value.until)

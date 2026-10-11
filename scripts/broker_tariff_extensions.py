@@ -253,7 +253,7 @@ def parse_supplement(key,s,today):
   minimum=get(r'Minimum par ordre\s+2 Palier I - ([\d,]+) USD',s)
   auto=get(r'discrétion\) ([\d,]+)\s*%',s)
   v={'manualRate':manual/100,'minimumUsd':minimum,'automaticRate':auto}
-  full=f"Barème général : généralement {fmt(auto)} % en automatique ; en manuel {fmt(manual/100)} %, minimum {fmt(minimum)} USD. Disponibilité à confirmer sur PEA."
+  full=f"Barème général : généralement {fmt(auto)} % en automatique ; en manuel {fmt(manual/100)} %, minimum {fmt(minimum)} USD. Application de ce barème au PEA à confirmer."
  elif key=='bourso_transfer':
   require(s,'premier transfert total','double des frais','valorisation totale du compte','justificatif','toujours ouvert')
   cap=get(r'limite de ([\d ]+) € TTC',s);months=get(r'dans les ([\d]+) mois suivant le transfert',s)

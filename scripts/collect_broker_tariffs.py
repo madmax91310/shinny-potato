@@ -58,8 +58,11 @@ def parse(name, content, today, previous=None):
   'page': next(i for i,p in enumerate(content.split('\f'),1) if ('Courtage Actions Euronext' if name == 'bourso' else 'TARIFS DE COURTAGE BOURSE') in p),
   'method':'Tableau de courtage de la brochure officielle ; forfait et marché exacts', 'sha256':hashlib.sha256(content.encode()).hexdigest()}
 def fetch_content(url):
+ from broker_public_faq import PREFIX, read_answer
  from broker_profile_discovery import POLICIES,allowed
  from broker_document_sources import SourceDocument
+ if url.startswith(PREFIX):
+  return SourceDocument(read_answer(url),url)
  owners=[broker for broker in POLICIES if allowed(broker,url)]
  validator=(lambda target:any(allowed(broker,target) for broker in owners)) if owners else None
  raw,actual_url=download(url,url_validator=validator,return_source=True)

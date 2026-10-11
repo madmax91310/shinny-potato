@@ -10,6 +10,10 @@ from bs4 import BeautifulSoup
 
 # Labels are the links inspected on the official catalogues, not guessed years.
 CATALOGUES = {
+ 'https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/fip-et-cgl/76040.1773337045911.CGL_CTO_PDF.pdf': {
+  'page':'https://www.credit-agricole.fr/ca-paris/particulier/informations/relation-banque-client/gestion-epargne.html',
+  'label':r'^Convention de Compte Titres Ordinaire$', 'hosts':('www.credit-agricole.fr',),
+  'path':r'/content/dam/assetsca/cr882/npc/documents/fip-et-cgl/[^/]*CGL_CTO_PDF\.pdf$'},
  'https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf': {
   'page': 'https://www.fortuneo.fr/tarifs', 'label': r'^Conditions tarifaires en vigueur$',
   'hosts': ('www.fortuneo.fr',), 'path': r'/[^?]*tarifs_fortuneo[^/]*\.pdf$'},

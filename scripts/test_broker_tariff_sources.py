@@ -17,6 +17,15 @@ class DocumentSourcesTests(unittest.TestCase):
             actual = official_link((FIXTURES / (broker + '-catalogue.html')).read_text(), config, TODAY)
             self.assertIn(fragment, actual)
 
+    def test_regional_cto_contract_follows_current_inventory(self):
+        from broker_profiles import SOURCES as profile_sources
+        old=profile_sources['caCtoContract']['url']
+        config=CATALOGUES[old]
+        html=(pathlib.Path(__file__).parent/'fixtures/broker-profiles/caSavingsDocs.txt').read_text()
+        self.assertEqual(official_link(html,config,TODAY),old)
+        rotated=old.replace('1773337045911','1888888888888')
+        self.assertEqual(official_link(html.replace(old,rotated),config,TODAY),rotated)
+
     def test_regional_future_brochure_not_used_and_current_rotation(self):
         config = CATALOGUES[SOURCES['caidf']]
         html = (FIXTURES / 'caidf-catalogue.html').read_text()

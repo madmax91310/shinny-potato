@@ -89,18 +89,19 @@ function EvidencePanel({ selected }) {
         const broker = byId(id)
         return (
           <details className="bc-evidence-broker" key={id}>
-            <summary>{broker.nom} · {EVIDENCE_FIELDS.filter(([field]) => BROKER_EVIDENCE[id][field].status === 'confirmé').length}/{EVIDENCE_FIELDS.length} champs confirmés directement</summary>
+            <summary>{broker.nom} · {EVIDENCE_FIELDS.filter(([field]) => BROKER_EVIDENCE[id][field].status === 'confirmé').length}/{EVIDENCE_FIELDS.length} champs confirmés avec preuves</summary>
             <ul>
               {EVIDENCE_FIELDS.map(([field, label]) => {
                 const entry = BROKER_EVIDENCE[id][field]
                 return (
                   <li key={field}>
                     <strong>{label} · {entry.status}</strong> — {entry.summary}
+                    {entry.automatedEvidence?.method?.startsWith('Déduction') && <span> · {entry.automatedEvidence.method}.</span>}
                     {entry.refs?.map(({ document, page }) => {
                       const source = OFFICIAL_SOURCES[document] ?? SECONDARY_SOURCES[document]
                       const type = source.kind?.startsWith('secondary') ? `source externe ${source.edition}` : source.kind === 'customer-notice' ? `avis client, ${source.edition}` : source.kind === 'page' ? 'page officielle' : `PDF officiel ${source.edition}`
                       const url = source.kind === 'customer-notice' ? `${import.meta.env.BASE_URL}${source.url}` : source.url
-                      return <span key={`${document}-${page ?? 'web'}`}> <a href={page ? `${url}#page=${page}` : url} target="_blank" rel="noreferrer">{source.title}{page ? `, p. ${page}` : ''} ({type})</a></span>
+                      return <span key={`${document}-${page ?? 'web'}`}> <a href={page ? `${url}#page=${page}` : url} target="_blank" rel="noreferrer">{source.title}{page ? `, p. ${page}` : ''} ({type}, vérifié le {source.checked})</a></span>
                     })}
                     {entry.checked?.map((document) => {
                       const source = OFFICIAL_SOURCES[document]
