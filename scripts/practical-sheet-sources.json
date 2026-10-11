@@ -59,16 +59,19 @@
   },
   "ibonds": {
     "label": "BlackRock · ETF obligataire à échéance",
-    "url": "https://www.blackrock.com/fr/intermediaries/products/331698/",
+    "url": "https://www.ishares.com/gls-download/literature/kiid/eu-priips-ishares-ibonds-dec-2026-term-corp-ucits-etf-eur-dist-ie000sizj2b2-fr.pdf",
+    "kind": "pdf-policy",
+    "title": "iShares iBonds Dec 2026 Term € Corp UCITS ETF EUR Dist — DIC",
     "markers": [
+      "IE000SIZJ2B2",
+      "EUR Dist",
       "iBonds",
       "2026"
     ],
-    "selector": "main",
-    "editorialSelector": ".fund_objective, .data-point-name.bold",
-    "editorialMarkers": [
-      "Le Fonds vise",
-      "rendement minimum garanti"
+    "policyPatterns": [
+      "Durée de vie :.*?Objectifs",
+      "Objectifs .*?Le dépositaire du Fonds",
+      "Il n’y a pas de rendement minimum garanti\\. Vous pourriez perdre tout ou partie de votre investissement\\."
     ]
   },
   "covered-call": {

@@ -22,7 +22,29 @@ DEST = ROOT / 'src/data/automated-practical-sheets.json'
 def parse(raw, config):
     if len(raw) < 500 or len(raw) > 10_000_000:
         raise ValueError('Document vide ou trop volumineux')
-    if config.get('kind') == 'discourse':
+    if config.get('kind') == 'pdf-policy':
+        from collect_scpi import pdf_text
+        if not raw.startswith(b'%PDF'):
+            raise ValueError('PDF officiel absent')
+        full = ' '.join(pdf_text(raw, layout=False).split())
+        if any(marker.casefold() not in full.casefold() for marker in config['markers']):
+            raise ValueError('Identité du document PDF non confirmée')
+        fragments = []
+        for pattern in config['policyPatterns']:
+            match = re.search(pattern, full)
+            if not match:
+                raise ValueError('Section pédagogique du PDF absente')
+            fragments.append(match.group(0))
+        text = ' '.join(fragments)
+        title = config['title']
+        months = {'janvier':1,'février':2,'mars':3,'avril':4,'mai':5,'juin':6,'juillet':7,'août':8,'septembre':9,'octobre':10,'novembre':11,'décembre':12}
+        stamp = re.search(r'document est daté du (\d{1,2}) ([a-zéû]+) (20\d{2})', full)
+        if not stamp or stamp[2] not in months:
+            raise ValueError('Date du DIC absente')
+        published = dt.date(int(stamp[3]),months[stamp[2]],int(stamp[1])).isoformat()
+        if published > dt.datetime.now(dt.timezone.utc).date().isoformat():
+            raise ValueError('Date du DIC future')
+    elif config.get('kind') == 'discourse':
         document = json.loads(raw)
         post = document['post_stream']['posts'][0]
         if post.get('username') != config['author'] or not post.get('admin'):
@@ -62,7 +84,7 @@ def parse(raw, config):
                 raise ValueError('Sections éditoriales attendues absentes')
             # Policy descriptions and warnings only, excluding daily NAV/AUM changes.
             text = title+' '+' '.join(dict.fromkeys(fragments))
-    folded = text.casefold()
+    folded = (full if config.get('kind') == 'pdf-policy' else text).casefold()
     if len(text) < 150 or any(marker.casefold() not in folded for marker in config['markers']):
         raise ValueError('Identité du document non confirmée')
     if any(wall in folded for wall in ['access denied', 'verify you are human', 'just a moment...']):

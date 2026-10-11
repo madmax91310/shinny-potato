@@ -1,10 +1,28 @@
 import unittest
 from unittest.mock import Mock
-from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history
+from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 class StatusTests(unittest.TestCase):
+ def test_all_configured_workflows_are_visible_without_false_success(self):
+  state=include_configured_workflows({'schemaVersion':1,'workflows':{}})
+  for key in ['update-inflation.yml','update-practical-sheets.yml']:
+   self.assertEqual(state['workflows'][key]['status'],'unknown')
+  self.assertEqual(include_configured_workflows(state),state)
+ def test_practical_failures_reviews_and_recovery_are_separate(self):
+  workflow='update-practical-sheets.yml'
+  report={'sources':{'ibonds':{'status':'error','label':'iBonds','error':'HTTP 403'},'etf':{'status':'ok','reviewRequired':True}},'failed':['ibonds'],'changed':['etf']}
+  failed=update_status({},run(workflow=workflow),[],[report])
+  self.assertEqual(set(failed['workflows'][workflow]['dataFailures']),{'practical:ibonds','practical:etf'})
+  report['sources']['ibonds']={'status':'ok'};report['failed']=[]
+  recovered=update_status(failed,run(2,'failure',workflow=workflow),[],[report])
+  self.assertEqual(set(recovered['workflows'][workflow]['dataFailures']),{'practical:etf'})
+  report['sources']['etf']['reviewRequired']=False;report['changed']=[]
+  fixed=update_status(recovered,run(3,'success',workflow=workflow),[],[report])
+  self.assertEqual(fixed['workflows'][workflow]['status'],'success')
+ def test_inflation_report_marks_exact_series_as_collected(self):
+  self.assertEqual(normalize_report({'seriesId':'011814631','rates':{'2026-09':-.3},'checkedAt':'2026-10-11'})['successes'],[{'id':'inflation:011814631'}])
  def test_regulatory_reports_keep_retained_failure_and_clear_only_checked_sources(self):
   report={'_collector':'fiscal-observation','observations':{'sources':{'av':{'title':'Assurance-vie'},'pea':{}}},'failures':{'av':'Wording changed'}}
   failed=update_status({},run(workflow='update-regulatory-data.yml'),[],[report])
