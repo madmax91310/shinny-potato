@@ -308,7 +308,12 @@ async function testPortfolioGenerator(page) {
   const { annualizedReturn, formatPerformance } = await import('../src/pages/portfolio-generator/performance.js');
   const autoPerformanceOk = portfolioYears.every(year => new RegExp(`${year} : [＋+−-]?[0-9]+,[0-9] %`).test(autoTweet))
     && /Performance annualisée \(2020 à 2025\) : [＋+−-]?[0-9]+,[0-9] % par an/.test(autoTweet);
-  const autoEditorialOk = autoPerformanceOk && dataLabelsOk && /portefeuille illustratif|exemple illustratif/i.test(autoTweet) && !/La logique de l’ensemble|💡/.test(autoTweet);
+  const performanceHookOk = text => {
+    const result = text.match(/Performance annualisée \([^)]*\) : ([＋+−-]?[0-9]+,[0-9] %) par an/);
+    return Boolean(result && text.startsWith(`📈 ${result[1]} par an sur la période `)
+      && text.includes('Voici sa répartition et le détail des performances simulées 👇'));
+  };
+  const autoEditorialOk = autoPerformanceOk && dataLabelsOk && performanceHookOk(autoTweet) && !/La logique de l’ensemble|💡/.test(autoTweet);
   // Un profil/palier fixé doit faire tourner toutes les constructions disponibles.
   await page.getByRole('group', { name: "Choisir un profil d'investisseur" }).getByRole('button', { name: 'Le Généraliste', exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un niveau de risque cible' }).getByRole('button', { name: 'Équilibré', exact: true }).click();
@@ -335,7 +340,7 @@ async function testPortfolioGenerator(page) {
   await page.locator(".pg-manual-pct-input").fill("100");
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
-  let manualEditorialOk = /portefeuille illustratif/i.test(manualTweet) && /100 %/.test(manualTweet) && /toute l’épargne/i.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
+  let manualEditorialOk = performanceHookOk(manualTweet) && /100 %/.test(manualTweet) && /toute l’épargne/i.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
   const euroPerf = Object.fromEntries(portfolioYears.map((year, i) => [year, portfolioAsset('fonds_euros').r[i]]));
   manualEditorialOk &&= portfolioYears.every(year => manualTweet.includes(`${year} : ${formatPerformance(euroPerf[year])}`))
     && manualTweet.includes(`Performance annualisée (2020 à 2025) : ${formatPerformance(annualizedReturn(euroPerf))} par an`);
@@ -347,7 +352,7 @@ async function testPortfolioGenerator(page) {
   await page.locator('.pg-manual-pct-input').last().fill('50');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const cryptoTweet = await page.locator('.pg-tweet-body').innerText();
-  manualEditorialOk &&= /portefeuille illustratif/i.test(cryptoTweet) && /50% .*Bitcoin/.test(cryptoTweet) && !/à la carte/i.test(cryptoTweet);
+  manualEditorialOk &&= performanceHookOk(cryptoTweet) && /50% .*Bitcoin/.test(cryptoTweet) && !/à la carte/i.test(cryptoTweet);
   manualStages.crypto = manualEditorialOk;
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-remove').first().click();
@@ -356,11 +361,11 @@ async function testPortfolioGenerator(page) {
   await page.locator('.pg-manual-pct-input').last().fill('50');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const worldBitcoinTweet = await page.locator('.pg-tweet-body').innerText();
-  manualEditorialOk &&= /portefeuille illustratif/i.test(worldBitcoinTweet) && /50% .*Bitcoin/.test(worldBitcoinTweet) && /50 %/.test(worldBitcoinTweet);
+  manualEditorialOk &&= performanceHookOk(worldBitcoinTweet) && /50% .*Bitcoin/.test(worldBitcoinTweet) && /50 %/.test(worldBitcoinTweet);
   manualStages.worldBitcoin = manualEditorialOk;
   await page.getByRole('button', { name: /Nouveau texte, même composition/ }).click();
   const rotatedTweet = await page.locator('.pg-tweet-body').innerText();
-  manualEditorialOk &&= rotatedTweet !== worldBitcoinTweet && /portefeuille illustratif/i.test(rotatedTweet);
+  manualEditorialOk &&= rotatedTweet !== worldBitcoinTweet && performanceHookOk(rotatedTweet);
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-pct-input').first().fill('10');
   await page.locator('.pg-manual-pct-input').last().fill('30');
@@ -369,7 +374,7 @@ async function testPortfolioGenerator(page) {
   await page.locator('.pg-manual-pct-input').last().fill('60');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const personalTweet = await page.locator('.pg-tweet-body').innerText();
-  manualEditorialOk &&= /portefeuille illustratif/i.test(personalTweet)
+  manualEditorialOk &&= performanceHookOk(personalTweet)
     && /60 % de fonds euros/.test(personalTweet)
     && /10% .*Bitcoin/.test(personalTweet)
     && /💬 Que penses-tu de ce portefeuille \?/.test(personalTweet)

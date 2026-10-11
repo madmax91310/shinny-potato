@@ -403,9 +403,11 @@ export function renderTweetText(p) {
     : holdings.every(s => s.isin)
       ? 'quels ETF composent ce portefeuille ?'
       : 'quels placements composent ce portefeuille ?';
+  const index = Number(p.hookId?.match(/-(\d+)$/)?.[1] ?? 0) % 3;
+  const questions = [question, 'de quoi se compose ce portefeuille ?', 'comment est réparti ce portefeuille ?'];
   const hook = annualized === null
     ? '📈 Quelles performances pour ce portefeuille ? 👀'
-    : `📈 ${formatPerformance(annualized)} par an sur la période ${years[0]}–${years.at(-1)} : ${question} 👀`;
+    : `📈 ${formatPerformance(annualized)} par an sur la période ${years[0]}–${years.at(-1)} : ${questions[index]} 👀`;
   const blocks = [`${hook}\n\nVoici sa répartition et le détail des performances simulées 👇`, '💼 La répartition'];
   // Sort a copy: recipe slots and replacements still rely on the stored order.
   const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
