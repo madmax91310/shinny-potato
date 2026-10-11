@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { parseOfficialListing, parseParliamentaryTopic, parliamentaryStatus, atomToRss } from './purchasing-power-sources.mjs'
+import { parseOfficialListing } from './purchasing-power-sources.mjs'
 
 // Public official feeds only: no API key, paid service or manual article list.
 export const PURCHASING_SOURCES = [
@@ -7,9 +7,6 @@ export const PURCHASING_SOURCES = [
   { id: 'bercy', name: 'Ministère de l’Économie', url: 'https://www.economie.gouv.fr/rss/toutesactualites', hosts: ['www.economie.gouv.fr'] },
   { id: 'vie-publique-actualites', name: 'Vie publique · actualités', url: 'https://www.vie-publique.fr/actualites-feeds.xml', hosts: ['www.vie-publique.fr'] },
   { id: 'vie-publique-lois', name: 'Vie publique · lois', url: 'https://www.vie-publique.fr/lois-feeds.xml', hosts: ['www.vie-publique.fr'] },
-  { id: 'assemblee-documents', name: 'Assemblée nationale · publications', url: 'https://www2.assemblee-nationale.fr/feeds/detail/documents-parlementaires', hosts: ['www2.assemblee-nationale.fr', 'www.assemblee-nationale.fr'], parliament: true },
-  { id: 'senat-textes', name: 'Sénat · textes', url: 'https://www.senat.fr/rss/textes.rss', hosts: ['www.senat.fr'], parliament: true, upgradeHttp: true },
-  { id: 'senat-presse', name: 'Sénat · communiqués', url: 'https://www.senat.fr/rss/presse.rss', hosts: ['www.senat.fr'], parliament: true, upgradeHttp: true },
   { id: 'banque-france-credit', name: 'Banque de France · crédits aux particuliers', url: 'https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166', hosts: ['www.banque-france.fr'], format: 'html' },
   { id: 'cre-prix', name: 'CRE · prix de l’énergie', url: 'https://www.cre.fr/documents/communiques-de-presse.html', hosts: ['www.cre.fr'], format: 'html' },
 ]
@@ -70,8 +67,27 @@ export function classifyStatus(title, summary) {
   }
   return fallback ?? { status: 'À préciser', evidence: '' }
 }
+// Only a final adoption or promulgation qualifies a legislative announcement.
+export function adoptedLaw(title = '', summary = '') {
+  for (const clause of [title, ...summary.split(/(?<=[.!?])\s+/)].filter(Boolean)) {
+    const text = normalize(clause)
+    if (/(?:ne |n ).*pas|pas encore|pourrait|serait|devrait|non adopte|sera|seront|prevu|attendu|doit etre|avant .*promulgu|apres .*promulgu|si .*adopt/.test(text)) continue
+    if (/promulgu(?:e|ee|ees|es|ation)\b/.test(text)) return { status: 'Loi promulguée', evidence: clause.slice(0, 450) }
+    if (/(?:adopte|vote)(?:e|es|s)? definitivement|adoption definitive/.test(text) && !/amendement|en commission|premiere lecture/.test(text)) return { status: 'Loi adoptée définitivement', evidence: clause.slice(0, 450) }
+  }
+  return null
+}
+export function publishablePurchasingNews(item) {
+  if (item.family !== 'pouvoir-achat') return true
+  const publisher = item.publisher ?? ''
+  const host = (() => { try { return new URL(item.sourceUrl).hostname } catch { return '' } })()
+  if (/^(?:Assemblée nationale|Sénat)/.test(publisher) || /(?:^|\.)(?:senat\.fr|assemblee-nationale\.fr)$/.test(host)) return false
+  const title = item.label ?? item.value?.title ?? ''
+  const summary = item.summary ?? item.value?.summary ?? ''
+  const legislative = publisher === 'Vie publique · lois' || /\blois?\b|amendement|\bplf(?:ss)?\b|projet de budget/.test(normalize(title + ' ' + summary)) || /Proposition|discussion|Adoption en|Vote indiqué|Rejet/.test(item.status ?? item.value?.status ?? '')
+  return !legislative || Boolean(adoptedLaw(title, summary))
+}
 export function parsePurchasingFeed(xml, source, now = new Date()) {
-  if (source.id.startsWith('senat-dossier-')) xml = atomToRss(xml)
   if (xml.length > 2000000 || /<!DOCTYPE|<!ENTITY/i.test(xml) || !/<rss\b/i.test(xml) || !/<channel\b/i.test(xml) || !/<\/rss>\s*$/i.test(xml)) throw new Error('Flux officiel invalide ou format modifié.')
   if ((xml.match(/<item\b/gi) ?? []).length !== (xml.match(/<\/item>/gi) ?? []).length) throw new Error('Flux officiel tronqué.')
   const items = [...xml.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)]
@@ -80,8 +96,8 @@ export function parsePurchasingFeed(xml, source, now = new Date()) {
   for (const [, item] of items) {
     try {
       const title = cleanText(tag(item, 'title')), summary = cleanText(tag(item, 'description')).slice(0, 550)
-      if (!title || title.length > (source.parliament ? 800 : 350)) throw new Error('Titre manquant ou trop long.')
-      const topic = source.parliament ? (source.topic ?? parseParliamentaryTopic(title, summary)) : classifyTopic(title, summary)
+      if (!title || title.length > 350) throw new Error('Titre manquant ou trop long.')
+      const topic = classifyTopic(title, summary)
       if (!topic) continue
       const sourceUrl = officialUrl(cleanText(tag(item, 'link')), source)
       if (!cleanText(tag(item, 'link'))) throw new Error('Lien manquant.')
@@ -95,7 +111,8 @@ export function parsePurchasingFeed(xml, source, now = new Date()) {
       // Archives are retained in state; adding one to a feed is not news.
       if (now.getTime() - day > 45 * 86400000) continue
       const classified = classifyStatus(title, summary)
-      const { status, evidence } = source.parliament ? parliamentaryStatus(title, summary, classified) : classified
+      const { status, evidence } = adoptedLaw(title, summary) ?? classified
+      if (!publishablePurchasingNews({ family: 'pouvoir-achat', label: title, summary, publisher: source.name, sourceUrl })) continue
       const entity = `purchasing-news-${createHash('sha256').update(sourceUrl).digest('hex').slice(0, 20)}`
       observations.push({ family: 'pouvoir-achat', entity, label: title, field: 'announcement', fieldLabel: 'Actualité officielle', value: { title, summary, status }, period, checkedAt: now.toISOString(), sourceUrl, scope: 'Actualité officielle · particuliers', tool: '/pouvoir-achat', rule: 'announcement', discovery: true, priority: /\bptz\b|smic|loi de finances|prime|taux|revaloris|plafond/i.test(normalize(title)) ? 'high' : 'normal', topic, topicLabel: TOPICS[topic].label, publisher: source.name, status, statusEvidence: evidence, summary, angle: TOPICS[topic].question, reason: 'Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé.' })
     } catch (error) { errors.push({ family: 'pouvoir-achat', entity: source.name, reason: error.message }) }
@@ -134,28 +151,6 @@ export async function collectPurchasingNews(now = new Date(), request = fetch, p
       return { observations: [], errors: [{ family: 'pouvoir-achat', entity: source.name, reason: error.message }], source: { id: source.id, name: source.name, url: source.url, checkedAt: now.toISOString(), status: 'error', articles: 0, relevant: 0 } }
     }
   }))
-  // Persist qualified Senate dossiers in state so they remain followed after
-  // their original document leaves the recent-texts feed.
-  const dossiers = new Map()
-  for (const o of [...Object.values(previous?.current ?? {}), ...results.flatMap(r => r.observations)]) {
-    if (o.family !== 'pouvoir-achat' || !o.topic) continue
-    let dossierFeedUrl = o.dossierFeedUrl
-    const match = new URL(o.sourceUrl).pathname.match(/^\/leg\/((?:ppl|pjl|ppr)\d{2}-\d+)\.html$/)
-    if (!dossierFeedUrl && new URL(o.sourceUrl).hostname === 'www.senat.fr' && match) dossierFeedUrl = `https://www.senat.fr/dossierleg/rss/dosleg${match[1]}.xml`
-    if (dossierFeedUrl) {
-      o.dossierFeedUrl = dossierFeedUrl
-      dossiers.set(dossierFeedUrl, { id: `senat-dossier-${dossierFeedUrl.split('/').at(-1)}`, name: `Sénat · suivi ${o.topicLabel}`, url: dossierFeedUrl, hosts: ['www.senat.fr', 'www.assemblee-nationale.fr'], parliament: true, upgradeHttp: true, topic: o.topic })
-    }
-  }
-  const followups = await Promise.all([...dossiers.values()].slice(0, 20).map(async source => {
-    try {
-      officialUrl(source.url, { ...source, hosts: ['www.senat.fr'] })
-      const parsed = parsePurchasingFeed(await fetchFeed(source, request), source, now)
-      for (const o of parsed.observations) o.dossierFeedUrl = source.url
-      return { ...parsed, source: { id: source.id, name: source.name, url: source.url, checkedAt: now.toISOString(), status: parsed.errors.length ? 'partial' : 'ok', articles: parsed.itemCount, relevant: parsed.observations.length } }
-    } catch (error) { return { observations: [], errors: [{ family: 'pouvoir-achat', entity: source.name, reason: error.message }], source: { id: source.id, name: source.name, url: source.url, checkedAt: now.toISOString(), status: 'error', articles: 0, relevant: 0 } } }
-  }))
-  results.push(...followups)
   const unique = new Map()
   for (const o of results.flatMap(r => r.observations)) if (!unique.has(o.entity) || o.period > unique.get(o.entity).period) unique.set(o.entity, o)
   return { observations: [...unique.values()], errors: results.flatMap(r => r.errors), sources: results.map(r => r.source) }
