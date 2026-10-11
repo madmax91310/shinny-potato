@@ -1,3 +1,5 @@
+import practicalReferences from './automated-practical-sheets.json' with { type: 'json' };
+import { TOPICS as PRACTICAL_TOPICS, FUND_GROUPS as PRACTICAL_FUND_GROUPS } from './practical-sheet-topics.js';
 import { REGULATORY_OBSERVATIONS, REGULATORY_LEXICON_SOURCES } from './regulatory-data.js';
 import { BROKER_TARIFFS, brokerTariffCopy } from './broker-tariffs.js';
 import { INDEX_DECISION_CASE_DEFINITIONS } from './index-decision-cases.js'
@@ -50,6 +52,7 @@ function use(isin, tool, path) {
   if (!entries.some((x) => x.path === path)) entries.push({ tool, path });
   uses.set(isin, entries);
 }
+[...Object.values(PRACTICAL_FUND_GROUPS).flat(),'FR0013416716'].forEach(isin=>use(isin,'Fiches pratiques','/fiches-pratiques'));
 ETFS.forEach((x) => use(x.isin, 'Présentation ETF', '/fiches-etf'));
 ASSETS.forEach((x) => {
   use(x.isin, 'Générateur de portefeuilles', '/generateur-portefeuilles');
@@ -109,7 +112,7 @@ function index(id, history) {
     method: quarterly.method, note: 'La date de ces positions est indépendante de celle des pays, secteurs et effectifs mensuels.'
   })] : [];
   const values = [...Object.values(history), ...(current ? [current] : [])];
-  const consumers = [];
+  const consumers = PRACTICAL_TOPICS.some(t=>t.indices?.includes(id)) ? [{tool:'Fiches pratiques',path:'/fiches-pratiques'}] : [];
   if (SHEETS.some((s) => values.includes(s.indexFacts))) consumers.push({ tool: 'Coulisses des indices', path: '/tweets-factsheets' });
   if ([...ALLOCATION_CASE_DEFINITIONS, ...INDEX_DECISION_CASE_DEFINITIONS].some(x => x.left === id || x.right === id)) consumers.push({ tool: 'Banque de tweets', path: '/banque-tweets' });
   return { id, type: 'index', name: values[0].index,
@@ -134,6 +137,7 @@ function companyRecord(company) {
   return { id: `company:${company.id}`, type: 'company', name: company.name, aliases: [company.symbol, company.cik, company.id].filter(Boolean), consumers: [{ tool: 'Analyse d’entreprise', path: '/analyse-entreprise' }], fields };
 }
 export const DATA_CATALOG = Object.freeze([
+  ...Object.entries(practicalReferences.sources).map(([id,o])=>({id:`practical:${id}`,type:'reference',name:o.label,aliases:[id,'fiches pratiques'],consumers:[{tool:'Fiches pratiques',path:'/fiches-pratiques'}],fields:[{label:'Document officiel et état de collecte',registry:'src/data/automated-practical-sheets.json',value:o,metadata:normalizeEvidence({sourceUrl:o.sourceUrl,checkedAt:o.checkedAt,asOf:o.publishedAt,scope:o.contractIds?.join(', ') ?? o.label,method:'Document officiel contrôlé automatiquement ; changement de contenu signalé pour revue éditoriale.'})}]})),
   ...['fonds_euros', 'scpi'].map(id => {
     const asset = ASSETS.find(a => a.id === id)
     const current = Object.entries(ECONOMIC_OBSERVATIONS.benchmarks ?? {}).filter(([key]) => key.startsWith(`${id}:`)).map(([,o]) => o).sort((a,b) => b.year-a.year)
@@ -143,11 +147,11 @@ export const DATA_CATALOG = Object.freeze([
         {sourceUrl:o.sourceUrl,checkedAt:o.checkedAt,periodStart:`${o.year}-01-01`,periodEnd:`${o.year}-12-31`,dateStatus:'not-applicable',currency:'EUR',scope:asset.name,method:o.method,note:asset.confidenceNote})) }
   }),
   { id: 'economic:livret-a', type: 'series', name: 'Taux légal du Livret A', aliases: ['Livret A','taux réglementé'],
-    consumers: [{tool:'Calculateur',path:'/calculateur-investissement'},{tool:'Performance depuis',path:'/performance-depuis'}],
+    consumers: [{tool:'Calculateur',path:'/calculateur-investissement'},{tool:'Performance depuis',path:'/performance-depuis'},{tool:'Fiches pratiques',path:'/fiches-pratiques'}],
     fields: Object.values(ECONOMIC_OBSERVATIONS.savings ?? {}).map(o => field(`Taux applicable · ${o.effectiveAt}`, 'economic-data', LIVRET_A[o.effectiveAt.slice(0,7)],
       {sourceUrl:o.sourceUrl,checkedAt:o.checkedAt,asOf:o.effectiveAt,scope:'Taux légal annuel du Livret A',currency:'EUR',method:'Taux réglementé publié par la Banque de France, date d’effet conservée ; historique antérieur documenté dans market-history.js'})) },
   ...INSURANCE.map(record => ({id: `insurance:${record.id}`, type: 'insurance', name: record.name, aliases: [record.id, record.insurer, 'assurance-vie', 'fonds euros'],
-    consumers: [{tool: 'Présentation d’assurance-vie', path: '/presentations?famille=insurance'}],
+    consumers: [{tool: 'Présentation d’assurance-vie', path: '/presentations?famille=insurance'},{tool:'Fiches pratiques',path:'/fiches-pratiques'}],
     fields: [...['fees', 'access', 'supports', 'euroFunds'].map(key => field({fees:'Frais du contrat', access:'Versements minimums', supports:'Supports proposés', euroFunds:'Fonds euros, rendements et conditions'}[key], 'insurance', record[key],
       {sourceUrls: key === 'euroFunds' ? record.euroFunds.flatMap(fund => fund.sourceUrls ?? [fund.sourceUrl]) : (record[key].sourceUrls ?? [record[key].sourceUrl]), checkedAt: record.checkedAt, asOf: null, scope: `${record.name} · gestion libre`, currency: 'EUR', method: 'Publication officielle du distributeur ; rendements des fonds euros par année, nets de gestion et avant prélèvements sociaux et fiscaux ; collecte distincte de la date des données.'})), ...record.euroFunds.filter(fund=>fund.allocationEvidence?.status==='not-published').map(fund=>({
         ...field(`${fund.name} · Allocation maximale à confirmer`, 'insurance', fund.allocationEvidence.reason, {sourceUrls:fund.allocationEvidence.sourceUrls,checkedAt:fund.allocationEvidence.checkedAt,scope:`${record.name} · ${fund.name} · gestion libre`,method:'Vérification de la notice et des sources publiques ; maximum explicite non publié.'}),

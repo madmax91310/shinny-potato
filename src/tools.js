@@ -2,6 +2,7 @@
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
+  {to:'/fiches-pratiques',navLabel:'Fiches pratiques',title:'Fiches pratiques',publicationDay:'Publication ponctuelle',icon:'📑',accent:'#267863',description:'Enveloppes, ETF, indices et démarches : une question, un texte et une image à garder.',status:'disponible'},
   { to: '/radar-editorial', navLabel: 'Radar', title: 'Radar éditorial',
     publicationDay: 'Actualisé chaque jour', icon: '📡', accent: '#65d5b0',
     description: 'Repère les changements sourcés et prépare des idées pour tes prochains posts.', status: 'disponible' },
@@ -160,6 +161,7 @@ export const TOOLS = [
 ]
 
 const TOOL_SUMMARIES = {
+  '/fiches-pratiques':'Les différences utiles pour comprendre et choisir un placement.',
   '/radar-editorial': 'Les changements sourcés qui peuvent devenir tes prochains posts.',
   '/simulateur-patrimoine': 'Ton patrimoine aujourd’hui et demain, avec des comparaisons pour X.',
   '/presentations': 'Un acteur, son offre et ce que tu détiens réellement.',
@@ -189,13 +191,13 @@ const TOOL_SUMMARIES = {
 export const TOOL_GROUPS = [
   { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
-  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/radar-editorial', '/presentations', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
+  { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/fiches-pratiques', '/radar-editorial', '/presentations', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/dilemme', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
 ].map(group => ({ ...group, tools: group.paths.map(path => ({ ...TOOLS.find(tool => tool.to === path), summary: TOOL_SUMMARIES[path] })) }))
 
 // Publication order for the home screen, followed by occasional and maintenance tools.
 export const WEEKLY_ORDER = [
-  '/radar-editorial',
+  '/radar-editorial', '/fiches-pratiques',
   '/comparatif-etf', '/fiche-lexique', '/tweets-factsheets',
   '/france-100-menages', '/generateur-portefeuilles',
   '/analyse-entreprise', '/calculateur-investissement',

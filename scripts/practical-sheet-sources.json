@@ -1,0 +1,107 @@
+{
+  "etf": {
+    "label": "AMF · comprendre les ETF",
+    "url": "https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/placements-collectifs/trackers-etf",
+    "markers": [
+      "ETF",
+      "indice"
+    ],
+    "selector": "article"
+  },
+  "transfer": {
+    "label": "AMF · transfert du PEA",
+    "url": "https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/supports-dinvestissement/pea/reussir-le-transfert-de-votre-plan-depargne-en-actions-pea",
+    "markers": [
+      "transfert",
+      "PEA"
+    ],
+    "selector": "article"
+  },
+  "ifu": {
+    "label": "DILA · imprimé fiscal unique",
+    "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/R10883",
+    "downloadUrl": "https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/R10883.xml",
+    "markers": [
+      "fiscal",
+      "unique"
+    ]
+  },
+  "av-contract": {
+    "label": "DILA · assurance-vie",
+    "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F15274",
+    "downloadUrl": "https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/F15274.xml",
+    "markers": [
+      "assurance",
+      "vie"
+    ]
+  },
+  "gold": {
+    "label": "Amundi · structure et risques de l’ETC or",
+    "url": "https://www.amundietf.fr/fr/particuliers/mentions-legales",
+    "markers": [
+      "ETC",
+      "Gold"
+    ],
+    "selector": "main"
+  },
+  "gold-supports": {
+    "label": "Linxea · supports Spirica",
+    "url": "https://support.linxea.com/fr/articles/746251-quels-sont-les-etf-disponibles-sur-les-contrats-spirica",
+    "markers": [
+      "Spirica",
+      "ISIN"
+    ],
+    "selector": "article",
+    "supportIsins": [
+      "FR0013416716",
+      "IE00B579F325"
+    ]
+  },
+  "ibonds": {
+    "label": "BlackRock · ETF obligataire à échéance",
+    "url": "https://www.blackrock.com/fr/intermediaries/products/331698/",
+    "markers": [
+      "iBonds",
+      "2026"
+    ],
+    "selector": "main",
+    "editorialSelector": ".fund_objective, .data-point-name.bold",
+    "editorialMarkers": [
+      "Le Fonds vise",
+      "rendement minimum garanti"
+    ]
+  },
+  "covered-call": {
+    "label": "Global X · Nasdaq 100 Covered Call UCITS ETF",
+    "url": "https://globalxetfs.eu/funds/qyld/",
+    "markers": [
+      "Covered",
+      "UCITS"
+    ],
+    "selector": "main",
+    "editorialSelector": ".border-t-4 .text-granite",
+    "editorialMarkers": [
+      "The Global X Nasdaq 100 Covered Call"
+    ]
+  },
+  "gold-contract": {
+    "label": "Linxea · ETC or et tarification Spirit 2",
+    "url": "https://forum.linxea.com/t/actu-contrats-spirica-arrivee-de-letc-argent-et-baisse-des-frais-sur-les-metaux-precieux/262151",
+    "downloadUrl": "https://forum.linxea.com/t/262151.json",
+    "kind": "discourse",
+    "markers": [
+      "Linxea Spirit 2",
+      "FR0013416716",
+      "DE000A2T5DZ1",
+      "frais de transaction"
+    ],
+    "author": "Arnaud_Linxea",
+    "contractIds": [
+      "linxea-spirit-2"
+    ],
+    "supportIsins": [
+      "FR0013416716",
+      "DE000A2T5DZ1"
+    ]
+  }
+}

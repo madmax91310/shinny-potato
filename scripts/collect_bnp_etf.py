@@ -147,7 +147,7 @@ def parse(text, share, now, expected_date):
     if set(map(int, calendar)) != set(range(min(map(int, calendar)), now.year)):
         reject('Missing BNP complete calendar year within published history')
     if not 0 <= float(fee) <= 5: reject('Invalid BNP ongoing charges')
-    result = {**share, 'productId': isin, 'characteristics': {'terPct': float(fee), 'asOf': stamp, 'feesAsOf': fees_as_of},
+    result = {**share, 'productId': isin, 'characteristics': {'terPct': float(fee), 'index': share['expectedIndex'], 'distribution': 'Capitalisation', 'asOf': stamp, 'feesAsOf': fees_as_of},
             'aum': {'amount': number(round(aum, 2)), 'currency': currency, 'scope': 'fund', 'asOf': stamp},
             'performance': {'currency': currency, 'basis': 'fund', 'method': 'calendar-year exact-share NAV net total return, income reinvested, fund fees included',
                             'asOf': stamp, 'years': dict(sorted(calendar.items()))},

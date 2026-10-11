@@ -1,3 +1,4 @@
+import practicalReferences from '../../data/automated-practical-sheets.json' with { type: 'json' }
 import investorReviews from '../../../public/data/investors/review-metadata.json' with { type: 'json' }
 import { DATA_CATALOG } from '../../data/catalog.js'
 import { BROKERS } from '../broker-comparator/data.js'
@@ -122,6 +123,10 @@ export function buildReview(today = parisToday(), catalog = DATA_CATALOG, broker
     const row = { id: `investor:${payload.data.identity.slug}`, name: payload.data.identity.displayName, aliases: [payload.data.identity.slug], field: `Portefeuille au ${snapshot.periodEnd}`, metadata: { asOf: snapshot.periodEnd }, checkedAt: payload.as_of?.slice(0, 10), nextReviewAt, category: remaining <= 0 ? 'stale' : remaining <= SOON_DAYS ? 'soon' : 'current', cadence: 'quarterly', dataType: 'Portefeuilles trimestriels', tools: ['Présentation investisseur'], registry: 'public/data/investors', to: '/portefeuilles-investisseurs', urls: [payload.data.sourceUrl || 'https://www.sec.gov/edgar/search/'], reason: 'Contrôler le trimestre suivant 45 jours après sa clôture. La collecte et le déploiement sont automatiques ; une date de récupération récente ne prouve pas la présence du nouveau trimestre.' }
     schedule.push(row)
     if (row.category !== 'current') items.push(row)
+  }
+  if(catalog === DATA_CATALOG) for(const [key,ref] of Object.entries(practicalReferences.sources)) {
+    if(ref.status !== 'error' && !ref.reviewRequired) continue
+    items.push({id:`practical-source:${key}`,name:ref.label,aliases:[key],field:'Collecte et explication',category:'reserve',checkedAt:ref.checkedAt,registry:'src/data/automated-practical-sheets.json',urls:[ref.sourceUrl],to:'/fiches-pratiques',tools:['Fiches pratiques'],reason:ref.reviewRequired?'Document modifié : relire les fiches concernées avant de lever la réserve.':`Dernière tentative en échec (${ref.lastAttemptAt}) ; dernier contrôle réussi conservé. ${ref.error ?? ''}`})
   }
   const order = ['expired', 'future-date', 'reserve', 'stale', 'undated', 'ending', 'soon', 'scheduled']
   items.sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category) || (dayNumber(a.nextReviewAt ?? a.until) ?? -Infinity) - (dayNumber(b.nextReviewAt ?? b.until) ?? -Infinity) || a.name.localeCompare(b.name, 'fr') || a.field.localeCompare(b.field, 'fr'))
