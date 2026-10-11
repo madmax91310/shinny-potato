@@ -90,30 +90,18 @@
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 38152984809,
+      "runId": 38155340103,
       "attempt": 1,
-      "completedAt": "2026-10-11T16:08:58Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-11T15:31:03Z",
-      "collectionStatus": "failure",
-      "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-11T15:31:03Z",
+      "completedAt": "2026-10-11T16:42:43Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-11T16:42:43Z",
+      "collectionStatus": "success",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-11T16:42:43Z",
       "lastPublicationSuccessAt": "2026-10-11T16:08:48Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38152984809",
-      "failures": [
-        {
-          "job": "report-failures",
-          "step": "Run echo 'Une collecte réglementaire a échoué. Les dernières valeurs validées restent disponibles. Consulter regulatory-observations.' >> \"$GITHUB_STEP_SUMMARY\""
-        }
-      ],
-      "dataFailures": {
-        "broker-observation:caidf:profile:change": {
-          "name": "caidf:profile:change",
-          "completedAt": "2026-10-11T16:08:58Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38152984809",
-          "cause": "Clause officielle absente ou modifiée : Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l.opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents"
-        }
-      }
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38155340103",
+      "failures": [],
+      "dataFailures": {}
     },
     "update-scpi.yml": {
       "name": "Présentations de SCPI",
@@ -204,5 +192,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-11T16:18:40Z"
+  "updatedAt": "2026-10-11T16:42:43Z"
 }
