@@ -578,14 +578,14 @@
     {
       "id": "stoxx600",
       "name": "STOXX Europe 600",
-      "parser": "stoxx-price",
-      "symbol": "SXXP",
-      "isin": "EU0009658202",
+      "parser": "stoxx-net",
+      "symbol": "SXXR",
+      "isin": "EU0009658210",
       "collectComposition": true,
-      "returnSourceUrl": "https://stoxx.com/index/sxxp/",
+      "returnSourceUrl": "https://stoxx.com/index/sxxr/",
       "returnCurrency": "EUR",
-      "returnVariant": "PRICE",
-      "performanceDetail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
+      "returnVariant": "NET",
+      "performanceDetail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
       "requiredFields": [
         "returns",
         "composition"

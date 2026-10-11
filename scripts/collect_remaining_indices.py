@@ -1,4 +1,4 @@
-"""Official Nikkei factsheets and STOXX price-return calendar histories."""
+"""Official Nikkei factsheets and STOXX exact-variant calendar histories."""
 import datetime as dt
 import gzip
 import json
@@ -61,8 +61,13 @@ def stoxx_returns(body, config, now):
     if body[:2] == b'\x1f\x8b': body = gzip.decompress(body)
     if len(body) > 8_000_000: reject('Oversized STOXX page')
     text = body.decode()
-    if "window.index_isin = '" + config['isin'] + "'" not in text or 'id="overview-symbol">' + config['symbol'] + '<' not in text or 'EUR (Price Return)' not in text:
-        reject('Wrong STOXX exact index/price EUR convention')
+    identities = {'SXXP': ('EU0009658202', 'PRICE'), 'SXXR': ('EU0009658210', 'NET'), 'SX5E': ('EU0009658145', 'PRICE')}
+    if identities.get(config['symbol']) != (config['isin'], config['returnVariant']): reject('Wrong STOXX symbol/ISIN/variant identity')
+    variant_labels = {'PRICE': 'Price Return', 'NET': 'Net Return', 'GROSS': 'Gross Return'}
+    variant_label = variant_labels.get(config['returnVariant'])
+    if config['returnCurrency'] != 'EUR' or not variant_label: reject('Unsupported STOXX return convention')
+    if "window.index_isin = '" + config['isin'] + "'" not in text or 'id="overview-symbol">' + config['symbol'] + '<' not in text or f'EUR ({variant_label})' not in text:
+        reject('Wrong STOXX exact index/return EUR convention')
     arrays = re.findall(r'window\.chart_data\s*=\s*(\[\[.*?\]\]);', text)
     if not arrays or any(json.loads(a) != json.loads(arrays[0]) for a in arrays): reject('Ambiguous STOXX daily series')
     rows = json.loads(arrays[0]); stamps = [r[0] for r in rows]

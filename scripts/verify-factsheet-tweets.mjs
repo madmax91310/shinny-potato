@@ -54,3 +54,9 @@ const changedEuro = buildFactsheetTweet({ ...euro, holdings: [['SIEMENS AG-REG',
 assert.match(changedEuro, /Siemens représente à elle seule plus de 10 %/)
 assert.doesNotMatch(changedEuro, /ASML représente à elle seule|poids de ASML/)
 assert.doesNotMatch(buildFactsheetTweet({ ...euro, holdings: [['ASML', 9]] }), /plus de 10 %/)
+
+// La fiche et les prochaines collectes suivent la même version nette réinvestie.
+const stoxx = SHEETS.find(s => s.id === 'stoxx600')
+assert.match(stoxx.performance.detail, /EUR, dividendes nets réinvestis/)
+assert.doesNotMatch(buildFactsheetTweet(stoxx), /hors dividendes|Price Return|Les dividendes ne sont pas comptés/)
+assert.equal(new Map(stoxx.returns).get(2025), 19.8)

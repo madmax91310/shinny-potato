@@ -27,7 +27,7 @@ def collect_one(config, now, fetch=download):
             except Exception as error:
                 result['errors'].append({'field':'composition','reason':str(error)})
         return result
-    if config['parser'] in ('nikkei', 'stoxx-price', 'ssga-index', 'blackrock-index', 'metal-benchmark'):
+    if config['parser'] in ('nikkei', 'stoxx-price', 'stoxx-net', 'ssga-index', 'blackrock-index', 'metal-benchmark'):
         from collect_remaining_indices import collect_one as remaining
         return remaining(config, now, fetch)
     cache = {}

@@ -58,11 +58,15 @@ class RemainingIndexSources(unittest.TestCase):
         for y in range(2019,2026):rows.append([int(dt.datetime(y,12,31,tzinfo=UTC).timestamp()*1000),100*1.1**(y-2019)])
         rows.append([int(dt.datetime(2026,10,5,tzinfo=UTC).timestamp()*1000),200])
         c=cfg('stoxx600')
-        return ("window.index_isin = '"+c['isin']+"';<span id=\"overview-symbol\">"+c['symbol']+"</span>EUR (Price Return) window.chart_data = "+json.dumps(rows)+";").encode()
-    def test_stoxx_price_identity_boundaries_and_freshness(self):
+        return ("window.index_isin = '"+c['isin']+"';<span id=\"overview-symbol\">"+c['symbol']+"</span>EUR (Net Return) window.chart_data = "+json.dumps(rows)+";").encode()
+    def test_stoxx_net_identity_boundaries_and_freshness(self):
         body=self.stoxx_body();c=cfg('stoxx600');stamp,values=stoxx_returns(body,c,NOW)
         self.assertEqual(stamp,'2026-10-05');self.assertEqual(len(values),6);self.assertTrue(all(v==10 for _,v in values))
-        with self.assertRaises(ValueError):stoxx_returns(body.replace(b'EUR (Price Return)',b'EUR (Net Return)'),c,NOW)
+        # Dropdowns may mention other variants; the exact symbol/ISIN must still match.
+        with self.assertRaises(ValueError):stoxx_returns(body+b'EUR (Price Return)',{**c,'returnVariant':'PRICE'},NOW)
+        with self.assertRaises(ValueError):stoxx_returns(body.replace(b'EUR (Net Return)',b'EUR (Price Return)'),c,NOW)
+        for field, value in [('returnVariant', 'PRICE'), ('returnVariant', 'GROSS'), ('returnCurrency', 'USD'), ('symbol', 'SXXP')]:
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError):stoxx_returns(body,{**c,field:value},NOW)
         with self.assertRaises(ValueError):stoxx_returns(body,c,NOW+dt.timedelta(days=15))
         with self.assertRaises(ValueError):stoxx_returns(body,{**c,'isin':'WRONG'},NOW)
         # Removing a December boundary cannot silently produce a partial history.

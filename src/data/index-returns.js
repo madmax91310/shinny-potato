@@ -378,6 +378,47 @@ export const INDEX_RETURNS = {
     }
   }
 };
+// Nouvelle convention explicite : les anciennes observations Price Return restent archivées.
+INDEX_RETURNS.stoxx600['2026-10-09'] = {
+  "asOf": "2026-10-09",
+  "currency": "EUR",
+  "variant": "NET",
+  "values": [
+    [
+      2025,
+      19.8
+    ],
+    [
+      2024,
+      8.79
+    ],
+    [
+      2023,
+      15.8
+    ],
+    [
+      2022,
+      -10.64
+    ],
+    [
+      2021,
+      24.91
+    ]
+  ],
+  "periodStart": "2020-01-01",
+  "periodEnd": "2025-12-31",
+  "source": {
+    "url": "https://stoxx.com/index/sxxr/",
+    "checkedAt": "2026-10-11",
+    "sha256": "8f4f75329cb5738ce638d8b101991945cfcd231045530b3264598b967d2a36a8",
+    "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
+  },
+  "performance": {
+    "kind": "indice",
+    "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
+    "date": "2026-10-09"
+  }
+};
 for (const [id, history] of Object.entries(INDEX_COMPARISON_RETURN_ADDITIONS)) INDEX_RETURNS[id] = { ...INDEX_RETURNS[id], ...history };
 for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [asOf, series] of Object.entries(history)) {
   series.metadata = normalizeEvidence({ url: series.source.url, sourceUrls: series.sourceUrls, asOf, checkedAt: series.checkedAt ?? (INDEX_FACTS[id]?.[asOf]?.source.url === series.source.url ? INDEX_FACTS[id]?.[asOf]?.metadata.checkedAt : null), periodStart: series.periodStart ?? '2021-01-01', periodEnd: series.periodEnd ?? '2025-12-31', scope: `${series.performance.kind === 'actif' ? 'Actif' : 'Indice'} ${id}`,

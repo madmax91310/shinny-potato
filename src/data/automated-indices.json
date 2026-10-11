@@ -13514,44 +13514,44 @@
     "returns": {
       "asOf": "2026-10-09",
       "currency": "EUR",
-      "variant": "PRICE",
+      "variant": "NET",
       "values": [
         [
           2025,
-          16.66
+          19.8
         ],
         [
           2024,
-          5.98
+          8.79
         ],
         [
           2023,
-          12.73
+          15.8
         ],
         [
           2022,
-          -12.9
+          -10.64
         ],
         [
           2021,
-          22.25
+          24.91
         ],
         [
           2020,
-          -4.04
+          -1.99
         ]
       ],
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://stoxx.com/index/sxxp/",
+        "url": "https://stoxx.com/index/sxxr/",
         "checkedAt": "2026-10-11",
-        "sha256": "1c3aca4cfff2d83c8ecfa9f1ebdfd910a441135e1dd73165b149193fb173cbab",
+        "sha256": "8f4f75329cb5738ce638d8b101991945cfcd231045530b3264598b967d2a36a8",
         "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
       },
       "performance": {
         "kind": "indice",
-        "detail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
+        "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
         "date": "2026-10-09"
       }
     },
@@ -13691,44 +13691,44 @@
       "2026-10-09": {
         "asOf": "2026-10-09",
         "currency": "EUR",
-        "variant": "PRICE",
+        "variant": "NET",
         "values": [
           [
             2025,
-            16.66
+            19.8
           ],
           [
             2024,
-            5.98
+            8.79
           ],
           [
             2023,
-            12.73
+            15.8
           ],
           [
             2022,
-            -12.9
+            -10.64
           ],
           [
             2021,
-            22.25
+            24.91
           ],
           [
             2020,
-            -4.04
+            -1.99
           ]
         ],
         "periodStart": "2020-01-01",
         "periodEnd": "2025-12-31",
         "source": {
-          "url": "https://stoxx.com/index/sxxp/",
-          "checkedAt": "2026-10-09",
-          "sha256": "ae17526f67705f4dfcff4bf98515f7f396e6e8dedacd974c15aa275363119458",
+          "url": "https://stoxx.com/index/sxxr/",
+          "checkedAt": "2026-10-11",
+          "sha256": "8f4f75329cb5738ce638d8b101991945cfcd231045530b3264598b967d2a36a8",
           "label": "Rendements calendaires officiels automatisés · STOXX Europe 600"
         },
         "performance": {
           "kind": "indice",
-          "detail": "STOXX Europe 600, en EUR, hors dividendes (Price Return)",
+          "detail": "STOXX Europe 600, en EUR, dividendes nets réinvestis",
           "date": "2026-10-09"
         }
       }
