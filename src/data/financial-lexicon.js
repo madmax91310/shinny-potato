@@ -272,7 +272,7 @@ export const TERMES = [
   pourQui:`Tu es un investisseur expérimenté qui comprend et accepte un risque de perte amplifié, souvent sur des horizons courts.`,
   mecanismeTitre:`⚙️ Comment ça marche ?`,
   mecanismeContenu:`Avec un levier de 5, par exemple, tu contrôles une position 5 fois plus grande que ton capital investi. Si l'actif monte de 2%, ton gain est amplifié à environ 10% ; s'il baisse de 2%, ta perte l'est tout autant. Le levier peut venir d'un emprunt (crédit lombard), d'un produit dérivé (CFD, turbo, warrant) ou du crédit immobilier.`,
-  attention:`Un levier élevé peut entraîner une perte totale, voire supérieure à ta mise initiale selon le produit — ce n'est pas réservé aux débutants, c'est déconseillé aux débutants.`,
+  attention:`Un levier élevé peut entraîner une perte totale, voire supérieure à ta mise initiale selon le produit. Il est déconseillé aux débutants.`,
   fraisTitre:`💰 Frais`,
   fraisContenu:`Intérêts sur le montant emprunté (souvent facturés au jour le jour sur les CFD), qui rognent la performance si la position est gardée longtemps.`,
   avantage:`Commence par calculer ce que tu perds si le marché baisse fortement : avec du levier, une variation modeste de l’actif peut peser lourd sur ta mise.`
