@@ -9,7 +9,7 @@ const selections = {
  'monde-facteurs': ['world','msci-world-sector-neutral-quality','msci-world-momentum','msci-world-minimum-volatility-usd'],
  'monde-toutes-tailles': ['world','acwi',['acwi-imi','2026-09-30']],
   'usa-constructions': ['sp500-pea', 'sp500-equal-weight', ['russell-2000', HISTORICAL]],
-  europe: [['stoxx600', HISTORICAL], ['eurostoxx50', HISTORICAL], 'mscieurope'],
+  europe: [['stoxx600', '2026-10-09'], ['eurostoxx50', HISTORICAL], 'mscieurope'],
   monde: [['world', HISTORICAL], ['acwi', HISTORICAL], ['ftse-all-world', HISTORICAL]],
   usa: ['sp500-pea', 'nasdaq-pea', 'msci-usa', 'russell-1000'],
   'emergents-pea': ['em-esg', 'msci-em-asia-screened', 'msci-em-latin-america-selection', 'msci-india', 'msci-em-emea-esg'],

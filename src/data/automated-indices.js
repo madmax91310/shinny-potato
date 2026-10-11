@@ -17,7 +17,7 @@ export function refreshIndexSheet(previous) {
     ...(changed && !previous.methodologyPanels ? {
       insight: `Cette photographie contient ${facts.constituents.toLocaleString('fr-FR')} titres. Le poids des pays et secteurs évolue : vérifie la date de composition.`,
       takeaway: `Les principales lignes publiées représentent ${facts.holdings.reduce((n, p) => n + p[1], 0).toFixed(2).replace('.', ',')} % de l’indice. Une diversification en nombre ne garantit pas des poids égaux.` } : {}),
-    ...(returns ? { returns: returns.values, performance: { ...returns.performance, date: previous.performance.date } } : {}),
+    ...(returns ? { returns: returns.values, performance: { ...returns.performance, date: previous.id === 'stoxx600' ? returns.performance.date : previous.performance.date } } : {}),
     source: [facts.source, ...(returns ? [returns.source] : previous.source.filter(s => s.url !== previous.indexFacts.source.url)), ...(facts.methodologySources ?? [])],
   };
 }

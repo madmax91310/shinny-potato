@@ -164,7 +164,7 @@ const ARCHIVE_SHEETS = [
     ...getIndexComposition('stoxx600', '2026-08-31'),
     id: 'stoxx600', title: 'STOXX Europe 600', index: 'STOXX Europe 600', snapshot: '31 août 2026', source: [getIndexFacts('stoxx600', '2026-08-31').source],
     intro: "🇪🇺 Tu investis dans un ETF STOXX Europe 600. Mais quelle place occupent le Royaume-Uni, la France ou la Suisse dans ton placement ?\n\nVoici les pays, les secteurs et les entreprises de l’indice, avec ses performances 👇",
-    returns: getIndexReturns('stoxx600', '2026-08-31'), performance: { kind: 'indice', detail: 'STOXX Europe 600, en EUR, hors dividendes (Price Return)', date: '31 août 2026', trailingOneYear: 18.4, annualizedFiveYear: 6.8 },
+    returns: getIndexReturns('stoxx600', '2026-10-09'), performance: { kind: 'indice', detail: 'STOXX Europe 600, en EUR, dividendes nets réinvestis', date: '9 octobre 2026' },
     insight: 'Le Royaume-Uni arrive devant la France et l’Allemagne. « Europe » ne signifie pas uniquement zone euro.',
     takeaway: 'Les banques et l’industrie pèsent chacun environ 15 % : la technologie n’est pas le moteur dominant ici.',
   },

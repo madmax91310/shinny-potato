@@ -68,6 +68,7 @@ function performanceNote(sheet) {
     .replace('rendement brut en dollars', 'USD · rendement brut')
     .replace('rendement total en dollars', 'USD · rendement total')
     .replace('rendement net en euros', 'EUR · rendement net')
+    .replace('en EUR, dividendes nets réinvestis', 'EUR · dividendes nets réinvestis')
     .replace('en EUR, hors dividendes (Price Return)', 'EUR · hors dividendes')
     .replace(' ; secteurs selon la classification ICB de FTSE', ' · secteurs ICB')
   const fundNotes = {
