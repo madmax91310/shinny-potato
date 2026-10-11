@@ -212,13 +212,15 @@ def remake_price_history(annual,url,current_price,today):
     if year>=today.year:raise ValueError('Incomplete Remake annual report')
     block=required(r'Évolution du capital\s+(.*?)Évolution des conditions de cession ou de retrait',annual)[1]
     observations=[]
-    for label,row in re.findall(r'^[ \t]*(N(?:-[1-4])?)[ \t]+([^\n]+)$',block,re.M):
+    # Les anciens rapports utilisent N/N-1 ; celui de 2025 affiche les années.
+    for label,row in re.findall(r'^[ \t]*(N(?:-[1-4])?|20\d{2})[ \t]+([^\n]+)$',block,re.M):
         if not re.search(r'\d',row):continue
-        period=year-(int(label[2:]) if '-' in label else 0)
+        period=int(label) if label.isdigit() else year-(int(label[2:]) if '-' in label else 0)
+        if period>year:raise ValueError('Remake price year exceeds annual report')
         value=number(required(r'([\d,.]+)\s*$',row)[1])
         observations.append({'asOf':f'{period}-12-31','value':value})
     observations=sorted(observations,key=lambda r:r['asOf'])[-3:]
-    if len(observations)!=3 or len({r['asOf'] for r in observations})!=3 or observations[-1]['asOf']!=f'{year}-12-31':raise ValueError('Missing Remake year-end prices')
+    if [r['asOf'] for r in observations]!=[f'{y}-12-31' for y in range(year-2,year+1)]:raise ValueError('Missing Remake year-end prices')
     if current_price['asOf']>observations[-1]['asOf']:observations.append({'asOf':current_price['asOf'],'value':current_price['value']})
     return {'years':observations,'sourceUrls':[url,current_price['sourceUrl']],
             'dateNote':f'Prix au 31 décembre du rapport actuellement lié sur la page officielle (exercice {year}), puis prix du bulletin courant. Aucune année intermédiaire non publiée n’est ajoutée.'}

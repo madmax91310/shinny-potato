@@ -6,12 +6,22 @@ import unittest
 import io
 import urllib.error
 from unittest.mock import patch
-from collect_scpi import fetch, parse_remake, parse_iroko_conditions, split_chart, annual_iroko, refresh, validate
+from collect_scpi import fetch, parse_remake, parse_iroko_conditions, split_chart, annual_iroko, refresh, validate, remake_price_history
 
 FIXTURES = pathlib.Path(__file__).parent / 'fixtures/scpi'
 TODAY = dt.date(2026, 10, 8)
 
 class ScpiTests(unittest.TestCase):
+    def test_remake_explicit_years_from_official_2025_capital_table(self):
+        # Tableau du rapport officiel lié sur remake.fr/documentation/ le 11/10/2026.
+        url='https://www.remake.fr/wp-content/uploads/2026/08/Rapport-Annuel-Remake-Live-2025-1.pdf'
+        annual=(FIXTURES/'remake-annual-2025-capital.txt').read_text()
+        current={'asOf':'2026-06-30','value':204,'sourceUrl':'https://www.remake.fr/remake-live'}
+        result=remake_price_history(annual,url,current,TODAY)
+        self.assertEqual(result['years'],[{'asOf':f'{y}-12-31','value':204} for y in [2023,2024,2025]]+[{'asOf':'2026-06-30','value':204}])
+        for bad in [annual.replace('2024      475', '2022      475'),annual.replace('2025     622', '2026     622')]:
+            with self.assertRaises(ValueError):remake_price_history(bad,url,current,TODAY)
+
     def test_temporary_network_failure_retries_then_recovers(self):
         for error in [TimeoutError('timeout'), urllib.error.URLError('reset'), urllib.error.HTTPError('https://official.test',503,'Unavailable',{},None)]:
             with patch('collect_scpi.urllib.request.urlopen',side_effect=[error,io.BytesIO(b'%PDF-verified')]) as request, patch('collect_scpi.time.sleep'):
