@@ -4,6 +4,22 @@ from unittest.mock import patch
 import collect_practical_sheets as c
 
 class CollectionTests(unittest.TestCase):
+    def test_pdf_policy_ignores_daily_scenarios_but_requires_exact_identity(self):
+        config={'kind':'pdf-policy','label':'iBonds','title':'DIC iBonds','markers':['IE000SIZJ2B2','EUR Dist'],'policyPatterns':[r'Objectifs .*?Dépositaire',r'Il n’y a pas de rendement minimum garanti\.']}
+        text='IE000SIZJ2B2 EUR Dist document est daté du 09 octobre 2026 Objectifs '+('Obligations euros '*25)+'Dépositaire Il n’y a pas de rendement minimum garanti. Scénario 100 €'
+        with patch('collect_scpi.pdf_text',return_value=text):a=c.parse(b'%PDF'+b' '*600,config)
+        with patch('collect_scpi.pdf_text',return_value=text.replace('100 €','101 €')):b=c.parse(b'%PDF'+b' '*600,config)
+        self.assertEqual(a['contentHash'],b['contentHash'])
+        self.assertEqual(a['publishedAt'],'2026-10-09')
+        with patch('collect_scpi.pdf_text',return_value=text.replace('Obligations euros','Obligations dollars')):
+            changed=c.parse(b'%PDF'+b' '*600,config)
+        self.assertNotEqual(a['contentHash'],changed['contentHash'])
+        with patch('collect_scpi.pdf_text',return_value=text.replace('IE000SIZJ2B2','IE000WRONG00')):
+            with self.assertRaises(ValueError):c.parse(b'%PDF'+b' '*600,config)
+        for invalid in [text.replace('Dépositaire','Section manquante'),text.replace('09 octobre 2026','09 octobre 2099')]:
+            with patch('collect_scpi.pdf_text',return_value=invalid):
+                with self.assertRaises(ValueError):c.parse(b'%PDF'+b' '*600,config)
+        with self.assertRaises(ValueError):c.parse(b'<html>'+b' '*600,config)
     def config(self):
         return {'label':'Source test','url':'https://example.org','markers':['ETF','indice']}
     def document(self,extra=''):

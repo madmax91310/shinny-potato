@@ -9,9 +9,10 @@ import tempfile
 import urllib.error
 import urllib.request
 
-REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation', 'update-scpi.yml':'scpi-observations', 'update-insurance.yml':'insurance-observations', 'update-presentation-actors.yml':'actor-observations', 'update-regulatory-data.yml':'regulatory-observations'}
+REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation', 'update-scpi.yml':'scpi-observations', 'update-insurance.yml':'insurance-observations', 'update-presentation-actors.yml':'actor-observations', 'update-regulatory-data.yml':'regulatory-observations', 'update-practical-sheets.yml':'practical-observations', 'update-inflation.yml':'insee-inflation-observation'}
 
 WORKFLOWS = {
+    'update-practical-sheets.yml': 'Sources des fiches pratiques',
     'update-editorial-radar.yml': 'Radar éditorial quotidien',
     'update-publication-observations.yml': 'Pouvoir d’achat et niveaux des anniversaires',
     'update-insurance.yml': 'Présentations d’assurance-vie',
@@ -38,6 +39,19 @@ DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alim
 
 def normalize_report(report):
     """Adapt issuer/index reports without turning preserved values into recovered sources."""
+    if report.get('seriesId') == '011814631' and report.get('rates') and report.get('checkedAt'):
+        return {'successes':[{'id':'inflation:011814631'}], 'errors':[]}
+    if isinstance(report.get('sources'), dict) and 'failed' in report and 'changed' in report:
+        successes, errors = [], []
+        for key, source in report['sources'].items():
+            id_ = 'practical:' + key
+            if source.get('status') == 'error' or key in report['failed']:
+                errors.append({'id':id_, 'name':source.get('label',key), 'error':source.get('error','Collecte échouée')})
+            elif source.get('reviewRequired') or key in report['changed']:
+                errors.append({'id':id_, 'name':source.get('label',key), 'error':'Document officiel modifié ; revue éditoriale requise'})
+            elif source.get('status') == 'ok':
+                successes.append({'id':id_})
+        return {'successes':successes, 'errors':errors}
     if isinstance(report.get('observations'), dict) and isinstance(report.get('failures'), dict):
         # Regulatory and tariff reports include retained records. A failed source
         # must never clear its alert merely because its previous value is present.
@@ -78,6 +92,17 @@ def normalize_report(report):
         errors += [{'id': 'etf-' + report.get('_collector', 'issuer') + '-' + e['isin'], 'name': 'ETF ' + e['isin'], 'error': e['reason']} for e in report.get('failures', [])]
         return {'successes': successes, 'errors': errors}
     return report
+
+
+def include_configured_workflows(state):
+    """An automation with no observed run is visible, never reported as successful."""
+    result = json.loads(json.dumps(state))
+    result.setdefault('schemaVersion', 1)
+    entries = result.setdefault('workflows', {})
+    for workflow, name in WORKFLOWS.items():
+        entries.setdefault(workflow, {'name':name, 'status':'unknown', 'collectionStatus':'unknown',
+            'publicationStatus':'not-run', 'dataFailures':{}, 'failures':[]})
+    return result
 
 
 def read_report(path, workflow):
@@ -249,6 +274,7 @@ def main():
                 raise
             head = api('/git/ref/heads/master')['object']['sha']
             api('/git/refs', 'POST', {'ref': f'refs/heads/{BRANCH}', 'sha': head})
+    state = include_configured_workflows(state)
     encoded = base64.b64encode((json.dumps(state,ensure_ascii=False,indent=2)+'\n').encode()).decode()
     payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}
     if sha:
