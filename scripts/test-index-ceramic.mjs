@@ -16,6 +16,7 @@ try {
     const pairs = FAMILIES.flatMap(getIndexComparisonPairs)
     const { renderIndexImage, getIndexImageFacts } = await import('/shinny-potato/src/pages/index-comparator/imageExport.js')
     const { buildTweetText } = await import('/shinny-potato/src/pages/index-comparator/lib.js')
+    const { getIndexComparisonPerformance } = await import('/shinny-potato/src/data/index-comparison-performance.js')
     const original = CanvasRenderingContext2D.prototype.fillText
     let boxes = [], labels = [], current
     CanvasRenderingContext2D.prototype.fillText = function(value, x, y, ...rest) {
@@ -29,6 +30,11 @@ try {
         const before = JSON.stringify(family), tweet = buildTweetText(family, {})
         boxes = []; labels = []; current = family.pairId
         const image = await renderIndexImage(family), all = labels.join(' ')
+        if (!['crypto','or-argent'].includes(family.id) && (!/dividendes.*réinvestis/.test(all) || /hors dividendes|Price Return/.test(all))) throw Error(`Wrong return convention ${current}`)
+        for (const row of getIndexComparisonPerformance(family)) for (const year of row.years) {
+          const value=row[`y${year}`], rendered=`${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})} %`
+          if (!all.includes(String(year)) || !all.includes(rendered)) throw Error(`Wrong index return ${current}/${year}`)
+        }
         if (before !== JSON.stringify(family) || tweet !== buildTweetText(family, {})) throw Error('Data or tweet changed')
         if (labels.filter(v => v === 'Épargnant Libre').length !== 1 || /ISIN|…/.test(all)) throw Error('Signature or truncated content')
         for (const index of family.indices) {

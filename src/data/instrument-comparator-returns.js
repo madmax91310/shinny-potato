@@ -101,22 +101,3 @@ export function getInstrumentComparatorReturns(isin) {
   if (values.length !== 3) throw new Error(`Trois rendements attendus pour ${isin}`);
   return { y2023: values[0], y2024: values[1], y2025: values[2] };
 }
-
-// Compléments 2021–2022 qui figurent uniquement dans les fiches de composition.
-const FACTSHEET_EARLIER_RETURNS_BY_ISIN = Object.freeze({
-  FR0013411980: [],
-  LU2196470426: [[2022, -7.7], [2021, 6.3]],
-  FR0013412020: [[2022, -15.01], [2021, 4.45]],
-});
-
-export function getInstrumentFactsheetReturns(isin) {
-  const common = ['FR0011871128', 'FR0011871110'].includes(isin);
-  if (common) {
-    const values = getInstrumentReturnValues(isin);
-    return [2025, 2024, 2023, 2022, 2021].map(year => [year, values[year - 2020]]);
-  }
-  const earlier = FACTSHEET_EARLIER_RETURNS_BY_ISIN[isin];
-  if (!earlier) throw new Error(`Fiche de composition absente pour ${isin}`);
-  const values = getInstrumentComparatorReturns(isin);
-  return [[2025, values.y2025], [2024, values.y2024], [2023, values.y2023], ...earlier];
-}

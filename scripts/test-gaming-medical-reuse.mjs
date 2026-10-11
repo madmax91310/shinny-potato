@@ -14,6 +14,7 @@ import { CATALOG, euroReturn, EUR_USD } from '../src/data/duel-assets.js'
 import { INDEX_DECISION_CASES } from '../src/data/index-decision-cases.js'
 import { getCurrentIndexFacts as getIndexFacts } from '../src/data/index-facts.js'
 import { SHEETS } from '../src/data/index-factsheets.js'
+import { getCurrentIndexReturnSeries } from '../src/data/index-returns.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 const capture = JSON.parse(readFileSync(new URL('./source-snapshots/gaming-medical-2026-10-05.json', import.meta.url)))
 for (const proof of capture.funds) {
@@ -42,7 +43,7 @@ for (const id of ['msci-world-sector-neutral-quality','msci-world-enhanced-value
  const sheet = SHEETS.find(x => x.id === id)
  assert.deepEqual(sheet.countries,getIndexFacts(id,'2026-09-30').countries)
  assert.equal(sheet.performance.kind,'indice')
- assert.equal(sheet.performance.date,'Années calendaires 2023–2025')
+ assert.equal(sheet.performance.date,getCurrentIndexReturnSeries(id,'2025-12-31').performance.date, 'La date des rendements suit leur publication automatique')
  const text=buildFactsheetTweet(sheet)
  assert.match(text,/performances de l’indice/)
  assert.doesNotMatch(text,/performances de l’ETF|undefined|NaN/)
