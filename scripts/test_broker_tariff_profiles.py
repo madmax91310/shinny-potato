@@ -42,9 +42,7 @@ class BrokerProfilesTests(unittest.TestCase):
         # Synthetic future clauses test the parser; they are not current facts.
         for (broker,field),clause in clauses.items():
             with self.subTest(broker=broker,field=field):
-                raw={key:(FIXTURES/(key+'.txt')).read_text() if (FIXTURES/(key+'.txt')).exists()
-                     else 'Document synthétique pour tester une future clause.'
-                     for key in DOCUMENTS[broker][field]}
+                raw={key:'Document synthétique : PEA.' for key in DOCUMENTS[broker][field]}
                 document=DOCUMENTS[broker][field][-1]
                 raw[document]+='\n\f\n. '+clause
                 o=parse(broker,field,raw,TODAY)
@@ -85,21 +83,21 @@ class BrokerProfilesTests(unittest.TestCase):
 
     def test_disappearing_new_proof_retains_date_and_recovery_resumes(self):
         baseline={'brokers':{broker:{'profile':{}} for broker in DOCUMENTS}}
-        changed=raws('ibkr','pme')
-        changed['ibkrPea']+=' . IBKR propose un PEA-PME.'
-        previous=parse('ibkr','pme',changed,'2026-10-01')
-        baseline['brokers']['ibkr']['profile']['pme']=copy.deepcopy(previous)
+        changed=raws('tr','pme')
+        changed['trContract']+=' . Trade Republic propose un PEA-PME.'
+        previous=parse('tr','pme',changed,'2026-10-01')
+        baseline['brokers']['tr']['profile']['pme']=copy.deepcopy(previous)
         def fetch(url):
             key=next(key for key,info in SOURCES.items() if info['url']==url)
             return (FIXTURES/(key+'.txt')).read_text()
         failures,count=collect_profiles(baseline,TODAY,fetch)
-        self.assertIn('ibkr:profile:pme',failures)
-        self.assertEqual(baseline['brokers']['ibkr']['profile']['pme'],previous)
+        self.assertIn('tr:profile:pme',failures)
+        self.assertEqual(baseline['brokers']['tr']['profile']['pme'],previous)
         def recovered(url):
-            return changed['ibkrPea'] if url==SOURCES['ibkrPea']['url'] else fetch(url)
+            return changed['trContract'] if url==SOURCES['trContract']['url'] else fetch(url)
         failures,count=collect_profiles(baseline,TODAY,recovered)
-        self.assertNotIn('ibkr:profile:pme',failures)
-        self.assertEqual(baseline['brokers']['ibkr']['profile']['pme']['checkedAt'],TODAY)
+        self.assertNotIn('tr:profile:pme',failures)
+        self.assertEqual(baseline['brokers']['tr']['profile']['pme']['checkedAt'],TODAY)
 
     def test_all_official_captures_and_provenance(self):
         count=0
@@ -119,11 +117,31 @@ class BrokerProfilesTests(unittest.TestCase):
         self.assertGreaterEqual(count,48)
 
     def test_unconfirmed_pea_services_never_become_negative(self):
-        for broker,field in [('tr','pme'),('tr','garde'),('ibkr','pme'),('ibkr','jeune'),('ibkr','dca'),('fortuneo','dca'),('bourso','cash'),('fortuneo','cash'),('caidf','cash'),('caidf','change')]:
+        for broker,field in [('tr','pme'),('tr','garde'),('fortuneo','dca'),('bourso','cash'),('fortuneo','cash'),('caidf','cash'),('caidf','change')]:
             with self.subTest(broker=broker,field=field):
                 o=parse(broker,field,raws(broker,field),TODAY)
                 self.assertIsNone(o['available'])
                 self.assertNotEqual(o['status'],'confirmé')
+
+    def test_ibkr_published_faq_resolves_scopes_with_joint_evidence(self):
+        for field in ['pme','jeune','dca']:
+            observed=parse('ibkr',field,raws('ibkr',field),TODAY)
+            self.assertFalse(observed['available'])
+            self.assertEqual(observed['status'],'confirmé')
+        dca=parse('ibkr','dca',raws('ibkr','dca'),TODAY)
+        self.assertEqual({ref['document'] for ref in dca['refs']},
+                         {'ibkrFractionalFaq','ibkrRecurringEligibilityFaq'})
+        self.assertIn('Déduction',dca['method'])
+        altered=raws('ibkr','dca')
+        altered['ibkrRecurringEligibilityFaq']='Recurring Investment is available on PEA.'
+        with self.assertRaises(ValueError):parse('ibkr','dca',altered,TODAY)
+        cash=parse('ibkr','cash',raws('ibkr','cash'),TODAY)
+        self.assertIn('Espèces du PEA non rémunérées.',cash['copy']['full'])
+        self.assertIn('Hors PEA',cash['copy']['full'])
+        self.assertIn('peaCashRules',{ref['document'] for ref in cash['refs']})
+        fx=parse('ibkr','change',raws('ibkr','change'),TODAY)
+        self.assertTrue(fx['available'])
+        self.assertIn('conversion automatique',fx['copy']['full'])
 
     def test_changed_clause_is_not_silently_recertified(self):
         for broker,field,old,new in [('saxo','jeune','ne propose pas','propose désormais'),('xtb','jeune','ne permet pas','permet'),('fortuneo','jeune','n’est pas commercialisé','est commercialisé'),('saxo','dca',"n'est pas utilisable",'est utilisable')]:

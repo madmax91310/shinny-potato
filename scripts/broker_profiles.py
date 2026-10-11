@@ -14,12 +14,12 @@ from broker_profile_qualification import qualify
 SOURCES = json.loads(pathlib.Path(__file__).with_name('broker_profile_sources.json').read_text())
 FIELDS = ('dca', 'pea', 'pme', 'jeune', 'ifu', 'cash', 'boursomarkets')
 DOCUMENTS = {
- 'tr': {'dca':['trPeaHelp'], 'pea':['trContract'], 'pme':['trContract'], 'jeune':['trContract'], 'ifu':['trContract'], 'cash':['trContract'], 'change':['trDividendsFx'], 'garde':['trContract','trFees']},
+ 'tr': {'dca':['trPeaHelp'], 'pea':['trContract'], 'pme':['trContract'], 'jeune':['trContract'], 'ifu':['trContract'], 'cash':['trContract'], 'change':['trDividendsFx','trFxRules'], 'garde':['trContract','trFees']},
  'bourso': {'dca':['boursoTariff'], 'pea':['boursoTariff'], 'pme':['boursoTariff'], 'jeune':['boursoTariff'], 'ifu':['boursoIfu'], 'cash':['boursoContract'], 'boursomarkets':['boursoMarkets'], 'garde':['boursoTariff']},
  'fortuneo': {'dca':['fortuneoSmartOrders','fortuneoContract'], 'pea':['fortuneoTariff'], 'pme':['fortuneoTariff'], 'jeune':['fortuneoContract'], 'ifu':['fortuneoIfu'], 'cash':['fortuneoContract']},
- 'ibkr': {'dca':['ibkrPea','ibkrDca'], 'pea':['ibkrPea'], 'pme':['ibkrPea'], 'jeune':['ibkrPea'], 'ifu':['ibkrPea'], 'cash':['ibkrInterest'], 'entrant':['ibkrTransfer','ibkrPea']},
+ 'ibkr': {'dca':['ibkrPea','ibkrDca','ibkrFractionalFaq','ibkrRecurringEligibilityFaq'], 'pea':['ibkrPea'], 'pme':['ibkrPea','ibkrPmeFaq'], 'jeune':['ibkrPea','ibkrYoungFaq'], 'ifu':['ibkrPea'], 'cash':['ibkrInterest','peaCashRules'], 'change':['ibkrFxFaq'], 'entrant':['ibkrTransfer','ibkrPea']},
  'xtb': {'dca':['xtbComparison'], 'pea':['xtbPea'], 'pme':['xtbComparison'], 'jeune':['xtbPea'], 'ifu':['xtbIfu'], 'cash':['xtbInterest','xtbPea']},
- 'caidf': {'dca':['caPeb','caTariff'], 'pea':['caTariff'], 'pme':['caTariff'], 'jeune':['caIdfPea'], 'ifu':['caTariff','caInvest'], 'cash':['caIdfPeaPme','caIdfContract'], 'change':['caTariff']},
+ 'caidf': {'dca':['caPeb','caTariff'], 'pea':['caTariff'], 'pme':['caTariff'], 'jeune':['caIdfPea'], 'ifu':['caTariff','caInvest'], 'cash':['caIdfPeaPme','caIdfContract','caCtoContract'], 'change':['caTariff','caCtoContract']},
  'bd': {'dca':['bdPlans'], 'pea':['bdTariff'], 'pme':['bdTariff'], 'jeune':['bdTariff'], 'ifu':['bdContract'], 'cash':['bdPea','bdCto'], 'entrant':['bdTariffPage']},
  'saxo': {'dca':['saxoAutoinvest','saxoPepsHelp'], 'pea':['saxoTariff'], 'pme':['saxoTariff'], 'jeune':['saxoPeaHelp'], 'ifu':['saxoTariff'], 'cash':['saxoInterest']},
 }
@@ -67,6 +67,8 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
             return unknown('PEA-PME : disponibilité non confirmée par le contrat public.')
         if broker=='ibkr':
             if field=='pea': return proved(r'ouvrir un PEA.{0,80}?résident fiscal français',True,'PEA proposé aux résidents fiscaux français ✅')
+            if field=='jeune':
+                return proved(r'Any French individual tax resident over the age of 18 can open.{0,200}?and is fiscally independent',False,'PEA Jeune ❌ : la FAQ d’ouverture exige l’indépendance fiscale.',document='ibkrYoungFaq')
             return unknown(('PEA-PME' if field=='pme' else 'PEA Jeune')+' : disponibilité non confirmée par la page officielle PEA.')
         if broker=='xtb':
             if field=='pea': return proved(r'PEA.{0,130}?XTB|XTB.{0,130}?PEA',True,'PEA proposé ✅')
@@ -104,6 +106,9 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
         if broker=='bd':
             find(r'PEA',text);find(r'mensuelle ou trimestrielle',text)
             return proved(r'les frais de courtage sont gratuits pour les ETF.{0,130}?tarif habituel du client',True,'Plans programmés sur PEA et CTO ; ETF de la sélection sans courtage, actions au tarif habituel.')
+        if broker=='ibkr':
+            find(r'Recurring Investment is available to any client that has fractional share trading enabled',texts['ibkrRecurringEligibilityFaq'])
+            return proved(r'Fractional share trading is not allowed in a PEA Account',False,'PEA ❌ : les investissements récurrents nécessitent les fractions de titres, exclues du PEA. Hors PEA : service récurrent disponible sous conditions.',document='ibkrFractionalFaq')
         # Generic recurring/conditional orders never qualify a PEA-specific service.
         return unknown('Achats automatiques sur PEA : disponibilité non confirmée par les sources officielles du service.',r'PEA|Fortuneo')
     if field=='cash':
@@ -115,7 +120,8 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
             threshold=int(m[1].replace(',','').replace(' ',''))
             find(r'intérêts',text)
             money=f'{threshold:,}'.replace(',',' ')
-            return True,'confirmé',f'Rémunération des espèces éligibles selon la devise et la valeur du compte ; premiers {money} € EUR non rémunérés. Portée PEA non confirmée.',source,m[0]
+            find(r"Le compte en espèces n.est pas rémunéré et ne peut pas présenter un solde débiteur",texts['peaCashRules'])
+            return True,'confirmé',f'Espèces du PEA non rémunérées. Hors PEA : espèces éligibles rémunérées selon la devise et la valeur du compte ; premiers {money} € EUR non rémunérés.',source,m[0]
         if broker=='xtb':
             m=find(r'Au-delà de ([\d ]+) EUR.{0,150}?([\d]+) jours',text)
             threshold=amount(m[1]);days=int(m[2]);find(r'taux d.intérêt sont variables',text)
@@ -141,8 +147,12 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
         available,status,copy,document,clause=unknown('Frais de garde PEA à confirmer dans le barème ; gratuité du CTO distincte.')
         return available,'partiel',copy,document,clause
     if field=='change':
+        if broker=='ibkr':
+            return proved(r'IB-IE offers access to PEA eligible products on markets outside of the eurozone.{0,220}?IB-IE will proceed to an automatic currency conversion',True,'PEA : conversion automatique en cas d’achat d’un titre dans une autre devise ; barème propre au PEA non confirmé.','partiel',document='ibkrFxFaq')
         if broker=='caidf': return unknown('Change boursier : tarif non confirmé dans le barème régional ; commission bancaire générale exclue.')
-        return proved(r'Si des dividendes.{0,220}?nous convertissons directement pour vous cette devise en euro',None,'Conversion des dividendes selon les conditions Trade Republic ; taux ou commission PEA non chiffrés dans cette page.','partiel')
+        find(r'Les rendements en devises étrangères.{0,160}?sont convertis en euro',texts['trFxRules'])
+        find(r'majoration ou une minoration correspondant aux marges d.achat et de vente',texts['trFxRules'])
+        return proved(r'Si des dividendes.{0,220}?nous convertissons directement pour vous cette devise en euro',None,'Revenus en devises convertis en euros au cours Trade Republic, avec marge d’achat/vente selon la devise. Commission propre au PEA non chiffrée.','partiel')
     if field=='entrant':
         if broker == 'ibkr':
             find(r'You can transfer PEA accounts held with other brokers.{0,80}?into your account', text)
@@ -159,6 +169,14 @@ def parse(broker,field,raws,today,sources=None):
     available,status,summary,decisive,quote=statement(broker,field,texts,raws,today)
     supporting = {}
     programmed = None
+    if broker == 'ibkr' and field == 'dca' and decisive == 'ibkrFractionalFaq':
+        supporting['ibkrRecurringEligibilityFaq'] = find(r'Recurring Investment is available to any client that has fractional share trading enabled', texts['ibkrRecurringEligibilityFaq'])[0]
+    if broker == 'ibkr' and field == 'cash':
+        supporting['peaCashRules'] = find(r"Le compte en espèces n.est pas rémunéré et ne peut pas présenter un solde débiteur", texts['peaCashRules'])[0]
+    conversion = {'automaticOnPea':True} if broker=='ibkr' and field=='change' else None
+    if broker == 'tr' and field == 'change' and decisive == 'trDividendsFx':
+        supporting['trFxRules'] = find(r'Les cours d.achat ou de vente des devises nécessaires à la conversion monétaire.{0,320}?marges d.achat et de vente figurant dans la liste ci-dessous',texts['trFxRules'])[0]
+        conversion = {'incomeToEuro':True, 'marginByCurrency':True}
     if broker == 'saxo' and field == 'dca':
         help_text = texts['saxoPepsHelp']
         frequency = find(r'automatique et mensuel', help_text)[0]
@@ -184,9 +202,9 @@ def parse(broker,field,raws,today,sources=None):
         kind='pdf' if '\f' in raw or re.search(r'\.pdf(?:$|\?)',info['url']) else 'page'
         if kind=='pdf' and not page: raise ValueError('Page de la clause officielle non localisée')
         refs.append({'document':key,'sourceUrl':getattr(raw,'source_url',info['url']),'discoveryUrl':getattr(raw,'discovery_url',None),'page':page,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
-    return {**({'programmed':programmed} if programmed else {}),'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
+    return {**({'programmed':programmed} if programmed else {}),**({'conversion':conversion} if conversion else {}),'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
       'sourceUrl':getattr(raws[decisive],'source_url',sources[decisive]['url']),'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
-      'method':'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue',
+      'method':('Déduction déterministe de deux clauses officielles : service récurrent soumis aux fractions et fractions exclues du PEA' if broker == 'ibkr' and field == 'dca' and decisive == 'ibkrFractionalFaq' else 'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue'),
       'sha256':hashlib.sha256('\n'.join(raws.values()).encode()).hexdigest(),'values':{},'decisiveDocument':decisive,'statement':quote,
       'checkedSources':[{'sourceUrl':getattr(raw,'source_url',sources[key]['url']),'sha256':hashlib.sha256(raw.encode()).hexdigest()} for key,raw in raws.items()]}
 

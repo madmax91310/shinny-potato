@@ -28,7 +28,7 @@ for (const [id, logo] of Object.entries(BROKER_LOGOS)) {
 }
 
 const officialHosts = new Set([
-  'assets.traderepublic.com', 'www.boursorama.com', 'www.boursobank.com', 'www.fortuneo.fr',
+  'bofip.impots.gouv.fr', 'assets.traderepublic.com', 'www.boursorama.com', 'www.boursobank.com', 'www.fortuneo.fr',
   'www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com', 'ca-paris.credit-agricole.fr',
   'www.boursedirect.fr', 'www.boursedirect.com', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo', 'www.help.saxo',
   'www.interactivebrokers.ie', 'www.ibkrguides.com', 'www.credit-agricole.fr', 'www.ca-sicavetfcp.fr', 'traderepublic.com', 'support.traderepublic.com',
@@ -88,7 +88,7 @@ for (const broker of BROKERS) {
   if (cashProof.status === 'non établi') assert.equal(broker.cash.resume, 'À vérifier', `${broker.id}: cash présenté comme prouvé`)
   else if (cashProof.status === 'corroboré') assert.equal(broker.cash.resume, 'Non*', `${broker.id}: source secondaire non signalée`)
   else if (cashProof.automatedEvidence?.available == null) assert.equal(broker.cash.resume, 'À vérifier', `${broker.id}: cash de portée inconnue`);
-  else assert.equal(broker.cash.resume, 'Oui', `${broker.id}: offre de rémunération non annoncée`)
+  else assert.equal(broker.cash.resume, 'Non sur PEA · hors PEA sous conditions', `${broker.id}: offre de rémunération non annoncée`)
   for (const [field, item] of Object.entries(evidence)) {
     assert(item.summary && ['confirmé', 'corroboré', 'partiel', 'non établi'].includes(item.status), `${broker.id}.${field}: état invalide`)
     if (item.status !== 'non établi') assert(item.refs?.length, `${broker.id}.${field}: référence absente`)

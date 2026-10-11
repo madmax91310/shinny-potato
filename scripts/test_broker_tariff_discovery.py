@@ -104,6 +104,7 @@ class DiscoveryTests(unittest.TestCase):
             if url==target:
                 if mode[0]=='offline':raise ValueError('503 new official source')
                 return '<html><body><p>IBKR commercialise un PEA-PME.</p></body></html>'
+            if url==SOURCES['ibkrPmeFaq']['url']:return '<html><body>PEA</body></html>'
             key=next((key for key,info in SOURCES.items() if info['url']==url),None)
             p=FIXTURES/((key or '')+'.txt')
             return p.read_text() if p.exists() else '<html><body>PEA</body></html>'

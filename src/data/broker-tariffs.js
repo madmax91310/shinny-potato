@@ -16,7 +16,7 @@ export function applyBrokerProfile(broker, observations = snapshot.brokers) {
   for (const key of ['pea','pme','jeune']) if (profile[key]) result.pea[key]=profile[key].available;
   if (profile.cash) {
     const o=profile.cash;
-    result.cash={resume:o.available === null ? 'À vérifier' : o.available ? 'Oui' : 'Non',detail:o.copy.full,post:o.copy.full};
+    result.cash={resume:o.available === null ? 'À vérifier' : o.available ? 'Non sur PEA · hors PEA sous conditions' : 'Non',detail:o.copy.full,post:o.copy.full};
   }
   return result;
 }

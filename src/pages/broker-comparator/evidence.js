@@ -287,9 +287,13 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
       return {document,...(ref.kind==='pdf' ? {page:ref.page} : {})};
     });
     const prior=BROKER_EVIDENCE[id][field];
-    BROKER_EVIDENCE[id][field]={status:o.status,summary:o.copy.full,refs,automatedEvidence:o,
+    const generalFx = id==='ibkr' && field==='change' ? observation.fields?.change : null;
+    const summary=o.copy.full+(generalFx ? ' Hors PEA / compte général : '+generalFx.copy.full : '');
+    if (generalFx) refs.push({document:fieldDocument(id,'change')});
+    BROKER_EVIDENCE[id][field]={status:o.status,summary,refs,automatedEvidence:o,
       ...(field==='change' ? {post:o.copy.full} : {}),
-      ...(prior.review && o.status!=='confirmé' ? {review:{...prior.review,checked:o.checkedAt.split('-').reverse().join('/'),outcome:'unresolved'}} : {})};
+      ...(prior.review ? {review:{...prior.review,checked:o.checkedAt.split('-').reverse().join('/'),
+        ...(o.status==='confirmé' ? {outcome:'resolved',explicitStatement:o.statement,scope:o.scope,decisiveRefs:refs,documents:refs.map(ref=>ref.document),followUp:o.method} : {outcome:'unresolved'})}} : {})};
   }
   const incoming=observation.profile?.entrant;
   if (incoming) {

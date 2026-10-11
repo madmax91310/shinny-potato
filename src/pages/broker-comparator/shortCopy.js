@@ -57,6 +57,7 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
     if (id === 'tr' && p.dca.available) copy.dca = '✅ PEA — plans programmés sans frais d’exécution sur les titres éligibles.';
     if (id === 'bd' && p.dca.available) copy.dca = '✅ PEA & CTO — ETF de la sélection sans courtage ; actions au tarif habituel.';
     if (id === 'saxo' && p.dca.programmed) copy.dca += ` ✅ PEPS hors PEA — ETF et fonds, mensuel, ${n(p.dca.programmed.purchaseFee)} € de courtage à l’achat ; ventes payantes, change éventuel.`;
+    if (id === 'ibkr' && p.dca.available === false) copy.dca += ' Hors PEA : investissements récurrents sous conditions.';
   }
   if (p.ifu?.available != null) copy.ifu = `${yes(p.ifu.available)} ${p.ifu.available ? 'Oui' : 'Non'}${id === 'tr' ? ' pour l’offre française après migration' : ''}.`;
   copy.enveloppes = ['pea', 'pme', 'jeune'].filter(key => p[key]?.available != null)
@@ -68,9 +69,10 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
     copy.cash = '❌ Sur PEA.';
     if (id === 'tr') copy.cash += ' Hors PEA : intérêts après activation, sous conditions.';
     if (id === 'saxo') copy.cash += ' Hors PEA : clients VIP uniquement, sous conditions.';
+    if (id === 'ibkr') copy.cash = p.cash.copy.full.replace('Espèces du PEA non rémunérées.', '❌ Sur PEA.');
   } else if (p.cash?.status === 'confirmé' && p.cash.available === false) copy.cash = '❌ Non.';
   else if (id === 'xtb' && p.cash?.available === true) copy.cash = `❌ Sur PEA. ${p.cash.copy.full}`;
-  if (id === 'ibkr' && p.cash?.available === true) copy.cash = `Compte général : ${p.cash.copy.full.split(' Portée PEA')[0]}`;
+  if (id === 'ibkr' && p.cash?.available === true && !copy.cash) copy.cash = `Compte général : ${p.cash.copy.full.split(' Portée PEA')[0]}`;
   copy.entrant = p.entrant?.status === 'confirmé' ? p.entrant.copy.full : f.entrant;
   if (id === 'saxo' && /expirée/.test(copy.entrant ?? '')) copy.entrant = '✅ Transfert entrant possible.';
   const transfer = values('entrant');
@@ -86,10 +88,11 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
   copy.sortant = id === 'tr' ? undefined : f.sortant;
   if (f.change && !p.change && id !== 'ibkr') copy.change = f.change;
   else if (p.change?.status === 'confirmé' && p.change.available != null) copy.change = p.change.copy.full;
+  if (id === 'tr' && p.change?.conversion?.incomeToEuro && p.change.conversion.marginByCurrency) copy.change = 'Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.';
   // Generic IBKR FX pricing is not attributed to the PEA.
   if (id === 'ibkr' && values('change')) {
     const fx = values('change');
-    copy.change = `Compte général : conversion automatique généralement ${n(fx.automaticRate)} % ; manuelle ${n(fx.manualRate)} %, min. ${n(fx.minimumUsd)} USD.`;
+    copy.change = `${p.change?.conversion?.automaticOnPea ? 'PEA : conversion automatique pour les titres dans une autre devise. ' : ''}Compte général : conversion automatique généralement ${n(fx.automaticRate)} % ; manuelle ${n(fx.manualRate)} %, min. ${n(fx.minimumUsd)} USD.`;
   }
   copy.offres = brokerOffers(id, today, observations).map(full => {
     const offer = Object.values(o.fields).find(field => field.copy.full === full);

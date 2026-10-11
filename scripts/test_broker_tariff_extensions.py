@@ -57,7 +57,7 @@ class BrokerTariffTests(unittest.TestCase):
   self.assertEqual(results['ibkr_pea_transfer']['values'],{'fee':0})
   with self.assertRaises(ValueError):parse_supplement('ibkr_pea_garde',fixture('ibkr_pea.txt').replace('Pas de droits de garde','Droits de garde payants'),TODAY)
   self.assertEqual(results['ibkr_fx']['values'],{'manualRate':.002,'minimumUsd':2,'automaticRate':.03})
-  self.assertIn('Disponibilité à confirmer sur PEA',results['ibkr_fx']['copy']['full'])
+  self.assertIn('Application de ce barème au PEA à confirmer',results['ibkr_fx']['copy']['full'])
   self.assertEqual(results['bourso_transfer']['values']['maximum'],3000)
   self.assertEqual(results['fortuneo_transfer']['values']['maximum'],2000)
   self.assertEqual(results['saxo_offer']['until'],'2026-12-31')
