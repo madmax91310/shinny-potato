@@ -1,17 +1,35 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { ASSETS } from '../src/data/market-history.js';
+import { ETF_MONTHLY_HISTORIES } from '../src/data/etf-monthly-history.js';
+import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { HISTORY_FACTS, HISTORY_STATISTIC_IDS } from '../src/data/history-statistics.js';
 import { derive } from '../src/pages/investment-calculator/lib.js';
 import { computeComparativeSeries } from '../src/pages/investment-calculator/videoExport.js';
 const read = path => JSON.parse(readFileSync(path));
 const config = read('scripts/monthly-automation.json');
-const records = read('src/data/automated-monthly.json');
+const records = { ...read('src/data/automated-monthly.json'), ...read('src/data/automated-etf-monthly.json') };
 const evidence = read('scripts/source-snapshots/monthly-automated.json');
+for (const source of config.series.filter(source => source.consumerScope === 'catalog')) {
+  assert(records[source.id], `${source.id}: registered ETF must have a validated active history`);
+}
 for (const [id, record] of Object.entries(records)) {
   const source = config.series.find(s => s.id === id);
   assert(source, `Unknown series ${id}`);
+  const catalog = record.consumerScope === 'catalog';
+  const asset = catalog ? ETF_MONTHLY_HISTORIES[id] : ASSETS[id];
+  assert(asset, `Missing active history ${id}`);
+  if (catalog) {
+    assert.equal(record.field, 'adjclose');
+    assert.equal(record.collectAnniversary, false);
+    const suffix = { XPAR: '.PA', XAMS: '.AS', XETR: '.DE', XLON: '.L', ETFP: '.MI' }[record.mic];
+    assert.equal(record.symbol, record.ticker + suffix);
+    assert(INSTRUMENT_LISTINGS_BY_ISIN[record.isin]?.some(listing =>
+      listing.evidenceId === record.listingEvidenceId && listing.ticker === record.ticker &&
+      listing.mic === record.mic && listing.currency === record.currency), `${id}: exact documented listing`);
+    assert(!ASSETS[id], `${id}: tool connection is a separate step`);
+  }
   for (const key of Object.keys(source)) assert.deepEqual(record[key], source[key], `${id} ${key}`);
   assert.equal(record.responseSha256, evidence[id].responseSha256);
   assert.match(record.responseSha256, /^[a-f0-9]{64}$/);
@@ -28,16 +46,20 @@ for (const [id, record] of Object.entries(records)) {
     assert.equal(row.date.slice(0,7), date);
     assert.equal(price, Math.round(row.value*10**record.precision)/10**record.precision);
     if (record.parser === 'yahoo') {
-      if (row.monthlyClose === null) { assert(record.allowMissingMonthly); assert(record.sourceUrls.includes(row.windowUrl)); }
+      if (row.monthlyClose === null) {
+        assert(record.allowMissingMonthly || record.dailyWindowMonths?.includes(date));
+        assert(record.sourceUrls.includes(row.windowUrl));
+      }
       assert(Math.abs(row.close-(row.monthlyClose ?? row.windowClose))<=Math.max(.02,row.close*1e-7));
     }
     if (record.parser === 'msci') assert(Math.abs(row.value-row.monthlyValue)<=.0001);
-    assert.deepEqual(ASSETS[id].points[i], { date, price });
+    assert.deepEqual(asset.points[i], { date, price });
     if (record.anniversaryPoints?.length) {
       assert.equal(record.anniversaryPoints[i][1], Math.round(row.close*10**record.precision)/10**record.precision);
       assert.deepEqual(ASSETS[id].anniversaryPoints[i], {date,price:record.anniversaryPoints[i][1]});
     }
   }
+  if (catalog) continue;
   assert.equal(MARKET_HISTORY_REVIEW[`history:${id}`].periodEnd, record.periodEnd);
   const prices=ASSETS[id].points.filter(p=>p.date>='2020-01');
   for (const mode of ['lump','dca']) {

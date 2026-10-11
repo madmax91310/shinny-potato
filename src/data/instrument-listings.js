@@ -333,7 +333,8 @@ export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
       "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf",
       "checkedAt": "2026-10-04",
       "evidenceId": "NL0011683594-XPAR-TDIV-EUR"
-    }
+    },
+    {"ticker": "TDIV", "exchange": "Euronext Amsterdam", "mic": "XAMS", "currency": "EUR", "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf", "checkedAt": "2026-10-11", "evidenceId": "NL0011683594-XAMS-TDIV-EUR"}
   ],
   "NL0009690239": [
     {

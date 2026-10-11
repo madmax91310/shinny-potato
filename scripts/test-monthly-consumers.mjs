@@ -10,7 +10,8 @@ try {
   cpSync('src',join(directory,'src'),{recursive:true});
   writeFileSync(join(directory,'package.json'),'{"type":"module"}');
   const path=join(directory,'src/data/automated-monthly.json');
-  const records=JSON.parse(readFileSync(path));
+  const etfPath=join(directory,'src/data/automated-etf-monthly.json');
+  const records={...JSON.parse(readFileSync(path)),...JSON.parse(readFileSync(etfPath))};
   for(const record of Object.values(records)) {
     const [year,month]=record.periodEnd.split('-').map(Number);
     const next=new Date(Date.UTC(year,month,1)).toISOString().slice(0,7);
@@ -18,7 +19,8 @@ try {
     if(record.anniversaryPoints?.length)record.anniversaryPoints.push([next,record.anniversaryPoints.at(-1)[1]*1.01]);
     record.periodEnd=next;record.checkedAt=new Date(Date.UTC(year,month+1,4)).toISOString().slice(0,10);
   }
-  writeFileSync(path,JSON.stringify(records));
+  writeFileSync(path,JSON.stringify(Object.fromEntries(Object.entries(records).filter(([,record])=>record.consumerScope!=='catalog'))));
+  writeFileSync(etfPath,JSON.stringify(Object.fromEntries(Object.entries(records).filter(([,record])=>record.consumerScope==='catalog'))));
   for(const file of ['bitcoin-yahoo-monthly.json','worldbank-gold-monthly.json']) {
     const filePath=join(directory,'src/data',file);const data=JSON.parse(readFileSync(filePath));
     const [year,month]=data.points.at(-1)[0].split('-').map(Number);
@@ -31,11 +33,18 @@ try {
   assert.equal(archive.status,0,archive.stderr);
   const load=path=>import(pathToFileURL(join(directory,path)));
   const { ASSETS }=await load('src/data/market-history.js');
+  const { ETF_MONTHLY_HISTORIES }=await load('src/data/etf-monthly-history.js');
   const { MARKET_HISTORY_REVIEW }=await load('src/data/market-history-review.js');
   const { HISTORY_FACTS,HISTORY_STATISTIC_IDS }=await load('src/data/history-statistics.js');
   const { derive }=await load('src/pages/investment-calculator/lib.js');
   const { computeComparativeSeries }=await load('src/pages/investment-calculator/videoExport.js');
   for(const [id,record] of Object.entries(records)) {
+    if (record.consumerScope === 'catalog') {
+      assert.equal(ETF_MONTHLY_HISTORIES[id].points.at(-1).date, record.periodEnd);
+      assert.equal(ETF_MONTHLY_HISTORIES[id].checkedAt, record.checkedAt);
+      assert(!ASSETS[id], 'Collection must not expose a new ETF in tools before connection');
+      continue;
+    }
     assert.equal(ASSETS[id].points.at(-1).date,record.periodEnd);
     assert.equal(MARKET_HISTORY_REVIEW[`history:${id}`].periodEnd,record.periodEnd);
     assert.equal(MARKET_HISTORY_REVIEW[`history:${id}`].checkedAt,record.checkedAt);

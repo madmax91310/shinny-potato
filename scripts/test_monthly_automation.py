@@ -31,6 +31,33 @@ class Monthly(unittest.TestCase):
         def fetch(url):return chart('1mo' if 'interval=1mo' in url else '1d',adjusted=999 if 'interval=1mo' in url else 10)
         result=collect_yahoo(CONFIG,NOW,fetch)
         self.assertEqual(result['points'],[['2026-01',10]])
+
+    def test_catalog_bootstrap_and_daily_recovery_of_new_registration(self):
+        source={**CONFIG, 'consumerScope':'catalog', 'isin':'IE00BYYHSQ67',
+                'listingEvidenceId':'IE00BYYHSQ67-XLON-WQDV-USD'}
+        def collect(s,now):
+            return {**s,'points':[['2026-01',10]],'periodEnd':'2026-01',
+                    'checkedAt':'2026-02-06','proofRows':[],'rawResponse':{}}
+        merged,report=refresh({'series':[source]}, {}, {}, NOW, collect)
+        self.assertEqual(report['series'][0]['status'],'validated')
+        self.assertEqual(merged['test']['points'],[['2026-01',10]])
+        for field in ['isin','listingEvidenceId','consumerScope']:
+            invalid=source.copy();invalid.pop(field)
+            _,report=refresh({'series':[invalid]}, {}, {}, NOW, collect)
+            self.assertEqual(report['series'][0]['status'],'failed')
+        config={'series':[source,dict(CONFIG,id='old')]}
+        selected=select_series(config,{'series':{'old':{'status':'validated'}}},retry_failed=True)
+        self.assertEqual([s['id'] for s in selected['series']],['test'])
+
+    def test_catalog_identity_change_preserves_prior_history(self):
+        old={**CONFIG, 'consumerScope':'catalog','isin':'IE00BYYHSQ67',
+             'points':[['2026-01',8]], 'periodEnd':'2026-01'}
+        source={**old,'isin':'IE00BG0J4C88'}
+        def collect(s,now):return {**s,'points':[['2026-01',10]],'proofRows':[],'rawResponse':{}}
+        baseline={'test':{'currency':'USD','points':[{'date':'2026-01','price':8}]}}
+        merged,report=refresh({'series':[source]}, {'test':old}, baseline, NOW, collect)
+        self.assertEqual(report['series'][0]['status'],'failed')
+        self.assertEqual(merged['test'],old)
     def test_currency_and_identity_rejected(self):
         for field,value in [('currency','EUR'),('symbol','OTHER'),('dataGranularity','1mo')]:
             raw=chart();raw['chart']['result'][0]['meta'][field]=value
@@ -43,6 +70,21 @@ class Monthly(unittest.TestCase):
     def test_monthly_daily_mismatch_rejected(self):
         def fetch(url):return chart('1mo',close=15) if 'interval=1mo' in url else chart()
         with self.assertRaises(ValueError):collect_yahoo(CONFIG,NOW,fetch)
+
+    def test_registered_etf_candle_recouped_by_exact_daily_window(self):
+        config={**CONFIG,'consumerScope':'catalog','dailyWindowMonths':['2026-01']}
+        def fetch(url):return chart('1mo',close=15) if 'interval=1mo' in url else chart()
+        result=collect_yahoo(config,NOW,fetch)
+        self.assertEqual(result['points'],[['2026-01',10]])
+        self.assertEqual(result['proofRows'][0]['rejectedMonthlyClose'],15)
+        self.assertEqual(result['proofRows'][0]['windowClose'],12)
+        # A daily window must agree in date, raw close and adjusted close.
+        end=int(dt.datetime(2026,2,1,tzinfo=UTC).timestamp())
+        def inconsistent(url):
+            if f'period1={end-7*86400}' in url:return chart(close=13)
+            return fetch(url)
+        with self.assertRaises(ValueError):collect_yahoo(config,NOW,inconsistent)
+        with self.assertRaises(ValueError):collect_yahoo({**CONFIG,'dailyWindowMonths':['2026-01']},NOW,fetch)
     def test_stale_missing_month_rejected(self):
         with self.assertRaises(ValueError):collect_yahoo({**CONFIG,'periodStart':'2025-12'},NOW,lambda url:chart('1mo' if 'interval=1mo' in url else '1d'))
     def test_msci_net_gross_never_substituted(self):
