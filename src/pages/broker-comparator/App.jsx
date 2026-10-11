@@ -96,7 +96,7 @@ function EvidencePanel({ selected }) {
                 return (
                   <li key={field}>
                     <strong>{label} · {entry.status}</strong> — {entry.summary}
-                    {entry.automatedEvidence?.method?.startsWith('Déduction') && <span> · {entry.automatedEvidence.method}.</span>}
+                    {entry.automatedEvidence?.method?.startsWith('Rapprochement') && <span> · {entry.automatedEvidence.method}.</span>}
                     {entry.refs?.map(({ document, page }) => {
                       const source = OFFICIAL_SOURCES[document] ?? SECONDARY_SOURCES[document]
                       const type = source.kind?.startsWith('secondary') ? `source externe ${source.edition}` : source.kind === 'customer-notice' ? `avis client, ${source.edition}` : source.kind === 'page' ? 'page officielle' : `PDF officiel ${source.edition}`

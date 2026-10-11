@@ -124,14 +124,16 @@ class BrokerProfilesTests(unittest.TestCase):
                 self.assertNotEqual(o['status'],'confirmé')
 
     def test_ibkr_published_faq_resolves_scopes_with_joint_evidence(self):
-        for field in ['pme','jeune','dca']:
+        for field in ['pme','jeune']:
             observed=parse('ibkr',field,raws('ibkr',field),TODAY)
             self.assertFalse(observed['available'])
             self.assertEqual(observed['status'],'confirmé')
         dca=parse('ibkr','dca',raws('ibkr','dca'),TODAY)
         self.assertEqual({ref['document'] for ref in dca['refs']},
                          {'ibkrFractionalFaq','ibkrRecurringEligibilityFaq'})
-        self.assertIn('Déduction',dca['method'])
+        self.assertIsNone(dca['available'])
+        self.assertEqual(dca['status'],'partiel')
+        self.assertIn('Rapprochement',dca['method'])
         altered=raws('ibkr','dca')
         altered['ibkrRecurringEligibilityFaq']='Recurring Investment is available on PEA.'
         with self.assertRaises(ValueError):parse('ibkr','dca',altered,TODAY)
