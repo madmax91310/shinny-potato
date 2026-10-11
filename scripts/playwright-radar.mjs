@@ -66,7 +66,7 @@ try{
  await mobile.getByRole('button',{name:'Pouvoir d’achat',exact:true}).click()
  await mobile.getByRole('heading',{name:'Les informations récupérées',exact:true}).waitFor()
  await mobile.getByRole('heading',{name:'PTZ : nouveau plafond applicable',exact:true}).waitFor()
- await mobile.getByText('Proposition / en discussion',{exact:true}).waitFor()
+ await mobile.getByText('Application indiquée',{exact:true}).waitFor()
  await mobile.getByRole('button',{name:'Dépenses courantes',exact:true}).click()
  await mobile.getByText('Aucune information pour ce thème et cette recherche.',{exact:true}).waitFor()
  await mobile.getByRole('button',{name:'Logement',exact:true}).click()
