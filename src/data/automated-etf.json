@@ -17243,7 +17243,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-      "sha256": "75bdb62e4cc45df941a29073f4d33c08d7ca7cbefd18a86cb44de45ae0c062c2",
+      "sha256": "08332691839ea57ad0fe94614ce16ba906b3161bb82032c63f9b7d32d4d71773",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -17426,7 +17426,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-      "sha256": "be8c7bedc7c9b23a9d58cbdeda4e379d422b5b2212340c03cbd9aa32777f5598",
+      "sha256": "66cab29cb808785cffe69a6ea534a1d85c40dbd1287e799cca246fdb4ca4276a",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -17748,7 +17748,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/historicaldata/download",
-      "sha256": "7cecf8a703331e2524b59da0efc94e979e4bd2d8db460b7654533e9ee2f69a8d",
+      "sha256": "54bd43721a2f875d6d18dadcec4fe968801f22131ca4e284a626a93dc1c0f506",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -18172,7 +18172,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/historicaldata/download",
-      "sha256": "526184ab50309c02ba4f7b3b081c5b9db66b14be54f66fe373d20b2446a789f0",
+      "sha256": "733720286457fa7360a503d5c0ae08bc4ba8fffda983835aa97157575482b21f",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -19134,7 +19134,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/historicaldata/download",
-      "sha256": "40ec153ee04736accf9630e16a5d7931d9c573c8a5907d87fe1faa92fe682865",
+      "sha256": "28f637044006644230b6f0d2ff8d29469ba91b64e311f82c045ddfcbfd609438",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -19309,7 +19309,7 @@
       "scope": "fund",
       "asOf": "2026-10-08",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download",
-      "sha256": "29e3c709075a7fc67db3a7d160a51927a47ab6cc5c8e78afafe5b810be481500",
+      "sha256": "54c7159ebb3cf1785d26f99f88e2ae9065bf2527fc185919de412a188385f606",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -26363,7 +26363,7 @@
       },
       "asOf": "2026-10-09",
       "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-      "sha256": "650dee212b41a57e3f99748d772a8752932a2306412e6b3d01e25726b2f4ee09",
+      "sha256": "df7756041019316c0b6693d9dccbf511df7e6eb7590c7f8c58f14efa46371f73",
       "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
       "validationSources": [
         "https://api.primary.21shares.com/api/product_details/ABTC",
@@ -26921,7 +26921,7 @@
     "sectors": {
       "asOf": "2026-09-30",
       "basis": "index",
-      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF",
       "sha256": "9636cbe2af8f000bf3a9453d42908d894a80c21905c99d9c25ac80faffe4b456",
       "index": "S&P 500",
       "indexId": "sp500-pea",
@@ -26983,12 +26983,13 @@
           "label": "Immobilier"
         }
       ],
-      "checkedAt": "2026-10-11"
+      "checkedAt": "2026-10-11",
+      "modifiedAt": "2026-10-11"
     },
     "countries": {
       "asOf": "2026-09-30",
       "basis": "index",
-      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF",
       "sha256": "9636cbe2af8f000bf3a9453d42908d894a80c21905c99d9c25ac80faffe4b456",
       "index": "S&P 500",
       "indexId": "sp500-pea",
@@ -26996,15 +26997,16 @@
       "rows": [
         {
           "name": "États-Unis",
-          "weightPct": 100
+          "weightPct": 100.0
         }
       ],
-      "checkedAt": "2026-10-11"
+      "checkedAt": "2026-10-11",
+      "modifiedAt": "2026-10-11"
     },
     "holdings": {
       "asOf": "2026-09-30",
       "basis": "index",
-      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF",
       "sha256": "9636cbe2af8f000bf3a9453d42908d894a80c21905c99d9c25ac80faffe4b456",
       "index": "S&P 500",
       "indexId": "sp500-pea",
@@ -27051,7 +27053,8 @@
           "weightPct": 1.5
         }
       ],
-      "checkedAt": "2026-10-11"
+      "checkedAt": "2026-10-11",
+      "modifiedAt": "2026-10-11"
     }
   },
   "IE00BF0M2Z96": {
@@ -27577,14 +27580,14 @@
       "scope": "share-class",
       "asOf": "2026-10-11",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "02739c15477dca8d57794facadfb911f3a581f2f3fcbbbe01cea0bdb5f22ade8",
+      "sha256": "12a5d204661f6a5fca95803fb67f9d8a9e5b7b87861862ce80140cfe9b585a4d",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
     },
     "characteristics": {
       "asOf": "2026-10-11",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "02739c15477dca8d57794facadfb911f3a581f2f3fcbbbe01cea0bdb5f22ade8",
+      "sha256": "12a5d204661f6a5fca95803fb67f9d8a9e5b7b87861862ce80140cfe9b585a4d",
       "terPct": 2.0,
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -27601,7 +27604,7 @@
       },
       "asOf": "2026-10-11",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "02739c15477dca8d57794facadfb911f3a581f2f3fcbbbe01cea0bdb5f22ade8",
+      "sha256": "12a5d204661f6a5fca95803fb67f9d8a9e5b7b87861862ce80140cfe9b585a4d",
       "method": "calendar-year exact ETP NAV total return, net of fees",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -28255,7 +28258,7 @@
       "scope": "fund",
       "asOf": "2026-10-09",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "1b8ddef85191349680284e53949dc337f36d0c5b7bd1208ca8db306b196d8b1b",
+      "sha256": "8ea7788b331d9bfd843216b4def3f9216ab6c64a50e1baeed550aef55ba2d057",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
     },
@@ -28300,7 +28303,7 @@
       },
       "asOf": "2026-10-09",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
-      "sha256": "2571b1e90f8bc9b1be2799a5b840cd39e7eb0cb65aed0d50cff08768ea922beb",
+      "sha256": "014f02e7da38c6ca8f40505d8367a4dd58fd8b54797b93ca7221e1df66b74cf4",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -28339,7 +28342,7 @@
       },
       "asOf": "2026-10-09",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
-      "sha256": "9178de816acaf32fc15a99632c301172e3cb41ca32e71bc2856c1476751eafef",
+      "sha256": "c4f079b770635fe24ef6bdf9deb9215e2ffec88bc6584ecc1b830389fd91e67b",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-11",
       "modifiedAt": "2026-10-11"
@@ -28885,7 +28888,7 @@
     "countries": {
       "asOf": "2026-09-30",
       "basis": "index",
-      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF",
       "sha256": "9636cbe2af8f000bf3a9453d42908d894a80c21905c99d9c25ac80faffe4b456",
       "index": "S&P 500",
       "indexId": "sp500-pea",
@@ -28893,10 +28896,11 @@
       "rows": [
         {
           "name": "États-Unis",
-          "weightPct": 100
+          "weightPct": 100.0
         }
       ],
-      "checkedAt": "2026-10-11"
+      "checkedAt": "2026-10-11",
+      "modifiedAt": "2026-10-11"
     }
   },
   "FR0011550193": {
@@ -29311,7 +29315,7 @@
     "countries": {
       "asOf": "2026-09-30",
       "basis": "index",
-      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930",
+      "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
       "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
       "index": "NASDAQ-100 Notional Net Total Return",
       "indexId": "nasdaq-pea",
@@ -29342,7 +29346,8 @@
           "weightPct": 0.39
         }
       ],
-      "checkedAt": "2026-10-11"
+      "checkedAt": "2026-10-11",
+      "modifiedAt": "2026-10-11"
     }
   },
   "FR001400ZGO4": {
