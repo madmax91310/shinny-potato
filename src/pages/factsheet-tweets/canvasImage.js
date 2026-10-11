@@ -1,5 +1,5 @@
 import { getIndexArt } from './visualIdentity.js'
-import { companyLabel, plainLabel, sortedRows, sumRows } from './editorial.js'
+import { companyLabel, plainLabel, sectorLabel, sortedRows, sumRows } from './editorial.js'
 
 const W = 1600, H = 1120
 const C = { ink: '#111820', muted: '#627087', accent: '#0646CE', negative: '#C73241', rule: '#A9BCE9' }
@@ -54,10 +54,10 @@ function displayLabel(name) {
     .replace(/Consommation de base/i,'Conso de base')
     .replace(/Services financiers/i,'Finance')
 }
-function ranking(ctx,rows,x,y,width) {
+function ranking(ctx,rows,x,y,width,{size=28,maxLines=1}={}) {
   rows.slice(0,4).forEach(([name,value],i)=>{
     const top=y+i*66
-    paragraph(ctx,displayLabel(name),x,top,width-138,28,C.ink,400,1)
+    paragraph(ctx,displayLabel(name),x,top,width-138,size,C.ink,400,maxLines)
     write(ctx,percent(value),x+width,top,29,C.accent,700,'right')
   })
 }
@@ -122,7 +122,7 @@ export async function renderFactsheetImage(sheet) {
   heading(ctx,'PRINCIPAUX PAYS',64,539);rule(ctx,64,575,432)
   ranking(ctx,sortedRows(sheet.countries).filter(([n])=>!/autres|others/i.test(n)),64,601,432)
   heading(ctx,'PRINCIPAUX SECTEURS',558,539);rule(ctx,558,575,432)
-  ranking(ctx,sortedRows(sheet.sectors).slice(0,3),558,601,432)
+  ranking(ctx,sortedRows(sheet.sectors).slice(0,3).map(([name,value])=>[sectorLabel(name),value]),558,601,432,{size:26,maxLines:2})
   write(ctx,'Poids dans l’indice',558,799,24,C.muted)
   heading(ctx,'PRINCIPALES ENTREPRISES',1050,539);rule(ctx,1050,575,490)
   ctx.fillStyle=C.rule;ctx.fillRect(523,539,1,288);ctx.fillRect(1017,539,1,288)

@@ -32,6 +32,36 @@ export const sortedRows = rows => [...numericRows(rows)].sort((a, b) => b[1] - a
 export const sumRows = rows => numericRows(rows).reduce((sum, [, value]) => sum + value, 0)
 export const plainLabel = name => name.replace(/^[^\p{L}\p{N}]+/u, '').trim()
 
+// Traduction à l’affichage : les libellés officiels restent intacts dans les sources.
+const SECTOR_LABELS = {
+  'Data Centers': 'Centres de données',
+  Diversified: 'Immobilier diversifié',
+  HealthCare: 'Immobilier de santé',
+  Industrial: 'Immobilier industriel',
+  'Industrial/Office Mixed': 'Industrie et bureaux',
+  'Lodging/Resorts': 'Hôtels et résidences de vacances',
+  Office: 'Bureaux',
+  Residential: 'Résidentiel',
+  Retail: 'Commerces',
+  'Self Storage': 'Garde-meubles',
+  Speciality: 'Immobilier spécialisé',
+  Technology: 'Technologie',
+  'Consumer Goods': 'Biens de consommation',
+  Materials: 'Matériaux',
+  'Capital Goods/Others': 'Biens d’équipement et autres',
+  Financials: 'Finance',
+  'Transportation and Utilities': 'Transports et services publics',
+}
+export const sectorLabel = name => SECTOR_LABELS[plainLabel(name)] ?? plainLabel(name)
+const SECTOR_METHOD_LABELS = {
+  'Property Sector Breakdown': 'répartition par secteur immobilier',
+  'ICB Subsector Breakdown': 'classification ICB par sous-secteur',
+  'ICB Industry Breakdown': 'classification ICB par secteur',
+  'ICB Supersector Breakdown': 'classification ICB par grand secteur',
+  'Nikkei six-sector classification': 'classification Nikkei en six secteurs',
+}
+export const sectorMethodLabel = name => SECTOR_METHOD_LABELS[name] ?? name
+
 export function companyLabel(name) {
   const labels = [
     [/^NVIDIA/i, 'Nvidia'], [/^APPLE/i, 'Apple'], [/^MICROSOFT/i, 'Microsoft'], [/^AMAZON/i, 'Amazon'],

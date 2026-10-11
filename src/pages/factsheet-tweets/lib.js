@@ -1,4 +1,4 @@
-import { indexHook, indexObservation, sortedRows, sumRows, plainLabel, companyLabel } from './editorial.js'
+import { indexHook, indexObservation, sortedRows, sumRows, sectorLabel, sectorMethodLabel, companyLabel } from './editorial.js'
 
 const number = (value, digits = 2) => value.toLocaleString('fr-FR', { minimumFractionDigits: digits, maximumFractionDigits: digits })
 const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digits)} %`
@@ -82,8 +82,8 @@ export function buildFactsheetTweet(sheet) {
   const sectors = sortedRows(sheet.sectors).slice(0, 3)
   if (sectors.length) {
     lines.push('', '🧩 Les principaux secteurs')
-    for (const [name, value] of sectors) lines.push(`${plainLabel(name)} : ${weight(value)}`)
-    if (sheet.indexFacts?.sectorMethod) lines.push(`La classification utilisée est celle de la fiche : ${sheet.indexFacts.sectorMethod}.`)
+    for (const [name, value] of sectors) lines.push(`${sectorLabel(name)} : ${weight(value)}`)
+    if (sheet.indexFacts?.sectorMethod) lines.push(`La classification utilisée est celle de la fiche : ${sectorMethodLabel(sheet.indexFacts.sectorMethod)}.`)
   }
   for (const [title, text] of sheet.methodologyPanels ?? []) lines.push('', `🔎 ${title.charAt(0) + title.slice(1).toLowerCase()}`, text)
 
