@@ -2,14 +2,29 @@
 import copy
 import pathlib
 import unittest
+from unittest.mock import patch
 from broker_document_sources import CATALOGUES, DocumentResolver, official_link
-from collect_broker_tariffs import collect, SOURCES
+from collect_broker_tariffs import collect, fetch_content, SOURCES
 from broker_profiles import parse
 
 FIXTURES = pathlib.Path(__file__).parent / 'fixtures/broker-tariffs'
 TODAY = '2026-10-08'
 
 class DocumentSourcesTests(unittest.TestCase):
+    def test_cto_column_continuation_preserves_physical_page(self):
+        from broker_profiles import SOURCES as profile_sources, clean
+        url=profile_sources['caCtoContract']['url']
+        clause='Pour les opérations donnant lieu à des règlements en devises'
+        with patch('collect_broker_tariffs.download',return_value=(b'%PDF-test',url)), patch('collect_broker_tariffs.pdf_text',side_effect=[
+                'Page un colonne un\f'+clause+'\f',
+                'Page un colonne deux\f suite de la clause\f',
+                'Page un colonne trois\fArticle suivant\f']) as extract:
+            document=fetch_content(url)
+        self.assertIn(clause+' suite de la clause',clean(document.split('\f')[1]))
+        self.assertNotIn(clause,document.split('\f')[0])
+        self.assertEqual(document.source_url,url)
+        self.assertEqual([call.kwargs['crop'] for call in extract.call_args_list],[(17,70,181,666),(199,70,181,666),(381,70,181,666)])
+
     def test_live_catalogue_links(self):
         expected = {'fortuneo': '/files/tarifs_fortuneo.pdf', 'saxo': '?revision=', 'xtb': 'table-des-frais-et-commissions', 'caidf': '04_2026.pdf'}
         for broker, fragment in expected.items():

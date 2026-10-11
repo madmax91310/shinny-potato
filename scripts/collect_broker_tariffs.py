@@ -83,9 +83,14 @@ def fetch_content(url):
   if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2]:
    text=pdf_text(raw,crop=(0,300))
   elif 'cr882/' in url and 'CGL_CTO_PDF.pdf' in url:
-   # Preserve the reading order of the three-column CTO convention. Layout
-   # extraction interleaves the FX clause with succession and PEA provisions.
-   text=pdf_text(raw,raw=True)
+   # Article 20 continues from the bottom of column one into column two.
+   # Extract the three body columns separately: Poppler's raw reading order
+   # differs between versions. Exclude the repeating header/footer, then
+   # reassemble each physical page to preserve proof page numbers.
+   columns=[pdf_text(raw,crop=(x,70,181,666)).split('\f') for x in (17,199,381)]
+   if len({len(column) for column in columns})!=1:
+    raise ValueError('Pagination incohérente de la convention CTO régionale')
+   text='\f'.join('\n'.join(page) for page in zip(*columns))
   else:
    text=pdf_text(raw)
  else:text=raw.decode('utf-8')

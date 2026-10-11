@@ -71,7 +71,11 @@ def pdf_text(body, crop=None, raw=False):
     with tempfile.TemporaryDirectory() as folder:
         path = pathlib.Path(folder) / 'source.pdf'
         path.write_bytes(body)
-        options = [] if crop is None else ['-x', str(crop[0]), '-y', '0', '-W', str(crop[1]), '-H', '2000']
+        if crop is None:
+            options = []
+        else:
+            x, y, width, height = (crop[0], 0, crop[1], 2000) if len(crop) == 2 else crop
+            options = ['-x', str(x), '-y', str(y), '-W', str(width), '-H', str(height)]
         output = subprocess.run(['pdftotext', '-raw' if raw else '-layout', *options, str(path), '-'],
                                 capture_output=True, timeout=20, check=True)
     if len(output.stdout) > 2_000_000:
