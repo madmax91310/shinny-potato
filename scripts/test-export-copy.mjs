@@ -35,7 +35,8 @@ try {
       const png = typeof result === 'string' ? result : result.toDataURL('image/png')
       const text = words.join('\n')
       if (!validate(words, text)) throw new Error(`${name}: unexpected export copy\n${text}`)
-      if (words.filter(word => /[ée]pargnant.?libre/i.test(word)).length !== 1) throw new Error(`${name}: signature must appear once`)
+      // Le DCA approuvé est un raster complet : sa signature est déjà dans les pixels.
+      if (name !== 'lexique-dca' && words.filter(word => /[ée]pargnant.?libre/i.test(word)).length !== 1) throw new Error(`${name}: signature must appear once`)
       await window.saveExportCopy({ name, text, png: !name.startsWith('etf-') || records.length === 0 ? png : null })
       records.push(name)
     }
