@@ -1,6 +1,7 @@
 """Synthetic regressions for market conventions, incomplete sources and preservation."""
 import copy
 import datetime as dt
+import http.client
 import unittest
 import urllib.error
 from urllib.parse import urlparse, parse_qs
@@ -82,6 +83,17 @@ class Monthly(unittest.TestCase):
                 calls.append(url);raise error
             with self.assertRaises(type(error)):collect_msci(config,NOW,fetch)
             self.assertEqual(len(calls),1)
+
+    def test_msci_truncated_transport_recovers_without_changing_variant(self):
+        config={'indexCode':'123','currency':'USD','variant':'GRTR','periodStart':'2026-01','precision':6}
+        def fetch(url):
+            q={k:v[0] for k,v in parse_qs(urlparse(url).query).items()}
+            if q['start_date']=='20251231':raise http.client.IncompleteRead(b'partial')
+            return {'msci_index_code':'123','ISO_currency_symbol':'USD','index_variant_type':'GRTR',
+                    'indexes':{'INDEX_LEVELS':[{'calc_date':'20260130','level_eod':100}]}}
+        result=collect_msci(config,NOW,fetch)
+        self.assertEqual(result['points'],[['2026-01',100]])
+        self.assertEqual(len(result['sourceAttempts']),2)
     def test_failure_keeps_history_other_source_updates(self):
         sources=[{**CONFIG,'id':'ok'},{**CONFIG,'id':'bad'}];current={'bad':{'points':[['2026-01',5]],'checkedAt':'2026-02-01'}}
         baseline={s['id']:{'currency':'USD','points':[{'date':'2026-01','price':8}]} for s in sources}

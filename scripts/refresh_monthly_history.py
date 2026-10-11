@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 import copy
 import datetime as dt
 import hashlib
+import http.client
 import json
 import math
 import os
@@ -149,7 +150,7 @@ def collect_msci(config, now, fetch=get_msci_json):
         try:
             raw[frequency] = fetch(url)
             urls.append(url)
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+        except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead, ConnectionError) as error:
             if isinstance(error, urllib.error.HTTPError) and error.code not in (429, 500, 502, 503, 504):
                 raise
             # Smaller requests to the same exact MSCI series, never a proxy.
