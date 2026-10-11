@@ -13,14 +13,25 @@ for(const topic of TOPICS) {
  assert(sheet.rows.length>0,topic.id)
  assert(sheet.rows.every(row=>row.length===sheet.columns.length+1),topic.id)
  assert(!/undefined|NaN/.test(tweet),topic.id)
- assert.equal(tweet.match(/[\p{Extended_Pictographic}]/u)?.[0],'👇',topic.id)
+ assert.equal(tweet.match(/[\p{Extended_Pictographic}]/u)?.[0],topic.mode==='funds' && ['world','em'].includes(topic.fundGroup)?'🌍':'👇',topic.id)
  assert(tweet.includes('👇\n\n🔖 Sauvegarde ce tweet\n\n'),topic.id)
  assert.equal(tweet.split('🔖 Sauvegarde ce tweet').length,2,topic.id)
  // Every figure from computed comparisons survives the editorial formatting.
- if(!PRACTICAL_EDITORIAL[topic.id].sections) for(const row of sheet.rows) for(const value of row.slice(1)) assert(tweet.includes(String(value).replaceAll('\n',' · ')),`${topic.id}: ${value}`)
+ if(topic.mode!=='funds' && !PRACTICAL_EDITORIAL[topic.id].sections) for(const row of sheet.rows) for(const value of row.slice(1)) assert(tweet.includes(String(value).replaceAll('\n',' · ')),`${topic.id}: ${value}`)
  assert(sheet.sources.length>0,topic.id)
  assert(sheet.sources.every(s=>s.url?.startsWith('https://') && s.checkedAt),topic.id)
- for(const source of sheet.sources) assert(tweet.includes(source.url),topic.id)
+ if(topic.mode==='funds') {
+  assert(!/https?:\/\/|Sources :|\b[Jj]e\b|\b[Jj]’|aucune performance extrapolée/.test(tweet),topic.id)
+  assert(tweet.includes('Prenons l’exemple de ces '+(sheet.funds.length===2?'deux':'trois')+' ETF :'),topic.id)
+  for(const fund of sheet.funds) {
+   assert(tweet.includes(fund.name),`${topic.id}: name ${fund.isin}`)
+   assert(tweet.includes('🆔 ISIN : '+fund.isin),`${topic.id}: ISIN ${fund.isin}`)
+   assert(tweet.includes(fund.terLabel+' %'),`${topic.id}: fee ${fund.isin}`)
+   if(fund.aum) assert(tweet.includes(fund.aum.asOf.split('-').reverse().join('/')),`${topic.id}: AUM date ${fund.isin}`)
+  }
+  for(const row of sheet.rows.filter(row=>/^\d{4} · EUR$/.test(row[0]))) for(const value of row.slice(1)) assert(tweet.includes(value),`${topic.id}: performance ${value}`)
+  for(const title of ['💶 Les frais annuels','💼 L’encours','🛒 Le prix d’une part','📈 La tracking difference']) assert(tweet.includes(title),`${topic.id}: ${title}`)
+ } else for(const source of sheet.sources) assert(tweet.includes(source.url),topic.id)
 }
 for(const id of ['fees-euros','delay-invest','change-etf']) {
  const sheet=buildSheet(id,{scenario:{capital:23456,years:12,returnRate:4,feeA:0.1,feeB:0.6,tradeCost:42,delay:3}})
@@ -30,6 +41,18 @@ for(const id of ['fees-euros','delay-invest','change-etf']) {
 }
 const subset=buildSheet('world-pea',{isins:FUND_GROUPS.world.slice(0,2)})
 assert(!buildTweet(subset).includes('Amundi World CW8'))
+assert(!buildTweet(subset).includes('LU1681043599'))
+assert(buildTweet(subset).includes('ces deux ETF'))
+assert.equal(buildSheet('same-world').funds.length,2)
+assert.throws(()=>buildSheet('same-world',{isins:FUND_GROUPS.world}))
+const otherPair=buildSheet('same-world',{isins:[FUND_GROUPS.world[1],FUND_GROUPS.world[2]]})
+assert(!buildTweet(otherPair).includes(FUND_GROUPS.world[0]))
+assert(buildTweet(otherPair).includes(FUND_GROUPS.world[2]))
+const europeSubset=buildTweet(buildSheet('europe-pea',{isins:FUND_GROUPS.europe.slice(0,2)}))
+assert(europeSubset.includes('Royaume-Uni'))
+assert(!europeSubset.includes('Euro STOXX 50'))
+assert(buildTweet(buildSheet('em-pea')).includes('hors Égypte'))
+assert(buildTweet(buildSheet('em-pea')).includes('charbon thermique'))
 for(const isins of Object.values(FUND_GROUPS)) for(const isin of isins) assert.equal(getInstrumentPeaStatus(isin),true,isin)
 assert.throws(()=>buildSheet('world-pea',{isins:['FR001400U5Q4']}))
 assert.throws(()=>buildSheet('world-pea',{isins:['FR001400U5Q4','FR001400U5Q4']}))
