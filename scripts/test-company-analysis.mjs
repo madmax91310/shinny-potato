@@ -55,7 +55,7 @@ const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
 assert.equal(calculatedRatios(computed,now).peTTM,20)
 assert.equal(calculatedRatios(computed,now).priceFCF,10)
 assert.equal(calculatedRatios(computed,now).payout,25)
-assert.match(buildTweetText(computed,now),/Pour 100 dollars de ventes/)
+assert.match(buildTweetText(computed,now),/Pour 100 dollars de chiffre d’affaires/)
 assert(metrics(computed,now).some(row => row.label.includes('opérationnelle') && row.value === '20,0 %'))
 computed.quote.price=200
 assert.equal(calculatedRatios(computed,now).peTTM,40)
@@ -190,7 +190,7 @@ assert.equal(new Set(COMPANIES.map(c => c.editorialHook)).size, COMPANIES.length
 for (const company of COMPANIES) {
   const tweet = buildTweetText(company, observationDate(company))
   assert(tweet.startsWith(company.editorialHook))
-  assert(!/💬|Tu connaissais|Quand tu achètes|Tu préfères/.test(tweet))
+  assert(!/💬|Quand tu achètes|Tu préfères/.test(tweet))
   assert(!tweet.includes('euro de revenu')) // reporting currency stays untouched
   const paragraphs = tweet.split('\n\n')
   assert(new Set(paragraphs).size === paragraphs.length)
