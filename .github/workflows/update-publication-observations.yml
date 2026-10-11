@@ -11,6 +11,7 @@ on:
       - 'scripts/refresh_anniversary_levels.py'
       - 'scripts/refresh_anniversary_indices.py'
       - 'scripts/anniversary-indices.json'
+      - 'scripts/monthly-automation.json'
   pull_request:
     paths:
       - '.github/workflows/update-publication-observations.yml'
@@ -22,6 +23,7 @@ on:
       - 'scripts/refresh_anniversary_levels.py'
       - 'scripts/refresh_anniversary_indices.py'
       - 'scripts/anniversary-indices.json'
+      - 'scripts/monthly-automation.json'
       - 'src/data/purchasing-power*'
       - 'src/data/anniversary-levels*'
       - 'src/pages/purchasing-power/**'

@@ -29,8 +29,9 @@ class Monthly(unittest.TestCase):
 
     def test_adjusted_daily_not_monthly_adjusted(self):
         def fetch(url):return chart('1mo' if 'interval=1mo' in url else '1d',adjusted=999 if 'interval=1mo' in url else 10)
-        result=collect_yahoo(CONFIG,NOW,fetch)
+        result=collect_yahoo({**CONFIG,'collectAnniversary':True},NOW,fetch)
         self.assertEqual(result['points'],[['2026-01',10]])
+        self.assertEqual(result['anniversaryPoints'],[['2026-01',12]])
 
     def test_catalog_bootstrap_and_daily_recovery_of_new_registration(self):
         source={**CONFIG, 'consumerScope':'catalog', 'isin':'IE00BYYHSQ67',

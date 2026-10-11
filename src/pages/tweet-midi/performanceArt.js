@@ -1,4 +1,5 @@
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
+import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 
 // Explicit market identities. Index illustrations depict geography, never an ETF issuer.
 const groups = {
@@ -10,6 +11,9 @@ const groups = {
   infrastructure: ['airliquide'], utilities: ['schneider'], silver: ['silver'],
 }
 export const PERFORMANCE_ART = Object.freeze({
+  ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
+    scene: `etf-night/${id === 'etfEpra' ? 'property' : id === 'etfCmod' ? 'commodities' : id === 'etfLock' ? 'security' : asset.scene}.webp`,
+  }])),
   ...Object.fromEntries(Object.entries(groups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: `etf-night/${scene}.webp` }]))),
   ...Object.fromEntries(['bitcoin', 'ethereum', 'apple', 'microsoft', 'broadcom', 'tesla', 'berkshire', 'asml'].map(id => [id, { mark: ANNIVERSARY_ART[id].mark }])),
   or: { scene: 'approved/performance-gold-glass.webp' },

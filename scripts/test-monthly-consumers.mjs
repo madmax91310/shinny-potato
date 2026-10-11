@@ -42,20 +42,20 @@ try {
     if (record.consumerScope === 'catalog') {
       assert.equal(ETF_MONTHLY_HISTORIES[id].points.at(-1).date, record.periodEnd);
       assert.equal(ETF_MONTHLY_HISTORIES[id].checkedAt, record.checkedAt);
-      assert(!ASSETS[id], 'Collection must not expose a new ETF in tools before connection');
-      continue;
+      assert(ASSETS[id], 'New month must reach the connected ETF tools');
     }
     assert.equal(ASSETS[id].points.at(-1).date,record.periodEnd);
     assert.equal(MARKET_HISTORY_REVIEW[`history:${id}`].periodEnd,record.periodEnd);
     assert.equal(MARKET_HISTORY_REVIEW[`history:${id}`].checkedAt,record.checkedAt);
     if(record.anniversaryPoints?.length)assert.equal(ASSETS[id].anniversaryPoints.at(-1).date,record.periodEnd);
-    const points=ASSETS[id].points.filter(p=>p.date>='2020-01');
+    const startYm = record.periodStart > '2020-01' ? record.periodStart : '2020-01';
+    const points=ASSETS[id].points.filter(p=>p.date>=startYm);
     const expected=points.reduce((n,p)=>n+100/p.price,0)*points.at(-1).price;
-    const result=derive({assetId:id,amountRaw:'100',startYear:2020,startMonth:1,mode:'dca',overridePriceRaw:''});
+    const result=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode:'dca',overridePriceRaw:''});
     assert.equal(result.endYm,record.periodEnd);
     if(ASSETS[id].currency==='EUR') { assert.equal(result.inflation,null,'Do not invent missing future INSEE inflation'); assert(result.livretA); }
     assert(Math.abs(result.result.finalValue-expected)<1e-6);
-    assert(Math.abs(computeComparativeSeries(id,'2020-01',record.periodEnd,100,'dca').finalValue-expected)<1e-6);
+    assert(Math.abs(computeComparativeSeries(id,startYm,record.periodEnd,100,'dca').finalValue-expected)<1e-6);
     if(HISTORY_STATISTIC_IDS.includes(id)){
       // La période reste vérifiée dans les précisions et dans le récit, sans imposer
       // une date technique à l'accroche éditoriale.

@@ -1,4 +1,5 @@
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
+import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 
 const paperGroups = {
   world: ['world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea', 'world-meme-indice-pea'], america: ['usa','usa-pea','sp500-meme-indice-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
@@ -26,7 +27,12 @@ const neonGroups = {
   // Crypto use the existing verified vector symbols, illuminated in Canvas.
   crypto: ['bitcoin', 'ethereum'],
 }
-export const NEON_ASSET_ART = Object.freeze(Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: ANNIVERSARY_ART[id]?.kind === 'logo' ? ANNIVERSARY_ART[id].mark : null }]))))
+export const NEON_ASSET_ART = Object.freeze({
+  ...Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: ANNIVERSARY_ART[id]?.kind === 'logo' ? ANNIVERSARY_ART[id].mark : null }]))),
+  ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
+    scene: id === 'etfCmod' ? 'industry' : asset.scene, mark: null,
+  }])),
+})
 
 export async function loadNeonArt(id) {
   const art = NEON_ASSET_ART[id]

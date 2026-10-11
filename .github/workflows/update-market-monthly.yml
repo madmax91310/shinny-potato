@@ -73,6 +73,7 @@ jobs:
       - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:calculator-series
       - run: node scripts/test-monthly-consumers.mjs
+      - run: node scripts/test-etf-tool-connections.mjs
       - run: npm run audit:data-catalog
       - run: npm run audit:data-provenance
       - run: npm run verify:tweet-midi

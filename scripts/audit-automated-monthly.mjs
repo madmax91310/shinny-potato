@@ -22,13 +22,14 @@ for (const [id, record] of Object.entries(records)) {
   assert(asset, `Missing active history ${id}`);
   if (catalog) {
     assert.equal(record.field, 'adjclose');
-    assert.equal(record.collectAnniversary, false);
+    assert.equal(record.collectAnniversary, true);
+    assert.equal(record.anniversaryPoints.length, record.points.length);
     const suffix = { XPAR: '.PA', XAMS: '.AS', XETR: '.DE', XLON: '.L', ETFP: '.MI' }[record.mic];
     assert.equal(record.symbol, record.ticker + suffix);
     assert(INSTRUMENT_LISTINGS_BY_ISIN[record.isin]?.some(listing =>
       listing.evidenceId === record.listingEvidenceId && listing.ticker === record.ticker &&
       listing.mic === record.mic && listing.currency === record.currency), `${id}: exact documented listing`);
-    assert(!ASSETS[id], `${id}: tool connection is a separate step`);
+    assert(ASSETS[id], `${id}: shared tool connection`);
   }
   for (const key of Object.keys(source)) assert.deepEqual(record[key], source[key], `${id} ${key}`);
   assert.equal(record.responseSha256, evidence[id].responseSha256);
@@ -59,14 +60,14 @@ for (const [id, record] of Object.entries(records)) {
       assert.deepEqual(ASSETS[id].anniversaryPoints[i], {date,price:record.anniversaryPoints[i][1]});
     }
   }
-  if (catalog) continue;
   assert.equal(MARKET_HISTORY_REVIEW[`history:${id}`].periodEnd, record.periodEnd);
-  const prices=ASSETS[id].points.filter(p=>p.date>='2020-01');
+  const startYm = record.periodStart > '2020-01' ? record.periodStart : '2020-01';
+  const prices=ASSETS[id].points.filter(p=>p.date>=startYm);
   for (const mode of ['lump','dca']) {
     const expected=(mode==='lump'?100/prices[0].price:prices.reduce((n,p)=>n+100/p.price,0))*prices.at(-1).price;
-    const d=derive({assetId:id,amountRaw:'100',startYear:2020,startMonth:1,mode,overridePriceRaw:''});
+    const d=derive({assetId:id,amountRaw:'100',startYear:Number(startYm.slice(0,4)),startMonth:Number(startYm.slice(5)),mode,overridePriceRaw:''});
     assert(Math.abs(d.result.finalValue-expected)<1e-6, `${id} ${mode} calculator`);
-    assert(Math.abs(computeComparativeSeries(id,'2020-01',record.periodEnd,100,mode).finalValue-expected)<1e-6);
+    assert(Math.abs(computeComparativeSeries(id,startYm,record.periodEnd,100,mode).finalValue-expected)<1e-6);
   }
   if (HISTORY_STATISTIC_IDS.includes(id)) {
       // La période reste vérifiée dans les précisions et dans le récit, sans imposer

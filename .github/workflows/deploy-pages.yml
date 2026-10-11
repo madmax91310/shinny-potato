@@ -102,6 +102,7 @@ jobs:
       - run: npm run audit:calculator-series
       - run: node scripts/test-gold-consumers.mjs
       - run: node scripts/test-monthly-consumers.mjs
+      - run: node scripts/test-etf-tool-connections.mjs
       - run: node scripts/test-investment-conclusions.mjs
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
       - run: node scripts/test-anniversary-indices.mjs
