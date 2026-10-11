@@ -33,17 +33,13 @@ export const FICHE_LEXIQUE_EDITORIAL = {
       {
         "titre": "🧮 Un exemple concret",
         "contenu": `Tu as versé 10 000 € et ton PEA vaut 15 000 € après cinq ans. Tu retires tout : le gain est de 5 000 €. S'il est entièrement soumis au taux actuel de ${n('peaSocial')} %, tu paies 5 000 € × ${n('peaSocial')} % = ${money(5000 * R.peaSocial / 100)} € de prélèvements sociaux. Tu récupères ${money(15000 - 5000 * R.peaSocial / 100)} € nets. Tes 10 000 € versés ne sont pas taxés.`
-      },
-      {
-        "titre": "⚠️ À retenir",
-        "contenu": "Après cinq ans, les gains sont exonérés d’impôt sur le revenu, mais les prélèvements sociaux restent dus. Certains gains anciens peuvent relever de taux historiques. L’avantage fiscal ne protège pas des baisses de marché."
       }
     ],
-    ouverture: "Le PEA, c’est quoi ?\n\nJe t’explique comment ça fonctionne 👇",
+    ouverture: "Le PEA, c’est quoi ?\n\nJe t’explique tout ce que tu dois savoir 👇",
     exemple: `Tu as versé 10 000 € et ton PEA vaut 15 000 € après cinq ans. Tu retires tout : le gain est de 5 000 €. S'il est entièrement soumis au taux actuel de ${n('peaSocial')} %, tu paies 5 000 € × ${n('peaSocial')} % = ${money(5000 * R.peaSocial / 100)} € de prélèvements sociaux. Tu récupères ${money(15000 - 5000 * R.peaSocial / 100)} € nets. Tes 10 000 € versés ne sont pas taxés.`,
     definition: "Le PEA est une enveloppe pour investir en actions et en ETF éligibles, avec une fiscalité liée à son ancienneté.",
     limite: "Un retrait trop tôt clôture en principe le PEA, sauf exceptions. L'avantage fiscal ne protège pas des baisses de marché.",
-    question: "Tu savais que vendre dans le PEA et retirer du PEA sont deux opérations différentes ?",
+    question: "Pour investir, tu privilégies le PEA ou une autre enveloppe ?",
   },
   cto: {
     ouverture: "Le CTO, c’est quoi ?\n\nJe t’explique comment ça fonctionne 👇",
@@ -345,7 +341,7 @@ export const FICHE_LEXIQUE_EDITORIAL = {
     attention: "Il s'agit d'une exonération d'impôt sur le revenu, pas d'un abattement. Les prélèvements sociaux restent dus, avec des taux historiques possibles pour certains gains anciens.",
     titre: "l'exonération du PEA après cinq ans",
     ouverture: "L'exonération du PEA après 5 ans, c’est quoi ?\n\nJe t’explique comment ça fonctionne 👇",
-    exemple: `Ton PEA, ouvert par un premier versement il y a plus de cinq ans, contient 10 000 € de versements et 5 000 € de gains. Lors d'un retrait total, si tous les gains relèvent du taux actuel de ${n('ctoSocial')} %, les prélèvements sociaux sont de ${money(5000 * R.peaSocial / 100)} €, l'impôt sur le revenu de 0 € et le montant net récupéré de ${money(15000 - 5000 * R.peaSocial / 100)} €. Un nouveau versement ne relance pas le délai de cinq ans.`,
+    exemple: `Ton PEA, ouvert par un premier versement il y a plus de cinq ans, contient 10 000 € de versements et 5 000 € de gains. Lors d'un retrait total, si tous les gains relèvent du taux actuel de ${n('peaSocial')} %, les prélèvements sociaux sont de ${money(5000 * R.peaSocial / 100)} €, l'impôt sur le revenu de 0 € et le montant net récupéré de ${money(15000 - 5000 * R.peaSocial / 100)} €. Un nouveau versement ne relance pas le délai de cinq ans.`,
     definition: "Après cinq ans, les gains retirés du PEA sont exonérés d'impôt sur le revenu. Il s'agit d'une exonération, pas d'un abattement sur une partie du gain.",
     limite: "Les prélèvements sociaux restent dus sur les gains, avec un taux qui peut dépendre de leur date d'acquisition.",
   },
@@ -374,3 +370,56 @@ export const FICHE_LEXIQUE_EDITORIAL = {
     limite: "Une baisse de la nouvelle émission ne garantit pas une hausse du prix. Les hausses passées ne promettent pas le même scénario.",
   },
 };
+
+
+// Rubriques adaptées aux enveloppes : les règles précèdent l’exemple,
+// sans répéter la fiscalité dans une conclusion générique.
+// Sources officielles PEA, assurance-vie, PER et LDDS revérifiées le 11/10/2026.
+const rubrique = (titre, contenu) => ({ titre, contenu });
+const adapterEnveloppe = (id, rubriques, question) => {
+  const fiche = FICHE_LEXIQUE_EDITORIAL[id];
+  fiche.sections = [
+    rubrique('🔎 La définition', fiche.definition),
+    ...rubriques,
+    rubrique('🧮 Un exemple concret', fiche.exemple),
+  ];
+  fiche.question = question;
+};
+
+adapterEnveloppe('cto', [
+  rubrique('💼 Les placements et le plafond', "Tu peux acheter des actions françaises ou étrangères, des ETF et des obligations, selon l’offre de ton courtier. Il n’y a pas de plafond de versement. Le capital n’est pas garanti : la valeur des placements peut monter ou baisser."),
+  rubrique('💰 Quand les gains sont imposés', `Une vente peut déclencher l’impôt sur la plus-value, même si tu gardes l’argent dans le CTO. Les dividendes sont imposés lorsqu’ils sont encaissés. Une hausse de cours sans vente ne déclenche pas d’impôt sur la plus-value.\n\nAu taux général actuellement publié, les plus-values réalisées relèvent du PFU de ${n('ctoTotal')} % : ${n('ctoIncome')} % d’impôt sur le revenu et ${n('ctoSocial')} % de prélèvements sociaux. Les dividendes relèvent du taux général de ${n('dividendTotal')} %. Une option globale pour le barème est possible. Les moins-values peuvent réduire les plus-values imposables selon les règles de compensation.`),
+  rubrique('🔁 Et si tu retires de l’argent ?', "Le retrait d’espèces du CTO ne déclenche pas à lui seul un nouvel impôt. C’est la vente avec une plus-value ou l’encaissement d’un revenu qui compte. Les frais de courtage et de tenue de compte dépendent du courtier."),
+], "Pour les placements absents du PEA, tu utilises un CTO ?");
+
+adapterEnveloppe('assurance-vie', [
+  rubrique('💼 Les supports et le plafond', "Tu verses de l’argent, puis tu choisis parmi les supports proposés par le contrat : fonds en euros, ETF, fonds ou SCPI. Il n’y a pas de plafond de versement. La garantie du fonds en euros dépend du contrat, parfois hors frais de gestion. Les unités de compte peuvent perdre de la valeur."),
+  rubrique('⏳ Pourquoi les huit ans comptent', `Les huit ans se comptent depuis l’ouverture du contrat. Ton argent n’est pas bloqué jusque-là : tu peux demander un retrait, appelé rachat.\n\nAprès huit ans, un abattement annuel de ${n('avSingleAllowance')} € pour une personne seule ou ${n('avCoupleAllowance')} € pour un couple marié ou pacsé imposé en commun s’applique aux gains retirés, pour l’ensemble de tes contrats. Il réduit l’impôt sur le revenu, mais pas les prélèvements sociaux.`),
+  rubrique('💰 Ce qui est taxé lors d’un retrait', `Un rachat contient une part de tes versements et une part de gains. Seuls les gains sont concernés par la fiscalité de sortie.\n\nPour les versements effectués depuis le 27 septembre 2017, le taux forfaitaire d’impôt sur le revenu est de ${n('avBeforeEightIncome')} % avant huit ans. Après huit ans et après abattement, il est de ${n('avLowerIncome')} % pour la part des gains liée aux primes n’excédant pas ${n('avPremiumThreshold')} €, ou de ${n('avHigherIncome')} % au-delà, en tenant compte de l’ensemble des contrats. Une option globale pour le barème est possible ; les versements plus anciens suivent d’autres règles. Les prélèvements sociaux des contrats ordinaires restent en principe de ${n('avSocial')} %, selon les supports et les montants déjà prélevés.`),
+  rubrique('🔁 Changer de support ou retirer ?', "Vendre un support pour en acheter un autre dans le contrat est un arbitrage, pas un rachat. Cela ne déclenche pas l’impôt sur le revenu lié à la sortie. Vérifie les frais de versement, de gestion et d’arbitrage du contrat."),
+], "Dans ton assurance-vie, tu privilégies le fonds en euros ou les unités de compte ?");
+
+adapterEnveloppe('per', [
+  rubrique('💼 Les placements', "Selon le contrat, tu peux investir dans des fonds, des ETF, un fonds en euros ou des SCPI. La gestion pilotée adapte la répartition à l’approche de la retraite ; tu peux aussi choisir la gestion libre. Les supports peuvent perdre de la valeur."),
+  rubrique('💰 Le plafond de déduction', `Tu peux déduire tes versements volontaires de ton revenu imposable dans la limite de ton plafond disponible. Tu peux aussi renoncer à cette déduction.\n\nPour un salarié, le plafond ${R.perDeductionYear} repose sur ${n('perDeductionRate')} % des revenus professionnels ${R.perRevenueYear}, avec un minimum de ${n('perMinimum')} € et un maximum de ${n('perMaximum')} € avant ajustements individuels. Ton avis d’impôt précise ton plafond personnel. Il s’agit d’un plafond de déduction fiscale, pas d’un plafond de versement.`),
+  rubrique('⏳ Quand récupérer l’argent ?', "L’épargne est en principe bloquée jusqu’à la retraite. Des déblocages anticipés existent, notamment pour l’achat de la résidence principale ou certains accidents de la vie. Les conditions dépendent de l’origine des sommes."),
+  rubrique('🔁 La fiscalité à la sortie', `Pour une sortie en capital de versements volontaires déduits, tes versements sont imposés au barème de l’impôt sur le revenu, sans prélèvements sociaux. Les gains relèvent du PFU de ${n('perTotal')} % pour les intérêts perçus à partir de ${R.perTaxYear}, avec une option globale possible pour le barème.\n\nSi tu n’as pas déduit les versements, leur remboursement n’est pas soumis à l’impôt sur le revenu ; les gains restent imposables. Une sortie en rente suit d’autres règles. L’économie d’impôt à l’entrée doit donc être comparée à la fiscalité à la sortie.`),
+], "Tu utilises le PER pour préparer ta retraite ?");
+
+adapterEnveloppe('livret-a', [
+  rubrique('💰 Le plafond', `Tu peux déposer jusqu’à ${n('livretCeiling')} € sur ton Livret A. Les intérêts peuvent porter le solde au-delà de ce plafond. Ce n’est pas un compte pour acheter des actions ou des ETF.`),
+  rubrique('🔁 Les dépôts et les retraits', "Tu peux déposer et retirer de l’argent selon tes besoins, sans pénalité de retrait. Il n’y a pas de durée minimale de détention."),
+  rubrique('📈 Les intérêts et la fiscalité', `Le taux de la dernière publication validée est de ${rateLabel(livretRate)} %. Il peut changer : ce n’est pas un rendement fixé pour toutes les années à venir. Les intérêts sont calculés par quinzaines et sont exonérés d’impôt sur le revenu et de prélèvements sociaux.\n\nLe capital est garanti, mais le taux peut être inférieur à l’inflation : ton épargne peut perdre du pouvoir d’achat.`),
+], "Tu gardes ton épargne de précaution sur un Livret A ?");
+
+adapterEnveloppe('ldds', [
+  rubrique('💰 Le plafond', `Tu peux déposer jusqu’à ${n('lddsCeiling')} € sur un LDDS. Les intérêts peuvent porter le solde au-delà de ce plafond. Tu peux détenir un LDDS et un Livret A : il n’est pas nécessaire de remplir le Livret A pour ouvrir le LDDS.`),
+  rubrique('🔁 Les dépôts et les retraits', "L’argent reste disponible, sans durée minimale de détention ni pénalité de retrait. Le LDDS reçoit des dépôts en euros, pas des actions ou des ETF."),
+  rubrique('📈 Les intérêts et la fiscalité', `Le taux de la dernière publication validée est de ${rateLabel(R.lddsRate)} %. Il suit celui du Livret A et peut changer. Les intérêts sont calculés par quinzaines et sont exonérés d’impôt sur le revenu et de prélèvements sociaux.\n\nLe capital est garanti, mais le rendement ne garantit pas de suivre l’inflation.`),
+], "Tu utilises aussi le LDDS pour ton épargne disponible ?");
+
+adapterEnveloppe('abattement-pea', [
+  rubrique('⏳ Le point de départ des cinq ans', "Le délai commence au premier versement sur le PEA. Il ne repart pas de zéro à chaque achat ou nouveau versement : un versement à la quatrième année bénéficie de l’ancienneté du plan."),
+  rubrique('💰 Ce qui reste à payer', `Après cinq ans, les gains retirés sont exonérés d’impôt sur le revenu, mais restent soumis aux prélèvements sociaux au taux actuel de ${n('peaSocial')} %. Certains gains anciens peuvent relever de taux historiques. Tes versements ne sont pas taxés. L’avantage fiscal ne garantit pas le capital.`),
+  rubrique('🔁 Retrait partiel ou total ?', "Un retrait partiel après cinq ans ne ferme pas le PEA. Tu peux continuer à investir et à verser dans la limite du plafond de versement. Un retrait total clôture le plan. Vendre un titre et garder l’argent dans le PEA ne constitue pas un retrait."),
+], "Tu savais qu’un retrait partiel après cinq ans permet de garder ton PEA ouvert ?");

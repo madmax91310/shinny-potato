@@ -13,7 +13,8 @@ for (const terme of TERMES) {
   assert(text.length > 700 && text.length < 4000, `${terme.id}: une fiche détaillée et lisible`);
   assert(sections.every(s => s.titre && s.contenu), `${terme.id}: rubrique complète`);
   assert.equal(sections[0].titre, '🔎 La définition', `${terme.id}: définition en premier`);
-  assert.equal(sections.at(-1).titre, '⚠️ À retenir', `${terme.id}: vigilance en dernier`);
+  if (!FICHE_LEXIQUE_EDITORIAL[terme.id].sections) assert.equal(sections.at(-1).titre, '⚠️ À retenir', `${terme.id}: vigilance en dernier`);
+  if (FICHE_LEXIQUE_EDITORIAL[terme.id].question) assert(text.endsWith(`💬 ${FICHE_LEXIQUE_EDITORIAL[terme.id].question}`), `${terme.id}: question finale copiée`);
   const exampleIndex = sections.findIndex(s => /exemple/i.test(s.titre));
   assert(exampleIndex > 1, `${terme.id}: exemple après le fonctionnement ou le calcul`);
   assert(text.startsWith(`📖 ${FICHE_LEXIQUE_EDITORIAL[terme.id].ouverture}`), `${terme.id}: notion annoncée dans le hook`);
@@ -26,7 +27,7 @@ for (const terme of TERMES) {
 
 // Le contenu doit expliquer l'assiette, les délais et les résultats nets.
 const pea = getFicheLexiqueText('pea');
-for (const rule of [/premier versement/, /retrait partiel/, /retrait total/i, /ne constitue pas un retrait/, /taux historiques/]) assert.match(pea, rule);
+for (const rule of [/premier versement/, /retrait partiel/, /retrait total/i, /ne constitue pas un retrait/]) assert.match(pea, rule);
 for (const value of [n('peaCeiling') + ' €', n('peaTotal') + ' %', n('peaIncome') + ' %', n('peaSocial') + ' %', money(5000 * R.peaSocial / 100) + ' €', money(15000 - 5000 * R.peaSocial / 100) + ' €']) assert(pea.includes(value));
 const cto = getFicheLexiqueText('cto');
 assert(cto.includes(money(300 * R.ctoTotal / 100) + ' €'));
