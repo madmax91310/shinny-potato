@@ -113,7 +113,7 @@ export async function renderInvestmentImage(state, d) {
   text(ctx, money(d.result.finalValue, currency), 640, 537, 110, { width: 640, color: gain < 0 ? RED : GREEN })
   text(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 1515, 534, 40, { width: 225, color: gain < 0 ? RED : GREEN, align: 'right' })
   if (dca) text(ctx, `${gain < 0 ? 'Perte' : 'Gain'} sur les sommes versées`, 1515, 574, 20, { width: 285, color: MUTED, align: 'right', weight: 400 })
-  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 650, 582, 25, { width: 870, color: MUTED })
+  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 650, 582, 25, { width: 555, color: MUTED })
   const kind = investmentChartKind(state, d)
   chart(ctx, state, d, currency, kind)
   const details = [`En ${currency}`, hasOverride(state) && !d.isCustom ? 'Prix final saisi' : null, asset?.returnNote].filter(Boolean).join(' · ')
