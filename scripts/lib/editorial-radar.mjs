@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto'
 
-export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques' }
+export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
 export function stable(value) {
   if (Array.isArray(value)) return `[${value.map(stable).join(',')}]`
   if (value && typeof value === 'object') return `{${Object.keys(value).sort().map(key => `${JSON.stringify(key)}:${stable(value[key])}`).join(',')}}`
@@ -45,10 +45,13 @@ function makeEvent(before, after, detectedAt, kind = 'change') {
   const id = digest({ key: observationKey(after), before: before?.value ?? null, after: after.value, beforePeriod: before?.period ?? null, afterPeriod: after.period })
   const beforeText = before ? displayValue(before.value, after.unit) : 'Pas encore suivi'
   const afterText = displayValue(after.value, after.unit)
+  const purchasing = after.family === 'pouvoir-achat'
+  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary'].map(key => [key, after[key] ?? ''])) : {}
   const title = after.rule === 'announcement' ? `Nouveau communiqué officiel : ${after.label}` : kind === 'new' ? `${after.label} : nouvelle donnée suivie` : isPublication ? `${after.label} : nouvelle publication` : `${after.label} : ${after.fieldLabel.toLocaleLowerCase('fr-FR')} en mouvement`
   const movement = kind === 'new' ? `Une nouvelle donnée sourcée est disponible : ${afterText}.` : isPublication ? `La publication ${after.period} est disponible : ${afterText}.` : `${after.fieldLabel} : ${beforeText} → ${afterText}.`
   const angle = after.angle ?? `Qu’est-ce que cette évolution change pour quelqu’un qui utilise ${after.label} ?`
-  return { id, family: after.family, entity: after.entity, label: after.label, field: after.field, fieldLabel: after.fieldLabel, title, kind: kind === 'new' ? 'new' : isPublication ? 'publication' : 'change', priority: after.priority ?? 'normal', detectedAt, before: before?.value ?? null, after: after.value, beforeText, afterText, beforePeriod: before?.period ?? null, period: after.period, scope: after.scope, unit: after.unit ?? '', sourceUrl: after.sourceUrl, previousSourceUrl: before?.sourceUrl ?? null, checkedAt: after.checkedAt, tool: after.tool, angle, draft: `${movement}\n\n${after.label}${after.entity.match(/^[A-Z]{2}[A-Z0-9]{10}$/) ? ` · ${after.entity}` : ''}\nPérimètre : ${after.scope}\n${before ? `Ancienne observation : ${before.period}\n` : ''}Observation actuelle : ${after.period}\n\n${angle}`, reason: after.reason ?? 'Changement d’une donnée publiée, à périmètre comparable.' }
+  const purchasingDraft = purchasing ? `🔖 Sauvegarde ce tweet\n\n${after.label}\n\n${after.summary}\n\n📌 ${after.status}\n\n${angle}\n\nSource : ${after.sourceUrl}` : null
+  return { ...metadata, id, family: after.family, entity: after.entity, label: after.label, field: after.field, fieldLabel: after.fieldLabel, title: purchasing ? `${kind === 'new' ? 'Pouvoir d’achat' : 'Actualité mise à jour'} : ${after.label}` : title, kind: kind === 'new' ? 'new' : isPublication ? 'publication' : 'change', priority: after.priority ?? 'normal', detectedAt, before: before?.value ?? null, after: after.value, beforeText, afterText, beforePeriod: before?.period ?? null, period: after.period, scope: after.scope, unit: after.unit ?? '', sourceUrl: after.sourceUrl, previousSourceUrl: before?.sourceUrl ?? null, checkedAt: after.checkedAt, tool: after.tool, angle, draft: purchasingDraft ?? `${movement}\n\n${after.label}${after.entity.match(/^[A-Z]{2}[A-Z0-9]{10}$/) ? ` · ${after.entity}` : ''}\nPérimètre : ${after.scope}\n${before ? `Ancienne observation : ${before.period}\n` : ''}Observation actuelle : ${after.period}\n\n${angle}`, reason: after.reason ?? 'Changement d’une donnée publiée, à périmètre comparable.' }
 }
 
 // The reference advances only after an emitted signal, so small daily changes
@@ -60,7 +63,7 @@ export function shouldRefreshRadar(previous, { eventName, sourceRevision, now = 
   const elapsed = now.getTime() - Date.parse(previous.lastCheckedAt)
   return !Number.isFinite(elapsed) || elapsed < 0 || elapsed >= 15 * 60000
 }
-export function advanceRadar(previous, observations, { now = new Date(), sourceRevision = '', errors = [] } = {}) {
+export function advanceRadar(previous, observations, { now = new Date(), sourceRevision = '', errors = [], purchasingSources = [] } = {}) {
   if (previous && (previous.schemaVersion !== 1 || !previous.current || !previous.anchors || !Array.isArray(previous.events))) throw new Error('Historique radar invalide : conservation du fichier précédent.')
   const stamp = now.toISOString(), state = previous ? structuredClone(previous) : { schemaVersion: 1, initializedAt: stamp, current: {}, anchors: {}, events: [] }
   const issues = [...errors], newEvents = [], seen = new Set(state.events.map(event => event.id))
@@ -108,8 +111,9 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
       // Initialisation is silent. New fields on an existing product are also
       // silent: a newly qualified parser is not a market announcement.
       // Old articles added to a newsroom archive are not breaking news.
-      const recentAnnouncement = after.rule !== 'announcement' || Date.parse(after.period) >= Date.parse(state.initializedAt) - 7 * 86400000
-      if (previous && !entities.has(`${after.family}:${after.entity}`) && after.discovery && recentAnnouncement) {
+      const familyBootstrap = after.family === 'pouvoir-achat' && !Object.values(previous?.current ?? {}).some(o => o.family === after.family)
+      const recentAnnouncement = after.rule !== 'announcement' || Date.parse(after.period) >= Date.parse(after.family === 'pouvoir-achat' ? stamp : state.initializedAt) - 7 * 86400000
+      if (previous && !familyBootstrap && !entities.has(`${after.family}:${after.entity}`) && after.discovery && recentAnnouncement) {
         const event = makeEvent(null, after, stamp, 'new')
         if (!seen.has(event.id)) { seen.add(event.id); newEvents.push(event) }
       }
@@ -131,6 +135,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   state.lastErrorCount = issues.length
   const counts = Object.fromEntries(Object.keys(FAMILIES).map(family => [family, new Set(valid.filter(o => o.family === family).map(o => o.entity)).size]))
   // All history stays in the state branch. The public feed is bounded.
-  const feed = { schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: newEvents.length, errors: issues, events: state.events.filter(event => event.status !== 'source-conflict').slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
+  const purchasingItems = Object.values(state.current).filter(o => o.family === 'pouvoir-achat').sort((a, b) => b.period.localeCompare(a.period) || a.label.localeCompare(b.label)).slice(0, 120)
+  const feed = { purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: newEvents.length, errors: issues, events: state.events.filter(event => event.status !== 'source-conflict').slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
   return { state, feed, newEvents }
 }

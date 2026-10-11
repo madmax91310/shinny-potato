@@ -1,0 +1,129 @@
+import { createHash } from 'node:crypto'
+
+// Public official feeds only: no API key, paid service or manual article list.
+export const PURCHASING_SOURCES = [
+  { id: 'service-public', name: 'Service Public', url: 'https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss', hosts: ['www.service-public.gouv.fr', 'www.service-public.fr'] },
+  { id: 'bercy', name: 'Ministère de l’Économie', url: 'https://www.economie.gouv.fr/rss/toutesactualites', hosts: ['www.economie.gouv.fr'] },
+  { id: 'vie-publique-actualites', name: 'Vie publique · actualités', url: 'https://www.vie-publique.fr/actualites-feeds.xml', hosts: ['www.vie-publique.fr'] },
+  { id: 'vie-publique-lois', name: 'Vie publique · lois', url: 'https://www.vie-publique.fr/lois-feeds.xml', hosts: ['www.vie-publique.fr'] },
+]
+export const TOPICS = {
+  logement: { label: 'Logement', pattern: /\bptz\b|pret a taux zero|pompe a chaleur|credit immobilier|loyers?|logements?|maprimerenov|renovation energetique|aides? (?:a l achat|au logement)|\bapl\b/, question: 'Qui peut en bénéficier, à partir de quand et sous quelles conditions ?' },
+  fiscalite: { label: 'Épargne et fiscalité', pattern: /impots?|fiscal|livrets?|epargne|assurance.vie|\bpea\b|prelevement a la source|taxe fonciere|taxe d habitation|bareme|loi de finances|\bplf(?:ss)?\b|budget 20\d\d|projet de budget|actionnariat salarie|interessement|participation salariale/, question: 'Qui est concerné et qu’est-ce que cela change pour l’épargne ou les impôts ?' },
+  depenses: { label: 'Dépenses courantes', pattern: /electricite|\bgaz\b|energie|carburants?|essence|assurances?|frais bancaires|alimentation|inflation|prix a la consommation|pouvoir d achat|cout de la vie|titres.restaurant|pompe a chaleur|mutuelles?|medicaments?|franchises medicales|participations forfaitaires|transports?|abonnements?|telephonie/, question: 'Qui paiera davantage ou moins, et à quelle date ?' },
+  revenus: { label: 'Revenus et aides', pattern: /\bsmic\b|salaires?|remuneration|retraites?|\bpensions?\b|prime d activite|\brsa\b|allocations?|prestations?|aides? sociales?|cheque energie|prime carburant|bourses? (?:etudiant|scolaire)|allocation.*chomage|indemnites? journalieres|conge parental/, question: 'Pour quels foyers, avec quelles conditions et quel montant ?' },
+}
+const normalize = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().replace(/[’']/g, ' ')
+export function cleanText(value = '') {
+  return value.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&#(x[\da-f]+|\d+);/gi, (_, code) => { const n = code[0].toLowerCase() === 'x' ? parseInt(code.slice(1), 16) : Number(code); return n > 0 && n <= 0x10ffff && !(n >= 0xd800 && n <= 0xdfff) ? String.fromCodePoint(n) : '' })
+    .replace(/&(?:amp|lt|gt|quot|apos|nbsp);/g, m => ({ '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&apos;': "'", '&nbsp;': ' ' })[m])
+    .replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+}
+const tag = (xml, name) => xml.match(new RegExp(`<${name}\\b[^>]*>([\\s\\S]*?)<\\/${name}>`, 'i'))?.[1] ?? ''
+export function officialUrl(value, source) {
+  const url = new URL(value, source.url)
+  if (url.protocol !== 'https:' || !source.hosts.includes(url.hostname) || url.username || url.password || url.port) throw new Error('Lien d’actualité non officiel.')
+  for (const key of [...url.searchParams.keys()]) if (/^(utm_|egn-|xtor$|fbclid$)/i.test(key)) url.searchParams.delete(key)
+  url.hash = ''
+  // Service Public's former hostname is an alias, not a new announcement.
+  if (url.hostname === 'www.service-public.fr') url.hostname = 'www.service-public.gouv.fr'
+  url.searchParams.sort()
+  return url.href
+}
+export function classifyTopic(title, summary) {
+  const t = normalize(title), s = normalize(summary)
+  // Avoid corporate-tax and professional-only articles in a household radar.
+  if (/\bprofessionnels?\b|\bentreprises?\b/.test(t) && !/particuliers|salarie|menages|foyers|consommateur/.test(t)) return null
+  const direct = Object.keys(TOPICS).find(id => TOPICS[id].pattern.test(t))
+  if (direct) return direct
+  if (!/montant|euros|€|aide|revalor|plafond|taux|prix|versement|revenu|prime|impot|frais|facture|tarif/.test(s)) return null
+  return Object.keys(TOPICS).find(id => TOPICS[id].pattern.test(s)) ?? null
+}
+// Legislative status is tied to an explicit short extract, never to the host
+// or to an old law mentioned in the full article. A chamber vote ≠ enactment.
+export function classifyStatus(title, summary) {
+  const clauses = [title, ...summary.split(/(?<=[.!?])\s+/)].filter(Boolean)
+  let fallback
+  for (const clause of clauses) {
+    const s = normalize(clause)
+    if (/ne .*pas.*(?:adopt|vot|promulgu|vigueur)|pas encore|pourrait|serait|devrait/.test(s)) continue
+    let status
+    if (/entre(?:e|nt|ra|ront)? en vigueur|applicable|s applique|sont appliqu|est applique/.test(s)) {
+      status = /entrera|entreront|sera applicable|seront applicables|s appliquera/.test(s) ? 'Application annoncée' : 'Application indiquée'
+    } else if (/promulgu/.test(s)) status = 'Promulgation indiquée'
+    else if (/(?:adopte|vote|approuve)(?:e|es|s)?\b/.test(s)) status = 'Vote indiqué · étape à vérifier'
+    else if (/projet de loi|proposition de loi|amendement|propose|en debat/.test(s)) status = 'Proposition / en discussion'
+    else if (/annonce|prevoit|prevu|prevision/.test(s)) status = 'Annonce'
+    if (status) {
+      const result = { status, evidence: clause.slice(0, 450) }
+      if (status === 'Proposition / en discussion' || status === 'Annonce') fallback ??= result
+      else return result
+    }
+  }
+  return fallback ?? { status: 'À préciser', evidence: '' }
+}
+export function parsePurchasingFeed(xml, source, now = new Date()) {
+  if (xml.length > 2000000 || /<!DOCTYPE|<!ENTITY/i.test(xml) || !/<rss\b/i.test(xml) || !/<channel\b/i.test(xml) || !/<\/rss>\s*$/i.test(xml)) throw new Error('Flux officiel invalide ou format modifié.')
+  if ((xml.match(/<item\b/gi) ?? []).length !== (xml.match(/<\/item>/gi) ?? []).length) throw new Error('Flux officiel tronqué.')
+  const items = [...xml.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)]
+  if (!items.length && /<item\b/i.test(xml)) throw new Error('Flux officiel tronqué.')
+  const observations = [], errors = []
+  for (const [, item] of items) {
+    try {
+      const title = cleanText(tag(item, 'title')), summary = cleanText(tag(item, 'description')).slice(0, 550)
+      if (!title || title.length > 350) throw new Error('Titre manquant ou trop long.')
+      const topic = classifyTopic(title, summary)
+      if (!topic) continue
+      const sourceUrl = officialUrl(cleanText(tag(item, 'link')), source)
+      if (!cleanText(tag(item, 'link'))) throw new Error('Lien manquant.')
+      const rawDate = cleanText(tag(item, 'pubDate') || tag(item, 'dc:date'))
+      // Bercy uses local calendar dates without an offset. Preserve the
+      // publisher's calendar day; never substitute today's collection date.
+      const stamp = Date.parse(/^\d{4}-\d{2}-\d{2} /.test(rawDate) ? rawDate.replace(' ', 'T') + 'Z' : rawDate)
+      const period = /^\d{4}-\d{2}-\d{2}/.test(rawDate) ? rawDate.slice(0, 10) : Number.isFinite(stamp) ? new Date(stamp).toISOString().slice(0, 10) : ''
+      const day = Date.parse(`${period}T00:00:00Z`)
+      if (!rawDate || !Number.isFinite(stamp) || !Number.isFinite(day) || new Date(day).toISOString().slice(0, 10) !== period || period > now.toISOString().slice(0, 10)) throw new Error('Date de publication invalide ou future.')
+      // Archives are retained in state; adding one to a feed is not news.
+      if (now.getTime() - day > 45 * 86400000) continue
+      const { status, evidence } = classifyStatus(title, summary)
+      const entity = `purchasing-news-${createHash('sha256').update(sourceUrl).digest('hex').slice(0, 20)}`
+      observations.push({ family: 'pouvoir-achat', entity, label: title, field: 'announcement', fieldLabel: 'Actualité officielle', value: { title, summary, status }, period, checkedAt: now.toISOString(), sourceUrl, scope: 'Actualité officielle · particuliers', tool: '/pouvoir-achat', rule: 'announcement', discovery: true, priority: /\bptz\b|smic|loi de finances|prime|taux|revaloris|plafond/i.test(normalize(title)) ? 'high' : 'normal', topic, topicLabel: TOPICS[topic].label, publisher: source.name, status, statusEvidence: evidence, summary, angle: TOPICS[topic].question, reason: 'Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé.' })
+    } catch (error) { errors.push({ family: 'pouvoir-achat', entity: source.name, reason: error.message }) }
+  }
+  // A duplicate URL is one article even with tracking parameters/aliases.
+  const unique = new Map()
+  for (const o of observations) if (!unique.has(o.entity) || o.period > unique.get(o.entity).period) unique.set(o.entity, o)
+  return { observations: [...unique.values()], errors, itemCount: items.length }
+}
+async function fetchFeed(source, request) {
+  let lastError
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const response = await request(source.url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'Mozilla/5.0 EpargnantLibre-Radar/1.0', Accept: 'application/rss+xml, application/xml, text/xml' } })
+      if (!response.ok) throw new Error(`Flux officiel indisponible (HTTP ${response.status}).`)
+      if (response.url) officialUrl(response.url, source)
+      if (!/xml|rss/i.test(response.headers.get('content-type') ?? '')) throw new Error('La source n’a pas renvoyé un flux XML.')
+      const bytes = await response.arrayBuffer()
+      if (bytes.byteLength > 2000000) throw new Error('Flux officiel trop volumineux.')
+      // Some publishers serve gzip without a Content-Encoding header.
+      const buffer = Buffer.from(bytes)
+      const decoded = buffer[0] === 0x1f && buffer[1] === 0x8b ? (await import('node:zlib')).gunzipSync(buffer, { maxOutputLength: 2000000 }) : buffer
+      return decoded.toString('utf8')
+    } catch (error) { lastError = error }
+  }
+  throw lastError
+}
+export async function collectPurchasingNews(now = new Date(), request = fetch) {
+  const results = await Promise.all(PURCHASING_SOURCES.map(async source => {
+    try {
+      const parsed = parsePurchasingFeed(await fetchFeed(source, request), source, now)
+      return { ...parsed, source: { id: source.id, name: source.name, url: source.url, checkedAt: now.toISOString(), status: parsed.errors.length ? 'partial' : 'ok', articles: parsed.itemCount, relevant: parsed.observations.length } }
+    } catch (error) {
+      return { observations: [], errors: [{ family: 'pouvoir-achat', entity: source.name, reason: error.message }], source: { id: source.id, name: source.name, url: source.url, checkedAt: now.toISOString(), status: 'error', articles: 0, relevant: 0 } }
+    }
+  }))
+  const unique = new Map()
+  for (const o of results.flatMap(r => r.observations)) if (!unique.has(o.entity) || o.period > unique.get(o.entity).period) unique.set(o.entity, o)
+  return { observations: [...unique.values()], errors: results.flatMap(r => r.errors), sources: results.map(r => r.source) }
+}
