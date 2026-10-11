@@ -91,7 +91,11 @@ def collect_yahoo(config, now, fetch=get_json):
     if set(final) != set(expected) or (set(buckets) != set(expected) and not config.get('allowMissingMonthly')):
         reject('Incomplete/stale Yahoo history')
     windows={}
-    if config.get('allowMissingMonthly'):
+    window_months=set(config.get('dailyWindowMonths', []))
+    if window_months and (config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose'
+                          or not window_months <= set(expected)):
+        reject('Unregistered ETF daily window verification')
+    if config.get('allowMissingMonthly') or window_months:
         def window(key):
             boundary=month_shift(dt.datetime.strptime(key,'%Y-%m').replace(tzinfo=UTC),1)
             url='https://query2.finance.yahoo.com/v8/finance/chart/'+quote(config['symbol'],safe='')+'?'+urlencode({
@@ -100,12 +104,13 @@ def collect_yahoo(config, now, fetch=get_json):
             rows=[r for r in rows if r[0].strftime('%Y-%m')==key]
             if tz!=zone or not rows or rows[-1]!=final[key]:reject('Independent month-end daily window disagrees')
             return key,{'url':url,'response':response,'close':rows[-1][1]}
-        with ThreadPoolExecutor(max_workers=3) as pool:windows=dict(pool.map(window,[k for k in expected if k not in buckets]))
+        keys=[k for k in expected if k in window_months or k not in buckets]
+        with ThreadPoolExecutor(max_workers=3) as pool:windows=dict(pool.map(window,keys))
         raw['monthEndWindows']={k:v['response'] for k,v in windows.items()}
     for key in expected:
         date, close, value = final[key]
         boundary = month_shift(dt.datetime.strptime(key, '%Y-%m').replace(tzinfo=UTC), 1).date()
-        checked_close=buckets[key] if key in buckets else windows[key]['close']
+        checked_close=windows[key]['close'] if key in windows else buckets[key]
         if (boundary-date).days > 7 or abs(close-checked_close) > max(.02, close * 1e-7):
             reject('Monthly close differs from final daily session')
         if config['symbol'] == 'ETH-USD':
@@ -115,7 +120,8 @@ def collect_yahoo(config, now, fetch=get_json):
         points.append([key, rounded(value, config['precision'])])
         if config.get('collectAnniversary'):
             anniversary.append([key, rounded(close, config['precision'])])
-        proof_rows.append({'date': date.isoformat(), 'close': close, 'monthlyClose': buckets.get(key), 'value': value,
+        proof_rows.append({'date': date.isoformat(), 'close': close, 'monthlyClose': None if key in windows else buckets.get(key), 'value': value,
+                           **({'rejectedMonthlyClose':buckets.get(key), 'verificationReason':'Registered historical candle discrepancy; exact daily month-end window agrees'} if key in window_months else {}),
                            **({'windowClose':windows[key]['close'],'windowUrl':windows[key]['url']} if key in windows else {})})
     return {'points': points, 'anniversaryPoints': anniversary, 'sourceUrls': list(urls.values())+[v['url'] for v in windows.values()],
             'timezone': zone, 'proofRows': proof_rows, 'rawResponse': raw}
@@ -236,15 +242,25 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
     def one(source):
         try:
             result=collect(source,now)
-            old=baseline[source['id']]
-            if old['currency'] != result['currency'] or result['points'][0][0] != old['points'][0]['date']:
-                reject('Existing series currency or coverage changed')
-            if result['periodEnd'] < old['points'][-1]['date']:reject('History would regress')
+            old=baseline.get(source['id'])
+            if old is None:
+                # Only explicitly identified catalogue ETF parts may bootstrap.
+                # Existing simulator histories still require their baseline.
+                if (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
+                        or source.get('field') != 'adjclose' or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]', source.get('isin',''))
+                        or not source.get('listingEvidenceId')):
+                    reject('Unregistered monthly history bootstrap')
+                if result['points'][0][0] != source['periodStart']:
+                    reject('New ETF coverage differs from its registered start')
+            else:
+                if old['currency'] != result['currency'] or result['points'][0][0] != old['points'][0]['date']:
+                    reject('Existing series currency or coverage changed')
+                if result['periodEnd'] < old['points'][-1]['date']:reject('History would regress')
             active={k:v for k,v in result.items() if k not in ['proofRows','rawResponse']}
             previous=current.get(source['id'])
             if previous:
                 if any(previous[k] != active[k] for k in ['parser','currency','method','periodStart']):reject('Existing return convention changed')
-                if previous.get('symbol') != active.get('symbol') or previous.get('variant') != active.get('variant') or previous.get('indexCode') != active.get('indexCode'):
+                if any(previous.get(key) != active.get(key) for key in ['symbol','variant','indexCode','isin','field','consumerScope','mic','ticker']):
                     reject('Existing exact series identity changed')
                 if previous['points'] == active['points'] and previous.get('anniversaryPoints',[]) == active.get('anniversaryPoints',[]):active=previous
             return {'id':source['id'],'status':'validated','record':active,'evidence':result}
@@ -265,7 +281,9 @@ def main():
     scope.add_argument('--only',nargs='+',help='Exact configured series IDs to refresh')
     scope.add_argument('--retry-failed',action='store_true',help='Retry only failed sources from the last observation')
     args=p.parse_args()
-    path=ROOT/'src/data/automated-monthly.json'; current=json.loads(path.read_text())
+    path=ROOT/'src/data/automated-monthly.json'
+    etf_path=ROOT/'src/data/automated-etf-monthly.json'
+    current={**json.loads(path.read_text()), **(json.loads(etf_path.read_text()) if etf_path.exists() else {})}
     status_path=ROOT/'scripts/source-snapshots/monthly-collection-status.json'
     status=json.loads(status_path.read_text()) if status_path.exists() else {'series':{}}
     config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed)
@@ -279,7 +297,9 @@ def main():
                     'periodEnd':observation['record']['periodEnd'],
                     'responseSha256':observation['evidence']['responseSha256']})}
         write_json_atomic(status_path,status)
-    if args.apply and merged!=current:write_json_atomic(path,merged)
+    if args.apply and merged!=current:
+        write_json_atomic(path,{k:v for k,v in merged.items() if v.get('consumerScope') != 'catalog'})
+        write_json_atomic(etf_path,{k:v for k,v in merged.items() if v.get('consumerScope') == 'catalog'})
     evidence_path=ROOT/'scripts/source-snapshots/monthly-automated.json'
     evidence=json.loads(evidence_path.read_text()) if evidence_path.exists() else {}
     for observation in report['series']:
@@ -306,7 +326,7 @@ def select_series(config,status,only=None,retry_failed=False):
         reject('Unknown or empty monthly series selection')
     if retry_failed:
         # Bootstrap the observation once; later daily checks only contact failures.
-        selected={key for key,value in status.get('series',{}).items() if value['status']=='failed'} if status.get('series') else ids
+        selected=({key for key,value in status.get('series',{}).items() if value['status']=='failed'} | (ids-set(status.get('series',{})))) if status.get('series') else ids
     else:
         selected=set(only) if only is not None else ids
     return {**config,'series':[s for s in config['series'] if s['id'] in selected]}
