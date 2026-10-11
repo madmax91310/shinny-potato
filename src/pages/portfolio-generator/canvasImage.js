@@ -140,7 +140,7 @@ export function renderPortfolioImage(portfolio, background) {
   })
 
   rule(ctx, 70, upperHeight, 1660)
-  label(ctx, 'Performances annuelles', 70, upperHeight + 61, 36, '#dbbf87', 'left', false, 'Georgia, serif')
+  label(ctx, 'Performances annuelles', 70, upperHeight + 61, 48, '#dbbf87', 'left', false, 'Georgia, serif')
   const plotLeft = 80, plotWidth = 1240, plotTop = upperHeight + 137
   const halfHeight = 135, baseline = plotTop + halfHeight
   const perf = computeYearlyPerf(selection)
@@ -169,15 +169,15 @@ export function renderPortfolioImage(portfolio, background) {
     const size = fitSize(ctx, text, plotWidth / YEARS.length - 12, 36)
     const offset = Number.isFinite(value) ? Math.abs(value) / maxAbs * halfHeight : 0
     label(ctx, text, center, positive || !Number.isFinite(value) ? baseline - offset - 16 : baseline + offset + 38, size, color, 'center')
-    label(ctx, String(year), center, upperHeight + 476, 25, '#e8d7b3', 'center', false)
+    label(ctx, String(year), center, upperHeight + 482, 40, '#e8d7b3', 'center', false)
   })
   ctx.fillStyle = '#75654e'; ctx.fillRect(1390, upperHeight + 106, 1, 334)
   const annualized = annualizedReturn(perf)
   const result = annualized === null ? 'n.d.' : percent(annualized)
   const resultColor = annualized === null ? MUTED : annualized < 0 ? '#efa28b' : '#dfbd7b'
   label(ctx, result, 1570, upperHeight + 266, fitSize(ctx, result, 280, 77), metal(ctx, 1430, upperHeight + 200, 280, 90, resultColor), 'center', false, 'Georgia, serif')
-  label(ctx, 'Annualisé', 1570, upperHeight + 157, 32, WHITE, 'center', false, 'Georgia, serif')
-  label(ctx, `${YEARS[0]}–${YEARS.at(-1)}`, 1570, upperHeight + 316, 27, MUTED, 'center', false)
+  label(ctx, 'Annualisé', 1570, upperHeight + 157, 48, WHITE, 'center', false, 'Georgia, serif')
+  label(ctx, `${YEARS[0]}–${YEARS.at(-1)}`, 1570, upperHeight + 316, 40, MUTED, 'center', false)
   rule(ctx, 70, height - 50, 1660)
   label(ctx, `EUR · change BCE · rééquilibrage annuel${selection.some(isIndicative) ? ' · * historique indicatif' : ''}`, 70, height - 18, 18, MUTED, 'left', false)
   label(ctx, 'Épargnant Libre', 1730, height - 18, 24, '#dfc390', 'right', false)
