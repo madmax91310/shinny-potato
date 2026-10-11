@@ -5,8 +5,6 @@ import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
 import { buildReview } from '../src/pages/data-review/lib.js';
 import { BROKER_EVIDENCE } from '../src/pages/broker-comparator/evidence.js';
-import { BROKER_EDITORIAL } from '../src/pages/broker-comparator/editorial.js';
-import { brokerPublicationCopy } from '../src/pages/broker-comparator/publicationCopy.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { TOPICS as PRACTICAL_TOPICS } from '../src/data/practical-sheet-topics.js'
@@ -566,21 +564,19 @@ async function testBrokerComparator(page) {
   }
   await page.locator('.bc-duel-chip').filter({ hasText: 'XTB vs SX' }).click();
   const post = await page.locator('.bc-tweet-textarea').inputValue();
-  const outgoing = BROKER_EDITORIAL.xtb.sortant === BROKER_EDITORIAL.saxo.sortant
-    ? `Pour quitter l’un ou l’autre : ${BROKER_EDITORIAL.xtb.sortant}`
-    : `Pour quitter XTB : ${BROKER_EDITORIAL.xtb.sortant}\n\nPour quitter Saxo : ${BROKER_EDITORIAL.saxo.sortant}`;
-  valid &&= post.startsWith('⚫ XTB ou ⚪ Saxo pour ton PEA ?')
-    && post.includes(brokerPublicationCopy(`💱 Si une conversion est nécessaire\n\nXTB : ${BROKER_EVIDENCE.xtb.change.post}\n\nSaxo : ${BROKER_EVIDENCE.saxo.change.post}`))
-    && post.includes('PEA Jeune : aucun des deux ❌')
-    && post.includes(brokerPublicationCopy(BROKER_EVIDENCE.xtb.ifu.summary)) && post.includes(brokerPublicationCopy(BROKER_EVIDENCE.saxo.ifu.summary))
-    && post.includes(brokerPublicationCopy(outgoing));
+  valid &&= post === buildBrokerPost(['xtb', 'saxo'])
+    && post.includes('💰 FRAIS DE COURTAGE PEA')
+    && post.includes('🎯 VERDICT')
+    && post.includes('VIP')
+    && post.includes('PEPS hors PEA')
+    && !/à confirmer|non confirmé|sources officielles/.test(post);
   await page.locator('.bc-evidence-broker').last().locator('summary').click();
   valid &&= (await page.locator('.bc-evidence').innerText()).includes('VIP')
     && (await page.locator('.bc-evidence').innerText()).includes('Conversion de devises');
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__brokerCopied = text; } },
   }));
-  const edited = post.replace('pour ton PEA ?', 'pour mon PEA ?');
+  const edited = post.replace('Tu choisirais lequel', 'Tu préfères lequel');
   await page.locator('.bc-tweet-textarea').fill(edited);
   await page.getByRole('button', { name: 'Copier le tweet', exact: true }).click();
   valid &&= await page.evaluate(expected => window.__brokerCopied === expected, edited);

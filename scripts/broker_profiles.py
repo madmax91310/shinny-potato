@@ -21,7 +21,7 @@ DOCUMENTS = {
  'xtb': {'dca':['xtbComparison'], 'pea':['xtbPea'], 'pme':['xtbComparison'], 'jeune':['xtbPea'], 'ifu':['xtbIfu'], 'cash':['xtbInterest','xtbPea']},
  'caidf': {'dca':['caPeb','caTariff'], 'pea':['caTariff'], 'pme':['caTariff'], 'jeune':['caIdfPea'], 'ifu':['caTariff','caInvest'], 'cash':['caIdfPeaPme','caIdfContract'], 'change':['caTariff']},
  'bd': {'dca':['bdPlans'], 'pea':['bdTariff'], 'pme':['bdTariff'], 'jeune':['bdTariff'], 'ifu':['bdContract'], 'cash':['bdPea','bdCto'], 'entrant':['bdTariffPage']},
- 'saxo': {'dca':['saxoAutoinvest'], 'pea':['saxoTariff'], 'pme':['saxoTariff'], 'jeune':['saxoPeaHelp'], 'ifu':['saxoTariff'], 'cash':['saxoInterest']},
+ 'saxo': {'dca':['saxoAutoinvest','saxoPepsHelp'], 'pea':['saxoTariff'], 'pme':['saxoTariff'], 'jeune':['saxoPeaHelp'], 'ifu':['saxoTariff'], 'cash':['saxoInterest']},
 }
 
 def clean(raw):
@@ -95,7 +95,11 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
             return proved(r'1 à 3 fonds',True,f'Plan d’Épargne Boursière sur 1 à 3 fonds, dès {fmt(v)} €/mois ; mise en place : consulter la caisse Île-de-France. Frais des fonds en supplément.')
         if broker=='tr':
             return proved(r'Trade Republic propose le premier PEA sans frais de France grâce aux plans d.épargne',True,'Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles.')
-        if broker=='saxo': return proved(r"Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA",False,'Plan Épargne Programmé actuellement hors PEA ❌')
+        if broker=='saxo':
+            find(r'automatique et mensuel',texts['saxoPepsHelp'])
+            fee=amount(find(r'([\d,]+)\s*€ de frais sur l.achat d.ETF et de Fonds',texts['saxoPepsHelp'])[1])
+            find(r'frais de transaction uniquement lors de la vente de vos positions',texts['saxoPepsHelp'])
+            return proved(r"Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA",False,f'PEA ❌ / PEPS hors PEA ✅ : achats mensuels d’ETF et fonds, {fmt(fee)} € de courtage à l’achat ; ventes payantes, frais de change éventuels.')
         if broker=='xtb': return proved(r"XTB prévoit d'élargir son offre avec des plans d'investissement programmés et un volet PEA-PME à venir",False,'Plans programmés PEA annoncés à venir ; pas encore disponibles ❌')
         if broker=='bd':
             find(r'PEA',text);find(r'mensuelle ou trimestrielle',text)
@@ -154,6 +158,15 @@ def parse(broker,field,raws,today,sources=None):
     texts={key:clean(raw) for key,raw in raws.items()}
     available,status,summary,decisive,quote=statement(broker,field,texts,raws,today)
     supporting = {}
+    programmed = None
+    if broker == 'saxo' and field == 'dca':
+        help_text = texts['saxoPepsHelp']
+        frequency = find(r'automatique et mensuel', help_text)[0]
+        purchase = find(r'([\d,]+)\s*€ de frais sur l.achat d.ETF et de Fonds', help_text)
+        sale = find(r'frais de transaction uniquement lors de la vente de vos positions', help_text)[0]
+        supporting['saxoPepsHelp'] = help_text[help_text.index(frequency):help_text.index(sale)+len(sale)]
+        programmed = {'frequency':'monthly','purchaseFee':amount(purchase[1]),'salePaid':True}
+
     if broker == 'caidf' and field == 'dca':
         supporting['caTariff'] = find(r"Mise en place d.un Plan d.Epargne Boursier \(PEB\) Nous consulter", texts['caTariff'])[0]
     if broker == 'xtb' and field == 'cash':
@@ -171,7 +184,7 @@ def parse(broker,field,raws,today,sources=None):
         kind='pdf' if '\f' in raw or re.search(r'\.pdf(?:$|\?)',info['url']) else 'page'
         if kind=='pdf' and not page: raise ValueError('Page de la clause officielle non localisée')
         refs.append({'document':key,'sourceUrl':getattr(raw,'source_url',info['url']),'discoveryUrl':getattr(raw,'discovery_url',None),'page':page,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
-    return {'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
+    return {**({'programmed':programmed} if programmed else {}),'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
       'sourceUrl':getattr(raws[decisive],'source_url',sources[decisive]['url']),'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
       'method':'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue',
       'sha256':hashlib.sha256('\n'.join(raws.values()).encode()).hexdigest(),'values':{},'decisiveDocument':decisive,'statement':quote,

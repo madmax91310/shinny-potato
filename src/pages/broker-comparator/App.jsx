@@ -314,7 +314,7 @@ export default function App() {
       <div className="bc-panel">
         <h2>Post X (format duel)</h2>
         <p className="bc-hint">
-          Reproduit le squelette de la série — fonctionne pour un duel de 2 courtiers. Modifiable avant publication.
+          Rubriques courtes, une ligne par courtier, points faibles et verdict. Les sources et les informations restant à vérifier figurent dans le registre, hors du tweet.
         </p>
         <textarea
           className="bc-tweet-textarea"

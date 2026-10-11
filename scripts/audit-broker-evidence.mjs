@@ -115,43 +115,31 @@ for (const broker of BROKERS) {
   }
   if (evidence.pme.status === 'corroboré') assert.equal(broker.pea.pme, false, `${broker.id}: PEA-PME selon source externe`)
 }
-// Toutes les combinaisons et les deux sens : les rubriques communes restent compactes.
-const headings = ['💰 Frais de courtage PEA', '💱 Si une conversion est nécessaire', '📅 Achats automatiques sur PEA', '🗂️ Frais de garde', '🌱 Enveloppes proposées', '🧾 IFU', '💵 Liquidités rémunérées', '🔄 Transfert du PEA', '⚠️ Le point faible à retenir'];
-const section = (post, heading) => post.split(heading + '\n\n')[1]?.split(/\n\n(?=🌱|💱|🎁|📅|🗂️|🧾|💵|🔄|⚠️|💬|🤝)/u)[0];
-for (let i = 0; i < BROKERS.length; i++) {
-  for (let j = i + 1; j < BROKERS.length; j++) {
-    for (const ids of [[BROKERS[i].id, BROKERS[j].id], [BROKERS[j].id, BROKERS[i].id]]) {
-      const post = buildTweet(ids);
-      assert(!/undefined|\bNaN\b|PEA-PME \?|PEA Jeune \?|aucune offre spécifique|preuve corroborée|détails dans le registre/i.test(post), `${ids}: lacune dans le post`);
-      assert(!/\n{3,}/.test(post), `${ids}: sauts de ligne superflus`);
-      for (const heading of headings) assert(section(post, heading)?.trim(), `${ids}: rubrique ${heading} vide`);
-      assert(post.includes('PEA : les deux ✅'), `${ids}: PEA commun confirmé`);
-      for (const id of ids) assert(section(post, headings[5]).includes(brokerPublicationCopy(BROKER_EVIDENCE[id].ifu.summary)), `${ids}: IFU raccordé à la preuve officielle`);
-      assert(post.includes('⚠️ Pas un conseil financier'), `${ids}: mention finale`);
-      assert.equal(post.includes('je suis affilié à XTB'), ids.includes('xtb'), `${ids}: transparence affiliation`);
-      assert.equal(post.includes('🎁 Les offres'), ids.some(id => ['bourso', 'fortuneo', 'bd', 'saxo'].includes(id)), `${ids}: offres`);
-      for (const id of ids) {
-        const broker = BROKERS.find(b => b.id === id);
-        const name = id === 'saxo' ? 'Saxo' : broker.nom;
-        for (const heading of [headings[0], headings[1], headings[2], headings[8]]) assert(section(post, heading).includes(`${name} : `), `${ids}: réponse ${heading} ${name}`);
-        assert(section(post, headings[7]).includes(`Vers ${name} : `), `${ids}: transfert entrant ${name}`);
-        assert.equal(BROKER_EVIDENCE[id].transfert.status, 'confirmé');
-        assert.equal(BROKER_EVIDENCE[id].ifu.status, 'confirmé');
-        assert(section(post, headings[1]).includes(brokerPublicationCopy(BROKER_EVIDENCE[id].change.post)), `${ids}: change raccordé au registre`);
-        if (BROKER_EVIDENCE[id].cash.status === 'corroboré') assert(section(post, headings[6]).includes('selon les analyses consultées'), `${ids}: réserve cash`);
-        if (BROKER_EVIDENCE[id].dca.status === 'corroboré') assert(/analyses|divergent/.test(section(post, headings[2])), `${ids}: réserve DCA`);
-      }
-      if (ids.includes('saxo')) {
-        assert(section(post, headings[6]).includes('VIP'), `${ids}: restriction intérêts Saxo`);
-        assert(section(post, headings[7]).includes('six mois'), `${ids}: restriction transfert ETF`);
-        assert(post.includes('31 décembre 2026') && post.includes('La vente reste payante'), `${ids}: conditions offres Saxo`);
-      }
-      if (ids.includes('xtb')) assert(post.includes('100 000 €') && post.includes('250 000 €') && post.includes('0,02 %') && post.includes('pas encore disponible'), `${ids}: seuils XTB`);
-      if (ids.includes('ibkr')) assert(post.includes('10 000 €') && post.includes('Disponibilité à confirmer sur PEA'), `${ids}: portée IBKR`);
-      if (ids.includes('fortuneo')) assert(post.includes('moins de 5 000 €') && post.includes('2 000 €') && post.includes('hors Euroclear'), `${ids}: remboursement et sortie Fortuneo`);
-      if (ids.includes('bourso')) assert(post.includes('au double') && post.includes('valeur du compte') && post.includes('ISIN'), `${ids}: conditions BoursoBank`);
-      if (ids.includes('bd')) assert(post.includes('0,036 %'), `${ids}: garde Bourse Direct`);
+// Every ordered pair uses the requested publication format. The evidence
+// assertions above still enforce source scope and keep unknown facts unknown.
+const headings = ['💰 FRAIS DE COURTAGE PEA', '🏦 ENVELOPPES', '📄 IFU', '💶 LIQUIDITÉS RÉMUNÉRÉES', '🔄 TRANSFERT DU PEA', '⚠️ POINTS FAIBLES', '🎯 VERDICT'];
+const section = (post, heading) => post.split(heading + '\n\n')[1]?.split('\n\n')[0];
+for (const a of BROKERS) for (const b of BROKERS) {
+  if (a.id === b.id) continue;
+  const ids = [a.id, b.id], post = buildTweet(ids);
+  assert(post.startsWith(`${a.emoji} ${a.nom} 🆚 ${b.emoji} ${b.nom}`));
+  assert(!/undefined|\bNaN\b|à confirmer|non confirm|non établi|analyses consultées|documents publics|sources officielles|pas un conseil|https?:/i.test(post), `${ids}: research leaked into tweet`);
+  for (const heading of headings) {
+    const lines = section(post, heading)?.split('\n');
+    assert.equal(lines?.length, 2, `${ids}: one line per broker for ${heading}`);
+    for (const broker of [a,b]) assert(lines.some(line => line.startsWith(`${broker.emoji} ${broker.nom} → `)));
+  }
+  assert.equal(post.includes('Je suis affilié à XTB'), ids.includes('xtb'));
+  for (const broker of [a,b]) {
+    for (const [field,label] of [['pme','PEA-PME'],['jeune','PEA Jeune']]) {
+      if (broker.pea[field] == null) assert(!section(post,'🏦 ENVELOPPES').split('\n').find(line=>line.includes(broker.nom)).includes(label), `${ids}: unknown envelope converted into a claim`);
     }
+    if (BROKER_EVIDENCE[broker.id].dca.automatedEvidence?.available == null) assert(!section(post,'📈 DCA AUTOMATIQUE')?.includes(`${broker.emoji} ${broker.nom} →`));
+  }
+  if (ids.includes('saxo')) {
+    assert(post.includes('VIP') && post.includes('31/12/2026') && post.includes('ouverts ou transférés éligibles'));
+    assert(post.includes('PEPS hors PEA') && post.includes('ventes payantes'));
+    assert.match(post, /à partir de 2 € et l’accès au PEA-PME/);
   }
 }
 assert.equal(buildTweet([]), '');

@@ -6,6 +6,7 @@ import {TERMES} from '../src/data/financial-lexicon.js'
 import {getFicheLexiqueText} from '../src/pages/tweet-midi/data/ficheLexique.js'
 import {BROKERS} from '../src/pages/broker-comparator/data.js'
 import {buildBrokerTweet} from '../src/pages/broker-comparator/lib.js'
+import {brokerShortCopy} from '../src/pages/broker-comparator/shortCopy.js'
 import {BROKER_EVIDENCE} from '../src/pages/broker-comparator/evidence.js'
 import {brokerTariffCopy, BROKER_TARIFFS} from '../src/data/broker-tariffs.js'
 import {DATA_CATALOG} from '../src/data/catalog.js'
@@ -28,7 +29,14 @@ for (const id of Object.keys(BROKER_TARIFFS)) {
  const broker=BROKERS.find(b=>b.id===id), copy=brokerTariffCopy(id)
  assert.equal(broker.frais.resume,copy.resume);assert.equal(broker.post.frais[0],copy.full)
  assert.equal(BROKER_EVIDENCE[id].frais.summary,copy.full)
- assert(buildBrokerTweet([broker,BROKERS.find(b=>b.id===(id==='tr'?'xtb':'tr'))]).includes(copy.full))
+ assert(buildBrokerTweet([broker,BROKERS.find(b=>b.id===(id==='tr'?'xtb':'tr'))]).includes(brokerShortCopy(id).frais))
+ const post=buildBrokerTweet([broker,BROKERS.find(b=>b.id===(id==='tr'?'xtb':'tr'))])
+ if(id==='fortuneo') {
+  const values=BROKER_TARIFFS[id].values;
+  assert(post.includes(`≤ ${values.threshold} €`));
+  assert(post.includes(`${String(values.rate).replace('.',',')} %`));
+ }
+ if(id==='tr') assert(post.includes(`${BROKER_TARIFFS[id].fields.directPrice.values.fee} € avec Direct Price`));
  const record=DATA_CATALOG.find(r=>r.id===`broker:${id}`)
  assert.equal(record.fields[0].value.description,copy.full)
 }

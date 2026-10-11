@@ -1130,13 +1130,18 @@
       "discoveryUrl": "https://www.home.saxo/fr-fr/rates-and-conditions/commissions-charges-and-margin-schedule",
       "profile": {
         "dca": {
+          "programmed": {
+            "frequency": "monthly",
+            "purchaseFee": 0.0,
+            "salePaid": true
+          },
           "available": false,
           "status": "confirmé",
           "copy": {
-            "resume": "Plan Épargne Programmé actuellement hors PEA ❌",
-            "full": "Plan Épargne Programmé actuellement hors PEA ❌"
+            "resume": "PEA ❌ / PEPS hors PEA ✅ : achats mensuels d’ETF et fonds, 0 € de courtage à l’achat ; ventes payantes, frais de change éventuels.",
+            "full": "PEA ❌ / PEPS hors PEA ✅ : achats mensuels d’ETF et fonds, 0 € de courtage à l’achat ; ventes payantes, frais de change éventuels."
           },
-          "checkedAt": "2026-10-10",
+          "checkedAt": "2026-10-11",
           "sourceUrl": "https://www.home.saxo/fr-fr/products/autoinvest",
           "refs": [
             {
@@ -1144,21 +1149,34 @@
               "sourceUrl": "https://www.home.saxo/fr-fr/products/autoinvest",
               "discoveryUrl": null,
               "page": null,
-              "sha256": "4ae24a464392dcaee0c8bea5f76302fb8aa5fbaa7307280ea1360d642f7aeb63",
+              "sha256": "534e168e60b4a95c81fde5dcceea941e21016788e8951c5bde52d1d34562ef57",
               "kind": "page",
               "statement": "Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA"
+            },
+            {
+              "document": "saxoPepsHelp",
+              "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo",
+              "discoveryUrl": null,
+              "page": null,
+              "sha256": "d3e5cbe7ae7c0a2bb186e7863be95f66060f1b2f8ac6464d1c91825c788d4e6c",
+              "kind": "page",
+              "statement": "automatique et mensuel Gratuit : 0€ de frais sur l'achat d'ETF et de Fonds Diversifié : marchés internationaux et thématiques Comment faire si vous êtes déjà client ? 1. Choisissez dans quoi vous voulez investir et le montant Choisissez les ETF et/ou les fonds dans lesquels vous souhaitez investir de manière récurrente. 2. Transférez des fonds et configurez un paiement mensuel Configurez un paiement mensuel automatique depuis votre compte bancaire personnel vers votre Plan Epargne Programmé. Vous pourrez toujours modifier le montant a posteriori. Consultez notre article dédié aux dépôts permanents/récurrents ici 3. Votre Plan Epargne Programmé est maintenant prêt et vos fonds seront investis automatiquement chaque mois Votre compte est maintenant prêt et vous pouvez suivre les performances depuis votre plateforme. Veuillez vous assurer que vos dépôts mensuels couvrent le montant à investir. Vous pouvez ouvrir un Plan Epargne Programmé Saxo depuis toutes les plateformes Saxo : SaxoTrader SaxoInvestor Mon profil > Demander de nouveaux comptes > Ouvrir un Plan Epargne Programmé Consultez l'article dédié à l'ouverture du Plan Epargne ici Qu'est-ce que le Plan Epargne Programmé Saxo ? Il s'agit d'un type de compte qui vous permet d'investir automatiquement un montant fixe chaque mois dans des ETF et des fonds. Vous avez la flexibilité de choisir les titres et le montant que vous souhaitez investir. Sans frais de transaction et sans frais mensuels , et avec l'avantage des intérêts composés, cela peut être un moyen efficace de faire croître votre épargne. De plus, en utilisant la méthode de lissage des coûts ( DCA : Dollar Cost Averaging ), vous pouvez atténuer votre risque et éviter de devoir \"timer\" le marché (Market timing : essayez de prédire les mouvements futurs du marché). Vous pouvez consulter l'article relatif au Dollar Cost Averaging en cliquant ici Nous avons aussi créé un article vous expliquant ce que sont les intérêts composés, lisez le ici Est-il possible d'utiliser le Plan Epargne Programmé dans le cadre du PEA ? Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA mais nous travaillons activement à ce que cela soit possible. Nous ne manquerons pas de vous informer dès que vous pourrez investir automatiquement via votre PEA. Comment déposer des fonds ? Connexion à votre compte bancaire personnel Utilisez l'IBAN de votre Plan Epargne Programmé, découvrez comment trouver les coordonnées bancaires de vos comptes ici . Votre dépôt sera disponible sur votre compte dans un délai de 1 à 3 jours ouvrés. Il est important de vous assurer que votre dépôt mensuel automatique couvre le montant des investissements mensuels que vous avez choisis. Pour configurer un versement mensuel, vous devez vous rendre sur votre banque personnelle et configurer un virement mensuel vers votre Plan Épargne Programmé. Vous disposez aussi d'un article vous expliquant comment procéder, cliquez ici Y a-t-il des limites au montant que je peux investir chaque mois ? + Vous avez une flexibilité totale pour décider combien vous souhaitez investir chaque mois. Il n'y a pas de limites minimales ou maximales sur vos investissements mensuels. Vous pouvez commencer avec n'importe quel montant et l'ajuster à tout moment. Puis-je modifier mon montant d'investissement mensuel ? + Oui, si vous souhaitez modifier le montant à investir mensuellement, naviguez vers : Portefeuille > Choisissez votre Plan Epargne Programmé > Cliquez sur Modifier Vous pouvez modifier le montant et les titres jusqu'à un jour ouvrable avant que vos fonds ne soient investis. Veuillez consulter la section : Quand mes fonds seront-ils investis chaque mois ? Combien coûte l'investissement ? + L'ouverture d'un Plan Épargne Programmé est gratuite, sans frais de tenue de compte, et sans frais de transaction pour les investissements mensuels automatiques . Vous avez à payer des frais de transaction uniquement lors de la vente de vos positions"
             }
           ],
           "scope": "saxo ; dca ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "4ae24a464392dcaee0c8bea5f76302fb8aa5fbaa7307280ea1360d642f7aeb63",
+          "sha256": "fb5018d80c4f92acd9349e0c28fb3d49ca706887e476884f9725614dfa99ff51",
           "values": {},
           "decisiveDocument": "saxoAutoinvest",
           "statement": "Pour l'instant, notre solution n'est pas utilisable dans le cadre de votre PEA",
           "checkedSources": [
             {
               "sourceUrl": "https://www.home.saxo/fr-fr/products/autoinvest",
-              "sha256": "4ae24a464392dcaee0c8bea5f76302fb8aa5fbaa7307280ea1360d642f7aeb63"
+              "sha256": "534e168e60b4a95c81fde5dcceea941e21016788e8951c5bde52d1d34562ef57"
+            },
+            {
+              "sourceUrl": "https://www.help.saxo/hc/fr-fr/articles/7392487859357-Le-Plan-Epargne-Programm%C3%A9-de-Saxo",
+              "sha256": "d3e5cbe7ae7c0a2bb186e7863be95f66060f1b2f8ac6464d1c91825c788d4e6c"
             }
           ]
         },

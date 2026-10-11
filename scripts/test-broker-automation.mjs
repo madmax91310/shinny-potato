@@ -45,3 +45,20 @@ assert.equal(refreshed.dca.resume,'Non actuellement sur PEA');
 assert.equal(refreshed.post.dca[0],'Service PEA suspendu par le courtier.');
 assert.equal(refreshed.pea.jeune,null);
 console.log('Broker automation: all field consumers, separate scopes, source deadlines and expiry OK')
+
+// Live tariff updates and offer expiry must reach the compact publication too.
+const { brokerShortCopy } = await import('../src/pages/broker-comparator/shortCopy.js');
+const { buildBrokerTweet } = await import('../src/pages/broker-comparator/lib.js');
+changed.saxo.values.minimum=3;
+changed.saxo.values.rate=0.09;
+changed.saxo.profile.dca.programmed.purchaseFee=1;
+const short=brokerShortCopy('saxo',changed,'2026-10-08');
+assert.match(short.frais,/0,09 %.*minimum 3 €/);
+assert.match(short.verdict,/à partir de 3 €/);
+assert.match(short.dca,/1 € de courtage à l’achat/);
+assert(!short.offres.some(offer=>offer.includes('70 actions')));
+const future=buildBrokerTweet(BROKERS.filter(b=>['tr','saxo'].includes(b.id)),changed,'2027-01-01');
+assert(!future.includes('70 actions') && !future.includes('ETF Amundi de la sélection'));
+assert(!/offre.*expirée|à confirmer/.test(future));
+
+assert(!brokerShortCopy('tr',changed).verdict.includes('achats programmés'));
