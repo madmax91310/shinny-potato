@@ -11,6 +11,7 @@ import { INSURANCE } from '../../data/insurance.js'
 import { currentSavingsObservation } from '../../data/economic-data.js'
 import references from '../../data/automated-practical-sheets.json' with {type:'json'}
 import { PRACTICAL_EDITORIAL, practicalTweetBlocks } from './editorial.js'
+import { buildFundTweet } from './fundTweet.js'
 
 export const number = (n, digits=2) => Number.isFinite(n) ? n.toLocaleString('fr-FR',{maximumFractionDigits:digits}).replace(/\u202f/g,' ') : 'Non publié'
 export const money = n => `${number(n,0)} €`
@@ -37,8 +38,9 @@ function characteristics(isin) {
 const SHORT_NAMES = {'FR001400U5Q4':'Amundi PEA Monde','IE0002XZSHO1':'iShares World PEA','LU1681043599':'Amundi World CW8','FR0013412038':'Amundi MSCI Europe','FR0011550193':'BNP STOXX Europe 600','LU1681047236':'Amundi Euro STOXX 50','IE000DQLYVB9':'iShares S&P 500 PEA','FR0011871128':'Amundi PEA S&P 500','FR0011550185':'BNP S&P 500','FR0013412020':'Amundi PEA Émergents','FR001400ZGO4':'Amundi PEA Émergents S','FR0013412012':'Amundi PEA Asie Émergente'}
 function fundTable(topic, selected) {
  const options=fundOptions(topic), allowed=new Set(options.map(o=>o.isin))
- const isins=selected ?? options.map(o=>o.isin)
- if(isins.length<2 || isins.length>3 || new Set(isins).size!==isins.length || isins.some(isin=>!allowed.has(isin))) throw new Error('Choisis deux ou trois parts PEA de cette famille.')
+ const maxFunds=topic.id==='same-world'?2:3
+ const isins=selected ?? options.slice(0,maxFunds).map(o=>o.isin)
+ if(isins.length<2 || isins.length>maxFunds || new Set(isins).size!==isins.length || isins.some(isin=>!allowed.has(isin))) throw new Error(maxFunds===2?'Choisis deux parts World éligibles au PEA.':'Choisis deux ou trois parts PEA de cette famille.')
  const funds=isins.map(isin=>({isin,...characteristics(isin)}))
  const evidence=funds.flatMap(({isin,record,facts})=>{
   const ter=ETF_TER_EVIDENCE[isin]
@@ -60,7 +62,8 @@ function fundTable(topic, selected) {
   }
  }
  const columns=funds.map(f=>`${SHORT_NAMES[f.isin] ?? getInstrumentName(f.isin)}\n${getPreferredInstrumentListing(f.isin)?.ticker ?? ''} · ${f.isin}`)
- return {columns,rows,sources:evidence,notes:[performanceNote,...(['europe','em'].includes(topic.fundGroup)?['Les indices diffèrent : comparer les expositions avant de comparer les rendements.']:[]),...(!performanceNote?['Pas d’année complète commune suffisamment documentée : aucune performance extrapolée.']:[])].filter(Boolean)}
+ const productFunds=funds.map(f=>({isin:f.isin,name:getInstrumentName(f.isin),shortName:SHORT_NAMES[f.isin] ?? getInstrumentName(f.isin),ticker:getPreferredInstrumentListing(f.isin)?.ticker ?? '',index:f.index,distribution:f.distribution,terLabel:formatEtfTer(f.isin),terPct:Number(formatEtfTer(f.isin).replace(',','.')),aum:f.record.aum}))
+ return {columns,rows,funds:productFunds,sources:evidence,notes:[performanceNote,...(['europe','em'].includes(topic.fundGroup)?['Les indices diffèrent : comparer les expositions avant de comparer les rendements.']:[]),...(!performanceNote?['Pas d’année complète commune suffisamment documentée : aucune performance extrapolée.']:[])].filter(Boolean)}
 }
 function indexTable(topic) {
  const facts=topic.indices.map(id=>getCurrentIndexFacts(id))
@@ -136,6 +139,7 @@ export function buildSheet(id,settings={}) {
  return {...topic,...table,sources:unique,warnings,blocked:unique.some(s=>s.reviewRequired || !s.url || !s.checkedAt),notes:[...table.notes],takeaway:topic.takeaway}
 }
 export function buildTweet(sheet) {
+ if(sheet.mode==='funds') return buildFundTweet(sheet)
  const editorial=PRACTICAL_EDITORIAL[sheet.id]
  if(!editorial) throw new Error(`Texte de fiche manquant : ${sheet.id}`)
  const blocks=practicalTweetBlocks(sheet,editorial)
