@@ -12,7 +12,7 @@ for(const family of ACTOR_FAMILIES)assert(PRESENTATION_ACTORS.some(row=>row.fami
 for(const record of PRESENTATION_ACTORS) {
   const text=buildActorTweet(record)
   assert(text.includes(record.vehicle) && text.includes(record.distinction))
-  assert(text.includes('pas garantis') && text.includes('rendements effectivement obtenus'))
+  assert(text.includes('pas garantis'))
   assert.equal(record.verification,'public-terms')
   assert(record.selectedOffer && record.selectedOffer.missing.length)
   assert.equal(Object.keys(record.selectedOffer.fields).length,5)
@@ -58,20 +58,21 @@ for (const record of [anaxago,partB]) {
 }
 const valley=byId('france-valley'),forets=applyActorOffer(valley,'gfi-forets'),europe=applyActorOffer(valley,'fonciere-europe')
 assert.equal(valley.offers.length,3)
-assert(buildActorTweet(forets).includes('10000 €') && buildActorTweet(forets).includes('10200 € TTC'))
+assert(buildActorTweet(forets).includes('10000 €') && buildActorTweet(forets).includes('0,9 % TTC/an'))
 assert(buildActorTweet(europe).includes('Actions de la SAS') && buildActorTweet(europe).includes('107090 €'))
 assert(!buildActorTweet(europe).includes('Parts du GFI France Valley Patrimoine'))
 assert.notDeepEqual(presentationReliefModel(forets,'actor').highlights,presentationReliefModel(europe,'actor').highlights)
 assert(buildActorTweet(byId('bricks')).includes('1,2 € TTC'))
 for (const actor of PRESENTATION_ACTORS) for (const offer of actor.offers) {
   const record=applyActorOffer(actor,offer.id),text=buildActorTweet(record)
-  assert(text.includes('Voici les détails 👇') && text.includes('💸'))
+  assert(text.includes('👇') && text.includes('💸'))
+  assert(text.length < 1700, `${actor.id}/${offer.id}`)
   assert(text.split('\n\n').at(-1).startsWith('💬 '))
   assert(!/undefined|NaN|qualifié|qualifiée/.test(text))
-  assert.equal((text.match(/🔎 /g) ?? []).length,1)
-  // Publication edits must preserve all figures from the collected offer terms.
-  for (const field of Object.values(offer.fields)) for (const figure of field.value.match(/\d+(?:[.,]\d+)?/g) ?? []) {
-    assert(text.includes(figure), `${actor.id}/${offer.id}: missing ${figure}`)
+  assert.equal((text.match(/🔎 /g) ?? []).length,offer.warnings.length ? 1 : 0)
+  // Retain the selected offer's main fee rates and warnings, while omitting secondary costs.
+  for (const figure of offer.fields.fees.value.split('. ').slice(0, actor.id === 'bacchus' ? 0 : 2).join(' ').match(/\d+(?:[.,]\d+)?/g) ?? []) {
+    assert(text.includes(figure), `${actor.id}/${offer.id}: missing main fee ${figure}`)
   }
   for (const warning of offer.warnings) assert(text.includes(warning))
 }

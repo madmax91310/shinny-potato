@@ -167,26 +167,43 @@ const actorPublicationCopy = text => text
   .replace('SLP de private equity européen ; souscriptions clôturées, présentation informative.', 'Ce fonds de private equity européen prend la forme d’une société de libre partenariat (SLP). Les souscriptions sont clôturées.')
   .replace('l’émetteur, le coupon et l’échéance dépendent du projet.', 'la société qui emprunte, les intérêts et la date de remboursement dépendent du projet.')
 
+// Editorial summaries derive amounts from collected fields; the complete terms remain available.
+function shortActorField(record, field) {
+  const value = actorPublicationCopy(record.selectedOffer?.fields[field]?.value ?? record[field] ?? '')
+  if (field === 'access') {
+    if (record.id === 'fundora') return value.split(' ; ')[0] + '.'
+    if (record.id === 'anaxago' && record.selectedOffer.id === 'axclimat-i') return value.split('. ')[0] + '. Échéancier de versement à confirmer.'
+    if (record.id === 'france-valley') return value.split('. ')[0] + '.'
+  }
+  if (field === 'fees') {
+    if (record.id === 'france-valley') {
+      const count = record.selectedOffer.id === 'fonciere-europe' ? 3 : 2
+      return value.split('. ').slice(0, count).join('. ') + '. D’autres frais du véhicule s’ajoutent, à vérifier dans ses documents.'
+    }
+    if (record.id === 'bricks') return value.split('. ').slice(0, 2).join('. ') + '.'
+    if (record.id === 'bacchus') return 'Frais de souscription, de gestion et de cession non chiffrés dans les pages publiques.'
+    if (record.id === 'matis') return value.split('. ').slice(0, 3).join('. ') + '. D’autres coûts liés à l’œuvre et à la société s’ajoutent.'
+    if (record.id === 'anaxago') return value.split('. ').slice(0, 2).join('. ') + '. Frais sous-jacents et éventuelle commission de performance à vérifier.'
+  }
+  if (field === 'income') return value.replace('Le TRI cible n’est pas une performance réalisée.', 'Le rendement visé n’est pas un rendement déjà obtenu.').replace('un taux annoncé n’est pas une performance réalisée', 'le taux annoncé ne garantit pas les intérêts reçus')
+  if (field === 'duration' && record.id === 'bacchus') return 'La durée du bail ne fixe pas ta durée de détention. La sortie dépend d’un acquéreur.'
+  if (field === 'exit' && record.id === 'france-valley') return 'La sortie dépend d’un acquéreur ou de nouvelles souscriptions. Prix et délai non garantis.'
+  return value
+}
 export function buildActorTweet(record) {
+  const offer = record.selectedOffer
   return [
-    `${record.intro}\n\nVoici les détails 👇`,
-    `📄 L’offre présentée : ${record.offer}.\n${record.name} — ${record.role}.`,
-    ...(record.selectedOffer?.availability?.status === 'closed' ? [`📌 Souscriptions clôturées le ${record.selectedOffer.availability.asOf.split('-').reverse().join('/')}. Cette présentation décrit l’offre publiée ; elle ne permet pas de souscrire aujourd’hui.`] : []),
-    `⚙️ Comment ça fonctionne ?\n${record.mechanism}`,
-    `📦 Ce que tu détiens\n${record.vehicle}.\n${record.distinction}`,
-    `💶 Pour commencer\n${record.access}`,
-    `💰 D’où peuvent venir les revenus ?\n${record.income}`,
-    ...(record.selectedOffer ? [
-      `💸 Ce que l’offre coûte\n${record.selectedOffer.fields.fees.value}`,
-      `⏳ Combien de temps prévoir ?\n${record.selectedOffer.fields.duration.value}`,
-    ] : []),
-    `🚪 Si tu veux récupérer ton argent\n${record.liquidity}`,
-    ...(record.selectedOffer ? [
-      `🔎 Avant d’investir, voici ce qu’il reste à vérifier\n${record.selectedOffer.scope}\nÀ demander ou à confirmer : ${record.selectedOffer.missing.join(' ; ')}.${record.selectedOffer.warnings.length ? `\n${record.selectedOffer.warnings.join('\n')}` : ''}`,
-    ] : []),
-    `⚠️ Les risques à comprendre\n${record.risks}\nLe capital et les revenus ne sont pas garantis.`,
-    `📌 Ces informations concernent l’offre présentée. ${record.selectedOffer?.availability?.status === 'closed' ? 'Les souscriptions sont clôturées ; consulte ses documents pour comprendre les conditions présentées.' : 'Vérifie qu’elle est ouverte à la souscription et demande ses documents contractuels.'} Cette fiche ne fournit pas de bilan des rendements effectivement obtenus. Les frais absents des documents publics restent à vérifier.`,
-    `📚 Sources officielles consultées le ${record.checkedAt.split('-').reverse().join('/')} :\n${record.sources.map(row => row.url).join('\n')}`,
+    `${record.intro} 👇`,
+    `📄 L’offre présentée : ${record.offer}.`,
+    offer?.availability?.status === 'closed' ? `📌 Souscriptions clôturées le ${offer.availability.asOf.split('-').reverse().join('/')}.` : '',
+    `📦 Ce que tu détiens : ${record.vehicle}.\n${record.distinction}`,
+    `💶 Pour commencer : ${shortActorField(record, 'access')}`,
+    `💰 Revenus possibles : ${shortActorField(record, 'income')}`,
+    offer ? `💸 Les principaux frais :\n${shortActorField(record, 'fees')}` : '',
+    offer ? `⏳ Durée : ${shortActorField(record, 'duration')}` : '',
+    `🚪 Pour récupérer ton argent : ${shortActorField(record, 'exit') || record.liquidity}`,
+    offer?.warnings.length ? `🔎 ${offer.warnings.join(' ')}` : '',
+    `⚠️ Le capital et les revenus ne sont pas garantis. ${record.risks}`,
     `💬 ${actorQuestions[record.family] ?? 'Tu connaissais ce type de placement ?'}`,
-  ].map(actorPublicationCopy).join('\n\n')
+  ].filter(Boolean).join('\n\n')
 }
