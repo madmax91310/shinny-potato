@@ -3,7 +3,7 @@ import {spawn} from 'node:child_process'
 import {chromium} from 'playwright'
 import {getFicheLexiqueText} from '../src/pages/tweet-midi/data/ficheLexique.js'
 import {brokerTariffCopy, BROKER_TARIFFS} from '../src/data/broker-tariffs.js'
-import {brokerPublicationCopy} from '../src/pages/broker-comparator/publicationCopy.js'
+import {brokerShortCopy} from '../src/pages/broker-comparator/shortCopy.js'
 const base='http://127.0.0.1:4311/shinny-potato'
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4311','--strictPort'],{stdio:'pipe'})
 let serverOutput=''
@@ -31,10 +31,10 @@ try {
   const selected=await page.locator('.bc-broker-select input:checked').evaluateAll(inputs=>inputs.map(input=>input.id))
   for(const checkbox of selected)await page.locator('#'+checkbox).uncheck()
   await page.locator('#chk-'+id).check();await page.locator('#chk-'+(id==='tr'?'xtb':'tr')).check()
-  await page.waitForFunction(full=>Array.from(document.querySelectorAll('textarea')).some(e=>e.value.includes(full)),brokerPublicationCopy(brokerTariffCopy(id).full))
+  await page.waitForFunction(fees=>Array.from(document.querySelectorAll('textarea')).some(e=>e.value.includes(fees)),brokerShortCopy(id).frais)
   assert(await page.locator('.bc-resume').filter({hasText:brokerTariffCopy(id).resume}).count())
  }
  await page.setViewportSize({width:390,height:844})
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
- console.log('Browser: ten fiscal sheets, recalculated examples, seven broker tables/tweets and mobile OK')
+ console.log('Browser: ten fiscal sheets, recalculated examples, eight broker tables/tweets and mobile OK')
 } finally {await browser?.close();server.kill()}
