@@ -103,13 +103,21 @@
     },
     "update-scpi.yml": {
       "name": "Présentations de SCPI",
-      "runId": 38057247546,
+      "runId": 38146032448,
       "attempt": 1,
-      "completedAt": "2026-10-10T14:03:18Z",
+      "completedAt": "2026-10-11T14:12:00Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-09T14:46:08Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38057247546",
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": null,
+      "lastPublicationSuccessAt": "2026-10-08T14:45:35Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38146032448",
       "failures": [
+        {
+          "job": "refresh",
+          "step": "Run git config user.name 'github-actions[bot]'"
+        },
         {
           "job": "report-failures",
           "step": "Run echo 'Collecte SCPI partielle : les dernières fiches validées sont conservées. Voir scpi-observations.' >> \"$GITHUB_STEP_SUMMARY\""
@@ -118,13 +126,11 @@
       "dataFailures": {
         "remake-live": {
           "name": "Remake Live",
-          "completedAt": "2026-10-10T14:03:18Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38057247546",
+          "completedAt": "2026-10-11T14:12:00Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38146032448",
           "cause": "Missing Remake year-end prices"
         }
-      },
-      "publicationStatus": "not-run",
-      "lastPublicationSuccessAt": "2026-10-08T14:45:35Z"
+      }
     },
     "update-insurance.yml": {
       "name": "Présentations d’assurance-vie",
@@ -202,5 +208,5 @@
       "publicationStatus": "failure"
     }
   },
-  "updatedAt": "2026-10-11T13:51:40Z"
+  "updatedAt": "2026-10-11T14:12:00Z"
 }
