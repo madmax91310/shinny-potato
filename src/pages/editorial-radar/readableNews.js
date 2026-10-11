@@ -27,6 +27,13 @@ export function explainParliamentary(item) {
     title = 'Titres-restaurant : des changements sont à l’étude'
     summary = 'Une proposition vise à changer les règles des titres-restaurant utilisés par les salariés. Les points à vérifier sont les achats autorisés et les conditions d’utilisation. Le résumé officiel récupéré ne précise pas encore les règles qui seraient retenues.'
     angle = 'Quels achats les salariés pourraient-ils payer avec leurs titres-restaurant ?'
+    // This detail belongs to the published October 2026 text, not to every
+    // future version of the reform. Later documents keep the cautious fallback.
+    if (/\/17\/(?:rapports\/r3274\.asp|ta-commission\/r3274-a0\.asp)$/.test(item.sourceUrl ?? '') && item.period === '2026-10-07') {
+      title = 'Titres-restaurant : la fin du papier proposée pour 2028'
+      summary = 'Le texte discuté prévoit notamment la fin des titres-restaurant papier au 1er janvier 2028. Les salariés concernés utiliseraient un format numérique, par carte ou application. Cette date fait partie de la proposition : elle peut encore changer pendant les débats.'
+      angle = 'Expliquer le passage envisagé du papier au numérique et suivre les modifications du texte.'
+    }
   } else if (/\bptz\b|pret a taux zero/.test(text)) {
     title = `PTZ : ${subject.replace(/^.*?(?:PTZ|prêt à taux zéro)\s*[:–-]?\s*/i, '') || 'une évolution à suivre'}`
     summary = `Le sujet porte sur le prêt à taux zéro, qui permet de financer une partie d’un achat immobilier sans intérêts. La proposition concerne ${subject[0]?.toLowerCase() ?? ''}${subject.slice(1)}.`
