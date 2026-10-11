@@ -88,17 +88,22 @@
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 38143679516,
+      "runId": 38149806050,
       "attempt": 1,
-      "completedAt": "2026-10-11T13:51:19Z",
-      "status": "success",
+      "completedAt": "2026-10-11T15:08:29Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-11T13:51:19Z",
       "collectionStatus": "success",
-      "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-11T13:51:19Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-11T15:08:29Z",
       "lastPublicationSuccessAt": "2026-10-11T13:51:16Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38143679516",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38149806050",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run python -m unittest discover -s scripts -p 'test_publication*.py'"
+        }
+      ],
       "dataFailures": {}
     },
     "update-scpi.yml": {
@@ -206,5 +211,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-11T15:05:29Z"
+  "updatedAt": "2026-10-11T15:08:29Z"
 }
