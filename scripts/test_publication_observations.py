@@ -3,9 +3,10 @@ import datetime as dt
 import json
 import pathlib
 import unittest
+from unittest.mock import patch
 import xml.etree.ElementTree as ET
 from refresh_purchasing_power import SOURCES, refresh, parse_series
-from refresh_anniversary_levels import completed, refresh as refresh_levels, configurations
+from refresh_anniversary_levels import completed, collect_one as collect_level, refresh as refresh_levels, configurations
 from publish_automation_status import normalize_report, update_status
 from data_automation import UTC
 
@@ -21,6 +22,23 @@ def xml(key):
     return ET.tostring(node,encoding='unicode')
 
 class PublicationTests(unittest.TestCase):
+    def test_msci_daily_recovery_and_exact_completed_window(self):
+        config={'id':'test','parser':'msci','indexCode':'123','currency':'USD','variant':'GRTR'}
+        body={'msci_index_code':'123','ISO_currency_symbol':'USD','index_variant_type':'GRTR',
+              'indexes':{'INDEX_LEVELS':[{'calc_date':'20261007','level_eod':100}]}}
+        with patch('refresh_monthly_history.get_json',return_value=body) as fetch:
+            record=collect_level(config,NOW)
+            self.assertEqual(record['asOf'],'2026-10-07')
+            self.assertEqual(record['value'],100)
+            self.assertEqual(fetch.call_args.kwargs,{'max_attempts':5})
+        for field,value in [('msci_index_code','456'),('ISO_currency_symbol','EUR'),('index_variant_type','NETR')]:
+            bad={**body,field:value}
+            with self.assertRaises(ValueError):collect_level(config,NOW,lambda _:bad)
+        for day in ['20260901','20261008','20261009']:
+            bad=copy.deepcopy(body);bad['indexes']['INDEX_LEVELS'][0]['calc_date']=day
+            with self.assertRaisesRegex(ValueError,'outside requested'):
+                collect_level(config,NOW,lambda _:bad)
+
     def test_exact_identity_holes_quality_and_dates(self):
         raw=xml('general')
         self.assertEqual(parse_series(raw,'general',NOW)['values']['2026-09'],102.99)

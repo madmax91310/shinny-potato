@@ -10,7 +10,7 @@ from urllib.parse import quote, urlencode
 from zoneinfo import ZoneInfo
 from data_automation import UTC, get_json, number, reject, write_json_atomic
 from issuer_documents import download
-from refresh_monthly_history import yahoo_chart, msci_rows
+from refresh_monthly_history import yahoo_chart, msci_rows, get_msci_json
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 IDS = {'ethereum','stoxx600','sp500','msciWorld','nasdaq100','soxx','silver','apple','microsoft','broadcom','tesla','berkshire','asml','msciEmerging','msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa'}
@@ -31,9 +31,13 @@ def completed(rows, now, timezone='UTC'):
     if (today - day).days > 7: reject('Dernière séance trop ancienne')
     return day.isoformat(), number(value)
 
-def collect_one(config, now, json_fetch=get_json, byte_fetch=download):
+def collect_one(config, now, json_fetch=None, byte_fetch=download):
     start, end = now.date()-dt.timedelta(days=15), now.date()
     parser = config['parser']
+    # Daily levels need the same bounded transient recovery as monthly MSCI
+    # histories. Keep Yahoo on its existing retry policy and injected fetches
+    # unchanged for deterministic validation.
+    json_fetch = json_fetch or (get_msci_json if parser == 'msci' else get_json)
     if parser == 'yahoo':
         url = 'https://query2.finance.yahoo.com/v8/finance/chart/'+quote(config['symbol'],safe='')+'?'+urlencode({
             'period1':int(dt.datetime.combine(start,dt.time(),UTC).timestamp()),
@@ -44,7 +48,10 @@ def collect_one(config, now, json_fetch=get_json, byte_fetch=download):
         url='https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?'+urlencode({
             'currency_symbol':config['currency'],'index_variant':config['variant'],'start_date':start.strftime('%Y%m%d'),
             'end_date':(end-dt.timedelta(days=1)).strftime('%Y%m%d'),'data_frequency':'DAILY','index_codes':config['indexCode']})
-        body=json_fetch(url);asof,value=completed(msci_rows(body,config),now)
+        body=json_fetch(url);rows=msci_rows(body,config)
+        if any(not start <= day < end for day, _ in rows):
+            reject('MSCI observations outside requested completed-session window')
+        asof,value=completed(rows,now)
     elif parser == 'stoxx':
         url=config['sourceUrl']; raw=byte_fetch(url)
         if raw[:2] == b'\x1f\x8b':
