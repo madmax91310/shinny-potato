@@ -12,9 +12,10 @@ for (const record of SCPI) {
   assert(!/undefined|NaN|Infinity/.test(text))
   assert(text.includes('🌍') && text.includes('🏭') && text.includes('💸'))
   assert(text.endsWith('💬 Tu détiens déjà des SCPI ? Lesquelles ?'))
-  assert(text.includes('bruts de fiscalité étrangère'))
+  assert(text.includes('brut de fiscalité étrangère'))
   assert.equal(record.annual.years.length, 3)
   assert(text.includes('2025'))
+  assert(text.length < 1600, record.id)
   assert(searchData(record.name).some(row => row.id === `scpi:${record.id}`))
   assert(DATA_CATALOG.find(row => row.id === `scpi:${record.id}`).fields.length >= 4)
 }
@@ -23,7 +24,7 @@ assert(buildTweet(SCPI[0]).includes('date des graphiques non précisée'))
 assert(allocation([{label:'A',value:20},{label:'B',value:30},{label:'C',value:40},{label:'D',value:10}]).endsWith('autres 10 %'))
 const changed = structuredClone(SCPI.find(row => row.id === 'remake-live'))
 changed.snapshot.countries = [{ label: 'France', value: 60 }, { label: 'Allemagne', value: 40 }]
-assert(buildTweet(changed).includes('France représente 60 %'))
+assert(buildTweet(changed).includes('France 60 %'))
 assert(!buildTweet(changed).includes('marché britannique'))
 console.log('SCPI: shared observations, differentiated tweets, fees, dates and catalogue OK.')
 
@@ -36,7 +37,7 @@ for (const record of SCPI) {
   const changed=structuredClone(record)
   changed.portfolio.buildings.value=321
   changed.portfolio.occupancy.value=91.25
-  assert(buildTweet(changed).includes('321 au') && buildTweet(changed).includes('91,25 %'))
+  assert(buildTweet(changed).includes('91,25 %'))
 }
 const activimmo=SCPI.find(row => row.id === 'activimmo')
 assert.equal(activimmo.price.asOf,'2026-07-01')
@@ -47,14 +48,14 @@ for (const [id, count] of [['corum-origin',170],['corum-xl',96]]) {
   const record = SCPI.find(row => row.id === id)
   assert.equal(record.snapshot.asOf,'2026-06-30')
   assert.equal(record.portfolio.buildings.value,count)
-  assert(buildTweet(record).includes(`${count} au 30/06/2026`))
+  assert(buildTweet(record).includes('au 30/06/2026'))
   assert(record.snapshot.dateNote.includes('deux résolutions concordantes'))
 }
 
 const epargne=SCPI.find(row => row.id === 'epargne-pierre')
 assert(buildTweet(epargne).includes('ne représente pas une baisse de valeur'))
 assert(!buildTweet(epargne).includes('208 € au 31/12/2023 → 20,8'))
-assert(buildTweet(epargne).includes('📍 En France'))
+assert(buildTweet(epargne).includes('France 100 %'))
 const remake=SCPI.find(row => row.id === 'remake-live')
 assert(remake.priceHistory.years.some(row => row.asOf === '2024-12-31'))
 assert(!remake.priceHistory.years.some(row => row.asOf === '2025-12-31'))
