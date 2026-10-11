@@ -440,16 +440,16 @@ export function buildAnniversaireText(item, rawNiveauActuel) {
 
   const phrase = yearsPhrase(item.yearsBack);
   const lines = [];
-  lines.push(`${asset.icon} ${asset.tweetPhrase.charAt(0).toUpperCase() + asset.tweetPhrase.slice(1)} ${asset.priceUnit === 'points' ? 'était à' : 'valait'} ${fmtAnniversaryLevel(asset, historicalPrice)} en ${dateLabel}. ${phrase.charAt(0).toUpperCase() + phrase.slice(1)} plus tard, ${anniversaryResult(asset, gainPct, hasCurrent ? fmtPct(gainPct) : '')} 👇`);
-
+  const since = hasCurrent ? `Depuis, ${anniversaryResult(asset, gainPct, fmtPct(gainPct))}` : 'Où en est-il aujourd’hui ?';
+  lines.push(`${asset.icon} Il y a ${phrase}, ${asset.tweetPhrase} ${asset.priceUnit === 'points' ? 'était à' : 'valait'} ${fmtAnniversaryLevel(asset, historicalPrice)}. ${since} 👇`);
   lines.push("");
-  lines.push(`${asset.icon} ${asset.label}`);
-  if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant);
-  lines.push(`${asset.priceUnit === 'points' ? 'Niveau' : 'Prix'} en ${dateLabel} : ${fmtAnniversaryLevel(asset, historicalPrice)}`);
-  lines.push(`${observation?.label ?? "Niveau actuel"} : ${hasCurrent ? fmtAnniversaryLevel(asset, niveauActuel) : "[à saisir]"}`);
-  lines.push(`Performance : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
+  if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant, "");
+  lines.push(`📅 ${dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1)} : ${fmtAnniversaryLevel(asset, historicalPrice)}`);
+  lines.push(`📅 ${observation?.label ?? "Niveau actuel"} : ${hasCurrent ? fmtAnniversaryLevel(asset, niveauActuel) : "[à saisir]"}`);
   lines.push("");
-  lines.push(anniversaryClosing(asset, gainPct, ym.slice(0, 4)));
+  lines.push(`📈 Évolution sur la période : ${hasCurrent ? fmtPct(gainPct) : "—"}`);
+  lines.push("");
+  lines.push(anniversaryClosing(asset, gainPct));
   if (asset.sourceCredit) lines.push("", asset.sourceCredit);
   return lines.join("\n");
 }
@@ -515,14 +515,14 @@ export function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNivea
   const ordered = bothKnown && !comparisonNote && pctB > pctA ? [rows[1], rows[0]] : rows;
 
   const lines = [];
-  lines.push(`⚖️ ${assetA.label} ou ${assetB.label} : quelle différence après ${yearsPhrase(item.yearsBack)}, depuis ${dateLabel} ? 👇`);
+  lines.push(`⚖️ Il y a ${yearsPhrase(item.yearsBack)}, ${assetA.label} et ${assetB.label} : voici comment ils ont évolué depuis 👇`);
   lines.push("");
   ordered.forEach(({ asset, observation, hist, cur, hasCur, gain }, i) => {
     lines.push(`${asset.icon} ${asset.label}`);
     if (asset.anniversaryVariant) lines.push(asset.anniversaryVariant);
-    lines.push(`${asset.priceUnit === 'points' ? 'Niveau' : 'Prix'} en ${dateLabel} : ${fmtAnniversaryLevel(asset, hist)}`);
-    lines.push(`${observation?.label ?? "Niveau actuel"} : ${hasCur ? fmtAnniversaryLevel(asset, cur) : "[à saisir]"}`);
-    lines.push(`Performance : ${hasCur ? fmtPct(gain) : "—"}`);
+    lines.push(`📅 ${dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1)} : ${fmtAnniversaryLevel(asset, hist)}`);
+    lines.push(`📅 ${observation?.label ?? "Niveau actuel"} : ${hasCur ? fmtAnniversaryLevel(asset, cur) : "[à saisir]"}`);
+    lines.push(`📈 Évolution : ${hasCur ? fmtPct(gain) : "—"}`);
     if (i === 0) lines.push("");
   });
   lines.push("");
