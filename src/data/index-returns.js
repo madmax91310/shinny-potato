@@ -380,6 +380,7 @@ export const INDEX_RETURNS = {
 };
 // Nouvelle convention explicite : les anciennes observations Price Return restent archivées.
 INDEX_RETURNS.stoxx600['2026-10-09'] = {
+  "checkedAt": "2026-10-11",
   "asOf": "2026-10-09",
   "currency": "EUR",
   "variant": "NET",
