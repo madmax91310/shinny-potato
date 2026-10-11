@@ -631,49 +631,29 @@
               "sourceUrl": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
               "discoveryUrl": null,
               "page": 35,
-              "sha256": "8e127d89e45e91efd4167b8490fb66e3a5371fde5a1e9545cb6c68c78bd739fc",
+              "sha256": "a1f110eb19650450e2997ceb4690df34761eb4f78d59e5b4398f9c1bd4bf4716",
               "kind": "pdf",
               "statement": "compte espèces ne donnent pas lieu à rémunération"
             }
           ],
           "scope": "fortuneo ; cash ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "d5afb3bf58044d808757f3afdc88b44155a53dd27ebcbc89463561b4a277f245",
+          "sha256": "5f7ee9da602f33581dbade4de36912c6cc020a87b849287fd28ef18d273ac8b4",
           "values": {},
           "decisiveDocument": "fortuneoContract",
           "statement": "compte espèces ne donnent pas lieu à rémunération",
           "checkedSources": [
             {
               "sourceUrl": "https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf",
-              "sha256": "8e127d89e45e91efd4167b8490fb66e3a5371fde5a1e9545cb6c68c78bd739fc"
-            },
-            {
-              "sourceUrl": "https://www.fortuneo.fr/faq/bourse",
-              "sha256": "e95bd70ef4ce17cabede75b11ee86a20aef120833b42caa9a638d0aedc24152e"
-            },
-            {
-              "sourceUrl": "https://www.fortuneo.fr/faq/comment-alimenter-un-compte-titres-ordinaire-ou-un-compte-especes",
-              "sha256": "665066f69671c317dd410a3eb58c9f87ee2d81ee9496f3ff3df9a400a29f16db"
-            },
-            {
-              "sourceUrl": "https://www.fortuneo.fr/faq/comment-transferer-un-pea-pea-pme-ou-un-compte-titres-ordinaire-chez-fortuneo",
-              "sha256": "c6a75017709f3f1044aa488d2be10f12b702e5913e02dded12ff8a0611b56f00"
-            },
-            {
-              "sourceUrl": "https://www.fortuneo.fr/faq/quelle-est-la-difference-entre-le-compte-especes-et-le-compte-titres",
-              "sha256": "5925cb64626a9d0df1978e88e41c5a0bc09cac4c37ef44447e215e07a4e2c5f4"
-            },
-            {
-              "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sommes-minimales-sont-necessaires-pour-ouvrir-un-compte-contrat-chez-fortuneo",
-              "sha256": "b90d8bd37cad49a7cde145c5c261979513e288db034b59af84b52cccaed19854"
+              "sha256": "a1f110eb19650450e2997ceb4690df34761eb4f78d59e5b4398f9c1bd4bf4716"
             },
             {
               "sourceUrl": "https://www.fortuneo.fr/faq/quelles-sont-les-fonctions-du-compte-espece",
               "sha256": "1da46d1df7753d00351fa98963238523d9009e50cf059096e46587defd827c65"
             },
             {
-              "sourceUrl": "https://www.fortuneo.fr/faq/qui-peut-ouvrir-un-compte-bourse",
-              "sha256": "d79ec9b6c70580f41a67c14da61a6c3388f0c04636454aee28d25b152846e1cd"
+              "sourceUrl": "https://www.fortuneo.fr/faq/quelle-est-la-difference-entre-le-compte-especes-et-le-compte-titres",
+              "sha256": "5925cb64626a9d0df1978e88e41c5a0bc09cac4c37ef44447e215e07a4e2c5f4"
             }
           ]
         }
@@ -1672,51 +1652,46 @@
           ]
         },
         "change": {
-          "available": null,
-          "status": "non établi",
+          "conversion": {
+            "account": "CTO",
+            "toEuro": true,
+            "bankRate": true,
+            "associatedFees": true,
+            "rate": null
+          },
+          "available": true,
+          "status": "partiel",
           "copy": {
-            "resume": "Change boursier : tarif non confirmé dans le barème régional ; commission bancaire générale exclue.",
-            "full": "Change boursier : tarif non confirmé dans le barème régional ; commission bancaire générale exclue."
+            "resume": "CTO : conversion en euros au cours pratiqué par la caisse Île-de-France, avec frais et commissions associés. Montant et portée PEA non établis par cette clause.",
+            "full": "CTO : conversion en euros au cours pratiqué par la caisse Île-de-France, avec frais et commissions associés. Montant et portée PEA non établis par cette clause."
           },
           "checkedAt": "2026-10-11",
-          "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
+          "sourceUrl": "https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/fip-et-cgl/76040.1773337045911.CGL_CTO_PDF.pdf",
           "refs": [
             {
-              "document": "caTariff",
-              "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
-              "discoveryUrl": "https://www.credit-agricole.fr/ca-paris/particulier/informations/tarif.html",
-              "page": 4,
-              "sha256": "6a3cdcf0bd03ac5b829f785b4248ca48f489c788c74cf7ad12070422a7f21a67",
+              "document": "caCtoContract",
+              "sourceUrl": "https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/fip-et-cgl/76040.1773337045911.CGL_CTO_PDF.pdf",
+              "discoveryUrl": null,
+              "page": 12,
+              "sha256": "f579008fa0d4c775b88e12c312ca6e31fa96661107f296aa25c4bdb67fd1cc8d",
               "kind": "pdf",
-              "statement": "compte-titres"
+              "statement": "Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l’opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents"
             }
           ],
           "scope": "caidf ; change ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "75649b6026579642d8f90f8249408af2001e7e95bdc0ac501711cd7a2de44064",
+          "sha256": "a834d5108130fb3f1eea74b6074a99e1f33854aa7f6d1dbb6c2806ad7b0af73e",
           "values": {},
-          "decisiveDocument": "caTariff",
-          "statement": "compte-titres",
+          "decisiveDocument": "caCtoContract",
+          "statement": "Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l’opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents",
           "checkedSources": [
             {
               "sourceUrl": "https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/conditions_tarifaires_particuliers_caidf_04_2026.pdf",
-              "sha256": "6a3cdcf0bd03ac5b829f785b4248ca48f489c788c74cf7ad12070422a7f21a67"
+              "sha256": "3745450193469d3ab08ab5a6c2e073b1dad6669b4b012592dbc03cf64d45278e"
             },
             {
               "sourceUrl": "https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/fip-et-cgl/76040.1773337045911.CGL_CTO_PDF.pdf",
-              "sha256": "ad490dcae6c66d5fa2e70faba9ac5f02c4c08d98b006b8298901554fce8dac51"
-            },
-            {
-              "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions.html",
-              "sha256": "3fef6a64f3405fe5b5f5c07d6ac422b13b5b555de968e835cd6be00e7e32de44"
-            },
-            {
-              "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/epargne/bourse/plan-d-epargne-en-actions-pme.html",
-              "sha256": "ca125c7c5c17e36c2eb0df84247c4b1220022e827252228f6b4914d9f460f8ba"
-            },
-            {
-              "sourceUrl": "https://www.credit-agricole.fr/ca-paris/particulier/informations/relation-banque-client/gestion-epargne.html",
-              "sha256": "d53883385ceb8dcc4d628b0d23798fbff4c772482e68133664af1164e5aecdec"
+              "sha256": "f579008fa0d4c775b88e12c312ca6e31fa96661107f296aa25c4bdb67fd1cc8d"
             }
           ]
         }

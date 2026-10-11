@@ -27,6 +27,17 @@ Les FAQ IBKR sont lues par l'interface publique réellement utilisée par le sit
 
 Le silence d'une convention ne devient pas une réponse négative. Les champs incertains restent qualifiés et les contrôles automatiques continuent à examiner les sources officielles raccordées.
 
+## Reprise de la recherche des champs restants
+
+- **CA Île-de-France / change** : l'article 20 de la convention CTO courante décrit une conversion en euros au taux pratiqué par la caisse, avec frais et commissions. Le collecteur extrait désormais ce PDF dans l'ordre de lecture, car l'extraction en colonnes mélangeait cette clause avec la succession et le PEA. La clause et sa page sont conservées ; le tweet peut présenter ce mécanisme explicitement comme CTO. Aucun taux chiffré ni application au PEA n'est déduit. Le champ passe de non établi à partiel.
+- **Fortuneo / cash CTO** : les FAQ officielles « Fonctions du compte espèces » et « Différence entre compte espèces et compte-titres » sont raccordées comme sources directes et recontrôlées à chaque collecte. Elles précisent les fonctions et le rattachement au CTO, sans clause de rémunération. Le champ reste partiel.
+- Les conditions générales complètes Fortuneo et BoursoBank et la convention CTO CA Île-de-France ont été relues : les exclusions de rémunération trouvées dans les contrats Fortuneo et BoursoBank concernent le PEA, pas automatiquement le CTO. Le compte de couverture non productif d'intérêts mentionné par CA Île-de-France ne prouve pas le régime du cash ordinaire.
+- La page produit PEA et les FAQ Fortuneo consultées ne tranchent pas l'existence d'achats récurrents. Les deux clauses IBKR déjà raccordées ne prouvent toujours pas l'exclusion d'un mode en titres entiers.
+- Trade Republic : le contrat France et les aides officielles consultées ne fournissent toujours pas de tarif spécifiquement PEA pour garde et transfert ni d'exclusion explicite du PEA-PME. La page officielle des tarifs renvoie à la grille disponible dans l'application. Les tarifs CTO ne sont pas transposés au PEA.
+- Le contrat courant Bourse Direct a répondu HTTP 502 sur les domaines `.fr` et `.com` pendant cette recherche ; les données antérieures sont conservées.
+
+État après cette reprise : **70 confirmés, 7 sans objet, 9 partiels et 2 non établis**. Les 88 cellules sont raccordées ; les 11 cellules partielles ou non établies ne sont pas annoncées comme entièrement vérifiées. Le squelette, les rubriques et les images restent inchangés.
+
 ## Collecte et validation
 
 La collecte locale a revalidé sept barèmes et cinquante champs de services. La collecte GitHub a ensuite revalidé les huit barèmes et les cinquante-six champs de services sans erreur. Les PDF et certaines pages Bourse Direct ont retourné HTTP 502 : les dernières valeurs qualifiées ont été conservées, avec leurs dates antérieures et l'erreur de collecte. Les réponses des cinq nouvelles FAQ IBKR ont aussi été relues séparément en direct.

@@ -2,6 +2,7 @@
 import copy
 import json
 import pathlib
+import re
 import unittest
 from broker_profiles import DOCUMENTS, SOURCES, parse, collect_profiles
 from broker_profile_qualification import TARGETS, qualify
@@ -117,11 +118,23 @@ class BrokerProfilesTests(unittest.TestCase):
         self.assertGreaterEqual(count,48)
 
     def test_unconfirmed_pea_services_never_become_negative(self):
-        for broker,field in [('tr','pme'),('tr','garde'),('fortuneo','dca'),('bourso','cash'),('fortuneo','cash'),('caidf','cash'),('caidf','change')]:
+        for broker,field in [('tr','pme'),('tr','garde'),('fortuneo','dca'),('bourso','cash'),('fortuneo','cash'),('caidf','cash')]:
             with self.subTest(broker=broker,field=field):
                 o=parse(broker,field,raws(broker,field),TODAY)
                 self.assertIsNone(o['available'])
                 self.assertNotEqual(o['status'],'confirmé')
+
+    def test_regional_cto_fx_keeps_fees_and_does_not_invent_a_rate_or_pea_scope(self):
+        raw = raws('caidf','change')
+        observed = parse('caidf','change',raw,TODAY)
+        self.assertEqual(observed['status'],'partiel')
+        self.assertEqual(observed['conversion'],{'account':'CTO','toEuro':True,'bankRate':True,'associatedFees':True,'rate':None})
+        self.assertEqual(observed['decisiveDocument'],'caCtoContract')
+        self.assertTrue(observed['refs'][0]['page'])
+        self.assertIn('frais et commissions',observed['statement'])
+        changed = dict(raw)
+        changed['caCtoContract'] = re.sub(r'ainsi\s+que\s+les\s+frais\s+et\s+commissions\s+y\s+afférents','sans frais supplémentaires',raw['caCtoContract'])
+        with self.assertRaises(ValueError): parse('caidf','change',changed,TODAY)
 
     def test_ibkr_published_faq_resolves_scopes_with_joint_evidence(self):
         for field in ['pme','jeune']:
