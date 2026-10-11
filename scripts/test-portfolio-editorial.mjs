@@ -313,7 +313,7 @@ console.log('OK : tri décroissant stable sans modifier les slots ni les perform
 // a thesis based on the actual composition and a single fixed closing question.
 const validatedExample = manual([{id:'msci_world_ishares',pct:50},{id:'msci_em',pct:20},{id:'smallcap_monde',pct:15},{id:'or_ishares',pct:15}]);
 const validatedText = renderTweetText(validatedExample);
-assert.match(validatedText,/^📈 .* par an sur la période 2020–2025 : quels ETF composent ce portefeuille/);
+assert.match(validatedText,/^📈 .* par an sur la période 2020–2025 : quels placements composent ce portefeuille/);
 assert.match(validatedText,/ont chacun une ligne dédiée/);
 assert.match(validatedText,/85 % d’actions/);
 assert.match(validatedText,/iShares Core MSCI World/);

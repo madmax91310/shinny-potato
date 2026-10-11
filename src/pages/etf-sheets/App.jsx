@@ -83,7 +83,7 @@ function EtfCard({ etf: sourceEtf }) {
         </li>
         {annual && <li>
           <span className="es-fi">📈</span>
-          <span className="es-fv">{formatTweetPerformance(annual)}</span>
+          <span className="es-fv">{formatTweetPerformance(annual, { includeIcon: false })}</span>
         </li>}
       </ul>
 
@@ -275,7 +275,7 @@ export default function App() {
         <section className="tool-preview" aria-label="Publication ETF">
           <div className="es-preview-heading"><h2>Aperçu de la publication</h2></div>
           <EtfCard etf={currentEtf} />
-          <p className="es-disclaimer" style={{ marginTop: 16 }}>Contenu pré-rédigé, données stockées en dur — aucune donnée de marché en temps réel.</p>
+          <p className="es-disclaimer" style={{ marginTop: 16 }}>Données actualisées automatiquement, sans cotation en temps réel.</p>
         </section>
       </ToolWorkspace>
 
