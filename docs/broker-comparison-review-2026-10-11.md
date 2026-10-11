@@ -17,7 +17,7 @@ La collecte quotidienne vérifie désormais aussi le fonctionnement du PEPS : ac
 
 8 courtiers × 11 colonnes : 88 cellules avec collecteur ou produit sans objet. Dans le registre : 68 cellules confirmées, 7 partielles, 6 non établies, 7 sans objet. Une cellule peut contenir plusieurs périmètres distincts ; ce décompte ne doit pas être confondu avec les 12 périmètres surveillés ci-dessous.
 
-Revue réelle des sources du 11 octobre : sept barèmes revalidés et 49 observations de profils revalidées. Aucune modification de montant ou de disponibilité par rapport aux dernières observations. Le complément PEPS Saxo a été téléchargé et qualifié séparément après cette revue. Les documents Bourse Direct ont renvoyé HTTP 502 malgré les URL officielles de secours ; leurs dernières observations validées du 10 octobre restent conservées.
+Revue réelle des sources du 11 octobre : la collecte en CI a revalidé les huit barèmes et 55 observations de profils sans erreur. Le complément PEPS Saxo a également été téléchargé et qualifié. L’erreur HTTP 502 initiale de Bourse Direct a été résolue lors de cette nouvelle collecte.
 
 ## Informations restant à établir
 
@@ -36,7 +36,7 @@ La découverte automatique et les recherches complémentaires n’ont pas fourni
 | BoursoBank | Rémunération des espèces sur CTO |
 | Crédit Agricole Île-de-France | Rémunération des espèces sur CTO |
 | Crédit Agricole Île-de-France | Tarif de change des opérations boursières |
-| Bourse Direct | Rémunération des espèces sur CTO ; dernière observation conservée en raison de HTTP 502 |
+| Bourse Direct | Rémunération des espèces sur CTO |
 
 Autres limites conservées dans le registre : les frais de transfert PEA Trade Republic sont distincts de la gratuité du transfert CTO ; le barème de change et la rémunération génériques IBKR ne prouvent pas leur applicabilité au PEA. Aucun remboursement de transfert non documenté n’est inventé.
 
@@ -48,6 +48,6 @@ Le suivi quotidien des périmètres inconnus est déjà raccordé à `update-reg
 - 40 tests des collecteurs : preuves et périmètres, changement du tarif d’achat PEPS, vente payante, maintien des dernières données lors d’une panne.
 - Audit des consommateurs : tarifs actualisés, changement de disponibilité et expiration des offres propagés aux publications courtes.
 - Audit de couverture, audit du contenu publiable et compilation de production réussis.
-- Assertions navigateur existantes adaptées. Exécution locale impossible : Chromium absent ; validation navigateur en CI à effectuer avant fusion.
+- Tests navigateur du comparateur réussis en CI : génération des duels, registre, copie après modification et export PNG. Les assertions réglementaires utilisant l’ancien texte des frais ont été adaptées au format court ; leur dernier passage complet reste une condition de fusion.
 
-Publication en attente : l’envoi de la branche GitHub a été rejeté par la vérification automatique d’autorisation. Aucun déploiement de cette modification n’est confirmé.
+Publication autorisée par l’utilisateur. Modification proposée dans la PR #492 ; fusion et déploiement conditionnés à la réussite de la CI.
