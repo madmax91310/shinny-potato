@@ -340,7 +340,7 @@ async function testPortfolioGenerator(page) {
   await page.locator(".pg-manual-pct-input").fill("100");
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
-  let manualEditorialOk = performanceHookOk(manualTweet) && /100% Fonds euros/.test(manualTweet) && /toute l’épargne/i.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
+  let manualEditorialOk = performanceHookOk(manualTweet) && /100% Fonds euros/.test(manualTweet) && /toute l’allocation/i.test(manualTweet) && !/La logique de l’ensemble/.test(manualTweet) && !/Bitcoin|Ethereum/.test(manualTweet);
   const euroPerf = Object.fromEntries(portfolioYears.map((year, i) => [year, portfolioAsset('fonds_euros').r[i]]));
   manualEditorialOk &&= portfolioYears.every(year => manualTweet.includes(`${year} : ${formatPerformance(euroPerf[year])}`))
     && manualTweet.includes(`Performance annualisée (2020 à 2025) : ${formatPerformance(annualizedReturn(euroPerf))} par an`);
