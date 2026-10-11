@@ -20,7 +20,7 @@ const rows=[
  '## Ce qui fonctionne sans assistant ni saisie manuelle','',
  '| Domaine | Couverture active | Fréquence |','|---|---|---|',
  `| Historiques mensuels des simulateurs | ${Object.keys(ASSETS).length}/${Object.keys(ASSETS).length} séries ; ${Object.values(monthly).filter(record => record.consumerScope !== 'catalog').length} collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |`,
- `| Parts ETF mensuelles prêtes à raccorder | ${Object.keys(read('src/data/automated-etf-monthly.json')).length} parts exactes, distributions réinvesties ; registre distinct des sélecteurs | Même collecte mensuelle et reprise quotidienne des échecs |`,
+ `| Parts ETF mensuelles raccordées | ${Object.keys(read('src/data/automated-etf-monthly.json')).length} parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |`,
  `| ETF/ETC/ETP | ${Object.keys(etf).length}/${instruments.length} instruments, au moins un champ | Quotidienne |`,
  `| Comparatif ETF | ${comparisons.instruments}/${comparisons.instruments} parts raccordées dans ${comparisons.themes} blocs ; ${comparisons.calendars} calendriers actifs, ${comparisons.waiting.length} absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |`,
  `| Compositions d’indices | ${Object.values(indices).filter(r=>r.facts).length} indices | 3 et 16 du mois |`,

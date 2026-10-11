@@ -2,7 +2,7 @@
 
 Les dix historiques ci-dessous sont collectés par `update-market-monthly.yml` : les 2, 4, 8 et 16 du mois, avec reprise quotidienne des échecs. Seuls les mois terminés sont intégrés. Les données validées sont dans `src/data/automated-etf-monthly.json`, les preuves dans `scripts/source-snapshots/monthly-automated.json`. Le registre consommable est `ETF_MONTHLY_HISTORIES` dans `src/data/etf-monthly-history.js`.
 
-La collecte est raccordée, mais les dix ETF ne sont pas encore ajoutés aux sélecteurs des outils. Les formats et les séries existantes restent inchangés. Le JSON distinct évite de charger les nouveaux historiques dans les outils avant leur raccordement.
+Les dix ETF sont raccordés aux sélecteurs de « Et si tu avais investi », « Performance depuis » et « Il y a X ans », en simple et comparatif. Les formats et squelettes existants sont conservés. Les raccourcis depuis les fiches ETF pointent vers la part exacte, sans substitution par un indice. Le JSON distinct garde les nouvelles séries dans un module partagé séparé.
 
 | ID | Part ISIN | Cotation exacte | Devise | Premier mois | Dernier mois validé |
 |---|---|---|---|---|---|
@@ -25,10 +25,14 @@ L’identité ISIN/ticker/place/devise est liée aux preuves de cotation conserv
 
 Quatre bougies anciennes sont discordantes : IMIE.PA en décembre 2012 ; XDEW.MI en décembre 2014, 2019 et 2020. Pour ces seuls mois explicitement enregistrés, une seconde requête quotidienne limitée à la dernière semaine du mois doit confirmer exactement la date, la clôture brute et la clôture ajustée de la requête longue. La bougie rejetée reste visible dans la preuve. Tout autre écart mensuel reste bloquant. Ce recoupement vérifie deux requêtes du même fournisseur ; il ne constitue pas une confirmation par un fournisseur indépendant.
 
-## Connexions proposées
+## Raccordements réalisés
 
-1. « Et si tu avais investi » : dix ETF, versement unique et mensuel, comparaisons dans la même devise.
-2. « Performance depuis » : dix ETF, périodes mensuelles ou annuelles dérivées de ces points, disponibilité limitée à chaque historique.
-3. Générateur et Duel : vérifier les lignes ETF déjà présentes ; utiliser les calendriers annuels officiels existants. Les historiques mensuels seraient utiles uniquement à une simulation mensuelle ou une période libre.
-4. « Il y a X ans » : nécessite une convention explicite. Un cours ajusté convient à une performance revenus réinvestis, mais pas à un ancien prix d’achat nominal. Pour conserver le squelette centré sur les prix, raccorder aussi les clôtures brutes historiques et la dernière séance quotidienne de la même cotation.
-5. Présentation et Comparatif ETF : frais, composition et encours déjà raccordés ; ces nouvelles séries permettraient surtout des performances sur périodes communes et glissantes, en distinguant devise NAV et devise de cotation.
+1. « Et si tu avais investi » : dix ETF, versement unique et mensuel, comparaisons et exports. Les capitaux restent dans la devise exacte de chaque cotation. La période peut commencer au premier mois disponible, sans extrapolation. Le repère Livret A est omis lorsque les taux ne couvrent pas toute cette période (IMIE et XDEW avant 2015), sans bloquer la simulation de l’ETF.
+2. « Performance depuis » : rendements annuels calculés à partir des clôtures mensuelles ajustées ; seules les années civiles complètes disposant de leur clôture précédente sont proposées. Le détail annuel et son squelette restent inchangés. La première année proposée est 2012 pour IMIE et 2022 pour SEMI.
+3. « Il y a X ans » : clôtures historiques `close`, sans réinvestissement des distributions, dans `anniversaryPoints`. Les prix Yahoo restent ajustés des divisions d’actions. La dernière clôture quotidienne de la même cotation est collectée par `update-publication-observations.yml` chaque jour à 07:40 UTC. Identité ISIN/ticker/place/devise conservée et contrôlée ; une observation âgée de plus de sept jours n’est plus utilisée automatiquement.
+4. Formats visuels : illustrations existantes liées à l’exposition ; identité typographique par ticker pour les anniversaires. Aucun logo d’émetteur inventé et aucun changement de squelette.
+5. Présentation ETF : les raccourcis Performance et Simulation sont générés automatiquement pour les dix ISIN exacts. Générateur, Duel et Comparatif conservent leurs calendriers annuels officiels et leurs devises propres.
+
+## Validation
+
+La collecte initiale des dix historiques et des dix observations quotidiennes a réussi le 11 octobre 2026 ; dernière séance quotidienne : 9 octobre. Les tests couvrent capital versé unique/DCA, distributions réinvesties séparées des anciens prix, plages disponibles, années civiles complètes, cotations exactes et propagation d’un mois futur jusqu’aux outils et à la provenance. Les workflows mensuel et déploiement exécutent `test-etf-tool-connections.mjs`. Les contrôles navigateur des trois exports vérifient les résultats, les devises et l’absence de chevauchement de texte.

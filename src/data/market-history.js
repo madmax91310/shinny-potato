@@ -7,6 +7,7 @@ import { MONTHLY_HISTORY_ADDITIONS } from './monthly-history-additions.js'
 import { MSCI_HISTORY } from './msci-history.js'
 import { COMPANY_HISTORY } from './company-history.js'
 import { SHARED_INDEX_HISTORY } from './shared-index-history.js'
+import { ETF_MONTHLY_HISTORIES } from './etf-monthly-history.js'
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
 // Bitcoin et S&P 500 : clôtures mensuelles Yahoo recoupées le 02/10/2026. Les autres actifs ont des
@@ -605,7 +606,7 @@ export const BASELINE_ASSETS = {
   ...MONTHLY_HISTORY_ADDITIONS,
 }
 
-export const ASSETS = applyMonthlyAutomation(BASELINE_ASSETS)
+export const ASSETS = { ...applyMonthlyAutomation(BASELINE_ASSETS), ...ETF_MONTHLY_HISTORIES }
 
 export const ASSET_ORDER = [
   'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), ...Object.keys(DIVERSIFICATION_HISTORY), ...Object.keys(SHARED_INDEX_HISTORY), 'nasdaq100', 'soxx',
@@ -613,6 +614,7 @@ export const ASSET_ORDER = [
   'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
   ...Object.keys(COMPANY_HISTORY),
   'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond',
+  ...Object.keys(ETF_MONTHLY_HISTORIES),
 ]
 
 // Les anciennes séries espacées ont été remplacées par des observations mensuelles.

@@ -17,10 +17,11 @@ IDS = {'ethereum','stoxx600','sp500','msciWorld','nasdaq100','soxx','silver','ap
 
 def configurations():
     sources = json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']
-    sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS]
+    etfs = [s for s in sources if s.get('consumerScope') == 'catalog' and s.get('collectAnniversary')]
+    sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS or s in etfs]
     sources += [{'id':'bitcoin','label':'Bitcoin','parser':'yahoo','symbol':'BTC-USD','currency':'USD','field':'close','timezone':'UTC'},
                 {'id':'cac40','label':'CAC 40','parser':'yahoo','symbol':'^FCHI','currency':'EUR','field':'close','timezone':'Europe/Paris'}]
-    if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'}: reject('Configuration anniversaire incomplète')
+    if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'} | {s['id'] for s in etfs}: reject('Configuration anniversaire incomplète')
     from refresh_anniversary_indices import configurations as index_configurations
     return sources + index_configurations()
 
@@ -85,7 +86,8 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
             'method':'Dernière séance terminée ; cours brut' if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
-            'maxAgeDays':45 if parser=='ftse' else 7}
+            'maxAgeDays':45 if parser=='ftse' else 7,
+            **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId')} if config.get('consumerScope')=='catalog' else {})}
 
 def refresh(current, now, collect=collect_one):
     merged=current.copy();successes=[];errors=[]
@@ -96,7 +98,7 @@ def refresh(current, now, collect=collect_one):
         for id_,record,error in pool.map(one,configurations()):
             if error:errors.append({'id':'anniversary-'+id_,'error':error});continue
             old=merged.get(id_)
-            if old and (record['asOf'] < old['asOf'] or any(record.get(k)!=old.get(k) for k in ['currency','parser','symbol','indexCode','variant'])):
+            if old and (record['asOf'] < old['asOf'] or any(record.get(k)!=old.get(k) for k in ['currency','parser','symbol','indexCode','variant','isin','ticker','mic','listingEvidenceId'])):
                 errors.append({'id':'anniversary-'+id_,'error':'Régression de date ou changement de convention'});continue
             merged[id_]=record;successes.append({'id':'anniversary-'+id_})
     # Gold retains its World Bank monthly average convention, never gold futures/spot.

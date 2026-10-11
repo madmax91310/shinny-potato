@@ -234,7 +234,9 @@ export function derive(state) {
   }
 
   const compareEuro = isCustom || ASSETS[state.assetId].currency === 'EUR'
-  const livretA = compareEuro ? computeBenchmarkSeries(LIVRET_A, safeStartYm, endYm, amount, effectiveMode) : null
+  const livretComplete = monthsBetween(safeStartYm, endYm).slice(1)
+    .every(month => Object.keys(LIVRET_A).some(since => since <= month))
+  const livretA = compareEuro && livretComplete ? computeBenchmarkSeries(LIVRET_A, safeStartYm, endYm, amount, effectiveMode) : null
   // Market month-ends can arrive before INSEE. Keep the market result available
   // and omit a benchmark whose full period has not yet been published.
   const inflationComplete = monthsBetween(safeStartYm, endYm).slice(1)
@@ -289,7 +291,7 @@ export function buildTweetText(state, d) {
   // Comparaison Livret A : uniquement pour les actifs en euros, jamais un montant en dollars
   // comparé à un Livret A en euros sans taux de change — même règle que ResultCard côté UI
   // (demande utilisateur du 22/09/2026, le mélange de devises corrigé plus tôt dans la session).
-  const hasLivretCompare = currency === 'EUR'
+  const hasLivretCompare = currency === 'EUR' && d.livretA
   if (hasLivretCompare) {
     lines.push('', `Avec les mêmes versements sur un Livret A : ${fmtEUR(d.livretA.finalValue, 'EUR')} (simulation indicative)`)
   }

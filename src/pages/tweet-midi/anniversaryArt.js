@@ -1,7 +1,11 @@
 import { ANNIVERSARY_INDEX_VARIANTS } from './data/indexVariants.js'
+import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 // Explicit identities: an issuer logo is never substituted for an index or fund.
 // Sources and visual review: public/asset-art/README.md.
 export const ANNIVERSARY_ART = Object.freeze({
+  ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
+    title: asset.title, subtitle: `ETF ${asset.ticker}`, kind: 'illustration', indexTitle: asset.ticker,
+  }])),
   ...Object.fromEntries([
     ['msciEurope', 'MSCI EUROPE'],
     ['msciUsa', 'MSCI USA'],

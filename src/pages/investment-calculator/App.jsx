@@ -154,7 +154,7 @@ function ResultCard({ state, d, copied, onCopy }) {
         <CompareItem label={assetLabel} value={d.result.finalValue} deltaVal={gainPct} currency={currency} highlight />
         {currency === 'EUR' ? (
           <>
-            <CompareItem label="Livret A" value={d.livretA.finalValue} deltaVal={livretPct} currency="EUR" />
+            {d.livretA && <CompareItem label="Livret A" value={d.livretA.finalValue} deltaVal={livretPct} currency="EUR" />}
             {d.inflation ? <CompareItem label="Panier de dépenses (inflation indicative)" value={d.inflation.finalValue} deltaVal={inflPct} currency="EUR" />
               : <p className="ic-compare-note">Le repère d’inflation attend les données INSEE pour toute la période.</p>}
           </>
