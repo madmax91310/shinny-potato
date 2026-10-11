@@ -44,6 +44,7 @@ export function getFicheLexiqueText(termeId) {
   const lines = [
     `📖 ${texte.ouverture}`,
     ...sections.map(({ titre, contenu }) => `${titre}\n\n${contenu}`),
+    ...(texte.question ? [`💬 ${texte.question}`] : []),
   ];
   return lines.join("\n\n").replace(/(\d)([%€])/gu, "$1 $2");
 }
