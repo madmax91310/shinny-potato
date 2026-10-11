@@ -12670,7 +12670,7 @@
           "https://query2.finance.yahoo.com/v8/finance/chart/%5ESP500TR?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
         ],
         "checkedAt": "2026-10-06",
-        "sha256": "b7790ce70faf65807141140325604ca2bb7409f6be5aefaf995aafb5d5284306",
+        "sha256": "e6d07a07e9ce24d63ea6b248e4b3e877fff6158b940e62570f7cad799ea69562",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
@@ -13190,7 +13190,7 @@
           "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1512086400&period2=1790812800&interval=1mo&events=div%2Csplits"
         ],
         "checkedAt": "2026-10-06",
-        "sha256": "b7790ce70faf65807141140325604ca2bb7409f6be5aefaf995aafb5d5284306",
+        "sha256": "e6d07a07e9ce24d63ea6b248e4b3e877fff6158b940e62570f7cad799ea69562",
         "label": "Clôtures décembre/décembre · série mensuelle exacte validée"
       },
       "performance": {
@@ -13333,7 +13333,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225",
         "checkedAt": "2026-10-11",
-        "sha256": "b40c9d90a024bb43e4a85d8558a82835534dbc69eba0ccc7eda3ec3f8e40f5a6",
+        "sha256": "1ce0ecdb25f6a671b77ccef1cbc0bfdf4d738bc8a5392c783c222ed0a1c984ae",
         "label": "Composition officielle automatisée · Nikkei 225"
       },
       "provenance": "Publication officielle Nikkei ; classification sectorielle propre à Nikkei."
@@ -13458,7 +13458,7 @@
       "source": {
         "url": "https://indexes.nikkei.co.jp/en/nkave/factsheet?idx=nk225tr",
         "checkedAt": "2026-10-11",
-        "sha256": "32d9e8678f5b76f2508f485dbaeb142636a55f34ca96fb1b17cef9332350dd59",
+        "sha256": "e62cc3f0a10f74bcabffe5ff109395eb7e2d6bb905be61fe134082f5e1cf0374",
         "label": "Rendements calendaires officiels automatisés · Nikkei 225"
       },
       "performance": {
@@ -14072,265 +14072,89 @@
     "returns": {
       "asOf": "2026-10-09",
       "currency": "EUR",
-      "variant": "PRICE",
+      "variant": "NET",
       "values": [
         [
           2025,
-          18.29
+          21.2
         ],
         [
           2024,
-          8.28
+          11.01
         ],
         [
           2023,
-          19.19
+          22.23
         ],
         [
           2022,
-          -11.74
+          -9.49
         ],
         [
           2021,
-          20.99
+          23.34
         ],
         [
           2020,
-          -5.14
+          -3.21
         ]
       ],
       "periodStart": "2020-01-01",
       "periodEnd": "2025-12-31",
       "source": {
-        "url": "https://stoxx.com/index/sx5e/",
+        "url": "https://stoxx.com/index/sx5t/",
         "checkedAt": "2026-10-11",
-        "sha256": "0dc7bf0247e1df30ab4b842d1fbae8debbf622711503900ba98ac2185018bed5",
+        "sha256": "a5acb3ec6bb1d479d6cbb1e52e395ebd0b8d739967492835c1c4aacb5620d517",
         "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
       },
       "performance": {
         "kind": "indice",
-        "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+        "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
         "date": "2026-10-09"
       }
     },
     "returnsHistory": {
-      "2026-10-05": {
-        "asOf": "2026-10-05",
-        "currency": "EUR",
-        "variant": "PRICE",
-        "values": [
-          [
-            2025,
-            18.29
-          ],
-          [
-            2024,
-            8.28
-          ],
-          [
-            2023,
-            19.19
-          ],
-          [
-            2022,
-            -11.74
-          ],
-          [
-            2021,
-            20.99
-          ],
-          [
-            2020,
-            -5.14
-          ]
-        ],
-        "periodStart": "2020-01-01",
-        "periodEnd": "2025-12-31",
-        "source": {
-          "url": "https://stoxx.com/index/sx5e/",
-          "checkedAt": "2026-10-06",
-          "sha256": "827e79065e08be64246a7f57b51d95caeb464ecca370acd787482ca377032102",
-          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
-        },
-        "performance": {
-          "kind": "indice",
-          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
-          "date": "2026-10-05"
-        }
-      },
-      "2026-10-06": {
-        "asOf": "2026-10-06",
-        "currency": "EUR",
-        "variant": "PRICE",
-        "values": [
-          [
-            2025,
-            18.29
-          ],
-          [
-            2024,
-            8.28
-          ],
-          [
-            2023,
-            19.19
-          ],
-          [
-            2022,
-            -11.74
-          ],
-          [
-            2021,
-            20.99
-          ],
-          [
-            2020,
-            -5.14
-          ]
-        ],
-        "periodStart": "2020-01-01",
-        "periodEnd": "2025-12-31",
-        "source": {
-          "url": "https://stoxx.com/index/sx5e/",
-          "checkedAt": "2026-10-06",
-          "sha256": "1b6c6f033bc4b1c8958e63e1df763827ed1dd852667541a00bf5e5f09cbbfb77",
-          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
-        },
-        "performance": {
-          "kind": "indice",
-          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
-          "date": "2026-10-06"
-        }
-      },
-      "2026-10-07": {
-        "asOf": "2026-10-07",
-        "currency": "EUR",
-        "variant": "PRICE",
-        "values": [
-          [
-            2025,
-            18.29
-          ],
-          [
-            2024,
-            8.28
-          ],
-          [
-            2023,
-            19.19
-          ],
-          [
-            2022,
-            -11.74
-          ],
-          [
-            2021,
-            20.99
-          ],
-          [
-            2020,
-            -5.14
-          ]
-        ],
-        "periodStart": "2020-01-01",
-        "periodEnd": "2025-12-31",
-        "source": {
-          "url": "https://stoxx.com/index/sx5e/",
-          "checkedAt": "2026-10-07",
-          "sha256": "8625789e27fcc3941b42ca9d0490e253420b8970afc798e341577e8c013d7e04",
-          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
-        },
-        "performance": {
-          "kind": "indice",
-          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
-          "date": "2026-10-07"
-        }
-      },
-      "2026-10-08": {
-        "asOf": "2026-10-08",
-        "currency": "EUR",
-        "variant": "PRICE",
-        "values": [
-          [
-            2025,
-            18.29
-          ],
-          [
-            2024,
-            8.28
-          ],
-          [
-            2023,
-            19.19
-          ],
-          [
-            2022,
-            -11.74
-          ],
-          [
-            2021,
-            20.99
-          ],
-          [
-            2020,
-            -5.14
-          ]
-        ],
-        "periodStart": "2020-01-01",
-        "periodEnd": "2025-12-31",
-        "source": {
-          "url": "https://stoxx.com/index/sx5e/",
-          "checkedAt": "2026-10-08",
-          "sha256": "bd1b30fa4fa7b64c0394c7a609c32e3f85f5fc70b07892db7b5c562400a7733c",
-          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
-        },
-        "performance": {
-          "kind": "indice",
-          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
-          "date": "2026-10-08"
-        }
-      },
       "2026-10-09": {
         "asOf": "2026-10-09",
         "currency": "EUR",
-        "variant": "PRICE",
+        "variant": "NET",
         "values": [
           [
             2025,
-            18.29
+            21.2
           ],
           [
             2024,
-            8.28
+            11.01
           ],
           [
             2023,
-            19.19
+            22.23
           ],
           [
             2022,
-            -11.74
+            -9.49
           ],
           [
             2021,
-            20.99
+            23.34
           ],
           [
             2020,
-            -5.14
+            -3.21
           ]
         ],
         "periodStart": "2020-01-01",
         "periodEnd": "2025-12-31",
         "source": {
-          "url": "https://stoxx.com/index/sx5e/",
-          "checkedAt": "2026-10-09",
-          "sha256": "4f464e67836ef098c62aa0d1040264229a265292d602ebd338e34a38bfefcdb1",
+          "url": "https://stoxx.com/index/sx5t/",
+          "checkedAt": "2026-10-11",
+          "sha256": "a5acb3ec6bb1d479d6cbb1e52e395ebd0b8d739967492835c1c4aacb5620d517",
           "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
         },
         "performance": {
           "kind": "indice",
-          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
           "date": "2026-10-09"
         }
       }
@@ -14587,6 +14411,228 @@
           "label": "Composition de l’indice publiée par Amundi"
         },
         "provenance": "Tables explicitement intitulées données de l’indice ; le portefeuille et le panier de substitution du fonds sont exclus."
+      }
+    },
+    "priceReturnsHistory": {
+      "2026-10-05": {
+        "asOf": "2026-10-05",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            18.29
+          ],
+          [
+            2024,
+            8.28
+          ],
+          [
+            2023,
+            19.19
+          ],
+          [
+            2022,
+            -11.74
+          ],
+          [
+            2021,
+            20.99
+          ],
+          [
+            2020,
+            -5.14
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5e/",
+          "checkedAt": "2026-10-06",
+          "sha256": "827e79065e08be64246a7f57b51d95caeb464ecca370acd787482ca377032102",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-05"
+        }
+      },
+      "2026-10-06": {
+        "asOf": "2026-10-06",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            18.29
+          ],
+          [
+            2024,
+            8.28
+          ],
+          [
+            2023,
+            19.19
+          ],
+          [
+            2022,
+            -11.74
+          ],
+          [
+            2021,
+            20.99
+          ],
+          [
+            2020,
+            -5.14
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5e/",
+          "checkedAt": "2026-10-06",
+          "sha256": "1b6c6f033bc4b1c8958e63e1df763827ed1dd852667541a00bf5e5f09cbbfb77",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-06"
+        }
+      },
+      "2026-10-07": {
+        "asOf": "2026-10-07",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            18.29
+          ],
+          [
+            2024,
+            8.28
+          ],
+          [
+            2023,
+            19.19
+          ],
+          [
+            2022,
+            -11.74
+          ],
+          [
+            2021,
+            20.99
+          ],
+          [
+            2020,
+            -5.14
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5e/",
+          "checkedAt": "2026-10-07",
+          "sha256": "8625789e27fcc3941b42ca9d0490e253420b8970afc798e341577e8c013d7e04",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-07"
+        }
+      },
+      "2026-10-08": {
+        "asOf": "2026-10-08",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            18.29
+          ],
+          [
+            2024,
+            8.28
+          ],
+          [
+            2023,
+            19.19
+          ],
+          [
+            2022,
+            -11.74
+          ],
+          [
+            2021,
+            20.99
+          ],
+          [
+            2020,
+            -5.14
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5e/",
+          "checkedAt": "2026-10-08",
+          "sha256": "bd1b30fa4fa7b64c0394c7a609c32e3f85f5fc70b07892db7b5c562400a7733c",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-08"
+        }
+      },
+      "2026-10-09": {
+        "asOf": "2026-10-09",
+        "currency": "EUR",
+        "variant": "PRICE",
+        "values": [
+          [
+            2025,
+            18.29
+          ],
+          [
+            2024,
+            8.28
+          ],
+          [
+            2023,
+            19.19
+          ],
+          [
+            2022,
+            -11.74
+          ],
+          [
+            2021,
+            20.99
+          ],
+          [
+            2020,
+            -5.14
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://stoxx.com/index/sx5e/",
+          "checkedAt": "2026-10-09",
+          "sha256": "4f464e67836ef098c62aa0d1040264229a265292d602ebd338e34a38bfefcdb1",
+          "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+          "date": "2026-10-09"
+        }
       }
     }
   },
@@ -15356,7 +15402,7 @@
       "source": {
         "url": "https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf",
         "checkedAt": "2026-10-11",
-        "sha256": "8b81dde9934d0446b287bdd4edeaac8297cd2f1091a9129fd599c208d0a917f5",
+        "sha256": "ce15f2a5cc81cba9f7c7445a2480eeaf028052a67576b6819ac7324656e94dd2",
         "label": "Rendements calendaires officiels automatisés · TOPIX"
       },
       "performance": {

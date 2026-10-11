@@ -72,6 +72,23 @@ class RemainingIndexSources(unittest.TestCase):
         # Removing a December boundary cannot silently produce a partial history.
         text=body.decode();array=json.loads(text.split('window.chart_data = ')[1][:-1]);del array[3]
         with self.assertRaises(ValueError):stoxx_returns((text.split('window.chart_data = ')[0]+'window.chart_data = '+json.dumps(array)+';').encode(),c,NOW)
+    def test_eurostoxx_net_official_year_ends_and_future_refresh(self):
+        fixture=json.loads((F.parent/'index-extensions/eurostoxx50-net.json').read_text())
+        c=cfg('eurostoxx50');now=dt.datetime(2026,10,11,tzinfo=UTC)
+        self.assertEqual((c['symbol'],c['isin'],c['returnVariant']),('SX5T','EU0009658152','NET'))
+        rows=fixture['dailyYearEnds']+[fixture['latest']]
+        prefix="window.index_isin = 'EU0009658152';<span id=\"overview-symbol\">SX5T</span>EUR (Net Return) window.chart_data = "
+        body=(prefix+json.dumps(rows)+';').encode()
+        stamp,values=stoxx_returns(body,c,now)
+        self.assertEqual(values,fixture['returns']['values'])
+        self.assertEqual(dict(values)[2025],21.2)
+        for field,value in [('symbol','SX5E'),('isin','EU0009658145'),('returnVariant','PRICE'),('returnCurrency','USD')]:
+            with self.subTest(field=field),self.assertRaises(ValueError):stoxx_returns(body,{**c,field:value},now)
+        previous={'eurostoxx50':{'returns':fixture['returns']}}
+        incoming={**fixture['returns'],'asOf':'2026-10-12'}
+        merged=merge_records(previous,[{'id':'eurostoxx50','returns':incoming}])
+        self.assertEqual(merged['eurostoxx50']['returns']['asOf'],'2026-10-12')
+        with self.assertRaises(ValueError):merge_records(previous,[{'id':'eurostoxx50','returns':{**incoming,'variant':'PRICE'}}])
     def test_metals_use_benchmark_not_etc_returns(self):
         for metal,value in [('gold',65),('silver',149.06)]:
             c=cfg(metal+'-physical');t=(F/(metal+'.txt')).read_text()

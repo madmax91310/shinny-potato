@@ -71,7 +71,7 @@ for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [date, ser
   if (stoxxNetSeries) {
     assert.equal(stoxxNetSeries.variant, 'NET');
     assert.equal(stoxxNetSeries.currency, 'EUR');
-    assert.equal(stoxxNetSeries.source.url, 'https://stoxx.com/index/sxxr/');
+    assert.equal(stoxxNetSeries.source.url, `https://stoxx.com/index/${id === 'eurostoxx50' ? 'sx5t' : 'sxxr'}/`);
     assert.match(stoxxNetSeries.source.sha256, /^[a-f0-9]{64}$/);
   }
   const independent = INDEX_COMPARISON_RETURN_ADDITIONS[id]?.[date] ?? factorSeries ?? propertyInfraSeries ?? stoxxNetSeries;

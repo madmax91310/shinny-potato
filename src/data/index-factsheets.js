@@ -1,12 +1,8 @@
 import { refreshIndexSheet } from './automated-indices.js';
-import { getInstrumentAnnualPerformance } from './instrument-returns.js';
 import { INDEX_RETURNS, getIndexReturns } from './index-returns.js'
 import { getIndexComposition, getIndexFacts } from './index-facts.js'
-import { getInstrumentFactsheetReturns } from './instrument-comparator-returns.js'
-// Relevé de fiches officielles, figé au 31 août 2026 (au 30 juin pour deux fonds).
-// Composition = indice sous-jacent, jamais les titres détenus par le fonds synthétique.
-// Les rendements du fonds sont les lignes « Portefeuille » des tableaux Amundi.
-const emFund = 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF/20260630'
+// Photographies historiques de composition ; composition et rendements sont actualisés
+// indépendamment par refreshIndexSheet. Toutes les performances sont celles des indices.
 
 // Réutilisation de photographies déjà vérifiées ; les performances conservent leur propre source et période.
 function reusedIndexSheet(id, title, intro, insight, takeaway, methodologyPanels, asOf = '2026-09-30') {
@@ -67,10 +63,10 @@ const ARCHIVE_SHEETS = [
  },
 {
  ...getIndexComposition('sp500-equal-weight','methodology'),id:'sp500-equal-weight',title:'S&P 500 Equal Weight',index:'S&P 500 Equal Weight',snapshot:getIndexFacts('sp500-equal-weight','methodology').snapshot,
- source:[getIndexFacts('sp500-equal-weight','methodology').source,{label:'Performances de l’ETF · DWS',url:'https://etf.dws.com/Download/Past%20Performance/IE00BLNMYC90/FR/FR'}],
+ source:[getIndexFacts('sp500-equal-weight', 'methodology').source, INDEX_RETURNS['sp500-equal-weight']['2025-12-31'].source],
  intro: "🇺🇸 Avec le S&P 500 Equal Weight, tu retrouves les entreprises du S&P 500, mais chacune reçoit le même poids au rééquilibrage.\n\nVoici comment cette règle change ton exposition, avec les chiffres et les performances 👇",
- isin:'IE00BLNMYC90',returns:[2025,2024,2023,2022,2021].map(y=>[y,getInstrumentAnnualPerformance('IE00BLNMYC90').values[y-2020]]),
- performance:{kind:'ETF',detail:'Part Xtrackers 1C, rendement NAV USD, dividendes réinvestis, net de frais',date:'31 décembre 2025'},
+ returns: getIndexReturns('sp500-equal-weight', '2025-12-31'),
+ performance: INDEX_RETURNS['sp500-equal-weight']['2025-12-31'].performance,
  insight:'Le poids des géants baisse parce que les entreprises partent du même poids. Cela ne supprime pas le risque du marché américain.',takeaway: "Tu changes le poids des entreprises dans ton placement, tout en restant sur le même univers que le S&P 500.",
  methodologyPanels:[['LES ENTREPRISES','Le même univers que le S&P 500 : environ 500 sociétés américaines. Le nombre de titres peut différer du nombre de sociétés.'],['LEUR POIDS','Chaque société reçoit 0,2 % à chaque rééquilibrage trimestriel. Ensuite, les poids évoluent avec les cours.'],['CE QUE ÇA CHANGE','Les plus petites sociétés du S&P 500 prennent davantage de place. Les secteurs restent ceux du marché américain, avec d’autres poids.']],
 },
@@ -96,29 +92,22 @@ const ARCHIVE_SHEETS = [
   {
     ...getIndexComposition('topix', '2026-04-30'),
     id: 'topix', title: 'TOPIX', index: 'TOPIX', snapshot: '30 avril 2026',
-    source: [
-      getIndexFacts('topix', '2026-04-30').source,
-      { label: 'Méthode de pondération · JPX', url: 'https://www.jpx.co.jp/english/markets/indices/topix/' },
-      { label: 'Rendements de la part PEA non couverte · Amundi', url: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260430' },
-    ],
-    intro: "🇯🇵 Tu investis dans un ETF TOPIX. Mais quels secteurs et quelles entreprises japonaises pèsent le plus dans ton placement ?\n\nVoici ce que contient cet indice, avec sa répartition et les performances de l’ETF cité 👇",
-    isin: 'FR0013411980', returns: getInstrumentFactsheetReturns('FR0013411980'),
-    performance: { kind: 'ETF', detail: 'part Amundi PEA Japon TOPIX non couverte, rendement du portefeuille en euros, net de frais', date: '30 avril 2026', historyNote: 'Les rendements ci-dessus sont ceux de l’ETF en euros, pas de l’indice TOPIX en yens. La composition de l’indice est datée d’avril 2026.' },
+    source: [getIndexFacts('topix', '2026-04-30').source, INDEX_RETURNS['topix']['2025-12-31'].source],
+    intro: "🇯🇵 Tu investis dans un ETF TOPIX. Mais quels secteurs et quelles entreprises japonaises pèsent le plus dans ton placement ?\n\nVoici ce que contient cet indice, avec sa répartition et les performances de l’indice 👇",
+    returns: getIndexReturns('topix', '2025-12-31'),
+    performance: INDEX_RETURNS['topix']['2025-12-31'].performance,
     insight: 'Toyota et les banques ont un poids important. Le TOPIX est pondéré par capitalisation flottante, contrairement au Nikkei 225 pondéré par le prix des actions.',
-    takeaway: 'La part TOPIX PEA non couverte reste exposée au change yen/euro. Une autre part PEA couverte existe, avec des frais différents.',
+    takeaway: 'Les performances de l’indice sont exprimées en yens. Pour un placement en euros, le change peut modifier le résultat.',
   },
   {
     ...getIndexComposition('nikkei225', '2026-08-31'),
     id: 'nikkei225', title: 'Nikkei 225', index: 'Nikkei 225', snapshot: '31 août 2026',
-    source: [
-      getIndexFacts('nikkei225', '2026-08-31').source,
-      { label: 'Rendements de la part 1C JPY · DWS', url: 'https://etf.dws.com/Download/Past%20Performance/LU2196470426/FR/FR' },
-    ],
-    intro: "🇯🇵 Le Nikkei 225 réunit 225 actions japonaises. Mais certaines pèsent beaucoup plus que les autres.\n\nVoici sa répartition, ses principales lignes et les performances de l’ETF cité 👇",
-    isin: 'LU2196470426', returns: getInstrumentFactsheetReturns('LU2196470426'),
-    performance: { kind: 'ETF', detail: 'part Xtrackers Nikkei 225 1C en yens, rendement du fonds net de frais, dividendes réinvestis', date: '31 décembre 2025', historyNote: 'Les poids sont ceux de l’indice au 31 août 2026 ; les rendements sont ceux de la part 1C en yens, pas une performance convertie en euros.' },
+    source: [getIndexFacts('nikkei225', '2026-08-31').source, INDEX_RETURNS['nikkei225']['2025-12-31'].source],
+    intro: "🇯🇵 Le Nikkei 225 réunit 225 actions japonaises. Mais certaines pèsent beaucoup plus que les autres.\n\nVoici sa répartition, ses principales lignes et les performances de l’indice 👇",
+    returns: getIndexReturns('nikkei225', '2025-12-31'),
+    performance: INDEX_RETURNS['nikkei225']['2025-12-31'].performance,
     insight: 'Advantest, Fast Retailing et Tokyo Electron dépassent ensemble 29 % de l’indice. La technologie pesait plus de 55 % au 31 août 2026.',
-    takeaway: 'Malgré ses 225 actions, le Nikkei est très sensible à quelques titres dont le prix ajusté est élevé. La comparaison avec un ETF TOPIX en euros exige de tenir compte du change.',
+    takeaway: 'Malgré ses 225 actions, le Nikkei est très sensible à quelques titres dont le prix ajusté est élevé. Le TOPIX suit une autre pondération ; les deux indices restent exposés au marché japonais.',
   },
   {
     ...getIndexComposition('acwi', '2026-08-31'),
@@ -172,7 +161,7 @@ const ARCHIVE_SHEETS = [
     ...getIndexComposition('eurostoxx50', '2026-08-31'),
     id: 'eurostoxx50', title: 'EURO STOXX 50', index: 'EURO STOXX 50', snapshot: '31 août 2026', source: [getIndexFacts('eurostoxx50', '2026-08-31').source],
     intro: "🇪🇺 Avec un ETF EURO STOXX 50, tu investis dans 50 grandes valeurs de la zone euro. Mais quelles entreprises pèsent le plus ?\n\nVoici sa répartition et ses performances 👇",
-    returns: getIndexReturns('eurostoxx50', '2026-08-31'), performance: { kind: 'indice', detail: 'EURO STOXX 50, en EUR, hors dividendes (Price Return)', date: '31 août 2026', trailingOneYear: 20.0, annualizedFiveYear: 9.0 },
+    returns: getIndexReturns('eurostoxx50', '2026-10-09'), performance: INDEX_RETURNS.eurostoxx50['2026-10-09'].performance,
     insight: 'France et Allemagne réunies : près de 62 % de l’indice. C’est une exposition à la zone euro, pas à toute l’Europe.',
     takeaway: 'ASML pèse presque 9 % à elle seule. Avec 50 valeurs, le poids de chaque grande entreprise se voit vite.',
   },
@@ -186,31 +175,37 @@ const ARCHIVE_SHEETS = [
   },
   {
     ...getIndexComposition('em-esg', '2026-08-31'),
-    id: 'em-esg', title: 'Émergents ESG (Amundi PEA)', index: 'MSCI EM ex-Egypt ESG Broad CTB Select', snapshot: '31 août 2026 (indice) · 30 juin 2026 (ETF)',
-    source: [getIndexFacts('em-esg', '2026-08-31').source, { label: 'Performances de l’ETF, Amundi', url: emFund }, { label: 'Changement d’indice en 2023, Amundi', url: 'https://www.amundietf.fr/pdfDocuments/download/863110a3-3a8e-43e7-ac7c-eb509bd2b05f/NoticeToShareholders_FR0013412020_FRA_FRA_20230825.pdf' }], isin: 'FR0013412020',
-    intro: "🌏 Le MSCI EM ex-Egypt ESG Broad CTB Select applique des filtres ESG aux marchés émergents. Mais quels pays et quelles entreprises restent dans ton placement ?\n\nVoici sa répartition et les performances de l’ETF cité 👇",
-    returns: getInstrumentFactsheetReturns('FR0013412020'), performance: { kind: 'ETF', detail: 'Amundi PEA Emergent ESG Transition, performances nettes de la part en EUR', date: '30 juin 2026', historyNote: 'L’indice de référence a changé le 27 septembre 2023 : les années antérieures reflètent l’historique réel du fonds, pas celui de l’indice actuel.' },
+    id: 'em-esg', title: 'Émergents ESG', index: 'MSCI EM ex-Egypt ESG Broad CTB Select', snapshot: '31 août 2026',
+    source: [getIndexFacts('em-esg', '2026-08-31').source, INDEX_RETURNS['em-esg']['2025-12-31'].source],
+    intro: "🌏 Le MSCI EM ex-Egypt ESG Broad CTB Select applique des filtres ESG aux marchés émergents. Mais quels pays et quelles entreprises restent dans ton placement ?\n\nVoici sa répartition et les performances de l’indice 👇",
+    returns: getIndexReturns('em-esg', '2025-12-31'), performance: INDEX_RETURNS['em-esg']['2025-12-31'].performance,
     insight: 'Taïwan, Corée du Sud et Chine pèsent près de 70 %. Le poids de TSMC dépasse à lui seul 15 %.',
     takeaway: 'L’étiquette ESG modifie la sélection, mais elle n’efface pas la concentration géographique et technologique.',
   },
   {
     ...getIndexComposition('sp500-pea', '2026-06-30'),
-    id: 'sp500-pea', title: 'S&P 500 (Amundi PEA)', index: 'S&P 500', snapshot: '30 juin 2026',
-    source: [getIndexFacts('sp500-pea', '2026-06-30').source, { label: 'Méthodologie de l’indice, S&P DJI', url: 'https://www.spglobal.com/spdji/en/indices/equity/sp-500/' }], isin: 'FR0011871128',
-    intro: "🇺🇸 Tu investis dans un ETF S&P 500. Mais quels secteurs et quelles entreprises pèsent le plus dans ton placement ?\n\nVoici la répartition de l’indice et les performances de l’ETF cité 👇",
-    returns: getInstrumentFactsheetReturns('FR0011871128'), performance: { kind: 'ETF', detail: 'Amundi PEA S&P 500 UCITS ETF Acc, rendements nets de la part en EUR', date: '30 juin 2026' },
+    id: 'sp500-pea', title: 'S&P 500', index: 'S&P 500', snapshot: '30 juin 2026',
+    source: [getIndexFacts('sp500-pea', '2026-06-30').source, INDEX_RETURNS['sp500-pea']['2025-12-31'].source],
+    intro: "🇺🇸 Tu investis dans un ETF S&P 500. Mais quels secteurs et quelles entreprises pèsent le plus dans ton placement ?\n\nVoici la répartition de l’indice et les performances de l’indice 👇",
+    returns: getIndexReturns('sp500-pea', '2025-12-31'), performance: INDEX_RETURNS['sp500-pea']['2025-12-31'].performance,
     insight: 'Les dix premières lignes pèsent plus de 36 %. Les 504 titres ne représentent pas 504 parts égales.',
     takeaway: 'La technologie pèse plus du tiers de l’indice : le S&P 500 a aussi un fort biais sectoriel.',
   },
   {
     ...getIndexComposition('nasdaq-pea', '2026-08-31'),
-    id: 'nasdaq-pea', title: 'Nasdaq 100 (Amundi PEA)', index: 'NASDAQ-100 Notional Net Total Return', snapshot: '31 août 2026',
-    source: [getIndexFacts('nasdaq-pea', '2026-08-31').source], isin: 'FR0011871110',
-    intro: "💻 Tu investis dans un ETF Nasdaq-100. Mais quelle place prennent la technologie et les plus grandes entreprises dans ton placement ?\n\nVoici la répartition de l’indice et les performances de l’ETF cité 👇",
-    returns: getInstrumentFactsheetReturns('FR0011871110'), performance: { kind: 'ETF', detail: 'Amundi PEA Nasdaq-100 UCITS ETF Acc, rendements nets de la part en EUR', date: '31 août 2026' },
+    id: 'nasdaq-pea', title: 'Nasdaq 100', index: 'Nasdaq-100', snapshot: '31 août 2026',
+    source: [getIndexFacts('nasdaq-pea', '2026-08-31').source, INDEX_RETURNS['nasdaq-pea']['2025-12-31'].source],
+    intro: "💻 Tu investis dans un ETF Nasdaq-100. Mais quelle place prennent la technologie et les plus grandes entreprises dans ton placement ?\n\nVoici la répartition de l’indice et les performances de l’indice 👇",
+    returns: getIndexReturns('nasdaq-pea', '2025-12-31'), performance: INDEX_RETURNS['nasdaq-pea']['2025-12-31'].performance,
     insight: 'Près de 58 % en technologie et plus de 46 % dans les dix premières lignes : le pari est assumé.',
     takeaway: 'Ce n’est pas un indice qui couvre toutes les entreprises américaines : la finance en est pratiquement absente.',
   },
 ]
 
-export const SHEETS = ARCHIVE_SHEETS.map(refreshIndexSheet);
+export const SHEETS = ARCHIVE_SHEETS.map(sheet => {
+  const current = refreshIndexSheet(sheet);
+  if (current.performance.kind !== 'indice' || !/dividendes.*réinvestis/.test(current.performance.detail)) {
+    throw new Error(`La fiche exige un indice dividendes réinvestis : ${sheet.id}`);
+  }
+  return current;
+});
