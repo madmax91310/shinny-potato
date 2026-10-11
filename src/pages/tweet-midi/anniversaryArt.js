@@ -3,6 +3,15 @@ import { ANNIVERSARY_INDEX_VARIANTS } from './data/indexVariants.js'
 // Sources and visual review: public/asset-art/README.md.
 export const ANNIVERSARY_ART = Object.freeze({
   ...Object.fromEntries([
+    ['msciEurope', 'MSCI EUROPE'],
+    ['msciUsa', 'MSCI USA'],
+    ['msciIndia', 'MSCI INDIA'],
+    ['msciEmergingExChina', 'MSCI EMERGING MARKETS HORS CHINE'],
+    ['msciWorldMomentum', 'MSCI WORLD MOMENTUM'],
+    ['msciWorldQuality', 'MSCI WORLD QUALITY'],
+    ['msciWorldValue', 'MSCI WORLD VALUE'],
+    ['russell2000', 'RUSSELL 2000'],
+    ['ftseAllWorld', 'FTSE ALL-WORLD'],
     ['cac40', 'CAC 40'], ['sp500', 'S&P 500'], ['stoxx600', 'STOXX EUROPE 600'],
     ['msciWorld', 'MSCI WORLD'], ['msciEmerging', 'MSCI EMERGING MARKETS'],
     ['msciWorldSmallCap', 'MSCI WORLD SMALL CAP'],
@@ -11,6 +20,9 @@ export const ANNIVERSARY_ART = Object.freeze({
   ...Object.fromEntries([
     ['nvidia', 'NVIDIA'], ['amazon', 'AMAZON'], ['google', 'ALPHABET'],
     ['meta', 'META'], ['lvmh', 'LVMH'], ['airliquide', 'AIR LIQUIDE'],
+    ['costco', 'COSTCO'], ['mcdonalds', 'MCDONALD’S'], ['intel', 'INTEL'],
+    ['paypal', 'PAYPAL'], ['schneider', 'SCHNEIDER ELECTRIC'], ['hermes', 'HERMÈS'],
+    ['loreal', 'L’ORÉAL'], ['nestle', 'NESTLÉ'], ['sap', 'SAP'],
     ['netflix', 'NETFLIX'], ['visa', 'VISA'], ['cocacola', 'COCA-COLA'],
   ].map(([id, title]) => [id, { title, kind: 'illustration', indexTitle: title }])),
   bitcoin: { title: 'BITCOIN', mark: 'bitcoin.svg', kind: 'logo' },

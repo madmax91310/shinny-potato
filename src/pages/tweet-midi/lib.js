@@ -409,7 +409,7 @@ export function buildDilemmeText(item) {
 }
 
 function findAsset(assetId) {
-  return MARKET_ASSETS.find((a) => a.id === assetId);
+  return MARKET_ASSETS.find((a) => a.id === assetId) ?? ANNIVERSAIRE_ELIGIBLE_ASSETS.find((a) => a.id === assetId);
 }
 
 // Exportée pour App.jsx : les champs "niveau actuel" du mode Comparatif (Format A) doivent

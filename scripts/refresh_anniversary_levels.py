@@ -13,7 +13,7 @@ from issuer_documents import download
 from refresh_monthly_history import yahoo_chart, msci_rows, get_msci_json
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-IDS = {'ethereum','stoxx600','sp500','msciWorld','nasdaq100','soxx','silver','apple','microsoft','broadcom','tesla','berkshire','asml','msciEmerging','msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa','nvidia','amazon','google','meta','lvmh','airliquide','netflix','visa','cocacola'}
+IDS = {'ethereum','stoxx600','sp500','msciWorld','nasdaq100','soxx','silver','apple','microsoft','broadcom','tesla','berkshire','asml','msciEmerging','msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa','nvidia','amazon','google','meta','lvmh','airliquide','netflix','visa','cocacola','costco','mcdonalds','intel','paypal','schneider','hermes','loreal','nestle','sap'}
 
 def configurations():
     sources = json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']
@@ -21,7 +21,8 @@ def configurations():
     sources += [{'id':'bitcoin','label':'Bitcoin','parser':'yahoo','symbol':'BTC-USD','currency':'USD','field':'close','timezone':'UTC'},
                 {'id':'cac40','label':'CAC 40','parser':'yahoo','symbol':'^FCHI','currency':'EUR','field':'close','timezone':'Europe/Paris'}]
     if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'}: reject('Configuration anniversaire incomplète')
-    return sources
+    from refresh_anniversary_indices import configurations as index_configurations
+    return sources + index_configurations()
 
 def completed(rows, now, timezone='UTC'):
     today = now.astimezone(ZoneInfo(timezone)).date()
@@ -66,12 +67,25 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
         body=json.loads(arrays[0]); stamps=[r[0] for r in body]
         if stamps!=sorted(set(stamps)):reject('Séances STOXX dupliquées/désordonnées')
         asof,value=completed([(dt.datetime.fromtimestamp(number(t)/1000,UTC).date(),number(v)) for t,v in body],now)
+    elif parser in ('russell','ftse'):
+        from refresh_anniversary_indices import ftse_rows
+        rows,raw=ftse_rows(config,byte_fetch)
+        url=config['sourceUrls'][-1]
+        body={source:hashlib.sha256(document).hexdigest() for source,document in raw.items()}
+        if parser=='russell': asof,value=completed(rows,now)
+        else:
+            cutoff=dt.date(now.year,now.month,1)
+            finished=[(day,value) for day,value in rows if day<cutoff]
+            if not finished:reject('No completed FTSE All-World month')
+            day,value=max(finished)
+            if (now.date()-day).days>45:reject('FTSE All-World month too old')
+            asof=day.isoformat()
     else: reject('Source inconnue')
     return {'value':value,'asOf':asof,'currency':config['currency'],'parser':parser,
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
-            'method':'Dernière séance terminée ; cours brut' if parser=='yahoo' else 'Niveau officiel de fin de séance, variante exacte',
-            'maxAgeDays':7}
+            'method':'Dernière séance terminée ; cours brut' if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
+            'maxAgeDays':45 if parser=='ftse' else 7}
 
 def refresh(current, now, collect=collect_one):
     merged=current.copy();successes=[];errors=[]

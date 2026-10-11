@@ -65,12 +65,12 @@ try {
       if(canvas.width!==1600||canvas.height!==2000)throw new Error('Incorrect single aspect ratio')
       records.push({name:asset.id,png:canvas.toDataURL(),labels:[...labels]})
     }
-    for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['netflix','visa'],['cocacola','nvidia']]){
-      const yearsBack=3, pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
+    for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['netflix','visa'],['cocacola','nvidia'],['costco','mcdonalds'],['intel','paypal'],['schneider','hermes'],['loreal','nestle'],['sap','msciEurope'],['msciUsa','msciIndia'],['russell2000','msciEmergingExChina'],['msciWorldMomentum','msciWorldQuality'],['msciWorldValue','ftseAllWorld']]){
+      const yearsBack=Math.min(3,Math.max(...getValidYearsBackOptions(a,TODAY)),Math.max(...getValidYearsBackOptions(b,TODAY))), pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
       labels=[];bounds=[]
       const canvas=await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack},String(pastA*1.5),String(pastB*.75))
       if(!labels.includes('+50,0 %')||!labels.includes('−25,0 %'))throw new Error('Comparative inputs mixed up')
-      if(labels.filter(v=>v==='ÉPARGNANT LIBRE').length!==1||labels.filter(v=>v==='EN 3 ANS').length!==1)throw new Error('Comparative repetitions')
+      if(labels.filter(v=>v==='ÉPARGNANT LIBRE').length!==1||labels.filter(v=>v===`EN ${yearsBack} ${yearsBack===1?'AN':'ANS'}`).length!==1)throw new Error('Comparative repetitions')
       if(canvas.width!==2400||canvas.height!==1500)throw new Error('Incorrect comparative aspect ratio')
       records.push({name:`${a}-${b}`,png:canvas.toDataURL(),labels:[...labels]})
     }
