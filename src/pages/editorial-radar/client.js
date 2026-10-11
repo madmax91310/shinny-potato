@@ -1,3 +1,4 @@
+import { readableNews } from './readableNews.js'
 export const RADAR_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/radar-data/feed.json'
 export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
 const READ_KEY = 'epargnantlibre-radar-read-v1'
@@ -41,7 +42,7 @@ export async function fetchRadar(signal) {
       if (url.protocol !== 'https:') throw new Error('Une source de la veille est invalide.')
     }
   }
-  return feed
+  return { ...feed, events: feed.events.map(readableNews), ...(feed.purchasingPower ? { purchasingPower: { ...feed.purchasingPower, items: feed.purchasingPower.items.map(readableNews) } } : {}) }
 }
 export const READ_EVENT = UPDATE_EVENT
 export function staleFeed(feed, now = Date.now()) { return !feed || now - Date.parse(feed.checkedAt) > 36 * 3600000 }
