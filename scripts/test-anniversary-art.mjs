@@ -65,7 +65,7 @@ try {
       if(canvas.width!==1600||canvas.height!==2000)throw new Error('Incorrect single aspect ratio')
       records.push({name:asset.id,png:canvas.toDataURL(),labels:[...labels]})
     }
-    for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600']]){
+    for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['netflix','visa'],['cocacola','nvidia']]){
       const yearsBack=3, pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
       labels=[];bounds=[]
       const canvas=await renderAnniversaryImage({mode:'comparatif',assetIdA:a,assetIdB:b,yearsBack},String(pastA*1.5),String(pastB*.75))
