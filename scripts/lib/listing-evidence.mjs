@@ -5,7 +5,7 @@ const SOURCE_HOSTS = new Set(['www.ishares.com', 'www.invesco.com', 'www.amundie
   'www.vaneck.com', 'www.ssga.com', 'www.vanguard.co.uk', 'coinshares.com',
   'globalxetfs.eu', 'dataspanapi.wisdomtree.com', 'bitwiseinvestments.eu', 'cdn.21shares.com', 'www.justetf.com', 'etf.dws.com', 'www.borsaitaliana.it', 'live.euronext.com']);
 const MARKETS = {
-  XPAR: ['Euronext Paris', /Euronext Paris|EURONEXT PARIS|EN Paris|Venue: Paris|MIC\s*\|\s*XPAR/],
+  XPAR: ['Euronext Paris', /Euronext Paris|Euronext\(FR\)|EURONEXT PARIS|EN Paris|Venue: Paris|MIC\s*\|\s*XPAR/],
   XAMS: ['Euronext Amsterdam', /Euronext Amsterdam|EURONEXT AMSTERDAM|EN Amsterdam|NYSE Euronext - Amsterdam|NYSE Euronext EUR/],
   XLON: ['London Stock Exchange', /London Stock\s+Exchange|LONDON STOCK EXCHANGE|LSE/],
   XETR: ['Xetra', /Xetra|XETRA|DEUTSCHE BÖRSE|Deutsche Börse|Deutsche Boerse/],

@@ -3,6 +3,10 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+  "FR001400S9V0": [{"ticker": "MLUX", "exchange": "Euronext Paris", "mic": "XPAR", "currency": "EUR", "sourceUrl": "https://live.euronext.com/en/product/etfs/FR001400S9V0-XPAR", "checkedAt": "2026-10-11", "evidenceId": "FR001400S9V0-XPAR-MLUX-EUR"}],
+  "IE00BGV5VN51": [{"ticker": "XAIX", "exchange": "Borsa Italiana", "mic": "ETFP", "currency": "EUR", "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium", "checkedAt": "2026-10-11", "evidenceId": "IE00BGV5VN51-ETFP-XAIX-EUR"}],
+  "IE00BDFBTQ78": [{"ticker": "GDIG", "exchange": "Borsa Italiana", "mic": "ETFP", "currency": "EUR", "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf", "checkedAt": "2026-10-11", "evidenceId": "IE00BDFBTQ78-ETFP-GDIG-EUR"}],
+  "IE00BZ56SW52": [{"ticker": "GGRA", "exchange": "Euronext Paris", "mic": "XPAR", "currency": "EUR", "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52", "checkedAt": "2026-10-11", "evidenceId": "IE00BZ56SW52-XPAR-GGRA-EUR"}],
   FR001400ZGO4: [{"ticker": "PEMS", "exchange": "Euronext Paris", "mic": "XPAR", "currency": "EUR", "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF/20260831", "checkedAt": "2026-10-09", "evidenceId": "FR001400ZGO4-XPAR-PEMS-EUR"}],
 ...{
   "LU1834983550": [

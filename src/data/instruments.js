@@ -136,7 +136,7 @@ export const INSTRUMENTS_BY_ISIN = Object.freeze({
   "IE00BYYHSQ67": Object.freeze({name: "iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist)", labels: {"portfolio": "iShares MSCI World Quality Dividend Advanced UCITS ETF Dist"}}),
   "IE00BYZK4552": Object.freeze({pea: false, name: "iShares Automation & Robotics UCITS ETF"}),
   "IE00BZ163G84": Object.freeze({name: "Vanguard € Corp Bond UCITS ETF"}),
-  "IE00BZ56SW52": Object.freeze({name: "WisdomTree Global Quality Dividend Growth UCITS ETF"}),
+  "IE00BZ56SW52": Object.freeze({name: "WisdomTree Global Quality Dividend Growth UCITS ETF", labels: {sheet: "WisdomTree Global Quality Dividend Growth UCITS ETF USD Acc"}}),
   "JE00B1VS3770": Object.freeze({name: "WisdomTree Physical Gold"}),
   "LU0908500753": Object.freeze({name: "Amundi Core STOXX Europe 600 UCITS ETF"}),
   "LU1437018838": Object.freeze({name: "Amundi FTSE EPRA NAREIT Global UCITS ETF"}),
