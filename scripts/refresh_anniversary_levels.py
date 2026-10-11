@@ -13,7 +13,7 @@ from issuer_documents import download
 from refresh_monthly_history import yahoo_chart, msci_rows, get_msci_json
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-IDS = {'ethereum','stoxx600','sp500','msciWorld','nasdaq100','soxx','silver','apple','microsoft','broadcom','tesla','berkshire','asml','msciEmerging','msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa'}
+IDS = {'ethereum','stoxx600','sp500','msciWorld','nasdaq100','soxx','silver','apple','microsoft','broadcom','tesla','berkshire','asml','msciEmerging','msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa','nvidia','amazon','google','meta','lvmh','airliquide','netflix','visa','cocacola'}
 
 def configurations():
     sources = json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']

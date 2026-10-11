@@ -76,8 +76,8 @@ class PublicationTests(unittest.TestCase):
         def fail(config,now):raise ValueError('Network unavailable')
         updated,report=refresh_levels(current,NOW,fail)
         self.assertEqual(updated['bitcoin'],current['bitcoin'])
-        self.assertEqual(len(report['errors']),20)
-        self.assertEqual(len(configurations()),20)
+        self.assertEqual(len(report['errors']),29)
+        self.assertEqual(len(configurations()),29)
     def test_etf_partial_errors_cannot_be_cleared_by_other_connector(self):
         failed=normalize_report({'_collector':'primary','shares':[{'isin':'ISIN','status':'validated','collectionErrors':[{'field':'performance','reason':'Missing table'}]}]})
         recovered=normalize_report({'_collector':'secondary','shares':[{'isin':'ISIN','status':'validated'}]})
