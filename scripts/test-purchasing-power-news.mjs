@@ -65,17 +65,53 @@ const partial = await collectPurchasingNews(now, async url => {
   if (url !== source.url) throw new Error('HTTP 500')
   return response(feed(item()))
 })
-assert.equal(partial.errors.length, 3); assert.equal(partial.observations.length, 1)
-assert.equal(partial.sources.filter(s => s.status === 'error').length, 3)
-let retries = 0
-const retry = await collectPurchasingNews(now, async () => { if (++retries <= 4) throw new Error('Transient failure'); return response(feed()) })
+assert.equal(partial.errors.length, PURCHASING_SOURCES.length - 1); assert.equal(partial.observations.length, 1)
+assert.equal(partial.sources.filter(s => s.status === 'error').length, PURCHASING_SOURCES.length - 1)
+const attempts = new Map()
+const retry = await collectPurchasingNews(now, async url => {
+  const n = (attempts.get(url) ?? 0) + 1; attempts.set(url, n)
+  if (n === 1) throw new Error('Transient failure')
+  if (url.includes('banque-france')) return { ...response('<a class="publication-card" href="/fr/statistiques/credit/credits-aux-particuliers-2026-08"><h3>Crédits aux particuliers - 2026-08</h3><p>06 Octobre 2026</p></a>'), headers: new Headers({ 'content-type': 'text/html' }) }
+  if (url.includes('cre.fr')) return { ...response('<div class="card-body"><a href="/prix-gaz.html">Le prix repère du gaz augmente</a><time datetime="2026-10-09"></time></div>'), headers: new Headers({ 'content-type': 'text/html' }) }
+  return response(feed())
+})
 assert.equal(retry.errors.length, 0, 'Reprise automatique après panne transitoire')
+assert.ok([...attempts.values()].every(n => n === 2))
 console.log('Veille pouvoir d’achat : thèmes, statuts, dates, sécurité, déduplication, bootstrap, révisions, conservation et reprise validés.')
 if (process.argv.includes('--live')) {
   const live = await collectPurchasingNews()
   for (const s of live.sources) console.log(`${s.name}: ${s.status}, ${s.articles} articles, ${s.relevant} retenus`)
   console.log(live.errors)
-  assert.equal(live.errors.length, 0, 'Les quatre flux officiels doivent être exploitables au déploiement')
+  assert.equal(live.errors.length, 0, 'Les sources officielles raccordées doivent être exploitables au déploiement')
   assert.ok(live.observations.length > 0)
   validateFeed(advanceRadar(null, live.observations, { purchasingSources: live.sources }).feed)
 }
+
+// Parliamentary filtering must reject general politics and catch household rules.
+const { parseParliamentaryTopic, parliamentaryStatus, atomToRss, parseOfficialListing } = await import('./lib/purchasing-power-sources.mjs')
+for (const title of ['Élections sénatoriales', 'Projet de loi de finances pour 2027', 'Déployer un office de la biodiversité', 'Financement des entreprises', 'Stocks de sécurité des médicaments', 'Développement de la production nucléaire']) assert.equal(parseParliamentaryTopic(title, ''), null, title)
+for (const [title, topic] of [['PTZ et accession à la propriété', 'logement'], ['Taxe foncière : plafonnement', 'fiscalite'], ['PEA et assurance-vie', 'fiscalite'], ['Tarifs de l’électricité', 'depenses'], ['Prime d’activité', 'revenus'], ['Allocations familiales', 'revenus'], ['Revalorisation des retraites', 'revenus']]) assert.equal(parseParliamentaryTopic(title, ''), topic, title)
+assert.equal(parliamentaryStatus('Amendement PTZ adopté en commission', '', {}).status, 'Adoption en commission indiquée')
+assert.equal(parliamentaryStatus('Amendement PTZ rejeté au Sénat', '', {}).status, 'Rejet indiqué')
+assert.equal(parliamentaryStatus('PTZ pas encore adopté', '', { status: 'À préciser' }).status, 'À préciser')
+const senate = PURCHASING_SOURCES.find(s => s.id === 'senat-textes')
+assert.equal(officialUrl('http://www.senat.fr/leg/ppl26-001.html', senate), 'https://www.senat.fr/leg/ppl26-001.html')
+assert.throws(() => officialUrl('http://evil.invalid/x', senate))
+const dossierXml = `<feed><title>Sénat - PTZ et accession</title><entry><title>Vote en première lecture</title><id>http://www.senat.fr/leg/ppl26-001.html</id><updated>2026-10-10T12:00:00Z</updated><summary>Le texte est adopté au Sénat en première lecture.</summary></entry></feed>`
+assert.match(atomToRss(dossierXml), /PTZ et accession/)
+assert.throws(() => atomToRss('<feed><entry></feed>'))
+const priorDossier = { ...row, sourceUrl: 'https://www.senat.fr/leg/ppl26-001.html', dossierFeedUrl: 'https://www.senat.fr/dossierleg/rss/doslegppl26-001.xml' }
+const followed = await collectPurchasingNews(now, async url => {
+  if (url === priorDossier.dossierFeedUrl) return response(dossierXml)
+  if (url.includes('cre.fr')) return { ...response('<div class="card-body"><a href="/article.html">Actualité générale</a></div>'), headers: new Headers({ 'content-type': 'text/html' }) }
+  if (url.includes('banque-france')) return { ...response('<a class="publication-card" href ="/fr/statistiques/credit/credits-aux-particuliers-2026-08"><h3>Crédits aux particuliers - 2026-08</h3><p>06 Octobre 2026</p></a>'), headers: new Headers({ 'content-type': 'text/html' }) }
+  return response(feed())
+}, { current: { old: priorDossier } })
+assert.equal(followed.errors.length, 0)
+const followedRow = followed.observations.find(o => o.dossierFeedUrl)
+assert.equal(followedRow.status, 'Adoption en chambre indiquée')
+assert.equal(followedRow.topic, 'logement')
+const same = advanceRadar(advanceRadar(null, followed.observations, { now }).state, followed.observations, { now })
+assert.equal(same.newEvents.length, 0, 'Les dossiers suivis ne répètent pas les alertes')
+assert.throws(() => parseOfficialListing('<html>Format différent</html>', PURCHASING_SOURCES.find(s => s.id === 'cre-prix')))
+console.log('Nouvelles sources : filtre particuliers, étapes parlementaires, dossiers persistants, dates et formats vérifiés.')

@@ -47,7 +47,7 @@ let result, nextTree, nextCommit
 if (refresh) {
   const { observations, errors } = await collectObservations()
   if (!observations.length || errors.some(error => error.family === 'radar')) throw new Error('Sources locales incomplètes ; historique conservé.')
-  const [news, purchasing] = await Promise.all([collectRadarNews(), collectPurchasingNews()])
+  const [news, purchasing] = await Promise.all([collectRadarNews(), collectPurchasingNews(new Date(), fetch, previous)])
   observations.push(...news.observations, ...purchasing.observations); errors.push(...news.errors, ...purchasing.errors)
   result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources })
   // Create only after successful extraction and validation.
