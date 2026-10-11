@@ -111,8 +111,8 @@ export function marginExplanation(period) {
   const profitGrowth = growth(netIncome, previousNetIncome)
   if (netIncome > 0 && previousNetIncome > 0 && revenueGrowth > .05 && profitGrowth > .05) {
     return improved
-      ? 'Les bénéfices ont progressé plus vite que le chiffre d’affaires : la marge nette s’est améliorée.'
-      : 'Les revenus ont progressé plus vite que les bénéfices : la marge nette a diminué.'
+      ? 'Les bénéfices ont progressé plus vite que le chiffre d’affaires : l’entreprise conserve donc une plus grande part de ses revenus en bénéfice.'
+      : 'Les revenus ont progressé plus vite que les bénéfices : une plus petite part des ventes se retrouve donc en bénéfice net.'
   }
   if (netIncome > 0 && previousNetIncome > 0 && revenueGrowth > .05 && profitGrowth < -.05) return `Le chiffre d’affaires augmente, mais les bénéfices reculent : la marge nette a diminué de ${fr(previous)} % à ${fr(current)} %.`
   return `La marge nette ${improved ? 's’est améliorée' : 'a diminué'}, passant de ${fr(previous)} % à ${fr(current)} % sur un an.`
@@ -120,7 +120,7 @@ export function marginExplanation(period) {
 const currencyWord = currency => ({USD: 'dollars', EUR: 'euros'}[currency] ?? currency)
 function storyAmount(value, currency) {
   const unit = Math.abs(value) >= 1e9 ? 1e9 : 1e6
-  return `${fr(value / unit, 0)} ${unit === 1e9 ? 'milliards' : 'millions'} de ${currencyWord(currency)}`
+  return `${fr(value / unit)} ${unit === 1e9 ? 'milliards' : 'millions'} ${currency === 'EUR' ? 'd’euros' : `de ${currencyWord(currency)}`}`
 }
 // Editorial evidence belongs to one exact annual comparison, never to later accounts.
 export function activeAnnualContext(company, now = new Date()) {
@@ -133,14 +133,16 @@ export function activeAnnualContext(company, now = new Date()) {
 }
 function annualStory(company, context) {
   const a = company.annual
-  const year = a.end.slice(0, 4)
-  const lines = [`💰 Sur son exercice clos en ${year}, ${company.name} a réalisé ${storyAmount(a.revenue, company.currency)} de chiffre d’affaires${changePhrase(growth(a.revenue, a.previousRevenue))}. ${incomePhrase(a, company.currency).replace(amount(Math.abs(a.netIncome), company.currency), storyAmount(Math.abs(a.netIncome), company.currency))}`]
-  if (a.netIncome > 0) lines.push(`Pour 100 ${currencyWord(company.currency)} de ventes, il lui reste près de ${fr(a.netIncome / a.revenue * 100, 0)} ${currencyWord(company.currency)} de bénéfice net.`)
+  const year = new Intl.DateTimeFormat('fr-FR', {month: 'long', year: 'numeric', timeZone: 'UTC'}).format(new Date(`${a.end}T00:00:00Z`))
+  const income = incomePhrase(a, company.currency).replace(amount(Math.abs(a.netIncome), company.currency), storyAmount(Math.abs(a.netIncome), company.currency))
+    .replace('Elle a dégagé ', `Son bénéfice net${a.incomeBasis ? ' part du groupe' : ''} atteint `)
+    .replace(' de bénéfice net', '')
+  const lines = [`💰 Sur son exercice clos en ${year}, ${company.name} a réalisé ${storyAmount(a.revenue, company.currency)} de chiffre d’affaires${changePhrase(growth(a.revenue, a.previousRevenue))}. ${income}`]
+  if (a.netIncome > 0) lines.push(`Pour 100 ${currencyWord(company.currency)} de chiffre d’affaires, cela représente environ ${fr(a.netIncome / a.revenue * 100, 0)} ${currencyWord(company.currency)} de bénéfice net${a.incomeBasis ? ' revenant au groupe' : ''}.`)
   else if (a.netIncome < 0) lines.push(`Cela représente une perte nette de ${fr(-a.netIncome / a.revenue * 100)} ${company.currency} pour 100 ${company.currency} de ventes.`)
-  if (a.incomeBasis) lines.push('Le bénéfice présenté est celui qui revient au groupe, hors intérêts minoritaires.')
   if (finite(context?.previousTaxCharge) && context.previousTaxCharge > 0 && a.previousNetIncome > 0 && a.netIncome > 0) {
-    lines.push(`La variation du bénéfice mérite une précision. Une charge fiscale exceptionnelle de ${storyAmount(context.previousTaxCharge, company.currency)} avait pénalisé l’exercice précédent.`)
-    lines.push(`En neutralisant cette charge dans la comparaison, la progression du bénéfice est d’environ ${fr(growth(a.netIncome, a.previousNetIncome + context.previousTaxCharge))} %.`)
+    lines.push(`Une charge fiscale exceptionnelle de ${storyAmount(context.previousTaxCharge, company.currency)} avait réduit le bénéfice de l’exercice précédent.`)
+    lines.push(`En ajoutant cette charge au bénéfice de l’année précédente pour comparer les deux exercices, la hausse est d’environ ${fr(growth(a.netIncome, a.previousNetIncome + context.previousTaxCharge))} %.`)
   } else {
     const explanation = marginExplanation(a)
     if (explanation) lines.push(explanation)
@@ -193,13 +195,12 @@ export function buildTweetText(company, now = new Date()) {
     let price = `🏷️ À la clôture du ${dateLabel(q.asOf)}, l’action valait ${fr(q.price, 2)} ${currencyWord(company.currency)}`
     if (finite(pe) && pe > 0) {
       price += calculated.peTTM
-        ? `, soit environ ${fr(pe)} fois son bénéfice par action sur les douze derniers mois.`
-        : `, soit environ ${fr(pe)} fois son bénéfice dilué par action de l’exercice clos le ${dateLabel(company.annual.end)}.`
+        ? `. Ce prix représente environ ${fr(pe)} fois son bénéfice par action sur les douze derniers mois.`
+        : `. Ce prix représente environ ${fr(pe)} fois son bénéfice dilué par action de l’exercice clos le ${dateLabel(company.annual.end)}.`
     } else price += '.'
     lines.push(price)
     if (company.id === 'totalenergies') lines.push('Le cours retenu est celui de l’action ordinaire cotée à New York en USD, la devise des comptes présentés.')
   }
   if (company.editorialQuestion) lines.push(`${company.editorialQuestion} 🤔`)
-  lines.push('Chiffres issus des comptes publiés de l’entreprise.' + (finite(pe) && pe > 0 ? ' PER recalculé à partir des bénéfices publiés et du cours daté.' : ''))
   return lines.join('\n\n')
 }
