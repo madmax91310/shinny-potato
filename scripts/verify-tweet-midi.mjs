@@ -37,7 +37,8 @@ import { buildTweetText as buildEtfTweet } from '../src/pages/etf-tweets/lib/twe
 for (const theme of DEFAULT_THEMES) {
   const text = getComparatifEtfText(theme.id);
   assert.doesNotMatch(text, /^(?:⚖️ Comparatif|📋 Présentation) /u);
-  assert.match(text.split('\n')[0], /ETF|ETC/u);
+  assert.match(text.split('\n')[0], /\?$/u);
+  assert.match(text, /Voici .* (?:ETF|ETC)/u);
   assert.equal((text.match(/^🆔 ISIN : /gmu) ?? []).length, theme.etfs.length);
   for (const fund of theme.etfs) {
     assert.ok(text.includes(`ISIN : ${fund.isin}`));
