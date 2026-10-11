@@ -175,7 +175,7 @@ async function testCalculateur(page) {
   }));
   await choose(page.locator("[data-selector].ic-control").first(), "bitcoin");
   await page.getByRole('button', { name: /Copier le texte du post/ }).click();
-  let conclusionsOk = /suppose d’avoir conservé le placement de janvier 2020 à/.test(await page.evaluate(() => window.__investmentCopiedText));
+  let conclusionsOk = /Tu aurais gardé cet investissement pendant toute la période/.test(await page.evaluate(() => window.__investmentCopiedText));
   conclusionsOk &&= !(await page.evaluate(() => window.__investmentCopiedText)).includes('Livret A');
   await page.waitForTimeout(150);
   const hero = await page.locator(".ic-hero-number").innerText();
@@ -215,8 +215,8 @@ async function testCalculateur(page) {
   const ethereumDcaOk = (await page.locator('.ic-mode-pill').textContent()).trim() === 'DCA mensuel';
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const monthlyTweet = await page.evaluate(() => window.__investmentCopiedText);
-  conclusionsOk &&= /Gain rapporté aux sommes versées/.test(monthlyTweet)
-    && /Le résultat porte sur l’ensemble des versements/.test(monthlyTweet)
+  conclusionsOk &&= /Gain sur les sommes versées/.test(monthlyTweet)
+    && !/Le résultat porte sur l’ensemble des versements/.test(monthlyTweet)
     && !/sans versement supplémentaire/.test(monthlyTweet);
   septemberOk &&= monthlyTweet.includes('septembre 2026');
   await choose(page.locator('[data-selector].ic-control').first(), 'sp500');
@@ -233,7 +233,7 @@ async function testCalculateur(page) {
   await stoxxDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const stoxxTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('rapporté aux sommes versées')
+  septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('sur les sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('dividendes nets');
   await choose(page.locator('[data-selector].ic-control').first(), 'msciWorld');
@@ -242,7 +242,7 @@ async function testCalculateur(page) {
   await worldDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const worldTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= worldTweet.includes('septembre 2026') && worldTweet.includes('rapporté aux sommes versées')
+  septemberOk &&= worldTweet.includes('septembre 2026') && worldTweet.includes('sur les sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
   for (const [id, name, variant] of [['msciEmerging', 'MSCI Emerging Markets', 'Gross Return'], ['msciWorldSmallCap', 'MSCI World Small Cap', 'Gross Return'], ['msciAcwiImi', 'MSCI ACWI IMI', 'Net Return'], ['msciAcwi', 'MSCI ACWI', 'Net Return'], ['msciWorldExUsa', 'MSCI World ex USA', 'Net Return']]) {
@@ -253,7 +253,7 @@ async function testCalculateur(page) {
     await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
     septemberOk &&= post.includes(name) && post.includes('septembre 2026') && post.includes(variant)
-      && post.includes('rapporté aux sommes versées') && !/NaN|undefined/.test(post)
+      && post.includes('sur les sommes versées') && !/NaN|undefined/.test(post)
       && (await page.locator('.ic-current-level').innerText()).includes('points')
       && (await page.locator('.ic-method-note').innerText()).includes(`${name} ${variant}`);
   }
@@ -273,8 +273,8 @@ async function testCalculateur(page) {
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
-    companiesOk &&= post.includes('Cours ajustés') && post.includes('septembre 2026') && !/NaN|undefined/.test(post);
-    if (id === 'airliquide') companiesOk &&= post.includes('Prime de fidélité exclue');
+    companiesOk &&= !post.includes('Cours ajustés') && post.includes('Capital final :') && post.includes('septembre 2026') && !/NaN|undefined/.test(post);
+    if (id === 'airliquide') companiesOk &&= (await page.locator('.ic-method-note').innerText()).includes('Prime de fidélité exclue');
     companiesOk &&= !(await page.locator('body').innerText()).includes('DCA non disponible pour');
   }
   const imagesOk = monthlyImage && annualImage && monthlyDownload.suggestedFilename() === 'investissement-bitcoin-lump.png' && annualDownload.suggestedFilename() === 'investissement-cac40-lump.png';

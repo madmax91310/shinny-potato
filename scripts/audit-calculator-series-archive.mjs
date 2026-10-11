@@ -275,7 +275,7 @@ for (const id of companyIds) {
     const state = { assetId: id, amountRaw: '100', startYear: 2020, startMonth: 1, mode, overridePriceRaw: '' };
     const d = derive(state), prices = a.points.filter(p => p.date >= '2020-01');
     const expected = (mode === 'lump' ? 100 / prices[0].price : prices.reduce((n, p) => n + 100 / p.price, 0)) * prices.at(-1).price;
-    if (d.endYm !== '2026-09' || d.effectiveMode !== mode || Math.abs(d.result.finalValue - expected) > 1e-7 || !buildTweetText(state, d).includes('Cours ajustés')) throw new Error(`${id}: calcul ou méthode du tweet incorrect`);
+    if (d.endYm !== '2026-09' || d.effectiveMode !== mode || Math.abs(d.result.finalValue - expected) > 1e-7 || ASSETS[id].priceMethod !== 'adjusted' || !buildTweetText(state, d).includes('Capital final :')) throw new Error(`${id}: calcul ou méthode du tweet incorrect`);
     const video = computeComparativeSeries(id, '2020-01', '2026-09', 100, mode);
     if (Math.abs(video.finalValue - expected) > 1e-7) throw new Error(`${id}: vidéo incohérente`);
   }

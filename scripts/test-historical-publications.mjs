@@ -7,7 +7,8 @@ import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
 import { derive, buildTweetText } from '../src/pages/investment-calculator/lib.js'
 
 const state = { assetId:'apple', amountRaw:'1000', mode:'lump', startYear:2020, startMonth:1, overridePriceRaw:'' }
-assert.match(buildTweetText(state, derive(state)), /dividendes réinvestis/i)
+assert.equal(ASSETS.apple.priceMethod, 'adjusted')
+assert.doesNotMatch(buildTweetText(state, derive(state)), /Cours ajustés/i)
 assert.match(performanceBasis('apple'), /USD.*revenus réinvestis/)
 assert.match(performanceBasis('cac40'), /hors dividendes/)
 assert.match(performanceBasis('msciWorld'), /bruts réinvestis/)

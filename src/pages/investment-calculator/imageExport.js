@@ -112,14 +112,15 @@ export async function renderInvestmentImage(state, d) {
   text(ctx, 'CAPITAL FINAL', 650, 426, 25, { width: 870, color: MUTED })
   text(ctx, money(d.result.finalValue, currency), 640, 537, 110, { width: 640, color: gain < 0 ? RED : GREEN })
   text(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 1515, 534, 40, { width: 225, color: gain < 0 ? RED : GREEN, align: 'right' })
-  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 650, 582, 25, { width: 870, color: MUTED })
+  if (dca) text(ctx, `${gain < 0 ? 'Perte' : 'Gain'} sur les sommes versées`, 1515, 574, 20, { width: 285, color: MUTED, align: 'right', weight: 400 })
+  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 650, 582, 25, { width: 555, color: MUTED })
   const kind = investmentChartKind(state, d)
   chart(ctx, state, d, currency, kind)
   const details = [`En ${currency}`, hasOverride(state) && !d.isCustom ? 'Prix final saisi' : null, asset?.returnNote].filter(Boolean).join(' · ')
   text(ctx, details, 65, 1028, 21, { width: 1110, color: MUTED, weight: 400 })
   text(ctx, '@Epargnantlibre', 1535, 1028, 26, { width: 340, align: 'right' })
   if (state.assetId === 'silver') text(ctx, 'Futures COMEX continus · hors frais et roulement', 65, 1057, 19, { width: 1460, color: MUTED, weight: 400 })
-  text(ctx, 'Les performances passées ne préjugent pas des performances futures.', 65, 1085, 20, { width: 1460, color: MUTED, weight: 400 })
+  text(ctx, 'Pas un conseil financier', 65, 1085, 20, { width: 1460, color: MUTED, weight: 400 })
   credits.forEach((credit, i) => text(ctx, credit, 65, 1110 + i * 24, 18, { width: 1460, color: MUTED, weight: 400 }))
   return canvas
 }
