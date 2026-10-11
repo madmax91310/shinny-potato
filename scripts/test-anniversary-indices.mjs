@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import HISTORY from '../src/data/anniversary-index-history.json' with { type: 'json' }
 import CONFIG from './anniversary-indices.json' with { type: 'json' }
+import LEVELS from '../src/data/anniversary-levels.json' with { type: 'json' }
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS, MARKET_ASSETS, getHistoricalPrice, getValidYearsBackOptions, ymForYearsBack } from '../src/pages/tweet-midi/data/marketHistory.js'
 import { buildAnniversaireText, buildAnniversaireComparatifText, getMarketAsset, TODAY, FORMATS, MODES } from '../src/pages/tweet-midi/lib.js'
 import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
@@ -15,7 +16,14 @@ for (const config of CONFIG.series) {
   const options=getValidYearsBackOptions(config.id,clock)
   assert.ok(options.length>0)
   for(const year of options)assert.ok(record.points.some(([date])=>date===ymForYearsBack(year,clock)))
-  assert.ok(resolveAnniversaryLevel(config.id,'',clock), 'Latest exact variant missing')
+  const level=LEVELS[config.id]
+  assert.equal(level.currency,config.currency);assert.equal(level.variant,config.variant)
+  // Active observations advance with collection; the history fixture's clock must not reject them.
+  for(const asOf of [level.asOf,'2027-01-04']) {
+    const observations={[config.id]:{...level,asOf}}
+    const observedAt=new Date(`${asOf}T12:00:00Z`)
+    assert.equal(resolveAnniversaryLevel(config.id,'',observedAt,observations)?.value,level.value)
+  }
   const yearsBack=Math.min(...getValidYearsBackOptions(config.id,TODAY))
   const item={format:FORMATS.ANNIVERSAIRE,mode:MODES.SIMPLE,assetId:config.id,yearsBack}
   const text=buildAnniversaireText(item,'20000')
