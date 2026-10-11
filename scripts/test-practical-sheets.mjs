@@ -5,16 +5,31 @@ import {buildSheet,buildTweet,calculateScenario} from '../src/pages/practical-sh
 import {getInstrumentPeaStatus} from '../src/data/instruments.js'
 import {REGULATORY} from '../src/data/regulatory-data.js'
 import refs from '../src/data/automated-practical-sheets.json' with {type:'json'}
+import {PRACTICAL_EDITORIAL} from '../src/pages/practical-sheets/editorial.js'
 assert.equal(new Set(TOPICS.map(t=>t.id)).size,44)
+assert.deepEqual(Object.keys(PRACTICAL_EDITORIAL).sort(),TOPICS.map(t=>t.id).sort())
 for(const topic of TOPICS) {
  const sheet=buildSheet(topic.id),tweet=buildTweet(sheet)
  assert(sheet.rows.length>0,topic.id)
  assert(sheet.rows.every(row=>row.length===sheet.columns.length+1),topic.id)
  assert(!/undefined|NaN/.test(tweet),topic.id)
- assert(tweet.startsWith('🔖 Sauvegarde ce tweet'))
+ assert.equal(tweet.match(/[\p{Extended_Pictographic}]/u)?.[0],'👇',topic.id)
+ assert(tweet.includes('👇\n\n🔖 Sauvegarde ce tweet\n\n'),topic.id)
+ assert.equal(tweet.split('🔖 Sauvegarde ce tweet').length,2,topic.id)
+ // Every figure from computed comparisons survives the editorial formatting.
+ if(!PRACTICAL_EDITORIAL[topic.id].sections) for(const row of sheet.rows) for(const value of row.slice(1)) assert(tweet.includes(String(value).replaceAll('\n',' · ')),`${topic.id}: ${value}`)
  assert(sheet.sources.length>0,topic.id)
  assert(sheet.sources.every(s=>s.url?.startsWith('https://') && s.checkedAt),topic.id)
+ for(const source of sheet.sources) assert(tweet.includes(source.url),topic.id)
 }
+for(const id of ['fees-euros','delay-invest','change-etf']) {
+ const sheet=buildSheet(id,{scenario:{capital:23456,years:12,returnRate:4,feeA:0.1,feeB:0.6,tradeCost:42,delay:3}})
+ const tweet=buildTweet(sheet)
+ for(const row of sheet.rows) for(const value of row.slice(1)) assert(tweet.includes(String(value)),`${id}: ${value}`)
+ assert.notEqual(tweet,buildTweet(buildSheet(id)),id)
+}
+const subset=buildSheet('world-pea',{isins:FUND_GROUPS.world.slice(0,2)})
+assert(!buildTweet(subset).includes('Amundi World CW8'))
 for(const isins of Object.values(FUND_GROUPS)) for(const isin of isins) assert.equal(getInstrumentPeaStatus(isin),true,isin)
 assert.throws(()=>buildSheet('world-pea',{isins:['FR001400U5Q4']}))
 assert.throws(()=>buildSheet('world-pea',{isins:['FR001400U5Q4','FR001400U5Q4']}))

@@ -9,6 +9,8 @@ import { BROKER_EDITORIAL } from '../src/pages/broker-comparator/editorial.js';
 import { brokerPublicationCopy } from '../src/pages/broker-comparator/publicationCopy.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
+import { TOPICS as PRACTICAL_TOPICS } from '../src/data/practical-sheet-topics.js'
+import { buildSheet as buildPracticalSheet, buildTweet as buildPracticalTweet } from '../src/pages/practical-sheets/lib.js'
 import { FACTS as MARKET_FACTS } from '../src/pages/market-facts/data.js';
 import { buildTweetText as buildMarketStory } from '../src/pages/market-facts/lib.js';
 import { buildText } from '../src/pages/etf-sheets/lib.js';
@@ -76,6 +78,24 @@ const results = [];
 function record(tool, ok, detail) {
   results.push({ tool, ok, detail });
   console.log(`  [${ok ? "OK" : "ÉCHEC"}] ${tool}${detail ? " — " + detail : ""}`);
+}
+
+async function testPracticalSheets(page) {
+  for (const topic of PRACTICAL_TOPICS) {
+    await page.goto(`${BASE}/fiches-pratiques?fiche=${topic.id}`, { waitUntil: 'networkidle' });
+    const actual = await page.locator('#practical-tweet').inputValue();
+    const expected = buildPracticalTweet(buildPracticalSheet(topic.id));
+    if (actual !== expected) throw new Error(`Texte différent dans le navigateur : ${topic.id}`);
+    if (await page.locator('.practical-image').count() !== 1) throw new Error(`Image absente : ${topic.id}`);
+  }
+  await page.goto(`${BASE}/fiches-pratiques?fiche=fees-euros`, { waitUntil: 'networkidle' });
+  await page.getByLabel('Capital initial (€)', {exact:true}).fill('23456');
+  const expected = buildPracticalTweet(buildPracticalSheet('fees-euros', {scenario:{capital:23456}}));
+  await page.waitForFunction(text => document.querySelector('#practical-tweet').value === text, expected);
+  await page.locator('#practical-tweet').fill('Mon brouillon');
+  await page.getByRole('button', {name:'Rétablir le texte généré',exact:true}).click();
+  await page.waitForFunction(text => document.querySelector('#practical-tweet').value === text, expected);
+  record('Fiches pratiques', true, '44 textes, paramètres de simulation et rétablissement du brouillon');
 }
 
 async function testWorkspaceNavigation(page) {
@@ -1192,7 +1212,9 @@ try {
     : {});
   const page = await browser.newPage();
 
-  if (process.argv.includes('--investors')) {
+  if (process.argv.includes('--practical-sheets')) {
+    await testPracticalSheets(page);
+  } else if (process.argv.includes('--investors')) {
     await testInvestorIntroductions(page);
   } else if (process.argv.includes('--market-facts')) {
     await testMarketFacts(page);
@@ -1231,6 +1253,7 @@ try {
   await testDataSearch(page);
   await testHouseholds(page);
   await testInvestorIntroductions(page);
+  await testPracticalSheets(page);
   }
   // Exercise review filters with an active failure card as well as the review rows.
   await page.route('**/automation-status/automation-status.json', route => route.fulfill({json: {schemaVersion: 1, workflows: {economic: {name: 'Données économiques', status: 'failure', completedAt: '2026-10-07T10:00:00Z', runUrl: 'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}));
