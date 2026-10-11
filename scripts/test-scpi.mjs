@@ -58,7 +58,7 @@ assert(!buildTweet(epargne).includes('208 € au 31/12/2023 → 20,8'))
 assert(buildTweet(epargne).includes('France 100 %'))
 const remake=SCPI.find(row => row.id === 'remake-live')
 assert(remake.priceHistory.years.some(row => row.asOf === '2024-12-31'))
-assert(!remake.priceHistory.years.some(row => row.asOf === '2025-12-31'))
+assert(remake.priceHistory.years.some(row => row.asOf === '2025-12-31'))
 
 const waiting = structuredClone(SCPI[0])
 waiting.annual.publication = {latestPublishedYear:2025,expectedYear:2026,awaitingPublication:true}
