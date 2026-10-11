@@ -2,6 +2,7 @@ import { writeFile, mkdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { collectObservations } from './update-editorial-radar.mjs'
 import { advanceRadar, shouldRefreshRadar } from './lib/editorial-radar.mjs'
+import { collectPurchasingNews } from './lib/purchasing-power-news.mjs'
 import { collectRadarNews } from './lib/radar-news.mjs'
 import { notificationState, notifyRadar } from './lib/radar-notifications.mjs'
 
@@ -46,9 +47,9 @@ let result, nextTree, nextCommit
 if (refresh) {
   const { observations, errors } = await collectObservations()
   if (!observations.length || errors.some(error => error.family === 'radar')) throw new Error('Sources locales incomplètes ; historique conservé.')
-  const news = await collectRadarNews()
-  observations.push(...news.observations); errors.push(...news.errors)
-  result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors })
+  const [news, purchasing] = await Promise.all([collectRadarNews(), collectPurchasingNews()])
+  observations.push(...news.observations, ...purchasing.observations); errors.push(...news.errors, ...purchasing.errors)
+  result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources })
   // Create only after successful extraction and validation.
   const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
   const commit = await api(`git/commits/${parent}`)

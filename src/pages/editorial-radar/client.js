@@ -1,5 +1,5 @@
 export const RADAR_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/radar-data/feed.json'
-export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques' }
+export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
 const READ_KEY = 'epargnantlibre-radar-read-v1'
 const SIGNALS_KEY = 'epargnantlibre-radar-signals-v1'
 const UPDATE_EVENT = 'editorial-radar-read'
@@ -20,6 +20,13 @@ export function validateFeed(feed) {
     if (new URL(event.sourceUrl).protocol !== 'https:' || !event.tool?.startsWith('/') || event.tool.startsWith('//')) throw new Error('Un lien du radar est invalide.')
     ids.add(event.id)
   }
+  if (feed.purchasingPower) {
+    if (!Array.isArray(feed.purchasingPower.items) || feed.purchasingPower.items.length > 120 || !Array.isArray(feed.purchasingPower.sources)) throw new Error('La veille pouvoir d’achat est incomplète.')
+    for (const item of [...feed.purchasingPower.items, ...feed.purchasingPower.sources]) {
+      const url = new URL(item.sourceUrl ?? item.url)
+      if (url.protocol !== 'https:') throw new Error('Une source de la veille est invalide.')
+    }
+  }
   return feed
 }
 export async function fetchRadar(signal) {
@@ -27,6 +34,13 @@ export async function fetchRadar(signal) {
   if (!response.ok) throw new Error(response.status === 404 ? 'Le premier relevé du radar est en préparation.' : 'Le radar est momentanément indisponible.')
   const feed = validateFeed(await response.json())
   try { localStorage.setItem(SIGNALS_KEY, JSON.stringify(feed.events.map(event => event.id))); window.dispatchEvent(new Event(UPDATE_EVENT)) } catch { /* The radar remains usable without local storage. */ }
+  if (feed.purchasingPower) {
+    if (!Array.isArray(feed.purchasingPower.items) || feed.purchasingPower.items.length > 120 || !Array.isArray(feed.purchasingPower.sources)) throw new Error('La veille pouvoir d’achat est incomplète.')
+    for (const item of [...feed.purchasingPower.items, ...feed.purchasingPower.sources]) {
+      const url = new URL(item.sourceUrl ?? item.url)
+      if (url.protocol !== 'https:') throw new Error('Une source de la veille est invalide.')
+    }
+  }
   return feed
 }
 export const READ_EVENT = UPDATE_EVENT

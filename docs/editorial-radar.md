@@ -121,3 +121,47 @@ observations issues de Git avec leurs SHA complets. `npm run test:radar`
 reproduit l'aller-retour, les tentatives répétées, la conservation de l'ancre,
 les lots mixtes, la migration de l'historique, la déduplication des envois et
 les évolutions légitimes sur une autre date.
+
+## Veille pouvoir d’achat
+
+Le radar collecte automatiquement toutes les quatre heures les flux publics
+Service Public (particuliers), Bercy (actualités), Vie publique (actualités et
+panorama des lois). Les sujets sont classés en logement, épargne/fiscalité,
+dépenses courantes, revenus/aides. La collecte ne requiert aucune clé API ni
+liste d’articles entretenue à la main. Les coûts, publics et conditions ne sont
+pas déduits : le titre, le résumé et la date du flux officiel constituent la
+preuve récupérée, avec un lien visible vers son éditeur.
+
+Le statut est extrait d’une formulation explicite du titre ou du résumé :
+proposition/discussion, annonce, vote (étape à vérifier), promulgation,
+application indiquée ou application annoncée. Sinon il reste « À préciser ».
+Un vote en chambre n’est jamais assimilé à une entrée en vigueur. Le collecteur
+ne prétend pas suivre chaque amendement parlementaire, ni découvrir toutes les
+mesures françaises : il surveille les quatre flux raccordés. Les articles
+professionnels sans portée pour les particuliers et les sujets sans mécanisme
+budgétaire identifiable sont écartés.
+
+Les articles jusqu’à 45 jours sont intégrés. Lors de l’ajout de cette famille,
+le premier relevé est silencieux, mais consultable dans « Pouvoir d’achat ».
+Les articles nouveaux publiés au cours des sept derniers jours et les
+changements de titre/résumé/statut d’une URL déjà suivie créent des signaux.
+Une modification de la seule date de contrôle ne produit aucun signal. Les
+URL sont dédupliquées après retrait des paramètres de suivi. Deux éditeurs
+traitant le même sujet restent deux preuves distinctes ; leurs annonces ne sont
+pas fusionnées sur la seule base d’un mot-clé.
+
+`feed.purchasingPower.items` contient les 120 articles suivis les plus récents,
+y compris ceux du premier relevé. `feed.purchasingPower.sources` indique le
+résultat, la date de contrôle et le nombre de sujets retenus pour chaque source.
+Les erreurs d’un flux ou d’un article n’arrêtent pas les autres sources et ne
+suppriment pas les informations acceptées dans `state.current`. Un flux valide
+sans sujet pertinent n’est pas une erreur. Les requêtes ont un délai maximum,
+une limite de taille et une reprise ; les liens hors domaine officiel, dates
+futures et flux inattendus sont refusés.
+
+Les notifications réutilisent les issues GitHub groupées et leurs reçus
+persistants. La veille propose un brouillon et un angle adapté au thème, sans
+publier automatiquement sur X. Le workflow de PR teste les quatre flux en
+direct ; les tests déterministes couvrent bootstrap, filtres, statuts, dates,
+déduplication, mise à jour, panne et reprise. Commandes : `npm run test:radar`,
+`node scripts/test-purchasing-power-news.mjs --live`, `npm run test:radar:browser`.
