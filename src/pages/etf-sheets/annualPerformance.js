@@ -33,9 +33,9 @@ export function performanceImageHeading(series) {
 }
 
 // Les observations datées (YTD, depuis le lancement…) ne deviennent pas des années complètes.
-export function formatTweetPerformance(series) {
+export function formatTweetPerformance(series, { includeIcon = true } = {}) {
   const entries = performanceEntries(series)
   const heading = !entries.length ? 'Historique de performance' : series.values.some(Number.isFinite) ? 'Performances annuelles' : 'Performances sur les périodes publiées'
   const lines = entries.map(({ label, value, asOf }) => `${value < 0 ? '🔴' : '🟢'} ${label} : ${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %${asOf ? ` (au ${formatPerformanceDate(asOf)})` : ''}`)
-  return `📈 ${heading} (${series.currency})\n${lines.length ? lines.join('\n') : series.note}`
+  return `${includeIcon ? '📈 ' : ''}${heading} (${series.currency})\n${lines.length ? lines.join('\n') : series.note}`
 }

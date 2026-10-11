@@ -1,6 +1,7 @@
 import { benchmarkKey } from '../../data/asset-selection.js';
 import { portfolioPostEditorial, portfolioPostName } from './postEditorial.js';
 import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
+import { getInstrumentName } from '../../data/instruments.js';
 import { computeYearlyPerf, annualizedReturn, formatPerformance, performanceExcerpt, performanceYears, assetReturn, performanceNotes } from './performance.js';
 import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
@@ -400,7 +401,7 @@ export function renderTweetText(p) {
   const holdings = p.selection.filter(s => s.pct > 0);
   const question = holdings.length === 1
     ? 'quel placement compose ce portefeuille ?'
-    : holdings.every(s => s.isin)
+    : holdings.every(s => s.isin && /\bETF\b/.test(getInstrumentName(s.isin)))
       ? 'quels ETF composent ce portefeuille ?'
       : 'quels placements composent ce portefeuille ?';
   const index = Number(p.hookId?.match(/-(\d+)$/)?.[1] ?? 0) % 3;
