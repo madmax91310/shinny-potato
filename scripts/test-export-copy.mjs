@@ -85,7 +85,7 @@ try {
     const { derive } = await module('pages/investment-calculator/lib.js')
     for (const assetId of ['bitcoin', 'cac40']) {
       const state = {assetId, mode:'lump', amountRaw:'1000', startYear:2020,startMonth:1,overridePriceRaw:''}
-      await check(`investment-${assetId}`, () => renderInvestmentImage(state,derive(state)), (_,text) => !/ET SI TU AVAIS INVESTI|Clôture de décembre à clôture de décembre|Évolution historique ·/.test(text) && text.includes('Les performances passées ne préjugent pas des performances futures'))
+      await check(`investment-${assetId}`, () => renderInvestmentImage(state,derive(state)), (_,text) => !/ET SI TU AVAIS INVESTI|Clôture de décembre à clôture de décembre|Évolution historique ·/.test(text) && text.includes('Pas un conseil financier'))
     }
     const { renderPurchasingPowerImage } = await module('pages/tweet-midi/purchasingPowerImage.js')
     await check('purchasing-power', () => renderPurchasingPowerImage({mode:'brut',amount:1000,startYear:2020}), (_, text) => !text.includes('/  POUVOIR'))
