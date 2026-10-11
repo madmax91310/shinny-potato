@@ -60,23 +60,76 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38119969057,
+      "runId": 38136012513,
       "attempt": 1,
-      "completedAt": "2026-10-11T07:05:06Z",
+      "completedAt": "2026-10-11T11:37:19Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-11T06:44:28Z",
-      "collectionStatus": "success",
-      "publicationStatus": "failure",
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-11T07:05:06Z",
       "lastPublicationSuccessAt": "2026-10-11T06:44:25Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38119969057",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
       "failures": [
         {
-          "job": "deploy / build",
+          "job": "refresh",
           "step": "Run npm run audit:data-review"
+        },
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
         }
       ],
-      "dataFailures": {}
+      "dataFailures": {
+        "index-russell-2000-composition": {
+          "name": "Russell 2000 · composition",
+          "completedAt": "2026-10-11T11:37:19Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
+          "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
+        },
+        "index-stoxx600-composition": {
+          "name": "STOXX Europe 600 · composition",
+          "completedAt": "2026-10-11T11:37:19Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
+          "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
+        },
+        "index-eurostoxx50-composition": {
+          "name": "EURO STOXX 50 · composition",
+          "completedAt": "2026-10-11T11:37:19Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
+          "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
+        },
+        "index-topix-composition": {
+          "name": "TOPIX · composition",
+          "completedAt": "2026-10-11T11:37:19Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
+          "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
+        },
+        "index-sp500-pea-composition": {
+          "name": "S&P 500 · composition",
+          "completedAt": "2026-10-11T11:37:19Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
+          "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
+        },
+        "index-nasdaq-pea-composition": {
+          "name": "NASDAQ-100 Notional Net Total Return · composition",
+          "completedAt": "2026-10-11T11:37:19Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
+          "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
+        },
+        "index-sp500-equal-weight-composition": {
+          "name": "S&P 500 Equal Weight · composition",
+          "completedAt": "2026-10-11T11:37:19Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
+          "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
+        },
+        "etf-additional-observation-IE000QDFFK00": {
+          "name": "ETF IE000QDFFK00",
+          "completedAt": "2026-10-11T11:37:19Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38136012513",
+          "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
+        }
+      }
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -210,5 +263,5 @@
       "publicationStatus": "failure"
     }
   },
-  "updatedAt": "2026-10-11T11:34:04Z"
+  "updatedAt": "2026-10-11T11:37:19Z"
 }
