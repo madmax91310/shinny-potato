@@ -54,20 +54,8 @@ def amundi_composition(body, config, now, url):
 
 
 def collect_amundi_composition(config, now, fetch=download):
-    # Always request the newest monthly edition, then the preceding edition;
-    # a dated publication must match the requested month and remain fresh.
-    end = now.date().replace(day=1) - dt.timedelta(days=1)
-    errors = []
-    for _ in range(2):
-        url = f"https://www.amundietf.fr/pdfDocuments/monthly-factsheet/{config['compositionIsin']}/FRA/FRA/INSTITUTIONNEL/ETF/{end:%Y%m%d}"
-        try:
-            body = fetch(url)
-        except Exception as e:
-            errors.append(f'{url}: {e}')
-        else:
-            facts = amundi_composition(body, config, now, url)
-            if facts['asOf'] != end.isoformat():
-                reject('Amundi requested/published index month mismatch')
-            return facts
-        end = end.replace(day=1) - dt.timedelta(days=1)
-    reject('Amundi current index document unavailable: ' + ' ; '.join(errors))
+    from collect_amundi_index_exposure import collect_monthly_document
+    def parse(body, url):
+        facts = amundi_composition(body, config, now, url)
+        return facts, facts['asOf']
+    return collect_monthly_document({'isin': config['compositionIsin']}, now, parse, fetch)

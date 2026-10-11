@@ -57,9 +57,36 @@ def parse_document(body,share,now):
               'sourceUrl':share['sourceUrl']}for key,value in [('countries',countries),('sectors',sectors),('holdings',holdings)]}}
 
 
+def collect_monthly_document(share, now, parse, fetch=download):
+    """Use Amundi's live official edition; date it from the validated PDF.
+
+    A transport failure may fall back to two dated editions. Invalid content
+    fails closed: an older PDF must not hide an identity or methodology change.
+    """
+    end = now.date().replace(day=1) - dt.timedelta(days=1)
+    previous = end.replace(day=1) - dt.timedelta(days=1)
+    base = f"https://www.amundietf.fr/pdfDocuments/monthly-factsheet/{share['isin']}/FRA/FRA/INSTITUTIONNEL/ETF"
+    errors = []
+    for edition in [None, end, previous]:
+        url = base if edition is None else f'{base}/{edition:%Y%m%d}'
+        try:
+            body = fetch(url)
+        except Exception as error:
+            errors.append(f'{url}: {error}')
+            continue
+        result, stamp = parse(body, url)
+        # The live endpoint can still publish the preceding monthly edition.
+        # Never label it with the month we hoped to retrieve, or accept YTD.
+        if stamp not in (end.isoformat(), previous.isoformat()):
+            reject('Amundi published index month is not a recent completed month')
+        if edition is not None and stamp != edition.isoformat():
+            reject('Amundi requested/published index month mismatch')
+        return result
+    reject('Amundi current index document unavailable: ' + ' ; '.join(errors))
+
+
 def collect_one(share,now=None,fetch=download,api_fetch=fetch_api):
-    now=now or dt.datetime.now(UTC);end=now.date().replace(day=1)-dt.timedelta(days=1)
-    errors=[]
+    now=now or dt.datetime.now(UTC)
     if share.get('expectedIndex'):
         payload = {'productIds': [share['isin']],
             'context': {'countryCode': 'FRA', 'languageCode': 'fr', 'userProfileName': 'INSTIT'},
@@ -75,12 +102,7 @@ def collect_one(share,now=None,fetch=download,api_fetch=fetch_api):
             # A changed identity/method cannot be rescued by an older PDF.
             # Qualified API sources fail closed and retain their existing values.
             reject('Amundi index API: ' + str(error))
-    for _ in range(2):
-        url=f"https://www.amundietf.fr/pdfDocuments/monthly-factsheet/{share['isin']}/FRA/FRA/INSTITUTIONNEL/ETF/{end:%Y%m%d}"
-        try:
-            result=parse_document(fetch(url),{**share,'sourceUrl':url},now)
-            if result['holdings']['asOf']!=end.isoformat():reject('Amundi requested/published month mismatch')
-            return result
-        except Exception as error:
-            errors.append(f'{end}: {error}');end=end.replace(day=1)-dt.timedelta(days=1)
-    reject(' ; '.join(errors))
+    def parse(body, url):
+        result = parse_document(body, {**share, 'sourceUrl': url}, now)
+        return result, result['holdings']['asOf']
+    return collect_monthly_document(share, now, parse, fetch)
