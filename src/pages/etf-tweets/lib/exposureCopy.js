@@ -7,6 +7,12 @@ const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Son périmètre 
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
   IE0002XZSHO1: WORLD,
+  FR001400U5Q4: WORLD,
+  LU1681043599: WORLD,
+  IE000DQLYVB9: 'Il suit le S&P 500, composé de grandes entreprises américaines de plusieurs secteurs. La réplication par swap rend cette exposition accessible dans le PEA.',
+  LU0290358497: 'Il suit un taux monétaire en euros, le €STR, avec une marge prévue par son indice. Sa performance évolue avec les taux au jour le jour ; il capitalise les revenus et ne garantit pas le capital.',
+  IE00B3FH7618: 'Il détient des obligations d’État de la zone euro dont l’échéance est comprise entre zéro et un an. Cette durée courte limite leur sensibilité aux taux, sans garantir le capital. Il distribue les revenus.',
+  IE00B14X4Q57: 'Il détient des obligations d’État de la zone euro dont l’échéance est comprise entre un et trois ans. Leur prix reste sensible aux taux et peut baisser. Il distribue les revenus.',
   FR0014017NX3: ACWI,
   IE00BK5BQT80: 'Il couvre les grandes et moyennes entreprises des pays développés et émergents. Comme l’ACWI, il n’inclut pas les petites capitalisations, mais la classification des pays et la sélection suivent les règles de FTSE.',
   IE00B3YLTY66: 'Il couvre les pays développés et émergents, en incluant aussi les petites capitalisations. Son exposition est donc plus large que celle du World et de l’ACWI.',
@@ -78,6 +84,9 @@ export function getEtfExposureCopy(etf) {
 }
 
 export const COMPARISON_HOOKS = {
+  'monetaire-obligations-courtes': 'Monétaire ou obligations courtes : que choisir pour une poche en euros ?',
+  'world-meme-indice-pea': 'Plusieurs ETF World sont accessibles sur PEA. Sur quels critères les choisir ?',
+  'sp500-meme-indice-pea': 'Deux ETF pour suivre le S&P 500 dans ton PEA : comment les départager ?',
   monde: 'Quel ETF choisir pour investir dans le monde entier ?',
   'monde-toutes-tailles': 'World, ACWI ou ACWI IMI : quelle différence pour ton portefeuille ?',
   usa: 'S&P 500, Nasdaq-100 ou Dow Jones : lequel choisir ?',

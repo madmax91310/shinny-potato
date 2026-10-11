@@ -5,6 +5,7 @@ import { COMPARISON_ETF_DETAILS } from '../../data/comparison-etf-details.js'
 import { AUTOMATED_ETF } from '../../data/automated-etf.js'
 import { getPreferredInstrumentListing } from '../../data/instrument-listings.js'
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
+import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
 
 const W = 1800, PAD = 80, CARD_H = 1497, CARD_Y = 437, GAP = 31
 const INK = '#182e2a', GREEN = '#126047', RED = '#ad3924', MUTED = '#53685a'
@@ -48,6 +49,8 @@ export function getComparisonImageComposition(isin, field) {
   }
 }
 const COMPOSITION_LABELS = {
+  Treasury: 'Emprunts d’État', 'Cash and/or Derivatives': 'Liquidités / dérivés',
+  Italy: 'Italie', Spain: 'Espagne',
   'Information Technology': 'Technologie', Technology: 'Technologie', Financials: 'Finance', 'Consumer Discretionary': 'Conso. cyclique',
   'Consumer Staples': 'Conso. de base', 'Communication Services': 'Communication', Industrials: 'Industrie',
   'Health Care': 'Santé', Healthcare: 'Santé', Materials: 'Matériaux', Utilities: 'Services publics',
@@ -62,6 +65,14 @@ function rounded(ctx, x, y, width, height, color, radius = 24) {
 }
 function composition(ctx, fund, field, x, y, width, accent) {
   const { rows, asOf, isIndex } = getComparisonImageComposition(fund.isin, field)
+  // A rate index has no geographic or sector allocation. Keep the same panels,
+  // showing its existing benchmark and currency instead of an unavailable portfolio.
+  const benchmark = INSTRUMENT_FACTS_BY_ISIN[fund.isin]?.benchmark
+  if (!rows.length && /€STR/.test(benchmark ?? '')) {
+    text(ctx, field === 'sectors' ? 'EXPOSITION SUIVIE' : 'DEVISE DE L’INDICE', x, y, 25, { width })
+    lines(ctx, field === 'sectors' ? benchmark : `Euro · ${AUTOMATED_ETF[fund.isin].currency}`, x, y + 52, width, 3, 29, { weight: 400, color: MUTED })
+    return
+  }
   text(ctx, field === 'sectors' ? 'PRINCIPAUX SECTEURS' : 'PRINCIPAUX PAYS', x, y, 25, { width })
   if (!rows.length) { text(ctx, 'Non disponible', x, y + 52, 29, { width, weight: 400, color: MUTED }); return }
   rows.forEach(([label, value], i) => {

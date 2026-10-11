@@ -6,6 +6,7 @@ import GOLD_MONTHLY from './worldbank-gold-monthly.json' with { type: 'json' }
 import { MONTHLY_HISTORY_ADDITIONS } from './monthly-history-additions.js'
 import { MSCI_HISTORY } from './msci-history.js'
 import { COMPANY_HISTORY } from './company-history.js'
+import { SHARED_INDEX_HISTORY } from './shared-index-history.js'
 // Données de prix — chaque actif a une liste de points {date:"AAAA-MM", price: nombre}.
 // Les prix entre deux points sont interpolés linéairement.
 // Bitcoin et S&P 500 : clôtures mensuelles Yahoo recoupées le 02/10/2026. Les autres actifs ont des
@@ -597,6 +598,7 @@ export const BASELINE_ASSETS = {
 
 
 
+  ...SHARED_INDEX_HISTORY,
   ...MSCI_HISTORY,
   ...DIVERSIFICATION_HISTORY,
   ...COMPANY_HISTORY,
@@ -606,7 +608,7 @@ export const BASELINE_ASSETS = {
 export const ASSETS = applyMonthlyAutomation(BASELINE_ASSETS)
 
 export const ASSET_ORDER = [
-  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), ...Object.keys(DIVERSIFICATION_HISTORY), 'nasdaq100', 'soxx',
+  'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), ...Object.keys(DIVERSIFICATION_HISTORY), ...Object.keys(SHARED_INDEX_HISTORY), 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
   'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
   ...Object.keys(COMPANY_HISTORY),

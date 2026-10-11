@@ -1,6 +1,8 @@
 // Revue du 10/10/2026 : un angle propre à chaque indice, sans vécu personnel inventé.
 // Les chiffres et les constats de concentration sont dérivés de la fiche reçue.
 export const INDEX_HOOKS = {
+  'msci-usa': 'Il n’y a pas que le S&P 500 pour suivre les entreprises américaines. Le MSCI USA couvre aussi les grandes et moyennes capitalisations 🇺🇸',
+  'msci-india': 'Un ETF Inde donne accès à plusieurs entreprises, mais ton argent reste investi sur un seul pays 🇮🇳',
   "world": "Un ETF World contient plus que quelques noms connus. Mais toutes les entreprises n’y prennent pas la même place 🌍",
   "acwi": "Avec un ETF ACWI, tu investis dans les pays développés et les marchés émergents 🌍",
   "ftse-all-world": "Un ETF All-World couvre les pays développés et les marchés émergents. Pourtant, ton argent n’est pas réparti à parts égales entre les pays 🌍",

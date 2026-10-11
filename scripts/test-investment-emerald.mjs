@@ -65,7 +65,7 @@ try {
       return d
     }
     try {
-      for (const id of ASSET_ORDER) for (const mode of ['lump', 'dca']) await check(`${id}-${mode}`, stateFor(id, mode), mode === 'lump' && ['apple', 'microsoft', 'msciWorld', 'or', 'tesla', 'asml'].includes(id))
+      for (const id of ASSET_ORDER) for (const mode of ['lump', 'dca']) await check(`${id}-${mode}`, stateFor(id, mode), mode === 'lump' && ['apple', 'microsoft', 'msciWorld', 'or', 'tesla', 'asml', 'msciEurope', 'msciIndia', 'msciWorldQuality', 'msciWorldValue', 'russell2000'].includes(id))
       const override = { ...stateFor('apple'), overridePriceRaw: '10' }
       await check('loss-manual-price', override, true)
       if (!labels.some(label => label.includes('Prix final saisi'))) throw new Error('Unlabelled manual price')

@@ -1,5 +1,7 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'msci-usa': ['sp500', 'Grandes et moyennes entreprises américaines'],
+  'msci-india': ['emerging', 'Grandes et moyennes entreprises indiennes'],
   'ftse-epra-nareit-developed-dividend-plus': ['property','Immobilier coté · pays développés · Dividend+'],
   'ftse-global-core-infrastructure': ['infrastructure','Infrastructures cotées · développés et émergents'],
   'msci-world-momentum': ['world','Pays développés · filtre Momentum'],

@@ -20,7 +20,7 @@ function fitted(ctx, value, x, y, size, width, color = INK, editorial = false, a
   if (ctx.measureText(value).width > width) throw new Error(`Texte du duel trop long : ${value}`)
   text(ctx, value, x, y, size, color, editorial, align)
 }
-function label(ctx, value, x, y, width) {
+function label(ctx, value, x, y, width, height = 73) {
   // Up to two lines, without ellipses: all selected assets remain identifiable.
   for (let size = 37; size >= 26; size--) {
     ctx.font = `500 ${size}px Georgia, serif`
@@ -30,7 +30,7 @@ function label(ctx, value, x, y, width) {
       if (lines[i] && ctx.measureText(next).width > width) lines.push(word)
       else lines[i] = next
     }
-    if (lines.length <= 2 && lines.every(line => ctx.measureText(line).width <= width)) {
+    if (lines.length <= 2 && lines.length * size + (lines.length - 1) * 5 <= height && lines.every(line => ctx.measureText(line).width <= width)) {
       lines.forEach((line, i) => text(ctx, line, x, y + i * (size + 5), size, INK, true))
       return
     }
@@ -51,7 +51,7 @@ function portfolio(ctx, item, images, letter, x, currency, accent, dark) {
     const y = top + i * rowHeight
     // Same ordered asset on the plate and in the gallery above it.
     fitted(ctx, `${asset.pct} %`, x + CARD_W - 35, y + 5, 33, 110, accent, true, 'right')
-    label(ctx, asset.label, x + 35, y, CARD_W - 175)
+    label(ctx, asset.label, x + 35, y, CARD_W - 175, count === 3 ? 60 : 73)
   })
   const resultY = 485 + (count-1)*65
   rule(ctx, x + 35, resultY, CARD_W - 70)
