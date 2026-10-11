@@ -59,6 +59,8 @@ try {
       if (labels.filter(label => /[ée]pargnant.?libre/i.test(label)).length !== 1) throw new Error('Signature must appear once')
       if (d.effectiveMode === 'dca' && !labels.some(label => label.startsWith('TOTAL VERSÉ'))) throw new Error('Lost monthly contributions')
       for (const credit of (ASSETS[state.assetId]?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)) if (!labels.includes(credit)) throw new Error('Missing source credit')
+      if (!labels.includes('Pas un conseil financier')) throw new Error('Wrong footer')
+      if (d.effectiveMode === 'dca' && !labels.includes(`${d.result.finalValue < d.result.totalInvested ? 'Perte' : 'Gain'} sur les sommes versées`)) throw new Error('Missing monthly return label')
       if (keep) await window.saveInvestmentSample({ name, png: canvas.toDataURL(), labels })
       return d
     }
