@@ -13,6 +13,86 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+  "FR001400S9V0": {
+  "distribution": "Capitalisant",
+  "location": "France, réplication synthétique (swap)",
+  "benchmark": "S&P Global Luxury Index Net TR",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Synthetic (swap)",
+  "domicile": "France",
+  "currencyHedge": null,
+  "reviewedAt": "11/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P Global Luxury Index Net TR",
+  "characteristicsSource": {
+    "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+    "checkedAt": "2026-10-11"
+  }
+},
+  "IE00BGV5VN51": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique intégrale",
+  "benchmark": "Nasdaq Global Artificial Intelligence and Big Data Total Net Return Index",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "11/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : Nasdaq Global Artificial Intelligence and Big Data Total Net Return Index",
+  "characteristicsSource": {
+    "url": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+    "checkedAt": "2026-10-11"
+  }
+},
+  "IE00BDFBTQ78": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique intégrale",
+  "benchmark": "S&P Global Mining Reduced Coal Index",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "11/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P Global Mining Reduced Coal Index",
+  "characteristicsSource": {
+    "url": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
+    "checkedAt": "2026-10-11"
+  }
+},
+  "IE00B5M1WJ87": {
+  "distribution": "Distribuant",
+  "location": "Irlande, réplication physique intégrale",
+  "benchmark": "S&P Euro High Yield Dividend Aristocrats Index",
+  "incomePolicy": "distributing",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "11/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : S&P Euro High Yield Dividend Aristocrats Index",
+  "characteristicsSource": {
+    "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
+    "checkedAt": "2026-10-11"
+  }
+},
+  "IE00BZ56SW52": {
+  "distribution": "Capitalisant",
+  "location": "Irlande, réplication physique intégrale",
+  "benchmark": "WisdomTree Global Developed Quality Dividend Growth Index (TR)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Ireland",
+  "currencyHedge": null,
+  "reviewedAt": "11/10/2026",
+  "instrumentType": "ETF",
+  "positionsLabel": "Exposition suivie : WisdomTree Global Developed Quality Dividend Growth Index (TR)",
+  "characteristicsSource": {
+    "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+    "checkedAt": "2026-10-11"
+  }
+},
   FR0007056841: { distribution: 'Distribuant', location: 'France, réplication synthétique (swap)', benchmark: 'Dow Jones Industrial Average Net Total Return', incomePolicy: 'distributing', replicationMethod: 'Synthetic (swap)', domicile: 'France', currencyHedge: null, reviewedAt: '06/10/2026', characteristicsSource: {url: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831', checkedAt: '2026-10-06'} },
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, {
  distribution: r.incomePolicy === 'accumulating' ? 'Capitalisant' : 'Distribuant',
