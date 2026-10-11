@@ -80,7 +80,14 @@ def fetch_content(url):
  # interleaving French clauses when Poppler's line wrapping differs by platform.
  # The normal 2 MB extraction limit still applies.
  if raw.startswith(b'%PDF'):
-  text=pdf_text(raw,crop=(0,300)) if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2] else pdf_text(raw)
+  if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2]:
+   text=pdf_text(raw,crop=(0,300))
+  elif 'cr882/' in url and 'CGL_CTO_PDF.pdf' in url:
+   # Preserve the reading order of the three-column CTO convention. Layout
+   # extraction interleaves the FX clause with succession and PEA provisions.
+   text=pdf_text(raw,raw=True)
+  else:
+   text=pdf_text(raw)
  else:text=raw.decode('utf-8')
  return SourceDocument(text,actual_url)
 def collect(baseline,today,fetcher=fetch_content):

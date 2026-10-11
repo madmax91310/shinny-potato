@@ -16,7 +16,7 @@ FIELDS = ('dca', 'pea', 'pme', 'jeune', 'ifu', 'cash', 'boursomarkets')
 DOCUMENTS = {
  'tr': {'dca':['trPeaHelp'], 'pea':['trContract'], 'pme':['trContract'], 'jeune':['trContract'], 'ifu':['trContract'], 'cash':['trContract'], 'change':['trDividendsFx','trFxRules'], 'garde':['trContract','trFees']},
  'bourso': {'dca':['boursoTariff'], 'pea':['boursoTariff'], 'pme':['boursoTariff'], 'jeune':['boursoTariff'], 'ifu':['boursoIfu'], 'cash':['boursoContract'], 'boursomarkets':['boursoMarkets'], 'garde':['boursoTariff']},
- 'fortuneo': {'dca':['fortuneoSmartOrders','fortuneoContract'], 'pea':['fortuneoTariff'], 'pme':['fortuneoTariff'], 'jeune':['fortuneoContract'], 'ifu':['fortuneoIfu'], 'cash':['fortuneoContract']},
+ 'fortuneo': {'dca':['fortuneoSmartOrders','fortuneoContract'], 'pea':['fortuneoTariff'], 'pme':['fortuneoTariff'], 'jeune':['fortuneoContract'], 'ifu':['fortuneoIfu'], 'cash':['fortuneoContract','fortuneoCashFunctions','fortuneoCashCto']},
  'ibkr': {'dca':['ibkrPea','ibkrDca','ibkrFractionalFaq','ibkrRecurringEligibilityFaq'], 'pea':['ibkrPea'], 'pme':['ibkrPea','ibkrPmeFaq'], 'jeune':['ibkrPea','ibkrYoungFaq'], 'ifu':['ibkrPea'], 'cash':['ibkrInterest','peaCashRules'], 'change':['ibkrFxFaq'], 'entrant':['ibkrTransfer','ibkrPea']},
  'xtb': {'dca':['xtbComparison'], 'pea':['xtbPea'], 'pme':['xtbComparison'], 'jeune':['xtbPea'], 'ifu':['xtbIfu'], 'cash':['xtbInterest','xtbPea']},
  'caidf': {'dca':['caPeb','caTariff'], 'pea':['caTariff'], 'pme':['caTariff'], 'jeune':['caIdfPea'], 'ifu':['caTariff','caInvest'], 'cash':['caIdfPeaPme','caIdfContract','caCtoContract'], 'change':['caTariff','caCtoContract']},
@@ -149,7 +149,9 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
     if field=='change':
         if broker=='ibkr':
             return proved(r'IB-IE offers access to PEA eligible products on markets outside of the eurozone.{0,220}?IB-IE will proceed to an automatic currency conversion',True,'PEA : conversion automatique en cas d’achat d’un titre dans une autre devise ; barème propre au PEA non confirmé.','partiel',document='ibkrFxFaq')
-        if broker=='caidf': return unknown('Change boursier : tarif non confirmé dans le barème régional ; commission bancaire générale exclue.')
+        if broker=='caidf':
+            clause = r'Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l.opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents'
+            return proved(clause,True,'CTO : conversion en euros au cours pratiqué par la caisse Île-de-France, avec frais et commissions associés. Montant et portée PEA non établis par cette clause.','partiel',document='caCtoContract')
         find(r'Les rendements en devises étrangères.{0,160}?sont convertis en euro',texts['trFxRules'])
         find(r'majoration ou une minoration correspondant aux marges d.achat et de vente',texts['trFxRules'])
         return proved(r'Si des dividendes.{0,220}?nous convertissons directement pour vous cette devise en euro',None,'Revenus en devises convertis en euros au cours Trade Republic, avec marge d’achat/vente selon la devise. Commission propre au PEA non chiffrée.','partiel')
@@ -174,6 +176,8 @@ def parse(broker,field,raws,today,sources=None):
     if broker == 'ibkr' and field == 'cash':
         supporting['peaCashRules'] = find(r"Le compte en espèces n.est pas rémunéré et ne peut pas présenter un solde débiteur", texts['peaCashRules'])[0]
     conversion = {'automaticOnPea':True} if broker=='ibkr' and field=='change' else None
+    if broker=='caidf' and field=='change' and decisive=='caCtoContract':
+        conversion = {'account':'CTO','toEuro':True,'bankRate':True,'associatedFees':True,'rate':None}
     if broker == 'tr' and field == 'change' and decisive == 'trDividendsFx':
         supporting['trFxRules'] = find(r'Les cours d.achat ou de vente des devises nécessaires à la conversion monétaire.{0,320}?marges d.achat et de vente figurant dans la liste ci-dessous',texts['trFxRules'])[0]
         conversion = {'incomeToEuro':True, 'marginByCurrency':True}

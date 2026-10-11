@@ -89,6 +89,7 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
   if (f.change && !p.change && id !== 'ibkr') copy.change = f.change;
   else if (p.change?.status === 'confirmé' && p.change.available != null) copy.change = p.change.copy.full;
   if (id === 'tr' && p.change?.conversion?.incomeToEuro && p.change.conversion.marginByCurrency) copy.change = 'Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.';
+  if (id === 'caidf' && p.change?.conversion?.account === 'CTO' && p.change.conversion.toEuro) copy.change = 'CTO : conversion en euros au cours de la caisse Île-de-France, avec frais et commissions associés.';
   // Generic IBKR FX pricing is not attributed to the PEA.
   if (id === 'ibkr' && values('change')) {
     const fx = values('change');
