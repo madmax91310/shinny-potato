@@ -31,9 +31,9 @@ function rule(ctx, y) {
   ctx.strokeStyle = '#b18d55'; ctx.lineWidth = 1.5
   ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke()
 }
-function fact(ctx, label, value, x, y, width, height = 112) {
+function fact(ctx, label, value, x, y, width, height = 130) {
   block(ctx, label, x, y, width, 50, { size: 40, min: 36, color: MUTED, weight: 400 })
-  block(ctx, value, x, y + 58, width, height, { size: 60, min: 28, weight: 600 })
+  block(ctx, value, x, y + 58, width, height, { size: 68, min: 28, weight: 600 })
 }
 export async function renderETFImage(etf) {
   const art = getETFArt(etf.id)

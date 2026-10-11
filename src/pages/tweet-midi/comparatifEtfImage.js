@@ -69,16 +69,16 @@ function composition(ctx, fund, field, x, y, width, accent) {
   // showing its existing benchmark and currency instead of an unavailable portfolio.
   const benchmark = INSTRUMENT_FACTS_BY_ISIN[fund.isin]?.benchmark
   if (!rows.length && /€STR/.test(benchmark ?? '')) {
-    text(ctx, field === 'sectors' ? 'EXPOSITION SUIVIE' : 'DEVISE DE L’INDICE', x, y, 25, { width })
+    text(ctx, field === 'sectors' ? 'EXPOSITION SUIVIE' : 'DEVISE DE L’INDICE', x, y, 30, { width })
     lines(ctx, field === 'sectors' ? benchmark : `Euro · ${AUTOMATED_ETF[fund.isin].currency}`, x, y + 52, width, 3, 29, { weight: 400, color: MUTED })
     return
   }
-  text(ctx, field === 'sectors' ? 'PRINCIPAUX SECTEURS' : 'PRINCIPAUX PAYS', x, y, 25, { width })
+  text(ctx, field === 'sectors' ? 'PRINCIPAUX SECTEURS' : 'PRINCIPAUX PAYS', x, y, 30, { width })
   if (!rows.length) { text(ctx, 'Non disponible', x, y + 52, 29, { width, weight: 400, color: MUTED }); return }
   rows.forEach(([label, value], i) => {
-    const yy = y + 52 + i * (field === 'sectors' ? 82 : 70), valueW = 136
-    text(ctx, COMPOSITION_LABELS[label] ?? label, x, yy, 29, { width: width - valueW - 12, weight: 400 })
-    text(ctx, `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`, x + width, yy, 30, { align: 'right', width: valueW })
+    const yy = y + 52 + i * (field === 'sectors' ? 82 : 70), valueW = 156
+    text(ctx, COMPOSITION_LABELS[label] ?? label, x, yy, 34, { width: width - valueW - 12, weight: 400 })
+    text(ctx, `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`, x + width, yy, 36, { align: 'right', width: valueW })
     if (field === 'sectors') {
       rounded(ctx, x, yy + 46, width, 9, '#c4d2c7', 4)
       rounded(ctx, x, yy + 46, width * Math.min(value / 100, 1), 9, accent, 4)
@@ -86,7 +86,7 @@ function composition(ctx, fund, field, x, y, width, accent) {
   })
   // Each composition keeps its own date and fund/index scope inside the card.
   const countries = getComparisonImageComposition(fund.isin, 'countries')
-  if (field === 'countries' || asOf !== countries.asOf || isIndex !== countries.isIndex) text(ctx, `${isIndex ? 'Indice suivi' : 'Fonds'}${asOf ? ` · ${asOf.split('-').reverse().join('/')}` : ''}`, x, y + (field === 'sectors' ? 287 : 225), 23, { width, weight: 400, color: MUTED })
+  if (field === 'countries' || asOf !== countries.asOf || isIndex !== countries.isIndex) text(ctx, `${isIndex ? 'Indice suivi' : 'Fonds'}${asOf ? ` · ${asOf.split('-').reverse().join('/')}` : ''}`, x, y + (field === 'sectors' ? 287 : 225), 27, { width, weight: 400, color: MUTED })
 }
 export function comparisonLayout(count) {
   const columns = count <= 3 ? Math.max(1, count) : 2
@@ -112,7 +112,7 @@ function card(ctx, fund, performance, years, i, count) {
     rounded(ctx, xx, y + 231, 102, 43, accent, 8)
     text(ctx, envelope, xx + 51, y + 236, 26, { align: 'center', width: 92, color: '#ffffff' })
   }
-  lines(ctx, detail(fund), xx + (envelope ? 123 : 0), y + 236, width - (envelope ? 123 : 0), 2, 28, { weight: 400 })
+  lines(ctx, detail(fund), xx + (envelope ? 123 : 0), y + 236, width - (envelope ? 123 : 0), 2, 32, { weight: 400 })
   text(ctx, fund.isCopperEtc ? 'Frais de gestion' : 'Frais annuels', xx, y + 344, 31, { width, weight: 400 })
   text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, xx + width, y + 394, 79, { width, align: 'right', color: accent })
   rule(ctx, xx, y + 501, width)
