@@ -1,0 +1,108 @@
+{
+  "series": [
+    {
+      "id": "msciEurope",
+      "label": "MSCI Europe",
+      "indexCode": "990500",
+      "currency": "USD",
+      "variant": "NETR",
+      "parser": "msci",
+      "periodStart": "2015-01",
+      "precision": 6,
+      "method": "MSCI Europe 990500 NETR USD, clôture de la dernière séance de chaque mois, niveaux réels en points"
+    },
+    {
+      "id": "msciUsa",
+      "label": "MSCI USA",
+      "indexCode": "984000",
+      "currency": "USD",
+      "variant": "NETR",
+      "parser": "msci",
+      "periodStart": "2015-01",
+      "precision": 6,
+      "method": "MSCI USA 984000 NETR USD, clôture de la dernière séance de chaque mois, niveaux réels en points"
+    },
+    {
+      "id": "msciIndia",
+      "label": "MSCI India",
+      "indexCode": "935600",
+      "currency": "USD",
+      "variant": "NETR",
+      "parser": "msci",
+      "periodStart": "2015-01",
+      "precision": 6,
+      "method": "MSCI India 935600 NETR USD, clôture de la dernière séance de chaque mois, niveaux réels en points"
+    },
+    {
+      "id": "msciEmergingExChina",
+      "label": "MSCI Emerging Markets hors Chine",
+      "indexCode": "713021",
+      "currency": "USD",
+      "variant": "NETR",
+      "parser": "msci",
+      "periodStart": "2015-01",
+      "precision": 6,
+      "method": "MSCI Emerging Markets hors Chine 713021 NETR USD, clôture de la dernière séance de chaque mois, niveaux réels en points"
+    },
+    {
+      "id": "msciWorldMomentum",
+      "label": "MSCI World Momentum",
+      "indexCode": "703755",
+      "currency": "USD",
+      "variant": "NETR",
+      "parser": "msci",
+      "periodStart": "2015-01",
+      "precision": 6,
+      "method": "MSCI World Momentum 703755 NETR USD, clôture de la dernière séance de chaque mois, niveaux réels en points"
+    },
+    {
+      "id": "msciWorldQuality",
+      "label": "MSCI World Quality",
+      "indexCode": "702787",
+      "currency": "USD",
+      "variant": "NETR",
+      "parser": "msci",
+      "periodStart": "2015-01",
+      "precision": 6,
+      "method": "MSCI World Quality 702787 NETR USD, clôture de la dernière séance de chaque mois, niveaux réels en points"
+    },
+    {
+      "id": "msciWorldValue",
+      "label": "MSCI World Value",
+      "indexCode": "105868",
+      "currency": "USD",
+      "variant": "NETR",
+      "parser": "msci",
+      "periodStart": "2015-01",
+      "precision": 6,
+      "method": "MSCI World Value 105868 NETR USD, clôture de la dernière séance de chaque mois, niveaux réels en points"
+    },
+    {
+      "id": "russell2000",
+      "label": "Russell 2000",
+      "indexCode": "US2000",
+      "currency": "USD",
+      "variant": "GRTR",
+      "parser": "russell",
+      "periodStart": "2015-01",
+      "sourceUrls": [
+        "https://research.ftserussell.com/products/russell-index-values/home/getfile?id=valueshist_US2000.csv",
+        "https://research.ftserussell.com/products/russell-index-values/home/getfile?id=valuesytd_US2000.csv"
+      ],
+      "method": "Russell 2000 US2000 Gross Total Return USD, dernière valeur officielle With Dividends de chaque mois, niveaux réels en points"
+    },
+    {
+      "id": "ftseAllWorld",
+      "label": "FTSE All-World",
+      "indexCode": "AWORLDS",
+      "currency": "USD",
+      "variant": "GRTR",
+      "parser": "ftse",
+      "periodStart": "2024-10",
+      "sourceUrls": [
+        "https://research.ftserussell.com/analytics/factsheets/Home/DownloadHistoricIndex/?indexdetails=ESMA_IndexReturn_AWORLDS_USD_MONTHLY"
+      ],
+      "method": "FTSE All-World AWORLDS Gross Total Return USD, colonne Index Value / Total Return du classeur officiel, niveaux réels en points"
+    }
+  ]
+}

@@ -1,14 +1,19 @@
 import { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
 export { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
-// Formats "Anniversaire" et "Performance depuis" (Tweet Midi) — aucune donnée de prix dupliquée
-// ici : tout vient directement de la bibliothèque déjà vérifiée du Calculateur d'investissement
-// (src/data/market-history.js), via les mêmes fonctions d'interpolation que le
-// Calculateur utilise lui-même (src/pages/investment-calculator/lib.js). Si cette bibliothèque
-// est mise à jour (nouveaux points, nouvel actif), ces deux formats suivent automatiquement.
+// Shared calculator series plus exact official indices dedicated to anniversaries.
 import {
-  ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS,
+  ASSETS as SHARED_ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate as sharedMinDate, SPARSE_MONTHLY_DATA_IDS,
 } from '../../../data/market-history.js';
 import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../investment-calculator/lib.js";
+
+import INDEX_HISTORY from '../../../data/anniversary-index-history.json' with { type: 'json' };
+const INDEX_ASSETS = Object.fromEntries(Object.entries(INDEX_HISTORY).map(([id, record]) => [id, {
+  ...record, icon: '📊', priceUnit: 'points', tweetPhrase: record.label,
+  sourceCredit: record.parser === 'msci' ? 'MSCI' : 'FTSE Russell',
+  points: record.points.map(([date, price]) => ({ date, price })),
+}]));
+const ASSETS = { ...SHARED_ASSETS, ...INDEX_ASSETS };
+function getAssetMinDate(id) { return INDEX_ASSETS[id]?.points[0].date ?? sharedMinDate(id); }
 
 const LATEST_YEAR = Number(LATEST_YM.slice(0, 4));
 
@@ -131,7 +136,7 @@ export function getValidYearsBackOptions(assetId, today) {
   for (let yearsBack = 1; yearsBack <= 10; yearsBack++) {
     const past = new Date(today.getFullYear() - yearsBack, today.getMonth(), 1);
     const ym = past.getFullYear() + "-" + String(past.getMonth() + 1).padStart(2, "0");
-    if (ymIndex(ym) >= minIdx) options.push(yearsBack);
+    if (ymIndex(ym) >= minIdx && ymIndex(ym) <= ymIndex(getAssetMaxDate(assetId))) options.push(yearsBack);
   }
   return options;
 }
@@ -211,7 +216,14 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
 // Sous-ensemble de MARKET_ASSETS utilisable par le format Anniversaire (cf.
 // ANNIVERSAIRE_EXCLUDED_IDS ci-dessus) — Performance depuis continue d'utiliser MARKET_ASSETS en
 // entier, sans restriction.
-export const ANNIVERSAIRE_ELIGIBLE_ASSETS = MARKET_ASSETS.filter((a) => !ANNIVERSAIRE_EXCLUDED_IDS.has(a.id));
+export const ANNIVERSAIRE_ELIGIBLE_ASSETS = [
+  ...MARKET_ASSETS.filter((a) => !ANNIVERSAIRE_EXCLUDED_IDS.has(a.id)),
+  ...Object.entries(INDEX_ASSETS).map(([id, asset]) => ({
+    id, label: asset.label, tweetPhrase: asset.tweetPhrase, icon: asset.icon,
+    currency: asset.currency, sourceCredit: asset.sourceCredit, priceUnit: 'points',
+    anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id],
+  })),
+];
 
 export { indexToYm };
 

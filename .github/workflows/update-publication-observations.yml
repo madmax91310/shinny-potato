@@ -9,6 +9,8 @@ on:
       - '.github/workflows/update-publication-observations.yml'
       - 'scripts/refresh_purchasing_power.py'
       - 'scripts/refresh_anniversary_levels.py'
+      - 'scripts/refresh_anniversary_indices.py'
+      - 'scripts/anniversary-indices.json'
   pull_request:
     paths:
       - '.github/workflows/update-publication-observations.yml'
@@ -18,6 +20,8 @@ on:
       - 'scripts/test-household-benchmarks.mjs'
       - 'scripts/refresh_purchasing_power.py'
       - 'scripts/refresh_anniversary_levels.py'
+      - 'scripts/refresh_anniversary_indices.py'
+      - 'scripts/anniversary-indices.json'
       - 'src/data/purchasing-power*'
       - 'src/data/anniversary-levels*'
       - 'src/pages/purchasing-power/**'
@@ -37,7 +41,7 @@ jobs:
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
       changed: ${{ steps.commit.outputs.changed }}
-      collection_failed: ${{ steps.prices.outcome == 'failure' || steps.levels.outcome == 'failure' }}
+      collection_failed: ${{ steps.prices.outcome == 'failure' || steps.levels.outcome == 'failure' || steps.indices.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -48,18 +52,24 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-      - run: pip install beautifulsoup4==4.15.0
+      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
+      - run: node scripts/test-anniversary-indices.mjs
       - run: node scripts/test-publication-consumers.mjs
       - id: prices
         name: Collect INSEE price levels, IRL and SMIC
         continue-on-error: true
         run: python scripts/refresh_purchasing_power.py --apply --output "$RUNNER_TEMP/purchasing-observation.json"
+      - id: indices
+        name: Collect completed official anniversary index months
+        continue-on-error: true
+        run: python scripts/refresh_anniversary_indices.py --apply --output "$RUNNER_TEMP/anniversary-indices-observation.json"
       - id: levels
         name: Collect completed anniversary levels
         continue-on-error: true
         run: python scripts/refresh_anniversary_levels.py --apply --output "$RUNNER_TEMP/anniversary-observation.json"
+      - run: node scripts/test-anniversary-indices.mjs
       - run: node scripts/test-publication-consumers.mjs
       - run: node scripts/test-household-benchmarks.mjs
       - run: node scripts/test-purchasing-power-editorial.mjs
@@ -80,7 +90,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/purchasing-power-observations.json src/data/anniversary-levels.json
+          git add src/data/purchasing-power-observations.json src/data/anniversary-levels.json src/data/anniversary-index-history.json scripts/source-snapshots/anniversary-indices.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh dated publication observations'
             git pull --rebase origin master

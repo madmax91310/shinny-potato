@@ -9,4 +9,13 @@ export const ANNIVERSARY_INDEX_VARIANTS = {
   msciWorld: 'Gross Return · USD · dividendes bruts réinvestis',
   msciEmerging: 'Gross Return · USD · dividendes bruts réinvestis',
   msciWorldSmallCap: 'Gross Return · USD · dividendes bruts réinvestis',
+  msciEurope: 'Net Return · USD · dividendes nets réinvestis',
+  msciUsa: 'Net Return · USD · dividendes nets réinvestis',
+  msciIndia: 'Net Return · USD · dividendes nets réinvestis',
+  msciEmergingExChina: 'Net Return · USD · dividendes nets réinvestis',
+  msciWorldMomentum: 'Net Return · USD · dividendes nets réinvestis',
+  msciWorldQuality: 'Net Return · USD · dividendes nets réinvestis',
+  msciWorldValue: 'Net Return · USD · dividendes nets réinvestis',
+  russell2000: 'Total Return · USD · dividendes bruts réinvestis',
+  ftseAllWorld: 'Total Return · USD · dividendes bruts réinvestis',
 };
