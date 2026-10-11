@@ -11,6 +11,18 @@ TODAY='2026-10-08'
 def raws(broker,field):return {key:(FIXTURES/(key+'.txt')).read_text() for key in DOCUMENTS[broker][field]}
 
 class BrokerProfilesTests(unittest.TestCase):
+    def test_peps_purchase_fee_and_paid_sale_are_revalidated(self):
+        raw = raws('saxo','dca')
+        observed = parse('saxo','dca',raw,TODAY)
+        self.assertFalse(observed['available'])
+        self.assertEqual(observed['programmed'],{'frequency':'monthly','purchaseFee':0,'salePaid':True})
+        self.assertEqual({ref['document'] for ref in observed['refs']},{'saxoAutoinvest','saxoPepsHelp'})
+        updated = dict(raw)
+        updated['saxoPepsHelp'] = updated['saxoPepsHelp'].replace('0€ de frais', '1€ de frais')
+        self.assertEqual(parse('saxo','dca',updated,TODAY)['programmed']['purchaseFee'],1)
+        updated['saxoPepsHelp'] = updated['saxoPepsHelp'].replace('frais de transaction uniquement lors de la vente de vos positions','frais de vente modifiés')
+        with self.assertRaises(ValueError): parse('saxo','dca',updated,TODAY)
+
     def test_future_explicit_proofs_promote_all_twelve_scopes_with_provenance(self):
         clauses = {
             ('tr','pme'): 'Trade Republic offers PEA-PME accounts.',
