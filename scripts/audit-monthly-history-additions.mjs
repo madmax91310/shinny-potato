@@ -49,7 +49,10 @@ for (const [id, asset] of Object.entries(MONTHLY_HISTORY_ADDITIONS)) {
     assert.equal(d.effectiveMode, mode); assert(Math.abs(d.result.finalValue - expected) < 1e-7);
     assert(Math.abs(computeComparativeSeries(id, '2020-01', prices.at(-1).date, 100, mode).finalValue - expected) < 1e-7);
     const tweet = buildTweetText(state, d); assert(!/NaN|undefined/.test(tweet));
-    assert(tweet.includes(asset.isin ? 'frais du fonds déjà inclus' : id === 'cac40' ? 'dividendes non réinvestis' : 'Cours ajustés'));
+    assert(tweet.includes('Capital final :'));
+    if (id === 'cac40') assert(tweet.includes('dividendes non réinvestis'));
+    else assert.equal(ASSETS[id].priceMethod, 'adjusted');
+    assert(!tweet.includes('Cours ajustés'));
   }
   assert.equal(getAnnualReturns(id, 2020).length, Number(ASSETS[id].points.at(-1).date.slice(0, 4)) - 2020);
   assert.equal(HISTORY_FACTS.filter(f => f.id.endsWith(`-${id}`)).length, 2);
