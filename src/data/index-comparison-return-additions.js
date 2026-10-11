@@ -182,7 +182,7 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
       ],
       "performance": {
         "kind": "indice",
-        "detail": "MSCI USA · USD · dividendes réinvestis",
+        "detail": "MSCI USA · USD · rendements bruts, dividendes réinvestis",
         "date": "Années calendaires 2023–2025"
       },
       "source": {
