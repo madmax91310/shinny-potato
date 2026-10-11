@@ -4,7 +4,7 @@ Ajoute uniquement les cinq dernières propositions validées : Amundi PEA Luxe M
 
 ## Raccordement
 
-Les cinq parts disposent déjà de collecteurs actifs dans la collecte quotidienne des émetteurs. Les fiches utilisent les registres communs pour les frais, encours et performances annuelles de la part exacte. Les pays, secteurs et premières positions restent dans les observations partagées ; leur ajout ne crée pas de rubrique supplémentaire dans le tweet. Aucun historique mensuel ou prix quotidien n’est nécessaire pour ces cinq fiches.
+Les cinq parts disposent déjà de collecteurs actifs dans la collecte quotidienne des émetteurs. Les fiches utilisent les registres communs pour les frais, encours et performances annuelles de la part exacte. Les pays, secteurs et premières positions restent dans les observations partagées ; leur ajout ne crée pas de rubrique supplémentaire dans le tweet. Aucun historique mensuel ou prix quotidien n’est nécessaire pour ces cinq fiches. Le marqueur presentationOnly conserve ces ajouts dans cet outil ; l’audit continue à exiger la cohérence des anciennes fiches et du Générateur, et refuse de raccorder une fiche seule au Générateur.
 
 Les caractéristiques structurelles et les cotations sont relues séparément et conservées avec leurs sources. Le champ exposition décrit le périmètre suivi sans figer de nombre de titres ni assimiler les dix premières positions à un portefeuille complet. Luxe PEA reprend la composition économique de son indice déjà qualifiée, pas le panier de substitution visible dans l’API de son fonds synthétique.
 

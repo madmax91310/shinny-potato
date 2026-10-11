@@ -25,7 +25,11 @@ for (const etf of ETFS) {
     console.error(`Série annuelle invalide : ${etf.isin}`); errors++
   }
   const asset = known.get(etf.isin)
-  if (series.values.every(Number.isFinite) && !asset) {
+  // Une fiche seule ne raccorde pas implicitement un autre outil.
+  if (etf.presentationOnly && asset) {
+    console.error(`Fiche seule ajoutée au Générateur : ${etf.isin}`); errors++
+  }
+  if (series.values.every(Number.isFinite) && !asset && !etf.presentationOnly) {
     console.error(`Part à historique complet absente de la composition manuelle : ${etf.isin}`); errors++
   }
   if (asset && series.values.every(Number.isFinite) && JSON.stringify(series.calendarYears ? series.calendarYears.map(year => asset.calendarReturns[year] ?? null) : asset.r) !== JSON.stringify(series.values)) {
