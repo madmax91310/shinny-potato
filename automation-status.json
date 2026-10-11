@@ -190,7 +190,42 @@
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38146668608",
       "failures": [],
       "dataFailures": {}
+    },
+    "update-practical-sheets.yml": {
+      "name": "Sources des fiches pratiques",
+      "runId": 38151974706,
+      "attempt": 1,
+      "completedAt": "2026-10-11T15:52:54Z",
+      "status": "failure",
+      "lastSuccessAt": null,
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": null,
+      "lastPublicationSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38151974706",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Documents modifiés ou collecte partielle. Consulter practical-observations et Données à revoir.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "practical:ibonds": {
+          "name": "BlackRock · ETF obligataire à échéance",
+          "completedAt": "2026-10-11T15:52:54Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38151974706",
+          "cause": "HTTP Error 403: Forbidden"
+        }
+      }
+    },
+    "update-inflation.yml": {
+      "name": "Inflation INSEE",
+      "status": "unknown",
+      "collectionStatus": "unknown",
+      "publicationStatus": "not-run",
+      "dataFailures": {},
+      "failures": []
     }
   },
-  "updatedAt": "2026-10-11T18:04:47Z"
+  "updatedAt": "2026-10-11T15:52:54Z"
 }
