@@ -5,6 +5,12 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   base: '/shinny-potato/',
-  build: { manifest: true },
+  build: {
+    manifest: true,
+    rolldownOptions: { output: { codeSplitting: { groups: [
+      // Shared by anniversaries and calculator; keep the new data below the route budget.
+      { name: 'official-index-history', test: /anniversary-index-history\.json$/ },
+    ] } } },
+  },
   plugins: [react(), tailwindcss()],
 })

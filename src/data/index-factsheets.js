@@ -15,6 +15,16 @@ function reusedIndexSheet(id, title, intro, insight, takeaway, methodologyPanels
 }
 
 const ARCHIVE_SHEETS = [
+ reusedIndexSheet('msci-usa', 'MSCI USA',
+  '🇺🇸 Le MSCI USA couvre les grandes et moyennes entreprises américaines. Que contient ce panier ? 👇',
+  'Un indice américain peut couvrir plusieurs secteurs tout en laissant une place importante aux plus grandes entreprises.',
+  'Le MSCI USA couvre un seul pays. Son nombre de titres ne garantit pas des poids égaux entre les entreprises.',
+  [['LE PÉRIMÈTRE', 'Grandes et moyennes capitalisations américaines ; les petites capitalisations restent à part.'], ['LEUR POIDS', 'Pondération par capitalisation ajustée du flottant : les grandes entreprises pèsent davantage.']]),
+ reusedIndexSheet('msci-india', 'MSCI India',
+  '🇮🇳 Un ETF Inde cible un seul marché émergent. Quelles entreprises et quels secteurs y prennent le plus de place ? 👇',
+  'Le MSCI India couvre plusieurs secteurs, mais reste concentré sur un seul pays.',
+  'Une ligne Inde renforce ce pays si ton portefeuille détient déjà un indice émergent ou mondial qui l’inclut.',
+  [['LE PÉRIMÈTRE', 'Grandes et moyennes entreprises indiennes ; les petites capitalisations restent à part.'], ['LEUR POIDS', 'Pondération par capitalisation ajustée du flottant : les entreprises ne reçoivent pas toutes le même poids.']]),
  reusedIndexSheet('ftse-epra-nareit-developed-dividend-plus','Immobilier développé Dividend+',
   '🏠 Immobilier coté : que sélectionne le FTSE EPRA Nareit Developed Dividend+ ? 👇',
   'Ce panier regroupe des sociétés immobilières et des REIT. Il reste concentré sur les États-Unis et ne correspond pas à un achat direct de logements.',
@@ -207,5 +217,5 @@ export const SHEETS = ARCHIVE_SHEETS.map(sheet => {
   if (current.performance.kind !== 'indice' || !/dividendes.*réinvestis/.test(current.performance.detail)) {
     throw new Error(`La fiche exige un indice dividendes réinvestis : ${sheet.id}`);
   }
-  return current;
+  return sheet.id === 'msci-india' ? { ...current, index: 'MSCI India' } : current;
 });

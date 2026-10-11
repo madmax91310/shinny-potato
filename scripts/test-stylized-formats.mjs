@@ -57,7 +57,7 @@ try {
     }
     try {
       for (const theme of DEFAULT_THEMES) {
-        const words = await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), ['monde', 'usa', 'etc-metaux', 'semiconducteurs-tech', 'quantique', 'emergents-pea', 'world-pea'].includes(theme.id))
+        const words = await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), ['monde', 'usa', 'etc-metaux', 'semiconducteurs-tech', 'quantique', 'emergents-pea', 'world-pea', 'monetaire-obligations-courtes', 'world-meme-indice-pea', 'sp500-meme-indice-pea'].includes(theme.id))
         for (const fund of theme.etfs) if (!words.includes(fund.isin) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
         const peaInNames = theme.etfs.reduce((count, fund) => count + (fund.nom.match(/\bPEA\b/g)?.length ?? 0), 0)
         const peaOnImage = words.join(' ').match(/\bPEA\b/g)?.length ?? 0
@@ -65,7 +65,7 @@ try {
       }
       for (const id of ASSET_ORDER) {
         const years = getAnnualReturnStartYears(id), year = years[0]
-        const words = await check(`performance-${id}`, () => renderPerformanceImage({ mode: 'simple', assetId: id, year }), ['msciWorld', 'or', 'apple', 'bitcoin', 'silver'].includes(id))
+        const words = await check(`performance-${id}`, () => renderPerformanceImage({ mode: 'simple', assetId: id, year }), ['msciWorld', 'or', 'apple', 'bitcoin', 'silver', 'msciEurope', 'msciIndia', 'msciWorldQuality', 'msciWorldValue', 'russell2000'].includes(id))
         const rows = getAnnualReturns(id, year)
         if (words.some(word => /PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(word))) throw new Error('Generic series heading returned')
         if (!words.includes('Rendements annuels')) throw new Error('Annual observations must remain discrete')

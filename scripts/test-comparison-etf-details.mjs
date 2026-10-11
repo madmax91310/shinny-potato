@@ -135,8 +135,8 @@ for (const isin of ['IE00BD6FTQ80','IE00BDFL4P12']) {
 
 // Le texte court et l'image détaillée conservent les mêmes parts exactes.
 const pea = DEFAULT_THEMES.filter(theme => theme.peaOnly)
-assert.equal(pea.length, 4)
-assert.deepEqual(pea.map(theme => theme.id), ['world-pea', 'usa-pea', 'emergents-pea', 'europe-pea'])
+assert.equal(pea.length, 6)
+assert.deepEqual(pea.map(theme => theme.id), ['world-meme-indice-pea', 'sp500-meme-indice-pea', 'world-pea', 'usa-pea', 'emergents-pea', 'europe-pea'])
 assert(pea.find(theme => theme.id === 'world-pea').etfs.some(fund => fund.isin === 'FR0014017NX3'))
 assert(pea.find(theme => theme.id === 'usa-pea').etfs.some(fund => fund.isin === 'FR0011871110'))
 assert.equal(pea.find(theme => theme.id === 'europe-pea').etfs.length, 3)
@@ -154,7 +154,7 @@ for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) for (const fi
 }
 assert.equal(getComparisonImageComposition('FR001400ZGO4', 'countries').isIndex, true)
 assert.match(buildTweetText(DEFAULT_THEMES.find(theme => theme.id === 'etc-metaux')), /Taux de swap annuel : 0,45 % en supplément/)
-console.log('Texte compact, quatre sélections PEA, compositions réservées aux images et historique propre de PEMS vérifiés.')
+console.log('Texte compact, six sélections PEA, compositions réservées aux images et historique propre de PEMS vérifiés.')
 
 for (const count of [1,2,3,4,5,6,7,10]) {
  const layout = comparisonLayout(count)

@@ -1,10 +1,10 @@
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 
 const paperGroups = {
-  world: ['world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea'], america: ['usa','usa-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
+  world: ['world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea', 'world-meme-indice-pea'], america: ['usa','usa-pea','sp500-meme-indice-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
   gaming: ['jeux-video'], luxury: ['luxe'], robotics: ['ia-robotique'], health: ['sante','innovation-medicale'], renewables: ['renouvelables'],
   dividends: ['dividendes'], japan: ['japon'], defense: ['defense'], quantum: ['quantique'],
-  space: ['spatial'], resources: ['ressources-naturelles'], finance: ['financieres'],
+  space: ['spatial'], resources: ['ressources-naturelles'], finance: ['financieres', 'monetaire-obligations-courtes'],
   chip: ['tech-europe', 'semiconducteurs-tech'], blockchain: ['blockchain'], gold: ['etc-metaux'],
 }
 export const PAPER_THEME_ART = Object.freeze(Object.fromEntries(Object.entries(paperGroups).flatMap(([scene, ids]) => ids.map(id => [id, scene]))))
@@ -18,7 +18,7 @@ export function getPaperArt(themeId, isin) {
 }
 
 const neonGroups = {
-  world: ['msciWorld', 'msciWorldSmallCap', 'msciAcwi','msciAcwiImi','msciWorldExUsa'], america: ['sp500', 'nasdaq100'], france: ['cac40'], europe: ['stoxx600'], emerging: ['msciEmerging'],
+  world: ['msciWorld', 'msciWorldSmallCap', 'msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'], france: ['cac40'], europe: ['stoxx600', 'msciEurope'], emerging: ['msciEmerging', 'msciIndia', 'msciEmergingExChina'],
   chip: ['soxx', 'apple', 'microsoft', 'broadcom', 'nvidia', 'google', 'meta', 'sap', 'asml', 'intel'],
   gold: ['or'], silver: ['silver'], money: ['euroMoney'], bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond', 'berkshire'],
   luxury: ['lvmh', 'hermes'], car: ['tesla'], shopping: ['amazon', 'costco'], cinema: ['netflix'], payments: ['visa', 'paypal'], groceries: ['nestle', 'cocacola'],

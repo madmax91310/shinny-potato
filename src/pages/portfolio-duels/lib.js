@@ -68,6 +68,11 @@ function exposureReading(portfolio) {
     longbond: 'ajoutent des obligations d’État longues en euros, dont les cours peuvent beaucoup baisser lorsque les taux montent',
     cash: 'suivent le taux monétaire en euros via swap. Le capital n’est pas garanti et le rendement varie avec les taux',
     shortbond: 'ajoutent des emprunts d’État en euros à très courte échéance. Leur valeur peut baisser',
+    short13bond: 'ajoutent des emprunts d’État en euros dont l’échéance est comprise entre un et trois ans. Leur valeur reste sensible aux taux',
+    governmentbond: 'ajoutent des obligations d’État en euros de différentes échéances. Leur prix peut baisser lorsque les taux montent',
+    corporatebond: 'ajoutent des obligations d’entreprises en euros de catégorie investment grade. Elles restent exposées au risque de taux et de non-remboursement',
+    highyieldbond: 'ajoutent des obligations d’entreprises en euros de qualité de crédit plus faible. Le rendement recherché s’accompagne d’un risque de non-remboursement plus élevé',
+    inflationbond: 'ajoutent des obligations d’État en euros indexées sur l’inflation. Cette indexation ne garantit pas la valeur du fonds, qui reste sensible aux taux',
     globalbond: 'ajoutent des obligations mondiales avec une couverture qui cherche à limiter les variations des devises face à l’euro. Les cours peuvent baisser lorsque les taux montent ou que les emprunteurs rencontrent des difficultés',
     dividend: 'renforcent les actions sélectionnées selon une stratégie de dividendes. Les revenus sont réinvestis dans cette comparaison ; ces actions peuvent déjà être présentes dans la base',
   }

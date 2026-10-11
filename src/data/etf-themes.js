@@ -737,6 +737,9 @@ const reusedTheme = (id, nom, emoji, transition, products, cloture, question) =>
     nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur })),
 })
 const COMPARISON_THEMES = [...existingThemes,
+ reusedTheme('monetaire-obligations-courtes', 'Monétaire ou obligations courtes', '💶', 'Pour une poche en euros, quelles différences entre le monétaire et les obligations courtes ?',
+  [['LU0290358497', 'Taux monétaire en euros, suivi par swap ; revenus capitalisés.'], ['IE00B3FH7618', 'Obligations d’État de la zone euro à échéance de zéro à un an ; revenus distribués.'], ['IE00B14X4Q57', 'Obligations d’État de la zone euro à échéance de un à trois ans ; revenus distribués.']],
+  'Le monétaire suit les taux au jour le jour. Les fonds obligataires suivent des emprunts dont le prix évolue aussi avec les taux. Aucun de ces fonds ne garantit le capital.', 'Tu choisirais le monétaire ou des obligations courtes pour cette poche ?'),
  reusedTheme('world-minvol','World classique ou Minimum Volatility','🌍','La capitalisation du marché, ou un portefeuille dont on optimise le risque estimé ?',
   [['IE0002XZSHO1','MSCI World : pondération par capitalisation flottante.'],['IE00B8FHGS14','MSCI World Minimum Volatility (USD) : optimisation du risque sous contraintes.']],
   'Les deux fonds partent des pays développés. Minimum Volatility modifie la sélection et les poids, sans garantir une baisse moindre à chaque période. USD ne signifie pas couvert en euros ; une cotation EUR ne couvre pas le change.', 'Tu privilégies le marché entier ou une volatilité recherchée plus faible ?'),
@@ -782,6 +785,12 @@ const COMPARISON_THEMES = [...existingThemes,
 ]
 
 const PEA_COMPARISONS = [
+  ['world-meme-indice-pea', 'ETF World · PEA', '🌍', 'Plusieurs ETF World sont accessibles sur PEA. Sur quels critères les choisir ?',
+    [['IE0002XZSHO1', 'MSCI World, capitalisant'], ['FR001400U5Q4', 'MSCI World, capitalisant'], ['LU1681043599', 'MSCI World, capitalisant']],
+    'Les trois suivent le MSCI World. Leurs frais, leur prix de part et leur écart de suivi peuvent aider à les départager.', 'Tu as choisi lequel pour suivre le World dans ton PEA ?'],
+  ['sp500-meme-indice-pea', 'ETF S&P 500 · PEA', '🇺🇸', 'Deux ETF pour suivre le S&P 500 dans ton PEA : comment les départager ?',
+    [['IE000DQLYVB9', 'S&P 500, capitalisant'], ['FR0011871128', 'S&P 500, capitalisant']],
+    'Les deux suivent le S&P 500. Leurs frais et leur ancienneté diffèrent ; le prix de part et les conditions de négociation comptent aussi.', 'Tu privilégies quel critère pour choisir ton ETF S&P 500 ?'],
   ['world-pea', 'World et ACWI · PEA', '🌍', 'World ou ACWI : quels ETF choisir pour ton PEA ?',
     [['IE0002XZSHO1', 'MSCI World : pays développés'], ['FR0014017NX3', 'MSCI ACWI : pays développés et émergents']],
     'Le MSCI World couvre les pays développés. Le MSCI ACWI ajoute les marchés émergents.', 'Tu utilises lequel dans ton PEA ?'],

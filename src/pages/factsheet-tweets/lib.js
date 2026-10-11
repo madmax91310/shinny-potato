@@ -35,6 +35,8 @@ export function buildFactsheetTweet(sheet) {
   const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
   const countText = Number.isFinite(count) ? `${count.toLocaleString('fr-FR')} ${sheet.constituents === null ? 'sociétés visées' : 'titres'}` : 'les titres de son univers'
   const scopes = {
+    'msci-usa': 'Il couvre les grandes et moyennes entreprises américaines.',
+    'msci-india': 'Il couvre les grandes et moyennes entreprises indiennes.',
     world: 'Il couvre les grandes et moyennes entreprises des pays développés.',
     acwi: 'Il couvre 23 pays développés et 24 marchés émergents.',
     'ftse-all-world': 'Il couvre les grandes et moyennes entreprises des pays développés et émergents.',

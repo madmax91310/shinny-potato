@@ -68,7 +68,7 @@ try {
       return png
     }
     try {
-      for (const definition of DUELS) await check(definition.id, buildDuel(definition), ['sp500-pondere-ou-equal', 'oblig-courtes-longues', 'usa-europe-sante-ou-acwi-tech'].includes(definition.id))
+      for (const definition of DUELS) await check(definition.id, buildDuel(definition), ['sp500-pondere-ou-equal', 'oblig-courtes-longues', 'usa-europe-sante-ou-acwi-tech', 'oblig-0-1-ou-1-3', 'oblig-etat-ou-entreprises', 'oblig-ig-ou-high-yield', 'oblig-etat-ou-inflation'].includes(definition.id))
       for (const asset of CATALOG) {
         const left = asset.role === 'base' ? [{ id: asset.id, pct: 100 }] : [{ id: 'msci_world_ishares', pct: 80 }, { id: asset.id, pct: 20 }]
         const right = [{ id: 'msci_world_ishares', pct: 100 }]

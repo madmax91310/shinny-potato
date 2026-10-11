@@ -218,7 +218,7 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
 // entier, sans restriction.
 export const ANNIVERSAIRE_ELIGIBLE_ASSETS = [
   ...MARKET_ASSETS.filter((a) => !ANNIVERSAIRE_EXCLUDED_IDS.has(a.id)),
-  ...Object.entries(INDEX_ASSETS).map(([id, asset]) => ({
+  ...Object.entries(INDEX_ASSETS).filter(([id]) => !ASSET_ORDER.includes(id)).map(([id, asset]) => ({
     id, label: asset.label, tweetPhrase: asset.tweetPhrase, icon: asset.icon,
     currency: asset.currency, sourceCredit: asset.sourceCredit, priceUnit: 'points',
     anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id],
