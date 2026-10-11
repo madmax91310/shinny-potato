@@ -10,6 +10,7 @@ import { REGULATORY as R, REGULATORY_OBSERVATIONS } from '../../data/regulatory-
 import { INSURANCE } from '../../data/insurance.js'
 import { currentSavingsObservation } from '../../data/economic-data.js'
 import references from '../../data/automated-practical-sheets.json' with {type:'json'}
+import { PRACTICAL_EDITORIAL, practicalTweetBlocks } from './editorial.js'
 
 export const number = (n, digits=2) => Number.isFinite(n) ? n.toLocaleString('fr-FR',{maximumFractionDigits:digits}).replace(/\u202f/g,' ') : 'Non publié'
 export const money = n => `${number(n,0)} €`
@@ -135,6 +136,8 @@ export function buildSheet(id,settings={}) {
  return {...topic,...table,sources:unique,warnings,blocked:unique.some(s=>s.reviewRequired || !s.url || !s.checkedAt),notes:[...table.notes],takeaway:topic.takeaway}
 }
 export function buildTweet(sheet) {
- const blocks=sheet.rows.map(row=>`${row[0]}\n${sheet.columns.map((column,i)=>`${sheet.columns.length===1?'':column.split('\n')[0]+' : '}${String(row[i+1]).replaceAll('\n',' · ')}`).join('\n')}`)
- return ['🔖 Sauvegarde ce tweet',sheet.hook+' 👇',...blocks,sheet.takeaway,...sheet.notes,sheet.sources.length?'Sources : '+[...new Set(sheet.sources.map(s=>s.url).filter(Boolean))].join('\n'):null].filter(Boolean).join('\n\n')
+ const editorial=PRACTICAL_EDITORIAL[sheet.id]
+ if(!editorial) throw new Error(`Texte de fiche manquant : ${sheet.id}`)
+ const blocks=practicalTweetBlocks(sheet,editorial)
+ return [editorial.hook+' 👇','🔖 Sauvegarde ce tweet',...blocks,editorial.closing,...sheet.notes,sheet.sources.length?'Sources : '+[...new Set(sheet.sources.map(s=>s.url).filter(Boolean))].join('\n'):null].filter(Boolean).join('\n\n')
 }
