@@ -6,7 +6,6 @@ import { ASSET_ORDER } from '../src/data/market-history.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
 import { performanceLayout } from '../src/pages/tweet-midi/performanceImage.js'
-import { comparisonArt } from '../src/pages/tweet-midi/comparatifEtfImage.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
 assert.deepEqual(Object.keys(PERFORMANCE_ART).sort(), [...ASSET_ORDER].sort())
 for (let count = 1; count <= 40; count++) {
@@ -14,7 +13,6 @@ for (let count = 1; count <= 40; count++) {
   assert.ok(layout.rows * layout.columns >= count)
   assert.ok(690 + (layout.rows - 1) * 176 + 150 < layout.height)
 }
-for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) await readFile(`public/asset-art/${comparisonArt(theme.id, fund.isin)}`)
 for (const art of Object.values(PERFORMANCE_ART)) await readFile(`public/asset-art/${art.mark || art.scene}`)
 assert.equal(getComparisonPerformance('FR001400U5Q4'), null, 'No complete calendar year for this share class')
 const ubsPerformance = getComparisonPerformance('IE00BD4TXV59')
@@ -35,6 +33,7 @@ try {
   const page = await browser.newPage(); await page.goto(base)
   const result = await page.evaluate(async () => {
     const { DEFAULT_THEMES } = await import('/shinny-potato/src/data/etf-themes.js')
+    const { getInstrumentPeaStatus } = await import('/shinny-potato/src/data/instruments.js')
     const { ASSET_ORDER } = await import('/shinny-potato/src/data/market-history.js')
     const { getAnnualReturnStartYears, getAnnualReturns } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
     const { renderComparatifEtfImage } = await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
@@ -62,7 +61,7 @@ try {
         for (const fund of theme.etfs) if (!words.includes(fund.isin) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
         const peaInNames = theme.etfs.reduce((count, fund) => count + (fund.nom.match(/\bPEA\b/g)?.length ?? 0), 0)
         const peaOnImage = words.join(' ').match(/\bPEA\b/g)?.length ?? 0
-        if (peaOnImage !== peaInNames + (theme.nom.match(/\bPEA\b/g)?.length ?? 0) || words.includes('CTO')) throw new Error('Envelope badge returned outside the official product names')
+        if (peaOnImage !== peaInNames + (theme.nom.match(/\bPEA\b/g)?.length ?? 0) + theme.etfs.filter(fund => getInstrumentPeaStatus(fund.isin) === true).length) throw new Error('Incorrect qualified PEA badges')
       }
       for (const id of ASSET_ORDER) {
         const years = getAnnualReturnStartYears(id), year = years[0]
