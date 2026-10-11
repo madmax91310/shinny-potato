@@ -192,21 +192,19 @@
     },
     "update-presentation-actors.yml": {
       "name": "Présentations des acteurs et offres",
-      "runId": 38057656262,
+      "runId": 38146668608,
       "attempt": 1,
-      "completedAt": "2026-10-10T13:57:59Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-09T11:49:57Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38057656262",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run python -m unittest discover -s scripts -p 'test_presentation_actors.py'"
-        }
-      ],
-      "dataFailures": {},
-      "publicationStatus": "failure"
+      "completedAt": "2026-10-11T14:34:38Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-11T14:34:38Z",
+      "collectionStatus": "success",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-11T14:34:38Z",
+      "lastPublicationSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38146668608",
+      "failures": [],
+      "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-11T14:25:24Z"
+  "updatedAt": "2026-10-11T14:34:38Z"
 }
