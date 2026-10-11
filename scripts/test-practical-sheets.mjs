@@ -1,3 +1,4 @@
+import {buildReview} from '../src/pages/data-review/lib.js'
 import assert from 'node:assert/strict'
 import {TOPICS,FUND_GROUPS} from '../src/data/practical-sheet-topics.js'
 import {buildSheet,buildTweet,calculateScenario} from '../src/pages/practical-sheets/lib.js'
@@ -34,5 +35,5 @@ assert.throws(()=>calculateScenario('fees',{feeA:-1}))
 const gold=buildSheet('gold-av-cto',{contractId:'linxea-spirit-2'});assert(gold.rows[0][1].includes('FR0013416716'));assert(gold.rows[2][1].includes(String(refs.sources['gold-contract'].transactionPct).replace('.',',')))
 assert(!buildSheet('gold-av-cto',{contractId:'linxea-avenir-2'}).rows[0][1].includes('FR0013416716'))
 const ref=refs.sources.etf,old={...ref}
-try {ref.reviewRequired=true;assert(buildSheet('world-pea').blocked);ref.reviewRequired=false;ref.status='error';assert(buildSheet('world-pea').warnings.length);assert(!buildSheet('world-pea').blocked);delete ref.checkedAt;assert(buildSheet('world-pea').blocked)} finally {Object.assign(ref,old)}
+try {ref.reviewRequired=true;assert(buildSheet('world-pea').blocked);assert(buildReview('2026-10-11').items.some(item=>item.id==='practical-source:etf'&&item.category==='reserve')); ref.reviewRequired=false;ref.status='error';ref.lastAttemptAt='2026-10-11';assert(buildSheet('world-pea').warnings.length);const alert=buildReview('2026-10-11').items.find(item=>item.id==='practical-source:etf');assert(alert);assert.equal(alert.checkedAt,old.checkedAt);assert.equal(alert.category,'reserve');assert(!buildSheet('world-pea').blocked);delete ref.checkedAt;assert(buildSheet('world-pea').blocked)} finally {Object.assign(ref,old)}
 console.log('44 fiches : sources, dimensions, PEA, fiscalité partagée, calculs, contrats et réserves validés.')
