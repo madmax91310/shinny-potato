@@ -7,6 +7,7 @@ import { getInstrumentPeaStatus } from '../src/data/instruments.js'
 import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
 import { buildTweetText } from '../src/pages/etf-tweets/lib/tweetFormat.js'
+import { ETF_EXPOSURE_COPY, COMPARISON_HOOKS } from '../src/pages/etf-tweets/lib/exposureCopy.js'
 import { COMPARISON_ETF_DETAILS } from '../src/data/comparison-etf-details.js'
 import { readFileSync } from 'node:fs'
 import { getComparisonPolicy } from '../src/pages/etf-tweets/lib/comparisonPolicy.js'
@@ -50,6 +51,16 @@ for (const fund of emerging.etfs) {
 }
 for (const theme of DEFAULT_THEMES) {
  const tweet = buildTweetText(theme)
+ assert.equal(tweet.split('\n')[0], `${theme.emoji} ${COMPARISON_HOOKS[theme.id]}`)
+ for (const fund of theme.etfs) {
+  const exposure = ETF_EXPOSURE_COPY[fund.isin]
+  assert.ok(exposure, `Exposition manquante : ${fund.isin}`)
+  const blockEnd = tweet.indexOf(`🆔 ISIN : ${fund.isin}`)
+  const blockStart = tweet.lastIndexOf('\n\n', tweet.indexOf(exposure))
+  assert.ok(tweet.indexOf(exposure) > tweet.indexOf('👇'), 'Explication après le hook')
+  assert.ok(blockEnd > tweet.indexOf(exposure), 'Explication avant les caractéristiques de sa part')
+  assert.ok(tweet.slice(blockStart, blockEnd).includes(exposure))
+ }
  assert.ok(tweet.length<=25000)
  assert.doesNotMatch(tweet, /Répartition sectorielle : non disponible|Principales positions : non disponibles/)
  assert.doesNotMatch(tweet, /🏭|🏢|📊 Performances|⚙️ Réplication|Répartition sectorielle|classement à monnaie égale|Ce qui change pour toi|—/)
@@ -132,7 +143,7 @@ assert.equal(pea.find(theme => theme.id === 'europe-pea').etfs.length, 3)
 assert(!DEFAULT_THEMES.some(theme => ['japon-pea', 'sp500-pea'].includes(theme.id)))
 const peaEmerging = pea.find(theme => theme.id === 'emergents-pea')
 assert.deepEqual(peaEmerging.etfs.map(fund => fund.isin), ['FR0013412020', 'FR0013412012', 'FR0013412004', 'FR0011440478'])
-assert.match(buildTweetText(peaEmerging), /PAEEM couvre plusieurs marchés émergents/)
+assert.match(buildTweetText(peaEmerging), /critères ESG et de transition climatique/)
 assert.equal(getComparisonPerformance('FR001400ZGO4'), null, 'Pas de performance PAEEM copiée sur PEMS')
 assert.throws(() => buildTweetText({ ...peaEmerging, etfs: [emerging.etfs.find(fund => fund.isin === 'IE00BKM4GZ66')] }), /part non éligible ou non vérifiée/)
 for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) for (const field of ['sectors', 'countries']) {
@@ -166,7 +177,7 @@ for (const theme of DEFAULT_THEMES) {
  if (theme.etfs.length === 1) assert.match(tweet, /à découvrir/)
  else assert.match(tweet, /à comparer/)
 }
-assert.match(buildTweetText(pea.find(theme => theme.id === 'world-pea')), /Le MSCI World couvre les pays développés/)
+assert.match(buildTweetText(pea.find(theme => theme.id === 'world-pea')), /grandes et moyennes entreprises des pays développés/)
 assert.doesNotMatch(buildTweetText(pea.find(theme => theme.id === 'world-pea')), /trois ETF World/)
 assert.doesNotMatch(buildTweetText(peaEmerging), /PEMS/)
 assert.equal(DEFAULT_THEMES.find(theme => theme.id === 'tech-europe').etfs.length, 2, 'Two products following one index remain a deliberate product comparison')
