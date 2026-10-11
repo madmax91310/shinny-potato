@@ -166,30 +166,15 @@ direct ; les tests déterministes couvrent bootstrap, filtres, statuts, dates,
 déduplication, mise à jour, panne et reprise. Commandes : `npm run test:radar`,
 `node scripts/test-purchasing-power-news.mjs --live`, `npm run test:radar:browser`.
 
-### Sources supplémentaires : particuliers et étapes parlementaires
+### Sources supplémentaires et lois adoptées
 
-La collecte de quatre heures intègre les publications parlementaires de
-l’Assemblée nationale, les textes et communiqués du Sénat, la liste des
-« Crédits aux particuliers » de la Banque de France (catégorie officielle),
-et les communiqués de la CRE concernant les prix repères, tarifs réglementés
-ou factures des consommateurs. Les dates de publication sont celles des
-éditeurs, pas les dates des périodes statistiques ou d’application.
+La collecte conserve la Banque de France pour les crédits aux particuliers et
+la CRE pour les prix de l’énergie. Les publications de l’Assemblée nationale,
+les textes du Sénat et le suivi de leurs dossiers ont été retirés.
 
-Le filtre parlementaire exige un sujet lié au budget des particuliers : PTZ,
-crédit, épargne, fiscalité personnelle, factures, rémunération ou prestations.
-Un budget général, une élection ou une politique industrielle ne suffit pas.
-Les dépôts, adoptions en commission ou en chambre, rejets et retraits restent
-séparés. Une adoption parlementaire n’est pas une entrée en vigueur.
-
-Les dossiers Sénat repérés sont conservés dans `state.current` avec leur
-`dossierFeedUrl`. Leurs flux Atom sont suivis lors des collectes suivantes,
-même après disparition du texte dans la liste récente (20 dossiers maximum
-par collecte). Les documents et étapes restent sourcés et dédupliqués.
-Les flux parlementaires ne couvrent pas tous les amendements : un amendement
-absent de ces publications peut échapper au radar. Le suivi de dossiers
-persistant concerne le Sénat ; l’Assemblée est suivie via ses publications.
-
-Les flux ISO-8859-15 du Sénat et leurs anciens liens HTTP sont normalisés
-vers UTF-8 et HTTPS sur les domaines officiels autorisés. Les sources HTML
-ont des contrôles de format et de dates, une reprise après panne, et un état
-visible dans le radar. La dernière information validée reste conservée.
+Les annonces législatives issues des autres flux officiels, dont Vie publique,
+ne sont publiées que si le titre ou le résumé confirme explicitement une
+adoption définitive ou une promulgation. Un vote en commission ou dans une
+seule chambre ne suffit pas. Les anciens textes en discussion sont retirés
+des observations et des alertes, y compris lors d’une panne d’une source.
+Les autres actualités pratiques pour les particuliers restent suivies.

@@ -1,17 +1,17 @@
 import assert from 'node:assert/strict'
-import { PURCHASING_SOURCES, parsePurchasingFeed, collectPurchasingNews, classifyStatus, classifyTopic, officialUrl } from './lib/purchasing-power-news.mjs'
+import { PURCHASING_SOURCES, parsePurchasingFeed, collectPurchasingNews, classifyStatus, classifyTopic, officialUrl, adoptedLaw, publishablePurchasingNews } from './lib/purchasing-power-news.mjs'
 import { advanceRadar, observationKey } from './lib/editorial-radar.mjs'
 import { validateFeed } from '../src/pages/editorial-radar/client.js'
 import { pendingNotifications, notificationState } from './lib/radar-notifications.mjs'
 const now = new Date('2026-10-11T07:30:00Z'), source = PURCHASING_SOURCES[0]
-const item = ({ title = 'PTZ : un nouveau plafond proposé', summary = 'Le Gouvernement propose un plafond de 100 000 euros pour certains foyers.', link = 'https://www.service-public.gouv.fr/particuliers/actualites/A12345?xtor=RSS-111', date = '2026-10-09T00:00:00+02:00' } = {}) => `<item><title><![CDATA[${title}]]></title><description><![CDATA[${summary}]]></description><link>${link.replaceAll('&', '&amp;')}</link><dc:date>${date}</dc:date></item>`
+const item = ({ title = 'PTZ : nouveau plafond applicable', summary = 'Le plafond applicable est de 100 000 euros pour certains foyers.', link = 'https://www.service-public.gouv.fr/particuliers/actualites/A12345?xtor=RSS-111', date = '2026-10-09T00:00:00+02:00' } = {}) => `<item><title><![CDATA[${title}]]></title><description><![CDATA[${summary}]]></description><link>${link.replaceAll('&', '&amp;')}</link><dc:date>${date}</dc:date></item>`
 const feed = (...items) => `<rss xmlns:dc="http://purl.org/dc/elements/1.1/"><channel>${items.join('')}</channel></rss>`
 const parsed = parsePurchasingFeed(feed(item()), source, now)
 assert.equal(parsed.observations.length, 1)
 const row = parsed.observations[0]
 assert.equal(row.period, '2026-10-09', 'Date de publication locale, pas le jour UTC précédent')
 assert.equal(row.topic, 'logement')
-assert.equal(row.status, 'Proposition / en discussion')
+assert.equal(row.status, 'Application indiquée')
 assert.equal(row.sourceUrl.endsWith('A12345'), true)
 assert.equal(classifyTopic('PLF 2027 : mesures pour les particuliers et les entreprises', ''), 'fiscalite')
 assert.equal(classifyTopic('Impôts : un numéro dédié aux professionnels', ''), null)
@@ -50,7 +50,7 @@ assert.equal(advanceRadar(next.state, [row, newer], { now }).newEvents.length, 0
 const ledger = notificationState(bootstrap.state, null, now)
 assert.equal(pendingNotifications(next.state.events, ledger).length, 1)
 assert.equal(pendingNotifications(next.state.events, { ...ledger, acknowledged: next.state.events.map(e => e.id) }).length, 0)
-const updated = { ...row, period: '2026-10-10', status: 'Vote indiqué · étape à vérifier', statusEvidence: 'Le texte a été adopté.', value: { ...row.value, status: 'Vote indiqué · étape à vérifier' } }
+const updated = { ...row, period: '2026-10-10', status: 'Application annoncée', statusEvidence: 'Le plafond entrera en vigueur.', value: { ...row.value, status: 'Application annoncée' } }
 const revised = advanceRadar(next.state, [updated, newer], { now })
 assert.equal(revised.newEvents.length, 1, 'Révision de la même URL suivie')
 assert.match(revised.newEvents[0].title, /mise à jour/)
@@ -87,31 +87,29 @@ if (process.argv.includes('--live')) {
   validateFeed(advanceRadar(null, live.observations, { purchasingSources: live.sources }).feed)
 }
 
-// Parliamentary filtering must reject general politics and catch household rules.
-const { parseParliamentaryTopic, parliamentaryStatus, atomToRss, parseOfficialListing } = await import('./lib/purchasing-power-sources.mjs')
-for (const title of ['Élections sénatoriales', 'Projet de loi de finances pour 2027', 'Déployer un office de la biodiversité', 'Financement des entreprises', 'Stocks de sécurité des médicaments', 'Développement de la production nucléaire']) assert.equal(parseParliamentaryTopic(title, ''), null, title)
-for (const [title, topic] of [['PTZ et accession à la propriété', 'logement'], ['Taxe foncière : plafonnement', 'fiscalite'], ['PEA et assurance-vie', 'fiscalite'], ['Tarifs de l’électricité', 'depenses'], ['Prime d’activité', 'revenus'], ['Allocations familiales', 'revenus'], ['Revalorisation des retraites', 'revenus']]) assert.equal(parseParliamentaryTopic(title, ''), topic, title)
-assert.equal(parliamentaryStatus('Amendement PTZ adopté en commission', '', {}).status, 'Adoption en commission indiquée')
-assert.equal(parliamentaryStatus('Amendement PTZ rejeté au Sénat', '', {}).status, 'Rejet indiqué')
-assert.equal(parliamentaryStatus('PTZ pas encore adopté', '', { status: 'À préciser' }).status, 'À préciser')
-const senate = PURCHASING_SOURCES.find(s => s.id === 'senat-textes')
-assert.equal(officialUrl('http://www.senat.fr/leg/ppl26-001.html', senate), 'https://www.senat.fr/leg/ppl26-001.html')
-assert.throws(() => officialUrl('http://evil.invalid/x', senate))
-const dossierXml = `<feed><title>Sénat - PTZ et accession</title><entry><title>Vote en première lecture</title><id>http://www.senat.fr/leg/ppl26-001.html</id><updated>2026-10-10T12:00:00Z</updated><summary>Le texte est adopté au Sénat en première lecture.</summary></entry></feed>`
-assert.match(atomToRss(dossierXml), /PTZ et accession/)
-assert.throws(() => atomToRss('<feed><entry></feed>'))
-const priorDossier = { ...row, sourceUrl: 'https://www.senat.fr/leg/ppl26-001.html', dossierFeedUrl: 'https://www.senat.fr/dossierleg/rss/doslegppl26-001.xml' }
-const followed = await collectPurchasingNews(now, async url => {
-  if (url === priorDossier.dossierFeedUrl) return response(dossierXml)
-  if (url.includes('cre.fr')) return { ...response('<div class="card-body"><a href="/article.html">Actualité générale</a></div>'), headers: new Headers({ 'content-type': 'text/html' }) }
-  if (url.includes('banque-france')) return { ...response('<a class="publication-card" href ="/fr/statistiques/credit/credits-aux-particuliers-2026-08"><h3>Crédits aux particuliers - 2026-08</h3><p>06 Octobre 2026</p></a>'), headers: new Headers({ 'content-type': 'text/html' }) }
-  return response(feed())
-}, { current: { old: priorDossier } })
-assert.equal(followed.errors.length, 0)
-const followedRow = followed.observations.find(o => o.dossierFeedUrl)
-assert.equal(followedRow.status, 'Adoption en chambre indiquée')
-assert.equal(followedRow.topic, 'logement')
-const same = advanceRadar(advanceRadar(null, followed.observations, { now }).state, followed.observations, { now })
-assert.equal(same.newEvents.length, 0, 'Les dossiers suivis ne répètent pas les alertes')
-assert.throws(() => parseOfficialListing('<html>Format différent</html>', PURCHASING_SOURCES.find(s => s.id === 'cre-prix')))
-console.log('Nouvelles sources : filtre particuliers, étapes parlementaires, dossiers persistants, dates et formats vérifiés.')
+// Old parliamentary items disappear even if no current source returns them.
+assert.ok(PURCHASING_SOURCES.every(s => !/senat|assemblee/.test(s.id)))
+for (const summary of ['Le texte a été adopté au Sénat.', 'Le texte a été adopté en commission.', 'Le texte a été adopté en première lecture.', 'Le texte pourrait être adopté définitivement.', 'La loi sera promulguée demain.', 'Adoption définitive prévue mardi.', 'Le texte n’a pas été adopté définitivement.']) {
+  const law = { ...row, label: 'Projet de loi sur le PTZ', summary }
+  assert.equal(publishablePurchasingNews(law), false, summary)
+  assert.equal(parsePurchasingFeed(feed(item({ title: law.label, summary })), source, now).observations.length, 0)
+}
+for (const summary of ['Le texte a été adopté définitivement.', 'La loi a été promulguée.']) {
+  const law = { ...row, label: 'Loi sur le PTZ', summary }
+  assert.equal(publishablePurchasingNews(law), true)
+  assert.match(parsePurchasingFeed(feed(item({ title: law.label, summary })), source, now).observations[0].status, /^Loi /)
+}
+assert.equal(adoptedLaw('Amendement adopté définitivement en commission', ''), null)
+const old = { ...row, publisher: 'Sénat · textes', sourceUrl: 'https://www.senat.fr/leg/ppl26-001.html' }
+const legacy = structuredClone(next.state)
+legacy.current.old = old; legacy.anchors.old = old
+legacy.events.unshift({ ...next.newEvents[0], ...old, id: 'old-parliament' })
+legacy.current.proposal = { ...row, label: 'Projet de loi PTZ', summary: 'En discussion.' }
+const cleaned = advanceRadar(legacy, [old], { now })
+assert.equal(cleaned.feed.purchasingPower.items.length, 2)
+assert.ok(cleaned.state.events.every(publishablePurchasingNews))
+assert.equal(cleaned.state.current.old, undefined)
+assert.equal(cleaned.state.current.proposal, undefined)
+assert.equal(cleaned.newEvents.length, 0)
+validateFeed(cleaned.feed)
+console.log('Lois adoptées : votes intermédiaires exclus, adoption définitive et promulgation acceptées, anciens textes retirés.')

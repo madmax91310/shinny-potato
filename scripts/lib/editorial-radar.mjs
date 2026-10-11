@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { publishablePurchasingNews } from './purchasing-power-news.mjs'
 
 export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
 export function stable(value) {
@@ -66,13 +67,16 @@ export function shouldRefreshRadar(previous, { eventName, sourceRevision, now = 
 export function advanceRadar(previous, observations, { now = new Date(), sourceRevision = '', errors = [], purchasingSources = [] } = {}) {
   if (previous && (previous.schemaVersion !== 1 || !previous.current || !previous.anchors || !Array.isArray(previous.events))) throw new Error('Historique radar invalide : conservation du fichier précédent.')
   const stamp = now.toISOString(), state = previous ? structuredClone(previous) : { schemaVersion: 1, initializedAt: stamp, current: {}, anchors: {}, events: [] }
+  // Retire the removed legislative category from existing items and alert retries.
+  for (const collection of [state.current, state.anchors]) for (const [key, item] of Object.entries(collection)) if (!publishablePurchasingNews(item)) delete collection[key]
+  state.events = state.events.filter(publishablePurchasingNews)
   const issues = [...errors], newEvents = [], seen = new Set(state.events.map(event => event.id))
   state.conflicts ??= {}
   // Keep old alerts for audit, but remove same-snapshot changes from the public
   // feed and from notification retries, including alerts predating this guard.
   for (const event of state.events) if (datedEtfSnapshot(event) && event.beforePeriod === event.period && event.kind === 'change') event.status = 'source-conflict'
   const entities = new Set(Object.values(state.current).map(o => `${o.family}:${o.entity}`))
-  const valid = observations.filter(o => {
+  const valid = observations.filter(publishablePurchasingNews).filter(o => {
     if (validObservation(o, now)) return true
     issues.push({ family: o?.family ?? 'radar', entity: o?.entity ?? '', reason: `Observation non exploitable : ${o?.fieldLabel ?? o?.field ?? 'champ inconnu'}.` })
     return false
