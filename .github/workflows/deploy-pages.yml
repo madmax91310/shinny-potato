@@ -139,6 +139,8 @@ jobs:
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-index-ribbon.mjs
+      - run: node scripts/test-index-ceramic.mjs
       - run: node scripts/test-practical-images.mjs
       - run: node scripts/playwright-performance-links.mjs
       - run: mkdir -p test-artifacts/company-analysis

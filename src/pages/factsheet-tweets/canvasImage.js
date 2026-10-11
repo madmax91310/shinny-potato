@@ -71,20 +71,13 @@ function performanceNote(sheet) {
     .replace('en EUR, dividendes nets réinvestis', 'EUR · dividendes nets réinvestis')
     .replace('en EUR, hors dividendes (Price Return)', 'EUR · hors dividendes')
     .replace(' ; secteurs selon la classification ICB de FTSE', ' · secteurs ICB')
-  const fundNotes = {
-    'sp500-equal-weight': 'ETF Xtrackers 1C · USD · dividendes réinvestis · net de frais',
-    topix: 'ETF Amundi TOPIX · EUR · non couvert · net de frais',
-    nikkei225: 'ETF Xtrackers 1C · JPY · dividendes réinvestis · net de frais',
-    'em-esg': 'ETF Amundi PEA Émergent ESG · EUR · net de frais',
-    'sp500-pea': 'ETF Amundi PEA S&P 500 · EUR · net de frais',
-    'nasdaq-pea': 'ETF Amundi PEA Nasdaq-100 · EUR · net de frais',
-  }
+
   const history = sheet.performance.historyNote
     ? /27 septembre 2023/.test(sheet.performance.historyNote)
       ? 'Indice changé le 27/09/2023 ; historique du fonds.'
       : 'Rendements de l’ETF ; composition de l’indice.'
     : null
-  return { detail: fundNotes[sheet.id] ?? detail, history }
+  return { detail, history }
 }
 
 

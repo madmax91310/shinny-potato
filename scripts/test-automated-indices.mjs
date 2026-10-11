@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
+import { mock } from 'node:test';
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
-import { AUTOMATED_INDICES } from '../src/data/automated-indices.js';
+import { AUTOMATED_INDICES, refreshIndexSheet } from '../src/data/automated-indices.js';
 import { INDEX_FACTS, buildAutomatedIndexSnapshot, getIndexFacts, getCurrentIndexFacts, getCurrentIndexDescription, formatCurrentIndexDate, getIndexDescription } from '../src/data/index-facts.js';
 import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js';
 import { AUTOMATED_ETF, refreshFundDetails } from '../src/data/automated-etf.js';
@@ -33,10 +34,39 @@ for (const [id, variant] of [['ftse-all-world','monde'],['world-ex-usa','monde-s
 const baseline = getIndexFacts('world','2026-08-31');
 assert.equal(baseline.asOf,'2026-08-31');
 for (const sheet of SHEETS) {
+  assert.equal(sheet.performance.kind, 'indice', `${sheet.id}: rendement d’une part ETF`);
+  assert.match(sheet.performance.detail, /dividendes.*réinvestis/, `${sheet.id}: dividendes absents`);
+  assert.doesNotMatch(buildFactsheetTweet(sheet), /hors dividendes|Price Return|performances de l’ETF/);
+  const currentReturn = AUTOMATED_INDICES[sheet.id].returns;
+  assert.equal(sheet.performance.date, currentReturn.performance.date, `${sheet.id}: date de rendement figée`);
+  assert.deepEqual(sheet.returns, currentReturn.values.slice(0, 5), `${sheet.id}: collecte non raccordée`);
   assert.equal(typeof sheet.markets, 'string', `${sheet.id}: index scope missing`);
   assert(!/undefined|NaN/.test(buildFactsheetTweet(sheet)), `${sheet.id}: invalid generated text`);
   assert(sheet.source.some(s => s.url === sheet.indexFacts.source.url));
   assert(sheet.returns.every(([year,value]) => year <= 2025 && Number.isFinite(value)));
+}
+// Une nouvelle publication et une nouvelle année se propagent aux six anciennes fiches ETF.
+// Une observation Price Return est refusée et conserve la dernière référence réinvestie.
+for (const id of ['sp500-pea','nasdaq-pea','sp500-equal-weight','topix','nikkei225','em-esg','eurostoxx50']) {
+  const sheet = SHEETS.find(s => s.id === id);
+  const baselineDate = id === 'eurostoxx50' ? '2026-10-09' : '2025-12-31';
+  const baseline = INDEX_RETURNS[id][baselineDate];
+  const previous = { ...sheet, returns: baseline.values, performance: baseline.performance };
+  const original = AUTOMATED_INDICES[id].returns;
+  try {
+    mock.timers.enable({ apis: ['Date'], now: new Date('2027-02-01T00:00:00Z') });
+    AUTOMATED_INDICES[id].returns = { ...original, asOf: '2027-01-31',
+      values: [[2026, 7.12], ...original.values], performance: { ...original.performance, date: '2027-01-31' } };
+    const next = refreshIndexSheet(previous);
+    assert.equal(next.performance.date, '2027-01-31');
+    assert.deepEqual(next.returns.map(([year]) => year), [2026,2025,2024,2023,2022]);
+    assert(buildFactsheetTweet(next).includes('2026 : +7,12 %'));
+    AUTOMATED_INDICES[id].returns = { ...original, variant: 'PRICE',
+      performance: { ...original.performance, detail: 'hors dividendes' } };
+    const rejected = refreshIndexSheet(previous);
+    assert.match(rejected.performance.detail, /dividendes.*réinvestis/);
+    assert.deepEqual(rejected.returns, baseline.values);
+  } finally { AUTOMATED_INDICES[id].returns = original; mock.timers.reset(); }
 }
 for (const [isin, r] of Object.entries(AUTOMATED_ETF)) {
   if (r.holdings?.basis === 'index') {

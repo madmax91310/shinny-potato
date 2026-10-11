@@ -599,14 +599,14 @@
     {
       "id": "eurostoxx50",
       "name": "EURO STOXX 50",
-      "parser": "stoxx-price",
-      "symbol": "SX5E",
-      "isin": "EU0009658145",
+      "parser": "stoxx-net",
+      "symbol": "SX5T",
+      "isin": "EU0009658152",
       "collectComposition": true,
-      "returnSourceUrl": "https://stoxx.com/index/sx5e/",
+      "returnSourceUrl": "https://stoxx.com/index/sx5t/",
       "returnCurrency": "EUR",
-      "returnVariant": "PRICE",
-      "performanceDetail": "EURO STOXX 50, en EUR, hors dividendes (Price Return)",
+      "returnVariant": "NET",
+      "performanceDetail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
       "requiredFields": [
         "returns",
         "composition"

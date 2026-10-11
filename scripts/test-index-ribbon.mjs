@@ -25,6 +25,9 @@ try{
   const results=[],fmt=n=>`${n>0?'+':n<0?'−':''}${Math.abs(n).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})} %`
   try{for(const sheet of SHEETS){
    labels=[];boxes=[];current=sheet.id;const canvas=await renderFactsheetImage(sheet)
+   const annotation=labels.join(' ')
+   if(!/dividendes.*réinvestis/.test(annotation)||/hors dividendes|Price Return|ETF Xtrackers|ETF Amundi/.test(annotation))throw new Error(`Wrong return convention ${sheet.id}`)
+   if(!annotation.includes(sheet.performance.date))throw new Error(`Frozen return date ${sheet.id}`)
    if(labels.filter(t=>t==='Épargnant Libre').length!==1)throw new Error('Signature')
    if(labels.some(t=>/COULISSES|ISIN|…/.test(t)))throw new Error('Series heading or truncation')
    for(const [year,value]of sheet.returns)if(!labels.includes(String(year))||!labels.includes(fmt(value)))throw new Error('Changed return')

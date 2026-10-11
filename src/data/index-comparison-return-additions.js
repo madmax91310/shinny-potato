@@ -1,7 +1,6 @@
 // Séries d’indices et de références physiques. Les lignes de parts ETF sont exclues.
 // La clé désigne la fin de période couverte, pas la date de composition.
 export const INDEX_COMPARISON_RETURN_ADDITIONS = {
-
   "world": {
     "2025-12-31": {
       "values": [
@@ -65,8 +64,7 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
       "periodStart": "2023-01-01",
       "periodEnd": "2025-12-31"
     }
-  }
-,
+  },
   "sp500-pea": {
     "2025-12-31": {
       "values": [
@@ -237,30 +235,32 @@ export const INDEX_COMPARISON_RETURN_ADDITIONS = {
       "values": [
         [
           2023,
-          12.73
+          15.83
         ],
         [
           2024,
-          5.75
+          8.59
         ],
         [
           2025,
-          16.34
+          19.39
         ]
       ],
       "performance": {
         "kind": "indice",
-        "detail": "MSCI Europe · EUR · hors dividendes",
+        "detail": "MSCI Europe, rendement net en euros, dividendes réinvestis",
         "date": "Années calendaires 2023–2025"
       },
       "source": {
-        "label": "Source officielle · performances de l’indice ou de l’actif",
-        "url": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-price.pdf"
+        "url": "https://www.msci.com/documents/10199/255599/msci-europe-index-eur-net.pdf",
+        "checkedAt": "2026-10-05",
+        "sha256": "a6a760c90262d6c36a743eaf96205ae9e5268e324e083f48cd86fd8555737779",
+        "label": "Rendements calendaires officiels automatisés · MSCI Europe"
       },
       "currency": "EUR",
-      "method": "hors dividendes",
-      "note": "Version prix choisie pour comparer les trois indices européens sur la même base, sans dividendes.",
-      "checkedAt": "2026-10-04",
+      "method": "dividendes nets réinvestis",
+      "note": null,
+      "checkedAt": "2026-10-05",
       "periodStart": "2023-01-01",
       "periodEnd": "2025-12-31"
     }

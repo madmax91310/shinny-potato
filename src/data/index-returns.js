@@ -384,6 +384,7 @@ export const STOXX_NET_RETURN_BASELINES = { stoxx600: { '2026-10-09': {
   "asOf": "2026-10-09",
   "currency": "EUR",
   "variant": "NET",
+  "method": "dividendes nets réinvestis",
   "values": [
     [
       2025,
@@ -420,7 +421,49 @@ export const STOXX_NET_RETURN_BASELINES = { stoxx600: { '2026-10-09': {
     "date": "2026-10-09"
   }
 } } };
-Object.assign(INDEX_RETURNS.stoxx600, STOXX_NET_RETURN_BASELINES.stoxx600);
+STOXX_NET_RETURN_BASELINES.eurostoxx50 = { '2026-10-09': {
+  "checkedAt": "2026-10-11",
+  "asOf": "2026-10-09",
+  "currency": "EUR",
+  "variant": "NET",
+  "method": "dividendes nets réinvestis",
+  "values": [
+    [
+      2025,
+      21.2
+    ],
+    [
+      2024,
+      11.01
+    ],
+    [
+      2023,
+      22.23
+    ],
+    [
+      2022,
+      -9.49
+    ],
+    [
+      2021,
+      23.34
+    ]
+  ],
+  "periodStart": "2021-01-01",
+  "periodEnd": "2025-12-31",
+  "source": {
+    "url": "https://stoxx.com/index/sx5t/",
+    "checkedAt": "2026-10-11",
+    "sha256": "a5acb3ec6bb1d479d6cbb1e52e395ebd0b8d739967492835c1c4aacb5620d517",
+    "label": "Rendements calendaires officiels automatisés · EURO STOXX 50"
+  },
+  "performance": {
+    "kind": "indice",
+    "detail": "EURO STOXX 50, en EUR, dividendes nets réinvestis",
+    "date": "2026-10-09"
+  }
+} };
+for (const [id, history] of Object.entries(STOXX_NET_RETURN_BASELINES)) Object.assign(INDEX_RETURNS[id], history);
 for (const [id, history] of Object.entries(INDEX_COMPARISON_RETURN_ADDITIONS)) INDEX_RETURNS[id] = { ...INDEX_RETURNS[id], ...history };
 for (const [id, history] of Object.entries(INDEX_RETURNS)) for (const [asOf, series] of Object.entries(history)) {
   series.metadata = normalizeEvidence({ url: series.source.url, sourceUrls: series.sourceUrls, asOf, checkedAt: series.checkedAt ?? (INDEX_FACTS[id]?.[asOf]?.source.url === series.source.url ? INDEX_FACTS[id]?.[asOf]?.metadata.checkedAt : null), periodStart: series.periodStart ?? '2021-01-01', periodEnd: series.periodEnd ?? '2025-12-31', scope: `${series.performance.kind === 'actif' ? 'Actif' : 'Indice'} ${id}`,
@@ -433,14 +476,14 @@ export function getIndexReturns(id, asOf) {
   return series.values;
 }
 
-export function getCurrentIndexReturnSeries(id, asOf, { rolling = false } = {}) {
+export function getCurrentIndexReturnSeries(id, asOf, { rolling = false, length = null } = {}) {
   const previous = INDEX_RETURNS[id]?.[asOf];
   if (!previous) throw new Error(`Rendements d’indice absents : ${id}/${asOf}`);
   const current = automatedIndices[id]?.returns;
   const detail = previous.performance.detail;
   const variant = /hors dividendes|price|cours spot|cours de référence/i.test(detail) ? 'PRICE' : /nets?|NET/i.test(detail) ? 'NET' : /bruts?|GROSS/i.test(detail) ? 'GROSS' : 'TOTAL';
   if (!current || current.currency !== previous.metadata.currency || current.variant !== variant || current.asOf < asOf) return previous;
-  const years = new Set(rolling ? latestCommonYears([Object.fromEntries(current.values)], { length: previous.values.length }) : previous.values.map(([year]) => year));
+  const years = new Set(rolling ? latestCommonYears([Object.fromEntries(current.values)], { length: length ?? previous.values.length }) : previous.values.map(([year]) => year));
   if (!years.size) return previous;
   const values = current.values.filter(([year]) => years.has(year));
   if (values.length !== years.size) return previous;

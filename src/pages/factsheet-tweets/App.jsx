@@ -40,8 +40,8 @@ export default function App() {
     <PageHeader title="Dans les coulisses des indices" subtitle={`${SHEETS.length} sujets décryptés à partir de fiches officielles, avec des publications prêtes à relire, modifier et copier.`} />
     <ToolWorkspace renderImage={() => renderFactsheetImage(sheet)} imageAlt={`Coulisses ${sheet.title}`}>
     <div className="fs-panel tool-settings">
-      <AssetPicker id="factsheet-subject" label="Choisir un indice ou un ETF" value={selected}
-        items={SHEETS.map(entry => ({ id: entry.id, label: entry.title, isin: entry.isin, group: exposureGroup(entry), detail: entry.index }))}
+      <AssetPicker id="factsheet-subject" label="Choisir un indice" value={selected}
+        items={SHEETS.map(entry => ({ id: entry.id, label: entry.title, group: exposureGroup(entry), detail: entry.index }))}
         onChange={value => { setSelected(value); setCopied(false) }} />
       <div className="fs-meta">
         <span>📅 Composition : {sheet.snapshot}</span>

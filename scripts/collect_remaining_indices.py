@@ -61,7 +61,8 @@ def stoxx_returns(body, config, now):
     if body[:2] == b'\x1f\x8b': body = gzip.decompress(body)
     if len(body) > 8_000_000: reject('Oversized STOXX page')
     text = body.decode()
-    identities = {'SXXP': ('EU0009658202', 'PRICE'), 'SXXR': ('EU0009658210', 'NET'), 'SX5E': ('EU0009658145', 'PRICE')}
+    identities = {'SXXP': ('EU0009658202', 'PRICE'), 'SXXR': ('EU0009658210', 'NET'),
+                  'SX5E': ('EU0009658145', 'PRICE'), 'SX5T': ('EU0009658152', 'NET')}
     if identities.get(config['symbol']) != (config['isin'], config['returnVariant']): reject('Wrong STOXX symbol/ISIN/variant identity')
     variant_labels = {'PRICE': 'Price Return', 'NET': 'Net Return', 'GROSS': 'Gross Return'}
     variant_label = variant_labels.get(config['returnVariant'])
