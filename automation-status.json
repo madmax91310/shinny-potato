@@ -75,16 +75,18 @@
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
-      "runId": 38059950196,
+      "runId": 38149302083,
       "attempt": 1,
-      "completedAt": "2026-10-10T14:45:19Z",
+      "completedAt": "2026-10-11T15:14:19Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-10T14:45:19Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38059950196",
+      "lastSuccessAt": "2026-10-11T15:14:19Z",
+      "collectionStatus": "success",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-11T15:14:19Z",
+      "lastPublicationSuccessAt": "2026-10-10T14:45:16Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38149302083",
       "failures": [],
-      "dataFailures": {},
-      "publicationStatus": "success",
-      "lastPublicationSuccessAt": "2026-10-10T14:45:16Z"
+      "dataFailures": {}
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -211,5 +213,5 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-11T15:13:18Z"
+  "updatedAt": "2026-10-11T15:14:19Z"
 }
