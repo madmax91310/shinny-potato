@@ -10,20 +10,15 @@ export function anniversaryResult(asset, gainPct, formattedPct) {
   return `${subject} a progressé de ${formattedPct}`
 }
 
-export function anniversaryQuestion(asset, year) {
-  if (asset.priceUnit === 'points') return `En ${year}, tu investissais déjà via un ETF qui suit ${asset.tweetPhrase}, ou tu suivais seulement l’indice ?`
-  if (['or', 'silver', 'copper'].includes(asset.id)) return `En ${year}, tu envisageais déjà d’investir dans ${asset.tweetPhrase}, ou tu ne suivais pas son prix ?`
-  const holding = /^[A-Z]/.test(asset.tweetPhrase) ? `des actions ${asset.label}` : asset.tweetPhrase
-  return `En ${year}, tu détenais déjà ${holding}, tu hésitais à en acheter ou tu ne t’y intéressais pas ?`
+export function anniversaryQuestion(asset) {
+  if (asset.priceUnit === 'points') return `À l’époque, tu investissais déjà via un ETF qui suit ${asset.tweetPhrase} ?`
+  const subject = /^[A-Z]/.test(asset.tweetPhrase) ? `l’action ${asset.label}` : asset.tweetPhrase
+  return `À l’époque, tu trouvais déjà ${subject} trop cher${subject.startsWith('l’action') ? 'e' : ''} ?`
 }
 
-export function anniversaryClosing(asset, gainPct, year) {
+export function anniversaryClosing(asset, gainPct) {
   if (gainPct === null) return 'Renseigne le niveau actuel pour compléter la comparaison.'
-  const noun = asset.priceUnit === 'points' ? 'niveaux' : 'prix'
-  const context = gainPct === 0
-    ? `Le même résultat au départ et à l’arrivée ne signifie pas que ${asset.label} est resté stable entre les deux.`
-    : `Ces deux ${noun} ne montrent pas les hausses et les baisses traversées pendant la période.`
-  return `${context}\n\n💬 ${anniversaryQuestion(asset, year)}`
+  return `💬 ${anniversaryQuestion(asset)}`
 }
 
 // A percentage gap is meaningful only with the same currency, endpoint and income convention.
