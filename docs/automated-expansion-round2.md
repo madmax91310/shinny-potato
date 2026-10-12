@@ -4,13 +4,15 @@ Cette livraison traite uniquement les points 1, 2 et 3 approuvés. Aucun nouveau
 
 ## Analyse entreprise
 
-Onze sociétés sont activées : Mastercard, Broadcom, Texas Instruments, Adobe, Salesforce, ServiceNow, Intuit, Coca-Cola, PepsiCo, McDonald's et Intuitive Surgical.
+Sept sociétés sont activées : Mastercard, Adobe, Salesforce, ServiceNow, Intuit, Coca-Cola et PepsiCo. Leurs comptes, cours et estimations ont tous été actualisés sur GitHub Actions.
 
 Leurs archives officielles découvrent les futures publications à chaque collecte : liens HTML/PDF, documents intégrés au tableau Mastercard, flux financier officiel Q4 pour Salesforce/ServiceNow. Les unités, la société, la date, les comparatifs et les colonnes trimestrielles/annuelles sont contrôlés. Les tableaux de pourcentages, réconciliations non-GAAP et cumuls de six/neuf mois ne deviennent pas des comptes annuels. Trois ou quatre années GAAP et quatre BPA trimestriels effectivement publiés sont raccordés. Aucun Q4 n'est obtenu par soustraction.
 
 PepsiCo conserve ses périodes fiscales en semaines : les dates publiées et les semaines annoncées concordent ; le quatrième trimestre de seize semaines n'est pas présenté comme trois mois. ServiceNow conserve les BPA publiés originaux et leur réexpression après division : ratio et date d'effet déclarés dans les notes de l'émetteur, confirmés par l'événement du fournisseur de cours. Un événement de cours seul ne suffit jamais à autoriser un PER.
 
 Les cours sont les dernières séances terminées, dans la devise de cotation exacte. Les estimations Finviz et leur méthode existante restent distinctes des résultats GAAP publiés. Les cours, comptes, historique annuel et estimations suivent le workflow quotidien `update-company-analysis.yml` (06:35 UTC), avec audit et publication des changements.
+
+Broadcom, Texas Instruments, McDonald's et Intuitive Surgical restent exclus : leurs archives officielles renvoient HTTP 403 depuis GitHub Actions, malgré des collectes locales réussies. Aucune capture locale ne remplace une source renouvelable sur les runners.
 
 S&P Global n'est pas activé : l'événement du fournisseur de cours du 1er juillet 2026 intervient après le dernier trimestre retenu. Le raccordement actuel ne permet pas de certifier une base comparable pour son PER historique. Aucun recalage arbitraire des BPA, des comptes ou des cours.
 
