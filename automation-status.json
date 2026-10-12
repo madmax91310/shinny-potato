@@ -60,18 +60,40 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38218252719,
+      "runId": 38226035188,
       "attempt": 1,
-      "completedAt": "2026-10-12T07:50:21Z",
-      "status": "success",
+      "completedAt": "2026-10-12T08:52:47Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-12T07:50:21Z",
-      "collectionStatus": "success",
-      "publicationStatus": "success",
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-12T07:50:21Z",
       "lastPublicationSuccessAt": "2026-10-12T07:50:18Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38218252719",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38226035188",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Run node scripts/test-comparison-etf-details.mjs"
+        },
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "etf-observation-IE000RDRMSD1": {
+          "name": "ETF IE000RDRMSD1",
+          "completedAt": "2026-10-12T08:52:47Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38226035188",
+          "cause": "Numeric value outside its valid range"
+        },
+        "etf-observation-IE00B3F81R35": {
+          "name": "ETF IE00B3F81R35",
+          "completedAt": "2026-10-12T08:52:47Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38226035188",
+          "cause": "Numeric value outside its valid range"
+        }
+      }
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -215,5 +237,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T07:50:56Z"
+  "updatedAt": "2026-10-12T08:52:47Z"
 }
