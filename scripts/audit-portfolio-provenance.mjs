@@ -19,7 +19,7 @@ for (const r of EXPOSURE_ADDITIONS) {
   groups[basis] += ' ' + r.id;
 }
 // Exact-share issuer NAV returns, with the same verified annual-performance checks below.
-groups['Fonds confirmé chez l’émetteur'] += ' utilities_world_dws health_world_ishares materials_world_dws';
+groups['Fonds confirmé chez l’émetteur'] += ' utilities_world_dws health_world_ishares';
 const tagged = new Map()
 let errors = 0
 for (const [basis, list] of Object.entries(groups)) {
@@ -55,7 +55,6 @@ const partialOrSyntheticYears = new Map(Object.entries({
 const issuerSources = {
   utilities_world_dws: getInstrumentAnnualPerformance('IE00BM67HQ30')?.source,
   health_world_ishares: getInstrumentAnnualPerformance('IE00BJ5JNZ06')?.source,
-  materials_world_dws: getInstrumentAnnualPerformance('IE00BM67HS53')?.source,
   private_equity_ishares: getInstrumentAnnualPerformance('IE00B1TXHL60').source,
   bitcoin_21shares: HISTORICAL_AUTOMATED_PERFORMANCE.CH0454664001?.source,
   topix_pea_hedged: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF',
