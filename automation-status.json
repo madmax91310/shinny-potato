@@ -183,17 +183,22 @@
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 38250622396,
+      "runId": 38266241484,
       "attempt": 1,
-      "completedAt": "2026-10-12T12:58:23Z",
-      "status": "success",
+      "completedAt": "2026-10-12T15:13:37Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-12T12:58:23Z",
       "collectionStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-12T12:58:23Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-12T15:13:37Z",
       "lastPublicationSuccessAt": "2026-10-11T14:35:58Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38250622396",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38266241484",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run node scripts/test-investment-emerald.mjs"
+        }
+      ],
       "dataFailures": {}
     },
     "update-editorial-radar.yml": {
@@ -250,5 +255,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T15:12:49Z"
+  "updatedAt": "2026-10-12T15:13:37Z"
 }
