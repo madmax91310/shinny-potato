@@ -1,3 +1,4 @@
+import {ROUND3_FUND_SHEETS} from '../../data/round3-fund-sheets.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from '../../data/qualified-exposure-sheets.js'
 // Explicit exposure illustrations, never issuer/index logos. Review: public/asset-art/etf-night/README.md.
 const groups = {
@@ -33,7 +34,7 @@ entries.push(['support-argent', { theme: 'silver', scene: 'etf-night/silver.webp
 entries.push(...'bitcoin support-bitcoin_wisdomtree support-bitcoin_etcgroup support-bitcoin_21shares'.split(' ').map(id => [id, { theme: 'bitcoin', mark: 'bitcoin.svg', kind: 'asset-symbol' }]))
 entries.push(['support-ethereum', { theme: 'ethereum', mark: 'ethereum.svg', kind: 'asset-symbol' }])
 if (new Set(entries.map(([id]) => id)).size !== entries.length) throw new Error('Identité ETF dupliquée')
-export const ETF_ART = Object.freeze(Object.fromEntries([...entries, ...QUALIFIED_EXPOSURE_SHEETS.map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}])]))
+export const ETF_ART = Object.freeze(Object.fromEntries([...entries, ...ROUND3_FUND_SHEETS.map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}]), ...QUALIFIED_EXPOSURE_SHEETS.map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}])]))
 export function getETFArt(id) {
   const art = ETF_ART[id]
   if (!art) throw new Error(`Illustration non vérifiée pour ${id}`)

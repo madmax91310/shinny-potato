@@ -1,3 +1,4 @@
+import { ROUND3_LISTINGS } from './round3-fund-sheets.js';
 import { QUALIFIED_LISTINGS } from './qualified-exposure-sheets.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
@@ -2041,7 +2042,8 @@ export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
       "evidenceId": "LU1681048630-XSWX-GLUX-EUR"
     }
   ],
-  ...QUALIFIED_LISTINGS
+  ...QUALIFIED_LISTINGS,
+  ...ROUND3_LISTINGS
 });
 
 // Les outils partagent ces objets : empêcher une modification locale du catalogue.

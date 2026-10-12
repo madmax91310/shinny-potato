@@ -6023,6 +6023,433 @@
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-12"
       }
+    },
+    "walmart": {
+      "quote": {
+        "price": 111.3499984741211,
+        "asOf": "2026-10-09",
+        "observedAt": "2026-10-12",
+        "currency": "USD",
+        "splits": [],
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/WMT?range=2y&interval=1d&events=splits"
+      }
+    },
+    "netflix": {
+      "annual": {
+        "start": null,
+        "end": "2025-12-31",
+        "previousStart": null,
+        "previousEnd": "2024-12-31",
+        "durationMonths": 12,
+        "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf",
+        "tags": {
+          "revenue": "Official consolidated GAAP statement",
+          "netIncome": "Official consolidated GAAP statement",
+          "dilutedEPS": "Official consolidated GAAP statement",
+          "operatingIncome": "Official consolidated GAAP statement"
+        },
+        "revenue": 45183036000.0,
+        "previousRevenue": 39000966000.0,
+        "netIncome": 10981201000.0,
+        "previousNetIncome": 8711631000.0,
+        "dilutedEPS": 2.53,
+        "previousDilutedEPS": 1.98,
+        "operatingIncome": 13326603000.0,
+        "previousOperatingIncome": 10417614000.0,
+        "interestExpense": 776510000.0,
+        "previousInterestExpense": 718733000.0,
+        "averageDilutedShares": 4343863000000.0,
+        "previousAverageDilutedShares": 4392608000000.0,
+        "margin": 24.30381393583202,
+        "epsRestatedForSplit": true
+      },
+      "quarter": {
+        "start": null,
+        "end": "2026-06-30",
+        "previousStart": null,
+        "previousEnd": "2025-06-30",
+        "durationMonths": 3,
+        "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2026/q2/FINAL-Q2-26-Shareholder-Letter.pdf",
+        "tags": {
+          "revenue": "Official consolidated GAAP statement",
+          "netIncome": "Official consolidated GAAP statement",
+          "dilutedEPS": "Official consolidated GAAP statement",
+          "operatingIncome": "Official consolidated GAAP statement"
+        },
+        "revenue": 12559938000.0,
+        "previousRevenue": 11079166000.0,
+        "netIncome": 3401414000.0,
+        "previousNetIncome": 3125413000.0,
+        "dilutedEPS": 0.8,
+        "previousDilutedEPS": 0.72,
+        "operatingIncome": 4192610000.0,
+        "previousOperatingIncome": 3774694000.0,
+        "interestExpense": 175685000.0,
+        "previousInterestExpense": 182649000.0,
+        "averageDilutedShares": 4261300000000.0,
+        "previousAverageDilutedShares": 4348825000000.0,
+        "margin": 27.081455338394182,
+        "epsRestatedForSplit": true,
+        "epsShareBasisAsOf": "2026-10-09"
+      },
+      "accountsObservedAt": "2026-10-12",
+      "accountsSourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf",
+      "history": {
+        "years": [
+          {
+            "start": null,
+            "end": "2022-12-31",
+            "revenue": 31615550000.0,
+            "netIncome": 4491924000.0,
+            "margin": 14.207957792921523,
+            "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2023/q4/NEW-FINAL-Q4-23-Shareholder-Letter.pdf"
+          },
+          {
+            "start": null,
+            "end": "2023-12-31",
+            "revenue": 33723297000.0,
+            "netIncome": 5407990000.0,
+            "margin": 16.036362043723067,
+            "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2024/q4/FINAL-Q4-24-Shareholder-Letter.pdf"
+          },
+          {
+            "start": null,
+            "end": "2024-12-31",
+            "revenue": 39000966000.0,
+            "netIncome": 8711631000.0,
+            "margin": 22.336962115246067,
+            "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf"
+          },
+          {
+            "start": null,
+            "end": "2025-12-31",
+            "revenue": 45183036000.0,
+            "netIncome": 10981201000.0,
+            "margin": 24.30381393583202,
+            "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf"
+          }
+        ],
+        "observedAt": "2026-10-12",
+        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
+      },
+      "decision": {
+        "observedAt": "2026-10-12",
+        "annualEnd": "2025-12-31",
+        "years": [
+          {
+            "end": "2022-12-31",
+            "revenue": 31615550000.0,
+            "netIncome": 4491924000.0,
+            "start": "2022-01-01",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json",
+            "tags": {
+              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
+              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "operatingIncome": "OperatingIncomeLoss",
+              "interestExpense": "InterestExpense",
+              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "operatingCashFlow": 2026257000.0,
+            "capitalExpenditure": 407729000.0,
+            "operatingIncome": 5632831000.0,
+            "interestExpense": 706212000.0,
+            "averageDilutedShares": 451290000.0,
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json#2025-01-27",
+            "freeCashFlow": 1618528000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+          },
+          {
+            "end": "2023-12-31",
+            "revenue": 33723297000.0,
+            "netIncome": 5407990000.0,
+            "start": "2023-01-01",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json",
+            "tags": {
+              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
+              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "operatingIncome": "OperatingIncomeLoss",
+              "interestExpense": "InterestExpense",
+              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "operatingCashFlow": 7274301000.0,
+            "capitalExpenditure": 348552000.0,
+            "operatingIncome": 6954003000.0,
+            "interestExpense": 699826000.0,
+            "averageDilutedShares": 4494966000.0,
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json#2026-01-23",
+            "freeCashFlow": 6925749000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+          },
+          {
+            "end": "2024-12-31",
+            "revenue": 39000966000.0,
+            "netIncome": 8711631000.0,
+            "start": "2024-01-01",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json",
+            "tags": {
+              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
+              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "operatingIncome": "OperatingIncomeLoss",
+              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "operatingCashFlow": 7361364000.0,
+            "capitalExpenditure": 439538000.0,
+            "operatingIncome": 10417614000.0,
+            "averageDilutedShares": 4392608000.0,
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json#2026-01-23",
+            "freeCashFlow": 6921826000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+          },
+          {
+            "end": "2025-12-31",
+            "revenue": 45183036000.0,
+            "netIncome": 10981201000.0,
+            "start": "2025-01-01",
+            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json",
+            "tags": {
+              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
+              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "operatingIncome": "OperatingIncomeLoss",
+              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
+            },
+            "operatingCashFlow": 10149273000.0,
+            "capitalExpenditure": 688220000.0,
+            "operatingIncome": 13326603000.0,
+            "averageDilutedShares": 4343863000.0,
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json#2026-01-23",
+            "freeCashFlow": 9461053000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+          }
+        ],
+        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json",
+        "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+        "shares": {
+          "asOf": "2026-06-30",
+          "outstanding": 4163939676.0,
+          "observedAt": "2026-10-12",
+          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065280.json"
+        },
+        "accountsEndAtCollection": "2026-06-30"
+      },
+      "estimates": {
+        "forwardEPS": 3.8,
+        "growthEPS5Y": 21.52,
+        "reportedForwardPE": 18.67,
+        "reportedPEG": 0.87,
+        "providerPrice": 70.9,
+        "observedAt": "2026-10-12",
+        "sourceName": "Finviz",
+        "sourceUrl": "https://finviz.com/quote.ashx?t=NFLX",
+        "methodUrl": "https://finviz.com/help/screener",
+        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
+        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
+        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
+        "accountsEndAtCollection": "2026-06-30"
+      },
+      "quote": {
+        "price": 70.30000305175781,
+        "asOf": "2026-10-09",
+        "observedAt": "2026-10-12",
+        "currency": "USD",
+        "splits": [
+          "2025-11-17"
+        ],
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NFLX?range=2y&interval=1d&events=splits"
+      },
+      "quarters": [
+        {
+          "start": null,
+          "end": "2026-06-30",
+          "previousStart": null,
+          "previousEnd": "2025-06-30",
+          "durationMonths": 3,
+          "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2026/q2/FINAL-Q2-26-Shareholder-Letter.pdf",
+          "tags": {
+            "revenue": "Official consolidated GAAP statement",
+            "netIncome": "Official consolidated GAAP statement",
+            "dilutedEPS": "Official consolidated GAAP statement",
+            "operatingIncome": "Official consolidated GAAP statement"
+          },
+          "revenue": 12559938000.0,
+          "previousRevenue": 11079166000.0,
+          "netIncome": 3401414000.0,
+          "previousNetIncome": 3125413000.0,
+          "dilutedEPS": 0.8,
+          "previousDilutedEPS": 0.72,
+          "operatingIncome": 4192610000.0,
+          "previousOperatingIncome": 3774694000.0,
+          "interestExpense": 175685000.0,
+          "previousInterestExpense": 182649000.0,
+          "averageDilutedShares": 4261300000000.0,
+          "previousAverageDilutedShares": 4348825000000.0,
+          "margin": 27.081455338394182,
+          "epsRestatedForSplit": true,
+          "epsShareBasisAsOf": "2026-10-09"
+        },
+        {
+          "start": null,
+          "end": "2026-03-31",
+          "previousStart": null,
+          "previousEnd": "2025-03-31",
+          "durationMonths": 3,
+          "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2026/q1/FINAL-Q1-26-Shareholder-Letter.pdf",
+          "tags": {
+            "revenue": "Official consolidated GAAP statement",
+            "netIncome": "Official consolidated GAAP statement",
+            "dilutedEPS": "Official consolidated GAAP statement",
+            "operatingIncome": "Official consolidated GAAP statement"
+          },
+          "revenue": 12249757000.0,
+          "previousRevenue": 10542801000.0,
+          "netIncome": 5282791000.0,
+          "previousNetIncome": 2890351000.0,
+          "dilutedEPS": 1.23,
+          "previousDilutedEPS": 0.66,
+          "operatingIncome": 3956997000.0,
+          "previousOperatingIncome": 3346999000.0,
+          "interestExpense": 262077000.0,
+          "previousInterestExpense": 184172000.0,
+          "averageDilutedShares": 4298437000000.0,
+          "previousAverageDilutedShares": 4369623000000.0,
+          "margin": 43.12567996246783,
+          "epsRestatedForSplit": true,
+          "epsShareBasisAsOf": "2026-10-09"
+        },
+        {
+          "start": null,
+          "end": "2025-12-31",
+          "previousStart": null,
+          "previousEnd": "2024-12-31",
+          "durationMonths": 3,
+          "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf",
+          "tags": {
+            "revenue": "Official consolidated GAAP statement",
+            "netIncome": "Official consolidated GAAP statement",
+            "dilutedEPS": "Official consolidated GAAP statement",
+            "operatingIncome": "Official consolidated GAAP statement"
+          },
+          "revenue": 12050762000.0,
+          "previousRevenue": 10246513000.0,
+          "netIncome": 2418521000.0,
+          "previousNetIncome": 1868607000.0,
+          "dilutedEPS": 0.56,
+          "previousDilutedEPS": 0.43,
+          "operatingIncome": 2956663000.0,
+          "previousOperatingIncome": 2272766000.0,
+          "interestExpense": 234395000.0,
+          "previousInterestExpense": 192603000.0,
+          "averageDilutedShares": 4317144000000.0,
+          "previousAverageDilutedShares": 4377861000000.0,
+          "margin": 20.069444571222967,
+          "epsRestatedForSplit": true,
+          "epsShareBasisAsOf": "2026-10-09"
+        },
+        {
+          "start": null,
+          "end": "2025-09-30",
+          "previousStart": null,
+          "previousEnd": "2024-09-30",
+          "durationMonths": 3,
+          "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q3/FINAL-Q3-25-Shareholder-Letter.pdf",
+          "tags": {
+            "revenue": "Official consolidated GAAP statement",
+            "netIncome": "Official consolidated GAAP statement",
+            "dilutedEPS": "Official consolidated GAAP statement",
+            "operatingIncome": "Official consolidated GAAP statement"
+          },
+          "revenue": 11510307000.0,
+          "previousRevenue": 9824703000.0,
+          "netIncome": 2546916000.0,
+          "previousNetIncome": 2363509000.0,
+          "dilutedEPS": 0.587,
+          "previousDilutedEPS": 5.4,
+          "operatingIncome": 3248247000.0,
+          "previousOperatingIncome": 2909477000.0,
+          "interestExpense": 175294000.0,
+          "previousInterestExpense": 184830000.0,
+          "averageDilutedShares": 434039000000.0,
+          "previousAverageDilutedShares": 437898000000.0,
+          "margin": 22.12726385143333,
+          "reportedDilutedEPS": 5.87,
+          "epsSplitAdjustments": [
+            {
+              "asOf": "2025-11-17",
+              "effectiveDate": "2025-11-14",
+              "ratio": 10,
+              "issuerSourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2026/q2/FINAL-Q2-26-Shareholder-Letter.pdf",
+              "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NFLX?range=2y&interval=1d&events=splits",
+              "declaration": "ten-for-one forward stock split which was effected on November 14, 2025"
+            }
+          ],
+          "epsShareBasisAsOf": "2026-10-09"
+        }
+      ],
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 3.177,
+        "revenue": 48370764000.0,
+        "sourceUrls": [
+          "https://s22.q4cdn.com/959853165/files/doc_financials/2026/q2/FINAL-Q2-26-Shareholder-Letter.pdf",
+          "https://s22.q4cdn.com/959853165/files/doc_financials/2026/q1/FINAL-Q1-26-Shareholder-Letter.pdf",
+          "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf",
+          "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q3/FINAL-Q3-25-Shareholder-Letter.pdf"
+        ],
+        "definition": "Somme de quatre BPA GAAP publiés, sur une base par action commune après division déclarée par l’émetteur",
+        "observedAt": "2026-10-12",
+        "shareBasisAsOf": "2026-10-09",
+        "splitAdjustments": [
+          {
+            "asOf": "2025-11-17",
+            "effectiveDate": "2025-11-14",
+            "ratio": 10,
+            "issuerSourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2026/q2/FINAL-Q2-26-Shareholder-Letter.pdf",
+            "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NFLX?range=2y&interval=1d&events=splits",
+            "declaration": "ten-for-one forward stock split which was effected on November 14, 2025"
+          }
+        ]
+      }
+    },
+    "booking": {
+      "quote": {
+        "price": 160.33999633789062,
+        "asOf": "2026-10-09",
+        "observedAt": "2026-10-12",
+        "currency": "USD",
+        "splits": [
+          "2026-04-06"
+        ],
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BKNG?range=2y&interval=1d&events=splits"
+      }
+    },
+    "caterpillar": {
+      "quote": {
+        "price": 800.469970703125,
+        "asOf": "2026-10-09",
+        "observedAt": "2026-10-12",
+        "currency": "USD",
+        "splits": [],
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CAT?range=2y&interval=1d&events=splits"
+      }
+    },
+    "deere": {
+      "quote": {
+        "price": 620.9299926757812,
+        "asOf": "2026-10-09",
+        "observedAt": "2026-10-12",
+        "currency": "USD",
+        "splits": [],
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/DE?range=2y&interval=1d&events=splits"
+      }
+    },
+    "waste-management": {
+      "quote": {
+        "price": 208.8300018310547,
+        "asOf": "2026-10-09",
+        "observedAt": "2026-10-12",
+        "currency": "USD",
+        "splits": [],
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/WM?range=2y&interval=1d&events=splits"
+      }
     }
   }
 }

@@ -3,6 +3,9 @@ import RECORDS from './automated-etf-monthly.json' with { type: 'json' }
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+  etfWorldUtilities: {icon:'💡',scene:'industry',title:'WORLD UTILITIES',ticker:'XDWU'},
+  etfWorldMaterials: {icon:'🪨',scene:'industry',title:'WORLD MATERIALS',ticker:'WMTS'},
+  etfHealthcareInnovation: {icon:'🩺',scene:'world',title:'HEALTHCARE INNOVATION',ticker:'HEAL'},
   etf_robotics: {"icon": "🌍", "scene": "robotics", "title": "AUTOMATION & ROBOTICS", "ticker": "RBOT"},
   etf_financials: {"icon": "🌍", "scene": "finance", "title": "MSCI WORLD FINANCIALS SECTOR ADVANCED", "ticker": "WFNS"},
   etf_smallcap: {"icon": "🌍", "scene": "world", "title": "MSCI WORLD SMALL CAP", "ticker": "WSML"},
