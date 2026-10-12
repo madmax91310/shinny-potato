@@ -4,6 +4,21 @@ const generalIds = new Set([2, 20, 28, 34, 39, 44])
 const personalIds = new Set([1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
+  // Guides covered call et multi-actifs : ISIN, frais, distributions et allocations
+  // vérifiés le 12/10/2026 auprès des émetteurs. Sources hors du texte copié :
+  // https://globalxetfs.eu/funds/qyld/
+  // https://globalxetfs.eu/funds/xylu/
+  // https://globalxetfs.eu/funds/syld/
+  // https://am.jpmorgan.com/fr/en/asset-management/institutional/insights/portfolio-insights/etf-perspectives/equity-premiumincome-active-etfs/
+  // https://am.jpmorgan.com/de/en/asset-management/institutional/products/jpm-global-equity-premium-income-active-ucits-etf-usd-dist-ie0003uvyc20
+  // https://am.jpmorgan.com/nl/en/asset-management/institutional/products/jpm-us-equity-premium-income-active-ucits-etf-usd-dist-ie000u5mjoz6
+  // https://am.jpmorgan.com/be/en/asset-management/adv/products/jpm-nasdaq-equity-premium-income-active-ucits-etf-usd-dist-ie000u9j8hx9
+  // https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating
+  // https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating
+  // https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating
+  // https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating
+  // https://www.vaneck.com/nl/en/multi-asset-etf/
+  if (['guide:covered-call', 'guide:multi-asset'].includes(tweet.id)) return { kind: 'reviewed', checkedAt: '2026-10-12', maxAge: 30 }
   // Revue du texte et des quatre produits auprès des émetteurs le 12/10/2026.
   // https://www.ishares.com/uk/individual/en/products/258441/ishares-physical-gold-etc-fund
   // https://www.invesco.com/uk/en/financial-products/etfs/invesco-physical-gold-etc.html
