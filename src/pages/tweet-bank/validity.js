@@ -4,6 +4,17 @@ const generalIds = new Set([2, 20, 28, 34, 39, 44])
 const personalIds = new Set([1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
+  // Guide matières premières : ISIN, TER, gestion, taux de swap et expositions
+  // vérifiés auprès des émetteurs le 12/10/2026. Sources hors du texte copié :
+  // https://www.invesco.com/uk/en/financial-products/etfs/invesco-bloomberg-commodity-ucits-etf.html
+  // https://www.ishares.com/uk/professionals/en/products/287254/ishares-diversified-commodity-swap-ucits-etf
+  // https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BYMLZY74/
+  // https://www.ishares.com/uk/individual/en/products/258441/ishares-physical-gold-etc-fund
+  // https://www.ishares.com/gls-download/literature/fact-sheet/ssln-ishares-physical-silver-etc-fund-fact-sheet-en-gb.pdf
+  // https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89/
+  // https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/
+  // https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KYH63/
+  if (tweet.id === 'guide:commodities') return { kind: 'reviewed', checkedAt: '2026-10-12', maxAge: 30 }
   // Guides covered call et multi-actifs : ISIN, frais, distributions et allocations
   // vérifiés le 12/10/2026 auprès des émetteurs. Sources hors du texte copié :
   // https://globalxetfs.eu/funds/qyld/
