@@ -6,7 +6,7 @@ export const INVESTMENT_ART = Object.freeze(Object.fromEntries(Object.entries(NE
   id === 'apple' ? { kind: 'logo', background: 'emerald/apple.webp' }
     : art.mark ? { kind: 'logo', mark: art.mark }
       : id === 'berkshire' ? { kind: 'illustration', mark: ANNIVERSARY_ART.berkshire.mark }
-        : { kind: 'illustration', scene: `neon/${art.scene}.webp` },
+        : { kind: 'illustration', scene: art.sceneFile ?? `neon/${art.scene}.webp` },
 ])))
 export async function loadInvestmentArt(id) {
   const definition = id === 'custom' ? { kind: 'illustration', mark: 'holding.svg' } : INVESTMENT_ART[id]
@@ -44,7 +44,8 @@ export function drawInvestmentArt(ctx, art) {
   ctx.drawImage(art.background, 0, 0, 1600, 1040)
   if (art.scene) {
     const layer = document.createElement('canvas'); layer.width = 550; layer.height = 550
-    const c = layer.getContext('2d'); c.drawImage(art.scene, 0, 0, 550, 550)
+    const c = layer.getContext('2d'), side = Math.min(art.scene.width, art.scene.height)
+    c.drawImage(art.scene, art.scene.width - side, 0, side, side, 0, 0, 550, 550)
     c.globalCompositeOperation = 'destination-in'
     for (const vertical of [false, true]) {
       const fade = c.createLinearGradient(0, 0, vertical ? 0 : 550, vertical ? 550 : 0)
