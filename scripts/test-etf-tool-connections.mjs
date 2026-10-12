@@ -13,14 +13,14 @@ import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js
 
 const clock = new Date('2026-10-11T12:00:00Z')
 const close = (a, b) => assert(Math.abs(a - b) < 1e-7, `${a} != ${b}`)
-assert.equal(Object.keys(ETF_MONTHLY_HISTORIES).length, 12)
+for (const id of ['etfImie','etfVwce','etfEqualWeight','etfMinVol','etfWqdv','etfTdiv','etfEpra','etfCmod','etfSemi','etfLock']) assert(ETF_MONTHLY_HISTORIES[id], `Initial exact share missing: ${id}`)
 for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(ASSETS[id], asset)
   assert(ASSET_ORDER.includes(id))
   assert(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id))
   assert(ANNIVERSARY_ART[id] && PERFORMANCE_ART[id] && INVESTMENT_ART[id])
   assert.equal(getPerformanceAssetId(asset.isin), id)
-  assert.match(performanceBasis(id), /revenus réinvestis/)
+  assert.match(performanceBasis(id), asset.instrumentType === 'ETC' ? /cours de l’ETC/ : /revenus réinvestis/)
   const start = asset.points[0].date
   for (const mode of ['lump', 'dca']) {
     const expected = (mode === 'lump' ? 100 / asset.points[0].price : asset.points.reduce((n, p) => n + 100 / p.price, 0)) * asset.points.at(-1).price
@@ -40,7 +40,7 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   const rows = getAnnualReturns(id, years[0])
   assert(rows.every(r => r.startDate.endsWith('-12') && r.endDate.endsWith('-12')))
   const annual = buildPerformanceDepuisText({ format: FORMATS.PERFORMANCE_DEPUIS, mode: MODES.SIMPLE, assetId: id, year: years[0] })
-  assert(annual.includes(asset.currency) && annual.includes('revenus réinvestis'))
+  assert(annual.includes(asset.currency) && annual.includes(asset.instrumentType === 'ETC' ? 'cours de l’ETC' : 'revenus réinvestis'))
   const options = getValidYearsBackOptions(id, clock)
   assert(options.length)
   for (const back of options) {
@@ -64,4 +64,4 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
 assert(ASSETS.etfWqdv.points.some((p, i) => Math.abs(p.price - ASSETS.etfWqdv.anniversaryPoints[i].price) > .01))
 const comparative = buildAnniversaireComparatifText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.COMPARATIF, assetIdA: 'etfImie', assetIdB: 'etfVwce', yearsBack: 1 }, '100', '200')
 assert(comparative.includes(ASSETS.etfImie.label) && comparative.includes(ASSETS.etfVwce.label))
-console.log('12 ETF: exact shares, lump/DCA, complete annual returns, raw anniversary prices, daily closes, comparisons and visual identities validated.')
+console.log(`${Object.keys(ETF_MONTHLY_HISTORIES).length} ETF/ETC: exact shares, lump/DCA, complete annual returns, raw anniversary prices, daily closes, comparisons and visual identities validated.`)

@@ -28,33 +28,6 @@ export const PRESENTATION_ETF_ADDITIONS = [
   "verdict": "Tu suis les entreprises industrielles des marchés développés.",
   "question": "Tu renforcerais l’industrie avec une ligne dédiée ou tu garderais son poids dans le World ?"
 },
-{
-  "id": "world-consumer-staples-ishares",
-  "isin": "IE00BJ5JP329",
-  "name": "iShares MSCI World Consumer Staples Sector Advanced UCITS ETF USD (Dist)",
-  "category": "Sectoriels classiques",
-  "ter": "0,18",
-  "source": "https://www.ishares.com/uk/individual/en/products/308902/",
-  "benchmark": "MSCI World Consumer Staples Advanced Select 20 35 Capped Index",
-  "incomePolicy": "distributing",
-  "replicationMethod": "Physical (Optimised sampling)",
-  "domicile": "Irlande",
-  "listing": {
-    "ticker": "WCSS",
-    "exchange": "Euronext Amsterdam",
-    "mic": "XAMS",
-    "currency": "USD",
-    "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308902/",
-    "checkedAt": "2026-10-12",
-    "evidenceId": "IE00BJ5JP329-XAMS-WCSS-USD"
-  },
-  "hook": "🛒 Alimentation, boissons, produits du quotidien : que change une exposition à la consommation de base ? 👇",
-  "whatIs": "Tu suis une sélection mondiale d’entreprises de consommation de base avec les filtres et plafonds de l’indice MSCI World Consumer Staples Advanced Select 20 35 Capped. Le fonds détient des actions et cette part distribue les revenus.",
-  "whyInteresting": "Tu peux examiner les entreprises liées aux achats du quotidien plutôt que l’ensemble du marché mondial. Cette sélection est différente de l’indice sectoriel MSCI classique.",
-  "whatToKnow": "Le terme défensif ne garantit pas la stabilité du cours. Les coûts, les prix de vente et les volumes comptent aussi. Les filtres et plafonds modifient la composition, et le dividende peut diminuer.",
-  "verdict": "Tu suis une sélection mondiale d’entreprises de consommation de base.",
-  "question": "Pour les produits du quotidien, tu choisirais un ETF sectoriel ou leur place dans un ETF mondial ?"
-},
   {
     "id": "em-small-cap-ishares",
     "isin": "IE00B3F81G20",

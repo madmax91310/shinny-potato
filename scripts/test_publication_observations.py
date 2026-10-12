@@ -77,9 +77,10 @@ class PublicationTests(unittest.TestCase):
         updated,report=refresh_levels(current,NOW,fail)
         self.assertEqual(updated['bitcoin'],current['bitcoin'])
         self.assertEqual(len(report['errors']),len(configurations()))
-        self.assertEqual(len(configurations()),59)
+        self.assertEqual(len(configurations()),len({c['id']for c in configurations()}))
         etfs=[c for c in configurations() if c.get('consumerScope')=='catalog']
-        self.assertEqual(len(etfs),12)
+        expected = {s['id']for s in json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']if s.get('consumerScope')=='catalog'and s.get('collectAnniversary')}
+        self.assertEqual({c['id']for c in etfs}, expected)
         self.assertTrue(all(c['field']=='close' and c['collectAnniversary'] for c in etfs))
     def test_etf_partial_errors_cannot_be_cleared_by_other_connector(self):
         failed=normalize_report({'_collector':'primary','shares':[{'isin':'ISIN','status':'validated','collectionErrors':[{'field':'performance','reason':'Missing table'}]}]})

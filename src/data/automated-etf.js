@@ -1,5 +1,7 @@
 import { latestCommonYears } from './annual-window.js';
-import records from './automated-etf.json' with { type: 'json' };
+import baseRecords from './automated-etf.json' with { type: 'json' };
+import { QUALIFIED_AUTOMATED_RECORDS } from './qualified-exposure-sheets.js';
+const records = { ...baseRecords, ...QUALIFIED_AUTOMATED_RECORDS };
 export const AUTOMATED_ETF = records;
 export const AUTOMATED_AUM = Object.fromEntries(Object.entries(records).filter(([, r]) => r.aum).map(([isin, r]) => {
   const a = r.aum;

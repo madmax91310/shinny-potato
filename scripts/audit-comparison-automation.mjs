@@ -1,3 +1,4 @@
+import qualifiedConfig from './qualified-exposure-sources.json' with { type:'json' };
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -11,7 +12,7 @@ const sources = ['etf-pilot.json', 'amundi-etf.json', 'ssga-etf.json', 'addition
 // Check the actual selection, including reused themes and PEA blocks.
 // This checks wiring and qualified observations, not today's network availability.
 export function auditComparisonAutomation({ themes = DEFAULT_THEMES, configs = sources, records = AUTOMATED_ETF, now = new Date().toISOString().slice(0, 10) } = {}) {
-  const configured = new Set(configs.filter(source => source.enabled !== false).map(source => source.isin));
+  const configured = new Set([...configs, ...qualifiedConfig.instruments].filter(source => source.enabled !== false).map(source => source.isin));
   const funds = [...new Map(themes.flatMap(theme => theme.etfs).map(fund => [fund.isin, fund])).values()];
   const waiting = [];
   let calendars = 0;

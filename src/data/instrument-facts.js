@@ -1,3 +1,4 @@
+import { QUALIFIED_FACTS } from './qualified-exposure-sheets.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Revue du 02/10/2026 : positionsSource date le contrôle des positions ; positionsAsOf date le relevé.
@@ -14,6 +15,7 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+  ...QUALIFIED_FACTS,
   // Structure : sources Amundi et réplication dans le connecteur existant, revue du 12/10/2026.
 
   "FR0013412038": {

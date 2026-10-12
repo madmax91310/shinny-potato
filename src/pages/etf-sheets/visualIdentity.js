@@ -1,3 +1,4 @@
+import { QUALIFIED_EXPOSURE_SHEETS } from '../../data/qualified-exposure-sheets.js'
 // Explicit exposure illustrations, never issuer/index logos. Review: public/asset-art/etf-night/README.md.
 const groups = {
   world: 'pea-emergents-amundi em-small-cap-ishares global-premium-income-jpm quality-dividend-growth-wisdomtree acwi_imi_spdr world_ex_usa pea_global_amundi msci-world msci-em msci-acwi ftse-all-world em-ex-chine low-volatility value small-caps quality momentum dividendes covered-call support-msci_world support-msci_world_ishares support-msci_acwi support-msci_em_amundi support-ftse_em_vanguard support-msci_em_spdr support-strat_dividendes_dist support-high_dividend support-high_dividend_dist support-quality_dividend support-quality_dividend_dist support-dividend_leaders',
@@ -24,7 +25,7 @@ const groups = {
   infrastructure: 'world-industrials-xtrackers infrastructures',
   utilities: 'support-sect_utilities',
   resources: 'copper-miners-globalx basic-resources-pea mines-mondiales-vaneck',
-  consumer: 'world-consumer-staples-ishares support-sect_conso_defensive',
+  consumer: 'support-sect_conso_defensive',
 }
 const entries = Object.entries(groups).flatMap(([theme, ids]) => ids.split(' ').map(id => [id, { theme, scene: `etf-night/${theme}.webp`, kind: 'illustration' }]))
 entries.push(...'gold-miners-vaneck or support-or support-or_wisdomtree support-or_amundi'.split(' ').map(id => [id, { theme: 'gold', scene: 'etf-night/gold.webp', kind: 'illustration' }]))
@@ -32,7 +33,7 @@ entries.push(['support-argent', { theme: 'silver', scene: 'etf-night/silver.webp
 entries.push(...'bitcoin support-bitcoin_wisdomtree support-bitcoin_etcgroup support-bitcoin_21shares'.split(' ').map(id => [id, { theme: 'bitcoin', mark: 'bitcoin.svg', kind: 'asset-symbol' }]))
 entries.push(['support-ethereum', { theme: 'ethereum', mark: 'ethereum.svg', kind: 'asset-symbol' }])
 if (new Set(entries.map(([id]) => id)).size !== entries.length) throw new Error('Identité ETF dupliquée')
-export const ETF_ART = Object.freeze(Object.fromEntries(entries))
+export const ETF_ART = Object.freeze(Object.fromEntries([...entries, ...QUALIFIED_EXPOSURE_SHEETS.map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}])]))
 export function getETFArt(id) {
   const art = ETF_ART[id]
   if (!art) throw new Error(`Illustration non vérifiée pour ${id}`)
