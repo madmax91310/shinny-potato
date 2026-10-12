@@ -21,7 +21,7 @@ for (const profile of PROFILES) {
 }
 const julien = PROFILES[0]
 assert.equal(julien.monthly, 500)
-assert.deepEqual(julien.lines.map(line => line.amount), [200,100,100,50,50])
+assert.equal(julien.lines.reduce((sum, line) => sum + line.amount, 0), 500)
 assert(buildTweetText(julien).includes('gagne en moyenne 3\u202f200€ net'))
 let current = julien
 const seen = new Set([current.id])
@@ -50,3 +50,10 @@ assert(extension.some(p => p.monthly === 50))
 assert.equal(extension.filter(p => p.monthly > 1000).length, 9)
 assert(new Set(extension.flatMap(p => p.lines.map(l => l.asset))).size >= 30)
 assert(extension.every(p => p.lines.length <= 5))
+
+// Les choix ne sont plus déduits du métier ; le catalogue reste varié et stable.
+assert.equal(new Set(PROFILES.map(p => p.lines.map(l => `${l.asset}:${l.amount}`).sort().join('|'))).size, 100)
+assert(PROFILES.filter(p => !p.lines.some(l => ['world', 'acwi', 'allworld'].includes(l.asset))).length >= 30)
+assert(PROFILES.some(p => p.lines.some(l => l.asset === 'nintendo')))
+assert(PROFILES.some(p => p.lines.every(l => !['world', 'acwi', 'allworld', 'sp500', 'europe'].includes(l.asset))))
+assert(!julien.lines.some(l => ['vinci', 'saintgobain', 'legrand'].includes(l.asset)))
