@@ -44,3 +44,5 @@ Une PR de validation dédiée collecte les nouvelles sources sur GitHub Actions,
 Les poids nets de liquidités/dérivés DWS restent signés, sans écrêtage ni renormalisation des actions. Les données ETF sont partitionnées uniquement à la compilation, avec une source JSON unique et une limite de taille par fichier.
 
 Caterpillar et Waste Management restent hors publication et collecte de production : les pages et PDF Caterpillar expirent sur GitHub Actions, et les documents Waste Management répondent HTTP 403. Ces candidats pourront être requalifiés par une collecte explicite, sans activer de chiffres locaux à sa place.
+
+Le téléchargement de documents VanEck initialise explicitement la région UCITS du document avant la requête PDF. Cela évite la redirection géographique des runners américains vers l’accueil US ; les contrôles de l’ISIN, de la date et du contenu restent obligatoires.
