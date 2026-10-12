@@ -8,8 +8,8 @@ export const AUTOMATED_AUM = Object.fromEntries(Object.entries(records).filter((
   return [isin, { sheet: label, index: label, source: { ...a, amountMillions: a.amount / 1e6, url: a.sourceUrl ?? r.sourceUrl, checkedAt: a.checkedAt, scope: a.scope === 'fund' ? 'Actif net du fonds' : 'Actif net de la part exacte' } }];
 }));
 export function buildAnnualPerformance(record, now = new Date()) {
-  const latest = latestCommonYears([record.performance.years], { length: 6, minimum: 1, now }).at(-1);
-  const years = latest ? Array.from({ length: 6 }, (_, i) => latest - 5 + i) : [];
+  const latest = latestCommonYears([record.performance.years], { length: 6, minimum: 1, now }).at(-1) ?? now.getUTCFullYear() - 1;
+  const years = Array.from({ length: 6 }, (_, i) => latest - 5 + i);
   return { ...record.performance, source: record.performance.sourceUrl ?? record.sourceUrl,
     values: years.map(year => record.performance.years[year] ?? null), calendarYears: years,
     periodStart: `${years[0]}-01-01`, periodEnd: `${years.at(-1)}-12-31` };

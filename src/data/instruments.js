@@ -1,3 +1,4 @@
+import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Répertoire commun des produits identifiés par ISIN. Noms repris des outils existants :
 // cette migration ne constitue pas une nouvelle vérification auprès des émetteurs.
@@ -6,6 +7,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
+  ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r => [r.isin, Object.freeze({ name: r.name })])),
   FR001400ZGO4: Object.freeze({name: "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc"}),
   FR0007056841: Object.freeze({name: "Amundi Dow Jones Industrial Average UCITS ETF Dist"}),
 ...Object.fromEntries(EXPOSURE_ADDITIONS.map(r => [r.isin, Object.freeze({ name: r.name })])),

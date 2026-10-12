@@ -88,7 +88,18 @@ def merge_collection(report, current, baseline):
             reject('Incompatible performance')
         # Recent shares can publish their own complete years without replacing a proxy.
         years = performance['years']
-        if not years:
+        observations = performance.get('observations', [])
+        for observation in observations:
+            import math
+            date = dt.date.fromisoformat(observation['asOf'])
+            value = observation['value']
+            if (date.isoformat() > checked or not observation.get('label') or
+                    isinstance(value, bool) or not isinstance(value, (float, int)) or
+                    not math.isfinite(value) or not -100 < value < 1000):
+                reject('Invalid dated cumulative performance observation')
+        if len({o['label'] for o in observations}) != len(observations):
+            reject('Duplicate cumulative performance observation')
+        if not years and not observations:
             next_records[isin] = record
             continue
         import math

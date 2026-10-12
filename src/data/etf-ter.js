@@ -1,3 +1,4 @@
+import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { AUTOMATED_ETF } from './automated-etf.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.js';
@@ -6,6 +7,7 @@ import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.j
 // pas une nouvelle vérification chez l'émetteur. Mettre à jour ici puis contrôler
 // les mentions de frais dans les textes éditoriaux lors d'une modification.
 export const ETF_TER_BY_ISIN = Object.freeze({
+  ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r => [r.isin, r.ter])),
   FR001400ZGO4: '0,30',
   // Fiche officielle Amundi 31/08/2026 : https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831
   FR0007056841: '0,50',

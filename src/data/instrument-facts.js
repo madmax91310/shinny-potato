@@ -1,3 +1,4 @@
+import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Revue du 02/10/2026 : positionsSource date le contrôle des positions ; positionsAsOf date le relevé.
 // Les corrections de structure sont sourcées séparément dans characteristicsSource.
@@ -13,6 +14,7 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+  ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r => [r.isin, { distribution: r.incomePolicy === 'accumulating' ? 'Capitalisant' : 'Distribuant', location: `${r.domicile}, ${r.replicationMethod.startsWith('Active') ? 'gestion active, actions physiques et options' : r.replicationMethod.includes('sampling') ? 'réplication physique par échantillonnage' : 'réplication physique intégrale'}`, benchmark: r.benchmark, incomePolicy: r.incomePolicy, replicationMethod: r.replicationMethod, domicile: r.domicile, currencyHedge: null, reviewedAt: '11/10/2026', instrumentType: 'ETF', positionsLabel: r.replicationMethod.startsWith('Active') ? 'Exposition suivie : actions mondiales et vente d’options' : `Exposition suivie : ${r.benchmark}`, characteristicsSource: { url: r.source, checkedAt: '2026-10-11' } }])),
   "FR001400S9V0": {
   "distribution": "Capitalisant",
   "location": "France, réplication synthétique (swap)",
