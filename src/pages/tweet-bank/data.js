@@ -19,6 +19,7 @@ export const CATEGORIES = [
   "Storytelling",
   "Simulation & chiffres",
   "Guide ETF",
+  "Fiches pratiques",
   "Bilan patrimoine",
   "Engagement & débat",
   "Actu & humour",
@@ -34,6 +35,50 @@ export const GOLD_CATEGORIES = ["Guide ETF", "Actu & humour"]
 export const COOLDOWN_DAYS = 45
 
 const ARCHIVED_TWEETS = [
+  { id: 48, month: "Octobre", category: "Fiches pratiques", text: `7 ETF éligibles au PEA que j’aurais aimé connaître avant d’investir mes premiers euros 👇
+
+💾 Sauvegarde ce post, ça pourrait te servir.
+
+🌍 MSCI World
+
+Amundi PEA Monde (MSCI World) UCITS ETF Acc
+🎫 DCAM · 🆔 FR001400U5Q4 · 💸 0,20 %
+
+🌏 Marchés émergents, version ESG
+
+Amundi PEA Émergent (MSCI Emerging) ESG Transition UCITS ETF Acc
+🎫 PAEEM · 🆔 FR0013412020 · 💸 0,30 %
+
+🇺🇸 S&P 500
+
+BNP Paribas Easy S&P 500 UCITS ETF EUR
+🎫 ESE · 🆔 FR0011550185 · 💸 0,14 %
+
+🇺🇸 Nasdaq-100
+
+Amundi PEA Nasdaq-100 UCITS ETF Acc
+🎫 PUST · 🆔 FR0011871110 · 💸 0,30 %
+
+🇪🇺 STOXX Europe 600
+
+BNP Paribas Easy STOXX Europe 600 UCITS ETF
+🎫 ETZ · 🆔 FR0011550193 · 💸 0,19 %
+
+🇪🇺 Euro Stoxx 50
+
+Amundi EURO STOXX 50 II UCITS ETF Acc
+🎫 MSE · 🆔 FR0007054358 · 💸 0,20 %
+
+🌏 Asie émergente, indice filtré
+
+Amundi PEA Asie Émergente (MSCI Emerging Asia) Screened UCITS ETF Acc
+🎫 PAASI · 🆔 FR0013412012 · 💸 0,30 %
+
+Ce sont 7 pistes à connaître, pas 7 ETF à acheter ensemble : certaines expositions se recoupent 🔎
+
+Je parie que tu en as au moins un dans ton PEA 😏
+
+⚠️ Pas un conseil en investissement. Investir comporte un risque de perte en capital.` },
   { id: 1, month: "Avril", category: "Storytelling", formats: ["Bilan de la semaine"], text: "Il y a 10 ans, je fumais clope sur clope, je sortais tous les week-ends et j'avais à peine 5 000 € sur mes comptes bancaires.\n\nPuis un jour, j'en ai eu marre. J'ai arrêté les conneries et j'ai appris à investir et à penser à long terme.\n\nAujourd'hui, j'ai dépassé les 70 000 €.\n\nMais le plus beau ? Ce n'est pas l'argent. C'est d'avoir repris le contrôle de ma vie. D'avoir prouvé que la discipline finit toujours par payer.\n\nRoad to 100k.\n\nEt toi, où en es-tu dans ton chemin ? Dis-le-moi en commentaire" },
   { id: 2, month: "Avril", category: "Engagement & débat", text: "Ton épargne ne dit pas, à elle seule, si tu es riche ou pauvre.\n\nAvec la même somme de côté, ta situation peut être très différente selon ton revenu, tes charges, tes dettes et les personnes qui dépendent de toi.\n\nAvant de te comparer aux autres, regarde combien de mois de dépenses tu pourrais couvrir en cas d'imprévu.\n\n💬 Tu raisonnes en euros sur ton compte ou en mois de dépenses couverts ?" },
   { id: 3, month: "Avril", category: "Storytelling", formats: ["Bilan de la semaine"], text: "J'ai commencé à placer mon argent sur mon assurance vie en 2017. Puis, j'ai acheté du BTC en 2024 et ouvert mon PEA en 2025. Tout ça au prix d'effort sur mon train de vie.\n\nOn ne vit qu'une fois, d'accord, mais autant essayer de vivre correctement le plus longtemps possible.\n\nLe système des retraites ne tient plus, c'est indéniable. Qui sait quelle retraite nous attend dans 30 ans ?\n\nAujourd'hui, je dors sur mes deux oreilles. Peu importe les krachs, j'ai acheté des actifs auxquels je crois.\n\nDemain, je ferai partie de ceux à qui on dit \"tu as eu de la chance\". De la chance ? Non, j'ai pris conscience de l'urgence de la situation et j'ai pris des risques. Ceux qui ne jouent pas ne gagnent pas.\n\nEt toi, tu seras qui dans 20 ans ? Celui qui a joué ou celui qui dira aux autres qu'ils ont eu de la chance ?" },
