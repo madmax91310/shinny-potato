@@ -8,7 +8,7 @@ import { AUTOMATED_ETF, buildAnnualPerformance } from '../src/data/automated-etf
 import { getAnnualPerformance, performanceEntries } from '../src/pages/etf-sheets/annualPerformance.js';
 import { getETFArt } from '../src/pages/etf-sheets/visualIdentity.js';
 const config = [...JSON.parse(readFileSync(new URL('./additional-etf-sources.json', import.meta.url))).instruments, ...JSON.parse(readFileSync(new URL('./etf-pilot.json', import.meta.url))).instruments.map(s => ({...s, enabled:true, required:true}))];
-assert.equal(PRESENTATION_ETF_ADDITIONS.length, 8);
+assert.equal(PRESENTATION_ETF_ADDITIONS.length, 7);
 for (const r of PRESENTATION_ETF_ADDITIONS) {
   const card = ETFS.find(c => c.isin === r.isin);
   const record = AUTOMATED_ETF[r.isin];
@@ -37,7 +37,7 @@ for (const r of PRESENTATION_ETF_ADDITIONS) {
   }
 }
 assert.equal(AUTOMATED_ETF.IE0003UVYC20.performance.years['2023'], undefined, 'Partial launch year stays excluded');
-console.log('Eight exact shares: active collectors, automated fields, cumulative/calendar separation, future rollover and presentation-only scope OK.');
+console.log('Seven exact shares: active collectors, automated fields, cumulative/calendar separation, future rollover and presentation-only scope OK.');
 
 const amundi = JSON.parse(readFileSync(new URL('./amundi-etf.json', import.meta.url))).instruments;
 for (const r of PRESENTATION_ETF_EXPANSION) {
