@@ -25,10 +25,10 @@ export default function App() {
     catch { setFeedback('Copie impossible. Sélectionne le texte pour le copier.') }
   }
   return <div className="dca-profiles-scope">
-    <PageHeader title="Le DCA de…" subtitle="50 scénarios fictifs pour discuter de choix d’investissement. Les revenus sont individuels ; les montants investis sont des objectifs mensuels. Selon le courtier, les achats peuvent nécessiter des fractions ou être regroupés sur plusieurs mois." />
+    <PageHeader title="Le DCA de…" subtitle={`${PROFILES.length} scénarios fictifs pour discuter de choix d’investissement. Les revenus sont individuels ; les montants investis sont des objectifs mensuels. Selon le courtier, les achats peuvent nécessiter des fractions ou être regroupés sur plusieurs mois.`} />
     <ToolWorkspace actions={<Button type="button" onClick={copy} disabled={!draft.trim()}>Copier le texte</Button>}>
       <section className="tool-settings">
-        <p className="dca-note">50 profils fictifs · Revenus nets mensuels individuels</p>
+        <p className="dca-note">{PROFILES.length} profils fictifs · Revenus nets mensuels individuels</p>
         <ChoicePicker aria-label="Choisir un profil DCA" value={id} onChange={event => select(PROFILES.find(item => item.id === event.target.value))}>
           {PROFILES.map(item => <option key={item.id} value={item.id}>{item.name} · {item.age} ans · {item.job} · {item.monthly}€/mois</option>)}
         </ChoicePicker>
