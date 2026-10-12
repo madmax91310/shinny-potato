@@ -3,6 +3,10 @@ import RECORDS from './automated-etf-monthly.json' with { type: 'json' }
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+  etfWorldMultifactor: { icon:'🌍',scene:'world',title:'WORLD MULTIFACTOR',ticker:'IFSW' },
+  etfIbondsEuro2028: { icon:'📅',scene:'world',title:'OBLIGATIONS EURO 2028',ticker:'B28A' },
+  etcSilverPhysical: { instrumentType:'ETC',icon:'⚪',scene:'silver',title:'ARGENT PHYSIQUE',ticker:'SSLN' },
+  etfSilverMiners: { icon:'⛏️',scene:'silver',title:'MINES D ARGENT',ticker:'SILV' },
   etfCloudWisdomtree: {icon:'☁️',scene:'world',title:'CLOUD COMPUTING',ticker:'WCLD'},
   etfWorldUtilities: {icon:'💡',scene:'industry',title:'WORLD UTILITIES',ticker:'XDWU'},
   etfWorldMaterials: {icon:'🪨',scene:'industry',title:'WORLD MATERIALS',ticker:'WMTS'},

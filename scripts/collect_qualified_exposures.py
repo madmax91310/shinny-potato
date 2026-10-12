@@ -7,9 +7,9 @@ from collect_etf_holdings import parse_holdings, collect_holdings
 from data_automation import get_text, UTC, write_json_atomic
 from apply_etf_collection import merge_collection
 ROOT=Path(__file__).resolve().parents[1]
-MICS={'London Stock Exchange':'XLON','Deutsche Boerse Xetra':'XETR','Euronext Amsterdam':'XAMS','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
+MICS={'London Stock Exchange':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
 def collect_one(config,now):
- share={**config,'currency':'USD','collectHoldings':True,'requireFullHistory':False}
+ share={**config,'currency':config.get('currency','USD'),'collectHoldings':True,'requireFullHistory':False}
  url=product_data_url(share).replace('holdings.all','holdings.all%2Clistings')
  raw=get_text(url,('application/json',),10000000);body=json.loads(raw)
  components=body['componentsByNameMap']
@@ -33,13 +33,15 @@ def collect_one(config,now):
  for cells in zip(*(arrays[key]for key in keys)):
   exchange,ticker,currency,listing_date,ric=cells
   if exchange in MICS and currency in ['USD','EUR'] and ticker and ric:
-   listings.append(dict(ticker=ticker,exchange='Xetra'if MICS[exchange]=='XETR'else exchange,excerpt=' | '.join(str(v)for v in cells),mic=MICS[exchange],currency=currency,symbol=ric,sourceUrl=url,checkedAt=now.date().isoformat(),evidenceId=f'{config["isin"]}-{MICS[exchange]}-{ticker}-{currency}'))
+   market=MICS[exchange]
+   market_name={'XETR':'Xetra','XPAR':'Euronext Paris'}.get(market,exchange)
+   listings.append(dict(ticker=ticker,exchange=market_name,excerpt=' | '.join(str(v)for v in cells),mic=market,currency=currency,symbol=ric,sourceUrl=url,checkedAt=now.date().isoformat(),evidenceId=f'{config["isin"]}-{market}-{ticker}-{currency}'))
  if not listings:raise ValueError('No fully identified official listing')
  # Prefer USD London for historical calculations; the sheet uses the same exact listing.
  listing=sorted(listings,key=lambda x:(x['currency']!='USD',x['mic']!='XLON',x['ticker']))[0]
  result.update(name=name,sourceUrl=url,listing=listing,listings=listings)
  result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),'replicationMethod':v('productStructure')+' ('+v('fundMethodologyTypeCode')+')','inceptionDate':str(v('inceptionDate'))}
- if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!='Equity':raise ValueError('Unexpected UCITS/asset class')
+ if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!=config.get('holdingsAssetClass','Equity'):raise ValueError('Unexpected UCITS/asset class')
  result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(raw.encode()).hexdigest();result.pop('rawComponents',None)
  return result
 

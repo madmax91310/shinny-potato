@@ -6,6 +6,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+  "IE000UL6CLP7": [{"ticker": "SILV", "exchange": "London Stock Exchange", "mic": "XLON", "currency": "USD", "sourceUrl": "https://globalxetfs.eu/funds/silv/", "checkedAt": "2026-10-12", "evidenceId": "IE000UL6CLP7-XLON-SILV-USD"}],
   "IE00B4556L06": [{"ticker": "IPDM", "exchange": "London Stock Exchange", "mic": "XLON", "currency": "USD", "sourceUrl": "https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y", "checkedAt": "2026-10-12", "evidenceId": "IE00B4556L06-XLON-IPDM-USD"}],
   "IE00B4LHWP62": [{"ticker": "IPLT", "exchange": "London Stock Exchange", "mic": "XLON", "currency": "USD", "sourceUrl": "https://www.ishares.com/uk/individual/en/products/258442/ishares-physical-platinum-etc-fund?siteEntryPassthrough=true&switchLocale=y", "checkedAt": "2026-10-12", "evidenceId": "IE00B4LHWP62-XLON-IPLT-USD"}],
   "IE0003R87OG3": [{"ticker": "AVWS", "exchange": "Xetra", "mic": "XETR", "currency": "EUR", "sourceUrl": "https://res.avantisinvestors.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf", "checkedAt": "2026-10-12", "evidenceId": "IE0003R87OG3-XETR-AVWS-EUR"}],
@@ -116,6 +117,7 @@ export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
     }
   ],
   "IE00B4NCWG09": [
+    {"ticker": "ISLN", "exchange": "London Stock Exchange", "mic": "XLON", "currency": "USD", "sourceUrl": "https://www.ishares.com/uk/individual/en/products/258443/", "checkedAt": "2026-10-12", "evidenceId": "IE00B4NCWG09-XLON-ISLN-USD"},
     {
       "ticker": "SSLN",
       "exchange": "Euronext Paris",
