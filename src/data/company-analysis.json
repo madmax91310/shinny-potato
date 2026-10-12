@@ -138,9 +138,9 @@
       "estimates": {
         "forwardEPS": 9.62,
         "growthEPS5Y": 12.77,
-        "reportedForwardPE": 35.36,
+        "reportedForwardPE": 35.31,
         "reportedPEG": 2.77,
-        "providerPrice": 339.99,
+        "providerPrice": 339.55,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=AAPL",
@@ -357,6 +357,53 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-12"
+      },
+      "solidity": {
+        "componentVersion": 1,
+        "observedAt": "2026-10-12",
+        "annualEnd": "2025-09-27",
+        "revenue": 416161000000.0,
+        "netIncome": 112010000000.0,
+        "accountsEndAtCollection": "2026-06-27",
+        "annualBalances": [
+          {
+            "assets": 364980000000.0,
+            "currentAssets": 152987000000.0,
+            "currentLiabilities": 176392000000.0,
+            "equity": 56950000000.0,
+            "liabilitiesAndEquity": 364980000000.0,
+            "cash": 29943000000.0,
+            "inventories": 7286000000.0,
+            "asOf": "2024-09-28",
+            "liabilities": 308030000000.0,
+            "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
+          },
+          {
+            "assets": 359241000000.0,
+            "currentAssets": 147957000000.0,
+            "currentLiabilities": 165631000000.0,
+            "equity": 73733000000.0,
+            "liabilitiesAndEquity": 359241000000.0,
+            "cash": 35934000000.0,
+            "inventories": 5718000000.0,
+            "asOf": "2025-09-27",
+            "liabilities": 285508000000.0,
+            "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
+          }
+        ],
+        "latestBalance": {
+          "assets": 383266000000.0,
+          "currentAssets": 149818000000.0,
+          "currentLiabilities": 149326000000.0,
+          "equity": 107520000000.0,
+          "liabilitiesAndEquity": 383266000000.0,
+          "cash": 39544000000.0,
+          "inventories": 11092000000.0,
+          "asOf": "2026-06-27",
+          "liabilities": 275746000000.0,
+          "sourceUrl": "https://www.apple.com/newsroom/pdfs/fy2026q3/FY26_Q3_Consolidated_Financial_Statements.pdf"
+        },
+        "method": "Consolidated GAAP issuer balance; opening and closing annual equity from the same comparative document"
       }
     },
     "microsoft": {
@@ -475,7 +522,7 @@
         "growthEPS5Y": 18.49,
         "reportedForwardPE": 22.97,
         "reportedPEG": 1.24,
-        "providerPrice": 539.87,
+        "providerPrice": 539.95,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=MSFT",
@@ -687,6 +734,53 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-12"
+      },
+      "solidity": {
+        "componentVersion": 1,
+        "observedAt": "2026-10-12",
+        "annualEnd": "2026-06-30",
+        "revenue": 331839000000.0,
+        "netIncome": 133749000000.0,
+        "accountsEndAtCollection": "2026-06-30",
+        "annualBalances": [
+          {
+            "assets": 619003000000.0,
+            "currentAssets": 191131000000.0,
+            "currentLiabilities": 141218000000.0,
+            "equity": 343479000000.0,
+            "liabilitiesAndEquity": 619003000000.0,
+            "cash": 30242000000.0,
+            "inventories": 938000000.0,
+            "asOf": "2025-06-30",
+            "liabilities": 275524000000.0,
+            "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
+          },
+          {
+            "assets": 758376000000.0,
+            "currentAssets": 207710000000.0,
+            "currentLiabilities": 168825000000.0,
+            "equity": 442387000000.0,
+            "liabilitiesAndEquity": 758376000000.0,
+            "cash": 20935000000.0,
+            "inventories": 1397000000.0,
+            "asOf": "2026-06-30",
+            "liabilities": 315989000000.0,
+            "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
+          }
+        ],
+        "latestBalance": {
+          "assets": 758376000000.0,
+          "currentAssets": 207710000000.0,
+          "currentLiabilities": 168825000000.0,
+          "equity": 442387000000.0,
+          "liabilitiesAndEquity": 758376000000.0,
+          "cash": 20935000000.0,
+          "inventories": 1397000000.0,
+          "asOf": "2026-06-30",
+          "liabilities": 315989000000.0,
+          "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
+        },
+        "method": "Consolidated GAAP issuer balance; opening and closing annual equity from the same comparative document"
       }
     },
     "nvidia": {
@@ -821,9 +915,9 @@
       "estimates": {
         "forwardEPS": 15.77,
         "growthEPS5Y": 64.96,
-        "reportedForwardPE": 14.35,
+        "reportedForwardPE": 14.37,
         "reportedPEG": 0.22,
-        "providerPrice": 226.25,
+        "providerPrice": 226.59,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NVDA",
@@ -1019,6 +1113,51 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-12"
+      },
+      "solidity": {
+        "componentVersion": 1,
+        "observedAt": "2026-10-12",
+        "annualEnd": "2026-01-25",
+        "revenue": 215938000000.0,
+        "netIncome": 120067000000.0,
+        "accountsEndAtCollection": "2026-07-26",
+        "annualBalances": [
+          {
+            "assets": 111601000000.0,
+            "currentAssets": 80126000000.0,
+            "currentLiabilities": 18047000000.0,
+            "equity": 79327000000.0,
+            "liabilitiesAndEquity": 111601000000.0,
+            "inventories": 10080000000.0,
+            "asOf": "2025-01-26",
+            "liabilities": 32274000000.0,
+            "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
+          },
+          {
+            "assets": 206803000000.0,
+            "currentAssets": 125605000000.0,
+            "currentLiabilities": 32163000000.0,
+            "equity": 157293000000.0,
+            "liabilitiesAndEquity": 206803000000.0,
+            "inventories": 21403000000.0,
+            "asOf": "2026-01-25",
+            "liabilities": 49510000000.0,
+            "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
+          }
+        ],
+        "latestBalance": {
+          "assets": 320272000000.0,
+          "currentAssets": 197412000000.0,
+          "currentLiabilities": 43019000000.0,
+          "equity": 228984000000.0,
+          "liabilitiesAndEquity": 320272000000.0,
+          "cash": 22443000000.0,
+          "inventories": 31575000000.0,
+          "asOf": "2026-07-26",
+          "liabilities": 91288000000.0,
+          "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027"
+        },
+        "method": "Consolidated GAAP issuer balance; opening and closing annual equity from the same comparative document"
       }
     },
     "alphabet": {
@@ -1145,9 +1284,9 @@
       "estimates": {
         "forwardEPS": 15.22,
         "growthEPS5Y": 18.81,
-        "reportedForwardPE": 23.19,
+        "reportedForwardPE": 23.12,
         "reportedPEG": 1.23,
-        "providerPrice": 352.94,
+        "providerPrice": 351.87,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=GOOGL",
@@ -1333,6 +1472,50 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-12"
+      },
+      "solidity": {
+        "componentVersion": 1,
+        "observedAt": "2026-10-12",
+        "annualEnd": "2025-12-31",
+        "revenue": 402836000000.0,
+        "netIncome": 132170000000.0,
+        "accountsEndAtCollection": "2026-06-30",
+        "annualBalances": [
+          {
+            "assets": 450256000000.0,
+            "currentAssets": 163711000000.0,
+            "currentLiabilities": 89122000000.0,
+            "equity": 325084000000.0,
+            "liabilitiesAndEquity": 450256000000.0,
+            "cash": 23466000000.0,
+            "asOf": "2024-12-31",
+            "liabilities": 125172000000.0,
+            "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf"
+          },
+          {
+            "assets": 595281000000.0,
+            "currentAssets": 206038000000.0,
+            "currentLiabilities": 102745000000.0,
+            "equity": 415265000000.0,
+            "liabilitiesAndEquity": 595281000000.0,
+            "cash": 30708000000.0,
+            "asOf": "2025-12-31",
+            "liabilities": 180016000000.0,
+            "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf"
+          }
+        ],
+        "latestBalance": {
+          "assets": 921983000000.0,
+          "currentAssets": 343524000000.0,
+          "currentLiabilities": 126111000000.0,
+          "equity": 640480000000.0,
+          "liabilitiesAndEquity": 921983000000.0,
+          "cash": 55911000000.0,
+          "asOf": "2026-06-30",
+          "liabilities": 281503000000.0,
+          "sourceUrl": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf"
+        },
+        "method": "Consolidated GAAP issuer balance; opening and closing annual equity from the same comparative document"
       }
     },
     "amazon": {
@@ -1465,9 +1648,9 @@
       "estimates": {
         "forwardEPS": 10.64,
         "growthEPS5Y": 25.47,
-        "reportedForwardPE": 24.38,
+        "reportedForwardPE": 24.42,
         "reportedPEG": 0.96,
-        "providerPrice": 259.5,
+        "providerPrice": 259.92,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=AMZN",
@@ -1682,6 +1865,53 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-12"
+      },
+      "solidity": {
+        "componentVersion": 1,
+        "observedAt": "2026-10-12",
+        "annualEnd": "2025-12-31",
+        "revenue": 716924000000.0,
+        "netIncome": 77670000000.0,
+        "accountsEndAtCollection": "2026-06-30",
+        "annualBalances": [
+          {
+            "assets": 624894000000.0,
+            "currentAssets": 190867000000.0,
+            "currentLiabilities": 179431000000.0,
+            "equity": 285970000000.0,
+            "liabilitiesAndEquity": 624894000000.0,
+            "cash": 78779000000.0,
+            "inventories": 34214000000.0,
+            "asOf": "2024-12-31",
+            "liabilities": 338924000000.0,
+            "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
+          },
+          {
+            "assets": 818042000000.0,
+            "currentAssets": 229083000000.0,
+            "currentLiabilities": 218005000000.0,
+            "equity": 411065000000.0,
+            "liabilitiesAndEquity": 818042000000.0,
+            "cash": 86810000000.0,
+            "inventories": 38325000000.0,
+            "asOf": "2025-12-31",
+            "liabilities": 406977000000.0,
+            "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
+          }
+        ],
+        "latestBalance": {
+          "assets": 1095689000000.0,
+          "currentAssets": 249264000000.0,
+          "currentLiabilities": 241274000000.0,
+          "equity": 551620000000.0,
+          "liabilitiesAndEquity": 1095689000000.0,
+          "cash": 78213000000.0,
+          "inventories": 38184000000.0,
+          "asOf": "2026-06-30",
+          "liabilities": 544069000000.0,
+          "sourceUrl": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx"
+        },
+        "method": "Consolidated GAAP issuer balance; opening and closing annual equity from the same comparative document"
       }
     },
     "lvmh": {
@@ -2569,9 +2799,9 @@
       "estimates": {
         "forwardEPS": 15.03,
         "growthEPS5Y": 14.17,
-        "reportedForwardPE": 26.02,
+        "reportedForwardPE": 26.01,
         "reportedPEG": 1.84,
-        "providerPrice": 391.11,
+        "providerPrice": 391.02,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=V",
@@ -2763,9 +2993,9 @@
       "estimates": {
         "forwardEPS": 25.06,
         "growthEPS5Y": 9.73,
-        "reportedForwardPE": 38.27,
-        "reportedPEG": 3.93,
-        "providerPrice": 958.88,
+        "reportedForwardPE": 38.31,
+        "reportedPEG": 3.94,
+        "providerPrice": 959.86,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=COST",
@@ -3014,9 +3244,9 @@
       "estimates": {
         "forwardEPS": 16.04,
         "growthEPS5Y": 77.71,
-        "reportedForwardPE": 36.85,
+        "reportedForwardPE": 36.81,
         "reportedPEG": 0.47,
-        "providerPrice": 591.05,
+        "providerPrice": 590.44,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=AMD",
@@ -3304,9 +3534,9 @@
       "estimates": {
         "forwardEPS": 34.02,
         "growthEPS5Y": 18.71,
-        "reportedForwardPE": 21.83,
+        "reportedForwardPE": 21.95,
         "reportedPEG": 1.17,
-        "providerPrice": 742.76,
+        "providerPrice": 746.67,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=META",
@@ -3574,9 +3804,9 @@
       "estimates": {
         "forwardEPS": 23.09,
         "growthEPS5Y": 16.44,
-        "reportedForwardPE": 25.91,
+        "reportedForwardPE": 25.9,
         "reportedPEG": 1.58,
-        "providerPrice": 598.35,
+        "providerPrice": 598.08,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=MA",
@@ -3857,9 +4087,9 @@
       "estimates": {
         "forwardEPS": 27.74,
         "growthEPS5Y": 14.51,
-        "reportedForwardPE": 8.59,
+        "reportedForwardPE": 8.57,
         "reportedPEG": 0.59,
-        "providerPrice": 238.37,
+        "providerPrice": 237.67,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=ADBE",
@@ -4119,9 +4349,9 @@
       "estimates": {
         "forwardEPS": 16.07,
         "growthEPS5Y": 13.98,
-        "reportedForwardPE": 14.51,
-        "reportedPEG": 1.04,
-        "providerPrice": 233.24,
+        "reportedForwardPE": 14.43,
+        "reportedPEG": 1.03,
+        "providerPrice": 231.93,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=CRM",
@@ -4424,9 +4654,9 @@
       "estimates": {
         "forwardEPS": 5.02,
         "growthEPS5Y": 20.13,
-        "reportedForwardPE": 28.13,
-        "reportedPEG": 1.4,
-        "providerPrice": 141.1,
+        "reportedForwardPE": 28.02,
+        "reportedPEG": 1.39,
+        "providerPrice": 140.57,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NOW",
@@ -4714,9 +4944,9 @@
       "estimates": {
         "forwardEPS": 26.28,
         "growthEPS5Y": 21.48,
-        "reportedForwardPE": 11.74,
+        "reportedForwardPE": 11.73,
         "reportedPEG": 0.55,
-        "providerPrice": 308.69,
+        "providerPrice": 308.21,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=INTU",
@@ -4971,9 +5201,9 @@
       "estimates": {
         "forwardEPS": 3.53,
         "growthEPS5Y": 8.19,
-        "reportedForwardPE": 25.3,
+        "reportedForwardPE": 25.32,
         "reportedPEG": 3.09,
-        "providerPrice": 89.3,
+        "providerPrice": 89.4,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=KO",
@@ -5307,9 +5537,9 @@
       "estimates": {
         "forwardEPS": 8.62,
         "growthEPS5Y": 3.75,
-        "reportedForwardPE": 14.75,
-        "reportedPEG": 3.93,
-        "providerPrice": 127.15,
+        "reportedForwardPE": 14.68,
+        "reportedPEG": 3.92,
+        "providerPrice": 126.57,
         "observedAt": "2026-10-12",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=PEP",
