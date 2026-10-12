@@ -24,6 +24,7 @@ class PerformanceTests(unittest.TestCase):
 
     def test_vaneck_standalone_header_is_not_the_fund_row(self):
         text = (FIXTURES/'qntm.txt').read_text().replace('Performance History (%)', 'Performance History (%)\nETF')
+        text = text.replace('ETF                                              0.55', 'Reinvestment                   ETF                                              0.55')
         result = parse(text, SOURCES[3], NOW)
         self.assertEqual(result['observations'][2]['value'], 17.47)
 
