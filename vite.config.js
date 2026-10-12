@@ -9,6 +9,7 @@ export default defineConfig({
     manifest: true,
     rolldownOptions: { output: { codeSplitting: { groups: [
       // Shared by anniversaries and calculator; keep the new data below the route budget.
+      { name: 'etf-issuer-records', test: /automated-etf\.json$/ },
       { name: 'official-index-history', test: /anniversary-index-history\.json$/ },
     ] } } },
   },
