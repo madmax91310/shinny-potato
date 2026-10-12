@@ -139,7 +139,9 @@ export const presentationBrands = {
 }
 export function presentationReliefModel(record,kind) {
   const model=presentationCardModel(record,kind)
-  if(kind==='actor') return { ...model, highlights: record.highlights.map(([label,value]) => row(label,value)),
+  if(kind==='actor') return { ...model, highlights: record.highlights.map(([label,value]) => row(label,
+    record.id==='tudigo' && label==='Exposition' && value==='Entreprises non cotées' ? 'Non coté' :
+    record.id==='lendosphere' && label==='Exposition' && value==='Transition énergétique' ? 'Énergie' : value)),
     qualifier: (record.selectedOffer?.availability?.status === 'closed' ? record.selectedOffer.name+' · Souscriptions clôturées le '+dateLabel(record.selectedOffer.availability.asOf) : record.selectedOffer?.warnings.length ? 'Durées officielles divergentes · Confirmer les conditions du titre' : (record.selectedOffer?.name ?? 'Fonctionnement général de l’acteur')+' · Conditions publiques')+' · Vérifié le '+dateLabel(record.checkedAt),
     brand: presentationBrands[record.id] }
   if(kind==='scpi') {
