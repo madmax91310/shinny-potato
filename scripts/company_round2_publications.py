@@ -222,6 +222,19 @@ def statement_periods(text, ident, url, today):
                 mult=1 if k=='dilutedEPS'else 1e6;p[k]=values[i]*mult;p['previous'+k[0].upper()+k[1:]]=values[j]*mult;p['tags'][k]='Official consolidated GAAP statement'
         if ident=='pepsico' and duration==3 and weeks:p['durationWeeks']=weeks[0]
         if ident in ('sp-global','coca-cola','intuitive-surgical','pepsico'):p['incomeBasis']='part du groupe'
+        # Standalone financing cost only; a net interest line is not a substitute.
+        interests = row(text, [r'Interest expense(?: \(\d+\))?', r'Interest and debt expense'])
+        if interests and ident in ('sp-global','coca-cola') and len(interests) in (3,6):
+            interests = [interests[k] for k in ([0,1,3,4] if len(interests)==6 else [0,1])]
+        if interests and len(interests) == len(rv):
+            p['interestExpense'] = abs(interests[i])*1e6
+            p['previousInterestExpense'] = abs(interests[j])*1e6
+        share_section = re.split(r'(?im)^\s*(?:Weighted.average shares|Shares used)', text, 1)
+        if len(share_section) == 2:
+            counts = row(share_section[1], [r'Diluted(?: \(\d+\))?'])
+            if counts and len(counts) == len(rv) and min(counts)>100:
+                p['averageDilutedShares'] = counts[i]*1e6
+                p['previousAverageDilutedShares'] = counts[j]*1e6
         p['margin']=p['netIncome']/p['revenue']*100;result.append(p)
     return result
 

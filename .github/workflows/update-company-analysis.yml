@@ -42,13 +42,14 @@ jobs:
           cache: npm
       - run: npm ci
       - run: pip install -r scripts/company-requirements.txt
-      - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'
+      - run: python -m unittest discover -s scripts -p 'test_company*.py'
       - id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         env:
           ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
         run: python scripts/refresh_company_analysis.py --apply --output "$RUNNER_TEMP/company-observation.json"
       - run: node scripts/test-company-analysis.mjs
+      - run: node scripts/test-company-decision.mjs
       - run: npm run build
       - name: Verify company UI in Chromium
         if: github.event_name == 'pull_request'
