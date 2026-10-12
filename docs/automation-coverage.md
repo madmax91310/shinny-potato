@@ -8,14 +8,14 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 86/86 séries ; 44 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 32 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
-| ETF/ETC/ETP | 173/176 instruments, au moins un champ | Quotidienne |
-| Comparatif ETF | 85/85 parts raccordées dans 46 blocs ; 77 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
-| Compositions d’indices | 44 indices | 3 et 16 du mois |
-| Rendements annuels d’indices | 48 indices | 3 et 16 du mois |
+| Historiques mensuels des simulateurs | 90/90 séries ; 44 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 36 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| ETF/ETC/ETP | 175/178 instruments, au moins un champ | Quotidienne |
+| Comparatif ETF | 87/87 parts raccordées dans 51 blocs ; 79 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| Compositions d’indices | 46 indices | 3 et 16 du mois |
+| Rendements annuels d’indices | 50 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
-| Anniversaires | 80 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
+| Anniversaires | 84 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -24,7 +24,7 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 ## Disponibilité à fiabiliser
 
-WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 173 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 173 accès réussis à chaque exécution.
+WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 175 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 175 accès réussis à chaque exécution.
 
 Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth publient des encours datés ; elles peuvent renvoyer HTTP 403 depuis GitHub. Les six pages ont été qualifiées en collecte réelle, avec ISIN, devise et date propres contrôlés. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. Les encours CoinShares utilisent désormais les widgets officiels liés à la page produit : ISIN et devise USD contrôlés, Rate Date de valorisation (jamais la date de cache). Les documents PDF restent la preuve des frais ; leurs rendements crypto de référence ne sont pas assimilés à ceux de la part. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié, avec repli entre les deux adresses officielles Swiss Fund Data puis le mois précédent ; identité, devise et fraîcheur sont contrôlées. WisdomTree : une panne du PDF conserve les champs HTML validés indépendamment et reste signalée comme erreur de collecte.
 
@@ -59,12 +59,12 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 
 | Champ collecté et consommé | Instruments |
 |---|---:|
-| Frais annuels | 173 |
-| Encours daté | 173 |
-| Rendements calendaires de la part (au moins une année complète) | 164 |
-| Pays | 158 |
-| Secteurs ou sous-secteurs publiés | 158 |
-| Principales positions | 158 |
+| Frais annuels | 175 |
+| Encours daté | 175 |
+| Rendements calendaires de la part (au moins une année complète) | 166 |
+| Pays | 160 |
+| Secteurs ou sous-secteurs publiés | 160 |
+| Principales positions | 160 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
@@ -92,6 +92,10 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BJ5JP212 | iShares MSCI World Consumer Discretionary Sector Advanced UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BJ5JP105 | iShares MSCI World Energy Sector UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BJ5JP436 | iShares MSCI World Communication Services Sector Advanced UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
+| IE00BJ5JNZ06 | iShares MSCI World Health Care Sector Advanced UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
+| IE00BJ5JP766 | iShares MSCI World Materials Sector Advanced UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
+| IE00BM67HS53 | Xtrackers MSCI World Materials UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BM67HQ30 | Xtrackers MSCI World Utilities UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM67HV82 | Xtrackers MSCI World Industrials UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3F81G20 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B52MJY50 | iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -102,7 +106,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR001400ZGO4 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc | Rendements calendaires |
 | FR0007056841 | Amundi Dow Jones Industrial Average UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BYWQWR46 | VanEck Video Gaming and eSports UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BYZK4776 | iShares Healthcare Innovation UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BYZK4776 | iShares Healthcare Innovation UCITS ETF USD (Acc) | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00B3YLTY66 | State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BLNMYC90 | Xtrackers S&P 500 Equal Weight UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BJ38QD84 | State Street SPDR Russell 2000 U.S. Small Cap UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -206,7 +210,6 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BG0J4C88 | iShares Digital Security UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BGV5VN51 | Xtrackers Artificial Intelligence and Big Data UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BJ5JNY98 | iShares MSCI World Information Technology Sector Advanced UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BJ5JNZ06 | iShares MSCI World Health Care Sector Advanced UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BJ5JP097 | iShares MSCI World Financials Sector Advanced UCITS ETF USD (Dist) | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BJ5JPG56 | iShares MSCI China UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BCD43 | L&G Artificial Intelligence UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -219,7 +222,6 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BKPSFC54 | iShares MSCI World Quality Dividend Advanced UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BKPX3K41 | iShares MSCI AC Far East ex-Japan UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM67HK77 | Xtrackers MSCI World Health Care UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BM67HS53 | Xtrackers MSCI World Materials UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM8R0J59 | Global X Nasdaq 100 Covered Call UCITS ETF | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE00BMG6Z448 | iShares MSCI EM ex-China UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BMW42413 | iShares MSCI Europe Information Technology Sector UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
